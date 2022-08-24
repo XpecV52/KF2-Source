@@ -74,8 +74,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.007000
    Spread(1)=0.007000
-   InstantHitDamage(0)=50.000000
-   InstantHitDamage(1)=50.000000
+   InstantHitDamage(0)=55.000000
+   InstantHitDamage(1)=55.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SCAR'

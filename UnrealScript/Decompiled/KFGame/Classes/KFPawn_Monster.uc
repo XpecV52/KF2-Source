@@ -2691,17 +2691,10 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 
 function float GetHeadHealthPercent()
 {
-    local KFGameInfo KFGI;
-    local float HeadHealth, HeadHealthMax, HealthMod, HeadHealthMod;
+    local float HeadHealth, HeadHealthMax;
 
     HeadHealth = float(HitZones[0].GoreHealth);
     HeadHealthMax = float(HitZones[0].MaxGoreHealth);
-    KFGI = KFGameInfo(WorldInfo.Game);
-    if(KFGI != none)
-    {
-        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
-        HeadHealthMax *= HeadHealthMod;
-    }
     return HeadHealth / HeadHealthMax;
 }
 

@@ -75,6 +75,13 @@ function SetWhatsNewItems()
 
         if(I < PS4WhatsNewItems.Length)
         {
+            if(Class'KFGameEngine'.static.GetSeasonalEventID() == 0)
+            {
+                if(PS4WhatsNewItems[I].TextField == "FeaturedEventItem")
+                {
+                    goto J0x3AB;
+                }
+            }
             if(bLoggedIn || PS4WhatsNewItems[I].PSNProductId == "")
             {
                 DataObject = Outer.CreateObject("Object");
@@ -84,6 +91,8 @@ function SetWhatsNewItems()
                 DataArray.SetElementObject(PS4ActiveWhatsNewItems.Length, DataObject);
                 PS4ActiveWhatsNewItems.AddItem(PS4WhatsNewItems[I];
             }
+            J0x3AB:
+
             ++ I;
             goto J0x158;
         }        
@@ -91,7 +100,7 @@ function SetWhatsNewItems()
     else
     {
         I = 0;
-        J0x361:
+        J0x3C7:
 
         if(I < WhatsNewItems.Length)
         {
@@ -101,7 +110,7 @@ function SetWhatsNewItems()
             DataObject.SetString("redirectURL", WhatsNewItems[I].RedirectURL);
             DataArray.SetElementObject(I, DataObject);
             ++ I;
-            goto J0x361;
+            goto J0x3C7;
         }
     }
     SetObject("whatsNew", DataArray);

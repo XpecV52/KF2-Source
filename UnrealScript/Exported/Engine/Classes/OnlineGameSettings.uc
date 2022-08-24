@@ -120,6 +120,10 @@ var databinding bool bRequiresPassword;
 var databinding bool bCloudServer;
 // Number of seconds this server has been de-allocated for
 var databinding int SecondsDeallocated;
+// The bucket this server belongs to as far as seconds the server has been deallocated
+var databinding int SecondsDeallocatedBucket;
+// The bucket size for grouping seconds deallocated
+var const int SecondsDeallocatedBucketSize;
 // Region for the server
 var databinding string Region;
 //@HSL_END
@@ -155,6 +159,7 @@ defaultproperties
    bShouldShrinkArbitratedSessions=True
    GfxID=-1
    ElementIdx=-1
+   SecondsDeallocatedBucketSize=60
    Name="Default__OnlineGameSettings"
    ObjectArchetype=Settings'Engine.Default__Settings'
 }

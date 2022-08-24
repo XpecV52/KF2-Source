@@ -1236,17 +1236,25 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
 			Search.AddGametagFilter( GameTagFilters, 'Mode', string(GameMode) );
 		}
 
-		GameDifficulty = OptionsComponent.GetDifficulty();
-		if (GameDifficulty >= 0)
-		{
-			Search.AddGametagFilter(GameTagFilters, 'Difficulty', string(GameDifficulty));
-		}
+        //For modes that don't use filtered difficulty, don't even attempt to send this (Ex: Weekly)
+        if (ShouldUseDifficultyFilter(GameMode))
+        {
+            GameDifficulty = OptionsComponent.GetDifficulty();
+            if (GameDifficulty >= 0)
+            {
+                Search.AddGametagFilter(GameTagFilters, 'Difficulty', string(GameDifficulty));
+            }
+        }		
 
-		GameLength = OptionsComponent.GetGameLength();
-		if (GameLength >= 0)
-		{
-			Search.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
-		}
+        //For modes that don't use filtered length, don't even attempt to send this (Ex: Weekly)
+        if (ShouldUseLengthFilter(GameMode))
+        {
+            GameLength = OptionsComponent.GetGameLength();
+            if (GameLength >= 0)
+            {
+                Search.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
+            }
+        }		
 	
 		Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
 
@@ -1285,6 +1293,30 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
 	{
 		Search.AddServerFilter( "and", string(Search.MasterServerSearchKeys.length), 0);
 	}
+}
+
+function bool ShouldUseDifficultyFilter(int GameModeIndex)
+{
+    switch (GameModeIndex)
+    {
+    //Weekly
+    case 1:
+        return false;
+    }
+
+    return true;
+}
+
+function bool ShouldUseLengthFilter(int GameModeIndex)
+{
+    switch (GameModeIndex)
+    {
+    //Weekly
+    case 1:
+        return false;
+    }
+
+    return true;
 }
 
 function Callback_StartGame()
@@ -1341,7 +1373,9 @@ event StartOnlineGame()
 
 		if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
 		{
-			class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate( OnFindGameServerComplete );
+			// BWJ - Not clearing this delegate because sometimes you can run into instances where the search fails because one is already in progress.
+			// We do not want to clear the delegate when this happens. Players can end up in an "infinite search" because they never get the callback.
+		//	class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate( OnFindGameServerComplete );
 		}
 	}
 	else

@@ -249,7 +249,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Stoner63A'
 	FireInterval(DEFAULT_FIREMODE)=+0.066 // 900 RPM
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=25.0 //25
+	InstantHitDamage(DEFAULT_FIREMODE)=30.0 //25
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE

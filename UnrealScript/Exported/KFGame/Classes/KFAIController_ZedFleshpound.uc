@@ -279,8 +279,14 @@ function DoSpawnRageCheck()
 	if(FRand() <= SpawnRagedChance[int(KFGI.GameDifficulty)])
 	{
 		//FP SMASH!!
-		RagePlugin.DoSpawnRage();
+        SpawnEnraged();
 	}
+}
+
+function bool SpawnEnraged()
+{
+    RagePlugin.DoSpawnRage();
+    return true;
 }
 
 /** Start up the pre-charge Taunt */
@@ -320,8 +326,8 @@ defaultproperties
    RagePluginClass=Class'KFGame.KFAIPluginRage_Fleshpound'
    SpawnRagedChance(0)=0.000000
    SpawnRagedChance(1)=0.000000
-   SpawnRagedChance(2)=0.500000
-   SpawnRagedChance(3)=0.750000
+   SpawnRagedChance(2)=0.200000
+   SpawnRagedChance(3)=0.330000
    bUseRunOverWarning=True
    MinRunOverSpeed=360.000000
    MinRunOverWarningAim=0.850000

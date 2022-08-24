@@ -1014,7 +1014,11 @@ function SetMonsterDefaults( KFPawn_Monster P )
 
             if (ToAdjust.bStartEnraged)
             {
-                P.SetEnraged(true);
+                //If we aren't using the AI controller's spawn enrage, go into the pawn
+                if (KFAIController(P.Controller) == none || !KFAIController(P.Controller).SpawnEnraged())
+                {
+                    P.SetEnraged(true);
+                }                
             }
 
             if (ToAdjust.bExplosiveDeath && ToAdjust.ExplosionTemplate != none)

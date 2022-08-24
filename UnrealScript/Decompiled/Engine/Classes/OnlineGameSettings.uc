@@ -60,6 +60,8 @@ var string LobbyId;
 var int GfxID;
 var int ElementIdx;
 var databinding int SecondsDeallocated;
+var databinding int SecondsDeallocatedBucket;
+var const int SecondsDeallocatedBucketSize;
 var databinding string Region;
 var array<PlayerResult> PlayersInGame;
 
@@ -74,4 +76,5 @@ defaultproperties
     bShouldShrinkArbitratedSessions=true
     GfxID=-1
     ElementIdx=-1
+    SecondsDeallocatedBucketSize=60
 }

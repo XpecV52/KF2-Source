@@ -14,7 +14,7 @@ defaultproperties
 {
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   InventorySize=8
+   InventorySize=7
    MagazineCapacity(0)=8
    bHasIronSights=True
    bCanBeReloaded=True
@@ -58,7 +58,7 @@ defaultproperties
    RecoilISMinYawLimit=65485
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
-   HippedRecoilModifier=1.500000
+   HippedRecoilModifier=1.300000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
    FiringStatesArray(0)="WeaponSingleFiring"

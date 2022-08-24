@@ -279,8 +279,14 @@ function DoSpawnRageCheck()
 	if(FRand() <= SpawnRagedChance[int(KFGI.GameDifficulty)])
 	{
 		//FP SMASH!!
-		RagePlugin.DoSpawnRage();
+        SpawnEnraged();
 	}
+}
+
+function bool SpawnEnraged()
+{
+    RagePlugin.DoSpawnRage();
+    return true;
 }
 
 /** Start up the pre-charge Taunt */
@@ -371,6 +377,6 @@ DefaultProperties
 
 	SpawnRagedChance(`DIFFICULTY_NORMAL)=0.0f
 	SpawnRagedChance(`DIFFICULTY_HARD)=0.0f
-	SpawnRagedChance(`DIFFICULTY_SUICIDAL)=0.5f
-	SpawnRagedChance(`DIFFICULTY_HELLONEARTH)=0.75f
+	SpawnRagedChance(`DIFFICULTY_SUICIDAL)=0.2f //0.5
+	SpawnRagedChance(`DIFFICULTY_HELLONEARTH)=0.33f //0.75
 }

@@ -12,7 +12,7 @@ class KFWeap_Shotgun_M4 extends KFWeap_ShotgunBase
 defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=8
+    InventorySize=7
     MagazineCapacity=8
     bHasIronSights=true
     bCanBeReloaded=true
@@ -48,7 +48,7 @@ defaultproperties
     RecoilISMinYawLimit=65485
     RecoilISMaxPitchLimit=500
     RecoilISMinPitchLimit=65485
-    HippedRecoilModifier=1.5
+    HippedRecoilModifier=1.3
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */

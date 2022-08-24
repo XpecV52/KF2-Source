@@ -843,6 +843,9 @@ event PostBeginPlay()
 
 	// Set our frustration delay
 	FrustrationDelay = RandRange(default.FrustrationDelay, default.FrustrationDelay*2); //+ Rand(3) + (2.0*fRand());
+
+    //Set initial value so things spawning dependent on this have a safe starting point
+    LastEnemySightedTime = WorldInfo.TimeSeconds;
 }
 
 /** Called when this controller has possessed inPawn */
@@ -6982,6 +6985,13 @@ function float GetMinDistanceToAnyPlayer()
 }
 
 function NotifyEnRaged( bool bEnraged );
+
+//If this function returns true, use the AI controller's spawn enrage.
+//      If this is false, recommended to use the direct call into the pawn.
+function bool SpawnEnraged()
+{
+    return false;
+}
 
 function ResetKFAIC()
 {

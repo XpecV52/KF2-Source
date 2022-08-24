@@ -89,16 +89,16 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_8
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_32
-   SizeX=1640
-   SizeY=1975
+   SizeX=1731
+   SizeY=2599
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9384
-   ObjPosY=-392
+   ObjPosX=-9368
+   ObjPosY=-984
    ObjComment="Random Start Locations"
-   DrawWidth=1640
-   DrawHeight=1975
+   DrawWidth=1731
+   DrawHeight=2599
    Name="SequenceFrame_32"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
@@ -107,8 +107,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_278
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_16'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8120
-   ObjPosY=848
+   ObjPosX=-8104
+   ObjPosY=248
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_278"
@@ -119,8 +119,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_126
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_15'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8216
-   ObjPosY=848
+   ObjPosX=-8200
+   ObjPosY=248
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_126"
@@ -131,8 +131,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_277
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_13'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8320
-   ObjPosY=848
+   ObjPosX=-8304
+   ObjPosY=248
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_277"
@@ -143,8 +143,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_276
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_17'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8112
-   ObjPosY=760
+   ObjPosX=-8096
+   ObjPosY=160
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_276"
@@ -155,8 +155,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_275
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_14'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8208
-   ObjPosY=760
+   ObjPosX=-8192
+   ObjPosY=160
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_275"
@@ -167,8 +167,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_305
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_12'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8312
-   ObjPosY=760
+   ObjPosX=-8296
+   ObjPosY=160
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_305"
@@ -176,17 +176,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_305
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_89
-   InputLinks(0)=(DrawY=605,OverrideDelta=14)
-   InputLinks(1)=(DrawY=626,OverrideDelta=35)
-   InputLinks(2)=(DrawY=647,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=626,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_305',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_275',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_276',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_277',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_126',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_278'),DrawX=-8250,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-8199,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-8150,OverrideDelta=119)
+   InputLinks(0)=(DrawY=13,OverrideDelta=14)
+   InputLinks(1)=(DrawY=34,OverrideDelta=35)
+   InputLinks(2)=(DrawY=55,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=34,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_305',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_275',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_276',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_277',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_126',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_278'),DrawX=-8234,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8183,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-8134,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8288
-   ObjPosY=568
+   ObjPosX=-8272
+   ObjPosY=-24
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_89"
@@ -197,8 +197,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_73
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_4'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8360
-   ObjPosY=1264
+   ObjPosX=-8344
+   ObjPosY=664
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_73"
@@ -209,8 +209,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_74
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_3'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8296
-   ObjPosY=1184
+   ObjPosX=-8280
+   ObjPosY=584
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_74"
@@ -221,8 +221,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_75
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_5'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8264
-   ObjPosY=1280
+   ObjPosX=-8248
+   ObjPosY=680
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_75"
@@ -233,8 +233,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_76
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8192
-   ObjPosY=1208
+   ObjPosX=-8176
+   ObjPosY=608
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_76"
@@ -245,8 +245,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_294
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8136
-   ObjPosY=1288
+   ObjPosX=-8120
+   ObjPosY=688
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_294"
@@ -257,8 +257,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8080
-   ObjPosY=1208
+   ObjPosX=-8064
+   ObjPosY=608
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_61"
@@ -266,17 +266,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_92
-   InputLinks(0)=(DrawY=1037,OverrideDelta=14)
-   InputLinks(1)=(DrawY=1058,OverrideDelta=35)
-   InputLinks(2)=(DrawY=1079,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=1058,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_74',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_76',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_73',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_75',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_294'),DrawX=-8226,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-8175,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-8126,OverrideDelta=119)
+   InputLinks(0)=(DrawY=437,OverrideDelta=14)
+   InputLinks(1)=(DrawY=458,OverrideDelta=35)
+   InputLinks(2)=(DrawY=479,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=458,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_74',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_76',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_73',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_75',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_294'),DrawX=-8210,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8159,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-8110,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8264
-   ObjPosY=1000
+   ObjPosX=-8248
+   ObjPosY=400
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_92"
@@ -287,8 +287,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_302
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_23'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8128
-   ObjPosY=424
+   ObjPosX=-8112
+   ObjPosY=-168
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_302"
@@ -299,8 +299,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_87
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_21'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8232
-   ObjPosY=424
+   ObjPosX=-8216
+   ObjPosY=-168
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_87"
@@ -311,8 +311,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_271
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_22'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8328
-   ObjPosY=424
+   ObjPosX=-8312
+   ObjPosY=-168
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_271"
@@ -323,8 +323,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_85
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_18'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8128
-   ObjPosY=352
+   ObjPosX=-8112
+   ObjPosY=-240
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_85"
@@ -335,8 +335,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_272
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_20'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8232
-   ObjPosY=352
+   ObjPosX=-8216
+   ObjPosY=-240
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_272"
@@ -347,8 +347,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_83
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_19'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8328
-   ObjPosY=352
+   ObjPosX=-8312
+   ObjPosY=-240
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_83"
@@ -356,17 +356,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_83
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_84
-   InputLinks(0)=(DrawY=165,OverrideDelta=14)
-   InputLinks(1)=(DrawY=186,OverrideDelta=35)
-   InputLinks(2)=(DrawY=207,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=186,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_272',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_271',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_87',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_302'),DrawX=-8266,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-8215,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-8166,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-427,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-406,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-385,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-406,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_272',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_271',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_87',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_302'),DrawX=-8250,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8199,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-8150,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8304
-   ObjPosY=128
+   ObjPosX=-8288
+   ObjPosY=-464
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_84"
@@ -374,107 +374,109 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_84
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_91
-   InputLinks(0)=(DrawY=-243,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-222,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-201,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-222,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_236',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_273',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_304',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_303',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_245',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_274'),DrawX=-8250,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-8199,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-8150,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-835,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-814,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-793,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-814,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_141',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_39',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_57'),DrawX=-8234,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8183,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-8134,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8288
-   ObjPosY=-280
+   ObjPosX=-8272
+   ObjPosY=-872
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_91"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_304
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_7'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8104
-   ObjPosY=-72
+   ObjPosX=-8088
+   ObjPosY=-664
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_304"
+   Name="SeqVar_Object_39"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_274
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_57
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8160
+   ObjPosX=-8144
+   ObjPosY=-592
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_274"
+   Name="SeqVar_Object_57"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_273
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_141
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_10'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8216
-   ObjPosY=-72
+   ObjPosX=-8200
+   ObjPosY=-664
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_273"
+   Name="SeqVar_Object_141"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_245
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_142
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8288
+   ObjPosX=-8272
+   ObjPosY=-592
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_245"
+   Name="SeqVar_Object_142"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_236
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_143
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_11'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8320
-   ObjPosY=-96
+   ObjPosX=-8304
+   ObjPosY=-688
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_236"
+   Name="SeqVar_Object_143"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_303
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_144
    ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_8'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8384
-   ObjPosY=-16
+   ObjPosX=-8368
+   ObjPosY=-608
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_303"
+   Name="SeqVar_Object_144"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
 Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
    LinkCount=4
    IncrementAmount=0
-   InputLinks(0)=(DrawY=24,OverrideDelta=25)
-   InputLinks(1)=(DrawY=68,OverrideDelta=69)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_91')),DrawY=13,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_84')),LinkDesc="Link 2",DrawY=35,OverrideDelta=36)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_89')),LinkDesc="Link 3",DrawY=57,OverrideDelta=58)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_92')),LinkDesc="Link 4",DrawY=79,OverrideDelta=80)
-   VariableLinks(0)=(DrawX=-8660,OverrideDelta=23)
+   InputLinks(0)=(DrawY=-568,OverrideDelta=25)
+   InputLinks(1)=(DrawY=-524,OverrideDelta=69)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_91')),DrawY=-579,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_84')),LinkDesc="Link 2",DrawY=-557,OverrideDelta=36)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_89')),LinkDesc="Link 3",DrawY=-535,OverrideDelta=58)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_92')),LinkDesc="Link 4",DrawY=-513,OverrideDelta=80)
+   VariableLinks(0)=(DrawX=-8644,OverrideDelta=23)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8704
-   ObjPosY=-24
+   ObjPosX=-8688
+   ObjPosY=-616
    DrawWidth=89
    DrawHeight=149
    Name="SeqAct_RandomSwitch_0"
@@ -483,13 +485,13 @@ End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=29,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=50,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_13')),DrawY=71,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-563,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-542,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),DrawY=-521,OverrideDelta=56)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9320
-   ObjPosY=-40
+   ObjPosX=-9304
+   ObjPosY=-632
    DrawWidth=137
    Name="SeqEvent_LevelLoaded_1"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
@@ -1030,41 +1032,41 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_16
 End Object
 
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_73
-   EventName="SpawnOFF"
-   MaxWidth=187
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_91',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_84',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_89',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_92',InputLinkIdx=1)),DrawY=402,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-8699,OverrideDelta=61)
+   EventName="SpawnsOff"
+   MaxWidth=188
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_91',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_84',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_89',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_92',InputLinkIdx=1)),DrawY=-190,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-8682,OverrideDelta=62)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8792
-   ObjPosY=336
-   ObjComment="SpawnOFF"
-   DrawWidth=113
+   ObjPosX=-8776
+   ObjPosY=-256
+   ObjComment="SpawnsOFF"
+   DrawWidth=114
    DrawHeight=128
    Name="SeqEvent_RemoteEvent_73"
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
 End Object
 
-Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_13
-   EventName="SpawnOFF"
-   InputLinks(0)=(DrawY=122,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=122,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-8932,OverrideDelta=92)
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_2
+   EventName="SpawnsOff"
+   InputLinks(0)=(DrawY=-470,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=-470,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-8916,OverrideDelta=92)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9056
-   ObjPosY=88
-   ObjComment="SpawnOFF"
-   DrawWidth=248
+   ObjPosX=-9040
+   ObjPosY=-504
+   ObjComment="SpawnsOFF"
+   DrawWidth=249
    DrawHeight=61
-   Name="SeqAct_ActivateRemoteEvent_13"
+   Name="SeqAct_ActivateRemoteEvent_2"
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_23
    Originator=KFTrigger_MinigameButton'KF-TragicKingdom.TheWorld:PersistentLevel.KFTrigger_MinigameButton_2'
    MaxWidth=337
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_31'),(LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_19'),(LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_24'),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=-5884,OverrideDelta=13)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_31'),(LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_19'),(LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_24'),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=-5884,OverrideDelta=13)
    OutputLinks(1)=(Links=((LinkedOp=SeqAct_Delay'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_32'),(LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_12'),(LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_16'),(LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0',InputLinkIdx=1)),DrawY=-5864,OverrideDelta=33)
    VariableLinks(0)=(DrawX=3984,OverrideDelta=136)
    ObjInstanceVersion=1
@@ -1211,7 +1213,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_153
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_2
    Duration=0.500000
    InputLinks(0)=(DrawY=-4499,OverrideDelta=14)
    InputLinks(1)=(DrawY=-4478,OverrideDelta=35)
@@ -1225,7 +1227,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
    ObjPosY=-4536
    DrawWidth=106
    DrawHeight=109
-   Name="SeqAct_Delay_1"
+   Name="SeqAct_Delay_2"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
@@ -1931,7 +1933,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_24
    InputLinks(0)=(DrawY=-8011,OverrideDelta=14)
    InputLinks(1)=(DrawY=-7990,OverrideDelta=35)
    InputLinks(2)=(DrawY=-7969,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_10')),DrawY=-7990,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),DrawY=-7990,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_19'),DrawX=2046,OverrideDelta=16)
    VariableLinks(1)=(DrawX=2097,OverrideDelta=76)
    EventLinks(0)=(DrawX=2146,OverrideDelta=119)
@@ -1945,7 +1947,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_24
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_10
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_1
    EventName="CageFire2Off"
    InputLinks(0)=(DrawY=-7990,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_11')),DrawY=-7990,OverrideDelta=11)
@@ -1956,7 +1958,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_10
    ObjPosY=-8024
    DrawWidth=263
    DrawHeight=61
-   Name="SeqAct_ActivateRemoteEvent_10"
+   Name="SeqAct_ActivateRemoteEvent_1"
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
@@ -3120,7 +3122,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    InputLinks(0)=(DrawY=-5659,OverrideDelta=14)
    InputLinks(1)=(DrawY=-5638,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5617,OverrideDelta=56)
@@ -3134,7 +3136,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    ObjPosY=-5696
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_10"
+   Name="SeqAct_Toggle_3"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
@@ -5082,7 +5084,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_28
    InputLinks(0)=(DrawY=-3251,OverrideDelta=14)
    InputLinks(1)=(DrawY=-3230,OverrideDelta=35)
    InputLinks(2)=(DrawY=-3209,OverrideDelta=56)
@@ -5097,7 +5099,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
    ObjComment="Lights_Off"
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_13"
+   Name="SeqAct_Toggle_28"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
@@ -7895,7 +7897,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_21
    EventName="GeneratorOff"
    MaxWidth=202
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13',InputLinkIdx=1)),DrawY=-3246,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_28',InputLinkIdx=1)),DrawY=-3246,OverrideDelta=11)
    VariableLinks(0)=(DrawX=5421,OverrideDelta=69)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
@@ -8390,7 +8392,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_140
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_4
+Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_2
    MaxWidth=136
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_26',InputLinkIdx=1)),DrawY=-6099,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-6078,OverrideDelta=35)
@@ -8400,7 +8402,7 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_4
    ObjPosX=-8152
    ObjPosY=-6168
    DrawWidth=137
-   Name="SeqEvent_LevelLoaded_4"
+   Name="SeqEvent_LevelLoaded_2"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
 End Object
 
@@ -9286,7 +9288,7 @@ End Object
 
 Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_8
    InputLinks(0)=(DrawY=-4510,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_17'),(LinkedOp=SeqAct_Delay'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=-4510,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_17'),(LinkedOp=SeqAct_Delay'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_2')),DrawY=-4510,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_2'),DrawX=4490,OverrideDelta=16)
    VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_15'),DrawX=4546,OverrideDelta=68)
    ObjInstanceVersion=1
@@ -12665,5 +12667,177 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_371
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_371"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_4
+   MaxWidth=136
+   OutputLinks(0)=(DrawY=917,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=938,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=959,OverrideDelta=56)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9184
+   ObjPosY=848
+   DrawWidth=137
+   Name="SeqEvent_LevelLoaded_4"
+   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
+   Duration=20.000000
+   InputLinks(0)=(DrawY=1037,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1058,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1079,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_10')),DrawY=1042,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=1074,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-8628,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8680
+   ObjPosY=1000
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_1"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
+   InputLinks(0)=(DrawY=1021,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1042,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1063,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=1042,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_236',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_273',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_304',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_274',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_245',SeqVar_Object'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_303'),DrawX=-8122,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8071,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-8022,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8160
+   ObjPosY=984
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_13"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_10
+   EventName="SpawnsOff"
+   InputLinks(0)=(DrawY=1042,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13')),DrawY=1042,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-8372,OverrideDelta=92)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8496
+   ObjPosY=1008
+   ObjComment="SpawnsOff"
+   DrawWidth=249
+   DrawHeight=61
+   Name="SeqAct_ActivateRemoteEvent_10"
+   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
+   InputLinks(0)=(DrawY=925,OverrideDelta=14)
+   InputLinks(1)=(DrawY=946,OverrideDelta=35)
+   InputLinks(2)=(DrawY=967,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=946,OverrideDelta=35)
+   VariableLinks(0)=(DrawX=-8922,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8871,OverrideDelta=76)
+   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_0'),DrawX=-8822,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8960
+   ObjPosY=888
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_10"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqEvent_PlayerSpawned Name=SeqEvent_PlayerSpawned_0
+   MaxTriggerCount=0
+   MaxWidth=156
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10',InputLinkIdx=1),(LinkedOp=SeqAct_Delay'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=1098,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-8912,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8842,OverrideDelta=96)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8960
+   ObjPosY=1032
+   DrawWidth=98
+   DrawHeight=144
+   Name="SeqEvent_PlayerSpawned_0"
+   ObjectArchetype=SeqEvent_PlayerSpawned'Engine.Default__SeqEvent_PlayerSpawned'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_303
+   ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8256
+   ObjPosY=1224
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_303"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_236
+   ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8192
+   ObjPosY=1144
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_236"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_245
+   ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8160
+   ObjPosY=1240
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_245"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_273
+   ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8088
+   ObjPosY=1168
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_273"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_274
+   ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8032
+   ObjPosY=1240
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_274"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_304
+   ObjValue=KFPlayerStart'KF-TragicKingdom.TheWorld:PersistentLevel.KFPlayerStart_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-TragicKingdom.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7976
+   ObjPosY=1168
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_304"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object

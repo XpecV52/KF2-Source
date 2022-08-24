@@ -78,6 +78,15 @@ function SetWhatsNewItems()
 
         for (i = 0; i < PS4WhatsNewItems.length; i++)
         {
+            // When Summer Sideshow is off, we don't want to link to the time limited SS item.
+			if(class'KFGameEngine'.static.GetSeasonalEventId() == 0)
+			{
+				if(PS4WhatsNewItems[i].TextField == "FeaturedEventItem")
+				{
+					continue;
+				}
+			}
+			
 			// Only show store items if we are logged in
 			if( bLoggedIn || PS4WhatsNewItems[i].PSNProductId == "" )
 			{

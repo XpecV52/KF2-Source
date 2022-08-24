@@ -204,8 +204,14 @@ function DoSpawnRageCheck()
     }
     if(FRand() <= SpawnRagedChance[int(KFGI.GameDifficulty)])
     {
-        RagePlugin.DoSpawnRage();
+        SpawnEnraged();
     }
+}
+
+function bool SpawnEnraged()
+{
+    RagePlugin.DoSpawnRage();
+    return true;
 }
 
 function DoRageTauntAt(optional KFPawn Target)
@@ -248,8 +254,8 @@ defaultproperties
     RagePluginClass=Class'KFAIPluginRage_Fleshpound'
     SpawnRagedChance(0)=0
     SpawnRagedChance(1)=0
-    SpawnRagedChance(2)=0.5
-    SpawnRagedChance(3)=0.75
+    SpawnRagedChance(2)=0.2
+    SpawnRagedChance(3)=0.33
     bUseRunOverWarning=true
     MinRunOverSpeed=360
     MinRunOverWarningAim=0.85

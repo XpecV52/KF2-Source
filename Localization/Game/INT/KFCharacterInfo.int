@@ -2586,7 +2586,7 @@ AttachmentSkin5="Yellow"
 AttachmentSkin6="Precious"
 
 [Cosmetic_FirefighterHelmetDown_ARCH]
-Attachment="Firefighter Helmet Mask Down"
+Attachment="Firefighter Helmet Down"
 AttachmentSkin0="Black"
 AttachmentSkin1="Blue"
 AttachmentSkin2="Olive"
@@ -2596,7 +2596,7 @@ AttachmentSkin5="Yellow"
 AttachmentSkin6="Precious"
 
 [Cosmetic_FirefighterHelmetUp_ARCH]
-Attachment="Firefighter Helmet Mask Up"
+Attachment="Firefighter Helmet Up"
 AttachmentSkin0="Black"
 AttachmentSkin1="Blue"
 AttachmentSkin2="Olive"

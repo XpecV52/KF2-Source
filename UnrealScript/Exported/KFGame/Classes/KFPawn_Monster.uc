@@ -3845,19 +3845,10 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 /** Returns the percentage of head health remaining on this zed */
 function float GetHeadHealthPercent()
 {
-	local KFGameInfo KFGI;
 	local float HeadHealth, HeadHealthMax;
-	local float HealthMod, HeadHealthMod;
 
 	HeadHealth = float(HitZones[HZI_Head].GoreHealth);
 	HeadHealthMax = float(HitZones[HZI_Head].MaxGoreHealth);
-
-	KFGI = KFGameInfo(WorldInfo.Game);
-	if ( KFGI != none )
-	{
-        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
-        HeadHealthMax *= HeadHealthMod;
-    }
 
 	return HeadHealth / HeadHealthMax;
 }

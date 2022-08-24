@@ -532,6 +532,7 @@ event PostBeginPlay()
     DirectProjectileFireBehavior.Setup();
     LeapBehavior.Setup();
     FrustrationDelay = RandRange(default.FrustrationDelay, default.FrustrationDelay * float(2));
+    LastEnemySightedTime = WorldInfo.TimeSeconds;
 }
 
 event Possess(Pawn inPawn, bool bVehicleTransition)
@@ -5561,6 +5562,11 @@ function float GetMinDistanceToAnyPlayer()
 }
 
 function NotifyEnRaged(bool bEnraged);
+
+function bool SpawnEnraged()
+{
+    return false;
+}
 
 function ResetKFAIC()
 {

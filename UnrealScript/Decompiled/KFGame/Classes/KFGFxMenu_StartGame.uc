@@ -1115,15 +1115,21 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
         {
             Search.AddGametagFilter(GameTagFilters, 'Mode', string(GameMode));
         }
-        GameDifficulty = OptionsComponent.GetDifficulty();
-        if(GameDifficulty >= 0)
+        if(ShouldUseDifficultyFilter(GameMode))
         {
-            Search.AddGametagFilter(GameTagFilters, 'Difficulty', string(GameDifficulty));
+            GameDifficulty = OptionsComponent.GetDifficulty();
+            if(GameDifficulty >= 0)
+            {
+                Search.AddGametagFilter(GameTagFilters, 'Difficulty', string(GameDifficulty));
+            }
         }
-        GameLength = OptionsComponent.GetGameLength();
-        if(GameLength >= 0)
+        if(ShouldUseLengthFilter(GameMode))
         {
-            Search.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
+            GameLength = OptionsComponent.GetGameLength();
+            if(GameLength >= 0)
+            {
+                Search.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
+            }
         }
         Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
         AllowInProgress = OptionsComponent.GetAllowInProgress();
@@ -1158,6 +1164,30 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
     if(Search.MasterServerSearchKeys.Length > 1)
     {
         Search.AddServerFilter("and", string(Search.MasterServerSearchKeys.Length), 0);
+    }
+}
+
+function bool ShouldUseDifficultyFilter(int GameModeIndex)
+{
+    switch(GameModeIndex)
+    {
+        case 1:
+            return false;
+        default:
+            return true;
+            break;
+    }
+}
+
+function bool ShouldUseLengthFilter(int GameModeIndex)
+{
+    switch(GameModeIndex)
+    {
+        case 1:
+            return false;
+        default:
+            return true;
+            break;
     }
 }
 
@@ -1196,7 +1226,6 @@ event StartOnlineGame()
         GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
         if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
         {
-            Class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
         }        
     }
     else

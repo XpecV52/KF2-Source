@@ -13,7 +13,7 @@ class KFWeap_Shotgun_M4 extends KFWeap_ShotgunBase;
 defaultproperties
 {
 	// Ineventory
-	InventorySize=8
+	InventorySize=7 //8
 	GroupPriority=75
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
 
@@ -103,7 +103,7 @@ defaultproperties
 	RecoilISMinPitchLimit=65485
 	RecoilViewRotationScale=0.7
 	FallingRecoilModifier=1.5
-	HippedRecoilModifier=1.5
+	HippedRecoilModifier=1.3 //1.5
 
 	AssociatedPerkClasses(0)=class'KFPerk_Support'
 

@@ -857,7 +857,10 @@ function SetMonsterDefaults(KFPawn_Monster P)
             P.HitZones[0].MaxGoreHealth = P.HitZones[0].GoreHealth;
             if(ToAdjust.bStartEnraged)
             {
-                P.SetEnraged(true);
+                if((KFAIController(P.Controller) == none) || !KFAIController(P.Controller).SpawnEnraged())
+                {
+                    P.SetEnraged(true);
+                }
             }
             if(ToAdjust.bExplosiveDeath && ToAdjust.ExplosionTemplate != none)
             {
