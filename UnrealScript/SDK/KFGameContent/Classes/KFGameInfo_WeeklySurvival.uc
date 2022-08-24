@@ -296,6 +296,9 @@ struct WeeklyOverrides
     /** Maximum level of perk allowed to be in use. -1 = all off, 4 = level 25 */
     var() byte MaxPerkLevel;
 
+    /** Boom performance optimization - Max booms in one frame (avoids big Demo spikes) */
+    var() int MaxBoomsPerFrame;
+
     structdefaultproperties
     {
         GameLength = GL_Short
@@ -341,6 +344,9 @@ var WeeklyOverrides ActiveEvent;
 
 /** Index of event to use as the default block */
 var int ActiveEventIdx;
+
+/** Current frame booms */
+var int CurrentFrameBooms;
 
 //-----------------------------------------------------------------------------
 // Statics
@@ -615,6 +621,12 @@ event PostLogin( PlayerController NewPlayer )
 
 //-----------------------------------------------------------------------------
 // Ticking
+function Tick(float DeltaTime)
+{
+    CurrentFrameBooms = 0;
+    super.Tick(DeltaTime);
+}
+
 function TickZedTime( float DeltaTime )
 {
     super.TickZedTime(DeltaTime);
@@ -1195,15 +1207,19 @@ function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, clas
 {
     local KFExplosionActorReplicated ExploActor;
 
-    ExploActor = Spawn(class'KFExplosionActorReplicated', DeadPawn, , DeadPawn.Location);
-    if (ExploActor != none)
+    if (CurrentFrameBooms < ActiveEvent.MaxBoomsPerFrame)
     {
-        ExploActor.InstigatorController = DeadPawn.Controller;
-        ExploActor.Instigator = DeadPawn;
-        ExploActor.Attachee = DeadPawn;
-        ExplosionTemplate.ActorClassToIgnoreForDamage = ExplosionIgnoreClass;
-        ExploActor.Explode(ExplosionTemplate, vect(0,0,1));
-    }
+        ExploActor = Spawn(class'KFExplosionActorReplicated', DeadPawn, , DeadPawn.Location);
+        if (ExploActor != none)
+        {
+            ExploActor.InstigatorController = DeadPawn.Controller;
+            ExploActor.Instigator = DeadPawn;
+            ExploActor.Attachee = DeadPawn;
+            ExplosionTemplate.ActorClassToIgnoreForDamage = ExplosionIgnoreClass;
+            ExploActor.Explode(ExplosionTemplate, vect(0, 0, 1));
+            ++CurrentFrameBooms;
+        }
+    }    
 }
 
 function AdjustPawnScale(Pawn Pawn)
@@ -1366,6 +1382,7 @@ defaultproperties
     SetEvents[0] = {(
                     EventDifficulty=1,
                     GameLength=GL_Normal,
+                    MaxBoomsPerFrame=3,
                     ZedsToAdjust={(
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedClot_Cyst',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedClot_Alpha',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),

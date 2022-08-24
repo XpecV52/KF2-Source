@@ -161,9 +161,14 @@ function GFxObject CreateStoreItem(ItemProperties StoreItem)
 
 function bool IsFilterSame(ItemType FirstType, EStore_Filter SecondType)
 {
+	if( (CurrentStoreFilter == EStore_Emotes || CurrentStoreFilter == EStore_Market_Emotes) && FirstType == ITP_Emote)
+	{
+		return true;
+	}
+	
 	if(SecondType < EStore_Market_WeaponSkins)
 	{
-		return (FirstType + 1) == SecondType;
+		return (FirstType + 1) == int(SecondType);
 	}
 	else
 	{

@@ -155,6 +155,10 @@ function GFxObject CreateStoreItem(ItemProperties StoreItem)
 
 function bool IsFilterSame(Engine.OnlineSubsystem.ItemType FirstType, KFGFxStoreContainer_Main.EStore_Filter SecondType)
 {
+    if(((CurrentStoreFilter == 4) || CurrentStoreFilter == 8) && FirstType == 5)
+    {
+        return true;
+    }
     if(SecondType < 5)
     {
         return (FirstType + 1) == SecondType;        

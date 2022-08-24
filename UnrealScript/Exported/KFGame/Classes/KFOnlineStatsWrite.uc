@@ -1435,6 +1435,11 @@ native final private function CacheSpecialEventState(int Value);
 final function UpdateSpecialEventState()
 {
     CacheSpecialEventState(InitialSpecialEventInfo);
+	if( InitialSpecialEventInfo != SpecialEventInfo )
+	{
+		// Flush stats write if we did a reset
+		MyKFPC.ClientWriteAndFlushStats();
+	}
 }
 
 /** Update the state of a special event.  If the passed in EventIndex doesn't match our current
@@ -1460,6 +1465,12 @@ native final private function CacheWeeklyEventState(int Value);
 final function UpdateWeeklyEventState()
 {
     CacheWeeklyEventState(InitialWeeklyEventInfo);
+
+	// Flush stats write if we did a reset
+	if (InitialWeeklyEventInfo != WeeklyEventInfo)
+	{
+		MyKFPC.ClientWriteAndFlushStats();
+	}
 }
 
 /** Update the state of the weekly event.  Called via game type. */

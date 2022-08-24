@@ -1345,6 +1345,10 @@ private native final function CacheSpecialEventState(int Value);
 final function UpdateSpecialEventState()
 {
     CacheSpecialEventState(InitialSpecialEventInfo);
+    if(InitialSpecialEventInfo != SpecialEventInfo)
+    {
+        MyKFPC.ClientWriteAndFlushStats();
+    }
 }
 
 // Export UKFOnlineStatsWrite::execUpdateSpecialEvent(FFrame&, void* const)
@@ -1364,6 +1368,10 @@ private native final function CacheWeeklyEventState(int Value);
 final function UpdateWeeklyEventState()
 {
     CacheWeeklyEventState(InitialWeeklyEventInfo);
+    if(InitialWeeklyEventInfo != WeeklyEventInfo)
+    {
+        MyKFPC.ClientWriteAndFlushStats();
+    }
 }
 
 // Export UKFOnlineStatsWrite::execWeeklyEventComplete(FFrame&, void* const)

@@ -618,19 +618,25 @@ simulated event PostBeginPlay()
 
 simulated function CheckSpecialEventID()
 {
-    if(((Class'KFGameEngine'.static.GetSeasonalEventID() >= 0) && StatsWrite != none) && StatsWrite.CanCacheSpecialEvent())
+    if(Class'KFGameEngine'.static.GetSeasonalEventID() >= 0)
     {
-        StatsWrite.UpdateSpecialEventState();
-        ClearTimer('CheckSpecialEventID');
+        StatsWrite.UpdateSpecialEventState();        
+    }
+    else
+    {
+        SetTimer(RefreshObjectiveUITime, false, 'CheckSpecialEventID');
     }
 }
 
 simulated function CheckWeeklyEventID()
 {
-    if(((Class'KFGameEngine'.static.GetWeeklyEventIndex() >= 0) && StatsWrite != none) && StatsWrite.CanCacheWeeklyEvent())
+    if(Class'KFGameEngine'.static.GetWeeklyEventIndex() >= 0)
     {
-        StatsWrite.UpdateWeeklyEventState();
-        ClearTimer('CheckWeeklyEventID');
+        StatsWrite.UpdateWeeklyEventState();        
+    }
+    else
+    {
+        SetTimer(RefreshObjectiveUITime, false, 'CheckWeeklyEventID');
     }
 }
 
@@ -4904,10 +4910,6 @@ simulated event InitializeStats()
         {
             ReadStats();
         }
-        SetTimer(RefreshObjectiveUITime, true, 'CheckSpecialEventID');
-        CheckSpecialEventID();
-        SetTimer(RefreshObjectiveUITime, true, 'CheckWeeklyEventID');
-        CheckWeeklyEventID();
     }
 }
 
@@ -4996,6 +4998,8 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
         StatsWrite.NotifyReadSucceeded();
     }
     StatsRead.OnStatsInitialized(bWasSuccessful);
+    CheckSpecialEventID();
+    CheckWeeklyEventID();
     if(MyGFxManager != none)
     {
         MyGFxManager.StatsInitialized();
@@ -5007,7 +5011,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
         MyGFxManager.PerksMenu.UpdateContainers(PerkList[SavedPerkIndex].PerkClass);
     }
     I = 0;
-    J0x3CC:
+    J0x3E0:
 
     if(I < PerkList.Length)
     {
@@ -5016,7 +5020,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
             self.MatchStats.RecordPerkXPGain(PerkList[I].PerkClass, 0);
         }
         ++ I;
-        goto J0x3CC;
+        goto J0x3E0;
     }
 }
 

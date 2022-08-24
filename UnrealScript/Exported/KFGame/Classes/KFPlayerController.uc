@@ -1228,21 +1228,27 @@ simulated event PostBeginPlay()
 simulated function CheckSpecialEventID()
 {
     //Don't cache the actual value until we have all the right set of valid data
-    if (class'KFGameEngine'.static.GetSeasonalEventID() >= 0 && StatsWrite != none && StatsWrite.CanCacheSpecialEvent())
+    if( class'KFGameEngine'.static.GetSeasonalEventID() >= 0 )
     {
         StatsWrite.UpdateSpecialEventState();
-        ClearTimer('CheckSpecialEventID');
     }
+	else
+	{
+		SetTimer(RefreshObjectiveUITime, false, 'CheckSpecialEventID');
+	}
 }
 
 simulated function CheckWeeklyEventID()
 {
     //Don't cache the actual value until we have all the right set of valid data
-    if (class'KFGameEngine'.static.GetWeeklyEventIndex() >= 0 && StatsWrite != none && StatsWrite.CanCacheWeeklyEvent())
+    if (class'KFGameEngine'.static.GetWeeklyEventIndex() >= 0 )
     {
-        StatsWrite.UpdateWeeklyEventState();
-        ClearTimer('CheckWeeklyEventID');
+		StatsWrite.UpdateWeeklyEventState();
     }
+	else
+	{
+		SetTimer(RefreshObjectiveUITime, false, 'CheckWeeklyEventID');
+	}
 }
 
 simulated event UpdateSeasonalState()
@@ -6530,12 +6536,6 @@ simulated event InitializeStats()
 		{
 			ReadStats();
 		}
-
-        //Init timers to wait on stats read to kick weekly/special event UI information
-        SetTimer(RefreshObjectiveUITime, true, 'CheckSpecialEventID');
-        CheckSpecialEventID();
-        SetTimer(RefreshObjectiveUITime, true, 'CheckWeeklyEventID');
-        CheckWeeklyEventID();
 	}
 }
 
@@ -6625,6 +6625,10 @@ simulated function OnStatsInitialized( bool bWasSuccessful )
     }
 
 	StatsRead.OnStatsInitialized( bWasSuccessful );
+
+	//Init timers to wait on stats read to kick weekly/special event UI information
+	CheckSpecialEventID();
+	CheckWeeklyEventID();
 
 	if( MyGFxManager != none )
 	{

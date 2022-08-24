@@ -296,6 +296,9 @@ struct WeeklyOverrides
     /** Maximum level of perk allowed to be in use. -1 = all off, 4 = level 25 */
     var() byte MaxPerkLevel;
 
+    /** Boom performance optimization - Max booms in one frame (avoids big Demo spikes) */
+    var() int MaxBoomsPerFrame;
+
     structdefaultproperties
     {
         GameLength = GL_Short
@@ -341,6 +344,9 @@ var WeeklyOverrides ActiveEvent;
 
 /** Index of event to use as the default block */
 var int ActiveEventIdx;
+
+/** Current frame booms */
+var int CurrentFrameBooms;
 
 //-----------------------------------------------------------------------------
 // Statics
@@ -615,6 +621,12 @@ event PostLogin( PlayerController NewPlayer )
 
 //-----------------------------------------------------------------------------
 // Ticking
+function Tick(float DeltaTime)
+{
+    CurrentFrameBooms = 0;
+    super.Tick(DeltaTime);
+}
+
 function TickZedTime( float DeltaTime )
 {
     super.TickZedTime(DeltaTime);
@@ -1195,15 +1207,19 @@ function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, clas
 {
     local KFExplosionActorReplicated ExploActor;
 
-    ExploActor = Spawn(class'KFExplosionActorReplicated', DeadPawn, , DeadPawn.Location);
-    if (ExploActor != none)
+    if (CurrentFrameBooms < ActiveEvent.MaxBoomsPerFrame)
     {
-        ExploActor.InstigatorController = DeadPawn.Controller;
-        ExploActor.Instigator = DeadPawn;
-        ExploActor.Attachee = DeadPawn;
-        ExplosionTemplate.ActorClassToIgnoreForDamage = ExplosionIgnoreClass;
-        ExploActor.Explode(ExplosionTemplate, vect(0,0,1));
-    }
+        ExploActor = Spawn(class'KFExplosionActorReplicated', DeadPawn, , DeadPawn.Location);
+        if (ExploActor != none)
+        {
+            ExploActor.InstigatorController = DeadPawn.Controller;
+            ExploActor.Instigator = DeadPawn;
+            ExploActor.Attachee = DeadPawn;
+            ExplosionTemplate.ActorClassToIgnoreForDamage = ExplosionIgnoreClass;
+            ExploActor.Explode(ExplosionTemplate, vect(0, 0, 1));
+            ++CurrentFrameBooms;
+        }
+    }    
 }
 
 function AdjustPawnScale(Pawn Pawn)
@@ -1349,7 +1365,7 @@ function ApplyGlobalDamage()
 
 defaultproperties
 {
-   SetEvents(0)=(EventDifficulty=1,GameLength=1,ZedsToAdjust=((ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Cyst',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Alpha',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_AlphaKing',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Slasher',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedBloat',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedCrawler',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedCrawlerKing',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedGorefast',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedGorefastDualBlade',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedHans',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedPatriarch',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedHusk',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedScrake',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedSiren',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedStalker',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedFleshpound',bStartEnraged=True,bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster')))
+   SetEvents(0)=(EventDifficulty=1,GameLength=1,ZedsToAdjust=((ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Cyst',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Alpha',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_AlphaKing',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Slasher',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedBloat',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedCrawler',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedCrawlerKing',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedGorefast',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedGorefastDualBlade',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedHans',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedPatriarch',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedHusk',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedScrake',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedSiren',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedStalker',bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster'),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedFleshpound',bStartEnraged=True,bExplosiveDeath=True,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster')),MaxBoomsPerFrame=3)
    SetEvents(1)=(EventDifficulty=1,GameLength=1,bHeadshotsOnly=True,ZedsToAdjust=((ClassToAdjust=Class'kfgamecontent.KFPawn_ZedPatriarch',HealthScale=0.250000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedHans',HealthScale=0.250000)))
    SetEvents(2)=(EventDifficulty=2,GameLength=1,bScaleOnHealth=True,DeadDamageSizeScale=0.500000)
    SetEvents(3)=(EventDifficulty=2,GameLength=1,SpawnRateMultiplier=2.500000,GlobalAmmoCostScale=0.500000,ZedsToAdjust=((ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_AlphaKing',HealthScale=3.000000,HeadHealthScale=3.000000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Slasher',HealthScale=3.000000,HeadHealthScale=4.500000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Alpha',HealthScale=3.000000,HeadHealthScale=4.500000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedClot_Cyst',HealthScale=3.000000,HeadHealthScale=4.500000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedBloat',HealthScale=1.500000,HeadHealthScale=1.500000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedCrawler',HealthScale=3.000000,HeadHealthScale=5.000000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedCrawlerKing',HealthScale=3.000000,HeadHealthScale=3.000000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedFleshpound',HealthScale=2.000000,HeadHealthScale=1.500000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedGorefast',HealthScale=3.000000,HeadHealthScale=2.000000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedGorefastDualBlade',HealthScale=3.000000,HeadHealthScale=2.000000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedHans',HeadHealthScale=1.500000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedPatriarch',HeadHealthScale=1.500000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedHusk',HealthScale=2.000000,HeadHealthScale=2.500000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedScrake',HealthScale=3.000000,HeadHealthScale=3.000000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedSiren',HealthScale=3.000000,HeadHealthScale=3.000000),(ClassToAdjust=Class'kfgamecontent.KFPawn_ZedStalker',HealthScale=3.000000,HeadHealthScale=2.500000)),WaveAICountScale=(0.700000,0.700000,0.700000,0.700000,0.700000,0.700000),ZedSpawnHeadScale=2.700000,PlayerSpawnHeadScale=2.000000,bDisableHeadless=True)

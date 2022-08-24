@@ -259,7 +259,7 @@ simulated function float GetReloadRateScale( KFWeapon KFW )
 */
 simulated function bool IsZedTimeReloadAllowed()
 {
-    return MyKFGRI != none ? (MyKFGRI.MaxPerkLevel == default.MyKFGRI.MaxPerkLevel) : false;
+    return MyKFGRI != none ? (MyKFGRI.MaxPerkLevel == MyKFGRI.default.MaxPerkLevel) : false;
 }
 
 /**

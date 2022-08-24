@@ -152,7 +152,7 @@ simulated function float GetReloadRateScale(KFWeapon KFW)
 
 simulated function bool IsZedTimeReloadAllowed()
 {
-    return ((MyKFGRI != none) ? MyKFGRI.MaxPerkLevel == default.MyKFGRI.MaxPerkLevel : false);
+    return ((MyKFGRI != none) ? MyKFGRI.MaxPerkLevel == MyKFGRI.default.MaxPerkLevel : false);
 }
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
@@ -416,7 +416,7 @@ simulated function bool IsFanfareActive()
 
 simulated function bool GetFanfareActive()
 {
-    return (IsFanfareActive()) && WorldInfo.TimeDilation < 1;
+    return IsFanfareActive();
 }
 
 simulated function bool IsUberAmmoActive()
@@ -586,6 +586,8 @@ Parameter name: index
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
     ZedTimeModifyingStates(3)=WeaponSingleFireAndReload
+    ZedTimeModifyingStates(4)=Reloading
+    ZedTimeModifyingStates(5)=AltReloading
     BodyPartsCanStumble(0)=
 /* Exception thrown while deserializing BodyPartsCanStumble
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
