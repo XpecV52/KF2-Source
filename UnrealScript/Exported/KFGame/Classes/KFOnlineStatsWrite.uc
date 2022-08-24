@@ -266,14 +266,6 @@ var private int     DailyEventIDs;
 var private int     DailyEventStats1;
 var private int     DailyEventStats2;
 
-/** Dosh Vault Stats */
-//Current total including any since passed events
-var private int     DoshVaultTotal;
-//Last total that the player viewed in the main menu.  Let's us VFX spam them with LastViewed - Current amount of dosh.
-var private int     LastViewedDoshVaultTotal;
-//Generic bit field for any progress stats we'll need for the dosh vault
-var private int		DoshVaultProgress;
-
 /** Achievement IDs **/
 // ids must be sequential (no gaps)
 const KFACHID_ParisNormal						=	0;
@@ -844,18 +836,6 @@ event CacheStatsValue(int StatID, int Value)
 		case STATID_PersonalBest_Dosh:
 			PersonalBest_Dosh = Value;
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "PersonalBest_Dosh:" @ PersonalBest_Dosh);
-			break;
-        case STATID_DoshVaultTotal:
-            DoshVaultTotal = Value;
-            if (bLogStatsWrite) LogInternal(GetFuncName() @ "DoshVaultTotal:" @ DoshVaultTotal);
-            break;
-        case STATID_LastViewedDoshVaultTotal:
-            LastViewedDoshVaultTotal = Value;
-            if (bLogStatsWrite) LogInternal(GetFuncName() @ "LastViewedDoshVaultTotal:" @ LastViewedDoshVaultTotal);
-            break;
-		case STATID_DoshVaultProgress:
-			DoshVaultProgress = Value;
-			if (bLogStatsWrite) LogInternal(GetFuncName() @ "DoshVaultProgress:" @ DoshVaultProgress);
 			break;
 	}
 }
@@ -1677,7 +1657,7 @@ native final function int GetTotalDoshCount();
 native final function int GetLastSeenDoshCount();
 native final function int GetUnseenDoshCount();
 native final function MarkDoshVaultSeen();
-native static final function float GetDoshVaultTierValue();
+native static final function int GetDoshVaultTierValue();
 native final function CheckUnlockDoshVaultReward();
 native final function CheckHasViewedDoshVault();
 

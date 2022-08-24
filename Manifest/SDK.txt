@@ -1,21 +1,21 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 2619945750586462478 / 10/16/2017 7:10:30 PM
+Manifest ID / date     : 8755571314844828387 / 10/25/2017 9:05:05 PM
 Total number of files  : 4148
 Total number of chunks : 4213
-Total bytes on disk    : 91148202
-Total bytes compressed : 26311920
+Total bytes on disk    : 91148268
+Total bytes compressed : 26326000
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
              0      0 0000000000000000000000000000000000000000    64 Binaries\GFx
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
-       1592832      2 3E6E654D9F39A8A569A971A77E69190F3D2D11CD     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 6D7EE7EA56606636E5423884B81F7C64C59CFEA6     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      64288768     62 224977D35C8CE6179E7C6036C201B12CBFA7705B     0 Binaries\Win64\KFEditor.exe
+      64289792     62 CBF42D6DEB13092EC62BFC355BD6E627A665B9CF     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -2601,7 +2601,7 @@ Total bytes compressed : 26311920
            705      1 53377159272A4AAF92FC3266788F75C7960E0709     0 Development\Src\KFGame\Classes\KFOnlineGameSettingsVersus.uc
           7520      1 F0C5035A8CC9E3EFB058DA7171A1400482472D2D     0 Development\Src\KFGame\Classes\KFOnlineStatsRead.uc
           5601      1 E02D5C93AB147A15885CCDE9F6F1D67C17DCEC90     0 Development\Src\KFGame\Classes\KFOnlineStatsReadDingo.uc
-         82480      1 2A2022954D6182B0B4623B70765CE41656C14B85     0 Development\Src\KFGame\Classes\KFOnlineStatsWrite.uc
+         81522      1 0B1DBD117C4E01E9407B955FAF838A4FF6BF88DB     0 Development\Src\KFGame\Classes\KFOnlineStatsWrite.uc
           4238      1 4AA11C4D15F10994CCABFA9AA16E0E37F3C98AFA     0 Development\Src\KFGame\Classes\KFOnlineStatsWriteDingo.uc
           1435      1 1DB5D5CC5ACD3FEE79A53BD30F7D82D9A2D8860C     0 Development\Src\KFGame\Classes\KFParticleSystemComponent.uc
           6714      1 268B5ECE882DD1FAD5248A05644D5060B434DB32     0 Development\Src\KFGame\Classes\KFPathnode.uc

@@ -403,9 +403,6 @@ var bool bLogStatsWrite;
 var private int DailyEventIDs;
 var private int DailyEventStats1;
 var private int DailyEventStats2;
-var private int DoshVaultTotal;
-var private int LastViewedDoshVaultTotal;
-var private int DoshVaultProgress;
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
 var array<AchievementDetails> Achievements;
@@ -812,27 +809,6 @@ event CacheStatsValue(int StatId, int Value)
             if(bLogStatsWrite)
             {
                 LogInternal((string(GetFuncName()) @ "PersonalBest_Dosh:") @ string(PersonalBest_Dosh));
-            }
-            break;
-        case 400:
-            DoshVaultTotal = Value;
-            if(bLogStatsWrite)
-            {
-                LogInternal((string(GetFuncName()) @ "DoshVaultTotal:") @ string(DoshVaultTotal));
-            }
-            break;
-        case 401:
-            LastViewedDoshVaultTotal = Value;
-            if(bLogStatsWrite)
-            {
-                LogInternal((string(GetFuncName()) @ "LastViewedDoshVaultTotal:") @ string(LastViewedDoshVaultTotal));
-            }
-            break;
-        case 402:
-            DoshVaultProgress = Value;
-            if(bLogStatsWrite)
-            {
-                LogInternal((string(GetFuncName()) @ "DoshVaultProgress:") @ string(DoshVaultProgress));
             }
             break;
         default:
@@ -1579,7 +1555,7 @@ native final function int GetUnseenDoshCount();
 native final function MarkDoshVaultSeen();
 
 // Export UKFOnlineStatsWrite::execGetDoshVaultTierValue(FFrame&, void* const)
-native static final function float GetDoshVaultTierValue();
+native static final function int GetDoshVaultTierValue();
 
 // Export UKFOnlineStatsWrite::execCheckUnlockDoshVaultReward(FFrame&, void* const)
 native final function CheckUnlockDoshVaultReward();

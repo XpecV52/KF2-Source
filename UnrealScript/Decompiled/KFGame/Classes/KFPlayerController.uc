@@ -1814,7 +1814,7 @@ function float GetDoshVaultTierValue()
 {
     if(StatsWrite != none)
     {
-        return StatsWrite.super(KFPlayerController).GetDoshVaultTierValue();
+        return float(StatsWrite.super(KFPlayerController).GetDoshVaultTierValue());
     }
     return -1;
 }
