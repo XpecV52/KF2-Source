@@ -271,7 +271,7 @@ simulated function CustomFire()
 
 		if ( WeldTarget.bIsDestroyed )
 		{
-			WeldTarget.RepairDoor(RepairRate);
+			WeldTarget.RepairDoor(RepairRate, KFPawn(Instigator));
 		}
 		else if ( CurrentFireMode == DEFAULT_FIREMODE )
 		{

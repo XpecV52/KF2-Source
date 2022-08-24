@@ -15,6 +15,7 @@ var localized string MuteString, UnmuteString, AddFriendString, RemoveFriendStri
 var localized string PartyLeaderSearchingForMatchString, PartyLeaderIsUpdatingMatchOptionsString, PartyLeaderInServerBrowserString, PartyLeaderInOtherMenuString, SearchingForGameString;
 var localized string PartHostLeftString, PartyLeaderChangedString;
 var localized string DownLoadingString, RemainingString;
+var localized string MatchOverString;//text used to tell the player the match is over
 
 var OnlineSubsystem OnlineSub;
 var TWOnlineLobby OnlineLobby;
@@ -82,6 +83,7 @@ function InitializeWidget()
 
 	UpdateInLobby(Manager.IsInLobby());
 	RefreshParty();
+	SetBool("matchOver", false);
 }
 
 function  LocalizeText()
@@ -97,6 +99,7 @@ function  LocalizeText()
 	TextObject.SetString("waitingString", WaitingString);
 	TextObject.SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
 	TextObject.SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
+	TextObject.SetString("matchOver", MatchOverString);
 
 	SetObject("localizedText", TextObject);
 }
@@ -109,7 +112,7 @@ function InitNotificationUI()
 	//OnlineSub.DownloadNotification = ShowDownLoadNotification;
 }
 
-function ShowDownLoadNotification(string ItemName, Float PercentComplete, int ItemsRemaining)
+function ShowDownLoadNotification(string ItemName, Float PercentComplete)
 {
 	local GFxObject NotificationInfoObject;
 
@@ -122,9 +125,9 @@ function ShowDownLoadNotification(string ItemName, Float PercentComplete, int It
 
 	NotificationInfoObject.SetString("itemName"		, ItemName);
 	NotificationInfoObject.SetFloat("percent"		, PercentComplete * 100);
-	NotificationInfoObject.SetInt("queue"		, ItemsRemaining);
+	NotificationInfoObject.SetInt("queue"		, 0);
 	NotificationInfoObject.SetString("downLoading"	, DownLoadingString);
-	NotificationInfoObject.SetString("remaining"		, RemainingString);
+	NotificationInfoObject.SetString("remaining"		, class'KFCommon_LocalizedStrings'.default.CancelString @"- F10");
 
 	Notification.SetObject("notificationInfo", NotificationInfoObject);
 }

@@ -143,11 +143,16 @@ private static final simulated function float GetQuickSwitchRecoilModifier()
 
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
-    if(((IsWeaponOnPerk(KFW,, self.Class)) && WorldInfo.TimeDilation < 1) && !IsFanfareActive())
+    if((((IsWeaponOnPerk(KFW,, self.Class)) && WorldInfo.TimeDilation < 1) && !IsFanfareActive()) && IsZedTimeReloadAllowed())
     {
         return 1 - (GetPassiveValue(ZedTimeReload, GetLevel()));
     }
     return 1;
+}
+
+simulated function bool IsZedTimeReloadAllowed()
+{
+    return ((MyKFGRI != none) ? MyKFGRI.MaxPerkLevel == default.MyKFGRI.MaxPerkLevel : false);
 }
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
@@ -162,7 +167,7 @@ function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, 
     {
         return GetSkillValue(PerkSkills[7]);
     }
-    return 1;
+    return 0;
 }
 
 function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
@@ -171,7 +176,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
     {
         return GetSkillValue(PerkSkills[7]);
     }
-    return 1;
+    return 0;
 }
 
 function bool CheckSpecialZedBodyPart(class<KFPawn> PawnClass, byte BodyPart)
@@ -371,42 +376,42 @@ simulated function float GetSnarePowerModifier(optional class<DamageType> Damage
 
 simulated function bool IsShootnMooveActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 simulated function bool IsQuickSwitchActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 simulated function bool IsRhythmMethodActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 function bool IsBoneBreakerActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 simulated function bool IsSpeedReloadActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 simulated function bool IsPenetrationActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
 simulated function bool IsKnockEmDownActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 simulated function bool IsFanfareActive()
 {
-    return PerkSkills[9].bActive;
+    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
 }
 
 simulated function bool GetFanfareActive()
@@ -416,21 +421,28 @@ simulated function bool GetFanfareActive()
 
 simulated function bool IsUberAmmoActive()
 {
-    return PerkSkills[8].bActive;
+    return PerkSkills[8].bActive && IsPerkLevelAllowed(8);
 }
 
 simulated function bool IsSkullCrackerActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
-static simulated function bool IsWeaponOnPerk(KFWeapon W, optional array< class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass)
+static simulated function bool IsWeaponOnPerk(KFWeapon W, optional array< class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass, optional name WeaponClassName)
 {
     if((W != none) && default.AdditionalOnPerkWeaponNames.Find(W.Class.Name != -1)
     {
-        return true;
+        return true;        
     }
-    return super.IsWeaponOnPerk(W, WeaponPerkClass, InstigatorPerkClass);
+    else
+    {
+        if((WeaponClassName != 'None') && default.AdditionalOnPerkWeaponNames.Find(WeaponClassName != -1)
+        {
+            return true;
+        }
+    }
+    return super.IsWeaponOnPerk(W, WeaponPerkClass, InstigatorPerkClass, WeaponClassName);
 }
 
 static function bool IsDamageTypeOnPerk(class<KFDamageType> KFDT)
@@ -534,7 +546,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_8446
+    BoneBreakerBodyParts(1)=.!=_8555
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -567,7 +579,7 @@ Parameter name: index
     PerkSkills(4)=(Name="Penetration",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LineEmUp",bActive=false)
     PerkSkills(5)=(Name="SpeedReload",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload",bActive=false)
     PerkSkills(6)=(Name="Skullcracker",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Skullcracker",bActive=false)
-    PerkSkills(7)=(Name="KnockEmDown",Increment=0,Rank=0,StartingValue=5.1,MaxValue=5.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown",bActive=false)
+    PerkSkills(7)=(Name="KnockEmDown",Increment=0,Rank=0,StartingValue=4.1,MaxValue=4.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown",bActive=false)
     PerkSkills(8)=(Name="UberAmmo",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo",bActive=false)
     PerkSkills(9)=(Name="Fanfare",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
@@ -581,7 +593,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_1044
+    BodyPartsCanStumble(1)=.!=_1052
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

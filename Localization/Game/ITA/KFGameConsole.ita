@@ -16,6 +16,7 @@ KF-HostileGrounds="In gioco - Terreno ostile"
 KF-ZedLanding="Sta giocando: Atterraggio ZED"
 KF-TheDescent="Sta giocando: La discesa"
 KF-Nuked="Sta giocando: Nuclearizzato"
+KF-TragicKingdom="Sta giocando: Il Regno Tragico"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -144,7 +145,6 @@ ErrorNoPlayfabDescription="Impossibile stabilire una connessione con i Master Se
 ErrorTSSFailedDescription="Impossibile stabilire una connessione con il server di bilanciamento del gioco. Assicurati di essere connesso e riprova."
 NotSignedInTitle="Accesso non effettuato."
 
-
 [Notifications]
 ControllerDisconnectedTitle="Controller disconnesso"
 ControllerDisconnectedPS4Message="Il controller wireless è stato disconnesso. Riconnetti il controller wireless per l'Utente che ha avviato il gioco."
@@ -174,7 +174,6 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Vedi profilo giocatore"
-ViewProfileStringXB1="Visualizza gamercard"
 
 [KFGFxObject_Menu]
 ResetDefaults="Vuoi davvero ripristinare le impostazioni ai valori predefiniti?"
@@ -194,15 +193,12 @@ ControllerSound="Suoni controller"
 MatchmakingRegionString="REGIONE"
 LeaveMenuString="Leaving matchmaking will also leave your party"
 
-[KFGFxMenu_Store]
-
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIONE"
 MapPreference="MAPPA PREFERITA"
 
 [KFGFxMenu_Exit]
-HeaderStringXB1="LOGOUT"
 LogoutKF2="Torna a scherm. titolo"
 
 [Misc]

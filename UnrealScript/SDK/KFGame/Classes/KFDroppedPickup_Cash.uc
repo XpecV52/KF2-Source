@@ -127,4 +127,5 @@ DefaultProperties
 	LifeSpan=120
 	bUseLowHealthDelay=FALSE
 	PickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh'
+    PickupDelay=0.2
 }

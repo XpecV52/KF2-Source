@@ -124,6 +124,7 @@ package tripwire.controls
             }
             else
             {
+                this.menuText.textColor = this.UnhighLightColor;
                 this.iconColor.setTint(12453376,1);
                 this.iconContainer.transform.colorTransform = this.iconColor;
             }

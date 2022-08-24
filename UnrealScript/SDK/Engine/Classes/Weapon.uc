@@ -284,6 +284,10 @@ simulated function bool DenyClientWeaponSet()
 	return FALSE;
 }
 
+`if(`__TW_)
+/** Draws a HUD for this weapon */
+simulated function DrawHUD( HUD H, Canvas C );
+`endif
 
 /*********************************************************************************************
  * Debug / Log

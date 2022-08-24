@@ -55,6 +55,9 @@ var localized string SetTakeoverServerPasswordTitle;
 
 var localized string FreeConsolePlayOverString;
 var localized string BuyGameString;
+var localized string CustomString;
+
+var localized string CancelConnectionString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -175,7 +178,8 @@ defaultproperties
    ConsolePermissionStrings(0)="Public"
    ConsolePermissionStrings(1)="Invite Only"
    ModeStrings(0)="Survival"
-   ModeStrings(1)="VS Survival"
+   ModeStrings(1)="Weekly"
+   ModeStrings(2)="VS Survival"
    TeamSwappedString="You have been team swapped"
    NoPreferenceString="ANY"
    OKString="OK"
@@ -206,6 +210,8 @@ defaultproperties
    SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"
    FreeConsolePlayOverString="Thanks for playing Killing Floor 2! The free event is over, but you can purchase the game and get more information by selecting the Store button below."
    BuyGameString="STORE"
+   CustomString="Custom"
+   CancelConnectionString="Cancel Loading"
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

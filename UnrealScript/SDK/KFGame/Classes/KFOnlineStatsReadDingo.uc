@@ -46,6 +46,7 @@ defaultproperties
 	ColumnIds.Add(STATID_ACHIEVE_DescentCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_NukedCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_QuickOnTheTrigger)
+    ColumnIds.Add(STATID_ACHIEVE_TragicKingdomCollectibles)
 
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky5, Name="AchievementMrPerky5"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky10, Name = "AchievementMrPerky10"))
@@ -80,4 +81,5 @@ defaultproperties
 	ColumnMappings.Add((Id=STATID_ACHIEVE_DescentCollectibles, Name="AchievementCollectDescent"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_NukedCollectibles, Name="AchievementCollectNuked"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_QuickOnTheTrigger, Name="AchievementQuickOnTheTrigger"))
+    ColumnMappings.Add((Id=STATID_ACHIEVE_TragicKingdomCollectibles, Name="AchievementCollectTragicKingdom"))
 }

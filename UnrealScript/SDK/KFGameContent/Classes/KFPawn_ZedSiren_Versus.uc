@@ -95,6 +95,7 @@ defaultproperties
 	IncapSettings(AF_EMP)=		(Vulnerability=(1.0),                     Cooldown=5.0, Duration=3.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=2.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(0.7, 0.7, 1.0, 0.7),      Cooldown=8.5,  Duration=1.5)
+    IncapSettings(AF_Bleed)=    (Vulnerability=(0.0))
 
     SprintSpeed=430.0f  //450
     SprintStrafeSpeed=300.f

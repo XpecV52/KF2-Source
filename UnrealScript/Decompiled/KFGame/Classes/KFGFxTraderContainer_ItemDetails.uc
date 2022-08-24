@@ -119,11 +119,11 @@ function string GetLocalizedStatString(KFGFxObject_TraderItems.TraderWeaponStat 
     {
         case 0:
             return DamageTitle;
-        case 1:
-            return FireRateTitle;
-        case 2:
-            return RangeTitle;
         case 3:
+            return FireRateTitle;
+        case 1:
+            return RangeTitle;
+        case 2:
             return PenetrationTitle;
         case 4:
             return BlockTitle;
@@ -149,11 +149,11 @@ function float GetStatMax(KFGFxObject_TraderItems.TraderWeaponStat Stat)
     {
         case 0:
             return 820;
-        case 1:
-            return 800;
-        case 2:
-            return 100;
         case 3:
+            return 800;
+        case 1:
+            return 100;
+        case 2:
             return 4;
         case 4:
             return 1;
@@ -175,7 +175,7 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
     local int FinalMaxSpareAmmoCount;
     local byte FinalMagazineCapacity;
 
-    if(TraderItem.WeaponStats.Length > 0)
+    if((TraderItem.WeaponStats.Length >= 0) && TraderItem.WeaponStats.Length > 0)
     {
         SetDetailsVisible("damage", true);
         SetDetailsText("damage", GetLocalizedStatString(TraderItem.WeaponStats[0].StatType));
@@ -186,34 +186,48 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
     {
         SetDetailsVisible("damage", false);
     }
-    if(TraderItem.WeaponStats.Length > 1)
-    {
-        SetDetailsVisible("fireRate", true);
-        SetDetailsText("fireRate", GetLocalizedStatString(TraderItem.WeaponStats[1].StatType));
-        ItemData.SetInt("fireRateValue", int(TraderItem.WeaponStats[1].StatValue));
-        ItemData.SetInt("fireRatePercent", int(FMin(TraderItem.WeaponStats[1].StatValue / (GetStatMax(TraderItem.WeaponStats[1].StatType)), 1) * 100));        
-    }
-    else
-    {
-        SetDetailsVisible("fireRate", false);
-    }
-    if(TraderItem.WeaponStats.Length > 2)
+    if(TraderItem.WeaponStats.Length >= 2)
     {
         SetDetailsVisible("penetration", true);
         SetDetailsText("penetration", GetLocalizedStatString(TraderItem.WeaponStats[2].StatType));
-        ItemData.SetInt("penetrationValue", int(TraderItem.WeaponStats[2].StatValue));
-        ItemData.SetInt("penetrationPercent", int((FMin(TraderItem.WeaponStats[2].StatValue / (GetStatMax(TraderItem.WeaponStats[2].StatType)), 1) ** 0.5) * 100));        
+        if(TraderItem.TraderFilter != 8)
+        {
+            ItemData.SetInt("penetrationValue", int(TraderItem.WeaponStats[2].StatValue));
+            ItemData.SetInt("penetrationPercent", int((FMin(TraderItem.WeaponStats[2].StatValue / (GetStatMax(TraderItem.WeaponStats[2].StatType)), 1) ** 0.5) * 100));            
+        }
+        else
+        {
+            SetDetailsVisible("penetration", false);
+        }        
     }
     else
     {
         SetDetailsVisible("penetration", false);
     }
-    if(TraderItem.WeaponStats.Length > 3)
+    if(TraderItem.WeaponStats.Length >= 3)
+    {
+        SetDetailsVisible("fireRate", true);
+        SetDetailsText("fireRate", GetLocalizedStatString(TraderItem.WeaponStats[3].StatType));
+        if(TraderItem.TraderFilter != 8)
+        {
+            ItemData.SetInt("fireRateValue", int(TraderItem.WeaponStats[3].StatValue));
+            ItemData.SetInt("fireRatePercent", int(FMin(TraderItem.WeaponStats[3].StatValue / (GetStatMax(TraderItem.WeaponStats[3].StatType)), 1) * 100));            
+        }
+        else
+        {
+            SetDetailsVisible("fireRate", false);
+        }        
+    }
+    else
+    {
+        SetDetailsVisible("fireRate", false);
+    }
+    if(TraderItem.WeaponStats.Length >= 1)
     {
         SetDetailsVisible("accuracy", true);
-        SetDetailsText("accuracy", GetLocalizedStatString(TraderItem.WeaponStats[3].StatType));
-        ItemData.SetInt("accuracyValue", int(TraderItem.WeaponStats[3].StatValue));
-        ItemData.SetInt("accuracyPercent", int(FMin(TraderItem.WeaponStats[3].StatValue / (GetStatMax(TraderItem.WeaponStats[3].StatType)), 1) * 100));        
+        SetDetailsText("accuracy", GetLocalizedStatString(TraderItem.WeaponStats[1].StatType));
+        ItemData.SetInt("accuracyValue", int(TraderItem.WeaponStats[1].StatValue));
+        ItemData.SetInt("accuracyPercent", int(FMin(TraderItem.WeaponStats[1].StatValue / (GetStatMax(TraderItem.WeaponStats[1].StatType)), 1) * 100));        
     }
     else
     {

@@ -35,7 +35,7 @@ function OnStatsInitialized(bool bWasSuccessful)
 		OnReadComplete();
 	}
 }
-//@HSL_MOD_BEGIN - amiller 3/30/2016 - Adding support for saving Stats object to SaveData
+
 native function NativeOnReadComplete();
 
 event OnReadComplete()
@@ -44,7 +44,43 @@ event OnReadComplete()
 	`log("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ Rows[0].Columns.Length @ `showvar(self), bLogStatsRead, 'DevOnline');
 
 }
-//@HSL_MOD_END
+
+
+`if(`notdefined(ShippingPC))
+function DumpStats( UniqueNetId ForPlayer )
+{
+	local int i;
+	local string CurrentStringStat;
+	local UniqueNetId ZeroId;
+
+	`log("Reading stats for"@class'OnlineSubsystem'.static.UniqueNetIdToString( ForPlayer, false ));
+
+	if( Rows.Length > 0 )
+	{
+		// This is kind of a hack. If the player ID was never set on the stats, ensure we don't send one so it won't break GetStatValueForPlayerAsString
+		if( Rows[0].PlayerId == ZeroId )
+		{
+			ForPlayer = ZeroId;
+		}
+
+		for( i = 0; i < ColumnMappings.Length; i++ )
+		{
+			if( GetStatValueForPlayerAsString( ForPlayer, ColumnMappings[i].Id, CurrentStringStat) )
+			{
+				`log("Listing stat"@ColumnMappings[i].Name@"with value"@CurrentStringStat);
+			}
+			else
+			{
+				`log("Failed to get stat for Id"@ColumnMappings[i].Id);
+			}
+		}
+	}
+	else
+	{
+		`log("No stats available to dump");
+	}
+}
+`endif
 
 defaultproperties
 {
@@ -116,8 +152,8 @@ defaultproperties
 	ColumnMappings.Add((Id=STATID_Medic_HealPoints, Name = "MedicHealPoints"))
 	ColumnMappings.Add((Id=STATID_CrawlerKills, Name = "CrawlerKills"))
 	ColumnMappings.Add((Id=STATID_FleshpoundKills, Name = "FleshpoundKills"))
-    ColumnMappings.Add((Id=STATID_SpecialEventProgress, Name = "SpecialEvent"))
-    ColumnMappings.Add((Id=STATID_WeeklyEventProgress, Name = "WeeklyEvent"))
+    ColumnMappings.Add((Id=STATID_SpecialEventProgress, Name = "SpecialEventProgress"))
+    ColumnMappings.Add((Id=STATID_WeeklyEventProgress, Name = "WeeklyEventProgress"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_KnifeKills, Name = "PersonalBestKnifeKills"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_PistolKills, Name = "PersonalBestPistolKills"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_HeadShots, Name = "PersonalBestHeadshots"))

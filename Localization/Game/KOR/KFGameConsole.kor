@@ -16,6 +16,7 @@ KF-HostileGrounds="적진 플레이"
 KF-ZedLanding="제드 착륙 플레이"
 KF-TheDescent="경사로 플레이 중"
 KF-Nuked="방사능 누출지 플레이 중"
+KF-TragicKingdom="비극의 왕국 플레이 중"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -144,7 +145,6 @@ ErrorNoPlayfabDescription="게임 마스터 서버에 연결할 수 없습니다
 ErrorTSSFailedDescription="게임 밸런스 서버에 연결할 수 없습니다. 인터넷에 연결되었는지 확인하시고 다시 시도해주십시오."
 NotSignedInTitle="로그인하지 않았습니다."
 
-
 [Notifications]
 ControllerDisconnectedTitle="컨트롤러 분리"
 ControllerDisconnectedPS4Message="무선 컨트롤러 연결이 분리되었습니다 게임을 부팅한 사용자의 무선 컨트롤러를 다시 연결해주십시오"
@@ -174,7 +174,6 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="플레이어 프로필 보기"
-ViewProfileStringXB1="새 게임 카드"
 
 [KFGFxObject_Menu]
 ResetDefaults="기본값으로 설정을 리셋하시겠습니까?"
@@ -194,15 +193,12 @@ ControllerSound="컨트롤러 사운드"
 MatchmakingRegionString="지역"
 LeaveMenuString="대전상대 찾기에서 나가시면 부대에서도 나가게 됩니다."
 
-[KFGFxMenu_Store]
-
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="지역"
 MapPreference="선호 맵"
 
 [KFGFxMenu_Exit]
-HeaderStringXB1="로그아웃"
 LogoutKF2="타이틀 화면으로"
 
 [Misc]

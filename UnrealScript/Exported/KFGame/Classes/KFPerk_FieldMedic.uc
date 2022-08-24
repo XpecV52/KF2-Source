@@ -374,7 +374,7 @@ simulated function float GetSnarePowerModifier( optional class<DamageType> Damag
  */
 private final function bool IsAirborneAgentActive()
 {
-	return PerkSkills[EMedicAirborneAgent].bActive;
+	return PerkSkills[EMedicAirborneAgent].bActive && IsPerkLevelAllowed(EMedicAirborneAgent);
 }
 
 /**
@@ -384,7 +384,7 @@ private final function bool IsAirborneAgentActive()
  */
 function bool IsAcidicCompoundActive()
 {
-	return PerkSkills[EMedicAcidicCompound].bActive;
+	return PerkSkills[EMedicAcidicCompound].bActive && IsPerkLevelAllowed(EMedicAcidicCompound);
 }
 
 /**
@@ -404,7 +404,7 @@ function bool IsToxicDmgActive()
  */
 simulated private final function bool IsHealingSpeedBoostActive()
 {
-	return PerkSkills[EMedicHealingSpeedBoost].bActive;
+	return PerkSkills[EMedicHealingSpeedBoost].bActive && IsPerkLevelAllowed(EMedicHealingSpeedBoost);
 }
 
 /**
@@ -414,7 +414,7 @@ simulated private final function bool IsHealingSpeedBoostActive()
  */
 simulated private final function bool IsHealingDamageBoostActive()
 {
-	return PerkSkills[EMedicHealingDamageBoost].bActive;
+	return PerkSkills[EMedicHealingDamageBoost].bActive && IsPerkLevelAllowed(EMedicHealingDamageBoost);
 }
 
 /**
@@ -424,7 +424,7 @@ simulated private final function bool IsHealingDamageBoostActive()
  */
 simulated private final function bool IsHealingShieldActive()
 {
-	return PerkSkills[EMedicHealingShield].bActive;
+	return PerkSkills[EMedicHealingShield].bActive && IsPerkLevelAllowed(EMedicHealingShield);
 }
 
 /**
@@ -434,7 +434,7 @@ simulated private final function bool IsHealingShieldActive()
  */
 simulated private final function bool IsCombatantActive()
 {
-	return PerkSkills[EMedicCombatant].bActive;
+	return PerkSkills[EMedicCombatant].bActive && IsPerkLevelAllowed(EMedicCombatant);
 }
 
 /**
@@ -444,7 +444,7 @@ simulated private final function bool IsCombatantActive()
  */
 simulated private final function bool IsEnforcerActive()
 {
-	return PerkSkills[EMedicEnforcer].bActive;
+	return PerkSkills[EMedicEnforcer].bActive && IsPerkLevelAllowed(EMedicEnforcer);
 }
 
 /**
@@ -454,7 +454,7 @@ simulated private final function bool IsEnforcerActive()
  */
 simulated function bool IsHealingSurgeActive()
 {
-	return PerkSkills[EMedicHealingSurge].bActive;
+	return PerkSkills[EMedicHealingSurge].bActive && IsPerkLevelAllowed(EMedicHealingSurge);
 }
 
 /**
@@ -464,7 +464,7 @@ simulated function bool IsHealingSurgeActive()
  */
 simulated function bool IsSurvivalistActive()
 {
-	return PerkSkills[EMedicSurvivalist].bActive;
+	return PerkSkills[EMedicSurvivalist].bActive && IsPerkLevelAllowed(EMedicSurvivalist);
 }
 
 /**
@@ -474,7 +474,7 @@ simulated function bool IsSurvivalistActive()
  */
 simulated function bool IsSlugActive()
 {
-	return PerkSkills[EMedicSlug].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[EMedicSlug].bActive && WorldInfo.TimeDilation < 1.f && IsPerkLevelAllowed(EMedicSlug);
 }
 
 

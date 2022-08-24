@@ -93,6 +93,8 @@ package tripwire.containers
         
         private var _bGameInProgress:Boolean;
         
+        private const HELPERTEXT_DEFAULT_Y:int = 400;
+        
         public var createGameMapImageContainerMC:MovieClip;
         
         public var fadeTimeline:TimelineMax;
@@ -114,10 +116,20 @@ package tripwire.containers
             if(param1 != "")
             {
                 this.helperTextContainer.text = param1;
-                if(this.helperTextContainer.alpha != 1)
+                if(!this._bSearchingForGame)
                 {
+                    if(this.helperTextContainer.alpha != 1)
+                    {
+                        this.helperTextContainer.visible = true;
+                        this.fadeTimeline.play();
+                    }
+                }
+                else
+                {
+                    this.fadeTimeline.stop();
+                    this.helperTextContainer.y = this.HELPERTEXT_DEFAULT_Y;
+                    this.helperTextContainer.alpha = 1;
                     this.helperTextContainer.visible = true;
-                    this.fadeTimeline.play();
                 }
             }
             else
@@ -218,10 +230,12 @@ package tripwire.containers
             if(this._bSearchingForGame)
             {
                 this.startGameButton.label = this.searchingString;
+                this.dispatchEvent(new Event("FadeOutMissionObjectives"));
             }
             else
             {
                 this.startGameButton.label = this.multiplayerLaunchString;
+                this.dispatchEvent(new Event("FadeInMissionObjectives"));
             }
             this.privacyButton.enabled = !param1;
             this.inProgressButton.enabled = !param1;
@@ -544,11 +558,13 @@ package tripwire.containers
             this._currentList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver,false,0,true);
             this._currentList.addEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver,false,0,true);
             this._currentList.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack,false,0,true);
+            this.dispatchEvent(new Event("FadeOutMissionObjectives"));
             if(bManagerUsingGamepad)
             {
                 showDimLeftSide(true);
                 ExternalInterface.call("Callback_OptionListOpened",this._currentList.name,this._currentList.selectedIndex);
             }
+            this.helperTextContainer.y = this._currentList.y + this._currentList.height - 16;
         }
         
         private function onItemRollOver(param1:ListEvent) : *
@@ -650,6 +666,7 @@ package tripwire.containers
                     this._currentList.removeEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver);
                 }
                 showDimLeftSide(false);
+                this.dispatchEvent(new Event("FadeInMissionObjectives"));
             }
         }
         

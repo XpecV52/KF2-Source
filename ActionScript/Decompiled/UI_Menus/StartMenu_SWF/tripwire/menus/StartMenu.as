@@ -3,7 +3,11 @@ package tripwire.menus
     import com.greensock.events.TweenEvent;
     import flash.events.Event;
     import flash.external.ExternalInterface;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.events.InputEvent;
+    import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
     import tripwire.containers.StartFindGameContainer;
     import tripwire.containers.StartOptionsContainer;
@@ -14,6 +18,10 @@ package tripwire.menus
     
     public class StartMenu extends TripContainer
     {
+        
+        public static var FADE_OUT_OBJECTIVES = "FadeOutMissionObjectives";
+        
+        public static var FADE_IN_OBJECTIVES = "FadeInMissionObjectives";
          
         
         public var findGameContainer:StartFindGameContainer;
@@ -23,6 +31,8 @@ package tripwire.menus
         public var overviewContainer:StartOverviewContainer;
         
         public var serverBrowserOverviewContainer:StartOverviewBrowserContainer;
+        
+        public var missionObjectivesContainerMC:MissionObjectivesContainer;
         
         public const FindGameMenu:int = 255;
         
@@ -58,6 +68,46 @@ package tripwire.menus
             this.serverBrowserOverviewContainer.visible = false;
             tabEnabled = false;
             this._currentContainer = this.findGameContainer;
+            this.gameOptionsContainer.addEventListener(FADE_OUT_OBJECTIVES,this.fadeOutObjectives,false,0,true);
+            this.gameOptionsContainer.addEventListener(FADE_IN_OBJECTIVES,this.fadeInObjectives,false,0,true);
+        }
+        
+        override public function handleInput(param1:InputEvent) : void
+        {
+            if(param1.handled)
+            {
+                return;
+            }
+            if(!_bReadyForInput)
+            {
+                return;
+            }
+            super.handleInput(param1);
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.GAMEPAD_X:
+                        if(this.missionObjectivesContainerMC.interactable)
+                        {
+                            this.missionObjectivesContainerMC.toggleExpanded();
+                            this.findGameContainer.whatsNewButton.bDisableLeftRight = this.missionObjectivesContainerMC.expanded;
+                        }
+                        break;
+                    case NavigationCode.LEFT:
+                        this.missionObjectivesContainerMC.onLeftPressed();
+                        break;
+                    case NavigationCode.RIGHT:
+                        this.missionObjectivesContainerMC.onRighttPressed();
+                }
+            }
+        }
+        
+        override protected function onInputChange(param1:Event) : *
+        {
+            super.onInputChange(param1);
+            this.missionObjectivesContainerMC.updateControllerIcons();
         }
         
         private function setTabIndexes() : void
@@ -83,6 +133,7 @@ package tripwire.menus
                 else
                 {
                     this.showMenus(false,false,true,false);
+                    this.missionObjectivesContainerMC.interactable = true;
                     this.overviewContainer.permissionsButton.enabled = false;
                     this.overviewContainer.permissionsButton.focusable = false;
                     this.overviewContainer.permissionsButton.visible = false;
@@ -135,6 +186,20 @@ package tripwire.menus
         
         public function set menuState(param1:int) : void
         {
+            if(param1 != this._currentMenuState)
+            {
+                switch(param1)
+                {
+                    case this.OverviewState:
+                    case this.FindGameMenu:
+                        this.missionObjectivesContainerMC.expanded = false;
+                        this.missionObjectivesContainerMC.updateControllerIcons();
+                        break;
+                    default:
+                        this.missionObjectivesContainerMC.expanded = false;
+                        this.missionObjectivesContainerMC.updateControllerIcons();
+                }
+            }
             this._currentMenuState = param1;
             ExternalInterface.call("Callback_StartMenuChange");
         }
@@ -255,6 +320,16 @@ package tripwire.menus
         override protected function onOpened(param1:TweenEvent = null) : void
         {
             super.onOpened(param1);
+        }
+        
+        public function fadeOutObjectives(param1:Event = null) : void
+        {
+            this.missionObjectivesContainerMC.interactable = false;
+        }
+        
+        public function fadeInObjectives(param1:Event = null) : void
+        {
+            this.missionObjectivesContainerMC.interactable = true;
         }
     }
 }

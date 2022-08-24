@@ -74,6 +74,7 @@ defaultproperties
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
+      AfflictionClasses(11)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -116,6 +117,18 @@ defaultproperties
       SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
       SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
       SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_Suicide'
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHusk:SpecialMoveHandler_0'
    End Object

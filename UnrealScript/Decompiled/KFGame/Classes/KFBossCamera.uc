@@ -26,7 +26,7 @@ var CameraOffsets BackupOffsets;
 var CameraOffsets DeadOffsets;
 var export editinline PointLightComponent PointLightTemplate;
 var export editinline transient PointLightComponent PointLight;
-var KFPawn_MonsterBoss ViewedPawn;
+var KFPawn_Monster ViewedPawn;
 
 function OnBecomeActive(GameCameraBase NewCamera)
 {
@@ -61,9 +61,12 @@ function UpdateCamera(Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out
     local Rotator Rot;
     local CameraOffsets FinalOffsets;
 
+    if(ViewedPawn == none)
+    {
+        ViewedPawn = KFPawn_Monster(P);
+    }
     if(((P != none) && PointLight != none) && !PointLight.bAttached)
     {
-        ViewedPawn = KFPawn_MonsterBoss(P);
         if(ViewedPawn != none)
         {
             ViewedPawn.AttachComponent(PointLight);

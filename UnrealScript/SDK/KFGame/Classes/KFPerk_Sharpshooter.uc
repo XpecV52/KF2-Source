@@ -224,13 +224,16 @@ simulated function float GetReloadRateScale( KFWeapon KFW )
  */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
-	CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue( Recoil, CurrentLevel );
+    if (IsWeaponOnPerk(KFW, , self.class))
+    {
+        CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue(Recoil, CurrentLevel);
 
-	if( GetScopedActive(KFW) && IsWeaponOnPerk( KFW,, self.class ) )
-	{
-		`QALog( "(Scoped)" @ KFW @ GetPercentage( CurrentRecoilModifier, CurrentRecoilModifier - CurrentRecoilModifier * GetSkillValue( PerkSkills[ESharpshooterScoped] ) ), bLogPerk );
-		CurrentRecoilModifier -= CurrentRecoilModifier * GetSkillValue( PerkSkills[ESharpshooterScoped] );
-	}
+        if (GetScopedActive(KFW))
+        {
+            `QALog( "(Scoped)" @ KFW @ GetPercentage(CurrentRecoilModifier, CurrentRecoilModifier - CurrentRecoilModifier * GetSkillValue(PerkSkills[ESharpshooterScoped])), bLogPerk );
+            CurrentRecoilModifier -= CurrentRecoilModifier * GetSkillValue(PerkSkills[ESharpshooterScoped]);
+        }
+    }	
 }
 
 simulated event float GetCameraViewShakeModifier( KFWeapon OwnerWeapon )
@@ -259,7 +262,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 {
 	local float TempMaxSpareAmmoAmount;
 
-	if( IsAmmoPouchActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClasses, self.class ) )
+	if( IsAmmoPouchActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClasses, self.class, TraderItem.ClassName ) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
 		TempMaxSpareAmmoAmount += TempMaxSpareAmmoAmount * GetSkillValue( PerkSkills[ESharpshooterAmmoPouch] );
@@ -334,7 +337,7 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
 		}
 	}
 
-    return 1.f;
+    return 0.f;
 }
 
 /**
@@ -344,7 +347,7 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
  */
 function bool IsStationaryAimActive()
 {
-	return PerkSkills[ESharpshooterStationaryAim].bActive;
+	return PerkSkills[ESharpshooterStationaryAim].bActive && IsPerkLevelAllowed(ESharpshooterStationaryAim);
 }
 
 /**
@@ -354,7 +357,7 @@ function bool IsStationaryAimActive()
  */
 simulated function bool IsTriggerActive()
 {
-	return PerkSkills[ESharpshooterTrigger].bActive;
+	return PerkSkills[ESharpshooterTrigger].bActive && IsPerkLevelAllowed(ESharpshooterTrigger);
 }
 
 /**
@@ -364,7 +367,7 @@ simulated function bool IsTriggerActive()
  */
 simulated function bool IsCrouchAimActive( KFWeapon W )
 {
-	return PerkSkills[ESharpshooterCrouchAim].bActive && CheckOwnerPawn() && OwnerPawn.bIsCrouched && IsWeaponOnPerk( W,, self.class );
+	return PerkSkills[ESharpshooterCrouchAim].bActive && CheckOwnerPawn() && OwnerPawn.bIsCrouched && IsWeaponOnPerk( W,, self.class ) && IsPerkLevelAllowed(ESharpshooterCrouchAim);
 }
 
 /**
@@ -374,7 +377,7 @@ simulated function bool IsCrouchAimActive( KFWeapon W )
  */
 simulated function bool IsStunActive()
 {
-	return PerkSkills[ESharpshooterStun].bActive;
+	return PerkSkills[ESharpshooterStun].bActive && IsPerkLevelAllowed(ESharpshooterStun);
 }
 
 /**
@@ -384,7 +387,7 @@ simulated function bool IsStunActive()
  */
 simulated function bool IsRhythmMethodActive()
 {
-	return PerkSkills[ESharpshooterRhythmMethod].bActive;
+	return PerkSkills[ESharpshooterRhythmMethod].bActive && IsPerkLevelAllowed(ESharpshooterRhythmMethod);
 }
 
 /**
@@ -394,7 +397,7 @@ simulated function bool IsRhythmMethodActive()
  */
 simulated function bool IsTacticalReloadActive()
 {
-	return PerkSkills[ESharpshooterTacticalReload].bActive;
+	return PerkSkills[ESharpshooterTacticalReload].bActive && IsPerkLevelAllowed(ESharpshooterTacticalReload);
 }
 
 /**
@@ -404,7 +407,7 @@ simulated function bool IsTacticalReloadActive()
  */
 simulated function bool IsScopedActive()
 {
-	return PerkSkills[ESharpshooterScoped].bActive;
+	return PerkSkills[ESharpshooterScoped].bActive && IsPerkLevelAllowed(ESharpshooterScoped);
 }
 
 simulated function bool GetScopedActive( KFWeapon KFW )
@@ -419,7 +422,7 @@ simulated function bool GetScopedActive( KFWeapon KFW )
  */
 simulated function bool IsAmmoPouchActive()
 {
-	return PerkSkills[ESharpshooterAmmoPouch].bActive;
+	return PerkSkills[ESharpshooterAmmoPouch].bActive && IsPerkLevelAllowed(ESharpshooterAmmoPouch);
 }
 
 /**
@@ -429,7 +432,7 @@ simulated function bool IsAmmoPouchActive()
  */
 simulated function bool IsZTKnockdownActive()
 {
-	return PerkSkills[ESharpshooterZTKnockdown].bActive;
+	return PerkSkills[ESharpshooterZTKnockdown].bActive && IsPerkLevelAllowed(ESharpshooterZTKnockdown);
 }
 
 /**
@@ -449,7 +452,7 @@ simulated function bool GetZTKnockdownActive()
  */
 simulated function bool IsZTStunActive()
 {
-	return PerkSkills[ESharpshooterZTStun].bActive;
+	return PerkSkills[ESharpshooterZTStun].bActive && IsPerkLevelAllowed(ESharpshooterZTStun);
 }
 
 /**
@@ -627,14 +630,18 @@ static function bool IsDamageTypeOnPerk( class<KFDamageType> KFDT )
  *
  * @return true/false
  */
-static simulated function bool IsWeaponOnPerk( KFWeapon W, optional array < class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass )
+static simulated function bool IsWeaponOnPerk( KFWeapon W, optional array < class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass, optional name WeaponClassName )
 {
 	if( W != none && default.AdditionalOnPerkWeaponNames.Find( W.class.name ) != INDEX_NONE )
 	{
 		return true;
 	}
+    else if (WeaponClassName != '' && default.AdditionalOnPerkWeaponNames.Find(WeaponClassName) != INDEX_NONE)
+    {
+        return true;
+    }
 
-	return super.IsWeaponOnPerk( W, WeaponPerkClass );
+	return super.IsWeaponOnPerk( W, WeaponPerkClass, InstigatorPerkClass, WeaponClassName );
 }
 
 DefaultProperties
@@ -678,13 +685,13 @@ DefaultProperties
    	PerkSkills(ESharpshooterStationaryAim)=(Name="StationaryAim",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_StationaryAim", Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)    //0.1
 	PerkSkills(ESharpshooterTrigger)=(Name="Trigger",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Trigger",	Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
 	PerkSkills(ESharpshooterCrouchAim)=(Name="CrouchAim",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_CrouchAim", Increment=0.f,Rank=0,StartingValue=0.30,MaxValue=0.30)
-	PerkSkills(ESharpshooterStun)=(Name="Stun",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Stun", Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
+	PerkSkills(ESharpshooterStun)=(Name="Stun",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Stun", Increment=0.f,Rank=0,StartingValue=1.0,MaxValue=1.0)
 	PerkSkills(ESharpshooterRhythmMethod)=(Name="RhythmMethod",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_RackUmUp", Increment=0.f,Rank=0,StartingValue=0.10f,MaxValue=0.10f)
 	PerkSkills(ESharpshooterTacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_TacticalReload", Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 	PerkSkills(ESharpshooterScoped)=(Name="Scoped",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Scoped", Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
 	PerkSkills(ESharpshooterAmmoPouch)=(Name="AmmoPouch",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_AmmoPouch", Increment=0.f,Rank=0,StartingValue=0.25f,MaxValue=0.25f)
 	PerkSkills(ESharpshooterZTKnockdown)=(Name="ZTKnockdown",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_ZED-KnockDown", Increment=0.f,Rank=0,StartingValue=0.35f,MaxValue=0.35f) //0.35
-	PerkSkills(ESharpshooterZTStun)=(Name="ZTStun",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_ZED-Stun", Increment=0.f,Rank=0,StartingValue=5.0,MaxValue=5.0)
+	PerkSkills(ESharpshooterZTStun)=(Name="ZTStun",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_ZED-Stun", Increment=0.f,Rank=0,StartingValue=4.0,MaxValue=4.0)
 
 	SkillZedTimeChance=0.05  //0.05
 

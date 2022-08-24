@@ -109,6 +109,10 @@ event OnClose()
 
 function UnRegisterDelegates()
 {
+	OnlineSub.PlayerInterface.ClearLoginCancelledDelegate(OnLoginCancelled);
+	OnlineSub.PlayerInterface.ClearLoginStatusChangeDelegate(OnLoginStatusChanged, GetLP().ControllerId);
+	OnlineSub.PlayerInterface.ClearReadProfileSettingsCompleteDelegate(GetLP().ControllerId, OnReadProfileSettingsComplete);
+	OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnStatsRead);
 }
 
 
@@ -133,7 +137,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 		// For xbox, we support changing profiles
 		else if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) && ButtonName == 'XboxTypeS_Y' )
 		{
-			if (ValidateActiveAccount(ControllerId))
+			if( !bLoggingIn && ValidateActiveAccount(ControllerId) )
 			{
 				OnlineSub.PlayerInterface.ShowLoginUI( ControllerId );
 			}
@@ -261,6 +265,13 @@ function LoginToGame()
 	// For XB1 we need to first read save data before attempting the "login"
 	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
 	{
+		// Ensure we're completely erased attempting a login
+		OnlineSub.PlayerInterface.Logout(GetLP().ControllerId);
+		if( PlayfabInter != none )
+		{
+			PlayfabInter.Logout();
+		}
+
 		PlayerDataDS = UIDataStore_OnlinePlayerData(class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', GetLP()));
 		OnlineSub.PlayerInterface.AddReadProfileSettingsCompleteDelegate(GetLP().ControllerId, OnReadProfileSettingsComplete);
 		OnlineSub.PlayerInterface.ReadProfileSettings(GetLP().ControllerId, OnlineProfileSettings(PlayerDataDS.ProfileProvider.Profile));
@@ -304,11 +315,6 @@ function OnLoginToGameComplete()
 	// Detect logout during "login" process
 	if( OnlineSub.PlayerInterface.GetLoginStatus( GetLP().ControllerId ) != LS_LoggedIn && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) )
 	{
-		Manager.DelayedOpenPopup(ENotification, EDPPID_ControllerDisconnect,
-			Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"),
-			"LoggedOutMessage",
-			class'KFCommon_LocalizedStrings'.default.OKString);
-
 		return;
 	}
 
@@ -350,17 +356,38 @@ function ProceedToMainMenu()
 	// Set up special event if there is one
 	class'KFGameEngine'.static.InitEventContent();
 
+	if(Manager != none)
+	{
+		Manager.UpdateBackgroundMovie();
+		if(Manager.StartMenu.MissionObjectiveContainer != none)
+		{
+			Manager.StartMenu.MissionObjectiveContainer.UpdateMissionObjectiveState();
+		}
+        PC.UpdateSeasonalState();
+	}
+
 	// We no longer allow input from multiple controllers. Only the active one
 	class'Engine'.static.GetEngine().GameViewport.bAllowInputFromMultipleControllers = false;
 
 	// For XB1, we throw the gamma popup now
-	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) && !Manager.bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() )
+	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
 	{
-		PC.SetTimer( 0.01, false, nameof(DelayedOpenGammaPopup), self );
+		// Check and see if we need to set safe frame first
+		if( !Manager.CachedProfile.HasSafeFrameSet() )
+		{
+			Manager.OpenScreenSizeMovie();
+		}
+		// Check for brightness
+		else if( !Manager.bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() )
+		{
+			PC.SetTimer( 0.01, false, nameof(DelayedOpenGammaPopup), self );
+		}
 	}
 
 	// If controller is not connected when proceeding to main menu. We need to show the controller disconnect dialog again
-	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) && !OnlineSub.SystemInterface.IsControllerConnected(GetLP().ControllerId) )
+	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) && 
+		!OnlineSub.SystemInterface.IsControllerConnected(GetLP().ControllerId) && 
+		!class'Engine'.static.GetEngine().GameViewport.bNeedsNewGamepadPairingForNewProfile )
 	{
 		PC.SetTimer( 0.01, false, 'ShowControllerDisconnectedDialog' );
 	}
@@ -385,6 +412,12 @@ function DelayedOpenGammaPopup()
 
 function NotifyLoginFailed()
 {
+	// Detect logout during "login" process
+	if (OnlineSub.PlayerInterface.GetLoginStatus(GetLP().ControllerId) != LS_LoggedIn && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
+	{
+		return;
+	}
+
 	// We still proceed to main menu
 	ProceedToMainMenu();
 }

@@ -60,6 +60,9 @@ var bool bAutoswitchWeapon;
 var const float StartedWithWeaponPriceModifier;	// The selling price reduction for a weapon that we were given at the start of the game
 var const float SellPriceModifier;	// Multiplied by the original price to get the sell cost
 
+/** Cost scale for weapons not on the active perk */
+var float OffPerkCostScale;
+
 /** An item that will be given once we've finished using the trader */
 struct native TransactionItem
 {
@@ -83,7 +86,7 @@ var int SelectedGroupIndicies[4];
 replication
 {
 	if( bNetDirty && bNetOwner )
-		GrenadeCount, CurrentCarryBlocks, MaxCarryBlocks;
+		GrenadeCount, CurrentCarryBlocks, MaxCarryBlocks, OffPerkCostScale;
 
 	if( bNetDirty && bNetOwner && bNetInitial )
 		HealerWeapon;
@@ -303,6 +306,11 @@ simulated function Inventory CreateInventory(class<Inventory> NewInventoryItemCl
 					LastCreatedWeaponTime = WorldInfo.TimeSeconds;
 				}
 			}
+
+            if (KFWeap != none)
+            {
+                CheckForExcessRemoval(KFWeap);
+            }
 
 			return KFWeap;
 		}
@@ -1208,23 +1216,14 @@ simulated function ThrowMoney()
 reliable server function ServerThrowMoney()
 {
 	local Inventory Inv;
-	local KFGameReplicationInfo MyKFGRI;
 
 	if ( Instigator != none )
 	{
-		MyKFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-
 		// find the dosh.  Use DroppedPickupClass because KFInventory_Money is in KFGameContent
 		foreach InventoryActors(class'Inventory', Inv)
 		{
 			if ( Inv.DroppedPickupClass == class'KFDroppedPickup_Cash' )
 			{
-				// Check if the player is receiving "discounted" money, remove his status if the players forwards his cheap money
-				if ( MyKFGRI != none && MyKFGRI.CurrentObjective != none )
-				{
-					MyKFGRI.CurrentObjective.CheckForPayDayPawn(Instigator);
-				}
-
 				Instigator.TossInventory(Inv);
 				return;
 			}
@@ -1278,6 +1277,28 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass )
 	}
 
 	return false;
+}
+
+//Remove any invalid weapons that showed up in the inventory before this weapon was created.
+//      Best Ex: Bought dual->someone threw you a single->exited menu->now have both
+simulated function CheckForExcessRemoval(KFWeapon NewWeap)
+{
+    local KFWeap_DualBase DualWeap;
+    local Inventory RemoveInv, Inv;
+
+    DualWeap = KFWeap_DualBase(NewWeap);
+    if (DualWeap != None)
+    {
+            for (Inv = InventoryChain; Inv != None; Inv = Inv.Inventory)
+            {
+                if (Inv.Class == DualWeap.default.SingleClass)
+                {
+                    RemoveInv = Inv;
+                    Inv = Inv.Inventory;
+                    RemoveFromInventory(RemoveInv);
+                }
+            }
+    }
 }
 
 /** Returns whether or not we are currently in the process of buying this weapon */
@@ -1527,7 +1548,7 @@ reliable server function ServerCloseTraderMenu()
 }
 
 /** Find out what type of ammo we are buying and ask the server for it */
-simulated function final BuyAmmo( int AmountPurchased, EItemType ItemType, optional byte ItemIndex, optional bool bSecondaryAmmo )
+simulated function final BuyAmmo( float AmountPurchased, EItemType ItemType, optional byte ItemIndex, optional bool bSecondaryAmmo )
 {
 	local STraderItem WeaponItem;
 	local KFWeapon KFW;
@@ -1546,7 +1567,7 @@ simulated function final BuyAmmo( int AmountPurchased, EItemType ItemType, optio
 			}
 		}
 
-		ServerBuyAmmo(AmountPurchased, MagAmmoCount, ItemIndex, bSecondaryAmmo);
+		ServerBuyAmmo(int(AmountPurchased), MagAmmoCount, ItemIndex, bSecondaryAmmo);
 	}
  	else if ( ItemType == EIT_Armor )
  	{
@@ -1554,7 +1575,7 @@ simulated function final BuyAmmo( int AmountPurchased, EItemType ItemType, optio
  	}
  	else if ( ItemType == EIT_Grenade )
  	{
-		ServerBuyGrenade(AmountPurchased);
+		ServerBuyGrenade(int(AmountPurchased));
  	}
 }
 
@@ -1647,7 +1668,7 @@ reliable server final private event ServerAddTransactionAmmo( int AmountAdded, b
 }
 
 /** Receive armor */
-reliable server final private function ServerBuyArmor( int PercentPurchased )
+reliable server final private function ServerBuyArmor( float PercentPurchased )
 {
 	local KFPawn_Human KFP;
 	local int AmountPurchased;
@@ -1660,7 +1681,7 @@ reliable server final private function ServerBuyArmor( int PercentPurchased )
 		{
 			// We've passed the percent armor purchased into this function, now get the armor count
 			MaxArmor = KFP.GetMaxArmor();
-			AmountPurchased = FCeil( MaxArmor * (float(PercentPurchased) / 100.0) );
+			AmountPurchased = FCeil( MaxArmor * (PercentPurchased / 100.0) );
 
 		    KFP.AddArmor( AmountPurchased );
 
@@ -1980,7 +2001,7 @@ private final function bool ProcessGrenadeDosh(int AmountPurchased)
 	return false;
 }
 
-private final function bool ProcessArmorDosh(int PercentPurchased)
+private final function bool ProcessArmorDosh(float PercentPurchased)
 {
 	local int BuyPrice;
 	local KFGFxObject_TraderItems TraderItems;
@@ -2036,6 +2057,10 @@ simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem, o
 {
 	local int AdjustedBuyPrice, i;
 
+    local KFPlayerController KFPC;
+    local KFPerk CurrentPerk;
+    local KFPlayerReplicationInfo KFPRI;
+
 	AdjustedBuyPrice = ShopItem.WeaponDef.default.BuyPrice;
 
 	// if ShopItem is a dual and we own a single already, then reduce the dual by half
@@ -2063,6 +2088,24 @@ simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem, o
 
 	// add other adjustments here
 
+    //Adjust cost if the weapon is off-perk
+    KFPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+    if( KFPRI != none )
+    {
+        KFPC = KFPlayerController(Instigator.Owner);
+        if( KFPC != none )
+        {
+            CurrentPerk = KFPC.GetPerk();
+            if( CurrentPerk != none )
+            {
+                if (ShopItem.AssociatedPerkClasses.Find(CurrentPerk.class) == INDEX_NONE)
+                {
+                    AdjustedBuyPrice *= OffPerkCostScale;
+                }
+            }
+        }
+    }
+
 	return AdjustedBuyPrice;
 }
 
@@ -2080,9 +2123,11 @@ simulated function int GetAdjustedSellPriceFor( const out STraderItem OwnedItem,
 	{
 		AdjustedSellPrice = OwnedItem.WeaponDef.default.BuyPrice * SellPriceModifier;
 	}
-
-	// if OwnedItem is a dual, set sell price to that of a single (because we sell one single and keep one single)
-	if( OwnedItem.SingleClassName != '' )
+	//no longer selling duals one by one. 
+	
+	// if OwnedItem is a dual, set sell price to that of a single (because we sell one single and keep one single) Special case for 9mm
+	//if( OwnedItem.SingleClassName != '' )
+	if( OwnedItem.SingleClassName == 'KFWeap_Pistol_9mm')
 	{
 		// @todo: revisit
 		// assume price of single is half the price of dual. might be better to use the actual buy price of the single,
@@ -2185,6 +2230,7 @@ defaultproperties
 
 	SellPriceModifier=0.75f
 	StartedWithWeaponPriceModifier=0.5f
+    OffPerkCostScale=1.f
 
 	AmmoPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Ammo'
     ItemPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Weapon'

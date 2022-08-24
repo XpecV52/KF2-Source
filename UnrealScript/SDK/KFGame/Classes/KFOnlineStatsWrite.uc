@@ -21,7 +21,7 @@ const 	MaxPerkLevel = `MAX_PERK_LEVEL;
 const 	MaxPrestigeLevel = `MAX_PRESTIGE_LEVEL;
 
 //Event consts
-const   SpecialEventObjectiveCount = 4;
+const   SpecialEventObjectiveCountMax = 8;
 
 /** Cached PC */
 var KFPlayerController MyKFPC;
@@ -67,7 +67,9 @@ var private int 	PersonalBest_Dosh;
 
 /** Cached Event Stats */
 var private int     SpecialEventInfo;
+var private int     InitialSpecialEventInfo;
 var private int     WeeklyEventInfo;
+var private int     InitialWeeklyEventInfo;
 
 /** Achievement IDs **/
 // ids must be sequential (no gaps)
@@ -283,6 +285,12 @@ const KFACHID_NukedSuicidal						=	185;
 const KFACHID_NukedHellOnEarth					=	186;
 const KFACHID_NukedCollectibles					= 	187;
 
+const KFACHID_TragicKingdomNormal               =   188;
+const KFACHID_TragicKingdomHard                 =   189;
+const KFACHID_TragicKingdomSuicidal             =   190;
+const KFACHID_TragicKingdomHellOnEarth          =   191;
+const KFACHID_TragicKingdomCollectibles         =   192;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -292,6 +300,10 @@ var array<AchievementDetails> Achievements;
 
 //var private const InterpCurveFloat 	LevelXPCurve;
 var const int XPTable[`MAX_PERK_LEVEL];
+
+/** Stats state */
+var private const   bool bFailedToRead;
+var private const   bool bReadSuccessful;
 
 /** Dev cheats */
 var	config	bool	bAllowPerkCheats;
@@ -304,6 +316,11 @@ cpptext
 {
 	UBOOL IsValidProgressStatId(INT StatId);
 	void GrantTutorialLevel(class UClass* PerkClass);
+
+    //Event calls
+    void GrantWeeklyOutbreakItems();
+    void GrantEventItem(INT EventIndex, INT ObjectiveIndex);
+    void GrantSummerItems();
 }
 
 /*********************************************************************************************
@@ -315,6 +332,10 @@ native function SetIntStat( int StatId, int Value );
 native function SetFloatStat( int StatId, float Value );
 native final function bool HasCheated();
 native final function NotifyCheats(optional bool bSaveToConfig);
+native final function bool HasReadFailure();
+native final function NotifyReadFailure();
+native final function bool HasReadStats();
+native final function NotifyReadSucceeded();
 native final private function int LogSubsystemIntStat( int StatId );
 
 /*********************************************************************************************
@@ -340,6 +361,11 @@ simulated function LogStats()
 	`log( "SupportProgress " @ "            =" @ LogSubsystemIntStat( STATID_Sup_Progress ) );
 	`log( "MedicProgress " @ "              =" @ LogSubsystemIntStat( STATID_Medic_Progress ) );
 	`log( "###############################################################" );
+}
+
+simulated function LogStatValue(int StatId)
+{
+    `log("*** Stat value for ID" @ StatId @ ": " @ LogSubsystemIntStat(StatId));
 }
 
 //Steam stats -> the gameplay variables
@@ -484,11 +510,11 @@ event CacheStatsValue(int StatID, float Value)
 			`log(GetFuncName() @ "Fleshpound kills:" @ FleshpoundKills, bLogStatsWrite);
 			break;
         case STATID_SpecialEventProgress:
-            CacheSpecialEventState(Value);
+            InitialSpecialEventInfo = Value;
             `log(GetFuncName() @ "Special Event: " @ SpecialEventInfo, bLogStatsWrite);
             break;
         case STATID_WeeklyEventProgress:
-            CacheWeeklyEventState(Value);
+            InitialWeeklyEventInfo = Value;
             `log(GetFuncName() @ "Weekly Event:" @ WeeklyEventInfo, bLogStatsWrite);
             break;
 		case STATID_PersonalBest_KnifeKills:
@@ -993,6 +1019,32 @@ private event int AddWeldingPoints( int PointsWelded )
 	return XPEarned;
 }
 
+/** Repairing doors is another source of secondary XP for the Support class. It uses different
+ *      values for the XP earned, and is only earned on completion.  However, it tallies into 
+ *      the same end stat.
+ */
+private event int DoorRepaired()
+{
+    local int XPEarned;
+    local KFGameReplicationInfo KFGRI;
+    KFGRI = KFGameReplicationInfo(MyKFPC.WorldInfo.GRI);
+    if (KFGRI != none)
+    {
+        class'KFPerk_Support'.static.GetDoorRepairXP(XPEarned, KFGRI.GameDifficulty);
+        if (XPEarned > 0)
+        {
+            AddXP(class'KFPerk_Support', XPEarned);
+            `RecordSecondaryXPGain(MyKFPC, class'KFPerk_Support', XPEarned);
+            KFGRI.SecondaryXPAccumulator += XPEarned;
+            PerRoundWeldXP += XPEarned;
+
+            `log(GetFuncName() @ "Door Repair XP earned :" @ XPEarned);
+        }
+    }    
+
+    return XPEarned;
+}
+
 /*
  * Calculates the perk XP reward for a certain number of points
  * Split from AddHealingPoints so analytics can log XP earned.
@@ -1058,11 +1110,13 @@ private event int AddHealingPoints( int PointsHealed )
  */
 private event AddToHeadshots( byte Difficulty, class<DamageType> DT )
 {
+    //Do both separately to allow for multi-perk pass through (Ex: single flare uses both)
 	if( IsGunslingerHeadshot( DT ) )
 	{
 		AddGunslingerHeadshot( Difficulty );
 	}
-	else if( IsSharpshooterHeadshot(DT) )
+	
+    if( IsSharpshooterHeadshot(DT) )
 	{
 		AddSharpshooterHeadshot( Difficulty );
 	}
@@ -1195,10 +1249,21 @@ native final function CheckForRoundTeamWinAchievements( byte WinningTeam );
 /*********************************************************************************************
 * @name Events
 ********************************************************************************************* */
+final function bool CanCacheSpecialEvent()
+{
+    return InitialSpecialEventInfo > 0;
+}
+
 /** Verify what event we're in and cache local event state.  If we've changed to a new event,
  *      clear out the status flags before caching new date value.
  */
 native final private function CacheSpecialEventState(int Value);
+
+/** Triggered by KF PC when the special event ID is passed through as a valid value */
+final function UpdateSpecialEventState()
+{
+    CacheSpecialEventState(InitialSpecialEventInfo);
+}
 
 /** Update the state of a special event.  If the passed in EventIndex doesn't match our current
  *      special event index, do not update the stat.  Also, if the map name passed doesn't match
@@ -1206,13 +1271,33 @@ native final private function CacheSpecialEventState(int Value);
  */
 native final function UpdateSpecialEvent(int EventIndex, int ObjectiveIndex);
 
+/** Grab the state of a special event objective at a specific index. */
+native final function bool IsEventObjectiveComplete(int ObjectiveIndex);
+
+final function bool CanCacheWeeklyEvent()
+{
+    return InitialWeeklyEventInfo > 0;
+}
+
 /** Cache the state of the weekly event.If the cached week/year combo in the stored
  *      value don't match, everything is cleared.
  */
 native final private function CacheWeeklyEventState(int Value);
 
+/** Triggered by KF PC when the weekly event ID is passed through as a valid value */
+final function UpdateWeeklyEventState()
+{
+    CacheWeeklyEventState(InitialWeeklyEventInfo);
+}
+
 /** Update the state of the weekly event.  Called via game type. */
 native final function WeeklyEventComplete();
+
+/** Whether or not the current weekly has been finished */
+native final function bool IsWeeklyEventComplete();
+
+/** Get a list of IDs associated with the prizes given out for completing a weekly */
+native static final function array<int> GetWeeklyOutbreakRewards(int Index = -1);
 
 defaultproperties
 {

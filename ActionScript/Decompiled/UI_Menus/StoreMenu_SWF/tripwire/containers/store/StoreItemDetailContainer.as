@@ -70,7 +70,10 @@ package tripwire.containers.store
         
         public function cancelClicked(param1:ButtonEvent) : void
         {
-            this.closeContainer();
+            if(_bReadyForInput)
+            {
+                this.closeContainer();
+            }
         }
         
         public function addToCartClicked(param1:ButtonEvent) : void

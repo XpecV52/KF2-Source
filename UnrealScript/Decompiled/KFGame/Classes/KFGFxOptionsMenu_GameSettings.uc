@@ -440,6 +440,7 @@ function ResetGameOptions()
     Callback_bShowWelderInInvChanged(Manager.CachedProfile.GetDefaultInt(160) != 0);
     Callback_AutoTurnOffChanged(Manager.CachedProfile.GetDefaultInt(161) != 0);
     Callback_ReduceHighPitchNoiseChanged(Manager.CachedProfile.GetDefaultInt(162) != 0);
+    Callback_DisableAutoUpgradeChanged(Manager.CachedProfile.GetDefaultInt(167) != 0);
     if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
         Callback_WeaponSelectChanged(Manager.CachedProfile.GetDefaultInt(100) != 0);        

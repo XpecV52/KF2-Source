@@ -36,4 +36,8 @@ defaultproperties
 	DoT_DamageScale=0.8 //1.5
 
 	BurnPower=15.5 //2.5
+
+    ModifierPerkList(0) = class'KFPerk_Firebug'
+    ModifierPerkList(1) = class'KFPerk_Gunslinger'
+    ModifierPerkList(2) = class'KFPerk_Sharpshooter'
 }

@@ -48,6 +48,8 @@ var(Effects) array<KFSkinTypeEffects> ImpactSkins;
 	vertically downwards. If not specified, the root bone (index 0) will be used as blood pool origin */
 var(Gore) name BloodPoolOriginBoneName;
 
+/** Character MICs index to use for gameplay effects */
+var(Effects) int GoreFXMICIdx;
 
 /************************************************************************/
 /* Character Portrait

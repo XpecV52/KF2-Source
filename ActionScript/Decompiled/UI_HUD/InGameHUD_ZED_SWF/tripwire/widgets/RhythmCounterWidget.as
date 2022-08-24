@@ -20,6 +20,8 @@ package tripwire.widgets
         
         public var masterTimeline:TimelineMax;
         
+        public var bloodTimeline:TimelineMax;
+        
         public var _count:int = -1;
         
         public var bonusBarStartWidth:Number;
@@ -28,9 +30,15 @@ package tripwire.widgets
         
         protected var _hidden:Boolean;
         
+        public var bloodSplatter:MovieClip;
+        
         public function RhythmCounterWidget()
         {
             this.masterTimeline = new TimelineMax({
+                "paused":true,
+                "useFrames":true
+            });
+            this.bloodTimeline = new TimelineMax({
                 "paused":true,
                 "useFrames":true
             });
@@ -60,6 +68,18 @@ package tripwire.widgets
                 "useFrames":true,
                 "ease":Cubic.easeOut
             }));
+            this.bloodTimeline.clear();
+            this.bloodTimeline.append(TweenMax.fromTo(this.bloodSplatter,8,{
+                "alpha":1,
+                "frameLabel":"start"
+            },{
+                "frameLabel":"end",
+                "ease":Cubic.easeOut
+            }));
+            this.bloodTimeline.append(TweenMax.to(this.bloodSplatter,4,{
+                "alpha":0,
+                "ease":Cubic.easeOut
+            }));
         }
         
         public function get count() : int
@@ -71,7 +91,14 @@ package tripwire.widgets
         {
             if(param1 == this._count)
             {
+                this.bloodTimeline.time(0);
+                this.bloodTimeline.play();
                 return;
+            }
+            if(param1 > this._count)
+            {
+                this.bloodTimeline.time(0);
+                this.bloodTimeline.play();
             }
             this._count = param1;
             if(param1 == 0)
@@ -90,7 +117,7 @@ package tripwire.widgets
                 this.masterTimeline.time(0);
                 this.masterTimeline.play();
             }
-            this.counterNum.text = param1.toString() + "X";
+            this.counterNum.text = "x" + param1.toString();
         }
         
         public function set bonusPercentage(param1:Number) : *

@@ -123,6 +123,13 @@ function OpenDelayTimer()
     GI = KFGameInfo_Tutorial(Class'WorldInfo'.static.GetWorldInfo().Game);
     if(GI != none)
     {
-        GI.CreateTutorialHUD(self, true);
+        if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying())
+        {
+            GI.SetTimer(0.05, false, 'OpenDelayTimer', self);            
+        }
+        else
+        {
+            GI.CreateTutorialHUD(self, true);
+        }
     }
 }

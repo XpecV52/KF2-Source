@@ -115,6 +115,8 @@ static function string GetKeyBind( PlayerController P, optional int Switch )
 		case IMT_AcceptObjective:
 		case IMT_ReceiveAmmo:
 		case IMT_ReceiveGrenades:
+        case IMT_UseMinigame:
+        case IMT_UseMinigameGenerator:
 			KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
 			KeyString = KFInput.GetBindDisplayName(BoundKey);
 			break;

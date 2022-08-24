@@ -31,6 +31,7 @@ enum EGameMessageType
 var const localized string WaveStartMessage;
 var const localized string WaveEndMessage;
 var const localized string GetToTraderMessage;
+var const localized string ScavengeMessage;
 var const localized string YouLostMessage;
 var const localized string YouWonMessage;
 var const localized string SquadWipedOutMessage;
@@ -191,7 +192,7 @@ static function string GetMessageString(int Switch, optional out string Secondar
             }
             else
             {
-                SecondaryString = default.GetToTraderMessage;
+                SecondaryString = ((KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI).bTradersEnabled) ? default.GetToTraderMessage : default.ScavengeMessage);
                 return default.WaveEndMessage;
             }
         case 2:
@@ -301,6 +302,7 @@ defaultproperties
     WaveStartMessage="W A V E  I N C O M I N G"
     WaveEndMessage="W A V E  C O M P L E T E"
     GetToTraderMessage="Get to the Trader Pod"
+    ScavengeMessage="Scavenge"
     YouLostMessage="D E F E A T"
     YouWonMessage="V I C T O R Y"
     SquadWipedOutMessage="Your squad was wiped out!"

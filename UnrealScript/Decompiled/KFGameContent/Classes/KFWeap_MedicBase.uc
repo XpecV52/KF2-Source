@@ -35,6 +35,9 @@ var(Recoil) int DartMinRecoilPitch;
 var(Recoil) int DartMaxRecoilYaw;
 var(Recoil) int DartMinRecoilYaw;
 var ForceFeedbackWaveform HealingDartWaveForm;
+var repnotify byte HealingDartAmmo;
+var byte StoredPrimaryAmmo;
+var byte StoredSecondaryAmmo;
 /** The frequency with which we will check for a lock */
 var(Locking) float LockCheckTime;
 /** How far out should we be considering actors for a lock */
@@ -59,14 +62,12 @@ var float PendingLockTimeout;
 var float LockedOnTimeout;
 var class<KFGFxWorld_MedicOptics> OpticsUIClass;
 var KFGFxWorld_MedicOptics OpticsUI;
-var byte StoredPrimaryAmmo;
-var byte StoredSecondaryAmmo;
 
 replication
 {
      if(bNetDirty && Role == ROLE_Authority)
-        LockedTarget, PendingLockedTarget, 
-        bLockedOnTarget;
+        HealingDartAmmo, LockedTarget, 
+        PendingLockedTarget, bLockedOnTarget;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -110,9 +111,9 @@ simulated event ReplicatedEvent(name VarName)
         else
         {
             super(Actor).ReplicatedEvent(VarName);
-            if(VarName == 'SpareAmmoCount')
+            if(VarName == 'HealingDartAmmo')
             {
-                AmmoCount[1] = byte(SpareAmmoCount[1]);
+                AmmoCount[1] = HealingDartAmmo;
             }
         }
     }
@@ -152,7 +153,7 @@ simulated function ConsumeAmmo(byte FireModeNum)
         if((MagazineCapacity[1] > 0) && AmmoCount[1] > 0)
         {
             AmmoCount[1] = byte(Max(AmmoCount[1] - AmmoCost[1], 0));
-            SpareAmmoCount[1] = Max(SpareAmmoCount[1] - AmmoCost[1], 0);
+            HealingDartAmmo = byte(Max(HealingDartAmmo - AmmoCost[1], 0));
         }
     }
 }
@@ -274,14 +275,14 @@ function HealAmmoRegeneration(float DeltaTime)
     if(Role == ROLE_Authority)
     {
         HealingIncrement += (HealRechargePerSecond * DeltaTime);
-        if(SpareAmmoCount[1] > AmmoCount[1])
+        if(HealingDartAmmo > AmmoCount[1])
         {
-            SpareAmmoCount[1] = AmmoCount[1];
+            HealingDartAmmo = AmmoCount[1];
         }
-        if((HealingIncrement >= 1) && SpareAmmoCount[1] < MagazineCapacity[1])
+        if((HealingIncrement >= 1) && HealingDartAmmo < MagazineCapacity[1])
         {
-            ++ SpareAmmoCount[1];
-            AmmoCount[1] = byte(SpareAmmoCount[1]);
+            ++ HealingDartAmmo;
+            AmmoCount[1] = HealingDartAmmo;
             HealingIncrement -= 1;
         }
     }
@@ -594,6 +595,11 @@ static simulated event SetTraderWeaponStats(out array<STraderItemWeaponStats> We
     WeaponStats[WeaponStats.Length - 1].StatValue = default.HealFullRechargeSeconds;
 }
 
+simulated function int GetSecondaryAmmoForHUD()
+{
+    return AmmoCount[1];
+}
+
 simulated state WeaponSingleFiring
 {
     simulated function FireAmmunition()
@@ -654,6 +660,7 @@ defaultproperties
     DartMaxRecoilYaw=100
     DartMinRecoilYaw=-100
     HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
+    HealingDartAmmo=100
     LockCheckTime=0.1
     LockRange=50000
     LockAcquireTime=0.2
@@ -667,7 +674,6 @@ defaultproperties
     bCanRefillSecondaryAmmo=false
     AimCorrectionSize=40
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCount[1]=100
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_MedicBase.MeleeHelper'
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */

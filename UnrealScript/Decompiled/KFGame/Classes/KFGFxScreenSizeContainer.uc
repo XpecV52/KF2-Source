@@ -29,6 +29,23 @@ function InitMenu()
         }
     }
     LocalizeText();
+    HideButtonsThatWeDoNotWantForNow();
+}
+
+function HideButtonsThatWeDoNotWantForNow()
+{
+    local GFxObject cancelButton, cancelTextfield;
+
+    cancelButton = GetObject("backButtonIcon");
+    cancelTextfield = GetObject("cancelTextField");
+    if(cancelButton != none)
+    {
+        cancelButton.SetVisible(false);
+    }
+    if(cancelTextfield != none)
+    {
+        cancelTextfield.SetVisible(false);
+    }
 }
 
 function UpdateUsingGamePad(bool bValue)

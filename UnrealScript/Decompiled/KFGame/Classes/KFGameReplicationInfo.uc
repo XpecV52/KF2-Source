@@ -104,6 +104,7 @@ var byte WaveMax;
 var repnotify byte WaveNum;
 var byte GameLength;
 var byte GameDifficulty;
+var byte MaxPerkLevel;
 var private const byte GameSharedUnlocks;
 var byte CurrentGameConductorStatus;
 var byte MusicIntensity;
@@ -111,8 +112,10 @@ var int DebugingNextTraderIndex;
 var KFGFxObject_TraderItems TraderItems;
 var bool bAllowGrenadePurchase;
 var repnotify bool bTraderIsOpen;
+var repnotify bool bWaveIsActive;
 var private const bool bIsUnrankedGame;
 var bool bMatchVictory;
+var bool bTradersEnabled;
 var bool bCustom;
 var bool bCurrentSMFinishedSpawning;
 var bool bDebugSpawnManager;
@@ -167,7 +170,8 @@ var float ZedSpawnRateTracker[10];
 var float VersusZedHealthMod;
 var float VersusZedDamageMod;
 var array<KFDoorActor> DoorList;
-var KFObjective CurrentObjective;
+var repnotify Actor CurrentObjective;
+var KFInterface_MapObjective ObjectiveInterface;
 var export editinline AkComponent MusicComp;
 var KFMusicTrackInfo CurrentMusicTrackInfo;
 var repnotify KFMusicTrackInfo ReplicatedMusicTrackInfo;
@@ -183,13 +187,14 @@ replication
         TraderVolume, TraderVolumeCheckType, 
         WaveNum, WaveTotalAICount, 
         bHidePawnIcons, bIsUnrankedGame, 
-        bTraderIsOpen;
+        bTraderIsOpen, bWaveIsActive;
 
      if(bNetInitial)
         GameAmmoCostScale, GameDifficulty, 
-        GameLength, TraderItems, 
-        WaveMax, bAllowGrenadePurchase, 
-        bCustom, bVersusGame;
+        GameLength, MaxPerkLevel, 
+        TraderItems, WaveMax, 
+        bAllowGrenadePurchase, bCustom, 
+        bTradersEnabled, bVersusGame;
 
      if(bNetInitial && Role == ROLE_Authority)
         ServerAdInfo;
@@ -244,9 +249,6 @@ simulated event ReplicatedEvent(name VarName)
     {
         if(bTraderIsOpen)
         {
-            FadeOutLingeringExplosions();
-            NotifyWaveEnded();
-            EndOfWave();
             OpenTrader();            
         }
         else
@@ -256,56 +258,84 @@ simulated event ReplicatedEvent(name VarName)
     }
     else
     {
-        if(VarName == 'ReplicatedMusicTrackInfo')
+        if(VarName == 'bWaveIsActive')
         {
-            ForceNewMusicTrack(ReplicatedMusicTrackInfo);            
+            if(!bWaveIsActive)
+            {
+                FadeOutLingeringExplosions();
+                NotifyWaveEnded();
+                EndOfWave();
+            }            
         }
         else
         {
-            if(VarName == 'MusicTrackRepCount')
+            if(VarName == 'ReplicatedMusicTrackInfo')
             {
-                if(!IsFinalWave())
-                {
-                    PlayNewMusicTrack(true);
-                }                
+                ForceNewMusicTrack(ReplicatedMusicTrackInfo);                
             }
             else
             {
-                if(VarName == 'bIsUnrankedGame')
+                if(VarName == 'MusicTrackRepCount')
                 {
-                    if(bIsUnrankedGame)
+                    if(!IsFinalWave())
                     {
-                        WarnInternal(string(GetFuncName()) @ "Game is UNRANKED!");
+                        PlayNewMusicTrack(true);
                     }                    
                 }
                 else
                 {
-                    if(VarName == 'RepKickVotes')
+                    if(VarName == 'bIsUnrankedGame')
                     {
-                        VoteCollector.UnPackVotes();                        
+                        if(bIsUnrankedGame)
+                        {
+                            WarnInternal(string(GetFuncName()) @ "Game is UNRANKED!");
+                        }                        
                     }
                     else
                     {
-                        if(VarName == 'ServerAdInfo')
+                        if(VarName == 'RepKickVotes')
                         {
-                            ShowPreGameServerWelcomeScreen();                            
+                            VoteCollector.UnPackVotes();                            
                         }
                         else
                         {
-                            if(VarName == 'WaveNum')
+                            if(VarName == 'ServerAdInfo')
                             {
-                                UpdateHUDWaveCount();
-                                TriggerClientWaveStartEvents();                                
+                                ShowPreGameServerWelcomeScreen();                                
                             }
                             else
                             {
-                                if(VarName == 'ConsoleGameSessionGuid')
+                                if(VarName == 'WaveNum')
                                 {
-                                    KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();                                    
+                                    UpdateHUDWaveCount();
+                                    TriggerClientWaveStartEvents();                                    
                                 }
                                 else
                                 {
-                                    super.ReplicatedEvent(VarName);
+                                    if(VarName == 'ConsoleGameSessionGuid')
+                                    {
+                                        KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();                                        
+                                    }
+                                    else
+                                    {
+                                        if(VarName == 'CurrentObjective')
+                                        {
+                                            if(CurrentObjective != none)
+                                            {
+                                                ObjectiveInterface = KFInterface_MapObjective(CurrentObjective);
+                                                ObjectiveInterface.ActivateObjective();                                                
+                                            }
+                                            else
+                                            {
+                                                ObjectiveInterface.DeactivateObjective();
+                                                ObjectiveInterface = none;
+                                            }                                            
+                                        }
+                                        else
+                                        {
+                                            super.ReplicatedEvent(VarName);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -381,10 +411,6 @@ simulated function NotifyWaveEnded()
             KFGoreManager(WorldInfo.MyGoreEffectManager).ResetPersistantGore(false);
         }
     }
-    if((CurrentObjective != none) && !CurrentObjective.bIsCoopObjective)
-    {
-        CurrentObjective.FailObjective(3);
-    }
     foreach PRIArray(PRI,)
     {
         KFPRI = KFPlayerReplicationInfo(PRI);
@@ -444,6 +470,13 @@ simulated function FadeOutLingeringExplosions()
     {
         LingeringExplosion.FadeOut();        
     }    
+}
+
+function StartScavengeTime(int Time)
+{
+    RemainingTime = Time;
+    RemainingMinute = Time;
+    bStopCountDown = false;
 }
 
 simulated function OpenTrader(optional int Time)
@@ -671,7 +704,8 @@ simulated function int GetNextMapTimeRemaining()
 function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
 {
     MusicIntensity = NewMusicIntensity;
-    bTraderIsOpen = !bWaveActive && bMatchHasBegun;
+    bTraderIsOpen = (!bWaveActive && bMatchHasBegun) && bTradersEnabled;
+    bWaveIsActive = bWaveActive;
     bForceNetUpdate = true;
     ++ MusicTrackRepCount;
     if(!IsFinalWave() && WorldInfo.NetMode != NM_DedicatedServer)
@@ -1298,11 +1332,108 @@ simulated event bool IsStatsSessionValid()
     return true;
 }
 
+function StartNextObjective()
+{
+    local KFMapInfo KFMI;
+
+    KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+    if(KFMI != none)
+    {
+        if(KFMI.bUsePresetObjectives)
+        {
+            StartNextPresetObjective(KFMI);            
+        }
+        else
+        {
+            if(KFMI.bUseRandomObjectives)
+            {
+                StartNextRandomObjective(KFMI);
+            }
+        }
+    }
+}
+
+function StartNextPresetObjective(KFMapInfo KFMI)
+{
+    local array<KFInterface_MapObjective> PossibleObjectives;
+
+    switch(WaveMax)
+    {
+        case 5:
+            if(KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+            {
+                PossibleObjectives = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives;
+            }
+            break;
+        case 8:
+            if(KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+            {
+                PossibleObjectives = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives;
+            }
+            break;
+        case 11:
+            if(KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+            {
+                PossibleObjectives = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives;
+            }
+            break;
+        default:
+            break;
+            break;
+    }
+    AttemptObjectiveActivation(PossibleObjectives);
+}
+
+function StartNextRandomObjective(KFMapInfo KFMI)
+{
+    AttemptObjectiveActivation(KFMI.RandomWaveObjectives);
+}
+
+function AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
+{
+    local int RandID;
+
+    J0x00:
+    if(PossibleObjectives.Length > 0)
+    {
+        RandID = Rand(PossibleObjectives.Length);
+        if(PossibleObjectives[RandID].CanActivateObjective())
+        {
+            ActivateObjective(PossibleObjectives[RandID]);
+            return;
+        }
+        PossibleObjectives.Remove(RandID, 1;
+        goto J0x00;
+    }
+}
+
+function ActivateObjective(KFInterface_MapObjective NewObjective)
+{
+    if(NotEqual_InterfaceInterface(NewObjective, (none)))
+    {
+        CurrentObjective = Actor(bool(NewObjective));
+        ObjectiveInterface = NewObjective;
+        ObjectiveInterface.ActivateObjective();
+    }
+}
+
+function DeactivateObjective()
+{
+    if(CurrentObjective != none)
+    {
+        ObjectiveInterface.DeactivateObjective();
+        CurrentObjective = none;
+        ObjectiveInterface = none;
+    }
+}
+
 defaultproperties
 {
     WaveMax=255
+    MaxPerkLevel=4
     TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
     bAllowGrenadePurchase=true
+    bTradersEnabled=true
     TraderDialogManagerClass=Class'KFTraderDialogManager'
     GameAmmoCostScale=1
     VoteCollectorClass=Class'KFVoteCollector'

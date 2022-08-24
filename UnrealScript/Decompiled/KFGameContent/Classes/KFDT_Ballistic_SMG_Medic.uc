@@ -17,6 +17,7 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_MedicSMG'
     GunHitPower=45
+    ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=900
     KDeathVel=100
     KDeathUpKick=-300

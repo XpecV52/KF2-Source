@@ -79,6 +79,11 @@ event ApplyWeaponSkin(int ItemDefinition)
 	}
 }
 
+function bool HasSafeFrameSet()
+{
+	return GetProfileFloat( KFID_SafeFrameScale ) != 0.f;
+}
+
 function bool SetProfileSettingValueInt(int ProfileSettingId,int Value)
 {
 	if(super.SetProfileSettingValueInt(ProfileSettingId, Value))
@@ -325,5 +330,5 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedEmoteId,Data=(Type=SDT_Int32,Value1=-1))))
 
 	//Added 2/27/2017 - Support for safe frame setting
-	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_SafeFrameScale,Data=(Type=SDT_Float,Value1=0x3f800000))))
+	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_SafeFrameScale,Data=(Type=SDT_Float,Value1=0))))
 }

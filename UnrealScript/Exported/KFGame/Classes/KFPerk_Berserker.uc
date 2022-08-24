@@ -465,10 +465,10 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 {
 	if( IsSmashActive() )
 	{ 
-        return 1.f + static.GetSmashStumbleModifier();
+        return static.GetSmashStumbleModifier();
 	}
 
-	return 1.f;
+	return 0.f;
 }
 
  final static function float GetSmashStumbleModifier()
@@ -619,7 +619,7 @@ private static function float GetParryDamageModifier()
  */
 final private function bool IsFortitudeActive()
 {
-	return PerkSkills[EBerserkerFortitude].bActive;
+	return PerkSkills[EBerserkerFortitude].bActive && IsPerkLevelAllowed(EBerserkerFortitude);
 }
 
 /**
@@ -629,7 +629,7 @@ final private function bool IsFortitudeActive()
  */
 simulated final private function bool IsNinjaActive()
 {
-	return PerkSkills[EBerserkerNinja].bActive;
+	return PerkSkills[EBerserkerNinja].bActive && IsPerkLevelAllowed(EBerserkerNinja);
 }
 
 
@@ -640,7 +640,7 @@ simulated final private function bool IsNinjaActive()
  */
 simulated private function bool IsVampireActive()
 {
-	return PerkSkills[EBerserkerVampire].bActive;
+	return PerkSkills[EBerserkerVampire].bActive && IsPerkLevelAllowed(EBerserkerVampire);
 }
 
 
@@ -651,7 +651,7 @@ simulated private function bool IsVampireActive()
  */
 simulated final private function bool IsSpeedActive()
 {
-	return PerkSkills[EBerserkerSpeed].bActive;
+	return PerkSkills[EBerserkerSpeed].bActive && IsPerkLevelAllowed(EBerserkerSpeed);
 }
 
 /**
@@ -691,7 +691,7 @@ simulated function SetSuccessfullParry()
  */
 simulated function bool IsParryActive()
 {
-	return PerkSkills[EBerserkerParry].bActive;
+	return PerkSkills[EBerserkerParry].bActive && IsPerkLevelAllowed(EBerserkerParry);
 }
 
 /**
@@ -701,7 +701,7 @@ simulated function bool IsParryActive()
  */
 simulated function bool IsResistanceActive()
 {
-	return PerkSkills[EBerserkerResistance].bActive;
+	return PerkSkills[EBerserkerResistance].bActive && IsPerkLevelAllowed(EBerserkerResistance);
 }
 
 /**
@@ -729,7 +729,7 @@ simulated function bool HasNightVision()
  */
 final simulated protected event bool IsSmashActive()
 {
-	return PerkSkills[EBerserkerSmash].bActive;
+	return PerkSkills[EBerserkerSmash].bActive && IsPerkLevelAllowed(EBerserkerSmash);
 }
 
 /**
@@ -739,7 +739,7 @@ final simulated protected event bool IsSmashActive()
  */
 final simulated private function bool IsFuryActive()
 {
-	return PerkSkills[EBerserkerFury].bActive;
+	return PerkSkills[EBerserkerFury].bActive && IsPerkLevelAllowed(EBerserkerFury);
 }
 
 /**
@@ -759,7 +759,7 @@ function bool CanNotBeGrabbed()
  */
 simulated private event bool IsRageActive()
 {
-	return PerkSkills[EBerserkerRage].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[EBerserkerRage].bActive && WorldInfo.TimeDilation < 1.f && IsPerkLevelAllowed(EBerserkerRage);
 }
 
 /**
@@ -769,12 +769,12 @@ simulated private event bool IsRageActive()
  */
 simulated final private event bool IsSpartanActive()
 {
-	return PerkSkills[EBerserkerSpartan].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[EBerserkerSpartan].bActive && WorldInfo.TimeDilation < 1.f && IsPerkLevelAllowed(EBerserkerSpartan);
 }
 
 simulated private event bool CouldSpartanBeActive()
 {
-	return PerkSkills[EBerserkerSpartan].bActive;
+	return PerkSkills[EBerserkerSpartan].bActive && IsPerkLevelAllowed(EBerserkerSpartan);
 }
 
 /**
@@ -784,7 +784,23 @@ simulated private event bool CouldSpartanBeActive()
  */
 simulated function bool IsFastInZedTime()
 {
-	return PerkSkills[EBerserkerSpartan].bActive;
+	return PerkSkills[EBerserkerSpartan].bActive && IsPerkLevelAllowed(EBerserkerSpartan);
+}
+
+/**
+ * @brief Checks if we should be using instigator for time dilation
+ *      while in zed time.  Specific to Spartan mode for Berserker.
+ *
+ * @return true if Spartan is active
+ */
+simulated event bool ShouldUseFastInstigatorDilation(KFWeapon Weap)
+{
+    if (PerkSkills[EBerserkerSpartan].bActive && Weap != none && IsPerkLevelAllowed(EBerserkerSpartan))
+    {
+        return Weap.GetWeaponPerkClass(default.Class) == default.Class;
+    }
+
+    return false;
 }
 
 /*********************************************************************************************
@@ -845,8 +861,8 @@ defaultproperties
    PerkName="Berserker"
    Passives(0)=(Title="Berserker Damage",Description="Perk weapon damage increases x%x per level")
    Passives(1)=(Title="Damage Resistance",Description="Damage resistance increases x%x every 5 levels")
-   Passives(2)=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
-   Passives(3)=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+   Passives(2)=(Title="Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
+   Passives(3)=(Title="Clots cannot grab you",Description="Clots can't hold on to a Berserker")
    Passives(4)=()
    SkillCatagories(0)="Survival"
    SkillCatagories(1)="Combat"

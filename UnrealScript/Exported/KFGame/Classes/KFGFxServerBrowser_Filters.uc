@@ -137,8 +137,8 @@ function LocalizeText()
 	CreateList("gameModeScrollingList", class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), (SavedGameModeIndex == 255) ? class'KFGameInfo'.default.GameModes.length : int(SavedGameModeIndex));
 	CreateList("mapScrollingList", MapList, savedMapIndex);
 	SetModeMenus("difficultyScrollingList", "lengthScrollingList", SavedGameModeIndexPending);
-	//CreateList("difficultyScrollingList", class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex);
-	//CreateList("lengthScrollingList", class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex);
+	CreateList("difficultyScrollingList", class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex);
+	CreateList("lengthScrollingList", class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex);
 	CreateList("pingScrollingList", ServerMenu.PingOptionStrings, SavedPingIndex);
 
 	LocalizeCheckBoxes();
@@ -314,7 +314,7 @@ function ApplyFilters()
 	SavedDifficultyIndex 	= SavedDifficultyIndexPending; 
 	SavedLengthIndex 		= SavedLengthIndexPending;
 	SavedPingIndex 			= SavedPingIndexPending;
-
+	//`log("ApplyFilters:"@bCustom);
 	SaveConfig();
 }
 
@@ -338,6 +338,7 @@ function ClearPendingValues()
 	SavedDifficultyIndexPending 	= SavedDifficultyIndex;
 	SavedLengthIndexPending 		= SavedLengthIndex;
 	SavedPingIndexPending 			= SavedPingIndex;
+	//`log("ClearPendingValues:"@bCustom);
 }
 
 function ResetFilters()
@@ -361,6 +362,7 @@ function ResetFilters()
 	SavedDifficultyIndex = 255; 
 	SavedLengthIndex = 255;
 	SavedPingIndex = 255;
+	//`log("ResetFilters:"@bCustom);
 
 	ClearPendingValues();
 	SaveConfig();
@@ -389,7 +391,8 @@ function SetBoolByEFilter_Key(EFilter_Key Filter, bool FilterValue)
 			bNoRankedStandard 		= FilterValue;
 			break;*/
 		case CUSTOM:
-			bCustomPending 			= !FilterValue;
+			bCustomPending 			= FilterValue;
+			//`log("SetBoolByEFilter_Key:bCustomPending="$bCustomPending);
 			break;
 		/*case NO_UNRANKED:
 			bNoUnranked 			= FilterValue;
@@ -438,6 +441,8 @@ function bool GetBoolByEFilter_Key(EFilter_Key Filter)
 			return bUsesStats;*/
 
 		case CUSTOM:
+		//`log("GetBoolByEFilter_Key:"@bCustom);
+
 			return bCustom;
 		
 		case DEDICATED:

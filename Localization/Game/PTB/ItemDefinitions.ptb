@@ -10,12 +10,17 @@ BriarsBobbyBundleName="Pacote Guarda Bobby"
 FosterClassicBundleName="Pacote Foster Clássico"
 TanakasBikerBundleName="Pacote Ciclista Tanaka"
 CardboardKnightBundleName="Pacote Cavaleiro de Papelão"
+HazmatBundleName="Pacote de Conjunto Hazmat"
+HorzineMark7BundleName="Pacote Horzine v. 7"
 
 ;Bundle Descriptions
-BriarsBobbyBundleDescription="Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência). Não negociável nem comercializável."
-FosterClassicBundleDescription="Vem com uniforme Terno Clássico de Foster (com 9 estilos de aparência) e acessórios cosméticos Gravata Clássica (com 8 estilos de aparência) e Gravata Borboleta. Não negociável nem comercializável."
-TanakasBikerBundleDescription="Vem com Uniforme de Motociclista de Tanaka (com 7 estilos de aparência) e acessório cosmético Capacete (com 7 estilos de aparência). Não negociável nem comercializável."
+BriarsBobbyBundleDescription="Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência)."
+FosterClassicBundleDescription="Vem com uniforme Terno Clássico de Foster (com 9 estilos de aparência) e acessórios cosméticos Gravata Clássica (com 8 estilos de aparência) e Gravata Borboleta."
+TanakasBikerBundleDescription="Vem com Uniforme de motociclista de Tanaka (com 7 estilos de aparência) e acessório cosmético Capacete (com 7 estilos de aparência)."
 CardboardKnightBundleDescription="Vem com uma Armadura de Cavaleiro de Papelão para o corpo (com 6 estilos de aparência) e o acessório cosmético Capacete do Cavaleiro de Papelão (com 6 estilos de aparência)."
+HazmatDescription="Vem com Conjunto Hazmat (com 5 estilos de aparência) e acessório cosmético Capacete Hazmat (com 5 estilos de aparência). Compatível com a maioria dos personagens."
+HorzineMark7Description="Vem com Conjunto Horzine v. 7 (com 7 estilos de aparência) e acessório cosmético Horzine v. 7 (com 7 estilos de aparência). Compatível com a maioria dos personagens."
+
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Obtenha o clássico uniforme da polícia londrina para o personagem jogável PC Rob Briar. Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência)."
@@ -42,19 +47,27 @@ HorzineMark7HelmetName="Capacete v. 7 de Horzine"
 HorzineMark7SuitName="Terno v. 7 de Horzine"
 CardboardKnightName="Cavaleiro de Papelão"
 CardboardKnightHelmetName="Cap. do Cav. de Papelão"
+HazmatHelmetName="Capacete Hazmat do Glover"
+HazmatSuitName="Conjunto Hazmat do Glover"
+SideshowHazmatHelmetName="Capacete da Equipe do Reino Trágico"
+SideshowHazmatSuitName="Conjunto da Equipe do Reino Trágico"
 
 ;bundle item descriptions
-BriarsLondonUniformDescription="Fazendo a patrulha. Compatível com Briar e Briar Clássico Não negociável nem comercializável."
-BriarsCustodianHelmetDescription="Proteja a cabeça. Compatível com Oisten Jägerhorn, DJ Scully, Mr. Foster, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner Não negociável nem comercializável."
-FostersClassicSuitDescription="Mate Zeds e fique nos trinques ao mesmo tempo! Compatível com Mr. Foster Não negociável nem comercializável."
-FostersClassicTieDescription="Linda gravata reta. Só é compatível com o Terno do Foster Clássico. Não negociável nem comercializável."
-FostersBowTieDescription="Linda gravata borboleta. Só é compatível com o Terno do Foster Clássico. Não negociável nem comercializável."
-TanakasBikerDescription="Porque dá para cair matando e ficar nos trinques ao mesmo tempo. Compatível com Tanaka. Não negociável nem comercializável."
-TanakasBikerHelmetDescription="Proteja a cabeça. Compatível com Tanaka. Não negociável nem comercializável."
-HorzineMark7HelmetDescription="Capacete completo para completar a Armadura de Segurança de Horzine. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins. Não negociável nem comercializável."
-HorzineMark7SuitDescription="Armadura de Segurança de Horzine de Elite Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins. Não negociável nem comercializável."
-CardboardKnightDescription="A armadura do cavaleiro sagaz. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser. Não negociável nem comercializável."
-CardboardKnightHelmetDescription="É a glória coroando o visual clássico. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser. Não negociável nem comercializável."
+BriarsLondonUniformDescription="Fazendo a patrulha. Compatível com Briar e Briar Clássico "
+BriarsCustodianHelmetDescription="Proteja a cabeça. Compatível com Oisten Jägerhorn, DJ Scully, Mr. Foster, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner. "
+FostersClassicSuitDescription="Mate Zeds e fique nos trinques ao mesmo tempo! Compatível com Mr. Foster "
+FostersClassicTieDescription="Linda gravata reta. Só é compatível com o Terno do Foster Clássico. "
+FostersBowTieDescription="Linda gravata borboleta. Só é compatível com o Terno do Foster Clássico. "
+TanakasBikerDescription="Porque dá para cair matando e ficar nos trinques ao mesmo tempo. Compatível com Tanaka. "
+TanakasBikerHelmetDescription="Proteja a cabeça. Compatível com Tanaka. "
+HorzineMark7HelmetDescription="Capacete completo para completar a Armadura de Segurança de Horzine. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins. "
+HorzineMark7SuitDescription="Armadura de Segurança de Horzine de Elite Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins. "
+CardboardKnightDescription="A armadura do cavaleiro sagaz. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser. "
+CardboardKnightHelmetDescription="É a glória coroando o visual clássico. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser. "
+HazmatSuitDescription="Não saia de casa sem ele! Compatível com a maioria dos personagens. "
+HazmatHelmetDescription="Não saia de casa sem ele! Compatível com a maioria dos personagens. "
+SideshowHazmatSuitDescription="Para trabalhar no Parque de Digressões Reino Trágico é preciso usar uma proteção a mais. Usável no menu equipamento; compatível com a maioria dos personagens. Item desbloqueável exclusivo do evento sazonal Feira de Verão."
+SideshowHazmatHelmetDescription="Para trabalhar no Parque de Digressões Reino Trágico é preciso usar uma proteção a mais. Usável no menu equipamento; compatível com a maioria dos personagens. Item desbloqueável exclusivo do evento sazonal Feira de Verão."
 
 [KeyCrates]
 ;Key and Crate Type Section
@@ -80,6 +93,7 @@ HorzineSupplyCrateSeries10Name="Caixote de suprimentos de Horzine | Série 10"
 HorzineSupplyCrateSeries11Name="Caixote de suprimentos de Horzine | Série 11"
 HorzineSupplyCrateSeries12Name="Caixote de suprimentos de Horzine | Série 12"
 HorzineSupplyCrateSeries13Name="Caixote de suprimentos de Horzine | Série 13"
+HorzineSupplyCrateSeries14Name="Caixote de suprimentos de Horzine | Série 14"
 EmoteCrateSeries1Name="Caixote de emotes | Série 1"
 
 ;Crate Descriptions
@@ -109,6 +123,8 @@ HorzineSupplyCrateSeries12Description="É necessária uma chave de caixote de su
 
 HorzineSupplyCrateSeries13Description="É necessária uma chave de caixote de suprimentos de Horzine Série 13 para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Insetoide Fechado</font><br><font color="#4b69cd">Scully Robô</font><br><font color="#4b69cd">Insetoide Aberto</font><br><font color="#6600a1">Insetoide V. Aberta</font><br><font color="#6600a1">Capacete Demonicida</font><br><font color="#8847ff">Insetoide V. Fechada</font><br><font color="#8847ff">Elmo do Minotauro</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
 
+HorzineSupplyCrateSeries14Description="É necessária uma chave de caixote de suprimentos de Horzine Série 14 para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Capac. Bombeiro</font><br><font color="#4b69cd">Capac. Bombeiro Viseira Ab.</font><br><font color="#4b69cd">Capac. Bombeiro Viseira Lev.</font><br><font color="#4b69cd">Másc. Gás Bombeiro</font><br><font color="#6600a1">Capac. Bombeiro</font><br><font color="#6600a1">Capac. Bombeiro Viseira Ab.</font><br><font color="#6600a1">Capac. Bombeiro Viseira Lev.</font><br><font color="#6600a1">Másc. Gás Bombeiro</font><br><font color="#6600a1">Tanque Oxig. Bombeiro</font><br><font color="#8847ff">Tanque Oxig. Bombeiro</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
+
 EmoteCrateSeries1Description="É necessária uma chave de caixote de emotes série 1 para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Vamos Pirar</font><br><font color="#4b69cd">Dança do Bumbum</font><br><font color="#4b69cd">Tio Zé</font><br><font color="#4b69cd">Bonecão do Posto</font><br><font color="#6600a1">Chuva de Grana</font><br><font color="#6600a1">Lion Uppercut</font><br><font color="#6600a1">Ritual de Acasalar</font><br><font color="#8847ff">Chute Alto</font><br><font color="#8847ff">Bola de Fogo</font><br><font color="#8847ff">Deixa Chover</font><br><font color="#caab05">ou uma emote de luxo extremamente rara!</font>"
 
 ;Key Names
@@ -125,6 +141,7 @@ HorzineSupplyCrateKeySeries10Name="Chave de cx. de sup. Horzine | S. 10"
 HorzineSupplyCrateKeySeries11Name="Chave de cx. de sup. Horzine | S. 11"
 HorzineSupplyCrateKeySeries12Name="Chave de cx. de sup. Horzine | S. 12"
 HorzineSupplyCrateKeySeries13Name="Chave de cx. de sup. Horzine | S. 13"
+HorzineSupplyCrateKeySeries14Name="Chave de cx. de sup. Horzine | S. 14"
 EmoteCrateKeySeries1Name="Chave de cx. de emotes | S. 1"
 
 ;Key Descriptions
@@ -141,6 +158,7 @@ HorzineSupplyCrateKeySeries10Description="Esta chave só abre Caixotes de Suprim
 HorzineSupplyCrateKeySeries11Description="Esta chave só abre Caixotes de Suprimentos de Horzine Série 11."
 HorzineSupplyCrateKeySeries12Description="Esta chave só abre Caixotes de Suprimentos de Horzine Série 12."
 HorzineSupplyCrateKeySeries13Description="Esta chave só abre Caixotes de Suprimentos de Horzine Série 13."
+HorzineSupplyCrateKeySeries14Description="Esta chave só abre Caixotes de Suprimentos de Horzine Série 14."
 EmoteCrateKeySeries1Description="Esta chave só abre Caixotes de Emote Série 1."
 
 ;UsbNames
@@ -163,6 +181,8 @@ MaceAndShieldEncryptedUSBName="USB criptografado Esmaga-Osso"
 DeepstrikeEncryptedUSBName="USB criptografado Deepstrike"
 HighVoltageEncryptedUSBName="USB criptografado Alta Tensão"
 FlarePistolEncryptedUSBName="USB criptografado Lança-chamas"
+VietnamEncryptedUSBName="USB criptografado Vietnã"
+JunkyardEncryptedUSBName="USB criptografado Ferro-Velho"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="É necessária uma Chave de Projeto de Osso Cibernético para abrir. Contém uma aparência de arma rara ou melhor das seguintes:<br><font color="#4b69cd">AR15 | Osso cibernético</font><br><font color="#4b69cd">AK-12 | Osso cibernético</font><br><font color="#4b69cd">AA-12 | Osso cibernético</font><br><font color="#4b69cd">Katana | Osso cibernético</font><br><font color="#8847ff">M79 | Bile pútrida</font><br><font color="#8847ff">AR15 | Contenção</font><br><font color="#caab05">ou uma aparência preciosa e extremamente rara!</font>"
@@ -203,6 +223,10 @@ HighVoltageEncryptedUSBDescription="É necessária uma Chave de Projeto de Alta 
 
 FlarePistolEncryptedUSBDescription="É necessária uma Chave de Projeto de Lança-chamas para abrir. Contém uma aparência de arma rara ou melhor das seguintes:<br><font color="#4b69cd">Lança-chamas | Chama azul</font><br><font color="#4b69cd">Lança-chamas | Chama laranja</font><br><font color="#4b69cd">Lança-chamas | Chama vermelha</font><br><font color="#4b69cd">Lança-chamas | DigiCam laranja</font><br><font color="#6600a1">Lança-chamas | Guilhotina</font><br><font color="#6600a1">Lança-chamas | Koi</font><br><font color="#8847ff">Lança-chamas | Porcelana fina</font><br><font color="#caab05">ou uma aparência preciosa e extremamente rara!</font>"
 
+VietnamEncryptedUSBDescription="Requer Chave de Projeto Vietnã para abrir. Contém uma aparência de arma rara ou melhor das seguintes::<br><font color="#4b69cd">Winchester 1894 | Vietnã </font><br><font color="#4b69cd">RPG-7 | Vietnã</font><br><font color="#4b69cd">M1911 | Vietnã</font><br><font color="#4b69cd">L85A2 | Vietnã</font><br><font color="#4b69cd">M4 | Vietnã</font><br><font color="#6600a1">AK12 | Vietnã</font><br><font color="#6600a1">M14EBR | Vietnã</font><br><font color="#8847ff">M16 M203 | Vietnã</font><br><font color="#caab05">ou uma aparência preciosa muito rara!</font>"
+
+JunkyardEncryptedUSBDescription="Requer Chave de Projeto Ferro-Velho para abrir. Contém uma aparência de arma rara ou melhor das seguintes:<br><font color="#4b69cd">M4 | Ferro-velho</font><br><font color="#4b69cd">AK12 | Ferro-velho</font><br><font color="#4b69cd">Kriss SMG | Ferro-velho</font><br><font color="#4b69cd">MP5RAS | Ferro-velho</font><br><font color="#4b69cd">Winchester 1894 | Ferro-velho</font><br><font color="#4b69cd">L85A2 | Ferro-velho</font><br><font color="#6600a1">M14EBR | Ferro-velho</font><br><font color="#6600a1">AA12 | Ferro-velho</font><br><font color="#8847ff">M16 M203 | Ferro-velho</font><br><font color="#8847ff">Cicatriz | Ferro-velho</font><br><font color="#caab05">ou uma aparência preciosa muito rara!</font>"
+
 ;usb key names
 CyberboneUSBKeyName="Chave USB Osso Cibernético"
 DragonfireUSBKeyName="Chave USB Fogo de Dragão"
@@ -223,6 +247,8 @@ MaceAndShieldUSBKeyName="Chave USB Esmaga-Osso"
 DeepstrikeUSBKeyName="Chave USB Deepstrike"
 HighVoltageUSBKeyName="Chave de USB de Alta Tensão"
 FlarePistolUSBKeyName="Chave USB de Lança-chamas"
+VietnamUSBKeyName="Chave USB Vietnã"
+JunkyardUSBKeyName="Chave USB Ferro-Velho"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Osso Cibernético"
@@ -244,6 +270,8 @@ MaceAndShieldUSBKeyDescription="Esta chave só decodifica o Projeto Criptografad
 DeepstrikeUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Deepstrike"
 HighVoltageUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado de Alta Tensão"
 FlarePistolUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado de Lança-chamas"
+VietnamUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Vietnã"
+JunkyardUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Ferro-Velho"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Cx. de sup. cosméticos Horzine | Série 1"
@@ -289,6 +317,12 @@ CosmeticExceptionalType="Acessório de jogador excepcional"
 CosmeticMasterCraftedType="Acessório de jogador de mestre"
 CosmeticPreciousType="Acessório de jogador extremamente raro"
 
+;Sideshow Type Section
+CosmeticSideshowType="Acessório de jogador de Feira de Verão"
+CraftingSideshowType="Bilhete de Prêmio Sazonal"
+CraftingGoldenSideshowName="Bilhete de Prêmio Sazonal Dourado"
+FacePaintSideshowType="Pintura facial Feira de Verão"
+
 ;Crafting Type Section
 CraftingType="Material de produção"
 
@@ -311,6 +345,9 @@ CommonWeaponSkinMaterialName="Material de aparência de arma comum"
 UncommonWeaponSkinMaterialName="Material de aparência de arma incomum"
 RareWeaponSkinMaterialName="Material de aparência de arma raro"
 ExceptionalWeaponSkinMaterialName="Material de aparência de arma excepcional"
+CraftingSideshowName="Bilhete de Prêmio de Feira de Verão"
+CraftingPremiumSideshowName="Bilhete de Prêmio Excl. de Feira de Verão"
+CraftingGoldenSideshowName="Bilhete de Prêmio Dour. de Feira de Verão"
 
 ;materialdescriptions
 CommonCosmeticMaterialDescription="Material de produção comum que, se combinado, é útil para fazer itens cosméticos incomuns."
@@ -321,7 +358,9 @@ CommonWeaponSkinMaterialDescription="Material de produção comum que, se combin
 UncommonWeaponSkinMaterialDescription="Material de produção incomum que, se combinado, é útil para fazer aparências de arma raras."
 RareWeaponSkinMaterialDescription="Material de produção raro que, se combinado, é útil para fazer aparências de arma excepcionais."
 ExceptionalWeaponSkinMaterialDescription="Material de produção excepcional que, se combinado, é útil para fazer aparências de arma de mestre."
-
+CraftingSideshowDescription="Troque os bilhetes de prêmio por um item da Feira de Verão! <font color="#4b69cd">São necessários 5 bilhetes de prêmio.</font> Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd">Chapéu de Palhaço Festivo</font><br><font color="#4b69cd">Nariz de Palhaço Festivo</font><br><font color="#4b69cd">Pintura Facial Festiva</font><br><font color="#4b69cd">Máscara de Porco Festiva</font><br><font color="#4b69cd">Marchadorzinho de Feira</font><br><font color="#4b69cd">Chapéu de Bruxo Festivo</font><br><font color="#4b69cd">Canhão Humano de Feira</font>"
+CraftingPremiumSideshowDescription="Este bilhete exclusivo vale um item da Feira de Verão!  <font color="#4b69cd">Só é preciso 1 bilhete de prêmio!</font> Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd">Chapéu de Palhaço Festivo</font></font><br><font color="#4b69cd">Nariz de Palhaço Festivo</font><br><font color="#4b69cd">Pintura Facial Festiva</font><br><font color="#4b69cd">Máscara de Porco Festiva</font><br><font color="#4b69cd">Marchadorzinho de Feira</font><br><font color="#4b69cd">Chapéu de Bruxo Festivo</font><br><font color="#4b69cd">Canhão Humano de Feira</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
+CraftingGoldenSideshowDescription="Você ganhou um bilhete dourado! <font color="#4b69cd">Só é necessário 1 bilhete!</font> Troque este bilhete dourado por um item <font color="#caab05">PRECIOSO extremamente raro</font> da feira de verão."
 
 [WeaponSkins]
 
@@ -479,6 +518,9 @@ AA12PreciousName="AA-12 | Precioso"
 AA12TacticalMintName="AA12 | Tático | Novo"
 AA12TacticalFieldTestedName="AA12 | Tático | Testado"
 AA12TacticalBattleScarredName="AA12 | Tático | Usado"
+AA12JunkyardMintName="AA12 | Ferro-velho | Novo"
+AA12JunkyardFieldTestedName="AA12 | Ferro-velho | Testado"
+AA12JunkyardBattleScarredName="AA12 | Ferro-velho | Usado"
 
 ;AK12 Descriptions
 AK12MintDescription="Exterior: Novo | O modelo deste AK-12 feito de um exemplar tirado de uma unidade russa abatida."
@@ -527,6 +569,12 @@ AK12PreciousName="AK-12 | Precioso"
 AK12TacticalMintName="AK12 | Tático | Novo"
 AK12TacticalFieldTestedName="AK12 | Tático | Testado"
 AK12TacticalBattleScarredName="AK12 | Tático | Usado"
+AK12VietnamMintName="AK12 | Vietnã | Novo"
+AK12VietnamFieldTestedName="AK12 | Vietnã | Testado"
+AK12VietnamBattleScarredName="AK12 | Vietnã | Usado"
+AK12JunkyardMintName="AK12 | Ferro-velho | Novo"
+AK12JunkyardFieldTestedName="AK12 | Ferro-velho | Testado"
+AK12JunkyardBattleScarredName="AK12 | Ferro-velho | Usado"
 
 ;AR15 Descriptions
 AR15MintDescription="Exterior: Novo | É para os Zeds, não para animais selvagens."
@@ -608,6 +656,12 @@ CaulknBurnStreetPunksMintName="Pistola de Fogo | Punks Urbanos | Novo"
 CaulknBurnStreetPunksFieldTestedName="Pistola de Fogo | Punks Urbanos | Testado"
 CaulknBurnStreetPunksBattleScarredName="Pistola de Fogo | Punks Urbanos | Usado"
 CaulknBurnPreciousName="Pistola de Fogo | Precioso"
+
+;Centerfire Descriptions
+CenterfireMintWeeklyDescription="Exterior: Novo | Rifle Mossberg moderno de fogo central e ação de alavanca com baixo recuo e alto poder de parada. Um clássico renovado. Este item foi desbloqueado ao concluir um surto semanal."
+
+;Centerfire Names
+CenterfireWeeklyName="Disparo central | Semanal de tiro na cabeça | Novo"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Exterior: Novo | Uma besta de caça poderosa, com alta perfuração e poder de parada!"
@@ -926,6 +980,9 @@ KrissPreciousName="Submetr. Kriss | Precioso"
 KrissShredderMintName="Submetralhadora Kriss | Retalhador | Novo"
 KrissShredderFieldTestedName="Submetralhadora Kriss | Retalhador | Testado"
 KrissShredderBattleScarredName="Submetralhadora Kriss | Retalhador | Usado"
+KrissJunkyardMintName="Submetralhadora Kriss | Ferro-Velho | Novo"
+KrissJunkyardFieldTestedName="Submetralhadora Kriss | Ferro-Velho | Testado"
+KrissJunkyardBattleScarredName="Submetralhadora Kriss | Ferro-Velho | Usado"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Exterior: Novo | O SA80 era a arma padrão do exército britânico, antes do exército ser... devorado."
@@ -965,6 +1022,12 @@ L85A2PreciousName="L85A2 | Precioso"
 L85A2TacticalMintName="L85A2 | Tático | Novo"
 L85A2TacticalFieldTestedName="L85A2 | Tático | Testado"
 L85A2TacticalBattleScarredName="L85A2 | Tático | Usado"
+L85A2VietnamMintName="L85A2 | Vietnã | Novo"
+L85A2VietnamFieldTestedName="L85A2 | Vietnã | Testado"
+L85A2VietnamBattleScarredName="L85A2 | Vietnã | Usado"
+L85A2JunkyardMintName="L85A2 | Ferro-velho | Novo"
+L85A2JunkyardFieldTestedName="L85A2 | Ferro-velho | Testado"
+L85A2JunkyardBattleScarredName="L85A2 | Ferro-velho | Usado"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="Exterior: Novo | O rifle de elite preferido dos SEALs da Marinha, da Força Delta e todos os durões."
@@ -976,7 +1039,28 @@ M14EBRPreciousDescription="Exterior: Precioso | O rifle de elite preferido dos S
 M14EBRIndustrialMintName="M14 EBR | Industrial | Novo"
 M14EBRIndustrialFieldTestedName="M14 EBR | Industrial | Testado"
 M14EBRIndustrialBattleScarredName="M14 EBR | Industrial | Usado"
+M14EBRVietnamMintName="M14EBR | Vietnã | Novo"
+M14EBRVietnamFieldTestedName="M14EBR | Vietnã | Testado"
+M14EBRVietnamBattleScarredName="M14EBR | Vietnã | Usado"
+M14EBRJunkyardMintName="M14EBR | Ferro-velho | Novo"
+M14EBRJunkyardFieldTestedName="M14EBR | Ferro-velho | Testado"
+M14EBRJunkyardBattleScarredName="M14EBR | Ferro-velho | Usado"
 M14EBRPreciousName="M14 EBR | Precioso"
+
+;M16M203 Descriptions
+M16M203MintDescription="Exterior: Novo | Para os que não se decidem entre balas e explosivos."
+M16M203FieldTestedDescription="Exterior: Testado | Para os que não se decidem entre balas e explosivos."
+M16M203BattleScarredDescription="Exterior: Usado | Para os que não se decidem entre balas e explosivos."
+M16M203PreciousDescription="Exterior: Precioso | Para os que não se decidem entre balas e explosivos."
+
+;M16M203 Names
+M16M203VietnamMintName="M16 M203 | Vietnã | Novo"
+M16M203VietnamFieldTestedName="M16 M203 | Vietnã | Testado"
+M16M203VietnamBattleScarredName="M16 M203 | Vietnã | Usado"
+M16M203JunkyardMintName="M16 M203 | Ferro-velho | Novo"
+M16M203JunkyardFieldTestedName="M16 M203 | Ferro-velho | Testado"
+M16M203JunkyardBattleScarredName="M16 M203 | Ferro-velho | Usado"
+M16M203PreciousName="M16 M203 | Precioso"
 
 ;M1911 Descriptions
 M1911MintDescription="Exterior: Novo | A pistola semiautomática clássica Colt 1911."
@@ -988,6 +1072,9 @@ M1911PreciousDescription="Exterior: Precioso | A pistola semiautomática clássi
 M1911TacticalMintName="M1911 | Tático | Novo"
 M1911TacticalFieldTestedName="M1911 | Tático | Testado"
 M1911TacticalBattleScarredName="M1911 | Tático | Usado"
+M1911VietnamMintName="M1911 | Vietnã | Novo"
+M1911VietnamFieldTestedName="M1911 | Vietnã | Testado"
+M1911VietnamBattleScarredName="M1911 | Vietnã | Usado"
 M1911PreciousName="M1911 | Precioso"
 
 ;M4 Descriptions
@@ -1006,6 +1093,12 @@ M4StoriesofWarBattleScarredName="M4 | Hist. de guerra | Usado"
 M4VictorianMintName="M4 | Vitoriano | Novo"
 M4VictorianFieldTestedName="M4 | Vitoriano | Testado"
 M4VictorianBattleScarredName="M4 | Vitoriano | Usado"
+M4VietnamMintName="M4 | Vietnã | Novo"
+M4VietnamFieldTestedName="M4 | Vietnã | Testado"
+M4VietnamBattleScarredName="M4 | Vietnã | Usado"
+M4JunkyardMintName="M4 | Ferro-velho | Novo"
+M4JunkyardFieldTestedName="M4 | Ferro-velho | Testado"
+M4JunkyardBattleScarredName="M4 | Ferro-velho | Usado"
 M4PreciousName="M4 | Precioso"
 
 ;M79 Descriptions
@@ -1087,6 +1180,9 @@ MP5RASPreciousDescription="Exterior: Precioso | A versão mais recente é uma da
 MP5RASIndustrialMintName="MP5RAS | Industrial | Novo"
 MP5RASIndustrialFieldTestedName="MP5RAS | Industrial | Testado"
 MP5RASIndustrialBattleScarredName="MP5RAS | Industrial | Usado"
+MP5RASJunkyardMintName="MP5RAS | Ferro-velho | Novo"
+MP5RASJunkyardFieldTestedName="MP5RAS | Ferro-velho | Testado"
+MP5RASJunkyardBattleScarredName="MP5RAS | Ferro-velho | Usado"
 MP5RASPreciousName="MP5RAS | Precioso"
 
 ;MP7 Descriptions
@@ -1166,6 +1262,9 @@ RPG7PreciousName="RPG-7 | Precioso"
 RPG7DeepstrikeMintName="RPG-7 | Deepstrike | Novo"
 RPG7DeepstrikeFieldTestedName="RPG-7 | Deepstrike | Testado"
 RPG7DeepstrikeBattleScarredName="RPG-7 | Deepstrike | Usado"
+RPG7VietnamMintName="RPG-7 | Vietnã | Novo"
+RPG7VietnamFieldTestedName="RPG-7 | Vietnã | Testado"
+RPG7VietnamBattleScarredName="RPG-7 | Vietnã | Usado"
 
 ;Scar Descriptions
 ScarMintDescription="Exterior: Novo | Projetado originalmente para o Comando de Operações Especiais dos EUA, o que é, na verdade, bem legal!"
@@ -1214,6 +1313,9 @@ ScarDeepstrikeBattleScarredName="Cicatriz | Deepstrike | Usado"
 ScarTacticalMintName="Cicatriz | Tático | Novo"
 ScarTacticalFieldTestedName="Cicatriz | Tático | Testado"
 ScarTacticalBattleScarredName="Cicatriz | Tático | Usado"
+ScarJunkyardMintName="Cicatriz | Ferro-velho | Novo"
+ScarJunkyardFieldTestedName="Cicatriz | Ferro-velho | Testado"
+ScarJunkyardBattleScarredName="Cicatriz | Ferro-velho | Usado"
 
 ;SG500 Descriptions
 SG500MintDescription="Exterior: Novo | A ação de bomba Mossberg SG 500 com a pegada da pistola é uma matadora de Zeds excelente à curta distância. Simples e eficaz."
@@ -1316,6 +1418,12 @@ Winchester1894PreciousName="Winchester 1894 | Precioso"
 Winchester1894DeepstrikeMintName="Winchester 1894 | Deepstrike | Novo"
 Winchester1894DeepstrikeFieldTestedName="Winchester 1894 | Deepstrike | Testado"
 Winchester1894DeepstrikeBattleScarredName="Winchester 1894 | Deepstrike | Usado"
+Winchester1894VietnamMintName="Winchester 1894 | Vietnã | Novo"
+Winchester1894VietnamFieldTestedName="Winchester 1894 | Vietnã | Testado"
+Winchester1894VietnamBattleScarredName="Winchester 1894 | Vietnã | Usado"
+Winchester1894JunkyardMintName="Winchester 1894 | Ferro-velho | Novo"
+Winchester1894JunkyardFieldTestedName="Winchester 1894 | Ferro-velho | Testado"
+Winchester1894JunkyardBattleScarredName="Winchester 1894 | Ferro-velho | Usado"
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Exterior: Novo | Uma faca do Velho Oeste, só que crescida. Perfeita para fatiar uns Zeds."
@@ -1970,30 +2078,35 @@ FirefighterHelmetOliveName="Casquete | Oliva"
 FirefighterHelmetRedName="Casquete | Vermelho"
 FirefighterHelmetWhiteName="Casquete | Branco"
 FirefighterHelmetYellowName="Casquete | Amarelo"
+FirefighterHelmetPreciousName="Capacete de Bombeiro | Precioso"
 FirefighterHelmetMaskDownBlackName="Casquete V. Abaixada | Preto"
 FirefighterHelmetMaskDownBlueName="Casquete V. Abaixada | Azul"
 FirefighterHelmetMaskDownOliveName="Casquete V. Abaixada | Oliva"
 FirefighterHelmetMaskDownRedName="Casquete V. Abaixada | Vermelho"
 FirefighterHelmetMaskDownWhiteName="Casquete V. Abaixada | Branco"
 FirefighterHelmetMaskDownYellowName="Casquete V. Abaixada | Amarelo"
+FirefighterHelmetMaskDownPreciousName="Capac. Bombeiro Viseira Abaixada | Precioso"
 FirefighterHelmetMaskUpBlackName="Casquete V. Levantada | Preto"
 FirefighterHelmetMaskUpBlueName="Casquete V. Levantada | Azul"
 FirefighterHelmetMaskUpOliveName="Casquete V. Levantada | Oliva"
 FirefighterHelmetMaskUpRedName="Casquete V. Levantada | Vermelho"
 FirefighterHelmetMaskUpWhiteName="Casquete V. Levantada | Branco"
 FirefighterHelmetMaskUpYellowName="Casquete V. Levantada | Amarelo"
+FirefighterHelmetMaskUpPreciousName="Capac. Bombeiro Viseira Levantada | Precioso"
 FirefighterGasmaskBlackName="Máscara de Gás de Bombeiro | Preta"
 FirefighterGasmaskBlueName="Máscara de Gás de Bombeiro | Azul"
 FirefighterGasmaskOliveName="Máscara de Gás de Bombeiro | Oliva"
 FirefighterGasmaskRedName="Máscara de Gás de Bombeiro | Vermelha"
 FirefighterGasmaskWhiteName="Máscara de Gás de Bombeiro | Branca"
 FirefighterGasmaskYellowName="Máscara de Gás de Bombeiro | Amarela"
+FirefighterGasmaskPreciousName="Máscara de Gás de Bombeiro | Precioso"
 FirefighterOxygenTankBlackName="Tanque de Oxigênio de Bombeiro | Preto"
 FirefighterOxygenTankBlueName="Tanque de Oxigênio de Bombeiro | Azul"
 FirefighterOxygenTankOliveName="Tanque de Oxigênio de Bombeiro | Oliva"
 FirefighterOxygenTankRedName="Tanque de Oxigênio de Bombeiro | Vermelho"
 FirefighterOxygenTankWhiteName="Tanque de Oxigênio de Bombeiro | Branco"
 FirefighterOxygenTankYellowName="Tanque de Oxigênio de Bombeiro | Amarelo"
+FirefighterOxygenTankPreciousName="Tanque de Oxigênio de Bombeiro | Precioso"
 InsectoidHelmetClosedBlackRedLightName="Insetoide Fechado | Preto com Luz Verm."
 InsectoidHelmetClosedBlackRedTrimName="Insetoide Fechado | Preto com Verm."
 InsectoidHelmetClosedBlackYellowLightName="Insetoide Fechado | Amar. e Preto Claro"
@@ -2046,8 +2159,78 @@ InsectoidHelmetGogglesDownPreciousName="Insetoide V. Fechada | Precioso"
 DemonSlayerHelmetGreyName="Capacete Demonicida | Cinza"
 DemonSlayerHelmetPreciousName="Capacete Demonicida | Precioso"
 
+;Sideshow Cosmetic Names
+SideshowClownHatYellowBlueName="Chapéu de Palhaço Festivo | Amarelo Azul"
+SideshowClownHatBlackWhiteName="Chapéu de Palhaço Festivo | Preto Branco"
+SideshowClownHatRedBlackName="Chapéu de Palhaço Festivo | Vermelho Preto"
+SideshowClownHatRainbowName="Chapéu de Palhaço Festivo | Arco-íris"
+SideshowClownHatDoshName="Chapéu de Palhaço Festivo | Grana"
+SideshowClownHatZedTimeName="Chapéu de Palhaço Festivo | Hora dos Zeds"
+SideshowClownHatPreciousName="Chapéu de Palhaço Festivo | Precioso"
+SideshowClownNoseFuzzyRedName="Nariz de Palhaço Festivo | Vermelho Felpudo"
+SideshowClownNoseFuzzyYellowName="Nariz de Palhaço Festivo | Amarelo Felpudo"
+SideshowClownNoseFuzzyBlueName="Nariz de Palhaço Festivo | Azul Felpudo"
+SideshowClownNoseFuzzyBlackName="Nariz de Palhaço Festivo | Preto Felpudo"
+SideshowClownNoseShinyRedName="Nariz de Palhaço Festivo | Verm. Brilhante"
+SideshowClownNoseShinyYellowName="Nariz de Palhaço Festivo | Amarelo Brilhante"
+SideshowClownNoseShinyBlueName="Nariz de Palhaço Festivo | Azul Brilhante"
+SideshowClownNoseShinyBlackName="Nariz de Palhaço Festivo | Preto Brilhante"
+SideshowClownNosePreciousName="Nariz de Palhaço Festivo | Precioso"
+SideshowPigMaskPigletName="Máscara de Porco Festiva | Leitão"
+SideshowPigMaskGreyName="Máscara de Porco Festiva | Cinza"
+SideshowPigMaskRainbowName="Máscara de Porco Festiva | Arco-íris"
+SideshowPigMaskSideshowClownName="Máscara de Porco Festiva | Palhaço de Feira"
+SideshowPigMaskPreciousName="Máscara de Porco Festiva | Precioso"
+SideshowTinyMarcherRedYellowName="Marchadorzinho de Feira | Vermelho Amarelo"
+SideshowTinyMarcherBlueYellowName="Marchadorzinho de Feira | Azul Amarelo"
+SideshowTinyMarcherRainbowName="Marchadorzinho de Feira | Arco-íris"
+SideshowTinyMarcherBlackWhiteName="Marchadorzinho de Feira | Preto Branco"
+SideshowTinyMarcherWhiteName="Marchadorzinho de Feira | Branco"
+SideshowTinyMarcherPreciousName="Marchadorzinho de Feira | Precioso"
+SideshowWitchdoctorHatBrownName="Chapéu de Bruxo Festivo | Marrom"
+SideshowWitchdoctorHatWhiteName="Chapéu de Bruxo Festivo | Branco"
+SideshowWitchdoctorHatRedName="Chapéu de Bruxo Festivo | Vermelho"
+SideshowWitchdoctorHatVoodooFunkName="Chapéu de Bruxo Festivo | Funk Vudu"
+SideshowWitchdoctorHatGreenName="Chapéu de Bruxo Festivo | Verde"
+SideshowWitchdoctorHatPreciousName="Chapéu de Bruxo Festivo | Precioso"
+SideshowFacePaintAlbertsName="Pintura facial Feira de Verão | Alberts"
+SideshowFacePaintAnaName="Pintura facial Feira de Verão | Ana"
+SideshowFacePaintScullyName="Pintura facial Feira de Verão | Scully"
+SideshowFacePaintFosterName="Pintura facial Feira de Verão | Foster"
+SideshowFacePaintJagerhornName="Pintura facial Feira de Verão | Jagerhorn"
+SideshowFacePaintBriarName="Pintura facial Feira de Verão | Briar"
+SideshowFacePaintDonovanName="Pintura facial Feira de Verão | Donovan"
+SideshowFacePaintMastersonName="Pintura facial Feira de Verão | Masterson"
+SideshowFacePaintTanakaName="Pintura facial Feira de Verão | Tanaka"
+SideshowFacePaintClassicBriarName="Pint. facial Feira de Verão | Briar Clássico"
+SideshowFacePaintClassicMastersonName="Pint. fac. Feira Verão | Masterson Clássico"
+SideshowFacePaintStrasserName="Pintura facial Feira de Verão | Strasser"
+SideshowFacePaintBannerName="Pintura facial Feira de Verão | Banner"
+SideshowFacePaintRaeName="Pintura facial Feira de Verão | Rae"
+SideshowHumanCanonPreciousName="Canhão Humano de Feira | Precioso"
+SideshowHumanCanonDummyName="Canhão Humano de Feira | Boneco"
+SideshowHumanCanonHorzineName="Canhão Humano de Feira | Horzine"
+SideshowHumanCanonHarukoName="Canhão Humano de Feira | Haruko"
+SideshowHumanCanonCrispsName="Canhão Humano de Feira | Batatinha"
+SideshowHumanCanonCanonBallName="Canhão Humano de Feira | Bala de Canhão"
+SideshowHumanCanonStarsandStripesName="Canhão Humano de Feira | Listras e Estrelas"
+
+;Weekly Cosmetic Names
+WeeklyTinyTerrorHatName="Semanal | Chapéu Terror Tímido"
+WeeklyFleshpoundVisorName="Semanal | Visor de Carniceiro"
+WeeklyHansPlushyBackpackName="Semanal | Mochila de Pelúcia Hans"
+WeeklyHorzineArmorPreciousName="Semanal | Armadura Horzine | Precioso"
+WeeklyHorzineHelmetPreciousName="Semanal | Capacete Horzine | Precioso"
+WeeklyKingPoundVisorPreciousName="Semanal | Visor Carniceiro Rei | Precioso"
+WeeklyMindBlownName="Semanal | Explosão Mental"
+
+
+
 ;Cosmetic Descriptions
 
+SummerSideshowAccessoryDescription="Usável no menu equipamento; compatível com a maioria dos personagens. Item exclusivo do evento sazonal “Feira de Verão”. Reciclável em 1 bilhete da feira."
+SummerSideshowFacePaintDescription="Usável no menu equipamento. Item exclusivo do evento sazonal Feira de Verão. Reciclável em 1 bilhete da feira."
+WeeklyRewardDescription="Usável no menu equipamento; compatível com a maioria dos personagens. Este item foi desbloqueado ao concluir um surto semanal."
 AviatorGogglesDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
 AviatorsDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
 BaseballHatDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
@@ -2073,7 +2256,7 @@ EnforcerMaskDescription="Usável no menu equipamento; compat. com PC Rob Briar, 
 EyePatchDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner."
 FlatcapDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
 FlightHelmetDescription="Usável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
-FlightMaskDescription="Usável no menu equipamento; compat. com Ten. Bill Masterson."
+FlightMaskDescription="Equipável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins"
 FrontRowProtectionUpDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
 FrontRowProtectionDownDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
 GermanGasMaskDescription="Usável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."

@@ -162,7 +162,7 @@ function GFxObject RefreshSlot( int SlotIndex, KFPlayerReplicationInfo KFPRI )
 	}	
 	if(KFGRI != none)
 	{
-		PlayerInfoObject.SetBool("ready", KFPRI.bReadyToPlay && !KFGRI.bMatchHasBegun);
+		PlayerInfoObject.SetBool( "ready", KFPRI.bReadyToPlay );
 	}
 
 	return PlayerInfoObject;	

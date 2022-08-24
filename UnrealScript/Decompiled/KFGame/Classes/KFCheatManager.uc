@@ -102,9 +102,22 @@ function Pawn GetMyPawn()
     return ((Outer.Pawn != none) ? Outer.Pawn : DebugCameraController(Outer).OriginalControllerRef.Pawn);
 }
 
+exec function SetFakeDownloadProgress(bool bDownloading, float PercentageComplete)
+{
+    local KFGameViewportClient KFVP;
+
+    KFVP = KFGameViewportClient(Class'Engine'.static.GetEngine().GameViewport);
+    KFVP.NotifyDownloadProgress(3, "TEST", "59");
+}
+
 exec function OpenScreenSizeMovie()
 {
     KFPlayerController(Outer).MyGFxManager.OpenScreenSizeMovie();
+}
+
+exec function CloseScreenSizeMovie()
+{
+    KFPlayerController(Outer).MyGFxManager.ScreenSizeMovie.SaveAndClose();
 }
 
 exec function OpenIIS()
@@ -751,6 +764,7 @@ simulated exec function Shotty()
     GiveWeapon("KFGameContent.KFWeap_Shotgun_M4");
     GiveWeapon("KFGameContent.KFWeap_Shotgun_DoubleBarrel");
     GiveWeapon("KFGameContent.KFWeap_Shotgun_AA12");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_HZ12");
 }
 
 simulated exec function MKB()
@@ -881,6 +895,7 @@ simulated exec function Sharpshooter()
     GiveWeapon("KFGameContent.KFWeap_Bow_Crossbow");
     GiveWeapon("KFGameContent.KFWeap_Rifle_M14EBR");
     GiveWeapon("KFGameContent.KFWeap_Rifle_RailGun");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_CenterfireMB464");
 }
 
 simulated exec function Swat()
@@ -897,6 +912,8 @@ simulated exec function SMG()
     GiveWeapon("KFGameContent.KFWeap_SMG_Medic");
 }
 
+exec function Surv();
+
 exec function AllWeapons()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
@@ -908,6 +925,7 @@ exec function AllWeapons()
     Medic();
     Swat();
     Shotty();
+    Surv();
 }
 
 simulated exec function KillRecoil()
@@ -3903,31 +3921,17 @@ exec function TestSpecDist(optional bool bOnlyPathNodes)
 simulated exec function BigHeadMode()
 {
     local Pawn P;
-    local KFPawn_Monster Clot;
+    local KFPawn KFPawn;
 
     P = Outer.WorldInfo.PawnList;
     J0x3D:
 
     if(P != none)
     {
-        Clot = KFPawn_Monster(P);
-        if(Clot != none)
+        KFPawn = KFPawn(P);
+        if(KFPawn != none)
         {
-            if(Clot.IK_Look_Head == none)
-            {
-                Clot.IK_Look_Head = SkelControlLookAt(Clot.Mesh.FindSkelControl('HeadLook'));
-            }
-            if(Clot.IK_Look_Head != none)
-            {
-                if(Clot.IK_Look_Head.BoneScale > 1)
-                {
-                    Clot.IK_Look_Head.BoneScale = 1;                    
-                }
-                else
-                {
-                    Clot.IK_Look_Head.BoneScale = 3;
-                }
-            }
+            KFPawn.SetHeadScale(3, KFPawn.CurrentHeadScale);
         }
         P = P.NextPawn;
         goto J0x3D;
@@ -4465,81 +4469,95 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
                                 }
                                 else
                                 {
-                                    if(Left(ZedName, 1) ~= "F")
+                                    if(Left(ZedName, 5) ~= "KingF")
                                     {
-                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpound" $ VersusSuffix, Class'Class'));                                        
+                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpoundKing" $ VersusSuffix, Class'Class'));                                        
                                     }
                                     else
                                     {
-                                        if(Left(ZedName, 3) ~= "GF2")
+                                        if(Left(ZedName, 5) ~= "MiniF")
                                         {
-                                            SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedGorefastDualBlade" $ VersusSuffix, Class'Class'));                                            
+                                            SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpoundMini" $ VersusSuffix, Class'Class'));                                            
                                         }
                                         else
                                         {
-                                            if(Left(ZedName, 1) ~= "G")
+                                            if(Left(ZedName, 1) ~= "F")
                                             {
-                                                SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedGorefast" $ VersusSuffix, Class'Class'));                                                
+                                                SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpound" $ VersusSuffix, Class'Class'));                                                
                                             }
                                             else
                                             {
-                                                if(Left(ZedName, 2) ~= "St")
+                                                if(Left(ZedName, 3) ~= "GF2")
                                                 {
-                                                    SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedStalker" $ VersusSuffix, Class'Class'));                                                    
+                                                    SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedGorefastDualBlade" $ VersusSuffix, Class'Class'));                                                    
                                                 }
                                                 else
                                                 {
-                                                    if(Left(ZedName, 1) ~= "B")
+                                                    if(Left(ZedName, 1) ~= "G")
                                                     {
-                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedBloat" $ VersusSuffix, Class'Class'));                                                        
+                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedGorefast" $ VersusSuffix, Class'Class'));                                                        
                                                     }
                                                     else
                                                     {
-                                                        if(Left(ZedName, 2) ~= "Sc")
+                                                        if(Left(ZedName, 2) ~= "St")
                                                         {
-                                                            SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedScrake" $ VersusSuffix, Class'Class'));                                                            
+                                                            SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedStalker" $ VersusSuffix, Class'Class'));                                                            
                                                         }
                                                         else
                                                         {
-                                                            if(Left(ZedName, 2) ~= "Pa")
+                                                            if(Left(ZedName, 1) ~= "B")
                                                             {
-                                                                SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch" $ VersusSuffix, Class'Class'));                                                                
+                                                                SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedBloat" $ VersusSuffix, Class'Class'));                                                                
                                                             }
                                                             else
                                                             {
-                                                                if(Left(ZedName, 2) ~= "Cr")
+                                                                if(Left(ZedName, 2) ~= "Sc")
                                                                 {
-                                                                    SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedCrawler" $ VersusSuffix, Class'Class'));                                                                    
+                                                                    SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedScrake" $ VersusSuffix, Class'Class'));                                                                    
                                                                 }
                                                                 else
                                                                 {
-                                                                    if(Left(ZedName, 2) ~= "Hu")
+                                                                    if(Left(ZedName, 2) ~= "Pa")
                                                                     {
-                                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHusk" $ VersusSuffix, Class'Class'));                                                                        
+                                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch" $ VersusSuffix, Class'Class'));                                                                        
                                                                     }
                                                                     else
                                                                     {
-                                                                        if(Left(ZedName, 8) ~= "TestHusk")
+                                                                        if(Left(ZedName, 2) ~= "Cr")
                                                                         {
-                                                                            SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHusk_New" $ VersusSuffix, Class'Class'));                                                                            
+                                                                            SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedCrawler" $ VersusSuffix, Class'Class'));                                                                            
                                                                         }
                                                                         else
                                                                         {
-                                                                            if(Left(ZedName, 2) ~= "Ha")
+                                                                            if(Left(ZedName, 2) ~= "Hu")
                                                                             {
-                                                                                SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHans" $ VersusSuffix, Class'Class'));                                                                                
+                                                                                SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHusk" $ VersusSuffix, Class'Class'));                                                                                
                                                                             }
                                                                             else
                                                                             {
-                                                                                if(Left(ZedName, 2) ~= "Si")
+                                                                                if(Left(ZedName, 8) ~= "TestHusk")
                                                                                 {
-                                                                                    return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedSiren" $ VersusSuffix, Class'Class'));                                                                                    
+                                                                                    SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHusk_New" $ VersusSuffix, Class'Class'));                                                                                    
                                                                                 }
                                                                                 else
                                                                                 {
-                                                                                    if(Left(ZedName, 1) ~= "P")
+                                                                                    if(Left(ZedName, 2) ~= "Ha")
                                                                                     {
-                                                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch" $ VersusSuffix, Class'Class'));
+                                                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHans" $ VersusSuffix, Class'Class'));                                                                                        
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        if(Left(ZedName, 2) ~= "Si")
+                                                                                        {
+                                                                                            return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedSiren" $ VersusSuffix, Class'Class'));                                                                                            
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            if(Left(ZedName, 1) ~= "P")
+                                                                                            {
+                                                                                                SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch" $ VersusSuffix, Class'Class'));
+                                                                                            }
+                                                                                        }
                                                                                     }
                                                                                 }
                                                                             }
@@ -5764,6 +5782,11 @@ exec function LogItemPickups()
         LogInternal(((((((("~~LogItemPickups: Percentages: Disabled:" @ string((float(100) / NumTotalItemPickups) * NumDisabledItemPickups)) $ "%") @ "Sleeping:") @ string((float(100) / NumTotalItemPickups) * NumSleepingItemPickups)) $ "%") @ "Active:") @ string((float(100) / NumTotalItemPickups) * NumActiveItemPickups)) $ "%");
         LogInternal("~~LogItemPickups END~~~");
     }
+}
+
+exec function LogStatValue(int StatId)
+{
+    KFPlayerController(Outer).LogStatValue(StatId);
 }
 
 exec function ToggleRelevancyView()

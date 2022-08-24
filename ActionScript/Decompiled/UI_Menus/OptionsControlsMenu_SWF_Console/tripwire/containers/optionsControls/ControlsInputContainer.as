@@ -87,6 +87,9 @@ package tripwire.containers.optionsControls
                 this.invertYCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.mouseSmoothingCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.defaultButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
+            }
+            if(this.forceFeedbackCheckBox)
+            {
                 this.forceFeedbackCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
             }
             this.controllerSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
@@ -103,6 +106,9 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivitySliderOption.tabIndex = _loc1_++;
                 this.invertYCheckBox.tabIndex = _loc1_++;
                 this.mouseSmoothingCheckBox.tabIndex = _loc1_++;
+            }
+            if(this.forceFeedbackCheckBox)
+            {
                 this.forceFeedbackCheckBox.tabIndex = _loc1_++;
             }
             this.controllerSensitivitySliderOption.tabIndex = _loc1_++;
@@ -135,6 +141,9 @@ package tripwire.containers.optionsControls
                 {
                     this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
                 }
+            }
+            if(this.forceFeedbackCheckBox)
+            {
                 this.forceFeedbackCheckBox.label = !!param1.forceFeedbackLabel ? param1.forceFeedbackLabel : "";
             }
             this.controllerSensitivitySliderOption.label = !!param1.controllerSensitivityLabel ? param1.controllerSensitivityLabel : "";
@@ -163,6 +172,9 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivityMaximumText.text = this.zoomSensitivitySliderOption.slider.maximum.toFixed(0).toString();
                 this.mouseSmoothingCheckBox.selected = !!param1.mouseSmoothingValue ? Boolean(param1.mouseSmoothingValue) : false;
                 this.invertYCheckBox.selected = !!param1.invertedValue ? Boolean(param1.invertedValue) : false;
+            }
+            if(this.forceFeedbackCheckBox)
+            {
                 this.forceFeedbackCheckBox.selected = !!param1.forceFeedbackValue ? Boolean(param1.forceFeedbackValue) : false;
             }
             this.controllerSensitivitySliderOption.slider.minimum = param1.controllerSensitivityValueMin != undefined ? Number(param1.controllerSensitivityValueMin) : Number(0);
@@ -270,6 +282,9 @@ package tripwire.containers.optionsControls
                         break;
                     case this.aimAssistSlowDownCheckBox:
                         ExternalInterface.call("Callback_AimAssistSlowDownChanged",_loc2_.selected);
+                        break;
+                    case this.forceFeedbackCheckBox:
+                        ExternalInterface.call("Callback_ForceFeedbackChanged",_loc2_.selected);
                 }
             }
             else

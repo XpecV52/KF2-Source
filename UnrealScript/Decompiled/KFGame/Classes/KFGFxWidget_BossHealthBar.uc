@@ -8,7 +8,7 @@
 class KFGFxWidget_BossHealthBar extends GFxObject within GFxMoviePlayer;
 
 var GFxObject bossNameTextField;
-var KFPawn_MonsterBoss BossPawn;
+var KFPawn_Monster BossPawn;
 var float UpdateTickTime;
 var float LastUpdateTime;
 var array<int> BattlePhaseColors;
@@ -51,7 +51,7 @@ function TickHud(float DeltaTime)
     }
 }
 
-function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
+function SetBossPawn(KFPawn_Monster NewBossPawn)
 {
     local string BossNameText;
 

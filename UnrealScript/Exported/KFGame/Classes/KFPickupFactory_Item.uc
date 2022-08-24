@@ -77,6 +77,13 @@ simulated function InitializePickup()
 
 simulated event SetInitialState()
 {
+    //Make sure to set the pickup weapon if we're level spawned
+    if (bKismetDriven && bEnabledAtStart)
+    {
+        PickupIndex = ChooseWeaponPickup();
+        SetPickupMesh();
+    }
+
 	super.SetInitialState();
 
 	bScriptInitialized = true;
@@ -89,6 +96,18 @@ function Reset()
 	PickupIndex = ChooseWeaponPickup();
 	bNetDirty = true;
 	SetPickupMesh();
+}
+
+function SetRespawn()
+{
+    //For ones that spawn in the world on timer, reset info here.
+    if (bKismetDriven && bEnabledAtStart)
+    {
+        PickupIndex = ChooseWeaponPickup();
+        SetPickupMesh();
+    }
+
+    super.SetRespawn();
 }
 
 /** Chooses a weighted item pickup */
@@ -168,6 +187,7 @@ function GiveArmor( Pawn P )
 	if (KFIM != none && KFIM.AddArmorFromPickup())
 	{
   		ActivateNewPickup(P);
+        PickedUpBy(P);
   
 		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$"Armor");
 		if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pickup", P.PlayerReplicationInfo, "armor");
@@ -218,6 +238,7 @@ function GiveWeapon( Pawn P )
             KFW.NotifyPickedUp();
 		}
         ActivateNewPickup(P);
+        PickedUpBy(P);
 
 		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$InventoryClass);
 		if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pickup", P.PlayerReplicationInfo, InventoryClass);

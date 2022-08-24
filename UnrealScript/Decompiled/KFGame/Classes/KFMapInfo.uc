@@ -23,12 +23,58 @@ enum ESubGameType
     ESGT_MAX
 };
 
+struct native WaveObjectivePair
+{
+    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    var() array<KFInterface_MapObjective> PossibleObjectives;
+
+    structdefaultproperties
+    {
+        PossibleObjectives=none
+    }
+};
+
+struct native PresetWavePairs
+{
+    var() WaveObjectivePair ShortObjectives[5];
+    var() WaveObjectivePair MediumObjectives[8];
+    var() WaveObjectivePair LongObjectives[11];
+
+    structdefaultproperties
+    {
+        ShortObjectives[0]=(PossibleObjectives=none)
+        ShortObjectives[1]=(PossibleObjectives=none)
+        ShortObjectives[2]=(PossibleObjectives=none)
+        ShortObjectives[3]=(PossibleObjectives=none)
+        ShortObjectives[4]=(PossibleObjectives=none)
+        MediumObjectives[0]=(PossibleObjectives=none)
+        MediumObjectives[1]=(PossibleObjectives=none)
+        MediumObjectives[2]=(PossibleObjectives=none)
+        MediumObjectives[3]=(PossibleObjectives=none)
+        MediumObjectives[4]=(PossibleObjectives=none)
+        MediumObjectives[5]=(PossibleObjectives=none)
+        MediumObjectives[6]=(PossibleObjectives=none)
+        MediumObjectives[7]=(PossibleObjectives=none)
+        LongObjectives[0]=(PossibleObjectives=none)
+        LongObjectives[1]=(PossibleObjectives=none)
+        LongObjectives[2]=(PossibleObjectives=none)
+        LongObjectives[3]=(PossibleObjectives=none)
+        LongObjectives[4]=(PossibleObjectives=none)
+        LongObjectives[5]=(PossibleObjectives=none)
+        LongObjectives[6]=(PossibleObjectives=none)
+        LongObjectives[7]=(PossibleObjectives=none)
+        LongObjectives[8]=(PossibleObjectives=none)
+        LongObjectives[9]=(PossibleObjectives=none)
+        LongObjectives[10]=(PossibleObjectives=none)
+    }
+};
+
 /** Base value to use for how long to wait between spawning groups of AI. Turn this number down to make zeds spawn faster and the map harder, turn it up to make zeds spawn slower and the map easier */
 var(Spawning) float WaveSpawnPeriod;
 /** list of destructibles that require replicated damage states in this map */
 var() array<KFDestructibleActor> DestructibleActors;
 /** list of music tracks played when a wave is active // @todo: make these not editconst when we're ready to have mappers or whomever change them */
-var(Music) editconst array<editconst KFMusicTrackInfo> ActionMusicTracks;
+var(Music) array<KFMusicTrackInfo> ActionMusicTracks;
 var transient array<byte> ShuffledActionMusicTrackIdxes;
 var transient byte CurrShuffledActionMusicTrackIdx;
 var transient byte CurrShuffledAmbientMusicTrackIdx;
@@ -39,11 +85,17 @@ var const KFMapInfo.ECollectibleType CollectibleType;
  */
 var() KFMapInfo.ESubGameType SubGameType;
 /** list of music tracks played during trader time // @todo: make these not editconst when we're ready to have mappers or whomever change them */
-var(Music) editconst array<editconst KFMusicTrackInfo> AmbientMusicTracks;
+var(Music) array<KFMusicTrackInfo> AmbientMusicTracks;
 var transient array<byte> ShuffledAmbientMusicTrackIdxes;
 /** How many collectibles players need to find in this map to unlock the achievement */
 var(Collectibles) const int CollectiblesToFind;
 var const transient int CollectiblesFound;
+/** Whether or not to use the preset wave objective type */
+var(Objectives) bool bUsePresetObjectives<EditCondition=!bUseRandomObjectives>;
+/** Whether or not to use the random wave objective type */
+var(Objectives) bool bUseRandomObjectives<EditCondition=!bUsePresetObjectives>;
+var(Objectives) PresetWavePairs PresetWaveObjectives<EditCondition=bUsePresetObjectives>;
+var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives<EditCondition=bUseRandomObjectives>;
 
 function MusicTrackStruct GetNextMusicTrackStruct(optional bool bActionTrack)
 {

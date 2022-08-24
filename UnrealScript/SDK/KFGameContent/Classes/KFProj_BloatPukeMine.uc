@@ -261,7 +261,7 @@ simulated function Stick( vector StuckLocation, vector StuckNormal )
 simulated function SwapToGroundFX( rotator GroundRotation )
 {
 	// Replace the flying effects with ground FX
-	if( WorldInfo.NetMode != NM_DedicatedServer )
+	if( WorldInfo.NetMode != NM_DedicatedServer && !IsInState('Armed') )
 	{
 		StopFlightEffects();
 		ProjFlightTemplate = GroundFXTemplate;
@@ -293,7 +293,7 @@ simulated function PlayImpactSound( optional bool bIsAtRest )
 /** Spawns a decal at the impact location */
 simulated function SpawnImpactDecal( vector HitLocation, vector HitNormal )
 {
- 	if( WorldInfo.MyDecalManager != none && !WorldInfo.bDropDetail )
+ 	if( WorldInfo.MyDecalManager != none && !WorldInfo.bDropDetail && !IsInState('Armed'))
  	{
 		WorldInfo.MyDecalManager.SpawnDecal( ImpactDecalMaterial, HitLocation, rotator(-HitNormal), ImpactDecalWidth, ImpactDecalHeight, ImpactDecalThickness, true );
 	}
@@ -577,6 +577,7 @@ defaultproperties
 	bNoEncroachCheck=true
 	bAlwaysRelevant=true
 	bGameRelevant=true
+    bPushedByEncroachers=false
 
     DampenFactor=0.125f
     DampenFactorParallel=0.175f

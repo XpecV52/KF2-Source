@@ -150,14 +150,7 @@ simulated function SpawnExplosionDecal()
         if(MI != none)
         {
             DecalSize = RandRange(MyImpactEffect.DecalMinSize, MyImpactEffect.DecalMaxSize);
-            if(Class'KFImpactEffectManager'.static.ShouldExtendDecalThickness(HitActorFromPhysMaterialTrace))
-            {
-                DecalThickness = DecalSize * 2;                
-            }
-            else
-            {
-                DecalThickness = 32;
-            }
+            DecalThickness = DecalSize * 2;
             if(MaterialInstanceTimeVarying(MI) != none)
             {
                 MITV_Decal = new (self) Class'MaterialInstanceTimeVarying';

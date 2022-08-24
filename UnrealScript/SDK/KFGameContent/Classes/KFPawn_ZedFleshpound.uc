@@ -1,12 +1,11 @@
 //=============================================================================
 // KFPawn_ZedFleshpound
 //=============================================================================
-// Fleshpound
+// Fleshpound pawn class
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2017 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedFleshpound extends KFPawn_Monster;
 
 /** Sounds */
@@ -34,6 +33,20 @@ var protected const float FootstepCameraShakeRollAmplitude;
 /*********************************************************************************************
 * Initialization
 ********************************************************************************************* */
+
+/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
+{
+	local WorldInfo WI;
+
+	WI = class'WorldInfo'.static.GetWorldInfo();
+	if( fRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)) )
+	{
+		return default.ElitePawnClass;
+	}
+
+	return super.GetAIPawnClassToSpawn();
+}
 
 /** TEMP [See when this was added in sourcecontrol] */
 simulated event PreBeginPlay()
@@ -243,32 +256,55 @@ simulated function SetEnraged( bool bNewEnraged )
 /** Handle GlowColor MIC Param */
 simulated function UpdateGameplayMICParams()
 {
-	local MaterialInstanceConstant MIC;
-
     super.UpdateGameplayMICParams();
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		UpdateBattlePhaseLights();
 
-        MIC = CharacterMICs[0];
-
         if( !IsAliveAndWell() )
         {
-            MIC.SetVectorParameterValue('Vector_GlowColor', DeadGlowColor);
+            SetGlowColors(DeadGlowColor);
         }
         else
         {
     		if ( bIsEnraged )
     		{
-    			MIC.SetVectorParameterValue('Vector_GlowColor', EnragedGlowColor);
+                SetGlowColors(EnragedGlowColor);
     		}
     		else
     		{
-    			MIC.SetVectorParameterValue('Vector_GlowColor', DefaultGlowColor);
+                SetGlowColors(DefaultGlowColor);
     		}
 		}
 	}
+}
+
+simulated function SetGlowColors(LinearColor GlowColor)
+{
+    local MaterialInstanceConstant MIC;
+    local int Idx;
+
+    MIC = CharacterMICs[0];
+
+    //Update base mesh
+    if (MIC != none)
+    {
+        MIC.SetVectorParameterValue('Vector_GlowColor', GlowColor);
+    }
+
+    //Update any PAC MICs (See King/Mini Fleshpound)
+    for (Idx = 0; Idx < `MAX_COSMETIC_ATTACHMENTS; ++Idx)
+    {
+        if (ThirdPersonAttachments[Idx] != none)
+        {
+            MIC = MaterialInstanceConstant(ThirdPersonAttachments[Idx].GetMaterial(0));
+            if (MIC != none)
+            {
+                MIC.SetVectorParameterValue('Vector_GlowColor', GlowColor);
+            }
+        }
+    }
 }
 
 /** Stops the rage sound with an akevent */
@@ -491,6 +527,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// AI / Navigation
+	ElitePawnClass=class'KFPawn_ZedFleshpoundKing'
 	ControllerClass=class'KFAIController_ZedFleshpound'
 	BumpDamageType=class'KFDT_NPCBump_Large'
 	BumpFrequency=0.1
@@ -518,6 +555,7 @@ DefaultProperties
 	IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                        Cooldown=10.0, Duration=2.2)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(0.95),                        Cooldown=10.5,  Duration=1.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 3.0, 1.0, 1.0),     Cooldown=8.5,  Duration=5.0)
+    IncapSettings(AF_Bleed)=    (Vulnerability=(0.8))
 
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=5

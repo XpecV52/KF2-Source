@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="Pubblico"
 ConsolePermissionStrings[1]="Solo invito"
 
 ModeStrings[0]="Survival"
-ModeStrings[1]="Survival VS"
+ModeStrings[1]="Settimanale"
+ModeStrings[2]="Survival VS"
 
 NoPreferenceString="QUALSIASI"
 OKString="OK"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="La classe può essere aggiornata una volta a ondata!"
 YesString="Sì"
 NoString="No"
 TeamSwappedString="Sei stato cambiato di squadra"
+
+CancelConnectionString="Annulla caricamento"
 
 DisbandPartyString="SCIOGLI IL PARTY"
 LeaveCurrentMenuString="Esci dal menu corrente?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="Nessun oggetto acquistato"
 SetTakeoverServerPasswordTitle="Nuova password gioco:"
 FreeConsolePlayOverString="Grazie per aver giocato a Killing Floor2! L’evento gratuito è finito, ma puoi comunque acquistare il gioco. Per ottenere più informazioni seleziona il pulsante “Negozio” in basso."
 BuyGameString="NEGOZIO"
+CustomString="Personalizzato"
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="RICOMPENSA COMPLETAMENTO EPIDEMIA"
+WeeklyString="EPIDEMIA SETTIMANALE HORZINE"
+CurrentWeeklySettingsString="IMPOSTAZIONI EPIDEMIA ATTUALE"
+SpecialEventString="MINI EVENTO ESTIVO"
+ShortWeeklyString="SETTIMANALE"
+SeasonalString="STAGIONALE"
+SpecialEventChanceDropString="RILASCIO OGGETTI LIMITATO"
+GrantedSpecialEventString="RICOMPENSA COMPLETAMENTO"
+RewardsString="RICOMPENSA COMPLETAMENTO EPIDEMIA"
+WeeklyOverview="Nuova modalità di gioco ogni settimana!"
+ObjectivesString="Attiva/disattiva obiettivi"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="INCONTRO NON TROVATO"
@@ -115,8 +133,9 @@ TutorialString="Addestramento di base"
 
 [StartMenuHelperText]
 modeList0="Survival - battaglie PVE contro ondate di Zed controllati dalla IA"
-modeList1="Survival VS - battaglie PVP fra mercenari Horzine e ondate di Zed controllate da giocatore e IA"
-modeList2=""
+modeList1="Epidemia Settimanale – Una modalità di gioco diversa ogni settimana."
+modeList2="Survival VS – battaglie PVP fra mercenari Horzine e ondate di Zed controllate da giocatore e IA"
+modeList3=""
 difficultyList0="Normale - per principianti con livello classe 0-5."
 difficultyList1="Difficile - per giocatori esperti con livello classe 6-12. Ci sono più Zed per ogni ondata, i quali si muovono più velocemente e hanno salute maggiore. Gli oggetti e il denaro che puoi ottenere sono inferiori."
 difficultyList2="Suicidio - per giocatori molto esperti con livello classe 13-25. Ancora più Zed per ogni ondata, capaci di usare nuovi tipi di attacco e di muoversi ancora più velocemente. Gli oggetti e il denaro che puoi ottenere diminuiscono ancora."
@@ -666,6 +685,7 @@ DamageDealtString="Danni arrecati:"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ PRONTI ]"
 WaitingString="IN ATTESA DEL/DEI GIOCATORE/I"
+MatchOverString="INCONTRO TERMINATO \n Attendi..."
 DeployingString="SCHIERAMENTO TRA "
 CreatePartyString="CREA PARTY"
 ReadyString="PRONTI"
@@ -840,6 +860,7 @@ CancelString="ANNULLA"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="AUMENTO DI LIVELLO"
 TierUnlockedString="NUOVE ABILITÀ SBLOCCATE"
+ObjectiveCompleteString="OBIETTIVO COMPLETATO"
 
 [KFGFxHUD_WaveInfo]
 WaveString="ONDATA"
@@ -924,6 +945,7 @@ ConfigureMicString="CONFIGURAZIONE MICROFONO"
 VocalsString="Voce musica"
 BattleChatterString="Riduci chat battaglia"
 PushToVoIPString="Premere per VoIP"
+ScreenSizeString="REGOLA DIMENSIONI"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Usare queste impostazioni video?"
@@ -1129,7 +1151,7 @@ GBA_Look_Gamepad="Controllo sguardo"
 GBA_Grenade_Gamepad="Lancia granata"
 GBA_TurnLeft_Gamepad="Controllo sguardo"
 GBA_Look_Gamepad="Controllo sguardo"
-GBA_DPad_Left_Gamepad="Comandi vocali/Emote"
+GBA_DPad_Left_Gamepad="Comandi vocali / Emote"
 GBA_DPad_Up_Gamepad="Equipaggia cura"
 GBA_DPad_Right_Gamepad="Getta denaro"
 GBA_DPad_Down_Gamepad="Accendi/spegni torcia"
@@ -1322,6 +1344,7 @@ MapCollectibleName="parti di gioielli"
 WaveStartMessage="N U O V A O N D A T A"
 WaveEndMessage="F I N E O N D A T A"
 GetToTraderMessage="Vai dal commerciante"
+ScavengeMessage="Rovista"
 YouLostMessage="S C O N F I T T A"
 YouWonMessage="V I T T O R I A"
 SquadWipedOutMessage="La tua squadra è stata annientata!"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>CURATI"
 PressToBashWarning="COLPISCI"
 GamepadWeaponSelectHint="<%HOLD%>SELEZIONA ARMA"
 PlayerClotGrabWarningMessage="UCCIDI GLI ZED PER LA LIBERTÀ!"
-UseMinigameMessage="ATTIVA IL MINIGIOCO"
+UseMinigameMessage="ATTIVA"
 UseMinigameGeneratorMessage="ATTIVA IL GENERATORE"
 
 [KFLocalMessage_ServerNotification]
@@ -2162,6 +2185,7 @@ Forums="Visita i forum della nostra community"
 Survey="Partecipa al sondaggio sul gioco"
 CommunityTracker="Segui le segnalazioni della community"
 FeaturedCrateKey="Speciale Chiave cassa Horzine - $2.49"
+FeaturedEventItem="Speciale Oggetto Evento"
 FeaturedUsbKey="Speciale Chiave USB skin arma - $2.49"
 FeaturedRareItem="Speciale Oggetto raro - $3.99"
 FeaturedExceptionalItem="Speciale Oggetto eccezionale - $7.49"
@@ -2181,16 +2205,18 @@ HorzineSupplyCrateKey10="Chiave cassa Horzine | Serie #10 - $2.49"
 HorzineSupplyCrateKey11="Chiave cassa Horzine | Serie #11 - $2.49"
 HorzineSupplyCrateKey12="Chiave cassa Horzine | Serie #12 - $2.49"
 HorzineSupplyCrateKey13="Chiave cassa Horzine | Serie #13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+USBSpitfire="USB Spitfire - $2.49"
+USBHighVoltage="Chiave USB alta tensione - $2.49"
+MerchSale="Offerta Merchandise KF2! -25% fino al 30/04/17 Cod. promo ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedCrawlerKing="Crawler Elite"
+KFPawn_ZedFleshpoundMini="Quarter Pound"
 KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedFleshpoundKing="Re Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
 KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
@@ -2319,6 +2345,119 @@ KFWeap_Zweihander="Promo Chivalry"
 
 
 Source0="Promo Chivalry"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="Rilascio 1"
+ChanceDropDescriptionStrings[1]="Rilascio 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="Un evento a durata limitata con oggetti esclusivi."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Accensione",DescriptionString="Accendi il generatore nel Regno Tragico");
+SpecialEventObjectiveInfoList[1]=(TitleString="Detona il Clot",DescriptionString="Fai esplodere il Clot nel Regno Tragico");
+SpecialEventObjectiveInfoList[2]=(TitleString="Schiaccia il Bloat",DescriptionString="Schiaccia il Bloat nel Regno Tragico");
+SpecialEventObjectiveInfoList[3]=(TitleString="Lancia il denaro",DescriptionString="Lancia denaro nel Regno Tragico");
+SpecialEventObjectiveInfoList[4]=(TitleString="Carnevale della morte",DescriptionString="Vinci un incontro in Difficile o più nel Regno Tragico");
+
+AllCompleteRewardDescriptionString="Tuta materiali pericolosi Mini Evento"
+
+ChanceDropDescriptionStrings[0]="Biglietto premio Mini Evento"
+ChanceDropDescriptionStrings[1]="Biglietto oro Mini Evento"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="Epidemia attuale: Spaccacranio"
+DescriptionStrings[0]="I danni al cervello sono sempre i migliori."
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="Durante questa epidemia, gli Zed sono mutati e possono essere abbattuti solamente con danni alla testa. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="Epidemia attuale: Mini-terrore"
+DescriptionStrings[0]="Una piccola minaccia è pur sempre una minaccia."
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="Durante questa epidemia, gli Zed si restringeranno se gli spari, e diventeranno più difficili da colpire. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="Epidemia attuale: Poundemonio"
+DescriptionStrings[0]="Sempre Fleshpound, in ogni momento. O quasi."
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="Il convegno dei Fleshpound sta per iniziare! Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="Epidemia attuale: Su, ancora più su, e a terra"
+DescriptionStrings[0]="Cerca di fare 99 palloncini Zed."
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="Durante questa epidemia, gli Zed si gonfieranno come palloncini quando vengono colpiti, e potranno volare via ed esplodere! Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="Epidemia attuale: Zed time"
+DescriptionStrings[0]="Tutto lo Zed time del mondo."
+DescriptionStrings[1]="Lunghezza: Corto (4 ondate)"
+ModifierDescriptions[0]="Hai mai pensato alla vita che ti passa davanti velocemente? Non succederà in questa epidemia! Sarà sempre Zed time ogni volta che ti trovi vicino a uno Zed. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="Epidemia attuale: Boom"
+DescriptionStrings[0]="Zed sotto pressione: pericolo esplosione."
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="Sarà qualcosa che hanno mangiato? Un po' d'aria? In ogni caso, in questa epidemia gli Zed esplodono se uccisi. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="Epidemia attuale: Fusti"
+DescriptionStrings[0]="Più sono grandi, più fanno male."
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="Durante questa epidemia, salute, dimensioni e portata degli Zed aumentano quando colpiscono il giocatore o usano alcune abilità Zed. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="Epidemia attuale: Bobble Zed"
+DescriptionStrings[0]="...deve proprio fargli male al collo."
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="Qualcosa è andato decisamente storto con questi Zed, e le loro teste sono mooolto più grandi del normale! Enormi, direi! Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2700,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio Biotics"
 
@@ -2572,6 +2727,9 @@ DisplayName="Parigi in fiamme"
 
 [Survival KFGameInfoSummary]
 GameName="Survival"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="Settimanale"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Residenza Volter"
@@ -2608,6 +2766,9 @@ DisplayName="La discesa"
 
 [KF-Nuked KFMapSummary]
 DisplayName="Nuclearizzato"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="Il Regno Tragico"
 
 [KFMapInfo]
 ; defaults

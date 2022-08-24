@@ -200,15 +200,18 @@ protected simulated function bool DoExplosionDamage(bool bCauseDamage, bool bCau
                     }
                     if(bCausePawnEffects)
                     {
-                        SpecialPawnEffectsFor(VictimPawn, VictimDist);
-                        continue;
+                        SpecialPawnEffectsFor(VictimPawn, VictimDist);                        
                     }
-                    if(bCauseEffects)
+                    else
                     {
-                        SpecialCringeEffectsFor(Victim, VictimDist);
+                        if(bCauseEffects)
+                        {
+                            SpecialCringeEffectsFor(Victim, VictimDist);
+                        }
                     }
                 }
-            }            
+            }
+            HandleIgnoredVictim(Victim);            
         }        
         if(ExplosionTemplate.bFullDamageToAttachee && VictimsList.Find(Attachee == -1)
         {
@@ -219,6 +222,8 @@ protected simulated function bool DoExplosionDamage(bool bCauseDamage, bool bCau
     }
     return bHurtSomeone;
 }
+
+function HandleIgnoredVictim(Actor Victim);
 
 function float GetEffectCheckRadius(bool bCauseDamage, bool bCauseFractureEffects, bool bCauseEffects)
 {

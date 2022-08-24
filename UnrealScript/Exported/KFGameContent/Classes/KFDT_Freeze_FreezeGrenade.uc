@@ -16,11 +16,18 @@ class KFDT_Freeze_FreezeGrenade extends KFDT_Freeze
 static function PlayImpactHitEffects( KFPawn P, vector HitLocation, vector HitDirection, byte HitZoneIndex, optional Pawn HitInstigator )
 {
 	local float ParamValue;
+    local int MICIndex;
+
+    MICIndex = 0;
+    if (P.GetCharacterInfo() != none)
+    {
+        MICIndex = P.GetCharacterInfo().GoreFXMICIdx;
+    }
 
 	// If we're dead and not already frozen (prevents re-shattering)
 	if ( P.bPlayedDeath 
-		&& P.CharacterMICs.Length > 0 
-		&& P.CharacterMICs[0].GetScalarParameterValue('Scalar_Ice', ParamValue))
+		&& P.CharacterMICs.Length > MICIndex 
+		&& P.CharacterMICs[MICIndex].GetScalarParameterValue('Scalar_Ice', ParamValue))
 	{
 		if (ParamValue == 0)
 		{

@@ -83,7 +83,6 @@ exec function FinishCraft()
 {
     local KFPlayerController KFPC;
 
-    LogInternal("!!!!!!!!!!!!!!!!!!!!!!!!!");
     foreach LocalPlayerControllers(Class'KFPlayerController', KFPC)
     {
         if((KFPC.MyGFxManager != none) && KFPC.MyGFxManager.InventoryMenu != none)

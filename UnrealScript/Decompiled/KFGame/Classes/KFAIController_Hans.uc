@@ -115,7 +115,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
     }
     LastRetargetTime = WorldInfo.TimeSeconds;
     ActualRetargetWaitTime = RandRange(RetargetWaitTimeRange.X, RetargetWaitTimeRange.Y);
-    super.Possess(inPawn, bVehicleTransition);
+    super(KFAIController_Monster).Possess(inPawn, bVehicleTransition);
 }
 
 function PawnDied(Pawn inPawn)
@@ -699,6 +699,10 @@ function TickRangedCombatDecision()
         }
     }
     if(bFleeing || bWantsToFlee)
+    {
+        return;
+    }
+    if((CommandList != none) && CommandList.Class == Class'AICommand_BossTheatrics')
     {
         return;
     }

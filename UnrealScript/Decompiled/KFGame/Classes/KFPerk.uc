@@ -87,6 +87,7 @@ const STATID_ACHIEVE_HostileGroundsCollectibles = 4032;
 const STATID_ACHIEVE_ZedLandingCollectibles = 4035;
 const STATID_ACHIEVE_DescentCollectibles = 4036;
 const STATID_ACHIEVE_NukedCollectibles = 4037;
+const STATID_ACHIEVE_TragicKingdomCollectibles = 4038;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -370,11 +371,11 @@ static function class<KFPerk> GetPerkFromProjectile(Actor WeaponActor)
     return none;
 }
 
-static simulated function bool IsWeaponOnPerk(KFWeapon W, optional array< class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass)
+static simulated function bool IsWeaponOnPerk(KFWeapon W, optional array< class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass, optional name WeaponClassName)
 {
     if(W != none)
     {
-        return W.GetWeaponPerkClass(InstigatorPerkClass) == default.Class;        
+        return W.AllowedForAllPerks() || W.GetWeaponPerkClass(InstigatorPerkClass) == default.Class;        
     }
     else
     {
@@ -428,6 +429,15 @@ native simulated function byte GetLevel();
 
 // Export UKFPerk::execSetLevel(FFrame&, void* const)
 native simulated function SetLevel(byte NewLevel);
+
+simulated function bool IsPerkLevelAllowed(int PerkIndex)
+{
+    if(MyKFGRI != none)
+    {
+        return (PerkIndex / 2) <= MyKFGRI.MaxPerkLevel;
+    }
+    return true;
+}
 
 event PerkLevelUpdated()
 {
@@ -898,6 +908,8 @@ simulated function ModifySprintSpeed(out float Speed)
     ModifySpeed(Speed);
 }
 
+function FinalizeSpeedVariables();
+
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW);
 
 function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx);
@@ -936,17 +948,17 @@ static simulated function float GetZedTimeExtension(byte Level)
 function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting)
 {
     bIsSprinting = false;
-    return 1;
+    return 0;
 }
 
 function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
-    return 1;
+    return 0;
 }
 
 function float GetStunPowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
-    return 1;
+    return 0;
 }
 
 function float GetReactionModifier(optional class<KFDamageType> DamageType)
@@ -1044,6 +1056,11 @@ function AddVampireHealth(KFPlayerController KFPC, class<DamageType> DT);
 function bool ShouldKnockdown();
 
 function bool IsUnAffectedByZedTime()
+{
+    return false;
+}
+
+simulated event bool ShouldUseFastInstigatorDilation(KFWeapon Weap)
 {
     return false;
 }
@@ -1349,6 +1366,11 @@ protected function bool HitShouldKnockdown(byte BodyPart)
     return BodyPartsCanKnockDown.Find(BodyPart != -1;
 }
 
+function bool ShouldAutosellWeapon(class<KFWeaponDefinition> DefClass)
+{
+    return AutoBuyLoadOutPath.Find(DefClass == -1;
+}
+
 function TickRegen(float DeltaTime)
 {
     local int OldHealth;
@@ -1370,6 +1392,10 @@ function TickRegen(float DeltaTime)
             if((float(OldHealth) <= (float(OwnerPawn.HealthMax) * 0.25)) && float(OwnerPawn.Health) >= (float(OwnerPawn.HealthMax) * 0.25))
             {
                 KFPlayerController(OwnerPawn.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
+            }
+            if(KFGameInfo(WorldInfo.Game) != none)
+            {
+                KFGameInfo(WorldInfo.Game).PassiveHeal(OwnerPawn.Health - OldHealth, OldHealth, OwnerPawn.Controller, OwnerPawn);
             }
         }
         TimeUntilNextRegen = RegenerationInterval;

@@ -41,6 +41,7 @@ var protected KFGameExplosion ExplosionTemplate;
 
 /** Set when husk blows up to make sure it only happens once */
 var protected transient bool bHasExploded;
+var protected transient bool bHasSuicideExploded;
 
 /** Chest light */
 var protected PointLightComponent ChestLightComponent;
@@ -346,6 +347,8 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 	if( !bHasExploded && (!bPlayedDeath || bExplodeOnDeath) )
 	{
 		OldController = Controller;
+        bHasExploded = true;
+        bHasSuicideExploded = !bIgnoreHumans;
 
 		if( Role == ROLE_Authority )
 		{
@@ -380,9 +383,13 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 		}
 
 		OnExploded( OldController );
-
-	    bHasExploded = true;
 	}
+}
+
+/** Overriden in subclasses.  Determines if we should explode on death in specific game modes */
+function bool WeeklyShouldExplodeOnDeath()
+{
+    return !bHasExploded || !bHasSuicideExploded;
 }
 
 /** Do any explosion death-related actions */
@@ -564,6 +571,7 @@ defaultproperties
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
+      AfflictionClasses(11)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -581,6 +589,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.400000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(1.000000))
    IncapSettings(10)=(Duration=4.000000,Cooldown=8.500000,Vulnerability=(3.000000))
+   IncapSettings(11)=(Vulnerability=(3.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=450.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
@@ -619,6 +628,18 @@ defaultproperties
       SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
       SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
       SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_Suicide'
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

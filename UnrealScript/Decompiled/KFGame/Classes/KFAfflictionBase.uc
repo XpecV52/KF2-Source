@@ -95,6 +95,31 @@ function SetMaterialParameter(float Value)
 
 event Tick(float DeltaTime);
 
+function float GetKnockdownModifier()
+{
+    return 0;
+}
+
+function float GetStumbleModifier()
+{
+    return 0;
+}
+
+function float GetStunModifier()
+{
+    return 0;
+}
+
+function float GetDamageModifier()
+{
+    return 0;
+}
+
+function float GetSpeedModifier()
+{
+    return 1;
+}
+
 defaultproperties
 {
     DissipationRate=20

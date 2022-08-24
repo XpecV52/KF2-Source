@@ -26,6 +26,9 @@ var bool bSeenIIS;
 var bool bNeedDisconnectMessage;
 var bool bNeedSignoutMessage;
 var bool bHandlePlayTogether;
+var bool bDownloadingContent;
+var string CurrentDownloadName;
+var int CurrentDownloadProgress;
 
 function NotifyConnectionError(Engine.PlayerController.EProgressMessageType MessageType, optional string Message, optional string Title)
 {
@@ -41,6 +44,24 @@ function NotifyConnectionError(Engine.PlayerController.EProgressMessageType Mess
         KFGEngine.SetLastConnectionError(Message, Title);
     }
     super.NotifyConnectionError(MessageType, Message, Title);
+}
+
+event NotifyDownloadProgress(Engine.PlayerController.EProgressMessageType ProgressType, string ProgressTitle, string ProgressDescription, optional bool SuppressPasswordRetry)
+{
+    SuppressPasswordRetry = false;
+    if(ProgressType == 3)
+    {
+        bDownloadingContent = true;
+        CurrentDownloadName = ProgressTitle;
+        CurrentDownloadProgress = int(float(ProgressDescription) * float(100));
+    }
+}
+
+event ClearDownloadInfo()
+{
+    CurrentDownloadName = "";
+    CurrentDownloadProgress = 0;
+    bDownloadingContent = false;
 }
 
 event PreBrowse(string Address)
@@ -76,6 +97,15 @@ function string GetRandomLoadingMessage()
     return RandomLoadingStrings[Rand(RandomLoadingStrings.Length)];
 }
 
+function bool HandleInputKey(int ControllerId, name Key, Core.Object.EInputEvent EventType, float AmountDepressed, optional bool bGamepad)
+{
+    LogInternal("HANDLE INPUT KEY!");
+    if(Key == 'F10')
+    {
+    }
+    return true;
+}
+
 function DrawTransitionMessage(Canvas Canvas, string Message)
 {
     local string MapName;
@@ -83,9 +113,36 @@ function DrawTransitionMessage(Canvas Canvas, string Message)
     FontScale = float(Canvas.SizeY) / float(1080);
     MapName = KFGameEngine(Class'Engine'.static.GetEngine()).TransitionDescription;
     DrawMapInfo(Canvas, MapName);
+    if(!Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        if(bDownloadingContent)
+        {
+            DrawDownloadingString(Canvas);
+        }
+        if(MapName != "")
+        {
+            DrawCancelString(Canvas);
+        }
+    }
     Class'Engine'.static.AddOverlay(MessageFont, Message, 0.15, 0.85, FontScale, FontScale, true);
     return;
     super.DrawTransitionMessage(Canvas, Message);
+}
+
+function DrawDownloadingString(Canvas Canvas)
+{
+    local string DownloadingString;
+
+    DownloadingString = (((Class'KFGFxWidget_BaseParty'.default.DownloadingString @ CurrentDownloadName) @ "-") @ string(CurrentDownloadProgress)) $ "%";
+    Class'Engine'.static.AddOverlay(MessageFont, DownloadingString, 0.12, 0.7, FontScale, FontScale, true);
+}
+
+function DrawCancelString(Canvas Canvas)
+{
+    local string CancelString;
+
+    CancelString = "F10 -" @ Class'KFCommon_LocalizedStrings'.default.CancelConnectionString;
+    Class'Engine'.static.AddOverlay(MessageFont, CancelString, 0.12, 0.75, FontScale, FontScale, true);
 }
 
 function DrawMapInfo(Canvas Canvas, string MapName)
@@ -155,6 +212,7 @@ defaultproperties
     TripWireOfficialMaps(9)="KF-ZedLanding"
     TripWireOfficialMaps(10)="KF-TheDescent"
     TripWireOfficialMaps(11)="KF-Nuked"
+    TripWireOfficialMaps(12)="KF-TragicKingdom"
     CommunityOfficialMaps(0)="KF-ContainmentStation"
     CommunityOfficialMaps(1)="KF-HostileGrounds"
     CommunityOfficialMaps(2)="KF-InfernalRealm"

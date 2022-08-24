@@ -265,7 +265,6 @@ event HandleSpawn(KFPawn NewSpawn, int SlotIdx)
     KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI != none)
     {
-        KFGI.AdjustSpawnedAIPawn(NewSpawn);
         KFGI.RefreshMonsterAliveCount();
     }
 }

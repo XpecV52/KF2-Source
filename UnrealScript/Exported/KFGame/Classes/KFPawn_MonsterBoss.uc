@@ -501,9 +501,6 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 var KFPlayerController KFPC; //used to notify UI
 
-var localized string BossName;
-var localized array<string> BossCaptionStrings;
-
 /** Info for minion wave spawning */
 struct native BossMinionWaveInfo
 {
@@ -513,6 +510,8 @@ struct native BossMinionWaveInfo
     var	KFAIWaveInfo				PhaseTwoWave;
     /** The minion wave to spawn for Phase 3 healing*/
     var	KFAIWaveInfo				PhaseThreeWave;
+    /** The minion wave to spawn for Phase 4 healing*/
+    var	KFAIWaveInfo				PhaseFourWave;
 };
 
 /** Waves to summon at each stage by difficulty level*/
@@ -523,15 +522,6 @@ var             vector2D                 NumMinionsToSpawn;
 
 /** The current phase of the battle we're in */
 var repnotify   int 				CurrentBattlePhase;
-
-/** Whether this pawn is in theatric camera mode */
-var 			bool 				bUseAnimatedTheatricCamera;
-
-/** The name of the socket to use as a camera base for theatric sequences */
-var 			Name 				TheatricCameraSocketName;
-
-/** The relative offset to use for the cinematic camera */
-var 			vector 				TheatricCameraAnimOffset;
 
 /** Scalar to apply to attack range when there is only one player remaining in a multiplayer game */
 var 			float				LastPlayerAliveAttackRangeScale;
@@ -575,13 +565,6 @@ simulated event PreBeginPlay()
 	Super.PreBeginPlay();
 	OnBattlePhaseChanged();
 	KFPC = KFPlayerController(GetALocalPlayerController());
-	if( KFPC != none )
-	{
-		if(KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.BossHealthBar != none)
-		{
-			KFPC.MyGFxHUD.BossHealthBar.SetBossPawn(self);
-		}
-	}
 }
 
 // Mostly indistinguishable from PreBeginPlay().  Following Pawn conventions only one is 'simulated'
@@ -666,26 +649,24 @@ and also on net client when pawn gets bTearOff set to true (and bPlayedDeath is 
 simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 {
 	local KFGameReplicationInfo KFGRI;
-    local string ClassName;
 
-    super.PlayDying( DamageType, HitLoc );
-
-	//@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
-    ClassName = string(Class.Name);
-    ClassName -= '_Versus';
-	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(ClassName, WorldInfo.GetMapName(true));
-	//@HSL_END
+    super.PlayDying(DamageType, HitLoc);
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 	if( KFGRI != none && !KFGRI.IsFinalWave() )
 	{
 		return;
 	}
+}
 
-	if(KFPC != none)
-	{
-		KFPC.SetBossCamera( self );
-	}
+simulated function PlayDyingSound()
+{
+    if (!HasMouth())
+    {
+        return;
+    }
+
+    super.PlayDyingSound();
 }
 
 /** Called when pawn dies or is destroyed. Overloaded to call OnBattlePhaseChanged. */
@@ -805,6 +786,11 @@ function bool IsOnePlayerLeftInTeamGame()
 /** Similar to IsOnePlayerLeftInTeamGame(), but more expensive and can be called on clients */
 native function bool LocalIsOnePlayerLeftInTeamGame();
 
+simulated event bool IsActiveBoss()
+{
+    return true;
+}
+
 /************************************
  * @name	Ephemeral Stats Tracking
  ************************************/
@@ -827,12 +813,6 @@ function bool Died( Controller Killer, class<DamageType> DamageType, vector HitL
 	ClearTimer( nameOf(Timer_IncreaseSpeed) );
 
 	return result;
-}
-
-/** Used by subclasses to determine if the boss icon can be rendered */
-function bool ShouldDrawBossIcon()
-{
-	return false;
 }
 
 /** Play music for this boss (overridden for each boss) */
@@ -873,9 +853,6 @@ function PlayGrabKilledDialog();
 
 defaultproperties
 {
-   BossName="Boss"
-   BossCaptionStrings(0)="Boss caption 1"
-   BossCaptionStrings(1)="Boss caption 2"
    LastPlayerAliveAttackRangeScale=0.750000
    TimeUntilSpeedIncrease=60.000000
    SpeedLimitScalar=1.300000
@@ -888,6 +865,9 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'KFGame.Default__KFPawn_MonsterBoss:MeleeHelper_0'
+   BossName="Boss"
+   BossCaptionStrings(0)="Boss caption 1"
+   BossCaptionStrings(1)="Boss caption 2"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True

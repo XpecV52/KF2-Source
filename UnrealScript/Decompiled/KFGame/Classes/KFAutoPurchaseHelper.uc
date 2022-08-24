@@ -276,7 +276,7 @@ function SellOffPerkWeapons()
     {
         if(((OwnedItemList[I].DefaultItem.AssociatedPerkClasses[0] != Outer.CurrentPerk.Class) && OwnedItemList[I].DefaultItem.BlocksRequired != 255) && OwnedItemList[I].SellPrice != 0)
         {
-            if(Outer.CurrentPerk.AutoBuyLoadOutPath.Find(OwnedItemList[I].DefaultItem.WeaponDef == -1)
+            if(Outer.CurrentPerk.ShouldAutosellWeapon(OwnedItemList[I].DefaultItem.WeaponDef))
             {
                 SellWeapon(OwnedItemList[I], I);
                 I = -1;
@@ -313,11 +313,12 @@ function int GetPotentialDosh()
 
 function bool bCanPurchase(STraderItem SelectedItem)
 {
-    local bool bCanAfford, bCanCarry;
+    local bool bCanAfford, bCanCarry, bNotOwned;
 
     bCanAfford = GetCanAfford(GetAdjustedBuyPriceFor(SelectedItem));
     bCanCarry = CanCarry(SelectedItem);
-    return bCanCarry && bCanAfford;
+    bNotOwned = !DoIOwnThisWeapon(SelectedItem);
+    return (bCanCarry && bCanAfford) && bNotOwned;
 }
 
 function bool GetCanAfford(int BuyPrice)
@@ -388,7 +389,7 @@ function int FillArmor()
     }
     PercentArmorBought = (((PercentArmorBought > 0) && PercentArmorBought < 1) ? 1 : PercentArmorBought);
     ArmorItem.SpareAmmoCount = int(FMin(float(ArmorItem.SpareAmmoCount) + (PercentBoughtUnit * float(ArmorItem.MaxSpareAmmo)), float(ArmorItem.MaxSpareAmmo)));
-    BoughtAmmo(int(PercentArmorBought), int(FillCost), 1);
+    BoughtAmmo(PercentArmorBought, int(FillCost), 1);
     return int(FillCost);
 }
 
@@ -410,7 +411,7 @@ function bool AttemptBuyArmorChunk(out int InAutoFillDosh)
         }
         InAutoFillDosh -= int(ChunkCost);
         ArmorItem.SpareAmmoCount = int(FMin(float(ArmorItem.SpareAmmoCount + PercentArmorBought), float(ArmorItem.MaxSpareAmmo)));
-        BoughtAmmo(PercentArmorBought, int(ChunkCost), 1);
+        BoughtAmmo(float(PercentArmorBought), int(ChunkCost), 1);
     }
     return PercentArmorBought > 0;
 }
@@ -468,7 +469,7 @@ function int BuySecondaryAmmoMag(out SItemInformation ItemInfo)
         AddedAmmo = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
         ItemInfo.SecondaryAmmoCount += AddedAmmo;
         ItemInfo.SecondaryAmmoCount = Min(ItemInfo.MaxSecondaryAmmo, ItemInfo.SecondaryAmmoCount);
-        BoughtAmmo(AddedAmmo, MagAmmoCost, 0, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
+        BoughtAmmo(float(AddedAmmo), MagAmmoCost, 0, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
     return MagAmmoCost;
 }
@@ -506,7 +507,7 @@ function int BuyItemMagazine(out SItemInformation ItemInfo)
         }
         ItemInfo.SpareAmmoCount += ItemInfo.DefaultItem.MagazineCapacity;
         ItemInfo.SpareAmmoCount = Min(ItemInfo.MaxSpareAmmo, ItemInfo.SpareAmmoCount);
-        BoughtAmmo(ItemInfo.DefaultItem.MagazineCapacity, MagAmmoCost, 0, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
+        BoughtAmmo(float(ItemInfo.DefaultItem.MagazineCapacity), MagAmmoCost, 0, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
     return MagAmmoCost;
 }
@@ -556,11 +557,11 @@ function float FillAmmo(out SItemInformation ItemInfo, optional bool bIsGrenade)
     }
     if(bIsGrenade)
     {
-        BoughtAmmo(int(MissingAmmo), int(FillAmmoCost), 3);        
+        BoughtAmmo(MissingAmmo, int(FillAmmoCost), 3);        
     }
     else
     {
-        BoughtAmmo(int(MissingAmmo), int(FillAmmoCost), 0, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
+        BoughtAmmo(MissingAmmo, int(FillAmmoCost), 0, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
     return FillAmmoCost;
 }
@@ -916,7 +917,7 @@ simulated function UpdateCurrentDosh()
     Outer.ClearTimer('UpdateCurrentDosh', self);
 }
 
-function BoughtAmmo(int AmountPurchased, int Price, KFGFxMenu_Trader.EItemType ItemType, optional name ClassName, optional bool bIsSecondaryAmmo)
+function BoughtAmmo(float AmountPurchased, int Price, KFGFxMenu_Trader.EItemType ItemType, optional name ClassName, optional bool bIsSecondaryAmmo)
 {
     local byte ItemIndex;
 
@@ -1014,14 +1015,22 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
             if(OwnedItemList[OwnedSingleIdx].DefaultItem.ClassName == DefaultItem.SingleClassName)
             {
                 SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
-                WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount;
-                goto J0x473;
+                SingleDualAmmoDiff = Max(0, SingleDualAmmoDiff);
+                if(WeaponInfo.SpareAmmoCount > OwnedItemList[OwnedSingleIdx].SpareAmmoCount)
+                {
+                    OwnedItemList[OwnedSingleIdx].SpareAmmoCount = WeaponInfo.SpareAmmoCount;                    
+                }
+                else
+                {
+                    WeaponInfo.SpareAmmoCount = Min(OwnedItemList[OwnedSingleIdx].SpareAmmoCount, WeaponInfo.MaxSpareAmmo);
+                }
+                goto J0x534;
             }
             ++ OwnedSingleIdx;
             goto J0x35F;
         }
     }
-    J0x473:
+    J0x534:
 
     Outer.CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClasses, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
     WeaponInfo.SecondaryAmmoCount = DefaultItem.InitialSecondaryAmmo;
@@ -1115,12 +1124,12 @@ function RemoveWeaponFromOwnedItemList(optional int OwnedListIdx, optional name 
             OwnedItemList.Remove(OwnedListIdx, 1;
         }
     }
-    if(ItemInfo.DefaultItem.SingleClassName != 'None')
+    if(ItemInfo.DefaultItem.SingleClassName == 'KFWeap_Pistol_9mm')
     {
         if(TraderItems.GetItemIndicesFromArche(ItemIndex, ItemInfo.DefaultItem.SingleClassName))
         {
             SingleOwnedIndex = AddWeaponToOwnedItemList(TraderItems.SaleItems[ItemIndex], true);
-            AddTransactionAmmo(ItemIndex, ItemInfo.SpareAmmoCount, false);
+            AddTransactionAmmo(ItemIndex, int((float(ItemInfo.SpareAmmoCount) - (float(ItemInfo.MaxSpareAmmo) / 2)) + ((float(ItemInfo.MaxSpareAmmo) / 2) - float(OwnedItemList[SingleOwnedIndex].SpareAmmoCount))), false);
             OwnedItemList[SingleOwnedIndex].SpareAmmoCount = ItemInfo.SpareAmmoCount;
         }
     }
@@ -1128,6 +1137,12 @@ function RemoveWeaponFromOwnedItemList(optional int OwnedListIdx, optional name 
     {
         Outer.MyGFxManager.TraderMenu.OwnedItemList = OwnedItemList;
     }
+}
+
+function MergeSingleIntoDual(SItemInformation ExistingDual, SItemInformation NewSingle)
+{
+    ExistingDual.SpareAmmoCount = Min(ExistingDual.SpareAmmoCount + NewSingle.SpareAmmoCount, ExistingDual.MaxSpareAmmo);
+    ExistingDual.SecondaryAmmoCount = Min(ExistingDual.SecondaryAmmoCount + NewSingle.SecondaryAmmoCount, ExistingDual.MaxSecondaryAmmo);
 }
 
 function int AddItemByPriority(out SItemInformation WeaponInfo)
@@ -1142,10 +1157,15 @@ function int AddItemByPriority(out SItemInformation WeaponInfo)
 
     if(I < OwnedItemList.Length)
     {
+        if(WeaponInfo.DefaultItem.DualClassName == OwnedItemList[I].DefaultItem.ClassName)
+        {
+            MergeSingleIntoDual(OwnedItemList[I], WeaponInfo);
+            return I;
+        }
         if(WeaponGroup < OwnedItemList[I].DefaultItem.InventoryGroup)
         {
             BestIndex = I;
-            goto J0x2BE;            
+            goto J0x361;            
         }
         else
         {
@@ -1154,14 +1174,14 @@ function int AddItemByPriority(out SItemInformation WeaponInfo)
                 if(float(WeaponPriority) > OwnedItemList[I].DefaultItem.GroupPriority)
                 {
                     BestIndex = I;
-                    goto J0x2BE;                    
+                    goto J0x361;                    
                 }
                 else
                 {
                     if((float(WeaponPriority) == OwnedItemList[I].DefaultItem.GroupPriority) && WeaponInfo.DefaultItem.AssociatedPerkClasses.Find(Outer.CurrentPerk.Class != -1)
                     {
                         BestIndex = I;
-                        goto J0x2BE;
+                        goto J0x361;
                     }
                 }                
             }
@@ -1173,7 +1193,7 @@ function int AddItemByPriority(out SItemInformation WeaponInfo)
         ++ I;
         goto J0x8C;
     }
-    J0x2BE:
+    J0x361:
 
     OwnedItemList.InsertItem(BestIndex, WeaponInfo;
     if(WeaponInfo.DefaultItem.WeaponDef.static.UsesSecondaryAmmo())

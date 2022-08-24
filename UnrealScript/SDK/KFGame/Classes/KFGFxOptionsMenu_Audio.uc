@@ -25,6 +25,7 @@ var localized string ConfigureMicString;
 var localized string VocalsString;
 var localized string BattleChatterString;
 var localized string PushToVoIPString;
+var localized string ScreenSizeString;
 
 var float VoIPMin, VoIPMax;
 
@@ -33,6 +34,7 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	super.InitializeMenu(InManager);
   	LocalizeText();
   	InitValues();
+  	ConditionallyHideDurangoButton();
 }
 
 function LocalizeText()
@@ -56,6 +58,9 @@ function LocalizeText()
 		// This should just be Video string
 		LocalizedObject.SetString("options", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
 		LocalizedObject.SetString("configureMic", class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaString);
+
+		LocalizedObject.SetString("screenSize", ScreenSizeString); //durango option only
+
 		// Controller sound available for PS4 only
 		if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
 		{
@@ -77,6 +82,21 @@ function LocalizeText()
     LocalizedObject.SetString("battleChatter", BattleChatterString);
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
     SetObject("localizedText", LocalizedObject);
+}
+
+function ConditionallyHideDurangoButton()
+{
+	local GfxObject ScreenSizeButton;
+	if(!class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
+	{
+		//hide screensize button
+		ScreenSizeButton = GetObject("screenSizeButton");
+
+		if(ScreenSizeButton != none)
+		{
+			ScreenSizeButton.SetVisible(false);
+		}
+	}
 }
 
 function  InitValues()
@@ -140,6 +160,12 @@ function SaveConfigValues()
 {
 	class'KFGameEngine'.static.StaticSaveConfig();
 	class'KFGameEngine'.static.GetEngine().SaveConfig();
+}
+
+function Callback_ScreenSizePress()
+{
+	//show the screen size pop up here
+	Manager.OpenScreenSizeMovie();
 }
 
 function Callback_CloseMenu()

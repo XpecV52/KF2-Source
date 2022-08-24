@@ -790,8 +790,8 @@ final native function bool IsFriendlyBlockingFireLine( vector FireStart );
 native function vector CalcAimLocToHit( vector AimSpot, vector StartFireLoc, float inSpeed, float inMaxSpeed, optional Vector LeadTargetVelocity );
 /** Used for leading Zed's target */
 static native function float EstimateProjectileTimeToTarget( float Distance, float StartSpeed, float MaxSpeed );
-native function bool FastActorTrace( vector TraceEnd, optional vector TraceStart, optional vector BoxExtent, optional bool bTraceComplex );
-native function Actor ActorBlockTest( vector TraceEnd, optional vector TraceStart, optional vector BoxExtent, optional bool bTraceActors, optional bool bTraceComplex );
+static native function bool FastActorTrace( Actor OriginTestActor, vector TraceEnd, optional vector TraceStart, optional vector BoxExtent, optional bool bTraceComplex );
+static native function Actor ActorBlockTest( Actor OriginTestActor, vector TraceEnd, optional vector TraceStart, optional vector BoxExtent, optional bool bTraceActors, optional bool bTraceComplex );
 native function bool TestTrace( vector TraceEnd, optional vector TraceStart );
 native function bool IsPawnInFireLine( Pawn CheckPawn, vector FireStart, vector FireLine );
 native final function bool SuggestNewWanderPoint( out vector out_NewMovePt, vector TryThisDirFirst, optional float MoveDist = 1024.f );
@@ -4688,7 +4688,7 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 	                if( bInPartialCollisionReductionTrigger && Enemy != none )
 	                {
 	                    // If this line doesn't hit our enemy, go ahead and let this bump count to reduce collision if we're standing in the trigger of a welded door!
-	                    HitActor = ActorBlockTest( Enemy.Location + vect(0,0,1) * Enemy.BaseEyeHeight, MyKFPawn.Location + vect(0,0,1) * MyKFPawn.BaseEyeHeight,, true );
+	                    HitActor = ActorBlockTest( Pawn, Enemy.Location + vect(0,0,1) * Enemy.BaseEyeHeight, MyKFPawn.Location + vect(0,0,1) * MyKFPawn.BaseEyeHeight,, true );
 	                }
 
 	                if( !IsWithinAttackRange() || (bInPartialCollisionReductionTrigger && (HitActor == none || HitActor != Enemy))  )
@@ -6507,25 +6507,25 @@ final function byte GetBestEvadeDir( Vector DangerPoint, optional Pawn ThreatPaw
 		return DIR_BackwardRight;
 
 	case DIR_Forward:
-		if( !bUseFastTrace || FastActorTrace( Pawn.Location + 256.f * X, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
+		if( !bUseFastTrace || FastActorTrace( Pawn, Pawn.Location + 256.f * X, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
 		{
 			return DIR_Forward;
 		}
 		break;
 	case DIR_Backward:
-		if( !bUseFastTrace || FastActorTrace( Pawn.Location - 256.f * X, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
+		if( !bUseFastTrace || FastActorTrace( Pawn, Pawn.Location - 256.f * X, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
 		{
 			return DIR_Backward;
 		}
 		break;
 	case DIR_Left:
-		if( !bUseFastTrace || FastActorTrace( Pawn.Location - 256.f * Y, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
+		if( !bUseFastTrace || FastActorTrace( Pawn, Pawn.Location - 256.f * Y, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
 		{
 			return DIR_Left;
 		}
 		break;
 	case DIR_Right:
-		if( !bUseFastTrace || FastActorTrace( Pawn.Location + 256.f * Y, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
+		if( !bUseFastTrace || FastActorTrace( Pawn, Pawn.Location + 256.f * Y, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
 		{
 			return DIR_Right;
 		}

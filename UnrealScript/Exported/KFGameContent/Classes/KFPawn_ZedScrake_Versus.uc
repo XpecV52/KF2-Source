@@ -131,6 +131,7 @@ defaultproperties
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
+      AfflictionClasses(11)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -142,12 +143,13 @@ defaultproperties
    IncapSettings(2)=(Vulnerability=(0.500000))
    IncapSettings(3)=()
    IncapSettings(4)=(Cooldown=5.000000,Vulnerability=(0.100000))
-   IncapSettings(5)=(Duration=1.500000,Vulnerability=(0.200000,0.700000,0.200000,0.200000,0.200000))
+   IncapSettings(5)=(Duration=1.500000,Cooldown=10.000000,Vulnerability=(0.200000,0.700000,0.200000,0.200000,0.200000))
    IncapSettings(6)=(Duration=1.500000,Cooldown=20.000000,Vulnerability=(0.600000))
    IncapSettings(7)=(Duration=1.500000,Cooldown=8.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
    IncapSettings(8)=(Vulnerability=(0.200000))
    IncapSettings(9)=(Duration=0.500000,Cooldown=1.500000,Vulnerability=(0.500000))
    IncapSettings(10)=()
+   IncapSettings(11)=()
    SprintSpeed=530.000000
    SprintStrafeSpeed=350.000000
    TeammateCollisionRadiusPercent=0.300000
@@ -191,6 +193,14 @@ defaultproperties
       SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerScrake_Melee2'
       SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerScrake_Melee3'
       SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerScrake_Block'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedScrake:SpecialMoveHandler_0'
    End Object

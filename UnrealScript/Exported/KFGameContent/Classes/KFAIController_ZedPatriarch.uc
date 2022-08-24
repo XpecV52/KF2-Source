@@ -664,6 +664,12 @@ function EvaluateAttacks( float DeltaTime )
 		return;
 	}
 
+    //Don't attack while we're in theatrics
+    if (CommandList != none && CommandList.class == class'AICommand_BossTheatrics')
+    {
+        return;
+    }
+
 	NextAttackCheckTime -= DeltaTime;
 
 	if( bWantsToCharge || bWantsToFlee || bFleeing || MyPatPawn == none || MyPatPawn.IsDoingSpecialMove() || NextAttackCheckTime > 0.f )

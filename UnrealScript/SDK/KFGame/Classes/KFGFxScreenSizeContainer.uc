@@ -30,6 +30,26 @@ function InitMenu( )
 		UpdateUsingGamePad(KFPI.bUsingGamepad);
 	}
 	LocalizeText();
+	HideButtonsThatWeDoNotWantForNow();
+}
+
+//doing this for now just in case it comes back
+function HideButtonsThatWeDoNotWantForNow()
+{
+	local GFxObject cancelButton, cancelTextfield;
+
+	cancelButton = GetObject("backButtonIcon");
+	cancelTextfield = GetObject("cancelTextField");
+
+	if(cancelButton != none)
+	{
+		cancelButton.SetVisible(false);
+	}
+
+	if(cancelTextfield != none)
+	{
+		cancelTextfield.SetVisible(false);
+	}
 }
 
 function UpdateUsingGamePad(bool bValue)

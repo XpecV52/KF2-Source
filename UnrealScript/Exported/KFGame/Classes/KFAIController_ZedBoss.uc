@@ -17,22 +17,6 @@ class KFAIController_ZedBoss extends KFAIController_Monster
 /** TRUE if we've already summoned minions this battle phase */
 var bool bSummonedThisPhase;
 
-/** Called when this controller has possessed inPawn */
-event Possess( Pawn inPawn, bool bVehicleTransition )
-{
-    local KFGameReplicationInfo KFGRI;
-
-    KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
-
-	super.Possess( inPawn, bVehicleTransition );
-
-	// Play entrance animation
-	if( KFGRI != none && KFGRI.WaveNum >= KFGRI.WaveMax )
-	{
-        class'AICommand_BossTheatrics'.static.DoTheatrics( self, THEATRIC_Entrance );
-    }
-}
-
 /** NPC has lost sight of current enemy */
 event EnemyNotVisible()
 {
@@ -106,13 +90,6 @@ function EnterZedVictoryState()
     }
 
     GotoState( 'ZedVictory', 'Begin');
-}
-
-state ZedVictory
-{
-Begin:
-    Sleep(0.1f);
-    class'AICommand_BossTheatrics'.static.DoTheatrics( self, THEATRIC_Victory, -1 );
 }
 
 defaultproperties

@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="Public"
 ConsolePermissionStrings[1]="Invite Only"
 
 ModeStrings[0]="Survival"
-ModeStrings[1]="VS Survival"
+ModeStrings[1]="Weekly"
+ModeStrings[2]="VS Survival"
 
 NoPreferenceString="ANY"
 OKString="OK"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="Perk may be updated once per wave!"
 YesString="YES"
 NoString="NO"
 TeamSwappedString="You have been team swapped"
+
+CancelConnectionString="Cancel Loading"
 
 DisbandPartyString="DISBAND PARTY"
 LeaveCurrentMenuString="Leave current menu?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="No Items Purchased"
 SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"
 FreeConsolePlayOverString="Thanks for playing Killing Floor 2! The free event is over, but you can purchase the game and get more information by selecting the Store button below."
 BuyGameString="STORE"
+CustomString="Custom"
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="OUTBREAK COMPLETION REWARD"
+WeeklyString="HORZINE WEEKLY OUTBREAK"
+CurrentWeeklySettingsString="CURRENT OUTBREAK SETTINGS"
+SpecialEventString="SUMMER SIDE SHOW"
+ShortWeeklyString="WEEKLY"
+SeasonalString="SEASONAL"
+SpecialEventChanceDropString="LIMITED DROP ITEMS"
+GrantedSpecialEventString="COMPLETION REWARD"
+RewardsString="OUTBREAK COMPLETION REWARD"
+WeeklyOverview="A new challenging game mode each week!"
+ObjectivesString="Toggle Objectives"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FAILED TO FIND MATCH"
@@ -115,8 +133,9 @@ TutorialString="Basic Training"
 
 [StartMenuHelperText]
 modeList0="Survival – PVE battle waves of AI controlled Zeds"
-modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
-modeList2=""
+modeList1="Weekly Outbreak – A different variant game mode each week."
+modeList2="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList3=""
 difficultyList0="Normal – For beginning players of perk rank 0-5."
 difficultyList1="Hard – For experienced players of perk rank 6-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
 difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and they move even faster. There are even fewer pickups, and you get even less dosh."
@@ -666,6 +685,7 @@ DamageDealtString="Damage Dealt:"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ READY ]"
 WaitingString="WAITING FOR PLAYER(S)"
+MatchOverString="MATCH OVER \n Please stand by..."
 DeployingString="DEPLOYING IN "
 CreatePartyString="CREATE PARTY"
 ReadyString="READY UP"
@@ -840,6 +860,7 @@ CancelString="CANCEL"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="LEVEL UP"
 TierUnlockedString="NEW SKILLS UNLOCKED"
+ObjectiveCompleteString="OBJECTIVE COMPLETE"
 
 [KFGFxHUD_WaveInfo]
 WaveString="WAVE"
@@ -924,6 +945,7 @@ ConfigureMicString="CONFIGURE MICROPHONE"
 VocalsString="Music Vocals"
 BattleChatterString="Minimize Battle Chatter"
 PushToVoIPString="Push to VoIP"
+ScreenSizeString="ADJUST SCREEN SIZE"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Use these video settings?"
@@ -1322,6 +1344,7 @@ MapCollectibleName="piece of dosh bling"
 WaveStartMessage="W A V E  I N C O M I N G"
 WaveEndMessage="W A V E  C O M P L E T E"
 GetToTraderMessage="Get to the Trader Pod"
+ScavengeMessage="Scavenge"
 YouLostMessage="D E F E A T"
 YouWonMessage="V I C T O R Y"
 SquadWipedOutMessage="Your squad was wiped out!"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>HEAL SELF"
 PressToBashWarning="BASH"
 GamepadWeaponSelectHint="<%HOLD%>WEAPON SELECT"
 PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
-UseMinigameMessage="ACTIVATE MINIGAME"
+UseMinigameMessage="ACTIVATE"
 UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
 
 [KFLocalMessage_ServerNotification]
@@ -1573,8 +1596,8 @@ SkillCatagories[4]="Advanced Training"
 
 Passives[0]=(Title="Berserker Damage",Description="Perk weapon damage increases x%x per level");
 Passives[1]=(Title="Damage Resistance",Description="Damage resistance increases x%x every 5 levels");
-Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles");
-Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker");
+Passives[2]=(Title="Night Vision Capability",Description="Flashlight - AND Night Vision Goggles");
+Passives[3]=(Title="Clots cannot grab you",Description="Clots can't hold on to a Berserker");
 
 EXPAction1="Dealing Berserker weapon damage"
 EXPAction2="Killing Zeds near a player with a Berserker weapon"
@@ -1622,8 +1645,8 @@ Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increase
 Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level");
 Passives[2]=(Title="Zed Time Extension",Description="Zed time increases %x% every 5 levels");
 Passives[3]=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels");
-Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
-Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
+Passives[4]=(Title="Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[5]=(Title="Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
 EXPAction1="Dealing Commando weapon damage"
 EXPAction2="Killing Stalkers with Commando weapons"
@@ -1672,8 +1695,8 @@ SkillCatagories[4]="Advanced Explosives"
 Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increases %x% per level");
 Passives[1]=(Title="Explosive Resistance",Description="Explosive resistance gains 10% and increases %x% per level");
 Passives[2]=(Title="Extra Explosive Ammo",Description="Explosive ammo increases %x% every five levels");
-Passives[3]=(Title="+Grenade Supplier",Description="Teammates can get one grenade from you each wave");
-Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
+Passives[3]=(Title="Grenade Supplier",Description="Teammates can get one grenade from you each wave");
+Passives[4]=(Title="Door Traps",Description="Doors you weld will explode when destroyed");
 Passives[5]=(Title="Reactive Armor",Description="When first reduced to 0 Health your armor will explode and leave you with 1 Health");
 
 
@@ -2162,6 +2185,7 @@ Forums="Visit Our Community Forums"
 Survey="Take the Gameplay Survey"
 CommunityTracker="Track Community Issue Requests"
 FeaturedCrateKey="Featured Horzine Supply Crate Key - $2.49"
+FeaturedEventItem="Featured Event Item"
 FeaturedUsbKey="Featured Weapon Skin USB Key - $2.49"
 FeaturedRareItem="Featured Rare Item - $3.99"
 FeaturedExceptionalItem="Featured Exceptional Item - $7.49"
@@ -2190,7 +2214,9 @@ KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedCrawlerKing="Elite Crawler"
+KFPawn_ZedFleshpoundMini="Quarter Pound"
 KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedFleshpoundKing="King Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
 KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
@@ -2319,6 +2345,119 @@ KFWeap_Zweihander="Chivalry Promo"
 
 
 Source0="Chivalry Promo"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all comeplete"
+
+ChanceDropDescriptionStrings[0]="Drop 1"
+ChanceDropDescriptionStrings[1]="Drop 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="A time limited special event with exclusive items."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Power Up",DescriptionString="Power up the Generator In The Tragic Kingdom");
+SpecialEventObjectiveInfoList[1]=(TitleString="Pop the Clot",DescriptionString="Pop the Clot in The Tragic Kingdom");
+SpecialEventObjectiveInfoList[2]=(TitleString="Dunk the Bloat",DescriptionString="Dunk the Bloat in The Tragic Kingdom");
+SpecialEventObjectiveInfoList[3]=(TitleString="Dosh Toss",DescriptionString="Dosh Toss in The Tragic Kingdom");
+SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="Win a match on Hard or higher In The Tragic Kingdom");
+
+AllCompleteRewardDescriptionString="Sideshow Hazmat Suit"
+
+ChanceDropDescriptionStrings[0]="Sideshow Prize Ticket"
+ChanceDropDescriptionStrings[1]="Sideshow Golden Ticket"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="Cranium Cracker"
+DescriptionStrings[0]="Brain damage is the best damage."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="In this outbreak, the Zeds have mutated such that they can only be put down for good with damage to the head. Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="Tiny Terror"
+DescriptionStrings[0]="A small threat is still a threat."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="Shooting Zeds in this outbreak will cause them to shrink, making them harder to hit. Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="Poundemonium"
+DescriptionStrings[0]="All Fleshpounds, all the time. Almost."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="The Fleshpound Convention is in town! Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="Up, Up, and Decay"
+DescriptionStrings[0]="Try to make ninety-nine Zed balloons."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="Shooting Zeds in this outbreak will cause them to inflate like balloons, even to the point of floating away and popping! Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="Zed Time"
+DescriptionStrings[0]="All the Zed Time in the world."
+DescriptionStrings[1]="Length: Short (4 waves)"
+ModifierDescriptions[0]="Ever think that life is passing you by? Not in this outbreak! You'll be in Zed Time any time you're near a Zed. Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="Boom"
+DescriptionStrings[0]="Zeds under pressure; may explode."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="Maybe it was something they ate? Bad gas? Whatever it was, Zeds explode when killed in this outbreak. Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="Beefcake"
+DescriptionStrings[0]="Bigger they are, harder you fall."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="In this outbreak, Zeds increase their health, size, and reach when they hit players or are affected by certain Zed abilities. Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="Bobble Zed"
+DescriptionStrings[0]="...that must hurt their necks."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="Something went horribly wrong with this batch of Zeds and their heads are wwwaaaayyyyyyy larger than normal! Huge even! Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2700,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2572,6 +2727,9 @@ DisplayName="Burning Paris"
 
 [Survival KFGameInfoSummary]
 GameName="Survival"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="Weekly"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Volter Manor"
@@ -2608,6 +2766,9 @@ DisplayName="The Descent"
 
 [KF-Nuked KFMapSummary]
 DisplayName="Nuked"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="The Tragic Kingdom"
 
 [KFMapInfo]
 ; defaults

@@ -64,6 +64,11 @@ simulated function InitializePickup()
 
 simulated event SetInitialState()
 {
+    if(bKismetDriven && bEnabledAtStart)
+    {
+        PickupIndex = byte(ChooseWeaponPickup());
+        SetPickupMesh();
+    }
     super.SetInitialState();
     bScriptInitialized = true;
 }
@@ -74,6 +79,16 @@ function Reset()
     PickupIndex = byte(ChooseWeaponPickup());
     bNetDirty = true;
     SetPickupMesh();
+}
+
+function SetRespawn()
+{
+    if(bKismetDriven && bEnabledAtStart)
+    {
+        PickupIndex = byte(ChooseWeaponPickup());
+        SetPickupMesh();
+    }
+    super.SetRespawn();
 }
 
 function int ChooseWeaponPickup()
@@ -153,6 +168,7 @@ function GiveArmor(Pawn P)
     if((KFIM != none) && KFIM.AddArmorFromPickup())
     {
         ActivateNewPickup(P);
+        PickedUpBy(P);
         if(Class'KFGameInfo'.static.AllowBalanceLogging())
         {
             WorldInfo.LogGameBalance((((string('Pickup') $ ",") $ P.PlayerReplicationInfo.PlayerName) $ ",") $ "Armor");
@@ -203,6 +219,7 @@ function GiveWeapon(Pawn P)
             KFW.NotifyPickedUp();
         }
         ActivateNewPickup(P);
+        PickedUpBy(P);
         if(Class'KFGameInfo'.static.AllowBalanceLogging())
         {
             WorldInfo.LogGameBalance((((string('Pickup') $ ",") $ P.PlayerReplicationInfo.PlayerName) $ ",") $ string(InventoryClass));

@@ -272,6 +272,11 @@ ItemName="M4 전투 샷건"
 ItemCategory="샷건"
 ItemDescription="•사격 모드는 반자동 전용.\n•베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
 
+[KFWeap_Shotgun_HZ12]
+ItemName="HZ12 멀티 액션"
+ItemCategory="산탄총"
+ItemDescription="•사격 모드는 듀얼 반자동/펌프액션을 사용합니다.\n• HZ12 산탄총은 Horzine 보안군에서 테스트를 거친 실험적인 시제품입니다. 이 무기 개발 시 제드들이 해를 입었습니다."
+
 [KFWeap_Knife_Berserker]
 ItemName="잔디깎기 날"
 ItemCategory="백병전"
@@ -424,6 +429,11 @@ ItemName="윈체스터 1894"
 ItemCategory="소총"
 ItemDescription="•사격 모드는 단발 전용.\n•클래식 모델 1894 윈체스터 레버 액션 소총."
 
+[KFWeap_Rifle_CenterfireMB464]
+ItemName="SPX 464 센터파이어"
+ItemCategory="소총"
+ItemDescription="•사격 모드는 단발 사격만 가능합니다.\n•현대적인 디자인의 모스버그 센터파이어 레버 액션 소총은 반동이 낮고 저지력이 높습니다. 클래식 모델이 업데이트되었습니다."
+
 [KFWeap_Bow_Crossbow]
 ItemName="크로스보우"
 ItemCategory="보우"
@@ -464,6 +474,7 @@ ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사
 ItemName="크리스 SMG"
 ItemCategory="서브머신건"
 ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•컴팩트탄을 사방으로 뿌리는 최신 무기, 파괴의 소방 호스라고 할 수 있습니다."
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -513,6 +524,29 @@ BossCaptionStrings[3]="달아난다고 해서 빠져나갈 수는 없습니다. 
 BossCaptionStrings[4]="Patriarch는 은폐를 하고 몸을 숨기고 뛸 수 있으며 스스로 치료도 합니다. 변하지 않는 것들도 있습니다."
 BossCaptionStrings[5]="플레이어에게는 별다른 선택권이 없겠지만, Patriarch의 ‘아이들’을 처치하면 그는 더욱 미쳐 날뜁니다."
 
+[KFPawn_ZedFleshpoundKing]
+BossName="King Fleshpound"
+BossName_CHN="闪击丧尸之王"
+BossName_CHT="絞碎者之王"
+BossName_DEU="King Fleshpound"
+BossName_ESL="Rey fleshpound"
+BossName_ESN="Rey fleshpound"
+BossName_FRA="Roi Barback"
+BossName_FRC="Roi Barback"
+BossName_INT="King Fleshpound"
+BossName_ITA="Re Fleshpound"
+BossName_JPN="キングフレッシュパウンド"
+BossName_KOR="King 플래시 파운드"
+BossName_POL="Król mięśniaków"
+BossName_PTB="Carniceiro Rei"
+BossName_RUS="Король-отбивальщик"
+BossCaptionStrings[0]="King 플래시 파운드를 더 많이 해칠 수록 King 플래시 파운드가 더 빨리 쿼터 파운드를 회수합니다. 압도당하지 말고 속도를 올리세요!"
+BossCaptionStrings[1]="몸을 굽히세요! King 플래시 파운드의 가슴 빔은 땅 가까이에 있는 낮은 목표물은 잘 맞추지 못합니다."
+BossCaptionStrings[2]="King 플래시 파운드가 큰 부상을 입었다고 전투가 끝난 것은 아닙니다! 그는 체력이 떨어지면 방패를 가동합니다. "
+BossCaptionStrings[3]="다른 제드를 King 플래시 파운드의 사격 범위로 유인할 수 있다면 그의 가슴빔이 다른 제드들을 공격할 수 있습니다."
+BossCaptionStrings[4]="King 플래시 파운드는 일반 플래시 파운드와 동일한 약점이 있습니다. 그저 더 클뿐입니다."
+BossCaptionStrings[5]="King 플래시 파운드는 항상 더 많은 쿼터 파운드를 가지고 있습니다. 그들을 무시하려면 위험을 감수해야 합니다!"
+
 [KFGameInfo_Tutorial]
 GameName="기본 훈련"
 
@@ -521,6 +555,9 @@ GameName="서바이벌"
 
 [KFGameInfo_VersusSurvival]
 GameName="VS 서바이벌"
+
+[KFGameInfo_WeeklySurvival]
+GameName="주간 아웃브레이크"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="남은 치료제가 없습니다"

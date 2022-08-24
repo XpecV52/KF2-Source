@@ -35,6 +35,7 @@ function InitializeWidget()
 				GetObject("readyButton").SetVisible(false);
 			}
 		}
+
 		StartCountdown(KFGRI.RemainingTime, false);		
 	}	
 	RefreshParty();
@@ -71,6 +72,7 @@ function UpdateReadyButtonVisibility()
 			{	
 				MatchStartContainer.SetVisible(MyKFPRI.bReadyToPlay); //hide the waiting for players text when alone		
 			}
+			SetBool("matchOver", KFGRI.bMatchIsOver);
 		}
 	}
 }

@@ -240,6 +240,13 @@ simulated state WeaponThrowing extends WeaponSingleFiring
     simulated event BeginState( Name PreviousStateName )
 	{
 		local name WeaponFireAnimName;
+        local KFPerk InstigatorPerk;
+
+        InstigatorPerk = GetPerk();
+        if( InstigatorPerk != none )
+        {
+            SetZedTimeResist( InstigatorPerk.GetZedTimeModifier(self) );
+        }
 
 		`LogInv("PreviousStateName:" @ PreviousStateName);
 

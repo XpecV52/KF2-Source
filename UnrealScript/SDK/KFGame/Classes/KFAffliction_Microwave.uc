@@ -121,7 +121,7 @@ protected function UpdateMicrowaveMatParam( float DeltaTime )
 
     if( MonsterOwner.WorldInfo.NetMode != NM_DedicatedServer )
     {
-        SetMaterialParameter(UsedMicrowavedAmount);
+        SetMaterialParameter(MonsterOwner.GetCurrentInflation());
 
         // secondary 'burn' material parameter
         UpdateBurnedMatParam( DeltaTime );
@@ -142,7 +142,7 @@ function UpdateBurnedMatParam( float DeltaTime )
     // Set the burned value from being microwaved
     if( MonsterOwner != none )
     {
-        ParamValue = EvalInterpCurveFloat(MicroWaveCharCurve, ByteToFloat(MonsterOwner.RepInflateMatParam));
+        ParamValue = EvalInterpCurveFloat(MicroWaveCharCurve, MonsterOwner.GetCurrentInflation());
         // Only make them more burned, not less. You never "unburn"
         if( ParamValue > MicrowaveBurnedAmount )
         {

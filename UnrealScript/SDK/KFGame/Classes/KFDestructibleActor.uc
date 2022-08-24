@@ -67,6 +67,9 @@ var const array< class<DamageType> > VulnerableDamageType;
 /** The amount to scale damage if vulnerable */
 var const byte VulnerableMultiplier;
 
+/** If true, ignores all damage */
+var() protected bool            bIgnoreAllDamage;
+
 /** If true, will ignore all damage done by players */
 var() protected bool			bIgnorePlayerDamage;
 
@@ -629,6 +632,9 @@ protected native function DamageSubObject(int ObjIdx, int Damage, Controller Eve
  */
 native function bool HasAnyHealth();
 
+native function float GetCurrentHealth();
+native function float GetMaxHealth();
+
 /** Network: Server */
 simulated function TakeRadiusDamage
 (
@@ -708,6 +714,12 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
 {
 	local int Idx;
 	local KFAIController KFAIInstigator;
+
+    if (bIgnoreAllDamage)
+    {
+        InDamage = 0;
+        return;
+    }
 
 	// Check if this damage should instakill
 	for ( Idx = 0; Idx < InstaKillDamageType.length; ++Idx )
@@ -1062,6 +1074,20 @@ function MoveCollidingPawns()
  */
 simulated function Reset()
 {
+    local int SubObjIdx;
+
+    //Undo shutdown if necessary
+    if (bShutDown)
+    {
+        UnShutDownObject();
+    }
+
+    //Reset health
+    for (SubObjIdx = 0; SubObjIdx < SubObjects.Length; ++SubObjIdx)
+    {
+        SubObjects[SubObjIdx].Health = SubObjects[SubObjIdx].DefaultHealth;
+    }
+
 	if( !bAnyDamageModApplied )
 	{
 		return;
@@ -1070,6 +1096,11 @@ simulated function Reset()
 	RemoveDecals();
 	UnDestroy();
 	bForceNetUpdate = true;
+}
+
+function ToggleAllDamage(bool bDamageOn)
+{
+    bIgnoreAllDamage = !bDamageOn;
 }
 
 defaultproperties
@@ -1115,6 +1146,7 @@ defaultproperties
 	
 	// Without this explosions won't do damage to them because they are world geometry
 	bCanBeDamaged=true
+    bIgnoreAllDamage=false
 
 	// network - see EDestructibleRepType
 	RemoteRole=ROLE_None

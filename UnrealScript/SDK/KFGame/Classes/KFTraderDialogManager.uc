@@ -252,7 +252,8 @@ simulated function AddRandomOption( int OptionID, out byte NumOptions, out int B
 		}
 	}
 
-	//`log("JDR: KFTraderDialogManager::AddRandomOption "$default.EventNames[OptionID]);
+	`log("KFTraderDialogManager::AddRandomOption " $ TraderVoiceGroupClass.default.DialogEvents[OptionID].AudioCue);
+    ScriptTrace();
 
 	NumOptions++;
 	if( Frand() <= 1.f / float(NumOptions) )
@@ -368,7 +369,6 @@ simulated function PlayBeginTraderTimeDialog( KFPlayerController KFPC )
 	{
 		return;
 	}
-
 	if( KFPC.PWRI.bDiedDuringWave )
 	{
 		PlayPlayerDiedLastWaveDialog( KFPC );
@@ -570,6 +570,7 @@ simulated function WaveClearDialogTimer()
 simulated function PlayOpenTraderMenuDialog( KFPlayerController KFPC )
 {
 	local KFPawn_Human KFPH;
+    local KFGameReplicationInfo KFGRI;
 	local float ArmorPct, AmmoMax, AmmoPct;
 
 	local int BestOptionID;
@@ -580,17 +581,21 @@ simulated function PlayOpenTraderMenuDialog( KFPlayerController KFPC )
 	KFPH = KFPawn_Human( KFPC.Pawn );
 	if( KFPH != none )
 	{
-		ArmorPct = float(KFPH.Armor) / float(KFPH.MaxArmor);
-		if( ArmorPct <= 0.f )
-		{
-			// no armor
-			AddRandomOption( `TRAD_NoArmor, NumOptions, BestOptionID );
-		}
-		else if( ArmorPct < 0.3f )
-		{
-			// low armor
-			AddRandomOption( `TRAD_LowArmor, NumOptions, BestOptionID );
-		}
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+        if (KFGRI == none || KFGRI.WaveNum > 1)
+        {
+            ArmorPct = float(KFPH.Armor) / float(KFPH.MaxArmor);
+            if (ArmorPct <= 0.f)
+            {
+                // no armor
+                AddRandomOption(`TRAD_NoArmor, NumOptions, BestOptionID);
+            }
+            else if (ArmorPct < 0.3f)
+            {
+                // low armor
+                AddRandomOption(`TRAD_LowArmor, NumOptions, BestOptionID);
+            }
+        }
 
 		// only play low ammo dialog if the weapon uses ammo
 		AmmoMax = float(KFPH.MyKFWeapon.GetMaxAmmoAmount(0));

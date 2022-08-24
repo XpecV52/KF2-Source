@@ -101,7 +101,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
     LastMortarAttackTime = WorldInfo.TimeSeconds;
     NextAttackCheckTime = 2.5 + FRand();
     bCanEvaluateAttacks = true;
-    super.Possess(inPawn, bVehicleTransition);
+    super(KFAIController_Monster).Possess(inPawn, bVehicleTransition);
 }
 
 function PawnDied(Pawn inPawn)
@@ -439,6 +439,10 @@ function EvaluateAttacks(float DeltaTime)
     local bool bCanFireMinigun, bCanFireMissile, bCanFireMortar, bShouldFireMortar, bShouldFireMissile, bMortarBarrage;
 
     if(!bCanEvaluateAttacks)
+    {
+        return;
+    }
+    if((CommandList != none) && CommandList.Class == Class'AICommand_BossTheatrics')
     {
         return;
     }

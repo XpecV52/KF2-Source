@@ -24,6 +24,7 @@ var float				ChargeStuckCheckDistance;
 var bool				bReadyToBecomeEnraged;
 var float				LastKickClotTime;
 
+
 /*********************************************************************************************
 * Combat Related
 ********************************************************************************************* */
@@ -33,6 +34,8 @@ var bool	bSawEnemy;
 
 var instanced KFAIPluginRage_Fleshpound RagePlugin;
 var class<KFAIPluginRage_Fleshpound> RagePluginClass;
+
+var array<float> 		SpawnRagedChance;
 
 /*********************************************************************************************
 * Debug
@@ -52,6 +55,13 @@ var Vector ChargePivot;
 /*********************************************************************************************
 * Base
 **********************************************************************************************/
+
+event Possess( Pawn inPawn, bool bVehicleTransition )
+{
+	super.Possess(inPawn, bVehicleTransition);
+
+	DoSpawnRageCheck();
+}
 
 native function CleanUp(optional bool bBeingDestroyed);
 
@@ -255,6 +265,24 @@ function bool CanAttackDestructibles()
 * Enraged!
 ********************************************************************************************* */
 
+function DoSpawnRageCheck()
+{
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo( WorldInfo.Game );
+
+	if(KFGI == none)
+	{
+		return;
+	}
+
+	if(FRand() <= SpawnRagedChance[int(KFGI.GameDifficulty)])
+	{
+		//FP SMASH!!
+		RagePlugin.DoSpawnRage();
+	}
+}
+
 /** Start up the pre-charge Taunt */
 function DoRageTauntAt( optional KFPawn Target )
 {
@@ -290,6 +318,10 @@ defaultproperties
    ChargeStuckCheckInterval=0.250000
    ChargeStuckCheckDistance=10.000000
    RagePluginClass=Class'KFGame.KFAIPluginRage_Fleshpound'
+   SpawnRagedChance(0)=0.000000
+   SpawnRagedChance(1)=0.000000
+   SpawnRagedChance(2)=0.500000
+   SpawnRagedChance(3)=0.750000
    bUseRunOverWarning=True
    MinRunOverSpeed=360.000000
    MinRunOverWarningAim=0.850000

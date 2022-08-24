@@ -153,6 +153,8 @@ var bool bIsAchievementPlayer;
 var float NextAdminCmdTime;
 var config bool bHideTraderPaths;
 
+var float RefreshObjectiveUITime;
+
 /*********************************************************************************************
  * @name Skill Tracking
 ********************************************************************************************* */
@@ -185,6 +187,8 @@ var float NextSpectatorDelay;
 
 /** Local customization pawn spawned for mid-match gear changes */
 var transient KFPawn_Customization LocalCustomizationPawn;
+
+var bool bDownloadingContent;
 
 /*********************************************************************************************
  * @name Audio
@@ -449,6 +453,7 @@ var float BlurLerpControl;
 /** Online subsystem statics */
 var private KFOnlineStatsRead  StatsRead; //Only used to read in the stats, everything else should be handled by the write object
 var private KFOnlineStatsWrite StatsWrite;
+const MapObjectiveIndex = 4; //Index of our special event objective.  Use the same one for all events
 
 //@HSL_BEGIN - JRO - PS4 Sessions
 /*********************************************************************************************
@@ -724,7 +729,61 @@ simulated event PostBeginPlay()
 	super.PostBeginPlay();
 
 	PostAkEvent( ResetFiltersEvent );
+    UpdateSeasonalState();
 	MatchStats = new(Self) MatchStatsClass;
+	ClearDownloadInfo();
+}
+
+simulated function CheckSpecialEventID()
+{
+    //Don't cache the actual value until we have all the right set of valid data
+    if (class'KFGameEngine'.static.GetSeasonalEventID() >= 0 && StatsWrite != none && StatsWrite.CanCacheSpecialEvent())
+    {
+        StatsWrite.UpdateSpecialEventState();
+        ClearTimer('CheckSpecialEventID');
+    }
+}
+
+simulated function CheckWeeklyEventID()
+{
+    //Don't cache the actual value until we have all the right set of valid data
+    if (class'KFGameEngine'.static.GetWeeklyEventIndex() >= 0 && StatsWrite != none && StatsWrite.CanCacheWeeklyEvent())
+    {
+        StatsWrite.UpdateWeeklyEventState();
+        ClearTimer('CheckWeeklyEventID');
+    }
+}
+
+simulated event UpdateSeasonalState()
+{
+	SetState('Event', GetSeasonalStateName());
+}
+
+function ClearDownloadInfo()
+{
+	local KFGameViewportClient GVC;
+	
+	//clear download
+	GVC = KFGameViewportClient( class'Engine'.static.GetEngine().GameViewport );
+
+	if(GVC != none)
+	{
+		GVC.ClearDownloadInfo();
+	}
+}
+
+simulated event name GetSeasonalStateName()
+{
+    //Remove any year information, just get 1s digit
+    switch (class'KFGameEngine'.static.GetSeasonalEventID() % 10)
+    {
+    case 1:
+        return 'Summer_Sideshow';
+    default:
+        return 'No_Event';
+    }
+
+    return 'No_Event';
 }
 
 simulated event ReplicatedEvent( name VarName )
@@ -753,6 +812,8 @@ simulated event ReceivedPlayer()
 	local int i;
 	local KFGameEngine KFEngine;
 
+	KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
+
 	Super.ReceivedPlayer();
 
 	// Read profile settings for local player
@@ -766,7 +827,7 @@ simulated event ReceivedPlayer()
 		}
 		// Time to queue up a read
 		// BWJ - XB1 has to read this at the IIS after an initial user has been established
-		else if( !WorldInfo.IsConsoleBuild( CONSOLE_Durango ) )
+		else if( !WorldInfo.IsConsoleBuild( CONSOLE_Durango ) || KFEngine.CheckSkipLobby() )
 		{
 			PlayerDataDS = UIDataStore_OnlinePlayerData(class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', LocalPlayer(Player)));
 			if( PlayerDataDS != none )
@@ -777,9 +838,10 @@ simulated event ReceivedPlayer()
 		}
 
 		// If we joined a server, we need to strip old options so we don't carry them around on map transition
+		// They are used in KFGameInfo PreLogin() to prevent matchmaking if the server recently changed 
+		// options, but should never be used to prevent login during server travel.
 		if (WorldInfo.NetMode == NM_Client)
 		{
-			KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
 			for (i = KFEngine.LastURL.Op.Length - 1; i >= 0; i--)
 			{
 				if (InStr(KFEngine.LastURL.Op[i], "Difficulty=", false, true) != INDEX_NONE ||
@@ -1307,6 +1369,9 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 				KFEngine.SafeFrameScale = 1.0;
 			}
 
+			// Now set the UI scale
+			SetUIScale(KFEngine.SafeFrameScale);
+
 			if(class'WorldInfo'.static.IsConsoleBuild())
 			{
 				class'KFGameEngine'.static.SetCrosshairEnabled(Profile.GetProfileBool(KFID_ShowConsoleCrossHair));
@@ -1432,7 +1497,8 @@ simulated function HandleNetworkError( bool bConnectionLost )
 		// We can't be in a multiplayer menu
 		else
 		{
-			if(MyGFxManager.GetMultiplayerMenuActive())
+			// Kick player out of matchmaking if they are actively in it
+			if(MyGFxManager.StartMenu != none && MyGFxManager.StartMenu.GetStartMenuState() == EMatchmaking)
 			{
 				if( bConnectionLost )
 				{
@@ -1443,10 +1509,11 @@ simulated function HandleNetworkError( bool bConnectionLost )
 					ErrorMessage = Localize("Notifications", class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) ? "PSNSignoutMessage" : "LoggedOutMessage", "KFGameConsole");
 				}
 
+
 				MyGFxManager.SetStartMenuState(MyGFxManager.GetStartMenuState());
 				MyGFxManager.StartMenu.ApproveMatchMakingLeave();
 				MyGFxManager.OpenMenu(UI_Start);
-				MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_ControllerDisconnect,
+				MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_ExitToMainMenu,
 					Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"),
 					ErrorMessage,
 				class'KFCommon_LocalizedStrings'.default.OKString);
@@ -1888,10 +1955,16 @@ function OnSessionJoinComplete(name SessionName,bool bWasSuccessful)
 
 	GameSettings = OnlineSub.GameInterface.GetGameSettings(SessionName);
 
+	if( !bWasSuccessful )
+	{
+		NotifyInviteFailed();
+		return;
+	}
+
 	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
 	{
-		bGameSession = GameSettings.SessionTemplateName == "KF2GameSessionTemplate";
-		bPartySession = GameSettings.SessionTemplateName == "KF2PartySessionTemplate";
+		bGameSession = GameSettings.SessionTemplateName ~= "KF2GameSessionTemplate";
+		bPartySession = GameSettings.SessionTemplateName ~= "KF2PartySessionTemplate";
 	}
 	else
 	{
@@ -2550,11 +2623,11 @@ native final function UpdateDOFGamePlayLerpControl(float DeltaTime);
 native final function UpdateDOFIronSightsLerpControl(float DeltaTime);
 native final function UpdateFullscreenBlur(float DeltaTime);
 
-exec function ShowTestDownloadNotification (string ItemName, Float PercentComplete, int ItemsRemaining)
+exec function ShowTestDownloadNotification (string ItemName, Float PercentComplete)
 {
 	if(MyGFxManager != none && MyGFxManager.PartyWidget != none)
 	{
-		MyGFxManager.PartyWidget.ShowDownLoadNotification(ItemName, PercentComplete, ItemsRemaining);
+		MyGFxManager.PartyWidget.ShowDownLoadNotification(ItemName, PercentComplete);
 	}
 }
 
@@ -2769,7 +2842,7 @@ function ResetFOV()
 reliable client function ClientSetCameraMode( name NewCamMode )
 {
 	local KFPawn KFP;
-	local KFPawn_MonsterBoss KFBoss;
+	local KFPawn_Monster KFBoss;
 
 	// Debugging - Show/Hide the player model using exec Camera()
 	KFP = KFPawn(ViewTarget);
@@ -2788,7 +2861,7 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 		SetNightVision(false);
 
 		// If our current view target is not a boss, make sure we find one
-		if( !ViewTarget.IsA('KFPawn_MonsterBoss') )
+		if( ViewTarget != KFBoss )
 		{
 			SetViewTarget(KFBoss);
 		}
@@ -2860,13 +2933,16 @@ function bool IsEmoteCameraMode()
 	return false;
 }
 
-function KFPawn_MonsterBoss GetBoss()
+function KFPawn_Monster GetBoss()
 {
-	local KFPawn_MonsterBoss KFBoss;
+	local KFPawn_Monster KFBoss;
 
-	foreach WorldInfo.AllPawns( class'KFPawn_MonsterBoss', KFBoss )
+	foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFBoss )
 	{
-		return KFBoss;
+        if (KFBoss.IsActiveBoss())
+        {
+            return KFBoss;
+        }
 	}
 
 	return none;
@@ -4811,9 +4887,16 @@ function ClientRecieveNewTeam();
 function SetGFxHUD( KFGFxMoviePlayer_HUD NewGFxHud )
 {
 	MyGFxHUD = NewGFxHud;
+
+	// Set UI scale so the hud movie scales properly
+	if (WorldInfo.IsConsoleBuild(CONSOLE_Durango))
+	{
+		// Now set the UI scale
+		SetUIScale(KFGameEngine(class'Engine'.static.GetEngine()).SafeFrameScale);
+	}
 }
 
-function ShowBossNameplate( KFPawn_MonsterBoss KFBoss, optional string PlayerName)
+function ShowBossNameplate( KFPawn_Monster KFBoss, optional string PlayerName)
 {
 	if(MyGFxHUD != none)
 	{
@@ -4854,7 +4937,12 @@ reliable client function ClientSetFrontEnd( class< KFGFxMoviePlayer_Manager > Fr
     	}
 
 		// Profile settings are read in later for dingo
-		if( !WorldInfo.IsConsoleBuild( CONSOLE_Durango ) )
+		if( WorldInfo.IsConsoleBuild( CONSOLE_Durango ) )
+		{
+			// Now set the UI scale
+			SetUIScale( KFGameEngine(class'Engine'.static.GetEngine()).SafeFrameScale );
+		}
+		else
 		{
 			MyGFxManager.OnProfileSettingsRead();
 		}
@@ -5477,38 +5565,33 @@ function UpdateRhythmCounterWidget( int Count, int Max )
  * Objective
  * Tell the objective that a player has accepted/denied the objective
  *********************************************************************************************/
-// Client accepts locally
-reliable client function ClientAcceptObj()
+function SetObjectiveUIActive(bool bActive)
 {
-	local KFGameReplicationInfo KFGRI;
-
-   	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-   	if( KFGRI != none && KFGRI.CurrentObjective != none )
-   	{
-		KFGRI.CurrentObjective.AcceptObj();
+	if(MyGFxHUD != none && MyGFxHUD.WaveInfoWidget != none
+	 	&& MyGFxHUD.WaveInfoWidget.ObjectiveContainer != none)
+	{
+		MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetActive(bActive);
 	}
 }
 
-reliable server function ServerAcceptObj()
+//pass value between 0 and 1 
+function UpdateObjectiveUIProgress(float Progress)
 {
-	local KFPlayerReplicationInfo KFPRI;
-	local KFGameReplicationInfo KFGRI;
+	if(MyGFxHUD != none && MyGFxHUD.WaveInfoWidget != none
+	 	&& MyGFxHUD.WaveInfoWidget.ObjectiveContainer != none)
+	{
+		MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetCurrentProgress(Progress);
+	}	
+}
 
-	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
-   	if( KFPRI != none )
-   	{
-   		KFPRI.bObjectivePlayer = true;
-   	}
 
-   	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-   	if( KFGRI != none && KFGRI.CurrentObjective != none )
-   	{
-		KFGRI.CurrentObjective.AddObjectivePlayer(PlayerReplicationInfo);
+function SetObjeciveUIIcon(string IconPath)
+{
+	if(MyGFxHUD != none && MyGFxHUD.WaveInfoWidget != none
+	 	&& MyGFxHUD.WaveInfoWidget.ObjectiveContainer != none)
+	{
+		MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetCurrentIcon(IconPath);
 	}
-
-	UpdateInteractionMessages( Pawn );
-	ClientAcceptObj();
-  	WorldInfo.Game.Broadcast(KFPRI, KFPRI.PlayerName @ "has accepted the Objective.");
 }
 
 /*********************************************************************************************
@@ -5855,6 +5938,7 @@ exec function changeSafeFrame(float frameScale)
 	local Vector2D ViewportSize;
 	local GameViewportClient GVC;
 
+	
 	GVC = MyGFxManager != None ? MyGFxManager.GetGameViewportClient() : MyGFxHUD != None ? MyGFxHUD.GetGameViewportClient() : None;
 
 	if ( GVC == None )
@@ -5866,7 +5950,7 @@ exec function changeSafeFrame(float frameScale)
 
 	if ( MyGFxManager != None )
 	{
-		MyGFxManager.SetViewport((ViewportSize.X-(ViewportSize.X*frameScale))/2,(ViewportSize.Y-(ViewportSize.Y*frameScale))/2,(ViewportSize.X*frameScale),(ViewportSize.Y*frameScale));
+		MyGFxManager.UpdateViewportSize((ViewportSize.X-(ViewportSize.X*frameScale))/2,(ViewportSize.Y-(ViewportSize.Y*frameScale))/2,(ViewportSize.X*frameScale),(ViewportSize.Y*frameScale));
 	}
 
 	if ( MyGFxHUD != None )
@@ -5884,6 +5968,30 @@ function SetUIScale(float fScale)
 	{
 		changeSafeFrame(fScale);
 	}
+}
+
+/*********************************************************************************************
+ * @name Stats Weekly and Special Event
+ *********************************************************************************************/
+
+function bool IsWeeklyEventComplete()
+{
+	if (StatsWrite != none)
+	{
+		return StatsWrite.IsWeeklyEventComplete();
+	}
+	`log("Stats write is none.  Cannont read weekly data");
+	return false;	
+}
+
+function bool IsEventObjectiveComplete(int Index)
+{
+	if (StatsWrite != none)
+	{
+		return StatsWrite.IsEventObjectiveComplete(Index);
+	}
+	`log("Stats write is none.  Cannont read event data");
+	return false;
 }
 
 /*********************************************************************************************
@@ -5926,13 +6034,27 @@ simulated event InitializeStats()
 		StatsRead.LinkedWriteObject = StatsWrite;
 
 		// We delay this for XB1 if we're still at the IIS since we haven't established the active user yet
-		if( !WorldInfo.IsConsoleBuild(CONSOLE_Durango) || KFGameViewportClient(class'Engine'.static.GetEngine().GameViewport).bSeenIIS )
+		if( !WorldInfo.IsConsoleBuild(CONSOLE_Durango) || KFGameViewportClient(class'Engine'.static.GetEngine().GameViewport).bSeenIIS ||
+			class'KFGameEngine'.static.CheckSkipLobby() )
 		{
 			ReadStats();
 		}
+
+        //Init timers to wait on stats read to kick weekly/special event UI information
+        SetTimer(RefreshObjectiveUITime, true, 'CheckSpecialEventID');
+        CheckSpecialEventID();
+        SetTimer(RefreshObjectiveUITime, true, 'CheckWeeklyEventID');
+        CheckWeeklyEventID();
 	}
 }
 
+simulated function LogStatValue(int StatId)
+{
+    if (StatsWrite != none)
+    {
+        StatsWrite.LogStatValue(StatId);
+    }
+}
 
 simulated function SetStatsReadOwningPlayerId( UniqueNetId InUniqueId )
 {
@@ -5968,10 +6090,48 @@ simulated function ReadStats()
 simulated function OnStatsInitialized( bool bWasSuccessful )
 {
 	local int i;
+	local KFGameEngine KFEngine;
+
 	if(OnlineSub != none)
 	{
 		OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate( OnStatsInitialized );
 	}
+
+	KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
+
+	// Attempt stats re-read if it fails for XB1. May be a network problem
+	if( !bWasSuccessful &&
+		WorldInfo.IsConsoleBuild(CONSOLE_Durango) && 
+		KFGameViewportClient(class'Engine'.static.GetEngine().GameViewport).bSeenIIS &&
+		KFEngine.CachedStatRows.Length > 0 )
+	{
+		bWasSuccessful = true;
+		// Copy previous data cached from the engine
+		StatsRead.Rows = KFEngine.CachedStatRows;
+	}
+	else if( bWasSuccessful && WorldInfo.IsConsoleBuild(CONSOLE_Durango) )
+	{
+		// Copy cached stat rows to engine in case we need them later in case of a network interruption
+		KFEngine.CachedStatRows = StatsRead.Rows;
+	}
+    //If we failed to read, don't allow writing
+    else if ( !bWasSuccessful )
+    {
+        if (StatsWrite == none)
+        {
+            `log(GetFuncName() $ ": Something has gone wrong, we have no stats write object.");
+        }
+        else
+        {
+            StatsWrite.NotifyReadFailure();
+        }        
+    }
+    
+    //On all platforms, notify of successful read
+    if (bWasSuccessful && StatsWrite != none)
+    {
+        StatsWrite.NotifyReadSucceeded();
+    }
 
 	StatsRead.OnStatsInitialized( bWasSuccessful );
 
@@ -5997,6 +6157,14 @@ simulated function OnStatsInitialized( bool bWasSuccessful )
 	}
 }
 
+
+`if(`notdefined(ShippingPC))
+exec function DumpStatsRead()
+{
+	StatsRead.DumpStats(LocalPlayer(Player).GetUniqueNetId());
+}
+`endif
+
 /** Called from the server at the end of a wave to write stats */
 reliable client function ClientWriteAndFlushStats()
 {
@@ -6006,7 +6174,13 @@ reliable client function ClientWriteAndFlushStats()
 		return;
 	}
 
-	if( OnlineSub != none && OnlineSub.StatsInterface != none && StatsWrite != none && !StatsWrite.HasCheated() )
+    //Only write if our stats writer is in a fully valid state.  It will have needed to:
+    //       - Not be cheating
+    //       - Not have had a read failure (Steam down, etc)
+    //       - Have successfully completed a stat read
+    //
+    //Since the stats write can be in any combination of these states, check against all 3.
+	if( OnlineSub != none && OnlineSub.StatsInterface != none && StatsWrite != none && !StatsWrite.HasCheated() && !StatsWrite.HasReadFailure() && StatsWrite.HasReadStats() )
 	{
 		`log(GetFuncName() @ "Writing and flushing stats to steam!", StatsWrite.bLogStatsWrite);
 		OnlineSub.StatsInterface.WriteOnlineStats('Game', PlayerReplicationInfo.UniqueId, StatsWrite);
@@ -6030,6 +6204,8 @@ reliable client function ClientWonGame( string MapName, byte Difficulty, byte Ga
 	if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() )
 	{
 		StatsWrite.OnGameWon( MapName, Difficulty, GameLength, bCoop, GetPerk().class );
+
+        CheckForEventMapCompletion(GetMapSpecialEventIndex(), MapObjectiveIndex, Difficulty);
 	}
 }
 
@@ -6042,21 +6218,48 @@ reliable client function ClientRoundEnded( byte WinningTeam )
 }
 
 /** Triggered when a special event meant to be tracked is completed.  The index is the bit turned on/off in the stats write object. */
-final function FinishedSpecialEvent(string MapName, int EventIndex, int ObjectiveIndex)
+final function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
-    if (IsValidSpecialEventMap(MapName))
+    if (IsValidSpecialEventMap())
     {
         ClientFinishedSpecialEvent(EventIndex, ObjectiveIndex);
     }
 }
-reliable final client function ClientFinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
+reliable final client event ClientFinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
-    if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() )
+    if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && IsValidSpecialEventMap() && !StatsWrite.IsEventObjectiveComplete(ObjectiveIndex))
 	{
 		StatsWrite.UpdateSpecialEvent( EventIndex, ObjectiveIndex );
+		if(MyGFxHUD != none && MyGFxHUD.LevelUpNotificationWidget != none && ((class'KFGameEngine'.static.GetSeasonalEventID() % 10) == EventIndex))
+		{
+			MyGFxHUD.LevelUpNotificationWidget.FinishedSpecialEvent(EventIndex, ObjectiveIndex);
+		}
+		if(MyGFxManager != none && MyGFxManager.StartMenu != none 
+				&& MyGFxManager.StartMenu.MissionObjectiveContainer != none)
+		{
+			MyGFxManager.StartMenu.MissionObjectiveContainer.Refresh();
+		}
 	}
 }
-native function bool IsValidSpecialEventMap(string MapName);
+
+// trigger that we finished a map, check for completion, and trigger stat update if needed
+simulated native function CheckForEventMapCompletion(int EventIndex, int ObjectiveIndex, int Difficulty);
+
+// whether or not the current map is on our list of valid special event maps
+simulated native function bool IsValidSpecialEventMap();
+
+// what the special event index of the current map is, -1 if not valid
+simulated native function int  GetMapSpecialEventIndex();
+
+native function bool IsValidWeeklySurvivalMatch();
+
+final function CompletedWeeklySurvival()
+{
+    if (IsValidWeeklySurvivalMatch())
+    {
+        ClientCompletedWeeklySurvival();
+    }
+}
 
 /** Triggered per-controller by KFGameInfo_WeeklySurvival when the map is completed. */
 reliable final client function ClientCompletedWeeklySurvival()
@@ -6077,11 +6280,6 @@ reliable client event ClientUnlockAchievement( int AchievementIndex, optional bo
 	if ( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && (bIsAchievementPlayer || bAlwaysUnlock) &&
 		!PlayerReplicationInfo.bOnlySpectator && !StatsWrite.HasCheated() && !StatsWrite.IsAchievementUnlocked(AchievementIndex) )
 	{
-
-`if(`notdefined(ShippingPC))
-		`QALog("- probably unlocking achievement "$AchievementIndex, true);
-`endif
-
 		if( WorldInfo.IsConsoleBuild( CONSOLE_Durango ) )
 		{
 			// Just toggle the stat relevent to this to on now, so the next stats write will trigger the achievement unlock.
@@ -6166,6 +6364,13 @@ function AddWeldPoints( int PointsWelded )
 	ClientAddWeldPoints( PointsWelded );
 }
 native reliable client private function ClientAddWeldPoints(int PointsWelded);
+
+/** Door repair secondary XP */
+function DoorRepaired()
+{
+    ClientDoorRepaired();
+}
+native reliable client private function ClientDoorRepaired();
 
 /** Healing stat */
 function AddHealPoints( int PointsHealed )
@@ -7949,7 +8154,7 @@ state Dead
 
 	function SetViewTarget( Actor NewViewTarget, optional ViewTargetTransitionParams TransitionParams )
 	{
-		if( PlayerCamera.CameraStyle == 'Boss' && KFPawn_MonsterBoss(NewViewTarget) != none )
+		if( PlayerCamera.CameraStyle == 'Boss' && KFPawn_Monster(NewViewTarget) != none && KFPawn_Monster(NewViewTarget).IsActiveBoss())
 		{
 			super.SetViewTarget( NewViewTarget, TransitionParams );
 		}
@@ -8673,14 +8878,35 @@ exec function DoEmote()
 `if(`notdefined(ShippingPC))
 exec function TestConnectionPopup(string Title, optional string Description)
 {
-	ShowConnectionProgressPopup(PMT_Information, Title,Description);
+	ShowConnectionProgressPopup(PMT_DownloadProgress, Title,Description);
 }
 `endif
 
-function CancelDownload()
+function ForceDisconnect()
 {
-	`log("Disconnecting!!!");
-	ConsoleCommand("DISCONNECT");
+	if(CanDisconnect())
+	{
+		ClearDownloadInfo();
+		ConsoleCommand("DISCONNECT");
+	}
+}
+
+function bool CanDisconnect()
+{
+	local string CurrentMovieString;
+
+	GetCurrentMovie(CurrentMovieString);
+
+	if(WorldInfo.bIsMenuLevel && !bDownloadingContent)
+	{
+		return false;
+	}
+	else if(CurrentMovieString == "")
+	{
+		return false;
+	}
+
+	return true;
 }
 
 reliable client event bool ShowConnectionProgressPopup( EProgressMessageType ProgressType, string ProgressTitle, string ProgressDescription, bool SuppressPasswordRetry = false)
@@ -8737,8 +8963,15 @@ reliable client event bool ShowConnectionProgressPopup( EProgressMessageType Pro
         	}
         break;
         case	PMT_AdminMessage :
+        	MyGFxManager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, CachedTitle, CachedMessage, "", "", None, None, class'KFCommon_LocalizedStrings'.default.CancelString);
+        	return true;
         case    PMT_DownloadProgress :
-	        MyGFxManager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, CachedTitle, CachedMessage, "", "", None, None, class'KFCommon_LocalizedStrings'.default.CancelString, CancelDownload);
+        	bDownloadingContent = true;
+        	if(MyGFxManager != none && MyGFxManager.PartyWidget != none)
+			{
+				MyGFxManager.PartyWidget.ShowDownLoadNotification(CachedTitle, float(CachedMessage));
+			}        	
+	        //MyGFxManager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, CachedTitle, CachedMessage, "", "", None, None, class'KFCommon_LocalizedStrings'.default.CancelString, CancelDownload);
 	        return true;
         break;
     }
@@ -8793,6 +9026,8 @@ function ClearOnlineDelegates()
 		{
 			OnlineSub.PlayerInterface.ClearReadProfileSettingsCompleteDelegate(LocalPlayer(Player).ControllerId, OnReadProfileSettingsComplete);
 		}
+
+		OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate( OnStatsInitialized );
 	}
 
 	super.ClearOnlineDelegates();
@@ -8859,17 +9094,9 @@ exec function GCF()
 function OnControllerChanged(int ControllerId,bool bIsConnected,bool bPauseGame)
 {
 	local LocalPlayer LP;
-	local bool bActiveUserEstablished;
 
 	// Don't worry about remote players
 	LP = LocalPlayer(Player);
-
-	// Ensure we've established an active user
-	if( MyGFxManager != none )
-	{
-		bActiveUserEstablished = KFGameViewportClient(MyGFxManager.GetGameViewportClient()).bSeenIIS;
-		bActiveUserEstablished = bActiveUserEstablished || ( MyGFxManager.IISMenu != none && MyGFxManager.IISMenu.bLoggingIn );
-	}
 
 	// Ignore any controller changed notifications when we don't have an active one
 	if( !class'Engine'.static.GetEngine().GameViewport.bNeedsNewGamepadPairingForControllerDisconnect &&
@@ -8878,7 +9105,7 @@ function OnControllerChanged(int ControllerId,bool bIsConnected,bool bPauseGame)
 		LP != None &&
 		LP.ControllerId == ControllerId &&
 		!bIsConnected &&
-		bActiveUserEstablished )
+		HasActiveUserEstablished() )
 	{
 
 		// Toggle menus if not actively open
@@ -8914,7 +9141,6 @@ function OnControllerChanged(int ControllerId,bool bIsConnected,bool bPauseGame)
 simulated function ShowControllerDisconnectedDialog()
 {
 	local string DisconnectMessage;
-	local bool bActiveUserEstablished;
 
 	if (WorldInfo.IsConsoleBuild(CONSOLE_Durango))
 	{
@@ -8925,11 +9151,8 @@ simulated function ShowControllerDisconnectedDialog()
 		DisconnectMessage = "ControllerDisconnectedPS4Message";
 	}
 
-	bActiveUserEstablished = KFGameViewportClient(MyGFxManager.GetGameViewportClient()).bSeenIIS;
-	bActiveUserEstablished = bActiveUserEstablished || (MyGFxManager.IISMenu != none && MyGFxManager.IISMenu.bLoggingIn);
-
 	// Only show this past the IIS
-	if( bActiveUserEstablished )
+	if( HasActiveUserEstablished() )
 	{
 		MyGFxManager.DelayedOpenPopup(EConfirmation, EDPPID_ControllerDisconnect, Localize("Notifications", "ControllerDisconnectedTitle", "KFGameConsole"), Localize("Notifications", DisconnectMessage, "KFGameConsole"), class'KFCommon_LocalizedStrings'.default.OKString, "", OnControllerDisconnectDialogDismissed);
 	}
@@ -8976,6 +9199,13 @@ simulated function CheckForConnectedControllers()
 	{
 		ShowControllerDisconnectedDialog();
 	}
+}
+
+
+simulated function bool HasActiveUserEstablished()
+{
+	return KFGameViewportClient(class'Engine'.static.GetEngine().GameViewport).bSeenIIS || 
+		( MyGFxManager != none && MyGFxManager.IISMenu != none && MyGFxManager.IISMenu.bLoggingIn );
 }
 
 
@@ -9158,7 +9388,7 @@ function CheckPrivilegesForMultiplayer()
 	{
 		MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_JoinFailure,
 			Localize("Notifications", "MultiplayerNotAllowed_Title", "KFGameConsole"),
-			Localize("Notifications", "NotConnectedForOnlinePlay", "KFGameConsole"),
+			Localize("Notifications", "NotConnectedForOnlinePlayXB1", "KFGameConsole"),
 			class'KFCommon_LocalizedStrings'.default.OKString);
 
 		OnLoginCompleted(false);
@@ -9223,6 +9453,12 @@ function OnPlayfabLoginComplete(bool bWasSuccessful, string SessionTicket, strin
 	// Kick off title data read
 	PlayfabInter.AddTitleDataReadCompleteDelegate(OnClientTitleDataRead);
 	PlayfabInter.ReadTitleData();
+
+	// Xbox players get exclusive rewards. Try and claim them now if they haven't been already claimed
+	if( WorldInfo.IsConsoleBuild( CONSOLE_Durango ) )
+	{
+		PlayfabInter.ExecuteCloudScript( "ClaimXboxExclusives", none );
+	}
 }
 
 
@@ -9244,14 +9480,14 @@ function OnClientTitleDataRead()
 
 
 simulated function PerformLogout()
-{
+{	
 	// Clear the stats read/write objects. They need to be recreated
 	StatsRead = none;
 	StatsWrite = none;
 
 	// Reinitialize stats
 	InitializeStats();
-
+	ClearDownloadInfo();
 	if (WorldInfo.bIsMenuLevel)
 	{
 		// Quit matchmaking
@@ -9261,11 +9497,21 @@ simulated function PerformLogout()
 		}
 
 		// Re-initialize the frontend menu so all settings can be reset properly
+		MyGFxManager.Close();
 		MyGFxManager = none;
+
+		// Clear login delegate
+		LoginCompleteCallback = none;
+
+		// Ensure this gets reset properly
+		KFGameViewportClient( class'Engine'.static.GetEngine().GameViewport ).bSeenIIS = false;
+		KFGameViewportClient( class'Engine'.static.GetEngine().GameViewport ).bAllowInputFromMultipleControllers = true;
+
 		ClientSetFrontEnd( KFGameInfo(WorldInfo.Game).KFGFxManagerClass );
 	}
 	else
 	{
+
 		ConsoleCommand("open KFMainMenu");
 	}
 }
@@ -9466,4 +9712,6 @@ defaultproperties
     BenefactorDoshReq=1000
 
     NextSpectatorDelay=2.0
+
+    RefreshObjectiveUITime=1.0f
 }

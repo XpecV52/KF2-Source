@@ -52,5 +52,5 @@ function ShutDown()
 
 defaultproperties
 {
-    EffectSocketName=Hips
+    EffectSocketName=hips
 }

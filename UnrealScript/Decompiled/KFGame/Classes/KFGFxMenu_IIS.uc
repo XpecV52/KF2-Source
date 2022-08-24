@@ -79,7 +79,13 @@ event OnClose()
     UnRegisterDelegates();
 }
 
-function UnRegisterDelegates();
+function UnRegisterDelegates()
+{
+    OnlineSub.PlayerInterface.ClearLoginCancelledDelegate(OnLoginCancelled);
+    OnlineSub.PlayerInterface.ClearLoginStatusChangeDelegate(OnLoginStatusChanged, byte(Outer.GetLP().ControllerId));
+    OnlineSub.PlayerInterface.ClearReadProfileSettingsCompleteDelegate(byte(Outer.GetLP().ControllerId), OnReadProfileSettingsComplete);
+    OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnStatsRead);
+}
 
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent)
 {
@@ -98,7 +104,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
         {
             if(Class'WorldInfo'.static.IsConsoleBuild(9) && ButtonName == 'XboxTypeS_Y')
             {
-                if(ValidateActiveAccount(byte(ControllerId)))
+                if(!bLoggingIn && ValidateActiveAccount(byte(ControllerId)))
                 {
                     OnlineSub.PlayerInterface.ShowLoginUI(byte(ControllerId));
                 }
@@ -189,6 +195,11 @@ function LoginToGame()
     SetBool("showLoading", true);
     if(Class'WorldInfo'.static.IsConsoleBuild(9))
     {
+        OnlineSub.PlayerInterface.Logout(byte(Outer.GetLP().ControllerId));
+        if(PlayfabInter != none)
+        {
+            PlayfabInter.Logout();
+        }
         PlayerDataDS = UIDataStore_OnlinePlayerData(Class'UIInteraction'.static.GetDataStoreClient().FindDataStore('OnlinePlayerData', Outer.GetLP()));
         OnlineSub.PlayerInterface.AddReadProfileSettingsCompleteDelegate(byte(Outer.GetLP().ControllerId), OnReadProfileSettingsComplete);
         OnlineSub.PlayerInterface.ReadProfileSettings(byte(Outer.GetLP().ControllerId), OnlineProfileSettings(PlayerDataDS.ProfileProvider.Profile));        
@@ -220,7 +231,6 @@ function OnLoginToGameComplete()
 {
     if((OnlineSub.PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) != 2) && Class'WorldInfo'.static.IsConsoleBuild(9))
     {
-        Manager.DelayedOpenPopup(2, 7, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), "LoggedOutMessage", Class'KFCommon_LocalizedStrings'.default.OKString);
         return;
     }
     KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus = 2;
@@ -248,12 +258,31 @@ function ProceedToMainMenu()
     Manager.OpenMenu(0);
     bLoggingIn = false;
     Class'KFGameEngine'.static.InitEventContent();
-    Class'Engine'.static.GetEngine().GameViewport.bAllowInputFromMultipleControllers = false;
-    if((Class'WorldInfo'.static.IsConsoleBuild(9) && !Manager.bSetGamma) && !Class'KFGameEngine'.static.CheckSkipGammaCheck())
+    if(Manager != none)
     {
-        PC.SetTimer(0.01, false, 'DelayedOpenGammaPopup', self);
+        Manager.UpdateBackgroundMovie();
+        if(Manager.StartMenu.MissionObjectiveContainer != none)
+        {
+            Manager.StartMenu.MissionObjectiveContainer.UpdateMissionObjectiveState();
+        }
+        PC.UpdateSeasonalState();
     }
-    if(Class'WorldInfo'.static.IsConsoleBuild(9) && !OnlineSub.SystemInterface.IsControllerConnected(Outer.GetLP().ControllerId))
+    Class'Engine'.static.GetEngine().GameViewport.bAllowInputFromMultipleControllers = false;
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        if(!Manager.CachedProfile.HasSafeFrameSet())
+        {
+            Manager.OpenScreenSizeMovie();            
+        }
+        else
+        {
+            if(!Manager.bSetGamma && !Class'KFGameEngine'.static.CheckSkipGammaCheck())
+            {
+                PC.SetTimer(0.01, false, 'DelayedOpenGammaPopup', self);
+            }
+        }
+    }
+    if((Class'WorldInfo'.static.IsConsoleBuild(9) && !OnlineSub.SystemInterface.IsControllerConnected(Outer.GetLP().ControllerId)) && !Class'Engine'.static.GetEngine().GameViewport.bNeedsNewGamepadPairingForNewProfile)
     {
         PC.SetTimer(0.01, false, 'ShowControllerDisconnectedDialog');
     }
@@ -274,5 +303,9 @@ function DelayedOpenGammaPopup()
 
 function NotifyLoginFailed()
 {
+    if((OnlineSub.PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) != 2) && Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        return;
+    }
     ProceedToMainMenu();
 }

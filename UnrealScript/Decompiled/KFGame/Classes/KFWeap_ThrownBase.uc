@@ -226,7 +226,13 @@ simulated state WeaponThrowing extends WeaponSingleFiring
     simulated event BeginState(name PreviousStateName)
     {
         local name WeaponFireAnimName;
+        local KFPerk InstigatorPerk;
 
+        InstigatorPerk = GetPerk();
+        if(InstigatorPerk != none)
+        {
+            SetZedTimeResist(InstigatorPerk.GetZedTimeModifier(self));
+        }
         LogInternal(((((((((string(WorldInfo.TimeSeconds) @ "Self:") @ string(self)) @ "Instigator:") @ string(Instigator)) @ string(GetStateName())) $ "::") $ string(GetFuncName())) @ "PreviousStateName:") @ string(PreviousStateName), 'Inventory');
         ConsumeAmmo(CurrentFireMode);
         if((Instigator != none) && Instigator.IsFirstPerson())

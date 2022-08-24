@@ -9,6 +9,11 @@ class KFWeap_Pistol_DualFlare extends KFWeap_DualBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter()
+{
+    return 4;
+}
+
 defaultproperties
 {
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)

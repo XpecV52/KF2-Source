@@ -48,6 +48,8 @@ var(Effects) array<KFSkinTypeEffects> ImpactSkins;
 	vertically downwards. If not specified, the root bone (index 0) will be used as blood pool origin */
 var(Gore) name BloodPoolOriginBoneName;
 
+/** Character MICs index to use for gameplay effects */
+var(Effects) int GoreFXMICIdx;
 
 /************************************************************************/
 /* Character Portrait
@@ -117,6 +119,7 @@ defaultproperties
 	SoundGroupArch=KFPawnSoundGroup'FX_Pawn_Sounds_ARCH.DefaultPawnSounds'
 
 	DefaultMeshScale=1.f
+    GoreFXMICIdx=0
 
 	ImpactSkins[0]=KFSkinTypeEffects'FX_Impacts_ARCH.SkinTypes.Flesh'
 	ImpactSkins[1]=KFSkinTypeEffects'FX_Impacts_ARCH.SkinTypes.Skull'

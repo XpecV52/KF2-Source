@@ -7,8 +7,8 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
 class AICommand_Siren_Scream extends AICommand_SpecialMove
-	within KFAIController_ZedSiren
-	config(AI);
+    within KFAIController_ZedSiren
+    config(AI);
 
 
 /** The range the siren won't scream if she is closer than */
@@ -20,53 +20,69 @@ var int MaxScreamRangeSQ;
 * Initialization
 ********************************************************************************************* */
 
-static function bool Scream( KFAIController_ZedSiren AI )
+static function bool Scream(KFAIController_ZedSiren AI)
 {
-	local AICommand_Siren_Scream Cmd;
+    local AICommand_Siren_Scream Cmd;
 
-	if( AI != None )
-	{
-		Cmd = new(AI) Default.Class;
-		if( Cmd != None )
-		{
-			AI.PushCommand(Cmd);
-			return TRUE;
-		}
-	}
+    if (AI != None)
+    {
+        Cmd = new(AI) Default.Class;
+        if (Cmd != None)
+        {
+            AI.PushCommand(Cmd);
+            return TRUE;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 function LockdownAI();
 
 state Command_SpecialMove
 {
-	event HandleAICommandSpecialAction()
-	{
-		super.HandleAICommandSpecialAction();
+    event HandleAICommandSpecialAction()
+    {
+        super.HandleAICommandSpecialAction();
 
-		if( CanScream() )
-		{
-			MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), GetSpecialMoveFlags(SpecialMove));
-		}
-	}
+        if (CanScream())
+        {
+            MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), GetSpecialMoveFlags(SpecialMove));
+        }
+    }
 
-	function ESpecialMove GetSpecialMove()
-	{
-		return default.SpecialMove;
-	}
+    function ESpecialMove GetSpecialMove()
+    {
+        return default.SpecialMove;
+    }
 
-	function bool CanScream()
-	{
-		local vector EnemyLocation, MyEyeLocation;
-		local float RangeToEnemySQ;
-		local KFGameInfo KFGI;
+    function bool ExecuteSpecialMove()
+    {
+        if (CanScream())
+        {
+            return super.ExecuteSpecialMove();
+        }
 
+        return false;
+    }
+
+    function bool CanScream()
+    {
+        local vector EnemyLocation, MyEyeLocation;
+        local float RangeToEnemySQ;
+        local KFGameInfo KFGI;
+
+        //Put this on cooldown if we attempted to scream with valid cooldown so it doesn't get stuck in a loop of failing
+        if ((WorldInfo.TimeSeconds - LastScreamTime) < ScreamCooldown && LastScreamTime != 0.f)
+        {
+            return false;
+        }        
+
+        LastScreamTime = WorldInfo.TimeSeconds;
 		if( Enemy != none
 			&& WorldInfo.TimeSeconds > ScreamDelayTime
 			&& (DoorEnemy == none || DoorEnemy.IsCompletelyOpen())
 			&& (!bShouldCheckSpecialMove || MyKFPawn.CanDoSpecialMove(SpecialMove))
-			&& (LastScreamTime == 0.f || (WorldInfo.TimeSeconds - LastScreamTime) > ScreamCooldown)
 			&& CheckOverallCooldownTimer()
 			&& MyKFPawn.IsCombatCapable()
 			&& !GetIsInZedVictoryState() )
@@ -78,8 +94,7 @@ state Command_SpecialMove
 
 			if( RangeToEnemySQ < MaxScreamRangeSQ && RangeToEnemySQ > MinScreamRangeSQ
 				&& class'KFGameEngine'.static.FastTrace_PhysX(EnemyLocation, MyEyeLocation) )
-			{
-				LastScreamTime = WorldInfo.TimeSeconds;
+			{	
 				KFGI = KFGameInfo( WorldInfo.Game );
 	        	if( KFGI != none && KFGI.GameConductor != none )
 	        	{

@@ -17,7 +17,7 @@ var class<KFGFxMoviePlayer_HUD> HUDClass;
 var KFGFxMoviePlayer_HUD   HudMovie;
 
 /** Cached reference to the boss pawn */
-var KFPawn_MonsterBoss BossPawn;
+var KFPawn_Monster BossPawn;
 
 /*********************************************************************************************
 `* Initialization

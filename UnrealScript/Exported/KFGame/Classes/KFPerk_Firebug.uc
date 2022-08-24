@@ -365,7 +365,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	}
 
 	CooldownModifier = 1.f;
-	return 1.f;
+	return 0.f;
 }
 
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
@@ -406,7 +406,7 @@ simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
  */
 simulated final private function bool IsBringTheHeatActive()
 {
-	return PerkSkills[EFirebugBringTheHeat].bActive;
+	return PerkSkills[EFirebugBringTheHeat].bActive && IsPerkLevelAllowed(EFirebugBringTheHeat);
 }
 
 /**
@@ -416,7 +416,7 @@ simulated final private function bool IsBringTheHeatActive()
  */
 simulated function bool IsHighCapFuelTankActive()
 {
-	return PerkSkills[EFirebugHighCapFuelTank].bActive;
+	return PerkSkills[EFirebugHighCapFuelTank].bActive && IsPerkLevelAllowed(EFirebugHighCapFuelTank);
 }
 
 /**
@@ -426,7 +426,7 @@ simulated function bool IsHighCapFuelTankActive()
  */
 simulated final private function bool IsFuseActive()
 {
-	return PerkSkills[EFirebugFuse].bActive;
+	return PerkSkills[EFirebugFuse].bActive && IsPerkLevelAllowed(EFirebugFuse);
 }
 
 /**
@@ -436,7 +436,7 @@ simulated final private function bool IsFuseActive()
  */
 simulated final private function bool IsGroundFireActive()
 {
-	return PerkSkills[EFirebugGroundFire].bActive;
+	return PerkSkills[EFirebugGroundFire].bActive && IsPerkLevelAllowed(EFirebugGroundFire);
 }
 
 simulated function bool IsFlarotovActive()
@@ -451,7 +451,7 @@ simulated function bool IsFlarotovActive()
  */
 simulated final private function bool IsHeatWaveActive()
 {
-	return PerkSkills[EFirebugSplashDamage].bActive;
+	return PerkSkills[EFirebugSplashDamage].bActive && IsPerkLevelAllowed(EFirebugSplashDamage);
 }
 
 /**
@@ -461,7 +461,7 @@ simulated final private function bool IsHeatWaveActive()
  */
 simulated final private function bool IsZedShrapnelActive()
 {
-	return PerkSkills[EFirebugZedShrapnel].bActive;
+	return PerkSkills[EFirebugZedShrapnel].bActive && IsPerkLevelAllowed(EFirebugZedShrapnel);
 }
 
 /**
@@ -471,7 +471,7 @@ simulated final private function bool IsZedShrapnelActive()
  */
 simulated final private function bool IsNapalmActive()
 {
-	return PerkSkills[EFirebugNapalm].bActive;
+	return PerkSkills[EFirebugNapalm].bActive && IsPerkLevelAllowed(EFirebugNapalm);
 }
 
 /**
@@ -481,7 +481,7 @@ simulated final private function bool IsNapalmActive()
  */
 simulated function bool IsRangeActive()
 {
-	return PerkSkills[EFirebugRange].bActive;
+	return PerkSkills[EFirebugRange].bActive && IsPerkLevelAllowed(EFirebugRange);
 }
 
 /**
@@ -501,7 +501,7 @@ simulated final private function bool IsSplashDamageActive()
  */
 simulated final private function bool IsInfernoActive()
 {
-	return PerkSkills[EFirebugInferno].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[EFirebugInferno].bActive && WorldInfo.TimeDilation < 1.f && IsPerkLevelAllowed(EFirebugInferno);
 }
 
 /**
@@ -521,7 +521,7 @@ simulated final private function bool GetScorchActive()
  */
 simulated final private function bool IsScorchActive()
 {
-	return PerkSkills[EFirebugScorch].bActive;
+	return PerkSkills[EFirebugScorch].bActive && IsPerkLevelAllowed(EFirebugScorch);
 }
 
 

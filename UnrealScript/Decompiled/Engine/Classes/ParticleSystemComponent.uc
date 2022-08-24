@@ -236,6 +236,7 @@ var const transient array<ParticleSystem> ExtensionTemplates;
 var class<ParticleLightEnvironmentComponent> LightEnvironmentClass;
 var transient Actor LightEnvironmentSharedInstigator;
 var transient int MaxLightEnvironmentPooledReuses;
+var transient int NumActiveParticles;
 var native const transient array<Pointer> EmitterInstances;
 var private duplicatetransient const transient array<export editinline StaticMeshComponent> SMComponents;
 var private duplicatetransient const transient array<MaterialInterface> SMMaterialInterfaces;

@@ -9,6 +9,11 @@ class KFWeap_Edged_Knife extends KFWeap_MeleeBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated function bool AllowedForAllPerks()
+{
+    return true;
+}
+
 defaultproperties
 {
     MaxChainAtkCount=4

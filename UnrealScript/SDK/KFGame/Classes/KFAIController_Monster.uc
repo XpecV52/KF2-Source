@@ -91,6 +91,8 @@ function InitPlayerReplicationInfo()
 /** Set MyKFPawn to avoid casting */
 event Possess( Pawn inPawn, bool bVehicleTransition )
 {
+    local KFGameReplicationInfo KFGRI;
+
 	if( KFPawn_Monster(inPawn) != none )
 	{
 		MyKFPawn = KFPawn_Monster( inPawn );
@@ -103,6 +105,16 @@ event Possess( Pawn inPawn, bool bVehicleTransition )
 	super.Possess( inPawn, bVehicleTransition );
 
 	SetPawnDefaults();
+
+    if (MyKFPawn != None && MyKFPawn.IsActiveBoss())
+    {
+        // Play entrance animation
+        KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
+        if( KFGRI != none && KFGRI.WaveNum >= KFGRI.WaveMax )
+        {
+            class'AICommand_BossTheatrics'.static.DoTheatrics( self, THEATRIC_Entrance );
+        }
+    }
 }
 
 function SetPawnDefaults()
@@ -345,7 +357,7 @@ function bool CanDoStrike()
 
 	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true,
 	TraceStepLocation = Pawn.Location + (vect(0,0,-1) * (Pawn.CylinderComponent.CollisionHeight * 0.5f));
-	HitActor = ActorBlockTest( Enemy.Location, TraceStepLocation,, !bCanStrikeThroughEnemies );
+	HitActor = ActorBlockTest( Pawn, Enemy.Location, TraceStepLocation,, !bCanStrikeThroughEnemies );
 	if( HitActor != none && HitActor != Enemy )
 	{
 		if( HitActor.bWorldGeometry )
@@ -355,7 +367,7 @@ function bool CanDoStrike()
 		}
 
 		// Try again at eyeheight
-		HitActor = ActorBlockTest( Enemy.Location + (vect(0,0,1) * Enemy.BaseEyeHeight), Pawn.Location + (vect(0,0,1) * Pawn.BaseEyeHeight),, !bCanStrikeThroughEnemies );
+		HitActor = ActorBlockTest( Pawn, Enemy.Location + (vect(0,0,1) * Enemy.BaseEyeHeight), Pawn.Location + (vect(0,0,1) * Pawn.BaseEyeHeight),, !bCanStrikeThroughEnemies );
 		if( HitActor != None && HitActor != Enemy && (!bCanStrikeThroughEnemies || HitActor.bWorldGeometry) )
 		{
 			return false;
@@ -445,7 +457,7 @@ function bool HandleZedBlockedPath()
 	local actor HitActor;
 	local KFPawn_Monster HitMonster;
 
-	HitActor = ActorBlockTest( Enemy.Location + vect(0,0,1) * (Enemy.BaseEyeHeight * 0.5f), MyKFPawn.Location + vect(0,0,1) * (MyKFPawn.BaseEyeHeight * 0.5f), MyKFPawn.GetCollisionExtent() * vect(0.2f,0.2f,0.2f), true );
+	HitActor = ActorBlockTest( Pawn, Enemy.Location + vect(0,0,1) * (Enemy.BaseEyeHeight * 0.5f), MyKFPawn.Location + vect(0,0,1) * (MyKFPawn.BaseEyeHeight * 0.5f), MyKFPawn.GetCollisionExtent() * vect(0.2f,0.2f,0.2f), true );
 	if( HitActor == none || HitActor == Enemy )
 	{
 		return false;
@@ -497,6 +509,16 @@ event RunOverWarning( KFPawn IncomingKFP, float IncomingSpeedSquared, vector Run
 		Delay = ( VSize(IncomingKFP.Location - MyKFPawn.Location) / Sqrt(IncomingSpeedSquared) ) * RunOverEvadeDelayScale;
 		DoEvade( GetBestEvadeDir(RunOverPoint,, false), IncomingKFP,, Delay, true );
 	}
+}
+
+state ZedVictory
+{
+Begin:
+    Sleep(0.1f);
+    if (MyKFPawn != none && MyKFPawn.IsActiveBoss())
+    {
+        class'AICommand_BossTheatrics'.static.DoTheatrics( self, THEATRIC_Victory, -1 );
+    }    
 }
 
 DefaultProperties

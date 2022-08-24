@@ -312,9 +312,9 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 {
     if(IsSmashActive())
     {
-        return 1 + GetSmashStumbleModifier();
+        return GetSmashStumbleModifier();
     }
-    return 1;
+    return 0;
 }
 
 static final function float GetSmashStumbleModifier()
@@ -426,22 +426,22 @@ private static final function float GetParryDamageModifier()
 
 private final function bool IsFortitudeActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 private final simulated function bool IsNinjaActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 private final simulated function bool IsVampireActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 private final simulated function bool IsSpeedActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 simulated function bool PerkNeedsTick()
@@ -466,12 +466,12 @@ simulated function SetSuccessfullParry()
 
 simulated function bool IsParryActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 simulated function bool IsResistanceActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
 simulated event bool GetParryActive()
@@ -486,12 +486,12 @@ simulated function bool HasNightVision()
 
 protected final simulated event bool IsSmashActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
 private final simulated function bool IsFuryActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 function bool CanNotBeGrabbed()
@@ -501,22 +501,31 @@ function bool CanNotBeGrabbed()
 
 private final simulated event bool IsRageActive()
 {
-    return PerkSkills[8].bActive && WorldInfo.TimeDilation < 1;
+    return (PerkSkills[8].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(8);
 }
 
 private final simulated event bool IsSpartanActive()
 {
-    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
+    return (PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9);
 }
 
 private final simulated event bool CouldSpartanBeActive()
 {
-    return PerkSkills[9].bActive;
+    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
 }
 
 simulated function bool IsFastInZedTime()
 {
-    return PerkSkills[9].bActive;
+    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
+}
+
+simulated event bool ShouldUseFastInstigatorDilation(KFWeapon Weap)
+{
+    if((PerkSkills[9].bActive && Weap != none) && IsPerkLevelAllowed(9))
+    {
+        return Weap.GetWeaponPerkClass(default.Class) == default.Class;
+    }
+    return false;
 }
 
 simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect(class<KFDamageType> dmgType)
@@ -567,8 +576,8 @@ defaultproperties
     PerkName="Berserker"
     Passives(0)=(Title="Berserker Damage",Description="Perk weapon damage increases x%x per level",IconPath="")
     Passives(1)=(Title="Damage Resistance",Description="Damage resistance increases x%x every 5 levels",IconPath="")
-    Passives(2)=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles",IconPath="")
-    Passives(3)=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker",IconPath="")
+    Passives(2)=(Title="Night Vision Capability",Description="Flashlight - AND Night Vision Goggles",IconPath="")
+    Passives(3)=(Title="Clots cannot grab you",Description="Clots can't hold on to a Berserker",IconPath="")
     Passives(4)=(Title="",Description="",IconPath="")
     SkillCatagories[0]="Survival"
     SkillCatagories[1]="Combat"

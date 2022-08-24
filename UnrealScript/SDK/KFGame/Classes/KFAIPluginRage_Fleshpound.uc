@@ -44,6 +44,12 @@ event TickRage()
 	}
 }
 
+function DoSpawnRage()
+{
+	AIActionStatus = "Enraged!";
+	GotoState( 'Enraged' );
+}
+
 /** Checks if it's possible to enter rage */
 function bool CanDoRage()
 {

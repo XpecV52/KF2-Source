@@ -183,8 +183,8 @@ function SetGrenadeInfo(out SItemInformation GrenadeInfo, out int AutoFillCost)
     AmmoPricePerMagazine = GrenadeInfo.AmmoPricePerMagazine;
 
 	SlotObject = CreateObject("Object");	
-	SlotObject.SetString("itemSource", "img://"$KFPC.CurrentPerk.GrenadeWeaponDef.static.GetImagePath());
-	SlotObject.SetString("itemName", KFPC.CurrentPerk.GrenadeWeaponDef.static.GetItemName());
+	SlotObject.SetString("itemSource", "img://" $ GrenadeInfo.DefaultItem.WeaponDef.static.GetImagePath());
+	SlotObject.SetString("itemName", GrenadeInfo.DefaultItem.WeaponDef.static.GetItemName());
 
 	FillCost = KFPC.GetPurchaseHelper().GetFillGrenadeCost();
 	MagCost = (GrenadeInfo.SpareAmmoCount != GrenadeInfo.MaxSpareAmmo) ? GrenadeInfo.AmmoPricePerMagazine : 0;

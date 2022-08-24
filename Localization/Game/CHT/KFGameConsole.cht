@@ -16,6 +16,7 @@ KF-HostileGrounds="正在進行：敵營"
 KF-ZedLanding="正在進行：僵屍群登陸"
 KF-TheDescent="正在進行：地下鐵"
 KF-Nuked="正在進行：核電廠"
+KF-TragicKingdom="正在進行：悲慘王國"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -144,7 +145,6 @@ ErrorNoPlayfabDescription="無法連線至遊戲主伺服器。請稍後再試�
 ErrorTSSFailedDescription="無法連線至遊戲平衡伺服器。請確定你有連線至網際網路，然後再試一次。"
 NotSignedInTitle="未登入。"
 
-
 [Notifications]
 ControllerDisconnectedTitle="已中斷連接控制器"
 ControllerDisconnectedPS4Message="已中斷連接無線控制器。請重新連接開啟遊戲的使用者的無線控制器。"
@@ -174,7 +174,6 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="檢視玩家個人檔案"
-ViewProfileStringXB1="查看玩家卡片"
 
 [KFGFxObject_Menu]
 ResetDefaults="你確定要重設至預設值嗎？"
@@ -194,15 +193,12 @@ ControllerSound="控制器音效"
 MatchmakingRegionString="地區"
 LeaveMenuString="離開配對也會解散你的隊伍"
 
-[KFGFxMenu_Store]
-
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="地區"
 MapPreference="偏好地圖"
 
 [KFGFxMenu_Exit]
-HeaderStringXB1="登出"
 LogoutKF2="回到標題畫面"
 
 [Misc]

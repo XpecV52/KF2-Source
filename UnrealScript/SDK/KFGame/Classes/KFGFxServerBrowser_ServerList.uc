@@ -322,9 +322,11 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
 	{
 		Search.AddGametagFilter(GametagSearch, 'NumWaves', string(Length));
 	}
-	
+
+	//`log("bCustom="$Filters.bCustom);	
 	if(Filters.bCustom && !class'WorldInfo'.static.IsConsoleBuild() )
 	{
+		//`log("adding custom filter");	
 		Search.TestAddBoolGametagFilter(GametagSearch, Filters.bCustom, 'bCustom', 0);
 	}
 	

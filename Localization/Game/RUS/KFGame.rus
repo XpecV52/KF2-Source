@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="Открытый"
 ConsolePermissionStrings[1]="По приглашению"
 
 ModeStrings[0]="Выживание"
-ModeStrings[1]="Выживание VS"
+ModeStrings[1]="Еженедельно"
+ModeStrings[2]="Выживание в бою"
 
 NoPreferenceString="ЛЮБОЙ"
 OKString="ОК"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="Навык можно менять один раз за 
 YesString="Да"
 NoString="Нет"
 TeamSwappedString="Вам сменили команду"
+
+CancelConnectionString="Отменить загрузку"
 
 DisbandPartyString="РАСПУСТИТЬ ГРУППУ"
 LeaveCurrentMenuString="Выйти из текущего меню?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="Предметы не куплены"
 SetTakeoverServerPasswordTitle="Введите пароль для защиты игры:"
 FreeConsolePlayOverString="Благодарим вас за интерес к игре Killing Floor 2! Бесплатное событие завершено, но вы можете купить игру и получить дополнительные сведения, нажав кнопку «Магазин»."
 BuyGameString="МАГАЗИН"
+CustomString="Настроить"
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="НАГРАДА ЗА ПРОХОЖДЕНИЕ ВСПЫШКИ"
+WeeklyString="ЕЖЕНЕДЕЛЬНАЯ ВСПЫШКА HORZINE"
+CurrentWeeklySettingsString="НАСТРОЙКИ ТЕКУЩЕЙ ВСПЫШКИ"
+SpecialEventString="ЛЕТНИЙ АТТРАКЦИОН"
+ShortWeeklyString="ЕЖЕНЕДЕЛЬНО"
+SeasonalString="ЕЖЕСЕЗОННО"
+SpecialEventChanceDropString="ВРЕМЕННО ВЫПАДАЮЩИЕ ПРЕДМЕТЫ"
+GrantedSpecialEventString="НАГРАДА ЗА ЗАВЕРШЕНИЕ"
+RewardsString="НАГРАДА ЗА ПРОХОЖДЕНИЕ ВСПЫШКИ"
+WeeklyOverview="Новый захватывающий режим игры каждую неделю!"
+ObjectivesString="Переключить цели"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="НЕ УДАЛОСЬ НАЙТИ ИГРУ"
@@ -115,8 +133,9 @@ TutorialString="Начальный обучения"
 
 [StartMenuHelperText]
 modeList0="Выживание — бой с волнами мутантов, управляемых компьютером"
-modeList1="Выживание VS — наемники Horzine против волн мутантов, управляемых игроками и компьютером"
-modeList2=""
+modeList1="Еженедельная вспышка — новый режим игры каждую неделю."
+modeList2="Выживание VS — наемники Horzine против волн мутантов, управляемых игроками и компьютером"
+modeList3=""
 difficultyList0="Обычная — для начинающих игроков с уровнем навыка 0–5."
 difficultyList1="Трудная — для опытных игроков с уровнем навыка 6–12. В каждой волне больше мутантов, они быстрее движутся и у них больше здоровья. Денег и предметов для подбора меньше."
 difficultyList2="Убийственная — для бывалых игроков с уровнем навыка 13–25. В каждой волне еще больше мутантов; они применяют новые атаки и движутся еще быстрее. Денег и предметов для подбора еще меньше."
@@ -666,6 +685,7 @@ DamageDealtString="Нанесено урона:"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ГОТОВО]"
 WaitingString="ОЖИДАНИЕ ИГРОКОВ"
+MatchOverString="БОЙ ЗАКОНЧЕН \n Подождите..."
 DeployingString="ДО ВЫБРОСКИ: "
 CreatePartyString="СОЗДАТЬ ГРУППУ"
 ReadyString="ПОДГОТОВИТЬ"
@@ -840,6 +860,7 @@ CancelString="ОТМЕНА"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="НОВЫЙ УРОВЕНЬ"
 TierUnlockedString="ОТКРЫТЫ НОВЫЕ УМЕНИЯ"
+ObjectiveCompleteString="ЦЕЛЬ ВЫПОЛНЕНА"
 
 [KFGFxHUD_WaveInfo]
 WaveString="ВОЛНА"
@@ -924,6 +945,7 @@ ConfigureMicString="НАСТРОИТЬ МИКРОФОН"
 VocalsString="Вокал музыки"
 BattleChatterString="Мин. переговоры в бою "
 PushToVoIPString="Переходить на VoIP"
+ScreenSizeString="ОТРЕГУЛИРОВАТЬ РАЗМЕР ЭКРАНА"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Применить настройки изображения?"
@@ -1322,6 +1344,7 @@ MapCollectibleName="некоторый шик за деньги"
 WaveStartMessage="ИДЕТ ВОЛНА"
 WaveEndMessage="ВОЛНА ПРОЙДЕНА"
 GetToTraderMessage="Идите к кабине Торговца"
+ScavengeMessage="Поиск"
 YouLostMessage="ПОРАЖЕНИЕ"
 YouWonMessage="ПОБЕДА"
 SquadWipedOutMessage="Ваш отряд уничтожен!"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>ЛЕЧИТЬ СЕБЯ"
 PressToBashWarning="СИЛЬНЫЙ УДАР"
 GamepadWeaponSelectHint="<%HOLD%>ВЫБОР ОРУЖИЯ"
 PlayerClotGrabWarningMessage="УБЕЙТЕ МУТАНТА, ЧТОБЫ ОСВОБОДИТЬСЯ!"
-UseMinigameMessage="АКТИВИРОВАТЬ МИНИ-ИГРУ"
+UseMinigameMessage="АКТИВИРОВАТЬ"
 UseMinigameGeneratorMessage="АКТИВИРОВАТЬ ГЕНЕРАТОР"
 
 [KFLocalMessage_ServerNotification]
@@ -1774,6 +1797,7 @@ Passives[2]=(Title="Сопротивление к урону огнем мута
 Passives[3]=(Title="Сопротивление к своему огню",Description="Дает 25% сопротивление к своему огню, которое растет на %x% за уровень");
 Passives[4]=(Title="Начальный боезапас",Description="Начальный боезапас растет на %x% каждые пять уровней");
 
+
 BringTheHeat="Дай жару"
 BringTheHeatDescription="Урон зажигательного оружия растет на 35%."
 
@@ -2008,7 +2032,6 @@ Passives[1]=(Title="Сопротивление ко всему урону",Descr
 Passives[2]=(Title="Тяжелый бронежилет",Description="%x% за каждый уровень (макс. 25%) не теряет здоровье от урона, пока есть броня.");
 Passives[3]=(Title="Заряжание при замедлении времени",Description="При замедлении времени заряжание ускоряется на %x% за уровень");
 
-
 HeavyWeaponsReload="Обучение с тяжелым оружием"
 HeavyWeaponsReloadDescription="Повышает скорость заряжания оружия для подрывника, меткого стрелка и бойца поддержки."
 
@@ -2162,6 +2185,7 @@ Forums="Зайдите на форумы нашего сообщества"
 Survey="Пройти опрос по игре"
 CommunityTracker="Отследить запросы в сообществе"
 FeaturedCrateKey="Популярный ключ от ящика Horzine — $2,49"
+FeaturedEventItem="Ивентовый предмет"
 FeaturedUsbKey="Поп. USB-ключ для вн. вида оружия — $2,49"
 FeaturedRareItem="Популярный редкий предмет — $3,99"
 FeaturedExceptionalItem="Популярный выдающийся предмет — $7,49"
@@ -2177,20 +2201,22 @@ PS4WeaponSkinCrate2="Ящик Horzine с вн. видом оружия | Тип 
 Artbook="Цифровой альбом графики Killing Floor 2"
 Uncovered="Фильм "Killing Floor: Без прикрытия""
 NewEmotes="Новое! Ключ к ящику с эмоцией - $2,49"
-HorzineSupplyCrateKey10="Ключ от ящика Horzine | Тип 10 - $2.49"
-HorzineSupplyCrateKey11="Ключ от ящика Horzine | Тип 11 - $2.49"
-HorzineSupplyCrateKey12="Ключ от ящика Horzine | Тип 12 - $2.49"
-HorzineSupplyCrateKey13="Ключ от ящика Horzine | Тип 13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+HorzineSupplyCrateKey10="Ключ от ящика Horzine | Тип 10 — 2,49 долл. США"
+HorzineSupplyCrateKey11="Ключ от ящика Horzine | Тип 11 — 2,49 долл. США"
+HorzineSupplyCrateKey12="Ключ от ящика Horzine | Тип 12 — 2,49 долл. США"
+HorzineSupplyCrateKey13="Ключ от ящика Horzine | Тип 13 — 2,49 долл. США"
+USBSpitfire="USB-ключ «Злопыхатель» — 2,49 долл. США"
+USBHighVoltage="USB-ключ «Высокое напряжение» — 2,49 долл. США"
+MerchSale="Скидки в KF2! 25% до 30.04.17, промокод — ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Толстяк"
 KFPawn_ZedClot="Зомби"
 KFPawn_ZedCrawler="Ползун"
 KFPawn_ZedCrawlerKing="Элитный ползун"
+KFPawn_ZedFleshpoundMini="Мини-отбивальщик"
 KFPawn_ZedFleshPound="Отбивальщик"
+KFPawn_ZedFleshpoundKing="Король-отбивальщик"
 KFPawn_ZedGorefast="Берсеркер"
 KFPawn_ZedGorefastDualBlade="Берсерк с 2 мечами"
 KFPawn_ZedHans="Д-р Ганс Вольтер"
@@ -2319,6 +2345,119 @@ KFWeap_Zweihander="Реклама рыцарства"
 
 
 Source0="Реклама рыцарства"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="Выпадение 1"
+ChanceDropDescriptionStrings[1]="Выпадение 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="Ограниченное по времени особое мероприятие, где можно получить эксклюзивные предметы."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Включить питание",DescriptionString="Запустить генератор в Королевстве Трагедий");
+SpecialEventObjectiveInfoList[1]=(TitleString="Вмазать зомби",DescriptionString="Вмазать зомби в Королевстве Трагедий");
+SpecialEventObjectiveInfoList[2]=(TitleString="Двинуть толстяку",DescriptionString="Двинуть толстяку в Королевстве Трагедий");
+SpecialEventObjectiveInfoList[3]=(TitleString="Швыряться деньгами",DescriptionString="Швыряться деньгами в Королевстве Трагедий");
+SpecialEventObjectiveInfoList[4]=(TitleString="Карнавал",DescriptionString="Выиграть бой в Королевстве Трагедий, сложный или выше");
+
+AllCompleteRewardDescriptionString="Защитный костюм для аттракциона"
+
+ChanceDropDescriptionStrings[0]="Аттракцион: призовой билет"
+ChanceDropDescriptionStrings[1]="Аттракцион: золотой билет"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="Текущая вспышка: Крушитель черепов"
+DescriptionStrings[0]="Лучший удар — удар по мозгам."
+DescriptionStrings[1]="Длина: Средняя (7 волн)"
+ModifierDescriptions[0]="В этой вспышке вам придется столкнуться с мутантами, которых можно вырубить, только ударив по голове. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="Текущая вспышка: Маленький кошмар"
+DescriptionStrings[0]="Маленькая угроза — всё равно угроза."
+DescriptionStrings[1]="Длина: Средняя (7 волн)"
+ModifierDescriptions[0]="Когда вы стреляете по мутантам во время этой вспышки, они уменьшаются, и в них сложнее попасть. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="Текущая вспышка: Отбивальщики"
+DescriptionStrings[0]="Сплошные отбивальщики. Ну, почти."
+DescriptionStrings[1]="Длина: Средняя (7 волн)"
+ModifierDescriptions[0]="В городе проходит конвенция отбивальщиков! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="Текущая вспышка: Полет гнили"
+DescriptionStrings[0]="Постарайтесь сделать 99 воздушных шаров из мутантов."
+DescriptionStrings[1]="Длина: Средняя (7 волн)"
+ModifierDescriptions[0]="Когда вы стреляете в мутантов во время этой катастрофы, они раздуваются, как воздушные шары, улетают и лопаются! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="Текущая вспышка: Время мутантов"
+DescriptionStrings[0]="Всё время мира принадлежит мутантам."
+DescriptionStrings[1]="Длина: Короткая (4 волны)"
+ModifierDescriptions[0]="Вам когда-нибудь казалось, что жизнь проходит мимо вас? Что ж, только не во время этой вспышки! Всякий раз, когда рядом окажется мутант, вы попадете во время мутантов. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="Текущая вспышка: Ба-бах"
+DescriptionStrings[0]="Мутанты под давлением; взрывоопасно."
+DescriptionStrings[1]="Длина: Средняя (7 волн)"
+ModifierDescriptions[0]="Может, они съели что-то не то? Или это газ? Что бы это ни было, убитые во время этой вспышки мутанты взрываются. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="Текущая вспышка: Качки"
+DescriptionStrings[0]="Чем больше шкаф, тем громче вы падаете."
+DescriptionStrings[1]="Длина: Средняя (7 волн)"
+ModifierDescriptions[0]="Во время этой вспышки мутанты увеличиваются в размерах, поправляют здоровье и становятся сильнее, когда бьют игроков или попадают под воздействие мутантских способностей. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="Текущая вспышка: Головастики"
+DescriptionStrings[0]="...у них наверняка болят шеи."
+DescriptionStrings[1]="Длина: Средняя (7 волн)"
+ModifierDescriptions[0]="С этой толпой мутантов что-то очень сильно не так: их головы намно-о-го больше обычного! Они просто огромные! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2700,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Биотич. лаборатория"
 
@@ -2572,6 +2727,9 @@ DisplayName="Париж в огне"
 
 [Survival KFGameInfoSummary]
 GameName="Выживание"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="Еженедельно"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Поместье Вольтера"
@@ -2608,6 +2766,9 @@ DisplayName="Спуск"
 
 [KF-Nuked KFMapSummary]
 DisplayName="Ядерный удар"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="Королевство Трагедий"
 
 [KFMapInfo]
 ; defaults

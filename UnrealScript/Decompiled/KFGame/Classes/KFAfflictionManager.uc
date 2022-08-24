@@ -43,6 +43,7 @@ enum EAfflictionType
     AF_Knockdown,
     AF_Freeze,
     AF_Microwave,
+    AF_Bleed,
     AF_Custom1,
     AF_Custom2,
     AF_Custom3,
@@ -114,7 +115,8 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
 {
     local KFAfflictionManager.EHitZoneBodyPart BodyPart;
     local byte HitZoneIdx;
-    local float KnockdownPower, StumblePower, StunPower, SnarePower;
+    local float KnockdownPower, StumblePower, StunPower, SnarePower, KnockdownModifier, StumbleModifier,
+	    StunModifier;
 
     if(IsZero(HitDir))
     {
@@ -126,13 +128,22 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     StumblePower = DamageType.default.StumblePower;
     StunPower = DamageType.default.StunPower;
     SnarePower = DamageType.default.SnarePower;
+    KnockdownModifier = 1;
+    StumbleModifier = 1;
+    StunModifier = 1;
+    KnockdownModifier += (GetAfflictionKnockdownModifier());
+    StumbleModifier += (GetAfflictionStumbleModifier());
+    StunModifier += (GetAfflictionStunModifier());
     if(InstigatorPerk != none)
     {
-        KnockdownPower *= InstigatorPerk.GetKnockdownPowerModifier(DamageType, BodyPart, Outer.bIsSprinting);
-        StumblePower *= InstigatorPerk.GetStumblePowerModifier(Outer, DamageType,, BodyPart);
-        StunPower *= InstigatorPerk.GetStunPowerModifier(DamageType, HitZoneIdx);
-        SnarePower *= InstigatorPerk.GetSnarePowerModifier(DamageType, HitZoneIdx);
+        KnockdownModifier += InstigatorPerk.GetKnockdownPowerModifier(DamageType, BodyPart, Outer.bIsSprinting);
+        StumbleModifier += InstigatorPerk.GetStumblePowerModifier(Outer, DamageType,, BodyPart);
+        StunModifier += InstigatorPerk.GetStunPowerModifier(DamageType, HitZoneIdx);
+        SnarePower += InstigatorPerk.GetSnarePowerModifier(DamageType, HitZoneIdx);
     }
+    KnockdownPower *= KnockdownModifier;
+    StumblePower *= StumbleModifier;
+    StunPower *= StunModifier;
     if((KnockdownPower > float(0)) && Outer.CanDoSpecialMove(6))
     {
         AccrueAffliction(8, KnockdownPower, BodyPart);
@@ -218,6 +229,10 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
         if(DamageType.default.MicrowavePower > float(0))
         {
             AccrueAffliction(10, DamageType.default.MicrowavePower);
+        }
+        if(DamageType.default.BleedPower > float(0))
+        {
+            AccrueAffliction(11, DamageType.default.BleedPower);
         }
     }
 }
@@ -312,6 +327,111 @@ function float GetAfflictionDuration(KFAfflictionManager.EAfflictionType Type)
     }
 }
 
+function float GetAfflictionKnockdownModifier()
+{
+    local float KnockdownModifier;
+    local int I;
+
+    KnockdownModifier = 0;
+    I = 0;
+    J0x1A:
+
+    if(I < Afflictions.Length)
+    {
+        if(Afflictions[I] != none)
+        {
+            KnockdownModifier += Afflictions[I].GetKnockdownModifier();
+        }
+        ++ I;
+        goto J0x1A;
+    }
+    return KnockdownModifier;
+}
+
+function float GetAfflictionStumbleModifier()
+{
+    local float StumbleModifier;
+    local int I;
+
+    StumbleModifier = 0;
+    I = 0;
+    J0x1A:
+
+    if(I < Afflictions.Length)
+    {
+        if(Afflictions[I] != none)
+        {
+            StumbleModifier += Afflictions[I].GetStumbleModifier();
+        }
+        ++ I;
+        goto J0x1A;
+    }
+    return StumbleModifier;
+}
+
+function float GetAfflictionStunModifier()
+{
+    local float StunModifier;
+    local int I;
+
+    StunModifier = 0;
+    I = 0;
+    J0x1A:
+
+    if(I < Afflictions.Length)
+    {
+        if(Afflictions[I] != none)
+        {
+            StunModifier += Afflictions[I].GetStunModifier();
+        }
+        ++ I;
+        goto J0x1A;
+    }
+    return StunModifier;
+}
+
+function float GetAfflictionDamageModifier()
+{
+    local float DamageModifier;
+    local int I;
+
+    DamageModifier = 1;
+    I = 0;
+    J0x1A:
+
+    if(I < Afflictions.Length)
+    {
+        if(Afflictions[I] != none)
+        {
+            DamageModifier += Afflictions[I].GetDamageModifier();
+        }
+        ++ I;
+        goto J0x1A;
+    }
+    return DamageModifier;
+}
+
+function float GetAfflictionSpeedModifier()
+{
+    local float SpeedModifier;
+    local int I;
+
+    SpeedModifier = 1;
+    I = 0;
+    J0x1A:
+
+    if(I < Afflictions.Length)
+    {
+        if(Afflictions[I] != none)
+        {
+            SpeedModifier *= Afflictions[I].GetSpeedModifier();
+        }
+        ++ I;
+        goto J0x1A;
+    }
+    return SpeedModifier;
+}
+
 simulated function ShutDown()
 {
     local int I;
@@ -358,7 +478,7 @@ function UpdateMaterialParameter(KFAfflictionManager.EAfflictionType Type, float
     }
     if((Type >= Afflictions.Length) || Afflictions[Type] == none)
     {
-        if((Value <= float(0)) || !VerifyAfflictionInstance(Type))
+        if((Value == float(0)) || !VerifyAfflictionInstance(Type))
         {
             return;
         }
@@ -379,4 +499,5 @@ defaultproperties
     AfflictionClasses(8)=class'KFAffliction_Knockdown'
     AfflictionClasses(9)=class'KFAffliction_Freeze'
     AfflictionClasses(10)=class'KFAffliction_Microwave'
+    AfflictionClasses(11)=class'KFAffliction_Bleed'
 }

@@ -17,10 +17,13 @@ var const bool bEnableStaticMeshRBPhys;
 var const bool bIgnoreBlockingVolumes;
 var protected const bool bUseLowHealthDelay;
 var protected bool bUseAuthorityRBUpdate;
+var bool bEmptyPickup;
 var protectedwrite export editinline MeshComponent MyMeshComp;
 var protectedwrite export editinline CylinderComponent MyCylinderComp;
 var private int SkinItemId;
 var protected float PostAuthorityChangeLifeSpan;
+var protected float PickupDelay;
+var LinearColor EmptyPickupColor;
 
 replication
 {
@@ -28,7 +31,7 @@ replication
         RBState, bUseAuthorityRBUpdate;
 
      if(bNetInitial)
-        SkinItemId;
+        SkinItemId, bEmptyPickup;
 }
 
 simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
@@ -43,6 +46,7 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
         if((Inventory != none) && Inventory.IsA('KFWeapon'))
         {
             SkinItemId = KFWeapon(Inventory).SkinItemId;
+            bEmptyPickup = !KFWeapon(Inventory).HasAnyAmmo();
         }
         SetTimer(LifeSpan, false, 'TryFadeOut');
     }
@@ -109,6 +113,24 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
             {
                 MyMeshComp.SetMaterial(0, SkinMICs[0]);
             }
+        }
+        if(bEmptyPickup)
+        {
+            SetEmptyMaterial();
+        }
+    }
+}
+
+simulated function SetEmptyMaterial()
+{
+    local MaterialInstanceConstant MeshMIC;
+
+    if(MyMeshComp != none)
+    {
+        MeshMIC = MyMeshComp.CreateAndSetMaterialInstanceConstant(0);
+        if(MeshMIC != none)
+        {
+            MeshMIC.SetVectorParameterValue('GlowColor', EmptyPickupColor);
         }
     }
 }
@@ -325,6 +347,10 @@ auto state Pickup
         {
             return false;
         }
+        if((WorldInfo.TimeSeconds - CreationTime) < PickupDelay)
+        {
+            return false;
+        }
         if(Other == Instigator)
         {
             if(((bUseLowHealthDelay && float(Instigator.Health / Instigator.HealthMax) <= 0.2) && (WorldInfo.TimeSeconds - CreationTime) < 1) || (WorldInfo.TimeSeconds - CreationTime) < 0.1)
@@ -396,6 +422,7 @@ defaultproperties
     bUseLowHealthDelay=true
     bUseAuthorityRBUpdate=true
     PostAuthorityChangeLifeSpan=5
+    EmptyPickupColor=(R=0.75,G=0,B=0,A=1)
     begin object name=Sprite class=SpriteComponent
         ReplacementPrimitive=none
     object end

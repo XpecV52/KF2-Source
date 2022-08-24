@@ -126,6 +126,7 @@ defaultproperties
 {
    PickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh'
    bUseLowHealthDelay=False
+   PickupDelay=0.200000
    Begin Object Class=SpriteComponent Name=Sprite Archetype=SpriteComponent'KFGame.Default__KFDroppedPickup:Sprite'
       Sprite=Texture2D'EditorResources.S_Inventory'
       SpriteCategoryName="Inventory"

@@ -155,6 +155,7 @@ function ResetGamma()
 
 function Callback_ClosedPopup()
 {
+	Manager.bSetGamma = true;
 	Manager.CachedProfile.Save( GetLP().ControllerId );
     Super.Callback_Closedpopup();
 }

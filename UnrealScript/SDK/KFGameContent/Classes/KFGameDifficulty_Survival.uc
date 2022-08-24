@@ -41,5 +41,6 @@ defaultproperties
    		AmmoPickupsMod=0.250000,
    		ItemPickupsMod=0.100000,
    		MediumAttackChance=1.000000,
-   		HardAttackChance=1.000000)}
+         HardAttackChance=1.000000,
+         SelfInflictedDamageMod=0.50000)}
 }

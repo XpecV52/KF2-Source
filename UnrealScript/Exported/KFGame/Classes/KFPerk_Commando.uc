@@ -331,10 +331,10 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	KFW = GetOwnerWeapon();
 	if( IsImpactActive() && IsWeaponOnPerk( KFW,, self.class ) )
 	{
-		return 1.f + GetSkillValue( PerkSkills[ECommandoImpact] );
+		return GetSkillValue( PerkSkills[ECommandoImpact] );
 	}
 
-	return 1.f;
+	return 0.f;
 }
 
 /**
@@ -409,12 +409,12 @@ simulated function bool HasNightVision()
  */
 simulated protected function bool IsRapidFireActive()
 {
-	return PerkSkills[ECommandoRapidFire].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[ECommandoRapidFire].bActive && WorldInfo.TimeDilation < 1.f && IsPerkLevelAllowed(ECommandoRapidFire);
 }
 
 simulated protected function bool CouldRapidFireActive()
 {
-	return PerkSkills[ECommandoRapidFire].bActive;
+	return PerkSkills[ECommandoRapidFire].bActive && IsPerkLevelAllowed(ECommandoRapidFire);
 }
 
 /**
@@ -424,7 +424,7 @@ simulated protected function bool CouldRapidFireActive()
  */
 simulated final private function bool IsLargeMagActive()
 {
-	return PerkSkills[ECommandoLargeMags].bActive;
+	return PerkSkills[ECommandoLargeMags].bActive && IsPerkLevelAllowed(ECommandoLargeMags);
 }
 
 /**
@@ -434,7 +434,7 @@ simulated final private function bool IsLargeMagActive()
  */
 simulated final private function bool IsBackupActive()
 {
-	return PerkSkills[ECommandoBackup].bActive;
+	return PerkSkills[ECommandoBackup].bActive && IsPerkLevelAllowed(ECommandoBackup);
 }
 
 /**
@@ -444,7 +444,7 @@ simulated final private function bool IsBackupActive()
  */
 simulated private function bool IsHollowPointsActive()
 {
-	return PerkSkills[ECommandoHollowPoints].bActive;
+	return PerkSkills[ECommandoHollowPoints].bActive && IsPerkLevelAllowed(ECommandoHollowPoints);
 }
 
 /**
@@ -454,7 +454,7 @@ simulated private function bool IsHollowPointsActive()
  */
 simulated final private function bool IsTacticalReloadActive()
 {
-	return PerkSkills[ECommandoTacticalReload].bActive;
+	return PerkSkills[ECommandoTacticalReload].bActive && IsPerkLevelAllowed(ECommandoTacticalReload);
 }
 
 /**
@@ -464,7 +464,7 @@ simulated final private function bool IsTacticalReloadActive()
  */
 final private function bool IsImpactActive()
 {
-	return PerkSkills[ECommandoImpact].bActive;
+	return PerkSkills[ECommandoImpact].bActive && IsPerkLevelAllowed(ECommandoImpact);
 }
 
 /**
@@ -474,7 +474,7 @@ final private function bool IsImpactActive()
  */
 final private function bool IsHealthIncreaseActive()
 {
-	return PerkSkills[ECommandoHealthIncrease].bActive;
+	return PerkSkills[ECommandoHealthIncrease].bActive && IsPerkLevelAllowed(ECommandoHealthIncrease);
 }
 
 /**
@@ -484,7 +484,7 @@ final private function bool IsHealthIncreaseActive()
  */
 final private function bool IsEatLeadActive()
 {
-	return PerkSkills[ECommandoEatLead].bActive;
+	return PerkSkills[ECommandoEatLead].bActive && IsPerkLevelAllowed(ECommandoEatLead);
 }
 
 /**
@@ -494,7 +494,7 @@ final private function bool IsEatLeadActive()
  */
 final private function bool IsAmmoVestActive()
 {
-	return PerkSkills[ECommandoAmmoVest].bActive;
+	return PerkSkills[ECommandoAmmoVest].bActive && IsPerkLevelAllowed(ECommandoAmmoVest);
 }
 
 /**
@@ -504,7 +504,7 @@ final private function bool IsAmmoVestActive()
  */
 simulated final private function bool IsProfessionalActive()
 {
-	return PerkSkills[ECommandoProfessional].bActive;
+	return PerkSkills[ECommandoProfessional].bActive && IsPerkLevelAllowed(ECommandoProfessional);
 }
 
 
@@ -591,11 +591,11 @@ simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM, vector Camera
 
 	if( KFPM.bCrawler && KFPM.Floor.Z <=  -0.7f && KFPM.Physics == PHYS_Spider )
 	{
-		TargetLocation = KFPM.Location + vect(0,0,-1) * KFPM.GetCollisionHeight() * 1.2;
+		TargetLocation = KFPM.Location + vect(0,0,-1) * KFPM.GetCollisionHeight() * 1.2 * KFPM.CurrentBodyScale;
 	}
 	else
 	{
-		TargetLocation = KFPM.Location + vect(0,0,1) * KFPM.GetCollisionHeight() * 1.2;
+		TargetLocation = KFPM.Location + vect(0,0,1) * KFPM.GetCollisionHeight() * 1.2 * KFPM.CurrentBodyScale;
 	}
 
 	ScreenPos = C.Project( TargetLocation );
@@ -606,7 +606,7 @@ simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM, vector Camera
 
 	if( class'KFGameEngine'.static.FastTrace_PhysX(TargetLocation, CameraLocation) )
 	{
-		HealthScale = float(KFPM.Health) / float(KFPM.HealthMax);
+		HealthScale = FClamp( float(KFPM.Health) / float(KFPM.HealthMax), 0.f, 1.f );
 
 		C.EnableStencilTest( true );
 		C.SetDrawColor(0, 0, 0, 255);
@@ -685,8 +685,8 @@ defaultproperties
    Passives(1)=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level")
    Passives(2)=(Title="Zed Time Extension",Description="Zed time increases %x% every 5 levels")
    Passives(3)=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels")
-   Passives(4)=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles")
-   Passives(5)=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units")
+   Passives(4)=(Title="Night Vision Capability",Description="Flashlights - AND Night Vision Goggles")
+   Passives(5)=(Title="Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units")
    SkillCatagories(0)="Ammo Management"
    SkillCatagories(1)="Tactics"
    SkillCatagories(2)="Survival"

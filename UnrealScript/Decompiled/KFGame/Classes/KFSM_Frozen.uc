@@ -146,6 +146,7 @@ function OnGoreMeshSwap()
 function SetFrozenParameter(float FreezeAmount)
 {
     local MaterialInstanceConstant MIC;
+    local int I, J;
 
     if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -154,6 +155,30 @@ function SetFrozenParameter(float FreezeAmount)
         {
             MIC.SetScalarParameterValue('Scalar_Ice', FreezeMatParamValue);            
         }        
+        I = 0;
+        J0xBB:
+
+        if(I < 3)
+        {
+            if(KFPOwner.ThirdPersonAttachments[I] != none)
+            {
+                J = 0;
+                J0x104:
+
+                if(J < KFPOwner.ThirdPersonAttachments[I].Materials.Length)
+                {
+                    MIC = MaterialInstanceConstant(KFPOwner.ThirdPersonAttachments[I].GetMaterial(J));
+                    if(MIC != none)
+                    {
+                        MIC.SetScalarParameterValue('Scalar_Ice', FreezeMatParamValue);
+                    }
+                    ++ J;
+                    goto J0x104;
+                }
+            }
+            ++ I;
+            goto J0xBB;
+        }
     }
 }
 

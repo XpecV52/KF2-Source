@@ -81,25 +81,35 @@ function UpdateRatio(optional float fScale)
     local float ScaleStage;
 
     fScale = 1;
-    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        ScaleStage = Class'Engine'.static.GetTitleSafeArea();        
+        ScaleStage = Class'Engine'.static.GetEngine().GetTitleSafeArea();        
     }
     else
     {
         ScaleStage = fScale;
     }
-    GFxStage = KFGXHUDManager.GetObject("stage");
-    GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1 - ScaleStage)) / float(2));
-    GFxStage.SetFloat("y", (GFxStage.GetFloat("height") * (1 - ScaleStage)) / float(2));
-    GFxStage.SetFloat("scaleX", ScaleStage);
-    GFxStage.SetFloat("scaleY", ScaleStage);
+    GFxStage = ((KFGXHUDManager != none) ? KFGXHUDManager.GetObject("stage") : none);
+    if(GFxStage != none)
+    {
+        GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1 - ScaleStage)) / float(2));
+        GFxStage.SetFloat("y", (GFxStage.GetFloat("height") * (1 - ScaleStage)) / float(2));
+        GFxStage.SetFloat("scaleX", ScaleStage);
+        GFxStage.SetFloat("scaleY", ScaleStage);
+    }
 }
 
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
     switch(WidgetName)
     {
+        case 'ObjectiveContainer':
+            if((WaveInfoWidget != none) && WaveInfoWidget.ObjectiveContainer == none)
+            {
+                WaveInfoWidget.ObjectiveContainer = KFGFxHUD_ObjectiveConatiner(Widget);
+                WaveInfoWidget.ObjectiveContainer.SetVisible(false);
+            }
+            break;
         case 'bossHealthBar':
             if(bossHealthBar == none)
             {

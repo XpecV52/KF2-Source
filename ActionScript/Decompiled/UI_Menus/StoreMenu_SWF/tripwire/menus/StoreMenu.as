@@ -43,8 +43,11 @@ package tripwire.menus
                 this.coverBGTween.reverse();
                 if(this.itemDetails.bOpen)
                 {
-                    this.itemDetails.closeContainer();
-                    this.storeMainContainer.selectContainer();
+                    if(this.itemDetails.bReadyForInput)
+                    {
+                        this.itemDetails.closeContainer();
+                        this.storeMainContainer.selectContainer();
+                    }
                 }
                 else if(!this.storeMainContainer.leftSideFocused)
                 {

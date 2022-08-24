@@ -121,7 +121,15 @@ function OpenDelayTimer()
 	GI = KFGameInfo_Tutorial(class'WorldInfo'.static.GetWorldInfo().Game);
 	if ( GI != None )
 	{
-		GI.CreateTutorialHUD(self, true);
+		// Don't play this if load screen is still up
+		if( class'KFGameEngine'.static.IsFullScreenMoviePlaying() )
+		{
+			GI.SetTimer( 0.05, false, nameof(OpenDelayTimer), self );
+		}
+		else
+		{
+			GI.CreateTutorialHUD(self, true);
+		}
 	}
 }
 

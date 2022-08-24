@@ -14,7 +14,6 @@ package tripwire.containers
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
-    import scaleform.gfx.FocusManager;
     import tripwire.managers.MenuManager;
     
     public class TripContainer extends UIComponent
@@ -35,7 +34,7 @@ package tripwire.containers
         
         protected var _defaultAlpha:Number;
         
-        protected var _dimmedAlpha:Number = 0.7;
+        protected var _dimmedAlpha:Number = 0.6;
         
         protected const ANIM_TIME = 4;
         
@@ -200,7 +199,7 @@ package tripwire.containers
             {
                 stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             }
-            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen && this.currentElement.visible)
+            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen && !MenuManager.manager.bPartyWidgetFocused && this.currentElement.visible)
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;
@@ -285,6 +284,10 @@ package tripwire.containers
         
         protected function onInputChange(param1:Event) : *
         {
+            if(!this.bManagerUsingGamepad)
+            {
+                this.unDimSides();
+            }
         }
         
         override public function handleInput(param1:InputEvent) : void
@@ -374,6 +377,30 @@ package tripwire.containers
             this.showDimLeftSide(true);
         }
         
+        public function unDimSides() : void
+        {
+            var _loc1_:int = 0;
+            var _loc2_:int = 0;
+            if(this.leftSidePanels.length > 0)
+            {
+                _loc1_ = 0;
+                while(_loc1_ < this.leftSidePanels.length)
+                {
+                    this.leftSidePanels[_loc1_].alpha = this._defaultAlpha;
+                    _loc1_++;
+                }
+            }
+            if(this.rightSidePanels.length > 0)
+            {
+                _loc2_ = 0;
+                while(_loc2_ < this.rightSidePanels.length)
+                {
+                    this.rightSidePanels[_loc2_].alpha = this._defaultAlpha;
+                    _loc2_++;
+                }
+            }
+        }
+        
         protected function openAnimation(param1:Boolean = true) : *
         {
             if(!this.bManagerUsingGamepad)
@@ -398,6 +425,10 @@ package tripwire.containers
         
         protected function closeAnimation() : *
         {
+            if(!MenuManager.manager.bPartyWidgetFocused)
+            {
+                FocusHandler.getInstance().setFocus(null);
+            }
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,this.ANIM_TIME,{
                 "z":this.ANIM_START_Z,
@@ -411,7 +442,6 @@ package tripwire.containers
                 "useFrames":true,
                 "onComplete":this.onClosed
             });
-            FocusManager.setFocus(null);
         }
         
         protected function pushToBackAnimation() : *

@@ -289,7 +289,10 @@ function UpdateOverviewInGame()
     local string GameDifficultyString;
     local float CurrentGameDifficulty;
     local int CurrentLengthIndex, CurrentPrivacyIndex;
+    local bool bCustomDifficulty, bCustomLength;
 
+    bCustomLength = false;
+    bCustomDifficulty = false;
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
@@ -298,14 +301,14 @@ function UpdateOverviewInGame()
         CurrentGameDifficulty = float(KFGRI.GameDifficulty);
         if(float(LastDifficultyIndex) != CurrentGameDifficulty)
         {
-            GameDifficultyString = Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(CurrentGameDifficulty);
+            GameDifficultyString = ((bCustomDifficulty) ? Class'KFCommon_LocalizedStrings'.default.CustomString : Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(CurrentGameDifficulty));
             UpdateDifficulty(GameDifficultyString);
             LastDifficultyIndex = byte(CurrentGameDifficulty);
         }
         CurrentLengthIndex = KFGRI.GameLength;
         if(LastLengthIndex != CurrentLengthIndex)
         {
-            UpdateLength(Class'KFCommon_LocalizedStrings'.static.GetLengthString(float(CurrentLengthIndex)));
+            UpdateLength(((bCustomLength) ? Class'KFCommon_LocalizedStrings'.default.CustomString : Class'KFCommon_LocalizedStrings'.static.GetLengthString(float(CurrentLengthIndex))));
             LastLengthIndex = byte(CurrentLengthIndex);
         }
         UpdateServerType(Class'KFCommon_LocalizedStrings'.static.GetServerTypeString(float(int(KFGRI.bCustom))));

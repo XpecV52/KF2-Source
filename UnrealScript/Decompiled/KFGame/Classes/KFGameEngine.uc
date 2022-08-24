@@ -57,6 +57,7 @@ var float PadVolumeMultiplier;
 var float VOIPVolumeMultiplier;
 var float GammaMultiplier;
 var config float FOVOptionsPercentageValue;
+var array<OnlineStatsRow> CachedStatRows;
 var transient delegate<HandshakeCompleteCallback> OnHandshakeComplete;
 var KFGameEngine.EConnectionError LastConnectionError;
 var Engine.OnlineSubsystem.ELoginStatus LocalLoginStatus;
@@ -226,7 +227,7 @@ function OnLoginChange(byte LocalUserNum)
     local OnlinePlayerInterface PlayerInterface;
 
     PlayerInterface = GetOnlineSubsystem().PlayerInterface;
-    if(Class'WorldInfo'.static.IsConsoleBuild(9) && KFGameViewportClient(GameViewport).bSeenIIS)
+    if(Class'WorldInfo'.static.IsConsoleBuild(9) && KFGameViewportClient(GameViewport).bSeenIIS || (KFPlayerController(GamePlayers[0].Actor) != none) && KFPlayerController(GamePlayers[0].Actor).HasActiveUserEstablished())
     {
         if((LocalUserNum == GamePlayers[0].ControllerId) && PlayerInterface.GetLoginStatus(LocalUserNum) != 2)
         {

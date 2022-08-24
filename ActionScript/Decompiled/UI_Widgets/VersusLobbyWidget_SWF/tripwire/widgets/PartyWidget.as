@@ -20,6 +20,7 @@ package tripwire.widgets
     import scaleform.gfx.FocusManager;
     import scaleform.gfx.TextFieldEx;
     import tripwire.containers.NotificationContainer;
+    import tripwire.containers.TextContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.PartySlotButton;
     import tripwire.controls.TripButton;
@@ -29,6 +30,8 @@ package tripwire.widgets
     public class PartyWidget extends TripContainer
     {
          
+        
+        public var matchOverNotification:TextContainer;
         
         public var Notification:NotificationContainer;
         
@@ -152,6 +155,12 @@ package tripwire.widgets
             this.selectPromptString = !!param1.selectPromptString ? param1.selectPromptString : "";
             this.backPromptString = !!param1.backPromptString ? param1.backPromptString : "";
             this.leaveButton.label = !!param1.leaveString ? param1.leaveString : "";
+            this.matchOverNotification.text = !!param1.matchOver ? param1.matchOver : "";
+        }
+        
+        public function set matchOver(param1:Boolean) : void
+        {
+            this.matchOverNotification.visible = param1;
         }
         
         public function get backPromptString() : String
@@ -191,6 +200,7 @@ package tripwire.widgets
         
         override protected function addedToStage(param1:Event) : void
         {
+            this.matchOver = false;
             var _loc2_:int = 0;
             while(_loc2_ < this.MAX_SLOTS)
             {
@@ -395,7 +405,7 @@ package tripwire.widgets
         
         public function slotChanged(param1:int, param2:Boolean, param3:Boolean, param4:Boolean) : void
         {
-            var _loc5_:PartySlotButton = null;
+            var _loc5_:PartySlotButton;
             (_loc5_ = this["squadMember" + param1]).slotIndex = param1;
             _loc5_.bIsMyPlayer = param3;
             _loc5_.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);

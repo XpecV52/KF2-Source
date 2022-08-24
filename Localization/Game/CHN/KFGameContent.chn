@@ -272,6 +272,11 @@ ItemName="M4 战斗霰弹枪"
 ItemCategory="霰弹枪"
 ItemDescription="•射击模式只有半自动。\n•贝内利为美国军队设计了 M4 战斗霰弹枪。它是半自动式，可以良好和稳定地射击。"
 
+[KFWeap_Shotgun_HZ12]
+ItemName="多动作 HZ12"
+ItemCategory="霰弹枪"
+ItemDescription="•射击模式为双持半自动/压动式枪机。\n•HZ12 霰弹枪是霍因安全部队测试的实验模型。丧尸在该武器研发的过程中受到了伤害。"
+
 [KFWeap_Knife_Berserker]
 ItemName="割草机刀片"
 ItemCategory="近战"
@@ -424,6 +429,11 @@ ItemName="温彻斯特 1894"
 ItemCategory="步枪"
 ItemDescription="•射击模式只有单发射击。\n•经典型号 1894 温彻斯特杠杆式步枪。"
 
+[KFWeap_Rifle_CenterfireMB464]
+ItemName="SPX 464 中发式"
+ItemCategory="步枪"
+ItemDescription="•射击模式只是单发射击。\n•一款现代化的莫斯伯格中发杠杆式步枪，后坐力低，而停止力高。更新的经典款。"
+
 [KFWeap_Bow_Crossbow]
 ItemName="十字弓"
 ItemCategory="弓"
@@ -464,6 +474,7 @@ ItemDescription="•可以选择全自动和半自动射击模式。\n•备用�
 ItemName="Kriss 冲锋枪"
 ItemCategory="冲锋枪"
 ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•最新密实子弹再分布，是破坏消防带。"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -513,6 +524,29 @@ BossCaptionStrings[3]="自己逃跑不算是逃跑——这样，你会很容易
 BossCaptionStrings[4]="没错，长老丧尸仍然可以遮盖、隐身、逃跑和自愈。有些东西没有改变。"
 BossCaptionStrings[5]="尽管对于它，你没有更多选择，但是杀掉长老丧尸的‘孩子们’会让他发疯（更加疯狂）。"
 
+[KFPawn_ZedFleshpoundKing]
+BossName="King Fleshpound"
+BossName_CHN="闪击丧尸之王"
+BossName_CHT="絞碎者之王"
+BossName_DEU="King Fleshpound"
+BossName_ESL="Rey fleshpound"
+BossName_ESN="Rey fleshpound"
+BossName_FRA="Roi Barback"
+BossName_FRC="Roi Barback"
+BossName_INT="King Fleshpound"
+BossName_ITA="Re Fleshpound"
+BossName_JPN="キングフレッシュパウンド"
+BossName_KOR="King 플래시 파운드"
+BossName_POL="Król mięśniaków"
+BossName_PTB="Carniceiro Rei"
+BossName_RUS="Король-отбивальщик"
+BossCaptionStrings[0]="你对闪击丧尸之王的造成的伤害越大，他召唤更多小丧尸的速度就越快。控制好节奏，不要不知所措！"
+BossCaptionStrings[1]="下来！闪击丧尸之王的胸部光线无法打击低到地面上的目标。"
+BossCaptionStrings[2]="别因为闪击丧尸之王受伤严重，就觉得战斗就要结束了。生命值很低的时候，他会激活护盾。 "
+BossCaptionStrings[3]="闪击丧尸之王的胸部光线能伤害其他丧尸，如果你能让他们站在他的发射线上的话。"
+BossCaptionStrings[4]="闪击丧尸之王的缺点跟其他正常闪击丧尸一样，只不过更大。"
+BossCaptionStrings[5]="闪击丧尸之王总是有更多的小丧尸。忽视他们你就有风险！"
+
 [KFGameInfo_Tutorial]
 GameName="基准训练"
 
@@ -521,6 +555,9 @@ GameName="生存"
 
 [KFGameInfo_VersusSurvival]
 GameName="VS 生存"
+
+[KFGameInfo_WeeklySurvival]
+GameName="每周爆发"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="没有剩余的治愈"

@@ -53,6 +53,8 @@ var(Recoil)	int		DartMinRecoilYaw;
 /** Controller rumble override for healing dart. */
 var ForceFeedbackWaveform HealingDartWaveForm;
 
+var repnotify byte HealingDartAmmo;
+
 /*********************************************************************************************
  * @name Weapon lock on support
  ********************************************************************************************* */
@@ -113,7 +115,7 @@ replication
 {
 	// Server->Client properties
 	if (bNetDirty && Role == ROLE_Authority)
-		bLockedOnTarget, LockedTarget, PendingLockedTarget;
+		bLockedOnTarget, LockedTarget, PendingLockedTarget, HealingDartAmmo;
 }
 
 /* epic ===============================================
@@ -160,9 +162,9 @@ simulated event ReplicatedEvent(name VarName)
 		Super.ReplicatedEvent(VarName);
 
 		// This same variable has a replicated event in a base class, so it is not on the normal path.
-		if (VarName == nameof(SpareAmmoCount))
+		if (VarName == nameof(HealingDartAmmo))
 		{
-			AmmoCount[1] = SpareAmmoCount[1];
+			AmmoCount[1] = HealingDartAmmo;
 		}
 	}
 }
@@ -232,7 +234,7 @@ simulated function ConsumeAmmo( byte FireModeNum )
 		{
 			// Reduce ammo amount by heal ammo cost
             AmmoCount[1] = Max(AmmoCount[1] - AmmoCost[1], 0);
-            SpareAmmoCount[1] = Max(SpareAmmoCount[1] - AmmoCost[1], 0);
+            HealingDartAmmo = Max(HealingDartAmmo - AmmoCost[1], 0);
 		}
 	}
 }
@@ -416,16 +418,16 @@ function HealAmmoRegeneration(float DeltaTime)
 	{
 		HealingIncrement += HealRechargePerSecond * DeltaTime;
 
-		if( SpareAmmoCount[ALTFIRE_FIREMODE] > AmmoCount[ALTFIRE_FIREMODE] )
+		if( HealingDartAmmo > AmmoCount[ALTFIRE_FIREMODE] )
 		{
-			SpareAmmoCount[ALTFIRE_FIREMODE] = AmmoCount[ALTFIRE_FIREMODE];
+			HealingDartAmmo = AmmoCount[ALTFIRE_FIREMODE];
 		}
 
-		if( HealingIncrement >= 1.0 && SpareAmmoCount[ALTFIRE_FIREMODE] < MagazineCapacity[ALTFIRE_FIREMODE] )
+		if( HealingIncrement >= 1.0 && HealingDartAmmo < MagazineCapacity[ALTFIRE_FIREMODE] )
 		{
-			// Use SpareAmmoCount to replicate the actual ammo you should have.
-			SpareAmmoCount[ALTFIRE_FIREMODE]++;
-			AmmoCount[ALTFIRE_FIREMODE] = SpareAmmoCount[ALTFIRE_FIREMODE];
+			// Use HealingDartAmmo to replicate the actual ammo you should have.
+			HealingDartAmmo++;
+			AmmoCount[ALTFIRE_FIREMODE] = HealingDartAmmo;
 
 			HealingIncrement -= 1.0;
 		}
@@ -877,6 +879,16 @@ static simulated event SetTraderWeaponStats( out array<STraderItemWeaponStats> W
 	WeaponStats[WeaponStats.Length-1].StatValue = default.HealFullRechargeSeconds;
 }
 
+/*********************************************************************************************
+* HUD
+********************************************************************************************/
+
+/** Determines the secondary ammo left for HUD display */
+simulated function int GetSecondaryAmmoForHUD()
+{
+    return AmmoCount[1];
+}
+
 defaultproperties
 {
 	// Healing charge
@@ -911,8 +923,7 @@ defaultproperties
 	DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
 
 	MagazineCapacity[1]=100
-	// HACK: Used to initialize the medic guns replicated ammo count.
-	SpareAmmoCount[1]=100
+	HealingDartAmmo=100
 	bCanRefillSecondaryAmmo=false
 
     // Lock on sounds

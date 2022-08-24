@@ -104,6 +104,7 @@ defaultproperties
 {
     PickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh'
     bUseLowHealthDelay=false
+    PickupDelay=0.2
     begin object name=Sprite class=SpriteComponent
         ReplacementPrimitive=none
     object end

@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="Öffentlich"
 ConsolePermissionStrings[1]="Nur mit Einladung"
 
 ModeStrings[0]="Überleben"
-ModeStrings[1]="VS-Überleben"
+ModeStrings[1]="Wöchentlich"
+ModeStrings[2]="VS-Überleben"
 
 NoPreferenceString="BELIEBIG"
 OKString="OK"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="Vorteil kann ein Mal pro Welle aktualisiert werden!"
 YesString="Ja"
 NoString="Nein"
 TeamSwappedString="Du wurdest einem anderen Team zugeteilt"
+
+CancelConnectionString="Ladevorgang abbrechen"
 
 DisbandPartyString="GRUPPE AUFLÖSEN"
 LeaveCurrentMenuString="Aktuelles Menü verlassen?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="Keine Gegenstände gekauft"
 SetTakeoverServerPasswordTitle="Spiel mit neuem Passwort schützen:"
 FreeConsolePlayOverString="Danke, dass du Killing Floor 2 spielst! Das kostenlose Event ist vorbei, aber du kannst das Spiel kaufen und mehr Informationen erhalten, indem du unten die Schaltfläche „Shop” auswählst."
 BuyGameString="SHOP"
+CustomString="Benutzerdef."
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="AUSBRUCH-ABSCHLUSS-BELOHNUNG"
+WeeklyString="WÖCHENTLICHER HORZINE-AUSBRUCH"
+CurrentWeeklySettingsString="AKTUELLE AUSBRUCH-EINSTELLUNGEN"
+SpecialEventString="SUMMER SIDESHOW"
+ShortWeeklyString="WÖCHENTLICH"
+SeasonalString="SAISONAL"
+SpecialEventChanceDropString="LIMITIERTE AUFSAMMELGEGENSTÄNDE"
+GrantedSpecialEventString="ABSCHLUSS-BELOHNUNG"
+RewardsString="AUSBRUCH-ABSCHLUSS-BELOHNUNG"
+WeeklyOverview="Jede Woche ein neuer, schwieriger Modus!"
+ObjectivesString="Aufgaben schalten"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="SPIELSUCHE GESCHEITERT"
@@ -115,8 +133,9 @@ TutorialString="Grundausbildung"
 
 [StartMenuHelperText]
 modeList0="Überleben – PVE Kämpfe gegen KI-gesteuerte Wellen von Zeds"
-modeList1="VS Überleben – PVP Horzine-Söldner gegen Wellen von Spieler- und KI-gesteuerten Zeds"
-modeList2=""
+modeList1="Wöchentlicher Ausbruch – Jede Woche ein anderer Spielmodus."
+modeList2="VS-Überleben – PVP Horzine-Söldner gegen Wellen von Spieler- und KI-gesteuerten Zeds"
+modeList3=""
 difficultyList0="Normal – Für Anfänger mit Vorteil-Rang 0-5."
 difficultyList1="Schwer – Für erfahrene Spieler mit Vorteil-Rang 6-12. Es gibt mehr Zeds pro Welle, sie bewegen sich schneller und haben mehr Lebenspunkte. Es gibt weniger zum Aufsammeln und weniger Kohle."
 difficultyList2="Selbstmörderisch – Für routinierte Spieler mit Vorteil-Rang 13-25. Es gibt noch mehr Zeds pro Welle, sie benutzen neue Angriffe und bewegen sich noch schneller. Es gibt noch weniger zum Aufsammeln und noch weniger Kohle."
@@ -666,6 +685,7 @@ DamageDealtString="Verursachter Schaden:"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ BEREIT ]"
 WaitingString="WARTEN AUF SPIELER"
+MatchOverString="SPIEL VORBEI \n Bitte warten …"
 DeployingString="FORMIERT IN "
 CreatePartyString="GRUPPE ERSTELLEN"
 ReadyString="BEREIT"
@@ -840,6 +860,7 @@ CancelString="ABBRECHEN"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="LEVELAUFSTIEG"
 TierUnlockedString="NEUE FÄHIGK. FREIGESCH."
+ObjectiveCompleteString="AUFGABE ABGESCHLOSSEN"
 
 [KFGFxHUD_WaveInfo]
 WaveString="WELLE"
@@ -924,6 +945,7 @@ ConfigureMicString="MIKROFON KONFIGURIEREN"
 VocalsString="Gesang"
 BattleChatterString="Kampfgerede minimieren"
 PushToVoIPString="Push to VoIP"
+ScreenSizeString="BILDSCHIRMGR. ANPASS."
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Diese Videoeinstellungen benutzen?"
@@ -1129,7 +1151,7 @@ GBA_Look_Gamepad="Blickkontrolle"
 GBA_Grenade_Gamepad="Granate werfen"
 GBA_TurnLeft_Gamepad="Blickkontrolle"
 GBA_Look_Gamepad="Blickkontrolle"
-GBA_DPad_Left_Gamepad="Sprachbefehle/Emotes"
+GBA_DPad_Left_Gamepad="Sprachbef. / Emotes"
 GBA_DPad_Up_Gamepad="Heiler anwenden"
 GBA_DPad_Right_Gamepad="Kohle werfen"
 GBA_DPad_Down_Gamepad="Taschenlampe schalten"
@@ -1319,9 +1341,10 @@ FoundAllMapCollectiblesMessage="Alle %x% wurden gefunden!"
 MapCollectibleName="Stück Dosh-Klunker"
 
 [KFLocalMessage_Priority]
-WaveStartMessage="W E L L E K O M M T"
-WaveEndMessage="W E L L E B E S I E G T"
+WaveStartMessage="W E L L E  K O M M T"
+WaveEndMessage="W E L L E  B E S I E G T"
 GetToTraderMessage="Ab zur Händlerkapsel"
+ScavengeMessage="Plündern"
 YouLostMessage="N I E D E R L A G E"
 YouWonMessage="S I E G"
 SquadWipedOutMessage="Dein Trupp wurde ausgelöscht!"
@@ -1336,7 +1359,7 @@ HumansLoseMessage="Menschen-Trupp wurde ausgelöscht!"
 HumansWinMessage="Menschen-Trupp hat überlebt!"
 AttackHumanPlayersString="Greif die Menschen-Spieler an!"
 ZedGroupRegroupingString="Zed-Horde gruppiert sich neu!"
-NextRoundBeginString="N Ä C H S T E R U N D E"
+NextRoundBeginString="N Ä C H S T E  R U N D E"
 PlayerCanChangePerksString="Änderung der Vorteile erlaubt"
 ZedWaitingForNextRoundString="Zed-Horden-Invasion bevorstehend!"
 
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>DICH SELBST HEILEN"
 PressToBashWarning="HIEB"
 GamepadWeaponSelectHint="<%HOLD%>WAFFENWAHL"
 PlayerClotGrabWarningMessage="TÖTE ZED UM DICH ZU BEFREIEN!"
-UseMinigameMessage="MINISPIEL AKTIVIEREN"
+UseMinigameMessage="AKTIVIEREN"
 UseMinigameGeneratorMessage="GENERATOR AKTIVIEREN"
 
 [KFLocalMessage_ServerNotification]
@@ -2162,6 +2185,7 @@ Forums="Besuche unsere Community Foren"
 Survey="Nimm an der Gameplay-Umfrage teil"
 CommunityTracker="Verfolge Problemanfragen der Community"
 FeaturedCrateKey="Akt. Horzine Vorratskisten-Schl. – $2.49"
+FeaturedEventItem="Aktueller Event-Gegenstand"
 FeaturedUsbKey="Aktueller Waffen-Skin USB-Schlüssel – $2.49"
 FeaturedRareItem="Aktueller seltener Gegenstand – $3.99"
 FeaturedExceptionalItem="Aktueller außergewöhnl. Gegenstand – $7.49"
@@ -2177,20 +2201,22 @@ PS4WeaponSkinCrate2="Horzine Waffen-Skin Vorratskiste | Serie #2"
 Artbook="Killing Floor 2 Digitales Artbook"
 Uncovered="Killing Floor: Uncovered Live-Action-Film"
 NewEmotes="Neu! Emote-Kistenschlüssel – 2,49 $"
-HorzineSupplyCrateKey10="Horzine-Vorratskiste-Schl. | S. #10 - $2.49"
-HorzineSupplyCrateKey11="Horzine-Vorratskiste-Schl. | S. #11 - $2.49"
-HorzineSupplyCrateKey12="Horzine-Vorratskiste-Schl. | S. #12 - $2.49"
-HorzineSupplyCrateKey13="Horzine-Vorratskiste-Schl. | S. #13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+HorzineSupplyCrateKey10="Horzine-Vorratskiste-Schl. | S. #10 – $2.49"
+HorzineSupplyCrateKey11="Horzine-Vorratskiste-Schl. | S. #11 – $2.49"
+HorzineSupplyCrateKey12="Horzine-Vorratskiste-Schl. | S. #12 – $2.49"
+HorzineSupplyCrateKey13="Horzine-Vorratskiste-Schl. | S. #13 – $2.49"
+USBSpitfire="Spitfire-USB-Schlüssel – $2.49"
+USBHighVoltage="Hochspannungs-USB-Schlüssel – $2.49"
+MerchSale="KF2-Ware-Sale! 25 % Rabatt bis 30.04.17, Code: ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedCrawlerKing="Elite-Crawler"
+KFPawn_ZedFleshpoundMini="Quarter Pound"
 KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedFleshpoundKing="King Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
 KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
@@ -2319,6 +2345,119 @@ KFWeap_Zweihander="Chivalry-Promo"
 
 
 Source0="Chivalry-Promo"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="Lassen 1 fallen"
+ChanceDropDescriptionStrings[1]="Lassen 2 fallen"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="Ein zeitbegrenztes Spezial-Event mit exklusiven Gegenständen."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Einschalten",DescriptionString="Schalte den Generator im Tragischen Königreich an");
+SpecialEventObjectiveInfoList[1]=(TitleString="Den Clot zerquetschen",DescriptionString="Zerquetsche den Clot im Tragischen Königreich");
+SpecialEventObjectiveInfoList[2]=(TitleString="Den Bloat versenken",DescriptionString="Versenke den Bloat im Tragischen Königreich");
+SpecialEventObjectiveInfoList[3]=(TitleString="Kohle-Wurf",DescriptionString="Wirf die Kohle im Tragischen Königreich");
+SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="Gewinn im Trag. Königr. ein Spiel auf Schwer oder höher");
+
+AllCompleteRewardDescriptionString="Sideshow-Schutzanzug"
+
+ChanceDropDescriptionStrings[0]="Sideshow-Gewinnschein"
+ChanceDropDescriptionStrings[1]="Goldener Sideshow-Schein"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="Schädelknacker"
+DescriptionStrings[0]="Hirnschaden ist der beste Schaden."
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Bei diesem Ausbruch sind die Zeds derartig mutiert, dass sie nur durch Schaden am Kopf endgültig ausgeschaltet werden können. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="Mini-Terror"
+DescriptionStrings[0]="Eine kleine Bedrohung ist noch immer eine Bedrohung."
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="In diesem Ausbruch werden Zeds kleiner und somit schwerer zu treffen, wenn du auf sie schießt. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="Poundemonium"
+DescriptionStrings[0]="Fleshpounds, immer und überall. Beinahe."
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Die Fleshpound-Convention ist in der Stadt! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="Hoch in den Tod"
+DescriptionStrings[0]="Versuche, neunundneunzig Zed-Ballons zu machen."
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="In diesem Ausbruch werden Zeds durch deine Schüsse aufgeblasen wie Luftballons, bis sie wegfliegen und platzen! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="Zed-Zeit"
+DescriptionStrings[0]="Alle Zed-Zeit der Welt."
+DescriptionStrings[1]="Länge: Kurz (4 Wellen)"
+ModifierDescriptions[0]="Hast du manchmal das Gefühl, das Leben zieht an dir vorbei? Nicht in diesem Ausbruch! Du bist in Zed-Zeit, sobald du in der Nähe eines Zeds bist. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="Boom"
+DescriptionStrings[0]="Zeds, die unter Druck stehen, könnten explodieren."
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Vielleicht haben sie etwas Falsches gegessen? Oder Magenverstimmungen? Was auch immer es war, es lässt Zeds explodieren, wenn du sie in diesem Ausbruch tötest. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="Muskelprotz"
+DescriptionStrings[0]="Je größer sie sind, desto schwerer ist ihr Fall."
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="In diesem Ausbruch leben Zeds länger, werden größer und haben eine höhere Reichweite, wenn sie Spieler treffen oder von bestimmten Zed-Fähigkeiten betroffen werden. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="Wackel-Zed"
+DescriptionStrings[0]="… das muss im Nacken wehtun."
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Irgendetwas muss mit diesen Zeds furchtbar schiefgelaufen sein, denn ihre Köpfe sind vieeeeeeeeeeeel größer als normalerweise! Geradezu riesig! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2700,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotika-Labor"
 
@@ -2572,6 +2727,9 @@ DisplayName="Loderndes Paris"
 
 [Survival KFGameInfoSummary]
 GameName="Überleben"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="Wöchentlich"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Volter-Anwesen"
@@ -2608,6 +2766,9 @@ DisplayName="Der Abstieg"
 
 [KF-Nuked KFMapSummary]
 DisplayName="Atomisiert"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="Das Tragische Königreich"
 
 [KFMapInfo]
 ; defaults

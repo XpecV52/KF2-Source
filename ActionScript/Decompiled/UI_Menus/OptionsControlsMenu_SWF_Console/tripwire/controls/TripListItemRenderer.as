@@ -52,20 +52,20 @@ package tripwire.controls
         
         override protected function handlePress(param1:uint = 0) : void
         {
-            super.handlePress(param1);
             if(Extensions.gfxProcessSound != null && enabled == true)
             {
                 Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
             }
+            super.handlePress(param1);
         }
         
         override protected function handleMousePress(param1:MouseEvent) : void
         {
-            super.handleMousePress(param1);
             if(Extensions.gfxProcessSound != null && enabled == true)
             {
                 Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
             }
+            super.handleMousePress(param1);
         }
         
         override protected function handleMouseRollOver(param1:MouseEvent) : void

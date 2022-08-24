@@ -66,6 +66,11 @@ function AcquireEnemyAndScream( optional bool bStartScreamTimer, optional float 
 
 	if( MyKFPawn == none || !MyKFPawn.IsCombatCapable() || IsTimerActive(nameOf(DoScream)) || GetIsInZedVictoryState() )
 	{
+        //If this failed due to a combat failure, loop back to it in a bit
+        if (MyKFPawn != None && !MyKFPawn.IsCombatCapable())
+        {
+            SetTimer(1.f, false, nameof(AcquireEnemyAndScream));
+        }        
 		return;
 	}
 

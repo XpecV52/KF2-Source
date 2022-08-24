@@ -208,48 +208,64 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
 	local byte FinalMagazineCapacity;
 
 	//@todo: rename flash objects to something more generic, like stat0text, stat0bar, etc.
-	if( TraderItem.WeaponStats.Length > 0 )
+	if( TraderItem.WeaponStats.Length >= TWS_Damage && TraderItem.WeaponStats.length > 0)
 	{
 		SetDetailsVisible("damage", true);
-		SetDetailsText("damage", GetLocalizedStatString(TraderItem.WeaponStats[0].StatType));
-		ItemData.SetInt("damageValue", TraderItem.WeaponStats[0].StatValue);
-		ItemData.SetInt("damagePercent", (FMin(TraderItem.WeaponStats[0].StatValue / GetStatMax(TraderItem.WeaponStats[0].StatType), 1.f) ** 0.5f) * 100.f);
+		SetDetailsText("damage", GetLocalizedStatString(TraderItem.WeaponStats[TWS_Damage].StatType));
+		ItemData.SetInt("damageValue", TraderItem.WeaponStats[TWS_Damage].StatValue);
+		ItemData.SetInt("damagePercent", (FMin(TraderItem.WeaponStats[TWS_Damage].StatValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f);
 	}
 	else
 	{
 		SetDetailsVisible("damage", false);
 	}
 
-	if( TraderItem.WeaponStats.Length > 1 )
+	if( TraderItem.WeaponStats.Length >= TWS_Penetration )
 	{
-		SetDetailsVisible("fireRate", true);
-		SetDetailsText("fireRate", GetLocalizedStatString(TraderItem.WeaponStats[1].StatType));
-		ItemData.SetInt("fireRateValue", TraderItem.WeaponStats[1].StatValue);
-		ItemData.SetInt("fireRatePercent", FMin(TraderItem.WeaponStats[1].StatValue / GetStatMax(TraderItem.WeaponStats[1].StatType), 1.f) * 100.f);
-	}
-	else
-	{
-		SetDetailsVisible("fireRate", false);
-	}
-
-	if( TraderItem.WeaponStats.Length > 2 )
-	{
+		
 		SetDetailsVisible("penetration", true);
-		SetDetailsText("penetration", GetLocalizedStatString(TraderItem.WeaponStats[2].StatType));
-		ItemData.SetInt("penetrationValue", TraderItem.WeaponStats[2].StatValue);
-		ItemData.SetInt("penetrationPercent", (FMin(TraderItem.WeaponStats[2].StatValue / GetStatMax(TraderItem.WeaponStats[2].StatType), 1.f) ** 0.5f) * 100.f);
+		SetDetailsText("penetration", GetLocalizedStatString(TraderItem.WeaponStats[TWS_Penetration].StatType));
+		if(TraderItem.TraderFilter != FT_Melee)
+		{
+			ItemData.SetInt("penetrationValue", TraderItem.WeaponStats[TWS_Penetration].StatValue);
+			ItemData.SetInt("penetrationPercent", (FMin(TraderItem.WeaponStats[TWS_Penetration].StatValue / GetStatMax(TraderItem.WeaponStats[TWS_Penetration].StatType), 1.f) ** 0.5f) * 100.f);
+		}
+		else
+		{
+			SetDetailsVisible("penetration", false);
+		}
 	}
 	else
 	{
 		SetDetailsVisible("penetration", false);
 	}
 
-	if( TraderItem.WeaponStats.Length > 3 )
+	if( TraderItem.WeaponStats.Length >= TWS_RateOfFire )
+	{
+		SetDetailsVisible("fireRate", true);
+		SetDetailsText("fireRate", GetLocalizedStatString(TraderItem.WeaponStats[TWS_RateOfFire].StatType));
+		if(TraderItem.TraderFilter != FT_Melee)
+		{
+			ItemData.SetInt("fireRateValue", TraderItem.WeaponStats[TWS_RateOfFire].StatValue);
+			ItemData.SetInt("fireRatePercent", FMin(TraderItem.WeaponStats[TWS_RateOfFire].StatValue / GetStatMax(TraderItem.WeaponStats[TWS_RateOfFire].StatType), 1.f) * 100.f);
+		}
+		else
+		{
+			SetDetailsVisible("fireRate", false);
+		}
+	}
+	else
+	{
+		SetDetailsVisible("fireRate", false);
+	}
+
+	//actually range?
+	if( TraderItem.WeaponStats.Length >= TWS_Range )
 	{
 		SetDetailsVisible("accuracy", true);
-		SetDetailsText("accuracy", GetLocalizedStatString(TraderItem.WeaponStats[3].StatType));
-		ItemData.SetInt("accuracyValue", TraderItem.WeaponStats[3].StatValue);
-		ItemData.SetInt("accuracyPercent", FMin(TraderItem.WeaponStats[3].StatValue / GetStatMax(TraderItem.WeaponStats[3].StatType), 1.f) * 100.f);
+		SetDetailsText("accuracy", GetLocalizedStatString(TraderItem.WeaponStats[TWS_Range].StatType));
+		ItemData.SetInt("accuracyValue", TraderItem.WeaponStats[TWS_Range].StatValue);
+		ItemData.SetInt("accuracyPercent", FMin(TraderItem.WeaponStats[TWS_Range].StatValue / GetStatMax(TraderItem.WeaponStats[TWS_Range].StatType), 1.f) * 100.f);
 
 	}
 	else

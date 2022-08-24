@@ -301,18 +301,20 @@ static simulated function GetImpactEffect(PhysicalMaterial HitMaterial, out Mate
 	}
 
 	// @todo: add alt fire
+    if (ImpactEffectInfo != none)
+    {
+        if (PhysicalProperty != None)
+        {
+            i = ImpactEffectInfo.ImpactEffects.Find('MaterialType', PhysicalProperty.MaterialType);
+            if (i != -1)
+            {
+                out_ImpactEffect = ImpactEffectInfo.ImpactEffects[i];
+                return;
+            }
+        }
 
-	if (PhysicalProperty != None)
-	{
-		i = ImpactEffectInfo.ImpactEffects.Find('MaterialType', PhysicalProperty.MaterialType);
-		if (i != -1)
-		{
-			out_ImpactEffect = ImpactEffectInfo.ImpactEffects[i];
-			return;
-		}
-	}
-
-	out_ImpactEffect = ImpactEffectInfo.DefaultImpactEffect;
+        out_ImpactEffect = ImpactEffectInfo.DefaultImpactEffect;
+    }
 }
 
 simulated function bool AllowImpactEffects(Actor HitActor, vector HitLocation, vector HitNormal)

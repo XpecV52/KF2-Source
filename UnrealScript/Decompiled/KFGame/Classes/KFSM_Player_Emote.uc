@@ -179,6 +179,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     {
         PCOwner.ClientSetCameraFade(true, FadeOutColor, vect2d(1, 0), FadeOutTime, true);
         PCOwner.SetRotation(InitialRotation);
+        PCOwner.PlayerCamera.CameraCache.POV.Rotation = InitialRotation;
         if(PCOwner.WorldInfo.NetMode != NM_DedicatedServer)
         {
             PCOwner.ClientSetCameraMode(LastCameraMode);

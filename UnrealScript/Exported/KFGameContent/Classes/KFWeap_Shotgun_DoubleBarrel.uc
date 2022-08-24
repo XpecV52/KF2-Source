@@ -35,7 +35,14 @@ simulated function AltFireMode()
 		return;
 	}
 
-	StartFire(ALTFIRE_FIREMODE);
+    if (AmmoCount[0] < 2)
+    {
+        StartFire(DEFAULT_FIREMODE);
+    }
+    else
+    {
+        StartFire(ALTFIRE_FIREMODE);
+    }	
 }
 
 /**

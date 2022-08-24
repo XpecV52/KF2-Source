@@ -109,6 +109,7 @@ var globalconfig bool bDisableVOIP;
 var globalconfig bool bPartitionSpectators;
 var globalconfig bool bDisablePickups;
 var globalconfig bool bDisableMapVote;
+var config bool bEnableMapObjectives;
 var globalconfig bool bDisableTeamCollision;
 var globalconfig bool bEnableDeadToVOIP;
 var globalconfig bool bDisablePublicVOIPChannel;
@@ -232,53 +233,9 @@ protected native function bool IsUnrankedGame();
 
 static event class<GameInfo> SetGameType(string MapName, string Options, string Portal)
 {
-    local string ThisMapPrefix;
-    local int I;
-    local class<GameInfo> NewGameType;
-    local string GameOption;
-
     if(Class'WorldInfo'.static.IsMenuLevel(MapName))
     {
         return Class'KFGameInfo_Entry';
-    }
-    GameOption = ParseOption(Options, "Game");
-    if(GameOption != "")
-    {
-        return default.Class;
-    }
-    MapName = StripPlayOnPrefix(MapName);
-    ThisMapPrefix = Left(MapName, InStr(MapName, "-"));
-    I = 0;
-    J0xC0:
-
-    if(I < default.DefaultMapPrefixes.Length)
-    {
-        if(default.DefaultMapPrefixes[I].Prefix ~= ThisMapPrefix)
-        {
-            NewGameType = class<GameInfo>(DynamicLoadObject(default.DefaultMapPrefixes[I].GameType, Class'Class'));
-            if(NewGameType != none)
-            {
-                return NewGameType;
-            }
-        }
-        ++ I;
-        goto J0xC0;
-    }
-    I = 0;
-    J0x18B:
-
-    if(I < default.CustomMapPrefixes.Length)
-    {
-        if(default.CustomMapPrefixes[I].Prefix ~= ThisMapPrefix)
-        {
-            NewGameType = class<GameInfo>(DynamicLoadObject(default.CustomMapPrefixes[I].GameType, Class'Class'));
-            if(NewGameType != none)
-            {
-                return NewGameType;
-            }
-        }
-        ++ I;
-        goto J0x18B;
     }
     return default.Class;
 }
@@ -530,14 +487,14 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
     if((WorldInfo.NetMode == NM_DedicatedServer) && !HasOption(Options, "bJoinViaInvite"))
     {
         DesiredDifficulty = ParseOption(Options, "Difficulty");
-        if((!bIsVersusGame && DesiredDifficulty != "") && float(int(DesiredDifficulty)) != GameDifficulty)
+        if(((!bIsVersusGame && GametypeChecksDifficulty()) && DesiredDifficulty != "") && float(int(DesiredDifficulty)) != GameDifficulty)
         {
             LogInternal((("Got bad difficulty" @ DesiredDifficulty) @ "expected") @ string(GameDifficulty));
             ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
             return;
         }
         DesiredWaveLength = ParseOption(Options, "GameLength");
-        if((!bIsVersusGame && DesiredWaveLength != "") && int(DesiredWaveLength) != GameLength)
+        if(((!bIsVersusGame && GametypeChecksWaveLength()) && DesiredWaveLength != "") && int(DesiredWaveLength) != GameLength)
         {
             LogInternal((("Got bad wave length" @ DesiredWaveLength) @ "expected") @ string(GameLength));
             ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
@@ -546,7 +503,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
         DesiredGameMode = ParseOption(Options, "Game");
         if((DesiredGameMode != "") && !DesiredGameMode ~= (GetFullGameModePath()))
         {
-            LogInternal((("Got bad wave length" @ DesiredGameMode) @ "expected") @ (GetFullGameModePath()));
+            LogInternal((("Got bad game mode" @ DesiredGameMode) @ "expected") @ (GetFullGameModePath()));
             ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
             return;
         }
@@ -557,6 +514,16 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
     {
         AccessControl.PreLogin(Options, Address, UniqueId, bSupportsAuth, ErrorMessage, bSpectator);
     }
+}
+
+static function bool GametypeChecksDifficulty()
+{
+    return true;
+}
+
+static function bool GametypeChecksWaveLength()
+{
+    return true;
 }
 
 event PostLogin(PlayerController NewPlayer)
@@ -1056,7 +1023,16 @@ function SetPlayerDefaults(Pawn PlayerPawn)
     PlayerPawn.PhysicsVolume.ModifyPlayer(PlayerPawn);
 }
 
+function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed);
+
+function ModifySprintSpeed(KFPawn PlayerPawn, out float SprintSpeed);
+
 function bool IsWaveActive();
+
+function float GetTotalWaveCountScale()
+{
+    return 1;
+}
 
 static function float GetNumAlwaysRelevantZeds()
 {
@@ -1073,7 +1049,7 @@ function class<KFPawn_Monster> GetBossAISpawnType()
     return AIBossClassList[Rand(AIBossClassList.Length)];
 }
 
-event AdjustSpawnedAIPawn(KFPawn NewSpawn);
+event PrePossessAdjustments(KFPawn NewSpawn);
 
 function float GetGameInfoSpawnRateMod()
 {
@@ -1353,6 +1329,13 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         if(SpawnManager != none)
         {
             -- MyKFGRI.AIRemaining;
+            if((MyKFGRI != none) && float(MyKFGRI.AIRemaining) <= Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
+            {
+                foreach WorldInfo.AllPawns(Class'KFPawn_Monster', MonsterPawn)
+                {
+                    MonsterPawn.CheckShouldAlwaysBeRelevant();                    
+                }                
+            }
             if(bLogAICount)
             {
                 LogInternal("@@@@ ZED COUNT DEBUG: MyKFGRI.AIRemaining =" @ string(MyKFGRI.AIRemaining));
@@ -1451,6 +1434,8 @@ function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller Instig
     KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
 }
 
+function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn);
+
 function ScoreKill(Controller Killer, Controller Other)
 {
     if(((Killer != none) && Killer.PlayerReplicationInfo != none) && Killer != Other)
@@ -1494,6 +1479,10 @@ protected function ScoreMonsterKill(Controller Killer, Controller Monster, KFPaw
         }
     }
 }
+
+function NotifyRally(KFPawn RalliedPawn);
+
+function NotifyIgnoredScream(KFPawn ScreamPawn);
 
 function CheckForBerserkerSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerController KFPC)
 {
@@ -2728,6 +2717,7 @@ defaultproperties
     POINTS_PENALTY_FOR_DEATH=100
     CustomizationPawnClass=Class'KFPawn_Customization'
     bWaitForNetPlayers=true
+    bEnableMapObjectives=true
     bEnableDeadToVOIP=true
     bCanPerkAlwaysChange=true
     bUseMapList=true
@@ -2740,7 +2730,8 @@ defaultproperties
     GameStartDelay=4
     EndOfGameDelay=15
     GameModes(0)=(FriendlyName="Survival",ClassNameAndPath="KFGameContent.KFGameInfo_Survival",bSoloPlaySupported=true,DifficultyLevels=4,Lengths=4,LocalizeID=0)
-    GameModes(1)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",bSoloPlaySupported=false,DifficultyLevels=0,Lengths=0,LocalizeID=1)
+    GameModes(1)=(FriendlyName="Weekly",ClassNameAndPath="KFGameContent.KFGameInfo_WeeklySurvival",bSoloPlaySupported=true,DifficultyLevels=0,Lengths=0,LocalizeID=1)
+    GameModes(2)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",bSoloPlaySupported=false,DifficultyLevels=0,Lengths=0,LocalizeID=2)
     KickVotePercentage=0.66
     TimeBetweenFailedVotes=10
     MapVoteDuration=60
@@ -2753,6 +2744,7 @@ defaultproperties
     ClanMottoColor=(B=254,G=254,R=254,A=192)
     ServerExpirationForKillWhenEmpty=120
     ReconnectRespawnTime=30
+    XPMultiplier=1
     DifficultyInfoClass=Class'KFGameDifficultyInfo'
     DeathPenaltyModifiers(0)=0.05
     DeathPenaltyModifiers(1)=0.1
@@ -2765,7 +2757,7 @@ defaultproperties
     NumAlwaysRelevantZeds=3
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

@@ -102,6 +102,21 @@ simulated function string GetPrimaryWeaponClassPath()
     return PrimaryWeaponPaths[StartingWeaponClassIndex].default.WeaponClassPath;
 }
 
+function bool ShouldAutosellWeapon(class<KFWeaponDefinition> DefClass)
+{
+    //Because survivalists get a random first weapon in their auto buy load out, if they ever swap 
+    //      to another valid on-perk T1 then attempt to autobuy, they could be left in situations where
+    //      they sell the new valid T1, but don't have enough money to buy any other weapons.  In this
+    //      case, we shouldn't sell the weapon if it's also part of the primary weapons that they could
+    //      start with in a valid match.
+    if (super.ShouldAutosellWeapon(DefClass))
+    {
+        return PrimaryWeaponPaths.Find(DefClass) == INDEX_NONE; 
+    }
+
+    return false;
+}
+
 /*********************************************************************************************
 * @name	 Passives
 ******************************************************************************************** */
@@ -231,12 +246,20 @@ simulated function bool HasHeavyArmor()
  */
 simulated function float GetReloadRateScale( KFWeapon KFW )
 {
-	if( WorldInfo.TimeDilation < 1.f )
+	if( WorldInfo.TimeDilation < 1.f && IsZedTimeReloadAllowed() )
 	{
 		return 1.f -  GetPassiveValue( ZedTimeReload, GetLevel() );
 	}
 
 	return 1.f;
+}
+
+/**
+* @brief For modes that disable zed time skill tiers, also disable zed time reload
+*/
+simulated function bool IsZedTimeReloadAllowed()
+{
+    return MyKFGRI != none ? (MyKFGRI.MaxPerkLevel == default.MyKFGRI.MaxPerkLevel) : false;
 }
 
 /**
@@ -423,7 +446,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 		return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
 	}
 
-	return 1.f;
+	return 0.f;
 }
 
 /**
@@ -438,7 +461,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
         return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
 	}
 
-	return 1.f;
+	return 0.f;
 }
 
 /**
@@ -453,7 +476,7 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
 		return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
 	}
 
-    return 1.f;
+    return 0.f;
 }
 
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
@@ -491,7 +514,7 @@ simulated function class< KFProj_Grenade > GetGrenadeClass()
  */
 simulated private function bool IsTacticalReloadActive()
 {
-	return PerkSkills[ESurvivalist_TacticalReload].bActive;
+	return PerkSkills[ESurvivalist_TacticalReload].bActive && IsPerkLevelAllowed(ESurvivalist_TacticalReload);
 }
 
 /**
@@ -501,7 +524,7 @@ simulated private function bool IsTacticalReloadActive()
  */
 simulated private function bool IsHeavyReloadActive()
 {
-	return PerkSkills[ESurvivalist_HeavyWeaponsReload].bActive;
+	return PerkSkills[ESurvivalist_HeavyWeaponsReload].bActive && IsPerkLevelAllowed(ESurvivalist_HeavyWeaponsReload);
 }
 
 /**
@@ -511,7 +534,7 @@ simulated private function bool IsHeavyReloadActive()
  */
 simulated private function bool IsFieldMedicActive()
 {
-	return PerkSkills[ESurvivalist_FieldMedic].bActive;
+	return PerkSkills[ESurvivalist_FieldMedic].bActive && IsPerkLevelAllowed(ESurvivalist_FieldMedic);
 }
 
 /**
@@ -521,7 +544,7 @@ simulated private function bool IsFieldMedicActive()
  */
 simulated private function bool IsMeleeExpertActive()
 {
-	return PerkSkills[ESurvivalist_MeleeExpert].bActive;
+	return PerkSkills[ESurvivalist_MeleeExpert].bActive && IsPerkLevelAllowed(ESurvivalist_MeleeExpert);
 }
 
 /**
@@ -531,7 +554,7 @@ simulated private function bool IsMeleeExpertActive()
  */
 simulated private function bool IsAmmoVestActive()
 {
-	return PerkSkills[ESurvivalist_AmmoVest].bActive;
+	return PerkSkills[ESurvivalist_AmmoVest].bActive && IsPerkLevelAllowed(ESurvivalist_AmmoVest);
 }
 
 /**
@@ -541,7 +564,7 @@ simulated private function bool IsAmmoVestActive()
  */
 simulated private function bool IsBigPocketsActive()
 {
-	return PerkSkills[ESurvivalist_BigPockets].bActive;
+	return PerkSkills[ESurvivalist_BigPockets].bActive && IsPerkLevelAllowed(ESurvivalist_BigPockets);
 }
 
 /**
@@ -551,7 +574,7 @@ simulated private function bool IsBigPocketsActive()
  */
 simulated private function bool IsZedShrapnelActive()
 {
-	return PerkSkills[ESurvivalist_Shrapnel].bActive;
+	return PerkSkills[ESurvivalist_Shrapnel].bActive && IsPerkLevelAllowed(ESurvivalist_Shrapnel);
 }
 
 /**
@@ -561,7 +584,7 @@ simulated private function bool IsZedShrapnelActive()
  */
 simulated private function bool IsMakeThingsGoBoomActive()
 {
-	return PerkSkills[ESurvivalist_MakeThingsGoBoom].bActive;
+	return PerkSkills[ESurvivalist_MakeThingsGoBoom].bActive && IsPerkLevelAllowed(ESurvivalist_MakeThingsGoBoom);
 }
 
 /**
@@ -581,7 +604,7 @@ simulated function bool GetMadManActive()
  */
 simulated private function bool IsMadManActive()
 {
-	return PerkSkills[ESurvivalist_MadMan].bActive;
+	return PerkSkills[ESurvivalist_MadMan].bActive && IsPerkLevelAllowed(ESurvivalist_MadMan);
 }
 
 /**
@@ -601,7 +624,7 @@ simulated function bool GetIncapMasterActive()
  */
 simulated private function bool IsIncapMasterActive()
 {
-	return PerkSkills[ESurvivalist_IncapMaster].bActive;
+	return PerkSkills[ESurvivalist_IncapMaster].bActive && IsPerkLevelAllowed(ESurvivalist_IncapMaster);
 }
 
 /*********************************************************************************************
@@ -698,12 +721,13 @@ defaultproperties
    PerkSkills(6)=(Name="ZedShrapnel",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel")
    PerkSkills(7)=(Name="MakeThingsGoBoom",StartingValue=1.250000,MaxValue=1.250000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom")
    PerkSkills(8)=(Name="MadMan",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman")
-   PerkSkills(9)=(Name="IncapMaster",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster")
+   PerkSkills(9)=(Name="IncapMaster",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster")
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
    ZedTimeModifyingStates(3)="WeaponSingleFireAndReload"
    ZedTimeModifyingStates(4)="SprayingFire"
+   ZedTimeModifyingStates(5)="WeaponAltFiring"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Random'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Support'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'

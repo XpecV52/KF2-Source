@@ -161,6 +161,9 @@ var transient float						SprintStartTime;
 
 var protected AkComponent 			    TraderDialogAkComponent;
 
+/** Game info set variable to disable dialog on clients for specific game modes */
+var bool                                bDisableTraderDialog;
+
 struct native DialogResponseInfo
 {
     var KFPawn  Speaker;
@@ -177,6 +180,10 @@ replication
 	if(bNetDirty)
 		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId, HealingSpeedBoost, 
 		HealingDamageBoost, HealingShield;
+
+    // Replicated to owning client
+    if (bNetDirty && bNetOwner)
+        bDisableTraderDialog;
 
 	// Replicated to all but the owning client
 	if(bNetDirty && (!bNetOwner || bDemoRecording))
@@ -443,26 +450,43 @@ function UpdateGroundSpeed()
 {
 	local KFInventoryManager InvM;
 	local float WeightMod, HealthMod;
+    local KFGameInfo KFGI;
 
 	if ( Role < ROLE_Authority )
 		return;
 
 	InvM = KFInventoryManager(InvManager);
 	WeightMod = (InvM != None) ? InvM.GetEncumbranceSpeedMod() : 1.f;
-	HealthMod = 1.f - LowHealthSpeedPenalty;
+	HealthMod = GetHealthMod();
 
-	// First reset to default so multipliers do not stack
-	GroundSpeed = default.GroundSpeed * WeightMod * HealthMod;
+    //Grab new defaults
+	GroundSpeed = default.GroundSpeed;
+    SprintSpeed = default.SprintSpeed;
 
-	// reset sprint too, because perk may want to scale it
-	SprintSpeed = default.SprintSpeed * WeightMod * HealthMod;
+    //Allow game info modifiers
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if (KFGI != none)
+    {
+        KFGI.ModifyGroundSpeed(self, GroundSpeed);
+        KFGI.ModifySprintSpeed(self, SprintSpeed);
+    }
+
+	//Add pawn modifiers
+	GroundSpeed = GroundSpeed * WeightMod * HealthMod;
+    SprintSpeed = SprintSpeed * WeightMod * HealthMod;
 
 	// Ask our perk to set the new ground speed based on weapon type
 	if( GetPerk() != none )
 	{
 		GetPerk().ModifySpeed( GroundSpeed );
 		GetPerk().ModifySprintSpeed( SprintSpeed );
+        GetPerk().FinalizeSpeedVariables();
 	}
+}
+
+function float GetHealthMod()
+{
+    return 1.f - LowHealthSpeedPenalty;
 }
 
 /*********************************************************************************************
@@ -639,7 +663,6 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 			{
 				if( Healer != Controller )
 		    	{
-					AddHealerToObjective(Healer);
 					InstigatorPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedPlayer, PlayerReplicationInfo );
 					KFPC = KFPlayerController(Controller);
 					KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedBy, Healer.PlayerReplicationInfo );
@@ -787,7 +810,7 @@ simulated function LeaveBloodPool()
 	}
 }
 
-simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
+simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation, optional bool bUseHitImpulse = true)
 {
 	local class<KFDamageType> DmgType;
 	local name HitBoneName, RBBoneName;
@@ -804,7 +827,7 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 		}
 	}
 
-	Super.PlayTakeHitEffects( HitDirection, HitLocation );
+	Super.PlayTakeHitEffects( HitDirection, HitLocation, bUseHitImpulse );
 
 	// @TODO Move to PlayDying()
 	// Add some death ragdoll velocity
@@ -829,7 +852,10 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 				RBBoneName = GetRBBoneFromBoneName( HitBoneName );
 			}
 
-			ApplyRagdollImpulse( DmgType, HitLocation, HitDirection, RBBoneName, 1.f );
+            if (bUseHitImpulse)
+            {
+                ApplyRagdollImpulse(DmgType, HitLocation, HitDirection, RBBoneName, 1.f);
+            }			
 		}
 	}
 }
@@ -1281,23 +1307,6 @@ function array<string> GetUpdatedSkillIndicators()
 }
 
 /*********************************************************************************************
-* @name Objectives
-********************************************************************************************* */
-function AddHealerToObjective(controller Healer)
-{
-	local KFGameReplicationInfo KFGRI;
-
-	if( Healer.PlayerReplicationInfo != none  )
-	{
-		KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-		if( KFGRI != none && KFGRI.CurrentObjective != none )
-    	{
-    		KFGRI.CurrentObjective.NewHealer(Healer.PlayerReplicationInfo);
-    	}
-	}
-}
-
-/*********************************************************************************************
 * @name Dialog
 ********************************************************************************************* */
 delegate OnFinishedDialog( const out DialogResponseInfo ResponseInfo );
@@ -1424,6 +1433,11 @@ function float TimeSpentIdling()
 
 function PlayTraderDialog( AkEvent DialogEvent )
 {
+    if (bDisableTraderDialog)
+    {
+        return;
+    }
+
 	TraderDialogAkComponent.PlayEvent( DialogEvent );
 }
 
@@ -1646,7 +1660,6 @@ native simulated function		DrawDoors(Canvas Canvas);
 simulated function DrawHUD( HUD H )
 {
 	local Canvas Canvas;
-	local KFGameReplicationInfo KFGRI;
 	local KFPlayerController KFPC;
 
 	Super.DrawHUD(H);
@@ -1668,16 +1681,6 @@ simulated function DrawHUD( HUD H )
 	if( Canvas != none )
 	{
 		DrawDoors(Canvas);
-
-		KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-		if( KFGRI != none )
-		{
-			if( KFGRI.CurrentObjective != none && IsAliveAndWell() )
-			{
-				KFGRI.CurrentObjective.DrawObjectiveHUD(Canvas);
-			}
-		}
-
 		Canvas.EnableStencilTest(true);
 		DrawPerkHUD(Canvas);
 		Canvas.EnableStencilTest(false);

@@ -28,6 +28,7 @@ var transient sHuskFireballSettings FireballSettings;
 var protected Vector PlayerFireOffset;
 var protected KFGameExplosion ExplosionTemplate;
 var protected transient bool bHasExploded;
+var protected transient bool bHasSuicideExploded;
 var protected bool bUseFireballLightRadius;
 var protected export editinline PointLightComponent ChestLightComponent;
 var protected const name ChestLightSocketName;
@@ -280,6 +281,8 @@ function TriggerExplosion(optional bool bIgnoreHumans)
     if(!bHasExploded && !bPlayedDeath || bExplodeOnDeath)
     {
         OldController = Controller;
+        bHasExploded = true;
+        bHasSuicideExploded = !bIgnoreHumans;
         if(Role == ROLE_Authority)
         {
             ExploActor = Spawn(Class'KFExplosionActorReplicated', self);
@@ -305,8 +308,12 @@ function TriggerExplosion(optional bool bIgnoreHumans)
             }
         }
         OnExploded(OldController);
-        bHasExploded = true;
     }
+}
+
+function bool WeeklyShouldExplodeOnDeath()
+{
+    return !bHasExploded || !bHasSuicideExploded;
 }
 
 simulated function OnExploded(Controller SuicideController);

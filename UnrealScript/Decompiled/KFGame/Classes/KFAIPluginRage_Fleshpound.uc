@@ -33,6 +33,12 @@ event TickRage()
     }
 }
 
+function DoSpawnRage()
+{
+    Outer.AIActionStatus = "Enraged!";
+    GotoState('Enraged');
+}
+
 function bool CanDoRage()
 {
     if(bIsEnraged || !Outer.MyKFPawn.IsCombatCapable())

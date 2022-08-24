@@ -43,6 +43,9 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S13,
 	ECrate_HighVoltage,
 	ECrate_Flare,
+	ECrate_HorzineSupply_S14,
+	ECrate_Junkyard,
+	ECrate_Vietnam,
 };
 
 enum EItemDisplayContainerType
@@ -134,4 +137,7 @@ DefaultProperties
 	ItemKeyArray[ECrate_HorzineSupply_S13]=(ContainerID=4776, KeyID=4775, ItemSeriesName=horzine13, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_HighVoltage]=(ContainerID=4786, KeyID=4785, ItemSeriesName=highvoltage, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_Flare]=(ContainerID=4802, KeyID=4801, ItemSeriesName=flare, ContainerType=IDT_USB)
+	ItemKeyArray[ECrate_HorzineSupply_S14]=(ContainerID=5010, KeyID=5011, ItemSeriesName=horzine14, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_Vietnam]=(ContainerID=4979, KeyID=4980, ItemSeriesName=vietnam, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_Junkyard]=(ContainerID=4993, KeyID=4994, ItemSeriesName=junkyard, ContainerType=IDT_USB)
 }

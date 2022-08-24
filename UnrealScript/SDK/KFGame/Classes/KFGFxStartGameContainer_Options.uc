@@ -153,16 +153,16 @@ function UpdateButtonsEnabled()
 {
 	if(bIsSoloGame)
 	{
-		LengthButton.SetBool("enabled", true);
-		DifficultyButton.SetBool("enabled", true);
+		LengthButton.SetBool("enabled", SavedSoloModeIndex < 1);
+		DifficultyButton.SetBool("enabled", SavedSoloModeIndex < 1);
 		
 	}
 	else
 	{
-		LengthButton.SetBool("enabled", SavedModeIndex != 1);
-		DifficultyButton.SetBool("enabled", SavedModeIndex != 1);
+		LengthButton.SetBool("enabled", SavedModeIndex < 1);
+		DifficultyButton.SetBool("enabled", SavedModeIndex < 1);
 	}
-	
+	CheckAndUpdateBasedOnPrivacy();
 }
 
 function SetHelpText(string TextValue)
@@ -535,7 +535,7 @@ function CheckAndUpdateBasedOnPrivacy()
 		InProgressChanged(EIP_Allow_In_Progress, true);
 		//allow anything for game progress
 		ServerTypeButton.SetBool("enabled", true);
-		InProgressButton.SetBool("enabled", true);
+		
 	}
 	else
 	{
@@ -545,9 +545,8 @@ function CheckAndUpdateBasedOnPrivacy()
 			//set progress to Create Game
 			InProgressChanged(EIP_Create_New, true);
 		}
-
-		InProgressButton.SetBool("enabled", false);
 	}
+	InProgressButton.SetBool("enabled", GetPartyPrivacy() == LV_Public);
 }
 
 function ServerTypeChanged( int Index, optional bool bSetText )
@@ -566,7 +565,7 @@ function ServerTypeChanged( int Index, optional bool bSetText )
 		{
 			ServerTypeButton.SetString("infoString", ServerTypeStrings[SavedServerTypeIndex]);
 		}
-		if (SavedServerTypeIndex == ES_Custom)
+		if (SavedServerTypeIndex == ES_Custom && !bIsSoloGame)
 		{
 			MapButton.SetBool("enabled", false);
 		}
@@ -593,7 +592,10 @@ function InProgressChanged( int Index, optional bool bSetText )
 	}
 	if(bSetText)
 	{
-		InProgressButton.SetString("infoString", InProgessOptionStrings[SavedInProgressIndex]);
+		if(SavedInProgressIndex < InProgessOptionStrings.length)
+		{
+			InProgressButton.SetString("infoString", InProgessOptionStrings[SavedInProgressIndex]);
+		}
 	}
 	//SetBool("bAllowGameInProgress", SavedInProgressIndex == EIP_Allow_In_Progress );
 }

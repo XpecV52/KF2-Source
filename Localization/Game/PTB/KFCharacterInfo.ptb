@@ -4,6 +4,8 @@ Description="Um sueco grandalhão que adora cerveja e ficar até tarde nos bares
 BodyMesh0="Hora dos Motociclistas"
 BodyMesh1="Cavaleiro de Papelão"
 BodyMesh2="Segurança de Horzine"
+BodyMesh3=""
+BodyMesh4="Hazmat"
 HeadMesh0="Poder da Barba!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -33,11 +35,28 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[CHR_Jagerhorn_Archetype.BodyMesh3]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_Jagerhorn_Archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Loira Sueca"
 HeadSkin1="O Disco Preto"
 HeadSkin2="Vermelho-sangue"
+HeadSkin3="Rosto de Metal"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Chap. Caubói Espeto"
@@ -126,6 +145,8 @@ Description="É o DJ alemão mais legal de sua geração — é impossível não
 BodyMesh0="Moletom"
 BodyMesh1="Cavaleiro de Papelão"
 BodyMesh2="Segurança de Horzine"
+BodyMesh3=""
+BodyMesh4="Hazmat"
 HeadMesh0="Máscara do Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -155,6 +176,22 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[chr_DJSkully_archetype.BodyMesh3]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[chr_DJSkully_archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Preto Total"
@@ -162,6 +199,7 @@ HeadSkin1="Vermelho Extra"
 HeadSkin2="Amarelo Equipamento XT"
 HeadSkin3="Verde Perigo"
 HeadSkin4="Scully Retrô"
+HeadSkin5="Sculli Grito Seco"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Scullyfones"
@@ -189,6 +227,8 @@ BodyMesh0="Equipamento de Motim"
 BodyMesh1="Londres"
 BodyMesh2="Cavaleiro de Papelão"
 BodyMesh3="Segurança de Horzine"
+BodyMesh4=""
+BodyMesh5="Hazmat"
 HeadMesh0="Cabelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -224,11 +264,28 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[chr_briar_archetype.BodyMesh4]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[chr_briar_archetype.BodyMesh5]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Destaques"
 HeadSkin2="Preto"
+HeadSkin3="Títere"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Máscara de Médico"
@@ -252,6 +309,8 @@ BodyMesh0="Jaqueta de Couro"
 BodyMesh1="Terno Clássico"
 BodyMesh2="Cavaleiro de Papelão"
 BodyMesh3="Segurança de Horzine"
+BodyMesh4=""
+BodyMesh5="Hazmat"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -292,6 +351,22 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[CHR_MrFoster_archetype.BodyMesh4]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_MrFoster_archetype.BodyMesh5]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Branco Original"
@@ -299,6 +374,7 @@ HeadSkin1="Vermelho PCG"
 HeadSkin2="Meu Colega Scully"
 HeadSkin3="Vermelho Magma"
 HeadSkin4="Clássico Inglês"
+HeadSkin5="Visão Vermelha"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Scullyfones"
@@ -437,6 +513,8 @@ Description="Donovan é grande, forte e pode cuidar de si mesmo quase que em qua
 BodyMesh0="Moletom RQ"
 BodyMesh1="Cavaleiro de Papelão"
 BodyMesh2="Segurança de Horzine"
+BodyMesh3=""
+BodyMesh4="Hazmat"
 HeadMesh0="Rosto"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -465,11 +543,28 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[CHR_Coleman_archetype.BodyMesh3]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_Coleman_archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
 HeadSkin2="Brilho"
+HeadSkin3="Sorriso"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Protetor de Cabeça"
@@ -492,6 +587,8 @@ Description="Meio inglês, meio escocês, Alberts sempre foi forte, movido pelo 
 BodyMesh0="Coleira"
 BodyMesh1="Cavaleiro de Papelão"
 BodyMesh2="Segurança de Horzine"
+BodyMesh3=""
+BodyMesh4="Hazmat"
 HeadMesh0="Cabelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -520,12 +617,29 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[CHR_Alberts_archetype.BodyMesh3]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_Alberts_archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Cinza"
 HeadSkin1="Marrom"
 HeadSkin2="Preto"
 HeadSkin3="Branco"
+HeadSkin4="Pierrô"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Óculos"
@@ -1392,6 +1506,7 @@ AttachmentSkin7="Multicamuflagem"
 AttachmentSkin8="Risco"
 AttachmentSkin9="Adamâncio"
 AttachmentSkin10="Caça-recompensas"
+AttachmentSkin11="Precioso"
 
 [Cosmetic_Chivalry_Knight_Helm01_ARCH]
 Attachment="Elmo do Cavaleiro"
@@ -1406,11 +1521,14 @@ Description="Bill Masterson tinha uma carreira próspera no exército. Ele queri
 BodyMesh0="Traje de Combate"
 BodyMesh1="Cavaleiro de Papelão"
 BodyMesh2="Segurança de Horzine"
+BodyMesh3=""
+BodyMesh4="Hazmat"
 HeadMesh0="Rosto"
 
 [CHR_Masterson_archetype.HeadMesh0]
 HeadSkin0="Limpo"
 HeadSkin1="Camuflagem"
+HeadSkin2="Palhaço"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Verde"
@@ -1438,6 +1556,22 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[CHR_Masterson_archetype.BodyMesh3]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_Masterson_archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -1446,11 +1580,14 @@ BodyMesh0="Morte Maneira"
 BodyMesh1="Motocicleta"
 BodyMesh2="Cavaleiro de Papelão"
 BodyMesh3="Segurança de Horzine"
+BodyMesh4=""
+BodyMesh5="Hazmat"
 HeadMesh0="Cabelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
 HeadSkin0="Preto"
 HeadSkin1="Loira"
+HeadSkin2="Kumadori"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="E Estilosa"
@@ -1487,6 +1624,22 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[CHR_Tanaka_Archetype.BodyMesh4]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_Tanaka_Archetype.BodyMesh5]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Capacete"
@@ -1521,6 +1674,8 @@ Description="Ela provavelmente faria parte desse grupo chamado “juventude rebe
 BodyMesh0="Metalcore"
 BodyMesh1="Segurança de Horzine"
 BodyMesh2="Cavaleiro de Papelão"
+BodyMesh3=""
+BodyMesh4="Hazmat"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -1528,6 +1683,7 @@ HeadSkin0="Chuva da Morte"
 HeadSkin1="Sangue Brilhante"
 HeadSkin2="Verde Bio-Cola"
 HeadSkin3="Azul Bonito"
+HeadSkin4="Death Metal"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Chuva da Morte"
@@ -1548,6 +1704,7 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
 
 [CHR_Ana_Archetype.BodyMesh2]
 BodySkin0="Clássico"
@@ -1556,6 +1713,21 @@ BodySkin2="Bio Cola"
 BodySkin3="Armazém Horzine"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
+
+[CHR_Ana_Archetype.BodyMesh3]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_Ana_Archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Óculos 3D"
@@ -1576,6 +1748,8 @@ BodyMesh0="Equipamento de Motim"
 BodyMesh1="Londres"
 BodyMesh2="Cavaleiro de Papelão"
 BodyMesh3="Segurança de Horzine"
+BodyMesh4=""
+BodyMesh5="Hazmat"
 HeadMesh0="Cabelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -1611,12 +1785,29 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[chr_mark_archetype.BodyMesh4]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[chr_mark_archetype.BodyMesh5]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="5 Horas Sangrentas"
 HeadSkin2="Castanho Bonito, Guv"
 HeadSkin3="Loira Sueca"
+HeadSkin4="Sorria para Mim"
 
 [chr_alan_archetype]
 CharacterName="Masterson Clássico"
@@ -1624,6 +1815,8 @@ Description="Ninguém nunca entendeu como Masterson subiu de hierarquia com tant
 BodyMesh0="Equipamento de Motim"
 BodyMesh1="Cavaleiro de Papelão"
 BodyMesh2="Segurança de Horzine"
+BodyMesh3=""
+BodyMesh4="Hazmat"
 HeadMesh0="Rosto"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -1652,12 +1845,29 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[CHR_alan_archetype.BodyMesh3]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_alan_archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="Ruivo! Sério?"
 HeadSkin2="Dia difícil, camarada?"
 HeadSkin3="Camuflagem, amigo!"
+HeadSkin4="Anime-se, Amigo!"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="Chapéu EQ"
@@ -1672,6 +1882,8 @@ Description="Strasser participou de sua primeira guerra em 1939 como soldado do 
 BodyMesh0="RO2: Herói de Stalingrado"
 BodyMesh1="Cavaleiro de Papelão"
 BodyMesh2="Segurança de Horzine"
+BodyMesh3=""
+BodyMesh4="Hazmat"
 HeadMesh0="Cabelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -1698,10 +1910,27 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
+
+[CHR_strasser_archetype.BodyMesh3]
+BodySkin0=""
+BodySkin1=""
+BodySkin2=""
+BodySkin3=""
+BodySkin4=""
+
+[CHR_strasser_archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Aço Escuro"
 HeadSkin1="Aço Claro"
+HeadSkin2="Senhor Letal"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Capacete de Aço Alemão"
@@ -1745,6 +1974,7 @@ HeadSkin0="Para a Batalha!"
 HeadSkin1="Liberdade!"
 HeadSkin2="Para a Guerra!"
 HeadSkin3="Valhalla!"
+HeadSkin4="Dias Felizes!"
 
 [Cosmetic_Chivalry_Knight_Helm02HP_ARCH]
 Attachment="Elmo do Cavalariço"
@@ -1850,6 +2080,8 @@ Description="Rae Higgins é uma australiana que foi morar na Europa. Nascida em 
 BodyMesh0="Traje Padrão"
 BodyMesh1="Segurança de Horzine"
 BodyMesh2="Cavaleiro de Papelão"
+BodyMesh3
+BodyMesh4="Hazmat"
 HeadMesh0="Cabeça Padrão"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -1872,6 +2104,7 @@ BodySkin7="Multicamuflagem"
 BodySkin8="Risco"
 BodySkin9="Adamâncio"
 BodySkin10="Caça-recompensas"
+BodySkin11="Precioso"
 
 [chr_rockabilly_archetype.BodyMesh2]
 BodySkin0="Clássico"
@@ -1881,6 +2114,21 @@ BodySkin3="Armazém Horzine"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
 
+[chr_rockabilly_archetype.BodyMesh3]
+BodySkin0
+BodySkin1
+BodySkin2
+BodySkin3
+BodySkin4
+
+[chr_rockabilly_archetype.BodyMesh4]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
+
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Preto"
 HeadSkin1="Moreno"
@@ -1888,6 +2136,7 @@ HeadSkin2="Ruivo"
 HeadSkin3="Dourado"
 HeadSkin4="Turquesa"
 HeadSkin5="Rosa"
+HeadSkin6="Dona Morte"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Tapa-olho"
@@ -2334,6 +2583,7 @@ AttachmentSkin2="Verde-oliva"
 AttachmentSkin3="Vermelho"
 AttachmentSkin4="Branco"
 AttachmentSkin5="Amarelo"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_FirefighterHelmetDown_ARCH]
 Attachment="Casquete Abaixado"
@@ -2343,6 +2593,7 @@ AttachmentSkin2="Verde-oliva"
 AttachmentSkin3="Vermelho"
 AttachmentSkin4="Branco"
 AttachmentSkin5="Amarelo"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_FirefighterHelmetUp_ARCH]
 Attachment="Casquete Levantado"
@@ -2352,6 +2603,7 @@ AttachmentSkin2="Verde-oliva"
 AttachmentSkin3="Vermelho"
 AttachmentSkin4="Branco"
 AttachmentSkin5="Amarelo"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_FirefighterMask_ARCH]
 Attachment="Máscara de Gás de Bombeiro"
@@ -2361,6 +2613,7 @@ AttachmentSkin2="Verde-oliva"
 AttachmentSkin3="Vermelho"
 AttachmentSkin4="Branco"
 AttachmentSkin5="Amarelo"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_FirefighterTank_ARCH]
 Attachment="Tanque de Oxigênio de Bombeiro"
@@ -2370,6 +2623,7 @@ AttachmentSkin2="Verde-oliva"
 AttachmentSkin3="Vermelho"
 AttachmentSkin4="Branco"
 AttachmentSkin5="Amarelo"
+AttachmentSkin6="Precioso"
 
 [Cosmetic_InsectoidClosed_ARCH]
 Attachment="Insetoide Fechado"
@@ -2436,3 +2690,93 @@ AttachmentSkin12="Precioso"
 Attachment="Capacete Demonicida"
 AttachmentSkin0="Cinza"
 AttachmentSkin1="Precioso"
+
+[Cosmetic_HazmatHelmet_ARCH]
+Attachment="Capacete Hazmat"
+AttachmentSkin0="Croker"
+AttachmentSkin1="Glover"
+AttachmentSkin2="Heatwave"
+AttachmentSkin3="Horzine"
+AttachmentSkin4="Von Braun"
+AttachmentSkin5="Equipe do Reino Trágico"
+
+[Cosmetic_Witchdoctor_Hat_ARCH]
+Attachment="Chapéu de Bruxo Festivo"
+AttachmentSkin0="Vermelho"
+AttachmentSkin1="Branco"
+AttachmentSkin2="Marrom"
+AttachmentSkin3="Funk Vudu"
+AttachmentSkin4="Verde"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Tiny_Hat_ARCH]
+Attachment="Marchadorzinho de Feira"
+AttachmentSkin0="Vermelho Amarelo"
+AttachmentSkin1="Azul Amarelo"
+AttachmentSkin2="Arco-íris"
+AttachmentSkin3="Preto Branco"
+AttachmentSkin4="Branco"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_PigMask_ARCH]
+Attachment="Máscara de Porco Festiva"
+AttachmentSkin0="Leitão"
+AttachmentSkin1="Cinza"
+AttachmentSkin2="Arco-íris"
+AttachmentSkin3="Palhaço"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Clown_Nose_ARCH]
+Attachment="Nariz de Palhaço Festivo"
+AttachmentSkin0="Vermelho Felpudo"
+AttachmentSkin1="Vermelho Brilhante"
+AttachmentSkin2="Amarelo Felpudo"
+AttachmentSkin3="Azul Felpudo"
+AttachmentSkin4="Preto Felpudo"
+AttachmentSkin5="Amarelo Brilhante"
+AttachmentSkin6="Azul Brilhante"
+AttachmentSkin7="Preto Brilhante"
+AttachmentSkin8="Precioso"
+
+[Cosmetic_Clown_Hat_ARCH]
+Attachment="Chapéu Palhaço Festivo"
+AttachmentSkin0="Amarelo Azul"
+AttachmentSkin1="Preto Branco"
+AttachmentSkin2="Vermelho Preto"
+AttachmentSkin3="Arco-íris"
+AttachmentSkin4="GRANA!"
+AttachmentSkin5="Hora dos Zeds"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Mini_JFront_ARCH]
+Attachment="Terror Tímido"
+AttachmentSkin0="Terror Tímido"
+
+[Cosmetic_Hans_Helmet_ARCH]
+Attachment="Canhão Humano de Feira"
+AttachmentSkin0="Listras e Estrelas"
+AttachmentSkin1="Bala de Canhão"
+AttachmentSkin2="Batatinha"
+AttachmentSkin3="Boneco"
+AttachmentSkin4="Haruko"
+AttachmentSkin5="Horzine"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_FPVisor_ARCH]
+Attachment="Visor de Carniceiro"
+AttachmentSkin0="Visor de Carniceiro"
+AttachmentSkin1="Precioso"
+
+[Cosmetic_FPKingVisor_ARCH]
+Attachment="Visor de Carniceiro Rei"
+AttachmentSkin0="Visor de Carniceiro Rei"
+AttachmentSkin1="Precioso"
+
+[Cosmetic_HansPlush_ARCH]
+Attachment="Mochila de Pelúcia Hans"
+AttachmentSkin0="Hans Amigão"
+AttachmentSkin1="Precioso"
+
+[Cosmetic_BoomHat_ARCH]
+Attachment="Dinamite Explosiva"
+AttachmentSkin0="Explosão Mental"

@@ -52,6 +52,7 @@ var private const AkEvent ReceivedArmorSound;
 var private const AkEvent ReceivedAmmoAndArmorSound;
 var private const name BoomstickClassName;
 var private const array<name> AdditionalOnPerkDTNames;
+var private const int DoorRepairXP[4];
 
 function ApplySkillsToPawn()
 {
@@ -254,9 +255,9 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 {
     if((IsWeaponOnPerk(GetOwnerWeapon(),, self.Class)) && IsConcussionRoundsActive())
     {
-        return 1 + (GetSkillValue(PerkSkills[7]));
+        return GetSkillValue(PerkSkills[7]);
     }
-    return 1;
+    return 0;
 }
 
 simulated function Interact(KFPawn_Human KFPH)
@@ -445,61 +446,66 @@ simulated function bool IsSupplierActive()
 
 private final function bool IsBarrageActive()
 {
-    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
+    return (PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9);
 }
 
 private final simulated function bool CouldBarrageActive()
 {
-    return PerkSkills[9].bActive;
+    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
 }
 
 private final simulated function bool IsHighCapMagsMagActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 private final function bool IsFortitudeActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 private final function bool IsSalvoActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 private final simulated function bool IsAPShotActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
 private final simulated function bool IsTightChokeActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 private final simulated function bool IsTacticalReloadActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 private final function bool IsConcussionRoundsActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 private final simulated function bool IsResupplyActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
 private final simulated function bool IsPerforateActive()
 {
-    return PerkSkills[8].bActive && WorldInfo.TimeDilation < 1;
+    return (PerkSkills[8].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(8);
 }
 
 // Export UKFPerk_Support::execCanRepairDoors(FFrame&, void* const)
 native function bool CanRepairDoors();
+
+static function GetDoorRepairXP(out int XP, byte Difficulty)
+{
+    XP = default.DoorRepairXP[Difficulty];
+}
 
 private final simulated function name LogTacticalReload()
 {
@@ -546,6 +552,10 @@ defaultproperties
     AdditionalOnPerkDTNames(0)=KFDT_Ballistic_Shotgun_Medic
     AdditionalOnPerkDTNames(1)=KFDT_Ballistic_DragonsBreath
     AdditionalOnPerkDTNames(2)=KFDT_Ballistic_NailShotgun
+    DoorRepairXP[0]=18
+    DoorRepairXP[1]=24
+    DoorRepairXP[2]=30
+    DoorRepairXP[3]=42
     ProgressStatID=20
     PerkBuildStatID=21
     SecondaryXPModifier[0]=8

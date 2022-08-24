@@ -73,10 +73,26 @@ function Pawn GetMyPawn()
 	return (Pawn!=none)?Pawn:DebugCameraController(Outer).OriginalControllerRef.Pawn;
 }
 
+exec function SetFakeDownloadProgress (bool bDownloading, float PercentageComplete)
+{
+    local KFGameViewportClient KFVP;
+
+    KFVP = KFGameViewportClient(class'Engine'.static.GetEngine().GameViewport);
+
+    KFVP.NotifyDownloadProgress(PMT_DownloadProgress, "TEST", "59");
+}
+
 exec function OpenScreenSizeMovie()
 {
 	KFPlayerController(Outer).MyGFxManager.OpenScreenSizeMovie();
 }
+
+
+exec function CloseScreenSizeMovie()
+{
+	KFPlayerController(Outer).MyGFxManager.ScreenSizeMovie.SaveAndClose();
+}
+
 
 exec function OpenIIS ()
 {
@@ -728,6 +744,7 @@ simulated exec function Shotty()
     GiveWeapon( "KFGameContent.KFWeap_Shotgun_M4" );
     GiveWeapon( "KFGameContent.KFWeap_Shotgun_DoubleBarrel" );
     GiveWeapon( "KFGameContent.KFWeap_Shotgun_AA12" );
+    GiveWeapon( "KFGameContent.KFWeap_Shotgun_HZ12" );
 }
 
 /**
@@ -906,6 +923,7 @@ simulated exec function Sharpshooter()
     GiveWeapon( "KFGameContent.KFWeap_Bow_Crossbow" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_M14EBR" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_RailGun" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_CenterfireMB464" );
 }
 
 /**
@@ -928,6 +946,11 @@ simulated exec function SMG()
     GiveWeapon( "KFGameContent.KFWeap_SMG_Medic" );
 }
 
+/** Give the player all survivalist weapons */
+exec function Surv()
+{
+}
+
 /* AllWeapons
 	Give player all available weapons
 */
@@ -942,6 +965,7 @@ exec function AllWeapons()
     Medic();
     Swat();
     Shotty();
+    Surv();
 }
 
 /**
@@ -4043,30 +4067,15 @@ exec function TestSpecDist( optional bool bOnlyPathNodes = false)
 simulated exec function BigHeadMode()
 {
 	local Pawn P;
-	local KFPawn_Monster Clot;
+	local KFPawn KFPawn;
 
 	for( P = WorldInfo.PawnList; P != none; P = P.NextPawn )
 	{
-		Clot = KFPawn_Monster( P );
+		KFPawn = KFPawn( P );
 
-		if( Clot != none )
+		if( KFPawn != none )
 		{
-			if( Clot.IK_Look_Head == None )
-			{
-				Clot.IK_Look_Head = SkelControlLookAt( Clot.Mesh.FindSkelControl('HeadLook') );
-			}
-
-			if( Clot.IK_Look_Head != none )
-			{
-				if( Clot.IK_Look_Head.BoneScale > 1.f )
-				{
-					Clot.IK_Look_Head.BoneScale = 1.f;
-				}
-				else
-				{
-					Clot.IK_Look_Head.BoneScale = 3.f;
-				}
-			}
+			KFPawn.SetHeadScale(3.f, KFPawn.CurrentHeadScale);
 		}
 	}
 }
@@ -4640,6 +4649,14 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
 	{
 		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHuskFriendlyTest"$VersusSuffix, class'Class'));
 	}
+    else if ( Left(ZedName,5) ~= "KingF" )
+    {
+        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpoundKing"$VersusSuffix, class'Class'));
+    }
+    else if ( Left(ZedName,5) ~= "MiniF" )
+    {
+        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpoundMini"$VersusSuffix, class'Class'));
+    }
 	else if( Left(ZedName, 1) ~= "F" )
 	{
 		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpound"$VersusSuffix, class'Class'));
@@ -6004,6 +6021,11 @@ exec function LogItemPickups()
         `log( "~~LogItemPickups: Percentages: Disabled:" @ (100 / NumTotalItemPickups) * NumDisabledItemPickups $ "%" @ "Sleeping:" @ (100 / NumTotalItemPickups) * NumSleepingItemPickups $ "%" @ "Active:" @ (100 / NumTotalItemPickups) * NumActiveItemPickups $ "%" );
         `log( "~~LogItemPickups END~~~" );
     }
+}
+
+exec function LogStatValue(int StatId)
+{
+    KFPlayerController(Outer).LogStatValue(StatId);
 }
 
 /** Brute force hide/unhide actors that are ignored for pawn relevancy */

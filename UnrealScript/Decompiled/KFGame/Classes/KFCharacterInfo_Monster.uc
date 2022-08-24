@@ -9,6 +9,20 @@ class KFCharacterInfo_Monster extends KFCharacterInfoBase
     native(Pawn)
     hidecategories(Object);
 
+struct native ZedColorMod
+{
+    var() LinearColor MainColor;
+    var() LinearColor PatternColor;
+    var() LinearColor TrimColor;
+
+    structdefaultproperties
+    {
+        MainColor=(R=0,G=0,B=0,A=1)
+        PatternColor=(R=0,G=0,B=0,A=1)
+        TrimColor=(R=0,G=0,B=0,A=1)
+    }
+};
+
 struct native DoorSoundFx
 {
     var() AkEvent Metal;
@@ -54,6 +68,10 @@ var(ThirdPerson) array<MaterialInterface> PlayerControlledSkins;
 var(Server) SkeletalMesh ServerMesh;
 /** Additional material IDs that require MICs for gameplay material params */
 var(Effects) array<int> ExtraMICIndices;
+/** List of meshes to attach to the main body using the Parent Anim Component system */
+var(ThirdPerson) array<SkeletalMesh> PACMeshList;
+/** List of possible randomized colors to apply to zed */
+var(ThirdPerson) array<ZedColorMod> RandomizedColors;
 var(Effects) DoorSoundFx DoorHitSound;
 var MaterialInstance BloodSplatterDecalMaterial;
 /** Gore mesh with alternate bone weights */
@@ -96,19 +114,25 @@ var(Gore) float ExplosionImpulseScale<DisplayName=Gib Impulse Scale|UIMin=0|Clam
 simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
     local int I, MaterialIndex;
+    local editinline SkeletalMeshComponent PACAttachment;
+    local LinearColor AppliedColor;
 
     super.SetCharacterMeshFromArch(KFP, KFPRI);
+    if((RandomizedColors.Length > 0) && KFPawn_Monster(KFP) != none)
+    {
+        KFPawn_Monster(KFP).RandomColorIdx = Rand(RandomizedColors.Length);
+    }
     if(CharacterMesh != none)
     {
         KFP.DetachComponent(KFP.ThirdPersonHeadMeshComponent);
         I = 0;
-        J0x74:
+        J0xD2:
 
         if(I < 3)
         {
             KFP.DetachComponent(KFP.ThirdPersonAttachments[I]);
             ++ I;
-            goto J0x74;
+            goto J0xD2;
         }
         if((KFP.WorldInfo.NetMode == NM_DedicatedServer) && ServerMesh != none)
         {
@@ -119,16 +143,17 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             KFP.Mesh.SetSkeletalMesh(CharacterMesh);
         }
         KFP.Mesh.SetScale(DefaultMeshScale);
+        KFP.PitchAudio(DefaultMeshScale);
         if(KFP.UsePlayerControlledZedSkin())
         {
             I = 0;
-            J0x211:
+            J0x297:
 
             if(I < PlayerControlledSkins.Length)
             {
                 KFP.Mesh.SetMaterial(I, PlayerControlledSkins[I]);
                 ++ I;
-                goto J0x211;
+                goto J0x297;
             }            
         }
         else
@@ -136,15 +161,36 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             if(Skins.Length > 0)
             {
                 I = 0;
-                J0x2A5:
+                J0x32B:
 
                 if(I < Skins.Length)
                 {
                     KFP.Mesh.SetMaterial(I, Skins[I]);
                     ++ I;
-                    goto J0x2A5;
+                    goto J0x32B;
                 }
             }
+        }
+        I = 0;
+        J0x3AC:
+
+        if((I < PACMeshList.Length) && I < 3)
+        {
+            PACAttachment = new (KFP) Class'SkeletalMeshComponent';
+            if(PACAttachment != none)
+            {
+                KFP.ThirdPersonAttachments[I] = PACAttachment;
+                PACAttachment.SetActorCollision(false, false);
+                PACAttachment.SetSkeletalMesh(PACMeshList[I]);
+                PACAttachment.SetParentAnimComponent(KFP.Mesh);
+                PACAttachment.SetLODParent(KFP.Mesh);
+                PACAttachment.SetShadowParent(KFP.Mesh);
+                PACAttachment.SetLightingChannels(KFP.PawnLightingChannel);
+                PACAttachment.CreateAndSetMaterialInstanceConstant(0);
+                KFP.AttachComponent(PACAttachment);
+            }
+            ++ I;
+            goto J0x3AC;
         }
     }
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFP.Mesh != none)
@@ -155,6 +201,26 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
         {
             KFP.CharacterMICs.AddItem(KFP.Mesh.CreateAndSetMaterialInstanceConstant(MaterialIndex);            
         }        
+    }
+    if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFPawn_Monster(KFP) != none)
+    {
+        I = 0;
+        J0x78C:
+
+        if(I < KFP.CharacterMICs.Length)
+        {
+            if(KFPawn_Monster(KFP).RandomColorIdx >= 0)
+            {
+                AppliedColor = RandomizedColors[KFPawn_Monster(KFP).RandomColorIdx].MainColor;
+                KFP.CharacterMICs[I].SetVectorParameterValue('vector_MainColor', AppliedColor);
+                AppliedColor = RandomizedColors[KFPawn_Monster(KFP).RandomColorIdx].PatternColor;
+                KFP.CharacterMICs[I].SetVectorParameterValue('vector_PatternColor', AppliedColor);
+                AppliedColor = RandomizedColors[KFPawn_Monster(KFP).RandomColorIdx].TrimColor;
+                KFP.CharacterMICs[I].SetVectorParameterValue('vector_TrimColor', AppliedColor);
+            }
+            ++ I;
+            goto J0x78C;
+        }
     }
 }
 

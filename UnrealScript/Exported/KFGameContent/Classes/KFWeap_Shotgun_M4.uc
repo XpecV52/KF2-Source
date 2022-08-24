@@ -77,7 +77,7 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   InstantHitDamage(0)=25.000000
+   InstantHitDamage(0)=30.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=28.000000

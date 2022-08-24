@@ -29,6 +29,11 @@ var KFGFxStartGameContainer_FindGame FindGameContainer;
 var KFGFxStartGameContainer_Options OptionsComponent;
 var KFGFxStartContainer_InGameOverview OverviewContainer;
 var KFGFxStartContainer_ServerBrowserOverview ServerBrowserOverviewContainer;
+
+var KFGFxMissionObjectivesContainer MissionObjectiveContainer;
+
+
+
 //@HSL_BEGIN - JRO - 4/28/2016 - Disable certain features for PlayGo
 var GFxObject MatchMakingButton;
 var GFxObject ServerBrowserButton;
@@ -119,6 +124,8 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	local DataStoreClient DSClient;
 
 	super.InitializeMenu(InManager);
+	SetSeasonalEventClass();	//based of seasonal event ID
+
 	GetMapList(MapStringList);
 
 	// Initializations so we can search for a dedicated server to take over
@@ -141,12 +148,75 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	}
 }
 
+function SetSeasonalEventClass()
+{
+	local GFXWidgetBinding MyWidgetBinding;
+
+	MyWidgetBinding.WidgetName ='specialEventContainerMC';
+	MyWidgetBinding.WidgetClass=GetSpecialEventClass(class'KFGameEngine'.static.GetSeasonalEventId());
+
+	SubWidgetBindings[8]=MyWidgetBinding;
+}
+
+static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass(int SpecialEventID)
+{
+	switch (SpecialEventID)
+	{
+		case SEI_Summer:
+			return class'KFGFxSummerSideShowObjectivesContainer';
+	}
+	
+	return class'KFGFxSpecialEventObjectivesContainer';
+}
+
 /** Ties the GFxClikWidget variables to the .swf components and handles events */
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {	
 	switch(WidgetName)
 	{
-        case ('findGameContainer'):
+		//mission objectives UI
+		case ('missionObjectivesContainerMC'):
+		
+			if(MissionObjectiveContainer == none)
+			{
+				MissionObjectiveContainer = KFGFxMissionObjectivesContainer(Widget);
+				MissionObjectiveContainer.Initialize( self );
+			}
+			break;
+		case ('expandedMissionObjectivesMC'):
+		
+			if(MissionObjectiveContainer.ExpandedObjectiveContainer == none) //this is not the normal way we do this. This is a special case
+			{
+				MissionObjectiveContainer.ExpandedObjectiveContainer = KFGFxExpandedObjectivesContainer(Widget);
+				MissionObjectiveContainer.ExpandedObjectiveContainer.Initialize( self );
+			}
+			break;
+		case ('collapsedMissionObjectivesMC'):
+		
+			if(MissionObjectiveContainer.CollapsedObjectiveContainer == none)
+			{
+				MissionObjectiveContainer.CollapsedObjectiveContainer = KFGFxCollapsedObjectivesContainer(Widget);
+				MissionObjectiveContainer.CollapsedObjectiveContainer.Initialize( self );
+			}
+			break;
+		case ('specialEventContainerMC'):
+		
+			if(MissionObjectiveContainer.ExpandedObjectiveContainer.SpecialEventsContainer == none)
+			{
+				MissionObjectiveContainer.ExpandedObjectiveContainer.SpecialEventsContainer = KFGFxSpecialEventObjectivesContainer(Widget);
+				MissionObjectiveContainer.ExpandedObjectiveContainer.SpecialEventsContainer.Initialize( self );
+			}
+			break;
+		case ('weeklyContainerMC'):
+		
+			if(MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer == none)
+			{
+				MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer = KFGFxWeeklyObjectivesContainer(Widget);
+				MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer.Initialize( self );
+			}
+			break;
+		//end mission objectives UI 
+	    case ('findGameContainer'):
 			if ( FindGameContainer == none )
 			{
 			    FindGameContainer = KFGFxStartGameContainer_FindGame( Widget );
@@ -1033,6 +1103,10 @@ function OnOpen()
 	{
 		Manager.SetStartMenuState(EStartMenuState(GetStartMenuState()));
 	}
+	if(MissionObjectiveContainer != none)
+	{
+		MissionObjectiveContainer.Refresh();
+	}
 }
 
 
@@ -1443,6 +1517,11 @@ defaultproperties
    SubWidgetBindings(1)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')
    SubWidgetBindings(2)=(WidgetName="OverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_InGameOverview')
    SubWidgetBindings(3)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
+   SubWidgetBindings(4)=(WidgetName="missionObjectivesContainerMC",WidgetClass=Class'KFGame.KFGFxMissionObjectivesContainer')
+   SubWidgetBindings(5)=(WidgetName="collapsedMissionObjectivesMC",WidgetClass=Class'KFGame.KFGFxCollapsedObjectivesContainer')
+   SubWidgetBindings(6)=(WidgetName="expandedMissionObjectivesMC",WidgetClass=Class'KFGame.KFGFxExpandedObjectivesContainer')
+   SubWidgetBindings(7)=(WidgetName="weeklyContainerMC",WidgetClass=Class'KFGame.KFGFxWeeklyObjectivesContainer')
+   SubWidgetBindings(8)=(WidgetName="specialEventContainerMC",WidgetClass=Class'KFGame.KFGFxSpecialEventObjectivesContainer')
    Name="Default__KFGFxMenu_StartGame"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'
 }

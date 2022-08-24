@@ -22,6 +22,10 @@ package AssetLib_fla
         
         public var Text137:TextField;
         
+        public var __id0_:DefaultCheckBox;
+        
+        public var __id12_:DefaultCheckBox;
+        
         public var __id3_:DefaultLabel;
         
         public var backButton:$BaseButton;
@@ -60,6 +64,7 @@ package AssetLib_fla
         {
             super();
             addFrameScript(0,this.frame1);
+            this.__setProp___id0__Scene1_Layer1_0();
             this.__setProp_titleButton_Scene1_Layer1_0();
             this.__setProp_NewScrollingList_Scene1_Layer1_0();
             this.__setProp_backButton_Scene1_Layer1_0();
@@ -70,7 +75,34 @@ package AssetLib_fla
             this.__setProp_dropdown2_Scene1_Layer1_0();
             this.__setProp_NewDropDownList_Scene1_Layer1_0();
             this.__setProp_dropdown_Scene1_Layer1_0();
+            this.__setProp___id12__Scene1_Layer1_0();
             this.__setProp_buttonBar_Scene1_ButtonBar_0();
+        }
+        
+        function __setProp___id0__Scene1_Layer1_0() : *
+        {
+            try
+            {
+                this.__id0_["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            this.__id0_.autoSize = "none";
+            this.__id0_.data = "";
+            this.__id0_.enabled = true;
+            this.__id0_.enableInitCallback = false;
+            this.__id0_.focusable = true;
+            this.__id0_.label = "Normal Checkbox";
+            this.__id0_.selected = false;
+            this.__id0_.visible = true;
+            try
+            {
+                this.__id0_["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
         }
         
         function __setProp_titleButton_Scene1_Layer1_0() : *
@@ -392,6 +424,32 @@ package AssetLib_fla
             try
             {
                 this.dropdown["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp___id12__Scene1_Layer1_0() : *
+        {
+            try
+            {
+                this.__id12_["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            this.__id12_.autoSize = "none";
+            this.__id12_.data = "";
+            this.__id12_.enabled = true;
+            this.__id12_.enableInitCallback = false;
+            this.__id12_.focusable = true;
+            this.__id12_.label = "Super Long Stretched Checkbox";
+            this.__id12_.selected = false;
+            this.__id12_.visible = true;
+            try
+            {
+                this.__id12_["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

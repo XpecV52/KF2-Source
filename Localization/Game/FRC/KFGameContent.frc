@@ -272,6 +272,11 @@ ItemName="Fusil à pompe M4 Combat"
 ItemCategory="Fusil à pompe"
 ItemDescription="•Tir semi-auto uniquement\n•Le fusil à pompe de combat M4, conçu par Benelli pour l'armée américaine. Son mode de tir semi-automatique permet une cadence de tir régulière."
 
+[KFWeap_Shotgun_HZ12]
+ItemName="HZ12 Multi-Action"
+ItemCategory="Fusil à pompe"
+ItemDescription="• Mode de tir semi-automatique et à pompe.\n• Le fusil à pompe HZ12 est un prototype expérimental testé par les forces de sécurité de Horzine. Des Zeds ont été blessés pendant le développement de cette arme."
+
 [KFWeap_Knife_Berserker]
 ItemName="Lame de tondeuse"
 ItemCategory="Mêlée"
@@ -424,6 +429,11 @@ ItemName="Winchester 1894"
 ItemCategory="Fusil"
 ItemDescription="•Mode de tir manuel seulement.\n•Le légendaire fusil à levier Winchester modèle 1894."
 
+[KFWeap_Rifle_CenterfireMB464]
+ItemName="SPX 464"
+ItemCategory="Fusil"
+ItemDescription="• Mode de tir manuel seulement.\n• Un fusil à levier et percussion centrale Mossberg moderne avec peu de recul et un pouvoir d'arrêt élevé. Un classique revisité."
+
 [KFWeap_Bow_Crossbow]
 ItemName="Arbalète"
 ItemCategory="Bow"
@@ -464,6 +474,7 @@ ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\
 ItemName="Kriss SMG"
 ItemCategory="Pistolet mitrailleur"
 ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\n•Tir alternatif pour changer de mode de tir.\n•Le dernier cri en matière de redistribution de bastos, un bel outil de destruction."
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -513,6 +524,29 @@ BossCaptionStrings[3]="Fuir seul n'est pas non plus une solution, cela fait de v
 BossCaptionStrings[4]="Oui, le Patriarche peut toujours se dissimuler, devenir invisible, s'enfuir, et se soigner. C'est comme ça."
 BossCaptionStrings[5]="Vous n'aurez pas le choix, mais tuer ses « enfants » ne fera que le rendre (encore plus) fou."
 
+[KFPawn_ZedFleshpoundKing]
+BossName="King Fleshpound"
+BossName_CHN="闪击丧尸之王"
+BossName_CHT="絞碎者之王"
+BossName_DEU="King Fleshpound"
+BossName_ESL="Rey fleshpound"
+BossName_ESN="Rey fleshpound"
+BossName_FRA="Roi Barback"
+BossName_FRC="Roi Barback"
+BossName_INT="King Fleshpound"
+BossName_ITA="Re Fleshpound"
+BossName_JPN="キングフレッシュパウンド"
+BossName_KOR="King 플래시 파운드"
+BossName_POL="Król mięśniaków"
+BossName_PTB="Carniceiro Rei"
+BossName_RUS="Король-отбивальщик"
+BossCaptionStrings[0]="Plus vous infligez de dégâts au Roi Barback, plus il appelle de Biftecks. Ne vous laissez pas submerger !"
+BossCaptionStrings[1]="Baissez-vous ! Le rayon du Roi Barback a du mal à toucher les cibles au ras du sol."
+BossCaptionStrings[2]="Même gravement blessé, le Roi Barback n'abandonne pas. Il active un bouclier quand sa santé est faible. "
+BossCaptionStrings[3]="Si vous parvenez à attirer des Zeds dans sa ligne de mire, le Roi Barback peut les blesser avec son rayon."
+BossCaptionStrings[4]="Le Roi Barback possède les mêmes points faibles que les Barbacks classiques, mais en plus gros."
+BossCaptionStrings[5]="Le Roi Barback n'est jamais à court de Biftecks. Vous pouvez les ignorer à vos risques et périls."
+
 [KFGameInfo_Tutorial]
 GameName="Entraînement de base"
 
@@ -521,6 +555,9 @@ GameName="Survie"
 
 [KFGameInfo_VersusSurvival]
 GameName="Survie VS"
+
+[KFGameInfo_WeeklySurvival]
+GameName="Épidémie hebdomadaire"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Plus de soins disponibles"

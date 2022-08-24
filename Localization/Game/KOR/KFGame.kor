@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="공개"
 ConsolePermissionStrings[1]="초대 전용"
 
 ModeStrings[0]="서바이벌"
-ModeStrings[1]="VS 서바이벌"
+ModeStrings[1]="주간"
+ModeStrings[2]="VS 서바이벌"
 
 NoPreferenceString="모두"
 OKString="OK"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="병과는 웨이브 당 한 번 업데이트할 수 있�
 YesString="예"
 NoString="아니오"
 TeamSwappedString="팀 교환을 하였습니다."
+
+CancelConnectionString="로딩 취소"
 
 DisbandPartyString="부대 해산"
 LeaveCurrentMenuString="현재 메뉴에서 나가시겠습니까?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="구입한 아이템 없음"
 SetTakeoverServerPasswordTitle="게임을 보호하기 위해 새로운 패스워드를 입력하십시오."
 FreeConsolePlayOverString="Killing Floor 2를 플레이해 주셔서 감사합니다! 무료 플레이 이벤트는 종료되었습니다만, 아래의 상점 버튼을 눌러 게임을 구매하거나, 자세한 정보를 확인하실 수 있습니다."
 BuyGameString="상점"
+CustomString="커스텀"
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="아웃브레이크 완료 보상"
+WeeklyString="HORZINE 주간 아웃브레이크"
+CurrentWeeklySettingsString="현재 아웃브레이크 설정"
+SpecialEventString="여름 사이드쇼"
+ShortWeeklyString="주간"
+SeasonalString="시즌별"
+SpecialEventChanceDropString="제한된 드롭 아이템"
+GrantedSpecialEventString="완료 보상"
+RewardsString="아웃브레이크 완료 보상"
+WeeklyOverview="매주 도전적인 새로운 게임 모드가 추가됩니다!"
+ObjectivesString="목표 토글"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="대전상대를 찾지 못했습니다."
@@ -115,8 +133,9 @@ TutorialString="기본 훈련"
 
 [StartMenuHelperText]
 modeList0="서바이벌 – 인공지능으로 제어되는 제드 웨이브와 PVE 전투"
-modeList1="VS 서바이벌 – PVP Horzine 용병 대 플레이어 웨이브 및 인공지능으로 제어되는 제드"
-modeList2=""
+modeList1="주간 아웃브레이크 – 매주 다양하고 색다른 게임 모드가 제공됩니다."
+modeList2="VS 서바이벌 – PVP Horzine 용병 대 플레이어 웨이브 및 인공지능으로 제어되는 제드"
+modeList3=""
 difficultyList0="일반 - 병과 랭크 0-5의 초보 플레이어"
 difficultyList1="어려움 - 병과 랭크 6-12의 경험 많은 플레이어 웨이브 당 제드는 숫자가 더 많고 더 빠르며 체력이 더 강합니다. 습득할 수 있는 무기가 적고 Dosh도 적게 받습니다."
 difficultyList2="자살행위– 병과 랭크 13-25의 숙련된 플레이어. 웨이브 당 제드의 수는 더 많아지며 새로운 공격을 이용하고 더욱 빨라집니다. 습득할 수 있는 무기는 더 적고 Dosh도 더 적게 받습니다."
@@ -666,6 +685,7 @@ DamageDealtString="가한 데미지:"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ 준비 ]"
 WaitingString="플레이어 기다리는 중"
+MatchOverString="대전 \n 기다려 주십시오."
 DeployingString="배치 "
 CreatePartyString="부대 생성"
 ReadyString="준비"
@@ -840,6 +860,7 @@ CancelString="취소"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="레벨 업"
 TierUnlockedString="새로운 스킨 잠금 해제"
+ObjectiveCompleteString="목표 완료"
 
 [KFGFxHUD_WaveInfo]
 WaveString="웨이브"
@@ -924,6 +945,7 @@ ConfigureMicString="마이크 구성"
 VocalsString="음악 보컬"
 BattleChatterString="배틀 채팅 최소화"
 PushToVoIPString="VoIP로 푸쉬"
+ScreenSizeString="화면 크기 조절"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="이 비디오 설정을 이용하시겠습니까?"
@@ -1322,6 +1344,7 @@ MapCollectibleName="Dosh 조각이 반짝입니다"
 WaveStartMessage="웨 이 브   준 비"
 WaveEndMessage="웨 이 브   종 료"
 GetToTraderMessage="상점에 가기"
+ScavengeMessage="먹이 찾기"
 YouLostMessage="패 배"
 YouWonMessage="승 리"
 SquadWipedOutMessage="플레이어의 부대가 패배했습니다!"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>자체 치료"
 PressToBashWarning="충돌"
 GamepadWeaponSelectHint="<%HOLD%>무기 선택"
 PlayerClotGrabWarningMessage="제드를 죽이고 빠져나가십시오!"
-UseMinigameMessage="미니게임 활성화"
+UseMinigameMessage="활성화"
 UseMinigameGeneratorMessage="미니게임 생성기 활성화"
 
 [KFLocalMessage_ServerNotification]
@@ -1913,6 +1936,7 @@ Passives[3]=(Title="탄약",Description="탄약 15% 증가 후 레벨 당 %x% �
 Passives[4]=(Title="무게 및 용량 증가",Description="무게 용량이 5 레벨마다 1씩 증가");
 Passives[5]=(Title="탄약 백팩 + 도어 수리",Description="라운드 당 한 번씩 플레이어가 백팩에서 탄약을 꺼낼 수 있음 - 부서진 도어 수리");
 
+
 EXPAction1="서포트 무기 데미지"
 EXPAction2="도어 용접"
 
@@ -2162,6 +2186,7 @@ Forums="저희 커뮤니티 포럼을 방문해주세요."
 Survey="게임플레이 조사에 참여해주세요."
 CommunityTracker="커뮤니티 이슈 요청 추적"
 FeaturedCrateKey="특별 Horzine 보급상자 열쇠 - $2.49"
+FeaturedEventItem="이벤트 아이템 구성"
 FeaturedUsbKey="특별 무기 스킨 USB 키 - $2.49"
 FeaturedRareItem="특별 희귀 아이템 - $3.99"
 FeaturedExceptionalItem="특별 특수 아이템 - $7.49"
@@ -2181,16 +2206,18 @@ HorzineSupplyCrateKey10="Horzine 보급상자 열쇠 | 시리즈 10 - $2.49"
 HorzineSupplyCrateKey11="Horzine 보급상자 열쇠 | 시리즈 11 - $2.49"
 HorzineSupplyCrateKey12="Horzine 보급상자 열쇠 | 시리즈 12 - $2.49"
 HorzineSupplyCrateKey13="Horzine 보급상자 열쇠 | 시리즈 13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+USBSpitfire="스핏 파이어 USB 키 - $2.49"
+USBHighVoltage="고전압 USB 키 - $2.49"
+MerchSale="KF2 장비 세일! 2017년 4월 30일까지 25% 할인됩니다. 프로모 코드 ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="클롯"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedCrawlerKing="Elite Crawler"
+KFPawn_ZedFleshpoundMini="쿼터 파운드"
 KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedFleshpoundKing="King 플래시 파운드"
 KFPawn_ZedGorefast="Gorefast"
 KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
@@ -2319,6 +2346,119 @@ KFWeap_Zweihander="기사 프로모션"
 
 
 Source0="기사 프로모션"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="드롭 1"
+ChanceDropDescriptionStrings[1]="드롭 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="독점적인 아이템들이 제공되는 시간이 제한된 특수 이벤트."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="파워업",DescriptionString="비극의 왕국에서 생성기 파워업");
+SpecialEventObjectiveInfoList[1]=(TitleString="클롯 터뜨리기",DescriptionString="비극의 왕국에서 클롯 터뜨리기");
+SpecialEventObjectiveInfoList[2]=(TitleString="Bloat 빠뜨리기",DescriptionString="비극의 왕국에서 Bloat 빠뜨리기");
+SpecialEventObjectiveInfoList[3]=(TitleString="도쉬 던지기",DescriptionString="비극의 왕국에서 도쉬 던지기");
+SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="비극의 왕국에서 대전 이기기");
+
+AllCompleteRewardDescriptionString="사이드쇼 방호복"
+
+ChanceDropDescriptionStrings[0]="사이드쇼 상품권"
+ChanceDropDescriptionStrings[1]="사이드쇼 황금 티켓"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="현재 아웃브레이크: 두개골 크래커"
+DescriptionStrings[0]="두뇌의 데미지가 최고의 데미지입니다."
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="이 아웃브레이크에서는 머리에 데미지를 입었을 경우에만 영원히 처치될 수 있는 방식으로 제드가 돌연변이 변형되었습니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="현재 아웃브레이크: 소규모 테러"
+DescriptionStrings[0]="작은 위협도 위협입니다."
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="이 아웃브레이크에서 제드를 쏘면 제드가 축소되어 맞추기가 힘들게 됩니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="현재 아웃브레이크: Poundemonium"
+DescriptionStrings[0]="항상 모든 플래시 파운드. 거의."
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="플래시 파운드 컨벤션이 열립니다! Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="현재 아웃브레이크: 위로, 위로 그리고 부식"
+DescriptionStrings[0]="99개의 제드 풍선을 만들어보세요."
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="이 아웃브레이크에서 제드를 쏘면 풍선처럼 부풀어올라서 멀리 날아가다가 터집니다! Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="현재 아웃브레이크: 제드 타임"
+DescriptionStrings[0]="세상의 모든 제드 타임."
+DescriptionStrings[1]="길이: 짧음(4 웨이브)"
+ModifierDescriptions[0]="인생이 아무 의미 없이 흘러가고 있는 것 같나요? 이 아웃브레이크에서는 아닐 걸요! 제드 가까이에 있으면 제드 타임에 들어가게 됩니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="현재 아웃브레이크: 폭발"
+DescriptionStrings[0]="제드가 압력을 받고 있어서 폭발할 수 있습니다."
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="그들이 먹은 건가요? 나쁜 가스? 그게 뭔지는 모르겠지만 이 아웃브레이크에서 제드가 살해되면서 폭발했어요. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="현재 아웃브레이크: 근육질."
+DescriptionStrings[0]="클수록 넘어뜨리기가 힘듭니다."
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="이 아웃브레이크에서는 제드가 플레이어를 명중시키거나 특정 제드 능력에 의해 영향을 받으면 체력, 크기, 범위가 증가합니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="현재 아웃브레이크: 버블제드"
+DescriptionStrings[0]="...그들의 목이 아프겠네요."
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="이 제드들은 무엇인가 크게 잘못된 것 같습니다. 머리가 정상보다 너무 너무 너무 큽니다. 너무 거대해요! Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2701,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="바이오틱스 연구소"
 
@@ -2572,6 +2728,9 @@ DisplayName="불타는 파리"
 
 [Survival KFGameInfoSummary]
 GameName="서바이벌"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="주간"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="볼터의 영지"
@@ -2608,6 +2767,9 @@ DisplayName="경사로"
 
 [KF-Nuked KFMapSummary]
 DisplayName="방사능 누출지"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="비극의 왕국"
 
 [KFMapInfo]
 ; defaults

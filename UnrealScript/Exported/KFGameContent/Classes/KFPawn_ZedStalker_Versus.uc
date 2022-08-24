@@ -151,6 +151,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=3.000000,Vulnerability=(0.500000))
    IncapSettings(9)=(Duration=2.000000,Vulnerability=(1.000000))
    IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(0.000000))
+   IncapSettings(11)=(Vulnerability=(0.000000))
    SprintSpeed=700.000000
    SprintStrafeSpeed=425.000000
    TeammateCollisionRadiusPercent=0.300000
@@ -193,6 +194,15 @@ defaultproperties
       SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerStalker_Melee'
       SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerStalker_Melee2'
       SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerStalker_Roll'
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedStalker:SpecialMoveHandler_0'
    End Object

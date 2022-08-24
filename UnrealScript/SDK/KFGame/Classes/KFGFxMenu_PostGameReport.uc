@@ -192,7 +192,7 @@ function SetSumarryInfo()
 		KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
 		GameDifficultyString =  class'KFCommon_LocalizedStrings'.static.GetDifficultyString(KFGRI.GameDifficulty);
-		GameTypeString =   class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
+		GameTypeString = KFGRI.GameClass.default.GameName;
 
     	TextObject.SetString("mapName", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName) );
 		TextObject.SetString("typeDifficulty", GameTypeString @"-" @GameDifficultyString);
@@ -368,6 +368,7 @@ function OnClose()
 {
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
+		class'GameEngine'.static.GetPlayfabInterface().ClearOnCloudScriptExecutionCompleteDelegate( OnProcessEndGameRewardsComplete );
 		class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate( SearchPlayfabInventoryForNewItem );
 	}
 	else if( OnlineSub != none )

@@ -97,7 +97,7 @@ Upgrade=이 서버에 들어가려면, 에픽의 웹사이트에서 언리얼로
 UpgradeURL=http://www.unreal.com/upgrade
 UpgradeQuestion=바로 웹 브라우저를 실행시키고 업그레이드 페이지로 이동하시겠습니까?
 Version=버전 `~
-SplashScreen_CopyrightInfo=저작권 © 1998-2013   Epic Games, Inc.
+SplashScreen_CopyrightInfo=저작권 ©2009-2017 Killing Floor® Tripwire Interactive LLC   All rights reserved.
 SplashScreen_ThirdPartyCopyrightInfo=Bink Video 사용, 저작권 © 1997-2011 RAD Game Tools, Inc.
 
 [Menu]

@@ -10,10 +10,10 @@ class KFDifficulty_Patriarch extends KFMonsterDifficultyInfo
 
 defaultproperties
 {
-    Normal=(HealthMod=0.76,SprintChance=1,DamagedSprintChance=1,DamageMod=0.65,SoloDamageMod=0.36,RallySettings=(bCanRally=false))
-    Hard=(HealthMod=1.01,SprintChance=1,DamagedSprintChance=1,DamageMod=0.8,SoloDamageMod=0.45,RallySettings=(bCanRally=false))
-    Suicidal=(HealthMod=0.96,HeadHealthMod=0.96,SprintChance=1,DamagedSprintChance=1,DamageMod=1.47,SoloDamageMod=0.52,BlockSettings=(Chance=0.85,Duration=1.25,MaxBlocks=5,Cooldown=3.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCanRally=false))
-    HellOnEarth=(HealthMod=1.16,HeadHealthMod=1.16,SprintChance=1,DamagedSprintChance=1,DamageMod=1.49,SoloDamageMod=0.66,BlockSettings=(Chance=0.85,Duration=1.25,MaxBlocks=6,Cooldown=3.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCanRally=false))
+    Normal=(HealthMod=0.75,SprintChance=1,DamagedSprintChance=1,DamageMod=0.67,SoloDamageMod=0.35,RallySettings=(bCanRally=false))
+    Hard=(SprintChance=1,DamagedSprintChance=1,DamageMod=0.81,SoloDamageMod=0.42,RallySettings=(bCanRally=false))
+    Suicidal=(HealthMod=1.13,HeadHealthMod=1.13,SprintChance=1,DamagedSprintChance=1,DamageMod=1.47,SoloDamageMod=0.41,BlockSettings=(Chance=0.85,Duration=1.25,MaxBlocks=5,Cooldown=3.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCanRally=false))
+    HellOnEarth=(HealthMod=1.39,HeadHealthMod=1.39,SprintChance=1,DamagedSprintChance=1,DamageMod=1.45,SoloDamageMod=0.52,BlockSettings=(Chance=0.85,Duration=1.25,MaxBlocks=6,Cooldown=3.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCanRally=false))
     NumPlayersScale_BodyHealth=0.5
     NumPlayersScale_HeadHealth=0.3
     NumPlayersScale_BodyHealth_Versus=0.5

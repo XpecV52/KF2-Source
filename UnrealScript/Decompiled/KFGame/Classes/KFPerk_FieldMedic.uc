@@ -274,12 +274,12 @@ simulated function float GetSnarePowerModifier(optional class<DamageType> Damage
 
 private final function bool IsAirborneAgentActive()
 {
-    return PerkSkills[8].bActive;
+    return PerkSkills[8].bActive && IsPerkLevelAllowed(8);
 }
 
 function bool IsAcidicCompoundActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 function bool IsToxicDmgActive()
@@ -289,42 +289,42 @@ function bool IsToxicDmgActive()
 
 private final simulated function bool IsHealingSpeedBoostActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 private final simulated function bool IsHealingDamageBoostActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
 private final simulated function bool IsHealingShieldActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
 private final simulated function bool IsCombatantActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 private final simulated function bool IsEnforcerActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 simulated function bool IsHealingSurgeActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 simulated function bool IsSurvivalistActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 simulated function bool IsSlugActive()
 {
-    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
+    return (PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9);
 }
 
 simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect(class<KFDamageType> dmgType)

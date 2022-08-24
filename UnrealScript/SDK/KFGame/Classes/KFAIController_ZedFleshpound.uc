@@ -24,6 +24,7 @@ var float				ChargeStuckCheckDistance;
 var bool				bReadyToBecomeEnraged;
 var float				LastKickClotTime;
 
+
 /*********************************************************************************************
 * Combat Related
 ********************************************************************************************* */
@@ -33,6 +34,8 @@ var bool	bSawEnemy;
 
 var instanced KFAIPluginRage_Fleshpound RagePlugin;
 var class<KFAIPluginRage_Fleshpound> RagePluginClass;
+
+var array<float> 		SpawnRagedChance;
 
 /*********************************************************************************************
 * Debug
@@ -52,6 +55,13 @@ cpptext
 /*********************************************************************************************
 * Base
 **********************************************************************************************/
+
+event Possess( Pawn inPawn, bool bVehicleTransition )
+{
+	super.Possess(inPawn, bVehicleTransition);
+
+	DoSpawnRageCheck();
+}
 
 native function CleanUp(optional bool bBeingDestroyed);
 
@@ -255,6 +265,24 @@ function bool CanAttackDestructibles()
 * Enraged!
 ********************************************************************************************* */
 
+function DoSpawnRageCheck()
+{
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo( WorldInfo.Game );
+
+	if(KFGI == none)
+	{
+		return;
+	}
+
+	if(FRand() <= SpawnRagedChance[int(KFGI.GameDifficulty)])
+	{
+		//FP SMASH!!
+		RagePlugin.DoSpawnRage();
+	}
+}
+
 /** Start up the pre-charge Taunt */
 function DoRageTauntAt( optional KFPawn Target )
 {
@@ -340,4 +368,9 @@ DefaultProperties
 	TeleportCooldown=10.0
 	HiddenRelocateTeleportThreshold=7.0
 	LowIntensityAttackCooldown=5.0
+
+	SpawnRagedChance(`DIFFICULTY_NORMAL)=0.0f
+	SpawnRagedChance(`DIFFICULTY_HARD)=0.0f
+	SpawnRagedChance(`DIFFICULTY_SUICIDAL)=0.5f
+	SpawnRagedChance(`DIFFICULTY_HELLONEARTH)=0.75f
 }

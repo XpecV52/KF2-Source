@@ -84,6 +84,7 @@ const STATID_ACHIEVE_HostileGroundsCollectibles = 4032;
 const STATID_ACHIEVE_ZedLandingCollectibles = 4035;
 const STATID_ACHIEVE_DescentCollectibles = 4036;
 const STATID_ACHIEVE_NukedCollectibles = 4037;
+const STATID_ACHIEVE_TragicKingdomCollectibles = 4038;
 
 var KFOnlineStatsWrite LinkedWriteObject;
 var UniqueNetId OwningUniqueID;

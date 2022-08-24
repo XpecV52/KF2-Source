@@ -97,7 +97,7 @@ Upgrade=Entrer sur ce serveur exige la dern. mise à jour gratuite d'Unreal disp
 UpgradeURL=http://www.unreal.com/upgrade
 UpgradeQuestion=Lancer votre navigateur et rejoindre la page de mise à jour ?
 Version=Version `~
-SplashScreen_CopyrightInfo=Copyright ©2009-2015 Killing Floor® Tripwire Interactive LLC   All rights reserved.
+SplashScreen_CopyrightInfo=Copyright ©2009-2017 Killing Floor® Tripwire Interactive LLC   All rights reserved.
 SplashScreen_ThirdPartyCopyrightInfo=Uses Bink Video, Copyright © 1997-2011 by RAD Game Tools, Inc.
 
 [Menu]

@@ -18,6 +18,7 @@ const HIT_DIRECTION_FLAG = 0x80;
 const DoorWidth = 200;
 const HumanPushDistance = 40;
 const SlidingPushForce = 750;
+const VerticalPushForce = 100;
 const BashHingedAnim_F = 'DoorBash_A';
 const BashHingedAnim_B = 'DoorBash_B';
 const BashSlidingAnim_F = 'DoorBashSliding_A';
@@ -91,10 +92,14 @@ var(Opening) int LiftTranslation;
 /** If set, door opens and closes automatically */
 var(Opening) const editconst bool bAutomaticDoor;
 var transient bool bDoorMoveCompleted;
+/** current state of the door if it hasn't been destroyed - note it's possible for bIsDoorOpen to be false and bIsDoorDestroyed to be true so check both */
+var() bool bStartDoorOpen;
 var repnotify transient bool bIsDoorOpen;
 var transient bool bLocalIsDoorOpen;
 var transient bool bReverseHinge;
 var transient bool bHasBeenDirtied;
+/** Whether or not to start welded */
+var() bool bStartWelded;
 var repnotify transient bool bShouldExplode;
 var repnotify transient bool bIsDestroyed;
 var repnotify transient bool bWasRepaired;
@@ -262,12 +267,15 @@ simulated event PostBeginPlay()
         AttachComponent(AmbientSoundComponent);
     }
     InitializeDoorMIC();
-    CenterWeldComponent.SetHidden(true);
+    if(CenterWeldComponent != none)
+    {
+        CenterWeldComponent.SetHidden(bStartDoorOpen);
+    }
     if(Class'KFAIController'.default.bUseNavMesh)
     {
     }
     I = 0;
-    J0xF2:
+    J0x10A:
 
     if(I < MeshAttachments.Length)
     {
@@ -277,7 +285,7 @@ simulated event PostBeginPlay()
             ++ NumActualDoors;
         }
         ++ I;
-        goto J0xF2;
+        goto J0x10A;
     }
     if(NumActualDoors > 0)
     {
@@ -343,10 +351,11 @@ simulated function InitializeDoorMIC()
                 goto J0x57;
             }
         }
-        if(CenterWeldComponent.GetMaterial(0) != none)
+        if((CenterWeldComponent != none) && CenterWeldComponent.GetMaterial(0) != none)
         {
             IntegrityMIC = CenterWeldComponent.CreateAndSetMaterialInstanceConstant(0);
             IntegrityMIC.SetScalarParameterValue('doorWeld', 0);
+            UpdateIntegrityMIC();
         }
     }
 }
@@ -377,9 +386,10 @@ simulated function InitSkelControl()
         default:
             break;
     }
-    MovementControl.SetSkelControlStrength(1, 0);
-    bIsDoorOpen = true;
-    bLocalIsDoorOpen = true;
+    MovementControl.SetSkelControlStrength(((bStartDoorOpen) ? 1 : 0), 0);
+    bIsDoorOpen = bStartDoorOpen;
+    bLocalIsDoorOpen = bStartDoorOpen;
+    WeldIntegrity = ((bStartWelded && !bStartDoorOpen) ? MaxWeldIntegrity : 0);
 }
 
 // Export UKFDoorActor::execIsCompletelyOpen(FFrame&, void* const)
@@ -619,6 +629,7 @@ private final function TryPushPawns()
                 {
                     PushDir *= float(((bInFrontOfDoor) ? 1 : -1));
                 }
+                PushDir.Z += float(100);
                 P.AddVelocity(PushDir, P.Location, Class'KFDT_Bludgeon');
             }
             continue;
@@ -837,9 +848,10 @@ function FastenDoor(int Amount, optional KFPawn Welder)
     }
 }
 
-function RepairDoor(float Amount)
+function RepairDoor(float Amount, optional KFPawn Welder)
 {
     local byte ByteAmount;
+    local KFPlayerController KFPC;
 
     if(bIsDestroyed)
     {
@@ -851,6 +863,14 @@ function RepairDoor(float Amount)
             {
                 bWasRepaired = true;
                 SetTimer(0.1, false, 'Timer_ResetRepairFlag');
+            }
+            if(Welder != none)
+            {
+                KFPC = KFPlayerController(Welder.Controller);
+                if(KFPC != none)
+                {
+                    KFPC.DoorRepaired();
+                }
             }            
         }
         else
@@ -1192,15 +1212,18 @@ simulated function UpdateIntegrityMIC()
         IntegrityMIC.SetScalarParameterValue('doorWeld', IntegrityScaler);
         ExplosiveScaler = ((bShouldExplode) ? 1 : 0);
         IntegrityMIC.SetScalarParameterValue('scalar_explosive', ExplosiveScaler);
-        if(CenterWeldComponent.HiddenGame && WeldIntegrity > 0)
+        if(CenterWeldComponent != none)
         {
-            CenterWeldComponent.SetHidden(false);            
-        }
-        else
-        {
-            if(!CenterWeldComponent.HiddenGame && WeldIntegrity <= 0)
+            if(CenterWeldComponent.HiddenGame && WeldIntegrity > 0)
             {
-                CenterWeldComponent.SetHidden(true);
+                CenterWeldComponent.SetHidden(false);                
+            }
+            else
+            {
+                if(!CenterWeldComponent.HiddenGame && WeldIntegrity <= 0)
+                {
+                    CenterWeldComponent.SetHidden(true);
+                }
             }
         }
     }
@@ -1574,7 +1597,7 @@ defaultproperties
     SlideTranslation=-100
     LiftTranslation=245
     bDoorMoveCompleted=true
-    bIsDoorOpen=true
+    bStartDoorOpen=true
     MaxHealth=4000
     MaxWeldIntegrity=1500
     DemoWeldRequired=500
@@ -1627,7 +1650,6 @@ defaultproperties
     bCollideActors=true
     bBlockActors=true
     bProjTarget=true
-    bNoEncroachCheck=true
     bEdShouldSnap=true
     bIgnoreNetRelevancyCollision=true
     NetUpdateFrequency=0.1

@@ -220,16 +220,19 @@ static simulated function GetImpactEffect(PhysicalMaterial HitMaterial, out Mate
     {
         PhysicalProperty = KFPhysicalMaterialProperty(HitMaterial.GetPhysicalMaterialProperty(Class'KFPhysicalMaterialProperty'));
     }
-    if(PhysicalProperty != none)
+    if(ImpactEffectInfo != none)
     {
-        I = ImpactEffectInfo.ImpactEffects.Find('MaterialType', PhysicalProperty.MaterialType;
-        if(I != -1)
+        if(PhysicalProperty != none)
         {
-            out_ImpactEffect = ImpactEffectInfo.ImpactEffects[I];
-            return;
+            I = ImpactEffectInfo.ImpactEffects.Find('MaterialType', PhysicalProperty.MaterialType;
+            if(I != -1)
+            {
+                out_ImpactEffect = ImpactEffectInfo.ImpactEffects[I];
+                return;
+            }
         }
+        out_ImpactEffect = ImpactEffectInfo.DefaultImpactEffect;
     }
-    out_ImpactEffect = ImpactEffectInfo.DefaultImpactEffect;
 }
 
 simulated function bool AllowImpactEffects(Actor HitActor, Vector HitLocation, Vector HitNormal)

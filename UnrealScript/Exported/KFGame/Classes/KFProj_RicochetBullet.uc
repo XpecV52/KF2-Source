@@ -61,6 +61,7 @@ defaultproperties
    CylinderComponent=CollisionCylinder
    Components(0)=CollisionCylinder
    Components(1)=AmbientAkSoundComponent
+   bPushedByEncroachers=False
    bBounce=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_RicochetBullet"

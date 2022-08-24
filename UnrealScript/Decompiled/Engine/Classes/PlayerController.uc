@@ -4872,6 +4872,8 @@ native final function bool ShouldReplicateVoicePacketFrom(const out UniqueNetId 
 // Export UPlayerController::execShouldReplicateVoicePacketTo(FFrame&, void* const)
 native final function bool ShouldReplicateVoicePacketTo(const out UniqueNetId Receiver);
 
+function ForceDisconnect();
+
 event GetSeamlessTravelActorList(bool bToEntry, out array<Actor> ActorList)
 {
     HearSoundActiveComponents.Length = 0;

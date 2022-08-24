@@ -508,6 +508,7 @@ static function int GetKillerDialogID()
 
 defaultproperties
 {
+   CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_BloodBase'
    KDamageImpulse=400.000000
    KDeathVel=75.000000
    KDeathUpKick=50.000000

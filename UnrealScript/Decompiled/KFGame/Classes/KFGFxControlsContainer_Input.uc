@@ -127,8 +127,8 @@ function InitializeOptions()
         ValuesObject.SetFloat("zoomSensitivityValueMax", 100 * ControlsMenu.MaxMouseLookZoomSensitivity);
         ValuesObject.SetBool("invertedValue", KFPI.bInvertMouse);
         ValuesObject.SetBool("mouseSmoothingLabel", KFPI.bEnableMouseSmoothing);
-        ValuesObject.SetBool("forceFeedbackValue", KFPI.bForceFeedbackEnabled);
     }
+    ValuesObject.SetBool("forceFeedbackValue", KFPI.bForceFeedbackEnabled);
     ValuesObject.SetFloat("controllerSensitivityValue", 100 * KFPI.GamepadSensitivityScale);
     ValuesObject.SetFloat("controllerSensitivityValueMin", 100 * ControlsMenu.MinControllerLookSensitivity);
     ValuesObject.SetFloat("controllerSensitivityValueMax", 100 * ControlsMenu.MaxControllerLookSensitivity);
@@ -157,6 +157,9 @@ function ResetInputOptions()
         ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(142, KFPI.bInvertMouse);
         KFPI.bEnableMouseSmoothing = ControlsMenu.Manager.CachedProfile.GetDefaultBool(136);
         ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(136, KFPI.bEnableMouseSmoothing);
+    }
+    if(!Outer.GetPC().WorldInfo.IsConsoleBuild(8))
+    {
         KFPI.bForceFeedbackEnabled = ControlsMenu.Manager.CachedProfile.GetDefaultBool(103);
         ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(103, KFPI.bForceFeedbackEnabled);
     }

@@ -14,6 +14,7 @@ class KFDT_Explosive_Sacrifice extends KFDT_Explosive
 
 defaultproperties
 {
+   bAnyPerk=True
    bShouldSpawnPersistentBlood=True
    StunPower=21.000000
    KnockdownPower=20.000000

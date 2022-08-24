@@ -16,24 +16,21 @@ struct native BossMinionWaveInfo
     var KFAIWaveInfo PhaseOneWave;
     var KFAIWaveInfo PhaseTwoWave;
     var KFAIWaveInfo PhaseThreeWave;
+    var KFAIWaveInfo PhaseFourWave;
 
     structdefaultproperties
     {
         PhaseOneWave=none
         PhaseTwoWave=none
         PhaseThreeWave=none
+        PhaseFourWave=none
     }
 };
 
 var KFPlayerController KFPC;
-var const localized string BossName;
-var const localized array<localized string> BossCaptionStrings;
 var BossMinionWaveInfo SummonWaves[4];
 var Vector2D NumMinionsToSpawn;
 var repnotify int CurrentBattlePhase;
-var bool bUseAnimatedTheatricCamera;
-var name TheatricCameraSocketName;
-var Vector TheatricCameraAnimOffset;
 var float LastPlayerAliveAttackRangeScale;
 var protected float LastPlayerAliveStartTime;
 var protected const float TimeUntilSpeedIncrease;
@@ -64,13 +61,6 @@ simulated event PreBeginPlay()
     super.PreBeginPlay();
     OnBattlePhaseChanged();
     KFPC = KFPlayerController(GetALocalPlayerController());
-    if(KFPC != none)
-    {
-        if((KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.bossHealthBar != none)
-        {
-            KFPC.MyGFxHUD.bossHealthBar.SetBossPawn(self);
-        }
-    }
 }
 
 simulated event PostBeginPlay()
@@ -140,21 +130,22 @@ function bool CanAITargetThisPawn(Controller TargetingController)
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     local KFGameReplicationInfo KFGRI;
-    local string ClassName;
 
     super.PlayDying(DamageType, HitLoc);
-    ClassName = string(Class.Name);    
-    ClassName -= string('_Versus');
-    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(ClassName, WorldInfo.GetMapName(true));
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if((KFGRI != none) && !KFGRI.IsFinalWave())
     {
         return;
     }
-    if(KFPC != none)
+}
+
+simulated function PlayDyingSound()
+{
+    if(!HasMouth())
     {
-        KFPC.SetBossCamera(self);
+        return;
     }
+    super.PlayDyingSound();
 }
 
 simulated function TerminateEffectsOnDeath()
@@ -252,6 +243,11 @@ function bool IsOnePlayerLeftInTeamGame()
 // Export UKFPawn_MonsterBoss::execLocalIsOnePlayerLeftInTeamGame(FFrame&, void* const)
 native function bool LocalIsOnePlayerLeftInTeamGame();
 
+simulated event bool IsActiveBoss()
+{
+    return true;
+}
+
 static function bool IsABoss()
 {
     return true;
@@ -268,11 +264,6 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
     }
     ClearTimer('Timer_IncreaseSpeed');
     return Result;
-}
-
-function bool ShouldDrawBossIcon()
-{
-    return false;
 }
 
 function PlayBossMusic();
@@ -324,15 +315,15 @@ function PlayGrabKilledDialog();
 
 defaultproperties
 {
-    BossName="Boss"
-    BossCaptionStrings(0)="Boss caption 1"
-    BossCaptionStrings(1)="Boss caption 2"
     LastPlayerAliveAttackRangeScale=0.75
     TimeUntilSpeedIncrease=60
     SpeedLimitScalar=1.3
     SpeedPctIncreasePerMinute=0.2
     MinSpawnSquadSizeType=ESquadType.EST_Boss
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_MonsterBoss.MeleeHelper'
+    BossName="Boss"
+    BossCaptionStrings(0)="Boss caption 1"
+    BossCaptionStrings(1)="Boss caption 2"
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -345,45 +336,7 @@ defaultproperties
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_MonsterBoss.FirstPersonArms'
     ArmsMesh=FirstPersonArms
-    begin object name=SpecialMoveHandler class=KFSpecialMoveHandler
-        SpecialMoveClasses(0)=none
-        SpecialMoveClasses(1)=class'KFSM_MeleeAttack'
-        SpecialMoveClasses(2)=class'KFSM_DoorMeleeAttack'
-        SpecialMoveClasses(3)=class'KFSM_GrappleCombined'
-        SpecialMoveClasses(4)=class'KFSM_Stumble'
-        SpecialMoveClasses(5)=class'KFSM_RecoverFromRagdoll'
-        SpecialMoveClasses(6)=class'KFSM_RagdollKnockdown'
-        SpecialMoveClasses(7)=class'KFSM_DeathAnim'
-        SpecialMoveClasses(8)=class'KFSM_Stunned'
-        SpecialMoveClasses(9)=class'KFSM_Frozen'
-        SpecialMoveClasses(10)=none
-        SpecialMoveClasses(11)=none
-        SpecialMoveClasses(12)=class'KFSM_Zed_Taunt'
-        SpecialMoveClasses(13)=class'KFSM_Zed_WalkingTaunt'
-        SpecialMoveClasses(14)=none
-        SpecialMoveClasses(15)=none
-        SpecialMoveClasses(16)=none
-        SpecialMoveClasses(17)=none
-        SpecialMoveClasses(18)=none
-        SpecialMoveClasses(19)=none
-        SpecialMoveClasses(20)=none
-        SpecialMoveClasses(21)=none
-        SpecialMoveClasses(22)=none
-        SpecialMoveClasses(23)=none
-        SpecialMoveClasses(24)=none
-        SpecialMoveClasses(25)=none
-        SpecialMoveClasses(26)=none
-        SpecialMoveClasses(27)=none
-        SpecialMoveClasses(28)=none
-        SpecialMoveClasses(29)=none
-        SpecialMoveClasses(30)=none
-        SpecialMoveClasses(31)=none
-        SpecialMoveClasses(32)=none
-        SpecialMoveClasses(33)=none
-        SpecialMoveClasses(34)=class'KFSM_Zed_Boss_Theatrics'
-    object end
-    // Reference: KFSpecialMoveHandler'Default__KFPawn_MonsterBoss.SpecialMoveHandler'
-    SpecialMoveHandler=SpecialMoveHandler
+    SpecialMoveHandler=KFSpecialMoveHandler'Default__KFPawn_MonsterBoss.SpecialMoveHandler'
     AmbientAkComponent=AkComponent'Default__KFPawn_MonsterBoss.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_MonsterBoss.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_MonsterBoss.WeaponAmbientEchoHandler'

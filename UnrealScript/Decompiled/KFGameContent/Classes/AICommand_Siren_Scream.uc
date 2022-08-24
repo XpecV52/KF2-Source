@@ -56,20 +56,33 @@ state Command_SpecialMove
         return default.SpecialMove;
     }
 
+    function bool ExecuteSpecialMove()
+    {
+        if(CanScream())
+        {
+            return super.ExecuteSpecialMove();
+        }
+        return false;
+    }
+
     function bool CanScream()
     {
         local Vector EnemyLocation, MyEyeLocation;
         local float RangeToEnemySQ;
         local KFGameInfo KFGI;
 
-        if((((((((Outer.Enemy != none) && Outer.WorldInfo.TimeSeconds > Outer.ScreamDelayTime) && (Outer.DoorEnemy == none) || Outer.DoorEnemy.IsCompletelyOpen()) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove)) && (Outer.LastScreamTime == 0) || (Outer.WorldInfo.TimeSeconds - Outer.LastScreamTime) > Outer.ScreamCooldown) && Outer.CheckOverallCooldownTimer()) && Outer.MyKFPawn.IsCombatCapable()) && !Outer.GetIsInZedVictoryState())
+        if(((Outer.WorldInfo.TimeSeconds - Outer.LastScreamTime) < Outer.ScreamCooldown) && Outer.LastScreamTime != 0)
+        {
+            return false;
+        }
+        Outer.LastScreamTime = Outer.WorldInfo.TimeSeconds;
+        if(((((((Outer.Enemy != none) && Outer.WorldInfo.TimeSeconds > Outer.ScreamDelayTime) && (Outer.DoorEnemy == none) || Outer.DoorEnemy.IsCompletelyOpen()) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove)) && Outer.CheckOverallCooldownTimer()) && Outer.MyKFPawn.IsCombatCapable()) && !Outer.GetIsInZedVictoryState())
         {
             EnemyLocation = Outer.Enemy.Location + (vect(0, 0, 1) * Outer.Enemy.BaseEyeHeight);
             MyEyeLocation = Outer.MyKFPawn.Location + (vect(0, 0, 1) * Outer.MyKFPawn.BaseEyeHeight);
             RangeToEnemySQ = VSizeSq(EnemyLocation - MyEyeLocation);
             if(((RangeToEnemySQ < float(MaxScreamRangeSQ)) && RangeToEnemySQ > float(MinScreamRangeSQ)) && Class'KFGameEngine'.static.FastTrace_PhysX(EnemyLocation, MyEyeLocation))
             {
-                Outer.LastScreamTime = Outer.WorldInfo.TimeSeconds;
                 KFGI = KFGameInfo(Outer.WorldInfo.Game);
                 if((KFGI != none) && KFGI.GameConductor != none)
                 {

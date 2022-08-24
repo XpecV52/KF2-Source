@@ -154,6 +154,8 @@ simulated function bool DenyClientWeaponSet()
     return false;
 }
 
+simulated function DrawHUD(HUD H, Canvas C);
+
 simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
 {
     local array<string> DebugInfo;

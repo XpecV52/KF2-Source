@@ -23,6 +23,18 @@ var export editinline transient PointLightComponent BattlePhaseLightFront;
 var protected const float FootstepCameraShakePitchAmplitude;
 var protected const float FootstepCameraShakeRollAmplitude;
 
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
+{
+    local WorldInfo WI;
+
+    WI = Class'WorldInfo'.static.GetWorldInfo();
+    if(FRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)))
+    {
+        return default.ElitePawnClass;
+    }
+    return super.GetAIPawnClassToSpawn();
+}
+
 simulated event PreBeginPlay()
 {
     super.PreBeginPlay();
@@ -186,28 +198,53 @@ simulated function SetEnraged(bool bNewEnraged)
 
 simulated function UpdateGameplayMICParams()
 {
-    local MaterialInstanceConstant MIC;
-
     super.UpdateGameplayMICParams();
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         UpdateBattlePhaseLights();
-        MIC = CharacterMICs[0];
         if(!IsAliveAndWell())
         {
-            MIC.SetVectorParameterValue('Vector_GlowColor', DeadGlowColor);            
+            SetGlowColors(DeadGlowColor);            
         }
         else
         {
             if(bIsEnraged)
             {
-                MIC.SetVectorParameterValue('Vector_GlowColor', EnragedGlowColor);                
+                SetGlowColors(EnragedGlowColor);                
             }
             else
             {
-                MIC.SetVectorParameterValue('Vector_GlowColor', DefaultGlowColor);
+                SetGlowColors(DefaultGlowColor);
             }
         }
+    }
+}
+
+simulated function SetGlowColors(LinearColor GlowColor)
+{
+    local MaterialInstanceConstant MIC;
+    local int Idx;
+
+    MIC = CharacterMICs[0];
+    if(MIC != none)
+    {
+        MIC.SetVectorParameterValue('Vector_GlowColor', GlowColor);
+    }
+    Idx = 0;
+    J0x60:
+
+    if(Idx < 3)
+    {
+        if(ThirdPersonAttachments[Idx] != none)
+        {
+            MIC = MaterialInstanceConstant(ThirdPersonAttachments[Idx].GetMaterial(0));
+            if(MIC != none)
+            {
+                MIC.SetVectorParameterValue('Vector_GlowColor', GlowColor);
+            }
+        }
+        ++ Idx;
+        goto J0x60;
     }
 }
 
@@ -352,6 +389,7 @@ defaultproperties
     bCanRage=true
     bIsFleshpoundClass=true
     MonsterArchPath="ZED_ARCH.ZED_Fleshpound_Archetype"
+    ElitePawnClass=Class'KFPawn_ZedFleshpoundKing'
     HeadlessBleedOutTime=7
     ParryResistance=4
     MinSpawnSquadSizeType=ESquadType.EST_Large

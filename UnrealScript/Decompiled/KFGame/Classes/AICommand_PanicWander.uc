@@ -49,7 +49,7 @@ function Popped()
         Outer.MyKFPawn.bCanJumpOverWalls = Outer.MyKFPawn.default.bCanJumpOverWalls;
         Outer.RotationRateMultiplier = Outer.default.RotationRateMultiplier;
         Outer.EnableMeleeRangeEventProbing();
-        if(Outer.MyKFPawn.IsDoingSpecialMove())
+        if(Outer.MyKFPawn.IsDoingSpecialMove() && !Outer.MyKFPawn.IsDoingSpecialMove(6))
         {
             Outer.MyKFPawn.EndSpecialMove();
         }

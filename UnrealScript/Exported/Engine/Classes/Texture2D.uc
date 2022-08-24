@@ -107,6 +107,9 @@ var transient const int							ResidentMips;
 /** Number of mips to remove when recompressing (does not work with TC_NormalmapUncompressed) */
 var() int MipsToRemoveOnCompress;
 
+/** Command fence used to shut down properly */
+var		native				const	pointer					ReleaseTexture2DFence{class FRenderCommandFence};
+
 /**
  * Thread-safe counter indicating the texture streaming state. The definitions below are mirrored in UnTex.h.
  *
@@ -174,6 +177,9 @@ var private const native transient float		Timer;
  */
 native final function							SetForceMipLevelsToBeResident( float Seconds, optional int CinematicTextureGroups = 0 );
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)

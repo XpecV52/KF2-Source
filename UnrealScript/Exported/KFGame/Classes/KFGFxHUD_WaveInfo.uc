@@ -25,6 +25,7 @@ var localized string WaveString;
 var localized string BossWaveString;
 var localized string FinalWaveString;
 
+var KFGFxHUD_ObjectiveConatiner     ObjectiveContainer;
 
 function InitializeHUD()
 {
@@ -42,7 +43,7 @@ function TickHud(float DeltaTime)
     }
     else
     {
-        if(KFGRI.bTraderIsOpen)
+        if(!KFGRI.bWaveIsActive)
         {
             UpdateTraderTimeRemaining();
         }

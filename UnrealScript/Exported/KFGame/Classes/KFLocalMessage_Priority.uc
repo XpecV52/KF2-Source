@@ -13,6 +13,7 @@ class KFLocalMessage_Priority extends KFLocalMessage;
 var localized string			WaveStartMessage;
 var localized string			WaveEndMessage;
 var localized string            GetToTraderMessage;
+var localized string            ScavengeMessage;
 var localized string            YouLostMessage;
 var localized string            YouWonMessage;
 var localized string            SquadWipedOutMessage;
@@ -217,7 +218,7 @@ static function string GetMessageString(int Switch, optional out String Secondar
 			}
 			else
 			{
-				SecondaryString = default.GetToTraderMessage;
+				SecondaryString = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI).bTradersEnabled ? default.GetToTraderMessage : default.ScavengeMessage;
 				return default.WaveEndMessage;
 			}
 		case GMT_MatchWon:
@@ -330,6 +331,7 @@ defaultproperties
    WaveStartMessage="W A V E  I N C O M I N G"
    WaveEndMessage="W A V E  C O M P L E T E"
    GetToTraderMessage="Get to the Trader Pod"
+   ScavengeMessage="Scavenge"
    YouLostMessage="D E F E A T"
    YouWonMessage="V I C T O R Y"
    SquadWipedOutMessage="Your squad was wiped out!"

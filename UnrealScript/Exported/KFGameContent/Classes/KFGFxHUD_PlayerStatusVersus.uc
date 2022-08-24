@@ -35,6 +35,7 @@ function UpdateHealth()
         SetInt("playerHealth" , ( float(MyPC.Pawn.Health) / float(MyPC.Pawn.HealthMax) ) * 100 );
         LastHealth = MyPC.Pawn.Health;
 	}
+    SetVisible(LastHealth > 0);
 }
 
 

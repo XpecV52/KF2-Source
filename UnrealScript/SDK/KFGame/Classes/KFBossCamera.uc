@@ -23,7 +23,7 @@ var CameraOffsets DeadOffsets;
 var	PointLightComponent PointLightTemplate;
 var transient	PointLightComponent PointLight;
 
-var KFPawn_MonsterBoss ViewedPawn;
+var KFPawn_Monster ViewedPawn;
 
 /** Called when the camera becomes inactive */
 function OnBecomeActive( GameCameraBase NewCamera )
@@ -65,10 +65,13 @@ function UpdateCamera(Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out
 	local rotator		Rot;
 	local CameraOffsets FinalOffsets;
 
+    if (ViewedPawn == none)
+    {
+        ViewedPawn = KFPawn_Monster(P);
+    }
+
 	if( P != none && PointLight != none && !PointLight.bAttached )
 	{
-		ViewedPawn = KFPawn_MonsterBoss(P);
-
 		if( ViewedPawn != none )
 		{
 			ViewedPawn.AttachComponent(PointLight);
@@ -90,13 +93,13 @@ function UpdateCamera(Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out
 	else
 	{
 		FinalOffsets = ( P != none && P.IsAliveAndWell() ) ? BaseOffsets : DeadOffsets;
-	if( !GetOffsets(OutVT.Target, CameraActor, FinalOffsets, Loc, Rot) )
-	{
-		GetOffsets(OutVT.Target, CameraActor, BackupOffsets, Loc, Rot);
-	}
+        if( !GetOffsets(OutVT.Target, CameraActor, FinalOffsets, Loc, Rot) )
+        {
+            GetOffsets(OutVT.Target, CameraActor, BackupOffsets, Loc, Rot);
+        }
 
-	OutVT.POV.Location = Loc;
-	OutVT.POV.Rotation = Rot;
+        OutVT.POV.Location = Loc;
+        OutVT.POV.Rotation = Rot;
 	}
 }
 

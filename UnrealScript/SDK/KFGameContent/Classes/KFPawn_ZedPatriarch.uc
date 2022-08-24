@@ -322,6 +322,7 @@ simulated event PostBeginPlay()
 simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
 {
 	local int i;
+    local KFCharacterInfo_Monster MonsterInfo;
 
 	super.SetCharacterArch( Info );
 
@@ -340,6 +341,19 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 		Mesh.AttachComponentToSocket( BoilLightComponent, BoilLightSocketName );
 		UpdateBattlePhaseLights();
 		BoilLightComponent.SetEnabled( true );
+
+        MonsterInfo = KFCharacterInfo_Monster(Info);
+        if (MonsterInfo != none)
+        {
+            if (MaterialInstanceConstant(MonsterInfo.Skins[0]) != none)
+            {
+                BodyMaterial = MaterialInstanceConstant(MonsterInfo.Skins[0]);
+            }
+            if (MaterialInstanceConstant(MonsterInfo.Skins[1]) != none)
+            {
+                BodyAltMaterial = MaterialInstanceConstant(MonsterInfo.Skins[1]);
+            }
+        }
 	}
 }
 
@@ -1398,6 +1412,15 @@ simulated function UpdateGameplayMICParams()
 				PlayStealthSoundLoopEnd();
 				DoCloakFX();
 			}
+
+            //Update PAC meshes
+            for (i = 0; i < `MAX_COSMETIC_ATTACHMENTS; ++i)
+            {
+                if (ThirdPersonAttachments[i] != none)
+                {
+                    ThirdPersonAttachments[i].SetHidden(false);
+                }
+            }
 		}
 		else if ( bIsCloaking && bIsSpotted && CharacterMICs[0].Parent != SpottedMaterial )
 		{
@@ -1414,6 +1437,15 @@ simulated function UpdateGameplayMICParams()
 			Mesh.CastShadow = false;
 			Mesh.SetPerObjectShadows( false );
 			SetDamageFXActive( false );
+
+            //Update PAC meshes
+            for (i = 0; i < `MAX_COSMETIC_ATTACHMENTS; ++i)
+            {
+                if (ThirdPersonAttachments[i] != none)
+                {
+                    ThirdPersonAttachments[i].SetHidden(true);
+                }
+            }
 		}
 		else if( bIsCloaking && !bIsSpotted && CharacterMICs[0].Parent != CloakedBodyMaterial )
 		{
@@ -1431,6 +1463,15 @@ simulated function UpdateGameplayMICParams()
 			Mesh.CastShadow = false;
 			Mesh.SetPerObjectShadows( false );
 			SetDamageFXActive( false );
+
+            //Update PAC meshes
+            for (i = 0; i < `MAX_COSMETIC_ATTACHMENTS; ++i)
+            {
+                if (ThirdPersonAttachments[i] != none)
+                {
+                    ThirdPersonAttachments[i].SetHidden(true);
+                }
+            }
 		}
 	}
 }
@@ -1646,9 +1687,9 @@ simulated function SetDamageFXActive( bool bEnable )
 }
 
 /** Overridden to cause shimmer when taking damage */
-simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
+simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation, optional bool bUseHitImpulse = true )
 {
-	super.PlayTakeHitEffects( HitDirection, HitLocation );
+	super.PlayTakeHitEffects( HitDirection, HitLocation, bUseHitImpulse );
 
 	if( !bIsCloaking || CharacterMICs[0].Parent == SpottedMaterial || CloakPercent > CloakShimmerAmount || `TimeSince( LastCloakShimmerTime ) < 0.1f )
 	{
@@ -2088,6 +2129,7 @@ defaultproperties
     IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                      Cooldown=10.0, Duration=2.2)
     IncapSettings(AF_Freeze)=   (Vulnerability=(0.5),                       Cooldown=10.0, Duration=1.0)
     IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0),   Cooldown=10.5, Duration=3.0)
+    IncapSettings(AF_Bleed)=    (Vulnerability=(0.08))
 
 	Begin Object Class=Name=Afflictions_0
 		FireFullyCharredDuration=50.f

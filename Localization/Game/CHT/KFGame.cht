@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="公開"
 ConsolePermissionStrings[1]="僅限邀請"
 
 ModeStrings[0]="生存模式"
-ModeStrings[1]="對抗生存模式"
+ModeStrings[1]="每週活動模式"
+ModeStrings[2]="對抗生存模式"
 
 NoPreferenceString="任何"
 OKString="OK"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="可以在每波進攻更新一次職業！"
 YesString="是"
 NoString="否"
 TeamSwappedString="你已經被換隊了"
+
+CancelConnectionString="取消載入"
 
 DisbandPartyString="解散隊伍"
 LeaveCurrentMenuString="是否離開目前選單？"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="未購買任何物品"
 SetTakeoverServerPasswordTitle="請輸入保護遊戲用的新密碼："
 FreeConsolePlayOverString="感謝您遊玩殺戮空間2！免費活動已經結束，但是您仍可以點選下方的商店按鈕來購買遊戲即獲得更多資訊。"
 BuyGameString="商店"
+CustomString="自訂"
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="平定暴動獎勵"
+WeeklyString="HORZINE每週暴動"
+CurrentWeeklySettingsString="目前暴動設定"
+SpecialEventString="夏日餘興節目"
+ShortWeeklyString="每週"
+SeasonalString="每季"
+SpecialEventChanceDropString="限定掉落物品"
+GrantedSpecialEventString="完成獎勵"
+RewardsString="平定暴動獎勵"
+WeeklyOverview="每週都有新的挑戰模式！"
+ObjectivesString="切換目標"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="無法找到遊戲"
@@ -115,8 +133,9 @@ TutorialString="基本訓練"
 
 [StartMenuHelperText]
 modeList0="生存模式 – PVE 戰鬥，玩家對抗 AI 操控的 Zed"
-modeList1="對抗生存模式 – PVP 戰鬥，Horzine 傭兵對抗 AI 以及玩家操控的 Zed"
-modeList2=""
+modeList1="每週暴動模式－每個禮拜都有不同的遊戲模式。"
+modeList2="對抗生存模式–PVP戰鬥，Horzine傭兵對抗玩家及人工智慧操控的Zed"
+modeList3=""
 difficultyList0="普通：適合職業等級 0-5 的初階玩家。"
 difficultyList1="困難：適合職業等級 6-12 的進階玩家。每波進攻會有更多 Zed，它們移動速度更快，生命值也更高。可拾取的物品跟你的金錢都較少。"
 difficultyList2="自殺：適合職業等級 13 – 25 的高階玩家每波進攻會有更多 Zed，它們擁有新的攻擊模式，移動速度又更快。可拾取的物品跟你的金錢都變得更少。"
@@ -666,6 +685,7 @@ DamageDealtString="造成傷害："
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ READY ]"
 WaitingString="正在等待玩家"
+MatchOverString="對戰結束\n請稍候……"
 DeployingString="正在布署 "
 CreatePartyString="建立隊伍"
 ReadyString="準備就緒"
@@ -840,6 +860,7 @@ CancelString="取消"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="升級"
 TierUnlockedString="新技能已解鎖"
+ObjectiveCompleteString="目標完成"
 
 [KFGFxHUD_WaveInfo]
 WaveString="攻擊波數"
@@ -924,6 +945,7 @@ ConfigureMicString="設定麥克風"
 VocalsString="音樂人聲"
 BattleChatterString="將戰鬥聊天室最小化"
 PushToVoIPString="推至 VoIP"
+ScreenSizeString="調整螢幕大小"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="是否使用此影片設定？"
@@ -1322,6 +1344,7 @@ MapCollectibleName="金錢閃耀著"
 WaveStartMessage="新一波攻擊即將來臨"
 WaveEndMessage="本波攻擊結束"
 GetToTraderMessage="到商人那裡"
+ScavengeMessage="搜尋"
 YouLostMessage="戰敗"
 YouWonMessage="勝利"
 SquadWipedOutMessage="你的小隊已被殲滅！"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>治療自己"
 PressToBashWarning="便擊"
 GamepadWeaponSelectHint="<%HOLD%>選擇武器"
 PlayerClotGrabWarningMessage="殺死 ZED 以重獲自由！"
-UseMinigameMessage="啟動小遊戲"
+UseMinigameMessage="開啟"
 UseMinigameGeneratorMessage="啟動產生器"
 
 [KFLocalMessage_ServerNotification]
@@ -2104,7 +2127,7 @@ RandomLoadingStrings[13]="有多餘金錢嗎？為了隊友留一些下來吧，
 RandomLoadingStrings[14]="選擇目標。不同的武器對不同類型的 Zed 有不一樣的效果。"
 RandomLoadingStrings[15]="設定主要的目標。絞碎者比起凝塊更值得你的注意力。"
 RandomLoadingStrings[16]="所有的 Zed 都有弱點。若不是頭部，找看看他們身上的亮點。"
-RandomLoadingStrings[17]="雖然你能夠偶然從戰利品中獲得妝容物品，但部分妝容物品都可以購買。"
+RandomLoadingStrings[17]="你偶爾會從戰利品中獲得妝容物品，不過部分妝容可以也購買。"
 RandomLoadingStrings[18]="海妖的尖叫會使得手榴彈與其它炸藥失效。"
 RandomLoadingStrings[19]="電鋸與胖胖受了一定的傷害後會暴走。小心閃避它們。"
 RandomLoadingStrings[20]="有很多不用的妝容物品或武器飾品嗎？從庫存中合成新的吧。"
@@ -2162,6 +2185,7 @@ Forums="看看我們的社群論壇"
 Survey="填寫遊戲問卷"
 CommunityTracker="搜尋社群問題"
 FeaturedCrateKey="特賣 Horzine 補給箱子鑰匙 - $2.49"
+FeaturedEventItem="特賣活動物品"
 FeaturedUsbKey="特賣武器飾品 USB 鑰匙 - $2.49"
 FeaturedRareItem="特賣珍貴物品 - $3.99"
 FeaturedExceptionalItem="特賣極稀有物品 - $7.49"
@@ -2177,20 +2201,22 @@ PS4WeaponSkinCrate2="Horzine 補給武器飾品箱子 | 系列 2"
 Artbook="《殺戮空間 2》數位畫冊"
 Uncovered="觀賞《殺戮空間：揭密》現場動作電影"
 NewEmotes="全新！Emote 箱子鑰匙 - $2.49"
-HorzineSupplyCrateKey10="Horzine 補給箱子鑰匙 | 系列 #10 - $2.49"
-HorzineSupplyCrateKey11="Horzine 補給箱子鑰匙 | 系列 #11 - $2.49"
-HorzineSupplyCrateKey12="Horzine 補給箱子鑰匙 | 系列 #12 - $2.49"
-HorzineSupplyCrateKey13="Horzine 補給箱子鑰匙 | 系列 #13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+HorzineSupplyCrateKey10="Horzine補給箱鑰匙|#10系列-$2.49"
+HorzineSupplyCrateKey11="Horzine補給箱鑰匙|#11系列-$2.49"
+HorzineSupplyCrateKey12="Horzine補給箱鑰匙|#12系列-$2.49"
+HorzineSupplyCrateKey13="Horzine補給箱鑰匙|#13系列-$2.49"
+USBSpitfire="噴火USB鑰匙-$2.49"
+USBHighVoltage="高壓USB鑰匙-$2.49"
+MerchSale="KF2酷炫組特賣！特價75折只到2017年4月30日。促銷代碼ZED"
 
 [Zeds]
 KFPawn_ZedBloat="胖胖"
 KFPawn_ZedClot="凝塊"
 KFPawn_ZedCrawler="爬行者"
 KFPawn_ZedCrawlerKing="精英爬行者"
+KFPawn_ZedFleshpoundMini="絞碎者爪牙"
 KFPawn_ZedFleshPound="絞碎者"
+KFPawn_ZedFleshpoundKing="絞碎者之王"
 KFPawn_ZedGorefast="砍殺者"
 KFPawn_ZedGorefastDualBlade="雙刀砍殺者"
 KFPawn_ZedHans="漢斯華特博士"
@@ -2319,6 +2345,119 @@ KFWeap_Zweihander="騎士制度宣傳影片"
 
 
 Source0="騎士制度宣傳影片"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="掉落物品1"
+ChanceDropDescriptionStrings[1]="掉落物品2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="在限時活動中可獲得，內含特有道具。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="提升力量",DescriptionString="提升悲慘王國的產生器力量");
+SpecialEventObjectiveInfoList[1]=(TitleString="凝塊爆炸",DescriptionString="引爆悲慘王國凝塊");
+SpecialEventObjectiveInfoList[2]=(TitleString="浸泡胖胖",DescriptionString="將悲慘王國的胖胖泡水");
+SpecialEventObjectiveInfoList[3]=(TitleString="撒錢",DescriptionString="在悲慘王國中投擲金錢");
+SpecialEventObjectiveInfoList[4]=(TitleString="邪惡之魔",DescriptionString="通過悲慘王國的困難級（含）以上關卡");
+
+AllCompleteRewardDescriptionString="餘興節目災害應變"
+
+ChanceDropDescriptionStrings[0]="餘興節目獎品票券"
+ChanceDropDescriptionStrings[1]="餘興節目黃金票券"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="目前暴動：頭顱粉碎者"
+DescriptionStrings[0]="最佳的傷害位置就是頭部傷害。"
+DescriptionStrings[1]="長度：中（7 波攻擊）"
+ModifierDescriptions[0]="這場暴動中的Zed突變得嚴重，要永久消滅他們只能瞄準頭部攻擊。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="目前暴動：微型恐攻"
+DescriptionStrings[0]="就算是小型恐攻也算是威脅之一。"
+DescriptionStrings[1]="長度：中（7 波攻擊）"
+ModifierDescriptions[0]="在這場暴動中射擊Zed群將會使他們縮水，更難擊中目標。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="目前暴動：絞碎者魔王"
+DescriptionStrings[0]="滿滿的絞碎者，打好打滿。沒有別的選擇。"
+DescriptionStrings[1]="長度：中（7 波攻擊）"
+ModifierDescriptions[0]="絞碎者大會在城裡召開！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="目前暴動：上升、上升然後腐爛"
+DescriptionStrings[0]="來做出99顆Zed氣球吧。"
+DescriptionStrings[1]="長度：中（7 波攻擊）"
+ModifierDescriptions[0]="在這波暴動中射擊Zed將會使他們像氣球一樣膨脹，膨脹到飄起，然後爆開！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="目前暴動：Zed時間 "
+DescriptionStrings[0]="全世界只剩下Zed時間。"
+DescriptionStrings[1]="長度：短（4 波攻擊）"
+ModifierDescriptions[0]="有想過要浪費時間嗎？在這個暴動中可不會讓你浪費任何時間！任何時候只要靠近Zed就會變成Zed時間。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="目前暴動：砰砰砰"
+DescriptionStrings[0]="壓力過大的Zed；可能會爆炸。"
+DescriptionStrings[1]="長度：中（7 波攻擊）"
+ModifierDescriptions[0]="難道是因為他們吃的東西？廢氣？管它是什麼體，反正在這場暴動中Zed死掉的時候會爆炸。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="目前暴動：健美先生"
+DescriptionStrings[0]="越壯越難打。"
+DescriptionStrings[1]="長度：中（7 波攻擊）"
+ModifierDescriptions[0]="在這場暴動中，當Zed攻擊玩家或受到某些Zed能力影響的時候，血量、體型跟臂展都會增加。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="目前暴動：Zed大頭泡泡"
+DescriptionStrings[0]="……脖子應該很痛。"
+DescriptionStrings[1]="長度：中（7 波攻擊）"
+ModifierDescriptions[0]="這一批殭屍不知道吃錯什麼藥，他們的頭變得比平常還要大－－－－－－好幾倍！大得不得了！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2700,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics 實驗室"
 
@@ -2572,6 +2727,9 @@ DisplayName="燃燒的巴黎"
 
 [Survival KFGameInfoSummary]
 GameName="生存模式"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="每週活動模式"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="華特大宅"
@@ -2608,6 +2766,9 @@ DisplayName="地下鐵"
 
 [KF-Nuked KFMapSummary]
 DisplayName="核電廠"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="悲慘王國"
 
 [KFMapInfo]
 ; defaults

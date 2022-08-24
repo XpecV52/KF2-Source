@@ -112,6 +112,13 @@ function RefreshWeaponListByPerk(byte FilterIndex, const out array<STraderItem> 
 					switch (ItemList[i].AssociatedPerkClasses.Find(TargetPerkClass))
 					{
 						case 0: //primary perk
+							if(OnPerkWeapons.length == 0 && MyTraderMenu.SelectedList == TL_Shop)
+							{
+								if(GetInt( "currentSelectedIndex" ) == 0)
+								{
+									MyTraderMenu.SetTraderItemDetails(i);
+								}
+							}
 							OnPerkWeapons.AddItem(ItemList[i]);
 							break;
 					
@@ -285,6 +292,8 @@ function bool IsItemFiltered(STraderItem Item)
 		return true;
 	if ( Item.WeaponDef.default.SharedUnlockId != SCU_None && !class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.WeaponDef.default.SharedUnlockId) )
      	 	return true;
+	if ( Item.WeaponDef.default.PlatformRestriction != PR_All && class'KFUnlockManager'.static.IsPlatformRestricted( Item.WeaponDef.default.PlatformRestriction ) )
+		return true;
 
    	return false;
 }

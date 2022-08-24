@@ -12,15 +12,15 @@ package tripwire.widgets
         
         public var iconLoaderContainer:MovieClip;
         
-        public var perkNameTextMC:MovieClip;
+        public var mainTextfieldMC:MovieClip;
         
-        public var currentLevelTextMC:MovieClip;
+        public var currentValueTextMC:MovieClip;
         
-        public var previousLevelTextMC:MovieClip;
+        public var previousValueTextMC:MovieClip;
         
-        public var levelUpTextMC:MovieClip;
+        public var titleTextfieldMC:MovieClip;
         
-        public var tierUnlockTextMC:MovieClip;
+        public var secondaryTextfieldMC:MovieClip;
         
         private var showTimer:Timer;
         
@@ -37,22 +37,15 @@ package tripwire.widgets
             super.addedToStage(param1);
         }
         
-        public function set localizeText(param1:Object) : void
+        public function set showAchievementPopUp(param1:Object) : *
         {
-            this.levelUpTextMC.levelUpText.text = !!param1.levelUpString ? param1.levelUpString : "";
-            this.tierUnlockTextMC.levelUpText.text = !!param1.tierUnlockedString ? param1.tierUnlockedString : "";
-        }
-        
-        public function showLevelUp(param1:String, param2:int, param3:String, param4:Boolean) : void
-        {
-            this.perkNameTextMC.perkNameText.text = param1;
-            this.previousLevelTextMC.levelText.text = param2 - 1;
-            this.currentLevelTextMC.levelText.text = param2;
-            if(param3 != null && param3 != "")
-            {
-                this.iconLoaderContainer.iconLoader.source = param3;
-            }
-            this.tierUnlockTextMC.visible = param4;
+            this.titleTextfieldMC.levelUpText.text = !!param1.titleString ? param1.titleString : "";
+            this.mainTextfieldMC.perkNameText.text = !!param1.mainString ? param1.mainString : "";
+            this.secondaryTextfieldMC.levelUpText.text = !!param1.secondaryString ? param1.secondaryString : "";
+            this.currentValueTextMC.levelText.text = param1.newValue != -1 ? String(param1.newValue) : "";
+            this.previousValueTextMC.levelText.text = param1.newValue != -1 ? String(param1.newValue - 1) : "";
+            this.iconLoaderContainer.iconLoader.source = !!param1.iconPath ? param1.iconPath : "";
+            this.secondaryTextfieldMC.visible = !!param1.bShowSecondary ? Boolean(param1.bShowSecondary) : false;
             gotoAndPlay("Play");
             visible = true;
             this.showTimer = new Timer(this.levelUpShowTime,1);

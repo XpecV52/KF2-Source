@@ -354,6 +354,7 @@ enum EAIType
 	AT_Stalker,
 	AT_Scrake,
 	AT_FleshPound,
+    AT_FleshpoundMini,
 	AT_Bloat,
 	AT_Siren,
 	AT_Husk,
@@ -399,6 +400,8 @@ native function bool SortSpawnVolumes(Controller C, bool bTeleporting, float Min
 
 static function string ZedTypeToString(EAIType AiTypeToConvert)
 {
+
+
 
 
 
@@ -502,6 +505,7 @@ function SetupNextWave(byte NextWaveIndex)
         {
          	WaveTotalAI =	WaveSettings.Waves[NextWaveIndex].MaxAI;
 		}
+        WaveTotalAI *= GetTotalWaveCountScale();
 
         GetAvailableSquads(NextWaveIndex, true);
 
@@ -640,7 +644,9 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 
 
 
+                    //Always have the squad type be a boss if we're spawning one in case of override
 					TempSpawnList.AddItem(GetBossAISpawnType());
+                    LargestMonsterSquadType = EST_Boss;
 				}
 				else
 				{
@@ -846,15 +852,6 @@ function bool IsFinishedSpawning()
 
 	if( NumAISpawnsQueued >= WaveTotalAI )
 	{
-		if( MyKFGRI.CurrentObjective != none && MyKFGRI.CurrentObjective.InfiniteZedsEnabled() )
-		{
-			WaveTotalAI += ObjExtraAI;
-			MyKFGRI.WaveTotalAICount = WaveTotalAI;
-			MyKFGRI.AIRemaining += ObjExtraAI;
-
-			return false;
-		}
-
 		if (bLogAISpawning) LogInternal("KFAISpawnManager.IsFinishedSpawning()" @ string(NumAISpawnsQueued >= WaveTotalAI));
 		return true;
 	}

@@ -202,6 +202,7 @@ simulated event PostBeginPlay()
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     local int I;
+    local KFCharacterInfo_Monster MonsterInfo;
 
     super(KFPawn).SetCharacterArch(Info);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
@@ -220,6 +221,18 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
         Mesh.AttachComponentToSocket(BoilLightComponent, BoilLightSocketName);
         UpdateBattlePhaseLights();
         BoilLightComponent.SetEnabled(true);
+        MonsterInfo = KFCharacterInfo_Monster(Info);
+        if(MonsterInfo != none)
+        {
+            if(MaterialInstanceConstant(MonsterInfo.Skins[0]) != none)
+            {
+                BodyMaterial = MaterialInstanceConstant(MonsterInfo.Skins[0]);
+            }
+            if(MaterialInstanceConstant(MonsterInfo.Skins[1]) != none)
+            {
+                BodyAltMaterial = MaterialInstanceConstant(MonsterInfo.Skins[1]);
+            }
+        }
     }
 }
 
@@ -1122,6 +1135,18 @@ simulated function UpdateGameplayMICParams()
                 SetDamageFXActive(true);
                 PlayStealthSoundLoopEnd();
                 DoCloakFX();
+            }
+            I = 0;
+            J0x2C5:
+
+            if(I < 3)
+            {
+                if(ThirdPersonAttachments[I] != none)
+                {
+                    ThirdPersonAttachments[I].SetHidden(false);
+                }
+                ++ I;
+                goto J0x2C5;
             }            
         }
         else
@@ -1132,7 +1157,7 @@ simulated function UpdateGameplayMICParams()
                 CharacterMICs[0].SetParent(SpottedMaterial);
                 CharacterMICs[1].SetParent(SpottedMaterial);
                 I = 0;
-                J0x377:
+                J0x3E3:
 
                 if(I < HealingSyringeMICs.Length)
                 {
@@ -1141,11 +1166,23 @@ simulated function UpdateGameplayMICParams()
                         HealingSyringeMICs[I].SetParent(SpottedMaterial);
                     }
                     ++ I;
-                    goto J0x377;
+                    goto J0x3E3;
                 }
                 Mesh.CastShadow = false;
                 Mesh.SetPerObjectShadows(false);
-                SetDamageFXActive(false);                
+                SetDamageFXActive(false);
+                I = 0;
+                J0x4AB:
+
+                if(I < 3)
+                {
+                    if(ThirdPersonAttachments[I] != none)
+                    {
+                        ThirdPersonAttachments[I].SetHidden(true);
+                    }
+                    ++ I;
+                    goto J0x4AB;
+                }                
             }
             else
             {
@@ -1154,7 +1191,7 @@ simulated function UpdateGameplayMICParams()
                     CharacterMICs[0].SetParent(CloakedBodyMaterial);
                     CharacterMICs[1].SetParent(CloakedBodyAltMaterial);
                     I = 0;
-                    J0x4E4:
+                    J0x5BC:
 
                     if(I < HealingSyringeMICs.Length)
                     {
@@ -1163,13 +1200,25 @@ simulated function UpdateGameplayMICParams()
                             HealingSyringeMICs[I].SetParent(CloakedBodyAltMaterial);
                         }
                         ++ I;
-                        goto J0x4E4;
+                        goto J0x5BC;
                     }
                     PlayStealthSoundLoop();
                     DoCloakFX();
                     Mesh.CastShadow = false;
                     Mesh.SetPerObjectShadows(false);
                     SetDamageFXActive(false);
+                    I = 0;
+                    J0x698:
+
+                    if(I < 3)
+                    {
+                        if(ThirdPersonAttachments[I] != none)
+                        {
+                            ThirdPersonAttachments[I].SetHidden(true);
+                        }
+                        ++ I;
+                        goto J0x698;
+                    }
                 }
             }
         }
@@ -1371,9 +1420,10 @@ simulated function SetDamageFXActive(bool bEnable)
     }
 }
 
-simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
+simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation, optional bool bUseHitImpulse)
 {
-    super(KFPawn_Monster).PlayTakeHitEffects(HitDirection, HitLocation);
+    bUseHitImpulse = true;
+    super(KFPawn_Monster).PlayTakeHitEffects(HitDirection, HitLocation, bUseHitImpulse);
     if(((!bIsCloaking || CharacterMICs[0].Parent == SpottedMaterial) || CloakPercent > CloakShimmerAmount) || (WorldInfo.TimeSeconds - LastCloakShimmerTime) < 0.1)
     {
         return;
@@ -1729,7 +1779,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_247' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_296' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1769,15 +1819,12 @@ Parameter name: index
     CloakPercent=1
     CloakSpeed=3
     DeCloakSpeed=4.5
-    BossName="The Patriarch"
-    BossCaptionStrings=/* Array type was not detected. */
     SummonWaves[0]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Normal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Normal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Normal_Three')
     SummonWaves[1]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Three')
     SummonWaves[2]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Three')
     SummonWaves[3]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Three')
     NumMinionsToSpawn=(X=6,Y=10)
     CurrentBattlePhase=1
-    TheatricCameraSocketName=TheatricCameraRootSocket
     bLargeZed=true
     bCanGrabAttack=true
     MonsterArchPath="ZED_ARCH.ZED_Patriarch_Archetype"
@@ -1810,6 +1857,9 @@ Parameter name: index
     // Reference: CameraShake'Default__KFPawn_ZedPatriarch.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
     OnDeathAchievementID=130
+    BossName="The Patriarch"
+    BossCaptionStrings=/* Array type was not detected. */
+    TheatricCameraSocketName=TheatricCameraRootSocket
     PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
     LocalizationKey=KFPawn_ZedPatriarch
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

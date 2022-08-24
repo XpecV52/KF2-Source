@@ -147,8 +147,10 @@ function InitializeOptions()
 
 		ValuesObject.SetBool("invertedValue"						, KFPI.bInvertMouse);
 		ValuesObject.SetBool("mouseSmoothingLabel"					, KFPI.bEnableMouseSmoothing);
-		ValuesObject.SetBool("forceFeedbackValue"					, KFPI.bForceFeedbackEnabled);
+		
 	}
+
+	ValuesObject.SetBool("forceFeedbackValue"					, KFPI.bForceFeedbackEnabled);
 	
 	ValuesObject.SetFloat("controllerSensitivityValue"			, 100 * KFPI.GamepadSensitivityScale);
 	ValuesObject.SetFloat("controllerSensitivityValueMin"		, 100 * ControlsMenu.MinControllerLookSensitivity);
@@ -186,7 +188,11 @@ function ResetInputOptions()
 		
 		KFPI.bEnableMouseSmoothing = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_EnableMouseSmoothing);		
 		ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_EnableMouseSmoothing, KFPI.bEnableMouseSmoothing);
+	}
 
+	//durango
+	if( !GetPC().WorldInfo.IsConsoleBuild(CONSOLE_Orbis) )
+	{
 		KFPI.bForceFeedbackEnabled = ControlsMenu.Manager.CachedProfile.GetDefaultBool(KFID_ForceFeedbackEnabled);
 		ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(KFID_ForceFeedbackEnabled, KFPI.bForceFeedbackEnabled);
 	}

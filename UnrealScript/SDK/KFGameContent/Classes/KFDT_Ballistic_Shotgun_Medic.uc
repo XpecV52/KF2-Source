@@ -43,9 +43,12 @@ defaultproperties
 	BloodSpread=0.4
 	BloodScale=0.6
 
-	KDamageImpulse=550
-	KDeathUpKick=120
-	KDeathVel=35
+	KDamageImpulse=900
+	KDeathUpKick=-500
+	KDeathVel=350
+	//KDamageImpulse=550
+	//KDeathUpKick=120
+	//KDeathVel=35
 
     KnockdownPower=0
 	StumblePower=13

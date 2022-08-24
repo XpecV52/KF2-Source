@@ -19,6 +19,7 @@ enum EAIType
     AT_Stalker,
     AT_Scrake,
     AT_FleshPound,
+    AT_FleshpoundMini,
     AT_Bloat,
     AT_Siren,
     AT_Husk,
@@ -159,6 +160,7 @@ function SetupNextWave(byte NextWaveIndex)
         {
             WaveTotalAI = WaveSettings.Waves[NextWaveIndex].MaxAI;
         }
+        WaveTotalAI *= Outer.GetTotalWaveCountScale();
         GetAvailableSquads(NextWaveIndex, true);
         WaveStartTime = Outer.WorldInfo.TimeSeconds;
         TimeUntilNextSpawn = 5;
@@ -298,9 +300,10 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
             else
             {
                 AIType = Squad.MonsterList[I].Type;
-                if(AIType == 11)
+                if(AIType == 12)
                 {
-                    TempSpawnList.AddItem(Outer.GetBossAISpawnType();                    
+                    TempSpawnList.AddItem(Outer.GetBossAISpawnType();
+                    LargestMonsterSquadType = 0;                    
                 }
                 else
                 {
@@ -319,14 +322,14 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
     }
     if(TempSpawnList.Length > 0)
     {
-        J0x2A2:
+        J0x2AE:
 
         if(TempSpawnList.Length > 0)
         {
             RandNum = Rand(TempSpawnList.Length);
             AISpawnList.AddItem(TempSpawnList[RandNum];
             TempSpawnList.Remove(RandNum, 1;
-            goto J0x2A2;
+            goto J0x2AE;
         }
         DesiredSquadType = Squad.MinVolumeType;
         if(LargestMonsterSquadType < DesiredSquadType)
@@ -489,13 +492,6 @@ function bool IsFinishedSpawning()
     }
     if(Outer.NumAISpawnsQueued >= WaveTotalAI)
     {
-        if((Outer.MyKFGRI.CurrentObjective != none) && Outer.MyKFGRI.CurrentObjective.InfiniteZedsEnabled())
-        {
-            WaveTotalAI += ObjExtraAI;
-            Outer.MyKFGRI.WaveTotalAICount = WaveTotalAI;
-            Outer.MyKFGRI.AIRemaining += ObjExtraAI;
-            return false;
-        }
         if(bLogAISpawning)
         {
             LogInternal("KFAISpawnManager.IsFinishedSpawning()" @ string(Outer.NumAISpawnsQueued >= WaveTotalAI));

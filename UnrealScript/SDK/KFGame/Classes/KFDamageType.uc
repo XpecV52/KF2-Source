@@ -80,6 +80,7 @@ var float PoisonPower;
 var float MicrowavePower;
 var float FreezePower;
 var float SnarePower;
+var float BleedPower;
 
 /*********************************************************************************************
 Impact Effects

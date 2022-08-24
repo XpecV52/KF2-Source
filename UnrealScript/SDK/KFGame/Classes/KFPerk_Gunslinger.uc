@@ -224,12 +224,20 @@ simulated private static function float GetQuickSwitchRecoilModifier()
  */
 simulated function float GetReloadRateScale( KFWeapon KFW )
 {
-	if( IsWeaponOnPerk( KFW,, self.class ) && WorldInfo.TimeDilation < 1.f && !IsFanFareActive() )
+	if( IsWeaponOnPerk( KFW,, self.class ) && WorldInfo.TimeDilation < 1.f && !IsFanFareActive() && IsZedTimeReloadAllowed() )
 	{
 		return 1.f -  GetPassiveValue( ZedTimeReload, GetLevel() );
 	}
 
 	return 1.f;
+}
+
+/**
+ * @brief For modes that disable zed time skill tiers, also disable zed time reload
+ */
+simulated function bool IsZedTimeReloadAllowed()
+{
+    return MyKFGRI != none ? (MyKFGRI.MaxPerkLevel == default.MyKFGRI.MaxPerkLevel) : false;
 }
 
 /*********************************************************************************************
@@ -258,7 +266,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 		return GetSkillValue( PerkSkills[EGunslingerKnockEmDown] );
 	}
 
-	return 1.f;
+	return 0.f;
 }
 
 /**
@@ -273,7 +281,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
         return GetSkillValue( PerkSkills[EGunslingerKnockEmDown] );
 	}
 
-	return 1.f;
+	return 0.f;
 }
 
 /**
@@ -564,7 +572,7 @@ simulated function float GetSnarePowerModifier( optional class<DamageType> Damag
  */
 simulated function bool IsShootnMooveActive()
 {
-	return PerkSkills[EGunslingerShootnMove].bActive;
+	return PerkSkills[EGunslingerShootnMove].bActive && IsPerkLevelAllowed(EGunslingerShootnMove);
 }
 
 /**
@@ -574,7 +582,7 @@ simulated function bool IsShootnMooveActive()
  */
 simulated function bool IsQuickSwitchActive()
 {
-	return PerkSkills[EGunslingerQuickSwitch].bActive;
+	return PerkSkills[EGunslingerQuickSwitch].bActive && IsPerkLevelAllowed(EGunslingerQuickSwitch);
 }
 
 /**
@@ -584,7 +592,7 @@ simulated function bool IsQuickSwitchActive()
  */
 simulated function bool IsRhythmMethodActive()
 {
-	return PerkSkills[EGunslingerRhythmMethod].bActive;
+	return PerkSkills[EGunslingerRhythmMethod].bActive && IsPerkLevelAllowed(EGunslingerRhythmMethod);
 }
 
 /**
@@ -594,7 +602,7 @@ simulated function bool IsRhythmMethodActive()
  */
 function bool IsBoneBreakerActive()
 {
-	return PerkSkills[EGunslingerBoneBreaker].bActive;
+	return PerkSkills[EGunslingerBoneBreaker].bActive && IsPerkLevelAllowed(EGunslingerBoneBreaker);
 }
 
 /**
@@ -604,7 +612,7 @@ function bool IsBoneBreakerActive()
  */
 simulated function bool IsSpeedReloadActive()
 {
-	return PerkSkills[EGunslingerSpeedReload].bActive;
+	return PerkSkills[EGunslingerSpeedReload].bActive && IsPerkLevelAllowed(EGunslingerSpeedReload);
 }
 
 /**
@@ -614,7 +622,7 @@ simulated function bool IsSpeedReloadActive()
  */
 simulated function bool IsPenetrationActive()
 {
-	return PerkSkills[EGunslingerPenetration].bActive;
+	return PerkSkills[EGunslingerPenetration].bActive && IsPerkLevelAllowed(EGunslingerPenetration);
 }
 
 /**
@@ -624,7 +632,7 @@ simulated function bool IsPenetrationActive()
  */
 simulated function bool IsKnockEmDownActive()
 {
-	return PerkSkills[EGunslingerKnockEmDown].bActive;
+	return PerkSkills[EGunslingerKnockEmDown].bActive && IsPerkLevelAllowed(EGunslingerKnockEmDown);
 }
 
 /**
@@ -634,7 +642,7 @@ simulated function bool IsKnockEmDownActive()
  */
 simulated function bool IsFanfareActive()
 {
-	return PerkSkills[EGunslingerFanfare].bActive;
+	return PerkSkills[EGunslingerFanfare].bActive && IsPerkLevelAllowed(EGunslingerFanfare);
 }
 
 /**
@@ -654,12 +662,12 @@ simulated function bool GetFanfareActive()
  */
 simulated function bool IsUberAmmoActive()
 {
-	return PerkSkills[EGunslingerUberAmmo].bActive;
+	return PerkSkills[EGunslingerUberAmmo].bActive && IsPerkLevelAllowed(EGunslingerUberAmmo);
 }
 
 simulated function bool IsSkullCrackerActive()
 {
-	return PerkSkills[EGunslingerSkullCracker].bActive;
+	return PerkSkills[EGunslingerSkullCracker].bActive && IsPerkLevelAllowed(EGunslingerSkullCracker);
 }
 
 /**
@@ -671,14 +679,18 @@ simulated function bool IsSkullCrackerActive()
  *
  * @return true/false
  */
-static simulated function bool IsWeaponOnPerk( KFWeapon W, optional array < class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass )
+static simulated function bool IsWeaponOnPerk( KFWeapon W, optional array < class<KFPerk> > WeaponPerkClass, optional class<KFPerk> InstigatorPerkClass, optional name WeaponClassName )
 {
 	if( W != none && default.AdditionalOnPerkWeaponNames.Find( W.class.name ) != INDEX_NONE )
 	{
 		return true;
 	}
+    else if (WeaponClassName != '' && default.AdditionalOnPerkWeaponNames.Find(WeaponClassName) != INDEX_NONE)
+    {
+        return true;
+    }
 
-	return super.IsWeaponOnPerk( W, WeaponPerkClass, InstigatorPerkClass );
+	return super.IsWeaponOnPerk( W, WeaponPerkClass, InstigatorPerkClass, WeaponClassName );
 }
 
 /**
@@ -833,7 +845,7 @@ DefaultProperties
 	PerkSkills(EGunslingerSpeedReload)=(Name="SpeedReload",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 	PerkSkills(EGunslingerPenetration)=(Name="Penetration",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LineEmUp",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 	PerkSkills(EGunslingerSkullcracker)=(Name="Skullcracker",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Skullcracker",Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
-	PerkSkills(EGunslingerKnockEmDown)=(Name="KnockEmDown",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown",Increment=0.f,Rank=0,StartingValue=5.1f,MaxValue=5.1f) //5.1 //10.1
+	PerkSkills(EGunslingerKnockEmDown)=(Name="KnockEmDown",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown",Increment=0.f,Rank=0,StartingValue=4.1f,MaxValue=4.1f) //5.1 //10.1
 	PerkSkills(EGunslingerFanfare)=(Name="Fanfare",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 	PerkSkills(EGunslingerUberAmmo)=(Name="UberAmmo",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 

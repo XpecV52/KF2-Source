@@ -554,6 +554,12 @@ function DrawHUD()
     local array<PlayerReplicationInfo> VisibleHumanPlayers;
     local array<sHiddenHumanPawnInfo> HiddenHumanPlayers;
 
+    // Draw weapon HUD underneath everything else
+    if( KFPlayerOwner != none && KFPlayerOwner.Pawn != none && KFPlayerOwner.Pawn.Weapon != none )
+    {
+    	KFPlayerOwner.Pawn.Weapon.DrawHUD( self, Canvas );
+    }
+
 	super.DrawHUD();
 
     // Cache GRI
@@ -618,6 +624,12 @@ function DrawHUD()
 
 			// Draw last remaining zeds
 			CheckAndDrawRemainingZedIcons();
+
+			//Draw our current objective's location
+			if(KFGRI.CurrentObjective != none)
+			{
+				DrawObjectiveHUD();
+			}
 		}
 
 		Canvas.EnableStencilTest(false);
@@ -715,6 +727,41 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 		Canvas.SetPos( ScreenPos.X + BarLength * 0.5f, ScreenPos.Y - BarHeight * 2 );
 		Canvas.DrawTile( KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256); 
 	}
+
+	return true;
+}
+
+simulated function bool DrawObjectiveHUD()
+{
+	local float Percentage;
+	local float BarHeight, BarLength;
+	local vector ScreenPos, TargetLocation;
+
+	//Get actor from GRI
+	if(KFGRI.ObjectiveInterface == none)
+	{
+		return false;
+	}
+
+	BarLength = FMin(PlayerStatusBarLengthMax * (float(Canvas.SizeX) / 1024.f), PlayerStatusBarLengthMax);
+	BarHeight = FMin(8.f * (float(Canvas.SizeX) / 1024.f), 8.f);
+
+	TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation() + ( vect(0, 0, 86.0f) * vect(0,0,2.2f) );
+
+	ScreenPos = Canvas.Project( TargetLocation );
+	if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
+	{
+		return false;
+	}
+
+	//Draw health bar
+	Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
+	DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, HealthColor);
+
+	//draw perk icon
+	Canvas.SetDrawColorStruct(PlayerBarIconColor);
+	Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
+	Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize, PlayerStatusIconSize, 0, 0, 256, 256 );
 
 	return true;
 }

@@ -204,7 +204,6 @@ event PostBeginPlay()
                     UpdateGameSettings();
                     PlayfabInter.ServerRegisterGame();
                 }
-                PlayfabInter.AddTitleDataReadCompleteDelegate(OnServerTitleDataRead);
                 PlayfabInter.ReadTitleData();
             }
         }        
@@ -2932,7 +2931,8 @@ defaultproperties
     GameInfoClassAliases(0)=(ShortName="BenchMark",GameClassName="KFGameContent.KFGameInfo_BenchMark")
     GameInfoClassAliases(1)=(ShortName="Survival",GameClassName="KFGameContent.KFGameInfo_Survival")
     GameInfoClassAliases(2)=(ShortName="Versus",GameClassName="KFGameContent.KFGameInfo_VersusSurvival")
-    GameInfoClassAliases(3)=(ShortName="Tutorial",GameClassName="KFGameContent.KFGameInfo_Tutorial")
+    GameInfoClassAliases(3)=(ShortName="Weekly",GameClassName="KFGameContent.KFGameInfo_WeeklySurvival")
+    GameInfoClassAliases(4)=(ShortName="Tutorial",GameClassName="KFGameContent.KFGameInfo_Tutorial")
     DefaultGameType="KFGameContent.KFGameInfo_Survival"
     Components=none
     CollisionType=ECollisionType.COLLIDE_CustomDefault

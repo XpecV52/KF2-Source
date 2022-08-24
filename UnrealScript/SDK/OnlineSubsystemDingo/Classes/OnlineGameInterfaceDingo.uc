@@ -71,6 +71,9 @@ var Guid SessionEventGuid;
 var string SessionEventMultiplayerCorrelationId;
 var float SessionEventStartTime;
 
+/** TRUE if multiplayer subscription has been lost */
+var bool bMultiplayerSubscriptionLost;
+
 
 /**
  * Delegate fired when the search for an online game has completed

@@ -26,7 +26,14 @@ simulated function AltFireMode()
     {
         return;
     }
-    StartFire(1);
+    if(AmmoCount[0] < 2)
+    {
+        StartFire(0);        
+    }
+    else
+    {
+        StartFire(1);
+    }
 }
 
 simulated function SendToFiringState(byte FireModeNum)

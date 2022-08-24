@@ -342,6 +342,7 @@ var transient bool bDoorMoveCompleted;
 var transient float LastUsedTime;
 
 /** current state of the door if it hasn't been destroyed - note it's possible for bIsDoorOpen to be false and bIsDoorDestroyed to be true so check both */
+var () bool bStartDoorOpen;
 var repnotify transient bool bIsDoorOpen;
 var transient bool bLocalIsDoorOpen;
 var transient bool bReverseHinge;
@@ -365,6 +366,8 @@ var EDoorFastening FastenerType;
 var() int MaxHealth;
 /** Current door health for damage/destruction */
 var repnotify transient int Health;
+/** Whether or not to start welded */
+var() bool bStartWelded;
 /** Amount of damage a welded door can take */
 var() int MaxWeldIntegrity;
 /** Current integrity of a welded door */
@@ -453,6 +456,7 @@ var() float MaxAngularVelocity;
 const DoorWidth = 200;
 const HumanPushDistance = 40;
 const SlidingPushForce = 750;
+const VerticalPushForce = 100;
 
 /** Adjusts the "push" plane of the door (the threshold for pushing forward or backward) along its X-axis */
 //var() float PushOriginOffset;
@@ -636,7 +640,10 @@ simulated event PostBeginPlay()
 	}
 
 	InitializeDoorMIC();
-	CenterWeldComponent.SetHidden(true);
+    if (CenterWeldComponent != none)
+    {
+        CenterWeldComponent.SetHidden(bStartDoorOpen);
+    }	
 
 	if( class'KFAIController'.default.bUseNavMesh )
 	{
@@ -722,10 +729,11 @@ simulated function InitializeDoorMIC()
 			}
    	    }
 
-   	    if ( CenterWeldComponent.GetMaterial(0) != none )
+   	    if ( CenterWeldComponent != none && CenterWeldComponent.GetMaterial(0) != none )
    	    {
    	    	IntegrityMIC = CenterWeldComponent.CreateAndSetMaterialInstanceConstant( 0 );
 	   	    IntegrityMIC.SetScalarParameterValue('doorWeld', 0.f);
+            UpdateIntegrityMIC();
    	    }
 	}
 }
@@ -756,10 +764,11 @@ simulated function InitSkelControl()
 		break;
 	}
 
-	// start in open state
-	MovementControl.SetSkelControlStrength(1.f, 0.f);
-	bIsDoorOpen = true;
-	bLocalIsDoorOpen = true;
+	// start in level-set state.  default is open.
+	MovementControl.SetSkelControlStrength(bStartDoorOpen ? 1.f : 0.f, 0.f);
+	bIsDoorOpen = bStartDoorOpen;
+	bLocalIsDoorOpen = bStartDoorOpen;
+    WeldIntegrity = (bStartWelded && !bStartDoorOpen) ? MaxWeldIntegrity : 0;
 }
 
 /*********************************************************************************************
@@ -1043,6 +1052,7 @@ private function TryPushPawns()
 					PushDir *= ( bInFrontOfDoor ) ? 1 : -1;
 				}
 
+                PushDir.Z += VerticalPushForce; //Small vertical fix to help the player avoid tripping over mesh edges in door frames
 				P.AddVelocity( PushDir, P.Location, class'KFDT_Bludgeon');
 			}
 		}
@@ -1281,9 +1291,10 @@ function FastenDoor(int Amount, optional KFPawn Welder)
 }
 
 /** Increase the weld integrity - Network: Server only */
-function RepairDoor(float Amount)
+function RepairDoor(float Amount, optional KFPawn Welder)
 {
 	local byte ByteAmount;
+    local KFPlayerController KFPC;
 
 	if ( bIsDestroyed )
 	{
@@ -1294,8 +1305,17 @@ function RepairDoor(float Amount)
 			if( WorldInfo.NetMode != NM_StandAlone )
 			{
 				bWasRepaired = true;
-				SetTimer( 0.1f, false, nameOf(Timer_ResetRepairFlag) );
+				SetTimer( 0.1f, false, nameOf(Timer_ResetRepairFlag) );     
 			}
+
+            if (Welder != none)
+            {
+                KFPC = KFPlayerController(Welder.Controller);
+                if (KFPC != none)
+                {
+                    KFPC.DoorRepaired();
+                }                    
+            }         
 		} 
 		else
 		{
@@ -1704,15 +1724,18 @@ simulated function UpdateIntegrityMIC()
 		
 		ExplosiveScaler = bShouldExplode ? 1.f : 0.f;
 		IntegrityMIC.SetScalarParameterValue( 'scalar_explosive', ExplosiveScaler );
-				
-		if( CenterWeldComponent.HiddenGame && WeldIntegrity > 0 )
-		{
-			CenterWeldComponent.SetHidden(false);
-		}
-		else if( !CenterWeldComponent.HiddenGame && WeldIntegrity <= 0 )
-		{
-			CenterWeldComponent.SetHidden(true);
-		}
+
+        if (CenterWeldComponent != none)
+        {
+            if (CenterWeldComponent.HiddenGame && WeldIntegrity > 0)
+            {
+                CenterWeldComponent.SetHidden(false);
+            }
+            else if (!CenterWeldComponent.HiddenGame && WeldIntegrity <= 0)
+            {
+                CenterWeldComponent.SetHidden(true);
+            }
+        }		
 	}
 
 	if( WorldInfo.NetMode != NM_Client && WeldIntegrity > 0 && MyMarker != none )
@@ -2131,6 +2154,7 @@ defaultproperties
    HingedRotation=90
    SlideTranslation=-100
    LiftTranslation=245
+   bStartDoorOpen=True
    MaxHealth=4000
    MaxWeldIntegrity=1500
    DemoWeldRequired=500
@@ -2173,7 +2197,6 @@ defaultproperties
    bCollideActors=True
    bBlockActors=True
    bProjTarget=True
-   bNoEncroachCheck=True
    bEdShouldSnap=True
    bIgnoreNetRelevancyCollision=True
    NetUpdateFrequency=0.100000

@@ -1012,7 +1012,7 @@ defaultproperties
     BattleDamageFX_Blood_Mid=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Blood_Spray_02'
     BattleDamageFX_Blood_High=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Blood_Spray_01'
     InvulnerableShieldFX=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Hunt_Shield'
-    ShieldSocketName=Hips
+    ShieldSocketName=hips
     begin object name=ShieldEffects class=KFSkinTypeEffects_HansShield
         ImpactFXArray[14]=(Type=EEffectDamageGroup.FXG_Flare)
     object end
@@ -1045,15 +1045,12 @@ defaultproperties
     LeftHandSocketName=LeftHandSocket
     GrenadeTossSpread=(X=0,Y=0.2,Z=0.04)
     SmokeTossCooldown=5
-    BossName="Dr. Hans Volter"
-    BossCaptionStrings=/* Array type was not detected. */
     SummonWaves[0]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_Three')
     SummonWaves[1]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Three')
     SummonWaves[2]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Three')
     SummonWaves[3]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Three')
     NumMinionsToSpawn=(X=1,Y=18)
     CurrentBattlePhase=1
-    TheatricCameraSocketName=TheatricCameraRootSocket
     bLargeZed=true
     bCanGrabAttack=true
     MonsterArchPath="ZED_ARCH.ZED_Hans_Archetype"
@@ -1077,6 +1074,9 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_Hans'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     OnDeathAchievementID=133
+    BossName="Dr. Hans Volter"
+    BossCaptionStrings=/* Array type was not detected. */
+    TheatricCameraSocketName=TheatricCameraRootSocket
     PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
     LocalizationKey=KFPawn_ZedHans
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

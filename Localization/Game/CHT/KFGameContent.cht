@@ -272,6 +272,11 @@ ItemName="M4 戰鬥霰彈槍"
 ItemCategory="霰彈槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•Benelli 為美國軍隊設計了 M4 戰鬥霰彈槍。它是半自動發射，能以穩定頻率射出子彈。"
 
+[KFWeap_Shotgun_HZ12]
+ItemName="HZ12多動槍"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊模式含有半自動／泵動式。\n•HZ12霰彈槍是Horzine警衛隊用來測試的試驗原型。Zed在改良這項武器的過程中受到傷害。"
+
 [KFWeap_Knife_Berserker]
 ItemName="除草機刀片"
 ItemCategory="近身"
@@ -424,6 +429,11 @@ ItemName="溫徹斯特 1894"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊模式只有單發。\n•經典的 1894 型溫徹斯特槓桿式步槍。"
 
+[KFWeap_Rifle_CenterfireMB464]
+ItemName="中心底火SPX 464"
+ItemCategory="來福槍"
+ItemDescription="•主要攻擊模式只有單發。\n•現代泵動式中心底火槓桿式步槍，後座力弱且具有高牽制力。與時俱進的經典。"
+
 [KFWeap_Bow_Crossbow]
 ItemName="十字弓"
 ItemCategory="弓"
@@ -464,6 +474,7 @@ ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔�
 ItemName="克里斯突擊步槍"
 ItemCategory="衝鋒槍"
 ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•使用最新的戰鬥子彈，砲火猛烈。"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -513,6 +524,29 @@ BossCaptionStrings[3]="自己逃跑其實不是逃跑，反而會讓你成為他
 BossCaptionStrings[4]="是的，長老還是可能隱身、跑掉，並治療它自己。有的事情是不會改變的。"
 BossCaptionStrings[5]="雖然你也別無選擇，殺死長老的「孩子」會使他（更）生氣。"
 
+[KFPawn_ZedFleshpoundKing]
+BossName="King Fleshpound"
+BossName_CHN="闪击丧尸之王"
+BossName_CHT="絞碎者之王"
+BossName_DEU="King Fleshpound"
+BossName_ESL="Rey fleshpound"
+BossName_ESN="Rey fleshpound"
+BossName_FRA="Roi Barback"
+BossName_FRC="Roi Barback"
+BossName_INT="King Fleshpound"
+BossName_ITA="Re Fleshpound"
+BossName_JPN="キングフレッシュパウンド"
+BossName_KOR="King 플래시 파운드"
+BossName_POL="Król mięśniaków"
+BossName_PTB="Carniceiro Rei"
+BossName_RUS="Король-отбивальщик"
+BossCaptionStrings[0]="絞碎者之王損失的血量越多，他就會越快召喚其他的絞碎者爪牙。穩定攻擊的節奏，不要被嚇到了！"
+BossCaptionStrings[1]="蹲低！絞碎者之王胸前的射線打不太到靠近地面的目標。"
+BossCaptionStrings[2]="別以為絞碎者之王重傷就代表戰爭即將要結束了。當他的血量低的時候將會啟動防護盾牌。 "
+BossCaptionStrings[3]="絞碎者之王胸前的射線也會傷害其他的Zed，就看你能不能讓他們進入射程範圍內。"
+BossCaptionStrings[4]="絞碎者之王跟一般的絞碎者擁有相同的弱點，只是長得比較大隻。"
+BossCaptionStrings[5]="絞碎者之王擁有殺不完的絞碎者爪牙。忽略他們可是非常危險！"
+
 [KFGameInfo_Tutorial]
 GameName="基本訓練"
 
@@ -521,6 +555,9 @@ GameName="生存模式"
 
 [KFGameInfo_VersusSurvival]
 GameName="對抗生存模式"
+
+[KFGameInfo_WeeklySurvival]
+GameName="每週暴動"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="無法治療"

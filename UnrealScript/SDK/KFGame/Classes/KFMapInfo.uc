@@ -18,7 +18,7 @@ var()			array<KFDestructibleActor> 	DestructibleActors;
 
 /** list of music tracks played when a wave is active */
 // @todo: make these not editconst when we're ready to have mappers or whomever change them
-var(Music) editconst array< KFMusicTrackInfo > 	ActionMusicTracks;
+var(Music) array< KFMusicTrackInfo > 	ActionMusicTracks;
 /** List of random indices into the ActionMusicTracks array */
 var transient array< byte > 				ShuffledActionMusicTrackIdxes;
 /** Current position within the ShuffledActionMusicTrackIdxes array */
@@ -26,7 +26,7 @@ var transient byte							CurrShuffledActionMusicTrackIdx;
 
 /** list of music tracks played during trader time */
 // @todo: make these not editconst when we're ready to have mappers or whomever change them
-var(Music) editconst array< KFMusicTrackInfo > 	AmbientMusicTracks;
+var(Music) array< KFMusicTrackInfo > 	AmbientMusicTracks;
 /** List of random indices into the AmbientMusicTracks array */
 var transient array< byte > 	 			ShuffledAmbientMusicTrackIdxes;
 /** Current position within the ShuffledAmbientMusicTrackIdxes array */
@@ -57,6 +57,31 @@ enum ESubGameType
  * NOTE: Setting this option incorrectly may disable or enable unwanted game features!
  */
 var() ESubGameType SubGameType;
+
+/** Objective mode types and data */
+
+//Struct to hold an array of wave/objective pairing data.  Fixed array of these array
+//      objects in the next struct down will link a specific array of possible objectives
+//      to a specific wave per game-length.
+struct native WaveObjectivePair
+{
+    var() array<KFInterface_MapObjective> PossibleObjectives;
+};
+
+struct native PresetWavePairs
+{
+    var() WaveObjectivePair ShortObjectives[5];
+    var() WaveObjectivePair MediumObjectives[8];
+    var() WaveObjectivePair LongObjectives[11];
+};
+
+/** Whether or not to use the preset wave objective type */
+var(Objectives) bool bUsePresetObjectives <EditCondition=!bUseRandomObjectives>;
+var(Objectives) PresetWavePairs PresetWaveObjectives <EditCondition=bUsePresetObjectives>;
+
+/** Whether or not to use the random wave objective type */
+var(Objectives) bool bUseRandomObjectives <EditCondition=!bUsePresetObjectives>;
+var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives <EditCondition=bUseRandomObjectives>;
 
 cpptext
 {

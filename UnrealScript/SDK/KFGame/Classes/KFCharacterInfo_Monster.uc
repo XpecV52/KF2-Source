@@ -12,6 +12,13 @@ class KFCharacterInfo_Monster extends KFCharacterInfoBase
 	hidecategories(Object)
 	native(Pawn);
 
+struct native ZedColorMod
+{
+    var() LinearColor MainColor;
+    var() LinearColor PatternColor;
+    var() LinearColor TrimColor;
+};
+
 /** Character mesh to use */
 var(ThirdPerson) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
 
@@ -26,6 +33,12 @@ var(Server) SkeletalMesh ServerMesh;
 
 /** Additional material IDs that require MICs for gameplay material params */
 var(Effects) array<int> ExtraMICIndices;
+
+/** List of meshes to attach to the main body using the Parent Anim Component system */
+var(ThirdPerson) array<SkeletalMesh> PACMeshList;
+
+/** List of possible randomized colors to apply to zed */
+var(ThirdPerson) array<ZedColorMod> RandomizedColors;
 
 /************************************************************************/
 /*  Audio                                                   */
@@ -111,8 +124,16 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 {
 	local int i;
 	local int MaterialIndex;
+    local SkeletalMeshComponent PACAttachment;
+    local LinearColor AppliedColor;
 
 	super.SetCharacterMeshFromArch( KFP, KFPRI );
+
+    //Set randomized color indices if valid
+    if (RandomizedColors.Length > 0 && KFPawn_Monster(KFP) != none)
+    {
+        KFPawn_Monster(KFP).RandomColorIdx = Rand(RandomizedColors.Length);
+    }
 
 	if( CharacterMesh != none )
 	{
@@ -133,6 +154,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 			KFP.Mesh.SetSkeletalMesh(CharacterMesh);
 		}
 		KFP.Mesh.SetScale(DefaultMeshScale);
+        KFP.PitchAudio(DefaultMeshScale);
 
 		// Use material specified in the mesh asset
 		// @note: need to add this if we allow character swap post-spawn (e.g. customization)
@@ -155,6 +177,25 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 				KFP.Mesh.SetMaterial( i, Skins[i] );
 			}
 		}
+
+        //Use the third person attachments list to cache these, so again we can't
+        //  go beyond that size, similar to the player attachments system
+        for (i = 0; i < PACMeshList.Length && i < `MAX_COSMETIC_ATTACHMENTS; ++i)
+        {
+            PACAttachment = new(KFP) class'SkeletalMeshComponent';
+            if (PACAttachment != none)
+            {
+                KFP.ThirdPersonAttachments[i] = PACAttachment;
+                PACAttachment.SetActorCollision(false, false);
+                PACAttachment.SetSkeletalMesh(PACMeshList[i]);
+                PACAttachment.SetParentAnimComponent(KFP.Mesh);
+                PACAttachment.SetLODParent(KFP.Mesh);
+                PACAttachment.SetShadowParent(KFP.Mesh);
+                PACAttachment.SetLightingChannels(KFP.PawnLightingChannel);
+                PACAttachment.CreateAndSetMaterialInstanceConstant(0);
+                KFP.AttachComponent(PACAttachment);
+            }            
+        }
 	}
 
 	// Initialize MICs
@@ -168,6 +209,23 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 			KFP.CharacterMICs.AddItem(KFP.Mesh.CreateAndSetMaterialInstanceConstant(MaterialIndex));
 		}
 	}
+
+    //Initialize randomized color parameters now that all MICs are setup
+    if (KFP.WorldInfo.NetMode != NM_DedicatedServer && KFPawn_Monster(KFP) != none)
+    {
+        for (i = 0; i < KFP.CharacterMICs.Length; ++i)
+        {
+            if (KFPawn_Monster(KFP).RandomColorIdx >= 0)
+            {
+                AppliedColor = RandomizedColors[KFPawn_Monster(KFP).RandomColorIdx].MainColor;
+                KFP.CharacterMICs[i].SetVectorParameterValue('vector_MainColor', AppliedColor);
+                AppliedColor = RandomizedColors[KFPawn_Monster(KFP).RandomColorIdx].PatternColor;
+                KFP.CharacterMICs[i].SetVectorParameterValue('vector_PatternColor', AppliedColor);
+                AppliedColor = RandomizedColors[KFPawn_Monster(KFP).RandomColorIdx].TrimColor;
+                KFP.CharacterMICs[i].SetVectorParameterValue('vector_TrimColor', AppliedColor);
+            }
+        }
+    }    
 }
 
 defaultproperties

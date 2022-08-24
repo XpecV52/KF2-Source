@@ -497,6 +497,11 @@ native function SetZedTimeResist(float ResistPct);
 // Export UKFWeapon::execClearZedTimeResist(FFrame&, void* const)
 native function ClearZedTimeResist();
 
+simulated function bool HasAlwaysOnZedTimeResist()
+{
+    return false;
+}
+
 simulated event PreBeginPlay()
 {
     super(Actor).PreBeginPlay();
@@ -2996,6 +3001,11 @@ simulated function int GetSpareAmmoForHUD()
     return SpareAmmoCount[0];
 }
 
+simulated function int GetSecondaryAmmoForHUD()
+{
+    return AmmoCount[1] + SpareAmmoCount[1];
+}
+
 simulated function bool ForceReload()
 {
     if((Instigator != none) && Instigator.IsLocallyControlled())
@@ -3300,12 +3310,17 @@ static simulated event class<KFPerk> GetWeaponPerkClass(class<KFPerk> Instigator
 {
     if(default.AssociatedPerkClasses.Length > 1)
     {
-        if(InstigatorPerkClass == default.AssociatedPerkClasses[1])
+        if(default.AssociatedPerkClasses.Find(InstigatorPerkClass != -1)
         {
             return InstigatorPerkClass;
         }
     }
     return default.AssociatedPerkClasses[0];
+}
+
+static simulated function bool AllowedForAllPerks()
+{
+    return false;
 }
 
 static event array< class<KFPerk> > GetAssociatedPerkClasses()
@@ -3527,6 +3542,11 @@ simulated function TimeWeaponFiring(byte FireModeNum)
         }
         SetTimer(AdjustedFireInterval, true, 'RefireCheckTimer');
     }
+}
+
+simulated function int GetBurstAmount()
+{
+    return 1;
 }
 
 private reliable server final function ServerGotoGrenadeFiring()
@@ -3927,7 +3947,7 @@ private reliable server final function ServerSyncWeaponFiring(byte FireModeNum)
     }
     else
     {
-        if(IsInState('WeaponEquipping') || IsInState('MeleeAttackBasic'))
+        if((IsInState('WeaponEquipping') || IsInState('MeleeAttackBasic')) || IsInState('WeaponSprinting'))
         {
             bNeedsToSync = true;
         }
@@ -3950,11 +3970,11 @@ static simulated event SetTraderWeaponStats(out array<STraderItemWeaponStats> We
     WeaponStats.Length = 4;
     WeaponStats[0].StatType = 0;
     WeaponStats[0].StatValue = CalculateTraderWeaponStatDamage();
-    WeaponStats[1].StatType = 1;
-    WeaponStats[1].StatValue = CalculateTraderWeaponStatFireRate();
-    WeaponStats[2].StatType = 2;
+    WeaponStats[1].StatType = 2;
+    WeaponStats[1].StatValue = default.PenetrationPower[0];
+    WeaponStats[2].StatType = 1;
     WeaponStats[3].StatType = 3;
-    WeaponStats[3].StatValue = default.PenetrationPower[0];
+    WeaponStats[3].StatValue = CalculateTraderWeaponStatFireRate();
 }
 
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -4601,8 +4621,13 @@ simulated state WeaponBurstFiring extends WeaponFiring
 {
     simulated function BeginState(name PrevStateName)
     {
-        BurstAmount = byte(Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]));
+        BurstAmount = byte(GetBurstAmount());
         super.BeginState(PrevStateName);
+    }
+
+    simulated function int GetBurstAmount()
+    {
+        return Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]);
     }
 
     simulated function bool ShouldRefire()
@@ -4956,6 +4981,18 @@ simulated state MeleeAttackBasic
         ClearZedTimeResist();
         ClearTimer('RefireCheckTimer');
         NotifyEndState();
+    }
+
+    simulated function BeginFire(byte FireModeNum)
+    {
+        if(!bDeleteMe && Instigator != none)
+        {
+            global.BeginFire(FireModeNum);
+            if(PendingFire(FireModeNum) && HasAmmo(FireModeNum))
+            {
+                SendToFiringState(FireModeNum);
+            }
+        }
     }
 
     simulated function TimeWeaponFiring(byte FireModeNum)

@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="Gra publiczna"
 ConsolePermissionStrings[1]="Tylko zaproszeni"
 
 ModeStrings[0]="Przetrwanie"
-ModeStrings[1]="Przetrwanie VS"
+ModeStrings[1]="Tygodniowe"
+ModeStrings[2]="Przetrw. VS"
 
 NoPreferenceString="DOWOLNIE"
 OKString="OK"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="Specjalizacja może być aktualizowana raz na falę!"
 YesString="Tak"
 NoString="Nie"
 TeamSwappedString="Przeniesiono do drugiej drużyny"
+
+CancelConnectionString="Anuluj wczytywanie"
 
 DisbandPartyString="ROZWIĄŻ IMPREZĘ"
 LeaveCurrentMenuString="Opuścić menu?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="Nie zakupiono przedmiotów"
 SetTakeoverServerPasswordTitle="Wpisz nowe hasło, aby chronić grę:"
 FreeConsolePlayOverString="Dziękujemy za grę w Killing Floor 2! Wydarzenie umożliwiające bezpłatną grę dobiegło końca, ale możesz zakupić grę i uzyskać więcej informacji, naciskając poniższy przycisk Sklep."
 BuyGameString="SKLEP"
+CustomString="Niestandard."
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="NAGRODA ZA UKOŃCZENIE INCYDENTU"
+WeeklyString="TYGODNIOWY INCYDENT HORZINE"
+CurrentWeeklySettingsString="OBECNE USTAWIENIA INCYDENTU"
+SpecialEventString="WAKACYJNA MISJA POBOCZNA"
+ShortWeeklyString="TYGODNIOWE"
+SeasonalString="SEZONOWE"
+SpecialEventChanceDropString="OGRANICZENIE LICZBY PRZEDMIOTÓW"
+GrantedSpecialEventString="NAGRODA ZA UKOŃCZENIE"
+RewardsString="NAGRODA ZA UKOŃCZENIE INCYDENTU"
+WeeklyOverview="Co tydzień nowy, wymagający tryb gry!"
+ObjectivesString="Przełącz cele"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="NIE UDAŁO SIĘ ZNALEŹĆ ROZGRYWKI"
@@ -115,8 +133,9 @@ TutorialString="Szkolenie podstawowe"
 
 [StartMenuHelperText]
 modeList0="Przetrwanie – bitwa PVE przeciw falom zetów kontrolowanych przez SI"
-modeList1="Przetrwanie VS – bitwa PVP pomiędzy najemnikami Horzine a falami zetów kontrolowanych przez graczy i SI"
-modeList2=""
+modeList1="Tygodniowy incydent – co tydzień inny rodzaj trybu gry."
+modeList2="Przetrwanie VS – bitwa PVP pomiędzy najemnikami Horzine a falami zetów kontrolowanych przez graczy i SI"
+modeList3=""
 difficultyList0="Zwykły – dla początkujących graczy o randze specjalizacji 0–5."
 difficultyList1="Wysoki – dla doświadczonych graczy o randze specjalizacji 6–12. W falach jest więcej zetów, które poruszają się szybciej i mają więcej zdrowia. Znajdujesz mniej przedmiotów i otrzymujesz mniej forsy."
 difficultyList2="Samobójczy – dla wytrawnych graczy o randze specjalizacji 13–25. W każdej fali jest jeszcze więcej zetów, które używają nowych ataków i poruszają się jeszcze szybciej. Znajdujesz jeszcze mniej przedmiotów i otrzymujesz jeszcze mniej forsy."
@@ -666,6 +685,7 @@ DamageDealtString="Zadane obrażenia:"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ GOTOWY ]"
 WaitingString="OCZEKIWANIE NA GRACZY"
+MatchOverString="KONIEC ROZGRYWKI \n Oczekiwanie…"
 DeployingString="POCZĄTEK ZA "
 CreatePartyString="STWÓRZ IMPREZĘ"
 ReadyString="DO DZIEŁA"
@@ -840,6 +860,7 @@ CancelString="ANULUJ"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="NOWY POZIOM"
 TierUnlockedString="NOWE UMIEJĘTNOŚCI"
+ObjectiveCompleteString="ZREALIZOWANO CEL"
 
 [KFGFxHUD_WaveInfo]
 WaveString="FALA"
@@ -924,6 +945,7 @@ ConfigureMicString="KONFIGURUJ MIKROFON"
 VocalsString="Wokal muzyki"
 BattleChatterString="Minimalizuj wypowiedzi"
 PushToVoIPString="Naciśnij, by mówić"
+ScreenSizeString="WIELKOŚĆ EKRANU"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Użyć tych ustawień grafiki?"
@@ -1129,7 +1151,7 @@ GBA_Look_Gamepad="Kontrola widoku"
 GBA_Grenade_Gamepad="Rzut granatem"
 GBA_TurnLeft_Gamepad="Kontrola widoku"
 GBA_Look_Gamepad="Kontrola widoku"
-GBA_DPad_Left_Gamepad="Kom. głosowe/emocje"
+GBA_DPad_Left_Gamepad="Komendy głos. / emoty"
 GBA_DPad_Up_Gamepad="Używaj uzdrowiciela"
 GBA_DPad_Right_Gamepad="Rozrzuć forsę"
 GBA_DPad_Down_Gamepad="Przełączanie latarki"
@@ -1322,6 +1344,7 @@ MapCollectibleName="odrobina połyskującej forsy"
 WaveStartMessage="N A D C H O D Z I  F A L A"
 WaveEndMessage="F A L A  U K O Ń C Z O N A"
 GetToTraderMessage="Idź do kapsuły handlarki"
+ScavengeMessage="Wygrzeb"
 YouLostMessage="P R Z E G R A N A"
 YouWonMessage="Z W Y C I Ę S T W O"
 SquadWipedOutMessage="Twój oddział został zmieciony!"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>LECZ SIEBIE"
 PressToBashWarning="CIOS"
 GamepadWeaponSelectHint="<%HOLD%>WYBÓR BRONI"
 PlayerClotGrabWarningMessage="ZABIJ ZETA, ŻEBY SIĘ UWOLNIĆ!"
-UseMinigameMessage="AKTYWUJ MINIGRĘ"
+UseMinigameMessage="AKTYWUJ"
 UseMinigameGeneratorMessage="AKTYWUJ GENERATOR"
 
 [KFLocalMessage_ServerNotification]
@@ -1774,6 +1797,7 @@ Passives[2]=(Title="Odporność na ogień zetów",Description="Odporność na og
 Passives[3]=(Title="Odporność na własny ogień",Description="Odporność na własny ogień wzrasta o 25% oraz dodatkowo o %x% na poziom");
 Passives[4]=(Title="Amunicja początkowa",Description="Ilość amunicji pocz. wzrasta o %x% co 5 poz.");
 
+
 BringTheHeat="Gorączka"
 BringTheHeatDescription="Obrażenia broni ogniowej zwiększone o 35%."
 
@@ -2162,6 +2186,7 @@ Forums="Odwiedź fora naszej społeczności"
 Survey="Wypełnij ankietę dotyczącą rozgrywki"
 CommunityTracker="Śledź prośby społeczności"
 FeaturedCrateKey="Wyróżniony klucz do skrzyni Horzine - 2,49$"
+FeaturedEventItem="Wyróżniony przedmiot wydarzenia"
 FeaturedUsbKey="Wyróżniony klucz USB ze skórką broni - 2,49$"
 FeaturedRareItem="Wyróżniony rzadki przedmiot - 3,99$"
 FeaturedExceptionalItem="Wyróżniony wyjątkowy przedmiot - 7,49$"
@@ -2177,20 +2202,22 @@ PS4WeaponSkinCrate2="Skrzynia Horzine ze skórkami broni | Seria 2"
 Artbook="Cyfrowy artbook Killing Floor 2"
 Uncovered="Film live action Killing Floor: Uncovered"
 NewEmotes="Nowość! Klucz do skrzyni emocji – 2,49$"
-HorzineSupplyCrateKey10="Klucz do skrzyni Horzine | Seria 10 - $2.49"
-HorzineSupplyCrateKey11="Klucz do skrzyni Horzine | Seria 11 - $2.49"
-HorzineSupplyCrateKey12="Klucz do skrzyni Horzine | Seria 12 - $2.49"
-HorzineSupplyCrateKey13="Klucz do skrzyni Horzine | Seria 13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+HorzineSupplyCrateKey10="Klucz do skrzyni Horzine | Seria 10 – 2,49 $"
+HorzineSupplyCrateKey11="Klucz do skrzyni Horzine | Seria 11 – 2,49 $"
+HorzineSupplyCrateKey12="Klucz do skrzyni Horzine | Seria 12 – 2,49 $"
+HorzineSupplyCrateKey13="Klucz do skrzyni Horzine | Seria 13 – 2,49 $"
+USBSpitfire="Klucz USB: Spitfire – 2,49 $"
+USBHighVoltage="Klucz USB: Wysokie napięcie – 2,49 $"
+MerchSale="Wyprzedaż KF2! -25% do 30.04.17 Kod promocyjny ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Spaślak"
 KFPawn_ZedClot="Skrzep"
 KFPawn_ZedCrawler="Pełzacz"
 KFPawn_ZedCrawlerKing="Elitarny pełzacz"
+KFPawn_ZedFleshpoundMini="Ćwierćmięśniaki"
 KFPawn_ZedFleshPound="Mięśniak"
+KFPawn_ZedFleshpoundKing="Król mięśniaków"
 KFPawn_ZedGorefast="Rozpruwacz"
 KFPawn_ZedGorefastDualBlade="Dręczyciel"
 KFPawn_ZedHans="Dr Hans Volter"
@@ -2319,6 +2346,119 @@ KFWeap_Zweihander="Promocja Chivalry"
 
 
 Source0="Promocja Chivalry"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Opis przedmiotu dla ukończonych"
+
+ChanceDropDescriptionStrings[0]="Przedmioty 1"
+ChanceDropDescriptionStrings[1]="Przedmioty 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z wyjątkowymi przedmiotami."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Więcej mocy",DescriptionString="Zasil generator w Królestwie Tragedii");
+SpecialEventObjectiveInfoList[1]=(TitleString="Rozwal skrzepy",DescriptionString="Rozwal skrzepy w Królestwie Tragedii");
+SpecialEventObjectiveInfoList[2]=(TitleString="Utop spaślaka",DescriptionString="Utop spaślaka w Królestwie Tragedii");
+SpecialEventObjectiveInfoList[3]=(TitleString="Wyrzuć kasę",DescriptionString="Wyrzuć kasę w Królestwie Tragedii");
+SpecialEventObjectiveInfoList[4]=(TitleString="Karnawał zła",DescriptionString="Wygraj w Królestwie Tragedii na wysokim+ poz. trudności");
+
+AllCompleteRewardDescriptionString="Kombinezon ochronny Pokazu"
+
+ChanceDropDescriptionStrings[0]="Kupon Pokazu"
+ChanceDropDescriptionStrings[1]="Złoty kupon Pokazu"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="Teraz: Rozbijacz czach"
+DescriptionStrings[0]="Dobre obrażenia to obrażenia mózgu."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="W trakcie tego incydentu zeci zmutowali tak, że teraz można ich pokonać jedynie przez trafienie w głowę. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="Teraz: Trochę strach"
+DescriptionStrings[0]="Niewielkie zagrożenie to też zagrożenie."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="W trakcie tego incydentu strzelanie do zetów spowoduje, że będą się kurczyć i trudniej będzie ich trafić. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="Teraz: Mięśniamonium"
+DescriptionStrings[0]="Wszystkie mięśniaki. Cały czas. Prawie."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="Czas na targi mięśniaków! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="Teraz: W górę zwłoki"
+DescriptionStrings[0]="Spróbuj zrobić 99 zecich balonów."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="W trakcie tego incydentu strzelanie do zetów spowoduje, że nadmą się jak balony – i że odlecą i pękną! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="Teraz: Czas zetów"
+DescriptionStrings[0]="Mnóstwo czasu. Czasu zetów."
+DescriptionStrings[1]="Długość: Krótka (4 fale)"
+ModifierDescriptions[0]="Masz czasem wrażenie, że wszystko cię omija? Nie podczas tego incydentu! Czas zetów w pobliżu każdego zeta. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="Teraz: Wybuch"
+DescriptionStrings[0]="Zeci pod presją mogą wybuchnąć."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="Może coś zjedli? I mają gazy? Niezależnie od powodu w trakcie tego incydentu zeci wybuchają po ich zabiciu. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="Teraz: Góra mięśni"
+DescriptionStrings[0]="Im są silniejsi, tym gorzej dla ciebie."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="W trakcie tego incydentu zeci w momencie uderzenia w gracza lub w ramach zdolności mają zwiększone zdrowie, rozmiary oraz zasięg. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="Teraz: Bańkogłowi"
+DescriptionStrings[0]="…jak ich karki to wytrzymują."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="Coś poszło bardzo nie tak z tą partią zetów i ich głowy są znaaaacznie większe niż zwykle! Można nawet powiedzieć, że olbrzymie! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2701,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorium biotyczne"
 
@@ -2572,6 +2728,9 @@ DisplayName="Płonący Paryż"
 
 [Survival KFGameInfoSummary]
 GameName="Przetrwanie"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="Tygodniowe"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Dwór Voltera"
@@ -2608,6 +2767,9 @@ DisplayName="Zejście"
 
 [KF-Nuked KFMapSummary]
 DisplayName="Wysadzeni"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="Królestwo Tragedii"
 
 [KFMapInfo]
 ; defaults

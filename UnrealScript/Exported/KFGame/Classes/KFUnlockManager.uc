@@ -18,6 +18,17 @@ enum ESharedContentUnlock
 	SCU_Zweihander,
 };
 
+
+enum EPlatformRestriction
+{
+	PR_All,
+	PR_XboxOne,
+	PR_PC,
+	PR_PS4,
+	PR_Console,
+};
+
+
 struct native SharedContent
 {
 	var name Name;
@@ -72,6 +83,19 @@ static native function bool IsSharedContentUnlocked(ESharedContentUnlock UnlockI
  * Network: All
  */
 static native function 		GetSharedContentPlayerList(ESharedContentUnlock UnlockId, out array<PlayerReplicationInfo> out_PRIArray);
+
+
+
+/****************************************************************************************
+* Platform Restrictions
+*****************************************************************************************/
+
+/**
+ * returns TRUE if the content is restricted for the current platform
+ * Network: All
+ */
+static native function bool IsPlatformRestricted( EPlatformRestriction PlatformRestrictionType );
+
 
 /****************************************************************************************
 * Character Unlocks

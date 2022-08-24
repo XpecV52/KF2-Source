@@ -21,6 +21,17 @@ protected function SpecialCringeEffectsFor(Actor Victim, float VictimDist)
     }
 }
 
+function HandleIgnoredVictim(Actor Victim)
+{
+    if((Victim != Instigator) && KFPawn_Monster(Victim) != none)
+    {
+        if(KFGameInfo(WorldInfo.Game) != none)
+        {
+            KFGameInfo(WorldInfo.Game).NotifyIgnoredScream(KFPawn_Monster(Victim));
+        }
+    }
+}
+
 defaultproperties
 {
     bExplodeMoreThanOnce=true

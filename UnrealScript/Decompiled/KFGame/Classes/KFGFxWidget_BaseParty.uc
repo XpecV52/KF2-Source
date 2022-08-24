@@ -54,8 +54,9 @@ var const localized string PartyLeaderInOtherMenuString;
 var const localized string SearchingForGameString;
 var const localized string PartHostLeftString;
 var const localized string PartyLeaderChangedString;
-var const localized string DownLoadingString;
+var const localized string DownloadingString;
 var const localized string RemainingString;
+var const localized string MatchOverString;
 var OnlineSubsystem OnlineSub;
 var TWOnlineLobby OnlineLobby;
 var bool bInLobby;
@@ -113,6 +114,7 @@ function InitializeWidget()
     LocalizeText();
     UpdateInLobby(Manager.IsInLobby());
     RefreshParty();
+    SetBool("matchOver", false);
 }
 
 function LocalizeText()
@@ -127,6 +129,7 @@ function LocalizeText()
     TextObject.SetString("waitingString", WaitingString);
     TextObject.SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
     TextObject.SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
+    TextObject.SetString("matchOver", MatchOverString);
     SetObject("localizedText", TextObject);
 }
 
@@ -135,7 +138,7 @@ function InitNotificationUI()
     Notification = GetObject("Notification");
 }
 
-function ShowDownLoadNotification(string ItemName, float PercentComplete, int ItemsRemaining)
+function ShowDownLoadNotification(string ItemName, float PercentComplete)
 {
     local GFxObject NotificationInfoObject;
 
@@ -146,9 +149,9 @@ function ShowDownLoadNotification(string ItemName, float PercentComplete, int It
     NotificationInfoObject = Outer.CreateObject("Object");
     NotificationInfoObject.SetString("itemName", ItemName);
     NotificationInfoObject.SetFloat("percent", PercentComplete * float(100));
-    NotificationInfoObject.SetInt("queue", ItemsRemaining);
-    NotificationInfoObject.SetString("downLoading", DownLoadingString);
-    NotificationInfoObject.SetString("remaining", RemainingString);
+    NotificationInfoObject.SetInt("queue", 0);
+    NotificationInfoObject.SetString("downLoading", DownloadingString);
+    NotificationInfoObject.SetString("remaining", Class'KFCommon_LocalizedStrings'.default.CancelString @ "- F10");
     Notification.SetObject("notificationInfo", NotificationInfoObject);
 }
 
@@ -450,8 +453,10 @@ defaultproperties
     SearchingForGameString="Searching for online game..."
     PartHostLeftString="The party host has left"
     PartyLeaderChangedString="is now the new party host"
-    DownLoadingString="Downloading:"
+    DownloadingString="Downloading:"
     RemainingString="Remaining:"
+    MatchOverString="MATCH OVER 
+ Please stand by..."
     bReadyButtonVisible=true
     PerkPrefix="%&1&%"
     SearchingPrefix="%&2&%"

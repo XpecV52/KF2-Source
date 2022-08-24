@@ -10,12 +10,17 @@ BriarsBobbyBundleName="Zestaw policyjny dla Briara"
 FosterClassicBundleName="Zestaw klasyczny dla Fostera"
 TanakasBikerBundleName="Zestaw motocyklisty dla Tanaki"
 CardboardKnightBundleName="Zestaw kartonowego rycerza"
+HazmatBundleName="Zestaw ochronny"
+HorzineMark7BundleName="Zestaw Horzine Mark 7"
 
 ;Bundle Descriptions
-BriarsBobbyBundleDescription="W zestawie londyński mundur Briara (wraz 5 skórkami) i akcesorium hełm policyjny (wraz z 3 skórkami). Nie podlega wymianie ani sprzedaży."
-FosterClassicBundleDescription="W zestawie klasyczny garnitur Fostera (wraz z 9 skórkami), akcesorium klasyczny krawat (wraz z 8 skórkami) oraz akcesorium muszka. Nie podlega wymianie ani sprzedaży."
-TanakasBikerBundleDescription="W zestawie strój motocyklisty Tanaki (wraz 7 skórkami) i akcesorium kask (wraz z 7 skórkami). Nie podlega wymianie ani sprzedaży."
+BriarsBobbyBundleDescription="W zestawie londyński mundur Briara (wraz z 5 skórkami) i akcesorium hełm policyjny (wraz z 3 skórkami)."
+FosterClassicBundleDescription="W zestawie klasyczny garnitur Fostera (wraz z 9 skórkami), akcesorium klasyczny krawat (wraz z 8 skórkami) oraz akcesorium muszka."
+TanakasBikerBundleDescription="W zestawie strój motocyklisty Tanaki (wraz z 7 skórkami) i akcesorium kask (wraz z 7 skórkami)."
 CardboardKnightBundleDescription="W zestawie zbroja kartonowego rycerza na korpus (wraz 6 skórkami) oraz akcesorium hełm kartonowego rycerza (wraz z 6 skórkami)."
+HazmatDescription="W zestawie kombinezon ochronny (5 skórek) i akcesorium hełm ochronny (5 skórek). Dla większości postaci."
+HorzineMark7Description="W zestawie mundur Horzine Mark 7 (7 skórek) i akcesorium Horzine Mark 7 (7 skórek). Dla większości postaci."
+
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Zgarnij nowy klasyczny mundur londyńskiego policjanta dla grywalnej postaci – posterunkowego Roba Briara. W zestawie londyński mundur Briara (wraz 5 skórkami) i akcesorium hełm policyjny (wraz z 3 skórkami)."
@@ -42,19 +47,27 @@ HorzineMark7HelmetName="Hełm Horzine Mark 7"
 HorzineMark7SuitName="Mundur Horzine Mark 7"
 CardboardKnightName="Kartonowy rycerz"
 CardboardKnightHelmetName="Hełm kartonowego rycerza"
+HazmatHelmetName="Hełm ochronny Glovera"
+HazmatSuitName="Kombinezon ochronny Glovera"
+SideshowHazmatHelmetName="Hełm ekipy Królestwa Tragedii"
+SideshowHazmatSuitName="Kombinezon ekipy Królestwa Tragedii"
 
 ;bundle item descriptions
-BriarsLondonUniformDescription="Na samotnym patrolu. Dla: Briar i klasyczny Briar. Nie podlega wymianie ani sprzedaży."
-BriarsCustodianHelmetDescription="Dla bezpieczeństwa mózgownicy. Dla: Oisten Jägerhorn, DJ Scully, pan Foster, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner. Nie podlega wymianie ani sprzedaży."
-FostersClassicSuitDescription="Zabijaj zetów z klasą! Dla: pan Foster. Nie podlega wymianie ani sprzedaży."
-FostersClassicTieDescription="Elegancki krawat. Tylko z klasycznym garniturem Fostera. Nie podlega wymianie ani sprzedaży."
-FostersBowTieDescription="Elegancka mucha. Tylko z klasycznym garniturem Fostera. Nie podlega wymianie ani sprzedaży."
-TanakasBikerDescription="Zabijanie z szykiem. Dla: Tanaka. Nie podlega wymianie ani sprzedaży."
-TanakasBikerHelmetDescription="Dla bezpieczeństwa mózgownicy. Dla: Tanaka. Nie podlega wymianie ani sprzedaży."
-HorzineMark7HelmetDescription="Pełny hełm do pancerza ochroniarza Horzine. Dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Rae Higgins. Nie podlega wymianie ani sprzedaży."
-HorzineMark7SuitDescription="Elitarny pancerz ochroniarza Horzine. Dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Rae Higgins. Nie podlega wymianie ani sprzedaży."
-CardboardKnightDescription="Zbroja dla wymagającego rycerza. Dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, klasyczny Briar, klasyczny Masterson, Anton Strasser. Nie podlega wymianie ani sprzedaży."
-CardboardKnightHelmetDescription="Ukoronowanie klasycznego szyku. Dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, klasyczny Briar, klasyczny Masterson, Anton Strasser. Nie podlega wymianie ani sprzedaży."
+BriarsLondonUniformDescription="Na samotnym patrolu. Dla: Briar i klasyczny Briar. "
+BriarsCustodianHelmetDescription="Dla bezpieczeństwa mózgownicy. Dla: Oisten Jägerhorn, DJ Scully, pan Foster, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner. "
+FostersClassicSuitDescription="Zabijaj zetów z klasą! Dla: pan Foster. "
+FostersClassicTieDescription="Elegancki krawat. Tylko z klasycznym garniturem Fostera. "
+FostersBowTieDescription="Elegancka mucha. Tylko z klasycznym garniturem Fostera. "
+TanakasBikerDescription="Zabijanie z szykiem. Dla: Tanaka. "
+TanakasBikerHelmetDescription="Dla bezpieczeństwa mózgownicy. Dla: Tanaka. "
+HorzineMark7HelmetDescription="Pełny hełm do pancerza ochroniarza Horzine. Dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Rae Higgins. "
+HorzineMark7SuitDescription="Elitarny pancerz ochroniarza Horzine. Dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Rae Higgins. "
+CardboardKnightDescription="Zbroja dla wymagającego rycerza. Dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, klasyczny Briar, klasyczny Masterson, Anton Strasser. "
+CardboardKnightHelmetDescription="Ukoronowanie klasycznego szyku. Dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, klasyczny Briar, klasyczny Masterson, Anton Strasser. "
+HazmatSuitDescription="Nie wychodź bez tego z domu! Dla większości postaci. "
+HazmatHelmetDescription="Nie wychodź bez tego z domu! Dla większości postaci. "
+SideshowHazmatSuitDescription="Praca w Koszmarnym Miasteczku Królestwa Tragedii wymaga dodatkowego zabezpieczenia. Dostępne z menu sprzętu; dla większości postaci. Ekskluzywny przedmiot do odblokowania wydarzenia sezonowego – Pokazu Letniego."
+SideshowHazmatHelmetDescription="Praca w Koszmarnym Miasteczku Królestwa Tragedii wymaga dodatkowego zabezpieczenia. Dostępne z menu sprzętu; dla większości postaci. Ekskluzywny przedmiot do odblokowania wydarzenia sezonowego – Pokazu Letniego."
 
 [KeyCrates]
 ;Key and Crate Type Section
@@ -80,6 +93,7 @@ HorzineSupplyCrateSeries10Name="Skrzynia Horzine | Seria 10"
 HorzineSupplyCrateSeries11Name="Skrzynia Horzine | Seria 11"
 HorzineSupplyCrateSeries12Name="Skrzynia Horzine | Seria 12"
 HorzineSupplyCrateSeries13Name="Skrzynia Horzine | Seria 13"
+HorzineSupplyCrateSeries14Name="Skrzynia Horzine | Seria 14"
 EmoteCrateSeries1Name="Skrzynia emocji | Seria 1"
 
 ;Crate Descriptions
@@ -109,6 +123,8 @@ HorzineSupplyCrateSeries12Description="Do otwarcia potrzeba klucza do skrzyni Ho
 
 HorzineSupplyCrateSeries13Description="Do otwarcia potrzeba klucza do skrzyni Horzine serii 13. Zawiera jeden rzadki lub lepszy przedmiot z następujących:<br><font color="#4b69cd">Hełm insektoida zamknięty</font><br><font color="#4b69cd">Robo Scully</font><br><font color="#4b69cd">Hełm insektoida otwarty</font><br><font color="#6600a1">Hełm insektoida gogle góra</font><br><font color="#6600a1">Hełm pogromcy demonów</font><br><font color="#8847ff">Hełm insektoida gogle dół</font><br><font color="#8847ff">Hełm minotaura</font><br><font color="#caab05">lub niezmiernie rzadkie cenne akcesorium!</font>"
 
+HorzineSupplyCrateSeries14Description="Do otwarcia potrzeba klucza do skrzyni Horzine serii 14. Zawiera jeden rzadki lub lepszy przedmiot z następujących:<br><font color="#4b69cd">Hełm strażacki</font><br><font color="#4b69cd">Hełm strażacki maska dół</font><br><font color="#4b69cd">Hełm strażacki maska góra</font><br><font color="#4b69cd">Strażacka maska przeciwgazowa</font><br><font color="#6600a1">Hełm strażacki</font><br><font color="#6600a1">Hełm strażacki maska dół</font><br><font color="#6600a1">Hełm strażacki maska góra</font><br><font color="#6600a1">Strażacka maska przeciwgazowa</font><br><font color="#6600a1">Strażacka butla tlenowa</font><br><font color="#8847ff">Strażacka butla tlenowa</font><br><font color="#caab05">lub niezmiernie rzadkie cenne akcesorium!</font>"
+
 EmoteCrateSeries1Description="Do otwarcia potrzeba klucza do skrzyni emocji serii 1. Zawiera jedną rzadką lub lepszą emocję z następujących:<br><font color="#4b69cd">Zaszalejmy</font><br><font color="#4b69cd">Taniec kręć, kręć</font><br><font color="#4b69cd">Wujek Charlie</font><br><font color="#4b69cd">Zakręcona fala</font><br><font color="#6600a1">Deszcz forsy</font><br><font color="#6600a1">Lwi hak</font><br><font color="#6600a1">Rytuał godowy</font><br><font color="#8847ff">Wykop</font><br><font color="#8847ff">Kula ognia</font><br><font color="#8847ff">Sypnij kasą</font><br><font color="#caab05">lub niezmiernie rzadką emocję de luxe!</font>"
 
 ;Key Names
@@ -125,6 +141,7 @@ HorzineSupplyCrateKeySeries10Name="Klucz do skrzyni Horzine | Seria 10"
 HorzineSupplyCrateKeySeries11Name="Klucz do skrzyni Horzine | Seria 11"
 HorzineSupplyCrateKeySeries12Name="Klucz do skrzyni Horzine | Seria 12"
 HorzineSupplyCrateKeySeries13Name="Klucz do skrzyni Horzine | Seria 13"
+HorzineSupplyCrateKeySeries14Name="Klucz do skrzyni Horzine | Seria 14"
 EmoteCrateKeySeries1Name="Klucz do skrzyni emocji | Seria 1"
 
 ;Key Descriptions
@@ -141,6 +158,7 @@ HorzineSupplyCrateKeySeries10Description="Ten klucz otwiera wyłącznie skrzyni�
 HorzineSupplyCrateKeySeries11Description="Ten klucz otwiera wyłącznie skrzynię Horzine serii 11."
 HorzineSupplyCrateKeySeries12Description="Ten klucz otwiera wyłącznie skrzynię Horzine serii 12."
 HorzineSupplyCrateKeySeries13Description="Ten klucz otwiera wyłącznie skrzynię Horzine serii 13."
+HorzineSupplyCrateKeySeries14Description="Ten klucz otwiera wyłącznie skrzynię Horzine serii 14."
 EmoteCrateKeySeries1Description="Ten klucz otwiera wyłącznie skrzynię emocji serii 1."
 
 ;UsbNames
@@ -163,6 +181,8 @@ MaceAndShieldEncryptedUSBName="Szyfrowy dysk USB łamignat"
 DeepstrikeEncryptedUSBName="Szyfrowy dysk USB Deepstrike"
 HighVoltageEncryptedUSBName="Szyfrowy dysk USB wysokie napięcie"
 FlarePistolEncryptedUSBName="Szyfrowy dysk USB Spitfire"
+VietnamEncryptedUSBName="Zaszyfrowany dysk USB: Wietnam"
+JunkyardEncryptedUSBName="Zaszyfrowany dysk USB: Złomowisko"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="Do otwarcia potrzeba klucza planu Cyberbone. Zawiera jedną rzadką lub lepszą skórkę broni z następujących:<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AK-12 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 |Gnijąca żółć</font><br><font color="#8847ff">AR15 | Izolacja</font><br><font color="#caab05">lub niezmiernie rzadką cenną skórkę!</font>"
@@ -203,6 +223,10 @@ HighVoltageEncryptedUSBDescription="Do otwarcia potrzeba klucza planu wysokie na
 
 FlarePistolEncryptedUSBDescription="Do otwarcia potrzeba klucza planu Spitfire. Zawiera jedną rzadką lub lepszą skórkę na broń z następujących:<br><font color="#4b69cd">Spitfire | Niebieski płomień</font><br><font color="#4b69cd">Spitfire | Pomarańczowy płomień</font><br><font color="#4b69cd">Spitfire | Czerwony płomień</font><br><font color="#4b69cd">Spitfire | Cyfrowy płomień</font><br><font color="#6600a1">Spitfire | Gilotyna</font><br><font color="#6600a1">Spitfire | Koi</font><br><font color="#8847ff">Spitfire | Porcelana</font><br><font color="#caab05">lub niezmiernie rzadką cenną skórkę!</font>"
 
+VietnamEncryptedUSBDescription="Do otwarcia potrzeba klucza planu Wietnam. Zawiera jeden rzadki lub lepszy przedmiot z następujących:<br><font color="#4b69cd">Winchester 1894 | Wietnam</font><br><font color="#4b69cd">RPG-7 | Wietnam</font><br><font color="#4b69cd">M1911 | Wietnam</font><br><font color="#4b69cd">L85A2 | Wietnam</font><br><font color="#4b69cd">M4 | Wietnam</font><br><font color="#6600a1">AK12 | Wietnam</font><br><font color="#6600a1">M14EBR | Wietnam</font><br><font color="#8847ff">M16 M203 | Wietnam</font><br><font color="#caab05">lub niezmiernie rzadkie cenne akcesorium!</font>"
+
+JunkyardEncryptedUSBDescription="Do otwarcia potrzeba klucza planu Złomowisko. Zawiera jeden rzadki lub lepszy przedmiot z następujących:<br><font color="#4b69cd">M4 | Złomowisko</font><br><font color="#4b69cd">AK12 | Złomowisko</font><br><font color="#4b69cd">Kriss SMG | Złomowisko</font><br><font color="#4b69cd">MP5RAS | Złomowisko</font><br><font color="#4b69cd">Winchester 1894 | Złomowisko</font><br><font color="#4b69cd">L85A2 | Złomowisko</font><br><font color="#6600a1">M14EBR | Złomowisko</font><br><font color="#6600a1">AA12 | Złomowisko</font><br><font color="#8847ff">M16 M203 | Złomowisko</font><br><font color="#8847ff">Scar | Złomowisko</font><br><font color="#caab05">lub niezmiernie rzadkie cenne akcesorium!</font>"
+
 ;usb key names
 CyberboneUSBKeyName="Klucz USB Cyberbone"
 DragonfireUSBKeyName="Klucz USB smoczy ogień"
@@ -223,6 +247,8 @@ MaceAndShieldUSBKeyName="Klucz USB łamignat"
 DeepstrikeUSBKeyName="Klucz USB Deepstrike"
 HighVoltageUSBKeyName="Klucz USB wysokie napięcie"
 FlarePistolUSBKeyName="Klucz USB Spitfire"
+VietnamUSBKeyName="Klucz USB: Wietnam"
+JunkyardUSBKeyName="Klucz USB: Złomowisko"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Cyberbone"
@@ -244,6 +270,8 @@ MaceAndShieldUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan ła
 DeepstrikeUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Deepstrike"
 HighVoltageUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan wysokie napięcie"
 FlarePistolUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Spitfire"
+VietnamUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Wietnam"
+JunkyardUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Złomowisko"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Skrzynia Horzine z ozdobami | Seria 1"
@@ -289,6 +317,12 @@ CosmeticExceptionalType="Wyjątkowe akcesorium gracza"
 CosmeticMasterCraftedType="Mistrzowsko wytworzone akcesorium gracza"
 CosmeticPreciousType="Niezmiernie rzadkie akcesorium gracza"
 
+;Sideshow Type Section
+CosmeticSideshowType="Akcesorium gracza Pokazu Letniego"
+CraftingSideshowType="Sezonowy kupon"
+CraftingGoldenSideshowName="Złoty sezonowy kupon"
+FacePaintSideshowType="Farba do twarzy Pokazu Letniego"
+
 ;Crafting Type Section
 CraftingType="Materiał do tworzenia"
 
@@ -311,6 +345,9 @@ CommonWeaponSkinMaterialName="Pospolity element skórek broni"
 UncommonWeaponSkinMaterialName="Niepospolity element skórek broni"
 RareWeaponSkinMaterialName="Rzadki element skórek broni"
 ExceptionalWeaponSkinMaterialName="Wyjątkowy element skórek broni"
+CraftingSideshowName="Kupon Pokazu Letniego"
+CraftingPremiumSideshowName="Kupon premium Pokazu Letniego"
+CraftingGoldenSideshowName="Złoty kupon Pokazu Letniego"
 
 ;materialdescriptions
 CommonCosmeticMaterialDescription="Pospolity materiał do wytwarzania przedmiotów; po połączeniu można uzyskać niepospolite ozdoby."
@@ -321,7 +358,9 @@ CommonWeaponSkinMaterialDescription="Pospolity materiał do wytwarzania przedmio
 UncommonWeaponSkinMaterialDescription="Niepospolity materiał do wytwarzania przedmiotów; po połączeniu można uzyskać rzadkie skórki broni."
 RareWeaponSkinMaterialDescription="Rzadki materiał do wytwarzania przedmiotów; po połączeniu można uzyskać wyjątkowe skórki broni."
 ExceptionalWeaponSkinMaterialDescription="Wyjątkowy materiał do wytwarzania przedmiotów; po połączeniu można uzyskać mistrzowsko wytworzone skórki broni."
-
+CraftingSideshowDescription="Za pomocą kuponów można zdobyć ekskluzywny przedmiot Pokazu Letniego. <font color="#4b69cd">Wymagane jest 5 kuponów.</font> Zostaną wymienione na jeden co najmniej rzadki przedmiot: <br><font color="#4b69cd">Klauni kapelusz Pokazu</font><br><font color="#4b69cd">Klauni nos Pokazu</font><br><font color="#4b69cd">Farba do twarzy Pokazu</font><br><font color="#4b69cd">Świńska maska Pokazu</font><br><font color="#4b69cd">Mały piechur Pokazu</font><br><font color="#4b69cd">Znachorski kapelusz Pokazu</font><br><font color="#4b69cd">Ludzka armata Pokazu</font>"
+CraftingPremiumSideshowDescription="Za pomocą kuponu premium można zdobyć ekskluzywny przedmiot Pokazu Letniego.  <font color="#4b69cd">Potrzebny tylko 1 kupon!</font> Zostanie wymieniony na jeden co najmniej rzadki przedmiot: <br><font color="#4b69cd">Klauni kapelusz Pokazu</font><br><font color="#4b69cd">Klauni nos Pokazu</font><br><font color="#4b69cd">Farba do twarzy Pokazu</font><br><font color="#4b69cd">Świńska maska Pokazu</font><br><font color="#4b69cd">Mały piechur Pokazu</font><br><font color="#4b69cd">Znachorski kapelusz Pokazu</font><br><font color="#4b69cd">Ludzka armata Pokazu</font><font color="#caab05">lub niezmiernie rzadkie cenne akcesorium!</font>"
+CraftingGoldenSideshowDescription="Zdobywasz złoty kupon! <font color="#4b69cd">Potrzebny tylko 1 kupon!</font>Za pomocą złotego kuponu można zdobyć ekskluzywny, <font color="#caab05">niezmiernie rzadki CENNY</font> przedmiot Pokazu Letniego."
 
 [WeaponSkins]
 
@@ -479,6 +518,9 @@ AA12PreciousName="AA-12 | Cenna"
 AA12TacticalMintName="AA12 | Taktyczna | Jak nowa"
 AA12TacticalFieldTestedName="AA12 | Taktyczna | Przetestowana"
 AA12TacticalBattleScarredName="AA12 | Taktyczna | Wysłużona"
+AA12JunkyardMintName="AA12 | Złomowisko | Jak nowy"
+AA12JunkyardFieldTestedName="AA12 | Złomowisko | Przetestowana"
+AA12JunkyardBattleScarredName="AA12 | Złomowisko | Wysłużona"
 
 ;AK12 Descriptions
 AK12MintDescription="Stan zewnętrzny: Jak nowy | Ten AK-12 został zabrany martwemu rosyjskiemu operatorowi Specnazu w celu zeskanowania."
@@ -527,6 +569,12 @@ AK12PreciousName="AK-12 | Cenna"
 AK12TacticalMintName="AK12 | Taktyczny | Jak nowy"
 AK12TacticalFieldTestedName="AK12 | Taktyczny | Przetestowany"
 AK12TacticalBattleScarredName="AK12 | Taktyczny | Wysłużony"
+AK12VietnamMintName="AK12 | Wietnam | Jak nowy"
+AK12VietnamFieldTestedName="AK12 | Wietnam | Przetestowana"
+AK12VietnamBattleScarredName="AK12 | Wietnam | Wysłużona"
+AK12JunkyardMintName="AK12 | Złomowisko | Jak nowy"
+AK12JunkyardFieldTestedName="AK12 | Złomowisko | Przetestowana"
+AK12JunkyardBattleScarredName="AK12 | Złomowisko | Wysłużona"
 
 ;AR15 Descriptions
 AR15MintDescription="Stan zewnętrzny: Jak nowy | Wbrew nazwie jest to broń na zetów, nie szkodniki."
@@ -608,6 +656,12 @@ CaulknBurnStreetPunksMintName="Płomiennica | Punk | Jak nowa"
 CaulknBurnStreetPunksFieldTestedName="Płomiennica | Punk | Przetestowana"
 CaulknBurnStreetPunksBattleScarredName="Płomiennica | Punk | Wysłużona"
 CaulknBurnPreciousName="Płomiennica | Cenna"
+
+;Centerfire Descriptions
+CenterfireMintWeeklyDescription="Stan zewnętrzny: Jak nowy | Nowoczesny karabin centralnego zapłonu z zamkiem dźwigniowym oferujący mały odrzut i dużą mocą obalającą. Zaktualizowana klasyka. Przedmiot odblokowano, kończąc tygodniowy incydent."
+
+;Centerfire Names
+CenterfireWeeklyName="Centerfire | Strzał w głowę – tyg. | Jak nowy"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Stan zewnętrzny: Jak nowa | Mocna kusza myśliwska zapewniającą dobrą penetrację i moc obalającą!"
@@ -926,6 +980,9 @@ KrissPreciousName="SMG Kriss | Cenny egzemplarz"
 KrissShredderMintName="SMG Kriss | Niszczarka | Jak nowy"
 KrissShredderFieldTestedName="SMG Kriss | Niszczarka | Przetestowany"
 KrissShredderBattleScarredName="SMG Kriss | Niszczarka | Wysłużony"
+KrissJunkyardMintName="SMG Kriss | Złomowisko | Jak nowy"
+KrissJunkyardFieldTestedName="SMG Kriss | Złomowisko | Przetestowany"
+KrissJunkyardBattleScarredName="SMG Kriss | Złomowisko | Wysłużony"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Stan zewnętrzny: Jak nowy | SA80 był na standardowym wyposażeniu armii brytyjskiej, dopóki nie została, no cóż, zjedzona."
@@ -965,6 +1022,12 @@ L85A2PreciousName="L85A2 | Cenny"
 L85A2TacticalMintName="L85A2 | Taktyczny | Jak nowy"
 L85A2TacticalFieldTestedName="L85A2 | Taktyczny | Przetestowany"
 L85A2TacticalBattleScarredName="L85A2 | Taktyczny | Wysłużony"
+L85A2VietnamMintName="L85A2 | Wietnam | Jak nowy"
+L85A2VietnamFieldTestedName="L85A2 | Wietnam | Przetestowana"
+L85A2VietnamBattleScarredName="L85A2 | Wietnam | Wysłużona"
+L85A2JunkyardMintName="L85A2 | Złomowisko | Jak nowy"
+L85A2JunkyardFieldTestedName="L85A2 | Złomowisko | Przetestowana"
+L85A2JunkyardBattleScarredName="L85A2 | Złomowisko | Wysłużona"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="Stan zewnętrzny: Jak nowy | Ulubiony karabin wyborowy Navy SEALs, Delta Force i innych różnych twardzieli."
@@ -976,7 +1039,28 @@ M14EBRPreciousDescription="Stan zewnętrzny: Cenny | Ulubiony karabin wyborowy N
 M14EBRIndustrialMintName="M14EBR | Industrial | Jak nowy"
 M14EBRIndustrialFieldTestedName="M14EBR | Industrial | Przetestowany"
 M14EBRIndustrialBattleScarredName="M14EBR | Industrial | Wysłużony"
+M14EBRVietnamMintName="M14EBR | Wietnam | Jak nowy"
+M14EBRVietnamFieldTestedName="M14EBR | Wietnam | Przetestowana"
+M14EBRVietnamBattleScarredName="M14EBR | Wietnam | Wysłużona"
+M14EBRJunkyardMintName="M14EBR | Złomowisko | Jak nowy"
+M14EBRJunkyardFieldTestedName="M14EBR | Złomowisko | Przetestowana"
+M14EBRJunkyardBattleScarredName="M14EBR | Złomowisko | Wysłużona"
 M14EBRPreciousName="M14EBR | Cenny"
+
+;M16M203 Descriptions
+M16M203MintDescription="Stan zewnętrzny: Jak nowy | Dla tych, którzy nie potrafią wybrać między kulami a ładunkami wybuchowymi."
+M16M203FieldTestedDescription="Stan zewnętrzny: Przetestowany | Dla tych, którzy nie potrafią wybrać między kulami a ładunkami wybuchowymi."
+M16M203BattleScarredDescription="Stan zewnętrzny: Wysłużony | Dla tych, którzy nie potrafią wybrać między kulami a ładunkami wybuchowymi."
+M16M203PreciousDescription="Stan zewnętrzny: Cenny egzemplarz | Dla tych, którzy nie potrafią wybrać między kulami a ładunkami wybuchowymi."
+
+;M16M203 Names
+M16M203VietnamMintName="M16 M203 | Wietnam | Jak nowy"
+M16M203VietnamFieldTestedName="M16 M203 | Wietnam | Przetestowana"
+M16M203VietnamBattleScarredName="M16 M203 | Wietnam | Wysłużona"
+M16M203JunkyardMintName="M16 M203 | Złomowisko | Jak nowy"
+M16M203JunkyardFieldTestedName="M16 M203 | Złomowisko | Przetestowana"
+M16M203JunkyardBattleScarredName="M16 M203 | Złomowisko | Wysłużona"
+M16M203PreciousName="M16 M203 | Cenny egzemplarz"
 
 ;M1911 Descriptions
 M1911MintDescription="Stan zewnętrzny: Jak nowy | Klasyczny samopowtarzalny pistolet Colt 1911."
@@ -988,6 +1072,9 @@ M1911PreciousDescription="Stan zewnętrzny: Cenny | Klasyczny samopowtarzalny pi
 M1911TacticalMintName="M1911 | Taktyczny | Jak nowy"
 M1911TacticalFieldTestedName="M1911 | Taktyczny | Przetestowany"
 M1911TacticalBattleScarredName="M1911 | Taktyczny | Wysłużony"
+M1911VietnamMintName="M1911 | Wietnam | Jak nowy"
+M1911VietnamFieldTestedName="M1911 | Wietnam | Przetestowana"
+M1911VietnamBattleScarredName="M1911 | Wietnam | Wysłużona"
 M1911PreciousName="M1911 | Cenny"
 
 ;M4 Descriptions
@@ -1006,6 +1093,12 @@ M4StoriesofWarBattleScarredName="M4 | Losy wojenne | Wysłużona"
 M4VictorianMintName="M4 | Wiktoriańska | Jak nowa"
 M4VictorianFieldTestedName="M4 | Wiktoriańska | Przetestowana"
 M4VictorianBattleScarredName="M4 | Wiktoriańska | Wysłużona"
+M4VietnamMintName="M4 | Wietnam | Jak nowy"
+M4VietnamFieldTestedName="M4 | Wietnam | Przetestowana"
+M4VietnamBattleScarredName="M4 | Wietnam | Wysłużona"
+M4JunkyardMintName="M4 | Złomowisko | Jak nowy"
+M4JunkyardFieldTestedName="M4 | Złomowisko | Przetestowana"
+M4JunkyardBattleScarredName="M4 | Złomowisko | Wysłużona"
 M4PreciousName="M4 | Cenny"
 
 ;M79 Descriptions
@@ -1087,6 +1180,9 @@ MP5RASPreciousDescription="Stan zewnętrzny: Cenny | Najnowsza wersja jednego z 
 MP5RASIndustrialMintName="MP5RAS | Industrial | Jak nowy"
 MP5RASIndustrialFieldTestedName="MP5RAS | Industrial | Przetestowany"
 MP5RASIndustrialBattleScarredName="MP5RAS | Industrial | Wysłużony"
+MP5RASJunkyardMintName="MP5RAS | Złomowisko | Jak nowy"
+MP5RASJunkyardFieldTestedName="MP5RAS | Złomowisko | Przetestowana"
+MP5RASJunkyardBattleScarredName="MP5RAS | Złomowisko | Wysłużona"
 MP5RASPreciousName="MP5RAS | Cenny"
 
 ;MP7 Descriptions
@@ -1166,6 +1262,9 @@ RPG7PreciousName="RPG-7 | Cenny"
 RPG7DeepstrikeMintName="RPG-7 | Deepstrike | Jak nowy"
 RPG7DeepstrikeFieldTestedName="RPG-7 | Deepstrike | Przetestowany"
 RPG7DeepstrikeBattleScarredName="RPG-7 | Deepstrike | Wysłużony"
+RPG7VietnamMintName="RPG-7 | Wietnam | Jak nowy"
+RPG7VietnamFieldTestedName="RPG-7 | Wietnam | Przetestowana"
+RPG7VietnamBattleScarredName="RPG-7 | Wietnam | Wysłużona"
 
 ;Scar Descriptions
 ScarMintDescription="Stan zewnętrzny: Jak nowy | Zaprojektowany na zlecenie Dowództwa Operacji Specjalnych USA. To faktycznie specjalna broń!"
@@ -1214,6 +1313,9 @@ ScarDeepstrikeBattleScarredName="SCAR | Deepstrike | Wysłużony"
 ScarTacticalMintName="SCAR | Taktyczny | Jak nowy"
 ScarTacticalFieldTestedName="SCAR | Taktyczny | Przetestowany"
 ScarTacticalBattleScarredName="SCAR | Taktyczny | Wysłużony"
+ScarJunkyardMintName="Scar | Złomowisko | Jak nowy"
+ScarJunkyardFieldTestedName="Scar | Złomowisko | Przetestowana"
+ScarJunkyardBattleScarredName="Scar | Złomowisko | Wysłużona"
 
 ;SG500 Descriptions
 SG500MintDescription="Stan zewnętrzny: Jak nowa | Strzelba pump action Mossberg SG 500 z uchwytem pistoletowym to doskonały zabójca zetów na krótkim dystansie. Prosta i skuteczna."
@@ -1316,6 +1418,12 @@ Winchester1894PreciousName="Winchester 1894 | Cenny"
 Winchester1894DeepstrikeMintName="Winchester 1894 | Deepstrike | Jak nowy"
 Winchester1894DeepstrikeFieldTestedName="Winchester 1894 | Deepstrike | Przetestowany"
 Winchester1894DeepstrikeBattleScarredName="Winchester 1894 | Deepstrike | Wysłużony"
+Winchester1894VietnamMintName="Winchester 1894 | Wietnam | Jak nowy"
+Winchester1894VietnamFieldTestedName="Winchester 1894 | Wietnam | Przetestowany"
+Winchester1894VietnamBattleScarredName="Winchester 1894 | Wietnam | Wysłużony"
+Winchester1894JunkyardMintName="Winchester 1894 | Złomowisko | Jak nowy"
+Winchester1894JunkyardFieldTestedName="Winchester 1894 | Złomowisko | Przetestowany"
+Winchester1894JunkyardBattleScarredName="Winchester 1894 | Złomowisko | Wysłużony"
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Stan zewnętrzny: Jak nowy | Duży nóż z czasów Dzikiego Zachodu. Doskonały do krojenia zetów na kawałki tu i teraz."
@@ -1970,30 +2078,35 @@ FirefighterHelmetOliveName="Hełm strażacki | Oliwkowy"
 FirefighterHelmetRedName="Hełm strażacki | Czerwony"
 FirefighterHelmetWhiteName="Hełm strażacki | Biały"
 FirefighterHelmetYellowName="Hełm strażacki | Żółty"
+FirefighterHelmetPreciousName="Hełm strażacki | Cenny egzemplarz"
 FirefighterHelmetMaskDownBlackName="Hełm strażacki maska dół | Czarny"
 FirefighterHelmetMaskDownBlueName="Hełm strażacki maska dół | Niebieski"
 FirefighterHelmetMaskDownOliveName="Hełm strażacki maska dół | Oliwkowy"
 FirefighterHelmetMaskDownRedName="Hełm strażacki maska dół | Czerwony"
 FirefighterHelmetMaskDownWhiteName="Hełm strażacki maska dół | Biały"
 FirefighterHelmetMaskDownYellowName="Hełm strażacki maska dół | Żółty"
+FirefighterHelmetMaskDownPreciousName="Hełm strażacki maska dół | Cenny egzemplarz"
 FirefighterHelmetMaskUpBlackName="Hełm strażacki maska góra | Czarny"
 FirefighterHelmetMaskUpBlueName="Hełm strażacki maska góra | Niebieski"
 FirefighterHelmetMaskUpOliveName="Hełm strażacki maska góra | Oliwkowy"
 FirefighterHelmetMaskUpRedName="Hełm strażacki maska góra | Czerwony"
 FirefighterHelmetMaskUpWhiteName="Hełm strażacki maska góra | Biały"
 FirefighterHelmetMaskUpYellowName="Hełm strażacki maska góra | Żółty"
+FirefighterHelmetMaskUpPreciousName="Hełm strażacki maska góra | Cenny egzemplarz"
 FirefighterGasmaskBlackName="Strażacka maska przeciwgazowa | Czarny"
 FirefighterGasmaskBlueName="Strażacka maska przeciwgazowa | Niebieski"
 FirefighterGasmaskOliveName="Strażacka maska przeciwgazowa | Oliwkowy"
 FirefighterGasmaskRedName="Strażacka maska przeciwgazowa | Czerwony"
 FirefighterGasmaskWhiteName="Strażacka maska przeciwgazowa | Biały"
 FirefighterGasmaskYellowName="Strażacka maska przeciwgazowa | Żółty"
+FirefighterGasmaskPreciousName="Strażacka maska pgaz. | Cenny egzemplarz"
 FirefighterOxygenTankBlackName="Strażacka butla tlenowa | Czarny"
 FirefighterOxygenTankBlueName="Strażacka butla tlenowa | Niebieski"
 FirefighterOxygenTankOliveName="Strażacka butla tlenowa | Oliwkowy"
 FirefighterOxygenTankRedName="Strażacka butla tlenowa | Czerwony"
 FirefighterOxygenTankWhiteName="Strażacka butla tlenowa | Biały"
 FirefighterOxygenTankYellowName="Strażacka butla tlenowa | Żółty"
+FirefighterOxygenTankPreciousName="Strażacka butla tlenowa | Cenny egzemplarz"
 InsectoidHelmetClosedBlackRedLightName="Hełm insektoida zamknięty | Czarno-czerw. jasny"
 InsectoidHelmetClosedBlackRedTrimName="Hełm insektoida zamknięty | Czarno-czerw. wykończenie"
 InsectoidHelmetClosedBlackYellowLightName="Hełm insektoida zamknięty | Czarno-żółty jasny"
@@ -2046,8 +2159,78 @@ InsectoidHelmetGogglesDownPreciousName="Hełm insektoida gogle dół | Cenny"
 DemonSlayerHelmetGreyName="Hełm pogromcy demonów | Szary"
 DemonSlayerHelmetPreciousName="Hełm pogromcy demonów | Cenny"
 
+;Sideshow Cosmetic Names
+SideshowClownHatYellowBlueName="Klauni kapelusz Pokazu | Żółto-niebieski"
+SideshowClownHatBlackWhiteName="Klauni kapelusz Pokazu | Czarno-biały"
+SideshowClownHatRedBlackName="Klauni kapelusz Pokazu | Czerwono-czarny"
+SideshowClownHatRainbowName="Klauni kapelusz Pokazu | Tęcza"
+SideshowClownHatDoshName="Klauni kapelusz Pokazu | Forsa"
+SideshowClownHatZedTimeName="Klauni kapelusz Pokazu | Czas zetów"
+SideshowClownHatPreciousName="Klauni kapelusz Pokazu | Cenny egzemplarz"
+SideshowClownNoseFuzzyRedName="Klauni nos Pokazu | Czerwonawy"
+SideshowClownNoseFuzzyYellowName="Klauni nos Pokazu | Żółtawy"
+SideshowClownNoseFuzzyBlueName="Klauni nos Pokazu | Niebieskawy"
+SideshowClownNoseFuzzyBlackName="Klauni nos Pokazu | Czarniawy"
+SideshowClownNoseShinyRedName="Klauni nos Pokazu | Błyszcząca czerwień"
+SideshowClownNoseShinyYellowName="Klauni nos Pokazu | Błyszczący żółty"
+SideshowClownNoseShinyBlueName="Klauni nos Pokazu | Błyszczący niebieski"
+SideshowClownNoseShinyBlackName="Klauni nos Pokazu | Błyszczący czarny"
+SideshowClownNosePreciousName="Klauni nos Pokazu | Cenny egzemplarz"
+SideshowPigMaskPigletName="Świńska maska Pokazu | Prosiak"
+SideshowPigMaskGreyName="Świńska maska Pokazu | Szara"
+SideshowPigMaskRainbowName="Świńska maska Pokazu | Tęcza"
+SideshowPigMaskSideshowClownName="Świńska maska Pokazu | Klaun Pokazu"
+SideshowPigMaskPreciousName="Świńska maska Pokazu | Cenny egzemplarz"
+SideshowTinyMarcherRedYellowName="Mały piechur Pokazu | Czerwono-żółty"
+SideshowTinyMarcherBlueYellowName="Mały piechur Pokazu | Niebiesko-żółty"
+SideshowTinyMarcherRainbowName="Mały piechur Pokazu | Tęcza"
+SideshowTinyMarcherBlackWhiteName="Mały piechur Pokazu | Czarno-biały"
+SideshowTinyMarcherWhiteName="Mały piechur Pokazu | Biały"
+SideshowTinyMarcherPreciousName="Mały piechur Pokazu | Cenny egzemplarz"
+SideshowWitchdoctorHatBrownName="Znachorski kapelusz Pokazu | Brązowy"
+SideshowWitchdoctorHatWhiteName="Znachorski kapelusz Pokazu | Biały"
+SideshowWitchdoctorHatRedName="Znachorski kapelusz Pokazu | Czerwony"
+SideshowWitchdoctorHatVoodooFunkName="Znachorski kapelusz Pokazu | Klimaty voodoo"
+SideshowWitchdoctorHatGreenName="Znachorski kapelusz Pokazu | Zielony"
+SideshowWitchdoctorHatPreciousName="Znachorski kapelusz Pokazu | Cenny egzemplarz"
+SideshowFacePaintAlbertsName="Farba do twarzy Pokazu | Alberts"
+SideshowFacePaintAnaName="Farba do twarzy Pokazu | Ana"
+SideshowFacePaintScullyName="Farba do twarzy Pokazu | Scully"
+SideshowFacePaintFosterName="Farba do twarzy Pokazu | Foster"
+SideshowFacePaintJagerhornName="Farba do twarzy Pokazu | Jagerhorn"
+SideshowFacePaintBriarName="Farba do twarzy Pokazu | Briar"
+SideshowFacePaintDonovanName="Farba do twarzy Pokazu | Donovan"
+SideshowFacePaintMastersonName="Farba do twarzy Pokazu | Masterson"
+SideshowFacePaintTanakaName="Farba do twarzy Pokazu | Tanaka"
+SideshowFacePaintClassicBriarName="Farba do twarzy Pokazu | Typowy Briar"
+SideshowFacePaintClassicMastersonName="Farba do twarzy Pokazu | Typowy Masterson"
+SideshowFacePaintStrasserName="Farba do twarzy Pokazu | Strasser"
+SideshowFacePaintBannerName="Farba do twarzy Pokazu | Banner"
+SideshowFacePaintRaeName="Farba do twarzy Pokazu | Rae"
+SideshowHumanCanonPreciousName="Ludzka armata Pokazu | Cenny egzemplarz"
+SideshowHumanCanonDummyName="Ludzka armata Pokazu | Manekin"
+SideshowHumanCanonHorzineName="Ludzka armata Pokazu | Horzine"
+SideshowHumanCanonHarukoName="Ludzka armata Pokazu | Haruko"
+SideshowHumanCanonCrispsName="Ludzka armata Pokazu | Chipsy"
+SideshowHumanCanonCanonBallName="Ludzka armata Pokazu | Kula armatnia"
+SideshowHumanCanonStarsandStripesName="Ludzka armata Pokazu | Gwiazdki i pasy"
+
+;Weekly Cosmetic Names
+WeeklyTinyTerrorHatName="Tygodniowe | Czapka Trochę Strach"
+WeeklyFleshpoundVisorName="Tygodniowe | Maska mięśniaka"
+WeeklyHansPlushyBackpackName="Tygodniowe | Pluszowy plecak Hansa"
+WeeklyHorzineArmorPreciousName="Tygodniowe | Pancerz Horzine | Cenny"
+WeeklyHorzineHelmetPreciousName="Tygodniowe| Hełm Horzine | Cenny egzemplarz"
+WeeklyKingPoundVisorPreciousName="Tygodniowe| Maska króla mięś. | Cenny"
+WeeklyMindBlownName="Tygodniowe| Mózg rozwalony"
+
+
+
 ;Cosmetic Descriptions
 
+SummerSideshowAccessoryDescription="Dostępne z menu sprzętu; dla większości postaci. Ekskluzywny przedmiot wydarzenia sezonowego Pokaz Letni. Przekształca się w jeden bilet na Pokaz Letni."
+SummerSideshowFacePaintDescription="Dostępne z menu sprzętu. Ekskluzywny przedmiot wydarzenia sezonowego Pokaz Letni. Przekształca się w jeden bilet na Pokaz Letni."
+WeeklyRewardDescription="Dostępne z menu sprzętu; dla większości postaci. Przedmiot odblokowano, kończąc tygodniowy incydent."
 AviatorGogglesDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 AviatorsDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 BaseballHatDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
@@ -2073,7 +2256,7 @@ EnforcerMaskDescription="Dostępne z menu sprzętu; dla: posterunkowy Rob Briar,
 EyePatchDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner."
 FlatcapDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 FlightHelmetDescription="Dostępne z menu sprzętu; dla: DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
-FlightMaskDescription="Dostępne z menu sprzętu; dla: porucznik Bill Masterson."
+FlightMaskDescription="Dostępne z menu sprzętu; dla: DJ Scully, posterunkowy Rob Briar, Mr. Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 FrontRowProtectionUpDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 FrontRowProtectionDownDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 GermanGasMaskDescription="Dostępne z menu sprzętu; dla: DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."

@@ -470,6 +470,8 @@ function ResetGameOptions()
 	Callback_ReduceHighPitchNoiseChanged(Manager.CachedProfile.GetDefaultInt(KFID_ReduceHightPitchSounds) != 0);	
 	//Manager.CachedProfile.SetProfileSettingValueInt(KFID_ReduceHightPitchSounds, KFPC.bNoEarRingingSound);
 
+    Callback_DisableAutoUpgradeChanged(Manager.CachedProfile.GetDefaultInt(KFID_DisableAutoUpgrade) != 0);
+
 	if ( !GetPC().WorldInfo.IsConsoleBuild() )
 	{
 		Callback_WeaponSelectChanged(Manager.CachedProfile.GetDefaultInt(KFID_QuickWeaponSelect) != 0);

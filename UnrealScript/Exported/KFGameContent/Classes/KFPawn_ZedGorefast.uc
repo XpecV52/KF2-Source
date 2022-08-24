@@ -110,6 +110,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
    IncapSettings(9)=(Duration=4.000000,Cooldown=1.500000,Vulnerability=(2.000000))
    IncapSettings(10)=(Duration=3.500000,Cooldown=6.000000,Vulnerability=(2.000000))
+   IncapSettings(11)=(Vulnerability=(2.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=450.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
@@ -142,6 +143,24 @@ defaultproperties
       SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
       SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
+      SpecialMoveClasses(17)=None
+      SpecialMoveClasses(18)=None
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

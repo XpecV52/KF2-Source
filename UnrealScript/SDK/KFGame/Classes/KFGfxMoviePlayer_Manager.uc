@@ -96,6 +96,8 @@ var bool bPostGameState;
 
 var class<KFGFxWidget_PartyInGame> InGamePartyWidgetClass;
 
+var TextureMovie CurrentBackgroundMovie;
+
 /** Connects the different layers of the start menu with an index */
 enum EStartMenuState
 {
@@ -201,7 +203,7 @@ var GFxObject ManagerObject;
 /** Reference to the KFHUD */
 var KFHUDBase HUD;
 /** The main menus background movie */
-var TextureMovie BackgroundMovie;
+var array<TextureMovie> BackgroundMovies;
 /** The IIS background movie */
 var TextureMovie IISMovie;
 
@@ -321,11 +323,10 @@ function LaunchMenus( optional bool bForceSkipLobby )
 		// If this is the menu level see if we've been here before.
 		bShowIIS = GVC != None && !GVC.bSeenIIS;
 
-		BGTexture = (GetPC().WorldInfo.IsConsoleBuild() && bShowIIS) ? IISMovie : BackgroundMovie;
+		UpdateBackgroundMovie();
 
-		SetExternalTexture("background", BackgroundMovie, true);
-		SetExternalTexture("IIS_BG", IISMovie, true);
-
+		BGTexture = (GetPC().WorldInfo.IsConsoleBuild() && bShowIIS) ? IISMovie : CurrentBackgroundMovie;
+		
 		bShowMenuBg = GVC.bSeenIIS || !GetPC().WorldInfo.IsConsoleBuild();
 		ManagerObject.SetBool("backgroundVisible", bShowMenuBg);
 		ManagerObject.SetBool("IISMovieVisible", !bShowMenuBg);
@@ -342,7 +343,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 
 		if (bSkippedLobby)
 		{
-			BackgroundMovie.Stop();
+			CurrentBackgroundMovie.Stop();
 		}
 	}
 	WidgetBindings.AddItem(WidgetBinding);
@@ -405,6 +406,49 @@ function LaunchMenus( optional bool bForceSkipLobby )
 		ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
 		DelayedOpenPopup(EGamma, EDPPID_Gamma,"", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
 	}
+}
+
+function UpdateBackgroundMovie()
+{
+	local bool bWasPlaying;
+    local TextureMovie NewBackgroundMovie;
+	if(CurrentBackgroundMovie != none)
+	{
+		bWasPlaying = !CurrentBackgroundMovie.Stopped;
+	}
+
+    NewBackgroundMovie = GetBackgroundMovie();
+	if(bWasPlaying)
+	{
+        //Stop the old one if we're no longer needing it
+        if (CurrentBackgroundMovie != NewBackgroundMovie)
+        {
+            CurrentBackgroundMovie.Stop();
+        }
+		NewBackgroundMovie.Play();
+	}
+	else
+	{
+		CurrentBackgroundMovie.Stop();
+        NewBackgroundMovie.Stop();
+	}
+    CurrentBackgroundMovie = NewBackgroundMovie;
+	SetExternalTexture("background", CurrentBackgroundMovie, true);
+	SetExternalTexture("IIS_BG", IISMovie, true);
+}
+
+function TextureMovie GetBackgroundMovie()
+{
+	local int EventIndex;
+
+	EventIndex = class'KFGameEngine'.static.GetSeasonalEventId();
+
+	if(EventIndex != INDEX_NONE && EventIndex < BackgroundMovies.Length)
+	{
+		return BackgroundMovies[EventIndex];
+	}
+
+	return BackgroundMovies[0];
 }
 
 //@HSL_BEGIN - JRO - 6/30/2016 - PSN disconnect/logout
@@ -861,14 +905,14 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	{
 		IISMovie.Stop();
 		ManagerObject.SetBool("IISMovieVisible", false);
-		BackgroundMovie.Play();
+		CurrentBackgroundMovie.Play();
 		ManagerObject.SetBool("backgroundVisible", true);
 	}
 
 	//@HSL_BEGIN - JRO - 6/30/2016 - PSN disconnect/logout
 	if (NewMenuIndex == UI_IIS)
 	{
-		BackgroundMovie.Stop();
+		CurrentBackgroundMovie.Stop();
 		ManagerObject.SetBool("backgroundVisible", false);
 		IISMovie.Play();
 		ManagerObject.SetBool("IISMovieVisible", true);
@@ -1007,9 +1051,9 @@ function CloseMenus(optional bool bForceClose=false)
 event OnClose()
 {
 	CloseMenus();
-	if (!BackgroundMovie.Stopped)
+	if (!CurrentBackgroundMovie.Stopped)
 	{
-		BackgroundMovie.Stop();
+		CurrentBackgroundMovie.Stop();
 	}
 }
 
@@ -1658,6 +1702,10 @@ function NotifySpectateStateChanged( bool bIsSpectating )
 	{
 		MenuBarWidget.UpdateGearButtonState();
 	}
+	if( MenuBarWidget != none )
+	{
+		MenuBarWidget.UpdateInventoryButtonState();
+	}
 }
 
 /*********************************************************************************************
@@ -1728,6 +1776,9 @@ function OpenScreenSizeMovie()
 		ScreenSizeMovie = new class'KFGFxMoviePlayer_ScreenSize';
 		ScreenSizeMovie.SetTimingMode(TM_Real);
 		ScreenSizeMovie.Init();
+
+		// Set UI scale so the new movie gets adjusted properly
+		GetPC().SetUIScale( KFGameEngine(class'Engine'.static.GetEngine()).SafeFrameScale );
 	}
 }
 
@@ -1735,6 +1786,24 @@ function CloseScreenSizeMovie()
 {
 	ScreenSizeMovie.Close();
 	ScreenSizeMovie = none;
+
+	// See if we need to show tha gamma screen next
+	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) && !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck() )
+	{
+		ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
+		DelayedOpenPopup(EGamma, EDPPID_Gamma, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+	}
+}
+
+
+function UpdateViewportSize( int x, int y, int width, int height )
+{
+	SetViewport( x, y, width, height );
+
+	if( ScreenSizeMovie != none )
+	{
+		ScreenSizeMovie.SetViewport( x, y, width, height );
+	}
 }
 
 
@@ -1747,7 +1816,8 @@ function currentFocus()
 defaultproperties
 {
 	InGamePartyWidgetClass=class'KFGFxWidget_PartyInGame'
-	BackgroundMovie=TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_None)=TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Summer)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
 	IISMovie = TextureMovie'UI_Managers.IIS'
     MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
 	bCaptureInput=true

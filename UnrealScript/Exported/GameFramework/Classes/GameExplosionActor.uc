@@ -332,6 +332,10 @@ protected simulated function bool DoExplosionDamage(bool bCauseDamage, bool bCau
 					}
 				}
 			}
+
+            //Allow the explosion to handle behavior related to actors in range that are ignored
+            HandleIgnoredVictim(Victim);
+
 		}
 
 		if (ExplosionTemplate.bFullDamageToAttachee && VictimsList.Find(Attachee) == INDEX_NONE)
@@ -352,6 +356,10 @@ protected simulated function bool DoExplosionDamage(bool bCauseDamage, bool bCau
 	}
 	return bHurtSomeone;
 }
+
+
+function HandleIgnoredVictim(Actor Victim);
+
 
 /**  Return the desired radius to check for actors which get effects from explosion  */
 function float GetEffectCheckRadius(bool bCauseDamage, bool bCauseFractureEffects, bool bCauseEffects)

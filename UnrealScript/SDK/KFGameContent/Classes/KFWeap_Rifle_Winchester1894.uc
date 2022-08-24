@@ -40,8 +40,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=12
-	SpareAmmoCapacity[0]=84
-	InitialSpareMags[0]=3
+	SpareAmmoCapacity[0]=84 //84
+	InitialSpareMags[0]=4 //3
 	bCanBeReloaded=true
 	bReloadFromMagazine=false
 
@@ -78,7 +78,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Winchester1894'
 	InstantHitDamage(DEFAULT_FIREMODE)=80 //105
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Winchester'
-	FireInterval(DEFAULT_FIREMODE)=0.45 // 70 RPM  0.85 0.75
+	FireInterval(DEFAULT_FIREMODE)=0.4 // 70 RPM  0.85 0.75 0.45
 	Spread(DEFAULT_FIREMODE)=0.007
 	PenetrationPower(DEFAULT_FIREMODE)=1.5
 	FireOffset=(X=25,Y=3.0,Z=-2.5)

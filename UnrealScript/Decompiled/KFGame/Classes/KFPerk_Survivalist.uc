@@ -84,6 +84,15 @@ simulated function string GetPrimaryWeaponClassPath()
     return PrimaryWeaponPaths[StartingWeaponClassIndex].default.WeaponClassPath;
 }
 
+function bool ShouldAutosellWeapon(class<KFWeaponDefinition> DefClass)
+{
+    if(super.ShouldAutosellWeapon(DefClass))
+    {
+        return PrimaryWeaponPaths.Find(DefClass == -1;
+    }
+    return false;
+}
+
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon KFW;
@@ -167,11 +176,16 @@ simulated function bool HasHeavyArmor()
 
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
-    if(WorldInfo.TimeDilation < 1)
+    if((WorldInfo.TimeDilation < 1) && IsZedTimeReloadAllowed())
     {
         return 1 - (GetPassiveValue(ZedTimeReload, GetLevel()));
     }
     return 1;
+}
+
+simulated function bool IsZedTimeReloadAllowed()
+{
+    return ((MyKFGRI != none) ? MyKFGRI.MaxPerkLevel == default.MyKFGRI.MaxPerkLevel : false);
 }
 
 function ModifyArmor(out byte MaxArmor)
@@ -288,7 +302,7 @@ function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, 
     {
         return GetSkillValue(PerkSkills[9]);
     }
-    return 1;
+    return 0;
 }
 
 function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
@@ -297,7 +311,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
     {
         return GetSkillValue(PerkSkills[9]);
     }
-    return 1;
+    return 0;
 }
 
 function float GetStunPowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
@@ -306,7 +320,7 @@ function float GetStunPowerModifier(optional class<DamageType> DamageType, optio
     {
         return GetSkillValue(PerkSkills[9]);
     }
-    return 1;
+    return 0;
 }
 
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
@@ -336,42 +350,42 @@ simulated function class<KFProj_Grenade> GetGrenadeClass()
 
 private final simulated function bool IsTacticalReloadActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 private final simulated function bool IsHeavyReloadActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 private final simulated function bool IsFieldMedicActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 private final simulated function bool IsMeleeExpertActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 private final simulated function bool IsAmmoVestActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
 private final simulated function bool IsBigPocketsActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 private final simulated function bool IsZedShrapnelActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
 private final simulated function bool IsMakeThingsGoBoomActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 simulated function bool GetMadManActive()
@@ -381,7 +395,7 @@ simulated function bool GetMadManActive()
 
 private final simulated function bool IsMadManActive()
 {
-    return PerkSkills[8].bActive;
+    return PerkSkills[8].bActive && IsPerkLevelAllowed(8);
 }
 
 simulated function bool GetIncapMasterActive()
@@ -391,7 +405,7 @@ simulated function bool GetIncapMasterActive()
 
 private final simulated function bool IsIncapMasterActive()
 {
-    return PerkSkills[9].bActive;
+    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
 }
 
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
@@ -496,12 +510,13 @@ defaultproperties
     PerkSkills(6)=(Name="ZedShrapnel",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel",bActive=false)
     PerkSkills(7)=(Name="MakeThingsGoBoom",Increment=0,Rank=0,StartingValue=1.25,MaxValue=1.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom",bActive=false)
     PerkSkills(8)=(Name="MadMan",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman",bActive=false)
-    PerkSkills(9)=(Name="IncapMaster",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster",bActive=false)
+    PerkSkills(9)=(Name="IncapMaster",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
     ZedTimeModifyingStates(3)=WeaponSingleFireAndReload
     ZedTimeModifyingStates(4)=SprayingFire
+    ZedTimeModifyingStates(5)=WeaponAltFiring
     PrimaryWeaponDef=Class'KFWeapDef_Random'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Support'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'

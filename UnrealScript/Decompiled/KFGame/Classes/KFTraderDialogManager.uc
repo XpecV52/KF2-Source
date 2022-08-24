@@ -217,6 +217,8 @@ simulated function AddRandomOption(int OptionID, out byte NumOptions, out int Be
             }
         }
     }
+    LogInternal("KFTraderDialogManager::AddRandomOption " $ string(TraderVoiceGroupClass.default.DialogEvents[OptionID].AudioCue));
+    ScriptTrace();
     ++ NumOptions;
     if(FRand() <= (1 / float(NumOptions)))
     {
@@ -489,6 +491,7 @@ simulated function WaveClearDialogTimer()
 simulated function PlayOpenTraderMenuDialog(KFPlayerController KFPC)
 {
     local KFPawn_Human KFPH;
+    local KFGameReplicationInfo KFGRI;
     local float ArmorPct, AmmoMax, AmmoPct;
     local int BestOptionID;
     local byte NumOptions;
@@ -497,16 +500,20 @@ simulated function PlayOpenTraderMenuDialog(KFPlayerController KFPC)
     KFPH = KFPawn_Human(KFPC.Pawn);
     if(KFPH != none)
     {
-        ArmorPct = float(KFPH.Armor) / float(KFPH.MaxArmor);
-        if(ArmorPct <= 0)
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+        if((KFGRI == none) || KFGRI.WaveNum > 1)
         {
-            AddRandomOption(11, NumOptions, BestOptionID);            
-        }
-        else
-        {
-            if(ArmorPct < 0.3)
+            ArmorPct = float(KFPH.Armor) / float(KFPH.MaxArmor);
+            if(ArmorPct <= 0)
             {
-                AddRandomOption(12, NumOptions, BestOptionID);
+                AddRandomOption(11, NumOptions, BestOptionID);                
+            }
+            else
+            {
+                if(ArmorPct < 0.3)
+                {
+                    AddRandomOption(12, NumOptions, BestOptionID);
+                }
             }
         }
         AmmoMax = float(KFPH.MyKFWeapon.GetMaxAmmoAmount(0));

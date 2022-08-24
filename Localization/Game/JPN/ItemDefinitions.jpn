@@ -10,12 +10,17 @@ BriarsBobbyBundleName="ブライアーのボビーバンドル"
 FosterClassicBundleName="フォスターのクラシックバンドル"
 TanakasBikerBundleName="タナカのバイカーバンドル"
 CardboardKnightBundleName="ダンボールの騎士バンドル"
+HazmatBundleName="防護服バンドル"
+HorzineMark7BundleName="ホージンMark 7スーツ"
 
 ;Bundle Descriptions
-BriarsBobbyBundleDescription="ブライアーの「ロンドン」ユニフォーム(5スキンスタイルを含む)と、「守衛ヘルメット」服飾アクセサリー(3スキンスタイルを含む)が入っています。トレードおよび売買はできません。"
-FosterClassicBundleDescription="フォスターの「クラシックスーツ」ユニフォーム(9スキンスタイルを含む)、「クラシックタイ」服飾アクセサリー(8スキンスタイルを含む)、「ボウタイ」服飾アクセサリーが入っています。トレードおよび売買はできません。"
-TanakasBikerBundleDescription="タナカの「バイク」ユニフォーム(7スキンスタイルを含む)と、「ヘルメット」服飾アクセサリー(7スキンスタイルを含む)が入っています。トレードおよび売買はできません。"
+BriarsBobbyBundleDescription="ブライアーの「ロンドン」ユニフォーム（5種類のスキンを含む）と、「守衛ヘルメット」服飾アクセサリー（3種類のスキンを含む）が入っています。"
+FosterClassicBundleDescription="フォスターの「クラシックスーツ」ユニフォーム（9種類のスキンを含む）、「クラシックタイ」服飾アクセサリー（8種類のスキンを含む）、「蝶ネクタイ」服飾アクセサリーが入っています。"
+TanakasBikerBundleDescription="タナカの「バイク」ユニフォーム（7種類のスキンを含む）と、「ヘルメット」服飾アクセサリー（7種類のスキンを含む）が入っています。"
 CardboardKnightBundleDescription="胴体用の「ダンボールの騎士」アーマー(6スキンスタイルを含む)と、「ダンボールの騎士ヘルメット」服飾アクセサリー(6スキンスタイルを含む)が入っています。"
+HazmatDescription="防護服（5種類のスキンを含む）と、防護ヘルメット服飾アクセサリー（5種類のスキンを含む）が入っています。ほとんどのキャラクターに対応。"
+HorzineMark7Description="ホージンMark 7スーツ（7種類のスキンを含む）と、ホージンMark 7服飾アクセサリー（7種類のスキンを含む）が入っています。ほとんどのキャラクターに対応。"
+
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="プレイ可能キャラクター、ロブ・ブライアー巡査の新たな定番の「ロンドンボビー」ユニフォームをゲットしよう。ブライアーの「ロンドン」ユニフォーム(5スキンスタイルを含む)と、「守衛ヘルメット」服飾アクセサリー(3スキンスタイルを含む)が入っています。"
@@ -42,19 +47,27 @@ HorzineMark7HelmetName="ホージンMark 7ヘルメット"
 HorzineMark7SuitName="ホージンMark 7スーツ"
 CardboardKnightName="ダンボールの騎士"
 CardboardKnightHelmetName="ダンボールの騎士ヘルメット"
+HazmatHelmetName="グローバーの防護ヘルメット"
+HazmatSuitName="グローバーの防護服"
+SideshowHazmatHelmetName="The Tragic Kingdomクルーヘルメット"
+SideshowHazmatSuitName="The Tragic Kingdomクルースーツ"
 
 ;bundle item descriptions
-BriarsLondonUniformDescription="一人でパトロール。ブライアーおよびクラシック・ブライアーに対応。トレードおよび売買はできません。"
-BriarsCustodianHelmetDescription="頭を守ろう。オイステン・イェーガーホーン、DJスカリー、フォスター氏、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナーに対応。トレードおよび売買はできません。"
-FostersClassicSuitDescription="zedを殺しながら上品に見せよう！フォスター氏に対応。トレードおよび売買はできません。"
-FostersClassicTieDescription="趣味のいい真っ直ぐなネクタイ。クラシックフォスタースーツにのみ対応。トレードおよび売買はできません。"
-FostersBowTieDescription="趣味のいいボウタイ。クラシックフォスタースーツにのみ対応。トレードおよび売買はできません。"
-TanakasBikerDescription="いろいろ殺しながらクールに見せよう。タナカに対応。トレードおよび売買はできません。"
-TanakasBikerHelmetDescription="頭を守ろう。タナカに対応。トレードおよび売買はできません。"
-HorzineMark7HelmetDescription="ホージンセキュリティ・アーマーを引き立たせるフルフェイスヘルメット。オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、レイ・ヒギンスに対応。トレードおよび売買はできません。"
-HorzineMark7SuitDescription="エリート・ホージンセキュリティ・アーマーオイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、レイ・ヒギンスに対応。トレードおよび売買はできません。"
-CardboardKnightDescription="洞察力がある騎士のためのアーマー。オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサーに対応。トレードおよび売買はできません。"
-CardboardKnightHelmetDescription="昔ながらの容貌の無上の光栄。オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサーに対応。トレードおよび売買はできません。"
+BriarsLondonUniformDescription="単独パトロール。ブライアーおよびクラシック・ブライアーに対応。 "
+BriarsCustodianHelmetDescription="頭を守ろう。オイステン・イェーガーホーン、DJスカリー、フォスター氏、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ・ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナーに対応。 "
+FostersClassicSuitDescription="Zedを殺しながら上品に見せよう！フォスター氏に対応。 "
+FostersClassicTieDescription="趣味のいい真っ直ぐなネクタイ。クラシックフォスタースーツにのみ対応。 "
+FostersBowTieDescription="趣味のいい蝶ネクタイ。クラシックフォスタースーツにのみ対応。 "
+TanakasBikerDescription="いろいろ殺しながらクールに見せよう。タナカに対応。 "
+TanakasBikerHelmetDescription="頭を守ろう。タナカに対応。 "
+HorzineMark7HelmetDescription="ホージンセキュリティ・アーマーを引き立たせるフルフェイスヘルメット。オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、レイ・ヒギンスに対応。 "
+HorzineMark7SuitDescription="エリート・ホージンセキュリティ・アーマーオイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、レイ・ヒギンスに対応。 "
+CardboardKnightDescription="洞察力がある騎士のためのアーマー。オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサーに対応。 "
+CardboardKnightHelmetDescription="定番のヘルメット。オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサーに対応。 "
+HazmatSuitDescription="これなしで外に出ないこと！ほとんどのキャラクターに対応。 "
+HazmatHelmetDescription="これなしで外に出ないこと！ほとんどのキャラクターに対応。 "
+SideshowHazmatSuitDescription="The Tragic Kingdom暴力パークで働くにはちょっとした防御策が必要。装備メニューから装備可能。ほとんどのキャラクターに対応。シーズナルイベントのサマーサイドショウでロック解除できる限定版アイテム。"
+SideshowHazmatHelmetDescription="The Tragic Kingdom暴力パークで働くにはちょっとした防御策が必要。装備メニューから装備可能。ほとんどのキャラクターに対応。シーズナルイベントのサマーサイドショウでロック解除できる限定版アイテム。"
 
 [KeyCrates]
 ;Key and Crate Type Section
@@ -80,6 +93,7 @@ HorzineSupplyCrateSeries10Name="ホージン物資箱 | シリーズ#10"
 HorzineSupplyCrateSeries11Name="ホージン物資箱 | シリーズ#11"
 HorzineSupplyCrateSeries12Name="ホージン物資箱 | シリーズ#12"
 HorzineSupplyCrateSeries13Name="ホージン物資箱 | シリーズ#13"
+HorzineSupplyCrateSeries14Name="ホージン物資箱 | シリーズ#14"
 EmoteCrateSeries1Name="顔文字箱 | シリーズ#1"
 
 ;Crate Descriptions
@@ -109,6 +123,8 @@ HorzineSupplyCrateSeries12Description="開けるには「シリーズ#12ホー�
 
 HorzineSupplyCrateSeries13Description="開けるには「シリーズ#13ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上が1つ入っています。<br><font color="#4b69cd">昆虫型ヘルメット（閉）</font><br><font color="#4b69cd">ロボ・スカリー</font><br><font color="#4b69cd">昆虫型ヘルメット（開）</font><br><font color="#6600a1">昆虫型ヘルメット（ゴーグル上）</font><br><font color="#6600a1">デーモンスレイヤーヘルメット</font><br><font color="#8847ff">昆虫型ヘルメット（ゴーグル下）</font><br><font color="#8847ff">ミノタウロスヘルメット</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
 
+HorzineSupplyCrateSeries14Description="開けるには「シリーズ#14ホージン物資箱の鍵」が必要です。次のレアまたはそれ以上のアイテムが1つ入っています。<br><font color="#4b69cd">消防士ヘルメット</font><br><font color="#4b69cd">消防士ヘルメット（マスクダウン）</font><br><font color="#4b69cd">消防士ヘルメット（マスクアップ）</font><br><font color="#4b69cd">消防士ガスマスク</font><br><font color="#6600a1">消防士ヘルメット</font><br><font color="#6600a1">消防士ヘルメット（マスクダウン）</font><br><font color="#6600a1">消防士ヘルメット（マスクアップ）</font><br><font color="#6600a1">消防士ガスマスク</font><br><font color="#6600a1">消防士酸素タンク</font><br><font color="#8847ff">消防士酸素タンク</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
+
 EmoteCrateSeries1Description="開けるには「シリーズ#1顔文字箱の鍵」が必要です。次の中から、レアまたはそれ以上が1つ入っています。<br><font color="#4b69cd">ワイルドに行こう</font><br><font color="#4b69cd">ブーティダンス</font><br><font color="#4b69cd">チャーリーおじさん</font><br><font color="#4b69cd">いかれたウェーブ</font><br><font color="#6600a1">降り注ぐdosh</font><br><font color="#6600a1">ライオンアッパーカット</font><br><font color="#6600a1">交配の儀式</font><br><font color="#8847ff">シビれる</font><br><font color="#8847ff">火の玉</font><br><font color="#8847ff">まき散らせ</font><br><font color="#caab05">または激レアな貴重デラックス顔文字！</font>"
 
 ;Key Names
@@ -125,6 +141,7 @@ HorzineSupplyCrateKeySeries10Name="ホージン物資箱の鍵 | シリーズ#10
 HorzineSupplyCrateKeySeries11Name="ホージン物資箱の鍵 | シリーズ#11"
 HorzineSupplyCrateKeySeries12Name="ホージン物資箱の鍵 | シリーズ#12"
 HorzineSupplyCrateKeySeries13Name="ホージン物資箱の鍵 | シリーズ#13"
+HorzineSupplyCrateKeySeries14Name="ホージン物資箱の鍵 | シリーズ#14"
 EmoteCrateKeySeries1Name="顔文字箱の鍵 | シリーズ#1"
 
 ;Key Descriptions
@@ -141,6 +158,7 @@ HorzineSupplyCrateKeySeries10Description="ホージンシリーズ#10物資箱�
 HorzineSupplyCrateKeySeries11Description="ホージンシリーズ#11物資箱のみを開ける鍵。"
 HorzineSupplyCrateKeySeries12Description="ホージンシリーズ#12物資箱のみを開ける鍵。"
 HorzineSupplyCrateKeySeries13Description="ホージンシリーズ#13物資箱のみを開ける鍵。"
+HorzineSupplyCrateKeySeries14Description="ホージンシリーズ#14物資箱のみを開ける鍵。"
 EmoteCrateKeySeries1Description="シリーズ#1顔文字箱のみを開ける鍵。"
 
 ;UsbNames
@@ -163,6 +181,8 @@ MaceAndShieldEncryptedUSBName="ボーンクラッシャー暗号化USB"
 DeepstrikeEncryptedUSBName="ディープストライク暗号化USB"
 HighVoltageEncryptedUSBName="ハイボルテージ暗号化USB"
 FlarePistolEncryptedUSBName="スピットファイア暗号化USB"
+VietnamEncryptedUSBName="ベトナム暗号化USB"
+JunkyardEncryptedUSBName="ジャンクヤード暗号化USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="開けるにはサイバーボーン設計図の鍵が必要です。次の中から、レアまたはそれ以上の武器スキンが1つ入っています。<br><font color="#4b69cd">AR15 | サイバーボーン</font><br><font color="#4b69cd">AK-12 | サイバーボーン</font><br><font color="#4b69cd">AA-12 | サイバーボーン</font><br><font color="#4b69cd">カタナ | サイバーボーン</font><br><font color="#8847ff">M79 | ピュートリッドバイル</font><br><font color="#8847ff">AR15 | コンテインメント</font><br><font color="#caab05">または激レアな貴重スキン！</font>"
@@ -203,6 +223,10 @@ HighVoltageEncryptedUSBDescription="開けるにはハイボルテージ設計�
 
 FlarePistolEncryptedUSBDescription="開けるにはスピットファイア設計図の鍵が必要です。次の中から、レアまたはそれ以上の武器スキンが1つ入っています。<br><font color="#4b69cd">スピットファイア | ブルー火炎</font><br><font color="#4b69cd">スピットファイア | オレンジ火炎</font><br><font color="#4b69cd">スピットファイア | レッド火炎</font><br><font color="#4b69cd">スピットファイア | オレンジデジカメ</font><br><font color="#6600a1">スピットファイア | ギロチン</font><br><font color="#6600a1">スピットファイア | 鯉</font><br><font color="#8847ff">スピットファイア | 中華風</font><br><font color="#caab05">または激レアな貴重スキン！</font>"
 
+VietnamEncryptedUSBDescription="開けるにはベトナム設計図の鍵が必要です。次のレアまたはそれ以上の武器スキンが1つ入っています。<br><font color="#4b69cd">ウィンチェスター1894 | ベトナム</font><br><font color="#4b69cd">RPG-7 | ベトナム</font><br><font color="#4b69cd">M1911 | ベトナム</font><br><font color="#4b69cd">L85A2 | ベトナム</font><br><font color="#4b69cd">M4 | ベトナム</font><br><font color="#6600a1">AK12 | ベトナム</font><br><font color="#6600a1">M14 EBR | ベトナム</font><br><font color="#8847ff">M16 M203 | ベトナム</font><br><font color="#caab05">または激レアな貴重スキン！</font>"
+
+JunkyardEncryptedUSBDescription="開けるにはジャンクヤード設計図の鍵が必要です。次のレアまたはそれ以上の武器スキンのが1つ入っています。<br><font color="#4b69cd">M4 | ジャンクヤード</font><br><font color="#4b69cd">AK12 | ジャンクヤード</font><br><font color="#4b69cd">クリスサブマシンガン | ジャンクヤード</font><br><font color="#4b69cd">MP5RAS | ジャンクヤード</font><br><font color="#4b69cd">ウィンチェスター1894 | ジャンクヤード</font><br><font color="#4b69cd">L85A2 | ジャンクヤード</font><br><font color="#6600a1">M14 EBR | ジャンクヤード</font><br><font color="#6600a1">AA12 | ジャンクヤード</font><br><font color="#8847ff">M16 M203 | ジャンクヤード</font><br><font color="#8847ff">SCAR | ジャンクヤード</font><br><font color="#caab05">または激レアな貴重スキン！</font>"
+
 ;usb key names
 CyberboneUSBKeyName="サイバーボーンUSBの鍵"
 DragonfireUSBKeyName="ドラゴンファイアUSBの鍵"
@@ -223,6 +247,8 @@ MaceAndShieldUSBKeyName="ボーンクラッシャーUSBの鍵"
 DeepstrikeUSBKeyName="ディープストライク・USBの鍵"
 HighVoltageUSBKeyName="ハイボルテージUSBの鍵"
 FlarePistolUSBKeyName="スピットファイアUSBの鍵"
+VietnamUSBKeyName="ベトナムUSBの鍵"
+JunkyardUSBKeyName="ジャンクヤードUSBの鍵"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="サイバーボーン暗号化設計図のみを開ける鍵。"
@@ -244,6 +270,8 @@ MaceAndShieldUSBKeyDescription="ボーンクラッシャー暗号化設計図の
 DeepstrikeUSBKeyDescription="ディープストライク暗号化設計図のみを開ける鍵。"
 HighVoltageUSBKeyDescription="ハイボルテージ暗号化設計図のみを開ける鍵。"
 FlarePistolUSBKeyDescription="スピットファイア暗号化設計図のみを開ける鍵。"
+VietnamUSBKeyDescription="ベトナム暗号化設計図のみを開ける鍵。"
+JunkyardUSBKeyDescription="ジャンクヤード暗号化設計図のみを開ける鍵。"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="ホージン物資化粧箱 | シリーズ#1"
@@ -289,6 +317,12 @@ CosmeticExceptionalType="超レアのプレイヤーアクセサリー"
 CosmeticMasterCraftedType="マスタークラフトのプレイヤーアクセサリー"
 CosmeticPreciousType="激レアのプレイヤーアクセサリー"
 
+;Sideshow Type Section
+CosmeticSideshowType="サマーサイドショウプレイヤーアクセサリー"
+CraftingSideshowType="シーズナル景品チケット"
+CraftingGoldenSideshowName="ゴールデンシーズナル景品チケット"
+FacePaintSideshowType="サマーサイドショウフェイスペイント"
+
 ;Crafting Type Section
 CraftingType="作成素材"
 
@@ -311,6 +345,9 @@ CommonWeaponSkinMaterialName="ありふれた武器スキン素材"
 UncommonWeaponSkinMaterialName="アンコモンの武器スキン素材"
 RareWeaponSkinMaterialName="レアな武器スキン素材"
 ExceptionalWeaponSkinMaterialName="超レアな武器スキン素材"
+CraftingSideshowName="サマーサイドショウ景品チケット"
+CraftingPremiumSideshowName="サマーサイドショウプレミアム景品チケット"
+CraftingGoldenSideshowName="サマーサイドショウゴールデン景品チケット"
 
 ;materialdescriptions
 CommonCosmeticMaterialDescription="ありふれた作成素材。合成すると、アンコモンの装飾アイテムを作ることができる。"
@@ -321,7 +358,9 @@ CommonWeaponSkinMaterialDescription="ありふれた作成素材。合成する�
 UncommonWeaponSkinMaterialDescription="アンコモンの作成素材。合成すると、レアな武器スキンを作ることができる。"
 RareWeaponSkinMaterialDescription="レアな作成素材。合成すると、超レアな武器スキンを作ることができる。"
 ExceptionalWeaponSkinMaterialDescription="超レアな作成素材。合成すると、こだわり抜いた武器スキンを作ることができる。"
-
+CraftingSideshowDescription="景品チケットは限定版サマーサイドショウアイテムと交換できます。<font color="#4b69cd">景品チケット5枚が必要。</font>次のレアまたはそれ以上のアイテムと交換できます。<br><font color="#4b69cd">サイドショウ道化師の帽子</font><br><font color="#4b69cd">サイドショウ道化師の鼻</font><br><font color="#4b69cd">サイドショウフェイスペイント</font><br><font color="#4b69cd">サイドショウ豚マスク</font><br><font color="#4b69cd">サイドショウ小さな行進者</font><br><font color="#4b69cd">サイドショウ呪術師の帽子</font><br><font color="#4b69cd">サイドショウ人間キャノン</font>"
+CraftingPremiumSideshowDescription="プレミアムチケットは限定版サマーサイドショウアイテムと交換できます！<font color="#4b69cd">必要なチケットは1枚のみ！</font>次のレアまたはそれ以上のアイテムと交換できます。<br><font color="#4b69cd">サイドショウ道化師の帽子</font></font><br><font color="#4b69cd">サイドショウ道化師の鼻</font><br><font color="#4b69cd">サイドショウフェイスペイント</font><br><font color="#4b69cd">サイドショウ豚マスク</font><br><font color="#4b69cd">サイドショウ小さな行進者</font><br><font color="#4b69cd">サイドショウ呪術師の帽子</font><br><font color="#4b69cd">サイドショウ人間キャノン</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
+CraftingGoldenSideshowDescription="ゴールデンチケットを手に入れました！<font color="#4b69cd">必要なチケットは1枚のみ！</font>このゴールデンチケットは限定版の<font color="#caab05">激レアで貴重な</font>サマーサイドショウアイテムと交換できます。"
 
 [WeaponSkins]
 
@@ -479,6 +518,9 @@ AA12PreciousName="AA-12 | 希少"
 AA12TacticalMintName="AA12 | タクティカル | 新品"
 AA12TacticalFieldTestedName="AA12 | タクティカル | 実地試験済み"
 AA12TacticalBattleScarredName="AA12 | タクティカル | 歴戦"
+AA12JunkyardMintName="AA12 | ジャンクヤード | 新品"
+AA12JunkyardFieldTestedName="AA12 | ジャンクヤード | 実地試験済み"
+AA12JunkyardBattleScarredName="AA12 | ジャンクヤード | 歴戦"
 
 ;AK12 Descriptions
 AK12MintDescription="外観：新品 | このAK-12は、死亡したロシアのスペツナズ工作員から、スキャニングのために奪われました。"
@@ -527,6 +569,12 @@ AK12PreciousName="AK-12 | 希少"
 AK12TacticalMintName="AK12 | タクティカル | 新品"
 AK12TacticalFieldTestedName="AK12 | タクティカル | 実地試験済み"
 AK12TacticalBattleScarredName="AK12 | タクティカル | 歴戦"
+AK12VietnamMintName="AK12 | ベトナム | 新品"
+AK12VietnamFieldTestedName="AK12 | ベトナム | 実地試験済み"
+AK12VietnamBattleScarredName="AK12 | ベトナム | 歴戦"
+AK12JunkyardMintName="AK12 | ジャンクヤード | 新品"
+AK12JunkyardFieldTestedName="AK12 | ジャンクヤード | 実地試験済み"
+AK12JunkyardBattleScarredName="AK12 | ジャンクヤード | 歴戦"
 
 ;AR15 Descriptions
 AR15MintDescription="外観：新品 | これはzed用です、「バーミント」用ではありません。"
@@ -608,6 +656,12 @@ CaulknBurnStreetPunksMintName="コーク&バーン | ストリートパンク | 
 CaulknBurnStreetPunksFieldTestedName="コーク&バーン | ストリートパンク | 実地試験済み"
 CaulknBurnStreetPunksBattleScarredName="コーク&バーン | ストリートパンク | 歴戦"
 CaulknBurnPreciousName="コーク&バーン | 希少"
+
+;Centerfire Descriptions
+CenterfireMintWeeklyDescription="外観：新品 | 反動が低く、高いストッピングパワーを持つ近代的なモスバーグセンターファイア・レバーアクションライフル。標準武器のアップデート版。ウィークリーアウトブレイクをクリアして解除されたアイテム。"
+
+;Centerfire Names
+CenterfireWeeklyName="センターファイア | ヘッドショットウィークリー | 新品"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="外観：新品 | 高い貫通力とストッピングパワーを持つ、強力なハンティング用クロスボウです！"
@@ -926,6 +980,9 @@ KrissPreciousName="クリスサブマシンガン | 希少"
 KrissShredderMintName="クリスサブマシンガン | シュレッダー | 新品"
 KrissShredderFieldTestedName="クリスサブマシンガン | シュレッダー | 実地試験済み"
 KrissShredderBattleScarredName="クリスサブマシンガン | シュレッダー | 歴戦"
+KrissJunkyardMintName="クリスサブマシンガン | ジャンクヤード | 新品"
+KrissJunkyardFieldTestedName="クリスサブマシンガン | ジャンクヤード | 実地試験済み"
+KrissJunkyardBattleScarredName="クリスサブマシンガン | ジャンクヤード | 歴戦"
 
 ;L85A2 Descriptions
 L85A2MintDescription="外観：新品 | SA80は、軍隊が…食われるまでは、イギリス軍の標準武器でした。"
@@ -965,6 +1022,12 @@ L85A2PreciousName="L85A2 | 希少"
 L85A2TacticalMintName="L85A2 | タクティカル | 新品"
 L85A2TacticalFieldTestedName="L85A2 | タクティカル | 実地試験済み"
 L85A2TacticalBattleScarredName="L85A2 | タクティカル | 歴戦"
+L85A2VietnamMintName="L85A2 | ベトナム | 新品"
+L85A2VietnamFieldTestedName="L85A2 | ベトナム | 実地試験済み"
+L85A2VietnamBattleScarredName="L85A2 | ベトナム | 歴戦"
+L85A2JunkyardMintName="L85A2 | ジャンクヤード | 新品"
+L85A2JunkyardFieldTestedName="L85A2 | ジャンクヤード | 実地試験済み"
+L85A2JunkyardBattleScarredName="L85A2 | ジャンクヤード | 歴戦"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="外観：新品 | ネイビーシールズ、デルタフォースや他のイケてるヤツらが好むスナイパーライフル。"
@@ -976,7 +1039,28 @@ M14EBRPreciousDescription="外観：希少 | ネイビーシールズ、デル�
 M14EBRIndustrialMintName="M14 EBR | インダストリアル | 新品"
 M14EBRIndustrialFieldTestedName="M14 EBR | インダストリアル | 実地試験済み"
 M14EBRIndustrialBattleScarredName="M14 EBR | インダストリアル | 歴戦"
+M14EBRVietnamMintName="M14 EBR | ベトナム | 新品"
+M14EBRVietnamFieldTestedName="M14 EBR | ベトナム | 実地試験済み"
+M14EBRVietnamBattleScarredName="M14 EBR | ベトナム | 歴戦"
+M14EBRJunkyardMintName="M14 EBR | ジャンクヤード | 新品"
+M14EBRJunkyardFieldTestedName="M14 EBR | ジャンクヤード | 実地試験済み"
+M14EBRJunkyardBattleScarredName="M14 EBR | ジャンクヤード | 歴戦"
 M14EBRPreciousName="M14 EBR | 希少"
+
+;M16M203 Descriptions
+M16M203MintDescription="外観：新品 | 銃弾か手榴弾か決められない人向け。"
+M16M203FieldTestedDescription="外観：実地試験済み | 銃弾か手榴弾か決められない人向け。"
+M16M203BattleScarredDescription="外観：歴戦 | 銃弾か手榴弾か決められない人向け。"
+M16M203PreciousDescription="外観：希少 | 銃弾か手榴弾か決められない人向け。"
+
+;M16M203 Names
+M16M203VietnamMintName="M16 M203 | ベトナム | 新品"
+M16M203VietnamFieldTestedName="M16 M203 | ベトナム | 実地試験済み"
+M16M203VietnamBattleScarredName="M16 M203 | ベトナム | 歴戦"
+M16M203JunkyardMintName="M16 M203 | ジャンクヤード | 新品"
+M16M203JunkyardFieldTestedName="M16 M203 | ジャンクヤード | 実地試験済み"
+M16M203JunkyardBattleScarredName="M16 M203 | ジャンクヤード | 歴戦"
+M16M203PreciousName="M16 M203 | 希少"
 
 ;M1911 Descriptions
 M1911MintDescription="外観：新品 | 定番のColt 1911セミオートマチックピストルです。"
@@ -988,6 +1072,9 @@ M1911PreciousDescription="外観：希少 | 定番のColt 1911セミオートマ
 M1911TacticalMintName="M1911 | タクティカル | 新品"
 M1911TacticalFieldTestedName="M1911 | タクティカル | 実地試験済み"
 M1911TacticalBattleScarredName="M1911 | タクティカル | 歴戦"
+M1911VietnamMintName="M1911 | ベトナム | 新品"
+M1911VietnamFieldTestedName="M1911 | ベトナム | 実地試験済み"
+M1911VietnamBattleScarredName="M1911 | ベトナム | 歴戦"
 M1911PreciousName="M1911 | 希少"
 
 ;M4 Descriptions
@@ -1006,6 +1093,12 @@ M4StoriesofWarBattleScarredName="M4 | 戦争物語 | 歴戦"
 M4VictorianMintName="M4 | ヴィクトリア朝 | 新品"
 M4VictorianFieldTestedName="M4 | ヴィクトリア朝 | 実地試験済み"
 M4VictorianBattleScarredName="M4 | ヴィクトリア朝 | 歴戦"
+M4VietnamMintName="M4 | ベトナム | 新品"
+M4VietnamFieldTestedName="M4 | ベトナム | 実地試験済み"
+M4VietnamBattleScarredName="M4 | ベトナム | 歴戦"
+M4JunkyardMintName="M4 | ジャンクヤード | 新品"
+M4JunkyardFieldTestedName="M4 | ジャンクヤード | 実地試験済み"
+M4JunkyardBattleScarredName="M4 | ジャンクヤード | 歴戦"
 M4PreciousName="M4 | 希少"
 
 ;M79 Descriptions
@@ -1087,6 +1180,9 @@ MP5RASPreciousDescription="外観：希少 | 世界で最も使用されてい�
 MP5RASIndustrialMintName="MP5RAS | インダストリアル | 新品"
 MP5RASIndustrialFieldTestedName="MP5RAS | インダストリアル | 実地試験済み"
 MP5RASIndustrialBattleScarredName="MP5RAS | インダストリアル | 歴戦"
+MP5RASJunkyardMintName="MP5RAS | ジャンクヤード | 新品"
+MP5RASJunkyardFieldTestedName="MP5RAS | ジャンクヤード | 実地試験済み"
+MP5RASJunkyardBattleScarredName="MP5RAS | ジャンクヤード | 歴戦"
 MP5RASPreciousName="MP5RAS | 希少"
 
 ;MP7 Descriptions
@@ -1166,6 +1262,9 @@ RPG7PreciousName="RPG-7 | 希少"
 RPG7DeepstrikeMintName="RPG-7 | ディープストライク | 新品"
 RPG7DeepstrikeFieldTestedName="RPG-7 | ディープストライク | 実地試験済み"
 RPG7DeepstrikeBattleScarredName="RPG-7 | ディープストライク | 歴戦"
+RPG7VietnamMintName="RPG-7 | ベトナム | 新品"
+RPG7VietnamFieldTestedName="RPG-7 | ベトナム | 実地試験済み"
+RPG7VietnamBattleScarredName="RPG-7 | ベトナム | 歴戦"
 
 ;Scar Descriptions
 ScarMintDescription="外観：新品 | 元々はアメリカ特殊作戦群のために設計され、確かに、特殊です！"
@@ -1214,6 +1313,9 @@ ScarDeepstrikeBattleScarredName="SCAR | ディープストライク | 歴戦"
 ScarTacticalMintName="SCAR | タクティカル | 新品"
 ScarTacticalFieldTestedName="SCAR | タクティカル | 実地試験済み"
 ScarTacticalBattleScarredName="SCAR | タクティカル | 歴戦"
+ScarJunkyardMintName="SCAR | ジャンクヤード | 新品"
+ScarJunkyardFieldTestedName="SCAR | ジャンクヤード | 実地試験済み"
+ScarJunkyardBattleScarredName="SCAR | ジャンクヤード | 歴戦"
 
 ;SG500 Descriptions
 SG500MintDescription="外観：新品 | ピストルグリップを持つポンプアクションモスバーグSG 500は、素晴らしい接近戦用zedキラーです。シンプルで効果的です。"
@@ -1316,6 +1418,12 @@ Winchester1894PreciousName="ウィンチェスター1894 | 希少"
 Winchester1894DeepstrikeMintName="ウィンチェスター1894 | ディープストライク | 新品"
 Winchester1894DeepstrikeFieldTestedName="ウィンチェスター1894 | ディープストライク | 実地試験済み"
 Winchester1894DeepstrikeBattleScarredName="ウィンチェスター1894 | ディープストライク | 歴戦"
+Winchester1894VietnamMintName="ウィンチェスター1894 | ベトナム | 新品"
+Winchester1894VietnamFieldTestedName="ウィンチェスター1894 | ベトナム | 実地試験済み"
+Winchester1894VietnamBattleScarredName="ウィンチェスター1894 | ベトナム | 歴戦"
+Winchester1894JunkyardMintName="ウィンチェスター1894 | ジャンクヤード | 新品"
+Winchester1894JunkyardFieldTestedName="ウィンチェスター1894 | ジャンクヤード | 実地試験済み"
+Winchester1894JunkyardBattleScarredName="ウィンチェスター1894 | ジャンクヤード | 歴戦"
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="外観：新品 | 西部開拓時代の大きすぎるナイフです。今この場でzedを切り裂くのに最適。"
@@ -1970,30 +2078,35 @@ FirefighterHelmetOliveName="消防士ヘルメット | オリーブ"
 FirefighterHelmetRedName="消防士ヘルメット | レッド"
 FirefighterHelmetWhiteName="消防士ヘルメット | ホワイト"
 FirefighterHelmetYellowName="消防士ヘルメット | イエロー"
+FirefighterHelmetPreciousName="消防士ヘルメット | 希少"
 FirefighterHelmetMaskDownBlackName="消防士ヘルメット（マスクダウン） | ブラック"
 FirefighterHelmetMaskDownBlueName="消防士ヘルメット（マスクダウン） | ブルー"
 FirefighterHelmetMaskDownOliveName="消防士ヘルメット（マスクダウン） | オリーブ"
 FirefighterHelmetMaskDownRedName="消防士ヘルメット（マスクダウン） | レッド"
 FirefighterHelmetMaskDownWhiteName="消防士ヘルメット（マスクダウン） | ホワイト"
 FirefighterHelmetMaskDownYellowName="消防士ヘルメット（マスクダウン） | イエロー"
+FirefighterHelmetMaskDownPreciousName="消防士ヘルメット（マスクダウン） | 希少"
 FirefighterHelmetMaskUpBlackName="消防士ヘルメット（マスクアップ） | ブラック"
 FirefighterHelmetMaskUpBlueName="消防士ヘルメット（マスクアップ） | ブルー"
 FirefighterHelmetMaskUpOliveName="消防士ヘルメット（マスクアップ） | オリーブ"
 FirefighterHelmetMaskUpRedName="消防士ヘルメット（マスクアップ） | レッド"
 FirefighterHelmetMaskUpWhiteName="消防士ヘルメット（マスクアップ） | ホワイト"
 FirefighterHelmetMaskUpYellowName="消防士ヘルメット（マスクアップ） | イエロー"
+FirefighterHelmetMaskUpPreciousName="消防士ヘルメット（マスクアップ） | 希少"
 FirefighterGasmaskBlackName="消防士ガスマスク | ブラック"
 FirefighterGasmaskBlueName="消防士ガスマスク | ブルー"
 FirefighterGasmaskOliveName="消防士ガスマスク | オリーブ"
 FirefighterGasmaskRedName="消防士ガスマスク | レッド"
 FirefighterGasmaskWhiteName="消防士ガスマスク | ホワイト"
 FirefighterGasmaskYellowName="消防士ガスマスク | イエロー"
+FirefighterGasmaskPreciousName="消防士ガスマスク | 希少"
 FirefighterOxygenTankBlackName="消防士酸素タンク | ブラック"
 FirefighterOxygenTankBlueName="消防士酸素タンク | ブルー"
 FirefighterOxygenTankOliveName="消防士酸素タンク | オリーブ"
 FirefighterOxygenTankRedName="消防士酸素タンク | レッド"
 FirefighterOxygenTankWhiteName="消防士酸素タンク | ホワイト"
 FirefighterOxygenTankYellowName="消防士酸素タンク | イエロー"
+FirefighterOxygenTankPreciousName="消防士酸素タンク | 希少"
 InsectoidHelmetClosedBlackRedLightName="昆虫型ヘルメット（閉） | ブラックレッドライト"
 InsectoidHelmetClosedBlackRedTrimName="昆虫型ヘルメット（閉） | ブラックレッドトリム"
 InsectoidHelmetClosedBlackYellowLightName="昆虫型ヘルメット（閉） | ブラックイエローライト"
@@ -2046,8 +2159,78 @@ InsectoidHelmetGogglesDownPreciousName="昆虫型ヘルメット（ゴーグル�
 DemonSlayerHelmetGreyName="デーモンスレイヤーヘルメット | グレー"
 DemonSlayerHelmetPreciousName="デーモンスレイヤーヘルメット | 希少"
 
+;Sideshow Cosmetic Names
+SideshowClownHatYellowBlueName="サイドショウ道化師の帽子 | イエローブルー"
+SideshowClownHatBlackWhiteName="サイドショウ道化師の帽子 | ブラックホワイト"
+SideshowClownHatRedBlackName="サイドショウ道化師の帽子 | レッドブラック"
+SideshowClownHatRainbowName="サイドショウ道化師の帽子 | レインボー"
+SideshowClownHatDoshName="サイドショウ道化師の帽子 | dosh"
+SideshowClownHatZedTimeName="サイドショウ道化師の帽子 | Zed-Time"
+SideshowClownHatPreciousName="サイドショウ道化師の帽子 | 希少"
+SideshowClownNoseFuzzyRedName="サイドショウ道化師の鼻 | ファジーレッド"
+SideshowClownNoseFuzzyYellowName="サイドショウ道化師の鼻 | ファジーイエロー"
+SideshowClownNoseFuzzyBlueName="サイドショウ道化師の鼻 | ファジーブルー"
+SideshowClownNoseFuzzyBlackName="サイドショウ道化師の鼻 | ファジーブラック"
+SideshowClownNoseShinyRedName="サイドショウ道化師の鼻 | シャイニーレッド"
+SideshowClownNoseShinyYellowName="サイドショウ道化師の鼻 | シャイニーイエロー"
+SideshowClownNoseShinyBlueName="サイドショウ道化師の鼻 | シャイニーブルー"
+SideshowClownNoseShinyBlackName="サイドショウ道化師の鼻 | シャイニーブラック"
+SideshowClownNosePreciousName="サイドショウ道化師の鼻 | 希少"
+SideshowPigMaskPigletName="サイドショウ豚マスク | 子豚"
+SideshowPigMaskGreyName="サイドショウ豚マスク | グレー"
+SideshowPigMaskRainbowName="サイドショウ豚マスク | レインボー"
+SideshowPigMaskSideshowClownName="サイドショウ豚マスク | サイドショウ道化師"
+SideshowPigMaskPreciousName="サイドショウ豚マスク | 希少"
+SideshowTinyMarcherRedYellowName="サイドショウ小さな行進者 | レッドイエロー"
+SideshowTinyMarcherBlueYellowName="サイドショウ小さな行進者 | ブルーイエロー"
+SideshowTinyMarcherRainbowName="サイドショウ小さな行進者 | レインボー"
+SideshowTinyMarcherBlackWhiteName="サイドショウ小さな行進者 | ブラックホワイト"
+SideshowTinyMarcherWhiteName="サイドショウ小さな行進者 | ホワイト"
+SideshowTinyMarcherPreciousName="サイドショウ小さな行進者 | 希少"
+SideshowWitchdoctorHatBrownName="サイドショウ呪術師の帽子 | ブラウン"
+SideshowWitchdoctorHatWhiteName="サイドショウ呪術師の帽子 | ホワイト"
+SideshowWitchdoctorHatRedName="サイドショウ呪術師の帽子 | レッド"
+SideshowWitchdoctorHatVoodooFunkName="サイドショウ呪術師の帽子 | ブードゥーファンク"
+SideshowWitchdoctorHatGreenName="サイドショウ呪術師の帽子 | グリーン"
+SideshowWitchdoctorHatPreciousName="サイドショウ呪術師の帽子 | 希少"
+SideshowFacePaintAlbertsName="サイドショウフェイスペイント | アルバーツ"
+SideshowFacePaintAnaName="サイドショウフェイスペイント | アナ"
+SideshowFacePaintScullyName="サイドショウフェイスペイント | スカリー"
+SideshowFacePaintFosterName="サイドショウフェイスペイント | フォスター"
+SideshowFacePaintJagerhornName="サイドショウフェイスペイント | イェーガーホーン"
+SideshowFacePaintBriarName="サイドショウフェイスペイント | ブライアー"
+SideshowFacePaintDonovanName="サイドショウフェイスペイント | ドノヴァン"
+SideshowFacePaintMastersonName="サイドショウフェイスペイント | マスターソン"
+SideshowFacePaintTanakaName="サイドショウフェイスペイント | タナカ"
+SideshowFacePaintClassicBriarName="サイドショウフェイスペイント | クラシック・ブライアー"
+SideshowFacePaintClassicMastersonName="サイドショウフェイスペイント | クラシック・マスターソン"
+SideshowFacePaintStrasserName="サイドショウフェイスペイント | シュトラッサー"
+SideshowFacePaintBannerName="サイドショウフェイスペイント | バナー"
+SideshowFacePaintRaeName="サイドショウフェイスペイント | レイ"
+SideshowHumanCanonPreciousName="サイドショウ人間キャノン | 希少"
+SideshowHumanCanonDummyName="サイドショウ人間キャノン | ダミー"
+SideshowHumanCanonHorzineName="サイドショウ人間キャノン | ホージン"
+SideshowHumanCanonHarukoName="サイドショウ人間キャノン | ハルコ"
+SideshowHumanCanonCrispsName="サイドショウ人間キャノン | ポテトチップス"
+SideshowHumanCanonCanonBallName="サイドショウ人間キャノン | キャノンボール"
+SideshowHumanCanonStarsandStripesName="サイドショウ人間キャノン | 星条旗"
+
+;Weekly Cosmetic Names
+WeeklyTinyTerrorHatName="ウィークリー | 小さな脅威の帽子"
+WeeklyFleshpoundVisorName="ウィークリー | フレッシュパウンドバイザー"
+WeeklyHansPlushyBackpackName="ウィークリー | ハンスの高価なバックパック"
+WeeklyHorzineArmorPreciousName="ウィークリー | ホージンアーマー | 希少"
+WeeklyHorzineHelmetPreciousName="ウィークリー | ホージンヘルメット | 希少"
+WeeklyKingPoundVisorPreciousName="ウィークリー | キングパウンドバイザー | 希少"
+WeeklyMindBlownName="ウィークリー | ぶっ飛び"
+
+
+
 ;Cosmetic Descriptions
 
+SummerSideshowAccessoryDescription="装備メニューから装備可能。ほとんどのキャラクターに対応。シーズナルイベント「サマーサイドショウ」で手に入る限定版アイテム。リサイクルでサイドショウチケット1枚に変化します。"
+SummerSideshowFacePaintDescription="装備メニューから装備可能。シーズナルイベントのサマーサイドショウで手に入る限定版アイテム。リサイクルでサイドショウチケット1枚に変化します。"
+WeeklyRewardDescription="装備メニューから装備可能。ほとんどのキャラクターに対応。ウィークリーアウトブレイクをクリアして解除されたアイテム。"
 AviatorGogglesDescription="装備メニューから装備可能：オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 AviatorsDescription="装備メニューから装備可能：オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 BaseballHatDescription="装備メニューから装備可能：オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
@@ -2073,7 +2256,7 @@ EnforcerMaskDescription="装備メニューから装備可能：ロブ・ブラ�
 EyePatchDescription="装備メニューから装備可能：オイステン・イェーガーホーン、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナーに対応。"
 FlatcapDescription="装備メニューから装備可能：オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 FlightHelmetDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
-FlightMaskDescription="装備メニューから装備可能：ビル・マスターソン中尉に対応。"
+FlightMaskDescription="装備メニューから装備可能: DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 FrontRowProtectionUpDescription="装備メニューから装備可能：オイステン・イェーガーホーン、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 FrontRowProtectionDownDescription="装備メニューから装備可能：オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 GermanGasMaskDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"

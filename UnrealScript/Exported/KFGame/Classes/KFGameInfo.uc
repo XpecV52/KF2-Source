@@ -386,6 +386,7 @@ var	globalconfig	bool			bDisablePickups;			// Whether or not this server allows 
 var globalconfig 	bool			bDisableMapVote;			// Turn off map voting
 var globalconfig	float			MapVotePercentage;			// Percentage of players that must vote for this map
 var globalconfig	float			MapVoteDuration;			// time till the map vote ends
+var config          bool            bEnableMapObjectives;       // Whether or not maps that support objectives should use them
 
 var globalconfig 	string 			ServerMOTD;			// Message of the day to be displayed on the server welcome screen
 var globalconfig 	Color      		ServerMOTDColor;        // The color of the server MOTD text (set in the form ServerMOTDColor=(R=0,G=0,B=0)
@@ -708,50 +709,10 @@ native protected function bool IsUnrankedGame();
   */
 static event class<GameInfo> SetGameType(string MapName, string Options, string Portal)
 {
-	local string ThisMapPrefix;
-	local int i;
-	local class<GameInfo> NewGameType;
-	local string GameOption;
-
 	// if we're in the menu level, use the menu gametype
 	if ( class'WorldInfo'.static.IsMenuLevel(MapName) )
 	{
 		return class'KFGameInfo_Entry';
-	}
-
-	// allow commandline to override game type setting
-	GameOption = ParseOption( Options, "Game");
-	if ( GameOption != "" )
-	{
-		return Default.class;
-	}
-
-	// strip the UEDPIE_ from the filename, if it exists (meaning this is a Play in Editor game)
-	MapName = StripPlayOnPrefix( MapName );
-	ThisMapPrefix = left(MapName, InStr(MapName,"-"));
-
-	// change game type
-	for ( i=0; i < Default.DefaultMapPrefixes.Length; i++ )
-	{
-		if ( Default.DefaultMapPrefixes[i].Prefix ~= ThisMapPrefix )
-		{
-			NewGameType = class<GameInfo>(DynamicLoadObject(Default.DefaultMapPrefixes[i].GameType,class'Class'));
-			if ( NewGameType != None )
-			{
-				return NewGameType;
-			}
-		}
-	}
-	for ( i = 0; i < Default.CustomMapPrefixes.Length; i++ )
-	{
-		if ( Default.CustomMapPrefixes[i].Prefix ~= ThisMapPrefix )
-		{
-			NewGameType = class<GameInfo>(DynamicLoadObject(Default.CustomMapPrefixes[i].GameType,class'Class'));
-			if ( NewGameType != None )
-			{
-				return NewGameType;
-			}
-		}
 	}
 
 	return Default.class;
@@ -1067,10 +1028,12 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	}
 
 	// Check against what is expected from the client in the case of quick join/server browser. The server settings can change from the time the server gets the properties from the backend
+	// This code is used to avoid collisions. A player may think they are joining a certain server with the options they are expecting, but its possible for the server to change
+	// before this happens. ServerTakeover for instance. These options should only be provided when joining from quick match or server browser. They get removed after successfully joining a server
 	if( WorldInfo.NetMode == NM_DedicatedServer && !HasOption( Options, "bJoinViaInvite" ) )
 	{
 		DesiredDifficulty = ParseOption( Options, "Difficulty" );
-		if( !bIsVersusGame && DesiredDifficulty != "" && int(DesiredDifficulty) != GameDifficulty )
+		if( !bIsVersusGame && GametypeChecksDifficulty() && DesiredDifficulty != "" && int(DesiredDifficulty) != GameDifficulty )
 		{
 			LogInternal("Got bad difficulty"@DesiredDifficulty@"expected"@GameDifficulty);
 			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
@@ -1078,7 +1041,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		}
 
 		DesiredWaveLength = ParseOption( Options, "GameLength" );
-		if( !bIsVersusGame && DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
+		if( !bIsVersusGame && GametypeChecksWaveLength() && DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
 		{
 			LogInternal("Got bad wave length"@DesiredWaveLength@"expected"@GameLength);
 			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
@@ -1088,7 +1051,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		DesiredGameMode = ParseOption( Options, "Game" );
 		if( DesiredGameMode != "" && !(DesiredGameMode ~= GetFullGameModePath()) )
 		{
-			LogInternal("Got bad wave length"@DesiredGameMode@"expected"@GetFullGameModePath());
+			LogInternal("Got bad game mode"@DesiredGameMode@"expected"@GetFullGameModePath());
 			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
 			return;
 		}
@@ -1102,6 +1065,16 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	{
 		AccessControl.PreLogin(Options, Address, UniqueId, bSupportsAuth, ErrorMessage, bSpectator);
 	}
+}
+
+static function bool GametypeChecksDifficulty()
+{
+    return true;
+}
+
+static function bool GametypeChecksWaveLength()
+{
+    return true;
 }
 
 event PostLogin( PlayerController NewPlayer )
@@ -1696,8 +1669,17 @@ function SetPlayerDefaults(Pawn PlayerPawn)
 	PlayerPawn.PhysicsVolume.ModifyPlayer(PlayerPawn);
 }
 
+function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed);
+function ModifySprintSpeed(KFPawn PlayerPawn, out float SprintSpeed);
+
 /** Used by wave based game types */
 function bool IsWaveActive();
+
+/** Scale to use against WaveTotalAI to determine full wave size */
+function float GetTotalWaveCountScale()
+{
+    return 1.0f;
+}
 
 /** Returns NumAlwaysRelevantZeds, the number of remaining zeds before they become bAlwaysRelevant=true */
 static function float GetNumAlwaysRelevantZeds()
@@ -1718,7 +1700,7 @@ function class<KFPawn_Monster> GetBossAISpawnType()
 }
 
 /** Allow gametype to do any adjustments to the spawned AI pawn */
-event AdjustSpawnedAIPawn(KFPawn NewSpawn);
+event PrePossessAdjustments(KFPawn NewSpawn);
 
 /** Allow specific game types to modify the spawn rate at a global level */
 function float GetGameInfoSpawnRateMod()
@@ -2070,7 +2052,17 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 
 		if( SpawnManager != None )
 		{
+
 			MyKFGRI.AIRemaining--;
+
+			if( MyKFGRI != none && MyKFGRI.AIRemaining <= class'KFGameInfo'.static.GetNumAlwaysRelevantZeds() )
+			{
+				//Tell the remaining pawns to set themselves relevant.  
+				foreach WorldInfo.AllPawns( class'KFPawn_Monster', MonsterPawn )
+				{
+					MonsterPawn.CheckShouldAlwaysBeRelevant();
+				}
+			}
 
 			if (bLogAICount) LogInternal("@@@@ ZED COUNT DEBUG: MyKFGRI.AIRemaining =" @ MyKFGRI.AIRemaining);
 			if (bLogAICount) LogInternal("@@@@ ZED COUNT DEBUG: AIAliveCount =" @ AIAliveCount);
@@ -2187,6 +2179,8 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
 	KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
 }
 
+function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn);
+
 function ScoreKill(Controller Killer, Controller Other)
 {
 	if ( Killer != none && Killer.PlayerReplicationInfo != None && Killer != Other )
@@ -2236,6 +2230,11 @@ protected function ScoreMonsterKill( Controller Killer, Controller Monster, KFPa
 		if(KFPlayerController(Killer)!= none && KFPlayerController(Killer).MatchStats != none ){KFPlayerController(Killer).MatchStats.RecordZedKill(MonsterPawn.Class,None);};
 	}
 }
+
+/** Called from pawn when a rally occurs.  Allows gametype to do any global behavior based on this. */
+function NotifyRally(KFPawn RalliedPawn);
+/** Called from explosion actor when a scream occurs on an ignored pawn.  Allows gametype to do any global behavior based on this. */
+function NotifyIgnoredScream(KFPawn ScreamPawn);
 
 function CheckForBerserkerSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerController KFPC)
 {
@@ -3485,13 +3484,9 @@ function bool IsPlayerReady( KFPlayerReplicationInfo PRI )
 
 function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime);
 
-
-/*********************************************************************************************
- * @name 	Playfab
- *********************************************************************************************/
-
 /**
   * Checks if the next map exists.
+  * Network: Dedicated Server Only
   * @param NextMap The map name to check
   * @return NextMap if it exists, a default map name otherwise.
   */
@@ -3518,6 +3513,7 @@ defaultproperties
    POINTS_PENALTY_FOR_DEATH=100
    CustomizationPawnClass=Class'KFGame.KFPawn_Customization'
    bWaitForNetPlayers=True
+   bEnableMapObjectives=True
    bEnableDeadToVOIP=True
    bCanPerkAlwaysChange=True
    bUseMapList=True
@@ -3530,7 +3526,8 @@ defaultproperties
    GameStartDelay=4
    EndOfGameDelay=15
    GameModes(0)=(FriendlyName="Survival",ClassNameAndPath="KFGameContent.KFGameInfo_Survival",bSoloPlaySupported=True,DifficultyLevels=4,Lengths=4)
-   GameModes(1)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",LocalizeID=1)
+   GameModes(1)=(FriendlyName="Weekly",ClassNameAndPath="KFGameContent.KFGameInfo_WeeklySurvival",bSoloPlaySupported=True,LocalizeID=1)
+   GameModes(2)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",LocalizeID=2)
    KickVotePercentage=0.660000
    TimeBetweenFailedVotes=10.000000
    MapVoteDuration=60.000000
@@ -3543,6 +3540,7 @@ defaultproperties
    ClanMottoColor=(B=254,G=254,R=254,A=192)
    ServerExpirationForKillWhenEmpty=120.000000
    ReconnectRespawnTime=30
+   XPMultiplier=1.000000
    DifficultyInfoClass=Class'KFGame.KFGameDifficultyInfo'
    DeathPenaltyModifiers(0)=0.050000
    DeathPenaltyModifiers(1)=0.100000
@@ -3555,7 +3553,7 @@ defaultproperties
    NumAlwaysRelevantZeds=3
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent"))
+   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

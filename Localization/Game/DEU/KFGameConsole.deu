@@ -16,6 +16,7 @@ KF-HostileGrounds="Feindeszone wird gespielt"
 KF-ZedLanding="ZED-Landung wird gespielt"
 KF-TheDescent="Der Abstieg wird gespielt"
 KF-Nuked="Atomisiert wird gespielt"
+KF-TragicKingdom="Das Tragisches Königreich wird gesp."
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -144,7 +145,6 @@ ErrorNoPlayfabDescription="Es konnte keine Verbindung zu den Hauptservern des Sp
 ErrorTSSFailedDescription="Es konnte keine Verbindung zu den Balance-Servern des Spiels hergestellt werden. Bitte vergewissere dich, dass du mit dem Internet verbunden bist und versuch es nochmal."
 NotSignedInTitle="Nicht angemeldet."
 
-
 [Notifications]
 ControllerDisconnectedTitle="Controller getrennt"
 ControllerDisconnectedPS4Message="Die Verbindung zum Wireless-Controller wurde getrennt. Bitte verbinde den Wireless-Controller des Benutzers, der das Spiel gestartet hat."
@@ -174,7 +174,6 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Spieler-Profil ansehen"
-ViewProfileStringXB1="Spielerkarte ansehen"
 
 [KFGFxObject_Menu]
 ResetDefaults="Bist du sicher, dass du die Standardeinstellungen wiederherstellen möchtest?"
@@ -194,15 +193,12 @@ ControllerSound="Controller-Sound"
 MatchmakingRegionString="REGION"
 LeaveMenuString="Verlässt du die Spielsuche, verlässt du auch die Gruppe."
 
-[KFGFxMenu_Store]
-
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"
 MapPreference="LIEBLINGSKARTE"
 
 [KFGFxMenu_Exit]
-HeaderStringXB1="ABMELDUNG"
 LogoutKF2="Zum Titelbildschirm"
 
 [Misc]

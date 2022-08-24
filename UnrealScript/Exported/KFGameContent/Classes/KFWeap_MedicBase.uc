@@ -53,6 +53,8 @@ var(Recoil)	int		DartMinRecoilYaw;
 /** Controller rumble override for healing dart. */
 var ForceFeedbackWaveform HealingDartWaveForm;
 
+var repnotify byte HealingDartAmmo;
+
 /*********************************************************************************************
  * @name Weapon lock on support
  ********************************************************************************************* */
@@ -113,7 +115,7 @@ replication
 {
 	// Server->Client properties
 	if (bNetDirty && Role == ROLE_Authority)
-		bLockedOnTarget, LockedTarget, PendingLockedTarget;
+		bLockedOnTarget, LockedTarget, PendingLockedTarget, HealingDartAmmo;
 }
 
 /* epic ===============================================
@@ -160,9 +162,9 @@ simulated event ReplicatedEvent(name VarName)
 		Super.ReplicatedEvent(VarName);
 
 		// This same variable has a replicated event in a base class, so it is not on the normal path.
-		if (VarName == nameof(SpareAmmoCount))
+		if (VarName == nameof(HealingDartAmmo))
 		{
-			AmmoCount[1] = SpareAmmoCount[1];
+			AmmoCount[1] = HealingDartAmmo;
 		}
 	}
 }
@@ -232,7 +234,7 @@ simulated function ConsumeAmmo( byte FireModeNum )
 		{
 			// Reduce ammo amount by heal ammo cost
             AmmoCount[1] = Max(AmmoCount[1] - AmmoCost[1], 0);
-            SpareAmmoCount[1] = Max(SpareAmmoCount[1] - AmmoCost[1], 0);
+            HealingDartAmmo = Max(HealingDartAmmo - AmmoCost[1], 0);
 		}
 	}
 }
@@ -416,16 +418,16 @@ function HealAmmoRegeneration(float DeltaTime)
 	{
 		HealingIncrement += HealRechargePerSecond * DeltaTime;
 
-		if( SpareAmmoCount[ALTFIRE_FIREMODE] > AmmoCount[ALTFIRE_FIREMODE] )
+		if( HealingDartAmmo > AmmoCount[ALTFIRE_FIREMODE] )
 		{
-			SpareAmmoCount[ALTFIRE_FIREMODE] = AmmoCount[ALTFIRE_FIREMODE];
+			HealingDartAmmo = AmmoCount[ALTFIRE_FIREMODE];
 		}
 
-		if( HealingIncrement >= 1.0 && SpareAmmoCount[ALTFIRE_FIREMODE] < MagazineCapacity[ALTFIRE_FIREMODE] )
+		if( HealingIncrement >= 1.0 && HealingDartAmmo < MagazineCapacity[ALTFIRE_FIREMODE] )
 		{
-			// Use SpareAmmoCount to replicate the actual ammo you should have.
-			SpareAmmoCount[ALTFIRE_FIREMODE]++;
-			AmmoCount[ALTFIRE_FIREMODE] = SpareAmmoCount[ALTFIRE_FIREMODE];
+			// Use HealingDartAmmo to replicate the actual ammo you should have.
+			HealingDartAmmo++;
+			AmmoCount[ALTFIRE_FIREMODE] = HealingDartAmmo;
 
 			HealingIncrement -= 1.0;
 		}
@@ -877,6 +879,16 @@ static simulated event SetTraderWeaponStats( out array<STraderItemWeaponStats> W
 	WeaponStats[WeaponStats.Length-1].StatValue = default.HealFullRechargeSeconds;
 }
 
+/*********************************************************************************************
+* HUD
+********************************************************************************************/
+
+/** Determines the secondary ammo left for HUD display */
+simulated function int GetSecondaryAmmoForHUD()
+{
+    return AmmoCount[1];
+}
+
 defaultproperties
 {
    HealingDartDamageType=Class'kfgamecontent.KFDT_Dart_Healing'
@@ -891,6 +903,7 @@ defaultproperties
    DartMaxRecoilYaw=100
    DartMinRecoilYaw=-100
    HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
+   HealingDartAmmo=100
    LockCheckTime=0.100000
    LockRange=50000.000000
    LockAcquireTime=0.200000
@@ -904,7 +917,6 @@ defaultproperties
    bCanRefillSecondaryAmmo=False
    AimCorrectionSize=40.000000
    AmmoCost(1)=50
-   SpareAmmoCount(1)=100
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"

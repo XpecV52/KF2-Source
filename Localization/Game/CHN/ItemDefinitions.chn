@@ -10,12 +10,17 @@ BriarsBobbyBundleName="布莱尔的警察物品包"
 FosterClassicBundleName="福斯特的经典物品包"
 TanakasBikerBundleName="田中勇人的自行车物品包"
 CardboardKnightBundleName="硬纸板骑士物品包"
+HazmatBundleName="防护服物品包"
+HorzineMark7BundleName="霍因标记 7 物品包"
 
 ;Bundle Descriptions
-BriarsBobbyBundleDescription="包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格） 不可交易或销售。"
-FosterClassicBundleDescription="包括福斯特的经典西装（含 9 种皮肤风格）、经典领带配件（含 8 种皮肤风格）和蝴蝶结配件。不可交易或销售。"
-TanakasBikerBundleDescription="包括田中勇人的摩托车制服（含 7 种皮肤风格）和头盔装饰配件（含 7 种皮肤风格） 不可交易或销售。"
+BriarsBobbyBundleDescription="包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
+FosterClassicBundleDescription="包括福斯特的经典西装（含 9 种皮肤风格）、经典领带配件（含 8 种皮肤风格）和蝴蝶结配件。"
+TanakasBikerBundleDescription="包括田中勇人的摩托车制服（含 7 种皮肤风格）和头盔装饰配件（含 7 种皮肤风格）。"
 CardboardKnightBundleDescription="包括全身硬纸板骑士护甲（含 6 种皮肤风格）和硬纸板骑士头盔装饰配件（含 6 种皮肤风格）。"
+HazmatDescription="包括防护服（含 5 种皮肤风格）和防护头盔装饰配件（含 5 种皮肤风格）。与大部分角色兼容。"
+HorzineMark7Description="包括霍因标记 7 （含 7 种皮肤风格）和霍因标记 7 装饰配件（含 7 种皮肤风格）。与大部分角色兼容。"
+
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="为可参加游戏的人物 PC 罗伯-布莱尔获得一套新的经典伦敦警服。包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
@@ -42,19 +47,27 @@ HorzineMark7HelmetName="霍因标记 7 头盔"
 HorzineMark7SuitName="霍因标记 7 西装"
 CardboardKnightName="硬纸板骑士"
 CardboardKnightHelmetName="硬纸板骑士头盔"
+HazmatHelmetName="Glover 防护头盔"
+HazmatSuitName="Glover 防护服"
+SideshowHazmatHelmetName="悲惨王国员工头盔"
+SideshowHazmatSuitName="悲惨王国员工服装"
 
 ;bundle item descriptions
-BriarsLondonUniformDescription="独自熟悉路线。与布莱尔和经典布莱尔兼容。不可交易或销售。"
-BriarsCustodianHelmetDescription="注意安全。与 Oisten Jägerhorn、DJ 斯库利、福斯特先生、PC 罗伯-布莱尔、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳兼容 不可交易或销售。"
-FostersClassicSuitDescription="杀掉丧尸，要干得漂亮点！与福斯特先生兼容。不可交易或销售。"
-FostersClassicTieDescription="不错的直线领带。仅与经典福斯特西装兼容。不可交易或销售。"
-FostersBowTieDescription="不错的蝴蝶结。仅与经典福斯特西装兼容。不可交易或销售。"
-TanakasBikerDescription="杀掉敌人，要酷酷的！与田中勇人兼容。不可交易或销售。"
-TanakasBikerHelmetDescription="注意安全。与田中勇人兼容。不可交易或销售。"
-HorzineMark7HelmetDescription="可配合你的霍因保安护甲的全护式头盔。与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、瑞伊-希金斯兼容。不可交易或销售。"
-HorzineMark7SuitDescription="精英霍因保安护甲。与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、瑞伊-希金斯兼容。不可交易或销售。"
-CardboardKnightDescription="眼光敏锐的骑士的护甲。与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、经典布莱尔、经典马斯特森、安东-斯特拉瑟兼容不可交易或销售。"
-CardboardKnightHelmetDescription="彰显至高荣耀的经典外观。与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、经典布莱尔、经典马斯特森、安东-斯特拉瑟兼容不可交易或销售。"
+BriarsLondonUniformDescription="独自熟悉路线。与布莱尔和经典布莱尔兼容。 "
+BriarsCustodianHelmetDescription="注意安全。与 Oisten Jägerhorn、DJ 斯库利、福斯特先生、PC 罗伯·布莱尔、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、汤姆·班纳兼容。 "
+FostersClassicSuitDescription="杀掉丧尸，要干得漂亮点！与福斯特先生兼容。 "
+FostersClassicTieDescription="不错的直线领带。仅与经典福斯特西装兼容。 "
+FostersBowTieDescription="不错的蝴蝶结。仅与经典福斯特西装兼容。 "
+TanakasBikerDescription="杀掉敌人，要酷酷的！与田中勇人兼容。 "
+TanakasBikerHelmetDescription="注意安全。与田中勇人兼容。 "
+HorzineMark7HelmetDescription="可配合你的霍因保安护甲的全护式头盔。与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯·布莱尔、福斯特先生、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、瑞伊·希金斯兼容。 "
+HorzineMark7SuitDescription="精英霍因保安护甲。与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯·布莱尔、福斯特先生、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、瑞伊·希金斯兼容。 "
+CardboardKnightDescription="眼光敏锐的骑士的护甲。与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、经典布莱尔、经典马斯特森、安东-斯特拉瑟兼容 "
+CardboardKnightHelmetDescription="彰显至高荣耀的经典外观。与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、经典布莱尔、经典马斯特森、安东-斯特拉瑟兼容 "
+HazmatSuitDescription="离开家时要带上它！与大部分角色兼容。 "
+HazmatHelmetDescription="离开家时要带上它！与大部分角色兼容。 "
+SideshowHazmatSuitDescription="在悲惨王国游乐园工作，需要做一点额外的保护。可在装备菜单进行装备；与大部分角色兼容。这是夏日余兴节目季节活动专属的一个可解锁物品。"
+SideshowHazmatHelmetDescription="在悲惨王国游乐园工作，需要做一点额外的保护。可在装备菜单进行装备；与大部分角色兼容。这是夏日余兴节目季节活动专属的一个可解锁物品。"
 
 [KeyCrates]
 ;Key and Crate Type Section
@@ -80,6 +93,7 @@ HorzineSupplyCrateSeries10Name="霍因供应箱 | 系列 #10"
 HorzineSupplyCrateSeries11Name="霍因供应箱 | 系列 #11"
 HorzineSupplyCrateSeries12Name="霍因供应箱 | 系列 #12"
 HorzineSupplyCrateSeries13Name="霍因供应箱 | 系列 #13"
+HorzineSupplyCrateSeries14Name="霍因供应箱 | 系列 #14"
 EmoteCrateSeries1Name="表情供应箱 | 系列 #1"
 
 ;Crate Descriptions
@@ -109,6 +123,8 @@ HorzineSupplyCrateSeries12Description="需要系列 #12 霍因供应箱钥匙才
 
 HorzineSupplyCrateSeries13Description="需要系列 #13 霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">类昆虫头盔关闭</font><br><font color="#4b69cd">罗博·斯库利</font><br><font color="#4b69cd">类昆虫头盔打开</font><br><font color="#6600a1">类昆虫头盔护目镜收起</font><br><font color="#6600a1">恶魔杀手头盔</font><br><font color="#8847ff">类昆虫头盔护目镜放下</font><br><font color="#8847ff">牛头人头盔</font><br><font color="#caab05">或者一种极其稀有宝贵的配件！</font>"
 
+HorzineSupplyCrateSeries14Description="需要系列 #14 霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">消防员头盔</font><br><font color="#4b69cd">消防员头盔面具放下</font><br><font color="#4b69cd">消防员头盔面具收起</font><br><font color="#4b69cd">消防员防毒面具</font><br><font color="#6600a1">消防员头盔</font><br><font color="#6600a1">消防员头盔面具放下</font><br><font color="#6600a1">防员头盔面具收起</font><br><font color="#6600a1">消防员防毒面具</font><br><font color="#6600a1">消防员氧气瓶</font><br><font color="#8847ff">消防员氧气瓶</font><br><font color="#caab05">或者一种极其稀有宝贵的配件！</font>"
+
 EmoteCrateSeries1Description="需要系列 #1 表情供应箱钥匙才能打开。包含以下一种稀有或更好的表情：<br><font color="#4b69cd">一起疯狂</font><br><font color="#4b69cd">霹雳舞</font><br><font color="#4b69cd">查理叔叔</font><br><font color="#4b69cd">古怪波浪</font><br><font color="#6600a1">撒钱</font><br><font color="#6600a1">雄狮上勾拳</font><br><font color="#6600a1">配对仪式</font><br><font color="#8847ff">脚踢</font><br><font color="#8847ff">火球</font><br><font color="#8847ff">下钱</font><br><font color="#caab05">或者一种极其稀有的奢华表情！</font>"
 
 ;Key Names
@@ -125,6 +141,7 @@ HorzineSupplyCrateKeySeries10Name="霍因供应箱钥匙 | 系列 #10"
 HorzineSupplyCrateKeySeries11Name="霍因供应箱钥匙 | 系列 #11"
 HorzineSupplyCrateKeySeries12Name="霍因供应箱钥匙 | 系列 #12"
 HorzineSupplyCrateKeySeries13Name="霍因供应箱钥匙 | 系列 #13"
+HorzineSupplyCrateKeySeries14Name="霍因供应箱钥匙 | 系列 #14"
 EmoteCrateKeySeries1Name="表情供应箱钥匙 | 系列 #1"
 
 ;Key Descriptions
@@ -141,6 +158,7 @@ HorzineSupplyCrateKeySeries10Description="该钥匙只打开霍因系列 #10 供
 HorzineSupplyCrateKeySeries11Description="该钥匙只打开霍因系列 #11 供应箱。"
 HorzineSupplyCrateKeySeries12Description="该钥匙只打开霍因系列 #12 供应箱。"
 HorzineSupplyCrateKeySeries13Description="该钥匙只打开霍因系列 #13 供应箱。"
+HorzineSupplyCrateKeySeries14Description="该钥匙只打开霍因系列 #14 供应箱。"
 EmoteCrateKeySeries1Description="该钥匙只打开系列 #1 表情供应箱。"
 
 ;UsbNames
@@ -163,6 +181,8 @@ MaceAndShieldEncryptedUSBName="碎骨者加密 USB"
 DeepstrikeEncryptedUSBName="Deepstrike 加密 USB"
 HighVoltageEncryptedUSBName="高电压加密 USB"
 FlarePistolEncryptedUSBName="喷火式战斗机加密 USB"
+VietnamEncryptedUSBName="越南加密 USB"
+JunkyardEncryptedUSBName="垃圾场加密 USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="需要网骨蓝图钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">AR15 | 网骨</font><br><font color="#4b69cd">AK-12 | 网骨</font><br><font color="#4b69cd">AA-12 | 网骨</font><br><font color="#4b69cd">武士刀 | 网骨</font><br><font color="#8847ff">M79 | 腐败胆汁</font><br><font color="#8847ff">AR15 | 隔离</font><br><font color="#caab05">或一种极其稀有宝贵的皮肤！</font>"
@@ -203,6 +223,10 @@ HighVoltageEncryptedUSBDescription="需要高电压蓝图钥匙才能打开。�
 
 FlarePistolEncryptedUSBDescription="需要喷火式战斗机蓝图钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">喷火式战斗机 | 蓝色火焰</font><br><font color="#4b69cd">喷火式战斗机 | 橙色火焰</font><br><font color="#4b69cd">喷火式战斗机 | 红色火焰</font><br><font color="#4b69cd">喷火式战斗机 | 橙色数码迷彩</font><br><font color="#6600a1">喷火式战斗机 | 断头台</font><br><font color="#6600a1">喷火式战斗机 | 锦鲤</font><br><font color="#8847ff">喷火式战斗机 | 细瓷</font><br><font color="#caab05">或一款极其稀有宝贵的皮肤！</font>"
 
+VietnamEncryptedUSBDescription="需要越南蓝图钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">温彻斯特 1894 | 越南</font><br><font color="#4b69cd">RPG-7 | 越南</font><br><font color="#4b69cd">M1911 | 越南</font><br><font color="#4b69cd">L85A2 | 越南</font><br><font color="#4b69cd">M4 | 越南</font><br><font color="#6600a1">AK12 | 越南</font><br><font color="#6600a1">M14 EBR | 越南</font><br><font color="#8847ff">M16 M203 | 越南</font><br><font color="#caab05">或一款极其稀有宝贵的皮肤！</font>"
+
+JunkyardEncryptedUSBDescription="需要垃圾场蓝图钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">M4 | 垃圾场</font><br><font color="#4b69cd">AK12 | 垃圾场</font><br><font color="#4b69cd">Kriss 冲锋枪 | 垃圾场</font><br><font color="#4b69cd">MP5RAS | 垃圾场</font><br><font color="#4b69cd">温彻斯特 1894 | 垃圾场</font><br><font color="#4b69cd">L85A2 | 垃圾场</font><br><font color="#6600a1">M14 EBR | 垃圾场</font><br><font color="#6600a1">AA12 | 垃圾场</font><br><font color="#8847ff">M16 M203 | 垃圾场</font><br><font color="#8847ff">伤疤 | 垃圾场</font><br><font color="#caab05">或一款极其稀有宝贵的皮肤！</font>"
+
 ;usb key names
 CyberboneUSBKeyName="网骨 USB 钥匙"
 DragonfireUSBKeyName="龙火 USB 钥匙"
@@ -223,6 +247,8 @@ MaceAndShieldUSBKeyName="碎骨者 USB 钥匙"
 DeepstrikeUSBKeyName="Deepstrike USB 钥匙"
 HighVoltageUSBKeyName="高电压 USB 钥匙"
 FlarePistolUSBKeyName="喷火式战斗机 USB 钥匙"
+VietnamUSBKeyName="越南 USB 钥匙"
+JunkyardUSBKeyName="垃圾场 USB 钥匙"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="该钥匙只解密网骨加密蓝图"
@@ -244,6 +270,8 @@ MaceAndShieldUSBKeyDescription="该钥匙只解密碎骨者加密蓝图"
 DeepstrikeUSBKeyDescription="该钥匙只解密 Deepstrike 加密蓝图"
 HighVoltageUSBKeyDescription="该钥匙只解密高电压加密蓝图"
 FlarePistolUSBKeyDescription="该钥匙只解密喷火式战斗机加密蓝图"
+VietnamUSBKeyDescription="该钥匙只解密喷越南加密蓝图"
+JunkyardUSBKeyDescription="该钥匙只解密喷垃圾场加密蓝图"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="霍因装饰品供应箱 | 系列 #1"
@@ -289,6 +317,12 @@ CosmeticExceptionalType="超凡玩家配件"
 CosmeticMasterCraftedType="大师制造的玩家配件"
 CosmeticPreciousType="极其稀有的玩家配件"
 
+;Sideshow Type Section
+CosmeticSideshowType="夏日余兴节目玩家配件"
+CraftingSideshowType="季度奖劵"
+CraftingGoldenSideshowName="季度金奖劵"
+FacePaintSideshowType="夏日余兴节目面部彩绘"
+
 ;Crafting Type Section
 CraftingType="制造材料"
 
@@ -311,6 +345,9 @@ CommonWeaponSkinMaterialName="常见武器皮肤材料"
 UncommonWeaponSkinMaterialName="不常见武器皮肤材料"
 RareWeaponSkinMaterialName="稀有武器皮肤材料"
 ExceptionalWeaponSkinMaterialName="超凡武器皮肤材料"
+CraftingSideshowName="夏日余兴节目奖劵"
+CraftingPremiumSideshowName="夏日余兴节目优等奖劵"
+CraftingGoldenSideshowName="夏日余兴节目金奖劵"
 
 ;materialdescriptions
 CommonCosmeticMaterialDescription="常见制作材料，结合时可用来制作不常见装饰品。"
@@ -321,7 +358,9 @@ CommonWeaponSkinMaterialDescription="常见制作材料，结合时可用来制�
 UncommonWeaponSkinMaterialDescription="不常见制作材料，结合时可用来制作稀有武器皮肤。"
 RareWeaponSkinMaterialDescription="稀有制作材料，结合时可用来制作超凡武器皮肤。"
 ExceptionalWeaponSkinMaterialDescription="超凡制作材料，结合时可用来制作大师制造的武器皮肤。"
-
+CraftingSideshowDescription="奖劵可以兑换专属的夏日余兴节目物品。<font color="#4b69cd">需要 5 张奖券。</font> 将兑换下列一种稀有或更好的物品：<br><font color="#4b69cd">余兴节目小丑帽</font><br><font color="#4b69cd">余兴节目小丑鼻子</font><br><font color="#4b69cd">余兴节目面部彩绘</font><br><font color="#4b69cd">余兴节目猪头面具</font><br><font color="#4b69cd">余兴节目小游行者</font><br><font color="#4b69cd">余兴节目巫医帽</font><br><font color="#4b69cd">余兴节目人间大炮</font>"
+CraftingPremiumSideshowDescription="优等奖劵可以兑换专属的夏日余兴节目物品！<font color="#4b69cd">只需要 1 张奖券！</font> 将兑换下列一种稀有或更好的物品：<br><font color="#4b69cd">余兴节目小丑帽</font></font><br><font color="#4b69cd">余兴节目小丑鼻子</font><br><font color="#4b69cd">余兴节目面部彩绘</font><br><font color="#4b69cd">余兴节目猪头面具</font><br><font color="#4b69cd">余兴节目小游行者</font><br><font color="#4b69cd">余兴节目巫医帽</font><br><font color="#4b69cd">余兴节目人间大炮</font><br><font color="#caab05">或者一种极其稀有宝贵的配件！</font>"
+CraftingGoldenSideshowDescription="你有一张金奖劵！<font color="#4b69cd">只需要 1 张奖券！</font> 这张金奖劵可以兑换专属的<font color="#caab05">极其稀有宝贵的</font>夏日余兴节目物品。"
 
 [WeaponSkins]
 
@@ -479,6 +518,9 @@ AA12PreciousName="AA-12 | 宝贵"
 AA12TacticalMintName="AA12 | 策略 | 硬币"
 AA12TacticalFieldTestedName="AA12 | 策略 | 久经沙场"
 AA12TacticalBattleScarredName="AA12 | 维策略 | 身经百战"
+AA12JunkyardMintName="AA12 | 垃圾场 | 硬币"
+AA12JunkyardFieldTestedName="AA12 | 垃圾场 | 实地测验"
+AA12JunkyardBattleScarredName="AA12 | 垃圾场 | 身经百战"
 
 ;AK12 Descriptions
 AK12MintDescription="外部：硬币 | 这把 AK-12 来自死掉的俄罗斯特种部队，扫射效果明显。"
@@ -527,6 +569,12 @@ AK12PreciousName="AK-12 | 宝贵"
 AK12TacticalMintName="AK12 | 策略 | 硬币"
 AK12TacticalFieldTestedName="AK12 | 策略 | 久经沙场"
 AK12TacticalBattleScarredName="AK12 | 维策略 | 身经百战"
+AK12VietnamMintName="AK12 | 越南 | 硬币"
+AK12VietnamFieldTestedName="AK12 | 越南 | 实地测验"
+AK12VietnamBattleScarredName="AK12 | 越南 | 身经百战"
+AK12JunkyardMintName="AK12 | 垃圾场 | 硬币"
+AK12JunkyardFieldTestedName="AK12 | 垃圾场 | 实地测验"
+AK12JunkyardBattleScarredName="AK12 | 垃圾场 | 身经百战"
 
 ;AR15 Descriptions
 AR15MintDescription="外部：硬币 | 这是用来对付丧尸，而不是‘流氓’。"
@@ -608,6 +656,12 @@ CaulknBurnStreetPunksMintName="喷火枪 | 街头朋克 | 硬币"
 CaulknBurnStreetPunksFieldTestedName="喷火枪 | 街头朋克 | 久经沙场"
 CaulknBurnStreetPunksBattleScarredName="喷火枪 | 街头朋克 | 身经百战"
 CaulknBurnPreciousName="喷火枪 | 宝贵"
+
+;Centerfire Descriptions
+CenterfireMintWeeklyDescription="外部：硬币 | 一款现代化的莫斯伯格中发杠杆式步枪，后坐力低，而停止力高。更新的经典款。该物品可以通过完成每周爆发来解锁。"
+
+;Centerfire Names
+CenterfireWeeklyName="中发式 | 每周爆头 | 硬币"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="外部：硬币 | 一支高性能狩猎十字弓，穿透力和停止力俱佳！"
@@ -926,6 +980,9 @@ KrissPreciousName="Kriss 冲锋枪 | 宝贵"
 KrissShredderMintName="Kriss 冲锋枪 | 碎纸机 | 硬币"
 KrissShredderFieldTestedName="Kriss 冲锋枪 | 碎纸机 | 实地测验"
 KrissShredderBattleScarredName="Kriss 冲锋枪 | 碎纸机 | 身经百战"
+KrissJunkyardMintName="Kriss 冲锋枪 | 垃圾场 | 硬币"
+KrissJunkyardFieldTestedName="Kriss 冲锋枪 | 垃圾场 | 实地测验"
+KrissJunkyardBattleScarredName="Kriss 冲锋枪 | 垃圾场 | 身经百战"
 
 ;L85A2 Descriptions
 L85A2MintDescription="外部：硬币 | SA80 是英队的标准武器，呃，是在军队被吃掉之前。"
@@ -965,6 +1022,12 @@ L85A2PreciousName="L85A2 | 宝贵"
 L85A2TacticalMintName="L85A2 | 策略 | 硬币"
 L85A2TacticalFieldTestedName="L85A2 | 策略 | 久经沙场"
 L85A2TacticalBattleScarredName="L85A2 | 维策略 | 身经百战"
+L85A2VietnamMintName="L85A2 | 越南 | 硬币"
+L85A2VietnamFieldTestedName="L85A2 | 越南 | 实地测验"
+L85A2VietnamBattleScarredName="L85A2 | 越南 | 身经百战"
+L85A2JunkyardMintName="L85A2 | 垃圾场 | 硬币"
+L85A2JunkyardFieldTestedName="L85A2 | 垃圾场 | 实地测验"
+L85A2JunkyardBattleScarredName="L85A2 | 垃圾场 | 身经百战"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="外部：硬币 | 海军海豹突击队、三角洲特种部队和其他各种坏蛋的首选狙击步枪。"
@@ -976,7 +1039,28 @@ M14EBRPreciousDescription="外部：宝贵 | 海军海豹突击队、三角洲�
 M14EBRIndustrialMintName="M14 EBR 步枪 | 工业 | 硬币"
 M14EBRIndustrialFieldTestedName="M14 EBR 步枪 | 工业 | 实地测验"
 M14EBRIndustrialBattleScarredName="M14 EBR 步枪 | 工业 | 身经百战"
+M14EBRVietnamMintName="M14 EBR | 越南 | 硬币"
+M14EBRVietnamFieldTestedName="M14 EBR | 越南 | 实地测验"
+M14EBRVietnamBattleScarredName="M14 EBR | 越南 | 身经百战"
+M14EBRJunkyardMintName="M14 EBR | 垃圾场 | 硬币"
+M14EBRJunkyardFieldTestedName="M14 EBR | 垃圾场 | 实地测验"
+M14EBRJunkyardBattleScarredName="M14 EBR | 垃圾场 | 身经百战"
 M14EBRPreciousName="M14 EBR 步枪 | 宝贵"
+
+;M16M203 Descriptions
+M16M203MintDescription="外部：硬币 | 适合在子弹和爆炸物之间犹豫不决的人士。"
+M16M203FieldTestedDescription="外部：实地测验 | 适合在子弹和爆炸物之间犹豫不决的人士。"
+M16M203BattleScarredDescription="外部：身经百战 | 适合在子弹和爆炸物之间犹豫不决的人士。"
+M16M203PreciousDescription="外部：宝贵 | 适合在子弹和爆炸物之间犹豫不决的人士。"
+
+;M16M203 Names
+M16M203VietnamMintName="M16 M203 | 越南 | 硬币"
+M16M203VietnamFieldTestedName="M16 M203 | 越南 | 实地测验"
+M16M203VietnamBattleScarredName="M16 M203 | 越南 | 身经百战"
+M16M203JunkyardMintName="M16 M203 | 垃圾场 | 硬币"
+M16M203JunkyardFieldTestedName="M16 M203 | 垃圾场 | 实地测验"
+M16M203JunkyardBattleScarredName="M16 M203 | 垃圾场 | 身经百战"
+M16M203PreciousName="M16 M203 | 宝贵"
 
 ;M1911 Descriptions
 M1911MintDescription="外部：硬币 | 经典柯尔特 1911 半自动手枪。"
@@ -988,6 +1072,9 @@ M1911PreciousDescription="外部：宝贵 | 经典柯尔特 1911 半自动手枪
 M1911TacticalMintName="M1911 | 策略 | 硬币"
 M1911TacticalFieldTestedName="M1911 | 策略 | 久经沙场"
 M1911TacticalBattleScarredName="M1911 | 策略 | 身经百战"
+M1911VietnamMintName="M1911 | 越南 | 硬币"
+M1911VietnamFieldTestedName="M1911 | 越南 | 实地测验"
+M1911VietnamBattleScarredName="M1911 | 越南 | 身经百战"
 M1911PreciousName="M1911 | 宝贵"
 
 ;M4 Descriptions
@@ -1006,6 +1093,12 @@ M4StoriesofWarBattleScarredName="M4 | 战争故事| 身经百战"
 M4VictorianMintName="M4 | 维多利亚 | 硬币"
 M4VictorianFieldTestedName="M4 | 维多利亚 | 久经沙场"
 M4VictorianBattleScarredName="M4 | 维多利亚 | 身经百战"
+M4VietnamMintName="M4 | 越南 | 硬币"
+M4VietnamFieldTestedName="M4 | 越南 | 实地测验"
+M4VietnamBattleScarredName="M4 | 越南 | 身经百战"
+M4JunkyardMintName="M4 | 垃圾场 | 硬币"
+M4JunkyardFieldTestedName="M4 | 垃圾场 | 实地测验"
+M4JunkyardBattleScarredName="M4 | 垃圾场 | 身经百战"
 M4PreciousName="M4 | 宝贵"
 
 ;M79 Descriptions
@@ -1087,6 +1180,9 @@ MP5RASPreciousDescription="外部：宝贵 | 全球使用最广的一种冲锋�
 MP5RASIndustrialMintName="MP5RAS | 工业 | 硬币"
 MP5RASIndustrialFieldTestedName="MP5RAS | 工业 | 实地测验"
 MP5RASIndustrialBattleScarredName="MP5RAS | 工业 | 身经百战"
+MP5RASJunkyardMintName="MP5RAS | 垃圾场 | 硬币"
+MP5RASJunkyardFieldTestedName="MP5RAS | 垃圾场 | 实地测验"
+MP5RASJunkyardBattleScarredName="MP5RAS | 垃圾场 | 身经百战"
 MP5RASPreciousName="MP5RAS | 宝贵"
 
 ;MP7 Descriptions
@@ -1166,6 +1262,9 @@ RPG7PreciousName="RPG-7 | 宝贵"
 RPG7DeepstrikeMintName="RPG-7 | Deepstrike | 硬币"
 RPG7DeepstrikeFieldTestedName="RPG-7 | Deepstrike | 久经沙场"
 RPG7DeepstrikeBattleScarredName="RPG-7 | Deepstrike | 身经百战"
+RPG7VietnamMintName="RPG-7 | 越南 | 硬币"
+RPG7VietnamFieldTestedName="RPG-7 | 越南 | 实地测验"
+RPG7VietnamBattleScarredName="RPG-7 | 越南 | 身经百战"
 
 ;Scar Descriptions
 ScarMintDescription="外部：硬币 | 最初是为美国特种作战司令部设计，所以，真的，很特别！"
@@ -1214,6 +1313,9 @@ ScarDeepstrikeBattleScarredName="伤疤 | Deepstrike | 身经百战"
 ScarTacticalMintName="伤疤 | 策略 | 硬币"
 ScarTacticalFieldTestedName="伤疤 | 策略 | 久经沙场"
 ScarTacticalBattleScarredName="伤疤 | 策略 | 身经百战"
+ScarJunkyardMintName="伤疤 | 垃圾场 | 硬币"
+ScarJunkyardFieldTestedName="伤疤 | 垃圾场 | 实地测验"
+ScarJunkyardBattleScarredName="伤疤 | 垃圾场 | 身经百战"
 
 ;SG500 Descriptions
 SG500MintDescription="外部：硬币 | 配备手枪式握把的枪栓式 Mossberg SG 500 是威力惊人的近距离丧尸杀手。简单，高效。"
@@ -1316,6 +1418,12 @@ Winchester1894PreciousName="温彻斯特 1894 | 宝贵"
 Winchester1894DeepstrikeMintName="温彻斯特 1894 | Deepstrike | 硬币"
 Winchester1894DeepstrikeFieldTestedName="温彻斯特 1894 | Deepstrike | 久经沙场"
 Winchester1894DeepstrikeBattleScarredName="温彻斯特 1894 | Deepstrike | 身经百战"
+Winchester1894VietnamMintName="温彻斯特 1894 | 越南 | 硬币"
+Winchester1894VietnamFieldTestedName="温彻斯特 1894 | 越南 | 实地测验"
+Winchester1894VietnamBattleScarredName="温彻斯特 1894 | 越南 | 身经百战"
+Winchester1894JunkyardMintName="温彻斯特 1894 | 垃圾场 | 硬币"
+Winchester1894JunkyardFieldTestedName="温彻斯特 1894 | 垃圾场 | 实地测验"
+Winchester1894JunkyardBattleScarredName="温彻斯特 1894 | 垃圾场 | 身经百战"
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="外部：硬币 | 大号的老西部匕首。最适合切碎这里的丧尸。"
@@ -1970,30 +2078,35 @@ FirefighterHelmetOliveName="消防员头盔 | 橄榄色"
 FirefighterHelmetRedName="消防员头盔 | 红色"
 FirefighterHelmetWhiteName="消防员头盔 | 白色"
 FirefighterHelmetYellowName="消防员头盔 | 黄色"
+FirefighterHelmetPreciousName="消防员头盔 | 宝贵"
 FirefighterHelmetMaskDownBlackName="消防员头盔面具放下 | 黑色"
 FirefighterHelmetMaskDownBlueName="消防员头盔面具放下 | 蓝色"
 FirefighterHelmetMaskDownOliveName="消防员头盔面具放下 | 橄榄色"
 FirefighterHelmetMaskDownRedName="消防员头盔面具放下 | 红色"
 FirefighterHelmetMaskDownWhiteName="消防员头盔面具放下 | 白色"
 FirefighterHelmetMaskDownYellowName="消防员头盔面具放下 | 黄色"
+FirefighterHelmetMaskDownPreciousName="消防员头盔面具放下 | 宝贵"
 FirefighterHelmetMaskUpBlackName="消防员头盔面具收起 | 黑色"
 FirefighterHelmetMaskUpBlueName="消防员头盔面具收起 | 蓝色"
 FirefighterHelmetMaskUpOliveName="消防员头盔面具收起 | 橄榄色"
 FirefighterHelmetMaskUpRedName="消防员头盔面具收起 | 红色"
 FirefighterHelmetMaskUpWhiteName="消防员头盔面具收起 | 白色"
 FirefighterHelmetMaskUpYellowName="消防员头盔面具收起 | 黄色"
+FirefighterHelmetMaskUpPreciousName="消防员头盔面具收起 | 宝贵"
 FirefighterGasmaskBlackName="消防员防毒面具 | 黑色"
 FirefighterGasmaskBlueName="消防员防毒面具 | 蓝色"
 FirefighterGasmaskOliveName="消防员防毒面具 | 橄榄色"
 FirefighterGasmaskRedName="消防员防毒面具 | 红色"
 FirefighterGasmaskWhiteName="消防员防毒面具 | 白色"
 FirefighterGasmaskYellowName="消防员防毒面具 | 黄色"
+FirefighterGasmaskPreciousName="消防员防毒面具 | 宝贵"
 FirefighterOxygenTankBlackName="消防员防氧气瓶 | 黑色"
 FirefighterOxygenTankBlueName="消防员防氧气瓶 | 蓝色"
 FirefighterOxygenTankOliveName="消防员防氧气瓶 | 橄榄色"
 FirefighterOxygenTankRedName="消防员防氧气瓶 | 红色"
 FirefighterOxygenTankWhiteName="消防员防氧气瓶 | 白色"
 FirefighterOxygenTankYellowName="消防员防氧气瓶 | 黄色"
+FirefighterOxygenTankPreciousName="消防员氧气瓶 | 宝贵"
 InsectoidHelmetClosedBlackRedLightName="类昆虫头盔关闭 | 暗红色灯"
 InsectoidHelmetClosedBlackRedTrimName="类昆虫头盔关闭 | 暗红色边缘"
 InsectoidHelmetClosedBlackYellowLightName="类昆虫头盔关闭 | 黑黄色灯"
@@ -2046,8 +2159,78 @@ InsectoidHelmetGogglesDownPreciousName="类昆虫头盔护目镜放下 | 宝贵"
 DemonSlayerHelmetGreyName="恶魔杀手头盔 | 灰色"
 DemonSlayerHelmetPreciousName="恶魔杀手头盔 | 宝贵"
 
+;Sideshow Cosmetic Names
+SideshowClownHatYellowBlueName="余兴节目小丑帽 | 黄蓝"
+SideshowClownHatBlackWhiteName="余兴节目小丑帽 | 黑白"
+SideshowClownHatRedBlackName="余兴节目小丑帽 | 红黑"
+SideshowClownHatRainbowName="余兴节目小丑帽 | 彩虹"
+SideshowClownHatDoshName="余兴节目小丑帽 | 钱"
+SideshowClownHatZedTimeName="余兴节目小丑帽 | 丧尸时间"
+SideshowClownHatPreciousName="余兴节目小丑帽 | 宝贵"
+SideshowClownNoseFuzzyRedName="余兴节目小丑鼻子 | 磨砂红"
+SideshowClownNoseFuzzyYellowName="余兴节目小丑鼻子 | 磨砂黄"
+SideshowClownNoseFuzzyBlueName="余兴节目小丑鼻子 | 磨砂蓝"
+SideshowClownNoseFuzzyBlackName="余兴节目小丑鼻子 | 磨砂黑"
+SideshowClownNoseShinyRedName="余兴节目小丑鼻子 | 亮红"
+SideshowClownNoseShinyYellowName="余兴节目小丑鼻子 | 亮黄"
+SideshowClownNoseShinyBlueName="余兴节目小丑鼻子 | 亮蓝"
+SideshowClownNoseShinyBlackName="余兴节目小丑鼻子 | 亮黑"
+SideshowClownNosePreciousName="余兴节目小丑鼻子 | 宝贵"
+SideshowPigMaskPigletName="余兴节目猪头面具 | 小猪"
+SideshowPigMaskGreyName="余兴节目猪头面具 | 灰色"
+SideshowPigMaskRainbowName="余兴节目猪头面具 | 彩虹"
+SideshowPigMaskSideshowClownName="余兴节目猪头面具 | 余兴节目小丑"
+SideshowPigMaskPreciousName="余兴节目猪头面具 | 宝贵"
+SideshowTinyMarcherRedYellowName="余兴节目小游行者 | 红黄"
+SideshowTinyMarcherBlueYellowName="余兴节目小游行者 | 蓝黄"
+SideshowTinyMarcherRainbowName="余兴节目小游行者 | 彩虹"
+SideshowTinyMarcherBlackWhiteName="余兴节目小游行者 | 黑白"
+SideshowTinyMarcherWhiteName="余兴节目小游行者 | 白色"
+SideshowTinyMarcherPreciousName="余兴节目小游行者 | 宝贵"
+SideshowWitchdoctorHatBrownName="余兴节目巫医帽 | 棕色"
+SideshowWitchdoctorHatWhiteName="余兴节目巫医帽 | 白色"
+SideshowWitchdoctorHatRedName="余兴节目巫医帽 | 红色"
+SideshowWitchdoctorHatVoodooFunkName="余兴节目巫医帽 | 伏都恐怖"
+SideshowWitchdoctorHatGreenName="余兴节目巫医帽 | 绿色"
+SideshowWitchdoctorHatPreciousName="余兴节目巫医帽 | 宝贵"
+SideshowFacePaintAlbertsName="余兴节目面部彩绘 | 艾伯特斯"
+SideshowFacePaintAnaName="余兴节目面部彩绘 | 安娜"
+SideshowFacePaintScullyName="余兴节目面部彩绘 | 斯库利"
+SideshowFacePaintFosterName="余兴节目面部彩绘 | 福斯特"
+SideshowFacePaintJagerhornName="余兴节目面部彩绘 | Jagerhorn"
+SideshowFacePaintBriarName="余兴节目面部彩绘 | 布莱尔"
+SideshowFacePaintDonovanName="余兴节目面部彩绘 | 多诺万"
+SideshowFacePaintMastersonName="余兴节目面部彩绘 | 马斯特森"
+SideshowFacePaintTanakaName="余兴节目面部彩绘 | 田中"
+SideshowFacePaintClassicBriarName="余兴节目面部彩绘 | 经典布莱尔"
+SideshowFacePaintClassicMastersonName="余兴节目面部彩绘 | 经典马斯特森"
+SideshowFacePaintStrasserName="余兴节目面部彩绘 | 斯特拉瑟"
+SideshowFacePaintBannerName="余兴节目面部彩绘 | 班纳"
+SideshowFacePaintRaeName="余兴节目面部彩绘 | 瑞伊"
+SideshowHumanCanonPreciousName="余兴节目人间大炮 | 宝贵"
+SideshowHumanCanonDummyName="余兴节目人间大炮 | 假人"
+SideshowHumanCanonHorzineName="余兴节目人间大炮 | 霍因"
+SideshowHumanCanonHarukoName="余兴节目人间大炮 | 治子"
+SideshowHumanCanonCrispsName="余兴节目人间大炮 | 薯片"
+SideshowHumanCanonCanonBallName="余兴节目人间大炮 | 炮弹"
+SideshowHumanCanonStarsandStripesName="余兴节目人间大炮 | 星条旗"
+
+;Weekly Cosmetic Names
+WeeklyTinyTerrorHatName="每周 | 小恐怖帽"
+WeeklyFleshpoundVisorName="每周 | 闪击丧尸面甲"
+WeeklyHansPlushyBackpackName="每周 | 汉斯豪华背包"
+WeeklyHorzineArmorPreciousName="每周 | 霍因盔甲 | 宝贵"
+WeeklyHorzineHelmetPreciousName="每周 | 霍因头盔 | 宝贵"
+WeeklyKingPoundVisorPreciousName="每周 | 丧尸之王面甲 | 宝贵"
+WeeklyMindBlownName="每周 | 脑袋爆炸"
+
+
+
 ;Cosmetic Descriptions
 
+SummerSideshowAccessoryDescription="可在装备菜单进行装备；与大部分角色兼容。这是“夏日余兴节目”季节活动专属的一个物品。转化为 1 张余兴节目奖券。"
+SummerSideshowFacePaintDescription="可在装备菜单进行装备。这是夏日余兴节目季节活动专属的一个物品。转化为 1 张余兴节目奖券。"
+WeeklyRewardDescription="可在装备菜单进行装备；与大部分角色兼容。该物品可以通过完成每周爆发来解锁。"
 AviatorGogglesDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
 AviatorsDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
 BaseballHatDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
@@ -2073,7 +2256,7 @@ EnforcerMaskDescription="可在装备菜单进行装备；与 PC 罗伯-布莱�
 EyePatchDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、PC 罗伯-布莱尔、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳兼容。"
 FlatcapDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
 FlightHelmetDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
-FlightMaskDescription="可在装备菜单进行装备；与中将比尔-马斯特森兼容。"
+FlightMaskDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯·布莱尔、福斯特先生、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、汤姆·班纳、瑞伊·希金斯兼容。"
 FrontRowProtectionUpDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、PC 罗伯-布莱尔、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
 FrontRowProtectionDownDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
 GermanGasMaskDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"

@@ -240,9 +240,9 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
     KFW = GetOwnerWeapon();
     if(IsImpactActive() && IsWeaponOnPerk(KFW,, self.Class))
     {
-        return 1 + (GetSkillValue(PerkSkills[3]));
+        return GetSkillValue(PerkSkills[3]);
     }
-    return 1;
+    return 0;
 }
 
 simulated function ModifyWeaponSwitchTime(out float ModifiedSwitchTime)
@@ -288,57 +288,57 @@ simulated function bool HasNightVision()
 
 protected simulated function bool IsRapidFireActive()
 {
-    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
+    return (PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9);
 }
 
 protected simulated function bool CouldRapidFireActive()
 {
-    return PerkSkills[9].bActive;
+    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
 }
 
 private final simulated function bool IsLargeMagActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 private final simulated function bool IsBackupActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 private final simulated function bool IsHollowPointsActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
 private final simulated function bool IsTacticalReloadActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 private final function bool IsImpactActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 private final function bool IsHealthIncreaseActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
 private final function bool IsEatLeadActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 private final function bool IsAmmoVestActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 private final simulated function bool IsProfessionalActive()
 {
-    return PerkSkills[8].bActive;
+    return PerkSkills[8].bActive && IsPerkLevelAllowed(8);
 }
 
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
@@ -397,11 +397,11 @@ simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM, Vector Camera
 
     if((KFPM.bCrawler && KFPM.Floor.Z <= -0.7) && KFPM.Physics == 8)
     {
-        TargetLocation = KFPM.Location + ((vect(0, 0, -1) * KFPM.GetCollisionHeight()) * 1.2);        
+        TargetLocation = KFPM.Location + (((vect(0, 0, -1) * KFPM.GetCollisionHeight()) * 1.2) * KFPM.CurrentBodyScale);        
     }
     else
     {
-        TargetLocation = KFPM.Location + ((vect(0, 0, 1) * KFPM.GetCollisionHeight()) * 1.2);
+        TargetLocation = KFPM.Location + (((vect(0, 0, 1) * KFPM.GetCollisionHeight()) * 1.2) * KFPM.CurrentBodyScale);
     }
     ScreenPos = C.Project(TargetLocation);
     if((((ScreenPos.X < float(0)) || ScreenPos.X > float(C.SizeX)) || ScreenPos.Y < float(0)) || ScreenPos.Y > float(C.SizeY))
@@ -410,7 +410,7 @@ simulated function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM, Vector Camera
     }
     if(Class'KFGameEngine'.static.FastTrace_PhysX(TargetLocation, CameraLocation))
     {
-        HealthScale = float(KFPM.Health) / float(KFPM.HealthMax);
+        HealthScale = FClamp(float(KFPM.Health) / float(KFPM.HealthMax), 0, 1);
         C.EnableStencilTest(true);
         C.SetDrawColor(0, 0, 0, 255);
         C.SetPos(ScreenPos.X - (HealthBarLength * 0.5), ScreenPos.Y);
@@ -462,8 +462,8 @@ defaultproperties
     Passives(1)=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level",IconPath="")
     Passives(2)=(Title="Zed Time Extension",Description="Zed time increases %x% every 5 levels",IconPath="")
     Passives(3)=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels",IconPath="")
-    Passives(4)=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles",IconPath="")
-    Passives(5)=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units",IconPath="")
+    Passives(4)=(Title="Night Vision Capability",Description="Flashlights - AND Night Vision Goggles",IconPath="")
+    Passives(5)=(Title="Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units",IconPath="")
     SkillCatagories[0]="Ammo Management"
     SkillCatagories[1]="Tactics"
     SkillCatagories[2]="Survival"

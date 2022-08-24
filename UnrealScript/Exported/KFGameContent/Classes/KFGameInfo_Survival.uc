@@ -345,6 +345,7 @@ var Array<AARAWard> TeamAwardList;
  ***********************************************************************************/
 var	byte								WaveMax;	// The "end" wave
 var	int									WaveNum;	// The wave we are currently in
+var bool                                bHumanDeathsLastWave; //Track this separate from player count in case someone dies and leaves
 
 /************************************************************************************
  * Objectives
@@ -563,6 +564,12 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     	// no KFTraderDialogManager object on dedicated server, so use static function
     	class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog( MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo );
 	}
+
+    //If a human died to a non-suicide
+    if (KilledPawn.IsA('KFPawn_Human') && DamageType != class'DmgType_Suicided')
+    {
+        bHumanDeathsLastWave = true;
+    }
 
 	CheckWaveEnd();
 }
@@ -788,7 +795,7 @@ function UpdateWaveEndDialogInfo()
 		{
 			if( KFPC.Pawn != none && KFPC.Pawn.IsAliveAndWell() )
 			{
-				if( PlayersAlive == PlayersTotal )
+				if( !bHumanDeathsLastWave )
 				{
 					// no teammates died
 					KFPC.PWRI.bAllSurvivedLastWave = true;
@@ -798,7 +805,7 @@ function UpdateWaveEndDialogInfo()
 					// only survivor
 					KFPC.PWRI.bOneSurvivedLastWave = true;
 				}
-				else if( PlayersTotal - PlayersAlive > 1 )
+				else
 				{
 					// more than one teammate died
 					KFPC.PWRI.bSomeSurvivedLastWave = true;
@@ -821,6 +828,8 @@ function UpdateWaveEndDialogInfo()
 	{
 		BestTeammate.PWRI.bBestTeammate = true;
 	}
+
+    bHumanDeathsLastWave = false;
 }
 
 /************************************************************************************
@@ -1037,6 +1046,11 @@ function StartWave()
 		MyKFGRI.UpdateHUDWaveCount();
 	}
 
+    if (bEnableMapObjectives)
+    {
+        MyKFGRI.StartNextObjective();
+    }
+
 	WaveStarted();
 
 	MyKFGRI.AIRemaining = SpawnManager.WaveTotalAI;
@@ -1252,6 +1266,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 		}
 	}
 
+    MyKFGRI.DeactivateObjective();
 	MyKFGRI.NotifyWaveEnded();
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
 
@@ -1725,9 +1740,10 @@ defaultproperties
    AIClassList(5)=Class'kfgamecontent.KFPawn_ZedStalker'
    AIClassList(6)=Class'kfgamecontent.KFPawn_ZedScrake'
    AIClassList(7)=Class'kfgamecontent.KFPawn_ZedFleshpound'
-   AIClassList(8)=Class'kfgamecontent.KFPawn_ZedBloat'
-   AIClassList(9)=Class'kfgamecontent.KFPawn_ZedSiren'
-   AIClassList(10)=Class'kfgamecontent.KFPawn_ZedHusk'
+   AIClassList(8)=Class'kfgamecontent.KFPawn_ZedFleshpoundMini'
+   AIClassList(9)=Class'kfgamecontent.KFPawn_ZedBloat'
+   AIClassList(10)=Class'kfgamecontent.KFPawn_ZedSiren'
+   AIClassList(11)=Class'kfgamecontent.KFPawn_ZedHusk'
    AIBossClassList(0)=Class'kfgamecontent.KFPawn_ZedHans'
    AIBossClassList(1)=Class'kfgamecontent.KFPawn_ZedPatriarch'
    GameplayEventsWriterClass=Class'KFGame.KFGameplayEventsWriter'

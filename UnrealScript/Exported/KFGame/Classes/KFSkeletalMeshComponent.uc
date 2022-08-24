@@ -26,6 +26,10 @@ class KFSkeletalMeshComponent extends SkeletalMeshComponent
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 
 /** This variable is set during async tick so that we have the cached value when we tick physics calls in the post tick. */
@@ -56,6 +60,9 @@ var		float		ClearStreamingTime;
  * Useful when issuing tick notifies (e.g. Hitbox collision) is critical
  */
 var() float MinTickTimeStep;
+
+/** Scale to use when doing line traces against the head bone */
+var() float HeadBoneScale;
 
 /**
   * Force streamed textures to be loaded.  Used to get MIPS streamed in before weapon comes up
@@ -170,6 +177,7 @@ final function float GetAnimNotifyTime(Name AnimSeqName, class<AnimNotify> Notif
 
 defaultproperties
 {
+   HeadBoneScale=1.000000
    ReplacementPrimitive=None
    Name="Default__KFSkeletalMeshComponent"
    ObjectArchetype=SkeletalMeshComponent'Engine.Default__SkeletalMeshComponent'

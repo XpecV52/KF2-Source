@@ -1010,6 +1010,12 @@ function TickRangedCombatDecision()
         return;
     }
 
+    //Don't attack while we're in theatrics
+    if (CommandList != none && CommandList.class == class'AICommand_BossTheatrics')
+    {
+        return;
+    }
+
     if( Enemy != None && (LastGrenadeAttackEvalTime == 0 || (WorldInfo.TimeSeconds - LastGrenadeAttackEvalTime) > GrenadeAttackEvalInterval) )
     {
         LastGrenadeAttackEvalTime = WorldInfo.TimeSeconds;

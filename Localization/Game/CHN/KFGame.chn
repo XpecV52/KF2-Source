@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="公开"
 ConsolePermissionStrings[1]="仅限邀请"
 
 ModeStrings[0]="生存"
-ModeStrings[1]="VS 生存"
+ModeStrings[1]="每周"
+ModeStrings[2]="VS 生存"
 
 NoPreferenceString="任意"
 OKString="确定"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="每波可以更新神射一次！"
 YesString="是"
 NoString="否"
 TeamSwappedString="你的队伍已被交换"
+
+CancelConnectionString="取消加载"
 
 DisbandPartyString="解散小队"
 LeaveCurrentMenuString="离开当前菜单？"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="没有已买到的物品"
 SetTakeoverServerPasswordTitle="输入新密码以保护游戏："
 FreeConsolePlayOverString="感谢您游戏《杀戮空间 2》！免费活动已结束，但是您可以选择下方的“商店”按钮购买游戏并了解详细信息。"
 BuyGameString="商店"
+CustomString="自定义"
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="爆发完成奖励"
+WeeklyString="霍因每周爆发"
+CurrentWeeklySettingsString="当前爆发设置"
+SpecialEventString="夏日余兴节目"
+ShortWeeklyString="每周"
+SeasonalString="季度"
+SpecialEventChanceDropString="掉落有限物品"
+GrantedSpecialEventString="完成奖励"
+RewardsString="爆发完成奖励"
+WeeklyOverview="每周有新的挑战游戏模式！"
+ObjectivesString="切换目标"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="无法找到比赛"
@@ -115,8 +133,9 @@ TutorialString="基准训练"
 
 [StartMenuHelperText]
 modeList0="生存——PVE 人工智能控制的丧尸战斗波"
-modeList1="VS 生存——PVP 霍因佣兵 vs 玩家和人工智能控制的丧尸波"
-modeList2=""
+modeList1="每周爆发 - 每周推出一个不同的变种游戏模式。"
+modeList2="VS 生存——PVP 霍因佣兵 vs 玩家和人工智能控制的丧尸波"
+modeList3=""
 difficultyList0="普通——适合神射 0-5 级的新手玩家。"
 difficultyList1="困难——适合神射 6-12 级的有经验玩家。每波的丧尸数量会更多，它们移动的速度更快，血值也更高。可以捡的物品更少，你得到的钱也更少。"
 difficultyList2="自杀——适合神射 13-25 级的熟练玩家。每波的丧尸数量甚至会更多，他们使用新的攻击，移动的速度甚至更快。可以捡的物品甚至更少，你得到的钱也更少。"
@@ -666,6 +685,7 @@ DamageDealtString="造成的伤害："
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[准备就绪]"
 WaitingString="正在等待玩家"
+MatchOverString="比赛结束 \n 请做好准备…"
 DeployingString="部署剩余时间 "
 CreatePartyString="建立小队"
 ReadyString="准备就绪"
@@ -840,6 +860,7 @@ CancelString="取消"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="升级"
 TierUnlockedString="新技能已解锁！"
+ObjectiveCompleteString="目标达成"
 
 [KFGFxHUD_WaveInfo]
 WaveString="波"
@@ -924,6 +945,7 @@ ConfigureMicString="配置麦克风"
 VocalsString="音乐声"
 BattleChatterString="最小化战斗颤动"
 PushToVoIPString="推送到 VoIP"
+ScreenSizeString="调节屏幕大小"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="使用这些视频设置吗？"
@@ -1129,7 +1151,7 @@ GBA_Look_Gamepad="视点控制"
 GBA_Grenade_Gamepad="扔手榴弹"
 GBA_TurnLeft_Gamepad="视点控制"
 GBA_Look_Gamepad="视点控制"
-GBA_DPad_Left_Gamepad="语音命令/表情"
+GBA_DPad_Left_Gamepad="语音命令 / 表情"
 GBA_DPad_Up_Gamepad="装备治愈师"
 GBA_DPad_Right_Gamepad="扔钱"
 GBA_DPad_Down_Gamepad="切换手电筒"
@@ -1322,6 +1344,7 @@ MapCollectibleName="颗闪亮的钱币"
 WaveStartMessage="一波即将到来"
 WaveEndMessage="一波完成"
 GetToTraderMessage="去找商人"
+ScavengeMessage="清除"
 YouLostMessage="失败"
 YouWonMessage="胜利"
 SquadWipedOutMessage="你的小队被消灭了！"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>治愈自己"
 PressToBashWarning="猛击"
 GamepadWeaponSelectHint="<%HOLD%>武器选择"
 PlayerClotGrabWarningMessage="杀死丧尸，冲出重围！"
-UseMinigameMessage="激活小游戏"
+UseMinigameMessage="激活"
 UseMinigameGeneratorMessage="激活发生器"
 
 [KFLocalMessage_ServerNotification]
@@ -2162,6 +2185,7 @@ Forums="访问我们的社区论坛"
 Survey="参加游戏可玩性调查"
 CommunityTracker="追踪社区问题请求"
 FeaturedCrateKey="本周主打霍因供应箱钥匙 - $2.49"
+FeaturedEventItem="特色活动道具"
 FeaturedUsbKey="本周主打武器皮肤 USB 钥匙 - $2.49"
 FeaturedRareItem="本周主打稀有物品 - $3.99"
 FeaturedExceptionalItem="本周主打非凡物品 - $7.49"
@@ -2181,16 +2205,18 @@ HorzineSupplyCrateKey10="霍因供应箱钥匙 | 系列 #10 - $2.49"
 HorzineSupplyCrateKey11="霍因供应箱钥匙 | 系列 #11 - $2.49"
 HorzineSupplyCrateKey12="霍因供应箱钥匙 | 系列 #12 - $2.49"
 HorzineSupplyCrateKey13="霍因供应箱钥匙 | 系列 #13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+USBSpitfire="喷火 USB 钥匙 - $2.49"
+USBHighVoltage="高电压 USB 钥匙 - $2.49"
+MerchSale="KF2 装备大促销！2017 年 4 月 30 日之前优惠至 7.5 折，促销码 ZED"
 
 [Zeds]
 KFPawn_ZedBloat="胆汁怪"
 KFPawn_ZedClot="血凝丧尸"
 KFPawn_ZedCrawler="爬行怪"
 KFPawn_ZedCrawlerKing="精英爬行怪"
+KFPawn_ZedFleshpoundMini="小丧尸"
 KFPawn_ZedFleshPound="血凝丧尸"
+KFPawn_ZedFleshpoundKing="闪击丧尸之王"
 KFPawn_ZedGorefast="速冲怪"
 KFPawn_ZedGorefastDualBlade="血魔"
 KFPawn_ZedHans="汉斯-沃尔特博士"
@@ -2319,6 +2345,119 @@ KFWeap_Zweihander="骑士推销"
 
 
 Source0="骑士推销"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="掉落 1"
+ChanceDropDescriptionStrings[1]="掉落 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="能力提升",DescriptionString="在悲惨王国中提升发生器的能力");
+SpecialEventObjectiveInfoList[1]=(TitleString="爆开血凝丧尸",DescriptionString="在悲惨王国中爆开血凝丧尸");
+SpecialEventObjectiveInfoList[2]=(TitleString="浸泡胆汁怪",DescriptionString="在悲惨王国中浸泡胆汁怪");
+SpecialEventObjectiveInfoList[3]=(TitleString="扔钱",DescriptionString="在悲惨王国中扔钱");
+SpecialEventObjectiveInfoList[4]=(TitleString="假年华",DescriptionString="在悲惨王国中赢得困难难度或难度更高的比赛");
+
+AllCompleteRewardDescriptionString="余兴节目防护服"
+
+ChanceDropDescriptionStrings[0]="余兴节目奖励劵"
+ChanceDropDescriptionStrings[1]="余兴节目金奖劵"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="当前爆发：头颅爆竹"
+DescriptionStrings[0]="大脑伤害是最好的伤害。"
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="在此次爆发中，丧尸发生了突变，它们只能通过头部的伤害来镇压。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="当前爆发：小恐怖"
+DescriptionStrings[0]="小的威胁仍然是威胁。"
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="在此次爆发中射击丧尸，会让它们缩小，因此就更难打击。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="当前爆发：丧尸崇拜"
+DescriptionStrings[0]="至始至终全部都是闪击丧尸。几乎都是。"
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="闪击丧尸大会在市内举办！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="当前爆发：上升，上升，然后衰落"
+DescriptionStrings[0]="试着制作九十九个丧尸气球。"
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="在此次爆发中射击丧尸，能让它们像气球一样膨胀，甚至都能飘走，然后爆炸！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="当前爆发：丧尸时间"
+DescriptionStrings[0]="这个世界里的所有丧尸时间。"
+DescriptionStrings[1]="长度：短（4 波）"
+ModifierDescriptions[0]="有没有想过生命会与你擦肩而过？不是在这次爆发中！只要你接近一个丧尸，你随时就在丧尸时间里。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="当前爆发：爆炸"
+DescriptionStrings[0]="丧尸在压力之下；可能会爆炸。"
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="或许是因为他们吃的东西？有毒气体？不管是因为什么，丧尸在此次爆发中被杀死时会爆炸。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="当前爆发：健美丧尸"
+DescriptionStrings[0]="他们越大，你摔的越重。"
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="在此次爆发中，丧尸会在击打玩家或受某些丧尸能力的影响时，增加他们的生命、大小和范围，在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="当前爆发：毛球丧尸"
+DescriptionStrings[0]="…他们肯定弄伤了他们的脖子。"
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="这批丧尸出现了非常可怕的错误，它们的头比正常的大了很多多多多多多！甚至是巨大！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2700,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="生命学实验室"
 
@@ -2572,6 +2727,9 @@ DisplayName="燃烧的巴黎"
 
 [Survival KFGameInfoSummary]
 GameName="生存"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="每周"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="沃尔特庄园"
@@ -2608,6 +2766,9 @@ DisplayName="后裔"
 
 [KF-Nuked KFMapSummary]
 DisplayName="核武器"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="悲惨王国"
 
 [KFMapInfo]
 ; defaults

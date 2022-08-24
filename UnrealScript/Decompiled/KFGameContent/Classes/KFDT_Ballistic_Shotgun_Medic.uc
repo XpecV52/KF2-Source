@@ -40,7 +40,7 @@ defaultproperties
     ModifierPerkList=/* Array type was not detected. */
     BloodSpread=0.4
     BloodScale=0.6
-    KDamageImpulse=550
-    KDeathVel=35
-    KDeathUpKick=120
+    KDamageImpulse=900
+    KDeathVel=350
+    KDeathUpKick=-500
 }

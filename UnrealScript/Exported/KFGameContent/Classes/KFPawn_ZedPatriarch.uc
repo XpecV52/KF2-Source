@@ -322,6 +322,7 @@ simulated event PostBeginPlay()
 simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
 {
 	local int i;
+    local KFCharacterInfo_Monster MonsterInfo;
 
 	super.SetCharacterArch( Info );
 
@@ -340,6 +341,19 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 		Mesh.AttachComponentToSocket( BoilLightComponent, BoilLightSocketName );
 		UpdateBattlePhaseLights();
 		BoilLightComponent.SetEnabled( true );
+
+        MonsterInfo = KFCharacterInfo_Monster(Info);
+        if (MonsterInfo != none)
+        {
+            if (MaterialInstanceConstant(MonsterInfo.Skins[0]) != none)
+            {
+                BodyMaterial = MaterialInstanceConstant(MonsterInfo.Skins[0]);
+            }
+            if (MaterialInstanceConstant(MonsterInfo.Skins[1]) != none)
+            {
+                BodyAltMaterial = MaterialInstanceConstant(MonsterInfo.Skins[1]);
+            }
+        }
 	}
 }
 
@@ -1398,6 +1412,15 @@ simulated function UpdateGameplayMICParams()
 				PlayStealthSoundLoopEnd();
 				DoCloakFX();
 			}
+
+            //Update PAC meshes
+            for (i = 0; i < 3; ++i)
+            {
+                if (ThirdPersonAttachments[i] != none)
+                {
+                    ThirdPersonAttachments[i].SetHidden(false);
+                }
+            }
 		}
 		else if ( bIsCloaking && bIsSpotted && CharacterMICs[0].Parent != SpottedMaterial )
 		{
@@ -1414,6 +1437,15 @@ simulated function UpdateGameplayMICParams()
 			Mesh.CastShadow = false;
 			Mesh.SetPerObjectShadows( false );
 			SetDamageFXActive( false );
+
+            //Update PAC meshes
+            for (i = 0; i < 3; ++i)
+            {
+                if (ThirdPersonAttachments[i] != none)
+                {
+                    ThirdPersonAttachments[i].SetHidden(true);
+                }
+            }
 		}
 		else if( bIsCloaking && !bIsSpotted && CharacterMICs[0].Parent != CloakedBodyMaterial )
 		{
@@ -1431,6 +1463,15 @@ simulated function UpdateGameplayMICParams()
 			Mesh.CastShadow = false;
 			Mesh.SetPerObjectShadows( false );
 			SetDamageFXActive( false );
+
+            //Update PAC meshes
+            for (i = 0; i < 3; ++i)
+            {
+                if (ThirdPersonAttachments[i] != none)
+                {
+                    ThirdPersonAttachments[i].SetHidden(true);
+                }
+            }
 		}
 	}
 }
@@ -1646,9 +1687,9 @@ simulated function SetDamageFXActive( bool bEnable )
 }
 
 /** Overridden to cause shimmer when taking damage */
-simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
+simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation, optional bool bUseHitImpulse = true )
 {
-	super.PlayTakeHitEffects( HitDirection, HitLocation );
+	super.PlayTakeHitEffects( HitDirection, HitLocation, bUseHitImpulse );
 
 	if( !bIsCloaking || CharacterMICs[0].Parent == SpottedMaterial || CloakPercent > CloakShimmerAmount || (WorldInfo.TimeSeconds - LastCloakShimmerTime) < 0.1f )
 	{
@@ -2014,20 +2055,12 @@ defaultproperties
    CloakPercent=1.000000
    CloakSpeed=3.000000
    DeCloakSpeed=4.500000
-   BossName="The Patriarch"
-   BossCaptionStrings(0)="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
-   BossCaptionStrings(1)="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
-   BossCaptionStrings(2)="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
-   BossCaptionStrings(3)="Running off on your own isn't an escape - it makes you easy prey he will target first."
-   BossCaptionStrings(4)="Yes, the Patriarch can still cloak, go invisible, run off, and heal himself. Some things don't change."
-   BossCaptionStrings(5)="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
    SummonWaves(0)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Normal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Normal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Normal_Three')
    SummonWaves(1)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Hard_Three')
    SummonWaves(2)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_Suicidal_Three')
    SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Pat_Minions_HOE_Three')
    NumMinionsToSpawn=(X=6.000000,Y=10.000000)
    CurrentBattlePhase=1
-   TheatricCameraSocketName="TheatricCameraRootSocket"
    bLargeZed=True
    bCanGrabAttack=True
    MonsterArchPath="ZED_ARCH.ZED_Patriarch_Archetype"
@@ -2067,6 +2100,14 @@ defaultproperties
    FootstepCameraShakeOuterRadius=1000.000000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedPatriarch:FootstepCameraShake0'
    OnDeathAchievementID=130
+   BossName="The Patriarch"
+   BossCaptionStrings(0)="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+   BossCaptionStrings(1)="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+   BossCaptionStrings(2)="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+   BossCaptionStrings(3)="Running off on your own isn't an escape - it makes you easy prey he will target first."
+   BossCaptionStrings(4)="Yes, the Patriarch can still cloak, go invisible, run off, and heal himself. Some things don't change."
+   BossCaptionStrings(5)="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+   TheatricCameraSocketName="TheatricCameraRootSocket"
    PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
    LocalizationKey="KFPawn_ZedPatriarch"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:ThirdPersonHead0'
@@ -2115,6 +2156,7 @@ defaultproperties
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
+      AfflictionClasses(11)=()
       FireFullyCharredDuration=50.000000
       FireCharPercentThreshhold=0.350000
       Name="Afflictions_0"
@@ -2132,6 +2174,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
+   IncapSettings(11)=(Vulnerability=(0.080000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=650.000000
    DefaultInventory(0)=Class'kfgamecontent.KFWeap_Minigun_Patriarch'

@@ -35,7 +35,7 @@ defaultproperties
     GibImpulseScale=1
     BloodSpread=0.4
     BloodScale=0.6
-    KDamageImpulse=160
-    KDeathVel=15
-    KDeathUpKick=250
+    KDamageImpulse=3500
+    KDeathVel=650
+    KDeathUpKick=800
 }

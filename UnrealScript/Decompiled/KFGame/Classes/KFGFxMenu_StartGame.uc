@@ -35,6 +35,7 @@ var KFGFxStartGameContainer_FindGame FindGameContainer;
 var KFGFxStartGameContainer_Options OptionsComponent;
 var KFGFxStartContainer_InGameOverview OverviewContainer;
 var KFGFxStartContainer_ServerBrowserOverview ServerBrowserOverviewContainer;
+var KFGFxMissionObjectivesContainer MissionObjectiveContainer;
 var GFxObject MatchMakingButton;
 var GFxObject ServerBrowserButton;
 var const localized string FindGameString;
@@ -81,6 +82,7 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     local DataStoreClient DSClient;
 
     super.InitializeMenu(InManager);
+    SetSeasonalEventClass();
     GetMapList(MapStringList);
     DSClient = Class'UIInteraction'.static.GetDataStoreClient();
     if(DSClient != none)
@@ -98,10 +100,66 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     }
 }
 
+function SetSeasonalEventClass()
+{
+    local GFxWidgetBinding MyWidgetBinding;
+
+    MyWidgetBinding.WidgetName = 'specialEventContainerMC';
+    MyWidgetBinding.WidgetClass = GetSpecialEventClass(Class'KFGameEngine'.static.GetSeasonalEventID());
+    SubWidgetBindings[8] = MyWidgetBinding;
+}
+
+static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass(int SpecialEventID)
+{
+    switch(SpecialEventID)
+    {
+        case 1:
+            return Class'KFGFxSummerSideShowObjectivesContainer';
+        default:
+            return Class'KFGFxSpecialEventObjectivesContainer';
+            break;
+    }
+}
+
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
     switch(WidgetName)
     {
+        case 'missionObjectivesContainerMC':
+            if(MissionObjectiveContainer == none)
+            {
+                MissionObjectiveContainer = KFGFxMissionObjectivesContainer(Widget);
+                MissionObjectiveContainer.Initialize(self);
+            }
+            break;
+        case 'expandedMissionObjectivesMC':
+            if(MissionObjectiveContainer.ExpandedObjectiveContainer == none)
+            {
+                MissionObjectiveContainer.ExpandedObjectiveContainer = KFGFxExpandedObjectivesContainer(Widget);
+                MissionObjectiveContainer.ExpandedObjectiveContainer.Initialize(self);
+            }
+            break;
+        case 'collapsedMissionObjectivesMC':
+            if(MissionObjectiveContainer.CollapsedObjectiveContainer == none)
+            {
+                MissionObjectiveContainer.CollapsedObjectiveContainer = KFGFxCollapsedObjectivesContainer(Widget);
+                MissionObjectiveContainer.CollapsedObjectiveContainer.Initialize(self);
+            }
+            break;
+        case 'specialEventContainerMC':
+            if(MissionObjectiveContainer.ExpandedObjectiveContainer.SpecialEventsContainer == none)
+            {
+                MissionObjectiveContainer.ExpandedObjectiveContainer.SpecialEventsContainer = KFGFxSpecialEventObjectivesContainer(Widget);
+                MissionObjectiveContainer.ExpandedObjectiveContainer.SpecialEventsContainer.Initialize(self);
+            }
+            break;
+        case 'weeklyContainerMC':
+            if(MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer == none)
+            {
+                MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer = KFGFxWeeklyObjectivesContainer(Widget);
+                MissionObjectiveContainer.ExpandedObjectiveContainer.WeeklyEventContainer.Initialize(self);
+            }
+            break;
         case 'FindGameContainer':
             if(FindGameContainer == none)
             {
@@ -933,6 +991,10 @@ function OnOpen()
     if(Manager != none)
     {
         Manager.SetStartMenuState(GetStartMenuState());
+    }
+    if(MissionObjectiveContainer != none)
+    {
+        MissionObjectiveContainer.Refresh();
     }
 }
 

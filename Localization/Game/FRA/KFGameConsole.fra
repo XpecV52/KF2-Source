@@ -16,6 +16,7 @@ KF-HostileGrounds="Joue sur Terrain hostile"
 KF-ZedLanding="Joue sur Île des Zeds"
 KF-TheDescent="Joue sur La descente"
 KF-Nuked="Joue sur Atomisé"
+KF-TragicKingdom="Joue sur Royaume déchanté"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -144,7 +145,6 @@ ErrorNoPlayfabDescription="Échec de la connexion aux serveurs principaux du jeu
 ErrorTSSFailedDescription="Échec de la connexion au serveur d'équilibre du jeu. Assurez-vous que vous êtes bien connecté à internet puis réessayez."
 NotSignedInTitle="Non connecté."
 
-
 [Notifications]
 ControllerDisconnectedTitle="Manette déconnectée"
 ControllerDisconnectedPS4Message="La manette sans fil a été déconnectée. Veuillez reconnecter la manette sans fil de l'utilisateur qui a lancé le jeu."
@@ -174,7 +174,6 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Afficher le profil"
-ViewProfileStringXB1="Voir carte de jeu"
 
 [KFGFxObject_Menu]
 ResetDefaults="Voulez-vous vraiment rétablir les paramètres par défaut ?"
@@ -194,15 +193,12 @@ ControllerSound="Sons de la manette"
 MatchmakingRegionString="RÉGION"
 LeaveMenuString="En quittant le matchmaking, vous quittez aussi votre groupe."
 
-[KFGFxMenu_Store]
-
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="RÉGION"
 MapPreference="CARTE PRÉFÉRÉE"
 
 [KFGFxMenu_Exit]
-HeaderStringXB1="DÉCONNEXION"
 LogoutKF2="Revenir à l'écran-titre"
 
 [Misc]

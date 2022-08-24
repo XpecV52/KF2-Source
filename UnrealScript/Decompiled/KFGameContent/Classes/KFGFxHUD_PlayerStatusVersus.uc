@@ -45,6 +45,7 @@ function UpdateHealth()
             LastHealth = MyPC.Pawn.Health;
         }
     }
+    SetVisible(LastHealth > 0);
 }
 
 function UpdateXP(int XPDelta, int XPPercent, bool bLevelUp, class<KFPerk> PerkClass);

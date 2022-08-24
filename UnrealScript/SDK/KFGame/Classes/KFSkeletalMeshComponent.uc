@@ -15,16 +15,20 @@ class KFSkeletalMeshComponent extends SkeletalMeshComponent
 cpptext
 {
 	/** Creates a FKFSkeletalMeshSceneProxy (defined in UTWeapon.cpp) */
-	virtual FPrimitiveSceneProxy* CreateSceneProxy();
+	virtual FPrimitiveSceneProxy* CreateSceneProxy() override;
 	
 	/** Default tick. */
-	virtual void Tick(FLOAT DeltaTime);
+	virtual void Tick(FLOAT DeltaTime) override;
 	
 	/** The KFSkeletalMesh ticks during async as well as post async, performing different work. */
 	void TickPostAsync(FLOAT DeltaTime);
 	
 	/** Overridden ProcessRootMotion so that we can defer root motion until post asycn work. */
-	virtual void ProcessRootMotion( FLOAT DeltaTime, FBoneAtom& ExtractedRootMotionDelta, INT& bHasRootMotion );
+	virtual void ProcessRootMotion( FLOAT DeltaTime, FBoneAtom& ExtractedRootMotionDelta, INT& bHasRootMotion ) override;
+
+#if __TW_HEADSCALE_
+    virtual float GetHeadBoneScale() override { return HeadBoneScale; }
+#endif
 }
 
 
@@ -56,6 +60,9 @@ var		float		ClearStreamingTime;
  * Useful when issuing tick notifies (e.g. Hitbox collision) is critical
  */
 var() float MinTickTimeStep;
+
+/** Scale to use when doing line traces against the head bone */
+var() float HeadBoneScale;
 
 /**
   * Force streamed textures to be loaded.  Used to get MIPS streamed in before weapon comes up
@@ -171,4 +178,5 @@ final function float GetAnimNotifyTime(Name AnimSeqName, class<AnimNotify> Notif
 DefaultProperties
 {
 	FOV=0.0
+    HeadBoneScale=1.0
 }

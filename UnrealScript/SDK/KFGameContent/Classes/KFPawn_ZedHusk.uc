@@ -41,6 +41,7 @@ var protected KFGameExplosion ExplosionTemplate;
 
 /** Set when husk blows up to make sure it only happens once */
 var protected transient bool bHasExploded;
+var protected transient bool bHasSuicideExploded;
 
 /** Chest light */
 var protected PointLightComponent ChestLightComponent;
@@ -346,6 +347,8 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 	if( !bHasExploded && (!bPlayedDeath || bExplodeOnDeath) )
 	{
 		OldController = Controller;
+        bHasExploded = true;
+        bHasSuicideExploded = !bIgnoreHumans;
 
 		if( Role == ROLE_Authority )
 		{
@@ -380,9 +383,13 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 		}
 
 		OnExploded( OldController );
-
-	    bHasExploded = true;
 	}
+}
+
+/** Overriden in subclasses.  Determines if we should explode on death in specific game modes */
+function bool WeeklyShouldExplodeOnDeath()
+{
+    return !bHasExploded || !bHasSuicideExploded;
 }
 
 /** Do any explosion death-related actions */
@@ -567,6 +574,7 @@ DefaultProperties
 	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=8.5,  Duration=4.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5,  Duration=1.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0), Cooldown=5.5,  Duration=3.0)
+    IncapSettings(AF_Bleed)=    (Vulnerability=(3))
 
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=5

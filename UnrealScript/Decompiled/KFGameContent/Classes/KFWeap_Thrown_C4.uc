@@ -171,6 +171,7 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     if(I < NumDeployedCharges)
     {
         DeployedCharges[I].Instigator = Instigator;
+        DeployedCharges[I].SetOwner(self);
         if(Instigator.Controller != none)
         {
             DeployedCharges[I].InstigatorController = Instigator.Controller;
@@ -196,7 +197,7 @@ simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
 
 simulated function BeginFire(byte FireModeNum)
 {
-    if((FireModeNum == 5) && IsInState('WeaponSprinting'))
+    if((FireModeNum == 5) && IsInState('WeaponSprinting') || NumDeployedCharges <= 0)
     {
         PrepareAndDetonate();        
     }
@@ -252,6 +253,11 @@ simulated function PrepareAndDetonate()
 
 simulated function AltFireMode();
 
+simulated function bool HasAlwaysOnZedTimeResist()
+{
+    return true;
+}
+
 simulated function GotoActiveState();
 
 static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
@@ -293,6 +299,18 @@ simulated state WeaponThrowing
     simulated function bool ShouldRefire()
     {
         return false;
+    }
+
+    simulated function EndState(name NextStateName)
+    {
+        local KFPerk InstigatorPerk;
+
+        super.EndState(NextStateName);
+        InstigatorPerk = GetPerk();
+        if(InstigatorPerk != none)
+        {
+            SetZedTimeResist(InstigatorPerk.GetZedTimeModifier(self));
+        }
     }
     stop;    
 }

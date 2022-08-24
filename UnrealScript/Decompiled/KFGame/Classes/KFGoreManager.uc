@@ -309,7 +309,7 @@ final simulated function bool AllowHeadless()
 final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, name DismemberedBone, optional array<BloodJetSettings> BloodJets, optional array<BloodTrailSettings> BloodTrails, optional array<name> BloodMICParams)
 {
     local name ParentBone;
-    local int ParentBoneIndex, DismemberedBoneIndex, BloodParamIndex, BloodJetIndex, BloodTrailIndex;
+    local int ParentBoneIndex, DismemberedBoneIndex, BloodParamIndex, BloodJetIndex, BloodTrailIndex, MICIndex;
 
     local editinline SkeletalMeshComponent SkelMesh;
     local Vector OffsetFromParentBone, TranslationFromParentBone, ParentBoneFaceDir;
@@ -322,14 +322,19 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
     }
     if((inPawn != none) && inPawn.Mesh != none)
     {
+        MICIndex = 0;
+        if(inPawn.CharacterMICs.Length > inPawn.GetCharacterInfo().GoreFXMICIdx)
+        {
+            MICIndex = inPawn.GetCharacterInfo().GoreFXMICIdx;
+        }
         BloodParamIndex = 0;
-        J0x6E:
+        J0x10F:
 
         if(BloodParamIndex < BloodMICParams.Length)
         {
-            inPawn.CharacterMICs[0].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0);
+            inPawn.CharacterMICs[MICIndex].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0);
             ++ BloodParamIndex;
-            goto J0x6E;
+            goto J0x10F;
         }
         if(WorldInfo.bDropDetail)
         {
@@ -347,7 +352,7 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
             ParentBoneFaceDir = SkelMesh.GetBoneAxis(ParentBone, 1);
             bOppositeFacing = (((Normal(TranslationFromParentBone) Dot ParentBoneFaceDir) < 0) ? true : false);
             BloodJetIndex = 0;
-            J0x35B:
+            J0x404:
 
             if(BloodJetIndex < BloodJets.Length)
             {
@@ -360,10 +365,10 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
                     BloodFXEmitterPool.SpawnEmitterMeshAttachment(BloodJets[BloodJetIndex].ParticleSystemTemplate, SkelMesh, ParentBone, false, OffsetFromParentBone, ((bOppositeFacing) ? rot(0, 32768, 0) : rot(0, 0, 0)));
                 }
                 ++ BloodJetIndex;
-                goto J0x35B;
+                goto J0x404;
             }
             BloodTrailIndex = 0;
-            J0x4BA:
+            J0x563:
 
             if(BloodTrailIndex < BloodTrails.Length)
             {
@@ -376,7 +381,7 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
                     BloodFXEmitterPool.SpawnEmitterMeshAttachment(BloodTrails[BloodTrailIndex].ParticleSystemTemplate, SkelMesh, DismemberedBone, false,, ((bOppositeFacing) ? rot(0, 0, 0) : rot(0, 32768, 0)));
                 }
                 ++ BloodTrailIndex;
-                goto J0x4BA;
+                goto J0x563;
             }
         }
     }

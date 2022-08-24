@@ -1,12 +1,11 @@
 //=============================================================================
 // KFPawn_ZedFleshpound
 //=============================================================================
-// Fleshpound
+// Fleshpound pawn class
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2017 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedFleshpound extends KFPawn_Monster;
 
 /** Sounds */
@@ -34,6 +33,20 @@ var protected const float FootstepCameraShakeRollAmplitude;
 /*********************************************************************************************
 * Initialization
 ********************************************************************************************* */
+
+/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
+static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
+{
+	local WorldInfo WI;
+
+	WI = class'WorldInfo'.static.GetWorldInfo();
+	if( fRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)) )
+	{
+		return default.ElitePawnClass;
+	}
+
+	return super.GetAIPawnClassToSpawn();
+}
 
 /** TEMP [See when this was added in sourcecontrol] */
 simulated event PreBeginPlay()
@@ -243,32 +256,55 @@ simulated function SetEnraged( bool bNewEnraged )
 /** Handle GlowColor MIC Param */
 simulated function UpdateGameplayMICParams()
 {
-	local MaterialInstanceConstant MIC;
-
     super.UpdateGameplayMICParams();
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		UpdateBattlePhaseLights();
 
-        MIC = CharacterMICs[0];
-
         if( !IsAliveAndWell() )
         {
-            MIC.SetVectorParameterValue('Vector_GlowColor', DeadGlowColor);
+            SetGlowColors(DeadGlowColor);
         }
         else
         {
     		if ( bIsEnraged )
     		{
-    			MIC.SetVectorParameterValue('Vector_GlowColor', EnragedGlowColor);
+                SetGlowColors(EnragedGlowColor);
     		}
     		else
     		{
-    			MIC.SetVectorParameterValue('Vector_GlowColor', DefaultGlowColor);
+                SetGlowColors(DefaultGlowColor);
     		}
 		}
 	}
+}
+
+simulated function SetGlowColors(LinearColor GlowColor)
+{
+    local MaterialInstanceConstant MIC;
+    local int Idx;
+
+    MIC = CharacterMICs[0];
+
+    //Update base mesh
+    if (MIC != none)
+    {
+        MIC.SetVectorParameterValue('Vector_GlowColor', GlowColor);
+    }
+
+    //Update any PAC MICs (See King/Mini Fleshpound)
+    for (Idx = 0; Idx < 3; ++Idx)
+    {
+        if (ThirdPersonAttachments[Idx] != none)
+        {
+            MIC = MaterialInstanceConstant(ThirdPersonAttachments[Idx].GetMaterial(0));
+            if (MIC != none)
+            {
+                MIC.SetVectorParameterValue('Vector_GlowColor', GlowColor);
+            }
+        }
+    }
 }
 
 /** Stops the rage sound with an akevent */
@@ -420,6 +456,7 @@ defaultproperties
    bCanRage=True
    bIsFleshpoundClass=True
    MonsterArchPath="ZED_ARCH.ZED_Fleshpound_Archetype"
+   ElitePawnClass=Class'kfgamecontent.KFPawn_ZedFleshpoundKing'
    HeadlessBleedOutTime=7.000000
    ParryResistance=4
    MinSpawnSquadSizeType=EST_Large
@@ -498,6 +535,7 @@ defaultproperties
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
+      AfflictionClasses(11)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -515,6 +553,7 @@ defaultproperties
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.250000,0.250000,0.500000,0.250000,0.400000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.500000,Vulnerability=(0.950000))
    IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.800000))
+   IncapSettings(11)=(Vulnerability=(0.800000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
    SprintSpeed=725.000000
@@ -548,6 +587,24 @@ defaultproperties
       SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
+      SpecialMoveClasses(17)=None
+      SpecialMoveClasses(18)=None
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

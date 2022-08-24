@@ -270,7 +270,7 @@ function SellOffPerkWeapons()
 	{
 		if( OwnedItemList[i].DefaultItem.AssociatedPerkClasses[0] != CurrentPerk.Class && OwnedItemList[i].DefaultItem.BlocksRequired != -1 && OwnedItemList[i].SellPrice != 0 )
 		{
-			if(CurrentPerk.AutoBuyLoadOutPath.Find(OwnedItemList[i].DefaultItem.WeaponDef) == INDEX_NONE)
+			if(CurrentPerk.ShouldAutosellWeapon(OwnedItemList[i].DefaultItem.WeaponDef))
 			{
 				SellWeapon(OwnedItemList[i], i);
 				i=-1;
@@ -303,12 +303,13 @@ function int GetPotentialDosh()
 *******************/
 function bool bCanPurchase(STraderItem SelectedItem)
 {
-	local bool bCanAfford, bCanCarry;
+	local bool bCanAfford, bCanCarry, bNotOwned;
 
 	bCanAfford = GetCanAfford( GetAdjustedBuyPriceFor(SelectedItem) );
 	bCanCarry = CanCarry( SelectedItem );
+    bNotOwned = !DoIOwnThisWeapon(SelectedItem);
 
-	return bCanCarry && bCanAfford;
+	return bCanCarry && bCanAfford && bNotOwned;
 }
 
 // Checks if we can have enough dosh to buy this item
@@ -970,7 +971,7 @@ simulated function UpdateCurrentDosh()
 	ClearTimer(nameof(UpdateCurrentDosh), self);
 }
 
-function BoughtAmmo(int AmountPurchased, int Price, EItemType ItemType, optional name ClassName, optional bool bIsSecondaryAmmo)
+function BoughtAmmo(float AmountPurchased, int Price, EItemType ItemType, optional name ClassName, optional bool bIsSecondaryAmmo)
 {
 	local byte ItemIndex;
     AddDosh( -Price );
@@ -1080,7 +1081,19 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 			if( OwnedItemList[OwnedSingleIdx].DefaultItem.ClassName == DefaultItem.SingleClassName )
 			{
 				SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
-				WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount /*+ WeaponInfo.MagazineCapacity/2*/; // can't add mag/2 ammo here because it makes buying two singles better than buying a dual
+                SingleDualAmmoDiff = Max(0, SingleDualAmmoDiff); //If buying a dual, always have it be minimum starting ammo capacity
+
+                //If the new weapon has more when adding a dual, we're boosting it to the new full amount.  Set UI info properly
+                if (WeaponInfo.SpareAmmoCount > OwnedItemList[OwnedSingleIdx].SpareAmmoCount)
+                {
+                    OwnedItemList[OwnedSingleIdx].SpareAmmoCount = WeaponInfo.SpareAmmoCount;
+                }
+                //Otherwise we're going to maintain ammo and want the weapon info to match intended
+                else
+                {
+                    //If rounding is causing problems, make sure our current ammo is never over the new max in the UI
+                    WeaponInfo.SpareAmmoCount = Min(OwnedItemList[OwnedSingleIdx].SpareAmmoCount, WeaponInfo.MaxSpareAmmo);
+                }
 				break;
 			}
 		}
@@ -1190,9 +1203,11 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 	{
 		OwnedItemList.Remove( OwnedListIdx, 1 );
 	}
-
+	//now selling duals as we buy them; together.
+	
 	// add a single to owned items when removing a dual
-	if( ItemInfo.DefaultItem.SingleClassName != '' )
+	//if( ItemInfo.DefaultItem.SingleClassName != '' )
+	if( ItemInfo.DefaultItem.SingleClassName == 'KFWeap_Pistol_9mm' )
 	{
 		// When removing a dual, always add a single to the owned list so that it shows up in the player inventory UI. 
 		// If we don't own the single, then also buy it (add it to the transaction list).
@@ -1202,7 +1217,9 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 			SingleOwnedIndex = AddWeaponToOwnedItemList( TraderItems.SaleItems[ItemIndex], true );
 
 			// modify default single ammo based on how much ammo dual had when sold
-			AddTransactionAmmo( ItemIndex, ItemInfo.SpareAmmoCount, false );
+            //      The now new single gun will spawn with default ammo.  We need to correct that down
+            //      to the correct amount.  Account for differences in max spare ammo caused by perks.
+			AddTransactionAmmo( ItemIndex, ItemInfo.SpareAmmoCount - (ItemInfo.MaxSpareAmmo / 2.0) + ((ItemInfo.MaxSpareAmmo / 2.0) - OwnedItemList[SingleOwnedIndex].SpareAmmoCount), false );
 
 			// update the values in the trader UI
 			OwnedItemList[SingleOwnedIndex].SpareAmmoCount = ItemInfo.SpareAmmoCount;
@@ -1215,6 +1232,12 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 	}
 }
 
+function MergeSingleIntoDual(SItemInformation ExistingDual, SItemInformation NewSingle)
+{
+    ExistingDual.SpareAmmoCount = Min(ExistingDual.SpareAmmoCount + NewSingle.SpareAmmoCount, ExistingDual.MaxSpareAmmo);
+    ExistingDual.SecondaryAmmoCount = Min(ExistingDual.SecondaryAmmoCount + NewSingle.SecondaryAmmoCount, ExistingDual.MaxSecondaryAmmo);
+}
+
 function int AddItemByPriority( out SItemInformation WeaponInfo )
 {
 	local byte i;
@@ -1224,9 +1247,15 @@ function int AddItemByPriority( out SItemInformation WeaponInfo )
 	BestIndex = 0;
 	WeaponGroup = WeaponInfo.DefaultItem.InventoryGroup;
 	WeaponPriority = WeaponInfo.DefaultItem.GroupPriority;
-
 	for( i = 0; i < OwnedItemList.length; i++ )
 	{
+        //Receiving a single for a dual we already own (Ex: Weapon thrown at the player)
+        if (WeaponInfo.DefaultItem.DualClassName == OwnedItemList[i].DefaultItem.ClassName)
+        {
+            MergeSingleIntoDual(OwnedItemList[i], WeaponInfo);
+            return i;
+        }
+
 		// If the weapon belongs in the group prior to the current weapon, we've found the spot
 		if( WeaponGroup < OwnedItemList[i].DefaultItem.InventoryGroup )
 		{

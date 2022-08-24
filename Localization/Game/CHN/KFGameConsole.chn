@@ -16,6 +16,7 @@ KF-HostileGrounds="玩敌对区域"
 KF-ZedLanding="正在玩丧尸登陆"
 KF-TheDescent="正在玩后裔"
 KF-Nuked="正在玩核武器"
+KF-TragicKingdom="游戏悲惨王国"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -144,7 +145,6 @@ ErrorNoPlayfabDescription="无法与游戏主服务器建立连接。请几分�
 ErrorTSSFailedDescription="无法与游戏均衡服务器建立连接。请确保你已连接到网络，并重试。"
 NotSignedInTitle="未登录。"
 
-
 [Notifications]
 ControllerDisconnectedTitle="控制器断开连接"
 ControllerDisconnectedPS4Message="无线控制器已断开连接。请为启动游戏的用户重新连接无线控制器。"
@@ -174,7 +174,6 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="查看玩家档案"
-ViewProfileStringXB1="查看玩家卡"
 
 [KFGFxObject_Menu]
 ResetDefaults="你确定希望将设置重置到默认值吗？"
@@ -194,15 +193,12 @@ ControllerSound="控制器音效"
 MatchmakingRegionString="区域"
 LeaveMenuString="离开比赛匹配也将意味着离开你的小队"
 
-[KFGFxMenu_Store]
-
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="区域"
 MapPreference="首选地图"
 
 [KFGFxMenu_Exit]
-HeaderStringXB1="退出"
 LogoutKF2="返回到标题界面"
 
 [Misc]

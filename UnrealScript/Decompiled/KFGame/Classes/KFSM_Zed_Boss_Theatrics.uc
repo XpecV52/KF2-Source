@@ -79,13 +79,13 @@ static function byte PackSMFlags(KFPawn P, byte InTauntType)
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
-    local KFPawn_MonsterBoss KFBoss;
+    local KFPawn_Monster KFBoss;
 
     super.SpecialMoveStarted(bForced, PrevMove);
     KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(0, 0, 0);
     if(KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
-        KFBoss = KFPawn_MonsterBoss(KFPOwner);
+        KFBoss = KFPawn_Monster(KFPOwner);
         KFGFxHudWrapper(KFPOwner.WorldInfo.GetALocalPlayerController().myHUD).BossPawn = KFBoss;
         if((KFBoss.WorldInfo.TimeSeconds - KFBoss.CreationTime) < 1)
         {
@@ -105,7 +105,7 @@ function PlayAnimation()
 {
     local byte Variant;
     local Controller BossController;
-    local KFPawn_MonsterBoss BossPawn;
+    local KFPawn_Monster BossPawn;
     local KFPlayerController KFPC;
     local KFWeapon KFW;
     local Vector CameraAnimOffset;
@@ -140,7 +140,7 @@ function PlayAnimation()
     }
     PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1);
     BossController = ((AIOwner != none) ? AIOwner : PCOwner);
-    BossPawn = KFPawn_MonsterBoss(KFPOwner);
+    BossPawn = KFPawn_Monster(KFPOwner);
     if((BossController != none) && BossController.Role == ROLE_Authority)
     {
         foreach BossController.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
@@ -152,7 +152,7 @@ function PlayAnimation()
             KFPC.SetBossCamera(BossPawn);            
         }        
     }
-    if((((BossPawn == none) || BossPawn.bPlayedDeath) || BossPawn.bPendingDelete) || BossPawn.HitFxInfo.bObliterated)
+    if(((((BossPawn == none) || BossPawn.bPlayedDeath) || BossPawn.bPendingDelete) || BossPawn.HitFxInfo.bObliterated) || !BossPawn.IsActiveBoss())
     {
         return;
     }
@@ -179,21 +179,25 @@ function PlayAnimation()
                     }
                 }
                 KFPC.ClientPlayCameraAnim(CameraAnim, 1, 0.99, BlendInTime, BlendOutTime + 0.03, false, false);
+                if((KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.bossHealthBar != none)
+                {
+                    KFPC.MyGFxHUD.bossHealthBar.SetBossPawn(BossPawn);
+                }
             }
         }
     }
-    if(BossPawn.Role == ROLE_Authority)
+    if((KFPawn_MonsterBoss(BossPawn) != none) && BossPawn.Role == ROLE_Authority)
     {
-        BossPawn.PlayMonologue(CurrentTheatricType);
+        KFPawn_MonsterBoss(BossPawn).PlayMonologue(CurrentTheatricType);
     }
 }
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     local KFPlayerController KFPC, OtherKFPC;
-    local KFPawn_MonsterBoss BossPawn;
+    local KFPawn_Monster BossPawn;
 
-    BossPawn = KFPawn_MonsterBoss(KFPOwner);
+    BossPawn = KFPawn_Monster(KFPOwner);
     KFPC = GetALocalKFPlayerController();
     if(BossPawn != none)
     {

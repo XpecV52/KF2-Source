@@ -394,7 +394,7 @@ simulated final function AttachMutilationBloodEffects(
 	optional array<name> BloodMICParams)
 {
 	local name ParentBone;
-	local int ParentBoneIndex, DismemberedBoneIndex, BloodParamIndex, BloodJetIndex, BloodTrailIndex;
+	local int ParentBoneIndex, DismemberedBoneIndex, BloodParamIndex, BloodJetIndex, BloodTrailIndex, MICIndex;
 	local SkeletalMeshComponent SkelMesh;
 	local vector OffsetFromParentBone, TranslationFromParentBone, ParentBoneFaceDir;
 	local bool bOppositeFacing;
@@ -405,13 +405,19 @@ simulated final function AttachMutilationBloodEffects(
 
 	if( InPawn != none && InPawn.mesh != none )
 	{
+        MICIndex = 0;
+        if (InPawn.CharacterMICs.Length > InPawn.GetCharacterInfo().GoreFXMICIdx)
+        {
+            MICIndex = InPawn.GetCharacterInfo().GoreFXMICIdx;
+        }
+        
 		//
 		// Activate the blood splat on the body MIC
 		// NOTE: 0.f activates the blood 1.f deactivates it
 		//
 		for( BloodParamIndex = 0; BloodParamIndex < BloodMICParams.length; BloodParamIndex++ )
 		{
-			InPawn.CharacterMICs[0].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0.f);
+			InPawn.CharacterMICs[MICIndex].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0.f);
 		}
 
 		if ( WorldInfo.bDropDetail )

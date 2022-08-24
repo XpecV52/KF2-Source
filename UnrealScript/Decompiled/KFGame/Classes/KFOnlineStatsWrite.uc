@@ -85,11 +85,12 @@ const STATID_ACHIEVE_HostileGroundsCollectibles = 4032;
 const STATID_ACHIEVE_ZedLandingCollectibles = 4035;
 const STATID_ACHIEVE_DescentCollectibles = 4036;
 const STATID_ACHIEVE_NukedCollectibles = 4037;
+const STATID_ACHIEVE_TragicKingdomCollectibles = 4038;
 const WeldingPointsRequired = 510;
 const HealingPointsRequired = 10;
 const MaxPerkLevel = 25;
 const MaxPrestigeLevel = 10;
-const SpecialEventObjectiveCount = 4;
+const SpecialEventObjectiveCountMax = 8;
 const KFACHID_ParisNormal = 0;
 const KFACHID_ParisHard = 1;
 const KFACHID_ParisSuicidal = 2;
@@ -278,6 +279,11 @@ const KFACHID_NukedHard = 184;
 const KFACHID_NukedSuicidal = 185;
 const KFACHID_NukedHellOnEarth = 186;
 const KFACHID_NukedCollectibles = 187;
+const KFACHID_TragicKingdomNormal = 188;
+const KFACHID_TragicKingdomHard = 189;
+const KFACHID_TragicKingdomSuicidal = 190;
+const KFACHID_TragicKingdomHellOnEarth = 191;
+const KFACHID_TragicKingdomCollectibles = 192;
 
 var KFPlayerController MyKFPC;
 var private int Kills;
@@ -335,11 +341,15 @@ var private int PersonalBest_Assists;
 var private int PersonalBest_LargeZedKil;
 var private int PersonalBest_Dosh;
 var private int SpecialEventInfo;
+var private int InitialSpecialEventInfo;
 var private int WeeklyEventInfo;
+var private int InitialWeeklyEventInfo;
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
 var array<AchievementDetails> Achievements;
 var const int XPTable[25];
+var private const bool bFailedToRead;
+var private const bool bReadSuccessful;
 var config bool bAllowPerkCheats;
 var private const bool bDisabled;
 var bool bLogStatsWrite;
@@ -368,6 +378,18 @@ native final function bool HasCheated();
 // Export UKFOnlineStatsWrite::execNotifyCheats(FFrame&, void* const)
 native final function NotifyCheats(optional bool bSaveToConfig);
 
+// Export UKFOnlineStatsWrite::execHasReadFailure(FFrame&, void* const)
+native final function bool HasReadFailure();
+
+// Export UKFOnlineStatsWrite::execNotifyReadFailure(FFrame&, void* const)
+native final function NotifyReadFailure();
+
+// Export UKFOnlineStatsWrite::execHasReadStats(FFrame&, void* const)
+native final function bool HasReadStats();
+
+// Export UKFOnlineStatsWrite::execNotifyReadSucceeded(FFrame&, void* const)
+native final function NotifyReadSucceeded();
+
 // Export UKFOnlineStatsWrite::execLogSubsystemIntStat(FFrame&, void* const)
 private native final function int LogSubsystemIntStat(int StatId);
 
@@ -391,6 +413,11 @@ simulated function LogStats()
     LogInternal(("SupportProgress " @ "            =") @ string(LogSubsystemIntStat(20)));
     LogInternal(("MedicProgress " @ "              =") @ string(LogSubsystemIntStat(40)));
     LogInternal("###############################################################");
+}
+
+simulated function LogStatValue(int StatId)
+{
+    LogInternal((("*** Stat value for ID" @ string(StatId)) @ ": ") @ string(LogSubsystemIntStat(StatId)));
 }
 
 event CacheStatsValue(int StatId, float Value)
@@ -610,14 +637,14 @@ event CacheStatsValue(int StatId, float Value)
             }
             break;
         case 300:
-            CacheSpecialEventState(int(Value));
+            InitialSpecialEventInfo = int(Value);
             if(bLogStatsWrite)
             {
                 LogInternal((string(GetFuncName()) @ "Special Event: ") @ string(SpecialEventInfo));
             }
             break;
         case 301:
-            CacheWeeklyEventState(int(Value));
+            InitialWeeklyEventInfo = int(Value);
             if(bLogStatsWrite)
             {
                 LogInternal((string(GetFuncName()) @ "Weekly Event:") @ string(WeeklyEventInfo));
@@ -1145,6 +1172,30 @@ private final event int AddWeldingPoints(int PointsWelded)
     return XPEarned;
 }
 
+private final event int DoorRepaired()
+{
+    local int XPEarned;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(MyKFPC.WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        Class'KFPerk_Support'.static.GetDoorRepairXP(XPEarned, KFGRI.GameDifficulty);
+        if(XPEarned > 0)
+        {
+            AddXP(Class'KFPerk_Support', XPEarned);
+            if(((MyKFPC != none) && MyKFPC.MatchStats != none) && Class'KFPerk_Support' != none)
+            {
+                MyKFPC.MatchStats.RecordSecondaryXPGain(Class'KFPerk_Support', XPEarned);
+            }
+            KFGRI.SecondaryXPAccumulator += XPEarned;
+            PerRoundWeldXP += XPEarned;
+            LogInternal((string(GetFuncName()) @ "Door Repair XP earned :") @ string(XPEarned));
+        }
+    }
+    return XPEarned;
+}
+
 private final function int ComputeHealingXP(int Points)
 {
     local int XPEarned;
@@ -1196,14 +1247,11 @@ private final event AddToHeadshots(byte Difficulty, class<DamageType> DT)
 {
     if(IsGunslingerHeadshot(DT))
     {
-        AddGunslingerHeadshot(Difficulty);        
+        AddGunslingerHeadshot(Difficulty);
     }
-    else
+    if(IsSharpshooterHeadshot(DT))
     {
-        if(IsSharpshooterHeadshot(DT))
-        {
-            AddSharpshooterHeadshot(Difficulty);
-        }
+        AddSharpshooterHeadshot(Difficulty);
     }
 }
 
@@ -1286,17 +1334,49 @@ native final function UnlockTutorialAchievement();
 // Export UKFOnlineStatsWrite::execCheckForRoundTeamWinAchievements(FFrame&, void* const)
 native final function CheckForRoundTeamWinAchievements(byte WinningTeam);
 
+final function bool CanCacheSpecialEvent()
+{
+    return InitialSpecialEventInfo > 0;
+}
+
 // Export UKFOnlineStatsWrite::execCacheSpecialEventState(FFrame&, void* const)
 private native final function CacheSpecialEventState(int Value);
+
+final function UpdateSpecialEventState()
+{
+    CacheSpecialEventState(InitialSpecialEventInfo);
+}
 
 // Export UKFOnlineStatsWrite::execUpdateSpecialEvent(FFrame&, void* const)
 native final function UpdateSpecialEvent(int EventIndex, int ObjectiveIndex);
 
+// Export UKFOnlineStatsWrite::execIsEventObjectiveComplete(FFrame&, void* const)
+native final function bool IsEventObjectiveComplete(int ObjectiveIndex);
+
+final function bool CanCacheWeeklyEvent()
+{
+    return InitialWeeklyEventInfo > 0;
+}
+
 // Export UKFOnlineStatsWrite::execCacheWeeklyEventState(FFrame&, void* const)
 private native final function CacheWeeklyEventState(int Value);
 
+final function UpdateWeeklyEventState()
+{
+    CacheWeeklyEventState(InitialWeeklyEventInfo);
+}
+
 // Export UKFOnlineStatsWrite::execWeeklyEventComplete(FFrame&, void* const)
 native final function WeeklyEventComplete();
+
+// Export UKFOnlineStatsWrite::execIsWeeklyEventComplete(FFrame&, void* const)
+native final function bool IsWeeklyEventComplete();
+
+// Export UKFOnlineStatsWrite::execGetWeeklyOutbreakRewards(FFrame&, void* const)
+native static final function array<int> GetWeeklyOutbreakRewards(optional int Index)
+{
+    Index = -1;            
+}
 
 defaultproperties
 {

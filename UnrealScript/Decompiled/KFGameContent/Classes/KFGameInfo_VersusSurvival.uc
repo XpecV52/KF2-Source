@@ -1307,9 +1307,10 @@ defaultproperties
     PlayerZedClasses(5)=class'KFPawn_ZedStalker_Versus'
     PlayerZedClasses(6)=class'KFPawn_ZedScrake_Versus'
     PlayerZedClasses(7)=class'KFPawn_ZedFleshPound_Versus'
-    PlayerZedClasses(8)=class'KFPawn_ZedBloat_Versus'
-    PlayerZedClasses(9)=class'KFPawn_ZedSiren_Versus'
-    PlayerZedClasses(10)=class'KFPawn_ZedHusk_Versus'
+    PlayerZedClasses(8)=none
+    PlayerZedClasses(9)=class'KFPawn_ZedBloat_Versus'
+    PlayerZedClasses(10)=class'KFPawn_ZedSiren_Versus'
+    PlayerZedClasses(11)=class'KFPawn_ZedHusk_Versus'
     PlayerBossClassList(0)=class'KFPawn_ZedPatriarch_Versus'
     AntiGriefDamageTypeClass=Class'KFGame.KFDT_NoGoVolume'
     bTeamBalanceEnabled=true

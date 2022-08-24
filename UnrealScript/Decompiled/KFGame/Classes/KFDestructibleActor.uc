@@ -362,6 +362,8 @@ var(SubObjects) const editconst byte SubObjectLimit;
 var(SubObjects) const editconst byte DamageModLimit;
 var repnotify ReplicatedDamageModInfo ReplicatedDamageMods[16];
 var repnotify bool bShutDown;
+/** If true, ignores all damage */
+var() protected bool bIgnoreAllDamage;
 /** If true, will ignore all damage done by players */
 var() protected bool bIgnorePlayerDamage;
 /** If true, will take bump damage from AI, in addition to just players */
@@ -533,6 +535,12 @@ protected native function DamageSubObject(int ObjIdx, int Damage, Controller Eve
 // Export UKFDestructibleActor::execHasAnyHealth(FFrame&, void* const)
 native function bool HasAnyHealth();
 
+// Export UKFDestructibleActor::execGetCurrentHealth(FFrame&, void* const)
+native function float GetCurrentHealth();
+
+// Export UKFDestructibleActor::execGetMaxHealth(FFrame&, void* const)
+native function float GetMaxHealth();
+
 simulated function TakeRadiusDamage(Controller InstigatedBy, float BaseDamage, float DamageRadius, class<DamageType> DamageType, float Momentum, Vector HurtOrigin, bool bFullDamage, Actor DamageCauser, optional float DamageFalloffExponent)
 {
     DamageFalloffExponent = 1;
@@ -603,8 +611,13 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
     local int Idx;
     local KFAIController KFAIInstigator;
 
+    if(bIgnoreAllDamage)
+    {
+        InDamage = 0;
+        return;
+    }
     Idx = 0;
-    J0x0B:
+    J0x25:
 
     if(Idx < InstaKillDamageType.Length)
     {
@@ -614,10 +627,10 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
             return;
         }
         ++ Idx;
-        goto J0x0B;
+        goto J0x25;
     }
     Idx = 0;
-    J0x96:
+    J0xB0:
 
     if(Idx < IgnoreDamageType.Length)
     {
@@ -627,7 +640,7 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
             return;
         }
         ++ Idx;
-        goto J0x96;
+        goto J0xB0;
     }
     if(EventInstigator != none)
     {
@@ -862,6 +875,21 @@ function MoveCollidingPawns();
 
 simulated function Reset()
 {
+    local int SubObjIdx;
+
+    if(bShutDown)
+    {
+        UnShutDownObject();
+    }
+    SubObjIdx = 0;
+    J0x22:
+
+    if(SubObjIdx < SubObjects.Length)
+    {
+        SubObjects[SubObjIdx].Health = int(SubObjects[SubObjIdx].DefaultHealth);
+        ++ SubObjIdx;
+        goto J0x22;
+    }
     if(!bAnyDamageModApplied)
     {
         return;
@@ -869,6 +897,11 @@ simulated function Reset()
     RemoveDecals();
     UnDestroy();
     bForceNetUpdate = true;
+}
+
+function ToggleAllDamage(bool bDamageOn)
+{
+    bIgnoreAllDamage = !bDamageOn;
 }
 
 defaultproperties

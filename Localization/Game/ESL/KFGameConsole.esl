@@ -16,6 +16,7 @@ KF-HostileGrounds="Jugando en Tierra hostil"
 KF-ZedLanding="Jugando a Aterrizaje ZED"
 KF-TheDescent="Jugando a El descendiente"
 KF-Nuked="Jugando a Bombardeado"
+KF-TragicKingdom="Jugando a El reino trágico"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -144,7 +145,6 @@ ErrorNoPlayfabDescription="No se ha podido establecer conexión con los servidor
 ErrorTSSFailedDescription="No se ha podido establecer conexión con el servidor de equilibrio del juego. Asegúrate de que estás conectado a Internet e inténtalo de nuevo."
 NotSignedInTitle="No has iniciado sesión."
 
-
 [Notifications]
 ControllerDisconnectedTitle="Control desconectado"
 ControllerDisconnectedPS4Message="El control inalámbrico se ha desconectado. Vuelve a conectar el control inalámbrico del usuario que ha iniciado la partida."
@@ -174,7 +174,6 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Ver perfil de jugador"
-ViewProfileStringXB1="Ver tarjeta de jugador"
 
 [KFGFxObject_Menu]
 ResetDefaults="¿Seguro que quieres volver a utilizar la configuración por defecto?"
@@ -194,15 +193,12 @@ ControllerSound="Sonido del control"
 MatchmakingRegionString="REGIÓN"
 LeaveMenuString="También saldrás de tu grupo si sales del emparejamiento."
 
-[KFGFxMenu_Store]
-
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIÓN"
 MapPreference="MAPA PREFERIDO"
 
 [KFGFxMenu_Exit]
-HeaderStringXB1="CERRAR SESIÓN"
 LogoutKF2="Ir a pantalla de título"
 
 [Misc]

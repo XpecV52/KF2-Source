@@ -540,6 +540,7 @@ simulated state WeaponUpkeep
         {
             if(PendingFire(FireModeNum) && HasAmmo(FireModeNum))
             {
+                ClearPendingFire(2);
                 GotoState('Active');
             }
         }

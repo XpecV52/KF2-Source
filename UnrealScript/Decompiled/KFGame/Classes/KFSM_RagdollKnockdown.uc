@@ -98,7 +98,7 @@ function ApplyKnockdownImpulse(const out KnockdownImpulseInfo Info)
         {
             if(Info.bIsRadialImpulse)
             {
-                PawnOwner.Mesh.AddRadialImpulse(Info.ImpulsePosition, Info.ImpulseStrength.X, Info.ImpulseStrength.Y, 1);                
+                PawnOwner.Mesh.AddRadialImpulse(Info.ImpulsePosition, Info.ImpulseStrength.X, Info.ImpulseStrength.Y, 1, true);                
             }
             else
             {
@@ -108,7 +108,7 @@ function ApplyKnockdownImpulse(const out KnockdownImpulseInfo Info)
                     PointImpulseBoneName = KFPOwner.HitZones[Info.PointImpulseHitZone].BoneName;
                     PointImpulseBoneName = KFPOwner.GetRBBoneFromBoneName(PointImpulseBoneName);
                 }
-                PawnOwner.Mesh.AddImpulse(PointImpulse, Info.ImpulsePosition, PointImpulseBoneName);
+                PawnOwner.Mesh.AddImpulse(PointImpulse, Info.ImpulsePosition, PointImpulseBoneName, true);
             }
         }
         if(KFPOwner.Role == ROLE_Authority)
@@ -126,6 +126,10 @@ function ApplyKnockdownImpulse(const out KnockdownImpulseInfo Info)
 
 protected function PlayFallDown()
 {
+    if((KFPOwner.bReinitPhysAssetOnDeath && KFPOwner.CharacterArch != none) && KFPOwner.CharacterArch.PhysAsset != none)
+    {
+        KFPOwner.Mesh.SetPhysicsAsset(KFPOwner.CharacterArch.PhysAsset,, true);
+    }
     KFPOwner.PrepareRagdoll();
     if(KFPOwner.InitRagdoll())
     {

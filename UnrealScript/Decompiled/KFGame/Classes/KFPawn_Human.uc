@@ -58,6 +58,7 @@ var transient KFFlashlightAttachment FlashLight;
 var const KFFlashlightAttachment FlashLightTemplate;
 var repnotify bool bFlashlightOn;
 var bool bObjectivePlayer;
+var bool bDisableTraderDialog;
 var() float BatteryDrainRate;
 var() float BatteryRechargeRate;
 var float BatteryCharge;
@@ -97,6 +98,9 @@ replication
         HealingShield, HealingSpeedBoost, 
         MaxArmor, WeaponSkinItemId, 
         bObjectivePlayer;
+
+     if(bNetDirty && bNetOwner)
+        bDisableTraderDialog;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         CurrentWeaponState, WeaponAttachmentAnimRateByte, 
@@ -291,6 +295,7 @@ function UpdateGroundSpeed()
 {
     local KFInventoryManager InvM;
     local float WeightMod, HealthMod;
+    local KFGameInfo KFGI;
 
     if(Role < ROLE_Authority)
     {
@@ -298,14 +303,28 @@ function UpdateGroundSpeed()
     }
     InvM = KFInventoryManager(InvManager);
     WeightMod = ((InvM != none) ? InvM.GetEncumbranceSpeedMod() : 1);
-    HealthMod = 1 - LowHealthSpeedPenalty;
-    GroundSpeed = (default.GroundSpeed * WeightMod) * HealthMod;
-    SprintSpeed = (default.SprintSpeed * WeightMod) * HealthMod;
+    HealthMod = GetHealthMod();
+    GroundSpeed = default.GroundSpeed;
+    SprintSpeed = default.SprintSpeed;
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if(KFGI != none)
+    {
+        KFGI.ModifyGroundSpeed(self, GroundSpeed);
+        KFGI.ModifySprintSpeed(self, SprintSpeed);
+    }
+    GroundSpeed = (GroundSpeed * WeightMod) * HealthMod;
+    SprintSpeed = (SprintSpeed * WeightMod) * HealthMod;
     if((GetPerk()) != none)
     {
         GetPerk().ModifySpeed(GroundSpeed);
         GetPerk().ModifySprintSpeed(SprintSpeed);
+        GetPerk().FinalizeSpeedVariables();
     }
+}
+
+function float GetHealthMod()
+{
+    return 1 - LowHealthSpeedPenalty;
 }
 
 simulated function WeaponStateChanged(byte NewState, optional bool bViaReplication)
@@ -444,7 +463,6 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
             {
                 if(Healer != Controller)
                 {
-                    AddHealerToObjective(Healer);
                     InstigatorPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 7, PlayerReplicationInfo);
                     KFPC = KFPlayerController(Controller);
                     KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 6, Healer.PlayerReplicationInfo);
@@ -473,7 +491,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 }
             }
             I = 0;
-            J0x888:
+            J0x875:
 
             if(I < DamageOverTimeArray.Length)
             {
@@ -481,12 +499,12 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 {
                     DamageOverTimeArray[I].Duration *= 0.5;
                     DamageOverTimeArray[I].Damage *= 0.5;
-                    goto J0x939;
+                    goto J0x926;
                 }
                 ++ I;
-                goto J0x888;
+                goto J0x875;
             }
-            J0x939:
+            J0x926:
 
             if((Health - OldHealth) > 0)
             {
@@ -585,12 +603,13 @@ simulated function LeaveBloodPool()
     }
 }
 
-simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
+simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation, optional bool bUseHitImpulse)
 {
     local class<KFDamageType> dmgType;
     local name HitBoneName, RBBoneName;
     local int HitZoneIndex;
 
+    bUseHitImpulse = true;
     dmgType = HitFxInfo.DamageType;
     if(WorldInfo.TimeSeconds > (PainSoundLastPlayedTime + PainSoundCoolDown))
     {
@@ -600,7 +619,7 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
             PainSoundLastPlayedTime = WorldInfo.TimeSeconds;
         }
     }
-    super.PlayTakeHitEffects(HitDirection, HitLocation);
+    super.PlayTakeHitEffects(HitDirection, HitLocation, bUseHitImpulse);
     if(dmgType != none)
     {
         if(bTearOff && !bPlayedDeath)
@@ -618,7 +637,10 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
             {
                 RBBoneName = GetRBBoneFromBoneName(HitBoneName);
             }
-            ApplyRagdollImpulse(dmgType, HitLocation, HitDirection, RBBoneName, 1);
+            if(bUseHitImpulse)
+            {
+                ApplyRagdollImpulse(dmgType, HitLocation, HitDirection, RBBoneName, 1);
+            }
         }
     }
 }
@@ -997,20 +1019,6 @@ function array<string> GetUpdatedSkillIndicators()
     return ActiveSkillIconPaths;
 }
 
-function AddHealerToObjective(Controller Healer)
-{
-    local KFGameReplicationInfo KFGRI;
-
-    if(Healer.PlayerReplicationInfo != none)
-    {
-        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-        if((KFGRI != none) && KFGRI.CurrentObjective != none)
-        {
-            KFGRI.CurrentObjective.NewHealer(Healer.PlayerReplicationInfo);
-        }
-    }
-}
-
 delegate OnFinishedDialog(const out DialogResponseInfo ResponseInfo);
 
 function HandleDialogResponse()
@@ -1131,6 +1139,10 @@ function float TimeSpentIdling()
 
 function PlayTraderDialog(AkEvent DialogEvent)
 {
+    if(bDisableTraderDialog)
+    {
+        return;
+    }
     TraderDialogAkComponent.PlayEvent(DialogEvent);
 }
 
@@ -1287,7 +1299,6 @@ native simulated function DrawDoors(Canvas Canvas);
 simulated function DrawHUD(HUD H)
 {
     local Canvas Canvas;
-    local KFGameReplicationInfo KFGRI;
     local KFPlayerController KFPC;
 
     super(Pawn).DrawHUD(H);
@@ -1304,14 +1315,6 @@ simulated function DrawHUD(HUD H)
     if(Canvas != none)
     {
         DrawDoors(Canvas);
-        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-        if(KFGRI != none)
-        {
-            if((KFGRI.CurrentObjective != none) && IsAliveAndWell())
-            {
-                KFGRI.CurrentObjective.DrawObjectiveHUD(Canvas);
-            }
-        }
         Canvas.EnableStencilTest(true);
         DrawPerkHUD(Canvas);
         Canvas.EnableStencilTest(false);
@@ -1422,24 +1425,24 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_Human.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bEnableAimOffset=true
-    HitZones(0)=(ZoneName=head,BoneName=head,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(1)=(ZoneName=neck,BoneName=neck,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(2)=(ZoneName=chest,BoneName=Spine2,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(3)=(ZoneName=heart,BoneName=Spine2,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(4)=(ZoneName=lupperarm,BoneName=LeftArm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(5)=(ZoneName=lforearm,BoneName=LeftForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(6)=(ZoneName=lhand,BoneName=LeftForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(7)=(ZoneName=rupperarm,BoneName=RightArm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(8)=(ZoneName=rforearm,BoneName=RightForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(9)=(ZoneName=rhand,BoneName=RightForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(10)=(ZoneName=stomach,BoneName=Spine1,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(11)=(ZoneName=abdomen,BoneName=Hips,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(12)=(ZoneName=lthigh,BoneName=LeftUpLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(13)=(ZoneName=lcalf,BoneName=LeftLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(14)=(ZoneName=lfoot,BoneName=LeftLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(15)=(ZoneName=rthigh,BoneName=RightUpLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(16)=(ZoneName=rcalf,BoneName=RightLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(17)=(ZoneName=rfoot,BoneName=RightLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(0)=(ZoneName=head,BoneName=head,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(1)=(ZoneName=neck,BoneName=neck,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(2)=(ZoneName=chest,BoneName=Spine2,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(3)=(ZoneName=heart,BoneName=Spine2,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(4)=(ZoneName=lupperarm,BoneName=LeftArm,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(5)=(ZoneName=lforearm,BoneName=LeftForearm,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(6)=(ZoneName=lhand,BoneName=LeftForearm,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(7)=(ZoneName=rupperarm,BoneName=RightArm,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(8)=(ZoneName=rforearm,BoneName=RightForearm,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(9)=(ZoneName=rhand,BoneName=RightForearm,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(10)=(ZoneName=stomach,BoneName=Spine1,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(11)=(ZoneName=abdomen,BoneName=hips,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(12)=(ZoneName=lthigh,BoneName=LeftUpLeg,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(13)=(ZoneName=lcalf,BoneName=LeftLeg,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(14)=(ZoneName=lfoot,BoneName=LeftLeg,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(15)=(ZoneName=rthigh,BoneName=RightUpLeg,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(16)=(ZoneName=rcalf,BoneName=RightLeg,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(17)=(ZoneName=rfoot,BoneName=RightLeg,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
     BattleBloodParamName=Scalar_Blood_Contrast
     MinBattleBloodValue=0.2
     BattleBloodRangeSq=40000

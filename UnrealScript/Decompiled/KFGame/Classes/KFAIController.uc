@@ -488,10 +488,10 @@ native function Vector CalcAimLocToHit(Vector AimSpot, Vector StartFireLoc, floa
 native static function float EstimateProjectileTimeToTarget(float Distance, float StartSpeed, float MaxSpeed);
 
 // Export UKFAIController::execFastActorTrace(FFrame&, void* const)
-native function bool FastActorTrace(Vector TraceEnd, optional Vector TraceStart, optional Vector BoxExtent, optional bool bTraceComplex);
+native static function bool FastActorTrace(Actor OriginTestActor, Vector TraceEnd, optional Vector TraceStart, optional Vector BoxExtent, optional bool bTraceComplex);
 
 // Export UKFAIController::execActorBlockTest(FFrame&, void* const)
-native function Actor ActorBlockTest(Vector TraceEnd, optional Vector TraceStart, optional Vector BoxExtent, optional bool bTraceActors, optional bool bTraceComplex);
+native static function Actor ActorBlockTest(Actor OriginTestActor, Vector TraceEnd, optional Vector TraceStart, optional Vector BoxExtent, optional bool bTraceActors, optional bool bTraceComplex);
 
 // Export UKFAIController::execTestTrace(FFrame&, void* const)
 native function bool TestTrace(Vector TraceEnd, optional Vector TraceStart);
@@ -3908,7 +3908,7 @@ event bool NotifyBump(Actor Other, Vector HitNormal)
                 {
                     if(bInPartialCollisionReductionTrigger && Enemy != none)
                     {
-                        HitActor = ActorBlockTest(Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), MyKFPawn.Location + (vect(0, 0, 1) * MyKFPawn.BaseEyeHeight),, true);
+                        HitActor = ActorBlockTest(Pawn, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), MyKFPawn.Location + (vect(0, 0, 1) * MyKFPawn.BaseEyeHeight),, true);
                     }
                     if(!IsWithinAttackRange() || bInPartialCollisionReductionTrigger && (HitActor == none) || HitActor != Enemy)
                     {
@@ -5322,25 +5322,25 @@ final function byte GetBestEvadeDir(Vector DangerPoint, optional Pawn ThreatPawn
         case 7:
             return 7;
         case 0:
-            if(!bUseFastTrace || FastActorTrace(Pawn.Location + (256 * X), Pawn.Location, Pawn.GetCollisionExtent() * 0.5))
+            if(!bUseFastTrace || FastActorTrace(Pawn, Pawn.Location + (256 * X), Pawn.Location, Pawn.GetCollisionExtent() * 0.5))
             {
                 return 0;
             }
             break;
         case 1:
-            if(!bUseFastTrace || FastActorTrace(Pawn.Location - (256 * X), Pawn.Location, Pawn.GetCollisionExtent() * 0.5))
+            if(!bUseFastTrace || FastActorTrace(Pawn, Pawn.Location - (256 * X), Pawn.Location, Pawn.GetCollisionExtent() * 0.5))
             {
                 return 1;
             }
             break;
         case 2:
-            if(!bUseFastTrace || FastActorTrace(Pawn.Location - (256 * Y), Pawn.Location, Pawn.GetCollisionExtent() * 0.5))
+            if(!bUseFastTrace || FastActorTrace(Pawn, Pawn.Location - (256 * Y), Pawn.Location, Pawn.GetCollisionExtent() * 0.5))
             {
                 return 2;
             }
             break;
         case 3:
-            if(!bUseFastTrace || FastActorTrace(Pawn.Location + (256 * Y), Pawn.Location, Pawn.GetCollisionExtent() * 0.5))
+            if(!bUseFastTrace || FastActorTrace(Pawn, Pawn.Location + (256 * Y), Pawn.Location, Pawn.GetCollisionExtent() * 0.5))
             {
                 return 3;
             }

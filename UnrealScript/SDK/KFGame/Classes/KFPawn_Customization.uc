@@ -129,6 +129,8 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	{
 		IKFootRight.SetSkelControlActive(false);
 	}
+
+    SetHeadScale(IntendedHeadScale, CurrentHeadScale);
 }
 
 /** Always use the customization anim set */

@@ -14,7 +14,7 @@ function Activate()
         super.Activate();
         PawnOwner.SetTimer(Duration, false, 'DeActivate', self);
         bIsActive = true;
-        PawnOwner.AfflictionSpeedModifier = Class'KFPerk_SWAT'.static.GetSnareSpeedModifier();
+        PawnOwner.SetAfflictionSpeedModifier();
     }
 }
 
@@ -25,5 +25,10 @@ function DeActivate()
     {
         LogInternal(string(self) @ "was deactivaed");
     }
-    PawnOwner.AfflictionSpeedModifier = PawnOwner.default.AfflictionSpeedModifier;
+    PawnOwner.SetAfflictionSpeedModifier();
+}
+
+function float GetSpeedModifier()
+{
+    return ((bIsActive) ? Class'KFPerk_SWAT'.static.GetSnareSpeedModifier() : 1);
 }

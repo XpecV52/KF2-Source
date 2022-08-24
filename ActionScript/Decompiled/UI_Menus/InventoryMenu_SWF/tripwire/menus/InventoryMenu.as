@@ -184,13 +184,16 @@ package tripwire.menus
         {
             if(param1.itemData)
             {
-                this.coverBGTween.play();
-                this.inventoryListContainer.deselectContainer();
-                this.inventoryListContainer.itemDetails = param1.itemData;
-                this.itemDetailsContainer.details = param1.itemData;
-                FocusManager.setFocus(null);
-                FocusManager.setModalClip(this.itemDetailsContainer);
-                ExternalInterface.call("CallBack_ItemDetailsClicked",param1.itemData.definition);
+                if(this.itemDetailsContainer.readyToReopen)
+                {
+                    this.coverBGTween.play();
+                    this.inventoryListContainer.deselectContainer();
+                    this.inventoryListContainer.itemDetails = param1.itemData;
+                    this.itemDetailsContainer.details = param1.itemData;
+                    FocusManager.setFocus(null);
+                    FocusManager.setModalClip(this.itemDetailsContainer);
+                    ExternalInterface.call("CallBack_ItemDetailsClicked",param1.itemData.definition);
+                }
             }
         }
         

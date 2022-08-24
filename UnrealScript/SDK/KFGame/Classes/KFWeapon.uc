@@ -842,6 +842,8 @@ native function KFPerk GetPerk() const;
 native function SetZedTimeResist(float ResistPct);
 /** Zero out current zed time resitances */
 native function ClearZedTimeResist();
+/** Allow weapons with abnormal state transitions to always use zed time resist*/
+simulated function bool HasAlwaysOnZedTimeResist(){return false;}
 
 /*********************************************************************************************
  * @name	Constructors, Destructors, and Loading
@@ -4093,6 +4095,12 @@ simulated function int GetSpareAmmoForHUD()
     return SpareAmmoCount[0];
 }
 
+/** Determines the secondary ammo left for HUD display */
+simulated function int GetSecondaryAmmoForHUD()
+{
+    return AmmoCount[1] + SpareAmmoCount[1];
+}
+
 /**
  * Called by Player to force current weapon to be reloaded
  * NOTE: A reload will only begin once the weapons FireInterval has completed
@@ -4495,13 +4503,18 @@ simulated static event class<KFPerk> GetWeaponPerkClass( class<KFPerk> Instigato
 {
 	if( default.AssociatedPerkClasses.Length > 1 )
 	{
-		if( InstigatorPerkClass == default.AssociatedPerkClasses[1] )
-		{
-			return InstigatorPerkClass;
-		}
+        if (default.AssociatedPerkClasses.Find(InstigatorPerkClass) != INDEX_NONE)
+        {
+            return InstigatorPerkClass;
+        }
 	}
 
 	return default.AssociatedPerkClasses[0];
+}
+
+simulated static function bool AllowedForAllPerks()
+{
+    return false;
 }
 
 static event array< Class<KFPerk> > GetAssociatedPerkClasses()
@@ -5551,14 +5564,21 @@ simulated state WeaponSingleFiring extends WeaponFiring
  * Fires a burst of bullets. Fire must be released between every shot.
  *********************************************************************************************/
 
+simulated function int GetBurstAmount() { return 1; }
+
 simulated state WeaponBurstFiring extends WeaponFiring
 {
 	simulated function BeginState(Name PrevStateName)
 	{
 		// Don't let us fire more shots than we have ammo for
-		BurstAmount=Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]);
+		BurstAmount = GetBurstAmount();
 
 		super.BeginState(PrevStateName);
+	}
+
+	simulated function int GetBurstAmount()
+	{
+		return Min( default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)] );
 	}
 
 	simulated function bool ShouldRefire()
@@ -6442,6 +6462,24 @@ simulated state MeleeAttackBasic
 		NotifyEndState();
 	}
 
+    /** Override BeginFire so that it will enter the firing state right away. 
+     *  @dweiss - Copied from state active in Weapon.uc. Melee weapons were skipping
+     *            this code path on servers when quickly activating parry.
+     */
+    simulated function BeginFire(byte FireModeNum)
+    {
+        if (!bDeleteMe && Instigator != None)
+        {
+            Global.BeginFire(FireModeNum);
+
+            // in the active state, fire right away if we have the ammunition
+            if (PendingFire(FireModeNum) && HasAmmo(FireModeNum))
+            {
+                SendToFiringState(FireModeNum);
+            }
+        }
+    }
+
 	/** Allow the MeleeAttackHelper to do damage and setup timing */
 	simulated function TimeWeaponFiring(byte FireModeNum)
 	{
@@ -6534,7 +6572,7 @@ reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 
 		bNeedsToSync = true;
 	}
-	else if( IsInState('WeaponEquipping') || IsInState('MeleeAttackBasic') )
+	else if( IsInState('WeaponEquipping') || IsInState('MeleeAttackBasic') || IsInState('WeaponSprinting') )
 	{
 		bNeedsToSync = true;
 	}
@@ -6603,16 +6641,15 @@ static simulated event SetTraderWeaponStats( out array<STraderItemWeaponStats> W
 	WeaponStats[0].StatType = TWS_Damage;
 	WeaponStats[0].StatValue = CalculateTraderWeaponStatDamage();
 
-	// attacks per minutes (design says minute. why minute?)
-	WeaponStats[1].StatType = TWS_RateOfFire;
-	WeaponStats[1].StatValue = CalculateTraderWeaponStatFireRate();
+	WeaponStats[1].StatType = TWS_Penetration;
+	WeaponStats[1].StatValue = default.PenetrationPower[DEFAULT_FIREMODE];
 
 	WeaponStats[2].StatType = TWS_Range;
 	// This is now set in native since EffectiveRange has been moved to KFWeaponDefinition
 	//WeaponStats[2].StatValue = CalculateTraderWeaponStatRange();
 
-	WeaponStats[3].StatType = TWS_Penetration;
-	WeaponStats[3].StatValue = default.PenetrationPower[DEFAULT_FIREMODE];
+	WeaponStats[3].StatType = TWS_RateOfFire;
+	WeaponStats[3].StatValue = CalculateTraderWeaponStatFireRate();
 }
 
 /** Allows weapon to calculate its own damage for display in trader */

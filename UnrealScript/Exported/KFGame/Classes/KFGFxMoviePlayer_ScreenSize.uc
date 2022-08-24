@@ -202,20 +202,16 @@ function NotifyControllerReconnected()
 	GFxMenuManager.SetPriority(1);
 }
 
-
-
 function Callback_Enlarge()
 {
 	KFEngine.SafeFrameScale += AdjustMovePercentage;
 	KFEngine.SafeFrameScale = FClamp( KFEngine.SafeFrameScale, SafeFrameMinScale, 1.0f );
-	Profile.SetProfileSettingValueFloat( KFID_SafeFrameScale, KFEngine.SafeFrameScale );
 }
 
 function Callback_Shrink()
 {
 	KFEngine.SafeFrameScale -= AdjustMovePercentage;
 	KFEngine.SafeFrameScale = FClamp(KFEngine.SafeFrameScale, SafeFrameMinScale, 1.0f);
-	Profile.SetProfileSettingValueFloat(KFID_SafeFrameScale, KFEngine.SafeFrameScale);
 }
 
 function Callback_Confirm()
@@ -225,12 +221,13 @@ function Callback_Confirm()
 
 function Callback_Cancel()
 {
-	SaveAndClose();
+	//SaveAndClose(); //do not want to use B button
 }
 
 
 function SaveAndClose()
 {
+	Profile.SetProfileSettingValueFloat(KFID_SafeFrameScale, KFEngine.SafeFrameScale);
 	Profile.Save( GetLP().ControllerId );
 	GFxMenuManager.CloseScreenSizeMovie();
 }

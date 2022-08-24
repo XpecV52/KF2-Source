@@ -184,14 +184,15 @@ function UpdateButtonsEnabled()
 {
     if(bIsSoloGame)
     {
-        LengthButton.SetBool("enabled", true);
-        DifficultyButton.SetBool("enabled", true);        
+        LengthButton.SetBool("enabled", SavedSoloModeIndex < 1);
+        DifficultyButton.SetBool("enabled", SavedSoloModeIndex < 1);        
     }
     else
     {
-        LengthButton.SetBool("enabled", SavedModeIndex != 1);
-        DifficultyButton.SetBool("enabled", SavedModeIndex != 1);
+        LengthButton.SetBool("enabled", SavedModeIndex < 1);
+        DifficultyButton.SetBool("enabled", SavedModeIndex < 1);
     }
+    CheckAndUpdateBasedOnPrivacy();
 }
 
 function SetHelpText(string TextValue)
@@ -511,8 +512,7 @@ function CheckAndUpdateBasedOnPrivacy()
     if(GetPartyPrivacy() == 0)
     {
         InProgressChanged(0, true);
-        ServerTypeButton.SetBool("enabled", true);
-        InProgressButton.SetBool("enabled", true);        
+        ServerTypeButton.SetBool("enabled", true);        
     }
     else
     {
@@ -520,8 +520,8 @@ function CheckAndUpdateBasedOnPrivacy()
         {
             InProgressChanged(2, true);
         }
-        InProgressButton.SetBool("enabled", false);
     }
+    InProgressButton.SetBool("enabled", GetPartyPrivacy() == 0);
 }
 
 function ServerTypeChanged(int Index, optional bool bSetText)
@@ -540,7 +540,7 @@ function ServerTypeChanged(int Index, optional bool bSetText)
         {
             ServerTypeButton.SetString("infoString", ServerTypeStrings[SavedServerTypeIndex]);
         }
-        if(SavedServerTypeIndex == 2)
+        if((SavedServerTypeIndex == 2) && !bIsSoloGame)
         {
             MapButton.SetBool("enabled", false);            
         }
@@ -567,7 +567,10 @@ function InProgressChanged(int Index, optional bool bSetText)
     }
     if(bSetText)
     {
-        InProgressButton.SetString("infoString", InProgessOptionStrings[SavedInProgressIndex]);
+        if(SavedInProgressIndex < InProgessOptionStrings.Length)
+        {
+            InProgressButton.SetString("infoString", InProgessOptionStrings[SavedInProgressIndex]);
+        }
     }
 }
 

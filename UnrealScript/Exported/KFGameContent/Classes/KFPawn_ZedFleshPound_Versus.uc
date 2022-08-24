@@ -156,6 +156,7 @@ defaultproperties
       AfflictionClasses(8)=()
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
+      AfflictionClasses(11)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -173,6 +174,7 @@ defaultproperties
    IncapSettings(8)=(Vulnerability=(0.250000,0.250000,0.250000,0.250000,0.400000))
    IncapSettings(9)=(Duration=0.500000,Cooldown=1.500000,Vulnerability=(0.500000))
    IncapSettings(10)=()
+   IncapSettings(11)=()
    SprintSpeed=550.000000
    SprintStrafeSpeed=450.000000
    TeammateCollisionRadiusPercent=0.300000
@@ -216,6 +218,14 @@ defaultproperties
       SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerFleshpound_Melee2'
       SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerFleshpound_Rage'
       SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerFleshpound_Block'
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=None
+      SpecialMoveClasses(32)=None
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
    End Object

@@ -114,6 +114,8 @@ function OnOpen()
     {
     	SelectionContainer.SetPerkListEnabled(!KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo).bReadyToPlay);
     }
+
+    ActionScriptVoid("updatePrompts");
 }
 
 function CheckTiersForPopup()

@@ -78,6 +78,7 @@ enum EAfflictionType
 	AF_Knockdown,
 	AF_Freeze,
 	AF_Microwave,	
+    AF_Bleed,
 
 	AF_Custom1,
 	AF_Custom2,
@@ -177,6 +178,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
 	local EHitZoneBodyPart BodyPart;
 	local byte HitZoneIdx;
 	local float KnockdownPower, StumblePower, StunPower, SnarePower;
+    local float KnockdownModifier, StumbleModifier, StunModifier;
 
 	// This is for damage over time, DoT shall never have momentum
 	if( IsZero( HitDir ) )
@@ -193,14 +195,29 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
     StunPower = DamageType.default.StunPower;
     SnarePower = DamageType.default.SnarePower;
 
+    KnockdownModifier = 1.f;
+    StumbleModifier = 1.f;
+    StunModifier = 1.f;
+
+    // Allow for known afflictions to adjust reaction
+    KnockdownModifier += GetAfflictionKnockdownModifier();
+    StumbleModifier += GetAfflictionStumbleModifier();
+    StunModifier += GetAfflictionStunModifier();
+
 	// Allow damage instigator perk to modify reaction
     if ( InstigatorPerk != None )
     {
-        KnockdownPower *= InstigatorPerk.GetKnockdownPowerModifier( DamageType, BodyPart, bIsSprinting );
-        StumblePower *= InstigatorPerk.GetStumblePowerModifier( Outer, DamageType,, BodyPart );
-        StunPower *= InstigatorPerk.GetStunPowerModifier( DamageType, HitZoneIdx );
-        SnarePower *= InstigatorPerk.GetSnarePowerModifier( DamageType, HitZoneIdx );
+        KnockdownModifier += InstigatorPerk.GetKnockdownPowerModifier( DamageType, BodyPart, bIsSprinting );
+        StumbleModifier += InstigatorPerk.GetStumblePowerModifier( Outer, DamageType,, BodyPart );
+        StunModifier += InstigatorPerk.GetStunPowerModifier( DamageType, HitZoneIdx );
+
+        //Snare power doesn't scale DT, it exists on its own (Ex: Gunslinger Skullcracker)
+        SnarePower += InstigatorPerk.GetSnarePowerModifier( DamageType, HitZoneIdx );
     }
+
+    KnockdownPower *= KnockdownModifier;
+    StumblePower *= StumbleModifier;
+    StunPower *= StunModifier;
 
     // increment affliction power
 	if ( KnockdownPower > 0 && CanDoSpecialmove(SM_Knockdown) )
@@ -298,6 +315,10 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
 		{
 			AccrueAffliction(AF_Microwave, DamageType.default.MicrowavePower);
 		}
+        if (DamageType.default.BleedPower > 0)
+        {
+            AccrueAffliction(AF_Bleed, DamageType.default.BleedPower);
+        }
 	}
 }
 
@@ -407,6 +428,96 @@ function float GetAfflictionDuration( EAfflictionType Type )
 	}
 }
 
+/** Accessor to get known affliction knockdown modifier */
+function float GetAfflictionKnockdownModifier()
+{
+    local float KnockdownModifier;
+    local int i;
+
+    KnockdownModifier = 0.f;
+    for (i = 0; i < Afflictions.Length; ++i)
+    {
+        if (Afflictions[i] != none)
+        {
+            KnockdownModifier += Afflictions[i].GetKnockdownModifier();
+        }
+    }    
+
+    return KnockdownModifier;
+}
+
+/** Accessor to get known affliction Stumble modifier */
+function float GetAfflictionStumbleModifier()
+{
+    local float StumbleModifier;
+    local int i;
+
+    StumbleModifier = 0.f;
+    for (i = 0; i < Afflictions.Length; ++i)
+    {
+        if (Afflictions[i] != none)
+        {
+            StumbleModifier += Afflictions[i].GetStumbleModifier();
+        }
+    }
+
+    return StumbleModifier;
+}
+
+/** Accessor to get known affliction Stun modifier */
+function float GetAfflictionStunModifier()
+{
+    local float StunModifier;
+    local int i;
+
+    StunModifier = 0.f;
+    for (i = 0; i < Afflictions.Length; ++i)
+    {
+        if (Afflictions[i] != none)
+        {
+            StunModifier += Afflictions[i].GetStunModifier();
+        }        
+    }
+
+    return StunModifier;
+}
+
+/** Accessor to get known affliction Damage modifier */
+function float GetAfflictionDamageModifier()
+{
+    local float DamageModifier;
+    local int i;
+
+    DamageModifier = 1.f;
+    for (i = 0; i < Afflictions.Length; ++i)
+    {
+        if (Afflictions[i] != none)
+        {
+            DamageModifier += Afflictions[i].GetDamageModifier();
+        }
+    }
+
+    return DamageModifier;
+}
+
+/** Accessor to get known affliction speed modifier - Multiplicative from all mods */
+function float GetAfflictionSpeedModifier()
+{
+    local float SpeedModifier;
+    local int i;
+
+    SpeedModifier = 1.f;
+    for (i = 0; i < Afflictions.Length; ++i)
+    {
+        if (Afflictions[i] != none)
+        {
+            SpeedModifier *= Afflictions[i].GetSpeedModifier();
+        }
+    }
+
+    return SpeedModifier;
+}
+
 /** Turns off all affliction sounds / effects */
 simulated function Shutdown()
 {
@@ -462,7 +573,7 @@ function UpdateMaterialParameter(EAfflictionType Type, float Value)
 	// If the value is zero no need to create an instance
 	if( Type >= Afflictions.Length || Afflictions[Type] == None )
 	{
-		if ( Value <= 0 || !VerifyAfflictionInstance(Type) )
+		if ( Value == 0 || !VerifyAfflictionInstance(Type) )
 		{
 			return; // cannot create instance
 		}
@@ -484,4 +595,5 @@ defaultproperties
 	AfflictionClasses(AF_Stumble)=class'KFAffliction_Stumble'
 	AfflictionClasses(AF_Knockdown)=class'KFAffliction_Knockdown'
 	AfflictionClasses(AF_Snare)=class'KFAffliction_Snare'
+    AfflictionClasses(AF_Bleed)=class'KFAffliction_Bleed'
 }

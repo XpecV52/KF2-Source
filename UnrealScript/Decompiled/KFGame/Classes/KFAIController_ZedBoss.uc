@@ -12,18 +12,6 @@ class KFAIController_ZedBoss extends KFAIController_Monster
 
 var bool bSummonedThisPhase;
 
-event Possess(Pawn inPawn, bool bVehicleTransition)
-{
-    local KFGameReplicationInfo KFGRI;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    super.Possess(inPawn, bVehicleTransition);
-    if((KFGRI != none) && KFGRI.WaveNum >= KFGRI.WaveMax)
-    {
-        Class'AICommand_BossTheatrics'.static.DoTheatrics(self, 0);
-    }
-}
-
 event EnemyNotVisible()
 {
     local KFPawn_Human HumanEnemy;
@@ -89,14 +77,6 @@ function EnterZedVictoryState()
         MyKFPawn.EndSpecialMove();
     }
     GotoState('ZedVictory', 'Begin');
-}
-
-state ZedVictory
-{Begin:
-
-    Sleep(0.1);
-    Class'AICommand_BossTheatrics'.static.DoTheatrics(self, 1, -1);
-    stop;                    
 }
 
 defaultproperties

@@ -42,6 +42,7 @@ simulated function bool Bounce( vector HitNormal, Actor BouncedOff )
 defaultproperties
 {
 	bBounce=true
+    bPushedByEncroachers=false
 
 	// some reasonable defaults
 	BouncesLeft=2

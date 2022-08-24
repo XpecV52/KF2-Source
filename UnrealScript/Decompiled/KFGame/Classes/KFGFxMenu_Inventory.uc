@@ -99,6 +99,7 @@ var name SoundEvent_Mythical;
 var name SoundThemeName;
 var KFPlayerController KFPC;
 var int ValueToPromptDuplicateRecycle;
+var array<int> SpecialEventItemIDs;
 var KFGFxMenu_Inventory.EINventory_Filter CurrentInventoryFilter;
 var ExchangeRuleSets RuleToExchange;
 
@@ -337,7 +338,12 @@ function bool IsItemRecyclable(ItemProperties ItemDetailsHolder, const out array
 
 function bool IsItemExchangeable(out ItemProperties ItemDetailsHolder, const out array<ExchangeRuleSets> ExchangeRules)
 {
-    return ((ExchangeRules.Length > 0) || ItemDetailsHolder.RequiredKeyId != "") && ItemDetailsHolder.Type == 2;
+    return ((ExchangeRules.Length > 0) || ItemDetailsHolder.RequiredKeyId != "") && (ItemDetailsHolder.Type == 2) || IsSpecialEventItem(ItemDetailsHolder.Definition);
+}
+
+function bool IsSpecialEventItem(int ItemId)
+{
+    return SpecialEventItemIDs.Find(ItemId != -1;
 }
 
 function bool IsItemActive(int ItemDefinition)
@@ -800,7 +806,10 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
         {
             if(ExchangeRules[0].Sources[0].Definition == ItemDefinition)
             {
-                NeededItemID = ExchangeRules[0].Sources[1].Definition;                
+                if(ExchangeRules[0].Sources.Length > 1)
+                {
+                    NeededItemID = ExchangeRules[0].Sources[1].Definition;
+                }                
             }
             else
             {
@@ -833,6 +842,11 @@ function Callback_UseItem(int ItemDefinition)
 
     TempItemIdHolder = ItemDefinition;
     CurrItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemDefinition];
+    if(IsSpecialEventItem(TempItemIdHolder))
+    {
+        Callback_CraftOption(TempItemIdHolder);
+        return;
+    }
     if(CurrItem.RequiredKeyId != "")
     {
         if(OnlineSub.HasKeyForItem(ItemDefinition, NeededItemID))
@@ -847,7 +861,7 @@ function Callback_UseItem(int ItemDefinition)
     {
         OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules);
         RuleIndex = 0;
-        J0x1AD:
+        J0x1D8:
 
         if(RuleIndex < ExchangeRules.Length)
         {
@@ -860,12 +874,12 @@ function Callback_UseItem(int ItemDefinition)
                 bExchangeFound = true;
             }
             ++ RuleIndex;
-            goto J0x1AD;
+            goto J0x1D8;
         }
         if(!bExchangeFound)
         {
             RuleIndex = 0;
-            J0x2F9:
+            J0x324:
 
             if(RuleIndex < ExchangeRules.Length)
             {
@@ -879,14 +893,14 @@ function Callback_UseItem(int ItemDefinition)
                     {
                         NeededItemID = ExchangeRules[RuleIndex].Sources[0].Definition;
                     }
-                    goto J0x426;
+                    goto J0x451;
                 }
                 ++ RuleIndex;
-                goto J0x2F9;
+                goto J0x324;
             }
         }
     }
-    J0x426:
+    J0x451:
 
     if(NeededItemID > 0)
     {
@@ -1035,4 +1049,7 @@ Cosmetic"
     SoundEvent_Mythical=Crate_End_Mythical
     SoundThemeName=SoundTheme_Crate
     ValueToPromptDuplicateRecycle=3
+    SpecialEventItemIDs(0)=4896
+    SpecialEventItemIDs(1)=4928
+    SpecialEventItemIDs(2)=4929
 }

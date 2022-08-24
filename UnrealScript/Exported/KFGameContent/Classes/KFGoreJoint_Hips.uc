@@ -12,7 +12,7 @@ class KFGoreJoint_Hips extends KFGoreJointInfo;
 
 defaultproperties
 {
-   HitBoneName="Hips"
+   HitBoneName="hips"
    BloodJets(0)=(ParticleSystemTemplate=ParticleSystem'FX_Gore_EMIT.FX_CH_Blood_stream_01')
    BloodTrails(0)=(ParticleSystemTemplate=ParticleSystem'FX_Gore_EMIT.FX_CH_Blood_Dismemberment_Trail')
    BloodMICParamName(0)="Decap"

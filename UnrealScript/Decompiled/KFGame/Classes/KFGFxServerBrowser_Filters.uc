@@ -166,6 +166,8 @@ function LocalizeText()
     CreateList("gameModeScrollingList", Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), ((SavedGameModeIndex == 255) ? Class'KFGameInfo'.default.GameModes.Length : SavedGameModeIndex));
     CreateList("mapScrollingList", MapList, SavedMapIndex);
     SetModeMenus("difficultyScrollingList", "lengthScrollingList", SavedGameModeIndexPending);
+    CreateList("difficultyScrollingList", Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex);
+    CreateList("lengthScrollingList", Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex);
     CreateList("pingScrollingList", ServerMenu.PingOptionStrings, SavedPingIndex);
     LocalizeCheckBoxes();
 }
@@ -408,7 +410,7 @@ function SetBoolByEFilter_Key(KFGFxServerBrowser_Filters.EFilter_Key Filter, boo
             bNotEmptyPending = FilterValue;
             break;
         case 4:
-            bCustomPending = !FilterValue;
+            bCustomPending = FilterValue;
             break;
         case 5:
             bDedicatedPending = FilterValue;

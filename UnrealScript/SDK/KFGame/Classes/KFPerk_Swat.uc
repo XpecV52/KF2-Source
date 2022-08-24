@@ -27,6 +27,8 @@ var private const class<KFWeaponDefinition>	BackupSecondaryWeaponDef;
 /** Percentage of how much armor should be damaged when the heavy armor skill is active */
 var private const float 					HeavyArmorAbsorptionPct;
 
+var float                                   CurrentHealthPenalty;
+
 /** Selectable skills */
 enum ESWATPerkSkills
 {
@@ -41,6 +43,12 @@ enum ESWATPerkSkills
 	ESWAT_SWATEnforcer,
 	ESWAT_RapidAssault
 };
+
+replication
+{
+    if (bNetDirty)
+        CurrentHealthPenalty;
+}
 
 /*********************************************************************************************
 * @name	 Perk init and spawning
@@ -189,6 +197,16 @@ simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
 }
 
 /**
+ * @brief Triggered via KFPawn_Human.UpdateGroundSpeed.  Update any speed-related variables that need to be set when
+ *              the pawn's allowed ground speed changes.
+ */
+function FinalizeSpeedVariables()
+{
+    super.FinalizeSpeedVariables();
+    CurrentHealthPenalty = 1 - OwnerPawn.LowHealthSpeedPenalty;
+}
+
+/**
  * @brief The Tactical Movement skill lets you move quicker in iron sights
  *
  * @param KFW Weapon equipped
@@ -199,7 +217,7 @@ simulated event float GetCrouchSpeedModifier( KFWeapon KFW )
 	if( IsTacticalMovementActive() && (Is9mm( KFW ) || IsWeaponOnPerk( KFW,, self.class )) )
 	{
 		`QALog( "Tactical Movement Mod:" @ KFW @ GetSkillValue( PerkSkills[ESWAT_TacticalMovement] ),bLogPerk );
-		return  GetSkillValue( PerkSkills[ESWAT_TacticalMovement] );
+		return  GetSkillValue( PerkSkills[ESWAT_TacticalMovement] ) * CurrentHealthPenalty;
 	}
 
 	return 1.f;
@@ -336,18 +354,18 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	local KFWeapon KFW;
 	local float StumbleModifier;
 
-	StumbleModifier = 1.f;
+	StumbleModifier = 0.f;
 
 	KFW = GetOwnerWeapon();
 	if( IsSpecialAmmunitionActive() && (Is9mm(KFW) || IsWeaponOnPerk( KFW,, self.class )) )
 	{
-		StumbleModifier *= GetSkillValue( PerkSkills[ESWAT_SpecialAmmunition] );
+		StumbleModifier += GetSkillValue( PerkSkills[ESWAT_SpecialAmmunition] );
 		`QALog( "Special Ammunition Modifier" @ GetSkillValue( PerkSkills[ESWAT_SpecialAmmunition] ), bLogPerk );
 	}
 
 	if( IsRapidAssaultActive() )
 	{
-		StumbleModifier *= GetSkillValue( PerkSkills[ESWAT_RapidAssault] );
+		StumbleModifier += GetSkillValue( PerkSkills[ESWAT_RapidAssault] );
 		`QALog( "Rapid Assault Modifier" @ GetSkillValue( PerkSkills[ESWAT_RapidAssault] ), bLogPerk );
 	}
 
@@ -392,7 +410,7 @@ simulated function int GetArmorDamageAmount( int AbsorbedAmt )
  */
 simulated function bool IsHeavyArmorActive()
 {
-	return PerkSkills[ESWAT_HeavyArmor].bActive;
+	return PerkSkills[ESWAT_HeavyArmor].bActive && IsPerkLevelAllowed(ESWAT_HeavyArmor);
 }
 
 
@@ -403,7 +421,7 @@ simulated function bool IsHeavyArmorActive()
  */
 simulated function bool IsTacticalMovementActive()
 {
-	return PerkSkills[ESWAT_TacticalMovement].bActive;
+	return PerkSkills[ESWAT_TacticalMovement].bActive && IsPerkLevelAllowed(ESWAT_TacticalMovement);
 }
 
 /**
@@ -413,7 +431,7 @@ simulated function bool IsTacticalMovementActive()
  */
 simulated private function bool IsBackupActive()
 {
-	return PerkSkills[ESWAT_Backup].bActive;
+	return PerkSkills[ESWAT_Backup].bActive && IsPerkLevelAllowed(ESWAT_Backup);
 }
 
 /**
@@ -423,7 +441,7 @@ simulated private function bool IsBackupActive()
  */
 simulated private function bool IsTacticalReloadActive()
 {
-	return PerkSkills[ESWAT_TacticalReload].bActive;
+	return PerkSkills[ESWAT_TacticalReload].bActive && IsPerkLevelAllowed(ESWAT_TacticalReload);
 }
 
 /**
@@ -444,7 +462,7 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  */
 simulated function bool IsSpecialAmmunitionActive()
 {
-	return PerkSkills[ESWAT_SpecialAmmunition].bActive;
+	return PerkSkills[ESWAT_SpecialAmmunition].bActive && IsPerkLevelAllowed(ESWAT_SpecialAmmunition);
 }
 
 /**
@@ -452,9 +470,9 @@ simulated function bool IsSpecialAmmunitionActive()
  *
  * @return true/false
  */
-final private function bool IsAmmoVestActive()
+final simulated private function bool IsAmmoVestActive()
 {
-	return PerkSkills[ESWAT_AmmoVest].bActive;
+	return PerkSkills[ESWAT_AmmoVest].bActive && IsPerkLevelAllowed(ESWAT_AmmoVest);
 }
 
 /**
@@ -464,7 +482,7 @@ final private function bool IsAmmoVestActive()
  */
 final private function bool IsBodyArmorActive()
 {
-	return PerkSkills[ESWAT_BodyArmor].bActive;
+	return PerkSkills[ESWAT_BodyArmor].bActive && IsPerkLevelAllowed(ESWAT_BodyArmor);
 }
 
 /**
@@ -474,7 +492,7 @@ final private function bool IsBodyArmorActive()
  */
 final private function bool IsCrippleActive()
 {
-	return PerkSkills[ESWAT_Cripple].bActive;
+	return PerkSkills[ESWAT_Cripple].bActive && IsPerkLevelAllowed(ESWAT_Cripple);
 }
 
 /**
@@ -484,7 +502,7 @@ final private function bool IsCrippleActive()
  */
 function bool IsSWATEnforcerActive()
 {
-	return PerkSkills[ESWAT_SWATEnforcer].bActive;
+	return PerkSkills[ESWAT_SWATEnforcer].bActive && IsPerkLevelAllowed(ESWAT_SWATEnforcer);
 }
 
 /**
@@ -494,7 +512,7 @@ function bool IsSWATEnforcerActive()
  */
 simulated function bool IsRapidAssaultActive()
 {
-	return PerkSkills[ESWAT_RapidAssault].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[ESWAT_RapidAssault].bActive && WorldInfo.TimeDilation < 1.f && IsPerkLevelAllowed(ESWAT_RapidAssault);
 }
 
 /*********************************************************************************************
@@ -558,12 +576,12 @@ DefaultProperties
 	PerkSkills(ESWAT_TacticalMovement)=(Name="TacticalMovement",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement", Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f)
 	PerkSkills(ESWAT_Backup)=(Name="Backup",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup", Increment=0.f,Rank=0,StartingValue=1.1f,MaxValue=1.1f) //1.0
 	PerkSkills(ESWAT_TacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload", Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
-	PerkSkills(ESWAT_SpecialAmmunition)=(Name="SpecialAmmunition",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition", Increment=0.f,Rank=0,StartingValue=3.0f,MaxValue=3.0f)
+	PerkSkills(ESWAT_SpecialAmmunition)=(Name="SpecialAmmunition",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition", Increment=0.f,Rank=0,StartingValue=2.0f,MaxValue=2.0f)
 	PerkSkills(ESWAT_AmmoVest)=(Name="AmmoVest",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest", Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
 	PerkSkills(ESWAT_BodyArmor)=(Name="BodyArmor",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_BodyArmor", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(ESWAT_Cripple)=(Name="Cripple",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Cripple", Increment=0.f,Rank=0,StartingValue=0.7f,MaxValue=0.7f)
 	PerkSkills(ESWAT_SWATEnforcer)=(Name="SWATEnforcer",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SWATEnforcer", Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
-	PerkSkills(ESWAT_RapidAssault)=(Name="RapidAssault",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_RapidAssault", Increment=0.f,Rank=0,StartingValue=2.f,MaxValue=2.f)
+	PerkSkills(ESWAT_RapidAssault)=(Name="RapidAssault",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_RapidAssault", Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 
 	SecondaryXPModifier(0)=2
 	SecondaryXPModifier(1)=3

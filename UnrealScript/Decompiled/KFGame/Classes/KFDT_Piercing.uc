@@ -8,6 +8,28 @@
 class KFDT_Piercing extends KFDamageType
     abstract;
 
+static simulated function bool CanDismemberHitZone(name InHitZoneName)
+{
+    switch(InHitZoneName)
+    {
+        case 'lhand':
+        case 'rhand':
+        case 'lfoot':
+        case 'rfoot':
+        case 'lforearm':
+        case 'rforearm':
+        case 'lcalf':
+        case 'rcalf':
+        case 'lthigh':
+        case 'rthigh':
+        case 'head':
+            return true;
+        default:
+            return false;
+            break;
+    }
+}
+
 defaultproperties
 {
     EffectGroup=EEffectDamageGroup.FXG_Piercing

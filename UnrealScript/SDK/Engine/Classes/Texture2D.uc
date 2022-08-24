@@ -107,6 +107,9 @@ var transient const int							ResidentMips;
 /** Number of mips to remove when recompressing (does not work with TC_NormalmapUncompressed) */
 var() int MipsToRemoveOnCompress;
 
+/** Command fence used to shut down properly */
+var		native				const	pointer					ReleaseTexture2DFence{class FRenderCommandFence};
+
 /**
  * Thread-safe counter indicating the texture streaming state. The definitions below are mirrored in UnTex.h.
  *
@@ -200,6 +203,9 @@ public:
 	 * Called after the garbage collection mark phase on unreachable objects.
 	 */
 	virtual void BeginDestroy();
+	UBOOL IsReadyForFinishDestroy() override;
+	void FinishDestroy() override;
+
 	/**
  	 * Called after object and all its dependencies have been serialized.
 	 */

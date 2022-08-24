@@ -67,6 +67,7 @@ function UpdateReadyButtonVisibility()
                     MatchStartContainer.SetVisible(MyKFPRI.bReadyToPlay);
                 }
             }
+            SetBool("matchOver", KFGRI.bMatchIsOver);
         }
     }
 }

@@ -144,6 +144,11 @@ event ApplyWeaponSkin(int ItemDefinition)
 	}
 }
 
+function bool HasSafeFrameSet()
+{
+	return GetProfileFloat( KFID_SafeFrameScale ) != 0.f;
+}
+
 function bool SetProfileSettingValueInt(int ProfileSettingId,int Value)
 {
 	if(super.SetProfileSettingValueInt(ProfileSettingId, Value))
@@ -305,7 +310,7 @@ defaultproperties
    DefaultSettings(53)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=165,Data=(Type=SDT_String)))
    DefaultSettings(54)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
    DefaultSettings(55)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=166,Data=(Type=SDT_Int32,Value1=-1)))
-   DefaultSettings(56)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=168,Data=(Type=SDT_Float,Value1=1065353216)))
+   DefaultSettings(56)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=168,Data=(Type=SDT_Float)))
    VersionNumber=4
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))

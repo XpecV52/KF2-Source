@@ -10,12 +10,17 @@ BriarsBobbyBundleName="Briars Bullen-Paket"
 FosterClassicBundleName="Fosters Klassisches Paket"
 TanakasBikerBundleName="Tanakas Biker-Paket"
 CardboardKnightBundleName="Papp-Ritter-Paket"
+HazmatBundleName="Schutzanzug-Paket"
+HorzineMark7BundleName="Horzine Mark-7-Paket"
 
 ;Bundle Descriptions
-BriarsBobbyBundleDescription="Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen). Nicht für den Tausch oder den Verkauf bestimmt."
-FosterClassicBundleDescription="Beinhaltet Fosters Klassischen Anzug (inklusive 9 Skin-Stilen), das Accessoire Klassische Krawatte (inklusive 8 Skin-Stilen) und das Accessoire Fliege. Nicht für den Tausch oder den Verkauf bestimmt."
-TanakasBikerBundleDescription="Beinhaltet Tanakas Motorradfahrer-Uniform (inklusive 7 Skin-Stilen) und einen Helm als kosmetisches Accessoire (inklusive 7 Skin-Stilen). Nicht für den Tausch oder den Verkauf bestimmt."
+BriarsBobbyBundleDescription="Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
+FosterClassicBundleDescription="Beinhaltet Fosters Klassischen Anzug (inklusive 9 Skin-Stilen), das Accessoire Klassische Krawatte (inklusive 8 Skin-Stilen) und das Accessoire Fliege."
+TanakasBikerBundleDescription="Beinhaltet Tanakas Motorradfahrer-Uniform (inklusive 7 Skin-Stilen) und einen Helm als kosmetisches Accessoire (inklusive 7 Skin-Stilen)."
 CardboardKnightBundleDescription="Beinhaltet eine Papp-Ritterrüstung für den Körper (inklusive 6 Skin-Stilen) und das kosmetische Accessoire Papp-Ritterhelm (inklusive 6 Skin-Stilen)."
+HazmatDescription="Beinhaltet Schutzanzug (inklusive 5 Skin-Stilen) und einen Schutzhelm als kosmetisches Accessoire (inklusive 5 Skin-Stilen). Mit den meisten Charakteren kompatibel."
+HorzineMark7Description="Beinhaltet Horzine Mark-7-Anzug (inklusive 7 Skin-Stilen) und ein kosmetisches Accessoire der Horzine Mark-7-Reihe (inklusive 7 Skin-Stilen). Mit den meisten Charakteren kompatibel."
+
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Erhalte eine neue klassische Uniform eines Londoner Polizisten für den spielbaren Charakter Wachtmeister Rob Briar. Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
@@ -42,19 +47,27 @@ HorzineMark7HelmetName="Horzine Mark-7-Helm"
 HorzineMark7SuitName="Horzine Mark-7-Anzug"
 CardboardKnightName="Papp-Ritter"
 CardboardKnightHelmetName="Papp-Ritter-Helm"
+HazmatHelmetName="Glovers Schutzhelm"
+HazmatSuitName="Glovers Schutzanzug"
+SideshowHazmatHelmetName="Crew-Helm des Tragischen Königreichs"
+SideshowHazmatSuitName="Crew-Anzug des Tragischen Königreichs"
 
 ;bundle item descriptions
-BriarsLondonUniformDescription="Alleine auf Streife. Mit Briar und Klassischem Briar kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-BriarsCustodianHelmetDescription="Immer schön auf die Rübe aufpassen. Mit Oisten Jägerhorn, DJ Scully, Mr. Foster, Wachtmeister Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser und Tom Banner kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-FostersClassicSuitDescription="Töte Zeds mit Stil! Mit Mr. Foster kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-FostersClassicTieDescription="Eine nette gerade Krawatte. Nur mit Klassischem Foster-Anzug kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-FostersBowTieDescription="Eine nette Fliege. Nur mit Klassischem Foster-Anzug kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-TanakasBikerDescription="Töte alles, was sich dir in den Weg stellt und sieh dabei auch noch cool aus. Mit Tanaka kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-TanakasBikerHelmetDescription="Immer schön auf die Rübe aufpassen. Mit Tanaka kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-HorzineMark7HelmetDescription="Ein Vollvisierhelm, der zu deiner Horzine-Sicherheitsrüstung passt. Mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser und Rae Higgins kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-HorzineMark7SuitDescription="Elite-Horzine-Sicherheitsrüstung Mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser und Rae Higgins kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-CardboardKnightDescription="Die Rüstung schlechthin für den anspruchsvollen Ritter. Mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Klassischem Briar, Klassischem Masterson und Anton Strasser kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
-CardboardKnightHelmetDescription="Der Höhepunkt eines jeden klassischen Looks. Mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Klassischem Briar, Klassischem Masterson und Anton Strasser kompatibel. Nicht für den Tausch oder den Verkauf bestimmt."
+BriarsLondonUniformDescription="Alleine auf Streife. Mit Briar und Klassischem Briar kompatibel. "
+BriarsCustodianHelmetDescription="Immer schön auf die Rübe aufpassen. Mit Oisten Jägerhorn, DJ Scully, Mr. Foster, Wachtmeister Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser und Tom Banner kompatibel. "
+FostersClassicSuitDescription="Töte Zeds mit Stil! Mit Mr. Foster kompatibel. "
+FostersClassicTieDescription="Eine nette gerade Krawatte. Nur mit Klassischem Foster-Anzug kompatibel. "
+FostersBowTieDescription="Eine nette Fliege. Nur mit Klassischem Foster-Anzug kompatibel. "
+TanakasBikerDescription="Töte alles, was sich dir in den Weg stellt, und sieh dabei auch noch cool aus. Mit Tanaka kompatibel. "
+TanakasBikerHelmetDescription="Immer schön auf die Rübe aufpassen. Mit Tanaka kompatibel. "
+HorzineMark7HelmetDescription="Ein Vollvisierhelm, der zu deiner Horzine-Sicherheitsrüstung passt. Mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser und Rae Higgins kompatibel. "
+HorzineMark7SuitDescription="Elite-Horzine-Sicherheitsrüstung. Mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser und Rae Higgins kompatibel. "
+CardboardKnightDescription="Die Rüstung schlechthin für den anspruchsvollen Ritter. Mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Klassischem Briar, Klassischem Masterson und Anton Strasser kompatibel. "
+CardboardKnightHelmetDescription="Der Höhepunkt eines jeden klassischen Looks. Mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Klassischem Briar, Klassischem Masterson und Anton Strasser kompatibel. "
+HazmatSuitDescription="Gehe nie ohne ihn hinaus! Mit den meisten Charakteren kompatibel. "
+HazmatHelmetDescription="Gehe nie ohne ihn hinaus! Mit den meisten Charakteren kompatibel. "
+SideshowHazmatSuitDescription="Die Arbeit im Vertrügungspark des Tragischen Königreiches erfordert zusätzlichen Schutz. Kann im Ausrüstung-Menü angelegt werden; mit den meisten Charakteren kompatibel. Dies ist ein exklusiver Gegenstand aus einem „Summer Sideshow“-Saison-Event, der freigeschaltet werden kann."
+SideshowHazmatHelmetDescription="Die Arbeit im Vertrügungspark des Tragischen Königreiches erfordert zusätzlichen Schutz. Kann im Ausrüstung-Menü angelegt werden; mit den meisten Charakteren kompatibel. Dies ist ein exklusiver Gegenstand aus einem „Summer Sideshow“-Saison-Event, der freigeschaltet werden kann."
 
 [KeyCrates]
 ;Key and Crate Type Section
@@ -80,6 +93,7 @@ HorzineSupplyCrateSeries10Name="Horzine-Vorratskiste | Serie #10"
 HorzineSupplyCrateSeries11Name="Horzine-Vorratskiste | Serie #11"
 HorzineSupplyCrateSeries12Name="Horzine-Vorratskiste | Serie #12"
 HorzineSupplyCrateSeries13Name="Horzine-Vorratskiste | Serie #13"
+HorzineSupplyCrateSeries14Name="Horzine-Vorratskiste | Serie #14"
 EmoteCrateSeries1Name="Emote-Kiste | Serie #1"
 
 ;Crate Descriptions
@@ -109,6 +123,8 @@ HorzineSupplyCrateSeries12Description="Man braucht einen Horzine-Vorratskistensc
 
 HorzineSupplyCrateSeries13Description="Man braucht einen Horzine-Vorratskistenschlüssel der Serie #13 zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Insektoider Helm, geschl.</font><br><font color="#4b69cd">Robo-Scully</font><br><font color="#4b69cd">Insektoider Helm, offen</font><br><font color="#6600a1">Insektoider Helm, Brille oben</font><br><font color="#6600a1">Dämonenkiller-Helm</font><br><font color="#8847ff">Insektoider Helm, Brille unten</font><br><font color="#8847ff">Minotaurus-Helm</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
+HorzineSupplyCrateSeries14Description="Man braucht einen Horzine-Vorratskistenschlüssel der Serie #14 zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Feuerwehrhelm</font><br><font color="#4b69cd">Feuerwehrhelm, Maske unten</font><br><font color="#4b69cd">Feuerwehrhelm, Maske oben</font><br><font color="#4b69cd">Feuerwehr-Gasmaske</font><br><font color="#6600a1">Feuerwehrhelm</font><br><font color="#6600a1">Feuerwehrhelm, Maske unten</font><br><font color="#6600a1">Feuerwehrhelm, Maske oben</font><br><font color="#6600a1">Feuerwehr-Gasmaske</font><br><font color="#6600a1">Feuerwehr-Sauerstofftank</font><br><font color="#8847ff">Feuerwehr-Sauerstofftank</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
+
 EmoteCrateSeries1Description="Man braucht einen Emote-Kistenschlüssel der Serie #1 zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Total verrückt</font><br><font color="#4b69cd">Popo-Polka</font><br><font color="#4b69cd">Onkel Charlie</font><br><font color="#4b69cd">Albernes Winken</font><br><font color="#6600a1">Es regnet Kohle</font><br><font color="#6600a1">Lion Uppercut</font><br><font color="#6600a1">Balzritual</font><br><font color="#8847ff">Volltreffer</font><br><font color="#8847ff">Feuerball</font><br><font color="#8847ff">Lasst es regnen</font><br><font color="#caab05">oder ein extrem seltenes Deluxe-Emote!</font>"
 
 ;Key Names
@@ -125,6 +141,7 @@ HorzineSupplyCrateKeySeries10Name="Horzine-Vorratskistenschlüssel | Serie #10"
 HorzineSupplyCrateKeySeries11Name="Horzine-Vorratskistenschlüssel | Serie #11"
 HorzineSupplyCrateKeySeries12Name="Horzine-Vorratskistenschlüssel | Serie #12"
 HorzineSupplyCrateKeySeries13Name="Horzine-Vorratskisten-Schlüssel | Serie #13"
+HorzineSupplyCrateKeySeries14Name="Horzine-Vorratskisten-Schlüssel | Serie #14"
 EmoteCrateKeySeries1Name="Emote-Kistenschlüssel | Serie #1"
 
 ;Key Descriptions
@@ -141,6 +158,7 @@ HorzineSupplyCrateKeySeries10Description="Dieser Schlüssel öffnet ausschließl
 HorzineSupplyCrateKeySeries11Description="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie #11."
 HorzineSupplyCrateKeySeries12Description="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie #12."
 HorzineSupplyCrateKeySeries13Description="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie #13."
+HorzineSupplyCrateKeySeries14Description="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie #14."
 EmoteCrateKeySeries1Description="Dieser Schlüssel öffnet ausschließlich die Emote-Kiste der Serie #1."
 
 ;UsbNames
@@ -163,6 +181,8 @@ MaceAndShieldEncryptedUSBName="Verschlüsselter Knochenmalmer-USB"
 DeepstrikeEncryptedUSBName="Verschlüsselter Deepstrike-USB"
 HighVoltageEncryptedUSBName="Verschlüsselter Hochspannungs-USB"
 FlarePistolEncryptedUSBName="Verschlüsselter Spitfire-USB"
+VietnamEncryptedUSBName="Verschlüsselter Vietnam-USB"
+JunkyardEncryptedUSBName="Verschlüsselter Schrottplatz-USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="Benötigt einen Cyberknochen-Bauplan-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">AR15 | Cyberknochen</font><br><font color="#4b69cd">AK-12 | Cyberknochen</font><br><font color="#4b69cd">AA-12 | Cyberknochen</font><br><font color="#4b69cd">Katana | Cyberknochen</font><br><font color="#8847ff">M79 | Gallensäure</font><br><font color="#8847ff">AR15 | Eindämmung</font><br><font color="#caab05">oder ein extrem seltener und wertvoller Skin!</font>"
@@ -203,6 +223,10 @@ HighVoltageEncryptedUSBDescription="Benötigt einen Hochspannungs-Bauplan-Schlü
 
 FlarePistolEncryptedUSBDescription="Benötigt einen Spitfire-Bauplan-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">Spitfire | Flammenblau</font><br><font color="#4b69cd">Spitfire | Flammenorange</font><br><font color="#4b69cd">Spitfire | Flammenrot</font><br><font color="#4b69cd">Spitfire | DigiCam-Orange</font><br><font color="#6600a1">Spitfire | Guillotine</font><br><font color="#6600a1">Spitfire | Koi</font><br><font color="#8847ff">Spitfire | Edles Porzellan</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
 
+VietnamEncryptedUSBDescription="Benötigt einen Vietnam-Bauplan-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">Winchester 1894 | Vietnam</font><br><font color="#4b69cd">RPG-7 | Vietnam</font><br><font color="#4b69cd">M1911 | Vietnam</font><br><font color="#4b69cd">L85A2 | Vietnam</font><br><font color="#4b69cd">M4 | Vietnam</font><br><font color="#6600a1">AK12 | Vietnam</font><br><font color="#6600a1">M14 EBR | Vietnam</font><br><font color="#8847ff">M16 M203 | Vietnam</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
+
+JunkyardEncryptedUSBDescription="Benötigt einen Schrottplatz-Bauplan-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität<br><font color="#4b69cd">M4 | Schrottplatz</font><br><font color="#4b69cd">AK12 | Schrottplatz</font><br><font color="#4b69cd">Kriss-MP | Schrottplatz</font><br><font color="#4b69cd">MP5RAS | Schrottplatz</font><br><font color="#4b69cd">Winchester 1894 | Schrottplatz</font><br><font color="#4b69cd">L85A2 | Schrottplatz</font><br><font color="#6600a1">M14 EBR | Schrottplatz</font><br><font color="#6600a1">AA12 | Schrottplatz</font><br><font color="#8847ff">M16 M203 | Schrottplatz</font><br><font color="#8847ff">Scar | Schrottplatz</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
+
 ;usb key names
 CyberboneUSBKeyName="Cyberknochen-USB-Schlüssel"
 DragonfireUSBKeyName="Drachenfeuer-USB-Schlüssel"
@@ -223,6 +247,8 @@ MaceAndShieldUSBKeyName="Knochenmalmer-USB-Schlüssel"
 DeepstrikeUSBKeyName="Deepstrike-USB-Schlüssel"
 HighVoltageUSBKeyName="Hochspannungs-USB-Schlüssel"
 FlarePistolUSBKeyName="Spitfire-USB-Schlüssel"
+VietnamUSBKeyName="Vietnam-USB-Schlüssel"
+JunkyardUSBKeyName="Schrottplatz-USB-Schlüssel"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Dieser Schlüssel dient ausschließlich zur Entschlüsselung des Cyberknochen-Bauplans"
@@ -244,6 +270,8 @@ MaceAndShieldUSBKeyDescription="Schlüssel zur Entschlüsselung des Knochenmalme
 DeepstrikeUSBKeyDescription="Schlüssel zur Entschlüsselung des Deepstrike-Bauplans"
 HighVoltageUSBKeyDescription="Schlüssel zur Entschlüsselung des Hochspannungs-Bauplans"
 FlarePistolUSBKeyDescription="Schlüssel zur Entschlüsselung des Spitfire-Bauplans"
+VietnamUSBKeyDescription="Schlüssel zur Entschlüsselung des Vietnam-Bauplans"
+JunkyardUSBKeyDescription="Schlüssel zur Entschlüsselung des Schrottplatz-Bauplans"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Horzine-Verschönerungs-Vorratskiste | Serie #1"
@@ -289,6 +317,12 @@ CosmeticExceptionalType="Außergewöhnliches Spieler-Accessoire"
 CosmeticMasterCraftedType="Meister-Spieler-Accessoire"
 CosmeticPreciousType="Extrem Seltenes Spieler-Accessoire"
 
+;Sideshow Type Section
+CosmeticSideshowType="„Summer Sideshow“-Spieler-Accessoire"
+CraftingSideshowType="Saison-Gewinnschein"
+CraftingGoldenSideshowName="Goldener Saison-Gewinnschein"
+FacePaintSideshowType="„Summer Sideshow“-Gesichtsfarbe"
+
 ;Crafting Type Section
 CraftingType="Handwerksmaterial"
 
@@ -311,6 +345,9 @@ CommonWeaponSkinMaterialName="Gewöhnliches Waffen-Skin-Material"
 UncommonWeaponSkinMaterialName="Ungewöhnliches Waffen-Skin-Material"
 RareWeaponSkinMaterialName="Seltenes Waffen-Skin-Material"
 ExceptionalWeaponSkinMaterialName="Außergewöhnliches Waffen-Skin-Material"
+CraftingSideshowName="„Summer Sideshow“-Gewinnschein"
+CraftingPremiumSideshowName="„Summer Sideshow“-Premium-Gewinnschein"
+CraftingGoldenSideshowName="Goldener „Summer Sideshow“-Gewinnschein"
 
 ;materialdescriptions
 CommonCosmeticMaterialDescription="Gewöhnliches Handwerksmaterial, das in Kombination für die Erstellung von ungewöhnlichen kosmetischen Gegenständen verwendet werden kann."
@@ -321,7 +358,9 @@ CommonWeaponSkinMaterialDescription="Gewöhnliches Handwerksmaterial, das in Kom
 UncommonWeaponSkinMaterialDescription="Ungewöhnliches Handwerksmaterial, das in Kombination für die Erstellung von seltenen Waffen-Skins verwendet werden kann."
 RareWeaponSkinMaterialDescription="Seltenes Handwerksmaterial, das in Kombination für die Erstellung von außergewöhnlichen Waffen-Skins verwendet werden kann."
 ExceptionalWeaponSkinMaterialDescription="Außergewöhnliches Handwerksmaterial, das in Kombination für die Erstellung von meisterlich hergestellten Waffen-Skins verwendet werden kann."
-
+CraftingSideshowDescription="Gewinnscheine können gegen einen exklusiven „Summer Sideshow“-Gegenstand eingetauscht werden. <font color="#4b69cd">5 Gewinnscheine erforderlich.</font> Eintausch gegen einen der folgenden Gegenstände von seltener oder besserer Qualität: <br><font color="#4b69cd">Sideshow-Clownshut</font><br><font color="#4b69cd">Sideshow-Clownsnase</font><br><font color="#4b69cd">Shideshow-Gesichtsfarbe</font><br><font color="#4b69cd">Sideshow-Schweinemaske</font><br><font color="#4b69cd">Sideshow-Minimarschierer</font><br><font color="#4b69cd">Sideshow-Hexendoktorhut</font><br><font color="#4b69cd">Sideshow-Menschenkanone</font>"
+CraftingPremiumSideshowDescription="Dieser Premium-Schein kann gegen einen exklusiven „Summer Sideshow“-Gegenstand eingetauscht werden!  <font color="#4b69cd">Nur 1 Schein erforderlich!</font> Eintausch gegen einen der folgenden Gegenstände von seltener oder besserer Qualität: <br><font color="#4b69cd">Sideshow-Clownshut</font></font><br><font color="#4b69cd">Sideshow-Clownsnase</font><br><font color="#4b69cd">Shideshow-Gesichtsfarbe</font><br><font color="#4b69cd">Sideshow-Schweinemaske</font><br><font color="#4b69cd">Sideshow-Minimarschierer</font><br><font color="#4b69cd">Sideshow-Hexendoktorhut</font><br><font color="#4b69cd">Sideshow-Menschenkanone</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
+CraftingGoldenSideshowDescription="Du hast einen goldenen Schein erhalten! <font color="#4b69cd">Nur 1 Schein erforderlich!</font> Dieser goldene Schein kann gegen einen exklusiven <font color="#caab05">extrem seltenen und WERTVOLLEN</font> „Summer Sideshow“-Gegenstand eingetauscht werden."
 
 [WeaponSkins]
 
@@ -479,6 +518,9 @@ AA12PreciousName="AA-12 | Edel"
 AA12TacticalMintName="AA12 | Taktisch | Tadellos"
 AA12TacticalFieldTestedName="AA12 | Taktisch | Praxisbewährt"
 AA12TacticalBattleScarredName="AA12 | Taktisch | Kampferprobt"
+AA12JunkyardMintName="AA12 | Schrottplatz | Tadellos"
+AA12JunkyardFieldTestedName="AA12 | Schrottplatz | Praxisbewährt"
+AA12JunkyardBattleScarredName="AA12 | Schrottplatz | Kampferprobt"
 
 ;AK12 Descriptions
 AK12MintDescription="Äußeres: Tadellos | Diese AK-12 wurde von einem toten russischen Speznas-Agenten zum Scannen geborgen."
@@ -527,6 +569,12 @@ AK12PreciousName="AK-12 | Edel"
 AK12TacticalMintName="AK12 | Taktisch | Tadellos"
 AK12TacticalFieldTestedName="AK12 | Taktisch | Praxisbewährt"
 AK12TacticalBattleScarredName="AK12 | Taktisch | Kampferprobt"
+AK12VietnamMintName="AK12 | Vietnam | Tadellos"
+AK12VietnamFieldTestedName="AK12 | Vietnam | Praxisbewährt"
+AK12VietnamBattleScarredName="AK12 | Vietnam | Kampferprobt"
+AK12JunkyardMintName="AK12 | Schrottplatz | Tadellos"
+AK12JunkyardFieldTestedName="AK12 | Schrottplatz | Praxisbewährt"
+AK12JunkyardBattleScarredName="AK12 | Schrottplatz | Kampferprobt"
 
 ;AR15 Descriptions
 AR15MintDescription="Äußeres: Tadellos | Ein altbewährtes Mittel gegen Zeds, nicht gegen Ungeziefer."
@@ -608,6 +656,12 @@ CaulknBurnStreetPunksMintName="Ausräucherer | Straßenpunks | Tadellos"
 CaulknBurnStreetPunksFieldTestedName="Ausräucherer | Straßenpunks | Praxisbewährt"
 CaulknBurnStreetPunksBattleScarredName="Ausräucherer | Straßenpunks | Kampferprobt"
 CaulknBurnPreciousName="Ausräucherer | Edel"
+
+;Centerfire Descriptions
+CenterfireMintWeeklyDescription="Äußeres: Tadellos | Ein moderner Zentralfeuer-Unterhebelrepetierer von Mossberg mit geringem Rückstoß und hoher Mannstoppwirkung. Ein modernisierter Klassiker. Dieser Gegenstand wurde durch den Abschluss eines wöchentlichen Ausbruchs freigeschaltet."
+
+;Centerfire Names
+CenterfireWeeklyName="Centerfire | Wöchentl.-Kopfschuss | Tadellos"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Äußeres: Tadellos | Eine leistungsstarke Jagdarmbrust mit gutem Durchschlag und Mannstoppwirkung!"
@@ -926,6 +980,9 @@ KrissPreciousName="Kriss-MP | Edel"
 KrissShredderMintName="Kriss-MP | Schredder | Tadellos"
 KrissShredderFieldTestedName="Kriss-MP | Schredder | Praxisbewährt"
 KrissShredderBattleScarredName="Kriss-MP | Schredder | Kampferprobt"
+KrissJunkyardMintName="Kriss-MP | Schrottplatz | Tadellos"
+KrissJunkyardFieldTestedName="Kriss-MP | Schrottplatz | Praxisbewährt"
+KrissJunkyardBattleScarredName="Kriss-MP | Schrottplatz | Kampferprobt"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Äußeres: Tadellos | Die SA80 war die Standardwaffe der britischen Armee. Das war, bevor die Armee ... naja ... auf der Speisekarte landete."
@@ -965,6 +1022,12 @@ L85A2PreciousName="L85A2 | Edel"
 L85A2TacticalMintName="L85A2 | Taktisch | Tadellos"
 L85A2TacticalFieldTestedName="L85A2 | Taktisch | Praxisbewährt"
 L85A2TacticalBattleScarredName="L85A2 | Taktisch | Kampferprobt"
+L85A2VietnamMintName="L85A2 | Vietnam | Tadellos"
+L85A2VietnamFieldTestedName="L85A2 | Vietnam | Praxisbewährt"
+L85A2VietnamBattleScarredName="L85A2 | Vietnam | Kampferprobt"
+L85A2JunkyardMintName="L85A2 | Schrottplatz | Tadellos"
+L85A2JunkyardFieldTestedName="L85A2 | Schrottplatz | Praxisbewährt"
+L85A2JunkyardBattleScarredName="L85A2 | Schrottplatz | Kampferprobt"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="Äußeres: Tadellos | Das bevorzugte Scharfschützengewehr der Navy SEALs, Delta Force und anderen knallharten Typen."
@@ -976,7 +1039,28 @@ M14EBRPreciousDescription="Äußeres: Edel | Das bevorzugte Scharfschützengeweh
 M14EBRIndustrialMintName="M14 EBR | Industriell | Tadellos"
 M14EBRIndustrialFieldTestedName="M14 EBR | Industriell | Praxisbewährt"
 M14EBRIndustrialBattleScarredName="M14 EBR | Industriell | Kampferprobt"
+M14EBRVietnamMintName="M14 EBR | Vietnam | Tadellos"
+M14EBRVietnamFieldTestedName="M14 EBR | Vietnam | Praxisbewährt"
+M14EBRVietnamBattleScarredName="M14 EBR | Vietnam | Kampferprobt"
+M14EBRJunkyardMintName="M14 EBR | Schrottplatz | Tadellos"
+M14EBRJunkyardFieldTestedName="M14 EBR | Schrottplatz | Praxisbewährt"
+M14EBRJunkyardBattleScarredName="M14 EBR | Schrottplatz | Kampferprobt"
 M14EBRPreciousName="M14 EBR | Edel"
+
+;M16M203 Descriptions
+M16M203MintDescription="Äußeres: Tadellos | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
+M16M203FieldTestedDescription="Äußeres: Praxisbewährt | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
+M16M203BattleScarredDescription="Äußeres: Kampferprobt | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
+M16M203PreciousDescription="Äußeres: Edel | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
+
+;M16M203 Names
+M16M203VietnamMintName="M16 M203 | Vietnam | Tadellos"
+M16M203VietnamFieldTestedName="M16 M203 | Vietnam | Praxisbewährt"
+M16M203VietnamBattleScarredName="M16 M203 | Vietnam | Kampferprobt"
+M16M203JunkyardMintName="M16 M203 | Schrottplatz | Tadellos"
+M16M203JunkyardFieldTestedName="M16 M203 | Schrottplatz | Praxisbewährt"
+M16M203JunkyardBattleScarredName="M16 M203 | Schrottplatz | Kampferprobt"
+M16M203PreciousName="M16 M203 | Edel"
 
 ;M1911 Descriptions
 M1911MintDescription="Äußeres: Tadellos | Der klassische Colt 1911, eine Halbautomatikpistole."
@@ -988,6 +1072,9 @@ M1911PreciousDescription="Äußeres: Edel | Der klassische Colt 1911, eine Halba
 M1911TacticalMintName="M1911 | Taktisch | Tadellos"
 M1911TacticalFieldTestedName="M1911 | Taktisch | Praxisbewährt"
 M1911TacticalBattleScarredName="M1911 | Taktisch | Kampferprobt"
+M1911VietnamMintName="M1911 | Vietnam | Tadellos"
+M1911VietnamFieldTestedName="M1911 | Vietnam | Praxisbewährt"
+M1911VietnamBattleScarredName="M1911 | Vietnam | Kampferprobt"
 M1911PreciousName="M1911 | Edel"
 
 ;M4 Descriptions
@@ -1006,6 +1093,12 @@ M4StoriesofWarBattleScarredName="M4 | Kriegsgeschichten | Kampferprobt"
 M4VictorianMintName="M4 | Viktorianisch | Tadellos"
 M4VictorianFieldTestedName="M4 | Viktorianisch | Praxisbewährt"
 M4VictorianBattleScarredName="M4 | Viktorianisch | Kampferprobt"
+M4VietnamMintName="M4 | Vietnam | Tadellos"
+M4VietnamFieldTestedName="M4 | Vietnam | Praxisbewährt"
+M4VietnamBattleScarredName="M4 | Vietnam | Kampferprobt"
+M4JunkyardMintName="M4| Schrottplatz | Tadellos"
+M4JunkyardFieldTestedName="M4 | Schrottplatz | Praxisbewährt"
+M4JunkyardBattleScarredName="M4 | Schrottplatz | Kampferprobt"
 M4PreciousName="M4 | Edel"
 
 ;M79 Descriptions
@@ -1087,6 +1180,9 @@ MP5RASPreciousDescription="Äußeres: Edel | Die aktuellste Version einer der am
 MP5RASIndustrialMintName="MP5RAS | Industriell | Tadellos"
 MP5RASIndustrialFieldTestedName="MP5RAS | Industriell | Praxisbewährt"
 MP5RASIndustrialBattleScarredName="MP5RAS | Industriell | Kampferprobt"
+MP5RASJunkyardMintName="MP5RAS | Schrottplatz | Tadellos"
+MP5RASJunkyardFieldTestedName="MP5RAS | Schrottplatz | Praxisbewährt"
+MP5RASJunkyardBattleScarredName="MP5RAS | Schrottplatz | Kampferprobt"
 MP5RASPreciousName="MP5RAS | Edel"
 
 ;MP7 Descriptions
@@ -1166,6 +1262,9 @@ RPG7PreciousName="RPG-7 | Edel"
 RPG7DeepstrikeMintName="RPG-7 | Deepstrike | Tadellos"
 RPG7DeepstrikeFieldTestedName="RPG-7 | Deepstrike | Praxisbewährt"
 RPG7DeepstrikeBattleScarredName="RPG-7 | Deepstrike | Kampferprobt"
+RPG7VietnamMintName="RPG-7 | Vietnam | Tadellos"
+RPG7VietnamFieldTestedName="RPG-7 | Vietnam | Praxisbewährt"
+RPG7VietnamBattleScarredName="RPG-7 | Vietnam | Kampferprobt"
 
 ;Scar Descriptions
 ScarMintDescription="Äußeres: Tadellos | Wurde ursprünglich für das US-Spezialkommando entwickelt. Normal ist das Ding nämlich ganz bestimmt nicht!"
@@ -1214,6 +1313,9 @@ ScarDeepstrikeBattleScarredName="Scar | Deepstrike | Kampferprobt"
 ScarTacticalMintName="Scar | Taktisch | Tadellos"
 ScarTacticalFieldTestedName="Scar | Taktisch | Praxisbewährt"
 ScarTacticalBattleScarredName="Scar | Taktisch | Kampferprobt"
+ScarJunkyardMintName="Scar | Schrottplatz | Tadellos"
+ScarJunkyardFieldTestedName="Scar | Schrottplatz | Praxisbewährt"
+ScarJunkyardBattleScarredName="Scar | Schrottplatz | Kampferprobt"
 
 ;SG500 Descriptions
 SG500MintDescription="Äußeres: Tadellos | Die Mossberg-SG-500 mit Pumpprinzip und Pistolengriff ist wunderbar dafür geeignet, wenn man sich Zeds auf engem Raum vom Hals schaffen will. Einfach und wirksam."
@@ -1316,6 +1418,12 @@ Winchester1894PreciousName="Winchester 1894 | Edel"
 Winchester1894DeepstrikeMintName="Winchester 1894 | Deepstrike | Tadellos"
 Winchester1894DeepstrikeFieldTestedName="Winchester 1894 | Deepstrike | Praxisbewährt"
 Winchester1894DeepstrikeBattleScarredName="Winchester 1894 | Deepstrike | Kampferprobt"
+Winchester1894VietnamMintName="Winchester 1894 | Vietnam | Tadellos"
+Winchester1894VietnamFieldTestedName="Winchester 1894 | Vietnam | Praxisbewährt"
+Winchester1894VietnamBattleScarredName="Winchester 1894 | Vietnam | Kampferprobt"
+Winchester1894JunkyardMintName="Winchester 1894 | Schrottplatz | Tadellos"
+Winchester1894JunkyardFieldTestedName="Winchester 1894 | Schrottplatz | Praxisbewährt"
+Winchester1894JunkyardBattleScarredName="Winchester 1894 | Schrottplatz | Kampferprobt"
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Äußeres: Tadellos | Das übergroße Messer des alten Westens. Eignet sich ganz toll für das Zerstückeln von Zeds im Hier und Jetzt."
@@ -1970,30 +2078,35 @@ FirefighterHelmetOliveName="Feuerwehrhelm | Oliv"
 FirefighterHelmetRedName="Feuerwehrhelm | Rot"
 FirefighterHelmetWhiteName="Feuerwehrhelm | Weiß"
 FirefighterHelmetYellowName="Feuerwehrhelm | Gelb"
+FirefighterHelmetPreciousName="Feuerwehrhelm | Edel"
 FirefighterHelmetMaskDownBlackName="Feuerwehrhelm, Maske unten | Schwarz"
 FirefighterHelmetMaskDownBlueName="Feuerwehrhelm, Maske unten | Blau"
 FirefighterHelmetMaskDownOliveName="Feuerwehrhelm, Maske unten | Oliv"
 FirefighterHelmetMaskDownRedName="Feuerwehrhelm, Maske unten | Rot"
 FirefighterHelmetMaskDownWhiteName="Feuerwehrhelm, Maske unten | Weiß"
 FirefighterHelmetMaskDownYellowName="Feuerwehrhelm, Maske unten | Gelb"
+FirefighterHelmetMaskDownPreciousName="Feuerwehrhelm, Maske unten | Edel"
 FirefighterHelmetMaskUpBlackName="Feuerwehrhelm, Maske oben | Schwarz"
 FirefighterHelmetMaskUpBlueName="Feuerwehrhelm, Maske oben | Blau"
 FirefighterHelmetMaskUpOliveName="Feuerwehrhelm, Maske oben | Oliv"
 FirefighterHelmetMaskUpRedName="Feuerwehrhelm, Maske oben | Rot"
 FirefighterHelmetMaskUpWhiteName="Feuerwehrhelm, Maske oben | Weiß"
 FirefighterHelmetMaskUpYellowName="Feuerwehrhelm, Maske oben | Gelb"
+FirefighterHelmetMaskUpPreciousName="Feuerwehrhelm, Maske oben | Edel"
 FirefighterGasmaskBlackName="Feuerwehr-Gasmaske | Schwarz"
 FirefighterGasmaskBlueName="Feuerwehr-Gasmaske | Blau"
 FirefighterGasmaskOliveName="Feuerwehr-Gasmaske | Oliv"
 FirefighterGasmaskRedName="Feuerwehr-Gasmaske | Rot"
 FirefighterGasmaskWhiteName="Feuerwehr-Gasmaske | Weiß"
 FirefighterGasmaskYellowName="Feuerwehr-Gasmaske | Gelb"
+FirefighterGasmaskPreciousName="Feuerwehr-Gasmaske | Edel"
 FirefighterOxygenTankBlackName="Feuerwehr-Sauerstofftank | Schwarz"
 FirefighterOxygenTankBlueName="Feuerwehr-Sauerstofftank | Blau"
 FirefighterOxygenTankOliveName="Feuerwehr-Sauerstofftank | Oliv"
 FirefighterOxygenTankRedName="Feuerwehr-Sauerstofftank | Rot"
 FirefighterOxygenTankWhiteName="Feuerwehr-Sauerstofftank | Weiß"
 FirefighterOxygenTankYellowName="Feuerwehr-Sauerstofftank | Gelb"
+FirefighterOxygenTankPreciousName="Feuerwehr-Sauerstofftank | Edel"
 InsectoidHelmetClosedBlackRedLightName="Insektoider Helm, geschl. | Schwarz/Rotlicht"
 InsectoidHelmetClosedBlackRedTrimName="Insektoider Helm, geschl. | Schwarz mit Rot"
 InsectoidHelmetClosedBlackYellowLightName="Insektoider Helm, geschl. | Schwarzgelbes Licht"
@@ -2046,8 +2159,78 @@ InsectoidHelmetGogglesDownPreciousName="Insektoider Helm, Brille unten | Edel"
 DemonSlayerHelmetGreyName="Dämonenkiller-Helm | Grau"
 DemonSlayerHelmetPreciousName="Dämonenkiller-Helm | Edel"
 
+;Sideshow Cosmetic Names
+SideshowClownHatYellowBlueName="Sideshow-Clownshut | Gelb-Blau"
+SideshowClownHatBlackWhiteName="Sideshow-Clownshut | Schwarz-Weiß"
+SideshowClownHatRedBlackName="Sideshow-Clownshut | Rot-Schwarz"
+SideshowClownHatRainbowName="Sideshow-Clownshut | Regenbogen"
+SideshowClownHatDoshName="Sideshow-Clownshut | Kohle"
+SideshowClownHatZedTimeName="Sideshow-Clownshut | Zed-Zeit"
+SideshowClownHatPreciousName="Sideshow-Clownshut | Edel"
+SideshowClownNoseFuzzyRedName="Sideshow-Clownsnase | Flauschig – Rot"
+SideshowClownNoseFuzzyYellowName="Sideshow-Clownsnase | Flauschig – Gelb"
+SideshowClownNoseFuzzyBlueName="Sideshow-Clownsnase | Flauschig – Blau"
+SideshowClownNoseFuzzyBlackName="Sideshow-Clownsnase | Flauschig – Schwarz"
+SideshowClownNoseShinyRedName="Sideshow-Clownsnase | Leuchtend rot"
+SideshowClownNoseShinyYellowName="Sideshow-Clownsnase | Leuchtend gelb"
+SideshowClownNoseShinyBlueName="Sideshow-Clownsnase | Leuchtend blau"
+SideshowClownNoseShinyBlackName="Sideshow-Clownsnase | Leuchtend schwarz"
+SideshowClownNosePreciousName="Sideshow-Clownsnase | Edel"
+SideshowPigMaskPigletName="Sideshow-Schweinemaske | Ferkel"
+SideshowPigMaskGreyName="Sideshow-Schweinemaske | Grau"
+SideshowPigMaskRainbowName="Sideshow-Schweinemaske | Regenbogen"
+SideshowPigMaskSideshowClownName="Sideshow-Schweinemaske | Sideshow-Clown"
+SideshowPigMaskPreciousName="Sideshow-Schweinemaske | Edel"
+SideshowTinyMarcherRedYellowName="Sideshow-Minimarschierer | Rot-Gelb"
+SideshowTinyMarcherBlueYellowName="Sideshow-Minimarschierer | Blau-Gelb"
+SideshowTinyMarcherRainbowName="Sideshow-Minimarschierer | Regenbogen"
+SideshowTinyMarcherBlackWhiteName="Sideshow-Minimarschierer | Schwarz-Weiß"
+SideshowTinyMarcherWhiteName="Sideshow-Minimarschierer | Weiß"
+SideshowTinyMarcherPreciousName="Sideshow-Minimarschierer | Edel"
+SideshowWitchdoctorHatBrownName="Sideshow-Hexendoktorhut | Braun"
+SideshowWitchdoctorHatWhiteName="Sideshow-Hexendoktorhut | Weiß"
+SideshowWitchdoctorHatRedName="Sideshow-Hexendoktorhut | Rot"
+SideshowWitchdoctorHatVoodooFunkName="Sideshow-Hexendoktorhut | Voodoo-Funk"
+SideshowWitchdoctorHatGreenName="Sideshow-Hexendoktorhut | Grün"
+SideshowWitchdoctorHatPreciousName="Sideshow-Hexendoktorhut | Edel"
+SideshowFacePaintAlbertsName="Sideshow-Gesichtsfarbe | Alberts"
+SideshowFacePaintAnaName="Sideshow-Gesichtsfarbe | Ana"
+SideshowFacePaintScullyName="Sideshow-Gesichtsfarbe | Scully"
+SideshowFacePaintFosterName="Sideshow-Gesichtsfarbe | Foster"
+SideshowFacePaintJagerhornName="Sideshow-Gesichtsfarbe | Jägerhorn"
+SideshowFacePaintBriarName="Sideshow-Gesichtsfarbe | Briar"
+SideshowFacePaintDonovanName="Sideshow-Gesichtsfarbe | Donovan"
+SideshowFacePaintMastersonName="Sideshow-Gesichtsfarbe | Masterson"
+SideshowFacePaintTanakaName="Sideshow-Gesichtsfarbe | Tanaka"
+SideshowFacePaintClassicBriarName="Sideshow-Gesichtsfarbe | Klassischer Briar"
+SideshowFacePaintClassicMastersonName="Sideshow-Gesichtsfarbe | Klass. Masterson"
+SideshowFacePaintStrasserName="Sideshow-Gesichtsfarbe | Strasser"
+SideshowFacePaintBannerName="Sideshow-Gesichtsfarbe | Banner"
+SideshowFacePaintRaeName="Sideshow-Gesichtsfarbe | Rae"
+SideshowHumanCanonPreciousName="Sideshow-Menschenkanone | Edel"
+SideshowHumanCanonDummyName="Sideshow-Menschenkanone | Dummy"
+SideshowHumanCanonHorzineName="Sideshow-Menschenkanone | Horzine"
+SideshowHumanCanonHarukoName="Sideshow-Menschenkanone | Haruko"
+SideshowHumanCanonCrispsName="Sideshow-Menschenkanone | Chips"
+SideshowHumanCanonCanonBallName="Sideshow-Menschenkanone | Kanonenkugel"
+SideshowHumanCanonStarsandStripesName="Sideshow-Menschenkanone | Sternenbanner"
+
+;Weekly Cosmetic Names
+WeeklyTinyTerrorHatName="Wöchentlich | Mini-Terror-Hut"
+WeeklyFleshpoundVisorName="Wöchentlich | Fleshpound-Visier"
+WeeklyHansPlushyBackpackName="Wöchentlich | Hans-Plüschrucksack"
+WeeklyHorzineArmorPreciousName="Wöchentlich | Horzine-Rüstung | Edel"
+WeeklyHorzineHelmetPreciousName="Wöchentlich | Horzine-Helm | Edel"
+WeeklyKingPoundVisorPreciousName="Wöchentlich | King-Pound-Visier | Edel"
+WeeklyMindBlownName="Wöchentlich | Hirn explodiert"
+
+
+
 ;Cosmetic Descriptions
 
+SummerSideshowAccessoryDescription="Kann im Ausrüstung-Menü angelegt werden; mit den meisten Charakteren kompatibel. Dies ist ein exklusiver Gegenstand aus dem „Summer Sideshow“-Saison-Event. Kann zu 1 Sideshow-Schein recycelt werden."
+SummerSideshowFacePaintDescription="Kann im Ausrüstung-Menü angelegt werden. Dies ist ein exklusiver Gegenstand aus dem „Summer Sideshow“-Saison-Event. Kann zu 1 Sideshow-Schein recycelt werden."
+WeeklyRewardDescription="Kann im Ausrüstung-Menü angelegt werden; mit den meisten Charakteren kompatibel. Dieser Gegenstand wurde durch den Abschluss eines wöchentlichen Ausbruchs freigeschaltet."
 AviatorGogglesDescription="Kann im Ausrüstung-Menü angelegt werden; mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."
 AviatorsDescription="Kann im Ausrüstung-Menü angelegt werden; mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."
 BaseballHatDescription="Kann im Ausrüstung-Menü angelegt werden; mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."
@@ -2073,7 +2256,7 @@ EnforcerMaskDescription="Kann im Ausrüstung-Menü angelegt werden; mit Wachtmei
 EyePatchDescription="Kann im Ausrüstung-Menü angelegt werden; mit Oisten Jägerhorn, Wachtmeister Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser und Tom Banner kompatibel."
 FlatcapDescription="Kann im Ausrüstung-Menü angelegt werden; mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."
 FlightHelmetDescription="Kann im Ausrüstung-Menü angelegt werden; mit DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."
-FlightMaskDescription="Kann im Ausrüstung-Menü angelegt werden; mit Lt. Bill Masterson kompatibel."
+FlightMaskDescription="Kann im Ausrüstung-Menü angelegt werden; mit DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."
 FrontRowProtectionUpDescription="Kann im Ausrüstung-Menü angelegt werden; mit Oisten Jägerhorn, Wachtmeister Rob Briar, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."
 FrontRowProtectionDownDescription="Kann im Ausrüstung-Menü angelegt werden; mit Oisten Jägerhorn, DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."
 GermanGasMaskDescription="Kann im Ausrüstung-Menü angelegt werden; mit DJ Scully, Wachtmeister Rob Briar, Mr. Foster, Donovan Neal, Reverend Alberts, Lt. Bill Masterson, Hayato Tanaka, Ana Larive, Klassischem Briar, Klassischem Masterson, Anton Strasser, Tom Banner und Rae Higgins kompatibel."

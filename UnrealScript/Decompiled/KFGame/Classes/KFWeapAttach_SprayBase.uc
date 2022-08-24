@@ -242,7 +242,7 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byt
     local bool bResult;
 
     bResult = super.ThirdPersonFireEffects(HitLocation, P, ThirdPersonAnimRateByte);
-    if(P.ActorEffectIsRelevant(P, false, 15000, 2000))
+    if((P.FiringMode != 1) && P.ActorEffectIsRelevant(P, false, 15000, 2000))
     {
         TurnOnFireSpray();
         bResult = true;
@@ -378,5 +378,4 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFWeapAttach_SprayBase.SkeletalMeshComponent0'
     WeapMesh=SkeletalMeshComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

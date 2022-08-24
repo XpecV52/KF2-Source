@@ -480,6 +480,7 @@ simulated state WeaponUpkeep
 			// if able, immediately interupt/abort the reload state
 			if( PendingFire(FireModeNum) && HasAmmo(FireModeNum) )
 			{
+                ClearPendingFire(RELOAD_FIREMODE);
 				GotoState('Active');
 			}
 		}

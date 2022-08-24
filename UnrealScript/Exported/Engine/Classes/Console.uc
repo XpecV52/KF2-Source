@@ -297,9 +297,22 @@ function PostRender_Console(Canvas Canvas);
  */
 function bool InputKey( int ControllerId, name Key, EInputEvent Event, float AmountDepressed = 1.f, bool bGamepad = FALSE )
 {
+	local PlayerController PC;
+
 	if ( Event == IE_Pressed )
 	{
+
 		bCaptureKeyInput = false;
+
+
+		if(Key == 'F10')
+		{
+			foreach class'Engine'.static.GetCurrentWorldInfo().LocalPlayerControllers(class'PlayerController', PC)
+			{
+				PC.ForceDisconnect();
+			}
+		}	
+
 
 		if ( Key == ConsoleKey )
 		{

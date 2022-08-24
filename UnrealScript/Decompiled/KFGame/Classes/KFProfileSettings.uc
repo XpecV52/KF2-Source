@@ -141,6 +141,11 @@ event ApplyWeaponSkin(int ItemDefinition)
     }
 }
 
+function bool HasSafeFrameSet()
+{
+    return (GetProfileFloat(168)) != 0;
+}
+
 function bool SetProfileSettingValueInt(int ProfileSettingId, int Value)
 {
     if(super(OnlinePlayerStorage).SetProfileSettingValueInt(ProfileSettingId, Value))

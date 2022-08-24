@@ -40,9 +40,9 @@ defaultproperties
    GibImpulseScale=1.000000
    BloodSpread=0.400000
    BloodScale=0.600000
-   KDamageImpulse=160.000000
-   KDeathVel=15.000000
-   KDeathUpKick=250.000000
+   KDamageImpulse=3500.000000
+   KDeathVel=650.000000
+   KDeathUpKick=800.000000
    Name="Default__KFDT_Ballistic_DBShotgun"
    ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

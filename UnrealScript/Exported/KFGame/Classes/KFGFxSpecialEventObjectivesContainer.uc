@@ -1,0 +1,182 @@
+//=============================================================================
+// KFGFxSpecialEventObjectivesContainer
+//=============================================================================
+// This will be the parent container for the weekly and special event container
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+//  - Zane Gholson 3/31/2017
+//=============================================================================
+
+class KFGFxSpecialEventObjectivesContainer extends KFGFxObject_Container;
+
+var localized string CurrentSpecialEventString;
+
+struct SSpecialEventObjectiveInfo
+{
+    var localized string TitleString;
+    var localized string DescriptionString;
+};
+
+var localized array<SSpecialEventObjectiveInfo> SpecialEventObjectiveInfoList;
+var array<string>ObjectiveIconURLs;
+
+var string AllCompleteRewardIconURL;
+var localized string AllCompleteRewardDescriptionString;  
+
+var array<string>ChanceDropIconURLs;
+var localized array<string> ChanceDropDescriptionStrings;  
+
+var string IconURL;
+
+var array<bool> ObjectiveStatusList;
+
+function Initialize( KFGFxObject_Menu NewParentMenu )
+{
+    super.Initialize( NewParentMenu );
+    
+    LocalizeMenu(); 
+    PopulateData();
+    PopulateReward();
+    PopulateChanceDrops();
+}
+
+function LocalizeMenu()
+{
+    local GFxObject TextObject;
+    TextObject = CreateObject("Object");
+    // Localize static text
+    TextObject.SetString("title",			default.CurrentSpecialEventString);  
+    TextObject.SetString("reward",			class'KFMission_LocalizedStrings'.default.RewardsString);    
+    TextObject.SetString("granted", 		class'KFMission_LocalizedStrings'.default.GrantedSpecialEventString);  
+    TextObject.SetString("chanceOfDrop",	class'KFMission_LocalizedStrings'.default.SpecialEventChanceDropString);  
+    SetObject("localizedText", TextObject);
+}
+
+
+function bool PopulateData()
+{
+    local GFxObject DataObject;
+    local GFxObject DataProvider; //array containing the data objects 
+    local int i;
+
+    if(HasObjectiveStatusChanged())
+    {
+        DataProvider = CreateArray();
+
+        for (i = 0; i < SpecialEventObjectiveInfoList.length; i++)
+        {
+            DataObject = CreateObject("Object");
+            
+            DataObject.SetString("label", default.SpecialEventObjectiveInfoList[i].TitleString);
+            DataObject.SetString("description", default.SpecialEventObjectiveInfoList[i].DescriptionString);
+            DataObject.SetString("iconPath", "img://"$default.ObjectiveIconURLs[i]);
+            DataObject.SetBool("complete", ObjectiveStatusList[i]);            
+            DataObject.SetBool("showProgres", false);
+            DataObject.SetFloat("progress", 0);
+            DataObject.SetString("textValue", "");   
+
+            DataProvider.SetElementObject(i, DataObject); //add it to the array
+        }
+
+        if(default.IconURL != "")
+        {
+            DataProvider.SetString("iconPath", "img://"$default.IconURL);
+        }    
+        
+        SetObject("objectives", DataProvider);
+
+        return true;
+    }
+
+    return false;
+}
+
+function bool HasObjectiveStatusChanged()
+{
+    local int i;
+    local bool bHasChanged;
+    local bool bTempStatus;
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(GetPC());
+
+    if(SpecialEventObjectiveInfoList.length != ObjectiveStatusList.length)
+    {
+        ObjectiveStatusList.length = SpecialEventObjectiveInfoList.length;
+        for (i = 0; i < SpecialEventObjectiveInfoList.length; i++)
+        {
+            ObjectiveStatusList[i] = KFPC.IsEventObjectiveComplete(i);
+        }
+        bHasChanged = true;
+    }
+    else
+    {
+        for (i = 0; i < SpecialEventObjectiveInfoList.length; i++)
+        {
+            bTempStatus = KFPC.IsEventObjectiveComplete(i);
+
+            if(ObjectiveStatusList[i] != bTempStatus)
+            {
+                bHasChanged = true;
+                ObjectiveStatusList[i] = bTempStatus;
+            }
+        }
+    }
+
+    return bHasChanged;
+}
+
+function PopulateReward()
+{
+    local GFxObject DataObject;
+    
+    DataObject = CreateObject("Object");
+    DataObject.SetString("label", default.AllCompleteRewardDescriptionString);
+    DataObject.SetString("iconPath", "img://"$default.AllCompleteRewardIconURL); //add reward icon here  
+
+    SetObject("allCompleteReward", DataObject); //pass to SWF
+}
+
+function PopulateChanceDrops()
+{
+    local int i;
+    local GFxObject DataObject;
+    local GFxObject DataProvider; //array containing the data objects 
+
+    DataProvider = CreateArray();
+        
+    for (i = 0; i <  ChanceDropDescriptionStrings.length; i++)
+    {
+        DataObject = CreateObject("Object");
+        DataObject.SetString("label", ChanceDropDescriptionStrings[i]);
+        DataObject.SetString("iconPath", "img://"$ChanceDropIconURLs[i]); //add reward icon here  
+
+        DataProvider.SetElementObject(i, DataObject); //add it to the array
+    }
+
+    SetObject("chanceDrops", DataProvider); //pass to SWF
+}
+
+defaultproperties
+{
+   CurrentSpecialEventString="Temp Title"
+   SpecialEventObjectiveInfoList(0)=(TitleString="Test 1",DescriptionString="Description 1")
+   SpecialEventObjectiveInfoList(1)=(TitleString="Test 2",DescriptionString="Description 2")
+   SpecialEventObjectiveInfoList(2)=(TitleString="Test 3",DescriptionString="Description 3")
+   SpecialEventObjectiveInfoList(3)=(TitleString="Test 4",DescriptionString="Description 4")
+   SpecialEventObjectiveInfoList(4)=(TitleString="Test 5",DescriptionString="Description 5")
+   ObjectiveIconURLs(0)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+   ObjectiveIconURLs(1)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+   ObjectiveIconURLs(2)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+   ObjectiveIconURLs(3)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+   ObjectiveIconURLs(4)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+   AllCompleteRewardIconURL="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+   AllCompleteRewardDescriptionString="Item description for all comeplete"
+   ChanceDropIconURLs(0)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+   ChanceDropIconURLs(1)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+   ChanceDropDescriptionStrings(0)="Drop 1"
+   ChanceDropDescriptionStrings(1)="Drop 2"
+   Name="Default__KFGFxSpecialEventObjectivesContainer"
+   ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
+}

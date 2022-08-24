@@ -25,6 +25,11 @@ var					transient	Actor								LightEnvironmentSharedInstigator;
  */
 var					transient	int									MaxLightEnvironmentPooledReuses;
 
+
+/** Total count of all emitter active particles when the emitters get ticked. */
+var                 transient   int                                 NumActiveParticles;
+
+
 struct ParticleEmitterInstance
 {
 	// No UObject reference

@@ -9,6 +9,11 @@
 
 class KFWeap_Pistol_DualFlare extends KFWeap_DualBase;
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+    return FT_Flame;
+}
+
 defaultproperties
 {
 	Begin Object Name=FirstPersonMesh

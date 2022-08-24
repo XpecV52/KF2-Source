@@ -289,7 +289,7 @@ defaultproperties
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-    IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 1.0, 0.5, 0.5, 0.5), Cooldown=10.0, Duration=1.55) //1.2
+    IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 1.0, 0.5, 0.5, 0.5), Cooldown=5.0, Duration=1.55) //cooldown 10
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.4, 0.4, 0.5, 0.4),      Cooldown=10)  //leg0.4
     IncapSettings(AF_Stumble)=	(Vulnerability=(0.3),                     Cooldown=3.5) //2.5
     IncapSettings(AF_GunHit)=	(Vulnerability=(0.2),                     Cooldown=1.7)
@@ -300,6 +300,7 @@ defaultproperties
     IncapSettings(AF_EMP)=		(Vulnerability=(0.98),                    Cooldown=10.0, Duration=2.2)
     IncapSettings(AF_Freeze)=	(Vulnerability=(0.98),                    Cooldown=6.0,  Duration=1.0)
     IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0),      Cooldown=5.5,  Duration=3.0)
+    IncapSettings(AF_Bleed)=    (Vulnerability=(1.0))
 
 	Begin Object Name=Afflictions_0
         FireFullyCharredDuration=5

@@ -33,7 +33,6 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
     SpareAmmoCapacity=210
     InitialSpareMags=3
-    AmmoPickupScale=0.5
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

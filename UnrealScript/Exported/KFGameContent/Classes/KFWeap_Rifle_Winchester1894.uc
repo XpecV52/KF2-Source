@@ -27,7 +27,7 @@ defaultproperties
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
    SpareAmmoCapacity(0)=84
-   InitialSpareMags(0)=3
+   InitialSpareMags(0)=4
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
@@ -71,7 +71,7 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Winchester1894'
-   FireInterval(0)=0.450000
+   FireInterval(0)=0.400000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()

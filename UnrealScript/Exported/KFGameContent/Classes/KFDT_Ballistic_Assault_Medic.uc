@@ -59,6 +59,7 @@ defaultproperties
    StumblePower=25.000000
    GunHitPower=45.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_FieldMedic'
+   ModifierPerkList(1)=Class'KFGame.KFPerk_Commando'
    KDamageImpulse=1000.000000
    KDeathVel=135.000000
    KDeathUpKick=-200.000000

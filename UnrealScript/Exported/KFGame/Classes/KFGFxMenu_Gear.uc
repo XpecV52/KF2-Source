@@ -234,17 +234,30 @@ function UpdateCharacterList()
 function UpdateGear()
 {
 	CurrentCharInfo = MyKFPRI.CharacterArchetypes[MyKFPRI.RepCustomizationInfo.CharacterIndex];
-	CharInfoPath = String(CurrentCharInfo.Name);
-	// Set the list of usable bodies for this character
-	UpdateMeshList(BodyMeshKey, BodySkinKey, CurrentCharInfo.BodyVariants, "bodyArray");
-	// Set the list of usable heads for this character
-	UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
-	// Set the list of usable attachments for this character
-	UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
+	if(CurrentCharInfo != none)
+	{
+		CharInfoPath = String(CurrentCharInfo.Name);
+		// Set the list of usable bodies for this character
+		UpdateMeshList(BodyMeshKey, BodySkinKey, CurrentCharInfo.BodyVariants, "bodyArray");
+		// Set the list of usable heads for this character
+		UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
+		// Set the list of usable attachments for this character
+		UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
 
-	UpdateEmoteList();
+		UpdateEmoteList();
 
-	SetCurrentCharacterButtons();
+		SetCurrentCharacterButtons();
+	}
+	else
+	{
+		//it was null so we need to reinit the menu in a short time
+		GetPC().SetTimer(0.25, false, nameof(ReInitMenu), self);
+	}
+}
+
+function ReInitMenu()
+{
+	InitializeMenu(Manager);
 }
 
 function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> Outfits, string DataArrayString)

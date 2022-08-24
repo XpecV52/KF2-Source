@@ -1,8 +1,8 @@
 package tripwire.widgets
 {
-    import com.greensock.TweenMax;
     import flash.display.MovieClip;
     import scaleform.clik.core.UIComponent;
+    import tripwire.containers.hud.ObjectiveProgressContainer;
     
     public class TraderCompassWidget extends UIComponent
     {
@@ -25,6 +25,8 @@ package tripwire.widgets
         public var CompassPingAnimContainer:MovieClip;
         
         public var CompassInfoContainer:MovieClip;
+        
+        public var ObjectiveContainer:ObjectiveProgressContainer;
         
         public function TraderCompassWidget()
         {
@@ -79,10 +81,7 @@ package tripwire.widgets
         public function set traderAngle(param1:Number) : void
         {
             param1 = param1 * this.Compass_Limit_From_Center + this.Compass_CenterPoint;
-            TweenMax.to(this.CompassPingAnimContainer.CompassPingContainer,2,{
-                "x":param1,
-                "useFrames":true
-            });
+            this.CompassPingAnimContainer.CompassPingContainer.x = param1;
         }
         
         public function set arrowDirection(param1:int) : void

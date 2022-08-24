@@ -346,7 +346,7 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byt
 	bResult = Super.ThirdPersonFireEffects(HitLocation,P,ThirdPersonAnimRateByte);
 
 	// Wider effect distances for fire spray. Called on Instigator to go beyond the weapon mesh cull distance
-	if ( P.ActorEffectIsRelevant(P, false, 15000, 2000) )
+	if ( P.FiringMode != 1 && P.ActorEffectIsRelevant(P, false, 15000, 2000) )
 	{
 		TurnOnFireSpray();
 		bResult = true;

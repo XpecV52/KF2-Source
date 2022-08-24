@@ -55,6 +55,9 @@ var localized string SetTakeoverServerPasswordTitle;
 
 var localized string FreeConsolePlayOverString;
 var localized string BuyGameString;
+var localized string CustomString;
+
+var localized string CancelConnectionString;
 
 static function array<string> GetDifficultyStringsArray()
 {

@@ -89,7 +89,7 @@ function Tick( float DeltaTime )
 exec function FinishCraft ()
 {
 	local KFPlayerController KFPC;
-	`log("!!!!!!!!!!!!!!!!!!!!!!!!!");
+	
 	foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
 	{
 		if(KFPC.MyGfxManager != none && KFPC.MyGFxManager.InventoryMenu != none)

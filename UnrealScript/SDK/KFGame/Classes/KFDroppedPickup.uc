@@ -42,6 +42,13 @@ var protected bool bUseAuthorityRBUpdate;
 /** Life span after changing authority update status */
 var protected float PostAuthorityChangeLifeSpan;
 
+/** Amount of delay before anything can pick this up */
+var protected float PickupDelay;
+
+// Visuals
+var             bool                        bEmptyPickup;       // pickup has an inventory with no ammo
+var             LinearColor                 EmptyPickupColor;
+
 cpptext
 {
 	// AActor interface
@@ -55,7 +62,7 @@ replication
 		RBState, bUseAuthorityRBUpdate;
 
 	if ( bNetInitial )
-		SkinItemId;
+		SkinItemId, bEmptyPickup;
 }
 
 /*********************************************************************************************
@@ -77,6 +84,7 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 		if ( Inventory != None && Inventory.IsA('KFWeapon') )
 		{
 			SkinItemId = KFWeapon(Inventory).SkinItemId;
+            bEmptyPickup = !KFWeapon(Inventory).HasAnyAmmo();
 		}
 		SetTimer(LifeSpan, false, nameof(TryFadeOut));
 	}
@@ -158,8 +166,28 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 				MyMeshComp.SetMaterial(0, SkinMICs[0]);
 			}
 		}
+
+        if (bEmptyPickup)
+        {
+            SetEmptyMaterial();
+        }
 	}
 }
+
+simulated function SetEmptyMaterial()
+{
+    local MaterialInstanceConstant MeshMIC;
+
+    if (MyMeshComp != None)
+    {
+        MeshMIC = MyMeshComp.CreateAndSetMaterialInstanceConstant(0);
+        if (MeshMIC != None)
+        {
+            MeshMIC.SetVectorParameterValue('GlowColor', EmptyPickupColor);
+        }
+    }
+}
+
 
 /**
  * returns the display name of the item to be picked up
@@ -299,77 +327,77 @@ function ReenableCollisionSounds()
 /**
  * Give pickup to player
  */
-function GiveTo( Pawn P )
+function GiveTo(Pawn P)
 {
-	local KFWeapon KFW;
-	local class<KFWeapon> KFWInvClass;
-	local Inventory NewInventory;
-	local KFInventoryManager KFIM;
+    local KFWeapon KFW;
+    local class<KFWeapon> KFWInvClass;
+    local Inventory NewInventory;
+    local KFInventoryManager KFIM;
 
-	KFIM = KFInventoryManager(P.InvManager);
-	if ( KFIM != None )
-	{
-		KFWInvClass = class<KFWeapon>(InventoryClass);
-		foreach KFIM.InventoryActors( class'KFWeapon', KFW )
-		{
-			if ( KFW.Class == InventoryClass )
-			{
-				// if this isn't a dual-wield class, then we can't carry another
-				if( KFW.DualClass == none )
-				{
-					PlayerController(P.Owner).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AlreadyCarryingWeapon );
-					return;
-				}
-				break;
-			}
-			// if we already have the dual version of this single, then we can't carry another
-			else if( KFWInvClass != none && KFW.Class == KFWInvClass.default.DualClass )
-			{
-				PlayerController(P.Owner).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AlreadyCarryingWeapon );
-				return;
-			}
-		}
-		NewInventory = KFIM.CreateInventory(InventoryClass, true);
-		if (NewInventory != none)
-		{
-			// Added extra check in case we want to pick up a non-weapon based pickup
-			KFW = KFWeapon(NewInventory);
-			if ( KFW != none)
-			{
-				KFW.SetOriginalValuesFromPickup( KFWeapon(Inventory) );
-				KFW = KFIM.CombineWeaponsOnPickup( KFW );
-				KFW.NotifyPickedUp();
-			}
-			
-			Destroy();
-		}
-	}
+    KFIM = KFInventoryManager(P.InvManager);
+    if (KFIM != None)
+    {
+        KFWInvClass = class<KFWeapon>(InventoryClass);
+        foreach KFIM.InventoryActors(class'KFWeapon', KFW)
+        {
+            if (KFW.Class == InventoryClass)
+            {
+                // if this isn't a dual-wield class, then we can't carry another
+                if (KFW.DualClass == none)
+                {
+                    PlayerController(P.Owner).ReceiveLocalizedMessage(class'KFLocalMessage_Game', GMT_AlreadyCarryingWeapon);
+                    return;
+                }
+                break;
+            }
+            // if we already have the dual version of this single, then we can't carry another
+            else if (KFWInvClass != none && KFW.Class == KFWInvClass.default.DualClass)
+            {
+                PlayerController(P.Owner).ReceiveLocalizedMessage(class'KFLocalMessage_Game', GMT_AlreadyCarryingWeapon);
+                return;
+            }
+        }
+        NewInventory = KFIM.CreateInventory(InventoryClass, true);
+        if (NewInventory != none)
+        {
+            // Added extra check in case we want to pick up a non-weapon based pickup
+            KFW = KFWeapon(NewInventory);
+            if (KFW != none)
+            {
+                KFW.SetOriginalValuesFromPickup(KFWeapon(Inventory));
+                KFW = KFIM.CombineWeaponsOnPickup(KFW);
+                KFW.NotifyPickedUp();
+            }
 
-	if(Role == ROLE_Authority)
-	{
-		//refresh weapon hud here
-		NotifyHUDofWeapon(P);
-	}
+            Destroy();
+        }
+    }
+
+    if (Role == ROLE_Authority)
+    {
+        //refresh weapon hud here
+        NotifyHUDofWeapon(P);
+    }
 }
 
 event Destroyed()
 {
-	super.Destroyed();
-	
-	Inventory.Destroy();
-	Inventory = none;
+    super.Destroyed();
+
+    Inventory.Destroy();
+    Inventory = none;
 }
 
-function NotifyHUDofWeapon( Pawn P )
+function NotifyHUDofWeapon(Pawn P)
 {
-	local KFPlayerController KFPC;
+    local KFPlayerController KFPC;
 
-	KFPC = KFPlayerController(P.Owner);
+    KFPC = KFPlayerController(P.Owner);
 
-	if(KFPC != none && KFPC.MyGFxHUD != none)
-	{
-		KFPC.MyGFxHUD.NotifyHUDofWeapon();
-	}
+    if (KFPC != none && KFPC.MyGFxHUD != none)
+    {
+        KFPC.MyGFxHUD.NotifyHUDofWeapon();
+    }
 }
 
 /*********************************************************************************************
@@ -381,22 +409,27 @@ function bool ValidTouch(Pawn Other);
 
 auto state Pickup
 {
-	/**
-	 * Validate touch (if valid return true to let other pick me up and trigger event).
-	 * Overridden to remove call to WorldInfo.Game.PickupQuery(Other, InventoryType, self) since we need this to be client side
-	 */
-	function bool ValidTouch( Pawn Other )
-	{
-		local Actor HitA;
-		local vector HitLocation, HitNormal;
-		local TraceHitInfo HitInfo;
-		local bool bHitWall;
+    /**
+     * Validate touch (if valid return true to let other pick me up and trigger event).
+     * Overridden to remove call to WorldInfo.Game.PickupQuery(Other, InventoryType, self) since we need this to be client side
+     */
+    function bool ValidTouch(Pawn Other)
+    {
+        local Actor HitA;
+        local vector HitLocation, HitNormal;
+        local TraceHitInfo HitInfo;
+        local bool bHitWall;
 
-		// make sure its a live player
-		if (Other == None || !Other.bCanPickupInventory || !Other.IsAliveAndWell() || (Other.DrivenVehicle == None && Other.Controller == None))
-		{
-			return false;
-		}
+        // make sure its a live player
+        if (Other == None || !Other.bCanPickupInventory || !Other.IsAliveAndWell() || (Other.DrivenVehicle == None && Other.Controller == None))
+        {
+            return false;
+        }
+
+        if (`TimeSince(CreationTime) < PickupDelay)
+        {
+            return false;
+        }
 
 		// prevent picking up as soon as it's spawned
 		if ( Other == Instigator )
@@ -565,4 +598,6 @@ defaultproperties
 	bEnableStaticMeshRBPhys=TRUE
 
     bUseAuthorityRBUpdate=TRUE
+
+    EmptyPickupColor=(R=0.75)
 }

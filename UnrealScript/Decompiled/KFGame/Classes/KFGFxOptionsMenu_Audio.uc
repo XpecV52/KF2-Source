@@ -78,6 +78,7 @@ var const localized string ConfigureMicString;
 var const localized string VocalsString;
 var const localized string BattleChatterString;
 var const localized string PushToVoIPString;
+var const localized string ScreenSizeString;
 var float VoIPMin;
 var float VoIPMax;
 
@@ -86,6 +87,7 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     super.InitializeMenu(InManager);
     LocalizeText();
     InitValues();
+    ConditionallyHideDurangoButton();
 }
 
 function LocalizeText()
@@ -103,6 +105,7 @@ function LocalizeText()
         LocalizedObject.SetString("sectionName", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[1]));
         LocalizedObject.SetString("options", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
         LocalizedObject.SetString("configureMic", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaString);
+        LocalizedObject.SetString("screenSize", ScreenSizeString);
         if(Class'WorldInfo'.static.IsConsoleBuild(8))
         {
             LocalizedObject.SetString("controllerSound", Localize("KFGFxOptionsMenu_Audio", "ControllerSound", "KFGameConsole"));
@@ -122,6 +125,20 @@ function LocalizeText()
     LocalizedObject.SetString("battleChatter", BattleChatterString);
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
     SetObject("localizedText", LocalizedObject);
+}
+
+function ConditionallyHideDurangoButton()
+{
+    local GFxObject ScreenSizeButton;
+
+    if(!Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        ScreenSizeButton = GetObject("screenSizeButton");
+        if(ScreenSizeButton != none)
+        {
+            ScreenSizeButton.SetVisible(false);
+        }
+    }
 }
 
 function InitValues()
@@ -176,6 +193,11 @@ function SaveConfigValues()
 {
     Class'KFGameEngine'.static.StaticSaveConfig();
     Class'KFGameEngine'.static.GetEngine().SaveConfig();
+}
+
+function Callback_ScreenSizePress()
+{
+    Manager.OpenScreenSizeMovie();
 }
 
 function Callback_CloseMenu()
@@ -341,4 +363,5 @@ defaultproperties
     VocalsString="Music Vocals"
     BattleChatterString="Minimize Battle Chatter"
     PushToVoIPString="Push to VoIP"
+    ScreenSizeString="ADJUST SCREEN SIZE"
 }

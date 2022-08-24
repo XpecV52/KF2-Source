@@ -56,7 +56,7 @@ function Shutdown()
 
 defaultproperties
 {
-   EffectSocketName="Hips"
+   EffectSocketName="hips"
    Name="Default__KFAfflictionAdvanced"
    ObjectArchetype=KFAfflictionBase'KFGame.Default__KFAfflictionBase'
 }

@@ -54,7 +54,7 @@ protected simulated function StopSimulating()
     if(((Role == ROLE_Authority) && Physics == 2) && FRand() < ResidualFlameChance)
     {
         FlameSpawnVel = 0.25 * (CalculateResidualFlameVelocity(LastHitNormal, Normal(Velocity), VSize(Velocity)));
-        SpawnResidualFlame(Class'KFProj_MolotovSplash', Location + (LastHitNormal * 10), FlameSpawnVel);
+        SpawnResidualFlame(Class'KFProj_FlareGunSplash', Location + (LastHitNormal * 10), FlameSpawnVel);
     }
     super(KFProjectile).StopSimulating();
 }

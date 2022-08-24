@@ -25,10 +25,11 @@ var const float AARDisplayDelay;
 var array<AARAward> TeamAwardList;
 var byte WaveMax;
 var int WaveNum;
-var int PlayedObjectives;
-var float ObjectiveCheckIntervall;
+var bool bHumanDeathsLastWave;
 var bool bObjectivePlayed;
 var bool bLogCheckObjective;
+var int PlayedObjectives;
+var float ObjectiveCheckIntervall;
 var float MinAIAlivePercReqForObjStart;
 
 static function bool ShouldPlayMusicAtStart()
@@ -264,6 +265,10 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     {
         Class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo);
     }
+    if(KilledPawn.IsA('KFPawn_Human') && DamageType != Class'DmgType_Suicided')
+    {
+        bHumanDeathsLastWave = true;
+    }
     CheckWaveEnd();
 }
 
@@ -450,7 +455,7 @@ function UpdateWaveEndDialogInfo()
         {
             if((KFPC.Pawn != none) && KFPC.Pawn.IsAliveAndWell())
             {
-                if(PlayersAlive == PlayersTotal)
+                if(!bHumanDeathsLastWave)
                 {
                     KFPC.PWRI.bAllSurvivedLastWave = true;
                     continue;
@@ -460,10 +465,7 @@ function UpdateWaveEndDialogInfo()
                     KFPC.PWRI.bOneSurvivedLastWave = true;
                     continue;
                 }
-                if((PlayersTotal - PlayersAlive) > 1)
-                {
-                    KFPC.PWRI.bSomeSurvivedLastWave = true;
-                }
+                KFPC.PWRI.bSomeSurvivedLastWave = true;
             }            
         }        
     }
@@ -479,6 +481,7 @@ function UpdateWaveEndDialogInfo()
     {
         BestTeammate.PWRI.bBestTeammate = true;
     }
+    bHumanDeathsLastWave = false;
 }
 
 function RewardSurvivingPlayers()
@@ -647,6 +650,10 @@ function StartWave()
     if((WorldInfo.NetMode != NM_DedicatedServer) && Role == ROLE_Authority)
     {
         MyKFGRI.UpdateHUDWaveCount();
+    }
+    if(bEnableMapObjectives)
+    {
+        MyKFGRI.StartNextObjective();
     }
     WaveStarted();
     MyKFGRI.AIRemaining = SpawnManager.WaveTotalAI;
@@ -831,6 +838,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             goto J0x75;
         }
     }
+    MyKFGRI.DeactivateObjective();
     MyKFGRI.NotifyWaveEnded();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {

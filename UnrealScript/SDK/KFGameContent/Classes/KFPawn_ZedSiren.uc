@@ -146,6 +146,7 @@ defaultproperties
 	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=6.5,  Duration=4.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(2.0),                     Cooldown=1.5,  Duration=4.2)
 	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0), Cooldown=5.5,  Duration=3.0)
+    IncapSettings(AF_Bleed)=    (Vulnerability=(3))
 
 	Begin Object Name=Afflictions_0
 		AfflictionClasses(AF_EMP)=class'KFAffliction_EMPDisrupt'

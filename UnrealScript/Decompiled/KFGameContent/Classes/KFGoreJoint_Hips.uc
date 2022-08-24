@@ -11,7 +11,7 @@ class KFGoreJoint_Hips extends KFGoreJointInfo
 
 defaultproperties
 {
-    HitBoneName=Hips
+    HitBoneName=hips
     BloodJets=/* Array type was not detected. */
     BloodTrails=/* Array type was not detected. */
     BloodMICParamName=/* Array type was not detected. */

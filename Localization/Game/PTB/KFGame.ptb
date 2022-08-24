@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="Público"
 ConsolePermissionStrings[1]="Apenas convidados"
 
 ModeStrings[0]="Sobrevivência"
-ModeStrings[1]="Sobrevivência X"
+ModeStrings[1]="Semanal"
+ModeStrings[2]="Sobreviv. X"
 
 NoPreferenceString="QUALQUER"
 OKString="OK"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="A classe pode ser atualizada uma vez por leva!"
 YesString="Sim"
 NoString="Não"
 TeamSwappedString="Sua equipe foi substituída"
+
+CancelConnectionString="Cancelar carregamento"
 
 DisbandPartyString="DESFAZER GRUPO"
 LeaveCurrentMenuString="Sair do menu atual?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="Nenhum item adquirido"
 SetTakeoverServerPasswordTitle="Insira uma nova senha para proteger o jogo:"
 FreeConsolePlayOverString="Agradecemos por jogar Killing Floor 2! O evento gratuito acabou, para comprar o jogo e obter mais informações, selecione o botão Loja abaixo."
 BuyGameString="LOJA"
+CustomString="Personaliz."
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="RECOMPENSA DE CONCLUSÃO DE SURTO"
+WeeklyString="SURTO SEMANAL HORZINE"
+CurrentWeeklySettingsString="CONFIGURAÇÕES DE SURTO ATUAIS"
+SpecialEventString="FESTIVAL DE VERÃO"
+ShortWeeklyString="SEMANAL"
+SeasonalString="SAZONAL"
+SpecialEventChanceDropString="ITENS DE SAQUE LIMITADOS"
+GrantedSpecialEventString="RECOMPENSA DE CONCLUSÃO"
+RewardsString="RECOMPENSA DE CONCLUSÃO DE SURTO"
+WeeklyOverview="Um novo modo de jogo a cada semana!"
+ObjectivesString="Ativar/desativar objetivos"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FALHA AO LOCALIZAR PARTIDA"
@@ -115,8 +133,9 @@ TutorialString="Treinamento básico"
 
 [StartMenuHelperText]
 modeList0="Sobrevivência - JxA, batalha de levas de Zeds controlados por IA"
-modeList1="Sobrevivência X - JxJ, mercenários Horzine contra levas de jogadores e Zeds controlados por IA"
-modeList2=""
+modeList1="Surto Semanal – um modo de jogo variante diferente a cada semana."
+modeList2="Sobrevivência X - JxJ, mercenários Horzine contra levas de jogadores e Zeds controlados por IA"
+modeList3=""
 difficultyList0="Normal - Para jogadores iniciantes de classificação de classe 0-5."
 difficultyList1="Difícil - Para jogadores experientes de classificação de classe 6-12. Há mais Zeds por leva: eles se movimentam rápido e têm mais vida. Há poucos itens e você ganha menos grana."
 difficultyList2="Suicida - Para jogadores especialistas de classificação de classe 13-25. Há ainda mais Zeds por leva: eles usam novos ataques e se movimentam mais rápido. Há menos itens e você ganha menos grana."
@@ -666,6 +685,7 @@ DamageDealtString="Dano causado:"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ PRONTO ]"
 WaitingString="AGUARDANDO JOGADORES"
+MatchOverString="PARTIDA CONCLUÍDA \n Aguarde..."
 DeployingString="DESTACANDO EM "
 CreatePartyString="CRIAR GRUPO"
 ReadyString="PRONTO"
@@ -840,6 +860,7 @@ CancelString="CANCELAR"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="SUBIU DE NÍVEL"
 TierUnlockedString="NOVA HABILIDADE PRONTO"
+ObjectiveCompleteString="OBJETIVO CUMPRIDO"
 
 [KFGFxHUD_WaveInfo]
 WaveString="LEVA"
@@ -924,6 +945,7 @@ ConfigureMicString="CONFIGURAR MICROFONE"
 VocalsString="Vocais de música"
 BattleChatterString="Minimizar bate-papo"
 PushToVoIPString="Aperte para VoIP"
+ScreenSizeString="AJUSTAR TAM. DA TELA"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Usar esta configuração de vídeo?"
@@ -1129,7 +1151,7 @@ GBA_Look_Gamepad="Controle de visão"
 GBA_Grenade_Gamepad="Lançar granada"
 GBA_TurnLeft_Gamepad="Controle de visão"
 GBA_Look_Gamepad="Controle de visão"
-GBA_DPad_Left_Gamepad="Comandos de voz/emotes"
+GBA_DPad_Left_Gamepad="Com. de voz / emotes"
 GBA_DPad_Up_Gamepad="Reparador de equipamento"
 GBA_DPad_Right_Gamepad="Lançar grana"
 GBA_DPad_Down_Gamepad="Ligar/desligar lanterna"
@@ -1322,6 +1344,7 @@ MapCollectibleName="montes de grana"
 WaveStartMessage="L E V A A C A M I N H O"
 WaveEndMessage="L E V A C O N C L U Í D A"
 GetToTraderMessage="Vá ao ponto de comércio"
+ScavengeMessage="Vasculhar"
 YouLostMessage="D E R R O T A"
 YouWonMessage="V I T Ó R I A"
 SquadWipedOutMessage="O pelotão foi derrotado!"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>CURAR-SE"
 PressToBashWarning="PANCADA"
 GamepadWeaponSelectHint="<%HOLD%>SELEÇÃO DE ARMA"
 PlayerClotGrabWarningMessage="ABATA ZEDS PARA LIBERTAR-SE!"
-UseMinigameMessage="ATIVAR MINIJOGO"
+UseMinigameMessage="ATIVAR"
 UseMinigameGeneratorMessage="ATIVAR GERADOR"
 
 [KFLocalMessage_ServerNotification]
@@ -1576,6 +1599,7 @@ Passives[1]=(Title="Resistência a dano",Description="Aumento de x%x de resistê
 Passives[2]=(Title="+Capacidade de visão noturna",Description="Lanterna - *e* óculos de visão noturna");
 Passives[3]=(Title="+Resistência a coágulos",Description="Os coágulos não funcionam em um berserker");
 
+
 EXPAction1="Causando dano de arma berserker"
 EXPAction2="Matando Zeds próximos com uma arma de berserker"
 
@@ -1675,7 +1699,6 @@ Passives[2]=(Title="Munição explosiva extra",Description="Aumenta em %x% a mun
 Passives[3]=(Title="+Suprimento de granadas",Description="Aliados ganham uma granada a cada leva");
 Passives[4]=(Title="+Armadilha de porta",Description="As portas que você soldar explodirão quando destruídas");
 Passives[5]=(Title="Armadura reativa",Description="Quando sua vida for reduzida a 0, sua armadura explodirá e o deixará com 1 de vida");
-
 
 Damage="Bombardeiro"
 DamageDescription="Aumenta em 25% o dano de armas de classe explosivas"
@@ -2008,7 +2031,6 @@ Passives[1]=(Title="Resistência de dano global",Description="Aumenta em %x% a r
 Passives[2]=(Title="Armadura pesada",Description="%x% (máx. de 25%) a cada nível que não recebe nenhum dano caso tenha armadura.");
 Passives[3]=(Title="Recarga da hora dos Zeds",Description="Aumenta em %x% por nível a velocidade de recarga na Hora dos Zeds");
 
-
 HeavyWeaponsReload="Treinamento de armas pesadas"
 HeavyWeaponsReloadDescription="Aumenta a velocidade de recarga de armas de demolidor, atirador exímio e apoio."
 
@@ -2162,6 +2184,7 @@ Forums="Acesse nosso Fórum da Comunidade"
 Survey="Faça a Pesquisa de Jogabilidade"
 CommunityTracker="Acompanhar solicitações da comunidade"
 FeaturedCrateKey="Destaque chav. cx. de sup. Horzine - US$2,49"
+FeaturedEventItem="Item de evento em destaque"
 FeaturedUsbKey="Destaque chav. USB ap. de arma - US$2,49"
 FeaturedRareItem="Destaque de item raro - US3,99"
 FeaturedExceptionalItem="Destaque de item excepcional - US7,49"
@@ -2177,20 +2200,22 @@ PS4WeaponSkinCrate2="Cx. de sup. de apar. de arma Horzine | Série 2"
 Artbook="Livro de arte digital do Killing Floor 2"
 Uncovered="Assista ao filme Killing Floor: Uncovered"
 NewEmotes="Novo! Chave de cx. de emotes - $ 2,49"
-HorzineSupplyCrateKey10="Chave de cx. de sup. Horzine | S. 10 - $2.49"
-HorzineSupplyCrateKey11="Chave de cx. de sup. Horzine | S. 11 - $2.49"
-HorzineSupplyCrateKey12="Chave de cx. de sup. Horzine | S. 12 - $2.49"
-HorzineSupplyCrateKey13="Chave de cx. de sup. Horzine | S. 13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+HorzineSupplyCrateKey10="Chave de cx. de sup. Horzine | S. 10 - US$2,49"
+HorzineSupplyCrateKey11="Chave de cx. de sup. Horzine | S. 11 - US$2,49"
+HorzineSupplyCrateKey12="Chave de cx. de sup. Horzine | S. 12 - US$2,49"
+HorzineSupplyCrateKey13="Chave de cx. de sup. Horzine | S. 13 - US$2,49"
+USBSpitfire="Chave USB Cospe-fogo - US$2,49"
+USBHighVoltage="Chave de USB Alta Tensão - US$2,49"
+MerchSale="Promoção KF2! 25% menos até 30/4/17, cód. prom. ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Inchado"
 KFPawn_ZedClot="Coágulo"
 KFPawn_ZedCrawler="Rastejador"
 KFPawn_ZedCrawlerKing="Rastejador Elite"
+KFPawn_ZedFleshpoundMini="Meio-Quilo"
 KFPawn_ZedFleshPound="Carniceiro"
+KFPawn_ZedFleshpoundKing="Carniceiro Rei"
 KFPawn_ZedGorefast="Chacinador"
 KFPawn_ZedGorefastDualBlade="Sangrento"
 KFPawn_ZedHans="Dr. Hans Volter"
@@ -2319,6 +2344,119 @@ KFWeap_Zweihander="Promoção Cavaleiros"
 
 
 Source0="Promoção Cavaleiros"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="Saque 1"
+ChanceDropDescriptionStrings[1]="Saque 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="Evento especial limitado com itens exclusivos."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Ligue a Força",DescriptionString="Ligue a força no gerador no Reino Trágico");
+SpecialEventObjectiveInfoList[1]=(TitleString="Explode o Bolhão",DescriptionString="Exploda o coágulo no Reino Trágico");
+SpecialEventObjectiveInfoList[2]=(TitleString="Ensope o Inchado",DescriptionString="Ensope o Inchado no Reino Trágico");
+SpecialEventObjectiveInfoList[3]=(TitleString="Grana ao Alvo",DescriptionString="Grana ao Alvo no Reino Trágico");
+SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="Vença uma partida em Difícil ou mais no Reino Trágico");
+
+AllCompleteRewardDescriptionString="Conjunto Hazmat de Festival"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Prêmio de Festival"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado de Festival"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="Surto atual: Racha-Coco"
+DescriptionStrings[0]="O dano cerebral é o melhor de todos."
+DescriptionStrings[1]="Duração: Média (7 levas)"
+ModifierDescriptions[0]="Nesse surto, os Zeds mutaram tanto que agora só podem ser abatidos de vez com dano na cabeça. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="Surto atual: Terror Tímido"
+DescriptionStrings[0]="Ameaça pequena também é ameaça."
+DescriptionStrings[1]="Duração: Média (7 levas)"
+ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los encolher — assim ficam mais difíceis de acertar. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="Surto atual: Carnival"
+DescriptionStrings[0]="Carniceiros sem parar. Quase."
+DescriptionStrings[1]="Duração: Média (7 levas)"
+ModifierDescriptions[0]="Chegou o festival de Carniceiros! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="Surto atual: Pra Cima e… Caiu"
+DescriptionStrings[0]="Tente fazer noventa e nove balões de Zed."
+DescriptionStrings[1]="Duração: Média (7 levas)"
+ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los inflar como balões até o ponto de flutuarem e estourarem! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="Surto atual: Hora dos Zeds"
+DescriptionStrings[0]="Toda a hora Zed do mundo."
+DescriptionStrings[1]="Duração: Curta (4 levas)"
+ModifierDescriptions[0]="Já pensou que a vida está passando? Neste surto, não! Você estará em Hora dos Zeds sempre que estiver perto de um Zed. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="Surto atual: Estouro"
+DescriptionStrings[0]="Zeds sob pressão podem explodir."
+DescriptionStrings[1]="Duração: Média (7 levas)"
+ModifierDescriptions[0]="Será que foi alguma coisa que eles comeram? Serão gases? Seja o que for, os Zeds explodirão ao morrerem neste surto. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="Surto atual: Bolo de Carne"
+DescriptionStrings[0]="Quanto maiores, mais difícil de cair."
+DescriptionStrings[1]="Duração: Média (7 levas)"
+ModifierDescriptions[0]="Neste surto, os Zeds aumentam de vida, tamanho e alcance quando atingem jogadores ou são afetados por certas habilidades de Zeds. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="Surto atual: Zed Cabeção"
+DescriptionStrings[0]="... deve doer no pescoço."
+DescriptionStrings[1]="Duração: Média (7 levas)"
+ModifierDescriptions[0]="Algo aconteceu com estas levas de Zeds: a cabeça deles está muuuuito maior que o normal! Maiores ainda! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2699,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratório de Biótica"
 
@@ -2572,6 +2726,9 @@ DisplayName="Paris em Chamas"
 
 [Survival KFGameInfoSummary]
 GameName="Sobrevivência"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="Semanal"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Mansão Volter"
@@ -2608,6 +2765,9 @@ DisplayName="A Descida"
 
 [KF-Nuked KFMapSummary]
 DisplayName="Bombardeio"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="Reino Trágico"
 
 [KFMapInfo]
 ; defaults

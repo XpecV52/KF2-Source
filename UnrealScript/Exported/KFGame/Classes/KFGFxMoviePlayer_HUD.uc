@@ -120,19 +120,24 @@ function UpdateRatio(optional float fScale=1.f)
 {
     local GfxObject GFxStage;
     local float ScaleStage;
-    if ( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+
+    if ( class'WorldInfo'.static.IsConsoleBuild() )
     {
-        ScaleStage = class'Engine'.static.GetTitleSafeArea();
+        ScaleStage = class'Engine'.static.GetEngine().GetTitleSafeArea();
     }
     else
     {
         ScaleStage = fScale;
     }
-    GFxStage = KFGXHUDManager.GetObject("stage");
-    GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1.0f - ScaleStage)) / 2 );
-    GFxStage.SetFloat("y", (GFxStage.GetFloat("height") * (1.0f - ScaleStage)) / 2 );
-    GFxStage.SetFloat("scaleX", ScaleStage);
-    GFxStage.SetFloat("scaleY", ScaleStage);
+
+    GFxStage = KFGXHUDManager != none ? KFGXHUDManager.GetObject("stage") : none;
+	if( GFxStage != none )
+	{
+		GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1.0f - ScaleStage)) / 2);
+		GFxStage.SetFloat("y", (GFxStage.GetFloat("height") * (1.0f - ScaleStage)) / 2);
+		GFxStage.SetFloat("scaleX", ScaleStage);
+		GFxStage.SetFloat("scaleY", ScaleStage);
+	}
 }
 
 /** Ties the GFxClikWidget variables to the .swf components and handles events */
@@ -140,6 +145,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
     switch(WidgetName)
     {
+    case 'ObjectiveContainer':
+        if(WaveInfoWidget != none && WaveInfoWidget.ObjectiveContainer == none)
+        {
+            WaveInfoWidget.ObjectiveContainer = KFGFxHUD_ObjectiveConatiner(Widget);
+            WaveInfoWidget.ObjectiveContainer.SetVisible(false);
+        }
+        break;
     case 'bossHealthBar':
         if( BossHealthBar == none )
         {
@@ -936,25 +948,26 @@ defaultproperties
    bDisplayWithHudOff=False
    bAutoPlay=True
    bCaptureInput=True
-   WidgetBindings(0)=(WidgetName="SpectatorInfoWidget",WidgetClass=Class'KFGame.KFGFxHUD_SpectatorInfo')
-   WidgetBindings(1)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'KFGame.KFGFxHUD_PlayerStatus')
-   WidgetBindings(2)=(WidgetName="PlayerBackpackWidget",WidgetClass=Class'KFGame.KFGFxHUD_PlayerBackpack')
-   WidgetBindings(3)=(WidgetName="PriorityMsgWidget",WidgetClass=Class'GFxUI.GFxObject')
-   WidgetBindings(4)=(WidgetName="BossNamePlate",WidgetClass=Class'GFxUI.GFxObject')
-   WidgetBindings(5)=(WidgetName="interactionMsgWidget",WidgetClass=Class'GFxUI.GFxObject')
-   WidgetBindings(6)=(WidgetName="ControllerWeaponSelectContainer",WidgetClass=Class'KFGame.KFGFxHUD_WeaponSelectWidget')
-   WidgetBindings(7)=(WidgetName="WeaponSelectContainer",WidgetClass=Class'KFGame.KFGFxHUD_WeaponSelectWidget')
-   WidgetBindings(8)=(WidgetName="CompassContainer",WidgetClass=Class'KFGame.KFGFxHUD_TraderCompass')
-   WidgetBindings(9)=(WidgetName="WaveInfoContainer",WidgetClass=Class'KFGame.KFGFxHUD_WaveInfo')
-   WidgetBindings(10)=(WidgetName="ChatBoxWidget",WidgetClass=Class'KFGame.KFGFxHUD_ChatBoxWidget')
-   WidgetBindings(11)=(WidgetName="VOIPWidget",WidgetClass=Class'KFGame.KFGFxWidget_VOIPNotification')
-   WidgetBindings(12)=(WidgetName="LevelUpNotificationWidget",WidgetClass=Class'KFGame.KFGFxWidget_LevelUpNotification')
-   WidgetBindings(13)=(WidgetName="VoiceCommsWidget",WidgetClass=Class'KFGame.KFGFxWidget_VoiceComms')
-   WidgetBindings(14)=(WidgetName="KickVoteWidget",WidgetClass=Class'KFGame.KFGFxWidget_KickVote')
-   WidgetBindings(15)=(WidgetName="MusicNotification",WidgetClass=Class'KFGame.KFGFxWidget_MusicNotification')
-   WidgetBindings(16)=(WidgetName="NonCriticalMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
-   WidgetBindings(17)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
-   WidgetBindings(18)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
+   WidgetBindings(0)=(WidgetName="ObjectiveContainer",WidgetClass=Class'KFGame.KFGFxHUD_ObjectiveConatiner')
+   WidgetBindings(1)=(WidgetName="SpectatorInfoWidget",WidgetClass=Class'KFGame.KFGFxHUD_SpectatorInfo')
+   WidgetBindings(2)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'KFGame.KFGFxHUD_PlayerStatus')
+   WidgetBindings(3)=(WidgetName="PlayerBackpackWidget",WidgetClass=Class'KFGame.KFGFxHUD_PlayerBackpack')
+   WidgetBindings(4)=(WidgetName="PriorityMsgWidget",WidgetClass=Class'GFxUI.GFxObject')
+   WidgetBindings(5)=(WidgetName="BossNamePlate",WidgetClass=Class'GFxUI.GFxObject')
+   WidgetBindings(6)=(WidgetName="interactionMsgWidget",WidgetClass=Class'GFxUI.GFxObject')
+   WidgetBindings(7)=(WidgetName="ControllerWeaponSelectContainer",WidgetClass=Class'KFGame.KFGFxHUD_WeaponSelectWidget')
+   WidgetBindings(8)=(WidgetName="WeaponSelectContainer",WidgetClass=Class'KFGame.KFGFxHUD_WeaponSelectWidget')
+   WidgetBindings(9)=(WidgetName="CompassContainer",WidgetClass=Class'KFGame.KFGFxHUD_TraderCompass')
+   WidgetBindings(10)=(WidgetName="WaveInfoContainer",WidgetClass=Class'KFGame.KFGFxHUD_WaveInfo')
+   WidgetBindings(11)=(WidgetName="ChatBoxWidget",WidgetClass=Class'KFGame.KFGFxHUD_ChatBoxWidget')
+   WidgetBindings(12)=(WidgetName="VOIPWidget",WidgetClass=Class'KFGame.KFGFxWidget_VOIPNotification')
+   WidgetBindings(13)=(WidgetName="LevelUpNotificationWidget",WidgetClass=Class'KFGame.KFGFxWidget_LevelUpNotification')
+   WidgetBindings(14)=(WidgetName="VoiceCommsWidget",WidgetClass=Class'KFGame.KFGFxWidget_VoiceComms')
+   WidgetBindings(15)=(WidgetName="KickVoteWidget",WidgetClass=Class'KFGame.KFGFxWidget_KickVote')
+   WidgetBindings(16)=(WidgetName="MusicNotification",WidgetClass=Class'KFGame.KFGFxWidget_MusicNotification')
+   WidgetBindings(17)=(WidgetName="NonCriticalMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
+   WidgetBindings(18)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
+   WidgetBindings(19)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
    Name="Default__KFGFxMoviePlayer_HUD"
    ObjectArchetype=GFxMoviePlayer'GFxUI.Default__GFxMoviePlayer'
 }

@@ -26,7 +26,7 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byt
     {
         Duration = WeapMesh.GetAnimLength('C4_Throw');
         WeapMesh.PlayAnim('C4_Throw', Duration / ThirdPersonAnimRate,, true);
-        SetTimer(0.75, false, 'Unhide');        
+        SetTimer(0.75, false, 'UnHide');        
     }
     else
     {
@@ -68,7 +68,7 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byt
     return true;
 }
 
-simulated function Unhide()
+simulated function UnHide()
 {
     if(WeapMesh != none)
     {

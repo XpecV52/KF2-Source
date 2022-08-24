@@ -216,6 +216,11 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 	if( ClassIsChildOf( DamageType, class'KFDT_Explosive' ) )
 	{
 		TempDamage *= 1 - GetPassiveValue( ExplosiveResistance, CurrentLevel );
+
+        if (InstigatedBy == OwnerPC && (IsNukeActive() || IsProfessionalActive()) && ShouldNeverDud())
+        {
+            TempDamage = 0;
+        }
 	}
 
 	;
@@ -569,7 +574,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 {
 	local float KnockDownMultiplier;
 
-	KnockDownMultiplier = 1.f;
+	KnockDownMultiplier = 0.f;
 
 	if( IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
 	{
@@ -596,7 +601,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 {
 	local float StumbleMultiplier;
 
-	StumbleMultiplier = 1.f;
+	StumbleMultiplier = 0.f;
 
 	if( IsConcussiveForceActive() && IsDamageTypeOnPerk( DamageType ) )
 	{
@@ -616,7 +621,7 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
 {
 	local float StunMultiplier;
 
-	StunMultiplier = 1.f;
+	StunMultiplier = 0.f;
 
 	if( IsConcussiveForceActive() && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
 	{
@@ -670,7 +675,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	StateName = W.GetStateName();
 	if( IsProfessionalActive() && IsWeaponOnPerk( W,, self.class ) )
 	{
-		if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+		if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE || W.HasAlwaysOnZedTimeResist() )
 		{
 			;
 			return GetSkillValue( PerkSkills[EDemoProfessional] );
@@ -691,7 +696,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
  */
 simulated function bool IsDamageActive()
 {
-	return PerkSkills[EDemoDamage].bActive;
+	return PerkSkills[EDemoDamage].bActive && IsPerkLevelAllowed(EDemoDamage);
 }
 
 /**
@@ -701,7 +706,7 @@ simulated function bool IsDamageActive()
  */
 simulated function bool IsTacticalReloadActive()
 {
-	return PerkSkills[EDemoTacticalReload].bActive;
+	return PerkSkills[EDemoTacticalReload].bActive && IsPerkLevelAllowed(EDemoTacticalReload);
 }
 
 /**
@@ -711,7 +716,7 @@ simulated function bool IsTacticalReloadActive()
  */
 simulated function bool IsDirectHitActive()
 {
-	return PerkSkills[EDemoDirectHit].bActive;
+	return PerkSkills[EDemoDirectHit].bActive && IsPerkLevelAllowed(EDemoDirectHit);
 }
 
 /**
@@ -721,7 +726,7 @@ simulated function bool IsDirectHitActive()
  */
 simulated function bool IsAmmoActive()
 {
-	return PerkSkills[EDemoAmmo].bActive;
+	return PerkSkills[EDemoAmmo].bActive && IsPerkLevelAllowed(EDemoAmmo);
 }
 
 /**
@@ -731,7 +736,7 @@ simulated function bool IsAmmoActive()
  */
 simulated function bool IsAoEActive()
 {
-	return PerkSkills[EDemoAoE].bActive;
+	return PerkSkills[EDemoAoE].bActive && IsPerkLevelAllowed(EDemoAoE);
 }
 
 /**
@@ -741,7 +746,7 @@ simulated function bool IsAoEActive()
  */
 simulated function bool IsCriticalHitActive()
 {
-	return PerkSkills[EDemoCriticalHit].bActive;
+	return PerkSkills[EDemoCriticalHit].bActive && IsPerkLevelAllowed(EDemoCriticalHit);
 }
 
 /**
@@ -751,7 +756,7 @@ simulated function bool IsCriticalHitActive()
  */
 simulated final private function bool IsProfessionalActive()
 {
-	return PerkSkills[EDemoProfessional].bActive;
+	return PerkSkills[EDemoProfessional].bActive && IsPerkLevelAllowed(EDemoProfessional);
 }
 
 /**
@@ -831,7 +836,7 @@ static function GameExplosion GetDoorTrapsExplosionTemplate()
  */
 simulated private final function bool IsSirenResistanceActive()
 {
-	return PerkSkills[EDemoSirenResistance].bActive;
+	return PerkSkills[EDemoSirenResistance].bActive && IsPerkLevelAllowed(EDemoSirenResistance);
 }
 
 /**
@@ -841,7 +846,7 @@ simulated private final function bool IsSirenResistanceActive()
  */
 simulated private final function bool IsNukeActive()
 {
-	return PerkSkills[EDemoNuke].bActive;
+	return PerkSkills[EDemoNuke].bActive && IsPerkLevelAllowed(EDemoNuke);
 }
 
 /**
@@ -894,7 +899,7 @@ static function class<KFDamageType> GetLingeringDamageType()
  */
 simulated private final function bool IsConcussiveForceActive()
 {
-	return PerkSkills[EDemoConcussiveForce].bActive;
+	return PerkSkills[EDemoConcussiveForce].bActive && IsPerkLevelAllowed(EDemoConcussiveForce);
 }
 
 simulated final static function AkEvent GetConcussiveExplosionSound()
@@ -1002,8 +1007,8 @@ defaultproperties
    Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increases %x% per level")
    Passives(1)=(Title="Explosive Resistance",Description="Explosive resistance gains 10% and increases %x% per level")
    Passives(2)=(Title="Extra Explosive Ammo",Description="Explosive ammo increases %x% every five levels")
-   Passives(3)=(Title="+Grenade Supplier",Description="Teammates can get one grenade from you each wave")
-   Passives(4)=(Title="+Door Traps",Description="Doors you weld will explode when destroyed")
+   Passives(3)=(Title="Grenade Supplier",Description="Teammates can get one grenade from you each wave")
+   Passives(4)=(Title="Door Traps",Description="Doors you weld will explode when destroyed")
    Passives(5)=(Title="Reactive Armor",Description="When first reduced to 0 Health your armor will explode and leave you with 1 Health")
    SkillCatagories(0)="Technique"
    SkillCatagories(1)="Explosives"
@@ -1031,6 +1036,7 @@ defaultproperties
    ZedTimeModifyingStates(4)="WeaponSingleFireAndReload"
    ZedTimeModifyingStates(5)="FiringSecondaryState"
    ZedTimeModifyingStates(6)="AltReloading"
+   ZedTimeModifyingStates(7)="WeaponThrowing"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_HX25'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Demo'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Demo'

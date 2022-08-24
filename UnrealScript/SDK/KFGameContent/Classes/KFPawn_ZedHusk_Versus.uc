@@ -251,6 +251,7 @@ DefaultProperties
 	IncapSettings(AF_EMP)=		(Vulnerability=(0.8),                     Cooldown=5.0, Duration=3.0)  //1.0
 	IncapSettings(AF_Freeze)=	(Vulnerability=(0.6),                     Cooldown=1.5, Duration=2.0) //1.0
 	IncapSettings(AF_Snare)=	(Vulnerability=(0.7, 0.7, 1.0, 0.7),      Cooldown=8.5,  Duration=1.5)
+    IncapSettings(AF_Bleed)=    (Vulnerability=(1.0))
 
 	HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=200, DmgScale=1.001, SkinID=1)  // KF1=200     //154
 	HitZones[3]       =(ZoneName=heart,	   BoneName=Spine2,		  Limb=BP_Special,  GoreHealth=75,  DmgScale=1.1, SkinID=2)    //0.5 //1.5

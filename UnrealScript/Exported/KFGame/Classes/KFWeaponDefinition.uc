@@ -33,6 +33,9 @@ var(Trader) int SecondaryAmmoMagPrice;
 /** Id for shared unlock if applicable */
 var(Trader) ESharedContentUnlock SharedUnlockId;
 
+/** The platform restriction for the weapon */
+var(Trader) EPlatformRestriction PlatformRestriction;
+
 /** Theoretical maximum effective range for a weapon. Range is 0-100. */
 var() byte EffectiveRange;
 

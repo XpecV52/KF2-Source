@@ -4,10 +4,28 @@
 // Per Zed, per difficulty balance settings
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2016 Tripwire Interactive LLC
+// Copyright (C) 2017 Tripwire Interactive LLC
 //=============================================================================
 class KFDifficulty_Fleshpound extends KFMonsterDifficultyInfo
 	abstract;
+
+/** Chances, by difficulty, to spawn as a special Fleshpound */
+var array<float> ChanceToSpawnAsSpecial;
+
+static function float GetSpecialFleshpoundChance( KFGameReplicationInfo KFGRI )
+{
+	if( KFGRI.bVersusGame )
+	{
+		return 0.f;
+	}
+	
+`if(`notdefined(ShippingPC))
+	if( default.bForceSpecialSpawn )
+		return 1.f;
+	else
+`endif
+	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
+}
 
 defaultproperties
 {
@@ -68,4 +86,10 @@ defaultproperties
 	// Versus Rally settings
 	RallySettings_Versus={(bCauseSprint=false)}
 	RallySettings_Player_Versus={(DealtDamageModifier=1.2)}
+
+	// Special Fleshpound spawn chances
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)		=0.0
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)		=0.0
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Suicidal)	=0.0
+	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.0
 }

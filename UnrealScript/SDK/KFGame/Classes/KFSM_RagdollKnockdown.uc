@@ -136,7 +136,7 @@ function ApplyKnockdownImpulse(const out KnockdownImpulseInfo Info)
 			// handle radial and point impulses exclusively (network optimization)
 			if ( Info.bIsRadialImpulse )
 			{
-				PawnOwner.Mesh.AddRadialImpulse(Info.ImpulsePosition, Info.ImpulseStrength.X, Info.ImpulseStrength.Y, RIF_Linear);
+				PawnOwner.Mesh.AddRadialImpulse(Info.ImpulsePosition, Info.ImpulseStrength.X, Info.ImpulseStrength.Y, RIF_Linear, true);
 			}
 			else
 			{
@@ -150,7 +150,7 @@ function ApplyKnockdownImpulse(const out KnockdownImpulseInfo Info)
 					PointImpulseBoneName = KFPOwner.GetRBBoneFromBoneName(PointImpulseBoneName);
 				}
 
-				PawnOwner.Mesh.AddImpulse(PointImpulse, Info.ImpulsePosition, PointImpulseBoneName);
+				PawnOwner.Mesh.AddImpulse(PointImpulse, Info.ImpulsePosition, PointImpulseBoneName, true);
 			}
 		}
 
@@ -170,6 +170,12 @@ function ApplyKnockdownImpulse(const out KnockdownImpulseInfo Info)
 
 protected function PlayFallDown()
 {
+    //Reset phys asset for the same reason as we would if dying
+    if (KFPOwner.bReinitPhysAssetOnDeath && KFPOwner.CharacterArch != none && KFPOwner.CharacterArch.PhysAsset != none)
+    {
+        KFPOwner.Mesh.SetPhysicsAsset(KFPOwner.CharacterArch.PhysAsset, , true);
+    }
+
 	KFPOwner.PrepareRagdoll();
 
 	if( KFPOwner.InitRagdoll() )

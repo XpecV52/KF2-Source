@@ -209,7 +209,7 @@ simulated function CustomFire()
         SetTimer(AmmoRechargeRate, true, 'RechargeAmmo');
         if(WeldTarget.bIsDestroyed)
         {
-            WeldTarget.RepairDoor(RepairRate);            
+            WeldTarget.RepairDoor(RepairRate, KFPawn(Instigator));            
         }
         else
         {

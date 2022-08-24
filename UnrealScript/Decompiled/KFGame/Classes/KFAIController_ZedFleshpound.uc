@@ -21,7 +21,14 @@ var bool bDebugLeaveTargetAngleThreshold;
 var float LastKickClotTime;
 var export editinline KFAIPluginRage_Fleshpound RagePlugin;
 var class<KFAIPluginRage_Fleshpound> RagePluginClass;
+var array<float> SpawnRagedChance;
 var Vector ChargePivot;
+
+event Possess(Pawn inPawn, bool bVehicleTransition)
+{
+    super.Possess(inPawn, bVehicleTransition);
+    DoSpawnRageCheck();
+}
 
 // Export UKFAIController_ZedFleshpound::execCleanup(FFrame&, void* const)
 native function Cleanup(optional bool bBeingDestroyed);
@@ -186,6 +193,21 @@ function bool CanAttackDestructibles()
     return !IsEnraged() && super(KFAIController).CanAttackDestructibles();
 }
 
+function DoSpawnRageCheck()
+{
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if(KFGI == none)
+    {
+        return;
+    }
+    if(FRand() <= SpawnRagedChance[int(KFGI.GameDifficulty)])
+    {
+        RagePlugin.DoSpawnRage();
+    }
+}
+
 function DoRageTauntAt(optional KFPawn Target)
 {
     if(Role == ROLE_Authority)
@@ -224,6 +246,10 @@ defaultproperties
     ChargeStuckCheckInterval=0.25
     ChargeStuckCheckDistance=10
     RagePluginClass=Class'KFAIPluginRage_Fleshpound'
+    SpawnRagedChance(0)=0
+    SpawnRagedChance(1)=0
+    SpawnRagedChance(2)=0.5
+    SpawnRagedChance(3)=0.75
     bUseRunOverWarning=true
     MinRunOverSpeed=360
     MinRunOverWarningAim=0.85

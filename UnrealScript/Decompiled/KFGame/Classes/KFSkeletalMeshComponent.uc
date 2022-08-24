@@ -23,6 +23,8 @@ var float ClearStreamingTime;
  * Useful when issuing tick notifies (e.g. Hitbox collision) is critical
  */
 var() float MinTickTimeStep;
+/** Scale to use when doing line traces against the head bone */
+var() float HeadBoneScale;
 
 simulated event PreloadTextures(bool bForcePreload, float ClearTime)
 {
@@ -122,5 +124,6 @@ final function float GetAnimNotifyTime(name AnimSeqName, class<AnimNotify> Notif
 
 defaultproperties
 {
+    HeadBoneScale=1
     ReplacementPrimitive=none
 }

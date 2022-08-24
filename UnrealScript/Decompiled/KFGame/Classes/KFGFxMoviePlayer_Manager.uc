@@ -219,6 +219,7 @@ var bool bCanCloseMenu;
 var bool bPlayerInLobby;
 var bool bSetGamma;
 var class<KFGFxWidget_PartyInGame> InGamePartyWidgetClass;
+var TextureMovie CurrentBackgroundMovie;
 var array<DelayedPopup> DelayedPopups;
 var transient int ActivePopup;
 var KFGFxObject_Popup CurrentPopup;
@@ -238,7 +239,7 @@ var UniqueNetId CurrentInviteLobbyId;
 var const UniqueNetId ZeroUniqueId;
 var GFxObject ManagerObject;
 var KFHUDBase HUD;
-var TextureMovie BackgroundMovie;
+var array<TextureMovie> BackgroundMovies;
 var TextureMovie IISMovie;
 var array<string> IgnoredCommands;
 var name SoundThemeName;
@@ -321,9 +322,8 @@ function LaunchMenus(optional bool bForceSkipLobby)
     {
         WidgetBinding.WidgetClass = Class'KFGFxWidget_PartyMainMenu';
         bShowIIS = (GVC != none) && !GVC.bSeenIIS;
-        BGTexture = ((GetPC().WorldInfo.IsConsoleBuild() && bShowIIS) ? IISMovie : BackgroundMovie);
-        SetExternalTexture("background", BackgroundMovie, true);
-        SetExternalTexture("IIS_BG", IISMovie, true);
+        UpdateBackgroundMovie();
+        BGTexture = ((GetPC().WorldInfo.IsConsoleBuild() && bShowIIS) ? IISMovie : CurrentBackgroundMovie);
         bShowMenuBg = GVC.bSeenIIS || !GetPC().WorldInfo.IsConsoleBuild();
         ManagerObject.SetBool("backgroundVisible", bShowMenuBg);
         ManagerObject.SetBool("IISMovieVisible", !bShowMenuBg);
@@ -337,7 +337,7 @@ function LaunchMenus(optional bool bForceSkipLobby)
         ManagerObject.SetBool("IISMovieVisible", false);
         if(bSkippedLobby)
         {
-            BackgroundMovie.Stop();
+            CurrentBackgroundMovie.Stop();
         }
     }
     WidgetBindings.AddItem(WidgetBinding;
@@ -390,6 +390,46 @@ function LaunchMenus(optional bool bForceSkipLobby)
         ManagerObject.SetBool("bStartUpGamma", true);
         DelayedOpenPopup(1, 4, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
     }
+}
+
+function UpdateBackgroundMovie()
+{
+    local bool bWasPlaying;
+    local TextureMovie NewBackgroundMovie;
+
+    if(CurrentBackgroundMovie != none)
+    {
+        bWasPlaying = !CurrentBackgroundMovie.Stopped;
+    }
+    NewBackgroundMovie = GetBackgroundMovie();
+    if(bWasPlaying)
+    {
+        if(CurrentBackgroundMovie != NewBackgroundMovie)
+        {
+            CurrentBackgroundMovie.Stop();
+        }
+        NewBackgroundMovie.Play();        
+    }
+    else
+    {
+        CurrentBackgroundMovie.Stop();
+        NewBackgroundMovie.Stop();
+    }
+    CurrentBackgroundMovie = NewBackgroundMovie;
+    SetExternalTexture("background", CurrentBackgroundMovie, true);
+    SetExternalTexture("IIS_BG", IISMovie, true);
+}
+
+function TextureMovie GetBackgroundMovie()
+{
+    local int EventIndex;
+
+    EventIndex = Class'KFGameEngine'.static.GetSeasonalEventID();
+    if((EventIndex != -1) && EventIndex < BackgroundMovies.Length)
+    {
+        return BackgroundMovies[EventIndex];
+    }
+    return BackgroundMovies[0];
 }
 
 function DelayedShowDisconnectMessage()
@@ -788,12 +828,12 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     {
         IISMovie.Stop();
         ManagerObject.SetBool("IISMovieVisible", false);
-        BackgroundMovie.Play();
+        CurrentBackgroundMovie.Play();
         ManagerObject.SetBool("backgroundVisible", true);
     }
     if(NewMenuIndex == 16)
     {
-        BackgroundMovie.Stop();
+        CurrentBackgroundMovie.Stop();
         ManagerObject.SetBool("backgroundVisible", false);
         IISMovie.Play();
         ManagerObject.SetBool("IISMovieVisible", true);
@@ -916,9 +956,9 @@ function CloseMenus(optional bool bForceClose)
 event OnClose()
 {
     CloseMenus();
-    if(!BackgroundMovie.Stopped)
+    if(!CurrentBackgroundMovie.Stopped)
     {
-        BackgroundMovie.Stop();
+        CurrentBackgroundMovie.Stop();
     }
 }
 
@@ -1464,6 +1504,10 @@ function NotifySpectateStateChanged(bool bIsSpectating)
     {
         MenuBarWidget.UpdateGearButtonState();
     }
+    if(MenuBarWidget != none)
+    {
+        MenuBarWidget.UpdateInventoryButtonState();
+    }
 }
 
 function ShowKickVote(PlayerReplicationInfo PRI)
@@ -1525,6 +1569,7 @@ function OpenScreenSizeMovie()
         ScreenSizeMovie = new Class'KFGFxMoviePlayer_ScreenSize';
         ScreenSizeMovie.SetTimingMode(1);
         ScreenSizeMovie.Init();
+        GetPC().SetUIScale(KFGameEngine(Class'Engine'.static.GetEngine()).SafeFrameScale);
     }
 }
 
@@ -1532,6 +1577,20 @@ function CloseScreenSizeMovie()
 {
     ScreenSizeMovie.Close();
     ScreenSizeMovie = none;
+    if((Class'WorldInfo'.static.IsConsoleBuild(9) && !bSetGamma) && !Class'KFGameEngine'.static.CheckSkipGammaCheck())
+    {
+        ManagerObject.SetBool("bStartUpGamma", true);
+        DelayedOpenPopup(1, 4, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+    }
+}
+
+function UpdateViewportSize(int X, int Y, int Width, int Height)
+{
+    SetViewport(X, Y, Width, Height);
+    if(ScreenSizeMovie != none)
+    {
+        ScreenSizeMovie.SetViewport(X, Y, Width, Height);
+    }
 }
 
 function currentFocus()
@@ -1573,7 +1632,8 @@ defaultproperties
     WidgetPaths(0)="../UI_Widgets/MenuBarWidget_SWF.swf"
     WidgetPaths(1)="../UI_Widgets/PartyWidget_SWF.swf"
     WidgetPaths(2)="../UI_Widgets/ButtonPromptWidget_SWF.swf"
-    BackgroundMovie=TextureMovie'UI_Managers.MenuBG'
+    BackgroundMovies(0)=TextureMovie'UI_Managers.MenuBG'
+    BackgroundMovies(1)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
     IISMovie=TextureMovie'UI_Managers.IIS'
     IgnoredCommands(0)="GBA_VoiceChat"
     SoundThemeName=ButtonSoundTheme

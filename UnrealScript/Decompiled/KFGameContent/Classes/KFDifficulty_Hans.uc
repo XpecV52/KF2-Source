@@ -10,10 +10,10 @@ class KFDifficulty_Hans extends KFMonsterDifficultyInfo
 
 defaultproperties
 {
-    Normal=(HealthMod=0.69,SprintChance=1,DamagedSprintChance=1,SoloDamageMod=0.43,EvadeOnDamageSettings=(Chance=0.05,DamagedHealthPctToTrigger=0.01,ForcedEvadeChance=(FL=0.6,FR=0.6)),RallySettings=(bCanRally=false))
-    Hard=(HealthMod=0.84,SprintChance=1,DamagedSprintChance=1,DamageMod=0.7,SoloDamageMod=0.52,EvadeOnDamageSettings=(Chance=0.1,DamagedHealthPctToTrigger=0.01,ForcedEvadeChance=(FL=0.6,FR=0.6)),RallySettings=(bCanRally=false))
-    Suicidal=(HealthMod=0.83,HeadHealthMod=0.83,SprintChance=1,DamagedSprintChance=1.1,DamageMod=1.15,SoloDamageMod=0.58,EvadeOnDamageSettings=(Chance=0.2,DamagedHealthPctToTrigger=0.01,ForcedEvadeChance=(FL=0.6,FR=0.6)),BlockSettings=(Chance=0.3,Duration=1,MaxBlocks=5,Cooldown=7,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.7,DamageModifier=0.7,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCanRally=false))
-    HellOnEarth=(HealthMod=1.12,HeadHealthMod=1.12,SprintChance=1,DamagedSprintChance=1,DamageMod=1.27,SoloDamageMod=0.68,EvadeOnDamageSettings=(Chance=0.2,DamagedHealthPctToTrigger=0.01,ForcedEvadeChance=(FL=0.6,FR=0.6)),BlockSettings=(Chance=0.3,Duration=1,MaxBlocks=6,Cooldown=6.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.7,DamageModifier=0.7,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCanRally=false))
+    Normal=(HealthMod=0.71,SprintChance=1,DamagedSprintChance=1,DamageMod=0.54,SoloDamageMod=0.4,EvadeOnDamageSettings=(Chance=0.05,DamagedHealthPctToTrigger=0.01,ForcedEvadeChance=(FL=0.6,FR=0.6)),RallySettings=(bCanRally=false))
+    Hard=(HealthMod=0.82,SprintChance=1,DamagedSprintChance=1,DamageMod=0.73,SoloDamageMod=0.5,EvadeOnDamageSettings=(Chance=0.1,DamagedHealthPctToTrigger=0.01,ForcedEvadeChance=(FL=0.6,FR=0.6)),RallySettings=(bCanRally=false))
+    Suicidal=(HealthMod=0.85,HeadHealthMod=0.85,SprintChance=1,DamagedSprintChance=1,DamageMod=1.15,SoloDamageMod=0.6,EvadeOnDamageSettings=(Chance=0.2,DamagedHealthPctToTrigger=0.01,ForcedEvadeChance=(FL=0.6,FR=0.6)),BlockSettings=(Chance=0.3,Duration=1,MaxBlocks=5,Cooldown=7,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.7,DamageModifier=0.7,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCanRally=false))
+    HellOnEarth=(HealthMod=1.08,HeadHealthMod=1.08,SprintChance=1,DamagedSprintChance=1,DamageMod=1.25,SoloDamageMod=0.61,EvadeOnDamageSettings=(Chance=0.2,DamagedHealthPctToTrigger=0.01,ForcedEvadeChance=(FL=0.6,FR=0.6)),BlockSettings=(Chance=0.3,Duration=1,MaxBlocks=6,Cooldown=6.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.7,DamageModifier=0.7,AfflictionModifier=0.2,SoloChanceMultiplier=1),RallySettings=(bCanRally=false))
     NumPlayersScale_BodyHealth=0.75
     NumPlayersScale_BodyHealth_Versus=0.75
 }

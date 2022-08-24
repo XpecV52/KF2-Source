@@ -58,7 +58,7 @@ function Popped()
 
 		EnableMeleeRangeEventProbing();
 
-		if( MyKFPawn.IsDoingSpecialMove() )
+		if( MyKFPawn.IsDoingSpecialMove() && !MyKFPawn.IsDoingSpecialMove(SM_Knockdown) )
 		{
 			MyKFPawn.EndSpecialMove();
 		}

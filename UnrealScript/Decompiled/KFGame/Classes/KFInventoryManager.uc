@@ -48,6 +48,7 @@ var float LastCreatedWeaponTime;
 var array<GFxMoviePlayer> OpticsUIMovies;
 var const float StartedWithWeaponPriceModifier;
 var const float SellPriceModifier;
+var float OffPerkCostScale;
 var array<TransactionItem> TransactionItems;
 var int SelectedGroupIndicies[4];
 
@@ -55,7 +56,7 @@ replication
 {
      if(bNetDirty && bNetOwner)
         CurrentCarryBlocks, GrenadeCount, 
-        MaxCarryBlocks;
+        MaxCarryBlocks, OffPerkCostScale;
 
      if((bNetDirty && bNetOwner) && bNetInitial)
         HealerWeapon;
@@ -256,6 +257,10 @@ simulated function Inventory CreateInventory(class<Inventory> NewInventoryItemCl
                     PlayGiveInventorySound(ItemPickupSound);
                     LastCreatedWeaponTime = WorldInfo.TimeSeconds;
                 }
+            }
+            if(KFWeap != none)
+            {
+                CheckForExcessRemoval(KFWeap);
             }
             return KFWeap;            
         }
@@ -1029,19 +1034,13 @@ simulated function ThrowMoney()
 reliable server function ServerThrowMoney()
 {
     local Inventory Inv;
-    local KFGameReplicationInfo MyKFGRI;
 
     if(Instigator != none)
     {
-        MyKFGRI = KFGameReplicationInfo(WorldInfo.GRI);
         foreach InventoryActors(Class'Inventory', Inv)
         {
             if(Inv.DroppedPickupClass == Class'KFDroppedPickup_Cash')
             {
-                if((MyKFGRI != none) && MyKFGRI.CurrentObjective != none)
-                {
-                    MyKFGRI.CurrentObjective.CheckForPayDayPawn(Instigator);
-                }
                 Instigator.TossInventory(Inv);                
                 return;
             }            
@@ -1085,6 +1084,31 @@ simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass)
         return true;
     }
     return false;
+}
+
+simulated function CheckForExcessRemoval(KFWeapon NewWeap)
+{
+    local KFWeap_DualBase DualWeap;
+    local Inventory RemoveInv, Inv;
+
+    DualWeap = KFWeap_DualBase(NewWeap);
+    if(DualWeap != none)
+    {
+        Inv = InventoryChain;
+        J0x3E:
+
+        if(Inv != none)
+        {
+            if(Inv.Class == DualWeap.default.SingleClass)
+            {
+                RemoveInv = Inv;
+                Inv = Inv.Inventory;
+                RemoveFromInventory(RemoveInv);
+            }
+            Inv = Inv.Inventory;
+            goto J0x3E;
+        }
+    }
 }
 
 simulated function bool IsTransactionWeapon(name WeaponClassName)
@@ -1298,7 +1322,7 @@ reliable server function ServerCloseTraderMenu()
     bSuppressPickupMessages = false;
 }
 
-final simulated function BuyAmmo(int AmountPurchased, KFGFxMenu_Trader.EItemType ItemType, optional byte ItemIndex, optional bool bSecondaryAmmo)
+final simulated function BuyAmmo(float AmountPurchased, KFGFxMenu_Trader.EItemType ItemType, optional byte ItemIndex, optional bool bSecondaryAmmo)
 {
     local STraderItem WeaponItem;
     local KFWeapon KFW;
@@ -1314,7 +1338,7 @@ final simulated function BuyAmmo(int AmountPurchased, KFGFxMenu_Trader.EItemType
                 MagAmmoCount = ((bSecondaryAmmo) ? KFW.AmmoCount[1] : KFW.AmmoCount[0]);
             }
         }
-        ServerBuyAmmo(AmountPurchased, MagAmmoCount, ItemIndex, bSecondaryAmmo);        
+        ServerBuyAmmo(int(AmountPurchased), MagAmmoCount, ItemIndex, bSecondaryAmmo);        
     }
     else
     {
@@ -1326,7 +1350,7 @@ final simulated function BuyAmmo(int AmountPurchased, KFGFxMenu_Trader.EItemType
         {
             if(ItemType == 3)
             {
-                ServerBuyGrenade(AmountPurchased);
+                ServerBuyGrenade(int(AmountPurchased));
             }
         }
     }
@@ -1432,7 +1456,7 @@ private reliable server final event ServerAddTransactionAmmo(int AmountAdded, by
     }
 }
 
-private reliable server final function ServerBuyArmor(int PercentPurchased)
+private reliable server final function ServerBuyArmor(float PercentPurchased)
 {
     local KFPawn_Human KFP;
     local int AmountPurchased;
@@ -1444,7 +1468,7 @@ private reliable server final function ServerBuyArmor(int PercentPurchased)
         if(ProcessArmorDosh(PercentPurchased))
         {
             MaxArmor = float(KFP.GetMaxArmor());
-            AmountPurchased = FCeil(MaxArmor * (float(PercentPurchased) / 100));
+            AmountPurchased = FCeil(MaxArmor * (PercentPurchased / 100));
             KFP.AddArmor(AmountPurchased);
             if(Class'KFGameInfo'.static.AllowBalanceLogging())
             {
@@ -1779,7 +1803,7 @@ private final function bool ProcessGrenadeDosh(int AmountPurchased)
     return false;
 }
 
-private final function bool ProcessArmorDosh(int PercentPurchased)
+private final function bool ProcessArmorDosh(float PercentPurchased)
 {
     local int BuyPrice;
     local KFGFxObject_TraderItems TraderItems;
@@ -1802,7 +1826,7 @@ private final function bool ProcessArmorDosh(int PercentPurchased)
                 ArmorPricePerPercent *= CurrentPerk.GetArmorDiscountMod();
             }
         }
-        BuyPrice = FCeil(float(ArmorPricePerPercent * PercentPurchased));
+        BuyPrice = FCeil(float(ArmorPricePerPercent) * PercentPurchased);
         if(float(BuyPrice) <= KFPRI.Score)
         {
             KFPRI.AddDosh(-BuyPrice);
@@ -1829,6 +1853,9 @@ private final simulated function bool GetTraderItemFromWeaponLists(out STraderIt
 simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem, const optional array<SItemInformation> TraderOwnedItems)
 {
     local int AdjustedBuyPrice, I;
+    local KFPlayerController KFPC;
+    local KFPerk CurrentPerk;
+    local KFPlayerReplicationInfo KFPRI;
 
     AdjustedBuyPrice = ShopItem.WeaponDef.default.BuyPrice;
     if(ShopItem.SingleClassName != 'None')
@@ -1859,6 +1886,22 @@ simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem, co
     }
     J0x150:
 
+    KFPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+    if(KFPRI != none)
+    {
+        KFPC = KFPlayerController(Instigator.Owner);
+        if(KFPC != none)
+        {
+            CurrentPerk = KFPC.GetPerk();
+            if(CurrentPerk != none)
+            {
+                if(ShopItem.AssociatedPerkClasses.Find(CurrentPerk.Class == -1)
+                {
+                    AdjustedBuyPrice *= OffPerkCostScale;
+                }
+            }
+        }
+    }
     return AdjustedBuyPrice;
 }
 
@@ -1874,7 +1917,7 @@ simulated function int GetAdjustedSellPriceFor(const out STraderItem OwnedItem, 
     {
         AdjustedSellPrice = int(float(OwnedItem.WeaponDef.default.BuyPrice) * SellPriceModifier);
     }
-    if(OwnedItem.SingleClassName != 'None')
+    if(OwnedItem.SingleClassName == 'KFWeap_Pistol_9mm')
     {
         AdjustedSellPrice *= 0.5;
     }
@@ -1963,6 +2006,7 @@ defaultproperties
     SwitchFireModeEvent=AkEvent'WW_UI_PlayerCharacter.Play_WEP_ModeSwitch'
     StartedWithWeaponPriceModifier=0.5
     SellPriceModifier=0.75
+    OffPerkCostScale=1
     bMustHoldWeapon=true
     PendingFire=/* Array type was not detected. */
 }

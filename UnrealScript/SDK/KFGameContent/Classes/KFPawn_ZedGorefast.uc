@@ -110,6 +110,7 @@ DefaultProperties
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.0),                     Cooldown=5.0,  Duration=5.0)
 	IncapSettings(AF_Freeze)=   (Vulnerability=(2.0),                     Cooldown=1.5,  Duration=4.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
+    IncapSettings(AF_Bleed)=    (Vulnerability=(2.0))
 
 	ParryResistance=2
 

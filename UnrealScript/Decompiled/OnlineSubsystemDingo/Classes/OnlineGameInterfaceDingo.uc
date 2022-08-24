@@ -48,6 +48,7 @@ var array< delegate<OnUnregisterPlayerComplete> > UnregisterPlayerCompleteDelega
 var array< delegate<OnMultiplayerSessionChange> > MultiplayerSessionChangeDelegates;
 var array< delegate<OnGameInviteAccepted> > GameInviteAcceptedDelegates;
 var config bool XboxServicesDebugLogging;
+var bool bMultiplayerSubscriptionLost;
 var array<name> PendingSessionLeaveNames;
 var const config float SessionMemberReserveTimeout;
 var array<SessionReserveInfo> ReservedSessionMembers;

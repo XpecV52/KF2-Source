@@ -42,7 +42,7 @@ package tripwire.containers
             {
                 this.itemNameText.text = !!param1.itemName ? param1.itemName : "";
                 this.progressPercentText.text = !!param1.percent ? param1.percent.toString() + "%" : "";
-                this.queueText.text = !!param1.queue ? param1.queue : "0";
+                this.queueText.text = "";
                 this.downLoadingText.text = !!param1.downLoading ? param1.downLoading : "";
                 this.remainingText.text = !!param1.remaining ? param1.remaining : "";
                 visible = true;

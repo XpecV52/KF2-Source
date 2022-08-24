@@ -123,6 +123,36 @@ function SetMaterialParameter(float Value)
 /** called per tick while CurrentStrength > 0 */
 event Tick(float DeltaTime);
 
+/** Accessor to get known affliction knockdown modifier */
+function float GetKnockdownModifier()
+{
+    return 0.f;
+}
+
+/** Accessor to get known affliction Stumble modifier */
+function float GetStumbleModifier()
+{
+    return 0.f;
+}
+
+/** Accessor to get known affliction Stun modifier */
+function float GetStunModifier()
+{
+    return 0.f;
+}
+
+/** Accessor to get known affliction Damage modifier */
+function float GetDamageModifier()
+{
+    return 0.f;
+}
+
+/** Accessor to get known affliction speed modifier */
+function float GetSpeedModifier()
+{
+    return 1.f;
+}
+
 defaultproperties
 {
    DissipationRate=20.000000

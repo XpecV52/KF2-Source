@@ -203,11 +203,20 @@ function PostRender_Console(Canvas Canvas);
 
 function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event, optional float AmountDepressed, optional bool bGamepad)
 {
+    local PlayerController PC;
+
     AmountDepressed = 1;
     bGamepad = false;
     if(Event == 0)
     {
         bCaptureKeyInput = false;
+        if(Key == 'F10')
+        {
+            foreach Class'Engine'.static.GetCurrentWorldInfo().LocalPlayerControllers(Class'PlayerController', PC)
+            {
+                PC.ForceDisconnect();                
+            }            
+        }
         if(Key == ConsoleKey)
         {
             GotoState('Open');

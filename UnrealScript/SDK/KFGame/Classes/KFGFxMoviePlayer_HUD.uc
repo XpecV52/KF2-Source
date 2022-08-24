@@ -120,19 +120,24 @@ function UpdateRatio(optional float fScale=1.f)
 {
     local GfxObject GFxStage;
     local float ScaleStage;
-    if ( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+
+    if ( class'WorldInfo'.static.IsConsoleBuild() )
     {
-        ScaleStage = class'Engine'.static.GetTitleSafeArea();
+        ScaleStage = class'Engine'.static.GetEngine().GetTitleSafeArea();
     }
     else
     {
         ScaleStage = fScale;
     }
-    GFxStage = KFGXHUDManager.GetObject("stage");
-    GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1.0f - ScaleStage)) / 2 );
-    GFxStage.SetFloat("y", (GFxStage.GetFloat("height") * (1.0f - ScaleStage)) / 2 );
-    GFxStage.SetFloat("scaleX", ScaleStage);
-    GFxStage.SetFloat("scaleY", ScaleStage);
+
+    GFxStage = KFGXHUDManager != none ? KFGXHUDManager.GetObject("stage") : none;
+	if( GFxStage != none )
+	{
+		GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1.0f - ScaleStage)) / 2);
+		GFxStage.SetFloat("y", (GFxStage.GetFloat("height") * (1.0f - ScaleStage)) / 2);
+		GFxStage.SetFloat("scaleX", ScaleStage);
+		GFxStage.SetFloat("scaleY", ScaleStage);
+	}
 }
 
 /** Ties the GFxClikWidget variables to the .swf components and handles events */
@@ -140,6 +145,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
     switch(WidgetName)
     {
+    case 'ObjectiveContainer':
+        if(WaveInfoWidget != none && WaveInfoWidget.ObjectiveContainer == none)
+        {
+            WaveInfoWidget.ObjectiveContainer = KFGFxHUD_ObjectiveConatiner(Widget);
+            WaveInfoWidget.ObjectiveContainer.SetVisible(false);
+        }
+        break;
     case 'bossHealthBar':
         if( BossHealthBar == none )
         {
@@ -942,6 +954,7 @@ DefaultProperties
     bAutoPlay=true
     bIsSpectating=false
 
+    WidgetBindings.Add((WidgetName="ObjectiveContainer",WidgetClass=class'KFGFxHUD_ObjectiveConatiner'))
     WidgetBindings.Add((WidgetName="SpectatorInfoWidget",WidgetClass=class'KFGFxHUD_SpectatorInfo'))
     WidgetBindings.Add((WidgetName="PlayerStatWidgetMC",WidgetClass=class'KFGFxHUD_PlayerStatus'))
     WidgetBindings.Add((WidgetName="PlayerBackpackWidget",WidgetClass=class'KFGFxHUD_PlayerBackpack'))

@@ -9,6 +9,11 @@
 
 class KFWeap_Pistol_DualFlare extends KFWeap_DualBase;
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+    return FT_Flame;
+}
+
 defaultproperties
 {
    LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-2.250000)

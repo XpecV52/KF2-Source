@@ -136,6 +136,14 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 	GfxButton.SetBool( "enabled", true );
 }
 
+function UpdateInventoryButtonState()
+{
+	if(InventoryButton != none)
+	{
+		InventoryButton.SetBool( "enabled", CanUseInventory() ); 
+	}
+}
+
 function UpdateGearButtonState()
 {
 	local bool bCanChangeGear;

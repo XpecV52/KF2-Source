@@ -102,6 +102,7 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
     {
         IKFootRight.SetSkelControlActive(false);
     }
+    SetHeadScale(IntendedHeadScale, CurrentHeadScale);
 }
 
 simulated function SetCharacterAnimationInfo()

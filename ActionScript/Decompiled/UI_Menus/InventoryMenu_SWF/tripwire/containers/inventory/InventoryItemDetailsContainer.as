@@ -57,6 +57,8 @@ package tripwire.containers.inventory
         
         public var bForceFocusToDetails:Boolean;
         
+        public var readyToReopen:Boolean = true;
+        
         public function InventoryItemDetailsContainer()
         {
             super();
@@ -96,20 +98,26 @@ package tripwire.containers.inventory
         
         public function cancelClicked(param1:ButtonEvent) : void
         {
-            closeContainer();
+            if(_bReadyForInput)
+            {
+                closeContainer();
+            }
         }
         
         public function equipClicked(param1:ButtonEvent) : void
         {
-            if(this.currentItemDataObject.type == this.ITP_WeaponSkin)
+            if(bReadyForInput)
             {
-                ExternalInterface.call("Callback_Equip",this.currentItemDataObject.definition);
+                if(this.currentItemDataObject.type == this.ITP_WeaponSkin)
+                {
+                    ExternalInterface.call("Callback_Equip",this.currentItemDataObject.definition);
+                }
+                if(this.currentItemDataObject.exchangeable)
+                {
+                    ExternalInterface.call("Callback_UseItem",this.currentItemDataObject.definition);
+                }
+                closeContainer();
             }
-            if(this.currentItemDataObject.exchangeable)
-            {
-                ExternalInterface.call("Callback_UseItem",this.currentItemDataObject.definition);
-            }
-            closeContainer();
         }
         
         public function recycleClicked(param1:ButtonEvent) : void
@@ -123,7 +131,7 @@ package tripwire.containers.inventory
         
         public function set details(param1:Object) : void
         {
-            openContainer();
+            this.openContainer();
             this.currentItemDataObject = param1;
             this.itemNameText.text = param1.label;
             this.itemDescText.htmlText = param1.description;
@@ -201,7 +209,7 @@ package tripwire.containers.inventory
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "useFrames":true,
-                "onComplete":onClosed
+                "onComplete":this.onClosed
             });
         }
         
@@ -221,6 +229,12 @@ package tripwire.containers.inventory
             }
         }
         
+        override public function openContainer(param1:Boolean = true) : void
+        {
+            super.openContainer(param1);
+            this.readyToReopen = false;
+        }
+        
         override protected function onOpened(param1:TweenEvent = null) : void
         {
             super.onOpened(param1);
@@ -228,6 +242,12 @@ package tripwire.containers.inventory
             {
                 FocusManager.setFocus(!!this.equipButton.visible ? this.equipButton : this.cancelButton);
             }
+        }
+        
+        override protected function onClosed(param1:TweenEvent = null) : void
+        {
+            super.onClosed(param1);
+            this.readyToReopen = true;
         }
     }
 }

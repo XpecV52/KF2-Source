@@ -24,19 +24,25 @@ static function int GetDamagerDialogID()
 static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional bool bMaterialOnly, optional Vector RBLinearVelocity)
 {
     local KFPawn_Monster Zed;
-    local MaterialInstanceConstant MIC;
     local KFGoreManager GoreManager;
     local float IceScalar;
+    local int MICIndex, I, J;
+    local MaterialInstanceConstant MIC;
 
     IceScalar = 1;
     if(!bMaterialOnly)
     {
         Zed = KFPawn_Monster(P);
-        if(Zed != none)
+        if((Zed != none) && !Zed.bUseDamageInflation)
         {
             GoreManager = KFGoreManager(P.WorldInfo.MyGoreEffectManager);
             if((GoreManager != none) && GoreManager.AllowMutilation())
             {
+                if((Zed.bReinitPhysAssetOnDeath && Zed.CharacterArch != none) && Zed.CharacterArch.PhysAsset != none)
+                {
+                    Zed.bReinitPhysAssetOnDeath = false;
+                    Zed.Mesh.SetPhysicsAsset(Zed.CharacterArch.PhysAsset,, true);
+                }
                 if(!Zed.bIsGoreMesh)
                 {
                     Zed.SwitchToGoreMesh();
@@ -58,10 +64,39 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
             P.PlaySoundBase(default.ShatterSound, true,,, P.Location);
         }
     }
-    foreach P.CharacterMICs(MIC,)
+    MICIndex = 0;
+    if(P.GetCharacterInfo() != none)
     {
-        MIC.SetScalarParameterValue('Scalar_Ice', IceScalar);        
-    }    
+        MICIndex = P.GetCharacterInfo().GoreFXMICIdx;
+    }
+    if(P.CharacterMICs.Length > MICIndex)
+    {
+        P.CharacterMICs[MICIndex].SetScalarParameterValue('Scalar_Ice', IceScalar);
+    }
+    I = 0;
+    J0x48E:
+
+    if(I < 3)
+    {
+        if(P.ThirdPersonAttachments[I] != none)
+        {
+            J = 0;
+            J0x4D7:
+
+            if(J < P.ThirdPersonAttachments[I].Materials.Length)
+            {
+                MIC = MaterialInstanceConstant(P.ThirdPersonAttachments[I].GetMaterial(J));
+                if(MIC != none)
+                {
+                    MIC.SetScalarParameterValue('Scalar_Ice', IceScalar);
+                }
+                ++ J;
+                goto J0x4D7;
+            }
+        }
+        ++ I;
+        goto J0x48E;
+    }
 }
 
 defaultproperties

@@ -1020,7 +1020,7 @@ defaultproperties
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
-   WeaponProjectiles(0)=None
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_RailGun'
    WeaponProjectiles(1)=None
    FireInterval(0)=0.100000
    FireInterval(1)=0.100000

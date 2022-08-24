@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="Public"
 ConsolePermissionStrings[1]="Invitation uniquement"
 
 ModeStrings[0]="Survie"
-ModeStrings[1]="Survie VS"
+ModeStrings[1]="Hebdomadaire"
+ModeStrings[2]="Survie VS"
 
 NoPreferenceString="TOUT"
 OKString="OK"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="La classe peut être mise à jour une fois par vague !"
 YesString="Oui"
 NoString="Non"
 TeamSwappedString="On vous a changé d'équipe"
+
+CancelConnectionString="Annuler le chargement"
 
 DisbandPartyString="DISSOUDRE GROUPE"
 LeaveCurrentMenuString="Quitter le menu actuel ?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="Aucun objet acheté"
 SetTakeoverServerPasswordTitle="Saisir nouv. MDP pour partie :"
 FreeConsolePlayOverString="Merci de jouer à Killing Floor 2 ! L'événement gratuit est terminé mais vous pouvez acheter le jeu et obtenir plus d'informations en appuyant sur le bouton magasin ci-dessous."
 BuyGameString="MAGASIN"
+CustomString="Personnalisé"
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="RÉCOMPENSE D'ACCOMPLISSEMENT D'ÉPIDÉMIE"
+WeeklyString="ÉPIDÉMIE HEBDOMADAIRE DE HORZINE"
+CurrentWeeklySettingsString="PARAMÈTRES DE L'ÉPIDÉMIE EN COURS"
+SpecialEventString="CIRQUE ESTIVAL"
+ShortWeeklyString="HEBDOMADAIRE"
+SeasonalString="SAISONNIER"
+SpecialEventChanceDropString="OBJETS LIMITÉS"
+GrantedSpecialEventString="RÉCOMPENSE D'ACCOMPLISSEMENT"
+RewardsString="RÉCOMPENSE D'ACCOMPLISSEMENT D'ÉPIDÉMIE"
+WeeklyOverview="Un nouveau mode de jeu chaque semaine !"
+ObjectivesString="Afficher/masquer les objectifs"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="AUCUN MATCH TROUVÉ"
@@ -115,8 +133,9 @@ TutorialString="Entraînement de base"
 
 [StartMenuHelperText]
 modeList0="Survie - Bataille PVE contre des vagues de Zeds contrôlés par l'IA"
-modeList1="Survie VS - PVP Mercenaires de Horzine contre des vagues de Zeds contrôlés par des joueurs et l'IA"
-modeList2=""
+modeList1="Épidémie hebdomadaire : un mode de jeu différent chaque semaine."
+modeList2="Survie VS - PVP Mercenaires de Horzine contre des vagues de Zeds contrôlés par des joueurs et l'IA"
+modeList3=""
 difficultyList0="Normal – Pour les joueurs débutants de rang 0-5."
 difficultyList1="Difficile – Pour les joueurs expérimentés de rang 6-12. Plus de Zeds par vague, plus rapides et plus résistants. Moins de butin et de fric à ramasser."
 difficultyList2="Suicidaire – Pour les joueurs aguerris de rang 13-25. Encore plus de Zeds par vague, ils utilisent de nouvelles attaques et sont encore plus rapides. Encore moins de butin et de fric à ramasser."
@@ -666,6 +685,7 @@ DamageDealtString="Dégâts infligés :"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ PRÊT ]"
 WaitingString="EN ATTENTE DE JOUEUR(S)"
+MatchOverString="MATCH TERMINÉ \n Veuillez patienter..."
 DeployingString="DÉPLOIEMENT DANS "
 CreatePartyString="CRÉER UN GROUPE"
 ReadyString="PRÊT"
@@ -840,6 +860,7 @@ CancelString="ANNULER"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="NIVEAU SUPÉRIEUR"
 TierUnlockedString="NOUV. COMPÉTENCES PRÊT"
+ObjectiveCompleteString="OBJECTIF RÉUSSI"
 
 [KFGFxHUD_WaveInfo]
 WaveString="VAGUE"
@@ -924,6 +945,7 @@ ConfigureMicString="CONFIGURER LE MICRO"
 VocalsString="Voix des musiques"
 BattleChatterString="Réduire fen. discu. combat"
 PushToVoIPString="Appuyer pour parler"
+ScreenSizeString="TAILLE DE L'ÉCRAN"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Utiliser ces paramètres vidéo ?"
@@ -1322,6 +1344,7 @@ MapCollectibleName="espèce sonnante et trébuchante"
 WaveStartMessage="VAGUE EN APPROCHE"
 WaveEndMessage="V A G U E T E R M I N É E"
 GetToTraderMessage="Se rendre au module de la marchande"
+ScavengeMessage="Récupérer"
 YouLostMessage="D É F A I T E"
 YouWonMessage="V I C T O I R E"
 SquadWipedOutMessage="Votre équipe s'est fait écraser !"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>SE SOIGNER"
 PressToBashWarning="FRAPPE"
 GamepadWeaponSelectHint="<%HOLD%>SÉLECTION DE L'ARME"
 PlayerClotGrabWarningMessage="TUEZ LE ZED POUR VOUS ÉCHAPPER !"
-UseMinigameMessage="ACTIVER MINI-JEU"
+UseMinigameMessage="ACTIVER"
 UseMinigameGeneratorMessage="ACTIVER GÉNÉRATEUR"
 
 [KFLocalMessage_ServerNotification]
@@ -1569,7 +1592,6 @@ SkillCatagories[1]="Combat"
 SkillCatagories[2]="Corps à corps"
 SkillCatagories[3]="Pouvoir"
 SkillCatagories[4]="Entraînement avancé"
-
 
 Passives[0]=(Title="Dégâts de Fou furieux",Description="Dégâts de l'arme de classe + x%x par niveau");
 Passives[1]=(Title="Résistance aux dégâts",Description="Résistance aux dégâts + x%x tous les 5 niveaux");
@@ -2008,7 +2030,6 @@ Passives[1]=(Title="Résistance générale",Description="Résistance à tous les
 Passives[2]=(Title="Armure lourde",Description="%x% par niveau (max 25 %), pas de dégâts avec armure.");
 Passives[3]=(Title="Rechargement Zed time",Description="Vitesse de rechargement Zed time +%x% par niveau");
 
-
 HeavyWeaponsReload="Utilisation d'armes lourdes"
 HeavyWeaponsReloadDescription="Augmente la vitesse de rechargement des armes de Démolisseur, Tireur d'élite et Soutien."
 
@@ -2162,6 +2183,7 @@ Forums="Visitez les forums de la communauté"
 Survey="Participez à l'enquête de jouabilité"
 CommunityTracker="Suivre les demandes de la communauté"
 FeaturedCrateKey="Clé caisse Horzine à la une - 2,49 $"
+FeaturedEventItem="Objet d'événement à la une"
 FeaturedUsbKey="Clé USB modèle d'arme à la une - 2,49 $"
 FeaturedRareItem="Élément rare à la une - 3,99 $"
 FeaturedExceptionalItem="Élément exceptionnel à la une - 7,49 $"
@@ -2177,20 +2199,22 @@ PS4WeaponSkinCrate2="Caisse de modèle Horzine | Série 2"
 Artbook="Art book numérique de Killing Floor 2"
 Uncovered="Regarder film Killing Floor: Uncovered"
 NewEmotes="Nouveau ! Clé de caisse d'emote - 2,49 $"
-HorzineSupplyCrateKey10="Clé Horzine | Série 10 - $2.49"
-HorzineSupplyCrateKey11="Clé Horzine | Série 11 - $2.49"
-HorzineSupplyCrateKey12="Clé Horzine | Série 12 - $2.49"
-HorzineSupplyCrateKey13="Clé Horzine | Série 13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+HorzineSupplyCrateKey10="Clé Horzine | Série 10 - 2,49 $"
+HorzineSupplyCrateKey11="Clé Horzine | Série 11 - 2,49 $"
+HorzineSupplyCrateKey12="Clé Horzine | Série 12 - 2,49 $"
+HorzineSupplyCrateKey13="Clé Horzine | Série 13 - 2,49 $"
+USBSpitfire="Clé USB Cracheur de feu - 2,49 $"
+USBHighVoltage="Clé USB Haute tension - 2,49 $"
+MerchSale="Super promo KF2 ! -25 % jusqu'au 30/04. Code : ZED"
 
 [Zeds]
 KFPawn_ZedBloat="Bouffi"
 KFPawn_ZedClot="Andouille"
 KFPawn_ZedCrawler="Lèche-bottes"
 KFPawn_ZedCrawlerKing="Lèche-bottes élite"
+KFPawn_ZedFleshpoundMini="Bifteck"
 KFPawn_ZedFleshPound="Barback"
+KFPawn_ZedFleshpoundKing="Roi Barback"
 KFPawn_ZedGorefast="Éventreur"
 KFPawn_ZedGorefastDualBlade="Égorgeur"
 KFPawn_ZedHans="Dr. Hans Volter"
@@ -2319,6 +2343,119 @@ KFWeap_Zweihander="Promo Chivalry"
 
 
 Source0="Promo Chivalry"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="Objet 1"
+ChanceDropDescriptionStrings[1]="Objet 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Surplus d'énergie",DescriptionString="Activer le générateur dans le Royaume déchanté");
+SpecialEventObjectiveInfoList[1]=(TitleString="Éclater l'Andouille",DescriptionString="Éclater l'Andouille dans le Royaume déchanté");
+SpecialEventObjectiveInfoList[2]=(TitleString="Trappe-Bouffi",DescriptionString="Faire tomber Bouffi dans le Royaume déchanté");
+SpecialEventObjectiveInfoList[3]=(TitleString="Lancer de fric",DescriptionString="Lancer de fric dans le Royaume déchanté");
+SpecialEventObjectiveInfoList[4]=(TitleString="Carnavrant",DescriptionString="Gagner une partie en Difficile dans le Royaume déchanté");
+
+AllCompleteRewardDescriptionString="Combinaison de cirque Hazmat"
+
+ChanceDropDescriptionStrings[0]="Ticket de récompense du cirque"
+ChanceDropDescriptionStrings[1]="Ticket doré du cirque"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="Brise-crânes"
+DescriptionStrings[0]="Rien de tel qu'une bonne lésion cérébrale."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Dans cette épidémie, les Zeds ont subi une mutation et n'ont plus qu'un point sensible : la tête. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="Mini-terreur"
+DescriptionStrings[0]="Une petite menace n'en reste pas moins dangereuse."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Dans cette épidémie, les Zeds rapetisseront quand vous leur tirerez dessus, les rendant plus difficiles à toucher. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="Rôtissoire"
+DescriptionStrings[0]="Des Barbacks à perte de vue. Ou presque."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Le salon des Barbacks se tient en ville ! Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="Léger comme la mort"
+DescriptionStrings[0]="Gonflez 99 ballons et chantez avec les Zeds."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Dans cette épidémie, les Zeds gonfleront comme des ballons quand vous leur tirerez dessus, à tel point qu'ils s'envoleront avant d'exploser ! Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="Zed time"
+DescriptionStrings[0]="La corne d'abondance du Zed time."
+DescriptionStrings[1]="Durée : courte (4 vagues)"
+ModifierDescriptions[0]="Vous avez déjà eu l'impression que le temps vous filait entre les doigts ? Ce ne sera plus le cas avec cette épidémie ! Vous passerez en Zed time chaque vous que serez à proximité d'un Zed. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="Boum !"
+DescriptionStrings[0]="Zeds sous pression, risque d'explosion."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Ils ont peut-être avalé une saleté ? Ou ils ont seulement des gaz ? Quoi que ce soit, les Zeds exploseront à leur mort dans cette épidémie. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="Tas de muscles"
+DescriptionStrings[0]="Plus ils sont gros, plus dure est la chute."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Dans cette épidémie, la santé, la taille et la portée des Zeds augmentent lorsqu'ils touchent les joueurs ou sont affectés par certaines capacités Zeds. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="Bobble-Zed"
+DescriptionStrings[0]="... Ça doit faire mal au cou."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Ce groupe de Zeds a dû vivre une terrible expérience : leur tête est beaaaauuuucoup plus grande que d'ordinaire ! Elle est même énorme ! Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2698,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Labo biotique"
 
@@ -2572,6 +2725,9 @@ DisplayName="Paris en cendres"
 
 [Survival KFGameInfoSummary]
 GameName="Survie"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="Hebdomadaire"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Manoir Volter"
@@ -2608,6 +2764,9 @@ DisplayName="La descente"
 
 [KF-Nuked KFMapSummary]
 DisplayName="Atomisé"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="Le Royaume déchanté"
 
 [KFMapInfo]
 ; defaults

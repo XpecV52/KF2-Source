@@ -2,7 +2,9 @@ package tripwire.widgets
 {
     import com.greensock.TimelineMax;
     import com.greensock.TweenMax;
+    import com.greensock.easing.Cubic;
     import flash.display.MovieClip;
+    import flash.events.Event;
     import flash.text.TextField;
     import scaleform.clik.core.UIComponent;
     
@@ -28,6 +30,11 @@ package tripwire.widgets
             visible = false;
         }
         
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+        }
+        
         public function setText(param1:String, param2:String) : void
         {
             this.setTimeline();
@@ -40,6 +47,7 @@ package tripwire.widgets
         
         public function setTimeline() : void
         {
+            this.bossTimeline.clear();
             this.bossTimeline.fromTo(this,60,{
                 "rotationY":0,
                 "z":0
@@ -53,10 +61,26 @@ package tripwire.widgets
                 "rotationY":12,
                 "z":-80
             });
+            this.bossTimeline.fromTo(this.bossNameContainer,15,{
+                "alpha":0,
+                "x":192
+            },{
+                "alpha":1,
+                "x":112,
+                "ease":Cubic.easeOut
+            });
+            this.bossTimeline.fromTo(this.subTextContainer,15,{
+                "alpha":0,
+                "x":400
+            },{
+                "alpha":1,
+                "x":320,
+                "ease":Cubic.easeOut
+            },"-=5");
             this.bossTimeline.to(this,105,{
                 "rotationY":24,
                 "z":-160
-            });
+            },"-=25");
             this.bossTimeline.stop();
             this.bossTimeline.seek(0);
         }

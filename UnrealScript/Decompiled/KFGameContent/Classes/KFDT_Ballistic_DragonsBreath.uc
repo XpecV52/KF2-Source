@@ -58,7 +58,7 @@ defaultproperties
     CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
     BloodSpread=0.4
     BloodScale=0.6
-    KDamageImpulse=350
-    KDeathVel=10
-    KDeathUpKick=120
+    KDamageImpulse=900
+    KDeathVel=350
+    KDeathUpKick=-500
 }

@@ -247,7 +247,7 @@ function TestAddServerFilter(bool Test, string Key, optional string Val = "")
 
 function TestAddBoolGametagFilter(out string GametagString, bool Test, name Property, byte BoolVal)
 {
-	//`log("TestAddBoolGametagFilter:"@string(Property)@string(BoolVal));
+	//`log("TestAddBoolGametagFilter:"@string(Test)@string(Property)@string(BoolVal));
 	if (Test)
 	{
 		if (Len(GametagString) > 0)

@@ -732,6 +732,8 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	{
 		PCOwner.ClientSetCameraFade( true, FadeOutColor, vect2d(1.f, 0.f), FadeOutTime, true );
 		PCOwner.SetRotation( InitialRotation );
+        //Reset camera in case this was a gun fire.  This will resume normal updates next frame for 1st person mode
+        PCOwner.PlayerCamera.CameraCache.POV.Rotation = InitialRotation;
 
 		// Switch camera modes immediately in single player or on client
 		if( PCOwner.WorldInfo.NetMode != NM_DedicatedServer )

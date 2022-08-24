@@ -9,11 +9,9 @@ class KFGFxWidget_LevelUpNotification extends GFxObject within GFxMoviePlayer;
 
 var const localized string LevelUpString;
 var const localized string TierUnlockedString;
+var const localized string ObjectiveCompleteString;
 
-function InitializeHUD()
-{
-    SetLocalizedText();
-}
+function InitializeHUD();
 
 function SetLocalizedText()
 {
@@ -25,18 +23,42 @@ function SetLocalizedText()
     SetObject("localizeText", TempObj);
 }
 
-function ShowLevelUpNotification(class<KFPerk> PerkClass, byte PerkLevel, bool bTierUnlocked)
+function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
-    SendLevelUpNotificationToAS3(PerkClass.default.PerkName, PerkLevel, "img://" $ PerkClass.static.GetPerkIconPath(), bTierUnlocked);
+    local class<KFGFxSpecialEventObjectivesContainer> SpecialEventClass;
+
+    SpecialEventClass = Class'KFGFxMenu_StartGame'.static.GetSpecialEventClass(EventIndex);
+    ShowObjectiveCompleteNotification(SpecialEventClass.default.SpecialEventObjectiveInfoList[ObjectiveIndex].TitleString, SpecialEventClass.default.SpecialEventObjectiveInfoList[ObjectiveIndex].DescriptionString, "img://" $ SpecialEventClass.default.ObjectiveIconURLs[ObjectiveIndex]);
 }
 
-function SendLevelUpNotificationToAS3(string PerkName, int PerkLevel, string IconPath, bool TierUnlocked)
+function ShowLevelUpNotification(class<KFPerk> PerkClass, byte PerkLevel, bool bTierUnlocked)
 {
-    ActionScriptVoid("showLevelUp");
+    ShowAchievementNotification(LevelUpString, PerkClass.default.PerkName, TierUnlockedString, "img://" $ PerkClass.static.GetPerkIconPath(), bTierUnlocked, PerkLevel);
+}
+
+function ShowObjectiveCompleteNotification(string ObjectiveName, string ObjectiveDescription, string ImagePath)
+{
+    ShowAchievementNotification(ObjectiveCompleteString, ObjectiveName, " ", ImagePath, true, -1);
+}
+
+function ShowAchievementNotification(string TitleString, string MainString, string SecondaryString, string ImagePath, bool bShowSecondary, optional int NumericValue)
+{
+    local GFxObject TempObj;
+
+    NumericValue = -1;
+    TempObj = Outer.CreateObject("Object");
+    TempObj.SetString("titleString", TitleString);
+    TempObj.SetString("mainString", MainString);
+    TempObj.SetString("secondaryString", SecondaryString);
+    TempObj.SetInt("newValue", NumericValue);
+    TempObj.SetString("iconPath", ImagePath);
+    TempObj.SetBool("bShowSecondary", bShowSecondary);
+    SetObject("showAchievementPopUp", TempObj);
 }
 
 defaultproperties
 {
     LevelUpString="LEVEL UP"
     TierUnlockedString="NEW SKILLS UNLOCKED"
+    ObjectiveCompleteString="OBJECTIVE COMPLETE"
 }

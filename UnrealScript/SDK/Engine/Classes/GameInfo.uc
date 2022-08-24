@@ -392,7 +392,7 @@ event PostBeginPlay()
 				}
 
 				// Initialize title data, see also TWRefreshOnlineGameData
-				PlayfabInter.AddTitleDataReadCompleteDelegate( OnServerTitleDataRead );
+				//PlayfabInter.AddTitleDataReadCompleteDelegate( OnServerTitleDataRead );
 				PlayfabInter.ReadTitleData();
 			}
 		}
@@ -4054,6 +4054,7 @@ defaultproperties
 	GameInfoClassAliases.Add((ShortName="BenchMark", GameClassName="KFGameContent.KFGameInfo_BenchMark"))
 	GameInfoClassAliases.Add((ShortName="Survival", GameClassName="KFGameContent.KFGameInfo_Survival"))
 	GameInfoClassAliases.Add((ShortName="Versus", GameClassName="KFGameContent.KFGameInfo_VersusSurvival"))
+    GameInfoClassAliases.Add((ShortName="Weekly", GameClassName="KFGameContent.KFGameInfo_WeeklySurvival"))
 	GameInfoClassAliases.Add((ShortName="Tutorial", GameClassName="KFGameContent.KFGameInfo_Tutorial"))
 `endif
 }

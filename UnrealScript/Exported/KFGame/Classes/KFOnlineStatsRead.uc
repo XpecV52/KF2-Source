@@ -129,6 +129,7 @@ const STATID_ACHIEVE_HostileGroundsCollectibles		= 4032;
 const STATID_ACHIEVE_ZedLandingCollectibles			= 4035;
 const STATID_ACHIEVE_DescentCollectibles			= 4036;
 const STATID_ACHIEVE_NukedCollectibles				= 4037;
+const STATID_ACHIEVE_TragicKingdomCollectibles      = 4038;
  
 #linenumber 14
 
@@ -154,7 +155,7 @@ function OnStatsInitialized(bool bWasSuccessful)
 		OnReadComplete();
 	}
 }
-//@HSL_MOD_BEGIN - amiller 3/30/2016 - Adding support for saving Stats object to SaveData
+
 native function NativeOnReadComplete();
 
 event OnReadComplete()
@@ -163,7 +164,6 @@ event OnReadComplete()
 	if (bLogStatsRead) LogInternal("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ Rows[0].Columns.Length @ "self:'"$self$"'",'DevOnline');
 
 }
-//@HSL_MOD_END
 
 defaultproperties
 {
@@ -231,8 +231,8 @@ defaultproperties
    ColumnMappings(23)=(Id=42,Name="MedicHealPoints")
    ColumnMappings(24)=(Id=202,Name="CrawlerKills")
    ColumnMappings(25)=(Id=203,Name="FleshPoundKills")
-   ColumnMappings(26)=(Id=300,Name="SpecialEvent")
-   ColumnMappings(27)=(Id=301,Name="WeeklyEvent")
+   ColumnMappings(26)=(Id=300,Name="SpecialEventProgress")
+   ColumnMappings(27)=(Id=301,Name="WeeklyEventProgress")
    ColumnMappings(28)=(Id=2000,Name="PersonalBestKnifeKills")
    ColumnMappings(29)=(Id=2001,Name="PersonalBestPistolKills")
    ColumnMappings(30)=(Id=2002,Name="PersonalBestHeadshots")

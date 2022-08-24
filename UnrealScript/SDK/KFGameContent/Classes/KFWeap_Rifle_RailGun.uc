@@ -971,7 +971,7 @@ defaultproperties
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
-	WeaponProjectiles(DEFAULT_FIREMODE)=none
+	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RailGun'
 	InstantHitDamage(DEFAULT_FIREMODE)=375  //750
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RailGun'
 	FireInterval(DEFAULT_FIREMODE)=0.1 //0.4

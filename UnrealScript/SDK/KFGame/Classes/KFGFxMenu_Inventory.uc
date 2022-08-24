@@ -90,6 +90,7 @@ var name SoundThemeName;
 var KFPlayerController KFPC;
 
 var int ValueToPromptDuplicateRecycle;
+var array<int> SpecialEventItemIDs;
 
 enum EINventory_Filter
 {
@@ -359,7 +360,12 @@ function bool IsItemRecyclable( ItemProperties ItemDetailsHolder, out const arra
 
 function bool IsItemExchangeable( out ItemProperties ItemDetailsHolder, out const array<ExchangeRuleSets> ExchangeRules )
 {
-	return ( ExchangeRules.length > 0 || ItemDetailsHolder.RequiredKeyId != "" ) && ItemDetailsHolder.Type == ITP_KeyCrate;
+	return ( ExchangeRules.length > 0 || ItemDetailsHolder.RequiredKeyId != "" ) && (ItemDetailsHolder.Type == ITP_KeyCrate || IsSpecialEventItem(ItemDetailsHolder.Definition) );
+}
+
+function bool IsSpecialEventItem(int ItemID)
+{
+	return SpecialEventItemIDs.Find(ItemID) != INDEX_NONE;
 }
 
 function bool IsItemActive(int ItemDefinition)
@@ -834,7 +840,10 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
 			///get needed item from rule set
 			if(ExchangeRules[0].Sources[0].Definition == ItemDefinition)
 			{
-				NeededItemID = ExchangeRules[0].Sources[1].Definition;
+				if(ExchangeRules[0].Sources.length > 1)
+				{
+					NeededItemID = ExchangeRules[0].Sources[1].Definition;
+				}
 			}
 			else
 			{
@@ -870,6 +879,13 @@ function Callback_UseItem( int ItemDefinition )
 	// Some playfab items require keys
 	TempItemIdHolder = ItemDefinition;
 	CurrItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemDefinition)];
+
+	if(IsSpecialEventItem(TempItemIdHolder))
+	{
+		Callback_CraftOption(TempItemIdHolder);
+		return;
+	}
+
 	if( CurrItem.RequiredKeyId != "" )
 	{
 		if( OnlineSub.HasKeyForItem( ItemDefinition, NeededItemID ) )
@@ -1027,4 +1043,8 @@ defaultproperties
 	RareWeaponID=3713
 	ExceptionalWeaponID=3714
 	MasterWeaponID=3715
+
+	SpecialEventItemIDs(0)=4896
+	SpecialEventItemIDs(1)=4928
+	SpecialEventItemIDs(2)=4929
 }

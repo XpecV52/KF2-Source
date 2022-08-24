@@ -144,6 +144,10 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     if(ClassIsChildOf(DamageType, Class'KFDT_Explosive'))
     {
         TempDamage *= (float(1) - (GetPassiveValue(ExplosiveResistance, CurrentLevel)));
+        if(((InstigatedBy == OwnerPC) && IsNukeActive() || IsProfessionalActive()) && ShouldNeverDud())
+        {
+            TempDamage = 0;
+        }
     }
     InDamage = Round(TempDamage);
 }
@@ -426,7 +430,7 @@ function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, 
     local float KnockDownMultiplier;
 
     bIsSprinting = false;
-    KnockDownMultiplier = 1;
+    KnockDownMultiplier = 0;
     if(IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
     {
         if(IsConcussiveForceActive())
@@ -445,7 +449,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 {
     local float StumbleMultiplier;
 
-    StumbleMultiplier = 1;
+    StumbleMultiplier = 0;
     if(IsConcussiveForceActive() && IsDamageTypeOnPerk(DamageType))
     {
         StumbleMultiplier += (GetSkillValue(PerkSkills[7]));
@@ -457,7 +461,7 @@ function float GetStunPowerModifier(optional class<DamageType> DamageType, optio
 {
     local float StunMultiplier;
 
-    StunMultiplier = 1;
+    StunMultiplier = 0;
     if(IsConcussiveForceActive() && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
     {
         StunMultiplier += (GetSkillValue(PerkSkills[7]));
@@ -499,7 +503,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     StateName = W.GetStateName();
     if(IsProfessionalActive() && IsWeaponOnPerk(W,, self.Class))
     {
-        if(ZedTimeModifyingStates.Find(StateName != -1)
+        if((ZedTimeModifyingStates.Find(StateName != -1) || W.HasAlwaysOnZedTimeResist())
         {
             return GetSkillValue(PerkSkills[9]);
         }
@@ -509,37 +513,37 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 
 simulated function bool IsDamageActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 simulated function bool IsTacticalReloadActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 simulated function bool IsDirectHitActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 simulated function bool IsAmmoActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 simulated function bool IsAoEActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 simulated function bool IsCriticalHitActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
 private final simulated function bool IsProfessionalActive()
 {
-    return PerkSkills[9].bActive;
+    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
 }
 
 private static final simulated function float GetSharedExplosiveResistance()
@@ -579,12 +583,12 @@ static function GameExplosion GetDoorTrapsExplosionTemplate()
 
 private final simulated function bool IsSirenResistanceActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
 private final simulated function bool IsNukeActive()
 {
-    return PerkSkills[8].bActive;
+    return PerkSkills[8].bActive && IsPerkLevelAllowed(8);
 }
 
 static simulated function KFGameExplosion GetNukeExplosionTemplate()
@@ -619,7 +623,7 @@ static function class<KFDamageType> GetLingeringDamageType()
 
 private final simulated function bool IsConcussiveForceActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 static final simulated function AkEvent GetConcussiveExplosionSound()
@@ -731,8 +735,8 @@ defaultproperties
     Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increases %x% per level",IconPath="")
     Passives(1)=(Title="Explosive Resistance",Description="Explosive resistance gains 10% and increases %x% per level",IconPath="")
     Passives(2)=(Title="Extra Explosive Ammo",Description="Explosive ammo increases %x% every five levels",IconPath="")
-    Passives(3)=(Title="+Grenade Supplier",Description="Teammates can get one grenade from you each wave",IconPath="")
-    Passives(4)=(Title="+Door Traps",Description="Doors you weld will explode when destroyed",IconPath="")
+    Passives(3)=(Title="Grenade Supplier",Description="Teammates can get one grenade from you each wave",IconPath="")
+    Passives(4)=(Title="Door Traps",Description="Doors you weld will explode when destroyed",IconPath="")
     Passives(5)=(Title="Reactive Armor",Description="When first reduced to 0 Health your armor will explode and leave you with 1 Health",IconPath="")
     SkillCatagories[0]="Technique"
     SkillCatagories[1]="Explosives"
@@ -760,6 +764,7 @@ defaultproperties
     ZedTimeModifyingStates(4)=WeaponSingleFireAndReload
     ZedTimeModifyingStates(5)=FiringSecondaryState
     ZedTimeModifyingStates(6)=AltReloading
+    ZedTimeModifyingStates(7)=WeaponThrowing
     PrimaryWeaponDef=Class'KFWeapDef_HX25'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Demo'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Demo'

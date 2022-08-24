@@ -45,9 +45,9 @@ defaultproperties
    ModifierPerkList(0)=Class'KFGame.KFPerk_FieldMedic'
    BloodSpread=0.400000
    BloodScale=0.600000
-   KDamageImpulse=550.000000
-   KDeathVel=35.000000
-   KDeathUpKick=120.000000
+   KDamageImpulse=900.000000
+   KDeathVel=350.000000
+   KDeathUpKick=-500.000000
    Name="Default__KFDT_Ballistic_Shotgun_Medic"
    ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

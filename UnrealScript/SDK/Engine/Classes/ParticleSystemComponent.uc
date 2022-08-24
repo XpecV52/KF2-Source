@@ -25,6 +25,11 @@ var					transient	Actor								LightEnvironmentSharedInstigator;
  */
 var					transient	int									MaxLightEnvironmentPooledReuses;
 
+`if(`__TW_PERFORMANCE_)
+/** Total count of all emitter active particles when the emitters get ticked. */
+var                 transient   int                                 NumActiveParticles;
+`endif
+
 struct ParticleEmitterInstance
 {
 	// No UObject reference
@@ -935,6 +940,9 @@ defaultproperties
 	OldPosition=(X=0,Y=0,Z=0)
 	PartSysVelocity=(X=0,Y=0,Z=0)
 	WarmupTime=0
+    
+    
+    NumActiveParticles=0
 
 	SecondsBeforeInactive=1.0
 

@@ -7464,6 +7464,10 @@ native final function bool ShouldReplicateVoicePacketFrom(const out UniqueNetId 
 native final function bool ShouldReplicateVoicePacketTo(const out UniqueNetId Receiver);
 
 
+
+function ForceDisconnect();
+
+
 /** called on client during seamless level transitions to get the list of Actors that should be moved into the new level
  * PlayerControllers, Role < ROLE_Authority Actors, and any non-Actors that are inside an Actor that is in the list
  * (i.e. Object.Outer == Actor in the list)

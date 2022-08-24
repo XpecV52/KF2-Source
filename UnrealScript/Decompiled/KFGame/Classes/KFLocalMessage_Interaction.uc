@@ -101,6 +101,8 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
         case 1:
         case 2:
         case 3:
+        case 8:
+        case 9:
             KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
@@ -210,7 +212,7 @@ defaultproperties
     ZedUseDoorMessage="OPEN/CLOSE"
     ZedUseDoorWeldedMessage="DOOR WELDED, BREAK IT DOWN!"
     PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
-    UseMinigameMessage="ACTIVATE MINIGAME"
+    UseMinigameMessage="ACTIVATE"
     UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
     USE_COMMAND="GBA_Use"
     HEAL_COMMAND="GBA_QuickHeal"

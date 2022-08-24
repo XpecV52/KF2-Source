@@ -99,7 +99,7 @@ protected function UpdateMicrowaveMatParam(float DeltaTime)
     MonsterOwner.RepInflateMatParam = FloatToByte(UsedMicrowavedAmount);
     if(MonsterOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
-        SetMaterialParameter(UsedMicrowavedAmount);
+        SetMaterialParameter(MonsterOwner.GetCurrentInflation());
         UpdateBurnedMatParam(DeltaTime);
     }
 }
@@ -115,7 +115,7 @@ function UpdateBurnedMatParam(float DeltaTime)
     }
     if(MonsterOwner != none)
     {
-        ParamValue = EvalInterpCurveFloat(MicroWaveCharCurve, ByteToFloat(MonsterOwner.RepInflateMatParam));
+        ParamValue = EvalInterpCurveFloat(MicroWaveCharCurve, MonsterOwner.GetCurrentInflation());
         if(ParamValue > MicrowaveBurnedAmount)
         {
             MicrowaveBurnedAmount = ParamValue;            

@@ -28,4 +28,6 @@ defaultproperties
 	GunHitPower=45
 
 	WeaponDef=class'KFWeapDef_MedicSMG'
+
+    ModifierPerkList(0)=class'KFPerk_Swat'
 }

@@ -337,21 +337,27 @@ function UpdateOverviewInGame()
 	local string GameDifficultyString;
 	local Float CurrentGameDifficulty;
 	local int CurrentLengthIndex, CurrentPrivacyIndex;
+	local bool bCustomDifficulty;
+	local bool bCustomLength;
+	
+	//not using these now
+	bCustomLength = false; //not using these now
+	bCustomDifficulty = false;
 
+	
 	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
     	SetCurrentMapInfo();
 
     	// Update Game mode
-    	
 		UpdateGameMode(KFGRI.GameClass.default.GameName);
 
     	// Update Difficulty
     	CurrentGameDifficulty = KFGRI.GameDifficulty;
     	if(LastDifficultyIndex != CurrentGameDifficulty)
     	{
-    		GameDifficultyString =  Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(CurrentGameDifficulty);
+    		GameDifficultyString =  bCustomDifficulty ?  Class'KFCommon_LocalizedStrings'.default.CustomString : Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(CurrentGameDifficulty);
     		UpdateDifficulty(GameDifficultyString);
     		LastDifficultyIndex = CurrentGameDifficulty;
     	}
@@ -359,7 +365,7 @@ function UpdateOverviewInGame()
         CurrentLengthIndex = KFGRI.GameLength;
         if(LastLengthIndex != CurrentLengthIndex)        
         {
-			UpdateLength(class'KFCommon_LocalizedStrings'.static.GetLengthString(CurrentLengthIndex));
+			UpdateLength(bCustomLength ?  Class'KFCommon_LocalizedStrings'.default.CustomString : class'KFCommon_LocalizedStrings'.static.GetLengthString(CurrentLengthIndex));
 			LastLengthIndex = CurrentLengthIndex;
         }
 

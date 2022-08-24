@@ -36,6 +36,24 @@ package tripwire.widgets
         
         public var middleBounds:MovieClip;
         
+        public var Item0:VoiceCommsOptionRenderer;
+        
+        public var Item1:VoiceCommsOptionRenderer;
+        
+        public var Item2:VoiceCommsOptionRenderer;
+        
+        public var Item3:VoiceCommsOptionRenderer;
+        
+        public var Item4:VoiceCommsOptionRenderer;
+        
+        public var Item5:VoiceCommsOptionRenderer;
+        
+        public var Item6:VoiceCommsOptionRenderer;
+        
+        public var Item7:VoiceCommsOptionRenderer;
+        
+        public var Item8:VoiceCommsOptionRenderer;
+        
         public var ItemBound0:MovieClip;
         
         public var ItemBound1:MovieClip;
@@ -68,6 +86,7 @@ package tripwire.widgets
             this.initValues();
             visible = false;
             alpha = 0;
+            this.Item8.bCenterOption = true;
         }
         
         public function initValues() : *
@@ -100,6 +119,7 @@ package tripwire.widgets
             dispatchEvent(new Event("PopoutItems",true));
             visible = true;
             this.lastSelectedItemIndex = -1;
+            this.selectedItem = null;
             TweenMax.fromTo(this,4,{
                 "alpha":0,
                 "z":this.initialZ + 256
@@ -164,9 +184,18 @@ package tripwire.widgets
             }
         }
         
+        public function setEmoteEnabled(param1:Boolean) : void
+        {
+            this.Item8.enabled = param1;
+            if(param1 && this.Item8 == this.selectedItem)
+            {
+                this.Item8.activateItem();
+            }
+        }
+        
         public function callSelectedItem() : *
         {
-            if(this.selectedItem)
+            if(this.selectedItem && this.selectedItem.enabled)
             {
                 this.selectedItem.selectActiveItem();
                 ExternalInterface.call("Callback_VoiceCommsSay",this.selectedItem.itemIndex);

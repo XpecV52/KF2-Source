@@ -15,9 +15,9 @@ class KFGFxObject_TraderItems extends Object
 enum TraderWeaponStat
 {
 	TWS_Damage,
-	TWS_RateOfFire,
 	TWS_Range,
 	TWS_Penetration,
+	TWS_RateOfFire,
 
 	TWS_Block,
 	TWS_Parry,

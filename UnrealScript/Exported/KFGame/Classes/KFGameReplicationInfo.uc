@@ -56,6 +56,7 @@ var class<KFTraderDialogManager>		TraderDialogManagerClass;
 var class<KFTraderVoiceGroupBase>		TraderVoiceGroupClass;
 
 var repnotify bool bTraderIsOpen;
+var repnotify bool bWaveIsActive;
 /** Replicates at beginning and end of waves to change track / track type */
 var repnotify byte MusicTrackRepCount;
 
@@ -65,6 +66,9 @@ var private const bool bIsUnrankedGame;
 
 //Stored so that we can tell this on the AAR
 var bool bMatchVictory;
+
+//Whether or not traders are enabled
+var bool bTradersEnabled;
 
 /************************************
 * Spawning
@@ -89,6 +93,7 @@ var array<UniqueNetId> ConsoleGameSessionPendingPlayers;
 ************************************/
 var    				byte						GameLength;
 var    				byte						GameDifficulty;
+var                 byte                        MaxPerkLevel;
 var 				bool 						bCustom;
 var                 float                       GameAmmoCostScale;
 
@@ -262,7 +267,8 @@ var array<KFDoorActor> DoorList;
 /************************************
 * Objectives
 ************************************/
-var KFObjective 	CurrentObjective;
+var repnotify Actor CurrentObjective;
+var KFInterface_MapObjective ObjectiveInterface;
 
 /************************************
 *  Music
@@ -310,11 +316,11 @@ function native private EndOfWave();
 replication
 {
 	if ( bNetDirty )
-		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount,
+		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount, bWaveIsActive,
 		CurrentObjective, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
 		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid; //@HSL - JRO - 3/21/2016 - PS4 Sessions
 	if ( bNetInitial )
-		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase;
+		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase, MaxPerkLevel, bTradersEnabled;
 	if ( bNetInitial && Role == ROLE_Authority )
 		ServerAdInfo;
 
@@ -348,9 +354,6 @@ simulated event ReplicatedEvent(name VarName)
 	{
 		if ( bTraderIsOpen )
 		{
-	        FadeOutLingeringExplosions();
-			NotifyWaveEnded();
-			EndOfWave();
 			OpenTrader();
 		}
         else
@@ -358,6 +361,15 @@ simulated event ReplicatedEvent(name VarName)
             CloseTrader();
         }
 	}
+    else if ( VarName == nameof(bWaveIsActive))
+    {
+        if (!bWaveIsActive)
+        {
+            FadeOutLingeringExplosions();
+            NotifyWaveEnded();
+            EndOfWave();
+        }
+    }
     else if( VarName == nameof(ReplicatedMusicTrackInfo) )
     {
         ForceNewMusicTrack( ReplicatedMusicTrackInfo );
@@ -396,6 +408,19 @@ simulated event ReplicatedEvent(name VarName)
 		KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();
 	}
 //@HSL_END
+    else if (VarName == 'CurrentObjective')
+    {
+        if (CurrentObjective != none)
+        {
+            ObjectiveInterface = KFInterface_MapObjective(CurrentObjective);
+            ObjectiveInterface.ActivateObjective();
+        }
+        else
+        {
+            ObjectiveInterface.DeactivateObjective();
+            ObjectiveInterface = none;            
+        }
+    }
 	else
 	{
 		super.ReplicatedEvent(VarName);
@@ -485,11 +510,6 @@ simulated function NotifyWaveEnded()
 		}
 	}
 
-	if ( CurrentObjective != none && !CurrentObjective.bIsCoopObjective )
-	{
-		CurrentObjective.FailObjective(OF_WaveEnded);
-	}
-
 	// Reset all supplier perks
 	foreach PRIArray( PRI )
 	{
@@ -558,6 +578,13 @@ simulated function FadeOutLingeringExplosions()
     {
         LingeringExplosion.FadeOut();
     }
+}
+
+function StartScavengeTime(int time)
+{
+    RemainingTime = time;
+    RemainingMinute = time;
+    bStopCountDown = false;
 }
 
 simulated function OpenTrader(optional int time)
@@ -793,7 +820,8 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
 {
     // set up music intensity for this wave
     MusicIntensity = NewMusicIntensity;
-	bTraderIsOpen = !bWaveActive && bMatchHasBegun;
+	bTraderIsOpen = !bWaveActive && bMatchHasBegun && bTradersEnabled;
+    bWaveIsActive = bWaveActive;
 	bForceNetUpdate = true;
 
     //  replicate track change
@@ -1485,11 +1513,109 @@ simulated event bool IsStatsSessionValid()
 }
 //@HSL_END
 
+//*****************************************************************************
+//  Objectives
+//*****************************************************************************
+function StartNextObjective()
+{
+    local KFMapInfo KFMI;
+
+    KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+    if (KFMI != none)
+    {
+        if (KFMI.bUsePresetObjectives)
+        {
+            StartNextPresetObjective(KFMI);
+        }
+        else if (KFMI.bUseRandomObjectives)
+        {
+            StartNextRandomObjective(KFMI);
+        }
+    }
+}
+
+function StartNextPresetObjective(KFMapInfo KFMI)
+{
+    local array<KFInterface_MapObjective> PossibleObjectives;
+
+    //Grab appropriate list of possible objectives based on wave and game length
+    switch(WaveMax)
+    {
+    case 5:
+        if (KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+        {
+            PossibleObjectives = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives;
+        }
+        break;
+    case 8:
+        if (KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+        {
+            PossibleObjectives = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives;
+        }
+        break;
+    case 11:
+        if (KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+        {
+            PossibleObjectives = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives;
+        }
+        break;
+    default: //Disable for mods with weird counts
+        break;
+    }
+
+    AttemptObjectiveActivation(PossibleObjectives);
+}
+
+function StartNextRandomObjective(KFMapInfo KFMI)
+{
+    AttemptObjectiveActivation(KFMI.RandomWaveObjectives);
+}
+
+function AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
+{
+    local int RandID;
+
+    //Loop through list of possible ones to find a random valid one.  If we never call activate, nothing was valid
+    while (PossibleObjectives.Length > 0)
+    {
+        RandID = Rand(PossibleObjectives.Length);
+        if (PossibleObjectives[RandID].CanActivateObjective())
+        {
+            ActivateObjective(PossibleObjectives[RandID]);
+            return;
+        }
+
+        PossibleObjectives.Remove(RandID, 1);
+    }
+}
+
+function ActivateObjective(KFInterface_MapObjective NewObjective)
+{
+    if (NewObjective != none)
+    {
+        CurrentObjective = Actor(NewObjective);
+        ObjectiveInterface = NewObjective;
+        ObjectiveInterface.ActivateObjective();
+    }    
+}
+
+function DeactivateObjective()
+{
+    if (CurrentObjective != None) 
+    {
+        ObjectiveInterface.DeactivateObjective();
+        CurrentObjective = none;
+        ObjectiveInterface = none;
+    }
+}
+
 defaultproperties
 {
    WaveMax=255
+   MaxPerkLevel=4
    TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
    bAllowGrenadePurchase=True
+   bTradersEnabled=True
    TraderDialogManagerClass=Class'KFGame.KFTraderDialogManager'
    GameAmmoCostScale=1.000000
    VoteCollectorClass=Class'KFGame.KFVoteCollector'

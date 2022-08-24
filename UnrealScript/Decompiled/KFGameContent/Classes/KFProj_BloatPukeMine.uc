@@ -185,7 +185,7 @@ simulated function Stick(Vector StuckLocation, Vector StuckNormal)
 
 simulated function SwapToGroundFX(Rotator GroundRotation)
 {
-    if(WorldInfo.NetMode != NM_DedicatedServer)
+    if((WorldInfo.NetMode != NM_DedicatedServer) && !IsInState('Armed'))
     {
         StopFlightEffects();
         ProjFlightTemplate = GroundFXTemplate;
@@ -215,7 +215,7 @@ simulated function PlayImpactSound(optional bool bIsAtRest)
 
 simulated function SpawnImpactDecal(Vector HitLocation, Vector HitNormal)
 {
-    if((WorldInfo.MyDecalManager != none) && !WorldInfo.bDropDetail)
+    if(((WorldInfo.MyDecalManager != none) && !WorldInfo.bDropDetail) && !IsInState('Armed'))
     {
         WorldInfo.MyDecalManager.SpawnDecal(ImpactDecalMaterial, HitLocation, rotator(-HitNormal), ImpactDecalWidth, ImpactDecalHeight, ImpactDecalThickness, true);
     }
@@ -478,6 +478,7 @@ defaultproperties
     // Reference: AkComponent'Default__KFProj_BloatPukeMine.AmbientAkSoundComponent'
     Components(1)=AmbientAkSoundComponent
     Physics=EPhysics.PHYS_Falling
+    bPushedByEncroachers=false
     bNetTemporary=false
     bAlwaysRelevant=true
     bCollideComplex=true

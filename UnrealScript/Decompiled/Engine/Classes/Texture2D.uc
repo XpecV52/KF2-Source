@@ -56,6 +56,7 @@ var const transient int RequestedMips;
 var const transient int ResidentMips;
 /** Number of mips to remove when recompressing (does not work with TC_NormalmapUncompressed) */
 var() int MipsToRemoveOnCompress;
+var native const Pointer ReleaseTexture2DFence;
 var native const transient ThreadSafeCounter PendingMipChangeRequestStatus;
 var private array<byte> SystemMemoryData;
 var private noimport duplicatetransient native const TextureLinkedListMirror StreamableTexturesLink;

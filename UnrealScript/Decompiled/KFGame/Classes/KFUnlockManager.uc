@@ -16,6 +16,16 @@ enum ESharedContentUnlock
     SCU_MAX
 };
 
+enum EPlatformRestriction
+{
+    PR_All,
+    PR_XboxOne,
+    PR_PC,
+    PR_PS4,
+    PR_Console,
+    PR_MAX
+};
+
 struct native SharedContent
 {
     var name Name;
@@ -42,6 +52,9 @@ native static function bool IsSharedContentUnlocked(KFUnlockManager.ESharedConte
 
 // Export UKFUnlockManager::execGetSharedContentPlayerList(FFrame&, void* const)
 native static function GetSharedContentPlayerList(KFUnlockManager.ESharedContentUnlock UnlockId, out array<PlayerReplicationInfo> out_PRIArray);
+
+// Export UKFUnlockManager::execIsPlatformRestricted(FFrame&, void* const)
+native static function bool IsPlatformRestricted(KFUnlockManager.EPlatformRestriction PlatformRestrictionType);
 
 // Export UKFUnlockManager::execGetIDAvailable(FFrame&, void* const)
 private native static final function bool GetIDAvailable(int Id);

@@ -220,7 +220,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
         return 1000;
     }
     CooldownModifier = 1;
-    return 1;
+    return 0;
 }
 
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
@@ -243,22 +243,22 @@ simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 
 private final simulated function bool IsBringTheHeatActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 simulated function bool IsHighCapFuelTankActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 private final simulated function bool IsFuseActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 private final simulated function bool IsGroundFireActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 simulated function bool IsFlarotovActive()
@@ -268,22 +268,22 @@ simulated function bool IsFlarotovActive()
 
 private final simulated function bool IsHeatWaveActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
 private final simulated function bool IsZedShrapnelActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 private final simulated function bool IsNapalmActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
 simulated function bool IsRangeActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 private final simulated function bool IsSplashDamageActive()
@@ -293,7 +293,7 @@ private final simulated function bool IsSplashDamageActive()
 
 private final simulated function bool IsInfernoActive()
 {
-    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
+    return (PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9);
 }
 
 private final simulated function bool GetScorchActive()
@@ -303,7 +303,7 @@ private final simulated function bool GetScorchActive()
 
 private final simulated function bool IsScorchActive()
 {
-    return PerkSkills[8].bActive;
+    return PerkSkills[8].bActive && IsPerkLevelAllowed(8);
 }
 
 static simulated function int GetCrawlerKillXP(byte Difficulty)

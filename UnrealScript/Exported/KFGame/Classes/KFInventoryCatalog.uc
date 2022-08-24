@@ -43,6 +43,9 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S13,
 	ECrate_HighVoltage,
 	ECrate_Flare,
+	ECrate_HorzineSupply_S14,
+	ECrate_Junkyard,
+	ECrate_Vietnam,
 };
 
 enum EItemDisplayContainerType
@@ -133,6 +136,9 @@ defaultproperties
    ItemKeyArray(36)=(ContainerId=4776,KeyId=4775,ItemSeriesName="horzine13",ContainerType=IDT_Crate)
    ItemKeyArray(37)=(ContainerId=4786,KeyId=4785,ItemSeriesName="highvoltage",ContainerType=IDT_USB)
    ItemKeyArray(38)=(ContainerId=4802,KeyId=4801,ItemSeriesName="Flare",ContainerType=IDT_USB)
+   ItemKeyArray(39)=(ContainerId=5010,KeyId=5011,ItemSeriesName="horzine14",ContainerType=IDT_Crate)
+   ItemKeyArray(40)=(ContainerId=4993,KeyId=4994,ItemSeriesName="junkyard",ContainerType=IDT_USB)
+   ItemKeyArray(41)=(ContainerId=4979,KeyId=4980,ItemSeriesName="vietnam",ContainerType=IDT_USB)
    Name="Default__KFInventoryCatalog"
    ObjectArchetype=Object'Core.Default__Object'
 }

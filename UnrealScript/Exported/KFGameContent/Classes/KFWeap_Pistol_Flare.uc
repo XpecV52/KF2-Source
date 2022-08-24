@@ -9,6 +9,11 @@
 
 class KFWeap_Pistol_Flare extends KFWeap_PistolBase;
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+    return FT_Flame;
+}
+
 defaultproperties
 {
    bRevolver=True

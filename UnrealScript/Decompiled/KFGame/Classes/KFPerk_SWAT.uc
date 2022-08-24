@@ -34,6 +34,13 @@ var private const float SnarePower;
 var private const float TacticalMovementBobDamp;
 var private const class<KFWeaponDefinition> BackupSecondaryWeaponDef;
 var private const float HeavyArmorAbsorptionPct;
+var float CurrentHealthPenalty;
+
+replication
+{
+     if(bNetDirty)
+        CurrentHealthPenalty;
+}
 
 function SetPlayerDefaults(Pawn PlayerPawn)
 {
@@ -126,11 +133,17 @@ simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
     return 1;
 }
 
+function FinalizeSpeedVariables()
+{
+    super.FinalizeSpeedVariables();
+    CurrentHealthPenalty = 1 - OwnerPawn.LowHealthSpeedPenalty;
+}
+
 simulated event float GetCrouchSpeedModifier(KFWeapon KFW)
 {
     if((IsTacticalMovementActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class))
     {
-        return GetSkillValue(PerkSkills[1]);
+        return (GetSkillValue(PerkSkills[1])) * CurrentHealthPenalty;
     }
     return 1;
 }
@@ -229,15 +242,15 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
     local KFWeapon KFW;
     local float StumbleModifier;
 
-    StumbleModifier = 1;
+    StumbleModifier = 0;
     KFW = GetOwnerWeapon();
     if((IsSpecialAmmunitionActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class))
     {
-        StumbleModifier *= (GetSkillValue(PerkSkills[4]));
+        StumbleModifier += (GetSkillValue(PerkSkills[4]));
     }
     if(IsRapidAssaultActive())
     {
-        StumbleModifier *= (GetSkillValue(PerkSkills[9]));
+        StumbleModifier += (GetSkillValue(PerkSkills[9]));
     }
     return StumbleModifier;
 }
@@ -263,22 +276,22 @@ simulated function int GetArmorDamageAmount(int AbsorbedAmt)
 
 simulated function bool IsHeavyArmorActive()
 {
-    return PerkSkills[0].bActive;
+    return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
 
 simulated function bool IsTacticalMovementActive()
 {
-    return PerkSkills[1].bActive;
+    return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
 private final simulated function bool IsBackupActive()
 {
-    return PerkSkills[2].bActive;
+    return PerkSkills[2].bActive && IsPerkLevelAllowed(2);
 }
 
 private final simulated function bool IsTacticalReloadActive()
 {
-    return PerkSkills[3].bActive;
+    return PerkSkills[3].bActive && IsPerkLevelAllowed(3);
 }
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
@@ -288,32 +301,32 @@ simulated function bool GetUsingTactialReload(KFWeapon KFW)
 
 simulated function bool IsSpecialAmmunitionActive()
 {
-    return PerkSkills[4].bActive;
+    return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
-private final function bool IsAmmoVestActive()
+private final simulated function bool IsAmmoVestActive()
 {
-    return PerkSkills[5].bActive;
+    return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }
 
 private final function bool IsBodyArmorActive()
 {
-    return PerkSkills[6].bActive;
+    return PerkSkills[6].bActive && IsPerkLevelAllowed(6);
 }
 
 private final function bool IsCrippleActive()
 {
-    return PerkSkills[7].bActive;
+    return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
 function bool IsSWATEnforcerActive()
 {
-    return PerkSkills[8].bActive;
+    return PerkSkills[8].bActive && IsPerkLevelAllowed(8);
 }
 
 simulated function bool IsRapidAssaultActive()
 {
-    return PerkSkills[9].bActive && WorldInfo.TimeDilation < 1;
+    return (PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9);
 }
 
 static simulated function int GetClotKillXP(byte Difficulty)
@@ -370,12 +383,12 @@ defaultproperties
     PerkSkills(1)=(Name="TacticalMovement",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement",bActive=false)
     PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=1.1,MaxValue=1.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup",bActive=false)
     PerkSkills(3)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload",bActive=false)
-    PerkSkills(4)=(Name="SpecialAmmunition",Increment=0,Rank=0,StartingValue=3,MaxValue=3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition",bActive=false)
+    PerkSkills(4)=(Name="SpecialAmmunition",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition",bActive=false)
     PerkSkills(5)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest",bActive=false)
     PerkSkills(6)=(Name="BodyArmor",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_BodyArmor",bActive=false)
     PerkSkills(7)=(Name="Cripple",Increment=0,Rank=0,StartingValue=0.7,MaxValue=0.7,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Cripple",bActive=false)
     PerkSkills(8)=(Name="SWATEnforcer",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SWATEnforcer",bActive=false)
-    PerkSkills(9)=(Name="RapidAssault",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_RapidAssault",bActive=false)
+    PerkSkills(9)=(Name="RapidAssault",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_RapidAssault",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring

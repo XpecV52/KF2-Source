@@ -198,6 +198,7 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 	{
 		// charge alerts (beep, light) need current instigator
 		DeployedCharges[i].Instigator = Instigator;
+        DeployedCharges[i].SetOwner(self);
 		if( Instigator.Controller != none )
 	{
 			DeployedCharges[i].InstigatorController = Instigator.Controller;
@@ -225,7 +226,7 @@ simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
 
 simulated function BeginFire( byte FireModeNum )
 {
-	if( FireModeNum == DETONATE_FIREMODE && IsInState('WeaponSprinting') )
+	if( FireModeNum == DETONATE_FIREMODE && (IsInState('WeaponSprinting') || NumDeployedCharges <= 0))
 	{
 		PrepareAndDetonate();
 	}
@@ -287,6 +288,12 @@ simulated function PrepareAndDetonate()
 // do nothing, as we have no alt fire mode
 simulated function AltFireMode();
 
+/** Allow weapons with abnormal state transitions to always use zed time resist*/
+simulated function bool HasAlwaysOnZedTimeResist()
+{
+    return true;
+}
+
 /*********************************************************************************************
  * State Active
  * A Weapon this is being held by a pawn should be in the active state.  In this state,
@@ -342,6 +349,21 @@ simulated state WeaponThrowing
 	{
 		return false;
 	}
+
+    simulated function EndState(Name NextStateName)
+    {
+        local KFPerk InstigatorPerk;
+
+        Super.EndState(NextStateName);
+
+        //Targeted fix for Demolitionist w/ the C4.  It should remain in zed time  while waiting on
+        //      the fake reload to be triggered.  This will return 0 for other perks.
+        InstigatorPerk = GetPerk();
+        if( InstigatorPerk != none )
+        {
+            SetZedTimeResist( InstigatorPerk.GetZedTimeModifier(self) );
+        }
+    }
 }
 
 /*********************************************************************************************

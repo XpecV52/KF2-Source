@@ -140,7 +140,7 @@ function UpdateWeapon()
             }
             if(bUsesSecondaryAmmo)
             {
-                CurrentSecondaryAmmo = byte(CurrentWeapon.AmmoCount[1] + CurrentWeapon.SpareAmmoCount[1]);
+                CurrentSecondaryAmmo = byte(CurrentWeapon.GetSecondaryAmmoForHUD());
                 if(CurrentSecondaryAmmo != LastSecondaryAmmo)
                 {
                     SetInt("secondaryAmmo", CurrentSecondaryAmmo);

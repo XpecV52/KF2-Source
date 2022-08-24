@@ -131,6 +131,9 @@ var bool bJumped;
 var repnotify bool bIsPoisoned;
 var bool bMicrowavePanicked;
 var bool bKnockdownWhenJumpedOn;
+var bool bDisableGoreMeshWhileAlive;
+var bool bUseExplosiveDeath;
+var bool bUseDamageInflation;
 var bool bPlayPanicked;
 var bool bPlayShambling;
 var transient bool bIsBlocking;
@@ -148,16 +151,20 @@ var bool bMatchEnemySpeed;
 var bool bRestoreCollisionOnLand;
 var transient bool bPlayedExplosionEffect;
 var bool bCouldTurnIntoShrapnel;
+var bool bDisableHeadless;
 var bool bDebug_DrawOverheadInfo;
 var bool bDebug_DrawSprintingOverheadInfo;
 var const bool bDebug_UseIconForShowingSprintingOverheadInfo;
 var bool bReducedZedOnZedPinchPointCollisionStateActive;
 var protected bool bOnDeathAchivementbDisabled;
+var bool bOverrideAsBoss;
+var bool bUseAnimatedTheatricCamera;
 var private const string MonsterArchPath;
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
 var const class<KFPawn_Monster> ElitePawnClass;
 /** Custom third person camera offsets */
 var() ViewOffsetData ThirdPersonViewOffset;
+var int RandomColorIdx;
 /** The chance that this monster pawn will sprint */
 var(Combat) float SprintChance;
 /** Odds (0-1) of evaluating whether to do a grab attack instead of a basic melee attack */
@@ -171,6 +178,8 @@ var(Combat) float HeadlessBleedOutTime;
 var byte MaxHeadChunkGoreWhileAlive;
 var byte ParryResistance;
 var repnotify byte RepInflateMatParam;
+var repnotify byte RepDamageInflateParam;
+var repnotify byte RepBleedInflateMatParam;
 /**  
  *When spawning in a spawn volume, the squad type as to be at least this big (can be bigger
  *  if there are other zeds in the spawn squad that are larger).
@@ -192,6 +201,13 @@ var array<KFPawn.ESpecialMove> MoveListGamepadScheme;
 var array<SpecialMoveCooldownInfo> SpecialMoveCooldowns;
 var transient float LastAttackHumanWarningTime;
 var transient int OldHealth;
+var float ZeroHealthInflation;
+var float DamageInflationRate;
+var float DamageDeflationRate;
+var float IntendedDamageInflationPercent;
+var float DamageInflationPercent;
+var float InflateDeathGravity;
+var float InflationExplosionTimer;
 var KFAnim_RandomScripted WalkBlendList;
 var protected transient sBlockInfo DifficultyBlockSettings;
 var protected const float MinBlockFOV;
@@ -234,15 +250,24 @@ var float DefaultCollisionRadius;
 var KFTrigger_ChokePoint CurrentChokePointTrigger;
 var const float CollisionRadiusForReducedZedOnZedPinchPointCollisionState;
 var protected const int OnDeathAchievementID;
+var const localized string BossName;
+var const localized array<localized string> BossCaptionStrings;
+var name TheatricCameraSocketName;
+var Vector TheatricCameraAnimOffset;
 var delegate<GoreChunkAttachmentCriteria> __GoreChunkAttachmentCriteria__Delegate;
 var delegate<GoreChunkDetachmentCriteria> __GoreChunkDetachmentCriteria__Delegate;
 
 replication
 {
      if(bNetDirty)
-        MaxHeadChunkGoreWhileAlive, RepInflateMatParam, 
+        InflateDeathGravity, InflationExplosionTimer, 
+        MaxHeadChunkGoreWhileAlive, RepBleedInflateMatParam, 
+        RepDamageInflateParam, RepInflateMatParam, 
+        bDisableGoreMeshWhileAlive, bDisableHeadless, 
         bIsHeadless, bIsPoisoned, 
-        bPlayPanicked, bPlayShambling;
+        bOverrideAsBoss, bPlayPanicked, 
+        bPlayShambling, bUseDamageInflation, 
+        bUseExplosiveDeath;
 
      if(bNetDirty && bCanCloak)
         bIsCloakingSpottedByTeam;
@@ -277,7 +302,10 @@ simulated event ReplicatedEvent(name VarName)
             AfflictionHandler.ToggleEffects(6, bIsPoisoned);
             break;
         case 'RepInflateMatParam':
-            AfflictionHandler.UpdateMaterialParameter(10, ByteToFloat(RepInflateMatParam));
+            AfflictionHandler.UpdateMaterialParameter(10, GetCurrentInflation());
+            break;
+        case 'RepBleedInflateMatParam':
+            AfflictionHandler.UpdateMaterialParameter(11, ByteToFloat(RepBleedInflateMatParam));
             break;
         case 'Controller':
             SetSwitch('Player_Zed', ((IsHumanControlled()) ? 'Player' : 'NotPlayer'));
@@ -287,6 +315,9 @@ simulated event ReplicatedEvent(name VarName)
             {
                 PutAllMovesOnCooldown();
             }
+            break;
+        case 'RepDamageInflateParam':
+            HandleDamageInflation();
             break;
         default:
             break;
@@ -317,13 +348,7 @@ private native final function LastChanceLoad();
 
 simulated event PreBeginPlay()
 {
-    local KFGameReplicationInfo KFGRI;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && float(KFGRI.AIRemaining) <= Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
-    {
-        bAlwaysRelevant = true;
-    }
+    CheckShouldAlwaysBeRelevant();
     DefaultCollisionRadius = CylinderComponent.default.CollisionRadius;
     super.PreBeginPlay();
     if(CharacterArch == none)
@@ -344,6 +369,17 @@ simulated event PreBeginPlay()
     }
     NormalGroundSpeed = default.GroundSpeed;
     NormalSprintSpeed = default.SprintSpeed;
+}
+
+simulated event CheckShouldAlwaysBeRelevant()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && float(KFGRI.AIRemaining) <= Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
+    {
+        bAlwaysRelevant = true;
+    }
 }
 
 simulated event PostBeginPlay()
@@ -415,6 +451,10 @@ function PossessedBy(Controller C, bool bVehicleTransition)
         }
     }
     SetSwitch('Player_Zed', ((IsHumanControlled()) ? 'Player' : 'NotPlayer'));
+    if(IsActiveBoss())
+    {
+        ServerDoSpecialMove(34);
+    }
 }
 
 simulated event FellOutOfWorld(class<DamageType> dmgType)
@@ -459,6 +499,7 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 function ApplySpecialZoneHealthMod(float HealthMod)
 {
     HitZones[0].GoreHealth = int(float(default.HitZones[0].GoreHealth) * HealthMod);
+    HitZones[0].MaxGoreHealth = HitZones[0].GoreHealth;
 }
 
 function bool CanTakeOver()
@@ -630,60 +671,63 @@ function bool DoJump(bool bUpdating)
     local Rotator ViewRotation;
     local Vector ViewDirection;
 
-    if(IsHumanControlled())
+    if(bCanJump)
     {
-        if(IsDoingSpecialMove())
+        if(IsHumanControlled())
         {
-            return false;
-        }
-        ViewRotation = GetViewRotation();
-        ViewDirection = Normal(vector(ViewRotation));
-        if(((bJumpCapable && !bIsCrouched) && !bWantsToCrouch) && ((Physics == 1) || Physics == 9) || Physics == 8)
-        {
-            if(Physics == 8)
+            if(IsDoingSpecialMove())
             {
-                Velocity = Velocity + ((GetJumpZ()) * Floor);                
+                return false;
             }
-            else
+            ViewRotation = GetViewRotation();
+            ViewDirection = Normal(vector(ViewRotation));
+            if(((bJumpCapable && !bIsCrouched) && !bWantsToCrouch) && ((Physics == 1) || Physics == 9) || Physics == 8)
             {
-                if(Physics == 9)
+                if(Physics == 8)
                 {
-                    Velocity.Z = 0;                    
+                    Velocity = Velocity + ((GetJumpZ()) * Floor);                    
                 }
                 else
                 {
-                    if(bIsWalking)
+                    if(Physics == 9)
                     {
-                        Velocity.Z = default.JumpZ;                        
+                        Velocity.Z = 0;                        
                     }
                     else
                     {
-                        if(bIsSprinting && bHasExtraSprintJumpVelocity)
+                        if(bIsWalking)
                         {
-                            JumpVelocity = GetSprintJumpVelocity(ViewDirection);
-                            JumpVelocity.Z = GetJumpZ();
-                            Velocity += JumpVelocity;                            
+                            Velocity.Z = default.JumpZ;                            
                         }
                         else
                         {
-                            Velocity.Z = GetJumpZ();
+                            if(bIsSprinting && bHasExtraSprintJumpVelocity)
+                            {
+                                JumpVelocity = GetSprintJumpVelocity(ViewDirection);
+                                JumpVelocity.Z = GetJumpZ();
+                                Velocity += JumpVelocity;                                
+                            }
+                            else
+                            {
+                                Velocity.Z = GetJumpZ();
+                            }
                         }
                     }
                 }
+                if(((Base != none) && !Base.bWorldGeometry) && Base.Velocity.Z > 0)
+                {
+                    Velocity.Z += Base.Velocity.Z;
+                }
+                SetPhysics(2);
+                bJumped = true;
+                return true;
             }
-            if(((Base != none) && !Base.bWorldGeometry) && Base.Velocity.Z > 0)
-            {
-                Velocity.Z += Base.Velocity.Z;
-            }
-            SetPhysics(2);
-            bJumped = true;
-            return true;
+            return false;            
         }
-        return false;        
-    }
-    else
-    {
-        return super.DoJump(bUpdating);
+        else
+        {
+            return super.DoJump(bUpdating);
+        }
     }
 }
 
@@ -745,7 +789,7 @@ function SetMovementPhysics()
 
 function CrushedBy(Pawn OtherPawn)
 {
-    super(Pawn).CrushedBy(OtherPawn);
+    super.CrushedBy(OtherPawn);
     if(((((bKnockdownWhenJumpedOn && Health > 0) && !IsDoingSpecialMove(10)) && (OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderComponent.CollisionHeight)) && !IsHumanControlled()) && GetTeamNum() != OtherPawn.GetTeamNum())
     {
         Knockdown(,, vect(1, 1, 1), OtherPawn.Location, 1000, 100);
@@ -1018,10 +1062,103 @@ simulated function AdjustAffliction(out float AfflictionPower)
     super.AdjustAffliction(AfflictionPower);
 }
 
+simulated event bool IsActiveBoss()
+{
+    return bOverrideAsBoss;
+}
+
+function bool ShouldDrawBossIcon()
+{
+    return false;
+}
+
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
+    local KFPlayerController KFPC;
+    local string ClassName;
+
     Timer_EndRallyBoost();
     super.PlayDying(DamageType, HitLoc);
+    if(IsActiveBoss())
+    {
+        KFPC = KFPlayerController(GetALocalPlayerController());
+        if(KFPC != none)
+        {
+            KFPC.SetBossCamera(self);
+        }
+        ClassName = string(Class.Name);        
+        ClassName -= string('_Versus');
+        Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(ClassName, WorldInfo.GetMapName(true));
+    }
+    if(bUseExplosiveDeath)
+    {
+        PlayExplosiveDeath();
+    }
+    if(bUseDamageInflation)
+    {
+        PlayInflationDeath();
+    }
+}
+
+simulated function PlayInflationDeath()
+{
+    local int Idx;
+
+    Idx = 0;
+    J0x0B:
+
+    if(Idx < Mesh.PhysicsAssetInstance.Bodies.Length)
+    {
+        Mesh.PhysicsAssetInstance.Bodies[Idx].CustomGravityFactor = InflateDeathGravity;
+        if(InflationExplosionTimer > float(0))
+        {
+            SetTimer(InflationExplosionTimer, false, 'InflationExplode');
+        }
+        ++ Idx;
+        goto J0x0B;
+    }
+}
+
+simulated function PlayExplosiveDeath()
+{
+    local KFGoreManager GoreManager;
+
+    GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+    if((GoreManager != none) && GoreManager.AllowMutilation())
+    {
+        HandlePartialGoreAndGibs(Class'KFDT_Explosive_Sacrifice', Location, vect(0, 0, 0), 'hips', true);
+        GoreManager.SpawnObliterationBloodEffect(self);        
+    }
+    else
+    {
+        HandlePartialGoreAndGibs(Class'KFDT_Explosive_Sacrifice', Location, vect(0, 0, 0), 'hips', false);
+    }
+}
+
+simulated function InflationExplode()
+{
+    local int Idx;
+    local MaterialInstanceConstant MIC;
+
+    RepDamageInflateParam = 0;
+    bUseDamageInflation = false;
+    Idx = 0;
+    J0x23:
+
+    if(Idx < Mesh.PhysicsAssetInstance.Bodies.Length)
+    {
+        Mesh.PhysicsAssetInstance.Bodies[Idx].CustomGravityFactor = 1;
+        ++ Idx;
+        goto J0x23;
+    }
+    PlayExplosiveDeath();
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        foreach CharacterMICs(MIC,)
+        {
+            MIC.SetScalarParameterValue('Scalar_Inflate', 0);            
+        }        
+    }
 }
 
 function bool CanCountHeadshots()
@@ -1101,6 +1238,10 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     {
         KFPRI.PlayerHealth = byte(Health);
         KFPRI.PlayerHealthPercent = FloatToByte(float(Health) / float(HealthMax));
+    }
+    if(bUseDamageInflation)
+    {
+        IntendedDamageInflationPercent = float(Health) / float(HealthMax);
     }
 }
 
@@ -1370,6 +1511,10 @@ simulated function Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, nam
         KFAIC.bForceFrustration = true;
         SetSprinting(true);
         SetEnraged(true);
+        if(KFGameInfo(WorldInfo.Game) != none)
+        {
+            KFGameInfo(WorldInfo.Game).NotifyRally(self);
+        }
     }
     if(!bSkipEffects && WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -1459,6 +1604,10 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
                     }
                 }
             }
+        }
+        if(bOverrideAsBoss)
+        {
+            KFGameInfo(WorldInfo.Game).BossDied(Killer);
         }
         return true;
     }
@@ -1572,7 +1721,7 @@ function ShrapnelExplode(Controller Killer, KFPerk InstigatorPerk)
 function CauseHeadTrauma(optional float BleedOutTime)
 {
     BleedOutTime = 5;
-    if(!bIsHeadless && !bPlayedDeath)
+    if((!bIsHeadless && !bPlayedDeath) && !bDisableHeadless)
     {
         if(((MyKFAIC != none) && KFGameInfo(WorldInfo.Game) != none) && MyKFAIC.TimeFirstSawPlayer >= float(0))
         {
@@ -1865,12 +2014,13 @@ simulated event RigidBodyCollision(PrimitiveComponent HitComponent, PrimitiveCom
     }
 }
 
-simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
+simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation, optional bool bUseHitImpulse)
 {
     local class<KFDamageType> dmgType;
     local name HitZoneName, HitBoneName;
     local int HitZoneIndex;
 
+    bUseHitImpulse = true;
     if((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot)
     {
         HitFxInfo.HitBoneIndex = 0;
@@ -1890,11 +2040,11 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
         }
         if(bPlayedDeath)
         {
-            PlayDeadHitEffects(HitLocation, HitDirection, HitZoneIndex, HitZoneName, HitBoneName, dmgType);            
+            PlayDeadHitEffects(HitLocation, HitDirection, HitZoneIndex, HitZoneName, HitBoneName, dmgType, bUseHitImpulse);            
         }
         else
         {
-            PlayLivingHitEffects(HitLocation, HitDirection, HitZoneIndex, HitZoneName, HitBoneName, dmgType);
+            PlayLivingHitEffects(HitLocation, HitDirection, HitZoneIndex, HitZoneName, HitBoneName, dmgType, bUseHitImpulse);
         }
     }
     if(!bPlayedDeath)
@@ -1902,10 +2052,10 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
         bShowHealth = true;
         SetTimer(2, false, 'ResetHealthVisibilty');
     }
-    super.PlayTakeHitEffects(HitDirection, HitLocation);
+    super.PlayTakeHitEffects(HitDirection, HitLocation, bUseHitImpulse);
 }
 
-simulated function PlayDeadHitEffects(Vector HitLocation, Vector HitDirection, int HitZoneIndex, name HitZoneName, name HitBoneName, class<KFDamageType> dmgType)
+simulated function PlayDeadHitEffects(Vector HitLocation, Vector HitDirection, int HitZoneIndex, name HitZoneName, name HitBoneName, class<KFDamageType> dmgType, optional bool bUseHitImpulse)
 {
     local class<KFProj_PinningBullet> PinProjectileClass;
     local KFPawn DeadPawn;
@@ -1924,7 +2074,7 @@ simulated function PlayDeadHitEffects(Vector HitLocation, Vector HitDirection, i
             }
         }
         GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-        if((GoreManager.AllowMutilation() && HitFxInfo.bObliterated) && (WorldInfo.TimeSeconds - TimeOfDeath) < 0.25)
+        if(((GoreManager.AllowMutilation() && HitFxInfo.bObliterated) && (WorldInfo.TimeSeconds - TimeOfDeath) < 0.25) && !bUseDamageInflation)
         {
             bWasObliterated = true;
             bIsDismemberingHit = true;
@@ -1942,12 +2092,12 @@ simulated function PlayDeadHitEffects(Vector HitLocation, Vector HitDirection, i
             }
             HandlePartialGoreAndGibs(dmgType, HitLocation, HitDirection, HitBoneName, false);
         }
-        HandleRagdollImpulseEffects(HitLocation, HitDirection, HitZoneName, HitBoneName, dmgType, bIsDismemberingHit);
+        HandleRagdollImpulseEffects(HitLocation, HitDirection, HitZoneName, HitBoneName, dmgType, bIsDismemberingHit, bUseHitImpulse);
     }
     ApplyBloodDecals(HitZoneIndex, HitLocation, HitDirection, HitZoneName, HitBoneName, dmgType, bIsDismemberingHit, bWasObliterated);
 }
 
-simulated function HandleRagdollImpulseEffects(Vector HitLocation, Vector HitDirection, name HitZoneName, name HitBoneName, class<KFDamageType> dmgType, bool bIsDismemberingHit)
+simulated function HandleRagdollImpulseEffects(Vector HitLocation, Vector HitDirection, name HitZoneName, name HitBoneName, class<KFDamageType> dmgType, bool bIsDismemberingHit, optional bool bUseHitImpulse)
 {
     local Vector ImpulseDir, ParentImpulseDir;
     local float ImpulseScale, ParentImpulseScale;
@@ -1965,23 +2115,26 @@ simulated function HandleRagdollImpulseEffects(Vector HitLocation, Vector HitDir
     {
         RBBoneName = GetRBBoneFromBoneName(HitBoneName);
     }
-    ApplyRagdollImpulse(dmgType, HitLocation, ImpulseDir, RBBoneName, ImpulseScale);
-    if(bIsDismemberingHit && ParentImpulseScale > float(0))
+    if(bUseHitImpulse)
     {
-        HitBoneParentName = Mesh.GetParentBone(HitBoneName);
-        if(((HitBoneName == 'head') || HitBoneParentName == 'neck') && dmgType != none)
+        ApplyRagdollImpulse(dmgType, HitLocation, ImpulseDir, RBBoneName, ImpulseScale);
+        if(bIsDismemberingHit && ParentImpulseScale > float(0))
         {
-            ParentImpulseScale *= dmgType.default.HeadDestructionImpulseForceScale;
-        }
-        HitBoneParentName = GetRBBoneFromBoneName(HitBoneParentName);
-        if((RBBoneName != HitBoneParentName) && Mesh.PhysicsAsset.FindBodyIndex(HitBoneParentName) != -1)
-        {
-            ApplyRagdollImpulse(dmgType, HitLocation, ParentImpulseDir, HitBoneParentName, ParentImpulseScale);
+            HitBoneParentName = Mesh.GetParentBone(HitBoneName);
+            if(((HitBoneName == 'head') || HitBoneParentName == 'neck') && dmgType != none)
+            {
+                ParentImpulseScale *= dmgType.default.HeadDestructionImpulseForceScale;
+            }
+            HitBoneParentName = GetRBBoneFromBoneName(HitBoneParentName);
+            if((RBBoneName != HitBoneParentName) && Mesh.PhysicsAsset.FindBodyIndex(HitBoneParentName) != -1)
+            {
+                ApplyRagdollImpulse(dmgType, HitLocation, ParentImpulseDir, HitBoneParentName, ParentImpulseScale);
+            }
         }
     }
 }
 
-simulated function PlayLivingHitEffects(Vector HitLocation, Vector HitDirection, int HitZoneIndex, name HitZoneName, name HitBoneName, class<KFDamageType> dmgType)
+simulated function PlayLivingHitEffects(Vector HitLocation, Vector HitDirection, int HitZoneIndex, name HitZoneName, name HitBoneName, class<KFDamageType> dmgType, optional bool bUseHitImpulse)
 {
     if((!TryPlayHitReactionAnim(HitDirection, dmgType, byte(HitZoneIndex)) && PawnAnimInfo.bCanPlayPhysicsHitReactions) && ActorEffectIsRelevant(HitFxInstigator, false))
     {
@@ -1993,7 +2146,7 @@ simulated function PlayLivingHitEffects(Vector HitLocation, Vector HitDirection,
     }
     if(HitZoneIndex == 0)
     {
-        if((Mesh.PhysicsWeight == 1) && bIsHeadless)
+        if((bUseHitImpulse && Mesh.PhysicsWeight == 1) && bIsHeadless)
         {
             ApplyRagdollImpulse(dmgType, HitLocation, HitDirection, HeadBoneName, 1);
         }
@@ -2114,7 +2267,14 @@ simulated function HandleGoreChunkAttachments(name DismemberedBone)
                     AttachComp.CastShadow = true;
                     AttachComp.bCastDynamicShadow = true;
                     AttachComp.bAllowPerObjectShadowBatching = true;
-                    AttachComp.SetCullDistance(1000);
+                    if((CurrentChunk.SocketName == 'Head_Attach') && CurrentHeadScale > 1)
+                    {
+                        AttachComp.SetCullDistance(1000 * CurrentHeadScale);                        
+                    }
+                    else
+                    {
+                        AttachComp.SetCullDistance(1000);
+                    }
                     AttachComp.SetShadowParent(Mesh);
                     AttachComp.bAllowApproximateOcclusion = true;
                     AttachComp.SetTraceBlocking(false, false);
@@ -2405,7 +2565,7 @@ simulated function HitZoneInjured(optional int HitZoneIdx)
     }
     if((WorldInfo.NetMode != NM_DedicatedServer) && !bTearOff && !bPlayedDeath)
     {
-        if((InjuredHitZones & (1 << 0)) > 0)
+        if(((InjuredHitZones & (1 << 0)) > 0) && !bDisableHeadless)
         {
             if((WorldInfo.TimeSeconds - CreationTime) > 1)
             {
@@ -2425,6 +2585,10 @@ simulated function PlayHeadAsplode()
     local name BoneName;
 
     if(HitZones[0].bPlayedInjury)
+    {
+        return;
+    }
+    if(bDisableHeadless)
     {
         return;
     }
@@ -2531,7 +2695,7 @@ function float GetHeadHealthPercent()
     local float HeadHealth, HeadHealthMax, HealthMod, HeadHealthMod;
 
     HeadHealth = float(HitZones[0].GoreHealth);
-    HeadHealthMax = float(default.HitZones[0].GoreHealth);
+    HeadHealthMax = float(HitZones[0].MaxGoreHealth);
     KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI != none)
     {
@@ -2622,6 +2786,31 @@ simulated function ChokePointTimer()
             }
             ClearTimer('ChokePointTimer', self);
         }
+    }
+}
+
+event SetDamageInflation(float NewInflation)
+{
+    RepDamageInflateParam = FloatToByte(NewInflation);
+    SetHeadScale(1 + ((GetCurrentInflation()) / 2), CurrentHeadScale);
+    HandleDamageInflation();
+}
+
+simulated function float GetCurrentInflation()
+{
+    return FMin((ByteToFloat(RepInflateMatParam) + ByteToFloat(RepDamageInflateParam)) - ByteToFloat(RepBleedInflateMatParam), 1);
+}
+
+simulated function HandleDamageInflation()
+{
+    local MaterialInstanceConstant MIC;
+
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        foreach CharacterMICs(MIC,)
+        {
+            MIC.SetScalarParameterValue('Scalar_Inflate', (GetCurrentInflation()) * 2);            
+        }        
     }
 }
 
@@ -3052,8 +3241,23 @@ state Dying
 {
     event OnSleepRBPhysics()
     {
+        local int I;
+
         Mesh.PerObjectShadowCullDistance *= 0.6;
         ReattachComponent(Mesh);
+        I = 0;
+        J0x43:
+
+        if(I < 3)
+        {
+            if(ThirdPersonAttachments[I] != none)
+            {
+                ThirdPersonAttachments[I].PerObjectShadowCullDistance *= 0.6;
+                ReattachComponent(ThirdPersonAttachments[I]);
+            }
+            ++ I;
+            goto J0x43;
+        }
         super.OnSleepRBPhysics();
     }
 
@@ -3098,6 +3302,7 @@ defaultproperties
 {
     bCanMeleeAttack=true
     bDebug_UseIconForShowingSprintingOverheadInfo=true
+    RandomColorIdx=-1
     DifficultyDamageMod=1
     GameResistancePct=1
     HeadlessBleedOutTime=5
@@ -3128,6 +3333,9 @@ defaultproperties
     LiveDamageTypeModifiers(15)=(DamageType=none,DamageScale=(1))
     ZedBumpDamageScale=1
     DifficultySettings=Class'KFMonsterDifficultyInfo'
+    DamageInflationRate=1
+    IntendedDamageInflationPercent=1
+    DamageInflationPercent=1
     DifficultyBlockSettings=(Chance=0,Duration=0,MaxBlocks=0,Cooldown=0,DamagedHealthPctToTrigger=0,MeleeDamageModifier=1,DamageModifier=1,AfflictionModifier=1,SoloChanceMultiplier=0)
     MinBlockFOV=0.1
     BlockSprintSpeedModifier=0.75
@@ -3148,24 +3356,24 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_Monster.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bCanHeadTrack=true
-    HitZones(0)=(ZoneName=head,BoneName=head,GoreHealth=20,DmgScale=1.1,Limb=EHitZoneBodyPart.BP_Head,SkinID=1,bPlayedInjury=false)
-    HitZones(1)=(ZoneName=neck,BoneName=neck,GoreHealth=20,DmgScale=1,Limb=EHitZoneBodyPart.BP_Head,SkinID=0,bPlayedInjury=false)
-    HitZones(2)=(ZoneName=chest,BoneName=Spine2,GoreHealth=150,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(3)=(ZoneName=heart,BoneName=Spine2,GoreHealth=150,DmgScale=1,Limb=EHitZoneBodyPart.BP_Special,SkinID=0,bPlayedInjury=false)
-    HitZones(4)=(ZoneName=lupperarm,BoneName=LeftArm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftArm,SkinID=0,bPlayedInjury=false)
-    HitZones(5)=(ZoneName=lforearm,BoneName=LeftForearm,GoreHealth=15,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftArm,SkinID=0,bPlayedInjury=false)
-    HitZones(6)=(ZoneName=lhand,BoneName=LeftForearm,GoreHealth=20,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftArm,SkinID=0,bPlayedInjury=false)
-    HitZones(7)=(ZoneName=rupperarm,BoneName=RightArm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightArm,SkinID=0,bPlayedInjury=false)
-    HitZones(8)=(ZoneName=rforearm,BoneName=RightForearm,GoreHealth=15,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightArm,SkinID=0,bPlayedInjury=false)
-    HitZones(9)=(ZoneName=rhand,BoneName=RightForearm,GoreHealth=20,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightArm,SkinID=0,bPlayedInjury=false)
-    HitZones(10)=(ZoneName=stomach,BoneName=Spine1,GoreHealth=150,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(11)=(ZoneName=abdomen,BoneName=Hips,GoreHealth=150,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
-    HitZones(12)=(ZoneName=lthigh,BoneName=LeftUpLeg,GoreHealth=75,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftLeg,SkinID=0,bPlayedInjury=false)
-    HitZones(13)=(ZoneName=lcalf,BoneName=LeftLeg,GoreHealth=25,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftLeg,SkinID=0,bPlayedInjury=false)
-    HitZones(14)=(ZoneName=lfoot,BoneName=LeftLeg,GoreHealth=15,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftLeg,SkinID=0,bPlayedInjury=false)
-    HitZones(15)=(ZoneName=rthigh,BoneName=RightUpLeg,GoreHealth=75,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightLeg,SkinID=0,bPlayedInjury=false)
-    HitZones(16)=(ZoneName=rcalf,BoneName=RightLeg,GoreHealth=25,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightLeg,SkinID=0,bPlayedInjury=false)
-    HitZones(17)=(ZoneName=rfoot,BoneName=RightLeg,GoreHealth=15,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightLeg,SkinID=0,bPlayedInjury=false)
+    HitZones(0)=(ZoneName=head,BoneName=head,GoreHealth=20,MaxGoreHealth=-1,DmgScale=1.1,Limb=EHitZoneBodyPart.BP_Head,SkinID=1,bPlayedInjury=false)
+    HitZones(1)=(ZoneName=neck,BoneName=neck,GoreHealth=20,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Head,SkinID=0,bPlayedInjury=false)
+    HitZones(2)=(ZoneName=chest,BoneName=Spine2,GoreHealth=150,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(3)=(ZoneName=heart,BoneName=Spine2,GoreHealth=150,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Special,SkinID=0,bPlayedInjury=false)
+    HitZones(4)=(ZoneName=lupperarm,BoneName=LeftArm,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftArm,SkinID=0,bPlayedInjury=false)
+    HitZones(5)=(ZoneName=lforearm,BoneName=LeftForearm,GoreHealth=15,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftArm,SkinID=0,bPlayedInjury=false)
+    HitZones(6)=(ZoneName=lhand,BoneName=LeftForearm,GoreHealth=20,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftArm,SkinID=0,bPlayedInjury=false)
+    HitZones(7)=(ZoneName=rupperarm,BoneName=RightArm,GoreHealth=50,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightArm,SkinID=0,bPlayedInjury=false)
+    HitZones(8)=(ZoneName=rforearm,BoneName=RightForearm,GoreHealth=15,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightArm,SkinID=0,bPlayedInjury=false)
+    HitZones(9)=(ZoneName=rhand,BoneName=RightForearm,GoreHealth=20,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightArm,SkinID=0,bPlayedInjury=false)
+    HitZones(10)=(ZoneName=stomach,BoneName=Spine1,GoreHealth=150,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(11)=(ZoneName=abdomen,BoneName=hips,GoreHealth=150,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(12)=(ZoneName=lthigh,BoneName=LeftUpLeg,GoreHealth=75,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftLeg,SkinID=0,bPlayedInjury=false)
+    HitZones(13)=(ZoneName=lcalf,BoneName=LeftLeg,GoreHealth=25,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftLeg,SkinID=0,bPlayedInjury=false)
+    HitZones(14)=(ZoneName=lfoot,BoneName=LeftLeg,GoreHealth=15,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_LeftLeg,SkinID=0,bPlayedInjury=false)
+    HitZones(15)=(ZoneName=rthigh,BoneName=RightUpLeg,GoreHealth=75,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightLeg,SkinID=0,bPlayedInjury=false)
+    HitZones(16)=(ZoneName=rcalf,BoneName=RightLeg,GoreHealth=25,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightLeg,SkinID=0,bPlayedInjury=false)
+    HitZones(17)=(ZoneName=rfoot,BoneName=RightLeg,GoreHealth=15,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightLeg,SkinID=0,bPlayedInjury=false)
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_Monster.Afflictions'
     IncapSettings(0)=(Duration=5,Cooldown=5,Vulnerability=none)
     IncapSettings(1)=(Duration=5,Cooldown=5,Vulnerability=none)
@@ -3202,6 +3410,27 @@ defaultproperties
         SpecialMoveClasses(11)=none
         SpecialMoveClasses(12)=class'KFSM_Zed_Taunt'
         SpecialMoveClasses(13)=class'KFSM_Zed_WalkingTaunt'
+        SpecialMoveClasses(14)=none
+        SpecialMoveClasses(15)=none
+        SpecialMoveClasses(16)=none
+        SpecialMoveClasses(17)=none
+        SpecialMoveClasses(18)=none
+        SpecialMoveClasses(19)=none
+        SpecialMoveClasses(20)=none
+        SpecialMoveClasses(21)=none
+        SpecialMoveClasses(22)=none
+        SpecialMoveClasses(23)=none
+        SpecialMoveClasses(24)=none
+        SpecialMoveClasses(25)=none
+        SpecialMoveClasses(26)=none
+        SpecialMoveClasses(27)=none
+        SpecialMoveClasses(28)=none
+        SpecialMoveClasses(29)=none
+        SpecialMoveClasses(30)=none
+        SpecialMoveClasses(31)=none
+        SpecialMoveClasses(32)=none
+        SpecialMoveClasses(33)=none
+        SpecialMoveClasses(34)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Monster.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

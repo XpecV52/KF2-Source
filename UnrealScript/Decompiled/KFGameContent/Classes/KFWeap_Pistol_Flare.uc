@@ -9,6 +9,11 @@ class KFWeap_Pistol_Flare extends KFWeap_PistolBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter()
+{
+    return 4;
+}
+
 defaultproperties
 {
     bRevolver=true

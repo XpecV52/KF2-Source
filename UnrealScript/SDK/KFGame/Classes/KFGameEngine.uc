@@ -67,6 +67,9 @@ var private bool 		bShowCrossHairConsole;
 /** Whether to mute the game if focus is lost. */
 var config bool bMuteOnLossOfFocus;
 
+/** Cached stat rows used by XB1 only if there's ever a network interruption that won't allow a re-read of existing stats, We use this. */
+var array<OnlineStatsRow> CachedStatRows;
+
 /************************************************************************************
  * @name		Connection
  ***********************************************************************************/
@@ -319,9 +322,9 @@ function OnLoginChange(byte LocalUserNum)
 
 	PlayerInterface = GetOnlineSubsystem().PlayerInterface;
 
-	// Xbox kicks player back to IIS if active player signs out past the IIS
-	if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) &&
-		KFGameViewportClient(GameViewport).bSeenIIS)
+	// Xbox kicks player back to IIS if active player signs out after an active user has been established
+	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) &&
+		( KFGameViewportClient(GameViewport).bSeenIIS || (KFPlayerController(GamePlayers[0].Actor) != none && KFPlayerController(GamePlayers[0].Actor).HasActiveUserEstablished()) ) )
 	{
 		// Kick previously active player back to IIS with an error message.
 		if( LocalUserNum == GamePlayers[0].ControllerId && PlayerInterface.GetLoginStatus(LocalUserNum) != LS_LoggedIn )

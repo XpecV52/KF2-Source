@@ -37,7 +37,7 @@ AlternateFireDescription="Most primary weapon have an alternate fire mode. Press
 FlashLightBatteryTitleKey="Using a Flashlight"
 FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When it is out of power it will turn off and automatically start recharging again."
 GrenadeTitleKey="Using Grenades"
-GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
+GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." "
 
 ;Wave 1 end
 TraderTimeTitleKey="Trader Time"
@@ -116,48 +116,48 @@ ItemDescription="•Combat armor protects you from various forms of damage, but 
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 Stick of Dynamite"
-ItemCategory = "Explosives"
-ItemDescription="•Just a small piece of dynamite with a fuse attached.\n•It can also hurt you, so be careful with it!" 
+ItemCategory =" "Explosives"
+ItemDescription="•Just a small piece of dynamite with a fuse attached.\n•It can also hurt you, so be careful with it!" "
 
 [KFProj_MedicGrenade]
 ItemName="Medic Grenade"
-ItemCategory = "Explosives"
-ItemDescription="•Releases a gas that will poison Zeds, but will also heal people.\n\n•Stand in the blue gas cloud to be healed.\nTo quote one of our scientists: 'The agent released from these grenades will revivify Homo Sapiens, while euthanizing Homo Zedicus.' We hope that helps." 
+ItemCategory =" "Explosives"
+ItemDescription="•Releases a gas that will poison Zeds, but will also heal people.\n\n•Stand in the blue gas cloud to be healed.\nTo quote one of our scientists: 'The agent released from these grenades will revivify Homo Sapiens, while euthanizing Homo Zedicus.' We hope that helps." "
 
 [KFProj_MolotovGrenade]
 ItemName="Molotov Cocktail"
 ItemCategory="Explosives"
-ItemDescription="•Very simply, a flame grenade that will burn Zeds.\n\nNamed, insultingly, by the Finns during the 1939-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?" 
+ItemDescription="•Very simply, a flame grenade that will burn Zeds.\n\nNamed, insultingly, by the Finns during the 1939-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?" "
 
 [KFProj_EMPGrenade]
 ItemName="EMP Grenade"
 ItemCategory="Explosives"
-ItemDescription="•Generates an electric pulse that will both damage Zeds and may also stun them for a brief time.\n\nIf you want more detail - on detonation, it generates a nanosecond electro-magnetic pulse that will disrupt electrical systems within a short range. Particularly those within the Zeds. Handy, that." 
+ItemDescription="•Generates an electric pulse that will both damage Zeds and may also stun them for a brief time.\n\nIf you want more detail - on detonation, it generates a nanosecond electro-magnetic pulse that will disrupt electrical systems within a short range. Particularly those within the Zeds. Handy, that." "
 
 [KFProj_HEGrenade]
 ItemName="HE Grenade"
 ItemCategory="Explosives"
-ItemDescription="•A very simple high-explosive grenade. Hurts Zeds and humans alike.\n\nIt really doesn't get any simpler. HE - High Explosive - it goes BOOM and blows things up. Do we really have to explain it to you?" 
+ItemDescription="•A very simple high-explosive grenade. Hurts Zeds and humans alike.\n\nIt really doesn't get any simpler. HE - High Explosive - it goes BOOM and blows things up. Do we really have to explain it to you?" "
 
 [KFProj_FragGrenade]
 ItemName="Frag Grenade"
 ItemCategory="Explosives"
-ItemDescription="•The classic frag grenade: throws nasty little bits of metal around, hurting everything.\n\nI am quite sure you all played enough video games before the Outbreak, so you know perfectly well what a frag grenade is. And stop pretending that you didn't. No one in here is going to believe you." 
+ItemDescription="•The classic frag grenade: throws nasty little bits of metal around, hurting everything.\n\nI am quite sure you all played enough video games before the Outbreak, so you know perfectly well what a frag grenade is. And stop pretending that you didn't. No one in here is going to believe you." "
 
 [KFProj_NailBombGrenade]
 ItemName="Nail Bomb"
-ItemCategory = "Explosives"
+ItemCategory =" "Explosives"
 ItemDescription="•A simple canister full of old nails with a small explosive charge in the middle.\n\nNot the most pleasant or subtle way of dealing with Zeds, but there is nothing pleasant or subtle about Zeds, is there?"
 
 [KFProj_FreezeGrenade]
 ItemName="Freeze Grenade"
-ItemCategory = "Explosives"
+ItemCategory =" "Explosives"
 ItemDescription="•A technologically advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
 
 [KFProj_FlashBangGrenade]
 ItemName="Flashbang"
-ItemCategory = "Explosives"
-ItemDescription="•Both bright and loud, do not look directly at it. Try not to hear it either.\n•While technically less than lethal, flash bangs can still hurt you, so be careful!" 
+ItemCategory =" "Explosives"
+ItemDescription="•Both bright and loud, do not look directly at it. Try not to hear it either.\n•While technically less than lethal, flash bangs can still hurt you, so be careful!" "
 
 [KFWeap_Healer_Syringe]
 ItemName="Medical Syringe"
@@ -272,6 +272,11 @@ ItemName="M4 Combat Shotgun"
 ItemCategory="Shotgun"
 ItemDescription="•Fire mode is semi-auto only.\n•Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire."
 
+[KFWeap_Shotgun_HZ12]
+ItemName="HZ12 Multi-Action"
+ItemCategory="Shotgun"
+ItemDescription="•Fire mode is a dual semi-auto/pump-action.\n•The HZ12 shotgun is an experimental prototype that is being tested by Horzine security forces. Zeds were harmed in the development of this weapon."
+
 [KFWeap_Knife_Berserker]
 ItemName="Lawn Mower Blade"
 ItemCategory="Melee"
@@ -317,7 +322,7 @@ SecondaryAmmo="Gasoline"
 ItemName="Zweihander"
 ItemCategory="Melee"
 ItemDescription="•Primary - medium/heavy damage, with some crowd control.\n•Secondary - slower, but with more damage.\n•Alt - block/parry\n•You do even more damage when moving forwards."
-SharedUnlockSource="Chivalry Medieval Warfare" 
+SharedUnlockSource="Chivalry Medieval Warfare" "
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Bone Crusher"
@@ -391,12 +396,12 @@ ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming st
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
-ItemCategory="Hand Gun"
+ItemCategory="Hand Cannon"
 ItemDescription="•Fire mode is semi-auto only.\n•The Desert Eagle is the beast of hand guns, which is why we all know it as the 'Hand Cannon.'"
 
 [KFWeap_Pistol_DualDeagle]
 ItemName="Dual .50 Desert Eagles"
-ItemCategory="Hand Gun"	
+ItemCategory="Hand Gun"
 ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of Desert Eagle hand cannons. Each can be individually sold or dropped."
 
 [KFWeap_Revolver_Rem1858]
@@ -423,6 +428,11 @@ ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming st
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Fire mode is single shot only.\n•The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Rifle_CenterfireMB464]
+ItemName="SPX 464 Centerfire"
+ItemCategory="Rifle"
+ItemDescription="•Fire mode is single shot only.\n•A modern Mossberg centerfire lever-action rifle with low recoil and high stopping power. An updated classic."
 
 [KFWeap_Bow_Crossbow]
 ItemName="Crossbow"
@@ -464,6 +474,7 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire t
 ItemName="Kriss SMG"
 ItemCategory="Sub Machine Gun"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest in compact bullet redistrbution, it is a firehose of destruction."
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -513,6 +524,29 @@ BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you ea
 BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off, and heal himself. Some things don't change."
 BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
 
+[KFPawn_ZedFleshpoundKing]
+BossName="King Fleshpound"
+BossName_CHN="闪击丧尸之王"
+BossName_CHT="絞碎者之王"
+BossName_DEU="King Fleshpound"
+BossName_ESL="Rey fleshpound"
+BossName_ESN="Rey fleshpound"
+BossName_FRA="Roi Barback"
+BossName_FRC="Roi Barback"
+BossName_INT="King Fleshpound"
+BossName_ITA="Re Fleshpound"
+BossName_JPN="キングフレッシュパウンド"
+BossName_KOR="King 플래시 파운드"
+BossName_POL="Król mięśniaków"
+BossName_PTB="Carniceiro Rei"
+BossName_RUS="Король-отбивальщик"
+BossCaptionStrings[0]="The more you hurt the King Fleshpound, the faster he calls in more Quarter Pounds. Pace yourself, don’t get overwhelmed!"
+BossCaptionStrings[1]="Get down! The King Fleshpound’s chest beam has trouble hitting targets low to the ground."
+BossCaptionStrings[2]="Don’t think the fight is almost over just because the King Fleshpound is badly hurt. He activates a shield when low on Health. "
+BossCaptionStrings[3]="The King Fleshpound’s chest beam can hurt other Zeds, if you can get them into his line of fire."
+BossCaptionStrings[4]="The King Fleshpound has the same weakpoints as normal fleshpounds, just bigger."
+BossCaptionStrings[5]="The King Fleshpound always has more Quarter Pounds. Ignore them at your peril!"
+
 [KFGameInfo_Tutorial]
 GameName="Basic Training"
 
@@ -521,6 +555,9 @@ GameName="Survival"
 
 [KFGameInfo_VersusSurvival]
 GameName="VS Survival"
+
+[KFGameInfo_WeeklySurvival]
+GameName="Weekly Outbreak"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="No Heals Remaining"

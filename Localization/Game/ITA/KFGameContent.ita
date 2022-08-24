@@ -272,6 +272,11 @@ ItemName="Fucile da guerra M4"
 ItemCategory="Fucile"
 ItemDescription="•Solo semiautomatica.\n•Benelli ha progettato il fucile da combattimento M4 per l'esercito statunitense. È semiautomatico, con una buona e costante frequenza di fuoco."
 
+[KFWeap_Shotgun_HZ12]
+ItemName="HZ12 Multiazione"
+ItemCategory="Fucile"
+ItemDescription="•Fuoco doppio semiautomatico e a pompa.\n•Il fucile HZ12 è un prototipo sperimentale testato dalle forze di sicurezza Horzine. Alcuni Zed sono stati maltrattati durante lo sviluppo di questa arma."
+
 [KFWeap_Knife_Berserker]
 ItemName="Lama tosaerba"
 ItemCategory="Mischia"
@@ -424,6 +429,11 @@ ItemName="Winchester 1894"
 ItemCategory="Fucile da caccia"
 ItemDescription="•Spara un colpo alla volta.\n•Il classico modello di fucile Winchester 1894 a leva."
 
+[KFWeap_Rifle_CenterfireMB464]
+ItemName="SPX 464 centrale"
+ItemCategory="Fucile da caccia"
+ItemDescription="•Spara un colpo alla volta.\n•Un fucile Mossberg a percussione centrale moderno, con basso rinculo e con un grande potere di arresto. Un classico rivisitato."
+
 [KFWeap_Bow_Crossbow]
 ItemName="Balestra"
 ItemCategory="Arco"
@@ -464,6 +474,7 @@ ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n
 ItemName="Mitra Kriss"
 ItemCategory="Mitra"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n•Usa il fuoco alternativo per cambiare modalità.\n•L'ultimo ritrovato in fatto di distribuzione compatta di proiettili, un concentrato di distruzione."
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -513,6 +524,29 @@ BossCaptionStrings[3]="Darsela a gambe non equivale a fuggire: ti rende solo la 
 BossCaptionStrings[4]="Sì, il Patriarca si nasconde, diventa invisibile, fugge e si cura. Certe cose non cambiano mai."
 BossCaptionStrings[5]="Pur non potendo esattamente scegliere, uccidere i 'figli' del Patriarca lo fa indiavolare (ancora di più)."
 
+[KFPawn_ZedFleshpoundKing]
+BossName="King Fleshpound"
+BossName_CHN="闪击丧尸之王"
+BossName_CHT="絞碎者之王"
+BossName_DEU="King Fleshpound"
+BossName_ESL="Rey fleshpound"
+BossName_ESN="Rey fleshpound"
+BossName_FRA="Roi Barback"
+BossName_FRC="Roi Barback"
+BossName_INT="King Fleshpound"
+BossName_ITA="Re Fleshpound"
+BossName_JPN="キングフレッシュパウンド"
+BossName_KOR="King 플래시 파운드"
+BossName_POL="Król mięśniaków"
+BossName_PTB="Carniceiro Rei"
+BossName_RUS="Король-отбивальщик"
+BossCaptionStrings[0]="Più ferisci il Re Fleshpound, più velocemente richiamerà altri Quarter Pound. Datti una mossa, non lasciarti sommergere!"
+BossCaptionStrings[1]="Stai giù! Il raggio lanciato dal petto del Re Fleshpound ha difficoltà a colpire i nemici a terra."
+BossCaptionStrings[2]="Anche se il Re Fleshpound è ferito, il combattimento non è finito. Quando ha poca Salute, attiverà uno scudo. "
+BossCaptionStrings[3]="Il raggio del Re Fleshpound può ferire gli altri Zed, se riesci a portarli sulla traiettoria."
+BossCaptionStrings[4]="Il Re Fleshpound ha gli stessi punti deboli dei normali Fleshpound, ma più grandi."
+BossCaptionStrings[5]="Il Re Fleshpound ha sempre altri Quarter Pound. Ignorali a tuo rischio e pericolo!"
+
 [KFGameInfo_Tutorial]
 GameName="Addestramento di base"
 
@@ -521,6 +555,9 @@ GameName="Survival"
 
 [KFGameInfo_VersusSurvival]
 GameName="Survival VS"
+
+[KFGameInfo_WeeklySurvival]
+GameName="Epidemia settimanale"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Nessuna guarigione rimasta"

@@ -182,14 +182,12 @@ function Callback_Enlarge()
 {
     KFEngine.SafeFrameScale += AdjustMovePercentage;
     KFEngine.SafeFrameScale = FClamp(KFEngine.SafeFrameScale, SafeFrameMinScale, 1);
-    Profile.SetProfileSettingValueFloat(168, KFEngine.SafeFrameScale);
 }
 
 function Callback_Shrink()
 {
     KFEngine.SafeFrameScale -= AdjustMovePercentage;
     KFEngine.SafeFrameScale = FClamp(KFEngine.SafeFrameScale, SafeFrameMinScale, 1);
-    Profile.SetProfileSettingValueFloat(168, KFEngine.SafeFrameScale);
 }
 
 function Callback_Confirm()
@@ -197,13 +195,11 @@ function Callback_Confirm()
     SaveAndClose();
 }
 
-function Callback_Cancel()
-{
-    SaveAndClose();
-}
+function Callback_Cancel();
 
 function SaveAndClose()
 {
+    Profile.SetProfileSettingValueFloat(168, KFEngine.SafeFrameScale);
     Profile.Save(byte(GetLP().ControllerId));
     GFxMenuManager.CloseScreenSizeMovie();
 }

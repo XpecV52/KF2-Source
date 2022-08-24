@@ -736,4 +736,5 @@ simulated function SetCharacterAnimFromArch(KFPawn Pawn)
 defaultproperties
 {
     EmoteAnimset=AnimSet'ECON_emote.ECON_Emotes'
+    SoundGroupArch=KFPawnSoundGroup'FX_Pawn_Sounds_ARCH.HumanPawnSounds'
 }

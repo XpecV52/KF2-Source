@@ -15,6 +15,8 @@ package tripwire.controls
     {
          
         
+        public var bDisableLeftRight:Boolean;
+        
         public var imageLoader:TripUILoader;
         
         public var newItemTimeline:TimelineMax;
@@ -170,10 +172,16 @@ package tripwire.controls
                 switch(param1.details.navEquivalent)
                 {
                     case NavigationCode.LEFT:
-                        this.backItem();
+                        if(!this.bDisableLeftRight)
+                        {
+                            this.backItem();
+                        }
                         break;
                     case NavigationCode.RIGHT:
-                        this.forwardItem();
+                        if(!this.bDisableLeftRight)
+                        {
+                            this.forwardItem();
+                        }
                         break;
                     case NavigationCode.GAMEPAD_A:
                         this.sendURL();

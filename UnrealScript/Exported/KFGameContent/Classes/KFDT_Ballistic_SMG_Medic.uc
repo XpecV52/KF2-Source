@@ -22,6 +22,7 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_MedicSMG'
    GunHitPower=45.000000
+   ModifierPerkList(0)=Class'KFGame.KFPerk_SWAT'
    KDamageImpulse=900.000000
    KDeathVel=100.000000
    KDeathUpKick=-300.000000

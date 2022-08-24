@@ -10,6 +10,11 @@
 
 class KFWeap_Edged_Knife extends KFWeap_MeleeBase;
 
+simulated static function bool AllowedForAllPerks()
+{
+    return true;
+}
+
 defaultproperties
 {
 	// Inventory

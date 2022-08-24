@@ -22,7 +22,8 @@ ConsolePermissionStrings[0]="Pública"
 ConsolePermissionStrings[1]="Solo por invitación"
 
 ModeStrings[0]="Superviv."
-ModeStrings[1]="Superviv. VS"
+ModeStrings[1]="Semanal"
+ModeStrings[2]="Superviv. VS"
 
 NoPreferenceString="CUALQUIERA"
 OKString="VALE"
@@ -36,6 +37,8 @@ PerkUpdateNoticeString="¡La especialización se puede cambiar en cada oleada!"
 YesString="Sí"
 NoString="No"
 TeamSwappedString="Se te ha cambiado de equipo"
+
+CancelConnectionString="Cancelar carga"
 
 DisbandPartyString="DISOLVER GRUPO"
 LeaveCurrentMenuString="¿Salir del menú actual?"
@@ -57,6 +60,21 @@ NoItemsPurchasedString="No se han comprado obj."
 SetTakeoverServerPasswordTitle="Escribe una contraseña nueva:"
 FreeConsolePlayOverString="¡Gracias por jugar a Killing Floor 2! El evento gratis ha acabado, pero puedes comprar el juego y obtener más información al seleccionar el botón Tienda."
 BuyGameString="TIENDA"
+CustomString="Personaliz."
+
+[KFMission_LocalizedStrings]
+GrantedWeeklyString="RECOMPENSA POR COMPLETAR UN BROTE"
+WeeklyString="BROTE SEMANAL DE HORZINE"
+CurrentWeeklySettingsString="AJUSTES DE BROTE ACTUALES"
+SpecialEventString="FERIA DE VERANO"
+ShortWeeklyString="SEMANAL"
+SeasonalString="ESTACIONAL"
+SpecialEventChanceDropString="OBJETOS DE OBTENCIÓN LIMITADA"
+GrantedSpecialEventString="RECOMPENSA POR COMPLETAR"
+RewardsString="RECOMPENSA POR COMPLETAR UN BROTE"
+WeeklyOverview="¡Un nuevo y desafiante modo cada semana!"
+ObjectivesString="Alternar objetivos"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="PARTIDA NO ENCONTRADA"
@@ -115,8 +133,9 @@ TutorialString="Entrenam. básico"
 
 [StartMenuHelperText]
 modeList0="Supervivencia – Oleadas JcE de zeds controlados por IA"
-modeList1="Supervivencia VS – Mercenarios de Horzine JcJ contra oleadas de zeds controlados por jugadores e IA"
-modeList2=""
+modeList1="Brote semanal – Un modo de juego distinto cada semana."
+modeList2="Supervivencia VS – Mercenarios de Horzine JcJ contra oleadas de zeds controlados por jugadores e IA"
+modeList3=""
 difficultyList0="Normal – Para principiantes con rango de espec. 0-5."
 difficultyList1="Difícil – Para expertos con rango de espec. 6-12. Hay más zeds por oleadas, se mueven más rápido y tienen más vida. Hay menos objetos gratuitos y recibes menos dinero."
 difficultyList2="Suicida – Para veteranos con rango de espec. 13-25. Hay incluso más zeds por oleada, usan nuevos ataques y se mueven incluso más rápido. Hay incluso menos objetos gratuitos y recibes menos dinero aún."
@@ -666,6 +685,7 @@ DamageDealtString="Daño infligido:"
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ LISTO ]"
 WaitingString="ESPERANDO JUGADOR(ES)"
+MatchOverString="PARTIDA FINALIZADA \n Espera..."
 DeployingString="DESPLEGANDO EN "
 CreatePartyString="CREAR GRUPO"
 ReadyString="PREPARAOS"
@@ -840,6 +860,7 @@ CancelString="CANCELAR"
 [KFGFxWidget_LevelUpNotification]
 LevelUpString="NUEVO NIVEL"
 TierUnlockedString="HABILIDADES NUEVAS"
+ObjectiveCompleteString="OBJETIVO COMPLETADO"
 
 [KFGFxHUD_WaveInfo]
 WaveString="OLEADA"
@@ -924,6 +945,7 @@ ConfigureMicString="CONFIGURAR MICRÓFONO"
 VocalsString="Voces de música"
 BattleChatterString="Menos convers. batalla"
 PushToVoIPString="Pulsar para hablar"
+ScreenSizeString="AJUSTAR TAM. PANTALLA"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="¿Quieres usar esta configuración de vídeo?"
@@ -1322,6 +1344,7 @@ MapCollectibleName="fajo de dinero ostentoso"
 WaveStartMessage="N U E V A O L E A D A"
 WaveEndMessage="O L E A D A L I S T A"
 GetToTraderMessage="Llega al Mercader"
+ScavengeMessage="Carroña"
 YouLostMessage="D E R R O T A"
 YouWonMessage="V I C T O R I A"
 SquadWipedOutMessage="¡Tu escuadrón ha sido eliminado!"
@@ -1355,7 +1378,7 @@ HealSelfGamepadWarning="<%HOLD%>CURARSE"
 PressToBashWarning="GOLPEAR"
 GamepadWeaponSelectHint="<%HOLD%>SELECCIONAR ARMA"
 PlayerClotGrabWarningMessage="¡MATA AL ZED PARA SOLTARTE!"
-UseMinigameMessage="ACTIVAR MINIJUEGO"
+UseMinigameMessage="ACTIVAR"
 UseMinigameGeneratorMessage="ACTIVAR GENERADOR"
 
 [KFLocalMessage_ServerNotification]
@@ -2162,7 +2185,8 @@ Forums="Visita los foros de la comunidad"
 Survey="Rellena nuestra encuesta sobre el juego"
 CommunityTracker="Sigue las peticiones de la comunidad"
 FeaturedCrateKey="Destaca: Llave caja sumin. Horzine - 2,49 $"
-FeaturedUsbKey="Destaca: Llave USB Victoriana - 2,49 $"
+FeaturedEventItem="Objeto de evento destacado"
+FeaturedUsbKey="Destaca: Llave USB apariencia arma - 2,49 $"
 FeaturedRareItem="Objeto infrecuente destacado - 3,99 $"
 FeaturedExceptionalItem="Objeto excepcional destacado - 7,49 $"
 FeaturedMasterCraftedItem="Objeto maestral destacado - 9,99 $"
@@ -2177,20 +2201,22 @@ PS4WeaponSkinCrate2="Caja sum. apariencia arma Horzine | Serie 2"
 Artbook="Libro de arte digital de Killing Floor 2"
 Uncovered="Mira la película Killing Floor: Uncovered"
 NewEmotes="¡Nuevo! Llave caja de emote - 2,49 $"
-HorzineSupplyCrateKey10="Llave caja sumin. Horzine | Serie 10 - $2.49"
-HorzineSupplyCrateKey11="Llave caja sumin. Horzine | Serie 11 - $2.49"
-HorzineSupplyCrateKey12="Llave caja sumin. Horzine | Serie 12 - $2.49"
-HorzineSupplyCrateKey13="Llave caja sumin. Horzine | Serie 13 - $2.49"
-USBSpitfire="Spit Fire USB Key - $2.49"
-USBHighVoltage="High Voltage USB Key - $2.49"
-MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+HorzineSupplyCrateKey10="Llave caja sumin. Horzine | Serie 10 - 2,49 $"
+HorzineSupplyCrateKey11="Llave caja sumin. Horzine | Serie 11 - 2,49 $"
+HorzineSupplyCrateKey12="Llave caja sumin. Horzine | Serie 12 - 2,49 $"
+HorzineSupplyCrateKey13="Llave caja sumin. Horzine | Serie 13 - 2,49 $"
+USBSpitfire="Llave USB Escupefuego - 2,49 $"
+USBHighVoltage="Llave USB Alto voltaje - 2,49 $"
+MerchSale="¡Rebajas KF2! 25% menos hasta 30/4/17 (cód.: ZED)"
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
 KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedCrawlerKing="Élite crawler"
+KFPawn_ZedFleshpoundMini="Cuarto de libra"
 KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedFleshpoundKing="Rey fleshpound"
 KFPawn_ZedGorefast="Gorefast"
 KFPawn_ZedGorefastDualBlade="Gorefiend"
 KFPawn_ZedHans="Dr. Hans Volter"
@@ -2319,6 +2345,119 @@ KFWeap_Zweihander="Promoción Chivalry"
 
 
 Source0="Promoción Chivalry"
+
+;============================================
+; SpecialEvent  Localization (Base class)
+;============================================
+[KFGFxSpecialEventObjectivesContainer]
+CurrentSpecialEventString="Temp Title"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
+
+AllCompleteRewardDescriptionString="Item description for all complete"
+
+ChanceDropDescriptionStrings[0]="Objetos obtenidos 1"
+ChanceDropDescriptionStrings[1]="Objetos obtenidos 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="Un evento especial por tiempo limitado con objetos exclusivos."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Encendido",DescriptionString="Enciende el generador en El reino trágico");
+SpecialEventObjectiveInfoList[1]=(TitleString="Mata al clot",DescriptionString="Mata al clot en El reino trágico");
+SpecialEventObjectiveInfoList[2]=(TitleString="Machaca al bloat",DescriptionString="Machaca al bloat en El reino trágico");
+SpecialEventObjectiveInfoList[3]=(TitleString="Mucha pasta",DescriptionString="Llena los bolsillos en El reino trágico");
+SpecialEventObjectiveInfoList[4]=(TitleString="Temerario",DescriptionString="Gana una partida en dificultad Difícil o superior en El reino trágico");
+
+AllCompleteRewardDescriptionString="Traje NBQ de feria"
+
+ChanceDropDescriptionStrings[0]="Boleto premiado de feria"
+ChanceDropDescriptionStrings[1]="Boleto dorado de feria"
+
+;============================================
+; Weekly Localization
+;============================================
+[Zombies KFWeeklyOutBreakInformation]
+FriendlyName="Brote actual: Rompecráneos"
+DescriptionStrings[0]="El daño cerebral es el mejor daño."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="En este brote, los zeds han mutado de tal modo que solo se pueden matar de verdad si se les causa daño en la cabeza. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ShrinkyDinky KFWeeklyOutBreakInformation]
+FriendlyName="Brote actual: Terror enano"
+DescriptionStrings[0]="Una pequeña amenaza sigue siendo una amenaza."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="Al disparar a los zeds en este brote, estos se encogerán, con lo que resultará más difícil acertarles. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[PoundAmmonium KFWeeklyOutBreakInformation]
+FriendlyName="Brote actual: Poundcaos"
+DescriptionStrings[0]="Fleshpounds sin parar. Casi."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="¡La convención de fleshpounds ha llegado a la ciudad! Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[DeathBalloons KFWeeklyOutBreakInformation]
+FriendlyName="Brote actual: Sube y baja"
+DescriptionStrings[0]="Trata de hacer 99 globos zed."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="Al disparar a los zeds en este brote, estos se inflarán como globos, ¡incluso hasta el punto de flotar y estallar! Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[ZedTime KFWeeklyOutBreakInformation]
+FriendlyName="Brote actual: Momento zed"
+DescriptionStrings[0]="Todo el momento zed del mundo."
+DescriptionStrings[1]="Duración: Corta (4 oleadas)"
+ModifierDescriptions[0]="¿Alguna vez piensas que la vida pasa rápido? ¡No en este brote! Estarás en el momento zed cada vez que te acerques a un zed. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Boom KFWeeklyOutBreakInformation]
+FriendlyName="Brote actual: ¡Bum!"
+DescriptionStrings[0]="Los zeds bajo presión pueden explotar."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="¿Quizás han comido algo en mal estado? ¿Problemas de gases? Fuera lo que fuera, los zeds estallan cuando los matas en este brote. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento. "
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Beefcake KFWeeklyOutBreakInformation]
+FriendlyName="Brote actual: Petado"
+DescriptionStrings[0]="Cuánto más grandes, mejor caes."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="En este brote, los zeds aumentan su salud, tamaño y alcance cuando golpean a jugadores o se ven afectados por ciertas habilidades zed. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BigHead KFWeeklyOutBreakInformation]
+FriendlyName="Brote actual: Zed cabezón"
+DescriptionStrings[0]="Les debe molestar el cuello."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="¡Algo ha salido horriblemente mal en esta tanda de zeds y sus cabezas son muchísimo más grandes de lo normal! ¡Enormes, incluso! Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento. "
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -2561,6 +2700,22 @@ DisplayName_POL="Wysadzeni"
 DisplayName_PTB="Bombardeio"
 DisplayName_RUS="Ядерный удар"
 
+[KF-TragicKingdom KFMapSummary]
+DisplayName_CHN="悲惨王国"
+DisplayName_CHT="悲慘王國"
+DisplayName_DEU="Das Tragische Königreich"
+DisplayName_ESL="El reino trágico"
+DisplayName_ESN="El reino trágico"
+DisplayName_FRA="Le Royaume déchanté"
+DisplayName_FRC="Le Royaume déchanté"
+DisplayName_INT="The Tragic Kingdom"
+DisplayName_ITA="Il Regno Tragico"
+DisplayName_JPN="The Tragic Kingdom"
+DisplayName_KOR="비극의 왕국"
+DisplayName_POL="Królestwo Tragedii"
+DisplayName_PTB="Reino Trágico"
+DisplayName_RUS="Королевство Трагедий"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio biótico"
 
@@ -2572,6 +2727,9 @@ DisplayName="París arde"
 
 [Survival KFGameInfoSummary]
 GameName="Supervivencia"
+
+[WeeklySurvival KFGameInfoSummary]
+GameName="Semanal"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Mansión Volter"
@@ -2608,6 +2766,9 @@ DisplayName="El descendiente"
 
 [KF-Nuked KFMapSummary]
 DisplayName="Bombardeado"
+
+[KF-TragicKingdom KFMapSummary]
+DisplayName="El reino trágico"
 
 [KFMapInfo]
 ; defaults

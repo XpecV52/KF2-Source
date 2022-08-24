@@ -43,6 +43,8 @@ package tripwire.menus
         
         public var configureMicrophoneButton:Button;
         
+        public var screenSizeButton:Button;
+        
         public var pushToTalkBox:TripCheckBox;
         
         public var vocalsCheckBox:TripCheckBox;
@@ -93,6 +95,10 @@ package tripwire.menus
                 this.controllerSoundCheckBox.tabIndex = _loc2_++;
             }
             this.configureMicrophoneButton.tabIndex = _loc2_++;
+            if(this.screenSizeButton)
+            {
+                this.screenSizeButton.tabIndex = _loc2_++;
+            }
             this.closeButton.tabIndex = _loc2_++;
             if(!_loc1_)
             {
@@ -110,6 +116,10 @@ package tripwire.menus
             this.optionsTextField.text = !!param1.options ? param1.options : "";
             this.header.text = !!param1.header ? param1.header : "";
             this.configureMicrophoneButton.label = !!param1.configureMic ? param1.configureMic : "";
+            if(this.screenSizeButton)
+            {
+                this.screenSizeButton.label = !!param1.screenSize ? param1.screenSize : "";
+            }
             this.vocalsCheckBox.label = !!param1.vocals ? param1.vocals : "";
             this.closeButton.label = !!param1.close ? param1.close : "";
             this.minimalDialogueCheckBox.label = !!param1.battleChatter ? param1.battleChatter : "";
@@ -139,6 +149,10 @@ package tripwire.menus
             this.musicSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
             this.sFxSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
             this.configureMicrophoneButton.addEventListener(ButtonEvent.PRESS,this.onConfigureMic,false,0,true);
+            if(this.screenSizeButton)
+            {
+                this.screenSizeButton.addEventListener(ButtonEvent.PRESS,this.onScreenSize,false,0,true);
+            }
             this.vocalsCheckBox.addEventListener(Event.SELECT,this.onVocalsChanged,false,0,true);
             this.minimalDialogueCheckBox.addEventListener(Event.SELECT,this.onBattleChatterChanged,false,0,true);
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.onButtonClick,false,0,true);
@@ -164,6 +178,10 @@ package tripwire.menus
             this.musicSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
             this.sFxSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
             this.configureMicrophoneButton.removeEventListener(ButtonEvent.PRESS,this.onConfigureMic);
+            if(this.screenSizeButton)
+            {
+                this.screenSizeButton.removeEventListener(ButtonEvent.PRESS,this.onScreenSize);
+            }
             this.vocalsCheckBox.removeEventListener(Event.SELECT,this.onVocalsChanged);
             this.minimalDialogueCheckBox.removeEventListener(Event.SELECT,this.onBattleChatterChanged);
             this.closeButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
@@ -331,6 +349,11 @@ package tripwire.menus
         private function onConfigureMic(param1:ButtonEvent) : void
         {
             ExternalInterface.call("Callback_ConfigureMicPress");
+        }
+        
+        private function onScreenSize(param1:ButtonEvent) : void
+        {
+            ExternalInterface.call("Callback_ScreenSizePress");
         }
         
         private function onControllerSoundChanged(param1:Event) : void

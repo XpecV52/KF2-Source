@@ -38,6 +38,8 @@ var private const name 							BoomstickClassName;
 
 var	private	const array<Name>					AdditionalOnPerkDTNames;
 
+var	private const int						    DoorRepairXP[4];            // Door repair XP per-difficulty
+
 enum ESupportPerkSkills
 {
 	ESupportHighCapMags,
@@ -365,10 +367,10 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 {
 	if( IsWeaponOnPerk( GetOwnerWeapon(),, self.class ) && IsConcussionRoundsActive() )
 	{
-		return 1.f + GetSkillValue( PerkSkills[ESupportConcussionRounds] );
+		return GetSkillValue( PerkSkills[ESupportConcussionRounds] );
 	}
 
-	return 1.f;
+	return 0.f;
 }
 
 /**
@@ -618,12 +620,12 @@ simulated function bool IsSupplierActive()
  */
 private function bool IsBarrageActive()
 {
-	return PerkSkills[ESupportBarrage].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[ESupportBarrage].bActive && WorldInfo.TimeDilation < 1.f && IsPerkLevelAllowed(ESupportBarrage);
 }
 
 simulated private function bool CouldBarrageActive()
 {
-	return PerkSkills[ECommandoRapidFire].bActive;
+	return PerkSkills[ESupportBarrage].bActive && IsPerkLevelAllowed(ESupportBarrage);
 }
 
 /**
@@ -633,7 +635,7 @@ simulated private function bool CouldBarrageActive()
  */
 simulated private function bool IsHighCapMagsMagActive()
 {
-	return PerkSkills[ESupportHighCapMags].bActive;
+	return PerkSkills[ESupportHighCapMags].bActive && IsPerkLevelAllowed(ESupportHighCapMags);
 }
 
 /**
@@ -643,7 +645,7 @@ simulated private function bool IsHighCapMagsMagActive()
  */
 private function bool IsFortitudeActive()
 {
-	return PerkSkills[ESupportFortitude].bActive;
+	return PerkSkills[ESupportFortitude].bActive && IsPerkLevelAllowed(ESupportFortitude);
 }
 
 /**
@@ -653,7 +655,7 @@ private function bool IsFortitudeActive()
  */
 private function bool IsSalvoActive()
 {
-	return PerkSkills[ESupportSalvo].bActive;
+	return PerkSkills[ESupportSalvo].bActive && IsPerkLevelAllowed(ESupportSalvo);
 }
 
 /**
@@ -663,7 +665,7 @@ private function bool IsSalvoActive()
  */
 simulated private function bool IsAPShotActive()
 {
-	return PerkSkills[ESupportAPShot].bActive;
+	return PerkSkills[ESupportAPShot].bActive && IsPerkLevelAllowed(ESupportAPShot);
 }
 
 /**
@@ -673,7 +675,7 @@ simulated private function bool IsAPShotActive()
  */
 simulated private function bool IsTightChokeActive()
 {
-	return PerkSkills[ESupportTightChoke].bActive;
+	return PerkSkills[ESupportTightChoke].bActive && IsPerkLevelAllowed(ESupportTightChoke);
 }
 
 /**
@@ -683,7 +685,7 @@ simulated private function bool IsTightChokeActive()
  */
 simulated private function bool IsTacticalReloadActive()
 {
-	return PerkSkills[ESupportTacticalReload].bActive;
+	return PerkSkills[ESupportTacticalReload].bActive && IsPerkLevelAllowed(ESupportTacticalReload);
 }
 
 /**
@@ -693,7 +695,7 @@ simulated private function bool IsTacticalReloadActive()
  */
 private function bool IsConcussionRoundsActive()
 {
-	return PerkSkills[ESupportConcussionRounds].bActive;
+	return PerkSkills[ESupportConcussionRounds].bActive && IsPerkLevelAllowed(ESupportConcussionRounds);
 }
 
 /**
@@ -703,7 +705,7 @@ private function bool IsConcussionRoundsActive()
  */
 simulated private function bool IsResupplyActive()
 {
-	return PerkSkills[ESupportResupply].bActive;
+	return PerkSkills[ESupportResupply].bActive && IsPerkLevelAllowed(ESupportResupply);
 }
 
 /**
@@ -713,7 +715,7 @@ simulated private function bool IsResupplyActive()
  */
 simulated private function bool IsPerforateActive()
 {
-	return PerkSkills[ESupportPerforate].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[ESupportPerforate].bActive && WorldInfo.TimeDilation < 1.f && IsPerkLevelAllowed(ESupportPerforate);
 }
 
 /**
@@ -722,6 +724,13 @@ simulated private function bool IsPerforateActive()
  * @return true/false
  */
 native function bool CanRepairDoors();
+
+/**
+ */
+static function GetDoorRepairXP(out int XP, byte Difficulty)
+{
+    XP = default.DoorRepairXP[Difficulty];
+}
 
 /*********************************************************************************************
 * @name	 Logging / debug
@@ -817,6 +826,11 @@ DefaultProperties
 	SecondaryXPModifier[1]=8
 	SecondaryXPModifier[2]=8
 	SecondaryXPModifier[3]=8
+
+    DoorRepairXP[0]=18
+    DoorRepairXP[1]=24
+    DoorRepairXP[2]=30
+    DoorRepairXP[3]=42
 
     // Skill tracking
 	HitAccuracyHandicap=-6.0

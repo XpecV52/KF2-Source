@@ -1365,7 +1365,7 @@ Begin Object Class=InterpData Name=InterpData_16
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ZED_UndevelopedClot_MAT.ZED_UndevelopedClot_GORE_MAT',AffectedMaterialRefs=((Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.SkeletalMeshActor_7.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.SkeletalMeshActor_8.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.SkeletalMeshActor_4.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_1.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_2.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_3.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_4.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_0.SkeletalMeshComponent_0')))
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ZED_UndevelopedClot_MAT.ZED_UndevelopedClot_GORE_MAT',AffectedMaterialRefs=((Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_1.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_2.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_3.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_4.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_0.SkeletalMeshComponent_0')))
          ParamName="Scalar_EMP"
          FloatTrack=(Points=((InVal=26.513489,InterpMode=CIM_CurveAutoClamped),(InVal=27.559015,InterpMode=CIM_CurveAutoClamped)))
          Name="InterpTrackFloatMaterialParam_1"
@@ -1660,9 +1660,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_17
    OutputLinks(10)=(Links=((LinkedOp=SeqAct_SetMaterial'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_8')),LinkDesc="Clot_2_Shock_OFF",DrawY=-2171,OverrideDelta=246)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.InterpData_17'),DrawX=6703,OverrideDelta=16)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_79'),LinkDesc="Track_2",MinVars=0,DrawX=6761,OverrideDelta=63)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_91'),LinkDesc="Track_2_Clot_1",MinVars=0,DrawX=6834,OverrideDelta=132)
-   VariableLinks(3)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_90'),LinkDesc="Track_2_Clot_2",MinVars=0,DrawX=6911,OverrideDelta=209)
-   VariableLinks(4)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_75'),LinkDesc="Track_2_Clot_3",MinVars=0,DrawX=6988,OverrideDelta=286)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_133'),LinkDesc="Track_2_Clot_1",MinVars=0,DrawX=6834,OverrideDelta=132)
+   VariableLinks(3)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_137'),LinkDesc="Track_2_Clot_2",MinVars=0,DrawX=6911,OverrideDelta=209)
+   VariableLinks(4)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_127'),LinkDesc="Track_2_Clot_3",MinVars=0,DrawX=6988,OverrideDelta=286)
    VariableLinks(5)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_87'),LinkDesc="Track_2_Injection",MinVars=0,DrawX=7065,OverrideDelta=363)
    VariableLinks(6)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_88'),LinkDesc="Track_2_Shock",MinVars=0,DrawX=7142,OverrideDelta=440)
    VariableLinks(7)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Track_2_Spray",MinVars=0,DrawX=7219,OverrideDelta=517)
@@ -2031,7 +2031,7 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_6
    NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_ANIM_MAT.ENV_Biotics_UClot_Tank_02_MIC'
    InputLinks(0)=(DrawY=-2198,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-2198,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_93'),DrawX=7813,OverrideDelta=23)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_131'),DrawX=7813,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7768
@@ -2047,7 +2047,7 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_7
    NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_ANIM_MAT.ENV_Biotics_UClot_Tank_MIC'
    InputLinks(0)=(DrawY=-2126,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-2126,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_93'),DrawX=7909,OverrideDelta=23)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_131'),DrawX=7909,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7864
@@ -2063,7 +2063,7 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_8
    NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_ANIM_MAT.ENV_Biotics_UClot_Tank_MIC'
    InputLinks(0)=(DrawY=-1862,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-1862,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_92'),DrawX=7893,OverrideDelta=23)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_132'),DrawX=7893,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7848
@@ -2079,7 +2079,7 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_9
    NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_ANIM_MAT.ENV_Biotics_UClot_Tank_02_MIC'
    InputLinks(0)=(DrawY=-1934,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-1934,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_92'),DrawX=7789,OverrideDelta=23)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_132'),DrawX=7789,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7744
@@ -2095,7 +2095,7 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_5
    NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_ANIM_MAT.ENV_Biotics_UClot_Tank_02_MIC'
    InputLinks(0)=(DrawY=-1694,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-1694,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_71'),DrawX=7797,OverrideDelta=23)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136'),DrawX=7797,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7752
@@ -2111,7 +2111,7 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_4
    NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_ANIM_MAT.ENV_Biotics_UClot_Tank_MIC'
    InputLinks(0)=(DrawY=-1686,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-1686,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_71'),DrawX=7925,OverrideDelta=23)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136'),DrawX=7925,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7880
@@ -2841,7 +2841,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
-   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_0'
+   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_14'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7104
@@ -2921,78 +2921,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_69"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_75
-   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_1'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6944
-   ObjPosY=-2048
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_75"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
-   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_1'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=7832
-   ObjPosY=-1608
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_71"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_92
-   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_2'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=7816
-   ObjPosY=-1832
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_92"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_93
-   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_3'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=7832
-   ObjPosY=-2080
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_93"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_90
-   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_2'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6872
-   ObjPosY=-2048
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_90"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_91
-   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_3'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6792
-   ObjPosY=-2064
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_91"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -3948,4 +3876,76 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
    DrawHeight=149
    Name="SeqAct_RandomSwitch_0"
    ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_127
+   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=6952
+   ObjPosY=-2056
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_127"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_133
+   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=6792
+   ObjPosY=-2056
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_133"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_137
+   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=6872
+   ObjPosY=-2056
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_137"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_131
+   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=7713
+   ObjPosY=-2104
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_131"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_136
+   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=7808
+   ObjPosY=-1584
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_136"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_132
+   ObjValue=KFSkeletalMeshActor'KF-BioticsLab.TheWorld:PersistentLevel.KFSkeletalMeshActor_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=7776
+   ObjPosY=-1840
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_132"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object

@@ -23,4 +23,6 @@ defaultproperties
 	KDamageImpulse=500
 	KDeathUpKick=50
 	KDeathVel=75
+
+    CameraLensEffectTemplate=class'KFCameraLensEmit_BloodBase'
 }

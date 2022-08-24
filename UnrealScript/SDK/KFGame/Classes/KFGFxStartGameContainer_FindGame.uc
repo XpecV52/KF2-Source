@@ -120,14 +120,17 @@ function LocalizeMenu()
 
 DefaultProperties
 {
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Descent", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch", Textfield="Merch", RedirectURL="https://tripwire.manheadmerch.com/"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_Spitfire_17", Textfield="USBSpitfire", RedirectURL="https://store.steampowered.com/buyitem/232090/4801"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Insectoid_13", Textfield="HorzineSupplyCrateKey13", RedirectURL="https://store.steampowered.com/buyitem/232090/4775"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_HighVoltage_16", Textfield="USBHighVoltage", RedirectURL="https://store.steampowered.com/buyitem/232090/4785"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/4928"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_HazmatBundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/4858"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Mark7Bundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/4857"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Firefighter_14", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/5011"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_Vietnam_18", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/4980"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_USBKey_Junkyard_19", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/4994"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums", Textfield="Forums", RedirectURL="http://forums.tripwireinteractive.com/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey", Textfield="Survey", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue", Textfield="CommunityTracker", RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch", Textfield="Merch", RedirectURL="https://tripwire.manheadmerch.com/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered", Textfield="Uncovered", RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/"))
 }

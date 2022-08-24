@@ -16,6 +16,7 @@ KF-HostileGrounds="Playing Hostile Grounds"
 KF-ZedLanding="Playing Zed Landing"
 KF-TheDescent="Playing The Descent"
 KF-Nuked="Playing Nuked"
+KF-TragicKingdom="Playing The Tragic Kingdom"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -144,7 +145,6 @@ ErrorNoPlayfabDescription="A connection to the game Master Servers could not be 
 ErrorTSSFailedDescription="A connection to the game balance server could not be established. Please ensure you are connected to the internet and please try again."
 NotSignedInTitle="Not signed in."
 
-
 [Notifications]
 ControllerDisconnectedTitle="Controller Disconnected"
 ControllerDisconnectedPS4Message="Wireless controller has been disconnected. Please reconnect the wireless controller for the User that booted the game."
@@ -174,7 +174,6 @@ NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaki
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="View Player Profile"
-ViewProfileStringXB1="View gamercard"
 
 [KFGFxObject_Menu]
 ResetDefaults="Are you sure you want to reset settings to default values?"
@@ -194,15 +193,12 @@ ControllerSound="Controller Sound"
 MatchmakingRegionString="REGION"
 LeaveMenuString="Leaving matchmaking will also leave your party"
 
-[KFGFxMenu_Store]
-
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"
 MapPreference="PREFERRED MAP"
 
 [KFGFxMenu_Exit]
-HeaderStringXB1="LOGOUT"
 LogoutKF2="Return to Title Screen"
 
 [Misc]
