@@ -54,12 +54,14 @@ function bool PopulateData()
 {
     local GFxObject DataObject, DataProvider;
     local int I;
+    local KFPlayerController KFPC;
 
+    KFPC = KFPlayerController(Outer.GetPC());
     if(HasObjectiveStatusChanged())
     {
         DataProvider = Outer.CreateArray();
         I = 0;
-        J0x41:
+        J0x73:
 
         if(I < SpecialEventObjectiveInfoList.Length)
         {
@@ -68,12 +70,13 @@ function bool PopulateData()
             DataObject.SetString("description", default.SpecialEventObjectiveInfoList[I].DescriptionString);
             DataObject.SetString("iconPath", "img://" $ default.ObjectiveIconURLs[I]);
             DataObject.SetBool("complete", ObjectiveStatusList[I]);
+            DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
             DataObject.SetBool("showProgres", false);
             DataObject.SetFloat("progress", 0);
             DataObject.SetString("textValue", "");
             DataProvider.SetElementObject(I, DataObject);
             ++ I;
-            goto J0x41;
+            goto J0x73;
         }
         if(default.IconURL != "")
         {
@@ -171,7 +174,7 @@ defaultproperties
     ObjectiveIconURLs(3)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ObjectiveIconURLs(4)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     AllCompleteRewardIconURL="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
-    AllCompleteRewardDescriptionString="Item description for all comeplete"
+    AllCompleteRewardDescriptionString="Item description for all complete"
     ChanceDropIconURLs(0)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ChanceDropIconURLs(1)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ChanceDropDescriptionStrings(0)="Drop 1"

@@ -24,7 +24,7 @@ enum EEffectDamageGroup
 	FXG_Piercing,
 	FXG_Slashing,
 	FXG_Fire,
-	FXG_Toxic,	
+	FXG_Toxic,
 	FXG_Healing,
 	FXG_Sawblade,
 	FXG_DrainLife,
@@ -54,6 +54,8 @@ struct native SkinEffectInfo
 	var() AkEvent DefaultSound;
 	/** Sounds used for local player (1st person) impacts only */
 	var() AKEvent LocalSound;
+	/** Sound played when I'm the one taking damage */
+	var() AkEvent LocalTakeHitSound;
 };
 
 /** Container for effects per type of damage/weapon */
@@ -108,7 +110,7 @@ function PlayImpactParticleEffect(KFPawn P, vector HitLocation, vector HitDirect
 			default:
 				DefaultSpawnEffect(P , ParticleTemplate, HitLocation, HitDirection );
 				break;
-		}		
+		}
 	}
 }
 
@@ -124,7 +126,7 @@ function ParticleSystemComponent AttachEffectToBone( KFPawn P, ParticleSystem Pa
 	}
 	P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
 
-	HitBoneName = (HitZoneIndex != 255) ? P.HitZones[HitZoneIndex].BoneName : P.TorsoBoneName;
+	HitBoneName = (HitZoneIndex != 255 && HitZoneIndex < P.HitZones.Length) ? P.HitZones[HitZoneIndex].BoneName : P.TorsoBoneName;
 	PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(ParticleTemplate, P.Mesh, HitBoneName, false);
 
 	// Make the particle system ignore bone rotation
@@ -147,7 +149,7 @@ function ParticleSystemComponent AttachEffectToHitLocation( KFPawn P, ParticleSy
 	}
 
 	// HitZone==255 is unsupported for this type
-	if ( HitZoneIndex != 255 )
+	if ( HitZoneIndex != 255 && HitZoneIndex < P.HitZones.Length )
 	{
 		HitBoneName = P.HitZones[HitZoneIndex].BoneName;
 		HitBoneIdx = P.Mesh.MatchRefBone(HitBoneName);
@@ -155,16 +157,16 @@ function ParticleSystemComponent AttachEffectToHitLocation( KFPawn P, ParticleSy
 		if( HitBoneIdx != INDEX_NONE )
 		{
 			// Transform the hit location to the coordinate system of the hit bone
-			BoneSpaceHitLocation = InverseTransformVector(P.Mesh.GetBoneMatrix(HitBoneIdx), HitLocation);		
+			BoneSpaceHitLocation = InverseTransformVector(P.Mesh.GetBoneMatrix(HitBoneIdx), HitLocation);
 
 			// Now that we have the bone space hit location, the offset is = BoneSpaceHitLocation - vect(0,0,0)
-			EmitterLocationOffset = BoneSpaceHitLocation;	
+			EmitterLocationOffset = BoneSpaceHitLocation;
 
 			PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(
-				ParticleTemplate, 
-				P.Mesh, 
-				HitBoneName, 
-				false, 
+				ParticleTemplate,
+				P.Mesh,
+				HitBoneName,
+				false,
 				EmitterLocationOffset);
 
 			if( PSC != none )
@@ -193,7 +195,7 @@ function ParticleSystemComponent MeleeSpawnEffect( KFPawn P, ParticleSystem Part
 
 	// START DEBUG
 	//P.DrawDebugLine(HitLocation - HitDirection*20, HitLocation + HitDirection*20, 255, 0, 255, true);
-	// END DEBUG		
+	// END DEBUG
 
 	PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(-HitDirection));
 	if( PSC != none )
@@ -245,7 +247,8 @@ function ParticleSystem GetImpactParticleEffect(EEffectDamageGroup EffectGroup)
 /** Play an impact sound on taking damage */
 function PlayTakeHitSound(KFPawn P, vector HitLocation, Pawn DamageCauser, EEffectDamageGroup EffectGroup)
 {
-	local AKEvent ImpactSound;	
+	local AKEvent ImpactSound;
+	local float ArmorPct;
 
 	if ( P.ActorEffectIsRelevant(DamageCauser, false, 4000.f) )
 	{
@@ -255,7 +258,12 @@ function PlayTakeHitSound(KFPawn P, vector HitLocation, Pawn DamageCauser, EEffe
 			return;
 		}
 
-		ImpactSound = GetImpactSound(EffectGroup, DamageCauser);
+		ImpactSound = GetImpactSound(EffectGroup, DamageCauser, P);
+
+		if (ShouldSetArmorValue(P, ArmorPct))
+		{
+			P.Controller.SetRTPCValue('Armor_Level', ArmorPct, true);
+		}
 
 		if( ImpactSound != none )
 		{
@@ -266,16 +274,34 @@ function PlayTakeHitSound(KFPawn P, vector HitLocation, Pawn DamageCauser, EEffe
 }
 
 /** returns the impact sound that should be played */
-function AkEvent GetImpactSound(EEffectDamageGroup EffectGroup, Pawn DamageCauser)
+function AkEvent GetImpactSound(EEffectDamageGroup EffectGroup, Pawn DamageCauser, Pawn HitPawn)
 {
 	// handle local player sounds
-	if ( ImpactFXArray[EffectGroup].LocalSound != None && DamageCauser != none 
+	if ( ImpactFXArray[EffectGroup].LocalSound != None && DamageCauser != none
 		&& DamageCauser.IsLocallyControlled() && DamageCauser.IsHumanControlled() )
 	{
 		return ImpactFXArray[EffectGroup].LocalSound;
 	}
+	else if (HitPawn.Controller != none && HitPawn.Controller.IsLocalController() && ImpactFXArray[EffectGroup].LocalTakeHitSound != none)
+	{
+		return ImpactFXArray[EffectGroup].LocalTakeHitSound;
+	}
 
 	return ImpactFXArray[EffectGroup].DefaultSound;
+}
+
+function bool ShouldSetArmorValue(Pawn HitPawn, out float ArmorPct)
+{
+	local KFPawn_Human KFPH;
+
+	KFPH = KFPawn_Human(HitPawn);
+	if (KFPH != none && KFPH.Controller != none && KFPH.Controller.IsLocalController() && KFPH.Armor > 0)
+	{
+		ArmorPct = float(KFPH.Armor) / float(KFPH.MaxArmor);
+		return true;
+	}
+
+	return false;
 }
 
 defaultproperties

@@ -65,10 +65,11 @@ simulated function bool DialogIsCoolingDown(int EventID)
     return true;
 }
 
-simulated function PlayDialog(int EventID, Controller C)
+simulated function PlayDialog(int EventID, Controller C, optional bool bInterrupt)
 {
     local KFPawn_Human KFPH;
 
+    bInterrupt = false;
     if(WorldInfo.NetMode == NM_DedicatedServer)
     {
         return;
@@ -93,7 +94,7 @@ simulated function PlayDialog(int EventID, Controller C)
     {
         return;
     }
-    if(ActiveEventInfo.AudioCue != none)
+    if((ActiveEventInfo.AudioCue != none) && !bInterrupt)
     {
         return;
     }
@@ -104,17 +105,22 @@ simulated function PlayDialog(int EventID, Controller C)
     KFPH = KFPawn_Human(C.Pawn);
     if(KFPH != none)
     {
+        if(bInterrupt)
+        {
+            KFPH.StopTraderDialog();
+        }
         ActiveEventInfo = TraderVoiceGroupClass.default.DialogEvents[EventID];
         KFPH.PlayTraderDialog(ActiveEventInfo.AudioCue);
         SetTimer(ActiveEventInfo.AudioCue.Duration, false, 'EndOfDialogTimer');
     }
 }
 
-static function PlayGlobalDialog(int EventID, WorldInfo WI)
+static function PlayGlobalDialog(int EventID, WorldInfo WI, optional bool bInterrupt)
 {
     local Controller C;
     local KFPlayerController KFPC;
 
+    bInterrupt = false;
     foreach WI.AllControllers(Class'Controller', C)
     {
         if(C.bIsPlayer)
@@ -126,10 +132,10 @@ static function PlayGlobalDialog(int EventID, WorldInfo WI)
             }
             if(KFPC.IsLocalController())
             {
-                KFPC.PlayTraderDialog(EventID);
+                KFPC.PlayTraderDialog(EventID, bInterrupt);
                 continue;
             }
-            KFPC.ClientPlayTraderDialog(EventID);
+            KFPC.ClientPlayTraderDialog(EventID, bInterrupt);
         }        
     }    
 }
@@ -277,7 +283,7 @@ simulated function PlayTraderTickDialog(int RemainingTime, Controller C, WorldIn
         }
     }
     P = WI.PawnList;
-    J0x2C9:
+    J0x2CB:
 
     if(P != none)
     {
@@ -305,16 +311,16 @@ simulated function PlayTraderTickDialog(int RemainingTime, Controller C, WorldIn
                         if(Teammate.GetHealthPercentage() < default.TeammateNeedsHealPct)
                         {
                             AddRandomOption(16, NumOptions, BestOptionID);
-                            goto J0x3ED;
+                            goto J0x3EF;
                         }
                     }
                 }
             }
         }
         P = P.NextPawn;
-        goto J0x2C9;
+        goto J0x2CB;
     }
-    J0x3ED:
+    J0x3EF:
 
     PlayDialog(BestOptionID, C);
 }

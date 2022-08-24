@@ -66,7 +66,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(21))
+    if(IsDoingSpecialMove(22))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -74,7 +74,7 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 
 simulated function ANIMNOTIFY_FlameThrowerOff()
 {
-    if(IsDoingSpecialMove(21))
+    if(IsDoingSpecialMove(22))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOffFlamethrower();
     }
@@ -219,7 +219,7 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
 
 simulated function TerminateEffectsOnDeath()
 {
-    if(IsDoingSpecialMove(21))
+    if(IsDoingSpecialMove(22))
     {
         SpecialMoveHandler.EndSpecialMove();
     }
@@ -243,7 +243,7 @@ simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayPartic
 
 simulated function KFGame.KFPawn.ESpecialMove GetSuicideSM()
 {
-    return 22;
+    return 23;
 }
 
 function ApplySpecialZoneHealthMod(float HealthMod)
@@ -321,7 +321,7 @@ simulated function OnExploded(Controller SuicideController);
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(22))
+    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(23))
     {
         InDamage = 10000;
     }
@@ -355,7 +355,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
     super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
-    if(bEmpDisrupted && IsDoingSpecialMove(22))
+    if(bEmpDisrupted && IsDoingSpecialMove(23))
     {
         Died(InstigatedBy, DamageType, HitLocation);
     }
@@ -370,7 +370,7 @@ function OnStackingAfflictionChanged(byte Id)
     }
     if(bEmpDisrupted)
     {
-        if(IsDoingSpecialMove(20) || IsDoingSpecialMove(21))
+        if(IsDoingSpecialMove(21) || IsDoingSpecialMove(22))
         {
             EndSpecialMove();
         }

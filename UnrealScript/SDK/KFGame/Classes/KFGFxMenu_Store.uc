@@ -109,6 +109,10 @@ function OnReadPlayfabInventoryComplete( bool bSuccess )
 	{
 		RefreshItemList();
 	}
+	else
+	{
+		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, class'KFCommon_LocalizedStrings'.default.NoticeString, class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, class'KFCommon_LocalizedStrings'.default.OKString);
+	}
 }
 
 function RefreshItemList()

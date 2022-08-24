@@ -4,8 +4,11 @@ Description="Jägerhorn to olbrzymi Szwed, który uwielbiał piwo i głośne roz
 BodyMesh0="Chwila motocyklisty"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Moc brody!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -15,10 +18,11 @@ BodySkin2="DJ Scully"
 BodySkin3="Prawdziwy opór"
 BodySkin4="Łowca demonów"
 BodySkin5="Skarbcowy Batcat"
+BodySkin6="Symbol forsy"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -38,6 +42,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[CHR_Jagerhorn_Archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [CHR_Jagerhorn_Archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -47,10 +58,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Jagerhorn_Archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Jagerhorn_Archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Jagerhorn_Archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Szwedzki blondyn"
@@ -140,9 +163,11 @@ Description="Scully, najpopularniejszy undergroundowy holenderski DJ swojego pok
 BodyMesh0="Zakapturzony"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
-
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Maska Scully'ego"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -152,10 +177,11 @@ BodySkin2="Żółte GearXT"
 BodySkin3="Zielone zagrożenie"
 BodySkin4="Retro Scully"
 BodySkin5="Skarbiec – cenny egz."
+BodySkin6="Symbol forsy"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -175,6 +201,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[chr_DJSkully_archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [chr_DJSkully_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -184,10 +217,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_DJSkully_Archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocna"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_DJSkully_Archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_DJSkully_Archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Najczarniejsza czerń"
@@ -224,9 +269,11 @@ BodyMesh0="Strój ochronny"
 BodyMesh1="Londyn"
 BodyMesh2="Kartonowy rycerz"
 BodyMesh3="Ochroniarz Horzine"
-
+BodyMesh4="Pustkowie"
 BodyMesh5="Ochrona"
 BodyMesh6="Kurczak-komandos"
+BodyMesh7="Świąteczna piżama"
+BodyMesh8="Piżama skarbca"
 HeadMesh0="Włosy"
 
 [chr_briar_archetype.BodyMesh0]
@@ -234,6 +281,7 @@ BodySkin0="Policyjny niebieski"
 BodySkin1="Nocna czerń"
 BodySkin2="Wojskowa zieleń"
 BodySkin3="Kamuflaż SAS"
+BodySkin4="Symbol forsy"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="Miejski"
@@ -244,7 +292,7 @@ BodySkin4="Odblaskowa czerń"
 
 [chr_briar_archetype.BodyMesh2]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -264,6 +312,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[chr_briar_archetype.BodyMesh4]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [chr_briar_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -273,10 +328,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [chr_briar_archetype.BodyMesh6]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[chr_briar_archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[chr_briar_archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Oryginalny"
@@ -307,9 +374,11 @@ BodyMesh0="Skórzana kurtka"
 BodyMesh1="Klasyczny garnitur"
 BodyMesh2="Kartonowy rycerz"
 BodyMesh3="Ochroniarz Horzine"
-
+BodyMesh4="Pustkowie"
 BodyMesh5="Ochrona"
 BodyMesh6="Kurczak-komandos"
+BodyMesh7="Świąteczna piżama"
+BodyMesh8="Piżama skarbca"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -318,6 +387,8 @@ BodySkin1="Forsa PCG"
 BodySkin2="Biohazard"
 BodySkin3="Z klasą"
 BodySkin4="Magmowa czerwień"
+BodySkin5="Skarbiec – cenny egz."
+BodySkin6="Symbol forsy"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -332,7 +403,7 @@ BodySkin8="Smokin'"
 
 [CHR_MrFoster_archetype.BodyMesh2]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -352,6 +423,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[CHR_MrFoster_archetype.BodyMesh4]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [CHR_MrFoster_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -361,10 +439,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_MrFoster_archetype.BodyMesh6]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_MrFoster_archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_MrFoster_archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Oryginalny Biały"
@@ -428,7 +518,7 @@ AttachmentSkin3="Czarno-biały"
 AttachmentSkin4="Casino"
 AttachmentSkin5="To jest to"
 AttachmentSkin6="Magma"
-AttachmentSkin7="Dark Red Stripe"
+AttachmentSkin7="Ciemny czerwony pasek"
 
 [Cosmetic_Ana_CyberneticGasmask_ARCH]
 Attachment="Cyber. maska gazowa"
@@ -515,9 +605,11 @@ Description="Donovan jest duży, twardy i umie sobie poradzić w każdej sytuacj
 BodyMesh0="Zakapturzony RQ"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
-
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Twarz"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -526,10 +618,11 @@ BodySkin1="Rustykalna czerwień"
 BodySkin2="Zimna szarość"
 BodySkin3="Blady ziemisty"
 BodySkin4="Skarbiec – cenny egz."
+BodySkin5="Symbol forsy"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -549,6 +642,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[CHR_Coleman_archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [CHR_Coleman_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -558,10 +658,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Coleman_archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Coleman_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Coleman_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
@@ -591,9 +703,11 @@ Description="Alberts, pół Anglik, pół Szkot, zawsze był silny fizycznie, le
 BodyMesh0="Psia obroża"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
-
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Włosy"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -602,10 +716,12 @@ BodySkin1="Rubinowa czerwień"
 BodySkin2="Ostry niebieski"
 BodySkin3="Tropikalna biel"
 BodySkin4="Święte Słonce – cenny egz."
+BodySkin5="Kamuflaż arktyczne kleksy"
+BodySkin6="Kamuflaż różowe piksele"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -625,6 +741,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[CHR_Alberts_archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [CHR_Alberts_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -634,10 +757,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Alberts_archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Alberts_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Alberts_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Szary"
@@ -1447,7 +1582,7 @@ AttachmentSkin4="Cenny egzemplarz"
 [Cosmetic_BoxKnightHelmet_ARCH]
 Attachment="Hełm kartonowego rycerza"
 AttachmentSkin0="Klasyczny"
-AttachmentSkin1="BareSo"
+AttachmentSkin1="Jittery Joe's"
 AttachmentSkin2="Bio Cola"
 AttachmentSkin3="Horzine Depot"
 AttachmentSkin4="Tripwire"
@@ -1527,9 +1662,11 @@ Description="Karierę Billa Mastersona w armii należy określić jako burzliwą
 BodyMesh0="Mundur polowy"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
-
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Twarz"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -1544,10 +1681,13 @@ BodySkin0="Zielony"
 BodySkin1="Czarny"
 BodySkin2="Śnieg"
 BodySkin3="DPM"
+BodySkin4="Symbol forsy"
+BodySkin5="Kamuflaż arktyczne kleksy"
+BodySkin6="Kamuflaż fioletowe kleksy"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -1567,6 +1707,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[CHR_Masterson_archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [CHR_Masterson_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1576,10 +1723,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Masterson_archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Masterson_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Masterson_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -1588,9 +1747,11 @@ BodyMesh0="Umrzyj cool"
 BodyMesh1="Motocykl"
 BodyMesh2="Kartonowy rycerz"
 BodyMesh3="Ochroniarz Horzine"
-
+BodyMesh4="Pustkowie"
 BodyMesh5="Ochrona"
 BodyMesh6="Kurczak-komandos"
+BodyMesh7="Świąteczna piżama"
+BodyMesh8="Piżama skarbca"
 HeadMesh0="Włosy"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -1606,6 +1767,7 @@ BodySkin2="W czerni"
 BodySkin3="Niebieski smok"
 BodySkin4="Skarbiec Retro"
 BodySkin5="Skarbcowy koi – cenny egz."
+BodySkin6="Symbol forsy"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Czerwony i czarny"
@@ -1618,7 +1780,7 @@ BodySkin6="Żuraw"
 
 [CHR_Tanaka_Archetype.BodyMesh2]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -1638,6 +1800,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[CHR_Tanaka_Archetype.BodyMesh4]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [CHR_Tanaka_Archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1647,10 +1816,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Tanaka_Archetype.BodyMesh6]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Tanaka_Archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Tanaka_Archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Hełm"
@@ -1685,9 +1866,11 @@ Description="Ana prawdopodobnie zostałaby sklasyfikowana przez establishment ja
 BodyMesh0="Metalówa"
 BodyMesh1="Ochroniarz Horzine"
 BodyMesh2="Kartonowy rycerz"
-
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Irokez"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -1705,6 +1888,8 @@ BodySkin1="Jasna krew"
 BodySkin2="Zielony Bio-Cola"
 BodySkin3="Ładny niebieski"
 BodySkin4="Hołd dla Chickenatora"
+BodySkin5="Skarbiec – cenny egz."
+BodySkin6="Symbol forsy"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="Elitarny niebieski"
@@ -1722,11 +1907,18 @@ BodySkin11="Cenny egzemplarz"
 
 [CHR_Ana_Archetype.BodyMesh2]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
+
+[CHR_Ana_Archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
 
 [CHR_Ana_Archetype.BodyMesh4]
 BodySkin0="Croker"
@@ -1737,10 +1929,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Ana_Archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Ana_Archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Ana_Archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Okulary 3D"
@@ -1761,9 +1965,11 @@ BodyMesh0="Strój ochronny"
 BodyMesh1="Londyn"
 BodyMesh2="Kartonowy rycerz"
 BodyMesh3="Ochroniarz Horzine"
-
+BodyMesh4="Pustkowie"
 BodyMesh5="Ochrona"
 BodyMesh6="Kurczak-komandos"
+BodyMesh7="Świąteczna piżama"
+BodyMesh8="Piżama skarbca"
 HeadMesh0="Włosy"
 
 [chr_mark_archetype.BodyMesh0]
@@ -1771,6 +1977,7 @@ BodySkin0="Policyjny niebieski"
 BodySkin1="Nocna czerń"
 BodySkin2="Wojskowa zieleń"
 BodySkin3="Kamuflaż SAS"
+BodySkin4="Symbol forsy"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="Miejski"
@@ -1781,7 +1988,7 @@ BodySkin4="Odblaskowa czerń"
 
 [chr_mark_archetype.BodyMesh2]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -1801,6 +2008,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[chr_mark_archetype.BodyMesh4]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [chr_mark_archetype.BodyMesh5]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1810,10 +2024,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [chr_mark_archetype.BodyMesh6]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[chr_mark_archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[chr_mark_archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
@@ -1827,12 +2053,14 @@ HeadSkin6="Good Game"
 [chr_alan_archetype]
 CharacterName="Klasyczny Masterson"
 Description="Nikt nigdy nie zrozumiał, dlaczego Masterson w ogóle awansował w szeregach, chociaż niektórzy sugerują, że jego bogatszy i przystojniejszy kuzyn – kapitan Sir Richard – Wiggins mógł mieć z tym coś wspólnego. A może to przez jego bystrzejszego brata? Niemniej – na co zawsze zwraca się uwagę – jest nieoszlifowanym diamentem, mężczyzną wypowiadającym niewiele (miłych) słów i zachowującym nienaturalny spokój podczas walki. Prawie wszyscy sądzą, że jest to spowodowane jego brakiem wyobraźni, empatii i inteligencji. Na szczęście dowodzi ludźmi w sposób zdecydowany i zawsze wykonuje swoją robotę – niezależnie od tego, jak niesmaczna wydałaby się komuś o dobrym guście i nienagannych manierach."
-BodyMesh0="Strój ochronny"
+BodyMesh0="Mundur polowy"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
-
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Twarz"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -1840,10 +2068,13 @@ BodySkin0="Zielony"
 BodySkin1="Czarny"
 BodySkin2="Śnieg"
 BodySkin3="DPM"
+BodySkin4="Symbol forsy"
+BodySkin5="Kamuflaż arktyczne kleksy"
+BodySkin6="Kamuflaż fioletowe kleksy"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -1863,6 +2094,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[CHR_alan_archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [CHR_alan_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1872,10 +2110,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_alan_archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_alan_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_alan_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
@@ -1899,19 +2149,22 @@ Description="Strasser wyruszył na swoją pierwszą wojnę w 1939 r. jako żołn
 BodyMesh0="RO2: Bohater Stalingradu"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
-
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Włosy"
 
 [CHR_strasser_archetype.BodyMesh0]
 BodySkin0="Żółtodziób"
 BodySkin1="Zaprawiony w bitwie"
 BodySkin2="Skarbcowy kamuflaż"
+BodySkin3="Symbol forsy"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -1931,6 +2184,13 @@ BodySkin9="Adamant"
 BodySkin10="Łowca nagród"
 BodySkin11="Cenny egzemplarz"
 
+[CHR_strasser_archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
+
 [CHR_strasser_archetype.BodyMesh4]
 BodySkin0="Croker"
 BodySkin1="Glover"
@@ -1940,10 +2200,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_strasser_archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_strasser_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_strasser_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Ciemny stalowy"
@@ -1982,7 +2254,7 @@ BodySkin3="Jaime"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
@@ -2101,9 +2373,11 @@ Description="Rae Higgins to australijski towar importowy, który trafił do Euro
 BodyMesh0="Domyślny ubiór"
 BodyMesh1="Ochroniarz Horzine"
 BodyMesh2="Kartonowy rycerz"
-
+BodyMesh3="Pustkowie"
 BodyMesh4="Ochrona"
 BodyMesh5="Kurczak-komandos"
+BodyMesh6="Świąteczna piżama"
+BodyMesh7="Piżama skarbca"
 HeadMesh0="Domyślna głowa"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2114,6 +2388,7 @@ BodySkin3="Siła natury"
 BodySkin4="Czerwone paski"
 BodySkin5="Żeglarz"
 BodySkin6="Skarbcowe czaszki"
+BodySkin7="Symbol forsy"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Elitarny niebieski"
@@ -2131,11 +2406,18 @@ BodySkin11="Cenny egzemplarz"
 
 [chr_rockabilly_archetype.BodyMesh2]
 BodySkin0="Klasyczny"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
+
+[chr_rockabilly_archetype.BodyMesh3]
+BodySkin0="Bohater"
+BodySkin1="Kamuflaż"
+BodySkin2="Czarny Motocyklista"
+BodySkin3="Poe"
+BodySkin4="Jeździec Pustyni"
 
 [chr_rockabilly_archetype.BodyMesh4]
 BodySkin0="Croker"
@@ -2146,10 +2428,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [chr_rockabilly_archetype.BodyMesh5]
-BodySkin0 ="Używany"
-BodySkin1 ="Ogolony"
-BodySkin2 ="Nocny"
-BodySkin3 ="Poważna rana"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[chr_rockabilly_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[chr_rockabilly_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Czarny"
@@ -2623,10 +2917,10 @@ EmoteName="Bez trzymanki"
 EmoteName="Bez trzymanki+"
 
 [HealClick]
-EmoteName="Taniec radości"
+EmoteName="Piątka piętami"
 
 [HealClick_Deluxe]
-EmoteName="Taniec radości+"
+EmoteName="Piątka piętami+"
 
 [TheSprinkler]
 EmoteName="Zraszacz"
@@ -2774,6 +3068,14 @@ Attachment="Hełm pogromcy dem."
 AttachmentSkin0="Szary"
 AttachmentSkin1="Cenny egzemplarz"
 
+[Cosmetic_WastelandHelmet_ARCH]
+Attachment="Hełm z pustkowi"
+AttachmentSkin0="Bohater"
+AttachmentSkin1="Kamuflaż"
+AttachmentSkin2="Czarny Motocyklista"
+AttachmentSkin3="Poe"
+AttachmentSkin4="Jeździec Pustyni"
+
 [Cosmetic_HazmatHelmet_ARCH]
 Attachment="Hełm ochronny"
 AttachmentSkin0="Croker"
@@ -2868,170 +3170,514 @@ AttachmentSkin0="Mózg rozwalony"
 Attachment="Wybuchowy dynamit"
 AttachmentSkin0="Mózg rozwalony"
 
+[Cosmetic_BooniHat_ARCH]
+Attachment="Kapelusz polowy"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Fioletowy"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
+
+[Cosmetic_DragonGasMask_ARCH]
+Attachment="Smocza maska przeciwgazowa"
+AttachmentSkin0="Czarna"
+AttachmentSkin1="Niebieska"
+AttachmentSkin2="Złota"
+AttachmentSkin3="Zielona"
+AttachmentSkin4="Metalowa"
+AttachmentSkin5="Organiczna"
+AttachmentSkin6="Fioletowa"
+AttachmentSkin7="Czerwona"
+
+[Cosmetic_ImperialGalea_ARCH]
+Attachment="Imperial Galea"
+AttachmentSkin0="Wojskowy"
+AttachmentSkin1="Klasyczny"
+AttachmentSkin2="Biały"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_PlagueDoctorMask_ARCH]
+Attachment="Plague Doctor Mask"
+AttachmentSkin0="Szara"
+AttachmentSkin1="Jasnobrązowa"
+AttachmentSkin2="Czerwona"
+AttachmentSkin3="Biała"
+
+[Cosmetic_SkullMask_ARCH]
+Attachment="Skull Mask"
+AttachmentSkin0="Black Red"
+AttachmentSkin1="Black Silver"
+AttachmentSkin2="White Red"
+AttachmentSkin3="White Silver"
+AttachmentSkin4="Precious"
+
+[Cosmetic_VictoriansSecret_ARCH]
+Attachment="Wiktoriański sekret"
+AttachmentSkin0="Victorian's Secret"
+
+[Cosmetic_HannyaMask_ARCH]
+Attachment="Maska diabła"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Gold"
+AttachmentSkin3="Green"
+AttachmentSkin4="Iron"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red Shiny"
+AttachmentSkin7="White"
+AttachmentSkin8="Precious"
+
+[Cosmetic_Hopps_ARCH]
+Attachment="Maska wenecka"
+AttachmentSkin0="Geometric"
+AttachmentSkin1="Green Machine"
+AttachmentSkin2="Hazard"
+AttachmentSkin3="Porcelain"
+AttachmentSkin4="Gold"
+AttachmentSkin5="Sell Out"
+
+[Cosmetic_KobutoMask_ARCH]
+Attachment="Maska kabuki"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Copper"
+AttachmentSkin3="Gold"
+AttachmentSkin4="Green"
+AttachmentSkin5="Radioactive"
+AttachmentSkin6="Red"
+AttachmentSkin7="White"
+AttachmentSkin8="Precious"
+
+[Cosmetic_SamuraiGasHelmet_ARCH]
+Attachment="Samurajski hełm przeciwgazowy"
+AttachmentSkin0="Gold"
+AttachmentSkin1="Leather"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SamuraiGasMask_ARCH]
+Attachment="Maska samuraja"
+AttachmentSkin0="Gold"
+AttachmentSkin1="Leather"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SamuraiGasMouthpiece_ARCH]
+Attachment="Samurajska osłona"
+AttachmentSkin0="Gold"
+AttachmentSkin1="Leather"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
 [Cosmetic_Bear_ARCH]
 Attachment="Maska niedźwiedzia"
-AttachmentSkin0 ="Niedźwiedź brunatny"
-AttachmentSkin1 ="Niedźwiedź bambusowy"
-AttachmentSkin2 ="Cenny egzemplarz"
+AttachmentSkin0="Brown Bear"
+AttachmentSkin1="Panda Bear"
+AttachmentSkin2="Precious"
 
 [Cosmetic_Cat_ARCH]
 Attachment="Maska kota"
-AttachmentSkin0 ="Brązowa"
-AttachmentSkin1 ="Szara"
-AttachmentSkin2 ="Biała"
-AttachmentSkin3 ="Cenny egzemplarz"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Gray"
+AttachmentSkin2="White"
+AttachmentSkin3="Precious"
 
 [Cosmetic_Chicken_ARCH]
 Attachment="Maska kurczaka"
-AttachmentSkin0 ="Biało-czerwona"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="White Red"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Cow_ARCH]
 Attachment="Maska krowy"
-AttachmentSkin0 ="Czarno-biała"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="White Black"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Dog_ARCH]
 Attachment="Maska psa"
-AttachmentSkin0 ="Brązowy pies"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="Brown Dog"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Fox_ARCH]
 Attachment="Maska lisa"
-AttachmentSkin0 ="Rudy lis"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="Brown Fox"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Goat_ARCH]
 Attachment="Maska kozy"
-AttachmentSkin0 ="Kozi kolor"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="Goat Colored"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Horse_ARCH]
 Attachment="Maska konia"
-AttachmentSkin0 ="Koń gniady"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="Brown Horse"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Pig_ARCH]
 Attachment="Maska świni"
-AttachmentSkin0 ="Świński róż"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="Pinky Pig"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Rabbit_ARCH]
 Attachment="Maska królika"
-AttachmentSkin0 ="Brązowy królik"
-AttachmentSkin1 ="Biały królik"
-AttachmentSkin2 ="Cenny egzemplarz"
+AttachmentSkin0="Brown Rabbit"
+AttachmentSkin1="White Rabbit"
+AttachmentSkin2="Precious"
 
 [Cosmetic_CommandoChickenHelmet_ARCH]
 Attachment="Kurczak-komandos"
-AttachmentSkin0 ="Używana"
-AttachmentSkin1 ="Ogolony"
-AttachmentSkin2 ="Nocny"
-AttachmentSkin3 ="Poważna rana"
+AttachmentSkin0="Used"
+AttachmentSkin1="Clean"
+AttachmentSkin2="Night"
+AttachmentSkin3="Heavy Wound"
 
 [Cosmetic_bobBatcat_ARCH]
 Attachment="Bob"
-AttachmentSkin0 ="Czarny"
-AttachmentSkin1 ="Zielony"
-AttachmentSkin2 ="Fioletowy"
-AttachmentSkin3 ="Turkusowy"
-AttachmentSkin4 ="Cenny egzemplarz"
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Teal"
+AttachmentSkin4="Precious"
 
 [Cosmetic_crown_ARCH]
 Attachment="Korona"
-AttachmentSkin0 ="Cenny egzemplarz"
-AttachmentSkin1 ="Srebrna"
+AttachmentSkin0="Precious"
+AttachmentSkin1="Silver"
 
 [Cosmetic_DGlasses_ARCH]
 Attachment="Okulary forsy"
-AttachmentSkin0 ="Zielone"
-AttachmentSkin1 ="Czarne"
-AttachmentSkin2 ="Cenny egzemplarz"
+AttachmentSkin0="Green"
+AttachmentSkin1="Black"
+AttachmentSkin2="Precious"
 
 [Cosmetic_hansBackpack_ARCH]
 Attachment="Plecak Hansa"
-AttachmentSkin0 ="Czarny"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="Black"
+AttachmentSkin1="Precious"
 
 [Cosmetic_scrakeMask_ARCH]
 Attachment="Maska Zgrzyciarza"
-AttachmentSkin0 ="Stal"
-AttachmentSkin1 ="Cenny egzemplarz"
+AttachmentSkin0="Steel"
+AttachmentSkin1="Precious"
 
 [Cosmetic_sharkHat_ARCH]
 Attachment="Rekin"
-AttachmentSkin0 ="Szary"
-AttachmentSkin1 ="Piaskowy"
-AttachmentSkin2 ="Orka"
-AttachmentSkin3 ="Krwawy"
-AttachmentSkin4 ="Cenny egzemplarz"
+AttachmentSkin0="Grey"
+AttachmentSkin1="Sand"
+AttachmentSkin2="Orca"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Precious"
 
 [Cosmetic_VGlasses_ARCH]
 Attachment="Skarbcowe okulary"
-AttachmentSkin0 ="Zielone"
-AttachmentSkin1 ="Czarne"
-AttachmentSkin2 ="Cenny egzemplarz"
+AttachmentSkin0="Green"
+AttachmentSkin1="Black"
+AttachmentSkin2="Precious"
 
 [Cosmetic_Halloween_Arrowed_ARCH]
 Attachment="Strzałka"
-AttachmentSkin0 ="Klasyczna"
+AttachmentSkin0="Classic"
 
 [Cosmetic_Halloween_Axed_ARCH]
 Attachment="Siekiera"
-AttachmentSkin0 ="Zwykła siekiera"
-AttachmentSkin1 ="Cenna siekiera"
+AttachmentSkin0="Classic Axe"
+AttachmentSkin1="Precious Axe"
 
 [Cosmetic_Halloween_Bolts_ARCH]
 Attachment="Śruby"
-AttachmentSkin0 ="Metalowe śruby"
+AttachmentSkin0="Metal Bolts"
 
 [Cosmetic_Halloween_Halo_ARCH]
 Attachment="Aureola"
-AttachmentSkin0 ="Święty anioł"
+AttachmentSkin0="Holy Angel"
 
 [Cosmetic_Halloween_Pumpkin_Classic_ARCH]
 Attachment="Świecąca dynia"
-AttachmentSkin0 ="Świecąca dynia"
-AttachmentSkin1 ="Świecąca dynia – cenna"
+AttachmentSkin0="Jack O' Lantern Classic"
+AttachmentSkin1="Jack O' Lantern Classic Precious"
 
 [Cosmetic_Halloween_Pumpkin_Dosh_ARCH]
 Attachment="Bogata świecąca dynia"
-AttachmentSkin0 ="Dojrzała forsa"
-AttachmentSkin1 ="Bogata świecąca dynia – cenna"
+AttachmentSkin0="Ripe Dosh"
+AttachmentSkin1="Jack O' Lantern Dosh Precious"
 
 [Cosmetic_Halloween_Pumpkin_Fang_ARCH]
 Attachment="Świecąca dynia z kłami"
-AttachmentSkin0 ="Zgniła świecąca dynia"
+AttachmentSkin0="Rotten Jack O' Lantern"
 
 [Cosmetic_Halloween_Pumpkin_Goofy_ARCH]
 Attachment="Śmieszna dynia"
-AttachmentSkin0 ="Śmieszna dynia"
+AttachmentSkin0="Jack O' Lantern Goofy"
 
 [Cosmetic_Halloween_Pumpkin_Happy_ARCH]
 Attachment="Wesoła dynia"
-AttachmentSkin0 ="Wesoła dynia"
+AttachmentSkin0="Jack O' Lantern Happy"
 
 [Cosmetic_Halloween_Pumpkin_Sad_ARCH]
 Attachment="Smutna dynia"
-AttachmentSkin0 ="Smutna dynia"
+AttachmentSkin0="Jack O' Lantern Sad"
 
 [Cosmetic_Halloween_Pumpkin_Scared_ARCH]
 Attachment="Przerażona dynia"
-AttachmentSkin0 ="Przerażona dynia"
+AttachmentSkin0="Jack O' Lantern Scared"
 
 [Cosmetic_Halloween_Pumpkin_Scary_ARCH]
 Attachment="Straszna dynia"
-AttachmentSkin0 ="Straszna dojrzała dynia"
-AttachmentSkin1 ="Straszna dynia – cenna"
+AttachmentSkin0="Jack O' Lantern Ripe Scary"
+AttachmentSkin1="Jack O' Lantern Scary Precious"
 
 [Cosmetic_Halloween_Pumpkin_Sneaky_ARCH]
 Attachment="Dynia ninja"
-AttachmentSkin0 ="Dynia ninja"
+AttachmentSkin0="Jack O' Lantern Sneaky"
 
 [Cosmetic_Halloween_Pumpkin_Squeal_ARCH]
 Attachment="Skomląca dynia"
-AttachmentSkin0 ="Skomląca dynia"
+AttachmentSkin0="Jack O' Lantern Squeal"
 
 [Cosmetic_Halloween_Pumpkin_Winky_ARCH]
 Attachment="Mrugająca dynia"
-AttachmentSkin0 ="Radioaktywna dynia"
+AttachmentSkin0="Jack O' Lantern Radioactive Winky"
+
+[Cosmetic_Christmas_AlphaHat_ARCH]
+Attachment="Świąteczna czapka alfy"
+AttachmentSkin0="Green"
+
+[Cosmetic_Christmas_beard_ARCH]
+Attachment="Świąteczna broda"
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Precious"
+AttachmentSkin3="White"
+
+[Cosmetic_Christmas_BellBackpack_ARCH]
+Attachment="Plecak: świąteczny dzwonek"
+AttachmentSkin0="Gold"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Silver"
+
+[Cosmetic_Christmas_BloatHat_ARCH]
+Attachment="Świąteczna czapka tłuszczaka"
+AttachmentSkin0="Tan"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_Blubs_ARCH]
+Attachment="Świąteczne żarówki"
+AttachmentSkin0="Red Green"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_CookieGlasses_ARCH]
+Attachment="Świąteczne okulary-ciasteczka"
+AttachmentSkin0="Green Wrapping"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Red Wrapping"
+
+[Cosmetic_Christmas_CystHat_ARCH]
+Attachment="Świąteczna czapka cyst"
+AttachmentSkin0="Green"
+
+[Cosmetic_Christmas_EarMuffs_ARCH]
+Attachment="Świąteczne nauszniki"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Red"
+
+[Cosmetic_Christmas_ElfEars_ARCH]
+Attachment="Świąteczne elfie uszy"
+AttachmentSkin0="Flesh"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_FPHead_ARCH]
+Attachment="Świąteczna głowa podżegacza"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Copycat"
+AttachmentSkin2="Libro"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Warui"
+
+[Cosmetic_Christmas_GoreStockingBackpack_ARCH]
+Attachment="Świąteczna skarpeta gore"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Classic"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Red"
+
+[Cosmetic_Christmas_HaloBulbs_ARCH]
+Attachment="Świąteczne halogeny"
+AttachmentSkin0="Red Green"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_HamHead_ARCH]
+Attachment="Świąteczna mięsna głowa"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_HuskBackpack_ARCH]
+Attachment="Świąteczny plecak zrzynka"
+AttachmentSkin0="Black"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_HuskHat_ARCH]
+Attachment="Świąteczna czapka zrzynka"
+AttachmentSkin0="Black"
+
+[Cosmetic_Christmas_PoinsettaHat_ARCH]
+Attachment="Gwiazda betlejemska"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_SlasherHat_ARCH]
+Attachment="Świąteczna czapka siepacza"
+AttachmentSkin0="Green"
+
+[Cosmetic_Christmas_SnowmanFace_ARCH]
+Attachment="Świąteczna maska bałwana"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_TeddyBackpack_ARCH]
+Attachment="Świąteczny plecak z pluszakiem"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Dark"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_Christmas_TreeGlasses_ARCH]
+Attachment="Świąteczne okulary-drzewka"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+AttachmentSkin3="Red"
+
+[Cosmetic_Christmas_Ushanka_ARCH]
+Attachment="Świąteczna uszanka"
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Tan"
+
+[Cosmetic_Christmas_PajamaHat_ARCH]
+Attachment="Świąteczna piżamowa czapka"
+AttachmentSkin0="Bunny"
+AttachmentSkin1="Dosh"
+AttachmentSkin2="Green Plaid"
+AttachmentSkin3="Green Trees"
+AttachmentSkin4="Quilt"
+AttachmentSkin5="Red Snow"
+AttachmentSkin6="Red Plaid"
+
+[Cosmetic_LeatherMask_ARCH]
+Attachment="Skórzana maska"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Brown"
+AttachmentSkin3="Pink"
+AttachmentSkin4="Precious"
+AttachmentSkin5="Red"
+AttachmentSkin6="Tan"
+AttachmentSkin7="Trippy"
+AttachmentSkin8="White"
+
+[Cosmetic_HockeyMask_ARCH]
+Attachment="Maska hokejowa"
+AttachmentSkin0="Black"
+AttachmentSkin1="High Five"
+AttachmentSkin2="Kitty"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Skull"
+AttachmentSkin5="Slasher"
+AttachmentSkin6="Teal"
+AttachmentSkin7="TGIF"
+
+[Cosmetic_BiocolaHat_ARCH]
+Attachment="BioCola"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+AttachmentSkin3="Red"
+AttachmentSkin4="White"
+
+[Cosmetic_FoamCowboyHat_ARCH]
+Attachment="Piankowa kowbojka"
+AttachmentSkin0="Black"
+AttachmentSkin1="Orange"
+AttachmentSkin2="Precious"
+AttachmentSkin3="USA"
+AttachmentSkin4="White"
+AttachmentSkin5="Yellow"
+
+[Cosmetic_PaperBagBlank_ARCH]
+Attachment="Papierowa torba"
+AttachmentSkin0="White"
+
+[Cosmetic_PaperBagEyes_ARCH]
+Attachment="Papierowa torba z oczami"
+AttachmentSkin0="Precious"
+
+[Cosmetic_PaperBagHappy_ARCH]
+Attachment="Papierowa torba z uśmiechem"
+AttachmentSkin0="Green"
+
+[Cosmetic_PaperBagKrinkle_ARCH]
+Attachment="Szeleszcząca papierowa torba"
+AttachmentSkin0="Trippy"
+
+[Cosmetic_PaperBagOFace_ARCH]
+Attachment="Papierowa torba z TĄ miną"
+AttachmentSkin0="Yellow"
+
+[Cosmetic_PaperBagOooh_ARCH]
+Attachment="Papierowa torba Oooch"
+AttachmentSkin0="White"
+
+[Cosmetic_PaperBagSmallEyes_ARCH]
+Attachment="Papierowa torba z oczkami"
+AttachmentSkin0="Purple"
+
+[Cosmetic_PaperBagYelling_ARCH]
+Attachment="Papierowa torba z krzykiem"
+AttachmentSkin0="Red"
+
+[Cosmetic_PorcelainMaskBlank_ARCH]
+Attachment="Porcelanowa maska"
+AttachmentSkin0="White"
+
+[Cosmetic_PorcelainMaskBroken_ARCH]
+Attachment="Pęknięta porcelanowa maska"
+AttachmentSkin0="Yellow"
+
+[Cosmetic_PorcelainMaskCross_ARCH]
+Attachment="Porcelanowa maska z krzyżem"
+AttachmentSkin0="Red and Black"
+
+[Cosmetic_PorcelainMaskDosh_ARCH]
+Attachment="Porcelanowa maska z forsą"
+AttachmentSkin0="Precious"
+
+[Cosmetic_PorcelainMaskHappy_ARCH]
+Attachment="Porcelanowa maska z uśmiechem"
+AttachmentSkin0="Yellow"
+
+[Cosmetic_PorcelainMaskSad_ARCH]
+Attachment="Porcelanowa maska ze smutną miną"
+AttachmentSkin0="Blue"
+
+[Cosmetic_PorcelainMaskSlim_ARCH]
+Attachment="Wąska porcelanowa maska"
+AttachmentSkin0="Green"
+
+[Cosmetic_PorcelainMaskSly_ARCH]
+Attachment="Porcelanowa maska z chytrą miną"
+AttachmentSkin0="Trippy"
+
+[Cosmetic_Tricorne_ARCH]
+Attachment="Trójróg"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Brown"
+AttachmentSkin3="Precious"
+AttachmentSkin4="White"

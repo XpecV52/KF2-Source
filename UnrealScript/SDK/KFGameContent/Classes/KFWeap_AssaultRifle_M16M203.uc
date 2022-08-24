@@ -444,13 +444,13 @@ defaultproperties
     AmmoPickupScale[1]=2.0
 
 	// Ammo
-	InitialSpareMags[0]	= 2
+	InitialSpareMags[0]	= 3 //2
 	MagazineCapacity[0]	= 30
-	SpareAmmoCapacity[0]= 210
-
+	SpareAmmoCapacity[0]= 270
+    //grenades
 	InitialSpareMags[1]	= 3
 	MagazineCapacity[1]	= 1
-	SpareAmmoCapacity[1]= 11
+	SpareAmmoCapacity[1]= 13 //11
 
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -501,7 +501,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_HighExplosive_M16M203'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_M203Impact'
 	FireInterval(ALTFIRE_FIREMODE)=+0.25f
-	InstantHitDamage(ALTFIRE_FIREMODE)=150.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=225.0 //150
 	Spread(ALTFIRE_FIREMODE)=0.0085
 
 	// BASH_FIREMODE

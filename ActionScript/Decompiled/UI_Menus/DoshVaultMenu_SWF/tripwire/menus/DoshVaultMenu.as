@@ -398,11 +398,12 @@ package tripwire.menus
             if(param1.keyCode == Keyboard.T)
             {
                 _loc5_ = {
-                    "oldDosh":250,
-                    "newDosh":15000,
+                    "oldDosh":0,
+                    "newDosh":500000,
                     "tierBase":0,
-                    "tierLength":1000
+                    "tierLength":500000
                 };
+                this.makeCrateUnlockedTimeline();
                 this.doshData = _loc5_;
             }
         }

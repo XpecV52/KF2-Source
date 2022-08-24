@@ -20,7 +20,10 @@ native event Init();
 native event Activate();
 
 // Export UAlienFXLEDInterface::execSetColor(FFrame&, void* const)
-native event bool SetColor(byte RedPercent, byte GreenPercent, byte BluePercent);
+native event bool SetColor(byte RedPercent, byte GreenPercent, byte BluePercent, optional byte Brightness)
+{
+    Brightness = 255;                        
+}
 
 // Export UAlienFXLEDInterface::execLedRestoreLighting(FFrame&, void* const)
 native event bool LedRestoreLighting();
@@ -28,8 +31,8 @@ native event bool LedRestoreLighting();
 // Export UAlienFXLEDInterface::execLedStopEffects(FFrame&, void* const)
 native event bool LedStopEffects();
 
-// Export UAlienFXLEDInterface::execTickAlienFX(FFrame&, void* const)
-native function TickAlienFX();
+// Export UAlienFXLEDInterface::execUpdateAlienFX(FFrame&, void* const)
+native function UpdateAlienFX();
 
 // Export UAlienFXLEDInterface::execLEDSetFlashingRBG(FFrame&, void* const)
 native event bool LEDSetFlashingRBG(byte redPercentage, byte greenPercentage, byte bluePercentage, int milliSecondsDuration, int milliSecondsInterval);

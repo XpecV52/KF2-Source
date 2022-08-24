@@ -24,6 +24,7 @@ var array<int> TierThreshold;
 var string LightMICTagName;
 var string LightConeTagName;
 var string LightBulbTagName;
+var string DoshLitterMICTagName;
 var string CustomPawnSpawnPointTagName;
 
 var int FilledPalletCount;
@@ -46,29 +47,39 @@ function InitTraderList();
 
 function InitVault()
 {
-    local PlayerController PC;
+    local KFPlayerController KFPC;
     local LocalPlayer LP;
-    
-    // To fix custom post processing effect not showing up in main menu
-    foreach LocalPlayerControllers(class'PlayerController', PC)
-    {
-        LP = LocalPlayer(PC.Player);
-        if(LP != None)
-        {
-            LP.RemoveAllPostProcessingChains();
-            LP.InsertPostProcessingChain(LP.Outer.GetWorldPostProcessChain(),INDEX_NONE,true);
-            if(PC.myHUD != None)
-            {
-                PC.myHUD.NotifyBindPostProcessEffects();
-            }
+	local int i;
 
-            if (KFPlayerController(PC) != none)
-            {
-                InitDoshPiles(KFPlayerController(PC));
-                SpawnVaultCustomizationPawn(KFPlayerController(PC));
-            }
-        }
-    } 
+    // To fix custom post processing effect not showing up in main menu
+	KFPC = KFPlayerController(WorldInfo.GetALocalPlayerController());
+	if (KFPC == none)
+	{
+		return;
+	}
+
+	LP = LocalPlayer(KFPC.Player);
+	if (LP != None)
+	{
+		LP.RemoveAllPostProcessingChains();
+		LP.InsertPostProcessingChain(LP.Outer.GetWorldPostProcessChain(), INDEX_NONE, true);
+	}	
+
+	if (KFPC.myHUD != None)
+	{
+		KFPC.myHUD.NotifyBindPostProcessEffects();
+	}
+	SetDoshTier(GetTotalDoshTier(KFPC));
+	InitDoshPiles(KFPC);
+	SpawnVaultCustomizationPawn(KFPC);
+
+	if(!bInitialized)
+	{
+		for (i = 0; i < TierThreshold.length; i++)
+		{
+			ActiveLightActorsForTier(i, i == 0);
+		}
+	}
 }
 
 function SpawnVaultCustomizationPawn(KFPlayerController KFPC)
@@ -117,12 +128,32 @@ event InitDoshPiles(KFPlayerController KFPC)
     {
         return;
     }
-    ActiveLightActorsForTier(0);   
     CalcultedTierValue = GetTotalDoshTier(KFPC);
     CollectDoshPiles();
     SortDoshPiles();
-    SpawnDoshPilesForAmount(KFPC.GetLastSeenDoshCount());   
+    SpawnDoshPilesForAmount(KFPC.GetLastSeenDoshCount());
+	InitDoshLitter(CalcultedTierValue);
     bInitPiles = true;
+}
+
+function InitDoshLitter(int DoshTier)
+{
+	local MaterialInstanceActor DoshLitterMICActor;
+	local MaterialInstanceConstant MICInst;
+
+	foreach AllActors(class'MaterialInstanceActor', DoshLitterMICActor)
+	{
+		if (string(DoshLitterMICActor.Tag) == (DoshLitterMICTagName))
+		{
+			//DoshLitterMICActor.StaticMeshComponent.CreateAndSetMaterialInstanceConstant(0);
+			//MaterialInstanceConstant(DoshLitterMICActor.StaticMeshComponent.GetMaterial(0)).SetScalarParameterValue('Dosh_Amount', (float(CalcultedTierValue) / float(TierThreshold.length - 1)));
+			MICInst = new(self) class'MaterialInstanceConstant';
+			MICInst.SetParent(DoshLitterMICActor.MatInst);
+			MICInst.SetScalarParameterValue('Dosh_Amount', (float(CalcultedTierValue)/float(TierThreshold.length-1)) );
+			DoshLitterMICActor.MatInst = MICInst;
+		}
+	}
+	//DoshLitterMIC.SetScalarParameterValue('Dosh_Amount', 1);
 }
 
 function CollectDoshPiles()
@@ -133,7 +164,7 @@ function CollectDoshPiles()
 
     foreach AllActors(class'KFActor_DoshPile', DoshPile)
     {
-        DoshVaultStacks.AddItem(DoshPile);   
+        DoshVaultStacks.AddItem(DoshPile);
         DoshPile.SetHidden(true);
         DoshPile.SetValue(0);
     }
@@ -141,7 +172,7 @@ function CollectDoshPiles()
 
 function SortDoshPiles()
 {
-    DoshVaultStacks.Sort(CompareItemTags);    
+    DoshVaultStacks.Sort(CompareItemTags);
 }
 
 function int CompareItemTags(Actor Actor1, Actor Actor2)
@@ -155,9 +186,9 @@ function int CompareItemTags(Actor Actor1, Actor Actor2)
     }
     if( Len(Tag1) != Len(Tag2) )
     {
-        return Len(Tag1) > Len(Tag2) ? -1 : 1;    
+        return Len(Tag1) > Len(Tag2) ? -1 : 1;
     }
-    
+
     return Tag1 > Tag2 ? -1 : 1;
 }
 
@@ -168,6 +199,7 @@ function int GetTotalDoshTier(KFPlayerController KFPC)
     local int i;
 
     NumPiles = int(KFPC.GetTotalDoshCount() / class'KFActor_DoshPile'.default.DoshPileMax);
+
     for (i = 0; i < TierThreshold.length; i++)
     {
         if(NumPiles >= TierThreshold[i])
@@ -175,30 +207,40 @@ function int GetTotalDoshTier(KFPlayerController KFPC)
             TierValue = i;
         }
     }
-
-	SetKismetDoshTier(TierValue);
-
+	
     return TierValue;
 }
 
-function SetKismetDoshTier(int TierValue)
+function FinalAnimationPlayed(KFPlayerController KFPC)
+{
+	SetDoshTier(GetTotalDoshTier(KFPC), true);
+}
+
+function SetDoshTier(int TierValue, optional bool bFinalAnimation = false)
 {
 	local array<SequenceObject> ActivationEvents;
 	local KFSeqEvent_DoshVault ActivationEvent;
 	local int i;
-
-	WorldInfo.GetGameSequence().FindSeqObjectsByClass(class'KFSeqEvent_DoshVault', true, ActivationEvents);
-	for (i = 0; i < ActivationEvents.Length; ++i)
+	
+	/*for (i = 0; i < TierValue; i++)//Giving this back to kismet for now. -ZG
 	{
-		ActivationEvent = KFSeqEvent_DoshVault(ActivationEvents[i]);
-		if (ActivationEvent != none)
+		ActiveLightActorsForTier(i, i <= TierValue);
+	}*/
+	/*if (bFinalAnimation)
+	{*/
+		WorldInfo.GetGameSequence().FindSeqObjectsByClass(class'KFSeqEvent_DoshVault', true, ActivationEvents);
+		for (i = 0; i < ActivationEvents.Length; i++)
 		{
-			ActivationEvent.SetDoshTier(TierValue + 1);
+			ActivationEvent = KFSeqEvent_DoshVault(ActivationEvents[i]);
+			if (ActivationEvent != none)
+			{
+				ActivationEvent.SetDoshTier(TierValue);
+			}
 		}
-	}
+	//}
 }
 
-//spawn crates up to remaning value
+//spawn crates up to remaining value
 function SpawnDoshPilesForAmount(int LastSeenDoshAmount)
 {
     local int NumPiles;
@@ -207,7 +249,6 @@ function SpawnDoshPilesForAmount(int LastSeenDoshAmount)
     local KFActor_DoshPile DoshPile;
 
     NumPiles = int(LastSeenDoshAmount / class'KFActor_DoshPile'.default.DoshPileMax);
-
     FrontPilesActive = (NumPiles % FrontPilesInWorld) + 1;
 
     //Initial dosh count that we have to visually set.
@@ -218,11 +259,11 @@ function SpawnDoshPilesForAmount(int LastSeenDoshAmount)
     {
         if(i < FrontPilesInWorld)
         {
-            DoshVaultStacks[i].SetHidden(false);        
+            DoshVaultStacks[i].SetHidden(false);
         }
         else
         {
-            DoshVaultStacks[i].SetHidden(true);        
+            DoshVaultStacks[i].SetHidden(true);
         }
         DoshVaultStacks[i].SetValue(0);
     }
@@ -254,47 +295,30 @@ function SpawnDoshPilesForAmount(int LastSeenDoshAmount)
         }
         else
         {
-            DoshPile = DoshVaultStacks[0];   
+            DoshPile = DoshVaultStacks[0];
         }
-                
+
         DoshPile.SetValue(FMin(DoshAccountedFor, class'KFActor_DoshPile'.default.DoshPileMax) / class'KFActor_DoshPile'.default.DoshPileMax);
         //Remove accounted for dosh so future piles get the correct amount.  If we go under 0, set it to 0 and we'll start with a bunch of empty piles
         DoshAccountedFor -= class'KFActor_DoshPile'.default.DoshPileMax;
-        DoshAccountedFor = FMax(DoshAccountedFor, 0.f);       
-                
-        UpdateID++;
-    }   
-}
+        DoshAccountedFor = FMax(DoshAccountedFor, 0.f);
 
-function ActivateLights(int CurrentPileCount)
-{
-    local int i;
-    //get tier value and turn lights on based on that
-    for (i = 0; i < TierThreshold.length; i++)
-    {
-        if(CurrentPileCount > TierThreshold[i])
-        {
-            ActiveLightActorsForTier(i);
-        }
-        else
-        {
-            break;
-        }
+        UpdateID++;
     }
 }
 
+
 exec function ActiveLightActorsForTier(int LightTier, optional bool bActive = true)
 {
-    local Light LightActor;
+	local Light LightActor;
     local MaterialInstanceActor LightMIC;
     local StaticMeshActor LightCone;
     local MaterialInstanceConstant MICInst;
 
     //emissive (MIC)
-
     foreach AllActors(class'MaterialInstanceActor', LightMIC)
     {
-        if(string(LightMIC.Tag) == (LightMICTagName$LightTier) )
+        if(string(LightMIC.Tag) == (LightMICTagName $ LightTier) )
         {
             MICInst = new(self) class'MaterialInstanceConstant';
             MICInst.SetParent(LightMIC.MatInst);
@@ -302,22 +326,22 @@ exec function ActiveLightActorsForTier(int LightTier, optional bool bActive = tr
             LightMIC.MatInst = MICInst;
         }
     }
-    //cones & lights
-    foreach AllActors(class'Light', LightActor)
-    {
-        if(string(LightActor.Tag) == (LightBulbTagName$LightTier))
-        {
-            LightActor.LightComponent.SetEnabled(bActive);
-        }
-    }
-
+    //cones
     foreach AllActors(class'StaticMeshActor', LightCone)
     {
-        if(string(LightCone.Tag) == (LightConeTagName$LightTier) )
+        if(string(LightCone.Tag) == (LightConeTagName $ LightTier) )
         {
             LightCone.SetHidden(!bActive);
-        } 
-    }
+        }
+	}
+	//lights
+	foreach AllActors(class'Light', LightActor)
+	{
+		if (string(LightActor.Tag) == (LightBulbTagName $ LightTier))
+		{
+			LightActor.LightComponent.SetEnabled(bActive);
+		}
+	}
 }
 
 function UpdateDoshPiles(int NewDoshAmount)
@@ -360,7 +384,7 @@ function UpdateDoshPiles(int NewDoshAmount)
     //check for complete stack
     else if( NewDoshAmount % class'KFActor_DoshPile'.default.DoshPileMax == 0 && LastUpdateDoshAmount != INDEX_NONE)
     {
-        if( UpdateID > 1 ) 
+        if( UpdateID > 1 )
         {
             //fill the last id up!
             DoshVaultStacks[0].SetValue(0);
@@ -368,7 +392,7 @@ function UpdateDoshPiles(int NewDoshAmount)
             DoshVaultStacks[UpdateID - 1].SpawnCompleteParticleEffects();
             VaultCustomPawn.PlayEmoteAnimation();
         }
-    }   
+    }
 
     for (Idx = 0; Idx <= UpdateID; ++Idx)
     {
@@ -410,7 +434,7 @@ event InitGame( string Options, out string ErrorMessage )
     InitVault();
 }
 
-/** 
+/**
  * Helper for periodic online game data update
  * note: Not 100% precise, because we don't bother with days rolling into months
  */
@@ -423,7 +447,7 @@ private function int GetSystemTimeMinutes()
 
 function Tick( float DeltaTime )
 {
-	super.Tick(DeltaTime);	
+	super.Tick(DeltaTime);
 
     // Quick fix to get the music playing after the startup movies
 	if( !bInitialized )
@@ -436,7 +460,7 @@ function Tick( float DeltaTime )
 exec function FinishCraft ()
 {
 	local KFPlayerController KFPC;
-	
+
 	foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
 	{
 		if(KFPC.MyGfxManager != none && KFPC.MyGFxManager.InventoryMenu != none)
@@ -480,15 +504,15 @@ auto State PendingMatch
 DefaultProperties
 {
     LastUpdateDoshAmount=INDEX_NONE
-    LightMICTagName="TieMIC_"
+    LightMICTagName="TierMIC_"
     LightConeTagName="TierCone_"
     LightBulbTagName="TierLight_"
+	DoshLitterMICTagName="DoshLitter"
+    CustomPawnSpawnPointTagName="KFCustomizationPoint_Vault"
 
-    CustomPawnSpawnPointTagName="KFCustomizationPoint_Vault"    
-    
-    FrontPilesInWorld=10   
-    TierThreshold(0)=10
-    TierThreshold(1)=40
+    FrontPilesInWorld=10
+    TierThreshold(0)=0
+    TierThreshold(1)=30
     TierThreshold(2)=70
     TierThreshold(3)=100
     TierThreshold(4)=130

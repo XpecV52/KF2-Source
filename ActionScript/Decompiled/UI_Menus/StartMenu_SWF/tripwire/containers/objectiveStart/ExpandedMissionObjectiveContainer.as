@@ -104,7 +104,7 @@ package tripwire.containers.objectiveStart
             }
             this.dailyButton.x = this.ButtonSlotBuffer + this.ButtonSlotWidth / _loc1_ * this.Daily;
             this.weeklyButton.x = this.ButtonSlotBuffer + this.ButtonSlotWidth / _loc1_ * this.Weekly;
-            this.specialEventButton.x = this.ButtonSlotBuffer + this.ButtonSlotWidth / _loc1_ * this.SpecialEvent;
+            this.specialEventButton.x = this.ButtonSlotBuffer + this.ButtonSlotWidth / _loc1_ * (!!this.bWeeklyActive ? this.SpecialEvent : this.Weekly);
             this.dailyButton.width = this.ButtonSlotWidth / _loc1_;
             this.weeklyButton.width = this.ButtonSlotWidth / _loc1_;
             this.specialEventButton.width = this.ButtonSlotWidth / _loc1_;
@@ -157,7 +157,7 @@ package tripwire.containers.objectiveStart
                     }
                     if(this.bSeasonalActive)
                     {
-                        return this.SpecialEvent;
+                        return this._currentPageIndex == this.SpecialEvent ? int(this.Daily) : int(this.SpecialEvent);
                     }
                     break;
             }

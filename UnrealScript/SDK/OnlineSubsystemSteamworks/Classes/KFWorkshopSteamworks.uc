@@ -21,6 +21,8 @@ var const native map{PublishedFileId_t, FString} WorkshopIDItemNames;
 
 var const native map{FString, PublishedFileId_t} PackageWorkshopIDs;
 
+var const native map{ QWORD, uint32 } InstallTimestamps;
+
 var delegate<UGCDownloadProgressDelegate> ProgressDelegate;
 
 var transient array<UniqueNetId> ServerSubscribedCopy;
@@ -75,7 +77,7 @@ cpptext
 	UBOOL InstallPackages(const FString& WorkshopItemPath, PublishedFileId_t Id);
 
 	UBOOL CheckAppId(AppId_t AppId);
-	
+
 	void EnumerateClientWorkshopFiles(TArray<FUniqueNetId>& PublishedFileIds);
 	void EnumerateServerWorkshopFiles(TArray<FUniqueNetId>& PublishedFileIds);
 	void ServerDownloadNextFile();

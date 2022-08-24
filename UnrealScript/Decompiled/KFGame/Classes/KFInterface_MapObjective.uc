@@ -12,11 +12,25 @@ simulated function ActivateObjective();
 
 simulated function DeactivateObjective();
 
+simulated function bool IsActive();
+
 simulated function bool UsesProgress();
+
+simulated function int GetDoshReward();
+
+simulated function int GetMaxDoshReward();
+
+simulated function bool IsBonus();
+
+function string GetLocalizedName();
 
 function bool CanActivateObjective();
 
 simulated function float GetProgress();
+
+simulated function string GetLocalizedDescription();
+
+simulated function string GetLocalizedRequirements();
 
 simulated function Vector GetIconLocation();
 

@@ -50,6 +50,7 @@ exec native final function FindTranslucencyInheritDominantShadowMaterials();
 /** Create and save an empty upk */
 native final function MakeEmptyPackage();
 
+exec native function ForceDailyObjective(int ObjectiveIndex, int UIIndex);
 exec native function ResetDailyObjectives();
 exec native function GiveVaultDosh(int Amount);
 
@@ -966,6 +967,7 @@ simulated exec function Swat()
     GiveWeapon( "KFGameContent.KFWeap_SMG_MP7" );
     GiveWeapon( "KFGameContent.KFWeap_SMG_MP5RAS" );
     GiveWeapon( "KFGameContent.KFWeap_SMG_Kriss" );
+    GiveWeapon("KFGameContent.KFWeap_SMG_HK_UMP");
 }
 
 /**
@@ -1314,6 +1316,23 @@ exec function DoshMe(int NewDoshAmount)
     }
 }
 
+//SHOPPINGSPREE COMMAND BY DISNEY NGUYEN -
+//for speeding up the buying of tier 4 weapons for boss testing
+//and grants a realistic amount of 5000 dosh to prevent spamming dosh throws
+exec function ShoppingSpree()
+{
+	//Give player 5000 dosh:
+
+	local KFPlayerReplicationInfo KFPRI;
+	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+	if (KFPRI != None)
+	{
+		KFPRI.AddDosh(5000);
+	}
+	//Open trader menu:
+	KFPlayerController(Outer).OpenTraderMenu(true);
+}
+
 exec function HurtMe(optional int DamageAmount=50)
 {
 	if ( Pawn != none  )
@@ -1601,11 +1620,13 @@ exec function HideTraderPath()
 
 exec function OpenTrader()
 {
+	KFGameInfo(WorldInfo.Game).MyKFGRI.bTraderIsOpen = true;
 	KFGameInfo(WorldInfo.Game).MyKFGRI.OpenTrader(300);
 }
 
 exec function OpenTraderNext()
 {
+	KFGameInfo(WorldInfo.Game).MyKFGRI.bTraderIsOpen = true;
 	KFGameInfo(WorldInfo.Game).MyKFGRI.OpenTraderNext(300);
 }
 
@@ -4695,6 +4716,14 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
 	{
 		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedBloat"$VersusSuffix, class'Class'));
 	}
+    else if (Left(ZedName, 5) ~= "KingB")
+    {
+        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedBloatKing"$VersusSuffix, class'Class'));
+    }
+	else if (Left(ZedName, 4) ~= "Poop")
+	{
+		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedBloatKingSubspawn", class'Class'));
+	}
 	else if( Left(ZedName, 2) ~= "Sc" )
 	{
 		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedScrake"$VersusSuffix, class'Class'));
@@ -5690,6 +5719,14 @@ exec function DisableAtkAnimDifficultyScaling()
 }
 
 `if(`notdefined(ShippingPC))
+exec function SetDoshScalarValue(float Poop)
+{
+	if (KFGameInfo_Entry(WorldInfo.Game) != none)
+	{
+		KFGameInfo_Entry(WorldInfo.Game).InitDoshLitter(Poop);
+	}
+}
+
 exec function DoFakeDoshVaultInteraction (int OldDosh, int  NewDosh, int TierBase, int TierLength)
 {
     local KFPlayerController KFPC;
@@ -5703,8 +5740,6 @@ exec function DoFakeDoshVaultInteraction (int OldDosh, int  NewDosh, int TierBas
 
     if(KFPC != none && KFPC.MyGFxManager != none && KFPC.MyGFxManager.DoshVaultMenu != none)
     {
-        //KFPC.MyGFxManager.DoshVaultMenu.SendDoshInfo(LastSeenDosh, NewTotalDoshAmount, KFPC.GetDoshVaultTierValue() * (LastSeenDosh / NewTotalDoshAmount), KFPC.GetDoshVaultTierValue(), 0);
-        //(int OldDosh, int NewDosh, int TierBase, int TierLength, int CrateNum)
         if(KFPC.MyGFxManager.CurrentMenuIndex == UI_Dosh_Vault)
         {
             if (KFGameInfo_Entry(WorldInfo.Game) != none)
@@ -5716,6 +5751,38 @@ exec function DoFakeDoshVaultInteraction (int OldDosh, int  NewDosh, int TierBas
     }
 }
 
+exec function DoshVaultAmount(int DoshVaultAmount, bool bMatchCurrentAndLast)
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Outer);
+
+	if (bMatchCurrentAndLast)
+	{
+		KFPC.DebugLastSeenDoshVaultValue = DoshVaultAmount;
+		KFPC.DebugCurrentDoshVaultValue = DoshVaultAmount;
+		KFPC.DebugCurrentDoshVaultTier = DoshVaultAmount;
+	}
+	else
+	{
+		KFPC.DebugLastSeenDoshVaultValue = DoshVaultAmount - KFPC.GetDoshVaultTierValue();
+		KFPC.DebugCurrentDoshVaultValue = DoshVaultAmount;
+		KFPC.DebugCurrentDoshVaultTier = DoshVaultAmount - KFPC.GetDoshVaultTierValue();
+	}
+
+	if (KFPC != none && KFPC.MyGFxManager != none && KFPC.MyGFxManager.DoshVaultMenu != none)
+	{
+		if (KFPC.MyGFxManager.CurrentMenuIndex == UI_Dosh_Vault)
+		{
+			if (KFGameInfo_Entry(WorldInfo.Game) != none)
+			{
+				KFGameInfo_Entry(WorldInfo.Game).SpawnDoshPilesForAmount(KFPC.DebugLastSeenDoshVaultValue);
+			}
+			KFPC.MyGFxManager.DoshVaultMenu.SendDoshInfo(KFPC.DebugLastSeenDoshVaultValue, KFPC.DebugCurrentDoshVaultValue, KFPC.DebugCurrentDoshVaultTier, KFPC.GetDoshVaultTierValue(), 0);
+		}
+	}
+}
+
 exec function EnableForceSpecialZeds()
 {
     ConsoleCommand("SETNOPEC KFMonsterDifficultyInfo bForceSpecialSpawn true");
@@ -5723,6 +5790,11 @@ exec function EnableForceSpecialZeds()
 exec function DisableForceSpecialZeds()
 {
     ConsoleCommand("SETNOPEC KFMonsterDifficultyInfo bForceSpecialSpawn false");
+}
+
+exec function SetVaultParams()
+{
+
 }
 `endif
 
@@ -6841,6 +6913,11 @@ exec function TestMixerButton(string Button, string metadata, int amount, int co
     KFPlayerController(Outer).TestMixerCall(Button, MetaKeys, MetaProps);
 }
 
+exec function ForceMixerScene(string VersionNumber, string ShareCode)
+{
+	class'MixerIntegration'.static.ForceMixerScene(VersionNumber, ShareCode);
+}
+
 //-----------------------------------------------------------------------------
 // LED Debugging
 exec function InitLEDEffects()
@@ -6905,33 +6982,28 @@ exec function SetLEDRGB(byte RedPercent, byte GreenPercent, byte BluePercent)
 exec function LEDSetFlashingRBG (int RedPercent, int GreenPercent, int BluePercent,
 int MilliSecondsDuration, int MilliSecondsInterval)
 {
-    local LogitechLEDInterface LogtitechLED;
-    local RazerLEDInterface RazerFXLED;
-    LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
-    RazerFXLED = class'PlatformInterfaceBase'.static.GetRazerIntegration();
+	local KFPlayerController KFPC;
 
-    if (LogtitechLED != none)
-    {
-       LogtitechLED.LEDSetFlashingRBG(RedPercent, GreenPercent, BluePercent,
-            MilliSecondsDuration, MilliSecondsInterval);
-    }
+	KFPC = KFPlayerController(Outer);
 
-    if(RazerFXLED != none)
-    {
-        RazerFXLED.LEDSetFlashingRBG(RedPercent, GreenPercent, BluePercent,
-            MilliSecondsDuration, MilliSecondsInterval);
-    }
+	if (KFPC.LEDEffectsManager != none)
+	{
+		//KFPC.LEDEffectsManager.LEDSetFlashingRBG(RedPercent, GreenPercent, BluePercent, MilliSecondsDuration, MilliSecondsInterval);
+		KFPC.LEDEffectsManager.PlayEffectPuke(0);
+	}
 }
 
 
 exec function LEDPulseLighting(int RedPercent, int GreenPercent, int BluePercent, int
 MilliSecondsDuration, int MilliSecondsInterval)
 {
-    local LogitechLEDInterface LogtitechLED;
-    local RazerLEDInterface RazerFXLED;
+	local LogitechLEDInterface LogtitechLED;
+	local RazerLEDInterface RazerFXLED;
+	local AlienFXLEDInterface AlienFXLED;
 
-    LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
-    RazerFXLED = class'PlatformInterfaceBase'.static.GetRazerIntegration();
+	LogtitechLED = class'PlatformInterfaceBase'.static.GetLogitechIntegration();
+	RazerFXLED = class'PlatformInterfaceBase'.static.GetRazerIntegration();
+	AlienFXLED = class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
 
     if (LogtitechLED != none)
     {
@@ -6944,6 +7016,12 @@ MilliSecondsDuration, int MilliSecondsInterval)
         RazerFXLED.LEDPulseLighting(RedPercent, GreenPercent, BluePercent,
         MilliSecondsDuration, MilliSecondsInterval);
     }
+
+	if (AlienFXLED != none)
+	{
+		AlienFXLED.LEDPulseLighting(RedPercent, GreenPercent, BluePercent,
+			MilliSecondsDuration, MilliSecondsInterval);
+	}
 }
 
 
@@ -7020,6 +7098,24 @@ exec function SetMissionObjectiveActive(bool bActive)
     }
 }
 
+exec function SetMissionFailState(bool bFailed)
+{
+	local Pawn P;
+	local KFPlayerController KFPC;
+
+	P = GetMyPawn();
+	KFPC = KFPlayerController(Outer);
+
+	if (P == none || KFPC == None)
+	{
+		return;
+	}
+
+	if (KFPC.MyGFxHUD != none)
+	{
+		KFPC.MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetFailState(bFailed);
+	}
+}
 
 exec function SetMissionObjectiveVisible(bool bVisible)
 {
@@ -7040,6 +7136,12 @@ exec function SetMissionObjectiveVisible(bool bVisible)
     }
 }
 
+//-----------------------------------------------------------------------------
+// Discord Debugging
+exec function ForceUpdateDiscordPresence()
+{
+	//KFPlayerController(Outer).UpdateDiscordRichPresence();
+}
 
 defaultproperties
 {

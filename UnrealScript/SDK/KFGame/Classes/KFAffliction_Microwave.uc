@@ -137,7 +137,7 @@ function UpdateBurnedMatParam( float DeltaTime )
     if ( !PawnOwner.AfflictionHandler.VerifyAfflictionInstance(AF_FirePanic) )
     {
         return;
-    }  
+    }
 
     // Set the burned value from being microwaved
     if( MonsterOwner != none )
@@ -168,8 +168,6 @@ function UpdateBurnedMatParam( float DeltaTime )
 /** Set scalar parameter value */
 function SetMaterialParameter(float ParamValue)
 {
-	local MaterialInstanceConstant MIC;
-
 	if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
         // Handle steam effects
@@ -188,11 +186,10 @@ function SetMaterialParameter(float ParamValue)
             }
         }
 
-        foreach PawnOwner.CharacterMICs(MIC)
-	    {
-			// Scale inflate down instantly if gore mesh to avoid holes
-       		MIC.SetScalarParameterValue('Scalar_Inflate', (!PawnOwner.bIsGoreMesh) ? ParamValue * 2.0 : 0.f);
-	    }
+		if (MonsterOwner != none)
+		{
+			MonsterOwner.UpdateVisualInflation(ParamValue * 2.0);
+		}
     }
 }
 

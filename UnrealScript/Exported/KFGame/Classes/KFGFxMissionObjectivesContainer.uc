@@ -105,7 +105,8 @@ function UpdateSpecialEventActive()
 function bool ShowShouldSpecialEvent()
 {
     return class'KFGameEngine'.static.GetSeasonalEventId() != SEI_None 
-            && class'KFGameEngine'.static.GetSeasonalEventId() != INDEX_NONE
+            && class'KFGameEngine'.static.GetSeasonalEventId() != INDEX_NONE 
+            && class'KFGfxMenu_StartGame'.static.GetSpecialEventClass(class'KFGameEngine'.static.GetSeasonalEventId()) != class'KFGFxSpecialEventObjectivesContainer'
             && ( KFPC.IsValidSpecialEventMap() || class'WorldInfo'.static.IsMenuLevel() );
 }
 
@@ -118,6 +119,12 @@ function Refresh(optional bool bForceRefreshOfDaily)
             CollapsedObjectiveContainer.PopulateData();
         }
     }
+}
+
+function FullRefresh()
+{
+	ExpandedObjectiveContainer.FullRefresh();
+	CollapsedObjectiveContainer.PopulateData();
 }
 
 /*function LocalizeMenu()

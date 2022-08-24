@@ -294,7 +294,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 	{
 		return;
 	}
-	
+
 	TempDamage = InDamage;
 
 	if( IsResistanceActive() )
@@ -463,8 +463,8 @@ function ModifyScreamEffectDuration( out float InDuration )
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsSmashActive() )
-	{ 
+	if( IsSmashActive() && IsDamageTypeOnPerk(DamageType) )
+	{
         return static.GetSmashStumbleModifier();
 	}
 

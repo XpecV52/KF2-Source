@@ -146,14 +146,14 @@ struct native MaterialVectorParamMod
 };
 
 struct native MaterialLightParamMod
-{	
+{
 	var() int						MatID;
 	var() Name						ParamName;
 	var() Light						LightActor;
 
 	structdefaultproperties
 	{
-		ParamName=BrightnessMultiplier	
+		ParamName=BrightnessMultiplier
 	}
 };
 
@@ -164,7 +164,7 @@ struct native MaterialLightParamMod
 /** Parameters to define an actor spawn. */
 struct native ActorSpawnParams
 {
-	/** Static mesh to use for physics object */ 
+	/** Static mesh to use for physics object */
 	var() StaticMesh				RigidBodyMesh;
 
 	/** Lower bound of random initial linear vel */
@@ -553,7 +553,7 @@ event ReplicateDamageMod(int ObjIdx, int ModIdx, bool bPartial)
 function byte PackDamageMod(int ObjIdx, int ModIdx, bool bPartial)
 {
 	// 1-4: ObjIdx, 5-6 ModIdx, 8 bPartial
-	local byte DmgModFlags;	
+	local byte DmgModFlags;
 	DmgModFlags = ObjIdx + (ModIdx << 4);
 	if ( bPartial )
 	{
@@ -628,7 +628,7 @@ simulated event PostBeginPlay()
 protected native function DamageSubObject(int ObjIdx, int Damage, Controller EventInstigator, class<DamageType> DamType);
 
 /** Returns TRUE if any subobject has health > 0.  Should only be used on the server as a
- * catch-all for destructibles that don't have a damage mod with bSelfDestructAll set 
+ * catch-all for destructibles that don't have a damage mod with bSelfDestructAll set
  */
 native function bool HasAnyHealth();
 
@@ -841,10 +841,12 @@ event ApplySplashDamage(const out vector Origin, const out SplashDamageParams Da
 }
 
 /** Fire the Destroyed kismet event, called when all subobjects are dead */
+delegate OnDestroyed(KFDestructibleActor DActor);
 protected event TriggerDestroyedEvent(Controller EventInstigator)
 {
 	//@note: This will always be called, unlike DelayedShutDownObject/ShutDownObject which is only called if bSelfDestructAll==TRUE
 
+	OnDestroyed(self);
 	TriggerEventClass(class'SeqEvent_Destroyed', EventInstigator);
 }
 
@@ -987,7 +989,7 @@ simulated protected event DelayedShutDownObject()
 					if ( Other == None )
 					{
 						// make dynamic failed, move on to next actor
-						continue; 
+						continue;
 					}
 				}
 			}
@@ -1143,7 +1145,7 @@ defaultproperties
 	bEdShouldSnap=true
 	bGameRelevant=true
 	bPathColliding=false
-	
+
 	// Without this explosions won't do damage to them because they are world geometry
 	bCanBeDamaged=true
     bIgnoreAllDamage=false

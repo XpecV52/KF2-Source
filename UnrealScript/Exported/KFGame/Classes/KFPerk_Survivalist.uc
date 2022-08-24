@@ -13,7 +13,7 @@ class KFPerk_Survivalist extends KFPerk
 //`include(KFOnlineStats.uci)
 
 /** Passives */
-var private const PerkSkill	WeaponDamage;	
+var private const PerkSkill	WeaponDamage;
 var private	const PerkSkill	DamageResistance;
 var private	const PerkSkill	HeavyBodyArmor;
 var	private	const PerkSkill	ZedTimeReload;
@@ -89,8 +89,8 @@ function ApplyWeightLimits()
 }
 
 function bool ShouldGetAllTheXP()
-{	
-	return true; 
+{
+	return true;
 }
 
 
@@ -104,14 +104,14 @@ simulated function string GetPrimaryWeaponClassPath()
 
 function bool ShouldAutosellWeapon(class<KFWeaponDefinition> DefClass)
 {
-    //Because survivalists get a random first weapon in their auto buy load out, if they ever swap 
+    //Because survivalists get a random first weapon in their auto buy load out, if they ever swap
     //      to another valid on-perk T1 then attempt to autobuy, they could be left in situations where
     //      they sell the new valid T1, but don't have enough money to buy any other weapons.  In this
     //      case, we shouldn't sell the weapon if it's also part of the primary weapons that they could
     //      start with in a valid match.
     if (super.ShouldAutosellWeapon(DefClass))
     {
-        return PrimaryWeaponPaths.Find(DefClass) == INDEX_NONE; 
+        return PrimaryWeaponPaths.Find(DefClass) == INDEX_NONE;
     }
 
     return false;
@@ -210,8 +210,8 @@ simulated function ModifySpeed( out float Speed )
 {
 	local float TempSpeed;
 	local KFWeapon KFW;
-	
-	
+
+
 	if( IsMeleeExpertActive() )
 	{
 		KFW = GetOwnerWeapon();
@@ -234,8 +234,8 @@ simulated private static function float GetMeleeExpertAttackSpeedModifier()
 }
 
 simulated function bool HasHeavyArmor()
-{ 
-	return true; 
+{
+	return true;
 }
 
 /**
@@ -314,6 +314,7 @@ simulated function bool IsWeaponOnPerkHeavy( KFWeapon KFW )
 		return (class'KFPerk_Demolitionist'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Demolitionist' ) ||
 				class'KFPerk_Support'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Support' ) ||
 				class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk( KFW,, class'KFPerk_Sharpshooter' ) ||
+				KFW.IsA('KFPerk_Survivalist') ||
 				(KFW.IsHeavyWeapon() && IsWeaponOnPerk(KFW)) );
 	}
 
@@ -408,7 +409,7 @@ simulated function bool ShouldShrapnel()
 }
 
 simulated function float GetAoERadiusModifier()
-{ 
+{
 	return IsMakeThingsGoBoomActive() ? GetSkillValue( PerkSkills[ESurvivalist_MakeThingsGoBoom] ) : 1.f;
 }
 
@@ -498,7 +499,7 @@ simulated function class< KFProj_Grenade > GetGrenadeClass()
     }
     else if( IsBigPocketsActive() )
     {
-		return class<KFProj_Grenade>(DynamicLoadObject(MolotovGrenadeWeaponDef.default.WeaponClassPath, class'Class'));    	
+		return class<KFProj_Grenade>(DynamicLoadObject(MolotovGrenadeWeaponDef.default.WeaponClassPath, class'Class'));
     }
 
     return GrenadeClass;

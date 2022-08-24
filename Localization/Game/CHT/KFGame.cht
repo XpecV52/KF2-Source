@@ -1,9 +1,11 @@
 [KFCommon_LocalizedStrings]
+FailedToReachInventoryServerString="無法連線至物品伺服器。 將無法使用庫存"
 LoadingString="正在讀取…"
 DifficultyStrings[0]="普通"
 DifficultyStrings[1]="困難"
 DifficultyStrings[2]="自殺"
 DifficultyStrings[3]="地獄"
+BonusDoshString="獎勵金錢"
 
 LengthStrings[0]="短（4 波攻擊）"
 LengthStrings[1]="中（7 波攻擊）"
@@ -65,8 +67,8 @@ CustomString="自訂"
 RarityStrings[0]="常見"
 RarityStrings[1]="少見"
 RarityStrings[2]="珍貴"
-RarityStrings[3]="神話"
-RarityStrings[4]="傳奇"
+RarityStrings[3]="超凡"
+RarityStrings[4]="大師級"
 RarityStrings[5]="超珍貴"
 RarityStrings[6]="任何"
 
@@ -91,6 +93,17 @@ MixerZedTimeString="，一位Mixer觀戰者，已啟動了 Zed 時間。"
 MixerRageZedsString="，一位Mixer觀戰者，已激怒附近其他 Zed。"
 MixerPukeString="，一位Mixer觀戰者，已吐在你身上。"
 MixerSpawnedFPString="，一位Mixer觀戰者，已產生了一個絞碎者。"
+MixerSpawnedScrakeString="，一位Mixer觀戰者，已產生了一個絞碎者！"
+MixerSpawnedMiniFPString="，一位Mixer觀戰者，已產生了一個絞碎者爪牙！"
+
+DiscordMenuPresenceString="在主選單"
+DiscordPartyPresenceString="組建隊伍中"
+DiscordNetworkMatchString="網路遊戲"
+DiscordSoloMatchString="單人遊戲"
+DiscordMatchLobbyString=": 遊戲大廳"
+DiscordTraderTimeString=": 商人時間"
+DiscordBossWaveString=": Boss 波"
+DiscordWaveString=": 波"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="平定暴動獎勵"
@@ -112,6 +125,8 @@ DealDamageString="處理傷害："
 EarnXPString="賺取 XP："
 CompleteMapString="在地圖中的遊戲："
 KillZedsString="殺死 ZED："
+KillBossString="Boss 擊殺數："
+KillBossDescriptionString=""
 VersusKillsString="殺死對抗玩家的身分："
 DealVersusDamageString="傷害對抗玩家的身分："
 VersusCompletionString="完成遊戲的身分："
@@ -175,7 +190,6 @@ TutorialString="基本訓練"
 modeList0="生存模式 – PVE 戰鬥，玩家對抗 AI 操控的 Zed"
 modeList1="每週暴動模式－每個禮拜都有不同的遊戲模式。"
 modeList2="對抗生存模式–PVP戰鬥，Horzine傭兵對抗玩家及人工智慧操控的Zed"
-modeList3=""
 difficultyList0="普通：適合職業等級 0-5 的初階玩家。"
 difficultyList1="困難：適合職業等級 6-12 的進階玩家。每波進攻會有更多 Zed，它們移動速度更快，生命值也更高。可拾取的物品跟你的金錢都較少。"
 difficultyList2="自殺：適合職業等級 13 – 25 的高階玩家每波進攻會有更多 Zed，它們擁有新的攻擊模式，移動速度又更快。可拾取的物品跟你的金錢都變得更少。"
@@ -766,7 +780,7 @@ DoshVaultString="金庫"
 YourCratesString="你的箱子："
 OpenCratesString="開啟箱子"
 CrateUnlockedString="箱子已解鎖"
-DelayedCrateString="※金庫箱有可能要到下場比賽結束後才會延遲發放"
+DelayedCrateString="※金庫金錢箱有可能要到下場比賽結束後才會延遲發放"
 
 [KFGFxMenu_Gear]
 GearHeaderString="自訂裝備"
@@ -874,6 +888,7 @@ WeaponSkinsString="武器飾品市場"
 MarketConsumablesString="箱子 / USB 市場"
 MarketCosmeticsString="妝容市場"
 MarketEmotesString="市場Emotes"
+ThankYouString="感謝你的購買！這會幫我們開發新的物品，地圖，武器，喪屍和未來更新的新遊戲模式。"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="在市場尋找"
@@ -1406,10 +1421,10 @@ YouLostMessage="戰敗"
 YouWonMessage="勝利"
 SquadWipedOutMessage="你的小隊已被殲滅！"
 SquadSurvivedMessage="你的小隊順利存活！"
-ObjectiveStartMessage="目標已開始！"
-ObjectiveWonMessage="達成目標！"
-ObjectiveEndedMessage="目標已結束！"
-ObjectiveLostMessage="已錯失目標！"
+ObjectiveStartMessage="目標開始"
+ObjectiveWonMessage="目標完成"
+ObjectiveEndedMessage="目標結束"
+ObjectiveLostMessage="目標失敗"
 ObjNotEnoughPlayersMessage="玩家不足！"
 ObjTimeRanOutMessage="時間已到！"
 HumansLoseMessage="人類小隊已被殲滅！"
@@ -2146,6 +2161,7 @@ ObjectiveStatusString="目標狀況"
 
 [KFObj_Wave]
 ObjectiveAvailableString="目標仍存在"
+ObjectiveRequireString=" 需要玩家"
 
 [KFObj_Wave_Defend]
 ObjectiveTypeString="防守"
@@ -2267,9 +2283,24 @@ USBSpitfire="噴火USB鑰匙-$2.49"
 USBHighVoltage="高壓USB鑰匙-$2.49"
 MerchSale="KF2酷炫組特賣！特價75折只到2017年4月30日。促銷代碼ZED"
 
+[Objectives]
+HoldVolume="保衛區域"
+DoshHold="堅守陣地"
+DescriptionDoshHold="別讓喪屍進入標記的區域中"
+RequiredDoshHold="需要玩家："
+DoschHoldDesc="別讓喪屍進入標記的區域中"
+DescriptionHoldVolume="DescriptionHoldVolume"
+RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="搜尋並破壞"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
+FailedString="失敗"
 
+; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
 KFPawn_ZedBloat="胖胖"
+KFPawn_ZedBloatKing="憎惡"
+KFPawn_ZedBloatKing_Winter="坎普斯"
 KFPawn_ZedClot="凝塊"
 KFPawn_ZedCrawler="爬行者"
 KFPawn_ZedCrawlerKing="精英爬行者"
@@ -2288,7 +2319,7 @@ KFPawn_ZedClot_AlphaKing="精英突變凝塊"
 KFPawn_ZedScrake="電鋸"
 KFPawn_ZedSiren="海妖"
 KFPawn_ZedPatriarch="長老"
-
+KFPawn_ZedBloatKingSubspawn="產生憎惡"
 ;Human zeds
 KFPawn_ZedBloat_Versus="胖胖 - 玩家"
 KFPawn_ZedClot_Versus="凝塊 - 玩家"
@@ -2423,19 +2454,19 @@ AllCompleteRewardDescriptionString="Item description for all complete"
 ChanceDropDescriptionStrings[0]="掉落物品1"
 ChanceDropDescriptionStrings[1]="掉落物品2"
 
-[KFGFxSummerSideShowObjectivesContainer]
+[KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="在限時活動中可獲得，內含特有道具。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="提升力量",DescriptionString="提升悲慘王國的產生器力量");
-SpecialEventObjectiveInfoList[1]=(TitleString="凝塊爆炸",DescriptionString="引爆悲慘王國凝塊");
-SpecialEventObjectiveInfoList[2]=(TitleString="浸泡胖胖",DescriptionString="將悲慘王國的胖胖泡水");
-SpecialEventObjectiveInfoList[3]=(TitleString="撒錢",DescriptionString="在悲慘王國中投擲金錢");
-SpecialEventObjectiveInfoList[4]=(TitleString="邪惡之魔",DescriptionString="通過悲慘王國的困難級（含）以上關卡");
+SpecialEventObjectiveInfoList[0]=(TitleString="破壞和進入",DescriptionString="在坎普斯巢穴中破壞坎普斯的飾品");
+SpecialEventObjectiveInfoList[1]=(TitleString="肉餡",DescriptionString="在坎普斯巢穴用木片切割機殺死一隻 Zed");
+SpecialEventObjectiveInfoList[2]=(TitleString="屹立不動",DescriptionString="在坎普斯巢穴完成堅守陣地目標");
+SpecialEventObjectiveInfoList[3]=(TitleString="雪之牢獄",DescriptionString="在坎普斯巢穴找到十個收集物");
+SpecialEventObjectiveInfoList[4]=(TitleString="諸位晚安",DescriptionString="在坎普斯巢穴以困難或更高難度殺死坎普斯");
 
-AllCompleteRewardDescriptionString="餘興節目災害應變"
+AllCompleteRewardDescriptionString="睡衣套裝"
 
-ChanceDropDescriptionStrings[0]="餘興節目獎品票券"
-ChanceDropDescriptionStrings[1]="餘興節目黃金票券"
+ChanceDropDescriptionStrings[0]="獎品票券"
+ChanceDropDescriptionStrings[1]="黃金票券"
 
 ;============================================
 ; Daily Localization
@@ -2483,7 +2514,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：上升、上升然後腐爛"
 DescriptionStrings[0]="來做出99顆Zed氣球吧。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="在這波暴動中射擊Zed將會使他們像氣球一樣膨脹，膨脹到飄起，然後爆開！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[0]="在這波暴動中射擊Zed將會使他們像氣球一樣膨脹，但你最好讓它們爆開，不然它們就會開始重生！在配對頁面中選擇每週活動遊戲模式。職業等級 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2801,6 +2832,22 @@ DisplayName_POL="Koszmar"
 DisplayName_PTB="Pesadelo"
 DisplayName_RUS="Кошмар"
 
+[KF-KrampusLair KFMapSummary]
+DisplayName_CHN="坎卜斯巢穴"
+DisplayName_CHT="坎普斯巢穴"
+DisplayName_DEU="Krampus’ Versteck"
+DisplayName_ESL="Guarida de Krampus"
+DisplayName_ESN="Guarida de Krampus"
+DisplayName_FRA="Repère de Krampus"
+DisplayName_FRC="Repère de Krampus"
+DisplayName_INT="Krampus Lair"
+DisplayName_ITA="Tana del Krampus"
+DisplayName_JPN="クランプスの巣"
+DisplayName_KOR="크램퍼스 둥지"
+DisplayName_POL="Leże Krampusa"
+DisplayName_PTB="Toca do Krampus"
+DisplayName_RUS="Логово Крампуса"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics 實驗室"
 
@@ -2857,6 +2904,9 @@ DisplayName="悲慘王國"
 
 [KF-Nightmare KFMapSummary]
 DisplayName="夢魘"
+
+[KF-KrampusLair KFMapSummary]
+DisplayName="坎普斯巢穴"
 
 [KFMapInfo]
 ; defaults

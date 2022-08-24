@@ -21,6 +21,9 @@ var byte VolumeCheckType;
 /** Target actor, set once and replicated at spawn */
 var repnotify Actor Target;
 
+/** Specific class to use for this type of trail */
+var class<KFEmit_Path> PathClass;
+
 replication
 {
 	if( bNetInitial )
@@ -54,7 +57,7 @@ function SetPathTarget( Actor NewTarget, optional Volume NewVolume, optional eVo
 simulated function InitPath()
 {
 	ShowPath();
-	SetTimer( 2.f, true, nameOf(Timer_ShowPath) );	
+	SetTimer( 2.f, true, nameOf(Timer_ShowPath) );
 }
 
 simulated function Timer_ShowPath()
@@ -117,10 +120,13 @@ simulated function ShowPath()
 
 		if( bPathFound )
 		{
-			Path = Target.Spawn( class'KFEmit_ScriptedPath', PC,, PC.Pawn.Location );
+			Path = KFEmit_ScriptedPath(Target.Spawn( PathClass, PC,, PC.Pawn.Location ));
 
-			// instead of using the routecache for the last waypoint, use the trader pod mesh
-			Path.SetDestination( Target.Location + vect(0,0,50) );
+			if (Path != none)
+			{
+				// instead of using the routecache for the last waypoint, use the trader pod mesh
+				Path.SetDestination(Target.Location + vect(0, 0, 50));
+			}
 		}
 		else
 		{
@@ -134,6 +140,7 @@ simulated function ShowPath()
 
 defaultproperties
 {
+   PathClass=Class'KFGame.KFEmit_ScriptedPath'
    RemoteRole=ROLE_SimulatedProxy
    CollisionType=COLLIDE_CustomDefault
    bIgnoreEncroachers=True

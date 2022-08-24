@@ -566,7 +566,7 @@ simulated function bool DialogIsCoolingDown( int EventID )
 }
 
 /** Plays dialog event and replicates it as necessary */
-simulated function PlayDialog( int EventID, Controller C )
+simulated function PlayDialog( int EventID, Controller C, bool bInterrupt = false )
 {
 	local KFPawn_Human KFPH;
 
@@ -602,7 +602,7 @@ simulated function PlayDialog( int EventID, Controller C )
 	}
 
 	// don't interrupt active dialog
-	if( ActiveEventInfo.AudioCue != none )
+	if( ActiveEventInfo.AudioCue != none && !bInterrupt )
 	{
 		return;
 	}
@@ -616,6 +616,11 @@ simulated function PlayDialog( int EventID, Controller C )
 	KFPH = KFPawn_Human( C.Pawn );
 	if( KFPH != none )
 	{
+		if (bInterrupt)
+		{
+			KFPH.StopTraderDialog();
+		}
+
 		ActiveEventInfo = TraderVoiceGroupClass.default.DialogEvents[ EventID ];
 		KFPH.PlayTraderDialog( ActiveEventInfo.AudioCue );
 		SetTimer( ActiveEventInfo.AudioCue.Duration, false, nameof(EndOfDialogTimer) );
@@ -625,7 +630,7 @@ simulated function PlayDialog( int EventID, Controller C )
 /** Plays a synced dialog event for every player in the game.
 	Called on server.
   */
-static function PlayGlobalDialog( int EventID, WorldInfo WI )
+static function PlayGlobalDialog( int EventID, WorldInfo WI, bool bInterrupt = false )
 {
 	local Controller C;
 	local KFPlayerController KFPC;
@@ -642,11 +647,11 @@ static function PlayGlobalDialog( int EventID, WorldInfo WI )
 
 			if( KFPC.IsLocalController() )
 			{
-				KFPC.PlayTraderDialog( EventID );
+				KFPC.PlayTraderDialog( EventID, bInterrupt );
 			}
 			else
 			{
-				KFPC.ClientPlayTraderDialog( EventID );
+				KFPC.ClientPlayTraderDialog( EventID, bInterrupt );
 			}
 		}
 	}
@@ -1000,7 +1005,7 @@ simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC )
 		{
 			// whole team died except you
 			AddRandomOption( 19, NumOptions, BestOptionID );
-		}		
+		}
 	}
 
 	PlayWaveClearDialog(BestOptionID, KFPC);
@@ -1112,7 +1117,7 @@ simulated function PlayObjectiveDialog( Controller C, int ObjDialogID )
 
 function PlayLastManStandingDialog( WorldInfo WI )
 {
-	PlayGlobalDialog( 154, WI );	
+	PlayGlobalDialog( 154, WI );
 }
 
 /** Plays dialog if selected item in trader menu is unobtainable */

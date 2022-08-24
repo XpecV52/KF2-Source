@@ -14,7 +14,7 @@ defaultproperties
 	KDamageImpulse=3000 //1500
 	KDeathUpKick=0 //0
 	KDeathVel=375
-	
+
 	KnockdownPower=100
 	StunPower=0
 	StumblePower=50
@@ -23,4 +23,5 @@ defaultproperties
 	WeaponDef=class'KFWeapDef_Pulverizer'
 
 	ModifierPerkList(0)=class'KFPerk_Berserker'
+	ModifierPerkList(1)=class'KFPerk_Demolitionist'
 }

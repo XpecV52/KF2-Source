@@ -1,9 +1,11 @@
 [KFCommon_LocalizedStrings]
+FailedToReachInventoryServerString="Falha ao localizar servidor de itens. O inventário não estará disponível."
 LoadingString="Carregando..."
 DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Difícil"
 DifficultyStrings[2]="Suicida"
 DifficultyStrings[3]="Inferno na Terra"
+BonusDoshString="GRANA BÔNUS"
 
 LengthStrings[0]="Curto (4 levas)"
 LengthStrings[1]="Médio (7 levas)"
@@ -65,8 +67,8 @@ CustomString="Personaliz."
 RarityStrings[0]="COMUM"
 RarityStrings[1]="INCOMUM"
 RarityStrings[2]="RARO"
-RarityStrings[3]="MÍTICO"
-RarityStrings[4]="LENDÁRIO"
+RarityStrings[3]="EXCEPCIONAL"
+RarityStrings[4]="MAGISTRAL"
 RarityStrings[5]="EXTREMAMENTE RARO"
 RarityStrings[6]="QUALQUER"
 
@@ -91,6 +93,17 @@ MixerZedTimeString=", visualizador Mixer, ativou Hora dos Zeds."
 MixerRageZedsString=", visualizador Mixer, enfureceu os Zeds próximos. "
 MixerPukeString=", visualizador Mixer, vomitou em você."
 MixerSpawnedFPString=", visualizador Mixer, evocou um carniceiro."
+MixerSpawnedScrakeString=", visualizador Mixer, evocou um Retalhador!"
+MixerSpawnedMiniFPString=", visualizador Mixer, evocou alguns Meio-Quilos!"
+
+DiscordMenuPresenceString="No menu principal"
+DiscordPartyPresenceString="Formando grupo"
+DiscordNetworkMatchString="Partida de rede"
+DiscordSoloMatchString="Partida solo"
+DiscordMatchLobbyString=": Sala de esp. partida"
+DiscordTraderTimeString=": Hora do comerciante"
+DiscordBossWaveString=": Leva do Chefe"
+DiscordWaveString=": Leva"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RECOMPENSA DE CONCLUSÃO DE SURTO"
@@ -106,12 +119,14 @@ RewardsString="RECOMPENSA DE CONCLUSÃO DE SURTO"
 RewardString="RECOMPENSA"
 WeeklyOverview="Um novo modo de jogo a cada semana!"
 ObjectivesString="Ativar/desativar objetivos"
-VaultDoshString="Cofre de Grana"
+VaultDoshString="Vault Dosh"
 
 DealDamageString="Cause dano:"
 EarnXPString="Ganhe EXP:"
 CompleteMapString="Complete a partida no mapa:"
 KillZedsString="Mate Zeds:"
+KillBossString="Matar chefe:"
+KillBossDescriptionString=""
 VersusKillsString="Mate jogadores como:"
 DealVersusDamageString="Cause dano em jogadores como:"
 VersusCompletionString="Complete uma partida como:"
@@ -175,7 +190,6 @@ TutorialString="Treinamento básico"
 modeList0="Sobrevivência - JxA, batalha de levas de Zeds controlados por IA"
 modeList1="Surto Semanal – um modo de jogo variante diferente a cada semana."
 modeList2="Sobrevivência X - JxJ, mercenários Horzine contra levas de jogadores e Zeds controlados por IA"
-modeList3=""
 difficultyList0="Normal - Para jogadores iniciantes de classificação de classe 0-5."
 difficultyList1="Difícil - Para jogadores experientes de classificação de classe 6-12. Há mais Zeds por leva: eles se movimentam rápido e têm mais vida. Há poucos itens e você ganha menos grana."
 difficultyList2="Suicida - Para jogadores especialistas de classificação de classe 13-25. Há ainda mais Zeds por leva: eles usam novos ataques e se movimentam mais rápido. Há menos itens e você ganha menos grana."
@@ -766,7 +780,7 @@ DoshVaultString="COFRE DE GRANA"
 YourCratesString="Seus caixotes:"
 OpenCratesString="Abrir caixote(s)"
 CrateUnlockedString="CAIXOTE DESBLOQUEADO!"
-DelayedCrateString="* A entrega do Caixote de Cofre de Grana pode ser feita após reiniciar o jogo."
+DelayedCrateString="* O Caixote de Vault Dosh poderá ser entregue após o reinício do jogo."
 
 [KFGFxMenu_Gear]
 GearHeaderString="PERSONALIZAR EQUIPAMENTO"
@@ -874,6 +888,7 @@ WeaponSkinsString="Apar. armas mercado"
 MarketConsumablesString="Caixotes/USBs do mercado"
 MarketCosmeticsString="Cosméticos do mercado"
 MarketEmotesString="Emotes do mercado"
+ThankYouString="Obrigado pela compra! Ela nos ajudará a desenvolver novos itens, mapas, armas, zeds e modos de jogo para atualizações futuras."
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="LOCALIZAR NO MERCADO"
@@ -1406,10 +1421,10 @@ YouLostMessage="D E R R O T A"
 YouWonMessage="V I T Ó R I A"
 SquadWipedOutMessage="O pelotão foi derrotado!"
 SquadSurvivedMessage="O pelotão sobreviveu!"
-ObjectiveStartMessage="Objetivo iniciado!"
-ObjectiveWonMessage="Objetivo cumprido!"
-ObjectiveEndedMessage="Objetivo terminado!"
-ObjectiveLostMessage="Objetivo perdido!"
+ObjectiveStartMessage="OBJETIVO INICIADO"
+ObjectiveWonMessage="OBJETIVO CUMPRIDO"
+ObjectiveEndedMessage="OBJETIVO TERMINADO"
+ObjectiveLostMessage="OBJETIVO FALHADO"
 ObjNotEnoughPlayersMessage="Jogadores insuficientes!"
 ObjTimeRanOutMessage="Limite de tempo alcançado!"
 HumansLoseMessage="O pelotão humano foi derrotado!"
@@ -2146,6 +2161,7 @@ ObjectiveStatusString="STATUS DO OBJETIVO"
 
 [KFObj_Wave]
 ObjectiveAvailableString="OBJETIVO DISPONÍVEL"
+ObjectiveRequireString=" jogadores necessários"
 
 [KFObj_Wave_Defend]
 ObjectiveTypeString="DEFENDER"
@@ -2267,9 +2283,24 @@ USBSpitfire="Chave USB Cospe-fogo - US$2,49"
 USBHighVoltage="Chave de USB Alta Tensão - US$2,49"
 MerchSale="Promoção KF2! 25% menos até 30/4/17, cód. prom. ZED"
 
+[Objectives]
+HoldVolume="DEFENDA A ÁREA"
+DoshHold="DEFENDA SUA POSIÇÃO"
+DescriptionDoshHold="Deixe os Zeds fora da área demarcada"
+RequiredDoshHold="Jogadores necessários:"
+DoschHoldDesc="Deixe os Zeds fora da área demarcada"
+DescriptionHoldVolume="DescriptionHoldVolume"
+RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="BUSCAR E DESTRUIR"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
+FailedString="FALHA"
 
+; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
 KFPawn_ZedBloat="Inchado"
+KFPawn_ZedBloatKing="Abominação"
+KFPawn_ZedBloatKing_Winter="Krampus"
 KFPawn_ZedClot="Coágulo"
 KFPawn_ZedCrawler="Rastejador"
 KFPawn_ZedCrawlerKing="Rastejador Elite"
@@ -2288,7 +2319,7 @@ KFPawn_ZedClot_AlphaKing="Alfa Elite"
 KFPawn_ZedScrake="Retalhador"
 KFPawn_ZedSiren="Sereia"
 KFPawn_ZedPatriarch="Patriarca"
-
+KFPawn_ZedBloatKingSubspawn="Cria da Abominação"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Inchado - Jogador"
 KFPawn_ZedClot_Versus="Coágulo - Jogador"
@@ -2423,19 +2454,19 @@ AllCompleteRewardDescriptionString="Item description for all complete"
 ChanceDropDescriptionStrings[0]="Saque 1"
 ChanceDropDescriptionStrings[1]="Saque 2"
 
-[KFGFxSummerSideShowObjectivesContainer]
-CurrentSpecialEventString="Evento especial limitado com itens exclusivos."
+[KFGFxChristmasObjectivesContainer]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Ligue a Força",DescriptionString="Ligue a força no gerador no Reino Trágico");
-SpecialEventObjectiveInfoList[1]=(TitleString="Explode o Bolhão",DescriptionString="Exploda o coágulo no Reino Trágico");
-SpecialEventObjectiveInfoList[2]=(TitleString="Ensope o Inchado",DescriptionString="Ensope o Inchado no Reino Trágico");
-SpecialEventObjectiveInfoList[3]=(TitleString="Grana ao Alvo",DescriptionString="Grana ao Alvo no Reino Trágico");
-SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="Vença uma partida em Difícil ou mais no Reino Trágico");
+SpecialEventObjectiveInfoList[0]=(TitleString="Quebrar e entrar",DescriptionString="Quebre as bugigangas de Krampus na Toca de Krampus");
+SpecialEventObjectiveInfoList[1]=(TitleString="Carne moída",DescriptionString="Mate um Zed usando o triturador de madeira na Toca do Krampus");
+SpecialEventObjectiveInfoList[2]=(TitleString="Aguenta aí",DescriptionString="Complete o objetivo defenda sua posição na Toca do Krampus");
+SpecialEventObjectiveInfoList[3]=(TitleString="Prisões na neve",DescriptionString="Encontre dez dos coletáveis na Toca do Krampus");
+SpecialEventObjectiveInfoList[4]=(TitleString="E boa noite a todos",DescriptionString="Mate Krampus na dificuldade Difícil ou maior na Toca do Krampus");
 
-AllCompleteRewardDescriptionString="Conjunto Hazmat de Festival"
+AllCompleteRewardDescriptionString="Conj. Pijamas"
 
-ChanceDropDescriptionStrings[0]="Bilhete de Prêmio de Festival"
-ChanceDropDescriptionStrings[1]="Bilhete Dourado de Festival"
+ChanceDropDescriptionStrings[0]="Bilh. Prêmio"
+ChanceDropDescriptionStrings[1]="Bilh. Ouro"
 
 ;============================================
 ; Daily Localization
@@ -2483,7 +2514,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Pra Cima e… Caiu"
 DescriptionStrings[0]="Tente fazer noventa e nove balões de Zed."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los inflar como balões até o ponto de flutuarem e estourarem! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los inflar como balões, mas é melhor estourá-los, senão eles vão começar a se regenerar! Selecione o modo de jogo Semanal na página de Criação de Partidas. Nível de classe 15 ou maior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2801,6 +2832,22 @@ DisplayName_POL="Koszmar"
 DisplayName_PTB="Pesadelo"
 DisplayName_RUS="Кошмар"
 
+[KF-KrampusLair KFMapSummary]
+DisplayName_CHN="坎卜斯巢穴"
+DisplayName_CHT="坎普斯巢穴"
+DisplayName_DEU="Krampus’ Versteck"
+DisplayName_ESL="Guarida de Krampus"
+DisplayName_ESN="Guarida de Krampus"
+DisplayName_FRA="Repère de Krampus"
+DisplayName_FRC="Repère de Krampus"
+DisplayName_INT="Krampus Lair"
+DisplayName_ITA="Tana del Krampus"
+DisplayName_JPN="クランプスの巣"
+DisplayName_KOR="크램퍼스 둥지"
+DisplayName_POL="Leże Krampusa"
+DisplayName_PTB="Toca do Krampus"
+DisplayName_RUS="Логово Крампуса"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratório de Biótica"
 
@@ -2857,6 +2904,9 @@ DisplayName="Reino Trágico"
 
 [KF-Nightmare KFMapSummary]
 DisplayName="Pesadelo"
+
+[KF-KrampusLair KFMapSummary]
+DisplayName="Toca do Krampus"
 
 [KFMapInfo]
 ; defaults

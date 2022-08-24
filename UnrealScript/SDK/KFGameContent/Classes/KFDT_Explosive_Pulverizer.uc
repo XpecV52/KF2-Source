@@ -28,6 +28,7 @@ DefaultProperties
 	WeaponDef=class'KFWeapDef_Pulverizer'
 
 	ModifierPerkList(0)=class'KFPerk_Berserker'
+	ModifierPerkList(1)=class'KFPerk_Demolitionist'
 
 	GoreDamageGroup=DGT_Obliteration
 }

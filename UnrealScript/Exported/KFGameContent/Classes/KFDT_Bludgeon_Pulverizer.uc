@@ -16,6 +16,7 @@ defaultproperties
    StumblePower=50.000000
    MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
+   ModifierPerkList(1)=Class'KFGame.KFPerk_Demolitionist'
    KDamageImpulse=3000.000000
    KDeathVel=375.000000
    Name="Default__KFDT_Bludgeon_Pulverizer"

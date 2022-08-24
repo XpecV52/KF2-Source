@@ -54,8 +54,8 @@ struct native OutfitVariants
 struct native AttachmentOverrideList
 {
 	var() bool bHat;
-	var() bool bFace;	
-	var() bool bEyes;	
+	var() bool bFace;
+	var() bool bEyes;
 	var() bool bJaw;
 	var() bool bArmband;
 	var() bool bBackpack;
@@ -103,7 +103,7 @@ struct native AttachmentVariants
 	var array<byte> SpecialOverrideIds;
 
 	var() array<KFCharacterAttachment> SpecialOverrideAttachments;
-	
+
 	structdefaultproperties
 	{
 		RelativeScale=(X=1.f,Y=1.f,Z=1.f)
@@ -282,7 +282,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 	// skip dedicated for purely cosmetic stuff
 	if ( KFP.WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		// Must clear all attachments before trying to attach new ones, 
+		// Must clear all attachments before trying to attach new ones,
 		// otherwise we might accidentally remove things we're not supposed to
 		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
 		{
@@ -294,7 +294,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
 		{
 				CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-				if ( CosmeticMeshIdx != 255)
+				if ( CosmeticMeshIdx != 255&& CosmeticMeshIdx != INDEX_NONE)
 			{
 					bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
 
@@ -332,7 +332,7 @@ private function InitCharacterMICs(KFPawn P, optional bool bMaskHead)
 	if( P.ThirdPersonHeadMeshComponent != None )
 	{
 		P.CharacterMICs[1] = P.ThirdPersonHeadMeshComponent.CreateAndSetMaterialInstanceConstant(HeadMaterialID);
-		
+
 		if ( bMaskHead )
 		{
 			// initial mask for new head MIC (also see ResetHeadMaskParam())
@@ -379,7 +379,7 @@ private function SetBodyMeshAndSkin(
 
 		// Assign the body mesh to the pawn
 		if ( CharBodyMesh != KFP.Mesh.SkeletalMesh )
-		{			
+		{
 			KFP.Mesh.SetSkeletalMesh(CharBodyMesh);
 			KFP.OnCharacterMeshChanged();
 		}
@@ -471,7 +471,7 @@ private function SetHeadMeshAndSkin(
 	}
 }
 
-/** 
+/**
  * Check to see if the attachment is supported for this mesh. Go through all the sockets of the mesh
  * and check if the socket for the attachment is present. If not, that attachment is not supported.
  * Network: Local Player Only
@@ -483,7 +483,7 @@ function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Paw
 		//`log("Attachment" @ Attachment.MeshName @ "is not purchased.");
 		return FALSE;
 	}
-	else if ( Attachment.AttachmentItem.SocketName != '' 
+	else if ( Attachment.AttachmentItem.SocketName != ''
 		&& PreviewPawn.Mesh.GetSocketByName(Attachment.AttachmentItem.SocketName) == None )
 	{
 		LogInternal("Attachment" @ Attachment.MeshName @ "is missing a required socket.");
@@ -666,8 +666,8 @@ private function SetAttachmentMeshAndSkin(
 }
 
 /**
- * Removes any attachments that exist in the same socket or have overriding cases 
- * Network: Local Player 
+ * Removes any attachments that exist in the same socket or have overriding cases
+ * Network: Local Player
  */
 function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
@@ -690,7 +690,7 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
 			if( KFP.ThirdPersonAttachmentSocketNames[i] != '' &&
 				KFP.ThirdPersonAttachmentSocketNames[i] == NewAttachmentSocketName )
 			{
-				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);	
+				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
 				continue;
 			}
 
@@ -712,8 +712,8 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
 }
 
 /**
- * Removes any attachments that exist in the same socket or have overriding cases 
- * Network: Local Player 
+ * Removes any attachments that exist in the same socket or have overriding cases
+ * Network: Local Player
  */
 function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 {
@@ -747,7 +747,7 @@ function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 		case 'Armband_Attach':
 			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bArmband;
 		case 'Backpack_Attach':
-			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bBackpack; 
+			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bBackpack;
 	}
 
 	return false;
@@ -797,7 +797,7 @@ function DetachAttachment(int PawnAttachmentIndex, KFPawn KFP)
 	// Detach the attachment
 	if( KFP.ThirdPersonAttachments[PawnAttachmentIndex] != none )
 	{
-        // We have a different attachment path if it is a skeletal mesh component	
+        // We have a different attachment path if it is a skeletal mesh component
 		if( SkeletalMeshComponent(KFP.ThirdPersonAttachments[PawnAttachmentIndex]) != none )
 		{
 			KFP.DetachComponent(KFP.ThirdPersonAttachments[PawnAttachmentIndex]);
@@ -822,7 +822,7 @@ simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerRepl
 	 	return;
 	}
 
-	// First person arms mesh and skin are based on body mesh & skin. 
+	// First person arms mesh and skin are based on body mesh & skin.
 	// Index of 255 implies use index 0 (default).
     SetArmsMeshAndSkin(
     	KFPRI.RepCustomizationInfo.BodyMeshIndex,

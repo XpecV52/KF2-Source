@@ -75,6 +75,10 @@ struct native PresetWavePairs
     var() WaveObjectivePair LongObjectives[11];
 };
 
+/** Whether or not to limit objectives to a holiday */
+var(Objectives) bool bEventLimitedObjectives;
+var(Objectives) SeasonalEventIndex EventHoliday <EditCondition=bEventLimitedObjectives>;
+
 /** Whether or not to use the preset wave objective type */
 var(Objectives) bool bUsePresetObjectives <EditCondition=!bUseRandomObjectives>;
 var(Objectives) PresetWavePairs PresetWaveObjectives <EditCondition=bUsePresetObjectives>;

@@ -114,7 +114,7 @@ function InitializeMoveList()
             }
             else
             {
-                LookupIndex = AttackArray[I].SMHandle - 23;
+                LookupIndex = AttackArray[I].SMHandle - 24;
                 if((LookupIndex >= 0) && LookupIndex < PlayerMoveKeyBinds.Length)
                 {
                     MyInput.GetKeyBindFromCommand(MyKeyBind, PlayerMoveKeyBinds[LookupIndex], false);

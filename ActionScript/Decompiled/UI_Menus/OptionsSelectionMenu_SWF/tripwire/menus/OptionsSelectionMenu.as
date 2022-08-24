@@ -2,6 +2,7 @@ package tripwire.menus
 {
     import flash.events.Event;
     import flash.external.ExternalInterface;
+    import scaleform.clik.controls.Button;
     import scaleform.clik.controls.ButtonBar;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonBarEvent;
@@ -104,7 +105,7 @@ package tripwire.menus
             super.onInputChange(param1);
             if(bManagerUsingGamepad)
             {
-                this.buttonBar.selectedIndex = 1;
+                this.buttonBar.selectedIndex = !!this.buttonBar.getButtonAt(0).visible ? 0 : 1;
                 FocusManager.setFocus(this.buttonBar);
             }
             else
@@ -159,9 +160,17 @@ package tripwire.menus
         
         protected function openNewMenu() : void
         {
+            var _loc1_:Button = null;
             this.buttonBar.mouseEnabled = false;
             this.buttonBar.mouseChildren = false;
-            ExternalInterface.call("Callback_MenuSelected",this._selectedIndex);
+            if(this.buttonBar.dataProvider[this._selectedIndex].hasOwnProperty("buttonID"))
+            {
+                ExternalInterface.call("Callback_MenuSelected",this.buttonBar.dataProvider[this._selectedIndex].buttonID);
+            }
+            else
+            {
+                ExternalInterface.call("Callback_MenuSelected",this._selectedIndex);
+            }
             if(!bManagerUsingGamepad)
             {
                 this.buttonBar.selectedIndex = -1;

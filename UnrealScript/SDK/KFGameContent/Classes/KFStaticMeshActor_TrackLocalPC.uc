@@ -9,7 +9,7 @@
 // - Dan Weiss
 //=============================================================================
 
-class KFStaticMeshActor_TrackLocalPC extends StaticMeshActor
+class KFStaticMeshActor_TrackLocalPC extends DynamicSMActor
     placeable;
 
 simulated event Tick(float DeltaTime)
@@ -29,7 +29,5 @@ simulated event Tick(float DeltaTime)
 
 defaultproperties
 {
-    RemoteRole= ROLE_None
     bUpdateSimulatedPosition=true
-    bStatic=false
 }

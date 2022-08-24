@@ -73,7 +73,7 @@ var(Gore) AkBaseSoundObject CleaveSound;
 var(Gore) AkBaseSoundObject ObliterationSound;
 /** Special stop event to let the audio system stop certain sounds */
 var(Misc) AkEvent OnDeathStopEvent;
-var array<ImpactSoundCoolDownInfo> ImpactSoundCoolDowns;
+var transient array<ImpactSoundCoolDownInfo> ImpactSoundCoolDowns;
 
 function PlayJumpSound(Pawn P)
 {

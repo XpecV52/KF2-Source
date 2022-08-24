@@ -66,20 +66,20 @@ cpptext
 * Shared Weapon Unlocks
 *****************************************************************************************/
 
-/** 
- * Called once per PRI to set up shared weapon content 
+/**
+ * Called once per PRI to set up shared weapon content
  * Network: Local Player
  */
 static native function 		InitSharedUnlocksFor(KFPlayerReplicationInfo PRI);
 
-/** 
- * returns TRUE if any player on this server has this unlock 
+/**
+ * returns TRUE if any player on this server has this unlock
  * Network: All
  */
 static native function bool IsSharedContentUnlocked(ESharedContentUnlock UnlockId);
 
-/** 
- * returns a list of all available (aka connected ) players with a given unlock 
+/**
+ * returns a list of all available (aka connected ) players with a given unlock
  * Network: All
  */
 static native function 		GetSharedContentPlayerList(ESharedContentUnlock UnlockId, out array<PlayerReplicationInfo> out_PRIArray);
@@ -219,15 +219,20 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
  		// accessory
 		for( i=0; i < `MAX_COSMETIC_ATTACHMENTS; i++ )
 		{
-			if ( PRI.RepCustomizationInfo.AttachmentMeshIndices[i] != `CLEARED_ATTACHMENT_INDEX )
+			if ( PRI.RepCustomizationInfo.AttachmentMeshIndices[i] != `CLEARED_ATTACHMENT_INDEX  && PRI.RepCustomizationInfo.AttachmentMeshIndices[i] != INDEX_NONE)
 			{
 				Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[i]];
+				if (Attachment.AttachmentItem == None)
+				{
+					return FALSE;
+				}
 				Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[i]];
+
 				if( !GetIDAvailable(Skin.UnlockAssetID) )
 				{
  					ClearCharacterCustomization(PRI);
  					return FALSE;
-				}				
+				}
 			}
 		}
 	}

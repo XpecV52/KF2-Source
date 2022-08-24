@@ -35,6 +35,7 @@ function FinishedDailyEvent(int EventIndex)
     }
     EventInfo = MyKFPC.GetDailyObjective(EventIndex);
     ShowAchievementNotification(ObjectiveCompleteString, Class'KFGFxDailyObjectivesContainer'.static.FormTitleForObjective(EventInfo), Class'KFGFxDailyObjectivesContainer'.static.FormDescriptionForObjective(EventInfo), Class'KFGFxDailyObjectivesContainer'.static.GetIconForObjective(EventInfo), true);
+    Class'KFMusicStingerHelper'.static.PlayDailyCompleteStinger(Outer.GetPC());
 }
 
 function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
@@ -43,6 +44,7 @@ function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 
     SpecialEventClass = Class'KFGFxMenu_StartGame'.static.GetSpecialEventClass(EventIndex);
     ShowObjectiveCompleteNotification(SpecialEventClass.default.SpecialEventObjectiveInfoList[ObjectiveIndex].TitleString, SpecialEventClass.default.SpecialEventObjectiveInfoList[ObjectiveIndex].DescriptionString, "img://" $ SpecialEventClass.default.ObjectiveIconURLs[ObjectiveIndex]);
+    Class'KFMusicStingerHelper'.static.PlaySpecialEventObjectiveStinger(Outer.GetPC());
 }
 
 function ShowLevelUpNotification(class<KFPerk> PerkClass, byte PerkLevel, bool bTierUnlocked)

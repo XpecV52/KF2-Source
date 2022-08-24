@@ -1914,6 +1914,8 @@ function CleanupPawn()
     }
 }
 
+event Exit();
+
 event Destroyed()
 {
     local int EffectIdx;

@@ -225,6 +225,47 @@ event SetHaveUpdatePerk(bool bUsedUpdate)
     super.SetHaveUpdatePerk(((KFGameReplicationInfoVersus(WorldInfo.GRI).bRoundIsOver) ? false : bUsedUpdate));
 }
 
+reliable client simulated function ClientMatchStarted();
+
+reliable client simulated function GivePawn(Pawn NewPawn)
+{
+    super(PlayerController).GivePawn(NewPawn);
+    if(NewPawn == none)
+    {
+        MixerCurrentDefaultScene = "default";        
+    }
+    else
+    {
+        MixerCurrentDefaultScene = GetPawnBasedMixerScene(NewPawn);
+    }
+    MixerMoveUsersToDefaultGroup();
+}
+
+protected simulated function MixerStartupComplete()
+{
+    MixerCurrentDefaultScene = GetPawnBasedMixerScene(Pawn);
+    SetTimer(1, false, 'MixerMoveUsersToDefaultGroup');
+}
+
+final simulated function string GetPawnBasedMixerScene(Pawn inPawn)
+{
+    if(inPawn != none)
+    {
+        if(inPawn.IsA('KFPawn_Monster'))
+        {
+            return "VersusZed";            
+        }
+        else
+        {
+            if(!inPawn.IsA('KFPawn_Customization'))
+            {
+                return "SelectSide";
+            }
+        }
+    }
+    return "default";
+}
+
 state Dead
 {
     event BeginState(name PreviousStateName)

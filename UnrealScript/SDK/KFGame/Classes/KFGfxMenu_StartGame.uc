@@ -18,6 +18,8 @@ var bool bIsInParty;
 var bool bSearchingForGame;
 var bool bLeaderInServerBrowser, bLeaderWasInServerBrowser;
 
+var bool bPendingLeaveMenu;
+
 var transient bool AttemptingJoin;
 var transient bool bAttemptingServerCreate;
 var transient int CurrentSearchIndex;
@@ -169,7 +171,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Fall:
 			return class'KFGFxSpecialEventObjectivesContainer';
 		case SEI_Winter:
-			return class'KFGFxSpecialEventObjectivesContainer';
+			return class'KFGFxChristmasObjectivesContainer';
 	}
 
 	return class'KFGFxSpecialEventObjectivesContainer';
@@ -560,6 +562,7 @@ function ApproveMatchMakingLeave()
 {
 	if(OptionsComponent != none)
 	{
+		bPendingLeaveMenu = false;
 		if( OnlineLobby != none && OnlineLobby.IsInLobby())
 		{
 			OnlineLobby.QuitLobby();
@@ -579,8 +582,14 @@ function GoToServerBrowser()
 
 function CancelLeaveMenu()
 {
-	//Do nothing for now
+	GetPC().SetTimer(0.5f, false, nameof(ClearLeaveMenuFlag), self);
 }
+
+function ClearLeaveMenuFlag()
+{
+	bPendingLeaveMenu = false;
+}
+
 
 function OpenMultiplayerMenu()
 {
@@ -684,18 +693,24 @@ function Callback_RequestLeaveMatchmaking()
 	{
 		if(OnlineLobby.IsInLobby())
 		{
+			if (bPendingLeaveMenu)
+			{
+				return;
+			}
 			if(class'WorldInfo'.static.IsConsoleBuild())
 			{
 				Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString,
 					Localize("KFGFxMenu_StartGame", "LeaveMenuString", "KFGameConsole"),
 					LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString,
 					ApproveMatchMakingLeave, CancelLeaveMenu );
+				bPendingLeaveMenu = true;
 			}
 			else
 			{
-			Manager.DelayedOpenPopup(EConfirmation,EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, LeaveMenuString,
-					Manager.BrowseServersString, Class'KFCommon_LocalizedStrings'.default.CancelString, GoToServerBrowser, CancelLeaveMenu,
-					Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, ApproveMatchMakingLeave ); //middle button
+				Manager.DelayedOpenPopup(EConfirmation,EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, LeaveMenuString,
+						Manager.BrowseServersString, Class'KFCommon_LocalizedStrings'.default.CancelString, GoToServerBrowser, CancelLeaveMenu,
+						Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, ApproveMatchMakingLeave ); //middle button
+				bPendingLeaveMenu = true;
 			}
 		}
 		else

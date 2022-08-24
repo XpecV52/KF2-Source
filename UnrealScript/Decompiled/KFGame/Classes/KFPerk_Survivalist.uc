@@ -218,7 +218,7 @@ simulated function bool IsWeaponOnPerkHeavy(KFWeapon KFW)
 {
     if(KFW != none)
     {
-        return ((Class'KFPerk_Demolitionist'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Demolitionist') || Class'KFPerk_Support'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Support')) || Class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Sharpshooter')) || KFW.IsHeavyWeapon() && IsWeaponOnPerk(KFW);
+        return (((Class'KFPerk_Demolitionist'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Demolitionist') || Class'KFPerk_Support'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Support')) || Class'KFPerk_Sharpshooter'.static.IsWeaponOnPerk(KFW,, Class'KFPerk_Sharpshooter')) || KFW.IsA('KFPerk_Survivalist')) || KFW.IsHeavyWeapon() && IsWeaponOnPerk(KFW);
     }
     return false;
 }

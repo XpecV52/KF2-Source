@@ -219,6 +219,8 @@ static function bool AlwaysPoisons()
     return false;
 }
 
+static function ApplyKillResults(KFPawn KilledPawn);
+
 defaultproperties
 {
     HeadDestructionDamageScale=1

@@ -36,9 +36,15 @@ function PopulateData()
         if(DataObject != none)
         {
             Class'KFGFxDailyObjectivesContainer'.static.MakeDailyDataObject(KFPC.GetDailyObjective(I), I, KFPC, DataObject);
+            if(DataObject == none)
+            {
+                goto J0x184;
+            }
             DataProvider.SetElementObject(ItemIndex, DataObject);
         }
         ++ ItemIndex;
+        J0x184:
+
         ++ I;
         goto J0x82;
     }
@@ -51,7 +57,7 @@ function PopulateData()
     if((SpecialEventClass != none) && SpecialEventClass != Class'KFGFxSpecialEventObjectivesContainer')
     {
         I = 0;
-        J0x280:
+        J0x292:
 
         if(I < SpecialEventClass.default.SpecialEventObjectiveInfoList.Length)
         {
@@ -66,7 +72,7 @@ function PopulateData()
             DataProvider.SetElementObject(ItemIndex, DataObject);
             ++ ItemIndex;
             ++ I;
-            goto J0x280;
+            goto J0x292;
         }
     }
     SetObject("objectives", DataProvider);

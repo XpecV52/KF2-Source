@@ -27,6 +27,7 @@ var const localized string MarketConsumablesString;
 var const localized string MarketCosmeticsString;
 var const localized string MarketEmotesString;
 var const localized string LookUpOnMarketString;
+var const localized string ThankYouString;
 var KFGFxMenu_Store StoreMenu;
 var KFGFxStoreContainer_Main.EStore_Filter CurrentStoreFilter;
 
@@ -52,6 +53,7 @@ function LocalizeText()
     LocalizedObject.SetString("marketCosmetics", MarketCosmeticsString);
     LocalizedObject.SetString("marketEmotes", MarketEmotesString);
     LocalizedObject.SetString("marketConsumables", MarketConsumablesString);
+    LocalizedObject.SetString("thankYouString", ThankYouString);
     SetObject("localizedText", LocalizedObject);
 }
 
@@ -177,4 +179,5 @@ defaultproperties
     MarketConsumablesString="Market Crates/USBs"
     MarketCosmeticsString="Market Cosmetics"
     MarketEmotesString="Market Emotes"
+    ThankYouString="Thank you for your purchase! It will help us in developing new items, maps, weapons, zeds, and game modes for future updates."
 }

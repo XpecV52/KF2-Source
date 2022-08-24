@@ -6,6 +6,8 @@ package PartyWidget_SWF_fla
     {
          
         
+        public var defaultAvatar:MovieClip;
+        
         public function SquadMemberBGOrange_MC_18()
         {
             super();

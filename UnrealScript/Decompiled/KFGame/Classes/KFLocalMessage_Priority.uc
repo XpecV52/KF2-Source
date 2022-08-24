@@ -26,7 +26,24 @@ enum EGameMessageType
     GMT_AttackHumanPlayers,
     GMT_NextRoundBegin,
     GMT_LastPlayerStanding,
+    GMT_Null,
     GMT_MAX
+};
+
+struct SDelayedPriorityMessage
+{
+    var string InPrimaryMessageString;
+    var string InSecondaryMessageString;
+    var int Lifetime;
+    var byte MessageType;
+
+    structdefaultproperties
+    {
+        InPrimaryMessageString=""
+        InSecondaryMessageString=""
+        Lifetime=0
+        MessageType=0
+    }
 };
 
 var const localized string WaveStartMessage;
@@ -77,7 +94,17 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
         myGfxHUD = KFGFxHudWrapper(P.myHUD).HudMovie;
         if(myGfxHUD != none)
         {
-            myGfxHUD.DisplayPriorityMessage(MessageString, SecondaryMessageString, int(GetMessageLifeTime(Switch)));
+            myGfxHUD.DisplayPriorityMessage(MessageString, SecondaryMessageString, int(GetMessageLifeTime(Switch)), byte(Switch));            
+        }
+        else
+        {
+            if(KFPC.MyGFxManager != none)
+            {
+                if(KFPC.MyGFxManager != none)
+                {
+                    KFPC.MyGFxManager.QueueDelayedPriorityMessage(MessageString, SecondaryMessageString, int(GetMessageLifeTime(Switch)), byte(Switch));
+                }
+            }
         }
     }
     switch(Switch)
@@ -102,7 +129,7 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             {
                 KFGRI.bMatchVictory = true;
             }
-            if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+            if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.GetTeamNum() == 255)
             {
                 Class'KFMusicStingerHelper'.static.PlayMatchLostStinger(P);                
             }
@@ -116,7 +143,7 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             }
             break;
         case 3:
-            if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+            if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.GetTeamNum() == 255)
             {
                 Class'KFMusicStingerHelper'.static.PlayMatchWonStinger(P);                
             }
@@ -276,6 +303,10 @@ static function bool ShouldShowPriortyMessage(PlayerController P, int Switch)
 {
     local PlayerController PC;
 
+    if((Switch == 6) || Switch == 5)
+    {
+        return false;
+    }
     if(Switch == 16)
     {
         PC = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
@@ -352,10 +383,10 @@ defaultproperties
     YouWonMessage="V I C T O R Y"
     SquadWipedOutMessage="Your squad was wiped out!"
     SquadSurvivedMessage="Your squad survived!"
-    ObjectiveStartMessage="Objective Started!"
-    ObjectiveWonMessage="Objective Won!"
-    ObjectiveLostMessage="Objective Lost!"
-    ObjectiveEndedMessage="Objective Ended!"
+    ObjectiveStartMessage="OBJECTIVE STARTED"
+    ObjectiveWonMessage="OBJECTIVE COMPLETE"
+    ObjectiveLostMessage="OBJECTIVE FAILED"
+    ObjectiveEndedMessage="OBJECTIVE OVER"
     ObjNotEnoughPlayersMessage="Not Enough Players!"
     ObjTimeRanOutMessage="Time Limit Reached!"
     HumansLoseMessage="Human squad wiped out!"

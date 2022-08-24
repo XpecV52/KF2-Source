@@ -74,7 +74,13 @@ function bool PopulateData(optional bool bForceRefresh)
         if(DataObject != none)
         {
             MakeDailyDataObject(KFPC.GetDailyObjective(I), I, KFPC, DataObject);
-            DataProvider.SetElementObject(I, DataObject);
+            if(DataObject == none)
+            {                
+            }
+            else
+            {
+                DataProvider.SetElementObject(I, DataObject);
+            }
         }
         ++ I;
         goto J0x35;
@@ -95,8 +101,12 @@ static function GFxObject MakeDailyDataObject(DailyEventInformation EventInfo, i
     RefDataObject.SetBool("showProgres", bProgressObjective);
     if(bProgressObjective)
     {
-        RefDataObject.SetFloat("progress", FClamp(float(MyKFPC.GetCurrentDailyValue(Index) / MyKFPC.GetMaxDailyValue(Index)), 0, 1));
-        RefDataObject.SetString("textValue", (string(MyKFPC.GetCurrentDailyValue(Index)) $ "/") $ string(MyKFPC.GetMaxDailyValue(Index)));        
+        RefDataObject.SetFloat("progress", FClamp(float(MyKFPC.GetCurrentDailyValue(Index)) / float(MyKFPC.GetMaxDailyValue(Index)), 0, 1));
+        RefDataObject.SetString("textValue", (string(MyKFPC.GetCurrentDailyValue(Index)) $ "/") $ string(MyKFPC.GetMaxDailyValue(Index)));
+        if((MyKFPC.GetCurrentDailyValue(Index) == -1) || MyKFPC.GetMaxDailyValue(Index) == -1)
+        {
+            return none;
+        }        
     }
     else
     {
@@ -118,9 +128,11 @@ static function string GetIconForObjective(DailyEventInformation EventInfo)
             switch(EventInfo.SecondaryType)
             {
                 case 1:
-                    return "img://" $ default.ObjectiveIconURLs[2];
+                    return "img://" $ default.ObjectiveIconURLs[5];
                 case 0:
                     return "img://" $ default.ObjectiveIconURLs[2];
+                case 2:
+                    return "img://" $ default.ObjectiveIconURLs[5];
                 default:
                     break;
                     break;
@@ -199,6 +211,9 @@ static function string FormTitleForObjective(DailyEventInformation EventInfo)
                 case 0:
                     NewString = Class'KFMission_LocalizedStrings'.default.EarnXPString;
                     break;
+                case 2:
+                    NewString = Class'KFMission_LocalizedStrings'.default.KillBossString;
+                    break;
                 default:
                     break;
             }
@@ -240,6 +255,9 @@ static function string FormDescriptionForObjective(DailyEventInformation EventIn
         case 1:
             switch(EventInfo.SecondaryType)
             {
+                case 2:
+                    DescriptionString = Class'KFMission_LocalizedStrings'.default.KillBossDescriptionString;
+                    break;
                 case 1:
                     DescriptionString = GetKillsString(EventInfo.ObjectiveClasses[0]);
                     break;
@@ -401,6 +419,6 @@ defaultproperties
     ObjectiveIconURLs(2)="DailyObjective_UI.KF2_Dailies_Icon_PerkLvl"
     ObjectiveIconURLs(3)="DailyObjective_UI.KF2_Dailies_Icon_VS"
     ObjectiveIconURLs(4)="DailyObjective_UI.KF2_Dailies_Icon_Weapon"
-    ObjectiveIconURLs(5)="DailyObjective_UI.KF2_Dailies_Icon_ZED"
+    ObjectiveIconURLs(5)="UI_PerkIcons_TEX.UI_PerkIcon_ZED"
     NUM_OF_DAILIES=3
 }

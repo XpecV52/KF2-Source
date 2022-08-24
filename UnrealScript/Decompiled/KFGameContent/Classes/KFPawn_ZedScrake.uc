@@ -140,7 +140,7 @@ simulated function SetEnraged(bool bNewEnraged)
     if(Role == ROLE_Authority)
     {
         bIsEnraged = bNewEnraged;
-        if(IsDoingSpecialMove(16))
+        if(IsDoingSpecialMove(17))
         {
             EndSpecialMove();
         }

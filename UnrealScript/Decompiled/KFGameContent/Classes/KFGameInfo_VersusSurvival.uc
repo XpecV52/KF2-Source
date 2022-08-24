@@ -764,6 +764,7 @@ function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller Instig
     }
     DamageAmount = Min(DamageAmount, HealthBeforeDamage);
     KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
+    KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, DamageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
     if(InstigatedBy.PlayerReplicationInfo.GetTeamNum() == 255)
     {
         BossRef = KFInterface_MonsterBoss(InstigatedBy.Pawn);

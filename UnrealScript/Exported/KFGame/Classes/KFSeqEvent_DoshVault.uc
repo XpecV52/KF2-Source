@@ -33,7 +33,7 @@ function NotifyIdle(Actor InInstigator, Actor InTrigger)
 function NotifyIdleNoDosh(Actor InInstigator, Actor InTrigger)
 {
     local array<int> ActiveIndices;
-
+	
     ActiveIndices[0] = 1;
     CheckActivate(InInstigator, InTrigger, false, ActiveIndices);
 }

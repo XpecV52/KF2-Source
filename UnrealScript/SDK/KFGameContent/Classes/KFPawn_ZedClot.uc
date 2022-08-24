@@ -67,7 +67,7 @@ DefaultProperties
 		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
-	
+
 	Health=100 // 67% KF1 scale
 	DoshValue=7.0
 	Mass=50.f
@@ -87,6 +87,7 @@ DefaultProperties
 		SpecialMoveClasses(SM_Emerge)=class'KFSM_Emerge'
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
+		SpecialMoveClasses(SM_GorgeZedVictim)=class'KFGameContent.KFSM_GorgeVictim'
 	End Object
 
 	IncapSettings(AF_Stun)=		(Vulnerability=(2), Cooldown=3.0)

@@ -141,6 +141,7 @@ var array<string> ServerTypeStrings;
 var array<string> InProgessOptionStrings;
 var const localized array<localized string> GameTypes;
 var string PreviousMapName;
+var private array<string> SupportedGameModeStrings;
 var GFxObject ServerTypeButton;
 var GFxObject InProgressButton;
 var GFxObject PrivacyButton;
@@ -183,15 +184,18 @@ function ClampSavedFiltersToMode()
 
 function UpdateButtonsEnabled()
 {
+    local int AdjustedGameModeIndex;
+
     if(bIsSoloGame)
     {
-        LengthButton.SetBool("enabled", SavedSoloModeIndex < 1);
-        DifficultyButton.SetBool("enabled", SavedSoloModeIndex < 1);        
+        AdjustedGameModeIndex = GetAdjustedGameModeIndex(SavedSoloModeIndex);
+        LengthButton.SetBool("enabled", Class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].Lengths > 0);
+        DifficultyButton.SetBool("enabled", Class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].DifficultyLevels > 0);        
     }
     else
     {
-        LengthButton.SetBool("enabled", SavedModeIndex < 1);
-        DifficultyButton.SetBool("enabled", SavedModeIndex < 1);
+        LengthButton.SetBool("enabled", Class'KFGameInfo'.default.GameModes[SavedModeIndex].Lengths > 0);
+        DifficultyButton.SetBool("enabled", Class'KFGameInfo'.default.GameModes[SavedModeIndex].DifficultyLevels > 0);
     }
     CheckAndUpdateBasedOnPrivacy();
 }
@@ -217,8 +221,7 @@ function SetModeMenus(GFxObject TextObject, int ModeIndex)
 function InitializeGameOptions()
 {
     local GFxObject TextObject;
-    local array<string> SupportedGameModeStrings;
-    local int I;
+    local int I, K;
     local KFProfileSettings Profile;
 
     Profile = StartMenu.Manager.CachedProfile;
@@ -287,18 +290,19 @@ function InitializeGameOptions()
     SupportedGameModeStrings = Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
     if(bIsSoloGame)
     {
+        K = 0;
         I = 0;
-        J0x9C8:
+        J0x9D3:
 
         if(I < SupportedGameModeStrings.Length)
         {
-            if(!Class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(I))
+            if(!Class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(++ K))
             {
                 SupportedGameModeStrings.Remove(I, 1;
                 -- I;
             }
             ++ I;
-            goto J0x9C8;
+            goto J0x9D3;
         }
     }
     TextObject.SetObject("modeList", CreateList(SupportedGameModeStrings, byte(Min(((bIsSoloGame) ? SavedSoloModeIndex : SavedModeIndex), SupportedGameModeStrings.Length)), false));
@@ -658,7 +662,7 @@ function int GetModeIndex()
 {
     if(bIsSoloGame)
     {
-        return SavedSoloModeIndex;        
+        return GetAdjustedGameModeIndex(SavedSoloModeIndex);        
     }
     else
     {
@@ -739,6 +743,18 @@ event Engine.TWOnlineLobby.ELobbyVisibility GetPartyPrivacy()
 function byte GetServerTypeIndex()
 {
     return byte(HandleNoPref(SavedServerTypeIndex, bShowServerTypeNoPref));
+}
+
+function int GetAdjustedGameModeIndex(int ModeIndex)
+{
+    if(bIsSoloGame)
+    {
+        return Class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedSoloModeIndex]);        
+    }
+    else
+    {
+        return Class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
+    }
 }
 
 // Export UKFGFxStartGameContainer_Options::execDoesFilterMatchGameSettings(FFrame&, void* const)

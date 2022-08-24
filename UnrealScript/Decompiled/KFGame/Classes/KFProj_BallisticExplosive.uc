@@ -91,6 +91,7 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
     local Rotator NewRotation;
     local Vector Offset;
     local bool bWantsClientSideDudHit;
+    local TraceHitInfo HitInfo;
 
     if((Instigator != none) && Instigator.Role < ROLE_Authority)
     {
@@ -136,6 +137,12 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
             SetRotation(NewRotation);
             Offset.Z = LandedTranslationOffset.X;
             SetLocation(Location + Offset);
+        }
+        if((!Wall.bStatic && Wall.bCanBeDamaged) && (DamageRadius == float(0)) || bDamageDestructiblesOnTouch)
+        {
+            HitInfo.HitComponent = WallComp;
+            HitInfo.Item = -1;
+            Wall.TakeDamage(int(Damage), InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
         }
     }
     if(!bDud)
@@ -280,6 +287,7 @@ defaultproperties
     bSyncToOriginalLocation=true
     bSyncToThirdPersonMuzzleLocation=true
     bUseClientSideHitDetection=true
+    bDamageDestructiblesOnTouch=true
     bReplicateLocationOnExplosion=true
     bValidateExplosionNormalOnClient=true
     bAlwaysReplicateDisintegration=true
@@ -292,7 +300,7 @@ defaultproperties
     TouchTimeThreshhold=0.15
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_8374' was not found.
+System.ArgumentException: Requested value '!=_8454' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

@@ -31,6 +31,11 @@ var OnlineContentInterfaceDingo ContentInterfaceImpl;
 var KFOnlineLobbyDingo LobbyInterface;
 //@HSL_END
 
+/** These variables are used for limiting connection status flapping */
+var EOnlineServerConnectionStatus CurrentConnectionStatus;
+var EOnlineServerConnectionStatus DesiredConnectionStatus;
+var float ConnectionTimeUpdateDelta;
+
 /**
  * This is the array of queued async tasks that will be held until
  * the game is activated and will then be transferred to the standard async
@@ -195,6 +200,12 @@ var native const bool bConnectionStatusUpdated;
 /** Do we need to refresh Marketplace Inventory */
 var native const bool bRefreshMarketplaceInventory;
 
+//@TW_BEGIN | Adam Massingale | KFII-37834 Added this bool to force inventory checks to playfab when store page is closed since
+//Microsoft's productpurchsed event unreliable
+/** Did we just see the marketplace ui? is only set briefly */
+var native const bool bMarketplaceUIWasSeen;
+//@TW_END
+
 /** Are we connected to the LIVE network? */
 var native const bool bConnectedToLIVENetwork;
 
@@ -318,6 +329,9 @@ struct native FriendsListCache
 
 /** Cache of friends data per player */
 var native map{QWORD,FFriendsListCache} FriendsCache;
+
+/** Cache of current presence data */
+var native map{INT,FString} PresenceCache;
 
 /** Holds the cached achievements for a single player */
 struct native CachedAchievements
@@ -3257,6 +3271,7 @@ native function StartRegionPingAndSelectDefaultRegion(delegate<OnPingRegionsComp
 
 defaultproperties
 {
+   ConnectionTimeUpdateDelta=1.000000
    VoiceNotificationDelta=0.200000
    Name="Default__OnlineSubsystemDingo"
    ObjectArchetype=OnlineSubsystemCommonImpl'IpDrv.Default__OnlineSubsystemCommonImpl'

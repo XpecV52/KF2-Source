@@ -156,9 +156,13 @@ private static final event bool CheckCustomizationOwnership(KFPlayerReplicationI
 
         if(I < 3)
         {
-            if(PRI.RepCustomizationInfo.AttachmentMeshIndices[I] != 255)
+            if((PRI.RepCustomizationInfo.AttachmentMeshIndices[I] != 255) && PRI.RepCustomizationInfo.AttachmentMeshIndices[I] != -1)
             {
                 Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[I]];
+                if(Attachment.AttachmentItem == none)
+                {
+                    return false;
+                }
                 Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[I]];
                 if(!GetIDAvailable(Skin.UnlockAssetID))
                 {

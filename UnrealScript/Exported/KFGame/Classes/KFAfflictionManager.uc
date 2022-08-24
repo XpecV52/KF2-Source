@@ -25,18 +25,18 @@ enum EHitZoneBodyPart
 enum EAfflictionVulnerabilityType
 {
 	AV_Default,
-	AV_Head,	
-	AV_Legs,	
+	AV_Head,
+	AV_Legs,
 	AV_Arms,
-	AV_Special,	
+	AV_Special,
 };
 
 /*********************************************************************************************
  * Affliction Classes
  ********************************************************************************************* */
 
-/** 
- * Full body incap with stackable IncapPower 
+/**
+ * Full body incap with stackable IncapPower
  * @todo: this data is now all static and should be moved to an archetype or to KFAffliction
  */
 struct native IncapSettingsInfo
@@ -77,7 +77,7 @@ enum EAfflictionType
 	/** uncommon */
 	AF_Knockdown,
 	AF_Freeze,
-	AF_Microwave,	
+	AF_Microwave,
     AF_Bleed,
 
 	AF_Custom1,
@@ -155,7 +155,7 @@ function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamag
 function byte GetPredictedHitReaction(class<KFDamageType> DamageType, EHitZoneBodyPart BodyPart)
 {
 	// This may not always match the server's result, but as long
-	// as we avoid playing FullBody anims it should look okay even if DoPauseAI is skipped.	
+	// as we avoid playing FullBody anims it should look okay even if DoPauseAI is skipped.
 	if ( DamageType.default.MeleeHitPower > 0 )
 	{
 		return HIT_Heavy;
@@ -188,7 +188,8 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
 	}
 
 	HitZoneIdx = HitFxInfo.HitBoneIndex;
-	BodyPart = (HitZoneIdx != 255) ? HitZones[HitZoneIdx].Limb : BP_Torso;
+
+	BodyPart = (HitZoneIdx != 255 && HitZoneIdx < HitZones.Length) ? HitZones[HitZoneIdx].Limb : BP_Torso;
 
     // Grab defaults for perk ability scaling
     KnockdownPower = DamageType.default.KnockdownPower;
@@ -270,7 +271,7 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
 	if ( MyKFAIC != None )
 	{
 		HitZoneIdx = HitFxInfo.HitBoneIndex;
-		BodyPart = (HitZoneIdx != 255) ? HitZones[HitZoneIdx].Limb : BP_Torso;
+		BodyPart = (HitZoneIdx != 255 && HitZoneIdx < HitZones.Length) ? HitZones[HitZoneIdx].Limb : BP_Torso;
 
 		// Check hard hit reaction
 		if ( DamageType.default.MeleeHitPower > 0 )
@@ -414,7 +415,7 @@ simulated function bool VerifyAfflictionInstance(EAfflictionType Type)
 		if( Type < AfflictionClasses.Length && AfflictionClasses[Type] != None )
 		{
 			Afflictions[Type] = new(Outer) AfflictionClasses[Type];
-			
+
 			// Cache a reference to the owner to avoid passing parameters around.
 			Afflictions[Type].Init(Outer, Type);
 		}
@@ -451,7 +452,7 @@ function float GetAfflictionKnockdownModifier()
         {
             KnockdownModifier += Afflictions[i].GetKnockdownModifier();
         }
-    }    
+    }
 
     return KnockdownModifier;
 }
@@ -486,7 +487,7 @@ function float GetAfflictionStunModifier()
         if (Afflictions[i] != none)
         {
             StunModifier += Afflictions[i].GetStunModifier();
-        }        
+        }
     }
 
     return StunModifier;
@@ -549,7 +550,7 @@ function float GetAfflictionAttackSpeedModifier()
 simulated function Shutdown()
 {
 	local int i;
-	
+
 	// Call deactivate, but let the strength decay naturally before removing from array
 	for (i = Afflictions.Length - 1; i >= 0; --i)
 	{

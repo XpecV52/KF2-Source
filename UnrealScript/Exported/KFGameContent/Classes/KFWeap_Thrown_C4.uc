@@ -133,6 +133,13 @@ simulated function Projectile ProjectileFire()
 	Charge = KFProj_Thrown_C4( P );
 	if( Charge != none )
 	{
+		if(SkinItemId > 0)
+		{
+			Charge.WeaponSkinId = SkinItemId;
+			Charge.SetWeaponSkin(SkinItemId);
+			Charge.bNetDirty = true;
+		}
+
 		DeployedCharges.AddItem( Charge );
 		NumDeployedCharges = DeployedCharges.Length;
 		bForceNetUpdate = true;
@@ -181,7 +188,7 @@ function RemoveDeployedCharge( optional int ChargeIndex = INDEX_NONE, optional A
 	}
 }
 
-/** Allows pickup to update weapon properties 
+/** Allows pickup to update weapon properties
   * Overridden to allow C4 to update charges
   */
 function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )

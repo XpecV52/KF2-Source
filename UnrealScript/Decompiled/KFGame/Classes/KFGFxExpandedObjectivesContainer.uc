@@ -29,6 +29,22 @@ function bool Refresh(optional bool bForceRefreshOfDaily)
     return false;
 }
 
+function FullRefresh()
+{
+    if(SpecialEventsContainer != none)
+    {
+        SpecialEventsContainer.Initialize(StartMenu);
+    }
+    if(WeeklyEventContainer != none)
+    {
+        WeeklyEventContainer.Initialize(StartMenu);
+    }
+    if(DailyObjectiveContainer != none)
+    {
+        DailyObjectiveContainer.Initialize(StartMenu);
+    }
+}
+
 function LocalizeMenu()
 {
     local GFxObject TextObject;

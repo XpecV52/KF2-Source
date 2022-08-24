@@ -106,14 +106,14 @@ enum EServerPrivacy
 
 //Match making filters
 var int ModeFilter;
-var int DifficultyFilter; 
-var int LengthFilter; 
+var int DifficultyFilter;
+var int LengthFilter;
 var int ServerTypeFilter;
 var int InProgressFilter;
 var int PermissionsFilter;
 
 var bool bModeFilterSet;
-var bool bLengthFilterSet; 
+var bool bLengthFilterSet;
 var bool bServerTypeFilterSet;
 var bool bInProgressFilterSet;
 var bool bPermissionsFilterSet;
@@ -168,6 +168,8 @@ var localized array<string> GameTypes;
 var string PreviousMapName;
 var bool bIsSoloGame;
 
+var private array<string> SupportedGameModeStrings;
+
 //==============================================================
 // Buttons
 //==============================================================
@@ -217,23 +219,27 @@ function ClampSavedFiltersToMode()
 
 function UpdateButtonsEnabled()
 {
+	local int AdjustedGameModeIndex;
+
 	if(bIsSoloGame)
 	{
-		LengthButton.SetBool("enabled", SavedSoloModeIndex < 1);
-		DifficultyButton.SetBool("enabled", SavedSoloModeIndex < 1);
-		
+		AdjustedGameModeIndex = GetAdjustedGameModeIndex(SavedSoloModeIndex);
+
+		LengthButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].Lengths > 0);
+		DifficultyButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].DifficultyLevels > 0);
+
 	}
 	else
 	{
-		LengthButton.SetBool("enabled", SavedModeIndex < 1);
-		DifficultyButton.SetBool("enabled", SavedModeIndex < 1);
+		LengthButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[SavedModeIndex].Lengths > 0);
+		DifficultyButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[SavedModeIndex].DifficultyLevels > 0);
 	}
 	CheckAndUpdateBasedOnPrivacy();
 }
 
 function SetHelpText(string TextValue)
 {
-	SetString("helpText", TextValue);	
+	SetString("helpText", TextValue);
 }
 
 function SetModeMenus(GFxObject TextObject, int ModeIndex)
@@ -252,25 +258,24 @@ function SetModeMenus(GFxObject TextObject, int ModeIndex)
 function InitializeGameOptions()
 {
 	local GFxObject TextObject;
-	local array<string> SupportedGameModeStrings;
-	local int i;
+	local int i, k;
 	local KFProfileSettings Profile;
 
 	Profile = StartMenu.Manager.CachedProfile;
 
 	SavedSoloModeIndex = Profile.GetProfileInt(KFID_SavedSoloModeIndex);
 	SavedModeIndex = Profile.GetProfileInt(KFID_SavedModeIndex);
-	
+
 	if(StartMenu.Manager.CachedProfile.GetProfileSettingValue(KFID_SavedMapString, SavedMapString) == false)
 	{
 		SavedMapString = "";
 	}
-	
+
 	if(StartMenu.Manager.CachedProfile.GetProfileSettingValue(KFID_SavedSoloMapString, SavedSoloMapString) == false)
 	{
 		SavedSoloMapString = "";
 	}
-    
+
     // Override any map selection history preferences if in PS4 Playgo Mode. We only support KF-EvacuationPoint on early install.
     if( !class'GameEngine'.Static.IsGameFullyInstalled() )
     {
@@ -282,7 +287,7 @@ function InitializeGameOptions()
 	{
 		SavedSoloMapString = "KF-BioticsLab";
 	}
-    
+
 
 	SavedSoloDifficultyIndex = Profile.GetProfileInt(KFID_SavedSoloDifficultyIndex);
 	SavedSoloLengthIndex = Profile.GetProfileInt(KFID_SavedSoloLengthIndex);
@@ -292,9 +297,9 @@ function InitializeGameOptions()
 	SavedPrivacyIndex = Profile.GetProfileInt(KFID_SavedPrivacyIndex);
 	SavedModeIndex = Profile.GetProfileInt(KFID_SavedModeIndex);
 	SavedDifficultyIndex = Profile.GetProfileInt(KFID_SavedDifficultyIndex);
-	
+
 	bIsSoloGame = GetBool("bIsSoloGame");
-	
+
 	InitialMapIndex = StartMenu.MapStringList.Find( bIsSoloGame ? SavedSoloMapString : SavedMapString );
 
 	ClampSavedFiltersToMode();
@@ -314,8 +319,8 @@ function InitializeGameOptions()
 	TextObject.SetString("lauchGameString",LaunchGameString);
 	TextObject.SetString("multiplayerLaunchString",MultiplayerLaunchString);
 	TextObject.SetString("searchingString",CancelSearchingString);
-	
-	
+
+
 	TextObject.SetString("mode", StartMenu.GameModeTitle);
 	TextObject.SetString("map", class'WorldInfo'.static.IsConsoleBuild() ? ConsoleLocalize("MapPreference") : StartMenu.MapTitle);
 	TextObject.SetString("difficulty",StartMenu.DifficultyTitle);
@@ -335,16 +340,17 @@ function InitializeGameOptions()
 	}
 
 	TextObject.SetString("inProgress", InProgressString);
- 	
+
 	// Update the options lists
 	SupportedGameModeStrings = class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
 
 	// If we're in a solo game, filter out MP-only gametypes
 	if( bIsSoloGame )
 	{
+		k = 0;
 		for( i = 0; i < SupportedGameModeStrings.Length; ++i )
 		{
-			if( !class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(i) )
+			if( !class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(k++) )
 			{
 				SupportedGameModeStrings.Remove(i, 1);
 				i--;
@@ -353,15 +359,15 @@ function InitializeGameOptions()
 	}
 	// Since the Mode list can include "ANY" we need to just accept that the selected index could be the length of the supported modes.  Otherwise when "ANY" is selected we push the index to 1.
 	// Also don't include the "ANY" option on Console since PlayGo doesn't support searching multiple game types.  HSL_BB
-	TextObject.SetObject("modeList", 		CreateList(SupportedGameModeStrings, Min(bIsSoloGame ? SavedSoloModeIndex : SavedModeIndex , SupportedGameModeStrings.Length), false));	
+	TextObject.SetObject("modeList", 		CreateList(SupportedGameModeStrings, Min(bIsSoloGame ? SavedSoloModeIndex : SavedModeIndex , SupportedGameModeStrings.Length), false));
 	SetModeMenus(TextObject, Min(SavedModeIndex, SupportedGameModeStrings.Length));
     //TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex, true));
 	TextObject.SetObject("mapList",			CreateList(StartMenu.MapStringList, bIsSoloGame ? InitialMapIndex : InitialMapIndex+1, true, true));
 	//TextObject.SetObject("difficultyList",	CreateList(class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex, false));
 	TextObject.SetObject("inProgressList",	CreateList(InProgessOptionStrings, SavedInProgressIndex, false));
-	
+
 	TextObject.SetObject("privacyList",		CreateList(class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(class'WorldInfo'.static.IsConsoleBuild()), SavedPrivacyIndex, false));
-	
+
 	SetObject("localizedText", TextObject);
 }
 
@@ -381,7 +387,7 @@ function LocalizeArrays()
 		InProgessOptionStrings[EIP_Create_New]=Localize("KFGFxStartGameContainer_Options", "CreateNewGameString","KFGame");
 	}
 }
-					
+
 function GFxObject CreateList( array<string> TextArray, byte SelectedIndex, bool bAddNoPrefString, optional bool bIsMapList, optional byte MaxLength)
 {
 	local int i;
@@ -392,7 +398,7 @@ function GFxObject CreateList( array<string> TextArray, byte SelectedIndex, bool
 	local string 	TempString;
 	local byte ArrayLen;
 
-	OptionList = CreateObject("Object");	
+	OptionList = CreateObject("Object");
 	DataProvider = CreateArray();
 
 	if (MaxLength > 0)
@@ -428,7 +434,7 @@ function GFxObject CreateList( array<string> TextArray, byte SelectedIndex, bool
 		{
 			TempString = TextArray[i];
 		}
-		
+
 
 		ItemSlot.SetString("label", TempString );
 		DataProvider.SetElementObject(i + ArrayOffset, ItemSlot);
@@ -492,7 +498,7 @@ function SetSearching(bool bSearching)
 	{
 		serverTypeButton.SetBool("enabled", false);
 	}
-	
+
 	if(bSearching)
 	{
 		SetHelpText(SearchingString);
@@ -501,7 +507,7 @@ function SetSearching(bool bSearching)
 	{
 		SetHelpText("");
 	}
-	
+
 }
 
 //==============================================================
@@ -519,7 +525,7 @@ function ModeChanged( int Index )
 		SavedModeIndex = Index;
 		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedModeIndex, SavedModeIndex);
 	}
-	
+
 	ClampSavedFiltersToMode();
 	InitializeGameOptions();
 	SaveConfig();
@@ -537,7 +543,7 @@ function LengthChanged( int Index )
 		SavedLengthIndex = Index;
 		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedLengthIndex, SavedLengthIndex);
 	}
-	
+
 	SaveConfig();
 }
 
@@ -554,7 +560,7 @@ function DifficultyChanged( int Index )
 		SavedDifficultyIndex = Index;
 		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedDifficultyIndex, SavedDifficultyIndex);
 	}
-	
+
 	SaveConfig();
 }
 
@@ -569,7 +575,7 @@ function MapChanged( string MapName, optional bool bSave = true)
 	{
 		SavedMapString = MapName;
 		StartMenu.Manager.CachedProfile.SetProfileSettingValue(KFID_SavedMapString, SavedMapString);
-	}	
+	}
 
 	if(bSave)
 	{
@@ -591,7 +597,7 @@ function PrivacyChanged( int Index, optional bool bSetText )
 		//SetBool("bPublicGame", GetPartyPrivacy() == LV_Public || GetPartyPrivacy() == LV_Friends );
 
 		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPrivacyIndex, SavedPrivacyIndex);
-	}	
+	}
 }
 
 function CheckAndUpdateBasedOnPrivacy()
@@ -601,7 +607,7 @@ function CheckAndUpdateBasedOnPrivacy()
 		InProgressChanged(EIP_Allow_In_Progress, true);
 		//allow anything for game progress
 		ServerTypeButton.SetBool("enabled", true);
-		
+
 	}
 	else
 	{
@@ -750,12 +756,12 @@ function int GetModeIndex()
 {
 	if(bIsSoloGame)
 	{
-		return SavedSoloModeIndex;
+		return GetAdjustedGameModeIndex(SavedSoloModeIndex);
 	}
 	else
 	{
 		return SavedModeIndex;
-	}	
+	}
 }
 
 function int GetDifficultyIndex()
@@ -767,7 +773,7 @@ function int GetDifficultyIndex()
 	else
 	{
 		return SavedDifficultyIndex;
-	}		
+	}
 }
 
 function int GetLengthIndex(optional int DefaultLength = -1)
@@ -785,7 +791,7 @@ function int GetLengthIndex(optional int DefaultLength = -1)
 			return DefaultLength;
 		}
 		return HandleNoPref(SavedLengthIndex, bShowLengthNoPref);
-	}		
+	}
 }
 
 function int GetDifficulty()
@@ -834,6 +840,17 @@ function byte GetServerTypeIndex()
 	return HandleNoPref(SavedServerTypeIndex, bShowServerTypeNoPref);
 }
 
+function int GetAdjustedGameModeIndex(int ModeIndex)
+{
+	if (bIsSoloGame)
+	{
+		return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedSoloModeIndex]);
+	}
+	else
+	{
+		return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
+	}
+}
 
 // Checks to see if the filter matches the game settings
 native function bool DoesFilterMatchGameSettings( const KFOnlineGameSettings InGameSettings );

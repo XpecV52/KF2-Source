@@ -112,6 +112,7 @@ enum EBossAIType
     BAT_Hans,
     BAT_Patriarch,
     BAT_KingFleshpound,
+    BAT_KingBloat,
 };
 
 /** The list of zeds the spawn manager currently has queued up to spawn*/
@@ -364,6 +365,7 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 	local int i, j, RandNum;
 	local ESquadType LargestMonsterSquadType;
     local array<class<KFPawn_Monster> > TempSpawnList;
+	local class<KFPawn_Monster> ForcedPawnClass;
 
 	Squad = SquadsList[SquadIdx];
 
@@ -388,12 +390,16 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
                     {
                         if (ForcedBossNum < AIBossClassList.Length)
                         {
-                            TempSpawnList.AddItem(AIBossClassList[ForcedBossNum]);
+							ForcedPawnClass = AIBossClassList[ForcedBossNum];
                         }
                         else if ((ForcedBossNum - AIBossClassList.Length) < AITestBossClassList.Length)
                         {
-                            TempSpawnList.AddItem(AITestBossClassList[ForcedBossNum - AIBossClassList.Length]);
+							ForcedPawnClass = AITestBossClassList[ForcedBossNum - AIBossClassList.Length];
                         }
+
+						//If we've forced the class we don't greatly care about the memory results, preload content now
+						ForcedPawnClass.static.PreloadContent();
+						TempSpawnList.AddItem(ForcedPawnClass);
                     }
                     else
 `endif

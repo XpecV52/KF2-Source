@@ -366,6 +366,7 @@ enum EBossAIType
     BAT_Hans,
     BAT_Patriarch,
     BAT_KingFleshpound,
+    BAT_KingBloat,
 };
 
 /** The list of zeds the spawn manager currently has queued up to spawn*/
@@ -618,6 +619,7 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 	local int i, j, RandNum;
 	local ESquadType LargestMonsterSquadType;
     local array<class<KFPawn_Monster> > TempSpawnList;
+	local class<KFPawn_Monster> ForcedPawnClass;
 
 	Squad = SquadsList[SquadIdx];
 
@@ -637,6 +639,10 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 				AIType = Squad.MonsterList[i].Type;
 				if( AIType == AT_BossRandom )
 				{
+
+
+
+
 
 
 

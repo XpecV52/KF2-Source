@@ -7,7 +7,63 @@
  *******************************************************************************/
 class KFLEDEffectsManager extends Object within KFPlayerController;
 
-static function InitLEDEffects()
+enum ELightFXID
+{
+    LFID_None,
+    LFID_Puke,
+    LFID_ZedTimeBegin,
+    LFID_ZedTimeEnd,
+    LFID_LowHealth,
+    LFID_Siren,
+    LFID_Flashbang,
+    LFID_Heal,
+    LFID_Fire,
+    LFID_Gas,
+    LFID_WaveIncoming,
+    LFID_Ready,
+    LFID_Unready,
+    LFID_MatchLost,
+    LFID_MatchWon,
+    LFID_MAX
+};
+
+struct S_LightingFrame
+{
+    var byte Red;
+    var byte Green;
+    var byte Blue;
+    var byte Brightness;
+    var float Duration;
+
+    structdefaultproperties
+    {
+        Red=0
+        Green=0
+        Blue=0
+        Brightness=0
+        Duration=0
+    }
+};
+
+var array<S_LightingFrame> PukeEffectArr;
+var array<S_LightingFrame> ZedTimeBeginEffectArr;
+var array<S_LightingFrame> ZedTimeEndEffectArr;
+var array<S_LightingFrame> LowHealthEffectArr;
+var array<S_LightingFrame> SirenEffectArr;
+var array<S_LightingFrame> FlashbangEffectArr;
+var array<S_LightingFrame> HealEffectArr;
+var array<S_LightingFrame> FireEffectArr;
+var array<S_LightingFrame> GasEffectArr;
+var array<S_LightingFrame> WaveIncomingEffectArr;
+var array<S_LightingFrame> ReadyEffectArr;
+var array<S_LightingFrame> UnreadyEffectArr;
+var array<S_LightingFrame> MatchLostEffectArr;
+var array<S_LightingFrame> MatchWonEffectArr;
+var array<S_LightingFrame> CurrentLightingFrames;
+var int CurrentLightFrameIndex;
+var bool bPendingKill;
+
+simulated function InitLEDEffects()
 {
     local LogitechLEDInterface LogtitechLED;
     local RazerLEDInterface RazerFXLED;
@@ -35,7 +91,35 @@ static function InitLEDEffects()
     PlayEffectSetReady(false);
 }
 
-static function byte PercentToByte(int Percent)
+simulated function ResetLightingAnimation()
+{
+    CurrentLightFrameIndex = -1;
+    CurrentLightingFrames.Length = 0;
+}
+
+simulated function PlayNextLightFrame(optional bool bNewEffect)
+{
+    if(bPendingKill)
+    {
+        return;
+    }
+    if(bNewEffect)
+    {
+        CurrentLightFrameIndex = -1;
+    }
+    ++ CurrentLightFrameIndex;
+    if(CurrentLightFrameIndex < CurrentLightingFrames.Length)
+    {
+        SetLEDRGB(CurrentLightingFrames[CurrentLightFrameIndex].Red, CurrentLightingFrames[CurrentLightFrameIndex].Green, CurrentLightingFrames[CurrentLightFrameIndex].Blue, CurrentLightingFrames[CurrentLightFrameIndex].Brightness);
+        Outer.SetTimer(CurrentLightingFrames[CurrentLightFrameIndex].Duration, false, 'PlayNextLightFrame', self);        
+    }
+    else
+    {
+        LedRestoreLighting();
+    }
+}
+
+simulated function byte PercentToByte(int Percent)
 {
     local byte MyByte;
     local float PercentFloat;
@@ -45,76 +129,35 @@ static function byte PercentToByte(int Percent)
     return MyByte;
 }
 
-static function SetLEDRGB(int RedPercent, int GreenPercent, int BluePercent)
+simulated function SetLEDRGB(int RedPercent, int GreenPercent, int BluePercent, optional int Brightness)
 {
     local LogitechLEDInterface LogtitechLED;
     local RazerLEDInterface RazerFXLED;
     local AlienFXLEDInterface AlienFXLED;
 
+    Brightness = 100;
+    if(bPendingKill)
+    {
+        return;
+    }
     LogtitechLED = Class'PlatformInterfaceBase'.static.GetLogitechIntegration();
     RazerFXLED = Class'PlatformInterfaceBase'.static.GetRazerIntegration();
     AlienFXLED = Class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
     if(LogtitechLED != none)
     {
-        LogtitechLED.SetColor(RedPercent, GreenPercent, BluePercent);
+        LogtitechLED.SetColor(RedPercent, GreenPercent, BluePercent, float(Brightness) / 100);
     }
     if(RazerFXLED != none)
     {
-        RazerFXLED.SetColor(PercentToByte(RedPercent), PercentToByte(GreenPercent), PercentToByte(BluePercent));
+        RazerFXLED.SetColor(PercentToByte(RedPercent), PercentToByte(GreenPercent), PercentToByte(BluePercent), float(Brightness) / 100);
     }
     if(AlienFXLED != none)
     {
-        AlienFXLED.SetColor(PercentToByte(RedPercent), PercentToByte(GreenPercent), PercentToByte(BluePercent));
+        AlienFXLED.SetColor(PercentToByte(RedPercent), PercentToByte(GreenPercent), PercentToByte(BluePercent), PercentToByte(Brightness));
     }
 }
 
-static function LEDSetFlashingRBG(int RedPercent, int GreenPercent, int BluePercent, int milliSecondsDuration, int milliSecondsInterval)
-{
-    local LogitechLEDInterface LogtitechLED;
-    local RazerLEDInterface RazerFXLED;
-    local AlienFXLEDInterface AlienFXLED;
-
-    LogtitechLED = Class'PlatformInterfaceBase'.static.GetLogitechIntegration();
-    RazerFXLED = Class'PlatformInterfaceBase'.static.GetRazerIntegration();
-    AlienFXLED = Class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
-    if(LogtitechLED != none)
-    {
-        LogtitechLED.LEDSetFlashingRBG(RedPercent, GreenPercent, BluePercent, milliSecondsDuration, milliSecondsInterval);
-    }
-    if(RazerFXLED != none)
-    {
-        RazerFXLED.LEDSetFlashingRBG(PercentToByte(RedPercent), PercentToByte(GreenPercent), PercentToByte(BluePercent), milliSecondsDuration, milliSecondsInterval);
-    }
-    if(AlienFXLED != none)
-    {
-        AlienFXLED.LEDSetFlashingRBG(PercentToByte(RedPercent), PercentToByte(GreenPercent), PercentToByte(BluePercent), milliSecondsDuration, milliSecondsInterval);
-    }
-}
-
-static function LEDPulseLighting(int RedPercent, int GreenPercent, int BluePercent, int milliSecondsDuration, int milliSecondsInterval)
-{
-    local LogitechLEDInterface LogtitechLED;
-    local RazerLEDInterface RazerFXLED;
-    local AlienFXLEDInterface AlienFXLED;
-
-    LogtitechLED = Class'PlatformInterfaceBase'.static.GetLogitechIntegration();
-    RazerFXLED = Class'PlatformInterfaceBase'.static.GetRazerIntegration();
-    AlienFXLED = Class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
-    if(LogtitechLED != none)
-    {
-        LogtitechLED.LEDPulseLighting(RedPercent, GreenPercent, BluePercent, milliSecondsDuration, milliSecondsInterval);
-    }
-    if(RazerFXLED != none)
-    {
-        RazerFXLED.LEDPulseLighting(PercentToByte(RedPercent), PercentToByte(GreenPercent), PercentToByte(BluePercent), milliSecondsDuration, milliSecondsInterval);
-    }
-    if(AlienFXLED != none)
-    {
-        AlienFXLED.LEDPulseLighting(PercentToByte(RedPercent), PercentToByte(GreenPercent), PercentToByte(BluePercent), milliSecondsDuration, milliSecondsInterval);
-    }
-}
-
-static function LedStopEffects()
+simulated function LedStopEffects()
 {
     local LogitechLEDInterface LogtitechLED;
     local RazerLEDInterface RazerFXLED;
@@ -129,109 +172,404 @@ static function LedStopEffects()
     }
     if(RazerFXLED != none)
     {
-        RazerFXLED.LedStopEffects();
+        RazerFXLED.LedRestoreLighting();
     }
     if(AlienFXLED != none)
     {
         AlienFXLED.LedStopEffects();
     }
+    bPendingKill = true;
 }
 
-static function LedRestoreLighting()
+simulated function LedRestoreLighting()
 {
-    local LogitechLEDInterface LogtitechLED;
-    local RazerLEDInterface RazerFXLED;
-    local AlienFXLEDInterface AlienFXLED;
-
-    LogtitechLED = Class'PlatformInterfaceBase'.static.GetLogitechIntegration();
-    RazerFXLED = Class'PlatformInterfaceBase'.static.GetRazerIntegration();
-    AlienFXLED = Class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
-    if(LogtitechLED != none)
-    {
-        LogtitechLED.LedRestoreLighting();
-    }
-    if(RazerFXLED != none)
-    {
-        RazerFXLED.LedRestoreLighting();
-    }
-    if(AlienFXLED != none)
-    {
-        AlienFXLED.LedRestoreLighting();
-    }
+    ResetLightingAnimation();
+    SetLEDRGB(100, 0, 0, 75);
 }
 
-static function PlayEffectPuke(float TimeSeconds)
+simulated function PlayEffectPuke(float TimeSeconds)
 {
-    LEDPulseLighting(50, 50, 0, int(TimeSeconds) * 1000, 100);
+    CurrentLightingFrames = PukeEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectZedTime()
+simulated function PlayEffectZedTime()
 {
-    SetLEDRGB(75, 75, 75);
+    CurrentLightingFrames = ZedTimeBeginEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function ClearEffectZedTime()
+simulated function ClearEffectZedTime()
 {
-    SetLEDRGB(0, 0, 0);
+    CurrentLightingFrames = ZedTimeEndEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectLowHealth()
+simulated function PlayEffectLowHealth()
 {
-    LEDSetFlashingRBG(100, 0, 0, 5000, 200);
+    CurrentLightingFrames = LowHealthEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectSiren(float TimeSeconds)
+simulated function PlayEffectSiren(float TimeSeconds)
 {
-    LEDSetFlashingRBG(25, 25, 25, int(TimeSeconds) * 1000, 100);
+    CurrentLightingFrames = SirenEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectFlashbang(float TimeSeconds)
+simulated function PlayEffectFlashbang(float TimeSeconds)
 {
-    LEDSetFlashingRBG(100, 100, 100, int(TimeSeconds) * 1000, 200);
+    CurrentLightingFrames = FlashbangEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectHeal(float TimeSeconds)
+simulated function PlayEffectHeal(float TimeSeconds)
 {
-    LEDPulseLighting(0, 100, 100, int(TimeSeconds) * 1000, 200);
+    CurrentLightingFrames = HealEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectFire()
+simulated function PlayEffectFire()
 {
-    LEDPulseLighting(100, 50, 25, 2500, 200);
+    CurrentLightingFrames = FireEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectGas()
+simulated function PlayEffectGas()
 {
-    LEDPulseLighting(100, 100, 0, 5000, 200);
+    CurrentLightingFrames = GasEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectWaveIncoming()
+simulated function PlayEffectWaveIncoming()
 {
-    LEDPulseLighting(100, 0, 0, 5000, 400);
+    CurrentLightingFrames = WaveIncomingEffectArr;
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectRecievedDosh();
+simulated function PlayEffectRecievedDosh();
 
-static function PlayEffectSetReady(bool bReady)
+simulated function PlayEffectSetReady(bool bReady)
 {
     if(bReady)
     {
-        SetLEDRGB(0, 100, 0);        
+        CurrentLightingFrames = ReadyEffectArr;        
     }
     else
     {
-        SetLEDRGB(100, 0, 0);
+        CurrentLightingFrames = UnreadyEffectArr;
     }
+    PlayNextLightFrame(true);
 }
 
-static function PlayEffectShowMatchOutcome(bool bWon)
+simulated function PlayEffectShowMatchOutcome(bool bWon)
 {
     if(bWon)
     {
-        SetLEDRGB(0, 100, 0);        
+        CurrentLightingFrames = MatchWonEffectArr;        
     }
     else
     {
-        SetLEDRGB(100, 0, 0);
+        CurrentLightingFrames = MatchLostEffectArr;
     }
+    PlayNextLightFrame(true);
+}
+
+defaultproperties
+{
+    PukeEffectArr(0)=(Red=50,Green=50,Blue=0,Brightness=100,Duration=0.1)
+    PukeEffectArr(1)=(Red=50,Green=50,Blue=0,Brightness=95,Duration=0.1)
+    PukeEffectArr(2)=(Red=50,Green=50,Blue=0,Brightness=90,Duration=0.1)
+    PukeEffectArr(3)=(Red=50,Green=50,Blue=0,Brightness=85,Duration=0.1)
+    PukeEffectArr(4)=(Red=50,Green=50,Blue=0,Brightness=80,Duration=0.1)
+    PukeEffectArr(5)=(Red=50,Green=50,Blue=0,Brightness=75,Duration=0.1)
+    PukeEffectArr(6)=(Red=50,Green=50,Blue=0,Brightness=70,Duration=0.1)
+    PukeEffectArr(7)=(Red=50,Green=50,Blue=0,Brightness=65,Duration=0.1)
+    PukeEffectArr(8)=(Red=50,Green=50,Blue=0,Brightness=60,Duration=0.1)
+    PukeEffectArr(9)=(Red=50,Green=50,Blue=0,Brightness=55,Duration=0.1)
+    PukeEffectArr(10)=(Red=50,Green=50,Blue=0,Brightness=50,Duration=0.1)
+    PukeEffectArr(11)=(Red=50,Green=50,Blue=0,Brightness=45,Duration=0.1)
+    PukeEffectArr(12)=(Red=50,Green=50,Blue=0,Brightness=40,Duration=0.1)
+    PukeEffectArr(13)=(Red=50,Green=50,Blue=0,Brightness=35,Duration=0.1)
+    PukeEffectArr(14)=(Red=50,Green=50,Blue=0,Brightness=30,Duration=0.1)
+    PukeEffectArr(15)=(Red=50,Green=50,Blue=0,Brightness=25,Duration=0.1)
+    PukeEffectArr(16)=(Red=50,Green=50,Blue=0,Brightness=20,Duration=0.1)
+    PukeEffectArr(17)=(Red=50,Green=50,Blue=0,Brightness=15,Duration=0.1)
+    PukeEffectArr(18)=(Red=50,Green=50,Blue=0,Brightness=10,Duration=0.1)
+    PukeEffectArr(19)=(Red=50,Green=50,Blue=0,Brightness=5,Duration=0.1)
+    PukeEffectArr(20)=(Red=50,Green=50,Blue=0,Brightness=0,Duration=0.1)
+    PukeEffectArr(21)=(Red=50,Green=50,Blue=0,Brightness=5,Duration=0.1)
+    PukeEffectArr(22)=(Red=50,Green=50,Blue=0,Brightness=10,Duration=0.1)
+    PukeEffectArr(23)=(Red=50,Green=50,Blue=0,Brightness=15,Duration=0.1)
+    PukeEffectArr(24)=(Red=50,Green=50,Blue=0,Brightness=20,Duration=0.1)
+    PukeEffectArr(25)=(Red=50,Green=50,Blue=0,Brightness=25,Duration=0.1)
+    PukeEffectArr(26)=(Red=50,Green=50,Blue=0,Brightness=30,Duration=0.1)
+    PukeEffectArr(27)=(Red=50,Green=50,Blue=0,Brightness=35,Duration=0.1)
+    PukeEffectArr(28)=(Red=50,Green=50,Blue=0,Brightness=40,Duration=0.1)
+    PukeEffectArr(29)=(Red=50,Green=50,Blue=0,Brightness=45,Duration=0.1)
+    PukeEffectArr(30)=(Red=50,Green=50,Blue=0,Brightness=50,Duration=0.1)
+    PukeEffectArr(31)=(Red=50,Green=50,Blue=0,Brightness=55,Duration=0.1)
+    PukeEffectArr(32)=(Red=50,Green=50,Blue=0,Brightness=60,Duration=0.1)
+    PukeEffectArr(33)=(Red=50,Green=50,Blue=0,Brightness=65,Duration=0.1)
+    PukeEffectArr(34)=(Red=50,Green=50,Blue=0,Brightness=70,Duration=0.1)
+    PukeEffectArr(35)=(Red=50,Green=50,Blue=0,Brightness=75,Duration=0.1)
+    PukeEffectArr(36)=(Red=50,Green=50,Blue=0,Brightness=80,Duration=0.1)
+    PukeEffectArr(37)=(Red=50,Green=50,Blue=0,Brightness=85,Duration=0.1)
+    PukeEffectArr(38)=(Red=50,Green=50,Blue=0,Brightness=90,Duration=0.1)
+    PukeEffectArr(39)=(Red=50,Green=50,Blue=0,Brightness=95,Duration=0.1)
+    PukeEffectArr(40)=(Red=50,Green=50,Blue=0,Brightness=100,Duration=0.1)
+    PukeEffectArr(41)=(Red=50,Green=50,Blue=0,Brightness=95,Duration=0.1)
+    PukeEffectArr(42)=(Red=50,Green=50,Blue=0,Brightness=90,Duration=0.1)
+    PukeEffectArr(43)=(Red=50,Green=50,Blue=0,Brightness=85,Duration=0.1)
+    PukeEffectArr(44)=(Red=50,Green=50,Blue=0,Brightness=80,Duration=0.1)
+    PukeEffectArr(45)=(Red=50,Green=50,Blue=0,Brightness=75,Duration=0.1)
+    PukeEffectArr(46)=(Red=50,Green=50,Blue=0,Brightness=70,Duration=0.1)
+    PukeEffectArr(47)=(Red=50,Green=50,Blue=0,Brightness=65,Duration=0.1)
+    PukeEffectArr(48)=(Red=50,Green=50,Blue=0,Brightness=60,Duration=0.1)
+    PukeEffectArr(49)=(Red=50,Green=50,Blue=0,Brightness=55,Duration=0.1)
+    PukeEffectArr(50)=(Red=50,Green=50,Blue=0,Brightness=50,Duration=0.1)
+    PukeEffectArr(51)=(Red=50,Green=50,Blue=0,Brightness=45,Duration=0.1)
+    PukeEffectArr(52)=(Red=50,Green=50,Blue=0,Brightness=40,Duration=0.1)
+    PukeEffectArr(53)=(Red=50,Green=50,Blue=0,Brightness=35,Duration=0.1)
+    PukeEffectArr(54)=(Red=50,Green=50,Blue=0,Brightness=30,Duration=0.1)
+    PukeEffectArr(55)=(Red=50,Green=50,Blue=0,Brightness=25,Duration=0.1)
+    PukeEffectArr(56)=(Red=50,Green=50,Blue=0,Brightness=20,Duration=0.1)
+    PukeEffectArr(57)=(Red=50,Green=50,Blue=0,Brightness=15,Duration=0.1)
+    PukeEffectArr(58)=(Red=50,Green=50,Blue=0,Brightness=10,Duration=0.1)
+    PukeEffectArr(59)=(Red=50,Green=50,Blue=0,Brightness=5,Duration=0.1)
+    PukeEffectArr(60)=(Red=50,Green=50,Blue=0,Brightness=0,Duration=0.1)
+    PukeEffectArr(61)=(Red=50,Green=50,Blue=0,Brightness=5,Duration=0.1)
+    PukeEffectArr(62)=(Red=50,Green=50,Blue=0,Brightness=10,Duration=0.1)
+    PukeEffectArr(63)=(Red=50,Green=50,Blue=0,Brightness=15,Duration=0.1)
+    PukeEffectArr(64)=(Red=50,Green=50,Blue=0,Brightness=20,Duration=0.1)
+    PukeEffectArr(65)=(Red=50,Green=50,Blue=0,Brightness=25,Duration=0.1)
+    PukeEffectArr(66)=(Red=50,Green=50,Blue=0,Brightness=30,Duration=0.1)
+    PukeEffectArr(67)=(Red=50,Green=50,Blue=0,Brightness=35,Duration=0.1)
+    PukeEffectArr(68)=(Red=50,Green=50,Blue=0,Brightness=40,Duration=0.1)
+    PukeEffectArr(69)=(Red=50,Green=50,Blue=0,Brightness=45,Duration=0.1)
+    PukeEffectArr(70)=(Red=50,Green=50,Blue=0,Brightness=50,Duration=0.1)
+    PukeEffectArr(71)=(Red=50,Green=50,Blue=0,Brightness=55,Duration=0.1)
+    PukeEffectArr(72)=(Red=50,Green=50,Blue=0,Brightness=60,Duration=0.1)
+    PukeEffectArr(73)=(Red=50,Green=50,Blue=0,Brightness=65,Duration=0.1)
+    PukeEffectArr(74)=(Red=50,Green=50,Blue=0,Brightness=70,Duration=0.1)
+    PukeEffectArr(75)=(Red=50,Green=50,Blue=0,Brightness=75,Duration=0.1)
+    PukeEffectArr(76)=(Red=50,Green=50,Blue=0,Brightness=80,Duration=0.1)
+    PukeEffectArr(77)=(Red=50,Green=50,Blue=0,Brightness=85,Duration=0.1)
+    PukeEffectArr(78)=(Red=50,Green=50,Blue=0,Brightness=90,Duration=0.1)
+    PukeEffectArr(79)=(Red=50,Green=50,Blue=0,Brightness=95,Duration=0.1)
+    PukeEffectArr(80)=(Red=50,Green=50,Blue=0,Brightness=100,Duration=0.25)
+    ZedTimeBeginEffectArr(0)=(Red=75,Green=75,Blue=75,Brightness=5,Duration=0.1)
+    ZedTimeBeginEffectArr(1)=(Red=75,Green=75,Blue=75,Brightness=10,Duration=0.1)
+    ZedTimeBeginEffectArr(2)=(Red=75,Green=75,Blue=75,Brightness=15,Duration=0.1)
+    ZedTimeBeginEffectArr(3)=(Red=75,Green=75,Blue=75,Brightness=20,Duration=0.1)
+    ZedTimeBeginEffectArr(4)=(Red=75,Green=75,Blue=75,Brightness=25,Duration=0.1)
+    ZedTimeBeginEffectArr(5)=(Red=75,Green=75,Blue=75,Brightness=30,Duration=0.1)
+    ZedTimeBeginEffectArr(6)=(Red=75,Green=75,Blue=75,Brightness=35,Duration=0.1)
+    ZedTimeBeginEffectArr(7)=(Red=75,Green=75,Blue=75,Brightness=40,Duration=0.1)
+    ZedTimeBeginEffectArr(8)=(Red=75,Green=75,Blue=75,Brightness=45,Duration=0.1)
+    ZedTimeBeginEffectArr(9)=(Red=75,Green=75,Blue=75,Brightness=50,Duration=0.1)
+    ZedTimeBeginEffectArr(10)=(Red=75,Green=75,Blue=75,Brightness=55,Duration=0.1)
+    ZedTimeBeginEffectArr(11)=(Red=75,Green=75,Blue=75,Brightness=60,Duration=0.1)
+    ZedTimeBeginEffectArr(12)=(Red=75,Green=75,Blue=75,Brightness=65,Duration=0.1)
+    ZedTimeBeginEffectArr(13)=(Red=75,Green=75,Blue=75,Brightness=70,Duration=0.1)
+    ZedTimeBeginEffectArr(14)=(Red=75,Green=75,Blue=75,Brightness=75,Duration=0.1)
+    ZedTimeBeginEffectArr(15)=(Red=75,Green=75,Blue=75,Brightness=80,Duration=0.1)
+    ZedTimeBeginEffectArr(16)=(Red=75,Green=75,Blue=75,Brightness=85,Duration=0.1)
+    ZedTimeBeginEffectArr(17)=(Red=75,Green=75,Blue=75,Brightness=90,Duration=0.1)
+    ZedTimeBeginEffectArr(18)=(Red=75,Green=75,Blue=75,Brightness=95,Duration=0.1)
+    ZedTimeBeginEffectArr(19)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0)
+    ZedTimeEndEffectArr(0)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.1)
+    ZedTimeEndEffectArr(1)=(Red=75,Green=75,Blue=75,Brightness=95,Duration=0.1)
+    ZedTimeEndEffectArr(2)=(Red=75,Green=75,Blue=75,Brightness=90,Duration=0.1)
+    ZedTimeEndEffectArr(3)=(Red=75,Green=75,Blue=75,Brightness=85,Duration=0.1)
+    ZedTimeEndEffectArr(4)=(Red=75,Green=75,Blue=75,Brightness=80,Duration=0.1)
+    ZedTimeEndEffectArr(5)=(Red=75,Green=75,Blue=75,Brightness=75,Duration=0.1)
+    ZedTimeEndEffectArr(6)=(Red=75,Green=75,Blue=75,Brightness=70,Duration=0.1)
+    ZedTimeEndEffectArr(7)=(Red=75,Green=75,Blue=75,Brightness=65,Duration=0.1)
+    ZedTimeEndEffectArr(8)=(Red=75,Green=75,Blue=75,Brightness=60,Duration=0.1)
+    ZedTimeEndEffectArr(9)=(Red=75,Green=75,Blue=75,Brightness=55,Duration=0.1)
+    ZedTimeEndEffectArr(10)=(Red=75,Green=75,Blue=75,Brightness=50,Duration=0.1)
+    ZedTimeEndEffectArr(11)=(Red=75,Green=75,Blue=75,Brightness=45,Duration=0.1)
+    ZedTimeEndEffectArr(12)=(Red=75,Green=75,Blue=75,Brightness=40,Duration=0.1)
+    ZedTimeEndEffectArr(13)=(Red=75,Green=75,Blue=75,Brightness=35,Duration=0.1)
+    ZedTimeEndEffectArr(14)=(Red=75,Green=75,Blue=75,Brightness=30,Duration=0.1)
+    ZedTimeEndEffectArr(15)=(Red=75,Green=75,Blue=75,Brightness=25,Duration=0.1)
+    ZedTimeEndEffectArr(16)=(Red=75,Green=75,Blue=75,Brightness=20,Duration=0.1)
+    ZedTimeEndEffectArr(17)=(Red=75,Green=75,Blue=75,Brightness=15,Duration=0.1)
+    ZedTimeEndEffectArr(18)=(Red=75,Green=75,Blue=75,Brightness=10,Duration=0.1)
+    ZedTimeEndEffectArr(19)=(Red=75,Green=75,Blue=75,Brightness=5,Duration=0.1)
+    ZedTimeEndEffectArr(20)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    LowHealthEffectArr(0)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.1)
+    LowHealthEffectArr(1)=(Red=100,Green=0,Blue=0,Brightness=95,Duration=0.1)
+    LowHealthEffectArr(2)=(Red=100,Green=0,Blue=0,Brightness=90,Duration=0.1)
+    LowHealthEffectArr(3)=(Red=100,Green=0,Blue=0,Brightness=85,Duration=0.1)
+    LowHealthEffectArr(4)=(Red=100,Green=0,Blue=0,Brightness=80,Duration=0.1)
+    LowHealthEffectArr(5)=(Red=100,Green=0,Blue=0,Brightness=75,Duration=0.1)
+    LowHealthEffectArr(6)=(Red=100,Green=0,Blue=0,Brightness=70,Duration=0.1)
+    LowHealthEffectArr(7)=(Red=100,Green=0,Blue=0,Brightness=65,Duration=0.1)
+    LowHealthEffectArr(8)=(Red=100,Green=0,Blue=0,Brightness=60,Duration=0.1)
+    LowHealthEffectArr(9)=(Red=100,Green=0,Blue=0,Brightness=55,Duration=0.1)
+    LowHealthEffectArr(10)=(Red=100,Green=0,Blue=0,Brightness=50,Duration=0.1)
+    LowHealthEffectArr(11)=(Red=100,Green=0,Blue=0,Brightness=45,Duration=0.1)
+    LowHealthEffectArr(12)=(Red=100,Green=0,Blue=0,Brightness=40,Duration=0.1)
+    LowHealthEffectArr(13)=(Red=100,Green=0,Blue=0,Brightness=35,Duration=0.1)
+    LowHealthEffectArr(14)=(Red=100,Green=0,Blue=0,Brightness=30,Duration=0.1)
+    LowHealthEffectArr(15)=(Red=100,Green=0,Blue=0,Brightness=25,Duration=0.1)
+    LowHealthEffectArr(16)=(Red=100,Green=0,Blue=0,Brightness=20,Duration=0.1)
+    LowHealthEffectArr(17)=(Red=100,Green=0,Blue=0,Brightness=15,Duration=0.1)
+    LowHealthEffectArr(18)=(Red=100,Green=0,Blue=0,Brightness=10,Duration=0.1)
+    LowHealthEffectArr(19)=(Red=100,Green=0,Blue=0,Brightness=5,Duration=0.1)
+    LowHealthEffectArr(20)=(Red=100,Green=0,Blue=0,Brightness=0,Duration=0.1)
+    LowHealthEffectArr(21)=(Red=100,Green=0,Blue=0,Brightness=5,Duration=0.1)
+    LowHealthEffectArr(22)=(Red=100,Green=0,Blue=0,Brightness=10,Duration=0.1)
+    LowHealthEffectArr(23)=(Red=100,Green=0,Blue=0,Brightness=15,Duration=0.1)
+    LowHealthEffectArr(24)=(Red=100,Green=0,Blue=0,Brightness=20,Duration=0.1)
+    LowHealthEffectArr(25)=(Red=100,Green=0,Blue=0,Brightness=25,Duration=0.1)
+    LowHealthEffectArr(26)=(Red=100,Green=0,Blue=0,Brightness=30,Duration=0.1)
+    LowHealthEffectArr(27)=(Red=100,Green=0,Blue=0,Brightness=35,Duration=0.1)
+    LowHealthEffectArr(28)=(Red=100,Green=0,Blue=0,Brightness=40,Duration=0.1)
+    LowHealthEffectArr(29)=(Red=100,Green=0,Blue=0,Brightness=45,Duration=0.1)
+    LowHealthEffectArr(30)=(Red=100,Green=0,Blue=0,Brightness=50,Duration=0.1)
+    LowHealthEffectArr(31)=(Red=100,Green=0,Blue=0,Brightness=55,Duration=0.1)
+    LowHealthEffectArr(32)=(Red=100,Green=0,Blue=0,Brightness=60,Duration=0.1)
+    LowHealthEffectArr(33)=(Red=100,Green=0,Blue=0,Brightness=65,Duration=0.1)
+    LowHealthEffectArr(34)=(Red=100,Green=0,Blue=0,Brightness=70,Duration=0.1)
+    LowHealthEffectArr(35)=(Red=100,Green=0,Blue=0,Brightness=75,Duration=0.1)
+    LowHealthEffectArr(36)=(Red=100,Green=0,Blue=0,Brightness=80,Duration=0.1)
+    LowHealthEffectArr(37)=(Red=100,Green=0,Blue=0,Brightness=85,Duration=0.1)
+    LowHealthEffectArr(38)=(Red=100,Green=0,Blue=0,Brightness=90,Duration=0.1)
+    LowHealthEffectArr(39)=(Red=100,Green=0,Blue=0,Brightness=95,Duration=0.1)
+    LowHealthEffectArr(40)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.1)
+    LowHealthEffectArr(41)=(Red=100,Green=0,Blue=0,Brightness=95,Duration=0.1)
+    LowHealthEffectArr(42)=(Red=100,Green=0,Blue=0,Brightness=90,Duration=0.1)
+    LowHealthEffectArr(43)=(Red=100,Green=0,Blue=0,Brightness=85,Duration=0.1)
+    LowHealthEffectArr(44)=(Red=100,Green=0,Blue=0,Brightness=80,Duration=0.1)
+    LowHealthEffectArr(45)=(Red=100,Green=0,Blue=0,Brightness=75,Duration=0.1)
+    LowHealthEffectArr(46)=(Red=100,Green=0,Blue=0,Brightness=70,Duration=0.1)
+    LowHealthEffectArr(47)=(Red=100,Green=0,Blue=0,Brightness=65,Duration=0.1)
+    LowHealthEffectArr(48)=(Red=100,Green=0,Blue=0,Brightness=60,Duration=0.1)
+    LowHealthEffectArr(49)=(Red=100,Green=0,Blue=0,Brightness=55,Duration=0.1)
+    LowHealthEffectArr(50)=(Red=100,Green=0,Blue=0,Brightness=50,Duration=0.1)
+    LowHealthEffectArr(51)=(Red=100,Green=0,Blue=0,Brightness=45,Duration=0.1)
+    LowHealthEffectArr(52)=(Red=100,Green=0,Blue=0,Brightness=40,Duration=0.1)
+    LowHealthEffectArr(53)=(Red=100,Green=0,Blue=0,Brightness=35,Duration=0.1)
+    LowHealthEffectArr(54)=(Red=100,Green=0,Blue=0,Brightness=30,Duration=0.1)
+    LowHealthEffectArr(55)=(Red=100,Green=0,Blue=0,Brightness=25,Duration=0.1)
+    LowHealthEffectArr(56)=(Red=100,Green=0,Blue=0,Brightness=20,Duration=0.1)
+    LowHealthEffectArr(57)=(Red=100,Green=0,Blue=0,Brightness=15,Duration=0.1)
+    LowHealthEffectArr(58)=(Red=100,Green=0,Blue=0,Brightness=10,Duration=0.1)
+    LowHealthEffectArr(59)=(Red=100,Green=0,Blue=0,Brightness=5,Duration=0.1)
+    LowHealthEffectArr(60)=(Red=100,Green=0,Blue=0,Brightness=0,Duration=0.1)
+    LowHealthEffectArr(61)=(Red=100,Green=0,Blue=0,Brightness=5,Duration=0.1)
+    LowHealthEffectArr(62)=(Red=100,Green=0,Blue=0,Brightness=10,Duration=0.1)
+    LowHealthEffectArr(63)=(Red=100,Green=0,Blue=0,Brightness=15,Duration=0.1)
+    LowHealthEffectArr(64)=(Red=100,Green=0,Blue=0,Brightness=20,Duration=0.1)
+    LowHealthEffectArr(65)=(Red=100,Green=0,Blue=0,Brightness=25,Duration=0.1)
+    LowHealthEffectArr(66)=(Red=100,Green=0,Blue=0,Brightness=30,Duration=0.1)
+    LowHealthEffectArr(67)=(Red=100,Green=0,Blue=0,Brightness=35,Duration=0.1)
+    LowHealthEffectArr(68)=(Red=100,Green=0,Blue=0,Brightness=40,Duration=0.1)
+    LowHealthEffectArr(69)=(Red=100,Green=0,Blue=0,Brightness=45,Duration=0.1)
+    LowHealthEffectArr(70)=(Red=100,Green=0,Blue=0,Brightness=50,Duration=0.1)
+    LowHealthEffectArr(71)=(Red=100,Green=0,Blue=0,Brightness=55,Duration=0.1)
+    LowHealthEffectArr(72)=(Red=100,Green=0,Blue=0,Brightness=60,Duration=0.1)
+    LowHealthEffectArr(73)=(Red=100,Green=0,Blue=0,Brightness=65,Duration=0.1)
+    LowHealthEffectArr(74)=(Red=100,Green=0,Blue=0,Brightness=70,Duration=0.1)
+    LowHealthEffectArr(75)=(Red=100,Green=0,Blue=0,Brightness=75,Duration=0.1)
+    LowHealthEffectArr(76)=(Red=100,Green=0,Blue=0,Brightness=80,Duration=0.1)
+    LowHealthEffectArr(77)=(Red=100,Green=0,Blue=0,Brightness=85,Duration=0.1)
+    LowHealthEffectArr(78)=(Red=100,Green=0,Blue=0,Brightness=90,Duration=0.1)
+    LowHealthEffectArr(79)=(Red=100,Green=0,Blue=0,Brightness=95,Duration=0.1)
+    LowHealthEffectArr(80)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.25)
+    SirenEffectArr(0)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    SirenEffectArr(1)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(2)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    SirenEffectArr(3)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(4)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    SirenEffectArr(5)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(6)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    SirenEffectArr(7)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(8)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    SirenEffectArr(9)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(10)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    SirenEffectArr(11)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(12)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    SirenEffectArr(13)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(14)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(15)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    SirenEffectArr(16)=(Red=75,Green=75,Blue=75,Brightness=0,Duration=0.25)
+    SirenEffectArr(17)=(Red=75,Green=75,Blue=75,Brightness=100,Duration=0.25)
+    FlashbangEffectArr(0)=(Red=100,Green=100,Blue=100,Brightness=100,Duration=0.25)
+    FlashbangEffectArr(1)=(Red=100,Green=100,Blue=100,Brightness=0,Duration=0.25)
+    FlashbangEffectArr(2)=(Red=100,Green=100,Blue=100,Brightness=100,Duration=0.25)
+    FlashbangEffectArr(3)=(Red=100,Green=100,Blue=100,Brightness=0,Duration=0.25)
+    FlashbangEffectArr(4)=(Red=100,Green=100,Blue=100,Brightness=100,Duration=0.25)
+    FlashbangEffectArr(5)=(Red=100,Green=100,Blue=100,Brightness=0,Duration=0.25)
+    FlashbangEffectArr(6)=(Red=100,Green=100,Blue=100,Brightness=100,Duration=0.25)
+    FlashbangEffectArr(7)=(Red=100,Green=100,Blue=100,Brightness=0,Duration=0.25)
+    FlashbangEffectArr(8)=(Red=100,Green=100,Blue=100,Brightness=100,Duration=0.25)
+    HealEffectArr(0)=(Red=0,Green=100,Blue=100,Brightness=5,Duration=0.1)
+    HealEffectArr(1)=(Red=0,Green=100,Blue=100,Brightness=10,Duration=0.1)
+    HealEffectArr(2)=(Red=0,Green=100,Blue=100,Brightness=15,Duration=0.1)
+    HealEffectArr(3)=(Red=0,Green=100,Blue=100,Brightness=20,Duration=0.1)
+    HealEffectArr(4)=(Red=0,Green=100,Blue=100,Brightness=25,Duration=0.1)
+    HealEffectArr(5)=(Red=0,Green=100,Blue=100,Brightness=30,Duration=0.1)
+    HealEffectArr(6)=(Red=0,Green=100,Blue=100,Brightness=35,Duration=0.1)
+    HealEffectArr(7)=(Red=0,Green=100,Blue=100,Brightness=40,Duration=0.1)
+    HealEffectArr(8)=(Red=0,Green=100,Blue=100,Brightness=45,Duration=0.1)
+    HealEffectArr(9)=(Red=0,Green=100,Blue=100,Brightness=50,Duration=0.1)
+    HealEffectArr(10)=(Red=0,Green=100,Blue=100,Brightness=55,Duration=0.1)
+    HealEffectArr(11)=(Red=0,Green=100,Blue=100,Brightness=60,Duration=0.1)
+    HealEffectArr(12)=(Red=0,Green=100,Blue=100,Brightness=65,Duration=0.1)
+    HealEffectArr(13)=(Red=0,Green=100,Blue=100,Brightness=70,Duration=0.1)
+    HealEffectArr(14)=(Red=0,Green=100,Blue=100,Brightness=75,Duration=0.1)
+    HealEffectArr(15)=(Red=0,Green=100,Blue=100,Brightness=80,Duration=0.1)
+    HealEffectArr(16)=(Red=0,Green=100,Blue=100,Brightness=85,Duration=0.1)
+    HealEffectArr(17)=(Red=0,Green=100,Blue=100,Brightness=90,Duration=0.1)
+    HealEffectArr(18)=(Red=0,Green=100,Blue=100,Brightness=95,Duration=0.1)
+    HealEffectArr(19)=(Red=0,Green=100,Blue=100,Brightness=100,Duration=0.25)
+    FireEffectArr(0)=(Red=100,Green=50,Blue=25,Brightness=5,Duration=0.1)
+    FireEffectArr(1)=(Red=100,Green=50,Blue=25,Brightness=15,Duration=0.1)
+    FireEffectArr(2)=(Red=100,Green=50,Blue=25,Brightness=25,Duration=0.1)
+    FireEffectArr(3)=(Red=100,Green=50,Blue=25,Brightness=35,Duration=0.1)
+    FireEffectArr(4)=(Red=100,Green=50,Blue=25,Brightness=45,Duration=0.1)
+    FireEffectArr(5)=(Red=100,Green=50,Blue=25,Brightness=55,Duration=0.1)
+    FireEffectArr(6)=(Red=100,Green=50,Blue=25,Brightness=65,Duration=0.1)
+    FireEffectArr(7)=(Red=100,Green=50,Blue=25,Brightness=75,Duration=0.1)
+    FireEffectArr(8)=(Red=100,Green=50,Blue=25,Brightness=85,Duration=0.1)
+    FireEffectArr(9)=(Red=100,Green=50,Blue=25,Brightness=95,Duration=0.1)
+    FireEffectArr(10)=(Red=100,Green=50,Blue=25,Brightness=100,Duration=0.25)
+    FireEffectArr(11)=(Red=100,Green=50,Blue=25,Brightness=0,Duration=0.25)
+    FireEffectArr(12)=(Red=100,Green=50,Blue=25,Brightness=100,Duration=0.25)
+    FireEffectArr(13)=(Red=100,Green=50,Blue=25,Brightness=0,Duration=0.25)
+    FireEffectArr(14)=(Red=100,Green=50,Blue=25,Brightness=100,Duration=0.25)
+    GasEffectArr(0)=(Red=100,Green=100,Blue=0,Brightness=5,Duration=0.1)
+    GasEffectArr(1)=(Red=100,Green=100,Blue=0,Brightness=15,Duration=0.1)
+    GasEffectArr(2)=(Red=100,Green=100,Blue=0,Brightness=25,Duration=0.1)
+    GasEffectArr(3)=(Red=100,Green=100,Blue=0,Brightness=35,Duration=0.1)
+    GasEffectArr(4)=(Red=100,Green=100,Blue=0,Brightness=45,Duration=0.1)
+    GasEffectArr(5)=(Red=100,Green=100,Blue=0,Brightness=55,Duration=0.1)
+    GasEffectArr(6)=(Red=100,Green=100,Blue=0,Brightness=65,Duration=0.1)
+    GasEffectArr(7)=(Red=100,Green=100,Blue=0,Brightness=75,Duration=0.1)
+    GasEffectArr(8)=(Red=100,Green=100,Blue=0,Brightness=85,Duration=0.1)
+    GasEffectArr(9)=(Red=100,Green=100,Blue=0,Brightness=95,Duration=0.1)
+    GasEffectArr(10)=(Red=100,Green=100,Blue=0,Brightness=100,Duration=0.25)
+    GasEffectArr(11)=(Red=100,Green=100,Blue=0,Brightness=0,Duration=0.25)
+    GasEffectArr(12)=(Red=100,Green=100,Blue=0,Brightness=100,Duration=0.25)
+    GasEffectArr(13)=(Red=100,Green=100,Blue=0,Brightness=0,Duration=0.25)
+    GasEffectArr(14)=(Red=100,Green=100,Blue=0,Brightness=100,Duration=0.25)
+    WaveIncomingEffectArr(0)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.25)
+    WaveIncomingEffectArr(1)=(Red=100,Green=0,Blue=0,Brightness=0,Duration=0.25)
+    WaveIncomingEffectArr(2)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.25)
+    WaveIncomingEffectArr(3)=(Red=100,Green=0,Blue=0,Brightness=0,Duration=0.25)
+    WaveIncomingEffectArr(4)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.25)
+    WaveIncomingEffectArr(5)=(Red=100,Green=0,Blue=0,Brightness=0,Duration=0.25)
+    WaveIncomingEffectArr(6)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.25)
+    WaveIncomingEffectArr(7)=(Red=100,Green=0,Blue=0,Brightness=0,Duration=0.25)
+    WaveIncomingEffectArr(8)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.25)
+    WaveIncomingEffectArr(9)=(Red=100,Green=0,Blue=0,Brightness=0,Duration=0.25)
+    WaveIncomingEffectArr(10)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.25)
+    ReadyEffectArr(0)=(Red=0,Green=100,Blue=0,Brightness=100,Duration=0)
+    UnreadyEffectArr(0)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0)
+    MatchLostEffectArr(0)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0)
+    MatchWonEffectArr(0)=(Red=0,Green=100,Blue=0,Brightness=100,Duration=0)
 }

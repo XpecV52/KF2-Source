@@ -13,6 +13,8 @@ class KFProj_Nail_Nailgun extends KFProj_PinningBullet
 
 simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
+	local TraceHitInfo HitInfo;
+
     // Don't bounce any more if being used to pin a zed
     if( bSpawnedForPin )
     {
@@ -22,8 +24,14 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 	SetRotation(rotator(Normal(Velocity)));
     SetPhysics(PHYS_Falling);
 
-    // check if we should do a bounce, otherwise stick
-    if( !Bounce(HitNormal, Wall) )
+    // Should hit destructibles without bouncing
+	if (!Wall.bStatic && bDamageDestructiblesOnTouch && Wall.bProjTarget)
+	{
+		Wall.TakeDamage(Damage, InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
+		Explode(Location, HitNormal);
+	}
+	// check if we should do a bounce, otherwise stick
+    else if( !Bounce(HitNormal, Wall) )
     {
         // Turn off the corona when it stops
     	if ( WorldInfo.NetMode != NM_DedicatedServer && ProjEffects!=None )

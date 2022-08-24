@@ -31,6 +31,8 @@ package tripwire.controls.scoreboard
         
         public var doshIcon:MovieClip;
         
+        public var defaultAvatar:MovieClip;
+        
         private const PS4_CHAR_LIMIT:int = 16;
         
         public var doshiconStartX:Number;
@@ -81,7 +83,7 @@ package tripwire.controls.scoreboard
         
         public function set avatarIcon(param1:String) : void
         {
-            if(param1 && param1 != "")
+            if(param1 && param1 != "" && param1 != "img://")
             {
                 this.avatarLoader.source = param1;
                 this.avatarLoader.visible = true;
@@ -90,6 +92,7 @@ package tripwire.controls.scoreboard
             {
                 this.avatarLoader.visible = false;
             }
+            this.defaultAvatar.visible = !this.avatarLoader.visible;
         }
         
         public function set doshAmount(param1:String) : void

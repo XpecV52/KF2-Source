@@ -2189,17 +2189,17 @@ defaultproperties
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
       SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=Class'kfgamecontent.KFSM_Patriarch_Taunt'
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(14)=None
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'kfgamecontent.KFSM_Patriarch_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
-      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Patriarch_Heal'
-      SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
-      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
-      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(16)=None
+      SpecialMoveClasses(17)=Class'KFGame.KFSM_Block'
+      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Patriarch_Heal'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
       SpecialMoveClasses(23)=None
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
@@ -2211,7 +2211,8 @@ defaultproperties
       SpecialMoveClasses(31)=None
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
-      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(34)=None
+      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object

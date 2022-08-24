@@ -77,6 +77,7 @@ function OnOpen()
     {
         KFPC.TriggerGlobalEventClass(Class'KFSeqEvent_DoshVault', KFPC, 0);
     }
+    KFPC.VerifyDoshVaultCrates();
     if(!bSeenAllDoshAnimation)
     {
         InitializeMenu(Manager);
@@ -87,7 +88,7 @@ function OnClose()
 {
     if(Class'WorldInfo'.static.IsMenuLevel())
     {
-        Manager.ManagerObject.SetBool("backgroundVisible", false);
+        Manager.ManagerObject.SetBool("backgroundVisible", true);
     }
     AbortSquence();
 }
@@ -178,6 +179,16 @@ function SendDoshInfo(int OldDosh, int NewDosh, int TierBase, int TierLength, in
 {
     local GFxObject DataObject;
 
+    if((OldDosh == -1) || NewDosh == -1)
+    {
+        Manager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, Class'KFCommon_LocalizedStrings'.default.OKString);
+        LogInternal("something isn't right.  Connection issue may be present.  To prevent angry Reddit mobs, just don't animate");
+        return;
+    }
+    if(NewDosh < OldDosh)
+    {
+        NewDosh = OldDosh;
+    }
     if(OldDosh != NewDosh)
     {
     }
@@ -208,6 +219,13 @@ function Callback_UpdateDosh(int NewValue)
 
 function Callback_FinalAnimationComplete()
 {
+    local KFGameInfo_Entry KFGIE;
+
+    KFGIE = KFGameInfo_Entry(Outer.GetPC().WorldInfo.Game);
+    if(KFGIE != none)
+    {
+        KFGIE.FinalAnimationPlayed(KFPC);
+    }
     KFPC.TriggerGlobalEventClass(Class'KFSeqEvent_DoshVault', KFPC, 2);
     if(KFPC != none)
     {

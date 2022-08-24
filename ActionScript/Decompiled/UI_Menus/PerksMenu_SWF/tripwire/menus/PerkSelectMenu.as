@@ -62,6 +62,7 @@ package tripwire.menus
             this.SelectedPerkSummaryContainer.configureButton.clickSoundEffect = "SHARED_BUTTON_CLICK";
             this.SkillsContainer.confirmButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             this.addEventListener("changePerk",this.swapPerk,false,0,true);
+            this.addEventListener("perkListEnabledUpdated",this.perkListStatusChanged,false,0,true);
             sectionHeader = this.SelectionContainer.header;
             this.SelectionContainer.selectContainer();
             this.openPerkDetails();
@@ -93,6 +94,7 @@ package tripwire.menus
         {
             super.openContainer(param1);
             this.SkillsContainer.closeContainer();
+            this.SelectionContainer.openContainer();
             this.openPerkDetails();
         }
         
@@ -150,6 +152,10 @@ package tripwire.menus
             }
             if(Extensions.gfxProcessSound != null)
             {
+            }
+            if(!this.SelectionContainer.perkListEnabled)
+            {
+                return;
             }
             currentElement = this.SkillsContainer;
             TweenMax.killTweensOf([this.DetailsContainer,this.HeaderContainer,this.SelectedPerkSummaryContainer]);
@@ -253,11 +259,26 @@ package tripwire.menus
             this.updatePrompts();
         }
         
+        public function perkListStatusChanged(param1:Event) : void
+        {
+            if(this.SkillsContainer.visible)
+            {
+                this.SkillsContainer.closeContainer();
+                TweenMax.to(this,ANIM_TIME,{
+                    "useFrames":true,
+                    "onComplete":this.openPerkDetails
+                });
+                showDimLeftSide(false);
+            }
+            this.SelectedPerkSummaryContainer.configureButton.enabled = this.SelectionContainer.perkListEnabled;
+            this.updatePrompts();
+        }
+        
         public function updatePrompts() : *
         {
             if(bManagerUsingGamepad)
             {
-                containerDisplayPrompts = this.SelectionContainer.currentPerk == this.SelectionContainer.SelectedIndex ? int(defaultNumPrompts) : 1;
+                containerDisplayPrompts = this.SelectionContainer.currentPerk == this.SelectionContainer.SelectedIndex && this.SelectionContainer.perkListEnabled ? int(defaultNumPrompts) : 1;
             }
         }
         

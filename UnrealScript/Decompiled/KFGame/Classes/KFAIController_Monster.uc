@@ -125,7 +125,7 @@ event ReadyToMelee()
         {
             if(VSize(Enemy.Location - Pawn.Location) < (MyKFPawn.CylinderComponent.CollisionRadius * 3))
             {
-                if(MyKFPawn.CanDoSpecialMove(12) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
+                if(MyKFPawn.CanDoSpecialMove(13) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
                 {
                     if(!Class'Engine'.static.GetEngine().bDisableAILogging)
                     {
@@ -335,7 +335,7 @@ function bool HandleZedBlockedPath()
         }
         if((VSize(Enemy.Location - Pawn.Location) < AttackRange) && bDirectMoveToGoal)
         {
-            if((MyKFPawn.CanDoSpecialMove(12) && FRand() < 0.32) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
+            if((MyKFPawn.CanDoSpecialMove(13) && FRand() < 0.32) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
             {
                 if(!Class'Engine'.static.GetEngine().bDisableAILogging)
                 {

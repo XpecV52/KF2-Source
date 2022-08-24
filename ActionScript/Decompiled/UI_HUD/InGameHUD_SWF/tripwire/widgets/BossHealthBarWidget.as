@@ -5,10 +5,9 @@ package tripwire.widgets
     import fl.motion.Color;
     import flash.display.MovieClip;
     import flash.events.Event;
-    import flash.events.KeyboardEvent;
     import flash.text.TextField;
-    import flash.ui.Keyboard;
     import scaleform.clik.core.UIComponent;
+    import tripwire.containers.hud.BossArmorGaugeContainer;
     
     public class BossHealthBarWidget extends UIComponent
     {
@@ -22,16 +21,27 @@ package tripwire.widgets
         
         public var healthBarGlow:MovieClip;
         
+        public var bossArmorName:String = "bossArmor_";
+        
         protected var originalHealthBarWidth:Number;
         
         protected var previousHealthValue:Number = 1;
         
         protected var previousShieldValue:Number = 1;
         
+        public var ArmorGaugeList:Vector.<BossArmorGaugeContainer>;
+        
         public const barOffset:int = 56;
+        
+        private const BOSS_ARMOR_START_X:int = 304;
+        
+        private const BOSS_ARMOR_START_Y:int = 28;
+        
+        private const BOSS_ARMOR_TOTAL_WIDTH:int = 720;
         
         public function BossHealthBarWidget()
         {
+            this.ArmorGaugeList = new Vector.<BossArmorGaugeContainer>();
             super();
             enableInitCallback = true;
         }
@@ -162,16 +172,45 @@ package tripwire.widgets
             return this.previousHealthValue;
         }
         
-        public function onKeyPress(param1:KeyboardEvent) : void
+        public function set armorData(param1:Array) : void
         {
-            switch(param1.keyCode)
+            var _loc3_:int = 0;
+            var _loc4_:int = 0;
+            var _loc5_:BossArmorGaugeContainer = null;
+            if(param1 != null && param1.length != this.ArmorGaugeList.length)
             {
-                case Keyboard.A:
-                    this.currentShieldPercecntValue += 0.1;
-                    break;
-                case Keyboard.B:
-                    this.currentShieldPercecntValue -= 0.1;
+                _loc3_ = this.BOSS_ARMOR_TOTAL_WIDTH / param1.length;
+                this.clearArmorGaugeList();
+                _loc4_ = 0;
+                while(_loc4_ < param1.length)
+                {
+                    _loc5_ = new BossArmorGaugeContainer_MC() as BossArmorGaugeContainer;
+                    addChild(_loc5_);
+                    _loc5_.name = this.bossArmorName + _loc4_;
+                    _loc5_.initArmorGauge(param1[_loc4_].iconSource,_loc3_);
+                    _loc5_.x = this.BOSS_ARMOR_START_X + _loc3_ * _loc4_;
+                    _loc5_.y = this.BOSS_ARMOR_START_Y;
+                    this.ArmorGaugeList.push(_loc5_);
+                    _loc4_++;
+                }
             }
+            var _loc2_:int = 0;
+            while(_loc2_ < param1.length)
+            {
+                this.ArmorGaugeList[_loc2_].barPercentage = param1[_loc2_].armorPercent;
+                _loc2_++;
+            }
+        }
+        
+        public function clearArmorGaugeList() : void
+        {
+            var _loc1_:BossArmorGaugeContainer = null;
+            for each(_loc1_ in this.ArmorGaugeList)
+            {
+                removeChild(_loc1_);
+                _loc1_ = null;
+            }
+            this.ArmorGaugeList.length = 0;
         }
     }
 }

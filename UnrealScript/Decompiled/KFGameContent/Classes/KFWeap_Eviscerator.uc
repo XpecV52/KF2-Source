@@ -115,7 +115,7 @@ simulated function StopIdleMotorSound()
 
 simulated function bool CanOverrideMagReload(byte FireModeNum)
 {
-    return (super(KFWeapon).CanOverrideMagReload(FireModeNum) || FireModeNum == 1) || FireModeNum == 5;
+    return (super.CanOverrideMagReload(FireModeNum) || FireModeNum == 1) || FireModeNum == 5;
 }
 
 static simulated function float CalculateTraderWeaponStatDamage()

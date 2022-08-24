@@ -298,6 +298,7 @@ package tripwire.menus
         override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
+            FocusManager.setModalClip(null);
             if(!bManagerUsingGamepad)
             {
                 this.characterButton.selected = false;

@@ -23,6 +23,8 @@ var const localized string ObjectivesString;
 var const localized string SeasonalString;
 var const localized string DealDamageString;
 var const localized string EarnXPString;
+var const localized string KillBossString;
+var const localized string KillBossDescriptionString;
 var const localized string CompleteMapString;
 var const localized string KillZedsString;
 var const localized string DealVersusDamageString;
@@ -59,6 +61,7 @@ defaultproperties
     SeasonalString="SEASONAL"
     DealDamageString="Deal Damage:"
     EarnXPString="Earn XP:"
+    KillBossString="Kill Boss:"
     CompleteMapString="Complete Match in Map:"
     KillZedsString="Kill Zeds:"
     DealVersusDamageString="Damage Versus Players as:"

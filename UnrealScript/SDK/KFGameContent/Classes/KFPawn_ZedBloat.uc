@@ -134,7 +134,7 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 	{
 		return true;
 	}
-	
+
 	if( super.CanInjureHitZone(DamageType, HitZoneIdx) )
 	{
 		bWasDismembered = true;
@@ -257,7 +257,7 @@ function SpawnPukeMinesOnDeath()
 		DeathPukeMineRotations.Remove( i, 1 );
 
 		--NumPukeMinesToSpawnOnDeath;
-	}	
+	}
 }
 
 /**
@@ -309,7 +309,7 @@ DefaultProperties
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),	                  Cooldown=0.3)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Microwave)=(Vulnerability=(4.0),	                  Cooldown=5.0,  Duration=8.0)
-	IncapSettings(AF_FirePanic)=(Vulnerability=(1),		                  Cooldown=5.0,	 Duration=3.7) //duration 8 
+	IncapSettings(AF_FirePanic)=(Vulnerability=(1),		                  Cooldown=5.0,	 Duration=3.7) //duration 8
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=3.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=3.0,  Duration=2.0)
     IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0),      Cooldown=5.5,  Duration=3.0)
@@ -347,7 +347,7 @@ DefaultProperties
 
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.35)))  //0.25
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.35)))  //0.25
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.25)))  
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.25)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.35)))  //0.2
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.30)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.3)))
@@ -387,7 +387,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// Puke Mines
-	PukeMineProjectileClass=class'KFProj_BloatPukeMine'
+	PukeMineProjectileClass=class'KFGameContent.KFProj_BloatPukeMine'
 	DeathPukeMineRotations(0)=(Pitch=7000,Yaw=10480,Roll=0)
 	DeathPukeMineRotations(1)=(Pitch=7000,Yaw=32767,Roll=0)
 	DeathPukeMineRotations(2)=(Pitch=7000,Yaw=-10480,Roll=0)

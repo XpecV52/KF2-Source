@@ -17,7 +17,10 @@ var int Blue;
 native event Init();
 
 // Export URazerLEDInterface::execSetColor(FFrame&, void* const)
-native event bool SetColor(byte RedPercent, byte GreenPercent, byte BluePercent);
+native event bool SetColor(byte RedPercent, byte GreenPercent, byte BluePercent, optional float Brightness)
+{
+    Brightness = 1;                        
+}
 
 // Export URazerLEDInterface::execLEDSetFlashingRBG(FFrame&, void* const)
 native event bool LEDSetFlashingRBG(byte redPercentage, byte greenPercentage, byte bluePercentage, int milliSecondsDuration, int milliSecondsInterval);

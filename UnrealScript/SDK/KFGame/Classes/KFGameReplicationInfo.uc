@@ -97,6 +97,14 @@ var                 byte                        MaxPerkLevel;
 var 				bool 						bCustom;
 var                 float                       GameAmmoCostScale;
 
+// $$dweiss
+//Bandaid memory fix - Don't preload all bosses, cache in a globally recognized spot that
+//		the gameinfo and clients both have.  For now, repnotify when the boss index changes and cache
+//		the appropriate monster archetype to make sure the content for it stays around for the length
+//		of a match.
+var repnotify		byte						BossIndex;
+var					KFCharacterInfo_Monster		CachedBossArch;
+
 /** Combined from the PRI unlocks, but does not subtract logged out players */
 var private const byte GameSharedUnlocks;
 
@@ -176,6 +184,9 @@ struct native HumanInfo
 var HumanInfo HumanInfos[6];
 /** How often to update replicating humans for the tracker map. */
 var float UpdateHumanInfoInterval;
+
+/** Max player count */
+var int MaxHumanCount;
 
 /** Stores information for replicating pickups for the tracker map. */
 struct native PickupInfo
@@ -269,6 +280,8 @@ var array<KFDoorActor> DoorList;
 ************************************/
 var repnotify Actor CurrentObjective;
 var KFInterface_MapObjective ObjectiveInterface;
+var repnotify Actor PreviousObjective;
+var repnotify int PreviousObjectiveResult;
 
 /************************************
 *  Music
@@ -316,11 +329,11 @@ cpptext
 replication
 {
 	if ( bNetDirty )
-		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount, bWaveIsActive,
-		CurrentObjective, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
+		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount, bWaveIsActive, MaxHumanCount,
+		CurrentObjective, PreviousObjective, PreviousObjectiveResult, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
 		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid; //@HSL - JRO - 3/21/2016 - PS4 Sessions
 	if ( bNetInitial )
-		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase, MaxPerkLevel, bTradersEnabled;
+		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase, MaxPerkLevel, bTradersEnabled, BossIndex;
 	if ( bNetInitial && Role == ROLE_Authority )
 		ServerAdInfo;
 
@@ -418,9 +431,13 @@ simulated event ReplicatedEvent(name VarName)
         else
         {
             ObjectiveInterface.DeactivateObjective();
-            ObjectiveInterface = none;            
+            ObjectiveInterface = none;
         }
     }
+	else if (VarName == 'BossIndex')
+	{
+		CacheSelectedBoss(BossIndex);
+	}
 	else
 	{
 		super.ReplicatedEvent(VarName);
@@ -434,7 +451,7 @@ simulated event PostBeginPlay()
 	VoteCollector = new(Self) VoteCollectorClass;
 
 	Super.PostBeginPlay();
-	
+
 //@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
 	ConsoleGameSessionGuid = KFGameEngine(Class'Engine'.static.GetEngine()).ConsoleGameSessionGuid;
 //@HSL_END
@@ -464,7 +481,7 @@ simulated function ReceivedGameClass()
 	if ( KFGameClass != None )
 	{
 		// Load/Cache game type specific classes (Network: All)
-		KFGameClass.static.PreloadContentClasses();
+		KFGameClass.static.PreloadGlobalContentClasses();
 
 		if( TraderDialogManager != none )
 		{
@@ -481,6 +498,25 @@ simulated function ReceivedGameClass()
 
 	Super.ReceivedGameClass();
 }
+
+simulated function CacheSelectedBoss(int NewBossIndex)
+{
+	local class<KFGameInfo> KFGameClass;
+	local class<KFPawn_Monster> KFMonsterClass;
+
+	BossIndex = NewBossIndex;
+
+	KFGameClass = class<KFGameInfo>(GameClass);
+	if (KFGameClass != None)
+	{
+		KFMonsterClass = KFGameClass.static.GetSpecificBossClass(BossIndex);
+		if (KFMonsterClass != none)
+		{
+			SetCachedBossArchetype(KFMonsterClass.default.MonsterArchPath);
+		}
+	}
+}
+native function SetCachedBossArchetype(string MonsterArchPath);
 
 simulated function UpdateHUDWaveCount()
 {
@@ -702,7 +738,7 @@ simulated function OpenTraderNext(optional int time)
 		//kfGameInfo.TraderList.Remove( kfGameInfo.NextTraderIndex, 1 );
 	}
 
-	OpenedTrader = NextTrader;	
+	OpenedTrader = NextTrader;
 	OpenedTrader.OpenTrader();
 
 	`TraderDialogManager.PlayOpenTraderDialog( WaveNum, WaveMax, GetALocalPlayerController() );
@@ -1014,6 +1050,15 @@ simulated function DisplayDebug(HUD HUD, out float YL, out float YPos)
     	YPos += YL;
     	Canvas.SetPos(4,YPos);
 	}
+}
+
+simulated function int GetNumPlayers() //dead or alive
+{
+	local array< KFPlayerReplicationInfo > PRIs;
+
+	GetKFPRIArray(PRIs);
+
+	return PRIs.length;
 }
 
 simulated function int GetNumPlayersAlive()
@@ -1523,6 +1568,14 @@ function StartNextObjective()
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
     if (KFMI != none && WaveNum != WaveMax)
     {
+		if (KFMI.bEventLimitedObjectives)
+		{
+			if (class'KFGameEngine'.static.GetSeasonalEventID() != KFMI.EventHoliday)
+			{
+				return;
+			}
+		}
+
         if (KFMI.bUsePresetObjectives)
         {
             StartNextPresetObjective(KFMI);
@@ -1583,8 +1636,8 @@ function StartNextRandomObjective(KFMapInfo KFMI)
         {
             KFMI.CurrentAvailableRandomWaveObjectives.Remove(Idx, 1);
         }
-        
-    }    
+
+    }
 }
 
 function int AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
@@ -1595,7 +1648,7 @@ function int AttemptObjectiveActivation(array<KFInterface_MapObjective> Possible
     while (PossibleObjectives.Length > 0)
     {
         RandID = Rand(PossibleObjectives.Length);
-        if (PossibleObjectives[RandID].CanActivateObjective())
+        if (PossibleObjectives[RandID].CanActivateObjective() && PreviousObjective != PossibleObjectives[RandID])
         {
             ActivateObjective(PossibleObjectives[RandID]);
             return RandID;
@@ -1612,15 +1665,20 @@ function ActivateObjective(KFInterface_MapObjective NewObjective)
     if (NewObjective != none)
     {
         CurrentObjective = Actor(NewObjective);
+		PreviousObjective = none;
+		PreviousObjectiveResult = -1;
         ObjectiveInterface = NewObjective;
         ObjectiveInterface.ActivateObjective();
-    }    
+    }
 }
 
 function DeactivateObjective()
 {
-    if (CurrentObjective != None) 
+    if (CurrentObjective != None)
     {
+		PreviousObjective = CurrentObjective;
+		PreviousObjectiveResult = ObjectiveInterface.GetDoshReward();
+
         ObjectiveInterface.DeactivateObjective();
         CurrentObjective = none;
         ObjectiveInterface = none;
@@ -1642,4 +1700,6 @@ defaultproperties
     GameAmmoCostScale=1.0
     bAllowGrenadePurchase = true
     MaxPerkLevel=4
+	BossIndex=255
+	PreviousObjectiveResult=-1
 }

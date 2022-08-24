@@ -1,9 +1,11 @@
 [KFCommon_LocalizedStrings]
+FailedToReachInventoryServerString="无法连接物品服务器。 将无法使用仓库。"
 LoadingString="正在加载…"
 DifficultyStrings[0]="普通"
 DifficultyStrings[1]="困难"
 DifficultyStrings[2]="自杀"
 DifficultyStrings[3]="人间炼狱"
+BonusDoshString="奖励钱币"
 
 LengthStrings[0]="短（4 波）"
 LengthStrings[1]="中（7 波）"
@@ -65,8 +67,8 @@ CustomString="自定义"
 RarityStrings[0]="常见"
 RarityStrings[1]="不常见"
 RarityStrings[2]="稀有"
-RarityStrings[3]="魔法"
-RarityStrings[4]="传奇"
+RarityStrings[3]="超凡"
+RarityStrings[4]="大师级"
 RarityStrings[5]="极其稀有"
 RarityStrings[6]="任意"
 
@@ -91,6 +93,17 @@ MixerZedTimeString=" Mixer 观众  激活了丧尸时间。"
 MixerRageZedsString=" Mixer 观众  激怒了周围的丧尸。"
 MixerPukeString=" Mixer 观众  在你身上呕吐。"
 MixerSpawnedFPString=" Mixer 观众  引出了一只闪击丧尸。"
+MixerSpawnedScrakeString="，Mixer 观众，引出了一只刮痕丧尸！"
+MixerSpawnedMiniFPString="，Mixer 观众，引出了一些小丧尸！"
+
+DiscordMenuPresenceString="在主菜单"
+DiscordPartyPresenceString="组建队伍中"
+DiscordNetworkMatchString="网络比赛"
+DiscordSoloMatchString="单人比赛"
+DiscordMatchLobbyString=": 比赛大厅"
+DiscordTraderTimeString=": 商人时间"
+DiscordBossWaveString=": Boss波"
+DiscordWaveString=": 波"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="爆发完成奖励"
@@ -112,6 +125,8 @@ DealDamageString="造成伤害："
 EarnXPString="赢得经验："
 CompleteMapString="在地图中完成比赛："
 KillZedsString="杀死丧尸："
+KillBossString="Boss击杀数："
+KillBossDescriptionString=""
 VersusKillsString="杀死对手玩家："
 DealVersusDamageString="伤害对手玩家："
 VersusCompletionString="完成比赛："
@@ -175,7 +190,6 @@ TutorialString="基准训练"
 modeList0="生存——PVE 人工智能控制的丧尸战斗波"
 modeList1="每周爆发 - 每周推出一个不同的变种游戏模式。"
 modeList2="VS 生存——PVP 霍因佣兵 vs 玩家和人工智能控制的丧尸波"
-modeList3=""
 difficultyList0="普通——适合神射 0-5 级的新手玩家。"
 difficultyList1="困难——适合神射 6-12 级的有经验玩家。每波的丧尸数量会更多，它们移动的速度更快，血值也更高。可以捡的物品更少，你得到的钱也更少。"
 difficultyList2="自杀——适合神射 13-25 级的熟练玩家。每波的丧尸数量甚至会更多，他们使用新的攻击，移动的速度甚至更快。可以捡的物品甚至更少，你得到的钱也更少。"
@@ -766,7 +780,7 @@ DoshVaultString="钱库"
 YourCratesString="您的供应箱："
 OpenCratesString="打开供应箱"
 CrateUnlockedString="供应箱未解锁！"
-DelayedCrateString="* 金库箱的拨款可能会延迟到下场游戏重新开始"
+DelayedCrateString="* 金库箱的发放可能会延迟到下场游戏重新开始时"
 
 [KFGFxMenu_Gear]
 GearHeaderString="自定义装备"
@@ -874,6 +888,7 @@ WeaponSkinsString="市场武器皮肤"
 MarketConsumablesString="市场板条箱/USB"
 MarketCosmeticsString="市场装饰品"
 MarketEmotesString="市场表情"
+ThankYouString="感谢你的购买！这会帮我们开发新的物品，地图，武器，丧尸和未来更新的新游戏模式。"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="在市场中寻找"
@@ -1406,10 +1421,10 @@ YouLostMessage="失败"
 YouWonMessage="胜利"
 SquadWipedOutMessage="你的小队被消灭了！"
 SquadSurvivedMessage="你的小队活了下来！"
-ObjectiveStartMessage="目标已开始！"
-ObjectiveWonMessage="目标胜利！"
-ObjectiveEndedMessage="目标已结束！"
-ObjectiveLostMessage="目标失败！"
+ObjectiveStartMessage="目标开始"
+ObjectiveWonMessage="目标达成"
+ObjectiveEndedMessage="目标结束"
+ObjectiveLostMessage="目标失败"
 ObjNotEnoughPlayersMessage="没有足够的玩家！"
 ObjTimeRanOutMessage="达到了限定的时间！"
 HumansLoseMessage="人类小队被消灭了！"
@@ -2146,6 +2161,7 @@ ObjectiveStatusString="目标状态"
 
 [KFObj_Wave]
 ObjectiveAvailableString="可用的目标"
+ObjectiveRequireString=" 需要玩家"
 
 [KFObj_Wave_Defend]
 ObjectiveTypeString="防御"
@@ -2267,9 +2283,24 @@ USBSpitfire="喷火 USB 钥匙 - $2.49"
 USBHighVoltage="高电压 USB 钥匙 - $2.49"
 MerchSale="KF2 装备大促销！2017 年 4 月 30 日之前优惠至 7.5 折，促销码 ZED"
 
+[Objectives]
+HoldVolume="保卫区域"
+DoshHold="坚守阵地"
+DescriptionDoshHold="别让丧尸进入标记的区域中"
+RequiredDoshHold="需要玩家："
+DoschHoldDesc="别让丧尸进入标记的区域中"
+DescriptionHoldVolume="DescriptionHoldVolume"
+RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="搜索并破坏"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
+FailedString="失败"
 
+; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
 KFPawn_ZedBloat="胆汁怪"
+KFPawn_ZedBloatKing="憎恶"
+KFPawn_ZedBloatKing_Winter="坎卜斯"
 KFPawn_ZedClot="血凝丧尸"
 KFPawn_ZedCrawler="爬行怪"
 KFPawn_ZedCrawlerKing="精英爬行怪"
@@ -2288,7 +2319,7 @@ KFPawn_ZedClot_AlphaKing="精英阿尔法"
 KFPawn_ZedScrake="刮痕丧尸"
 KFPawn_ZedSiren="女妖"
 KFPawn_ZedPatriarch="长老丧尸"
-
+KFPawn_ZedBloatKingSubspawn="生成憎恶"
 ;Human zeds
 KFPawn_ZedBloat_Versus="胆汁怪 - 玩家"
 KFPawn_ZedClot_Versus="血凝丧尸 - 玩家"
@@ -2423,19 +2454,19 @@ AllCompleteRewardDescriptionString="Item description for all complete"
 ChanceDropDescriptionStrings[0]="掉落 1"
 ChanceDropDescriptionStrings[1]="掉落 2"
 
-[KFGFxSummerSideShowObjectivesContainer]
+[KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="能力提升",DescriptionString="在悲惨王国中提升发生器的能力");
-SpecialEventObjectiveInfoList[1]=(TitleString="爆开血凝丧尸",DescriptionString="在悲惨王国中爆开血凝丧尸");
-SpecialEventObjectiveInfoList[2]=(TitleString="浸泡胆汁怪",DescriptionString="在悲惨王国中浸泡胆汁怪");
-SpecialEventObjectiveInfoList[3]=(TitleString="扔钱",DescriptionString="在悲惨王国中扔钱");
-SpecialEventObjectiveInfoList[4]=(TitleString="假年华",DescriptionString="在悲惨王国中赢得困难难度或难度更高的比赛");
+SpecialEventObjectiveInfoList[0]=(TitleString="破坏和进入",DescriptionString="在坎卜斯巢穴中破坏坎卜斯的饰品");
+SpecialEventObjectiveInfoList[1]=(TitleString="肉馅",DescriptionString="在坎卜斯巢穴用木片切割机杀死一只丧尸");
+SpecialEventObjectiveInfoList[2]=(TitleString="屹立不动",DescriptionString="在坎卜斯巢穴完成坚守阵地目标");
+SpecialEventObjectiveInfoList[3]=(TitleString="雪之牢狱",DescriptionString="在坎卜斯巢穴找到十个收集物");
+SpecialEventObjectiveInfoList[4]=(TitleString="诸位晚安",DescriptionString="在坎卜斯巢穴以困难或更高难度杀死坎卜斯");
 
-AllCompleteRewardDescriptionString="余兴节目防护服"
+AllCompleteRewardDescriptionString="睡衣套装"
 
-ChanceDropDescriptionStrings[0]="余兴节目奖励劵"
-ChanceDropDescriptionStrings[1]="余兴节目金奖劵"
+ChanceDropDescriptionStrings[0]="奖励劵"
+ChanceDropDescriptionStrings[1]="黄金券"
 
 ;============================================
 ; Daily Localization
@@ -2483,7 +2514,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：上升，上升，然后衰落"
 DescriptionStrings[0]="试着制作九十九个丧尸气球。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="在此次爆发中射击丧尸，能让它们像气球一样膨胀，甚至都能飘走，然后爆炸！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[0]="在此次爆发中射击丧尸，能让它们像气球一样膨胀，但你最好让它们爆开，不然它们就会开始重生！在“比赛匹配”页面选择每周游戏模式。神射等级 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2801,6 +2832,22 @@ DisplayName_POL="Koszmar"
 DisplayName_PTB="Pesadelo"
 DisplayName_RUS="Кошмар"
 
+[KF-KrampusLair KFMapSummary]
+DisplayName_CHN="坎卜斯巢穴"
+DisplayName_CHT="坎普斯巢穴"
+DisplayName_DEU="Krampus’ Versteck"
+DisplayName_ESL="Guarida de Krampus"
+DisplayName_ESN="Guarida de Krampus"
+DisplayName_FRA="Repère de Krampus"
+DisplayName_FRC="Repère de Krampus"
+DisplayName_INT="Krampus Lair"
+DisplayName_ITA="Tana del Krampus"
+DisplayName_JPN="クランプスの巣"
+DisplayName_KOR="크램퍼스 둥지"
+DisplayName_POL="Leże Krampusa"
+DisplayName_PTB="Toca do Krampus"
+DisplayName_RUS="Логово Крампуса"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="生命学实验室"
 
@@ -2857,6 +2904,9 @@ DisplayName="悲惨王国"
 
 [KF-Nightmare KFMapSummary]
 DisplayName="梦魇"
+
+[KF-KrampusLair KFMapSummary]
+DisplayName="坎卜斯巢穴"
 
 [KFMapInfo]
 ; defaults

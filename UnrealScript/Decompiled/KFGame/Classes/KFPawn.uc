@@ -60,6 +60,7 @@ enum ESpecialMove
     SM_DeathAnim,
     SM_Stunned,
     SM_Frozen,
+    SM_GorgeZedVictim,
     SM_Emerge,
     SM_Jump,
     SM_Taunt,
@@ -1792,6 +1793,10 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         if(KFDT != none)
         {
             KFDT.static.ApplySecondaryDamage(self, Damage, InstigatedBy);
+            if(Health <= 0)
+            {
+                KFDT.static.ApplyKillResults(self);
+            }
         }
     }
     if(((bAllowHeadshot && HitFxInfo.HitBoneIndex == 0) && OldHealth > 0) && WorldInfo.Game != none)
@@ -2350,18 +2355,49 @@ static function bool IsLargeZed()
     return false;
 }
 
+function int GetHitZoneIndex(name BoneName)
+{
+    return HitZones.Find('ZoneName', BoneName;
+}
+
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
     local int HitZoneIdx;
-    local bool bHasNewHitEffect;
     local class<KFDamageType> KFDT;
 
     if((Damage <= float(0)) || (Controller != none) && Controller.bGodMode)
     {
         return;
     }
-    HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName;
+    HitZoneIdx = GetHitZoneIndex(HitInfo.BoneName);
     KFDT = class<KFDamageType>(DamageType);
+    AddHitFX(int(Damage), InstigatedBy, HitZoneIdx, HitLocation, Momentum, KFDT);
+    if(HitZoneIdx != -1)
+    {
+        if(InstigatedBy != none)
+        {
+            if((HitZoneIdx == 0) && KFPlayerController(InstigatedBy) != none)
+            {
+                KFPlayerController(InstigatedBy).AddHeadHit(1);
+            }
+            TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, InstigatedBy.Pawn.Location);            
+        }
+        else
+        {
+            TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, vect(0, 0, 0));
+        }
+    }
+    LastPainTime = WorldInfo.TimeSeconds;
+    if(KFDT != none)
+    {
+        Class'EphemeralMatchStats'.static.RecordWeaponDamage(InstigatedBy, KFDT, KFDT.default.WeaponDef, int(Damage), self, HitZoneIdx);
+    }
+}
+
+function AddHitFX(int Damage, Controller InstigatedBy, int HitZoneIdx, Vector HitLocation, Vector Momentum, class<KFDamageType> KFDT)
+{
+    local bool bHasNewHitEffect;
+
     bHasNewHitEffect = true;
     if(bNeedsProcessHitFx)
     {
@@ -2401,7 +2437,7 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
         }
         if((bPlayedDeath && KFDT != none) && KFDT.default.bCanObliterate)
         {
-            HitFxInfo.bObliterated = KFDT.static.CheckObliterate(self, int(Damage));            
+            HitFxInfo.bObliterated = KFDT.static.CheckObliterate(self, Damage);            
         }
         else
         {
@@ -2409,27 +2445,7 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
         }
         HitFxAddedHitCount = 0;
     }
-    if(HitZoneIdx != -1)
-    {
-        if(InstigatedBy != none)
-        {
-            if((HitZoneIdx == 0) && KFPlayerController(InstigatedBy) != none)
-            {
-                KFPlayerController(InstigatedBy).AddHeadHit(1);
-            }
-            TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, InstigatedBy.Pawn.Location);            
-        }
-        else
-        {
-            TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, vect(0, 0, 0));
-        }
-    }
     bNeedsProcessHitFx = true;
-    LastPainTime = WorldInfo.TimeSeconds;
-    if(KFDT != none)
-    {
-        Class'EphemeralMatchStats'.static.RecordWeaponDamage(InstigatedBy, KFDT, KFDT.default.WeaponDef, int(Damage), self, HitZoneIdx);
-    }
 }
 
 function PlayHeal(class<KFDamageType> DamageType, optional TraceHitInfo HitInfo)
@@ -2471,6 +2487,10 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
     local class<KFDamageType> KFDmgType;
     local name HitZoneName;
 
+    if(HitZoneIdx > HitZones.Length)
+    {
+        return false;
+    }
     KFDmgType = class<KFDamageType>(DamageType);
     HitZoneName = HitZones[HitZoneIdx].ZoneName;
     if((!bPlayedDeath || WorldInfo.TimeSeconds == TimeOfDeath) && HitZoneIdx == 0)
@@ -3318,7 +3338,7 @@ simulated event bool IsMovementDisabledDuringSpecialMove()
 
 function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling, optional bool bAllowSameTeamGrab)
 {
-    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || !bAllowSameTeamGrab && IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(29))
+    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || !bAllowSameTeamGrab && IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(30))
     {
         return false;
     }

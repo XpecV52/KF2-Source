@@ -36,6 +36,24 @@ function bool Refresh(optional bool bForceRefreshOfDaily)
     return false;
 }
 
+function FullRefresh()
+{
+	if (SpecialEventsContainer != None)
+	{
+		SpecialEventsContainer.Initialize(StartMenu);
+	}
+
+	if (WeeklyEventContainer != None)
+	{
+		WeeklyEventContainer.Initialize(StartMenu);
+	}
+
+	if (DailyObjectiveContainer  != None)
+	{
+		DailyObjectiveContainer.Initialize(StartMenu);
+	}
+}
+
 function LocalizeMenu()
 {
     local GFxObject TextObject;

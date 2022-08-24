@@ -404,7 +404,7 @@ function FleeAndHealBump()
     local float ClosestDist;
     local KFAIController_ZedPatriarch KFAICP;
 
-    if((((MyKFAIC == none) || MyKFAIC.Enemy == none) || MyKFAIC.RouteGoal == none) || IsDoingSpecialMove(17))
+    if((((MyKFAIC == none) || MyKFAIC.Enemy == none) || MyKFAIC.RouteGoal == none) || IsDoingSpecialMove(18))
     {
         return;
     }
@@ -1763,7 +1763,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_304' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_335' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

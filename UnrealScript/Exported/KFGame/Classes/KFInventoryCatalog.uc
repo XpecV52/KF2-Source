@@ -36,6 +36,8 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_WS3,
 	ECrate_PSNHorzineSupply_WS4,
 	ECrate_PSNHorzineSupply_WS5,
+	ECrate_PSNHorzineSupply_E1,
+	ECrate_PSNHorzineSupply_E2,
 	ECrate_HorzineSupply_S10,
 	ECrate_HorzineSupply_S11,
 	ECrate_Emote_S1,
@@ -52,6 +54,9 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S16,
 	ECrate_Neon,
 	ECrate_Vault,
+	ECrate_HorzineSupply_S15,
+	ECrate_PSNHorzineSupply_WS15,
+	ECrate_Vault_Test,
 };
 
 enum EItemDisplayContainerType
@@ -135,22 +140,27 @@ defaultproperties
    ItemKeyArray(29)=(ContainerId=4569,KeyId=4303,ItemSeriesName="psncrate_ws3",ContainerType=IDT_Crate)
    ItemKeyArray(30)=(ContainerId=4790,KeyId=4303,ItemSeriesName="psncrate_ws4",ContainerType=IDT_Crate)
    ItemKeyArray(31)=(ContainerId=5369,KeyId=4303,ItemSeriesName="psncrate_ws5",ContainerType=IDT_Crate)
-   ItemKeyArray(32)=(ContainerId=4499,KeyId=4501,ItemSeriesName="horzine10",ContainerType=IDT_Crate)
-   ItemKeyArray(33)=(ContainerId=4500,KeyId=4502,ItemSeriesName="horzine11",ContainerType=IDT_Crate)
-   ItemKeyArray(34)=(ContainerId=4541,KeyId=4540,ItemSeriesName="emote1",ContainerType=IDT_Crate)
-   ItemKeyArray(35)=(ContainerId=4514,KeyId=4513,ItemSeriesName="tacticalhorzineII",ContainerType=IDT_USB)
-   ItemKeyArray(36)=(ContainerId=4604,KeyId=4603,ItemSeriesName="horzine12",ContainerType=IDT_Crate)
-   ItemKeyArray(37)=(ContainerId=4593,KeyId=4594,ItemSeriesName="deepstrike",ContainerType=IDT_USB)
-   ItemKeyArray(38)=(ContainerId=4776,KeyId=4775,ItemSeriesName="horzine13",ContainerType=IDT_Crate)
-   ItemKeyArray(39)=(ContainerId=4786,KeyId=4785,ItemSeriesName="highvoltage",ContainerType=IDT_USB)
-   ItemKeyArray(40)=(ContainerId=4802,KeyId=4801,ItemSeriesName="Flare",ContainerType=IDT_USB)
-   ItemKeyArray(41)=(ContainerId=5010,KeyId=5011,ItemSeriesName="horzine14",ContainerType=IDT_Crate)
-   ItemKeyArray(42)=(ContainerId=4993,KeyId=4994,ItemSeriesName="junkyard",ContainerType=IDT_USB)
-   ItemKeyArray(43)=(ContainerId=4979,KeyId=4980,ItemSeriesName="vietnam",ContainerType=IDT_USB)
-   ItemKeyArray(44)=(ContainerId=5143,KeyId=5142,ItemSeriesName="emote2",ContainerType=IDT_Crate)
-   ItemKeyArray(45)=(ContainerId=5240,KeyId=5241,ItemSeriesName="horzine16",ContainerType=IDT_Crate)
-   ItemKeyArray(46)=(ContainerId=5194,KeyId=5195,ItemSeriesName="neon",ContainerType=IDT_USB)
-   ItemKeyArray(47)=(ContainerId=5313,KeyId=-1,ItemSeriesName="vaultcrate",ContainerType=IDT_Crate)
+   ItemKeyArray(32)=(ContainerId=5646,KeyId=4303,ItemSeriesName="emote1",ContainerType=IDT_Crate)
+   ItemKeyArray(33)=(ContainerId=5647,KeyId=4303,ItemSeriesName="emote2",ContainerType=IDT_Crate)
+   ItemKeyArray(34)=(ContainerId=4499,KeyId=4501,ItemSeriesName="horzine10",ContainerType=IDT_Crate)
+   ItemKeyArray(35)=(ContainerId=4500,KeyId=4502,ItemSeriesName="horzine11",ContainerType=IDT_Crate)
+   ItemKeyArray(36)=(ContainerId=4541,KeyId=4540,ItemSeriesName="emote1",ContainerType=IDT_Crate)
+   ItemKeyArray(37)=(ContainerId=4514,KeyId=4513,ItemSeriesName="tacticalhorzineII",ContainerType=IDT_USB)
+   ItemKeyArray(38)=(ContainerId=4604,KeyId=4603,ItemSeriesName="horzine12",ContainerType=IDT_Crate)
+   ItemKeyArray(39)=(ContainerId=4593,KeyId=4594,ItemSeriesName="deepstrike",ContainerType=IDT_USB)
+   ItemKeyArray(40)=(ContainerId=4776,KeyId=4775,ItemSeriesName="horzine13",ContainerType=IDT_Crate)
+   ItemKeyArray(41)=(ContainerId=4786,KeyId=4785,ItemSeriesName="highvoltage",ContainerType=IDT_USB)
+   ItemKeyArray(42)=(ContainerId=4802,KeyId=4801,ItemSeriesName="Flare",ContainerType=IDT_USB)
+   ItemKeyArray(43)=(ContainerId=5010,KeyId=5011,ItemSeriesName="horzine14",ContainerType=IDT_Crate)
+   ItemKeyArray(44)=(ContainerId=4993,KeyId=4994,ItemSeriesName="junkyard",ContainerType=IDT_USB)
+   ItemKeyArray(45)=(ContainerId=4979,KeyId=4980,ItemSeriesName="vietnam",ContainerType=IDT_USB)
+   ItemKeyArray(46)=(ContainerId=5143,KeyId=5142,ItemSeriesName="emote2",ContainerType=IDT_Crate)
+   ItemKeyArray(47)=(ContainerId=5240,KeyId=5241,ItemSeriesName="horzine16",ContainerType=IDT_Crate)
+   ItemKeyArray(48)=(ContainerId=5194,KeyId=5195,ItemSeriesName="neon",ContainerType=IDT_USB)
+   ItemKeyArray(49)=(ContainerId=5313,KeyId=-1,ItemSeriesName="vaultcrate",ContainerType=IDT_Crate)
+   ItemKeyArray(50)=(ContainerId=5233,KeyId=5234,ItemSeriesName="horzine15",ContainerType=IDT_Crate)
+   ItemKeyArray(51)=(ContainerId=5642,KeyId=4303,ItemSeriesName="horzine15",ContainerType=IDT_Crate)
+   ItemKeyArray(52)=(ContainerId=5613,KeyId=-1,ItemSeriesName="vaultcrate_test",ContainerType=IDT_Crate)
    Name="Default__KFInventoryCatalog"
    ObjectArchetype=Object'Core.Default__Object'
 }

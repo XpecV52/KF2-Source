@@ -31,6 +31,8 @@ var localized string SeasonalString;
 
 var localized string DealDamageString;
 var localized string EarnXPString;
+var localized string KillBossString;
+var localized string KillBossDescriptionString;
 var localized string CompleteMapString;
 var localized string KillZedsString;
 var localized string DealVersusDamageString;
@@ -72,6 +74,7 @@ defaultproperties
    SeasonalString="SEASONAL"
    DealDamageString="Deal Damage:"
    EarnXPString="Earn XP:"
+   KillBossString="Kill Boss:"
    CompleteMapString="Complete Match in Map:"
    KillZedsString="Kill Zeds:"
    DealVersusDamageString="Damage Versus Players as:"

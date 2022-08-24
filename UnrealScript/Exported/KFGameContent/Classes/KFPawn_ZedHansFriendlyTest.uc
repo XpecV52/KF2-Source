@@ -75,12 +75,12 @@ defaultproperties
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
       SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(14)=None
-      SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
-      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
-      SpecialMoveClasses(17)=None
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(15)=None
+      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Evade_Fear'
+      SpecialMoveClasses(17)=Class'KFGame.KFSM_Block'
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
@@ -97,11 +97,12 @@ defaultproperties
       SpecialMoveClasses(31)=None
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
-      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(35)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
-      SpecialMoveClasses(36)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
-      SpecialMoveClasses(37)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
-      SpecialMoveClasses(38)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
+      SpecialMoveClasses(34)=None
+      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(36)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
+      SpecialMoveClasses(37)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
+      SpecialMoveClasses(38)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
+      SpecialMoveClasses(39)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHans:SpecialMoveHandler_0'
    End Object

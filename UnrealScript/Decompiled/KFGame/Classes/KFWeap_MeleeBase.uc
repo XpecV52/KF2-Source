@@ -280,6 +280,11 @@ simulated function bool CanReload(optional byte FireModeNum)
     return super.CanReload(FireModeNum);
 }
 
+simulated function bool CanOverrideMagReload(byte FireModeNum)
+{
+    return super.CanOverrideMagReload(FireModeNum) || FireModeNum == 4;
+}
+
 simulated function bool IsLightAttack(byte FireMode);
 
 simulated function PlayMeleeSettleAnim()

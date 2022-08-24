@@ -31,6 +31,16 @@ package tripwire.containers.objectiveStart
         
         protected var objectiveList:Vector.<ObjectiveInfoRenderer>;
         
+        public var rewardNumberTextField_0:TextField;
+        
+        public var rewardNumberTextField_1:TextField;
+        
+        public var rewardNumberTextField_2:TextField;
+        
+        public var rewardNumberTextField_3:TextField;
+        
+        public var rewardNumberTextField_4:TextField;
+        
         public var grantedReward:RewardRenderer;
         
         public var chanceOfDrop_0:RewardRenderer;
@@ -41,9 +51,12 @@ package tripwire.containers.objectiveStart
         
         public var iconImageLoader:TripUILoader;
         
+        protected var vaultRewardTextfields:Vector.<TextField>;
+        
         public function SpecialEventMissionContainer()
         {
             this.objectiveList = new Vector.<ObjectiveInfoRenderer>();
+            this.vaultRewardTextfields = new Vector.<TextField>();
             super();
         }
         
@@ -64,6 +77,7 @@ package tripwire.containers.objectiveStart
         public function initLists() : void
         {
             this.objectiveList.push(this.objective_0,this.objective_1,this.objective_2,this.objective_3,this.objective_4);
+            this.vaultRewardTextfields.push(this.rewardNumberTextField_0,this.rewardNumberTextField_1,this.rewardNumberTextField_2,this.rewardNumberTextField_3,this.rewardNumberTextField_4);
             this.chanceOfDropList = new Vector.<RewardRenderer>();
             this.chanceOfDropList.push(this.chanceOfDrop_0,this.chanceOfDrop_1);
         }
@@ -109,10 +123,18 @@ package tripwire.containers.objectiveStart
                     if(_loc2_ < param1.length)
                     {
                         this.objectiveList[_loc2_].data = param1[_loc2_];
+                        if(this.vaultRewardTextfields[_loc2_])
+                        {
+                            this.vaultRewardTextfields[_loc2_].text = !!param1[_loc2_].rewardValue ? param1[_loc2_].rewardValue : "";
+                        }
                     }
                     else
                     {
                         this.objectiveList[_loc2_].data = null;
+                        if(this.vaultRewardTextfields[_loc2_])
+                        {
+                            this.vaultRewardTextfields[_loc2_].text = "";
+                        }
                     }
                     _loc2_++;
                 }

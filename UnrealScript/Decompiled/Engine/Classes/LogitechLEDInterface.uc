@@ -17,7 +17,10 @@ var int Blue;
 native event Init();
 
 // Export ULogitechLEDInterface::execSetColor(FFrame&, void* const)
-native event bool SetColor(int RedPercent, int GreenPercent, int BluePercent);
+native event bool SetColor(int RedPercent, int GreenPercent, int BluePercent, optional float Brightness)
+{
+    Brightness = 1;                        
+}
 
 // Export ULogitechLEDInterface::execLEDSetFlashingRBG(FFrame&, void* const)
 native event bool LEDSetFlashingRBG(int redPercentage, int greenPercentage, int bluePercentage, int milliSecondsDuration, int milliSecondsInterval);

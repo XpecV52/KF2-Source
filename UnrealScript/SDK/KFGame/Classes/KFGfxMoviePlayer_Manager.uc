@@ -62,6 +62,8 @@ struct SMenuPaths
 	var string ConsoleSWFPath;
 };
 
+var SDelayedPriorityMessage DelayedPriorityMessage;
+
 var float LastForceCloseTime;
 var float AllowMenusOpenAfterForceCloseTime;
 
@@ -465,6 +467,25 @@ function TextureMovie GetBackgroundMovie()
 	return BackgroundMovies[0];
 }
 
+function QueueDelayedPriorityMessage(string InPrimaryMessageString, string InSecondaryMessageString, int LifeTime, optional EGameMessageType MessageType)
+{
+	DelayedPriorityMessage.InPrimaryMessageString = InPrimaryMessageString;
+	DelayedPriorityMessage.InSecondaryMessageString = InSecondaryMessageString;
+	DelayedPriorityMessage.LifeTime = LifeTime;
+	DelayedPriorityMessage.MessageType = MessageType;
+	`TimerHelper.SetTimer(0.5f, false, nameOf(DisplayDelayedPriorityMessage), self);
+}
+
+function DisplayDelayedPriorityMessage()
+{
+	local KFPlayerController KFPC;
+	KFPC = KFPlayerController(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+	if (KFPC != None && KFPC.MyGFxHUD != None && KFPC.MyGFxManager != none)
+	{
+		KFPC.MyGFxHUD.DisplayPriorityMessage(DelayedPriorityMessage.InPrimaryMessageString, KFPC.MyGFxManager.DelayedPriorityMessage.InSecondaryMessageString, KFPC.MyGFxManager.DelayedPriorityMessage.LifeTime, EGameMessageType(KFPC.MyGFxManager.DelayedPriorityMessage.MessageType));
+	}
+}
+
 //@HSL_BEGIN - JRO - 6/30/2016 - PSN disconnect/logout
 function DelayedShowDisconnectMessage()
 {
@@ -800,7 +821,7 @@ function StatsInitialized()
 {
 	if(StartMenu != none && StartMenu.MissionObjectiveContainer != none)
 	{
-		StartMenu.MissionObjectiveContainer.Refresh(true);
+		StartMenu.MissionObjectiveContainer.FullRefresh();
 	}
 	// Notify IIS menu that stats have been read
 	if( IISMenu != none )
@@ -809,7 +830,12 @@ function StatsInitialized()
 	}
 
 	bStatsInitialized = true;
+
+	//REFRESH ALL THE THINGS!!!
+
+
 }
+
 
 function AllowCloseMenu()
 {
@@ -1861,7 +1887,7 @@ defaultproperties
 	BackgroundMovies(SEI_Spring)=TextureMovie'UI_Managers.MenuBG'
 	BackgroundMovies(SEI_Summer)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
 	BackgroundMovies(SEI_Fall)=TextureMovie'UI_Managers.MenuBG'
-	BackgroundMovies(SEI_Winter)=TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Winter)=TextureMovie'UI_Managers.Menu_Winter'
 	IISMovie = TextureMovie'UI_Managers.IIS'
     MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
 	bCaptureInput=true

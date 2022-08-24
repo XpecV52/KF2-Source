@@ -98,7 +98,7 @@ var(Hard) DifficultySettings Hard;
 var(Suicidal) DifficultySettings Suicidal;
 /** DifficultySettings struct for HellOnEarth difficulty level */
 var(HellOnEarth) DifficultySettings HellOnEarth;
-var private DifficultySettings CurrentSettings;
+var protected DifficultySettings CurrentSettings;
 
 function SetDifficultySettings(float GameDifficulty)
 {

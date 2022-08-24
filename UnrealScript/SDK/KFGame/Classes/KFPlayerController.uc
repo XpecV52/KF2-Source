@@ -195,15 +195,6 @@ var string DefaultAvatarPath;
 /*********************************************************************************************
  * @name Mixer
 ********************************************************************************************* */
-const AmmoButton 		= "AmmoButton";
-const ArmorButton 		= "ArmorButton";
-const DoshButton 		= "DoshButton";
-const GrenadeButton 	= "GrenadeButton";
-const HealButton 		= "HealButton";
-const ZedTimeButton 	= "ZedTimeButton";
-const EnrageButton 		= "EnrageButton";
-const PukeButton 		= "PukeButton";
-const FleshpoundButton 	= "FleshpoundButton";
 var name        MixerRallyBoneNames[2];
 var string      MixerCurrentDefaultScene;
 
@@ -766,6 +757,7 @@ simulated event PostBeginPlay()
 	ClearDownloadInfo();
     InitMixerDelegates();
     InitLEDManager();
+	InitDiscord();
 }
 
 simulated function CheckSpecialEventID()
@@ -1881,6 +1873,12 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, OnG
 	{
 		Viewport = KFGameViewportClient( class'Engine'.static.GetEngine().GameViewport );
 
+		if (WorldInfo.IsConsoleBuild(CONSOLE_Durango) && CachedInviteResult.GameSettings.NumOpenPublicConnections <= 0)
+		{
+			NotifyInviteFailed();
+			return;
+		}
+
 		if( WorldInfo.IsConsoleBuild(CONSOLE_Durango) && CachedInviteResult.GameSettings.OwningPlayerId != LocalPlayer(Player).GetUniqueNetId() )
 		{
 			if( WorldInfo.bIsMenuLevel )
@@ -2305,6 +2303,14 @@ function MarkDoshVaultSeen()
 	if(StatsWrite != none)
 	{
 		StatsWrite.MarkDoshVaultSeen();
+	}
+}
+
+function VerifyDoshVaultCrates()
+{
+	if (StatsWrite != none)
+	{
+		StatsWrite.VerifyDoshVaultCrates();
 	}
 }
 
@@ -3465,6 +3471,38 @@ exec function Admin( string CommandLine )
 	{
 		ServerAdmin(CommandLine);
 	}
+}
+
+exec function Kick(string S)
+{
+	if (!PlayerReplicationInfo.bAdmin)
+	{
+		`log("Must be admin to kick player");
+		return;
+	}
+	ServerKick(S);
+}
+
+exec function KickBan(string S)
+{
+	if (!PlayerReplicationInfo.bAdmin)
+	{
+		`log("Must be admin to KickBan player");
+		return;
+	}
+	ServerKickBan(S);
+}
+
+
+reliable server function ServerKickBan(string S)
+{
+	WorldInfo.Game.KickBan(S);
+}
+
+
+reliable server function ServerKick(string S)
+{
+	WorldInfo.Game.Kick(S);
 }
 
 reliable server private function ServerAdmin( string CommandLine )
@@ -4775,7 +4813,7 @@ function UpdateLowHealthEffect(float DeltaTime)
 				bPlayingLowHealthSFX = false;
 				if(LEDEffectsManager != none)
 				{
-					LEDEffectsManager.LedStopEffects();
+					LEDEffectsManager.LedRestoreLighting();
 				}
 			}
 		}
@@ -6225,6 +6263,16 @@ function bool IsEventObjectiveComplete(int Index)
 	return false;
 }
 
+
+function int GetSpecialEventRewardValue()
+{
+	if (StatsWrite != none)
+	{
+		return StatsWrite.GetSpecialEventRewardValue();
+	}
+	return 0;
+}
+
 /*********************************************************************************************
  * @name Stats XP Achievements
  *********************************************************************************************/
@@ -6727,11 +6775,16 @@ reliable client event OnMapCollectibleFound( PlayerReplicationInfo FinderPRI, in
 }
 
 /** Called from native (AKFCollectibleActor::OnCollect) when the final collectible is found */
-reliable client event OnAllMapCollectiblesFound()
+reliable client event OnAllMapCollectiblesFound(string MapName)
 {
 	MyGFxHUD.ShowNonCriticalMessage( Localize("KFMapInfo", "FoundAllCollectiblesString", "KFGame") );
 
 	PostAkEvent( AllMapCollectiblesFoundEvent );
+
+	if (StatsWrite != none)
+	{
+		StatsWrite.CheckCollectibleAchievement(MapName);
+	}
 }
 
 native final function UpdateBenefactor( int DoshAmount );
@@ -8336,10 +8389,21 @@ event Destroyed()
 	}
 
     ClearMixerDelegates();
+	ClearDiscord();
     ClientMatchEnded();
 
 	Super.Destroyed();
 }
+
+event Exit()
+{
+	if (LEDEffectsManager != none)
+	{
+		LEDEffectsManager.LedStopEffects();
+	}
+}
+
+
 
 /*********************************************************************************************
  * State Dead
@@ -9066,14 +9130,14 @@ function NotifyKilled( Controller Killer, Controller Killed, pawn KilledPawn, cl
 
 native protected function CheckForZedOnDeathAchievements( KFPawn_Monster MonsterPawn );
 
-function PlayTraderDialog( int DialogEventID )
+function PlayTraderDialog(int DialogEventID, bool bInterrupt = false)
 {
-	`TraderDialogManager.PlayDialog( DialogEventID, self );
+	`TraderDialogManager.PlayDialog(DialogEventID, self, bInterrupt);
 }
 
-reliable client function ClientPlayTraderDialog( int DialogEventID )
+reliable client function ClientPlayTraderDialog(int DialogEventID, bool bInterrupt = false)
 {
-	`TraderDialogManager.PlayDialog( DialogEventID, self );
+	`TraderDialogManager.PlayDialog(DialogEventID, self, bInterrupt);
 }
 
 simulated function PlayTraderSelectItemDialog( bool bTooExpensive, bool bTooHeavy )
@@ -9484,6 +9548,13 @@ function OnLoginCompleted( bool bSuccess )
 	{
 		ClientSetOnlineStatus();
 	}
+	else
+	{
+		if(MyGFxManager != none)
+		{
+			MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_Misc, class'KFCommon_LocalizedStrings'.default.NoticeString, class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, class'KFCommon_LocalizedStrings'.default.OKString);
+		}
+	}
 
 	// Clear the callback
 	LoginCompleteCallback = none;
@@ -9503,11 +9574,13 @@ function StartLogin( delegate<LoginCompleteCallback> InDel, optional bool bInLog
 	LoginCompleteCallback = InDel;
 	bLoggingInForOnlinePlay = bInLoggingInForOnlinePlay;
 
-	// XB1 does not need to login. This step should be taken care of already
+	// XB1 does not need to login. This step should be taken care of already...but sometimes we wont be connected...
 	if( WorldInfo.IsConsoleBuild( CONSOLE_Durango ) )
 	{
+		//Adam Massingale | KFII-39028 Changed OnOSSLoginComplete call to pass in the current connection status in vs OSCS_Connected...because we might not always be connected
 		OnlineSub.PlayerInterface.Login(LocalPlayer(Player).ControllerId, "", "");
-		OnOSSLoginComplete( LocalPlayer(Player).ControllerId, true, OSCS_Connected );
+		//OnOSSLoginComplete( LocalPlayer(Player).ControllerId, true, OSCS_Connected );
+		OnOSSLoginComplete( LocalPlayer(Player).ControllerId, true, OnlineSub.SystemInterface.GetCurrentConnectionStatus());
 	}
 	// If we aren't logged in, try to log in now
 	else if( OnlineSub.PlayerInterface.GetLoginStatus( LocalPlayer(Player).ControllerId ) == LS_NotLoggedIn )
@@ -9655,7 +9728,7 @@ function CheckPrivilegesForMultiplayer()
 
 	bOnlinePrivilegeCheckPending = true;
 	OnlineSub.PlayerInterface.AddPrivilegeLevelCheckedDelegate(OnCanPlayOnlineCheckForMatchmakingComplete);
-	OnlineSub.PlayerInterface.CanPlayOnline(LocalPlayer(Player).ControllerId, HintPrivLevel);
+	OnlineSub.PlayerInterface.CanPlayOnline(LocalPlayer(Player).ControllerId, HintPrivLevel, true);
 }
 
 /** Called when player selects buy game from the end of demo popup */
@@ -9820,7 +9893,7 @@ reliable client function ClientMatchEnded()
 //Triggered when mixer has finished its internal initialization routines
 //      Triggers a timer to move all users to the startup default group after a short
 //      delay intended to avoid any final spinup of scenes and groups in the background.
-simulated final function MixerStartupComplete()
+simulated protected function MixerStartupComplete()
 {
     local KFPlayerReplicationInfo KFPRI;
 
@@ -9834,7 +9907,7 @@ simulated final function GetCurrentDefaultMixerScene(out string DefaultSceneName
     DefaultSceneName = MixerCurrentDefaultScene;
 }
 
-simulated final private function MixerMoveUsersToDefaultGroup()
+simulated final protected function MixerMoveUsersToDefaultGroup()
 {
     local MixerIntegration Mixer;
     Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
@@ -9884,49 +9957,29 @@ simulated final function InitMixerDelegates()
     }
 }
 
-simulated function InitLEDManager()
-{
-	if(!WorldInfo.IsConsoleBuild( ) && IsLocalController() && LEDEffectsManager == none)
-	{
-		LEDEffectsManager = new(self) LEDEffectsManagerClass;
-		LEDEffectsManager.InitLEDEffects();
-	}
-}
-
 simulated final function ClearMixerDelegates()
 {
-    local MixerIntegration Mixer;
-    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+	local MixerIntegration Mixer;
+	Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
 
-    if (Mixer != none)
-    {
-        Mixer.MixerStartupComplete = None;
-        Mixer.HandleMixerButtonEvent = none;
-        Mixer.GetGroupBuildList = none;
-        Mixer.GetIntendedDefaultScene = None;
-    }
+	if (Mixer != none)
+	{
+		Mixer.MixerStartupComplete = None;
+		Mixer.HandleMixerButtonEvent = none;
+		Mixer.GetGroupBuildList = none;
+		Mixer.GetIntendedDefaultScene = None;
+	}
 }
 
 simulated final event UpdateMixer()
 {
-    local MixerIntegration Mixer;
-    Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
+	local MixerIntegration Mixer;
+	Mixer = class'PlatformInterfaceBase'.static.GetMixerIntegration();
 
-    if (Mixer != none)
-    {
-        Mixer.TickMixer();
-    }
-}
-
-simulated final event UpdateAlienFX()
-{
-    local AlienFXLEDInterface AlienFXLED;
-    AlienFXLED = class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
-
-    if (AlienFXLED != none)
-    {
-        AlienFXLED.TickAlienFX();
-    }
+	if (Mixer != none)
+	{
+		Mixer.TickMixer();
+	}
 }
 
 simulated final function GetGroupList(out array<string> GroupsToBuild)
@@ -9934,6 +9987,7 @@ simulated final function GetGroupList(out array<string> GroupsToBuild)
     GroupsToBuild.AddItem("SelectSide");
     GroupsToBuild.AddItem("Helpers");
     GroupsToBuild.AddItem("Hurters");
+	GroupsToBuild.AddItem("VersusZed");
 }
 
 simulated final function TestMixerCall(string Button, out array<string> MetaKeys, out array<string> MetaProps)
@@ -9953,7 +10007,7 @@ simulated private final function HandleMixerButtonEvent(string ControlId, string
     local string StringMetadata;
 
     //Allow high level group flow regardless of user state
-    if (ControlId == "HelpButton" || ControlId == "HurtButton")
+    if (ControlId == "HelpButton" || ControlId == "HurtButton" || ControlId == "BackButton" || ControlId == "BackButtonHurt")
     {
         MixerMoveUserToGroup(ControlId, Username);
         return;
@@ -10006,19 +10060,27 @@ simulated private final function HandleMixerButtonEvent(string ControlId, string
         MixerGiveGrenades(ControlId, TransactionId, AmountValue, CooldownValue, Username);
         break;
     case "HealButton":
+	case "HealButtonVs":
         MixerHealUser(ControlId, TransactionId, AmountValue, CooldownValue, Username);
         break;
     case "ZedTimeButton":
         MixerCauseZedTime(ControlId, TransactionId, AmountValue, CooldownValue, Username);
         break;
     case "EnrageButton":
+	case "EnrageButtonVs":
         MixerEnrageZeds(ControlId, TransactionId, AmountValue, CooldownValue, Username);
         break;
     case "PukeButton":
         MixerPukeUser(ControlId, TransactionId, AmountValue, CooldownValue, Username);
         break;
+	//@TODO: Refactor this into a generic Zed___ string that we can parse and add to the Mixer config at any time
     case "FleshpoundButton":
-        MixerSpawnZed(ControlId, TransactionId, StringMetadata, CooldownValue, Username);
+	case "FleshpoundButtonVs":
+	case "ScrakeButton":
+	case "ScrakeButtonVs":
+	case "MiniFPButton":
+	case "MiniFPButtonVs":
+        MixerSpawnZed(ControlId, TransactionId, StringMetadata, AmountValue, CooldownValue, Username);
         break;
     //Couple examples for future use
     //Client authority events should be called immediately. Within the function, SendMixerEventResult() should be called if valid
@@ -10072,40 +10134,50 @@ reliable private final client function MixerServerCallback(string ControlId, str
 
     if (Mixer != none)
     {
-        `log("*** Mixer: Server told us something happened!" @ Result);
         Mixer.SendMixerEventResult(ControlId, TransactionId, Result, Cooldown);
         if(Result == 1 && MyGFxHUD != none)
         {
         	switch (ControlId)
         	{
-            case AmmoButton:
+            case "AmmoButton":
                 PlayAKEvent(class'KFPerk_Support'.static.GetReceivedAmmoSound());
                 MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveAmmoString);
                 break;
-            case ArmorButton:
+            case "ArmorButton":
                 PlayAKEvent(class'KFPerk_Support'.static.GetReceivedArmorSound());
 	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveArmorString);
                 break;
-            case DoshButton:
+            case "DoshButton":
                 Pawn.PlaySoundBase(AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh');
 	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveDoshString);
                 break;
-            case GrenadeButton:
+            case "GrenadeButton":
                 PlayAKEvent(class'KFPerk_Support'.static.GetReceivedAmmoSound());
 	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveGrenadeString);
                 break;
-            case HealButton:
+            case "HealButton":
+			case "HealButtonVs":
 	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerGaveHealthString);
                 break;
-            case ZedTimeButton:
+            case "ZedTimeButton":
 	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerZedTimeString);
                 break;
-            case EnrageButton:
+            case "EnrageButton":
+			case "EnrageButtonVs":
 	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerRageZedsString);
                 break;
-            case FleshpoundButton:
+            case "FleshpoundButton":
+			case "FleshpoundButtonVs":
 	            MyGFxHUD.ShowNonCriticalMessage( Username$class'KFCommon_LocalizedStrings'.default.MixerSpawnedFPString);
                 break;
+			case "ScrakeButton":
+			case "ScrakeButtonVs":
+				MyGFxHUD.ShowNonCriticalMessage(Username$class'KFCommon_LocalizedStrings'.default.MixerSpawnedScrakeString);
+				break;
+			case "MiniFPButton":
+			case "MiniFPButtonVs":
+				MyGFxHUD.ShowNonCriticalMessage(Username$class'KFCommon_LocalizedStrings'.default.MixerSpawnedMiniFPString);
+				break;
         	}
         }
     }
@@ -10267,12 +10339,12 @@ simulated private final function MixerPukeUser(string ControlId, string Transact
     }
 }
 
-reliable private final server function MixerSpawnZed(string ControlId, string TransactionId, string ZedClass, int Cooldown, string UserName)
+reliable private final server function MixerSpawnZed(string ControlId, string TransactionId, string ZedClass, int Amount, int Cooldown, string UserName)
 {
     local class<KFPawn_Monster> SpawnClass;
     local array<class<KFPawn_Monster> > AIToSpawn;
     local KFGameInfo KFGI;
-    local int SpawnCount;
+    local int SpawnCount, i;
     local KFPawn_Monster BossCheck;
     local bool bFoundBoss;
 
@@ -10308,7 +10380,10 @@ reliable private final server function MixerSpawnZed(string ControlId, string Tr
         SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent." $ ZedClass, class'Class'));
         if (SpawnClass != None)
         {
-            AIToSpawn.AddItem(SpawnClass);
+			for (i = 0; i < Amount; ++i)
+			{
+				AIToSpawn.AddItem(SpawnClass);
+			}
             SpawnCount = KFGI.SpawnManager.SpawnSquad(AIToSpawn);
             if (SpawnCount > 0)
             {
@@ -10339,6 +10414,10 @@ simulated private final function MixerMoveUserToGroup(string ControlId, string U
         case "HurtButton":
             GroupName = "Hurters";
             break;
+		case "BackButton":
+		case "BackButtonHurt":
+			GroupName = "SelectSide";
+			break;
         }
 
         if (GroupName != "")
@@ -10348,26 +10427,198 @@ simulated private final function MixerMoveUserToGroup(string ControlId, string U
     }
 }
 
+//-----------------------------------------------------------------------------
+// LED Effects Integrations
+//-----------------------------------------------------------------------------
+simulated function InitLEDManager()
+{
+	if (!WorldInfo.IsConsoleBuild() && LEDEffectsManager == none)
+	{
+		if (Role == ROLE_Authority && WorldInfo.NetMode != NM_DedicatedServer)//solo
+		{
+			LEDEffectsManager = new(self) LEDEffectsManagerClass;
+			LEDEffectsManager.InitLEDEffects();
+		}
+
+		ClientInitLEDManager();	
+	}
+}
+
+reliable client function ClientInitLEDManager()
+{
+	if (Role != ROLE_Authority)
+	{
+		LEDEffectsManager = new(self) LEDEffectsManagerClass;
+		LEDEffectsManager.InitLEDEffects();
+	}
+}
+
+simulated final event UpdateAlienFX()
+{
+	local AlienFXLEDInterface AlienFXLED;
+	AlienFXLED = class'PlatformInterfaceBase'.static.GetAlienFXIntegration();
+
+	if (AlienFXLED != none)
+	{
+		AlienFXLED.UpdateAlienFX();
+	}
+}
+
 //LED overrides
 //int RedPercent, int GreenPercent, int BluePercent, int MilliSecondsDuration, int MilliSecondsInterval
-unreliable client event ClientSpawnCameraLensEffect( class<EmitterCameraLensEffectBase> LensEffectEmitterClass )
+unreliable client event ClientSpawnCameraLensEffect(class<EmitterCameraLensEffectBase> LensEffectEmitterClass)
 {
-	super.ClientSpawnCameraLensEffect( LensEffectEmitterClass );
+	super.ClientSpawnCameraLensEffect(LensEffectEmitterClass);
 
-	if(IsLocalController() && LEDEffectsManager != none)
+	if (IsLocalController() && LEDEffectsManager != none)
 	{
 		switch (LensEffectEmitterClass)
 		{
-			case class'KFCameraLensEmit_Puke_Light':
-				LEDEffectsManager.PlayEffectGas();
-				break;
-			case class'KFCameraLensEmit_Fire':
-				LEDEffectsManager.PlayEffectFire();
-					break;
+		case class'KFCameraLensEmit_Puke_Light' :
+			LEDEffectsManager.PlayEffectGas();
+			break;
+		case class'KFCameraLensEmit_Fire' :
+			LEDEffectsManager.PlayEffectFire();
+			break;
 		}
 	}
 }
 
+//-----------------------------------------------------------------------------
+// Discord Integration
+//-----------------------------------------------------------------------------
+simulated function InitDiscord()
+{
+	local DiscordRPCIntegration Discord;
+	Discord = class'PlatformInterfaceBase'.static.GetDiscordRPCIntegration();
+
+	if (Discord != none)
+	{
+		Discord.JoinLobby = JoinDiscordLobby;
+
+		UpdateDiscordRichPresence();
+		SetTimer(5.f, true, nameof(UpdateDiscordRichPresence));
+	}
+}
+
+simulated function ClearDiscord()
+{
+	local DiscordRPCIntegration Discord;
+	Discord = class'PlatformInterfaceBase'.static.GetDiscordRPCIntegration();
+
+	if (Discord != none)
+	{
+		Discord.JoinLobby = none;
+	}
+}
+
+simulated function JoinDiscordLobby(qword qLobbyId)
+{
+	local KFOnlineLobbySteamworks SteamworksLobby;
+	local UniqueNetId LobbyId;
+
+	if (OnlineSub != none)
+	{
+		SteamworksLobby = KFOnlineLobbySteamworks(OnlineSub.GetLobbyInterface());
+		if (SteamworksLobby != none)
+		{
+			LobbyId.Uid = qLobbyId;
+			SteamworksLobby.OnLobbyInvite(LobbyId, LobbyId, true);
+		}
+	}
+}
+
+simulated event UpdateDiscord()
+{
+	local DiscordRPCIntegration Discord;
+	Discord = class'PlatformInterfaceBase'.static.GetDiscordRPCIntegration();
+
+	if (Discord != none)
+	{
+		Discord.TickDiscord();
+	}
+}
+
+simulated function UpdateDiscordRichPresence()
+{
+	if (WorldInfo.bIsMenuLevel)
+	{
+		CreateDiscordMenuPresence();
+	}
+	else
+	{
+		CreateDiscordGamePresence();
+	}
+}
+
+simulated function CreateDiscordMenuPresence()
+{
+	local string PresenceString;
+	local qword LobbyId;
+	local int CurrentPlayers, MaxPlayers;
+	local KFOnlineLobbySteamworks SteamworksLobby;
+	local DiscordRPCIntegration Discord;
+	Discord = class'PlatformInterfaceBase'.static.GetDiscordRPCIntegration();
+
+	PresenceString = class'KFCommon_LocalizedStrings'.default.DiscordMenuPresenceString;
+	if (Discord != none && Discord.bDiscordReady)
+	{
+		if (OnlineSub != none)
+		{
+			//If we're actively forming a party, send down the lobby UID to Discord so the user can invite other players through the Discord interface
+			//		We allow this for all lobby types, as the user has to manually invite or allow users into the lobby
+			SteamworksLobby = KFOnlineLobbySteamworks(OnlineSub.GetLobbyInterface());
+			if (SteamworksLobby != none && SteamworksLobby.ActiveLobbies.Length >= 1 && SteamworksLobby.CurrentLobbyId != SteamworksLobby.ZeroUniqueId)
+			{
+				LobbyId = SteamworksLobby.CurrentLobbyId.Uid;
+				MaxPlayers = 6;
+				CurrentPlayers = SteamworksLobby.ActiveLobbies[0].Members.Length;
+				PresenceString = class'KFCommon_LocalizedStrings'.default.DiscordPartyPresenceString;
+			}
+		}
+		Discord.CreateMenuPresence(PresenceString, LobbyId, CurrentPlayers, MaxPlayers);
+	}
+}
+
+simulated function CreateDiscordGamePresence()
+{
+	local string PresenceString, DetailsString;
+	local KFGameReplicationInfo GRI;
+	local DiscordRPCIntegration Discord;
+
+	Discord = class'PlatformInterfaceBase'.static.GetDiscordRPCIntegration();
+	if (Discord != none && Discord.bDiscordReady)
+	{
+		GRI = KFGameReplicationInfo(WorldInfo.GRI);
+		if (GRI != None)
+		{
+			DetailsString = GRI.GameClass != None ? GRI.GameClass.default.GameName : "";
+			PresenceString = WorldInfo.NetMode != NM_Standalone ? class'KFCommon_LocalizedStrings'.default.DiscordNetworkMatchString : class'KFCommon_LocalizedStrings'.default.DiscordSoloMatchString;
+
+			if (GRI.WaveNum == 0)
+			{
+				DetailsString = DetailsString $ class'KFCommon_LocalizedStrings'.default.DiscordMatchLobbyString;
+			}
+			else if (GRI.bTraderIsOpen)
+			{
+				DetailsString = DetailsString $ class'KFCommon_LocalizedStrings'.default.DiscordTraderTimeString;
+			}
+			else
+			{
+				if (GRI.IsFinalWave())
+				{
+					DetailsString = DetailsString $ class'KFCommon_LocalizedStrings'.default.DiscordBossWaveString;
+				}
+				else
+				{
+					DetailsString = DetailsString $ class'KFCommon_LocalizedStrings'.default.DiscordWaveString $ GRI.WaveNum $ "/" $ (GRI.WaveMax - 1);
+				}
+			}
+
+			Discord.CreateGamePresence(PresenceString, DetailsString, WorldInfo.GetMapName(), GRI.GetNumPlayers(), WorldInfo.NetMode != NM_Standalone ? GRI.MaxHumanCount : 1);
+		}
+	}
+}
 
 defaultproperties
 {

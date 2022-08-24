@@ -397,6 +397,7 @@ var(SubObjects) editoronly transient Actor PreviewOffsetActor;
 /** Last value from PreviewOffsetActor */
 var(SubObjects) editoronly transient Vector PreviewRelativeLocation;
 var(SubObjects) editoronly transient Rotator PreviewRelativeRotation;
+var delegate<OnDestroyed> __OnDestroyed__Delegate;
 
 replication
 {
@@ -721,8 +722,11 @@ function bool ValidateHitComponent(Controller EventInstigator, out TraceHitInfo 
 
 event ApplySplashDamage(const out Vector Origin, const out SplashDamageParams DamageParams);
 
+delegate OnDestroyed(KFDestructibleActor DActor);
+
 protected event TriggerDestroyedEvent(Controller EventInstigator)
 {
+    OnDestroyed(self);
     TriggerEventClass(Class'SeqEvent_Destroyed', EventInstigator);
 }
 

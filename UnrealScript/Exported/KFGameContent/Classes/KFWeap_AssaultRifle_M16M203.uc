@@ -426,9 +426,9 @@ defaultproperties
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'wep_ui_m16_m203_tex.UI_WeaponSelect_M16M203'
    SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
-   SpareAmmoCapacity(0)=210
-   SpareAmmoCapacity(1)=11
-   InitialSpareMags(0)=2
+   SpareAmmoCapacity(0)=270
+   SpareAmmoCapacity(1)=13
+   InitialSpareMags(0)=3
    InitialSpareMags(1)=3
    AmmoPickupScale(1)=2.000000
    bLoopingFireAnim(0)=True
@@ -486,7 +486,7 @@ defaultproperties
    Spread(0)=0.008500
    Spread(1)=0.008500
    InstantHitDamage(0)=30.000000
-   InstantHitDamage(1)=150.000000
+   InstantHitDamage(1)=225.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_M16M203'

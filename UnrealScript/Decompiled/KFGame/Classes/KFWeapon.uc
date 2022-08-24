@@ -705,13 +705,13 @@ function AttachThirdPersonWeapon(KFPawn P)
     if(Role == ROLE_Authority)
     {
         P.WeaponAttachmentTemplate = AttachmentArchetype;
-        if(WorldInfo.NetMode != NM_DedicatedServer)
-        {
-            P.WeaponAttachmentChanged();
-        }
         if(P.IsHumanControlled())
         {
             ServerUpdateWeaponSkin(SkinItemId);
+        }
+        if(WorldInfo.NetMode != NM_DedicatedServer)
+        {
+            P.WeaponAttachmentChanged();
         }
     }
 }

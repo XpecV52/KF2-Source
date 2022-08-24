@@ -484,7 +484,7 @@ replication
 {
 	// Replicated to ALL
 	if(bNetDirty)
-		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId, HealingSpeedBoost, 
+		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId, HealingSpeedBoost,
 		HealingDamageBoost, HealingShield;
 
     // Replicated to owning client
@@ -551,7 +551,7 @@ simulated event Tick( float DeltaTime )
 simulated event PreBeginPlay()
 {
 	local class<EmitterPool> PoolClass;
-	
+
 	super.PreBeginPlay();
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
@@ -653,7 +653,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
 	Super.SetCharacterArch(Info);
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
-	{		
+	{
 		// Attach/Reattach flashlight components when mesh is set
 		if ( Flashlight == None && FlashLightTemplate != None )
 		{
@@ -669,7 +669,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
 
 /** Notify pawn whenever mesh is swapped (e.g. new character or new outfit) */
 simulated function OnCharacterMeshChanged()
-{	
+{
 	if ( FlashLight != None )
 	{
 		Flashlight.Reattach();
@@ -939,7 +939,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 				if( InstigatorPerk.ModifyHealAmount( UsedHealAmount ) )
 				{
 					if( Controller != Healer && InstigatorPerk.IsHealingSurgeActive() )
-					{	
+					{
 						if( InstigatorPC.Pawn != none )
 						{
 							InstigatorPC.Pawn.HealDamage(InstigatorPC.Pawn.HealthMax * InstigatorPerk.GetSelfHealingSurgePct(), InstigatorPC, class'KFDT_Healing');
@@ -1161,7 +1161,7 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation, 
             if (bUseHitImpulse)
             {
                 ApplyRagdollImpulse(DmgType, HitLocation, HitDirection, RBBoneName, 1.f);
-            }			
+            }
 		}
 	}
 }
@@ -1341,6 +1341,13 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	if( InDamage > 0 && Armor > 0 && DamageType.default.bArmorStops )
 	{
 		ShieldAbsorb( InDamage );
+
+		//Shield has taken all the damage.  Setup the HitFXInfo for replication so we can
+		//		respond to hit through the normal hit FX chain.
+		if (InDamage <= 0)
+		{
+			AddHitFX(InDamage, InstigatedBy, GetHitZoneIndex(HitInfo.BoneName), HitLocation, Momentum, class<KFDamageType>(DamageType));
+		}
 	}
 
 	if( bHasSacrificeSkill && Health >= 5 && Health - InDamage < 5 )
@@ -1498,7 +1505,7 @@ function StartAirBorneAgentEvent()
 	AAExplosionTemplate = class'KFPerk_FieldMedic'.static.GetAAExplosionTemplate();
 	AAExplosionTemplate.MyDamageType = class'KFPerk_FieldMedic'.static.GetAADamageTypeClass();
 	AAExplosionActorClass = class'KFPerk_FieldMedic'.static.GetAAExplosionActorClass();
-	
+
 	AAExplosionActor = Spawn( AAExplosionActorClass, Self,, Location );
 	if( AAExplosionActor != None )
 	{
@@ -1988,7 +1995,7 @@ simulated function DrawHUD( HUD H )
 	{
 		return;
 	}
-	
+
 	// Slightly AWESOMEHUD(TM)
 	Canvas = H.Canvas;
 	if( Canvas != none )
@@ -2152,11 +2159,12 @@ defaultproperties
       SpecialMoveClasses(26)=None
       SpecialMoveClasses(27)=None
       SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_DisabledGrappleVictim'
-      SpecialMoveClasses(31)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(32)=None
-      SpecialMoveClasses(33)=Class'KFGame.KFSM_Player_Emote'
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(31)=Class'KFGame.KFSM_DisabledGrappleVictim'
+      SpecialMoveClasses(32)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(33)=None
+      SpecialMoveClasses(34)=Class'KFGame.KFSM_Player_Emote'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object

@@ -16,6 +16,7 @@ var bool bWaitingForLobby;
 var bool bWaitingForServer;
 var bool bDebug;
 var string PendingServerIP;
+var Engine.TWOnlineLobby.ELobbyVisibility LobbyVisibility;
 
 function UniqueNetId GetCurrentLobbyId()
 {
@@ -492,6 +493,7 @@ function bool SetVisibility(int VisibilityIndex)
 {
     if(IsInLobby())
     {
+        LobbyVisibility = byte(VisibilityIndex);
         return SetLobbyType(CurrentLobbyId, byte(VisibilityIndex));
     }
     return false;

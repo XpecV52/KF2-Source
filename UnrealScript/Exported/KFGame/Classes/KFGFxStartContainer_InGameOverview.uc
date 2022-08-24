@@ -188,6 +188,7 @@ function ShowWelcomeScreen()
 	{
 		ImageDownloader = new(Outer) class'KFHTTPImageDownloader';
 		ImageDownloader.DownloadImageFromURL(KFGRI.ServerAdInfo.BannerLink, ImageDownloadComplete);
+		ServerWelcomeScreen.SetString("clanMotto", KFGRI.ServerAdInfo.ClanMotto);
 		ServerWelcomeScreen.SetString("messageOfTheDay", Repl(KFGRI.ServerAdInfo.ServerMOTD, "@nl@", Chr(10)));
 		ServerWelcomeScreen.SetString("serverName", WI.GRI.ServerName);    
         ServerWelcomeScreen.SetString("serverIP", KFGRI.ServerAdInfo.WebsiteLink);

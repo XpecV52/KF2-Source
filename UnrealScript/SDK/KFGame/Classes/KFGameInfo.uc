@@ -15,6 +15,77 @@ class KFGameInfo extends FrameworkGame
 `undefine(GAMEINFO)
 `include(KFGame\KFMatchStats.uci);
 
+/** Individual per-class adjustments to make after a zed spawns */
+struct StatAdjustments
+{
+	//Class to adjust
+	var() class<KFPawn_Monster> ClassToAdjust;
+
+	//Health percentage scale
+	var() float HealthScale;
+
+	//Scale for gore health of the head hit zone
+	var() float HeadHealthScale;
+
+	//Scale for shield for zeds that support this
+	var() float ShieldScale;
+
+	//Start enraged
+	var() bool bStartEnraged;
+
+	//Whether or not to explode on death
+	var() bool bExplosiveDeath;
+
+	//Template to use for explosion
+	var KFGameExplosion ExplosionTemplate;
+
+	//Class to ignore on explosion
+	var class<KFPawn> ExplosionIgnoreClass;
+
+	/** Amount to scale up per-beefcake application per-type */
+	var array<float> BeefcakeScaleIncreases;
+
+	/** Amount to scale up per-beefcake application per-type */
+	var array<float> BeefcakeHealthIncreases;
+
+	/** Max Beefcake Scale - This should probably never go > 1.5 for collision reasons */
+	var() float MaxBeefcake;
+
+	/** Max beefcake health scale - This can scale forever really since it's not tied to visual scale */
+	var() float MaxBeefcakeHealth;
+
+	/** Scale to all damage that has this zed as an instigator */
+	var() float DamageDealtScale;
+
+	/** Scale to all damage that has this zed as a victim */
+	var() float DamageTakenScale;
+
+	/** Override of the global deflation rate to define a different per-zed rate, LERP between X and Y by player count */
+	var() Vector2D OverrideDeflationRate;
+
+	/** Additional sub wave to use when one of this type of zed spawns */
+	var() KFAIWaveInfo AdditionalSubSpawns;
+
+	/** 1 to max player count range of how many AI should spawn during the sub wave */
+	var() Vector2D AdditionalSubSpawnCount;
+
+	structdefaultproperties
+	{
+		HealthScale = 1.f;
+		HeadHealthScale = 1.f;
+		ShieldScale = 1.f;
+		bExplosiveDeath = false
+
+		MaxBeefcake = 1.5
+		MaxBeefcakeHealth = 1.5
+
+		DamageDealtScale = 1.0
+		DamageTakenScale = 1.0
+		OverrideDeflationRate = (X = 0.0,Y = 0.0)
+
+		AdditionalSubSpawnCount = (X = 1,Y = 1)
+	}
+};
 
 /** Scoring */
 var const int POINTS_FOR_BOSS_KILL;
@@ -110,6 +181,8 @@ var const int 	ReconnectRespawnTime;
 
 var private const float XPMultiplier;
 
+var bool bGoToBossCameraOnDeath;
+
 /************************************************************************************
  * @name		Game Difficulty
  ***********************************************************************************/
@@ -167,6 +240,13 @@ var array<float>    GameLengthDoshScale;
 /** Available spawn managers (game length) */
 var	array< class<KFAISpawnManager> >   	SpawnManagerClasses;
 
+struct native LateArrivalStart
+{
+	var() array< int > StartingDosh;
+};
+
+var array< LateArrivalStart > LateArrivalStarts;
+
 /************************************************************************************
  * @name		Game balance
  ***********************************************************************************/
@@ -195,8 +275,11 @@ var	KFAISpawnManager					SpawnManager;
 
 /** Content class references loaded by this game type */
 var	protected const array< class<KFPawn_Monster> >	AIClassList;
+var protected const array< class<KFPawn_Monster> >  NonSpawnAIClassList;
 var	protected const array< class<KFPawn_Monster> >	AIBossClassList;
 var protected const array< class<KFPawn_Monster> >  AITestBossClassList; //List of non-rotation bosses that can be forced
+
+var protected int									BossIndex; //Index into boss array, only preload content for the boss we want - PC builds can handle DLO cost much better
 
 /************************************************************************************
  * @name		ZEDTime - slomo system
@@ -244,7 +327,7 @@ var	globalconfig int					ActiveMapCycle;
 /** index of current map in the cycle */
 var globalconfig int 					MapCycleIndex;
 
-/** Maps that are not valid for this game mode. If the array is empty, all are valid 
+/** Maps that are not valid for this game mode. If the array is empty, all are valid
 	Make sure to add the map names ALL UPPERCASE in the config*/
 var config array<string>                InValidMaps;
 
@@ -447,7 +530,7 @@ static function string StripPlayOnPrefix( String MapName )
  * - Use when direct ref loading is not possible (e.g. unused GameInfo is loaded)
  * - Class refs can be cached using the supplied GRI
  */
-static function PreloadContentClasses()
+static function PreloadGlobalContentClasses()
 {
 	local class<KFPawn_Monster> PawnClass;
 
@@ -458,15 +541,11 @@ static function PreloadContentClasses()
 		PawnClass.static.PreloadContent();
 	}
 
-	foreach default.AIBossClassList(PawnClass)
+	//TODO: Revisit this list for better preloading, since it's tied to specific situations
+	foreach default.NonSpawnAIClassList(PawnClass)
 	{
 		PawnClass.static.PreloadContent();
 	}
-
-    foreach default.AITestBossClassList(PawnClass)
-    {
-        PawnClass.static.PreloadContent();
-    }
 }
 
 /** Various functions used by UI when setting game mode */
@@ -493,6 +572,20 @@ static function int GetLocalizeIDFromFriendlyName( string FriendlyNameString )
 static function bool IsGameModeSoloPlayAllowed( int GameModeNum )
 {
 	return default.GameModes[GameModeNum].bSoloPlaySupported;
+}
+static function int GetGameModeIndexFromName(string FriendlyName)
+{
+	local int index;
+
+	for (index = 0; index < default.GameModes.length; index++)
+	{
+		if (default.GameModes[index].FriendlyName == FriendlyName)
+		{
+			return index;
+		}
+	}
+
+	return INDEX_NONE;
 }
 
 function string GetFriendlyNameForCurrentGameMode()
@@ -931,6 +1024,23 @@ function InitGRIVariables()
 	MyKFGRI.GameDifficulty 	= GameDifficulty;
 	MyKFGRI.GameLength 		= GameLength;
 	MyKFGRI.bVersusGame = bIsVersusGame;
+
+	MyKFGRI.MaxHumanCount = MaxPlayers;
+
+	SetBossIndex();
+}
+
+//Event or maps-specific override functionality
+native function bool UseSpecificBossIndex(out int ForcedIndex);
+
+//Find and preload content for the chosen boss index
+function SetBossIndex()
+{
+	if (!UseSpecificBossIndex(BossIndex))
+	{
+		BossIndex = Rand(default.AIBossClassList.Length);
+	}
+	MyKFGRI.CacheSelectedBoss(BossIndex);
 }
 
 /**
@@ -1185,7 +1295,7 @@ function RestartPlayer(Controller NewPlayer)
 
 	// Make sure the perk is initialized before spawning in, if not, wait for it
 	// @NOTE: We still do this in standalone games because we may need to wait for Steam -MattF
-`if(`notdefined(ShippingPC))	
+`if(`notdefined(ShippingPC))
 	// Benchmark silliness. If we allow this code to run, it takes control away from the benchmark
 	// matinee director and the command fails. -MattF
 	if( !class'WorldInfo'.Static.IsConsoleBuild()
@@ -1269,7 +1379,7 @@ function bool ShouldSpawnAtStartSpot(Controller Player)
 		if ( StartSpot == None )
 		{
 			// Not a PlayerStart class (e.g. Teleporter / Play From Here)
-			return true; 
+			return true;
 		}
 
 		// 5 == disabled, 5.1 == collision, 6 == okay
@@ -1396,7 +1506,20 @@ function class<KFPawn_Monster> GetAISpawnType(EAIType AIType)
 /** Allow specific game type to override the boss spawn class.  Default implementation returns from the AI class list. */
 function class<KFPawn_Monster> GetBossAISpawnType()
 {
-    return AIBossClassList[Rand(AIBossClassList.Length)];
+	if (BossIndex < 0 || BossIndex >= AIBossClassList.Length)
+	{
+		return none;
+	}
+    return AIBossClassList[BossIndex];
+}
+
+static function class<KFPawn_Monster> GetSpecificBossClass(int Index)
+{
+	if (Index < 0 || Index >= default.AIBossClassList.Length)
+	{
+		return none;
+	}
+	return default.AIBossClassList[Index];
 }
 
 /** Allow gametype to do any adjustments to the spawned AI pawn */
@@ -1437,7 +1560,7 @@ function SetMonsterDefaults( KFPawn_Monster P )
 
    	DamageMod = 1.0;
     HealthMod = 1.0;
-    HeadHealthMod = 1.0;    
+    HeadHealthMod = 1.0;
 
     // Scale health and damage by game conductor values for versus zeds
     if( P.bVersusZed )
@@ -1757,7 +1880,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 
 			if( MyKFGRI != none && MyKFGRI.AIRemaining <= class'KFGameInfo'.static.GetNumAlwaysRelevantZeds() )
 			{
-				//Tell the remaining pawns to set themselves relevant.  
+				//Tell the remaining pawns to set themselves relevant.
 				foreach WorldInfo.AllPawns( class'KFPawn_Monster', MonsterPawn )
 				{
 					MonsterPawn.CheckShouldAlwaysBeRelevant();
@@ -1836,7 +1959,7 @@ function BroadcastDeathMessage(Controller Killer, Controller Other, class<Damage
 	else if( Killer == Other )
 	{
 		// Suicide
-		BroadcastLocalized( self, class'KFLocalMessage_Game', KMT_Suicide, none, Other.PlayerReplicationInfo );		
+		BroadcastLocalized( self, class'KFLocalMessage_Game', KMT_Suicide, none, Other.PlayerReplicationInfo );
 	}
 	else
 	{
@@ -2419,11 +2542,6 @@ simulated function ForceHansMusicTrack()
 simulated function ForcePatriarchMusicTrack()
 {
     MyKFGRI.ForceNewMusicTrack( default.ForcedMusicTracks[EFM_Boss2] );
-}
-
-simulated function ForceMatriarchMusicTrack()
-{
-    MyKFGRI.ForceNewMusicTrack( default.ForcedMusicTracks[EFM_Boss3] );
 }
 
 /*********************************************************************************************
@@ -3043,7 +3161,7 @@ function SetCountdown(bool bFinalCountdown, byte CountdownTime)
 				PC.StartSpot = None;
 				PC.StartSpot = FindPlayerStart(PC, TeamNum);
 			}
-			
+
 			PC.ClientSetCountdown(bFinalCountdown, CountdownTime, PC.StartSpot);
 		}
 		else
@@ -3087,7 +3205,7 @@ private function CheckServerUnlock()
 	{
         KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
         Playfab = KFEngine.GetPlayfabInterface();
-        
+
         if( Playfab != none )
 	    {
 		    Playfab.ServerDeallocate();
@@ -3098,7 +3216,7 @@ private function CheckServerUnlock()
         {
             bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
             KFEngine.UnlockServer();
-            
+
             if (!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
             {
                 AccessControl.SetGamePassword("");
@@ -3110,7 +3228,7 @@ private function CheckServerUnlock()
                 UpdateGameSettings();
             }
         }
-		
+
 	}
 }
 
@@ -3259,6 +3377,8 @@ defaultproperties
     ZedTimeSlomoScale=0.2
 	ZedTimeBlendOutTime=0.5
 
+	BossIndex=-1
+
     DeathPenaltyModifiers(0)=0.05
     DeathPenaltyModifiers(1)=0.1f
     DeathPenaltyModifiers(2)=0.2f
@@ -3313,4 +3433,6 @@ defaultproperties
 	bNVAlwaysHeadshot=false
 	bNVDebugDamage=false
 // NVCHANGE_END - RLS - Debugging Effects
+
+	bGoToBossCameraOnDeath=true
 }

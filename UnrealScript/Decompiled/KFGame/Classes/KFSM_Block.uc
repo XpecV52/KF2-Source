@@ -25,7 +25,7 @@ static function byte PackBlockSMFLags(byte BlockDir)
 
 protected function bool InternalCanDoSpecialMove()
 {
-    return !KFPOwner.IsDoingSpecialMove() || KFPOwner.IsDoingSpecialMove(16);
+    return !KFPOwner.IsDoingSpecialMove() || KFPOwner.IsDoingSpecialMove(17);
 }
 
 function bool CanOverrideMoveWith(name NewMove)

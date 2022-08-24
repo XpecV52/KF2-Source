@@ -134,6 +134,7 @@ cpptext
 
 	// UEngine interface.
 	void Init();
+	void PreExit();
 	void FinishDestroy();
 	UBOOL Exec( const TCHAR* Cmd, FOutputDevice& Ar=*GLog );
 	virtual UBOOL LoadMap( const FURL& URL, class UPendingLevel* Pending, FString& Error );

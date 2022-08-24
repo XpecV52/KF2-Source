@@ -15,6 +15,8 @@ package tripwire.containers
         
         public var messageOfTheDayText:TextField;
         
+        public var clanMottoText:TextField;
+        
         public var serverNameText:TextField;
         
         public var webLinkButton:Button;
@@ -74,6 +76,11 @@ package tripwire.containers
         public function set messageOfTheDay(param1:String) : void
         {
             this.messageOfTheDayText.htmlText = param1;
+        }
+        
+        public function set clanMotto(param1:String) : void
+        {
+            this.clanMottoText.text = param1;
         }
         
         function __setProp_webLinkButton_ServerWelcomeContainer_confirmbutton_0() : *

@@ -1,9 +1,11 @@
 [KFCommon_LocalizedStrings]
+FailedToReachInventoryServerString="アイテムサーバーに接続できませんでした。インベントリは利用できなくなります。"
 LoadingString="読み込み中..."
 DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Hard"
 DifficultyStrings[2]="Suicidal"
 DifficultyStrings[3]="Hell on Earth"
+BonusDoshString="ボーナスDOSH"
 
 LengthStrings[0]="ショート(4ウェーブ)"
 LengthStrings[1]="ショート(7ウェーブ)"
@@ -65,8 +67,8 @@ CustomString="カスタム"
 RarityStrings[0]="コモン"
 RarityStrings[1]="アンコモン"
 RarityStrings[2]="レア"
-RarityStrings[3]="神話上の"
-RarityStrings[4]="伝説上の"
+RarityStrings[3]="格別"
+RarityStrings[4]="名工の作"
 RarityStrings[5]="極めてレア"
 RarityStrings[6]="何でも"
 
@@ -91,7 +93,17 @@ MixerZedTimeString=" Mixer視聴者のがZed-Timeを発動した。"
 MixerRageZedsString=" Mixer視聴者のが近くのzedを激怒させた。"
 MixerPukeString=" Mixer視聴者のがあなたに吐き掛けた"
 MixerSpawnedFPString=" Mixer視聴者のがフレッシュパウンドを生み出した。"
+MixerSpawnedScrakeString="、Mixer視聴者がスクレイクをスポーンした！"
+MixerSpawnedMiniFPString="、Mixer視聴者がクォーターパウンドをスポーンした！"
 
+DiscordMenuPresenceString="メインメニュー内"
+DiscordPartyPresenceString="パーティー編成中"
+DiscordNetworkMatchString="ネットワークマッチ"
+DiscordSoloMatchString="ソロマッチ"
+DiscordMatchLobbyString=": マッチロビー"
+DiscordTraderTimeString=": トレーダータイム"
+DiscordBossWaveString=": ボスウェーブ！"
+DiscordWaveString=": ウェーブ"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="アウトブレイククリア報酬"
@@ -107,12 +119,14 @@ RewardsString="アウトブレイククリア報酬"
 RewardString="報酬"
 WeeklyOverview="毎週歯ごたえのある新しいゲームモードがリリース！"
 ObjectivesString="目標切り替え"
-VaultDoshString="ヴォールトDosh"
+VaultDoshString="Vault Dosh"
 
 DealDamageString="与えたダメージ："
 EarnXPString="XPの獲得："
 CompleteMapString="マップでマッチを終了："
 KillZedsString="Zedを殺す："
+KillBossString="ボス討伐："
+KillBossDescriptionString=""
 VersusKillsString="次のロールで対戦プレイヤーを殺す："
 DealVersusDamageString="次のロールで対戦プレイヤーにダメージを与える："
 VersusCompletionString="次のロールででマッチを終了："
@@ -176,7 +190,6 @@ TutorialString="基本トレーニング"
 modeList0="サバイバル―AIが操作するzedのPVEバトルウェーブ"
 modeList1="ウィークリーアウトブレイク―毎週異なるゲームモードがリリース。"
 modeList2="VSサバイバル―PVPホージン傭兵 vs プレイヤーおよびAIが操作するzedのウェーブ"
-modeList3=""
 difficultyList0="Normal―Perkランク0-5の初心者プレイヤー向け。"
 difficultyList1="Hard―Perkランク6-12の経験豊富なプレイヤー向け。各ウェーブのzedが増え、動きが速くなり、ヘルスが増えます。ピックアップアイテムが少なくなり、doshが減ります。"
 difficultyList2="Suicidal―Perkランク13-25の熟練プレイヤー向け。各ウェーブのzedがさらに増え、新たな攻撃を使用し、さらに動きが速くなります。ピックアップアイテムがさらに少なくなり、doshがさらに減ります。"
@@ -767,7 +780,7 @@ DoshVaultString="DOSHヴォールト"
 YourCratesString="あなたの木箱："
 OpenCratesString="木箱を開く"
 CrateUnlockedString="木箱を解錠！"
-DelayedCrateString="* Doshヴォールトの木箱は、次のゲームが始まらないと受け取れない場合があります。"
+DelayedCrateString="* Dosh Vaultの木箱は、次のゲームが始まるまで遅れる場合があります。"
 
 [KFGFxMenu_Gear]
 GearHeaderString="装備をカスタマイズ"
@@ -875,6 +888,7 @@ WeaponSkinsString="市場の武器スキン"
 MarketConsumablesString="市場の木箱/USB"
 MarketCosmeticsString="市場の服飾"
 MarketEmotesString="マーケット顔文字"
+ThankYouString="ご購入ありがとうございます！新しいアイテムやマップ、武器、Zed、ゲームモードのアップデート開発に役立たせて頂きます。"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="市場で探す"
@@ -1407,10 +1421,10 @@ YouLostMessage="敗 北"
 YouWonMessage="勝 利"
 SquadWipedOutMessage="あなたの隊は全滅しました！"
 SquadSurvivedMessage="あなたの隊は生存しました！"
-ObjectiveStartMessage="目標開始！"
-ObjectiveWonMessage="目標達成！"
-ObjectiveEndedMessage="目標終了！"
-ObjectiveLostMessage="目標失敗！"
+ObjectiveStartMessage="任務開始"
+ObjectiveWonMessage="任務完了"
+ObjectiveEndedMessage="任務終了"
+ObjectiveLostMessage="任務失敗"
 ObjNotEnoughPlayersMessage="プレイヤーが足りません！"
 ObjTimeRanOutMessage="タイムリミットに達しました！"
 HumansLoseMessage="人間隊が全滅しました！"
@@ -2147,6 +2161,7 @@ ObjectiveStatusString="目標ステータス"
 
 [KFObj_Wave]
 ObjectiveAvailableString="目標使用可能"
+ObjectiveRequireString=" 必要プレイヤー"
 
 [KFObj_Wave_Defend]
 ObjectiveTypeString="防衛"
@@ -2268,9 +2283,24 @@ USBSpitfire="スピットファイアUSBの鍵―$2.49"
 USBHighVoltage="ハイボルテージUSBの鍵―$2.49"
 MerchSale="お得なKF2セール！2017年4月30日まで25%オフ、プロモコード：ZED"
 
+[Objectives]
+HoldVolume="エリアを守備せよ"
+DoshHold="意志を貫け"
+DescriptionDoshHold="マークされたエリアにZedを入れるな"
+RequiredDoshHold="必要プレイヤー:"
+DoschHoldDesc="マークされたエリアにZedを入れるな"
+DescriptionHoldVolume="DescriptionHoldVolume"
+RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="追跡と破壊"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
+FailedString="失敗"
 
+; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
 KFPawn_ZedBloat="ブロート"
+KFPawn_ZedBloatKing="アボミネーション"
+KFPawn_ZedBloatKing_Winter="クランプス"
 KFPawn_ZedClot="クロト"
 KFPawn_ZedCrawler="クローラー"
 KFPawn_ZedCrawlerKing="エリートクロウラー"
@@ -2289,7 +2319,7 @@ KFPawn_ZedClot_AlphaKing="エリートアルファ"
 KFPawn_ZedScrake="スクレイク"
 KFPawn_ZedSiren="サイレン"
 KFPawn_ZedPatriarch="ペイトリアーク"
-
+KFPawn_ZedBloatKingSubspawn="アボミネーション・スポーン"
 ;Human zeds
 KFPawn_ZedBloat_Versus="ブロート―プレイヤー"
 KFPawn_ZedClot_Versus="クロト―プレイヤー"
@@ -2424,19 +2454,19 @@ AllCompleteRewardDescriptionString="Item description for all complete"
 ChanceDropDescriptionStrings[0]="ドロップ1"
 ChanceDropDescriptionStrings[1]="ドロップ2"
 
-[KFGFxSummerSideShowObjectivesContainer]
-CurrentSpecialEventString="限定版アイテムありの時間限定スペシャルイベント。"
+[KFGFxChristmasObjectivesContainer]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="起動完了",DescriptionString="The Tragic Kingdomのジェネレータを起動する");
-SpecialEventObjectiveInfoList[1]=(TitleString="クロト抹殺",DescriptionString="The Tragic Kingdomでクロトを抹殺する");
-SpecialEventObjectiveInfoList[2]=(TitleString="ブロート抹殺",DescriptionString="The Tragic Kingdomでブロートを抹殺する");
-SpecialEventObjectiveInfoList[3]=(TitleString="Dosh投げ",DescriptionString="The Tragic Kingdomでdoshを投げる");
-SpecialEventObjectiveInfoList[4]=(TitleString="カーンイービル",DescriptionString="難易度Hard以上でThe Tragic Kingdomでマッチに勝利する");
+SpecialEventObjectiveInfoList[0]=(TitleString="破壊と侵入",DescriptionString="クランプスの巣でクランプスの小物を壊す");
+SpecialEventObjectiveInfoList[1]=(TitleString="ミンスミート",DescriptionString="クランプスの巣で木材チッパーを使ってZedを倒す");
+SpecialEventObjectiveInfoList[2]=(TitleString="固守",DescriptionString="クランプスの巣で「意志を貫け」任務をコンプリートクリアする");
+SpecialEventObjectiveInfoList[3]=(TitleString="雪の牢獄",DescriptionString="クランプスの巣でコレクションを10個見つける");
+SpecialEventObjectiveInfoList[4]=(TitleString="全ての者へ良い夜を",DescriptionString="クランプスの巣で、難易度Hard以上でクランプスを倒す");
 
-AllCompleteRewardDescriptionString="サイドショウ防護服"
+AllCompleteRewardDescriptionString="パジャマスーツ"
 
-ChanceDropDescriptionStrings[0]="サイドショウ景品チケット"
-ChanceDropDescriptionStrings[1]="サイドショウゴールデンチケット"
+ChanceDropDescriptionStrings[0]="景品チケット"
+ChanceDropDescriptionStrings[1]="黄金チケット"
 
 ;============================================
 ; Daily Localization
@@ -2484,7 +2514,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="空高く舞い上がって、散れ"
 DescriptionStrings[0]="99個のZed風船を作ってみよう"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このアウトブレイクでzedを撃つと、zedは風船のようにふくらみ、浮いて破裂してしまう。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。 "
+ModifierDescriptions[0]="この大量発生の中でZedを撃つと、風船のように膨れ上がります。割らなければ再生を始めてしまいます！マッチメイキングページでウィークリーゲームモードを選択してください。Perkレベル15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2802,6 +2832,22 @@ DisplayName_POL="Koszmar"
 DisplayName_PTB="Pesadelo"
 DisplayName_RUS="Кошмар"
 
+[KF-KrampusLair KFMapSummary]
+DisplayName_CHN="坎卜斯巢穴"
+DisplayName_CHT="坎普斯巢穴"
+DisplayName_DEU="Krampus’ Versteck"
+DisplayName_ESL="Guarida de Krampus"
+DisplayName_ESN="Guarida de Krampus"
+DisplayName_FRA="Repère de Krampus"
+DisplayName_FRC="Repère de Krampus"
+DisplayName_INT="Krampus Lair"
+DisplayName_ITA="Tana del Krampus"
+DisplayName_JPN="クランプスの巣"
+DisplayName_KOR="크램퍼스 둥지"
+DisplayName_POL="Leże Krampusa"
+DisplayName_PTB="Toca do Krampus"
+DisplayName_RUS="Логово Крампуса"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2858,6 +2904,9 @@ DisplayName="The Tragic Kingdom"
 
 [KF-Nightmare KFMapSummary]
 DisplayName="悪夢"
+
+[KF-KrampusLair KFMapSummary]
+DisplayName="クランプスの巣"
 
 [KFMapInfo]
 ; defaults

@@ -560,11 +560,16 @@ Begin Object Class=InterpData Name=InterpData_1
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   InterpLength=266.542908
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   InterpLength=194.093643
    InterpGroups(0)=InterpGroup'KF-CATACOMBS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
    InterpGroups(1)=InterpGroupDirector'KF-CATACOMBS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
+   CurveEdSetup=InterpCurveEdSetup'KF-CATACOMBS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
-   EdSectionEnd=266.542908
+   EdSectionEnd=194.093643
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CATACOMBS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4552

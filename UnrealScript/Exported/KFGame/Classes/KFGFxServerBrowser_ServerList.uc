@@ -71,7 +71,7 @@ var private transient enum EQueryCompletionAction
 
 	/**
 	 * This is set when the user wants to close the scene but we still have active queries.  When the queries are completed
-	 * (either through being cancelled or receiving all results), close the scene.
+	 * (either through being canceled or receiving all results), close the scene.
 	 */
 	QUERYACTION_CloseScene,
 
@@ -884,7 +884,7 @@ function UpdateListDataProvider()
 				TempObj = CreateObject("Object");
 
 				TempObj.SetString("serverName",    		TempOnlineGamesSettings.OwningPlayerName);        
-				TempObj.SetFloat("playerCount",        	(TempOnlineGamesSettings.NumPublicConnections-TempOnlineGamesSettings.NumOpenPublicConnections-TempOnlineGamesSettings.NumSpectators));
+				TempObj.SetFloat("playerCount",        	(TempOnlineGamesSettings.NumPublicConnections-TempOnlineGamesSettings.NumOpenPublicConnections));
 				TempObj.SetFloat("maxPlayerCount",     	TempOnlineGamesSettings.NumPublicConnections);
 				TempObj.SetFloat("waveCount",     		TempOnlineGamesSettings.CurrentWave);
 				TempObj.SetFloat("maxWaveCount",     	TempOnlineGamesSettings.NumWaves);

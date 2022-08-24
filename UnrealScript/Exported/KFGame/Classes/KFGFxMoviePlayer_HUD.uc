@@ -16,6 +16,9 @@ class KFGFxMoviePlayer_HUD extends GFxMoviePlayer
 var KFGFxMoviePlayer_ScoreBoard GfxScoreBoardPlayer;
 var class<KFGFxMoviePlayer_ScoreBoard> ScoreBoardClass;
 
+var EGameMessageType LastMessageType;
+var bool bObjectiveQueued;
+
 var KFGFxHUD_SpectatorInfo SpectatorInfoWidget;
 // Container for Health & Armor widgets
 var KFGFxHUD_PlayerStatus PlayerStatusContainer;
@@ -148,8 +151,9 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'ObjectiveContainer':
         if(WaveInfoWidget != none && WaveInfoWidget.ObjectiveContainer == none)
         {
-            WaveInfoWidget.ObjectiveContainer = KFGFxHUD_ObjectiveConatiner(Widget);
-            WaveInfoWidget.ObjectiveContainer.SetVisible(false);
+			WaveInfoWidget.ObjectiveContainer = KFGFxHUD_ObjectiveConatiner(Widget);
+			WaveInfoWidget.ObjectiveContainer.InitializeHUD();
+			UpdateObjectiveActive();
         }
         break;
     case 'bossHealthBar':
@@ -388,6 +392,33 @@ function TickHud(float DeltaTime)
     {
         GfxScoreBoardPlayer.TickHud(DeltaTime);
     }
+}
+
+function UpdateObjectiveActive()
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFInterface_MapObjective ObjectiveInterface;
+	
+	KFPC = KFPlayerController(GetPC());
+
+	if (KFPC == none)
+	{
+		return;
+	}
+	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+	if (WaveInfoWidget != none && WaveInfoWidget.ObjectiveContainer != none)
+	{
+		if (KFGRI.CurrentObjective == none)
+		{
+			WaveInfoWidget.ObjectiveContainer.SetActive(false);
+		}
+		else
+		{
+			ObjectiveInterface = KFInterface_MapObjective(KFGRI.CurrentObjective);
+			WaveInfoWidget.ObjectiveContainer.SetActive(ObjectiveInterface.IsActive());
+		}
+
+	}
 }
 
 function UpdateWaveCount()
@@ -631,12 +662,112 @@ function HideBossNamePlate()
     }
 }
 
-function DisplayPriorityMessage(string InPrimaryMessageString, string InSecondaryMessageString, int LifeTime)
+function DisplayPriorityMessage(string InPrimaryMessageString, string InSecondaryMessageString, int LifeTime, optional EGameMessageType MessageType)
 {
-    if(PriorityMessageContainer != none && InPrimaryMessageString != "" )
-    {
-        PriorityMessageContainer.ActionScriptVoid("showNewPriorityMessage");
+	local GFxObject PriorityMessageObject;
+	
+	if (PriorityMessageContainer != none && InPrimaryMessageString != "")
+	{
+		LastMessageType = MessageType;
+		PriorityMessageObject = CreateObject("Object");
+
+		PriorityMessageObject.SetString("priorityTextPrimaryString", InPrimaryMessageString);
+		PriorityMessageObject.SetString("priorityTextSecondaryString", InSecondaryMessageString);
+		PriorityMessageObject.SetInt("priorityTextDisplayTime", LifeTime);
+		
+        PriorityMessageContainer.SetObject("priorityMessage", PriorityMessageObject);
     }
+}
+
+
+function bool ShouldCheckForObjective(EGameMessageType MessageType)
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+
+	if (KFGRI.GetNumPlayersAlive() <= 0)
+	{
+		return false;
+	}
+
+	if (KFGRI.IsFinalWave())
+	{
+		return false;
+	}
+	if (MessageType == GMT_WaveStart || MessageType == GMT_WaveEnd)
+	{
+		return true;
+	}
+	return false;
+}
+
+simulated function PlayObjectiveAudio()
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+	
+	if (KFGRI.PreviousObjectiveResult > 0)
+	{
+		class'KFMusicStingerHelper'.static.PlayObjectiveWonStinger(GetPC());
+	}
+	else
+	{
+		class'KFMusicStingerHelper'.static.PlayNewObjectiveStinger(GetPC());
+	}	
+}
+
+simulated function DisplayObjectiveResults()
+{
+	local KFGameReplicationInfo KFGRI;
+	local GFxObject ObjectiveObject;
+	local KFInterface_MapObjective ObjectiveInterface;
+
+	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+	ObjectiveInterface = KFInterface_MapObjective(KFGRI.PreviousObjective);
+	if (KFGRI.PreviousObjectiveResult > 0)
+	{
+		ObjectiveObject = CreateObject("Object");
+		//do not show lost because this is optional
+		ObjectiveObject.SetString("titleString", class'KFLocalMessage_Priority'.default.ObjectiveWonMessage);
+		ObjectiveObject.SetString("nameString", class'KFCommon_LocalizedStrings'.default.BonusDoshString);
+		ObjectiveObject.SetString("descString", " ");
+		ObjectiveObject.SetString("requireString", " ");
+		ObjectiveObject.SetString("rewardNum", string(KFGRI.PreviousObjectiveResult));
+		ObjectiveObject.SetString("iconPath", "img://"$PathName(ObjectiveInterface.GetIcon()));
+		ObjectiveObject.SetBool("isBonus", true);
+		PriorityMessageContainer.SetObject("objectiveMessage", ObjectiveObject);
+		LastMessageType = GMT_Null;
+	}
+}
+
+simulated function DisplayNewObjective()
+{
+	local KFGameReplicationInfo KFGRI;
+	local GFxObject ObjectiveObject;
+	local KFInterface_MapObjective ObjectiveInterface;
+
+	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+
+	ObjectiveInterface = KFGRI.ObjectiveInterface;
+
+	if (ObjectiveInterface != none)
+	{
+		ObjectiveObject = CreateObject("Object");
+
+		ObjectiveObject.SetString("titleString", class'KFLocalMessage_Priority'.default.ObjectiveStartMessage);
+		ObjectiveObject.SetString("nameString", ObjectiveInterface.GetLocalizedName());
+		ObjectiveObject.SetString("descString", ObjectiveInterface.GetLocalizedDescription());
+		ObjectiveObject.SetString("requireString", ObjectiveInterface.GetLocalizedRequirements());
+		ObjectiveObject.SetString("rewardNum", string(ObjectiveInterface.GetMaxDoshReward()));
+		ObjectiveObject.SetString("iconPath", "img://"$PathName(ObjectiveInterface.GetIcon()));
+		ObjectiveObject.SetBool("isBonus", false);
+
+		KFGRI.PreviousObjectiveResult = INDEX_NONE;
+		PriorityMessageContainer.SetObject("objectiveMessage", ObjectiveObject);
+		LastMessageType = GMT_Null;
+	}
 }
 
 /** Display a message that corresponds to input */
@@ -678,6 +809,7 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
         }
     }
 }
+
 
 /** Allows client to group message indices together in the same priority (e.g. all usable trigger messages get same priority even though enum id is different) */
 function int GetInteractionMessagePriority( int MessageIndex )
@@ -864,6 +996,38 @@ function ReceivePawn(KFPawn NewPawn);
 //==============================================================
 // ActionScript Callbacks
 //==============================================================
+
+function Callback_ObjMessageFired()
+{
+	PlayObjectiveAudio();
+}
+
+function Callback_PriorityMessageComplete()
+{
+	local KFInterface_MapObjective ObjectiveInterface;
+	local KFGameReplicationInfo KFGRI;
+	
+	if (ShouldCheckForObjective(LastMessageType))
+	{
+		KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+		
+		ObjectiveInterface = KFGRI.ObjectiveInterface;
+		if (ObjectiveInterface != none)
+		{
+			DisplayNewObjective();
+		}
+		else if (KFGRI.PreviousObjective != none)
+		{
+			DisplayObjectiveResults();
+		}
+		UpdateObjectiveActive();
+		LastMessageType = GMT_Null;
+	}
+	else
+	{
+		bObjectiveQueued = true;
+	}
+}
 
 function Callback_BroadcastChatMessage(string NewMessage)
 {

@@ -165,7 +165,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
     PlayBossMusic();
-    ServerDoSpecialMove(34);
+    ServerDoSpecialMove(35);
     if(!IsHumanControlled())
     {
         ActualSprintSpeed = SprintSpeed;
@@ -287,10 +287,6 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
     local bool Result;
 
     Result = super.Died(Killer, DamageType, HitLocation);
-    if(Result)
-    {
-        KFGameInfo(WorldInfo.Game).BossDied(Killer);
-    }
     ClearTimer('Timer_IncreaseSpeed');
     return Result;
 }

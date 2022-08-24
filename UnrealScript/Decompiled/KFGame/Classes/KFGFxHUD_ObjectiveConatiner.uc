@@ -7,9 +7,41 @@
  *******************************************************************************/
 class KFGFxHUD_ObjectiveConatiner extends GFxObject within GFxMoviePlayer;
 
+var float UpdateRate;
+var KFInterface_MapObjective CurrentObjectiveInterface;
+
+function InitializeHUD()
+{
+    SetVisible(false);
+    LocalizeContainer();
+}
+
+function LocalizeContainer()
+{
+    local GFxObject TextObject;
+
+    TextObject = Outer.CreateObject("Object");
+    TextObject.SetString("failedString", Localize("Objectives", "FailedString", "KFGame"));
+    SetObject("localizedText", TextObject);
+}
+
 function SetActive(bool bActive)
 {
-    SetBool("isActive", bActive);
+    SetVisible(bActive);
+    if(bActive)
+    {
+        CurrentObjectiveInterface = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI).ObjectiveInterface;
+        if(NotEqual_InterfaceInterface(CurrentObjectiveInterface, (none)))
+        {
+            SetFailState(CurrentObjectiveInterface.GetProgress() <= float(0));
+            SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
+            SetCurrentIcon(PathName(CurrentObjectiveInterface.GetIcon()));
+        }        
+    }
+    else
+    {
+        CurrentObjectiveInterface = none;
+    }
 }
 
 function SetCurrentIcon(string IconPath)
@@ -24,8 +56,42 @@ function SetCurrentIcon(string IconPath)
     }
 }
 
+function TickHud(float DeltaTime)
+{
+    if(NotEqual_InterfaceInterface(CurrentObjectiveInterface, (none)))
+    {
+        SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
+        SetInt("rewardValue", CurrentObjectiveInterface.GetDoshReward());
+    }
+}
+
+function UpdateRequirements();
+
+function SetFailState(bool bFailed)
+{
+    local GFxObject DataObject;
+
+    DataObject = Outer.CreateObject("Object");
+    DataObject.SetBool("bFailed", bFailed);
+    DataObject.SetString("failedString", ((bFailed) ? Localize("Objectives", "FailedString", "KFGame") : ""));
+    SetObject("failed", DataObject);
+    if(bFailed)
+    {
+    }
+}
+
+function ClearObjectiveUI()
+{
+    SetActive(false);
+}
+
 function SetCurrentProgress(float CurrentProgress)
 {
-    CurrentProgress = float(Clamp(int(CurrentProgress), 0, 1));
+    CurrentProgress = FClamp(CurrentProgress, 0, 1);
     SetInt("currentProgress", int(float(100) * CurrentProgress));
+}
+
+defaultproperties
+{
+    UpdateRate=0.1
 }

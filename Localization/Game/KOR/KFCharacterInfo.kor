@@ -4,8 +4,11 @@ Description="스웨덴에서 온 덩치 큰 사나이로 맥주를 즐기고 바
 BodyMesh0="바이커 타임"
 BodyMesh1="카드보드 기사"
 BodyMesh2="Horzine 경비대"
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="수염의 힘!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -15,10 +18,11 @@ BodySkin2="DJ 스컬리"
 BodySkin3="진정한 반항아"
 BodySkin4="악마 사냥꾼"
 BodySkin5="볼트 Batcat"
+BodySkin6="볼트 타일"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -38,6 +42,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[CHR_Jagerhorn_Archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [CHR_Jagerhorn_Archetype.BodyMesh4]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -47,10 +58,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Jagerhorn_Archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Jagerhorn_Archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Jagerhorn_Archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="스웨덴 금발"
@@ -140,9 +163,11 @@ Description="자신의 세대에서 가장 쿨한 네덜란드 언더그라운�
 BodyMesh0="후디"
 BodyMesh1="카드보드 기사"
 BodyMesh2="Horzine 경비대"
-
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="스컬리 마스크"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -152,10 +177,11 @@ BodySkin2="GearXT 옐로우"
 BodySkin3="그린 해저드"
 BodySkin4="레트로 스컬리"
 BodySkin5="볼트 프레셔스"
+BodySkin6="볼트 타일"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -175,6 +201,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[chr_DJSkully_archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [chr_DJSkully_archetype.BodyMesh4]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -184,10 +217,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_DJSkully_Archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_DJSkully_Archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_DJSkully_Archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="가장 어두운 블랙"
@@ -224,9 +269,11 @@ BodyMesh0="폭동진압용 장비"
 BodyMesh1="런던"
 BodyMesh2="카드보드 기사"
 BodyMesh3="Horzine 경비대"
-
+BodyMesh4="웨이스트랜드"
 BodyMesh5="위험 물질"
 BodyMesh6="코만도 치킨"
+BodyMesh7="홀리데이 파자마 복장"
+BodyMesh8="볼트 파자마 복장"
 HeadMesh0="헤어"
 
 [chr_briar_archetype.BodyMesh0]
@@ -234,6 +281,7 @@ BodySkin0="폴리스 블루"
 BodySkin1="나이트 블랙"
 BodySkin2="아미 그린"
 BodySkin3="SAS 카모"
+BodySkin4="볼트 타일"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="메트로"
@@ -244,7 +292,7 @@ BodySkin4="리플렉티브 블랙"
 
 [chr_briar_archetype.BodyMesh2]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -264,6 +312,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[chr_briar_archetype.BodyMesh4]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [chr_briar_archetype.BodyMesh5]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -273,10 +328,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [chr_briar_archetype.BodyMesh6]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[chr_briar_archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[chr_briar_archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="오리지널"
@@ -307,9 +374,11 @@ BodyMesh0="가죽 자켓"
 BodyMesh1="클래식 수트"
 BodyMesh2="카드보드 기사"
 BodyMesh3="Horzine 경비대"
-
+BodyMesh4="웨이스트랜드"
 BodyMesh5="위험 물질"
 BodyMesh6="코만도 치킨"
+BodyMesh7="홀리데이 파자마 복장"
+BodyMesh8="볼트 파자마 복장"
 HeadMesh0="가스 마스크"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -318,6 +387,8 @@ BodySkin1="PCG Dosh"
 BodySkin2="바이오하자드"
 BodySkin3="저스트 클래스"
 BodySkin4="마그마 레드"
+BodySkin5="볼트 프레셔스"
+BodySkin6="볼트 타일"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -332,7 +403,7 @@ BodySkin8="스모킹"
 
 [CHR_MrFoster_archetype.BodyMesh2]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -352,6 +423,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[CHR_MrFoster_archetype.BodyMesh4]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [CHR_MrFoster_archetype.BodyMesh5]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -361,10 +439,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_MrFoster_archetype.BodyMesh6]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_MrFoster_archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_MrFoster_archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="오리지널 화이트"
@@ -427,8 +517,8 @@ AttachmentSkin2="블랙"
 AttachmentSkin3="흑백"
 AttachmentSkin4="카지노"
 AttachmentSkin5="스터프"
-AttachmentSkin6="Magma"
-AttachmentSkin7="Dark Red Stripe"
+AttachmentSkin6="마그마"
+AttachmentSkin7="다크 레드 스트라이프"
 
 [Cosmetic_Ana_CyberneticGasmask_ARCH]
 Attachment="사이버네틱 가스 마스크"
@@ -515,9 +605,11 @@ Description="도노반은 크고 터프하며 어떤 상황이든 해쳐나갈 �
 BodyMesh0="RQ 후디"
 BodyMesh1="카드보드 기사"
 BodyMesh2="Horzine 경비대"
-
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="페이스"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -526,10 +618,11 @@ BodySkin1="러스틱 레드"
 BodySkin2="쿨 그레이"
 BodySkin3="페일 어스"
 BodySkin4="볼트 프레셔스"
+BodySkin5="볼트 타일"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -549,6 +642,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[CHR_Coleman_archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [CHR_Coleman_archetype.BodyMesh4]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -558,10 +658,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Coleman_archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Coleman_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Coleman_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="도노반"
@@ -591,9 +703,11 @@ Description="잉글랜드와 스코틀랜드 혼혈인 알버츠 신부는 언�
 BodyMesh0="도그 칼라"
 BodyMesh1="카드보드 기사"
 BodyMesh2="Horzine 경비대"
-
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="헤어"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -602,10 +716,12 @@ BodySkin1="루비 레드"
 BodySkin2="샤프 블루"
 BodySkin3="트로피컬 화이트"
 BodySkin4="홀리 선 프레셔스"
+BodySkin5="위장 무늬 북극"
+BodySkin6="카모 픽셀 핑크"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -625,6 +741,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[CHR_Alberts_archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [CHR_Alberts_archetype.BodyMesh4]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -634,10 +757,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Alberts_archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Alberts_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Alberts_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="그레이"
@@ -1447,7 +1582,7 @@ AttachmentSkin4="프레셔스"
 [Cosmetic_BoxKnightHelmet_ARCH]
 Attachment="카드보드 나이트 헬멧"
 AttachmentSkin0="클래식"
-AttachmentSkin1="BareSo"
+AttachmentSkin1="Jittery Joe's"
 AttachmentSkin2="바이오 콜라"
 AttachmentSkin3="Horzine 창고"
 AttachmentSkin4="Tripwire"
@@ -1527,9 +1662,11 @@ Description="빌 마스터슨은 군에서 우여곡절이 많았습니다. 그�
 BodyMesh0="전투복"
 BodyMesh1="카드보드 기사"
 BodyMesh2="Horzine 경비대"
-
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="페이스"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -1544,10 +1681,13 @@ BodySkin0="그린"
 BodySkin1="블랙"
 BodySkin2="스노우"
 BodySkin3="DPM"
+BodySkin4="볼트 타일"
+BodySkin5="위장 무늬 북극"
+BodySkin6="위장 무늬 퍼플"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -1567,6 +1707,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[CHR_Masterson_archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [CHR_Masterson_archetype.BodyMesh4]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -1576,10 +1723,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Masterson_archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Masterson_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Masterson_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [CHR_Tanaka_Archetype]
 CharacterName="하야토 타나카"
@@ -1588,9 +1747,11 @@ BodyMesh0="쿨하게 죽기"
 BodyMesh1="모터사이클"
 BodyMesh2="카드보드 기사"
 BodyMesh3="Horzine 경비대"
-
+BodyMesh4="웨이스트랜드"
 BodyMesh5="위험 물질"
 BodyMesh6="코만도 치킨"
+BodyMesh7="홀리데이 파자마 복장"
+BodyMesh8="볼트 파자마 복장"
 HeadMesh0="헤어"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -1606,6 +1767,7 @@ BodySkin2="블랙"
 BodySkin3="블루 드래곤"
 BodySkin4="볼트 레트로"
 BodySkin5="볼트 코이 프레셔스"
+BodySkin6="볼트 타일"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="레드와 블랙"
@@ -1618,7 +1780,7 @@ BodySkin6="학"
 
 [CHR_Tanaka_Archetype.BodyMesh2]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -1638,6 +1800,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[CHR_Tanaka_Archetype.BodyMesh4]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [CHR_Tanaka_Archetype.BodyMesh5]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -1647,10 +1816,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Tanaka_Archetype.BodyMesh6]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Tanaka_Archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Tanaka_Archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="헬멧"
@@ -1685,9 +1866,11 @@ Description="그녀는 아마도 “비행청소년”이라는 부류로 분류
 BodyMesh0="메탈코어"
 BodyMesh1="Horzine 경비대"
 BodyMesh2="카드보드 기사"
-
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="모호크"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -1705,6 +1888,8 @@ BodySkin1="브라이트 블러드"
 BodySkin2="바이오 콜라 그린"
 BodySkin3="프리티 블루"
 BodySkin4="치키네이터 오마주"
+BodySkin5="볼트 프레셔스"
+BodySkin6="볼트 타일"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="엘리트 블루"
@@ -1722,11 +1907,18 @@ BodySkin11="프레셔스"
 
 [CHR_Ana_Archetype.BodyMesh2]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
+
+[CHR_Ana_Archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
 
 [CHR_Ana_Archetype.BodyMesh4]
 BodySkin0="크로커"
@@ -1737,10 +1929,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Ana_Archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_Ana_Archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_Ana_Archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 안경"
@@ -1761,9 +1965,11 @@ BodyMesh0="폭동진압용 장비"
 BodyMesh1="런던"
 BodyMesh2="카드보드 기사"
 BodyMesh3="Horzine 경비대"
-
+BodyMesh4="웨이스트랜드"
 BodyMesh5="위험 물질"
 BodyMesh6="코만도 치킨"
+BodyMesh7="홀리데이 파자마 복장"
+BodyMesh8="볼트 파자마 복장"
 HeadMesh0="헤어"
 
 [chr_mark_archetype.BodyMesh0]
@@ -1771,6 +1977,7 @@ BodySkin0="폴리스 블루"
 BodySkin1="나이트 블랙"
 BodySkin2="아미 그린"
 BodySkin3="SAS 카모"
+BodySkin4="볼트 타일"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="메트로"
@@ -1781,7 +1988,7 @@ BodySkin4="리플렉티브 블랙"
 
 [chr_mark_archetype.BodyMesh2]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -1801,6 +2008,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[chr_mark_archetype.BodyMesh4]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [chr_mark_archetype.BodyMesh5]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -1810,10 +2024,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [chr_mark_archetype.BodyMesh6]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[chr_mark_archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[chr_mark_archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
@@ -1827,12 +2053,14 @@ HeadSkin6="굿 게임"
 [chr_alan_archetype]
 CharacterName="클래식 마스터슨"
 Description="아무도 마스터슨이 어떻게 진급했는지 모릅니다. 어떤 이들은 잘생기고 돈도 많은 그의 사촌 리처드 위긴스 대위가 영향력을 행사했을 거라 말합니다. 아니면 똑똑한 그의 형이 도와줬을 수도 있겠죠. 하지만 언제나 말했듯이 그는 다듬어지지 않은 다이아몬드이며 말이 많지 않고 전투에서는 이상할 정도로 침착합니다. 많은 사람들은 그가 상상력과 공감 능력, 지능이 부족하기 때문에 그렇다고 생각합니다. 운이 좋게도 그는 부하들을 단호하게 이끌고 일을 처리해냅니다. 그 일이 고상한 사람들에게는 불쾌하게 느껴지는 일일지라도 말이죠."
-BodyMesh0="폭동진압용 장비"
+BodyMesh0="전투복"
 BodyMesh1="카드보드 기사"
 BodyMesh2="Horzine 경비대"
-
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="페이스"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -1840,10 +2068,13 @@ BodySkin0="그린"
 BodySkin1="블랙"
 BodySkin2="스노우"
 BodySkin3="DPM"
+BodySkin4="볼트 타일"
+BodySkin5="위장 무늬 북극"
+BodySkin6="위장 무늬 퍼플"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -1863,6 +2094,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[CHR_alan_archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [CHR_alan_archetype.BodyMesh4]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -1872,10 +2110,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_alan_archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_alan_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_alan_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
@@ -1899,19 +2149,22 @@ Description="스트라서는 1939년 폴란드를 침공한 독일 군인으로�
 BodyMesh0="RO2: 스탈린그라드의 영웅"
 BodyMesh1="카드보드 기사"
 BodyMesh2="Horzine 경비대"
-
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="헤어"
 
 [CHR_strasser_archetype.BodyMesh0]
 BodySkin0="신병"
 BodySkin1="전투에서 단련된"
 BodySkin2="볼트 카모"
+BodySkin3="볼트 타일"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -1931,6 +2184,13 @@ BodySkin9="애더먼트"
 BodySkin10="현상금 사냥꾼"
 BodySkin11="프레셔스"
 
+[CHR_strasser_archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
 [CHR_strasser_archetype.BodyMesh4]
 BodySkin0="크로커"
 BodySkin1="Glover"
@@ -1940,10 +2200,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_strasser_archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_strasser_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_strasser_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="다크 스틸"
@@ -1982,7 +2254,7 @@ BodySkin3="제이미"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
@@ -2101,9 +2373,11 @@ Description="래 히긴스는 오스트레일리아에서 유럽으로 건너왔
 BodyMesh0="기본 드레스"
 BodyMesh1="Horzine 경비대"
 BodyMesh2="카드보드 기사"
-
+BodyMesh3="웨이스트랜드"
 BodyMesh4="위험 물질"
 BodyMesh5="코만도 치킨"
+BodyMesh6="홀리데이 파자마 복장"
+BodyMesh7="볼트 파자마 복장"
 HeadMesh0="기본 머리"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2114,6 +2388,7 @@ BodySkin3="천재지변"
 BodySkin4="레드 스트라이프"
 BodySkin5="세일러"
 BodySkin6="볼트 스컬"
+BodySkin7="볼트 타일"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="엘리트 블루"
@@ -2131,11 +2406,18 @@ BodySkin11="프레셔스"
 
 [chr_rockabilly_archetype.BodyMesh2]
 BodySkin0="클래식"
-BodySkin1="BareSo"
+BodySkin1="Jittery Joe's"
 BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
+
+[chr_rockabilly_archetype.BodyMesh3]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
 
 [chr_rockabilly_archetype.BodyMesh4]
 BodySkin0="크로커"
@@ -2146,10 +2428,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [chr_rockabilly_archetype.BodyMesh5]
-BodySkin0 ="사용됨"
-BodySkin1 ="클린"
-BodySkin2 ="야간"
-BodySkin3 ="중상"
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[chr_rockabilly_archetype.BodyMesh6]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[chr_rockabilly_archetype.BodyMesh7]
+BodySkin0="Vault Pattern"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="블랙"
@@ -2774,6 +3068,14 @@ Attachment="악마 학살자 헬멧"
 AttachmentSkin0="그레이"
 AttachmentSkin1="프레셔스"
 
+[Cosmetic_WastelandHelmet_ARCH]
+Attachment="웨이스트랜드 헬멧"
+AttachmentSkin0="영웅"
+AttachmentSkin1="카모"
+AttachmentSkin2="바이커 블랙"
+AttachmentSkin3="포"
+AttachmentSkin4="모래 도적"
+
 [Cosmetic_HazmatHelmet_ARCH]
 Attachment="방독면 헬멧"
 AttachmentSkin0="크로커"
@@ -2868,170 +3170,514 @@ AttachmentSkin0="머리가 터질 것 같은"
 Attachment="대성공"
 AttachmentSkin0="머리가 터질 것 같은"
 
+[Cosmetic_BooniHat_ARCH]
+Attachment="보니햇"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="퍼플"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
+
+[Cosmetic_DragonGasMask_ARCH]
+Attachment="드래곤 가스마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="골든"
+AttachmentSkin3="그린"
+AttachmentSkin4="메탈"
+AttachmentSkin5="오가닉"
+AttachmentSkin6="퍼플"
+AttachmentSkin7="레드"
+
+[Cosmetic_ImperialGalea_ARCH]
+Attachment="Imperial Galea"
+AttachmentSkin0="군대"
+AttachmentSkin1="클래식"
+AttachmentSkin2="화이트"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_PlagueDoctorMask_ARCH]
+Attachment="Plague Doctor Mask"
+AttachmentSkin0="그레이"
+AttachmentSkin1="라이트 브라운"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+
+[Cosmetic_SkullMask_ARCH]
+Attachment="Skull Mask"
+AttachmentSkin0="Black Red"
+AttachmentSkin1="Black Silver"
+AttachmentSkin2="White Red"
+AttachmentSkin3="White Silver"
+AttachmentSkin4="Precious"
+
+[Cosmetic_VictoriansSecret_ARCH]
+Attachment="빅토리안 시크릿"
+AttachmentSkin0="Victorian's Secret"
+
+[Cosmetic_HannyaMask_ARCH]
+Attachment="한냐 마스크"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Gold"
+AttachmentSkin3="Green"
+AttachmentSkin4="Iron"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red Shiny"
+AttachmentSkin7="White"
+AttachmentSkin8="Precious"
+
+[Cosmetic_Hopps_ARCH]
+Attachment="홉스"
+AttachmentSkin0="Geometric"
+AttachmentSkin1="Green Machine"
+AttachmentSkin2="Hazard"
+AttachmentSkin3="Porcelain"
+AttachmentSkin4="Gold"
+AttachmentSkin5="Sell Out"
+
+[Cosmetic_KobutoMask_ARCH]
+Attachment="코부토 마스크"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Copper"
+AttachmentSkin3="Gold"
+AttachmentSkin4="Green"
+AttachmentSkin5="Radioactive"
+AttachmentSkin6="Red"
+AttachmentSkin7="White"
+AttachmentSkin8="Precious"
+
+[Cosmetic_SamuraiGasHelmet_ARCH]
+Attachment="사무라이 투구"
+AttachmentSkin0="Gold"
+AttachmentSkin1="Leather"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SamuraiGasMask_ARCH]
+Attachment="사무라이 마스크"
+AttachmentSkin0="Gold"
+AttachmentSkin1="Leather"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SamuraiGasMouthpiece_ARCH]
+Attachment="사무라이 마우스피스"
+AttachmentSkin0="Gold"
+AttachmentSkin1="Leather"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
 [Cosmetic_Bear_ARCH]
 Attachment="곰 마스크"
-AttachmentSkin0 ="브라운 베어"
-AttachmentSkin1 ="판다 베어"
-AttachmentSkin2 ="프레셔스"
+AttachmentSkin0="Brown Bear"
+AttachmentSkin1="Panda Bear"
+AttachmentSkin2="Precious"
 
 [Cosmetic_Cat_ARCH]
 Attachment="고양이 마스크"
-AttachmentSkin0 ="브라운"
-AttachmentSkin1 ="그레이"
-AttachmentSkin2 ="화이트"
-AttachmentSkin3 ="프레셔스"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Gray"
+AttachmentSkin2="White"
+AttachmentSkin3="Precious"
 
 [Cosmetic_Chicken_ARCH]
 Attachment="치킨 마스크"
-AttachmentSkin0 ="화이트 레드"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="White Red"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Cow_ARCH]
 Attachment="까마귀 마스크"
-AttachmentSkin0 ="화이트 블랙"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="White Black"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Dog_ARCH]
 Attachment="개 마스크"
-AttachmentSkin0 ="브라운 도그"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="Brown Dog"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Fox_ARCH]
 Attachment="여우 마스크"
-AttachmentSkin0 ="브라운 팍스"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="Brown Fox"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Goat_ARCH]
 Attachment="염소 마스크"
-AttachmentSkin0 ="색을 입힌 염소"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="Goat Colored"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Horse_ARCH]
 Attachment="말 마스크"
-AttachmentSkin0 ="브라운 호스"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="Brown Horse"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Pig_ARCH]
 Attachment="돼지 마스크"
-AttachmentSkin0 ="핑키 피그"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="Pinky Pig"
+AttachmentSkin1="Precious"
 
 [Cosmetic_Rabbit_ARCH]
 Attachment="토끼 마스크"
-AttachmentSkin0 ="브라운 래빗"
-AttachmentSkin1 ="화이트 래빗"
-AttachmentSkin2 ="프레셔스"
+AttachmentSkin0="Brown Rabbit"
+AttachmentSkin1="White Rabbit"
+AttachmentSkin2="Precious"
 
 [Cosmetic_CommandoChickenHelmet_ARCH]
 Attachment="코만도 치킨"
-AttachmentSkin0 ="사용됨"
-AttachmentSkin1 ="클린"
-AttachmentSkin2 ="야간"
-AttachmentSkin3 ="중상"
+AttachmentSkin0="Used"
+AttachmentSkin1="Clean"
+AttachmentSkin2="Night"
+AttachmentSkin3="Heavy Wound"
 
 [Cosmetic_bobBatcat_ARCH]
 Attachment="Bob"
-AttachmentSkin0 ="블랙"
-AttachmentSkin1 ="그린"
-AttachmentSkin2 ="퍼플"
-AttachmentSkin3 ="틸"
-AttachmentSkin4 ="프레셔스"
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Teal"
+AttachmentSkin4="Precious"
 
 [Cosmetic_crown_ARCH]
 Attachment="크라운"
-AttachmentSkin0 ="프레셔스"
-AttachmentSkin1 ="실버"
+AttachmentSkin0="Precious"
+AttachmentSkin1="Silver"
 
 [Cosmetic_DGlasses_ARCH]
 Attachment="도쉬 글래스"
-AttachmentSkin0 ="그린"
-AttachmentSkin1 ="블랙"
-AttachmentSkin2 ="프레셔스"
+AttachmentSkin0="Green"
+AttachmentSkin1="Black"
+AttachmentSkin2="Precious"
 
 [Cosmetic_hansBackpack_ARCH]
 Attachment="핸즈 백팩"
-AttachmentSkin0 ="블랙"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="Black"
+AttachmentSkin1="Precious"
 
 [Cosmetic_scrakeMask_ARCH]
 Attachment="스크레이크 마스크"
-AttachmentSkin0 ="강철"
-AttachmentSkin1 ="프레셔스"
+AttachmentSkin0="Steel"
+AttachmentSkin1="Precious"
 
 [Cosmetic_sharkHat_ARCH]
 Attachment="샤키"
-AttachmentSkin0 ="그레이"
-AttachmentSkin1 ="모래색"
-AttachmentSkin2 ="범고래"
-AttachmentSkin3 ="블러디"
-AttachmentSkin4 ="프레셔스"
+AttachmentSkin0="Grey"
+AttachmentSkin1="Sand"
+AttachmentSkin2="Orca"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Precious"
 
 [Cosmetic_VGlasses_ARCH]
 Attachment="볼트 글래스"
-AttachmentSkin0 ="그린"
-AttachmentSkin1 ="블랙"
-AttachmentSkin2 ="프레셔스"
+AttachmentSkin0="Green"
+AttachmentSkin1="Black"
+AttachmentSkin2="Precious"
 
 [Cosmetic_Halloween_Arrowed_ARCH]
 Attachment="화살"
-AttachmentSkin0 ="클래식"
+AttachmentSkin0="Classic"
 
 [Cosmetic_Halloween_Axed_ARCH]
 Attachment="액스"
-AttachmentSkin0 ="클래식 액스"
-AttachmentSkin1 ="프레셔스 액스"
+AttachmentSkin0="Classic Axe"
+AttachmentSkin1="Precious Axe"
 
 [Cosmetic_Halloween_Bolts_ARCH]
 Attachment="볼트"
-AttachmentSkin0 ="메탈 볼트"
+AttachmentSkin0="Metal Bolts"
 
 [Cosmetic_Halloween_Halo_ARCH]
 Attachment="헤일로"
-AttachmentSkin0 ="홀리 엔젤"
+AttachmentSkin0="Holy Angel"
 
 [Cosmetic_Halloween_Pumpkin_Classic_ARCH]
 Attachment="잭오랜턴 클래식"
-AttachmentSkin0 ="잭오랜턴 클래식"
-AttachmentSkin1 ="잭오랜턴 클래식 프레셔스"
+AttachmentSkin0="Jack O' Lantern Classic"
+AttachmentSkin1="Jack O' Lantern Classic Precious"
 
 [Cosmetic_Halloween_Pumpkin_Dosh_ARCH]
 Attachment="잭오랜턴 클래식 도쉬"
-AttachmentSkin0 ="신선한 호박 도쉬"
-AttachmentSkin1 ="잭오랜턴 도쉬 프레셔스"
+AttachmentSkin0="Ripe Dosh"
+AttachmentSkin1="Jack O' Lantern Dosh Precious"
 
 [Cosmetic_Halloween_Pumpkin_Fang_ARCH]
 Attachment="잭오랜턴 클래식 송곳니"
-AttachmentSkin0 ="썩은 잭오랜턴"
+AttachmentSkin0="Rotten Jack O' Lantern"
 
 [Cosmetic_Halloween_Pumpkin_Goofy_ARCH]
 Attachment="바보 잭오랜턴"
-AttachmentSkin0 ="바보 잭오랜턴"
+AttachmentSkin0="Jack O' Lantern Goofy"
 
 [Cosmetic_Halloween_Pumpkin_Happy_ARCH]
 Attachment="즐거운 잭오랜턴"
-AttachmentSkin0 ="즐거운 잭오랜턴"
+AttachmentSkin0="Jack O' Lantern Happy"
 
 [Cosmetic_Halloween_Pumpkin_Sad_ARCH]
 Attachment="슬픈 잭오랜턴"
-AttachmentSkin0 ="슬픈 잭오랜턴"
+AttachmentSkin0="Jack O' Lantern Sad"
 
 [Cosmetic_Halloween_Pumpkin_Scared_ARCH]
 Attachment="겁먹은 잭오랜턴"
-AttachmentSkin0 ="겁먹은 잭오랜턴"
+AttachmentSkin0="Jack O' Lantern Scared"
 
 [Cosmetic_Halloween_Pumpkin_Scary_ARCH]
 Attachment="무서운 잭오랜턴"
-AttachmentSkin0 ="무서운 숙성 잭오랜턴"
-AttachmentSkin1 ="무서운 프레셔스 잭오랜턴"
+AttachmentSkin0="Jack O' Lantern Ripe Scary"
+AttachmentSkin1="Jack O' Lantern Scary Precious"
 
 [Cosmetic_Halloween_Pumpkin_Sneaky_ARCH]
 Attachment="교활한 잭오랜턴"
-AttachmentSkin0 ="교활한 잭오랜턴"
+AttachmentSkin0="Jack O' Lantern Sneaky"
 
 [Cosmetic_Halloween_Pumpkin_Squeal_ARCH]
 Attachment="비명을 지르는 잭오랜턴"
-AttachmentSkin0 ="비명을 지르는 잭오랜턴"
+AttachmentSkin0="Jack O' Lantern Squeal"
 
 [Cosmetic_Halloween_Pumpkin_Winky_ARCH]
 Attachment="윙크 잭오랜턴"
-AttachmentSkin0 ="방사능 잭오랜턴"
+AttachmentSkin0="Jack O' Lantern Radioactive Winky"
+
+[Cosmetic_Christmas_AlphaHat_ARCH]
+Attachment="크리스마스 알파 모자"
+AttachmentSkin0="Green"
+
+[Cosmetic_Christmas_beard_ARCH]
+Attachment="크리스마스 턱수염"
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Precious"
+AttachmentSkin3="White"
+
+[Cosmetic_Christmas_BellBackpack_ARCH]
+Attachment="크리스마스 종 배낭"
+AttachmentSkin0="Gold"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Silver"
+
+[Cosmetic_Christmas_BloatHat_ARCH]
+Attachment="크리스마스 Bloat 모자"
+AttachmentSkin0="Tan"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_Blubs_ARCH]
+Attachment="크리스마스 이어벌브"
+AttachmentSkin0="Red Green"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_CookieGlasses_ARCH]
+Attachment="크리스마스 쿠키 안경"
+AttachmentSkin0="Green Wrapping"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Red Wrapping"
+
+[Cosmetic_Christmas_CystHat_ARCH]
+Attachment="크리스마스 Cyst 모자"
+AttachmentSkin0="Green"
+
+[Cosmetic_Christmas_EarMuffs_ARCH]
+Attachment="크리스마스 귀마개"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Red"
+
+[Cosmetic_Christmas_ElfEars_ARCH]
+Attachment="크리스마스 요정 귀"
+AttachmentSkin0="Flesh"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_FPHead_ARCH]
+Attachment="크리스마스 Fleshpound 머리"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Copycat"
+AttachmentSkin2="Libro"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Warui"
+
+[Cosmetic_Christmas_GoreStockingBackpack_ARCH]
+Attachment="크리스마스 고어스타킹 백팩"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Classic"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Red"
+
+[Cosmetic_Christmas_HaloBulbs_ARCH]
+Attachment="크리스마스 할로겐 전구"
+AttachmentSkin0="Red Green"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_HamHead_ARCH]
+Attachment="크리스마스 망치 머리"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_HuskBackpack_ARCH]
+Attachment="크리스마스 Husk 백팩"
+AttachmentSkin0="Black"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_HuskHat_ARCH]
+Attachment="크리스마스 Husk 모자"
+AttachmentSkin0="Black"
+
+[Cosmetic_Christmas_PoinsettaHat_ARCH]
+Attachment="크리스마스 포인세티아 모자"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_SlasherHat_ARCH]
+Attachment="크리스마스 Slasher 모자"
+AttachmentSkin0="Green"
+
+[Cosmetic_Christmas_SnowmanFace_ARCH]
+Attachment="크리스마스 눈사람 마스크"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Christmas_TeddyBackpack_ARCH]
+Attachment="크리스마스 곰인형 가방"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Dark"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_Christmas_TreeGlasses_ARCH]
+Attachment="크리스마스 나무 안경"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+AttachmentSkin3="Red"
+
+[Cosmetic_Christmas_Ushanka_ARCH]
+Attachment="크리스마스 털모자"
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Tan"
+
+[Cosmetic_Christmas_PajamaHat_ARCH]
+Attachment="크리스마스 파자마 모자"
+AttachmentSkin0="Bunny"
+AttachmentSkin1="Dosh"
+AttachmentSkin2="Green Plaid"
+AttachmentSkin3="Green Trees"
+AttachmentSkin4="Quilt"
+AttachmentSkin5="Red Snow"
+AttachmentSkin6="Red Plaid"
+
+[Cosmetic_LeatherMask_ARCH]
+Attachment="가죽 마스크"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Brown"
+AttachmentSkin3="Pink"
+AttachmentSkin4="Precious"
+AttachmentSkin5="Red"
+AttachmentSkin6="Tan"
+AttachmentSkin7="Trippy"
+AttachmentSkin8="White"
+
+[Cosmetic_HockeyMask_ARCH]
+Attachment="하키 마스크"
+AttachmentSkin0="Black"
+AttachmentSkin1="High Five"
+AttachmentSkin2="Kitty"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Skull"
+AttachmentSkin5="Slasher"
+AttachmentSkin6="Teal"
+AttachmentSkin7="TGIF"
+
+[Cosmetic_BiocolaHat_ARCH]
+Attachment="BioCola 모자"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+AttachmentSkin3="Red"
+AttachmentSkin4="White"
+
+[Cosmetic_FoamCowboyHat_ARCH]
+Attachment="발포 고무 카우보이 모자"
+AttachmentSkin0="Black"
+AttachmentSkin1="Orange"
+AttachmentSkin2="Precious"
+AttachmentSkin3="USA"
+AttachmentSkin4="White"
+AttachmentSkin5="Yellow"
+
+[Cosmetic_PaperBagBlank_ARCH]
+Attachment="빈 종이봉투"
+AttachmentSkin0="White"
+
+[Cosmetic_PaperBagEyes_ARCH]
+Attachment="왕눈이 종이봉투"
+AttachmentSkin0="Precious"
+
+[Cosmetic_PaperBagHappy_ARCH]
+Attachment="행복 종이봉투"
+AttachmentSkin0="Green"
+
+[Cosmetic_PaperBagKrinkle_ARCH]
+Attachment="크링클 종이봉투"
+AttachmentSkin0="Trippy"
+
+[Cosmetic_PaperBagOFace_ARCH]
+Attachment="섹시 종이봉투"
+AttachmentSkin0="Yellow"
+
+[Cosmetic_PaperBagOooh_ARCH]
+Attachment="깜놀 종이봉투"
+AttachmentSkin0="White"
+
+[Cosmetic_PaperBagSmallEyes_ARCH]
+Attachment="스몰아이 종이봉투"
+AttachmentSkin0="Purple"
+
+[Cosmetic_PaperBagYelling_ARCH]
+Attachment="함성 종이봉투"
+AttachmentSkin0="Red"
+
+[Cosmetic_PorcelainMaskBlank_ARCH]
+Attachment="빈 도자기 마스크"
+AttachmentSkin0="White"
+
+[Cosmetic_PorcelainMaskBroken_ARCH]
+Attachment="부서진 도자기 마스크"
+AttachmentSkin0="Yellow"
+
+[Cosmetic_PorcelainMaskCross_ARCH]
+Attachment="십자 도자기 마스크"
+AttachmentSkin0="Red and Black"
+
+[Cosmetic_PorcelainMaskDosh_ARCH]
+Attachment="도쉬 도자기 마스크"
+AttachmentSkin0="Precious"
+
+[Cosmetic_PorcelainMaskHappy_ARCH]
+Attachment="행복 도자기 마스크"
+AttachmentSkin0="Yellow"
+
+[Cosmetic_PorcelainMaskSad_ARCH]
+Attachment="슬픔 도자기 마스크"
+AttachmentSkin0="Blue"
+
+[Cosmetic_PorcelainMaskSlim_ARCH]
+Attachment="슬림 도자기 마스크"
+AttachmentSkin0="Green"
+
+[Cosmetic_PorcelainMaskSly_ARCH]
+Attachment="교활한 도자기 마스크"
+AttachmentSkin0="Trippy"
+
+[Cosmetic_Tricorne_ARCH]
+Attachment="삼각 모자"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Brown"
+AttachmentSkin3="Precious"
+AttachmentSkin4="White"

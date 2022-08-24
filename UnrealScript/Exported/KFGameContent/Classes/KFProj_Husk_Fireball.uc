@@ -29,6 +29,20 @@ replication
 		bSpawnGroundFire;
 }
 
+simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+{
+	local KFPawn_Monster KFPM;
+
+	KFPM = KFPawn_Monster(Other);
+
+	if (KFPM != none && (KFPM.IsDoingSpecialMove(SM_Knockdown) || !KFPM.IsAliveAndWell()))
+	{
+		return;
+	}
+
+	super.ProcessTouch(Other, HitLocation, HitNormal);
+}
+
 /** Both explosions should ignore the instigator for damage */
 simulated protected function PrepareExplosionTemplate()
 {

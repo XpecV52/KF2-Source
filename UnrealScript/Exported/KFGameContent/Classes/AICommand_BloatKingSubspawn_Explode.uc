@@ -1,0 +1,92 @@
+//=============================================================================
+// AICommand_BloatKingSubspawn_Explode
+//=============================================================================
+// Explosive death for the BK poop monster.
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2017 Tripwire Interactive LLC
+//=============================================================================
+class AICommand_BloatKingSubspawn_Explode extends AICommand_SpecialMove
+	within KFAIController_ZedBloatKingSubspawn;
+
+/** Simple constructor that pushes a new instance of the command for the AI */
+static function bool StartExplode(KFAIController_ZedBloatKingSubspawn AI )
+{
+	local AICommand_BloatKingSubspawn_Explode Cmd;
+
+	if( AI != None )
+	{
+		Cmd = new(AI)default.class;
+		if( Cmd != None )
+		{
+			AI.PushCommand( Cmd );
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function Pushed()
+{
+	Super.Pushed();
+
+	StopAllLatentMovement();
+	AIZeroMovementVariables();
+
+	if( Enemy != none )
+	{
+		Focus = Enemy;
+	}
+
+	AIActionStatus = "Starting Explode AICommand";
+	if( Focus != None )
+	{
+		SetDesiredRotation(rotator(Focus.Location - Pawn.Location));
+	}
+
+	DisableMeleeRangeEventProbing();
+}
+
+
+function Popped()
+{
+	AIActionStatus = "Finished Explode AICommand";
+	Super.Popped();
+}
+
+state Command_SpecialMove
+{
+	function ESpecialMove GetSpecialMove()
+	{
+		return SM_Custom1;
+	}
+
+	/** Begin executing the special move */
+	function bool ExecuteSpecialMove()
+	{
+		SpecialMove = GetSpecialMove();
+
+		if( ! class'Engine'.static.GetEngine().bDisableAILogging) {AILog_Internal(GetFuncName()$"()"@SpecialMove,'Command_SpecialMove',);};
+
+		if( SpecialMove != SM_None && (!bShouldCheckSpecialMove || MyKFPawn.CanDoSpecialMove( SpecialMove )) )
+		{
+			AIActionStatus = "SpecialMove: Explosion";
+            MyKFPawn.DoSpecialMove(SpecialMove, true, , GetSpecialMoveFlags(SpecialMove));
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
+
+defaultproperties
+{
+   bShouldCheckSpecialMove=True
+   TimeOutDelaySeconds=25.000000
+   bIgnoreNotifies=True
+   Name="Default__AICommand_BloatKingSubspawn_Explode"
+   ObjectArchetype=AICommand_SpecialMove'KFGame.Default__AICommand_SpecialMove'
+}

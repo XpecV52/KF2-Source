@@ -111,6 +111,9 @@ native static function AlienFXLEDInterface GetAlienFXIntegration();
 // Export UPlatformInterfaceBase::execGetRazerIntegration(FFrame&, void* const)
 native static function RazerLEDInterface GetRazerIntegration();
 
+// Export UPlatformInterfaceBase::execGetDiscordRPCIntegration(FFrame&, void* const)
+native static function DiscordRPCIntegration GetDiscordRPCIntegration();
+
 function AddDelegate(int DelegateType, delegate<PlatformInterfaceDelegate> InDelegate)
 {
     if(AllDelegates.Length < (DelegateType + 1))

@@ -52,6 +52,10 @@ function TickHud(float DeltaTime)
             UpdateZEDCount();
         }
     }
+	if (ObjectiveContainer != none)
+	{
+		ObjectiveContainer.TickHud(DeltaTime);
+	}
 }
 
 

@@ -899,6 +899,7 @@ enum ESpecialMove
 	SM_DeathAnim,
 	SM_Stunned,
 	SM_Frozen,
+	SM_GorgeZedVictim,
 
 	/** ZED Misc */
 	SM_Emerge,
@@ -2816,6 +2817,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
         if ( KFDT != None )
 		{
 			KFDT.static.ApplySecondaryDamage(self, Damage, InstigatedBy);
+
+			if (Health <= 0)
+			{
+				KFDT.static.ApplyKillResults(self);
+			}
 		}
 	}
 
@@ -3518,10 +3524,14 @@ static function bool IsLargeZed()
 	return false;
 }
 
+function int GetHitZoneIndex(name BoneName)
+{
+	return HitZones.Find('ZoneName', BoneName);
+}
+
 function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, class<DamageType> damageType, vector Momentum, TraceHitInfo HitInfo)
 {
 	local int HitZoneIdx;
-	local bool bHasNewHitEffect;
 	local class<KFDamageType> KFDT;
 
 	if( Damage <= 0 || (Controller != none && Controller.bGodMode) )
@@ -3530,9 +3540,8 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	}
 
 	// Cached hit params
-	HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName);
+	HitZoneIdx = GetHitZoneIndex(HitInfo.BoneName);
 	KFDT = class<KFDamageType>(damageType);
-	bHasNewHitEffect = true;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
@@ -3543,65 +3552,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
-	// We don't process any new effects until we are done processing old ones.
-	if ( bNeedsProcessHitFx )
-	{
-		if ( InstigatedBy != none && InstigatedBy.Pawn == HitFxInstigator && KFDT != none && KFDT == HitFXInfo.DamageType )
-		{
-			// Add any additional hits to a separate repliated array
-			// @note: Do not stack radial hits because they already affect the whole body (and are more expensive)
-			if( HitFxAddedHitCount < MAX_ADDED_HITFX && !bTakingRadiusDamage )
-			{
-				// Replicate any additional hits separately from the HitFxInfo struct and pass them as relative location to replicate easier
-				HitFxAddedRelativeLocs[HitFxAddedHitCount] = HitLocation - HitFxInfo.HitLocation;
-				HitFxAddedHitCount++;
-			}
-			bHasNewHitEffect = false;
-		}
-		else if ( !bTakingRadiusDamage && HitFxInfo.bRadialDamage )
-		{
-			// if we have to choose (rare), prioritize radius damage
-			bHasNewHitEffect = false;
-		}
-	}
-
-	// This is the first (and usually only) hit that occured this frame
-	if ( bHasNewHitEffect )
-	{
-		HitFxInstigator = InstigatedBy != None ? InstigatedBy.Pawn : None;
-
-		HitFxInfo.HitLocation = HitLocation;
-		HitFxInfo.EncodedHitDirection = (KFDT != none && KFDT.default.bPointImpulseTowardsOrigin && InstigatedBy.Pawn != none)
-										? EncodeUnitVector(Normal(Location - InstigatedBy.Pawn.Location))
-										: EncodeUnitVector(Normal(Momentum));
-		HitFxInfo.HitBoneIndex = HitZoneIdx;
-		HitFxInfo.bRadialDamage = bTakingRadiusDamage;
-		HitFxInfo.DamageType = KFDT; 	// If we do not have a damagetype, replicate none
-		LastTakeHitTimeout = WorldInfo.TimeSeconds + (0.5f);
-
-		if ( bTakingRadiusDamage && !IsZero(LastRadiusHurtOrigin) )
-		{
-			HitFxRadialInfo.RadiusDamageScale = LastRadiusDamageScale;
-			LastRadiusDamageScale = 255;
-
-			HitFxRadialInfo.RadiusHurtOrigin = LastRadiusHurtOrigin;
-			LastRadiusHurtOrigin = vect(0,0,0);
-
-			// Nudge HitLoc a bit for edge-case where Victim and Explosive are stationary (NEQ fails)
-			HitFxInfo.HitLocation.Z += FRand();
-		}
-
-		if ( bPlayedDeath && KFDT != none && KFDT.default.bCanObliterate )
-		{
-			HitFxInfo.bObliterated = KFDT.static.CheckObliterate(self, Damage);
-		}
-		else
-		{
-			HitFxInfo.bObliterated = false;
-		}
-
-		HitFxAddedHitCount = 0;
-	}
+	AddHitFX(Damage, InstigatedBy, HitZoneIdx, HitLocation, Momentum, KFDT);
 
  	// Damage hit zones for replicated gore effects
 	if ( HitZoneIdx != INDEX_None )
@@ -3623,11 +3574,78 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 		}
 	}
 
-	bNeedsProcessHitFx = true;
 	LastPainTime = WorldInfo.TimeSeconds;
 
 	//Record weapon Damage for AAR
 	if(KFDT!= none){class'EphemeralMatchStats'.static.RecordWeaponDamage(InstigatedBy,KFDT,KFDT.default.WeaponDef,Damage,Self,HitZoneIdx);};
+}
+
+function AddHitFX(int Damage, Controller InstigatedBy, int HitZoneIdx, Vector HitLocation, Vector Momentum, class<KFDamageType> KFDT)
+{
+	local bool bHasNewHitEffect;
+
+	bHasNewHitEffect = true;
+	// We don't process any new effects until we are done processing old ones.
+	if (bNeedsProcessHitFx)
+	{
+		if (InstigatedBy != none && InstigatedBy.Pawn == HitFxInstigator && KFDT != none && KFDT == HitFXInfo.DamageType)
+		{
+			// Add any additional hits to a separate repliated array
+			// @note: Do not stack radial hits because they already affect the whole body (and are more expensive)
+			if (HitFxAddedHitCount < MAX_ADDED_HITFX && !bTakingRadiusDamage)
+			{
+				// Replicate any additional hits separately from the HitFxInfo struct and pass them as relative location to replicate easier
+				HitFxAddedRelativeLocs[HitFxAddedHitCount] = HitLocation - HitFxInfo.HitLocation;
+				HitFxAddedHitCount++;
+			}
+			bHasNewHitEffect = false;
+		}
+		else if (!bTakingRadiusDamage && HitFxInfo.bRadialDamage)
+		{
+			// if we have to choose (rare), prioritize radius damage
+			bHasNewHitEffect = false;
+		}
+	}
+
+	// This is the first (and usually only) hit that occured this frame
+	if (bHasNewHitEffect)
+	{
+		HitFxInstigator = InstigatedBy != None ? InstigatedBy.Pawn : None;
+
+		HitFxInfo.HitLocation = HitLocation;
+		HitFxInfo.EncodedHitDirection = (KFDT != none && KFDT.default.bPointImpulseTowardsOrigin && InstigatedBy.Pawn != none)
+			? EncodeUnitVector(Normal(Location - InstigatedBy.Pawn.Location))
+			: EncodeUnitVector(Normal(Momentum));
+		HitFxInfo.HitBoneIndex = HitZoneIdx;
+		HitFxInfo.bRadialDamage = bTakingRadiusDamage;
+		HitFxInfo.DamageType = KFDT; 	// If we do not have a damagetype, replicate none
+		LastTakeHitTimeout = WorldInfo.TimeSeconds + (0.5f);
+
+		if (bTakingRadiusDamage && !IsZero(LastRadiusHurtOrigin))
+		{
+			HitFxRadialInfo.RadiusDamageScale = LastRadiusDamageScale;
+			LastRadiusDamageScale = 255;
+
+			HitFxRadialInfo.RadiusHurtOrigin = LastRadiusHurtOrigin;
+			LastRadiusHurtOrigin = vect(0, 0, 0);
+
+			// Nudge HitLoc a bit for edge-case where Victim and Explosive are stationary (NEQ fails)
+			HitFxInfo.HitLocation.Z += FRand();
+		}
+
+		if (bPlayedDeath && KFDT != none && KFDT.default.bCanObliterate)
+		{
+			HitFxInfo.bObliterated = KFDT.static.CheckObliterate(self, Damage);
+		}
+		else
+		{
+			HitFxInfo.bObliterated = false;
+		}
+
+		HitFxAddedHitCount = 0;
+	}
+
+	bNeedsProcessHitFx = true;
 }
 
 /** Plays and replicates heal effects
@@ -3682,6 +3700,12 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 {
 	local class<KFDamageType> KFDmgType;
 	local name HitZoneName;
+
+	//Don't attempt hit zone damage if we have an invalid hit zone
+	if (HitZoneIdx > HitZones.Length)
+	{
+		return false;
+	}
 
 	KFDmgType = class<KFDamageType>(DamageType);
 	HitZoneName = HitZones[HitZoneIdx].ZoneName;

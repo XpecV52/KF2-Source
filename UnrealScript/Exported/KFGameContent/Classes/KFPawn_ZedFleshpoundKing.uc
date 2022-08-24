@@ -746,17 +746,17 @@ defaultproperties
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
       SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=Class'KFGame.KFSM_Block'
-      SpecialMoveClasses(17)=None
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(16)=None
+      SpecialMoveClasses(17)=Class'KFGame.KFSM_Block'
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_FleshpoundKing_ChestBeam'
-      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_FleshpoundKing_ChestBeam'
       SpecialMoveClasses(23)=None
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
@@ -768,7 +768,8 @@ defaultproperties
       SpecialMoveClasses(31)=None
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
-      SpecialMoveClasses(34)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(34)=None
+      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
    End Object

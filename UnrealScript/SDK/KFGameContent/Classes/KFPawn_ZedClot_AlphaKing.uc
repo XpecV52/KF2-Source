@@ -111,4 +111,7 @@ defaultproperties
 	Health=300 //100
 
 	HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=125, DmgScale=1.1, SkinID=1)
+
+		// Spawning
+    MinSpawnSquadSizeType=EST_Medium
 }

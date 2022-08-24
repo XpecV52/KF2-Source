@@ -255,7 +255,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
         if(AttachmentIdx < 3)
         {
             CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-            if(CosmeticMeshIdx != 255)
+            if((CosmeticMeshIdx != 255) && CosmeticMeshIdx != -1)
             {
                 bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
                 SetAttachmentMeshAndSkin(byte(CosmeticMeshIdx), byte(KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx]), KFP, KFPRI);

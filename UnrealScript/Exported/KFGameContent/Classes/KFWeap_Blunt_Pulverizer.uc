@@ -238,8 +238,8 @@ simulated state MeleeHeavyAttacking
 			}
 
 			Victim = KFPawn(HitActor);
-			if ( Victim == None || 
-				(!bFriendlyFireEnabled && Victim.GetTeamNum() == Instigator.GetTeamNum()) || 
+			if ( Victim == None ||
+				(!bFriendlyFireEnabled && Victim.GetTeamNum() == Instigator.GetTeamNum()) ||
 				(Victim.bPlayedDeath && (WorldInfo.TimeSeconds - Victim.TimeOfDeath) > 0.f) )
 			{
 				return;
@@ -325,6 +325,7 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_Pulverizer:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
+   AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Demolitionist'
    FiringStatesArray(2)="Reloading"
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()

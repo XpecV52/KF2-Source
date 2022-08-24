@@ -577,7 +577,11 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         bHumanDeathsLastWave = true;
     }
 
-	CheckWaveEnd();
+	// BossDied will handle the end of wave.
+	if(!(KFPawn_Monster(KilledPawn) != none && KFPawn_Monster(KilledPawn).IsABoss()))
+	{
+		CheckWaveEnd();
+	}
 }
 
 /*	Use reduce damage for friendly fire, etc. */
@@ -712,6 +716,11 @@ function UpdateGameSettings()
 	}
 }
 
+function OnServerTitleDataRead()
+{
+	super.OnServerTitleDataRead();
+	class'KFGameEngine'.static.RefreshEventContent();
+}
 
 /**
  * Return whether Viewer is allowed to spectate from ViewTarget's PoV.
@@ -922,7 +931,7 @@ function int GetAdjustedDeathPenalty( KFPlayerReplicationInfo KilledPlayerPRI, o
 
 	if( bLateJoiner )
 	{
-		return MinimumRespawnDosh;
+		return CalculateLateJoinerStartingDosh(MinimumRespawnDosh);
 	}
 
 	if (bLogScoring) LogInternal("SCORING: Player" @ KilledPlayerPRI.PlayerName @ "predicted minimum respawn dosh:" @ MinimumRespawnDosh);
@@ -937,6 +946,19 @@ function int GetAdjustedDeathPenalty( KFPlayerReplicationInfo KilledPlayerPRI, o
 
 	if (bLogScoring) LogInternal("SCORING: Player" @ KilledPlayerPRI.PlayerName @ "PlayerRespawnDosh > MinimumRespawnDosh, returning KilledPlayerPRI.Score * DeathPenaltyModifiers[GameDifficulty] =" @ -Round( KilledPlayerPRI.Score * DeathPenaltyModifiers[GameDifficulty] ));
 	return -Round( KilledPlayerPRI.Score * DeathPenaltyModifiers[GameDifficulty] );
+}
+
+function int CalculateLateJoinerStartingDosh(int MinimumRespawnDosh)
+{
+	if (LateArrivalStarts.Length > 0 && GameLength >= 0 && GameLength < LateArrivalStarts.Length)
+	{
+		if (LateArrivalStarts[GameLength].StartingDosh.Length > 0 && WaveNum - 1 >= 0 && WaveNum - 1 < LateArrivalStarts[GameLength].StartingDosh.Length)
+		{
+			return LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1];
+		}
+	}
+
+	return MinimumRespawnDosh;
 }
 
 /************************************************************************************
@@ -1236,6 +1258,11 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 	}
 }
 
+function ObjectiveFailed()
+{
+	MyKFGRI.DeactivateObjective();
+}
+
 /** The wave ended */
 function WaveEnded(EWaveEndCondition WinCondition)
 {
@@ -1271,7 +1298,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 			}
 		}
 	}
-
+	BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_WaveEnd);
     MyKFGRI.DeactivateObjective();
 	MyKFGRI.NotifyWaveEnded();
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
@@ -1407,8 +1434,6 @@ State TraderOpen
 		StartHumans();
 
 		OpenTrader();
-
-		BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_WaveEnd);
 
 		if ( AllowBalanceLogging() )
 		{
@@ -1596,7 +1621,7 @@ function string GetNextMap()
 		{
 			return GameMapCycles[ActiveMapCycle].Maps[NextMapIndex];
 		}
-		
+
 	}
 
 	return super.GetNextMap();
@@ -1743,6 +1768,9 @@ defaultproperties
    SpawnManagerClasses(0)=Class'KFGame.KFAISpawnManager_Short'
    SpawnManagerClasses(1)=Class'KFGame.KFAISpawnManager_Normal'
    SpawnManagerClasses(2)=Class'KFGame.KFAISpawnManager_Long'
+   LateArrivalStarts(0)=(StartingDosh=(550,650,1200,1500))
+   LateArrivalStarts(1)=(StartingDosh=(450,600,0,800,1100,1400,1500,1600))
+   LateArrivalStarts(2)=(StartingDosh=(450,550,750,1000,1200,1300,1400,1500,1600,1600))
    AIClassList(0)=Class'kfgamecontent.KFPawn_ZedClot_Cyst'
    AIClassList(1)=Class'kfgamecontent.KFPawn_ZedClot_Slasher'
    AIClassList(2)=Class'kfgamecontent.KFPawn_ZedClot_Alpha'
@@ -1755,9 +1783,11 @@ defaultproperties
    AIClassList(9)=Class'kfgamecontent.KFPawn_ZedBloat'
    AIClassList(10)=Class'kfgamecontent.KFPawn_ZedSiren'
    AIClassList(11)=Class'kfgamecontent.KFPawn_ZedHusk'
+   NonSpawnAIClassList(0)=Class'kfgamecontent.KFPawn_ZedBloatKingSubspawn'
    AIBossClassList(0)=Class'kfgamecontent.KFPawn_ZedHans'
    AIBossClassList(1)=Class'kfgamecontent.KFPawn_ZedPatriarch'
    AIBossClassList(2)=Class'kfgamecontent.KFPawn_ZedFleshpoundKing'
+   AIBossClassList(3)=Class'kfgamecontent.KFPawn_ZedBloatKing'
    GameplayEventsWriterClass=Class'KFGame.KFGameplayEventsWriter'
    TraderVoiceGroupClass=Class'kfgamecontent.KFTraderVoiceGroup_Default'
    MaxPlayers=6

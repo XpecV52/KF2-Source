@@ -310,7 +310,7 @@ function ModifyScreamEffectDuration(out float InDuration)
 
 function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
-    if(IsSmashActive())
+    if(IsSmashActive() && IsDamageTypeOnPerk(DamageType))
     {
         return GetSmashStumbleModifier();
     }

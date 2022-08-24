@@ -10,37 +10,47 @@ class KFProj_Nail_Nailgun extends KFProj_PinningBullet
 
 simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
+    local TraceHitInfo HitInfo;
+
     if(bSpawnedForPin)
     {
         BouncesLeft = 0;
     }
     SetRotation(rotator(Normal(Velocity)));
     SetPhysics(2);
-    if(!Bounce(HitNormal, Wall))
+    if((!Wall.bStatic && bDamageDestructiblesOnTouch) && Wall.bProjTarget)
     {
-        if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
+        Wall.TakeDamage(int(Damage), InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
+        Explode(Location, HitNormal);        
+    }
+    else
+    {
+        if(!Bounce(HitNormal, Wall))
         {
-            ProjEffects.DeactivateSystem();
-        }
-        if((!Wall.bStatic && !Wall.bWorldGeometry) && Wall.bProjTarget)
-        {
-            Explode(Location, HitNormal);
-            ImpactedActor = none;            
-        }
-        else
-        {
-            if(WorldInfo.NetMode != NM_DedicatedServer)
+            if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
             {
-                KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator, HitNormal);
+                ProjEffects.DeactivateSystem();
             }
-            SetPhysics(0);
-            LifeSpan = 5;
-            if(bStopAmbientSoundOnExplode)
+            if((!Wall.bStatic && !Wall.bWorldGeometry) && Wall.bProjTarget)
             {
-                StopAmbientSound();
+                Explode(Location, HitNormal);
+                ImpactedActor = none;                
             }
+            else
+            {
+                if(WorldInfo.NetMode != NM_DedicatedServer)
+                {
+                    KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator, HitNormal);
+                }
+                SetPhysics(0);
+                LifeSpan = 5;
+                if(bStopAmbientSoundOnExplode)
+                {
+                    StopAmbientSound();
+                }
+            }
+            bBounce = false;
         }
-        bBounce = false;
     }
 }
 

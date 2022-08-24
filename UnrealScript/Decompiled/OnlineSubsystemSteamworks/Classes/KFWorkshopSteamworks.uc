@@ -14,6 +14,7 @@ var config array<config string> ServerSubscribedWorkshopItems;
 var native array<UniqueNetId> CurrentDownloads;
 var native const map<0, 0> WorkshopIDItemNames;
 var native const map<0, 0> PackageWorkshopIDs;
+var native const map<0, 0> InstallTimestamps;
 var delegate<UGCDownloadProgressDelegate> ProgressDelegate;
 var transient array<UniqueNetId> ServerSubscribedCopy;
 var transient bool ServerFilesDirty;

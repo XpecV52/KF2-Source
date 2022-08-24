@@ -10,6 +10,11 @@ class KFGFxMoviePlayer_HUD extends GFxMoviePlayer
 
 var KFGFxMoviePlayer_ScoreBoard GfxScoreBoardPlayer;
 var class<KFGFxMoviePlayer_ScoreBoard> ScoreBoardClass;
+var KFLocalMessage_Priority.EGameMessageType LastMessageType;
+var bool bObjectiveQueued;
+var bool bIsSpectating;
+var bool bIsVisible;
+var bool bUsingGamepad;
 var KFGFxHUD_SpectatorInfo SpectatorInfoWidget;
 var KFGFxHUD_PlayerStatus PlayerStatusContainer;
 var KFGFxHUD_PlayerBackpack PlayerBackpackContainer;
@@ -33,9 +38,6 @@ var KFGFxWidget_BossHealthBar bossHealthBar;
 var KFPlayerController KFPC;
 var config float HUDScale;
 var GFxObject KFGXHUDManager;
-var bool bIsSpectating;
-var bool bIsVisible;
-var bool bUsingGamepad;
 var int CurrentInteractionIndex;
 var const string ControllerStringPrefix;
 var const string HoldCommandDelimiter;
@@ -107,7 +109,8 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             if((WaveInfoWidget != none) && WaveInfoWidget.ObjectiveContainer == none)
             {
                 WaveInfoWidget.ObjectiveContainer = KFGFxHUD_ObjectiveConatiner(Widget);
-                WaveInfoWidget.ObjectiveContainer.SetVisible(false);
+                WaveInfoWidget.ObjectiveContainer.InitializeHUD();
+                UpdateObjectiveActive();
             }
             break;
         case 'bossHealthBar':
@@ -335,6 +338,31 @@ function TickHud(float DeltaTime)
     }
 }
 
+function UpdateObjectiveActive()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFInterface_MapObjective ObjectiveInterface;
+
+    KFPC = KFPlayerController(GetPC());
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    if((WaveInfoWidget != none) && WaveInfoWidget.ObjectiveContainer != none)
+    {
+        if(KFGRI.CurrentObjective == none)
+        {
+            WaveInfoWidget.ObjectiveContainer.SetActive(false);            
+        }
+        else
+        {
+            ObjectiveInterface = KFInterface_MapObjective(KFGRI.CurrentObjective);
+            WaveInfoWidget.ObjectiveContainer.SetActive(ObjectiveInterface.IsActive());
+        }
+    }
+}
+
 function UpdateWaveCount()
 {
     if(GfxScoreBoardPlayer != none)
@@ -547,11 +575,100 @@ function HideBossNamePlate()
     }
 }
 
-function DisplayPriorityMessage(string InPrimaryMessageString, string InSecondaryMessageString, int Lifetime)
+function DisplayPriorityMessage(string InPrimaryMessageString, string InSecondaryMessageString, int Lifetime, optional KFLocalMessage_Priority.EGameMessageType MessageType)
 {
+    local GFxObject PriorityMessageObject;
+
     if((PriorityMessageContainer != none) && InPrimaryMessageString != "")
     {
-        PriorityMessageContainer.ActionScriptVoid("showNewPriorityMessage");
+        LastMessageType = MessageType;
+        PriorityMessageObject = CreateObject("Object");
+        PriorityMessageObject.SetString("priorityTextPrimaryString", InPrimaryMessageString);
+        PriorityMessageObject.SetString("priorityTextSecondaryString", InSecondaryMessageString);
+        PriorityMessageObject.SetInt("priorityTextDisplayTime", Lifetime);
+        PriorityMessageContainer.SetObject("priorityMessage", PriorityMessageObject);
+    }
+}
+
+function bool ShouldCheckForObjective(KFLocalMessage_Priority.EGameMessageType MessageType)
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    if(KFGRI.GetNumPlayersAlive() <= 0)
+    {
+        return false;
+    }
+    if(KFGRI.IsFinalWave())
+    {
+        return false;
+    }
+    if((MessageType == 0) || MessageType == 1)
+    {
+        return true;
+    }
+    return false;
+}
+
+simulated function PlayObjectiveAudio()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    if(KFGRI.PreviousObjectiveResult > 0)
+    {
+        Class'KFMusicStingerHelper'.static.PlayObjectiveWonStinger(GetPC());        
+    }
+    else
+    {
+        Class'KFMusicStingerHelper'.static.PlayNewObjectiveStinger(GetPC());
+    }
+}
+
+simulated function DisplayObjectiveResults()
+{
+    local KFGameReplicationInfo KFGRI;
+    local GFxObject ObjectiveObject;
+    local KFInterface_MapObjective ObjectiveInterface;
+
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    ObjectiveInterface = KFInterface_MapObjective(KFGRI.PreviousObjective);
+    if(KFGRI.PreviousObjectiveResult > 0)
+    {
+        ObjectiveObject = CreateObject("Object");
+        ObjectiveObject.SetString("titleString", Class'KFLocalMessage_Priority'.default.ObjectiveWonMessage);
+        ObjectiveObject.SetString("nameString", Class'KFCommon_LocalizedStrings'.default.BonusDoshString);
+        ObjectiveObject.SetString("descString", " ");
+        ObjectiveObject.SetString("requireString", " ");
+        ObjectiveObject.SetString("rewardNum", string(KFGRI.PreviousObjectiveResult));
+        ObjectiveObject.SetString("iconPath", "img://" $ PathName(ObjectiveInterface.GetIcon()));
+        ObjectiveObject.SetBool("isBonus", true);
+        PriorityMessageContainer.SetObject("objectiveMessage", ObjectiveObject);
+        LastMessageType = 17;
+    }
+}
+
+simulated function DisplayNewObjective()
+{
+    local KFGameReplicationInfo KFGRI;
+    local GFxObject ObjectiveObject;
+    local KFInterface_MapObjective ObjectiveInterface;
+
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    ObjectiveInterface = KFGRI.ObjectiveInterface;
+    if(NotEqual_InterfaceInterface(ObjectiveInterface, (none)))
+    {
+        ObjectiveObject = CreateObject("Object");
+        ObjectiveObject.SetString("titleString", Class'KFLocalMessage_Priority'.default.ObjectiveStartMessage);
+        ObjectiveObject.SetString("nameString", ObjectiveInterface.GetLocalizedName());
+        ObjectiveObject.SetString("descString", ObjectiveInterface.GetLocalizedDescription());
+        ObjectiveObject.SetString("requireString", ObjectiveInterface.GetLocalizedRequirements());
+        ObjectiveObject.SetString("rewardNum", string(ObjectiveInterface.GetMaxDoshReward()));
+        ObjectiveObject.SetString("iconPath", "img://" $ PathName(ObjectiveInterface.GetIcon()));
+        ObjectiveObject.SetBool("isBonus", false);
+        KFGRI.PreviousObjectiveResult = -1;
+        PriorityMessageContainer.SetObject("objectiveMessage", ObjectiveObject);
+        LastMessageType = 17;
     }
 }
 
@@ -733,6 +850,40 @@ function PawnDied()
 }
 
 function ReceivePawn(KFPawn NewPawn);
+
+function Callback_ObjMessageFired()
+{
+    PlayObjectiveAudio();
+}
+
+function Callback_PriorityMessageComplete()
+{
+    local KFInterface_MapObjective ObjectiveInterface;
+    local KFGameReplicationInfo KFGRI;
+
+    if(ShouldCheckForObjective(LastMessageType))
+    {
+        KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+        ObjectiveInterface = KFGRI.ObjectiveInterface;
+        if(NotEqual_InterfaceInterface(ObjectiveInterface, (none)))
+        {
+            DisplayNewObjective();            
+        }
+        else
+        {
+            if(KFGRI.PreviousObjective != none)
+            {
+                DisplayObjectiveResults();
+            }
+        }
+        UpdateObjectiveActive();
+        LastMessageType = 17;        
+    }
+    else
+    {
+        bObjectiveQueued = true;
+    }
+}
 
 function Callback_BroadcastChatMessage(string NewMessage)
 {

@@ -10,17 +10,15 @@ var int Blue;
 */
 native event Init();
 native event Activate();
-native event bool SetColor(byte RedPercent, byte GreenPercent, byte BluePercent);
+native event bool SetColor(byte RedPercent, byte GreenPercent, byte BluePercent, byte Brightness = 255);
+
 native event bool LedRestoreLighting();
 native event bool LedStopEffects();
-/**
- * Do the Mixer tick to pick up new interaction events
- */
-native function TickAlienFX();
-
+native function UpdateAlienFX();
+//Depreciated dont use
 native event bool LEDSetFlashingRBG(byte redPercentage, byte greenPercentage, byte bluePercentage,
 int milliSecondsDuration, int milliSecondsInterval);
-
+//Depreciated dont use
 native event bool LEDPulseLighting(byte redPercentage, byte greenPercentage, byte bluePercentage, int
 milliSecondsDuration, int milliSecondsInterval);
 

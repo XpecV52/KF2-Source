@@ -1,7 +1,7 @@
 //=============================================================================
 // KFCommon_LocalizedStrings
 //=============================================================================
-// This class is made to hold common localized strings so that they are not 
+// This class is made to hold common localized strings so that they are not
 // duplicated across mutiple classes
 //=============================================================================
 // Killing Floor 2
@@ -10,6 +10,8 @@
 //=============================================================================
 
 class KFCommon_LocalizedStrings extends Object;
+
+var localized string FailedToReachInventoryServerString;
 
 var localized array<string> DifficultyStrings;
 var localized array<string> LengthStrings;
@@ -28,6 +30,7 @@ var localized string PerkUpdateNoticeString;
 var localized string NoticeString;
 var localized string AcceptString;
 var localized string DeclineString;
+var localized string BonusDoshString;
 
 var localized string YesString;
 var localized string NoString;
@@ -72,6 +75,17 @@ var localized string MixerZedTimeString;
 var localized string MixerRageZedsString;
 var localized string MixerPukeString;
 var localized string MixerSpawnedFPString;
+var localized string MixerSpawnedScrakeString;
+var localized string MixerSpawnedMiniFPString;
+
+var localized string DiscordMenuPresenceString;
+var localized string DiscordPartyPresenceString;
+var localized string DiscordNetworkMatchString;
+var localized string DiscordSoloMatchString;
+var localized string DiscordMatchLobbyString;
+var localized string DiscordTraderTimeString;
+var localized string DiscordBossWaveString;
+var localized string DiscordWaveString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -133,7 +147,7 @@ static function array<string> GetPermissionStringsArray(bool bConsoleBuild)
 	{
 		return default.PermissionStrings;
 	}
-	
+
 }
 
 static function array<string> GetGameModeStringsArray()
@@ -147,7 +161,7 @@ static function string GetGameModeString( int GameModeIndex )
 	{
 		return default.NoPreferenceString;
 	}
-	
+
 	if( 0 < default.ModeStrings.length && GameModeIndex < default.ModeStrings.length )
 	{
 		return default.ModeStrings[GameModeIndex];

@@ -469,6 +469,11 @@ simulated state WeaponUpkeep
 	}
 }
 
+simulated function bool CanOverrideMagReload(byte FireModeNum)
+{
+	return Super.CanOverrideMagReload(FireModeNum) || FireModeNum == GRENADE_FIREMODE;
+}
+
 /*********************************************************************************************
  * State MeleeChainAttacking
  * A melee firemode that chains together a sequence of attacks

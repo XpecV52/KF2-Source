@@ -698,12 +698,12 @@ function UpdateListDataProvider()
                 if(NewServerCount > 10)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
-                    goto J0x941;
+                    goto J0x921;
                 }
                 TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
                 TempObj = Outer.CreateObject("Object");
                 TempObj.SetString("serverName", TempOnlineGamesSettings.OwningPlayerName);
-                TempObj.SetFloat("playerCount", float((TempOnlineGamesSettings.NumPublicConnections - TempOnlineGamesSettings.NumOpenPublicConnections) - TempOnlineGamesSettings.NumSpectators));
+                TempObj.SetFloat("playerCount", float(TempOnlineGamesSettings.NumPublicConnections - TempOnlineGamesSettings.NumOpenPublicConnections));
                 TempObj.SetFloat("maxPlayerCount", float(TempOnlineGamesSettings.NumPublicConnections));
                 TempObj.SetFloat("waveCount", float(TempOnlineGamesSettings.CurrentWave));
                 TempObj.SetFloat("maxWaveCount", float(TempOnlineGamesSettings.NumWaves));
@@ -732,7 +732,7 @@ function UpdateListDataProvider()
             ++ I;
             goto J0x5D;
         }
-        J0x941:
+        J0x921:
 
         SetObject("dataProvider", DataProvider);
     }

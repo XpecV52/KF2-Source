@@ -86,6 +86,8 @@ var(Effects) array<int> ExtraMICIndices;
 var(ThirdPerson) array<SkeletalMesh> PACMeshList;
 /** List of possible randomized colors to apply to zed */
 var(ThirdPerson) array<ZedColorMod> RandomizedColors;
+/** List of additional particle systems that require unique effects per-event */
+var(Effects) array<ParticleSystem> ExtraVFX;
 /** List of static mesh attachments that will be paired to specific bones */
 var(ThirdPerson) array<StaticAttachments> StaticAttachList;
 var(Effects) DoorSoundFx DoorHitSound;

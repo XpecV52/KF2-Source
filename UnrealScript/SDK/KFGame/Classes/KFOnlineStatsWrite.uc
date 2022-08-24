@@ -310,6 +310,12 @@ const KFACHID_NightmareSuicidal					=   195;
 const KFACHID_NightmareHellOnEarth				=   196;
 const KFACHID_NightmareCollectibles				=   197;
 
+const KFACHID_KrampusNormal						=   198;
+const KFACHID_KrampusHard						=   199;
+const KFACHID_KrampusSuicidal					=   200;
+const KFACHID_KrampusHellOnEarth				=   201;
+const KFACHID_KrampusCollectibles				=   202;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -345,6 +351,7 @@ enum eDailyObjectiveSecondaryType
     DOST_VersusDamage,
     DOST_VersusKills,
     DOST_CharacterCompletion,
+	DOST_KnifeDamage
 };
 
 struct native DailyEventInformation
@@ -376,9 +383,11 @@ cpptext
     void GrantWeeklyOutbreakItems();
     void GrantEventItems(INT EventIndex);
     void GrantSummerItems();
+	void GrantWinterItems();
     void GrantDoshVaultItem();
 
     //Daily calls
+	void ForceDailyObjectives(INT ObjectiveIndex, INT UIIndex);
     void ResetDailyObjectives();
     void SetDailyEventIDs();
     INT GetObjectiveID(INT Index);
@@ -387,6 +396,8 @@ cpptext
 
     //Dosh Vault Calls
     void AddToDoshVault(INT Amount);
+
+	UBOOL IsDamageTypeChildOf(class UClass* DamageType, const TArray<FName>& ObjectiveClasses);
 }
 
 /*********************************************************************************************
@@ -623,6 +634,9 @@ event CacheStatsValue(int StatID, int Value)
             }
             `log(GetFuncName() @ "Daily Event Stats 2:" @ DailyEventStats2, bLogStatsWrite);
             break;
+		case STATID_DoshVaultProgress:
+			VerifyDoshVaultCrates();
+			break;
 		case STATID_PersonalBest_KnifeKills:
 			PersonalBest_KnifeKills = Value;
 			`log(GetFuncName() @ "PersonalBest_KnifeKills:" @ PersonalBest_KnifeKills, bLogStatsWrite);
@@ -908,7 +922,7 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 
 private event AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
 {
-    if (MyKFPC != none && (KilledClass.Name == 'KFPawn_Human_Versus' || KilledClass.Name == 'KFPawn_Human'))
+    if (MyKFPC != none && MyKFPC.Pawn != none && (KilledClass.Name == 'KFPawn_Human_Versus' || KilledClass.Name == 'KFPawn_Human'))
     {
         AddToVersusKillObjectives(MyKFPC.Pawn.class);
     }
@@ -1340,6 +1354,11 @@ native final function OnRoundEnd( byte WinningTeam );
 native final function CheckMapEndAchievements( string MapName, byte Difficulty, byte bCoop );
 
 /**
+* @brief Check for any additional behavior on collectible achievements
+*/
+native final function CheckCollectibleAchievement( string MapName );
+
+/**
  * @brief Check if a new perk tier has been reached
  *
  * @param PerkClass Perk leveled up
@@ -1377,6 +1396,8 @@ final function bool CanCacheSpecialEvent()
  *      clear out the status flags before caching new date value.
  */
 native final private function CacheSpecialEventState(int Value);
+
+native final function int GetSpecialEventRewardValue();
 
 /** Triggered by KF PC when the special event ID is passed through as a valid value */
 final function UpdateSpecialEventState()
@@ -1478,6 +1499,7 @@ native final function MarkDoshVaultSeen();
 native static final function int GetDoshVaultTierValue();
 native final function CheckUnlockDoshVaultReward();
 native final function CheckHasViewedDoshVault();
+native final function VerifyDoshVaultCrates();
 
 defaultproperties
 {
@@ -1562,7 +1584,7 @@ defaultproperties
 	XPTable(24)=44775
 
     //Base Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_Knife, KFDT_Slashing_Knife,KFDT_Piercing_KnifeStab),CompletionAmount=2500))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,SecondaryType=DOST_KnifeDamage,ObjectiveClasses=(KFWeap_Edged_Knife, KFDT_Slashing_Knife,KFDT_Piercing_KnifeStab),CompletionAmount=2500))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_9mm, KFDT_Ballistic_9mm,KFDT_Bludgeon_9mm),CompletionAmount=2500))
 
     //Swat Weapons
@@ -1570,6 +1592,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP5RAS, KFDT_Ballistic_MP5RAS,KFDT_Bludgeon_MP5RAS),CompletionAmount=5000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_P90, KFDT_Ballistic_P90,KFDT_Bludgeon_P90),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Kriss, KFDT_Ballistic_Kriss,KFDT_Bludgeon_Kriss),CompletionAmount=10000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_HK_UMP, KFDT_Ballistic_HK_UMP,KFDT_Bludgeon_HK_UMP),CompletionAmount=10000))
 
     //Commando Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_AR15, KFDT_Ballistic_AR15,KFDT_Bludgeon_AR15),CompletionAmount=3000))
@@ -1626,6 +1649,9 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_M14EBR, KFDT_Bludgeon_M14EBR,KFDT_Ballistic_M14EBR),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_RailGun, KFDT_Bludgeon_RailGun,KFDT_Ballistic_RailGun),CompletionAmount=5000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_CenterfireMB464, KFDT_Bludgeon_CenterfireMB464,KFDT_Ballistic_CenterfireMB464),CompletionAmount=5000))
+
+    //Survivalist Weapons
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Ice_FreezeThrower, KFDT_Bludgeon_Freezethrower, KFDT_Freeze_FreezeThrower, KFDT_Freeze_FreezeThrower_IceShards, KFDT_Freeze_Ground_FreezeThrower),CompletionAmount=7000))
 
     //Kills
     DailyEvents.Add((ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Alpha),CompletionAmount=20))
@@ -1710,6 +1736,9 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=2))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=3))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=2))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=3))
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount

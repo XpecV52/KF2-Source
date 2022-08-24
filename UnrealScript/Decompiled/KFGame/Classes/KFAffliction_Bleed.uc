@@ -171,13 +171,13 @@ function SetMaterialParameter(float ParamValue)
     local MaterialInstanceConstant MIC;
     local float InflateParam, DesatParam;
 
-    if((PawnOwner.WorldInfo.NetMode != NM_DedicatedServer) && KFPawn_Monster(PawnOwner) != none)
+    if((PawnOwner.WorldInfo.NetMode != NM_DedicatedServer) && MonsterOwner != none)
     {
-        InflateParam = ((!PawnOwner.bIsGoreMesh) ? KFPawn_Monster(PawnOwner).GetCurrentInflation() * 2 : 0);
+        InflateParam = MonsterOwner.GetCurrentInflation() * 2;
         DesatParam = FClamp(Abs(ParamValue / MaxDeflate), 0, 1);
-        foreach PawnOwner.CharacterMICs(MIC,)
+        MonsterOwner.UpdateVisualInflation(InflateParam);
+        foreach MonsterOwner.CharacterMICs(MIC,)
         {
-            MIC.SetScalarParameterValue('Scalar_Inflate', InflateParam);
             MIC.SetScalarParameterValue('Scalar_SkinDesat', DesatParam);            
         }        
     }

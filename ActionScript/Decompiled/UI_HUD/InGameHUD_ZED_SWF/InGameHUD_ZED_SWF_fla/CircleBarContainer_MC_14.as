@@ -9,10 +9,15 @@ package InGameHUD_ZED_SWF_fla
         public function CircleBarContainer_MC_14()
         {
             super();
-            addFrameScript(0,this.frame1);
+            addFrameScript(0,this.frame1,101,this.frame102);
         }
         
         function frame1() : *
+        {
+            stop();
+        }
+        
+        function frame102() : *
         {
             stop();
         }

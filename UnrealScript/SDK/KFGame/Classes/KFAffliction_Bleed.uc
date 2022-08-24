@@ -36,7 +36,7 @@ var const float MaxDeflate;
 var float CurDeflate;
 
 // State tracking for deflation
-//      When the threshold is crossed, the pawn will blend in and out of 
+//      When the threshold is crossed, the pawn will blend in and out of
 //      full deflate over a set period of time (or partial time if it's hopping
 //      between two states), rather than the % base of microwave.
 enum DeflateState
@@ -217,14 +217,14 @@ function SetMaterialParameter(float ParamValue)
     local MaterialInstanceConstant MIC;
     local float InflateParam, DesatParam;
 
-    if (PawnOwner.WorldInfo.NetMode != NM_DedicatedServer && KFPawn_Monster(PawnOwner) != none)
+    if (PawnOwner.WorldInfo.NetMode != NM_DedicatedServer && MonsterOwner != none)
     {
-        InflateParam = (!PawnOwner.bIsGoreMesh) ? KFPawn_Monster(PawnOwner).GetCurrentInflation() * 2.0 : 0.f;
+        InflateParam = MonsterOwner.GetCurrentInflation() * 2.0;
         DesatParam = FClamp(Abs(ParamValue / MaxDeflate), 0.0, 1.0);
-        foreach PawnOwner.CharacterMICs(MIC)
+		MonsterOwner.UpdateVisualInflation(InflateParam);
+        foreach MonsterOwner.CharacterMICs(MIC)
         {
             // Scale inflate down instantly if gore mesh to avoid holes
-            MIC.SetScalarParameterValue('Scalar_Inflate', InflateParam);
             MIC.SetScalarParameterValue('Scalar_SkinDesat', DesatParam);
         }
     }

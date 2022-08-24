@@ -234,7 +234,7 @@ function AddPendingSpawns(out array< class<KFPawn_Monster> > SpawnList)
     if(I >= 0)
     {
         SMH = SpawnList[I].default.SpecialMoveHandler;
-        if((10 < SMH.SpecialMoveClasses.Length) && SMH.SpecialMoveClasses[10] != none)
+        if((11 < SMH.SpecialMoveClasses.Length) && SMH.SpecialMoveClasses[11] != none)
         {
             PendingSpawns.AddItem(SpawnList[I];
             SpawnList.Remove(I, 1;
@@ -254,8 +254,8 @@ event HandleSpawn(KFPawn NewSpawn, int SlotIdx)
     }
     if(EmergeAnim != 4)
     {
-        NewSpawn.DoSpecialMove(10,,, Class'KFSM_Emerge'.static.PackAnimFlag(EmergeAnim, LastAnimDirection));
-        if(!NewSpawn.IsDoingSpecialMove(10))
+        NewSpawn.DoSpecialMove(11,,, Class'KFSM_Emerge'.static.PackAnimFlag(EmergeAnim, LastAnimDirection));
+        if(!NewSpawn.IsDoingSpecialMove(11))
         {
             WarnInternal("SM_Emerge failed for" @ string(NewSpawn));
             NewSpawn.Died(none, WorldInfo.KillZDamageType, Location);

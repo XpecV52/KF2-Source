@@ -29,7 +29,7 @@ var bool bVersusZed;
  ************************************/
 
  /** Path for DLO of the MonsterArch */
-var private const string MonsterArchPath;
+var const string MonsterArchPath;
 /**
  * Default content loaded by this pawn.  Private, use GetCharacterMonsterInfo()
  * NOTE: DO NOT statically reference in defaults as it needs to be loaded dynamically
@@ -1516,7 +1516,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 	super.PlayDying(DamageType, HitLoc);
 
     //Shared functionality for boss death
-    if (IsABoss())
+    if (IsABoss() && KFGameInfo(WorldInfo.Game).bGoToBossCameraOnDeath)
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
         if(KFPC != none)
@@ -1578,7 +1578,6 @@ simulated function PlayExplosiveDeath()
 simulated function InflationExplode()
 {
     local int Idx;
-    local MaterialInstanceConstant MIC;
 
     RepDamageInflateParam = 0.f;
     bUseDamageInflation = false;
@@ -1592,11 +1591,7 @@ simulated function InflationExplode()
 
     if ( WorldInfo.NetMode != NM_DedicatedServer )
     {
-        foreach CharacterMICs(MIC)
-        {
-            // Scale inflate down instantly if gore mesh to avoid holes
-            MIC.SetScalarParameterValue('Scalar_Inflate', 0.0);
-        }
+		UpdateVisualInflation(GetCurrentInflation() * 2.0);
     }
 }
 
@@ -2332,6 +2327,57 @@ function ShrapnelExplode( Controller Killer, KFPerk InstigatorPerk )
  * @name	Injuries & Status Effects
 ********************************************************************************************* */
 
+/** Called to set any visual inflation that needs to occur */
+simulated function UpdateVisualInflation(float InflationAmount)
+{
+	local MaterialInstanceConstant MIC;
+	local int i, j;
+
+	//Turn off inflation entirely if we're in gore mode
+	if (bIsGoreMesh)
+	{
+		InflationAmount = 0.f;
+	}
+
+	//Base character MICs
+	foreach CharacterMICs(MIC)
+	{
+		MIC.SetScalarParameterValue('Scalar_Inflate', InflationAmount);
+	}
+
+	//Update MICs in any active PACs
+	for (i = 0; i < `MAX_COSMETIC_ATTACHMENTS; ++i)
+	{
+		if (ThirdPersonAttachments[i] != none)
+		{
+			for (j = 0; j < ThirdPersonAttachments[i].Materials.Length; ++j)
+			{
+				MIC = MaterialInstanceConstant(ThirdPersonAttachments[i].GetMaterial(j));
+				if (MIC != none)
+				{
+					MIC.SetScalarParameterValue('Scalar_Inflate', InflationAmount);
+				}
+			}
+		}
+	}
+
+	//Update MICs in any active static attachments
+	for (i = 0; i < StaticAttachList.Length; ++i)
+	{
+		if (StaticAttachList[i] != none)
+		{
+			for (j = 0; j < StaticAttachList[i].Materials.Length; ++j)
+			{
+				MIC = MaterialInstanceConstant(StaticAttachList[i].GetMaterial(j));
+				if (MIC != none)
+				{
+					MIC.SetScalarParameterValue('Scalar_Inflate', InflationAmount);
+				}
+			}
+		}
+	}
+}
+
 /** Called on server when pawn should has been crippled (e.g. Headless) */
 function CauseHeadTrauma(float BleedOutTime=5.f)
 {
@@ -2697,7 +2743,7 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation, 
 	DmgType = HitFxInfo.DamageType;
 
 	HitZoneIndex = HitFxInfo.HitBoneIndex;
-	if ( HitZoneIndex != 255 )	// INDEX_None -> 255 after byte conversion
+	if ( HitZoneIndex != 255 && HitZoneIndex <= HitZones.Length)	// INDEX_None -> 255 after byte conversion
 	{
 		HitZoneName = HitZones[HitZoneIndex].ZoneName;
 		HitBoneName = HitZones[HitZoneIndex].BoneName;
@@ -3089,7 +3135,7 @@ simulated function bool TryPlayHitReactionAnim(vector HitDirection, class<KFDama
 	}
 
 	// Set the limb used for incap effects
-	BodyPart = (HitZoneIdx != 255) ? HitZones[HitZoneIdx].Limb : BP_Torso;
+	BodyPart = (HitZoneIdx != 255 && HitZoneIdx < HitZones.Length) ? HitZones[HitZoneIdx].Limb : BP_Torso;
 
 	HitReactionType = HIT_Light;
 	// If we're moving (e.g. DoPauseAI wasn't called because of incap cooldown) don't try hard/medium
@@ -3537,6 +3583,11 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 {
 	local float HeadHealthPercentage;
 
+	if (HitZoneIdx > HitZones.Length)
+	{
+		return;
+	}
+
 	Super.TakeHitZoneDamage(Damage, DamageType, HitZoneIdx, InstigatorLocation);
 
 	// When GoreHealth <= 0, check to see if this weapon can dismember limbs
@@ -3678,23 +3729,20 @@ event SetDamageInflation(float NewInflation)
 
 simulated function float GetCurrentInflation()
 {
+	local float CurrentInflation;
+	CurrentInflation = FClamp(ByteToFloat(RepInflateMatParam) + ByteToFloat(RepDamageInflateParam) - ByteToFloat(RepBleedInflateMatParam), -1.0, 1.0);
+	//`log("*** Inflation" @ CurrentInflation);
     //RepInflateMatParam - From microwave affliction
     //RepDamageInflateParam - From modes where gametype modifies size (Shrinky Dinky, Beefcake, etc)
     //RepBleedInflateMatParam - From bleed affliction, set to negative here so we don't lose precision in byte conversion
-    return FMin(ByteToFloat(RepInflateMatParam) + ByteToFloat(RepDamageInflateParam) - ByteToFloat(RepBleedInflateMatParam), 1.0);
+    return CurrentInflation;
 }
 
 simulated function HandleDamageInflation()
 {
-    local MaterialInstanceConstant MIC;
-
     if ( WorldInfo.NetMode != NM_DedicatedServer )
     {
-        foreach CharacterMICs(MIC)
-        {
-            // Scale inflate down instantly if gore mesh to avoid holes
-            MIC.SetScalarParameterValue('Scalar_Inflate', GetCurrentInflation() * 2.0);
-        }
+        UpdateVisualInflation(GetCurrentInflation() * 2.0);
     }
 }
 

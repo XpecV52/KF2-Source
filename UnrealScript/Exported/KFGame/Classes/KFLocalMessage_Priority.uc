@@ -33,6 +33,14 @@ var localized string 			PlayerCanChangePerksString;
 var localized string 			ZedWaitingForNextRoundString;
 var localized string 			LastPlayerStandingString;
 
+struct SDelayedPriorityMessage
+{
+	var string InPrimaryMessageString;
+	var string InSecondaryMessageString;
+	var int LifeTime;
+	var byte MessageType;
+};
+
 enum EGameMessageType
 {
 	GMT_WaveStart,
@@ -52,6 +60,7 @@ enum EGameMessageType
 	GMT_AttackHumanPlayers,
 	GMT_NextRoundBegin,
 	GMT_LastPlayerStanding,
+	GMT_Null,
 };
 
 static function ClientReceive(
@@ -86,7 +95,16 @@ static function ClientReceive(
 	    myGfxHUD = KFGFxHudWrapper(p.myHUD).HudMovie;
 		if ( myGfxHUD != None  )
 		{
-            myGfxHUD.DisplayPriorityMessage(MessageString,SecondaryMessageString,static.GetMessageLifeTime(Switch) );
+            myGfxHUD.DisplayPriorityMessage(MessageString,SecondaryMessageString,static.GetMessageLifeTime(Switch), EGameMessageType(Switch));
+		}
+		else if(KFPC.MyGFxManager != none) //store it off so we can queue it
+		{
+			if (KFPC.MyGFxManager != none)
+			{
+				//queue the message
+				KFPC.MyGFxManager.QueueDelayedPriorityMessage(MessageString, SecondaryMessageString, static.GetMessageLifeTime(Switch), EGameMessageType(Switch));
+				//return;
+			}
 		}
 	}
 
@@ -100,7 +118,7 @@ static function ClientReceive(
 					KFPC.LEDEffectsManager.PlayEffectWaveIncoming();
 				}
 				CloseMenus();
-			}	
+			}
 			class'KFMusicStingerHelper'.static.PlayWaveStartStinger( P );
 			break;
 		case GMT_WaveEnd:
@@ -113,7 +131,7 @@ static function ClientReceive(
 			{
 				KFGRI.bMatchVictory = true;
 			}
-			if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+			if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.GetTeamNum() == 255)
 			{
 				class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
 			}
@@ -128,7 +146,7 @@ static function ClientReceive(
 			break;
 
 		case GMT_MatchLost:
-			if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+			if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.GetTeamNum() == 255)
 			{
 				class'KFMusicStingerHelper'.static.PlayMatchWonStinger( P );
 			}
@@ -221,7 +239,7 @@ static function string GetMessageString(int Switch, optional out String Secondar
 			{
 				return default.YouWonMessage;
 			}
-			
+
 		case GMT_ZedsWin:
 			SecondaryString = default.HumansLoseMessage;
 			if(TeamIndex == 255)
@@ -231,7 +249,7 @@ static function string GetMessageString(int Switch, optional out String Secondar
 			else
 			{
 				return default.YouLostMessage;
-			}			
+			}
 		case GMT_WaveStart:
 			return default.WaveStartMessage;
 		case GMT_WaveEnd:
@@ -249,14 +267,14 @@ static function string GetMessageString(int Switch, optional out String Secondar
 			{
 				SecondaryString = default.SquadSurvivedMessage;
 			}
-			
+
 			return default.YouWonMessage;
 		case GMT_MatchLost:
 			if(class'WorldInfo'.static.GetWorldInfo().NetMode != NM_Standalone)
 			{
 				SecondaryString = default.SquadWipedOutMessage;
 			}
-		    
+
 			return default.YouLostMessage;
 		case GMT_ObjectiveStart:
 			return default.ObjectiveStartMessage;
@@ -301,16 +319,21 @@ static function bool ShouldShowPriortyMessage(PlayerController P, int Switch)
 {
 	local PlayerController PC;
 
+	if (switch == GMT_ObjectiveLost || switch == GMT_ObjectiveWon)
+	{
+		return false;
+	}
+
 	if(Switch == GMT_LastPlayerStanding)
 	{
 		PC = class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
-		
+
 		if(PC != none && (PC.Pawn != none && PC.Pawn.Health > 0) )
 		{
 			return false;
-		}	
+		}
 	}
-	
+
 	return true;
 }
 
@@ -380,10 +403,10 @@ defaultproperties
    YouWonMessage="V I C T O R Y"
    SquadWipedOutMessage="Your squad was wiped out!"
    SquadSurvivedMessage="Your squad survived!"
-   ObjectiveStartMessage="Objective Started!"
-   ObjectiveWonMessage="Objective Won!"
-   ObjectiveLostMessage="Objective Lost!"
-   ObjectiveEndedMessage="Objective Ended!"
+   ObjectiveStartMessage="OBJECTIVE STARTED"
+   ObjectiveWonMessage="OBJECTIVE COMPLETE"
+   ObjectiveLostMessage="OBJECTIVE FAILED"
+   ObjectiveEndedMessage="OBJECTIVE OVER"
    ObjNotEnoughPlayersMessage="Not Enough Players!"
    ObjTimeRanOutMessage="Time Limit Reached!"
    HumansLoseMessage="Human squad wiped out!"

@@ -206,7 +206,7 @@ static simulated function float GetHealingShieldDuration()
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon KFW;
-    local float TempDamage;
+    local float TempDamage, SlugSkillValue;
 
     TempDamage = float(InDamage);
     if(DamageCauser != none)
@@ -222,7 +222,12 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     }
     if(((IsSlugActive()) && DamageType != none) && ClassIsChildOf(DamageType, Class'KFDT_Toxic'))
     {
-        TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[9])));
+        SlugSkillValue = GetSkillValue(PerkSkills[9]);
+        if(InDamage > 0)
+        {
+            SlugSkillValue *= float(InDamage);
+        }
+        TempDamage += SlugSkillValue;
     }
     InDamage = Round(TempDamage);
 }

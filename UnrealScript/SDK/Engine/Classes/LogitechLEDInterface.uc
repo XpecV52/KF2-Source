@@ -10,7 +10,7 @@ var int Blue;
 */
 native event Init();
 
-native event bool SetColor(int RedPercent, int GreenPercent, int BluePercent);
+native event bool SetColor(int RedPercent, int GreenPercent, int BluePercent, float Brightness = 1.0f);
 
 native event bool LEDSetFlashingRBG(int redPercentage, int greenPercentage, int bluePercentage,
 int milliSecondsDuration, int milliSecondsInterval);

@@ -436,7 +436,7 @@ function int GetPlayerGroup(const out UniqueNetId PlayerId, optional out int IdI
 function byte PickGroupTeam(optional int GroupSize = 1)
 {
 	local int Human, Zed;
-	
+
 	GetReservedTotals(Human, Zed);
 	//Keep the human team ahead of Zeds, since there will always be AI Zeds to fill in
 	if (Zed + GroupSize <= Human)
@@ -852,6 +852,7 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
 
     DamageAmount = Min( DamageAmount, HealthBeforeDamage );
     KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
+	KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, damageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
 
     if(InstigatedBy.PlayerReplicationInfo.GetTeamNum() == 255)
     {
@@ -967,7 +968,7 @@ function EndOfMatch(bool bVictory)
             WaveBonus += Max( int(float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe), 0 );
         }
     }
-    
+
     TempScore += WaveBonus;
     TempScore -= POINTS_PENALTY_FOR_DEATH * HumanDeaths;
     Teams[0].AddRoundScore( TempScore, true );
@@ -1084,7 +1085,7 @@ function ResetAllPickups()
 {
 	if ( !bDisablePickups )
 	{
-		// Reset ALL pickups each wave (ignoring NumPickups) 
+		// Reset ALL pickups each wave (ignoring NumPickups)
  		// -1, so that we always have a different pickup to activate
 		NumWeaponPickups = Max(ItemPickups.Length - 1, 0);
 		NumAmmoPickups = Max(AmmoPickups.Length - 1, 0);
@@ -1327,7 +1328,7 @@ protected function PreSelectPlayerStarts()
 {
 	local KFPlayerController KFPC;
 	local byte TeamNum;
-	
+
 	foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
 	{
 		KFPC.StartSpot = none;

@@ -271,7 +271,11 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         bHumanDeathsLastWave = true;
     }
 
-	CheckWaveEnd();
+	// BossDied will handle the end of wave.
+	if(!(KFPawn_Monster(KilledPawn) != none && KFPawn_Monster(KilledPawn).IsABoss()))
+	{
+		CheckWaveEnd();
+	}
 }
 
 /*	Use reduce damage for friendly fire, etc. */
@@ -406,6 +410,11 @@ function UpdateGameSettings()
 	}
 }
 
+function OnServerTitleDataRead()
+{
+	super.OnServerTitleDataRead();
+	class'KFGameEngine'.static.RefreshEventContent();
+}
 
 /**
  * Return whether Viewer is allowed to spectate from ViewTarget's PoV.
@@ -616,7 +625,7 @@ function int GetAdjustedDeathPenalty( KFPlayerReplicationInfo KilledPlayerPRI, o
 
 	if( bLateJoiner )
 	{
-		return MinimumRespawnDosh;
+		return CalculateLateJoinerStartingDosh(MinimumRespawnDosh);
 	}
 
 	`log( "SCORING: Player" @ KilledPlayerPRI.PlayerName @ "predicted minimum respawn dosh:" @ MinimumRespawnDosh, bLogScoring );
@@ -631,6 +640,19 @@ function int GetAdjustedDeathPenalty( KFPlayerReplicationInfo KilledPlayerPRI, o
 
 	`log( "SCORING: Player" @ KilledPlayerPRI.PlayerName @ "PlayerRespawnDosh > MinimumRespawnDosh, returning KilledPlayerPRI.Score * DeathPenaltyModifiers[GameDifficulty] =" @ -Round( KilledPlayerPRI.Score * DeathPenaltyModifiers[GameDifficulty] ), bLogScoring );
 	return -Round( KilledPlayerPRI.Score * DeathPenaltyModifiers[GameDifficulty] );
+}
+
+function int CalculateLateJoinerStartingDosh(int MinimumRespawnDosh)
+{
+	if (LateArrivalStarts.Length > 0 && GameLength >= 0 && GameLength < LateArrivalStarts.Length)
+	{
+		if (LateArrivalStarts[GameLength].StartingDosh.Length > 0 && WaveNum - 1 >= 0 && WaveNum - 1 < LateArrivalStarts[GameLength].StartingDosh.Length)
+		{
+			return LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1];
+		}
+	}
+
+	return MinimumRespawnDosh;
 }
 
 /************************************************************************************
@@ -930,6 +952,11 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 	}
 }
 
+function ObjectiveFailed()
+{
+	MyKFGRI.DeactivateObjective();
+}
+
 /** The wave ended */
 function WaveEnded(EWaveEndCondition WinCondition)
 {
@@ -965,7 +992,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 			}
 		}
 	}
-
+	BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_WaveEnd);
     MyKFGRI.DeactivateObjective();
 	MyKFGRI.NotifyWaveEnded();
 	`DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
@@ -1101,8 +1128,6 @@ State TraderOpen
 		StartHumans();
 
 		OpenTrader();
-
-		BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_WaveEnd);
 
 		if ( AllowBalanceLogging() )
 		{
@@ -1290,7 +1315,7 @@ function string GetNextMap()
 		{
 			return GameMapCycles[ActiveMapCycle].Maps[NextMapIndex];
 		}
-		
+
 	}
 
 	return super.GetNextMap();
@@ -1432,7 +1457,7 @@ DefaultProperties
 
 	MaxRespawnDosh(0)=1750.f // Normal
 	MaxRespawnDosh(1)=1550.f // Hard
-	MaxRespawnDosh(2)=1700.f // Suicidal  //1550 
+	MaxRespawnDosh(2)=1700.f // Suicidal  //1550
 	MaxRespawnDosh(3)=1550.f // Hell On Earth //1000.0
 
 	GameplayEventsWriterClass=class'KFGame.KFGameplayEventsWriter'
@@ -1459,7 +1484,42 @@ DefaultProperties
 	AIClassList(AT_Bloat)=class'KFGameContent.KFPawn_ZedBloat'
 	AIClassList(AT_Siren)=class'KFGameContent.KFPawn_ZedSiren'
 	AIClassList(AT_Husk)=class'KFGameContent.KFPawn_ZedHusk'
+	NonSpawnAIClassList(0)=class'KFGameContent.KFPawn_ZedBloatKingSubspawn'
 	AIBossClassList(BAT_Hans)=class'KFGameContent.KFPawn_ZedHans'
 	AIBossClassList(BAT_Patriarch)=class'KFGameContent.KFPawn_ZedPatriarch'
     AIBossClassList(BAT_KingFleshpound)=class'KFGameContent.KFPawn_ZedFleshpoundKing'
+	AIBossClassList(BAT_KingBloat)=class'KFGameContent.KFPawn_ZedBloatKing'
+
+	// Short Wave
+	LateArrivalStarts(0)={(
+		StartingDosh[0]=550,
+		StartingDosh[1]=650,
+		StartingDosh[2]=1200,
+		StartingDosh[3]=1500
+	)}
+
+	// Normal Wave
+	LateArrivalStarts(1)={(
+		StartingDosh[0]=450,
+		StartingDosh[1]=600,
+		StartingDosh[3]=800,
+		StartingDosh[4]=1100,
+		StartingDosh[5]=1400,
+		StartingDosh[6]=1500,
+		StartingDosh[7]=1600
+	)}
+
+	// Long Wave
+	LateArrivalStarts(2)={(
+		StartingDosh[0]=450,
+		StartingDosh[1]=550,
+		StartingDosh[2]=750,
+		StartingDosh[3]=1000,
+		StartingDosh[4]=1200,
+		StartingDosh[5]=1300,
+		StartingDosh[6]=1400,
+		StartingDosh[7]=1500,
+		StartingDosh[8]=1600,
+		StartingDosh[9]=1600
+	)}
 }

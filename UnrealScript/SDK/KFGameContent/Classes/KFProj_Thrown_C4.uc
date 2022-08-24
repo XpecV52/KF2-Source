@@ -61,10 +61,15 @@ var float BlinkTime;
 var ParticleSystem BlinkFX;
 var ParticleSystemComponent BlinkPSC;
 
+/** Id for skin override */
+var repnotify int WeaponSkinId;
+
 replication
 {
 	if( bNetInitial || !bNetOwner )
 		StuckToActor, StuckToBoneIdx, StuckToLocation, StuckToRotation;
+	if(bNetDirty)
+		WeaponSkinId;
 }
 
 simulated event ReplicatedEvent( name VarName )
@@ -79,6 +84,10 @@ simulated event ReplicatedEvent( name VarName )
 		{
 			ReplicatedStick( StuckToActor, StuckToBoneIdx );
 		}
+	}
+	else if (VarName == nameof(WeaponSkinId))
+	{
+		SetWeaponSkin(WeaponSkinId);
 	}
 	else
 	{
@@ -682,6 +691,23 @@ simulated function OnInstigatorControllerLeft()
 	{
 		SetTimer( 1.f + Rand(5) + fRand(), false, nameOf(Timer_Explode) );
 	}
+}
+
+simulated function SetWeaponSkin(int SkinId)
+{
+	local array<MaterialInterface> SkinMICs;
+	local int i;
+
+	if (SkinId > 0)
+	{
+		SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(SkinId, WST_FirstPerson);
+		for (i = 0; i < SkinMICs.length; i++)
+		{
+			ChargeMesh.SetMaterial(i, SkinMICs[i]);
+		}
+	}
+
+	ChargeMIC = ChargeMesh.CreateAndSetMaterialInstanceConstant(0);
 }
 
 defaultproperties

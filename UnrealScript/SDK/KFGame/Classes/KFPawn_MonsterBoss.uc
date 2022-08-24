@@ -355,10 +355,6 @@ function bool Died( Controller Killer, class<DamageType> DamageType, vector HitL
 	local bool result;
 
 	result = super.Died( Killer, DamageType, HitLocation );
-	if (result)
-	{
-		KFGameInfo(WorldInfo.Game).BossDied(Killer);
-	}
 
 	ClearTimer( nameOf(Timer_IncreaseSpeed) );
 

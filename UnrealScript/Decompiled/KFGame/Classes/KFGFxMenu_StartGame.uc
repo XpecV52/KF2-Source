@@ -14,6 +14,7 @@ var bool bIsInParty;
 var bool bSearchingForGame;
 var bool bLeaderInServerBrowser;
 var bool bLeaderWasInServerBrowser;
+var bool bPendingLeaveMenu;
 var transient bool AttemptingJoin;
 var transient bool bAttemptingServerCreate;
 var bool bHarrassedPlayerAboutSharedContent;
@@ -120,7 +121,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 3:
             return Class'KFGFxSpecialEventObjectivesContainer';
         case 4:
-            return Class'KFGFxSpecialEventObjectivesContainer';
+            return Class'KFGFxChristmasObjectivesContainer';
         default:
             return Class'KFGFxSpecialEventObjectivesContainer';
             break;
@@ -465,6 +466,7 @@ function ApproveMatchMakingLeave()
 {
     if(OptionsComponent != none)
     {
+        bPendingLeaveMenu = false;
         if((OnlineLobby != none) && OnlineLobby.IsInLobby())
         {
             OnlineLobby.QuitLobby();
@@ -480,7 +482,15 @@ function GoToServerBrowser()
     Manager.OpenMenu(16);
 }
 
-function CancelLeaveMenu();
+function CancelLeaveMenu()
+{
+    Outer.GetPC().SetTimer(0.5, false, 'ClearLeaveMenuFlag', self);
+}
+
+function ClearLeaveMenuFlag()
+{
+    bPendingLeaveMenu = false;
+}
 
 function OpenMultiplayerMenu()
 {
@@ -584,13 +594,19 @@ function Callback_RequestLeaveMatchmaking()
     {
         if(OnlineLobby.IsInLobby())
         {
+            if(bPendingLeaveMenu)
+            {
+                return;
+            }
             if(Class'WorldInfo'.static.IsConsoleBuild())
             {
-                Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, Localize("KFGFxMenu_StartGame", "LeaveMenuString", "KFGameConsole"), LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString, ApproveMatchMakingLeave, CancelLeaveMenu);                
+                Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, Localize("KFGFxMenu_StartGame", "LeaveMenuString", "KFGameConsole"), LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString, ApproveMatchMakingLeave, CancelLeaveMenu);
+                bPendingLeaveMenu = true;                
             }
             else
             {
                 Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, LeaveMenuString, Manager.BrowseServersString, Class'KFCommon_LocalizedStrings'.default.CancelString, GoToServerBrowser, CancelLeaveMenu, Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, ApproveMatchMakingLeave);
+                bPendingLeaveMenu = true;
             }            
         }
         else
@@ -1401,5 +1417,7 @@ defaultproperties
     StockMaps(12)="kf-zedlanding"
     StockMaps(13)="kf-thedescent"
     StockMaps(14)="kf-nuked"
+    StockMaps(15)="kf-nightmare"
+    StockMaps(16)="kf-krampuslair"
     SubWidgetBindings=/* Array type was not detected. */
 }

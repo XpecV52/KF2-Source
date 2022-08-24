@@ -6,6 +6,8 @@ package VersusLobbyWidget_SWF_fla
     {
          
         
+        public var defaultAvatar:MovieClip;
+        
         public function SquadMemberBGOrange_MC_20()
         {
             super();

@@ -1,9 +1,11 @@
 [KFCommon_LocalizedStrings]
+FailedToReachInventoryServerString="Failed to reach item server.  Inventory will not be available."
 LoadingString="Loading..."
 DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Hard"
 DifficultyStrings[2]="Suicidal"
 DifficultyStrings[3]="Hell on Earth"
+BonusDoshString="BONUS DOSH"
 
 LengthStrings[0]="Short (4 Waves)"
 LengthStrings[1]="Medium (7 Waves)"
@@ -91,7 +93,17 @@ MixerZedTimeString=", a Mixer viewer, has actived ZedTime"
 MixerRageZedsString=", a Mixer viewer, has enraged nearby Zeds!"
 MixerPukeString=", a Mixer viewer, has puked on you!"
 MixerSpawnedFPString=", a Mixer viewer, has spawned a Fleshpound!"
+MixerSpawnedScrakeString=", a Mixer viewer, has spawned a Scrake!"
+MixerSpawnedMiniFPString=", a Mixer viewer, has spawned some Quarter Pounds!"
 
+DiscordMenuPresenceString="In Main Menu"
+DiscordPartyPresenceString="Forming Party"
+DiscordNetworkMatchString="Network Match"
+DiscordSoloMatchString="Solo Match"
+DiscordMatchLobbyString=": Match Lobby"
+DiscordTraderTimeString=": Trader Time"
+DiscordBossWaveString=": Boss Wave"
+DiscordWaveString=": Wave "
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="OUTBREAK COMPLETION REWARD"
@@ -113,6 +125,8 @@ DealDamageString="Deal Damage:"
 EarnXPString="Earn XP:"
 CompleteMapString="Complete Match in Map:"
 KillZedsString="Kill Zeds:"
+KillBossString="Kill Boss:"
+KillBossDescriptionString=""
 VersusKillsString=Kill Versus Players as:
 DealVersusDamageString=Damage Versus Players as:
 VersusCompletionString=Complete Match as:
@@ -176,7 +190,6 @@ TutorialString="Basic Training"
 modeList0="Survival – PVE battle waves of AI controlled Zeds"
 modeList1="Weekly Outbreak – A different variant game mode each week."
 modeList2="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
-modeList3=""
 difficultyList0="Normal – For beginning players of perk rank 0-5."
 difficultyList1="Hard – For experienced players of perk rank 6-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
 difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and they move even faster. There are even fewer pickups, and you get even less dosh."
@@ -875,6 +888,7 @@ WeaponSkinsString="Market Weapon Skins"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"
 MarketEmotesString="Market Emotes"
+ThankYouString="Thank you for your purchase! It will help us in developing new items, maps, weapons, zeds, and game modes for future updates."
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="FIND IN MARKET"
@@ -1407,10 +1421,10 @@ YouLostMessage="D E F E A T"
 YouWonMessage="V I C T O R Y"
 SquadWipedOutMessage="Your squad was wiped out!"
 SquadSurvivedMessage="Your squad survived!"
-ObjectiveStartMessage="Objective Started!"
-ObjectiveWonMessage="Objective Won!"
-ObjectiveEndedMessage="Objective Ended!"
-ObjectiveLostMessage="Objective Lost!"
+ObjectiveStartMessage="OBJECTIVE STARTED"
+ObjectiveWonMessage="OBJECTIVE COMPLETE"
+ObjectiveEndedMessage="OBJECTIVE OVER"
+ObjectiveLostMessage="OBJECTIVE FAILED"
 ObjNotEnoughPlayersMessage="Not Enough Players!"
 ObjTimeRanOutMessage="Time Limit Reached!"
 HumansLoseMessage="Human squad wiped out!"
@@ -2147,6 +2161,7 @@ ObjectiveStatusString="OBJECTIVE STATUS"
 
 [KFObj_Wave]
 ObjectiveAvailableString="OBJECTIVE AVAILABLE"
+ObjectiveRequireString=" players required"
 
 [KFObj_Wave_Defend]
 ObjectiveTypeString="DEFEND"
@@ -2268,9 +2283,24 @@ USBSpitfire="Spit Fire USB Key - $2.49"
 USBHighVoltage="High Voltage USB Key - $2.49"
 MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 
+[Objectives]
+HoldVolume="DEFEND THE AREA"
+DoshHold="STAND YOUR GROUND"
+DescriptionDoshHold="Keep Zeds out of the marked area"
+RequiredDoshHold="Players required:"
+DoschHoldDesc="Keep Zeds out of the marked area"
+DescriptionHoldVolume="DescriptionHoldVolume"
+RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="SEARCH AND DESTROY"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
+FailedString="FAILED"
 
+; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
 KFPawn_ZedBloat="Bloat"
+KFPawn_ZedBloatKing="Abomination"
+KFPawn_ZedBloatKing_Winter="Krampus"
 KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedCrawlerKing="Elite Crawler"
@@ -2289,6 +2319,7 @@ KFPawn_ZedClot_AlphaKing="Elite Alpha"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
 KFPawn_ZedPatriarch="Patriarch"
+KFPawn_ZedBloatKingSubspawn="Abomination Spawn"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat - Player"
 KFPawn_ZedClot_Versus="Clot - Player"
@@ -2418,24 +2449,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Descri
 SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
 SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5")
 
-AllCompleteRewardDescriptionString="Item description for all comeplete"
+AllCompleteRewardDescriptionString="Item description for all complete"
 
 ChanceDropDescriptionStrings[0]="Drop 1"
 ChanceDropDescriptionStrings[1]="Drop 2"
 
-[KFGFxSummerSideShowObjectivesContainer]
+[KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="A time limited special event with exclusive items."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Power Up",DescriptionString="Power up the Generator In The Tragic Kingdom")
-SpecialEventObjectiveInfoList[1]=(TitleString="Pop the Clot",DescriptionString="Pop the Clot in The Tragic Kingdom")
-SpecialEventObjectiveInfoList[2]=(TitleString="Dunk the Bloat",DescriptionString="Dunk the Bloat in The Tragic Kingdom")
-SpecialEventObjectiveInfoList[3]=(TitleString="Dosh Toss",DescriptionString="Dosh Toss in The Tragic Kingdom")
-SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="Win a match on Hard or higher In The Tragic Kingdom")
+SpecialEventObjectiveInfoList[0]=(TitleString="Breaking and Entering",DescriptionString="Break Krampus's trinkets in Krampus Lair")
+SpecialEventObjectiveInfoList[1]=(TitleString="Mincemeat",DescriptionString="Kill a Zed using the wood chipper in Krampus Lair")
+SpecialEventObjectiveInfoList[2]=(TitleString="Stand Fast",DescriptionString="Complete the Stand Your Ground objective in Krampus Lair")
+SpecialEventObjectiveInfoList[3]=(TitleString="Snow Prisons",DescriptionString="Find ten of the collectibles in Krampus Lair")
+SpecialEventObjectiveInfoList[4]=(TitleString="And to All a Good Night",DescriptionString="Kill Krampus on Hard or higher Difficulty in Krampus Lair")
 
-AllCompleteRewardDescriptionString="Sideshow Hazmat Suit"
+AllCompleteRewardDescriptionString="Pajama Suit"
 
-ChanceDropDescriptionStrings[0]="Sideshow Prize Ticket"
-ChanceDropDescriptionStrings[1]="Sideshow Golden Ticket"
+ChanceDropDescriptionStrings[0]="Prize Ticket"
+ChanceDropDescriptionStrings[1]="Gold Ticket"
 
 ;============================================
 ; Daily Localization
@@ -2801,6 +2832,22 @@ DisplayName_POL="Koszmar"
 DisplayName_PTB="Pesadelo"
 DisplayName_RUS="Кошмар"
 
+[KF-KrampusLair KFMapSummary]
+DisplayName_CHN="坎卜斯巢穴"
+DisplayName_CHT="坎普斯巢穴"
+DisplayName_DEU="Krampus’ Versteck"
+DisplayName_ESL="Guarida de Krampus"
+DisplayName_ESN="Guarida de Krampus"
+DisplayName_FRA="Repère de Krampus"
+DisplayName_FRC="Repère de Krampus"
+DisplayName_INT="Krampus Lair"
+DisplayName_ITA="Tana del Krampus"
+DisplayName_JPN="クランプスの巣"
+DisplayName_KOR="크램퍼스 둥지"
+DisplayName_POL="Leże Krampusa"
+DisplayName_PTB="Toca do Krampus"
+DisplayName_RUS="Логово Крампуса"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2857,6 +2904,9 @@ DisplayName="The Tragic Kingdom"
 
 [KF-Nightmare KFMapSummary]
 DisplayName="Nightmare"
+
+[KF-KrampusLair KFMapSummary]
+DisplayName="Krampus Lair"
 
 [KFMapInfo]
 ; defaults

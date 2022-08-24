@@ -85,3 +85,8 @@ native function MoveAllUsersToGroup(string GroupName);
  * Move a specified user to a specified group.  If the group doesn't exist, it will create it and set the appropriate scene.
  */
 native function MoveUserToGroup(string Username, string GroupName);
+
+/**
+* Used for debug purposes.  Force the intended live scene to a different version from the shipped variant
+*/
+native static function ForceMixerScene(string VersionNumber, string ShareCode);

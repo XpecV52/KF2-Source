@@ -7,6 +7,7 @@
  *******************************************************************************/
 class KFCommon_LocalizedStrings extends Object;
 
+var const localized string FailedToReachInventoryServerString;
 var const localized array<localized string> DifficultyStrings;
 var const localized array<localized string> LengthStrings;
 var const localized array<localized string> ServerTypeStrings;
@@ -23,6 +24,7 @@ var const localized string PerkUpdateNoticeString;
 var const localized string NoticeString;
 var const localized string AcceptString;
 var const localized string DeclineString;
+var const localized string BonusDoshString;
 var const localized string YesString;
 var const localized string NoString;
 var const localized string DisbandPartyString;
@@ -56,6 +58,16 @@ var const localized string MixerZedTimeString;
 var const localized string MixerRageZedsString;
 var const localized string MixerPukeString;
 var const localized string MixerSpawnedFPString;
+var const localized string MixerSpawnedScrakeString;
+var const localized string MixerSpawnedMiniFPString;
+var const localized string DiscordMenuPresenceString;
+var const localized string DiscordPartyPresenceString;
+var const localized string DiscordNetworkMatchString;
+var const localized string DiscordSoloMatchString;
+var const localized string DiscordMatchLobbyString;
+var const localized string DiscordTraderTimeString;
+var const localized string DiscordBossWaveString;
+var const localized string DiscordWaveString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -153,6 +165,7 @@ static function string GetFriendlyMapName(string MapName)
 
 defaultproperties
 {
+    FailedToReachInventoryServerString="Failed to reach item server.  Inventory will not be available."
     DifficultyStrings(0)="Normal"
     DifficultyStrings(1)="Hard"
     DifficultyStrings(2)="Suicidal"
@@ -182,6 +195,7 @@ defaultproperties
     NoticeString="NOTICE!"
     AcceptString="Accept"
     DeclineString="Decline"
+    BonusDoshString="BONUS DOSH"
     YesString="YES"
     NoString="NO"
     DisbandPartyString="DISBAND PARTY"
@@ -231,4 +245,14 @@ defaultproperties
     MixerRageZedsString=", a Mixer viewer, has enraged nearby Zeds!"
     MixerPukeString=", a Mixer viewer, has puked on you!"
     MixerSpawnedFPString=", a Mixer viewer, has spawned a Fleshpound!"
+    MixerSpawnedScrakeString=", a Mixer viewer, has spawned a Scrake!"
+    MixerSpawnedMiniFPString=", a Mixer viewer, has spawned some Quarter Pounds!"
+    DiscordMenuPresenceString="In Main Menu"
+    DiscordPartyPresenceString="Forming Party"
+    DiscordNetworkMatchString="Network Match"
+    DiscordSoloMatchString="Solo Match"
+    DiscordMatchLobbyString=": Match Lobby"
+    DiscordTraderTimeString=": Trader Time"
+    DiscordBossWaveString=": Boss Wave"
+    DiscordWaveString=": Wave "
 }

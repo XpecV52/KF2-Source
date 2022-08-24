@@ -19,6 +19,12 @@ var array <int>BattlePhaseColors;
 var KFPlayerController KFPC;
 var bool bLastHideValue;
 
+struct SCompressedArmorInfo
+{
+	var float Percentage;
+	var Texture2D IconTexture;
+};
+
 function InitializeHUD()
 {
     KFPC = KFPlayerController(GetPC());
@@ -109,6 +115,27 @@ function UpdateBossBattlePhase(int BattlePhase)
 function UpdateBossShield(float NewShieldPercect)
 {
     SetFloat( "currentShieldPercecntValue",NewShieldPercect);
+}
+
+function UpdateArmorUI(const out SCompressedArmorInfo ArmorValues[3])
+{
+	local int i;
+	local GFxObject DataProvider, DataObject;
+
+	DataProvider = CreateArray();
+
+	for (i = 0; i < 3; i++)
+	{
+		DataObject = CreateObject("Object");
+		DataObject.SetFloat("armorPercent", ArmorValues[i].Percentage);
+		if (ArmorValues[i].IconTexture != none)
+		{
+			DataObject.SetString("iconSource", "img://"$PathName(ArmorValues[i].IconTexture));
+		}
+		DataProvider.SetElementObject(i, DataObject);
+	}
+	
+	SetObject("armorData", DataProvider);
 }
 
 defaultproperties

@@ -238,8 +238,8 @@ simulated state MeleeHeavyAttacking
 			}
 
 			Victim = KFPawn(HitActor);
-			if ( Victim == None || 
-				(!bFriendlyFireEnabled && Victim.GetTeamNum() == Instigator.GetTeamNum()) || 
+			if ( Victim == None ||
+				(!bFriendlyFireEnabled && Victim.GetTeamNum() == Instigator.GetTeamNum()) ||
 				(Victim.bPlayedDeath && `TimeSince(Victim.TimeOfDeath) > 0.f) )
 			{
 				return;
@@ -273,6 +273,7 @@ defaultproperties
 {
 	AttachmentArchetype=KFWeaponAttachment'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
+	AssociatedPerkClasses(1)=class'KFPerk_Demolitionist'
 
 	Begin Object Name=FirstPersonMesh
 		SkeletalMesh=SkeletalMesh'WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New'
@@ -355,7 +356,7 @@ defaultproperties
 	ParryDamageMitigationPercent=0.40
 	BlockDamageMitigation=0.50
 
-	
+
 	ParryStrength=5
 }
 

@@ -41,12 +41,16 @@ var LinearColor BlinkColorOff;
 var float BlinkTime;
 var ParticleSystem BlinkFX;
 var export editinline ParticleSystemComponent BlinkPSC;
+var repnotify int WeaponSkinId;
 
 replication
 {
      if(bNetInitial || !bNetOwner)
         StuckToActor, StuckToBoneIdx, 
         StuckToLocation, StuckToRotation;
+
+     if(bNetDirty)
+        WeaponSkinId;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -67,7 +71,14 @@ simulated event ReplicatedEvent(name VarName)
     }
     else
     {
-        super.ReplicatedEvent(VarName);
+        if(VarName == 'WeaponSkinId')
+        {
+            SetWeaponSkin(WeaponSkinId);            
+        }
+        else
+        {
+            super.ReplicatedEvent(VarName);
+        }
     }
 }
 
@@ -556,6 +567,27 @@ simulated function OnInstigatorControllerLeft()
     {
         SetTimer((1 + float(Rand(5))) + FRand(), false, 'Timer_Explode');
     }
+}
+
+simulated function SetWeaponSkin(int SkinID)
+{
+    local array<MaterialInterface> SkinMICs;
+    local int I;
+
+    if(SkinID > 0)
+    {
+        SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(SkinID, 0);
+        I = 0;
+        J0x4E:
+
+        if(I < SkinMICs.Length)
+        {
+            ChargeMesh.SetMaterial(I, SkinMICs[I]);
+            ++ I;
+            goto J0x4E;
+        }
+    }
+    ChargeMIC = ChargeMesh.CreateAndSetMaterialInstanceConstant(0);
 }
 
 defaultproperties

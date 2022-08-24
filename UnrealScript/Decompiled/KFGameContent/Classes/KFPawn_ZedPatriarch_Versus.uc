@@ -49,7 +49,7 @@ simulated event ReplicatedEvent(name VarName)
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
-    ServerDoSpecialMove(34);
+    ServerDoSpecialMove(35);
     MyKFPC = KFPlayerController(C);
     SetTimer(2 + FRand(), false, 'Timer_EnableCloak');
 }
@@ -290,12 +290,12 @@ private final function CheckHealth()
         {
             if((SpecialMoveCooldowns[5].Charges > 0) && HealthPct <= AutoHealThreshold)
             {
-                if(IsDoingSpecialMove() && !IsDoingSpecialMove(27))
+                if(IsDoingSpecialMove() && !IsDoingSpecialMove(28))
                 {
                     EndSpecialMove();
                 }
                 bAutoHealed = true;
-                DoSpecialMove(27, true);
+                DoSpecialMove(28, true);
             }
         }
         if((((!bWarnedLowHealthThisPhase && IsLocallyControlled()) && MyKFPC.myGfxHUD != none) && HealthPct <= LowHealthThreshold) && SpecialMoveCooldowns[5].Charges > 0)
@@ -337,7 +337,7 @@ simulated function bool ShouldDrawBossIcon()
 
 simulated function bool UseAdjustedControllerSensitivity()
 {
-    return IsDoingSpecialMove(24) || IsDoingSpecialMove(26);
+    return IsDoingSpecialMove(25) || IsDoingSpecialMove(27);
 }
 
 singular function SummonChildren()
@@ -401,7 +401,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_304' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_335' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -425,7 +425,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(3)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_1033' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_1086' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

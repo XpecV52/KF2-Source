@@ -306,7 +306,7 @@ package tripwire.controls
         
         public function set profileImageSource(param1:String) : *
         {
-            if(param1 && param1 != "")
+            if(param1 && param1 != "" && param1 != "img://")
             {
                 this.profileImageContainer.visible = true;
                 this.profileImageContainer.profileLoader.source = param1;
@@ -315,6 +315,7 @@ package tripwire.controls
             {
                 this.profileImageContainer.visible = false;
             }
+            this.orangeBG.defaultAvatar.visible = !this.profileImageContainer.visible;
         }
         
         public function get profileImageSource() : String

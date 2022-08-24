@@ -122,7 +122,7 @@ function AddTrackedDamage(int Amount, class<DamageType> DamageType, class<Pawn> 
     if (VictimClass == class'KFPawn_Human_Versus')
     {
         AddTrackedVsDamage(Amount, DamagerClass);
-    }    
+    }
 }
 
 /** @return TRUE if any of the gameplay post process effects have a strength greater than 0.
@@ -169,7 +169,7 @@ exec function ChangeTeam( optional string TeamName )
 exec function RequestSwitchTeam()
 {
     local KFPlayerReplicationInfo KFPRI;
-    
+
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
     if ( KFPRI != None && !KFPRI.bOnlySpectator )
     {
@@ -312,6 +312,51 @@ event InitInputSystem()
 event SetHaveUpdatePerk( bool bUsedUpdate )
 {
 	super.SetHaveUpdatePerk( KFGameReplicationInfoVersus(WorldInfo.GRI).bRoundIsOver ? false : bUsedUpdate );
+}
+
+//-----------------------------------------------------------------------------
+// Mixer Integration
+//-----------------------------------------------------------------------------
+//Do nothing for versus controllers.  Mixer will startup with other spots on pawn receive
+reliable client function ClientMatchStarted()
+{}
+
+reliable client function GivePawn(Pawn NewPawn)
+{
+	super.GivePawn(NewPawn);
+
+	if (NewPawn == none)
+	{
+		MixerCurrentDefaultScene = "default";
+	}
+	else
+	{
+		MixerCurrentDefaultScene = GetPawnBasedMixerScene(NewPawn);
+	}
+
+	MixerMoveUsersToDefaultGroup();
+}
+
+simulated protected function MixerStartupComplete()
+{
+	MixerCurrentDefaultScene = GetPawnBasedMixerScene(Pawn);
+	SetTimer(1.f, false, nameof(MixerMoveUsersToDefaultGroup));
+}
+
+simulated final function string GetPawnBasedMixerScene(Pawn InPawn)
+{
+	if (InPawn != none)
+	{
+		if (InPawn.IsA('KFPawn_Monster'))
+		{
+			return "VersusZed";
+		}
+		else if (!InPawn.IsA('KFPawn_Customization'))
+		{
+			return "SelectSide";
+		}
+	}
+	return "default";
 }
 
 defaultproperties

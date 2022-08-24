@@ -17,7 +17,7 @@ var protected float FireballStrength;
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(24))
+    if(IsDoingSpecialMove(25))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -53,7 +53,7 @@ function ShootFireball()
     local Rotator ShootRotation;
     local Vector HitLocation, HitNormal, Dir, TraceStart, TraceEnd;
 
-    if((((Role == ROLE_Authority) && float(Health) > 0) && IsDoingSpecialMove(23)) && IsHumanControlled())
+    if((((Role == ROLE_Authority) && float(Health) > 0) && IsDoingSpecialMove(24)) && IsHumanControlled())
     {
         PC = PlayerController(Controller);
         if(PC == none)
@@ -124,12 +124,12 @@ simulated function OnExploded(Controller SuicideController)
 
 simulated function KFGame.KFPawn.ESpecialMove GetSuicideSM()
 {
-    return 28;
+    return 29;
 }
 
 simulated function bool UseAdjustedControllerSensitivity()
 {
-    return IsDoingSpecialMove(23);
+    return IsDoingSpecialMove(24);
 }
 
 simulated function Vector2D GetFireballStrengthRange()

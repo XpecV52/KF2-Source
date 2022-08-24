@@ -125,7 +125,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
         return;
     }
     HitZoneIdx = Outer.HitFxInfo.HitBoneIndex;
-    BodyPart = ((HitZoneIdx != 255) ? Outer.HitZones[HitZoneIdx].Limb : 0);
+    BodyPart = (((HitZoneIdx != 255) && HitZoneIdx < Outer.HitZones.Length) ? Outer.HitZones[HitZoneIdx].Limb : 0);
     KnockdownPower = DamageType.default.KnockdownPower;
     StumblePower = DamageType.default.StumblePower;
     StunPower = DamageType.default.StunPower;
@@ -190,7 +190,7 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
     if(Outer.MyKFAIC != none)
     {
         HitZoneIdx = Outer.HitFxInfo.HitBoneIndex;
-        BodyPart = ((HitZoneIdx != 255) ? Outer.HitZones[HitZoneIdx].Limb : 0);
+        BodyPart = (((HitZoneIdx != 255) && HitZoneIdx < Outer.HitZones.Length) ? Outer.HitZones[HitZoneIdx].Limb : 0);
         if(DamageType.default.MeleeHitPower > float(0))
         {
             AccrueAffliction(2, DamageType.default.MeleeHitPower * ReactionModifier, BodyPart);

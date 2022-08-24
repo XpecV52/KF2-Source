@@ -16,6 +16,7 @@ var localized string MarketConsumablesString;
 var localized string MarketCosmeticsString;
 var localized string MarketEmotesString;
 var localized string LookUpOnMarketString;
+var localized string ThankYouString;
 
 var KFGFxMenu_Store StoreMenu;
 
@@ -59,6 +60,8 @@ function LocalizeText()
 	LocalizedObject.SetString("marketCosmetics",	MarketCosmeticsString);
 	LocalizedObject.SetString("marketEmotes",		MarketEmotesString);
 	LocalizedObject.SetString("marketConsumables",	MarketConsumablesString);
+	
+	LocalizedObject.SetString("thankYouString",		ThankYouString);
 	
 	SetObject("localizedText", LocalizedObject);
 }

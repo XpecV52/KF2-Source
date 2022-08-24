@@ -13,7 +13,10 @@ var AkEvent MatchWonStinger;
 var AkEvent MatchLostStinger;
 var AkEvent WaveStartStinger;
 var AkEvent WaveCompletedStinger;
+var AkEvent NewObjectiveStinger;
 var AkEvent ObjectiveWonStinger;
+var AkEvent SpecialEventObjectiveStinger;
+var AkEvent DailyCompleteStinger;
 var AkEvent ObjectiveLostStinger;
 var AkEvent PlayerDiedStinger;
 var AkEvent LevelUpStinger;
@@ -153,6 +156,32 @@ static simulated function PlayWaveCompletedStinger(PlayerController P)
     KFPC.StingerAkComponent.PlayEvent(default.WaveCompletedStinger);
 }
 
+static simulated function PlayDailyCompleteStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.DailyCompleteStinger);
+}
+
+static simulated function PlaySpecialEventObjectiveStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.SpecialEventObjectiveStinger);
+}
+
 static simulated function PlayObjectiveWonStinger(PlayerController P)
 {
     local KFPlayerController KFPC;
@@ -162,11 +191,21 @@ static simulated function PlayObjectiveWonStinger(PlayerController P)
     {
         return;
     }
-    if(KFPC.StingerAkComponent.IsPlaying())
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.ObjectiveWonStinger);
+}
+
+static simulated function PlayNewObjectiveStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
     {
         return;
     }
-    KFPC.StingerAkComponent.PlayEvent(default.ObjectiveWonStinger);
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.NewObjectiveStinger);
 }
 
 static simulated function PlayObjectiveLostStinger(PlayerController P)
@@ -238,8 +277,11 @@ defaultproperties
     MatchLostStinger=AkEvent'WW_MSTG_Global.Play_MSTG_TeamWipedOut'
     WaveStartStinger=AkEvent'WW_UI_Menu.Play_UI_Alert_Wave_Incoming'
     WaveCompletedStinger=AkEvent'WW_MSTG_Global.Play_MSTG_WaveComplete'
-    ObjectiveWonStinger=AkEvent'WW_MSTG_Global.Play_MSTG_ObjectiveComplete'
-    ObjectiveLostStinger=AkEvent'WW_MSTG_Global.Play_MSTG_ObjectiveFailed'
+    NewObjectiveStinger=AkEvent'WW_UI_Objectives.Play_UI_ObjectiveNotify'
+    ObjectiveWonStinger=AkEvent'WW_UI_Objectives.Play_UI_ObjectiveComplete'
+    SpecialEventObjectiveStinger=AkEvent'WW_UI_Objectives.Play_UI_ObjectiveComplete'
+    DailyCompleteStinger=AkEvent'WW_UI_Objectives.Play_UI_ObjectiveComplete'
+    ObjectiveLostStinger=AkEvent'WW_UI_Objectives.Play_UI_Objective_Fail'
     PlayerDiedStinger=AkEvent'WW_MSTG_Global.Play_MSTG_PlayerDeath'
     LevelUpStinger=AkEvent'WW_MSTG_Global.Play_MSTG_LevelUp_XP'
     TierUnlockedStinger=AkEvent'WW_MSTG_Global.Play_MSTG_LevelUp_KeyXP'

@@ -157,7 +157,7 @@ var bool bDebug_DrawSprintingOverheadInfo;
 var const bool bDebug_UseIconForShowingSprintingOverheadInfo;
 var bool bReducedZedOnZedPinchPointCollisionStateActive;
 var protected bool bOnDeathAchivementbDisabled;
-var private const string MonsterArchPath;
+var const string MonsterArchPath;
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
 var const class<KFPawn_Monster> ElitePawnClass;
 /** Custom third person camera offsets */
@@ -797,7 +797,7 @@ event Landed(Vector HitNormal, Actor FloorActor)
     {
         if(bJumped && IsLocallyControlled())
         {
-            SMIndex = SpecialMoveCooldowns.Find('SMHandle', 11;
+            SMIndex = SpecialMoveCooldowns.Find('SMHandle', 12;
             if(SMIndex != -1)
             {
                 SpecialMoveCooldowns[SMIndex].LastUsedTime = WorldInfo.TimeSeconds;
@@ -821,7 +821,7 @@ function SetMovementPhysics()
 function CrushedBy(Pawn OtherPawn)
 {
     super.CrushedBy(OtherPawn);
-    if(((((bKnockdownWhenJumpedOn && Health > 0) && !IsDoingSpecialMove(10)) && (OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderComponent.CollisionHeight)) && !IsHumanControlled()) && GetTeamNum() != OtherPawn.GetTeamNum())
+    if(((((bKnockdownWhenJumpedOn && Health > 0) && !IsDoingSpecialMove(11)) && (OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderComponent.CollisionHeight)) && !IsHumanControlled()) && GetTeamNum() != OtherPawn.GetTeamNum())
     {
         Knockdown(,, vect(1, 1, 1), OtherPawn.Location, 1000, 100);
     }
@@ -1058,7 +1058,7 @@ simulated function bool UseAdjustedControllerSensitivity();
 
 function bool CanBlock()
 {
-    if(((Physics == 1) && CanDoSpecialMove(16)) && IsCombatCapable())
+    if(((Physics == 1) && CanDoSpecialMove(17)) && IsCombatCapable())
     {
         if(FRand() > (DifficultyBlockSettings.Chance * ((WorldInfo.Game.NumPlayers == 1) ? DifficultyBlockSettings.SoloChanceMultiplier : 1)))
         {
@@ -1105,7 +1105,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 
     Timer_EndRallyBoost();
     super.PlayDying(DamageType, HitLoc);
-    if(IsABoss())
+    if((IsABoss()) && KFGameInfo(WorldInfo.Game).bGoToBossCameraOnDeath)
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
         if(KFPC != none)
@@ -1165,7 +1165,6 @@ simulated function PlayExplosiveDeath()
 simulated function InflationExplode()
 {
     local int Idx;
-    local MaterialInstanceConstant MIC;
 
     RepDamageInflateParam = 0;
     bUseDamageInflation = false;
@@ -1181,10 +1180,7 @@ simulated function InflationExplode()
     PlayExplosiveDeath();
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        foreach CharacterMICs(MIC,)
-        {
-            MIC.SetScalarParameterValue('Scalar_Inflate', 0);            
-        }        
+        UpdateVisualInflation((GetCurrentInflation()) * 2);
     }
 }
 
@@ -1745,6 +1741,69 @@ function ShrapnelExplode(Controller Killer, KFPerk InstigatorPerk)
     }
 }
 
+simulated function UpdateVisualInflation(float InflationAmount)
+{
+    local MaterialInstanceConstant MIC;
+    local int I, J;
+
+    if(bIsGoreMesh)
+    {
+        InflationAmount = 0;
+    }
+    foreach CharacterMICs(MIC,)
+    {
+        MIC.SetScalarParameterValue('Scalar_Inflate', InflationAmount);        
+    }    
+    I = 0;
+    J0x71:
+
+    if(I < 3)
+    {
+        if(ThirdPersonAttachments[I] != none)
+        {
+            J = 0;
+            J0xA5:
+
+            if(J < ThirdPersonAttachments[I].Materials.Length)
+            {
+                MIC = MaterialInstanceConstant(ThirdPersonAttachments[I].GetMaterial(J));
+                if(MIC != none)
+                {
+                    MIC.SetScalarParameterValue('Scalar_Inflate', InflationAmount);
+                }
+                ++ J;
+                goto J0xA5;
+            }
+        }
+        ++ I;
+        goto J0x71;
+    }
+    I = 0;
+    J0x188:
+
+    if(I < StaticAttachList.Length)
+    {
+        if(StaticAttachList[I] != none)
+        {
+            J = 0;
+            J0x1C4:
+
+            if(J < StaticAttachList[I].Materials.Length)
+            {
+                MIC = MaterialInstanceConstant(StaticAttachList[I].GetMaterial(J));
+                if(MIC != none)
+                {
+                    MIC.SetScalarParameterValue('Scalar_Inflate', InflationAmount);
+                }
+                ++ J;
+                goto J0x1C4;
+            }
+        }
+        ++ I;
+        goto J0x188;
+    }
+}
+
 function CauseHeadTrauma(optional float BleedOutTime)
 {
     BleedOutTime = 5;
@@ -1892,9 +1951,9 @@ function MeleeSpecialMoveEnded();
 
 function ANIMNOTIFY_Knockdown()
 {
-    if(SpecialMove == 10)
+    if(SpecialMove == 11)
     {
-        KFSM_Emerge(SpecialMoves[10]).bDoKnockdown = true;
+        KFSM_Emerge(SpecialMoves[11]).bDoKnockdown = true;
     }
 }
 
@@ -2054,7 +2113,7 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation, o
     }
     dmgType = HitFxInfo.DamageType;
     HitZoneIndex = HitFxInfo.HitBoneIndex;
-    if(HitZoneIndex != 255)
+    if((HitZoneIndex != 255) && HitZoneIndex <= HitZones.Length)
     {
         HitZoneName = HitZones[HitZoneIndex].ZoneName;
         HitBoneName = HitZones[HitZoneIndex].BoneName;
@@ -2346,7 +2405,7 @@ simulated function bool TryPlayHitReactionAnim(Vector HitDirection, class<KFDama
             return false;
         }
     }
-    BodyPart = ((HitZoneIdx != 255) ? HitZones[HitZoneIdx].Limb : 0);
+    BodyPart = (((HitZoneIdx != 255) && HitZoneIdx < HitZones.Length) ? HitZones[HitZoneIdx].Limb : 0);
     HitReactionType = 0;
     bOnlyAdditiveHits = bOnlyAdditiveHits || VSizeSq(Velocity) > 50;
     if(!bOnlyAdditiveHits)
@@ -2684,6 +2743,10 @@ function TakeHitZoneDamage(float Damage, class<DamageType> DamageType, int HitZo
 {
     local float HeadHealthPercentage;
 
+    if(HitZoneIdx > HitZones.Length)
+    {
+        return;
+    }
     super.TakeHitZoneDamage(Damage, DamageType, HitZoneIdx, InstigatorLocation);
     if((HitZones[HitZoneIdx].GoreHealth <= 0) && CanInjureHitZone(DamageType, HitZoneIdx))
     {
@@ -2818,19 +2881,17 @@ event SetDamageInflation(float NewInflation)
 
 simulated function float GetCurrentInflation()
 {
-    return FMin((ByteToFloat(RepInflateMatParam) + ByteToFloat(RepDamageInflateParam)) - ByteToFloat(RepBleedInflateMatParam), 1);
+    local float CurrentInflation;
+
+    CurrentInflation = FClamp((ByteToFloat(RepInflateMatParam) + ByteToFloat(RepDamageInflateParam)) - ByteToFloat(RepBleedInflateMatParam), -1, 1);
+    return CurrentInflation;
 }
 
 simulated function HandleDamageInflation()
 {
-    local MaterialInstanceConstant MIC;
-
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        foreach CharacterMICs(MIC,)
-        {
-            MIC.SetScalarParameterValue('Scalar_Inflate', (GetCurrentInflation()) * 2);            
-        }        
+        UpdateVisualInflation((GetCurrentInflation()) * 2);
     }
 }
 
@@ -3480,9 +3541,9 @@ defaultproperties
         SpecialMoveClasses(9)=class'KFSM_Frozen'
         SpecialMoveClasses(10)=none
         SpecialMoveClasses(11)=none
-        SpecialMoveClasses(12)=class'KFSM_Zed_Taunt'
-        SpecialMoveClasses(13)=class'KFSM_Zed_WalkingTaunt'
-        SpecialMoveClasses(14)=none
+        SpecialMoveClasses(12)=none
+        SpecialMoveClasses(13)=class'KFSM_Zed_Taunt'
+        SpecialMoveClasses(14)=class'KFSM_Zed_WalkingTaunt'
         SpecialMoveClasses(15)=none
         SpecialMoveClasses(16)=none
         SpecialMoveClasses(17)=none
@@ -3502,7 +3563,8 @@ defaultproperties
         SpecialMoveClasses(31)=none
         SpecialMoveClasses(32)=none
         SpecialMoveClasses(33)=none
-        SpecialMoveClasses(34)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(34)=none
+        SpecialMoveClasses(35)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Monster.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

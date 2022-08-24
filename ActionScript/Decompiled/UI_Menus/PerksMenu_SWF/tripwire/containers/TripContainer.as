@@ -459,6 +459,11 @@ package tripwire.containers
             });
         }
         
+        public function get bReadyForInput() : Boolean
+        {
+            return this._bReadyForInput;
+        }
+        
         protected function onOpened(param1:TweenEvent = null) : void
         {
             mouseChildren = mouseEnabled = true;

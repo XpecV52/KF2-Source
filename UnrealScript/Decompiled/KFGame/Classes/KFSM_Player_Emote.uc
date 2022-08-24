@@ -196,7 +196,6 @@ function bool GetSMAimRotation(out Rotator AimRot)
 
 defaultproperties
 {
-    FadeOutColor=(B=255,G=255,R=255,A=0)
     FadeInTime=1.5
     FadeOutTime=0.6
     EmoteCooldownTime=6

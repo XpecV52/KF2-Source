@@ -17,8 +17,8 @@ KF-ZedLanding="正在進行：僵屍群登陸"
 KF-TheDescent="正在進行：地下鐵"
 KF-Nuked="正在進行：核電廠"
 KF-TragicKingdom="正在進行：悲慘王國"
-KF-Nightmare="正在進行：夢魘"
-
+KF-Nightmare="正在進行:夢魘"
+KF-KrampusLair="遊玩坎普斯巢穴"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

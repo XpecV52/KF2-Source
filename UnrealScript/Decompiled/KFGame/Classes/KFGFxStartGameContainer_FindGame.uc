@@ -131,12 +131,12 @@ function LocalizeMenu()
 
 defaultproperties
 {
-    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Event",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/",PSNProductId="")
-    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5246",PSNProductId="")
-    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_CommandoChicken_Bundle",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/5286",PSNProductId="")
-    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Emote_02_16",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/5142",PSNProductId="")
-    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_HorzineKey_Slaughterhouse_15",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/5241",PSNProductId="")
-    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_USBKey_Neon_20",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/5195",PSNProductId="")
+    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Christmas_Event",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/",PSNProductId="")
+    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Christmas_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5588",PSNProductId="")
+    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Christmas_PajamasBundle",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/5632",PSNProductId="")
+    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Christmas_WastelandBundle",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/5640",PSNProductId="")
+    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_HorzineKey_Emote_02_16",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/5142",PSNProductId="")
+    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Christmas_HorzineKey_Dragon_17",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/5234",PSNProductId="")
     WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
     WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
     WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")

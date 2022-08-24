@@ -13,6 +13,7 @@ var byte PathTeamNum;
 var byte VolumeCheckType;
 var Volume CheckVolume;
 var repnotify Actor Target;
+var class<KFEmit_Path> PathClass;
 
 replication
 {
@@ -112,8 +113,11 @@ simulated function ShowPath()
         }
         if(bPathFound)
         {
-            Path = Target.Spawn(Class'KFEmit_ScriptedPath', PC,, PC.Pawn.Location);
-            Path.SetDestination(Target.Location + vect(0, 0, 50));            
+            Path = KFEmit_ScriptedPath(Target.Spawn(PathClass, PC,, PC.Pawn.Location));
+            if(Path != none)
+            {
+                Path.SetDestination(Target.Location + vect(0, 0, 50));
+            }            
         }
         else
         {
@@ -126,6 +130,7 @@ simulated function ShowPath()
 
 defaultproperties
 {
+    PathClass=Class'KFEmit_ScriptedPath'
     RemoteRole=ENetRole.ROLE_SimulatedProxy
     CollisionType=ECollisionType.COLLIDE_CustomDefault
     bIgnoreEncroachers=true

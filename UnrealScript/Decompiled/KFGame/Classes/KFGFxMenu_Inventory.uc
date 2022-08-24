@@ -120,6 +120,7 @@ var KFPlayerController KFPC;
 var int ValueToPromptDuplicateRecycle;
 var array<int> SpecialEventItemIDs;
 var array<int> KeylessCrateIDs;
+var AkEvent KillThatDangSoundEvent;
 var KFGFxMenu_Inventory.EInventoryWeaponType_Filter CurrentWeaponTypeFilter;
 var Engine.OnlineSubsystem.ItemRarity CurrentRarityFilter;
 var KFGFxMenu_Inventory.EINventory_Filter CurrentInventoryFilter;
@@ -303,12 +304,8 @@ function InitInventory()
 
 function bool DoesMatchFilter(ItemProperties InventoryItem)
 {
-    if((CurrentRarityFilter != 6) && InventoryItem.Rarity != CurrentRarityFilter)
+    if(((CurrentWeaponTypeFilter != 10) || CurrentPerkIndexFilter != KFPC.PerkList.Length) && InventoryItem.Type != 0)
     {
-        if(((CurrentInventoryFilter == 5) || CurrentInventoryFilter == 3) && CurrentInventoryFilter == (InventoryItem.Type + 1))
-        {
-            return true;
-        }
         return false;
     }
     if((CurrentWeaponTypeFilter != 10) && CurrentWeaponTypeFilter != InventoryItem.WeaponType)
@@ -317,6 +314,14 @@ function bool DoesMatchFilter(ItemProperties InventoryItem)
     }
     if((CurrentPerkIndexFilter != KFPC.PerkList.Length) && !(CurrentPerkIndexFilter == InventoryItem.PerkId) || CurrentPerkIndexFilter == InventoryItem.AltPerkId)
     {
+        return false;
+    }
+    if((CurrentRarityFilter != 6) && InventoryItem.Rarity != CurrentRarityFilter)
+    {
+        if(((CurrentInventoryFilter == 5) || CurrentInventoryFilter == 3) && CurrentInventoryFilter == (InventoryItem.Type + 1))
+        {
+            return true;
+        }
         return false;
     }
     return true;
@@ -366,6 +371,7 @@ function SetMatineeColor(int ItemRarity)
 
 function ClearMatinee()
 {
+    KFPC.PlaySoundBase(KillThatDangSoundEvent);    
     KFPC.ConsoleCommand("CE Abort");
     KFPC.ResetCustomizationCamera();
 }
@@ -375,7 +381,11 @@ function OnReadPlayfabInventoryComplete(bool bSuccess)
     if(bSuccess)
     {
         LocalizeText();
-        InitInventory();
+        InitInventory();        
+    }
+    else
+    {
+        Manager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, Class'KFCommon_LocalizedStrings'.default.OKString);
     }
 }
 
@@ -1206,7 +1216,11 @@ Cosmetic"
     SpecialEventItemIDs(4)=5246
     SpecialEventItemIDs(5)=5245
     SpecialEventItemIDs(6)=5304
+    SpecialEventItemIDs(7)=5587
+    SpecialEventItemIDs(8)=5588
+    SpecialEventItemIDs(9)=5589
     KeylessCrateIDs(0)=5313
+    KillThatDangSoundEvent=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Stop_No_Sound'
     CurrentWeaponTypeFilter=EInventoryWeaponType_Filter.EInvWT_None
     CurrentRarityFilter=ItemRarity.ITR_NONE
 }

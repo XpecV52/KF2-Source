@@ -373,9 +373,9 @@ simulated function StopAllAnimations()
 
 simulated function CheckAndEndActiveEMoteSpecialMove()
 {
-    if(IsDoingSpecialMove() && SpecialMove == 33)
+    if(IsDoingSpecialMove() && SpecialMove == 34)
     {
-        SpecialMoveHandler.EndSpecialMove(33);
+        SpecialMoveHandler.EndSpecialMove(34);
     }
 }
 
@@ -778,6 +778,10 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     if(((InDamage > 0) && Armor > 0) && DamageType.default.bArmorStops)
     {
         ShieldAbsorb(InDamage);
+        if(InDamage <= 0)
+        {
+            AddHitFX(InDamage, InstigatedBy, GetHitZoneIndex(HitInfo.BoneName), HitLocation, Momentum, class<KFDamageType>(DamageType));
+        }
     }
     if((bHasSacrificeSkill && Health >= 5) && (Health - InDamage) < 5)
     {
@@ -1492,11 +1496,12 @@ defaultproperties
         SpecialMoveClasses(26)=none
         SpecialMoveClasses(27)=none
         SpecialMoveClasses(28)=none
-        SpecialMoveClasses(29)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(30)=class'KFSM_DisabledGrappleVictim'
-        SpecialMoveClasses(31)=class'KFSM_HansGrappleVictim'
-        SpecialMoveClasses(32)=none
-        SpecialMoveClasses(33)=class'KFSM_Player_Emote'
+        SpecialMoveClasses(29)=none
+        SpecialMoveClasses(30)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(31)=class'KFSM_DisabledGrappleVictim'
+        SpecialMoveClasses(32)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(33)=none
+        SpecialMoveClasses(34)=class'KFSM_Player_Emote'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Human.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

@@ -64,9 +64,9 @@ function OnStackingAfflictionChanged(byte Id)
     super.OnStackingAfflictionChanged(Id);
     if((bEmpDisrupted && MyKFAIC != none) && IsAliveAndWell())
     {
-        if(IsDoingSpecialMove(12))
+        if(IsDoingSpecialMove(13))
         {
-            EndSpecialMove(12);
+            EndSpecialMove(13);
         }
         FpAIC = KFAIController_ZedFleshpound(MyKFAIC);
         if((FpAIC != none) && FpAIC.RagePlugin != none)
@@ -181,7 +181,7 @@ simulated function SetEnraged(bool bNewEnraged)
     if(Role == ROLE_Authority)
     {
         bIsEnraged = bNewEnraged;
-        if(IsDoingSpecialMove(16))
+        if(IsDoingSpecialMove(17))
         {
             EndSpecialMove();
         }

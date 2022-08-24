@@ -96,6 +96,7 @@ const STATID_ACHIEVE_DescentCollectibles = 4036;
 const STATID_ACHIEVE_NukedCollectibles = 4037;
 const STATID_ACHIEVE_TragicKingdomCollectibles = 4038;
 const STATID_ACHIEVE_NightmareCollectibles = 4039;
+const STATID_ACHIEVE_KrampusCollectibles = 4040;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;

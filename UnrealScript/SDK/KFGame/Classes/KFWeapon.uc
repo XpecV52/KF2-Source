@@ -1104,15 +1104,15 @@ function AttachThirdPersonWeapon(KFPawn P)
 	{
 		P.WeaponAttachmentTemplate = AttachmentArchetype;
 
+		// Assign replicated 3rd person skin (local & server)
+		if (P.IsHumanControlled())
+		{
+			ServerUpdateWeaponSkin(SkinItemId);
+		}
+
 		if ( WorldInfo.NetMode != NM_DedicatedServer )
 		{
 			P.WeaponAttachmentChanged();
-		}
-
-		// Assign replicated 3rd person skin (local & server)
-		if ( P.IsHumanControlled() )
-		{
-			ServerUpdateWeaponSkin(SkinItemId);
 		}
 	}
 }
@@ -2746,7 +2746,7 @@ simulated function AddBlood(float MinAmount, float MaxAmount)
 		BloodParamValue = FMax(BloodParamValue + NewBlood, MinBloodParamValue);
 
 		for( i = 0; i < WeaponMICs.Length; ++i )
-		{	
+		{
 			if( WeaponMICs[i] != none )
 			{
 				WeaponMICs[i].SetScalarParameterValue( BloodParamName, BloodParamValue );
@@ -6462,7 +6462,7 @@ simulated state MeleeAttackBasic
 		NotifyEndState();
 	}
 
-    /** Override BeginFire so that it will enter the firing state right away. 
+    /** Override BeginFire so that it will enter the firing state right away.
      *  @dweiss - Copied from state active in Weapon.uc. Melee weapons were skipping
      *            this code path on servers when quickly activating parry.
      */
@@ -6511,7 +6511,7 @@ simulated state MeleeAttackBasic
 		{
 			CurrentPerk.ModifyMeleeAttackSpeed( ScaledRate, self );
 		}
-		
+
 		return 1.f / ScaledRate;
 	}
 }

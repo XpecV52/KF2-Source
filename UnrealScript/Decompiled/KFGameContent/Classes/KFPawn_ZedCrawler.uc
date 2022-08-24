@@ -127,7 +127,7 @@ function int GetSpotterDialogID()
 {
     local int EmergeType;
 
-    if(IsDoingSpecialMove(10))
+    if(IsDoingSpecialMove(11))
     {
         EmergeType = SpecialMoveFlags & 15;
         switch(EmergeType)

@@ -1922,19 +1922,19 @@ simulated function KFPawn.ESpecialMove GetVersusZedMoveType(KFPawn_Monster P, by
     switch(FireModeNum)
     {
         case 0:
-            return 23;
-        case 5:
             return 24;
-        case 3:
+        case 5:
             return 25;
-        case 1:
+        case 3:
             return 26;
-        case 8:
+        case 1:
             return 27;
-        case 4:
+        case 8:
             return 28;
+        case 4:
+            return 29;
         case 2:
-            return 12;
+            return 13;
         default:
             return 0;
             break;
@@ -1954,7 +1954,7 @@ simulated function KFPawn.ESpecialMove GetVersusZedMoveTypeGamepad(KFPawn_Monste
     {
         if(FireModeNum == 7)
         {
-            return 12;
+            return 13;
         }
     }
     switch(FireModeNum)
@@ -2035,7 +2035,7 @@ function JumpVersus()
             KFPM = KFPawn_Monster(Outer.Pawn);
             if(KFPM != none)
             {
-                if(KFPM.GetSpecialMoveCooldownTimeRemaining(11) > 0)
+                if(KFPM.GetSpecialMoveCooldownTimeRemaining(12) > 0)
                 {
                     return;
                 }

@@ -1,7 +1,7 @@
 //=============================================================================
 // KFCommon_LocalizedStrings
 //=============================================================================
-// This class is made to hold common localized strings so that they are not 
+// This class is made to hold common localized strings so that they are not
 // duplicated across mutiple classes
 //=============================================================================
 // Killing Floor 2
@@ -10,6 +10,8 @@
 //=============================================================================
 
 class KFCommon_LocalizedStrings extends Object;
+
+var localized string FailedToReachInventoryServerString;
 
 var localized array<string> DifficultyStrings;
 var localized array<string> LengthStrings;
@@ -28,6 +30,7 @@ var localized string PerkUpdateNoticeString;
 var localized string NoticeString;
 var localized string AcceptString;
 var localized string DeclineString;
+var localized string BonusDoshString;
 
 var localized string YesString;
 var localized string NoString;
@@ -72,6 +75,17 @@ var localized string MixerZedTimeString;
 var localized string MixerRageZedsString;
 var localized string MixerPukeString;
 var localized string MixerSpawnedFPString;
+var localized string MixerSpawnedScrakeString;
+var localized string MixerSpawnedMiniFPString;
+
+var localized string DiscordMenuPresenceString;
+var localized string DiscordPartyPresenceString;
+var localized string DiscordNetworkMatchString;
+var localized string DiscordSoloMatchString;
+var localized string DiscordMatchLobbyString;
+var localized string DiscordTraderTimeString;
+var localized string DiscordBossWaveString;
+var localized string DiscordWaveString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -133,7 +147,7 @@ static function array<string> GetPermissionStringsArray(bool bConsoleBuild)
 	{
 		return default.PermissionStrings;
 	}
-	
+
 }
 
 static function array<string> GetGameModeStringsArray()
@@ -147,7 +161,7 @@ static function string GetGameModeString( int GameModeIndex )
 	{
 		return default.NoPreferenceString;
 	}
-	
+
 	if( 0 < default.ModeStrings.length && GameModeIndex < default.ModeStrings.length )
 	{
 		return default.ModeStrings[GameModeIndex];
@@ -175,6 +189,7 @@ static function string GetFriendlyMapName(string MapName)
 
 defaultproperties
 {
+   FailedToReachInventoryServerString="Failed to reach item server.  Inventory will not be available."
    DifficultyStrings(0)="Normal"
    DifficultyStrings(1)="Hard"
    DifficultyStrings(2)="Suicidal"
@@ -204,6 +219,7 @@ defaultproperties
    NoticeString="NOTICE!"
    AcceptString="Accept"
    DeclineString="Decline"
+   BonusDoshString="BONUS DOSH"
    YesString="YES"
    NoString="NO"
    DisbandPartyString="DISBAND PARTY"
@@ -253,6 +269,16 @@ defaultproperties
    MixerRageZedsString=", a Mixer viewer, has enraged nearby Zeds!"
    MixerPukeString=", a Mixer viewer, has puked on you!"
    MixerSpawnedFPString=", a Mixer viewer, has spawned a Fleshpound!"
+   MixerSpawnedScrakeString=", a Mixer viewer, has spawned a Scrake!"
+   MixerSpawnedMiniFPString=", a Mixer viewer, has spawned some Quarter Pounds!"
+   DiscordMenuPresenceString="In Main Menu"
+   DiscordPartyPresenceString="Forming Party"
+   DiscordNetworkMatchString="Network Match"
+   DiscordSoloMatchString="Solo Match"
+   DiscordMatchLobbyString=": Match Lobby"
+   DiscordTraderTimeString=": Trader Time"
+   DiscordBossWaveString=": Boss Wave"
+   DiscordWaveString=": Wave "
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

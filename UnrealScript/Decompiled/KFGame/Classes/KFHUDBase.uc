@@ -435,6 +435,8 @@ function DrawHUD()
     local Rotator ViewRotation;
     local array<PlayerReplicationInfo> VisibleHumanPlayers;
     local array<sHiddenHumanPawnInfo> HiddenHumanPlayers;
+    local float ThisDot;
+    local Vector TargetLocation;
 
     if(((KFPlayerOwner != none) && KFPlayerOwner.Pawn != none) && KFPlayerOwner.Pawn.Weapon != none)
     {
@@ -491,7 +493,12 @@ function DrawHUD()
             CheckAndDrawRemainingZedIcons();
             if(KFGRI.CurrentObjective != none)
             {
-                DrawObjectiveHUD();
+                TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation();
+                ThisDot = Normal((TargetLocation + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) Dot ViewVector;
+                if(ThisDot > float(0))
+                {
+                    DrawObjectiveHUD();
+                }
             }
         }
         Canvas.EnableStencilTest(false);
@@ -585,7 +592,7 @@ simulated function bool DrawObjectiveHUD()
     }
     BarLength = FMin(PlayerStatusBarLengthMax * (float(Canvas.SizeX) / 1024), PlayerStatusBarLengthMax);
     BarHeight = FMin(8 * (float(Canvas.SizeX) / 1024), 8);
-    TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation() + (vect(0, 0, 86) * vect(0, 0, 2.2));
+    TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation();
     ScreenPos = Canvas.Project(TargetLocation);
     if((((ScreenPos.X < float(0)) || ScreenPos.X > float(Canvas.SizeX)) || ScreenPos.Y < float(0)) || ScreenPos.Y > float(Canvas.SizeY))
     {
@@ -724,19 +731,16 @@ function CheckAndDrawRemainingZedIcons()
     ViewDir = vector(ViewRotation);
     foreach WorldInfo.AllPawns(Class'Pawn', P)
     {
-        if(((((P.Mesh.SkeletalMesh == none) || !P.Mesh.bAnimTreeInitialised) || P.GetTeamNum() == PlayerOwner.GetTeamNum()) || !P.IsAliveAndWell()) || (WorldInfo.TimeSeconds - P.Mesh.LastRenderTime) < 0.2)
+        if((((P.Mesh.SkeletalMesh == none) || !P.Mesh.bAnimTreeInitialised) || P.GetTeamNum() == PlayerOwner.GetTeamNum()) || !P.IsAliveAndWell())
         {
             continue;            
         }
         PawnLocation = P.Mesh.GetPosition();
-        if((Normal((PawnLocation + (P.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) Dot ViewDir) > 0)
-        {
-            DrawZedIcon(P, PawnLocation);
-        }        
+        DrawZedIcon(P, PawnLocation, Normal((PawnLocation + (P.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) Dot ViewDir);        
     }    
 }
 
-function DrawZedIcon(Pawn ZedPawn, Vector PawnLocation)
+function DrawZedIcon(Pawn ZedPawn, Vector PawnLocation, float NormalizedAngle)
 {
     local Vector ScreenPos, TargetLocation;
     local float IconSizeMult;
@@ -746,13 +750,26 @@ function DrawZedIcon(Pawn ZedPawn, Vector PawnLocation)
     IconSizeMult = (PlayerStatusIconSize * FriendlyHudScale) * 0.5;
     ScreenPos.X -= IconSizeMult;
     ScreenPos.Y -= IconSizeMult;
-    if((((ScreenPos.X < float(0)) || ScreenPos.X > float(Canvas.SizeX)) || ScreenPos.Y < float(0)) || ScreenPos.Y > float(Canvas.SizeY))
+    if(NormalizedAngle > float(0))
     {
-        return;
+        ScreenPos.X = FClamp(ScreenPos.X, PlayerStatusIconSize * FriendlyHudScale, float(Canvas.SizeX) - (PlayerStatusIconSize * FriendlyHudScale));        
+    }
+    else
+    {
+        ScreenPos = GetClampedScreenPosition(ScreenPos);
     }
     Canvas.SetDrawColorStruct(ZedIconColor);
     Canvas.SetPos(ScreenPos.X, ScreenPos.Y);
     Canvas.DrawTile(GenericZedIconTexture, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 128, 128);
+}
+
+function Vector GetClampedScreenPosition(Vector OldScreenPosition)
+{
+    local Vector ScreenPos;
+
+    ScreenPos.X = ((OldScreenPosition.X < float(Canvas.SizeX / 2)) ? float(Canvas.SizeX) - (PlayerStatusIconSize * FriendlyHudScale) : PlayerStatusIconSize * FriendlyHudScale);
+    ScreenPos.Y = FClamp(OldScreenPosition.Y, float(Canvas.SizeX) * 0.1, float(Canvas.SizeX) * 0.9);
+    return ScreenPos;
 }
 
 event OnLostFocusPause(bool bEnable)

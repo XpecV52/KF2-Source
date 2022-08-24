@@ -39,6 +39,76 @@ enum EForcedMusicType
     EFM_MAX
 };
 
+struct StatAdjustments
+{
+    /** Individual per-class adjustments to make after a zed spawns //Class to adjust */
+    var() class<KFPawn_Monster> ClassToAdjust;
+    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
+ */
+    var() float HealthScale;
+    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
+//Scale for gore health of the head hit zone
+ */
+    var() float HeadHealthScale;
+    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
+//Scale for gore health of the head hit zone
+//Scale for shield for zeds that support this
+ */
+    var() float ShieldScale;
+    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
+//Scale for gore health of the head hit zone
+//Scale for shield for zeds that support this
+//Start enraged
+ */
+    var() bool bStartEnraged;
+    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
+//Scale for gore health of the head hit zone
+//Scale for shield for zeds that support this
+//Start enraged
+//Whether or not to explode on death
+ */
+    var() bool bExplosiveDeath;
+    var KFGameExplosion ExplosionTemplate;
+    var class<KFPawn> ExplosionIgnoreClass;
+    var array<float> BeefcakeScaleIncreases;
+    var array<float> BeefcakeHealthIncreases;
+    /** Max Beefcake Scale - This should probably never go > 1.5 for collision reasons */
+    var() float MaxBeefcake;
+    /** Max beefcake health scale - This can scale forever really since it's not tied to visual scale */
+    var() float MaxBeefcakeHealth;
+    /** Scale to all damage that has this zed as an instigator */
+    var() float DamageDealtScale;
+    /** Scale to all damage that has this zed as a victim */
+    var() float DamageTakenScale;
+    /** Override of the global deflation rate to define a different per-zed rate, LERP between X and Y by player count */
+    var() Vector2D OverrideDeflationRate;
+    /** Additional sub wave to use when one of this type of zed spawns */
+    var() KFAIWaveInfo AdditionalSubSpawns;
+    /** 1 to max player count range of how many AI should spawn during the sub wave */
+    var() Vector2D AdditionalSubSpawnCount;
+
+    structdefaultproperties
+    {
+        ClassToAdjust=none
+        HealthScale=1
+        HeadHealthScale=1
+        ShieldScale=1
+        bStartEnraged=false
+        bExplosiveDeath=false
+        ExplosionTemplate=none
+        ExplosionIgnoreClass=none
+        BeefcakeScaleIncreases=none
+        BeefcakeHealthIncreases=none
+        MaxBeefcake=1.5
+        MaxBeefcakeHealth=1.5
+        DamageDealtScale=1
+        DamageTakenScale=1
+        OverrideDeflationRate=(X=0,Y=0)
+        AdditionalSubSpawns=none
+        AdditionalSubSpawnCount=(X=1,Y=1)
+    }
+};
+
 struct native sGameMode
 {
     var string FriendlyName;
@@ -56,6 +126,16 @@ struct native sGameMode
         DifficultyLevels=0
         Lengths=0
         LocalizeID=0
+    }
+};
+
+struct native LateArrivalStart
+{
+    var() array<int> StartingDosh;
+
+    structdefaultproperties
+    {
+        StartingDosh=none
     }
 };
 
@@ -114,6 +194,7 @@ var globalconfig bool bDisableTeamCollision;
 var globalconfig bool bEnableDeadToVOIP;
 var globalconfig bool bDisablePublicVOIPChannel;
 var const bool bCanPerkAlwaysChange;
+var bool bGoToBossCameraOnDeath;
 var bool bZedTimeBlendingOut;
 var config bool bEnableGameAnalytics;
 var config bool bRecordGameStatsFile;
@@ -171,6 +252,7 @@ var int MaxGameDifficulty;
 var int MinGameDifficulty;
 var array<float> GameLengthDoshScale;
 var array< class<KFAISpawnManager> > SpawnManagerClasses;
+var array<LateArrivalStart> LateArrivalStarts;
 var KFGameConductor GameConductor;
 var class<KFGameConductor> GameConductorClass;
 var KFAIDirector AIDirector;
@@ -179,8 +261,10 @@ var int NumAISpawnsQueued;
 var private const int NumAlwaysRelevantZeds;
 var KFAISpawnManager SpawnManager;
 var protected const array< class<KFPawn_Monster> > AIClassList;
+var protected const array< class<KFPawn_Monster> > NonSpawnAIClassList;
 var protected const array< class<KFPawn_Monster> > AIBossClassList;
 var protected const array< class<KFPawn_Monster> > AITestBossClassList;
+var protected int BossIndex;
 var() float ZedTimeSlomoScale;
 /** How long to blend out zed time dilation for */
 var() float ZedTimeBlendOutTime;
@@ -277,7 +361,7 @@ static function string StripPlayOnPrefix(string MapName)
     return MapName;
 }
 
-static function PreloadContentClasses()
+static function PreloadGlobalContentClasses()
 {
     local class<KFPawn_Monster> PawnClass;
 
@@ -286,11 +370,7 @@ static function PreloadContentClasses()
     {
         PawnClass.static.PreloadContent();        
     }    
-    foreach default.AIBossClassList(PawnClass,)
-    {
-        PawnClass.static.PreloadContent();        
-    }    
-    foreach default.AITestBossClassList(PawnClass,)
+    foreach default.NonSpawnAIClassList(PawnClass,)
     {
         PawnClass.static.PreloadContent();        
     }    
@@ -324,6 +404,25 @@ static function int GetLocalizeIDFromFriendlyName(string FriendlyNameString)
 static function bool IsGameModeSoloPlayAllowed(int GameModeNum)
 {
     return default.GameModes[GameModeNum].bSoloPlaySupported;
+}
+
+static function int GetGameModeIndexFromName(string FriendlyName)
+{
+    local int Index;
+
+    Index = 0;
+    J0x0B:
+
+    if(Index < default.GameModes.Length)
+    {
+        if(default.GameModes[Index].FriendlyName == FriendlyName)
+        {
+            return Index;
+        }
+        ++ Index;
+        goto J0x0B;
+    }
+    return -1;
 }
 
 function string GetFriendlyNameForCurrentGameMode()
@@ -669,6 +768,20 @@ function InitGRIVariables()
     MyKFGRI.GameDifficulty = byte(GameDifficulty);
     MyKFGRI.GameLength = byte(GameLength);
     MyKFGRI.bVersusGame = bIsVersusGame;
+    MyKFGRI.MaxHumanCount = MaxPlayers;
+    SetBossIndex();
+}
+
+// Export UKFGameInfo::execUseSpecificBossIndex(FFrame&, void* const)
+native function bool UseSpecificBossIndex(out int ForcedIndex);
+
+function SetBossIndex()
+{
+    if(!UseSpecificBossIndex(BossIndex))
+    {
+        BossIndex = Rand(default.AIBossClassList.Length);
+    }
+    MyKFGRI.CacheSelectedBoss(BossIndex);
 }
 
 function bool AllowCheats(PlayerController P)
@@ -1050,7 +1163,20 @@ function class<KFPawn_Monster> GetAISpawnType(KFAISpawnManager.EAIType AIType)
 
 function class<KFPawn_Monster> GetBossAISpawnType()
 {
-    return AIBossClassList[Rand(AIBossClassList.Length)];
+    if((BossIndex < 0) || BossIndex >= AIBossClassList.Length)
+    {
+        return none;
+    }
+    return AIBossClassList[BossIndex];
+}
+
+static function class<KFPawn_Monster> GetSpecificBossClass(int Index)
+{
+    if((Index < 0) || Index >= default.AIBossClassList.Length)
+    {
+        return none;
+    }
+    return default.AIBossClassList[Index];
 }
 
 event PrePossessAdjustments(KFPawn NewSpawn);
@@ -1906,11 +2032,6 @@ simulated function ForcePatriarchMusicTrack()
     MyKFGRI.ForceNewMusicTrack(default.ForcedMusicTracks[3]);
 }
 
-simulated function ForceMatriarchMusicTrack()
-{
-    MyKFGRI.ForceNewMusicTrack(default.ForcedMusicTracks[4]);
-}
-
 function string GetNextMap()
 {
     local array<string> MapList;
@@ -2764,6 +2885,7 @@ defaultproperties
     bEnableMapObjectives=true
     bEnableDeadToVOIP=true
     bCanPerkAlwaysChange=true
+    bGoToBossCameraOnDeath=true
     bUseMapList=true
     bLogReservations=true
     bLogGroupTeamBalance=true
@@ -2799,9 +2921,10 @@ defaultproperties
     GameLengthDoshScale(2)=0.8
     GameConductorClass=Class'KFGameConductor'
     NumAlwaysRelevantZeds=3
+    BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

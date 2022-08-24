@@ -84,9 +84,14 @@ struct ImpactSoundCoolDownInfo
     var EHitZoneBodyPart    Limb;
     var name                BoneName;
     var float               LastImpactSoundTime;
+
+	structdefaultproperties
+	{
+		LastImpactSoundTime=0.f
+	}
 };
 
-var array< ImpactSoundCoolDownInfo > ImpactSoundCoolDowns;
+var transient array< ImpactSoundCoolDownInfo > ImpactSoundCoolDowns;
 
 function PlayJumpSound(Pawn P)
 {
@@ -238,6 +243,7 @@ function PlayRigidBodyCollisionSound( Pawn P, vector ImpactLoc )
     local int HitZoneIndex, ImpactLimbIndex;
 
     CollidingBoneName = P.Mesh.FindClosestBone( ImpactLoc );
+
 	HitZoneIndex = KFPawn( P ).HitZones.Find( 'BoneName', CollidingBoneName );
 	if( HitZoneIndex != INDEX_NONE )
 	{

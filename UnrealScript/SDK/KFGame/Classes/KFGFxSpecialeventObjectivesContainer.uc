@@ -59,6 +59,9 @@ function bool PopulateData()
     local GFxObject DataObject;
     local GFxObject DataProvider; //array containing the data objects 
     local int i;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(GetPC());
 
     if(HasObjectiveStatusChanged())
     {
@@ -71,7 +74,8 @@ function bool PopulateData()
             DataObject.SetString("label", default.SpecialEventObjectiveInfoList[i].TitleString);
             DataObject.SetString("description", default.SpecialEventObjectiveInfoList[i].DescriptionString);
             DataObject.SetString("iconPath", "img://"$default.ObjectiveIconURLs[i]);
-            DataObject.SetBool("complete", ObjectiveStatusList[i]);            
+            DataObject.SetBool("complete", ObjectiveStatusList[i]);     
+			DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
             DataObject.SetBool("showProgres", false);
             DataObject.SetFloat("progress", 0);
             DataObject.SetString("textValue", "");   
@@ -97,9 +101,9 @@ function bool HasObjectiveStatusChanged()
     local int i;
     local bool bHasChanged;
     local bool bTempStatus;
-    local KFPlayerController KFPC;
+	local KFPlayerController KFPC;
 
-    KFPC = KFPlayerController(GetPC());
+	KFPC = KFPlayerController(GetPC());
 
     if(SpecialEventObjectiveInfoList.length != ObjectiveStatusList.length)
     {

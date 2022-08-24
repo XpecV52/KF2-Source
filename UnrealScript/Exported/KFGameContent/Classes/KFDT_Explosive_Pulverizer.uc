@@ -17,6 +17,7 @@ defaultproperties
    StumblePower=340.000000
    MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
+   ModifierPerkList(1)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=500.000000
    KDeathUpKick=1000.000000
    RadialDamageImpulse=3000.000000

@@ -124,6 +124,7 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
     local rotator NewRotation;
     local Vector Offset;
     local bool bWantsClientSideDudHit;
+	local TraceHitInfo HitInfo;
 
     // Need to do client side dud hits if this is a client
     if( Instigator != none && Instigator.Role < ROLE_Authority )
@@ -184,6 +185,13 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
 			SetRotation(NewRotation);
 			Offset.Z = LandedTranslationOffset.X;
 			SetLocation(Location + Offset);
+		}
+
+		if( !Wall.bStatic && Wall.bCanBeDamaged && (DamageRadius == 0 || bDamageDestructiblesOnTouch) )
+		{
+			HitInfo.HitComponent = WallComp;
+			HitInfo.Item = INDEX_None;
+			Wall.TakeDamage( Damage, InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
 		}
     }
 
@@ -423,5 +431,7 @@ defaultproperties
 	AlwaysRelevantDistanceSquared=6250000 // 25m
 
 	bCollideWithTeammates=false
+
+	bDamageDestructiblesOnTouch=true
 }
 

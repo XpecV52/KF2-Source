@@ -21,7 +21,7 @@ var localized string DoshVaultString;
 var localized string YourCratesString;
 var localized string OpenCratesString;
 var localized string CrateUnlockedString;
-var localized string DelayedCrateString;  
+var localized string DelayedCrateString;
 
 var bool bSeenAllDoshAnimation;
 
@@ -58,7 +58,7 @@ function InitStart()
 		KFEntry.InitVault();
 		if(KFPC.GetLastSeenDoshCount() == KFPC.GetTotalDoshCount())
 		{
-			DelayedInit();	
+			DelayedInit();
 		}
 		else
 		{
@@ -95,6 +95,8 @@ function OnOpen()
 		KFPC.TriggerGlobalEventClass(class'KFSeqEvent_DoshVault', KFPC, DVE_Idle);
 	}
 
+	KFPC.VerifyDoshVaultCrates();
+
     if(!bSeenAllDoshAnimation)
     {
     	InitializeMenu(Manager);
@@ -103,9 +105,9 @@ function OnOpen()
 
 function OnClose()
 {
-	if ( class'WorldInfo'.static.IsMenuLevel() )
+	if (class'WorldInfo'.static.IsMenuLevel())
 	{
-		Manager.ManagerObject.SetBool("backgroundVisible", false);
+		Manager.ManagerObject.SetBool("backgroundVisible", true);
 	}
 
     AbortSquence();
@@ -134,7 +136,7 @@ function LocalizeContainer()
 	LocalizedObject.SetString("crateUnlocked", 	CrateUnlockedString);
 	LocalizedObject.SetString("iconLocation", 	"img://"$GetCrateIcon());
 	LocalizedObject.SetString("crateDelayed", 	DelayedCrateString);
-	
+
 
 	SetObject("localizedText", LocalizedObject);
 }
@@ -201,6 +203,19 @@ function SendDoshInfo(int OldDosh, int NewDosh, int TierBase, int TierLength, in
 {
 	local GFxObject DataObject;
 
+	if (OldDosh == INDEX_NONE || NewDosh == INDEX_NONE)
+	{
+		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, class'KFCommon_LocalizedStrings'.default.NoticeString, class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, class'KFCommon_LocalizedStrings'.default.OKString);
+		`log("something isn't right.  Connection issue may be present.  To prevent angry Reddit mobs, just don't animate");
+		return;
+	}
+
+	if (NewDosh < OldDosh)
+	{
+		NewDosh = OldDosh;
+		//Out of sync saves.  Players still get their crates.
+	}
+
 	//start particles if not the same
 	if(OldDosh != NewDosh)
 	{
@@ -238,6 +253,15 @@ function Callback_UpdateDosh(int NewValue)
 
 function Callback_FinalAnimationComplete()
 {
+	local KFGameInfo_Entry KFGIE;
+
+	KFGIE = KFGameInfo_Entry(GetPC().WorldInfo.Game);
+
+	if (KFGIE != none)
+	{
+		KFGIE.FinalAnimationPlayed(KFPC);
+	}
+
 	KFPC.TriggerGlobalEventClass(class'KFSeqEvent_DoshVault', KFPC, DVE_FillComplete);
 
 	if(KFPC != none)

@@ -112,7 +112,11 @@ function OnReadPlayfabInventoryComplete(bool bSuccess)
 {
     if(bSuccess)
     {
-        RefreshItemList();
+        RefreshItemList();        
+    }
+    else
+    {
+        Manager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, Class'KFCommon_LocalizedStrings'.default.OKString);
     }
 }
 

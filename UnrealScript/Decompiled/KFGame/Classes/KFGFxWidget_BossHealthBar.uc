@@ -7,6 +7,18 @@
  *******************************************************************************/
 class KFGFxWidget_BossHealthBar extends GFxObject within GFxMoviePlayer;
 
+struct SCompressedArmorInfo
+{
+    var float Percentage;
+    var Texture2D IconTexture;
+
+    structdefaultproperties
+    {
+        Percentage=0
+        IconTexture=none
+    }
+};
+
 var GFxObject bossNameTextField;
 var KFInterface_MonsterBoss BossPawn;
 var float UpdateTickTime;
@@ -106,6 +118,30 @@ function UpdateBossBattlePhase(int BattlePhase)
 function UpdateBossShield(float NewShieldPercect)
 {
     SetFloat("currentShieldPercecntValue", NewShieldPercect);
+}
+
+function UpdateArmorUI(const out SCompressedArmorInfo ArmorValues[3])
+{
+    local int I;
+    local GFxObject DataProvider, DataObject;
+
+    DataProvider = Outer.CreateArray();
+    I = 0;
+    J0x34:
+
+    if(I < 3)
+    {
+        DataObject = Outer.CreateObject("Object");
+        DataObject.SetFloat("armorPercent", ArmorValues[I].Percentage);
+        if(ArmorValues[I].IconTexture != none)
+        {
+            DataObject.SetString("iconSource", "img://" $ PathName(ArmorValues[I].IconTexture));
+        }
+        DataProvider.SetElementObject(I, DataObject);
+        ++ I;
+        goto J0x34;
+    }
+    SetObject("armorData", DataProvider);
 }
 
 defaultproperties

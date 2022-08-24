@@ -619,6 +619,8 @@ function DrawHUD()
 	local rotator ViewRotation;
     local array<PlayerReplicationInfo> VisibleHumanPlayers;
     local array<sHiddenHumanPawnInfo> HiddenHumanPlayers;
+	local float ThisDot;
+	local vector TargetLocation;
 
     // Draw weapon HUD underneath everything else
     if( KFPlayerOwner != none && KFPlayerOwner.Pawn != none && KFPlayerOwner.Pawn.Weapon != none )
@@ -691,10 +693,15 @@ function DrawHUD()
 			// Draw last remaining zeds
 			CheckAndDrawRemainingZedIcons();
 
-			//Draw our current objective's location
-			if(KFGRI.CurrentObjective != none)
+			//Draw our current objective location
+			if(KFGRI.CurrentObjective != none )
 			{
-				DrawObjectiveHUD();
+				TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation();
+				ThisDot = Normal((TargetLocation + (class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) dot ViewVector;
+				if (ThisDot > 0)
+				{
+					DrawObjectiveHUD();
+				}
 			}
 		}
 
@@ -730,7 +737,6 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 	BarHeight = FMin(8.f * (float(Canvas.SizeX) / 1024.f), 8.f) * FriendlyHudScale;
 
 	TargetLocation = KFPH.Mesh.GetPosition() + ( KFPH.CylinderComponent.CollisionHeight * vect(0,0,2.2f) );
-
 	ScreenPos = Canvas.Project( TargetLocation );
 	if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
 	{
@@ -811,30 +817,28 @@ simulated function bool DrawObjectiveHUD()
 
 	BarLength = FMin(PlayerStatusBarLengthMax * (float(Canvas.SizeX) / 1024.f), PlayerStatusBarLengthMax);
 	BarHeight = FMin(8.f * (float(Canvas.SizeX) / 1024.f), 8.f);
-
-	TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation() + ( vect(0, 0, 86.0f) * vect(0,0,2.2f) );
-
+	TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation();
 	ScreenPos = Canvas.Project( TargetLocation );
 	if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
 	{
+		//if it is off screen, do not render
 		return false;
 	}
 
-	//Draw health bar
-    if (KFGRI.ObjectiveInterface.UsesProgress())
-    {
-        Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
-        DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, HealthColor);
-    }	
+	//Draw progress bar
+	if (KFGRI.ObjectiveInterface.UsesProgress())
+	{
+		Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
+		DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, HealthColor);
+	}	
 
-	//draw perk icon
-    if (KFGRI.ObjectiveInterface.GetIcon() != none)
-    {
-        Canvas.SetDrawColorStruct(PlayerBarIconColor);
-        Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
-        Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize, PlayerStatusIconSize, 0, 0, 256, 256);
-    }	
-
+	//draw objective icon
+	if (KFGRI.ObjectiveInterface.GetIcon() != none)
+	{
+		Canvas.SetDrawColorStruct(PlayerBarIconColor);
+		Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
+		Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize, PlayerStatusIconSize, 0, 0, 256, 256);
+	}	
 	return true;
 }
 
@@ -985,6 +989,7 @@ function DrawHiddenHumanPlayerIcon( PlayerReplicationInfo PRI, vector IconWorldL
     Canvas.DrawTile( PlayerIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
 }
 
+//These will be clamped
 /** Draws icons for the last few remaining zeds */
 function CheckAndDrawRemainingZedIcons()
 {
@@ -1010,22 +1015,20 @@ function CheckAndDrawRemainingZedIcons()
 		if( P.Mesh.SkeletalMesh == none
 			|| !P.Mesh.bAnimTreeInitialised
 			|| P.GetTeamNum() == PlayerOwner.GetTeamNum()
-			|| !P.IsAliveAndWell()
-			|| (WorldInfo.TimeSeconds - P.Mesh.LastRenderTime) < 0.2f )
+			|| !P.IsAliveAndWell())
+			//|| `TimeSince(P.Mesh.LastRenderTime) < 0.2f )
 		{
 			continue;
 		}
 
 		PawnLocation = P.Mesh.GetPosition();
-		if( Normal((PawnLocation + (P.CylinderComponent.CollisionHeight * vect(0,0,1))) - ViewLocation) dot ViewDir > 0.f )
-		{
-			DrawZedIcon( P, PawnLocation );
-		}
+		
+		DrawZedIcon( P, PawnLocation, Normal((PawnLocation + (P.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) dot ViewDir);
 	}
 }
 
 /** Draws a zed icon */
-function DrawZedIcon( Pawn ZedPawn, vector PawnLocation )
+function DrawZedIcon( Pawn ZedPawn, vector PawnLocation, float NormalizedAngle )
 {
     local vector ScreenPos, TargetLocation;
     local float IconSizeMult;
@@ -1036,16 +1039,29 @@ function DrawZedIcon( Pawn ZedPawn, vector PawnLocation )
     ScreenPos.X -= IconSizeMult;
     ScreenPos.Y -= IconSizeMult;
 
-    if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || 
-        ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
-    {
-        return;
-    }
+	if (NormalizedAngle > 0)
+	{
+		ScreenPos.x = FClamp(ScreenPos.x, PlayerStatusIconSize * FriendlyHudScale, Canvas.SizeX - (PlayerStatusIconSize * FriendlyHudScale));
+	}
+	else
+	{
+		ScreenPos = GetClampedScreenPosition(ScreenPos);
+	}
 
      // Draw boss icon
     Canvas.SetDrawColorStruct( ZedIconColor );
     Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
     Canvas.DrawTile( GenericZedIconTexture, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 128, 128 );
+}
+
+function vector GetClampedScreenPosition(vector OldScreenPosition)
+{
+	local vector ScreenPos;
+		
+	ScreenPos.x = OldScreenPosition.x < (Canvas.SizeX / 2) ? Canvas.SizeX - (PlayerStatusIconSize * FriendlyHudScale) : PlayerStatusIconSize * FriendlyHudScale; //flipped do to being behind you
+	ScreenPos.y = FClamp(OldScreenPosition.y, Canvas.SizeX * 0.1f, Canvas.SizeX * 0.9f);
+
+	return ScreenPos;
 }
 
 /*********************************************************************************************

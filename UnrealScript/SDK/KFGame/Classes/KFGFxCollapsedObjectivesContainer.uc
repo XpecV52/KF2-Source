@@ -40,6 +40,10 @@ function PopulateData()
 		if(DataObject != none)
 		{
 			class'KFGFxDailyObjectivesContainer'.static.MakeDailyDataObject(KFPC.GetDailyObjective(i), i, KFPC, DataObject);
+			if (DataObject == none)
+			{
+				continue;
+			}
 			DataProvider.SetElementObject(ItemIndex, DataObject);
 		}
 		

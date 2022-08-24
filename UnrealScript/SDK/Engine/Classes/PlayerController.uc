@@ -2633,6 +2633,8 @@ function CleanupPawn()
 	}
 }
 
+event Exit(){}
+
 event Destroyed()
 {
 	local int EffectIdx;
@@ -6846,8 +6848,8 @@ unreliable server function ServerCauseEvent(Name EventName)
 	local int Idx;
 	local bool bFoundEvt;
 
-//@TWI_BEGIN - Don't allow ce benchmark on shipping/final release builds
-`if(`isdefined(ShippingPC) || `isdefined(FINAL_RELEASE))
+//@TWI_BEGIN - Don't allow ce benchmark on shipping builds
+`if(`isdefined(ShippingPC))
 	if (EventName == 'Benchmark')
 	{
 		return;

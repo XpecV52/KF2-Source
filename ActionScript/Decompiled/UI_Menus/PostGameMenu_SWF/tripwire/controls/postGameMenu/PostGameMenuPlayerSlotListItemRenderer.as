@@ -12,6 +12,8 @@ package tripwire.controls.postGameMenu
         
         public var voipIcon:MovieClip;
         
+        public var defaultAvatar:MovieClip;
+        
         public var avatarLoader:TripUILoader;
         
         public function PostGameMenuPlayerSlotListItemRenderer()
@@ -48,7 +50,15 @@ package tripwire.controls.postGameMenu
                 super.data = param1;
                 this.bTalking = !!param1.bTalking ? Boolean(param1.bTalking) : false;
                 visible = true;
-                this.avatarLoader.source = param1.avatar;
+                if(param1.avatar != "" && param1.avatar != "img://")
+                {
+                    this.avatarLoader.source = param1.avatar;
+                    this.defaultAvatar.visible = false;
+                }
+                else
+                {
+                    this.defaultAvatar.visible = true;
+                }
             }
             else
             {

@@ -135,8 +135,6 @@ function UpdateBurnedMatParam(float DeltaTime)
 
 function SetMaterialParameter(float ParamValue)
 {
-    local MaterialInstanceConstant MIC;
-
     if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
         if(ParamValue > 0.1)
@@ -153,10 +151,10 @@ function SetMaterialParameter(float ParamValue)
                 SetMicrowaveSteamEffects(false);
             }
         }
-        foreach PawnOwner.CharacterMICs(MIC,)
+        if(MonsterOwner != none)
         {
-            MIC.SetScalarParameterValue('Scalar_Inflate', ((!PawnOwner.bIsGoreMesh) ? ParamValue * 2 : 0));            
-        }        
+            MonsterOwner.UpdateVisualInflation(ParamValue * 2);
+        }
     }
 }
 

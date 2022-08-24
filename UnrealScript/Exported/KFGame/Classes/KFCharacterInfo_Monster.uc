@@ -40,6 +40,9 @@ var(ThirdPerson) array<SkeletalMesh> PACMeshList;
 /** List of possible randomized colors to apply to zed */
 var(ThirdPerson) array<ZedColorMod> RandomizedColors;
 
+/** List of additional particle systems that require unique effects per-event */
+var(Effects) array<ParticleSystem> ExtraVFX;
+
 struct native StaticAttachments
 {
     var() StaticMesh StaticAttachment;
@@ -204,7 +207,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
                 PACAttachment.SetLightingChannels(KFP.PawnLightingChannel);
                 PACAttachment.CreateAndSetMaterialInstanceConstant(0);
                 KFP.AttachComponent(PACAttachment);
-            }            
+            }
         }
 
         for (i = 0; i < StaticAttachList.Length; ++i)
@@ -251,7 +254,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
                 KFP.CharacterMICs[i].SetVectorParameterValue('vector_TrimColor', AppliedColor);
             }
         }
-    }    
+    }
 }
 
 defaultproperties

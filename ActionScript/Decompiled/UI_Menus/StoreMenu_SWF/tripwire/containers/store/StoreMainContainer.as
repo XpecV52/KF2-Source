@@ -52,6 +52,8 @@ package tripwire.containers.store
         
         public var ListBG:MovieClip;
         
+        public var thankYouTextfield:TextField;
+        
         public var pageHeaderText:TextField;
         
         private var _storeListSelectedIndex:int = 0;
@@ -87,6 +89,7 @@ package tripwire.containers.store
             this.marketCosmeticsButton.label = !!param1.marketCosmetics ? param1.marketCosmetics : "w skins";
             this.marketEmotesButton.label = !!param1.marketEmotes ? param1.marketEmotes : "m lols";
             this.marketConsumableButton.label = !!param1.marketConsumables ? param1.marketConsumables : "w skins";
+            this.thankYouTextfield.text = !!param1.thankYouString ? param1.thankYouString : "wdsadasd";
             this.pageHeaderText.text = this.allButton.label;
         }
         

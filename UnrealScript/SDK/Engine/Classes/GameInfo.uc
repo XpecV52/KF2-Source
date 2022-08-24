@@ -392,7 +392,7 @@ event PostBeginPlay()
 				}
 
 				// Initialize title data, see also TWRefreshOnlineGameData
-				//PlayfabInter.AddTitleDataReadCompleteDelegate( OnServerTitleDataRead );
+				PlayfabInter.AddTitleDataReadCompleteDelegate( OnServerTitleDataRead );
 				PlayfabInter.ReadTitleData();
 			}
 		}
@@ -413,7 +413,6 @@ function OnServerTitleDataRead()
 	PlayfabInter.ClearTitleDataReadCompleteDelegate(OnServerTitleDataRead);
 }
 //@HSL_END
-
 
 
 /**
@@ -525,12 +524,12 @@ event Timer()
  *	Check to see if we should start in cinematic mode (e.g. matinee movie capture).
  *
  * 	@param	OutHidePlayer		Whether to hide the player
- *	@param	OutHideHud		Whether to hide the HUD		
+ *	@param	OutHideHud		Whether to hide the HUD
  *	@param	OutDisableMovement	Whether to disable movement
  * 	@param	OutDisableTurning	Whether to disable turning
  *	@param	OutDisableInput		Whether to disable input
  *
- *	@return	UBOOL			TRUE if we should turn on cinematic mode, 
+ *	@return	UBOOL			TRUE if we should turn on cinematic mode,
  *					FALSE if if we should not.
  */
 final native function bool ShouldStartInCinematicMode(out int OutHidePlayer, out int OutHideHud, out int OutDisableMovement, out int OutDisableTurning, out int OutDisableInput);
@@ -1166,7 +1165,7 @@ function PlayerController ProcessClientTravel( out string URL, Guid NextMapGuid,
 	foreach WorldInfo.AllControllers(class'PlayerController', P)
 	{
 		if ( NetConnection(P.Player) != None )
-		{	
+		{
 			// remote player
 			P.ClientTravel(URL, TRAVEL_Relative, bSeamless, NextMapGuid);
 		}
@@ -1245,7 +1244,7 @@ native static final function ResumeLogin(Player InPlayer);
  */
 native static final function RejectLogin(Player InPlayer, string Error);
 
-/* 
+/*
  * Is the server currently at capacity?
  * @param bSpectator - Whether we should check against player or spectator limits
  * @return TRUE if the server is full, FALSE otherwise
@@ -1311,7 +1310,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	bSpectator = bPerfTesting || ( ParseOption( Options, "SpectatorOnly" ) ~= "1" );
 
 	// Get URL options.
-`if(`__TW_)	
+`if(`__TW_)
 //@HSL_BEGIN_XBOX
 	InName     = ParseOption ( Options, "Name");
 	// Steam names can contain up to 32 characters
@@ -1375,7 +1374,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 		ErrorMessage = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass) $ ".FailedPlaceMessage>";
 `else
 		ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".FailedPlaceMessage";
-`endif		
+`endif
 		return None;
 	}
 
@@ -1405,7 +1404,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 		NewPlayer.PlayerReplicationInfo.SetUniqueId(UniqueId);
 	}
 
-	if (OnlineSub != None && 
+	if (OnlineSub != None &&
 		OnlineSub.GameInterface != None &&
 		UniqueId != ZeroId)
 	{
@@ -1441,7 +1440,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 		AccessControl.AdminEntered(NewPlayer);
 	}
 
-	
+
 	// if delayed start, don't give a pawn to the player yet
 	// Normal for multiplayer games
 	if ( bDelayedStart )
@@ -1613,8 +1612,8 @@ function RestartPlayer(Controller NewPlayer)
 	local int TeamNum, Idx;
 	local array<SequenceObject> Events;
 	local SeqEvent_PlayerSpawned SpawnedEvent;
-	local LocalPlayer LP; 
-	local PlayerController PC; 
+	local LocalPlayer LP;
+	local PlayerController PC;
 
 	if( bRestartLevel && WorldInfo.NetMode!=NM_DedicatedServer && WorldInfo.NetMode!=NM_ListenServer )
 	{
@@ -1697,16 +1696,16 @@ function RestartPlayer(Controller NewPlayer)
 	PC = PlayerController(NewPlayer);
 	if (PC != none)
 	{
-		LP = LocalPlayer(PC.Player); 
-		if(LP != None) 
-		{ 
-			LP.RemoveAllPostProcessingChains(); 
-			LP.InsertPostProcessingChain(LP.Outer.GetWorldPostProcessChain(),INDEX_NONE,true); 
+		LP = LocalPlayer(PC.Player);
+		if(LP != None)
+		{
+			LP.RemoveAllPostProcessingChains();
+			LP.InsertPostProcessingChain(LP.Outer.GetWorldPostProcessChain(),INDEX_NONE,true);
 			if(PC.myHUD != None)
 			{
 				PC.myHUD.NotifyBindPostProcessEffects();
 			}
-		} 
+		}
 	}
 }
 
@@ -1888,7 +1887,7 @@ function UpdateBestNextHosts()
 	// copy list of remote PCs
 	foreach WorldInfo.AllControllers(class'PlayerController',PC)
 	{
-		if (!PC.IsLocalPlayerController() && 
+		if (!PC.IsLocalPlayerController() &&
 			PC.PlayerReplicationInfo != None &&
 			PC.PlayerReplicationInfo.UniqueId != ZeroId &&
 			PC.IsPrimaryPlayer())
@@ -2275,7 +2274,13 @@ function BroadcastDeathMessage(Controller Killer, Controller Other, class<Damage
 function Kick( string S )
 {
 	if (AccessControl != None)
+	{
 		AccessControl.Kick(S);
+	}
+	else
+	{
+		`log("NO ACCESS CONTROL!!!");
+	}
 }
 
 function KickBan( string S )
@@ -3797,7 +3802,7 @@ function TellClientsToReturnToPartyHost()
 			// Tell all clients to return using the net id of the host
 			foreach WorldInfo.AllControllers(class'PlayerController',PC)
 			{
-				if (!PC.IsLocalPlayerController() && 
+				if (!PC.IsLocalPlayerController() &&
 					PC.IsPrimaryPlayer())
 				{
 					PC.ClientReturnToParty(RequestingPlayerId);
@@ -4002,7 +4007,7 @@ event string GetFriendlyNameForCurrentGameMode();
 //@HSL_END
 
 
-//@HSL_BEGIN - BWJ - 2-16-17 - Hooks for controller change notifications 
+//@HSL_BEGIN - BWJ - 2-16-17 - Hooks for controller change notifications
 function NotifyControllerDisconnected();
 function NotifyControllerReconnected();
 //@HSL_END

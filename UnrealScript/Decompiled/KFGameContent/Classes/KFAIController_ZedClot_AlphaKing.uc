@@ -41,7 +41,7 @@ function Timer_CheckForRally()
     {
         return;
     }
-    if(MyKFPawn.IsDoingSpecialMove() || !MyKFPawn.CanDoSpecialMove(18))
+    if(MyKFPawn.IsDoingSpecialMove() || !MyKFPawn.CanDoSpecialMove(19))
     {
         SetTimer(0.5, false, 'Timer_CheckForRally');
         return;
@@ -60,7 +60,7 @@ function Timer_CheckForRally()
                 ++ NumPawnsForRally;
                 if(NumPawnsForRally == MinAIRequiredForRally)
                 {
-                    MyKFPawn.DoSpecialMove(18, true,, Class'KFSM_AlphaRally'.static.PackRallyFlags());
+                    MyKFPawn.DoSpecialMove(19, true,, Class'KFSM_AlphaRally'.static.PackRallyFlags());
                     SetTimer(RallyCooldown, false, 'Timer_CheckForRally');                    
                     return;
                 }

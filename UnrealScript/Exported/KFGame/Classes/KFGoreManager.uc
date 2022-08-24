@@ -199,11 +199,11 @@ event PostBeginPlay()
 	{
 		KFGE = KFGameEngine(class'Engine'.static.GetEngine());
 		KFPS = KFProfileSettings(KFGE.OnlineSubsystem.PlayerInterface.GetProfileSettings(KFGE.GamePlayers[0].ControllerId));
-		
+
 		DesiredGoreLevel = KFPS.GetProfileInt(KFID_GoreLevel);
 		;
 	}
-	
+
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		// Wound decal manager
@@ -318,6 +318,12 @@ simulated function CausePersistentBlood(KFPawn_Monster InPawn, class<KFDamageTyp
 	local array<vector> HitSpread;
 	local float BloodScale;
 	local int i;
+
+	//If we have an invalid hit zone, don't spawn blood
+	if (InHitZoneIndex > InPawn.HitZones.Length)
+	{
+		return;
+	}
 
 	//Allow damage type to add more spread to the hit direction based its type.
 	HitSpread.Remove(0, HitSpread.length);
@@ -476,7 +482,7 @@ simulated final function AttachMutilationBloodEffects(
         {
             MICIndex = InPawn.GetCharacterInfo().GoreFXMICIdx;
         }
-        
+
 		//
 		// Activate the blood splat on the body MIC
 		// NOTE: 0.f activates the blood 1.f deactivates it
@@ -790,7 +796,7 @@ simulated function bool ConditionalApplyPartialGore(
 
 								// Play additional particle effect if specified
 								// @note: ignore bDropDetail for CrushBone() (aka bForceApply=TRUE) particle
-								if( CurrentPartialBreak.PartialBreakBones[ClosestBoneIndex].ParticleSystemTemplate != none 
+								if( CurrentPartialBreak.PartialBreakBones[ClosestBoneIndex].ParticleSystemTemplate != none
 									&& (!WorldInfo.bDropDetail || bForceApply) )
 								{
 									// NVCHANGE_BEGIN: JCAO - Apply the lightingChannel for the particle from the pawn
@@ -894,7 +900,7 @@ simulated function CauseGibsAndApplyImpulse(
 	// to high and limbs go flying really far. We perform a linear interpolation
 	GibImpulseMax = InDmgType.default.GibImpulseScale;
 	GibImpulseMin = GibImpulseMax/2.0f;
-	NumGibs = InGibBoneList.Length; 
+	NumGibs = InGibBoneList.Length;
 	ModifiedImpulseLerpValue = 1.0f - numGibs/ MonsterInfo.GoreJointSettings.length;
 	ModifiedImpulse = lerp(GibImpulseMin, GibImpulseMax, ModifiedImpulseLerpValue);
 
@@ -1053,7 +1059,7 @@ simulated function SpawnObliterationBloodEffect(KFPawn InPawn)
 	local ParticleSystemComponent PSC;
 	local KFCHaracterInfo_Monster MonsterInfo;
 	local vector ParticleLocation;
-	
+
 	// Play obliteration sound
 	InPawn.SoundGroupArch.PlayObliterationSound(InPawn);
 

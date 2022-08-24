@@ -513,8 +513,8 @@ var float HeadDestructionDamageScale;
 /** Scale up ragdoll impulse force to the zed's body when the head is blown off by this amount. Used for weapons with multiple projectiles like shotguns so you get the effect of all pellets hitting the head */
 var float HeadDestructionImpulseForceScale;
 
-/** 
- * Whether this damagetype is used in consideration for indirect/AoE damage in the AAR 
+/**
+ * Whether this damagetype is used in consideration for indirect/AoE damage in the AAR
  * @note: AAR only, this is normally determined by TakeRadiusDamage()
  */
 var bool bConsideredIndirectOrAoE;
@@ -639,7 +639,7 @@ var bool bCanGib;
 
 /** If set, it can completely obliterate zeds when hit by this damage type.
 	Obliteration can also depend on other factors such as how close the zed
-	was to this damage type when taking damage, etc. Eg. explosives. 
+	was to this damage type when taking damage, etc. Eg. explosives.
 	*  bCanObliterate - will deal with dismembering all detachable body parts.
 	* 2) DGT_Obliterate: GoreGroup (archetype) driven "obliteration" gore.  Used by violent explosives (e.g. Pulverizer) and
 	* tends to gore the torso moreso than DGT_Explosive which often gores the legs. This follows the same dismemberment code,
@@ -664,7 +664,7 @@ var float GibImpulseScale;
 
 /**
  * This creates an impulse direction aligned along instigator location and hitlocation -- this will push all gibs in
- * the same direction, away from the pawn that caused the damage 
+ * the same direction, away from the pawn that caused the damage
  */
 var bool bPointImpulseTowardsOrigin;
 /**
@@ -870,7 +870,7 @@ static function PlayImpactHitEffects( KFPawn P, vector HitLocation, vector HitDi
 	if ( default.OverrideImpactSound != None )
 	{
 		P.PlaySoundBase(default.OverrideImpactSound, true,,, HitLocation);
-	}	
+	}
 }
 
 static function bool IsNotPerkBound()
@@ -891,6 +891,9 @@ static function bool AlwaysPoisons()
 {
 	return false;
 }
+
+/** Do anything related to killing a pawn */
+static function ApplyKillResults(KFPawn KilledPawn);
 
 defaultproperties
 {

@@ -55,3 +55,6 @@ native function MoveAllUsersToGroup(string GroupName);
 
 // Export UMixerIntegration::execMoveUserToGroup(FFrame&, void* const)
 native function MoveUserToGroup(string UserName, string GroupName);
+
+// Export UMixerIntegration::execForceMixerScene(FFrame&, void* const)
+native static function ForceMixerScene(string VersionNumber, string ShareCode);

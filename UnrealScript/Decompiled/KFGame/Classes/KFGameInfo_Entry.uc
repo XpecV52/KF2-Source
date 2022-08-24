@@ -20,6 +20,7 @@ var array<int> TierThreshold;
 var string LightMICTagName;
 var string LightConeTagName;
 var string LightBulbTagName;
+var string DoshLitterMICTagName;
 var string CustomPawnSpawnPointTagName;
 var int FilledPalletCount;
 var int LastUpdateDoshAmount;
@@ -40,27 +41,40 @@ function InitTraderList();
 
 function InitVault()
 {
-    local PlayerController PC;
+    local KFPlayerController KFPC;
     local LocalPlayer LP;
+    local int I;
 
-    foreach LocalPlayerControllers(Class'PlayerController', PC)
+    KFPC = KFPlayerController(WorldInfo.GetALocalPlayerController());
+    if(KFPC == none)
     {
-        LP = LocalPlayer(PC.Player);
-        if(LP != none)
+        return;
+    }
+    LP = LocalPlayer(KFPC.Player);
+    if(LP != none)
+    {
+        LP.RemoveAllPostProcessingChains();
+        LP.InsertPostProcessingChain(LP.Outer.GetWorldPostProcessChain(), -1, true);
+    }
+    if(KFPC.myHUD != none)
+    {
+        KFPC.myHUD.NotifyBindPostProcessEffects();
+    }
+    SetDoshTier(GetTotalDoshTier(KFPC));
+    InitDoshPiles(KFPC);
+    SpawnVaultCustomizationPawn(KFPC);
+    if(!bInitialized)
+    {
+        I = 0;
+        J0x1B1:
+
+        if(I < TierThreshold.Length)
         {
-            LP.RemoveAllPostProcessingChains();
-            LP.InsertPostProcessingChain(LP.Outer.GetWorldPostProcessChain(), -1, true);
-            if(PC.myHUD != none)
-            {
-                PC.myHUD.NotifyBindPostProcessEffects();
-            }
-            if(KFPlayerController(PC) != none)
-            {
-                InitDoshPiles(KFPlayerController(PC));
-                SpawnVaultCustomizationPawn(KFPlayerController(PC));
-            }
-        }        
-    }    
+            ActiveLightActorsForTier(I, I == 0);
+            ++ I;
+            goto J0x1B1;
+        }
+    }
 }
 
 function SpawnVaultCustomizationPawn(KFPlayerController KFPC)
@@ -106,12 +120,29 @@ event InitDoshPiles(KFPlayerController KFPC)
     {
         return;
     }
-    ActiveLightActorsForTier(0);
     CalcultedTierValue = GetTotalDoshTier(KFPC);
     CollectDoshPiles();
     SortDoshPiles();
     SpawnDoshPilesForAmount(KFPC.GetLastSeenDoshCount());
+    InitDoshLitter(CalcultedTierValue);
     bInitPiles = true;
+}
+
+function InitDoshLitter(int DoshTier)
+{
+    local MaterialInstanceActor DoshLitterMICActor;
+    local MaterialInstanceConstant MICInst;
+
+    foreach AllActors(Class'MaterialInstanceActor', DoshLitterMICActor)
+    {
+        if(string(DoshLitterMICActor.Tag) == DoshLitterMICTagName)
+        {
+            MICInst = new (self) Class'MaterialInstanceConstant';
+            MICInst.SetParent(DoshLitterMICActor.MatInst);
+            MICInst.SetScalarParameterValue('Dosh_Amount', float(CalcultedTierValue) / float(TierThreshold.Length - 1));
+            DoshLitterMICActor.MatInst = MICInst;
+        }        
+    }    
 }
 
 function CollectDoshPiles()
@@ -166,29 +197,34 @@ function int GetTotalDoshTier(KFPlayerController KFPC)
         ++ I;
         goto J0x58;
     }
-    SetKismetDoshTier(TierValue);
     return TierValue;
 }
 
-function SetKismetDoshTier(int TierValue)
+function FinalAnimationPlayed(KFPlayerController KFPC)
+{
+    SetDoshTier(GetTotalDoshTier(KFPC), true);
+}
+
+function SetDoshTier(int TierValue, optional bool bFinalAnimation)
 {
     local array<SequenceObject> ActivationEvents;
     local KFSeqEvent_DoshVault ActivationEvent;
     local int I;
 
+    bFinalAnimation = false;
     WorldInfo.GetGameSequence().FindSeqObjectsByClass(Class'KFSeqEvent_DoshVault', true, ActivationEvents);
     I = 0;
-    J0x53:
+    J0x58:
 
     if(I < ActivationEvents.Length)
     {
         ActivationEvent = KFSeqEvent_DoshVault(ActivationEvents[I]);
         if(ActivationEvent != none)
         {
-            ActivationEvent.SetDoshTier(TierValue + 1);
+            ActivationEvent.SetDoshTier(TierValue);
         }
         ++ I;
-        goto J0x53;
+        goto J0x58;
     }
 }
 
@@ -251,30 +287,6 @@ function SpawnDoshPilesForAmount(int LastSeenDoshAmount)
     }
 }
 
-function ActivateLights(int CurrentPileCount)
-{
-    local int I;
-
-    I = 0;
-    J0x0B:
-
-    if(I < TierThreshold.Length)
-    {
-        if(CurrentPileCount > TierThreshold[I])
-        {
-            ActiveLightActorsForTier(I);            
-        }
-        else
-        {
-            goto J0x6C;
-        }
-        ++ I;
-        goto J0x0B;
-    }
-    J0x6C:
-
-}
-
 exec function ActiveLightActorsForTier(int LightTier, optional bool bActive)
 {
     local Light LightActor;
@@ -293,18 +305,18 @@ exec function ActiveLightActorsForTier(int LightTier, optional bool bActive)
             LightMIC.MatInst = MICInst;
         }        
     }    
-    foreach AllActors(Class'Light', LightActor)
-    {
-        if(string(LightActor.Tag) == (LightBulbTagName $ string(LightTier)))
-        {
-            LightActor.LightComponent.SetEnabled(bActive);
-        }        
-    }    
     foreach AllActors(Class'StaticMeshActor', LightCone)
     {
         if(string(LightCone.Tag) == (LightConeTagName $ string(LightTier)))
         {
             LightCone.SetHidden(!bActive);
+        }        
+    }    
+    foreach AllActors(Class'Light', LightActor)
+    {
+        if(string(LightActor.Tag) == (LightBulbTagName $ string(LightTier)))
+        {
+            LightActor.LightComponent.SetEnabled(bActive);
         }        
     }    
 }
@@ -450,14 +462,15 @@ auto state PendingMatch
 defaultproperties
 {
     FrontPilesInWorld=10
-    TierThreshold(0)=10
-    TierThreshold(1)=40
+    TierThreshold(0)=0
+    TierThreshold(1)=30
     TierThreshold(2)=70
     TierThreshold(3)=100
     TierThreshold(4)=130
-    LightMICTagName="TieMIC_"
+    LightMICTagName="TierMIC_"
     LightConeTagName="TierCone_"
     LightBulbTagName="TierLight_"
+    DoshLitterMICTagName="DoshLitter"
     CustomPawnSpawnPointTagName="KFCustomizationPoint_Vault"
     LastUpdateDoshAmount=-1
     WhiteColor=(R=1,G=1,B=1,A=1)

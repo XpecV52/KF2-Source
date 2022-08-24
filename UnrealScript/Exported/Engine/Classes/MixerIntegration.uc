@@ -86,6 +86,11 @@ native function MoveAllUsersToGroup(string GroupName);
  */
 native function MoveUserToGroup(string Username, string GroupName);
 
+/**
+* Used for debug purposes.  Force the intended live scene to a different version from the shipped variant
+*/
+native static function ForceMixerScene(string VersionNumber, string ShareCode);
+
 defaultproperties
 {
    Name="Default__MixerIntegration"

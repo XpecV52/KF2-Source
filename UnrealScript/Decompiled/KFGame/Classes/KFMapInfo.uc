@@ -84,12 +84,15 @@ var const KFMapInfo.ECollectibleType CollectibleType;
  * NOTE: Setting this option incorrectly may disable or enable unwanted game features!
  */
 var() KFMapInfo.ESubGameType SubGameType;
+var(Objectives) KFGameEngine.SeasonalEventIndex EventHoliday<EditCondition=bEventLimitedObjectives>;
 /** list of music tracks played during trader time // @todo: make these not editconst when we're ready to have mappers or whomever change them */
 var(Music) array<KFMusicTrackInfo> AmbientMusicTracks;
 var transient array<byte> ShuffledAmbientMusicTrackIdxes;
 /** How many collectibles players need to find in this map to unlock the achievement */
 var(Collectibles) const int CollectiblesToFind;
 var const transient int CollectiblesFound;
+/** Whether or not to limit objectives to a holiday */
+var(Objectives) bool bEventLimitedObjectives;
 /** Whether or not to use the preset wave objective type */
 var(Objectives) bool bUsePresetObjectives<EditCondition=!bUseRandomObjectives>;
 /** Whether or not to use the random wave objective type */

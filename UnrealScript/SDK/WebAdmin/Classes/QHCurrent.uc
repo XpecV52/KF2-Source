@@ -148,7 +148,12 @@ function CreateTeamChatProxy()
 {
 	local TeamChatProxy tcp;
 	local int i;
-	if (bEnableTeamChat && `isTeamGame(webadmin.WorldInfo.Game))
+
+	//KFII-38982 | Adam Massingale | Always spawning team chat proxies even if we're not in a team game like vs
+	//this will allow team chat to always take place in case users send team chat messages. the users are all on the same
+	//team but we still want to see the messages in webadmin and chat logs.
+	//if (bEnableTeamChat) && `isTeamGame(webadmin.WorldInfo.Game))
+	if (bEnableTeamChat)
 	{
 		if (webadmin.WorldInfo.Game.GameReplicationInfo == none)
 		{
@@ -1039,7 +1044,8 @@ function handleCurrentChat(WebAdminQuery q, optional string page = "current_chat
 		{
 			BroadcastMessage(q.user.getPC(), INDEX_NONE, msg, 'Say');
 		}
-		else {
+		else
+		{
 			BroadcastMessage(q.user.getPC(), i, msg, 'TeamSay');
 		}
 	}

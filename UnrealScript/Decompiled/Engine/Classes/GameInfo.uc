@@ -204,6 +204,7 @@ event PostBeginPlay()
                     UpdateGameSettings();
                     PlayfabInter.ServerRegisterGame();
                 }
+                PlayfabInter.AddTitleDataReadCompleteDelegate(OnServerTitleDataRead);
                 PlayfabInter.ReadTitleData();
             }
         }        
@@ -1640,7 +1641,11 @@ function Kick(string S)
 {
     if(AccessControl != none)
     {
-        AccessControl.Kick(S);
+        AccessControl.Kick(S);        
+    }
+    else
+    {
+        LogInternal("NO ACCESS CONTROL!!!");
     }
 }
 

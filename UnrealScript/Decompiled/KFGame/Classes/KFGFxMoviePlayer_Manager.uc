@@ -186,6 +186,7 @@ struct SPopupData
     }
 };
 
+var SDelayedPriorityMessage DelayedPriorityMessage;
 var float LastForceCloseTime;
 var float AllowMenusOpenAfterForceCloseTime;
 var array<SMenuPaths> MenuSWFPaths;
@@ -439,6 +440,26 @@ function TextureMovie GetBackgroundMovie()
         return BackgroundMovies[EventIndex];
     }
     return BackgroundMovies[0];
+}
+
+function QueueDelayedPriorityMessage(string InPrimaryMessageString, string InSecondaryMessageString, int Lifetime, optional KFLocalMessage_Priority.EGameMessageType MessageType)
+{
+    DelayedPriorityMessage.InPrimaryMessageString = InPrimaryMessageString;
+    DelayedPriorityMessage.InSecondaryMessageString = InSecondaryMessageString;
+    DelayedPriorityMessage.Lifetime = Lifetime;
+    DelayedPriorityMessage.MessageType = MessageType;
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.5, false, 'DisplayDelayedPriorityMessage', self);
+}
+
+function DisplayDelayedPriorityMessage()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+    if(((KFPC != none) && KFPC.myGfxHUD != none) && KFPC.MyGFxManager != none)
+    {
+        KFPC.myGfxHUD.DisplayPriorityMessage(DelayedPriorityMessage.InPrimaryMessageString, KFPC.MyGFxManager.DelayedPriorityMessage.InSecondaryMessageString, KFPC.MyGFxManager.DelayedPriorityMessage.Lifetime, KFPC.MyGFxManager.DelayedPriorityMessage.MessageType);
+    }
 }
 
 function DelayedShowDisconnectMessage()
@@ -741,7 +762,7 @@ function StatsInitialized()
 {
     if((StartMenu != none) && StartMenu.MissionObjectiveContainer != none)
     {
-        StartMenu.MissionObjectiveContainer.Refresh(true);
+        StartMenu.MissionObjectiveContainer.FullRefresh();
     }
     if(IISMenu != none)
     {
@@ -1670,7 +1691,7 @@ defaultproperties
     BackgroundMovies(1)=TextureMovie'UI_Managers.MenuBG'
     BackgroundMovies(2)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
     BackgroundMovies(3)=TextureMovie'UI_Managers.MenuBG'
-    BackgroundMovies(4)=TextureMovie'UI_Managers.MenuBG'
+    BackgroundMovies(4)=TextureMovie'UI_Managers.Menu_Winter'
     IISMovie=TextureMovie'UI_Managers.IIS'
     IgnoredCommands(0)="GBA_VoiceChat"
     SoundThemeName=ButtonSoundTheme

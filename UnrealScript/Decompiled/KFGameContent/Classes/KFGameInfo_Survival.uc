@@ -275,7 +275,10 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     {
         bHumanDeathsLastWave = true;
     }
-    CheckWaveEnd();
+    if(!(KFPawn_Monster(KilledPawn) != none) && KFPawn_Monster(KilledPawn).IsABoss())
+    {
+        CheckWaveEnd();
+    }
 }
 
 function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
@@ -397,6 +400,12 @@ function UpdateGameSettings()
             }
         }
     }
+}
+
+function OnServerTitleDataRead()
+{
+    super(GameInfo).OnServerTitleDataRead();
+    Class'KFGameEngine'.static.RefreshEventContent();
 }
 
 function bool CanSpectate(PlayerController Viewer, PlayerReplicationInfo ViewTarget)
@@ -559,7 +568,7 @@ function int GetAdjustedDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI, op
     MinimumRespawnDosh = float(Round(UsedMaxRespawnDosh * (float(WaveNum) / float(WaveMax - 1))));
     if(bLateJoiner)
     {
-        return int(MinimumRespawnDosh);
+        return CalculateLateJoinerStartingDosh(int(MinimumRespawnDosh));
     }
     if(bLogScoring)
     {
@@ -583,6 +592,18 @@ function int GetAdjustedDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI, op
         LogInternal((("SCORING: Player" @ KilledPlayerPRI.PlayerName) @ "PlayerRespawnDosh > MinimumRespawnDosh, returning KilledPlayerPRI.Score * DeathPenaltyModifiers[GameDifficulty] =") @ string(-Round(KilledPlayerPRI.Score * DeathPenaltyModifiers[int(GameDifficulty)])));
     }
     return -Round(KilledPlayerPRI.Score * DeathPenaltyModifiers[int(GameDifficulty)]);
+}
+
+function int CalculateLateJoinerStartingDosh(int MinimumRespawnDosh)
+{
+    if(((LateArrivalStarts.Length > 0) && GameLength >= 0) && GameLength < LateArrivalStarts.Length)
+    {
+        if(((LateArrivalStarts[GameLength].StartingDosh.Length > 0) && (WaveNum - 1) >= 0) && (WaveNum - 1) < LateArrivalStarts[GameLength].StartingDosh.Length)
+        {
+            return LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1];
+        }
+    }
+    return MinimumRespawnDosh;
 }
 
 function bool AllowWaveCheats()
@@ -808,6 +829,11 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
     }
 }
 
+function ObjectiveFailed()
+{
+    MyKFGRI.DeactivateObjective();
+}
+
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
     local array<SequenceObject> AllWaveEndEvents;
@@ -844,6 +870,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             goto J0x75;
         }
     }
+    BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 1);
     MyKFGRI.DeactivateObjective();
     MyKFGRI.NotifyWaveEnded();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
@@ -1139,7 +1166,6 @@ state TraderOpen
         }        
         StartHumans();
         OpenTrader();
-        BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 1);
         if(AllowBalanceLogging())
         {
             LogPlayersDosh('TraderOpen');
@@ -1255,7 +1281,9 @@ defaultproperties
     MaxRespawnDosh=/* Array type was not detected. */
     MaxGameDifficulty=3
     SpawnManagerClasses=/* Array type was not detected. */
+    LateArrivalStarts=/* Array type was not detected. */
     AIClassList=/* Array type was not detected. */
+    NonSpawnAIClassList=/* Array type was not detected. */
     AIBossClassList=/* Array type was not detected. */
     GameplayEventsWriterClass=Class'KFGame.KFGameplayEventsWriter'
     TraderVoiceGroupClass=Class'KFTraderVoiceGroup_Default'

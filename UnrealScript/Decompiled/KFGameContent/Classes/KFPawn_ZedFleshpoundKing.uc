@@ -152,7 +152,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super(KFPawn_Monster).PossessedBy(C, bVehicleTransition);
     PlayBossMusic();
-    ServerDoSpecialMove(34);
+    ServerDoSpecialMove(35);
 }
 
 function PlayBossMusic()
@@ -198,7 +198,7 @@ simulated function ToggleSMBeam(bool bEnable)
 {
     local KFSM_FleshpoundKing_ChestBeam BeamSM;
 
-    if(SpecialMove != 21)
+    if(SpecialMove != 22)
     {
         return;
     }
@@ -241,7 +241,7 @@ simulated function UpdateBattlePhaseLights()
         super.UpdateBattlePhaseLights();
         return;
     }
-    if(IsDoingSpecialMove(21))
+    if(IsDoingSpecialMove(22))
     {
         if(BattlePhaseLightFront != none)
         {

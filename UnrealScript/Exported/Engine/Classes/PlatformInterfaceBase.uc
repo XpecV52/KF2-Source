@@ -4,13 +4,16 @@
  * This is the base class for the various platform interface classes and has support
  * for a generic delegate system, as well has having subclasses determine if they
  * should register for a tick.
- * 
+ *
  */
- 
+
 class PlatformInterfaceBase extends Object
 	native(PlatformInterface)
 	transient;
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -64,7 +67,7 @@ enum EPlatformInterfaceDataType
 	PIDT_Custom,	// a custom type where more than one value may be filled out
 };
 
-/** 
+/**
  * Struct that encompasses the most common types of data. This is the data payload
  * of PlatformInterfaceDelegateResult
  */
@@ -155,6 +158,9 @@ native static function AlienFXLEDInterface GetAlienFXIntegration();
 
 /** @return - TWI - ZGholson - the Razer LED singleton object*/
 native static function RazerLEDInterface GetRazerIntegration();
+
+/** @return - TWI - dweiss - the Discord rich presence object */
+native static function DiscordRPCIntegration GetDiscordRPCIntegration();
 
 /**
  * Adds a typed delegate (the value of the type is subclass dependent, make an enum per subclass)

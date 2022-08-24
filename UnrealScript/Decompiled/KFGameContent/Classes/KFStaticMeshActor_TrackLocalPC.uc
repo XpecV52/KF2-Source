@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFStaticMeshActor_TrackLocalPC extends StaticMeshActor
+class KFStaticMeshActor_TrackLocalPC extends DynamicSMActor
     hidecategories(Navigation);
 
 simulated event Tick(float DeltaTime)
@@ -27,18 +27,22 @@ defaultproperties
 {
     begin object name=StaticMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
+        LightEnvironment=DynamicLightEnvironmentComponent'Default__KFStaticMeshActor_TrackLocalPC.MyLightEnvironment'
     object end
     // Reference: StaticMeshComponent'Default__KFStaticMeshActor_TrackLocalPC.StaticMeshComponent0'
     StaticMeshComponent=StaticMeshComponent0
+    LightEnvironment=DynamicLightEnvironmentComponent'Default__KFStaticMeshActor_TrackLocalPC.MyLightEnvironment'
+    Components(0)=DynamicLightEnvironmentComponent'Default__KFStaticMeshActor_TrackLocalPC.MyLightEnvironment'
     begin object name=StaticMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
+        LightEnvironment=DynamicLightEnvironmentComponent'Default__KFStaticMeshActor_TrackLocalPC.MyLightEnvironment'
     object end
     // Reference: StaticMeshComponent'Default__KFStaticMeshActor_TrackLocalPC.StaticMeshComponent0'
-    Components(0)=StaticMeshComponent0
-    bStatic=false
+    Components(1)=StaticMeshComponent0
     bUpdateSimulatedPosition=true
     begin object name=StaticMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
+        LightEnvironment=DynamicLightEnvironmentComponent'Default__KFStaticMeshActor_TrackLocalPC.MyLightEnvironment'
     object end
     // Reference: StaticMeshComponent'Default__KFStaticMeshActor_TrackLocalPC.StaticMeshComponent0'
     CollisionComponent=StaticMeshComponent0

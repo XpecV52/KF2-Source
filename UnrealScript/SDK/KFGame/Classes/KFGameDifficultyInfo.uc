@@ -116,7 +116,7 @@ var(Suicidal) DifficultySettings Suicidal;
 var(HellOnEarth) DifficultySettings HellOnEarth;
 
 /** A cached version of the DifficultySettings we are currently using */
-var private DifficultySettings CurrentSettings;
+var protected DifficultySettings CurrentSettings;
 
 /** Cache our current difficulty based on the GameDifficulty */
 function SetDifficultySettings( float GameDifficulty )

@@ -112,6 +112,10 @@ var OnlineCommunityContentInterfaceDingo CommunityContentInterfaceImpl;
 var OnlineMarketplaceInterfaceDingo MarketplaceInterfaceImpl;
 var OnlineContentInterfaceDingo ContentInterfaceImpl;
 var KFOnlineLobbyDingo LobbyInterface;
+var Engine.OnlineSubsystem.EOnlineServerConnectionStatus CurrentConnectionStatus;
+var Engine.OnlineSubsystem.EOnlineServerConnectionStatus DesiredConnectionStatus;
+var byte KeyboardInputWasCanceled;
+var float ConnectionTimeUpdateDelta;
 var native const array<Pointer> QueuedActivationAsyncTasks;
 var native const array<Pointer> AsyncTasks;
 var config string ProfileDataDirectory;
@@ -119,7 +123,6 @@ var config string ProfileDataExtension;
 var array< delegate<OnReadOnlineProfilesComplete> > ReadOnlineProfileDelegates;
 var OnlineProfileSettings CachedProfile;
 var array< delegate<OnKeyboardInputComplete> > KeyboardInputDelegates;
-var byte KeyboardInputWasCanceled;
 var string KeyboardInputResults;
 var array< delegate<OnRecognitionComplete> > SpeechRecognitionCompleteDelegates;
 var array< delegate<OnReadFriendsComplete> > ReadFriendsDelegates;
@@ -161,6 +164,7 @@ var const bool bPeoplePickerActive;
 var native const bool bCurrentUserChanged;
 var native const bool bConnectionStatusUpdated;
 var native const bool bRefreshMarketplaceInventory;
+var native const bool bMarketplaceUIWasSeen;
 var native const bool bConnectedToLIVENetwork;
 var native const bool bControllerPairingChanged;
 var native const bool bLisenceInfoUpdated;
@@ -179,6 +183,7 @@ var array< delegate<OnPlayerTalkingStateChange> > TalkingDelegates;
 var PerUserDelegateLists PerUserDelegates[24];
 var config float VoiceNotificationDelta;
 var native map<0, 0> FriendsCache;
+var native map<0, 0> PresenceCache;
 var array<CachedAchievements> AchievementsCache;
 var config string ProductID;
 var const string ServiceConfigId;
@@ -1614,5 +1619,6 @@ native function StartRegionPingAndSelectDefaultRegion(delegate<OnPingRegionsComp
 
 defaultproperties
 {
+    ConnectionTimeUpdateDelta=1
     VoiceNotificationDelta=0.2
 }

@@ -38,7 +38,6 @@ var localized string RecycleItemString;
 var localized array<string> CraftWeaponStrings;
 var localized array<string> CraftCosmeticStrings;
 
-
 var localized string FailedToExchangeString;
 var localized string MoreItemsString;
 
@@ -97,6 +96,8 @@ var KFPlayerController KFPC;
 var int ValueToPromptDuplicateRecycle;
 var array<int> SpecialEventItemIDs;
 var array<int> KeylessCrateIDs;
+
+var AkEvent KillThatDangSoundEvent;
 
 enum EINventory_Filter
 {
@@ -328,12 +329,8 @@ function InitInventory()
 
 function bool DoesMatchFilter(ItemProperties InventoryItem)
 {
-	if(CurrentRarityFilter != ITR_NONE && InventoryItem.Rarity != CurrentRarityFilter)
+	if ( (CurrentWeaponTypeFilter != EInvWT_None || CurrentPerkIndexFilter != KFPC.PerkList.length) && InventoryItem.Type != ITP_WeaponSkin)
 	{
-		if( (CurrentInventoryFilter == EInv_CraftingMats || CurrentInventoryFilter == EInv_Consumables) && (CurrentInventoryFilter == InventoryItem.Type + 1) )
-		{
-			return true;
-		}
 		return false;
 	}
 
@@ -344,6 +341,15 @@ function bool DoesMatchFilter(ItemProperties InventoryItem)
 
 	if( CurrentPerkIndexFilter != KFPC.PerkList.length &&  !(CurrentPerkIndexFilter == InventoryItem.PerkId || CurrentPerkIndexFilter == InventoryItem.AltPerkId)   ) //perk
 	{
+		return false;
+	}
+
+	if (CurrentRarityFilter != ITR_NONE && InventoryItem.Rarity != CurrentRarityFilter)
+	{
+		if ((CurrentInventoryFilter == EInv_CraftingMats || CurrentInventoryFilter == EInv_Consumables) && (CurrentInventoryFilter == InventoryItem.Type + 1))
+		{
+			return true;
+		}
 		return false;
 	}
 
@@ -395,6 +401,7 @@ function SetMatineeColor(int ItemRarity)
 
 function ClearMatinee()
 {
+	KFPC.PlaySoundBase(KillThatDangSoundEvent);
 	KFPC.ConsoleCommand("CE Abort");
 	KFPC.ResetCustomizationCamera();
 }
@@ -405,6 +412,10 @@ function OnReadPlayfabInventoryComplete( bool bSuccess )
 	{
 		LocalizeText();
 		InitInventory();
+	}
+	else
+	{
+		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, class'KFCommon_LocalizedStrings'.default.NoticeString, class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, class'KFCommon_LocalizedStrings'.default.OKString);
 	}
 }
 
@@ -1250,7 +1261,11 @@ defaultproperties
    SpecialEventItemIDs(4)=5246
    SpecialEventItemIDs(5)=5245
    SpecialEventItemIDs(6)=5304
+   SpecialEventItemIDs(7)=5587
+   SpecialEventItemIDs(8)=5588
+   SpecialEventItemIDs(9)=5589
    KeylessCrateIDs(0)=5313
+   KillThatDangSoundEvent=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Stop_No_Sound'
    CurrentWeaponTypeFilter=EInvWT_None
    CurrentRarityFilter=ITR_NONE
    Name="Default__KFGFxMenu_Inventory"

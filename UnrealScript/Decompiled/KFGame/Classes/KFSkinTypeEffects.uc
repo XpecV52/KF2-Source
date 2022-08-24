@@ -46,6 +46,8 @@ struct native SkinEffectInfo
     var() AkEvent DefaultSound;
     /** Sounds used for local player (1st person) impacts only */
     var() AkEvent LocalSound;
+    /** Sound played when I'm the one taking damage */
+    var() AkEvent LocalTakeHitSound;
 
     structdefaultproperties
     {
@@ -55,6 +57,7 @@ struct native SkinEffectInfo
         bAttachToHitLocation=false
         DefaultSound=none
         LocalSound=none
+        LocalTakeHitSound=none
     }
 };
 
@@ -113,7 +116,7 @@ function ParticleSystemComponent AttachEffectToBone(KFPawn P, ParticleSystem Par
         return none;
     }
     P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
-    HitBoneName = ((HitZoneIndex != 255) ? P.HitZones[HitZoneIndex].BoneName : P.TorsoBoneName);
+    HitBoneName = (((HitZoneIndex != 255) && HitZoneIndex < P.HitZones.Length) ? P.HitZones[HitZoneIndex].BoneName : P.TorsoBoneName);
     PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(ParticleTemplate, P.Mesh, HitBoneName, false);
     PSC.SetAbsolute(false, true, true);
     return PSC;
@@ -130,7 +133,7 @@ function ParticleSystemComponent AttachEffectToHitLocation(KFPawn P, ParticleSys
     {
         return none;
     }
-    if(HitZoneIndex != 255)
+    if((HitZoneIndex != 255) && HitZoneIndex < P.HitZones.Length)
     {
         HitBoneName = P.HitZones[HitZoneIndex].BoneName;
         HitBoneIdx = P.Mesh.MatchRefBone(HitBoneName);
@@ -200,6 +203,7 @@ function ParticleSystem GetImpactParticleEffect(KFSkinTypeEffects.EEffectDamageG
 function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSkinTypeEffects.EEffectDamageGroup EffectGroup)
 {
     local AkEvent ImpactSound;
+    local float ArmorPct;
 
     if(P.ActorEffectIsRelevant(DamageCauser, false, 4000))
     {
@@ -207,7 +211,11 @@ function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSki
         {
             return;
         }
-        ImpactSound = GetImpactSound(EffectGroup, DamageCauser);
+        ImpactSound = GetImpactSound(EffectGroup, DamageCauser, P);
+        if(ShouldSetArmorValue(P, ArmorPct))
+        {
+            P.Controller.SetRTPCValue('Armor_Level', ArmorPct, true);
+        }
         if(ImpactSound != none)
         {
             P.LastImpactSoundTime = P.WorldInfo.TimeSeconds;
@@ -216,13 +224,33 @@ function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSki
     }
 }
 
-function AkEvent GetImpactSound(KFSkinTypeEffects.EEffectDamageGroup EffectGroup, Pawn DamageCauser)
+function AkEvent GetImpactSound(KFSkinTypeEffects.EEffectDamageGroup EffectGroup, Pawn DamageCauser, Pawn HitPawn)
 {
     if((((ImpactFXArray[EffectGroup].LocalSound != none) && DamageCauser != none) && DamageCauser.IsLocallyControlled()) && DamageCauser.IsHumanControlled())
     {
-        return ImpactFXArray[EffectGroup].LocalSound;
+        return ImpactFXArray[EffectGroup].LocalSound;        
+    }
+    else
+    {
+        if(((HitPawn.Controller != none) && HitPawn.Controller.IsLocalController()) && ImpactFXArray[EffectGroup].LocalTakeHitSound != none)
+        {
+            return ImpactFXArray[EffectGroup].LocalTakeHitSound;
+        }
     }
     return ImpactFXArray[EffectGroup].DefaultSound;
+}
+
+function bool ShouldSetArmorValue(Pawn HitPawn, out float ArmorPct)
+{
+    local KFPawn_Human KFPH;
+
+    KFPH = KFPawn_Human(HitPawn);
+    if((((KFPH != none) && KFPH.Controller != none) && KFPH.Controller.IsLocalController()) && KFPH.Armor > 0)
+    {
+        ArmorPct = float(KFPH.Armor) / float(KFPH.MaxArmor);
+        return true;
+    }
+    return false;
 }
 
 defaultproperties

@@ -32,6 +32,7 @@ enum EBossAIType
     BAT_Hans,
     BAT_Patriarch,
     BAT_KingFleshpound,
+    BAT_KingBloat,
     BAT_MAX
 };
 
@@ -288,6 +289,7 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
     local int I, J, RandNum;
     local KFSpawnVolume.ESquadType LargestMonsterSquadType;
     local array< class<KFPawn_Monster> > TempSpawnList;
+    local class<KFPawn_Monster> ForcedPawnClass;
 
     Squad = SquadsList[SquadIdx];
     LargestMonsterSquadType = 4;

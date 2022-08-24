@@ -216,17 +216,21 @@ simulated function CausePersistentBlood(KFPawn_Monster inPawn, class<KFDamageTyp
     local float BloodScale;
     local int I;
 
+    if(InHitZoneIndex > inPawn.HitZones.Length)
+    {
+        return;
+    }
     HitSpread.Remove(0, HitSpread.Length;
     InDmgType.static.AddBloodSpread(inPawn, InHitDirection, HitSpread, bIsDismeberingHit, bWasObliterated);
     BloodScale = InDmgType.static.GetBloodScale(((InHitZoneIndex != 255) ? inPawn.HitZones[InHitZoneIndex].DmgScale : 1), bIsDismeberingHit, bWasObliterated);
     I = 0;
-    J0xFE:
+    J0x12D:
 
     if(I < HitSpread.Length)
     {
         LeaveAPersistentBloodSplat(InHitLocation, HitSpread[I], BloodScale);
         ++ I;
-        goto J0xFE;
+        goto J0x12D;
     }
 }
 

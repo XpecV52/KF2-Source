@@ -64,7 +64,7 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 
 	super.SpecialMoveStarted( bForced, PrevMove );
 
-	// This ensures the emote animation is always using the correct root bone axis option 
+	// This ensures the emote animation is always using the correct root bone axis option
 	// since it is possible that the previous pooled anim node sequence has not been cleared
 	// KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Default, RBA_Default, RBA_Default);
 
@@ -80,7 +80,7 @@ function PlayAnimation()
 	PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f );
 
 	if( KFPOwner.Role == ROLE_Authority )
-	{	
+	{
 		KFGameInfo(KFPOwner.WorldInfo.Game).DialogManager.PlayDialogEvent( KFPOwner, `ACT_DoshTrain );
 	}
 
@@ -119,7 +119,7 @@ function ClearSMParticles()
 	if( AnimParticles.Length > 0 )
 	{
 		AnimParticles.Remove( 0, AnimParticles.Length );
-	}	
+	}
 }
 
 function SetParticlesVisible( bool bWasPlayingCustomAnim )
@@ -161,7 +161,7 @@ function SetParticlesVisible( bool bWasPlayingCustomAnim )
 		{
 			PSC.DeactivateSystem();
 		}
-	}	
+	}
 }
 
 /** Called from KFPawn::OnAnimNotifyParticleSystemSpawned() */
@@ -284,7 +284,7 @@ DefaultProperties
 	// Camera fade
 	FadeInColor=(R=0,G=0,B=0)
 	FadeInTime=1.5f
-	FadeOutColor=(R=255,G=255,B=255)
+	FadeOutColor=(R=0,G=0,B=0)
 	FadeOutTime=0.6f
 
 	// ---------------------------------------------

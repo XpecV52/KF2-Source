@@ -341,9 +341,9 @@ defaultproperties
     GroupPriority=50
     WeaponSelectTexture=Texture2D'wep_ui_m16_m203_tex.UI_WeaponSelect_M16M203'
     SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
-    SpareAmmoCapacity[0]=210
-    SpareAmmoCapacity[1]=11
-    InitialSpareMags[0]=2
+    SpareAmmoCapacity[0]=270
+    SpareAmmoCapacity[1]=13
+    InitialSpareMags[0]=3
     InitialSpareMags[1]=3
     AmmoPickupScale[1]=2
     bLoopingFireAnim=/* Array type was not detected. */

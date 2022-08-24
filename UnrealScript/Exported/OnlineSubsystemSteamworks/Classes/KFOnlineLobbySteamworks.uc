@@ -32,6 +32,9 @@ var string PendingServerIP;
 /** TRUE if logging is enabled */
 var bool bDebug;
 
+/** Current lobby visibility */
+var ELobbyVisibility LobbyVisibility;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -98,7 +101,7 @@ function bool MakeLobby(int MaxPlayers, ELobbyVisibility Type)
 		SetLobbyType(CurrentLobbyId, Type);
 		return false;
 	}
-	
+
 	AddCreateLobbyCompleteDelegate(OnCreateLobbyComplete);
 	bCreatingLobby = true;
 	return CreateLobby(MaxPlayers, Type);
@@ -265,7 +268,7 @@ function OnLobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted
  	if( GetPC() != none )
  	{
 		if (bDebug) LogInternal(GetFuncName()@"Accepting lobby invite; disconnecting from current server.",'DevLobby');
- 		GetPC().ConsoleCommand( "disconnect" );	
+ 		GetPC().ConsoleCommand( "disconnect" );
  	}
 
 	AddJoinLobbyCompleteDelegate(OnJoinLobbyComplete);
@@ -322,7 +325,7 @@ function bool QuitLobby()
 	{
 		NotifyLobbyStatusChanged(false);
 	}
-	
+
 	return success;
 }
 
@@ -501,6 +504,7 @@ function bool SetVisibility( int VisibilityIndex )
 {
 	if ( IsInLobby())
 	{
+		LobbyVisibility = ELobbyVisibility(VisibilityIndex);
 		return SetLobbyType( CurrentLobbyId, ELobbyVisibility(VisibilityIndex) );
 	}
 	return false;

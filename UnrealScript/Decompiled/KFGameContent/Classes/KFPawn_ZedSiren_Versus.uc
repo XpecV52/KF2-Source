@@ -11,7 +11,7 @@ class KFPawn_ZedSiren_Versus extends KFPawn_ZedSiren
 
 function SetSprinting(bool bNewSprintStatus)
 {
-    if(bNewSprintStatus && IsDoingSpecialMove(23) || IsDoingSpecialMove(24))
+    if(bNewSprintStatus && IsDoingSpecialMove(24) || IsDoingSpecialMove(25))
     {
         return;
     }

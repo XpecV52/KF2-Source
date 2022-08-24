@@ -70,6 +70,10 @@ function bool PopulateData(optional bool bForceRefresh)
     	if(DataObject != none)  //somehow this is none on Xbone
     	{
 			MakeDailyDataObject(KFPC.GetDailyObjective(i), i, KFPC, DataObject);
+			if (DataObject == none)
+			{
+				continue;
+			}
 	    	DataProvider.SetElementObject(i, DataObject);
     	}
     }
@@ -94,8 +98,12 @@ static function GFxObject MakeDailyDataObject(DailyEventInformation EventInfo, i
     RefDataObject.SetBool("showProgres", bProgressObjective);
     if(bProgressObjective)
     {
-    	RefDataObject.SetFloat("progress", FClamp(MyKFPC.GetCurrentDailyValue(Index) / MyKFPC.GetMaxDailyValue(Index), 0, 1) );
+    	RefDataObject.SetFloat("progress", FClamp(Float(MyKFPC.GetCurrentDailyValue(Index)) / Float(MyKFPC.GetMaxDailyValue(Index)), 0, 1) );
     	RefDataObject.SetString("textValue", MyKFPC.GetCurrentDailyValue(Index) $"/" $MyKFPC.GetMaxDailyValue(Index));   
+		if (MyKFPC.GetCurrentDailyValue(Index) == INDEX_NONE || MyKFPC.GetMaxDailyValue(Index) == INDEX_NONE)
+		{
+			return none;
+		}
     }
     else
     {
@@ -119,9 +127,11 @@ function static string GetIconForObjective( DailyEventInformation EventInfo )
 			switch (EventInfo.SecondaryType)
 			{
 				case DOST_KillZeds:
-					return "img://"$default.ObjectiveIconURLs[DI_PerkXP];
+					return "img://"$default.ObjectiveIconURLs[DI_ZED];
 				case DOST_PlayPerk:
 					return "img://"$default.ObjectiveIconURLs[DI_PerkXP];
+				case DOST_KillBoss:
+					return "img://"$default.ObjectiveIconURLs[DI_ZED];
 			}
 			break;		
 		case DOT_Maps:
@@ -195,6 +205,9 @@ function static string FormTitleForObjective( DailyEventInformation EventInfo )
 				case DOST_PlayPerk:
 					NewString = class'KFMission_LocalizedStrings'.default.EarnXPString;
 					break;
+				case DOST_KillBoss:
+					NewString = class'KFMission_LocalizedStrings'.default.KillBossString;
+					break;
 			}
 			break;		
 		case DOT_Maps:
@@ -234,6 +247,9 @@ function static string FormDescriptionForObjective( DailyEventInformation EventI
 		case DOT_PerkXP:
 			switch (EventInfo.SecondaryType)
 			{
+				case DOST_KillBoss:
+					DescriptionString = class'KFMission_LocalizedStrings'.default.KillBossDescriptionString;
+					break;
 				case DOST_KillZeds:
 					DescriptionString = GetKillsString(EventInfo.ObjectiveClasses[0]);	
 					break;
@@ -399,7 +415,7 @@ defaultproperties
    ObjectiveIconURLs(2)="DailyObjective_UI.KF2_Dailies_Icon_PerkLvl"
    ObjectiveIconURLs(3)="DailyObjective_UI.KF2_Dailies_Icon_VS"
    ObjectiveIconURLs(4)="DailyObjective_UI.KF2_Dailies_Icon_Weapon"
-   ObjectiveIconURLs(5)="DailyObjective_UI.KF2_Dailies_Icon_ZED"
+   ObjectiveIconURLs(5)="UI_PerkIcons_TEX.UI_PerkIcon_ZED"
    NUM_OF_DAILIES=3
    Name="Default__KFGFxDailyObjectivesContainer"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'

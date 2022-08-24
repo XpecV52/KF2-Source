@@ -115,7 +115,7 @@ function CreateTeamChatProxy()
     local TeamChatProxy tcp;
     local int I;
 
-    if(bEnableTeamChat && webadmin.WorldInfo.Game.bTeamGame && (KFGameInfo(webadmin.WorldInfo.Game) == none) || KFGameInfo(webadmin.WorldInfo.Game).Teams[1] != none)
+    if(bEnableTeamChat)
     {
         if(webadmin.WorldInfo.Game.GameReplicationInfo == none)
         {
@@ -124,7 +124,7 @@ function CreateTeamChatProxy()
         }
         LogInternal("Creating team chat proxies", 'webadmin');
         I = 0;
-        J0x1CE:
+        J0xE1:
 
         if(I < webadmin.WorldInfo.Game.GameReplicationInfo.Teams.Length)
         {
@@ -144,7 +144,7 @@ function CreateTeamChatProxy()
                 }
             }
             ++ I;
-            goto J0x1CE;
+            goto J0xE1;
         }
         if(webadmin.bChatLog)
         {

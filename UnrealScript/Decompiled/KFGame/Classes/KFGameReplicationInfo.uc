@@ -105,6 +105,7 @@ var repnotify byte WaveNum;
 var byte GameLength;
 var byte GameDifficulty;
 var byte MaxPerkLevel;
+var repnotify byte BossIndex;
 var private const byte GameSharedUnlocks;
 var byte CurrentGameConductorStatus;
 var byte MusicIntensity;
@@ -133,6 +134,7 @@ var repnotify string ConsoleGameSessionGuid;
 var UniqueNetId ConsoleGameSessionHost;
 var array<UniqueNetId> ConsoleGameSessionPendingPlayers;
 var float GameAmmoCostScale;
+var KFCharacterInfo_Monster CachedBossArch;
 var float CurrentSineMod;
 var float CurrentNextSpawnTime;
 var float CurrentSineWavFreq;
@@ -151,6 +153,7 @@ var ZedInfo ZedInfos[32];
 var float UpdateZedInfoInterval;
 var HumanInfo HumanInfos[6];
 var float UpdateHumanInfoInterval;
+var int MaxHumanCount;
 var PickupInfo PickupInfos[20];
 var float UpdatePickupInfoInterval;
 var float PlayerAccuracyTracker[10];
@@ -172,6 +175,8 @@ var float VersusZedDamageMod;
 var array<KFDoorActor> DoorList;
 var repnotify Actor CurrentObjective;
 var KFInterface_MapObjective ObjectiveInterface;
+var repnotify Actor PreviousObjective;
+var repnotify int PreviousObjectiveResult;
 var export editinline AkComponent MusicComp;
 var KFMusicTrackInfo CurrentMusicTrackInfo;
 var repnotify KFMusicTrackInfo ReplicatedMusicTrackInfo;
@@ -182,19 +187,22 @@ replication
      if(bNetDirty)
         AIRemaining, ConsoleGameSessionGuid, 
         CurrentObjective, GameSharedUnlocks, 
-        MusicIntensity, MusicTrackRepCount, 
-        NextTrader, ReplicatedMusicTrackInfo, 
-        TraderVolume, TraderVolumeCheckType, 
-        WaveNum, WaveTotalAICount, 
-        bHidePawnIcons, bIsUnrankedGame, 
-        bTraderIsOpen, bWaveIsActive;
+        MaxHumanCount, MusicIntensity, 
+        MusicTrackRepCount, NextTrader, 
+        PreviousObjective, PreviousObjectiveResult, 
+        ReplicatedMusicTrackInfo, TraderVolume, 
+        TraderVolumeCheckType, WaveNum, 
+        WaveTotalAICount, bHidePawnIcons, 
+        bIsUnrankedGame, bTraderIsOpen, 
+        bWaveIsActive;
 
      if(bNetInitial)
-        GameAmmoCostScale, GameDifficulty, 
-        GameLength, MaxPerkLevel, 
-        TraderItems, WaveMax, 
-        bAllowGrenadePurchase, bCustom, 
-        bTradersEnabled, bVersusGame;
+        BossIndex, GameAmmoCostScale, 
+        GameDifficulty, GameLength, 
+        MaxPerkLevel, TraderItems, 
+        WaveMax, bAllowGrenadePurchase, 
+        bCustom, bTradersEnabled, 
+        bVersusGame;
 
      if(bNetInitial && Role == ROLE_Authority)
         ServerAdInfo;
@@ -333,7 +341,14 @@ simulated event ReplicatedEvent(name VarName)
                                         }
                                         else
                                         {
-                                            super.ReplicatedEvent(VarName);
+                                            if(VarName == 'BossIndex')
+                                            {
+                                                CacheSelectedBoss(BossIndex);                                                
+                                            }
+                                            else
+                                            {
+                                                super.ReplicatedEvent(VarName);
+                                            }
                                         }
                                     }
                                 }
@@ -371,7 +386,7 @@ simulated function ReceivedGameClass()
     KFGameClass = class<KFGameInfo>(GameClass);
     if(KFGameClass != none)
     {
-        KFGameClass.static.PreloadContentClasses();
+        KFGameClass.static.PreloadGlobalContentClasses();
         if(TraderDialogManager != none)
         {
             TraderDialogManager.TraderVoiceGroupClass = KFGameClass.default.TraderVoiceGroupClass;
@@ -384,6 +399,26 @@ simulated function ReceivedGameClass()
     DebugingNextTraderIndex = -1;
     super.ReceivedGameClass();
 }
+
+simulated function CacheSelectedBoss(int NewBossIndex)
+{
+    local class<KFGameInfo> KFGameClass;
+    local class<KFPawn_Monster> KFMonsterClass;
+
+    BossIndex = byte(NewBossIndex);
+    KFGameClass = class<KFGameInfo>(GameClass);
+    if(KFGameClass != none)
+    {
+        KFMonsterClass = KFGameClass.static.GetSpecificBossClass(BossIndex);
+        if(KFMonsterClass != none)
+        {
+            SetCachedBossArchetype(KFMonsterClass.default.MonsterArchPath);
+        }
+    }
+}
+
+// Export UKFGameReplicationInfo::execSetCachedBossArchetype(FFrame&, void* const)
+native function SetCachedBossArchetype(string MonsterArchPath);
 
 simulated function UpdateHUDWaveCount()
 {
@@ -873,6 +908,14 @@ simulated function DisplayDebug(HUD HUD, out float YL, out float YPos)
     }
 }
 
+simulated function int GetNumPlayers()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+
+    GetKFPRIArray(PRIs);
+    return PRIs.Length;
+}
+
 simulated function int GetNumPlayersAlive()
 {
     local int I, NumPlayersAlive;
@@ -1339,6 +1382,13 @@ function StartNextObjective()
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
     if((KFMI != none) && WaveNum != WaveMax)
     {
+        if(KFMI.bEventLimitedObjectives)
+        {
+            if(Class'KFGameEngine'.static.GetSeasonalEventID() != KFMI.EventHoliday)
+            {
+                return;
+            }
+        }
         if(KFMI.bUsePresetObjectives)
         {
             StartNextPresetObjective(KFMI);            
@@ -1410,7 +1460,7 @@ function int AttemptObjectiveActivation(array<KFInterface_MapObjective> Possible
     if(PossibleObjectives.Length > 0)
     {
         RandID = Rand(PossibleObjectives.Length);
-        if(PossibleObjectives[RandID].CanActivateObjective())
+        if(PossibleObjectives[RandID].CanActivateObjective() && PreviousObjective != bool(PossibleObjectives[RandID]))
         {
             ActivateObjective(PossibleObjectives[RandID]);
             return RandID;
@@ -1426,6 +1476,8 @@ function ActivateObjective(KFInterface_MapObjective NewObjective)
     if(NotEqual_InterfaceInterface(NewObjective, (none)))
     {
         CurrentObjective = Actor(bool(NewObjective));
+        PreviousObjective = none;
+        PreviousObjectiveResult = -1;
         ObjectiveInterface = NewObjective;
         ObjectiveInterface.ActivateObjective();
     }
@@ -1435,6 +1487,8 @@ function DeactivateObjective()
 {
     if(CurrentObjective != none)
     {
+        PreviousObjective = CurrentObjective;
+        PreviousObjectiveResult = ObjectiveInterface.GetDoshReward();
         ObjectiveInterface.DeactivateObjective();
         CurrentObjective = none;
         ObjectiveInterface = none;
@@ -1445,6 +1499,7 @@ defaultproperties
 {
     WaveMax=255
     MaxPerkLevel=4
+    BossIndex=255
     TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
     bAllowGrenadePurchase=true
     bTradersEnabled=true
@@ -1454,4 +1509,5 @@ defaultproperties
     UpdateZedInfoInterval=0.5
     UpdateHumanInfoInterval=0.5
     UpdatePickupInfoInterval=1
+    PreviousObjectiveResult=-1
 }

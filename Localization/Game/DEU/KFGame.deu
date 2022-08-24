@@ -1,9 +1,11 @@
 [KFCommon_LocalizedStrings]
+FailedToReachInventoryServerString="Gegenstandsserver unerreichbar. Inventar ist nicht verfügbar."
 LoadingString="Wird geladen …"
 DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Schwer"
 DifficultyStrings[2]="Lebensmüde"
 DifficultyStrings[3]="Hölle auf Erden"
+BonusDoshString="BONUSKOHLE"
 
 LengthStrings[0]="Kurz (4 Wellen)"
 LengthStrings[1]="Mittel (7 Wellen)"
@@ -65,8 +67,8 @@ CustomString="Benutzerdef."
 RarityStrings[0]="GEWÖHNLICH"
 RarityStrings[1]="UNGEWÖHNLICH"
 RarityStrings[2]="SELTEN"
-RarityStrings[3]="MYTHISCH"
-RarityStrings[4]="LEGENDÄR"
+RarityStrings[3]="AUSSERGEWÖHNLICH"
+RarityStrings[4]="MEISTERHAFT"
 RarityStrings[5]="EXTREM SELTEN"
 RarityStrings[6]="BELIEBIG"
 
@@ -91,6 +93,17 @@ MixerZedTimeString=", ein Mixer-Zuschauer,hat Zed-Zeit aktiviert. "
 MixerRageZedsString=", ein Mixer-Zuschauer,hat Zeds in der Nähe wütend gemacht. "
 MixerPukeString=", ein Mixer-Zuschauer,hat auf dich gekotzt."
 MixerSpawnedFPString=", ein Mixer-Zuschauer,hat einen Fleshpound gespawnt."
+MixerSpawnedScrakeString=", ein Mixer-Zuschauer, hat einen Scrake gespawnt!"
+MixerSpawnedMiniFPString=", ein Mixer-Zuschauer, hat Quarter Pounds gespawnt!"
+
+DiscordMenuPresenceString="Im Hauptmenü"
+DiscordPartyPresenceString="Gruppe wird gebildet"
+DiscordNetworkMatchString="Netzwerk-Spiel"
+DiscordSoloMatchString="Solo-Spiel"
+DiscordMatchLobbyString=": Spiel-Lobby"
+DiscordTraderTimeString=": Zeit für die Händlerin"
+DiscordBossWaveString=": Bosswelle"
+DiscordWaveString=": Welle"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="AUSBRUCH-ABSCHLUSS-BELOHNUNG"
@@ -112,6 +125,8 @@ DealDamageString="Verursache Schaden:"
 EarnXPString="Erhalte EP:"
 CompleteMapString="Schließe ein Spiel ab in Karte:"
 KillZedsString="Töte Zeds:"
+KillBossString="Boss töten:"
+KillBossDescriptionString=""
 VersusKillsString="Töte Versus-Spieler als:"
 DealVersusDamageString="Füge Versus-Spielern Schaden zu als:"
 VersusCompletionString="Schließe ein Spiel ab als:"
@@ -175,7 +190,6 @@ TutorialString="Grundausbildung"
 modeList0="Überleben – PVE Kämpfe gegen KI-gesteuerte Wellen von Zeds"
 modeList1="Wöchentlicher Ausbruch – Jede Woche ein anderer Spielmodus."
 modeList2="VS-Überleben – PVP Horzine-Söldner gegen Wellen von Spieler- und KI-gesteuerten Zeds"
-modeList3=""
 difficultyList0="Normal – Für Anfänger mit Vorteil-Rang 0-5."
 difficultyList1="Schwer – Für erfahrene Spieler mit Vorteil-Rang 6-12. Es gibt mehr Zeds pro Welle, sie bewegen sich schneller und haben mehr Lebenspunkte. Es gibt weniger zum Aufsammeln und weniger Kohle."
 difficultyList2="Selbstmörderisch – Für routinierte Spieler mit Vorteil-Rang 13-25. Es gibt noch mehr Zeds pro Welle, sie benutzen neue Angriffe und bewegen sich noch schneller. Es gibt noch weniger zum Aufsammeln und noch weniger Kohle."
@@ -766,7 +780,7 @@ DoshVaultString="KOHLEKAMMER"
 YourCratesString="Deine Kisten:"
 OpenCratesString="Kiste(n) öffnen"
 CrateUnlockedString="KISTE FREIGESCHALTET!"
-DelayedCrateString="* Erhalt der Kohlekammerkiste könnte sich bis zum nächsten Spielstart verzögern"
+DelayedCrateString="* Erhalt der Kohlekammerkiste könnte sich bis zum nächsten Spiel verzögern"
 
 [KFGFxMenu_Gear]
 GearHeaderString="AUSRÜSTUNG ANPASSEN"
@@ -874,6 +888,7 @@ WeaponSkinsString="Markt: Waffen-Skins"
 MarketConsumablesString="Markt: Kisten/USBs"
 MarketCosmeticsString="Markt: Kosmetisches"
 MarketEmotesString="Markt: Emotes"
+ThankYouString="Danke für deinen Kauf! Er wird uns dabei helfen, neue Gegenstände, Karten, Waffen, Zeds und Spielmodi für zukünftige Updates zu entwickeln."
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="IM MARKT FINDEN"
@@ -1406,10 +1421,10 @@ YouLostMessage="N I E D E R L A G E"
 YouWonMessage="S I E G"
 SquadWipedOutMessage="Dein Trupp wurde ausgelöscht!"
 SquadSurvivedMessage="Dein Trupp hat überlebt!"
-ObjectiveStartMessage="Aufgabe begonnen!"
-ObjectiveWonMessage="Aufgabe erledigt!"
-ObjectiveEndedMessage="Aufgabe abgelaufen!"
-ObjectiveLostMessage="Aufgabe verloren!"
+ObjectiveStartMessage="AUFGABE BEGONNEN"
+ObjectiveWonMessage="AUFGABE ABGESCHLOSSEN"
+ObjectiveEndedMessage="AUFGABE VORBEI"
+ObjectiveLostMessage="AUFGABE GESCHEITERT"
 ObjNotEnoughPlayersMessage="Nicht genug Spieler!"
 ObjTimeRanOutMessage="Zeitlimit erreicht!"
 HumansLoseMessage="Menschen-Trupp wurde ausgelöscht!"
@@ -2146,6 +2161,7 @@ ObjectiveStatusString="AUFGABENSTATUS"
 
 [KFObj_Wave]
 ObjectiveAvailableString="AUFGABE VERFÜGBAR"
+ObjectiveRequireString=" Benötigte Spieler"
 
 [KFObj_Wave_Defend]
 ObjectiveTypeString="VERTEIDIGE"
@@ -2267,9 +2283,24 @@ USBSpitfire="Spitfire-USB-Schlüssel – $2.49"
 USBHighVoltage="Hochspannungs-USB-Schlüssel – $2.49"
 MerchSale="KF2-Ware-Sale! 25 % Rabatt bis 30.04.17, Code: ZED"
 
+[Objectives]
+HoldVolume="VERTEIDIGE DAS GEBIET"
+DoshHold="HALTE DIE STELLUNG"
+DescriptionDoshHold="Halte die Zeds aus dem markierten Gebiet fern"
+RequiredDoshHold="Benötigte Spieler:"
+DoschHoldDesc="Halte die Zeds aus dem markierten Gebiet fern"
+DescriptionHoldVolume="DescriptionHoldVolume"
+RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="SUCHEN UND ZERSTÖREN"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
+FailedString="GESCHEITERT"
 
+; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
 KFPawn_ZedBloat="Bloat"
+KFPawn_ZedBloatKing="Abscheulichkeit"
+KFPawn_ZedBloatKing_Winter="Krampus"
 KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedCrawlerKing="Elite-Crawler"
@@ -2288,7 +2319,7 @@ KFPawn_ZedClot_AlphaKing="Elite-Alpha"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Sirene"
 KFPawn_ZedPatriarch="Patriarch"
-
+KFPawn_ZedBloatKingSubspawn="Abscheulichkeit-Spawn"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat – Spieler"
 KFPawn_ZedClot_Versus="Clot – Spieler"
@@ -2423,19 +2454,19 @@ AllCompleteRewardDescriptionString="Item description for all complete"
 ChanceDropDescriptionStrings[0]="Lassen 1 fallen"
 ChanceDropDescriptionStrings[1]="Lassen 2 fallen"
 
-[KFGFxSummerSideShowObjectivesContainer]
+[KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="Ein zeitbegrenztes Spezial-Event mit exklusiven Gegenständen."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Einschalten",DescriptionString="Schalte den Generator im Tragischen Königreich an");
-SpecialEventObjectiveInfoList[1]=(TitleString="Den Clot zerquetschen",DescriptionString="Zerquetsche den Clot im Tragischen Königreich");
-SpecialEventObjectiveInfoList[2]=(TitleString="Den Bloat versenken",DescriptionString="Versenke den Bloat im Tragischen Königreich");
-SpecialEventObjectiveInfoList[3]=(TitleString="Kohle-Wurf",DescriptionString="Wirf die Kohle im Tragischen Königreich");
-SpecialEventObjectiveInfoList[4]=(TitleString="Carnevil",DescriptionString="Gewinn im Trag. Königr. ein Spiel auf Schwer oder höher");
+SpecialEventObjectiveInfoList[0]=(TitleString="Einbruch",DescriptionString="Zerstöre Krampus’ Schmuckstücke in Krampus’ Versteck");
+SpecialEventObjectiveInfoList[1]=(TitleString="Hackfleisch",DescriptionString="Töte einen Zed mit dem Holzhäcksler in Krampus’ Versteck");
+SpecialEventObjectiveInfoList[2]=(TitleString="Durchhalten",DescriptionString="Schließe die Aufgabe „Halte die Stellung“ in Krampus’ Versteck ab");
+SpecialEventObjectiveInfoList[3]=(TitleString="Schneegefängnisse",DescriptionString="Finde zehn Sammelstücke in Krampus’ Versteck");
+SpecialEventObjectiveInfoList[4]=(TitleString="Gute Nacht an alle",DescriptionString="Töte Krampus auf Schwer oder höher in Krampus’ Versteck");
 
-AllCompleteRewardDescriptionString="Sideshow-Schutzanzug"
+AllCompleteRewardDescriptionString="Pyjama-Anzug"
 
-ChanceDropDescriptionStrings[0]="Sideshow-Gewinnschein"
-ChanceDropDescriptionStrings[1]="Goldener Sideshow-Schein"
+ChanceDropDescriptionStrings[0]="Gewinnschein"
+ChanceDropDescriptionStrings[1]="Goldschein"
 
 ;============================================
 ; Daily Localization
@@ -2483,7 +2514,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Hoch in den Tod"
 DescriptionStrings[0]="Versuche, neunundneunzig Zed-Ballons zu machen."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
-ModifierDescriptions[0]="In diesem Ausbruch werden Zeds durch deine Schüsse aufgeblasen wie Luftballons, bis sie wegfliegen und platzen! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst. "
+ModifierDescriptions[0]="In diesem Ausbruch werden Zeds durch deine Schüsse aufgeblasen wie Luftballons. Lass sie lieber platzen, sonst regenerieren sie sich! Wähle den wöchentlichen Spielmodus auf der Spielsuche-Seite. Vorteilslevel 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2801,6 +2832,22 @@ DisplayName_POL="Koszmar"
 DisplayName_PTB="Pesadelo"
 DisplayName_RUS="Кошмар"
 
+[KF-KrampusLair KFMapSummary]
+DisplayName_CHN="坎卜斯巢穴"
+DisplayName_CHT="坎普斯巢穴"
+DisplayName_DEU="Krampus’ Versteck"
+DisplayName_ESL="Guarida de Krampus"
+DisplayName_ESN="Guarida de Krampus"
+DisplayName_FRA="Repère de Krampus"
+DisplayName_FRC="Repère de Krampus"
+DisplayName_INT="Krampus Lair"
+DisplayName_ITA="Tana del Krampus"
+DisplayName_JPN="クランプスの巣"
+DisplayName_KOR="크램퍼스 둥지"
+DisplayName_POL="Leże Krampusa"
+DisplayName_PTB="Toca do Krampus"
+DisplayName_RUS="Логово Крампуса"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotika-Labor"
 
@@ -2857,6 +2904,9 @@ DisplayName="Das Tragische Königreich"
 
 [KF-Nightmare KFMapSummary]
 DisplayName="Albtraum"
+
+[KF-KrampusLair KFMapSummary]
+DisplayName="Krampus’ Versteck"
 
 [KFMapInfo]
 ; defaults

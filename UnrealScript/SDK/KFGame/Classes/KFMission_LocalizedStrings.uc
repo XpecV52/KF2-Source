@@ -31,6 +31,8 @@ var localized string SeasonalString;
 
 var localized string DealDamageString;
 var localized string EarnXPString;
+var localized string KillBossString;
+var localized string KillBossDescriptionString;
 var localized string CompleteMapString;
 var localized string KillZedsString;
 var localized string DealVersusDamageString;
