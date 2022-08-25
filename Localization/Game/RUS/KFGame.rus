@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="По приглашению"
 ModeStrings[0]="Выживание"
 ModeStrings[1]="Еженедельно"
 ModeStrings[2]="Выживание в бою"
+ModeStrings[3]="Без конца"
 
 NoPreferenceString="ЛЮБОЙ"
 OKString="ОК"
@@ -55,7 +56,6 @@ NoSwitchReasonString="Смена команды нарушит баланс ко
 
 AutoTradeCompleteString="Автоматическая торговля завершена: "
 AutoFillCompleteString="Автоматически пополненные запасы"
-WeaponUpgradeComepleteString="Оружие улучшено"
 SecondaryWeaponPurchasedString="Куплено дополнительное оружие"
 NoItemsPurchasedString="Предметы не куплены"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": Лобби матча"
 DiscordTraderTimeString=": Время Торговца"
 DiscordBossWaveString=": Волна босса"
 DiscordWaveString=": Волна"
+
+ProceedToTutorialString="ПРОДОЛЖИТЬ ОБУЧЕНИЕ?"
+ProceedToTutorialDescriptionString="Перейдите в регулируемую среду, чтобы обучиться основам.  По завершении выбранный навык 0 уровня получит уровень 1."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="НАГРАДА ЗА ПРОХОЖДЕНИЕ ВСПЫШКИ"
@@ -190,6 +193,7 @@ TutorialString="Начальный обучения"
 modeList0="Выживание — бой с волнами мутантов, управляемых компьютером"
 modeList1="Еженедельная вспышка — новый режим игры каждую неделю."
 modeList2="Выживание VS — наемники Horzine против волн мутантов, управляемых игроками и компьютером"
+modeList3="Бесконечный режим: бейтесь с мутантами под управлением ИИ, пока не умрете"
 difficultyList0="Обычная — для начинающих игроков с уровнем навыка 0–5."
 difficultyList1="Трудная — для опытных игроков с уровнем навыка 6–12. В каждой волне больше мутантов, они быстрее движутся и у них больше здоровья. Денег и предметов для подбора меньше."
 difficultyList2="Убийственная — для бывалых игроков с уровнем навыка 13–25. В каждой волне еще больше мутантов; они применяют новые атаки и движутся еще быстрее. Денег и предметов для подбора еще меньше."
@@ -414,7 +418,7 @@ MapVoteString="ГОЛОС. ЗА КАРТУ"
 PlayerStatsString="ПАРАМЕТРЫ ИГРОКА"
 TeamAwardsString="НАГРАДЫ"
 PostGameReportString="ОТЧЕТ ОБ ИГРЕ"
-NextMapString="До сл. карты:"
+NextMapString="До след. карты:"
 WaveString="ВОЛНА"
 XPString="ОПЫТ"
 VictoryString="Победа"
@@ -738,6 +742,7 @@ DamageDealtString="Нанесено урона:"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ГОТОВО]"
+SkipTraderString="ПРОПУСТИТЬ ТОРГОВЦА"
 WaitingString="ОЖИДАНИЕ ИГРОКОВ"
 MatchOverString="БОЙ ЗАКОНЧЕН \n Подождите..."
 DeployingString="ДО ВЫБРОСКИ: "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Опыт"
-PrestigeLevelString="Престиж"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="НАСТРОИТЬ"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>ВЫБОР ОРУЖИЯ"
 PlayerClotGrabWarningMessage="УБЕЙТЕ МУТАНТА, ЧТОБЫ ОСВОБОДИТЬСЯ!"
 UseMinigameMessage="АКТИВИРОВАТЬ"
 UseMinigameGeneratorMessage="АКТИВИРОВАТЬ ГЕНЕРАТОР"
+DoshActivateMessage="СТОИМОСТЬ АКТИВАЦИИ"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Команды не сбалансированы и будут изменены"
@@ -2133,7 +2138,7 @@ Madman="МУТАНТ ВРЕМЯ — безумец"
 MadmanDescription="При замедлении времени все оружие стреляет в 3 раза быстрее."
 
 IncapMaster="МУТАНТ ВРЕМЯ — изоляция"
-IncapMasterDescription="При замедлении времени сила всех способов выведения из строя растет на 200% для всех видов оружия. "
+IncapMasterDescription="При попадании во время мутантов сила всех способов выведения из строя растет на 200% для всех видов оружия."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="Сталкер"
 KFPawn_ZedClot_Cyst="Киста"
 KFPawn_ZedClot_Slasher="Расчленитель"
 KFPawn_ZedClot_Alpha="Альфа-зомби"
-KFPawn_ZedClot_AlphaKing="Элитный альфа"
+KFPawn_ZedClot_AlphaKing="Мятежник"
 KFPawn_ZedScrake="Мясник"
 KFPawn_ZedSiren="Сирена"
 KFPawn_ZedPatriarch="Патриарх"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="Пижама"
 
 ChanceDropDescriptionStrings[0]="Призовой билет"
 ChanceDropDescriptionStrings[1]="Золотой билет"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="Бесконечные испытания"
+CurrentSpecialEventDescriptionString="Уничтожьте волны, чтобы получить легенД.А.Р.ные награды!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Бесконечная проверка: манекен",DescriptionString="Сразитесь с бесконечной волной 5",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="Бесконечный дрон",DescriptionString="Сразитесь с бесконечной волной 10",TierEventRewardName="D.A.R. Бронза");
+SpecialEventObjectiveInfoList[2]=(TitleString="Бесконечный караул",DescriptionString="Сразитесь с бесконечной волной 15",TierEventRewardName="Серебряный D.A.R.");
+SpecialEventObjectiveInfoList[3]=(TitleString="Бесконечная машина войны",DescriptionString="Сразитесь с бесконечной волной 20",TierEventRewardName="Классический синий D.A.R.");
+SpecialEventObjectiveInfoList[4]=(TitleString="Бесконечный лучший D.A.R.",DescriptionString="Сразитесь с бесконечной волной 25",TierEventRewardName="Золотой D.A.R.");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Биотич. лаборатория"
 
@@ -2862,6 +2910,9 @@ GameName="Выживание"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="Еженедельно"
+
+[Endless KFGameInfoSummary]
+GameName="Без конца"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Поместье Вольтера"
@@ -2907,6 +2958,12 @@ DisplayName="Кошмар"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="Логово Крампуса"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName="Сектор Die"
 
 [KFMapInfo]
 ; defaults

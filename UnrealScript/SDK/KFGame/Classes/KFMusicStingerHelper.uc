@@ -5,6 +5,9 @@ var AkEvent 	RoundLostStinger;
 var AkEvent		MatchWonStinger;
 var AkEvent 	MatchLostStinger;
 var AkEvent		WaveStartStinger;
+var AkEvent		WaveStartStingerWeekly;
+var AkEvent		WaveStartStingerSpecial;
+var AkEvent		WaveStartStingerBoss;
 var AkEvent		WaveCompletedStinger;
 var AkEvent 	NewObjectiveStinger;
 var AkEvent 	ObjectiveWonStinger;
@@ -124,9 +127,10 @@ static simulated function PlayMatchLostStinger( PlayerController P )
 	KFPC.StingerAkComponent.PlayEvent( default.MatchLostStinger );
 }
 
-static simulated function PlayWaveStartStinger( PlayerController P )
+static simulated function PlayWaveStartStinger( PlayerController P, optional byte WaveStartType = GMT_WaveStart)
 {
 	local KFPlayerController KFPC;
+	local AkEvent AKEventToPlay;
 
 	KFPC = KFPlayerController( P );
 	if( KFPC == none )
@@ -134,7 +138,27 @@ static simulated function PlayWaveStartStinger( PlayerController P )
 
 	// allow player wave complete stinger to interrupt others
 	KFPC.StingerAkComponent.StopEvents();
-	KFPC.StingerAkComponent.PlayEvent( default.WaveStartStinger );
+
+	switch (WaveStartType)
+	{
+	case GMT_WaveStart:
+		AKEventToPlay = default.WaveStartStinger;
+		break;
+	case GMT_WaveStartWeekly:
+		AKEventToPlay = default.WaveStartStingerWeekly;
+		break;
+	case GMT_WaveStartSpecial:
+		AKEventToPlay = default.WaveStartStingerSpecial;
+		break;
+	case GMT_WaveSBoss:
+		AKEventToPlay = default.WaveStartStingerBoss;
+		break;
+	default:
+		AKEventToPlay = default.WaveStartStinger;
+	}
+	
+
+	KFPC.StingerAkComponent.PlayEvent( AKEventToPlay );
 }
 
 static simulated function PlayWaveCompletedStinger( PlayerController P )
@@ -212,7 +236,6 @@ static simulated function PlayObjectiveLostStinger( PlayerController P )
 
 	if( KFPC.StingerAkComponent.IsPlaying() )
 		return;
-
 	KFPC.StingerAkComponent.PlayEvent( default.ObjectiveLostStinger );
 }
 
@@ -260,6 +283,9 @@ static simulated function PlayPlayerDiedStinger( PlayerController P )
 defaultproperties
 {
 	WaveStartStinger=AkEvent'WW_UI_Menu.Play_UI_Alert_Wave_Incoming'
+	WaveStartStingerSpecial=AkEvent'WW_UI_Objectives.Play_UI_ObjectiveComplete'
+	WaveStartStingerWeekly=AkEvent'WW_UI_Objectives.Play_UI_ObjectiveComplete'
+	WaveStartStingerBoss=AkEvent'WW_UI_Menu.Play_Zed_Player_Killed'
 	RoundWonStinger=AkEvent'WW_UI_Menu.Play_Round_Won'
 	RoundLostStinger=AkEvent'WW_UI_Menu.Play_Round_Lost'
 	MatchWonStinger=AkEvent'WW_MSTG_Global.Play_MSTG_BossKilled'

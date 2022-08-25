@@ -60,7 +60,7 @@ var string 	SavedSoloMapString; // Temporarily save our last chosen map until we
 var byte 	SavedSoloDifficultyIndex; // Save the game difficulty after it's selected in the menu
 var byte 	SavedSoloLengthIndex; // Save the game length after it's selected in the menu
 
-var private byte   SavedModeIndex; // Save the game mode after it's selected in the menu
+var byte   SavedModeIndex; // Save the game mode after it's selected in the menu
 var private string SavedMapString; // Temporarily save our last chosen map until we have map rotations set up
 var private byte   SavedDifficultyIndex; // Save the game difficulty after it's selected in the menu
 var private byte   SavedLengthIndex; // Save the game length after it's selected in the menu
@@ -240,7 +240,16 @@ function InitializeGameOptions()
 
 	if(bIsSoloGame && InitialMapIndex == INDEX_NONE)
 	{
-		InitialMapIndex = 0;
+		
+		if (class'GameEngine'.Static.IsGameFullyInstalled())
+		{
+			InitialMapIndex = StartMenu.MapStringList.Find("KF-BioticsLab");
+		}
+		else
+		{
+			InitialMapIndex = StartMenu.MapStringList.Find("KF-EvacuationPoint");
+		}
+		MapChanged(StartMenu.MapStringList[InitialMapIndex]);
 	}
 
 	TextObject = CreateObject("Object");
@@ -461,6 +470,7 @@ function ModeChanged( int Index )
 	}
 
 	ClampSavedFiltersToMode();
+	StartMenu.GetMapList(StartMenu.MapStringList);
 	InitializeGameOptions();
 	SaveConfig();
 }
@@ -774,11 +784,21 @@ function byte GetServerTypeIndex()
 	return HandleNoPref(SavedServerTypeIndex, bShowServerTypeNoPref);
 }
 
-function int GetAdjustedGameModeIndex(int ModeIndex)
+event int GetAdjustedGameModeIndex(int ModeIndex)
 {
 	if (bIsSoloGame)
 	{
-		return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedSoloModeIndex]);
+		switch (ModeIndex)
+		{
+			case 0:
+			case 1:
+			case 3:
+				return ModeIndex;
+			case 2: //versus
+				return 3;
+			default:
+				return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedSoloModeIndex]);
+		}
 	}
 	else
 	{

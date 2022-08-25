@@ -124,5 +124,4 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__SplineActor.Sprite'
     Components(0)=Sprite
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

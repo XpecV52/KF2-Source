@@ -342,7 +342,7 @@ ItemDescription="•射击模式发射爆炸、易燃的炮弹。\n•射击传�
 [KFWeap_Pistol_DualFlare]
 ItemName="双持喷火式战斗机"
 ItemCategory="火焰"
-ItemDescription="•射击模式发射爆炸、易燃的炮弹。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•这是一对喷火式战斗机。可单独售出或抛弃一把。"
+ItemDescription="•射击模式发射爆炸、易燃的炮弹。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•这是一对喷火式战斗机。"
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="燃烧战壕枪"
@@ -397,7 +397,7 @@ ItemDescription="•射击模式只有半自动。\n•经典柯尔特 1911 半�
 [KFWeap_Pistol_DualColt1911]
 ItemName="两把 M1911 手枪。"
 ItemCategory="手枪"
-ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•这是一对柯尔特 1911 半自动手枪。可单独售出或抛弃一把。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•这是一对柯尔特 1911 半自动手枪。"
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 沙漠之鹰"
@@ -407,7 +407,7 @@ ItemDescription="•射击模式只有半自动式。\n•沙漠之鹰是手枪�
 [KFWeap_Pistol_DualDeagle]
 ItemName="双.50 沙漠之鹰"
 ItemCategory="手枪"
-ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•一对沙漠之鹰手炮。可单独售出或抛弃一把。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•一对沙漠之鹰手炮。"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左轮手枪"
@@ -417,7 +417,7 @@ ItemDescription="•射击模式只有单发射击。\n• .44 口径雷明顿�
 [KFWeap_Revolver_DualRem1858]
 ItemName="两把 1858 左轮手枪"
 ItemCategory="手枪"
-ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•一对雷明顿 1858 左轮手枪。可单独售出或抛弃一把。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•一对雷明顿 1858 左轮手枪。"
 
 [KFWeap_Revolver_SW500]
 ItemName=".500 马格南左轮手枪"
@@ -427,7 +427,7 @@ ItemDescription="•射击模式只有单发射击。\n•长管 .50-口径‘�
 [KFWeap_Revolver_DualSW500]
 ItemName="两把 .500 马格南"
 ItemCategory="手枪"
-ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•一对.500 马格南“人骨拼图”左轮手枪。可单独售出或抛弃一把。‘砰声’较大。"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•一对.500 马格南“人骨拼图”左轮手枪。"
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="温彻斯特 1894"
@@ -483,7 +483,7 @@ ItemDescription="•可以选择全自动和半自动射击模式。\n•备用�
 [KFWeap_SMG_HK_UMP]
 ItemName="黑克勒和科赫 UMP"
 ItemCategory="冲锋枪"
-ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•MP 家族中的新成员。或许是个叔叔什么的？冲锋枪有家族吗？"
+ItemDescription="•可以选择全自动和点射射击模式。\n•备用射击可以切换射击模式。\n•MP 家族中的新成员。或许是个叔叔什么的？冲锋枪有家族吗？"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="冻结发射器"
@@ -494,6 +494,26 @@ ItemDescription="•射击模式发射一连串绝对零度的炮弹。\n•冻�
 ItemName="Hemogoblin"
 ItemCategory="步枪"
 ItemDescription="•射击模式发射一个血孔，伤害、减慢和削弱丧尸。\n•备用射击射出治愈飞镖治疗队友。\n•不是可行的减重计划。"
+
+[KFWeap_HuskCannon]
+ItemName="火球炮"
+ItemCategory="火焰"
+ItemDescription="•按下开火按钮后开始充能，松开按钮后释放能量。\n•霍因官方版本的果壳大炮。此型号经过保证在95%的情况下不会爆炸。"
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="手枪"
+ItemDescription="•射击模式只有半自动。\n•你往上面放越多火药桶，世界就会越美好。就像加了更多的培根。"
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="双持 AF2011-A2"
+ItemCategory="手枪"
+ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•两支枪各配有两个弹筒。四倍火力。这就是数学。你不能不信数学。"
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="冲锋枪"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•速射燃烧弹药就是其特色。明白了吗？速射？就因为它是冲锋枪？啊，别在意。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="VS 生存"
 
 [KFGameInfo_WeeklySurvival]
 GameName="每周爆发"
+
+[KFGameInfo_Endless]
+GameName="无尽"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="没有剩余的治愈"

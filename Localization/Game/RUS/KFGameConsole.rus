@@ -19,6 +19,8 @@ KF-Nuked="Проходит «Ядерный удар»"
 KF-TragicKingdom="Игра в Королевство Трагедий"
 KF-Nightmare="Игра в Кошмар"
 KF-KrampusLair="Игра в логове Крампуса"
+KF-PowerCore_Holdout="Игра в энергоядре"
+KF-DieSector="Игра в секторе Die"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

@@ -30,6 +30,7 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
 {
     if(Switch < default.VoiceCommsOptionStrings.Length)
     {
+        KFPlayerReplicationInfo(RelatedPRI_1).SetCurrentVoiceCommsRequest(Switch);
         return (RelatedPRI_1.PlayerName $ ":") @ default.VoiceCommsOptionStrings[Switch];
     }
 }

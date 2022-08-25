@@ -97,8 +97,8 @@ defaultproperties
    bWarnAIWhenFired=True
    AlwaysRelevantDistanceSquared=2250000.000000
    TossZ=150.000000
-   GravityScale=0.250000
-   TerminalVelocity=5000.000000
+   GravityScale=0.500000
+   TerminalVelocity=4000.000000
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_HX25_Pistol_ARCH.HX25_Pistol_Submunition_Explosion'
       Damage=30.000000
@@ -129,8 +129,6 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFProj_BallisticExplosive:AmbientAkSoundComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Speed=5000.000000
-   MaxSpeed=5000.000000
    MomentumTransfer=50000.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_BallisticExplosive:CollisionCylinder'
       CollisionHeight=5.000000
@@ -145,6 +143,7 @@ defaultproperties
    Components(0)=CollisionCylinder
    Components(1)=AmbientAkSoundComponent
    Physics=PHYS_Falling
+   LifeSpan=1000.000000
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_ExplosiveSubmunition_HX25"
    ObjectArchetype=KFProj_BallisticExplosive'KFGame.Default__KFProj_BallisticExplosive'

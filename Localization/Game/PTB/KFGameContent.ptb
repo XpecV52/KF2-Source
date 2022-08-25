@@ -342,7 +342,7 @@ ItemDescription="• Disparo de projéteis explosivos e inflamáveis. \n• Sist
 [KFWeap_Pistol_DualFlare]
 ItemName="Lança-chamas duplo"
 ItemCategory="Chamas"
-ItemDescription="• Disparo de projéteis explosivos e inflamáveis. \n• Disparo alternativo que alterna estilos de mira ao usar uma mira metálica.\n• Um par de lança-chamas. É possível vendê-las ou descartá-las individualmente."
+ItemDescription="• Disparo de projéteis explosivos e inflamáveis. \n• Disparo alternativo que alterna estilos de mira ao usar uma mira metálica.\n• Um par de lança-chamas."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Arma Incendiária"
@@ -397,7 +397,7 @@ ItemDescription="•Modo de tiro é só semiautomático.\n•A pistola semiautom
 [KFWeap_Pistol_DualColt1911]
 ItemName="Duas Pistolas M1911"
 ItemCategory="Pistola de mão"
-ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira ao usar uma mira metálica.\n•Um par de pistolas Colt 1911 semiautomáticas. É possível vendê-las ou descartá-las individualmente."
+ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira ao usar uma mira metálica.\n•Um par de pistolas Colt 1911 semiautomáticas."
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
@@ -407,7 +407,7 @@ ItemDescription="•O modo de tiro é somente semiautomático.\n•A Desert Eagl
 [KFWeap_Pistol_DualDeagle]
 ItemName="Duas Desert Eagle .50"
 ItemCategory="Pistola de mão"
-ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de canhões de mão Desert Eagle. É possível vendê-las ou descartá-las individualmente."
+ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de canhões de mão Desert Eagle."
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Revólver 1858"
@@ -417,7 +417,7 @@ ItemDescription="•Modo de tiro é de tiro único somente.\n•Um ótimo exempl
 [KFWeap_Revolver_DualRem1858]
 ItemName="Dois Revólveres 1858"
 ItemCategory="Pistola de mão"
-ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de revólveres Remington 1858. É possível vendê-las ou descartá-las individualmente."
+ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de revólveres Remington 1858."
 
 [KFWeap_Revolver_SW500]
 ItemName="Revólver Magnum .500"
@@ -427,7 +427,7 @@ ItemDescription="•Modo de tiro único, somente.\n•Verdadeira artilharia de m
 [KFWeap_Revolver_DualSW500]
 ItemName="Duas Magnums .500"
 ItemCategory="Pistola de mão"
-ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de revólveres Magnum .500 ‘Bone Collector’. É possível vendê-las ou descartá-las individualmente. Têm um coice forte."
+ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de revólveres Magnum .500 ‘Bone Collector’."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -483,7 +483,7 @@ ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
 ItemCategory="Submetralhadora"
-ItemDescription="•Escolha entre automático ou semiautomático.\n•Use tiro alternativo para alternar entre os modos de tiro.\n•Uma das mais recentes adições à família MP. Talvez um tio? As submetralhadoras têm famílias?"
+ItemDescription="•Escolha entre automático ou rajada.\n•Use tiro alternativo para alternar entre os modos de tiro.\n•Uma das mais recentes adições à família MP. Talvez um tio? As submetralhadoras têm famílias?"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="Jato Frio"
@@ -494,6 +494,26 @@ ItemDescription="• Disparo de rajada de partículas em zero absoluto.\n• Con
 ItemName="Hemogoblin"
 ItemCategory="Rifle"
 ItemDescription="•Modo de tiro dispara uma broca de sangue que causa dano, lentidão e enfraquece Zeds. \n•Tiro alternativo dispara dardos curativos que cura membros da equipe.\n•Inviável como dieta de emagrecimento."
+
+[KFWeap_HuskCannon]
+ItemName="Canhão Esfolador"
+ItemCategory="Chamas"
+ItemDescription="•Carrega com o botão de disparo apertado e descarrega ao soltar o botão. \n•Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="Pistola"
+ItemDescription="•O modo de disparo é somente semiautomático.\n•Tudo é melhor quando tem mais canos. É tipo adicionar mais bacon."
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="AF2011-A2 Dupla"
+ItemCategory="Pistola"
+ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Duas armas com dois canos cada. Quatro vezes mais poder de fogo. É matemática. Não tem como discutir."
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="Submetralhadora"
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Vem com munição incendiária de rápido disparo. Entendeu? Rápido disparo? Porque é uma submetralhadora incendiária? Ah, esquece."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="Sobrevivência X"
 
 [KFGameInfo_WeeklySurvival]
 GameName="Surto Semanal"
+
+[KFGameInfo_Endless]
+GameName="Infinito"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Sem curas restantes"

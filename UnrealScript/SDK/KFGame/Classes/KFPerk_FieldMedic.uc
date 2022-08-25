@@ -14,11 +14,11 @@ class KFPerk_FieldMedic extends KFPerk
 //`include(KFOnlineStats.uci)
 
 /** Passive skills */
-var	const PerkSkill 				HealerRecharge;			
-var	const PerkSkill 				HealPotency;			
-var	const PerkSkill					BloatBileResistance;             
-var	const PerkSkill					MovementSpeed;                		
-var	const PerkSkill					Armor;                				
+var	const PerkSkill 				HealerRecharge;
+var	const PerkSkill 				HealPotency;
+var	const PerkSkill					BloatBileResistance;
+var	const PerkSkill					MovementSpeed;
+var	const PerkSkill					Armor;
 
 var const private float				SelfHealingSurgePct;
 var const private float				MaxSurvivalistResistance;
@@ -38,16 +38,16 @@ var const private class<KFDamageType> AAExplosionDamageType;
 
 enum EMedicPerkSkills
 {
-	EMedicHealingSurge,			
-	EMedicSurvivalist,			
+	EMedicHealingSurge,
+	EMedicSurvivalist,
 	EMedicHealingSpeedBoost,
-	EMedicCombatant,			
-	EMedicHealingDamageBoost,			
-	EMedicAcidicCompound,				
-	EMedicHealingShield,		
-	EMedicEnforcer,		
-	EMedicAirborneAgent,		
-	EMedicSlug			
+	EMedicCombatant,
+	EMedicHealingDamageBoost,
+	EMedicAcidicCompound,
+	EMedicHealingShield,
+	EMedicEnforcer,
+	EMedicAirborneAgent,
+	EMedicSlug
 };
 
 /*********************************************************************************************
@@ -133,7 +133,7 @@ simulated function ModifySpeed( out float Speed )
 	local float TempSpeed;
 
 	TempSpeed = Speed + Speed * GetPassiveValue( MovementSpeed, GetLevel() );
-	
+
 	if( IsCombatantActive() )
 	{
 		TempSpeed += Speed * static.GetComabatantSpeedModifier();
@@ -184,8 +184,8 @@ function ModifyHealth( out int InHealth )
 }
 
 simulated function float GetSelfHealingSurgePct()
-{ 
-	return default.SelfHealingSurgePct; 
+{
+	return default.SelfHealingSurgePct;
 }
 
 /**
@@ -555,10 +555,10 @@ DefaultProperties
 
 	MaxHealingDamageBoost=20 //15 //30
 	HealingDamageBoostDuration=5.f
-	
+
 	MaxHealingShield=30 //50 //60
 	HealingShieldDuration=5.0f //1.0
-	
+
 	SnarePower=100
 
 	AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
@@ -577,7 +577,7 @@ DefaultProperties
 		CamShake=none
 		CamShakeInnerRadius=0
 		CamShakeOuterRadius=0
-		
+
 		// Damage Effects
 		KnockDownStrength=0
 		KnockDownRadius=0

@@ -256,6 +256,10 @@ package tripwire.menus
             if(param1)
             {
                 this.summaryContainer.data = param1;
+                if(param1.voshDelta)
+                {
+                    this.itemDropContainer.voshNumber = parseInt(param1.voshDelta);
+                }
             }
         }
         

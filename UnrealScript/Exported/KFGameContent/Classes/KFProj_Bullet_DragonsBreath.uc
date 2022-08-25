@@ -10,8 +10,46 @@
 class KFProj_Bullet_DragonsBreath extends KFProj_Bullet
 	hidedropdown;
 
+
+/** Last hit normal from Touch() or HitWall() */
+var vector LastHitNormal;
+
+var float GroundFireChance;
+
+
+simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+{
+	LastHitNormal = HitNormal;
+	Super.ProcessTouch(Other, HitLocation, HitNormal);
+}
+
+/**
+* Explode this Projectile
+*/
+simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
+{
+	LastHitNormal = HitNormal;
+	Super.TriggerExplosion(HitLocation, HitNormal, HitActor);
+}
+
+
+simulated protected function StopSimulating()
+{
+	local vector FlameSpawnVel;
+
+	if (Role == ROLE_Authority && Physics == PHYS_Falling && FRand() < GroundFireChance)
+	{
+		//SpawnGroundFire();
+		FlameSpawnVel = 0.25f * CalculateResidualFlameVelocity(LastHitNormal, Normal(Velocity), VSize(Velocity));
+		SpawnResidualFlame(class'KFProj_DragonsBreathSplash', Location + (LastHitNormal * 10.f), FlameSpawnVel);
+	}
+
+	super.StopSimulating();
+}
+
 defaultproperties
 {
+   GroundFireChance=0.100000
    bWarnAIWhenFired=True
    GravityScale=0.350000
    TerminalVelocity=7000.000000

@@ -94,7 +94,7 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedClot_Alpha:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedClot_Alpha_Versus:Afflictions_0'
-   IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000,Vulnerability=(0.700000))
+   IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000)
    IncapSettings(1)=(Duration=3.000000,Cooldown=5.000000,Vulnerability=(0.900000))
    IncapSettings(2)=(Cooldown=1.350000,Vulnerability=(0.500000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.200000))

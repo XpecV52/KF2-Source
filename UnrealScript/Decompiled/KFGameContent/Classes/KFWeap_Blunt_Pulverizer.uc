@@ -14,11 +14,15 @@ const ShootAnim_R = 'HardFire_R';
 const ShootAnim_F = 'HardFire_F';
 const ShootAnim_B = 'HardFire_B';
 
-var() GameExplosion ExplosionTemplate;
-var transient Actor BlastAttachee;
-var transient float BlastSpawnOffset;
+var bool bWasTimeDilated;
+var bool bAltExploEffects;
 var transient bool bPulverizerFireReleased;
 var bool bFriendlyFireEnabled;
+var class<KFExplosionActor> ExplosionActorClass;
+var() KFGameExplosion ExplosionTemplate;
+var KFImpactEffectInfo AltExploEffects;
+var transient Actor BlastAttachee;
+var transient float BlastSpawnOffset;
 
 replication
 {
@@ -42,7 +46,7 @@ simulated function bool CanOverrideMagReload(byte FireModeNum)
 
 simulated function CustomFire()
 {
-    local KFExplosionActorReplicated ExploActor;
+    local KFExplosionActor ExploActor;
     local Vector SpawnLoc;
     local Rotator SpawnRot;
 
@@ -50,10 +54,15 @@ simulated function CustomFire()
     {
         return;
     }
+    if(((WorldInfo.NetMode == NM_ListenServer) || WorldInfo.NetMode == NM_DedicatedServer) || Instigator.Controller != none)
+    {
+        bWasTimeDilated = WorldInfo.TimeDilation < 1;
+    }
+    PrepareExplosionTemplate();
     SpawnLoc = Instigator.GetWeaponStartTraceLocation();
     SpawnRot = GetPulverizerAim(SpawnLoc);
     SpawnLoc += (vector(SpawnRot) * BlastSpawnOffset);
-    ExploActor = Spawn(Class'KFExplosionActorReplicated', self,, SpawnLoc, SpawnRot,, true);
+    ExploActor = Spawn(ExplosionActorClass, self,, SpawnLoc, SpawnRot,, true);
     if(ExploActor != none)
     {
         ExploActor.InstigatorController = Instigator.Controller;
@@ -61,7 +70,7 @@ simulated function CustomFire()
         ExploActor.Attachee = BlastAttachee;
         ExplosionTemplate.bFullDamageToAttachee = true;
         ExploActor.bReplicateInstigator = true;
-        ExploActor.bSyncParticlesToMuzzle = true;
+        ExploActor.SetSyncToMuzzleLocation(true);
         ExploActor.Explode(ExplosionTemplate, vector(SpawnRot));
     }
     IncrementFlashCount();
@@ -69,6 +78,47 @@ simulated function CustomFire()
     {
         DrawDebugCone(SpawnLoc, vector(SpawnRot), ExplosionTemplate.DamageRadius, ExplosionTemplate.DirectionalExplosionAngleDeg * 0.01745329, ExplosionTemplate.DirectionalExplosionAngleDeg * 0.01745329, 16, MakeColor(64, 64, 255, 0), true);
     }
+}
+
+protected simulated function PrepareExplosionTemplate()
+{
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
+
+    ExplosionTemplate = default.ExplosionTemplate;
+    ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
+    ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
+    ExplosionTemplate.Damage = ExplosionTemplate.Damage;
+    ExplosionTemplate.DamageRadius = ExplosionTemplate.DamageRadius;
+    ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.DamageFalloffExponent;
+    if(Owner.Role == ROLE_Authority)
+    {
+        KFPC = KFPlayerController(Instigator.Controller);
+        if(KFPC != none)
+        {
+            InstigatorPerk = KFPC.GetPerk();
+            ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
+        }
+    }
+}
+
+protected simulated function SetExplosionActorClass()
+{
+    local KFPlayerReplicationInfo InstigatorPRI;
+
+    if(bWasTimeDilated && Instigator != none)
+    {
+        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+        if(InstigatorPRI != none)
+        {
+            if(InstigatorPRI.bNukeActive)
+            {
+                ExplosionActorClass = Class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass();
+                return;
+            }
+        }
+    }
+    ExplosionActorClass = default.ExplosionActorClass;
 }
 
 simulated function Rotator GetPulverizerAim(Vector StartFireLoc)
@@ -211,6 +261,7 @@ simulated state MeleeHeavyAttacking
 
 defaultproperties
 {
+    ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
     ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
     BlastSpawnOffset=-10
     ParryStrength=5

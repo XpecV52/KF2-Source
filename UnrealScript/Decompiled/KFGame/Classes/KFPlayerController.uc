@@ -97,6 +97,8 @@ const STATID_ACHIEVE_NukedCollectibles = 4037;
 const STATID_ACHIEVE_TragicKingdomCollectibles = 4038;
 const STATID_ACHIEVE_NightmareCollectibles = 4039;
 const STATID_ACHIEVE_KrampusCollectibles = 4040;
+const STATID_ACHIEVE_ArenaCollectibles = 4041;
+const STATID_ACHIEVE_PowercoreCollectibles = 4042;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -586,6 +588,7 @@ var(ZedMap) float TrackingMapRange;
 var int DebugLastSeenDoshVaultValue;
 var int DebugCurrentDoshVaultValue;
 var int DebugCurrentDoshVaultTier;
+var int BeginningRoundVaultAmount;
 var transient float NoGoStartTime;
 var delegate<LoginCompleteCallback> __LoginCompleteCallback__Delegate;
 
@@ -1345,8 +1348,16 @@ reliable client simulated function ClientCreateGameSession(string LobbyId, bool 
             }
             else
             {
-                OnlineSub.GameInterface.AddDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionCreate);
-                OnlineSub.GameInterface.DestroyOnlineGame('Game');
+                if(WorldInfo.IsConsoleBuild(8) && OldGameSettings.LobbyId == GameSettings.LobbyId)
+                {
+                    OnlineSub.GameInterface.ReadSessionGuidBySessionName('Game', SessionGuid);
+                    ServerGameSessionCreated(SessionGuid);                    
+                }
+                else
+                {
+                    OnlineSub.GameInterface.AddDestroyOnlineGameCompleteDelegate(OnOldSessionDestroyedForNewGameSessionCreate);
+                    OnlineSub.GameInterface.DestroyOnlineGame('Game');
+                }
             }            
         }
         else
@@ -3465,7 +3476,7 @@ static function UpdateInteractionMessages(Actor InteractingActor)
             if(NotEqual_InterfaceInterface(UsableActor, (none)))
             {
                 PC.SetTimer(1, true, 'CheckCurrentUsableActor', PC);
-                PC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex(P));                
+                PC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex(P), none, none, bool(UsableActor));                
             }
             else
             {
@@ -3646,11 +3657,11 @@ function SetGrabEffect(bool bValue, optional bool bPlayerZed, optional bool bSki
     {
         if(bPlayerZed)
         {
-            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 13);            
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 14);            
         }
         else
         {
-            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 12);
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 13);
         }        
     }
     else
@@ -4138,6 +4149,16 @@ function HideBossNamePlate()
     {
         myGfxHUD.HideBossNamePlate();
     }
+}
+
+reliable client simulated function ClientOnBossDied()
+{
+    if(myGfxHUD != none)
+    {
+        myGfxHUD.bossHealthBar.BossPawn = none;
+        myGfxHUD.bossHealthBar.RemoveArmorUI();
+    }
+    HideBossNamePlate();
 }
 
 reliable client simulated function ClientSetFrontEnd(class<KFGFxMoviePlayer_Manager> FrontEndClass, optional bool bSkipMenus)
@@ -5249,6 +5270,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
         StatsWrite.NotifyReadSucceeded();
     }
     StatsRead.OnStatsInitialized(bWasSuccessful);
+    StatsWrite.OnStatsInitialized(bWasSuccessful);
     CheckSpecialEventID();
     CheckWeeklyEventID();
     if(MyGFxManager != none)
@@ -5262,7 +5284,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
         MyGFxManager.PerksMenu.UpdateContainers(PerkList[SavedPerkIndex].PerkClass);
     }
     I = 0;
-    J0x3E0:
+    J0x409:
 
     if(I < PerkList.Length)
     {
@@ -5271,7 +5293,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
             self.MatchStats.RecordPerkXPGain(PerkList[I].PerkClass, 0);
         }
         ++ I;
-        goto J0x3E0;
+        goto J0x409;
     }
 }
 
@@ -5321,6 +5343,14 @@ reliable client simulated function ClientRoundEnded(byte WinningTeam)
     if((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController())
     {
         StatsWrite.OnRoundEnd(WinningTeam);
+    }
+}
+
+reliable client simulated function ClientGameOver(string MapName, byte Difficulty, byte GameLength, byte bCoop, byte FinalWaveNum)
+{
+    if((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController())
+    {
+        StatsWrite.OnGameEnd(MapName, Difficulty, GameLength, bCoop, FinalWaveNum, GetPerk().Class);
     }
 }
 
@@ -5376,6 +5406,13 @@ reliable client final simulated function ClientCompletedWeeklySurvival()
     }
 }
 
+reliable client final simulated function ClientMapObjectiveCompleted(float XPValue)
+{
+    StatsWrite.MapObjectiveCompleted();
+    ClientAddPlayerXP(int(XPValue), GetPerk().Class);
+    OnPlayerXPAdded(int(XPValue), GetPerk().Class);
+}
+
 reliable client simulated event ClientUnlockAchievement(int AchievementIndex, optional bool bAlwaysUnlock)
 {
     bAlwaysUnlock = false;
@@ -5383,6 +5420,7 @@ reliable client simulated event ClientUnlockAchievement(int AchievementIndex, op
     {
         if(WorldInfo.IsConsoleBuild(9))
         {
+            LogInternal("PS4: Client unlock achievement: " @ string(AchievementIndex));
             StatsWrite.UnlockDingoAchievement(AchievementIndex);
             OnlineSub.StatsInterface.WriteOnlineStats('Game', PlayerReplicationInfo.UniqueId, StatsWrite);
         }
@@ -5449,6 +5487,14 @@ function AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
 
 // Export UKFPlayerController::execClientAddNonZedKill(FFrame&, void* const)
 private reliable client native final simulated function ClientAddNonZedKill(class<Pawn> KilledClass, byte Difficulty);
+
+function AddZedAssist(class<KFPawn_Monster> MonsterClass)
+{
+    ClientAddZedAssist(MonsterClass);
+}
+
+// Export UKFPlayerController::execClientAddZedAssist(FFrame&, void* const)
+private reliable client native final simulated function ClientAddZedAssist(class<KFPawn_Monster> MonsterClass);
 
 function AddZedHeadshot(byte Difficulty, class<DamageType> DT)
 {
@@ -5595,6 +5641,14 @@ reliable client simulated event OnAllMapCollectiblesFound(string MapName)
     if(StatsWrite != none)
     {
         StatsWrite.CheckCollectibleAchievement(MapName);
+    }
+}
+
+reliable client final simulated event OnEndlessWaveComplete(int CurrentWave)
+{
+    if(StatsWrite != none)
+    {
+        StatsWrite.CheckEndWaveObjective(CurrentWave);
     }
 }
 
@@ -6297,6 +6351,10 @@ exec function DoEmote()
             MyPawn.ServerDoSpecialMove(34, true,, SMFlags);
         }
     }
+    if((IsLocalController()) && LEDEffectsManager != none)
+    {
+        LEDEffectsManager.PlayEmoteEffect();
+    }
 }
 
 exec function ItemExchangeTimeOut()
@@ -6854,6 +6912,7 @@ reliable client simulated function ClientMatchStarted()
     {
         MixerMoveUsersToDefaultGroup();
     }
+    BeginningRoundVaultAmount = GetTotalDoshCount();
 }
 
 reliable client simulated function ClientMatchEnded()
@@ -7312,7 +7371,7 @@ private reliable server final function MixerSpawnZed(string ControlId, string Tr
     KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI != none)
     {
-        if(KFGI.MyKFGRI.WaveNum == KFGI.MyKFGRI.WaveMax)
+        if(KFGI.MyKFGRI.IsBossWave())
         {
             bFoundBoss = false;
             foreach WorldInfo.AllPawns(Class'KFPawn_Monster', BossCheck)
@@ -7337,13 +7396,13 @@ private reliable server final function MixerSpawnZed(string ControlId, string Tr
         if(SpawnClass != none)
         {
             I = 0;
-            J0x236:
+            J0x1FE:
 
             if(I < Amount)
             {
                 AIToSpawn.AddItem(SpawnClass;
                 ++ I;
-                goto J0x236;
+                goto J0x1FE;
             }
             SpawnCount = KFGI.SpawnManager.SpawnSquad(AIToSpawn);
             if(SpawnCount > 0)
@@ -7559,7 +7618,7 @@ simulated function CreateDiscordGamePresence()
                 }
                 else
                 {
-                    if(GRI.IsFinalWave())
+                    if(GRI.IsBossWave())
                     {
                         DetailsString = DetailsString $ Class'KFCommon_LocalizedStrings'.default.DiscordBossWaveString;                        
                     }
@@ -7866,8 +7925,8 @@ defaultproperties
     PurchaseHelperClass=Class'KFAutoPurchaseHelper'
     NextSpectatorDelay=2
     DefaultAvatarPath="UI_World_TEX.KF2Icon_Default"
-    MixerRallyBoneNames[0]=RightHand
-    MixerRallyBoneNames[1]=LeftHand
+    MixerRallyBoneNames[0]=necksocket
+    MixerRallyBoneNames[1]=necksocket
     MixerCurrentDefaultScene="default"
     LEDEffectsManagerClass=Class'KFLEDEffectsManager'
     ZedTimeEnterSound=AkEvent'WW_GLO_Runtime.Set_ZEDTime_On'

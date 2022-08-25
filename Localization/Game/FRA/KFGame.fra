@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="Invitation uniquement"
 ModeStrings[0]="Survie"
 ModeStrings[1]="Hebdomadaire"
 ModeStrings[2]="Survie VS"
+ModeStrings[3]="Infini"
 
 NoPreferenceString="TOUT"
 OKString="OK"
@@ -55,7 +56,6 @@ NoSwitchReasonString="Changer d'équipe bouleverserait l'équilibre des équipes
 
 AutoTradeCompleteString="Échange automatique complet : "
 AutoFillCompleteString="Réapprovisionnement automatique"
-WeaponUpgradeComepleteString="Arme mise à niveau"
 SecondaryWeaponPurchasedString="Arme secondaire achetée"
 NoItemsPurchasedString="Aucun objet acheté"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": lobby du match"
 DiscordTraderTimeString=": chez la marchande"
 DiscordBossWaveString=": vague de boss"
 DiscordWaveString=": vague"
+
+ProceedToTutorialString="LANCER L'ENTRAÎNEMENT ?"
+ProceedToTutorialDescriptionString="Découvrez les bases dans un environnement contrôlé.  Une fois terminé, la classe sélectionnée passera au niveau 1."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RÉCOMPENSE D'ACCOMPLISSEMENT D'ÉPIDÉMIE"
@@ -190,6 +193,7 @@ TutorialString="Entraînement de base"
 modeList0="Survie - Bataille PVE contre des vagues de Zeds contrôlés par l'IA"
 modeList1="Épidémie hebdomadaire : un mode de jeu différent chaque semaine."
 modeList2="Survie VS - PVP Mercenaires de Horzine contre des vagues de Zeds contrôlés par des joueurs et l'IA"
+modeList3="Infini - Affrontez des vagues de Zeds contrôlés par l'IA jusqu'au bout"
 difficultyList0="Normal – Pour les joueurs débutants de rang 0-5."
 difficultyList1="Difficile – Pour les joueurs expérimentés de rang 6-12. Plus de Zeds par vague, plus rapides et plus résistants. Moins de butin et de fric à ramasser."
 difficultyList2="Suicidaire – Pour les joueurs aguerris de rang 13-25. Encore plus de Zeds par vague, ils utilisent de nouvelles attaques et sont encore plus rapides. Encore moins de butin et de fric à ramasser."
@@ -738,6 +742,7 @@ DamageDealtString="Dégâts infligés :"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ PRÊT ]"
+SkipTraderString="PASSER LA MARCHANDE"
 WaitingString="EN ATTENTE DE JOUEUR(S)"
 MatchOverString="MATCH TERMINÉ \n Veuillez patienter..."
 DeployingString="DÉPLOIEMENT DANS "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Expérience"
-PrestigeLevelString="Prestige"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="CONFIGURER"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>SÉLECTION DE L'ARME"
 PlayerClotGrabWarningMessage="TUEZ LE ZED POUR VOUS ÉCHAPPER !"
 UseMinigameMessage="ACTIVER"
 UseMinigameGeneratorMessage="ACTIVER GÉNÉRATEUR"
+DoshActivateMessage="COÛT D'ACTIVATION"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Les équipes ne sont pas équilibrées et vont être ajustées"
@@ -2133,7 +2138,7 @@ Madman="ZED TIME - Malade mental"
 MadmanDescription="Pendant le Zed time, toutes vos armes tirent 3x plus vite."
 
 IncapMaster="ZED TIME - État d'urgence"
-IncapMasterDescription="Pendant le Zed time, la puissance de toutes les méthodes incapacitantes de toutes les armes est augmentée de 200 %. "
+IncapMasterDescription="Pendant le Zed time, la puissance de toutes les méthodes incapacitantes de toutes les armes est augmentée de 200 %."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="Rôdeuse"
 KFPawn_ZedClot_Cyst="Kyste"
 KFPawn_ZedClot_Slasher="Entailleur"
 KFPawn_ZedClot_Alpha="Andouille Alpha"
-KFPawn_ZedClot_AlphaKing="Alpha élite"
+KFPawn_ZedClot_AlphaKing="Émeutier"
 KFPawn_ZedScrake="Dingue"
 KFPawn_ZedSiren="Sirène"
 KFPawn_ZedPatriarch="Patriarche"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="Tenue de pyj."
 
 ChanceDropDescriptionStrings[0]="Ticket récomp."
 ChanceDropDescriptionStrings[1]="Ticket Or"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="Défis infinis de D.A.R."
+CurrentSpecialEventDescriptionString="Terminez les vagues pour remporter des récompenses légendaires !"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Mannequin de test infini",DescriptionString="Terminer la vague infinie 5",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="Drone infini",DescriptionString="Terminer la vague infinie 10",TierEventRewardName="D.A.R. bronze");
+SpecialEventObjectiveInfoList[2]=(TitleString="Sentinelle infinie",DescriptionString="Terminer la vague infinie 15",TierEventRewardName="D.A.R. argent");
+SpecialEventObjectiveInfoList[3]=(TitleString="Machine de guerre infinie",DescriptionString="Terminer la vague infinie 20",TierEventRewardName="D.A.R. bleu classique");
+SpecialEventObjectiveInfoList[4]=(TitleString="D.A.R. Optimus infini",DescriptionString="Terminer la vague infinie 25",TierEventRewardName="D.A.R. doré");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Labo biotique"
 
@@ -2862,6 +2910,9 @@ GameName="Survie"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="Hebdomadaire"
+
+[Endless KFGameInfoSummary]
+GameName="Infini"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Manoir Volter"
@@ -2907,6 +2958,12 @@ DisplayName="Cauchemar"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="Repère de Krampus"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Noyau d'énergie"
+
+[KF-DieSector KFMapSummary]
+DisplayName="Secteur mortel"
 
 [KFMapInfo]
 ; defaults

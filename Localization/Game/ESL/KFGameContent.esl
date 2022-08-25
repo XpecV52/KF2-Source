@@ -342,7 +342,7 @@ ItemDescription="•Modo de disparo: lanza proyectiles inflamables y explosivos.
 [KFWeap_Pistol_DualFlare]
 ItemName="Escupefuego doble"
 ItemCategory="Llamaradas"
-ItemDescription="•Modo de disparo: lanza proyectiles inflamables y explosivos.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de Escupefuegos. Puedes tanto soltarlas como venderlas por separado."
+ItemDescription="•Modo de disparo: lanza proyectiles inflamables y explosivos. \n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de Escupefuegos."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Escopeta incendiaria"
@@ -397,7 +397,7 @@ ItemDescription="•Modo de disparo: solo semiautomático.\n•La clásica pisto
 [KFWeap_Pistol_DualColt1911]
 ItemName="2 pistolas M1911"
 ItemCategory="Arma corta"
-ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de pistolas Colt 1911 semiautomáticas. Puedes tanto soltarlas como venderlas por separado."
+ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de pistolas Colt 1911 semiautomáticas."
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle de .50"
@@ -407,7 +407,7 @@ ItemDescription="•Solo dispara en modo semiautomático.\n•El Desert Eagle es
 [KFWeap_Pistol_DualDeagle]
 ItemName="2 Desert Eagle .50"
 ItemCategory="Arma corta"
-ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de cañones de mano modelo Desert Eagle. Puedes tanto soltarlas como venderlas por separado."
+ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de cañones de mano modelo Desert Eagle."
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Revólver 1858"
@@ -417,7 +417,7 @@ ItemDescription="•Modo de disparo: solo tiro único.\n•Se trata de un revól
 [KFWeap_Revolver_DualRem1858]
 ItemName="2 revólveres 1858"
 ItemCategory="Arma corta"
-ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de revólveres Remington, modelo 1858. Puedes tanto soltarlas como venderlas por separado."
+ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de revólveres Remington, modelo 1858."
 
 [KFWeap_Revolver_SW500]
 ItemName="Revólver Magnum .500"
@@ -427,7 +427,7 @@ ItemDescription="•Modo de disparo: solo tiro único.\n•Artillería pesada en
 [KFWeap_Revolver_DualSW500]
 ItemName="2 rev. Magnum .500"
 ItemCategory="Arma corta"
-ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de revólveres Magnum del calibre 500, modelo "Bone Collector". Puedes tanto soltarlas como venderlas por separado. Te encantará cómo suena."
+ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de revólveres Magnum del calibre 500, modelo "Bone Collector"."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -483,7 +483,7 @@ ItemDescription="•Elige entre dos modos de disparo: automático o semiautomát
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
 ItemCategory="Subfusil"
-ItemDescription="•Permite elegir entre los modos de disparo automático y semiautomático.\n•Utiliza la función de disparo alternativo para cambiar de modo.\n•Una de las nuevas incorporaciones de la familia MP. ¿Puede que sea un tío? ¿Las metralletas tienen familia?"
+ItemDescription="•Permite elegir entre los modos de disparo automático y a ráfagas.\n•Utiliza la función de disparo alternativo para cambiar de modo.\n•Una de las nuevas incorporaciones de la familia MP. ¿Puede que sea un tío? ¿Las metralletas tienen familia?"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="Lanzahielo"
@@ -494,6 +494,26 @@ ItemDescription="•Modo de disparo: lanza una ráfaga de partículas a cero abs
 ItemName="Hemogoblin"
 ItemCategory="Rifle"
 ItemDescription="•En modo de disparo, dispara proyectiles desangradores que hieren, ralentizan y debilitan a los zeds. \n•En el modo de disparo alternativo, dispara dardos terapéuticos para curar a miembros del equipo.\n•No es una buena forma de perder peso."
+
+[KFWeap_HuskCannon]
+ItemName="Cañón de husk"
+ItemCategory="Llamas"
+ItemDescription="•Se carga mientras se aprieta el botón de disparo y dispara cuando se suelta. \n•La versión oficial de Horzine del cañón de husk. La empresa garantiza que el modelo tiene un 95 % de probabilidades de no explotar."
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="Arma corta"
+ItemDescription="•Modo de disparo: solo semiautomático.\n•Todo mejora cuando le añades más cañones. Es como añadirle más bacón."
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="AF2011-A2 dual"
+ItemCategory="Arma corta"
+ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Dos pistolas con dos cañones cada una. Una potencia de fuego cuatro veces mayor. Matemática pura. No puedes contradecir a las matemáticas."
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="Subfusil"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Posee munición incendiaria de fuego rápido. ¿Lo pillas? ¡Fuego rápido! ¡Porque es una metralleta incendiaria! Bah, olvídalo."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="Superviv. VS"
 
 [KFGameInfo_WeeklySurvival]
 GameName="Brote semanal"
+
+[KFGameInfo_Endless]
+GameName="Sin fin"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="No quedan curas"

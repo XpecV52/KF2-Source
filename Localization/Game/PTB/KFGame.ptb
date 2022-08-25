@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="Apenas convidados"
 ModeStrings[0]="Sobrevivência"
 ModeStrings[1]="Semanal"
 ModeStrings[2]="Sobreviv. X"
+ModeStrings[3]="Infinito"
 
 NoPreferenceString="QUALQUER"
 OKString="OK"
@@ -55,7 +56,6 @@ NoSwitchReasonString="Ao trocar as equipes, haverá um desequilíbrio de equipes
 
 AutoTradeCompleteString="Conclusão de troca automática: "
 AutoFillCompleteString="Suprimentos recarregados automaticamente"
-WeaponUpgradeComepleteString="Arma aprimorada"
 SecondaryWeaponPurchasedString="Arma secundária adquirida"
 NoItemsPurchasedString="Nenhum item adquirido"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": Sala de esp. partida"
 DiscordTraderTimeString=": Hora do comerciante"
 DiscordBossWaveString=": Leva do Chefe"
 DiscordWaveString=": Leva"
+
+ProceedToTutorialString="IR PARA O TREINAMENTO?"
+ProceedToTutorialDescriptionString="Vá a um ambiente controlado para aprender o básico. Concede classe nível 0 selecionada para nível 1 depois de concluído."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RECOMPENSA DE CONCLUSÃO DE SURTO"
@@ -190,6 +193,7 @@ TutorialString="Treinamento básico"
 modeList0="Sobrevivência - JxA, batalha de levas de Zeds controlados por IA"
 modeList1="Surto Semanal – um modo de jogo variante diferente a cada semana."
 modeList2="Sobrevivência X - JxJ, mercenários Horzine contra levas de jogadores e Zeds controlados por IA"
+modeList3="Infinito - batalhe até a morte contra levas de Zeds controlados pela IA"
 difficultyList0="Normal - Para jogadores iniciantes de classificação de classe 0-5."
 difficultyList1="Difícil - Para jogadores experientes de classificação de classe 6-12. Há mais Zeds por leva: eles se movimentam rápido e têm mais vida. Há poucos itens e você ganha menos grana."
 difficultyList2="Suicida - Para jogadores especialistas de classificação de classe 13-25. Há ainda mais Zeds por leva: eles usam novos ataques e se movimentam mais rápido. Há menos itens e você ganha menos grana."
@@ -738,6 +742,7 @@ DamageDealtString="Dano causado:"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ PRONTO ]"
+SkipTraderString="IGNORAR COMERCIANTE"
 WaitingString="AGUARDANDO JOGADORES"
 MatchOverString="PARTIDA CONCLUÍDA \n Aguarde..."
 DeployingString="DESTACANDO EM "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Experiência"
-PrestigeLevelString="Prestígio"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="CONFIGURAR"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>SELEÇÃO DE ARMA"
 PlayerClotGrabWarningMessage="ABATA ZEDS PARA LIBERTAR-SE!"
 UseMinigameMessage="ATIVAR"
 UseMinigameGeneratorMessage="ATIVAR GERADOR"
+DoshActivateMessage="CUSTO DE ATIVAÇÃO"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="As equipes estão desequilibradas e serão ajustadas"
@@ -2133,7 +2138,7 @@ Madman="HORA DOS ZEDS - Maluco"
 MadmanDescription="Durante a hora dos Zeds, todas as armas atiram 3x mais rápido."
 
 IncapMaster="HORA DOS ZEDS - Confinamento"
-IncapMasterDescription="Durante a hora dos Zeds, o poder de todos os métodos de incapacitação aumenta em 200% para todas as armas. "
+IncapMasterDescription="Durante a hora dos Zeds, o poder de todos os métodos de incapacitação aumenta em 200% para todas as armas."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="Perseguidor"
 KFPawn_ZedClot_Cyst="Cisto"
 KFPawn_ZedClot_Slasher="Abatedor"
 KFPawn_ZedClot_Alpha="Coágulo Alfa"
-KFPawn_ZedClot_AlphaKing="Alfa Elite"
+KFPawn_ZedClot_AlphaKing="Amotinado"
 KFPawn_ZedScrake="Retalhador"
 KFPawn_ZedSiren="Sereia"
 KFPawn_ZedPatriarch="Patriarca"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="Conj. Pijamas"
 
 ChanceDropDescriptionStrings[0]="Bilh. Prêmio"
 ChanceDropDescriptionStrings[1]="Bilh. Ouro"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="Desafios infinitos desejáveis"
+CurrentSpecialEventDescriptionString="Vença as levas para ganhar recompensas lendárias!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Boneco de Teste Infinito",DescriptionString="Conclua a 5ª leva infinita",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="Drone Infinito",DescriptionString="Conclua a 10ª leva infinita",TierEventRewardName="D.A.R. Bronze");
+SpecialEventObjectiveInfoList[2]=(TitleString="Sentinela Infinita",DescriptionString="Conclua a 15ª leva infinita",TierEventRewardName="D.A.R.");
+SpecialEventObjectiveInfoList[3]=(TitleString="Máquina de Guerra Infinita",DescriptionString="Conclua a 20ª leva infinita",TierEventRewardName="D.A.R. Azul Clássico");
+SpecialEventObjectiveInfoList[4]=(TitleString="Ideal D.A.R Infinito",DescriptionString="Conclua a 25ª leva infinita",TierEventRewardName="D.A.R. Dourado");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratório de Biótica"
 
@@ -2862,6 +2910,9 @@ GameName="Sobrevivência"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="Semanal"
+
+[Endless KFGameInfoSummary]
+GameName="Infinito"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Mansão Volter"
@@ -2907,6 +2958,12 @@ DisplayName="Pesadelo"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="Toca do Krampus"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Núcleo de Energia"
+
+[KF-DieSector KFMapSummary]
+DisplayName="DieSector"
 
 [KFMapInfo]
 ; defaults

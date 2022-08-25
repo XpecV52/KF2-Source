@@ -3255,7 +3255,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
-   ObjValue=StaticMeshActor'KF-TRAGICKINGDOM.TheWorld:PersistentLevel.StaticMeshActor_78'
+   ObjValue=StaticMeshActor'KF-TRAGICKINGDOM.TheWorld:PersistentLevel.StaticMeshActor_817'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-TRAGICKINGDOM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8328

@@ -140,6 +140,7 @@ function OnZedDied(Controller Killer)
 {
     super.OnZedDied(Killer);
 
+	StopBossWave();
     KFGameInfo(WorldInfo.Game).BossDied(Killer);
 }
 
@@ -203,7 +204,7 @@ function PlayBossMusic()
 {
     if (KFGameInfo(WorldInfo.Game) != none)
     {
-        KFGameInfo(WorldInfo.Game).ForcePatriarchMusicTrack();
+        KFGameInfo(WorldInfo.Game).ForceKingFPMusicTrack();
     }
 }
 
@@ -390,9 +391,18 @@ function PauseBossWave()
 
     if (KFGI.SpawnManager.GetNumAINeeded() <= 0)
     {
-        Cleartimer(nameof(PauseBossWave));
-        KFGI.SpawnManager.StopSummoningBossMinions();
+		StopBossWave();
     }
+}
+
+function StopBossWave()
+{
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo(WorldInfo.Game);
+
+	Cleartimer(nameof(PauseBossWave));
+	KFGI.SpawnManager.StopSummoningBossMinions();
 }
 
 simulated function TriggerRagePoundExplosion( vector ExploLocation, optional bool bIsFinalPound=false )

@@ -110,7 +110,7 @@ function PawnDied(Pawn inPawn)
     {
         MyPatPawn = none;
     }
-    super(KFAIController).PawnDied(inPawn);
+    super.PawnDied(inPawn);
 }
 
 simulated event Destroyed()

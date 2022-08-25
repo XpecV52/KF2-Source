@@ -12,6 +12,7 @@ class KFAIController_ZedClot_AlphaKing extends KFAIController_ZedClot_Alpha
 var protected const byte MinAIRequiredForRally;
 var protected float RallyChance;
 var protected float RallyCooldown;
+var bool bAllowedToSprint;
 
 function InitRallySettings()
 {
@@ -68,6 +69,35 @@ function Timer_CheckForRally()
         }        
     }
     SetTimer(1.5, false, 'Timer_CheckForRally');
+}
+
+function SetCanSprint(bool bNewSprintStatus)
+{
+    bCanSprint = bNewSprintStatus;
+    MyKFPawn.bIsSprinting = false;
+}
+
+function SetSprintingDisabled(bool bNewSprintStatus)
+{
+    bSprintingDisabled = bNewSprintStatus;
+    MyKFPawn.bIsSprinting = false;
+}
+
+function SetCanSprintWhenDamaged(bool bNewSprintDamagedStatus)
+{
+    bCanSprintWhenDamaged = bNewSprintDamagedStatus;
+    MyKFPawn.bIsSprinting = false;
+}
+
+function bool ShouldSprint()
+{
+    return bAllowedToSprint && super(KFAIController_ZedClot).ShouldSprint();
+}
+
+function StartArmorLoss()
+{
+    bAllowedToSprint = true;
+    MyKFPawn.SetEnraged(true);
 }
 
 defaultproperties

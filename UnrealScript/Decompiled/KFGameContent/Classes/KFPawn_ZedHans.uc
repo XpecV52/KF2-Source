@@ -1019,6 +1019,7 @@ defaultproperties
     ShieldSocketName=hips
     begin object name=ShieldEffects class=KFSkinTypeEffects_HansShield
         ImpactFXArray[14]=(Type=EEffectDamageGroup.FXG_Flare)
+        ImpactFXArray[15]=(Type=EEffectDamageGroup.FXG_Freeze)
     object end
     // Reference: KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHans.ShieldEffects'
     ShieldImpactEffects=ShieldEffects

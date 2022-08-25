@@ -171,20 +171,37 @@ function Callback_RequestTeamSwitch()
 function Callback_ReadyClicked(bool bReady)
 {
     local KFPlayerReplicationInfo KFPRI;
+    local KFGameReplicationInfo KFGRI;
+    local KFPlayerController KFPC;
 
-    KFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
+    KFPC = KFPlayerController(Outer.GetPC());
+    KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+    KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
     if(KFPRI != none)
     {
-        KFPRI.SetPlayerReady(bReady);
-        if(KFPRI.WorldInfo.GRI.bMatchHasBegun)
+        if(KFGRI.bMatchHasBegun)
         {
-            KFPlayerController(Outer.GetPC()).MyGFxManager.CloseMenus();
-            Outer.GetPC().ServerRestartPlayer();            
+            if(KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
+            {
+                if(KFPC.MyGFxManager.bMenusOpen && KFPC.MyGFxManager.CurrentMenu != KFPC.MyGFxManager.TraderMenu)
+                {
+                    KFPRI.RequestSkiptTrader(KFPRI);
+                    KFPC.MyGFxManager.CloseMenus();
+                    Manager.PartyWidget.ReadyButton.SetVisible(false);
+                }                
+            }
+            else
+            {
+                KFPRI.SetPlayerReady(bReady);
+                KFPlayerController(Outer.GetPC()).MyGFxManager.CloseMenus();
+                Outer.GetPC().ServerRestartPlayer();
+            }            
         }
         else
         {
             if(Manager != none)
             {
+                KFPRI.SetPlayerReady(bReady);
                 if(Manager.PartyWidget != none)
                 {
                     Manager.PartyWidget.RefreshParty();

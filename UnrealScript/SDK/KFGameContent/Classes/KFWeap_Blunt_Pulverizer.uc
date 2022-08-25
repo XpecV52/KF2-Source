@@ -14,7 +14,14 @@ const ShootAnim_R = 'HardFire_R';
 const ShootAnim_F = 'HardFire_F';
 const ShootAnim_B = 'HardFire_B';
 
-var() GameExplosion ExplosionTemplate;
+var bool bWasTimeDilated;
+
+/** Explosion actor class to spawn */
+var class<KFExplosionActor> ExplosionActorClass;
+var() KFGameExplosion ExplosionTemplate;
+/** If true, use an alternate set of explosion effects */
+var bool    bAltExploEffects;
+var KFImpactEffectInfo AltExploEffects;
 
 var transient Actor BlastAttachee;
 
@@ -52,7 +59,7 @@ simulated function bool CanOverrideMagReload(byte FireModeNum)
 /** Explosion Actor version */
 simulated function CustomFire()
 {
-	local KFExplosionActorReplicated ExploActor;
+	local KFExplosionActor ExploActor;
 	local vector SpawnLoc;
 	local rotator SpawnRot;
 
@@ -61,6 +68,15 @@ simulated function CustomFire()
 		return;
 	}
 
+	// On local player or server, we cache off our time dilation setting here
+	if (WorldInfo.NetMode == NM_ListenServer || WorldInfo.NetMode == NM_DedicatedServer || Instigator.Controller != None)
+	{
+		bWasTimeDilated = WorldInfo.TimeDilation < 1.f;
+	}
+
+	PrepareExplosionTemplate();
+	//SetExplosionActorClass();
+
 	SpawnLoc = Instigator.GetWeaponStartTraceLocation();
 	SpawnRot = GetPulverizerAim(SpawnLoc);
 
@@ -68,7 +84,7 @@ simulated function CustomFire()
 	SpawnLoc += vector(SpawnRot) * BlastSpawnOffset;
 
 	// explode using the given template
-	ExploActor = Spawn(class'KFExplosionActorReplicated', self,, SpawnLoc, SpawnRot,, true);
+	ExploActor = Spawn(ExplosionActorClass, self,, SpawnLoc, SpawnRot,, true);
 	if (ExploActor != None)
 	{
 		ExploActor.InstigatorController = Instigator.Controller;
@@ -81,7 +97,7 @@ simulated function CustomFire()
 
 		// enable muzzle location sync
 		ExploActor.bReplicateInstigator = true;
-		ExploActor.bSyncParticlesToMuzzle = true;
+		ExploActor.SetSyncToMuzzleLocation(true);
 
 		ExploActor.Explode(ExplosionTemplate, vector(SpawnRot));
 	}
@@ -95,6 +111,75 @@ simulated function CustomFire()
 			ExplosionTemplate.DirectionalExplosionAngleDeg * DegToRad, 16, MakeColor(64,64,255,0), TRUE);
 	}
 }
+
+
+// for nukes && concussive force
+simulated protected function PrepareExplosionTemplate()
+{
+	//local KFPlayerReplicationInfo InstigatorPRI;
+	local KFPlayerController KFPC;
+	local KFPerk InstigatorPerk;
+
+	/*if (bWasTimeDilated)
+	{
+		InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+		if (InstigatorPRI != none)
+		{
+			if (InstigatorPRI.bNukeActive)
+			{
+				ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
+				ExplosionTemplate.Damage = ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
+				ExplosionTemplate.DamageRadius = ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
+				ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.DamageFalloffExponent;
+			}
+			else if (InstigatorPRI.bConcussiveActive && AltExploEffects != none)
+			{
+				ExplosionTemplate.ExplosionEffects = AltExploEffects;
+				ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
+			}
+		}
+	}
+	else
+	{*/
+		ExplosionTemplate = default.ExplosionTemplate;
+		ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
+		ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
+		ExplosionTemplate.Damage = ExplosionTemplate.Damage;
+		ExplosionTemplate.DamageRadius = ExplosionTemplate.DamageRadius;
+		ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.DamageFalloffExponent;
+	//}
+
+	// Change the radius and damage based on the perk
+	if (Owner.Role == ROLE_Authority)
+	{
+		KFPC = KFPlayerController(Instigator.Controller);
+		if (KFPC != none)
+		{
+			InstigatorPerk = KFPC.GetPerk();
+			ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
+		}
+	}
+}
+
+simulated protected function SetExplosionActorClass()
+{
+	local KFPlayerReplicationInfo InstigatorPRI;
+
+	if (bWasTimeDilated && Instigator != none)
+	{
+		InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+		if (InstigatorPRI != none)
+		{
+			if (InstigatorPRI.bNukeActive)
+			{
+				ExplosionActorClass = class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass();
+				return;
+			}
+		}
+	}
+	ExplosionActorClass = default.ExplosionActorClass;
+}
+
 
 /** Called by CustomFire when shotgun blast is fired */
 simulated function Rotator GetPulverizerAim( vector StartFireLoc )
@@ -327,7 +412,10 @@ defaultproperties
 
 	// Explosion settings.  Using archetype so that clients can serialize the content
 	// without loading the 1st person weapon content (avoid 'Begin Object')!
+	ExplosionActorClass=class'KFExplosionActorReplicated'
 	ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
+	//AltExploEffects = KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force' //Leave this alone until we want it
+
 
 	// RELOAD
 	FiringStatesArray(RELOAD_FIREMODE)=Reloading

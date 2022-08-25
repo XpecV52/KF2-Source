@@ -342,7 +342,7 @@ ItemDescription="•폭발하는 인화성 투사체를 발사합니다. \n•�
 [KFWeap_Pistol_DualFlare]
 ItemName="듀얼 스핏파이어"
 ItemCategory="화염계 무기"
-ItemDescription="•폭발하는 인화성 투사체를 발사합니다. \n•아이언 사이트 사용 시 조준 방식을 변경할 수 있습니다.\n•스핏파이어 한 쌍으로 구성되어 있습니다. 따로 팔거나 버릴 수 있습니다."
+ItemDescription="•폭발하는 인화성 투사체를 발사합니다. \n•아이언 사이트 사용 시 조준 방식을 변경할 수 있습니다.\n•스핏파이어 한 쌍으로 구성되어 있습니다."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="화염 박격포"
@@ -397,7 +397,7 @@ ItemDescription="•사격 모드는 반자동 전용.\n•클래식 1911 반자
 [KFWeap_Pistol_DualColt1911]
 ItemName="듀얼 M1911 권총"
 ItemCategory="핸드건"
-ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•콜트 1911 반자동 권총 한 쌍입니다. 각 권총을 따로 팔거나 버릴 수 있습니다."
+ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•콜트 1911 반자동 권총 한 쌍입니다."
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 데저트 이글"
@@ -407,7 +407,7 @@ ItemDescription="•사격 모드는 반자동 전용.\n•데저트 이글은 �
 [KFWeap_Pistol_DualDeagle]
 ItemName="듀얼 .50 데저트 이글"
 ItemCategory="핸드건"
-ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•데저트 이글 핸드 캐논 한 쌍입니다. 각 권총을 따로 팔거나 버릴 수 있습니다."
+ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•데저트 이글 핸드 캐논 한 쌍입니다."
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 리볼버"
@@ -417,7 +417,7 @@ ItemDescription="•사격 모드는 단발 전용.\n•멋진 .44-구경 레밍
 [KFWeap_Revolver_DualRem1858]
 ItemName="듀얼 1858 리볼버"
 ItemCategory="핸드건"
-ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•레밍턴 1858 리볼버 한 쌍입니다. 각 권총을 따로 팔거나 버릴 수 있습니다."
+ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•레밍턴 1858 리볼버 한 쌍입니다."
 
 [KFWeap_Revolver_SW500]
 ItemName=".500 매그넘 리볼버"
@@ -427,7 +427,7 @@ ItemDescription="•사격 모드는 단발 전용.\n•긴 배럴을 가진 50 
 [KFWeap_Revolver_DualSW500]
 ItemName="듀얼 .500 매그넘"
 ItemCategory="핸드건"
-ItemDescription="•사격 모드는 반자동 전용.\n•가늠좌 사용 시 대체 사격으로 조준 스타일 변경.\n•.500 매그넘 ‘본 콜렉터’ 리볼버 한 쌍입니다. 각 권총을 따로 팔거나 버릴 수 있습니다. 소리는 엄청나게 크죠."
+ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•.500 매그넘 ‘본 콜렉터’ 리볼버 한 쌍입니다."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="윈체스터 1894"
@@ -483,7 +483,7 @@ ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
 ItemCategory="서브머신건"
-ItemDescription="•전자동 및 반자동 사격 모드를 선택할 수 있습니다.\n•특수 공격 키로 사격 모드를 전환합니다.\n•새로이 추가된 MP 계열 총기 중 하나입니다. 삼촌급 정도 되려나? 서브머신건에도 가족이 있나 보지?"
+ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습니다.\n•특수 공격 키로 사격 모드를 전환합니다.\n•새로이 추가된 MP 계열 총기 중 하나입니다. 삼촌급 정도 되려나? 서브머신건에도 가족이 있나 보지?"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="던져서 얼리기"
@@ -494,6 +494,26 @@ ItemDescription="•절대 영도에 가까운 입자를 뿌립니다.\n•모�
 ItemName="Hemogoblin"
 ItemCategory="소총"
 ItemDescription="•발사 모드에서는 제드에게 상처를 입히며 느리고 약하게 만드는 블러드 보어를 발사합니다. \n•Alt-발사는 치료 다트를 발사하여 팀원을 치료합니다.\n• 무게를 줄이기에는 좋지 않습니다."
+
+[KFWeap_HuskCannon]
+ItemName="Husk 캐논"
+ItemCategory="화염"
+ItemDescription="•발사 버튼을 누르는 동안 충전되며 발사 버튼에서 손을 떼면 발사됩니다. \n•Husk 캐논의 공식 Horzine 버전입니다. 이 모델은 95% 확률로 폭발하지 않습니다."
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="권총"
+ItemDescription="•반자동 전용입니다.\n•총구는 많을수록 좋습니다. 베이컨을 더 추가하는 거랑 비슷합니다."
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="듀얼 AF2011-A2"
+ItemCategory="권총"
+ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•2개의 총구가 있는 총 두 정입니다. 화력이 네 배입니다. 산수죠. 너무 쉬운 산수입니다."
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="서브머신건"
+ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•속사 화염 탄약을 지원합니다. 아시겠죠? 속사 화염이라구요! 화염 서브머신건이잖아요! 아, 됐어요."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -555,7 +575,7 @@ BossName_FRC="Roi Barback"
 BossName_INT="King Fleshpound"
 BossName_ITA="Re Fleshpound"
 BossName_JPN="キングフレッシュパウンド"
-BossName_KOR="킹 플래시 파운드"
+BossName_KOR="King 플래시 파운드"
 BossName_POL="Król mięśniaków"
 BossName_PTB="Carniceiro Rei"
 BossName_RUS="Король-отбивальщик"
@@ -623,6 +643,9 @@ GameName="VS 서바이벌"
 
 [KFGameInfo_WeeklySurvival]
 GameName="주간 아웃브레이크"
+
+[KFGameInfo_Endless]
+GameName="무한"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="남은 치료제가 없습니다"

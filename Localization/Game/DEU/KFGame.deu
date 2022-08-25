@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="Nur mit Einladung"
 ModeStrings[0]="Überleben"
 ModeStrings[1]="Wöchentlich"
 ModeStrings[2]="VS-Überleben"
+ModeStrings[3]="Endlos"
 
 NoPreferenceString="BELIEBIG"
 OKString="OK"
@@ -55,7 +56,6 @@ NoSwitchReasonString="Würdest du das Team wechseln, wäre das Team-Gleichgewich
 
 AutoTradeCompleteString="Automatischer Handel abgeschlossen: "
 AutoFillCompleteString="Automatisch aufgefüllte Vorräte"
-WeaponUpgradeComepleteString="Waffe verbessert"
 SecondaryWeaponPurchasedString="Sekundärwaffe gekauft"
 NoItemsPurchasedString="Keine Gegenstände gekauft"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": Spiel-Lobby"
 DiscordTraderTimeString=": Zeit für die Händlerin"
 DiscordBossWaveString=": Bosswelle"
 DiscordWaveString=": Welle"
+
+ProceedToTutorialString="WEITER ZUM TRAINING??"
+ProceedToTutorialDescriptionString="Lerne die Grundlagen in einer kontrollierten Umgebung.  Bringt bei Abschluss ausgewählten Vorteil von Level 0 auf 1."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="AUSBRUCH-ABSCHLUSS-BELOHNUNG"
@@ -190,6 +193,7 @@ TutorialString="Grundausbildung"
 modeList0="Überleben – PVE Kämpfe gegen KI-gesteuerte Wellen von Zeds"
 modeList1="Wöchentlicher Ausbruch – Jede Woche ein anderer Spielmodus."
 modeList2="VS-Überleben – PVP Horzine-Söldner gegen Wellen von Spieler- und KI-gesteuerten Zeds"
+modeList3="Endlos – Kämpfe bis zum Tod gegen KI-gesteuerte Wellen von Zeds"
 difficultyList0="Normal – Für Anfänger mit Vorteil-Rang 0-5."
 difficultyList1="Schwer – Für erfahrene Spieler mit Vorteil-Rang 6-12. Es gibt mehr Zeds pro Welle, sie bewegen sich schneller und haben mehr Lebenspunkte. Es gibt weniger zum Aufsammeln und weniger Kohle."
 difficultyList2="Selbstmörderisch – Für routinierte Spieler mit Vorteil-Rang 13-25. Es gibt noch mehr Zeds pro Welle, sie benutzen neue Angriffe und bewegen sich noch schneller. Es gibt noch weniger zum Aufsammeln und noch weniger Kohle."
@@ -738,6 +742,7 @@ DamageDealtString="Verursachter Schaden:"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ BEREIT ]"
+SkipTraderString="HÄNDLERIN ÜBERSPRINGEN"
 WaitingString="WARTEN AUF SPIELER"
 MatchOverString="SPIEL VORBEI \n Bitte warten …"
 DeployingString="FORMIERT IN "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Erfahrung"
-PrestigeLevelString="Ansehen"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="KONFIGURIEREN"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>WAFFENWAHL"
 PlayerClotGrabWarningMessage="TÖTE ZED UM DICH ZU BEFREIEN!"
 UseMinigameMessage="AKTIVIEREN"
 UseMinigameGeneratorMessage="GENERATOR AKTIVIEREN"
+DoshActivateMessage="AKTIVIERUNGSKOSTEN"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Die Teams sind unausgeglichen und werden angeglichen"
@@ -2133,7 +2138,7 @@ Madman="ZED-ZEIT – Irrer"
 MadmanDescription="Während der Zed-Zeit schießen alle deine Waffen 3x schneller."
 
 IncapMaster="ZED-ZEIT – Ausschalten"
-IncapMasterDescription="Während der Zed-Zeit erhöht sich die Macht aller deiner Methoden zur Untauglichmachung für alle Waffen um 200%. "
+IncapMasterDescription="Während der Zed-Zeit erhöht sich die Macht aller deiner Methoden zur Untauglichmachung für alle Waffen um 200%."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="Stalker"
 KFPawn_ZedClot_Cyst="Cyst"
 KFPawn_ZedClot_Slasher="Schlitzer"
 KFPawn_ZedClot_Alpha="Alpha-Clot"
-KFPawn_ZedClot_AlphaKing="Elite-Alpha"
+KFPawn_ZedClot_AlphaKing="Aufrührer"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Sirene"
 KFPawn_ZedPatriarch="Patriarch"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="Pyjama-Anzug"
 
 ChanceDropDescriptionStrings[0]="Gewinnschein"
 ChanceDropDescriptionStrings[1]="Goldschein"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="Wagemutige Endlos-Herausforderungen"
+CurrentSpecialEventDescriptionString="Überstehe die Wellen, um legendäre Belohnungen zu erhalten!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Endlos-Test-Dummy",DescriptionString="Schließe Endlos-Welle 5 ab",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="Endlos-Drohne",DescriptionString="Schließe Endlos-Welle 10 ab",TierEventRewardName="D.A.R. Bronze");
+SpecialEventObjectiveInfoList[2]=(TitleString="Endlos-Wache",DescriptionString="Schließe Endlos-Welle 15 ab",TierEventRewardName="D.A.R. Silber");
+SpecialEventObjectiveInfoList[3]=(TitleString="Endlos-Kriegsmaschine",DescriptionString="Schließe Endlos-Welle 20 ab",TierEventRewardName="D.A.R. Klassisches Blau");
+SpecialEventObjectiveInfoList[4]=(TitleString="Endlos-Optimus-D.A.R.",DescriptionString="Schließe Endlos-Welle 25 ab",TierEventRewardName="D.A.R. Golden");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotika-Labor"
 
@@ -2862,6 +2910,9 @@ GameName="Überleben"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="Wöchentlich"
+
+[Endless KFGameInfoSummary]
+GameName="Endlos"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Volter-Anwesen"
@@ -2907,6 +2958,12 @@ DisplayName="Albtraum"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="Krampus’ Versteck"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Energiekern"
+
+[KF-DieSector KFMapSummary]
+DisplayName="DieSektor"
 
 [KFMapInfo]
 ; defaults

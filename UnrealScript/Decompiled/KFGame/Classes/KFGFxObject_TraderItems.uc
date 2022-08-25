@@ -111,6 +111,9 @@ var string OffPerkIconPath;
 // Export UKFGFxObject_TraderItems::execSetItemsInfo(FFrame&, void* const)
 native function SetItemsInfo(out array<STraderItem> ItemArray);
 
+// Export UKFGFxObject_TraderItems::execSortItemsInfo(FFrame&, void* const)
+native function SortItemsInfo(out array<STraderItem> ItemArray);
+
 final function bool GetItemIndicesFromArche(out byte ItemIndex, name WeaponClassName)
 {
     local byte I;

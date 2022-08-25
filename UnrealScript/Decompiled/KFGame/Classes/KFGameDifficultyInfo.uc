@@ -30,6 +30,18 @@ struct NumPlayerMods
     }
 };
 
+struct MapOverrideInfo
+{
+    var() string MapName;
+    var() int TraderTime<ClampMin=0.0>;
+
+    structdefaultproperties
+    {
+        MapName=""
+        TraderTime=0
+    }
+};
+
 struct DifficultySettings
 {
     /** How long trader time is */
@@ -60,6 +72,8 @@ struct DifficultySettings
     var() float SelfInflictedDamageMod<ClampMin=0.0|ClampMax=1.0>;
     /** Modify the spawn rate of AI for this difficulty */
     var() float SpawnRateModifier<ClampMin=0.0>;
+    /** Override the trader time based on map instead of difficulty. */
+    var() array<MapOverrideInfo> TraderTimerMapOverride;
 
     structdefaultproperties
     {
@@ -77,6 +91,7 @@ struct DifficultySettings
         HardAttackChance=0
         SelfInflictedDamageMod=1
         SpawnRateModifier=1
+        TraderTimerMapOverride=none
     }
 };
 
@@ -280,6 +295,23 @@ function float GetTraderTimeByDifficulty()
     return float(CurrentSettings.TraderTime);
 }
 
+function float GetTraderTimeByMap(string MapName)
+{
+    local MapOverrideInfo It;
+
+    if(CurrentSettings.TraderTimerMapOverride.Length > 0)
+    {
+        foreach CurrentSettings.TraderTimerMapOverride(It,)
+        {
+            if(It.MapName ~= MapName)
+            {                
+                return float(It.TraderTime);
+            }            
+        }        
+    }
+    return -1;
+}
+
 function float GetAIDamageModifier(KFPawn_Monster P, float GameDifficulty, bool bSoloPlay)
 {
     local float PerZedDamageMod, SoloPlayDamageMod;
@@ -476,9 +508,9 @@ defaultproperties
     NumPlayers_WeaponPickupRespawnTime=(PlayersMod=30,PlayersMod[1]=15,PlayersMod[2]=10,PlayersMod[3]=7.5,PlayersMod[4]=6,PlayersMod[5]=5,ModCap=1)
     NumPlayers_AmmoPickupRespawnTime=(PlayersMod=30,PlayersMod[1]=15,PlayersMod[2]=10,PlayersMod[3]=7.5,PlayersMod[4]=6,PlayersMod[5]=5,ModCap=1)
     NumPlayers_ZedDamageResistance=(PlayersMod=0.75,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=1)
-    Normal=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1)
-    Hard=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1)
-    Suicidal=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1)
-    HellOnEarth=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1)
-    CurrentSettings=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1)
+    Normal=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1,TraderTimerMapOverride=none)
+    Hard=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1,TraderTimerMapOverride=none)
+    Suicidal=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1,TraderTimerMapOverride=none)
+    HellOnEarth=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1,TraderTimerMapOverride=none)
+    CurrentSettings=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1,SpawnRateModifier=1,TraderTimerMapOverride=none)
 }

@@ -168,6 +168,16 @@ simulated function SetPickupVisible()
     }
 }
 
+state Disabled
+{
+    simulated event EndState(name NextStateName)
+    {
+        SetPickupVisible();
+        SetCollision(true, false);
+    }
+    stop;    
+}
+
 defaultproperties
 {
     RespawnTime=45

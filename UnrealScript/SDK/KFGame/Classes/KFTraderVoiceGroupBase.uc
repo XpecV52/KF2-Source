@@ -8,6 +8,12 @@ struct TraderDialogEventInfo
     var AkEvent AudioCue;
     var byte    Priority;
     var float   CoolDown;
+	var float	Chance;
+
+	structdefaultproperties
+	{
+		Chance=1.f
+	}
 };
 
 var TraderDialogEventInfo   DialogEvents[`TRADER_DIALOG_COUNT];
@@ -63,7 +69,6 @@ defaultproperties
     EventNames[`TRAD_AdviceHusk]=                    TRAD_AdviceHusk
     EventNames[`TRAD_AdvicePatriarch]=               TRAD_AdvicePatriarch
     EventNames[`TRAD_AdviceHans]=                    TRAD_AdviceHans
-    EventNames[`TRAD_AdviceMatriarch]=               TRAD_AdviceMatriarch
     EventNames[`TRAD_ObjDefendT]=                    TRAD_ObjDefendT
     EventNames[`TRAD_ObjDefendTWon]=                 TRAD_ObjDefendTWon
     EventNames[`TRAD_ObjDefendTDeclined]=            TRAD_ObjDefendTDeclined

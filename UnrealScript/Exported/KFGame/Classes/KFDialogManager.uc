@@ -371,22 +371,6 @@ class KFDialogManager extends Actor
 
 
 
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
 
 
 
@@ -401,12 +385,6 @@ class KFDialogManager extends Actor
 
 
 
-	
-
-
-
-
-	
 
 
 
@@ -421,7 +399,152 @@ class KFDialogManager extends Actor
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

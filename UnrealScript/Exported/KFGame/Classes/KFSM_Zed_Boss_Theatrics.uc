@@ -36,7 +36,7 @@ protected function bool InternalCanDoSpecialMove()
 	{
         KFGRI = KFGameReplicationInfo(AIOwner.WorldInfo.GRI);
 	}
-	if( KFGRI != none && !KFGRI.IsFinalWave() )
+	if( KFGRI != none && !KFGRI.IsBossWave() )
 	{
 		return false;
 	}
@@ -83,7 +83,7 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 
 	super.SpecialMoveStarted( bForced, PrevMove );
 
-	// This ensures the boss animation is always using the correct root bone axis option 
+	// This ensures the boss animation is always using the correct root bone axis option
 	// since it is possible that the previous pooled anim node sequence has not been cleared
 	KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Default, RBA_Default, RBA_Default);
 
@@ -105,7 +105,7 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
                     KFPlayerController(KFPOwner.WorldInfo.GetALocalPlayerController()).ShowBossNameplate(KFBoss);
                 }
             }
-        }		
+        }
 	}
 }
 
@@ -234,7 +234,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	{
         BossRef.SetAnimatedBossCamera(false);
 		if(BossRef.GetMonsterPawn().WorldInfo.NetMode != NM_DedicatedServer && KFPC.CanViewCinematics() )
-		{	
+		{
 			if( CurrentTheatricType == THEATRIC_Entrance )
 			{
 				KFPC.ClientSetCameraFade( true, FadeOutColor, vect2d(1.f, 0.f), FadeOutTime, true );

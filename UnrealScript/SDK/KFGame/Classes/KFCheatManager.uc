@@ -613,6 +613,29 @@ exec function HideMenus()
     }
 }
 
+exec function RequestSkipTraderTimer()
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFPlayerReplicationInfo KFPRI;
+
+	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+	KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
+
+	if (KFPRI != none)
+	{
+		// For game in progress, close menus on ready
+		if (KFGRI.bMatchHasBegun)
+		{
+			//player has spawned, skip trader time
+			if (KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
+			{
+				//skip trader request
+				KFPRI.RequestSkiptTrader(KFPRI);
+			}
+		}
+	}
+}
+
 exec function DebugShowVoteKick()
 {
 	local KFPlayerReplicationInfo KFPRI;
@@ -892,6 +915,13 @@ simulated exec function ScopeFOV(float NewFOV)
     }
 }
 
+simulated exec function March()
+{
+    GiveWeapon( "KFGameContent.KFWeap_SMG_Mac10" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_AF2011" );
+    GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
+}
+
 /**
  * Give the player all Demolition weapons
  */
@@ -936,6 +966,7 @@ simulated exec function Firebug()
     GiveWeapon( "KFGameContent.KFWeap_Beam_Microwave" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Flare" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_DualFlare" );
+    GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
 }
 
 /**
@@ -983,6 +1014,7 @@ simulated exec function SMG()
 exec function Surv()
 {
     GiveWeapon( "KFGameContent.KFWeap_Ice_FreezeThrower" );
+    GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
 }
 
 /* AllWeapons
@@ -4770,6 +4802,63 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
     return SpawnClass;
 }
 
+function int GetAITypeByName(string ZedName)
+{
+	local EAIType AIType;
+	AIType = INDEX_NONE;
+
+	if (Left(ZedName, 5) ~= "ClotA")
+	{
+		AIType = AT_AlphaClot;
+	}
+	else if (Left(ZedName, 5) ~= "ClotS")
+	{
+		AIType = AT_SlasherClot;
+	}
+	else if (Left(ZedName, 5) ~= "ClotC" || ZedName ~= "CLOT")
+	{
+		AIType = AT_Clot;
+	}
+	else if (Left(ZedName, 5) ~= "MiniF")
+	{
+		AIType = AT_FleshpoundMini;
+	}
+	else if (Left(ZedName, 1) ~= "F")
+	{
+		AIType = AT_FleshPound;
+	}
+	else if (Left(ZedName, 1) ~= "G")
+	{
+		AIType = AT_GoreFast;
+	}
+	else if (Left(ZedName, 2) ~= "St")
+	{
+		AIType = AT_Stalker;
+	}
+	else if (Left(ZedName, 1) ~= "B")
+	{
+		AIType = AT_Bloat;
+	}
+	else if (Left(ZedName, 2) ~= "Sc")
+	{
+		AIType = AT_Scrake;
+	}
+	else if (Left(ZedName, 2) ~= "Cr")
+	{
+		AIType = AT_Crawler;
+	}
+	else if (Left(ZedName, 2) ~= "Hu")
+	{
+		AIType = AT_Husk;
+	}
+	else if (Left(ZedName, 2) ~= "Si")
+	{
+		AIType = AT_Siren;
+	}
+
+	return AIType;
+}
+
 exec function SpawnHumanPawn(optional bool bEnemy, optional bool bUseGodMode, optional int CharIndex)
 {
 	local KFAIController KFBot;
@@ -4894,6 +4983,10 @@ simulated exec function KFPawn SpawnZed(string ZedName, optional float Distance 
 	KFP = Spawn(SpawnClass, , , SpawnLoc, SpawnRot,, bNoCollisionFail);
 	if ( KFP != None )
 	{
+		if (KFPawn_Monster(KFP) != none)
+		{
+			KFPawn_Monster(KFP).bDebug_SpawnedThroughCheat = true;
+		}
 		KFP.SetPhysics(PHYS_Falling);
 		KFGameInfo(WorldInfo.Game).SetMonsterDefaults( KFPawn_Monster(KFP));
         if( KFP.Controller != none && KFAIController(KFP.Controller) != none )
@@ -5630,12 +5723,36 @@ exec function ToggleSplatterGun()
 
 exec function SplatterFire()
 {
+	//why you no work
+	if (IsTimerActive(nameof(DoSplatterFire), self))
+	{
+		StopSplatterFire();
+	}
+	else
+	{
+		DoSplatterFire();
+
+		SetTimer(0.1, true, nameof(DoSplatterFire), self);
+	}
+}
+
+exec function StopSplatterFire()
+{
+	ClearTimer(nameof(DoSplatterFire), self);
+}
+
+function DoSplatterFire()
+{
 	local KFGoreManager GoreManager;
 	local vector StartTrace, TraceDir;
 
+	if (!bUsingSplatterGun) {
+		StopSplatterFire();
+	}
+
 	// Grab the gore manager
 	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-	if( GoreManager == none )
+	if (GoreManager == none)
 	{
 		`warn("##### Could not find gore manager #####");
 		return;
@@ -5719,6 +5836,15 @@ exec function DisableAtkAnimDifficultyScaling()
 }
 
 `if(`notdefined(ShippingPC))
+exec function FindAllCollectibles()
+{
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo(WorldInfo.Game);
+
+	KFGI.FindCollectibles();
+}
+
 exec function SetDoshScalarValue(float Poop)
 {
 	if (KFGameInfo_Entry(WorldInfo.Game) != none)
@@ -7134,6 +7260,38 @@ exec function SetMissionObjectiveVisible(bool bVisible)
     {
         KFPC.MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetVisible(bVisible);
     }
+}
+
+exec function ForceSpecialWave(string ZedTypeName = "")
+{
+	if (KFGameInfo(WorldInfo.Game) != none)
+	{
+		KFGameInfo(WorldInfo.Game).bForceSpecialWave = true;
+		if (ZedTypeName != "" && GetAITypeByName(ZedTypeName) != INDEX_NONE)
+		{
+			KFGameInfo(WorldInfo.Game).DebugForceSpecialWaveZedType = GetAITypeByName(ZedTypeName);
+		}
+	}
+}
+
+exec function ForceOutbreakWave(int OutbreakIdx = INDEX_NONE)
+{
+	if (KFGameInfo(WorldInfo.Game) != none)
+	{
+		KFGameInfo(WorldInfo.Game).bForceOutbreakWave = true;
+		if (OutbreakIdx != INDEX_NONE)
+		{
+			KFGameInfo(WorldInfo.Game).DebugForcedOutbreakIdx = OutbreakIdx;
+		}
+	}
+}
+
+exec function ForceNextObjective()
+{
+	if (KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).MyKFGRI != none)
+	{
+		KFGameInfo(WorldInfo.Game).MyKFGRI.bForceNextObjective = true;
+	}
 }
 
 //-----------------------------------------------------------------------------

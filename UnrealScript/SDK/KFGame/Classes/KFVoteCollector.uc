@@ -24,6 +24,9 @@ var const int ActiveTimeUntilVoteEnabled;
 //keep track of people that have voted so that they cannot hack and force a player out
 var array<PlayerReplicationInfo> PlayersThatHaveVoted;
 var byte LastKickVoteValue;
+var array<PlayerReplicationInfo> PlayersReadyToSkipTrader;
+
+var int TimeAfterSkipTrader;
 
 /************************************
 * @name 	Map Vote Vars
@@ -168,6 +171,66 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
 		// Can't start a new vote until current one is over
 		KFPlayerController(PRI_Kicker.Owner).ReceiveLocalizedMessage(class'KFLocalMessage', LMT_KickVoteInProgress);
 	}
+}
+
+reliable server function ResetTraderVote()
+{
+	PlayersReadyToSkipTrader.Length = 0;
+}
+
+reliable server function SkipTraderTime()
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo(WorldInfo.Game);
+	KFGRI = Outer;
+
+	// shorten time remaining before next wave
+	if (KFGRI.RemainingTime > TimeAfterSkipTrader)
+	{
+		KFGRI.RemainingTime = TimeAfterSkipTrader;
+		KFGRI.RemainingMinute = TimeAfterSkipTrader;
+
+		// refresh timer
+		KFGI.SkipTrader(TimeAfterSkipTrader);
+	}
+}
+
+reliable server function RecieveSkipTraderTimeVote(PlayerReplicationInfo PRI)
+{
+	if (PlayersThatHaveVoted.Find(PRI) == INDEX_NONE)
+	{
+		//accept their vote
+		PlayersReadyToSkipTrader.AddItem(PRI);
+
+		if (ShouldSkipTrader())
+		{
+			//skip it
+			SkipTraderTime();
+			//reset array
+			ResetTraderVote();
+		}
+	}
+}
+
+//validate all players in the vote list are on the server
+function bool ShouldSkipTrader()
+{
+	local array<KFPlayerReplicationInfo> PRIs;
+	local int i;
+	
+	GetKFPRIArray(PRIs);
+
+	for (i = 0; i < Pris.Length; i++)
+	{
+		if (PlayersReadyToSkipTrader.find(PRIs[i]) == INDEX_NONE)
+		{
+			return false;
+		}
+	}
+
+	return PlayersReadyToSkipTrader.length == PRIs.length;
 }
 
 reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
@@ -555,4 +618,5 @@ DefaultProperties
 	bIsFailedVoteTimerActive=false
 	ActiveTimeUntilVoteEnabled=30
 	KickedPlayers=0
+	TimeAfterSkipTrader=5//seconds
 }

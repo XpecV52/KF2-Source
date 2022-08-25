@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="Solo por invitación"
 ModeStrings[0]="Superviv."
 ModeStrings[1]="Semanal"
 ModeStrings[2]="Superviv. VS"
+ModeStrings[3]="Sin fin"
 
 NoPreferenceString="CUALQUIERA"
 OKString="VALE"
@@ -55,7 +56,6 @@ NoSwitchReasonString="Cambiar de equipo desequilibraría la partida"
 
 AutoTradeCompleteString="Autocomercio completado: "
 AutoFillCompleteString="Suministros autorrecarg."
-WeaponUpgradeComepleteString="Arma mejorada"
 SecondaryWeaponPurchasedString="Arma secundaria comprada"
 NoItemsPurchasedString="No se han comprado obj."
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": Sala de partida"
 DiscordTraderTimeString=": Mercader"
 DiscordBossWaveString=": Oleada de jefe"
 DiscordWaveString=": Oleada"
+
+ProceedToTutorialString="¿IR A ENTRENAMIENTO?"
+ProceedToTutorialDescriptionString="Ve al entorno controlado y aprende lo básico.  Si lo consigues, aumentas el nivel de la especialización elegida de 0 a 1."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RECOMPENSA POR COMPLETAR UN BROTE"
@@ -190,6 +193,7 @@ TutorialString="Entrenam. básico"
 modeList0="Supervivencia – Oleadas JcE de zeds controlados por IA"
 modeList1="Brote semanal – Un modo de juego distinto cada semana."
 modeList2="Supervivencia VS – Mercenarios de Horzine JcJ contra oleadas de zeds controlados por jugadores e IA"
+modeList3="Sin fin: oleadas de zeds controlados por IA hasta morir."
 difficultyList0="Normal – Para principiantes con rango de espec. 0-5."
 difficultyList1="Difícil – Para expertos con rango de espec. 6-12. Hay más zeds por oleadas, se mueven más rápido y tienen más vida. Hay menos objetos gratuitos y recibes menos dinero."
 difficultyList2="Suicida – Para veteranos con rango de espec. 13-25. Hay incluso más zeds por oleada, usan nuevos ataques y se mueven incluso más rápido. Hay incluso menos objetos gratuitos y recibes menos dinero aún."
@@ -738,6 +742,7 @@ DamageDealtString="Daño infligido:"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ LISTO ]"
+SkipTraderString="SALTAR MERCADER"
 WaitingString="ESPERANDO JUGADOR(ES)"
 MatchOverString="PARTIDA FINALIZADA \n Espera..."
 DeployingString="DESPLEGANDO EN "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Experiencia"
-PrestigeLevelString="Prestigio"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="CONFIGURAR"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>SELECCIONAR ARMA"
 PlayerClotGrabWarningMessage="¡MATA AL ZED PARA SOLTARTE!"
 UseMinigameMessage="ACTIVAR"
 UseMinigameGeneratorMessage="ACTIVAR GENERADOR"
+DoshActivateMessage="COSTE DE ACTIVACIÓN"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Los equipos están desequilibrados y van a ser ajustados"
@@ -2133,7 +2138,7 @@ Madman="MOMENTO ZED - Demencia"
 MadmanDescription="En el momento zed, todas tus armas disparan 3 veces más rápido."
 
 IncapMaster="MOMENTO ZED - Bloqueo"
-IncapMasterDescription="En el momento zed, la potencia de los métodos incapacitación de todas las armas aumenta un 200 %. "
+IncapMasterDescription="En el momento zed, la potencia de los métodos de incapacitación de todas las armas aumenta un 200 %."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="Stalker"
 KFPawn_ZedClot_Cyst="Cyst"
 KFPawn_ZedClot_Slasher="Slasher"
 KFPawn_ZedClot_Alpha="Clot alfa"
-KFPawn_ZedClot_AlphaKing="Élite alfa"
+KFPawn_ZedClot_AlphaKing="Alborotador"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
 KFPawn_ZedPatriarch="Patriarca"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="Pijama"
 
 ChanceDropDescriptionStrings[0]="Bol. premiado"
 ChanceDropDescriptionStrings[1]="Boleto dorado"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="Osados desafíos sin fin"
+CurrentSpecialEventDescriptionString="¡Derrota a todas las oleadas para ganar recompensas legendarias!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Muñeco de pruebas sin fin",DescriptionString="Completa la oleada sin fin 5",TierEventRewardName="D. A. R. ++");
+SpecialEventObjectiveInfoList[1]=(TitleString="Zángano sin fin",DescriptionString="Completa la oleada sin fin 10",TierEventRewardName="D. A. R. bronce");
+SpecialEventObjectiveInfoList[2]=(TitleString="Centinela sin fin",DescriptionString="Completa la oleada sin fin 15",TierEventRewardName="D. A. R. plateado");
+SpecialEventObjectiveInfoList[3]=(TitleString="Máquina de guerra sin fin",DescriptionString="Completa la oleada sin fin 20",TierEventRewardName="D. A. R. azul clásico");
+SpecialEventObjectiveInfoList[4]=(TitleString="Optimus D. A. R. sin fin",DescriptionString="Completa la oleada sin fin 25",TierEventRewardName="D. A. R. dorado");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio biótico"
 
@@ -2862,6 +2910,9 @@ GameName="Supervivencia"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="Semanal"
+
+[Endless KFGameInfoSummary]
+GameName="Sin fin"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Mansión Volter"
@@ -2907,6 +2958,12 @@ DisplayName="Pesadilla"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="Guarida de Krampus"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Núcleo de poder"
+
+[KF-DieSector KFMapSummary]
+DisplayName="Sector mortal"
 
 [KFMapInfo]
 ; defaults

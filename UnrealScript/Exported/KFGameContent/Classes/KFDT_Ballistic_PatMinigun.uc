@@ -370,22 +370,6 @@ class KFDT_Ballistic_PatMinigun extends KFDT_Ballistic_AssaultRifle
 
 
 
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
 
 
 
@@ -400,12 +384,6 @@ class KFDT_Ballistic_PatMinigun extends KFDT_Ballistic_AssaultRifle
 
 
 
-	
-
-
-
-
-	
 
 
 
@@ -420,7 +398,152 @@ class KFDT_Ballistic_PatMinigun extends KFDT_Ballistic_AssaultRifle
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

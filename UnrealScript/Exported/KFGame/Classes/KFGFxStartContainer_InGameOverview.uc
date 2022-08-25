@@ -32,9 +32,6 @@ var KFHTTPImageDownloader ImageDownLoader;
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	local PlayerController PC;
-	local KFGameReplicationInfo KFGRI;
-
-	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
 	PC = GetPC();
 	StartMenu = KFGfxMenu_StartGame(NewParentMenu);
@@ -55,12 +52,6 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	{
 		ShowWelcomeScreen();
 	}
-
-	if(KFGRI != none && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')
-	{
-		HideLengthInfo();
-	}
-
 }
 
 function HideLengthInfo()
@@ -349,6 +340,11 @@ function UpdateOverviewInGame()
 	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
+
+		if (KFGRI != none && KFGRI.GameClass != none && !KFGRI.GameClass.Static.GetShouldShowLength())
+		{
+			HideLengthInfo();
+		}
     	SetCurrentMapInfo();
 
     	// Update Game mode

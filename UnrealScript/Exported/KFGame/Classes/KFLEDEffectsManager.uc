@@ -17,6 +17,7 @@ enum ELightFXID
 	LFID_Unready,
 	LFID_MatchLost,
 	LFID_MatchWon,
+	LFID_Emote,
 };
 
 struct S_LightingFrame
@@ -42,6 +43,7 @@ var array<S_LightingFrame> ReadyEffectArr;
 var array<S_LightingFrame> UnreadyEffectArr;
 var array<S_LightingFrame> MatchLostEffectArr;
 var array<S_LightingFrame> MatchWonEffectArr;
+var array<S_LightingFrame> EmoteEffectArr;
 
 var array<S_LightingFrame> CurrentLightingFrames;
 var int CurrentLightFrameIndex;
@@ -257,6 +259,12 @@ simulated function PlayEffectWaveIncoming() //
 simulated function PlayEffectRecievedDosh()
 {
     //todo
+}
+
+simulated function PlayEmoteEffect()
+{
+	CurrentLightingFrames = EmoteEffectArr;
+	PlayNextLightFrame(true);
 }
 
 simulated function PlayEffectSetReady(bool bReady)
@@ -584,6 +592,19 @@ defaultproperties
    UnreadyEffectArr(0)=(Red=100,Brightness=100)
    MatchLostEffectArr(0)=(Red=100,Brightness=100)
    MatchWonEffectArr(0)=(Green=100,Brightness=100)
+   EmoteEffectArr(0)=(Red=100,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(1)=(Red=100,Green=60,Blue=18,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(2)=(Red=90,Green=99,Blue=60,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(3)=(Green=100,Blue=60,Duration=0.150000)
+   EmoteEffectArr(4)=(Blue=100,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(5)=(Red=60,Green=25,Blue=98,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(6)=(Red=244,Green=30,Blue=88,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(7)=(Red=60,Green=25,Blue=98,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(8)=(Blue=100,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(9)=(Green=100,Blue=60,Duration=0.150000)
+   EmoteEffectArr(10)=(Red=90,Green=99,Blue=60,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(11)=(Red=100,Green=60,Blue=18,Brightness=100,Duration=0.150000)
+   EmoteEffectArr(12)=(Red=100,Brightness=100,Duration=0.150000)
    Name="Default__KFLEDEffectsManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

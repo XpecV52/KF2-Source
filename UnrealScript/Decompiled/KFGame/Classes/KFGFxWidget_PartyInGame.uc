@@ -9,32 +9,29 @@ class KFGFxWidget_PartyInGame extends KFGFxWidget_BaseParty within GFxMoviePlaye
 
 var KFGameReplicationInfo KFGRI;
 var KFPlayerReplicationInfo MyKFPRI;
-var GFxObject MatchStartContainer;
+var bool bShowingSkipTrader;
 
 function InitializeWidget()
 {
     super.InitializeWidget();
     SetReadyButtonVisibility(true);
+    ReadyButton = GetObject("readyButton");
     MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
-    MatchStartContainer = GetObject("matchStartContainer");
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
-        if(KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
-        {
-            if(MatchStartContainer != none)
-            {
-                MatchStartContainer.SetVisible(false);
-            }
-            if(Outer.GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
-            {
-                GetObject("readyButton").SetVisible(false);
-            }
-        }
         StartCountdown(KFGRI.RemainingTime, false);
     }
     RefreshParty();
     UpdateReadyButtonVisibility();
+}
+
+function UpdateReadyButtonText()
+{
+    if(ReadyButton != none)
+    {
+        ReadyButton.SetString("label", ((bShowingSkipTrader) ? default.SkipTraderString : default.ReadyString));
+    }
 }
 
 function UpdateReadyButtonVisibility()
@@ -43,31 +40,49 @@ function UpdateReadyButtonVisibility()
     {
         return;
     }
+    if(MyKFPRI == none)
+    {
+        MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
+    }
     if(bReadyButtonVisible)
     {
         KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
         if(KFGRI != none)
         {
-            if((KFGRI.bMatchHasBegun && !KFGRI.bMatchIsOver) && !Outer.GetPC().PlayerReplicationInfo.bReadyToPlay)
+            if((KFGRI.bMatchHasBegun && ((MyKFPRI != none) && MyKFPRI.bHasSpawnedIn) && KFGRI.bTraderIsOpen) && !KFGRI.bMatchIsOver)
             {
-                SetReadyButtonVisibility(true);
-            }
-            if(KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
-            {
-                MatchStartContainer.SetVisible(false);
-                if(Outer.GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
+                bShowingSkipTrader = !MyKFPRI.bVotedToSkipTraderTime;
+                if(bShowingSkipTrader)
                 {
-                    SetReadyButtonVisibility(false);
+                    UpdateReadyButtonText();
+                    SetReadyButtonVisibility(true, false);
+                    ReadyButton.SetBool("selected", false);
                 }                
             }
             else
             {
-                if((Outer.GetPC().WorldInfo.NetMode == NM_Standalone) && MyKFPRI != none)
+                bShowingSkipTrader = false;
+                UpdateReadyButtonText();
+                if((((KFGRI.bMatchHasBegun && !KFGRI.bMatchIsOver) && MyKFPRI != none) && !MyKFPRI.bReadyToPlay) && !MyKFPRI.bHasSpawnedIn)
                 {
-                    MatchStartContainer.SetVisible(MyKFPRI.bReadyToPlay);
+                    SetReadyButtonVisibility(true);
                 }
+                if(KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
+                {
+                    if(Outer.GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
+                    {
+                        SetReadyButtonVisibility(false);
+                    }                    
+                }
+                else
+                {
+                    if((Outer.GetPC().WorldInfo.NetMode == NM_Standalone) && MyKFPRI != none)
+                    {
+                        MatchStartContainer.SetVisible(MyKFPRI.bReadyToPlay);
+                    }
+                }
+                SetBool("matchOver", KFGRI.bMatchIsOver);
             }
-            SetBool("matchOver", KFGRI.bMatchIsOver);
         }
     }
 }

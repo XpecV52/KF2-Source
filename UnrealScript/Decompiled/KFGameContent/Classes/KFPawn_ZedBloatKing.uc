@@ -185,6 +185,7 @@ function OnZedDied(Controller Killer)
     super(KFPawn_Monster).OnZedDied(Killer);
     KFGameInfo(WorldInfo.Game).BossDied(Killer);
     ClearFartTimer();
+    ClearTimer('AllowNextPoopMonster');
 }
 
 function KFAIWaveInfo GetWaveInfo(int BattlePhase, int Difficulty)
@@ -230,7 +231,7 @@ function PlayBossMusic()
 {
     if(KFGameInfo(WorldInfo.Game) != none)
     {
-        KFGameInfo(WorldInfo.Game).ForcePatriarchMusicTrack();
+        KFGameInfo(WorldInfo.Game).ForceAbominationMusicTrack();
     }
 }
 
@@ -254,15 +255,19 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     super(KFPawn_Monster).AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
     if(HitInfo.BoneName != 'None')
     {
-        AdjustBoneDamage(InDamage, HitInfo.BoneName, HitLocation);        
+        AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);        
     }
     else
     {
         AdjustNonBoneDamage(InDamage);
     }
+    if(bLogTakeDamage)
+    {
+        LogInternal(((((((((string(self) @ string(GetFuncName())) @ " After armor adjustment Damage=") $ string(InDamage)) @ "Momentum=") $ string(Momentum)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
+    }
 }
 
-function AdjustBoneDamage(out int InDamage, name BoneName, Vector HitLocation)
+function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource)
 {
     local int HitZoneIdx, ArmorZoneIdx;
     local name IntendedArmorZoneName;
@@ -281,7 +286,7 @@ function AdjustBoneDamage(out int InDamage, name BoneName, Vector HitLocation)
                     IntendedArmorZoneName = 'head';
                     break;
                 default:
-                    IntendedArmorZoneName = ((((HitLocation - Location) Dot vector(Rotation)) > float(0)) ? 'Front' : 'back');
+                    IntendedArmorZoneName = ((((DamagerSource - Location) Dot vector(Rotation)) > float(0)) ? 'Front' : 'back');
                     break;
                     break;
             }

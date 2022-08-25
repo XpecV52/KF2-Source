@@ -21,12 +21,12 @@ enum E_DailyIcon
 struct ObjectiveProgress
 {
     var bool bComplete;
-    var int numericValue;
+    var int NumericValue;
 
     structdefaultproperties
     {
         bComplete=false
-        numericValue=0
+        NumericValue=0
     }
 };
 
@@ -379,7 +379,7 @@ function bool HasObjectiveStatusChanged()
         if(I < NUM_OF_DAILIES)
         {
             ObjectiveStatusList[I].bComplete = KFPC.IsDailyObjectiveComplete(I);
-            ObjectiveStatusList[I].numericValue = KFPC.GetCurrentDailyValue(I);
+            ObjectiveStatusList[I].NumericValue = KFPC.GetCurrentDailyValue(I);
             ++ I;
             goto J0x6E;
         }
@@ -394,11 +394,11 @@ function bool HasObjectiveStatusChanged()
         {
             bTempStatus = KFPC.IsDailyObjectiveComplete(I);
             tempNumericValue = KFPC.GetCurrentDailyValue(I);
-            if((ObjectiveStatusList[I].bComplete != bTempStatus) || tempNumericValue != ObjectiveStatusList[I].numericValue)
+            if((ObjectiveStatusList[I].bComplete != bTempStatus) || tempNumericValue != ObjectiveStatusList[I].NumericValue)
             {
                 bHasChanged = true;
                 ObjectiveStatusList[I].bComplete = bTempStatus;
-                ObjectiveStatusList[I].numericValue = tempNumericValue;
+                ObjectiveStatusList[I].NumericValue = tempNumericValue;
             }
             ++ I;
             goto J0x14C;

@@ -12,34 +12,33 @@ class KFGFxWidget_PartyInGame extends KFGFxWidget_BaseParty;
 
 var KFGameReplicationInfo KFGRI;
 var KFPlayerReplicationInfo MyKFPRI;
-var  GFxObject MatchStartContainer;
+
+var bool bShowingSkipTrader;
 
 function InitializeWidget()
 {
 	super.InitializeWidget();
 	SetReadyButtonVisibility(true);
 
+	ReadyButton = GetObject("readyButton");
+
 	MyKFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
-	MatchStartContainer = GetObject("matchStartContainer");
+	
 	KFGRI = KFGameReplicationInfo( GetPC().WorldInfo.GRI );
 	if ( KFGRI != none )
 	{
-		if (KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
-		{
-			if(MatchStartContainer != none)
-			{
-				MatchStartContainer.SetVisible(false);
-			}
-			if (GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
-			{
-				GetObject("readyButton").SetVisible(false);
-			}
-		}
-
 		StartCountdown(KFGRI.RemainingTime, false);		
 	}	
 	RefreshParty();
 	UpdateReadyButtonVisibility();
+}
+
+function UpdateReadyButtonText()
+{
+	if (ReadyButton != none)
+	{
+		ReadyButton.SetString("label", bShowingSkipTrader ? default.SkipTraderString : default.ReadyString);
+	}
 }
 
 function UpdateReadyButtonVisibility()
@@ -48,31 +47,51 @@ function UpdateReadyButtonVisibility()
 	{
 		return;
 	}
+	if (MyKFPRI == none)
+	{
+		//sanity check because this is happening
+		MyKFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
+	}
 	if(bReadyButtonVisible)
 	{
 		KFGRI = KFGameReplicationInfo( GetPC().WorldInfo.GRI );
 		if ( KFGRI != none )
 		{
-			//@HSL_BEGIN - JRO - 9/9/2016 - Blind fix for ready button sometimes disappearing when the wave ends
-			if (KFGRI.bMatchHasBegun && !KFGRI.bMatchIsOver && !GetPC().PlayerReplicationInfo.bReadyToPlay)
+			if (KFGRI.bMatchHasBegun && (MyKFPRI != none && MyKFPRI.bHasSpawnedIn && KFGRI.bTraderIsOpen) && !KFGRI.bMatchIsOver )
 			{
-				SetReadyButtonVisibility(true);
-			}
-			//@HSL_END
-
-			if (KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
-			{
-				MatchStartContainer.SetVisible(false);
-				if (GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
+				bShowingSkipTrader = !MyKFPRI.bVotedToSkipTraderTime;
+				if (bShowingSkipTrader)
 				{
-					SetReadyButtonVisibility(false);
+					UpdateReadyButtonText();
+					SetReadyButtonVisibility(true, false);
+					ReadyButton.SetBool("selected", false);
 				}
 			}
-			else if(GetPC().WorldInfo.NetMode == NM_Standalone && MyKFPRI != none)
-			{	
-				MatchStartContainer.SetVisible(MyKFPRI.bReadyToPlay); //hide the waiting for players text when alone		
+			else
+			{
+				bShowingSkipTrader = false;
+				UpdateReadyButtonText();
+				
+				//@HSL_BEGIN - JRO - 9/9/2016 - Blind fix for ready button sometimes disappearing when the wave ends
+				if (KFGRI.bMatchHasBegun && !KFGRI.bMatchIsOver && MyKFPRI != none && !MyKFPRI.bReadyToPlay && !MyKFPRI.bHasSpawnedIn)
+				{
+					SetReadyButtonVisibility(true);
+				}
+				//@HSL_END
+
+				if (KFGRI.bMatchHasBegun || KFGRI.bMatchIsOver)
+				{
+					if (GetPC().PlayerReplicationInfo.bReadyToPlay || KFGRI.bMatchIsOver)
+					{
+						SetReadyButtonVisibility(false);
+					}
+				}
+				else if (GetPC().WorldInfo.NetMode == NM_Standalone && MyKFPRI != none)
+				{
+					MatchStartContainer.SetVisible(MyKFPRI.bReadyToPlay); //hide the waiting for players text when alone		
+				}
+				SetBool("matchOver", KFGRI.bMatchIsOver);
 			}
-			SetBool("matchOver", KFGRI.bMatchIsOver);
 		}
 	}
 }

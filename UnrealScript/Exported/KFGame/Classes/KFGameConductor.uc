@@ -233,7 +233,7 @@ function HandleZedKill( float ZedVisibleTimeAlive )
 /** Let the game conductor know a human team pawn just died */
 function NotifyHumanTeamPlayerDeath()
 {
-    if( !MyKFGRI.IsFinalWave() )
+    if( !MyKFGRI.IsBossWave() )
     {
         if (bLogGameConductor) LogInternal("Human team player died, forcing a lull for "$PlayerDeathForceLullLength$" seconds!");
 
@@ -245,7 +245,7 @@ function NotifyHumanTeamPlayerDeath()
 /** Let the game conductor know that the solo player has been surrounded */
 function NotifySoloPlayerSurrounded()
 {
-    if( !MyKFGRI.IsFinalWave() && GameConductorStatus != GCS_ForceLull )
+    if( !MyKFGRI.IsBossWave() && GameConductorStatus != GCS_ForceLull )
     {
         if (bLogGameConductor) LogInternal("Human solo player surrounded, forcing a lull for "$SoloPlayerSurroundedForceLullLength$" seconds!");
 
@@ -555,7 +555,7 @@ function UpdateOverallStatus()
 	}
 
     // Bypassing making game conductor adjustments
-    if( bBypassGameConductor || MyKFGRI.IsFinalWave() )
+    if( bBypassGameConductor || MyKFGRI.IsBossWave() )
     {
         OverallRankAndSkillModifier = 0.5;
         if (bLogGameConductor) LogInternal("Bypassing GameConductor adjustment OverallRankAndSkillModifier = "$OverallRankAndSkillModifier);
@@ -674,7 +674,7 @@ function UpdateOverallAttackCoolDowns(KFAIController KFAIC)
         bAllowLowZedIntensity = (AllowLowIntensityZedModeByDifficulty[ArrayCount(AllowLowIntensityZedModeByDifficulty) - 1] == 1);
     }
 
-    if( !bBypassGameConductor && bAllowLowZedIntensity && !MyKFGRI.IsFinalWave() )
+    if( !bBypassGameConductor && bAllowLowZedIntensity && !MyKFGRI.IsBossWave() )
     {
         if( GameConductorStatus == GCS_ForceLull || OverallRankAndSkillModifier == 0 )
         {

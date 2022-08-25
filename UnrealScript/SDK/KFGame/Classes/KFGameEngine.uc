@@ -26,7 +26,7 @@ enum SeasonalEventIndex
 	SEI_Spring,
 	SEI_Summer,
 	SEI_Fall,
-	SEI_Winter
+	SEI_Winter,
 };
 
 /** The game state we were in (paused, in game, etc.) when we lost focus */

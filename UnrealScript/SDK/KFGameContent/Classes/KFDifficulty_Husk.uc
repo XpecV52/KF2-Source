@@ -48,7 +48,8 @@ defaultproperties
 	)}
 
 	// Hard difficulty
-	Hard={(RallySettings={(bCanRally=false)}
+	Hard={(SoloDamageMod=0.7500000,
+		RallySettings={(bCanRally=false)}
 	)}
 	
 	// Suicidal difficulty

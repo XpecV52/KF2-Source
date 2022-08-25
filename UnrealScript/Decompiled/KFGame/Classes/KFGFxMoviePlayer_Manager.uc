@@ -1041,6 +1041,10 @@ function bool ToggleMenus()
             LogInternal((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName()));
             OpenMenu(1);
             UpdateMenuBar();
+            if(PartyWidget != none)
+            {
+                PartyWidget.UpdateReadyButtonVisibility();
+            }
         }
         bCanCloseMenu = false;
         Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
@@ -1392,9 +1396,11 @@ function ChangeOverviewState(bool bLeaderIsOnServerBrowser)
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent)
 {
     local KFPlayerReplicationInfo KFPRI;
+    local KFGameReplicationInfo KFGRI;
     local bool bLoading;
 
     KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
+    KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
     if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying())
     {
         return true;
@@ -1409,7 +1415,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
         {
             if(ButtonName == 'XboxTypeS_Y')
             {
-                if(((!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby) && !Class'WorldInfo'.static.IsMenuLevel()) && CurrentPopup == none)
+                if(((!KFGRI.bMatchIsOver && !bAfterLobby) && !Class'WorldInfo'.static.IsMenuLevel()) && CurrentPopup == none)
                 {
                     if(!KFPRI.bReadyToPlay)
                     {
@@ -1417,7 +1423,14 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
                     }
                     CurrentMenu.Callback_ReadyClicked(!KFPRI.bReadyToPlay);
                     PartyWidget.SetBool("bReady", KFPRI.bReadyToPlay);
-                    PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
+                    PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);                    
+                }
+                else
+                {
+                    if(((((KFPRI.bHasSpawnedIn && !KFGRI.bMatchIsOver) && KFGRI.bMatchHasBegun) && KFGRI.bTraderIsOpen) && CurrentMenu != TraderMenu) && bMenusOpen)
+                    {
+                        CurrentMenu.Callback_ReadyClicked(true);
+                    }
                 }                
             }
             else

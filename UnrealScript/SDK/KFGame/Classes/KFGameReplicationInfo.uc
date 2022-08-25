@@ -77,6 +77,7 @@ var					byte						WaveMax;	// The "end" wave
 var repnotify		byte						WaveNum; 	// The wave we are currently in
 var					int							AIRemaining;
 var					int							WaveTotalAICount;
+var					bool						bEndlessMode;
 
 //@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
 /************************************
@@ -282,6 +283,14 @@ var repnotify Actor CurrentObjective;
 var KFInterface_MapObjective ObjectiveInterface;
 var repnotify Actor PreviousObjective;
 var repnotify int PreviousObjectiveResult;
+var repnotify int PreviousObjectiveXPResult;
+var repnotify int PreviousObjectiveVoshResult;
+
+/** How long after selecting the objective until we activate it. */
+var			  int ObjectiveDelay;
+
+/** If true, then the next objective will start regardless of random chance. */
+var			  bool bForceNextObjective;
 
 /************************************
 *  Music
@@ -330,7 +339,7 @@ replication
 {
 	if ( bNetDirty )
 		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount, bWaveIsActive, MaxHumanCount,
-		CurrentObjective, PreviousObjective, PreviousObjectiveResult, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
+		CurrentObjective, PreviousObjective, PreviousObjectiveResult, PreviousObjectiveXPResult, PreviousObjectiveVoshResult, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
 		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid; //@HSL - JRO - 3/21/2016 - PS4 Sessions
 	if ( bNetInitial )
 		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase, MaxPerkLevel, bTradersEnabled, BossIndex;
@@ -376,7 +385,11 @@ simulated event ReplicatedEvent(name VarName)
 	}
     else if ( VarName == nameof(bWaveIsActive))
     {
-        if (!bWaveIsActive)
+		if (bWaveIsActive)
+		{
+			NotifyWaveStart();
+		}
+		else
         {
             FadeOutLingeringExplosions();
             NotifyWaveEnded();
@@ -390,7 +403,7 @@ simulated event ReplicatedEvent(name VarName)
     else if( VarName == nameof(MusicTrackRepCount) )
     {
 		// don't start music for boss wave, boss will start it at end of monologue
-        if( !IsFinalWave() )
+        if( !IsBossWave() )
         {
             PlayNewMusicTrack(true);
         }
@@ -553,6 +566,23 @@ simulated function NotifyWaveEnded()
 		if( KFPRI != none )
 		{
 			KFPRI.NotifyWaveEnded();
+		}
+	}
+}
+
+/** Process wave end event on client */
+simulated function NotifyWaveStart()
+{
+	local PlayerReplicationInfo PRI;
+	local KFPlayerReplicationInfo KFPRI;
+
+	// Reset all supplier perks
+	foreach PRIArray(PRI)
+	{
+		KFPRI = KFPlayerReplicationInfo(PRI);
+		if (KFPRI != none)
+		{
+			KFPRI.NotifyWaveStart();
 		}
 	}
 }
@@ -863,7 +893,7 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
     //  replicate track change
     MusicTrackRepCount++;
 
-    if( !IsFinalWave() && WorldInfo.NetMode != NM_DedicatedServer )
+    if( !IsBossWave() && WorldInfo.NetMode != NM_DedicatedServer )
     {
         PlayNewMusicTrack( true );
     }
@@ -871,7 +901,27 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
 
 simulated function bool IsFinalWave()
 {
-	return (WaveNum == WaveMax);
+	return (WaveNum == WaveMax - 1);
+}
+
+simulated function bool IsBossWave()
+{
+	return WaveNum == WaveMax;
+}
+
+simulated function bool IsBossWaveNext()
+{
+	return WaveNum == WaveMax - 1;
+}
+
+simulated function bool IsSpecialWave(out int ModIndex)
+{
+	return false;
+}
+
+simulated function bool IsWeeklyWave(out int ModIndex)
+{
+	return false;
 }
 
 // Called once a second
@@ -1465,7 +1515,7 @@ simulated function PlayNewMusicTrack( optional bool bGameStateChanged, optional 
     }
 
     // loop if we're designated to loop or this is the boss wave
-    if( bLoop || IsFinalWave() )
+    if( bLoop || IsBossWave() )
     {
         NextMusicTrackInfo = CurrentMusicTrackInfo;
     }
@@ -1561,33 +1611,35 @@ simulated event bool IsStatsSessionValid()
 //*****************************************************************************
 //  Objectives
 //*****************************************************************************
-function StartNextObjective()
+function bool StartNextObjective()
 {
     local KFMapInfo KFMI;
 
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-    if (KFMI != none && WaveNum != WaveMax)
+    if (KFMI != none && !IsBossWave())
     {
 		if (KFMI.bEventLimitedObjectives)
 		{
 			if (class'KFGameEngine'.static.GetSeasonalEventID() != KFMI.EventHoliday)
 			{
-				return;
+				return false;
 			}
 		}
 
         if (KFMI.bUsePresetObjectives)
         {
-            StartNextPresetObjective(KFMI);
+            return StartNextPresetObjective(KFMI);
         }
         else if (KFMI.bUseRandomObjectives)
         {
-            StartNextRandomObjective(KFMI);
+            return StartNextRandomObjective(KFMI);
         }
     }
+
+	return false;
 }
 
-function StartNextPresetObjective(KFMapInfo KFMI)
+function bool StartNextPresetObjective(KFMapInfo KFMI)
 {
     local array<KFInterface_MapObjective> PossibleObjectives;
 
@@ -1616,12 +1668,13 @@ function StartNextPresetObjective(KFMapInfo KFMI)
         break;
     }
 
-    AttemptObjectiveActivation(PossibleObjectives);
+    return AttemptObjectiveActivation(PossibleObjectives) != INDEX_NONE;
 }
 
-function StartNextRandomObjective(KFMapInfo KFMI)
+function bool StartNextRandomObjective(KFMapInfo KFMI)
 {
     local int Idx;
+	Idx = INDEX_NONE;
     //Start a random objective if we have any set
     if (KFMI.RandomWaveObjectives.Length > 0 && KFMI.RandomObjectiveWavesToDisable.Find(WaveNum) == INDEX_NONE)
     {
@@ -1636,19 +1689,23 @@ function StartNextRandomObjective(KFMapInfo KFMI)
         {
             KFMI.CurrentAvailableRandomWaveObjectives.Remove(Idx, 1);
         }
-
     }
+
+	return Idx != INDEX_NONE;
 }
 
 function int AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
 {
     local int RandID;
+	local float DieRoll, PctChanceToActivate;
 
+	DieRoll = FRand();
     //Loop through list of possible ones to find a random valid one.  If we never call activate, nothing was valid
     while (PossibleObjectives.Length > 0)
     {
         RandID = Rand(PossibleObjectives.Length);
-        if (PossibleObjectives[RandID].CanActivateObjective() && PreviousObjective != PossibleObjectives[RandID])
+		PctChanceToActivate = PossibleObjectives[RandID].GetActivationPctChance();
+        if (bForceNextObjective || (PossibleObjectives[RandID].CanActivateObjective() && PreviousObjective != PossibleObjectives[RandID] && (PctChanceToActivate >= 1.f || DieRoll <= PctChanceToActivate)))
         {
             ActivateObjective(PossibleObjectives[RandID]);
             return RandID;
@@ -1665,10 +1722,17 @@ function ActivateObjective(KFInterface_MapObjective NewObjective)
     if (NewObjective != none)
     {
         CurrentObjective = Actor(NewObjective);
-		PreviousObjective = none;
-		PreviousObjectiveResult = -1;
+		ClearPreviousObjective();
         ObjectiveInterface = NewObjective;
-        ObjectiveInterface.ActivateObjective();
+
+		if(ObjectiveDelay > 0)
+		{
+			SetTimer(ObjectiveDelay,, 'Timer_ActivateObjective');
+		}
+		else
+		{
+			Timer_ActivateObjective();
+		}
     }
 }
 
@@ -1678,11 +1742,34 @@ function DeactivateObjective()
     {
 		PreviousObjective = CurrentObjective;
 		PreviousObjectiveResult = ObjectiveInterface.GetDoshReward();
+		PreviousObjectiveVoshResult = ObjectiveInterface.GetVoshReward();
+		PreviousObjectiveXPResult = ObjectiveInterface.GetXPReward();
 
         ObjectiveInterface.DeactivateObjective();
         CurrentObjective = none;
         ObjectiveInterface = none;
     }
+}
+
+function ClearPreviousObjective()
+{
+	PreviousObjective = none;
+	PreviousObjectiveResult = INDEX_NONE;
+	PreviousObjectiveVoshResult = INDEX_NONE;
+	PreviousObjectiveXPResult = INDEX_NONE;
+}
+
+function Timer_ActivateObjective()
+{
+	if (ObjectiveInterface != none)
+	{
+		ObjectiveInterface.ActivateObjective();
+	}
+}
+
+simulated event byte GetGameDifficulty()
+{
+	return GameDifficulty;
 }
 
 defaultproperties
@@ -1702,4 +1789,6 @@ defaultproperties
     MaxPerkLevel=4
 	BossIndex=255
 	PreviousObjectiveResult=-1
+	PreviousObjectiveVoshResult=-1
+	PreviousObjectiveXPResult=-1
 }

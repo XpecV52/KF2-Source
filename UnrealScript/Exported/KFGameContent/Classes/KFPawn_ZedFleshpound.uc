@@ -12,6 +12,7 @@ class KFPawn_ZedFleshpound extends KFPawn_Monster;
 var AkComponent RageAkComponent;
 var AkEvent RageLoopSound;
 var AkEvent RageStopSound;
+var bool bPlayingRageSound;
 
 /** Material parameters for rage light glow */
 var LinearColor DefaultGlowColor;
@@ -40,7 +41,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 	local WorldInfo WI;
 
 	WI = class'WorldInfo'.static.GetWorldInfo();
-	if( fRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)) )
+	if(class<KFDifficulty_Fleshpound>(default.DifficultySettings) != none && fRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)) )
 	{
 		return default.ElitePawnClass;
 	}
@@ -139,7 +140,7 @@ simulated event PlayFootStepSound(int FootDown)
 			{
 				FootstepCameraShake.RotOscillation.Pitch.Amplitude *= 0.75f;
 				FootstepCameraShake.RotOscillation.Roll.Amplitude *= 0.75f;
-			}			
+			}
 		}
 	}
 
@@ -310,9 +311,10 @@ simulated function SetGlowColors(LinearColor GlowColor)
 /** Stops the rage sound with an akevent */
 simulated function StopRageSound()
 {
-	if( RageAkComponent.IsPlaying(RageLoopSound) )
+	if(bPlayingRageSound && RageAkComponent.IsPlaying(RageLoopSound) )
 	{
 		RageAkComponent.PlayEvent( RageStopSound, true, true );
+		bPlayingRageSound = false;
 	}
 }
 
@@ -335,7 +337,7 @@ function class<KFDamageType> GetBumpAttackDamageType()
 	return RageBumpDamageType;
 }
 
-/** 
+/**
  * Used to adjust strength of all incoming afflictions (similar to AdjustDamage)
  * based on current situation / state.
  */
@@ -359,6 +361,7 @@ simulated event Tick( float DeltaTime )
 			if( !RageAkComponent.IsPlaying(RageLoopSound) )
 			{
 				RageAkComponent.PlayEvent( RageLoopSound, true, true );
+				bPlayingRageSound = true;
 			}
 		}
 		else

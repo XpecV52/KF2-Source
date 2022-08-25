@@ -60,6 +60,12 @@ function Timer_StopSummoningZeds()
     MyKFGameInfo.SpawnManager.StopSummoningBossMinions();
 }
 
+function PawnDied(Pawn inPawn)
+{
+    super(KFAIController).PawnDied(inPawn);
+    Timer_StopSummoningZeds();
+}
+
 function EnterZedVictoryState()
 {
     ClearMovementInfo();
@@ -85,7 +91,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
 
     super.Possess(inPawn, bVehicleTransition);
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && KFGRI.WaveNum >= KFGRI.WaveMax)
+    if((KFGRI != none) && KFGRI.IsBossWave())
     {
         Class'AICommand_BossTheatrics'.static.DoTheatrics(self, 0);
     }

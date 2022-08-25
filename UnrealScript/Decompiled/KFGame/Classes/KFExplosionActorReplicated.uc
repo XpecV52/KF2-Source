@@ -73,6 +73,11 @@ simulated function SpawnExplosionParticleSystem(ParticleSystem Template)
     }
 }
 
+simulated function SetSyncToMuzzleLocation(bool bSync)
+{
+    bSyncParticlesToMuzzle = bSync;
+}
+
 simulated function Vector GetMuzzleEffectLocation()
 {
     local KFPawn KFP;

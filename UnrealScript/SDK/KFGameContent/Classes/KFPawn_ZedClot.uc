@@ -70,7 +70,7 @@ DefaultProperties
 
 	Health=100 // 67% KF1 scale
 	DoshValue=7.0
-	Mass=50.f
+	Mass=65.f //
 	KnockedDownBySonicWaveOdds=0.23f
 	bKnockdownWhenJumpedOn=true
 

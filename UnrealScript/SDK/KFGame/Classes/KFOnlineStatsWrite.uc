@@ -18,7 +18,6 @@ class KFOnlineStatsWrite extends OnlineStatsWrite
 const	WeldingPointsRequired = 510;
 const	HealingPointsRequired = 10;
 const 	MaxPerkLevel = `MAX_PERK_LEVEL;
-const 	MaxPrestigeLevel = `MAX_PRESTIGE_LEVEL;
 
 //Event consts
 const   SpecialEventObjectiveCountMax = 8;
@@ -316,6 +315,18 @@ const KFACHID_KrampusSuicidal					=   200;
 const KFACHID_KrampusHellOnEarth				=   201;
 const KFACHID_KrampusCollectibles				=   202;
 
+const KFACHID_ArenaNormal						=   203;
+const KFACHID_ArenaHard							=   204;
+const KFACHID_ArenaSuicidal						=   205;
+const KFACHID_ArenaHellOnEarth					=   206;
+const KFACHID_ArenaCollectibles					=   207;
+
+const KFACHID_PowercoreNormal					=   208;
+const KFACHID_PowercoreHard						=   209;
+const KFACHID_PowercoreSuicidal					=   210;
+const KFACHID_PowercoreHellOnEarth				=   211;
+const KFACHID_PowercoreCollectibles				=   212;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -333,6 +344,13 @@ var private const   bool bReadSuccessful;
 /** Dev cheats */
 var	config	bool	bAllowPerkCheats;
 var	private	const	bool	bDisabled;
+
+/** Max reward if users (theoretically) did the objective perfectly */
+var int VoshRewards[33];
+/** Reward if user kills a zed. */
+var native map{ FName, INT } KillZedRewards;
+/** Keeps track of how many times player killed each zed. */
+var native map{ FName, INT } ZedsKilled;
 
 /** Daily Event Information */
 enum eDailyObjectiveType
@@ -376,6 +394,9 @@ var 		bool 	bLogStatsWrite;
 
 cpptext
 {
+	void InitializeKillZedRewards();
+	void InitializeVoshRewards();
+
 	UBOOL IsValidProgressStatId(INT StatId);
 	void GrantTutorialLevel(class UClass* PerkClass);
 
@@ -384,6 +405,7 @@ cpptext
     void GrantEventItems(INT EventIndex);
     void GrantSummerItems();
 	void GrantWinterItems();
+	void GrantSpringItems();
     void GrantDoshVaultItem();
 
     //Daily calls
@@ -398,11 +420,16 @@ cpptext
     void AddToDoshVault(INT Amount);
 
 	UBOOL IsDamageTypeChildOf(class UClass* DamageType, const TArray<FName>& ObjectiveClasses);
+
+	void CalculateZedKillsVoshReward();
+
+	void IncrementZedsKilled(class UClass* MonsterType);
 }
 
 /*********************************************************************************************
 * @name Native stat functions
 ********************************************************************************************* */
+native function OnStatsInitialized(bool bWasSuccessful);
 native function IncrementIntStat(int StatId,optional int IncBy = 1);
 native function IncrementFloatStat( int StatId, optional float IncBy = 1.0 );
 native function SetIntStat( int StatId, int Value );
@@ -1341,7 +1368,11 @@ native function UnlockDingoAchievement(int AchievementId, optional int Value = 1
   */
 native final function OnGameWon( string MapName, byte Difficulty, byte GameLength, byte bCoop, class<KFPerk> PerkClass );
 
+/** Used for Versus. */
 native final function OnRoundEnd( byte WinningTeam );
+
+/** Whenever the game end, calculate general acheivements. */
+native final function OnGameEnd( string MapName, byte Difficulty, byte GameLength, byte EndingWaveNum, byte bCoop, class<KFPerk> PerkClass );
 
 /**
  * @brief Check for map specific achievements on game end
@@ -1357,6 +1388,11 @@ native final function CheckMapEndAchievements( string MapName, byte Difficulty, 
 * @brief Check for any additional behavior on collectible achievements
 */
 native final function CheckCollectibleAchievement( string MapName );
+
+/**
+* @brief Check for any additional behavior on collectible achievements
+*/
+native final function CheckEndWaveObjective(int CurrentWave);
 
 /**
  * @brief Check if a new perk tier has been reached
@@ -1449,6 +1485,12 @@ native final function bool IsWeeklyEventComplete();
 
 /** Get a list of IDs associated with the prizes given out for completing a weekly */
 native static final function array<int> GetWeeklyOutbreakRewards(int Index = -1);
+
+/** Get the amount of Vosh a player would earn by completeting a map objective. */
+native static final function int GetMapObjectiveVoshReward(byte GameLength, byte WaveNum);
+
+/** Award the player the Vosh for completeting a map objective. */
+native final function MapObjectiveCompleted();
 
 /*********************************************************************************************
 * @name Dailies and daily-specific tracking
@@ -1620,15 +1662,17 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Thrown_C4, KFDT_Explosive_C4,KFDT_Bludgeon_C4),CompletionAmount=2500))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_GrenadeLauncher_M79, KFDT_Ballistic_M79Impact,KFDT_Explosive_M79,KFDT_Bludgeon_M79),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_RocketLauncher_RPG7, KFDT_Ballistic_RPG7Impact,KFDT_Explosive_RPG7,KFDT_Explosive_RPG7BackBlast,KFDT_Bludgeon_RPG7),CompletionAmount=7500))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_M16M203, KFDT_Ballistic_M16M203,KFDT_Bludgeon_M16M203),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_M16M203, KFDT_Ballistic_M16M203,KFDT_Bludgeon_M16M203,KFDT_Ballistic_M203Impact,KFDT_Explosive_M16M203),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_RocketLauncher_Seeker6, KFDT_Explosive_Seeker6, KFDT_Bludgeon_Seeker6, KFDT_Ballistic_Seeker6Impact),CompletionAmount=10000))
 
     //Firebug Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_CaulkBurn, KFDT_Bludgeon_CaulkBurn,KFDT_Fire_CaulkBurn,KFDT_Fire_Ground_CaulkNBurn),CompletionAmount=3000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Flare, KFDT_Fire_FlareGun,KFDT_Fire_FlareGun_Dual,KFDT_Bludgeon_FlareGun),CompletionAmount=5000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Flare, KFDT_Bludgeon_FlareGun,KFDT_Fire_FlareGun,KFDT_Fire_FlareGun_Dual,KFDT_Fire_FlareGunDoT),CompletionAmount=5000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_DragonsBreath, KFDT_Ballistic_DragonsBreath,KFDT_Bludgeon_DragonsBreath,KFDT_Fire_DragonsBreathDoT),CompletionAmount=5000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Mac10, KFDT_Bludgeon_Mac10,KFDT_Fire_Mac10,KFDT_Fire_Mac10DoT),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_Flamethrower, KFDT_Bludgeon_Flamethrower,KFDT_Fire_FlameThrower,KFDT_Fire_Ground_FlameThrower),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Beam_Microwave, KFDT_Bludgeon_MicrowaveGun,KFDT_Fire_Ground_MicrowaveGun,KFDT_Microwave,KFDT_Microwave_Beam,KFDT_Microwave_Blast),CompletionAmount=10000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HuskCannon, KFDT_Bludgeon_HuskCannon, KFDT_Explosive_HuskCannon, KFDT_HuskCannonDot),CompletionAmount=10000))
 
     //Berserker Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Crovel, KFDT_Bludgeon_Crovel,KFDT_Bludgeon_CrovelBash,KFDT_Slashing_Crovel),CompletionAmount=3000))
@@ -1642,6 +1686,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Colt1911, KFDT_Bludgeon_Colt1911,KFDT_Ballistic_Colt1911),CompletionAmount=5000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Deagle, KFDT_Bludgeon_Deagle,KFDT_Ballistic_Deagle),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Revolver_SW500, KFDT_Bludgeon_SW500,KFDT_Ballistic_SW500,KFDT_Ballistic_SW500_Dual),CompletionAmount=10000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_AF2011, KFDT_Bludgeon_AF2011,KFDT_Ballistic_AF2011),CompletionAmount=10000))
 
     //Sharpshooter Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Winchester1894, KFDT_Bludgeon_Winchester,KFDT_Ballistic_Winchester),CompletionAmount=2000))
@@ -1652,6 +1697,7 @@ defaultproperties
 
     //Survivalist Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Ice_FreezeThrower, KFDT_Bludgeon_Freezethrower, KFDT_Freeze_FreezeThrower, KFDT_Freeze_FreezeThrower_IceShards, KFDT_Freeze_Ground_FreezeThrower),CompletionAmount=7000))
+
 
     //Kills
     DailyEvents.Add((ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Alpha),CompletionAmount=20))
@@ -1742,22 +1788,21 @@ defaultproperties
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount
-    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedClot_Alpha, KFPawn_ZedClot_Alpha_Versus),CompletionAmount=1))
+    /*DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedClot_Alpha, KFPawn_ZedClot_Alpha_Versus),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedClot_Slasher, KFPawn_ZedClot_Slasher_Versus),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedCrawler, KFPawn_ZedCrawler_Versus),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedStalker, KFPawn_ZedStalker_Versus),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedBloat, KFPawn_ZedBloat_Versus),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedSiren, KFPawn_ZedSiren_Versus),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedHusk, KFPawn_ZedHusk_Versus),CompletionAmount=1))
-    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedGorefast, KFPawn_ZedGorefast_Versus),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedGorefast, KFPawn_ZedGorefast_Versus),CompletionAmount=1))*/
 
     //Versus Kills
-    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusKills,ObjectiveClasses=(KFPawn_ZedScrake, KFPawn_ZedScrake_Versus),CompletionAmount=1))
+    /*DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusKills,ObjectiveClasses=(KFPawn_ZedScrake, KFPawn_ZedScrake_Versus),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusKills,ObjectiveClasses=(KFPawn_ZedFleshPound, KFPawn_ZedFleshPound_Versus),CompletionAmount=1))
-    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusKills,ObjectiveClasses=(KFPawn_ZedPatriarch, KFPawn_ZedPatriarch_Versus),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_VersusKills,ObjectiveClasses=(KFPawn_ZedPatriarch, KFPawn_ZedPatriarch_Versus),CompletionAmount=1))*/
 
-    //Versus Finish Match
-
+    //Character Completions
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(chr_briar_archetype),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_MrFoster_archetype),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_Coleman_archetype),CompletionAmount=1))
@@ -1766,4 +1811,5 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_Tanaka_Archetype),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_Ana_Archetype),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(chr_rockabilly_archetype),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_DAR_archetype),CompletionAmount=1))
 }

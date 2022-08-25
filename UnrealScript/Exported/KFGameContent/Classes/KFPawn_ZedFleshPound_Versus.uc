@@ -163,7 +163,7 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:Afflictions_0'
-   IncapSettings(0)=(Vulnerability=(0.500000))
+   IncapSettings(0)=(Vulnerability=(0.300000))
    IncapSettings(1)=(Cooldown=12.000000)
    IncapSettings(2)=()
    IncapSettings(3)=()

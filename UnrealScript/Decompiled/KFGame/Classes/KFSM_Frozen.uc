@@ -146,7 +146,7 @@ function OnGoreMeshSwap()
 function SetFrozenParameter(float FreezeAmount)
 {
     local MaterialInstanceConstant MIC;
-    local int I, J;
+    local int I;
 
     if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -162,23 +162,46 @@ function SetFrozenParameter(float FreezeAmount)
         {
             if(KFPOwner.ThirdPersonAttachments[I] != none)
             {
-                J = 0;
-                J0x104:
-
-                if(J < KFPOwner.ThirdPersonAttachments[I].Materials.Length)
-                {
-                    MIC = MaterialInstanceConstant(KFPOwner.ThirdPersonAttachments[I].GetMaterial(J));
-                    if(MIC != none)
-                    {
-                        MIC.SetScalarParameterValue('Scalar_Ice', FreezeMatParamValue);
-                    }
-                    ++ J;
-                    goto J0x104;
-                }
+                ApplyFreeze(KFPOwner.ThirdPersonAttachments[I]);
             }
             ++ I;
             goto J0xBB;
         }
+        if(KFPawn_Monster(KFPOwner) != none)
+        {
+            I = 0;
+            J0x15C:
+
+            if(I < KFPawn_Monster(KFPOwner).StaticAttachList.Length)
+            {
+                if(KFPawn_Monster(KFPOwner).StaticAttachList[I] != none)
+                {
+                    ApplyFreeze(KFPawn_Monster(KFPOwner).StaticAttachList[I]);
+                }
+                ++ I;
+                goto J0x15C;
+            }
+        }
+    }
+}
+
+function ApplyFreeze(MeshComponent MeshToFreeze)
+{
+    local MaterialInstanceConstant MIC;
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < MeshToFreeze.Materials.Length)
+    {
+        MIC = MaterialInstanceConstant(MeshToFreeze.GetMaterial(I));
+        if(MIC != none)
+        {
+            MIC.SetScalarParameterValue('Scalar_Ice', FreezeMatParamValue);
+        }
+        ++ I;
+        goto J0x0B;
     }
 }
 

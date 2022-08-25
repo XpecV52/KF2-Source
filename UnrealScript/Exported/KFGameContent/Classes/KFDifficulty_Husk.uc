@@ -45,7 +45,7 @@ defaultproperties
    FireballSettings(3)=(bSpawnGroundFire=True,ExplosionMomentum=65000.000000)
    FireballSettings_Versus=(ExplosionMomentum=50000.000000)
    Normal=(HealthMod=0.750000,HeadHealthMod=0.750000,DamageMod=0.350000,SoloDamageMod=0.350000,RallySettings=(bCanRally=False))
-   Hard=(RallySettings=(bCanRally=False))
+   Hard=(SoloDamageMod=0.750000,RallySettings=(bCanRally=False))
    Suicidal=(DamagedSprintChance=0.500000,SoloDamageMod=0.750000,RallySettings=(TakenDamageModifier=0.900000,DealtDamageModifier=1.200000))
    HellOnEarth=(HealthMod=1.300000,HeadHealthMod=1.100000,SprintChance=0.750000,DamagedSprintChance=1.000000,DamageMod=1.500000,SoloDamageMod=0.750000,RallySettings=(bCauseSprint=True,TakenDamageModifier=0.900000,DealtDamageModifier=1.200000))
    RallySettings_Versus=(bCauseSprint=True)

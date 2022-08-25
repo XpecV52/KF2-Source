@@ -18,6 +18,7 @@ enum ECrateSeries
 	Ecrate_Exhibit,
 	Ecrate_EliteMedic,
 	Ecrate_Victorian,
+    Ecrate_WeaponCollector_S1,
 	Ecrate_MaceShield,
 	ECrate_HorzineSupply_S1,
 	ECrate_HorzineSupply_S2,
@@ -28,14 +29,19 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S7,
 	ECrate_HorzineSupply_S8,
 	ECrate_HorzineSupply_S9,
+	ECrate_HorzineSupply_SDAR,
 	ECrate_PSNHorzineSupply_CS1,
 	ECrate_PSNHorzineSupply_CS2,
 	ECrate_PSNHorzineSupply_CS3,
+	ECrate_PSNHorzineSupply_CS5,
+	ECrate_PSNHorzineSupply_CS6,
 	ECrate_PSNHorzineSupply_WS1,
 	ECrate_PSNHorzineSupply_WS2,
 	ECrate_PSNHorzineSupply_WS3,
 	ECrate_PSNHorzineSupply_WS4,
 	ECrate_PSNHorzineSupply_WS5,
+	ECrate_PSNHorzineSupply_WS6,
+	ECrate_PSNHorzineSupply_WS7,
 	ECrate_PSNHorzineSupply_E1,
 	ECrate_PSNHorzineSupply_E2,
 	ECrate_HorzineSupply_S10,
@@ -123,6 +129,7 @@ DefaultProperties
 	ItemKeyArray[Ecrate_Exhibit]=(ContainerID=4115, KeyID=4114, ItemSeriesName=exhibit, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_EliteMedic]=(ContainerID=4145, KeyID=4144, ItemSeriesName=elitemedic, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_Victorian]=(ContainerID=4214, KeyID=4215, ItemSeriesName=victorian, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_WeaponCollector_S1]=(ContainerID=5987, KeyID=5988, ItemSeriesName=WeaponCollector_S1, ContainerType=IDT_USB)
 	ItemKeyArray[ECrate_HorzineSupply_S1]=(ContainerID=3284, KeyID=3282, ItemSeriesName=horzine1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S2]=(ContainerID=3285, KeyID=3283, ItemSeriesName=horzine2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S3]=(ContainerID=3598, KeyID=3599, ItemSeriesName=horzine3, ContainerType=IDT_Crate)
@@ -132,14 +139,19 @@ DefaultProperties
 	ItemKeyArray[ECrate_HorzineSupply_S7]=(ContainerID=4107, KeyID=4105, ItemSeriesName=horzine7, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S8]=(ContainerID=4108, KeyID=4106, ItemSeriesName=horzine8, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S9]=(ContainerID=4207, KeyID=4208, ItemSeriesName=horzine9, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_HorzineSupply_SDAR]=(ContainerID=5873, KeyID=5874, ItemSeriesName=horzineDAR, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS1]=(ContainerID=4304, KeyID=4303, ItemSeriesName=psncrate_cs1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS2]=(ContainerID=4305, KeyID=4303, ItemSeriesName=psncrate_cs2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS3]=(ContainerID=5371, KeyID=4303, ItemSeriesName=psncrate_cs3, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_CS5]=(ContainerID=5900, KeyID=4303, ItemSeriesName=psncrate_cs5, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_CS6]=(ContainerID=5989, KeyID=4303, ItemSeriesName=psncrate_cs6, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS1]=(ContainerID=4307, KeyID=4303, ItemSeriesName=psncrate_ws1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS2]=(ContainerID=4306, KeyID=4303, ItemSeriesName=psncrate_ws2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS3]=(ContainerID=4569, KeyID=4303, ItemSeriesName=psncrate_ws3, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS4]=(ContainerID=4790, KeyID=4303, ItemSeriesName=psncrate_ws4, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS5]=(ContainerID=5369, KeyID=4303, ItemSeriesName=psncrate_ws5, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS6]=(ContainerID=5901, KeyID=4303, ItemSeriesName=psncrate_ws6, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS7]=(ContainerID=5991, KeyID=4303, ItemSeriesName=psncrate_ws7, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E1]=(ContainerID=5646, KeyID=4303, ItemSeriesName=emote1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E2]=(ContainerID=5647, KeyID=4303, ItemSeriesName=emote2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S10]=(ContainerID=4499, KeyID=4501, ItemSeriesName=horzine10, ContainerType=IDT_Crate)

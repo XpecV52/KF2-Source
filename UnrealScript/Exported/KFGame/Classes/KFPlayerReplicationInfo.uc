@@ -504,6 +504,8 @@ var 			byte 			PerkSupplyLevel;
 var 			bool 			bPerkPrimarySupplyUsed;
 var 			bool 			bPerkSecondarySupplyUsed;
 
+var				bool			bVotedToSkipTraderTime;
+
 /************************************
  *  Not replicated Voice Comms Request
  *  local client only -ZG
@@ -513,7 +515,6 @@ var 			EVoiceCommsType CurrentVoiceCommsRequest;
 var				float 			VoiceCommsStatusDisplayInterval;
 var				int 			VoiceCommsStatusDisplayIntervalCount;
 var				int 			VoiceCommsStatusDisplayIntervalMax;
-var 			Texture2D 		CurrentIconToDisplay;
 
 /************************************
  *  Replicated Unlocks
@@ -553,7 +554,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -1012,6 +1013,26 @@ reliable server function ServerCastKickVote(PlayerReplicationInfo PRI, bool bKic
 	}
 }
 
+simulated function RequestSkiptTrader(PlayerReplicationInfo PRI)
+{
+	bVotedToSkipTraderTime = true;
+	ServerRequestSkipTrader(self);
+}
+
+reliable server function ServerRequestSkipTrader(PlayerReplicationInfo PRI)
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+	if (KFGRI != none)
+	{
+		KFGRI.VoteCollector.RecieveSkipTraderTimeVote(PRI);
+	}
+}
+
+
+
 /*********************************************************************************************
 `* Map Vote
 ********************************************************************************************* */
@@ -1442,6 +1463,16 @@ simulated function ResetSupplierUsed()
  */
 simulated function NotifyWaveEnded()
 {
+	bVotedToSkipTraderTime = false;
+}
+
+//reset the icons here
+/**
+* Called when a wave has Started.
+* Network: ALL
+*/
+simulated function NotifyWaveStart()
+{
 	bPerkPrimarySupplyUsed = false;
 	bPerkSecondarySupplyUsed = false;
 }
@@ -1455,7 +1486,7 @@ simulated function SetCurrentVoiceCommsRequest(int NewValue)
 {
 	//cast it
 	CurrentVoiceCommsRequest = EVoiceCommsType(NewValue);
-
+	bNetDirty = true;
 	//clear timers
 	ClearVoiceCommsRequest();
 	//set timers
@@ -1465,41 +1496,29 @@ simulated function SetCurrentVoiceCommsRequest(int NewValue)
 //this and SetCurrentIconToVoiceCommsIcon used for flashing last voice comms request icon
 simulated function SetCurrentIconToPerkIcon()
 {
-	CurrentIconToDisplay = None;
-	if(VoiceCommsStatusDisplayIntervalCount < VoiceCommsStatusDisplayIntervalMax)
-	{
-		//clear both timers and reset the count
-		VoiceCommsStatusDisplayIntervalCount++;
-		SetTimer( VoiceCommsStatusDisplayInterval, false, nameof(SetCurrentIconToVoiceCommsIcon) );
-	}
-	else
-	{
-		ClearVoiceCommsRequest();
-	}
+	CurrentVoiceCommsRequest = VCT_NONE;
+	bNetDirty = true;
+	ClearVoiceCommsRequest();
 }
 
 simulated function SetCurrentIconToVoiceCommsIcon()
 {
-	CurrentIconToDisplay = class'KFLocalMessage_VoiceComms'.default.VoiceCommsIcons[CurrentVoiceCommsRequest];
 	SetTimer( VoiceCommsStatusDisplayInterval, false, nameof(SetCurrentIconToPerkIcon) );
 }
 
 simulated function ClearVoiceCommsRequest()
 {
 	ClearTimer('SetCurrentIconToPerkIcon');
-	ClearTimer('SetCurrentIconToVoiceCommsIcon');
-	VoiceCommsStatusDisplayIntervalCount = 0;
-	CurrentIconToDisplay = None;
 }
 
 simulated function Texture2D GetCurrentIconToDisplay()
 {
-	if(CurrentIconToDisplay == none && CurrentPerkClass != none)
+	if(CurrentVoiceCommsRequest == VCT_NONE && CurrentPerkClass != none)
 	{
 		return CurrentPerkClass.default.PerkIcon;
 	}
 
-	return CurrentIconToDisplay;
+	return class'KFLocalMessage_VoiceComms'.default.VoiceCommsIcons[CurrentVoiceCommsRequest];
 }
 
 defaultproperties
@@ -1522,9 +1541,10 @@ defaultproperties
    CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_strasser_archetype'
    CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
    CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
+   CharacterArchetypes(14)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_DAR_archetype'
    RepCustomizationInfo=(AttachmentMeshIndices[0]=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255)
-   VoiceCommsStatusDisplayInterval=0.500000
-   VoiceCommsStatusDisplayIntervalMax=5
+   VoiceCommsStatusDisplayInterval=5.000000
+   VoiceCommsStatusDisplayIntervalMax=1
    Name="Default__KFPlayerReplicationInfo"
    ObjectArchetype=PlayerReplicationInfo'Engine.Default__PlayerReplicationInfo'
 }

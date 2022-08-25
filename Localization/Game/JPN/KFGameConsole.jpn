@@ -19,6 +19,8 @@ KF-Nuked="Nukedをプレイ中"
 KF-TragicKingdom="The Tragic Kingdomをプレイ中"
 KF-Nightmare="Nightmareをプレイ中"
 KF-KrampusLair="クランプスの巣をプレイ"
+KF-PowerCore_Holdout="Power Coreをプレイ中"
+KF-DieSector="DieSectorをプレイ中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

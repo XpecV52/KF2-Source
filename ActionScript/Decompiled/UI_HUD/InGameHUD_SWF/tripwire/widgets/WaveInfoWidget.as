@@ -72,20 +72,20 @@ package tripwire.widgets
         public function set currentWave(param1:int) : void
         {
             this._currentWaveNum = param1;
-            if(param1 > this._maxWaveNum)
+            if(param1 > this._maxWaveNum && this._maxWaveNum > -1)
             {
                 this.WaveCountInfoContainer.WaveCount.text = this.finalWaveString;
             }
             else
             {
-                this.WaveCountInfoContainer.WaveCount.text = this._currentWaveNum + "/" + this._maxWaveNum;
+                this.WaveCountInfoContainer.WaveCount.text = this._currentWaveNum + "/" + (this._maxWaveNum == -1 ? "∞" : this._maxWaveNum);
             }
         }
         
         public function set maxWaves(param1:int) : void
         {
             this._maxWaveNum = param1;
-            this.WaveCountInfoContainer.WaveCount.text = this._currentWaveNum + "/" + this._maxWaveNum;
+            this.WaveCountInfoContainer.WaveCount.text = this._currentWaveNum + "/" + (this._maxWaveNum == -1 ? "∞" : this._maxWaveNum);
         }
         
         public function set remainingTraderTime(param1:int) : void

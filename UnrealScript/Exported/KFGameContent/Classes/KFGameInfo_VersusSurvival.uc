@@ -946,6 +946,8 @@ function EndOfMatch(bool bVictory)
         {
             KFPRIV.RecordEndGameInfo();
         }
+
+		KFPC.ClientGameOver(WorldInfo.GetMapName(true), GameDifficulty, GameLength, IsMultiplayerGame(), WaveNum);
     }
 
     WorldInfo.TWPushLogs();
@@ -1039,7 +1041,7 @@ function WaveEnded( EWaveEndCondition WinCondition )
 
 function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
 {
-    super.BossDied(Killer, false);
+    super.BossDied(Killer, bCheckWaveEnded);
 }
 
 /**
@@ -1474,6 +1476,11 @@ function float GetEndOfMatchTime()
     return super.GetEndOfMatchTime();
 }
 
+function bool IsMapObjectiveEnabled()
+{
+	return false;
+}
+
 defaultproperties
 {
    ANTI_GRIEF_DELAY=30.000000
@@ -1498,6 +1505,7 @@ defaultproperties
    TimeUntilNextRound=12
    RoundEndCinematicDelay=4.000000
    PostRoundWaitTime=15.000000
+   bEnableMapObjectives=False
    bIsVersusGame=True
    KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager_Versus'
    MinNetPlayers=2

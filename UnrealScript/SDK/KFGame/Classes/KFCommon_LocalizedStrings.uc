@@ -50,7 +50,6 @@ var localized string LoadingString;
 
 var localized string AutoTradeCompleteString;
 var localized string AutoFillCompleteString;
-var localized string WeaponUpgradeComepleteString;
 var localized string SecondaryWeaponPurchasedString;
 var localized string NoItemsPurchasedString;
 
@@ -86,6 +85,9 @@ var localized string DiscordMatchLobbyString;
 var localized string DiscordTraderTimeString;
 var localized string DiscordBossWaveString;
 var localized string DiscordWaveString;
+
+var localized string ProceedToTutorialString;
+var localized string ProceedToTutorialDescriptionString;
 
 static function array<string> GetDifficultyStringsArray()
 {

@@ -20,6 +20,14 @@ simulated function int GetDoshReward();
 
 simulated function int GetMaxDoshReward();
 
+simulated function int GetVoshReward();
+
+simulated function int GetMaxVoshReward();
+
+simulated function int GetXPReward();
+
+simulated function int GetMaxXPReward();
+
 simulated function bool IsBonus();
 
 function string GetLocalizedName();
@@ -27,6 +35,8 @@ function string GetLocalizedName();
 function bool CanActivateObjective();
 
 simulated function float GetProgress();
+
+simulated function float GetActivationPctChance();
 
 simulated function string GetLocalizedDescription();
 

@@ -155,6 +155,10 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 		for( i=0; i < `MAX_COSMETIC_ATTACHMENTS; i++ )
 		{
 			KFP.DetachComponent(KFP.ThirdPersonAttachments[i]);
+			if (KFP.FirstPersonAttachments[i] != none)
+			{
+				KFP.DetachComponent(KFP.FirstPersonAttachments[i]);
+			}
 		}
 
         // Assign the body mesh to the pawn

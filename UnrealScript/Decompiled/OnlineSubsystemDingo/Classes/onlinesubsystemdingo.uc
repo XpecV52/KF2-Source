@@ -22,6 +22,20 @@ struct native CachedLoginState
     }
 };
 
+struct native CachedAvatarData
+{
+    var const UniqueNetId PlayerXuid;
+    var init array<init byte> AvatarBytes;
+    var float AvatarCreationTime;
+
+    structdefaultproperties
+    {
+        PlayerXuid=(Uid=none)
+        AvatarBytes=none
+        AvatarCreationTime=0
+    }
+};
+
 struct native TalkerPriority
 {
     var int CurrentPriority;
@@ -153,6 +167,7 @@ var array< delegate<OnPeoplePickerComplete> > PeoplePickerCompleteDelegates;
 var array< delegate<OnAccountPickerComplete> > AccountPickerCompleteDelegates;
 var array< delegate<OnTrialModeUpdate> > TrialModeUpdateDelegates;
 var native const CachedLoginState LastLoginState[24];
+var native array<CachedAvatarData> CachedAvatars;
 var native array<HatPointer> QueuedControllerPairingChangeEvents;
 var native const bool bAllowUserStateProcessing;
 var native const bool bIsAppInFocus;

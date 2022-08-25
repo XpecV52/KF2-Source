@@ -13,6 +13,8 @@ class KFGFxMenu_StartGame extends KFGFxObject_Menu
 	config(UI)
 	native(UI);
 
+`include(KFProfileSettings.uci)
+
 var bool bIsLeader;
 var bool bIsInParty;
 var bool bSearchingForGame;
@@ -121,6 +123,11 @@ var transient bool bIsPlayGoRun;
 
 native static function GetMapList( out array<string> MapList );
 
+cpptext
+{
+	UBOOL DoesGamemodeSupportMap(INT GameModeIndex, const FString& MapName);
+}
+
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	local DataStoreClient DSClient;
@@ -165,7 +172,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 	switch (SpecialEventID)
 	{
 		case SEI_Spring:
-			return class'KFGFxSpecialEventObjectivesContainer';
+			return class'KFGFxEndlessDARObjectivesContainer';
 		case SEI_Summer:
 			return class'KFGFxSummerSideShowObjectivesContainer';
 		case SEI_Fall:
@@ -601,7 +608,21 @@ function UpdateStartMenuState()
 	if( Manager != none )
 	{
 		Manager.SetStartMenuState(EStartMenuState(GetStartMenuState()));
+		Switch(EStartMenuState(GetStartMenuState()))
+		{
+			case EMatchmaking:
+				OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
+				break;
+			case ESoloGame:
+				OptionsComponent.ModeChanged(OptionsComponent.SavedSoloModeIndex);
+				break;
+		}
 	}
+}
+
+function ProceedToTutorial()
+{
+	ConsoleCommand("open KF-EvacuationPoint?game=KFGameContent.KFGameInfo_Tutorial");
 }
 
 //==============================================================
@@ -660,7 +681,8 @@ function Callback_OnWhatsNewClicked(int Index)
 
 function Callback_StartTutorial()
 {
-	ConsoleCommand("open KF-EvacuationPoint?game=KFGameContent.KFGameInfo_Tutorial");
+	//make pop up
+	Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, class'KFCommon_LocalizedStrings'.default.ProceedToTutorialString, class'KFCommon_LocalizedStrings'.default.ProceedToTutorialDescriptionString, class'KFCommon_LocalizedStrings'.default.ConfirmString, class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToTutorial);
 }
 
 function Callback_OnWebLinkClicked(string WebSiteLink)
@@ -724,6 +746,11 @@ function Callback_RequestLeaveMatchmaking()
 function Callback_OptionListOpened(string ListName, int OptionIndex)
 {
 	local string MessageString;
+
+	if (OptionsComponent.bIsSoloGame && ListName == "modeList")
+	{
+		OptionIndex = OptionsComponent.GetAdjustedGameModeIndex(OptionIndex);
+	}
 
 	if(ListName == "mapList" || GetPC().WorldInfo.IsConsoleBuild() && ListName == "serverTypeList")
 	{
@@ -1344,6 +1371,8 @@ function bool ShouldUseLengthFilter(int GameModeIndex)
     {
     //Weekly
     case 1:
+	//Endless
+	case 3:
         return false;
     }
 
@@ -1519,6 +1548,35 @@ function OnCancelSearchComplete(bool bWasSuccessful)
 	bSearchingForGame = false;
 	OptionsComponent.SetSearching(bSearchingForGame);
 	Manager.SetSearchingForMatch(bSearchingForGame);
+}
+
+event int GetGameModeIndex()
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI);
+
+	if (OptionsComponent != none)
+	{
+		if (OptionsComponent.bIsSoloGame)
+		{
+			return OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedSoloModeIndex);
+		}
+		else
+		{
+			return OptionsComponent.SavedModeIndex;
+		}
+	}
+	else if(Manager != none)
+	{
+		return Manager.CachedProfile.GetProfileInt(KFID_SavedModeIndex);
+	}
+	else if (KFGRI != none)
+	{
+		return class'KFGameInfo'.static.GetGameModeIndexFromName(string(KFGRI.GameClass.name));
+	}
+	
+	return 0;
 }
 
 /********************************************************************************/

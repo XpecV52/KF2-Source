@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="Solo invito"
 ModeStrings[0]="Survival"
 ModeStrings[1]="Settimanale"
 ModeStrings[2]="Survival VS"
+ModeStrings[3]="Infinito"
 
 NoPreferenceString="QUALSIASI"
 OKString="OK"
@@ -55,7 +56,6 @@ NoSwitchReasonString="Con un cambio, le squadre sarebbero sbilanciate"
 
 AutoTradeCompleteString="Scambio automatico completato: "
 AutoFillCompleteString="Rifornimento scorte automatico"
-WeaponUpgradeComepleteString="Arma potenziata"
 SecondaryWeaponPurchasedString="Arma secondaria acquistata"
 NoItemsPurchasedString="Nessun oggetto acquistato"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": Lobby Incontro"
 DiscordTraderTimeString=": Commerciante"
 DiscordBossWaveString=": Ondata di Boss"
 DiscordWaveString=": Ondata"
+
+ProceedToTutorialString="INIZIARE ADDESTRAMENTO?"
+ProceedToTutorialDescriptionString="Vai in un ambiente controllato e impara le basi. Una volta completato otterrai il lv. 1 in una classe selezionata lv. 0."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RICOMPENSA COMPLETAMENTO EPIDEMIA"
@@ -190,6 +193,7 @@ TutorialString="Addestramento di base"
 modeList0="Survival - battaglie PVE contro ondate di Zed controllati dalla IA"
 modeList1="Epidemia Settimanale – Una modalità di gioco diversa ogni settimana."
 modeList2="Survival VS – battaglie PVP fra mercenari Horzine e ondate di Zed controllate da giocatore e IA"
+modeList3="Infinito - Affronta le ondate di Zed controllato dalla IA fino alla morte"
 difficultyList0="Normale - per principianti con livello classe 0-5."
 difficultyList1="Difficile - per giocatori esperti con livello classe 6-12. Ci sono più Zed per ogni ondata, i quali si muovono più velocemente e hanno salute maggiore. Gli oggetti e il denaro che puoi ottenere sono inferiori."
 difficultyList2="Suicidio - per giocatori molto esperti con livello classe 13-25. Ancora più Zed per ogni ondata, capaci di usare nuovi tipi di attacco e di muoversi ancora più velocemente. Gli oggetti e il denaro che puoi ottenere diminuiscono ancora."
@@ -344,7 +348,7 @@ SpectateString="SPETTATORE"
 
 [KFGFxTraderContainer_ItemDetails]
 DamageTitle="DANNO"
-FireRateTitle="CADENZA TIRO"
+FireRateTitle="CADENZA FUOCO"
 PenetrationTitle="PENETRAZIONE"
 RangeTitle="RAGGIO"
 BlockTitle="BLOCCA"
@@ -738,6 +742,7 @@ DamageDealtString="Danni arrecati:"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ PRONTI ]"
+SkipTraderString="SALTA COMMERCIANTE"
 WaitingString="IN ATTESA DEL/DEI GIOCATORE/I"
 MatchOverString="INCONTRO TERMINATO \n Attendi..."
 DeployingString="SCHIERAMENTO TRA "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Esperienza"
-PrestigeLevelString="Reputazione"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="CONFIGURA"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>SELEZIONA ARMA"
 PlayerClotGrabWarningMessage="UCCIDI GLI ZED PER LA LIBERTÀ!"
 UseMinigameMessage="ATTIVA"
 UseMinigameGeneratorMessage="ATTIVA IL GENERATORE"
+DoshActivateMessage="COSTO DI ATTIVAZIONE"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Le squadre sono sbilanciate e saranno regolate"
@@ -2133,7 +2138,7 @@ Madman="ZED TIME - Follia"
 MadmanDescription="Durante gli Zed time, tutte le tue armi sparano 3 volte più veloci."
 
 IncapMaster="ZED TIME - Debilitazione"
-IncapMasterDescription="Durante gli Zed time, la potenza di tutti i metodi di indebolimento aumenta del 200% per tutte le armi.” "
+IncapMasterDescription="Durante gli Zed time, la potenza di tutti i metodi di indebolimento aumenta del 200% per tutte le armi."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="Stalker"
 KFPawn_ZedClot_Cyst="Cyst"
 KFPawn_ZedClot_Slasher="Slasher"
 KFPawn_ZedClot_Alpha="Clot Alfa"
-KFPawn_ZedClot_AlphaKing="Alfa Elite"
+KFPawn_ZedClot_AlphaKing="Rivoltoso"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Sirena"
 KFPawn_ZedPatriarch="Patriarca"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="Tuta Pigiama"
 
 ChanceDropDescriptionStrings[0]="Bigl. premio"
 ChanceDropDescriptionStrings[1]="Biglietto Oro"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="Intrepide sfide Infinito"
+CurrentSpecialEventDescriptionString="Sconfiggi le ondate per ottenere ricompense leggendarie!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Manichino da test Infinito",DescriptionString="Completa l'ondata Infinito 5",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="Drone Infinito",DescriptionString="Completa l'ondata Infinito 10",TierEventRewardName="D.A.R Bronzo");
+SpecialEventObjectiveInfoList[2]=(TitleString="Sentinella Infinito",DescriptionString="Completa l'ondata Infinito 15",TierEventRewardName="D.A.R. Argento");
+SpecialEventObjectiveInfoList[3]=(TitleString="Macchina da Guerra Infinito",DescriptionString="Completa l'ondata Infinito 20",TierEventRewardName="D.A.R. Blu classico");
+SpecialEventObjectiveInfoList[4]=(TitleString="D.A.R. Optimus Infinito",DescriptionString="Completa l'ondata Infinito 25",TierEventRewardName="D.A.R Oro");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio Biotics"
 
@@ -2862,6 +2910,9 @@ GameName="Survival"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="Settimanale"
+
+[Endless KFGameInfoSummary]
+GameName="Infinito"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Residenza Volter"
@@ -2907,6 +2958,12 @@ DisplayName="Incubo"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="Tana del Krampus"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Nucleo di energia"
+
+[KF-DieSector KFMapSummary]
+DisplayName="Settore mortale"
 
 [KFMapInfo]
 ; defaults

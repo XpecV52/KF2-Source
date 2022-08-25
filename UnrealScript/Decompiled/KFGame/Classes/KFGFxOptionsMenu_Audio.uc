@@ -323,7 +323,7 @@ function CallBack_ResetAudioOptions()
 function ResetAudioOptions()
 {
     local KFGameEngine KFGE;
-    local float FloatValue;
+    local float FloatValue, DefaultGamma;
 
     if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
@@ -334,11 +334,12 @@ function ResetAudioOptions()
     }
     else
     {
+        DefaultGamma = Manager.CachedProfile.GetDefaultFloat(117);
         KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
-        KFGE.GammaMultiplier = Manager.CachedProfile.GetDefaultFloat(117);
-        KFGE.SetGamma(KFGE.GammaMultiplier);
-        Manager.CachedProfile.SetProfileSettingValueFloat(117, KFGE.GammaMultiplier);
+        KFGE.GammaMultiplier = DefaultGamma;
         KFGE.SaveConfig();
+        Manager.CachedProfile.SetProfileSettingValueFloat(117, DefaultGamma);
+        Class'KFGameEngine'.static.SetGamma(DefaultGamma);
         Manager.CachedProfile.SetProfileSettingValueInt(155, Manager.CachedProfile.GetDefaultInt(155));
     }
     Manager.CachedProfile.SetProfileSettingValueFloat(112, Manager.CachedProfile.GetDefaultFloat(112));

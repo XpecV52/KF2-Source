@@ -128,6 +128,9 @@ cpptext
 }
 
 native function SetItemsInfo( out array<STraderItem> ItemArray );
+native function SortItemsInfo(out array<STraderItem> ItemArray);
+
+
 
 /** Get the list and item index for this particular weapon from the weapon calss name */
 final function bool GetItemIndicesFromArche( out byte ItemIndex, name WeaponClassName )

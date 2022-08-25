@@ -995,6 +995,32 @@ simulated function bool QuickWeld()
     return false;
 }
 
+simulated function bool DoshActivate()
+{
+    local KFInterface_Usable UsableTrigger;
+    local KFTrigger_DoshActivated DoshActivatedTrigger;
+    local KFPlayerController KFPC;
+
+    if((Instigator == none) || Instigator.Owner == none)
+    {
+        return false;
+    }
+    KFPC = KFPlayerController(Instigator.Owner);
+    if(KFPC != none)
+    {
+        UsableTrigger = KFPC.GetCurrentUsableActor(Instigator);
+        if(NotEqual_InterfaceInterface(UsableTrigger, (none)))
+        {
+            DoshActivatedTrigger = KFTrigger_DoshActivated(bool(UsableTrigger));
+            if(DoshActivatedTrigger != none)
+            {
+                KFPC.Use();
+            }
+        }
+    }
+    return false;
+}
+
 function bool GiveInitialGrenadeCount()
 {
     local byte OriginalGrenadeCount;

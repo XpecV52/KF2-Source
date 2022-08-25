@@ -713,6 +713,8 @@ simulated state WeaponQuickHeal extends WeaponHealing
 simulated function Activate()
 {
 	Super.Activate();
+	
+	HealTarget = none; //clear heal target so that distance exploit cannot happen
 
 	if ( bQuickHealMode && Instigator.IsLocallyControlled() )
 	{

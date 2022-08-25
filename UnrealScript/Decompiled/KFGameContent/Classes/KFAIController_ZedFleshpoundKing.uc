@@ -34,6 +34,11 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
     MyPawn = KFPawn_ZedFleshpoundKing(inPawn);
 }
 
+function bool AmIAllowedToSuicideWhenStuck()
+{
+    return false;
+}
+
 event SeePlayer(Pawn Seen)
 {
     super.SeePlayer(Seen);

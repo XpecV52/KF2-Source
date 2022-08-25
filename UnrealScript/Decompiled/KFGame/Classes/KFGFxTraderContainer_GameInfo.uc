@@ -25,13 +25,20 @@ function UpdateGameInfo()
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
-        if((KFGRI.WaveNum + 1) < KFGRI.WaveMax)
+        if(KFGRI.IsBossWave())
         {
-            FinalWaveString = ((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1);            
+            FinalWaveString = BossWaveString;            
         }
         else
         {
-            FinalWaveString = BossWaveString;
+            if(KFGRI.default.bEndlessMode)
+            {
+                FinalWaveString = WaveString @ string(KFGRI.WaveNum);                
+            }
+            else
+            {
+                FinalWaveString = ((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1);
+            }
         }
         SetString("waveValue", FinalWaveString);
         SetString("timeLabel", TimeLeftString);

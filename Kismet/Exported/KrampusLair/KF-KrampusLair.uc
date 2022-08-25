@@ -290,9 +290,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_416
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_1
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_1
+         CutTrack(0)=(TargetCamGroup="BossRoom_Cam",ShotNumber=10)
+         Name="InterpTrackDirector_1"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_1.InterpTrackDirector_1'
+      GroupColor=(B=123,G=204,R=0,A=255)
+      Name="InterpGroupDirector_1"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
@@ -309,16 +316,9 @@ Begin Object Class=InterpData Name=InterpData_0
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_1
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_1
-         CutTrack(0)=(TargetCamGroup="BossRoom_Cam",ShotNumber=10)
-         Name="InterpTrackDirector_1"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_1.InterpTrackDirector_1'
-      GroupColor=(B=123,G=204,R=0,A=255)
-      Name="InterpGroupDirector_1"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=81.861259
    InterpGroups(0)=InterpGroup'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1'
@@ -370,9 +370,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_415
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="CamTrack_Main",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=203,G=126,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -389,16 +396,9 @@ Begin Object Class=InterpData Name=InterpData_3
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="CamTrack_Main",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=203,G=126,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=259.959412
    InterpGroups(0)=InterpGroup'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0'
@@ -560,10 +560,6 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_3
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000122,Y=0.000122,Z=0.000061),InterpMode=CIM_CurveAutoClamped)))
@@ -578,6 +574,10 @@ Begin Object Class=InterpData Name=InterpData_4
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0'
@@ -628,10 +628,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_385
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000122,Y=-0.000122,Z=0.000122),InterpMode=CIM_CurveAutoClamped)))
@@ -646,6 +642,10 @@ Begin Object Class=InterpData Name=InterpData_5
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0'
@@ -717,10 +717,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_6
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=0.000061),InterpMode=CIM_CurveAutoClamped)))
@@ -735,6 +731,10 @@ Begin Object Class=InterpData Name=InterpData_6
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0'
@@ -788,10 +788,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_7
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000122,Y=0.000244,Z=0.000122),InterpMode=CIM_CurveAutoClamped)))
@@ -807,6 +803,10 @@ Begin Object Class=InterpData Name=InterpData_7
       GroupColor=(B=170,G=0,R=171,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0'
@@ -4735,10 +4735,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_8
 End Object
 
 Begin Object Class=InterpData Name=InterpData_8
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000244,Y=-0.000244,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -4753,6 +4749,10 @@ Begin Object Class=InterpData Name=InterpData_8
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_0'
@@ -4801,17 +4801,7 @@ Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivate
 End Object
 
 Begin Object Class=InterpData Name=InterpData_9
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_4
-         AnimSeqs(0)=(AnimSeqName="Gear_Activate",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=4.000000,AnimSeqName="Gear_Deactivate",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_4"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
@@ -4820,6 +4810,12 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackMove_2"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_4
+         AnimSeqs(0)=(AnimSeqName="Gear_Activate",AnimPlayRate=1.000000)
+         AnimSeqs(1)=(StartTime=4.000000,AnimSeqName="Gear_Deactivate",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_4"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       InterpTracks(0)=InterpTrackMove'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_4.InterpTrackMove_2'
       InterpTracks(1)=InterpTrackAnimControl'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_4.InterpTrackAnimControl_4'
       GroupName="Gear"
@@ -4827,6 +4823,10 @@ Begin Object Class=InterpData Name=InterpData_9
       GroupAnimSets(0)=AnimSet'ENV_ChristmasMap_ANIM_ANIM.ENV_ChristmasMap_Gear_ANIM'
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.000000
    InterpGroups(0)=InterpGroup'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_4'
@@ -6249,32 +6249,32 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
 End Object
 
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_71
-   EventName="Boss_Wave"
+   EventName="BOSS_WAVE"
    InputLinks(0)=(DrawY=-8726,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-8726,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-9130,OverrideDelta=94)
+   VariableLinks(0)=(DrawX=-9126,OverrideDelta=98)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9256
    ObjPosY=-8760
    ObjComment="Boss_Wave"
-   DrawWidth=253
+   DrawWidth=261
    DrawHeight=61
    Name="SeqAct_ActivateRemoteEvent_71"
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_22
-   EventName="Boss_Wave"
-   MaxWidth=192
+   EventName="BOSS_WAVE"
+   MaxWidth=200
    OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_10')),DrawY=-5718,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-1144,OverrideDelta=64)
+   VariableLinks(0)=(DrawX=-1140,OverrideDelta=68)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-KRAMPUSLAIR.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1240
    ObjPosY=-5784
    ObjComment="Boss_Wave"
-   DrawWidth=116
+   DrawWidth=120
    DrawHeight=128
    Name="SeqEvent_RemoteEvent_22"
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'

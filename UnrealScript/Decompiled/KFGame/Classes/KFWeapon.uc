@@ -645,12 +645,33 @@ reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional b
 simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name SocketName)
 {
     local KFPawn KFP;
+    local int I;
 
     KFP = KFPawn(Instigator);
     if((KFP != none) && KFP.ArmsMesh != none)
     {
         KFP.ArmsMesh.SetParentAnimComponent(MySkelMesh);
         KFP.ArmsMesh.SetFOV(MySkelMesh.FOV);
+        I = 0;
+        J0xEC:
+
+        if(I < 3)
+        {
+            if(KFP.FirstPersonAttachments[I] != none)
+            {
+                if(SkeletalMeshComponent(KFP.FirstPersonAttachments[I]) != none)
+                {
+                    SkeletalMeshComponent(KFP.FirstPersonAttachments[I]).SetParentAnimComponent(MySkelMesh);
+                    SkeletalMeshComponent(KFP.FirstPersonAttachments[I]).SetLODParent(MySkelMesh);
+                }
+                if(KFSkeletalMeshComponent(KFP.FirstPersonAttachments[I]) != none)
+                {
+                    KFSkeletalMeshComponent(KFP.FirstPersonAttachments[I]).SetFOV(MySkelMesh.FOV);
+                }
+            }
+            ++ I;
+            goto J0xEC;
+        }
     }
     if(Instigator.IsFirstPerson())
     {
@@ -673,6 +694,18 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
             {
                 Mesh.SetShadowParent(KFP.ArmsMesh);
                 AttachComponent(KFP.ArmsMesh);
+                I = 0;
+                J0x433:
+
+                if(I < 3)
+                {
+                    if(KFP.FirstPersonAttachments[I] != none)
+                    {
+                        AttachComponent(KFP.FirstPersonAttachments[I]);
+                    }
+                    ++ I;
+                    goto J0x433;
+                }
             }
         }        
     }
@@ -691,6 +724,18 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
             if(KFP != none)
             {
                 KFP.ArmsMesh.SetHidden(true);
+                I = 0;
+                J0x5CE:
+
+                if(I < 3)
+                {
+                    if(KFP.FirstPersonAttachments[I] != none)
+                    {
+                        KFP.FirstPersonAttachments[I].SetHidden(true);
+                    }
+                    ++ I;
+                    goto J0x5CE;
+                }
             }
         }
     }
@@ -719,6 +764,7 @@ function AttachThirdPersonWeapon(KFPawn P)
 simulated function DetachWeapon()
 {
     local KFPawn KFP;
+    local int I;
 
     DetachComponent(Mesh);
     if(OverlayMesh != none)
@@ -740,6 +786,18 @@ simulated function DetachWeapon()
     if((KFP != none) && KFP.ArmsMesh != none)
     {
         DetachComponent(KFP.ArmsMesh);
+        I = 0;
+        J0x173:
+
+        if(I < 3)
+        {
+            if(KFP.FirstPersonAttachments[I] != none)
+            {
+                DetachComponent(KFP.FirstPersonAttachments[I]);
+            }
+            ++ I;
+            goto J0x173;
+        }
     }
     SetBase(none);
     SetHidden(true);
@@ -938,6 +996,7 @@ simulated event Tick(float DeltaTime)
 simulated event SetFOV(float NewFOV)
 {
     local KFPawn KFP;
+    local int I;
 
     if(MySkelMesh != none)
     {
@@ -953,6 +1012,21 @@ simulated event SetFOV(float NewFOV)
         if(KFP.ArmsMesh != none)
         {
             KFP.ArmsMesh.super(KFWeapon).SetFOV(NewFOV);
+            I = 0;
+            J0x148:
+
+            if(I < 3)
+            {
+                if(KFP.FirstPersonAttachments[I] != none)
+                {
+                    if(KFSkeletalMeshComponent(KFP.FirstPersonAttachments[I]) != none)
+                    {
+                        KFSkeletalMeshComponent(KFP.FirstPersonAttachments[I]).super(KFWeapon).SetFOV(NewFOV);
+                    }
+                }
+                ++ I;
+                goto J0x148;
+            }
         }
     }
     if(bHasLaserSight && LaserSight != none)
@@ -1357,7 +1431,7 @@ simulated function PlayWeaponAnimation(name Sequence, float fDesiredDuration, op
             {
                 WeaponAnimSeqNode.SetAnim(Sequence);
             }
-            if(fDesiredDuration > 0)
+            if((fDesiredDuration > 0) && WeaponAnimSeqNode.AnimSeq.RateScale > 0)
             {
                 DesiredRate = WeaponAnimSeqNode.AnimSeq.SequenceLength / (fDesiredDuration * WeaponAnimSeqNode.AnimSeq.RateScale);
                 WeaponAnimSeqNode.PlayAnim(bLoop, DesiredRate);                
@@ -1578,6 +1652,8 @@ simulated event SetPosition(KFPawn Holder)
     local Rotator DebugRotationOffset, UsedBufferRotation;
     local Vector CamLoc;
     local Rotator CamRot;
+    local int I;
+    local KFPawn KFP;
 
     if(!Holder.IsFirstPerson() && !bWeaponNeedsServerPosition)
     {
@@ -1587,6 +1663,22 @@ simulated event SetPosition(KFPawn Holder)
     {
         Mesh.SetHidden(true);
         Holder.ArmsMesh.SetHidden(true);
+        KFP = KFPawn(Instigator);
+        if(KFP != none)
+        {
+            I = 0;
+            J0xCF:
+
+            if(I < 3)
+            {
+                if(KFP.FirstPersonAttachments[I] != none)
+                {
+                    KFP.FirstPersonAttachments[I].SetHidden(true);
+                }
+                ++ I;
+                goto J0xCF;
+            }
+        }
         NewRotation = Holder.GetViewRotation();
         SetLocation(Instigator.GetPawnViewLocation() + (HiddenWeaponsOffset >> NewRotation));
         SetRotation(NewRotation);
@@ -1664,6 +1756,7 @@ simulated function ChangeVisibility(bool bIsVisible)
     local KFPawn KFP;
     local editinline SkeletalMeshComponent SkelMesh;
     local editinline PrimitiveComponent Primitive;
+    local int I;
 
     if(Mesh != none)
     {
@@ -1695,6 +1788,26 @@ simulated function ChangeVisibility(bool bIsVisible)
             DetachComponent(KFP.ArmsMesh);
         }
         KFP.ArmsMesh.SetHidden(!bIsVisible);
+        I = 0;
+        J0x207:
+
+        if(I < 3)
+        {
+            if(KFP.FirstPersonAttachments[I] != none)
+            {
+                if(bIsVisible)
+                {
+                    AttachComponent(KFP.FirstPersonAttachments[I]);                    
+                }
+                else
+                {
+                    DetachComponent(KFP.FirstPersonAttachments[I]);
+                }
+                KFP.FirstPersonAttachments[I].SetHidden(!bIsVisible);
+            }
+            ++ I;
+            goto J0x207;
+        }
     }
     if(OverlayMesh != none)
     {

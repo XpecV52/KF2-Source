@@ -24,6 +24,7 @@ enum EInteractionMessageType
 	IMT_RepairDoor,
     IMT_UseMinigame,
     IMT_UseMinigameGenerator,
+	IMT_DoshActivate,
 
 	// conditional messaging
 	IMT_GamepadWeaponSelectHint,
@@ -48,6 +49,7 @@ var localized string 			ZedUseDoorWeldedMessage;
 var localized string 			PlayerClotGrabWarningMessage;
 var localized string            UseMinigameMessage;
 var localized string            UseMinigameGeneratorMessage;
+var localized string            DoshActivateMessage;
 
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
@@ -117,6 +119,7 @@ static function string GetKeyBind( PlayerController P, optional int Switch )
 		case IMT_ReceiveGrenades:
         case IMT_UseMinigame:
         case IMT_UseMinigameGenerator:
+		case IMT_DoshActivate:
 			KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
 			KeyString = KFInput.GetBindDisplayName(BoundKey);
 			break;
@@ -156,11 +159,22 @@ static function string GetString(
 	local PlayerInput Input;
 	local KFGameReplicationInfo KFGRI;
 	local KFPlayerController KFPC;
+	local KFTrigger_DoshActivated DoshTrigger;
 
 	KFPC = KFPlayerController(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
 	
 	switch ( Switch )
 	{
+		case IMT_DoshActivate:
+			DoshTrigger = KFTrigger_DoshActivated(OptionalObject);
+			if (DoshTrigger != none)
+			{
+				return default.DoshActivateMessage $":" @DoshTrigger.ActivationCost;
+			}
+			else
+			{
+				return default.UseMinigameMessage; //place holder
+			}
 		case IMT_UseTrader:
 		
    			KFGRI = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI);
@@ -236,6 +250,7 @@ defaultproperties
    PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
    UseMinigameMessage="ACTIVATE"
    UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
+   DoshActivateMessage="ACTIVATION COST"
    USE_COMMAND="GBA_Use"
    HEAL_COMMAND="GBA_QuickHeal"
    HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"

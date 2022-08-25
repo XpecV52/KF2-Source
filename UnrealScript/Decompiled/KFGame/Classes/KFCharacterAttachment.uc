@@ -25,6 +25,13 @@ var() string MeshName;
  *       can still be used for conflit resolution.
  */
 var() name SocketName;
+/** Mesh attachment name for 1p. */
+var() string MeshName1p;
+/**  
+ *Socket name that the 1p mesh attaches to. If bIsSkeletalAttachment is true, then the mesh will be attached
+ *    to the ParentAnimComponent.
+ */
+var() name SocketName1p;
 /** Distance at which the attachment will be hidden (distance culled). If 0, it is never culled */
 var() float MaxDrawDistance;
 /** Material ID used for skin variations for this attachment (default is 0) */

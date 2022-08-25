@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="仅限邀请"
 ModeStrings[0]="生存"
 ModeStrings[1]="每周"
 ModeStrings[2]="VS 生存"
+ModeStrings[3]="无尽"
 
 NoPreferenceString="任意"
 OKString="确定"
@@ -55,7 +56,6 @@ NoSwitchReasonString="切换团队会使团队失去平衡"
 
 AutoTradeCompleteString="自动交易完成： "
 AutoFillCompleteString="自动补充供应品"
-WeaponUpgradeComepleteString="武器已升级"
 SecondaryWeaponPurchasedString="辅助武器已购买"
 NoItemsPurchasedString="没有已买到的物品"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": 比赛大厅"
 DiscordTraderTimeString=": 商人时间"
 DiscordBossWaveString=": Boss波"
 DiscordWaveString=": 波"
+
+ProceedToTutorialString="继续训练？"
+ProceedToTutorialDescriptionString="在受控制的环境中进行基础学习。  完成时可以使选择的0级天赋升级为1级天赋。"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="爆发完成奖励"
@@ -190,6 +193,7 @@ TutorialString="基准训练"
 modeList0="生存——PVE 人工智能控制的丧尸战斗波"
 modeList1="每周爆发 - 每周推出一个不同的变种游戏模式。"
 modeList2="VS 生存——PVP 霍因佣兵 vs 玩家和人工智能控制的丧尸波"
+modeList3="无尽——与 AI 控制的一波波丧尸作战，直至死亡"
 difficultyList0="普通——适合神射 0-5 级的新手玩家。"
 difficultyList1="困难——适合神射 6-12 级的有经验玩家。每波的丧尸数量会更多，它们移动的速度更快，血值也更高。可以捡的物品更少，你得到的钱也更少。"
 difficultyList2="自杀——适合神射 13-25 级的熟练玩家。每波的丧尸数量甚至会更多，他们使用新的攻击，移动的速度甚至更快。可以捡的物品甚至更少，你得到的钱也更少。"
@@ -738,6 +742,7 @@ DamageDealtString="造成的伤害："
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[准备就绪]"
+SkipTraderString="跳过商人"
 WaitingString="正在等待玩家"
 MatchOverString="比赛结束 \n 请做好准备…"
 DeployingString="部署剩余时间 "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="经验"
-PrestigeLevelString="威望"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="配置"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>武器选择"
 PlayerClotGrabWarningMessage="杀死丧尸，冲出重围！"
 UseMinigameMessage="激活"
 UseMinigameGeneratorMessage="激活发生器"
+DoshActivateMessage="行动消耗"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="目前的队伍不平衡，将会进行调整"
@@ -2133,7 +2138,7 @@ Madman="丧尸时间 - 狂人"
 MadmanDescription="在丧尸时间中，你的所有武器射击速度提升 3 倍。"
 
 IncapMaster="丧尸时间 - 禁闭"
-IncapMasterDescription="在丧尸时间中，所有武器使丧尸丧失能力的效果提升 200%。 "
+IncapMasterDescription="在丧尸时间中，所有武器使丧尸丧失能力的效果提升 200%。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="潜行怪"
 KFPawn_ZedClot_Cyst="囊肿怪"
 KFPawn_ZedClot_Slasher="砍伐怪"
 KFPawn_ZedClot_Alpha="阿尔法血凝丧尸"
-KFPawn_ZedClot_AlphaKing="精英阿尔法"
+KFPawn_ZedClot_AlphaKing="暴徒"
 KFPawn_ZedScrake="刮痕丧尸"
 KFPawn_ZedSiren="女妖"
 KFPawn_ZedPatriarch="长老丧尸"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="睡衣套装"
 
 ChanceDropDescriptionStrings[0]="奖励劵"
 ChanceDropDescriptionStrings[1]="黄金券"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="进行无尽挑战"
+CurrentSpecialEventDescriptionString="消灭一波又一波敌人，获取传说级的奖励！"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="无尽训练假人",DescriptionString="无尽挑战完成波数达到5",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="无尽无人机",DescriptionString="无尽挑战完成波数达到10",TierEventRewardName="D.A.R.青铜");
+SpecialEventObjectiveInfoList[2]=(TitleString="无尽哨兵",DescriptionString="无尽挑战完成波数达到15",TierEventRewardName="白银D.A.R.");
+SpecialEventObjectiveInfoList[3]=(TitleString="无尽战争机器",DescriptionString="无尽挑战完成波数达到20",TierEventRewardName="经典蓝D.A.R.");
+SpecialEventObjectiveInfoList[4]=(TitleString="无尽超级D.A.R.",DescriptionString="无尽挑战完成波数达到25",TierEventRewardName="黄金D.A.R.");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="生命学实验室"
 
@@ -2862,6 +2910,9 @@ GameName="生存"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="每周"
+
+[Endless KFGameInfoSummary]
+GameName="无尽"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="沃尔特庄园"
@@ -2907,6 +2958,12 @@ DisplayName="梦魇"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="坎卜斯巢穴"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="能量核心"
+
+[KF-DieSector KFMapSummary]
+DisplayName="死亡地带"
 
 [KFMapInfo]
 ; defaults

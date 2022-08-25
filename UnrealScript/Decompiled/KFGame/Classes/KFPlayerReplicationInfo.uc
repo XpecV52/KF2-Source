@@ -116,6 +116,7 @@ var bool bNukeActive;
 var bool bConcussiveActive;
 var bool bPerkPrimarySupplyUsed;
 var bool bPerkSecondarySupplyUsed;
+var bool bVotedToSkipTraderTime;
 var bool bObjectivePlayer;
 var bool bShowNonRelevantPlayers;
 var string LastCrateGiftTimestamp;
@@ -129,7 +130,6 @@ var int Assists;
 var float VoiceCommsStatusDisplayInterval;
 var int VoiceCommsStatusDisplayIntervalCount;
 var int VoiceCommsStatusDisplayIntervalMax;
-var Texture2D CurrentIconToDisplay;
 var private Vector PawnLocationCompressed;
 var private Vector LastReplicatedSmoothedLocation;
 var KFPlayerController KFPlayerOwner;
@@ -139,13 +139,13 @@ replication
      if(bNetDirty)
         ActivePerkLevel, Assists, 
         CharPortrait, CurrentPerkClass, 
-        DamageDealtOnTeam, NetPerkIndex, 
-        PerkSupplyLevel, PlayerHealth, 
-        PlayerHealthPercent, RepCustomizationInfo, 
-        bConcussiveActive, bExtraFireRange, 
-        bHasSpawnedIn, bNukeActive, 
-        bObjectivePlayer, bSplashActive, 
-        bVOIPRegisteredWithOSS;
+        CurrentVoiceCommsRequest, DamageDealtOnTeam, 
+        NetPerkIndex, PerkSupplyLevel, 
+        PlayerHealth, PlayerHealthPercent, 
+        RepCustomizationInfo, bConcussiveActive, 
+        bExtraFireRange, bHasSpawnedIn, 
+        bNukeActive, bObjectivePlayer, 
+        bSplashActive, bVOIPRegisteredWithOSS;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -578,6 +578,23 @@ reliable server function ServerCastKickVote(PlayerReplicationInfo PRI, bool bKic
     }
 }
 
+simulated function RequestSkiptTrader(PlayerReplicationInfo PRI)
+{
+    bVotedToSkipTraderTime = true;
+    ServerRequestSkipTrader(self);
+}
+
+reliable server function ServerRequestSkipTrader(PlayerReplicationInfo PRI)
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        KFGRI.VoteCollector.RecieveSkipTraderTimeVote(PRI);
+    }
+}
+
 simulated function CastMapVote(int MapIndex, bool bDoubleClick)
 {
     local KFGameInfo KFGI;
@@ -958,6 +975,11 @@ simulated function ResetSupplierUsed()
 
 simulated function NotifyWaveEnded()
 {
+    bVotedToSkipTraderTime = false;
+}
+
+simulated function NotifyWaveStart()
+{
     bPerkPrimarySupplyUsed = false;
     bPerkSecondarySupplyUsed = false;
 }
@@ -968,45 +990,35 @@ native simulated function bool HasHadInitialSpawn();
 simulated function SetCurrentVoiceCommsRequest(int NewValue)
 {
     CurrentVoiceCommsRequest = byte(NewValue);
+    bNetDirty = true;
     ClearVoiceCommsRequest();
     SetCurrentIconToVoiceCommsIcon();
 }
 
 simulated function SetCurrentIconToPerkIcon()
 {
-    CurrentIconToDisplay = none;
-    if(VoiceCommsStatusDisplayIntervalCount < VoiceCommsStatusDisplayIntervalMax)
-    {
-        ++ VoiceCommsStatusDisplayIntervalCount;
-        SetTimer(VoiceCommsStatusDisplayInterval, false, 'SetCurrentIconToVoiceCommsIcon');        
-    }
-    else
-    {
-        ClearVoiceCommsRequest();
-    }
+    CurrentVoiceCommsRequest = 10;
+    bNetDirty = true;
+    ClearVoiceCommsRequest();
 }
 
 simulated function SetCurrentIconToVoiceCommsIcon()
 {
-    CurrentIconToDisplay = Class'KFLocalMessage_VoiceComms'.default.VoiceCommsIcons[CurrentVoiceCommsRequest];
     SetTimer(VoiceCommsStatusDisplayInterval, false, 'SetCurrentIconToPerkIcon');
 }
 
 simulated function ClearVoiceCommsRequest()
 {
     ClearTimer('SetCurrentIconToPerkIcon');
-    ClearTimer('SetCurrentIconToVoiceCommsIcon');
-    VoiceCommsStatusDisplayIntervalCount = 0;
-    CurrentIconToDisplay = none;
 }
 
 simulated function Texture2D GetCurrentIconToDisplay()
 {
-    if((CurrentIconToDisplay == none) && CurrentPerkClass != none)
+    if((CurrentVoiceCommsRequest == 10) && CurrentPerkClass != none)
     {
         return CurrentPerkClass.default.PerkIcon;
     }
-    return CurrentIconToDisplay;
+    return Class'KFLocalMessage_VoiceComms'.default.VoiceCommsIcons[CurrentVoiceCommsRequest];
 }
 
 defaultproperties
@@ -1029,7 +1041,8 @@ defaultproperties
     CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_strasser_archetype'
     CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
     CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
+    CharacterArchetypes(14)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_DAR_archetype'
     RepCustomizationInfo=(CharacterIndex=0,HeadMeshIndex=0,HeadSkinIndex=0,BodyMeshIndex=0,BodySkinIndex=0,AttachmentMeshIndices=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255,AttachmentSkinIndices=0,AttachmentSkinIndices[1]=0,AttachmentSkinIndices[2]=0)
-    VoiceCommsStatusDisplayInterval=0.5
-    VoiceCommsStatusDisplayIntervalMax=5
+    VoiceCommsStatusDisplayInterval=5
+    VoiceCommsStatusDisplayIntervalMax=1
 }

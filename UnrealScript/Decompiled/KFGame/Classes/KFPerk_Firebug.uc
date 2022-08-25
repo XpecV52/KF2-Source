@@ -408,6 +408,7 @@ defaultproperties
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
     ZedTimeModifyingStates(3)=SprayingFire
+    ZedTimeModifyingStates(4)=HuskCannonCharge
     PrimaryWeaponDef=Class'KFWeapDef_CaulkBurn'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Firebug'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Firebug'

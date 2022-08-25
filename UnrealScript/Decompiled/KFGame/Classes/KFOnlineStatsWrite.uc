@@ -95,10 +95,11 @@ const STATID_ACHIEVE_NukedCollectibles = 4037;
 const STATID_ACHIEVE_TragicKingdomCollectibles = 4038;
 const STATID_ACHIEVE_NightmareCollectibles = 4039;
 const STATID_ACHIEVE_KrampusCollectibles = 4040;
+const STATID_ACHIEVE_ArenaCollectibles = 4041;
+const STATID_ACHIEVE_PowercoreCollectibles = 4042;
 const WeldingPointsRequired = 510;
 const HealingPointsRequired = 10;
 const MaxPerkLevel = 25;
-const MaxPrestigeLevel = 10;
 const SpecialEventObjectiveCountMax = 8;
 const KFACHID_ParisNormal = 0;
 const KFACHID_ParisHard = 1;
@@ -303,6 +304,16 @@ const KFACHID_KrampusHard = 199;
 const KFACHID_KrampusSuicidal = 200;
 const KFACHID_KrampusHellOnEarth = 201;
 const KFACHID_KrampusCollectibles = 202;
+const KFACHID_ArenaNormal = 203;
+const KFACHID_ArenaHard = 204;
+const KFACHID_ArenaSuicidal = 205;
+const KFACHID_ArenaHellOnEarth = 206;
+const KFACHID_ArenaCollectibles = 207;
+const KFACHID_PowercoreNormal = 208;
+const KFACHID_PowercoreHard = 209;
+const KFACHID_PowercoreSuicidal = 210;
+const KFACHID_PowercoreHellOnEarth = 211;
+const KFACHID_PowercoreCollectibles = 212;
 
 enum eDailyObjectiveType
 {
@@ -414,7 +425,13 @@ var int PerRoundWeldXP;
 var int PerRoundHealXP;
 var array<AchievementDetails> Achievements;
 var const int XPTable[25];
+var int VoshRewards[33];
+var native map<0, 0> KillZedRewards;
+var native map<0, 0> ZedsKilled;
 var array<DailyEventInformation> DailyEvents;
+
+// Export UKFOnlineStatsWrite::execOnStatsInitialized(FFrame&, void* const)
+native function OnStatsInitialized(bool bWasSuccessful);
 
 // Export UKFOnlineStatsWrite::execIncrementIntStat(FFrame&, void* const)
 native function IncrementIntStat(int StatId, optional int IncBy)
@@ -1446,11 +1463,17 @@ native final function OnGameWon(string MapName, byte Difficulty, byte GameLength
 // Export UKFOnlineStatsWrite::execOnRoundEnd(FFrame&, void* const)
 native final function OnRoundEnd(byte WinningTeam);
 
+// Export UKFOnlineStatsWrite::execOnGameEnd(FFrame&, void* const)
+native final function OnGameEnd(string MapName, byte Difficulty, byte GameLength, byte EndingWaveNum, byte bCoop, class<KFPerk> PerkClass);
+
 // Export UKFOnlineStatsWrite::execCheckMapEndAchievements(FFrame&, void* const)
 native final function CheckMapEndAchievements(string MapName, byte Difficulty, byte bCoop);
 
 // Export UKFOnlineStatsWrite::execCheckCollectibleAchievement(FFrame&, void* const)
 native final function CheckCollectibleAchievement(string MapName);
+
+// Export UKFOnlineStatsWrite::execCheckEndWaveObjective(FFrame&, void* const)
+native final function CheckEndWaveObjective(int CurrentWave);
 
 // Export UKFOnlineStatsWrite::execCheckPerkLvlAchievement(FFrame&, void* const)
 private native final function CheckPerkLvlAchievement(class<KFPerk> PerkClass, int NewLVL);
@@ -1521,6 +1544,12 @@ native static final function array<int> GetWeeklyOutbreakRewards(optional int In
 {
     Index = -1;            
 }
+
+// Export UKFOnlineStatsWrite::execGetMapObjectiveVoshReward(FFrame&, void* const)
+native static final function int GetMapObjectiveVoshReward(byte GameLength, byte WaveNum);
+
+// Export UKFOnlineStatsWrite::execMapObjectiveCompleted(FFrame&, void* const)
+native final function MapObjectiveCompleted();
 
 // Export UKFOnlineStatsWrite::execCacheDailyEventProgress(FFrame&, void* const)
 native final function CacheDailyEventProgress(int Value);
@@ -1635,127 +1664,120 @@ defaultproperties
     DailyEvents(23)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Thrown_C4,KFDT_Explosive_C4,KFDT_Bludgeon_C4),CompletionAmount=2500)
     DailyEvents(24)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_GrenadeLauncher_M79,KFDT_Ballistic_M79Impact,KFDT_Explosive_M79,KFDT_Bludgeon_M79),CompletionAmount=7000)
     DailyEvents(25)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_RocketLauncher_RPG7,KFDT_Ballistic_RPG7Impact,KFDT_Explosive_RPG7,KFDT_Explosive_RPG7BackBlast,KFDT_Bludgeon_RPG7),CompletionAmount=7500)
-    DailyEvents(26)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_AssaultRifle_M16M203,KFDT_Ballistic_M16M203,KFDT_Bludgeon_M16M203),CompletionAmount=7000)
+    DailyEvents(26)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_AssaultRifle_M16M203,KFDT_Ballistic_M16M203,KFDT_Bludgeon_M16M203,KFDT_Ballistic_M203Impact,KFDT_Explosive_M16M203),CompletionAmount=7000)
     DailyEvents(27)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_RocketLauncher_Seeker6,KFDT_Explosive_Seeker6,KFDT_Bludgeon_Seeker6,KFDT_Ballistic_Seeker6Impact),CompletionAmount=10000)
     DailyEvents(28)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Flame_CaulkBurn,KFDT_Bludgeon_CaulkBurn,KFDT_Fire_CaulkBurn,KFDT_Fire_Ground_CaulkNBurn),CompletionAmount=3000)
-    DailyEvents(29)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Pistol_Flare,KFDT_Fire_FlareGun,KFDT_Fire_FlareGun_Dual,KFDT_Bludgeon_FlareGun),CompletionAmount=5000)
+    DailyEvents(29)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Pistol_Flare,KFDT_Bludgeon_FlareGun,KFDT_Fire_FlareGun,KFDT_Fire_FlareGun_Dual,KFDT_Fire_FlareGunDoT),CompletionAmount=5000)
     DailyEvents(30)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Shotgun_DragonsBreath,KFDT_Ballistic_DragonsBreath,KFDT_Bludgeon_DragonsBreath,KFDT_Fire_DragonsBreathDoT),CompletionAmount=5000)
-    DailyEvents(31)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Flame_Flamethrower,KFDT_Bludgeon_Flamethrower,KFDT_Fire_FlameThrower,KFDT_Fire_Ground_FlameThrower),CompletionAmount=7000)
-    DailyEvents(32)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Beam_Microwave,KFDT_Bludgeon_MicrowaveGun,KFDT_Fire_Ground_MicrowaveGun,KFDT_Microwave,KFDT_Microwave_Beam,KFDT_Microwave_Blast),CompletionAmount=10000)
-    DailyEvents(33)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Blunt_Crovel,KFDT_Bludgeon_Crovel,KFDT_Bludgeon_CrovelBash,KFDT_Slashing_Crovel),CompletionAmount=3000)
-    DailyEvents(34)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Shotgun_Nailgun,KFDT_Ballistic_NailShotgun,KFDT_Bludgeon_NailShotgun),CompletionAmount=5000)
-    DailyEvents(35)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Blunt_Pulverizer,KFDT_Bludgeon_Pulverizer,KFDT_Bludgeon_PulverizerBash,KFDT_Bludgeon_PulverizerHeavy,KFDT_Explosive_Pulverizer),CompletionAmount=7000)
-    DailyEvents(36)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Eviscerator,KFDT_Slashing_Eviscerator,KFDT_Slashing_EvisceratorProj),CompletionAmount=10000)
-    DailyEvents(37)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Blunt_MaceAndShield,KFDT_Bludgeon_MaceAndShield,KFDT_Bludgeon_MaceAndShield_Bash,KFDT_Bludgeon_MaceAndShield_MaceHeavy,KFDT_Bludgeon_MaceAndShield_ShieldHeavy,KFDT_Bludgeon_MaceAndShield_ShieldLight),CompletionAmount=10000)
-    DailyEvents(38)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Revolver_Rem1858,KFDT_Bludgeon_Rem1858,KFDT_Ballistic_Rem1858,KFDT_Ballistic_Rem1858_Dual),CompletionAmount=3000)
-    DailyEvents(39)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Pistol_Colt1911,KFDT_Bludgeon_Colt1911,KFDT_Ballistic_Colt1911),CompletionAmount=5000)
-    DailyEvents(40)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Pistol_Deagle,KFDT_Bludgeon_Deagle,KFDT_Ballistic_Deagle),CompletionAmount=7000)
-    DailyEvents(41)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Revolver_SW500,KFDT_Bludgeon_SW500,KFDT_Ballistic_SW500,KFDT_Ballistic_SW500_Dual),CompletionAmount=10000)
-    DailyEvents(42)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Rifle_Winchester1894,KFDT_Bludgeon_Winchester,KFDT_Ballistic_Winchester),CompletionAmount=2000)
-    DailyEvents(43)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Bow_Crossbow,KFDT_Bludgeon_Crossbow,KFDT_Piercing_Crossbow),CompletionAmount=5000)
-    DailyEvents(44)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Rifle_M14EBR,KFDT_Bludgeon_M14EBR,KFDT_Ballistic_M14EBR),CompletionAmount=7000)
-    DailyEvents(45)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Rifle_RailGun,KFDT_Bludgeon_RailGun,KFDT_Ballistic_RailGun),CompletionAmount=5000)
-    DailyEvents(46)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Rifle_CenterfireMB464,KFDT_Bludgeon_CenterfireMB464,KFDT_Ballistic_CenterfireMB464),CompletionAmount=5000)
-    DailyEvents(47)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Ice_FreezeThrower,KFDT_Bludgeon_Freezethrower,KFDT_Freeze_FreezeThrower,KFDT_Freeze_FreezeThrower_IceShards,KFDT_Freeze_Ground_FreezeThrower),CompletionAmount=7000)
-    DailyEvents(48)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Alpha),CompletionAmount=20)
-    DailyEvents(49)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_AlphaKing),CompletionAmount=5)
-    DailyEvents(50)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Cyst),CompletionAmount=30)
-    DailyEvents(51)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Slasher),CompletionAmount=25)
-    DailyEvents(52)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedCrawler),CompletionAmount=30)
-    DailyEvents(53)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedCrawlerKing),CompletionAmount=5)
-    DailyEvents(54)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedStalker),CompletionAmount=10)
-    DailyEvents(55)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedBloat),CompletionAmount=5)
-    DailyEvents(56)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedSiren),CompletionAmount=5)
-    DailyEvents(57)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedHusk),CompletionAmount=3)
-    DailyEvents(58)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedGorefast),CompletionAmount=20)
-    DailyEvents(59)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedGorefastDualBlade),CompletionAmount=8)
-    DailyEvents(60)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedScrake),CompletionAmount=1)
-    DailyEvents(61)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedFleshpound),CompletionAmount=1)
-    DailyEvents(62)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedFleshpoundMini),CompletionAmount=2)
-    DailyEvents(63)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillBoss,ObjectiveClasses=none,CompletionAmount=1)
-    DailyEvents(64)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Berserker),CompletionAmount=1500)
-    DailyEvents(65)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Commando),CompletionAmount=1500)
-    DailyEvents(66)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Demolitionist),CompletionAmount=1500)
-    DailyEvents(67)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_FieldMedic),CompletionAmount=1500)
-    DailyEvents(68)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Firebug),CompletionAmount=1500)
-    DailyEvents(69)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Gunslinger),CompletionAmount=1500)
-    DailyEvents(70)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Sharpshooter),CompletionAmount=1500)
-    DailyEvents(71)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Support),CompletionAmount=1500)
-    DailyEvents(72)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Survivalist),CompletionAmount=1500)
-    DailyEvents(73)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_SWAT),CompletionAmount=1500)
-    DailyEvents(74)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BURNINGPARIS),CompletionAmount=1)
-    DailyEvents(75)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BURNINGPARIS),CompletionAmount=2)
-    DailyEvents(76)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BURNINGPARIS),CompletionAmount=3)
-    DailyEvents(77)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-OUTPOST),CompletionAmount=1)
-    DailyEvents(78)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-OUTPOST),CompletionAmount=2)
-    DailyEvents(79)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-OUTPOST),CompletionAmount=3)
-    DailyEvents(80)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BIOTICSLAB),CompletionAmount=1)
-    DailyEvents(81)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BIOTICSLAB),CompletionAmount=2)
-    DailyEvents(82)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BIOTICSLAB),CompletionAmount=3)
-    DailyEvents(83)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-VOLTERMANOR),CompletionAmount=1)
-    DailyEvents(84)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-VOLTERMANOR),CompletionAmount=2)
-    DailyEvents(85)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-VOLTERMANOR),CompletionAmount=3)
-    DailyEvents(86)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-EVACUATIONPOINT),CompletionAmount=1)
-    DailyEvents(87)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-EVACUATIONPOINT),CompletionAmount=2)
-    DailyEvents(88)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-EVACUATIONPOINT),CompletionAmount=3)
-    DailyEvents(89)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CATACOMBS),CompletionAmount=1)
-    DailyEvents(90)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CATACOMBS),CompletionAmount=2)
-    DailyEvents(91)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CATACOMBS),CompletionAmount=3)
-    DailyEvents(92)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BLACKFOREST),CompletionAmount=1)
-    DailyEvents(93)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BLACKFOREST),CompletionAmount=2)
-    DailyEvents(94)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BLACKFOREST),CompletionAmount=3)
-    DailyEvents(95)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-FARMHOUSE),CompletionAmount=1)
-    DailyEvents(96)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-FARMHOUSE),CompletionAmount=2)
-    DailyEvents(97)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-FARMHOUSE),CompletionAmount=3)
-    DailyEvents(98)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-PRISON),CompletionAmount=1)
-    DailyEvents(99)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-PRISON),CompletionAmount=2)
-    DailyEvents(100)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-PRISON),CompletionAmount=3)
-    DailyEvents(101)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CONTAINMENTSTATION),CompletionAmount=1)
-    DailyEvents(102)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CONTAINMENTSTATION),CompletionAmount=2)
-    DailyEvents(103)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CONTAINMENTSTATION),CompletionAmount=3)
-    DailyEvents(104)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-HOSTILEGROUNDS),CompletionAmount=1)
-    DailyEvents(105)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-HOSTILEGROUNDS),CompletionAmount=2)
-    DailyEvents(106)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-HOSTILEGROUNDS),CompletionAmount=3)
-    DailyEvents(107)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-INFERNALREALM),CompletionAmount=1)
-    DailyEvents(108)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-INFERNALREALM),CompletionAmount=2)
-    DailyEvents(109)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-INFERNALREALM),CompletionAmount=3)
-    DailyEvents(110)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-ZEDLANDING),CompletionAmount=1)
-    DailyEvents(111)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-ZEDLANDING),CompletionAmount=2)
-    DailyEvents(112)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-ZEDLANDING),CompletionAmount=3)
-    DailyEvents(113)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-THEDESCENT),CompletionAmount=1)
-    DailyEvents(114)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-THEDESCENT),CompletionAmount=2)
-    DailyEvents(115)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-THEDESCENT),CompletionAmount=3)
-    DailyEvents(116)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NUKED),CompletionAmount=1)
-    DailyEvents(117)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NUKED),CompletionAmount=2)
-    DailyEvents(118)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NUKED),CompletionAmount=3)
-    DailyEvents(119)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-TRAGICKINGDOM),CompletionAmount=1)
-    DailyEvents(120)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-TRAGICKINGDOM),CompletionAmount=2)
-    DailyEvents(121)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-TRAGICKINGDOM),CompletionAmount=3)
-    DailyEvents(122)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=1)
-    DailyEvents(123)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=2)
-    DailyEvents(124)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=3)
-    DailyEvents(125)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=1)
-    DailyEvents(126)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=2)
-    DailyEvents(127)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=3)
-    DailyEvents(128)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedClot_Alpha,KFPawn_ZedClot_Alpha_Versus),CompletionAmount=1)
-    DailyEvents(129)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedClot_Slasher,KFPawn_ZedClot_Slasher_Versus),CompletionAmount=1)
-    DailyEvents(130)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedCrawler,KFPawn_ZedCrawler_Versus),CompletionAmount=1)
-    DailyEvents(131)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedStalker,KFPawn_ZedStalker_Versus),CompletionAmount=1)
-    DailyEvents(132)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedBloat,KFPawn_ZedBloat_Versus),CompletionAmount=1)
-    DailyEvents(133)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedSiren,KFPawn_ZedSiren_Versus),CompletionAmount=1)
-    DailyEvents(134)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedHusk,KFPawn_ZedHusk_Versus),CompletionAmount=1)
-    DailyEvents(135)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusDamage,ObjectiveClasses=(KFPawn_ZedGorefast,KFPawn_ZedGorefast_Versus),CompletionAmount=1)
-    DailyEvents(136)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusKills,ObjectiveClasses=(KFPawn_ZedScrake,KFPawn_ZedScrake_Versus),CompletionAmount=1)
-    DailyEvents(137)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusKills,ObjectiveClasses=(KFPawn_ZedFleshpound,KFPawn_ZedFleshPound_Versus),CompletionAmount=1)
-    DailyEvents(138)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_VersusKills,ObjectiveClasses=(KFPawn_ZedPatriarch,KFPawn_ZedPatriarch_Versus),CompletionAmount=1)
-    DailyEvents(139)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(chr_briar_archetype),CompletionAmount=1)
-    DailyEvents(140)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_MrFoster_archetype),CompletionAmount=1)
-    DailyEvents(141)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Coleman_archetype),CompletionAmount=1)
-    DailyEvents(142)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Alberts_archetype),CompletionAmount=1)
-    DailyEvents(143)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Masterson_archetype),CompletionAmount=1)
-    DailyEvents(144)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Tanaka_Archetype),CompletionAmount=1)
-    DailyEvents(145)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Ana_Archetype),CompletionAmount=1)
-    DailyEvents(146)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(chr_rockabilly_archetype),CompletionAmount=1)
+    DailyEvents(31)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_SMG_Mac10,KFDT_Bludgeon_Mac10,KFDT_Fire_Mac10,KFDT_Fire_Mac10DoT),CompletionAmount=7000)
+    DailyEvents(32)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Flame_Flamethrower,KFDT_Bludgeon_Flamethrower,KFDT_Fire_FlameThrower,KFDT_Fire_Ground_FlameThrower),CompletionAmount=7000)
+    DailyEvents(33)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Beam_Microwave,KFDT_Bludgeon_MicrowaveGun,KFDT_Fire_Ground_MicrowaveGun,KFDT_Microwave,KFDT_Microwave_Beam,KFDT_Microwave_Blast),CompletionAmount=10000)
+    DailyEvents(34)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_HuskCannon,KFDT_Bludgeon_HuskCannon,KFDT_Explosive_HuskCannon,KFDT_HuskCannonDot),CompletionAmount=10000)
+    DailyEvents(35)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Blunt_Crovel,KFDT_Bludgeon_Crovel,KFDT_Bludgeon_CrovelBash,KFDT_Slashing_Crovel),CompletionAmount=3000)
+    DailyEvents(36)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Shotgun_Nailgun,KFDT_Ballistic_NailShotgun,KFDT_Bludgeon_NailShotgun),CompletionAmount=5000)
+    DailyEvents(37)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Blunt_Pulverizer,KFDT_Bludgeon_Pulverizer,KFDT_Bludgeon_PulverizerBash,KFDT_Bludgeon_PulverizerHeavy,KFDT_Explosive_Pulverizer),CompletionAmount=7000)
+    DailyEvents(38)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Eviscerator,KFDT_Slashing_Eviscerator,KFDT_Slashing_EvisceratorProj),CompletionAmount=10000)
+    DailyEvents(39)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Blunt_MaceAndShield,KFDT_Bludgeon_MaceAndShield,KFDT_Bludgeon_MaceAndShield_Bash,KFDT_Bludgeon_MaceAndShield_MaceHeavy,KFDT_Bludgeon_MaceAndShield_ShieldHeavy,KFDT_Bludgeon_MaceAndShield_ShieldLight),CompletionAmount=10000)
+    DailyEvents(40)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Revolver_Rem1858,KFDT_Bludgeon_Rem1858,KFDT_Ballistic_Rem1858,KFDT_Ballistic_Rem1858_Dual),CompletionAmount=3000)
+    DailyEvents(41)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Pistol_Colt1911,KFDT_Bludgeon_Colt1911,KFDT_Ballistic_Colt1911),CompletionAmount=5000)
+    DailyEvents(42)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Pistol_Deagle,KFDT_Bludgeon_Deagle,KFDT_Ballistic_Deagle),CompletionAmount=7000)
+    DailyEvents(43)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Revolver_SW500,KFDT_Bludgeon_SW500,KFDT_Ballistic_SW500,KFDT_Ballistic_SW500_Dual),CompletionAmount=10000)
+    DailyEvents(44)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Pistol_AF2011,KFDT_Bludgeon_AF2011,KFDT_Ballistic_AF2011),CompletionAmount=10000)
+    DailyEvents(45)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Rifle_Winchester1894,KFDT_Bludgeon_Winchester,KFDT_Ballistic_Winchester),CompletionAmount=2000)
+    DailyEvents(46)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Bow_Crossbow,KFDT_Bludgeon_Crossbow,KFDT_Piercing_Crossbow),CompletionAmount=5000)
+    DailyEvents(47)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Rifle_M14EBR,KFDT_Bludgeon_M14EBR,KFDT_Ballistic_M14EBR),CompletionAmount=7000)
+    DailyEvents(48)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Rifle_RailGun,KFDT_Bludgeon_RailGun,KFDT_Ballistic_RailGun),CompletionAmount=5000)
+    DailyEvents(49)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Rifle_CenterfireMB464,KFDT_Bludgeon_CenterfireMB464,KFDT_Ballistic_CenterfireMB464),CompletionAmount=5000)
+    DailyEvents(50)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Ice_FreezeThrower,KFDT_Bludgeon_Freezethrower,KFDT_Freeze_FreezeThrower,KFDT_Freeze_FreezeThrower_IceShards,KFDT_Freeze_Ground_FreezeThrower),CompletionAmount=7000)
+    DailyEvents(51)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Alpha),CompletionAmount=20)
+    DailyEvents(52)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_AlphaKing),CompletionAmount=5)
+    DailyEvents(53)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Cyst),CompletionAmount=30)
+    DailyEvents(54)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Slasher),CompletionAmount=25)
+    DailyEvents(55)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedCrawler),CompletionAmount=30)
+    DailyEvents(56)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedCrawlerKing),CompletionAmount=5)
+    DailyEvents(57)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedStalker),CompletionAmount=10)
+    DailyEvents(58)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedBloat),CompletionAmount=5)
+    DailyEvents(59)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedSiren),CompletionAmount=5)
+    DailyEvents(60)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedHusk),CompletionAmount=3)
+    DailyEvents(61)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedGorefast),CompletionAmount=20)
+    DailyEvents(62)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedGorefastDualBlade),CompletionAmount=8)
+    DailyEvents(63)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedScrake),CompletionAmount=1)
+    DailyEvents(64)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedFleshpound),CompletionAmount=1)
+    DailyEvents(65)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedFleshpoundMini),CompletionAmount=2)
+    DailyEvents(66)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_KillBoss,ObjectiveClasses=none,CompletionAmount=1)
+    DailyEvents(67)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Berserker),CompletionAmount=1500)
+    DailyEvents(68)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Commando),CompletionAmount=1500)
+    DailyEvents(69)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Demolitionist),CompletionAmount=1500)
+    DailyEvents(70)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_FieldMedic),CompletionAmount=1500)
+    DailyEvents(71)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Firebug),CompletionAmount=1500)
+    DailyEvents(72)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Gunslinger),CompletionAmount=1500)
+    DailyEvents(73)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Sharpshooter),CompletionAmount=1500)
+    DailyEvents(74)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Support),CompletionAmount=1500)
+    DailyEvents(75)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_Survivalist),CompletionAmount=1500)
+    DailyEvents(76)=(ObjectiveType=eDailyObjectiveType.DOT_PerkXP,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFPerk_SWAT),CompletionAmount=1500)
+    DailyEvents(77)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BURNINGPARIS),CompletionAmount=1)
+    DailyEvents(78)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BURNINGPARIS),CompletionAmount=2)
+    DailyEvents(79)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BURNINGPARIS),CompletionAmount=3)
+    DailyEvents(80)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-OUTPOST),CompletionAmount=1)
+    DailyEvents(81)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-OUTPOST),CompletionAmount=2)
+    DailyEvents(82)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-OUTPOST),CompletionAmount=3)
+    DailyEvents(83)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BIOTICSLAB),CompletionAmount=1)
+    DailyEvents(84)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BIOTICSLAB),CompletionAmount=2)
+    DailyEvents(85)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BIOTICSLAB),CompletionAmount=3)
+    DailyEvents(86)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-VOLTERMANOR),CompletionAmount=1)
+    DailyEvents(87)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-VOLTERMANOR),CompletionAmount=2)
+    DailyEvents(88)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-VOLTERMANOR),CompletionAmount=3)
+    DailyEvents(89)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-EVACUATIONPOINT),CompletionAmount=1)
+    DailyEvents(90)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-EVACUATIONPOINT),CompletionAmount=2)
+    DailyEvents(91)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-EVACUATIONPOINT),CompletionAmount=3)
+    DailyEvents(92)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CATACOMBS),CompletionAmount=1)
+    DailyEvents(93)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CATACOMBS),CompletionAmount=2)
+    DailyEvents(94)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CATACOMBS),CompletionAmount=3)
+    DailyEvents(95)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BLACKFOREST),CompletionAmount=1)
+    DailyEvents(96)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BLACKFOREST),CompletionAmount=2)
+    DailyEvents(97)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-BLACKFOREST),CompletionAmount=3)
+    DailyEvents(98)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-FARMHOUSE),CompletionAmount=1)
+    DailyEvents(99)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-FARMHOUSE),CompletionAmount=2)
+    DailyEvents(100)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-FARMHOUSE),CompletionAmount=3)
+    DailyEvents(101)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-PRISON),CompletionAmount=1)
+    DailyEvents(102)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-PRISON),CompletionAmount=2)
+    DailyEvents(103)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-PRISON),CompletionAmount=3)
+    DailyEvents(104)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CONTAINMENTSTATION),CompletionAmount=1)
+    DailyEvents(105)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CONTAINMENTSTATION),CompletionAmount=2)
+    DailyEvents(106)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-CONTAINMENTSTATION),CompletionAmount=3)
+    DailyEvents(107)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-HOSTILEGROUNDS),CompletionAmount=1)
+    DailyEvents(108)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-HOSTILEGROUNDS),CompletionAmount=2)
+    DailyEvents(109)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-HOSTILEGROUNDS),CompletionAmount=3)
+    DailyEvents(110)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-INFERNALREALM),CompletionAmount=1)
+    DailyEvents(111)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-INFERNALREALM),CompletionAmount=2)
+    DailyEvents(112)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-INFERNALREALM),CompletionAmount=3)
+    DailyEvents(113)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-ZEDLANDING),CompletionAmount=1)
+    DailyEvents(114)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-ZEDLANDING),CompletionAmount=2)
+    DailyEvents(115)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-ZEDLANDING),CompletionAmount=3)
+    DailyEvents(116)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-THEDESCENT),CompletionAmount=1)
+    DailyEvents(117)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-THEDESCENT),CompletionAmount=2)
+    DailyEvents(118)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-THEDESCENT),CompletionAmount=3)
+    DailyEvents(119)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NUKED),CompletionAmount=1)
+    DailyEvents(120)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NUKED),CompletionAmount=2)
+    DailyEvents(121)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NUKED),CompletionAmount=3)
+    DailyEvents(122)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-TRAGICKINGDOM),CompletionAmount=1)
+    DailyEvents(123)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-TRAGICKINGDOM),CompletionAmount=2)
+    DailyEvents(124)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-TRAGICKINGDOM),CompletionAmount=3)
+    DailyEvents(125)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=1)
+    DailyEvents(126)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=2)
+    DailyEvents(127)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-NIGHTMARE),CompletionAmount=3)
+    DailyEvents(128)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=1)
+    DailyEvents(129)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=2)
+    DailyEvents(130)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_MapCompletion,ObjectiveClasses=(KF-KRAMPUSLAIR),CompletionAmount=3)
+    DailyEvents(131)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(chr_briar_archetype),CompletionAmount=1)
+    DailyEvents(132)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_MrFoster_archetype),CompletionAmount=1)
+    DailyEvents(133)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Coleman_archetype),CompletionAmount=1)
+    DailyEvents(134)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Alberts_archetype),CompletionAmount=1)
+    DailyEvents(135)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Masterson_archetype),CompletionAmount=1)
+    DailyEvents(136)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Tanaka_Archetype),CompletionAmount=1)
+    DailyEvents(137)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_Ana_Archetype),CompletionAmount=1)
+    DailyEvents(138)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(chr_rockabilly_archetype),CompletionAmount=1)
+    DailyEvents(139)=(ObjectiveType=eDailyObjectiveType.DOT_Maps,SecondaryType=eDailyObjectiveSecondaryType.DOST_CharacterCompletion,ObjectiveClasses=(CHR_DAR_archetype),CompletionAmount=1)
     Properties=/* Array type was not detected. */
     ViewIds=/* Array type was not detected. */
 }

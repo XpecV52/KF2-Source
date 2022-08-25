@@ -428,6 +428,7 @@ package tripwire.widgets
                 this.startIcon.visible = false;
             }
             this.matchStartContainer.visible = param1;
+            this.updateControllerIconVisibility();
         }
         
         public function set partyButtonVisible(param1:Boolean) : void

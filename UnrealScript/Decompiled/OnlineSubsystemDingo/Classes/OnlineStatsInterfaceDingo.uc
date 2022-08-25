@@ -96,6 +96,8 @@ const STATID_ACHIEVE_NukedCollectibles = 4037;
 const STATID_ACHIEVE_TragicKingdomCollectibles = 4038;
 const STATID_ACHIEVE_NightmareCollectibles = 4039;
 const STATID_ACHIEVE_KrampusCollectibles = 4040;
+const STATID_ACHIEVE_ArenaCollectibles = 4041;
+const STATID_ACHIEVE_PowercoreCollectibles = 4042;
 
 enum RealTimeActivityConnectionStatus
 {

@@ -84,7 +84,6 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot.DialogAkSoundComponent'
-    Mass=50
     GroundSpeed=190
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         bPerBoneMotionBlur=false

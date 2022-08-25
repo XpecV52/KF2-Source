@@ -53,7 +53,14 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     bPullActive = false;
     foreach PullList(PullPawn,)
     {
-        DeferredRemovalList.AddItem(PullPawn;        
+        if(KFPawn_Human(PullPawn) != none)
+        {
+            RemoveVictim(PullPawn);            
+        }
+        else
+        {
+            DeferredRemovalList.AddItem(PullPawn;
+        }        
     }    
     PullList.Length = 0;
     super.SpecialMoveEnded(PrevMove, NextMove);
@@ -174,7 +181,10 @@ function FindNewVictims()
 
 static function bool IsValidPullClass(KFPawn PullPawn)
 {
-    if(PullPawn.Class == Class'KFPawn_ZedBloatKingSubspawn')
+    local KFPawn_Monster MonsterPawn;
+
+    MonsterPawn = KFPawn_Monster(PullPawn);
+    if((PullPawn.Class == Class'KFPawn_ZedBloatKingSubspawn') || (MonsterPawn != none) && MonsterPawn.IsABoss())
     {
         return false;
     }

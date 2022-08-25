@@ -652,6 +652,12 @@ var int DebugCurrentDoshVaultValue;
 var int DebugCurrentDoshVaultTier;
 
 /*********************************************************************************************
+* @name Dosh Vault Round Delta
+********************************************************************************************* */
+
+var int BeginningRoundVaultAmount;
+
+/*********************************************************************************************
  * @name NoGoZones
 ********************************************************************************************* */
 var transient	float 	NoGoStartTime;
@@ -1652,6 +1658,13 @@ reliable client function ClientCreateGameSession(string LobbyId, bool bPrivate, 
 			OldGameSettings = OnlineSub.GameInterface.GetGameSettings( 'Game' );
 			// We want to keep private sessions alive for XB1
 			if( WorldInfo.IsConsoleBuild( CONSOLE_Durango ) && OldGameSettings.SessionTemplateName == GameSettings.SessionTemplateName && bPrivate )
+			{
+				// Get the active session guid and send off to the server
+				OnlineSub.GameInterface.ReadSessionGuidBySessionName('Game', SessionGuid);
+				ServerGameSessionCreated(SessionGuid);
+			}
+			// We want to keep the same sessions alive for PS4
+			else if (WorldInfo.IsConsoleBuild(CONSOLE_Orbis) && OldGameSettings.LobbyId == GameSettings.LobbyId)
 			{
 				// Get the active session guid and send off to the server
 				OnlineSub.GameInterface.ReadSessionGuidBySessionName('Game', SessionGuid);
@@ -4300,7 +4313,7 @@ static function UpdateInteractionMessages( Actor InteractingActor )
 			if( UsableActor != none )
 			{
 				PC.SetTimer( 1.f, true, nameof(CheckCurrentUsableActor), PC );
-				PC.ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex( P ) );
+				PC.ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex( P ), none, none, UsableActor );
 			}
 			else
 			{
@@ -5125,6 +5138,15 @@ function HideBossNameplate()
 	}
 }
 
+reliable client function ClientOnBossDied()
+{
+	if(MyGFxHUD != none)
+	{
+		MyGFxHUD.bossHealthBar.BossPawn = none;
+		MyGFxHUD.bossHealthBar.RemoveArmorUI();
+	}
+	HideBossNameplate();
+}
 
 /* SpawnInGameFrontEnd()
 Spawn the Front End for the menus that will be used in game
@@ -6407,6 +6429,7 @@ simulated function OnStatsInitialized( bool bWasSuccessful )
     }
 
 	StatsRead.OnStatsInitialized( bWasSuccessful );
+	StatsWrite.OnStatsInitialized( bWasSuccessful );
 
 	//Init timers to wait on stats read to kick weekly/special event UI information
 	CheckSpecialEventID();
@@ -6499,6 +6522,14 @@ reliable client function ClientRoundEnded( byte WinningTeam )
 	}
 }
 
+reliable client function ClientGameOver(string MapName, byte Difficulty, byte GameLength, byte bCoop, byte FinalWaveNum)
+{
+	if(WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController())
+	{
+		StatsWrite.OnGameEnd(MapName, Difficulty, GameLength, bCoop, FinalWaveNum, GetPerk().class);
+	}
+}
+
 /** Triggered when a special event meant to be tracked is completed.  The index is the bit turned on/off in the stats write object. */
 final function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
@@ -6553,10 +6584,17 @@ reliable final client function ClientCompletedWeeklySurvival()
 	}
 }
 
+reliable final client function ClientMapObjectiveCompleted(float XPValue)
+{
+	StatsWrite.MapObjectiveCompleted();
+	ClientAddPlayerXP(XPValue, GetPerk().class);
+	OnPlayerXPAdded(XPValue, GetPerk().class);
+}
+
 /**
- * @brief Unlock an achievemnt on the client
+ * @brief Unlock an achievement on the client
  *
- * @param AchievementIndex the achievemnt's index
+ * @param AchievementIndex the achievement's index
  */
 reliable client event ClientUnlockAchievement( int AchievementIndex, optional bool bAlwaysUnlock=false )
 {
@@ -6565,6 +6603,7 @@ reliable client event ClientUnlockAchievement( int AchievementIndex, optional bo
 	{
 		if( WorldInfo.IsConsoleBuild( CONSOLE_Durango ) )
 		{
+			`log("PS4: Client unlock achievement: " @AchievementIndex);
 			// Just toggle the stat relevent to this to on now, so the next stats write will trigger the achievement unlock.
 			StatsWrite.UnlockDingoAchievement(AchievementIndex);
 			OnlineSub.StatsInterface.WriteOnlineStats('Game', PlayerReplicationInfo.UniqueId, StatsWrite);
@@ -6627,6 +6666,12 @@ function AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
     ClientAddNonZedKill(KilledClass, Difficulty);
 }
 native reliable client private function ClientAddNonZedKill(class<Pawn> KilledClass, byte Difficulty);
+
+function AddZedAssist(class<KFPawn_Monster> MonsterClass)
+{
+	ClientAddZedAssist(MonsterClass);
+}
+native reliable client private function ClientAddZedAssist(class<KFPawn_Monster> MonsterClass);
 
 /** Headshot stat */
 function AddZedHeadshot( byte Difficulty, class<DamageType> DT )
@@ -6784,6 +6829,15 @@ reliable client event OnAllMapCollectiblesFound(string MapName)
 	if (StatsWrite != none)
 	{
 		StatsWrite.CheckCollectibleAchievement(MapName);
+	}
+}
+
+/** Called from the Server */
+reliable final client event OnEndlessWaveComplete(int CurrentWave)
+{
+	if (StatsWrite != none)
+	{
+		StatsWrite.CheckEndWaveObjective(CurrentWave);
 	}
 }
 
@@ -9183,6 +9237,11 @@ exec function DoEmote()
 			MyPawn.ServerDoSpecialMove( SM_Emote, true, , SMFlags );
 		}
 	}
+
+	if (IsLocalController() && LEDEffectsManager != none)
+	{
+		LEDEffectsManager.PlayEmoteEffect();
+	}
 }
 
 /*********************************************************************************************
@@ -9882,6 +9941,7 @@ reliable client function ClientMatchStarted()
     {
         MixerMoveUsersToDefaultGroup();
     }
+	BeginningRoundVaultAmount = GetTotalDoshCount();
 }
 
 reliable client function ClientMatchEnded()
@@ -10351,7 +10411,7 @@ reliable private final server function MixerSpawnZed(string ControlId, string Tr
     KFGI = KFGameInfo(WorldInfo.Game);
     if (KFGI != None)
     {
-        if (KFGI.MyKFGRI.WaveNum == KFGI.MyKFGRI.WaveMax)
+        if (KFGI.MyKFGRI.IsBossWave())
         {
             bFoundBoss = false;
             foreach WorldInfo.AllPawns(class'KFPawn_Monster', BossCheck)
@@ -10440,7 +10500,7 @@ simulated function InitLEDManager()
 			LEDEffectsManager.InitLEDEffects();
 		}
 
-		ClientInitLEDManager();	
+		ClientInitLEDManager();
 	}
 }
 
@@ -10605,7 +10665,7 @@ simulated function CreateDiscordGamePresence()
 			}
 			else
 			{
-				if (GRI.IsFinalWave())
+				if (GRI.IsBossWave())
 				{
 					DetailsString = DetailsString $ class'KFCommon_LocalizedStrings'.default.DiscordBossWaveString;
 				}
@@ -10804,8 +10864,8 @@ defaultproperties
     DefaultAvatarPath = "UI_World_TEX.KF2Icon_Default"
 
     MixerCurrentDefaultScene="default"
-    MixerRallyBoneNames[0]=RightHand
-    MixerRallyBoneNames[1]=LeftHand
+    MixerRallyBoneNames[0]=necksocket
+    MixerRallyBoneNames[1]=necksocket
 
     LEDEffectsManagerClass=class'KFLEDEffectsManager';
 

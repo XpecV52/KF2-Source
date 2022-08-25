@@ -51,26 +51,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_8
 End Object
 
 Begin Object Class=InterpData Name=InterpData_8
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.490195,OutVal=(X=0.000977,Y=99.994141,Z=0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=4.001625,OutVal=(X=0.000977,Y=-0.005859,Z=0.000004),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.490195,InterpMode=CIM_CurveAutoClamped),(InVal=4.001625,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=2.490195),(Time=4.001625)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
-         AkEvents(0)=(Event=AkEvent'WW_ENV_BioticsLab.ENV_Door_Broken_Elevator')
-         Name="InterpTrackAkEvent_2"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_2.InterpTrackMove_2'
-      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_2.InterpTrackAkEvent_2'
-      GroupName="BrokenDoor_Right"
-      GroupColor=(B=229,G=0,R=58,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -87,9 +70,26 @@ Begin Object Class=InterpData Name=InterpData_8
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
+         AkEvents(0)=(Event=AkEvent'WW_ENV_BioticsLab.ENV_Door_Broken_Elevator')
+         Name="InterpTrackAkEvent_2"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.490195,OutVal=(X=0.000977,Y=99.994141,Z=0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=4.001625,OutVal=(X=0.000977,Y=-0.005859,Z=0.000004),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.490195,InterpMode=CIM_CurveAutoClamped),(InVal=4.001625,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=2.490195),(Time=4.001625)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_2.InterpTrackMove_2'
+      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_2.InterpTrackAkEvent_2'
+      GroupName="BrokenDoor_Right"
+      GroupColor=(B=229,G=0,R=58,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=5.994314
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_1'
@@ -222,6 +222,32 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_6
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((OutVal=(X=667.828613,Y=-4897.532227,Z=632.612305),InterpMode=CIM_CurveAutoClamped),(InVal=7.992126,OutVal=(X=-10.871582,Y=-5576.238281,Z=650.650940),ArriveTangent=(X=-137.357574,Y=-54.175110,Z=0.000000),LeaveTangent=(X=-137.357574,Y=-54.175110,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=14.842524,OutVal=(X=-1371.271729,Y=-5803.566406,Z=517.863708),ArriveTangent=(X=-180.617569,Y=-63.298706,Z=0.000000),LeaveTangent=(X=-180.617569,Y=-63.298706,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=21.692919,OutVal=(X=-2485.475342,Y=-6725.445801,Z=545.964600),ArriveTangent=(X=-142.644440,Y=-123.735237,Z=9.506094),LeaveTangent=(X=-142.644440,Y=-123.735237,Z=9.506094),InterpMode=CIM_CurveAutoClamped),(InVal=26.716549,OutVal=(X=-3065.035400,Y=-7272.801758,Z=721.147949),ArriveTangent=(X=-84.671486,Y=-73.327225,Z=3.260695),LeaveTangent=(X=-84.671486,Y=-73.327225,Z=3.260695),InterpMode=CIM_CurveAutoClamped),(InVal=31.133945,OutVal=(X=-3313.892334,Y=-7476.408203,Z=727.406372),ArriveTangent=(X=-105.457191,Y=-91.871719,Z=3.450474),LeaveTangent=(X=-105.457191,Y=-91.871719,Z=3.450474),InterpMode=CIM_CurveAutoClamped),(InVal=35.362167,OutVal=(X=-4193.212891,Y=-8402.718750,Z=911.179688),ArriveTangent=(X=-184.730637,Y=0.000000,Z=45.052200),LeaveTangent=(X=-184.730637,Y=0.000000,Z=45.052200),InterpMode=CIM_CurveAutoClamped),(InVal=38.939442,OutVal=(X=-4755.806641,Y=-8061.978516,Z=1079.061157),ArriveTangent=(X=0.000000,Y=145.180435,Z=0.000000),LeaveTangent=(X=0.000000,Y=145.180435,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.172371,OutVal=(X=-4077.103760,Y=-6930.742676,Z=1057.463867),ArriveTangent=(X=0.000000,Y=167.459488,Z=0.000000),LeaveTangent=(X=0.000000,Y=167.459488,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=49.088165,OutVal=(X=-4636.704102,Y=-6362.478516,Z=1383.533081),ArriveTangent=(X=-150.742676,Y=0.000000,Z=10.823713),LeaveTangent=(X=-150.742676,Y=0.000000,Z=10.823713),InterpMode=CIM_CurveAutoClamped),(InVal=54.638252,OutVal=(X=-5654.758789,Y=-7154.266602,Z=1408.811401),ArriveTangent=(X=0.000000,Y=-208.550064,Z=0.000000),LeaveTangent=(X=0.000000,Y=-208.550064,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=59.395473,OutVal=(X=-4297.348633,Y=-8512.068359,Z=1394.088257),ArriveTangent=(X=0.000000,Y=-107.846062,Z=0.000000),LeaveTangent=(X=0.000000,Y=-107.846062,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=63.518394,OutVal=(X=-4523.583984,Y=-8738.308594,Z=1400.101196),ArriveTangent=(X=-87.815536,Y=0.000000,Z=0.000000),LeaveTangent=(X=-87.815536,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=68.592781,OutVal=(X=-5208.276367,Y=-8061.926758,Z=1087.528931),ArriveTangent=(X=-119.461868,Y=0.000000,Z=0.000000),LeaveTangent=(X=-119.461868,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=73.984314,OutVal=(X=-5773.862305,Y=-8174.979004,Z=1099.002319),ArriveTangent=(X=-135.856766,Y=-44.109367,Z=0.000000),LeaveTangent=(X=-135.856766,Y=-44.109367,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=80.168686,OutVal=(X=-6780.941406,Y=-9212.530273,Z=805.942139),ArriveTangent=(X=-148.644516,Y=-148.320114,Z=0.000000),LeaveTangent=(X=-148.644516,Y=-148.320114,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=84.678505,OutVal=(X=-7363.495117,Y=-9761.142578,Z=821.158447),ArriveTangent=(X=0.000000,Y=-103.519325,Z=0.000000),LeaveTangent=(X=0.000000,Y=-103.519325,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.550720,OutVal=(X=-6984.552734,Y=-10287.271484,Z=818.204834),ArriveTangent=(X=99.589417,Y=-124.097588,Z=0.000000),LeaveTangent=(X=99.589417,Y=-124.097588,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=98.075027,OutVal=(X=-5891.472656,Y=-11457.736328,Z=886.971069),ArriveTangent=(X=0.000000,Y=-156.439774,Z=18.057144),LeaveTangent=(X=0.000000,Y=-156.439774,Z=18.057144),InterpMode=CIM_CurveAutoClamped),(InVal=103.086082,OutVal=(X=-6680.299805,Y=-12248.300781,Z=1067.983154),ArriveTangent=(X=0.000000,Y=-46.612194,Z=0.000000),LeaveTangent=(X=0.000000,Y=-46.612194,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=108.329796,OutVal=(X=-6340.950195,Y=-12361.486328,Z=1062.522949),ArriveTangent=(X=72.811508,Y=0.000000,Z=0.000000),LeaveTangent=(X=72.811508,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=113.981537,OutVal=(X=-5886.985352,Y=-12134.660156,Z=1132.260498),ArriveTangent=(X=110.269836,Y=0.000000,Z=0.000000),LeaveTangent=(X=110.269836,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=117.575768,OutVal=(X=-5321.398438,Y=-12700.412109,Z=1126.125977),ArriveTangent=(X=0.000946,Y=-153.866974,Z=0.000000),LeaveTangent=(X=0.000946,Y=-153.866974,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=123.540588,OutVal=(X=-5321.396484,Y=-13605.482422,Z=1133.244019),ArriveTangent=(X=0.000862,Y=-155.192535,Z=0.000000),LeaveTangent=(X=0.000862,Y=-155.192535,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=128.511353,OutVal=(X=-4529.574219,Y=-14397.533203,Z=1124.655518),ArriveTangent=(X=164.075745,Y=0.000000,Z=0.000000),LeaveTangent=(X=164.075745,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=133.711563,OutVal=(X=-3652.586182,Y=-13908.675781,Z=1424.465576),ArriveTangent=(X=190.057709,Y=149.825943,Z=0.000000),LeaveTangent=(X=190.057709,Y=149.825943,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=138.988129,OutVal=(X=-2538.382080,Y=-12760.535156,Z=1394.585449),ArriveTangent=(X=157.744766,Y=173.262054,Z=-4.314535),LeaveTangent=(X=157.744766,Y=173.262054,Z=-4.314535),InterpMode=CIM_CurveAutoClamped),(InVal=144.647186,OutVal=(X=-1927.548828,Y=-12013.947266,Z=1377.283447),ArriveTangent=(X=96.715202,Y=130.854584,Z=-2.838953),LeaveTangent=(X=96.715202,Y=130.854584,Z=-2.838953),InterpMode=CIM_CurveAutoClamped),(InVal=150.917938,OutVal=(X=-1384.588135,Y=-11199.464844,Z=1360.717285),ArriveTangent=(X=116.929398,Y=0.000000,Z=-6.223410),LeaveTangent=(X=116.929398,Y=0.000000,Z=-6.223410),InterpMode=CIM_CurveAutoClamped),(InVal=156.278717,OutVal=(X=-567.480957,Y=-11568.529297,Z=1188.296021),ArriveTangent=(X=170.488831,Y=0.000000,Z=-32.785168),LeaveTangent=(X=170.488831,Y=0.000000,Z=-32.785168),InterpMode=CIM_CurveAutoClamped),(InVal=161.664505,OutVal=(X=447.581543,Y=-11456.802734,Z=1008.389282),ArriveTangent=(X=151.456345,Y=45.146751,Z=-8.325766),LeaveTangent=(X=151.456345,Y=45.146751,Z=-8.325766),InterpMode=CIM_CurveAutoClamped),(InVal=167.461914,OutVal=(X=1126.285156,Y=-10325.569336,Z=986.791992),ArriveTangent=(X=0.000000,Y=206.157166,Z=-0.195964),LeaveTangent=(X=0.000000,Y=206.157166,Z=-0.195964),InterpMode=CIM_CurveAutoClamped),(InVal=172.639786,OutVal=(X=673.815430,Y=-9194.169922,Z=986.361694),ArriveTangent=(X=-79.874138,Y=114.028397,Z=0.000000),LeaveTangent=(X=-79.874138,Y=114.028397,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=175.959076,OutVal=(X=447.581665,Y=-8967.872070,Z=988.815674),ArriveTangent=(X=-99.980568,Y=0.000000,Z=1.371960),LeaveTangent=(X=-99.980568,Y=0.000000,Z=1.371960),InterpMode=CIM_CurveAutoClamped),(InVal=180.163193,OutVal=(X=-118.003174,Y=-9307.193359,Z=1002.068604),ArriveTangent=(X=-117.452415,Y=-96.401314,Z=6.257113),LeaveTangent=(X=-117.452415,Y=-96.401314,Z=6.257113),InterpMode=CIM_CurveAutoClamped),(InVal=187.465164,OutVal=(X=-903.836182,Y=-10096.499023,Z=1343.047852),ArriveTangent=(X=-77.138878,Y=0.000000,Z=1.933516),LeaveTangent=(X=-77.138878,Y=0.000000,Z=1.933516),InterpMode=CIM_CurveAutoClamped),(InVal=194.236374,OutVal=(X=-1243.188721,Y=-9983.320313,Z=1348.508545),ArriveTangent=(X=-77.717033,Y=35.488152,Z=0.978862),LeaveTangent=(X=-77.717033,Y=35.488152,Z=0.978862),InterpMode=CIM_CurveAutoClamped),(InVal=200.564697,OutVal=(X=-1921.893066,Y=-9304.423828,Z=1355.870483),ArriveTangent=(X=-97.740715,Y=0.000000,Z=1.751479),LeaveTangent=(X=-97.740715,Y=0.000000,Z=1.751479),InterpMode=CIM_CurveAutoClamped),(InVal=206.966888,OutVal=(X=-2487.478271,Y=-9870.012695,Z=1370.902710),ArriveTangent=(X=-112.765907,Y=0.000000,Z=1.905458),LeaveTangent=(X=-112.765907,Y=0.000000,Z=1.905458),InterpMode=CIM_CurveAutoClamped),(InVal=213.605209,OutVal=(X=-3392.418213,Y=-8964.814453,Z=1380.718628),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.992126,OutVal=(X=0.499878,Y=28.493042,Z=-134.412231),InterpMode=CIM_CurveAutoClamped),(InVal=14.842524,OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=21.692919,OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=26.716549,OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=31.133945,OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=35.362167,OutVal=(X=-1.076660,Y=0.439453,Z=-225.010986),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.029174),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.029174),InterpMode=CIM_CurveAutoClamped),(InVal=38.939442,OutVal=(X=-1.076660,Y=0.439453,Z=-225.054932),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.009976),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.009976),InterpMode=CIM_CurveAutoClamped),(InVal=44.172371,OutVal=(X=-1.076660,Y=0.439453,Z=-225.098877),InterpMode=CIM_CurveAutoClamped),(InVal=49.088165,OutVal=(X=0.439453,Y=1.076660,Z=-135.131836),InterpMode=CIM_CurveAutoClamped),(InVal=54.638252,OutVal=(X=0.439453,Y=1.076660,Z=-135.131836),InterpMode=CIM_CurveAutoClamped),(InVal=59.395473,OutVal=(X=0.439453,Y=1.076660,Z=-135.131836),InterpMode=CIM_CurveAutoClamped),(InVal=63.518394,OutVal=(X=-0.812988,Y=0.823975,Z=-197.083740),ArriveTangent=(X=-0.131930,Y=-0.081824,Z=-9.536847),LeaveTangent=(X=-0.131930,Y=-0.081824,Z=-9.536847),InterpMode=CIM_CurveAutoClamped),(InVal=68.592781,OutVal=(X=-1.142578,Y=0.324097,Z=-225.247192),InterpMode=CIM_CurveAutoClamped),(InVal=73.984314,OutVal=(X=0.368042,Y=0.922852,Z=-135.285645),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.119851),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.119851),InterpMode=CIM_CurveAutoClamped),(InVal=80.168686,OutVal=(X=0.285645,Y=0.922852,Z=-135.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.125960),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.125960),InterpMode=CIM_CurveAutoClamped),(InVal=84.678505,OutVal=(X=0.878906,Y=-0.593262,Z=-45.010986),ArriveTangent=(X=0.065594,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.065594,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.550720,OutVal=(X=1.076660,Y=-0.439453,Z=-45.032959),ArriveTangent=(X=0.000000,Y=0.053426,Z=-0.008665),LeaveTangent=(X=0.000000,Y=0.053426,Z=-0.008665),InterpMode=CIM_CurveAutoClamped),(InVal=98.075027,OutVal=(X=0.439453,Y=1.076660,Z=-135.043945),InterpMode=CIM_CurveAutoClamped),(InVal=103.086082,OutVal=(X=0.439453,Y=1.076660,Z=-135.043945),InterpMode=CIM_CurveAutoClamped),(InVal=108.329796,OutVal=(X=-0.439453,Y=-1.076660,Z=44.956055),InterpMode=CIM_CurveAutoClamped),(InVal=113.981537,OutVal=(X=1.076660,Y=-0.439453,Z=-45.054932),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.039710),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.039710),InterpMode=CIM_CurveAutoClamped),(InVal=117.575768,OutVal=(X=1.076660,Y=-0.439453,Z=-45.120850),InterpMode=CIM_CurveAutoClamped),(InVal=123.540588,OutVal=(X=-0.433960,Y=-1.098633,Z=44.846191),ArriveTangent=(X=-0.002602,Y=0.000000,Z=0.073022),LeaveTangent=(X=-0.002602,Y=0.000000,Z=0.073022),InterpMode=CIM_CurveAutoClamped),(InVal=128.511353,OutVal=(X=-0.439453,Y=-1.076660,Z=45.000000),InterpMode=CIM_CurveAutoClamped),(InVal=133.711563,OutVal=(X=-0.439453,Y=-1.076660,Z=45.000000),InterpMode=CIM_CurveAutoClamped),(InVal=138.988129,OutVal=(X=-0.439453,Y=-1.076660,Z=45.000000),InterpMode=CIM_CurveAutoClamped),(InVal=144.647186,OutVal=(X=-0.494385,Y=1.027222,Z=179.950562),InterpMode=CIM_CurveAutoClamped),(InVal=150.917938,OutVal=(X=-0.483398,Y=-1.120605,Z=44.956055),InterpMode=CIM_CurveAutoClamped),(InVal=156.278717,OutVal=(X=-1.005249,Y=-0.697632,Z=78.706055),InterpMode=CIM_CurveAutoClamped),(InVal=161.664505,OutVal=(X=-0.219727,Y=-1.142578,Z=33.706055),InterpMode=CIM_CurveAutoClamped),(InVal=167.461914,OutVal=(X=-1.109619,Y=-0.346069,Z=95.581055),ArriveTangent=(X=0.000000,Y=0.149650,Z=9.737291),LeaveTangent=(X=0.000000,Y=0.149650,Z=9.737291),InterpMode=CIM_CurveAutoClamped),(InVal=172.639786,OutVal=(X=-1.071167,Y=0.499878,Z=140.575562),ArriveTangent=(X=0.020429,Y=0.167436,Z=15.230844),LeaveTangent=(X=0.020429,Y=0.167436,Z=15.230844),InterpMode=CIM_CurveAutoClamped),(InVal=175.959076,OutVal=(X=0.351563,Y=1.076660,Z=225.000000),ArriveTangent=(X=0.284756,Y=0.000000,Z=17.202902),LeaveTangent=(X=0.284756,Y=0.000000,Z=17.202902),InterpMode=CIM_CurveAutoClamped),(InVal=180.163193,OutVal=(X=1.071167,Y=0.450439,Z=270.000000),ArriveTangent=(X=0.000000,Y=-0.016303,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.016303,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=187.465164,OutVal=(X=1.027222,Y=0.406494,Z=270.000000),ArriveTangent=(X=-0.015026,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.015026,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=194.236374,OutVal=(X=-1.076660,Y=0.439453,Z=134.967041),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.017012),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.017012),InterpMode=CIM_CurveAutoClamped),(InVal=200.564697,OutVal=(X=-1.076660,Y=0.439453,Z=134.923096),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.017301),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.017301),InterpMode=CIM_CurveAutoClamped),(InVal=206.966888,OutVal=(X=-0.439453,Y=-1.076660,Z=44.890137),InterpMode=CIM_CurveAutoClamped),(InVal=213.605209,OutVal=(X=-0.439453,Y=-1.076660,Z=44.890137),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=7.992126),(Time=14.842524),(Time=21.692919),(Time=26.716549),(Time=31.133945),(Time=35.362167),(Time=38.939442),(Time=44.172371),(Time=49.088165),(Time=54.638252),(Time=59.395473),(Time=63.518394),(Time=68.592781),(Time=73.984314),(Time=80.168686),(Time=84.678505),(Time=90.550720),(Time=98.075027),(Time=103.086082),(Time=108.329796),(Time=113.981537),(Time=117.575768),(Time=123.540588),(Time=128.511353),(Time=133.711563),(Time=138.988129),(Time=144.647186),(Time=150.917938),(Time=156.278717),(Time=161.664505),(Time=167.461914),(Time=172.639786),(Time=175.959076),(Time=180.163193),(Time=187.465164),(Time=194.236374),(Time=200.564697),(Time=206.966888),(Time=213.605209)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackFloatProp_0'
+      GroupName="NewCameraGroup"
+      GroupColor=(B=51,G=0,R=229,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
    Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
       Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
          CutTrack(0)=(TargetCamGroup="NewCameraGroup",ShotNumber=10)
@@ -232,32 +258,6 @@ Begin Object Class=InterpData Name=InterpData_6
       GroupColor=(B=0,G=203,R=126,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((OutVal=(X=667.828613,Y=-4897.532227,Z=632.612305),InterpMode=CIM_CurveAutoClamped),(InVal=7.992126,OutVal=(X=-10.871582,Y=-5576.238281,Z=650.650940),ArriveTangent=(X=-137.357574,Y=-54.175110,Z=0.000000),LeaveTangent=(X=-137.357574,Y=-54.175110,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=14.842524,OutVal=(X=-1371.271729,Y=-5803.566406,Z=517.863708),ArriveTangent=(X=-180.617569,Y=-63.298706,Z=0.000000),LeaveTangent=(X=-180.617569,Y=-63.298706,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=21.692919,OutVal=(X=-2485.475342,Y=-6725.445801,Z=545.964600),ArriveTangent=(X=-142.644440,Y=-123.735237,Z=9.506094),LeaveTangent=(X=-142.644440,Y=-123.735237,Z=9.506094),InterpMode=CIM_CurveAutoClamped),(InVal=26.716549,OutVal=(X=-3065.035400,Y=-7272.801758,Z=721.147949),ArriveTangent=(X=-84.671486,Y=-73.327225,Z=3.260695),LeaveTangent=(X=-84.671486,Y=-73.327225,Z=3.260695),InterpMode=CIM_CurveAutoClamped),(InVal=31.133945,OutVal=(X=-3313.892334,Y=-7476.408203,Z=727.406372),ArriveTangent=(X=-105.457191,Y=-91.871719,Z=3.450474),LeaveTangent=(X=-105.457191,Y=-91.871719,Z=3.450474),InterpMode=CIM_CurveAutoClamped),(InVal=35.362167,OutVal=(X=-4193.212891,Y=-8402.718750,Z=911.179688),ArriveTangent=(X=-184.730637,Y=0.000000,Z=45.052200),LeaveTangent=(X=-184.730637,Y=0.000000,Z=45.052200),InterpMode=CIM_CurveAutoClamped),(InVal=38.939442,OutVal=(X=-4755.806641,Y=-8061.978516,Z=1079.061157),ArriveTangent=(X=0.000000,Y=145.180435,Z=0.000000),LeaveTangent=(X=0.000000,Y=145.180435,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.172371,OutVal=(X=-4077.103760,Y=-6930.742676,Z=1057.463867),ArriveTangent=(X=0.000000,Y=167.459488,Z=0.000000),LeaveTangent=(X=0.000000,Y=167.459488,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=49.088165,OutVal=(X=-4636.704102,Y=-6362.478516,Z=1383.533081),ArriveTangent=(X=-150.742676,Y=0.000000,Z=10.823713),LeaveTangent=(X=-150.742676,Y=0.000000,Z=10.823713),InterpMode=CIM_CurveAutoClamped),(InVal=54.638252,OutVal=(X=-5654.758789,Y=-7154.266602,Z=1408.811401),ArriveTangent=(X=0.000000,Y=-208.550064,Z=0.000000),LeaveTangent=(X=0.000000,Y=-208.550064,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=59.395473,OutVal=(X=-4297.348633,Y=-8512.068359,Z=1394.088257),ArriveTangent=(X=0.000000,Y=-107.846062,Z=0.000000),LeaveTangent=(X=0.000000,Y=-107.846062,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=63.518394,OutVal=(X=-4523.583984,Y=-8738.308594,Z=1400.101196),ArriveTangent=(X=-87.815536,Y=0.000000,Z=0.000000),LeaveTangent=(X=-87.815536,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=68.592781,OutVal=(X=-5208.276367,Y=-8061.926758,Z=1087.528931),ArriveTangent=(X=-119.461868,Y=0.000000,Z=0.000000),LeaveTangent=(X=-119.461868,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=73.984314,OutVal=(X=-5773.862305,Y=-8174.979004,Z=1099.002319),ArriveTangent=(X=-135.856766,Y=-44.109367,Z=0.000000),LeaveTangent=(X=-135.856766,Y=-44.109367,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=80.168686,OutVal=(X=-6780.941406,Y=-9212.530273,Z=805.942139),ArriveTangent=(X=-148.644516,Y=-148.320114,Z=0.000000),LeaveTangent=(X=-148.644516,Y=-148.320114,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=84.678505,OutVal=(X=-7363.495117,Y=-9761.142578,Z=821.158447),ArriveTangent=(X=0.000000,Y=-103.519325,Z=0.000000),LeaveTangent=(X=0.000000,Y=-103.519325,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.550720,OutVal=(X=-6984.552734,Y=-10287.271484,Z=818.204834),ArriveTangent=(X=99.589417,Y=-124.097588,Z=0.000000),LeaveTangent=(X=99.589417,Y=-124.097588,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=98.075027,OutVal=(X=-5891.472656,Y=-11457.736328,Z=886.971069),ArriveTangent=(X=0.000000,Y=-156.439774,Z=18.057144),LeaveTangent=(X=0.000000,Y=-156.439774,Z=18.057144),InterpMode=CIM_CurveAutoClamped),(InVal=103.086082,OutVal=(X=-6680.299805,Y=-12248.300781,Z=1067.983154),ArriveTangent=(X=0.000000,Y=-46.612194,Z=0.000000),LeaveTangent=(X=0.000000,Y=-46.612194,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=108.329796,OutVal=(X=-6340.950195,Y=-12361.486328,Z=1062.522949),ArriveTangent=(X=72.811508,Y=0.000000,Z=0.000000),LeaveTangent=(X=72.811508,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=113.981537,OutVal=(X=-5886.985352,Y=-12134.660156,Z=1132.260498),ArriveTangent=(X=110.269836,Y=0.000000,Z=0.000000),LeaveTangent=(X=110.269836,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=117.575768,OutVal=(X=-5321.398438,Y=-12700.412109,Z=1126.125977),ArriveTangent=(X=0.000946,Y=-153.866974,Z=0.000000),LeaveTangent=(X=0.000946,Y=-153.866974,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=123.540588,OutVal=(X=-5321.396484,Y=-13605.482422,Z=1133.244019),ArriveTangent=(X=0.000862,Y=-155.192535,Z=0.000000),LeaveTangent=(X=0.000862,Y=-155.192535,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=128.511353,OutVal=(X=-4529.574219,Y=-14397.533203,Z=1124.655518),ArriveTangent=(X=164.075745,Y=0.000000,Z=0.000000),LeaveTangent=(X=164.075745,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=133.711563,OutVal=(X=-3652.586182,Y=-13908.675781,Z=1424.465576),ArriveTangent=(X=190.057709,Y=149.825943,Z=0.000000),LeaveTangent=(X=190.057709,Y=149.825943,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=138.988129,OutVal=(X=-2538.382080,Y=-12760.535156,Z=1394.585449),ArriveTangent=(X=157.744766,Y=173.262054,Z=-4.314535),LeaveTangent=(X=157.744766,Y=173.262054,Z=-4.314535),InterpMode=CIM_CurveAutoClamped),(InVal=144.647186,OutVal=(X=-1927.548828,Y=-12013.947266,Z=1377.283447),ArriveTangent=(X=96.715202,Y=130.854584,Z=-2.838953),LeaveTangent=(X=96.715202,Y=130.854584,Z=-2.838953),InterpMode=CIM_CurveAutoClamped),(InVal=150.917938,OutVal=(X=-1384.588135,Y=-11199.464844,Z=1360.717285),ArriveTangent=(X=116.929398,Y=0.000000,Z=-6.223410),LeaveTangent=(X=116.929398,Y=0.000000,Z=-6.223410),InterpMode=CIM_CurveAutoClamped),(InVal=156.278717,OutVal=(X=-567.480957,Y=-11568.529297,Z=1188.296021),ArriveTangent=(X=170.488831,Y=0.000000,Z=-32.785168),LeaveTangent=(X=170.488831,Y=0.000000,Z=-32.785168),InterpMode=CIM_CurveAutoClamped),(InVal=161.664505,OutVal=(X=447.581543,Y=-11456.802734,Z=1008.389282),ArriveTangent=(X=151.456345,Y=45.146751,Z=-8.325766),LeaveTangent=(X=151.456345,Y=45.146751,Z=-8.325766),InterpMode=CIM_CurveAutoClamped),(InVal=167.461914,OutVal=(X=1126.285156,Y=-10325.569336,Z=986.791992),ArriveTangent=(X=0.000000,Y=206.157166,Z=-0.195964),LeaveTangent=(X=0.000000,Y=206.157166,Z=-0.195964),InterpMode=CIM_CurveAutoClamped),(InVal=172.639786,OutVal=(X=673.815430,Y=-9194.169922,Z=986.361694),ArriveTangent=(X=-79.874138,Y=114.028397,Z=0.000000),LeaveTangent=(X=-79.874138,Y=114.028397,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=175.959076,OutVal=(X=447.581665,Y=-8967.872070,Z=988.815674),ArriveTangent=(X=-99.980568,Y=0.000000,Z=1.371960),LeaveTangent=(X=-99.980568,Y=0.000000,Z=1.371960),InterpMode=CIM_CurveAutoClamped),(InVal=180.163193,OutVal=(X=-118.003174,Y=-9307.193359,Z=1002.068604),ArriveTangent=(X=-117.452415,Y=-96.401314,Z=6.257113),LeaveTangent=(X=-117.452415,Y=-96.401314,Z=6.257113),InterpMode=CIM_CurveAutoClamped),(InVal=187.465164,OutVal=(X=-903.836182,Y=-10096.499023,Z=1343.047852),ArriveTangent=(X=-77.138878,Y=0.000000,Z=1.933516),LeaveTangent=(X=-77.138878,Y=0.000000,Z=1.933516),InterpMode=CIM_CurveAutoClamped),(InVal=194.236374,OutVal=(X=-1243.188721,Y=-9983.320313,Z=1348.508545),ArriveTangent=(X=-77.717033,Y=35.488152,Z=0.978862),LeaveTangent=(X=-77.717033,Y=35.488152,Z=0.978862),InterpMode=CIM_CurveAutoClamped),(InVal=200.564697,OutVal=(X=-1921.893066,Y=-9304.423828,Z=1355.870483),ArriveTangent=(X=-97.740715,Y=0.000000,Z=1.751479),LeaveTangent=(X=-97.740715,Y=0.000000,Z=1.751479),InterpMode=CIM_CurveAutoClamped),(InVal=206.966888,OutVal=(X=-2487.478271,Y=-9870.012695,Z=1370.902710),ArriveTangent=(X=-112.765907,Y=0.000000,Z=1.905458),LeaveTangent=(X=-112.765907,Y=0.000000,Z=1.905458),InterpMode=CIM_CurveAutoClamped),(InVal=213.605209,OutVal=(X=-3392.418213,Y=-8964.814453,Z=1380.718628),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.992126,OutVal=(X=0.499878,Y=28.493042,Z=-134.412231),InterpMode=CIM_CurveAutoClamped),(InVal=14.842524,OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=21.692919,OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=26.716549,OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=31.133945,OutVal=(X=0.439453,Y=1.076660,Z=-135.000000),InterpMode=CIM_CurveAutoClamped),(InVal=35.362167,OutVal=(X=-1.076660,Y=0.439453,Z=-225.010986),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.029174),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.029174),InterpMode=CIM_CurveAutoClamped),(InVal=38.939442,OutVal=(X=-1.076660,Y=0.439453,Z=-225.054932),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.009976),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.009976),InterpMode=CIM_CurveAutoClamped),(InVal=44.172371,OutVal=(X=-1.076660,Y=0.439453,Z=-225.098877),InterpMode=CIM_CurveAutoClamped),(InVal=49.088165,OutVal=(X=0.439453,Y=1.076660,Z=-135.131836),InterpMode=CIM_CurveAutoClamped),(InVal=54.638252,OutVal=(X=0.439453,Y=1.076660,Z=-135.131836),InterpMode=CIM_CurveAutoClamped),(InVal=59.395473,OutVal=(X=0.439453,Y=1.076660,Z=-135.131836),InterpMode=CIM_CurveAutoClamped),(InVal=63.518394,OutVal=(X=-0.812988,Y=0.823975,Z=-197.083740),ArriveTangent=(X=-0.131930,Y=-0.081824,Z=-9.536847),LeaveTangent=(X=-0.131930,Y=-0.081824,Z=-9.536847),InterpMode=CIM_CurveAutoClamped),(InVal=68.592781,OutVal=(X=-1.142578,Y=0.324097,Z=-225.247192),InterpMode=CIM_CurveAutoClamped),(InVal=73.984314,OutVal=(X=0.368042,Y=0.922852,Z=-135.285645),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.119851),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.119851),InterpMode=CIM_CurveAutoClamped),(InVal=80.168686,OutVal=(X=0.285645,Y=0.922852,Z=-135.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.125960),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.125960),InterpMode=CIM_CurveAutoClamped),(InVal=84.678505,OutVal=(X=0.878906,Y=-0.593262,Z=-45.010986),ArriveTangent=(X=0.065594,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.065594,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.550720,OutVal=(X=1.076660,Y=-0.439453,Z=-45.032959),ArriveTangent=(X=0.000000,Y=0.053426,Z=-0.008665),LeaveTangent=(X=0.000000,Y=0.053426,Z=-0.008665),InterpMode=CIM_CurveAutoClamped),(InVal=98.075027,OutVal=(X=0.439453,Y=1.076660,Z=-135.043945),InterpMode=CIM_CurveAutoClamped),(InVal=103.086082,OutVal=(X=0.439453,Y=1.076660,Z=-135.043945),InterpMode=CIM_CurveAutoClamped),(InVal=108.329796,OutVal=(X=-0.439453,Y=-1.076660,Z=44.956055),InterpMode=CIM_CurveAutoClamped),(InVal=113.981537,OutVal=(X=1.076660,Y=-0.439453,Z=-45.054932),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.039710),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.039710),InterpMode=CIM_CurveAutoClamped),(InVal=117.575768,OutVal=(X=1.076660,Y=-0.439453,Z=-45.120850),InterpMode=CIM_CurveAutoClamped),(InVal=123.540588,OutVal=(X=-0.433960,Y=-1.098633,Z=44.846191),ArriveTangent=(X=-0.002602,Y=0.000000,Z=0.073022),LeaveTangent=(X=-0.002602,Y=0.000000,Z=0.073022),InterpMode=CIM_CurveAutoClamped),(InVal=128.511353,OutVal=(X=-0.439453,Y=-1.076660,Z=45.000000),InterpMode=CIM_CurveAutoClamped),(InVal=133.711563,OutVal=(X=-0.439453,Y=-1.076660,Z=45.000000),InterpMode=CIM_CurveAutoClamped),(InVal=138.988129,OutVal=(X=-0.439453,Y=-1.076660,Z=45.000000),InterpMode=CIM_CurveAutoClamped),(InVal=144.647186,OutVal=(X=-0.494385,Y=1.027222,Z=179.950562),InterpMode=CIM_CurveAutoClamped),(InVal=150.917938,OutVal=(X=-0.483398,Y=-1.120605,Z=44.956055),InterpMode=CIM_CurveAutoClamped),(InVal=156.278717,OutVal=(X=-1.005249,Y=-0.697632,Z=78.706055),InterpMode=CIM_CurveAutoClamped),(InVal=161.664505,OutVal=(X=-0.219727,Y=-1.142578,Z=33.706055),InterpMode=CIM_CurveAutoClamped),(InVal=167.461914,OutVal=(X=-1.109619,Y=-0.346069,Z=95.581055),ArriveTangent=(X=0.000000,Y=0.149650,Z=9.737291),LeaveTangent=(X=0.000000,Y=0.149650,Z=9.737291),InterpMode=CIM_CurveAutoClamped),(InVal=172.639786,OutVal=(X=-1.071167,Y=0.499878,Z=140.575562),ArriveTangent=(X=0.020429,Y=0.167436,Z=15.230844),LeaveTangent=(X=0.020429,Y=0.167436,Z=15.230844),InterpMode=CIM_CurveAutoClamped),(InVal=175.959076,OutVal=(X=0.351563,Y=1.076660,Z=225.000000),ArriveTangent=(X=0.284756,Y=0.000000,Z=17.202902),LeaveTangent=(X=0.284756,Y=0.000000,Z=17.202902),InterpMode=CIM_CurveAutoClamped),(InVal=180.163193,OutVal=(X=1.071167,Y=0.450439,Z=270.000000),ArriveTangent=(X=0.000000,Y=-0.016303,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.016303,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=187.465164,OutVal=(X=1.027222,Y=0.406494,Z=270.000000),ArriveTangent=(X=-0.015026,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.015026,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=194.236374,OutVal=(X=-1.076660,Y=0.439453,Z=134.967041),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.017012),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.017012),InterpMode=CIM_CurveAutoClamped),(InVal=200.564697,OutVal=(X=-1.076660,Y=0.439453,Z=134.923096),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.017301),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.017301),InterpMode=CIM_CurveAutoClamped),(InVal=206.966888,OutVal=(X=-0.439453,Y=-1.076660,Z=44.890137),InterpMode=CIM_CurveAutoClamped),(InVal=213.605209,OutVal=(X=-0.439453,Y=-1.076660,Z=44.890137),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=7.992126),(Time=14.842524),(Time=21.692919),(Time=26.716549),(Time=31.133945),(Time=35.362167),(Time=38.939442),(Time=44.172371),(Time=49.088165),(Time=54.638252),(Time=59.395473),(Time=63.518394),(Time=68.592781),(Time=73.984314),(Time=80.168686),(Time=84.678505),(Time=90.550720),(Time=98.075027),(Time=103.086082),(Time=108.329796),(Time=113.981537),(Time=117.575768),(Time=123.540588),(Time=128.511353),(Time=133.711563),(Time=138.988129),(Time=144.647186),(Time=150.917938),(Time=156.278717),(Time=161.664505),(Time=167.461914),(Time=172.639786),(Time=175.959076),(Time=180.163193),(Time=187.465164),(Time=194.236374),(Time=200.564697),(Time=206.966888),(Time=213.605209)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackFloatProp_0'
-      GroupName="NewCameraGroup"
-      GroupColor=(B=51,G=0,R=229,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=215.099564
    InterpGroups(0)=InterpGroupDirector'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroupDirector_0'
@@ -1109,7 +1109,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="RotatingAnim",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
@@ -1118,11 +1127,6 @@ Begin Object Class=InterpData Name=InterpData_2
          Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="RotatingAnim",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackMove'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackMove_1'
       InterpTracks(1)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackAnimControl_0'
       GroupName="Centrifuge"
@@ -1130,10 +1134,6 @@ Begin Object Class=InterpData Name=InterpData_2
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Centrifuge_Rotator_ANIM'
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2'
    CurveEdSetup=InterpCurveEdSetup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpCurveEdSetup_1'
@@ -1285,58 +1285,93 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_16
 End Object
 
 Begin Object Class=InterpData Name=InterpData_16
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_6
-         AnimSeqs(0)=(StartTime=11.799921,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=30.270376,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_6"
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(ViewStartInput=2.788074,ViewEndInput=41.955105,ViewStartOutput=-0.564286,ViewEndOutput=1.435715)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Track1_Anim",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_11
-         AkEvents(0)=(Time=11.799921,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
-         AkEvents(1)=(Time=30.270376,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
-         TrackTitle="Ak_Needle_Arm"
-         Name="InterpTrackAkEvent_11"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_6.InterpTrackAnimControl_6'
-      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_6.InterpTrackAkEvent_11'
-      GroupName="Injection_Station"
-      GroupColor=(B=0,G=203,R=126,A=255)
-      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Injection_Station_ANIM'
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_0.InterpTrackAnimControl_0'
+      GroupName="Track_1"
+      GroupColor=(B=70,G=0,R=225,A=255)
+      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Track1_ANIM'
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_5
-         AnimSeqs(0)=(StartTime=5.289837,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=25.180023,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_5"
+   Begin Object Class=InterpGroup Name=InterpGroup_10
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
+         EventTrack(0)=(Time=0.720581,EventName="Spray_1")
+         EventTrack(1)=(Time=20.455196,EventName="Spray_2")
+         Name="InterpTrackEvent_1"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_10.InterpTrackEvent_1'
+      GroupName="Track_1_Spray"
+      GroupColor=(B=0,G=213,R=105,A=255)
+      Name="InterpGroup_10"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_21
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_3
+         EventTrack(0)=(Time=6.624694,EventName="shock_2_ON")
+         EventTrack(1)=(Time=7.670698,EventName="shock_2_OFF")
+         Name="InterpTrackEvent_3"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_21.InterpTrackEvent_3'
+      GroupName="Clot_Shock_1"
+      GroupColor=(B=69,G=225,R=0,A=255)
+      Name="InterpGroup_21"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_22
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_4
+         EventTrack(0)=(Time=26.545265,EventName="shock_1_ON")
+         EventTrack(1)=(Time=27.614513,EventName="shock_1_OFF")
+         Name="InterpTrackEvent_4"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_22.InterpTrackEvent_4'
+      GroupName="Clot_Shock_2"
+      GroupColor=(B=126,G=203,R=0,A=255)
+      Name="InterpGroup_22"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
+         AnimSeqs(0)=(AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(1)=(StartTime=4.000168,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(2)=(StartTime=7.999798,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(3)=(StartTime=11.999965,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(4)=(StartTime=15.999664,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(5)=(StartTime=19.999989,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(6)=(StartTime=24.000454,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(7)=(StartTime=25.180300,AnimSeqName="Shocking",AnimPlayRate=1.000000)
+         AnimSeqs(8)=(StartTime=28.180418,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(9)=(StartTime=30.269579,AnimSeqName="Injection",AnimPlayRate=1.000000)
+         AnimSeqs(10)=(StartTime=33.270027,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(11)=(StartTime=37.270454,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_3"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_25
-         AkEvents(0)=(Time=5.289837,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
-         AkEvents(1)=(Time=7.670698,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
-         AkEvents(2)=(Time=25.180023,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
-         AkEvents(3)=(Time=27.614513,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
-         TrackTitle="Ak_Shock_Arm"
-         Name="InterpTrackAkEvent_25"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ZED_UndevelopedClot_MAT.ZED_UndevelopedClot_GORE_MAT',AffectedMaterialRefs=((Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.SkeletalMeshActor_7.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.SkeletalMeshActor_8.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.SkeletalMeshActor_4.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_10.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_11.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_12.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_13.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_14.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_1.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_2.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_3.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_4.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_0.SkeletalMeshComponent_0')))
+         ParamName="Scalar_EMP"
+         FloatTrack=(Points=((InVal=26.513489,InterpMode=CIM_CurveAutoClamped),(InVal=27.559015,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_23
-         AkEvents(0)=(Time=6.624694,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
-         AkEvents(1)=(Time=26.545265,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
-         TrackTitle="Ak_Shock"
-         Name="InterpTrackAkEvent_23"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_5.InterpTrackAnimControl_5'
-      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_5.InterpTrackAkEvent_23'
-      InterpTracks(2)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_5.InterpTrackAkEvent_25'
-      GroupName="Shocking_Station"
-      GroupColor=(B=136,G=197,R=0,A=255)
-      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Shocking_Station_ANIM'
-      Name="InterpGroup_5"
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_3.InterpTrackAnimControl_3'
+      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_3.InterpTrackFloatMaterialParam_1'
+      GroupName="Clot_Hook_1"
+      GroupColor=(B=222,G=0,R=84,A=255)
+      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_U_Clot_ANIM'
+      Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
@@ -1363,94 +1398,59 @@ Begin Object Class=InterpData Name=InterpData_16
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ZED_UndevelopedClot_MAT.ZED_UndevelopedClot_GORE_MAT',AffectedMaterialRefs=((Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.SkeletalMeshActor_7.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.SkeletalMeshActor_8.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.SkeletalMeshActor_4.SkeletalMeshComponent_2'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_10.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_11.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_12.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_13.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_14.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_1.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_2.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_3.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_4.SkeletalMeshComponent_0'),(Primitive=SkeletalMeshComponent'KF-BIOTICSLAB.TheWorld:PersistentLevel.KFSkeletalMeshActor_0.SkeletalMeshComponent_0')))
-         ParamName="Scalar_EMP"
-         FloatTrack=(Points=((InVal=26.513489,InterpMode=CIM_CurveAutoClamped),(InVal=27.559015,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_1"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_23
+         AkEvents(0)=(Time=6.624694,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
+         AkEvents(1)=(Time=26.545265,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
+         TrackTitle="Ak_Shock"
+         Name="InterpTrackAkEvent_23"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
-         AnimSeqs(0)=(AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=4.000168,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(2)=(StartTime=7.999798,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(3)=(StartTime=11.999965,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(4)=(StartTime=15.999664,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(5)=(StartTime=19.999989,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(6)=(StartTime=24.000454,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(7)=(StartTime=25.180300,AnimSeqName="Shocking",AnimPlayRate=1.000000)
-         AnimSeqs(8)=(StartTime=28.180418,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(9)=(StartTime=30.269579,AnimSeqName="Injection",AnimPlayRate=1.000000)
-         AnimSeqs(10)=(StartTime=33.270027,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(11)=(StartTime=37.270454,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_3"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_25
+         AkEvents(0)=(Time=5.289837,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
+         AkEvents(1)=(Time=7.670698,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
+         AkEvents(2)=(Time=25.180023,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
+         AkEvents(3)=(Time=27.614513,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
+         TrackTitle="Ak_Shock_Arm"
+         Name="InterpTrackAkEvent_25"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_5
+         AnimSeqs(0)=(StartTime=5.289837,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
+         AnimSeqs(1)=(StartTime=25.180023,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_5"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_3.InterpTrackAnimControl_3'
-      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_3.InterpTrackFloatMaterialParam_1'
-      GroupName="Clot_Hook_1"
-      GroupColor=(B=222,G=0,R=84,A=255)
-      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_U_Clot_ANIM'
-      Name="InterpGroup_3"
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_5.InterpTrackAnimControl_5'
+      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_5.InterpTrackAkEvent_23'
+      InterpTracks(2)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_5.InterpTrackAkEvent_25'
+      GroupName="Shocking_Station"
+      GroupColor=(B=136,G=197,R=0,A=255)
+      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Shocking_Station_ANIM'
+      Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_22
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_4
-         EventTrack(0)=(Time=26.545265,EventName="shock_1_ON")
-         EventTrack(1)=(Time=27.614513,EventName="shock_1_OFF")
-         Name="InterpTrackEvent_4"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_11
+         AkEvents(0)=(Time=11.799921,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
+         AkEvents(1)=(Time=30.270376,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
+         TrackTitle="Ak_Needle_Arm"
+         Name="InterpTrackAkEvent_11"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_22.InterpTrackEvent_4'
-      GroupName="Clot_Shock_2"
-      GroupColor=(B=126,G=203,R=0,A=255)
-      Name="InterpGroup_22"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_21
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_3
-         EventTrack(0)=(Time=6.624694,EventName="shock_2_ON")
-         EventTrack(1)=(Time=7.670698,EventName="shock_2_OFF")
-         Name="InterpTrackEvent_3"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_21.InterpTrackEvent_3'
-      GroupName="Clot_Shock_1"
-      GroupColor=(B=69,G=225,R=0,A=255)
-      Name="InterpGroup_21"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_10
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
-         EventTrack(0)=(Time=0.720581,EventName="Spray_1")
-         EventTrack(1)=(Time=20.455196,EventName="Spray_2")
-         Name="InterpTrackEvent_1"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_10.InterpTrackEvent_1'
-      GroupName="Track_1_Spray"
-      GroupColor=(B=0,G=213,R=105,A=255)
-      Name="InterpGroup_10"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Track1_Anim",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_6
+         AnimSeqs(0)=(StartTime=11.799921,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
+         AnimSeqs(1)=(StartTime=30.270376,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_6"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_0.InterpTrackAnimControl_0'
-      GroupName="Track_1"
-      GroupColor=(B=70,G=0,R=225,A=255)
-      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Track1_ANIM'
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_6.InterpTrackAnimControl_6'
+      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_6.InterpTrackAkEvent_11'
+      GroupName="Injection_Station"
+      GroupColor=(B=0,G=203,R=126,A=255)
+      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Injection_Station_ANIM'
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(ViewStartInput=2.788074,ViewEndInput=41.955105,ViewStartOutput=-0.564286,ViewEndOutput=1.435715)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=39.167049
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_0'
@@ -1680,142 +1680,45 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_17
 End Object
 
 Begin Object Class=InterpData Name=InterpData_17
-   Begin Object Class=InterpGroup Name=InterpGroup_25
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_7
-         EventTrack(0)=(Time=14.427267,EventName="Clot_3_Shock_ON")
-         EventTrack(1)=(Time=15.584534,EventName="Clot_3_Shock_OFF")
-         Name="InterpTrackEvent_7"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_25.InterpTrackEvent_7'
-      GroupName="Clot_3_Shock"
-      GroupColor=(B=206,G=0,R=123,A=255)
-      Name="InterpGroup_25"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_24
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_6
-         EventTrack(0)=(Time=40.555794,EventName="Clot_2_Shock_ON")
-         EventTrack(1)=(Time=41.661629,EventName="Clot_2_Shock_OFF")
-         Name="InterpTrackEvent_6"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_24.InterpTrackEvent_6'
-      GroupName="Clot_2_Shock"
-      GroupColor=(B=191,G=145,R=0,A=255)
-      Name="InterpGroup_24"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_23
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_5
-         EventTrack(0)=(Time=29.574610,EventName="Clot_1_Shock_ON")
-         EventTrack(1)=(Time=30.783312,EventName="Clot_1_Shock_OFF")
-         Name="InterpTrackEvent_5"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_23.InterpTrackEvent_5'
-      GroupName="Clot_1_Shock"
-      GroupColor=(B=182,G=0,R=157,A=255)
-      Name="InterpGroup_23"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_17
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_2
-         EventTrack(0)=(Time=4.952572,EventName="Spray_1")
-         EventTrack(1)=(Time=19.713131,EventName="Spray_2")
-         EventTrack(2)=(Time=31.521580,EventName="Spray_3")
-         Name="InterpTrackEvent_2"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_17.InterpTrackEvent_2'
-      GroupName="Track_2_Spray"
-      GroupColor=(B=0,G=30,R=231,A=255)
-      Name="InterpGroup_17"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_16
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_12
-         AnimSeqs(0)=(StartTime=13.180027,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=28.400040,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
-         AnimSeqs(2)=(StartTime=39.269688,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_12"
+   Begin Object Class=InterpGroup Name=InterpGroup_11
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_7
+         AnimSeqs(0)=(AnimSeqName="Track2_Anim",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_7"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_21
-         AkEvents(0)=(Time=13.180027,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
-         AkEvents(1)=(Time=15.584534,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
-         AkEvents(2)=(Time=28.400040,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
-         AkEvents(3)=(Time=30.783312,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
-         AkEvents(4)=(Time=39.269688,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
-         AkEvents(5)=(Time=41.661629,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
-         TrackTitle="Ak_Shock_Arms"
-         Name="InterpTrackAkEvent_21"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_19
-         AkEvents(0)=(Time=14.427267,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
-         AkEvents(1)=(Time=29.574610,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
-         AkEvents(2)=(Time=40.555794,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
-         TrackTitle="Ak_Shock"
-         Name="InterpTrackAkEvent_19"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_16.InterpTrackAnimControl_12'
-      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_16.InterpTrackAkEvent_19'
-      InterpTracks(2)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_16.InterpTrackAkEvent_21'
-      GroupName="Track_2_Shock"
-      GroupColor=(B=92,G=0,R=218,A=255)
-      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Shocking_Station_ANIM'
-      Name="InterpGroup_16"
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_11.InterpTrackAnimControl_7'
+      GroupName="Track_2"
+      GroupColor=(B=0,G=79,R=222,A=255)
+      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Track2_ANIM'
+      Name="InterpGroup_11"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_15
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_11
-         AnimSeqs(0)=(StartTime=9.099836,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=23.169613,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
-         AnimSeqs(2)=(StartTime=35.100002,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_11"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_17
-         AkEvents(0)=(Time=9.099836,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
-         AkEvents(1)=(Time=23.169613,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
-         AkEvents(2)=(Time=35.100002,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
-         TrackTitle="Ak_Needle_Arms"
-         Name="InterpTrackAkEvent_17"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_15.InterpTrackAnimControl_11'
-      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_15.InterpTrackAkEvent_17'
-      GroupName="Track_2_Injection"
-      GroupColor=(B=186,G=151,R=0,A=255)
-      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Injection_Station_ANIM'
-      Name="InterpGroup_15"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_14
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_10
+   Begin Object Class=InterpGroup Name=InterpGroup_12
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_8
          AnimSeqs(0)=(AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=4.000406,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(2)=(StartTime=8.000206,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(3)=(StartTime=9.099727,AnimSeqName="Injection",AnimPlayRate=1.000000)
-         AnimSeqs(4)=(StartTime=12.100121,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(5)=(StartTime=13.179780,AnimSeqName="Shocking",AnimPlayRate=1.000000)
-         AnimSeqs(6)=(StartTime=16.179865,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(7)=(StartTime=20.180422,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(8)=(StartTime=24.180614,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(9)=(StartTime=28.181057,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(10)=(StartTime=32.181622,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(11)=(StartTime=36.181957,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(12)=(StartTime=40.182365,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_10"
+         AnimSeqs(1)=(StartTime=3.999643,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(2)=(StartTime=8.000217,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(3)=(StartTime=11.999575,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(4)=(StartTime=16.000195,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(5)=(StartTime=19.999830,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(6)=(StartTime=23.169559,AnimSeqName="Injection",AnimPlayRate=1.000000)
+         AnimSeqs(7)=(StartTime=26.170004,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(8)=(StartTime=28.400400,AnimSeqName="Shocking",AnimPlayRate=1.000000)
+         AnimSeqs(9)=(StartTime=31.400507,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(10)=(StartTime=35.400528,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(11)=(StartTime=39.400776,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_8"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_14.InterpTrackAnimControl_10'
-      GroupName="Track_2_Clot_3"
-      GroupColor=(B=188,G=149,R=0,A=255)
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_12.InterpTrackAnimControl_8'
+      GroupName="Track_2_Clot_1"
+      GroupColor=(B=0,G=217,R=95,A=255)
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_U_Clot_ANIM'
-      Name="InterpGroup_14"
+      Name="InterpGroup_12"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_13
@@ -1843,46 +1746,143 @@ Begin Object Class=InterpData Name=InterpData_17
       Name="InterpGroup_13"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_12
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_8
+   Begin Object Class=InterpGroup Name=InterpGroup_14
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_10
          AnimSeqs(0)=(AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=3.999643,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(2)=(StartTime=8.000217,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(3)=(StartTime=11.999575,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(4)=(StartTime=16.000195,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(5)=(StartTime=19.999830,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(6)=(StartTime=23.169559,AnimSeqName="Injection",AnimPlayRate=1.000000)
-         AnimSeqs(7)=(StartTime=26.170004,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(8)=(StartTime=28.400400,AnimSeqName="Shocking",AnimPlayRate=1.000000)
-         AnimSeqs(9)=(StartTime=31.400507,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(10)=(StartTime=35.400528,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         AnimSeqs(11)=(StartTime=39.400776,AnimSeqName="Idle",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_8"
+         AnimSeqs(1)=(StartTime=4.000406,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(2)=(StartTime=8.000206,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(3)=(StartTime=9.099727,AnimSeqName="Injection",AnimPlayRate=1.000000)
+         AnimSeqs(4)=(StartTime=12.100121,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(5)=(StartTime=13.179780,AnimSeqName="Shocking",AnimPlayRate=1.000000)
+         AnimSeqs(6)=(StartTime=16.179865,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(7)=(StartTime=20.180422,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(8)=(StartTime=24.180614,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(9)=(StartTime=28.181057,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(10)=(StartTime=32.181622,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(11)=(StartTime=36.181957,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         AnimSeqs(12)=(StartTime=40.182365,AnimSeqName="Idle",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_10"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_12.InterpTrackAnimControl_8'
-      GroupName="Track_2_Clot_1"
-      GroupColor=(B=0,G=217,R=95,A=255)
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_14.InterpTrackAnimControl_10'
+      GroupName="Track_2_Clot_3"
+      GroupColor=(B=188,G=149,R=0,A=255)
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_U_Clot_ANIM'
-      Name="InterpGroup_12"
+      Name="InterpGroup_14"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_11
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_7
-         AnimSeqs(0)=(AnimSeqName="Track2_Anim",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_7"
+   Begin Object Class=InterpGroup Name=InterpGroup_15
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_17
+         AkEvents(0)=(Time=9.099836,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
+         AkEvents(1)=(Time=23.169613,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
+         AkEvents(2)=(Time=35.100002,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Needle_Arm')
+         TrackTitle="Ak_Needle_Arms"
+         Name="InterpTrackAkEvent_17"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_11
+         AnimSeqs(0)=(StartTime=9.099836,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
+         AnimSeqs(1)=(StartTime=23.169613,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
+         AnimSeqs(2)=(StartTime=35.100002,AnimSeqName="Injection_Station",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_11"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_11.InterpTrackAnimControl_7'
-      GroupName="Track_2"
-      GroupColor=(B=0,G=79,R=222,A=255)
-      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Track2_ANIM'
-      Name="InterpGroup_11"
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_15.InterpTrackAnimControl_11'
+      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_15.InterpTrackAkEvent_17'
+      GroupName="Track_2_Injection"
+      GroupColor=(B=186,G=151,R=0,A=255)
+      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Injection_Station_ANIM'
+      Name="InterpGroup_15"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_16
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_19
+         AkEvents(0)=(Time=14.427267,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
+         AkEvents(1)=(Time=29.574610,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
+         AkEvents(2)=(Time=40.555794,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock')
+         TrackTitle="Ak_Shock"
+         Name="InterpTrackAkEvent_19"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_21
+         AkEvents(0)=(Time=13.180027,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
+         AkEvents(1)=(Time=15.584534,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
+         AkEvents(2)=(Time=28.400040,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
+         AkEvents(3)=(Time=30.783312,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
+         AkEvents(4)=(Time=39.269688,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Down')
+         AkEvents(5)=(Time=41.661629,Event=AkEvent'WW_ENV_BioticsLab.BioticsLab_MAT_Shock_Arm_Up')
+         TrackTitle="Ak_Shock_Arms"
+         Name="InterpTrackAkEvent_21"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_12
+         AnimSeqs(0)=(StartTime=13.180027,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
+         AnimSeqs(1)=(StartTime=28.400040,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
+         AnimSeqs(2)=(StartTime=39.269688,AnimSeqName="Shocking_Station",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_12"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
+      InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_16.InterpTrackAnimControl_12'
+      InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_16.InterpTrackAkEvent_19'
+      InterpTracks(2)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_16.InterpTrackAkEvent_21'
+      GroupName="Track_2_Shock"
+      GroupColor=(B=92,G=0,R=218,A=255)
+      GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Shocking_Station_ANIM'
+      Name="InterpGroup_16"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_17
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_2
+         EventTrack(0)=(Time=4.952572,EventName="Spray_1")
+         EventTrack(1)=(Time=19.713131,EventName="Spray_2")
+         EventTrack(2)=(Time=31.521580,EventName="Spray_3")
+         Name="InterpTrackEvent_2"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_17.InterpTrackEvent_2'
+      GroupName="Track_2_Spray"
+      GroupColor=(B=0,G=30,R=231,A=255)
+      Name="InterpGroup_17"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_23
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_5
+         EventTrack(0)=(Time=29.574610,EventName="Clot_1_Shock_ON")
+         EventTrack(1)=(Time=30.783312,EventName="Clot_1_Shock_OFF")
+         Name="InterpTrackEvent_5"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_23.InterpTrackEvent_5'
+      GroupName="Clot_1_Shock"
+      GroupColor=(B=182,G=0,R=157,A=255)
+      Name="InterpGroup_23"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_24
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_6
+         EventTrack(0)=(Time=40.555794,EventName="Clot_2_Shock_ON")
+         EventTrack(1)=(Time=41.661629,EventName="Clot_2_Shock_OFF")
+         Name="InterpTrackEvent_6"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_24.InterpTrackEvent_6'
+      GroupName="Clot_2_Shock"
+      GroupColor=(B=191,G=145,R=0,A=255)
+      Name="InterpGroup_24"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_25
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_7
+         EventTrack(0)=(Time=14.427267,EventName="Clot_3_Shock_ON")
+         EventTrack(1)=(Time=15.584534,EventName="Clot_3_Shock_OFF")
+         Name="InterpTrackEvent_7"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_25.InterpTrackEvent_7'
+      GroupName="Clot_3_Shock"
+      GroupColor=(B=206,G=0,R=123,A=255)
+      Name="InterpGroup_25"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=43.333233
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_11'
@@ -2173,15 +2173,19 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
 End Object
 
 Begin Object Class=InterpData Name=InterpData_11
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_5
+         Name="InterpTrackAkEvent_5"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_6
          AnimSeqs(0)=(AnimSeqName="Cell_Cyst_Door_Pound",AnimPlayRate=1.000000)
          Name="InterpTrackAnimControl_6"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_5
-         Name="InterpTrackAkEvent_5"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_6.InterpTrackAnimControl_6'
       InterpTracks(1)=InterpTrackAkEvent'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_6.InterpTrackAkEvent_5'
@@ -2190,10 +2194,6 @@ Begin Object Class=InterpData Name=InterpData_11
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.Cyst_Cell_ANIM'
       Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=25.000151
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_6'
@@ -2235,6 +2235,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_12
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_7
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_7
          AnimSeqs(0)=(AnimSeqName="Cell_Cyst_Feed",AnimPlayRate=1.000000)
@@ -2247,10 +2251,6 @@ Begin Object Class=InterpData Name=InterpData_12
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.Cyst_Cell_ANIM'
       Name="InterpGroup_7"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=33.800076
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_7'
@@ -2304,6 +2304,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
 End Object
 
 Begin Object Class=InterpData Name=InterpData_10
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_5
          AnimSeqs(0)=(AnimSeqName="Cell_Cyst_idle",AnimPlayRate=1.000000)
@@ -2316,10 +2320,6 @@ Begin Object Class=InterpData Name=InterpData_10
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.Cyst_Cell_ANIM'
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=16.649635
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_5'
@@ -2373,6 +2373,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
 End Object
 
 Begin Object Class=InterpData Name=InterpData_7
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_4
          AnimSeqs(0)=(AnimSeqName="Cell_Alpha_Feed",AnimPlayRate=1.000000)
@@ -2385,10 +2389,6 @@ Begin Object Class=InterpData Name=InterpData_7
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.AlphaClot_Cell_ANIM'
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.899997
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_4'
@@ -2442,6 +2442,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_1
          AnimSeqs(0)=(AnimSeqName="Cell_Alpha_Pound",AnimPlayRate=1.000000)
@@ -2454,10 +2458,6 @@ Begin Object Class=InterpData Name=InterpData_4
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.AlphaClot_Cell_ANIM'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=24.000772
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_1'
@@ -2511,6 +2511,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_5
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
          AnimSeqs(0)=(AnimSeqName="Cell_Alpha_Quad",AnimPlayRate=1.000000)
@@ -2523,10 +2527,6 @@ Begin Object Class=InterpData Name=InterpData_5
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.AlphaClot_Cell_ANIM'
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=12.000796
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_3'
@@ -2580,6 +2580,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_13
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="Cell_Slasher_Lay",AnimPlayRate=1.000000)
@@ -2592,10 +2596,6 @@ Begin Object Class=InterpData Name=InterpData_13
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.Slasher_Cell_ANIM'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=22.400436
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_0'
@@ -2649,6 +2649,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_10
 End Object
 
 Begin Object Class=InterpData Name=InterpData_14
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_1
          AnimSeqs(0)=(AnimSeqName="Cell_Slasher_Door",AnimPlayRate=1.000000)
@@ -2661,10 +2665,6 @@ Begin Object Class=InterpData Name=InterpData_14
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.Slasher_Cell_ANIM'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=18.400118
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpGroup_1'
@@ -2695,6 +2695,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
 End Object
 
 Begin Object Class=InterpData Name=InterpData_15
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_2
          AnimSeqs(0)=(AnimSeqName="Cell_Slasher_Feed",AnimPlayRate=1.000000)
@@ -2707,10 +2711,6 @@ Begin Object Class=InterpData Name=InterpData_15
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.Slasher_Cell_ANIM'
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=23.650366
    InterpGroups(0)=InterpGroup'KF-BIOTICSLAB.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpGroup_2'

@@ -39,7 +39,7 @@ static function string GetString(
 {
 	if(Switch < default.VoiceCommsOptionStrings.length)
 	{
-		//KFPlayerReplicationInfo(RelatedPRI_1).SetCurrentVoiceCommsRequest(Switch);
+		KFPlayerReplicationInfo(RelatedPRI_1).SetCurrentVoiceCommsRequest(Switch);
 		return RelatedPRI_1.PlayerName $":"  @default.VoiceCommsOptionStrings[Switch];
 	}
 }

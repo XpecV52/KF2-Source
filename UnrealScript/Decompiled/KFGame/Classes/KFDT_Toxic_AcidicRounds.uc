@@ -16,6 +16,6 @@ static function bool AlwaysPoisons()
 defaultproperties
 {
     DoT_Duration=5
-    DoT_DamageScale=0.15
+    DoT_DamageScale=2
     PoisonPower=200
 }

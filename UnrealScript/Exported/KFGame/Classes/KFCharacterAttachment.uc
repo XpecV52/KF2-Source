@@ -2,12 +2,12 @@ class KFCharacterAttachment extends Object
 	dependsOn(KFCharacterInfo_Human)
 	native(Pawn);
 
-/** List of booleans that will effect which items can be attached with the current attachment 
+/** List of booleans that will effect which items can be attached with the current attachment
 struct native AttachmentOverrideList
 {
 	var() bool bHat;
-	var() bool bFace;	
-	var() bool bEyes;	
+	var() bool bFace;
+	var() bool bEyes;
 	var() bool bJaw;
 	var() bool bArmband;
 	var() bool bBackpack;
@@ -32,6 +32,13 @@ var() string MeshName;
 	both if there is no conflict. NOTE: Skeletal meshes do not require sockets for attachment, but the socket name
 	can still be used for conflit resolution. */
 var() name SocketName;
+
+/** Mesh attachment name for 1p. */
+var() string MeshName1p;
+
+/** Socket name that the 1p mesh attaches to. If bIsSkeletalAttachment is true, then the mesh will be attached
+    to the ParentAnimComponent. */
+var() name SocketName1p;
 
 /** Distance at which the attachment will be hidden (distance culled). If 0, it is never culled */
 var() float MaxDrawDistance;

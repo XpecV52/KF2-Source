@@ -173,7 +173,7 @@ function bool CurrentPickupIsAmmo()
 	return false;
 }
 
-/** 
+/**
   * Make pickup mesh and associated effects hidden.
   */
 simulated function SetPickupHidden()
@@ -185,7 +185,7 @@ simulated function SetPickupHidden()
 	}
 }
 
-/** 
+/**
   * Make pickup mesh and associated effects visible.
   */
 simulated function SetPickupVisible()
@@ -194,6 +194,15 @@ simulated function SetPickupVisible()
 	if ( PickupMesh != None )
 	{
 		PickupMesh.SetBlockRigidBody(TRUE);
+	}
+}
+
+state Disabled
+{
+	simulated event EndState(Name NextStateName)
+	{
+		SetPickupVisible();
+		SetCollision(true, false);
 	}
 }
 

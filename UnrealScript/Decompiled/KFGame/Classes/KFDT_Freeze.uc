@@ -26,8 +26,7 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
     local KFPawn_Monster Zed;
     local KFGoreManager GoreManager;
     local float IceScalar;
-    local int MICIndex, I, J;
-    local MaterialInstanceConstant MIC;
+    local int MICIndex, I;
 
     IceScalar = 1;
     if(!bMaterialOnly)
@@ -81,22 +80,49 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
     {
         if(P.ThirdPersonAttachments[I] != none)
         {
-            J = 0;
-            J0x4F8:
-
-            if(J < P.ThirdPersonAttachments[I].Materials.Length)
-            {
-                MIC = MaterialInstanceConstant(P.ThirdPersonAttachments[I].GetMaterial(J));
-                if(MIC != none)
-                {
-                    MIC.SetScalarParameterValue('Scalar_Ice', IceScalar);
-                }
-                ++ J;
-                goto J0x4F8;
-            }
+            ApplyFreeze(P.ThirdPersonAttachments[I], IceScalar);
         }
         ++ I;
         goto J0x4AF;
+    }
+    if(KFPawn_Monster(P) != none)
+    {
+        I = 0;
+        J0x559:
+
+        if(I < KFPawn_Monster(P).StaticAttachList.Length)
+        {
+            if(KFPawn_Monster(P).StaticAttachList[I] != none)
+            {
+                ApplyFreeze(KFPawn_Monster(P).StaticAttachList[I], IceScalar);
+            }
+            ++ I;
+            goto J0x559;
+        }
+    }
+}
+
+static function ApplyFreeze(MeshComponent MeshToFreeze, float IceScalar)
+{
+    local int I;
+    local MaterialInstanceConstant MIC;
+
+    if(MeshToFreeze == none)
+    {
+        return;
+    }
+    I = 0;
+    J0x1C:
+
+    if(I < MeshToFreeze.Materials.Length)
+    {
+        MIC = MaterialInstanceConstant(MeshToFreeze.GetMaterial(I));
+        if(MIC != none)
+        {
+            MIC.SetScalarParameterValue('Scalar_Ice', IceScalar);
+        }
+        ++ I;
+        goto J0x1C;
     }
 }
 
@@ -104,5 +130,6 @@ defaultproperties
 {
     FrozenShatterTemplate=ParticleSystem'WEP_Freeze_Grenade_EMIT.FX_Freeze_Grenade_Death'
     ShatterSound=AkEvent'WW_WEP_Freeze_Grenade.Play_Freeze_Grenade_Shatter'
+    EffectGroup=EEffectDamageGroup.FXG_Freeze
     FreezePower=2.5
 }

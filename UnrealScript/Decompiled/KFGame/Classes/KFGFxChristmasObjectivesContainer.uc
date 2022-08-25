@@ -15,11 +15,11 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 defaultproperties
 {
     CurrentSpecialEventString="A time limited special event with exclusive items."
-    SpecialEventObjectiveInfoList(0)=(TitleString="Breaking and Entering",DescriptionString="Break Krampus's trinkets in Krampus Lair")
-    SpecialEventObjectiveInfoList(1)=(TitleString="Mincemeat",DescriptionString="Kill a Zed using the wood chipper in Krampus Lair")
-    SpecialEventObjectiveInfoList(2)=(TitleString="Stand Fast",DescriptionString="Complete the Stand Your Ground objective in Krampus Lair")
-    SpecialEventObjectiveInfoList(3)=(TitleString="Snow Prisons",DescriptionString="Find ten of the collectibles in Krampus Lair")
-    SpecialEventObjectiveInfoList(4)=(TitleString="And to All a Good Night",DescriptionString="Kill Krampus on Hard or higher Difficulty in Krampus Lair")
+    SpecialEventObjectiveInfoList(0)=(TitleString="Breaking and Entering",DescriptionString="Break Krampus's trinkets in Krampus Lair",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(1)=(TitleString="Mincemeat",DescriptionString="Kill a Zed using the wood chipper in Krampus Lair",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(2)=(TitleString="Stand Fast",DescriptionString="Complete the Stand Your Ground objective in Krampus Lair",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(3)=(TitleString="Snow Prisons",DescriptionString="Find ten of the collectibles in Krampus Lair",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(4)=(TitleString="And to All a Good Night",DescriptionString="Kill Krampus on Hard or higher Difficulty in Krampus Lair",TierEventRewardName="")
     ObjectiveIconURLs(0)="Xmas_UI.UI_Objectives_Xmas_Krampus"
     ObjectiveIconURLs(1)="Xmas_UI.UI_Objectives_Xmas_DeadElf"
     ObjectiveIconURLs(2)="Objectives_UI.UI_Objectives_Xmas_DefendObj"

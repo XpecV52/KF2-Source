@@ -342,7 +342,7 @@ ItemDescription="• Lance des projectiles explosifs inflammables. \n• Systèm
 [KFWeap_Pistol_DualFlare]
 ItemName="Duo cracheurs de feu"
 ItemCategory="Flammes"
-ItemDescription="• Lance des flammes et des projectiles enflammés. \n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Cracheurs de feu. Chaque arme peut être vendue ou jetée individuellement."
+ItemDescription="• Lance des projectiles explosifs inflammables. \n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Cracheurs de feu."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Trench Gun incendiaire"
@@ -397,7 +397,7 @@ ItemDescription="•Mode de tir semi-automatique seulement.\n•Le fameux Colt 1
 [KFWeap_Pistol_DualColt1911]
 ItemName="Double pistolet M1911"
 ItemCategory="Arme de poing"
-ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une belle paire de Colt 1911 semi-automatiques. Peut être vendu ou jeté individuellement."
+ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Colt 1911 semi-automatiques."
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
@@ -407,7 +407,7 @@ ItemDescription="•Mode de tir semi-automatique seulement.\n•Le Desert Eagle 
 [KFWeap_Pistol_DualDeagle]
 ItemName="Double Desert Eagle .50"
 ItemCategory="Arme de poing"
-ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une grosse paire de Desert Eagle. Peut être vendu ou jeté individuellement."
+ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Desert Eagle."
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
@@ -417,7 +417,7 @@ ItemDescription="•Mode de tir manuel seulement.\n•Un magnifique modèle de r
 [KFWeap_Revolver_DualRem1858]
 ItemName="Double revolver 1858"
 ItemCategory="Arme de poing"
-ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une belle paire de revolvers 1858. Peut être vendu ou jeté individuellement."
+ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de revolvers 1858."
 
 [KFWeap_Revolver_SW500]
 ItemName="Revolver .500 Magnum"
@@ -427,7 +427,7 @@ ItemDescription="•Mode de tir manuel seulement.\n•Véritable pièce d'artill
 [KFWeap_Revolver_DualSW500]
 ItemName="Double .500 Magnum"
 ItemCategory="Arme de poing"
-ItemDescription="•Mode de tir semi-automatique seulement.\n•Tir alternatif pour utiliser la mire.\n•Une sacrée paire de revolvers .500 Magnum Bone Collector. Peut être vendu ou jeté individuellement. Ils font des bons gros « pan »."
+ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de revolvers .500 Magnum Bone Collector."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -483,7 +483,7 @@ ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
 ItemCategory="Pistolet mitrailleur"
-ItemDescription="• Choix entre tir automatique ou semi-automatique.\n• Mode alternatif pour passer de l'un à l'autre\n• L'un des tout derniers membres de la famille des MP. Peut-être un oncle ? Les mitraillettes ont-elles une famille ?"
+ItemDescription="• Choix entre tir automatique ou tir en rafale.\n• Tir alternatif pour passer de l'un à l'autre.\n• L'un des tout derniers membres de la famille des MP. Peut-être un oncle ? Les mitraillettes ont-elles une famille ?"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="Lance-glace"
@@ -494,6 +494,26 @@ ItemDescription="• Tire un flux de particules zéro absolu.\n• Gèle absolum
 ItemName="Hemogoblin"
 ItemCategory="Fusil"
 ItemDescription="•Tire une seringue qui draine, ralentit et affaiblit les Zeds. \n•Le mode alternatif tire des fléchettes de guérison pour soigner les coéquipiers\n• Ne permet pas de perdre du poids."
+
+[KFWeap_HuskCannon]
+ItemName="Canon à Bogue"
+ItemCategory="Incendiaire"
+ItemDescription="• Se recharge lorsque vous appuyez sur le bouton de tir et se décharge lorsque vous le relâchez. \n• La version officielle du canon à Bogue signée Horzine. Ce modèle a 95 % de chance de ne pas exploser."
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="Arme de poing"
+ItemDescription="• Mode semi-automatique uniquement.\n• Dès qu'on rajoute des canons, tout s'améliore. Comme quand on ajoute du bacon."
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="Double AF2011-A2"
+ItemCategory="Arme de poing"
+ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Deux pistolets avec deux canons chacun. Quatre fois plus de puissance de tir. C'est mathématique. On ne discute pas avec les maths."
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="• Modes automatique et semi-automatique.\n• Tir alternatif pour passer d'un mode à l'autre.\n• Inclut des munitions incendiaires pour jouer avec le feu. Compris ? Jouer avec le feu ? Parce que c'est une mitraillette incendiaire ? Oh, laissez tomber."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="Survie VS"
 
 [KFGameInfo_WeeklySurvival]
 GameName="Épidémie hebdomadaire"
+
+[KFGameInfo_Endless]
+GameName="Infini"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Plus de soins disponibles"

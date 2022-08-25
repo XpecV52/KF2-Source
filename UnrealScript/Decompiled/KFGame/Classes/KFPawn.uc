@@ -295,6 +295,8 @@ var export editinline SkeletalMeshComponent ThirdPersonHeadMeshComponent;
 var int ThirdPersonAttachmentBitMask;
 var name ThirdPersonAttachmentSocketNames[3];
 var export editinline MeshComponent ThirdPersonAttachments[3];
+var name FirstPersonAttachmentSocketNames[3];
+var export editinline MeshComponent FirstPersonAttachments[3];
 var array<MaterialInstanceConstant> CharacterMICs;
 var globalconfig bool bAllowAlwaysOnPhysics;
 var const bool bIsGoreMesh;
@@ -345,6 +347,7 @@ var bool bLogTakeDamage;
 var bool bLogPhysicsBodyImpact;
 var bool bLogSpecialMove;
 var bool bLogCustomAnim;
+var repnotify bool bHasStartedFire;
 var transient float LastHeadShotReceivedTime;
 var() array<HitZoneInfo> HitZones;
 var transient float TimeOfDeath;
@@ -514,8 +517,8 @@ replication
         RepFireBurnedAmount, ReplicatedSpecialMove, 
         WeaponAttachmentTemplate, bEmpDisrupted, 
         bEmpPanicked, bFirePanicked, 
-        bIsSprinting, bMovesFastInZedTime, 
-        bUnaffectedByZedTime;
+        bHasStartedFire, bIsSprinting, 
+        bMovesFastInZedTime, bUnaffectedByZedTime;
 
      if(bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout)
         HitFxAddedHitCount, HitFxAddedRelativeLocs, 
@@ -665,6 +668,12 @@ simulated event ReplicatedEvent(name VarName)
             break;
         case 'IntendedHeadScale':
             SetHeadScale(IntendedHeadScale, CurrentHeadScale);
+            break;
+        case 'bHasStartedFire':
+            if(bHasStartedFire)
+            {
+                OnStartFire();
+            }
             break;
         default:
             break;
@@ -1126,6 +1135,8 @@ function AddDefaultInventory()
 
 simulated function SetFirstPersonVisibility(bool bWeaponVisible)
 {
+    local int AttachmentIdx;
+
     if((MyKFWeapon != none) && MyKFWeapon.Instigator == self)
     {
         MyKFWeapon.ChangeVisibility(bWeaponVisible);        
@@ -1135,6 +1146,18 @@ simulated function SetFirstPersonVisibility(bool bWeaponVisible)
         if(ArmsMesh != none)
         {
             ArmsMesh.SetHidden(!bWeaponVisible);
+            AttachmentIdx = 0;
+            J0xA6:
+
+            if(AttachmentIdx < 3)
+            {
+                if(FirstPersonAttachments[AttachmentIdx] != none)
+                {
+                    FirstPersonAttachments[AttachmentIdx].SetHidden(!bWeaponVisible);
+                }
+                ++ AttachmentIdx;
+                goto J0xA6;
+            }
         }
     }
 }
@@ -1167,6 +1190,19 @@ simulated function WeaponAttachmentChanged(optional bool bForceReattach)
                 WeaponAttachment.SetMeshLightingChannels(PawnLightingChannel);
             }
         }
+    }
+}
+
+simulated function OnStartFire()
+{
+    if(Role == ROLE_Authority)
+    {
+        bHasStartedFire = true;
+        bNetDirty = true;
+    }
+    if(WeaponAttachment != none)
+    {
+        WeaponAttachment.StartFire();
     }
 }
 
@@ -1629,6 +1665,18 @@ simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingC
     if(ArmsMesh != none)
     {
         ArmsMesh.SetLightingChannels(NewLightingChannels);
+        AttachmentIdx = 0;
+        J0x137:
+
+        if(AttachmentIdx < 3)
+        {
+            if(FirstPersonAttachments[AttachmentIdx] != none)
+            {
+                FirstPersonAttachments[AttachmentIdx].SetLightingChannels(NewLightingChannels);
+            }
+            ++ AttachmentIdx;
+            goto J0x137;
+        }
     }
     if(WeaponAttachment != none)
     {

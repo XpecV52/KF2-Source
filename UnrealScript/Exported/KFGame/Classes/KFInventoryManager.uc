@@ -782,7 +782,7 @@ simulated function SwitchToLastWeapon()
                 ++WeaponIndex;
             }
         }
-    }    
+    }
 }
 
 /**
@@ -1413,6 +1413,35 @@ simulated function bool QuickWeld()
 						return true;
 					}
 				}
+			}
+		}
+	}
+
+	return false;
+}
+
+/** Equip the welder immediately */
+simulated function bool DoshActivate()
+{
+	local KFInterface_Usable UsableTrigger;
+	local KFTrigger_DoshActivated DoshActivatedTrigger;
+	local KFPlayerController KFPC;
+
+	if (Instigator == none || Instigator.Owner == none)
+	{
+		return false;
+	}
+
+	KFPC = KFPlayerController(Instigator.Owner);
+	if (KFPC != none)
+	{
+		UsableTrigger = KFPC.GetCurrentUsableActor(Instigator);
+		if (UsableTrigger != none)
+		{
+			DoshActivatedTrigger = KFTrigger_DoshActivated(UsableTrigger);
+			if (DoshActivatedTrigger != none)
+			{
+				KFPC.Use();
 			}
 		}
 	}
@@ -2417,8 +2446,9 @@ simulated function int GetAdjustedSellPriceFor( const out STraderItem OwnedItem,
 	{
 		AdjustedSellPrice = OwnedItem.WeaponDef.default.BuyPrice * SellPriceModifier;
 	}
-	//no longer selling duals one by one. 
-	
+
+	//no longer selling duals one by one.
+
 	// if OwnedItem is a dual, set sell price to that of a single (because we sell one single and keep one single) Special case for 9mm
 	//if( OwnedItem.SingleClassName != '' )
 	if( OwnedItem.SingleClassName == 'KFWeap_Pistol_9mm')
@@ -2428,8 +2458,6 @@ simulated function int GetAdjustedSellPriceFor( const out STraderItem OwnedItem,
 		// but 9mm doesn't have a buy price at the moment
 		AdjustedSellPrice *= 0.5;
 	}
-
-	// add other adjustments here
 
 	return AdjustedSellPrice;
 }

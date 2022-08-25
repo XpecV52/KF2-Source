@@ -62,9 +62,9 @@ function RallyZeds()
 
 defaultproperties
 {
-    RallyAnims=Anims=/* Array type was not detected. */,
+    RallyAnims=Anims=/* Array type was not detected. */,Player_Taunt_V1=/* Unknown default property type! */,
 /* Exception thrown while deserializing RallyAnims
-System.ArgumentException: Requested value 'Player_Taunt_V2' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -75,8 +75,8 @@ System.ArgumentException: Requested value 'Player_Taunt_V2' was not found.
     RallyEffect=ParticleSystem'ZED_Clot_EMIT.FX_ClotA_Rage_01'
     AltRallyEffect=ParticleSystem'ZED_Clot_EMIT.FX_Player_Zed_Buff_01'
     RallyEffectBoneName=Root
-    AltRallyEffectBoneNames[0]=RightHand
-    AltRallyEffectBoneNames[1]=LeftHand
+    AltRallyEffectBoneNames[0]=FX_EYE_L
+    AltRallyEffectBoneNames[1]=FX_EYE_R
     RallyEffectOffset=(X=0,Y=0,Z=2)
     bUseRootMotion=true
     bDisableMovement=true

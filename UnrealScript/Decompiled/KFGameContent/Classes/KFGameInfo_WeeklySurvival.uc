@@ -9,237 +9,8 @@ class KFGameInfo_WeeklySurvival extends KFGameInfo_Survival
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
-enum BeefcakeType
-{
-    EBT_Damage,
-    EBT_Rally,
-    EBT_Scream,
-    EBT_StalkerPoison,
-    EBT_MAX
-};
-
-enum PickupResetTime
-{
-    PRS_Wave,
-    PRS_Trader,
-    PRS_WaveAndTrader,
-    PRS_Never,
-    PRS_MAX
-};
-
-struct SpawnReplacement
-{
-    /** Entry to replace, some form of AT_ */
-    var() int SpawnEntry;
-    /** Class to use instead of default */
-    var() class<KFPawn_Monster> NewClass;
-    /** Percent chance that the spawn will be replaced by NewClass */
-    var() float PercentChance;
-
-    structdefaultproperties
-    {
-        SpawnEntry=0
-        NewClass=none
-        PercentChance=1
-    }
-};
-
-struct WeeklyOverrides
-{
-    /** Difficulty to use for this event */
-    var() int EventDifficulty;
-    /** Length of game to use for this event */
-    var() int GameLength;
-    /** Only allow headshots */
-    var() bool bHeadshotsOnly;
-    /** Spawn rate multiplier.  Modifies how KFAISpawnManager runs logic */
-    var() float SpawnRateMultiplier;
-    /** How often global damage should occur (0 = Off) */
-    var() float GlobalDamageTickRate;
-    /** How much damage should be applied by global tick */
-    var() float GlobalDamageTickAmount;
-    /** How much the cost of ammo should be scaled (Default 1.0) */
-    var() float GlobalAmmoCostScale;
-    /**  
-     *If this array is not empty, modifies the pawn's DefaultInventory
-     *          array prior to calling in to P.AddDefaultInventory
-     */
-    var() KFGFxObject_TraderItems SpawnWeaponList;
-    /** If this array is not empty, modifies the trader's list of available weapons */
-    var() KFGFxObject_TraderItems TraderWeaponList;
-    /** Whether or not grenades are disabled at spawn and for purchase */
-    var() bool bDisableGrenades;
-    /** If this array is not empty, replaces AIClassList entries with a new spawn class */
-    var() array<SpawnReplacement> SpawnReplacementList;
-    /** Whether or not to use the spawn replacement list in the boss wave */
-    var() bool bAllowSpawnReplacementDuringBossWave;
-    /** If this array is not empty, replaces AIClassList entries with a new spawn class */
-    var() array<SpawnReplacement> BossSpawnReplacementList;
-    /** If this array is not empty, properties set in ZedsToAdjust are used in AdjustSpawnedAIPawn */
-    var() array<StatAdjustments> ZedsToAdjust;
-    /** Whether or not to skip opening of the trader */
-    var() bool bDisableTraders;
-    /** When to reset pickups */
-    var() KFGameInfo_WeeklySurvival.PickupResetTime PickupResetTime;
-    /** Override for the difficulty's item pickup modifier */
-    var() float OverrideItemPickupModifier<ClampMax=1.0>;
-    /** Overrride for the difficulty's ammo pickup modifier */
-    var() float OverrideAmmoPickupModifier<ClampMax=1.0>;
-    /** Overrides for the standard wave scale behavior of WaveNum / WaveMax */
-    var() array<float> WaveItemPickupModifiers;
-    /** Overrides for the standard wave scale behavior of WaveNum / WaveMax */
-    var() array<float> WaveAmmoPickupModifiers;
-    /** Whether or not to use the override item pickup timings */
-    var() bool bUseOverrideItemRespawnTime;
-    /** Override timings for item pickup respawn */
-    var() NumPlayerMods OverrideItemRespawnTime;
-    /** Whether or not to use the override ammo pickup timings */
-    var() bool bUseOverrideAmmoRespawnTime;
-    /** Override timings for ammo pickup respawn */
-    var() NumPlayerMods OverrideAmmoRespawnTime;
-    /** Permanent zed time */
-    var() bool bPermanentZedTime;
-    /** Amount of pawns at which zed time will turn off */
-    var() int PermanentZedTimeCutoff;
-    /** Amount of time between checks to stay in full slomo.  Note: Scaled by zed time dilation */
-    var() float PermanentZedResetTime;
-    /** Override time dilation for zed time */
-    var() float OverrideZedTimeSlomoScale;
-    /** Radius to use for kicking players out of partial zed time */
-    var() float ZedTimeRadius;
-    /** Radius to use specifically against bosses for partial zed time */
-    var() float ZedTimeBossRadius;
-    /** Height to use for kicking players out of partial zed time */
-    var() float ZedTimeHeight;
-    /** Whether or not to use size scale on damage */
-    var() bool bScaleOnHealth;
-    /** Starting size scale (typically should be 1.0) */
-    var() float StartingDamageSizeScale;
-    /** Damage size scale at 0 health */
-    var() float DeadDamageSizeScale;
-    /** Global Override Spawn Derate Time */
-    var() float OverrideSpawnDerateTime;
-    /** Global Override Teleport Derate Time */
-    var() float OverrideTeleportDerateTime;
-    /** Global gravity override */
-    var() float GlobalGravityZ;
-    /** Turn on beef cake mode. We're going full Cartman. Pawn scales up when doing damage or being rallied by an alpha. */
-    var() bool bUseBeefcakeRules;
-    /** Per-player count percent to scale amount of AI in the wave by */
-    var() array<float> WaveAICountScale;
-    /** Head size */
-    var() float ZedSpawnHeadScale;
-    /** Player head size */
-    var() float PlayerSpawnHeadScale;
-    /** Allow human sprinting */
-    var() bool bHumanSprintEnabled;
-    /** Cost scale for weapons not on the user's active perk */
-    var() float OffPerkCostScale;
-    /** Whether or not we should allow ground speed to become sprint if the melee backup is active */
-    var() bool bBackupMeleeSprintSpeed;
-    /** Additional wave info to use during boss phase */
-    var() KFAIWaveInfo AdditionalBossWaveInfo;
-    /** Frequency of additional wave spawn */
-    var() float AdditionalBossWaveFrequency;
-    /** Delay until first wave. This should never be 0, and likely never less than ~5 seconds, it can potentially never spawn boss if it is. */
-    var() float AdditionalBossWaveStartDelay;
-    /** 1 to max player count range of how many AI should spawn during the additional waves */
-    var() Vector2D AdditionalBossSpawnCount;
-    /** Whether or not to spawn a continuous wave type every x seconds, or a single spawn every x seconds */
-    var() bool bContinuousAdditionalBossWave;
-    /** Scale to use to increase or decrease crush damage */
-    var() float CrushScale;
-    /** Scale to increase or decrease damage while jumping */
-    var() float JumpDamageScale;
-    /** Amount of jumps the player can take */
-    var() int NumJumpsAllowed;
-    /** Whether to turn on inflation rules within KFPawn_Monster */
-    var() bool bUseZedDamageInflation;
-    /** Maximum pawn inflation (0 health) */
-    var() float ZeroHealthInflation;
-    /** Deflation Percent Per Second */
-    var() float GlobalDeflationRate;
-    /** Inflation death gravity */
-    var() float InflationDeathGravity;
-    /** Inflation explosion timer */
-    var() float InflationExplosionTimer;
-    /** Disable headless mode on a pawn */
-    var() bool bDisableHeadless;
-    /** Maximum level of perk allowed to be in use. -1 = all off, 4 = level 25 */
-    var() byte MaxPerkLevel;
-    /** Boom performance optimization - Max booms in one frame (avoids big Demo spikes) */
-    var() int MaxBoomsPerFrame;
-
-    structdefaultproperties
-    {
-        EventDifficulty=0
-        GameLength=0
-        bHeadshotsOnly=false
-        SpawnRateMultiplier=1
-        GlobalDamageTickRate=0
-        GlobalDamageTickAmount=0
-        GlobalAmmoCostScale=1
-        SpawnWeaponList=none
-        TraderWeaponList=none
-        bDisableGrenades=false
-        SpawnReplacementList=none
-        bAllowSpawnReplacementDuringBossWave=true
-        BossSpawnReplacementList=none
-        ZedsToAdjust=none
-        bDisableTraders=false
-        PickupResetTime=PickupResetTime.PRS_Wave
-        OverrideItemPickupModifier=-1
-        OverrideAmmoPickupModifier=-1
-        WaveItemPickupModifiers=none
-        WaveAmmoPickupModifiers=none
-        bUseOverrideItemRespawnTime=false
-        OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2)
-        bUseOverrideAmmoRespawnTime=false
-        OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2)
-        bPermanentZedTime=false
-        PermanentZedTimeCutoff=0
-        PermanentZedResetTime=1
-        OverrideZedTimeSlomoScale=0.2
-        ZedTimeRadius=0
-        ZedTimeBossRadius=0
-        ZedTimeHeight=0
-        bScaleOnHealth=false
-        StartingDamageSizeScale=1
-        DeadDamageSizeScale=0.1
-        OverrideSpawnDerateTime=-1
-        OverrideTeleportDerateTime=-1
-        GlobalGravityZ=-1150
-        bUseBeefcakeRules=false
-        WaveAICountScale=none
-        ZedSpawnHeadScale=1
-        PlayerSpawnHeadScale=1
-        bHumanSprintEnabled=true
-        OffPerkCostScale=1
-        bBackupMeleeSprintSpeed=false
-        AdditionalBossWaveInfo=none
-        AdditionalBossWaveFrequency=0
-        AdditionalBossWaveStartDelay=15
-        AdditionalBossSpawnCount=(X=0,Y=0)
-        bContinuousAdditionalBossWave=true
-        CrushScale=1
-        JumpDamageScale=1
-        NumJumpsAllowed=1
-        bUseZedDamageInflation=false
-        ZeroHealthInflation=1
-        GlobalDeflationRate=0.1
-        InflationDeathGravity=-0.1
-        InflationExplosionTimer=3
-        bDisableHeadless=false
-        MaxPerkLevel=4
-        MaxBoomsPerFrame=0
-    }
-};
-
-var array<WeeklyOverrides> SetEvents;
-var array<WeeklyOverrides> TestEvents;
-var WeeklyOverrides ActiveEvent;
-var int ActiveEventIdx;
 var int CurrentFrameBooms;
+var int ActiveEventIdx;
 
 static event class<GameInfo> SetGameType(string MapName, string Options, string Portal)
 {
@@ -270,46 +41,37 @@ event InitGame(string Options, out string ErrorMessage)
 {
     local KFGameEngine KGE;
 
+    super(KFGameInfo).InitGame(Options, ErrorMessage);
     KGE = KFGameEngine(Class'Engine'.static.GetEngine());
     if(KGE != none)
     {
-        ActiveEventIdx = KGE.GetWeeklyEventIndex() % SetEvents.Length;
+        ActiveEventIdx = KGE.GetWeeklyEventIndex() % OutbreakEvent.SetEvents.Length;
     }
-    ActiveEvent = SetEvents[ActiveEventIdx];
+    OutbreakEvent.SetActiveEvent(ActiveEventIdx);
     SetGameDifficulty();
     SetPickupItemList();
     SetZedTimeOverrides();
     SetSpawnPointOverrides();
-    SetWorldInfoOverrides();
-    super(KFGameInfo).InitGame(Options, ErrorMessage);
+    OutbreakEvent.SetWorldInfoOverrides();
     SetGameLength();
 }
 
 event PreBeginPlay()
 {
     super.PreBeginPlay();
-    if((GameReplicationInfo != none) && KFGameReplicationInfo(GameReplicationInfo) != none)
-    {
-        if(ActiveEvent.TraderWeaponList != none)
-        {
-            KFGameReplicationInfo(GameReplicationInfo).TraderItems = ActiveEvent.TraderWeaponList;
-        }
-        KFGameReplicationInfo(GameReplicationInfo).GameAmmoCostScale = ActiveEvent.GlobalAmmoCostScale;
-        KFGameReplicationInfo(GameReplicationInfo).bAllowGrenadePurchase = !ActiveEvent.bDisableGrenades;
-        KFGameReplicationInfo(GameReplicationInfo).bTradersEnabled = !ActiveEvent.bDisableTraders;
-        KFGameReplicationInfo(GameReplicationInfo).MaxPerkLevel = ActiveEvent.MaxPerkLevel;
-    }
+    OutbreakEvent.UpdateGRI();
 }
 
 function SetGameDifficulty()
 {
-    MinGameDifficulty = ActiveEvent.EventDifficulty;
-    MaxGameDifficulty = ActiveEvent.EventDifficulty;
+    MinGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
+    MaxGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
+    GameDifficulty = float(Clamp(int(GameDifficulty), MinGameDifficulty, MaxGameDifficulty));
 }
 
 function SetGameLength()
 {
-    GameLength = ActiveEvent.GameLength;
+    GameLength = OutbreakEvent.ActiveEvent.GameLength;
 }
 
 function SetPickupItemList()
@@ -318,14 +80,14 @@ function SetPickupItemList()
     local KFPickupFactory_Item ItemFactory;
     local int Idx;
 
-    if(ActiveEvent.TraderWeaponList != none)
+    if(OutbreakEvent.ActiveEvent.TraderWeaponList != none)
     {
         foreach AllActors(Class'KFPickupFactory_Item', ItemFactory)
         {
-            foreach ActiveEvent.TraderWeaponList.SaleItems(TraderItem,)
+            foreach OutbreakEvent.ActiveEvent.TraderWeaponList.SaleItems(TraderItem,)
             {
                 Idx = ItemFactory.ItemPickups.Length - 1;
-                J0xA6:
+                J0xD0:
 
                 if(Idx >= 0)
                 {
@@ -334,7 +96,7 @@ function SetPickupItemList()
                         ItemFactory.ItemPickups.Remove(Idx, 1;
                     }
                     -- Idx;
-                    goto J0xA6;
+                    goto J0xD0;
                 }                
             }                        
         }        
@@ -343,9 +105,9 @@ function SetPickupItemList()
 
 function SetZedTimeOverrides()
 {
-    if(ZedTimeSlomoScale != ActiveEvent.OverrideZedTimeSlomoScale)
+    if(ZedTimeSlomoScale != OutbreakEvent.ActiveEvent.OverrideZedTimeSlomoScale)
     {
-        ZedTimeSlomoScale = ActiveEvent.OverrideZedTimeSlomoScale;
+        ZedTimeSlomoScale = OutbreakEvent.ActiveEvent.OverrideZedTimeSlomoScale;
     }
 }
 
@@ -355,31 +117,22 @@ function SetSpawnPointOverrides()
 
     foreach WorldInfo.AllActors(Class'KFSpawnVolume', KFSV)
     {
-        if(ActiveEvent.OverrideSpawnDerateTime >= 0)
+        if(OutbreakEvent.ActiveEvent.OverrideSpawnDerateTime >= 0)
         {
-            KFSV.SpawnDerateTime = ActiveEvent.OverrideSpawnDerateTime;
+            KFSV.SpawnDerateTime = OutbreakEvent.ActiveEvent.OverrideSpawnDerateTime;
         }
-        if(ActiveEvent.OverrideTeleportDerateTime >= 0)
+        if(OutbreakEvent.ActiveEvent.OverrideTeleportDerateTime >= 0)
         {
-            KFSV.TeleportDerateTime = ActiveEvent.OverrideTeleportDerateTime;
+            KFSV.TeleportDerateTime = OutbreakEvent.ActiveEvent.OverrideTeleportDerateTime;
         }        
     }    
-}
-
-function SetWorldInfoOverrides()
-{
-    if(WorldInfo != none)
-    {
-        WorldInfo.GlobalGravityZ = ActiveEvent.GlobalGravityZ;
-        WorldInfo.WorldGravityZ = WorldInfo.GlobalGravityZ;
-    }
 }
 
 function SetPermanentZedTime()
 {
     local KFPlayerController KFPC;
 
-    if(ActiveEvent.bPermanentZedTime)
+    if(OutbreakEvent.ActiveEvent.bPermanentZedTime)
     {
         ZedTimeRemaining = 999999;
         bZedTimeBlendingOut = false;
@@ -418,22 +171,22 @@ function ResetPermanentZed()
 function StartMatch()
 {
     super.StartMatch();
-    if((ActiveEvent.GlobalDamageTickRate > 0) && ActiveEvent.GlobalDamageTickAmount > 0)
+    if((OutbreakEvent.ActiveEvent.GlobalDamageTickRate > 0) && OutbreakEvent.ActiveEvent.GlobalDamageTickAmount > 0)
     {
-        SetTimer(ActiveEvent.GlobalDamageTickRate, true, 'ApplyGlobalDamage');
+        SetTimer(OutbreakEvent.ActiveEvent.GlobalDamageTickRate, true, 'ApplyGlobalDamage', OutbreakEvent);
     }
 }
 
 function CreateDifficultyInfo(string Options)
 {
     super(KFGameInfo).CreateDifficultyInfo(Options);
-    if(ActiveEvent.bUseOverrideItemRespawnTime)
+    if(OutbreakEvent.ActiveEvent.bUseOverrideItemRespawnTime)
     {
-        DifficultyInfo.NumPlayers_WeaponPickupRespawnTime = ActiveEvent.OverrideItemRespawnTime;
+        DifficultyInfo.NumPlayers_WeaponPickupRespawnTime = OutbreakEvent.ActiveEvent.OverrideItemRespawnTime;
     }
-    if(ActiveEvent.bUseOverrideAmmoRespawnTime)
+    if(OutbreakEvent.ActiveEvent.bUseOverrideAmmoRespawnTime)
     {
-        DifficultyInfo.NumPlayers_AmmoPickupRespawnTime = ActiveEvent.OverrideAmmoRespawnTime;
+        DifficultyInfo.NumPlayers_AmmoPickupRespawnTime = OutbreakEvent.ActiveEvent.OverrideAmmoRespawnTime;
     }
 }
 
@@ -446,15 +199,15 @@ event PostLogin(PlayerController NewPlayer)
     KFPC = KFPlayerController_WeeklySurvival(NewPlayer);
     if(KFPC != none)
     {
-        KFPC.bUsingPermanentZedTime = ActiveEvent.bPermanentZedTime;
-        KFPC.ZedTimeRadius = ActiveEvent.ZedTimeRadius * ActiveEvent.ZedTimeRadius;
-        KFPC.ZedTimeBossRadius = ActiveEvent.ZedTimeBossRadius * ActiveEvent.ZedTimeBossRadius;
-        KFPC.ZedTimeHeight = ActiveEvent.ZedTimeHeight;
-        KFPC.ZedRecheckTime = ActiveEvent.PermanentZedResetTime;
+        KFPC.bUsingPermanentZedTime = OutbreakEvent.ActiveEvent.bPermanentZedTime;
+        KFPC.ZedTimeRadius = OutbreakEvent.ActiveEvent.ZedTimeRadius * OutbreakEvent.ActiveEvent.ZedTimeRadius;
+        KFPC.ZedTimeBossRadius = OutbreakEvent.ActiveEvent.ZedTimeBossRadius * OutbreakEvent.ActiveEvent.ZedTimeBossRadius;
+        KFPC.ZedTimeHeight = OutbreakEvent.ActiveEvent.ZedTimeHeight;
+        KFPC.ZedRecheckTime = OutbreakEvent.ActiveEvent.PermanentZedResetTime;
         KFCustomizePawn = KFPawn_Customization(KFPC.Pawn);
         if(KFCustomizePawn != none)
         {
-            KFCustomizePawn.IntendedHeadScale = ActiveEvent.PlayerSpawnHeadScale;
+            KFCustomizePawn.IntendedHeadScale = OutbreakEvent.ActiveEvent.PlayerSpawnHeadScale;
             KFCustomizePawn.SetHeadScale(KFCustomizePawn.IntendedHeadScale, KFCustomizePawn.CurrentHeadScale);
         }
     }
@@ -466,7 +219,7 @@ function SetBossIndex()
     local int ReplaceIdx;
 
     BossIndex = Rand(default.AIBossClassList.Length);
-    foreach ActiveEvent.BossSpawnReplacementList(Replacement,)
+    foreach OutbreakEvent.ActiveEvent.BossSpawnReplacementList(Replacement,)
     {
         if(Replacement.SpawnEntry == BossIndex)
         {
@@ -474,11 +227,11 @@ function SetBossIndex()
             if(ReplaceIdx != -1)
             {
                 BossIndex = ReplaceIdx;
-                goto J0xC7;
+                goto J0xDC;
             }
         }        
     }
-    J0xC7:
+    J0xDC:
     
     MyKFGRI.CacheSelectedBoss(BossIndex);
 }
@@ -492,9 +245,9 @@ function Tick(float DeltaTime)
 function TickZedTime(float DeltaTime)
 {
     super(KFGameInfo).TickZedTime(DeltaTime);
-    if(ActiveEvent.bPermanentZedTime && IsWaveActive())
+    if(OutbreakEvent.ActiveEvent.bPermanentZedTime && IsWaveActive())
     {
-        if((MyKFGRI.AIRemaining > ActiveEvent.PermanentZedTimeCutoff) || WaveNum == WaveMax)
+        if((MyKFGRI.AIRemaining > OutbreakEvent.ActiveEvent.PermanentZedTimeCutoff) || WaveNum == WaveMax)
         {
             ZedTimeRemaining = 999999;            
         }
@@ -512,7 +265,7 @@ function TickZedTime(float DeltaTime)
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
     super.WaveEnded(WinCondition);
-    if(ActiveEvent.bPermanentZedTime && ZedTimeRemaining > ZedTimeBlendOutTime)
+    if(OutbreakEvent.ActiveEvent.bPermanentZedTime && ZedTimeRemaining > ZedTimeBlendOutTime)
     {
         ClearZedTimePCTimers();
         ZedTimeRemaining = ZedTimeBlendOutTime;
@@ -545,26 +298,8 @@ function EndOfMatch(bool bVictory)
 
 function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed)
 {
-    local KFWeapon KFW;
-    local KFInventoryManager KFIM;
-
     super(KFGameInfo).ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-    if(ActiveEvent.bBackupMeleeSprintSpeed)
-    {
-        KFW = KFWeapon(PlayerPawn.Weapon);
-        if(KFW == none)
-        {
-            KFIM = KFInventoryManager(PlayerPawn.InvManager);
-            if((KFIM != none) && KFIM.PendingWeapon != none)
-            {
-                KFW = KFWeapon(KFIM.PendingWeapon);
-            }
-        }
-        if(((KFW != none) && KFW.IsMeleeWeapon()) && KFW.bIsBackupWeapon)
-        {
-            GroundSpeed = PlayerPawn.default.SprintSpeed;
-        }
-    }
+    OutbreakEvent.ModifyGroundSpeed(PlayerPawn, GroundSpeed);
 }
 
 function float GetTotalWaveCountScale()
@@ -573,9 +308,9 @@ function float GetTotalWaveCountScale()
     {
         return 1;
     }
-    if(ActiveEvent.WaveAICountScale.Length > 0)
+    if(OutbreakEvent.ActiveEvent.WaveAICountScale.Length > 0)
     {
-        return (((GetLivingPlayerCount()) > ActiveEvent.WaveAICountScale.Length) ? ActiveEvent.WaveAICountScale[ActiveEvent.WaveAICountScale.Length - 1] : ActiveEvent.WaveAICountScale[(GetLivingPlayerCount()) - 1]);
+        return (((GetLivingPlayerCount()) > OutbreakEvent.ActiveEvent.WaveAICountScale.Length) ? OutbreakEvent.ActiveEvent.WaveAICountScale[OutbreakEvent.ActiveEvent.WaveAICountScale.Length - 1] : OutbreakEvent.ActiveEvent.WaveAICountScale[(GetLivingPlayerCount()) - 1]);
     }
     return 1;
 }
@@ -583,7 +318,7 @@ function float GetTotalWaveCountScale()
 function StartWave()
 {
     super.StartWave();
-    if(ActiveEvent.bPermanentZedTime)
+    if(OutbreakEvent.ActiveEvent.bPermanentZedTime)
     {
         if(WaveNum == WaveMax)
         {
@@ -594,9 +329,9 @@ function StartWave()
             SetPermanentZedTime();
         }
     }
-    if((ActiveEvent.AdditionalBossWaveInfo != none) && WaveNum == WaveMax)
+    if((OutbreakEvent.ActiveEvent.AdditionalBossWaveInfo != none) && WaveNum == WaveMax)
     {
-        SetTimer(ActiveEvent.AdditionalBossWaveStartDelay, true, 'SpawnBossWave');
+        SetTimer(OutbreakEvent.ActiveEvent.AdditionalBossWaveStartDelay, true, 'SpawnBossWave');
     }
 }
 
@@ -626,9 +361,9 @@ function BossCameraZedTimeRecheck()
 
 function SpawnBossWave()
 {
-    SetTimer(ActiveEvent.AdditionalBossWaveFrequency, false, 'SpawnBossWave');
-    SpawnManager.SummonBossMinions(ActiveEvent.AdditionalBossWaveInfo.Squads, GetAdditionalBossSpawns());
-    if(!ActiveEvent.bContinuousAdditionalBossWave)
+    SetTimer(OutbreakEvent.ActiveEvent.AdditionalBossWaveFrequency, false, 'SpawnBossWave');
+    SpawnManager.SummonBossMinions(OutbreakEvent.ActiveEvent.AdditionalBossWaveInfo.Squads, GetAdditionalBossSpawns());
+    if(!OutbreakEvent.ActiveEvent.bContinuousAdditionalBossWave)
     {
         SetTimer(2, false, 'PauseAdditionalBossWaves');
     }
@@ -641,17 +376,17 @@ function PauseAdditionalBossWaves()
 
 function byte GetAdditionalBossSpawns()
 {
-    return byte(Lerp(ActiveEvent.AdditionalBossSpawnCount.X, ActiveEvent.AdditionalBossSpawnCount.Y, FMax(float(NumPlayers), 1) / float(MaxPlayers)));
+    return byte(Lerp(OutbreakEvent.ActiveEvent.AdditionalBossSpawnCount.X, OutbreakEvent.ActiveEvent.AdditionalBossSpawnCount.Y, FMax(float(NumPlayers), 1) / float(MaxPlayers)));
 }
 
 function OpenTrader()
 {
-    if(ActiveEvent.bPermanentZedTime && ZedTimeRemaining > ZedTimeBlendOutTime)
+    if(OutbreakEvent.ActiveEvent.bPermanentZedTime && ZedTimeRemaining > ZedTimeBlendOutTime)
     {
         ClearZedTimePCTimers();
         ZedTimeRemaining = ZedTimeBlendOutTime;
     }
-    if(!ActiveEvent.bDisableTraders)
+    if(!OutbreakEvent.ActiveEvent.bDisableTraders)
     {
         super.OpenTrader();        
     }
@@ -666,7 +401,7 @@ function OpenTrader()
 
 function SetupNextTrader()
 {
-    if(!ActiveEvent.bDisableTraders)
+    if(!OutbreakEvent.ActiveEvent.bDisableTraders)
     {
         super.SetupNextTrader();
     }
@@ -675,10 +410,10 @@ function SetupNextTrader()
 function InitAllPickups()
 {
     super(KFGameInfo).InitAllPickups();
-    if((ActiveEvent.OverrideItemPickupModifier >= 0) || ActiveEvent.OverrideAmmoPickupModifier >= 0)
+    if((OutbreakEvent.ActiveEvent.OverrideItemPickupModifier >= 0) || OutbreakEvent.ActiveEvent.OverrideAmmoPickupModifier >= 0)
     {
-        NumWeaponPickups = byte(float(ItemPickups.Length) * ((ActiveEvent.OverrideItemPickupModifier >= 0) ? ActiveEvent.OverrideItemPickupModifier : DifficultyInfo.GetItemPickupModifier()));
-        NumAmmoPickups = byte(float(AmmoPickups.Length) * ((ActiveEvent.OverrideAmmoPickupModifier >= 0) ? ActiveEvent.OverrideAmmoPickupModifier : DifficultyInfo.GetAmmoPickupModifier()));
+        NumWeaponPickups = byte(float(ItemPickups.Length) * ((OutbreakEvent.ActiveEvent.OverrideItemPickupModifier >= 0) ? OutbreakEvent.ActiveEvent.OverrideItemPickupModifier : DifficultyInfo.GetItemPickupModifier()));
+        NumAmmoPickups = byte(float(AmmoPickups.Length) * ((OutbreakEvent.ActiveEvent.OverrideAmmoPickupModifier >= 0) ? OutbreakEvent.ActiveEvent.OverrideAmmoPickupModifier : DifficultyInfo.GetAmmoPickupModifier()));
         if(BaseMutator != none)
         {
             BaseMutator.ModifyPickupFactories();
@@ -692,7 +427,7 @@ function ResetAllPickups()
     local bool bCallReset;
 
     bCallReset = false;
-    switch(ActiveEvent.PickupResetTime)
+    switch(OutbreakEvent.ActiveEvent.PickupResetTime)
     {
         case 0:
             bCallReset = IsWaveActive();
@@ -717,16 +452,16 @@ function ResetAllPickups()
 
 function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
 {
-    if((ActiveEvent.WaveAmmoPickupModifiers.Length >= WaveMax) && KFPickupFactory_Ammo(PickupList[0]) != none)
+    if((OutbreakEvent.ActiveEvent.WaveAmmoPickupModifiers.Length >= WaveMax) && KFPickupFactory_Ammo(PickupList[0]) != none)
     {
-        NumPickups *= ActiveEvent.WaveAmmoPickupModifiers[WaveNum];
+        NumPickups *= OutbreakEvent.ActiveEvent.WaveAmmoPickupModifiers[WaveNum];
         super(KFGameInfo).ResetPickups(PickupList, NumPickups);        
     }
     else
     {
-        if((ActiveEvent.WaveItemPickupModifiers.Length >= WaveMax) && KFPickupFactory_Item(PickupList[0]) != none)
+        if((OutbreakEvent.ActiveEvent.WaveItemPickupModifiers.Length >= WaveMax) && KFPickupFactory_Item(PickupList[0]) != none)
         {
-            NumPickups *= ActiveEvent.WaveItemPickupModifiers[WaveNum];
+            NumPickups *= OutbreakEvent.ActiveEvent.WaveItemPickupModifiers[WaveNum];
             super(KFGameInfo).ResetPickups(PickupList, NumPickups);            
         }
         else
@@ -738,99 +473,31 @@ function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
 
 function class<KFPawn_Monster> GetAISpawnType(KFGame.KFAISpawnManager.EAIType AIType)
 {
-    local SpawnReplacement Replacement;
-    local float RandF;
-
-    if((WaveNum < WaveMax) || ActiveEvent.bAllowSpawnReplacementDuringBossWave)
+    if((WaveNum < WaveMax) || OutbreakEvent.ActiveEvent.bAllowSpawnReplacementDuringBossWave)
     {
-        foreach ActiveEvent.SpawnReplacementList(Replacement,)
-        {
-            if(Replacement.SpawnEntry == AIType)
-            {
-                if(Replacement.PercentChance < 1)
-                {
-                    RandF = FRand();
-                    if(RandF > Replacement.PercentChance)
-                    {
-                        continue;
-                        goto J0x110;
-                    }
-                }                
-                return Replacement.NewClass;
-            }            
-        }
-        J0x110:
-        
+        return OutbreakEvent.GetAISpawnOverrirde(AIType);
     }
     return AIClassList[AIType];
 }
 
 function SetMonsterDefaults(KFPawn_Monster P)
 {
-    local StatAdjustments ToAdjust;
-
     super(KFGameInfo).SetMonsterDefaults(P);
-    if(P == none)
-    {
-        return;
-    }
-    P.IntendedHeadScale = ActiveEvent.ZedSpawnHeadScale;
-    P.SetHeadScale(P.IntendedHeadScale, P.CurrentHeadScale);
-    P.CrushScale = ActiveEvent.CrushScale;
-    P.bDisableHeadless = ActiveEvent.bDisableHeadless;
-    if(ActiveEvent.bUseZedDamageInflation)
-    {
-        P.bUseDamageInflation = true;
-        P.ZeroHealthInflation = ActiveEvent.ZeroHealthInflation;
-        P.DamageDeflationRate = ActiveEvent.GlobalDeflationRate;
-        P.bDisableGoreMeshWhileAlive = true;
-        P.InflationExplosionTimer = ActiveEvent.InflationExplosionTimer;
-        P.InflateDeathGravity = ActiveEvent.InflationDeathGravity;
-    }
-    foreach ActiveEvent.ZedsToAdjust(ToAdjust,)
-    {
-        if(ClassIsChildOf(P.Class, ToAdjust.ClassToAdjust))
-        {
-            P.Health *= ToAdjust.HealthScale;
-            P.HealthMax *= ToAdjust.HealthScale;
-            P.HitZones[0].GoreHealth *= ToAdjust.HeadHealthScale;
-            P.HitZones[0].MaxGoreHealth = P.HitZones[0].GoreHealth;
-            P.SetShieldScale(ToAdjust.ShieldScale);
-            if(ToAdjust.bStartEnraged)
-            {
-                if((KFAIController(P.Controller) == none) || !KFAIController(P.Controller).SpawnEnraged())
-                {
-                    P.SetEnraged(true);
-                }
-            }
-            if(ToAdjust.bExplosiveDeath && ToAdjust.ExplosionTemplate != none)
-            {
-                P.bUseExplosiveDeath = true;
-            }
-            if(ActiveEvent.bUseZedDamageInflation && (ToAdjust.OverrideDeflationRate.X > 0) || ToAdjust.OverrideDeflationRate.Y > 0)
-            {
-                P.DamageDeflationRate = Lerp(ToAdjust.OverrideDeflationRate.X, ToAdjust.OverrideDeflationRate.Y, FMax(float(NumPlayers), 1) / float(MaxPlayers));
-            }
-            if(ToAdjust.AdditionalSubSpawns != none)
-            {
-                SpawnManager.SummonBossMinions(ToAdjust.AdditionalSubSpawns.Squads, int(Lerp(ToAdjust.AdditionalSubSpawnCount.X, ToAdjust.AdditionalSubSpawnCount.Y, FMax(float(NumPlayers), 1) / float(MaxPlayers))));
-            }
-        }        
-    }    
+    OutbreakEvent.AdjustMonsterDefaults(P);
 }
 
 function float GetGameInfoSpawnRateMod()
 {
-    return 1 / ActiveEvent.SpawnRateMultiplier;
+    return 1 / OutbreakEvent.ActiveEvent.SpawnRateMultiplier;
 }
 
 function bool AllowPrimaryWeapon(string ClassPath)
 {
     local STraderItem Item;
 
-    if(ActiveEvent.SpawnWeaponList != none)
+    if(OutbreakEvent.ActiveEvent.SpawnWeaponList != none)
     {
-        foreach ActiveEvent.SpawnWeaponList.SaleItems(Item,)
+        foreach OutbreakEvent.ActiveEvent.SpawnWeaponList.SaleItems(Item,)
         {
             if(Item.ClassName == name(ClassPath))
             {                
@@ -844,7 +511,7 @@ function bool AllowPrimaryWeapon(string ClassPath)
 
 function int AdjustStartingGrenadeCount(int CurrentCount)
 {
-    if(ActiveEvent.bDisableGrenades)
+    if(OutbreakEvent.ActiveEvent.bDisableGrenades)
     {
         return 0;
     }
@@ -854,102 +521,60 @@ function int AdjustStartingGrenadeCount(int CurrentCount)
 function RestartPlayer(Controller NewPlayer)
 {
     local KFPawn_Human KFPH;
-    local KFInventoryManager KFIM;
 
     super.RestartPlayer(NewPlayer);
     KFPH = KFPawn_Human(NewPlayer.Pawn);
-    if(KFPH != none)
-    {
-        KFPH.bAllowSprinting = ActiveEvent.bHumanSprintEnabled;
-        KFPH.NumJumpsAllowed = ActiveEvent.NumJumpsAllowed;
-        KFPH.IntendedHeadScale = ActiveEvent.PlayerSpawnHeadScale;
-        KFPH.SetHeadScale(KFPH.IntendedHeadScale, KFPH.CurrentHeadScale);
-        KFPH.bDisableTraderDialog = ActiveEvent.bDisableTraders;
-        KFIM = KFInventoryManager(KFPH.InvManager);
-        if(KFIM != none)
-        {
-            KFIM.OffPerkCostScale = ActiveEvent.OffPerkCostScale;
-        }
-    }
+    OutbreakEvent.AdjustRestartedPlayer(KFPH);
 }
 
 function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType)
 {
     super(KFGameInfo).ScoreDamage(DamageAmount, HealthBeforeDamage, InstigatedBy, DamagedPawn, DamageType);
-    if(ActiveEvent.bScaleOnHealth)
-    {
-        AdjustPawnScale(DamagedPawn);
-    }
-    if(ActiveEvent.bUseBeefcakeRules)
-    {
-        if(InstigatedBy != none)
-        {
-            AdjustForBeefcakeRules(InstigatedBy.Pawn);
-        }
-        if((DamagedPawn != none) && DamageType == Class'KFDT_Toxic_PlayerCrawlerSuicide')
-        {
-            AdjustForBeefcakeRules(DamagedPawn, 3);
-        }
-    }
+    OutbreakEvent.AdjustScoreDamage(InstigatedBy, DamagedPawn, DamageType);
 }
 
 function ScoreHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn, class<DamageType> DamageType)
 {
     super(GameInfo).ScoreHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn, DamageType);
-    if(ActiveEvent.bScaleOnHealth)
+    if(OutbreakEvent.ActiveEvent.bScaleOnHealth)
     {
-        AdjustPawnScale(HealedPawn);
+        OutbreakEvent.AdjustPawnScale(HealedPawn);
     }
 }
 
 function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn)
 {
     super(KFGameInfo).PassiveHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn);
-    if(ActiveEvent.bScaleOnHealth)
+    if(OutbreakEvent.ActiveEvent.bScaleOnHealth)
     {
-        AdjustPawnScale(HealedPawn);
+        OutbreakEvent.AdjustPawnScale(HealedPawn);
     }
 }
 
 function ScoreKill(Controller Killer, Controller Other)
 {
-    local StatAdjustments ToAdjust;
-
     super(KFGameInfo).ScoreKill(Killer, Other);
     if(((Role == ROLE_Authority) && Other != none) && Other.Pawn != none)
     {
-        foreach ActiveEvent.ZedsToAdjust(ToAdjust,)
-        {
-            if(ClassIsChildOf(Other.Pawn.Class, ToAdjust.ClassToAdjust))
-            {
-                if(ToAdjust.bExplosiveDeath && ToAdjust.ExplosionTemplate != none)
-                {
-                    if((KFPawn(Other.Pawn) != none) && !KFPawn(Other.Pawn).WeeklyShouldExplodeOnDeath())
-                    {                        
-                        return;
-                    }
-                    DoDeathExplosion(Other.Pawn, ToAdjust.ExplosionTemplate, ToAdjust.ExplosionIgnoreClass);
-                }
-            }            
-        }        
+        OutbreakEvent.OnScoreKill(Other.Pawn);
     }
 }
 
 function NotifyRally(KFPawn RalliedPawn)
 {
     super(KFGameInfo).NotifyRally(RalliedPawn);
-    if(ActiveEvent.bUseBeefcakeRules)
+    if(OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
     {
-        AdjustForBeefcakeRules(RalliedPawn, 1);
+        OutbreakEvent.AdjustForBeefcakeRules(RalliedPawn, 1);
     }
 }
 
 function NotifyIgnoredScream(KFPawn ScreamPawn)
 {
     super(KFGameInfo).NotifyIgnoredScream(ScreamPawn);
-    if(ActiveEvent.bUseBeefcakeRules)
+    if(OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
     {
-        AdjustForBeefcakeRules(ScreamPawn, 2);
+        OutbreakEvent.AdjustForBeefcakeRules(ScreamPawn, 2);
     }
 }
 
@@ -957,7 +582,7 @@ function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, clas
 {
     local KFExplosionActorReplicated ExploActor;
 
-    if(CurrentFrameBooms < ActiveEvent.MaxBoomsPerFrame)
+    if(CurrentFrameBooms < OutbreakEvent.ActiveEvent.MaxBoomsPerFrame)
     {
         ExploActor = Spawn(Class'KFExplosionActorReplicated', DeadPawn,, DeadPawn.Location);
         if(ExploActor != none)
@@ -972,127 +597,10 @@ function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, clas
     }
 }
 
-function AdjustPawnScale(Pawn Pawn)
-{
-    local float ScalePercent;
-    local KFPawn_Monster MonsterPawn;
-    local KFPawn_Human HumanPawn;
-    local int CurrentHealth;
-
-    MonsterPawn = KFPawn_Monster(Pawn);
-    HumanPawn = KFPawn_Human(Pawn);
-    CurrentHealth = Max(Pawn.Health, 0);
-    if(ActiveEvent.bScaleOnHealth)
-    {
-        if(MonsterPawn != none)
-        {
-            ScalePercent = ActiveEvent.StartingDamageSizeScale - ((ActiveEvent.StartingDamageSizeScale - ActiveEvent.DeadDamageSizeScale) * (float(1) - (float(CurrentHealth) / float(Pawn.HealthMax))));
-            MonsterPawn.IntendedBodyScale = ScalePercent;            
-        }
-        else
-        {
-            if(HumanPawn != none)
-            {
-                if(CurrentHealth > 100)
-                {
-                    ScalePercent = ActiveEvent.StartingDamageSizeScale;                    
-                }
-                else
-                {
-                    ScalePercent = ActiveEvent.StartingDamageSizeScale - ((ActiveEvent.StartingDamageSizeScale - ActiveEvent.DeadDamageSizeScale) * (float(1) - (float(CurrentHealth) / 100)));
-                }
-                HumanPawn.IntendedBodyScale = ScalePercent;
-            }
-        }
-    }
-}
-
-function AdjustForBeefcakeRules(Pawn Pawn, optional KFGameInfo_WeeklySurvival.BeefcakeType Type)
-{
-    local float CurrentScale, PercentIncrease;
-    local KFPawn_Monster KFP;
-    local StatAdjustments StatAdjust;
-    local float IntendedHeadScaling, OldHealthMax;
-
-    Type = 0;
-    KFP = KFPawn_Monster(Pawn);
-    if(KFP != none)
-    {
-        foreach ActiveEvent.ZedsToAdjust(StatAdjust,)
-        {
-            if(ClassIsChildOf(Pawn.Class, StatAdjust.ClassToAdjust) && !KFP.IsABoss())
-            {
-                CurrentScale = KFP.IntendedBodyScale;
-                CurrentScale += StatAdjust.BeefcakeScaleIncreases[Type];
-                CurrentScale = FMin(CurrentScale, StatAdjust.MaxBeefcake);
-                KFP.IntendedBodyScale = CurrentScale;
-                if(StatAdjust.BeefcakeHealthIncreases[Type] > 0)
-                {
-                    PercentIncrease = StatAdjust.BeefcakeHealthIncreases[Type];
-                    OldHealthMax = float(KFP.HealthMax);
-                    KFP.HealthMax += int(float(KFP.default.Health) * PercentIncrease);
-                    KFP.HealthMax = Min(int(float(KFP.default.Health) * StatAdjust.MaxBeefcakeHealth), KFP.HealthMax);
-                    if(OldHealthMax < float(KFP.HealthMax))
-                    {
-                        KFP.Health += int(float(KFP.default.Health) * PercentIncrease);
-                        KFP.Health = Min(KFP.Health, KFP.HealthMax);
-                    }
-                }
-                IntendedHeadScaling = 1 / CurrentScale;
-                KFP.IntendedHeadScale = IntendedHeadScaling;
-                KFP.SetHeadScale(IntendedHeadScaling, KFP.CurrentHeadScale);
-            }            
-        }        
-    }
-}
-
 function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
 {
-    local int HitZoneIdx;
-    local KFPawn InstigatorPawn;
-    local StatAdjustments ToAdjust;
-
     super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
-    if((ActiveEvent.bHeadshotsOnly && KFPawn_Monster(injured) != none) && ClassIsChildOf(DamageType, Class'KFDamageType'))
-    {
-        HitZoneIdx = KFPawn_Monster(injured).HitZones.Find('ZoneName', HitInfo.BoneName;
-        if(HitZoneIdx != 0)
-        {
-            Damage = 0;
-        }
-    }
-    if(InstigatedBy != none)
-    {
-        InstigatorPawn = KFPawn(InstigatedBy.Pawn);
-        if(InstigatorPawn != none)
-        {
-            if((ActiveEvent.JumpDamageScale != 1) && InstigatorPawn.bJumping)
-            {
-                Damage *= ActiveEvent.JumpDamageScale;
-            }
-        }
-    }
-    foreach ActiveEvent.ZedsToAdjust(ToAdjust,)
-    {
-        if(ClassIsChildOf(injured.Class, ToAdjust.ClassToAdjust))
-        {
-            Damage *= ToAdjust.DamageTakenScale;
-        }
-        if((InstigatorPawn != none) && ClassIsChildOf(InstigatorPawn.Class, ToAdjust.ClassToAdjust))
-        {
-            Damage *= ToAdjust.DamageDealtScale;
-        }        
-    }    
-}
-
-function ApplyGlobalDamage()
-{
-    local KFPawn_Human Pawn;
-
-    foreach WorldInfo.AllPawns(Class'KFPawn_Human', Pawn)
-    {
-        Pawn.TakeDamage(int(ActiveEvent.GlobalDamageTickAmount), none, Pawn.Location, vect(0, 0, 0), Class'DmgType_Crushed');        
-    }    
+    OutbreakEvent.ReduceDamage(Damage, injured, InstigatedBy, DamageType, HitInfo);
 }
 
 state TraderOpen
@@ -1107,127 +615,7 @@ state TraderOpen
 
 defaultproperties
 {
-    SetEvents(0)=(EventDifficulty=1,GameLength=1,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=((ClassToAdjust=Class'KFPawn_ZedClot_Cyst',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Alpha',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_AlphaKing',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Slasher',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloat',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedCrawler',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedCrawlerKing',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedGorefast',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedGorefastDualBlade',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHans',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloatKing',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloatKingSubspawn',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedPatriarch',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpoundKing',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloatKing',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHusk',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedScrake',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedSiren',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedStalker',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpound',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=true,bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.BigPawnExplosionTemplate',ExplosionIgnoreClass=Class'KFGame.KFPawn_Monster',BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1))),bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=3)
-    SetEvents(1)=(EventDifficulty=1,GameLength=1,bHeadshotsOnly=true,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=((ClassToAdjust=Class'KFPawn_ZedPatriarch',HealthScale=0.5,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpoundKing',HealthScale=0.75,HeadHealthScale=1,ShieldScale=0.5,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHans',HealthScale=0.4,HeadHealthScale=1,ShieldScale=0.75,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloatKing',HealthScale=0.6,HeadHealthScale=1,ShieldScale=0.75,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloatKingSubspawn',HealthScale=0.25,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpoundMini',HealthScale=0.9,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1))),bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0)
-    SetEvents(2)=(EventDifficulty=2,GameLength=1,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bScaleOnHealth=true,StartingDamageSizeScale=1,DeadDamageSizeScale=0.5,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0)
-    SetEvents(3)=(EventDifficulty=2,GameLength=1,bHeadshotsOnly=false,SpawnRateMultiplier=2.5,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=0.5,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=((ClassToAdjust=Class'KFPawn_ZedClot_AlphaKing',HealthScale=3,HeadHealthScale=3,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Slasher',HealthScale=3,HeadHealthScale=4.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Alpha',HealthScale=3,HeadHealthScale=4.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Cyst',HealthScale=3,HeadHealthScale=4.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloat',HealthScale=1.5,HeadHealthScale=1.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedCrawler',HealthScale=3,HeadHealthScale=5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedCrawlerKing',HealthScale=3,HeadHealthScale=3,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpound',HealthScale=2,HeadHealthScale=1.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedGorefast',HealthScale=3,HeadHealthScale=2,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedGorefastDualBlade',HealthScale=3,HeadHealthScale=2,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHans',HealthScale=1,HeadHealthScale=1.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedPatriarch',HealthScale=1,HeadHealthScale=1.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpoundKing',HealthScale=1,HeadHealthScale=1.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloatKing',HealthScale=1,HeadHealthScale=1.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHusk',HealthScale=2,HeadHealthScale=2.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedScrake',HealthScale=3,HeadHealthScale=3,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedSiren',HealthScale=3,HeadHealthScale=3,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedStalker',HealthScale=3,HeadHealthScale=2.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpoundMini',HealthScale=1.1,HeadHealthScale=1.1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1))),bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=(0.7,0.7,0.7,0.7,0.7,0.7),ZedSpawnHeadScale=2.7,PlayerSpawnHeadScale=2,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=true,MaxPerkLevel=4,MaxBoomsPerFrame=0)
-    SetEvents(4)=(EventDifficulty=2,GameLength=1,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=((SpawnEntry=2,NewClass=Class'KFPawn_ZedFleshpoundMini',PercentChance=0.05),(SpawnEntry=1,NewClass=Class'KFPawn_ZedFleshpoundMini',PercentChance=0.1),(SpawnEntry=4,NewClass=Class'KFPawn_ZedFleshpoundMini',PercentChance=0.1),(SpawnEntry=3,NewClass=Class'KFPawn_ZedFleshpoundMini',PercentChance=0.05),(SpawnEntry=5,NewClass=Class'KFPawn_ZedFleshpoundMini',PercentChance=0.05),(SpawnEntry=6,NewClass=Class'KFPawn_ZedFleshpound',PercentChance=0.9),(SpawnEntry=9,NewClass=Class'KFPawn_ZedFleshpoundMini',PercentChance=0.65)),bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=((SpawnEntry=0,NewClass=Class'KFPawn_ZedFleshpoundKing',PercentChance=1),(SpawnEntry=1,NewClass=Class'KFPawn_ZedFleshpoundKing',PercentChance=1),(SpawnEntry=3,NewClass=Class'KFPawn_ZedFleshpoundKing',PercentChance=1)),ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=(0.55,0.55,0.55,0.55,0.55,0.55),ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0)
-    SetEvents(5)=(EventDifficulty=1,GameLength=1,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=((ClassToAdjust=Class'KFPawn_ZedClot_AlphaKing',HealthScale=2,HeadHealthScale=2.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Slasher',HealthScale=2,HeadHealthScale=2.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Alpha',HealthScale=2,HeadHealthScale=2.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Cyst',HealthScale=2,HeadHealthScale=2.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloat',HealthScale=0.4,HeadHealthScale=1.5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedCrawler',HealthScale=3,HeadHealthScale=6,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedCrawlerKing',HealthScale=3,HeadHealthScale=6,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpound',HealthScale=0.35,HeadHealthScale=2,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedGorefast',HealthScale=1,HeadHealthScale=3,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedGorefastDualBlade',HealthScale=0.75,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHans',HealthScale=1,HeadHealthScale=1,ShieldScale=1.25,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0.01,Y=0.005),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedPatriarch',HealthScale=1.1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0.01,Y=0.01),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloatKing',HealthScale=1.2,HeadHealthScale=1.1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0.01,Y=0.01),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpoundKing',HealthScale=2,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0.01,Y=0.01),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHusk',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedScrake',HealthScale=0.5,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedSiren',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedStalker',HealthScale=3.5,HeadHealthScale=5,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpoundMini',HealthScale=2,HeadHealthScale=2,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1))),bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=(0.7,0.7,0.7,0.7,0.7,0.7),ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=true,ZeroHealthInflation=3,GlobalDeflationRate=0.1,InflationDeathGravity=-0.57,InflationExplosionTimer=1.7,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0)
-    SetEvents(6)=(EventDifficulty=3,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=15,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=((SpawnEntry=5,NewClass=Class'KFPawn_ZedScrake',PercentChance=0.07)),bAllowSpawnReplacementDuringBossWave=false,BossSpawnReplacementList=none,ZedsToAdjust=((ClassToAdjust=Class'KFPawn_ZedPatriarch',HealthScale=0.8,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.85,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHans',HealthScale=0.7,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.7,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpoundKing',HealthScale=0.8,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.85,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloatKing',HealthScale=0.8,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.85,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_AlphaKing',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Slasher',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Alpha',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedClot_Cyst',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedBloat',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedCrawler',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedCrawlerKing',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedFleshpound',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedGorefast',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedGorefastDualBlade',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedHusk',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedScrake',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedSiren',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),(ClassToAdjust=Class'KFPawn_ZedStalker',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=none,BeefcakeHealthIncreases=none,MaxBeefcake=1.5,MaxBeefcakeHealth=1.5,DamageDealtScale=0.6,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1))),bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=true,PermanentZedTimeCutoff=6,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.5,ZedTimeRadius=1450,ZedTimeBossRadius=2048,ZedTimeHeight=512,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=0,OverrideTeleportDerateTime=0,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=(0.5,0.5,0.5,0.5,0.5,0.5),ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=3,MaxBoomsPerFrame=0)
-    SetEvents(7)=EventDifficulty=2,GameLength=1,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=(ClassToAdjust=Class'KFPawn_ZedClot_Cyst',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=/* Array type was not detected. */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,BeefcakeHealthIncreases=/* Array type was not detected. */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(MaxBeefcake=1.5,MaxBeefcakeHealth=4.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),ClassToAdjust=Class'KFPawn_ZedClot_Alpha',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=/* Array type was not detected. */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,BeefcakeHealthIncreases=/* Array type was not detected. */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(MaxBeefcake=1.5,MaxBeefcakeHealth=4.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),ClassToAdjust=Class'KFPawn_ZedClot_AlphaKing',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=/* Array type was not detected. */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,BeefcakeHealthIncreases=/* Array type was not detected. */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(MaxBeefcake=1.5,MaxBeefcakeHealth=4.5,DamageDealtScale=1,DamageTakenScale=1,OverrideDeflationRate=(X=0,Y=0),AdditionalSubSpawns=none,AdditionalSubSpawnCount=(X=1,Y=1)),ClassToAdjust=Class'KFPawn_ZedClot_Slasher',HealthScale=1,HeadHealthScale=1,ShieldScale=1,bStartEnraged=false,bExplosiveDeath=false,ExplosionTemplate=none,ExplosionIgnoreClass=none,BeefcakeScaleIncreases=/* Array type was not detected. */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,BeefcakeHealthIncreases=/* Array type was not detected. */,
-/* Exception thrown while deserializing ZedsToAdjust
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
-/* Exception thrown while deserializing SetEvents
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0)
+    OutbreakEventClass=Class'KFOutbreakEvent_Weekly'
     GameName="Weekly Outbreak"
     PlayerControllerClass=Class'KFGame.KFPlayerController_WeeklySurvival'
 }

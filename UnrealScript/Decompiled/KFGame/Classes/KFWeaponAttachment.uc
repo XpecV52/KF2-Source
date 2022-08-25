@@ -357,6 +357,8 @@ simulated function StopFirstPersonFireEffects(Weapon W)
     }
 }
 
+simulated function StartFire();
+
 simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
     local KFPawn.EAnimSlotStance AnimType;

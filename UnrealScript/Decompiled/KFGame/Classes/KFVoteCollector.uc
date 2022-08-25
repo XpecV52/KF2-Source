@@ -66,6 +66,8 @@ var bool bAllPlayersVotedOnMap;
 var const int TopResultsToShow;
 var const int ActiveTimeUntilVoteEnabled;
 var array<PlayerReplicationInfo> PlayersThatHaveVoted;
+var array<PlayerReplicationInfo> PlayersReadyToSkipTrader;
+var int TimeAfterSkipTrader;
 var TopVotes TopVotesObject;
 var array<MapVote> MapVoteList;
 var array<string> MapList;
@@ -145,6 +147,60 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
             KFPlayerController(PRI_Kicker.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage', 9);
         }
     }
+}
+
+reliable server function ResetTraderVote()
+{
+    PlayersReadyToSkipTrader.Length = 0;
+}
+
+reliable server function SkipTraderTime()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(Outer.WorldInfo.Game);
+    KFGRI = Outer;
+    if(KFGRI.RemainingTime > TimeAfterSkipTrader)
+    {
+        KFGRI.RemainingTime = TimeAfterSkipTrader;
+        KFGRI.RemainingMinute = TimeAfterSkipTrader;
+        KFGI.SkipTrader(TimeAfterSkipTrader);
+    }
+}
+
+reliable server function RecieveSkipTraderTimeVote(PlayerReplicationInfo PRI)
+{
+    if(PlayersThatHaveVoted.Find(PRI == -1)
+    {
+        PlayersReadyToSkipTrader.AddItem(PRI;
+        if(ShouldSkipTrader())
+        {
+            SkipTraderTime();
+            ResetTraderVote();
+        }
+    }
+}
+
+function bool ShouldSkipTrader()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int I;
+
+    Outer.GetKFPRIArray(PRIs);
+    I = 0;
+    J0x34:
+
+    if(I < PRIs.Length)
+    {
+        if(PlayersReadyToSkipTrader.Find(PRIs[I] == -1)
+        {
+            return false;
+        }
+        ++ I;
+        goto J0x34;
+    }
+    return PlayersReadyToSkipTrader.Length == PRIs.Length;
 }
 
 reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
@@ -535,5 +591,6 @@ defaultproperties
     ShortenedTime=10
     TopResultsToShow=3
     ActiveTimeUntilVoteEnabled=30
+    TimeAfterSkipTrader=5
     TopVotesObject=(Map1Name="",Map1Votes=255,Map2Name="",Map2Votes=255,Map3Name="",Map3Votes=255)
 }

@@ -140,7 +140,7 @@ function PawnDied(Pawn inPawn)
         }
         MyHansPawn = none;
     }
-    super(KFAIController).PawnDied(inPawn);
+    super.PawnDied(inPawn);
 }
 
 simulated event Destroyed()

@@ -36,77 +36,9 @@ enum EForcedMusicType
     EFM_Boss1,
     EFM_Boss2,
     EFM_Boss3,
+    EFM_Boss4,
+    EFM_Boss5,
     EFM_MAX
-};
-
-struct StatAdjustments
-{
-    /** Individual per-class adjustments to make after a zed spawns //Class to adjust */
-    var() class<KFPawn_Monster> ClassToAdjust;
-    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
- */
-    var() float HealthScale;
-    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
-//Scale for gore health of the head hit zone
- */
-    var() float HeadHealthScale;
-    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
-//Scale for gore health of the head hit zone
-//Scale for shield for zeds that support this
- */
-    var() float ShieldScale;
-    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
-//Scale for gore health of the head hit zone
-//Scale for shield for zeds that support this
-//Start enraged
- */
-    var() bool bStartEnraged;
-    /** Individual per-class adjustments to make after a zed spawns //Class to adjust//Health percentage scale
-//Scale for gore health of the head hit zone
-//Scale for shield for zeds that support this
-//Start enraged
-//Whether or not to explode on death
- */
-    var() bool bExplosiveDeath;
-    var KFGameExplosion ExplosionTemplate;
-    var class<KFPawn> ExplosionIgnoreClass;
-    var array<float> BeefcakeScaleIncreases;
-    var array<float> BeefcakeHealthIncreases;
-    /** Max Beefcake Scale - This should probably never go > 1.5 for collision reasons */
-    var() float MaxBeefcake;
-    /** Max beefcake health scale - This can scale forever really since it's not tied to visual scale */
-    var() float MaxBeefcakeHealth;
-    /** Scale to all damage that has this zed as an instigator */
-    var() float DamageDealtScale;
-    /** Scale to all damage that has this zed as a victim */
-    var() float DamageTakenScale;
-    /** Override of the global deflation rate to define a different per-zed rate, LERP between X and Y by player count */
-    var() Vector2D OverrideDeflationRate;
-    /** Additional sub wave to use when one of this type of zed spawns */
-    var() KFAIWaveInfo AdditionalSubSpawns;
-    /** 1 to max player count range of how many AI should spawn during the sub wave */
-    var() Vector2D AdditionalSubSpawnCount;
-
-    structdefaultproperties
-    {
-        ClassToAdjust=none
-        HealthScale=1
-        HeadHealthScale=1
-        ShieldScale=1
-        bStartEnraged=false
-        bExplosiveDeath=false
-        ExplosionTemplate=none
-        ExplosionIgnoreClass=none
-        BeefcakeScaleIncreases=none
-        BeefcakeHealthIncreases=none
-        MaxBeefcake=1.5
-        MaxBeefcakeHealth=1.5
-        DamageDealtScale=1
-        DamageTakenScale=1
-        OverrideDeflationRate=(X=0,Y=0)
-        AdditionalSubSpawns=none
-        AdditionalSubSpawnCount=(X=1,Y=1)
-    }
 };
 
 struct native sGameMode
@@ -181,6 +113,7 @@ var class<KFPawn_Customization> CustomizationPawnClass;
 var globalconfig float FriendlyFireScale;
 var KFTeamInfo_Human Teams[2];
 var bool bOnePlayerAtStart;
+var bool bSplitBossDoshReward;
 var bool bStartFinalCount;
 var config bool bWaitForNetPlayers;
 var globalconfig bool bDisableKickVote;
@@ -204,6 +137,8 @@ var config bool bLogAIDefaults;
 var bool bLogReservations;
 var bool bLogAnalytics;
 var config bool bLogAICount;
+var bool bForceOutbreakWave;
+var bool bForceSpecialWave;
 var protected const bool bIsCustomGame;
 var private const bool bIsUnrankedGame;
 var const bool bEnableServerVersionCheck;
@@ -282,11 +217,15 @@ var class<KFDialogManager> DialogManagerClass;
 var class<KFTraderVoiceGroupBase> TraderVoiceGroupClass;
 var float ActionMusicDelay;
 var array<KFMusicTrackInfo> ForcedMusicTracks;
+var int DebugForcedOutbreakIdx;
+var int DebugForceSpecialWaveZedType;
 var transient array<KFPlayerReservation> PlayerReservations;
 var int ReservationTimeout;
 var transient array<PlayerGroupStruct> PlayerGroups;
 var const float LastUpToDateCheckTime;
 var transient KFSteamWebUpToDateCheck UpToDateChecker;
+var KFOutbreakEvent OutbreakEvent;
+var class<KFOutbreakEvent> OutbreakEventClass;
 
 // Export UKFGameInfo::execGetMonsterAliveCount(FFrame&, void* const)
 native function int GetMonsterAliveCount();
@@ -374,6 +313,11 @@ static function PreloadGlobalContentClasses()
     {
         PawnClass.static.PreloadContent();        
     }    
+}
+
+static function bool GetShouldShowLength()
+{
+    return true;
 }
 
 static function string GetGameModeFriendlyNameFromNum(int GameModeNum)
@@ -484,6 +428,7 @@ event InitGame(string Options, out string ErrorMessage)
     ReadyUpDelay = Clamp(GetIntOption(Options, "ReadyUpDelay", ReadyUpDelay), 0, 300);
     EndOfGameDelay = Clamp(GetIntOption(Options, "EndOfGameDelay", EndOfGameDelay), 0, 120);
     FriendlyFireScale = FClamp(GetFloatOption(Options, "FriendlyFireScale", FriendlyFireScale), 0, 1);
+    CreateOutbreakEvent();
     CheckForCustomSettings();
     CreateDifficultyInfo(Options);
 }
@@ -500,6 +445,14 @@ function CreateDifficultyInfo(string Options)
         DifficultyInfo = new (self) DifficultyInfoClass;
     }
     DifficultyInfo.SetDifficultySettings(GameDifficulty);
+}
+
+function CreateOutbreakEvent()
+{
+    if(OutbreakEventClass != none)
+    {
+        OutbreakEvent = new (self) OutbreakEventClass;
+    }
 }
 
 static function float GetFloatOption(string Options, string ParseString, float CurrentValue)
@@ -1368,6 +1321,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     local KFPawn_Monster MonsterPawn;
     local string KillerLabel;
     local class<DamageType> LastHitByDamageType;
+    local int I;
 
     if((KilledPlayer != none) && KilledPlayer.bIsPlayer)
     {
@@ -1435,12 +1389,33 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     }
     if((KilledPawn != none) && KilledPawn.GetTeamNum() == 255)
     {
+        MonsterPawn = KFPawn_Monster(KilledPawn);
+        if(MonsterPawn != none)
+        {
+            I = 0;
+            J0x75A:
+
+            if(I < MonsterPawn.DamageHistory.Length)
+            {
+                if(MonsterPawn.DamageHistory[I].DamagerController == Killer)
+                {                    
+                }
+                else
+                {
+                    if(((MonsterPawn.DamageHistory[I].TotalDamage > float(0)) && MonsterPawn.DamageHistory[I].DamagerController != none) && KFPlayerController(MonsterPawn.DamageHistory[I].DamagerController) != none)
+                    {
+                        KFPlayerController(MonsterPawn.DamageHistory[I].DamagerController).AddZedAssist(MonsterPawn.Class);
+                    }
+                }
+                ++ I;
+                goto J0x75A;
+            }
+        }
         if(Killer != none)
         {
             KFPC = KFPlayerController(Killer);
             if(KFPC != none)
             {
-                MonsterPawn = KFPawn_Monster(KilledPawn);
                 if(MonsterPawn != none)
                 {
                     LastHitByDamageType = GetLastHitByDamageType(DT, MonsterPawn, Killer);
@@ -1596,7 +1571,10 @@ function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller Instig
     }
     DamageAmount = Min(DamageAmount, HealthBeforeDamage);
     KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
-    KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, DamageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
+    if(InstigatedBy.Pawn != none)
+    {
+        KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, DamageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
+    }
 }
 
 function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn);
@@ -1674,7 +1652,10 @@ function float GetAdjustedAIDoshValue(class<KFPawn_Monster> MonsterClass)
 {
     local float TempValue;
 
-    TempValue = float(MonsterClass.static.GetDoshValue());
+    if(!ShouldOverrideDoshOnKill(MonsterClass, TempValue))
+    {
+        TempValue = float(MonsterClass.static.GetDoshValue());
+    }
     TempValue *= DifficultyInfo.GetKillCashModifier();
     ModifyAIDoshValueForPlayerCount(TempValue);
     TempValue *= GameLengthDoshScale[GameLength];
@@ -1716,6 +1697,7 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
     local KFPlayerController KFPC;
     local KFPlayerReplicationInfo DamagerKFPRI;
     local KFPerk InstigatorPerk;
+    local bool bIsBossKill;
 
     I = 0;
     J0x0B:
@@ -1731,10 +1713,11 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
         WarnInternal("Total damage given to this zed is less or equal zero! This should never happen");
         return;
     }
+    bIsBossKill = MonsterClass.static.IsABoss();
     AdjustedAIValue = GetAdjustedAIDoshValue(MonsterClass);
     ScoreDenominator = AdjustedAIValue / float(TotalDamage);
     I = 0;
-    J0x10F:
+    J0x139:
 
     if(I < DamageHistory.Length)
     {
@@ -1752,10 +1735,24 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
                         DamageHistory[I].DamagePerks[0].static.ModifyAssistDosh(EarnedDosh);
                     }
                 }
-                DamagerKFPRI.AddDosh(EarnedDosh, true);
+                if(bIsBossKill && !bSplitBossDoshReward)
+                {
+                    DamagerKFPRI.AddDosh(int(GetAdjustedAIDoshValue(MonsterClass)), true);                    
+                }
+                else
+                {
+                    DamagerKFPRI.AddDosh(EarnedDosh, true);
+                }
                 if(DamagerKFPRI.Team != none)
                 {
-                    KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(EarnedDosh);
+                    if(bIsBossKill && !bSplitBossDoshReward)
+                    {
+                        KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(int(GetAdjustedAIDoshValue(MonsterClass)));                        
+                    }
+                    else
+                    {
+                        KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(EarnedDosh);
+                    }
                     if(DamageHistory[I].DamagePerks.Length <= 0)
                     {                        
                     }
@@ -1773,13 +1770,13 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
                             {
                                 XP = MonsterClass.static.GetXPValue(byte(GameDifficulty)) / float(DamageHistory[I].DamagePerks.Length);
                                 J = 0;
-                                J0x569:
+                                J0x65D:
 
                                 if(J < DamageHistory[I].DamagePerks.Length)
                                 {
                                     AddPlayerXP(KFPC, FCeil(XP), DamageHistory[I].DamagePerks[J]);
                                     ++ J;
-                                    goto J0x569;
+                                    goto J0x65D;
                                 }
                             }
                         }
@@ -1788,7 +1785,7 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
             }
         }
         ++ I;
-        goto J0x10F;
+        goto J0x139;
     }
 }
 
@@ -2034,6 +2031,16 @@ simulated function ForcePatriarchMusicTrack()
     MyKFGRI.ForceNewMusicTrack(default.ForcedMusicTracks[3]);
 }
 
+simulated function ForceKingFPMusicTrack()
+{
+    MyKFGRI.ForceNewMusicTrack(default.ForcedMusicTracks[5]);
+}
+
+simulated function ForceAbominationMusicTrack()
+{
+    MyKFGRI.ForceNewMusicTrack(default.ForcedMusicTracks[6]);
+}
+
 function string GetNextMap()
 {
     local array<string> MapList;
@@ -2077,6 +2084,8 @@ function int GetCurrentMapCycleIndex(const out array<string> MapList)
 {
     return MapList.Find(string(WorldInfo.GetPackageName());
 }
+
+exec function FindCollectibles();
 
 exec function MaintenanceRestart()
 {
@@ -2810,6 +2819,25 @@ function bool IsPlayerReady(KFPlayerReplicationInfo PRI)
 
 function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime);
 
+function float GetTraderTime()
+{
+    local float MapOverride;
+
+    MapOverride = DifficultyInfo.GetTraderTimeByMap(WorldInfo.GetMapName(true));
+    if(MapOverride > 0)
+    {
+        return MapOverride;
+    }
+    return DifficultyInfo.GetTraderTimeByDifficulty();
+}
+
+function SkipTrader(int TimeAfterSkipTrader);
+
+function bool ShouldOverrideDoshOnKill(class<KFPawn_Monster> KilledPawn, out float DoshGiven)
+{
+    return false;
+}
+
 // Export UKFGameInfo::execCheckNextMap(FFrame&, void* const)
 native function string CheckNextMap(string NextMap);
 
@@ -2883,6 +2911,7 @@ defaultproperties
     POINTS_FOR_WAVE_COMPLETION=1000
     POINTS_PENALTY_FOR_DEATH=100
     CustomizationPawnClass=Class'KFPawn_Customization'
+    bSplitBossDoshReward=true
     bWaitForNetPlayers=true
     bEnableMapObjectives=true
     bEnableDeadToVOIP=true
@@ -2900,6 +2929,7 @@ defaultproperties
     GameModes(0)=(FriendlyName="Survival",ClassNameAndPath="KFGameContent.KFGameInfo_Survival",bSoloPlaySupported=true,DifficultyLevels=4,Lengths=4,LocalizeID=0)
     GameModes(1)=(FriendlyName="Weekly",ClassNameAndPath="KFGameContent.KFGameInfo_WeeklySurvival",bSoloPlaySupported=true,DifficultyLevels=0,Lengths=0,LocalizeID=1)
     GameModes(2)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",bSoloPlaySupported=false,DifficultyLevels=0,Lengths=0,LocalizeID=2)
+    GameModes(3)=(FriendlyName="Endless",ClassNameAndPath="KFGameContent.KFGameInfo_Endless",bSoloPlaySupported=true,DifficultyLevels=4,Lengths=0,LocalizeID=3)
     KickVotePercentage=0.66
     TimeBetweenFailedVotes=10
     MapVoteDuration=60
@@ -2926,14 +2956,17 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
     ForcedMusicTracks(1)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
     ForcedMusicTracks(2)=KFMusicTrackInfo'WW_MACT_Default.TI_SH_Boss_DieVolter'
     ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Patriarch'
-    ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer'
+    ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_KingFP'
+    ForcedMusicTracks(5)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_Abomination'
+    DebugForcedOutbreakIdx=-1
+    DebugForceSpecialWaveZedType=-1
     ReservationTimeout=32
     bRestartLevel=false
     bPauseable=false

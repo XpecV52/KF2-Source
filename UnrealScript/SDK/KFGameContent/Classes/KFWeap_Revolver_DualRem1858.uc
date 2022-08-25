@@ -79,7 +79,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RevolverRem1858'
 	FireInterval(DEFAULT_FIREMODE)=+0.11 // about twice as fast as single
-	InstantHitDamage(DEFAULT_FIREMODE)=30.0
+	InstantHitDamage(DEFAULT_FIREMODE)=60.0 //30
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Rem1858_Dual'
 	Spread(DEFAULT_FIREMODE)=0.015
 
@@ -90,7 +90,7 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_RevolverRem1858'
 	FireInterval(ALTFIRE_FIREMODE)=+0.11 // about twice as fast as single
-	InstantHitDamage(ALTFIRE_FIREMODE)=30.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=60.0 //30
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Rem1858_Dual'
 	Spread(ALTFIRE_FIREMODE)=0.015
 

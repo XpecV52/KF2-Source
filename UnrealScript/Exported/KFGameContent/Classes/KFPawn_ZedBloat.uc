@@ -364,7 +364,7 @@ defaultproperties
    IncapSettings(10)=(Duration=8.000000,Vulnerability=(4.000000))
    IncapSettings(11)=(Vulnerability=(1.000000))
    PhysRagdollImpulseScale=1.500000
-   KnockdownImpulseScale=1.500000
+   KnockdownImpulseScale=2.000000
    SprintSpeed=210.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True

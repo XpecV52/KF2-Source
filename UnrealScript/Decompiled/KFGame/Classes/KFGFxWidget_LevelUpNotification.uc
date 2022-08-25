@@ -57,16 +57,16 @@ function ShowObjectiveCompleteNotification(string ObjectiveName, string Objectiv
     ShowAchievementNotification(ObjectiveCompleteString, ObjectiveName, " ", ImagePath, bShowSecondary, -1);
 }
 
-function ShowAchievementNotification(string TitleString, string MainString, string SecondaryString, string ImagePath, bool bShowSecondary, optional int numericValue)
+function ShowAchievementNotification(string TitleString, string MainString, string SecondaryString, string ImagePath, bool bShowSecondary, optional int NumericValue)
 {
     local GFxObject TempObj;
 
-    numericValue = -1;
+    NumericValue = -1;
     TempObj = Outer.CreateObject("Object");
     TempObj.SetString("titleString", TitleString);
     TempObj.SetString("mainString", MainString);
     TempObj.SetString("secondaryString", SecondaryString);
-    TempObj.SetInt("newValue", numericValue);
+    TempObj.SetInt("newValue", NumericValue);
     TempObj.SetString("iconPath", ImagePath);
     TempObj.SetBool("bShowSecondary", bShowSecondary);
     SetObject("showAchievementPopUp", TempObj);

@@ -19,6 +19,8 @@ KF-Nuked="Gra na mapie Wysadzeni"
 KF-TragicKingdom="Rozgrywanie Królestwa Tragedii"
 KF-Nightmare="Gra na mapie Koszmar"
 KF-KrampusLair="Rozgrywanie Leża Krampusa"
+KF-PowerCore_Holdout="rozgrywa: Rdzeń zasilający"
+KF-DieSector="rozgrywa: Sektor Śmierci"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

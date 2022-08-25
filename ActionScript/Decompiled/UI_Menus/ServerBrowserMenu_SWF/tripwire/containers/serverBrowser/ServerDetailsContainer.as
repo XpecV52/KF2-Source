@@ -104,7 +104,7 @@ package tripwire.containers.serverBrowser
             {
                 this.matchStatusText.text = !!param1.gameStatus ? param1.gameStatus : "";
                 this.gameModeDifficultyText.text = (!!param1.mode ? param1.mode : "") + " - " + (!!param1.difficulty ? param1.difficulty : "");
-                this.playerCountText.text = (!!param1.playerCount ? param1.playerCount : "0") + "/" + (!!param1.maxPlayerCount ? param1.maxPlayerCount : "0");
+                this.playerCountText.text = (!!param1.playerCount ? param1.playerCount : "0") + "/" + (param1.maxPlayerCount == -1 ? "∞" : param1.maxPlayerCount);
                 this.waveCountText.text = (!!param1.waveCount ? param1.waveCount : "0") + "/" + (!!param1.maxWaveCount ? param1.maxWaveCount : "0");
                 this.zedCountText.text = (!!param1.zedCount ? param1.zedCount : "0") + "/" + (!!param1.maxZedCount ? param1.maxZedCount : "0");
                 this.vacValueText.text = !!param1.vacEnable ? param1.vacEnable : "";

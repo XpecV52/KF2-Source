@@ -758,6 +758,11 @@ function string CheckNextMap(string NextMap)
     return NextMap;
 }
 
+static function bool GetShouldShowLength()
+{
+    return true;
+}
+
 function ProcessServerTravel(string URL, optional bool bAbsolute)
 {
     local PlayerController LocalPlayer;
@@ -2938,6 +2943,7 @@ defaultproperties
     GameInfoClassAliases(2)=(ShortName="Versus",GameClassName="KFGameContent.KFGameInfo_VersusSurvival")
     GameInfoClassAliases(3)=(ShortName="Weekly",GameClassName="KFGameContent.KFGameInfo_WeeklySurvival")
     GameInfoClassAliases(4)=(ShortName="Tutorial",GameClassName="KFGameContent.KFGameInfo_Tutorial")
+    GameInfoClassAliases(5)=(ShortName="Endless",GameClassName="KFGameContent.KFGameInfo_Endless")
     DefaultGameType="KFGameContent.KFGameInfo_Survival"
     Components=none
     CollisionType=ECollisionType.COLLIDE_CustomDefault

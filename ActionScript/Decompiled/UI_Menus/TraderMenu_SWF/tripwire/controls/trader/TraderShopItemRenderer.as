@@ -35,6 +35,12 @@ package tripwire.controls.trader
         
         public var weightIcon:MovieClip;
         
+        public var weaponUpFrame:MovieClip;
+        
+        public var weaponUpPlusIcon:MovieClip;
+        
+        public var weaponUpNumText:TextField;
+        
         public var ShopWeaponIconLoader:MovieClip;
         
         public var weaponIcon:TripUILoaderQueue;
@@ -48,6 +54,12 @@ package tripwire.controls.trader
         private var doshColor:uint = 0;
         
         private var weightColor:uint = 0;
+        
+        private var regularColor:uint = 12255231;
+        
+        private var upgradeColor:uint = 16252764;
+        
+        public var itemNameColor:uint = 12255231;
         
         private var _doshIconColor:Color;
         
@@ -81,6 +93,17 @@ package tripwire.controls.trader
                 this.buyTextField.text = !!param1.buyText ? param1.buyText : "";
                 this.weaponCost.text = !!param1.weaponCost ? param1.weaponCost : "";
                 this.weaponWeight.text = !!param1.weaponWeight ? param1.weaponWeight : "";
+                if(this.weaponUpFrame != null)
+                {
+                    this.weaponUpFrame.visible = !!param1.weaponTier ? true : false;
+                    this.weaponUpPlusIcon.visible = !!param1.weaponTier ? true : false;
+                    this.weaponUpNumText.text = !!param1.weaponTier ? param1.weaponTier : "";
+                    this.itemNameColor = !!param1.weaponTier ? uint(this.upgradeColor) : uint(this.regularColor);
+                }
+                if(!selected)
+                {
+                    this.weaponName.textColor = this.itemNameColor;
+                }
                 if(this.BuyButton.enabled && (!param1.bCanAfford || !param1.bCanCarry))
                 {
                     this.BuyButton.enabled = false;

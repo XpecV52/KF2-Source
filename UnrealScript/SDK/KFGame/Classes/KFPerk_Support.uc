@@ -62,8 +62,16 @@ enum ESupportPerkSkills
  */
 function ApplySkillsToPawn()
 {
+	local KFGameReplicationInfo KFGRI;
+
 	Super.ApplySkillsToPawn();
 
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+	if (KFGRI == none && KFGRI.bTraderIsOpen)
+	{
+		return;
+	}
 	ResetSupplier();
 }
 
@@ -557,13 +565,12 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	return 0.f;
 }
 
-
 /**
- * @brief Reset the perk to the defaults
- */
-function OnWaveEnded()
+* @brief Resets certain perk values on wave start/end
+*/
+function OnWaveStart()
 {
-	super.OnWaveEnded();
+	Super.OnWaveStart();
 	ResetSupplier();
 }
 

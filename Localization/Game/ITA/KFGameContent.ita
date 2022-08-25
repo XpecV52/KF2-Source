@@ -342,7 +342,7 @@ ItemDescription="•Lancia proiettili infiammabili ed esplosivi. \n•Munizioni 
 [KFWeap_Pistol_DualFlare]
 ItemName="Doppio Spitfire"
 ItemCategory="Fiamme"
-ItemDescription="•Lancia proiettili infiammabili ed esplosivi. \n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Sono due spitfire. Vendibili o scartabili individualmente."
+ItemDescription="•Lancia proiettili infiammabili ed esplosivi. \n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Sono due spitfire."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Fucile incendiario"
@@ -397,7 +397,7 @@ ItemDescription="•Solo semiautomatica.\n•La classica Colt 1911 semiautomatic
 [KFWeap_Pistol_DualColt1911]
 ItemName="Doppia pistola M1911"
 ItemCategory="Pistola"
-ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\nSono due pistole Colt 1911 semiautomatiche. Vendibili o scartabili individualmente."
+ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\nSono due pistole Colt 1911 semiautomatiche."
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
@@ -407,7 +407,7 @@ ItemDescription="•Solo semiautomatica.\n•La Desert Eagle è la più mostruos
 [KFWeap_Pistol_DualDeagle]
 ItemName="Doppia .50 Desert Eagle"
 ItemCategory="Pistola"
-ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di cannoni Desert Eagle. Vendibili o scartabili individualmente."
+ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di cannoni Desert Eagle."
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
@@ -417,7 +417,7 @@ ItemDescription="•Spara un colpo alla volta.\n•Un ottimo esempio di Remingto
 [KFWeap_Revolver_DualRem1858]
 ItemName="Doppio revolver 1858"
 ItemCategory="Pistola"
-ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di revolver Remington 1858. Vendibili o scartabili individualmente."
+ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di revolver Remington 1858."
 
 [KFWeap_Revolver_SW500]
 ItemName="Revolver Magnum .500"
@@ -427,7 +427,7 @@ ItemDescription="•Spara un colpo alla volta.\n•Vera artiglieria a mano sotto
 [KFWeap_Revolver_DualSW500]
 ItemName="Doppia Magnum .500"
 ItemCategory="Pistola"
-ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di .500 Magnum 'Collezionista di ossa'. Vendibili o scartabili individualmente. Con un sonoro "thump"."
+ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di .500 Magnum 'Collezionista di ossa'."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -483,7 +483,7 @@ ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
 ItemCategory="Mitra"
-ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.•Una new-entry nella famiglia MP. Uno zio, diciamo. Anche le mitragliatrici hanno una famiglia?"
+ItemDescription="•Scelta fra modalità di fuoco automatico o colpi.\n•Usa il fuoco alternativo per cambiare modalità.\n•Una new-entry nella famiglia MP. Uno zio, diciamo. Anche le mitragliatrici hanno una famiglia?"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="Lanciagelo"
@@ -494,6 +494,26 @@ ItemDescription="•Spara un flusso di particelle allo zero assoluto.\n•Congel
 ItemName="Hemogoblin"
 ItemCategory="Fucile da caccia"
 ItemDescription="•La modalità fuoco spara un cilindro di sangue che ferisce, rallenta e indebolisce gli Zed. \n•La modalità Fuoco alternativo spara dardi curativi ai membri della squadra.\n•Un programma di dimagrimento non attuabile."
+
+[KFWeap_HuskCannon]
+ItemName="Cannone Husk"
+ItemCategory="Fiamme"
+ItemDescription="•Si ricarica premendo il tasto fuoco e si scarica rilasciando il tasto fuoco. \n•La versione Horzine ufficiale del cannone Husk. La non esplosione di questo modello è garantita al 95%."
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="Pistola"
+ItemDescription="•Solo semiautomatica.\n•Aggiungendo altre canne diventa tutt’altra storia. È come mettere più pancetta."
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="Doppia AF2011-A2"
+ItemCategory="Pistola"
+ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Due mitra a due canne ciascuna. Potenza di fuoco quadruplicata. È matematica. Con la matematica non si discute."
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="Mitra"
+ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Munizioni incendiarie a fuoco rapido. L’hai capita? A fuoco rapido. Perché è una mitragliatrice incendiaria! Oh, lascia perdere."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="Survival VS"
 
 [KFGameInfo_WeeklySurvival]
 GameName="Epidemia settimanale"
+
+[KFGameInfo_Endless]
+GameName="Infinito"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Nessuna guarigione rimasta"

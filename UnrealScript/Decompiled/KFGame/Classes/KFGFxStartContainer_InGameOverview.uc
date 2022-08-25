@@ -24,9 +24,7 @@ var KFHTTPImageDownloader ImageDownLoader;
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     local PlayerController PC;
-    local KFGameReplicationInfo KFGRI;
 
-    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     PC = Outer.GetPC();
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
     ServerWelcomeScreen = GetObject("serverWelcomeScreen");
@@ -44,10 +42,6 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     if(!Class'WorldInfo'.static.IsE3Build())
     {
         ShowWelcomeScreen();
-    }
-    if((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial')
-    {
-        HideLengthInfo();
     }
 }
 
@@ -297,6 +291,10 @@ function UpdateOverviewInGame()
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
+        if(((KFGRI != none) && KFGRI.GameClass != none) && !KFGRI.GameClass.static.GetShouldShowLength())
+        {
+            HideLengthInfo();
+        }
         SetCurrentMapInfo();
         UpdateGameMode(KFGRI.GameClass.default.GameName);
         CurrentGameDifficulty = float(KFGRI.GameDifficulty);

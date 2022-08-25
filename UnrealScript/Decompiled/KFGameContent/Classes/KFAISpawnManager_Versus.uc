@@ -34,37 +34,38 @@ function int GetAIAliveCount()
     return super.GetAIAliveCount() + ReservedPlayerZeds.Length;
 }
 
-function SetupNextWave(byte NextWaveIndex)
+function SetupNextWave(byte NextWaveIndex, optional int TimeToNextWaveBuffer)
 {
     local int I, J, SquadZedCount;
     local array<KFAISpawnSquad> SquadList;
     local KFPlayerControllerVersus KFPCV;
     local float SpawnWaitTime;
 
-    super.SetupNextWave(NextWaveIndex);
+    TimeToNextWaveBuffer = 0;
+    super.SetupNextWave(NextWaveIndex, TimeToNextWaveBuffer);
     LargestSquadSize = 0;
     WaveSettings.Waves[NextWaveIndex].GetNewSquadList(SquadList);
     I = 0;
-    J0x70:
+    J0x7E:
 
     if(I < AvailableSquads.Length)
     {
         SquadZedCount = 0;
         J = 0;
-        J0x9E:
+        J0xAC:
 
         if(J < AvailableSquads[I].MonsterList.Length)
         {
             SquadZedCount += AvailableSquads[I].MonsterList[J].Num;
             ++ J;
-            goto J0x9E;
+            goto J0xAC;
         }
         if(SquadZedCount > LargestSquadSize)
         {
             LargestSquadSize = SquadZedCount;
         }
         ++ I;
-        goto J0x70;
+        goto J0x7E;
     }
     if(NextWaveIndex < PlayerZedWaves.Length)
     {

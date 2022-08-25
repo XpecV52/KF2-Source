@@ -1,3 +1,62 @@
+[CHR_DAR_archetype]
+CharacterName="D.A.R."
+Description="이 D.A.R.(내부 보조 로봇)은 이전 D.A.R. 모델에서 업그레이드된 버전이며 Horzine 테스트 로보틱스의 최신 기술을 사용합니다. 비슷한 유닛이 다양한 Horzine 기지에서 고객과 보안 마켓을 위해 D.A.R 개발의 희망을 걸고 테스트되고 있지만, 이 D.A.R.은 특별합니다. 이 D.A.R.은 Horzine Arctic Outpost 12에 있는 동안 제드를 상대했습니다. 그리고 메인 프로그래밍이 긴급 보안 프로토콜로 뒤바뀌어 D.A.R.이 킬링 머신으로 변해버렸습니다. 안타깝게도, D.A.R은 Horzine 직원을 제외한 인간에 대한 관심이 거의 없습니다. 일반적으로 인간을 꽤 많이 싫어합니다. 군사 로봇의 새로운 마켓을 기대하는 D.A.R.이 현장 테스트로 제드 폐쇄 임무를 진행하게 되었습니다."
+BodyMesh0="Endo 스켈레톤"
+HeadMesh0="헬멧 없음"
+HeadMesh1="클래식 헬멧"
+HeadMesh2="돌격 헬멧"
+HeadMesh3="비행용 헬멧"
+HeadMesh4="CHONN-E 5 헬멧"
+HeadMesh5="C-3HZ 헬멧"
+
+[CHR_DAR_archetype.BodyMesh0]
+BodySkin0="Endo 800"
+BodySkin1="클래식 그레이"
+BodySkin2="플라스틱"
+BodySkin3="프레셔스"
+
+[CHR_DAR_archetype.HeadMesh0]
+HeadSkin0="없음"
+
+[CHR_DAR_archetype.HeadMesh1]
+HeadSkin0="블러디"
+HeadSkin1="로더"
+HeadSkin2="표준"
+HeadSkin3="프레셔스"
+HeadSkin4="스컬리"
+
+[CHR_DAR_archetype.HeadMesh2]
+HeadSkin0="블랙 OPS"
+HeadSkin1="카모 G"
+HeadSkin2="듄스"
+HeadSkin3="로더"
+HeadSkin4="최적"
+HeadSkin5="프레셔스"
+
+[CHR_DAR_archetype.HeadMesh3]
+HeadSkin0="블루 앤젤"
+HeadSkin1="빙하"
+HeadSkin2="P51"
+HeadSkin3="프레셔스"
+HeadSkin4="스핏파이어"
+HeadSkin5="비명"
+
+[CHR_DAR_archetype.HeadMesh4]
+HeadSkin0="친구"
+HeadSkin1="Horzine"
+HeadSkin2="프레셔스"
+HeadSkin3="강철"
+HeadSkin4="일몰"
+HeadSkin5="증기"
+
+[CHR_DAR_archetype.HeadMesh5]
+HeadSkin0="충돌"
+HeadSkin1="플로 블루"
+HeadSkin2="마블"
+HeadSkin3="옵시디안"
+HeadSkin4="프레셔스"
+HeadSkin5="스페이스"
+
 [CHR_Jagerhorn_Archetype]
 CharacterName="오이스텐 예거호른"
 Description="스웨덴에서 온 덩치 큰 사나이로 맥주를 즐기고 바에서 시끄럽게 떠들기를 좋아합니다. 아웃브레이크 전에 예거호른은 사람들이 상상하는 현대의 바이킹 모습과 딱 맞았습니다. 하지만 1990년대 스칸디나비아 폭주족 전쟁의 광란에 살짝 참여한 후, 사람들을 향한 정신나간 폭력이 맥주를 마시며 자신이 만든 메탈리카 트리뷰트 밴드인 ‘메탈바이카’에서 그저 그런 리드기타를 연주하는 것보다 훨씬 재미없는 일이라는 결정을 내렸습니다. \n\n하지만 스칸디나비아 지역에서 아웃브레이크가 발생하자 정신나간 폭력이 시대의 원칙이 되어버렸습니다. 제드 대 사람들 - 예거호른의 기준에 따르면 좋은 업보는 아닙니다. 거구의 스웨덴 바이킹 예거호른 대 제드? 다 들어와!"
@@ -19,6 +78,11 @@ BodySkin3="진정한 반항아"
 BodySkin4="악마 사냥꾼"
 BodySkin5="볼트 Batcat"
 BodySkin6="볼트 타일"
+BodySkin7="볼트 프레셔스"
+BodySkin8="사이버 레드"
+BodySkin9="사이버 그린"
+BodySkin10="사이버 블루"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -58,22 +122,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Jagerhorn_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_Jagerhorn_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="스웨덴 금발"
@@ -178,6 +242,10 @@ BodySkin3="그린 해저드"
 BodySkin4="레트로 스컬리"
 BodySkin5="볼트 프레셔스"
 BodySkin6="볼트 타일"
+BodySkin7="사이버 레드"
+BodySkin8="사이버 그린"
+BodySkin9="사이버 블루"
+BodySkin10="Cyberpunk Blue"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -217,22 +285,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_DJSkully_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_DJSkully_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_DJSkully_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="가장 어두운 블랙"
@@ -282,6 +350,11 @@ BodySkin1="나이트 블랙"
 BodySkin2="아미 그린"
 BodySkin3="SAS 카모"
 BodySkin4="볼트 타일"
+BodySkin5="볼트 프레셔스"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="메트로"
@@ -328,22 +401,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [chr_briar_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [chr_briar_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [chr_briar_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="오리지널"
@@ -400,6 +473,10 @@ BodySkin5="바이스 블루"
 BodySkin6="바이스"
 BodySkin7="카지노"
 BodySkin8="스모킹"
+BodySkin9="사이버 레드"
+BodySkin10="사이버 그린"
+BodySkin11="사이버 블루"
+BodySkin12="Cyberpunk Blue"
 
 [CHR_MrFoster_archetype.BodyMesh2]
 BodySkin0="클래식"
@@ -439,22 +516,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_MrFoster_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_MrFoster_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_MrFoster_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="오리지널 화이트"
@@ -618,7 +695,10 @@ BodySkin1="러스틱 레드"
 BodySkin2="쿨 그레이"
 BodySkin3="페일 어스"
 BodySkin4="볼트 프레셔스"
-BodySkin5="볼트 타일"
+BodySkin5="사이버 레드"
+BodySkin6="사이버 그린"
+BodySkin7="사이버 블루"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -658,22 +738,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Coleman_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_Coleman_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_Coleman_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="도노반"
@@ -718,6 +798,10 @@ BodySkin3="트로피컬 화이트"
 BodySkin4="홀리 선 프레셔스"
 BodySkin5="위장 무늬 북극"
 BodySkin6="카모 픽셀 핑크"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -757,22 +841,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Alberts_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_Alberts_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_Alberts_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="그레이"
@@ -1684,6 +1768,11 @@ BodySkin3="DPM"
 BodySkin4="볼트 타일"
 BodySkin5="위장 무늬 북극"
 BodySkin6="위장 무늬 퍼플"
+BodySkin7="볼트 프레셔스"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -1723,22 +1812,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Masterson_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_Masterson_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_Masterson_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [CHR_Tanaka_Archetype]
 CharacterName="하야토 타나카"
@@ -1768,6 +1857,10 @@ BodySkin3="블루 드래곤"
 BodySkin4="볼트 레트로"
 BodySkin5="볼트 코이 프레셔스"
 BodySkin6="볼트 타일"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="레드와 블랙"
@@ -1816,22 +1909,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Tanaka_Archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_Tanaka_Archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_Tanaka_Archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="헬멧"
@@ -1890,6 +1983,9 @@ BodySkin3="프리티 블루"
 BodySkin4="치키네이터 오마주"
 BodySkin5="볼트 프레셔스"
 BodySkin6="볼트 타일"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="엘리트 블루"
@@ -1929,22 +2025,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_Ana_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_Ana_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_Ana_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 안경"
@@ -1978,6 +2074,11 @@ BodySkin1="나이트 블랙"
 BodySkin2="아미 그린"
 BodySkin3="SAS 카모"
 BodySkin4="볼트 타일"
+BodySkin5="볼트 프레셔스"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="메트로"
@@ -2024,22 +2125,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [chr_mark_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [chr_mark_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [chr_mark_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
@@ -2071,6 +2172,11 @@ BodySkin3="DPM"
 BodySkin4="볼트 타일"
 BodySkin5="위장 무늬 북극"
 BodySkin6="위장 무늬 퍼플"
+BodySkin7="볼트 프레셔스"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -2110,22 +2216,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_alan_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_alan_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_alan_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
@@ -2161,6 +2267,11 @@ BodySkin0="신병"
 BodySkin1="전투에서 단련된"
 BodySkin2="볼트 카모"
 BodySkin3="볼트 타일"
+BodySkin4="볼트 프레셔스"
+BodySkin5="사이버 레드"
+BodySkin6="사이버 그린"
+BodySkin7="사이버 블루"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -2200,22 +2311,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [CHR_strasser_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [CHR_strasser_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [CHR_strasser_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="다크 스틸"
@@ -2251,6 +2362,11 @@ BodySkin0="아가사"
 BodySkin1="클리스"
 BodySkin2="퍼시벌"
 BodySkin3="제이미"
+BodySkin4="볼트 프레셔스"
+BodySkin5="사이버 레드"
+BodySkin6="사이버 그린"
+BodySkin7="사이버 블루"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -2389,6 +2505,11 @@ BodySkin4="레드 스트라이프"
 BodySkin5="세일러"
 BodySkin6="볼트 스컬"
 BodySkin7="볼트 타일"
+BodySkin8="볼트 프레셔스"
+BodySkin9="Cyberpunk Green"
+BodySkin10="Cyberpunk Precious"
+BodySkin11="Cyberpunk Red"
+BodySkin12="Cyberpunk Blue"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="엘리트 블루"
@@ -2428,22 +2549,22 @@ BodySkin4="폰브라운"
 BodySkin5="비극의 왕국 크루"
 
 [chr_rockabilly_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
 
 [chr_rockabilly_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
 
 [chr_rockabilly_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="볼트 패턴"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="블랙"
@@ -2695,37 +2816,6 @@ AttachmentSkin2="제이미"
 AttachmentSkin3="퍼시벌"
 AttachmentSkin4="프레셔스"
 
-[Cosmetic_SteampunkGasMaskBasic_ARCH]
-Attachment="스팀펑크 가스 마스크 베이직"
-AttachmentSkin0="브라운"
-AttachmentSkin1="블랙"
-
-[Cosmetic_SteampunkGasMaskOpen_ARCH]
-Attachment="스팀펑크 가스 마스크 열림"
-AttachmentSkin0="브라운"
-AttachmentSkin1="블랙"
-
-[Cosmetic_SteampunkGasMaskClosed_ARCH]
-Attachment="스팀펑크 가스 마스크 닫힘"
-AttachmentSkin0="브라운"
-AttachmentSkin1="블랙"
-AttachmentSkin2="프레셔스"
-
-[Cosmetic_SteampunkGasMaskFiltered_ARCH]
-Attachment="스팀펑크 가스 마스크 필터"
-AttachmentSkin0="브라운"
-AttachmentSkin1="블랙"
-
-[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
-Attachment="스팀펑크 가스 마스크 열림 필터"
-AttachmentSkin0="브라운"
-AttachmentSkin1="블랙"
-
-[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
-Attachment="스팀펑크 가스 마스크 닫힘 필터"
-AttachmentSkin0="브라운"
-AttachmentSkin1="블랙"
-
 [Cosmetic_RebelHelmet_ARCH]
 Attachment="반란군 헬멧"
 AttachmentSkin0="블랙"
@@ -2832,31 +2922,31 @@ AttachmentSkin2="그린"
 AttachmentSkin3="레드"
 AttachmentSkin4="탠"
 
-[LetsGetCrazy] 
+[LetsGetCrazy]
 EmoteName="미쳐봅시다."
 
 [ThunderClap]
 EmoteName="부티 댄스"
 
-[UncleCharlie] 
+[UncleCharlie]
 EmoteName="찰리 삼촌"
 
 [WackyWave]
 EmoteName="별난 파도"
 
-[RainingDosh] 
-EmoteName="비오는 Dosh"
+[RainingDosh]
+EmoteName="비오는 도쉬"
 
-[LionUppercut] 
+[LionUppercut]
 EmoteName="사자 어퍼컷"
 
-[MatingRitual] 
+[MatingRitual]
 EmoteName="짝짓기 의식"
 
 [KickinIt]
 EmoteName="발차기"
 
-[Fireball] 
+[Fireball]
 EmoteName="파이어볼"
 
 [Makeitrain]
@@ -2865,11 +2955,11 @@ EmoteName="비오게 하기"
 [Fireball_Deluxe]
 EmoteName="파이어볼+"
 
-[Makeitrain_Deluxe] 
+[Makeitrain_Deluxe]
 EmoteName="비오게 하기+"
 
-[ThunderClap_Deluxe] 
-EmoteName="천둥소리+"
+[ThunderClap_Deluxe]
+EmoteName="부티 댄스+"
 
 [UncleCharlie_Deluxe]
 EmoteName="찰리 삼촌+"
@@ -2880,8 +2970,8 @@ EmoteName="미쳐봅시다.+"
 [WackyWave_Deluxe]
 EmoteName="별난 파도+"
 
-[RainingDosh_Deluxe] 
-EmoteName="비오는 Dosh+"
+[RainingDosh_Deluxe]
+EmoteName="비오는 도쉬+"
 
 [LionUppercut_Deluxe]
 EmoteName="사자 어퍼컷+"
@@ -3190,188 +3280,188 @@ AttachmentSkin6="퍼플"
 AttachmentSkin7="레드"
 
 [Cosmetic_ImperialGalea_ARCH]
-Attachment="Imperial Galea"
+Attachment="임페리얼 게일리아"
 AttachmentSkin0="군대"
 AttachmentSkin1="클래식"
 AttachmentSkin2="화이트"
 AttachmentSkin3="프레셔스"
 
 [Cosmetic_PlagueDoctorMask_ARCH]
-Attachment="Plague Doctor Mask"
+Attachment="전염병 의사 마스크"
 AttachmentSkin0="그레이"
 AttachmentSkin1="라이트 브라운"
 AttachmentSkin2="레드"
 AttachmentSkin3="화이트"
 
 [Cosmetic_SkullMask_ARCH]
-Attachment="Skull Mask"
-AttachmentSkin0="Black Red"
-AttachmentSkin1="Black Silver"
-AttachmentSkin2="White Red"
-AttachmentSkin3="White Silver"
-AttachmentSkin4="Precious"
+Attachment="스컬 마스크"
+AttachmentSkin0="블랙 레드"
+AttachmentSkin1="블랙 실버"
+AttachmentSkin2="화이트 레드"
+AttachmentSkin3="화이트 실버"
+AttachmentSkin4="프레셔스"
 
 [Cosmetic_VictoriansSecret_ARCH]
 Attachment="빅토리안 시크릿"
-AttachmentSkin0="Victorian's Secret"
+AttachmentSkin0="빅토리안 시크릿"
 
 [Cosmetic_HannyaMask_ARCH]
 Attachment="한냐 마스크"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Gold"
-AttachmentSkin3="Green"
-AttachmentSkin4="Iron"
-AttachmentSkin5="Red"
-AttachmentSkin6="Red Shiny"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="골드"
+AttachmentSkin3="그린"
+AttachmentSkin4="아이언"
+AttachmentSkin5="레드"
+AttachmentSkin6="레드 샤이니"
+AttachmentSkin7="화이트"
+AttachmentSkin8="프레셔스"
 
 [Cosmetic_Hopps_ARCH]
 Attachment="홉스"
-AttachmentSkin0="Geometric"
-AttachmentSkin1="Green Machine"
-AttachmentSkin2="Hazard"
-AttachmentSkin3="Porcelain"
-AttachmentSkin4="Gold"
-AttachmentSkin5="Sell Out"
+AttachmentSkin0="지오메트릭"
+AttachmentSkin1="그린 머신"
+AttachmentSkin2="해저드"
+AttachmentSkin3="도자기"
+AttachmentSkin4="골드"
+AttachmentSkin5="상업주의"
 
 [Cosmetic_KobutoMask_ARCH]
 Attachment="코부토 마스크"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Copper"
-AttachmentSkin3="Gold"
-AttachmentSkin4="Green"
-AttachmentSkin5="Radioactive"
-AttachmentSkin6="Red"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="구리"
+AttachmentSkin3="골드"
+AttachmentSkin4="그린"
+AttachmentSkin5="방사능"
+AttachmentSkin6="레드"
+AttachmentSkin7="화이트"
+AttachmentSkin8="프레셔스"
 
 [Cosmetic_SamuraiGasHelmet_ARCH]
 Attachment="사무라이 투구"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="골드"
+AttachmentSkin1="가죽"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
 
 [Cosmetic_SamuraiGasMask_ARCH]
 Attachment="사무라이 마스크"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="골드"
+AttachmentSkin1="가죽"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
 
 [Cosmetic_SamuraiGasMouthpiece_ARCH]
 Attachment="사무라이 마우스피스"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="골드"
+AttachmentSkin1="가죽"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
 
 [Cosmetic_Bear_ARCH]
 Attachment="곰 마스크"
-AttachmentSkin0="Brown Bear"
-AttachmentSkin1="Panda Bear"
-AttachmentSkin2="Precious"
+AttachmentSkin0="브라운 베어"
+AttachmentSkin1="판다 베어"
+AttachmentSkin2="프레셔스"
 
 [Cosmetic_Cat_ARCH]
 Attachment="고양이 마스크"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Gray"
-AttachmentSkin2="White"
-AttachmentSkin3="Precious"
+AttachmentSkin0="브라운"
+AttachmentSkin1="그레이"
+AttachmentSkin2="화이트"
+AttachmentSkin3="프레셔스"
 
 [Cosmetic_Chicken_ARCH]
 Attachment="치킨 마스크"
-AttachmentSkin0="White Red"
-AttachmentSkin1="Precious"
+AttachmentSkin0="화이트 레드"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Cow_ARCH]
 Attachment="까마귀 마스크"
-AttachmentSkin0="White Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="화이트 블랙"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Dog_ARCH]
 Attachment="개 마스크"
-AttachmentSkin0="Brown Dog"
-AttachmentSkin1="Precious"
+AttachmentSkin0="브라운 도그"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Fox_ARCH]
 Attachment="여우 마스크"
-AttachmentSkin0="Brown Fox"
-AttachmentSkin1="Precious"
+AttachmentSkin0="브라운 팍스"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Goat_ARCH]
 Attachment="염소 마스크"
-AttachmentSkin0="Goat Colored"
-AttachmentSkin1="Precious"
+AttachmentSkin0="색을 입힌 염소"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Horse_ARCH]
 Attachment="말 마스크"
-AttachmentSkin0="Brown Horse"
-AttachmentSkin1="Precious"
+AttachmentSkin0="브라운 호스"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Pig_ARCH]
 Attachment="돼지 마스크"
-AttachmentSkin0="Pinky Pig"
-AttachmentSkin1="Precious"
+AttachmentSkin0="핑키 피그"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Rabbit_ARCH]
 Attachment="토끼 마스크"
-AttachmentSkin0="Brown Rabbit"
-AttachmentSkin1="White Rabbit"
-AttachmentSkin2="Precious"
+AttachmentSkin0="브라운 래빗"
+AttachmentSkin1="화이트 래빗"
+AttachmentSkin2="프레셔스"
 
 [Cosmetic_CommandoChickenHelmet_ARCH]
 Attachment="코만도 치킨"
-AttachmentSkin0="Used"
-AttachmentSkin1="Clean"
-AttachmentSkin2="Night"
-AttachmentSkin3="Heavy Wound"
+AttachmentSkin0="사용됨"
+AttachmentSkin1="클린"
+AttachmentSkin2="야간"
+AttachmentSkin3="중상"
 
 [Cosmetic_bobBatcat_ARCH]
 Attachment="Bob"
-AttachmentSkin0="Black"
-AttachmentSkin1="Green"
-AttachmentSkin2="Purple"
-AttachmentSkin3="Teal"
-AttachmentSkin4="Precious"
+AttachmentSkin0="블랙"
+AttachmentSkin1="그린"
+AttachmentSkin2="퍼플"
+AttachmentSkin3="틸"
+AttachmentSkin4="프레셔스"
 
 [Cosmetic_crown_ARCH]
 Attachment="크라운"
-AttachmentSkin0="Precious"
-AttachmentSkin1="Silver"
+AttachmentSkin0="프레셔스"
+AttachmentSkin1="실버"
 
 [Cosmetic_DGlasses_ARCH]
 Attachment="도쉬 글래스"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="그린"
+AttachmentSkin1="블랙"
+AttachmentSkin2="프레셔스"
 
 [Cosmetic_hansBackpack_ARCH]
 Attachment="핸즈 백팩"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="블랙"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_scrakeMask_ARCH]
 Attachment="스크레이크 마스크"
-AttachmentSkin0="Steel"
-AttachmentSkin1="Precious"
+AttachmentSkin0="강철"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_sharkHat_ARCH]
 Attachment="샤키"
-AttachmentSkin0="Grey"
-AttachmentSkin1="Sand"
-AttachmentSkin2="Orca"
-AttachmentSkin3="Bloody"
-AttachmentSkin4="Precious"
+AttachmentSkin0="그레이"
+AttachmentSkin1="모래색"
+AttachmentSkin2="범고래"
+AttachmentSkin3="블러디"
+AttachmentSkin4="프레셔스"
 
 [Cosmetic_VGlasses_ARCH]
 Attachment="볼트 글래스"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="그린"
+AttachmentSkin1="블랙"
+AttachmentSkin2="프레셔스"
 
 [Cosmetic_Halloween_Arrowed_ARCH]
 Attachment="화살"
@@ -3439,245 +3529,386 @@ AttachmentSkin0="Jack O' Lantern Radioactive Winky"
 
 [Cosmetic_Christmas_AlphaHat_ARCH]
 Attachment="크리스마스 알파 모자"
-AttachmentSkin0="Green"
+AttachmentSkin0="그린"
 
 [Cosmetic_Christmas_beard_ARCH]
 Attachment="크리스마스 턱수염"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Precious"
-AttachmentSkin3="White"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="프레셔스"
+AttachmentSkin3="화이트"
 
 [Cosmetic_Christmas_BellBackpack_ARCH]
 Attachment="크리스마스 종 배낭"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Silver"
+AttachmentSkin0="골드"
+AttachmentSkin1="프레셔스"
+AttachmentSkin2="실버"
 
 [Cosmetic_Christmas_BloatHat_ARCH]
 Attachment="크리스마스 Bloat 모자"
-AttachmentSkin0="Tan"
-AttachmentSkin1="Precious"
+AttachmentSkin0="탠"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Christmas_Blubs_ARCH]
 Attachment="크리스마스 이어벌브"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="레드 그린"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Christmas_CookieGlasses_ARCH]
 Attachment="크리스마스 쿠키 안경"
-AttachmentSkin0="Green Wrapping"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Red Wrapping"
+AttachmentSkin0="녹색 포장"
+AttachmentSkin1="프레셔스"
+AttachmentSkin2="빨간색 포장"
 
 [Cosmetic_Christmas_CystHat_ARCH]
 Attachment="크리스마스 Cyst 모자"
-AttachmentSkin0="Green"
+AttachmentSkin0="그린"
 
 [Cosmetic_Christmas_EarMuffs_ARCH]
 Attachment="크리스마스 귀마개"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="레드"
 
 [Cosmetic_Christmas_ElfEars_ARCH]
 Attachment="크리스마스 요정 귀"
-AttachmentSkin0="Flesh"
-AttachmentSkin1="Precious"
+AttachmentSkin0="플레시"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Christmas_FPHead_ARCH]
 Attachment="크리스마스 Fleshpound 머리"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Copycat"
-AttachmentSkin2="Libro"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Warui"
+AttachmentSkin0="클래식"
+AttachmentSkin1="카피캣"
+AttachmentSkin2="리브로"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="와루이"
 
 [Cosmetic_Christmas_GoreStockingBackpack_ARCH]
 Attachment="크리스마스 고어스타킹 백팩"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Classic"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="블루"
+AttachmentSkin1="클래식"
+AttachmentSkin2="그린"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="레드"
 
 [Cosmetic_Christmas_HaloBulbs_ARCH]
 Attachment="크리스마스 할로겐 전구"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="레드 그린"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Christmas_HamHead_ARCH]
 Attachment="크리스마스 망치 머리"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="클래식"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Christmas_HuskBackpack_ARCH]
 Attachment="크리스마스 Husk 백팩"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="블랙"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Christmas_HuskHat_ARCH]
 Attachment="크리스마스 Husk 모자"
-AttachmentSkin0="Black"
+AttachmentSkin0="블랙"
 
 [Cosmetic_Christmas_PoinsettaHat_ARCH]
 Attachment="크리스마스 포인세티아 모자"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="클래식"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Christmas_SlasherHat_ARCH]
 Attachment="크리스마스 Slasher 모자"
-AttachmentSkin0="Green"
+AttachmentSkin0="그린"
 
 [Cosmetic_Christmas_SnowmanFace_ARCH]
 Attachment="크리스마스 눈사람 마스크"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="클래식"
+AttachmentSkin1="프레셔스"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
 Attachment="크리스마스 곰인형 가방"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Dark"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Purple"
-AttachmentSkin5="Red"
+AttachmentSkin0="블루"
+AttachmentSkin1="브라운"
+AttachmentSkin2="다크"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
 
 [Cosmetic_Christmas_TreeGlasses_ARCH]
 Attachment="크리스마스 나무 안경"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+AttachmentSkin3="레드"
 
 [Cosmetic_Christmas_Ushanka_ARCH]
 Attachment="크리스마스 털모자"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Tan"
+AttachmentSkin0="블랙"
+AttachmentSkin1="브라운"
+AttachmentSkin2="그린"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="탠"
 
 [Cosmetic_Christmas_PajamaHat_ARCH]
 Attachment="크리스마스 파자마 모자"
-AttachmentSkin0="Bunny"
-AttachmentSkin1="Dosh"
-AttachmentSkin2="Green Plaid"
-AttachmentSkin3="Green Trees"
-AttachmentSkin4="Quilt"
-AttachmentSkin5="Red Snow"
-AttachmentSkin6="Red Plaid"
+AttachmentSkin0="버니"
+AttachmentSkin1="도쉬"
+AttachmentSkin2="녹색 격자무늬"
+AttachmentSkin3="녹색 나무"
+AttachmentSkin4="퀼트"
+AttachmentSkin5="레드 스노우"
+AttachmentSkin6="빨간색 격자무늬"
 
 [Cosmetic_LeatherMask_ARCH]
 Attachment="가죽 마스크"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Pink"
-AttachmentSkin4="Precious"
-AttachmentSkin5="Red"
-AttachmentSkin6="Tan"
-AttachmentSkin7="Trippy"
-AttachmentSkin8="White"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="브라운"
+AttachmentSkin3="핑크"
+AttachmentSkin4="프레셔스"
+AttachmentSkin5="레드"
+AttachmentSkin6="탠"
+AttachmentSkin7="몽롱한"
+AttachmentSkin8="화이트"
 
 [Cosmetic_HockeyMask_ARCH]
 Attachment="하키 마스크"
-AttachmentSkin0="Black"
-AttachmentSkin1="High Five"
-AttachmentSkin2="Kitty"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Skull"
+AttachmentSkin0="블랙"
+AttachmentSkin1="하이파이브"
+AttachmentSkin2="고양이"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="스컬"
 AttachmentSkin5="Slasher"
-AttachmentSkin6="Teal"
+AttachmentSkin6="틸"
 AttachmentSkin7="TGIF"
 
 [Cosmetic_BiocolaHat_ARCH]
 Attachment="BioCola 모자"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+AttachmentSkin3="레드"
+AttachmentSkin4="화이트"
 
 [Cosmetic_FoamCowboyHat_ARCH]
 Attachment="발포 고무 카우보이 모자"
-AttachmentSkin0="Black"
-AttachmentSkin1="Orange"
-AttachmentSkin2="Precious"
-AttachmentSkin3="USA"
-AttachmentSkin4="White"
-AttachmentSkin5="Yellow"
+AttachmentSkin0="블랙"
+AttachmentSkin1="오렌지"
+AttachmentSkin2="프레셔스"
+AttachmentSkin3="미국"
+AttachmentSkin4="화이트"
+AttachmentSkin5="옐로우"
 
 [Cosmetic_PaperBagBlank_ARCH]
 Attachment="빈 종이봉투"
-AttachmentSkin0="White"
+AttachmentSkin0="화이트"
 
 [Cosmetic_PaperBagEyes_ARCH]
 Attachment="왕눈이 종이봉투"
-AttachmentSkin0="Precious"
+AttachmentSkin0="프레셔스"
 
 [Cosmetic_PaperBagHappy_ARCH]
 Attachment="행복 종이봉투"
-AttachmentSkin0="Green"
+AttachmentSkin0="그린"
 
 [Cosmetic_PaperBagKrinkle_ARCH]
 Attachment="크링클 종이봉투"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="몽롱한"
 
 [Cosmetic_PaperBagOFace_ARCH]
 Attachment="섹시 종이봉투"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="옐로우"
 
 [Cosmetic_PaperBagOooh_ARCH]
 Attachment="깜놀 종이봉투"
-AttachmentSkin0="White"
+AttachmentSkin0="화이트"
 
 [Cosmetic_PaperBagSmallEyes_ARCH]
 Attachment="스몰아이 종이봉투"
-AttachmentSkin0="Purple"
+AttachmentSkin0="퍼플"
 
 [Cosmetic_PaperBagYelling_ARCH]
 Attachment="함성 종이봉투"
-AttachmentSkin0="Red"
+AttachmentSkin0="레드"
 
 [Cosmetic_PorcelainMaskBlank_ARCH]
 Attachment="빈 도자기 마스크"
-AttachmentSkin0="White"
+AttachmentSkin0="화이트"
 
 [Cosmetic_PorcelainMaskBroken_ARCH]
 Attachment="부서진 도자기 마스크"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="옐로우"
 
 [Cosmetic_PorcelainMaskCross_ARCH]
 Attachment="십자 도자기 마스크"
-AttachmentSkin0="Red and Black"
+AttachmentSkin0="레드와 블랙"
 
 [Cosmetic_PorcelainMaskDosh_ARCH]
 Attachment="도쉬 도자기 마스크"
-AttachmentSkin0="Precious"
+AttachmentSkin0="프레셔스"
 
 [Cosmetic_PorcelainMaskHappy_ARCH]
 Attachment="행복 도자기 마스크"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="옐로우"
 
 [Cosmetic_PorcelainMaskSad_ARCH]
 Attachment="슬픔 도자기 마스크"
-AttachmentSkin0="Blue"
+AttachmentSkin0="블루"
 
 [Cosmetic_PorcelainMaskSlim_ARCH]
 Attachment="슬림 도자기 마스크"
-AttachmentSkin0="Green"
+AttachmentSkin0="그린"
 
 [Cosmetic_PorcelainMaskSly_ARCH]
 Attachment="교활한 도자기 마스크"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="몽롱한"
 
 [Cosmetic_Tricorne_ARCH]
 Attachment="삼각 모자"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Precious"
-AttachmentSkin4="White"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="브라운"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="화이트"
+
+[Cosmetic_DAR_ClassicArmor_ARCH]
+Attachment="클래식 장갑"
+AttachmentSkin0="블러디"
+AttachmentSkin1="로더"
+AttachmentSkin2="표준"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="스컬리"
+
+[Cosmetic_DAR_AssaultArmor_ARCH]
+Attachment="돌격 장갑"
+AttachmentSkin0="블랙 OPS"
+AttachmentSkin1="카모 G"
+AttachmentSkin2="듄스"
+AttachmentSkin3="로더"
+AttachmentSkin4="최적"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_DAR_FlightArmor_ARCH]
+Attachment="비행 장갑"
+AttachmentSkin0="블루 앤젤"
+AttachmentSkin1="빙하"
+AttachmentSkin2="P51"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="스핏파이어"
+AttachmentSkin5="비명"
+
+[Cosmetic_DAR_ChonneArmor_ARCH]
+Attachment="CHONN-E 5 장갑"
+AttachmentSkin0="배트캣"
+AttachmentSkin1="짐"
+AttachmentSkin2="Horzine"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="래디컬"
+AttachmentSkin5="타임 큐브"
+
+[Cosmetic_DAR_C3HZArmor_ARCH]
+Attachment="C-3HZ 장갑"
+AttachmentSkin0="충돌"
+AttachmentSkin1="플로 블루"
+AttachmentSkin2="마블"
+AttachmentSkin3="옵시디안"
+AttachmentSkin4="프레셔스"
+AttachmentSkin5="스페이스"
+
+[Cosmetic_SmallEarPiece_ARCH]
+Attachment="작은 이어폰"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
+
+[Cosmetic_Pad_ARCH]
+Attachment="패드 백팩"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
+
+[Cosmetic_MouthPiece_ARCH]
+Attachment="마우스피스"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
+
+[Cosmetic_MessengerBag_ARCH]
+Attachment="메신저백"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+AttachmentSkin3="레드"
+AttachmentSkin4="옐로우"
+
+[Cosmetic_LargeEarPiece_ARCH]
+Attachment="큰 이어폰"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
+
+[Cosmetic_DiagonalBackpack_ARCH]
+Attachment="사선 백팩"
+AttachmentSkin0="그레이"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+AttachmentSkin3="탠"
+
+[Cosmetic_CyberShades_ARCH]
+Attachment="셰이드"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
+
+[Cosmetic_CyberPunkVisorOpen_ARCH]
+Attachment="열린 바이저"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
+
+[Cosmetic_CyberPunkVisorClosed_ARCH]
+Attachment="닫힌 바이저"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
+
+[Cosmetic_ArmScreen_ARCH]
+Attachment="디지털 팔 화면"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"
+
+[Cosmetic_SlimVisor_ARCH]
+Attachment="슬림 바이저"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="오렌지"
+AttachmentSkin3="프레셔스"
+AttachmentSkin4="퍼플"
+AttachmentSkin5="레드"

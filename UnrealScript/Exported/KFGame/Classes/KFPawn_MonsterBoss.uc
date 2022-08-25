@@ -372,22 +372,6 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 
 
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
 
 
 
@@ -402,12 +386,6 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 
 
-	
-
-
-
-
-	
 
 
 
@@ -422,7 +400,152 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -742,22 +865,6 @@ function bool CanAITargetThisPawn(Controller TargetingController)
     }
 
     return Super.CanAITargetThisPawn(TargetingController);
-}
-
-/* PlayDying() is called on server/standalone game when killed
-and also on net client when pawn gets bTearOff set to true (and bPlayedDeath is false)
-*/
-simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
-{
-	local KFGameReplicationInfo KFGRI;
-
-    super.PlayDying(DamageType, HitLoc);
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if( KFGRI != none && !KFGRI.IsFinalWave() )
-	{
-		return;
-	}
 }
 
 simulated function PlayDyingSound()

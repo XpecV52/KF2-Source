@@ -359,22 +359,6 @@ class KFPawnVoiceGroup_Strasser extends KFPawnVoiceGroup;
 
 
 
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
 
 
 
@@ -389,12 +373,6 @@ class KFPawnVoiceGroup_Strasser extends KFPawnVoiceGroup;
 
 
 
-	
-
-
-
-
-	
 
 
 
@@ -409,7 +387,152 @@ class KFPawnVoiceGroup_Strasser extends KFPawnVoiceGroup;
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

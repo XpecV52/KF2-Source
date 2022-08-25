@@ -342,7 +342,7 @@ ItemDescription="•ファイアモードは可燃性の爆発物を発射しま
 [KFWeap_Pistol_DualFlare]
 ItemName="デュアルスピットファイア"
 ItemCategory="火炎"
-ItemDescription="•ファイアモードは可燃性の爆発物を発射します。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•スピットファイア2丁です。それぞれ個別に売却やドロップできます。"
+ItemDescription="•ファイアモードは可燃性の爆発物を発射します。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•スピットファイア2丁です。"
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="焼夷トレンチガン"
@@ -397,7 +397,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•定番�
 [KFWeap_Pistol_DualColt1911]
 ItemName="デュアルM1911ピストル"
 ItemCategory="ハンドガン"
-ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•Colt 1911セミオートマチックピストル2丁です。それぞれ個別に売却やドロップできます。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•Colt 1911セミオートマチックピストル2丁です。"
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50デザートイーグル"
@@ -407,7 +407,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•デザ�
 [KFWeap_Pistol_DualDeagle]
 ItemName="デュアル.50デザートイーグル"
 ItemCategory="ハンドガン"
-ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•デザートイーグル・ハンドキャノン2丁です。それぞれ個別に売却やドロップできます。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•デザートイーグル・ハンドキャノン2丁です。"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858リボルバー"
@@ -417,7 +417,7 @@ ItemDescription="•ファイアモードは単発のみ。\n•.44口径レミ�
 [KFWeap_Revolver_DualRem1858]
 ItemName="デュアル1858リボルバー"
 ItemCategory="ハンドガン"
-ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•レミントン1858リボルバー2丁です。それぞれ個別に売却やドロップできます。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•レミントン1858リボルバー2丁です。"
 
 [KFWeap_Revolver_SW500]
 ItemName=".500マグナムリボルバー"
@@ -427,7 +427,7 @@ ItemDescription="•ファイアモードは単発のみ。\n•ロングバレ�
 [KFWeap_Revolver_DualSW500]
 ItemName="デュアル.500マグナム"
 ItemCategory="ハンドガン"
-ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•.500マグナム 'ボーンコレクター' リボルバー2丁です。それぞれ個別に売却やドロップできます。重い「ドスン」と共に。"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•.500マグナム「ボーンコレクター」リボルバー2丁です。"
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="ウィンチェスター1894"
@@ -482,8 +482,8 @@ ItemDescription="•ファイアモードはフルオートまたはセミオー
 
 [KFWeap_SMG_HK_UMP]
 ItemName="ヘッケラー＆コッホUMP"
-ItemCategory=""
-ItemDescription="•フルオートまたはセミオートのファイアモードが選択可能。\n•オルトファイアでファイアモードを切り替えます。\n•MPファミリーに新しく加わったものの一つ。ポジション的に叔父さんでしょうか？サブマシンガンにも家族はいるようです。"
+ItemCategory="サブマシンガン"
+ItemDescription="•フルオートまたはバーストのファイアモードが選択可能。\n•オルトファイアでファイアモードを切り替えます。\n•MPファミリーに新しく加わったものの一つ。ポジション的に叔父さんでしょうか？サブマシンガンにも家族はいるようです。"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="凍結放射器"
@@ -494,6 +494,26 @@ ItemDescription="•ファイアモードは一筋の絶対零度の粒子を発
 ItemName="Hemogoblin"
 ItemCategory="ライフル"
 ItemDescription="•ファイアモードはZedに怪我を負わせ、動きを遅くし、弱体化させるブラッドボアを発射します。\n•オルトファイアはチームメンバーを回復させる回復ダーツを発射します。\n•実行可能なダイエット計画ではありません。"
+
+[KFWeap_HuskCannon]
+ItemName="ハスクキャノン"
+ItemCategory="火炎"
+ItemDescription="•発射ボタンを押している間はチャージされ、発射ボタンを離すと解放されます。\n•ハスクキャノンのホージン社公式バージョン。このモデルは95%の保証付きで爆発しません。"
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードはセミオートのみです。\n•より多くのバレルを取り付けることで全てが改善されます。たくさんのベーコンを付け足すようなものです。"
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="デュアルAF2011-A2"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•それぞれにバレルがついた2丁の拳銃。4倍の火力です。これは数学です。数学に議論する余地はありません。"
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="サブマシンガン"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•焼夷弾を高速で発射することが特徴です。わかりましたか？ラピッドファイア？それが焼夷サブマシンガンだから？ああ、忘れてください。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="VSサバイバル"
 
 [KFGameInfo_WeeklySurvival]
 GameName=""
+
+[KFGameInfo_Endless]
+GameName="エンドレス"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="回復が残っていません"

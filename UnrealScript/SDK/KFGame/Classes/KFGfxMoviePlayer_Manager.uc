@@ -1153,6 +1153,10 @@ function bool ToggleMenus()
 			`log(`location);
 			OpenMenu(UI_Perks);
 			UpdateMenuBar();
+			if (PartyWidget != none)
+			{
+				PartyWidget.UpdateReadyButtonVisibility();
+			}
 		}
 
 		// set the timer to mark when the menu is completely open and we can close the menu down
@@ -1589,9 +1593,11 @@ function ChangeOverviewState(bool bLeaderIsOnServerBrowser)
 event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent InputEvent)
 {
 	local KFPlayerReplicationInfo KFPRI;
+	local KFGameReplicationInfo KFGRI;
 	local bool bLoading;
 
 	KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
+	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
 	if ( class'KFGameEngine'.static.IsFullScreenMoviePlaying() )
 	{
@@ -1609,7 +1615,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 	{
 		if(ButtonName == 'XboxTypeS_Y')
 		{
-			if(!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby && !class'WorldInfo'.static.IsMenuLevel() && CurrentPopup == none )
+			if(!KFGRI.bMatchIsOver && !bAfterLobby && !class'WorldInfo'.static.IsMenuLevel() && CurrentPopup == none )
 			{
 				if(!KFPRI.bReadyToPlay)
 				{
@@ -1619,6 +1625,10 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 				PartyWidget.SetBool("bReady", KFPRI.bReadyToPlay);
 				PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
 
+			}
+			else if(KFPRI.bHasSpawnedIn && !KFGRI.bMatchIsOver && KFGRI.bMatchHasBegun && KFGRI.bTraderIsOpen && CurrentMenu != TraderMenu && bMenusOpen)
+			{
+				CurrentMenu.Callback_ReadyClicked(true);
 			}
 		}
 		else if(ButtonName == 'XboxTypeS_RightThumbstick')

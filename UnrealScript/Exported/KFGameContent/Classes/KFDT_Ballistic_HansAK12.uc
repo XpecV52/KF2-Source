@@ -371,22 +371,6 @@ class KFDT_Ballistic_HansAK12 extends KFDT_Ballistic_AK12
 
 
 
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
 
 
 
@@ -401,12 +385,6 @@ class KFDT_Ballistic_HansAK12 extends KFDT_Ballistic_AK12
 
 
 
-	
-
-
-
-
-	
 
 
 
@@ -421,7 +399,152 @@ class KFDT_Ballistic_HansAK12 extends KFDT_Ballistic_AK12
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

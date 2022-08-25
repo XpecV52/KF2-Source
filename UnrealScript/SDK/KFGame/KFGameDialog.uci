@@ -297,7 +297,6 @@
 `define TRAD_AdviceHusk                	45
 `define TRAD_AdvicePatriarch           	46
 `define TRAD_AdviceHans                	47
-`define TRAD_AdviceMatriarch           	48
 `define TRAD_ObjDefendT                	49
 `define TRAD_ObjDefendTWon             	50
 `define TRAD_ObjDefendTDeclined        	51
@@ -357,22 +356,22 @@
 `define TRAD_ObjDefendTWonJust			103
 `define TRAD_ObjDefendTWonGood			104
 `define TRAD_ObjDefendTWonPerf			105
-	
+
 `define TRAD_ObjDefendTsFailedX			106
 `define TRAD_ObjDefendTsWonJust			107
 `define TRAD_ObjDefendTsWonGood			108
 `define TRAD_ObjDefendTsWonPerf			109
-	
+
 `define TRAD_ObjDefendAFailedX			110
 `define TRAD_ObjDefendAWonJust			111
 `define TRAD_ObjDefendAWonGood			112
 `define TRAD_ObjDefendAWonPerf			113
-	
+
 `define TRAD_ObjDefendAsFailedX			114
 `define TRAD_ObjDefendAsWonJust			115
 `define TRAD_ObjDefendAsWonGood			116
 `define TRAD_ObjDefendAsWonPerf			117
-	
+
 `define TRAD_ObjHackTermFailedX			118
 `define TRAD_ObjHackTermWonJust			119
 `define TRAD_ObjHackTermWonGood			120
@@ -387,12 +386,12 @@
 `define TRAD_ObjDownloadWonJust			127
 `define TRAD_ObjDownloadWonGood			128
 `define TRAD_ObjDownloadWonPerf			129
-	
+
 `define TRAD_ObjRepairTFailedX			130
 `define TRAD_ObjRepairTWonJust			131
 `define TRAD_ObjRepairTWonGood			132
 `define TRAD_ObjRepairTWonPerf			133
-	
+
 `define TRAD_ObjRepairTsFailedX			134
 `define TRAD_ObjRepairTsWonJust			135
 `define TRAD_ObjRepairTsWonGood			136
@@ -407,7 +406,7 @@
 `define TRAD_ObjEscVIPsWonJust			143
 `define TRAD_ObjEscVIPsWonGood			144
 `define TRAD_ObjEscVIPsWonPerf			145
-	
+
 `define TRAD_ObjCollItemFailedX			146
 `define TRAD_ObjCollItemWonJust			147
 `define TRAD_ObjCollItemWonGood			148
@@ -420,7 +419,131 @@
 
 `define TRAD_LastManStanding			154
 
-`define TRADER_DIALOG_COUNT           	155
+// Patty Trader DIalog
+
+`define TRAD_PATTY_WAVE_1           	155
+`define TRAD_PATTY_WAVE_2           	156
+`define TRAD_PATTY_WAVE_3           	157
+`define TRAD_PATTY_WAVE_4           	158
+`define TRAD_PATTY_WAVE_5           	159
+`define TRAD_PATTY_WAVE_6           	160
+`define TRAD_PATTY_WAVE_7           	161
+`define TRAD_PATTY_WAVE_8           	162
+`define TRAD_PATTY_WAVE_9           	163
+`define TRAD_PATTY_WAVE_10           	164
+`define TRAD_PATTY_WAVE_11           	165
+`define TRAD_PATTY_WAVE_12           	166
+`define TRAD_PATTY_WAVE_13           	167
+`define TRAD_PATTY_WAVE_14           	168
+`define TRAD_PATTY_WAVE_15           	169
+`define TRAD_PATTY_WAVE_16           	170
+`define TRAD_PATTY_WAVE_17           	171
+`define TRAD_PATTY_WAVE_18           	172
+`define TRAD_PATTY_WAVE_19           	173
+`define TRAD_PATTY_WAVE_20           	174
+`define TRAD_PATTY_WAVE_21           	175
+`define TRAD_PATTY_WAVE_22           	176
+`define TRAD_PATTY_WAVE_23           	177
+`define TRAD_PATTY_WAVE_24           	178
+`define TRAD_PATTY_WAVE_25           	179
+`define TRAD_PATTY_WAVE_26           	180
+`define TRAD_PATTY_WAVE_27          	181
+`define TRAD_PATTY_WAVE_28           	182
+`define TRAD_PATTY_WAVE_29           	183
+`define TRAD_PATTY_WAVE_30           	184
+`define TRAD_PATTY_WAVE_31           	185
+`define TRAD_PATTY_WAVE_32           	186
+`define TRAD_PATTY_WAVE_33           	187
+`define TRAD_PATTY_WAVE_34           	188
+`define TRAD_PATTY_WAVE_35           	189
+`define TRAD_PATTY_WAVE_36           	190
+`define TRAD_PATTY_WAVE_37           	191
+`define TRAD_PATTY_WAVE_38           	192
+`define TRAD_PATTY_WAVE_39           	193
+`define TRAD_PATTY_WAVE_40           	194
+`define TRAD_PATTY_WAVE_41           	195
+`define TRAD_PATTY_WAVE_42           	196
+`define TRAD_PATTY_WAVE_43           	197
+`define TRAD_PATTY_WAVE_44           	198
+`define TRAD_PATTY_WAVE_45           	199
+`define TRAD_PATTY_WAVE_46           	200
+`define TRAD_PATTY_WAVE_47           	201
+`define TRAD_PATTY_WAVE_48           	202
+`define TRAD_PATTY_WAVE_49           	203
+`define TRAD_PATTY_WAVE_50           	204
+`define TRAD_PATTY_WAVE_51           	205
+`define TRAD_PATTY_WAVE_52           	206
+`define TRAD_PATTY_WAVE_53           	207
+`define TRAD_PATTY_WAVE_54           	208
+`define TRAD_PATTY_WAVE_55           	209
+`define TRAD_PATTY_WAVE_56           	210
+`define TRAD_PATTY_WAVE_57           	211
+`define TRAD_PATTY_WAVE_58           	212
+`define TRAD_PATTY_WAVE_59           	213
+`define TRAD_PATTY_WAVE_60           	214
+`define TRAD_PATTY_WAVE_61           	215
+`define TRAD_PATTY_WAVE_62           	216
+`define TRAD_PATTY_WAVE_63           	217
+`define TRAD_PATTY_WAVE_64           	218
+`define TRAD_PATTY_WAVE_65           	219
+`define TRAD_PATTY_WAVE_66           	220
+`define TRAD_PATTY_WAVE_67           	221
+`define TRAD_PATTY_WAVE_68           	222
+`define TRAD_PATTY_WAVE_69           	223
+`define TRAD_PATTY_WAVE_70           	224
+`define TRAD_PATTY_WAVE_71           	225
+`define TRAD_PATTY_WAVE_72           	226
+`define TRAD_PATTY_WAVE_73           	227
+`define TRAD_PATTY_WAVE_74           	228
+`define TRAD_PATTY_WAVE_75           	229
+`define TRAD_PATTY_WAVE_76           	230
+`define TRAD_PATTY_WAVE_77           	231
+`define TRAD_PATTY_WAVE_78           	232
+`define TRAD_PATTY_WAVE_79           	233
+`define TRAD_PATTY_WAVE_80           	234
+`define TRAD_PATTY_WAVE_81           	235
+`define TRAD_PATTY_WAVE_82           	236
+`define TRAD_PATTY_WAVE_83           	237
+`define TRAD_PATTY_WAVE_84           	238
+`define TRAD_PATTY_WAVE_85           	239
+`define TRAD_PATTY_WAVE_86           	240
+`define TRAD_PATTY_WAVE_87           	241
+`define TRAD_PATTY_WAVE_88           	242
+`define TRAD_PATTY_WAVE_89           	243
+`define TRAD_PATTY_WAVE_90           	244
+`define TRAD_PATTY_WAVE_91           	245
+`define TRAD_PATTY_WAVE_92           	246
+`define TRAD_PATTY_WAVE_93           	247
+`define TRAD_PATTY_WAVE_94           	248
+`define TRAD_PATTY_WAVE_95           	249
+`define TRAD_PATTY_WAVE_96           	250
+`define TRAD_PATTY_WAVE_97           	251
+`define TRAD_PATTY_WAVE_98           	252
+`define TRAD_PATTY_WAVE_99           	253
+`define TRAD_PATTY_WAVE_100				254
+`define TRAD_PATTY_WAVE_100Plus			255
+
+`define TRAD_PATTY_KILLBOSS_1			256
+`define TRAD_PATTY_KILLBOSS_2			257
+`define TRAD_PATTY_KILLBOSS_3			258
+`define TRAD_PATTY_KILLBOSS_4			259
+`define TRAD_PATTY_KILLBOSS_5			260
+`define TRAD_PATTY_KILLBOSS_6			261
+`define TRAD_PATTY_KILLBOSS_7			262
+`define TRAD_PATTY_KILLBOSS_8			263
+`define TRAD_PATTY_KILLBOSS_9			264
+`define TRAD_PATTY_KILLBOSS_10			265
+`define TRAD_PATTY_KILLBOSS_11			266
+`define TRAD_PATTY_KILLBOSS_12			267
+`define TRAD_PATTY_KILLBOSS_13			268
+`define TRAD_PATTY_KILLBOSS_14			269
+`define TRAD_PATTY_KILLBOSS_15			270
+
+`define TRAD_SPECIALWAVE_1				271
+`define TRAD_SPECIALWAVE_2				272
+`define TRAD_SPECIALWAVE_3				273
+
+`define TRADER_DIALOG_COUNT           	274
 
 // Common Boss dialog IDs
 `define BOSS_Intro			 			0

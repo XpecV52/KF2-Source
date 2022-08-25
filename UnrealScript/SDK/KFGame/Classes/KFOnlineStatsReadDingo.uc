@@ -49,6 +49,8 @@ defaultproperties
     ColumnIds.Add(STATID_ACHIEVE_TragicKingdomCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_NightmareCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_KrampusCollectibles)
+	ColumnIds.Add(STATID_ACHIEVE_ArenaCollectibles)
+	ColumnIds.Add(STATID_ACHIEVE_PowercoreCollectibles)
 
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky5, Name="AchievementMrPerky5"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky10, Name = "AchievementMrPerky10"))
@@ -86,4 +88,6 @@ defaultproperties
     ColumnMappings.Add((Id=STATID_ACHIEVE_TragicKingdomCollectibles, Name="AchievementCollectTragicKingdom"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_NightmareCollectibles, Name="AchievementCollectNightmare"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_KrampusCollectibles, Name="AchievementCollectKrampus"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_ArenaCollectibles, Name="AchievementCollectDiesector"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_PowercoreCollectibles, Name="AchievementCollectPowercore"))
 }

@@ -19,6 +19,8 @@ KF-Nuked="Sta giocando: Nuclearizzato"
 KF-TragicKingdom="Sta giocando: Il Regno Tragico"
 KF-Nightmare="Sta giocando: Incubo"
 KF-KrampusLair="Giocando La Tana del Krampus"
+KF-PowerCore_Holdout="Sta giocando: Nucleo di energia"
+KF-DieSector="Sta giocando: Settore mortale"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

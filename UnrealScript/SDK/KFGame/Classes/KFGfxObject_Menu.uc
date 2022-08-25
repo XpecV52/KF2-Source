@@ -188,20 +188,39 @@ function Callback_RequestTeamSwitch()
 function Callback_ReadyClicked( bool bReady )
 {
 	local KFPlayerReplicationInfo KFPRI;
-	KFPRI = KFPlayerReplicationInfo( GetPC().PlayerReplicationInfo );
+	local KFGameReplicationInfo KFGRI;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(GetPC());
+	KFPRI = KFPlayerReplicationInfo( KFPC.PlayerReplicationInfo );
+	KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
 
 	if (KFPRI != none)
 	{
-		KFPRI.SetPlayerReady(bReady);
-
 	    // For game in progress, close menus on ready
-	    if (KFPRI.WorldInfo.GRI.bMatchHasBegun)
+	    if (KFGRI.bMatchHasBegun)
 	    {
-	     	KFPlayerController( GetPC() ).MyGFxManager.CloseMenus();
-	     	GetPC().ServerRestartPlayer();
+			//player has spawned, skip trader time
+			if (KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn )
+			{
+				if (KFPC.MyGFxManager.bMenusOpen && KFPC.MyGFxManager.CurrentMenu != KFPC.MyGFxManager.TraderMenu)
+				{
+					//skip trader request
+					KFPRI.RequestSkiptTrader(KFPRI);
+					KFPC.MyGFxManager.CloseMenus();
+					Manager.PartyWidget.ReadyButton.SetVisible(false);
+				}
+			}
+			else //spawn them
+			{
+				KFPRI.SetPlayerReady(bReady);
+				KFPlayerController(GetPC()).MyGFxManager.CloseMenus();
+				GetPC().ServerRestartPlayer();
+			}
 	    }
 	    else if (Manager != none )
 	    {
+			KFPRI.SetPlayerReady(bReady);
 	    	if(Manager.PartyWidget !=none)
 	    	{
 				Manager.PartyWidget.RefreshParty();

@@ -41,6 +41,7 @@ var const localized string WaitingString;
 var const localized string DeployingString;
 var const localized string PlayerReadyString;
 var const localized string PartyLeaderString;
+var const localized string SkipTraderString;
 var const localized string MuteString;
 var const localized string UnmuteString;
 var const localized string AddFriendString;
@@ -82,6 +83,7 @@ var GFxObject LeaveButton;
 var GFxObject CreatePartyButton;
 var GFxObject SquadHeader;
 var GFxObject Notification;
+var GFxObject MatchStartContainer;
 var int PlayerSlots;
 var const UniqueNetId ZeroUniqueId;
 var SMemberSlot MemberSlots[12];
@@ -110,6 +112,7 @@ function InitializeWidget()
     SetBool("partyButtonVisible", bCreatePartyVisible);
     ReadyButton = GetObject("readyButton");
     SquadHeader = GetObject("squadHeader");
+    MatchStartContainer = GetObject("matchStartContainer");
     InitNotificationUI();
     LocalizeText();
     UpdateInLobby(Manager.IsInLobby());
@@ -137,6 +140,8 @@ function InitNotificationUI()
 {
     Notification = GetObject("Notification");
 }
+
+function UpdateReadyButtonVisibility();
 
 function ShowDownLoadNotification(string ItemName, float PercentComplete)
 {
@@ -375,9 +380,14 @@ function OpenPlayerList(int SlotIndex)
     CreatePlayerOptions(MemberSlots[SlotIndex].PlayerUID, SlotIndex);
 }
 
-function SetReadyButtonVisibility(bool bVisible)
+function SetReadyButtonVisibility(bool bVisible, optional bool bShowDeployTimer)
 {
+    bShowDeployTimer = true;
     SetBool("readyButtonVisible", bVisible);
+    if(MatchStartContainer != none)
+    {
+        MatchStartContainer.SetVisible(bShowDeployTimer && bVisible);
+    }
 }
 
 function bool ReceiveMessage(string Message, optional string MessageColor)
@@ -455,6 +465,7 @@ defaultproperties
     DeployingString="DEPLOYING IN "
     PlayerReadyString="[ READY ]"
     PartyLeaderString="Leader"
+    SkipTraderString="SKIP TRADER"
     MuteString="Mute Player"
     UnmuteString="Unmute Player"
     AddFriendString="Add Friend"

@@ -55,7 +55,7 @@ simulated function SyncOriginalLocation()
 
     KFP = KFPawn(Instigator);
 
-    if( KFP != none ) 
+    if( KFP != none )
     {
         InstigatorPerk = KFP.GetPerk();
         if( InstigatorPerk != none && InstigatorPerk.ShouldNeverDud() )
@@ -66,7 +66,7 @@ simulated function SyncOriginalLocation()
 
     // If server has already collided we need to recover our velocity.  Reuse the code
 	// in super by zeroing velocity.
-    if ( Physics == PHYS_Falling && Role < ROLE_Authority 
+    if ( Physics == PHYS_Falling && Role < ROLE_Authority
         && Instigator != none && Instigator.IsLocallyControlled() )
     {
         Velocity = vect(0,0,0);
@@ -125,6 +125,7 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
     local Vector Offset;
     local bool bWantsClientSideDudHit;
 	local TraceHitInfo HitInfo;
+	local float TraveledDistance;
 
     // Need to do client side dud hits if this is a client
     if( Instigator != none && Instigator.Role < ROLE_Authority )
@@ -132,8 +133,11 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
         bWantsClientSideDudHit = true;
     }
 
+	TraveledDistance = ((WorldInfo.TimeSeconds - CreationTime) * Speed);
+	TraveledDistance *= TraveledDistance;
+
     // Bounce off the wall and cause the shell to dud if we hit too close
-    if( bDud || ((VSizeSq(Location - OriginalLocation) < ArmDistSquared) || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0) ) )
+    if( bDud || ((TraveledDistance < ArmDistSquared) || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
     {
         if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) )
         {
@@ -224,6 +228,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
     local Vector VNorm;
     local bool bWantsClientSideDudHit;
+	local float TraveledDistance;
 
     // If we collided with a Siren shield, let the shield code handle touches
     if( Other.IsA('KFTrigger_SirenProjectileShield') )
@@ -246,7 +251,10 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
         bWantsClientSideDudHit = true;
     }
 
-    if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) && ((VSizeSq(Location - OriginalLocation) < ArmDistSquared) || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)) )
+	TraveledDistance = ((WorldInfo.TimeSeconds - CreationTime) * Speed);
+	TraveledDistance *= TraveledDistance;
+
+    if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) && ((TraveledDistance < ArmDistSquared) || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
     {
         // Don't touch the same actor multiple time's immediately after just
         // touching it if the TouchTimeThreshhold is set to greater than 0.

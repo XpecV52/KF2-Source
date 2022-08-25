@@ -5,7 +5,6 @@ class KFPawnVoiceGroup_MrFoster extends KFPawnVoiceGroup;
 DefaultProperties
 {
     EventDataClass=class'KFPawnVoiceGroupEventData_Player'
-    
 
     DialogEvents[`COMM_GetToTrader]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_MAN_GetToTrader_Base',TraderTimeAudioCue=none)
 	DialogEvents[`COMM_FollowMe]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_MAN_FollowMe_Base',TraderTimeAudioCue=none)

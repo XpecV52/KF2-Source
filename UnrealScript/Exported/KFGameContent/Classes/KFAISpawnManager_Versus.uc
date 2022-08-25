@@ -82,14 +82,14 @@ function int GetAIAliveCount()
 }
 
 /** Next wave's basic setup */
-function SetupNextWave(byte NextWaveIndex)
+function SetupNextWave(byte NextWaveIndex, int TimeToNextWaveBuffer = 0)
 {
     local int i, j, SquadZedCount;
     local array<KFAISpawnSquad> SquadList;
     local KFPlayerControllerVersus KFPCV;
     local float SpawnWaitTime;
 
-    super.SetupNextWave( NextWaveIndex );
+    super.SetupNextWave( NextWaveIndex, TimeToNextWaveBuffer );
 
     // Get the maximum squad size count
     LargestSquadSize = 0;
@@ -124,7 +124,7 @@ function SetupNextWave(byte NextWaveIndex)
         SetTimer( 5.f, false, nameOf(Timer_SpawnPlayerZeds), self );
 
         // Disable the spawn timer on clients
-        MyKFGRIV.SetPlayerZedSpawnTime( 255, false );        
+        MyKFGRIV.SetPlayerZedSpawnTime( 255, false );
     }
 
     // Clear out any pending zed spawn info
@@ -190,7 +190,7 @@ function Timer_SpawnPlayerZeds()
     {
         SpawnRemainingReservedZeds();
         return;
-    }    
+    }
 
     // Reset our big zed counts
     NumScrakesThisSpawnCycle = 0;
@@ -389,7 +389,7 @@ function GetSpecialSquad( int WaveArrayNum )
     PlayerZedWaves[WaveArrayNum].GetSpecialSquad( PlayerZedSquads );
     bSpawnedSpecialSquad = true;
     SpecialSquadRandomChance = 0.f;
-    ++NumPlayerSpecialSquadSpawns;    
+    ++NumPlayerSpecialSquadSpawns;
 }
 
 /** Assign and reserve zed squad members for human players if this is a versus game */
@@ -550,7 +550,7 @@ function ReserveStrongZedsForPlayers( out array<class<KFPawn_Monster> > Leftover
         {
             LeftoverZeds.Remove( i, 1 );
             ReservedPlayerZeds.Insert( 0, 1 );
-            ReservedPlayerZeds[0] = LeftoverZedClass; 
+            ReservedPlayerZeds[0] = LeftoverZedClass;
             ++NumAISpawnsQueued;
             --i;
             continue;

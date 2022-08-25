@@ -57,6 +57,7 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__SplineLoftActor.Sprite'
     Components(0)=Sprite
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=true
     bWorldGeometry=true
     bGameRelevant=true

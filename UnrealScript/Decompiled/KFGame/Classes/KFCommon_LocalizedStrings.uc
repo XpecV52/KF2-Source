@@ -39,7 +39,6 @@ var const localized string AllString;
 var const localized string LoadingString;
 var const localized string AutoTradeCompleteString;
 var const localized string AutoFillCompleteString;
-var const localized string WeaponUpgradeComepleteString;
 var const localized string SecondaryWeaponPurchasedString;
 var const localized string NoItemsPurchasedString;
 var const localized string SetTakeoverServerPasswordTitle;
@@ -68,6 +67,8 @@ var const localized string DiscordMatchLobbyString;
 var const localized string DiscordTraderTimeString;
 var const localized string DiscordBossWaveString;
 var const localized string DiscordWaveString;
+var const localized string ProceedToTutorialString;
+var const localized string ProceedToTutorialDescriptionString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -185,6 +186,7 @@ defaultproperties
     ModeStrings(0)="Survival"
     ModeStrings(1)="Weekly"
     ModeStrings(2)="VS Survival"
+    ModeStrings(3)="Endless"
     TeamSwappedString="You have been team swapped"
     NoPreferenceString="ANY"
     OKString="OK"
@@ -210,7 +212,6 @@ defaultproperties
     LoadingString="Loading..."
     AutoTradeCompleteString="Auto Trade Complete: "
     AutoFillCompleteString="Autofilled Supplies"
-    WeaponUpgradeComepleteString="Weapon Upgraded"
     SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
     NoItemsPurchasedString="No Items Purchased"
     SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"
@@ -255,4 +256,6 @@ defaultproperties
     DiscordTraderTimeString=": Trader Time"
     DiscordBossWaveString=": Boss Wave"
     DiscordWaveString=": Wave "
+    ProceedToTutorialString="PROCEED TO TRAINING?"
+    ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
 }

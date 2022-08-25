@@ -49,7 +49,7 @@ struct native XboxLiveContextPlayerData
 	var native hatpointer LiveContext{Microsoft::Xbox::Services::XboxLiveContext};
     var UniqueNetId PlayerNetId;
     var Guid PlayerSessionGuid;
-    
+
 	var RealTimeActivityConnectionStatus MultiplayerSubscriptionStatus;
 	var RealTimeActivityConnectionStatus RTAConnectionStatus;
 	var array<RealTimeActivitySubscriptionData> RTASubscriptions;
@@ -318,10 +318,10 @@ function string GetClientStatGuid();
 function bool RegisterStatGuid(UniqueNetId PlayerId,const out string ClientStatGuid);
 
 /**
- * Calculates the aggregate skill from an array of skills. 
- * 
- * @param Mus - array that holds the mu values 
- * @param Sigmas - array that holds the sigma values 
+ * Calculates the aggregate skill from an array of skills.
+ *
+ * @param Mus - array that holds the mu values
+ * @param Sigmas - array that holds the sigma values
  * @param OutAggregateMu - aggregate Mu
  * @param OutAggregateSigma - aggregate Sigma
  */

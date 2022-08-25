@@ -15,78 +15,6 @@ class KFGameInfo extends FrameworkGame
 `undefine(GAMEINFO)
 `include(KFGame\KFMatchStats.uci);
 
-/** Individual per-class adjustments to make after a zed spawns */
-struct StatAdjustments
-{
-	//Class to adjust
-	var() class<KFPawn_Monster> ClassToAdjust;
-
-	//Health percentage scale
-	var() float HealthScale;
-
-	//Scale for gore health of the head hit zone
-	var() float HeadHealthScale;
-
-	//Scale for shield for zeds that support this
-	var() float ShieldScale;
-
-	//Start enraged
-	var() bool bStartEnraged;
-
-	//Whether or not to explode on death
-	var() bool bExplosiveDeath;
-
-	//Template to use for explosion
-	var KFGameExplosion ExplosionTemplate;
-
-	//Class to ignore on explosion
-	var class<KFPawn> ExplosionIgnoreClass;
-
-	/** Amount to scale up per-beefcake application per-type */
-	var array<float> BeefcakeScaleIncreases;
-
-	/** Amount to scale up per-beefcake application per-type */
-	var array<float> BeefcakeHealthIncreases;
-
-	/** Max Beefcake Scale - This should probably never go > 1.5 for collision reasons */
-	var() float MaxBeefcake;
-
-	/** Max beefcake health scale - This can scale forever really since it's not tied to visual scale */
-	var() float MaxBeefcakeHealth;
-
-	/** Scale to all damage that has this zed as an instigator */
-	var() float DamageDealtScale;
-
-	/** Scale to all damage that has this zed as a victim */
-	var() float DamageTakenScale;
-
-	/** Override of the global deflation rate to define a different per-zed rate, LERP between X and Y by player count */
-	var() Vector2D OverrideDeflationRate;
-
-	/** Additional sub wave to use when one of this type of zed spawns */
-	var() KFAIWaveInfo AdditionalSubSpawns;
-
-	/** 1 to max player count range of how many AI should spawn during the sub wave */
-	var() Vector2D AdditionalSubSpawnCount;
-
-	structdefaultproperties
-	{
-		HealthScale = 1.f;
-		HeadHealthScale = 1.f;
-		ShieldScale = 1.f;
-		bExplosiveDeath = false
-
-		MaxBeefcake = 1.5
-		MaxBeefcakeHealth = 1.5
-
-		DamageDealtScale = 1.0
-		DamageTakenScale = 1.0
-		OverrideDeflationRate = (X = 0.0,Y = 0.0)
-
-		AdditionalSubSpawnCount = (X = 1,Y = 1)
-	}
-};
-
 /** Scoring */
 var const int POINTS_FOR_BOSS_KILL;
 var const int POINTS_FOR_WAVE_COMPLETION;
@@ -122,6 +50,8 @@ var 	bool 	bOnePlayerAtStart;
 
 /** The number of human deaths this match */
 var 	int 	HumanDeaths;
+
+var		bool	bSplitBossDoshReward;
 
 /************************************************************************************
  * @name		User Interface
@@ -351,7 +281,9 @@ enum EForcedMusicType
 	EFM_Credits,
 	EFM_Boss1,
 	EFM_Boss2,
-	EFM_Boss3
+	EFM_Boss3,
+	EFM_Boss4,
+	EFM_Boss5
 };
 
 /** Tracks that are not selected randomly but rather "forced" by the server (or standalone client) at specific times */
@@ -366,9 +298,17 @@ var         bool    bLogReservations;
 var			bool	bLogAnalytics;
 //var config  bool    bLogGameBalance;
 var config 	bool 	bLogAICount;
+var bool			bForceOutbreakWave;
+var bool			bForceSpecialWave;
 
 /** The number of players the game thinks are alive when ForceLivingPlayerCount is called */
 var const byte ForcedNumLivingPlayers;
+
+/** The outbreak index if an outbreak wave. */
+var int DebugForcedOutbreakIdx;
+
+/** The zed type if there is a forced special wave. */
+var int DebugForceSpecialWaveZedType;
 
 /** Event names for game balance logging */
 const GBE_Inventory = 'Inventory';
@@ -436,6 +376,16 @@ var bool	bNVDebugDamage;
 // NVCHANGE_END - RLS - Debugging Effects
 
 var bool    bLogGroupTeamBalance;
+
+/************************************************************************************
+* @name		Outbreak
+***********************************************************************************/
+
+/** Zed adjustments used in outbreak events. */
+var KFOutbreakEvent OutbreakEvent;
+
+/** Type of outbreak event to be used. */
+var class<KFOutbreakEvent> OutbreakEventClass;
 
 /************************************************************************************
  * @name		Native
@@ -549,6 +499,11 @@ static function PreloadGlobalContentClasses()
 }
 
 /** Various functions used by UI when setting game mode */
+static function bool GetShouldShowLength()
+{
+	return true;
+}
+
 static function string GetGameModeFriendlyNameFromNum( int GameModeNum )
 {
 	return default.GameModes[Max(GameModeNum, 0)].FriendlyName;
@@ -671,6 +626,7 @@ event InitGame( string Options, out string ErrorMessage )
 	EndOfGameDelay = Clamp( GetIntOption( Options, "EndOfGameDelay", EndOfGameDelay ), 0, 120 );
 	FriendlyFireScale = FClamp( GetFloatOption( Options, "FriendlyFireScale", FriendlyFireScale ), 0, 1.f );
 
+	CreateOutbreakEvent();
 	CheckForCustomSettings();
 	CreateDifficultyInfo(Options);
 }
@@ -694,6 +650,14 @@ function CreateDifficultyInfo(string Options)
 	}
 
 	DifficultyInfo.SetDifficultySettings( GameDifficulty );
+}
+
+function CreateOutbreakEvent()
+{
+	if (OutbreakEventClass != none)
+	{
+		OutbreakEvent = new(self) OutbreakEventClass;
+	}
 }
 
 /**
@@ -1043,6 +1007,7 @@ function SetBossIndex()
 	{
 		BossIndex = Rand(default.AIBossClassList.Length);
 	}
+
 	MyKFGRI.CacheSelectedBoss(BossIndex);
 }
 
@@ -1774,6 +1739,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	local KFPawn_Monster MonsterPawn;
 	local string KillerLabel;
 	local class<DamageType> LastHitByDamageType;
+	local int i;
 
 	if( KilledPlayer != None && KilledPlayer.bIsPlayer )
 	{
@@ -1847,12 +1813,31 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	// Update pawn counters
 	if( KilledPawn != none && KilledPawn.GetTeamNum() == 255 )
 	{
+		MonsterPawn = KFPawn_Monster(KilledPawn);
+
+		// Add Assists.
+		if (MonsterPawn != none)
+		{
+			for(i = 0; i < MonsterPawn.DamageHistory.length; i++)
+			{
+				// The killer will receive dosh later.
+				if (MonsterPawn.DamageHistory[i].DamagerController == Killer)
+				{
+					continue;
+				}
+
+				if (MonsterPawn.DamageHistory[i].TotalDamage > 0 && MonsterPawn.DamageHistory[i].DamagerController != none && KFPlayerController(MonsterPawn.DamageHistory[i].DamagerController) != none)
+				{
+					KFPlayerController(MonsterPawn.DamageHistory[i].DamagerController).AddZedAssist(MonsterPawn.class);
+				}
+			}
+		}
+
 		if( Killer != none )
 		{
 			KFPC = KFPlayerController( Killer );
 			if( KFPC != none )
 			{
-				MonsterPawn = KFPawn_Monster( KilledPawn );
 				if( MonsterPawn != none	)
 				{
 					LastHitByDamageType = GetLastHitByDamageType( DT, MonsterPawn, Killer );
@@ -2032,7 +2017,10 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
 
 	DamageAmount = Min( DamageAmount, HealthBeforeDamage );
 	KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
-    KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, damageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
+	if (InstigatedBy.Pawn != none)
+	{
+		KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, damageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
+	}
 }
 
 function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn);
@@ -2124,7 +2112,10 @@ function float GetAdjustedAIDoshValue( class<KFPawn_Monster> MonsterClass )
 {
 	local float TempValue;
 
-	TempValue = MonsterClass.static.GetDoshValue();
+	if(!ShouldOverrideDoshOnKill(MonsterClass, TempValue))
+	{
+		TempValue = MonsterClass.static.GetDoshValue();
+	}
 	TempValue *= DifficultyInfo.GetKillCashModifier();
 	ModifyAIDoshValueForPlayerCount( TempValue );
 	TempValue *= GameLengthDoshScale[GameLength];
@@ -2192,6 +2183,7 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 	local KFPlayerController KFPC;
 	local KFPlayerReplicationInfo DamagerKFPRI;
 	local KFPerk InstigatorPerk;
+	local bool bIsBossKill;
 
 	for ( i = 0; i < DamageHistory.Length; i++ )
 	{
@@ -2204,9 +2196,11 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 		return;
 	}
 
+	bIsBossKill = MonsterClass.static.IsABoss();
+
 	// Scale value (via GameInfo) by difficulty and length & player count;
 	AdjustedAIValue = GetAdjustedAIDoshValue( MonsterClass );
-    ScoreDenominator = AdjustedAIValue / TotalDamage;
+	ScoreDenominator = AdjustedAIValue / TotalDamage;
 
 	for ( i = 0; i < DamageHistory.Length; i++ )
 	{
@@ -2217,7 +2211,6 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 		{
 			EarnedDosh = Round( DamageHistory[i].TotalDamage * ScoreDenominator );
 			//`log("SCORING: Player" @ DamageHistory[i].DamagerPRI.PlayerName @ "received" @ EarnedDosh @ "dosh for killing a" @ MonsterClass, bLogScoring);
-
 			DamagerKFPRI = KFPlayerReplicationInfo(DamageHistory[i].DamagerPRI);
 			if( DamagerKFPRI != none )
 			{
@@ -2231,13 +2224,28 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 						DamageHistory[i].DamagePerks[0].static.ModifyAssistDosh( EarnedDosh );
 					}
 				}
+				if (bIsBossKill && !bSplitBossDoshReward)
+				{
+					DamagerKFPRI.AddDosh(GetAdjustedAIDoshValue(MonsterClass), true);
+				}
+				else
+				{
+					DamagerKFPRI.AddDosh(EarnedDosh, true);
+				}
 
-				DamagerKFPRI.AddDosh( EarnedDosh, true );
 
 				if( DamagerKFPRI.Team != none )
 				{
 					//Dosh
-					KFTeamInfo_Human(DamagerKFPRI.Team).AddScore( EarnedDosh );
+					if (bIsBossKill && !bSplitBossDoshReward)
+					{
+						KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(GetAdjustedAIDoshValue(MonsterClass));
+					}
+					else
+					{
+						KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(EarnedDosh);
+					}
+
 
 					if( DamageHistory[i].DamagePerks.Length <= 0 )
 					{
@@ -2547,6 +2555,16 @@ simulated function ForcePatriarchMusicTrack()
     MyKFGRI.ForceNewMusicTrack( default.ForcedMusicTracks[EFM_Boss2] );
 }
 
+simulated function ForceKingFPMusicTrack()
+{
+    MyKFGRI.ForceNewMusicTrack( default.ForcedMusicTracks[EFM_Boss4] );
+}
+
+simulated function ForceAbominationMusicTrack()
+{
+    MyKFGRI.ForceNewMusicTrack( default.ForcedMusicTracks[EFM_Boss5] );
+}
+
 /*********************************************************************************************
  * @name		Map rotation
  *********************************************************************************************/
@@ -2601,6 +2619,9 @@ function int GetCurrentMapCycleIndex(const out array<string> MapList)
 /*********************************************************************************************
  * @name Exec
  *********************************************************************************************/
+
+exec function FindCollectibles();
+
 
 exec function MaintenanceRestart()
 {
@@ -3343,6 +3364,27 @@ function bool IsPlayerReady( KFPlayerReplicationInfo PRI )
 
 function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime);
 
+function float GetTraderTime()
+{
+	local float MapOverride;
+
+	MapOverride = DifficultyInfo.GetTraderTimeByMap(WorldInfo.GetMapName(true));
+	if (MapOverride > 0.f)
+	{
+		return MapOverride;
+	}
+
+	return DifficultyInfo.GetTraderTimeByDifficulty();
+}
+
+
+function SkipTrader(int TimeAfterSkipTrader);
+
+function bool ShouldOverrideDoshOnKill(class<KFPawn_Monster> KilledPawn, out float DoshGiven)
+{
+	return false;
+}
+
 /**
   * Checks if the next map exists.
   * Network: Dedicated Server Only
@@ -3416,7 +3458,8 @@ defaultproperties
     ForcedMusicTracks(1)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo' // credits
     ForcedMusicTracks(2)=KFMusicTrackInfo'WW_MACT_Default.TI_SH_Boss_DieVolter' // hans
     ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Patriarch' // patriarch
-    ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer' // matriarch
+    ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_KingFP' // king fp
+    ForcedMusicTracks(5)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_Abomination' // abomination
 
 	ReservationTimeout=32
 	bLogReservations=true
@@ -3438,4 +3481,8 @@ defaultproperties
 // NVCHANGE_END - RLS - Debugging Effects
 
 	bGoToBossCameraOnDeath=true
+	bSplitBossDoshReward=true
+
+	DebugForcedOutbreakIdx=INDEX_NONE
+	DebugForceSpecialWaveZedType=INDEX_NONE
 }

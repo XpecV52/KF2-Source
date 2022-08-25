@@ -131,7 +131,7 @@ event int GetProfileInt(int ProfileSettingId)
 }
 
 
-event bool GetProfileBool(int ProfileSettingId) 
+event bool GetProfileBool(int ProfileSettingId)
 {
 	local int tempInt;
 	GetProfileSettingValueInt(ProfileSettingId, tempInt);
@@ -161,7 +161,7 @@ function int GetDefaultInt(int ProfileSettingId)
 }
 
 
-function bool GetDefaultBool(int ProfileSettingId) 
+function bool GetDefaultBool(int ProfileSettingId)
 {
 	local int tempInt;
 	GetProfileSettingDefaultInt(ProfileSettingId, tempInt);
@@ -186,6 +186,12 @@ native event SetToDefaults();
 native function FlattenExtraToProfileSettings();
 native function ExpandExtraFromProfileSettings();
 //@HSL_MOD_END
+
+cpptext
+{
+	void ForceCharacterSync();
+}
+
 defaultproperties
 {
 	VersionNumber=4
@@ -263,7 +269,7 @@ defaultproperties
 
 	//Added 2/27/2017 - Support for safe frame setting
 	ProfileMappings.Add((Id=KFID_SafeFrameScale, Name="Safe Frame", MappingType=PVMT_RawValue))
-	
+
 	//Added 8/21/2017 - Support for native 4k rendering on Xbox One X (Scorpio)
 	ProfileMappings.Add((Id=KFID_Native4kResolution, Name="Native 4k Resolution", MappingType=PVMT_RawValue))
 
@@ -301,18 +307,18 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_TargetFrictionEnabled,Data=(Type=SDT_Int32,Value1=1))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_AutoTargetEnabled,Data=(Type=SDT_Int32,Value1=1))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_InvertMouse,Data=(Type=SDT_Int32,Value1=0))))
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_EnableMouseSmoothing,Data=(Type=SDT_Int32,Value1=1))))	
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_EnableMouseSmoothing,Data=(Type=SDT_Int32,Value1=1))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_VOIPVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x3fc00000)))) // 1.50f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloModeIndex,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloMapString,Data=(Type=SDT_String,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloDifficultyIndex,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloLengthIndex,Data=(Type=SDT_Int32,Value1=0))))
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedModeIndex,Data=(Type=SDT_Int32,Value1=0))))	
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedMapString,Data=(Type=SDT_String,Value1=0))))	
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedDifficultyIndex,Data=(Type=SDT_Int32,Value1=0))))	
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedModeIndex,Data=(Type=SDT_Int32,Value1=0))))
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedMapString,Data=(Type=SDT_String,Value1=0))))
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedDifficultyIndex,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedLengthIndex,Data=(Type=SDT_Int32,Value1=0))))	//default to any
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedPrivacyIndex,Data=(Type=SDT_Int32,Value1=0))))	
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedServerTypeIndex,Data=(Type=SDT_Int32,Value1=0))))	
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedPrivacyIndex,Data=(Type=SDT_Int32,Value1=0))))
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedServerTypeIndex,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedInProgressIndex,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ControllerSoundEnabled,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MatchmakingRegion,Data=(Type=SDT_String,Value1=0))))
@@ -324,7 +330,7 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_AutoTurnOff,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ReduceHightPitchSounds,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_DisableAutoUpgrade,Data=(Type=SDT_Int32,Value1=0))))
-	
+
 	//Added 9/6/2016- Support for WeaponSkins
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_WeaponSkinAssociations,Data=(Type=SDT_String, Value1=0))))
 

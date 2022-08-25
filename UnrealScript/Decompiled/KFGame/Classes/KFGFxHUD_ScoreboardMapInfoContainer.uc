@@ -74,13 +74,27 @@ function UpdateWaveCount()
         return;
     }
     CurrentWaveNum = KFGRI.WaveNum;
-    if(CurrentWaveNum == KFGRI.WaveMax)
+    if(KFGRI.IsBossWave())
     {
-        SetString("waveNumber", FinalString);        
+        SetString("waveNumber", Class'KFGFxHUD_WaveInfo'.default.BossWaveString);        
     }
     else
     {
-        SetString("waveNumber", (string(CurrentWaveNum) $ "/") $ string(KFGRI.WaveMax - 1));
+        if(KFGRI.IsFinalWave())
+        {
+            SetString("waveNumber", FinalString);            
+        }
+        else
+        {
+            if(KFGRI.default.bEndlessMode)
+            {
+                SetString("waveNumber", "" $ string(CurrentWaveNum));                
+            }
+            else
+            {
+                SetString("waveNumber", (string(CurrentWaveNum) $ "/") $ string(KFGRI.WaveMax - 1));
+            }
+        }
     }
 }
 

@@ -100,7 +100,6 @@ function SetBeamTarget()
             KingPawnOwner.BeamHitAC.PlayEvent(BeamHitStopSFX);
         }
     }
-    KingPawnOwner.BeamHitAC.Location = BeamEnd;
     if(bDrawDebugBeam)
     {
         KFPOwner.FlushPersistentDebugLines();

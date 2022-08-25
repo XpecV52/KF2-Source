@@ -67,8 +67,7 @@ simulated event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocat
     }
 
     //Check for classes excluded from being hit
-    LastHitIdx = HitExclusionList.Find(Other.class);
-    if (LastHitIdx != INDEX_NONE)
+    if(IsActorExcluded(Other))
     {
         return;
     }
@@ -87,7 +86,7 @@ simulated event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocat
             HitDirection = Other.Location - Location;
             HitDirection.Z = DamageType.default.KDeathUpKick;
             HitDirection = Normal(HitDirection);
-        }        
+        }
 
         //Humans can't ragdoll, simply throw them
         if (KFPH != none)
@@ -118,6 +117,19 @@ simulated event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocat
         NewHit.HitTime = WorldInfo.TimeSeconds;
         TrackedHits.AddItem(NewHit);
     }
+}
+
+simulated function CausePainTo(Actor Other)
+{
+	if(!IsActorExcluded(Other))
+	{
+		super.CausePainTo(Other);
+	}
+}
+
+simulated function bool IsActorExcluded(Actor Other)
+{
+	return HitExclusionList.Find(Other.class) != INDEX_NONE;
 }
 
 defaultproperties

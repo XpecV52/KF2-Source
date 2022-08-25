@@ -374,6 +374,7 @@ function ResetAudioOptions()
 {
 	local KFGameEngine KFGE;
 	local float FloatValue;
+	local float DefaultGamma;
 
 	// Don't try to set values of objects that aren't there on Console.
 	if( !GetPC().WorldInfo.IsConsoleBuild() )
@@ -387,13 +388,15 @@ function ResetAudioOptions()
 	else
 	{
 		// Handle resetting the gamma setting since it is in this menu.
-		//DefaultGamma = class'KFGameEngine'.default.DefaultGammaMult;		
+		DefaultGamma = Manager.CachedProfile.GetDefaultFloat(KFID_GammaMultiplier);
 
+		// Multiplying by 100 so we can go 0-100 with a snapInterval of 1 for consistency. HSL_BB
 		KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
-		KFGE.GammaMultiplier = Manager.CachedProfile.GetDefaultFloat(KFID_GammaMultiplier);
-		KFGE.SetGamma(KFGE.GammaMultiplier);
-		Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GammaMultiplier,KFGE.GammaMultiplier );
+		KFGE.GammaMultiplier = DefaultGamma;
 		KFGE.SaveConfig();
+
+		Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GammaMultiplier, DefaultGamma);
+		class'KFGameEngine'.static.SetGamma(DefaultGamma);
 
 		Manager.CachedProfile.SetProfileSettingValueInt(KFID_ControllerSoundEnabled, Manager.CachedProfile.GetDefaultInt(KFID_ControllerSoundEnabled));
 	}

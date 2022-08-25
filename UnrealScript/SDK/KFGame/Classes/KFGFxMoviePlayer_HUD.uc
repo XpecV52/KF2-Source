@@ -19,6 +19,9 @@ var class<KFGFxMoviePlayer_ScoreBoard> ScoreBoardClass;
 var EGameMessageType LastMessageType;
 var bool bObjectiveQueued;
 
+var array<string> SpecialWaveIconPath;
+var array<string> SpecialWaveLocKey;
+
 var KFGFxHUD_SpectatorInfo SpectatorInfoWidget;
 // Container for Health & Armor widgets
 var KFGFxHUD_PlayerStatus PlayerStatusContainer;
@@ -89,10 +92,10 @@ var string PendingKickPlayerName;
 /** On creation of the HUD */
 function Init(optional LocalPlayer LocPlay)
 {
-    KFPC = KFPlayerController( GetPC() );
+    KFPC=KFPlayerController( GetPC() );
     KFPC.SetGFxHUD( self );
     super.Init( LocPlay );
-    KFGXHUDManager = GetVariableObject("root");
+    KFGXHUDManager=GetVariableObject("root");
     UpdateRatio();
     UpdateScale();
     // Let the HUD Manager know if we are in a console build of the game.
@@ -104,7 +107,7 @@ function CreateScoreboard()
 {
     if(GfxScoreBoardPlayer == none)
     {
-        GfxScoreBoardPlayer = new ScoreBoardClass;
+        GfxScoreBoardPlayer=new ScoreBoardClass;
         GfxScoreBoardPlayer.SetTimingMode(TM_Real);
         GfxScoreBoardPlayer.Init(class'Engine'.static.GetEngine().GamePlayers[GfxScoreBoardPlayer.LocalPlayerOwnerIndex]);
     }
@@ -115,7 +118,7 @@ function ClearScoreboard()
     if( GfxScoreBoardPlayer != none )
     {
         GfxScoreBoardPlayer.Close(true);
-        GfxScoreBoardPlayer = None;
+        GfxScoreBoardPlayer=None;
     }
 }
 
@@ -126,14 +129,14 @@ function UpdateRatio(optional float fScale=1.f)
 
     if ( class'WorldInfo'.static.IsConsoleBuild() )
     {
-        ScaleStage = class'Engine'.static.GetEngine().GetTitleSafeArea();
+        ScaleStage=class'Engine'.static.GetEngine().GetTitleSafeArea();
     }
     else
     {
-        ScaleStage = fScale;
+        ScaleStage=fScale;
     }
 
-    GFxStage = KFGXHUDManager != none ? KFGXHUDManager.GetObject("stage") : none;
+    GFxStage=KFGXHUDManager != none ? KFGXHUDManager.GetObject("stage") : none;
 	if( GFxStage != none )
 	{
 		GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1.0f - ScaleStage)) / 2);
@@ -151,7 +154,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'ObjectiveContainer':
         if(WaveInfoWidget != none && WaveInfoWidget.ObjectiveContainer == none)
         {
-			WaveInfoWidget.ObjectiveContainer = KFGFxHUD_ObjectiveConatiner(Widget);
+			WaveInfoWidget.ObjectiveContainer=KFGFxHUD_ObjectiveConatiner(Widget);
 			WaveInfoWidget.ObjectiveContainer.InitializeHUD();
 			UpdateObjectiveActive();
         }
@@ -159,7 +162,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'bossHealthBar':
         if( BossHealthBar == none )
         {
-            BossHealthBar = KFGFxWidget_BossHealthBar(Widget);
+            BossHealthBar=KFGFxWidget_BossHealthBar(Widget);
             SetWidgetPathBinding( Widget, WidgetPath );
             BossHealthBar.InitializeHUD();
         }
@@ -167,7 +170,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'KickVoteWidget':
         if( KickVoteWidget == none )
         {
-            KickVoteWidget = KFGFxWidget_KickVote(Widget);
+            KickVoteWidget=KFGFxWidget_KickVote(Widget);
             SetWidgetPathBinding( Widget, WidgetPath );
             KickVoteWidget.InitializeHUD();
         }
@@ -175,7 +178,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'SpectatorInfoWidget':
         if( SpectatorInfoWidget == none )
         {
-            SpectatorInfoWidget = KFGFxHUD_SpectatorInfo(Widget);
+            SpectatorInfoWidget=KFGFxHUD_SpectatorInfo(Widget);
             SetWidgetPathBinding( Widget, WidgetPath );
             SpectatorInfoWidget.InitializeHUD();
         }
@@ -183,7 +186,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'PlayerStatWidgetMC':
         if ( PlayerStatusContainer == none )
         {
-            PlayerStatusContainer = KFGFxHUD_PlayerStatus(Widget);
+            PlayerStatusContainer=KFGFxHUD_PlayerStatus(Widget);
             SetWidgetPathBinding( Widget, WidgetPath );
             PlayerStatusContainer.InitializeHUD();
         }
@@ -191,7 +194,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'PlayerBackpackWidget':
         if ( PlayerBackpackContainer == none )
         {
-            PlayerBackpackContainer = KFGFxHUD_PlayerBackpack(Widget);
+            PlayerBackpackContainer=KFGFxHUD_PlayerBackpack(Widget);
             SetWidgetPathBinding( Widget, WidgetPath );
             PlayerBackpackContainer.InitializeHUD();
         }
@@ -199,52 +202,52 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'PriorityMsgWidget':
         if( PriorityMessageContainer == none)
         {
-            PriorityMessageContainer = Widget;
+            PriorityMessageContainer=Widget;
             SetWidgetPathBinding( Widget, WidgetPath );
         }
         break;
     case 'BossNamePlate':
         if( BossNameplateContainer == none)
         {
-            BossNameplateContainer = Widget;
+            BossNameplateContainer=Widget;
             SetWidgetPathBinding( Widget, WidgetPath );
         }
         break;
     case 'interactionMsgWidget':
         if( InteractionMessageContainer == none)
         {
-            InteractionMessageContainer = Widget;
+            InteractionMessageContainer=Widget;
             SetWidgetPathBinding( Widget, WidgetPath );
         }
         break;
     case 'WeaponSelectContainer':
         if ( KeyboardWeaponSelectWidget == none )
         {
-            KeyboardWeaponSelectWidget = KFGFxHUD_WeaponSelectWidget(Widget);
+            KeyboardWeaponSelectWidget=KFGFxHUD_WeaponSelectWidget(Widget);
             KeyboardWeaponSelectWidget.RefreshWeaponSelect();
             KeyboardWeaponSelectWidget.InitializeObject();
             if(!bUsingGamepad)
             {
-                WeaponSelectWidget = KeyboardWeaponSelectWidget;
+                WeaponSelectWidget=KeyboardWeaponSelectWidget;
             }
         }
         break;
     case 'ControllerWeaponSelectContainer':
         if ( ControllerWeaponSelectWidget == none )
         {
-            ControllerWeaponSelectWidget = KFGFxHUD_WeaponSelectWidget(Widget);
+            ControllerWeaponSelectWidget=KFGFxHUD_WeaponSelectWidget(Widget);
             ControllerWeaponSelectWidget.RefreshWeaponSelect();
             ControllerWeaponSelectWidget.InitializeObject();
             if(bUsingGamepad)
             {
-                WeaponSelectWidget = ControllerWeaponSelectWidget;
+                WeaponSelectWidget=ControllerWeaponSelectWidget;
             }
         }
         break;
     case 'CompassContainer':
         if ( TraderCompassWidget == none )
         {
-            TraderCompassWidget = KFGFxHUD_TraderCompass(Widget);
+            TraderCompassWidget=KFGFxHUD_TraderCompass(Widget);
             TraderCompassWidget.InitializeHUD();
             SetWidgetPathBinding( Widget, WidgetPath );
         }
@@ -252,7 +255,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     case 'WaveInfoContainer':
         if ( WaveInfoWidget == none )
         {
-            WaveInfoWidget = KFGFxHUD_WaveInfo(Widget);
+            WaveInfoWidget=KFGFxHUD_WaveInfo(Widget);
             WaveInfoWidget.InitializeHUD();
             SetWidgetPathBinding( Widget, WidgetPath );
         }
@@ -262,47 +265,47 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         {
             if(HudChatBox == none)
             {
-                HudChatBox = KFGFxHUD_ChatBoxWidget(Widget);
+                HudChatBox=KFGFxHUD_ChatBoxWidget(Widget);
             }
         }
         break;
     case 'voipWidget':
         if(VOIPWidget == none)
         {
-            VOIPWidget = KFGFxWidget_VOIPNotification(Widget);
+            VOIPWidget=KFGFxWidget_VOIPNotification(Widget);
         }
         break;
     case 'LevelUpNotificationWidget':
         if(LevelUpNotificationWidget == none)
         {
-            LevelUpNotificationWidget = KFGFxWidget_LevelUpNotification(Widget);
+            LevelUpNotificationWidget=KFGFxWidget_LevelUpNotification(Widget);
             LevelUpNotificationWidget.InitializeHUD();
         }
         break;
     case 'VoiceCommsWidget':
         if(VoiceCommsWidget == none)
         {
-            VoiceCommsWidget = KFGFxWidget_VoiceComms(Widget);
+            VoiceCommsWidget=KFGFxWidget_VoiceComms(Widget);
             VoiceCommsWidget.InitializeHUD();
         }
         break;
     case 'MusicNotification':
         if(MusicNotification == none)
         {
-            MusicNotification = KFGFxWidget_MusicNotification(Widget);
+            MusicNotification=KFGFxWidget_MusicNotification(Widget);
             MusicNotification.InitializeHUD();
         }
         break;
     case 'NonCriticalMessageWidget':
         if(NonCriticalGameMessageWidget == none)
         {
-            NonCriticalGameMessageWidget = KFGFxWidget_NonCriticalGameMessage(Widget);
+            NonCriticalGameMessageWidget=KFGFxWidget_NonCriticalGameMessage(Widget);
         }
         break;
     case 'RhythmCounter':
         if(RhythmCounterWidget == none)
     {
-            RhythmCounterWidget = KFGFxWidget_RhythmCounter(Widget);
+            RhythmCounterWidget=KFGFxWidget_RhythmCounter(Widget);
     }
         break;
     }
@@ -314,7 +317,7 @@ function UpdateWeaponSelect()
 {
     if(bUsingGamepad)
     {
-        WeaponSelectWidget = ControllerWeaponSelectWidget;
+        WeaponSelectWidget=ControllerWeaponSelectWidget;
         if(KeyboardWeaponSelectWidget != none)
         {
             KeyboardWeaponSelectWidget.Hide();
@@ -322,7 +325,7 @@ function UpdateWeaponSelect()
     }
     else
     {
-        WeaponSelectWidget = KeyboardWeaponSelectWidget;
+        WeaponSelectWidget=KeyboardWeaponSelectWidget;
         if(ControllerWeaponSelectWidget != none)
         {
             ControllerWeaponSelectWidget.Hide();
@@ -343,12 +346,12 @@ function TickHud(float DeltaTime)
         return;
     }
 
-    LastUpdateTime = KFPC.WorldInfo.TimeSeconds;   // throttle the updates so we're not spamming Actionscript with data.
+    LastUpdateTime=KFPC.WorldInfo.TimeSeconds;   // throttle the updates so we're not spamming Actionscript with data.
 
     // Update current input
     if(bUsingGamepad != KFPC.PlayerInput.bUsingGamepad)
     {
-        bUsingGamepad = KFPC.PlayerInput.bUsingGamepad;
+        bUsingGamepad=KFPC.PlayerInput.bUsingGamepad;
         UpdateUsingGamepad();
         UpdateWeaponSelect();
     }
@@ -398,14 +401,14 @@ function UpdateObjectiveActive()
 {
 	local KFGameReplicationInfo KFGRI;
 	local KFInterface_MapObjective ObjectiveInterface;
-	
-	KFPC = KFPlayerController(GetPC());
+
+	KFPC=KFPlayerController(GetPC());
 
 	if (KFPC == none)
 	{
 		return;
 	}
-	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+	KFGRI=KFGameReplicationInfo(KFPC.WorldInfo.GRI);
 	if (WaveInfoWidget != none && WaveInfoWidget.ObjectiveContainer != none)
 	{
 		if (KFGRI.CurrentObjective == none)
@@ -414,7 +417,7 @@ function UpdateObjectiveActive()
 		}
 		else
 		{
-			ObjectiveInterface = KFInterface_MapObjective(KFGRI.CurrentObjective);
+			ObjectiveInterface=KFInterface_MapObjective(KFGRI.CurrentObjective);
 			WaveInfoWidget.ObjectiveContainer.SetActive(ObjectiveInterface.IsActive());
 		}
 
@@ -443,7 +446,7 @@ function NotifyVisibilityChange(bool bValue)
 {
     if( bIsVisible != bValue )
     {
-        bIsVisible = bValue;
+        bIsVisible=bValue;
         if(KFPC != none)
         {
             //Clear focus on next frame
@@ -471,7 +474,7 @@ function UpdateVisibilityState()
 /** Hide the HUD elements and only display the spectating part of the HUD */
 function SetHUDSpectating( bool bSpectate )
 {
-    bIsSpectating = bSpectate;
+    bIsSpectating=bSpectate;
 
     KFGXHUDManager.SetBool("bSpectating", bIsSpectating);
 }
@@ -536,7 +539,7 @@ function CleanUp()
     //Remove the delegate off of the VoiceComms so the game doesn't crash.  Crashes are bad.  They make me sad.
     if(GetGameViewportClient() != none)
     {
-        GetGameViewportClient().HandleInputAxis = none;
+        GetGameViewportClient().HandleInputAxis=none;
     }
 }
 
@@ -551,7 +554,7 @@ function NotifyHUDofPRIDestroyed(KFPlayerReplicationInfo KFPRI)
 //==============================================================
 // Localized Message rendering
 //==============================================================
-function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2, optional bool bDeathMessage = false, optional Object OptionalObject)
+function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2, optional bool bDeathMessage=false, optional Object OptionalObject)
 {
     local GFxObject DataObject;
     local bool bHumanDeath;
@@ -564,7 +567,7 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         return;
     }
 
-    KFPM = class<KFPawn_Monster>(OptionalObject);
+    KFPM=class<KFPawn_Monster>(OptionalObject);
 
     if( KFGXHUDManager != none )
     {
@@ -572,8 +575,8 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         {
             if(KFPM != none)
             {
-                KillerName = KFPM.static.GetLocalizedName();
-                KillerTextColor = ZEDTeamTextColor;
+                KillerName=KFPM.static.GetLocalizedName();
+                KillerTextColor=ZEDTeamTextColor;
                 KillerIconpath="img://"$class'KFPerk_Monster'.static.GetPerkIconPath();
             }
         }
@@ -581,22 +584,22 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         {
             if(KFPM != none)
             {
-                KilledName = KFPM.static.GetLocalizedName();
-                bHumanDeath = false;
+                KilledName=KFPM.static.GetLocalizedName();
+                bHumanDeath=false;
             }
             else if(PRI1 != none)
             {
                 if(PRI1.GetTeamNum() == 255)
                 {
-                    KillerTextColor = ZEDTeamTextColor;
+                    KillerTextColor=ZEDTeamTextColor;
                     KillerIconpath="img://"$class'KFPerk_Monster'.static.GetPerkIconPath();
                 }
                 else
                 {
-                    KillerTextColor = HumanTeamTextColor;
+                    KillerTextColor=HumanTeamTextColor;
                     KillerIconpath="img://"$KFPlayerReplicationInfo(PRI1).CurrentPerkClass.static.GetPerkIconPath();
                 }
-                KillerName = PRI1.PlayerName;
+                KillerName=PRI1.PlayerName;
             }
         }
 
@@ -604,19 +607,19 @@ function ShowKillMessage(PlayerReplicationInfo PRI1, PlayerReplicationInfo PRI2,
         {
             if(PRI2.GetTeamNum() == class'KFTeamInfo_Human'.default.TeamIndex)
             {
-                bHumanDeath = true;
-                KilledTextColor = HumanTeamTextColor;
+                bHumanDeath=true;
+                KilledTextColor=HumanTeamTextColor;
             }
             else
             {
-                KilledTextColor = ZEDTeamTextColor;
-                bHumanDeath = false;
+                KilledTextColor=ZEDTeamTextColor;
+                bHumanDeath=false;
             }
-            KilledName = PRI2.PlayerName;
+            KilledName=PRI2.PlayerName;
             KilledIconpath="img://"$KFPlayerReplicationInfo(PRI2).CurrentPerkClass.static.GetPerkIconPath();
         }
 
-        DataObject = CreateObject("Object");
+        DataObject=CreateObject("Object");
 
         DataObject.SetBool("humanDeath", bHumanDeath);
 
@@ -643,7 +646,7 @@ function ShowBossNameplate(string BossName, string InSecondaryMessageString)
 
     if(BossNameplateContainer != none && BossName != "")
     {
-        TempObject = CreateObject("Object");
+        TempObject=CreateObject("Object");
         TempObject.SetString("bossName", BossName);
         TempObject.SetString("subString", InSecondaryMessageString);
         KFGXHUDManager.SetObject("bossData", TempObject);
@@ -665,18 +668,130 @@ function HideBossNamePlate()
 function DisplayPriorityMessage(string InPrimaryMessageString, string InSecondaryMessageString, int LifeTime, optional EGameMessageType MessageType)
 {
 	local GFxObject PriorityMessageObject;
-	
+
 	if (PriorityMessageContainer != none && InPrimaryMessageString != "")
 	{
-		LastMessageType = MessageType;
-		PriorityMessageObject = CreateObject("Object");
+		LastMessageType=MessageType;
+		PriorityMessageObject=CreateObject("Object");
 
 		PriorityMessageObject.SetString("priorityTextPrimaryString", InPrimaryMessageString);
 		PriorityMessageObject.SetString("priorityTextSecondaryString", InSecondaryMessageString);
 		PriorityMessageObject.SetInt("priorityTextDisplayTime", LifeTime);
-		
-        PriorityMessageContainer.SetObject("priorityMessage", PriorityMessageObject);
-    }
+
+		PriorityMessageContainer.SetObject("priorityMessage", PriorityMessageObject);
+	}
+}
+
+function DisplayExpandedWaveInfo()
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFWeeklyOutbreakInformation WeeklyInfo;
+	local GFxObject PriorityMessageObject;
+	local int ModifierIndex;
+
+	switch (LastMessageType)
+	{
+		case GMT_WaveStart:
+		case GMT_WaveStartWeekly:
+		case GMT_WaveStartSpecial:
+		case GMT_WaveSBoss:
+
+			break;
+		default: 
+			return;
+	}
+
+	PriorityMessageObject=CreateObject("Object");
+
+	KFGRI=KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+	if (PriorityMessageContainer != none)
+	{
+		PriorityMessageObject=CreateObject("Object");
+		if (KFGRI.default.bEndlessMode)
+		{
+			PriorityMessageObject.SetString("waveNum", String(KFGRI.WaveNum));
+		}
+		else
+		{
+			if (KFGRI.IsBossWave())
+			{
+				PriorityMessageObject.SetString("waveNum", class'KFGFxHUD_WaveInfo'.default.BossWaveString);
+			}
+			else
+			{
+				if (KFGRI.IsFinalWave())
+				{
+					PriorityMessageObject.SetString("waveNum", class'KFGFxHUD_WaveInfo'.default.FinalWaveString);
+				}
+				else
+				{
+					PriorityMessageObject.SetString("waveNum", KFGRI.WaveNum $"/"@(KFGRI.WaveMax - 1));
+				}
+			}
+		}
+
+		PriorityMessageObject.SetString("waveString", class'KFGFxHUD_WaveInfo'.default.WaveString);
+
+		PriorityMessageObject.SetInt("waveTier", GetWaveTier());
+		if (KFGRI.IsWeeklyWave(ModifierIndex))
+		{
+			WeeklyInfo=class'KFMission_LocalizedStrings'.static.GetWeeklyOutbreakInfoByIndex(ModifierIndex);
+			PriorityMessageObject.SetString("waveType", WeeklyInfo.FriendlyName);
+			PriorityMessageObject.SetString("waveImage", "img://"$WeeklyInfo.IconPath);
+		}
+		else if (KFGRI.IsSpecialWave(ModifierIndex))
+		{
+			//Something for zed waves
+			PriorityMessageObject.SetString("waveType", Localize("Zeds", SpecialWaveLocKey[ModifierIndex], "KFGame"));
+			PriorityMessageObject.SetString("waveImage", "img://"$SpecialWaveIconPath[ModifierIndex]);
+		}
+		else
+		{
+			//PriorityMessageObject.SetString("waveType", "Survival");
+		}
+
+		PriorityMessageContainer.SetObject("waveNumberMessage", PriorityMessageObject);
+	}
+}
+
+function int GetWaveTier()
+{
+	local KFGameReplicationInfo KFGRI;
+	KFGRI=KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+
+	if (KFGRI.default.bEndlessMode)
+	{
+		//calculate it
+		if (KFGRI.WaveNum > 20 )
+		{
+			return 5;
+		}
+		else if (KFGRI.WaveNum > 15 )
+		{
+			return 4;
+		}
+		if (KFGRI.WaveNum > 10 )
+		{
+			return 3;
+		}
+		if (KFGRI.WaveNum > 5)
+		{
+			return 2;
+		}
+	}
+	else
+	{
+		if (KFGRI.IsFinalWave())
+		{
+			return 3;
+		}
+		else if (KFGRI.IsBossWave())
+		{
+			return 5;
+		}
+	}
+
+	return 1;
 }
 
 
@@ -684,20 +799,24 @@ function bool ShouldCheckForObjective(EGameMessageType MessageType)
 {
 	local KFGameReplicationInfo KFGRI;
 
-	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+	KFGRI=KFGameReplicationInfo(KFPC.WorldInfo.GRI);
 
 	if (KFGRI.GetNumPlayersAlive() <= 0)
 	{
 		return false;
 	}
 
-	if (KFGRI.IsFinalWave())
+	if (KFGRI.IsBossWave())
 	{
 		return false;
 	}
-	if (MessageType == GMT_WaveStart || MessageType == GMT_WaveEnd)
+	switch (MessageType)
 	{
-		return true;
+		case GMT_WaveStart:
+		case GMT_WaveStartWeekly:
+		case GMT_WaveStartSpecial:
+		case GMT_WaveEnd:
+			return true;
 	}
 	return false;
 }
@@ -706,8 +825,8 @@ simulated function PlayObjectiveAudio()
 {
 	local KFGameReplicationInfo KFGRI;
 
-	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
-	
+	KFGRI=KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+
 	if (KFGRI.PreviousObjectiveResult > 0)
 	{
 		class'KFMusicStingerHelper'.static.PlayObjectiveWonStinger(GetPC());
@@ -715,7 +834,7 @@ simulated function PlayObjectiveAudio()
 	else
 	{
 		class'KFMusicStingerHelper'.static.PlayNewObjectiveStinger(GetPC());
-	}	
+	}
 }
 
 simulated function DisplayObjectiveResults()
@@ -724,21 +843,25 @@ simulated function DisplayObjectiveResults()
 	local GFxObject ObjectiveObject;
 	local KFInterface_MapObjective ObjectiveInterface;
 
-	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
-	ObjectiveInterface = KFInterface_MapObjective(KFGRI.PreviousObjective);
+	KFGRI=KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+	ObjectiveInterface=KFInterface_MapObjective(KFGRI.PreviousObjective);
 	if (KFGRI.PreviousObjectiveResult > 0)
 	{
-		ObjectiveObject = CreateObject("Object");
+		ObjectiveObject=CreateObject("Object");
 		//do not show lost because this is optional
 		ObjectiveObject.SetString("titleString", class'KFLocalMessage_Priority'.default.ObjectiveWonMessage);
 		ObjectiveObject.SetString("nameString", class'KFCommon_LocalizedStrings'.default.BonusDoshString);
 		ObjectiveObject.SetString("descString", " ");
 		ObjectiveObject.SetString("requireString", " ");
 		ObjectiveObject.SetString("rewardNum", string(KFGRI.PreviousObjectiveResult));
+
+		ObjectiveObject.SetString("xpBonus", string(KFGRI.PreviousObjectiveXPResult));
+		ObjectiveObject.SetString("voshBonus", string(KFGRI.PreviousObjectiveVoshResult));
+
 		ObjectiveObject.SetString("iconPath", "img://"$PathName(ObjectiveInterface.GetIcon()));
 		ObjectiveObject.SetBool("isBonus", true);
 		PriorityMessageContainer.SetObject("objectiveMessage", ObjectiveObject);
-		LastMessageType = GMT_Null;
+		LastMessageType=GMT_Null;
 	}
 }
 
@@ -748,30 +871,32 @@ simulated function DisplayNewObjective()
 	local GFxObject ObjectiveObject;
 	local KFInterface_MapObjective ObjectiveInterface;
 
-	KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+	KFGRI=KFGameReplicationInfo(KFPC.WorldInfo.GRI);
 
-	ObjectiveInterface = KFGRI.ObjectiveInterface;
+	ObjectiveInterface=KFGRI.ObjectiveInterface;
 
 	if (ObjectiveInterface != none)
 	{
-		ObjectiveObject = CreateObject("Object");
+		ObjectiveObject=CreateObject("Object");
 
 		ObjectiveObject.SetString("titleString", class'KFLocalMessage_Priority'.default.ObjectiveStartMessage);
 		ObjectiveObject.SetString("nameString", ObjectiveInterface.GetLocalizedName());
 		ObjectiveObject.SetString("descString", ObjectiveInterface.GetLocalizedDescription());
 		ObjectiveObject.SetString("requireString", ObjectiveInterface.GetLocalizedRequirements());
 		ObjectiveObject.SetString("rewardNum", string(ObjectiveInterface.GetMaxDoshReward()));
+		ObjectiveObject.SetString("xpBonus", string(ObjectiveInterface.GetMaxXPReward()));
+		ObjectiveObject.SetString("voshBonus", string(ObjectiveInterface.GetMaxVoshReward()));
 		ObjectiveObject.SetString("iconPath", "img://"$PathName(ObjectiveInterface.GetIcon()));
 		ObjectiveObject.SetBool("isBonus", false);
 
-		KFGRI.PreviousObjectiveResult = INDEX_NONE;
+		KFGRI.PreviousObjectiveResult=INDEX_NONE;
 		PriorityMessageContainer.SetObject("objectiveMessage", ObjectiveObject);
-		LastMessageType = GMT_Null;
+		LastMessageType=GMT_Null;
 	}
 }
 
 /** Display a message that corresponds to input */
-function DisplayInteractionMessage( string MessageString, int MessageIndex, optional string ButtonName = "", optional float Duration )
+function DisplayInteractionMessage( string MessageString, int MessageIndex, optional string ButtonName="", optional float Duration )
 {
     if( InteractionMessageContainer != none )
     {
@@ -782,7 +907,7 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
         // allow messages of the same priority to replace each other (unless it's the same message)
         else if( MessageIndex != CurrentInteractionIndex && GetInteractionMessagePriority(MessageIndex) >= GetInteractionMessagePriority(CurrentInteractionIndex) )
         {
-            MessageString = Caps(MessageString);
+            MessageString=Caps(MessageString);
             if ( KFPC != None )
             {
                 KFPC.ClearTimer(nameOf(HideInteractionMessage), self);
@@ -805,7 +930,7 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
             //class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName );
 
             SendInteractionMessageToGFX(MessageString, ButtonName);
-            CurrentInteractionIndex = MessageIndex;
+            CurrentInteractionIndex=MessageIndex;
         }
     }
 }
@@ -829,9 +954,9 @@ function SendInteractionMessageToGFX(string MessageString, string ButtonName)
     local GFxObject TextObject;
     local array<String> StringArray;
 
-    TextObject = CreateObject("Object");
+    TextObject=CreateObject("Object");
 
-    StringArray = SplitString(MessageString, HoldCommandDelimiter);
+    StringArray=SplitString(MessageString, HoldCommandDelimiter);
 
     if(StringArray.length > 1)
     {
@@ -857,7 +982,7 @@ function SendInteractionMessageToGFX(string MessageString, string ButtonName)
 */
 function HideInteractionMessage()
 {
-    CurrentInteractionIndex = IMT_None;
+    CurrentInteractionIndex=IMT_None;
     InteractionMessageContainer.ActionScriptVoid("outInteractionMessage");
 }
 
@@ -898,7 +1023,7 @@ function EatMyInput(bool bValue)
     SetMovieCanReceiveInput(bValue);
 
     // Set the HUD as the movie player with the highest priority
-    HUDPriority = ( bValue ) ? 255 : 1;
+    HUDPriority=( bValue ) ? 255 : 1;
     SetPriority(HUDPriority);
 }
 
@@ -928,7 +1053,7 @@ function OpenChatBox()
 
         // Give focus to the GfxMovie so player can type in the box.
         EatMyInput(true);
-        bIgnoreMouseInput = false;
+        bIgnoreMouseInput=false;
     }
 }
 
@@ -1006,12 +1131,14 @@ function Callback_PriorityMessageComplete()
 {
 	local KFInterface_MapObjective ObjectiveInterface;
 	local KFGameReplicationInfo KFGRI;
-	
+
+	DisplayExpandedWaveInfo();
+
 	if (ShouldCheckForObjective(LastMessageType))
 	{
-		KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
-		
-		ObjectiveInterface = KFGRI.ObjectiveInterface;
+		KFGRI=KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+
+		ObjectiveInterface=KFGRI.ObjectiveInterface;
 		if (ObjectiveInterface != none)
 		{
 			DisplayNewObjective();
@@ -1021,11 +1148,11 @@ function Callback_PriorityMessageComplete()
 			DisplayObjectiveResults();
 		}
 		UpdateObjectiveActive();
-		LastMessageType = GMT_Null;
+		LastMessageType=GMT_Null;
 	}
 	else
 	{
-		bObjectiveQueued = true;
+		bObjectiveQueued=true;
 	}
 }
 
@@ -1050,7 +1177,7 @@ function Callback_BroadcastChatMessage(string NewMessage)
 function Callback_ChatBoxClosed()
 {
     EatMyInput(false);
-    bIgnoreMouseInput = true;
+    bIgnoreMouseInput=true;
 }
 
 function Callback_SelectWeapon( int GroupIndex, int WeaponIndex )
@@ -1058,7 +1185,7 @@ function Callback_SelectWeapon( int GroupIndex, int WeaponIndex )
     local KFInventoryManager KFIM;
     if(GetPC().Pawn != none )
     {
-        KFIM = KFInventoryManager(GetPC().Pawn.InvManager);
+        KFIM=KFInventoryManager(GetPC().Pawn.InvManager);
         if ( KFIM != none )
         {
             KFIM.SelectCurrentWeapon( GroupIndex, WeaponIndex );
@@ -1070,7 +1197,7 @@ function Callback_WeaponSelectFadedOut()
 {
     if ( WeaponSelectWidget != none)
     {
-        WeaponSelectWidget.bChangingWeapons = false;
+        WeaponSelectWidget.bChangingWeapons=false;
     }
 }
 
@@ -1094,7 +1221,7 @@ function Callback_VoteKick(bool bKick)
 {
     local KFPlayerReplicationInfo KFPRI;
 
-    KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
+    KFPRI=KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
 
     KFPRI.CastKickVote(KFPRI, bKick);
 }
@@ -1108,7 +1235,7 @@ DefaultProperties
     ControllerStringPrefix="XboxTypeS_"
     HoldCommandDelimiter="<%HOLD%>"
 
-    Priority = 1
+    Priority=1
     UpdateInterval=.1f
 
     bAllowFocus=true
@@ -1138,5 +1265,31 @@ DefaultProperties
     WidgetBindings.Add((WidgetName="NonCriticalMessageWidget", WidgetClass=class'KFGFxWidget_NonCriticalGameMessage'))
     WidgetBindings.Add((WidgetName="RhythmCounter", WidgetClass=class'KFGFxWidget_RhythmCounter'))
     WidgetBindings.Add((WidgetName="bossHealthBar", WidgetClass=class'KFGFxWidget_BossHealthBar'))
+
+
+	SpecialWaveIconPath(AT_Clot)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Cyst"
+	SpecialWaveIconPath(AT_SlasherClot)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Slasher"
+	SpecialWaveIconPath(AT_AlphaClot)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Clot"
+	SpecialWaveIconPath(AT_Crawler)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Crawler"
+	SpecialWaveIconPath(AT_GoreFast)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Gorefast"
+	SpecialWaveIconPath(AT_Stalker)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Stalker"
+	SpecialWaveIconPath(AT_Scrake)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Scrake"
+	SpecialWaveIconPath(AT_FleshPound)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_FP"
+	SpecialWaveIconPath(AT_FleshpoundMini)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_FP"
+	SpecialWaveIconPath(AT_Bloat)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Bloat"
+	SpecialWaveIconPath(AT_Siren)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Siren"
+	SpecialWaveIconPath(AT_Husk)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Husk"
+
+	SpecialWaveLocKey(AT_SlasherClot)="KFPawn_ZedClot_Slasher"
+	SpecialWaveLocKey(AT_Clot)="KFPawn_ZedClot_Cyst"
+	SpecialWaveLocKey(AT_Crawler)="KFPawn_ZedCrawler"
+	SpecialWaveLocKey(AT_Stalker)="KFPawn_ZedStalker"
+	SpecialWaveLocKey(AT_Siren)="KFPawn_ZedSiren"
+	SpecialWaveLocKey(AT_Husk)="KFPawn_ZedHusk"
+	SpecialWaveLocKey(AT_Scrake)="KFPawn_ZedScrake"
+	SpecialWaveLocKey(AT_AlphaClot)="KFPawn_ZedClot_Alpha"
+	SpecialWaveLocKey(AT_GoreFast)="KFPawn_ZedGorefast"
+	SpecialWaveLocKey(AT_Bloat)="KFPawn_ZedBloat"
+	SpecialWaveLocKey(AT_FleshPound)="KFPawn_ZedFleshpound"
 
 }

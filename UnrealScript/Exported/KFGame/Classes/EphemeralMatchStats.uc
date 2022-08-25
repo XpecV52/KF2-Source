@@ -189,7 +189,7 @@ function RecordIntStat(int StatID, int Value)
 		case MATCH_EVENT_HEADSHOT:
 			IncrementHeadShotsInWave(Value);
 			break;
-	
+
 		case MATCH_EVENT_DOSH_EARNED:
 			IncrementDoshEarnedInWave(Value);
 			break;
@@ -275,7 +275,7 @@ function int GetHealGivenInWave()
 	return PWRI.VectData2.Z;
 }
 
-//Called at the end of the wave. @Note - End of wave is also called with the loss condition is met.  This includes at trader time.  
+//Called at the end of the wave. @Note - End of wave is also called with the loss condition is met.  This includes at trader time.
 function RecordWaveInfo()
 {
 	// If reset is pending, clear it now!
@@ -331,7 +331,7 @@ function RecordPerkXPGain(class<KFPerk> PerkClass, int XPDelta)
 {
 	local int index;
 	local PerkXPGain TempPerkXPItem;
-	
+
 	index = PerkXPList.Find('PerkClass', PerkClass);
 
 	if(index == INDEX_NONE)
@@ -353,13 +353,13 @@ function RecordPerkXPGain(class<KFPerk> PerkClass, int XPDelta)
 function RecordSecondaryXPGain(class<KFPerk> PerkClass, int XPDelta)
 {
 	local int index;
-	
+
 	index = PerkXPList.Find('PerkClass', PerkClass);
 	if( index != INDEX_NONE )
 	{
 		PerkXPList[index].SecondaryXPGain += XPDelta;
 	}
-	
+
 }
 
 function RecordZedKill(Class<Pawn> PawnClass, class<DamageType> DT)
@@ -386,7 +386,7 @@ function RecordZedKill(Class<Pawn> PawnClass, class<DamageType> DT)
 		}
 
 		index = ZedKillsArray.Find('MonsterClass', MonsterClass);
-		
+
 		if(index == INDEX_NONE)
 		{
 			TempZedKillType.MonsterClass = MonsterClass;
@@ -426,7 +426,7 @@ static function RecordWeaponHeadShot(Controller InstigatedBy, class<DamageType> 
 			else
 			{
 				KFPC.MatchStats.WeaponDamageList[WeaponIndex].HeadShots++;
-			}	
+			}
 		}
 	}
 }
@@ -444,7 +444,7 @@ static function RecordWeaponDamage(Controller InstigatedBy, class<KFDamageType> 
 	if(KFPC != none && KFPC.MatchStats != none)
 	{
 		KFPC.MatchStats.InternalRecordWeaponDamage(KFDT, WeaponDef, Damage, TargetPawn, HitZoneIdx);
-	}	
+	}
 }
 
 function RecordWeaponKill(class<KFWeaponDefinition> WeaponDef)
@@ -466,9 +466,9 @@ function RecordWeaponKill(class<KFWeaponDefinition> WeaponDef)
 }
 
 /**
- * Record weapon damage 
+ * Record weapon damage
  * Network: Server
- */								
+ */
 function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
 {
 	local int WeaponIndex;
@@ -477,12 +477,12 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 	local bool bKilled;
 	local KFPlayerReplicationInfoVersus KFPRIV;
 
-	if(Role != ROLE_Authority) 
+	if(Role != ROLE_Authority)
 	{
 		if( (TargetPawn.isA('KFPawn_Monster') && PlayerReplicationInfo.GetTeamNum() == 255) || (!TargetPawn.isA('KFPawn_Monster') && PlayerReplicationInfo.GetTeamNum() != 255) )
 		return;
 	}
-	
+
 	bKilled = TargetPawn.Health <= 0 && (TargetPawn.Health + Damage > 0);
 	bLargeZedKill = bKilled && TargetPawn.IsLargeZed();
 
@@ -514,7 +514,7 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 		}
 		return;
 	}
-	
+
 	//survivor
 	if(WeaponIndex == INDEX_NONE)
 	{
@@ -528,10 +528,10 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 		// Record actual damage
 		RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, Damage);
 		WeaponDamageList[WeaponIndex].DamageAmount += Damage;
-		
+
 		if(bLargeZedKill)
 		{
-			WeaponDamageList[WeaponIndex].LargeZedKills++;	
+			WeaponDamageList[WeaponIndex].LargeZedKills++;
 		}
 	}
 }
@@ -539,7 +539,7 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 /**
  * for sendig weapon stats to client
  * Network: Server
- */								
+ */
 function PackTopWeapons()
 {
 	local array<WeaponDamage> TopWeaponsArray;
@@ -551,42 +551,42 @@ function PackTopWeapons()
 		if( i >= TopWeaponsArray.length )
 		{
 			return;
-		}		
+		}
 
 		switch (i)
 		{
 			case 0:
 				TWRI.TopWeapon1 = TopWeaponsArray[i].WeaponDef;
-		
+
 				TWRI.TopWeapon1Info.x = TopWeaponsArray[i].DamageAmount;
 				TWRI.TopWeapon1Info.y = TopWeaponsArray[i].HeadShots;
-				TWRI.TopWeapon1Info.z = TopWeaponsArray[i].LargeZedKills;	
+				TWRI.TopWeapon1Info.z = TopWeaponsArray[i].LargeZedKills;
 				break;
-		
+
 			case 1:
 				TWRI.TopWeapon2 = TopWeaponsArray[i].WeaponDef;
-		
+
 				TWRI.TopWeapon2Info.x = TopWeaponsArray[i].DamageAmount;
 				TWRI.TopWeapon2Info.y = TopWeaponsArray[i].HeadShots;
-				TWRI.TopWeapon2Info.z = TopWeaponsArray[i].LargeZedKills;	
+				TWRI.TopWeapon2Info.z = TopWeaponsArray[i].LargeZedKills;
 				break;
 
 			case 2:
 				TWRI.TopWeapon3 = TopWeaponsArray[i].WeaponDef;
-		
+
 				TWRI.TopWeapon3Info.x = TopWeaponsArray[i].DamageAmount;
 				TWRI.TopWeapon3Info.y = TopWeaponsArray[i].HeadShots;
-				TWRI.TopWeapon3Info.z = TopWeaponsArray[i].LargeZedKills;	
-				break;				
+				TWRI.TopWeapon3Info.z = TopWeaponsArray[i].LargeZedKills;
+				break;
 		}
-		
+
 	}
 }
 
 /**
  * for translating weapon stats from packed struct
  * Network: Local Player
- */								
+ */
 function UnpackTopWeapons(TopWeaponReplicationInfo TopWeapons)
 {
 	TWRI = TopWeapons;
@@ -598,7 +598,7 @@ function UnpackTopWeapons(TopWeaponReplicationInfo TopWeapons)
 
 	if( TWRI.TopWeapon2 != none )
 	{
-		AddUnpackedWeaponToDamageList(TWRI.TopWeapon2, TWRI.TopWeapon2Info.x, TWRI.TopWeapon2Info.y, TWRI.TopWeapon2Info.z);	
+		AddUnpackedWeaponToDamageList(TWRI.TopWeapon2, TWRI.TopWeapon2Info.x, TWRI.TopWeapon2Info.y, TWRI.TopWeapon2Info.z);
 	}
 
 	if( TWRI.TopWeapon3 != none )
@@ -610,7 +610,7 @@ function UnpackTopWeapons(TopWeaponReplicationInfo TopWeapons)
 function ProcessTopWeaponsStats()
 {
 	if( Role == ROLE_Authority )
-	{	
+	{
 		//Update struct to make it replicate
 		PackTopWeapons();
 		ReceiveTopWeapons(TWRI);
@@ -620,7 +620,7 @@ function ProcessTopWeaponsStats()
 /**
  * Add the weapons replicated by sever to client's list
  * Network: Local Player
- */								
+ */
 function AddUnpackedWeaponToDamageList(class<KFWeaponDefinition> WeaponDef, int DamageAmount, int HeadShots, int LargeZedKills)
 {
 	local WeaponDamage TempWeaponDamage;
@@ -642,7 +642,7 @@ function AddUnpackedWeaponToDamageList(class<KFWeaponDefinition> WeaponDef, int 
 		WeaponDamageList[WeaponIndex].HeadShots 		= HeadShots;
 		WeaponDamageList[WeaponIndex].LargeZedKills 	= LargeZedKills;
 	}
-	
+
 }
 
 function GetTopWeapons(int AmountToGrab, out array<WeaponDamage> TopWeaponList)
@@ -665,10 +665,10 @@ function GetTopWeapons(int AmountToGrab, out array<WeaponDamage> TopWeaponList)
 			{
 				TopWeaponList.AddItem(WeaponDamageList[i]);
 			}
-		}		
+		}
 	}
 }
-											
+
 
 delegate int SortXP(PerkXPGain A, PerkXPGain B)
 {
@@ -681,9 +681,9 @@ delegate int SortWeapons(WeaponDamage A, WeaponDamage B)
 }
 
 /**
- * 
+ *
  * Network: Server Only
- */								
+ */
 static function ProcessPostGameStats()
 {
 	local int i,j;
@@ -702,14 +702,14 @@ static function ProcessPostGameStats()
 
 			KFPC.MatchStats.ProcessTopWeaponsStats();
 		}
-	}		
-		
+	}
+
 	for (i = 0; i < ETA_Max; i++)
 	{
 		GetTeamAward(ETeamAwards(i), TempAwardObject, KFPCArray);
 		for (j = 0; j < KFPCArray.Length; j++)
 		{
-			KFPCArray[j].ClientReceiveAwardInfo(i, TempAwardObject.PRI, TempAwardObject.DisplayValue);		
+			KFPCArray[j].ClientReceiveAwardInfo(i, TempAwardObject.PRI, TempAwardObject.DisplayValue);
 		}
 		TempAwardObject.PRI = none;
 		TempAwardObject.DisplayValue = 0;
@@ -738,13 +738,21 @@ static function SendMapOptionsAndOpenAARMenu()
 			if(KFGRI != none && KFGRI.VoteCollector != none)
 			{
 				class'KFGfxMenu_StartGame'.static.GetMapList(KFGRI.VoteCollector.MapList);
+				for (i = 0; i < KFGRI.VoteCollector.MapList.length; i++)
+				{
+					if (!KFGI.IsMapAllowedInCycle(KFGRI.VoteCollector.MapList[i]))
+					{
+						KFGRI.VoteCollector.MapList.Remove(i, 1);
+						i--;
+					}
+				}
 			}
 		}
 		else
 		{
 			KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
 			for (i = 0; i < KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.length; i++)
-		    {	
+		    {
 				if(KFPRI != none)
 				{
 					if (KFGI.IsMapAllowedInCycle(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[i]))
@@ -754,7 +762,7 @@ static function SendMapOptionsAndOpenAARMenu()
 				}
 			}
 		}
-		
+
 		KFPC.ClientShowPostGameMenu();
 	}
 }
@@ -832,7 +840,7 @@ function int GetPistolKills()
 function int GetKnifeKills()
 {
 	local int TotalKnifeKills, i;
-	
+
 	for (i = 0; i < WeaponDamageList.Length; i++)
 	{
 		if(WeaponDamageList[i].WeaponDef != none && class<KFweapDef_Knife_Base>(WeaponDamageList[i].WeaponDef) != none)
@@ -855,7 +863,7 @@ function AARAward GivePersonalBestKnifeKills()
 	{
 		PersonalBestList[EPB_KnifeKills].DisplayValue = KnifeKills;
 		PersonalBestList[EPB_KnifeKills].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_KnifeKills,KnifeKills);
 	}
 	else
@@ -877,7 +885,7 @@ function AARAward GivePersonalBestPistolKills()
 	{
 		PersonalBestList[EPB_PistolKills].DisplayValue = PistolKills;
 		PersonalBestList[EPB_PistolKills].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_PistolKills,PistolKills);
 	}
 	else
@@ -894,12 +902,12 @@ function AARAward GivePersonalBestHeadShots()
 {
 	local int Value;
 	Value = GetPersonalBest(EPB_HeadShots);
-	
+
 	if(Value < TotalHeadShots)
 	{
 		PersonalBestList[EPB_HeadShots].DisplayValue = TotalHeadShots;
 		PersonalBestList[EPB_HeadShots].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_HeadShots,TotalHeadShots);
 	}
 	else
@@ -915,12 +923,12 @@ function AARAward GivePersonalBestHealing()
 {
 	local int Value;
 	Value = GetPersonalBest(EPB_Healing);
-	
+
 	if(Value < TotalAmountHealGiven)
 	{
 		PersonalBestList[EPB_Healing].DisplayValue = TotalAmountHealGiven;
 		PersonalBestList[EPB_Healing].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_Healing,TotalAmountHealGiven);
 	}
 	else
@@ -941,7 +949,7 @@ function AARAward GivePersonalBestLargeZedKills()
 	{
 		PersonalBestList[EPB_LargeZedKill].DisplayValue = TotalLargeZedKills;
 		PersonalBestList[EPB_LargeZedKill].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_LargeZedKill,TotalLargeZedKills);
 	}
 	else
@@ -963,7 +971,7 @@ function AARAward GivePersonalBestDoshEarned()
 	{
 		PersonalBestList[EPB_Dosh].DisplayValue = TotalDoshEarned;
 		PersonalBestList[EPB_Dosh].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_Dosh,TotalDoshEarned);
 	}
 	else
@@ -985,7 +993,7 @@ function AARAward GivePersonalBestKills()
 	{
 		PersonalBestList[EPB_Kills].DisplayValue = PlayerReplicationInfo.Kills;
 		PersonalBestList[EPB_Kills].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_Kills,PlayerReplicationInfo.Kills);
 	}
 	else
@@ -1010,7 +1018,7 @@ function AARAward GivePersonalBestAssists()
 	{
 		PersonalBestList[EPB_Assists].DisplayValue = KFPRI.Assists;
 		PersonalBestList[EPB_Assists].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_Assists,KFPRI.Assists);
 	}
 	else
@@ -1032,7 +1040,7 @@ function AARAward GivePersonalBestDoorWelding()
 	{
 		PersonalBestList[EPB_DoorWelding].DisplayValue = Value;
 		PersonalBestList[EPB_DoorWelding].bHighLight = true;
-		
+
 		SavePersonalBest(EPB_DoorWelding,Value);
 	}
 	else
@@ -1078,7 +1086,7 @@ static function GetTeamAward(ETeamAwards AwardIndex, out AARAward TempAwardObjec
 		case ETA_Dominator:
 		if (class'EphemeralMatchStats'.default.bShowMatchStatsLogging) LogInternal("Attempting to get ETA_Dominator");
 			Give_Dominator(TempAwardObject, KFPCArray);
-			break;	
+			break;
 		case ETA_Carnage:
 			Give_Carnage(TempAwardObject, KFPCArray);
 			break;

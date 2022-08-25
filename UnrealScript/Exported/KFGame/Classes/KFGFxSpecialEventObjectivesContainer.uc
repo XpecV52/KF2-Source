@@ -11,11 +11,13 @@
 class KFGFxSpecialEventObjectivesContainer extends KFGFxObject_Container;
 
 var localized string CurrentSpecialEventString;
+var localized string CurrentSpecialEventDescriptionString;
 
 struct SSpecialEventObjectiveInfo
 {
     var localized string TitleString;
     var localized string DescriptionString;
+	var localized string TierEventRewardName;
 };
 
 var localized array<SSpecialEventObjectiveInfo> SpecialEventObjectiveInfoList;
@@ -29,7 +31,7 @@ var localized array<string> ChanceDropDescriptionStrings;
 
 var string IconURL;
 
-var array<bool> ObjectiveStatusList;
+var array<ObjectiveProgress> ObjectiveStatusList;
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
@@ -59,9 +61,6 @@ function bool PopulateData()
     local GFxObject DataObject;
     local GFxObject DataProvider; //array containing the data objects 
     local int i;
-	local KFPlayerController KFPC;
-
-	KFPC = KFPlayerController(GetPC());
 
     if(HasObjectiveStatusChanged())
     {
@@ -74,8 +73,8 @@ function bool PopulateData()
             DataObject.SetString("label", default.SpecialEventObjectiveInfoList[i].TitleString);
             DataObject.SetString("description", default.SpecialEventObjectiveInfoList[i].DescriptionString);
             DataObject.SetString("iconPath", "img://"$default.ObjectiveIconURLs[i]);
-            DataObject.SetBool("complete", ObjectiveStatusList[i]);     
-			DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
+            DataObject.SetBool("complete", ObjectiveStatusList[i].bComplete);
+			DataObject.SetInt("rewardValue", ObjectiveStatusList[i].NumericValue);
             DataObject.SetBool("showProgres", false);
             DataObject.SetFloat("progress", 0);
             DataObject.SetString("textValue", "");   
@@ -110,7 +109,8 @@ function bool HasObjectiveStatusChanged()
         ObjectiveStatusList.length = SpecialEventObjectiveInfoList.length;
         for (i = 0; i < SpecialEventObjectiveInfoList.length; i++)
         {
-            ObjectiveStatusList[i] = KFPC.IsEventObjectiveComplete(i);
+            ObjectiveStatusList[i].bComplete = KFPC.IsEventObjectiveComplete(i);
+			ObjectiveStatusList[i].NumericValue = KFPC.GetSpecialEventRewardValue();
         }
         bHasChanged = true;
     }
@@ -120,10 +120,11 @@ function bool HasObjectiveStatusChanged()
         {
             bTempStatus = KFPC.IsEventObjectiveComplete(i);
 
-            if(ObjectiveStatusList[i] != bTempStatus)
+            if(ObjectiveStatusList[i].bComplete != bTempStatus || ObjectiveStatusList[i].numericValue != KFPC.GetSpecialEventRewardValue())
             {
                 bHasChanged = true;
-                ObjectiveStatusList[i] = bTempStatus;
+                ObjectiveStatusList[i].bComplete = bTempStatus;
+				ObjectiveStatusList[i].numericValue = KFPC.GetSpecialEventRewardValue();
             }
         }
     }

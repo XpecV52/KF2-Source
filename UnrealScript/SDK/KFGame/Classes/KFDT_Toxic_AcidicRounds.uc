@@ -24,7 +24,7 @@ defaultproperties
 	DoT_Type=DOT_Toxic
 	DoT_Duration=5.0
 	DoT_Interval=1.0 //1.0
-	DoT_DamageScale=0.15 //0.1
+	DoT_DamageScale=2.0 //0.1 0.15
 
 	PoisonPower=200 //33
 }

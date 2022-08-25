@@ -1,18 +1,18 @@
 class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
-`include(KFGame/KFGameDialog.uci)																																							
+`include(KFGame/KFGameDialog.uci)
 
 DefaultProperties
 {
 	DialogEvents[`TRAD_LastManStanding]=           	(EventID=`TRAD_LastManStanding,			AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_TeamLastOne',	Priority=1, CoolDown=0.f)
-	DialogEvents[`TRAD_Wave20pctDead]=           	(EventID=`TRAD_Wave20pctDead,			AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_20ZedDead', 		Priority=1, CoolDown=0.f)
-	DialogEvents[`TRAD_Wave80pctDead]=           	(EventID=`TRAD_Wave80pctDead,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_80ZedDead', 		Priority=1, CoolDown=0.f)
+	DialogEvents[`TRAD_Wave20pctDead]=           	(EventID=`TRAD_Wave20pctDead,			AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_20ZedDead', 		Priority=1, Chance=0.3f,  CoolDown=0.f)
+	DialogEvents[`TRAD_Wave80pctDead]=           	(EventID=`TRAD_Wave80pctDead,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_80ZedDead', 		Priority=1, Chance=0.3f,  CoolDown=0.f)
 	DialogEvents[`TRAD_WaveLastZedDies]=         	(EventID=`TRAD_WaveLastZedDies,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_LastZedDead', 	Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_Close]=                   	(EventID=`TRAD_Close,	                AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_ShopClose', 		Priority=1, CoolDown=0.f)
-	DialogEvents[`TRAD_PlayerArrive]=            	(EventID=`TRAD_PlayerArrive,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_PlayerArrives', Priority=0, CoolDown=0.f)
+	DialogEvents[`TRAD_PlayerArrive]=            	(EventID=`TRAD_PlayerArrive,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_PlayerArrives', Priority=0, Chance=0.3f,  CoolDown=0.f)
 	DialogEvents[`TRAD_ClickTooExpensive]=       	(EventID=`TRAD_ClickTooExpensive,	    AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_TooExp', 		Priority=0, CoolDown=0.f)
 	DialogEvents[`TRAD_ClickTooHeavy]=           	(EventID=`TRAD_ClickTooHeavy,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_TooHeavy', 		Priority=0, CoolDown=0.f)
-	DialogEvents[`TRAD_30SecLeft]=               	(EventID=`TRAD_30SecLeft,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_30Seconds', 	Priority=0, CoolDown=0.f)
+	DialogEvents[`TRAD_30SecLeft]=               	(EventID=`TRAD_30SecLeft,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_30Seconds', 	Priority=0, Chance=0.4f,  CoolDown=0.f)
 	DialogEvents[`TRAD_10SecLeft]=               	(EventID=`TRAD_10SecLeft,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_10Seconds', 	Priority=0, CoolDown=0.f)
 	DialogEvents[`TRAD_FinalShopWave]=           	(EventID=`TRAD_FinalShopWave,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_LastShop', 		Priority=0, CoolDown=0.f)
 	DialogEvents[`TRAD_PlayerFarAway]=           	(EventID=`TRAD_PlayerFarAway,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_LongRun', 		Priority=1, CoolDown=10.f)
@@ -20,8 +20,8 @@ DefaultProperties
 	DialogEvents[`TRAD_LowArmor]=                	(EventID=`TRAD_LowArmor,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_LowArmor', 		Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_LowAmmo]=                 	(EventID=`TRAD_LowAmmo,	                AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_LowAmmo', 		Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_NoNades]=                 	(EventID=`TRAD_NoNades,	                AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_NoNades', 		Priority=1, CoolDown=0.f)
-	DialogEvents[`TRAD_NeedToHeal]=              	(EventID=`TRAD_NeedToHeal,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_Heal', 			Priority=1, CoolDown=10.f)
-	DialogEvents[`TRAD_TeamNeedsHeal]=           	(EventID=`TRAD_TeamNeedsHeal,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_TeamHeal', 		Priority=1, CoolDown=10.f)
+	DialogEvents[`TRAD_NeedToHeal]=              	(EventID=`TRAD_NeedToHeal,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_Heal', 			Priority=1, Chance=0.25f,  CoolDown=10.f)
+	DialogEvents[`TRAD_TeamNeedsHeal]=           	(EventID=`TRAD_TeamNeedsHeal,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_TeamHeal', 		Priority=1, Chance=0.25f,  CoolDown=10.f)
 	DialogEvents[`TRAD_ShareDosh]=               	(EventID=`TRAD_ShareDosh,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_RichBastard', 	Priority=1, CoolDown=0.f) // Rich Bastard???????
 	DialogEvents[`TRAD_GoodJobHeal]=             	(EventID=`TRAD_GoodJobHeal,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_GoodHealing', 	Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_OnlySurvivor]=            	(EventID=`TRAD_OnlySurvivor,	 		AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_SoleSurv', 		Priority=1, CoolDown=0.f)
@@ -33,7 +33,7 @@ DefaultProperties
 	DialogEvents[`TRAD_NoOneDies]=               	(EventID=`TRAD_NoOneDies,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_NooneDied', 	Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_NoDamage]=                	(EventID=`TRAD_NoDamage,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_NoDamage', 		Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_SomeDie]=                 	(EventID=`TRAD_SomeDie,	                AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_SomeDied', 		Priority=1, CoolDown=0.f)
-	DialogEvents[`TRAD_LT50pctDamTaken]=         	(EventID=`TRAD_LT50pctDamTaken,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_50Better', 		Priority=1, CoolDown=0.f)
+	DialogEvents[`TRAD_LT50pctDamTaken]=         	(EventID=`TRAD_LT50pctDamTaken,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_50Better', 		Priority=1, Chance=0.5f,   CoolDown=0.f)
 	DialogEvents[`TRAD_HighDmgSurvivor]=         	(EventID=`TRAD_HighDmgSurvivor,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_LotDamage', 	Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_HighDmgHighHeal]=         	(EventID=`TRAD_HighDmgHighHeal,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_LotDamLotHeal', Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_EarnMostDosh]=            	(EventID=`TRAD_EarnMostDosh,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_MostDosh', 		Priority=1, CoolDown=0.f)
@@ -53,7 +53,6 @@ DefaultProperties
 	DialogEvents[`TRAD_AdviceHusk]=              	(EventID=`TRAD_AdviceHusk,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Husk', 			Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_AdvicePatriarch]=         	(EventID=`TRAD_AdvicePatriarch,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Patty', 		Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_AdviceHans]=              	(EventID=`TRAD_AdviceHans,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Hans', 			Priority=1, CoolDown=0.f)
-	DialogEvents[`TRAD_AdviceMatriarch]=         	(EventID=`TRAD_AdviceMatriarch,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Matty', 		Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_ObjDefendT]=              	(EventID=`TRAD_ObjDefendT,	            AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_Target', 		Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_ObjDefendTWon]=           	(EventID=`TRAD_ObjDefendTWon,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_Won', 			Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_ObjDefendTDeclined]=      	(EventID=`TRAD_ObjDefendTDeclined,	    AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_ObjDecl', 		Priority=1, CoolDown=0.f)

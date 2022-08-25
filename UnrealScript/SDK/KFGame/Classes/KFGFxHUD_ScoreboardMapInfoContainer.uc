@@ -19,7 +19,7 @@ var localized string FinalString;
 
 var int CurrentGameDifficulty;
 var string GameTypeString;
-var bool bLocalized; 
+var bool bLocalized;
 
 function InitializeHUD()
 {
@@ -49,7 +49,7 @@ function LocalizeText()
 	LocalizedObject.SetString("waveText", WaveString);
 	LocalizedObject.SetString("mapText", class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(GetPC().WorldInfo.GetMapName(true)));
 	LocalizedObject.SetString("matchInfo", MatchInfoString);
-	
+
 	SetObject("localizeText", LocalizedObject);
 
 	bLocalized = true;
@@ -59,7 +59,7 @@ function LocalizeText()
 function UpdateMatchInfo()
 {
 	local KFGameReplicationInfo KFGRI;
-	local int CurrentMatchTime;	
+	local int CurrentMatchTime;
 
     KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
     if(KFGRI != none)
@@ -92,13 +92,24 @@ function UpdateWaveCount()
 	}
 
 	CurrentWaveNum = KFGRI.WaveNum;
-    if(CurrentWaveNum == KFGRI.WaveMax)
+    if(KFGRI.IsBossWave())
     {
-	   	SetString("waveNumber", FinalString);
+		SetString("waveNumber", class'KFGFxHUD_WaveInfo'.default.BossWaveString);
     }
+	else if (KFGRI.IsFinalWave())
+	{
+		SetString("waveNumber", FinalString);
+	}
     else
     {
-    	SetString("waveNumber" ,CurrentWaveNum $"/" $(KFGRI.WaveMax-1));    	
+		if (KFGRI.default.bEndlessMode)
+		{
+    		SetString("waveNumber", "" $ CurrentWaveNum);
+		}
+		else
+		{
+			SetString("waveNumber", CurrentWaveNum $ "/" $ (KFGRI.WaveMax - 1));
+		}
     }
 }
 

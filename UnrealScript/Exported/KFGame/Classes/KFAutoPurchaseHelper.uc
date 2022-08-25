@@ -49,7 +49,7 @@ function Initialize()
 }
 
 /*************************
-@Name - Auto purchase 
+@Name - Auto purchase
 **************************/
 function DoAutoPurchase()
 {
@@ -58,7 +58,6 @@ function DoAutoPurchase()
 	local STraderItem TopTierWeapon;
 	local int ItemIndex;
 	local bool bSecondaryWeaponPurchased;
-	local bool bUpgradeSuccess;
 	local bool bAutoFillPurchasedItem;
 	local string AutoFillMessageString;
 
@@ -85,14 +84,14 @@ function DoAutoPurchase()
 	//can I afford my top teir without selling my current weapon?
 	if(!DoIOwnThisWeapon(TopTierWeapon) && GetCanAfford( GetAdjustedBuyPriceFor(TopTierWeapon) + DoshBuffer ) && CanCarry( TopTierWeapon ) )
 	{
-		bUpgradeSuccess = AttemptUpgrade(TotalDosh, OnPerkWeapons, true);
+		AttemptUpgrade(TotalDosh, OnPerkWeapons, true);
 	}
 	else
 	{
 		PotentialDosh = GetPotentialDosh();
-		bUpgradeSuccess = AttemptUpgrade(PotentialDosh+TotalDosh, OnPerkWeapons);
+		AttemptUpgrade(PotentialDosh+TotalDosh, OnPerkWeapons);
 	}
-	
+
 	bAutoFillPurchasedItem = StartAutoFill();
 	if(DoIOwnThisWeapon(TopTierWeapon))
 	{
@@ -100,16 +99,12 @@ function DoAutoPurchase()
 		{
 			bSecondaryWeaponPurchased = true;
 			AttemptToPurchaseNextLowerTier(TotalDosh, OnPerkWeapons);
-		}	
+		}
 	}
 
 	MyKFIM.ServerCloseTraderMenu();
 
-	if(bUpgradeSuccess)
-	{
-		AutoFillMessageString = class'KFCommon_LocalizedStrings'.default.WeaponUpgradeComepleteString;
-	}
-	else if(bSecondaryWeaponPurchased)
+	if(bSecondaryWeaponPurchased)
 	{
 		AutoFillMessageString = class'KFCommon_LocalizedStrings'.default.SecondaryWeaponPurchasedString;
 	}
@@ -117,11 +112,11 @@ function DoAutoPurchase()
 	{
 		AutoFillMessageString = class'KFCommon_LocalizedStrings'.default.AutoFillCompleteString;
 	}
-	else 
+	else
 	{
 		AutoFillMessageString = class'KFCommon_LocalizedStrings'.default.NoItemsPurchasedString;
 	}
-	
+
 
 	if(MyGFxHUD != none)
 	{
@@ -138,7 +133,7 @@ function bool AttemptToPurchaseNextLowerTier(int UseableDosh, const out Array <S
 	if(LastAfforableItemIndex != INDEX_NONE)
 	{
 		TempTraderItem = OnPerkWeapons[LastAfforableItemIndex];
-		PurchaseWeapon(TempTraderItem);		
+		PurchaseWeapon(TempTraderItem);
 
 		StartAutoFill();
 		return true;
@@ -152,7 +147,7 @@ function STraderItem GetTopTierWeapon(const out Array <STraderItem>OnPerkWeapons
 
 	HighestValuedWeapon = GetHighValuedOnPerkWeapon(OnPerkWeapons);
 
-	return HighestValuedWeapon;	
+	return HighestValuedWeapon;
 }
 
 function bool AttemptUpgrade(int UseableDosh, const out Array<STraderItem> OnPerkWeapons, optional bool bHaveTopTier)
@@ -163,13 +158,13 @@ function bool AttemptUpgrade(int UseableDosh, const out Array<STraderItem> OnPer
 	local SItemInformation MyHighestValuedWeapon;
 
 	MyHighestValuedWeapon = GetHighValuedWeapon(OwnedItemList);
-	
+
 	LastAfforableItemIndex = GetLastAffordableItemIndex(UseableDosh, OnPerkWeapons, MyHighestValuedWeapon);
 
 	if(LastAfforableItemIndex != INDEX_NONE)
 	{
 		TempTraderItem = OnPerkWeapons[LastAfforableItemIndex];
-		
+
 		if(MyHighestValuedWeapon.DefaultItem.WeaponDef.default.BuyPrice < TempTraderItem.WeaponDef.default.BuyPrice)
 		{
 			//Sell on perk weapons
@@ -180,7 +175,7 @@ function bool AttemptUpgrade(int UseableDosh, const out Array<STraderItem> OnPer
 			PurchaseWeapon(TempTraderItem);
 			bUpgradeSuccess = true;
 		}
-	}	
+	}
 	return bUpgradeSuccess;
 }
 
@@ -202,13 +197,13 @@ function int GetLastAffordableItemIndex(int UseableDosh, const out Array <STrade
 			{
 				LastAfforableItemIndex = i;
 			}
-		}	
+		}
 		else
 		{
 			break;
 		}
 	}
-	return LastAfforableItemIndex;	
+	return LastAfforableItemIndex;
 }
 
 function STraderItem GetHighValuedOnPerkWeapon(const out array<STraderItem> ItemList)
@@ -251,7 +246,7 @@ function SItemInformation GetHighValuedWeapon(const out array<SItemInformation> 
 function SellOnPerkWeapons()
 {
 	local int i;
-	
+
 	for (i = 0; i < OwnedItemList.length; i++)
 	{
 		if( OwnedItemList[i].DefaultItem.AssociatedPerkClasses.length > 0 && OwnedItemList[i].DefaultItem.AssociatedPerkClasses[0] == CurrentPerk.Class && OwnedItemList[i].DefaultItem.BlocksRequired != -1)
@@ -265,7 +260,7 @@ function SellOnPerkWeapons()
 function SellOffPerkWeapons()
 {
 	local int i;
-	
+
 	for (i = 0; i < OwnedItemList.length; i++)
 	{
 		if( OwnedItemList[i].DefaultItem.AssociatedPerkClasses[0] != CurrentPerk.Class && OwnedItemList[i].DefaultItem.BlocksRequired != -1 && OwnedItemList[i].SellPrice != 0 )
@@ -335,7 +330,7 @@ function bool CanCarry( const out STraderItem Item )
 function PurchaseWeapon(STraderItem ShopItem)
 {
 	if(!bCanPurchase(ShopItem))
-	{		
+	{
 		return;
 	}
 
@@ -347,7 +342,7 @@ function PurchaseWeapon(STraderItem ShopItem)
 
 function SellWeapon(SItemInformation ItemInfo, optional int SelectedItemIndex = -1)
 {
-	AddDosh(ItemInfo.SellPrice);
+	AddDosh(GetAdjustedSellPriceFor(ItemInfo.DefaultItem));
    	AddBlocks( -ItemInfo.DefaultItem.BlocksRequired );
 
    	if(SelectedItemIndex != INDEX_NONE)
@@ -375,7 +370,7 @@ function int FillArmor( )
 	local float ArmorPricePerPercent, FillCost;
 	local float PercentBoughtUnit, PercentArmorBought;
 	local int ActualArmorPointsAvailable;
-	
+
 	FillCost = GetFillArmorCost();
 	ActualArmorPointsAvailable = ArmorItem.MaxSpareAmmo - ArmorItem.SpareAmmoCount;
 
@@ -395,7 +390,7 @@ function int FillArmor( )
 
     PercentArmorBought = (PercentArmorBought > 0.f && PercentArmorBought < 1.f) ? 1.f : PercentArmorBought;
     ArmorItem.SpareAmmoCount = FMin( float(ArmorItem.SpareAmmoCount) + (PercentBoughtUnit * float(ArmorItem.MaxSpareAmmo)), float(ArmorItem.MaxSpareAmmo) );
-	
+
 	BoughtAmmo(PercentArmorBought, FillCost, EIT_Armor);
 	return FillCost;
 }
@@ -507,15 +502,15 @@ function int BuyMagazine( int ItemSlotIndex  )
 	local int MagCost;
 
     ItemInfo = OwnedItemList[ ItemSlotIndex ];
-    
-	if( ItemInfo.bIsSecondaryAmmo ) 
+
+	if( ItemInfo.bIsSecondaryAmmo )
 	{
 		MagCost = BuySecondaryAmmoMag( ItemInfo );
 	}
 	else
 	{
 		MagCost = BuyItemMagazine( ItemInfo );
-	} 
+	}
 
 	OwnedItemList[ ItemSlotIndex ] = ItemInfo;
 	return MagCost;
@@ -582,7 +577,7 @@ function float FillAmmo( out SItemInformation ItemInfo, optional bool bIsGrenade
 		MissingAmmo = ItemInfo.MaxSpareAmmo - ItemInfo.SpareAmmoCount;
     	FillAmmoCost = ( bIsGrenade ) ? GetFillGrenadeCost() : GetFillAmmoCost(ItemInfo);
     }
-	
+
 	// If we cannot fill all our ammo, fill as much as possible
 	if ( FillAmmoCost > TotalDosh )
 	{
@@ -719,7 +714,7 @@ function bool AutoFillOwnedItems( out int AutoFillDosh, bool bLastCycle )
     {
         AmmoCostScale = 1.0;
     }
-	
+
 	for (i = 0; i < OwnedItemList.Length; i++)
 	{
 		ItemInfo = OwnedItemList[ i ];
@@ -769,7 +764,7 @@ function bool StartAutoFill()
 	{
 		// Tries to buy ammo for the highest priority weapon with missing ammo, unless we're on the last cycle in which case buy for all weapons
 		bBoughtSomething = AutoFillOwnedItems(AutoFillDosh, bLastCycle);
-		
+
 		// Fill armor
 		if( ArmorItem.SpareAmmoCount < ArmorItem.MaxSpareAmmo )
 		{
@@ -816,7 +811,7 @@ function bool StartAutoFill()
 			bAutoFillPurchasedItem = bBoughtSomething;
 		}
 		bBoughtSomething = false;
-	}	
+	}
 
 	ClearAutoFillDosh();
 	return bAutoFillPurchasedItem;
@@ -827,7 +822,7 @@ function Int GetAutoFillCost()
 {
 	local byte SlotIndex;
 	local int FillAmmoCost, AutoFillCost;
-   	local SItemInformation ItemInfo;	
+   	local SItemInformation ItemInfo;
 
 	AutoFillCost += GetFillArmorCost();
 	AutoFillCost += GetFillGrenadeCost();
@@ -838,14 +833,14 @@ function Int GetAutoFillCost()
 	{
 		ItemInfo = OwnedItemList[SlotIndex];
 		FillAmmoCost = GetFillAmmoCost(ItemInfo);
-		AutoFillCost += FillAmmoCost;		
+		AutoFillCost += FillAmmoCost;
 	}
 
 	return AutoFillCost;
 }
 
 /******************
-@Name - General 
+@Name - General
 *******************/
 
 function InitializeOwnedItemList()
@@ -890,7 +885,7 @@ function InitializeOwnedItemList()
 
 		if(MyGfxManager != none && MyGfxManager.TraderMenu != none)
 		{
-			MyGfxManager.TraderMenu.OwnedItemList = OwnedItemList;	
+			MyGfxManager.TraderMenu.OwnedItemList = OwnedItemList;
 		}
 	}
 }
@@ -907,6 +902,14 @@ function bool IsSellable(const out STraderItem TraderItem)
 simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem )
 {
 	return MyKFIM.GetAdjustedBuyPriceFor( ShopItem, OwnedItemList );
+}
+
+simulated function int GetAdjustedSellPriceFor(const out STraderItem ShopItem)
+{
+	local KFWeapon OwnedWeapon;
+	MyKFIM.GetWeaponFromClass(OwnedWeapon, ShopItem.ClassName);
+
+	return MyKFIM.GetAdjustedSellPriceFor(ShopItem, OwnedWeapon);
 }
 
 function bool IsInOwnedItemList( name ItemName )
@@ -951,8 +954,8 @@ simulated function NotifyDoshChanged()
 		bPendingDoshUpdate = false;
 		if(MyKFPRI.Score != TotalDosh)
 		{
-			return;	
-		}		
+			return;
+		}
 	}
 
 	UpdateCurrentDosh();
@@ -966,7 +969,7 @@ simulated function UpdateCurrentDosh()
 	{
 		MyGfxManager.TraderMenu.RefreshItemComponents();
 	}
-	
+
 	bPendingDoshUpdate = false;
 	ClearTimer(nameof(UpdateCurrentDosh), self);
 }
@@ -1062,16 +1065,16 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 	// Magazine capacity affects both spare ammo and max spare ammo. modify this first
    	WeaponInfo.MagazineCapacity = DefaultItem.MagazineCapacity;
 	CurrentPerk.ModifyMagSizeAndNumber( none, WeaponInfo.MagazineCapacity, DefaultItem.AssociatedPerkClasses,, DefaultItem.ClassName );
-	
+
 	// Newly bought weapons need to have their default values modified by the current perk
 	WeaponInfo.MaxSpareAmmo = DefaultItem.MaxSpareAmmo;
 	CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSpareAmmo, DefaultItem);
 	WeaponInfo.MaxSpareAmmo +=  WeaponInfo.MagazineCapacity;
-	
+
 	WeaponInfo.SpareAmmoCount = DefaultItem.InitialSpareMags * DefaultItem.MagazineCapacity;
 	CurrentPerk.ModifySpareAmmoAmount(none, WeaponInfo.SpareAmmoCount, DefaultItem);
 	WeaponInfo.SpareAmmoCount += WeaponInfo.MagazineCapacity;
-		
+
 	// if adding a dual, adjust the displayed ammo count to reflect ammo of single
 	bAddingDual = DefaultItem.SingleClassName != '';
 	if( bAddingDual )
@@ -1204,12 +1207,12 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 		OwnedItemList.Remove( OwnedListIdx, 1 );
 	}
 	//now selling duals as we buy them; together.
-	
+
 	// add a single to owned items when removing a dual
 	//if( ItemInfo.DefaultItem.SingleClassName != '' )
 	if( ItemInfo.DefaultItem.SingleClassName == 'KFWeap_Pistol_9mm' )
 	{
-		// When removing a dual, always add a single to the owned list so that it shows up in the player inventory UI. 
+		// When removing a dual, always add a single to the owned list so that it shows up in the player inventory UI.
 		// If we don't own the single, then also buy it (add it to the transaction list).
 
 		if( TraderItems.GetItemIndicesFromArche( ItemIndex, ItemInfo.DefaultItem.SingleClassName) )
@@ -1228,7 +1231,7 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 
 	if(MyGfxManager != none && MyGfxManager.TraderMenu != none)
 	{
-		MyGfxManager.TraderMenu.OwnedItemList = OwnedItemList;	
+		MyGfxManager.TraderMenu.OwnedItemList = OwnedItemList;
 	}
 }
 
@@ -1270,7 +1273,7 @@ function int AddItemByPriority( out SItemInformation WeaponInfo )
 				BestIndex = i;
 				break;
 			}
-			else if( WeaponPriority == OwnedItemList[i].DefaultItem.GroupPriority && 
+			else if( WeaponPriority == OwnedItemList[i].DefaultItem.GroupPriority &&
 				WeaponInfo.DefaultItem.AssociatedPerkClasses.Find(CurrentPerk.Class) != INDEX_NONE )
 			{
 				// if the weapons have the same priority give the slot to the on perk weapon
@@ -1296,7 +1299,7 @@ function int AddItemByPriority( out SItemInformation WeaponInfo )
 
 	if( MyGfxManager != none && MyGfxManager.TraderMenu != none )
 	{
-		MyGfxManager.TraderMenu.OwnedItemList = OwnedItemList;	
+		MyGfxManager.TraderMenu.OwnedItemList = OwnedItemList;
 	}
 
    	return BestIndex;
@@ -1309,7 +1312,7 @@ function AddBlocks( int AddedBlocks )
 
 function GetTraderItems()
 {
-	TraderItems = KFGameReplicationInfo( WorldInfo.GRI ).TraderItems;	
+	TraderItems = KFGameReplicationInfo( WorldInfo.GRI ).TraderItems;
 	Initialize();
 }
 

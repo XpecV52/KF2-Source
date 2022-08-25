@@ -342,7 +342,7 @@ ItemDescription="•主要攻擊模式為發射爆炸性、火焰投擲物體。
 [KFWeap_Pistol_DualFlare]
 ItemName="雙管火槍"
 ItemCategory="火焰"
-ItemDescription="•主要攻擊模式為發射爆炸性、火焰投擲物體。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•此為一對火槍。兩把都可以各自賣掉或丟棄。"
+ItemDescription="•主要攻擊模式為發射爆炸性、火焰投擲物體。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•此為一對火槍。"
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="噴火霰彈槍"
@@ -397,7 +397,7 @@ ItemDescription="•主要攻擊模式只有半自動。\n•這是制式柯爾�
 [KFWeap_Pistol_DualColt1911]
 ItemName="M1911 雙槍"
 ItemCategory="手槍"
-ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對柯爾特 1911 半自動手槍。兩把都可以各自賣掉或丟棄。"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對柯爾特 1911 半自動手槍。"
 
 [KFWeap_Pistol_Deagle]
 ItemName="點 50 沙漠之鷹"
@@ -407,7 +407,7 @@ ItemDescription="•主要攻擊模式只有半自動。\n•沙漠之鷹是手�
 [KFWeap_Pistol_DualDeagle]
 ItemName="點 50 沙漠之鷹雙槍"
 ItemCategory="手槍"
-ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對沙漠之鷹手砲。兩把都可以各自賣掉或丟棄。"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對沙漠之鷹手砲。"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左輪"
@@ -417,7 +417,7 @@ ItemDescription="•主要攻擊模式只有單發。\n•典型的點 44 口徑
 [KFWeap_Revolver_DualRem1858]
 ItemName="1858 左輪雙槍"
 ItemCategory="手槍"
-ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 1858 左輪手槍。兩把都可以各自賣掉或丟棄。"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 1858 左輪手槍。"
 
 [KFWeap_Revolver_SW500]
 ItemName="點 500 馬格南左輪"
@@ -427,7 +427,7 @@ ItemDescription="•主要攻擊模式只有單發。\n•一把手裡的大砲�
 [KFWeap_Revolver_DualSW500]
 ItemName="點 500 馬格南左輪雙槍"
 ItemCategory="手槍"
-ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對點 500 馬格南左輪手槍。兩把都可以各自賣掉或丟棄。掉到地上會很大聲。"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 .500 馬格南左輪手槍。"
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="溫徹斯特 1894"
@@ -483,7 +483,7 @@ ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔�
 [KFWeap_SMG_HK_UMP]
 ItemName="黑克勒&科赫 UMP"
 ItemCategory="衝鋒槍"
-ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•MP 家族中的新成員。或許是個叔叔什麼的？衝鋒槍有家族嗎？"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n按下輔助功能鍵變更主要攻擊模式。\n•MP 家族中的新成員。或許是個叔叔什麼的？衝鋒槍有家族嗎？"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="冰凍噴射器"
@@ -494,6 +494,26 @@ ItemDescription="•主要攻擊模式為發射絕對零度物質的光束。\n�
 ItemName="Hemogoblin"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊模式會射出血孔，使Zed受傷、行動緩慢與變得虛弱。\n•Alt-主要攻擊會射出治療鏢，以治療團隊成員\n• 不可行的減輕負重計畫。"
+
+[KFWeap_HuskCannon]
+ItemName="焦驅砲"
+ItemCategory="火焰"
+ItemDescription="•按下開火按鈕後開始充能，鬆開按鈕後釋放能量。\nHorzine官方版本的焦驅砲。該型號保證95%不會爆炸。"
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•你在上面放更多桶，所有事就會變更好。就像加更多培根。"
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="雙管 AF2011-A2"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•兩隻槍各有兩個槍管。四倍火力。這就是數學。你不能反駁數學。"
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•特征是速射燃燒彈藥。懂了嗎？速射？因為它是衝鋒槍？哦，忘了那吧。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="對抗生存模式"
 
 [KFGameInfo_WeeklySurvival]
 GameName="每週暴動"
+
+[KFGameInfo_Endless]
+GameName="無盡"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="無法治療"

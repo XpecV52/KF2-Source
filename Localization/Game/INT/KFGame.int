@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="Invite Only"
 ModeStrings[0]="Survival"
 ModeStrings[1]="Weekly"
 ModeStrings[2]="VS Survival"
+ModeStrings[3]="Endless"
 
 NoPreferenceString="ANY"
 OKString="OK"
@@ -55,7 +56,6 @@ NoSwitchReasonString="Switching teams would upset team balance"
 
 AutoTradeCompleteString="Auto Trade Complete: "
 AutoFillCompleteString="Autofilled Supplies"
-WeaponUpgradeComepleteString="Weapon Upgraded"
 SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
 NoItemsPurchasedString="No Items Purchased"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": Match Lobby"
 DiscordTraderTimeString=": Trader Time"
 DiscordBossWaveString=": Boss Wave"
 DiscordWaveString=": Wave "
+
+ProceedToTutorialString="PROCEED TO TRAINING?"
+ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="OUTBREAK COMPLETION REWARD"
@@ -190,6 +193,7 @@ TutorialString="Basic Training"
 modeList0="Survival – PVE battle waves of AI controlled Zeds"
 modeList1="Weekly Outbreak – A different variant game mode each week."
 modeList2="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList3="Endless - Battle waves of AI controlled Zed until death"
 difficultyList0="Normal – For beginning players of perk rank 0-5."
 difficultyList1="Hard – For experienced players of perk rank 6-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
 difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and they move even faster. There are even fewer pickups, and you get even less dosh."
@@ -738,6 +742,7 @@ DamageDealtString="Damage Dealt:"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ READY ]"
+SkipTraderString="SKIP TRADER"
 WaitingString="WAITING FOR PLAYER(S)"
 MatchOverString="MATCH OVER \n Please stand by..."
 DeployingString="DEPLOYING IN "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Experience"
-PrestigeLevelString="Prestige"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="CONFIGURE"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>WEAPON SELECT"
 PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
 UseMinigameMessage="ACTIVATE"
 UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
+DoshActivateMessage="ACTIVATION COST"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
@@ -2133,7 +2138,7 @@ Madman="ZED TIME - Madman"
 MadmanDescription="During Zed time, all your weapons shoot 3x faster."
 
 IncapMaster="ZED TIME - Lockdown"
-IncapMasterDescription="During Zed time, the power of all incapacitation methods are increased 200% for all weapons." "
+IncapMasterDescription="During Zed time, the power of all incapacitation methods are increased 200% for all weapons."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="Stalker"
 KFPawn_ZedClot_Cyst="Cyst"
 KFPawn_ZedClot_Slasher="Slasher"
 KFPawn_ZedClot_Alpha="Alpha Clot"
-KFPawn_ZedClot_AlphaKing="Elite Alpha"
+KFPawn_ZedClot_AlphaKing="Rioter"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
 KFPawn_ZedPatriarch="Patriarch"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="Pajama Suit"
 
 ChanceDropDescriptionStrings[0]="Prize Ticket"
 ChanceDropDescriptionStrings[1]="Gold Ticket"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="D.A.R.ing Endless Challenges"
+CurrentSpecialEventDescriptionString="Beat the waves to earn legenD.A.R.y rewards!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Endless Test Dummy",DescriptionString="Complete Endless Wave 5",TierEventRewardName="Classic D.A.R.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Endless Drone",DescriptionString="Complete Endless Wave 10",TierEventRewardName="Loader D.A.R.")
+SpecialEventObjectiveInfoList[2]=(TitleString="Endless Sentry",DescriptionString="Complete Endless Wave 15",TierEventRewardName="Skully D.A.R.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Endless War Machine",DescriptionString="Complete Endless Wave 20",TierEventRewardName="Bloody D.A.R.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Endless Optimus D.A.R.",DescriptionString="Complete Endless Wave 25",TierEventRewardName="Golden D.A.R.")
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2862,6 +2910,9 @@ GameName="Survival"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="Weekly"
+
+[Endless KFGameInfoSummary]
+GameName="Endless"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Volter Manor"
@@ -2907,6 +2958,12 @@ DisplayName="Nightmare"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="Krampus Lair"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Power Core"
+
+[KF-DieSector KFMapSummary]
+DisplayName="DieSector"
 
 [KFMapInfo]
 ; defaults

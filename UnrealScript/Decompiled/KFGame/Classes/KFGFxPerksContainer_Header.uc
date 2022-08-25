@@ -9,7 +9,6 @@ class KFGFxPerksContainer_Header extends KFGFxPerksContainer within GFxMoviePlay
 
 var GFxObject PerkTextField;
 var GFxObject LevelTextField;
-var const localized string PrestigeLevelString;
 var const localized string ExperienceString;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
@@ -36,7 +35,6 @@ function UpdatePerkHeader(class<KFPerk> PerkClass)
     PerkDataProvider.SetString("perkTitle", PerkClass.default.PerkName);
     PerkDataProvider.SetString("perkLevel", LevelString @ string(PerkLevel));
     PerkDataProvider.SetString("iconSource", "img://" $ PerkClass.static.GetPerkIconPath());
-    PerkDataProvider.SetString("prestigeLevel", "");
     PerkDataProvider.SetString("xpString", (string(CurrentEXP) $ "/") $ string(NextEXP));
     PerkDataProvider.SetFloat("xpPercent", EXPPercent / float(100));
     SetObject("perkData", PerkDataProvider);
@@ -44,6 +42,5 @@ function UpdatePerkHeader(class<KFPerk> PerkClass)
 
 defaultproperties
 {
-    PrestigeLevelString="Prestige"
     ExperienceString="Experience"
 }

@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="招待のみ"
 ModeStrings[0]="サバイバル"
 ModeStrings[1]="ウィークリー"
 ModeStrings[2]="VSサバイバル"
+ModeStrings[3]="エンドレス"
 
 NoPreferenceString="何でも"
 OKString="OK"
@@ -55,7 +56,6 @@ NoSwitchReasonString="チームを変更すると、チームバランスが乱�
 
 AutoTradeCompleteString="オートトレード完了： "
 AutoFillCompleteString="物資をオートフィルしました"
-WeaponUpgradeComepleteString="武器をアップグレードしました"
 SecondaryWeaponPurchasedString="セカンダリ武器を購入しました"
 NoItemsPurchasedString="購入したアイテムはありません"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": マッチロビー"
 DiscordTraderTimeString=": トレーダータイム"
 DiscordBossWaveString=": ボスウェーブ！"
 DiscordWaveString=": ウェーブ"
+
+ProceedToTutorialString="トレーニングに進みますか？"
+ProceedToTutorialDescriptionString="基本を学ぶために制御環境へと向かいましょう。  一度完了すると選択されたレベル0Perkがレベル1になります。"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="アウトブレイククリア報酬"
@@ -190,6 +193,7 @@ TutorialString="基本トレーニング"
 modeList0="サバイバル―AIが操作するzedのPVEバトルウェーブ"
 modeList1="ウィークリーアウトブレイク―毎週異なるゲームモードがリリース。"
 modeList2="VSサバイバル―PVPホージン傭兵 vs プレイヤーおよびAIが操作するzedのウェーブ"
+modeList3="エンドレス - AIが操作するZedのバトルウェーブ（死ぬと終了）"
 difficultyList0="Normal―Perkランク0-5の初心者プレイヤー向け。"
 difficultyList1="Hard―Perkランク6-12の経験豊富なプレイヤー向け。各ウェーブのzedが増え、動きが速くなり、ヘルスが増えます。ピックアップアイテムが少なくなり、doshが減ります。"
 difficultyList2="Suicidal―Perkランク13-25の熟練プレイヤー向け。各ウェーブのzedがさらに増え、新たな攻撃を使用し、さらに動きが速くなります。ピックアップアイテムがさらに少なくなり、doshがさらに減ります。"
@@ -738,6 +742,7 @@ DamageDealtString="与えたダメージ："
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ 準備完了 ]"
+SkipTraderString="トレーダーをスキップ"
 WaitingString="プレイヤーを待機中"
 MatchOverString="マッチ終了\nお待ちください…"
 DeployingString="配置まで "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="経験値"
-PrestigeLevelString="名声"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="コンフィグ"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>武器選択"
 PlayerClotGrabWarningMessage="zedをキルして逃げる！"
 UseMinigameMessage="起動"
 UseMinigameGeneratorMessage="ジェネレータ起動"
+DoshActivateMessage="アクティベーションコスト"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="チームのバランスが悪いため、調整されます"
@@ -2133,7 +2138,7 @@ Madman="Zed-Time―狂人"
 MadmanDescription="Zed-Time中、全武器の発射速度が3倍になる。"
 
 IncapMaster="Zed-Time―ロックダウン"
-IncapMasterDescription="Zed-Time中、全武器のすべての状態異常パワーが200%増加する。 "
+IncapMasterDescription="Zed-Time中、全武器のすべての状態異常パワーが200%増加する。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="ストーカー"
 KFPawn_ZedClot_Cyst="シスト"
 KFPawn_ZedClot_Slasher="スラッシャー"
 KFPawn_ZedClot_Alpha="アルファクロト"
-KFPawn_ZedClot_AlphaKing="エリートアルファ"
+KFPawn_ZedClot_AlphaKing="暴徒"
 KFPawn_ZedScrake="スクレイク"
 KFPawn_ZedSiren="サイレン"
 KFPawn_ZedPatriarch="ペイトリアーク"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="パジャマスーツ"
 
 ChanceDropDescriptionStrings[0]="景品チケット"
 ChanceDropDescriptionStrings[1]="黄金チケット"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="台単なるエンドレスチャレンジ"
+CurrentSpecialEventDescriptionString="ウェーブを打ち破って伝説的な報酬を手に入れよう！"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="エンドレステストダミー",DescriptionString="エンドレスウェーブ5をクリア",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="エンドレスドローン",DescriptionString="エンドレスウェーブ10をクリア",TierEventRewardName="D.A.R.ブロンズ");
+SpecialEventObjectiveInfoList[2]=(TitleString="エンドレスセントリー",DescriptionString="エンドレスウェーブ15をクリア",TierEventRewardName="シルバーD.A.R.");
+SpecialEventObjectiveInfoList[3]=(TitleString="エンドレスウォーマシン",DescriptionString="エンドレスウェーブ20をクリア",TierEventRewardName="クラシックブルーD.A.R.");
+SpecialEventObjectiveInfoList[4]=(TitleString="エンドレスオプティマスD.A.R.",DescriptionString="エンドレスウェーブ25をクリア",TierEventRewardName="ゴールデンD.A.R.");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2862,6 +2910,9 @@ GameName="サバイバル"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="ウィークリー"
+
+[Endless KFGameInfoSummary]
+GameName="エンドレス"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Volter Manor"
@@ -2907,6 +2958,12 @@ DisplayName="悪夢"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="クランプスの巣"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Power Core"
+
+[KF-DieSector KFMapSummary]
+DisplayName="DieSector"
 
 [KFMapInfo]
 ; defaults

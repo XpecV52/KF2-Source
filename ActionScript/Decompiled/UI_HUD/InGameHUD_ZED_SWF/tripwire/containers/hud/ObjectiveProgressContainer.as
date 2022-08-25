@@ -50,7 +50,9 @@ package tripwire.containers.hud
         
         public var accentsMC:MovieClip;
         
-        public var _currentProgress:Number;
+        private var _currentProgress:Number;
+        
+        public var failedString:String;
         
         public function ObjectiveProgressContainer()
         {
@@ -71,6 +73,14 @@ package tripwire.containers.hud
             TextFieldEx.setTextAutoSize(this.objectiveRequirementContainer.requirementNumberTextfield,"shrink");
         }
         
+        public function set localizedText(param1:Object) : void
+        {
+            if(param1)
+            {
+                this.failedString = !!param1.failedString ? param1.failedString : "";
+            }
+        }
+        
         public function set isActive(param1:Boolean) : void
         {
         }
@@ -89,6 +99,7 @@ package tripwire.containers.hud
         
         public function set currentProgress(param1:Number) : void
         {
+            var _loc2_:Object = null;
             if(this._currentProgress < param1)
             {
                 if(this.currentProgressColor.tintColor != this.normalColor)
@@ -103,7 +114,12 @@ package tripwire.containers.hud
             }
             else if(this._currentProgress > param1)
             {
-                if(this.currentProgressColor.tintColor != this.failedColor)
+                if(param1 == 0)
+                {
+                    _loc2_ = {"bFailed":true};
+                    this.failed = _loc2_;
+                }
+                else if(this.currentProgressColor.tintColor != this.failedColor)
                 {
                     this.currentProgressColor.setTint(this.failedColor,1);
                     this.progressBarMC.transform.colorTransform = this.currentProgressColor;
@@ -136,7 +152,7 @@ package tripwire.containers.hud
             this.bonusNumberTextfield.transform.colorTransform = this.currentStateColor;
             this.bonusNumberTextfield.filters = [this.stateGlow];
             this.iconLoaderMC.transform.colorTransform = this.currentStateColor;
-            this.objectiveRequirementContainer.requirementNumberTextfield.text = !!param1.failedString ? param1.failedString : "";
+            this.objectiveRequirementContainer.requirementNumberTextfield.text = this.failedString;
             this.objectiveRequirementContainer.transform.colorTransform = this.currentStateColor;
             this.doshIconMC.visible = !_loc2_;
             this.bonusNumberTextfield.visible = !_loc2_;

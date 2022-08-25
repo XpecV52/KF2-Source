@@ -15,6 +15,8 @@ var bool bObjectiveQueued;
 var bool bIsSpectating;
 var bool bIsVisible;
 var bool bUsingGamepad;
+var array<string> SpecialWaveIconPath;
+var array<string> SpecialWaveLocKey;
 var KFGFxHUD_SpectatorInfo SpectatorInfoWidget;
 var KFGFxHUD_PlayerStatus PlayerStatusContainer;
 var KFGFxHUD_PlayerBackpack PlayerBackpackContainer;
@@ -590,6 +592,115 @@ function DisplayPriorityMessage(string InPrimaryMessageString, string InSecondar
     }
 }
 
+function DisplayExpandedWaveInfo()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFWeeklyOutbreakInformation WeeklyInfo;
+    local GFxObject PriorityMessageObject;
+    local int ModifierIndex;
+
+    switch(LastMessageType)
+    {
+        case 0:
+        case 17:
+        case 18:
+        case 19:
+            break;
+        default:
+            return;
+            break;
+    }
+    PriorityMessageObject = CreateObject("Object");
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    if(PriorityMessageContainer != none)
+    {
+        PriorityMessageObject = CreateObject("Object");
+        if(KFGRI.default.bEndlessMode)
+        {
+            PriorityMessageObject.SetString("waveNum", string(KFGRI.WaveNum));            
+        }
+        else
+        {
+            if(KFGRI.IsBossWave())
+            {
+                PriorityMessageObject.SetString("waveNum", Class'KFGFxHUD_WaveInfo'.default.BossWaveString);                
+            }
+            else
+            {
+                if(KFGRI.IsFinalWave())
+                {
+                    PriorityMessageObject.SetString("waveNum", Class'KFGFxHUD_WaveInfo'.default.FinalWaveString);                    
+                }
+                else
+                {
+                    PriorityMessageObject.SetString("waveNum", (string(KFGRI.WaveNum) $ "/") @ string(KFGRI.WaveMax - 1));
+                }
+            }
+        }
+        PriorityMessageObject.SetString("waveString", Class'KFGFxHUD_WaveInfo'.default.WaveString);
+        PriorityMessageObject.SetInt("waveTier", GetWaveTier());
+        if(KFGRI.IsWeeklyWave(ModifierIndex))
+        {
+            WeeklyInfo = Class'KFMission_LocalizedStrings'.static.GetWeeklyOutbreakInfoByIndex(ModifierIndex);
+            PriorityMessageObject.SetString("waveType", WeeklyInfo.FriendlyName);
+            PriorityMessageObject.SetString("waveImage", "img://" $ WeeklyInfo.IconPath);            
+        }
+        else
+        {
+            if(KFGRI.IsSpecialWave(ModifierIndex))
+            {
+                PriorityMessageObject.SetString("waveType", Localize("Zeds", SpecialWaveLocKey[ModifierIndex], "KFGame"));
+                PriorityMessageObject.SetString("waveImage", "img://" $ SpecialWaveIconPath[ModifierIndex]);                
+            }
+        }
+        PriorityMessageContainer.SetObject("waveNumberMessage", PriorityMessageObject);
+    }
+}
+
+function int GetWaveTier()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    if(KFGRI.default.bEndlessMode)
+    {
+        if(KFGRI.WaveNum > 20)
+        {
+            return 5;            
+        }
+        else
+        {
+            if(KFGRI.WaveNum > 15)
+            {
+                return 4;
+            }
+        }
+        if(KFGRI.WaveNum > 10)
+        {
+            return 3;
+        }
+        if(KFGRI.WaveNum > 5)
+        {
+            return 2;
+        }        
+    }
+    else
+    {
+        if(KFGRI.IsFinalWave())
+        {
+            return 3;            
+        }
+        else
+        {
+            if(KFGRI.IsBossWave())
+            {
+                return 5;
+            }
+        }
+    }
+    return 1;
+}
+
 function bool ShouldCheckForObjective(KFLocalMessage_Priority.EGameMessageType MessageType)
 {
     local KFGameReplicationInfo KFGRI;
@@ -599,15 +710,21 @@ function bool ShouldCheckForObjective(KFLocalMessage_Priority.EGameMessageType M
     {
         return false;
     }
-    if(KFGRI.IsFinalWave())
+    if(KFGRI.IsBossWave())
     {
         return false;
     }
-    if((MessageType == 0) || MessageType == 1)
+    switch(MessageType)
     {
-        return true;
+        case 0:
+        case 17:
+        case 18:
+        case 1:
+            return true;
+        default:
+            return false;
+            break;
     }
-    return false;
 }
 
 simulated function PlayObjectiveAudio()
@@ -641,10 +758,12 @@ simulated function DisplayObjectiveResults()
         ObjectiveObject.SetString("descString", " ");
         ObjectiveObject.SetString("requireString", " ");
         ObjectiveObject.SetString("rewardNum", string(KFGRI.PreviousObjectiveResult));
+        ObjectiveObject.SetString("xpBonus", string(KFGRI.PreviousObjectiveXPResult));
+        ObjectiveObject.SetString("voshBonus", string(KFGRI.PreviousObjectiveVoshResult));
         ObjectiveObject.SetString("iconPath", "img://" $ PathName(ObjectiveInterface.GetIcon()));
         ObjectiveObject.SetBool("isBonus", true);
         PriorityMessageContainer.SetObject("objectiveMessage", ObjectiveObject);
-        LastMessageType = 17;
+        LastMessageType = 20;
     }
 }
 
@@ -664,11 +783,13 @@ simulated function DisplayNewObjective()
         ObjectiveObject.SetString("descString", ObjectiveInterface.GetLocalizedDescription());
         ObjectiveObject.SetString("requireString", ObjectiveInterface.GetLocalizedRequirements());
         ObjectiveObject.SetString("rewardNum", string(ObjectiveInterface.GetMaxDoshReward()));
+        ObjectiveObject.SetString("xpBonus", string(ObjectiveInterface.GetMaxXPReward()));
+        ObjectiveObject.SetString("voshBonus", string(ObjectiveInterface.GetMaxVoshReward()));
         ObjectiveObject.SetString("iconPath", "img://" $ PathName(ObjectiveInterface.GetIcon()));
         ObjectiveObject.SetBool("isBonus", false);
         KFGRI.PreviousObjectiveResult = -1;
         PriorityMessageContainer.SetObject("objectiveMessage", ObjectiveObject);
-        LastMessageType = 17;
+        LastMessageType = 20;
     }
 }
 
@@ -707,9 +828,9 @@ function DisplayInteractionMessage(string MessageString, int MessageIndex, optio
 
 function int GetInteractionMessagePriority(int MessageIndex)
 {
-    if(MessageIndex < 10)
+    if(MessageIndex < 11)
     {
-        return 10 - 1;
+        return 11 - 1;
     }
     return MessageIndex;
 }
@@ -861,6 +982,7 @@ function Callback_PriorityMessageComplete()
     local KFInterface_MapObjective ObjectiveInterface;
     local KFGameReplicationInfo KFGRI;
 
+    DisplayExpandedWaveInfo();
     if(ShouldCheckForObjective(LastMessageType))
     {
         KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
@@ -877,7 +999,7 @@ function Callback_PriorityMessageComplete()
             }
         }
         UpdateObjectiveActive();
-        LastMessageType = 17;        
+        LastMessageType = 20;        
     }
     else
     {
@@ -958,6 +1080,30 @@ function Callback_VoteKick(bool bKick)
 defaultproperties
 {
     ScoreBoardClass=Class'KFGFxMoviePlayer_ScoreBoard'
+    SpecialWaveIconPath(0)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Cyst"
+    SpecialWaveIconPath(1)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Slasher"
+    SpecialWaveIconPath(2)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Clot"
+    SpecialWaveIconPath(3)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Crawler"
+    SpecialWaveIconPath(4)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Gorefast"
+    SpecialWaveIconPath(5)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Stalker"
+    SpecialWaveIconPath(6)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Scrake"
+    SpecialWaveIconPath(7)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_FP"
+    SpecialWaveIconPath(8)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_FP"
+    SpecialWaveIconPath(9)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Bloat"
+    SpecialWaveIconPath(10)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Siren"
+    SpecialWaveIconPath(11)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Husk"
+    SpecialWaveLocKey(0)="KFPawn_ZedClot_Cyst"
+    SpecialWaveLocKey(1)="KFPawn_ZedClot_Slasher"
+    SpecialWaveLocKey(2)="KFPawn_ZedClot_Alpha"
+    SpecialWaveLocKey(3)="KFPawn_ZedCrawler"
+    SpecialWaveLocKey(4)="KFPawn_ZedGorefast"
+    SpecialWaveLocKey(5)="KFPawn_ZedStalker"
+    SpecialWaveLocKey(6)="KFPawn_ZedScrake"
+    SpecialWaveLocKey(7)="KFPawn_ZedFleshpound"
+    SpecialWaveLocKey(8)=""
+    SpecialWaveLocKey(9)="KFPawn_ZedBloat"
+    SpecialWaveLocKey(10)="KFPawn_ZedSiren"
+    SpecialWaveLocKey(11)="KFPawn_ZedHusk"
     HUDScale=1
     ControllerStringPrefix="XboxTypeS_"
     HoldCommandDelimiter="<%HOLD%>"

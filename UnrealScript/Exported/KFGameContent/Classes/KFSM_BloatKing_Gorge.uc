@@ -65,7 +65,7 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
     super.SpecialMoveStarted(bForced, PrevMove);
 
     BloatPawn = KFPawn_ZedBloatKing(KFPOwner);
-    PulledList.Length = 0;
+	PulledList.Length = 0;
     KFPOwner.SetTimer(GorgePullDelay, false, 'StartGorgePull', self);
 }
 
@@ -86,7 +86,14 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	//Put removed pawns into a deferred list to grab on next tick
     foreach PullList(PullPawn)
     {
-        DeferredRemovalList.AddItem(PullPawn);
+		if (KFPawn_Human(PullPawn) != none)
+		{
+			RemoveVictim(PullPawn);
+		}
+		else
+		{
+			DeferredRemovalList.AddItem(PullPawn);
+		}
     }
     PullList.Length = 0;
 
@@ -220,7 +227,11 @@ function FindNewVictims()
 
 static function bool IsValidPullClass(KFPawn PullPawn)
 {
-	if (PullPawn.class == class'KFPawn_ZedBloatKingSubspawn')
+	local KFPawn_Monster MonsterPawn;
+
+	MonsterPawn = KFPawn_Monster(PullPawn);
+
+	if (PullPawn.class == class'KFPawn_ZedBloatKingSubspawn' ||  MonsterPawn != none && MonsterPawn.IsABoss())
 	{
 		return false;
 	}

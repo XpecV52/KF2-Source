@@ -14,14 +14,14 @@ class KFProj_HighExplosive_M79 extends KFProj_BallisticExplosive
 defaultproperties
 {
 	Physics=PHYS_Falling
-	Speed=5000
-	MaxSpeed=5000
-	TerminalVelocity=5000
+	Speed=4000
+	MaxSpeed=4000
+	TerminalVelocity=4000
 	TossZ=150
-	GravityScale=0.25
+	GravityScale=.5
     MomentumTransfer=50000.0
     ArmDistSquared=150000 // 4.0 meters
-    LifeSpan=+25.f
+    LifeSpan=+1000.0f
 
 	bWarnAIWhenFired=true
 

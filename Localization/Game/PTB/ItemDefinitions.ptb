@@ -15,8 +15,12 @@ HorzineMark7BundleName="Pacote Horzine v. 7"
 CommandoChickenBundleName="Pacote Galinha Comando"
 WastelandBundleName="Pacote do Deserto"
 PajamaBundleName="Pacote de Pijama"
-
-
+DARAssaultBundleName="D.A.R. Pacote de Assalto"
+DARClassicLevel5BundleName="D.A.R. Pacote Clássico Nível 5"
+DARClassicLevel10BundleName="D.A.R. Pacote Clássico Nível 10"
+DARClassicLevel15BundleName="D.A.R. Pacote Clássico Nível 15"
+DARClassicLevel20BundleName="D.A.R. Pacote Clássico Nível 20"
+DARClassicLevel25BundleName="D.A.R. Pacote Clássico Nível 25"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência)."
@@ -28,7 +32,12 @@ CommandoChickenDescription="Vem com conjunto de Galinha Comando (com 4 estilos d
 PajamaDescription="Vem com Conjunto de Pijama que contém 6 estilos temáticos de feriado e o Gorro de Pijama com 6 estilos temáticos de feriado. Compatível com a maioria dos personagens. Não negociável nem comercializável."
 HorzineMark7Description="Vem com Conjunto Horzine v. 7 (com 7 estilos de aparência) e acessório cosmético Horzine v. 7 (com 7 estilos de aparência). Compatível com a maioria dos personagens."
 WastelandBundleDescription="Vem com traje do Deserto (com 5 estilos de aparência) e capacete do Deserto (com 5 estilos de aparência). Compatível com a maioria dos personagens."
-
+DARAssaultBundleDescription="Vem com a Armadura de Assalto (com 5 estilos de aparência) e o Capacete de Assalto (com 5 estilos de aparência). Compatível com D.A.R."
+DARClassicLevel5BundleDescription="Vem com a Armadura Padrão Clássica e Aparências de Capacete. Compatível com D.A.R."
+DARClassicLevel10BundleDescription="Vem com a Armadura de Carregador Clássica e Aparências de Capacete. Compatível com D.A.R."
+DARClassicLevel15BundleDescription="Vem com a Armadura Scully Clássica e Aparências de Capacete. Compatível com D.A.R."
+DARClassicLevel20BundleDescription="Vem com a Armadura de Sangrento Clássica e Aparências de Capacete. Compatível com D.A.R."
+DARClassicLevel25BundleDescription="Vem com a Armadura de Precioso Clássica e Aparências de Capacete. Compatível com D.A.R."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Obtenha o clássico uniforme da polícia londrina para o personagem jogável PC Rob Briar. Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência)."
@@ -41,6 +50,7 @@ BundleType="Pacote"
 
 ;Uniform Type Section
 CosmeticUniformType="Variante de uniforme do jogador"
+CosmeticHeadType="Variante de cabeça do jogador"
 CosmeticAccessoryType="Acessório do jogador"
 
 ;bundle items
@@ -74,17 +84,17 @@ TanakaVaultRetroSuitName="Tanaka | Cofre | Retrô"
 DonovanVaultPreciousSuitName="Donovan | Cofre | Precioso"
 DJScullyVaultPreciousSuitName="DJ Scully | Cofre | Precioso"
 AnaVaultPreciousSuitName="Ana | Cofre | Precioso"
-FosterVaultPreciousSuitName="Foster | Cofre | Precioso"
+FosterVaultPreciousSuitName="Mr. Foster | Cofre | Precioso"
 AlanVaultPajamasVaultTileName="Masterson Cl. | Cofre | Pijamas | Est. cofre"
 AlbertsVaultPajamasVaultTileName="Alberts | Cofre | Pijamas | Est. cofre"
 AnaVaultPajamasVaultTileName="Ana | Cofre | Pijamas | Est. cofre"
 BriarVaultPajamasVaultTileName="Briar | Cofre | Pijamas | Est. cofre"
 DJScullyVaultPajamasVaultTileName="DJ Scully | Cofre | Pijamas | Est. cofre"
 DonavanVaultPajamasVaultTileName="Donovan | Cofre | Pijamas | Est. cofre"
-FosterVaultPajamasVaultTileName="Foster | Cofre | Pijamas | Est. cofre"
+FosterVaultPajamasVaultTileName="Mr. Foster | Cofre | Pijamas | Est. cofre"
 JagerhornVaultPajamasVaultTileName="Jagerhorn | Cofre | Pijamas | Est. cofre"
 MarkVaultPajamasVaultTileName="Briar clássico | Cofre | Pijamas | Est. cofre"
-MastersonVaultPajamasVaultTileName="Masterson | Cofre | Pijamas | Est. cofre"
+MastersonVaultPajamasVaultTileName="Ten. Bill Masterson | Cofre | Pijamas | Est. cofre"
 RaeVaultPajamasVaultTileName="Rae | Cofre | Pijamas | Est. cofre"
 StrasserVaultPajamasVaultTileName="Strasser | Cofre | Pijamas | Est. cofre"
 TanakaVaultPajamasVaultTileName="Tanaka | Cofre | Pijamas | Est. cofre"
@@ -93,24 +103,85 @@ StrasserVaultVaultTilePreciousName="Strasser | Cofre | Est. cofre | Precioso"
 AlanVaultVaultTilePreciousName="Masterson Clássico | Cofre | Est. cofre | Precioso"
 BriarVaultVaultTilePreciousName="Briar | Cofre | Est. cofre | Precioso"
 MarkVaultVaultTilePreciousName="Briar clássico | Cofre | Est. cofre | Precioso"
-MastersonVaultVaultTilePreciousName="Masterson | Cofre | Est. cofre | Precioso"
+MastersonVaultVaultTilePreciousName="Ten. Bill Masterson | Cofre | Est. cofre | Precioso"
 RaeVaultVaultTilePreciousName="Rae | Cofre | Est. cofre | Precioso"
 TanakaVaultVaultTilePreciousName="Tanaka | Cofre | Est. cofre | Precioso"
 DJScullyVaultVaultTilePreciousName="DJ Skully | Cofre | Est. cofre | Precioso"
-FosterVaultVaultTilePreciousName="Foster | Cofre | Est. cofre | Precioso"
+FosterVaultVaultTilePreciousName="Mr. Foster | Cofre | Est. cofre | Precioso"
 AlbertsVaultCamoBlotchesArcticName="Alberts | Cofre | Camuflado | Ártico"
 AlbertsVaultCamoBlotchesBlueName="Alberts | Cofre | Camuflado | Azul"
 AlbertsVaultCamoBlotchesDesertName="Alberts | Cofre | Camuflado | Deserto"
 AlbertsVaultCamoBlotchesPurpleName="Alberts | Cofre | Camuflado | Roxo"
 AlbertsVaultCamoBlotchesWoodlandName="Alberts | Cofre | Camuflado | Floresta"
 AlbertsVaultCamoPixelPinkName="Alberts | Cofre | Camuflado Pixel | Rosa"
-MastersonVaultCamoBlotchesArcticName="Masterson | Cofre | Camuflado | Ártico"
-MastersonVaultCamoBlotchesBlueName="Masterson | Cofre | Camuflado | Azul"
-MastersonVaultCamoBlotchesDesertName="Masterson | Cofre | Camuflado | Deserto"
-MastersonVaultCamoBlotchesPurpleName="Masterson | Cofre | Camuflado | Roxo"
-MastersonVaultCamoBlotchesWoodlandName="Masterson | Cofre | Camuflado | Floresta"
+MastersonVaultCamoBlotchesArcticName="Ten. Bill Masterson | Cofre | Camuflado | Ártico"
+MastersonVaultCamoBlotchesBlueName="Ten. Bill Masterson | Cofre | Camuflado | Azul"
+MastersonVaultCamoBlotchesDesertName="Ten. Bill Masterson | Cofre | Camuflado | Deserto"
+MastersonVaultCamoBlotchesPurpleName="Ten. Bill Masterson | Cofre | Camuflado | Roxo"
+MastersonVaultCamoBlotchesWoodlandName="Ten. Bill Masterson | Cofre | Camuflado | Floresta"
 AlanVaultCamoBlotchesArcticName="Masterson clássico | Cofre | Camuflado | Ártico"
 AlanVaultCamoBlotchesPurpleName="Masterson clássico | Cofre | Camuflado | Roxo"
+DARAssaultHelmetName="D.A.R. | Capacete de Assalto"
+DARAssaultArmorName="D.A.R. | Armadura de assalto"
+DAREndoskeletonPreciousName="D.A.R. | Endoesqueleto | Precioso"
+BriarVaultPreciousSuitName="Briar | Cofre | Precioso"
+ChivalryVaultPreciousSuitName="Cavalaria | Cofre | Precioso"
+JagerhornVaultPreciousSuitName="Jagerhorn | Cofre | Precioso"
+MastersonVaultPreciousSuitName="Ten. Bill Masterson | Cofre | Precioso"
+RaeVaultPreciousSuitName="Rae | Cofre | Precioso"
+StrasserVaultPreciousSuitName="Strasser | Cofre | Precioso"
+
+;cyberpunk paint over names
+MastersonCyberPunkGreenName="Ten. Bill Masterson | Ciberpunk | Verde"
+MastersonCyberPunkRedName="Ten. Bill Masterson | Ciberpunk | Vermelho"
+MastersonCyberPunkBlueName="Ten. Bill Masterson | Ciberpunk | Azul"
+AlbertsCyberPunkGreenName="Alberts | Ciberpunk | Verde"
+AlbertsCyberPunkRedName="Alberts | Ciberpunk | Vermelho"
+AlbertsCyberPunkBlueName="Alberts | Ciberpunk | Azul"
+AnaCyberPunkGreenName="Ana | Ciberpunk | Verde"
+AnaCyberPunkRedName="Ana | Ciberpunk | Vermelho"
+AnaCyberPunkBlueName="Ana | Ciberpunk | Azul"
+BriarCyberPunkGreenName="Briar | Ciberpunk | Verde"
+BriarCyberPunkRedName="Briar | Ciberpunk | Vermelho"
+Briar|CyberPunkBlueName="Briar | Ciberpunk | Azul"
+DonovanCyberPunkGreenName="Donovan | Ciberpunk | Verde"
+DonovanCyberPunkRedName="Donovan | Ciberpunk | Vermelho"
+DonovanCyberPunkBlueName="Donovan | Ciberpunk | Azul"
+DJScullyCyberPunkGreenName="DJ Scully | Ciberpunk | Verde"
+DJScullyCyberPunkRedName="DJ Scully | Ciberpunk | Vermelho"
+DJScullyCyberPunkBlueName="DJ Scully | Ciberpunk | Azul"
+JagerhornCyberPunkGreenName="Jagerhorn | Ciberpunk | Verde"
+JagerhornCyberPunkRedName="Jagerhorn | Ciberpunk | Vermelho"
+JagerhornCyberPunkBlueName="Jagerhorn | Ciberpunk | Azul"
+TomBannerCyberPunkGreenName="Tom Banner | Ciberpunk | Verde"
+TomBannerCyberPunkRedName="Tom Banner | Ciberpunk | Vermelho"
+TomBannerCyberPunkBlueName="Tom Banner | Ciberpunk | Azul"
+MrFosterCyberPunkGreenName="Mr. Foster | Ciberpunk | Verde"
+MrFosterCyberPunkRedName="Mr. Foster | Ciberpunk | Vermelho"
+MrFosterCyberPunkBlueName="Mr. Foster | Ciberpunk | Azul"
+RaeCyberPunkGreenName="Rae | Ciberpunk | Verde"
+RaeCyberPunkRedName="Rae | Ciberpunk | Vermelho"
+RaeCyberPunkBlueName="Rae | Ciberpunk | Azul"
+StrasserCyberPunkGreenName="Strasser | Ciberpunk | Verde"
+StrasserCyberPunkRedName="Strasser | Ciberpunk | Vermelho"
+StrasserCyberPunkBlueName="Strasser | Ciberpunk | Azul"
+TanakaCyberPunkGreenName="Tanaka | Ciberpunk | Verde"
+TanakaCyberPunkRedName="Tanaka | Ciberpunk | Vermelho"
+TanakaCyberPunkBlueName="Tanaka | Ciberpunk | Azul"
+MastersonCyberPunkPreciousName="Ten. Bill Masterson | Ciberpunk | Precioso"
+AlbertsCyberPunkPreciousName="Alberts | Ciberpunk | Precioso"
+AnaCyberPunkPreciousName="Ana | Ciberpunk | Precioso"
+BriarCyberPunkPreciousName="Briar | Ciberpunk | Precioso"
+DonovanCyberPunkPreciousName="Donovan | Ciberpunk | Precioso"
+DJScullyCyberPunkPreciousName="DJ Scully | Ciberpunk | Precioso"
+JagerhornCyberPunkPreciousName="Jagerhorn | Ciberpunk | Precioso"
+TomBannerCyberPunkPreciousName="Tom Banner | Ciberpunk | Precioso"
+MrFosterCyberPunkPreciousName="Mr. Foster | Ciberpunk | Precioso"
+RaeCyberPunkPreciousName="Rae | Ciberpunk | Precioso"
+StrasserCyberPunkPreciousName="Strasser | Ciberpunk | Precioso"
+TanakaCyberPunkPreciousName="Tanaka | Ciberpunk | Precioso"
+
+
 
 ;bundle item descriptions
 BriarsLondonUniformDescription="Fazendo a patrulha. Compatível com Briar e Briar Clássico "
@@ -126,8 +197,8 @@ CardboardKnightDescription="A armadura do cavaleiro sagaz. Compatível com Oiste
 CardboardKnightHelmetDescription="É a glória coroando o visual clássico. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser. "
 WastelandHelmetDescription="Para completar o visual de deserto da cabeça aos pés. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins. "
 WastelandSuitDescription="Um conjunto bem-apessoado para dominar os sertões devastados. Compatível com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins. "
-HazmatSuitDescription="Não saia de casa sem ele! Compatível com a maioria dos personagens. "
-HazmatHelmetDescription="Não saia de casa sem ele! Compatível com a maioria dos personagens. "
+HazmatSuitDescription="Não saia de casa sem ele! Compatível com a maioria dos personagens."
+HazmatHelmetDescription="Não saia de casa sem ele! Compatível com a maioria dos personagens."
 SideshowHazmatSuitDescription="Para trabalhar no Parque de Digressões Reino Trágico é preciso usar uma proteção a mais. Usável no menu equipamento; compatível com a maioria dos personagens. Item desbloqueável exclusivo do evento sazonal Feira de Verão."
 SideshowHazmatHelmetDescription="Para trabalhar no Parque de Digressões Reino Trágico é preciso usar uma proteção a mais. Usável no menu equipamento; compatível com a maioria dos personagens. Item desbloqueável exclusivo do evento sazonal Feira de Verão."
 CommandoChickenSuitDescription="Mate Zeds com estilo! Compatível com a maioria dos personagens."
@@ -150,31 +221,41 @@ AlbertsVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeça
 AnaVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Ana."
 BriarVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Agente Rob Briar."
 DJScullyVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com DJ Scully."
-DonavanVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Donavan."
+DonavanVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Donovan."
 FosterVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Mr. Foster."
 JagerhornVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Jagerhorn."
 MarkVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Briar Clássico."
-MastersonVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Ten. Masterson."
+MastersonVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Ten. Bill Masterson"
 RaeVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Rae."
 StrasserVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Strasser."
 TanakaVaultPajamasVaultTileDescription="Fique aquecido enquanto explode cabeças de Zed. Esses estilosos pijamas vão te manter aquecido durante as manhãs frias de inverno! Compatível com Tanaka."
 VaultTilePreciousDescription="Acabamento em ouro não é o bastante? Que tal Vs de ouro por todas as suas roupas? Vs consumíveis compatíveis com a maioria dos personagens."
 AlbertsVaultCamoBlotchesDescription="É tipo as roupas normais do Alberts, só que mais camufladas. Compatível com Reverendo Alberts."
 AlbertsVaultCamoPixelDescription="É tipo as roupas normais do Alberts, só que mais digitais e mais camufladas. Compatível com Reverendo Alberts."
-MastersonVaultCamoBlotchesDescription="É tipo as roupas normais do Masterson, só que mais camufladas. Compatível com Ten. Bill Masterson"
+MastersonVaultCamoBlotchesDescription="É tipo as roupas normais do Masterson, só que mais camufladas. Compatível com Ten. Bill Masterson e Masterson Clássico."
 AlanVaultCamoBlotchesDescription="É tipo as roupas normais do Masterson, só que mais camufladas. Compatível com Masterson clássico."
-
 AlanVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com Masterson clássico."
 BriarVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com Agente Rob Briar."
 DJScullyVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com DJ Scully."
-FosterVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com Foster."
+FosterVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com Mr. Foster."
 JagerhornVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com Jagerhorn."
 MarkVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com Briar Clássico."
 MastersonVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com Ten. Bill Masterson"
 RaeVaultTilePreciousDescription="Símbolos de vosh dourados sempre deixam tudo melhor. Compatível com Rae."
 StrasserVaultTilePreciousDescription="Símbolo de vosh dourado torna tudo melhor. Compatível com Strasser."
 TanakaVaultTilePreciousDescription="Símbolo de vosh dourado torna tudo melhor. Compatível com Tanaka."
+DARAssaultHelmetDescription="Cause o caos enquanto protege suas delicadas entranhas metálicas. Compatível com D.A.R."
+DARAssaultArmorDescription="Cause o caos enquanto protege suas delicadas entranhas metálicas. Compatível com D.A.R."
+DAREndoskeletonPreciousDescription="Você é de metal. O melhor metal é o ouro. Você é o melhor robô. Compatível com D.A.R."
+BriarVaultPreciousSuitDescription="Acabamento em ouro deixa tudo melhor. Compatível com Briar."
+ChivalryKnightVaultPreciousSuitDescription="Acabamento em ouro deixa tudo melhor. Compatível com Tom Banner."
+JagerhornVaultPreciousSuitDescription="Acabamento em ouro deixa tudo melhor. Compatível com Jagerhorn."
+MastersonVaultPreciousSuitDescription="Acabamento em ouro deixa tudo melhor. Compatível com Masterson."
+RaeVaultPreciousSuitDescription="Acabamento em ouro deixa tudo melhor. Compatível com Rae."
+StrasserVaultPreciousSuitDescription="Acabamento em ouro deixa tudo melhor. Compatível com Strasser."
 
+;cyberpunk paint over description
+CyberPunkPaintoverDescription="Quando se veste este incrível uniforme ciberpunk, seu eu no futuro nunca será tão bonito quando seu eu atual."
 
 [KeyCrates]
 ;Key and Crate Type Section
@@ -207,6 +288,7 @@ HorzineSupplyCrateSeries16Name="Caixote de suprimentos de Horzine | Série Matad
 EmoteCrateSeries1Name="Caixote de emotes | Série 1"
 EmoteCrateSeries2Name="Caixote de emotes | Série 3"
 DoshVaultUnlockedCrate1Name="Caixote #1 Cofre de Grana"
+HorzineSupplyCrateSeriesDARName="Caixote de suprimentos de Horzine | Série D.A.R."
 
 ;Crate Descriptions
 
@@ -227,8 +309,6 @@ HorzineSupplyCrateSeries8Description="É necessária uma chave de caixote de sup
 
 HorzineSupplyCrateSeries9Description="É necessária uma chave de caixote de suprimentos de Horzine Série 9 para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Óculos Psicóticos</font><br><font color="#4b69cd">Máscara Psicótica Fechada</font><br><font color="#4b69cd">Máscara Psicótica Aberta</font><br><font color="#4b69cd">Máscara Psicótica com Sorriso</font><br><font color="#6600a1">Óculos Psicóticos Ensanguentados</font><br><font color="#6600a1">Máscara Psicótica Fechada Ensanguentada</font><br><font color="#6600a1">Máscara Psicótica Aberta Ensanguentada</font><br><font color="#6600a1">Máscara Psicótica com Sorriso Ensanguentada</font><br><font color="#8847ff">Óculos da Dor Psicótica Fechados</font><br><font color="#8847ff">Óculos da Dor Psicótica Abertos</font><br><font color="#8847ff">Máscara da Dor Psicótica Fechada</font><br><font color="#8847ff">Máscara da Dor Psicótica Aberta</font><br><font color="#8847ff">Máscara da Dor Psicótica com Sorriso</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
 
-HorzineSupplyCrateSeries10Description="É necessária uma chave de caixote de suprimentos de Horzine Série 10 para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Capacete Rebelde</font><br><font color="#4b69cd">Máscara Rebelde</font><br><font color="#4b69cd">Cachecol Rebelde</font><br><font color="#6600a1">Capacete Rebelde de Óculos Abaixados</font><br><font color="#6600a1">Capacete Rebelde de Óculos Levantados</font><br><font color="#6600a1">Másc. Gás Retrô Básica</font><br><font color="#8847ff">Másc. Gás Retrô Aberta</font><br><font color="#8847ff">Másc. Gás Retrô Fechada</font><br><font color="#8847ff">Másc. Gás Retrô Filtrada</font><br><font color="#8847ff">Másc. Gás Retrô Aberta Filtrada</font><br><font color="#8847ff">Másc. Gás Retrô Fechada Filtrada</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
-
 HorzineSupplyCrateSeries11Description="É necessária uma chave de caixote de suprimentos de Horzine Série 11 para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Armadura Rosto do Ceifeiro</font><br><font color="#4b69cd">Olhos Mortos do Ceifeiro</font><br><font color="#4b69cd">Capuz Morto do Ceifeiro</font><br><font color="#4b69cd">Máscara Morta do Ceifeiro</font><br><font color="#6600a1">Mandíbula do Ceifeiro</font><br><font color="#6600a1">Olhos do Ceifeiro</font><br><font color="#6600a1">Chapéu do Ceifeiro</font><br><font color="#8847ff">Mandíb. do Corvo Ceifeiro</font><br><font color="#8847ff">Olhos do Corvo Ceifeiro</font><br><font color="#8847ff">Chapéu do Corvo Ceifeiro</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!!</font>"
 
 HorzineSupplyCrateSeries12Description="É necessária uma chave de caixote de suprimentos de Horzine Série 12 para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Capacete Deepstrike</font><br><font color="#4b69cd">Óculos Deepstrike</font><br><font color="#4b69cd">Máscara Deepstrike</font><br><font color="#6600a1">Máscara Capacete Deepstrike</font><br><font color="#8847ff">Mochila Tática Deepstrike</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
@@ -246,6 +326,8 @@ EmoteCrateSeries1Description="Chave de caixote de emotes série 1 necessária. C
 EmoteCrateSeries2Description="Chave de caixote de emotes série 2 necessária. Contém um dos seguintes:<br><font color="#4b69cd">The Cossack</font><br><font color="#4b69cd">A Onda</font><br><font color="#4b69cd">Dançando</font><br><font color="#4b69cd">Sem as Mãos</font><br><font color="#6600a1">Bater Calcanhar</font><br><font color="#6600a1">O Sprinkler</font><br><font color="#6600a1">Maníaco</font><br><font color="#8847ff">O Corredor</font><br><font color="#8847ff">O Robô</font><br><font color="#8847ff">Air Guitar</font><br><font color="#caab05">ou um emote de luxo extremamente raro!</font>"
 
 DoshVaultUnlockedCrate1Description="Contém um dos seguintes:<br>Acessório do jogador<br>Pintura facial<br>Variante de uniforme<br>Aparência de Arma<br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
+
+
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Chave de cx. de sup. Horzine | S. 1"
@@ -266,6 +348,7 @@ HorzineSupplyCrateKeySeries15Name="Chave de cx. de sup. Horzine | S. 15"
 HorzineSupplyCrateKeySeries16Name="Chave de cx. de sup. Horzine | S. 16"
 EmoteCrateKeySeries1Name="Chave de cx. de emotes | S. 1"
 EmoteCrateKeySeries2Name="Chave de cx. de emotes | S. 3"
+HorzineSupplyCrateKeySeriesDARName="Chave de cx. de sup. Horzine | Série D.A.R."
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description="Esta chave só abre Caixotes de Suprimentos de Horzine Série 1."
@@ -286,6 +369,7 @@ HorzineSupplyCrateKeySeries15Description="Esta chave só abre Caixotes de Suprim
 HorzineSupplyCrateKeySeries16Description="Esta chave só abre Caixotes de Suprimentos de Horzine Série Matadouro."
 EmoteCrateKeySeries1Description="Esta chave só abre Caixotes de Emote Série 1."
 EmoteCrateKeySeries2Description="Esta chave só abre Caixotes de Emote Série 2."
+HorzineSupplyCrateKeySeriesDARDescription="Esta chave só abre Caixotes de Suprimentos de Horzine Série D.A.R. Caixote de suprimentos."
 
 ;UsbNames
 CyberboneEncryptedUSBName="USB Criptografado Osso Cibernético"
@@ -310,6 +394,7 @@ FlarePistolEncryptedUSBName="USB criptografado Lança-chamas"
 VietnamEncryptedUSBName="USB criptografado Vietnã"
 JunkyardEncryptedUSBName="USB criptografado Ferro-Velho"
 NeonEncryptedUSBName="USB Criptografado Neon"
+WeaponCollectorPack1USBName="USB de Pacote Coletor de Armas 1"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="É necessária uma Chave de Projeto de Osso Cibernético para abrir. Contém uma aparência de arma rara ou melhor das seguintes:<br><font color="#4b69cd">AR15 | Osso cibernético</font><br><font color="#4b69cd">AK-12 | Osso cibernético</font><br><font color="#4b69cd">AA-12 | Osso cibernético</font><br><font color="#4b69cd">Katana | Osso cibernético</font><br><font color="#8847ff">M79 | Bile pútrida</font><br><font color="#8847ff">AR15 | Contenção</font><br><font color="#caab05">ou uma aparência preciosa e extremamente rara!</font>"
@@ -356,6 +441,8 @@ JunkyardEncryptedUSBDescription="Requer Chave de Projeto Ferro-Velho para abrir.
 
 NeonEncryptedUSBDescription="Requer Chave de Projeto Neon para abrir. Contém uma aparência de arma rara ou melhor das seguintes:<br><font color="#4b69cd">SG 500 | Neon</font><br><font color="#4b69cd">Canhão Eletromagnético| Neon</font><br><font color="#4b69cd">RPG-7 | Neon</font><br><font color="#4b69cd">Cicatriz | Neon</font><br><font color="#4b69cd">M1911 | Neon</font><br><font color="#4b69cd">Katana | Neon</font><br><font color="#4b69cd">Sopro de dragão | Neon</font><br><font color="#4b69cd">Submetralhadora Kriss | Neon</font><br><font color="#6600a1">MP5RAS | Horzine Elite Branco</font><br><font color="#6600a1">MP5RAS | Horzine Elite Verde</font><br><font color="#8847ff">MP5RAS | Horzine Elite Preto</font><br><font color="#8847ff">MP5RAS | Horzine Elite Azul</font><br><font color="#8847ff">MP5RAS | Horzine Elite Vermelho</font><br><font color="#caab05">ou uma aparência preciosa e extremamente rara!!</font>"
 
+
+
 ;usb key names
 CyberboneUSBKeyName="Chave USB Osso Cibernético"
 DragonfireUSBKeyName="Chave USB Fogo de Dragão"
@@ -379,6 +466,7 @@ FlarePistolUSBKeyName="Chave USB de Lança-chamas"
 VietnamUSBKeyName="Chave USB Vietnã"
 JunkyardUSBKeyName="Chave USB Ferro-Velho"
 NeonUSBKeyName="Chave USB Neon"
+WeaponCollectorPack1USBKeyName="Chave USB de Pacote Coletor de Armas 1"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Osso Cibernético"
@@ -403,17 +491,22 @@ FlarePistolUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado 
 VietnamUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Vietnã"
 JunkyardUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Ferro-Velho"
 NeonUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Neon"
+WeaponCollectorPack1USBKeyDescription="Esta chave só decodifica o Projeto Criptografado Pacote Coletor de Armas 1"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Cx. de sup. cosméticos Horzine | Série 1"
 HorzineSupplyCosmeticCrateSeries2Name="Cx. de sup. cosméticos Horzine | Série 2"
 HorzineSupplyCosmeticCrateSeries3Name="Cx. de sup. cosméticos Horzine | Série 4"
 HorzineSupplyCosmeticCrateSeries4Name="Cx. de sup. cosméticos Horzine | Série 4"
+HorzineSupplyCosmeticCrateSeries5Name="Cx. de sup. cosméticos Horzine | Série 5"
+HorzineSupplyCosmeticCrateSeries6Name="Cx. de sup. cosméticos Horzine | Série 6"
 HorzineSupplyWeaponSkinCrateSeries1Name="Cx. de sup. de apar. de arma Horzine | Série 1"
 HorzineSupplyWeaponSkinCrateSeries2Name="Cx. de sup. de apar. de arma Horzine | Série 2"
 HorzineSupplyWeaponSkinCrateSeries3Name="Cx. de sup. de apar. de arma Horzine | Série 3"
 HorzineSupplyWeaponSkinCrateSeries4Name="Cx. de sup. de apar. de arma Horzine | Série 4"
 HorzineSupplyWeaponSkinCrateSeries5Name="Cx. de sup. de apar. de arma Horzine | Série 6"
+HorzineSupplyWeaponSkinCrateSeries6Name="Cx. de sup. de apar. de arma Horzine | Série 6"
+HorzineSupplyWeaponSkinCrateSeries7Name="Cx. de sup. de apar. de arma Horzine | Série 7"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="É necessária uma chave de caixote de suprimentos de Horzine para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Máscara Balística Devtac</font><br><font color="#4b69cd">Máscara de Gás dos EUA</font><br><font color="#4b69cd">Máscara de Esqui</font><br><font color="#4b69cd">Boné de Beisebol</font><br><font color="#6600a1">Mochila Tática</font><br><font color="#6600a1">Máscara de Gás Alemã</font><br><font color="#6600a1">Máscara de Gás Químico</font><br><font color="#6600a1">Mochila RPG7</font><br><font color="#8847ff">Tanque Lança-chamas M2</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
@@ -437,6 +530,15 @@ HorzineSupplyEmoteCrateSeries1Description="Chave de cx. de supr. Horzine necess�
 HorzineSupplyEmoteCrateSeries2Description="Chave de cx. de supr. Horzine necessária. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">O Cossaco</font><br><font color="#4b69cd">A Onda</font><br><font color="#4b69cd">Dançando</font><br><font color="#4b69cd">Sem as Mãos</font><br><font color="#6600a1">Bater Calcanhar</font><br><font color="#6600a1">O Sprinkler</font><br><font color="#6600a1">Maníaco</font><br><font color="#8847ff">O Corredor</font><br><font color="#8847ff">O Robô</font><br><font color="#8847ff">Air Guitar</font><br><font color="#caab05">ou um emote de luxo extremamente raro!</font>"
 
 HorzineSupplyCosmeticCrateSeries4Description="Chave de cx. de supr. Horzine necessária. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Máscara Kobuto</font><br><font color="#4b69cd">Máscara Hannya</font><br><font color="#4b69cd">Máscara de Gás do Dragão</font><br><font color="#4b69cd">Gálea Imperial</font><br><font color="#4b69cd">Chapéu Militar</font><br><font color="#4b69cd">Hopps</font><br><font color="#4b69cd">Segredo Vitoriano</font><br><font color="#6600a1">Másc. Médico da Peste</font><br><font color="#8847ff">Bocal de Gás Samurai</font><br><font color="#8847ff">Cap. Gás Samurai</font><br><font color="#8847ff">Másc. Gás Samurai</font><br>"
+
+HorzineSupplyCosmeticCrateSeries5Description="É necessária uma chave de caixote de suprimentos de Horzine para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Capacete Deepstrike</font><br><font color="#4b69cd">Óculos Deepstrike</font><br><font color="#4b69cd">Máscara Deepstrike</font><br><font color="#6600a1">Máscara Capacete Deepstrike</font><br><font color="#8847ff">Mochila Tática Deepstrike</font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
+
+HorzineSupplyWeaponSkinCrateSeries6Description="É necessária uma chave de caixote de suprimentos de Horzine para abrir. Contém uma aparência de arma rara ou melhor das seguintes:<br><font color="#4b69cd">9MM | Deepstrike</font><br><font color="#4b69cd">Besta | Deepstrike</font><br><font color="#4b69cd">Cicatriz | Deepstrike</font><br><font color="#4b69cd">Desert Eagle | Deepstrike</font><br><font color="#6600a1">Winchester 1894 | Deepstrike</font><br><font color="#6600a1">M79 | Deepstrike</font><br><font color="#6600a1">RPG-7 | Deepstrike</font><br><font color="#6600a1">Submetr. Kriss | Elite Horzine Verde</font><br><font color="#6600a1">Submetr. Kriss | Elite Horzine Branco</font><br><font color="#8847ff">Submetr. Kriss | Elite Horzine Vermelho</font><br><font color="#8847ff">Submetr. Kriss | Elite Horzine Azul</font><br><font color="#caab05">ou uma aparência preciosa extremamente rara e preciosa!</font>"
+
+
+
+
+
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Chave cx. sup. Horzine"
@@ -512,6 +614,10 @@ VaultCraftingMaterialName="Material de produção do Cofre"
 CraftingGoldenChristmasName="Bilhete de Gostosura Dourado do Krampus"
 CraftingPremiumChristmasName="Bilhete de Gostosura Exclusivo do Krampus"
 CraftingChristmasName="Bilhete de Gostosura do Krampus"
+CraftingGoldenCyberPunkName="Bilhete Dourado Ciberpunk"
+CraftingPremiumCyberPunkName="Bilhete Exclusivo Ciberpunk"
+CraftingCyberPunkName="Bilhete Ciberpunk"
+
 
 ;materialdescriptions
 CommonCosmeticMaterialDescription="Material de produção comum que, se combinado, é útil para fazer itens cosméticos incomuns."
@@ -532,6 +638,10 @@ VaultCraftingMaterialDescription="Material de produção do Cofre de Grana que, 
 CraftingChristmasDescription="Troque os bilhetes de prêmio por um item exclusivo do Krampus! Requer <font color="#4b69cd">5 bilhetes de prêmio."
 CraftingPremiumChristmasDescription="Este bilhete exclusivo vale um item exclusivo do Krampus! <font color="#4b69cd">Só é necessário 1 bilhete!</font>"
 CraftingGoldenChristmasDescription="Você ganhou um bilhete dourado! <font color="#4b69cd">Só é necessário 1 bilhete</font> Troque este bilhete dourado por um item <font color="#caab05">PRECIOSO extremamente raro</font> do Krampus."
+CraftingCyberPunkDescription="Bilhetes de prêmio valem um item Ciberpunk exclusivo. <font color="#4b69cd">Requer 5 bilhetes de prêmio.</font>"
+CraftingPremiumCyberPunkDescription="Este bilhete exclusivo vale um item exclusivo Ciberpunk! <font color="#4b69cd">Só é necessário 1 bilhete!</font>"
+CraftingGoldenCyberPunkDescription="Você ganhou um bilhete dourado! <font color="#4b69cd">Só é necessário 1 bilhete!</font> Este bilhete dourado vale um item Ciberpunk exclusivo <font color="#caab05">PRECIOSO extremamente raro</font>."
+
 
 [WeaponSkins]
 
@@ -557,6 +667,9 @@ HMTechHealerHalloweenFieldTestedName="Médico HMTech | Halloween | Testado"
 HMTechHealerHalloweenBattleScarredName="Médico HMTech | Halloween | Usado"
 HMTechHealerPreciousName="Médico HMTech | Precioso"
 HMTechHealerVaultVoshPreciousName="Médico HMTech | Cofre | Vosh | Precioso"
+HMTechHealerBlackGoldenMintName="Médico HMTech | Preto Dourado | Novo"
+HMTechHealerBlackGoldenFieldTestedName="Médico HMTech | Preto Dourado | Testado"
+HMTechHealerBlackGoldenBattleScarredName="Médico HMTech | Preto Dourado | Usado"
 
 ;1858 Revolver Descriptions
 1858RevolverMintDescription="Exterior: Novo | Um maravilhoso exemplar do revólver do Exército Remington calibre .44 “Modelo 1858” de 6 tiros, ação única. É antigo, mas funciona."
@@ -578,6 +691,10 @@ HMTechHealerVaultVoshPreciousName="Médico HMTech | Cofre | Vosh | Precioso"
 1858RevolverVaultBlueCamoFieldTestedName="Revólver 1858 | Cofre | Cam. Azul | Testado"
 1858RevolverVaultBlueCamoBattleScarredName="Revólver 1858 | Cofre | Cam. Azul | Usado"
 1858RevolverPreciousName="Revólver 1858 | Precioso"
+1858RevolverVaultVoshPreciousName="Revólver 1858 | Cofre | Vosh | Precioso"
+1858RevolverHeirloomMintName="Revólver 1858 | Herança | Novo"
+1858RevolverHeirloomFieldTestedName="Revólver 1858 | Herança | Testado"
+1858RevolverHeirloomBattleScarredName="Revólver 1858 | Herança | Usado"
 
 ;500 Magnum Revolver Descriptions
 500MagnumRevolverMintDescription="Exterior: Novo | Verdadeira artilharia de mão na forma de um revólver ‘Bone Collector’ calibre .50 de cano longo, que atira rodadas de magnum plena carga. Para os pistoleiros de plantão."
@@ -658,6 +775,9 @@ HMTechHealerVaultVoshPreciousName="Médico HMTech | Cofre | Vosh | Precioso"
 9MMHalloweenFieldTestedName="9MM | Halloween | Testada"
 9MMHalloweenBattleScarredName="9MM | Halloween | Usada"
 9MMVaultVoshPreciousName="9MM | Cofre | Vosh | Precioso"
+9MMBlackGoldenMintName="9MM | Preto Dourado | Novo"
+9MMBlackGoldenFieldTestedName="9MM | Preto Dourado | Testado"
+9MMBlackGoldenBattleScarredName="9MM | Preto Dourado | Usado"
 
 ;AA12 Descriptions
 AA12MintDescription="Exterior: Novo | A AA-12 é uma espingarda automática. Tem poder de fogo devastador à curta e média distância, mas come munição quando está totalmente automática!"
@@ -706,6 +826,15 @@ AA12JunkyardBattleScarredName="AA12 | Ferro-velho | Usado"
 AA12VaultGGMintName="AA12 | Cofre | GG | Novo"
 AA12VaultGGFieldTestedName="AA12 | Cofre | GG | Testado"
 AA12VaultGGBattleScarredName="AA12 | Cofre | GG | Usado"
+
+;AF2011-A1 Descriptions
+AF2011A1MintDescription="Exterior: Novo | Tudo é melhor quando tem mais canos. É tipo adicionar mais bacon."
+AF2011A1FieldTestedDescription="Exterior: Testado | Tudo é melhor quando tem mais canos. É tipo adicionar mais bacon."
+AF2011A1BattleScarredDescription="Exterior: Usado | Tudo é melhor quando tem mais canos. É tipo adicionar mais bacon."
+AF2011A1PreciousDescription="Exterior: Precioso | Tudo é melhor quando tem mais canos. É tipo adicionar mais bacon."
+
+;AF2011-A1 Names
+AF2011A1PreciousName="AF2011-A1 | Precioso"
 
 ;AK12 Descriptions
 AK12MintDescription="Exterior: Novo | O modelo deste AK-12 feito de um exemplar tirado de uma unidade russa abatida."
@@ -796,6 +925,7 @@ AR15VaultBlueCamoMintName="AR15| Cofre | Cam. Azul | Novo"
 AR15VaultBlueCamoTestedName="AR15| Cofre | Cam. Azul | Testado"
 AR15VaultBlueCamoBattleScarredName="AR15| Cofre | Cam. Azul | Usado"
 AR15PreciousName="AR15 | Precioso"
+AR15VaultVoshPreciousName="AR15 | Cofre | Vosh | Precioso"
 
 ;Berserker Knife Descriptions
 BerserkerKnifeMintDescription="Exterior: Novo | Sim, também serve para cortar grama. Aproveite!"
@@ -806,6 +936,9 @@ BerserkerKnifePreciousDescription="Exterior: Precioso | Sim, também serve para 
 ;Berserker Knife Names
 BerserkerKnifePreciousName="Faca de Berserker | Precioso"
 BerserkerKnifeVaultVoshPreciousName="Faca de Berserker | Cofre | Vosh | Preciosa"
+BerserkerKnifeBlackGoldenMintName="Faca Berserker | Preto Dourado | Novo"
+BerserkerKnifeBlackGoldenFieldTestedName="Faca Berserker | Preto Dourado | Testado"
+BerserkerKnifeBlackGoldenBattleScarredName="Faca Berserker | Preto Dourado | Usado"
 
 ;Boomstick Descriptions
 BoomstickMintDescription="Exterior: Novo | Espingarda calibre 12, cano duplo em paralelo. Ideal para combates à curta distância. Até os maiores Zeds vão vacilar!"
@@ -830,6 +963,9 @@ BoomstickVictorianMintName="Espingarda | Vitoriano | Novo"
 BoomstickVictorianFieldTestedName="Espingarda | Vitoriano | Testado"
 BoomstickVictorianBattleScarredName="Espingarda | Vitoriano | Usado"
 BoomstickPreciousName="Espingarda | Precioso"
+BoomstickJunkyardMintName="Espingarda | Ferro-velho | Novo"
+BoomstickJunkyardFieldTestedName="Espingarda | Ferro-velho | Testado"
+BoomstickJunkyardBattleScarredName="Espingarda | Ferro-velho | Usado"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Exterior: Novo | Lança-chamas caseiro e portátil. NÃO tente isso em casa."
@@ -851,6 +987,7 @@ CaulknBurnVaultSciFiMintName="Pistola de Fogo | Cofre | Sci-Fi | Nova"
 CaulknBurnVaultSciFiFieldTestedName="Pistola de Fogo | Cofre | Sci Fi | Testada"
 CaulknBurnVaultSciFiBattleScarredName="Pistola de Fogo | Cofre | Sci Fi | Usada"
 CaulknBurnPreciousName="Pistola de Fogo | Precioso"
+CaulknBurnVaultVoshPreciousName="Pistola de Fogo | Cofre | Vosh | Precioso"
 
 ;Centerfire Descriptions
 CenterfireMintWeeklyDescription="Exterior: Novo | Rifle Mossberg moderno de fogo central e ação de alavanca com baixo recuo e alto poder de parada. Um clássico renovado. Este item foi desbloqueado ao concluir um surto semanal."
@@ -896,6 +1033,10 @@ CrovelVaultBlueCamoMintName="Pá-de-cabra | Cofre | Camuflagem Azul | Nova"
 CrovelVaultBlueCamoFieldTestedName="Pá-de-cabra | Cofre | Camuflagem Azul | Testada"
 CrovelVaultBlueCamoBattleScarredName="Pá-de-cabra | Cofre | Camuflagem Azul | Usada"
 CrovelPreciousName="Pá-de-cabra | Precioso"
+CrovelVaultVoshPreciousName="Pá-de-cabra | Cofre | Vosh | Precioso"
+CrovelBlackGoldenMintName="Pá-de-cabra | Preto Dourado | Novo"
+CrovelBlackGoldenFieldTestedName="Pá-de-cabra | Preto Dourado | Testado"
+CrovelBlackGoldenBattleScarredName="Pá-de-cabra | Preto Dourado | Usado"
 
 ;Desert Eagle Descriptions
 DesertEagleMintDescription="Exterior: Novo | A Desert Eagle é a fera das armas de mão, por isso a chamamos de ‘Canhão de mão’."
@@ -953,6 +1094,9 @@ DragonsbreathNeonMintName="Sopro de dragão | Neon | Novo"
 DragonsbreathNeonFieldTestedName="Sopro de dragão | Neon | Testado"
 DragonsbreathNeonBattleScarredName="Sopro de dragão | Neon | Usado"
 DragonsbreathPreciousName="Sopro de dragão | Precioso"
+DragonsbreathHeirloomMintName="Sopro de dragão | Herança | Novo"
+DragonsbreathHeirloomFieldTestedName="Sopro de dragão | Herança | Testado"
+DragonsbreathHeirloomBattleScarredName="Sopro de dragão | Herança | Usado"
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="Exterior: Novo | Originalmente projetado pelo grupo SDS de Horzine num átimo de selvageria. Não é nada sutil."
@@ -965,6 +1109,9 @@ EvisceratorEmergencyIssueMintName="Eviscerador | Assunto de Emergência | Novo"
 EvisceratorEmergencyIssueFieldTestedName="Eviscerador | Assunto de Emergência | Testado"
 EvisceratorEmergencyIssueBattleScarredName="Eviscerador | Assunto de Emergência | Usado"
 EvisceratorPreciousName="Eviscerador | Precioso"
+EvisceratorBlackGoldenMintName="Eviscerador | Preto Dourado | Novo"
+EvisceratorBlackGoldenFieldTestedName="Eviscerador | Preto Dourado | Testado"
+EvisceratorBlackGoldenBattleScarredName="Eviscerador | Preto Dourado | Usado"
 
 ;Firemans Knife Descriptions
 FiremansKnifeMintDescription="Exterior: Novo | Faca dos bombeiros. Como você é bombeiro, presumimos que qualquer explicação seria desnecessária."
@@ -1026,6 +1173,9 @@ FlarePistolFlameOrangeBattleScarredName="Lança-chamas | Chama Laranja | Usado"
 FlarePistolFlameRedMintName="Lança-chamas | Chama Vermelha | Novo"
 FlarePistolFlameRedFieldTestedName="Lança-chamas | Chama Vermelha | Testado"
 FlarePistolFlameRedBattleScarredName="Lança-chamas | Chama Vermelha | Usado"
+FlarePistolHeirloomMintName="Lança-chamas | Herança | Novo"
+FlarePistolHeirloomFieldTestedName="Lança-chamas | Herança | Testado"
+FlarePistolHeirloomBattleScarredName="Lança-chamas | Herança | Usado"
 
 ;Freeze Thrower Names
 FreezeThrowerPreciousName="Jato Frio | Precioso"
@@ -1059,6 +1209,24 @@ FreezeThrowerMintDescription="Exterior: Novo | A matéria viva quase não suport
 FreezeThrowerFieldTestedDescription="Exterior: Testado | A matéria viva quase não suporta tanto frio."
 FreezeThrowerBattleScarredDescription="Exterior: Usado | A matéria viva quase não suporta tanto frio."
 FreezeThrowerPreciousDescription="Exterior: Precioso | A matéria viva quase não suporta tanto frio."
+
+;Hemogoblin Descriptions
+HemogoblinMintDescription="Exterior: Novo | Inviável como dieta de emagrecimento."
+HemogoblinFieldTestedDescription="Exterior: Testado | Inviável como dieta de emagrecimento."
+HemogoblinBattleScarredDescription="Exterior: Usado | Inviável como dieta de emagrecimento."
+HemogoblinPreciousDescription="Exterior: Precioso | Inviável como dieta de emagrecimento."
+
+;Hemogoblin Names
+HemogoblinPreciousName="Hemogoblin | Precioso"
+
+;HK UMP Descriptions
+HKUMPMintDescription="Exterior: Novo | Uma das mais recentes adições à família MP. Talvez um tio? As submetralhadoras têm famílias?"
+HKUMPFieldTestedDescription="Exterior: Testado | Uma das mais recentes adições à família MP. Talvez um tio? As submetralhadoras têm famílias?"
+HKUMPBattleScarredDescription="Exterior: Usado | Uma das mais recentes adições à família MP. Talvez um tio? As submetralhadoras têm famílias?"
+HKUMPPreciousDescription="Exterior: Precioso | Uma das mais recentes adições à família MP. Talvez um tio? As submetralhadoras têm famílias?"
+
+;HK UMP Names
+HKUMPPreciousName="Heckler & Koch UMP | Precioso"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Exterior: Novo | Um bisturi. Como você entende de medicina, presumimos que qualquer explicação seria desnecessária."
@@ -1099,6 +1267,7 @@ HMTech101PistolVaultOrangeCamoMintName="Pistola HMTech-101 | Cofre | Cf. Laranja
 HMTech101PistolVaultOrangeCamoFieldTestedName="Pistola HMTech-101 | Cofre | Cf. Lja. | Testada"
 HMTech101PistolVaultOrangeCamoBattleScarredName="Pistola HMTech-101 | Cofre | Cf. Laranja | Usada"
 HMTech101PistolPreciousName="Pistola HMTech-101 | Precioso"
+HMTech101PistolVaultVoshPreciousName="Pistola HMTech-101 | Cofre | Vosh | Precioso"
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="Exterior: Novo | Atira dardos curativos que curam os companheiros de equipe. É a sua pistola, só que tomou vitaminas!"
@@ -1150,6 +1319,30 @@ HMTech401AssaultRiflePreciousName="Fuzil HMTech-401 | Precioso"
 HMTech401AssaultRifleTacticalMintName="Fuz. ass. HMTech-401 | Unidade Elite | Novo"
 HMTech401AssaultRifleTacticalFieldTestedName="Fuz. ass. HMTech-401 | Unidade Elite | Testado"
 HMTech401AssaultRifleTacticalBattleScarredName="Fuz. ass. HMTech-401 | Unidade Elite | Usado"
+HMTech401AssaultRifleHorzineEliteWhiteMintName="Fuzil de assalto HMTech-401 | Horzine Elite Branco | Novo"
+HMTech401AssaultRifleHorzineEliteWhiteFieldTestedName="Fuzil de assalto HMTech-401 | Horzine Elite Branco | Testado"
+HMTech401AssaultRifleHorzineEliteWhiteBattleScarredName="Fuzil de assalto HMTech-401 | Horzine Elite Branco | Usado"
+HMTech401AssaultRifleHorzineEliteBlackMintName="Fuzil de assalto HMTech-401 | Horzine Elite Preto | Novo"
+HMTech401AssaultRifleHorzineEliteBlackFieldTestedName="Fuzil de assalto HMTech-401 | Horzine Elite Preto | Testado"
+HMTech401AssaultRifleHorzineEliteBlackBattleScarredName="Fuzil de assalto HMTech-401 | Horzine Elite Preto | Usado"
+HMTech401AssaultRifleHorzineEliteBlueMintName="Fuzil de assalto HMTech-401 | Horzine Elite Azul | Novo"
+HMTech401AssaultRifleHorzineEliteBlueFieldTestedName="Fuzil de assalto HMTech-401 | Horzine Elite Azul | Testado"
+HMTech401AssaultRifleHorzineEliteBlueBattleScarredName="Fuzil de assalto HMTech-401 | Horzine Elite Azul | Usado"
+HMTech401AssaultRifleHorzineEliteGreenMintName="Fuzil de assalto HMTech-401 | Horzine Elite Verde | Novo"
+HMTech401AssaultRifleHorzineEliteGreenFieldTestedName="Fuzil de assalto HMTech-401 | Horzine Elite Verde | Testado"
+HMTech401AssaultRifleHorzineEliteGreenBattleScarredName="Fuzil de assalto HMTech-401 | Horzine Elite Verde | Usado"
+HMTech401AssaultRifleHorzineEliteRedMintName="Fuzil de assalto HMTech-401 | Horzine Elite Vermelho | Novo"
+HMTech401AssaultRifleHorzineEliteRedFieldTestedName="Fuzil de assalto HMTech-401 | Horzine Elite Vermelho | Testado"
+HMTech401AssaultRifleHorzineEliteRedBattleScarredName="Fuzil de assalto HMTech-401 | Horzine Elite Vermelho | Usado"
+
+;Husk Cannon Descriptions
+HuskCannonMintDescription="Exterior: Novo | Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
+HuskCannonFieldTestedDescription="Exterior: Testado | Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
+HuskCannonBattleScarredDescription="Exterior: Usado | Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
+HuskCannonPreciousDescription="Exterior: Precioso | Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
+
+;Husk Cannon Names
+HuskCannonPreciousName="Canhão Esfolador | Precioso"
 
 ;HX25 Descriptions
 HX25MintDescription="Exterior: Novo | O modo de tiro dispara várias submunições que explodem ao contato."
@@ -1177,6 +1370,7 @@ HX25VaultBlueCamoMintName="HX25 | Cofre | Cam. Azul | Novo"
 HX25VaultBlueCamoFieldTestedName="HX25 | Cofre | Cam. Azul | Testado"
 HX25VaultBlueCamoBattleScarredName="HX25 | Cofre | Cam. Azul | Usado"
 HX25PreciousName="HX25 | Precioso"
+HX25VaultVoshPreciousName="HX25 | Cofre | Vosh | Precioso"
 
 ;HZ12 Descriptions
 HZ12MintDescription="Exterior: Nova | A espingarda HZ12 é um protótipo experimental em teste pelas forças de segurança da Horzine."
@@ -1216,6 +1410,9 @@ KatanaNeonMintName="Katana | Neon | Nova"
 KatanaNeonFieldTestedName="Katana | Neon | Testada"
 KatanaNeonBattleScarredName="Katana | Neon | Usada"
 KatanaPreciousName="Katana | Precioso"
+KatanaBlackGoldenMintName="Katana | Preto Dourado | Novo"
+KatanaBlackGoldenFieldTestedName="Katana | Preto Dourado | Testado"
+KatanaBlackGoldenBattleScarredName="Katana | Preto Dourado | Usado"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="Exterior: Novo | Versão de Horzine da faca de exército clássica."
@@ -1358,6 +1555,9 @@ M1911NeonMintName="M1911 | Neon | Nova"
 M1911NeonFieldTestedName="M1911 | Neon | Testada"
 M1911NeonBattleScarredName="M1911 | Neon | Usada"
 M1911PreciousName="M1911 | Precioso"
+M1911HeirloomMintName="M1911 | Herança | Novo"
+M1911HeirloomFieldTestedName="M1911 | Herança | Testado"
+M1911HeirloomBattleScarredName="M1911 | Herança | Usado"
 
 ;M4 Descriptions
 M4MintDescription="Exterior: Novo | Benelli projetou a Espingarda de Combate M4 para o exército norte-americano. Como é semiautomática, tem uma cadência de tiro boa e estável."
@@ -1440,6 +1640,15 @@ MaceAndShieldGuillotineFieldTestedName="Esmaga-Osso | Guilhotina | Testado"
 MaceAndShieldGuillotineBattleScarredName="Esmaga-Osso | Guilhotina | Usado"
 MaceAndShieldPreciousName="Esmaga-Osso | Precioso"
 
+;Mac 10 Descriptions
+Mac10MintDescription="Exterior: Novo | Vem com munição incendiária de rápido disparo. Entendeu? Rápido disparo? Porque é uma submetralhadora incendiária? Ah, esquece."
+Mac10FieldTestedDescription="Exterior: Testado | Vem com munição incendiária de rápido disparo. Entendeu? Rápido disparo? Porque é uma submetralhadora incendiária? Ah, esquece."
+Mac10BattleScarredDescription="Exterior: Usado | Vem com munição incendiária de rápido disparo. Entendeu? Rápido disparo? Porque é uma submetralhadora incendiária? Ah, esquece."
+Mac10PreciousDescription="Exterior: Precioso | Vem com munição incendiária de rápido disparo. Entendeu? Rápido disparo? Porque é uma submetralhadora incendiária? Ah, esquece."
+
+;Mac 10 Names
+Mac10PreciousName="Mac 10 | Precioso"
+
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Exterior: Novo | Maravilhas modernas: um tostador de Zeds."
 MicrowaveGunFieldTestedDescription="Exterior: Testado | Maravilhas modernas: um tostador de Zeds."
@@ -1502,6 +1711,7 @@ MP7VaultBlueCamoMintName="MP7 | Cofre | Cam. Azul | Novo"
 MP7VaultBlueCamoFieldTestedName="MP7 | Cofre | Cam. Azul | Testado"
 MP7VaultBlueCamoBattleScarredName="MP7 | Cofre | Cam. Azul | Usado"
 MP7PreciousName="MP7 | Precioso"
+MP7VaultVoshPreciousName="MP7 | Cofre | Vosh | Precioso"
 
 ;P90 Descriptions
 P90MintDescription="Exterior: Novo | A aparência é estranha, mas retalha os Zeds. Você pode fazer barulho de raio laser se quiser."
@@ -1535,6 +1745,9 @@ PulverizerEmergencyIssueMintName="Pulverizador | Assunto de Emerg. | Novo"
 PulverizerEmergencyIssueFieldTestedName="Pulverizador | Assunto de Emerg. | Testado"
 PulverizerEmergencyIssueBattleScarredName="Pulverizador | Assunto de Emerg. | Usado"
 PulverizerPreciousName="Pulverizador | Precioso"
+PulverizerBlackGoldenMintName="Pulverizador | Preto Dourado | Novo"
+PulverizerBlackGoldenFieldTestedName="Pulverizador | Preto Dourado | Testado"
+PulverizerBlackGoldenBattleScarredName="Pulverizador | Preto Dourado | Usado"
 
 ;Railgun Descriptions
 RailgunMintDescription="Exterior: Novo | Esta arma usa a força magnética para atirar balas irregulares de metal e penetrar os Zeds como se fossem papel."
@@ -1577,6 +1790,9 @@ RPG7VietnamBattleScarredName="RPG-7 | Vietnã | Usado"
 RPG7NeonMintName="RPG-7 | Neon | Novo"
 RPG7NeonFieldTestedName="RPG-7 | Neon | Testado"
 RPG7NeonBattleScarredName="RPG-7 | Neon | Usado"
+RPG7HeirloomMintName="RPG-7 | Herança | Novo"
+RPG7HeirloomFieldTestedName="RPG-7 | Herança | Testado"
+RPG7HeirloomBattleScarredName="RPG-7 | Herança | Usado"
 
 ;Scar Descriptions
 ScarMintDescription="Exterior: Novo | Projetado originalmente para o Comando de Operações Especiais dos EUA, o que é, na verdade, bem legal!"
@@ -1632,6 +1848,15 @@ ScarNeonMintName="Cicatriz | Neon | Novo"
 ScarNeonFieldTestedName="Cicatriz | Neon | Testado"
 ScarNeonBattleScarredName="Cicatriz | Neon | Usado"
 
+;Seeker Six Descriptions
+SeekerSixMintDescription="Exterior: Novo | Arma altamente explosiva e versátil que segue e concentra seus disparos a vários alvos de uma vez."
+SeekerSixFieldTestedDescription="Exterior: Testado | Arma altamente explosiva e versátil que segue e concentra seus disparos a vários alvos de uma vez."
+SeekerSixBattleScarredDescription="Exterior: Usado | Arma altamente explosiva e versátil que segue e concentra seus disparos a vários alvos de uma vez."
+SeekerSixPreciousDescription="Exterior: Precioso | Arma altamente explosiva e versátil que segue e concentra seus disparos a vários alvos de uma vez."
+
+;Seeker Six Names
+SeekerSixPreciousName="Procurador Seis | Precioso"
+
 ;SG500 Descriptions
 SG500MintDescription="Exterior: Novo | A ação de bomba Mossberg SG 500 com a pegada da pistola é uma matadora de Zeds excelente à curta distância. Simples e eficaz."
 SG500FieldTestedDescription="Exterior: Testado | A ação de bomba Mossberg SG 500 com a pegada da pistola é uma matadora de Zeds excelente à curta distância. Simples e eficaz."
@@ -1676,6 +1901,7 @@ SG500NeonBattleScarredName="SG 500 | Neon | Usada"
 SG500VaultBlueCamoMintName="SG 500 | Cofre | Cam. Azul | Novo"
 SG500VaultBlueCamoFieldTestedName="SG 500 | Cofre | Cam. Azul | Testado"
 SG500VaultBlueCamoBattleScarredName="SG 500 | Cofre | Cam. Azul | Usado"
+SG500VaultVoshPreciousName="SG 500 | Cofre | Vosh | Precioso"
 
 ;Stoner 63A Descriptions
 Stoner63AMintDescription="Exterior: Nova | Uma submetralhadora dos SEALs da Marinha norte-americana usada na Guerra do Vietnã, a Stoner 63A tem alta capacidade de munição e um grande poder de contenção."
@@ -1688,6 +1914,9 @@ Stoner63AHalloweenMintName="Stoner 63A | Halloween | Nova"
 Stoner63AHalloweenFieldTestedName="Stoner 63A | Halloween | Testada"
 Stoner63AHalloweenBattleScarredName="Stoner 63A | Halloween | Usada"
 Stoner63APreciousName="Stoner 63A | Preciosa"
+Stoner63AVietnamMintName="Stoner 63A | Vietnã | Novo"
+Stoner63AVietnamFieldTestedName="Stoner 63A | Vietnã | Testado"
+Stoner63AVietnamBattleScarredName="Stoner 63A | Vietnã | Usado"
 
 ;Support Knife Descriptions
 SupportKnifeMintDescription="Exterior: Novo | Não vá pensar que é especial só porque lhe demos a faca maior."
@@ -1719,6 +1948,9 @@ VLAD1000NailgunEmergencyIssueMintName="Pist. VLAD-1000 | Assunto de Emerg. | Nov
 VLAD1000NailgunEmergencyIssueFieldTestedName="Pist. VLAD-1000 | Assunto de Emerg. | Testado"
 VLAD1000NailgunEmergencyIssueBattleScarredName="Pist. VLAD-1000 | Assunto de Emerg. | Usado"
 VLAD1000NailgunPreciousName="Pist. VLAD-1000 | Precioso"
+VLAD1000NailgunBlackGoldenMintName="Pregadeira VLAD-1000 | Preto Dourado | Novo"
+VLAD1000NailgunBlackGoldenFieldTestedName="Pregadeira VLAD-1000 | Preto Dourado | Testado"
+VLAD1000NailgunBlackGoldenBattleScarredName="Pregadeira VLAD-1000 | Preto Dourado | Usado"
 
 ;Welder Descriptions
 WelderMintDescription="Exterior: Novo | Soldador, vamos soldar esta porta!"
@@ -1732,6 +1964,9 @@ WelderHorzineFirstEncounterFieldTestedName="Soldador | Prim. Cont. Horz. | Testa
 WelderHorzineFirstEncounterBattleScarredName="Soldador | Prim. Cont. Horz. | Usado"
 WelderPreciousName="Soldador | Precioso"
 WelderVaultVoshPreciousName="Soldador | Cofre | Vosh | Precioso"
+WelderBlackGoldenMintName="Soldador | Preto Dourado | Novo"
+WelderBlackGoldenFieldTestedName="Soldador | Preto Dourado | Testado"
+WelderBlackGoldenBattleScarredName="Soldador | Preto Dourado | Usado"
 
 ;Winchester 1894 Descriptions
 Winchester1894MintDescription="Exterior: Novo | O modelo clássico do rifle Winchester modelo 1894 com alavanca."
@@ -1762,6 +1997,22 @@ Winchester1894JunkyardBattleScarredName="Winchester 1894 | Ferro-velho | Usado"
 Winchester1894VaultBlueCamoMintName="Winchester 1894 | Cofre | Cam. Azul | Novo"
 Winchester1894VaultBlueCamoFieldTestedName="Winchester 1894 | Cofre | Cf. Azul | Testado"
 Winchester1894VaultBlueCamoBattleScarredName="Winchester 1894 | Cofre | Cf. Azul | Usado"
+Winchester1894VaultVoshPreciousName="Winchester 1894 | Cofre | Vosh | Precioso"
+Winchester1894HeirloomMintName="Winchester 1894 | Herança | Novo"
+Winchester1894HeirloomFieldTestedName="Winchester 1894 | Herança | Testado"
+Winchester1894HeirloomBattleScarredName="Winchester 1894 | Herança | Usado"
+
+;Zweihander Descriptions
+ZweihanderMintDescription="Exterior: Novo | Espada. Uma enorme espada medieval."
+ZweihanderFieldTestedDescription="Exterior: Testado | Espada. Uma enorme espada medieval."
+ZweihanderBattleScarredDescription="Exterior: Usado | Espada. Uma enorme espada medieval."
+ZweihanderPreciousDescription="Exterior: Precioso | Espada. Uma enorme espada medieval."
+
+;Zweihander Names
+ZweihanderBlackGoldenMintName="Espadão | Preto Dourado | Novo"
+ZweihanderBlackGoldenFieldTestedName="Espadão | Preto Dourado | Testado"
+ZweihanderBlackGoldenBattleScarredName="Espadão | Preto Dourado | Usado"
+ZweihanderPreciousName="Espadão | Precioso"
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Exterior: Novo | Uma faca do Velho Oeste, só que crescida. Perfeita para fatiar uns Zeds."
@@ -2341,19 +2592,6 @@ ReaperDeadEyesRedName="Olhos Mortos de Ceif. | Vermelho"
 ReaperDeadHoodBloodyName="Capuz Morto de Ceif. | Sangue"
 ReaperDeadMaskBloodyName="Másc. Morto de Ceif. | Sangue"
 ReaperFaceArmorSkullName="Armadura Cara de Ceif. | Crânio"
-SteampunkGasMaskBasicBrownName="Másc. Gás Retrô Básica | Marrom"
-SteampunkGasMaskBasicBlackName="Másc. Gás Retrô Básica | Preto"
-SteampunkGasMaskOpenBrownName="Másc. Gás Retrô Aberta | Marrom"
-SteampunkGasMaskOpenBlackName="Másc. Gás Retrô Aberta | Preto"
-SteampunkGasMaskClosedBrownName="Másc. Gás Retrô Fechada | Marrom"
-SteampunkGasMaskClosedBlackName="Másc. Gás Retrô Fechada | Preto"
-SteampunkGasMaskClosedPreciousName="Másc. Gás Retrô Fechada | Precioso"
-SteampunkGasMaskFilteredBrownName="Másc. Gás Retrô Filtrada | Marrom"
-SteampunkGasMaskFilteredBlackName="Másc. Gás Retrô Filtrada | Preto"
-SteampunkGasMaskOpenFilteredBrownName="Másc. Gás Retrô Aberta Filtrada | Marrom"
-SteampunkGasMaskOpenFilteredBlackName="Másc. Gás Retrô Aberta Filtrada | Preto"
-SteampunkGasMaskClosedFilteredBrownName="Másc. Gás Retrô Fech. Filtrada | Marrom"
-SteampunkGasMaskClosedFilteredBlackName="Másc. Gás Retrô Fechada Filtrada | Preto"
 MinotaurHelmetAgathaName="Elmo do Minotauro | Agatha"
 MinotaurHelmetCleeseName="Elmo do Minotauro | Cleese"
 MinotaurHelmetJaimeName="Elmo do Minotauro | Jaime"
@@ -2574,6 +2812,17 @@ SideshowHumanCanonHarukoName="Canhão Humano de Feira | Haruko"
 SideshowHumanCanonCrispsName="Canhão Humano de Feira | Batatinha"
 SideshowHumanCanonCanonBallName="Canhão Humano de Feira | Bala de canhão"
 SideshowHumanCanonStarsandStripesName="Canhão Humano de Feira | Listras e Estrelas"
+
+;Weekly Cosmetic Names
+WeeklyTinyTerrorHatName="Semanal | Chapéu Terror Tímido"
+WeeklyFleshpoundVisorName="Semanal | Visor de Carniceiro"
+WeeklyHansPlushyBackpackName="Semanal | Mochila de Pelúcia Hans"
+WeeklyHorzineArmorPreciousName="Semanal | Armadura Horzine | Precioso"
+WeeklyHorzineHelmetPreciousName="Semanal | Capacete Horzine | Precioso"
+WeeklyKingPoundVisorPreciousName="Semanal | Visor Carniceiro Rei | Precioso"
+WeeklyMindBlownName="Semanal | Explosão Mental"
+
+;Unreleased Cosmetic Names
 BooniHatBlueName="Booni Hat | Blue"
 BooniHatGreenName="Booni Hat | Green"
 BooniHatPurpleName="Booni Hat | Purple"
@@ -2638,18 +2887,6 @@ SamuraiGasMouthpieceGoldName="Samurai Gas Mouthpiece | Gold"
 SamuraiGasMouthpieceLeatherName="Samurai Gas Mouthpiece | Leather"
 SamuraiGasMouthpieceRedName="Samurai Gas Mouthpiece | Red"
 SamuraiGasMouthpiecePreciousName="Samurai Gas Mouthpiece | Precious"
-
-;Weekly Cosmetic Names
-WeeklyTinyTerrorHatName="Semanal | Chapéu Terror Tímido"
-WeeklyFleshpoundVisorName="Semanal | Visor de Carniceiro"
-WeeklyHansPlushyBackpackName="Semanal | Mochila de Pelúcia Hans"
-WeeklyHorzineArmorPreciousName="Semanal | Armadura Horzine | Precioso"
-WeeklyHorzineHelmetPreciousName="Semanal | Capacete Horzine | Precioso"
-WeeklyKingPoundVisorPreciousName="Semanal | Visor Carniceiro Rei | Precioso"
-WeeklyMindBlownName="Semanal | Explosão Mental"
-
-
-
 
 ;Halloween Cosmetic Names
 BearBrownName="Urso | Matadouro | Marrom"
@@ -2797,11 +3034,12 @@ AlbertsVaultCamoBlotchesBlueName="Alberts | Cofre | Camuflado | Azul"
 AlbertsVaultCamoBlotchesDessertName="Alberts | Cofre | Camuflado | Deserto"
 AlbertsVaultCamoBlotchesPurpleName="Alberts | Cofre | Camuflado | Roxo"
 AlbertsVaultCamoBlotchesWoodlandName="Alberts | Cofre | Camuflado | Floresta"
-MastersonVaultCamoBlotchesArcticName="Masterson | Cofre | Camuflado | Ártico"
-MastersonVaultCamoBlotchesBlueName="Masterson | Cofre | Camuflado | Azul"
-MastersonVaultCamoBlotchesDessertName="Masterson | Cofre | Camuflado | Deserto"
-MastersonVaultCamoBlotchesPurpleName="Masterson | Cofre | Camuflado | Roxo"
-MastersonVaultCamoBlotchesWoodlandName="Masterson | Cofre | Camuflado | Floresta"
+MastersonVaultCamoBlotchesArcticName="Ten. Bill Masterson | Cofre | Camuflado | Ártico"
+MastersonVaultCamoBlotchesBlueName="Ten. Bill Masterson | Cofre | Camuflado | Azul"
+MastersonVaultCamoBlotchesDessertName="Ten. Bill Masterson | Cofre | Camuflado | Deserto"
+MastersonVaultCamoBlotchesPurpleName="Ten. Bill Masterson | Cofre | Camuflado | Roxo"
+MastersonVaultCamoBlotchesWoodlandName="Ten. Bill Masterson | Cofre | Camuflado | Floresta"
+
 
 ;Christmas Cosmetic Names
 ChristmasAlphaHatGreenName="Natal | Chapéu do Alfa | Verde"
@@ -2865,9 +3103,122 @@ ChristmasUshankaGreenName="Natal | Ushanka | Verde"
 ChristmasUshankaPreciousName="Natal | Ushanka | Precioso"
 ChristmasUshankaTanName="Natal | Ushanka | Bronze"
 
+;Cyberpunk Cosmetic Names
+CyberPunkArmScreenBlueName="Ciberpunk | Tela de Braço | Azul"
+CyberPunkArmScreenGreenName="Ciberpunk | Tela de Braço | Verde"
+CyberPunkArmScreenOrangeName="Ciberpunk | Tela de Braço | Laranja"
+CyberPunkArmScreenPreciousName="Ciberpunk | Tela de Braço | Precioso"
+CyberPunkArmScreenPurpleName="Ciberpunk | Tela de Braço | Roxo"
+CyberPunkArmScreenRedName="Ciberpunk | Tela de Braço | Vermelho"
+CyberPunkShadesBlueName="Ciberpunk | Sombras | Azul"
+CyberPunkShadesGreenName="Ciberpunk | Sombras | Verde"
+CyberPunkShadesOrangeName="Ciberpunk | Sombras | Laranja"
+CyberPunkShadesPreciousName="Ciberpunk | Sombras | Precioso"
+CyberPunkShadesPurpleName="Ciberpunk | Sombras | Roxo"
+CyberPunkShadesRedName="Ciberpunk | Sombras | Vermelho"
+CyberPunkVisorClosedBlueName="Ciberpunk | Visor Fechado | Azul"
+CyberPunkVisorClosedGreenName="Ciberpunk | Visor Fechado | Verde"
+CyberPunkVisorClosedOrangeName="Ciberpunk | Visor Fechado | Laranja"
+CyberPunkVisorClosedPreciousName="Ciberpunk | Visor Fechado | Precioso"
+CyberPunkVisorClosedPurpleName="Ciberpunk | Visor Fechado | Roxo"
+CyberPunkVisorClosedRedName="Ciberpunk | Visor Fechado | Vermelho"
+CyberPunkVisorOpenBlueName="Ciberpunk | Visor Aberto | Azul"
+CyberPunkVisorOpenGreenName="Ciberpunk | Visor Aberto | Verde"
+CyberPunkVisorOpenOrangeName="Ciberpunk | Visor Aberto | Laranja"
+CyberPunkVisorOpenPreciousName="Ciberpunk | Visor Aberto | Precioso"
+CyberPunkVisorOpenPurpleName="Ciberpunk | Visor Aberto | Roxo"
+CyberPunkVisorOpenRedName="Ciberpunk | Visor Aberto | Vermelho"
+CyberPunkDiagonalBackpackGrayName="Ciberpunk | Mochila Diagonal | Cinza"
+CyberPunkDiagonalBackpackGreenName="Ciberpunk | Mochila Diagonal | Verde"
+CyberPunkDiagonalBackpackPreciousName="Ciberpunk | Mochila Diagonal | Precioso"
+CyberPunkDiagonalBackpackTanName="Ciberpunk | Mochila Diagonal | Cobre"
+CyberPunkLargeEarpieceBlueName="Ciberpunk | Auricular Grande | Azul"
+CyberPunkLargeEarpieceGreenName="Ciberpunk | Auricular Grande | Verde"
+CyberPunkLargeEarpieceOrangeName="Ciberpunk | Auricular Grande | Laranja"
+CyberPunkLargeEarpiecePreciousName="Ciberpunk | Auricular Grande | Precioso"
+CyberPunkLargeEarpiecePurpleName="Ciberpunk | Auricular Grande | Roxo"
+CyberPunkLargeEarpieceRedName="Ciberpunk | Auricular Grande | Vermelho"
+CyberPunkMessengerBackpackBlueName="Ciberpunk | Mochila Mensageiro | Azul"
+CyberPunkMessengerBackpackGreenName="Ciberpunk | Mochila Mensageiro | Verde"
+CyberPunkMessengerBackpackPreciousName="Ciberpunk | Mochila Mensageiro | Precioso"
+CyberPunkMessengerBackpackRedName="Ciberpunk | Mochila Mensageiro | Vermelho"
+CyberPunkMessengerBackpackYellowName="Ciberpunk | Mochila Mensageiro | Amarelo"
+CyberPunkMouthpieceBlueName="Ciberpunk | Bocal | Azul"
+CyberPunkMouthpieceGreenName="Ciberpunk | Bocal | Verde"
+CyberPunkMouthpieceOrangeName="Ciberpunk | Bocal | Laranja"
+CyberPunkMouthpiecePreciousName="Ciberpunk | Bocal | Precioso"
+CyberPunkMouthpiecePurpleName="Ciberpunk | Bocal | Roxo"
+CyberPunkMouthpieceRedName="Ciberpunk | Bocal | Vermelho"
+CyberPunkPadBackpackBlueName="Ciberpunk | Mochila Blindada | Azul"
+CyberPunkPadBackpackGreenName="Ciberpunk | Mochila Blindada | Verde"
+CyberPunkPadBackpackOrangeName="Ciberpunk | Mochila Blindada | Laranja"
+CyberPunkPadBackpackPreciousName="Ciberpunk | Mochila Blindada | Precioso"
+CyberPunkPadBackpackPurpleName="Ciberpunk | Mochila Blindada | Roxo"
+CyberPunkPadBackpackRedName="Ciberpunk | Mochila Blindada | Vermelho"
+CyberPunkSlimVisorBlueName="Ciberpunk | Visor Fino | Azul"
+CyberPunkSlimVisorGreenName="Ciberpunk | Visor Fino | Verde"
+CyberPunkSlimVisorOrangeName="Ciberpunk | Visor Fino | Laranja"
+CyberPunkSlimVisorPreciousName="Ciberpunk | Visor Fino | Precioso"
+CyberPunkSlimVisorPurpleName="Ciberpunk | Visor Fino | Roxo"
+CyberPunkSlimVisorRedName="Ciberpunk | Visor Fino | Vermelho"
+CyberPunkSmallEarpieceBlueName="Ciberpunk | Auricular Pequeno | Azul"
+CyberPunkSmallEarpieceGreenName="Ciberpunk | Auricular Pequeno | Verde"
+CyberPunkSmallEarpieceOrangeName="Ciberpunk | Auricular Pequeno | Laranja"
+CyberPunkSmallEarpiecePreciousName="Ciberpunk | Auricular Pequeno | Precioso"
+CyberPunkSmallEarpiecePurpleName="Ciberpunk | Auricular Pequeno | Roxo"
+CyberPunkSmallEarpieceRedName="Ciberpunk | Auricular Pequeno | Vermelho"
+
+;DAR Cosmetic Names
+DARAssaultArmorPreciousName="D.A.R. | Armadura de assalto | Precioso"
+DARAssaultHelmetPreciousName="D.A.R. | Capacete de Assalto | Precioso"
+DARFlightArmorBlueAngelName="D.A.R. | Armadura de Luta | Anjo Azul"
+DARFlightArmorGalacticName="D.A.R. | Armadura de Luta | Galáctico"
+DARFlightArmorP51Name="D.A.R. | Armadura de Luta | P51"
+DARFlightArmorPreciousName="D.A.R. | Armadura de Luta | Precioso"
+DARFlightArmorScreamName="D.A.R. | Armadura de Luta | Berro"
+DARFlightArmorSpitfireName="D.A.R. | Armadura de Luta | Lança-chamas"
+DARFlightHelmetBlueAngelName="D.A.R. | Capacete de Voo | Anjo Azul"
+DARFlightHelmetGalacticName="D.A.R. | Capacete de Voo | Galáctico"
+DARFlightHelmetP51Name="D.A.R. | Capacete de Voo | P51"
+DARFlightHelmetPreciousName="D.A.R. | Capacete de Voo | Precioso"
+DARFlightHelmetScreamName="D.A.R. | Capacete de Voo | Berro"
+DARFlightHelmetSpitfireName="D.A.R. | Capacete de Voo | Lança-chamas"
+DARCHONNEArmorBatCatName="D.A.R. | Armadura CHONN-E 5 | BatCat"
+DARCHONNEArmorGymName="D.A.R. | Armadura CHONN-E 5 | Academia"
+DARCHONNEArmorHorzineName="D.A.R. | Armadura CHONN-E 5 | Horzine"
+DARCHONNEArmorPreciousName="D.A.R. | Armadura CHONN-E 5 | Precioso"
+DARCHONNEArmorRadicalName="D.A.R. | Armadura CHONN-E 5 | Radical"
+DARCHONNEArmorTimeCubeName="D.A.R. | Armadura CHONN-E 5 | Cubo do Tempo"
+DARCHONNEHelmetChapName="D.A.R. Capacete CHONN-E 5 | Chapa"
+DARCHONNEHelmetHorzineName="D.A.R. | Capacete CHONN-E 5 | Horzine"
+DARCHONNEHelmetPreciousName="D.A.R. | Capacete CHONN-E 5 | Precioso"
+DARCHONNEHelmetSteelName="D.A.R. | Capacete CHONN-E 5 | Aço"
+DARCHONNEHelmetSunsetName="D.A.R. | Capacete CHONN-E 5 | Ocaso"
+DARCHONNEHelmetVaporName="D.A.R. | Capacete CHONN-E 5 | Vapor"
+DARC3HZArmorCrashName="D.A.R. | Armadura C3HZ | Colisão"
+DARC3HZArmorFlowBlueName="D.A.R. | Armadura C3HZ | Azul-regato"
+DARC3HZArmorMarbleName="D.A.R. | Armadura C3HZ | Mármore"
+DARC3HZArmorObsidianName="D.A.R. | Armadura C3HZ | Obsidiana"
+DARC3HZArmorPreciousName="D.A.R. | Armadura C3HZ | Precioso"
+DARC3HZArmorSpaceName="D.A.R. | Armadura C3HZ | Espaço"
+DARC3HZHelmetCrashName="D.A.R. | Capacete C3HZ | Colisão"
+DARC3HZHelmetFlowBlueName="D.A.R. | Capacete C3HZ | Azul-regato"
+DARC3HZHelmetMarbleName="D.A.R. | Capacete C3HZ | Mármore"
+DARC3HZHelmetObsidianName="D.A.R. | Capacete C3HZ | Obsidiana"
+DARC3HZHelmetPreciousName="D.A.R. | Capacete C3HZ | Precioso"
+DARC3HZHelmetSpaceName="D.A.R. | Capacete C3HZ | Espaço"
+DARClassicArmorBloodyName="D.A.R. | Armadura Clássica | Sangrento"
+DARClassicArmorLoaderName="D.A.R. | Armadura Clássica | Carregador"
+DARClassicArmorPreciousName="D.A.R. | Armadura Clássica | Precioso"
+DARClassicArmorScullyName="D.A.R. | Armadura Clássica | Scully"
+DARClassicArmorStandardName="D.A.R. | Armadura Clássica | Padrão"
+DARClassicHelmetBloodyName="D.A.R. | Capacete Clássico | Sangrento"
+DARClassicHelmetLoaderName="D.A.R. | Capacete Clássico | Carregador"
+DARClassicHelmetPreciousName="D.A.R. | Capacete Clássico | Precioso"
+DARClassicHelmetScullyName="D.A.R. | Capacete Clássico | Scully"
+DARClassicHelmetStandardName="D.A.R. | Capacete Clássico | Padrão"
 
 ;Cosmetic Descriptions
-
 SummerSideshowAccessoryDescription="Usável no menu equipamento; compatível com a maioria dos personagens. Item exclusivo do evento sazonal “Feira de Verão”. Recicle em 1 Bilhete de Feira."
 SummerSideshowFacePaintDescription="Usável no menu equipamento. Item exclusivo do evento sazonal “Feira de Verão”. Recicle em 1 Bilhete de Feira."
 HalloweenAccessoryDescription="Usável no menu equipamento; compatível com a maioria dos personagens."
@@ -2876,6 +3227,8 @@ ChristmasAccessoryDescription="Usável no menu equipamento; compatível com a ma
 ChristmasFacePaintDescription="Usável no menu equipamento."
 DoshVaultAccessoryDescription="Usável no menu equipamento; compatível com a maioria dos personagens."
 DoshVaultFacePaintDescription="Usável no menu equipamento."
+DARAccessoryDescription="Usável no menu equipamento; compatível com o D.A.R."
+CyberPunkAccessoryDescription="Usável no menu equipamento; compatível com a maioria dos personagens. Item exclusivo do evento sazonal Ciberpunk."
 WeeklyRewardDescription="Usável no menu equipamento; compatível com a maioria dos personagens. Este item foi desbloqueado ao concluir um surto semanal."
 AviatorGogglesDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
 AviatorsDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
@@ -2982,12 +3335,6 @@ ReaperDeadEyesDescription="Usável no menu equipamento; compat. com Oisten Jäge
 ReaperDeadHoodBloodyDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
 ReaperDeadMaskBloodyDescription="Usável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins."
 ReaperFaceArmorSkullDescription="Usável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
-SteampunkGasMaskBasicDescription="Usável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner e Rae Higgins."
-SteampunkGasMaskOpenDescription="Usável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner e Rae Higgins."
-SteampunkGasMaskClosedDescription="Usável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner e Rae Higgins."
-SteampunkGasMaskFilteredDescription="Equipável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins."
-SteampunkGasMaskOpenFilteredDescription="Equipável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins."
-SteampunkGasMaskClosedFilteredDescription="Equipável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Rae Higgins"
 MinotaurHelmetDescription="Equipável no menu equipamento; compat. com Oisten Jägerhorn, DJ Scully, PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins."
 RebelHelmetDescription="Equipável no menu equipamento; compat. com DJ Scully, PC Rob Briar, Mr. Foster, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins"
 RebelHelmetGogglesDownDescription="Equipável no menu equipamento; compat. com PC Rob Briar, Donovan Neal, Reverendo Alberts, Ten. Bill Masterson, Hayato Tanaka, Ana Larive, Briar Clássico, Masterson Clássico, Anton Strasser, Tom Banner, Rae Higgins"

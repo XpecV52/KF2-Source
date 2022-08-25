@@ -376,7 +376,7 @@ DefaultProperties
 	GroundSpeed=150.0f
 	SprintSpeed=210.0f   //260
 	PhysRagdollImpulseScale=1.5f
-	KnockdownImpulseScale=1.5f
+	KnockdownImpulseScale=2f //1.5
 
 	// ---------------------------------------------
 	// AI / Navigation

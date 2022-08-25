@@ -121,6 +121,7 @@ function ResetGamma()
 
     DefaultGamma = Manager.CachedProfile.GetDefaultFloat(117);
     GammaSlider.SetFloat("value", DefaultGamma * float(100));
+    LogInternal((("RESET GAMME: DefaultGamma-" @ string(DefaultGamma)) @ "Slider Value -") @ string(DefaultGamma * float(100)));
     KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
     KFGE.GammaMultiplier = DefaultGamma;
     KFGE.SaveConfig();

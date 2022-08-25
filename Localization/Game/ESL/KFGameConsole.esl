@@ -19,6 +19,8 @@ KF-Nuked="Jugando a Bombardeado"
 KF-TragicKingdom="Jugando a El reino trágico"
 KF-Nightmare="Jugando en Pesadilla"
 KF-KrampusLair="En la guarida del Krampus"
+KF-PowerCore_Holdout="está jugando en Núcleo de poder"
+KF-DieSector="está jugando en Sector mortal"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

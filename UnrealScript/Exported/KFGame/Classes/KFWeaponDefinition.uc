@@ -2,7 +2,7 @@
 // KFWeaponDefinition
 //=============================================================================
 // A lightweight container for basic weapon properties that can be safely
-// accessed without a weapon actor (UI, remote clients). 
+// accessed without a weapon actor (UI, remote clients).
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
@@ -24,6 +24,11 @@ var protected string ImagePath;
 var(Trader) int BuyPrice;
 /** Price per magazine */
 var(Trader) int AmmoPricePerMag;
+
+/** The cost to upgrade this weapon. */
+var(Trader) array<int> UpgradePrice;
+/** The added dosh to sell an upgraded weapon. */
+var(Trader) array<int> UpgradeSellPrice;
 
 /** How much ammo you will receive for buying a "mag" (or making one purchase) of secondary ammo */
 var(Trader) int SecondaryAmmoMagSize;
@@ -64,7 +69,7 @@ static function string GetItemLocalization(string KeyName)
 {
 	local array<string> Strings;
 	ParseStringIntoArray(default.WeaponClassPath, Strings, ".", true);
-	return Localize(Strings[1], KeyName, Strings[0]);	
+	return Localize(Strings[1], KeyName, Strings[0]);
 }
 
 static function bool UsesAmmo()
@@ -74,11 +79,39 @@ static function bool UsesAmmo()
 
 static function bool UsesSecondaryAmmo()
 {
-	return default.SecondaryAmmoMagPrice > 0;	
+	return default.SecondaryAmmoMagPrice > 0;
+}
+
+static function int GetUpgradePrice(int UpgradeTier)
+{
+	if (UpgradeTier >= 0 && UpgradeTier <= default.UpgradePrice.length)
+	{
+		return default.UpgradePrice[UpgradeTier];
+	}
+
+	return INDEX_NONE;
+}
+
+static function int GetUpgradeSellPrice(int UpgradeTier)
+{
+	if (UpgradeTier >= 0 && UpgradeTier < default.UpgradePrice.length)
+	{
+		return default.UpgradeSellPrice[UpgradeTier];
+	}
+
+	return INDEX_NONE;
 }
 
 defaultproperties
 {
+   UpgradePrice(0)=400
+   UpgradePrice(1)=500
+   UpgradePrice(2)=600
+   UpgradePrice(3)=700
+   UpgradeSellPrice(0)=100
+   UpgradeSellPrice(1)=150
+   UpgradeSellPrice(2)=200
+   UpgradeSellPrice(3)=250
    Name="Default__KFWeaponDefinition"
    ObjectArchetype=Object'Core.Default__Object'
 }

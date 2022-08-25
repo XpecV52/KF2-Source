@@ -14,13 +14,14 @@ class KFProj_Explosive_HX25 extends KFProj_BallisticExplosive
 defaultproperties
 {
 	Physics=PHYS_Falling
-	Speed=5000
-	MaxSpeed=5000
-	TerminalVelocity=5000
+	Speed=4000
+	MaxSpeed=4000
+	TerminalVelocity=4000
 	TossZ=150
-	GravityScale=0.25
+	GravityScale=1
     MomentumTransfer=50000.0
     ArmDistSquared=122500 // 3.5 meters
+	LifeSpan = +1000.0f
 
 	ProjFlightTemplate=ParticleSystem'WEP_HX25_Pistol_EMIT.FX_HX25_Pistol_Projectile'
 	ProjFlightTemplateZedTime=ParticleSystem'WEP_HX25_Pistol_EMIT.FX_HX25_Pistol_Projectile_ZEDTIME'

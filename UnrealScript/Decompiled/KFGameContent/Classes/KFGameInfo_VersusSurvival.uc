@@ -855,7 +855,8 @@ function EndOfMatch(bool bVictory)
         if(KFPRIV != none)
         {
             KFPRIV.RecordEndGameInfo();
-        }        
+        }
+        KFPC.ClientGameOver(WorldInfo.GetMapName(true), byte(GameDifficulty), byte(GameLength), IsMultiplayerGame(), byte(WaveNum));        
     }    
     WorldInfo.TWPushLogs();
     WaveBonus = Max(WaveNum - 1, 0) * POINTS_FOR_WAVE_COMPLETION;
@@ -942,7 +943,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 function BossDied(Controller Killer, optional bool bCheckWaveEnded)
 {
     bCheckWaveEnded = true;
-    super.BossDied(Killer, false);
+    super.BossDied(Killer, bCheckWaveEnded);
 }
 
 protected function CheckPawnsForGriefing(optional bool bInitial)
@@ -1243,6 +1244,11 @@ function float GetEndOfMatchTime()
     return super.GetEndOfMatchTime();
 }
 
+function bool IsMapObjectiveEnabled()
+{
+    return false;
+}
+
 state RoundEnded
 {
     event BeginState(name PrevStateName)
@@ -1319,6 +1325,7 @@ defaultproperties
     TimeUntilNextRound=12
     RoundEndCinematicDelay=4
     PostRoundWaitTime=15
+    bEnableMapObjectives=false
     bIsVersusGame=true
     KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager_Versus'
     MinNetPlayers=2

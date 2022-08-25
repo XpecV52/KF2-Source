@@ -92,12 +92,15 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
     local Vector Offset;
     local bool bWantsClientSideDudHit;
     local TraceHitInfo HitInfo;
+    local float TraveledDistance;
 
     if((Instigator != none) && Instigator.Role < ROLE_Authority)
     {
         bWantsClientSideDudHit = true;
     }
-    if(bDud || (VSizeSq(Location - OriginalLocation) < ArmDistSquared) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
+    TraveledDistance = (WorldInfo.TimeSeconds - CreationTime) * Speed;
+    TraveledDistance *= TraveledDistance;
+    if(bDud || (TraveledDistance < ArmDistSquared) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
     {
         if(!bDud || bWantsClientSideDudHit && !bClientDudHit)
         {
@@ -167,6 +170,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
     local Vector VNorm;
     local bool bWantsClientSideDudHit;
+    local float TraveledDistance;
 
     if(Other.IsA('KFTrigger_SirenProjectileShield'))
     {
@@ -183,7 +187,9 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     {
         bWantsClientSideDudHit = true;
     }
-    if((!bDud || bWantsClientSideDudHit && !bClientDudHit) && (VSizeSq(Location - OriginalLocation) < ArmDistSquared) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
+    TraveledDistance = (WorldInfo.TimeSeconds - CreationTime) * Speed;
+    TraveledDistance *= TraveledDistance;
+    if((!bDud || bWantsClientSideDudHit && !bClientDudHit) && (TraveledDistance < ArmDistSquared) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
     {
         if(((LastTouched.Actor == Other) && TouchTimeThreshhold > float(0)) && (WorldInfo.TimeSeconds - LastTouched.Time) <= TouchTimeThreshhold)
         {
@@ -300,7 +306,7 @@ defaultproperties
     TouchTimeThreshhold=0.15
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_8454' was not found.
+System.ArgumentException: Requested value '!=_8564' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

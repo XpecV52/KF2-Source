@@ -14323,7 +14323,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_30
    InputLinks(1)=(DrawY=-6262,OverrideDelta=35)
    InputLinks(2)=(DrawY=-6241,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-6262,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_111',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_435',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=-6994,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),DrawX=-6994,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6943,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6894,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -14340,8 +14340,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_435
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6856
-   ObjPosY=-6128
+   ObjPosX=-6608
+   ObjPosY=-6160
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_435"
@@ -14352,8 +14352,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_111
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_88'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6944
-   ObjPosY=-6136
+   ObjPosX=-6696
+   ObjPosY=-6168
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_111"
@@ -14364,8 +14364,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_48'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6672
-   ObjPosY=-6136
+   ObjPosX=-6424
+   ObjPosY=-6168
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_5"
@@ -14376,8 +14376,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_52'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6760
-   ObjPosY=-6136
+   ObjPosX=-6512
+   ObjPosY=-6168
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_4"
@@ -14388,8 +14388,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_7'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7032
-   ObjPosY=-6136
+   ObjPosX=-6784
+   ObjPosY=-6168
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_3"
@@ -14424,8 +14424,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_10'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6976
-   ObjPosY=-5040
+   ObjPosX=-6504
+   ObjPosY=-5096
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_20"
@@ -14436,8 +14436,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_161
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_65'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6944
-   ObjPosY=-5472
+   ObjPosX=-6360
+   ObjPosY=-5480
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_161"
@@ -14460,8 +14460,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_85
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_81'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6872
-   ObjPosY=-5264
+   ObjPosX=-6360
+   ObjPosY=-5304
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_85"
@@ -14472,8 +14472,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_84
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_82'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6960
-   ObjPosY=-5264
+   ObjPosX=-6448
+   ObjPosY=-5304
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_84"
@@ -14484,8 +14484,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_76'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6720
-   ObjPosY=-5048
+   ObjPosX=-6312
+   ObjPosY=-5088
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_30"
@@ -14496,8 +14496,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_12'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6800
-   ObjPosY=-5048
+   ObjPosX=-7056
+   ObjPosY=-5040
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_29"
@@ -14508,8 +14508,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_11'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6888
-   ObjPosY=-5040
+   ObjPosX=-6416
+   ObjPosY=-5096
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_28"
@@ -14520,7 +14520,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_24
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_75'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7056
+   ObjPosX=-6960
    ObjPosY=-5040
    DrawWidth=32
    DrawHeight=32
@@ -14532,8 +14532,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_58'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6928
-   ObjPosY=-4640
+   ObjPosX=-6280
+   ObjPosY=-4664
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_42"
@@ -14544,8 +14544,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_98
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_8'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7024
-   ObjPosY=-4632
+   ObjPosX=-6376
+   ObjPosY=-4656
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_98"
@@ -14568,7 +14568,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_74
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_17'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6800
+   ObjPosX=-6216
    ObjPosY=-4840
    DrawWidth=32
    DrawHeight=32
@@ -14592,7 +14592,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6888
+   ObjPosX=-6312
    ObjPosY=-4840
    DrawWidth=32
    DrawHeight=32
@@ -14604,8 +14604,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_13'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6984
-   ObjPosY=-4840
+   ObjPosX=-6408
+   ObjPosY=-4848
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_27"
@@ -15208,7 +15208,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_31
    InputLinks(1)=(DrawY=-5998,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5977,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5998,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_494',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_495',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_496',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_497',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_500',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_501',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_502',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_503'),DrawX=-7026,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_494'),DrawX=-7026,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6975,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6926,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -15226,7 +15226,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_32
    InputLinks(1)=(DrawY=-5766,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5745,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5766,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_504',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_505',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_506',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_507',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_508',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_509',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_510',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_511',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_512',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_513'),DrawX=-7034,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_504'),DrawX=-7034,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6983,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6934,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -15244,7 +15244,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_33
    InputLinks(1)=(DrawY=-5558,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5537,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5558,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_161'),DrawX=-7010,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_46'),DrawX=-7010,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6959,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6910,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -15262,7 +15262,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_34
    InputLinks(1)=(DrawY=-5342,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5321,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5342,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_84',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85'),DrawX=-7034,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_17'),DrawX=-7034,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6983,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6934,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -15280,7 +15280,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_35
    InputLinks(1)=(DrawY=-5118,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5097,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5118,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_20',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_30'),DrawX=-7026,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_24',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_29'),DrawX=-7026,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6975,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6926,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -15298,7 +15298,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_36
    InputLinks(1)=(DrawY=-4918,OverrideDelta=35)
    InputLinks(2)=(DrawY=-4897,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-4918,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_27',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_31',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_74'),DrawX=-7026,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_32'),DrawX=-7026,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6975,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6926,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -15316,7 +15316,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_37
    InputLinks(1)=(DrawY=-4710,OverrideDelta=35)
    InputLinks(2)=(DrawY=-4689,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-4710,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_98',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_42'),DrawX=-7042,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_44'),DrawX=-7042,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6991,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6942,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -15334,7 +15334,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_20
    InputLinks(1)=(DrawY=-4502,OverrideDelta=35)
    InputLinks(2)=(DrawY=-4481,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-4502,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_516',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_517',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_518',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_519',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_520',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_521',SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_579'),DrawX=-7066,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_516'),DrawX=-7066,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-7015,OverrideDelta=76)
    EventLinks(0)=(DrawX=-6966,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -15363,8 +15363,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_495
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_71'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7000
-   ObjPosY=-5904
+   ObjPosX=-6808
+   ObjPosY=-5912
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_495"
@@ -15375,8 +15375,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_496
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6904
-   ObjPosY=-5904
+   ObjPosX=-6712
+   ObjPosY=-5912
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_496"
@@ -15387,8 +15387,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_497
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6800
-   ObjPosY=-5904
+   ObjPosX=-6608
+   ObjPosY=-5912
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_497"
@@ -15399,8 +15399,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_500
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_68'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6704
-   ObjPosY=-5904
+   ObjPosX=-6512
+   ObjPosY=-5912
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_500"
@@ -15411,8 +15411,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_501
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_15'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6600
-   ObjPosY=-5904
+   ObjPosX=-6408
+   ObjPosY=-5912
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_501"
@@ -15423,8 +15423,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_502
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_20'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6504
-   ObjPosY=-5904
+   ObjPosX=-6312
+   ObjPosY=-5912
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_502"
@@ -15435,8 +15435,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_503
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_25'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6400
-   ObjPosY=-5904
+   ObjPosX=-6208
+   ObjPosY=-5912
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_503"
@@ -15459,8 +15459,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_505
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_33'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6960
-   ObjPosY=-5688
+   ObjPosX=-6784
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_505"
@@ -15471,8 +15471,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_506
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_5'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6864
-   ObjPosY=-5688
+   ObjPosX=-6688
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_506"
@@ -15483,8 +15483,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_507
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_42'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6760
-   ObjPosY=-5688
+   ObjPosX=-6584
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_507"
@@ -15495,8 +15495,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_508
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_32'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6664
-   ObjPosY=-5688
+   ObjPosX=-6488
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_508"
@@ -15507,8 +15507,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_509
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_87'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6560
-   ObjPosY=-5688
+   ObjPosX=-6384
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_509"
@@ -15519,8 +15519,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_510
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_45'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6464
-   ObjPosY=-5688
+   ObjPosX=-6288
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_510"
@@ -15531,8 +15531,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_511
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_73'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6360
-   ObjPosY=-5688
+   ObjPosX=-6184
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_511"
@@ -15543,8 +15543,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_512
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_18'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6264
-   ObjPosY=-5688
+   ObjPosX=-6088
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_512"
@@ -15555,8 +15555,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_513
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_78'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6160
-   ObjPosY=-5688
+   ObjPosX=-5984
+   ObjPosY=-5744
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_513"
@@ -15579,8 +15579,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_517
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_16'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7032
-   ObjPosY=-4416
+   ObjPosX=-6600
+   ObjPosY=-4408
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_517"
@@ -15591,8 +15591,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_518
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_4'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6928
-   ObjPosY=-4416
+   ObjPosX=-6496
+   ObjPosY=-4408
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_518"
@@ -15603,8 +15603,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_519
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_86'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6832
-   ObjPosY=-4416
+   ObjPosX=-6400
+   ObjPosY=-4408
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_519"
@@ -15615,8 +15615,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_520
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_24'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6728
-   ObjPosY=-4416
+   ObjPosX=-6296
+   ObjPosY=-4408
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_520"
@@ -15627,8 +15627,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_521
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_23'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6632
-   ObjPosY=-4416
+   ObjPosX=-6200
+   ObjPosY=-4408
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_521"
@@ -15639,8 +15639,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_579
    ObjValue=KFSpawner'KF-THEDESCENT.TheWorld:PersistentLevel.KFSpawner_60'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6528
-   ObjPosY=-4416
+   ObjPosX=-6096
+   ObjPosY=-4408
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_579"
@@ -15672,8 +15672,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
 End Object
 
 Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_5
-   SizeX=3522
-   SizeY=3327
+   SizeX=3855
+   SizeY=3299
    bTileFill=True
    FillColor=(B=17,G=0,R=255,A=16)
    ObjInstanceVersion=1
@@ -15683,4 +15683,19 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_5
    ObjComment="Controls teleport destination and Zed spawning"
    Name="SequenceFrameWrapped_5"
    ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_16
+   SizeX=1008
+   SizeY=1874
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-THEDESCENT.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-6808
+   ObjPosY=-6192
+   ObjComment="Child Spawners Do Not Need Activation"
+   DrawWidth=1008
+   DrawHeight=1874
+   Name="SequenceFrame_16"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object

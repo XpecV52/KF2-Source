@@ -117,6 +117,7 @@ var repnotify bool bWaveIsActive;
 var private const bool bIsUnrankedGame;
 var bool bMatchVictory;
 var bool bTradersEnabled;
+var bool bEndlessMode;
 var bool bCustom;
 var bool bCurrentSMFinishedSpawning;
 var bool bDebugSpawnManager;
@@ -125,6 +126,7 @@ var bool bHidePawnIcons;
 var bool bGameConductorGraphingEnabled;
 var bool bVersusGame;
 var bool bAllowSwitchTeam;
+var bool bForceNextObjective;
 var KFTraderDialogManager TraderDialogManager;
 var class<KFTraderDialogManager> TraderDialogManagerClass;
 var class<KFTraderVoiceGroupBase> TraderVoiceGroupClass;
@@ -177,6 +179,9 @@ var repnotify Actor CurrentObjective;
 var KFInterface_MapObjective ObjectiveInterface;
 var repnotify Actor PreviousObjective;
 var repnotify int PreviousObjectiveResult;
+var repnotify int PreviousObjectiveXPResult;
+var repnotify int PreviousObjectiveVoshResult;
+var int ObjectiveDelay;
 var export editinline AkComponent MusicComp;
 var KFMusicTrackInfo CurrentMusicTrackInfo;
 var repnotify KFMusicTrackInfo ReplicatedMusicTrackInfo;
@@ -190,6 +195,7 @@ replication
         MaxHumanCount, MusicIntensity, 
         MusicTrackRepCount, NextTrader, 
         PreviousObjective, PreviousObjectiveResult, 
+        PreviousObjectiveVoshResult, PreviousObjectiveXPResult, 
         ReplicatedMusicTrackInfo, TraderVolume, 
         TraderVolumeCheckType, WaveNum, 
         WaveTotalAICount, bHidePawnIcons, 
@@ -268,7 +274,11 @@ simulated event ReplicatedEvent(name VarName)
     {
         if(VarName == 'bWaveIsActive')
         {
-            if(!bWaveIsActive)
+            if(bWaveIsActive)
+            {
+                NotifyWaveStart();                
+            }
+            else
             {
                 FadeOutLingeringExplosions();
                 NotifyWaveEnded();
@@ -285,7 +295,7 @@ simulated event ReplicatedEvent(name VarName)
             {
                 if(VarName == 'MusicTrackRepCount')
                 {
-                    if(!IsFinalWave())
+                    if(!IsBossWave())
                     {
                         PlayNewMusicTrack(true);
                     }                    
@@ -452,6 +462,21 @@ simulated function NotifyWaveEnded()
         if(KFPRI != none)
         {
             KFPRI.NotifyWaveEnded();
+        }        
+    }    
+}
+
+simulated function NotifyWaveStart()
+{
+    local PlayerReplicationInfo PRI;
+    local KFPlayerReplicationInfo KFPRI;
+
+    foreach PRIArray(PRI,)
+    {
+        KFPRI = KFPlayerReplicationInfo(PRI);
+        if(KFPRI != none)
+        {
+            KFPRI.NotifyWaveStart();
         }        
     }    
 }
@@ -743,7 +768,7 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
     bWaveIsActive = bWaveActive;
     bForceNetUpdate = true;
     ++ MusicTrackRepCount;
-    if(!IsFinalWave() && WorldInfo.NetMode != NM_DedicatedServer)
+    if(!IsBossWave() && WorldInfo.NetMode != NM_DedicatedServer)
     {
         PlayNewMusicTrack(true);
     }
@@ -751,7 +776,27 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
 
 simulated function bool IsFinalWave()
 {
+    return WaveNum == (WaveMax - 1);
+}
+
+simulated function bool IsBossWave()
+{
     return WaveNum == WaveMax;
+}
+
+simulated function bool IsBossWaveNext()
+{
+    return WaveNum == (WaveMax - 1);
+}
+
+simulated function bool IsSpecialWave(out int ModIndex)
+{
+    return false;
+}
+
+simulated function bool IsWeeklyWave(out int ModIndex)
+{
+    return false;
 }
 
 simulated event Timer()
@@ -1306,7 +1351,7 @@ simulated function PlayNewMusicTrack(optional bool bGameStateChanged, optional b
             bLoop = CurrentMusicTrackInfo.bLoop;
         }
     }
-    if(bLoop || IsFinalWave())
+    if(bLoop || IsBossWave())
     {
         NextMusicTrackInfo = CurrentMusicTrackInfo;        
     }
@@ -1375,35 +1420,36 @@ simulated event bool IsStatsSessionValid()
     return true;
 }
 
-function StartNextObjective()
+function bool StartNextObjective()
 {
     local KFMapInfo KFMI;
 
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-    if((KFMI != none) && WaveNum != WaveMax)
+    if((KFMI != none) && !IsBossWave())
     {
         if(KFMI.bEventLimitedObjectives)
         {
             if(Class'KFGameEngine'.static.GetSeasonalEventID() != KFMI.EventHoliday)
             {
-                return;
+                return false;
             }
         }
         if(KFMI.bUsePresetObjectives)
         {
-            StartNextPresetObjective(KFMI);            
+            return StartNextPresetObjective(KFMI);            
         }
         else
         {
             if(KFMI.bUseRandomObjectives)
             {
-                StartNextRandomObjective(KFMI);
+                return StartNextRandomObjective(KFMI);
             }
         }
     }
+    return false;
 }
 
-function StartNextPresetObjective(KFMapInfo KFMI)
+function bool StartNextPresetObjective(KFMapInfo KFMI)
 {
     local array<KFInterface_MapObjective> PossibleObjectives;
 
@@ -1431,13 +1477,14 @@ function StartNextPresetObjective(KFMapInfo KFMI)
             break;
             break;
     }
-    AttemptObjectiveActivation(PossibleObjectives);
+    return (AttemptObjectiveActivation(PossibleObjectives)) != -1;
 }
 
-function StartNextRandomObjective(KFMapInfo KFMI)
+function bool StartNextRandomObjective(KFMapInfo KFMI)
 {
     local int Idx;
 
+    Idx = -1;
     if((KFMI.RandomWaveObjectives.Length > 0) && KFMI.RandomObjectiveWavesToDisable.Find(WaveNum == -1)
     {
         if(KFMI.CurrentAvailableRandomWaveObjectives.Length == 0)
@@ -1450,23 +1497,28 @@ function StartNextRandomObjective(KFMapInfo KFMI)
             KFMI.CurrentAvailableRandomWaveObjectives.Remove(Idx, 1;
         }
     }
+    return Idx != -1;
 }
 
 function int AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
 {
     local int RandID;
+    local float DieRoll, PctChanceToActivate;
 
-    J0x00:
+    DieRoll = FRand();
+    J0x0C:
+
     if(PossibleObjectives.Length > 0)
     {
         RandID = Rand(PossibleObjectives.Length);
-        if(PossibleObjectives[RandID].CanActivateObjective() && PreviousObjective != bool(PossibleObjectives[RandID]))
+        PctChanceToActivate = PossibleObjectives[RandID].GetActivationPctChance();
+        if(bForceNextObjective || (PossibleObjectives[RandID].CanActivateObjective() && PreviousObjective != bool(PossibleObjectives[RandID])) && (PctChanceToActivate >= 1) || DieRoll <= PctChanceToActivate)
         {
             ActivateObjective(PossibleObjectives[RandID]);
             return RandID;
         }
         PossibleObjectives.Remove(RandID, 1;
-        goto J0x00;
+        goto J0x0C;
     }
     return -1;
 }
@@ -1476,10 +1528,16 @@ function ActivateObjective(KFInterface_MapObjective NewObjective)
     if(NotEqual_InterfaceInterface(NewObjective, (none)))
     {
         CurrentObjective = Actor(bool(NewObjective));
-        PreviousObjective = none;
-        PreviousObjectiveResult = -1;
+        ClearPreviousObjective();
         ObjectiveInterface = NewObjective;
-        ObjectiveInterface.ActivateObjective();
+        if(ObjectiveDelay > 0)
+        {
+            SetTimer(float(ObjectiveDelay),, 'Timer_ActivateObjective');            
+        }
+        else
+        {
+            Timer_ActivateObjective();
+        }
     }
 }
 
@@ -1489,10 +1547,33 @@ function DeactivateObjective()
     {
         PreviousObjective = CurrentObjective;
         PreviousObjectiveResult = ObjectiveInterface.GetDoshReward();
+        PreviousObjectiveVoshResult = ObjectiveInterface.GetVoshReward();
+        PreviousObjectiveXPResult = ObjectiveInterface.GetXPReward();
         ObjectiveInterface.DeactivateObjective();
         CurrentObjective = none;
         ObjectiveInterface = none;
     }
+}
+
+function ClearPreviousObjective()
+{
+    PreviousObjective = none;
+    PreviousObjectiveResult = -1;
+    PreviousObjectiveVoshResult = -1;
+    PreviousObjectiveXPResult = -1;
+}
+
+function Timer_ActivateObjective()
+{
+    if(NotEqual_InterfaceInterface(ObjectiveInterface, (none)))
+    {
+        ObjectiveInterface.ActivateObjective();
+    }
+}
+
+simulated event byte GetGameDifficulty()
+{
+    return GameDifficulty;
 }
 
 defaultproperties
@@ -1510,4 +1591,6 @@ defaultproperties
     UpdateHumanInfoInterval=0.5
     UpdatePickupInfoInterval=1
     PreviousObjectiveResult=-1
+    PreviousObjectiveXPResult=-1
+    PreviousObjectiveVoshResult=-1
 }

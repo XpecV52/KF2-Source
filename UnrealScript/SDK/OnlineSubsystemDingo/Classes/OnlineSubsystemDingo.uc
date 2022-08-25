@@ -166,6 +166,15 @@ struct native CachedLoginState
 /** The cached state of each player's login status */
 var native const CachedLoginState LastLoginState[`MAX_NUM_PLAYERS];
 
+/** Holds the avatar, xuids for player */
+struct native CachedAvatarData
+{
+	var const UniqueNetId PlayerXuid;
+	var init array<byte> AvatarBytes;
+	var float AvatarCreationTime;
+};
+var native array<CachedAvatarData> CachedAvatars;
+
 /** Queued controller pairing changes to pass to the game for handling */
 var native array<hatpointer> QueuedControllerPairingChangeEvents {Windows::Xbox::Input::ControllerPairingChangedEventArgs};
 

@@ -9,6 +9,46 @@ class KFMapObjective_DoshHold extends Volume
     hidecategories(Navigation,Object,Movement,Display)
     implements(KFInterface_MapObjective);
 
+struct DoshHoldMaxReward
+{
+    var() int WaveMaxReward[11];
+
+    structdefaultproperties
+    {
+        WaveMaxReward[0]=0
+        WaveMaxReward[1]=0
+        WaveMaxReward[2]=0
+        WaveMaxReward[3]=0
+        WaveMaxReward[4]=0
+        WaveMaxReward[5]=0
+        WaveMaxReward[6]=0
+        WaveMaxReward[7]=0
+        WaveMaxReward[8]=0
+        WaveMaxReward[9]=0
+        WaveMaxReward[10]=0
+    }
+};
+
+struct WaveLengthPctChances
+{
+    var() float PctChances[11];
+
+    structdefaultproperties
+    {
+        PctChances[0]=1
+        PctChances[1]=1
+        PctChances[2]=1
+        PctChances[3]=1
+        PctChances[4]=1
+        PctChances[5]=1
+        PctChances[6]=1
+        PctChances[7]=1
+        PctChances[8]=1
+        PctChances[9]=1
+        PctChances[10]=1
+    }
+};
+
 var string LocalizationKey;
 var string DescriptionLocKey;
 var string RequirementsLocKey;
@@ -37,7 +77,9 @@ var transient KFReplicatedShowPathActor TrailActor;
 /** Timer before penalty check starts */
 var() const float PenaltyStartupTimer;
 /** Max reward if users (theoretically) did the objective perfectly */
-var() const int MaxReward[3];
+var() const DoshHoldMaxReward MaxRewards[3];
+/** XP reward if user compeletes the objective. */
+var() const DoshHoldMaxReward XPRewards[3];
 var float CurrentRewardAmount;
 /** Timer length for checking the dosh penalty rule set */
 var() const float DoshPenaltyCheckTimer;
@@ -55,6 +97,7 @@ var() int EventIndex;
 var float JustWinThreshold;
 var float StandardWinThreshold;
 var float GoodWinThreshold;
+var() WaveLengthPctChances ActivatePctChances[3];
 
 replication
 {
@@ -300,7 +343,10 @@ function CheckBonusState()
 function StartPenaltyCheck()
 {
     ClearTimer('StartPenaltyCheck');
-    SetTimer(DoshPenaltyCheckTimer, true, 'CheckBonusState');
+    if(bActive)
+    {
+        SetTimer(DoshPenaltyCheckTimer, true, 'CheckBonusState');
+    }
 }
 
 function ActivationVO()
@@ -401,17 +447,18 @@ simulated function DeactivateObjective()
     {
         bActive = false;
         ClearTimer('CheckBonusState');
+        ClearTimer('StartPenaltyCheck');
+        bOneHumanAlive = false;
+        foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
+        {
+            if(KFPH.IsAliveAndWell())
+            {
+                bOneHumanAlive = true;
+            }
+            CachedHumans.AddItem(KFPH;            
+        }        
         if(CurrentRewardAmount > float(0))
         {
-            bOneHumanAlive = false;
-            foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
-            {
-                if(KFPH.IsAliveAndWell())
-                {
-                    bOneHumanAlive = true;
-                }
-                CachedHumans.AddItem(KFPH;                
-            }            
             if(bOneHumanAlive)
             {
                 foreach CachedHumans(KFPH,)
@@ -432,18 +479,22 @@ simulated function DeactivateObjective()
                             if(KFPlayerController(KFPH.Controller) != none)
                             {
                                 KFPlayerController(KFPH.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
+                                KFPlayerController(KFPH.Controller).ClientMapObjectiveCompleted(float(GetXPReward()));
                             }                            
                         }
                     }
                 }                
-                PlayDeactivationDialog();
             }
+        }
+        if(bOneHumanAlive)
+        {
+            PlayDeactivationDialog();
         }
     }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         I = 0;
-        J0x26D:
+        J0x2D7:
 
         if(I < ZoneBoundariesEmitter.Length)
         {
@@ -453,10 +504,10 @@ simulated function DeactivateObjective()
                 ZoneBoundariesEmitter[I].bCurrentlyActive = false;
             }
             ++ I;
-            goto J0x26D;
+            goto J0x2D7;
         }
         I = 0;
-        J0x320:
+        J0x38A:
 
         if(I < ZoneBoundaryMeshes.Length)
         {
@@ -465,17 +516,17 @@ simulated function DeactivateObjective()
                 ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(true);
             }
             ++ I;
-            goto J0x320;
+            goto J0x38A;
         }
         I = 0;
-        J0x3A9:
+        J0x413:
 
         if(I < ZoneBoundarySplines.Length)
         {
             if(ZoneBoundarySplines[I] != none)
             {
                 J = 0;
-                J0x3E5:
+                J0x44F:
 
                 if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
                 {
@@ -484,11 +535,11 @@ simulated function DeactivateObjective()
                         ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(true);
                     }
                     ++ J;
-                    goto J0x3E5;
+                    goto J0x44F;
                 }
             }
             ++ I;
-            goto J0x3A9;
+            goto J0x413;
         }
         UpdateMeshArrayState();
         if(bUseTrailToVolume && TrailActor != none)
@@ -586,24 +637,15 @@ simulated function int GetDoshReward()
 simulated function int GetMaxDoshReward()
 {
     local KFGameReplicationInfo KFGRI;
+    local int ArrayEnd;
 
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(KFGRI != none)
     {
-        switch(KFGRI.WaveMax)
-        {
-            case 5:
-                return MaxReward[0];
-            case 8:
-                return MaxReward[1];
-            case 11:
-                return MaxReward[2];
-            default:
-                return MaxReward[0];
-                break;
-        }
+        ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, 11 - 1);
+        return default.MaxRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
     }
-    return MaxReward[0];
+    return default.MaxRewards[0].WaveMaxReward[0];
 }
 
 simulated function int GetPlayersInObjective()
@@ -624,6 +666,56 @@ simulated function string GetLocalizedRequirements()
     return (Localize("Objectives", default.RequirementsLocKey, "KFGame")) @ string(PlayerThresholds[PlayerCount]);
 }
 
+simulated function int GetVoshReward()
+{
+    return int((float(GetMaxVoshReward()) * float(GetDoshReward())) / float(GetMaxDoshReward()));
+}
+
+simulated function int GetMaxVoshReward()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        return Class'KFOnlineStatsWrite'.static.GetMapObjectiveVoshReward(KFGRI.GameLength, KFGRI.WaveNum);
+    }
+    return 0;
+}
+
+simulated function int GetXPReward()
+{
+    return int((float(GetMaxXPReward()) * float(GetDoshReward())) / float(GetMaxDoshReward()));
+}
+
+simulated function int GetMaxXPReward()
+{
+    local KFGameReplicationInfo KFGRI;
+    local int ArrayEnd;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, 11 - 1);
+        return default.XPRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
+    }
+    return default.XPRewards[0].WaveMaxReward[0];
+}
+
+simulated function float GetActivationPctChance()
+{
+    local KFGameReplicationInfo KFGRI;
+    local int ArrayEnd;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, 11 - 1);
+        return default.ActivatePctChances[KFGRI.GameLength].PctChances[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
+    }
+    return 1;
+}
+
 defaultproperties
 {
     LocalizationKey="DoshHold"
@@ -632,9 +724,12 @@ defaultproperties
     ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
     ZoneDangerMaterialParamName=Danger
     PenaltyStartupTimer=20
-    MaxReward[0]=500
-    MaxReward[1]=500
-    MaxReward[2]=500
+    MaxRewards[0]=(WaveMaxReward=0,WaveMaxReward[1]=200,WaveMaxReward[2]=350,WaveMaxReward[3]=500,WaveMaxReward[4]=0,WaveMaxReward[5]=0,WaveMaxReward[6]=0,WaveMaxReward[7]=0,WaveMaxReward[8]=0,WaveMaxReward[9]=0,WaveMaxReward[10]=0)
+    MaxRewards[1]=(WaveMaxReward=0,WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=500,WaveMaxReward[7]=0,WaveMaxReward[8]=0,WaveMaxReward[9]=0,WaveMaxReward[10]=0)
+    MaxRewards[2]=(WaveMaxReward=0,WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=450,WaveMaxReward[7]=500,WaveMaxReward[8]=500,WaveMaxReward[9]=500,WaveMaxReward[10]=500)
+    XPRewards[0]=(WaveMaxReward=0,WaveMaxReward[1]=150,WaveMaxReward[2]=200,WaveMaxReward[3]=300,WaveMaxReward[4]=0,WaveMaxReward[5]=0,WaveMaxReward[6]=0,WaveMaxReward[7]=0,WaveMaxReward[8]=0,WaveMaxReward[9]=0,WaveMaxReward[10]=0)
+    XPRewards[1]=(WaveMaxReward=0,WaveMaxReward[1]=150,WaveMaxReward[2]=150,WaveMaxReward[3]=200,WaveMaxReward[4]=200,WaveMaxReward[5]=300,WaveMaxReward[6]=300,WaveMaxReward[7]=0,WaveMaxReward[8]=0,WaveMaxReward[9]=0,WaveMaxReward[10]=0)
+    XPRewards[2]=(WaveMaxReward=0,WaveMaxReward[1]=100,WaveMaxReward[2]=150,WaveMaxReward[3]=150,WaveMaxReward[4]=200,WaveMaxReward[5]=200,WaveMaxReward[6]=250,WaveMaxReward[7]=250,WaveMaxReward[8]=300,WaveMaxReward[9]=300,WaveMaxReward[10]=300)
     DoshPenaltyCheckTimer=1
     NoHumansPenalty=5
     ZedsPenalty=1
@@ -654,6 +749,9 @@ defaultproperties
     JustWinThreshold=0.25
     StandardWinThreshold=0.5
     GoodWinThreshold=0.85
+    ActivatePctChances[0]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=1,PctChances[5]=1,PctChances[6]=1,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
+    ActivatePctChances[1]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
+    ActivatePctChances[2]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=0.35,PctChances[8]=0.35,PctChances[9]=0.35,PctChances[10]=0.35)
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

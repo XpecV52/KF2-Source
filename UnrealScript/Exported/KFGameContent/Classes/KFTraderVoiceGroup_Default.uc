@@ -359,22 +359,18 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 
 
-	
 
 
 
 
-	
 
 
 
 
-	
 
 
 
 
-	
 
 
 
@@ -389,12 +385,10 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 
 
-	
 
 
 
 
-	
 
 
 
@@ -409,7 +403,6 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 
 
-	
 
 
 
@@ -488,18 +481,148 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 
 
-#linenumber 3																																							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#linenumber 3
 
 defaultproperties
 {
-   DialogEvents(0)=(AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_20ZedDead',Priority=1)
-   DialogEvents(1)=(EventID=1,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_80ZedDead',Priority=1)
+   DialogEvents(0)=(AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_20ZedDead',Priority=1,Chance=0.300000)
+   DialogEvents(1)=(EventID=1,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_80ZedDead',Priority=1,Chance=0.300000)
    DialogEvents(2)=(EventID=2,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_LastZedDead',Priority=1)
    DialogEvents(3)=(EventID=3,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_ShopClose',Priority=1)
-   DialogEvents(4)=(EventID=4,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_PlayerArrives')
+   DialogEvents(4)=(EventID=4,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_PlayerArrives',Chance=0.300000)
    DialogEvents(5)=(EventID=5,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_TooExp')
    DialogEvents(6)=(EventID=6,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_TooHeavy')
-   DialogEvents(7)=(EventID=7,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_30Seconds')
+   DialogEvents(7)=(EventID=7,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_30Seconds',Chance=0.400000)
    DialogEvents(8)=(EventID=8,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_10Seconds')
    DialogEvents(9)=(EventID=9,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_LastShop')
    DialogEvents(10)=(EventID=10,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_LongRun',Priority=1,Cooldown=10.000000)
@@ -507,8 +630,8 @@ defaultproperties
    DialogEvents(12)=(EventID=12,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_LowArmor',Priority=1)
    DialogEvents(13)=(EventID=13,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_LowAmmo',Priority=1)
    DialogEvents(14)=(EventID=14,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_NoNades',Priority=1)
-   DialogEvents(15)=(EventID=15,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_Heal',Priority=1,Cooldown=10.000000)
-   DialogEvents(16)=(EventID=16,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_TeamHeal',Priority=1,Cooldown=10.000000)
+   DialogEvents(15)=(EventID=15,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_Heal',Priority=1,Cooldown=10.000000,Chance=0.250000)
+   DialogEvents(16)=(EventID=16,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_TeamHeal',Priority=1,Cooldown=10.000000,Chance=0.250000)
    DialogEvents(17)=(EventID=17,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_SHOP_RichBastard',Priority=1)
    DialogEvents(18)=(EventID=18,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_GoodHealing',Priority=1)
    DialogEvents(19)=(EventID=19,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_SoleSurv',Priority=1)
@@ -520,7 +643,7 @@ defaultproperties
    DialogEvents(25)=(EventID=25,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_NooneDied',Priority=1)
    DialogEvents(26)=(EventID=26,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_NoDamage',Priority=1)
    DialogEvents(27)=(EventID=27,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_SomeDied',Priority=1)
-   DialogEvents(28)=(EventID=28,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_50Better',Priority=1)
+   DialogEvents(28)=(EventID=28,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_50Better',Priority=1,Chance=0.500000)
    DialogEvents(29)=(EventID=29,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_LotDamage',Priority=1)
    DialogEvents(30)=(EventID=30,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_LotDamLotHeal',Priority=1)
    DialogEvents(31)=(EventID=31,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_POST_MostDosh',Priority=1)
@@ -540,7 +663,6 @@ defaultproperties
    DialogEvents(45)=(EventID=45,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Husk',Priority=1)
    DialogEvents(46)=(EventID=46,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Patty',Priority=1)
    DialogEvents(47)=(EventID=47,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Hans',Priority=1)
-   DialogEvents(48)=(EventID=48,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Matty',Priority=1)
    DialogEvents(49)=(EventID=49,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_Target',Priority=1)
    DialogEvents(50)=(EventID=50,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_Won',Priority=1)
    DialogEvents(51)=(EventID=51,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_ObjDecl',Priority=1)

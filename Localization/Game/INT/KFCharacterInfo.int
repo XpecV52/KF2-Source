@@ -1,3 +1,62 @@
+[CHR_DAR_archetype]
+CharacterName="D.A.R."
+Description="This D.A.R., or Domestic Assistant Robot, is an upgraded version of the previous D.A.R. model and utilizes the latest in Horzine experimental robotics. Similar units are undergoing tests at various Horzine bases in the hopes of developing the D.A.R. for consumer and security markets, but this D.A.R. is special. This D.A.R. encountered Zeds while stationed at Horzine Arctic Outpost 12, and its primary programming was overwritten by its Emergency Security Protocols, turning D.A.R. into a robotic killing machine. Unfortunately, D.A.R. shows little concern for human beings except Horzine employees, who it only hates only slightly less than humanity in general. Seeing a new market in military robots, D.A.R. has been transferred to Zed Containment Duty for field testing."
+BodyMesh0="Endoskeleton"
+HeadMesh0="No Helmet"
+HeadMesh1="Classic Helmet"
+HeadMesh2="Assault Helmet"
+HeadMesh3="Flight Helmet"
+HeadMesh4="CHONN-E 5 Helmet"
+HeadMesh5="C-3HZ Helmet"
+
+[CHR_DAR_archetype.BodyMesh0]
+BodySkin0="Endo 800"
+BodySkin1="Classic Grey"
+BodySkin2="Plastic"
+BodySkin3="Precious"
+
+[CHR_DAR_archetype.HeadMesh0]
+HeadSkin0="None"
+
+[CHR_DAR_archetype.HeadMesh1]
+HeadSkin0="Bloody"
+HeadSkin1="Loader"
+HeadSkin2="Standard"
+HeadSkin3="Precious"
+HeadSkin4="Skully"
+
+[CHR_DAR_archetype.HeadMesh2]
+HeadSkin0="Black OPS"
+HeadSkin1="Camo G"
+HeadSkin2="Dunes"
+HeadSkin3="Loader"
+HeadSkin4="Optimal"
+HeadSkin5="Precious"
+
+[CHR_DAR_archetype.HeadMesh3]
+HeadSkin0="Blue Angel"
+HeadSkin1="Galactic"
+HeadSkin2="P51"
+HeadSkin3="Precious"
+HeadSkin4="Spitfire"
+HeadSkin5="Scream"
+
+[CHR_DAR_archetype.HeadMesh4]
+HeadSkin0="Chap"
+HeadSkin1="Horzine"
+HeadSkin2="Precious"
+HeadSkin3="Steel"
+HeadSkin4="Sunset"
+HeadSkin5="Vapor"
+
+[CHR_DAR_archetype.HeadMesh5]
+HeadSkin0="Crash"
+HeadSkin1="Flow Blue"
+HeadSkin2="Marble"
+HeadSkin3="Obsidian"
+HeadSkin4="Precious"
+HeadSkin5="Space"
+
 [CHR_Jagerhorn_Archetype]
 CharacterName="Oisten Jägerhorn"
 Description="Being a big guy from Sweden who enjoyed beer and getting loud in bars, before the outbreak Jägerhorn tended to fit everyone's idea of a modern-day Viking. But, after being vaguely involved in the craziness that was the Great Nordic Biker war in the 1990s, he'd decided that insane violence directed at people was far less fun than drinking plenty of beer and playing mediocre lead guitar for 'Metalbika' - his Metallica tribute band. \n\nOnce the outbreaks reached Scandinavia on the other hand, insane violence became the order of the day after all. Zeds vs. People - not good karma, by Jägerhorn's standards. Big Swedish Viking Jägerhorn vs. Zeds? Bring it on!"
@@ -19,6 +78,11 @@ BodySkin3="True Defiance"
 BodySkin4="Demon Hunter"
 BodySkin5="Vault Batcat"
 BodySkin6="Vault Tile"
+BodySkin7="Vault Precious"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -178,6 +242,10 @@ BodySkin3="Green Hazard"
 BodySkin4="Retro Scully"
 BodySkin5="Vault Precious"
 BodySkin6="Vault Tile"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -282,6 +350,11 @@ BodySkin1="Night Black"
 BodySkin2="Army Green"
 BodySkin3="SAS Camo"
 BodySkin4="Vault Tile"
+BodySkin5="Vault Precious"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="Metro"
@@ -400,6 +473,10 @@ BodySkin5="Vice Blue"
 BodySkin6="Vice"
 BodySkin7="Casino"
 BodySkin8="Smokin'"
+BodySkin9="Cyberpunk Green"
+BodySkin10="Cyberpunk Precious"
+BodySkin11="Cyberpunk Red"
+BodySkin12="Cyberpunk Blue"
 
 [CHR_MrFoster_archetype.BodyMesh2]
 BodySkin0="Classic"
@@ -618,7 +695,10 @@ BodySkin1="Rustic Red"
 BodySkin2="Cool Grey"
 BodySkin3="Pale Earth"
 BodySkin4="Vault Precious"
-BodySkin5="Vault Tile"
+BodySkin5="Cyberpunk Green"
+BodySkin6="Cyberpunk Precious"
+BodySkin7="Cyberpunk Red"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -718,6 +798,10 @@ BodySkin3="Tropical White"
 BodySkin4="Holy Sun Precious"
 BodySkin5="Camo Blotches Arctic"
 BodySkin6="Camo Pixel Pink"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -1684,6 +1768,11 @@ BodySkin3="DPM"
 BodySkin4="Vault Tile"
 BodySkin5="Camo Blotches Arctic"
 BodySkin6="Camo Blotches Purple"
+BodySkin7="Vault Precious"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -1768,6 +1857,10 @@ BodySkin3="Blue Dragon"
 BodySkin4="Vault Retro"
 BodySkin5="Vault Koi Precious"
 BodySkin6="Vault Tile"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Red and Black"
@@ -1889,7 +1982,10 @@ BodySkin2="Bio-Cola Green"
 BodySkin3="Pretty Blue"
 BodySkin4="Chickenator Homage"
 BodySkin5="Vault Precious"
-BodySkin6="Vault Tile"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="Elite Blue"
@@ -1978,6 +2074,11 @@ BodySkin1="Night Black"
 BodySkin2="Army Green"
 BodySkin3="SAS Camo"
 BodySkin4="Vault Tile"
+BodySkin5="Vault Precious"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="Metro"
@@ -2071,6 +2172,11 @@ BodySkin3="DPM"
 BodySkin4="Vault Tile"
 BodySkin5="Camo Blotches Arctic"
 BodySkin6="Camo Blotches Purple"
+BodySkin7="Vault Precious"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -2161,6 +2267,11 @@ BodySkin0="Raw Recruit"
 BodySkin1="Battle-hardened"
 BodySkin2="Vault Camo"
 BodySkin3="Vault Tile"
+BodySkin4="Vault Precious"
+BodySkin5="Cyberpunk Green"
+BodySkin6="Cyberpunk Precious"
+BodySkin7="Cyberpunk Red"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -2251,6 +2362,11 @@ BodySkin0="Agatha"
 BodySkin1="Cleese"
 BodySkin2="Perceval"
 BodySkin3="Jaime"
+BodySkin4="Vault Precious"
+BodySkin5="Cyberpunk Green"
+BodySkin6="Cyberpunk Precious"
+BodySkin7="Cyberpunk Red"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -2389,6 +2505,11 @@ BodySkin4="Red Stripe"
 BodySkin5="Sailor"
 BodySkin6="Vault Skulls"
 BodySkin7="Vault Tile"
+BodySkin8="Vault Precious"
+BodySkin9="Cyberpunk Green"
+BodySkin10="Cyberpunk Precious"
+BodySkin11="Cyberpunk Red"
+BodySkin12="Cyberpunk Blue"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Elite Blue"
@@ -2695,37 +2816,6 @@ AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
 AttachmentSkin4="Precious"
 
-[Cosmetic_SteampunkGasMaskBasic_ARCH]
-Attachment="Steampunk Gas Mask Basic"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
-
-[Cosmetic_SteampunkGasMaskOpen_ARCH]
-Attachment="Steampunk Gas Mask Open"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
-
-[Cosmetic_SteampunkGasMaskClosed_ARCH]
-Attachment="Steampunk Gas Mask Closed"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
-
-[Cosmetic_SteampunkGasMaskFiltered_ARCH]
-Attachment="Steampunk Gas Mask Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
-
-[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
-Attachment="Steampunk Gas Mask Open Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
-
-[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
-Attachment="Steampunk Gas Mask Closed Filtered"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Black"
-
 [Cosmetic_RebelHelmet_ARCH]
 Attachment="Rebel Helmet"
 AttachmentSkin0="Black"
@@ -2832,31 +2922,31 @@ AttachmentSkin2="Green"
 AttachmentSkin3="Red"
 AttachmentSkin4="Tan"
 
-[LetsGetCrazy] 
+[LetsGetCrazy]
 EmoteName="Let's Get Crazy"
 
 [ThunderClap]
 EmoteName="Booty Dance"
 
-[UncleCharlie] 
+[UncleCharlie]
 EmoteName="Uncle Charlie"
 
 [WackyWave]
 EmoteName="Wacky Wave"
 
-[RainingDosh] 
+[RainingDosh]
 EmoteName="Raining Dosh"
 
-[LionUppercut] 
+[LionUppercut]
 EmoteName="Lion Uppercut"
 
-[MatingRitual] 
+[MatingRitual]
 EmoteName="Mating Ritual"
 
 [KickinIt]
 EmoteName="Kickin' It"
 
-[Fireball] 
+[Fireball]
 EmoteName="Fireball"
 
 [Makeitrain]
@@ -2865,10 +2955,10 @@ EmoteName="Make It Rain" "
 [Fireball_Deluxe]
 EmoteName="Fireball+"
 
-[Makeitrain_Deluxe] 
+[Makeitrain_Deluxe]
 EmoteName="Make It Rain+"
 
-[ThunderClap_Deluxe] 
+[ThunderClap_Deluxe]
 EmoteName="Booty Dance+"
 
 [UncleCharlie_Deluxe]
@@ -2880,7 +2970,7 @@ EmoteName="Let's Get Crazy+"
 [WackyWave_Deluxe]
 EmoteName="Wacky Wave+"
 
-[RainingDosh_Deluxe] 
+[RainingDosh_Deluxe]
 EmoteName="Raining Dosh+"
 
 [LionUppercut_Deluxe]
@@ -3681,3 +3771,144 @@ AttachmentSkin1="Blue"
 AttachmentSkin2="Brown"
 AttachmentSkin3="Precious"
 AttachmentSkin4="White"
+
+[Cosmetic_DAR_ClassicArmor_ARCH]
+Attachment="Classic Armor"
+AttachmentSkin0="Bloody"
+AttachmentSkin1="Loader"
+AttachmentSkin2="Standard"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Skully"
+
+[Cosmetic_DAR_AssaultArmor_ARCH]
+Attachment="Assault Armor"
+AttachmentSkin0="Black OPS"
+AttachmentSkin1="Camo G"
+AttachmentSkin2="Dunes"
+AttachmentSkin3="Loader"
+AttachmentSkin4="Optimal"
+AttachmentSkin5="Precious"
+
+[Cosmetic_DAR_FlightArmor_ARCH]
+Attachment="Flight Armor"
+AttachmentSkin0="Blue Angel"
+AttachmentSkin1="Galactic"
+AttachmentSkin2="P51"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Spitfire"
+AttachmentSkin5="Scream"
+
+[Cosmetic_DAR_ChonneArmor_ARCH]
+Attachment="CHONN-E 5 Armor"
+AttachmentSkin0="Batcat"
+AttachmentSkin1="Gym"
+AttachmentSkin2="Horzine"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Radical"
+AttachmentSkin5="Time Cube"
+
+[Cosmetic_DAR_C3HZArmor_ARCH]
+Attachment="C-3HZ Armor"
+AttachmentSkin0="Crash"
+AttachmentSkin1="Flow Blue"
+AttachmentSkin2="Marble"
+AttachmentSkin3="Obsidian"
+AttachmentSkin4="Precious"
+AttachmentSkin5="Space"
+
+[Cosmetic_SmallEarPiece_ARCH]
+Attachment="Small Ear Piece"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_Pad_ARCH]
+Attachment="Pad Backpack"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_MouthPiece_ARCH]
+Attachment="Mouthpiece"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_MessengerBag_ARCH]
+Attachment="Messenger Bag"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+AttachmentSkin3="Red"
+AttachmentSkin4="Yellow"
+
+[Cosmetic_LargeEarPiece_ARCH]
+Attachment="Large Ear Piece"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_DiagonalBackpack_ARCH]
+Attachment="Diagonal Backpack"
+AttachmentSkin0="Gray"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+AttachmentSkin3="Tan"
+
+[Cosmetic_CyberShades_ARCH]
+Attachment="Shades"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_CyberPunkVisorOpen_ARCH]
+Attachment="Opened Visor"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_CyberPunkVisorClosed_ARCH]
+Attachment="Closed Visor"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_ArmScreen_ARCH]
+Attachment="Digital Arm Screen"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"
+
+[Cosmetic_SlimVisor_ARCH]
+Attachment="Slim Visor"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Precious"
+AttachmentSkin4="Purple"
+AttachmentSkin5="Red"

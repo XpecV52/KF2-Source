@@ -749,7 +749,7 @@ function ConfirmDuplicatesRecycle()
             OnlineSub.ClearInFlight();
             if(Class'WorldInfo'.static.IsConsoleBuild())
             {
-                PerformExchange(RuleToExchange, 10);                
+                PerformExchange(RuleToExchange, (GetCountOfItem(TempItemIdHolder)) - 1);                
             }
             else
             {
@@ -990,8 +990,8 @@ function Callback_UseItem(int ItemDefinition)
     {
         if(OnlineSub.HasKeyForItem(ItemDefinition, NeededItemID) || IsKeylessCrate(ItemDefinition))
         {
-            PlayfabInter.UnlockContainer(string(ItemDefinition));
             SetVisible(false);
+            PlayfabInter.UnlockContainer(string(ItemDefinition));
             ItemSeriesCommand = "CE open_" $ string(Class'KFInventoryCatalog'.static.GetItemSeries(ItemDefinition));            
             KFPC.ConsoleCommand(ItemSeriesCommand);
         }        
@@ -1006,8 +1006,8 @@ function Callback_UseItem(int ItemDefinition)
         {
             if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]) && (ExchangeRules[RuleIndex].Sources.Length == 2) || IsKeylessCrate(ItemDefinition))
             {
-                PerformExchange(ExchangeRules[RuleIndex]);
                 SetVisible(false);
+                PerformExchange(ExchangeRules[RuleIndex]);
                 ItemSeriesCommand = "CE open_" $ string(Class'KFInventoryCatalog'.static.GetItemSeries(ItemDefinition));                
                 KFPC.ConsoleCommand(ItemSeriesCommand);
                 bExchangeFound = true;
@@ -1219,6 +1219,9 @@ Cosmetic"
     SpecialEventItemIDs(7)=5587
     SpecialEventItemIDs(8)=5588
     SpecialEventItemIDs(9)=5589
+    SpecialEventItemIDs(10)=5802
+    SpecialEventItemIDs(11)=5803
+    SpecialEventItemIDs(12)=5804
     KeylessCrateIDs(0)=5313
     KillThatDangSoundEvent=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Stop_No_Sound'
     CurrentWeaponTypeFilter=EInventoryWeaponType_Filter.EInvWT_None

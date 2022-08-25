@@ -197,7 +197,7 @@ event int GetProfileInt(int ProfileSettingId)
 }
 
 
-event bool GetProfileBool(int ProfileSettingId) 
+event bool GetProfileBool(int ProfileSettingId)
 {
 	local int tempInt;
 	GetProfileSettingValueInt(ProfileSettingId, tempInt);
@@ -227,7 +227,7 @@ function int GetDefaultInt(int ProfileSettingId)
 }
 
 
-function bool GetDefaultBool(int ProfileSettingId) 
+function bool GetDefaultBool(int ProfileSettingId)
 {
 	local int tempInt;
 	GetProfileSettingDefaultInt(ProfileSettingId, tempInt);
@@ -252,6 +252,11 @@ native event SetToDefaults();
 native function FlattenExtraToProfileSettings();
 native function ExpandExtraFromProfileSettings();
 //@HSL_MOD_END
+
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 defaultproperties
 {

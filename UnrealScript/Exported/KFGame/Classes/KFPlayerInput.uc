@@ -39,6 +39,9 @@ var bool bInvertController;
 /** The amount of time the weapon switch button must be held to perform various actions */
 var config float GamepadButtonHoldTime;
 
+/** The amount of time the interaction button must be held to perform autoupgrade*/
+var config float AutoUpgradeHoldTime;
+
 /** Amount thumbstick should be pressed to activate sprint */
 var config float SprintAnalogThreshold;
 
@@ -255,11 +258,11 @@ native function string GetGameBindableAction(const out Name Key);
 
 event bool FilterButtonInput(int ControllerId, Name Key, EInputEvent Event, float AmountDepressed, bool bGamepad)
 {
-	if( !class'Engine'.static.IsEditor() && Event == IE_Pressed && (Key == 'XboxTypeS_Start' || Key == 'Escape') && !class'WorldInfo'.static.IsMenuLevel() 
+	if( !class'Engine'.static.IsEditor() && Event == IE_Pressed && (Key == 'XboxTypeS_Start' || Key == 'Escape') && !class'WorldInfo'.static.IsMenuLevel()
 		&& (MyGfxManager.bAfterLobby || WorldInfo.GRI.bMatchIsOver)
 		)
 	{
-		MyGFxManager.ToggleMenus();	
+		MyGFxManager.ToggleMenus();
 		return true;
 	}
 
@@ -371,7 +374,7 @@ function EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
 	CurvePct = (CurveOut - MinCurveOut) / (MaxCurveOut - MinCurveOut);
 
 	MappedOutput = EAnalogMovementSpeed.AMOVESPEED_Max - (CurvePct * EAnalogMovementSpeed.AMOVESPEED_Max);
-	
+
 	return EDoubleClickDir( MappedOutput );
 }
 
@@ -554,7 +557,7 @@ function AdjustMouseSensitivity(float FOVScale)
 // Reinitialize control settings. Used for E3 when settings change via button hacks
 event ReInitializeControlsUI()
 {
-	if( MyGFxManager != none && 
+	if( MyGFxManager != none &&
 		MyGFxManager.OptionsControlsMenu != none &&
 		MyGFxManager.OptionsControlsMenu.InputContainer != none )
 	{
@@ -637,7 +640,7 @@ exec function GamepadSprint()
 function GamepadSprintTimer()
 {
 	if ( ShouldActivateGamepadSprint() )
-	{		
+	{
 		bRun = 1;
 		class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer(nameof(GamepadSprintTimer), self);
 	}
@@ -691,7 +694,7 @@ function bool ShouldActivateGamepadSprint()
 	return (Distance + Bias) > SprintAnalogThreshold;
 }
 
-/** 
+/**
  * GBA_Reload_Gamepad
  * Tap: Reload
  * Hold: Quick Heal
@@ -763,7 +766,7 @@ exec function GamepadCrouchRelease()
 /** empty function for timer */
 function GamepadCrouchTimer();
 
-/** 
+/**
  * GBA_Jump_Gamepad
  * Tap: Jump
  * Hold: Toggle crouch
@@ -875,7 +878,7 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 	}
 
 	if( bVersusInput && CustomStartFireVersus(5) )
-	{ 
+	{
 		return;
 	}
 
@@ -954,10 +957,10 @@ simulated exec function ToggleFlashlight()
 	KFP = KFPawn_Human(Pawn);
 	if( KFP != None && KFP.MyKFWeapon != None )
 	{
-		// if anything is on, tap to turn off 
+		// if anything is on, tap to turn off
 		if( bNightVisionActive )
 		{
-			InternalToggleNightVision(); 
+			InternalToggleNightVision();
 		}
 		// if able to use NVG, handle hold press
 		else if( bPerkHasNightVision )
@@ -988,7 +991,7 @@ function FlashlightTimer()
 	InternalToggleNightVision();
 }
 
-/** 
+/**
  * Actually pass the toggle flashlight command onto the pawn.  Seperated to simplify and
  * alleviate confusion between flashlight/equipment/nightvision terminology in legacy code.
  */
@@ -1006,11 +1009,11 @@ function InternalToggleFlashlight()
 		}
 
 		KFP.ToggleEquipment();
-		KFP.PlaySoundBase((KFP.bFlashlightOn) ? FlashlightOnEvent : FlashlightOffEvent); 
+		KFP.PlaySoundBase((KFP.bFlashlightOn) ? FlashlightOnEvent : FlashlightOffEvent);
 	}
 }
 
-/** 
+/**
  * Actually pass the toggle night vision command onto the controller.  Seperated to simplify and
  * alleviate confusion between flashlight/equipment/nightvision terminology in legacy code.
  */
@@ -1027,7 +1030,7 @@ function InternalToggleNightVision()
 		}
 
 		SetNightVision( !bNightVisionActive );
-		KFP.PlaySoundBase((bNightVisionActive) ? NightVisionOnEvent : NightVisionOffEvent); 
+		KFP.PlaySoundBase((bNightVisionActive) ? NightVisionOnEvent : NightVisionOffEvent);
 	}
 }
 
@@ -1263,7 +1266,7 @@ exec function ReleaseGamepadWeaponSelect()
 				else
 				{
 		    		KFIM.GamePadNextWeapon();
-				}			    
+				}
 		    }
 		    // Switch to selected weapon from the UI
 		    else
@@ -1286,7 +1289,7 @@ function bool CheckForWeaponMenuTimerInterrupt()
 		GamepadWeaponMenuTimer();
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -1611,7 +1614,23 @@ exec function OnVoteNoRelease()
 //This takes is called in PlayerController::Use() place now.
 exec function Interact()
 {
-	class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer( GamepadButtonHoldTime, false, nameof(InteractTimer), self );
+	local KFInventoryManager KFIM;
+	local KFInterface_Usable UsableTrigger;
+
+	KFIM = KFInventoryManager(Pawn.InvManager);
+	if (KFIM != none && KFIM.Instigator != none)
+	{
+		UsableTrigger = GetCurrentUsableActor(KFIM.Instigator);
+
+		if (UsableTrigger != none && UsableTrigger.IsA('KFTraderTrigger'))
+		{
+			class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(AutoUpgradeHoldTime, false, nameof(InteractTimer), self);
+			return;
+		}
+	}
+
+	class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(GamepadButtonHoldTime, false, nameof(InteractTimer), self);
+
 }
 
 //This takes is called in PlayerController::Use() place now.
@@ -1630,7 +1649,7 @@ exec function InteractRelease()
 exec function InteractTimer()
 {
 	local KFInventoryManager KFIM;
-	local KFInterface_Usable UsableTrigger;	
+	local KFInterface_Usable UsableTrigger;
 
 	KFIM = KFInventoryManager(Pawn.InvManager);
 	if( KFIM != none && KFIM.Instigator != none )
@@ -1649,7 +1668,6 @@ exec function InteractTimer()
 		{
 			DoAutoPurchase();
 		}
-		
 	}
 }
 
@@ -1667,7 +1685,7 @@ exec function StartVoiceChat(optional bool bPublicChat)
 		}
 		else
 		{
-			CurrentVoiceChannel = EVC_TEAM;	
+			CurrentVoiceChannel = EVC_TEAM;
 		}
 
 		class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('ClientStopNetworkedVoice');
@@ -2019,7 +2037,7 @@ function vector GetBestAutoTargetLocation(Pawn CheckTarget, out name outBoneName
     	{
     		TestLoc = KFP.Mesh.GetBoneLocation(NormalBones[i]);
 
-    		// No need to bother with cone check, since we're going to return some 
+    		// No need to bother with cone check, since we're going to return some
     		// location anyway, use line trace to determine which.
     		HitActor = Pawn.Trace(HitLoc, HitNorm, TestLoc, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
 			if( HitActor == none || HitActor == CheckTarget )
@@ -2045,7 +2063,7 @@ function bool IsAutoTargetWithinCone(vector TargetLoc, vector CamLoc, vector Cam
 	local float     DotDiffToTarget;
 	local float     UsedTargetAngle;
 	local vector 	CamToTarget;
-	
+
 	// Figure out the distance from aim to target
     CamToTarget = (TargetLoc - CamLoc);
     if ( VSizeSq(CamToTarget) > Square(Curve.Points[Curve.Points.Length-1].InVal) )
@@ -2448,7 +2466,7 @@ function float GetSensitivityByFOV( float ZoomSensitivityScale )
         {
             UsedFOVAngle = GetFOVAngle();
         }
-		
+
 		// Allow monster pawns to do sensitivity adjustments first
 		if( bVersusInput && !bUsingSights )
 		{
@@ -2515,7 +2533,7 @@ function bool IsAimAssistFrictionEnabled()
 
 function bool IsAimAssistAdhesionEnabled()
 {
-	return bAimAssistEnabled && bTargetAdhesionEnabled;	
+	return bAimAssistEnabled && bTargetAdhesionEnabled;
 }
 
 function bool IsAimAssistAutoTargetEnabled()
@@ -2546,7 +2564,7 @@ simulated function ESpecialMove GetVersusZedMoveType(KFPawn_Monster P, byte Fire
 		case class'KFWeapon'.const.BASH_FIREMODE:
 			return SM_PlayerZedMove_V;
 
-	    case class'KFWeapon'.const.ALTFIRE_FIREMODE: 
+	    case class'KFWeapon'.const.ALTFIRE_FIREMODE:
 			return SM_PlayerZedMove_MMB;
 
 	    case 8: // Quick heal key
@@ -2809,6 +2827,30 @@ exec function UnsuppressScoring()
 	ConsoleCommand("SETNOPEC KFGameInfo bLogScoring true");
 }
 
+exec function SuppressDialog(optional name ClassName)
+{
+	ClassName = (ClassName != '') ? ClassName : 'KFDialogManager';
+	ConsoleCommand("SETNOPEC" @ ClassName @ "bLogDialog false");
+}
+
+exec function UnsuppressDialog(optional name ClassName)
+{
+	ClassName = (ClassName != '') ? ClassName : 'KFDialogManager';
+	ConsoleCommand("SETNOPEC" @ ClassName @ "bLogDialog true");
+}
+
+exec function SuppressTrader(optional name ClassName)
+{
+	ClassName = (ClassName != '') ? ClassName : 'KFTraderTrigger';
+	ConsoleCommand("SETNOPEC" @ ClassName @ "bLogTrader false");
+}
+
+exec function UnsuppressTrader(optional name ClassName)
+{
+	ClassName = (ClassName != '') ? ClassName : 'KFTraderTrigger';
+	ConsoleCommand("SETNOPEC" @ ClassName @ "bLogTrader true");
+}
+
 defaultproperties
 {
    bRequiresPushToTalk=True
@@ -2817,6 +2859,7 @@ defaultproperties
    bViewSmoothingEnabled=True
    bViewAccelerationEnabled=True
    GamepadButtonHoldTime=0.250000
+   AutoUpgradeHoldTime=1.000000
    SprintAnalogThreshold=0.600000
    ZedAutoSprintAnalogThreshold=0.750000
    LookSensitivityScaleCurve=(Points=((ArriveTangent=0.500000,LeaveTangent=0.500000,InterpMode=CIM_CurveAuto),(InVal=0.800000,OutVal=0.600000,ArriveTangent=2.000000,LeaveTangent=2.000000,InterpMode=CIM_CurveAuto),(InVal=1.000000,OutVal=1.300000,ArriveTangent=8.000000,LeaveTangent=8.000000,InterpMode=CIM_CurveAuto)))

@@ -137,7 +137,6 @@ var 	protected const	class<KFDamageType>	ToxicDmgTypeClass;
 * Loading
 ********************************************************************************************* */
 var	const 	protected	byte	CurrentLevel;
-var	const 	protected	byte	CurrentPrestigeLevel;
 var			int					SavedBuild;
 
 /** Initialization */
@@ -810,7 +809,7 @@ function ApplySkillsToPawn()
 
 /**
  * We need to separate this from ApplySkillsToPawn() to avoid resetting weight limits (and losing weapons)
- * every time a skill or level is changed 
+ * every time a skill or level is changed
  */
 function ApplyWeightLimits()
 {
@@ -873,7 +872,7 @@ function AddDefaultInventory( KFPawn P )
         else
         {
             P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
-        }		
+        }
 		// Secondary weapon is spawned through the pawn unless we want an additional one  not anymore
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), class'Class')));
@@ -1169,6 +1168,8 @@ simulated function KFWeapon GetOwnerWeapon()
  */
 function OnWaveEnded();
 
+function OnWaveStart();
+
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
 	return false;
@@ -1197,12 +1198,12 @@ simulated event KFPawn_Human GetOwnerPawn()
 	return none;
 }
 
-protected function bool HitShouldStumble( byte BodyPart ) 
+protected function bool HitShouldStumble( byte BodyPart )
 {
 	return BodyPartsCanStumble.Find( BodyPart ) != INDEX_NONE;
 }
 
-protected function bool HitShouldKnockdown( byte BodyPart ) 
+protected function bool HitShouldKnockdown( byte BodyPart )
 {
 	return BodyPartsCanKnockDown.Find( BodyPart ) != INDEX_NONE;
 }

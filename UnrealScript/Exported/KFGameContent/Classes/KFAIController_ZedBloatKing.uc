@@ -68,6 +68,11 @@ simulated function Tick(float DeltaTime)
     EvaluateSpecialMoves(DeltaTime);
 }
 
+function bool AmIAllowedToSuicideWhenStuck()
+{
+	return false;
+}
+
 function EvaluateSpecialMoves(float DeltaTime)
 {
     //Don't attack while we're in theatrics
@@ -300,15 +305,23 @@ function SpawnMinions()
 //Once we reach a point where all intended minions for the current spawn cycle are through, pause spawning
 function PauseBossWave()
 {
-    local KFGameInfo KFGI;
+	local KFGameInfo KFGI;
 
-    KFGI = KFGameInfo(WorldInfo.Game);
-
+	KFGI = KFGameInfo(WorldInfo.Game);
     if (KFGI.SpawnManager.GetNumAINeeded() <= 0)
     {
-        Cleartimer(nameof(PauseBossWave));
-        KFGI.SpawnManager.StopSummoningBossMinions();
+        StopBossWave();
     }
+}
+
+function StopBossWave()
+{
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo(WorldInfo.Game);
+
+	Cleartimer(nameof(PauseBossWave));
+	KFGI.SpawnManager.StopSummoningBossMinions();
 }
 
 function KFAIWaveInfo GetWaveInfo(int GameDifficulty)
@@ -319,12 +332,21 @@ function KFAIWaveInfo GetWaveInfo(int GameDifficulty)
 /** Returns the number of minions to spawn based on number of players */
 function byte GetNumMinionsToSpawn()
 {
+	local int LivingPlayerCount;
+	local float MaxPlayers;
+	local byte NumMinsToSpawn;
+
 	local KFGameInfo KFGI;
 	KFGI = KFGameInfo(WorldInfo.Game);
 
     if (KFGI != none)
     {
-        return byte(Lerp(NumMinionsToSpawn[KFGI.GameDifficulty].X, NumMinionsToSpawn[KFGI.GameDifficulty].Y, KFGameInfo(WorldInfo.Game).GetLivingPlayerCount() / float(WorldInfo.Game.MaxPlayers)));
+		LivingPlayerCount = KFGameInfo(WorldInfo.Game).GetLivingPlayerCount();
+		MaxPlayers = float(WorldInfo.Game.MaxPlayers);
+		NumMinsToSpawn = byte(Lerp(NumMinionsToSpawn[KFGI.GameDifficulty].X, NumMinionsToSpawn[KFGI.GameDifficulty].Y, LivingPlayerCount / MaxPlayers));
+
+		if (KFGI.bLogAICount) LogInternal("[KFAIController_ZedBloatKing::GetNumMinionsToSpawn] LivingPlayerCount:" @ LivingPlayerCount @ "Max Players:" @ MaxPlayers @ "NumMinionsToSpawn:" @ NumMinsToSpawn);
+        return NumMinsToSpawn;
     }
 
     //Backup if we're in a weird state
@@ -344,6 +366,13 @@ function StartArmorEnrage()
 function EndArmorEnrage()
 {
     MyKFPawn.SetEnraged(false);
+}
+
+function PawnDied(Pawn InPawn)
+{
+	super.PawnDied(InPawn);
+
+	StopBossWave();
 }
 
 /** Victory */

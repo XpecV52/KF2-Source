@@ -342,7 +342,7 @@ ItemDescription="•Tryb ataku: miotanie wybuchającymi, zapalnymi pociskami. \n
 [KFWeap_Pistol_DualFlare]
 ItemName="Podwójny Spitfire"
 ItemCategory="Ogień"
-ItemDescription="•Tryb ataku: miotanie wybuchającymi, zapalnymi pociskami. \n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•To para Spitfire'ów. Można je oddzielenie sprzedać lub wyrzucić."
+ItemDescription="•Tryb ataku: miotanie wybuchającymi, zapalnymi pociskami. \n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Para Spitfire'ów."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Strzelba zapalająca"
@@ -397,7 +397,7 @@ ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Klasyczny samopowta
 [KFWeap_Pistol_DualColt1911]
 ItemName="Dwa pistolety M1911"
 ItemCategory="Broń krótka"
-ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Para samopowtarzalnych pistoletów Colt 1911. Można je oddzielenie sprzedać lub wyrzucić."
+ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para samopowtarzalnych pistoletów Colt 1911."
 
 [KFWeap_Pistol_Deagle]
 ItemName="Desert Eagle .50"
@@ -407,7 +407,7 @@ ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Desert Eagle to pot
 [KFWeap_Pistol_DualDeagle]
 ItemName="Dwa Desert Eagle .50"
 ItemCategory="Broń krótka"
-ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Para ręcznych armat Desert Eagle. Można je oddzielenie sprzedać lub wyrzucić."
+ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para ręcznych działek Desert Eagle."
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Rewolwer 1858"
@@ -417,7 +417,7 @@ ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Wspaniały egzemplarz
 [KFWeap_Revolver_DualRem1858]
 ItemName="Dwa rewolwery 1858"
 ItemCategory="Broń krótka"
-ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Para rewolwerów Remington 1858. Można je oddzielenie sprzedać lub wyrzucić."
+ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Remington 1858."
 
 [KFWeap_Revolver_SW500]
 ItemName="Rewolwer Magnum .500"
@@ -427,7 +427,7 @@ ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•„Kolekcjoner kości
 [KFWeap_Revolver_DualSW500]
 ItemName="Dwa Magnum .500"
 ItemCategory="Broń krótka"
-ItemDescription="•Tryb ataku: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Para rewolwerów Magnum .500 – „Kolekcjoner kości”. Można je oddzielenie sprzedać lub wyrzucić. Z wielkim łupnięciem."
+ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Magnum .500 – „Kolekcjoner kości”."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -483,7 +483,7 @@ ItemDescription="•Tryb ataku: ogień ciągły lub pojedynczy.\n•Tryb alterna
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
 ItemCategory="Pistolet maszynowy"
-ItemDescription="• Tryb ataku: ogień ciągły lub pojedynczy.\n•Tryb alternatywny pozwala przełączać między trybami ataku.\n•Jeden z najnowszych nabytków do rodziny. Może wujek? Czy pistolety maszynowe mają rodziny?"
+ItemDescription="• Tryb strzelania: ogień ciągły albo seria.\n•Tryb alternatywny pozwala przełączać między trybami ataku.\n•Jeden z najnowszych nabytków do rodziny. Może wujek? Czy pistolety maszynowe mają rodziny?"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="Miotacz lodu"
@@ -494,6 +494,26 @@ ItemDescription="•Tryb ataku: strzelanie strumieniem cząstek o temperaturze z
 ItemName="Hemogoblin"
 ItemCategory="Karabin"
 ItemDescription="•Tryb ataku: miotanie strzykawkami, które ranią, spowalniają i osłabiają zety. \n•Tryb alternatywny pozwala strzelać strzałkami leczącymi członków drużyny.\n• Nie nadaje się do odchudzania."
+
+[KFWeap_HuskCannon]
+ItemName="Truchla armata"
+ItemCategory="Ogień"
+ItemDescription="•Ładowanie odbywa się po naciśnięciu spustu, a rozładowanie po jego puszczeniu. \n•Oficjalna wersja truchlej armaty Horzine. 95% gwarancji niewybuchu."
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="Broń krótka"
+ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Więcej niż jedna lufa to zawsze dobra wiadomość. To tak jak z bekonem."
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="Podwójny AF2011-A2"
+ItemCategory="Broń krótka"
+ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Dwie bronie, każda z dwoma lufami. Czterokrotność siły ognia. Czysta matematyka. Z nią nie ma co dyskutować."
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac-10"
+ItemCategory="Pistolet maszynowy"
+ItemDescription="•Tryb strzelania: ogień ciągły albo seria.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Obsługuje szybkostrzelną amunicję zapalającą. Łapiesz? Szybkostrzelną. Bo do broni maszynowej? Ech, mniejsza o to."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="Przetrwanie VS"
 
 [KFGameInfo_WeeklySurvival]
 GameName="Tygodniowy incydent"
+
+[KFGameInfo_Endless]
+GameName="Bez końca"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Brak uleczeń"

@@ -729,6 +729,7 @@ defaultproperties
    ZedTimeModifyingStates(3)="WeaponSingleFireAndReload"
    ZedTimeModifyingStates(4)="SprayingFire"
    ZedTimeModifyingStates(5)="WeaponAltFiring"
+   ZedTimeModifyingStates(6)="HuskCannonCharge"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Random'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Support'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'

@@ -660,13 +660,26 @@ static function SendMapOptionsAndOpenAARMenu()
             if((KFGRI != none) && KFGRI.VoteCollector != none)
             {
                 Class'KFGFxMenu_StartGame'.static.GetMapList(KFGRI.VoteCollector.MapList);
+                I = 0;
+                J0x17A:
+
+                if(I < KFGRI.VoteCollector.MapList.Length)
+                {
+                    if(!KFGI.IsMapAllowedInCycle(KFGRI.VoteCollector.MapList[I]))
+                    {
+                        KFGRI.VoteCollector.MapList.Remove(I, 1;
+                        -- I;
+                    }
+                    ++ I;
+                    goto J0x17A;
+                }
             }            
         }
         else
         {
             KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
             I = 0;
-            J0x1AE:
+            J0x2B4:
 
             if(I < KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Length)
             {
@@ -678,7 +691,7 @@ static function SendMapOptionsAndOpenAARMenu()
                     }
                 }
                 ++ I;
-                goto J0x1AE;
+                goto J0x2B4;
             }
         }
         KFPC.ClientShowPostGameMenu();        

@@ -73,11 +73,12 @@ function UpdateWaveCount()
         return;
     }
 
+
     // Max # of waves.
     CurrentWaveMax = KFGRI.WaveMax-1;
     if(LastWaveMax != CurrentWaveMax)
     {
-        SetInt("maxWaves" ,CurrentWaveMax);
+        SetInt("maxWaves" , KFGRI.default.bEndlessMode ? INDEX_NONE : CurrentWaveMax);
         LastWaveMax = CurrentWaveMax;
     }
 
@@ -85,7 +86,7 @@ function UpdateWaveCount()
     CurrentWave = KFGRI.WaveNum;
     if(CurrentWave != LastWave)
     {
-        SetInt("currentWave" ,CurrentWave);
+        SetInt("currentWave" , CurrentWave);
         LastWave = CurrentWave;
     }
 }
@@ -99,7 +100,7 @@ function UpdateZEDCount()
         return;
     }
 
-    if(KFGRI.IsFinalWave())
+    if(KFGRI.IsBossWave())
     {
         SetInt("remainingZEDs" , INDEX_NONE);
         return;

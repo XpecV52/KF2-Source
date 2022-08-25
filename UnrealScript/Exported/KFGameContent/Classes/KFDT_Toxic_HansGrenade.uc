@@ -371,22 +371,6 @@ class KFDT_Toxic_HansGrenade extends KFDT_Toxic
 
 
 
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
 
 
 
@@ -401,12 +385,6 @@ class KFDT_Toxic_HansGrenade extends KFDT_Toxic
 
 
 
-	
-
-
-
-
-	
 
 
 
@@ -421,7 +399,152 @@ class KFDT_Toxic_HansGrenade extends KFDT_Toxic
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

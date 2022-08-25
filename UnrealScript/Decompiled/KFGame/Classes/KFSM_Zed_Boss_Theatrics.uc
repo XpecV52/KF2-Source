@@ -36,7 +36,7 @@ protected function bool InternalCanDoSpecialMove()
             KFGRI = KFGameReplicationInfo(AIOwner.WorldInfo.GRI);
         }
     }
-    if((KFGRI != none) && !KFGRI.IsFinalWave())
+    if((KFGRI != none) && !KFGRI.IsBossWave())
     {
         return false;
     }

@@ -11,15 +11,18 @@ struct SSpecialEventObjectiveInfo
 {
     var const localized string TitleString;
     var const localized string DescriptionString;
+    var const localized string TierEventRewardName;
 
     structdefaultproperties
     {
         TitleString=""
         DescriptionString=""
+        TierEventRewardName=""
     }
 };
 
 var const localized string CurrentSpecialEventString;
+var const localized string CurrentSpecialEventDescriptionString;
 var const localized array<localized SSpecialEventObjectiveInfo> SpecialEventObjectiveInfoList;
 var array<string> ObjectiveIconURLs;
 var string AllCompleteRewardIconURL;
@@ -27,7 +30,7 @@ var const localized string AllCompleteRewardDescriptionString;
 var array<string> ChanceDropIconURLs;
 var const localized array<localized string> ChanceDropDescriptionStrings;
 var string IconURL;
-var array<bool> ObjectiveStatusList;
+var array<ObjectiveProgress> ObjectiveStatusList;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
@@ -54,14 +57,12 @@ function bool PopulateData()
 {
     local GFxObject DataObject, DataProvider;
     local int I;
-    local KFPlayerController KFPC;
 
-    KFPC = KFPlayerController(Outer.GetPC());
     if(HasObjectiveStatusChanged())
     {
         DataProvider = Outer.CreateArray();
         I = 0;
-        J0x73:
+        J0x41:
 
         if(I < SpecialEventObjectiveInfoList.Length)
         {
@@ -69,14 +70,14 @@ function bool PopulateData()
             DataObject.SetString("label", default.SpecialEventObjectiveInfoList[I].TitleString);
             DataObject.SetString("description", default.SpecialEventObjectiveInfoList[I].DescriptionString);
             DataObject.SetString("iconPath", "img://" $ default.ObjectiveIconURLs[I]);
-            DataObject.SetBool("complete", ObjectiveStatusList[I]);
-            DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
+            DataObject.SetBool("complete", ObjectiveStatusList[I].bComplete);
+            DataObject.SetInt("rewardValue", ObjectiveStatusList[I].NumericValue);
             DataObject.SetBool("showProgres", false);
             DataObject.SetFloat("progress", 0);
             DataObject.SetString("textValue", "");
             DataProvider.SetElementObject(I, DataObject);
             ++ I;
-            goto J0x73;
+            goto J0x41;
         }
         if(default.IconURL != "")
         {
@@ -103,7 +104,8 @@ function bool HasObjectiveStatusChanged()
 
         if(I < SpecialEventObjectiveInfoList.Length)
         {
-            ObjectiveStatusList[I] = KFPC.IsEventObjectiveComplete(I);
+            ObjectiveStatusList[I].bComplete = KFPC.IsEventObjectiveComplete(I);
+            ObjectiveStatusList[I].NumericValue = KFPC.GetSpecialEventRewardValue();
             ++ I;
             goto J0x6B;
         }
@@ -112,18 +114,19 @@ function bool HasObjectiveStatusChanged()
     else
     {
         I = 0;
-        J0xE7:
+        J0x141:
 
         if(I < SpecialEventObjectiveInfoList.Length)
         {
             bTempStatus = KFPC.IsEventObjectiveComplete(I);
-            if(ObjectiveStatusList[I] != bTempStatus)
+            if((ObjectiveStatusList[I].bComplete != bTempStatus) || ObjectiveStatusList[I].NumericValue != KFPC.GetSpecialEventRewardValue())
             {
                 bHasChanged = true;
-                ObjectiveStatusList[I] = bTempStatus;
+                ObjectiveStatusList[I].bComplete = bTempStatus;
+                ObjectiveStatusList[I].NumericValue = KFPC.GetSpecialEventRewardValue();
             }
             ++ I;
-            goto J0xE7;
+            goto J0x141;
         }
     }
     return bHasChanged;
@@ -163,11 +166,11 @@ function PopulateChanceDrops()
 defaultproperties
 {
     CurrentSpecialEventString="Temp Title"
-    SpecialEventObjectiveInfoList(0)=(TitleString="Test 1",DescriptionString="Description 1")
-    SpecialEventObjectiveInfoList(1)=(TitleString="Test 2",DescriptionString="Description 2")
-    SpecialEventObjectiveInfoList(2)=(TitleString="Test 3",DescriptionString="Description 3")
-    SpecialEventObjectiveInfoList(3)=(TitleString="Test 4",DescriptionString="Description 4")
-    SpecialEventObjectiveInfoList(4)=(TitleString="Test 5",DescriptionString="Description 5")
+    SpecialEventObjectiveInfoList(0)=(TitleString="Test 1",DescriptionString="Description 1",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(1)=(TitleString="Test 2",DescriptionString="Description 2",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(2)=(TitleString="Test 3",DescriptionString="Description 3",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(3)=(TitleString="Test 4",DescriptionString="Description 4",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(4)=(TitleString="Test 5",DescriptionString="Description 5",TierEventRewardName="")
     ObjectiveIconURLs(0)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ObjectiveIconURLs(1)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ObjectiveIconURLs(2)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"

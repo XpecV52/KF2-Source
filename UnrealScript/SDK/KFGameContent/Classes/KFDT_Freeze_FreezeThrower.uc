@@ -36,8 +36,8 @@ defaultproperties
 	KDeathVel=300
 
 	DoT_Type=DOT_Fire
-	DoT_Duration=0 //5.0//1.0
-	DoT_Interval=0.0//0.5
+	DoT_Duration=INDEX_NONE //5.0//1.0
+	DoT_Interval=INDEX_NONE//0.5
 	DoT_DamageScale=0.0//0.1
 	bIgnoreSelfInflictedScale=false
 	

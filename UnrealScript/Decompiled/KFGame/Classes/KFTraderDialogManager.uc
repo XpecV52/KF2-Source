@@ -65,6 +65,22 @@ simulated function bool DialogIsCoolingDown(int EventID)
     return true;
 }
 
+simulated function bool ShouldDialogPlay(int EventID)
+{
+    local float PercentChance;
+
+    PercentChance = TraderVoiceGroupClass.default.DialogEvents[EventID].Chance;
+    if(PercentChance >= 1)
+    {
+        return true;
+    }
+    if(FRand() <= PercentChance)
+    {
+        return true;
+    }
+    return false;
+}
+
 simulated function PlayDialog(int EventID, Controller C, optional bool bInterrupt)
 {
     local KFPawn_Human KFPH;
@@ -72,34 +88,47 @@ simulated function PlayDialog(int EventID, Controller C, optional bool bInterrup
     bInterrupt = false;
     if(WorldInfo.NetMode == NM_DedicatedServer)
     {
-        return;
-    }
-    if(!C.IsLocalController())
-    {
-        return;
-    }
-    if(!bEnabled || TraderVoiceGroupClass == none)
-    {
-        return;
-    }
-    if((EventID < 0) || EventID >= 155)
-    {
+        LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". Tried to play on dedicated server.");
         return;
     }
     if(C == none)
     {
+        LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". Controller is null.");
+        return;
+    }
+    if(!C.IsLocalController())
+    {
+        LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". Controller is not local");
+        return;
+    }
+    if(!bEnabled || TraderVoiceGroupClass == none)
+    {
+        LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". Manager is disabled or trader voice group class is none.");
+        return;
+    }
+    if((EventID < 0) || EventID >= 274)
+    {
+        LogInternal((("Failed to play dialog id " $ string(EventID)) $ ". Event id is outside of range of 0 and ") $ string(274 - 1));
         return;
     }
     if((C.Pawn == none) || !C.Pawn.IsAliveAndWell())
     {
+        LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". Controller's pawn is either null or dead.");
         return;
     }
     if((ActiveEventInfo.AudioCue != none) && !bInterrupt)
     {
+        LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". There is already another audio cue going and we can't interrupt.");
         return;
     }
     if(DialogIsCoolingDown(EventID))
     {
+        LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". Event id is still cooling down.");
+        return;
+    }
+    if(!ShouldDialogPlay(EventID))
+    {
+        LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". Failed random chance to play.");
         return;
     }
     KFPH = KFPawn_Human(C.Pawn);
@@ -165,13 +194,23 @@ static function PlayGlobalWaveProgressDialog(int ZedsRemaining, int ZedsTotal, W
 
 simulated function PlayOpenTraderDialog(int WaveNum, int WaveMax, Controller C)
 {
-    if(WaveNum == (WaveMax - 1))
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.IsBossWaveNext())
     {
         PlayDialog(9, C);        
     }
     else
     {
-        PlayDialog(2, C);
+        if(((KFGRI != none) && KFGRI.bEndlessMode) && KFGRI.IsBossWave())
+        {
+            PlayDialog(256 + Clamp(WaveNum / 5, 0, 14), C);            
+        }
+        else
+        {
+            PlayDialog(2, C);
+        }
     }
 }
 
@@ -196,7 +235,13 @@ static function PlayApproachTraderDialog(Controller C)
 
 simulated function PlayCloseTraderDialog(Controller C)
 {
-    PlayDialog(3, C);
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(C.WorldInfo.GRI);
+    if((KFGRI == none) || !KFGRI.bEndlessMode)
+    {
+        PlayDialog(3, C);
+    }
 }
 
 simulated function AddRandomOption(int OptionID, out byte NumOptions, out int BestOptionID)
@@ -322,7 +367,10 @@ simulated function PlayTraderTickDialog(int RemainingTime, Controller C, WorldIn
     }
     J0x3EF:
 
-    PlayDialog(BestOptionID, C);
+    if(BestOptionID != -1)
+    {
+        PlayDialog(BestOptionID, C);
+    }
 }
 
 simulated function PlayBeginTraderTimeDialog(KFPlayerController KFPC)
@@ -564,9 +612,33 @@ simulated function PlaySelectItemDialog(Controller C, bool bTooExpensive, bool b
     PlayDialog(BestOptionID, C);
 }
 
+static function BroadcastEndlessStartWaveDialog(int WaveNum, WorldInfo WI)
+{
+    local int EventID;
+
+    if(WaveNum > 100)
+    {
+        EventID = 255;        
+    }
+    else
+    {
+        EventID = 155 + (WaveNum - 1);
+    }
+    PlayGlobalDialog(EventID, WI, true);
+}
+
+static function BroadcastEndlessSpecialWaveDialog(int ModeIndex, WorldInfo WI)
+{
+    local int EventID;
+
+    EventID = 271 + (ModeIndex % 3);
+    PlayGlobalDialog(EventID, WI, true);
+}
+
 defaultproperties
 {
     bEnabled=true
+    ActiveEventInfo=(EventID=0,AudioCue=none,Priority=0,Cooldown=0,Chance=1)
     FewZedsDeadPct=0.2
     ManyZedsDeadPct=0.8
     FarFromTraderDistance=50000

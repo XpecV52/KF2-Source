@@ -9,9 +9,74 @@ class KFPawn_ZedClot_AlphaKing extends KFPawn_ZedClot_Alpha
     config(Game)
     hidecategories(Navigation);
 
+const HeadBit = 0x1;
+const FrontBit = 0x2;
+
+struct ArmorZoneInfo
+{
+    /** List of zones of armor (similar to hit zones) */
+    var() name ArmorZoneName;
+    /** Name of the armor zone */
+    var() name SocketName;
+    /** Name of the socket explosion FX play from */
+    var() int ArmorHealth;
+    /** Amount of health the armor absorbs before it blows off */
+    var() int ArmorHealthMax;
+    /** Amount of health the armor absorbs before it blows off */
+    var() ParticleSystem ExplosionTemplate;
+    /** Amount of health the armor absorbs before it blows off */
+    var() AkEvent ExplosionSFXTemplate;
+    /** Amount of health the armor absorbs before it blows off */
+    var() Texture2D ZoneIcon;
+
+    structdefaultproperties
+    {
+        ArmorZoneName=None
+        SocketName=None
+        ArmorHealth=0
+        ArmorHealthMax=0
+        ExplosionTemplate=none
+        ExplosionSFXTemplate=none
+        ZoneIcon=none
+    }
+};
+
 var protected float SelfRallyDealtDamageModifier;
 var protected float SelfRallyTakenDamageModifier;
 var protected bool bWasSelfRally;
+var array<name> ArmorHitzoneNames;
+var array<ArmorZoneInfo> ArmorZones;
+var float ArmorScale;
+var repnotify byte RepArmorPct[2];
+var repnotify byte ArmorZoneStatus;
+var byte PreviousArmorZoneStatus;
+var const int OverrideArmorFXIndex;
+var const AkEvent EnragedSoundEvent;
+
+replication
+{
+     if(Role == ROLE_Authority)
+        ArmorZoneStatus, RepArmorPct;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+    if(VarName == 'ArmorZoneStatus')
+    {
+        UpdateArmorPieces();        
+    }
+    else
+    {
+        if(VarName == 'RepArmorPct')
+        {
+            UpdateArmorPieces();            
+        }
+        else
+        {
+            super(KFPawn_Monster).ReplicatedEvent(VarName);
+        }
+    }
+}
 
 simulated event PostBeginPlay()
 {
@@ -29,6 +94,7 @@ simulated event PostBeginPlay()
             SelfRallyTakenDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GameDifficulty].SelfTakenDamageModifier;
         }
     }
+    InitArmor();
 }
 
 event PossessedBy(Controller C, bool bVehicleTransition)
@@ -81,11 +147,301 @@ simulated function int GetRallyBoostResistance(int NewDamage)
     }
 }
 
+function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
+{
+    super(KFPawn_Monster).AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+    if(HitInfo.BoneName != 'None')
+    {
+        AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);        
+    }
+    else
+    {
+        AdjustNonBoneDamage(InDamage);
+    }
+    if(bLogTakeDamage)
+    {
+        LogInternal(((((((((string(self) @ string(GetFuncName())) @ " After armor adjustment Damage=") $ string(InDamage)) @ "Momentum=") $ string(Momentum)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
+    }
+}
+
+function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource)
+{
+    local int HitZoneIdx, ArmorZoneIdx;
+    local name IntendedArmorZoneName;
+    local int ArmorDamage;
+
+    HitZoneIdx = HitZones.Find('ZoneName', BoneName;
+    if(HitZoneIdx >= 0)
+    {
+        ArmorZoneIdx = -1;
+        if(ArmorHitzoneNames.Find(HitZones[HitZoneIdx].ZoneName != -1)
+        {
+            IntendedArmorZoneName = 'None';
+            switch(HitZones[HitZoneIdx].ZoneName)
+            {
+                case 'head':
+                    IntendedArmorZoneName = 'head';
+                    break;
+                default:
+                    IntendedArmorZoneName = ((((DamagerSource - Location) Dot vector(Rotation)) >= float(0)) ? 'Front' : 'None');
+                    break;
+                    break;
+            }
+            ArmorZoneIdx = ArmorZones.Find('ArmorZoneName', IntendedArmorZoneName;
+        }
+        if((ArmorZoneIdx != -1) && ArmorZones[ArmorZoneIdx].ArmorHealth > 0)
+        {
+            ArmorDamage = Clamp(InDamage, 0, ArmorZones[ArmorZoneIdx].ArmorHealth);
+            InDamage -= ArmorDamage;
+            ArmorZones[ArmorZoneIdx].ArmorHealth -= ArmorDamage;
+            RepArmorPct[ArmorZoneIdx] = FloatToByte(float(ArmorZones[ArmorZoneIdx].ArmorHealth) / float(ArmorZones[ArmorZoneIdx].ArmorHealthMax));
+            if(ArmorZones[ArmorZoneIdx].ArmorHealth <= 0)
+            {
+                ExplodeArmor(ArmorZoneIdx, IntendedArmorZoneName);
+            }
+        }
+    }
+}
+
+function AdjustNonBoneDamage(out int InDamage)
+{
+    local int ValidArmorZones, ArmorReduction, ArmorRemainder, ArmorDamage, Idx;
+
+    ValidArmorZones = 0;
+    Idx = 0;
+    J0x16:
+
+    if(Idx < ArmorZones.Length)
+    {
+        if(ArmorZones[Idx].ArmorHealth > 0)
+        {
+            ++ ValidArmorZones;
+        }
+        ++ Idx;
+        goto J0x16;
+    }
+    if(ValidArmorZones > 0)
+    {
+        ArmorReduction = InDamage / ValidArmorZones;
+        ArmorRemainder = InDamage % ValidArmorZones;
+        Idx = 0;
+        J0xC9:
+
+        if(Idx < ArmorZones.Length)
+        {
+            if(ArmorZones[Idx].ArmorHealth > 0)
+            {
+                ArmorDamage = Clamp(ArmorReduction, 0, ArmorZones[Idx].ArmorHealth);
+                if(ArmorDamage < ArmorReduction)
+                {
+                    ArmorRemainder += (ArmorReduction - ArmorDamage);
+                }
+                InDamage -= ArmorDamage;
+                ArmorZones[Idx].ArmorHealth -= ArmorDamage;
+                RepArmorPct[Idx] = FloatToByte(float(ArmorZones[Idx].ArmorHealth) / float(ArmorZones[Idx].ArmorHealthMax));
+                if(ArmorZones[Idx].ArmorHealth <= 0)
+                {
+                    ExplodeArmor(Idx, ArmorZones[Idx].ArmorZoneName);
+                }
+            }
+            ++ Idx;
+            goto J0xC9;
+        }
+        Idx = 0;
+        J0x2B3:
+
+        if((Idx < ArmorZones.Length) && ArmorRemainder > 0)
+        {
+            if(ArmorZones[Idx].ArmorHealth > 0)
+            {
+                ArmorDamage = Clamp(ArmorRemainder, 0, ArmorZones[Idx].ArmorHealth);
+                InDamage -= ArmorDamage;
+                ArmorRemainder -= ArmorDamage;
+                ArmorZones[Idx].ArmorHealth -= ArmorDamage;
+                RepArmorPct[Idx] = FloatToByte(float(ArmorZones[Idx].ArmorHealth) / float(ArmorZones[Idx].ArmorHealthMax));
+                if(ArmorZones[Idx].ArmorHealth <= 0)
+                {
+                    ExplodeArmor(Idx, ArmorZones[Idx].ArmorZoneName);
+                }
+            }
+            ++ Idx;
+            goto J0x2B3;
+        }
+    }
+}
+
+function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
+{
+    if(Damage == float(0))
+    {
+        HitInfo.BoneName = 'KBArmor';
+        super(KFPawn_Monster).PlayHit(1, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);        
+    }
+    else
+    {
+        super(KFPawn_Monster).PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
+    }
+}
+
+function int GetHitZoneIndex(name BoneName)
+{
+    if(BoneName == 'KBArmor')
+    {
+        return OverrideArmorFXIndex;
+    }
+    return super(KFPawn).GetHitZoneIndex(BoneName);
+}
+
+simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
+{
+    if(HitZoneIdx == OverrideArmorFXIndex)
+    {
+        return CharacterArch.ImpactSkins[2];
+    }
+    return super(KFPawn).GetHitZoneSkinTypeEffects(HitZoneIdx);
+}
+
+function ExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
+{
+    local byte StatusField;
+
+    switch(ArmorZoneName)
+    {
+        case 'head':
+            StatusField = 2;
+            break;
+        case 'Front':
+            StatusField = 1;
+            break;
+        default:
+            break;
+    }
+    ArmorZoneStatus = byte(ArmorZoneStatus & StatusField);
+    UpdateArmorPieces();
+    KFAIController_ZedClot_AlphaKing(Controller).StartArmorLoss();
+}
+
+simulated function UpdateArmorPieces()
+{
+    local Vector SocketLocation;
+    local Rotator SocketRotation;
+    local KFCharacterInfo_Monster MonsterArch;
+
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        MonsterArch = GetCharacterMonsterInfo();
+        switch(ArmorZoneStatus ^ PreviousArmorZoneStatus)
+        {
+            case 1:
+                Mesh.DetachComponent(StaticAttachList[0]);
+                DetachComponent(StaticAttachList[0]);
+                StaticAttachList.Remove(0, 1;
+                Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
+                if(MonsterArch.ExtraVFX.Length > 0)
+                {
+                    WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0], SocketLocation, SocketRotation);
+                }
+                PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
+                break;
+            case 2:
+                DetachComponent(ThirdPersonAttachments[0]);
+                Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
+                if(MonsterArch.ExtraVFX.Length > 1)
+                {
+                    WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1], SocketLocation, SocketRotation);
+                }
+                PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
+                ThirdPersonAttachments[0] = none;
+                break;
+            default:
+                break;
+                break;
+        }
+    }
+    PreviousArmorZoneStatus = ArmorZoneStatus;
+}
+
+function InitArmor()
+{
+    local KFGameInfo KFGI;
+    local float HealthMod, HeadHealthMod;
+    local int I;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if(KFGI != none)
+    {
+        HealthMod = 1;
+        HeadHealthMod = 1;
+        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
+        I = 0;
+        J0xF0:
+
+        if(I < ArmorZones.Length)
+        {
+            ArmorZones[I].ArmorHealth *= HealthMod;
+            ArmorZones[I].ArmorHealthMax = ArmorZones[I].ArmorHealth;
+            RepArmorPct[I] = FloatToByte(float(ArmorZones[I].ArmorHealth) / float(ArmorZones[I].ArmorHealthMax));
+            ++ I;
+            goto J0xF0;
+        }
+    }
+}
+
+function SetShieldScale(float InScale)
+{
+    local int I;
+
+    ArmorScale = InScale;
+    I = 0;
+    J0x1E:
+
+    if(I < ArmorZones.Length)
+    {
+        ArmorZones[I].ArmorHealth *= InScale;
+        ArmorZones[I].ArmorHealthMax = ArmorZones[I].ArmorHealth;
+        RepArmorPct[I] = FloatToByte(float(ArmorZones[I].ArmorHealth) / float(ArmorZones[I].ArmorHealthMax));
+        ++ I;
+        goto J0x1E;
+    }
+}
+
+simulated function SetEnraged(bool bNewEnraged)
+{
+    if(Role == ROLE_Authority)
+    {
+        PlaySoundBase(EnragedSoundEvent);
+        bIsEnraged = bNewEnraged;
+        if(MyKFAIC.bCanSprint)
+        {
+            SetSprinting(true);
+        }
+    }
+}
+
 defaultproperties
 {
+    ArmorHitzoneNames(0)=head
+    ArmorHitzoneNames(1)=chest
+    ArmorHitzoneNames(2)=heart
+    ArmorHitzoneNames(3)=stomach
+    ArmorHitzoneNames(4)=abdomen
+    ArmorZones(0)=(ArmorZoneName=head,SocketName=FX_Armor_Head,ArmorHealth=450,ArmorHealthMax=450,ExplosionTemplate=none,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Small_Armor_Explo',ZoneIcon=none)
+    ArmorZones(1)=(ArmorZoneName=Front,SocketName=FX_Armor_Chest,ArmorHealth=500,ArmorHealthMax=500,ExplosionTemplate=none,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Large_Armor_Explo',ZoneIcon=none)
+    ArmorScale=1
+    RepArmorPct[0]=255
+    RepArmorPct[1]=255
+    ArmorZoneStatus=3
+    PreviousArmorZoneStatus=3
+    OverrideArmorFXIndex=200
+    EnragedSoundEvent=AkEvent'WW_ZED_Clot_Alpha.Play_Alpha_Clot_Special_Enrage'
     MonsterArchPath="ZED_ARCH.ZED_Clot_AlphaKing_Archetype"
     MinSpawnSquadSizeType=ESquadType.EST_Medium
-    MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedClot_AlphaKing.MeleeHelper'
+    begin object name=MeleeHelper class=KFMeleeHelperAI
+        BaseDamage=8
+    object end
+    // Reference: KFMeleeHelperAI'Default__KFPawn_ZedClot_AlphaKing.MeleeHelper'
+    MeleeAttackHelper=MeleeHelper
+    DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_ClotAlphaKing'
     LocalizationKey=KFPawn_ZedClot_AlphaKing
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -95,6 +451,7 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedClot_AlphaKing.Afflictions'
+    SprintSpeed=450
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -106,6 +463,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot_AlphaKing.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot_AlphaKing.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot_AlphaKing.DialogAkSoundComponent'
+    GroundSpeed=180
     Health=300
     ControllerClass=Class'KFAIController_ZedClot_AlphaKing'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent

@@ -92,7 +92,7 @@ function LocalizeText()
     {
         if(WI.GRI != none)
         {
-            TextObject.SetString("serverName", WI.GRI.ServerName);    
+            TextObject.SetString("serverName", WI.GRI.ServerName);
         }
         if( class'WorldInfo'.static.IsConsoleBuild() )
         {
@@ -134,7 +134,7 @@ function SearchInventoryForNewItem()
 	local int ItemIndex, InventoryIndex;
 	local CurrentInventoryEntry TempInventoryDetailsHolder;
 	local ItemProperties TempItemDetailsHolder;
-	
+
 
 	ItemIndex = INDEX_NONE;
 	InventoryIndex = INDEX_NONE;
@@ -150,15 +150,15 @@ function SearchInventoryForNewItem()
 	if(InventoryIndex != INDEX_NONE)
 	{
 		TempInventoryDetailsHolder = OnlineSub.CurrentInventory[InventoryIndex];
-	
+
 
 		ItemIndex = OnlineSub.ItemPropertiesList.Find('Definition', TempInventoryDetailsHolder.Definition);
 
 		if(ItemIndex != INDEX_NONE)
 		{
-			TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];	
+			TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
 			OnItemRecieved(TempItemDetailsHolder.Name, "img://"$TempItemDetailsHolder.IconURL);
-		}	
+		}
 	}
 }
 
@@ -182,16 +182,23 @@ function SetSumarryInfo()
     local string CurrentMapName;
     local KFGameReplicationInfo KFGRI;
 	local GFxObject TextObject;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(GetPC());
+
 	TextObject = CreateObject("Object");
 
 	//Get match info
-	CurrentMapName = GetPC().WorldInfo.GetMapName(true);	
+	CurrentMapName = GetPC().WorldInfo.GetMapName(true);
 
 	GameTypeString = class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
 
-	if(GetPC().WorldInfo.GRI != none)
+	if(KFPC.WorldInfo.GRI != none)
 	{
 		KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
+
+
+		TextObject.SetInt("voshDelta", KFPC.GetTotalDoshCount() - KFPC.BeginningRoundVaultAmount);
 
 		GameDifficultyString =  class'KFCommon_LocalizedStrings'.static.GetDifficultyString(KFGRI.GameDifficulty);
 		GameTypeString = KFGRI.GameClass.default.GameName;
@@ -204,9 +211,16 @@ function SetSumarryInfo()
 		}
 		else
 		{
-			TextObject.SetString("waveTime", WaveString @KFGRI.WaveNum $"/" $(KFGRI.WaveMax - 1) @"-" @FormatTime(KFGRI.ElapsedTime));
+			if (KFGRI.default.bEndlessMode)
+			{
+				TextObject.SetString("waveTime", WaveString @ KFGRI.WaveNum  @"-" @FormatTime(KFGRI.ElapsedTime));
+			}
+			else
+			{
+				TextObject.SetString("waveTime", WaveString @ KFGRI.WaveNum $ "/" $(KFGRI.WaveMax - 1) @ "-" @ FormatTime(KFGRI.ElapsedTime));
+			}
 		}
-		
+
 		TextObject.SetString("winLost", KFGRI.bMatchVictory ? VictoryString : DefeatString);
 	}
 	//end get match info
@@ -234,9 +248,9 @@ function SetPlayerInfo()
 		TextObject.SetString("playerName", KFPC.PlayerReplicationInfo.PlayerName);
 		TextObject.SetString("perkIcon", "img://"$PathName(class'KFGFxWidget_PartyInGame_Versus'.default.ZedIConTexture));
 		TextObject.SetString("perkName", class'KFCommon_LocalizedStrings'.default.ZedString);
-		TextObject.SetInt("perkLevel", 0);	
+		TextObject.SetInt("perkLevel", 0);
 	}
-	
+
 	SetObject("playerInfo", TextObject);
 }
 
@@ -289,7 +303,7 @@ function VOIPEventTriggered(PlayerReplicationInfo TalkerPRI, bool bIsTalking)
 {
 	local KFPlayerReplicationInfo KFPRI;
 	KFPRI = KFPlayerReplicationInfo(TalkerPRI);
-	
+
 	if ( KFPRI == none )
 	{
 		return;
@@ -332,7 +346,7 @@ function  string FormatTime(int TimeInSeconds)
 {
 	local string TimeString;
 	local int Minutes;
-	
+
 
 	Minutes = TimeInSeconds / 60;
 	TimeInSeconds -= Minutes * 60;
@@ -342,7 +356,7 @@ function  string FormatTime(int TimeInSeconds)
 	if( TimeInSeconds >= 10 )
 	{
 		TimeString = TimeString $ String(TimeInSeconds);
-	}	
+	}
 	else
 	{
 		TimeString = TimeString $ "0" $ String(TimeInSeconds);
@@ -391,8 +405,8 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 PlayerStatsContainer.PlayerStatsString = PlayerStatsString;
                 PlayerStatsContainer.Initialize( self );
             }
-        break;   
-     
+        break;
+
         case 'mapVoteContainer':
 			if(MapVoteContainer == none)
             {
@@ -415,7 +429,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 	            playerXPContainer = KFGFxPostGameContainer_PlayerXP(Widget);
 	            playerXPContainer.Initialize( self );
 	        }
-            
+
         break;
 
         case 'chatBoxWidget':
@@ -423,23 +437,23 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             {
                 ChatBoxWidget = KFGFxHUD_ChatBoxWidget(Widget);
                 ChatBoxWidget.SetLobbyChatVisible(true);
-                
+
             }
         break;
     }
-      
+
     return true;
 }
 
 
 function ReceiveMessage(string Message, optional string MessageColor)
 {
-	// Send to chat box		
+	// Send to chat box
 	if( ChatBoxWidget != none )
 	{
 		if(MessageColor != "")
 		{
-			ChatBoxWidget.AddChatMessage(message, MessageColor);	
+			ChatBoxWidget.AddChatMessage(message, MessageColor);
 		}
 		else
 		{
@@ -493,7 +507,7 @@ function Callback_TopMapClicked(int MapVoteIndex, bool bDoubleClick)
 			break;
 		case 2:
 			SearchString = CurrentTopVoteObject.Map3Name;
-			break;			
+			break;
 	}
 
 	SearchIndex = KFGameReplicationInfo(GetPC().WorldInfo.GRI).VoteCollector.MapList.Find(SearchString);

@@ -884,10 +884,10 @@ function UpdateListDataProvider()
 				TempObj = CreateObject("Object");
 
 				TempObj.SetString("serverName",    		TempOnlineGamesSettings.OwningPlayerName);        
-				TempObj.SetFloat("playerCount",        	(TempOnlineGamesSettings.NumPublicConnections-TempOnlineGamesSettings.NumOpenPublicConnections));
+				TempObj.SetFloat("playerCount",        	(TempOnlineGamesSettings.NumPublicConnections-TempOnlineGamesSettings.NumOpenPublicConnections-TempOnlineGamesSettings.NumSpectators));
 				TempObj.SetFloat("maxPlayerCount",     	TempOnlineGamesSettings.NumPublicConnections);
 				TempObj.SetFloat("waveCount",     		TempOnlineGamesSettings.CurrentWave);
-				TempObj.SetFloat("maxWaveCount",     	TempOnlineGamesSettings.NumWaves);
+				TempObj.SetFloat("maxWaveCount",		IsEndlessModeIndex(TempOnlineGamesSettings.Mode) ? INDEX_NONE : TempOnlineGamesSettings.NumWaves);
 				TempObj.SetFloat("zedCount",     		TempOnlineGamesSettings.ZedCount);
 				TempObj.SetFloat("maxZedCount",     	TempOnlineGamesSettings.MaxZedCount);
 				TempObj.SetBool("vacEnable",          	TempOnlineGamesSettings.bAntiCheatProtected);
@@ -920,6 +920,11 @@ function UpdateListDataProvider()
 		}    
 		SetObject("dataProvider", DataProvider);
 	}
+}
+
+function bool IsEndlessModeIndex(int ModeIndex)
+{
+	return ModeIndex == 3;
 }
 
 function bool IsSelectedServerFavorited(int ServerSearchIndex)

@@ -1057,6 +1057,11 @@ function string CheckNextMap(string NextMap)
 {
 	return NextMap;
 }
+
+static function bool GetShouldShowLength()
+{
+	return true;
+}
 `endif
 
 /* ProcessServerTravel()
@@ -4061,5 +4066,6 @@ defaultproperties
 	GameInfoClassAliases.Add((ShortName="Versus", GameClassName="KFGameContent.KFGameInfo_VersusSurvival"))
     GameInfoClassAliases.Add((ShortName="Weekly", GameClassName="KFGameContent.KFGameInfo_WeeklySurvival"))
 	GameInfoClassAliases.Add((ShortName="Tutorial", GameClassName="KFGameContent.KFGameInfo_Tutorial"))
+	GameInfoClassAliases.Add((ShortName="Endless", GameClassName="KFGameContent.KFGameInfo_Endless"))
 `endif
 }

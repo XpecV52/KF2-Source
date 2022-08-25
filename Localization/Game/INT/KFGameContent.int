@@ -342,7 +342,7 @@ ItemDescription="•Fire mode shoots exploding, flammable projectiles. \n•Fire
 [KFWeap_Pistol_DualFlare]
 ItemName="Dual Spitfires"
 ItemCategory="Flames"
-ItemDescription="•Fire mode shoots exploding, flammable projectiles. \n•Alt-fire switches aiming styles when using iron sights.\n•This is a pair of Spitfires. Each can be individually sold or dropped."
+ItemDescription="•Fire mode shoots exploding, flammable projectiles. \n•Alt-fire switches aiming styles when using iron sights.\n•This is a pair of Spitfires."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Incendiary Trench Gun"
@@ -397,7 +397,7 @@ ItemDescription="•Fire mode is semi-auto only.\n•The classic Colt 1911 semi-
 [KFWeap_Pistol_DualColt1911]
 ItemName="Dual M1911 Pistols"
 ItemCategory="Hand Gun"
-ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•This is a pair of Colt 1911 semi-automatic pistols. Each can be individually sold or dropped."
+ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•This is a pair of Colt 1911 semi-automatic pistols."
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
@@ -407,7 +407,7 @@ ItemDescription="•Fire mode is semi-auto only.\n•The Desert Eagle is the bea
 [KFWeap_Pistol_DualDeagle]
 ItemName="Dual .50 Desert Eagles"
 ItemCategory="Hand Gun"
-ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of Desert Eagle hand cannons. Each can be individually sold or dropped."
+ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of Desert Eagle hand cannons."
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 Revolver"
@@ -417,7 +417,7 @@ ItemDescription="•Fire mode is single shot only.\n•A wonderful example of th
 [KFWeap_Revolver_DualRem1858]
 ItemName="Dual 1858 Revolvers"
 ItemCategory="Hand Gun"
-ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of Remington 1858 revolvers. Each can be individually sold or dropped."
+ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of Remington 1858 revolvers."
 
 [KFWeap_Revolver_SW500]
 ItemName=".500 Magnum Revolver"
@@ -427,7 +427,7 @@ ItemDescription="•Fire mode is single shot only.\n•True hand artillery in th
 [KFWeap_Revolver_DualSW500]
 ItemName="Dual .500 Magnums"
 ItemCategory="Hand Gun"
-ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of .500 Magnum 'Bone Collector' revolvers. Each can be individually sold or dropped. With a big 'thud.'"
+ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of .500 Magnum 'Bone Collector' revolvers."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -483,7 +483,7 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire t
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
 ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•One of the newer additions to the MP family. Maybe an uncle? Do submachineguns have families?"
+ItemDescription="•Choice of full-auto and burst fire modes.\n•Alt-fire to toggle between fire modes.\n•One of the newer additions to the MP family. Maybe an uncle? Do submachineguns have families?"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="Freezethrower"
@@ -494,6 +494,26 @@ ItemDescription="•Fire mode shoots a stream of absolute-zero particles.\n•Fr
 ItemName="Hemogoblin"
 ItemCategory="Rifle"
 ItemDescription="•Fire mode shoots a blood bore that injures, slows, and weakens Zeds. \n•Alt-fire shoots healing darts to heal team members.\n• Not a viable weight loss plan."
+
+[KFWeap_HuskCannon]
+ItemName="Husk Cannon"
+ItemCategory="Flames"
+ItemDescription="•Charges up while the fire button is pressed and discharges when the fire button is released. \n•The official Horzine version of the husk cannon. This model is 95% guaranteed not to explode."
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode is semi-auto only.\n•Everything is better when you put more barrels on it. It's like adding more bacon."
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="Dual AF2011-A1"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•Two guns with two barrels each. Four times the firepower. That's math. You can't argue with math."
+
+[KFWeap_SMG_Mac10]
+ItemName="Mac 10"
+ItemCategory="Sub Machine Gun"
+ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Features rapid-fire incendiary ammo. Get it? Rapid-fire? Because it's an incendiary submachinegun? Oh, forget it."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="VS Survival"
 
 [KFGameInfo_WeeklySurvival]
 GameName="Weekly Outbreak"
+
+[KFGameInfo_Endless]
+GameName="Endless"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="No Heals Remaining"

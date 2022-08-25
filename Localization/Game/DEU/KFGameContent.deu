@@ -342,7 +342,7 @@ ItemDescription="•Der Feuer-Modus schießt explodierende, entzündliche Gescho
 [KFWeap_Pistol_DualFlare]
 ItemName="Dual Spitfires"
 ItemCategory="Flammen"
-ItemDescription="•Der Feuer-Modus schießt explodierende, entzündliche Geschosse. \n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Hierbei handelt es sich um Spitfires im Doppelpack. Jede davon kann einzeln verkauft oder fallengelassen werden."
+ItemDescription="•Der Feuer-Modus schießt explodierende, entzündliche Geschosse. \n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Hierbei handelt es sich um Spitfires im Doppelpack."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Brand-Grabenwaffe"
@@ -397,7 +397,7 @@ ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Der k
 [KFWeap_Pistol_DualColt1911]
 ItemName="Zwei M1911-Pistolen"
 ItemCategory="Handfeuerwaffe"
-ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Hierbei handelt es sich um Colt 1911 Halbautomatikpistolen im Doppelpack. Jede davon kann einzeln verkauft oder fallengelassen werden."
+ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Hierbei handelt es sich um Colt 1911 Halbautomatikpistolen im Doppelpack."
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
@@ -407,7 +407,7 @@ ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Die D
 [KFWeap_Pistol_DualDeagle]
 ItemName="Zwei .50 Eagles"
 ItemCategory="Handfeuerwaffe"
-ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Desert Eagle Handkanonen im Doppelpack. Jede davon kann einzeln verkauft oder fallengelassen werden."
+ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Desert Eagle Handkanonen im Doppelpack."
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858-Revolver"
@@ -417,7 +417,7 @@ ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Ein wunde
 [KFWeap_Revolver_DualRem1858]
 ItemName="Zwei 1858-Revolver"
 ItemCategory="Handfeuerwaffe"
-ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Remington 1858 Revolver im Doppelpack. Jeder davon kann einzeln verkauft oder fallengelassen werden."
+ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Remington 1858 Revolver im Doppelpack."
 
 [KFWeap_Revolver_SW500]
 ItemName=".500 Magnum Revolver"
@@ -427,7 +427,7 @@ ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Dieser �
 [KFWeap_Revolver_DualSW500]
 ItemName="Zwei .500 Magnums"
 ItemCategory="Handfeuerwaffe"
-ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•.500 Magnum „Knochensammler“ im Doppelpack. Jede davon kann einzeln verkauft oder fallengelassen werden. Mit einem lauten dumpfen Knall."
+ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•.500 Magnum „Knochensammler“ im Doppelpack."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -483,7 +483,7 @@ ItemDescription="•Hier besteht die Wahl zwischen vollautomatischem und halbaut
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
 ItemCategory="Maschinenpistole"
-ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi „vollautomatisch“ und „halbautomatisch“.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Eines der neueren Mitglieder der MP-Familie. Vielleicht ein Onkel? Haben Maschinenpistolen Familien?"
+ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi „vollautomatisch“ und „Feuerstoß“.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Eines der neueren Mitglieder der MP-Familie. Vielleicht ein Onkel? Haben Maschinenpistolen Familien?"
 
 [KFWeap_Ice_FreezeThrower]
 ItemName="Eiswerfer"
@@ -494,6 +494,26 @@ ItemDescription="•Der Feuer-Modus schießt einen Schwall Partikel auf dem abso
 ItemName="Hemogoblin"
 ItemCategory="Gewehr"
 ItemDescription="•Der Feuer-Modus feuert ein Blutgeschoss ab, das Zeds verletzt, verlangsamt und schwächt. \n•Alt-Feuer schießt Heilpfeile zum Heilen von Teammitgliedern.\n•Kein geeignetes Mittel zur Gewichtsabnahme."
+
+[KFWeap_HuskCannon]
+ItemName="Husk-Kanone"
+ItemCategory="Flammen"
+ItemDescription="•Lädt bei gedrücktem Feuerknopf auf und feuert, wenn losgelassen wird. \n•Die offizielle Horzine-Version der Husk-Kanone. Dieses Modell ist zu 95% explosionssicher."
+
+[KFWeap_Pistol_AF2011]
+ItemName="AF2011-A1"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Mehr Läufe machen alles besser. Und toter."
+
+[KFWeap_Pistol_DualAF2011]
+ItemName="Dual-AF2011-A2"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Zwei Waffen mit jeweils zwei Läufen. Vierfache Feuerkraft. Das ist Mathematik. Gegen Mathematik lässt sich nichts sagen."
+
+[KFWeap_SMG_Mac10]
+ItemName="MAC-10"
+ItemCategory="Maschinenpistole"
+ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\nNutzt Schnellfeuer-Brandmunition. Kapiert? Schnellfeuer? Weil es eine Brand-Maschinenpistole ist? Ach, vergiss es."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -623,6 +643,9 @@ GameName="VS-Überleben"
 
 [KFGameInfo_WeeklySurvival]
 GameName="Wöchentlicher Ausbruch"
+
+[KFGameInfo_Endless]
+GameName="Endlos"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Keine Heilung übrig"

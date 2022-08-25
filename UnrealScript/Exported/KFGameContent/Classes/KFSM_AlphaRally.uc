@@ -88,14 +88,14 @@ function RallyZeds()
 
 defaultproperties
 {
-   RallyAnims=(Anims=("Player_Taunt_V1","Player_Taunt_V2","Player_Taunt_V3","Player_Taunt_V4"))
+   RallyAnims=(Anims=("Player_Taunt_V1"))
    bRallySelf=True
    RallyRadius=1000.000000
    RallyEffect=ParticleSystem'ZED_Clot_EMIT.FX_ClotA_Rage_01'
    AltRallyEffect=ParticleSystem'ZED_Clot_EMIT.FX_Player_Zed_Buff_01'
    RallyEffectBoneName="Root"
-   AltRallyEffectBoneNames(0)="RightHand"
-   AltRallyEffectBoneNames(1)="LeftHand"
+   AltRallyEffectBoneNames(0)="FX_EYE_L"
+   AltRallyEffectBoneNames(1)="FX_EYE_R"
    RallyEffectOffset=(X=0.000000,Y=0.000000,Z=2.000000)
    bUseRootMotion=True
    bDisableMovement=True

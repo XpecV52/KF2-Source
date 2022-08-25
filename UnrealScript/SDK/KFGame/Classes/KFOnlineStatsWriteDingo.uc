@@ -51,4 +51,6 @@ defaultproperties
     Properties.Add((PropertyId = STATID_ACHIEVE_TragicKingdomCollectibles,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId = STATID_ACHIEVE_NightmareCollectibles,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId = STATID_ACHIEVE_KrampusCollectibles,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId = STATID_ACHIEVE_ArenaCollectibles,Data=(Type=SDT_Int32,Value1=0)))
+	Properties.Add((PropertyId = STATID_ACHIEVE_PowercoreCollectibles,Data=(Type=SDT_Int32,Value1=0)))
 }

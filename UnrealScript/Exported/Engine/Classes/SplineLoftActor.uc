@@ -81,6 +81,7 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__SplineActor:Sprite'
    End Object
    Components(0)=Sprite
+   CollisionType=COLLIDE_CustomDefault
    bStatic=True
    bWorldGeometry=True
    bGameRelevant=True

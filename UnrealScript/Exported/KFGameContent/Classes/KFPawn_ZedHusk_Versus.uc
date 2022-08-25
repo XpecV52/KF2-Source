@@ -297,7 +297,6 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHusk_Versus:Afflictions_0'
-   IncapSettings(0)=(Vulnerability=(0.800000))
    IncapSettings(1)=(Duration=3.000000,Cooldown=8.000000,Vulnerability=(0.100000))
    IncapSettings(2)=(Cooldown=0.500000)
    IncapSettings(3)=(Cooldown=0.750000,Vulnerability=(1.000000))

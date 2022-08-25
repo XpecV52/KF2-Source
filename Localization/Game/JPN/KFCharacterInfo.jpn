@@ -1,3 +1,62 @@
+[CHR_DAR_archetype]
+CharacterName="D.A.R."
+Description="このD.A.R.、もしくはドメスティック・アシスタント・ロボットは、以前のD.A.R.モデルをアップグレードしたバージョンであり、ホージン社の最新実験的ロボティクスを利用している。消費者市場とセキュリティ市場向けD.A.R.の開発を目指し、ホージン社の様々な基地で同様のユニットのテストが行われています。ですが、このD.A.R.は特別です。D.A.R.がホージン北極前哨基地12に駐在中にZedに遭遇し、その主要プログラムは緊急セキュリティプロトコルによって上書きされ、殺戮機械へと姿を変えました。残念ながら、D.A.R.はホージン社の従業員以外の人間をほとんど気に掛けることはなく、従業員でさせ、一般人「ほど」憎んではいない程度ではあるが。軍事用ロボットの新しいマーケットを見てみると、D.A.R.はZed抑制任務へへ向けて実地試験へと送り出されている。"
+BodyMesh0="内骨格"
+HeadMesh0="ヘルメットなし"
+HeadMesh1="クラシックヘルメット"
+HeadMesh2="アサルトヘルメット"
+HeadMesh3="飛行ヘルメット"
+HeadMesh4="CHONN-E5ヘルメット"
+HeadMesh5="C-3HZヘルメット"
+
+[CHR_DAR_archetype.BodyMesh0]
+BodySkin0="Endo 800"
+BodySkin1="クラシックグレー"
+BodySkin2="プラスチック"
+BodySkin3="希少"
+
+[CHR_DAR_archetype.HeadMesh0]
+HeadSkin0="なし"
+
+[CHR_DAR_archetype.HeadMesh1]
+HeadSkin0="ブラッディ"
+HeadSkin1="ローダー"
+HeadSkin2="スタンダード"
+HeadSkin3="希少"
+HeadSkin4="ドクロ"
+
+[CHR_DAR_archetype.HeadMesh2]
+HeadSkin0="極秘任務"
+HeadSkin1="迷彩G"
+HeadSkin2="砂丘"
+HeadSkin3="ローダー"
+HeadSkin4="オプティマル"
+HeadSkin5="希少"
+
+[CHR_DAR_archetype.HeadMesh3]
+HeadSkin0="青い天使"
+HeadSkin1="ギャラクティック"
+HeadSkin2="P51"
+HeadSkin3="希少"
+HeadSkin4="スピットファイア"
+HeadSkin5="叫ぶ"
+
+[CHR_DAR_archetype.HeadMesh4]
+HeadSkin0="チャップ"
+HeadSkin1="ホージン"
+HeadSkin2="希少"
+HeadSkin3="スチール"
+HeadSkin4="日没"
+HeadSkin5="蒸気"
+
+[CHR_DAR_archetype.HeadMesh5]
+HeadSkin0="クラッシュ"
+HeadSkin1="フロウブルー"
+HeadSkin2="大理石"
+HeadSkin3="黒曜石"
+HeadSkin4="希少"
+HeadSkin5="Space"
+
 [CHR_Jagerhorn_Archetype]
 CharacterName="Oisten Jägerhorn"
 Description="ビールとバーで騒ぐのが好きなスウェーデン出身の大男だったJägerhornは、アウトブレイク前は現代版海賊のイメージにぴったりだった。だが、1990年代にグレート・ノルディック・バイカー・ウォーという名の狂気に漠然と関わった後、人々に向けられる愚かな暴力は、浴びるほどビールを飲んで「メタルビカ」というメタリカのトリビュートバンドで演奏するよりはるかに面白くないと決めた。\n\nその一方で、アウトブレイクがスカンジナビアに達すると、結局は愚かな暴力が流行した。zed対人間―Jägerhorn基準では罰当たりだ。だがスウェーデンの海賊Jägerhorn対zed？かかって来い！"
@@ -19,6 +78,11 @@ BodySkin3="True Defiance"
 BodySkin4="Demon Hunter"
 BodySkin5="ヴォールトバットキャット"
 BodySkin6="Vaultタイル"
+BodySkin7="Vault 希少"
+BodySkin8="サイバーレッド"
+BodySkin9="サイバーグリーン"
+BodySkin10="サイバーブルー"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -58,22 +122,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_Jagerhorn_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_Jagerhorn_Archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="スウェーデンのブロンド"
@@ -178,6 +242,10 @@ BodySkin3="グリーンハザード"
 BodySkin4="レトロスカリー"
 BodySkin5="貴重なデータのヴォールト"
 BodySkin6="Vaultタイル"
+BodySkin7="サイバーレッド"
+BodySkin8="サイバーグリーン"
+BodySkin9="サイバーブルー"
+BodySkin10="Cyberpunk Blue"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -217,22 +285,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_DJSkully_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_DJSkully_Archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_DJSkully_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="ブラッケストブラック"
@@ -282,6 +350,11 @@ BodySkin1="ナイトブラック"
 BodySkin2="アーミーグリーン"
 BodySkin3="SAS迷彩"
 BodySkin4="Vaultタイル"
+BodySkin5="Vault 希少"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="メトロ"
@@ -328,22 +401,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [chr_briar_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [chr_briar_archetype.BodyMesh7]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [chr_briar_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="オリジナル"
@@ -400,6 +473,10 @@ BodySkin5="ヴァイスブルー"
 BodySkin6="ヴァイス"
 BodySkin7="カジノ"
 BodySkin8="スモーキン"
+BodySkin9="サイバーレッド"
+BodySkin10="サイバーグリーン"
+BodySkin11="サイバーブルー"
+BodySkin12="Cyberpunk Blue"
 
 [CHR_MrFoster_archetype.BodyMesh2]
 BodySkin0="クラシック"
@@ -439,22 +516,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_MrFoster_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_MrFoster_archetype.BodyMesh7]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_MrFoster_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="オリジナルホワイト"
@@ -618,7 +695,10 @@ BodySkin1="ラスティックレッド"
 BodySkin2="クールグレー"
 BodySkin3="ペールアース"
 BodySkin4="貴重なデータのヴォールト"
-BodySkin5="Vaultタイル"
+BodySkin5="サイバーレッド"
+BodySkin6="サイバーグリーン"
+BodySkin7="サイバーブルー"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -658,22 +738,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_Coleman_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_Coleman_archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_Coleman_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="ドノヴァン"
@@ -718,6 +798,10 @@ BodySkin3="トロピカルホワイト"
 BodySkin4="ホーリーサン 希少"
 BodySkin5="迷彩ブロッチ北極"
 BodySkin6="迷彩ピクセルピンク"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -757,22 +841,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_Alberts_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_Alberts_archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_Alberts_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="グレー"
@@ -1684,6 +1768,11 @@ BodySkin3="DPM"
 BodySkin4="Vaultタイル"
 BodySkin5="迷彩ブロッチ北極"
 BodySkin6="迷彩ブロッチ紫"
+BodySkin7="Vault 希少"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -1723,22 +1812,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_Masterson_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_Masterson_archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_Masterson_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [CHR_Tanaka_Archetype]
 CharacterName="ハヤト・タナカ"
@@ -1768,6 +1857,10 @@ BodySkin3="ブルードラゴン"
 BodySkin4="ヴォールトレトロ"
 BodySkin5="貴重な鯉のヴォールト"
 BodySkin6="Vaultタイル"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="レッド&ブラック"
@@ -1816,22 +1909,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_Tanaka_Archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_Tanaka_Archetype.BodyMesh7]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_Tanaka_Archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="ヘルメット"
@@ -1890,6 +1983,9 @@ BodySkin3="プリティブルー"
 BodySkin4="チキンネーターへのオマージュ"
 BodySkin5="希少Vault"
 BodySkin6="Vaultタイル"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="エリートブルー"
@@ -1929,22 +2025,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_Ana_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_Ana_Archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_Ana_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3Dメガネ"
@@ -1978,6 +2074,11 @@ BodySkin1="ナイトブラック"
 BodySkin2="アーミーグリーン"
 BodySkin3="SAS迷彩"
 BodySkin4="Vaultタイル"
+BodySkin5="Vault 希少"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="メトロ"
@@ -2024,22 +2125,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [chr_mark_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [chr_mark_archetype.BodyMesh7]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [chr_mark_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
@@ -2071,6 +2172,11 @@ BodySkin3="DPM"
 BodySkin4="Vaultタイル"
 BodySkin5="迷彩ブロッチ北極"
 BodySkin6="迷彩ブロッチ紫"
+BodySkin7="Vault 希少"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -2110,22 +2216,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_alan_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_alan_archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_alan_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
@@ -2161,6 +2267,11 @@ BodySkin0="未熟な新兵"
 BodySkin1="百戦錬磨"
 BodySkin2="ヴォールト迷彩"
 BodySkin3="Vaultタイル"
+BodySkin4="Vault 希少"
+BodySkin5="サイバーレッド"
+BodySkin6="サイバーグリーン"
+BodySkin7="サイバーブルー"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -2200,22 +2311,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [CHR_strasser_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [CHR_strasser_archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [CHR_strasser_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="ダークスチール"
@@ -2251,6 +2362,11 @@ BodySkin0="アガサ"
 BodySkin1="クリース"
 BodySkin2="パーシヴァル"
 BodySkin3="ジェイミー"
+BodySkin4="Vault 希少"
+BodySkin5="サイバーレッド"
+BodySkin6="サイバーグリーン"
+BodySkin7="サイバーブルー"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -2389,6 +2505,11 @@ BodySkin4="レッドストライプ"
 BodySkin5="セーラー"
 BodySkin6="ヴォールトスカル"
 BodySkin7="Vaultタイル"
+BodySkin8="Vault 希少"
+BodySkin9="Cyberpunk Green"
+BodySkin10="Cyberpunk Precious"
+BodySkin11="Cyberpunk Red"
+BodySkin12="Cyberpunk Blue"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="エリートブルー"
@@ -2428,22 +2549,22 @@ BodySkin4="フォン・ブラウン"
 BodySkin5="Tragic Kingdomクルー"
 
 [chr_rockabilly_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
 
 [chr_rockabilly_archetype.BodyMesh6]
-BodySkin0="Bunny"
+BodySkin0="ウサギ"
 BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
 
 [chr_rockabilly_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Vault模様"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="ブラック"
@@ -2695,37 +2816,6 @@ AttachmentSkin2="ジェイミー"
 AttachmentSkin3="パーシヴァル"
 AttachmentSkin4="希少"
 
-[Cosmetic_SteampunkGasMaskBasic_ARCH]
-Attachment="スチームパンク・ガスマスク（ベーシック）"
-AttachmentSkin0="ブラウン"
-AttachmentSkin1="ブラック"
-
-[Cosmetic_SteampunkGasMaskOpen_ARCH]
-Attachment="スチームパンク・ガスマスク（オープン）"
-AttachmentSkin0="ブラウン"
-AttachmentSkin1="ブラック"
-
-[Cosmetic_SteampunkGasMaskClosed_ARCH]
-Attachment="スチームパンク・ガスマスク（クローズド）"
-AttachmentSkin0="ブラウン"
-AttachmentSkin1="ブラック"
-AttachmentSkin2="プレシャス"
-
-[Cosmetic_SteampunkGasMaskFiltered_ARCH]
-Attachment="スチームパンク・ガスマスク（フィルター）"
-AttachmentSkin0="ブラウン"
-AttachmentSkin1="ブラック"
-
-[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
-Attachment="スチームパンク・ガスマスク（オープン・フィルター）"
-AttachmentSkin0="ブラウン"
-AttachmentSkin1="ブラック"
-
-[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
-Attachment="スチームパンク・ガスマスク（クローズド・フィルター）"
-AttachmentSkin0="ブラウン"
-AttachmentSkin1="ブラック"
-
 [Cosmetic_RebelHelmet_ARCH]
 Attachment="レベルヘルメット"
 AttachmentSkin0="ブラック"
@@ -2832,31 +2922,31 @@ AttachmentSkin2="グリーン"
 AttachmentSkin3="レッド"
 AttachmentSkin4="タン"
 
-[LetsGetCrazy] 
+[LetsGetCrazy]
 EmoteName="ワイルドに行こう"
 
 [ThunderClap]
 EmoteName="サンダークラップ"
 
-[UncleCharlie] 
+[UncleCharlie]
 EmoteName="チャーリーおじさん"
 
 [WackyWave]
 EmoteName="いかれたウェーブ"
 
-[RainingDosh] 
+[RainingDosh]
 EmoteName="降り注ぐdosh"
 
-[LionUppercut] 
+[LionUppercut]
 EmoteName="ライオンアッパーカット"
 
-[MatingRitual] 
+[MatingRitual]
 EmoteName="交配の儀式"
 
 [KickinIt]
 EmoteName="シビれる"
 
-[Fireball] 
+[Fireball]
 EmoteName="火の玉"
 
 [Makeitrain]
@@ -2865,11 +2955,11 @@ EmoteName="まき散らせ"
 [Fireball_Deluxe]
 EmoteName="火の玉+"
 
-[Makeitrain_Deluxe] 
+[Makeitrain_Deluxe]
 EmoteName="まき散らせ+"
 
-[ThunderClap_Deluxe] 
-EmoteName="サンダークラップ+"
+[ThunderClap_Deluxe]
+EmoteName="ブーティダンス+"
 
 [UncleCharlie_Deluxe]
 EmoteName="チャーリーおじさん+"
@@ -2880,7 +2970,7 @@ EmoteName="ワイルドに行こう+"
 [WackyWave_Deluxe]
 EmoteName="いかれたウェーブ+"
 
-[RainingDosh_Deluxe] 
+[RainingDosh_Deluxe]
 EmoteName="降り注ぐdosh+"
 
 [LionUppercut_Deluxe]
@@ -3190,188 +3280,188 @@ AttachmentSkin6="パープル"
 AttachmentSkin7="レッド"
 
 [Cosmetic_ImperialGalea_ARCH]
-Attachment="Imperial Galea"
+Attachment="インペリアルガレア"
 AttachmentSkin0="軍隊"
 AttachmentSkin1="クラシック"
 AttachmentSkin2="ホワイト"
 AttachmentSkin3="希少"
 
 [Cosmetic_PlagueDoctorMask_ARCH]
-Attachment="Plague Doctor Mask"
+Attachment="伝染病の医者マスク"
 AttachmentSkin0="グレー"
 AttachmentSkin1="ライトブラウン"
 AttachmentSkin2="レッド"
 AttachmentSkin3="ホワイト"
 
 [Cosmetic_SkullMask_ARCH]
-Attachment="Skull Mask"
-AttachmentSkin0="Black Red"
-AttachmentSkin1="Black Silver"
-AttachmentSkin2="White Red"
-AttachmentSkin3="White Silver"
-AttachmentSkin4="Precious"
+Attachment="頭蓋骨マスク"
+AttachmentSkin0="ブラックレッド"
+AttachmentSkin1="ブラックシルバー"
+AttachmentSkin2="ホワイトレッド"
+AttachmentSkin3="ホワイトシルバー"
+AttachmentSkin4="希少"
 
 [Cosmetic_VictoriansSecret_ARCH]
 Attachment="ビクトリアシークレット"
-AttachmentSkin0="Victorian's Secret"
+AttachmentSkin0="ビクトリアズシークレット"
 
 [Cosmetic_HannyaMask_ARCH]
 Attachment="般若の面"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Gold"
-AttachmentSkin3="Green"
-AttachmentSkin4="Iron"
-AttachmentSkin5="Red"
-AttachmentSkin6="Red Shiny"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="黒"
+AttachmentSkin1="青"
+AttachmentSkin2="金"
+AttachmentSkin3="緑"
+AttachmentSkin4="鉄"
+AttachmentSkin5="赤"
+AttachmentSkin6="シャイニーレッド"
+AttachmentSkin7="白"
+AttachmentSkin8="希少"
 
 [Cosmetic_Hopps_ARCH]
 Attachment="ホップ"
-AttachmentSkin0="Geometric"
-AttachmentSkin1="Green Machine"
-AttachmentSkin2="Hazard"
-AttachmentSkin3="Porcelain"
-AttachmentSkin4="Gold"
-AttachmentSkin5="Sell Out"
+AttachmentSkin0="幾何学"
+AttachmentSkin1="グリーンマシン"
+AttachmentSkin2="ハザード"
+AttachmentSkin3="磁器"
+AttachmentSkin4="金"
+AttachmentSkin5="裏切"
 
 [Cosmetic_KobutoMask_ARCH]
 Attachment="コブトマスク"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Copper"
-AttachmentSkin3="Gold"
-AttachmentSkin4="Green"
-AttachmentSkin5="Radioactive"
-AttachmentSkin6="Red"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="黒"
+AttachmentSkin1="青"
+AttachmentSkin2="銅"
+AttachmentSkin3="金"
+AttachmentSkin4="緑"
+AttachmentSkin5="放射性"
+AttachmentSkin6="赤"
+AttachmentSkin7="白"
+AttachmentSkin8="希少"
 
 [Cosmetic_SamuraiGasHelmet_ARCH]
 Attachment="サムライヘルメット"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="金"
+AttachmentSkin1="革"
+AttachmentSkin2="赤"
+AttachmentSkin3="希少"
 
 [Cosmetic_SamuraiGasMask_ARCH]
 Attachment="サムライマスク"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="金"
+AttachmentSkin1="革"
+AttachmentSkin2="赤"
+AttachmentSkin3="希少"
 
 [Cosmetic_SamuraiGasMouthpiece_ARCH]
 Attachment="サムライマウスピース"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="金"
+AttachmentSkin1="革"
+AttachmentSkin2="赤"
+AttachmentSkin3="希少"
 
 [Cosmetic_Bear_ARCH]
 Attachment="熊マスク"
-AttachmentSkin0="Brown Bear"
-AttachmentSkin1="Panda Bear"
-AttachmentSkin2="Precious"
+AttachmentSkin0="茶色い熊"
+AttachmentSkin1="パンダ"
+AttachmentSkin2="希少"
 
 [Cosmetic_Cat_ARCH]
 Attachment="猫マスク"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Gray"
-AttachmentSkin2="White"
-AttachmentSkin3="Precious"
+AttachmentSkin0="ブラウン"
+AttachmentSkin1="グレー"
+AttachmentSkin2="白"
+AttachmentSkin3="希少"
 
 [Cosmetic_Chicken_ARCH]
 Attachment="鶏マスク"
-AttachmentSkin0="White Red"
-AttachmentSkin1="Precious"
+AttachmentSkin0="ホワイトレッド"
+AttachmentSkin1="希少"
 
 [Cosmetic_Cow_ARCH]
 Attachment="牛マスク"
-AttachmentSkin0="White Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="ホワイトブラック"
+AttachmentSkin1="希少"
 
 [Cosmetic_Dog_ARCH]
 Attachment="犬マスク"
-AttachmentSkin0="Brown Dog"
-AttachmentSkin1="Precious"
+AttachmentSkin0="茶色い犬"
+AttachmentSkin1="希少"
 
 [Cosmetic_Fox_ARCH]
 Attachment="狐マスク"
-AttachmentSkin0="Brown Fox"
-AttachmentSkin1="Precious"
+AttachmentSkin0="茶色い狐"
+AttachmentSkin1="希少"
 
 [Cosmetic_Goat_ARCH]
 Attachment="ヤギマスク"
-AttachmentSkin0="Goat Colored"
-AttachmentSkin1="Precious"
+AttachmentSkin0="色付きヤギ"
+AttachmentSkin1="希少"
 
 [Cosmetic_Horse_ARCH]
 Attachment="馬マスク"
-AttachmentSkin0="Brown Horse"
-AttachmentSkin1="Precious"
+AttachmentSkin0="茶色い馬"
+AttachmentSkin1="希少"
 
 [Cosmetic_Pig_ARCH]
 Attachment="豚マスク"
-AttachmentSkin0="Pinky Pig"
-AttachmentSkin1="Precious"
+AttachmentSkin0="ピンクの豚"
+AttachmentSkin1="希少"
 
 [Cosmetic_Rabbit_ARCH]
 Attachment="ウサギマスク"
-AttachmentSkin0="Brown Rabbit"
-AttachmentSkin1="White Rabbit"
-AttachmentSkin2="Precious"
+AttachmentSkin0="茶色いウサギ"
+AttachmentSkin1="白ウサギ"
+AttachmentSkin2="希少"
 
 [Cosmetic_CommandoChickenHelmet_ARCH]
 Attachment="コマンドーチキン"
-AttachmentSkin0="Used"
-AttachmentSkin1="Clean"
-AttachmentSkin2="Night"
-AttachmentSkin3="Heavy Wound"
+AttachmentSkin0="中古"
+AttachmentSkin1="クリーン"
+AttachmentSkin2="夜"
+AttachmentSkin3="ひどい怪我"
 
 [Cosmetic_bobBatcat_ARCH]
 Attachment="ボブ"
-AttachmentSkin0="Black"
-AttachmentSkin1="Green"
-AttachmentSkin2="Purple"
-AttachmentSkin3="Teal"
-AttachmentSkin4="Precious"
+AttachmentSkin0="黒"
+AttachmentSkin1="緑"
+AttachmentSkin2="紫"
+AttachmentSkin3="ティール"
+AttachmentSkin4="希少"
 
 [Cosmetic_crown_ARCH]
 Attachment="王冠"
-AttachmentSkin0="Precious"
-AttachmentSkin1="Silver"
+AttachmentSkin0="希少"
+AttachmentSkin1="銀"
 
 [Cosmetic_DGlasses_ARCH]
 Attachment="dosh眼鏡"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="緑"
+AttachmentSkin1="黒"
+AttachmentSkin2="希少"
 
 [Cosmetic_hansBackpack_ARCH]
 Attachment="ハンスのバックパック"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="黒"
+AttachmentSkin1="希少"
 
 [Cosmetic_scrakeMask_ARCH]
 Attachment="スクレイクマスク"
-AttachmentSkin0="Steel"
-AttachmentSkin1="Precious"
+AttachmentSkin0="スチール"
+AttachmentSkin1="希少"
 
 [Cosmetic_sharkHat_ARCH]
 Attachment="シャーキー"
-AttachmentSkin0="Grey"
-AttachmentSkin1="Sand"
-AttachmentSkin2="Orca"
-AttachmentSkin3="Bloody"
-AttachmentSkin4="Precious"
+AttachmentSkin0="グレー"
+AttachmentSkin1="砂"
+AttachmentSkin2="オルカ"
+AttachmentSkin3="ブラッディ"
+AttachmentSkin4="希少"
 
 [Cosmetic_VGlasses_ARCH]
 Attachment="ヴォールト眼鏡"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="緑"
+AttachmentSkin1="黒"
+AttachmentSkin2="希少"
 
 [Cosmetic_Halloween_Arrowed_ARCH]
 Attachment="矢が刺さる"
@@ -3439,245 +3529,386 @@ AttachmentSkin0="Jack O' Lantern Radioactive Winky"
 
 [Cosmetic_Christmas_AlphaHat_ARCH]
 Attachment="Xmasアルファハット"
-AttachmentSkin0="Green"
+AttachmentSkin0="緑"
 
 [Cosmetic_Christmas_beard_ARCH]
 Attachment="Xmasヒゲ"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Precious"
-AttachmentSkin3="White"
+AttachmentSkin0="黒"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="希少"
+AttachmentSkin3="白"
 
 [Cosmetic_Christmas_BellBackpack_ARCH]
 Attachment="Xmasベルリュック"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Silver"
+AttachmentSkin0="金"
+AttachmentSkin1="希少"
+AttachmentSkin2="銀"
 
 [Cosmetic_Christmas_BloatHat_ARCH]
 Attachment="Xmasブロートハット"
-AttachmentSkin0="Tan"
-AttachmentSkin1="Precious"
+AttachmentSkin0="黄褐色"
+AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_Blubs_ARCH]
 Attachment="Xmas耳電球"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="赤緑"
+AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_CookieGlasses_ARCH]
 Attachment="Xmasクッキーメガネ"
-AttachmentSkin0="Green Wrapping"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Red Wrapping"
+AttachmentSkin0="緑の包装"
+AttachmentSkin1="希少"
+AttachmentSkin2="赤の包装"
 
 [Cosmetic_Christmas_CystHat_ARCH]
 Attachment="Xmasシストハット"
-AttachmentSkin0="Green"
+AttachmentSkin0="緑"
 
 [Cosmetic_Christmas_EarMuffs_ARCH]
 Attachment="Xmasイヤーマフ"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="黒"
+AttachmentSkin1="青"
+AttachmentSkin2="緑"
+AttachmentSkin3="希少"
+AttachmentSkin4="赤"
 
 [Cosmetic_Christmas_ElfEars_ARCH]
 Attachment="Xmasエルフイヤー"
-AttachmentSkin0="Flesh"
-AttachmentSkin1="Precious"
+AttachmentSkin0="肌色"
+AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_FPHead_ARCH]
 Attachment="Xmasフレッシュパウンドヘッド"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Copycat"
-AttachmentSkin2="Libro"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Warui"
+AttachmentSkin0="クラシック"
+AttachmentSkin1="コピーキャット"
+AttachmentSkin2="リブロ"
+AttachmentSkin3="希少"
+AttachmentSkin4="ワルイ"
 
 [Cosmetic_Christmas_GoreStockingBackpack_ARCH]
 Attachment="Xmas流血靴下リュック"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Classic"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="青"
+AttachmentSkin1="クラシック"
+AttachmentSkin2="緑"
+AttachmentSkin3="希少"
+AttachmentSkin4="赤"
 
 [Cosmetic_Christmas_HaloBulbs_ARCH]
 Attachment="Xmas光輪電球"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="赤緑"
+AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_HamHead_ARCH]
 Attachment="Xmasハムヘッド"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="クラシック"
+AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_HuskBackpack_ARCH]
 Attachment="Xmasハスク・リュック"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="黒"
+AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_HuskHat_ARCH]
 Attachment="Xmasハスク・ハット"
-AttachmentSkin0="Black"
+AttachmentSkin0="黒"
 
 [Cosmetic_Christmas_PoinsettaHat_ARCH]
 Attachment="Xmasポインセチア・ハット"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="クラシック"
+AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_SlasherHat_ARCH]
 Attachment="Xmasスラッシャー・ハット"
-AttachmentSkin0="Green"
+AttachmentSkin0="緑"
 
 [Cosmetic_Christmas_SnowmanFace_ARCH]
 Attachment="Xmasスノーマン・マスク"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="クラシック"
+AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
 Attachment="Xmasテディベア・リュック"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Dark"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Purple"
-AttachmentSkin5="Red"
+AttachmentSkin0="青"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="ダーク"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
 
 [Cosmetic_Christmas_TreeGlasses_ARCH]
 Attachment="Xmasツリーメガネ"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="希少"
+AttachmentSkin3="赤"
 
 [Cosmetic_Christmas_Ushanka_ARCH]
 Attachment="Xmasロシア帽"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Tan"
+AttachmentSkin0="黒"
+AttachmentSkin1="ブラウン"
+AttachmentSkin2="緑"
+AttachmentSkin3="希少"
+AttachmentSkin4="黄褐色"
 
 [Cosmetic_Christmas_PajamaHat_ARCH]
 Attachment="Xmasパジャマハット"
-AttachmentSkin0="Bunny"
+AttachmentSkin0="ウサギ"
 AttachmentSkin1="Dosh"
-AttachmentSkin2="Green Plaid"
-AttachmentSkin3="Green Trees"
-AttachmentSkin4="Quilt"
-AttachmentSkin5="Red Snow"
-AttachmentSkin6="Red Plaid"
+AttachmentSkin2="緑のチェック"
+AttachmentSkin3="緑のツリー"
+AttachmentSkin4="キルト"
+AttachmentSkin5="赤い雪"
+AttachmentSkin6="赤い格子柄"
 
 [Cosmetic_LeatherMask_ARCH]
 Attachment="レザーマスク"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Pink"
-AttachmentSkin4="Precious"
-AttachmentSkin5="Red"
-AttachmentSkin6="Tan"
-AttachmentSkin7="Trippy"
-AttachmentSkin8="White"
+AttachmentSkin0="黒"
+AttachmentSkin1="青"
+AttachmentSkin2="ブラウン"
+AttachmentSkin3="ピンク"
+AttachmentSkin4="希少"
+AttachmentSkin5="赤"
+AttachmentSkin6="黄褐色"
+AttachmentSkin7="クレイジー"
+AttachmentSkin8="白"
 
 [Cosmetic_HockeyMask_ARCH]
 Attachment="ホッケーマスク"
-AttachmentSkin0="Black"
-AttachmentSkin1="High Five"
-AttachmentSkin2="Kitty"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Skull"
-AttachmentSkin5="Slasher"
-AttachmentSkin6="Teal"
-AttachmentSkin7="TGIF"
+AttachmentSkin0="黒"
+AttachmentSkin1="ハイタッチ"
+AttachmentSkin2="小猫"
+AttachmentSkin3="希少"
+AttachmentSkin4="スカル"
+AttachmentSkin5="スラッシャー"
+AttachmentSkin6="ティール"
+AttachmentSkin7="花金"
 
 [Cosmetic_BiocolaHat_ARCH]
 Attachment="バイオコーラ・ハット"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="希少"
+AttachmentSkin3="赤"
+AttachmentSkin4="白"
 
 [Cosmetic_FoamCowboyHat_ARCH]
 Attachment="フォーム・カウボーイハット"
-AttachmentSkin0="Black"
-AttachmentSkin1="Orange"
-AttachmentSkin2="Precious"
+AttachmentSkin0="黒"
+AttachmentSkin1="オレンジ"
+AttachmentSkin2="希少"
 AttachmentSkin3="USA"
-AttachmentSkin4="White"
-AttachmentSkin5="Yellow"
+AttachmentSkin4="白"
+AttachmentSkin5="黄"
 
 [Cosmetic_PaperBagBlank_ARCH]
 Attachment="無地の紙袋"
-AttachmentSkin0="White"
+AttachmentSkin0="白"
 
 [Cosmetic_PaperBagEyes_ARCH]
 Attachment="デカ目紙袋"
-AttachmentSkin0="Precious"
+AttachmentSkin0="希少"
 
 [Cosmetic_PaperBagHappy_ARCH]
 Attachment="ハッピー紙袋"
-AttachmentSkin0="Green"
+AttachmentSkin0="緑"
 
 [Cosmetic_PaperBagKrinkle_ARCH]
 Attachment="ガサガサ紙袋"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="クレイジー"
 
 [Cosmetic_PaperBagOFace_ARCH]
 Attachment="Oフェイス紙袋"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="黄"
 
 [Cosmetic_PaperBagOooh_ARCH]
 Attachment="Oooh紙袋"
-AttachmentSkin0="White"
+AttachmentSkin0="白"
 
 [Cosmetic_PaperBagSmallEyes_ARCH]
 Attachment="プチ目紙袋"
-AttachmentSkin0="Purple"
+AttachmentSkin0="紫"
 
 [Cosmetic_PaperBagYelling_ARCH]
 Attachment="怒りの紙袋"
-AttachmentSkin0="Red"
+AttachmentSkin0="赤"
 
 [Cosmetic_PorcelainMaskBlank_ARCH]
 Attachment="無地の陶製マスク"
-AttachmentSkin0="White"
+AttachmentSkin0="白"
 
 [Cosmetic_PorcelainMaskBroken_ARCH]
 Attachment="壊れた陶製マスク"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="黄"
 
 [Cosmetic_PorcelainMaskCross_ARCH]
 Attachment="十字の陶製マスク"
-AttachmentSkin0="Red and Black"
+AttachmentSkin0="赤と黒"
 
 [Cosmetic_PorcelainMaskDosh_ARCH]
 Attachment="Doshの陶製マスク"
-AttachmentSkin0="Precious"
+AttachmentSkin0="希少"
 
 [Cosmetic_PorcelainMaskHappy_ARCH]
 Attachment="ハッピーな陶製マスク"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="黄"
 
 [Cosmetic_PorcelainMaskSad_ARCH]
 Attachment="悲しい陶製マスク"
-AttachmentSkin0="Blue"
+AttachmentSkin0="青"
 
 [Cosmetic_PorcelainMaskSlim_ARCH]
 Attachment="薄い陶製マスク"
-AttachmentSkin0="Green"
+AttachmentSkin0="緑"
 
 [Cosmetic_PorcelainMaskSly_ARCH]
 Attachment="いたずらな陶製マスク"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="クレイジー"
 
 [Cosmetic_Tricorne_ARCH]
 Attachment="三角帽子"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Precious"
-AttachmentSkin4="White"
+AttachmentSkin0="黒"
+AttachmentSkin1="青"
+AttachmentSkin2="ブラウン"
+AttachmentSkin3="希少"
+AttachmentSkin4="白"
+
+[Cosmetic_DAR_ClassicArmor_ARCH]
+Attachment="クラシックアーマー"
+AttachmentSkin0="ブラッディ"
+AttachmentSkin1="ローダー"
+AttachmentSkin2="スタンダード"
+AttachmentSkin3="希少"
+AttachmentSkin4="ドクロ"
+
+[Cosmetic_DAR_AssaultArmor_ARCH]
+Attachment="アサルトアーマー"
+AttachmentSkin0="極秘任務"
+AttachmentSkin1="迷彩G"
+AttachmentSkin2="砂丘"
+AttachmentSkin3="ローダー"
+AttachmentSkin4="オプティマル"
+AttachmentSkin5="希少"
+
+[Cosmetic_DAR_FlightArmor_ARCH]
+Attachment="飛行アーマー"
+AttachmentSkin0="青い天使"
+AttachmentSkin1="ギャラクティック"
+AttachmentSkin2="P51"
+AttachmentSkin3="希少"
+AttachmentSkin4="スピットファイア"
+AttachmentSkin5="叫ぶ"
+
+[Cosmetic_DAR_ChonneArmor_ARCH]
+Attachment="CHONN-E5アーマー"
+AttachmentSkin0="バットキャット"
+AttachmentSkin1="ジャージ"
+AttachmentSkin2="ホージン"
+AttachmentSkin3="希少"
+AttachmentSkin4="ラディカル"
+AttachmentSkin5="タイムキューブ"
+
+[Cosmetic_DAR_C3HZArmor_ARCH]
+Attachment="C-3HZアーマー"
+AttachmentSkin0="クラッシュ"
+AttachmentSkin1="フロウブルー"
+AttachmentSkin2="大理石"
+AttachmentSkin3="黒曜石"
+AttachmentSkin4="希少"
+AttachmentSkin5="Space"
+
+[Cosmetic_SmallEarPiece_ARCH]
+Attachment="小さなピアス"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
+
+[Cosmetic_Pad_ARCH]
+Attachment="パッドのバックパック"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
+
+[Cosmetic_MouthPiece_ARCH]
+Attachment="マウスピース"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
+
+[Cosmetic_MessengerBag_ARCH]
+Attachment="メッセンジャーバッグ"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="希少"
+AttachmentSkin3="赤"
+AttachmentSkin4="黄"
+
+[Cosmetic_LargeEarPiece_ARCH]
+Attachment="大きなピアス"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
+
+[Cosmetic_DiagonalBackpack_ARCH]
+Attachment="斜め模様のバックパック"
+AttachmentSkin0="グレー"
+AttachmentSkin1="緑"
+AttachmentSkin2="希少"
+AttachmentSkin3="黄褐色"
+
+[Cosmetic_CyberShades_ARCH]
+Attachment="サングラス"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
+
+[Cosmetic_CyberPunkVisorOpen_ARCH]
+Attachment="開いたバイザー"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
+
+[Cosmetic_CyberPunkVisorClosed_ARCH]
+Attachment="閉じたバイザー"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
+
+[Cosmetic_ArmScreen_ARCH]
+Attachment="デジタルアームスクリーン"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"
+
+[Cosmetic_SlimVisor_ARCH]
+Attachment="スリムなバイザー"
+AttachmentSkin0="青"
+AttachmentSkin1="緑"
+AttachmentSkin2="オレンジ"
+AttachmentSkin3="希少"
+AttachmentSkin4="紫"
+AttachmentSkin5="赤"

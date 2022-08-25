@@ -56,7 +56,14 @@ var private const int DoorRepairXP[4];
 
 function ApplySkillsToPawn()
 {
+    local KFGameReplicationInfo KFGRI;
+
     super.ApplySkillsToPawn();
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI == none) && KFGRI.bTraderIsOpen)
+    {
+        return;
+    }
     ResetSupplier();
 }
 
@@ -408,9 +415,9 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     return 0;
 }
 
-function OnWaveEnded()
+function OnWaveStart()
 {
-    super.OnWaveEnded();
+    super.OnWaveStart();
     ResetSupplier();
 }
 

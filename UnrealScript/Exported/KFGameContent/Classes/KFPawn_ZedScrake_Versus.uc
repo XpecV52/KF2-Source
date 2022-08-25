@@ -138,7 +138,6 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake_Versus:Afflictions_0'
-   IncapSettings(0)=(Vulnerability=(0.700000))
    IncapSettings(1)=(Duration=3.000000,Cooldown=5.000000,Vulnerability=(0.900000))
    IncapSettings(2)=(Vulnerability=(0.500000))
    IncapSettings(3)=()

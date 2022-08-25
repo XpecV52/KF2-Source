@@ -57,7 +57,7 @@ var private 			int						HeadShotComboCountDisplay;
 /** The maximum number of headshots that count toward the Rhythm Method perk skill damage multiplier */
 var private const		int 					MaxHeadShotComboCount;
 var private const		float 					HeadShotCountdownIntervall;
-	
+
 /*********************************************************************************************
 * @name	 Perk init and spawning
 ******************************************************************************************** */
@@ -214,7 +214,7 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 simulated private static function float GetQuickSwitchRecoilModifier()
 {
 	return default.QuickSwitchRecoilModifier;
-} 
+}
 
 /**
  * @brief Modifies the reload speed for commando weapons
@@ -404,8 +404,8 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 		case 0:
 			TempAkEvent = RhythmMethodSoundReset;
 			break;
-		case 1:	case 2:	case 3:	
-		case 4:	
+		case 1:	case 2:	case 3:
+		case 4:
 			if( !bMissed )
 			{
 				//OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
@@ -433,8 +433,6 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
  */
 function SubstractHeadShotCombo()
 {
-	`QALog( "", bLogPerk );
-
 	if( IsRhythmMethodActive() && HeadShotComboCount > 0 )
 	{
 		--HeadShotComboCount;
@@ -503,9 +501,8 @@ simulated function float GetPenetrationModifier( byte Level, class<KFDamageType>
  */
 simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
 {
-	if( IsShootnMooveActive() && IsWeaponOnPerk( KFW,, self.class ) )
+	if( IsShootnMoveActive() && IsWeaponOnPerk( KFW,, self.class ) )
 	{
-		`QALog( "Shoot'n'Move Mod:" @ KFW @ GetSkillValue( PerkSkills[EGunslingerShootnMove] ),bLogPerk );
 		return  GetSkillValue( PerkSkills[EGunslingerShootnMove] );
 	}
 
@@ -514,7 +511,7 @@ simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
 
 simulated function ModifyWeaponBopDamping( out float BobDamping, KFWeapon PawnWeapon )
 {
-	If( IsShootnMooveActive() && IsWeaponOnPerk( PawnWeapon,, self.class ) )
+	If( IsShootnMoveActive() && IsWeaponOnPerk( PawnWeapon,, self.class ) )
 	{
 		BobDamping *= default.ShootnMooveBobDamp;
 	}
@@ -534,7 +531,7 @@ simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
 	}
 }
 
-private function bool HitShouldGiveBodyPartDamage( byte BodyPart ) 
+private function bool HitShouldGiveBodyPartDamage( byte BodyPart )
 {
 	return BoneBreakerBodyParts.Find( BodyPart ) != INDEX_NONE;
 }
@@ -551,8 +548,8 @@ simulated function bool IgnoresPenetrationDmgReduction()
 
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
-	if( IsSkullCrackerActive() && 
-		DamageType != none && 
+	if( IsSkullCrackerActive() &&
+		DamageType != none &&
 		IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) &&
 		HitZoneIdx == HZI_Head )
 	{
@@ -570,7 +567,7 @@ simulated function float GetSnarePowerModifier( optional class<DamageType> Damag
  *
  * @return true/false
  */
-simulated function bool IsShootnMooveActive()
+simulated function bool IsShootnMoveActive()
 {
 	return PerkSkills[EGunslingerShootnMove].bActive && IsPerkLevelAllowed(EGunslingerShootnMove);
 }
@@ -878,4 +875,3 @@ DefaultProperties
     AutoBuyLoadOutPath=(class'KFWeapDef_Remington1858', class'KFWeapDef_Remington1858Dual', class'KFWeapDef_Colt1911', class'KFWeapDef_Colt1911Dual',class'KFWeapDef_Deagle', class'KFWeapDef_DeagleDual', class'KFWeapDef_SW500', class'KFWeapDef_SW500Dual')
 }
 
-    

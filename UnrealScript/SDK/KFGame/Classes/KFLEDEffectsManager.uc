@@ -17,6 +17,7 @@ enum ELightFXID
 	LFID_Unready,
 	LFID_MatchLost,
 	LFID_MatchWon,
+	LFID_Emote,
 };
 
 struct S_LightingFrame
@@ -42,6 +43,7 @@ var array<S_LightingFrame> ReadyEffectArr;
 var array<S_LightingFrame> UnreadyEffectArr;
 var array<S_LightingFrame> MatchLostEffectArr;
 var array<S_LightingFrame> MatchWonEffectArr;
+var array<S_LightingFrame> EmoteEffectArr;
 
 var array<S_LightingFrame> CurrentLightingFrames;
 var int CurrentLightFrameIndex;
@@ -259,6 +261,12 @@ simulated function PlayEffectRecievedDosh()
     //todo
 }
 
+simulated function PlayEmoteEffect()
+{
+	CurrentLightingFrames = EmoteEffectArr;
+	PlayNextLightFrame(true);
+}
+
 simulated function PlayEffectSetReady(bool bReady)
 {
     if(bReady)
@@ -289,6 +297,23 @@ simulated function PlayEffectShowMatchOutcome(bool bWon) //
 
 DefaultProperties
 {
+	EmoteEffectArr={(
+		(Red = 100,Green = 0,Blue = 0,Brightness = 100,Duration = 0.15f), 
+		(Red = 100,Green = 60,Blue = 18,Brightness = 100,Duration = 0.15f), 
+		(Red = 90,Green = 99,Blue = 60,Brightness = 100,Duration = 0.15f), 
+		(Red = 0,Green = 100,Blue = 60,Brightness = 0,Duration = 0.15f),	
+		(Red = 0,Green = 0,Blue = 100,Brightness = 100,Duration = 0.15f),  
+		(Red = 60,Green = 25,Blue = 98,Brightness = 100,Duration = 0.15f), 
+		(Red = 244,Green = 30,Blue = 88,Brightness = 100,Duration = 0.15f), 
+		(Red = 60,Green = 25,Blue = 98,Brightness = 100,Duration = 0.15f), 
+		(Red = 0,Green = 0,Blue = 100,Brightness = 100,Duration = 0.15f),  
+		(Red = 0,Green = 100,Blue = 60,Brightness = 0,Duration = 0.15f),	
+		(Red = 90,Green = 99,Blue = 60,Brightness = 100,Duration = 0.15f), 
+		(Red = 100,Green = 60,Blue = 18,Brightness = 100,Duration = 0.15f), 
+		(Red = 100,Green = 0,Blue = 0,Brightness = 100,Duration = 0.15f) 
+		)}
+
+
 	PukeEffectArr={(
 		(Red = 50,Green = 50,Blue = 0,Brightness = 100,Duration = 0.1f),
 		(Red = 50,Green = 50,Blue = 0,Brightness = 95,Duration = 0.1f),

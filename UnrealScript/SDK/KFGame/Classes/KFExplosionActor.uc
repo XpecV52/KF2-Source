@@ -158,6 +158,11 @@ simulated function SpawnExplosionParticleSystem(ParticleSystem Template)
     WorldInfo.MyEmitterPool.SpawnEmitter(Template, Location, rotator(ExplosionTemplate.HitNormal), None);
 }
 
+simulated function SetSyncToMuzzleLocation(bool bSync)
+{
+	//empty in this class
+}
+
 simulated function SpawnExplosionDecal()
 {
 	local MaterialInterface MI;

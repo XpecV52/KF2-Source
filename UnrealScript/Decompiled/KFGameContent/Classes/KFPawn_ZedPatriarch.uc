@@ -1473,7 +1473,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
             goto J0x7F;
         }
     }
-    super.PlayDying(DamageType, HitLoc);
+    super(KFPawn_Monster).PlayDying(DamageType, HitLoc);
     ClearMortarTargets();
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -1763,7 +1763,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_335' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_347' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

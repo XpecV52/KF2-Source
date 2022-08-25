@@ -32,6 +32,12 @@ package tripwire.containers.trader
         
         private var inactiveColor:uint = 15547935;
         
+        private var upgradeColor:uint = 16252764;
+        
+        private var upgradeTextColor:uint = 6943;
+        
+        private var regularColor:uint = 12255231;
+        
         private var _iconColor:Color;
         
         private var _favoriteString:String;
@@ -43,6 +49,16 @@ package tripwire.containers.trader
         public var _bCanFavorite:Boolean;
         
         public var perkSecondaryArrow:MovieClip;
+        
+        public var WeaponImageBorder:MovieClip;
+        
+        public var weaponUpPlusIcon:MovieClip;
+        
+        public var weaponUpNumText:TextField;
+        
+        private const BAR_X:int = 160;
+        
+        private const BAR_MAX_WIDTH:int = 144;
         
         private var cachedFavorite_X:Number;
         
@@ -60,6 +76,10 @@ package tripwire.containers.trader
             this.detailedStats.fireRateValue.visible = false;
             this.detailedStats.penetrationValue.visible = false;
             this.detailedStats.accuracyValue.visible = false;
+            this.detailedStats.damageUpBar.width = 0;
+            this.detailedStats.fireRateUpBar.width = 0;
+            this.detailedStats.penetrationUpBar.width = 0;
+            this.detailedStats.accuracyUpBar.width = 0;
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -124,14 +144,25 @@ package tripwire.containers.trader
                 this.detailedStats.accuracyValue.text = param1.accuracyValue;
                 this.detailedStats.ammoCapacity.text = param1.ammoCapacity;
                 this.detailedStats.magSizeValue.text = param1.magSizeValue;
-                this.detailedStats.damageBar.gotoAndStop(param1.damagePercent);
-                this.detailedStats.fireRateBar.gotoAndStop(param1.fireRatePercent);
-                this.detailedStats.penetrationBar.gotoAndStop(param1.penetrationPercent);
-                this.detailedStats.accuracyBar.gotoAndStop(param1.accuracyPercent);
+                this.detailedStats.damageBar.width = this.BAR_MAX_WIDTH * 0.01 * param1.damagePercent;
+                this.detailedStats.fireRateBar.width = this.BAR_MAX_WIDTH * 0.01 * param1.fireRatePercent;
+                this.detailedStats.penetrationBar.width = this.BAR_MAX_WIDTH * 0.01 * param1.penetrationPercent;
+                this.detailedStats.accuracyBar.width = this.BAR_MAX_WIDTH * 0.01 * param1.accuracyPercent;
+                this.detailedStats.damageUpBar.visible = this.detailedStats.damageBarBG.visible = this.detailedStats.damageBar.visible;
+                this.detailedStats.fireRateUpBar.visible = this.detailedStats.fireRateBarBG.visible = this.detailedStats.fireRateBar.visible;
+                this.detailedStats.penetrationUpBar.visible = this.detailedStats.penetrationBarBG.visible = this.detailedStats.penetrationBar.visible;
+                this.detailedStats.accuracyUpBar.visible = this.detailedStats.accuracyBarBG.visible = this.detailedStats.accuracyBar.visible = visible;
                 this.detailedStats.descriptionTextField.text = param1.description;
                 this.detailedStats.weightValue.text = param1.weight;
                 this.detailedStats.weightValue.visible = param1.weight > 0;
                 this.detailedStats.weightIcon.visible = param1.weight > 0;
+                this.WeaponImageBorder.gotoAndStop(!!param1.weaponTier ? "upgrade" : "regular");
+                this.weaponUpPlusIcon.visible = !!param1.weaponTier ? true : false;
+                this.weaponUpNumText.text = !!param1.weaponTier ? param1.weaponTier : "";
+                this.nameTextField.textColor = !!param1.weaponTier ? uint(this.upgradeTextColor) : uint(this.regularColor);
+                this._iconColor.setTint(!!param1.weaponTier ? uint(this.upgradeTextColor) : uint(this.regularColor),1);
+                this.perkLoader.transform.colorTransform = this._iconColor;
+                this.detailedStats.upgradeFrame.visible = !!param1.weaponTier ? true : false;
                 if(param1.bIsFavorite)
                 {
                     this.detailedStats.favoriteIcon.gotoAndStop("favorited");
@@ -148,8 +179,8 @@ package tripwire.containers.trader
                 }
                 if(param1.bCanCarry)
                 {
-                    this._iconColor.setTint(this.activeColor,1);
-                    this.detailedStats.weightValue.textColor = this.activeColor;
+                    this._iconColor.setTint(!!param1.weaponTier ? uint(this.upgradeColor) : uint(this.activeColor),1);
+                    this.detailedStats.weightValue.textColor = !!param1.weaponTier ? uint(this.upgradeColor) : uint(this.activeColor);
                 }
                 else
                 {

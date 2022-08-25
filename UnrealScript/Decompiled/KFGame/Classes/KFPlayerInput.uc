@@ -39,6 +39,7 @@ var bool bVersusInput;
 var bool bUsingVersusGamepadScheme;
 var transient float PressedJumpTime;
 var config float GamepadButtonHoldTime;
+var config float AutoUpgradeHoldTime;
 var config float SprintAnalogThreshold;
 var const float ZedAutoSprintAnalogThreshold;
 var transient float GamepadSprintAnalogStart;
@@ -913,7 +914,7 @@ exec function ReleaseGamepadWeaponSelect()
                 Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadWeaponMenuTimer', self);
                 if(bShowGamepadWeaponSelectHint)
                 {
-                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 10);
+                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 11);
                 }
                 if(bUseGamepadLastWeapon)
                 {
@@ -1208,6 +1209,19 @@ exec function OnVoteNoRelease()
 
 exec function Interact()
 {
+    local KFInventoryManager KFIM;
+    local KFInterface_Usable UsableTrigger;
+
+    KFIM = KFInventoryManager(Outer.Pawn.InvManager);
+    if((KFIM != none) && KFIM.Instigator != none)
+    {
+        UsableTrigger = Outer.GetCurrentUsableActor(KFIM.Instigator);
+        if(NotEqual_InterfaceInterface(UsableTrigger, (none)) && UsableTrigger.IsA('KFTraderTrigger'))
+        {
+            Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(AutoUpgradeHoldTime, false, 'InteractTimer', self);
+            return;
+        }
+    }
     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(GamepadButtonHoldTime, false, 'InteractTimer', self);
 }
 
@@ -2177,6 +2191,30 @@ exec function UnsuppressScoring()
     Outer.ConsoleCommand("SETNOPEC KFGameInfo bLogScoring true");
 }
 
+exec function SuppressDialog(optional name ClassName)
+{
+    ClassName = ((ClassName != 'None') ? ClassName : 'KFDialogManager');    
+    Outer.ConsoleCommand(("SETNOPEC" @ string(ClassName)) @ "bLogDialog false");
+}
+
+exec function UnsuppressDialog(optional name ClassName)
+{
+    ClassName = ((ClassName != 'None') ? ClassName : 'KFDialogManager');    
+    Outer.ConsoleCommand(("SETNOPEC" @ string(ClassName)) @ "bLogDialog true");
+}
+
+exec function SuppressTrader(optional name ClassName)
+{
+    ClassName = ((ClassName != 'None') ? ClassName : 'KFTraderTrigger');    
+    Outer.ConsoleCommand(("SETNOPEC" @ string(ClassName)) @ "bLogTrader false");
+}
+
+exec function UnsuppressTrader(optional name ClassName)
+{
+    ClassName = ((ClassName != 'None') ? ClassName : 'KFTraderTrigger');    
+    Outer.ConsoleCommand(("SETNOPEC" @ string(ClassName)) @ "bLogTrader true");
+}
+
 defaultproperties
 {
     bRequiresPushToTalk=true
@@ -2185,6 +2223,7 @@ defaultproperties
     bViewSmoothingEnabled=true
     bViewAccelerationEnabled=true
     GamepadButtonHoldTime=0.25
+    AutoUpgradeHoldTime=1
     SprintAnalogThreshold=0.6
     ZedAutoSprintAnalogThreshold=0.75
     LookSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0.5,LeaveTangent=0.5,InterpMode=EInterpCurveMode.CIM_CurveAuto)

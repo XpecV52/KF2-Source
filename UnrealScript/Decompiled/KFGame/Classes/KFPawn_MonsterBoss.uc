@@ -209,18 +209,6 @@ function bool CanAITargetThisPawn(Controller TargetingController)
     return super(KFPawn).CanAITargetThisPawn(TargetingController);
 }
 
-simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
-{
-    local KFGameReplicationInfo KFGRI;
-
-    super.PlayDying(DamageType, HitLoc);
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && !KFGRI.IsFinalWave())
-    {
-        return;
-    }
-}
-
 simulated function PlayDyingSound()
 {
     if(!HasMouth())

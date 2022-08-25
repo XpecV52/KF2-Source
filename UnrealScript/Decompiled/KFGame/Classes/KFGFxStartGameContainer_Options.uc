@@ -112,7 +112,7 @@ var int InitialMapIndex;
 var byte SavedSoloModeIndex;
 var byte SavedSoloDifficultyIndex;
 var byte SavedSoloLengthIndex;
-var private byte SavedModeIndex;
+var byte SavedModeIndex;
 var private byte SavedDifficultyIndex;
 var private byte SavedLengthIndex;
 var private byte SavedPrivacyIndex;
@@ -260,7 +260,15 @@ function InitializeGameOptions()
     ClampSavedFiltersToMode();
     if(bIsSoloGame && InitialMapIndex == -1)
     {
-        InitialMapIndex = 0;
+        if(Class'GameEngine'.static.IsGameFullyInstalled())
+        {
+            InitialMapIndex = StartMenu.MapStringList.Find("KF-BioticsLab";            
+        }
+        else
+        {
+            InitialMapIndex = StartMenu.MapStringList.Find("KF-EvacuationPoint";
+        }
+        MapChanged(StartMenu.MapStringList[InitialMapIndex]);
     }
     TextObject = Outer.CreateObject("Object");
     TextObject.SetString("soloGameString", SoloGameString);
@@ -292,7 +300,7 @@ function InitializeGameOptions()
     {
         K = 0;
         I = 0;
-        J0x9D3:
+        J0xA9B:
 
         if(I < SupportedGameModeStrings.Length)
         {
@@ -302,7 +310,7 @@ function InitializeGameOptions()
                 -- I;
             }
             ++ I;
-            goto J0x9D3;
+            goto J0xA9B;
         }
     }
     TextObject.SetObject("modeList", CreateList(SupportedGameModeStrings, byte(Min(((bIsSoloGame) ? SavedSoloModeIndex : SavedModeIndex), SupportedGameModeStrings.Length)), false));
@@ -444,6 +452,7 @@ function ModeChanged(int Index)
         StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(148, SavedModeIndex);
     }
     ClampSavedFiltersToMode();
+    StartMenu.GetMapList(StartMenu.MapStringList);
     InitializeGameOptions();
     SaveConfig();
 }
@@ -745,11 +754,22 @@ function byte GetServerTypeIndex()
     return byte(HandleNoPref(SavedServerTypeIndex, bShowServerTypeNoPref));
 }
 
-function int GetAdjustedGameModeIndex(int ModeIndex)
+event int GetAdjustedGameModeIndex(int ModeIndex)
 {
     if(bIsSoloGame)
     {
-        return Class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedSoloModeIndex]);        
+        switch(ModeIndex)
+        {
+            case 0:
+            case 1:
+            case 3:
+                return ModeIndex;
+            case 2:
+                return 3;
+            default:
+                return Class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedSoloModeIndex]);
+                break;
+        }        
     }
     else
     {

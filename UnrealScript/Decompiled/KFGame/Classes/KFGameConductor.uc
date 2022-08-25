@@ -139,7 +139,7 @@ function HandleZedKill(float ZedVisibleTimeAlive)
 
 function NotifyHumanTeamPlayerDeath()
 {
-    if(!Outer.MyKFGRI.IsFinalWave())
+    if(!Outer.MyKFGRI.IsBossWave())
     {
         if(bLogGameConductor)
         {
@@ -152,7 +152,7 @@ function NotifyHumanTeamPlayerDeath()
 
 function NotifySoloPlayerSurrounded()
 {
-    if(!Outer.MyKFGRI.IsFinalWave() && GameConductorStatus != 1)
+    if(!Outer.MyKFGRI.IsBossWave() && GameConductorStatus != 1)
     {
         if(bLogGameConductor)
         {
@@ -431,7 +431,7 @@ function UpdateOverallStatus()
         ++ I;
         goto J0x169;
     }
-    if(bBypassGameConductor || Outer.MyKFGRI.IsFinalWave())
+    if(bBypassGameConductor || Outer.MyKFGRI.IsBossWave())
     {
         OverallRankAndSkillModifier = 0.5;
         if(bLogGameConductor)
@@ -540,7 +540,7 @@ function UpdateOverallAttackCoolDowns(KFAIController KFAIC)
     {
         bAllowLowZedIntensity = AllowLowIntensityZedModeByDifficulty[4 - 1] == 1;
     }
-    if((!bBypassGameConductor && bAllowLowZedIntensity) && !Outer.MyKFGRI.IsFinalWave())
+    if((!bBypassGameConductor && bAllowLowZedIntensity) && !Outer.MyKFGRI.IsBossWave())
     {
         if((GameConductorStatus == 1) || OverallRankAndSkillModifier == float(0))
         {

@@ -349,6 +349,7 @@ defaultproperties
     DetonateAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Detonate'
     DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
     FireModeIconPaths=/* Array type was not detected. */
+    InventoryGroup=EInventoryGroup.IG_Equipment
     InventorySize=3
     MagazineCapacity=1
     GroupPriority=50

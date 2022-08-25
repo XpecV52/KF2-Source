@@ -13,6 +13,315 @@ class KFCharacterInfo_Human extends KFCharacterInfoBase
 	implements(KFUnlockableAsset)
 	hidecategories(Object);
 
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	 
+
+
+
+		
+		
+	
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#linenumber 52;
+
+#linenumber 16;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#linenumber 17;
+
 /************************************************************************/
 /*  Identification													    */
 /************************************************************************/
@@ -37,6 +346,8 @@ struct native SkinVariant
 	var() Texture UITexture;
 	/** The material this outfit can use */
  	var() MaterialInstance Skin;
+	/** The first person material of this outfit */
+	var() MaterialInstance Skin1p;
 };
 
 struct native OutfitVariants
@@ -84,6 +395,11 @@ struct native AttachmentVariants
 		both if there is no conflict. NOTE: Skeletal meshes do not require sockets for attachment, but the socket name
 		can still be used for conflit resolution. */
 	var name SocketName;
+	/** Mesh name for 1p attachmentt */
+	var() string MeshName1p;
+	/** Name of the socket that the 1p mesh attaches to. If bIsSkeletalAttachment is true, then the mesh will attach
+	    to the ParentAnimComponent. */
+	var() name SocketName1p;
 	/** Translation relative to given socket (for additional control) */
 	var() vector RelativeTranslation;
 	/** Rotation relative to given socket (for additional control) */
@@ -199,6 +515,23 @@ function string GetMeshByIndex(int index)
 	return GetMesh(CosmeticVariants[index]);
 }
 
+function string Get1pMesh(const out AttachmentVariants Variant)
+{
+	if (Len(Variant.MeshName1p) > 0)
+	{
+		return Variant.MeshName1p;
+	}
+	else
+	{
+		return Variant.AttachmentItem.MeshName1p;
+	}
+}
+
+function string Get1pMeshByIndex(int index)
+{
+	return Get1pMesh(CosmeticVariants[index]);
+}
+
 /** Return the 1P arm skeletal mesh representation for the class */
 function SkeletalMesh GetFirstPersonArms()
 {
@@ -293,8 +626,8 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 		// Cosmetic attachment mesh & skin. Index of 255 implies don't use any attachments (default)
 		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
 		{
-				CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-				if ( CosmeticMeshIdx != 255&& CosmeticMeshIdx != INDEX_NONE)
+			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
+			if ( CosmeticMeshIdx != 255&& CosmeticMeshIdx != INDEX_NONE)
 			{
 					bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
 
@@ -346,6 +679,11 @@ private function InitCharacterMICs(KFPawn P, optional bool bMaskHead)
 		if( P.ThirdPersonAttachments[i] != none )
 		{
 			P.CharacterMICs.AddItem(P.ThirdPersonAttachments[i].CreateAndSetMaterialInstanceConstant(0));
+		}
+
+		if (P.FirstPersonAttachments[i] != none)
+		{
+			P.CharacterMICs.AddItem(P.FirstPersonAttachments[i].CreateAndSetMaterialInstanceConstant(0));
 		}
 	}
 }
@@ -493,11 +831,137 @@ function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Paw
 	return TRUE;
 }
 
+// Assigning the Arms Mesh default properties to the 1p cosmetic.
+native function SetFirstPersonCosmeticAttachment(SkeletalMeshComponent SkeletalComponent);
+
+protected simulated function SetAttachmentMesh(int CurrentAttachmentMeshIndex, int AttachmentSlotIndex, string CharAttachmentMeshName, name CharAttachmentSocketName, SkeletalMeshComponent PawnMesh, KFPawn KFP, bool bIsFirstPerson = false)
+{
+	local StaticMeshComponent StaticAttachment;
+	local SkeletalMeshComponent SkeletalAttachment;
+	local bool bIsSkeletalAttachment;
+	local StaticMesh CharAttachmentStaticMesh;
+	local SkeletalMesh CharacterAttachmentSkelMesh;
+	local float MaxDrawDistance;
+	local SkeletalMeshSocket AttachmentSocket;
+	local vector AttachmentLocationRelativeToSocket, AttachmentScaleRelativeToSocket;
+	local rotator AttachmentRotationRelativeToSocket;
+
+	MaxDrawDistance = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.MaxDrawDistance;
+	AttachmentLocationRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeTranslation;
+	AttachmentRotationRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeRotation;
+	AttachmentScaleRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeScale;
+	bIsSkeletalAttachment = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.bIsSkeletalAttachment;
+
+	//`log("AttachmentLocationRelativeToSocket: x="$AttachmentLocationRelativeToSocket.x@"y="$AttachmentLocationRelativeToSocket.y@"z="$AttachmentLocationRelativeToSocket.z);
+	// If it is a skeletal attachment, parent anim it to the body mesh
+	if (bIsSkeletalAttachment)
+	{
+		if (bIsFirstPerson && (SkeletalMeshComponent(KFP.FirstPersonAttachments[AttachmentSlotIndex]) != none))
+		{
+			SkeletalAttachment = SkeletalMeshComponent(KFP.FirstPersonAttachments[AttachmentSlotIndex]);
+		}
+		else if (!bIsFirstPerson && (SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]) != none))
+		{
+			SkeletalAttachment = SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]);
+		}
+		else
+		{
+			SkeletalAttachment = new(KFP) class'KFSkeletalMeshComponent';
+			if (bIsFirstPerson)
+			{
+				SetFirstPersonCosmeticAttachment(SkeletalAttachment);
+			}
+			SkeletalAttachment.SetActorCollision(false, false);
+
+			if(bIsFirstPerson)
+			{
+				KFP.FirstPersonAttachments[AttachmentSlotIndex] = SkeletalAttachment;
+			}
+			else
+			{
+				KFP.ThirdPersonAttachments[AttachmentSlotIndex] = SkeletalAttachment;
+			}
+		}
+
+		// Load and assign skeletal mesh
+		CharacterAttachmentSkelMesh = SkeletalMesh(DynamicLoadObject(CharAttachmentMeshName, class'SkeletalMesh'));
+		SkeletalAttachment.SetSkeletalMesh(CharacterAttachmentSkelMesh);
+
+		// Parent animation and LOD transitions to body mesh
+		SkeletalAttachment.SetParentAnimComponent(PawnMesh);
+		SkeletalAttachment.SetLODParent(PawnMesh);
+		SkeletalAttachment.SetScale(DefaultMeshScale);
+		SkeletalAttachment.SetCullDistance(MaxDrawDistance);
+		SkeletalAttachment.SetShadowParent(PawnMesh);
+		SkeletalAttachment.SetLightingChannels(KFP.PawnLightingChannel);
+
+		KFP.AttachComponent(SkeletalAttachment);
+	}
+	// Otherwise (if static), attach to a socket on the body mesh
+	else
+	{
+		if (!bIsFirstPerson && (StaticMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]) != none))
+		{
+			StaticAttachment = StaticMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]);
+		}
+		else if (bIsFirstPerson && (StaticMeshComponent(KFP.FirstPersonAttachments[AttachmentSlotIndex]) != none))
+		{
+			StaticAttachment = StaticMeshComponent(KFP.FirstPersonAttachments[AttachmentSlotIndex]);
+		}
+		else
+		{
+			StaticAttachment = new(KFP) class'StaticMeshComponent';
+			StaticAttachment.SetActorCollision(false, false);
+
+			if(bIsFirstPerson)
+			{
+				KFP.FirstPersonAttachments[AttachmentSlotIndex] = StaticAttachment;
+			}
+			else
+			{
+				KFP.ThirdPersonAttachments[AttachmentSlotIndex] = StaticAttachment;
+			}
+		}
+
+		// Load and assign static mesh
+		CharAttachmentStaticMesh = StaticMesh(DynamicLoadObject(CharAttachmentMeshName, class'StaticMesh'));
+		StaticAttachment.SetStaticMesh(CharAttachmentStaticMesh);
+
+		// Set properties
+		StaticAttachment.SetScale(DefaultMeshScale);
+		StaticAttachment.SetCullDistance(MaxDrawDistance);
+		StaticAttachment.SetShadowParent(KFP.Mesh);
+		StaticAttachment.SetLightingChannels(KFP.PawnLightingChannel);
+
+		// For static meshes, attach to given socket
+		AttachmentSocket = PawnMesh.GetSocketByName(CharAttachmentSocketName);
+		PawnMesh.AttachComponent(
+			StaticAttachment,
+			AttachmentSocket.BoneName,
+			AttachmentSocket.RelativeLocation + AttachmentLocationRelativeToSocket,
+			AttachmentSocket.RelativeRotation + AttachmentRotationRelativeToSocket,
+			AttachmentSocket.RelativeScale * AttachmentScaleRelativeToSocket);
+	}
+
+	// Update the pawn's attachment metadata
+	KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
+
+	if(bIsFirstPerson)
+	{
+		KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
+	}
+	else
+	{
+		KFP.ThirdPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
+	}
+}
+
 protected simulated function SetAttachmentSkinMaterial(
 	int PawnAttachmentIndex,
 	const out AttachmentVariants CurrentVariant,
 	byte NewSkinIndex,
-	KFPawn KFP)
+	KFPawn KFP,
+	optional bool bIsFirstPerson)
 {
 	local int i;
 	if (KFP.WorldInfo.NetMode != NM_DedicatedServer)
@@ -507,22 +971,47 @@ protected simulated function SetAttachmentSkinMaterial(
 			// Assign a skin to the attachment mesh as a material override
 			if ( NewSkinIndex < CurrentVariant.AttachmentItem.SkinVariations.length )
 			{
-			KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(
-				CurrentVariant.AttachmentItem.SkinMaterialID,
-				CurrentVariant.AttachmentItem.SkinVariations[NewSkinIndex].Skin);
-		}
-		else
-		{
-				LogInternal("Out of bounds skin index for"@CurrentVariant.MeshName);
+				if (bIsFirstPerson)
+				{
+					if (KFP.FirstPersonAttachments[PawnAttachmentIndex] != none)
+					{
+						KFP.FirstPersonAttachments[PawnAttachmentIndex].SetMaterial(
+							CurrentVariant.AttachmentItem.SkinMaterialID,
+							CurrentVariant.AttachmentItem.SkinVariations[NewSkinIndex].Skin1p);
+					}
+				}
+				else
+				{
+					KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(
+						CurrentVariant.AttachmentItem.SkinMaterialID,
+						CurrentVariant.AttachmentItem.SkinVariations[NewSkinIndex].Skin);
+				}
+			}
+			else
+			{
+				LogInternal("Out of bounds skin index for" @ CurrentVariant.MeshName);
 				RemoveAttachmentMeshAndSkin(PawnAttachmentIndex, KFP);
 			}
 		}
 		else
 		{
-			// Use material specified in the mesh asset
-			for( i=0; i < KFP.ThirdPersonAttachments[PawnAttachmentIndex].GetNumElements(); i++ )
+			if (bIsFirstPerson)
 			{
-				KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(i, none);
+				if (KFP.FirstPersonAttachments[PawnAttachmentIndex] != none)
+				{
+					for (i = 0; i < KFP.FirstPersonAttachments[PawnAttachmentIndex].GetNumElements(); i++)
+					{
+						KFP.FirstPersonAttachments[PawnAttachmentIndex].SetMaterial(i, none);
+					}
+				}
+			}
+			else
+			{
+				// Use material specified in the mesh asset
+				for( i=0; i < KFP.ThirdPersonAttachments[PawnAttachmentIndex].GetNumElements(); i++ )
+				{
+					KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(i, none);
+				}
 			}
 		}
 	}
@@ -533,20 +1022,13 @@ private function SetAttachmentMeshAndSkin(
 	byte CurrentAttachmentMeshIndex,
 	byte CurrentAttachmentSkinIndex,
 	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI )
+	optional KFPlayerReplicationInfo KFPRI,
+	optional bool bIsFirstPerson )
 {
 	local string CharAttachmentMeshName;
 	local name CharAttachmentSocketName;
-	local bool bIsSkeletalAttachment;
-	local StaticMesh CharAttachmentStaticMesh;
-	local SkeletalMesh CharacterAttachmentSkelMesh;
-	local float MaxDrawDistance;
-	local StaticMeshComponent StaticAttachment;
-	local SkeletalMeshComponent SkeletalAttachment;
-	local SkeletalMeshSocket AttachmentSocket;
-	local vector AttachmentLocationRelativeToSocket, AttachmentScaleRelativeToSocket;
-	local rotator AttachmentRotationRelativeToSocket;
 	local int AttachmentSlotIndex;
+	local SkeletalMeshComponent AttachmentMesh;
 
 	if (KFP.WorldInfo.NetMode == NM_DedicatedServer)
 	{
@@ -564,13 +1046,9 @@ private function SetAttachmentMeshAndSkin(
 		 CurrentAttachmentMeshIndex < CosmeticVariants.length )
 	{
 		// Cache values from character info
-		CharAttachmentMeshName = GetMeshByIndex(CurrentAttachmentMeshIndex);
-		CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName;
-		MaxDrawDistance = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.MaxDrawDistance;
-		AttachmentLocationRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeTranslation;
-		AttachmentRotationRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeRotation;
-		AttachmentScaleRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeScale;
-		bIsSkeletalAttachment = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.bIsSkeletalAttachment;
+		CharAttachmentMeshName = bIsFirstPerson ? Get1pMeshByIndex(CurrentAttachmentMeshIndex) : GetMeshByIndex(CurrentAttachmentMeshIndex);
+		CharAttachmentSocketName = bIsFirstPerson ? CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName1p : CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName;
+		AttachmentMesh = bIsFirstPerson ? KFP.ArmsMesh : KFP.Mesh;
 
 		// If previously attached and we could have changed outfits (e.g. local player UI) then re-validate
 		// required skeletal mesh socket.  Must be after body mesh DLO, but before AttachComponent.
@@ -583,80 +1061,30 @@ private function SetAttachmentMeshAndSkin(
 			}
 		}
 
-		//`log("AttachmentLocationRelativeToSocket: x="$AttachmentLocationRelativeToSocket.x@"y="$AttachmentLocationRelativeToSocket.y@"z="$AttachmentLocationRelativeToSocket.z);
-		// If it is a skeletal attachment, parent anim it to the body mesh
-		if( bIsSkeletalAttachment )
+		// Set First Person Cosmetic if mesh exists for it.
+		if(CharAttachmentMeshName != "")
 		{
-			if( SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]) != none )
-			{
-				SkeletalAttachment = SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]);
-			}
-			else
-			{
-				SkeletalAttachment = new(KFP) class'SkeletalMeshComponent';
-				SkeletalAttachment.SetActorCollision(false, false);
-				KFP.ThirdPersonAttachments[AttachmentSlotIndex] = SkeletalAttachment;
-			}
-
-			// Load and assign skeletal mesh
-			CharacterAttachmentSkelMesh = SkeletalMesh(DynamicLoadObject(CharAttachmentMeshName, class'SkeletalMesh'));
-			SkeletalAttachment.SetSkeletalMesh(CharacterAttachmentSkelMesh);
-
-			// Parent animation and LOD transitions to body mesh
-			SkeletalAttachment.SetParentAnimComponent(KFP.Mesh);
-			SkeletalAttachment.SetLODParent(KFP.Mesh);
-			SkeletalAttachment.SetScale(DefaultMeshScale);
-			SkeletalAttachment.SetCullDistance(MaxDrawDistance);
-			SkeletalAttachment.SetShadowParent(KFP.Mesh);
-			SkeletalAttachment.SetLightingChannels(KFP.PawnLightingChannel);
-
-			// Attach
-			KFP.AttachComponent(SkeletalAttachment);
+			// Set Cosmetic Mesh
+			SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName, CharAttachmentSocketName, AttachmentMesh, KFP, bIsFirstPerson);
 		}
-		// Otherwise (if static), attach to a socket on the body mesh
 		else
 		{
-			if( StaticMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]) != none )
+			// Make sure to clear out attachment if we're replacing with nothing.
+			if(bIsFirstPerson)
 			{
-				StaticAttachment = StaticMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]);
+				KFP.FirstPersonAttachments[AttachmentSlotIndex] = none;
+				KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = '';
 			}
-			else
-			{
-				StaticAttachment = new(KFP) class'StaticMeshComponent';
-				StaticAttachment.SetActorCollision(false, false);
-				KFP.ThirdPersonAttachments[AttachmentSlotIndex] = StaticAttachment;
-			}
-
-			// Load and assign static mesh
-			CharAttachmentStaticMesh = StaticMesh(DynamicLoadObject(CharAttachmentMeshName, class'StaticMesh'));
-			StaticAttachment.SetStaticMesh(CharAttachmentStaticMesh);
-
-			// Set properties
-			StaticAttachment.SetScale(DefaultMeshScale);
-			StaticAttachment.SetCullDistance(MaxDrawDistance);
-			StaticAttachment.SetShadowParent(KFP.Mesh);
-			StaticAttachment.SetLightingChannels(KFP.PawnLightingChannel);
-
-			// For static meshes, attach to given socket
-			AttachmentSocket = KFP.mesh.GetSocketByName(CharAttachmentSocketName);
-			KFP.mesh.AttachComponent(
-				StaticAttachment,
-				AttachmentSocket.BoneName,
-				AttachmentSocket.RelativeLocation + AttachmentLocationRelativeToSocket,
-				AttachmentSocket.RelativeRotation + AttachmentRotationRelativeToSocket,
-				AttachmentSocket.RelativeScale * AttachmentScaleRelativeToSocket);
 		}
 
-		// Update the pawn's attachment metadata
-		KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
-		KFP.ThirdPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
-
+		// Set Cosmetic Skin
 		SetAttachmentSkinMaterial(
-			AttachmentSlotIndex,
+				AttachmentSlotIndex,
 				CosmeticVariants[CurrentAttachmentMeshIndex],
 				CurrentAttachmentSkinIndex,
-				KFP);
-		}
+				KFP,
+				bIsFirstPerson);
+	}
 
 	// Treat `CLEARED_ATTACHMENT_INDEX as special value (for client detachment)
 	if( CurrentAttachmentMeshIndex == 255)
@@ -718,36 +1146,41 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
 function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 {
 	local KFCharacterAttachment Attachment1;
+
+	//dont try to access out of bound elements
+	if (AttachmentIndex1 >= CosmeticVariants.Length || AttachmentIndex2 >= CosmeticVariants.Length)
+		return FALSE;
+
 	Attachment1 = CosmeticVariants[AttachmentIndex1].AttachmentItem;
 
 	if (CosmeticVariants[AttachmentIndex2].SpecialOverrideAttachments.length > 0)
 	{
-		if ( CosmeticVariants[AttachmentIndex2].SpecialOverrideAttachments.Find(Attachment1) != INDEX_NONE )
+		if (CosmeticVariants[AttachmentIndex2].SpecialOverrideAttachments.Find(Attachment1) != INDEX_NONE)
 		{
 			return TRUE;
 		}
 	}
 	else
 	{
-		if ( CosmeticVariants[AttachmentIndex2].AttachmentItem.DefaultSpecialOverrideAttachments.Find(Attachment1) != INDEX_NONE )
+		if (CosmeticVariants[AttachmentIndex2].AttachmentItem.DefaultSpecialOverrideAttachments.Find(Attachment1) != INDEX_NONE)
 		{
 			return TRUE;
 		}
 	}
-	switch(CosmeticVariants[AttachmentIndex1].AttachmentItem.SocketName)
+	switch (CosmeticVariants[AttachmentIndex1].AttachmentItem.SocketName)
 	{
-		case 'Hat_Attach':
-			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bHat;
-		case 'Face_Attach':
-			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bFace;
-		case 'Eyes_Attach':
-			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bEyes;
-		case 'Jaw_Attach':
-			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bJaw;
-		case 'Armband_Attach':
-			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bArmband;
-		case 'Backpack_Attach':
-			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bBackpack;
+	case 'Hat_Attach':
+		return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bHat;
+	case 'Face_Attach':
+		return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bFace;
+	case 'Eyes_Attach':
+		return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bEyes;
+	case 'Jaw_Attach':
+		return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bJaw;
+	case 'Armband_Attach':
+		return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bArmband;
+	case 'Backpack_Attach':
+		return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bBackpack;
 	}
 
 	return false;
@@ -763,14 +1196,14 @@ function int GetAttachmentSlotIndex(
 	KFPawn KFP)
 {
 	local int AttachmentIdx;
-		// Otherwise, return the next available attachment index
-		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
+	// Otherwise, return the next available attachment index
+	for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
+	{
+		if( (KFP.ThirdPersonAttachmentBitMask & (1 << AttachmentIdx) ) == 0 )
 		{
-			if( (KFP.ThirdPersonAttachmentBitMask & (1 << AttachmentIdx) ) == 0 )
-			{
-				return AttachmentIdx;
-			}
+			return AttachmentIdx;
 		}
+	}
 }
 
 /** Called on owning client directly to remove a cosmetic attachment, or by
@@ -801,21 +1234,32 @@ function DetachAttachment(int PawnAttachmentIndex, KFPawn KFP)
 		if( SkeletalMeshComponent(KFP.ThirdPersonAttachments[PawnAttachmentIndex]) != none )
 		{
 			KFP.DetachComponent(KFP.ThirdPersonAttachments[PawnAttachmentIndex]);
+			if (KFP.FirstPersonAttachments[PawnAttachmentIndex] != none)
+			{
+				KFP.DetachComponent(KFP.FirstPersonAttachments[PawnAttachmentIndex]);
+			}
 		}
 		else
 		{
 			KFP.mesh.DetachComponent(KFP.ThirdPersonAttachments[PawnAttachmentIndex]);
+			if (KFP.FirstPersonAttachments[PawnAttachmentIndex] != none)
+			{
+				KFP.ArmsMesh.DetachComponent(KFP.FirstPersonAttachments[PawnAttachmentIndex]);
+			}
 		}
 	}
 
 	// Update the pawn's attachment metadata
 	KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask & ~(1 << PawnAttachmentIndex);
 	KFP.ThirdPersonAttachmentSocketNames[PawnAttachmentIndex] = '';
+	KFP.FirstPersonAttachmentSocketNames[PawnAttachmentIndex] = '';
 }
 
 /** Assign an arm mesh and material to this pawn */
 simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI )
 {
+	local int CosmeticMeshIdx, AttachmentIdx;
+
 	if ( KFPRI == none )
 	{
         WarnInternal("Does not have a KFPRI" @ Self);
@@ -828,6 +1272,23 @@ simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerRepl
     	KFPRI.RepCustomizationInfo.BodyMeshIndex,
     	KFPRI.RepCustomizationInfo.BodySkinIndex,
     	KFP);
+
+	// Cosmetic attachment first person mesh & skin. Index of 255 implies don't use any attachments (default)
+	// Don't have to worry about clearing out attachments since that was handled in 3rd person cosmetics.
+	for (AttachmentIdx = 0; AttachmentIdx < 3; AttachmentIdx++)
+	{
+		CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
+		if (CosmeticMeshIdx != 255&& CosmeticMeshIdx != INDEX_NONE)
+		{
+			LogInternal("Attach 1p mesh" @ CosmeticMeshIdx);
+
+			// Attach all saved attachments to the character
+			SetAttachmentMeshAndSkin(
+				CosmeticMeshIdx,
+				KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx],
+				KFP, KFPRI, true);
+		}
+	}
 }
 
 simulated function SetArmsMeshAndSkin(

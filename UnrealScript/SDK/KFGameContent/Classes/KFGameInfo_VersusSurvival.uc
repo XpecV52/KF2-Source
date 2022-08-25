@@ -946,6 +946,8 @@ function EndOfMatch(bool bVictory)
         {
             KFPRIV.RecordEndGameInfo();
         }
+
+		KFPC.ClientGameOver(WorldInfo.GetMapName(true), GameDifficulty, GameLength, IsMultiplayerGame(), WaveNum);
     }
 
     WorldInfo.TWPushLogs();
@@ -1039,7 +1041,7 @@ function WaveEnded( EWaveEndCondition WinCondition )
 
 function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
 {
-    super.BossDied(Killer, false);
+    super.BossDied(Killer, bCheckWaveEnded);
 }
 
 /**
@@ -1472,6 +1474,11 @@ function float GetEndOfMatchTime()
     }
 
     return super.GetEndOfMatchTime();
+}
+
+function bool IsMapObjectiveEnabled()
+{
+	return false;
 }
 
 DefaultProperties

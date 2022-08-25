@@ -150,6 +150,10 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
         if(I < 3)
         {
             KFP.DetachComponent(KFP.ThirdPersonAttachments[I]);
+            if(KFP.FirstPersonAttachments[I] != none)
+            {
+                KFP.DetachComponent(KFP.FirstPersonAttachments[I]);
+            }
             ++ I;
             goto J0xD2;
         }
@@ -166,13 +170,13 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
         if(KFP.UsePlayerControlledZedSkin())
         {
             I = 0;
-            J0x297:
+            J0x30C:
 
             if(I < PlayerControlledSkins.Length)
             {
                 KFP.Mesh.SetMaterial(I, PlayerControlledSkins[I]);
                 ++ I;
-                goto J0x297;
+                goto J0x30C;
             }            
         }
         else
@@ -180,18 +184,18 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             if(Skins.Length > 0)
             {
                 I = 0;
-                J0x32B:
+                J0x3A0:
 
                 if(I < Skins.Length)
                 {
                     KFP.Mesh.SetMaterial(I, Skins[I]);
                     ++ I;
-                    goto J0x32B;
+                    goto J0x3A0;
                 }
             }
         }
         I = 0;
-        J0x3AC:
+        J0x421:
 
         if((I < PACMeshList.Length) && I < 3)
         {
@@ -209,10 +213,10 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.AttachComponent(PACAttachment);
             }
             ++ I;
-            goto J0x3AC;
+            goto J0x421;
         }
         I = 0;
-        J0x5E1:
+        J0x656:
 
         if(I < StaticAttachList.Length)
         {
@@ -229,7 +233,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.Mesh.AttachComponent(StaticAttachment, StaticAttachList[I].AttachBoneName,, StaticAttachList[I].RelativeRotation);
             }
             ++ I;
-            goto J0x5E1;
+            goto J0x656;
         }
     }
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFP.Mesh != none)
@@ -244,7 +248,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFPawn_Monster(KFP) != none)
     {
         I = 0;
-        J0x9D5:
+        J0xA4A:
 
         if(I < KFP.CharacterMICs.Length)
         {
@@ -258,7 +262,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.CharacterMICs[I].SetVectorParameterValue('vector_TrimColor', AppliedColor);
             }
             ++ I;
-            goto J0x9D5;
+            goto J0xA4A;
         }
     }
 }

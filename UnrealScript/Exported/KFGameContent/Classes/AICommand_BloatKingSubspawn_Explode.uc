@@ -62,6 +62,15 @@ state Command_SpecialMove
 		return SM_Custom1;
 	}
 
+	function byte GetSpecialMoveFlags(ESpecialMove InSpecialMove)
+	{
+		if (MyKFPawn != none && MyKFPawn.CanDoSpecialMove(InSpecialMove))
+		{
+			return MyKFPawn.SpecialMoveHandler.SpecialMoveClasses[InSpecialMove].static.PackFlagsBase(MyKFPawn);
+		}
+		return 255;
+	}
+
 	/** Begin executing the special move */
 	function bool ExecuteSpecialMove()
 	{

@@ -698,15 +698,15 @@ function UpdateListDataProvider()
                 if(NewServerCount > 10)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
-                    goto J0x921;
+                    goto J0x973;
                 }
                 TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
                 TempObj = Outer.CreateObject("Object");
                 TempObj.SetString("serverName", TempOnlineGamesSettings.OwningPlayerName);
-                TempObj.SetFloat("playerCount", float(TempOnlineGamesSettings.NumPublicConnections - TempOnlineGamesSettings.NumOpenPublicConnections));
+                TempObj.SetFloat("playerCount", float((TempOnlineGamesSettings.NumPublicConnections - TempOnlineGamesSettings.NumOpenPublicConnections) - TempOnlineGamesSettings.NumSpectators));
                 TempObj.SetFloat("maxPlayerCount", float(TempOnlineGamesSettings.NumPublicConnections));
                 TempObj.SetFloat("waveCount", float(TempOnlineGamesSettings.CurrentWave));
-                TempObj.SetFloat("maxWaveCount", float(TempOnlineGamesSettings.NumWaves));
+                TempObj.SetFloat("maxWaveCount", float(((IsEndlessModeIndex(TempOnlineGamesSettings.Mode)) ? -1 : TempOnlineGamesSettings.NumWaves)));
                 TempObj.SetFloat("zedCount", float(TempOnlineGamesSettings.ZedCount));
                 TempObj.SetFloat("maxZedCount", float(TempOnlineGamesSettings.MaxZedCount));
                 TempObj.SetBool("vacEnable", TempOnlineGamesSettings.bAntiCheatProtected);
@@ -732,10 +732,15 @@ function UpdateListDataProvider()
             ++ I;
             goto J0x5D;
         }
-        J0x921:
+        J0x973:
 
         SetObject("dataProvider", DataProvider);
     }
+}
+
+function bool IsEndlessModeIndex(int ModeIndex)
+{
+    return ModeIndex == 3;
 }
 
 function bool IsSelectedServerFavorited(int ServerSearchIndex)

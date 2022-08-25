@@ -428,6 +428,7 @@ defaultproperties
    DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
+   InventoryGroup=IG_Equipment
    InventorySize=3
    MagazineCapacity(0)=1
    GroupPriority=50.000000

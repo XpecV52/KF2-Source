@@ -91,6 +91,11 @@ simulated function SpawnExplosionParticleSystem(ParticleSystem Template)
 	}
 }
 
+simulated function SetSyncToMuzzleLocation(bool bSync)
+{
+	bSyncParticlesToMuzzle = bSync;
+}
+
 /** 
  * Get muzzle location for currently equipped weapon
  * This is visual only! Damage is done from ExplosionActor location

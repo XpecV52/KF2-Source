@@ -11,7 +11,6 @@
 class KFGFxPerksContainer_Header extends KFGFxPerksContainer;
 
 var GFxObject PerkTextField, LevelTextField;
-var localized string PrestigeLevelString;
 var localized string ExperienceString;
 
 
@@ -27,7 +26,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 
 //@todo: change to grab data from PC.CurrentPerk
 function UpdatePerkHeader( class<KFPerk> PerkClass)
-{	
+{
 	local GFxObject PerkDataProvider;
 	local KFPlayerController KFPC;
 	local int NextEXP, CurrentEXP;
@@ -43,7 +42,6 @@ function UpdatePerkHeader( class<KFPerk> PerkClass)
     PerkDataProvider.SetString( "perkTitle", PerkClass.default.PerkName );
     PerkDataProvider.SetString( "perkLevel", LevelString@PerkLevel);
     PerkDataProvider.SetString( "iconSource", "img://"$PerkClass.static.GetPerkIconPath() );
-    PerkDataProvider.SetString( "prestigeLevel", "");  //not used yet so not point to populating with data
     PerkDataProvider.SetString( "xpString",  CurrentEXP $"/" $NextEXP );
     PerkDataProvider.SetFloat( "xpPercent", EXPPercent / 100 );
 	SetObject( "perkData", PerkDataProvider );

@@ -88,11 +88,13 @@ static function PlayImpactHitEffects(KFPawn P, vector HitLocation, vector HitDir
 static function ApplySecondaryDamage( KFPawn Victim, int DamageTaken, optional Controller InstigatedBy )
 {
     local class<KFDamageType> ToxicDT;
+	local int ToxicDamageTaken;
 
-    ToxicDT = class'KFDT_Ballistic_Assault_Medic'.static.GetMedicToxicDmgType( DamageTaken, InstigatedBy );
+	ToxicDamageTaken = DamageTaken;
+    ToxicDT = class'KFDT_Ballistic_Assault_Medic'.static.GetMedicToxicDmgType( ToxicDamageTaken, InstigatedBy );
     if ( ToxicDT != None )
     {
-        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, ToxicDT);
+        Victim.ApplyDamageOverTime(ToxicDamageTaken, InstigatedBy, ToxicDT);
     }
 
     // potential for two DoTs if DoT_Type is set

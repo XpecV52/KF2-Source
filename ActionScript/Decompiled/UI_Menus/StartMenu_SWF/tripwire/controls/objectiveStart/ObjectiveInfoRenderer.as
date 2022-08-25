@@ -14,13 +14,27 @@ package tripwire.controls.objectiveStart
         
         public var checkBoxCheck:MovieClip;
         
+        public var leftFrame:MovieClip;
+        
+        public var rightFrame:MovieClip;
+        
+        public var rewardBG:MovieClip;
+        
+        public var tierNumberTextfield:TextField;
+        
+        public var rewardTextfield:TextField;
+        
         public var iconImageLoader:TripUILoader;
+        
+        public var rewardImageLoader:TripUILoader;
         
         public var descriptionTextField:TextField;
         
         public var progressBar:ProgressBarWithText;
         
         public var iconFrame:MovieClip;
+        
+        public var rewardColor:Color;
         
         public var statusColor:Color;
         
@@ -34,12 +48,34 @@ package tripwire.controls.objectiveStart
         
         public var completeTextColor:uint = 0;
         
+        private const TIER_1_COLOR:uint = 14538703;
+        
+        private const TIER_2_COLOR:uint = 14914404;
+        
+        private const TIER_3_COLOR:uint = 10921638;
+        
+        private const TIER_4_COLOR:uint = 8060927;
+        
+        private const TIER_5_COLOR:uint = 15573775;
+        
+        private const COMPLETE_ALPHA:Number = 0.32;
+        
+        private var tierColorArray:Array;
+        
+        public var bIsContracted:Boolean = false;
+        
         public function ObjectiveInfoRenderer()
         {
+            this.rewardColor = new Color();
             this.statusColor = new Color();
             this.bumperColor = new Color();
             super();
             preventAutosizing = true;
+            this.leftFrame.visible = false;
+            this.rightFrame.visible = false;
+            this.rewardBG.visible = false;
+            this.rewardImageLoader.visible = false;
+            this.tierColorArray = [this.TIER_1_COLOR,this.TIER_2_COLOR,this.TIER_3_COLOR,this.TIER_4_COLOR,this.TIER_5_COLOR];
         }
         
         override public function set data(param1:Object) : void
@@ -50,9 +86,34 @@ package tripwire.controls.objectiveStart
             if(data)
             {
                 visible = true;
+                if(data.waveNum)
+                {
+                    gotoAndStop(!!this.bIsContracted ? "tierContracted" : "tierExpanded");
+                    this.leftFrame.visible = true;
+                    this.rightFrame.visible = true;
+                    this.rewardImageLoader.visible = true;
+                    this.rewardBG.visible = true;
+                    this.tierNumberTextfield.text = !!data.waveNum ? data.waveNum : "";
+                    this.tierNumberTextfield.textColor = !!data.tierNum ? uint(this.tierColorArray[data.tierNum]) : uint(this.TIER_1_COLOR);
+                    this.rewardColor.setTint(!!data.tierNum ? uint(this.tierColorArray[data.tierNum]) : uint(this.TIER_1_COLOR),1);
+                    this.rewardBG.transform.colorTransform = this.rewardColor;
+                    this.leftFrame.gotoAndStop(!!data.tierNum ? data.tierNum + 1 : 1);
+                    this.rightFrame.gotoAndStop(!!data.tierNum ? data.tierNum + 1 : 1);
+                    this.rewardImageLoader.source = !!data.rewardPath ? data.rewardPath : "";
+                    this.rewardTextfield.text = !!data.rewardName ? data.rewardName : "";
+                    this.descriptionTextField.text = data.description && this.bIsContracted ? data.description : "";
+                }
+                else
+                {
+                    gotoAndStop("regular");
+                    this.leftFrame.visible = false;
+                    this.rightFrame.visible = false;
+                    this.rewardImageLoader.visible = false;
+                    this.rewardBG.visible = false;
+                    this.descriptionTextField.text = !!data.description ? data.description : "";
+                    this.iconImageLoader.source = !!data.iconPath ? data.iconPath : "";
+                }
                 label = !!data.label ? data.label : "";
-                this.iconImageLoader.source = !!data.iconPath ? data.iconPath : "";
-                this.descriptionTextField.text = !!data.description ? data.description : "";
                 this.checkBoxCheck.visible = !!data.complete ? Boolean(data.complete) : false;
                 this.progressBar.visible = !!data.showProgres ? Boolean(data.showProgres) : false;
                 this.progressBar.progress = !!data.progress ? Number(data.progress) : Number(0);
@@ -67,8 +128,16 @@ package tripwire.controls.objectiveStart
                 _loc2_ = this.completeColor;
                 _loc3_ = this.completeColor;
                 textField.textColor = this.completeColor;
-                this.iconImageLoader.alpha = 0.32;
+                this.iconImageLoader.alpha = this.COMPLETE_ALPHA;
                 this.progressBar.progressText.textColor = this.completeTextColor;
+                if(data.waveNum)
+                {
+                    this.tierNumberTextfield.alpha = this.COMPLETE_ALPHA;
+                    this.leftFrame.alpha = this.COMPLETE_ALPHA;
+                    this.rightFrame.alpha = this.COMPLETE_ALPHA;
+                    this.rewardBG.alpha = this.COMPLETE_ALPHA;
+                    this.rewardTextfield.alpha = this.COMPLETE_ALPHA;
+                }
             }
             else
             {
@@ -77,6 +146,14 @@ package tripwire.controls.objectiveStart
                 textField.textColor = this.inProgressTextColor;
                 this.iconImageLoader.alpha = 1;
                 this.progressBar.progressText.textColor = this.inProgressTextColor;
+                if(data.waveNum)
+                {
+                    this.tierNumberTextfield.alpha = 1;
+                    this.leftFrame.alpha = 1;
+                    this.rightFrame.alpha = 1;
+                    this.rewardBG.alpha = 1;
+                    this.rewardTextfield.alpha = 1;
+                }
             }
             this.statusColor.setTint(_loc2_,1);
             this.bumperColor.setTint(_loc3_,1);

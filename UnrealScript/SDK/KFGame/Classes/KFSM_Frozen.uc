@@ -55,7 +55,7 @@ function DoFreeze()
 		BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
 		KFPOwner.SetTimer( 0.1f, true, nameof(UpdateFreezeInParam), self );
 		FrozenSteamEffect = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(FrozenSteamTemplate, KFPOwner.Mesh, 'root');
-	}	
+	}
 
 	// use a really slow rate to emulate being frozen
 	PlaySpecialMoveAnim( FrozenAnim, EAS_FullBody, FreezeInTime, 0.3f, 0.001f, true );
@@ -67,7 +67,7 @@ function DoThaw()
 	local KFPawn_Monster P;
 
 	if ( PawnOwner.Role == ROLE_Authority )
-	{		
+	{
 		// if pawn's head has already been blown off, skip thawing
 		P = KFPawn_Monster(PawnOwner);
 		if( P != None && P.bIsHeadless )
@@ -92,7 +92,7 @@ function PlayThawAnimation()
 	PlaySpecialMoveAnim(ThawAnims[ThawIndex], EAS_FullBody, FreezeOutTime, 0.3f, 0.5f, false);
 
 	bIsThawing = true;
-	
+
 	if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
@@ -114,7 +114,7 @@ function UpdateFreezeInParam()
 
 	Param = FMin( 1.f, (KFPOwner.WorldInfo.TimeSeconds - BeginFreezePhaseTime) / FreezeInTime );
     SetFrozenParameter(Param);
- 
+
     if( Param == 1.f )
     {
     	KFPOwner.ClearTimer( nameof(UpdateFreezeInParam), self );
@@ -138,7 +138,7 @@ function UpdateFreezeOutParam()
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	super.SpecialMoveEnded( PrevMove, NextMove );
-	
+
 	if ( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		KFPOwner.DetachEmitter( FrozenSteamEffect );
@@ -177,7 +177,7 @@ function OnGoreMeshSwap()
 function SetFrozenParameter(float FreezeAmount)
 {
 	local MaterialInstanceConstant MIC;
-    local int i, j;
+    local int i;
 
     if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
     {
@@ -192,17 +192,36 @@ function SetFrozenParameter(float FreezeAmount)
         {
             if (KFPOwner.ThirdPersonAttachments[i] != none)
             {
-                for (j = 0; j < KFPOwner.ThirdPersonAttachments[i].Materials.Length; ++j)
-                {
-                    MIC = MaterialInstanceConstant(KFPOwner.ThirdPersonAttachments[i].GetMaterial(j));
-                    if (MIC != none)
-                    {
-                        MIC.SetScalarParameterValue('Scalar_Ice', FreezeMatParamValue);
-                    }
-                }
+				ApplyFreeze(KFPOwner.ThirdPersonAttachments[i]);
             }
         }
+
+		if (KFPawn_Monster(KFPOwner) != none)
+		{
+			for (i = 0; i < KFPawn_Monster(KFPOwner).StaticAttachList.length; i++)
+			{
+				if (KFPawn_Monster(KFPOwner).StaticAttachList[i] != none)
+				{
+					ApplyFreeze(KFPawn_Monster(KFPOwner).StaticAttachList[i]);
+				}
+			}
+		}
     }
+}
+
+function ApplyFreeze(MeshComponent MeshToFreeze)
+{
+	local MaterialInstanceConstant MIC;
+	local int i;
+
+	for (i = 0; i < MeshToFreeze.Materials.Length; i++)
+	{
+		MIC = MaterialInstanceConstant(MeshToFreeze.GetMaterial(i));
+		if (MIC != none)
+		{
+			MIC.SetScalarParameterValue('Scalar_Ice', FreezeMatParamValue);
+		}
+	}
 }
 
 /** Do shatter VFX & Gore on death */

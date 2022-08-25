@@ -50,7 +50,6 @@ var localized string LoadingString;
 
 var localized string AutoTradeCompleteString;
 var localized string AutoFillCompleteString;
-var localized string WeaponUpgradeComepleteString;
 var localized string SecondaryWeaponPurchasedString;
 var localized string NoItemsPurchasedString;
 
@@ -86,6 +85,9 @@ var localized string DiscordMatchLobbyString;
 var localized string DiscordTraderTimeString;
 var localized string DiscordBossWaveString;
 var localized string DiscordWaveString;
+
+var localized string ProceedToTutorialString;
+var localized string ProceedToTutorialDescriptionString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -209,6 +211,7 @@ defaultproperties
    ModeStrings(0)="Survival"
    ModeStrings(1)="Weekly"
    ModeStrings(2)="VS Survival"
+   ModeStrings(3)="Endless"
    TeamSwappedString="You have been team swapped"
    NoPreferenceString="ANY"
    OKString="OK"
@@ -234,7 +237,6 @@ defaultproperties
    LoadingString="Loading..."
    AutoTradeCompleteString="Auto Trade Complete: "
    AutoFillCompleteString="Autofilled Supplies"
-   WeaponUpgradeComepleteString="Weapon Upgraded"
    SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
    NoItemsPurchasedString="No Items Purchased"
    SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"
@@ -279,6 +281,8 @@ defaultproperties
    DiscordTraderTimeString=": Trader Time"
    DiscordBossWaveString=": Boss Wave"
    DiscordWaveString=": Wave "
+   ProceedToTutorialString="PROCEED TO TRAINING?"
+   ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

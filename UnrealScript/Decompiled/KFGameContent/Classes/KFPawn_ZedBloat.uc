@@ -243,7 +243,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DeathPukeMineRotations(2)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_842' was not found.
+System.ArgumentException: Requested value '1P_Sawblade_Animtree_875' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -286,7 +286,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_842' was not fou
     AfflictionHandler=Afflictions
     IncapSettings=/* Array type was not detected. */
     PhysRagdollImpulseScale=1.5
-    KnockdownImpulseScale=1.5
+    KnockdownImpulseScale=2
     SprintSpeed=210
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

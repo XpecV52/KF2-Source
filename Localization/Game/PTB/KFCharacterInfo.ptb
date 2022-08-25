@@ -1,3 +1,62 @@
+[CHR_DAR_archetype]
+CharacterName="D.A.R."
+Description="Este D.A.R. (Robô Assistente Doméstico), é uma versão melhorada do modelo de D.A.R. anterior e utiliza a última tecnologia em robótica experimental da Horzine. Unidades semelhantes estão em teste em várias bases da Horzine na esperança de desenvolver o D.A.R. para mercados de varejo e segurança, mas este D.A.R. é especial. Este D.A.R. encontrou os Zeds enquanto estava no Posto Avançado 12 da Horzine no Ártico, e os Protocolos de Segurança de Emergência substituíram sua programação principal, o que transformou o D.A.R. em uma máquina letal robótica. Infelizmente, o D.A.R. mostra pouca preocupação com seres humanos, exceto com funcionários Horzine, a quem ele odeia um pouco menos que os outro humanos em geral. Como um novo mercado entre os robôs militares, o D.A.R. foi transferido para o Serviço de Contenção de Zeds para testes em campo."
+BodyMesh0="Endoesqueleto"
+HeadMesh0="Sem Capacete"
+HeadMesh1="Capacete Clássico"
+HeadMesh2="Capacete de Assalto"
+HeadMesh3="Capacete de Voo"
+HeadMesh4="Capacete CHONN-E 5"
+HeadMesh5="Capacete C-3HZ"
+
+[CHR_DAR_archetype.BodyMesh0]
+BodySkin0="Endo 800"
+BodySkin1="Cinza Clássica"
+BodySkin2="Plástico"
+BodySkin3="Precioso"
+
+[CHR_DAR_archetype.HeadMesh0]
+HeadSkin0="Nenhum"
+
+[CHR_DAR_archetype.HeadMesh1]
+HeadSkin0="Sangrento"
+HeadSkin1="Carregador"
+HeadSkin2="Padrão"
+HeadSkin3="Precioso"
+HeadSkin4="Skully"
+
+[CHR_DAR_archetype.HeadMesh2]
+HeadSkin0="Preto OPS"
+HeadSkin1="Camuflagem G"
+HeadSkin2="Dunas"
+HeadSkin3="Carregador"
+HeadSkin4="Ideal"
+HeadSkin5="Precioso"
+
+[CHR_DAR_archetype.HeadMesh3]
+HeadSkin0="Anjo Azul"
+HeadSkin1="Galáctico"
+HeadSkin2="P51"
+HeadSkin3="Precioso"
+HeadSkin4="Lança-chamas"
+HeadSkin5="Berro"
+
+[CHR_DAR_archetype.HeadMesh4]
+HeadSkin0="Chapa"
+HeadSkin1="Horzine"
+HeadSkin2="Precioso"
+HeadSkin3="Aço"
+HeadSkin4="Ocaso"
+HeadSkin5="Vapor"
+
+[CHR_DAR_archetype.HeadMesh5]
+HeadSkin0="Colisão"
+HeadSkin1="Azul-regato"
+HeadSkin2="Mármore"
+HeadSkin3="Obsidiana"
+HeadSkin4="Precioso"
+HeadSkin5="Espaço"
+
 [CHR_Jagerhorn_Archetype]
 CharacterName="Oisten Jägerhorn"
 Description="Um sueco grandalhão que adora cerveja e ficar até tarde nos bares. Antes da deflagração, Jägerhorn era o modelo de um viking moderno. Mas depois da loucura que foi a Grande Guerra de Motociclistas Nórdicos na década de 1990, ele decidiu que a violência insana para com os cidadãos era bem menos divertida que beber muita cerveja e arranhar uma guitarra no “Metalbika” — sua banda côver do Metallica. \n\nNo entanto, logo que o surto chegou à Escandinávia, a violência passou a ser parte de seu dia a dia. Zeds x Pessoas — péssimo carma, pelos padrões de Jägerhorn. Grande viking sueco Jägerhorn x Zeds? Manda Ver!"
@@ -19,6 +78,11 @@ BodySkin3="Desafio Verdadeiro"
 BodySkin4="Caçador de Demônios"
 BodySkin5="Batcat do Cofre"
 BodySkin6="Estampa de cofre"
+BodySkin7="Cofre Precioso"
+BodySkin8="Cibervermelho"
+BodySkin9="Ciberverde"
+BodySkin10="Ciberazul"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Clássico"
@@ -58,22 +122,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Jagerhorn_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_Jagerhorn_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Loira Sueca"
@@ -178,6 +242,10 @@ BodySkin3="Verde Perigo"
 BodySkin4="Scully Retrô"
 BodySkin5="Cofre Precioso"
 BodySkin6="Estampa de cofre"
+BodySkin7="Cibervermelho"
+BodySkin8="Ciberverde"
+BodySkin9="Ciberazul"
+BodySkin10="Cyberpunk Blue"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Clássico"
@@ -217,22 +285,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_DJSkully_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_DJSkully_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_DJSkully_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Preto Total"
@@ -282,6 +350,11 @@ BodySkin1="Preto da Noite"
 BodySkin2="Verde Militar"
 BodySkin3="Camuflagem SAS"
 BodySkin4="Estampa de cofre"
+BodySkin5="Cofre Precioso"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="Metrô"
@@ -328,22 +401,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [chr_briar_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [chr_briar_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [chr_briar_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
@@ -400,6 +473,10 @@ BodySkin5="Azul Vice"
 BodySkin6="Vice"
 BodySkin7="Cassino"
 BodySkin8="Smokin'"
+BodySkin9="Cibervermelho"
+BodySkin10="Ciberverde"
+BodySkin11="Ciberazul"
+BodySkin12="Cyberpunk Blue"
 
 [CHR_MrFoster_archetype.BodyMesh2]
 BodySkin0="Clássico"
@@ -439,22 +516,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_MrFoster_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_MrFoster_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_MrFoster_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Branco Original"
@@ -618,7 +695,10 @@ BodySkin1="Vermelho Rústico"
 BodySkin2="Cinza Maneiro"
 BodySkin3="Terra Clara"
 BodySkin4="Cofre Precioso"
-BodySkin5="Estampa de cofre"
+BodySkin5="Cibervermelho"
+BodySkin6="Ciberverde"
+BodySkin7="Ciberazul"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Clássico"
@@ -658,22 +738,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Coleman_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_Coleman_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_Coleman_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
@@ -718,6 +798,10 @@ BodySkin3="Branco Tropical"
 BodySkin4="Sol Sagrado Precioso"
 BodySkin5="Camuflagem Ártica"
 BodySkin6="Camuflagem Pixel Rosa"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Clássico"
@@ -757,22 +841,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Alberts_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_Alberts_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_Alberts_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Cinza"
@@ -1684,6 +1768,11 @@ BodySkin3="DPM"
 BodySkin4="Estampa de cofre"
 BodySkin5="Camuflagem Ártica"
 BodySkin6="Camuflagem Roxa"
+BodySkin7="Cofre Precioso"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="Clássico"
@@ -1723,22 +1812,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Masterson_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_Masterson_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_Masterson_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -1768,6 +1857,10 @@ BodySkin3="Dragão Azul"
 BodySkin4="Cofre Retrô"
 BodySkin5="Cofre Carpa Precioso"
 BodySkin6="Estampa de cofre"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Vermelho e Preto"
@@ -1816,22 +1909,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Tanaka_Archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_Tanaka_Archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_Tanaka_Archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Capacete"
@@ -1890,6 +1983,9 @@ BodySkin3="Azul Bonito"
 BodySkin4="Homenagem Frangonador"
 BodySkin5="Cofre Precioso"
 BodySkin6="Estampa de cofre"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="Elite Azul"
@@ -1929,22 +2025,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_Ana_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_Ana_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_Ana_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Óculos 3D"
@@ -1978,6 +2074,11 @@ BodySkin1="Preto da Noite"
 BodySkin2="Verde Militar"
 BodySkin3="Camuflagem SAS"
 BodySkin4="Estampa de cofre"
+BodySkin5="Cofre Precioso"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="Metrô"
@@ -2024,22 +2125,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [chr_mark_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [chr_mark_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [chr_mark_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
@@ -2071,6 +2172,11 @@ BodySkin3="DPM"
 BodySkin4="Estampa de cofre"
 BodySkin5="Camuflagem Ártica"
 BodySkin6="Camuflagem Roxa"
+BodySkin7="Cofre Precioso"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="Clássico"
@@ -2110,22 +2216,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_alan_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_alan_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_alan_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
@@ -2161,6 +2267,11 @@ BodySkin0="Recruta Bruto"
 BodySkin1="Fortalecido por Batalhas"
 BodySkin2="Cofre Camuflagem"
 BodySkin3="Estampa de cofre"
+BodySkin4="Cofre Precioso"
+BodySkin5="Cibervermelho"
+BodySkin6="Ciberverde"
+BodySkin7="Ciberazul"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Clássico"
@@ -2200,22 +2311,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [CHR_strasser_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [CHR_strasser_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [CHR_strasser_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Aço Escuro"
@@ -2251,6 +2362,11 @@ BodySkin0="Agatha"
 BodySkin1="Cleese"
 BodySkin2="Perceval"
 BodySkin3="Jaime"
+BodySkin4="Cofre Precioso"
+BodySkin5="Cibervermelho"
+BodySkin6="Ciberverde"
+BodySkin7="Ciberazul"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="Clássico"
@@ -2389,6 +2505,11 @@ BodySkin4="Listra Vermelha"
 BodySkin5="Marinheiro"
 BodySkin6="Cofre Caveiras"
 BodySkin7="Estampa de cofre"
+BodySkin8="Cofre Precioso"
+BodySkin9="Cyberpunk Green"
+BodySkin10="Cyberpunk Precious"
+BodySkin11="Cyberpunk Red"
+BodySkin12="Cyberpunk Blue"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Elite Azul"
@@ -2428,22 +2549,22 @@ BodySkin4="Von Braun"
 BodySkin5="Equipe do Reino Trágico"
 
 [chr_rockabilly_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
 
 [chr_rockabilly_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
 
 [chr_rockabilly_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Estampa de Cofre"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Preto"
@@ -2695,37 +2816,6 @@ AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
 AttachmentSkin4="Precioso"
 
-[Cosmetic_SteampunkGasMaskBasic_ARCH]
-Attachment="Másc. Gás Retrô Básica"
-AttachmentSkin0="Marrom"
-AttachmentSkin1="Preto"
-
-[Cosmetic_SteampunkGasMaskOpen_ARCH]
-Attachment="Másc. Gás Retrô Aberta"
-AttachmentSkin0="Marrom"
-AttachmentSkin1="Preto"
-
-[Cosmetic_SteampunkGasMaskClosed_ARCH]
-Attachment="Másc. Gás Retrô Fechada"
-AttachmentSkin0="Marrom"
-AttachmentSkin1="Preto"
-AttachmentSkin2="Precioso"
-
-[Cosmetic_SteampunkGasMaskFiltered_ARCH]
-Attachment="Másc. Gás Retrô Filtrada"
-AttachmentSkin0="Marrom"
-AttachmentSkin1="Preto"
-
-[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
-Attachment="Másc. Gás Retrô Aberta Filtrada"
-AttachmentSkin0="Marrom"
-AttachmentSkin1="Preto"
-
-[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
-Attachment="Másc. Gás Retrô Fechada Filtrada"
-AttachmentSkin0="Marrom"
-AttachmentSkin1="Preto"
-
 [Cosmetic_RebelHelmet_ARCH]
 Attachment="Capacete Rebelde"
 AttachmentSkin0="Preto"
@@ -2832,31 +2922,31 @@ AttachmentSkin2="Verde"
 AttachmentSkin3="Vermelho"
 AttachmentSkin4="Cobre"
 
-[LetsGetCrazy] 
+[LetsGetCrazy]
 EmoteName="Vamos Pirar"
 
 [ThunderClap]
 EmoteName="Tchacabum"
 
-[UncleCharlie] 
+[UncleCharlie]
 EmoteName="Tio Zé"
 
 [WackyWave]
 EmoteName="Bonecão do Posto"
 
-[RainingDosh] 
+[RainingDosh]
 EmoteName="Chuva de Grana"
 
-[LionUppercut] 
+[LionUppercut]
 EmoteName="Lion Uppercut"
 
-[MatingRitual] 
+[MatingRitual]
 EmoteName="Ritual de Acasalar"
 
 [KickinIt]
 EmoteName="Chute Alto"
 
-[Fireball] 
+[Fireball]
 EmoteName="Bola de Fogo"
 
 [Makeitrain]
@@ -2865,11 +2955,11 @@ EmoteName="Deixa Chover"
 [Fireball_Deluxe]
 EmoteName="Bola de Fogo+"
 
-[Makeitrain_Deluxe] 
+[Makeitrain_Deluxe]
 EmoteName="Deixa Chover+"
 
-[ThunderClap_Deluxe] 
-EmoteName="Tchacabum+"
+[ThunderClap_Deluxe]
+EmoteName="Dança do Bumbum+"
 
 [UncleCharlie_Deluxe]
 EmoteName="Tio Zé+"
@@ -2880,7 +2970,7 @@ EmoteName="Vamos Pirar+"
 [WackyWave_Deluxe]
 EmoteName="Bonecão do Posto+"
 
-[RainingDosh_Deluxe] 
+[RainingDosh_Deluxe]
 EmoteName="Chuva de Grana+"
 
 [LionUppercut_Deluxe]
@@ -3190,188 +3280,188 @@ AttachmentSkin6="Roxa"
 AttachmentSkin7="Vermelha"
 
 [Cosmetic_ImperialGalea_ARCH]
-Attachment="Imperial Galea"
+Attachment="Gálea Imperial"
 AttachmentSkin0="Exército"
 AttachmentSkin1="Clássica"
 AttachmentSkin2="Branca"
 AttachmentSkin3="Preciosa"
 
 [Cosmetic_PlagueDoctorMask_ARCH]
-Attachment="Plague Doctor Mask"
+Attachment="Máscara de Médico da Peste"
 AttachmentSkin0="Cinza"
 AttachmentSkin1="Marrom-clara"
 AttachmentSkin2="Vermelha"
 AttachmentSkin3="Branca"
 
 [Cosmetic_SkullMask_ARCH]
-Attachment="Skull Mask"
-AttachmentSkin0="Black Red"
-AttachmentSkin1="Black Silver"
-AttachmentSkin2="White Red"
-AttachmentSkin3="White Silver"
-AttachmentSkin4="Precious"
+Attachment="Máscara de Caveira"
+AttachmentSkin0="Preta e Vermelha"
+AttachmentSkin1="Preta e Prata"
+AttachmentSkin2="Branca e Vermelha"
+AttachmentSkin3="Branca e Prata"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_VictoriansSecret_ARCH]
 Attachment="Segredo Vitoriano"
-AttachmentSkin0="Victorian's Secret"
+AttachmentSkin0="Segredo Vitoriano"
 
 [Cosmetic_HannyaMask_ARCH]
 Attachment="Máscara Hannya"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Gold"
-AttachmentSkin3="Green"
-AttachmentSkin4="Iron"
-AttachmentSkin5="Red"
-AttachmentSkin6="Red Shiny"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Ouro"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Ferro"
+AttachmentSkin5="Vermelho"
+AttachmentSkin6="Vermelho Brilhante"
+AttachmentSkin7="Branco"
+AttachmentSkin8="Precioso"
 
 [Cosmetic_Hopps_ARCH]
 Attachment="Hopps"
-AttachmentSkin0="Geometric"
-AttachmentSkin1="Green Machine"
-AttachmentSkin2="Hazard"
-AttachmentSkin3="Porcelain"
-AttachmentSkin4="Gold"
-AttachmentSkin5="Sell Out"
+AttachmentSkin0="Geométrica"
+AttachmentSkin1="Máquina Verde"
+AttachmentSkin2="Risco"
+AttachmentSkin3="Porcelana"
+AttachmentSkin4="Ouro"
+AttachmentSkin5="Para vender"
 
 [Cosmetic_KobutoMask_ARCH]
 Attachment="Máscara Kobuto"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Copper"
-AttachmentSkin3="Gold"
-AttachmentSkin4="Green"
-AttachmentSkin5="Radioactive"
-AttachmentSkin6="Red"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Cobre"
+AttachmentSkin3="Ouro"
+AttachmentSkin4="Verde"
+AttachmentSkin5="Radioativa"
+AttachmentSkin6="Vermelho"
+AttachmentSkin7="Branco"
+AttachmentSkin8="Precioso"
 
 [Cosmetic_SamuraiGasHelmet_ARCH]
 Attachment="Capacete de Gás Samurai"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="Ouro"
+AttachmentSkin1="Couro"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_SamuraiGasMask_ARCH]
 Attachment="Máscara de Samurai"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="Ouro"
+AttachmentSkin1="Couro"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_SamuraiGasMouthpiece_ARCH]
 Attachment="Bocal de Samurai"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="Ouro"
+AttachmentSkin1="Couro"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_Bear_ARCH]
 Attachment="Máscara de Urso"
-AttachmentSkin0="Brown Bear"
-AttachmentSkin1="Panda Bear"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Urso Marrom"
+AttachmentSkin1="Urso Panda"
+AttachmentSkin2="Precioso"
 
 [Cosmetic_Cat_ARCH]
 Attachment="Máscara de Gato"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Gray"
-AttachmentSkin2="White"
-AttachmentSkin3="Precious"
+AttachmentSkin0="Marrom"
+AttachmentSkin1="Cinza"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Precioso"
 
 [Cosmetic_Chicken_ARCH]
 Attachment="Máscara de Galinha"
-AttachmentSkin0="White Red"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Branca e Vermelha"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Cow_ARCH]
 Attachment="Máscara de Vaca"
-AttachmentSkin0="White Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Branco Preto"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Dog_ARCH]
 Attachment="Máscara de Cachorro"
-AttachmentSkin0="Brown Dog"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Cachorro Marrom"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Fox_ARCH]
 Attachment="Máscara de Raposa"
-AttachmentSkin0="Brown Fox"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Raposa Marrom"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Goat_ARCH]
 Attachment="Máscara de Bode"
-AttachmentSkin0="Goat Colored"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Cor de Bode"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Horse_ARCH]
 Attachment="Máscara de Cavalo"
-AttachmentSkin0="Brown Horse"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Cavalo Marrom"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Pig_ARCH]
 Attachment="Máscara de Porco"
-AttachmentSkin0="Pinky Pig"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Porco Rosa"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Rabbit_ARCH]
 Attachment="Máscara de Coelho"
-AttachmentSkin0="Brown Rabbit"
-AttachmentSkin1="White Rabbit"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Coelho Marrom"
+AttachmentSkin1="Coelho Branco"
+AttachmentSkin2="Precioso"
 
 [Cosmetic_CommandoChickenHelmet_ARCH]
 Attachment="Galinha Comando"
-AttachmentSkin0="Used"
-AttachmentSkin1="Clean"
-AttachmentSkin2="Night"
-AttachmentSkin3="Heavy Wound"
+AttachmentSkin0="Usado"
+AttachmentSkin1="Limpo"
+AttachmentSkin2="Noite"
+AttachmentSkin3="Ferida Séria"
 
 [Cosmetic_bobBatcat_ARCH]
 Attachment="Bob"
-AttachmentSkin0="Black"
-AttachmentSkin1="Green"
-AttachmentSkin2="Purple"
-AttachmentSkin3="Teal"
-AttachmentSkin4="Precious"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Roxo"
+AttachmentSkin3="Turquesa"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_crown_ARCH]
 Attachment="Coroa"
-AttachmentSkin0="Precious"
-AttachmentSkin1="Silver"
+AttachmentSkin0="Precioso"
+AttachmentSkin1="Prata"
 
 [Cosmetic_DGlasses_ARCH]
 Attachment="Óculos de Grana"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Verde"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Precioso"
 
 [Cosmetic_hansBackpack_ARCH]
 Attachment="Mochila Hans"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_scrakeMask_ARCH]
 Attachment="Máscara de Retalhador"
-AttachmentSkin0="Steel"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Aço"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_sharkHat_ARCH]
 Attachment="Tubarão"
-AttachmentSkin0="Grey"
-AttachmentSkin1="Sand"
+AttachmentSkin0="Cinza"
+AttachmentSkin1="Areia"
 AttachmentSkin2="Orca"
-AttachmentSkin3="Bloody"
-AttachmentSkin4="Precious"
+AttachmentSkin3="Sangrento"
+AttachmentSkin4="Precioso"
 
 [Cosmetic_VGlasses_ARCH]
 Attachment="Óculos do Cofre"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Verde"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Precioso"
 
 [Cosmetic_Halloween_Arrowed_ARCH]
 Attachment="Flechado"
@@ -3439,245 +3529,386 @@ AttachmentSkin0="Jack O' Lantern Radioactive Winky"
 
 [Cosmetic_Christmas_AlphaHat_ARCH]
 Attachment="Chapéu do Alfa Natalino"
-AttachmentSkin0="Green"
+AttachmentSkin0="Verde"
 
 [Cosmetic_Christmas_beard_ARCH]
 Attachment="Barba de Natal"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Precious"
-AttachmentSkin3="White"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Marrom"
+AttachmentSkin2="Precioso"
+AttachmentSkin3="Branco"
 
 [Cosmetic_Christmas_BellBackpack_ARCH]
 Attachment="Mochila com Sino de Natal"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Silver"
+AttachmentSkin0="Ouro"
+AttachmentSkin1="Precioso"
+AttachmentSkin2="Prata"
 
 [Cosmetic_Christmas_BloatHat_ARCH]
 Attachment="Chapéu do Inchado Natalino"
-AttachmentSkin0="Tan"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Cobre"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_Blubs_ARCH]
 Attachment="Luzes de Natal"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Vermelho e Verde"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_CookieGlasses_ARCH]
 Attachment="Óculos de Biscoito Natalino"
-AttachmentSkin0="Green Wrapping"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Red Wrapping"
+AttachmentSkin0="Embrulho Verde"
+AttachmentSkin1="Precioso"
+AttachmentSkin2="Embrulho Vermelho"
 
 [Cosmetic_Christmas_CystHat_ARCH]
 Attachment="Chapéu do Cisto Natalino"
-AttachmentSkin0="Green"
+AttachmentSkin0="Verde"
 
 [Cosmetic_Christmas_EarMuffs_ARCH]
 Attachment="Protetor de Ouvido Natalino"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Vermelho"
 
 [Cosmetic_Christmas_ElfEars_ARCH]
 Attachment="Orelhas de Anão Natalino"
-AttachmentSkin0="Flesh"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Carne"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_FPHead_ARCH]
 Attachment="Cabeça de Carniceiro Natalino"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Copycat"
+AttachmentSkin0="Clássica"
+AttachmentSkin1="Imitão"
 AttachmentSkin2="Libro"
-AttachmentSkin3="Precious"
+AttachmentSkin3="Precioso"
 AttachmentSkin4="Warui"
 
 [Cosmetic_Christmas_GoreStockingBackpack_ARCH]
 Attachment="Mochila de Restos Mortais Natalinos"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Classic"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Clássica"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Vermelho"
 
 [Cosmetic_Christmas_HaloBulbs_ARCH]
 Attachment="Luz de Auréola Natalina"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Vermelho e Verde"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_HamHead_ARCH]
 Attachment="Cabeça de Presunto Natalina"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Clássica"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_HuskBackpack_ARCH]
 Attachment="Mochila de Esfolador Natalino"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_HuskHat_ARCH]
 Attachment="Chapéu do Esfolador Natalino"
-AttachmentSkin0="Black"
+AttachmentSkin0="Preto"
 
 [Cosmetic_Christmas_PoinsettaHat_ARCH]
 Attachment="Chapéu de Poinsétia Natalino"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Clássica"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_SlasherHat_ARCH]
 Attachment="Chapéu do Abatedor Natalino"
-AttachmentSkin0="Green"
+AttachmentSkin0="Verde"
 
 [Cosmetic_Christmas_SnowmanFace_ARCH]
 Attachment="Máscara do Boneco de Neve Natalino"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Clássica"
+AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
 Attachment="Mochila de Ursinho Natalino"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Dark"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Purple"
-AttachmentSkin5="Red"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Marrom"
+AttachmentSkin2="Escura"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
 
 [Cosmetic_Christmas_TreeGlasses_ARCH]
 Attachment="Óculos de Árvore de Natal"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+AttachmentSkin3="Vermelho"
 
 [Cosmetic_Christmas_Ushanka_ARCH]
 Attachment="Ushanka Natalino"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Tan"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Marrom"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Cobre"
 
 [Cosmetic_Christmas_PajamaHat_ARCH]
 Attachment="Chapéu de Pijamas Natalino"
-AttachmentSkin0="Bunny"
-AttachmentSkin1="Dosh"
-AttachmentSkin2="Green Plaid"
-AttachmentSkin3="Green Trees"
-AttachmentSkin4="Quilt"
-AttachmentSkin5="Red Snow"
-AttachmentSkin6="Red Plaid"
+AttachmentSkin0="Coelho"
+AttachmentSkin1="Grana"
+AttachmentSkin2="Xadrez verde"
+AttachmentSkin3="Árvores Verdes"
+AttachmentSkin4="Cobertor"
+AttachmentSkin5="Neve vermelha"
+AttachmentSkin6="Xadrez Vermelho"
 
 [Cosmetic_LeatherMask_ARCH]
 Attachment="Máscara de Couro"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Pink"
-AttachmentSkin4="Precious"
-AttachmentSkin5="Red"
-AttachmentSkin6="Tan"
-AttachmentSkin7="Trippy"
-AttachmentSkin8="White"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Marrom"
+AttachmentSkin3="Rosa"
+AttachmentSkin4="Precioso"
+AttachmentSkin5="Vermelho"
+AttachmentSkin6="Cobre"
+AttachmentSkin7="Camaleônica"
+AttachmentSkin8="Branco"
 
 [Cosmetic_HockeyMask_ARCH]
 Attachment="Máscara de Hóquei"
-AttachmentSkin0="Black"
-AttachmentSkin1="High Five"
-AttachmentSkin2="Kitty"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Skull"
-AttachmentSkin5="Slasher"
-AttachmentSkin6="Teal"
-AttachmentSkin7="TGIF"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Toca aqui"
+AttachmentSkin2="Gatinho"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Caveira"
+AttachmentSkin5="Abatedor"
+AttachmentSkin6="Turquesa"
+AttachmentSkin7="Sextou"
 
 [Cosmetic_BiocolaHat_ARCH]
 Attachment="Chapéu de refri"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Branco"
 
 [Cosmetic_FoamCowboyHat_ARCH]
 Attachment="Chapéu de Espuma"
-AttachmentSkin0="Black"
-AttachmentSkin1="Orange"
-AttachmentSkin2="Precious"
-AttachmentSkin3="USA"
-AttachmentSkin4="White"
-AttachmentSkin5="Yellow"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Laranja"
+AttachmentSkin2="Precioso"
+AttachmentSkin3="EUA"
+AttachmentSkin4="Branco"
+AttachmentSkin5="Amarelo"
 
 [Cosmetic_PaperBagBlank_ARCH]
 Attachment="Sacola de Papel Branco"
-AttachmentSkin0="White"
+AttachmentSkin0="Branco"
 
 [Cosmetic_PaperBagEyes_ARCH]
 Attachment="Sacola de Papel Olhos Grandes"
-AttachmentSkin0="Precious"
+AttachmentSkin0="Precioso"
 
 [Cosmetic_PaperBagHappy_ARCH]
 Attachment="Sacola de Papel Feliz"
-AttachmentSkin0="Green"
+AttachmentSkin0="Verde"
 
 [Cosmetic_PaperBagKrinkle_ARCH]
 Attachment="Sacola Barulhenta"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="Camaleônica"
 
 [Cosmetic_PaperBagOFace_ARCH]
 Attachment="Sacola de Papel Cara Chocada"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="Amarelo"
 
 [Cosmetic_PaperBagOooh_ARCH]
 Attachment="Sacola de Papel do Ooooh"
-AttachmentSkin0="White"
+AttachmentSkin0="Branco"
 
 [Cosmetic_PaperBagSmallEyes_ARCH]
 Attachment="Sacola de Papel Olhos Pequenos"
-AttachmentSkin0="Purple"
+AttachmentSkin0="Roxo"
 
 [Cosmetic_PaperBagYelling_ARCH]
 Attachment="Sacola de Papel do Grito"
-AttachmentSkin0="Red"
+AttachmentSkin0="Vermelho"
 
 [Cosmetic_PorcelainMaskBlank_ARCH]
 Attachment="Máscara de Porcelana Branca"
-AttachmentSkin0="White"
+AttachmentSkin0="Branco"
 
 [Cosmetic_PorcelainMaskBroken_ARCH]
 Attachment="Máscara de Porcelana Quebrada"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="Amarelo"
 
 [Cosmetic_PorcelainMaskCross_ARCH]
 Attachment="Máscara de Porcelana da Cruz"
-AttachmentSkin0="Red and Black"
+AttachmentSkin0="Vermelho e Preto"
 
 [Cosmetic_PorcelainMaskDosh_ARCH]
 Attachment="Máscara de Porcelana da Grana"
-AttachmentSkin0="Precious"
+AttachmentSkin0="Precioso"
 
 [Cosmetic_PorcelainMaskHappy_ARCH]
 Attachment="Máscara de Porcelana Feliz"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="Amarelo"
 
 [Cosmetic_PorcelainMaskSad_ARCH]
 Attachment="Máscara de Porcelana Triste"
-AttachmentSkin0="Blue"
+AttachmentSkin0="Azul"
 
 [Cosmetic_PorcelainMaskSlim_ARCH]
 Attachment="Máscara de Porcelana Fina"
-AttachmentSkin0="Green"
+AttachmentSkin0="Verde"
 
 [Cosmetic_PorcelainMaskSly_ARCH]
 Attachment="Máscara de Porcelana Furtiva"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="Camaleônica"
 
 [Cosmetic_Tricorne_ARCH]
 Attachment="Chapéu Tricorne"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Precious"
-AttachmentSkin4="White"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Marrom"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Branco"
+
+[Cosmetic_DAR_ClassicArmor_ARCH]
+Attachment="Armadura Clássica"
+AttachmentSkin0="Sangrento"
+AttachmentSkin1="Carregador"
+AttachmentSkin2="Padrão"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Skully"
+
+[Cosmetic_DAR_AssaultArmor_ARCH]
+Attachment="Armadura de assalto"
+AttachmentSkin0="Preto OPS"
+AttachmentSkin1="Camuflagem G"
+AttachmentSkin2="Dunas"
+AttachmentSkin3="Carregador"
+AttachmentSkin4="Ideal"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_DAR_FlightArmor_ARCH]
+Attachment="Armadura de Luta"
+AttachmentSkin0="Anjo Azul"
+AttachmentSkin1="Galáctico"
+AttachmentSkin2="P51"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Lança-chamas"
+AttachmentSkin5="Berro"
+
+[Cosmetic_DAR_ChonneArmor_ARCH]
+Attachment="Armadura CHONN-E 5"
+AttachmentSkin0="Batcat"
+AttachmentSkin1="Academia"
+AttachmentSkin2="Horzine"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Radical"
+AttachmentSkin5="Cubo do Tempo"
+
+[Cosmetic_DAR_C3HZArmor_ARCH]
+Attachment="Armadura C-3HZ"
+AttachmentSkin0="Colisão"
+AttachmentSkin1="Azul-regato"
+AttachmentSkin2="Mármore"
+AttachmentSkin3="Obsidiana"
+AttachmentSkin4="Precioso"
+AttachmentSkin5="Espaço"
+
+[Cosmetic_SmallEarPiece_ARCH]
+Attachment="Auricular Pequeno"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
+
+[Cosmetic_Pad_ARCH]
+Attachment="Mochila Blindada"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
+
+[Cosmetic_MouthPiece_ARCH]
+Attachment="Bocal"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
+
+[Cosmetic_MessengerBag_ARCH]
+Attachment="Bolsa Carteiro"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Amarelo"
+
+[Cosmetic_LargeEarPiece_ARCH]
+Attachment="Auricular Grande"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
+
+[Cosmetic_DiagonalBackpack_ARCH]
+Attachment="Mochila Diagonal"
+AttachmentSkin0="Cinza"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+AttachmentSkin3="Cobre"
+
+[Cosmetic_CyberShades_ARCH]
+Attachment="Sombras"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
+
+[Cosmetic_CyberPunkVisorOpen_ARCH]
+Attachment="Visor Aberto"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
+
+[Cosmetic_CyberPunkVisorClosed_ARCH]
+Attachment="Visor Fechado"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
+
+[Cosmetic_ArmScreen_ARCH]
+Attachment="Tela de Braço Digital"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"
+
+[Cosmetic_SlimVisor_ARCH]
+Attachment="Visor Fino"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Laranja"
+AttachmentSkin3="Precioso"
+AttachmentSkin4="Roxo"
+AttachmentSkin5="Vermelho"

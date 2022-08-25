@@ -1,3 +1,62 @@
+[CHR_DAR_archetype]
+CharacterName="D.A.R."
+Description="D.A.R., zwany również Domowym Asystującym Robotem, to ulepszona wersja wcześniejszego modelu D.A.R., wykorzystująca najnowsze osiągnięcia korporacji Horzine w zakresie robotyki eksperymentalnej. W bazach Horzine prowadzone są testy podobnych jednostek z nadzieją na stworzenie modeli D.A.R. przeznaczonych specjalnie na rynek konsumentów detalicznych i dla sektora bezpieczeństwa. Ten model jednak jest wyjątkowy. W trakcie pobytu na Arktycznym Posterunku Horzine 12 toczył walki z zetami, a jego pierwotne oprogramowanie zostało zastąpione przez awaryjny protokół bezpieczeństwa, w wyniku czego przeobraził się w maszynę do zabijania. Niestety D.A.R. zupełnie nie dba o ludzkie życie. Wyjątkiem są pracownicy Horzine, których nienawidzi nieco mniej niż innych ludzi. W poszukiwaniu nowych rynków zbytu dla robotów wojskowych D.A.R. został wysłany do strefy zetów na próby terenowe."
+BodyMesh0="Endoszkielet"
+HeadMesh0="Brak hełmu"
+HeadMesh1="Typowy hełm"
+HeadMesh2="Hełm szturmowy"
+HeadMesh3="Hełm pilota"
+HeadMesh4="Hełm CHONN-E 5"
+HeadMesh5="Hełm C-3HZ"
+
+[CHR_DAR_archetype.BodyMesh0]
+BodySkin0="Endo 800"
+BodySkin1="Typowy szary"
+BodySkin2="Plastik"
+BodySkin3="Cenny egzemplarz"
+
+[CHR_DAR_archetype.HeadMesh0]
+HeadSkin0="Brak"
+
+[CHR_DAR_archetype.HeadMesh1]
+HeadSkin0="Krwawy"
+HeadSkin1="Loader"
+HeadSkin2="Standardowy model"
+HeadSkin3="Cenny egzemplarz"
+HeadSkin4="Czacha"
+
+[CHR_DAR_archetype.HeadMesh2]
+HeadSkin0="Tajne operacje"
+HeadSkin1="Kamuflaż G"
+HeadSkin2="Wydmy"
+HeadSkin3="Loader"
+HeadSkin4="Optymalizacja"
+HeadSkin5="Cenny egzemplarz"
+
+[CHR_DAR_archetype.HeadMesh3]
+HeadSkin0="Niebieski anioł"
+HeadSkin1="Galaktyczny"
+HeadSkin2="P51"
+HeadSkin3="Cenny egzemplarz"
+HeadSkin4="Spitfire"
+HeadSkin5="Krzyk"
+
+[CHR_DAR_archetype.HeadMesh4]
+HeadSkin0="Chap"
+HeadSkin1="Horzine"
+HeadSkin2="Cenny egzemplarz"
+HeadSkin3="Stal"
+HeadSkin4="Zmierzch"
+HeadSkin5="Para"
+
+[CHR_DAR_archetype.HeadMesh5]
+HeadSkin0="Zderzenie"
+HeadSkin1="Niebieski Nurt"
+HeadSkin2="Marmur"
+HeadSkin3="Obsydian"
+HeadSkin4="Cenny egzemplarz"
+HeadSkin5="Gwiezdny"
+
 [CHR_Jagerhorn_Archetype]
 CharacterName="Oisten Jägerhorn"
 Description="Jägerhorn to olbrzymi Szwed, który uwielbiał piwo i głośne rozmowy w barach. Przed Incydentem pasował do wizerunku współczesnego Wikinga. Po przelotnym udziale w wielkiej wojnie nordyckich gangów motocyklowych w latach 90. doszedł do wniosku, że skrajna przemoc jest dużo nudniejsza od picia piwa i kiepskiej gry na gitarze prowadzącej w grającym kawałki Metalliki zespole Metalbika. \n\nJednak gdy zety dotarły do Skandynawii, skrajna przemoc stała się chlebem powszednim. Zety kontra ludzie? Według Jägerhorna to zła karma. Duży szwedzki wiking Jägerhorn kontra zety? Dużo lepiej!"
@@ -19,6 +78,11 @@ BodySkin3="Prawdziwy opór"
 BodySkin4="Łowca demonów"
 BodySkin5="Skarbcowy Batcat"
 BodySkin6="Symbol forsy"
+BodySkin7="Skarbiec – cenny egz."
+BodySkin8="Cyberczerwony"
+BodySkin9="Cyberzielony"
+BodySkin10="Cyberniebieski"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -58,22 +122,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Jagerhorn_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_Jagerhorn_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Szwedzki blondyn"
@@ -178,6 +242,10 @@ BodySkin3="Zielone zagrożenie"
 BodySkin4="Retro Scully"
 BodySkin5="Skarbiec – cenny egz."
 BodySkin6="Symbol forsy"
+BodySkin7="Cyberczerwony"
+BodySkin8="Cyberzielony"
+BodySkin9="Cyberniebieski"
+BodySkin10="Cyberpunk Blue"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -217,22 +285,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_DJSkully_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_DJSkully_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_DJSkully_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Najczarniejsza czerń"
@@ -282,6 +350,11 @@ BodySkin1="Nocna czerń"
 BodySkin2="Wojskowa zieleń"
 BodySkin3="Kamuflaż SAS"
 BodySkin4="Symbol forsy"
+BodySkin5="Skarbiec – cenny egz."
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="Miejski"
@@ -328,22 +401,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [chr_briar_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [chr_briar_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [chr_briar_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Oryginalny"
@@ -400,6 +473,10 @@ BodySkin5="Niebieski Vice"
 BodySkin6="Vice"
 BodySkin7="Casino"
 BodySkin8="Smokin'"
+BodySkin9="Cyberczerwony"
+BodySkin10="Cyberzielony"
+BodySkin11="Cyberniebieski"
+BodySkin12="Cyberpunk Blue"
 
 [CHR_MrFoster_archetype.BodyMesh2]
 BodySkin0="Klasyczny"
@@ -439,22 +516,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_MrFoster_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_MrFoster_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_MrFoster_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Oryginalny Biały"
@@ -618,7 +695,10 @@ BodySkin1="Rustykalna czerwień"
 BodySkin2="Zimna szarość"
 BodySkin3="Blady ziemisty"
 BodySkin4="Skarbiec – cenny egz."
-BodySkin5="Symbol forsy"
+BodySkin5="Cyberczerwony"
+BodySkin6="Cyberzielony"
+BodySkin7="Cyberniebieski"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -658,22 +738,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Coleman_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_Coleman_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_Coleman_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
@@ -718,6 +798,10 @@ BodySkin3="Tropikalna biel"
 BodySkin4="Święte Słonce – cenny egz."
 BodySkin5="Kamuflaż arktyczne kleksy"
 BodySkin6="Kamuflaż różowe piksele"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -757,22 +841,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Alberts_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_Alberts_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_Alberts_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Szary"
@@ -1684,6 +1768,11 @@ BodySkin3="DPM"
 BodySkin4="Symbol forsy"
 BodySkin5="Kamuflaż arktyczne kleksy"
 BodySkin6="Kamuflaż fioletowe kleksy"
+BodySkin7="Skarbiec – cenny egz."
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -1723,22 +1812,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Masterson_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_Masterson_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_Masterson_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -1768,6 +1857,10 @@ BodySkin3="Niebieski smok"
 BodySkin4="Skarbiec Retro"
 BodySkin5="Skarbcowy koi – cenny egz."
 BodySkin6="Symbol forsy"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Czerwony i czarny"
@@ -1816,22 +1909,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Tanaka_Archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_Tanaka_Archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_Tanaka_Archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Hełm"
@@ -1890,6 +1983,9 @@ BodySkin3="Ładny niebieski"
 BodySkin4="Hołd dla Chickenatora"
 BodySkin5="Skarbiec – cenny egz."
 BodySkin6="Symbol forsy"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="Elitarny niebieski"
@@ -1929,22 +2025,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_Ana_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_Ana_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_Ana_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Okulary 3D"
@@ -1978,6 +2074,11 @@ BodySkin1="Nocna czerń"
 BodySkin2="Wojskowa zieleń"
 BodySkin3="Kamuflaż SAS"
 BodySkin4="Symbol forsy"
+BodySkin5="Skarbiec – cenny egz."
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="Miejski"
@@ -2024,22 +2125,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [chr_mark_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [chr_mark_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [chr_mark_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
@@ -2071,6 +2172,11 @@ BodySkin3="DPM"
 BodySkin4="Symbol forsy"
 BodySkin5="Kamuflaż arktyczne kleksy"
 BodySkin6="Kamuflaż fioletowe kleksy"
+BodySkin7="Skarbiec – cenny egz."
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -2110,22 +2216,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_alan_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_alan_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_alan_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
@@ -2161,6 +2267,11 @@ BodySkin0="Żółtodziób"
 BodySkin1="Zaprawiony w bitwie"
 BodySkin2="Skarbcowy kamuflaż"
 BodySkin3="Symbol forsy"
+BodySkin4="Skarbiec – cenny egz."
+BodySkin5="Cyberczerwony"
+BodySkin6="Cyberzielony"
+BodySkin7="Cyberniebieski"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -2200,22 +2311,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [CHR_strasser_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [CHR_strasser_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [CHR_strasser_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Ciemny stalowy"
@@ -2251,6 +2362,11 @@ BodySkin0="Agata"
 BodySkin1="Cleese"
 BodySkin2="Parsifal"
 BodySkin3="Jaime"
+BodySkin4="Skarbiec – cenny egz."
+BodySkin5="Cyberczerwony"
+BodySkin6="Cyberzielony"
+BodySkin7="Cyberniebieski"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="Klasyczny"
@@ -2389,6 +2505,11 @@ BodySkin4="Czerwone paski"
 BodySkin5="Żeglarz"
 BodySkin6="Skarbcowe czaszki"
 BodySkin7="Symbol forsy"
+BodySkin8="Skarbiec – cenny egz."
+BodySkin9="Cyberpunk Green"
+BodySkin10="Cyberpunk Precious"
+BodySkin11="Cyberpunk Red"
+BodySkin12="Cyberpunk Blue"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Elitarny niebieski"
@@ -2428,22 +2549,22 @@ BodySkin4="Von Braun"
 BodySkin5="Ekipa Królestwa Tragedii"
 
 [chr_rockabilly_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
 
 [chr_rockabilly_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="Króliczek"
+BodySkin1="Forsa"
+BodySkin2="Zielona krata"
+BodySkin3="Pikowany"
+BodySkin4="Czerwony śnieg"
+BodySkin5="Drzewa"
+BodySkin6="Czerwona krata"
 
 [chr_rockabilly_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="Wzór skarbca"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Czarny"
@@ -2695,37 +2816,6 @@ AttachmentSkin2="Jamie"
 AttachmentSkin3="Parsifal"
 AttachmentSkin4="Cenny egzemplarz"
 
-[Cosmetic_SteampunkGasMaskBasic_ARCH]
-Attachment="Steampunk. maska zw."
-AttachmentSkin0="Brązowy"
-AttachmentSkin1="Czarny"
-
-[Cosmetic_SteampunkGasMaskOpen_ARCH]
-Attachment="Otw. steampunkowa maska"
-AttachmentSkin0="Brązowy"
-AttachmentSkin1="Czarny"
-
-[Cosmetic_SteampunkGasMaskClosed_ARCH]
-Attachment="Zam. steampunkowa maska"
-AttachmentSkin0="Brązowy"
-AttachmentSkin1="Czarny"
-AttachmentSkin2="Cenny egzemplarz"
-
-[Cosmetic_SteampunkGasMaskFiltered_ARCH]
-Attachment="Steamp. maska filtr."
-AttachmentSkin0="Brązowy"
-AttachmentSkin1="Czarny"
-
-[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
-Attachment="Otw. steamp. maska filtr."
-AttachmentSkin0="Brązowy"
-AttachmentSkin1="Czarny"
-
-[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
-Attachment="Zam. steamp. maska filtr."
-AttachmentSkin0="Brązowy"
-AttachmentSkin1="Czarny"
-
 [Cosmetic_RebelHelmet_ARCH]
 Attachment="Hełm rebelianta"
 AttachmentSkin0="Czarny"
@@ -2832,31 +2922,31 @@ AttachmentSkin2="Zielony"
 AttachmentSkin3="Czerwony"
 AttachmentSkin4="Jasnobrązowy"
 
-[LetsGetCrazy] 
+[LetsGetCrazy]
 EmoteName="Zaszalejmy"
 
 [ThunderClap]
 EmoteName="Kręć, kręć"
 
-[UncleCharlie] 
+[UncleCharlie]
 EmoteName="Wujek Charlie"
 
 [WackyWave]
 EmoteName="Zakręcona fala"
 
-[RainingDosh] 
+[RainingDosh]
 EmoteName="Deszcz forsy"
 
-[LionUppercut] 
-EmoteName="Lwi hak"
+[LionUppercut]
+EmoteName="Lwi podbródkowy"
 
-[MatingRitual] 
+[MatingRitual]
 EmoteName="Rytuał godowy"
 
 [KickinIt]
 EmoteName="Bez spiny"
 
-[Fireball] 
+[Fireball]
 EmoteName="Kula ognia"
 
 [Makeitrain]
@@ -2865,11 +2955,11 @@ EmoteName="Sypnij kasą"
 [Fireball_Deluxe]
 EmoteName="Kula ognia+"
 
-[Makeitrain_Deluxe] 
+[Makeitrain_Deluxe]
 EmoteName="Sypnij kasą+"
 
-[ThunderClap_Deluxe] 
-EmoteName="Kręć, kręć+"
+[ThunderClap_Deluxe]
+EmoteName="Taniec kręć, kręć+"
 
 [UncleCharlie_Deluxe]
 EmoteName="Wujek Charlie+"
@@ -2880,7 +2970,7 @@ EmoteName="Zaszalejmy+"
 [WackyWave_Deluxe]
 EmoteName="Zakręcona fala+"
 
-[RainingDosh_Deluxe] 
+[RainingDosh_Deluxe]
 EmoteName="Deszcz forsy+"
 
 [LionUppercut_Deluxe]
@@ -3190,188 +3280,188 @@ AttachmentSkin6="Fioletowa"
 AttachmentSkin7="Czerwona"
 
 [Cosmetic_ImperialGalea_ARCH]
-Attachment="Imperial Galea"
+Attachment="Cesarski czepiec"
 AttachmentSkin0="Wojskowy"
 AttachmentSkin1="Klasyczny"
 AttachmentSkin2="Biały"
 AttachmentSkin3="Cenny egzemplarz"
 
 [Cosmetic_PlagueDoctorMask_ARCH]
-Attachment="Plague Doctor Mask"
+Attachment="Maska badacza zarazy"
 AttachmentSkin0="Szara"
 AttachmentSkin1="Jasnobrązowa"
 AttachmentSkin2="Czerwona"
 AttachmentSkin3="Biała"
 
 [Cosmetic_SkullMask_ARCH]
-Attachment="Skull Mask"
-AttachmentSkin0="Black Red"
-AttachmentSkin1="Black Silver"
-AttachmentSkin2="White Red"
-AttachmentSkin3="White Silver"
-AttachmentSkin4="Precious"
+Attachment="Kościana maska"
+AttachmentSkin0="Czarno-czerwony"
+AttachmentSkin1="Czarno-srebrny"
+AttachmentSkin2="Czerwono-biały"
+AttachmentSkin3="Srebrno-biały"
+AttachmentSkin4="Cenny egzemplarz"
 
 [Cosmetic_VictoriansSecret_ARCH]
 Attachment="Wiktoriański sekret"
-AttachmentSkin0="Victorian's Secret"
+AttachmentSkin0="Wiktoriański sekret"
 
 [Cosmetic_HannyaMask_ARCH]
 Attachment="Maska diabła"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Gold"
-AttachmentSkin3="Green"
-AttachmentSkin4="Iron"
-AttachmentSkin5="Red"
-AttachmentSkin6="Red Shiny"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Złoty"
+AttachmentSkin3="Zielony"
+AttachmentSkin4="Żelazny"
+AttachmentSkin5="Czerwony"
+AttachmentSkin6="Błyszcząca czerwień"
+AttachmentSkin7="Biały"
+AttachmentSkin8="Cenny egzemplarz"
 
 [Cosmetic_Hopps_ARCH]
 Attachment="Maska wenecka"
-AttachmentSkin0="Geometric"
-AttachmentSkin1="Green Machine"
-AttachmentSkin2="Hazard"
-AttachmentSkin3="Porcelain"
-AttachmentSkin4="Gold"
-AttachmentSkin5="Sell Out"
+AttachmentSkin0="Geometryczne wzory"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Zagrożenie"
+AttachmentSkin3="Porcelanowy"
+AttachmentSkin4="Złoty"
+AttachmentSkin5="Efekciarski"
 
 [Cosmetic_KobutoMask_ARCH]
 Attachment="Maska kabuki"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Copper"
-AttachmentSkin3="Gold"
-AttachmentSkin4="Green"
-AttachmentSkin5="Radioactive"
-AttachmentSkin6="Red"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Miedziany"
+AttachmentSkin3="Złoty"
+AttachmentSkin4="Zielony"
+AttachmentSkin5="Radioaktywny"
+AttachmentSkin6="Czerwony"
+AttachmentSkin7="Biały"
+AttachmentSkin8="Cenny egzemplarz"
 
 [Cosmetic_SamuraiGasHelmet_ARCH]
 Attachment="Samurajski hełm przeciwgazowy"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="Złoty"
+AttachmentSkin1="Skórzany"
+AttachmentSkin2="Czerwony"
+AttachmentSkin3="Cenny egzemplarz"
 
 [Cosmetic_SamuraiGasMask_ARCH]
 Attachment="Maska samuraja"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="Złoty"
+AttachmentSkin1="Skórzany"
+AttachmentSkin2="Czerwony"
+AttachmentSkin3="Cenny egzemplarz"
 
 [Cosmetic_SamuraiGasMouthpiece_ARCH]
 Attachment="Samurajska osłona"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="Złoty"
+AttachmentSkin1="Skórzany"
+AttachmentSkin2="Czerwony"
+AttachmentSkin3="Cenny egzemplarz"
 
 [Cosmetic_Bear_ARCH]
 Attachment="Maska niedźwiedzia"
-AttachmentSkin0="Brown Bear"
-AttachmentSkin1="Panda Bear"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Niedźwiedź brunatny"
+AttachmentSkin1="Niedźwiedź bambusowy"
+AttachmentSkin2="Cenny egzemplarz"
 
 [Cosmetic_Cat_ARCH]
 Attachment="Maska kota"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Gray"
-AttachmentSkin2="White"
-AttachmentSkin3="Precious"
+AttachmentSkin0="Brązowy"
+AttachmentSkin1="Szary"
+AttachmentSkin2="Biały"
+AttachmentSkin3="Cenny egzemplarz"
 
 [Cosmetic_Chicken_ARCH]
 Attachment="Maska kurczaka"
-AttachmentSkin0="White Red"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Czerwono-biały"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Cow_ARCH]
 Attachment="Maska krowy"
-AttachmentSkin0="White Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Czarno-biały"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Dog_ARCH]
 Attachment="Maska psa"
-AttachmentSkin0="Brown Dog"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Brązowy pies"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Fox_ARCH]
 Attachment="Maska lisa"
-AttachmentSkin0="Brown Fox"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Rudy lis"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Goat_ARCH]
 Attachment="Maska kozy"
-AttachmentSkin0="Goat Colored"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Kozi kolor"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Horse_ARCH]
 Attachment="Maska konia"
-AttachmentSkin0="Brown Horse"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Koń gniady"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Pig_ARCH]
 Attachment="Maska świni"
-AttachmentSkin0="Pinky Pig"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Świński róż"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Rabbit_ARCH]
 Attachment="Maska królika"
-AttachmentSkin0="Brown Rabbit"
-AttachmentSkin1="White Rabbit"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Brązowy królik"
+AttachmentSkin1="Biały królik"
+AttachmentSkin2="Cenny egzemplarz"
 
 [Cosmetic_CommandoChickenHelmet_ARCH]
 Attachment="Kurczak-komandos"
-AttachmentSkin0="Used"
-AttachmentSkin1="Clean"
-AttachmentSkin2="Night"
-AttachmentSkin3="Heavy Wound"
+AttachmentSkin0="Zużyty"
+AttachmentSkin1="Nieskazitelny"
+AttachmentSkin2="Nocny"
+AttachmentSkin3="Poważna rana"
 
 [Cosmetic_bobBatcat_ARCH]
 Attachment="Bob"
-AttachmentSkin0="Black"
-AttachmentSkin1="Green"
-AttachmentSkin2="Purple"
-AttachmentSkin3="Teal"
-AttachmentSkin4="Precious"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Fioletowy"
+AttachmentSkin3="Turkusowy"
+AttachmentSkin4="Cenny egzemplarz"
 
 [Cosmetic_crown_ARCH]
 Attachment="Korona"
-AttachmentSkin0="Precious"
-AttachmentSkin1="Silver"
+AttachmentSkin0="Cenny egzemplarz"
+AttachmentSkin1="Srebrny"
 
 [Cosmetic_DGlasses_ARCH]
 Attachment="Okulary forsy"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Zielony"
+AttachmentSkin1="Czarny"
+AttachmentSkin2="Cenny egzemplarz"
 
 [Cosmetic_hansBackpack_ARCH]
 Attachment="Plecak Hansa"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_scrakeMask_ARCH]
 Attachment="Maska Zgrzyciarza"
-AttachmentSkin0="Steel"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Stal"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_sharkHat_ARCH]
 Attachment="Rekin"
-AttachmentSkin0="Grey"
-AttachmentSkin1="Sand"
-AttachmentSkin2="Orca"
-AttachmentSkin3="Bloody"
-AttachmentSkin4="Precious"
+AttachmentSkin0="Szary"
+AttachmentSkin1="Piaskowy"
+AttachmentSkin2="Orka"
+AttachmentSkin3="Krwawy"
+AttachmentSkin4="Cenny egzemplarz"
 
 [Cosmetic_VGlasses_ARCH]
 Attachment="Skarbcowe okulary"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Zielony"
+AttachmentSkin1="Czarny"
+AttachmentSkin2="Cenny egzemplarz"
 
 [Cosmetic_Halloween_Arrowed_ARCH]
 Attachment="Strzałka"
@@ -3439,245 +3529,386 @@ AttachmentSkin0="Jack O' Lantern Radioactive Winky"
 
 [Cosmetic_Christmas_AlphaHat_ARCH]
 Attachment="Świąteczna czapka alfy"
-AttachmentSkin0="Green"
+AttachmentSkin0="Zielony"
 
 [Cosmetic_Christmas_beard_ARCH]
 Attachment="Świąteczna broda"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Precious"
-AttachmentSkin3="White"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Brązowy"
+AttachmentSkin2="Cenny egzemplarz"
+AttachmentSkin3="Biały"
 
 [Cosmetic_Christmas_BellBackpack_ARCH]
 Attachment="Plecak: świąteczny dzwonek"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Silver"
+AttachmentSkin0="Złoty"
+AttachmentSkin1="Cenny egzemplarz"
+AttachmentSkin2="Srebrny"
 
 [Cosmetic_Christmas_BloatHat_ARCH]
 Attachment="Świąteczna czapka tłuszczaka"
-AttachmentSkin0="Tan"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Jasnobrązowy"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_Blubs_ARCH]
 Attachment="Świąteczne żarówki"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Czerwono-zielony"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_CookieGlasses_ARCH]
 Attachment="Świąteczne okulary-ciasteczka"
-AttachmentSkin0="Green Wrapping"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Red Wrapping"
+AttachmentSkin0="Zielone opakowanie"
+AttachmentSkin1="Cenny egzemplarz"
+AttachmentSkin2="Czerwone opakowanie"
 
 [Cosmetic_Christmas_CystHat_ARCH]
 Attachment="Świąteczna czapka cyst"
-AttachmentSkin0="Green"
+AttachmentSkin0="Zielony"
 
 [Cosmetic_Christmas_EarMuffs_ARCH]
 Attachment="Świąteczne nauszniki"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Czerwony"
 
 [Cosmetic_Christmas_ElfEars_ARCH]
 Attachment="Świąteczne elfie uszy"
-AttachmentSkin0="Flesh"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Ciało"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_FPHead_ARCH]
 Attachment="Świąteczna głowa podżegacza"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Copycat"
+AttachmentSkin0="Klasyczny"
+AttachmentSkin1="Naśladowca"
 AttachmentSkin2="Libro"
-AttachmentSkin3="Precious"
+AttachmentSkin3="Cenny egzemplarz"
 AttachmentSkin4="Warui"
 
 [Cosmetic_Christmas_GoreStockingBackpack_ARCH]
 Attachment="Świąteczna skarpeta gore"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Classic"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Klasyczny"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Czerwony"
 
 [Cosmetic_Christmas_HaloBulbs_ARCH]
 Attachment="Świąteczne halogeny"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Czerwono-zielony"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_HamHead_ARCH]
 Attachment="Świąteczna mięsna głowa"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Klasyczny"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_HuskBackpack_ARCH]
 Attachment="Świąteczny plecak zrzynka"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_HuskHat_ARCH]
 Attachment="Świąteczna czapka zrzynka"
-AttachmentSkin0="Black"
+AttachmentSkin0="Czarny"
 
 [Cosmetic_Christmas_PoinsettaHat_ARCH]
 Attachment="Gwiazda betlejemska"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Klasyczny"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_SlasherHat_ARCH]
 Attachment="Świąteczna czapka siepacza"
-AttachmentSkin0="Green"
+AttachmentSkin0="Zielony"
 
 [Cosmetic_Christmas_SnowmanFace_ARCH]
 Attachment="Świąteczna maska bałwana"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="Klasyczny"
+AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
 Attachment="Świąteczny plecak z pluszakiem"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Dark"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Purple"
-AttachmentSkin5="Red"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Brązowy"
+AttachmentSkin2="Ciemny"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
 
 [Cosmetic_Christmas_TreeGlasses_ARCH]
 Attachment="Świąteczne okulary-drzewka"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Cenny egzemplarz"
+AttachmentSkin3="Czerwony"
 
 [Cosmetic_Christmas_Ushanka_ARCH]
 Attachment="Świąteczna uszanka"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Tan"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Brązowy"
+AttachmentSkin2="Zielony"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Jasnobrązowy"
 
 [Cosmetic_Christmas_PajamaHat_ARCH]
 Attachment="Świąteczna piżamowa czapka"
-AttachmentSkin0="Bunny"
-AttachmentSkin1="Dosh"
-AttachmentSkin2="Green Plaid"
-AttachmentSkin3="Green Trees"
-AttachmentSkin4="Quilt"
-AttachmentSkin5="Red Snow"
-AttachmentSkin6="Red Plaid"
+AttachmentSkin0="Króliczek"
+AttachmentSkin1="Forsa"
+AttachmentSkin2="Zielona krata"
+AttachmentSkin3="Zielone drzewa"
+AttachmentSkin4="Pikowany"
+AttachmentSkin5="Czerwony śnieg"
+AttachmentSkin6="Czerwona krata"
 
 [Cosmetic_LeatherMask_ARCH]
 Attachment="Skórzana maska"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Pink"
-AttachmentSkin4="Precious"
-AttachmentSkin5="Red"
-AttachmentSkin6="Tan"
-AttachmentSkin7="Trippy"
-AttachmentSkin8="White"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Brązowy"
+AttachmentSkin3="Różowy"
+AttachmentSkin4="Cenny egzemplarz"
+AttachmentSkin5="Czerwony"
+AttachmentSkin6="Jasnobrązowy"
+AttachmentSkin7="Kameleon"
+AttachmentSkin8="Biały"
 
 [Cosmetic_HockeyMask_ARCH]
 Attachment="Maska hokejowa"
-AttachmentSkin0="Black"
-AttachmentSkin1="High Five"
-AttachmentSkin2="Kitty"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Skull"
-AttachmentSkin5="Slasher"
-AttachmentSkin6="Teal"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Piąteczka"
+AttachmentSkin2="Kotek"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Czaszka"
+AttachmentSkin5="Siepacz"
+AttachmentSkin6="Turkusowy"
 AttachmentSkin7="TGIF"
 
 [Cosmetic_BiocolaHat_ARCH]
 Attachment="BioCola"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Cenny egzemplarz"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Biały"
 
 [Cosmetic_FoamCowboyHat_ARCH]
 Attachment="Piankowa kowbojka"
-AttachmentSkin0="Black"
-AttachmentSkin1="Orange"
-AttachmentSkin2="Precious"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Pomarańczowy"
+AttachmentSkin2="Cenny egzemplarz"
 AttachmentSkin3="USA"
-AttachmentSkin4="White"
-AttachmentSkin5="Yellow"
+AttachmentSkin4="Biały"
+AttachmentSkin5="Żółty"
 
 [Cosmetic_PaperBagBlank_ARCH]
 Attachment="Papierowa torba"
-AttachmentSkin0="White"
+AttachmentSkin0="Biały"
 
 [Cosmetic_PaperBagEyes_ARCH]
 Attachment="Papierowa torba z oczami"
-AttachmentSkin0="Precious"
+AttachmentSkin0="Cenny egzemplarz"
 
 [Cosmetic_PaperBagHappy_ARCH]
 Attachment="Papierowa torba z uśmiechem"
-AttachmentSkin0="Green"
+AttachmentSkin0="Zielony"
 
 [Cosmetic_PaperBagKrinkle_ARCH]
 Attachment="Szeleszcząca papierowa torba"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="Kameleon"
 
 [Cosmetic_PaperBagOFace_ARCH]
 Attachment="Papierowa torba z TĄ miną"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="Żółty"
 
 [Cosmetic_PaperBagOooh_ARCH]
 Attachment="Papierowa torba Oooch"
-AttachmentSkin0="White"
+AttachmentSkin0="Biały"
 
 [Cosmetic_PaperBagSmallEyes_ARCH]
 Attachment="Papierowa torba z oczkami"
-AttachmentSkin0="Purple"
+AttachmentSkin0="Fioletowy"
 
 [Cosmetic_PaperBagYelling_ARCH]
 Attachment="Papierowa torba z krzykiem"
-AttachmentSkin0="Red"
+AttachmentSkin0="Czerwony"
 
 [Cosmetic_PorcelainMaskBlank_ARCH]
 Attachment="Porcelanowa maska"
-AttachmentSkin0="White"
+AttachmentSkin0="Biały"
 
 [Cosmetic_PorcelainMaskBroken_ARCH]
 Attachment="Pęknięta porcelanowa maska"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="Żółty"
 
 [Cosmetic_PorcelainMaskCross_ARCH]
 Attachment="Porcelanowa maska z krzyżem"
-AttachmentSkin0="Red and Black"
+AttachmentSkin0="Czerwony i czarny"
 
 [Cosmetic_PorcelainMaskDosh_ARCH]
 Attachment="Porcelanowa maska z forsą"
-AttachmentSkin0="Precious"
+AttachmentSkin0="Cenny egzemplarz"
 
 [Cosmetic_PorcelainMaskHappy_ARCH]
 Attachment="Porcelanowa maska z uśmiechem"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="Żółty"
 
 [Cosmetic_PorcelainMaskSad_ARCH]
 Attachment="Porcelanowa maska ze smutną miną"
-AttachmentSkin0="Blue"
+AttachmentSkin0="Niebieski"
 
 [Cosmetic_PorcelainMaskSlim_ARCH]
 Attachment="Wąska porcelanowa maska"
-AttachmentSkin0="Green"
+AttachmentSkin0="Zielony"
 
 [Cosmetic_PorcelainMaskSly_ARCH]
 Attachment="Porcelanowa maska z chytrą miną"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="Kameleon"
 
 [Cosmetic_Tricorne_ARCH]
 Attachment="Trójróg"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Precious"
-AttachmentSkin4="White"
+AttachmentSkin0="Czarny"
+AttachmentSkin1="Niebieski"
+AttachmentSkin2="Brązowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Biały"
+
+[Cosmetic_DAR_ClassicArmor_ARCH]
+Attachment="Klasyczny pancerz"
+AttachmentSkin0="Krwawy"
+AttachmentSkin1="Loader"
+AttachmentSkin2="Standardowy model"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Czacha"
+
+[Cosmetic_DAR_AssaultArmor_ARCH]
+Attachment="Pancerz szturmowy"
+AttachmentSkin0="Tajne operacje"
+AttachmentSkin1="Kamuflaż G"
+AttachmentSkin2="Wydmy"
+AttachmentSkin3="Loader"
+AttachmentSkin4="Optymalizacja"
+AttachmentSkin5="Cenny egzemplarz"
+
+[Cosmetic_DAR_FlightArmor_ARCH]
+Attachment="Pancerz pilota"
+AttachmentSkin0="Niebieski anioł"
+AttachmentSkin1="Galaktyczny"
+AttachmentSkin2="P51"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Spitfire"
+AttachmentSkin5="Krzyk"
+
+[Cosmetic_DAR_ChonneArmor_ARCH]
+Attachment="Pancerz CHONN-E 5"
+AttachmentSkin0="BatCat"
+AttachmentSkin1="Sportowy"
+AttachmentSkin2="Horzine"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Radykalny"
+AttachmentSkin5="Kość czasu"
+
+[Cosmetic_DAR_C3HZArmor_ARCH]
+Attachment="Pancerz C-3HZ"
+AttachmentSkin0="Zderzenie"
+AttachmentSkin1="Niebieski Nurt"
+AttachmentSkin2="Marmur"
+AttachmentSkin3="Obsydian"
+AttachmentSkin4="Cenny egzemplarz"
+AttachmentSkin5="Gwiezdny"
+
+[Cosmetic_SmallEarPiece_ARCH]
+Attachment="Mała słuchawka"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
+
+[Cosmetic_Pad_ARCH]
+Attachment="Okrągły plecak"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
+
+[Cosmetic_MouthPiece_ARCH]
+Attachment="Osłona twarzy"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
+
+[Cosmetic_MessengerBag_ARCH]
+Attachment="Torba na ramię"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Cenny egzemplarz"
+AttachmentSkin3="Czerwony"
+AttachmentSkin4="Żółty"
+
+[Cosmetic_LargeEarPiece_ARCH]
+Attachment="Duża słuchawka"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
+
+[Cosmetic_DiagonalBackpack_ARCH]
+Attachment="Plecak z diagonalu"
+AttachmentSkin0="Szary"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Cenny egzemplarz"
+AttachmentSkin3="Jasnobrązowy"
+
+[Cosmetic_CyberShades_ARCH]
+Attachment="Przeciwsłoneczne"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
+
+[Cosmetic_CyberPunkVisorOpen_ARCH]
+Attachment="Otwarty wizjer"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
+
+[Cosmetic_CyberPunkVisorClosed_ARCH]
+Attachment="Zamknięty wizjer"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
+
+[Cosmetic_ArmScreen_ARCH]
+Attachment="Naręczny ekran cyfrowy"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"
+
+[Cosmetic_SlimVisor_ARCH]
+Attachment="Wąski wizjer"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zielony"
+AttachmentSkin2="Pomarańczowy"
+AttachmentSkin3="Cenny egzemplarz"
+AttachmentSkin4="Fioletowy"
+AttachmentSkin5="Czerwony"

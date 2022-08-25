@@ -42,14 +42,26 @@ package tripwire.controls.serverBrowser
         override public function setData(param1:Object) : void
         {
             super.setData(param1);
+            var _loc2_:String = "0";
             if(param1 != null)
             {
+                if(param1.maxWaveCount)
+                {
+                    if(param1.maxWaveCount == -1)
+                    {
+                        _loc2_ = "∞";
+                    }
+                    else
+                    {
+                        _loc2_ = param1.maxWaveCount;
+                    }
+                }
                 this.serverNameText.text = !!param1.serverName ? param1.serverName : "";
                 this.serverModeText.text = param1.mode;
                 this.serverDifficultyText.text = param1.difficulty;
                 this.serverMapText.text = param1.map;
                 this.playerCountText.text = param1.playerCount + "/" + param1.maxPlayerCount;
-                this.waveCountText.text = param1.waveCount + "/" + param1.maxWaveCount;
+                this.waveCountText.text = param1.waveCount + "/" + _loc2_;
                 this.pingText.text = !!param1.ping ? param1.ping : "";
                 this.locked = !!param1.locked ? Boolean(param1.locked) : false;
                 this.ranked = !!param1.bRanked ? Boolean(param1.bRanked) : false;

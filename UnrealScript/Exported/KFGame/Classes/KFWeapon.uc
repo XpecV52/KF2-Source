@@ -1288,12 +1288,29 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
 simulated function AttachWeaponTo( SkeletalMeshComponent MeshCpnt, optional Name SocketName )
 {
 	local KFPawn KFP;
+	local int i;
 
 	KFP = KFPawn(Instigator);
 	if( KFP != none && KFP.ArmsMesh != none )
 	{
 		KFP.ArmsMesh.SetParentAnimComponent(MySkelMesh);
 		KFP.ArmsMesh.SetFOV(MySkelMesh.FOV);
+		for (i = 0; i < 3; i++)
+		{
+			if (KFP.FirstPersonAttachments[i] != none)
+			{
+				if (SkeletalMeshComponent(KFP.FirstPersonAttachments[i]) != none)
+				{
+					SkeletalMeshComponent(KFP.FirstPersonAttachments[i]).SetParentAnimComponent(MySkelMesh);
+					SkeletalMeshComponent(KFP.FirstPersonAttachments[i]).SetLODParent(MySkelMesh);
+				}
+
+				if (KFSkeletalMeshComponent(KFP.FirstPersonAttachments[i]) != none)
+				{
+					KFSkeletalMeshComponent(KFP.FirstPersonAttachments[i]).SetFOV(MySkelMesh.FOV);
+				}
+			}
+		}
 	}
 
 	// Attach 1st Person Muzzle Flashes, etc,
@@ -1323,6 +1340,15 @@ simulated function AttachWeaponTo( SkeletalMeshComponent MeshCpnt, optional Name
 				Mesh.SetShadowParent(KFP.ArmsMesh);
 				// Reattach our arms mesh at the same time as our weapon to avoid them ticking and popping on screen early
 				AttachComponent(KFP.ArmsMesh);
+
+				// Reattach the arms cosmetics to the weapon.
+				for (i = 0; i < 3; i++)
+				{
+					if (KFP.FirstPersonAttachments[i] != none)
+					{
+						AttachComponent(KFP.FirstPersonAttachments[i]);
+					}
+				}
 			}
 		}
 	}
@@ -1340,6 +1366,13 @@ simulated function AttachWeaponTo( SkeletalMeshComponent MeshCpnt, optional Name
 		if (KFP != None)
 		{
 			KFP.ArmsMesh.SetHidden(true);
+			for (i = 0; i < 3; i++)
+			{
+				if (KFP.FirstPersonAttachments[i] != none)
+				{
+					KFP.FirstPersonAttachments[i].SetHidden(true);
+				}
+			}
 		}
 	}
 
@@ -1379,6 +1412,7 @@ function AttachThirdPersonWeapon(KFPawn P)
 simulated function DetachWeapon()
 {
 	local KFPawn KFP;
+	local int i;
 
 	DetachComponent( Mesh );
 	if (OverlayMesh != None)
@@ -1403,6 +1437,13 @@ simulated function DetachWeapon()
 	{
 		// Detach our arms mesh at the same time as our weapon to avoid them ticking and popping on screen early
 		DetachComponent(KFP.ArmsMesh);
+		for (i = 0; i < 3; i++)
+		{
+			if (KFP.FirstPersonAttachments[i] != none)
+			{
+				DetachComponent(KFP.FirstPersonAttachments[i]);
+			}
+		}
 	}
 
 	SetBase(None);
@@ -1663,6 +1704,7 @@ simulated event Tick( float DeltaTime )
 simulated event SetFOV( float NewFOV )
 {
 	local KFPawn KFP;
+	local int i;
 
 	if ( MySkelMesh != none)
 	{
@@ -1681,6 +1723,16 @@ simulated event SetFOV( float NewFOV )
 		if( KFP.ArmsMesh != none )
 		{
 			KFP.ArmsMesh.SetFOV(NewFOV);
+			for (i = 0; i < 3; i++)
+			{
+				if (KFP.FirstPersonAttachments[i] != none)
+				{
+					if (KFSkeletalMeshComponent(KFP.FirstPersonAttachments[i]) != none)
+					{
+						KFSkeletalMeshComponent(KFP.FirstPersonAttachments[i]).SetFOV(NewFOV);
+					}
+				}
+			}
 		}
 	}
 
@@ -2213,7 +2265,7 @@ simulated function PlayWeaponAnimation(name Sequence, float fDesiredDuration, op
 				WeaponAnimSeqNode.SetAnim(Sequence);
 			}
 
-			if(fDesiredDuration > 0.0)
+			if(fDesiredDuration > 0.0 && WeaponAnimSeqNode.AnimSeq.RateScale > 0.0)
 			{
 				DesiredRate = WeaponAnimSeqNode.AnimSeq.SequenceLength / (fDesiredDuration * WeaponAnimSeqNode.AnimSeq.RateScale);
 				WeaponAnimSeqNode.PlayAnim(bLoop, DesiredRate);
@@ -2471,6 +2523,8 @@ simulated event SetPosition(KFPawn Holder)
 	local rotator UsedBufferRotation;
 	local vector CamLoc;
 	local rotator CamRot;
+	local int i;
+	local KFPawn KFP;
 
 	if ( !Holder.IsFirstPerson() && !bWeaponNeedsServerPosition )
 		return;
@@ -2480,6 +2534,17 @@ simulated event SetPosition(KFPawn Holder)
 	{
 		Mesh.SetHidden(True);
 		Holder.ArmsMesh.SetHidden(true);
+		KFP = KFPawn(Instigator);
+		if(KFP != none)
+		{
+			for (i = 0; i < 3; i++)
+			{
+				if (KFP.FirstPersonAttachments[i] != none)
+				{
+					KFP.FirstPersonAttachments[i].SetHidden(true);
+				}
+			}
+		}
 		NewRotation = Holder.GetViewRotation();
 		SetLocation(Instigator.GetPawnViewLocation() + (HiddenWeaponsOffset >> NewRotation));
 		SetRotation(NewRotation);
@@ -2590,6 +2655,7 @@ simulated function ChangeVisibility(bool bIsVisible)
 	local KFPawn KFP;
 	local SkeletalMeshComponent SkelMesh;
 	local PrimitiveComponent Primitive;
+	local int i;
 
 	if (Mesh != None)
 	{
@@ -2623,6 +2689,22 @@ simulated function ChangeVisibility(bool bIsVisible)
 			DetachComponent(KFP.ArmsMesh);
 		}
 		KFP.ArmsMesh.SetHidden(!bIsVisible);
+
+		for (i = 0; i < 3; i++)
+		{
+			if (KFP.FirstPersonAttachments[i] != none)
+			{
+				if (bIsVisible)
+				{
+					AttachComponent(KFP.FirstPersonAttachments[i]);
+				}
+				else
+				{
+					DetachComponent(KFP.FirstPersonAttachments[i]);
+				}
+				KFP.FirstPersonAttachments[i].SetHidden(!bIsVisible);
+			}
+		}
 	}
 
 	if ( OverlayMesh != none )

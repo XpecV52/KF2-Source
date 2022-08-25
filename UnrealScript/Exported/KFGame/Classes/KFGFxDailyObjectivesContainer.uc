@@ -28,7 +28,7 @@ enum E_DailyIcon
 struct ObjectiveProgress
 {
 	var bool bComplete;
-	var int numericValue;
+	var int NumericValue;
 };
 
 var array<ObjectiveProgress> ObjectiveStatusList;

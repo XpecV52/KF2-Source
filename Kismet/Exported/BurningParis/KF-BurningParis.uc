@@ -653,8 +653,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
    ObjValue=KFSpawner'KF-BURNINGPARIS.TheWorld:PersistentLevel.KFSpawner_34'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4960
-   ObjPosY=1072
+   ObjPosX=4928
+   ObjPosY=1112
    ObjComment="PARENT - Waterfront cafe ceiling"
    DrawWidth=32
    DrawHeight=32
@@ -1056,16 +1056,16 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_16
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_17
-   SizeX=529
-   SizeY=284
+   SizeX=567
+   SizeY=322
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4632
    ObjPosY=880
    ObjComment="Portal spawns - waterfront cafe"
-   DrawWidth=529
-   DrawHeight=284
+   DrawWidth=567
+   DrawHeight=322
    Name="SequenceFrame_17"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
@@ -1587,7 +1587,7 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_2'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_748'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=592
@@ -1641,7 +1641,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_21'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1254'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=592
@@ -1668,7 +1668,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_23'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1318'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=592
@@ -1695,7 +1695,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_20
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_10'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1033'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=576
@@ -1722,7 +1722,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_21
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_11'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1042'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=584
@@ -1749,7 +1749,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_22
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_25'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1463'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=568
@@ -1776,7 +1776,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_23
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_27'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1634'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=584
@@ -1803,7 +1803,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_24
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_51
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_29'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1671'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=584
@@ -1830,7 +1830,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_25
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_15'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1687'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=560
@@ -1857,7 +1857,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_26
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_16'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1150'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=560
@@ -1884,7 +1884,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_27
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
-   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_31'
+   ObjValue=StaticMeshActor'KF-BURNINGPARIS.TheWorld:PersistentLevel.StaticMeshActor_1677'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-BURNINGPARIS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=552

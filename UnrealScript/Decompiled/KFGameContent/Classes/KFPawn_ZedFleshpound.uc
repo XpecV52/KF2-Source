@@ -12,6 +12,7 @@ class KFPawn_ZedFleshpound extends KFPawn_Monster
 var export editinline AkComponent RageAkComponent;
 var AkEvent RageLoopSound;
 var AkEvent RageStopSound;
+var bool bPlayingRageSound;
 var LinearColor DefaultGlowColor;
 var LinearColor EnragedGlowColor;
 var() LinearColor DeadGlowColor;
@@ -28,7 +29,7 @@ static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
     local WorldInfo WI;
 
     WI = Class'WorldInfo'.static.GetWorldInfo();
-    if(FRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)))
+    if((class<KFDifficulty_Fleshpound>(default.DifficultySettings) != none) && FRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)))
     {
         return default.ElitePawnClass;
     }
@@ -250,9 +251,10 @@ simulated function SetGlowColors(LinearColor GlowColor)
 
 simulated function StopRageSound()
 {
-    if(RageAkComponent.IsPlaying(RageLoopSound))
+    if(bPlayingRageSound && RageAkComponent.IsPlaying(RageLoopSound))
     {
         RageAkComponent.PlayEvent(RageStopSound, true, true);
+        bPlayingRageSound = false;
     }
 }
 
@@ -288,6 +290,7 @@ simulated event Tick(float DeltaTime)
             if(!RageAkComponent.IsPlaying(RageLoopSound))
             {
                 RageAkComponent.PlayEvent(RageLoopSound, true, true);
+                bPlayingRageSound = true;
             }            
         }
         else

@@ -155,6 +155,7 @@ var bool bDisableHeadless;
 var bool bDebug_DrawOverheadInfo;
 var bool bDebug_DrawSprintingOverheadInfo;
 var const bool bDebug_UseIconForShowingSprintingOverheadInfo;
+var bool bDebug_SpawnedThroughCheat;
 var bool bReducedZedOnZedPinchPointCollisionStateActive;
 var protected bool bOnDeathAchivementbDisabled;
 var const string MonsterArchPath;
@@ -426,9 +427,15 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     local KFGameReplicationInfo KFGRI;
 
     super.PossessedBy(C, bVehicleTransition);
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(KFAIController(C) != none)
     {
         MyKFAIC = KFAIController(C);
+        if((!bDebug_SpawnedThroughCheat || WorldInfo.Game.GetStateName() == 'DebugSuspendWave' && KFGRI != none) && !KFGRI.bWaveIsActive)
+        {
+            Suicide();
+            return;
+        }
     }
     bReducedZedOnZedPinchPointCollisionStateActive = false;
     if(IsHumanControlled())
@@ -457,7 +464,6 @@ function PossessedBy(Controller C, bool bVehicleTransition)
         PlayerReplicationInfo.PlayerName = NPCName;
         MyKFAIC.PlayerReplicationInfo.PlayerName = NPCName;
     }
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(KFGRI != none)
     {
         SetBlockSettings(DifficultySettings.static.GetBlockSettings(self, KFGRI));
@@ -1528,6 +1534,7 @@ simulated function bool Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect
     local sRallyInfo RallyInfo;
     local KFAIController KFAIC;
     local bool bStartedBoostRally;
+    local name SocketBoneName, AltSocketBoneName;
 
     bSkipEffects = false;
     GetDifficultyRallyInfo(RallyInfo);
@@ -1568,13 +1575,15 @@ simulated function bool Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect
         RallyPSC = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(RallyEffect, Mesh, EffectBoneName, false, EffectOffset);
         if(bStartedBoostRally)
         {
-            if(Mesh.MatchRefBone(AltEffectBoneNames[0]) != -1)
+            SocketBoneName = Mesh.GetSocketBoneName(AltEffectBoneNames[0]);
+            if((SocketBoneName != 'None') && SocketBoneName != 'None')
             {
-                RallyHandPSCs[0] = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(AltRallyEffect, Mesh, AltEffectBoneNames[0], false, AltEffectOffset);
+                RallyHandPSCs[0] = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(AltRallyEffect, Mesh, AltEffectBoneNames[0], true, AltEffectOffset);
             }
-            if(Mesh.MatchRefBone(AltEffectBoneNames[1]) != -1)
+            AltSocketBoneName = Mesh.GetSocketBoneName(AltEffectBoneNames[1]);
+            if((AltSocketBoneName != 'None') && AltSocketBoneName != 'None')
             {
-                RallyHandPSCs[1] = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(AltRallyEffect, Mesh, AltEffectBoneNames[1], false, AltEffectOffset);
+                RallyHandPSCs[1] = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(AltRallyEffect, Mesh, AltEffectBoneNames[1], true, AltEffectOffset);
             }
         }
     }

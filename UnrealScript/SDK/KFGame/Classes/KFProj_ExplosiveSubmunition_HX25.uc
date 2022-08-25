@@ -95,13 +95,14 @@ simulated function bool AllowNuke()
 defaultproperties
 {
 	Physics=PHYS_Falling
-	Speed=5000
-	MaxSpeed=5000
-	TerminalVelocity=5000
+	Speed=4000
+	MaxSpeed=4000
+	TerminalVelocity=4000
 	TossZ=150
-	GravityScale=0.25
+	GravityScale=0.5
     MomentumTransfer=50000.0
     ArmDistSquared=0 // Arm instantly
+	LifeSpan = +1000.0f
 
 	bWarnAIWhenFired=true
 

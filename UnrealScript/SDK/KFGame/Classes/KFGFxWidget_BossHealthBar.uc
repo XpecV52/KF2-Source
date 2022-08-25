@@ -80,6 +80,7 @@ function SetBossPawn(KFInterface_MonsterBoss NewBoss)
         return;
     }
     UpdateBossHealth();
+	UpdateBossBattlePhase(1);
 }
 
 function OnNamePlateHidden()
@@ -88,10 +89,15 @@ function OnNamePlateHidden()
     {
         return;
     }
+
     if(BossPawn != none)
     {
         SetVisible(true);
     }
+	else
+	{
+		SetVisible(false);
+	}
 }
 
 function SetBossName(string BossName)
@@ -109,7 +115,7 @@ function UpdateBossHealth()
 
 function UpdateBossBattlePhase(int BattlePhase)
 {
-    SetInt( "currentBattlePhaseColor", BattlePhaseColors[BattlePhase-1] );
+    SetInt( "currentBattlePhaseColor", BattlePhaseColors[Max(BattlePhase - 1, 0)] );
 }
 
 function UpdateBossShield(float NewShieldPercect)
@@ -134,10 +140,17 @@ function UpdateArmorUI(const out SCompressedArmorInfo ArmorValues[3])
 		}
 		DataProvider.SetElementObject(i, DataObject);
 	}
-	
+
 	SetObject("armorData", DataProvider);
 }
 
+function RemoveArmorUI()
+{
+	local GFxObject DataProvider;
+	DataProvider = CreateArray();
+	DataProvider.SetVisible(false);
+	SetObject("armorData", DataProvider);
+}
 
 DefaultProperties
 {

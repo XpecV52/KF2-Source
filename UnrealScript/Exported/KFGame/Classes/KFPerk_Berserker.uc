@@ -239,7 +239,6 @@ simulated function ModifySpeed( out float Speed )
 
 	if( MyKFWeapon != none && MyKFWeapon.IsMeleeWeapon() )
 	{
-		;
 		Speed += Speed * GetSkillValue( PerkSkills[EBerserkerNinja] );
 	}
 }
@@ -574,8 +573,6 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	local name StateName;
 
 	StateName = W.GetStateName();
-
-	;
 
 	if( IsWeaponOnPerk( W,, self.class ) && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 	{

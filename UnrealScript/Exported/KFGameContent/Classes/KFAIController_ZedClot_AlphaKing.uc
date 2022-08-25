@@ -17,6 +17,9 @@ var protected float RallyChance;
 /** How long of a cooldown between rally attempts */
 var protected float RallyCooldown;
 
+/** King Clot cannot sprint if he has all his armor. Separate from bCanSprint, since that determines if he will sprint on armor loss. */
+var bool bAllowedToSprint;
+
 /*********************************************************************************************
 * Rally Methods
 ********************************************************************************************* */
@@ -59,7 +62,7 @@ function Timer_CheckForRally()
 	// If we're dead or near-dead, don't try to rally anymore
 	if( MyKFPawn.IsHeadless() || !MyKFPawn.IsAliveAndWell() )
 	{
-		return;	
+		return;
 	}
 
 	// If we're in a state that would prevent us from rallying, wait a bit before we try again
@@ -96,6 +99,40 @@ function Timer_CheckForRally()
 	}
 
 	SetTimer( 1.5f, false, nameOf(Timer_CheckForRally) );
+}
+
+/** King Clot can only sprint when he loses armor. */
+function SetCanSprint(bool bNewSprintStatus)
+{
+	bCanSprint = bNewSprintStatus;
+	MyKFPawn.bIsSprinting = false;
+}
+
+/** King Clot can only sprint when he loses armor. */
+function SetSprintingDisabled(bool bNewSprintStatus)
+{
+	bSprintingDisabled = bNewSprintStatus;
+	MyKFPawn.bIsSprinting = false;
+}
+
+/** King Clot can only sprint when he loses armor. */
+function SetCanSprintWhenDamaged(bool bNewSprintDamagedStatus)
+{
+	bCanSprintWhenDamaged = bNewSprintDamagedStatus;
+	MyKFPawn.bIsSprinting = false;
+}
+
+/** The King Clot should only sprint when he loses an armor piece. */
+function bool ShouldSprint()
+{
+	return bAllowedToSprint && super.ShouldSprint();
+}
+
+/** The King Clot has lost an armor piece, he is now allowed to sprint. */
+function StartArmorLoss()
+{
+	bAllowedToSprint = true;
+	MyKFPawn.SetEnraged(true);
 }
 
 defaultproperties

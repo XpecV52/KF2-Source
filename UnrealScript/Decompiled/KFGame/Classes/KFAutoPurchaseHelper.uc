@@ -44,7 +44,7 @@ function DoAutoPurchase()
     local array<STraderItem> OnPerkWeapons;
     local STraderItem TopTierWeapon;
     local int ItemIndex;
-    local bool bSecondaryWeaponPurchased, bUpgradeSuccess, bAutoFillPurchasedItem;
+    local bool bSecondaryWeaponPurchased, bAutoFillPurchasedItem;
     local string AutoFillMessageString;
 
     GetTraderItems();
@@ -70,46 +70,39 @@ function DoAutoPurchase()
     TopTierWeapon = GetTopTierWeapon(OnPerkWeapons);
     if((!DoIOwnThisWeapon(TopTierWeapon) && GetCanAfford((GetAdjustedBuyPriceFor(TopTierWeapon)) + DoshBuffer)) && CanCarry(TopTierWeapon))
     {
-        bUpgradeSuccess = AttemptUpgrade(TotalDosh, OnPerkWeapons, true);        
+        AttemptUpgrade(TotalDosh, OnPerkWeapons, true);        
     }
     else
     {
         PotentialDosh = GetPotentialDosh();
-        bUpgradeSuccess = AttemptUpgrade(PotentialDosh + TotalDosh, OnPerkWeapons);
+        AttemptUpgrade(PotentialDosh + TotalDosh, OnPerkWeapons);
     }
     bAutoFillPurchasedItem = StartAutoFill();
     if(DoIOwnThisWeapon(TopTierWeapon))
     {
-        J0x2A4:
+        J0x28E:
 
         if(AttemptToPurchaseNextLowerTier(TotalDosh, OnPerkWeapons))
         {
             bSecondaryWeaponPurchased = true;
             AttemptToPurchaseNextLowerTier(TotalDosh, OnPerkWeapons);
-            goto J0x2A4;
+            goto J0x28E;
         }
     }
     MyKFIM.ServerCloseTraderMenu();
-    if(bUpgradeSuccess)
+    if(bSecondaryWeaponPurchased)
     {
-        AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.WeaponUpgradeComepleteString;        
+        AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.SecondaryWeaponPurchasedString;        
     }
     else
     {
-        if(bSecondaryWeaponPurchased)
+        if(bAutoFillPurchasedItem)
         {
-            AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.SecondaryWeaponPurchasedString;            
+            AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.AutoFillCompleteString;            
         }
         else
         {
-            if(bAutoFillPurchasedItem)
-            {
-                AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.AutoFillCompleteString;                
-            }
-            else
-            {
-                AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.NoItemsPurchasedString;
-            }
+            AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.NoItemsPurchasedString;
         }
     }
     if(Outer.myGfxHUD != none)
@@ -353,7 +346,7 @@ function PurchaseWeapon(STraderItem ShopItem)
 function SellWeapon(SItemInformation ItemInfo, optional int SelectedItemIndex)
 {
     SelectedItemIndex = -1;
-    AddDosh(ItemInfo.SellPrice);
+    AddDosh(GetAdjustedSellPriceFor(ItemInfo.DefaultItem));
     AddBlocks(-ItemInfo.DefaultItem.BlocksRequired);
     if(SelectedItemIndex != -1)
     {
@@ -850,6 +843,14 @@ function bool IsSellable(const out STraderItem TraderItem)
 simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem)
 {
     return MyKFIM.GetAdjustedBuyPriceFor(ShopItem, OwnedItemList);
+}
+
+simulated function int GetAdjustedSellPriceFor(const out STraderItem ShopItem)
+{
+    local KFWeapon OwnedWeapon;
+
+    MyKFIM.GetWeaponFromClass(OwnedWeapon, ShopItem.ClassName);
+    return MyKFIM.GetAdjustedSellPriceFor(ShopItem, OwnedWeapon);
 }
 
 function bool IsInOwnedItemList(name ItemName)

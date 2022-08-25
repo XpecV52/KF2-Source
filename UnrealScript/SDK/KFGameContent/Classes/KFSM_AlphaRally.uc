@@ -96,7 +96,8 @@ defaultproperties
 
     // Animation settings
     AnimStance=EAS_FullBody
-	RallyAnims=(Anims=(Player_Taunt_V1, Player_Taunt_V2, Player_Taunt_V3, Player_Taunt_V4))
+    //RallyAnims=(Anims=(Player_Taunt_V1, Player_Taunt_V2, Player_Taunt_V3, Player_Taunt_V4))
+    RallyAnims=(Anims=(Player_Taunt_V1))
 
     // Rally settings
     bRallySelf=true
@@ -105,6 +106,7 @@ defaultproperties
     RallyEffectBoneName=Root
     RallyEffectOffset=(X=0, Y=0, Z=2)
     AltRallyEffect=ParticleSystem'ZED_Clot_EMIT.FX_Player_Zed_Buff_01'
-    AltRallyEffectBoneNames[0]=RightHand
-    AltRallyEffectBoneNames[1]=LeftHand
+    AltRallyEffectBoneNames[0]=FX_EYE_L
+    AltRallyEffectBoneNames[1]=FX_EYE_R
+
 }

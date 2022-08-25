@@ -147,13 +147,16 @@ function SetSumarryInfo()
     local string GameDifficultyString, GameTypeString, CurrentMapName;
     local KFGameReplicationInfo KFGRI;
     local GFxObject TextObject;
+    local KFPlayerController KFPC;
 
+    KFPC = KFPlayerController(Outer.GetPC());
     TextObject = Outer.CreateObject("Object");
     CurrentMapName = Outer.GetPC().WorldInfo.GetMapName(true);
     GameTypeString = Class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
-    if(Outer.GetPC().WorldInfo.GRI != none)
+    if(KFPC.WorldInfo.GRI != none)
     {
         KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+        TextObject.SetInt("voshDelta", KFPC.GetTotalDoshCount() - KFPC.BeginningRoundVaultAmount);
         GameDifficultyString = Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(KFGRI.GameDifficulty));
         GameTypeString = KFGRI.GameClass.default.GameName;
         TextObject.SetString("mapName", Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName));
@@ -164,7 +167,14 @@ function SetSumarryInfo()
         }
         else
         {
-            TextObject.SetString("waveTime", ((((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));
+            if(KFGRI.default.bEndlessMode)
+            {
+                TextObject.SetString("waveTime", ((WaveString @ string(KFGRI.WaveNum)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));                
+            }
+            else
+            {
+                TextObject.SetString("waveTime", ((((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));
+            }
         }
         TextObject.SetString("winLost", ((KFGRI.bMatchVictory) ? VictoryString : DefeatString));
     }

@@ -53,6 +53,11 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
     MyPawn = KFPawn_ZedFleshpoundKing(inPawn);
 }
 
+function bool AmIAllowedToSuicideWhenStuck()
+{
+	return false;
+}
+
 /** We have seen a player -- start checking for beam attack */
 event SeePlayer( Pawn Seen )
 {

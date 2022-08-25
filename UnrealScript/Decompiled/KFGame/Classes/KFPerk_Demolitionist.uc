@@ -53,11 +53,18 @@ var private transient float LastHX25NukeTime;
 
 function ApplySkillsToPawn()
 {
+    local KFGameReplicationInfo KFGRI;
+
     super.ApplySkillsToPawn();
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(MyPRI != none)
     {
         MyPRI.bNukeActive = IsNukeActive();
         MyPRI.bConcussiveActive = IsConcussiveForceActive();
+    }
+    if((KFGRI == none) && KFGRI.bTraderIsOpen)
+    {
+        return;
     }
     ResetSupplier();
 }
@@ -66,6 +73,11 @@ function OnWaveEnded()
 {
     super.OnWaveEnded();
     bUsedSacrifice = false;
+}
+
+function OnWaveStart()
+{
+    super.OnWaveStart();
     ResetSupplier();
 }
 

@@ -28,6 +28,9 @@ var float					GrabAlertMaxZedDistance;
 /** Turns on forced frustation mode */
 var bool 					bForceFrustration;
 
+/** List of all active bosses. */
+var array<KFPawn_Monster> ActiveBossList;
+
 /** A bi-direction graph representation of the connections between doors for long range "Macro" pathing decisions*/
 //var KFDoorGraph             DoorGraph;
 
@@ -202,6 +205,11 @@ final function RegisterAIMember( Controller NewMember )
 				if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFAIC!= None ) { KFAIC.AILog_Internal(GetFuncName()$" Adding "$KFAIC$" to AIList",'AIDirector'); };
 				AIList.AddItem(KFAIC);
 			}
+
+			if (NewMember.Pawn != none && KFPawn_Monster(NewMember.Pawn) != none && KFPawn_Monster(NewMember.Pawn).IsABoss())
+			{
+				ActiveBossList.AddItem(KFPawn_Monster(NewMember.Pawn));
+			}
 		}
 	}
 }
@@ -227,6 +235,11 @@ final function UnRegisterAIMember( Controller OldMember )
 			{
 				if( !class'Engine'.static.GetEngine().bDIsableAILogging && KFAIC!= None ) { KFAIC.AILog_Internal(GetFuncName()$" Removing "$KFAIC$" from AIList",'AIDirector'); };
 				AIList.RemoveItem(KFAIC);
+			}
+
+			if (OldMember.Pawn != none && KFPawn_Monster(OldMember.Pawn) != none && KFPawn_Monster(OldMember.Pawn).IsABoss())
+			{
+				ActiveBossList.RemoveItem(KFPawn_Monster(OldMember.Pawn));
 			}
 		}
 	}
@@ -343,18 +356,18 @@ function array<KFDoorActor> FindDoorsWithInRange( float RangeToBeLessThan, vecto
 	}
 
 	return doorsInRange;
-	
+
 }
 
-delegate int ClosestDoorSort( KFDoorActor A, KFDoorActor B) 
-{ 
+delegate int ClosestDoorSort( KFDoorActor A, KFDoorActor B)
+{
 	local float distSqToDoorA;
 	local float distSqToDoorB;
 
 	distSqToDoorA = VSizeSq( CurrentLocationSortingDoorsFor - A.Location );
 	distSqToDoorB = VSizeSq( CurrentLocationSortingDoorsFor - B.Location );
 
-	return distSqToDoorA > distSqToDoorB ? -1 : 0; 
+	return distSqToDoorA > distSqToDoorB ? -1 : 0;
 }
 
 /**
@@ -392,6 +405,16 @@ function array<KFDoorActor> FindClosedDoorsWithInRange( float RangeToBeLessThan,
 	closedDoorsInRange.Sort( ClosestDoorSort );
 
 	return closedDoorsInRange;
+}
+
+function KFPawn_Monster GetActiveBoss()
+{
+	if (ActiveBossList.length > 0)
+	{
+		return ActiveBossList[0];
+	}
+
+	return none;
 }
 
 defaultproperties

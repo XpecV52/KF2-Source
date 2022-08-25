@@ -346,16 +346,7 @@ var Array<AARAWard> TeamAwardList;
 var	byte								WaveMax;	// The "end" wave
 var	int									WaveNum;	// The wave we are currently in
 var bool                                bHumanDeathsLastWave; //Track this separate from player count in case someone dies and leaves
-
-/************************************************************************************
- * Objectives
- ***********************************************************************************/
-var	int									PlayedObjectives;
-var float								ObjectiveCheckIntervall;
-var	bool								bObjectivePlayed;
-const									ObjectiveChance = 0.5f;
-var float 								MinAIAlivePercReqForObjStart;
-var bool								bLogCheckObjective;
+var int									ObjectiveSpawnDelay; // How long should the first wave be delayed if there is an active objective.
 
 /** Whether this game mode should play music from the get-go (lobby) */
 static function bool ShouldPlayMusicAtStart()
@@ -381,7 +372,7 @@ event PostBeginPlay()
 {
 	super.PostBeginPlay();
 
-	TimeBetweenWaves = DifficultyInfo.GetTraderTimeByDifficulty();
+	TimeBetweenWaves = GetTraderTime();
 }
 
 /** Set up the spawning */
@@ -565,7 +556,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	super.Killed(Killer, KilledPlayer, KilledPawn, damageType);
 
 	// if not boss wave, play progress update trader dialog
-	if( !MyKFGRI.IsFinalWave() && KilledPawn.IsA('KFPawn_Monster') )
+	if( !MyKFGRI.IsBossWave() && KilledPawn.IsA('KFPawn_Monster') )
     {
     	// no KFTraderDialogManager object on dedicated server, so use static function
     	class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog( MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo );
@@ -607,7 +598,7 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
 	if(KFPC!= none && KFPC.MatchStats != none ){KFPC.MatchStats.bKilledBoss = true;};
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if( KFGRI != none && !KFGRI.IsFinalWave() )
+	if( KFGRI != none && !KFGRI.IsBossWave() )
 	{
 		return;
 	}
@@ -720,6 +711,9 @@ function OnServerTitleDataRead()
 {
 	super.OnServerTitleDataRead();
 	class'KFGameEngine'.static.RefreshEventContent();
+	//set boss index again here - this fixes the case of seasonal events like christmas setting krampus the only boss
+	//to spawn on krampuses lair
+	SetBossIndex();
 }
 
 /**
@@ -900,6 +894,11 @@ function RewardSurvivingPlayers()
 	T.AddScore( 0, true );
 }
 
+function int CalculateMinimumRespawnDosh(float UsedMaxRespawnDosh)
+{
+	return Round(UsedMaxRespawnDosh * (float(WaveNum) / float(WaveMax - 1)));
+}
+
 /**
  * @brief Calculates the dosh penalty or minimum dosh spawning amount
  *
@@ -927,7 +926,7 @@ function int GetAdjustedDeathPenalty( KFPlayerReplicationInfo KilledPlayerPRI, o
 	   UsedMaxRespawnDosh = MaxRespawnDosh[MaxRespawnDosh.Length - 1];
 	}
 
-	MinimumRespawnDosh = Round( UsedMaxRespawnDosh * (float(WaveNum) / float(WaveMax - 1)) );
+	MinimumRespawnDosh = CalculateMinimumRespawnDosh(UsedMaxRespawnDosh);
 
 	if( bLateJoiner )
 	{
@@ -950,14 +949,16 @@ function int GetAdjustedDeathPenalty( KFPlayerReplicationInfo KilledPlayerPRI, o
 
 function int CalculateLateJoinerStartingDosh(int MinimumRespawnDosh)
 {
-	if (LateArrivalStarts.Length > 0 && GameLength >= 0 && GameLength < LateArrivalStarts.Length)
+	if (default.LateArrivalStarts.Length > 0 && GameLength >= 0 && GameLength < default.LateArrivalStarts.Length)
 	{
-		if (LateArrivalStarts[GameLength].StartingDosh.Length > 0 && WaveNum - 1 >= 0 && WaveNum - 1 < LateArrivalStarts[GameLength].StartingDosh.Length)
+		if (default.LateArrivalStarts[GameLength].StartingDosh.Length > 0 && WaveNum - 1 >= 0 && WaveNum - 1 < default.LateArrivalStarts[GameLength].StartingDosh.Length)
 		{
-			return LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1];
+			LogInternal("SCORING: Late joiner received" @ LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1]);
+			return default.LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1];
 		}
 	}
 
+	if (bLogScoring) LogInternal("SCORING: Late joiner - invalid parameters to properly award late joiner dosh. Will instead receive Minimum Respawn Dosh of" @ MinimumRespawnDosh);
 	return MinimumRespawnDosh;
 }
 
@@ -970,6 +971,26 @@ function bool AllowWaveCheats()
 
 
 	return false;
+
+}
+
+function FindCollectibles()
+{
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
@@ -1013,6 +1034,8 @@ exec function SetWave( byte NewWaveNum )
 			// stop, then restart
 			GotoState('DebugSuspendWave');
 			GotoState('PlayingWave');
+
+			ResetAllPickups();
 		}
 		else
 		{
@@ -1043,7 +1066,6 @@ State PlayingWave
 	{
 		MyKFGRI.SetWaveActive(TRUE, GetGameIntensityForMusic());
 		StartWave();
-
 		if ( AllowBalanceLogging() )
 		{
 			LogPlayersDosh(GBE_WaveStart);
@@ -1059,32 +1081,40 @@ State PlayingWave
 /** Starts a new Wave */
 function StartWave()
 {
+	local int WaveBuffer;
+	local KFPlayerController KFPC;
 	//closes trader on server
 	MyKFGRI.CloseTrader();
-
-    SpawnManager.SetupNextWave(WaveNum);
-
+	WaveBuffer = 0;
 	WaveNum++;
 	MyKFGRI.WaveNum = WaveNum;
+
+	if (IsMapObjectiveEnabled())
+	{
+		MyKFGRI.ClearPreviousObjective();
+		if (MyKFGRI.StartNextObjective())
+		{
+			WaveBuffer = ObjectiveSpawnDelay;
+		}
+	}
+
+    SpawnManager.SetupNextWave(WaveNum-1, WaveBuffer);
+
 	NumAISpawnsQueued = 0;
 	AIAliveCount = 0;
+	MyKFGRI.bForceNextObjective = false;
 
 	if( WorldInfo.NetMode != NM_DedicatedServer && Role == ROLE_Authority )
 	{
 		MyKFGRI.UpdateHUDWaveCount();
 	}
 
-    if (bEnableMapObjectives)
-    {
-        MyKFGRI.StartNextObjective();
-    }
-
 	WaveStarted();
-
+	MyKFGRI.NotifyWaveStart();
 	MyKFGRI.AIRemaining = SpawnManager.WaveTotalAI;
 	MyKFGRI.WaveTotalAICount = SpawnManager.WaveTotalAI;
 
-	BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_WaveStart);
+	BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GetWaveStartMessage());
 
     SetupNextTrader();
 
@@ -1095,6 +1125,31 @@ function StartWave()
 	// first spawn and music are delayed 5 seconds (KFAISpawnManager.TimeUntilNextSpawn == 5 initially), so line up dialog with them;
 	// fixes problem of clients not being ready to receive dialog at the instant the match starts;
 	SetTimer( 5.f, false, nameof(PlayWaveStartDialog) );
+
+
+	//Reset Supplier perks here
+	ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+	{
+		if (KFPC.GetPerk() != none)
+		{
+			KFPC.GetPerk().OnWaveStart();
+		}
+	}
+}
+
+function bool IsMapObjectiveEnabled()
+{
+	return bEnableMapObjectives;
+}
+
+function byte GetWaveStartMessage()
+{
+	if (MyKFGRI.IsBossWave())
+	{
+		return GMT_WaveSBoss;
+	}
+
+	return GMT_WaveStart;
 }
 
 /** Called to reset all the types of pickups */
@@ -1301,7 +1356,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 	BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_WaveEnd);
     MyKFGRI.DeactivateObjective();
 	MyKFGRI.NotifyWaveEnded();
-	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
+	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsBossWave() );
 
     if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("wave_end", None, "#"$WaveNum, GetEnum(enum'EWaveEndCondition',WinCondition), "#"$GameConductor.CurrentWaveZedVisibleAverageLifeSpan);
 
@@ -1402,6 +1457,11 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 
 /** Called when TimeBetweenWaves expires */
 function CloseTraderTimer();
+
+function SkipTrader(int TimeAfterSkipTrader)
+{
+	SetTimer(TimeAfterSkipTrader, false, nameof(CloseTraderTimer));
+}
 
 /** Cleans up anything from the previous wave that needs to be removed for trader time */
 function DoTraderTimeCleanup();
@@ -1591,7 +1651,7 @@ function EndOfMatch(bool bVictory)
 
     foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
     {
-        KFPC.ClientMatchEnded();
+        KFPC.ClientGameOver(WorldInfo.GetMapName(true), GameDifficulty, GameLength, IsMultiplayerGame(), WaveNum);
     }
 
 	WorldInfo.TWPushLogs();
@@ -1754,8 +1814,6 @@ defaultproperties
    TimeBetweenWaves=60
    EndCinematicDelay=4.000000
    AARDisplayDelay=15.000000
-   ObjectiveCheckIntervall=30.000000
-   MinAIAlivePercReqForObjStart=0.300000
    bCanPerkAlwaysChange=False
    bEnableGameAnalytics=True
    DifficultyInfoClass=Class'kfgamecontent.KFGameDifficulty_Survival'
@@ -1769,7 +1827,7 @@ defaultproperties
    SpawnManagerClasses(1)=Class'KFGame.KFAISpawnManager_Normal'
    SpawnManagerClasses(2)=Class'KFGame.KFAISpawnManager_Long'
    LateArrivalStarts(0)=(StartingDosh=(550,650,1200,1500))
-   LateArrivalStarts(1)=(StartingDosh=(450,600,0,800,1100,1400,1500,1600))
+   LateArrivalStarts(1)=(StartingDosh=(450,600,750,800,1100,1400,1500,1600))
    LateArrivalStarts(2)=(StartingDosh=(450,550,750,1000,1200,1300,1400,1500,1600,1600))
    AIClassList(0)=Class'kfgamecontent.KFPawn_ZedClot_Cyst'
    AIClassList(1)=Class'kfgamecontent.KFPawn_ZedClot_Slasher'

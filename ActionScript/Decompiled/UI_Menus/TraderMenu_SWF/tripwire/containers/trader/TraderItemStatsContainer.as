@@ -47,6 +47,22 @@ package tripwire.containers.trader
         
         public var accuracyBar:MovieClip;
         
+        public var damageUpBar:MovieClip;
+        
+        public var fireRateUpBar:MovieClip;
+        
+        public var penetrationUpBar:MovieClip;
+        
+        public var accuracyUpBar:MovieClip;
+        
+        public var damageBarBG:MovieClip;
+        
+        public var fireRateBarBG:MovieClip;
+        
+        public var penetrationBarBG:MovieClip;
+        
+        public var accuracyBarBG:MovieClip;
+        
         public var favoriteButton:TripButton;
         
         public var favoriteTextField:TextField;
@@ -54,6 +70,8 @@ package tripwire.containers.trader
         public var favoriteControllerIcon:MovieClip;
         
         public var favoriteIcon:MovieClip;
+        
+        public var upgradeFrame:MovieClip;
         
         public function TraderItemStatsContainer()
         {

@@ -49,6 +49,12 @@ var(NumPlayers) NumPlayerMods NumPlayers_AmmoPickupRespawnTime;
 /** Amount of damage resistance to use (0:Ignore, 1:Full) depending on the number of players */
 var(NumPlayers) NumPlayerMods NumPlayers_ZedDamageResistance;
 
+struct MapOverrideInfo
+{
+	var() string MapName;
+	var() int TraderTime<ClampMin=0.0>;
+};
+
 struct DifficultySettings
 {
 	/** How long trader time is */
@@ -84,6 +90,9 @@ struct DifficultySettings
 
 	/** Modify the spawn rate of AI for this difficulty */
 	var() float SpawnRateModifier<ClampMin = 0.0>;
+
+	/** Override the trader time based on map instead of difficulty. */
+	var() array<MapOverrideInfo> TraderTimerMapOverride;
 
 	structdefaultproperties
 	{
@@ -283,6 +292,25 @@ function float GetCharSprintWhenDamagedChanceByDifficulty( KFPawn_Monster P, flo
 function float GetTraderTimeByDifficulty()
 {
 	return CurrentSettings.TraderTime;
+}
+
+/** Get the trader time if the current map overrides it */
+function float GetTraderTimeByMap(string MapName)
+{
+	local MapOverrideInfo It;
+
+	if (CurrentSettings.TraderTimerMapOverride.length > 0)
+	{
+		foreach CurrentSettings.TraderTimerMapOverride(It)
+		{
+			if (It.MapName ~= MapName)
+			{
+				return It.TraderTime;
+			}
+		}
+	}
+
+	return -1.f;
 }
 
 /**	Scales the damage this Zed deals by the difficulty level */

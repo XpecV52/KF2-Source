@@ -63,7 +63,7 @@ function UpdateWaveCount()
     CurrentWaveMax = KFGRI.WaveMax - 1;
     if(LastWaveMax != CurrentWaveMax)
     {
-        SetInt("maxWaves", CurrentWaveMax);
+        SetInt("maxWaves", ((KFGRI.default.bEndlessMode) ? -1 : CurrentWaveMax));
         LastWaveMax = CurrentWaveMax;
     }
     CurrentWave = KFGRI.WaveNum;
@@ -82,7 +82,7 @@ function UpdateZEDCount()
     {
         return;
     }
-    if(KFGRI.IsFinalWave())
+    if(KFGRI.IsBossWave())
     {
         SetInt("remainingZEDs", -1);
         return;

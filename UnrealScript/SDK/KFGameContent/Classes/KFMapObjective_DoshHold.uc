@@ -56,8 +56,16 @@ var transient KFReplicatedShowPathActor TrailActor;
 /** Timer before penalty check starts */
 var() const float PenaltyStartupTimer;
 
+struct DoshHoldMaxReward
+{
+	var() int WaveMaxReward[11];
+};
+
 /** Max reward if users (theoretically) did the objective perfectly */
-var() const int MaxReward[3];
+var() const DoshHoldMaxReward MaxRewards[3];
+
+/** XP reward if user compeletes the objective. */
+var() const DoshHoldMaxReward XPRewards[3];
 
 /** Current reward amount */
 var float CurrentRewardAmount;
@@ -85,6 +93,28 @@ var() int EventIndex;
 var float JustWinThreshold;
 var float StandardWinThreshold;
 var float GoodWinThreshold;
+
+struct WaveLengthPctChances
+{
+	var() float PctChances[11];
+
+	structdefaultproperties
+	{
+		PctChances[0]=1.f
+		PctChances[1]=1.f
+		PctChances[2]=1.f
+		PctChances[3]=1.f
+		PctChances[4]=1.f
+		PctChances[5]=1.f
+		PctChances[6]=1.f
+		PctChances[7]=1.f
+		PctChances[8]=1.f
+		PctChances[9]=1.f
+		PctChances[10]=1.f
+	}
+};
+
+var() WaveLengthPctChances ActivatePctChances[3];
 
 replication
 {
@@ -294,7 +324,10 @@ function CheckBonusState()
 function StartPenaltyCheck()
 {
     ClearTimer('StartPenaltyCheck');
-    SetTimer(DoshPenaltyCheckTimer, true, 'CheckBonusState');
+	if(bActive)
+	{
+		SetTimer(DoshPenaltyCheckTimer, true, 'CheckBonusState');
+	}
 }
 
 function ActivationVO()
@@ -384,22 +417,23 @@ simulated function DeactivateObjective()
     {
         bActive = false;
         ClearTimer('CheckBonusState');
+		ClearTimer('StartPenaltyCheck');
+
+		bOneHumanAlive = false;
+
+		foreach WorldInfo.AllPawns(class'KFPawn_Human', KFPH)
+		{
+			if (KFPH.IsAliveAndWell())
+			{
+				bOneHumanAlive = true;
+			}
+
+			CachedHumans.AddItem(KFPH);
+		}
 
         //Reward players if any dosh still remains
         if (CurrentRewardAmount > 0)
         {
-			bOneHumanAlive = false;
-
-            foreach WorldInfo.AllPawns(class'KFPawn_Human', KFPH)
-            {
-				if (KFPH.IsAliveAndWell())
-				{
-					bOneHumanAlive = true;
-				}
-
-				CachedHumans.AddItem(KFPH);
-			}
-
 			// Only reward players if they survived the round.
 			if(bOneHumanAlive)
 			{
@@ -420,11 +454,16 @@ simulated function DeactivateObjective()
 					if (KFPlayerController(KFPH.Controller) != none)
 					{
 						KFPlayerController(KFPH.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
+						KFPlayerController(KFPH.Controller).ClientMapObjectiveCompleted(GetXPReward());
 					}
 				}
-				PlayDeactivationDialog();
+
 			}
         }
+		if (bOneHumanAlive)
+		{
+			PlayDeactivationDialog();
+		}
     }
 
     if (WorldInfo.NetMode != NM_DedicatedServer)
@@ -512,7 +551,7 @@ function PlayDeactivationDialog()
 
 function bool CanActivateObjective()
 {
-    return true;
+	return true;
 }
 
 simulated function bool UsesProgress()
@@ -556,24 +595,17 @@ simulated function int GetDoshReward()
 simulated function int GetMaxDoshReward()
 {
 	local KFGameReplicationInfo KFGRI;
+	local int ArrayEnd;
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 	if (KFGRI != none)
 	{
-		switch (KFGRI.WaveMax)
-		{
-		case 5:
-			return MaxReward[0];
-		case 8:
-			return MaxReward[1];
-		case 11:
-			return MaxReward[2];
-		default:
-			return MaxReward[0];
-		}
+		// Since we're using a static array for rewards, we need to know the true end of the array.
+		ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, ArrayCount(default.MaxRewards[KFGRI.GameLength].WaveMaxReward) - 1);
+		return default.MaxRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
 	}
 
-	return MaxReward[0];
+	return default.MaxRewards[0].WaveMaxReward[0];
 }
 
 simulated function int GetPlayersInObjective()
@@ -595,6 +627,62 @@ simulated function string GetLocalizedRequirements()
 	return Localize("Objectives", default.RequirementsLocKey, "KFGame") @PlayerThresholds[PlayerCount];
 }
 
+
+simulated function int GetVoshReward()
+{
+	return GetMaxVoshReward() * float(GetDoshReward()) / float(GetMaxDoshReward());
+}
+
+simulated function int GetMaxVoshReward()
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if (KFGRI != none)
+	{
+		return class'KFOnlineStatsWrite'.static.GetMapObjectiveVoshReward(KFGRI.GameLength, KFGRI.WaveNum);
+	}
+
+	return 0;
+}
+
+simulated function int GetXPReward()
+{
+	return GetMaxXPReward() * float(GetDoshReward()) / float(GetMaxDoshReward());
+}
+
+simulated function int GetMaxXPReward()
+{
+	local KFGameReplicationInfo KFGRI;
+	local int ArrayEnd;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if (KFGRI != none)
+	{
+		// Since we're using a static array for rewards, we need to know the true end of the array.
+		ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, ArrayCount(default.XPRewards[KFGRI.GameLength].WaveMaxReward) - 1);
+		return default.XPRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
+	}
+
+	return default.XPRewards[0].WaveMaxReward[0];
+}
+
+simulated function float GetActivationPctChance()
+{
+	local KFGameReplicationInfo KFGRI;
+	local int ArrayEnd;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if (KFGRI != none)
+	{
+		// Since we're using a static array for rewards, we need to know the true end of the array.
+		ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, ArrayCount(default.ActivatePctChances[KFGRI.GameLength].PctChances) - 1);
+		return default.ActivatePctChances[KFGRI.GameLength].PctChances[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
+	}
+
+	return 1.f;
+}
+
 defaultproperties
 {
 	DescriptionLocKey="DescriptionDoshHold"
@@ -608,9 +696,108 @@ defaultproperties
 	DoshPenaltyCheckTimer=1.f
 	NoHumansPenalty=5
 	ZedsPenalty=1
-	MaxReward[0]=500
-	MaxReward[1]=500
-	MaxReward[2]=500
+
+	// Short Match
+	MaxRewards[0]={(
+		WaveMaxReward[0]=0,
+		WaveMaxReward[1]=200,
+		WaveMaxReward[2]=350,
+		WaveMaxReward[3]=500
+	)},
+
+	// Normal Match
+	MaxRewards[1]={(
+		WaveMaxReward[0]=0,
+		WaveMaxReward[1]=200,
+		WaveMaxReward[2]=250,
+		WaveMaxReward[3]=300,
+		WaveMaxReward[4]=350,
+		WaveMaxReward[5]=400,
+		WaveMaxReward[6]=500
+	)},
+
+	// Long Match
+	MaxRewards[2]={(
+		WaveMaxReward[0]=0,
+		WaveMaxReward[1]=200,
+		WaveMaxReward[2]=250,
+		WaveMaxReward[3]=300,
+		WaveMaxReward[4]=350,
+		WaveMaxReward[5]=400,
+		WaveMaxReward[6]=450,
+		WaveMaxReward[7]=500,
+		WaveMaxReward[8]=500,
+		WaveMaxReward[9]=500,
+		WaveMaxReward[10]=500
+	)}
+
+	// Short Match
+	XPRewards[0]={(
+		WaveMaxReward[0]=0,
+		WaveMaxReward[1]=150,
+		WaveMaxReward[2]=200,
+		WaveMaxReward[3]=300
+	)},
+
+	// Normal Match
+	XPRewards[1]={(
+		WaveMaxReward[0]=0,
+		WaveMaxReward[1]=150,
+		WaveMaxReward[2]=150,
+		WaveMaxReward[3]=200,
+		WaveMaxReward[4]=200,
+		WaveMaxReward[5]=300,
+		WaveMaxReward[6]=300
+	)},
+
+	// Long Match
+	XPRewards[2]={(
+		WaveMaxReward[0]=0,
+		WaveMaxReward[1]=100,
+		WaveMaxReward[2]=150,
+		WaveMaxReward[3]=150,
+		WaveMaxReward[4]=200,
+		WaveMaxReward[5]=200,
+		WaveMaxReward[6]=250,
+		WaveMaxReward[7]=250,
+		WaveMaxReward[8]=300,
+		WaveMaxReward[9]=300,
+		WaveMaxReward[10]=300
+	)}
+
+	// Short Match
+	ActivatePctChances[0]={(
+		PctChances[0]=0,
+		PctChances[1]=.35,
+		PctChances[2]=.35,
+		PctChances[3]=.35
+	)}
+
+	// Normal Match
+	ActivatePctChances[1]={(
+		PctChances[0]=0,
+		PctChances[1]=.35,
+		PctChances[2]=.35,
+		PctChances[3]=.35,
+		PctChances[4]=.35,
+		PctChances[5]=.35,
+		PctChances[6]=.35
+	)}
+
+	// Long Match
+	ActivatePctChances[2]={(
+		PctChances[0]=0,
+		PctChances[1]=.35,
+		PctChances[2]=.35,
+		PctChances[3]=.35,
+		PctChances[4]=.35,
+		PctChances[5]=.35,
+		PctChances[6]=.35, //6
+		PctChances[7]=.35, //7
+		PctChances[8]=.35, //8
+		PctChances[9]=.35, //9
+		PctChances[10]=.35 //1.0
+	)}
 
 	//These are basically range caps.  For example:
 	//		Just win would be 0% - 25%

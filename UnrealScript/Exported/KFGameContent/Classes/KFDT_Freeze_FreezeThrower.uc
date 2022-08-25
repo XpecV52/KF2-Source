@@ -33,6 +33,8 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_FreezeThrower'
    DoT_Type=DOT_Fire
+   DoT_Duration=-1.000000
+   DoT_Interval=-1.000000
    MeleeHitPower=20.000000
    FreezePower=12.500000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Survivalist'

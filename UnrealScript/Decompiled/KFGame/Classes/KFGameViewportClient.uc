@@ -214,9 +214,12 @@ defaultproperties
     TripWireOfficialMaps(11)="KF-Nuked"
     TripWireOfficialMaps(12)="KF-TragicKingdom"
     TripWireOfficialMaps(13)="KF-Nightmare"
+    TripWireOfficialMaps(14)="KF-KrampusLair"
+    TripWireOfficialMaps(15)="KF-DieSector"
     CommunityOfficialMaps(0)="KF-ContainmentStation"
     CommunityOfficialMaps(1)="KF-HostileGrounds"
     CommunityOfficialMaps(2)="KF-InfernalRealm"
+    CommunityOfficialMaps(3)="KF-PowerCore_Holdout"
     BackgroundColor=(R=1,G=1,B=1,A=1)
     RandomLoadingStrings(0)="The fleshpound is vulnerable to explosives but resistant to bullets."
     RandomLoadingStrings(1)="The scrake is resistant to explosives but vulnerable to bullets."

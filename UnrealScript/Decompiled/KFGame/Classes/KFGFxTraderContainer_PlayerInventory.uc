@@ -144,6 +144,7 @@ function SetArmorInfo(out SItemInformation ArmorInfo, out int AutoFillCost)
     SlotObject.SetString("itemSource", "img://" $ ArmorInfo.DefaultItem.WeaponDef.static.GetImagePath());
     SlotObject.SetString("itemAmmo", (string(ArmorInfo.SpareAmmoCount) $ "/") $ string(ArmorInfo.MaxSpareAmmo));
     SlotObject.SetInt("buttonState", GetButtonState(float(ArmorInfo.AmmoPricePerMagazine), ArmorInfo.SpareAmmoCount, ArmorInfo.MaxSpareAmmo));
+    SlotObject.SetBool("lowAmmo", ((ArmorInfo.MaxSpareAmmo > 0) ? (float(ArmorInfo.SpareAmmoCount) / float(ArmorInfo.MaxSpareAmmo)) <= LowAmmoPercentThreshold : false));
     SetObject("armorInfo", SlotObject);
     AutoFillCost += FillCost;
 }
@@ -161,6 +162,7 @@ function SetGrenadeInfo(out SItemInformation GrenadeInfo, out int AutoFillCost)
     MagCost = ((GrenadeInfo.SpareAmmoCount != GrenadeInfo.MaxSpareAmmo) ? GrenadeInfo.AmmoPricePerMagazine : 0);
     SlotObject.SetInt("magCost", MagCost);
     SlotObject.SetInt("fillCost", FillCost);
+    SlotObject.SetBool("lowAmmo", ((GrenadeInfo.MaxSpareAmmo > 0) ? (float(GrenadeInfo.SpareAmmoCount) / float(GrenadeInfo.MaxSpareAmmo)) <= LowAmmoPercentThreshold : false));
     SlotObject.SetString("itemAmmo", (string(GrenadeInfo.SpareAmmoCount) $ "/") $ string(GrenadeInfo.MaxSpareAmmo));
     ButtonState = GetButtonState(float(AmmoPricePerMagazine), GrenadeInfo.SpareAmmoCount, GrenadeInfo.MaxSpareAmmo);
     SlotObject.SetInt("magButtonState", ButtonState);

@@ -19,6 +19,7 @@ enum EInteractionMessageType
     IMT_RepairDoor,
     IMT_UseMinigame,
     IMT_UseMinigameGenerator,
+    IMT_DoshActivate,
     IMT_GamepadWeaponSelectHint,
     IMT_HealSelfWarning,
     IMT_ClotGrabWarning,
@@ -42,6 +43,7 @@ var const localized string ZedUseDoorWeldedMessage;
 var const localized string PlayerClotGrabWarningMessage;
 var const localized string UseMinigameMessage;
 var const localized string UseMinigameGeneratorMessage;
+var const localized string DoshActivateMessage;
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
 var const string HEAL_COMMAND_CONTROLLER;
@@ -68,7 +70,7 @@ static function float GetMessageDuration(int Switch)
 {
     switch(Switch)
     {
-        case 10:
+        case 11:
             return 2;
         default:
             return 0;
@@ -103,10 +105,11 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
         case 3:
         case 8:
         case 9:
+        case 10:
             KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 11:
+        case 12:
             if(KFInput.bUsingGamepad)
             {
                 KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND_CONTROLLER, false);                
@@ -117,11 +120,11 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
             }
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 12:
+        case 13:
             KFInput.GetKeyBindFromCommand(BoundKey, default.BASH_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 10:
+        case 11:
             KFInput.GetKeyBindFromCommand(BoundKey, default.WEAPON_SELECT_CONTROLLER, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
@@ -136,10 +139,21 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
     local PlayerInput Input;
     local KFGameReplicationInfo KFGRI;
     local KFPlayerController KFPC;
+    local KFTrigger_DoshActivated DoshTrigger;
 
     KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
     switch(Switch)
     {
+        case 10:
+            DoshTrigger = KFTrigger_DoshActivated(OptionalObject);
+            if(DoshTrigger != none)
+            {
+                return (default.DoshActivateMessage $ ":") @ string(DoshTrigger.ActivationCost);                
+            }
+            else
+            {
+                return default.UseMinigameMessage;
+            }
         case 4:
             KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
             if(((KFGRI != none) && KFGRI.GameClass.Name == 'KFGameInfo_Tutorial') || (KFPC != none) && KFPC.bDisableAutoUpgrade)
@@ -167,14 +181,14 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             return default.ReceiveAmmoMessage;
         case 3:
             return default.ReceiveGrenadesMessage;
-        case 11:
+        case 12:
             Input = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerInput;
             return (((Input != none) && Input.bUsingGamepad) ? default.HealSelfGamepadWarning : default.HealSelfWarning);
-        case 12:
-            return default.PressToBashWarning;
         case 13:
+            return default.PressToBashWarning;
+        case 14:
             return default.PlayerClotGrabWarningMessage;
-        case 10:
+        case 11:
             return default.GamepadWeaponSelectHint;
         case 8:
             return default.UseMinigameMessage;
@@ -214,6 +228,7 @@ defaultproperties
     PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
     UseMinigameMessage="ACTIVATE"
     UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
+    DoshActivateMessage="ACTIVATION COST"
     USE_COMMAND="GBA_Use"
     HEAL_COMMAND="GBA_QuickHeal"
     HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"

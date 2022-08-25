@@ -38,6 +38,7 @@ package tripwire.containers.objectiveStart
         public function set objectives(param1:Array) : void
         {
             this.dataArray = param1;
+            this.objectiveRenderer.bIsContracted = true;
             this.objectiveRenderer.data = this.dataArray[this.currentObjectiveIndex];
             if(this.dataArray.length > 1)
             {

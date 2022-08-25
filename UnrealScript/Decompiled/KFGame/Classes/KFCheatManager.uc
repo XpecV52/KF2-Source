@@ -672,6 +672,25 @@ exec function HideMenus()
     }
 }
 
+exec function RequestSkipTraderTimer()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
+    KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
+    if(KFPRI != none)
+    {
+        if(KFGRI.bMatchHasBegun)
+        {
+            if(KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
+            {
+                KFPRI.RequestSkiptTrader(KFPRI);
+            }
+        }
+    }
+}
+
 exec function DebugShowVoteKick()
 {
     local KFPlayerReplicationInfo KFPRI;
@@ -890,6 +909,13 @@ simulated exec function ScopeFOV(float NewFOV)
     }
 }
 
+simulated exec function March()
+{
+    GiveWeapon("KFGameContent.KFWeap_SMG_Mac10");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_AF2011");
+    GiveWeapon("KFGameContent.KFWeap_HuskCannon");
+}
+
 simulated exec function Demo()
 {
     GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_HX25");
@@ -922,6 +948,7 @@ simulated exec function Firebug()
     GiveWeapon("KFGameContent.KFWeap_Beam_Microwave");
     GiveWeapon("KFGameContent.KFWeap_Pistol_Flare");
     GiveWeapon("KFGameContent.KFWeap_Pistol_DualFlare");
+    GiveWeapon("KFGameContent.KFWeap_HuskCannon");
 }
 
 simulated exec function Rifle()
@@ -956,6 +983,7 @@ simulated exec function SMG()
 exec function Surv()
 {
     GiveWeapon("KFGameContent.KFWeap_Ice_FreezeThrower");
+    GiveWeapon("KFGameContent.KFWeap_HuskCannon");
 }
 
 exec function AllWeapons()
@@ -4644,6 +4672,95 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
     return SpawnClass;
 }
 
+function int GetAITypeByName(string ZedName)
+{
+    local KFAISpawnManager.EAIType AIType;
+
+    AIType = 255;
+    if(Left(ZedName, 5) ~= "ClotA")
+    {
+        AIType = 2;        
+    }
+    else
+    {
+        if(Left(ZedName, 5) ~= "ClotS")
+        {
+            AIType = 1;            
+        }
+        else
+        {
+            if((Left(ZedName, 5) ~= "ClotC") || ZedName ~= "CLOT")
+            {
+                AIType = 0;                
+            }
+            else
+            {
+                if(Left(ZedName, 5) ~= "MiniF")
+                {
+                    AIType = 8;                    
+                }
+                else
+                {
+                    if(Left(ZedName, 1) ~= "F")
+                    {
+                        AIType = 7;                        
+                    }
+                    else
+                    {
+                        if(Left(ZedName, 1) ~= "G")
+                        {
+                            AIType = 4;                            
+                        }
+                        else
+                        {
+                            if(Left(ZedName, 2) ~= "St")
+                            {
+                                AIType = 5;                                
+                            }
+                            else
+                            {
+                                if(Left(ZedName, 1) ~= "B")
+                                {
+                                    AIType = 9;                                    
+                                }
+                                else
+                                {
+                                    if(Left(ZedName, 2) ~= "Sc")
+                                    {
+                                        AIType = 6;                                        
+                                    }
+                                    else
+                                    {
+                                        if(Left(ZedName, 2) ~= "Cr")
+                                        {
+                                            AIType = 3;                                            
+                                        }
+                                        else
+                                        {
+                                            if(Left(ZedName, 2) ~= "Hu")
+                                            {
+                                                AIType = 11;                                                
+                                            }
+                                            else
+                                            {
+                                                if(Left(ZedName, 2) ~= "Si")
+                                                {
+                                                    AIType = 10;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return AIType;
+}
+
 exec function SpawnHumanPawn(optional bool bEnemy, optional bool bUseGodMode, optional int CharIndex)
 {
     local KFAIController KFBot;
@@ -4746,6 +4863,10 @@ simulated exec function KFPawn SpawnZed(string ZedName, optional float Distance,
     KFP = Outer.Spawn(SpawnClass,,, SpawnLoc, SpawnRot,, bNoCollisionFail);
     if(KFP != none)
     {
+        if(KFPawn_Monster(KFP) != none)
+        {
+            KFPawn_Monster(KFP).bDebug_SpawnedThroughCheat = true;
+        }
         KFP.SetPhysics(2);
         KFGameInfo(Outer.WorldInfo.Game).SetMonsterDefaults(KFPawn_Monster(KFP));
         if((KFP.Controller != none) && KFAIController(KFP.Controller) != none)
@@ -5435,9 +5556,31 @@ exec function ToggleSplatterGun()
 
 exec function SplatterFire()
 {
+    if(Outer.IsTimerActive('DoSplatterFire', self))
+    {
+        StopSplatterFire();        
+    }
+    else
+    {
+        DoSplatterFire();
+        Outer.SetTimer(0.1, true, 'DoSplatterFire', self);
+    }
+}
+
+exec function StopSplatterFire()
+{
+    Outer.ClearTimer('DoSplatterFire', self);
+}
+
+function DoSplatterFire()
+{
     local KFGoreManager GoreManager;
     local Vector StartTrace, TraceDir;
 
+    if(!bUsingSplatterGun)
+    {
+        StopSplatterFire();
+    }
     GoreManager = KFGoreManager(Outer.WorldInfo.MyGoreEffectManager);
     if(GoreManager == none)
     {
@@ -6641,6 +6784,40 @@ exec function SetMissionObjectiveVisible(bool bVisible)
     if(KFPC.myGfxHUD != none)
     {
         KFPC.myGfxHUD.WaveInfoWidget.ObjectiveContainer.SetVisible(bVisible);
+    }
+}
+
+exec function ForceSpecialWave(optional string ZedTypeName)
+{
+    ZedTypeName = "";
+    if(KFGameInfo(Outer.WorldInfo.Game) != none)
+    {
+        KFGameInfo(Outer.WorldInfo.Game).bForceSpecialWave = true;
+        if((ZedTypeName != "") && (GetAITypeByName(ZedTypeName)) != -1)
+        {
+            KFGameInfo(Outer.WorldInfo.Game).DebugForceSpecialWaveZedType = GetAITypeByName(ZedTypeName);
+        }
+    }
+}
+
+exec function ForceOutbreakWave(optional int OutbreakIdx)
+{
+    OutbreakIdx = -1;
+    if(KFGameInfo(Outer.WorldInfo.Game) != none)
+    {
+        KFGameInfo(Outer.WorldInfo.Game).bForceOutbreakWave = true;
+        if(OutbreakIdx != -1)
+        {
+            KFGameInfo(Outer.WorldInfo.Game).DebugForcedOutbreakIdx = OutbreakIdx;
+        }
+    }
+}
+
+exec function ForceNextObjective()
+{
+    if((KFGameInfo(Outer.WorldInfo.Game) != none) && KFGameInfo(Outer.WorldInfo.Game).MyKFGRI != none)
+    {
+        KFGameInfo(Outer.WorldInfo.Game).MyKFGRI.bForceNextObjective = true;
     }
 }
 

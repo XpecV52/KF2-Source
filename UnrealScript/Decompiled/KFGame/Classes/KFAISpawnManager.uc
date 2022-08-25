@@ -144,10 +144,11 @@ function RegisterSpawnVolumes()
     }
 }
 
-function SetupNextWave(byte NextWaveIndex)
+function SetupNextWave(byte NextWaveIndex, optional int TimeToNextWaveBuffer)
 {
     local KFGameReplicationInfo KFGRI;
 
+    TimeToNextWaveBuffer = 0;
     if(NextWaveIndex < WaveSettings.Waves.Length)
     {
         if(Outer.GameDifficulty < float(RecycleSpecialSquad.Length))
@@ -170,9 +171,10 @@ function SetupNextWave(byte NextWaveIndex)
             WaveTotalAI = WaveSettings.Waves[NextWaveIndex].MaxAI;
         }
         WaveTotalAI *= Outer.GetTotalWaveCountScale();
+        WaveTotalAI = Max(1, WaveTotalAI);
         GetAvailableSquads(NextWaveIndex, true);
         WaveStartTime = Outer.WorldInfo.TimeSeconds;
-        TimeUntilNextSpawn = 5;
+        TimeUntilNextSpawn = 5 + float(TimeToNextWaveBuffer);
         if(NextWaveIndex == 0)
         {
             TotalWavesActiveTime = 0;
@@ -362,6 +364,10 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     {
         if(bLogAISpawning)
         {
+            if(bLogAISpawning)
+            {
+                LogInternal("KFAISpawnManager.GetNextSpawnList - LeftoverSpawnSquad.Length > 0");
+            }
             LogMonsterList(LeftoverSpawnSquad, "Leftover LeftoverSpawnSquad");
         }
         NewSquad = LeftoverSpawnSquad;
@@ -371,6 +377,10 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     {
         if(!IsAISquadAvailable())
         {
+            if(bLogAISpawning)
+            {
+                LogInternal("KFAISpawnManager.GetNextSpawnList - No AI Squad available - bSummoningBossMinions:" @ string(bSummoningBossMinions));
+            }
             if(!bSummoningBossMinions)
             {
                 if((bRecycleSpecialSquad && (NumSpawnListCycles % 2) == 1) && (MaxSpecialSquadRecycles == -1) || NumSpecialSquadRecycles < MaxSpecialSquadRecycles)
@@ -498,6 +508,10 @@ function bool IsFinishedSpawning()
     }
     if(bSummoningBossMinions)
     {
+        if(bLogAISpawning)
+        {
+            LogInternal("KFAISpawnManager.IsFinishedSpawning() Summoning Boss Minions.");
+        }
         return false;
     }
     if(Outer.NumAISpawnsQueued >= WaveTotalAI)
@@ -863,13 +877,26 @@ function int GetMaxMonsters()
 function int GetNumAINeeded()
 {
     local int AINeeded, UsedMaxMonsters;
+    local KFPawn_Monster ActiveBoss;
 
     if(!bSummoningBossMinions)
     {
+        if((WaveTotalAI - Outer.NumAISpawnsQueued) <= 0)
+        {
+            return 0;
+        }
         UsedMaxMonsters = GetMaxMonsters();        
     }
     else
     {
+        if(Outer.AIDirector != none)
+        {
+            ActiveBoss = Outer.AIDirector.GetActiveBoss();
+            if((ActiveBoss == none) || ActiveBoss.bPlayedDeath)
+            {
+                return 0;
+            }
+        }
         UsedMaxMonsters = MaxBossMinions + 1;
     }
     if(((ActiveSpawner != none) && ActiveSpawner.bIsSpawning) && ActiveSpawner.PendingSpawns.Length > 0)

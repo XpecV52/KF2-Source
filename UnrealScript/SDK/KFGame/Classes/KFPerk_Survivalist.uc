@@ -738,6 +738,7 @@ DefaultProperties
    	ZedTimeModifyingStates(3)="WeaponSingleFireAndReload"
    	ZedTimeModifyingStates(4)="SprayingFire"
     ZedTimeModifyingStates(5)="WeaponAltFiring"
+	ZedTimeModifyingStates(6)="HuskCannonCharge"
 
    	PrimaryWeaponPaths(0)=class'KFWeapDef_AR15'
    	PrimaryWeaponPaths(1)=class'KFWeapDef_MB500'

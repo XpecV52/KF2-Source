@@ -369,22 +369,6 @@ class KFDT_Freeze extends KFDamageType
 
 
 
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
 
 
 
@@ -399,12 +383,6 @@ class KFDT_Freeze extends KFDamageType
 
 
 
-	
-
-
-
-
-	
 
 
 
@@ -419,7 +397,152 @@ class KFDT_Freeze extends KFDamageType
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -521,8 +644,7 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
 	local KFPawn_Monster Zed;
 	local KFGoreManager GoreManager;
 	local float IceScalar;
-    local int MICIndex, i, j;
-    local MaterialInstanceConstant MIC;
+    local int MICIndex, i;
 
 	IceScalar = 1.f;
 	if ( !bMaterialOnly )
@@ -580,26 +702,52 @@ static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional boo
     {
         P.CharacterMICs[MICIndex].SetScalarParameterValue('Scalar_Ice', IceScalar);
     }
-    for (i = 0; i < 3; ++i)
+
+	for (i = 0; i < 3; ++i)
     {
         if (P.ThirdPersonAttachments[i] != none)
         {
-            for (j = 0; j < P.ThirdPersonAttachments[i].Materials.Length; ++j)
-            {
-                MIC = MaterialInstanceConstant(P.ThirdPersonAttachments[i].GetMaterial(j));
-                if (MIC != none)
-                {
-                    MIC.SetScalarParameterValue('Scalar_Ice', IceScalar);
-                }
-            }
+            ApplyFreeze(P.ThirdPersonAttachments[i], IceScalar);
         }
     }
+
+	if (KFPawn_Monster(P) != none)
+	{
+		for (i = 0; i < KFPawn_Monster(P).StaticAttachList.length; i++)
+		{
+			if (KFPawn_Monster(P).StaticAttachList[i] != none)
+			{
+				ApplyFreeze(KFPawn_Monster(P).StaticAttachList[i], IceScalar);
+			}
+		}
+	}
+}
+
+static function ApplyFreeze(MeshComponent MeshToFreeze, float IceScalar)
+{
+	local int i;
+	local MaterialInstanceConstant MIC;
+
+	if (MeshToFreeze == none)
+	{
+		return;
+	}
+
+	for (i = 0; i < MeshToFreeze.Materials.Length; i++)
+	{
+		MIC = MaterialInstanceConstant(MeshToFreeze.GetMaterial(i));
+		if (MIC != none)
+		{
+			MIC.SetScalarParameterValue('Scalar_Ice', IceScalar);
+		}
+	}
 }
 
 defaultproperties
 {
    FrozenShatterTemplate=ParticleSystem'WEP_Freeze_Grenade_EMIT.FX_Freeze_Grenade_Death'
    ShatterSound=AkEvent'WW_WEP_Freeze_Grenade.Play_Freeze_Grenade_Shatter'
+   EffectGroup=FXG_Freeze
    FreezePower=2.500000
    Name="Default__KFDT_Freeze"
    ObjectArchetype=KFDamageType'KFGame.Default__KFDamageType'

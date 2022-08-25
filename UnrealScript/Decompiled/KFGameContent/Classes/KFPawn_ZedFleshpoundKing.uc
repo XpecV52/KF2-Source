@@ -103,6 +103,7 @@ simulated function Vector GetBossCameraOffset()
 function OnZedDied(Controller Killer)
 {
     super(KFPawn_Monster).OnZedDied(Killer);
+    StopBossWave();
     KFGameInfo(WorldInfo.Game).BossDied(Killer);
 }
 
@@ -159,7 +160,7 @@ function PlayBossMusic()
 {
     if(KFGameInfo(WorldInfo.Game) != none)
     {
-        KFGameInfo(WorldInfo.Game).ForcePatriarchMusicTrack();
+        KFGameInfo(WorldInfo.Game).ForceKingFPMusicTrack();
     }
 }
 
@@ -317,9 +318,17 @@ function PauseBossWave()
     KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI.SpawnManager.GetNumAINeeded() <= 0)
     {
-        ClearTimer('PauseBossWave');
-        KFGI.SpawnManager.StopSummoningBossMinions();
+        StopBossWave();
     }
+}
+
+function StopBossWave()
+{
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    ClearTimer('PauseBossWave');
+    KFGI.SpawnManager.StopSummoningBossMinions();
 }
 
 simulated function TriggerRagePoundExplosion(Vector ExploLocation, optional bool bIsFinalPound)
@@ -559,6 +568,7 @@ defaultproperties
     ShieldSocketName=hips
     begin object name=ShieldEffects class=KFSkinTypeEffects_HansShield
         ImpactFXArray[14]=(Type=EEffectDamageGroup.FXG_Flare)
+        ImpactFXArray[15]=(Type=EEffectDamageGroup.FXG_Freeze)
     object end
     // Reference: KFSkinTypeEffects_HansShield'Default__KFPawn_ZedFleshpoundKing.ShieldEffects'
     ShieldImpactEffects=ShieldEffects

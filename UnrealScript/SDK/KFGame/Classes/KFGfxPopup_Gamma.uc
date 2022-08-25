@@ -75,7 +75,7 @@ function ResetGamma()
 
 	// Multiplying by 100 so we can go 0-100 with a snapInterval of 1 for consistency. HSL_BB
 	GammaSlider.SetFloat("value", DefaultGamma*100);
-
+	`log("RESET GAMME: DefaultGamma-" @DefaultGamma @"Slider Value -" @(DefaultGamma * 100));
 	KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
 	KFGE.GammaMultiplier = DefaultGamma;
 	KFGE.SaveConfig();

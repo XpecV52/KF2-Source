@@ -60,6 +60,9 @@ enum EGameMessageType
 	GMT_AttackHumanPlayers,
 	GMT_NextRoundBegin,
 	GMT_LastPlayerStanding,
+	GMT_WaveStartWeekly,
+	GMT_WaveStartSpecial,
+	GMT_WaveSBoss,
 	GMT_Null,
 };
 
@@ -111,6 +114,9 @@ static function ClientReceive(
 	switch( Switch )
 	{
 		case GMT_WaveStart:
+		case GMT_WaveStartWeekly:
+		case GMT_WaveStartSpecial:
+		case GMT_WaveSBoss:
 			if(!P.PlayerReplicationInfo.bOnlySpectator && P.PlayerReplicationInfo.bReadyToPlay)
 			{
 				if(KFPC != none && KFPC.LEDEffectsManager != none)
@@ -119,7 +125,7 @@ static function ClientReceive(
 				}
 				CloseMenus();
 			}
-			class'KFMusicStingerHelper'.static.PlayWaveStartStinger( P );
+			class'KFMusicStingerHelper'.static.PlayWaveStartStinger( P, Switch );
 			break;
 		case GMT_WaveEnd:
 			class'KFMusicStingerHelper'.static.PlayWaveCompletedStinger( P );
@@ -251,6 +257,9 @@ static function string GetMessageString(int Switch, optional out String Secondar
 				return default.YouLostMessage;
 			}
 		case GMT_WaveStart:
+		case GMT_WaveStartWeekly:
+		case GMT_WaveStartSpecial:
+		case GMT_WaveSBoss:
 			return default.WaveStartMessage;
 		case GMT_WaveEnd:
 		    if(TeamIndex == 255)
@@ -368,7 +377,10 @@ static function float GetMessageLifeTime(int Switch)
 {
 	switch ( Switch )
 	{
-	 	case GMT_WaveStart:
+		case GMT_WaveStart:
+		case GMT_WaveStartWeekly:
+		case GMT_WaveStartSpecial:
+		case GMT_WaveSBoss:
 	 	     return 5.f;
 	    case GMT_WaveEnd:
 	 		 return 4.f;

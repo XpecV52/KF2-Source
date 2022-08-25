@@ -9,6 +9,66 @@ class KFGFxMenu_StartGame extends KFGFxObject_Menu within GFxMoviePlayer
     native(UI)
     config(UI);
 
+const KFID_QuickWeaponSelect = 100;
+const KFID_CurrentLayoutIndex = 101;
+const KFID_ForceFeedbackEnabled = 103;
+const KFID_SavedPerkIndex = 105;
+const KFID_AllowBloodSplatterDecals = 106;
+const KFID_GoreLevel = 107;
+const KFID_StoredCharIndex = 111;
+const KFID_MasterVolumeMultiplier = 112;
+const KFID_DialogVolumeMultiplier = 113;
+const KFID_MusicVolumeMultiplier = 114;
+const KFID_SFXVolumeMultiplier = 115;
+const KFID_GammaMultiplier = 117;
+const KFID_MusicVocalsEnabled = 118;
+const KFID_MinimalChatter = 119;
+const KFID_ShowCrossHair = 121;
+const KFID_FOVOptionsPercentageValue = 122;
+const KFID_ShowKillTicker = 123;
+const KFID_FriendlyHudScale = 125;
+const KFID_FavoriteWeapons = 127;
+const KFID_GearLoadouts = 128;
+const KFID_SetGamma = 129;
+const KFID_RequiresPushToTalk = 130;
+const KFID_InvertController = 131;
+const KFID_AutoTargetEnabled = 132;
+const KFID_GamepadSensitivityScale = 133;
+const KFID_ZoomedSensitivityScale = 134;
+const KFID_GamepadZoomedSensitivityScale = 135;
+const KFID_EnableMouseSmoothing = 136;
+const KFID_MouseSensitivity = 138;
+const KFID_TargetAdhesionEnabled = 139;
+const KFID_TargetFrictionEnabled = 140;
+const KFID_InvertMouse = 142;
+const KFID_DEPRECATED_143 = 143;
+const KFID_SavedSoloModeIndex = 144;
+const KFID_SavedSoloMapString = 145;
+const KFID_SavedSoloDifficultyIndex = 146;
+const KFID_SavedSoloLengthIndex = 147;
+const KFID_SavedModeIndex = 148;
+const KFID_SavedMapString = 149;
+const KFID_SavedDifficultyIndex = 150;
+const KFID_SavedLengthIndex = 151;
+const KFID_SavedPrivacyIndex = 152;
+const KFID_SavedServerTypeIndex = 153;
+const KFID_SavedInProgressIndex = 154;
+const KFID_ControllerSoundEnabled = 155;
+const KFID_MatchmakingRegion = 156;
+const KFID_UseAltAimOnDuals = 157;
+const KFID_HideBossHealthBar = 158;
+const KFID_AntiMotionSickness = 159;
+const KFID_ShowWelderInInventory = 160;
+const KFID_AutoTurnOff = 161;
+const KFID_ReduceHightPitchSounds = 162;
+const KFID_ShowConsoleCrossHair = 163;
+const KFID_VOIPVolumeMultiplier = 164;
+const KFID_WeaponSkinAssociations = 165;
+const KFID_SavedEmoteId = 166;
+const KFID_DisableAutoUpgrade = 167;
+const KFID_SafeFrameScale = 168;
+const KFID_Native4kResolution = 169;
+
 var bool bIsLeader;
 var bool bIsInParty;
 var bool bSearchingForGame;
@@ -115,7 +175,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
     switch(SpecialEventID)
     {
         case 1:
-            return Class'KFGFxSpecialEventObjectivesContainer';
+            return Class'KFGFxEndlessDARObjectivesContainer';
         case 2:
             return Class'KFGFxSummerSideShowObjectivesContainer';
         case 3:
@@ -502,7 +562,26 @@ function UpdateStartMenuState()
     if(Manager != none)
     {
         Manager.SetStartMenuState(GetStartMenuState());
+        switch(GetStartMenuState())
+        {
+            case 0:
+                OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
+                break;
+            case 2:
+                OptionsComponent.ModeChanged(OptionsComponent.SavedSoloModeIndex);
+                break;
+            default:
+                break;
+        }
     }
+    else
+    {
+    }
+}
+
+function ProceedToTutorial()
+{
+    Outer.ConsoleCommand("open KF-EvacuationPoint?game=KFGameContent.KFGameInfo_Tutorial");
 }
 
 function Callback_OnWhatsNewClicked(int Index)
@@ -564,7 +643,7 @@ function Callback_OnWhatsNewClicked(int Index)
 
 function Callback_StartTutorial()
 {
-    Outer.ConsoleCommand("open KF-EvacuationPoint?game=KFGameContent.KFGameInfo_Tutorial");
+    Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialString, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialDescriptionString, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToTutorial);
 }
 
 function Callback_OnWebLinkClicked(string WebsiteLink)
@@ -620,6 +699,10 @@ function Callback_OptionListOpened(string ListName, int OptionIndex)
 {
     local string MessageString;
 
+    if(OptionsComponent.bIsSoloGame && ListName == "modeList")
+    {
+        OptionIndex = OptionsComponent.GetAdjustedGameModeIndex(OptionIndex);
+    }
     if((ListName == "mapList") || Outer.GetPC().WorldInfo.IsConsoleBuild() && ListName == "serverTypeList")
     {
         return;
@@ -1216,6 +1299,7 @@ function bool ShouldUseLengthFilter(int GameModeIndex)
     switch(GameModeIndex)
     {
         case 1:
+        case 3:
             return false;
         default:
             return true;
@@ -1363,6 +1447,39 @@ function OnCancelSearchComplete(bool bWasSuccessful)
     Manager.SetSearchingForMatch(bSearchingForGame);
 }
 
+event int GetGameModeIndex()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
+    if(OptionsComponent != none)
+    {
+        if(OptionsComponent.bIsSoloGame)
+        {
+            return OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedSoloModeIndex);            
+        }
+        else
+        {
+            return OptionsComponent.SavedModeIndex;
+        }        
+    }
+    else
+    {
+        if(Manager != none)
+        {
+            return Manager.CachedProfile.GetProfileInt(148);            
+        }
+        else
+        {
+            if(KFGRI != none)
+            {
+                return Class'KFGameInfo'.static.GetGameModeIndexFromName(string(KFGRI.GameClass.Name));
+            }
+        }
+    }
+    return 0;
+}
+
 function ShowOverview(bool bShowOverview, bool bLeader, bool bInMainMenu, bool bhostInServerBrowser)
 {
     ActionScriptVoid("showOverview");
@@ -1419,5 +1536,7 @@ defaultproperties
     StockMaps(14)="kf-nuked"
     StockMaps(15)="kf-nightmare"
     StockMaps(16)="kf-krampuslair"
+    StockMaps(17)="kf-diesector"
+    StockMaps(18)="kf-powercore_holdout"
     SubWidgetBindings=/* Array type was not detected. */
 }

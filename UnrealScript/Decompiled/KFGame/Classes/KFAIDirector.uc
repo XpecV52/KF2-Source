@@ -34,6 +34,7 @@ var bool bShowLeapDownDebugArtifacts;
 var bool bShowDoorNavigationDebugArtifacts;
 var bool bShowDestructibleNavigationDebugArtifacts;
 var float GrabAlertMaxZedDistance;
+var array<KFPawn_Monster> ActiveBossList;
 var Vector CurrentLocationSortingDoorsFor;
 var private Font AiDebugScreenLargeFont;
 var config string AiDebugScreenLargeFontName;
@@ -158,6 +159,10 @@ final function RegisterAIMember(Controller NewMember)
                 }
                 AIList.AddItem(KFAIC;
             }
+            if(((NewMember.Pawn != none) && KFPawn_Monster(NewMember.Pawn) != none) && KFPawn_Monster(NewMember.Pawn).IsABoss())
+            {
+                ActiveBossList.AddItem(KFPawn_Monster(NewMember.Pawn);
+            }
         }
     }
 }
@@ -181,6 +186,10 @@ final function UnRegisterAIMember(Controller OldMember)
                     KFAIC.AILog_Internal(((string(GetFuncName()) $ " Removing ") $ string(KFAIC)) $ " from AIList", 'AIDirector');
                 }
                 AIList.RemoveItem(KFAIC;
+            }
+            if(((OldMember.Pawn != none) && KFPawn_Monster(OldMember.Pawn) != none) && KFPawn_Monster(OldMember.Pawn).IsABoss())
+            {
+                ActiveBossList.RemoveItem(KFPawn_Monster(OldMember.Pawn);
             }
         }
     }
@@ -325,6 +334,15 @@ function array<KFDoorActor> FindClosedDoorsWithInRange(float RangeToBeLessThan, 
     CurrentLocationSortingDoorsFor = Loc2TestFrom;
     closedDoorsInRange.Sort(ClosestDoorSort;
     return closedDoorsInRange;
+}
+
+function KFPawn_Monster GetActiveBoss()
+{
+    if(ActiveBossList.Length > 0)
+    {
+        return ActiveBossList[0];
+    }
+    return none;
 }
 
 defaultproperties

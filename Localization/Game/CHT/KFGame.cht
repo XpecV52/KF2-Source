@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="僅限邀請"
 ModeStrings[0]="生存模式"
 ModeStrings[1]="每週活動模式"
 ModeStrings[2]="對抗生存模式"
+ModeStrings[3]="無盡"
 
 NoPreferenceString="任何"
 OKString="OK"
@@ -55,7 +56,6 @@ NoSwitchReasonString="交換隊伍會使人數不平均"
 
 AutoTradeCompleteString="自動交易已完成： "
 AutoFillCompleteString="自動補滿補給"
-WeaponUpgradeComepleteString="武器已升級"
 SecondaryWeaponPurchasedString="已購買次要武器"
 NoItemsPurchasedString="未購買任何物品"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": 遊戲大廳"
 DiscordTraderTimeString=": 商人時間"
 DiscordBossWaveString=": Boss 波"
 DiscordWaveString=": 波"
+
+ProceedToTutorialString="繼續訓練？"
+ProceedToTutorialDescriptionString="在受控的环境中进行基础学习。  完成時可以使所選的0級職業升級為1級職業。"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="平定暴動獎勵"
@@ -190,6 +193,7 @@ TutorialString="基本訓練"
 modeList0="生存模式 – PVE 戰鬥，玩家對抗 AI 操控的 Zed"
 modeList1="每週暴動模式－每個禮拜都有不同的遊戲模式。"
 modeList2="對抗生存模式–PVP戰鬥，Horzine傭兵對抗玩家及人工智慧操控的Zed"
+modeList3="無盡——與 AI 控制的一波波 Zed 作戰，直至死亡"
 difficultyList0="普通：適合職業等級 0-5 的初階玩家。"
 difficultyList1="困難：適合職業等級 6-12 的進階玩家。每波進攻會有更多 Zed，它們移動速度更快，生命值也更高。可拾取的物品跟你的金錢都較少。"
 difficultyList2="自殺：適合職業等級 13 – 25 的高階玩家每波進攻會有更多 Zed，它們擁有新的攻擊模式，移動速度又更快。可拾取的物品跟你的金錢都變得更少。"
@@ -738,6 +742,7 @@ DamageDealtString="造成傷害："
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ READY ]"
+SkipTraderString="跳過商人"
 WaitingString="正在等待玩家"
 MatchOverString="對戰結束\n請稍候……"
 DeployingString="正在布署 "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="經驗"
-PrestigeLevelString="聲望"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="設定"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>選擇武器"
 PlayerClotGrabWarningMessage="殺死 ZED 以重獲自由！"
 UseMinigameMessage="開啟"
 UseMinigameGeneratorMessage="啟動產生器"
+DoshActivateMessage="行動消耗"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="隊伍人數不平均，將進行調整"
@@ -2133,7 +2138,7 @@ Madman="ZED 時間 - 狂人"
 MadmanDescription="Zed 時間發動時，你的所有武器射速變為 3 倍。"
 
 IncapMaster="ZED 時間 - 鎖定"
-IncapMasterDescription="Zed 時間發動時，所有武器限制行動的功能都增加 200%。 "
+IncapMasterDescription="Zed 時間發動時，所有武器限制行動的功能都增加 200%。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="潛行者"
 KFPawn_ZedClot_Cyst="囊腫"
 KFPawn_ZedClot_Slasher="揮爪者"
 KFPawn_ZedClot_Alpha="突變凝塊"
-KFPawn_ZedClot_AlphaKing="精英突變凝塊"
+KFPawn_ZedClot_AlphaKing="流氓"
 KFPawn_ZedScrake="電鋸"
 KFPawn_ZedSiren="海妖"
 KFPawn_ZedPatriarch="長老"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="睡衣套裝"
 
 ChanceDropDescriptionStrings[0]="獎品票券"
 ChanceDropDescriptionStrings[1]="黃金票券"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="無盡挑戰"
+CurrentSpecialEventDescriptionString="擊敗一波波敵人贏得傳奇奖励！"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="無盡訓練假人",DescriptionString="擊敗波數5",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="無盡無人機",DescriptionString="擊敗波數10",TierEventRewardName="D.A.R.青銅");
+SpecialEventObjectiveInfoList[2]=(TitleString="無盡哨兵",DescriptionString="擊敗波數15",TierEventRewardName="白銀D.A.R.");
+SpecialEventObjectiveInfoList[3]=(TitleString="無盡戰爭機器",DescriptionString="擊敗波數20",TierEventRewardName="經典藍色D.A.R.");
+SpecialEventObjectiveInfoList[4]=(TitleString="無盡無敵D.A.R.",DescriptionString="击败波数25",TierEventRewardName="黃金D.A.R.");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics 實驗室"
 
@@ -2862,6 +2910,9 @@ GameName="生存模式"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="每週活動模式"
+
+[Endless KFGameInfoSummary]
+GameName="無盡"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="華特大宅"
@@ -2907,6 +2958,12 @@ DisplayName="夢魘"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="坎普斯巢穴"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="能量核心"
+
+[KF-DieSector KFMapSummary]
+DisplayName="死亡地帶"
 
 [KFMapInfo]
 ; defaults

@@ -196,6 +196,7 @@ function OnZedDied(Controller Killer)
 
     KFGameInfo(WorldInfo.Game).BossDied(Killer);
 	ClearFartTimer();
+	ClearTimer('AllowNextPoopMonster');
 }
 
 function KFAIWaveInfo GetWaveInfo(int BattlePhase, int Difficulty)
@@ -253,7 +254,7 @@ function PlayBossMusic()
 {
     if (KFGameInfo(WorldInfo.Game) != none)
     {
-        KFGameInfo(WorldInfo.Game).ForcePatriarchMusicTrack();
+        KFGameInfo(WorldInfo.Game).ForceAbominationMusicTrack();
     }
 }
 
@@ -281,15 +282,17 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	//If the damage doesn't have a bone hit source, it's likely AoE.  Split over all remaining armor evenly.
 	if (HitInfo.BoneName != '')
 	{
-		AdjustBoneDamage(InDamage, HitInfo.BoneName, HitLocation);
+		AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);
 	}
 	else
 	{
 		AdjustNonBoneDamage(InDamage);
 	}
+
+	if (bLogTakeDamage) LogInternal(self @ GetFuncName() @ " After armor adjustment Damage=" $ InDamage @ "Momentum=" $ Momentum @ "Zone=" $ HitInfo.BoneName @ "DamageType=" $ DamageType);
 }
 
-function AdjustBoneDamage(out int InDamage, name BoneName, Vector HitLocation)
+function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource)
 {
 	local int HitZoneIdx, ArmorZoneIdx;
 	local name IntendedArmorZoneName;
@@ -310,7 +313,7 @@ function AdjustBoneDamage(out int InDamage, name BoneName, Vector HitLocation)
 				IntendedArmorZoneName = 'head';
 				break;
 			default:
-				IntendedArmorZoneName = (HitLocation - Location) dot Vector(Rotation) > 0 ? 'front' : 'back';
+				IntendedArmorZoneName = (DamagerSource - Location) dot Vector(Rotation) > 0 ? 'front' : 'back';
 				break;
 			}
 			ArmorZoneIdx = ArmorZones.Find('ArmorZoneName', IntendedArmorZoneName);

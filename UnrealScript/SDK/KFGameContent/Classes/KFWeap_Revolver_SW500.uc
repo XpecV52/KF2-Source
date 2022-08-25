@@ -70,7 +70,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RevolverSW500'
 	FireInterval(DEFAULT_FIREMODE)=+0.24
-	InstantHitDamage(DEFAULT_FIREMODE)=150.0
+	InstantHitDamage(DEFAULT_FIREMODE)=160.0 //150
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SW500'
 	Spread(DEFAULT_FIREMODE)=0.015
 	PenetrationPower(DEFAULT_FIREMODE)=3.0

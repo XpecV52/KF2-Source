@@ -10,7 +10,7 @@
 
 class KFGFxWidget_BaseParty extends KFGFxObject_Container;
 
-var localized string ReadyString, LeaveString, DefaultPlayerName, SquadString, SoloString, CreatePartyString, WaitingString, DeployingString, PlayerReadyString, PartyLeaderString;
+var localized string ReadyString, LeaveString, DefaultPlayerName, SquadString, SoloString, CreatePartyString, WaitingString, DeployingString, PlayerReadyString, PartyLeaderString, SkipTraderString;
 var localized string MuteString, UnmuteString, AddFriendString, RemoveFriendString, ViewProfileString, VoteKickString;// Profile options
 var localized string PartyLeaderSearchingForMatchString, PartyLeaderIsUpdatingMatchOptionsString, PartyLeaderInServerBrowserString, PartyLeaderInOtherMenuString, SearchingForGameString;
 var localized string PartHostLeftString, PartyLeaderChangedString;
@@ -34,6 +34,7 @@ var GFxObject LeaveButton;
 var GFxObject CreatePartyButton;
 var GFxObject SquadHeader;
 var GFxObject Notification;
+var GFxObject MatchStartContainer;
 
 var int PlayerSlots;
 
@@ -77,6 +78,7 @@ function InitializeWidget()
 	SetBool("partyButtonVisible", bCreatePartyVisible);
 	ReadyButton = GetObject("readyButton");
 	SquadHeader = GetObject("squadHeader");
+	MatchStartContainer = GetObject("matchStartContainer");
 	InitNotificationUI();
 
 	LocalizeText();
@@ -111,6 +113,8 @@ function InitNotificationUI()
 	//@Josh Assign delgate here
 	//OnlineSub.DownloadNotification = ShowDownLoadNotification;
 }
+
+function UpdateReadyButtonVisibility();
 
 function ShowDownLoadNotification(string ItemName, Float PercentComplete)
 {
@@ -392,9 +396,13 @@ function OpenPlayerList(int SlotIndex)
 	CreatePlayerOptions(MemberSlots[SlotIndex].PlayerUID, SlotIndex);
 }
 
-function SetReadyButtonVisibility( bool bVisible )
+function SetReadyButtonVisibility(bool bVisible, optional bool bShowDeployTimer = true)
 {
 	SetBool("readyButtonVisible", bVisible);
+	if (MatchStartContainer != none)
+	{
+		MatchStartContainer.SetVisible(bShowDeployTimer && bVisible);
+	}
 }
 
 function bool ReceiveMessage(string Message, optional string MessageColor)

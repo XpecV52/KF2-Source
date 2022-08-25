@@ -451,6 +451,11 @@ simulated function StopFirstPersonFireEffects(Weapon W)	// Should be subclassed
 	}
 }
 
+simulated function StartFire()
+{
+
+}
+
 /**
  * Spawn all of the effects that will be seen in behindview/remote clients.  This
  * function is called from the pawn, and should only be called when on a remote client or
@@ -517,7 +522,7 @@ simulated function PlayWeaponFireAnim()
 		Duration = WeapMesh.GetAnimLength( WeaponIronFireAnim );
 		WeapMesh.PlayAnim( WeaponIronFireAnim, Duration / ThirdPersonAnimRate,, true );
 	}
-	else 
+	else
 	{
 		Duration = WeapMesh.GetAnimLength( WeaponFireAnim );
 		WeapMesh.PlayAnim( WeaponFireAnim, Duration / ThirdPersonAnimRate,, true );

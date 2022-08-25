@@ -327,7 +327,7 @@ simulated function float GetPenetrationModifier(byte Level, class<KFDamageType> 
 
 simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 {
-    if((IsShootnMooveActive()) && IsWeaponOnPerk(KFW,, self.Class))
+    if((IsShootnMoveActive()) && IsWeaponOnPerk(KFW,, self.Class))
     {
         return GetSkillValue(PerkSkills[0]);
     }
@@ -336,7 +336,7 @@ simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 
 simulated function ModifyWeaponBopDamping(out float BobDamping, KFWeapon PawnWeapon)
 {
-    if((IsShootnMooveActive()) && IsWeaponOnPerk(PawnWeapon,, self.Class))
+    if((IsShootnMoveActive()) && IsWeaponOnPerk(PawnWeapon,, self.Class))
     {
         BobDamping *= default.ShootnMooveBobDamp;
     }
@@ -374,7 +374,7 @@ simulated function float GetSnarePowerModifier(optional class<DamageType> Damage
     return 0;
 }
 
-simulated function bool IsShootnMooveActive()
+simulated function bool IsShootnMoveActive()
 {
     return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
 }
@@ -546,7 +546,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_8880
+    BoneBreakerBodyParts(1)=.!=_8994
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -595,7 +595,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_1088
+    BodyPartsCanStumble(1)=.!=_1109
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

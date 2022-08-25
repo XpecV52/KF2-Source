@@ -26,6 +26,7 @@ ConsolePermissionStrings[1]="Tylko zaproszeni"
 ModeStrings[0]="Przetrwanie"
 ModeStrings[1]="Tygodniowe"
 ModeStrings[2]="Przetrw. VS"
+ModeStrings[3]="Bez końca"
 
 NoPreferenceString="DOWOLNIE"
 OKString="OK"
@@ -55,7 +56,6 @@ NoSwitchReasonString="Zmiana drużyny naruszyłaby równowagę"
 
 AutoTradeCompleteString="Automatyczny handel ukończony: "
 AutoFillCompleteString="Automatycznie uzupełniono zapasy"
-WeaponUpgradeComepleteString="Ulepszono broń"
 SecondaryWeaponPurchasedString="Zakupiono broń rezerwową"
 NoItemsPurchasedString="Nie zakupiono przedmiotów"
 
@@ -104,6 +104,9 @@ DiscordMatchLobbyString=": Lobby"
 DiscordTraderTimeString=": Czas handlu"
 DiscordBossWaveString=": Fala – boss"
 DiscordWaveString=": Fala"
+
+ProceedToTutorialString="PRZEJŚĆ DO SZKOLENIA?"
+ProceedToTutorialDescriptionString="Naucz się podstaw w kontrolowanym środowisku.  Po ukończeniu zapewnia wybrane klasy poziomu 0-1."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="NAGRODA ZA UKOŃCZENIE INCYDENTU"
@@ -190,6 +193,7 @@ TutorialString="Szkolenie podstawowe"
 modeList0="Przetrwanie – bitwa PVE przeciw falom zetów kontrolowanych przez SI"
 modeList1="Tygodniowy incydent – co tydzień inny rodzaj trybu gry."
 modeList2="Przetrwanie VS – bitwa PVP pomiędzy najemnikami Horzine a falami zetów kontrolowanych przez graczy i SI"
+modeList3="Bez końca – Walcz z falami sterowanych przez SI zetów, aż zginiesz"
 difficultyList0="Zwykły – dla początkujących graczy o randze specjalizacji 0–5."
 difficultyList1="Wysoki – dla doświadczonych graczy o randze specjalizacji 6–12. W falach jest więcej zetów, które poruszają się szybciej i mają więcej zdrowia. Znajdujesz mniej przedmiotów i otrzymujesz mniej forsy."
 difficultyList2="Samobójczy – dla wytrawnych graczy o randze specjalizacji 13–25. W każdej fali jest jeszcze więcej zetów, które używają nowych ataków i poruszają się jeszcze szybciej. Znajdujesz jeszcze mniej przedmiotów i otrzymujesz jeszcze mniej forsy."
@@ -738,6 +742,7 @@ DamageDealtString="Zadane obrażenia:"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ GOTOWY ]"
+SkipTraderString="HANDLARKA – POMIŃ"
 WaitingString="OCZEKIWANIE NA GRACZY"
 MatchOverString="KONIEC ROZGRYWKI \n Oczekiwanie…"
 DeployingString="POCZĄTEK ZA "
@@ -848,7 +853,6 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Doświadczenie"
-PrestigeLevelString="Prestiż"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="KONFIGURUJ"
@@ -1453,6 +1457,7 @@ GamepadWeaponSelectHint="<%HOLD%>WYBÓR BRONI"
 PlayerClotGrabWarningMessage="ZABIJ ZETA, ŻEBY SIĘ UWOLNIĆ!"
 UseMinigameMessage="AKTYWUJ"
 UseMinigameGeneratorMessage="AKTYWUJ GENERATOR"
+DoshActivateMessage="KOSZT AKTYWACJI"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Drużyny mają nierówną liczbę graczy i zostaną zrównoważone"
@@ -2133,7 +2138,7 @@ Madman="CZAS ZET – Szaleniec"
 MadmanDescription="W czasie zet każda twoja broń strzela 3 razy szybciej."
 
 IncapMaster="CZAS ZET – Kwarantanna"
-IncapMasterDescription="W czasie zet siła wszystkich efektów obezwładniających zostaje zwiększona o 200% dla każdej broni. "
+IncapMasterDescription="W czasie zet siła wszystkich efektów obezwładniających zostaje zwiększona o 200% dla każdej broni."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2315,7 +2320,7 @@ KFPawn_ZedStalker="Zmora"
 KFPawn_ZedClot_Cyst="Cysta"
 KFPawn_ZedClot_Slasher="Siepacz"
 KFPawn_ZedClot_Alpha="Skrzep alfa"
-KFPawn_ZedClot_AlphaKing="Elitarny alfa"
+KFPawn_ZedClot_AlphaKing="Buntownik"
 KFPawn_ZedScrake="Rzeźnik"
 KFPawn_ZedSiren="Syrena"
 KFPawn_ZedPatriarch="Patriarcha"
@@ -2467,6 +2472,17 @@ AllCompleteRewardDescriptionString="Piżama"
 
 ChanceDropDescriptionStrings[0]="Kupon"
 ChanceDropDescriptionStrings[1]="Złoty kupon"
+
+[KFGFxEndlessDARObjectivesContainer]
+CurrentSpecialEventString="D.A.R.owane nieskończone wyzwania"
+CurrentSpecialEventDescriptionString="Pokonuj fale, aby zdobyć legenD.A.R.ne nagrody!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Test bez końca",DescriptionString="Ukończ falę 5 w trybie Bez końca",TierEventRewardName="D.A.R.++");
+SpecialEventObjectiveInfoList[1]=(TitleString="Drony bez końca",DescriptionString="Ukończ falę 10 w trybie Bez końca",TierEventRewardName="D.A.R. Brąz");
+SpecialEventObjectiveInfoList[2]=(TitleString="Straż bez końca",DescriptionString="Ukończ falę 15 w trybie Bez końca",TierEventRewardName="Srebrny D.A.R.");
+SpecialEventObjectiveInfoList[3]=(TitleString="Wojna maszyn bez końca",DescriptionString="Ukończ falę 20 w trybie Bez końca",TierEventRewardName="Klasyczny niebieski D.A.R.");
+SpecialEventObjectiveInfoList[4]=(TitleString="Optimus D.A.R. bez końca",DescriptionString="Ukończ falę 25 w trybie Bez końca",TierEventRewardName="Złoty D.A.R.");
+
 
 ;============================================
 ; Daily Localization
@@ -2848,6 +2864,38 @@ DisplayName_POL="Leże Krampusa"
 DisplayName_PTB="Toca do Krampus"
 DisplayName_RUS="Логово Крампуса"
 
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName_CHN="能量核心"
+DisplayName_CHT="能量核心"
+DisplayName_DEU="Energiekern"
+DisplayName_ESL="Núcleo de poder"
+DisplayName_ESN="Núcleo de poder"
+DisplayName_FRA="Noyau d'énergie"
+DisplayName_FRC="Noyau d'énergie"
+DisplayName_INT="Power Core"
+DisplayName_ITA="Nucleo di energia"
+DisplayName_JPN="Power Core"
+DisplayName_KOR="파워 코어"
+DisplayName_POL="Rdzeń zasilający"
+DisplayName_PTB="Núcleo de Energia"
+DisplayName_RUS="Энергоядро"
+
+[KF-DieSector KFMapSummary]
+DisplayName_CHN="死亡地带"
+DisplayName_CHT="死亡地帶"
+DisplayName_DEU="DieSektor"
+DisplayName_ESL="Sector mortal"
+DisplayName_ESN="Sector mortal"
+DisplayName_FRA="Secteur mortel"
+DisplayName_FRC="Secteur mortel"
+DisplayName_INT="DieSector"
+DisplayName_ITA="Settore mortale"
+DisplayName_JPN="DieSector"
+DisplayName_KOR="다이 섹터"
+DisplayName_POL="Sektor Śmierci"
+DisplayName_PTB="DieSector"
+DisplayName_RUS="Сектор Die"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorium biotyczne"
 
@@ -2862,6 +2910,9 @@ GameName="Przetrwanie"
 
 [WeeklySurvival KFGameInfoSummary]
 GameName="Tygodniowe"
+
+[Endless KFGameInfoSummary]
+GameName="Bez końca"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Dwór Voltera"
@@ -2907,6 +2958,12 @@ DisplayName="Koszmar"
 
 [KF-KrampusLair KFMapSummary]
 DisplayName="Leże Krampusa"
+
+[KF-PowerCore_Holdout KFMapSummary]
+DisplayName="Rdzeń zasilający"
+
+[KF-DieSector KFMapSummary]
+DisplayName="Sektor Śmierci"
 
 [KFMapInfo]
 ; defaults

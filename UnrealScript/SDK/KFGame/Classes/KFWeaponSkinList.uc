@@ -1430,4 +1430,164 @@ defaultproperties
 	Skins.Add((Id=5550, Weapondef=class'KFWeapDef_MP7', MIC_1P=("WEP_SkinSet_VaultVosh_MAT.mp7.VaultErdlBlue_MP7_1P_FieldTested_MIC", "WEP_SkinSet_VaultVosh_MAT.mp7.VaultErdlBlue_MP7_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh_MAT.mp7.VaultErdlBlue_MP7_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh_MAT.mp7.VaultErdlBlue_MP7_3P_Pickup_MIC"))
 	Skins.Add((Id=5549, Weapondef=class'KFWeapDef_MP7', MIC_1P=("WEP_SkinSet_VaultVosh_MAT.mp7.VaultErdlBlue_MP7_1P_BattleScarred_MIC", "WEP_SkinSet_VaultVosh_MAT.mp7.VaultErdlBlue_MP7_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh_MAT.mp7.VaultErdlBlue_MP7_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh_MAT.mp7.VaultErdlBlue_MP7_3P_Pickup_MIC"))
 
+//Vault Vosh Crovel
+	Skins.Add((Id=5652, Weapondef=class'KFWeapDef_Crovel', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_crovel.Vault_Vosh_Crovel_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_crovel.Vault_Vosh_Crovel_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_crovel.Vault_Vosh_Crovel_3P_Pickup_MIC"))
+
+//Vault Vosh AR15
+	Skins.Add((Id=5657, Weapondef=class'KFWeapDef_AR15', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_ar15.Vault_Vosh_AR15_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_ar15.Vault_Vosh_AR15_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_ar15.Vault_Vosh_AR15_3P_Pickup_MIC"))
+
+//Vault Vosh MB500
+	Skins.Add((Id=5656, Weapondef=class'KFWeapDef_MB500', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_mb500.Vault_Vosh_MB500_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_mb500.Vault_Vosh_MB500_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_mb500.Vault_Vosh_MB500_3P_Pickup_MIC"))
+
+//Vault Vosh Medic Pistol
+	Skins.Add((Id=5658, Weapondef=class'KFWeapDef_MedicPistol', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_medic_pistol.Vault_Vosh_Medic_Pistol_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_medic_pistol.Vault_Vosh_Medic_Pistol_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_medic_pistol.Vault_Vosh_Medic_Pistol_3P_Pickup_MIC"))
+
+//Vault Vosh HX25
+	Skins.Add((Id=5659, Weapondef=class'KFWeapDef_HX25', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_hx25_pistol.Vault_Vosh_HX25_Pistol_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_hx25_pistol.Vault_Vosh_HX25_Pistol_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_hx25_pistol.Vault_Vosh_HX25_Pistol_3P_Pickup_MIC"))
+
+//Vault Vosh Caulk Burn
+	Skins.Add((Id=5660, Weapondef=class'KFWeapDef_CaulkBurn', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_caulkburn.Vault_Vosh_CaulkBurn_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_caulkburn.Vault_Vosh_CaulkBurn_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_caulkburn.Vault_Vosh_CaulkBurn_3P_Pickup_MIC"))
+
+//Vault Vosh Remington 1858
+	Skins.Add((Id=5661, Weapondef=class'KFWeapDef_Remington1858', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_remington1858.Vault_Vosh_Remington_1858_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_remington1858.Vault_Vosh_Remington_1858_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_remington1858.Vault_Vosh_Remington_1858_3P_Pickup_MIC"))
+
+//Vault Vosh Winchester 1894
+	Skins.Add((Id=5662, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_winchester1894.Vault_Vosh_Winchester_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_winchester1894.Vault_Vosh_Winchester_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_winchester1894.Vault_Vosh_Winchester_3P_Pickup_MIC"))
+
+//Vault Vosh MP7
+	Skins.Add((Id=5663, Weapondef=class'KFWeapDef_MP7', MIC_1P=("WEP_SkinSet_VaultVosh02_MAT.vosh_mp7.Vault_Vosh_MP7_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh02_MAT.vosh_mp7.Vault_Vosh_MP7_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh02_MAT.vosh_mp7.Vault_Vosh_MP7_3P_Pickup_MIC"))
+
+//Black Golden Healer
+	Skins.Add((Id=5905, Weapondef=class'KFWeapDef_Healer', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_3P_Pickup_MIC"))
+	Skins.Add((Id=5904, Weapondef=class'KFWeapDef_Healer', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_3P_Pickup_MIC"))
+	Skins.Add((Id=5903, Weapondef=class'KFWeapDef_Healer', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_healer.BlackGolden_Healer_3P_Pickup_MIC"))
+
+//Black Golden Welder
+	Skins.Add((Id=5908, Weapondef=class'KFWeapDef_Welder', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_3P_Pickup_MIC"))
+	Skins.Add((Id=5907, Weapondef=class'KFWeapDef_Welder', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_3P_Pickup_MIC"))
+	Skins.Add((Id=5906, Weapondef=class'KFWeapDef_Welder', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_welder.BlackGolden_Welder_3P_Pickup_MIC"))
+
+//Black Golden Berserker Knife
+	Skins.Add((Id=5911, Weapondef=class'KFWeapDef_Knife_Berserker', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_3P_Pickup_MIC"))
+	Skins.Add((Id=5910, Weapondef=class'KFWeapDef_Knife_Berserker', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_3P_Pickup_MIC"))
+	Skins.Add((Id=5909, Weapondef=class'KFWeapDef_Knife_Berserker', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_berserkerknife.BlackGolden_BerserkerKnife_3P_Pickup_MIC"))
+
+//Black Golden Katana
+	Skins.Add((Id=5914, Weapondef=class'KFWeapDef_Katana', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_3P_Pickup_MIC"))
+	Skins.Add((Id=5913, Weapondef=class'KFWeapDef_Katana', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_3P_Pickup_MIC"))
+	Skins.Add((Id=5912, Weapondef=class'KFWeapDef_Katana', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_katana.BlackGolden_Katana_3P_Pickup_MIC"))
+
+//Black Golden Sawblade
+	Skins.Add((Id=5917, Weapondef=class'KFWeapDef_Eviscerator', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_3P_Pickup_MIC"))
+	Skins.Add((Id=5916, Weapondef=class'KFWeapDef_Eviscerator', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_3P_Pickup_MIC"))
+	Skins.Add((Id=5915, Weapondef=class'KFWeapDef_Eviscerator', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_sawblade.BlackGolden_Sawblade_3P_Pickup_MIC"))
+
+//Black Golden Zweihander
+	Skins.Add((Id=5920, Weapondef=class'KFWeapDef_Zweihander', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_3P_Pickup_MIC"))
+	Skins.Add((Id=5919, Weapondef=class'KFWeapDef_Zweihander', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_3P_Pickup_MIC"))
+	Skins.Add((Id=5918, Weapondef=class'KFWeapDef_Zweihander', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_zweihander.BlackGolden_Zweihander_3P_Pickup_MIC"))
+
+//Black Golden Pulverizer
+	Skins.Add((Id=5923, Weapondef=class'KFWeapDef_Pulverizer', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_3P_Pickup_MIC"))
+	Skins.Add((Id=5922, Weapondef=class'KFWeapDef_Pulverizer', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_3P_Pickup_MIC"))
+	Skins.Add((Id=5921, Weapondef=class'KFWeapDef_Pulverizer', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_pulverizer.BlackGolden_Pulverizer_3P_Pickup_MIC"))
+
+//Black Golden Crovel
+	Skins.Add((Id=5926, Weapondef=class'KFWeapDef_Crovel', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_3P_Pickup_MIC"))
+	Skins.Add((Id=5925, Weapondef=class'KFWeapDef_Crovel', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_3P_Pickup_MIC"))
+	Skins.Add((Id=5924, Weapondef=class'KFWeapDef_Crovel', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_crovel.BlackGolden_Crovel_3P_Pickup_MIC"))
+
+//Black Golden 9MM
+	Skins.Add((Id=5929, Weapondef=class'KFWeapDef_9mm', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_3P_Pickup_MIC"))
+	Skins.Add((Id=5928, Weapondef=class'KFWeapDef_9mm', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_3P_Pickup_MIC"))
+	Skins.Add((Id=5927, Weapondef=class'KFWeapDef_9mm', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_9mm.BlackGolden_9MM_3P_Pickup_MIC"))
+
+//Black Golden Nailgun
+	Skins.Add((Id=5932, Weapondef=class'KFWeapDef_NailGun', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_3P_Pickup_MIC"))
+	Skins.Add((Id=5931, Weapondef=class'KFWeapDef_NailGun', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_3P_Pickup_MIC"))
+	Skins.Add((Id=5930, Weapondef=class'KFWeapDef_NailGun', MIC_1P=("WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.blackgolden_nailshotgun.BlackGolden_NailShotgun_3P_Pickup_MIC"))
+
+//Heirloom Dragonsbreath
+	Skins.Add((Id=5935, Weapondef=class'KFWeapDef_DragonsBreath', MIC_1P=("WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_3P_Pickup_MIC"))
+	Skins.Add((Id=5934, Weapondef=class'KFWeapDef_DragonsBreath', MIC_1P=("WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_3P_Pickup_MIC"))
+	Skins.Add((Id=5933, Weapondef=class'KFWeapDef_DragonsBreath', MIC_1P=("WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_dragonsbreath.Heirloom_Dragonsbreath_3P_Pickup_MIC"))
+
+//Heirloom Flaregun
+	Skins.Add((Id=5938, Weapondef=class'KFWeapDef_FlareGun', MIC_1P=("WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_3P_Pickup_MIC"))
+	Skins.Add((Id=5937, Weapondef=class'KFWeapDef_FlareGun', MIC_1P=("WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_3P_Pickup_MIC"))
+	Skins.Add((Id=5936, Weapondef=class'KFWeapDef_FlareGun', MIC_1P=("WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_spitfire.Heirloom_Spitfire_3P_Pickup_MIC"))
+
+//Heirloom M1911
+	Skins.Add((Id=5941, Weapondef=class'KFWeapDef_Colt1911', MIC_1P=("WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_3P_Pickup_MIC"))
+	Skins.Add((Id=5940, Weapondef=class'KFWeapDef_Colt1911', MIC_1P=("WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_3P_Pickup_MIC"))
+	Skins.Add((Id=5939, Weapondef=class'KFWeapDef_Colt1911', MIC_1P=("WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_m1911.Heirloom_M1911_3P_Pickup_MIC"))
+
+//Heirloom Remington 1858
+	Skins.Add((Id=5944, Weapondef=class'KFWeapDef_Remington1858', MIC_1P=("WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_3P_Pickup_MIC"))
+	Skins.Add((Id=5943, Weapondef=class'KFWeapDef_Remington1858', MIC_1P=("WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_3P_Pickup_MIC"))
+	Skins.Add((Id=5942, Weapondef=class'KFWeapDef_Remington1858', MIC_1P=("WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_remington1858.Heirloom_Remington1858_3P_Pickup_MIC"))
+
+//Heirloom RPG
+	Skins.Add((Id=5947, Weapondef=class'KFWeapDef_RPG7', MIC_1P=("WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_3P_Pickup_MIC"))
+	Skins.Add((Id=5946, Weapondef=class'KFWeapDef_RPG7', MIC_1P=("WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_3P_Pickup_MIC"))
+	Skins.Add((Id=5945, Weapondef=class'KFWeapDef_RPG7', MIC_1P=("WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_rpg7.Heirloom_RPG7_3P_Pickup_MIC"))
+
+//Heirloom Winchester 1894
+	Skins.Add((Id=5950, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_3P_Pickup_MIC"))
+	Skins.Add((Id=5949, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_3P_Pickup_MIC"))
+	Skins.Add((Id=5948, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.heirloom_winchester1894.Heirloom_Winchester1894_3P_Pickup_MIC"))
+
+//Precious HK UMP
+	Skins.Add((Id=5951, Weapondef=class'KFWeapDef_HK_UMP', MIC_1P=("WEP_SkinSet18_MAT.precious_hk_ump.Precious_HK_UMP_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.precious_hk_ump.Precious_HK_UMP_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.precious_hk_ump.Precious_HK_UMP_3P_Pickup_MIC"))
+
+//Precious Husk Cannon
+	Skins.Add((Id=5952, Weapondef=class'KFWeapDef_HuskCannon', MIC_1P=("WEP_SkinSet18_MAT.precious_huskcannon.Precious_HuskCannon_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.precious_huskcannon.Precious_HuskCannon_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.precious_huskcannon.Precious_HuskCannon_3P_Pickup_MIC"))
+
+//Precious Hemogoblin
+	Skins.Add((Id=5953, Weapondef=class'KFWeapDef_Hemogoblin', MIC_1P=("WEP_SkinSet18_MAT.precious_bleeder.Precious_Bleeder_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.precious_bleeder.Precious_Bleeder_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.precious_bleeder.Precious_Bleeder_3P_Pickup_MIC"))
+
+//Precious Seeker Six
+	Skins.Add((Id=5954, Weapondef=class'KFWeapDef_Seeker6', MIC_1P=("WEP_SkinSet18_MAT.precious_seekersix.Precious_SeekerSix_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.precious_seekersix.Precious_SeekerSix_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.precious_seekersix.Precious_SeekerSix_3P_Pickup_MIC"))
+
+//Precious AF2011
+	Skins.Add((Id=5955, Weapondef=class'KFWeapDef_AF2011', MIC_1P=("WEP_SkinSet18_MAT.precious_af2001.Precious_AF2001_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.precious_af2001.Precious_AF2001_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.precious_af2001.Precious_AF2001_3P_Pickup_MIC"))
+
+//Precious Mac 10
+	Skins.Add((Id=5956, Weapondef=class'KFWeapDef_Mac10', MIC_1P=("WEP_SkinSet18_MAT.precious_mac10.Precious_MAC10_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.precious_mac10.Precious_MAC10_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.precious_mac10.Precious_MAC10_3P_Pickup_MIC"))
+
+//Vietnam Stoner 63A
+	Skins.Add((Id=5959, Weapondef=class'KFWeapDef_Stoner63A', MIC_1P=("WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_Lower_1P_Mint_MIC", "WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_Upper_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_3P_Pickup_MIC"))
+	Skins.Add((Id=5958, Weapondef=class'KFWeapDef_Stoner63A', MIC_1P=("WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_Lower_1P_FieldTested_MIC", "WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_Upper_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_3P_Pickup_MIC"))
+	Skins.Add((Id=5957, Weapondef=class'KFWeapDef_Stoner63A', MIC_1P=("WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_Lower_1P_BattleScarred_MIC", "WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_Upper_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.vietnam_stoner.Vietnam_Stoner_3P_Pickup_MIC"))
+
+//Junkyard Boomstick
+	Skins.Add((Id=5962, Weapondef=class'KFWeapDef_DoubleBarrel', MIC_1P=("WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_3P_Pickup_MIC"))
+	Skins.Add((Id=5961, Weapondef=class'KFWeapDef_DoubleBarrel', MIC_1P=("WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_3P_Pickup_MIC"))
+	Skins.Add((Id=5960, Weapondef=class'KFWeapDef_DoubleBarrel', MIC_1P=("WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.junkyard_boomstick.Junkyard_Boomstick_3P_Pickup_MIC"))
+
+//Horzine Elite White Medic Assault
+	Skins.Add((Id=5965, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_1P_Mint_MIC", "WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicPistol_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5964, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_1P_FieldTested_MIC", "WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicPistol_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5963, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_1P_BattleScarred_MIC", "WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicPistol_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitewhite_medicassault.HorzineEliteWhite_MedicAssault_3P_Pickup_MIC"))
+
+//Horzine Elite Black Medic Assault
+	Skins.Add((Id=5968, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_1P_Mint_MIC", "WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicPistol_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5967, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_1P_FieldTested_MIC", "WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicPistol_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5966, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_1P_BattleScarred_MIC", "WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicPistol_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineeliteblack_medicassault.HorzineEliteBlack_MedicAssault_3P_Pickup_MIC"))
+
+//Horzine Elite Blue Medic Assault
+	Skins.Add((Id=5971, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_1P_Mint_MIC", "WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicPistol_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5970, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_1P_FieldTested_MIC", "WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicPistol_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5969, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_1P_BattleScarred_MIC", "WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicPistol_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineeliteblue_medicassault.HorzineEliteBlue_MedicAssault_3P_Pickup_MIC"))
+
+//Horzine Elite Green Medic Assault
+	Skins.Add((Id=5974, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_1P_Mint_MIC", "WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicPistol_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5973, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_1P_FieldTested_MIC", "WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicPistol_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5972, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_1P_BattleScarred_MIC", "WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicPistol_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitegreen_medicassault.HorzineEliteGreen_MedicAssault_3P_Pickup_MIC"))
+
+//Horzine Elite Red Medic Assault
+	Skins.Add((Id=5977, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_1P_Mint_MIC", "WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicPistol_1P_Mint_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5976, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_1P_FieldTested_MIC", "WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicPistol_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_3P_Pickup_MIC"))
+	Skins.Add((Id=5975, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_1P_BattleScarred_MIC", "WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicPistol_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet18_MAT.horzineelitered_medicassault.HorzineEliteRed_MedicAssault_3P_Pickup_MIC"))
+
 }

@@ -73,14 +73,21 @@ enum EDemoSkills
  */
 function ApplySkillsToPawn()
 {
+	local KFGameReplicationInfo KFGRI;
+
 	Super.ApplySkillsToPawn();
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 
 	if( MyPRI != none )
 	{
 		MyPRI.bNukeActive = IsNukeActive();
 		MyPRI.bConcussiveActive = IsConcussiveForceActive();
 	}
-
+	if (KFGRI == none && KFGRI.bTraderIsOpen)
+	{
+		return;
+	}
 	ResetSupplier();
 }
 
@@ -91,6 +98,14 @@ function OnWaveEnded()
 {
 	Super.OnWaveEnded();
 	bUsedSacrifice = false;
+}
+
+/**
+* @brief Resets certain perk values on wave start/end
+*/
+function OnWaveStart()
+{
+	Super.OnWaveStart();
 	ResetSupplier();
 }
 

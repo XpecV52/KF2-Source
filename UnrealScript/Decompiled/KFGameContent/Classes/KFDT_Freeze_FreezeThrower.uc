@@ -27,6 +27,8 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_FreezeThrower'
     DoT_Type=EDamageOverTimeGroup.DOT_Fire
+    DoT_Duration=-1
+    DoT_Interval=-1
     MeleeHitPower=20
     FreezePower=12.5
     ModifierPerkList=/* Array type was not detected. */

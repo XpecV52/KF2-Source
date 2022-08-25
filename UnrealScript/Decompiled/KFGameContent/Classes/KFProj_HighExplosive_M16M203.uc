@@ -15,8 +15,8 @@ defaultproperties
     GrenadeBounceEffectInfo=KFImpactEffectInfo'FX_Impacts_ARCH.DefaultGrenadeImpacts'
     bWarnAIWhenFired=true
     TossZ=150
-    GravityScale=0.25
-    TerminalVelocity=5000
+    GravityScale=0.5
+    TerminalVelocity=4000
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'Wep_M16_M203_ARCH.M16_M203_Grenade_Explosion'
         Damage=225
@@ -39,8 +39,6 @@ defaultproperties
     AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Projectile_Loop'
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_M79.Stop_WEP_SA_M79_Projectile_Loop'
     AmbientComponent=AkComponent'Default__KFProj_HighExplosive_M16M203.AmbientAkSoundComponent'
-    Speed=5000
-    MaxSpeed=5000
     MomentumTransfer=50000
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
@@ -54,7 +52,7 @@ defaultproperties
     Components(0)=CollisionCylinder
     Components(1)=AkComponent'Default__KFProj_HighExplosive_M16M203.AmbientAkSoundComponent'
     Physics=EPhysics.PHYS_Falling
-    LifeSpan=25
+    LifeSpan=1000
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

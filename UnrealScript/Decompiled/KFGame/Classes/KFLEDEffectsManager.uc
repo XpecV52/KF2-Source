@@ -24,6 +24,7 @@ enum ELightFXID
     LFID_Unready,
     LFID_MatchLost,
     LFID_MatchWon,
+    LFID_Emote,
     LFID_MAX
 };
 
@@ -59,6 +60,7 @@ var array<S_LightingFrame> ReadyEffectArr;
 var array<S_LightingFrame> UnreadyEffectArr;
 var array<S_LightingFrame> MatchLostEffectArr;
 var array<S_LightingFrame> MatchWonEffectArr;
+var array<S_LightingFrame> EmoteEffectArr;
 var array<S_LightingFrame> CurrentLightingFrames;
 var int CurrentLightFrameIndex;
 var bool bPendingKill;
@@ -248,6 +250,12 @@ simulated function PlayEffectWaveIncoming()
 }
 
 simulated function PlayEffectRecievedDosh();
+
+simulated function PlayEmoteEffect()
+{
+    CurrentLightingFrames = EmoteEffectArr;
+    PlayNextLightFrame(true);
+}
 
 simulated function PlayEffectSetReady(bool bReady)
 {
@@ -572,4 +580,17 @@ defaultproperties
     UnreadyEffectArr(0)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0)
     MatchLostEffectArr(0)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0)
     MatchWonEffectArr(0)=(Red=0,Green=100,Blue=0,Brightness=100,Duration=0)
+    EmoteEffectArr(0)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.15)
+    EmoteEffectArr(1)=(Red=100,Green=60,Blue=18,Brightness=100,Duration=0.15)
+    EmoteEffectArr(2)=(Red=90,Green=99,Blue=60,Brightness=100,Duration=0.15)
+    EmoteEffectArr(3)=(Red=0,Green=100,Blue=60,Brightness=0,Duration=0.15)
+    EmoteEffectArr(4)=(Red=0,Green=0,Blue=100,Brightness=100,Duration=0.15)
+    EmoteEffectArr(5)=(Red=60,Green=25,Blue=98,Brightness=100,Duration=0.15)
+    EmoteEffectArr(6)=(Red=244,Green=30,Blue=88,Brightness=100,Duration=0.15)
+    EmoteEffectArr(7)=(Red=60,Green=25,Blue=98,Brightness=100,Duration=0.15)
+    EmoteEffectArr(8)=(Red=0,Green=0,Blue=100,Brightness=100,Duration=0.15)
+    EmoteEffectArr(9)=(Red=0,Green=100,Blue=60,Brightness=0,Duration=0.15)
+    EmoteEffectArr(10)=(Red=90,Green=99,Blue=60,Brightness=100,Duration=0.15)
+    EmoteEffectArr(11)=(Red=100,Green=60,Blue=18,Brightness=100,Duration=0.15)
+    EmoteEffectArr(12)=(Red=100,Green=0,Blue=0,Brightness=100,Duration=0.15)
 }

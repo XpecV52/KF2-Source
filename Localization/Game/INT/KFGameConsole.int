@@ -18,7 +18,9 @@ KF-TheDescent="Playing The Descent"
 KF-Nuked="Playing Nuked"
 KF-TragicKingdom="Playing The Tragic Kingdom"
 KF-Nightmare="Playing Nightmare"
-KF-KrampusLair="Krampus Lair"
+KF-KrampusLair="Playing Krampus Lair"
+KF-PowerCore_Holdout="Playing Power Core"
+KF-DieSector="Playing DieSector"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

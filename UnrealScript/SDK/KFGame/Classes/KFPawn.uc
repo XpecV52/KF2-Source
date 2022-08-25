@@ -49,6 +49,10 @@ var int ThirdPersonAttachmentBitMask;
 var name ThirdPersonAttachmentSocketNames[`MAX_COSMETIC_ATTACHMENTS];
 var MeshComponent ThirdPersonAttachments[`MAX_COSMETIC_ATTACHMENTS];
 
+/** First person cosmetic attachments. */
+var name FirstPersonAttachmentSocketNames[`MAX_COSMETIC_ATTACHMENTS];
+var MeshComponent FirstPersonAttachments[`MAX_COSMETIC_ATTACHMENTS];
+
 /**
  * Character mesh MICs that are used for material params during gameplay
  * 0: Always the main body (Replaced with the gore mesh)
@@ -811,13 +815,16 @@ var bool bLogCustomAnim;
 
 var Texture2D DebugRadarTexture;
 
+var repnotify bool bHasStartedFire;
+
 replication
 {
     // Replicated to ALL
 	if ( bNetDirty )
 		AmbientSound, WeaponAttachmentTemplate, bIsSprinting, InjuredHitZones,
 		KnockdownImpulse, ReplicatedSpecialMove, bEmpDisrupted, bEmpPanicked, bFirePanicked,
-        RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime, IntendedBodyScale, IntendedHeadScale, AttackSpeedModifier;
+        RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime, IntendedBodyScale,
+		IntendedHeadScale, AttackSpeedModifier, bHasStartedFire;
 	if ( bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout )
 		HitFxInfo, HitFxRadialInfo, HitFxInstigator, HitFxAddedRelativeLocs, HitFxAddedHitCount;
 	if ( Physics == PHYS_RigidBody && !bTearOff )
@@ -1066,6 +1073,13 @@ simulated event ReplicatedEvent(name VarName)
     case nameof(IntendedHeadScale):
         SetHeadScale(IntendedHeadScale, CurrentHeadScale);
         break;
+
+	case nameof(bHasStartedFire):
+		if (bHasStartedFire)
+		{
+			OnStartFire();
+		}
+		break;
 	}
 
 	Super.ReplicatedEvent(VarName);
@@ -1699,6 +1713,8 @@ function AddDefaultInventory()
 /** First person weapon visility */
 simulated function SetFirstPersonVisibility(bool bWeaponVisible)
 {
+	local int AttachmentIdx;
+
 	// Added Instigator check to catch out of date cached weapon, can happen on death
 	if ( MyKFWeapon != None && MyKFWeapon.Instigator == self )
 	{
@@ -1707,6 +1723,13 @@ simulated function SetFirstPersonVisibility(bool bWeaponVisible)
 	else if ( ArmsMesh != None )
 	{
 		ArmsMesh.SetHidden(!bWeaponVisible);
+		for (AttachmentIdx = 0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++)
+		{
+			if (FirstPersonAttachments[AttachmentIdx] != none)
+			{
+				FirstPersonAttachments[AttachmentIdx].SetHidden(!bWeaponVisible);
+			}
+		}
 	}
 }
 
@@ -1746,6 +1769,20 @@ simulated function WeaponAttachmentChanged(optional bool bForceReattach)
 				WeaponAttachment.SetMeshLightingChannels(PawnLightingChannel);
 			}
 		}
+	}
+}
+
+simulated function OnStartFire()
+{
+	if (Role == ROLE_Authority)
+	{
+		bHasStartedFire = true;
+		bNetDirty = true;
+	}
+
+	if(WeaponAttachment != none)
+	{
+		WeaponAttachment.StartFire();
 	}
 }
 
@@ -2320,6 +2357,13 @@ simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingC
 	if( ArmsMesh != none )
 	{
 		ArmsMesh.SetLightingChannels(NewLightingChannels);
+		for (AttachmentIdx = 0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++)
+		{
+			if (FirstPersonAttachments[AttachmentIdx] != none)
+			{
+				FirstPersonAttachments[AttachmentIdx].SetLightingChannels(NewLightingChannels);
+			}
+		}
 	}
 
 	// Weapon Attachment
@@ -2574,7 +2618,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 
     InDamage *= VolumeDamageScale;
 
-    `log(self@GetFuncName()@" After KFPawn adjustment Damage="$InDamage@"Momentum="$Momentum@"Zone="$HitInfo.BoneName@"DamageType="$DamageType, bLogTakeDamage);
+    `log(self @ GetFuncName() @ " After KFPawn adjustment Damage=" $ InDamage @ "Momentum=" $ Momentum @ "Zone=" $ HitInfo.BoneName @ "DamageType=" $ DamageType, bLogTakeDamage);
 }
 
 /** Updates the time damage was dealt or received */

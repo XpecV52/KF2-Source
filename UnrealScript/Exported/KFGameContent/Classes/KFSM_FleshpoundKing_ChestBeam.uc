@@ -1,8 +1,7 @@
 //=============================================================================
 // KFSM_FleshpoundKing_ChestBeam
 //=============================================================================
-// Fleshpound king's chest beam attach. Beam particle code from
-// KFSM_Matriarch_PlasmaCannon
+// Fleshpound king's chest beam attach
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2017 Tripwire Interactive LLC
@@ -156,7 +155,7 @@ function SetBeamTarget()
 			KingPawnOwner.BeamHitAC.PlayEvent(BeamHitStopSFX);
         }
     }
-	KingPawnOwner.BeamHitAC.Location = BeamEnd;
+	//KingPawnOwner.BeamHitAC.Location = BeamEnd;
 
 	if( bDrawDebugBeam )
 	{

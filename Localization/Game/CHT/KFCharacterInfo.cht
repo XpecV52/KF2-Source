@@ -1,3 +1,62 @@
+[CHR_DAR_archetype]
+CharacterName="D.A.R."
+Description="這部D.A.R.，即家用助理機器人，是舊版D.A.R.的升級版，應用了最新的霍因機器人技術。他們把相似的機器送到不同的Horzine基地進行測試，希望開發出一種針對消費者與市場安全的D.A.R.，但這部D.A.R.與眾不同。這部D.A.R.被部署在Horzine 12號北極前哨站時遭遇到了眾多Zed，於是它的緊急安全協議改寫了它的主程序，將它變成了一部殺戮機器。不幸的是，這部D.A.R.不怎麼關心人類的死活，除了Horzine的員工，但它對他們的仇恨也只是比一般人稍微輕一些。在發現了軍事機器人這一新市場後，D.A.R.轉而承擔起遏制Zed的任務，並開始進行實戰測試。"
+BodyMesh0="內部骨架"
+HeadMesh0="無頭盔"
+HeadMesh1="經典頭盔"
+HeadMesh2="突擊頭盔"
+HeadMesh3="飛行頭盔"
+HeadMesh4="CHONN-E 5 頭盔"
+HeadMesh5="C-3HZ 頭盔"
+
+[CHR_DAR_archetype.BodyMesh0]
+BodySkin0="Endo 800"
+BodySkin1="經典灰"
+BodySkin2="塑料"
+BodySkin3="珍貴"
+
+[CHR_DAR_archetype.HeadMesh0]
+HeadSkin0="無"
+
+[CHR_DAR_archetype.HeadMesh1]
+HeadSkin0="染血"
+HeadSkin1="裝彈手"
+HeadSkin2="標準"
+HeadSkin3="珍貴"
+HeadSkin4="頭骨"
+
+[CHR_DAR_archetype.HeadMesh2]
+HeadSkin0="黑 OPS"
+HeadSkin1="迷彩 G"
+HeadSkin2="沙丘"
+HeadSkin3="裝彈手"
+HeadSkin4="無敵"
+HeadSkin5="珍貴"
+
+[CHR_DAR_archetype.HeadMesh3]
+HeadSkin0="藍天使"
+HeadSkin1="銀河"
+HeadSkin2="P51"
+HeadSkin3="珍貴"
+HeadSkin4="火槍"
+HeadSkin5="尖叫"
+
+[CHR_DAR_archetype.HeadMesh4]
+HeadSkin0="小夥"
+HeadSkin1="Horzine"
+HeadSkin2="珍貴"
+HeadSkin3="鋼"
+HeadSkin4="夕陽"
+HeadSkin5="蒸汽"
+
+[CHR_DAR_archetype.HeadMesh5]
+HeadSkin0="衝撞"
+HeadSkin1="藍水流"
+HeadSkin2="大理石"
+HeadSkin3="黑曜石"
+HeadSkin4="珍貴"
+HeadSkin5="空白鍵"
+
 [CHR_Jagerhorn_Archetype]
 CharacterName="奧斯丁耶格霍恩"
 Description="事發之前，耶格霍恩是個喜歡在酒吧喝酒大聲作亂的大個子瑞典人，想到現代維京人大概就會想到他。但是，在 1990 年代北歐大暴動之後，他認為暴力行為比起喝酒，還有在他的金屬樂團「金屬車手」彈吉他實在太無聊了。\n\n事情發展到斯堪地那維亞後，看來暴力還是唯一的解決方式了。Zed 對抗人類…對耶格霍根來說，絕不會有好結果。大個瑞典維京人耶格霍根對上 Zed？快開打吧！"
@@ -19,6 +78,11 @@ BodySkin3="真正的蔑視"
 BodySkin4="惡魔獵人"
 BodySkin5="金庫蝙蝠貓"
 BodySkin6="金庫地磚"
+BodySkin7="金庫珍貴"
+BodySkin8="網路紅"
+BodySkin9="網路綠"
+BodySkin10="網路藍"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="經典"
@@ -58,22 +122,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_Jagerhorn_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_Jagerhorn_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="金髮瑞典人"
@@ -178,6 +242,10 @@ BodySkin3="綠色障礙"
 BodySkin4="復古史骷利"
 BodySkin5="金庫珍貴"
 BodySkin6="金庫地磚"
+BodySkin7="網路紅"
+BodySkin8="網路綠"
+BodySkin9="網路藍"
+BodySkin10="Cyberpunk Blue"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -217,22 +285,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_DJSkully_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_DJSkully_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_DJSkully_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="黑中之黑"
@@ -282,6 +350,11 @@ BodySkin1="夜色黑"
 BodySkin2="陸軍綠"
 BodySkin3="SAS 迷彩"
 BodySkin4="金庫地磚"
+BodySkin5="金庫珍貴"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="地鐵"
@@ -328,22 +401,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [chr_briar_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [chr_briar_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [chr_briar_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
@@ -400,6 +473,10 @@ BodySkin5="墮落藍"
 BodySkin6="墮落"
 BodySkin7="賭場"
 BodySkin8="冒煙"
+BodySkin9="網路紅"
+BodySkin10="網路綠"
+BodySkin11="網路藍"
+BodySkin12="Cyberpunk Blue"
 
 [CHR_MrFoster_archetype.BodyMesh2]
 BodySkin0="經典"
@@ -439,22 +516,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_MrFoster_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_MrFoster_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_MrFoster_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -618,7 +695,10 @@ BodySkin1="鐵鏽紅"
 BodySkin2="冷酷灰"
 BodySkin3="蒼白大地"
 BodySkin4="金庫珍貴"
-BodySkin5="金庫地磚"
+BodySkin5="網路紅"
+BodySkin6="網路綠"
+BodySkin7="網路藍"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -658,22 +738,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_Coleman_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_Coleman_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_Coleman_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="唐納文"
@@ -718,6 +798,10 @@ BodySkin3="熱帶白"
 BodySkin4="神聖太陽珍貴"
 BodySkin5="迷彩斑點北極"
 BodySkin6="迷彩像素粉色"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -757,22 +841,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_Alberts_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_Alberts_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_Alberts_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰"
@@ -1684,6 +1768,11 @@ BodySkin3="DPM"
 BodySkin4="金庫地磚"
 BodySkin5="迷彩斑點北極"
 BodySkin6="迷彩斑點紫色"
+BodySkin7="金庫珍貴"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -1723,22 +1812,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_Masterson_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_Masterson_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_Masterson_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [CHR_Tanaka_Archetype]
 CharacterName="田中隼人"
@@ -1768,6 +1857,10 @@ BodySkin3="藍龍"
 BodySkin4="金庫復古"
 BodySkin5="金庫鯉魚珍貴"
 BodySkin6="金庫地磚"
+BodySkin7="Cyberpunk Green"
+BodySkin8="Cyberpunk Precious"
+BodySkin9="Cyberpunk Red"
+BodySkin10="Cyberpunk Blue"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="紅黑"
@@ -1816,22 +1909,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_Tanaka_Archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_Tanaka_Archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_Tanaka_Archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="頭盔"
@@ -1890,6 +1983,9 @@ BodySkin3="蔚藍"
 BodySkin4="獵雞大戰證書"
 BodySkin5="金庫珍貴"
 BodySkin6="金庫地磚"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="精英藍"
@@ -1929,22 +2025,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_Ana_Archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_Ana_Archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_Ana_Archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼鏡"
@@ -1978,6 +2074,11 @@ BodySkin1="夜色黑"
 BodySkin2="陸軍綠"
 BodySkin3="SAS 迷彩"
 BodySkin4="金庫地磚"
+BodySkin5="金庫珍貴"
+BodySkin6="Cyberpunk Green"
+BodySkin7="Cyberpunk Precious"
+BodySkin8="Cyberpunk Red"
+BodySkin9="Cyberpunk Blue"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="地鐵"
@@ -2024,22 +2125,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [chr_mark_archetype.BodyMesh6]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [chr_mark_archetype.BodyMesh7]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [chr_mark_archetype.BodyMesh8]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="真品"
@@ -2071,6 +2172,11 @@ BodySkin3="DPM"
 BodySkin4="金庫地磚"
 BodySkin5="迷彩斑點北極"
 BodySkin6="迷彩斑點紫色"
+BodySkin7="金庫珍貴"
+BodySkin8="Cyberpunk Green"
+BodySkin9="Cyberpunk Precious"
+BodySkin10="Cyberpunk Red"
+BodySkin11="Cyberpunk Blue"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -2110,22 +2216,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_alan_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_alan_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_alan_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="真品"
@@ -2161,6 +2267,11 @@ BodySkin0="新兵"
 BodySkin1="千錘百鍊"
 BodySkin2="金庫迷彩"
 BodySkin3="金庫地磚"
+BodySkin4="金庫珍貴"
+BodySkin5="網路紅"
+BodySkin6="網路綠"
+BodySkin7="網路藍"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -2200,22 +2311,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [CHR_strasser_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [CHR_strasser_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [CHR_strasser_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑鋼"
@@ -2251,6 +2362,11 @@ BodySkin0="阿嘉莎"
 BodySkin1="克里斯"
 BodySkin2="波索沃"
 BodySkin3="傑米"
+BodySkin4="金庫珍貴"
+BodySkin5="網路紅"
+BodySkin6="網路綠"
+BodySkin7="網路藍"
+BodySkin8="Cyberpunk Blue"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -2389,6 +2505,11 @@ BodySkin4="紅條紋"
 BodySkin5="水手"
 BodySkin6="金庫骷髏頭"
 BodySkin7="金庫地磚"
+BodySkin8="金庫珍貴"
+BodySkin9="Cyberpunk Green"
+BodySkin10="Cyberpunk Precious"
+BodySkin11="Cyberpunk Red"
+BodySkin12="Cyberpunk Blue"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="精英藍"
@@ -2428,22 +2549,22 @@ BodySkin4="馮布朗"
 BodySkin5="悲慘王國工作人員"
 
 [chr_rockabilly_archetype.BodyMesh5]
-BodySkin0="Used"
-BodySkin1="Clean"
-BodySkin2="Night"
-BodySkin3="Heavy Wound"
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
 
 [chr_rockabilly_archetype.BodyMesh6]
-BodySkin0="Bunny"
-BodySkin1="Dosh"
-BodySkin2="Green Plaid"
-BodySkin3="Quilt"
-BodySkin4="Red Snow"
-BodySkin5="Trees"
-BodySkin6="Red Plaid"
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
 
 [chr_rockabilly_archetype.BodyMesh7]
-BodySkin0="Vault Pattern"
+BodySkin0="金庫圖案"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑"
@@ -2695,37 +2816,6 @@ AttachmentSkin2="傑米"
 AttachmentSkin3="波索沃"
 AttachmentSkin4="珍貴"
 
-[Cosmetic_SteampunkGasMaskBasic_ARCH]
-Attachment="蒸汽龐克防毒面具基本狀態"
-AttachmentSkin0="棕"
-AttachmentSkin1="黑"
-
-[Cosmetic_SteampunkGasMaskOpen_ARCH]
-Attachment="蒸汽龐克防毒面具開啟"
-AttachmentSkin0="棕"
-AttachmentSkin1="黑"
-
-[Cosmetic_SteampunkGasMaskClosed_ARCH]
-Attachment="蒸汽龐克防毒面具關閉"
-AttachmentSkin0="棕"
-AttachmentSkin1="黑"
-AttachmentSkin2="珍貴"
-
-[Cosmetic_SteampunkGasMaskFiltered_ARCH]
-Attachment="過濾式蒸汽龐克防毒面具"
-AttachmentSkin0="棕"
-AttachmentSkin1="黑"
-
-[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
-Attachment="過濾式蒸汽龐克防毒面具開啟"
-AttachmentSkin0="棕"
-AttachmentSkin1="黑"
-
-[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
-Attachment="過濾式蒸汽龐克防毒面具關閉"
-AttachmentSkin0="棕"
-AttachmentSkin1="黑"
-
 [Cosmetic_RebelHelmet_ARCH]
 Attachment="反叛者頭盔"
 AttachmentSkin0="黑"
@@ -2832,31 +2922,31 @@ AttachmentSkin2="綠"
 AttachmentSkin3="紅"
 AttachmentSkin4="棕褐"
 
-[LetsGetCrazy] 
+[LetsGetCrazy]
 EmoteName="瘋狂放縱吧"
 
 [ThunderClap]
 EmoteName="電臀舞"
 
-[UncleCharlie] 
+[UncleCharlie]
 EmoteName="查理叔叔"
 
 [WackyWave]
 EmoteName="海帶舞"
 
-[RainingDosh] 
+[RainingDosh]
 EmoteName="下錢雨"
 
-[LionUppercut] 
+[LionUppercut]
 EmoteName="獅子上鉤拳"
 
-[MatingRitual] 
+[MatingRitual]
 EmoteName="交配儀式"
 
 [KickinIt]
 EmoteName="給它踢下去"
 
-[Fireball] 
+[Fireball]
 EmoteName="火球"
 
 [Makeitrain]
@@ -2865,11 +2955,11 @@ EmoteName="快拿錢砸我"
 [Fireball_Deluxe]
 EmoteName="火球+"
 
-[Makeitrain_Deluxe] 
+[Makeitrain_Deluxe]
 EmoteName="快拿錢砸我+"
 
-[ThunderClap_Deluxe] 
-EmoteName="電臀舞+"
+[ThunderClap_Deluxe]
+EmoteName="翹臀舞+"
 
 [UncleCharlie_Deluxe]
 EmoteName="查理叔叔+"
@@ -2880,7 +2970,7 @@ EmoteName="瘋狂放縱吧+"
 [WackyWave_Deluxe]
 EmoteName="海帶舞+"
 
-[RainingDosh_Deluxe] 
+[RainingDosh_Deluxe]
 EmoteName="下錢雨+"
 
 [LionUppercut_Deluxe]
@@ -3190,188 +3280,188 @@ AttachmentSkin6="紫"
 AttachmentSkin7="紅"
 
 [Cosmetic_ImperialGalea_ARCH]
-Attachment="Imperial Galea"
+Attachment="帝國頭盔"
 AttachmentSkin0="陸軍綠"
 AttachmentSkin1="經典"
 AttachmentSkin2="白"
 AttachmentSkin3="珍貴"
 
 [Cosmetic_PlagueDoctorMask_ARCH]
-Attachment="Plague Doctor Mask"
+Attachment="瘟疫醫生面具"
 AttachmentSkin0="灰"
 AttachmentSkin1="淺棕"
 AttachmentSkin2="紅"
 AttachmentSkin3="白"
 
 [Cosmetic_SkullMask_ARCH]
-Attachment="Skull Mask"
-AttachmentSkin0="Black Red"
-AttachmentSkin1="Black Silver"
-AttachmentSkin2="White Red"
-AttachmentSkin3="White Silver"
-AttachmentSkin4="Precious"
+Attachment="骷髏頭面具"
+AttachmentSkin0="黑紅"
+AttachmentSkin1="黑銀"
+AttachmentSkin2="白紅"
+AttachmentSkin3="白銀"
+AttachmentSkin4="珍貴"
 
 [Cosmetic_VictoriansSecret_ARCH]
 Attachment="維多利亞人的秘密"
-AttachmentSkin0="Victorian's Secret"
+AttachmentSkin0="維多利亞人的秘密"
 
 [Cosmetic_HannyaMask_ARCH]
 Attachment="般若面具"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Gold"
-AttachmentSkin3="Green"
-AttachmentSkin4="Iron"
-AttachmentSkin5="Red"
-AttachmentSkin6="Red Shiny"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="金"
+AttachmentSkin3="綠"
+AttachmentSkin4="鐵灰"
+AttachmentSkin5="紅"
+AttachmentSkin6="亮紅"
+AttachmentSkin7="白"
+AttachmentSkin8="珍貴"
 
 [Cosmetic_Hopps_ARCH]
 Attachment="兔面具"
-AttachmentSkin0="Geometric"
-AttachmentSkin1="Green Machine"
-AttachmentSkin2="Hazard"
-AttachmentSkin3="Porcelain"
-AttachmentSkin4="Gold"
-AttachmentSkin5="Sell Out"
+AttachmentSkin0="幾何圖案"
+AttachmentSkin1="綠色機器"
+AttachmentSkin2="危機"
+AttachmentSkin3="白瓷"
+AttachmentSkin4="金"
+AttachmentSkin5="售完"
 
 [Cosmetic_KobutoMask_ARCH]
 Attachment="日本武將面具"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Copper"
-AttachmentSkin3="Gold"
-AttachmentSkin4="Green"
-AttachmentSkin5="Radioactive"
-AttachmentSkin6="Red"
-AttachmentSkin7="White"
-AttachmentSkin8="Precious"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="紅銅"
+AttachmentSkin3="金"
+AttachmentSkin4="綠"
+AttachmentSkin5="放射性"
+AttachmentSkin6="紅"
+AttachmentSkin7="白"
+AttachmentSkin8="珍貴"
 
 [Cosmetic_SamuraiGasHelmet_ARCH]
 Attachment="武士頭盔"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="金"
+AttachmentSkin1="皮革"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
 
 [Cosmetic_SamuraiGasMask_ARCH]
 Attachment="武士面具"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="金"
+AttachmentSkin1="皮革"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
 
 [Cosmetic_SamuraiGasMouthpiece_ARCH]
 Attachment="武士呼吸吹嘴"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Leather"
-AttachmentSkin2="Red"
-AttachmentSkin3="Precious"
+AttachmentSkin0="金"
+AttachmentSkin1="皮革"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
 
 [Cosmetic_Bear_ARCH]
 Attachment="熊面具"
-AttachmentSkin0="Brown Bear"
-AttachmentSkin1="Panda Bear"
-AttachmentSkin2="Precious"
+AttachmentSkin0="棕熊"
+AttachmentSkin1="熊貓"
+AttachmentSkin2="珍貴"
 
 [Cosmetic_Cat_ARCH]
 Attachment="貓面具"
-AttachmentSkin0="Brown"
-AttachmentSkin1="Gray"
-AttachmentSkin2="White"
-AttachmentSkin3="Precious"
+AttachmentSkin0="棕"
+AttachmentSkin1="灰"
+AttachmentSkin2="白"
+AttachmentSkin3="珍貴"
 
 [Cosmetic_Chicken_ARCH]
 Attachment="雞面具"
-AttachmentSkin0="White Red"
-AttachmentSkin1="Precious"
+AttachmentSkin0="白紅"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Cow_ARCH]
 Attachment="乳牛面具"
-AttachmentSkin0="White Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="白黑"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Dog_ARCH]
 Attachment="狗面具"
-AttachmentSkin0="Brown Dog"
-AttachmentSkin1="Precious"
+AttachmentSkin0="棕狗"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Fox_ARCH]
 Attachment="狐狸面具"
-AttachmentSkin0="Brown Fox"
-AttachmentSkin1="Precious"
+AttachmentSkin0="棕狐狸"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Goat_ARCH]
 Attachment="山羊面具"
-AttachmentSkin0="Goat Colored"
-AttachmentSkin1="Precious"
+AttachmentSkin0="彩色山羊"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Horse_ARCH]
 Attachment="馬面具"
-AttachmentSkin0="Brown Horse"
-AttachmentSkin1="Precious"
+AttachmentSkin0="棕馬"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Pig_ARCH]
 Attachment="豬面具"
-AttachmentSkin0="Pinky Pig"
-AttachmentSkin1="Precious"
+AttachmentSkin0="粉紅豬"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Rabbit_ARCH]
 Attachment="兔子面具"
-AttachmentSkin0="Brown Rabbit"
-AttachmentSkin1="White Rabbit"
-AttachmentSkin2="Precious"
+AttachmentSkin0="棕兔"
+AttachmentSkin1="白兔"
+AttachmentSkin2="珍貴"
 
 [Cosmetic_CommandoChickenHelmet_ARCH]
 Attachment="突雞部隊"
-AttachmentSkin0="Used"
-AttachmentSkin1="Clean"
-AttachmentSkin2="Night"
-AttachmentSkin3="Heavy Wound"
+AttachmentSkin0="已使用"
+AttachmentSkin1="乾淨"
+AttachmentSkin2="夜晚"
+AttachmentSkin3="重傷"
 
 [Cosmetic_bobBatcat_ARCH]
 Attachment="Bob"
-AttachmentSkin0="Black"
-AttachmentSkin1="Green"
-AttachmentSkin2="Purple"
-AttachmentSkin3="Teal"
-AttachmentSkin4="Precious"
+AttachmentSkin0="黑"
+AttachmentSkin1="綠"
+AttachmentSkin2="紫"
+AttachmentSkin3="藍綠"
+AttachmentSkin4="珍貴"
 
 [Cosmetic_crown_ARCH]
 Attachment="皇冠"
-AttachmentSkin0="Precious"
-AttachmentSkin1="Silver"
+AttachmentSkin0="珍貴"
+AttachmentSkin1="銀"
 
 [Cosmetic_DGlasses_ARCH]
 Attachment="金錢眼鏡"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="珍貴"
 
 [Cosmetic_hansBackpack_ARCH]
 Attachment="漢斯背包"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="黑"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_scrakeMask_ARCH]
 Attachment="電鋸殺人狂面具"
-AttachmentSkin0="Steel"
-AttachmentSkin1="Precious"
+AttachmentSkin0="鋼"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_sharkHat_ARCH]
 Attachment="鯊魚"
-AttachmentSkin0="Grey"
-AttachmentSkin1="Sand"
-AttachmentSkin2="Orca"
-AttachmentSkin3="Bloody"
-AttachmentSkin4="Precious"
+AttachmentSkin0="灰"
+AttachmentSkin1="黃沙"
+AttachmentSkin2="黑"
+AttachmentSkin3="染血"
+AttachmentSkin4="珍貴"
 
 [Cosmetic_VGlasses_ARCH]
 Attachment="金庫眼鏡"
-AttachmentSkin0="Green"
-AttachmentSkin1="Black"
-AttachmentSkin2="Precious"
+AttachmentSkin0="綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="珍貴"
 
 [Cosmetic_Halloween_Arrowed_ARCH]
 Attachment="箭"
@@ -3439,245 +3529,386 @@ AttachmentSkin0="Jack O' Lantern Radioactive Winky"
 
 [Cosmetic_Christmas_AlphaHat_ARCH]
 Attachment="耶誕節阿爾法帽"
-AttachmentSkin0="Green"
+AttachmentSkin0="綠"
 
 [Cosmetic_Christmas_beard_ARCH]
 Attachment="耶誕節鬍子"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Precious"
-AttachmentSkin3="White"
+AttachmentSkin0="黑"
+AttachmentSkin1="棕"
+AttachmentSkin2="珍貴"
+AttachmentSkin3="白"
 
 [Cosmetic_Christmas_BellBackpack_ARCH]
 Attachment="耶誕節鈴鐺背包"
-AttachmentSkin0="Gold"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Silver"
+AttachmentSkin0="金"
+AttachmentSkin1="珍貴"
+AttachmentSkin2="銀"
 
 [Cosmetic_Christmas_BloatHat_ARCH]
 Attachment="耶誕節膨脹帽"
-AttachmentSkin0="Tan"
-AttachmentSkin1="Precious"
+AttachmentSkin0="棕褐"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Christmas_Blubs_ARCH]
 Attachment="耶誕節耳朵燈泡"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="紅綠"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Christmas_CookieGlasses_ARCH]
 Attachment="耶誕節餅乾眼鏡"
-AttachmentSkin0="Green Wrapping"
-AttachmentSkin1="Precious"
-AttachmentSkin2="Red Wrapping"
+AttachmentSkin0="綠色包裝紙"
+AttachmentSkin1="珍貴"
+AttachmentSkin2="紅色包裝紙"
 
 [Cosmetic_Christmas_CystHat_ARCH]
 Attachment="耶誕節囊帽"
-AttachmentSkin0="Green"
+AttachmentSkin0="綠"
 
 [Cosmetic_Christmas_EarMuffs_ARCH]
 Attachment="耶誕節耳朵袖套"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="綠"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紅"
 
 [Cosmetic_Christmas_ElfEars_ARCH]
 Attachment="耶誕節精靈耳"
-AttachmentSkin0="Flesh"
-AttachmentSkin1="Precious"
+AttachmentSkin0="肉體"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Christmas_FPHead_ARCH]
 Attachment="耶誕節絞碎者頭"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Copycat"
-AttachmentSkin2="Libro"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Warui"
+AttachmentSkin0="經典"
+AttachmentSkin1="跟屁蟲"
+AttachmentSkin2="書本"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="壞人"
 
 [Cosmetic_Christmas_GoreStockingBackpack_ARCH]
 Attachment="耶誕節血跡長襪背包"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Classic"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Red"
+AttachmentSkin0="藍"
+AttachmentSkin1="經典"
+AttachmentSkin2="綠"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紅"
 
 [Cosmetic_Christmas_HaloBulbs_ARCH]
 Attachment="耶誕節光環燈泡"
-AttachmentSkin0="Red Green"
-AttachmentSkin1="Precious"
+AttachmentSkin0="紅綠"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Christmas_HamHead_ARCH]
 Attachment="耶誕節火腿頭"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="經典"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Christmas_HuskBackpack_ARCH]
 Attachment="耶誕節焦驅背包"
-AttachmentSkin0="Black"
-AttachmentSkin1="Precious"
+AttachmentSkin0="黑"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Christmas_HuskHat_ARCH]
 Attachment="耶誕節焦驅帽"
-AttachmentSkin0="Black"
+AttachmentSkin0="黑"
 
 [Cosmetic_Christmas_PoinsettaHat_ARCH]
 Attachment="耶誕節一品紅帽"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="經典"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Christmas_SlasherHat_ARCH]
 Attachment="耶誕節揮爪者帽"
-AttachmentSkin0="Green"
+AttachmentSkin0="綠"
 
 [Cosmetic_Christmas_SnowmanFace_ARCH]
 Attachment="耶誕節雪人面具"
-AttachmentSkin0="Classic"
-AttachmentSkin1="Precious"
+AttachmentSkin0="經典"
+AttachmentSkin1="珍貴"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
 Attachment="耶誕節泰迪熊背包"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Dark"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Purple"
-AttachmentSkin5="Red"
+AttachmentSkin0="藍"
+AttachmentSkin1="棕"
+AttachmentSkin2="黑暗"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
 
 [Cosmetic_Christmas_TreeGlasses_ARCH]
 Attachment="耶誕節樹木眼鏡"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="珍貴"
+AttachmentSkin3="紅"
 
 [Cosmetic_Christmas_Ushanka_ARCH]
 Attachment="耶誕節毛帽"
-AttachmentSkin0="Black"
-AttachmentSkin1="Brown"
-AttachmentSkin2="Green"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Tan"
+AttachmentSkin0="黑"
+AttachmentSkin1="棕"
+AttachmentSkin2="綠"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="棕褐"
 
 [Cosmetic_Christmas_PajamaHat_ARCH]
 Attachment="耶誕節睡帽"
-AttachmentSkin0="Bunny"
-AttachmentSkin1="Dosh"
-AttachmentSkin2="Green Plaid"
-AttachmentSkin3="Green Trees"
-AttachmentSkin4="Quilt"
-AttachmentSkin5="Red Snow"
-AttachmentSkin6="Red Plaid"
+AttachmentSkin0="兔子"
+AttachmentSkin1="金錢"
+AttachmentSkin2="綠色格子"
+AttachmentSkin3="綠樹"
+AttachmentSkin4="被子"
+AttachmentSkin5="紅雪"
+AttachmentSkin6="紅色格子"
 
 [Cosmetic_LeatherMask_ARCH]
 Attachment="羽毛面具"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Pink"
-AttachmentSkin4="Precious"
-AttachmentSkin5="Red"
-AttachmentSkin6="Tan"
-AttachmentSkin7="Trippy"
-AttachmentSkin8="White"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="棕"
+AttachmentSkin3="粉紅"
+AttachmentSkin4="珍貴"
+AttachmentSkin5="紅"
+AttachmentSkin6="棕褐"
+AttachmentSkin7="迷幻"
+AttachmentSkin8="白"
 
 [Cosmetic_HockeyMask_ARCH]
 Attachment="曲棍球面具"
-AttachmentSkin0="Black"
-AttachmentSkin1="High Five"
-AttachmentSkin2="Kitty"
-AttachmentSkin3="Precious"
-AttachmentSkin4="Skull"
-AttachmentSkin5="Slasher"
-AttachmentSkin6="Teal"
-AttachmentSkin7="TGIF"
+AttachmentSkin0="黑"
+AttachmentSkin1="擊掌"
+AttachmentSkin2="小貓"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="骷髏頭"
+AttachmentSkin5="揮爪者"
+AttachmentSkin6="藍綠"
+AttachmentSkin7="謝天謝地，周五了！"
 
 [Cosmetic_BiocolaHat_ARCH]
 Attachment="生化可樂帽"
-AttachmentSkin0="Blue"
-AttachmentSkin1="Green"
-AttachmentSkin2="Precious"
-AttachmentSkin3="Red"
-AttachmentSkin4="White"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="珍貴"
+AttachmentSkin3="紅"
+AttachmentSkin4="白"
 
 [Cosmetic_FoamCowboyHat_ARCH]
 Attachment="泡沫牛仔帽"
-AttachmentSkin0="Black"
-AttachmentSkin1="Orange"
-AttachmentSkin2="Precious"
-AttachmentSkin3="USA"
-AttachmentSkin4="White"
-AttachmentSkin5="Yellow"
+AttachmentSkin0="黑"
+AttachmentSkin1="橘"
+AttachmentSkin2="珍貴"
+AttachmentSkin3="美國"
+AttachmentSkin4="白"
+AttachmentSkin5="黃"
 
 [Cosmetic_PaperBagBlank_ARCH]
 Attachment="空紙袋"
-AttachmentSkin0="White"
+AttachmentSkin0="白"
 
 [Cosmetic_PaperBagEyes_ARCH]
 Attachment="大眼空紙袋"
-AttachmentSkin0="Precious"
+AttachmentSkin0="珍貴"
 
 [Cosmetic_PaperBagHappy_ARCH]
 Attachment="快樂空紙袋"
-AttachmentSkin0="Green"
+AttachmentSkin0="綠"
 
 [Cosmetic_PaperBagKrinkle_ARCH]
 Attachment="起皺空紙袋"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="迷幻"
 
 [Cosmetic_PaperBagOFace_ARCH]
 Attachment="勇敢空紙袋"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="黃"
 
 [Cosmetic_PaperBagOooh_ARCH]
 Attachment="哦哦哦空紙袋"
-AttachmentSkin0="White"
+AttachmentSkin0="白"
 
 [Cosmetic_PaperBagSmallEyes_ARCH]
 Attachment="小眼空紙袋"
-AttachmentSkin0="Purple"
+AttachmentSkin0="紫"
 
 [Cosmetic_PaperBagYelling_ARCH]
 Attachment="吶喊空紙袋"
-AttachmentSkin0="Red"
+AttachmentSkin0="紅"
 
 [Cosmetic_PorcelainMaskBlank_ARCH]
 Attachment="空白陶瓷面具"
-AttachmentSkin0="White"
+AttachmentSkin0="白"
 
 [Cosmetic_PorcelainMaskBroken_ARCH]
 Attachment="破損陶瓷面具"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="黃"
 
 [Cosmetic_PorcelainMaskCross_ARCH]
 Attachment="十字陶瓷面具"
-AttachmentSkin0="Red and Black"
+AttachmentSkin0="紅黑"
 
 [Cosmetic_PorcelainMaskDosh_ARCH]
 Attachment="金錢陶瓷面具"
-AttachmentSkin0="Precious"
+AttachmentSkin0="珍貴"
 
 [Cosmetic_PorcelainMaskHappy_ARCH]
 Attachment="快樂陶瓷面具"
-AttachmentSkin0="Yellow"
+AttachmentSkin0="黃"
 
 [Cosmetic_PorcelainMaskSad_ARCH]
 Attachment="悲傷陶瓷面具"
-AttachmentSkin0="Blue"
+AttachmentSkin0="藍"
 
 [Cosmetic_PorcelainMaskSlim_ARCH]
 Attachment="苗條陶瓷面具"
-AttachmentSkin0="Green"
+AttachmentSkin0="綠"
 
 [Cosmetic_PorcelainMaskSly_ARCH]
 Attachment="淘氣陶瓷面具"
-AttachmentSkin0="Trippy"
+AttachmentSkin0="迷幻"
 
 [Cosmetic_Tricorne_ARCH]
 Attachment="三角帽"
-AttachmentSkin0="Black"
-AttachmentSkin1="Blue"
-AttachmentSkin2="Brown"
-AttachmentSkin3="Precious"
-AttachmentSkin4="White"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="棕"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="白"
+
+[Cosmetic_DAR_ClassicArmor_ARCH]
+Attachment="經典護甲"
+AttachmentSkin0="染血"
+AttachmentSkin1="裝彈手"
+AttachmentSkin2="標準"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="頭骨"
+
+[Cosmetic_DAR_AssaultArmor_ARCH]
+Attachment="突擊護甲"
+AttachmentSkin0="黑 OPS"
+AttachmentSkin1="迷彩 G"
+AttachmentSkin2="沙丘"
+AttachmentSkin3="裝彈手"
+AttachmentSkin4="無敵"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_DAR_FlightArmor_ARCH]
+Attachment="飛行護甲"
+AttachmentSkin0="藍天使"
+AttachmentSkin1="銀河"
+AttachmentSkin2="P51"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="火槍"
+AttachmentSkin5="尖叫"
+
+[Cosmetic_DAR_ChonneArmor_ARCH]
+Attachment="CHONN-E 5 護甲"
+AttachmentSkin0="蝙蝠貓"
+AttachmentSkin1="健身室"
+AttachmentSkin2="Horzine"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="激進"
+AttachmentSkin5="時間塊"
+
+[Cosmetic_DAR_C3HZArmor_ARCH]
+Attachment="C-3HZ 護甲"
+AttachmentSkin0="衝撞"
+AttachmentSkin1="藍水流"
+AttachmentSkin2="大理石"
+AttachmentSkin3="黑曜石"
+AttachmentSkin4="珍貴"
+AttachmentSkin5="空白鍵"
+
+[Cosmetic_SmallEarPiece_ARCH]
+Attachment="小型耳機"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
+
+[Cosmetic_Pad_ARCH]
+Attachment="平板備份"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
+
+[Cosmetic_MouthPiece_ARCH]
+Attachment="面具"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
+
+[Cosmetic_MessengerBag_ARCH]
+Attachment="信差包"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="珍貴"
+AttachmentSkin3="紅"
+AttachmentSkin4="黃"
+
+[Cosmetic_LargeEarPiece_ARCH]
+Attachment="大型耳機"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
+
+[Cosmetic_DiagonalBackpack_ARCH]
+Attachment="對角備份"
+AttachmentSkin0="灰"
+AttachmentSkin1="綠"
+AttachmentSkin2="珍貴"
+AttachmentSkin3="棕褐"
+
+[Cosmetic_CyberShades_ARCH]
+Attachment="墨鏡"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
+
+[Cosmetic_CyberPunkVisorOpen_ARCH]
+Attachment="打開的面甲"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
+
+[Cosmetic_CyberPunkVisorClosed_ARCH]
+Attachment="合上的面甲"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
+
+[Cosmetic_ArmScreen_ARCH]
+Attachment="數碼武裝屏"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"
+
+[Cosmetic_SlimVisor_ARCH]
+Attachment="輕薄面甲"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="橘"
+AttachmentSkin3="珍貴"
+AttachmentSkin4="紫"
+AttachmentSkin5="紅"

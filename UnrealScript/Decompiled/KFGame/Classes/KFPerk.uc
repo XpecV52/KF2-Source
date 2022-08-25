@@ -97,6 +97,8 @@ const STATID_ACHIEVE_NukedCollectibles = 4037;
 const STATID_ACHIEVE_TragicKingdomCollectibles = 4038;
 const STATID_ACHIEVE_NightmareCollectibles = 4039;
 const STATID_ACHIEVE_KrampusCollectibles = 4040;
+const STATID_ACHIEVE_ArenaCollectibles = 4041;
+const STATID_ACHIEVE_PowercoreCollectibles = 4042;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -193,7 +195,6 @@ var array<PerkSkill> PerkSkills;
 var protected byte SelectedSkills[5];
 var byte MaxAbilityPoints;
 var protected const byte CurrentLevel;
-var protected const byte CurrentPrestigeLevel;
 /** Duration till next RegenerationAmount */
 var() const float RegenerationInterval;
 /** Amount health given per RegenerationIntervall */
@@ -1337,6 +1338,8 @@ simulated function KFWeapon GetOwnerWeapon()
 }
 
 function OnWaveEnded();
+
+function OnWaveStart();
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {

@@ -9,8 +9,6 @@ class KFGameInfo_Survival extends KFGameInfo
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
-const ObjectiveChance = 0.5f;
-
 enum EWaveEndCondition
 {
     WEC_WaveWon,
@@ -26,11 +24,7 @@ var array<AARAward> TeamAwardList;
 var byte WaveMax;
 var int WaveNum;
 var bool bHumanDeathsLastWave;
-var bool bObjectivePlayed;
-var bool bLogCheckObjective;
-var int PlayedObjectives;
-var float ObjectiveCheckIntervall;
-var float MinAIAlivePercReqForObjStart;
+var int ObjectiveSpawnDelay;
 
 static function bool ShouldPlayMusicAtStart()
 {
@@ -52,7 +46,7 @@ event PreBeginPlay()
 event PostBeginPlay()
 {
     super.PostBeginPlay();
-    TimeBetweenWaves = int(DifficultyInfo.GetTraderTimeByDifficulty());
+    TimeBetweenWaves = int(GetTraderTime());
 }
 
 function InitSpawnManager()
@@ -267,7 +261,7 @@ function RestartPlayer(Controller NewPlayer)
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DamageType)
 {
     super.Killed(Killer, KilledPlayer, KilledPawn, DamageType);
-    if(!MyKFGRI.IsFinalWave() && KilledPawn.IsA('KFPawn_Monster'))
+    if(!MyKFGRI.IsBossWave() && KilledPawn.IsA('KFPawn_Monster'))
     {
         Class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo);
     }
@@ -304,7 +298,7 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded)
         KFPC.MatchStats.bKilledBoss = true;
     }
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && !KFGRI.IsFinalWave())
+    if((KFGRI != none) && !KFGRI.IsBossWave())
     {
         return;
     }
@@ -406,6 +400,7 @@ function OnServerTitleDataRead()
 {
     super(GameInfo).OnServerTitleDataRead();
     Class'KFGameEngine'.static.RefreshEventContent();
+    SetBossIndex();
 }
 
 function bool CanSpectate(PlayerController Viewer, PlayerReplicationInfo ViewTarget)
@@ -548,6 +543,11 @@ function RewardSurvivingPlayers()
     T.AddScore(0, true);
 }
 
+function int CalculateMinimumRespawnDosh(float UsedMaxRespawnDosh)
+{
+    return Round(UsedMaxRespawnDosh * (float(WaveNum) / float(WaveMax - 1)));
+}
+
 function int GetAdjustedDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI, optional bool bLateJoiner)
 {
     local float MinimumRespawnDosh, PlayerRespawnDosh, UsedMaxRespawnDosh;
@@ -565,7 +565,7 @@ function int GetAdjustedDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI, op
     {
         UsedMaxRespawnDosh = MaxRespawnDosh[MaxRespawnDosh.Length - 1];
     }
-    MinimumRespawnDosh = float(Round(UsedMaxRespawnDosh * (float(WaveNum) / float(WaveMax - 1))));
+    MinimumRespawnDosh = float(CalculateMinimumRespawnDosh(UsedMaxRespawnDosh));
     if(bLateJoiner)
     {
         return CalculateLateJoinerStartingDosh(int(MinimumRespawnDosh));
@@ -596,12 +596,17 @@ function int GetAdjustedDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI, op
 
 function int CalculateLateJoinerStartingDosh(int MinimumRespawnDosh)
 {
-    if(((LateArrivalStarts.Length > 0) && GameLength >= 0) && GameLength < LateArrivalStarts.Length)
+    if(((default.LateArrivalStarts.Length > 0) && GameLength >= 0) && GameLength < default.LateArrivalStarts.Length)
     {
-        if(((LateArrivalStarts[GameLength].StartingDosh.Length > 0) && (WaveNum - 1) >= 0) && (WaveNum - 1) < LateArrivalStarts[GameLength].StartingDosh.Length)
+        if(((default.LateArrivalStarts[GameLength].StartingDosh.Length > 0) && (WaveNum - 1) >= 0) && (WaveNum - 1) < default.LateArrivalStarts[GameLength].StartingDosh.Length)
         {
-            return LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1];
+            LogInternal("SCORING: Late joiner received" @ string(LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1]));
+            return default.LateArrivalStarts[GameLength].StartingDosh[WaveNum - 1];
         }
+    }
+    if(bLogScoring)
+    {
+        LogInternal("SCORING: Late joiner - invalid parameters to properly award late joiner dosh. Will instead receive Minimum Respawn Dosh of" @ string(MinimumRespawnDosh));
     }
     return MinimumRespawnDosh;
 }
@@ -610,6 +615,8 @@ function bool AllowWaveCheats()
 {
     return false;
 }
+
+function FindCollectibles();
 
 exec function ToggleSpawning(optional string ZedTypeString)
 {
@@ -646,7 +653,8 @@ exec function SetWave(byte NewWaveNum)
         {
             WaveNum = NewWaveNum - 1;
             GotoState('DebugSuspendWave');
-            GotoState('PlayingWave');            
+            GotoState('PlayingWave');
+            ResetAllPickups();            
         }
         else
         {
@@ -668,24 +676,34 @@ function bool IsWaveActive();
 
 function StartWave()
 {
+    local int WaveBuffer;
+    local KFPlayerController KFPC;
+
     MyKFGRI.CloseTrader();
-    SpawnManager.SetupNextWave(byte(WaveNum));
+    WaveBuffer = 0;
     ++ WaveNum;
     MyKFGRI.WaveNum = byte(WaveNum);
+    if(IsMapObjectiveEnabled())
+    {
+        MyKFGRI.ClearPreviousObjective();
+        if(MyKFGRI.StartNextObjective())
+        {
+            WaveBuffer = ObjectiveSpawnDelay;
+        }
+    }
+    SpawnManager.SetupNextWave(byte(WaveNum - 1), WaveBuffer);
     NumAISpawnsQueued = 0;
     AIAliveCount = 0;
+    MyKFGRI.bForceNextObjective = false;
     if((WorldInfo.NetMode != NM_DedicatedServer) && Role == ROLE_Authority)
     {
         MyKFGRI.UpdateHUDWaveCount();
     }
-    if(bEnableMapObjectives)
-    {
-        MyKFGRI.StartNextObjective();
-    }
     WaveStarted();
+    MyKFGRI.NotifyWaveStart();
     MyKFGRI.AIRemaining = SpawnManager.WaveTotalAI;
     MyKFGRI.WaveTotalAICount = SpawnManager.WaveTotalAI;
-    BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 0);
+    BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', GetWaveStartMessage());
     SetupNextTrader();
     ResetAllPickups();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
@@ -693,6 +711,27 @@ function StartWave()
         KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime(false);
     }
     SetTimer(5, false, 'PlayWaveStartDialog');
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        if(KFPC.GetPerk() != none)
+        {
+            KFPC.GetPerk().OnWaveStart();
+        }        
+    }    
+}
+
+function bool IsMapObjectiveEnabled()
+{
+    return bEnableMapObjectives;
+}
+
+function byte GetWaveStartMessage()
+{
+    if(MyKFGRI.IsBossWave())
+    {
+        return 19;
+    }
+    return 0;
 }
 
 function ResetAllPickups()
@@ -875,7 +914,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     MyKFGRI.NotifyWaveEnded();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
-        KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime(!MyKFGRI.IsFinalWave());
+        KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime(!MyKFGRI.IsBossWave());
     }
     if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
@@ -951,6 +990,11 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 
 function CloseTraderTimer();
 
+function SkipTrader(int TimeAfterSkipTrader)
+{
+    SetTimer(float(TimeAfterSkipTrader), false, 'CloseTraderTimer');
+}
+
 function DoTraderTimeCleanup();
 
 function OpenTrader()
@@ -1021,7 +1065,7 @@ function EndOfMatch(bool bVictory)
     }
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
-        KFPC.ClientMatchEnded();        
+        KFPC.ClientGameOver(WorldInfo.GetMapName(true), byte(GameDifficulty), byte(GameLength), IsMultiplayerGame(), byte(WaveNum));        
     }    
     WorldInfo.TWPushLogs();
     GotoState('MatchEnded');
@@ -1272,8 +1316,6 @@ defaultproperties
     TimeBetweenWaves=60
     EndCinematicDelay=4
     AARDisplayDelay=15
-    ObjectiveCheckIntervall=30
-    MinAIAlivePercReqForObjStart=0.3
     bCanPerkAlwaysChange=false
     bEnableGameAnalytics=true
     DifficultyInfoClass=Class'KFGameDifficulty_Survival'

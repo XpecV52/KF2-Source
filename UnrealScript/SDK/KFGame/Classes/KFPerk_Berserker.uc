@@ -239,7 +239,6 @@ simulated function ModifySpeed( out float Speed )
 
 	if( MyKFWeapon != none && MyKFWeapon.IsMeleeWeapon() )
 	{
-		`QALog( "Movement" @ MyKFWeapon @ GetPercentage( Speed, Speed *  GetSkillValue( PerkSkills[EBerserkerNinja] ) ), bLogPerk );
 		Speed += Speed * GetSkillValue( PerkSkills[EBerserkerNinja] );
 	}
 }
@@ -574,8 +573,6 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	local name StateName;
 
 	StateName = W.GetStateName();
-
-	`QALog(GetFuncName() @ "StateName =" @ StateName, bLogPerk);
 
 	if( IsWeaponOnPerk( W,, self.class ) && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 	{

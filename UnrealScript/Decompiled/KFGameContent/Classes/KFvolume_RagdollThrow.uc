@@ -56,8 +56,7 @@ simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocat
         }
         TrackedHits.Remove(LastHitIdx, 1;
     }
-    LastHitIdx = HitExclusionList.Find(Other.Class;
-    if(LastHitIdx != -1)
+    if(IsActorExcluded(Other))
     {
         return;
     }
@@ -101,6 +100,19 @@ simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocat
         NewHit.HitTime = WorldInfo.TimeSeconds;
         TrackedHits.AddItem(NewHit;
     }
+}
+
+simulated function CausePainTo(Actor Other)
+{
+    if(!IsActorExcluded(Other))
+    {
+        super(KFPhysicsVolume).CausePainTo(Other);
+    }
+}
+
+simulated function bool IsActorExcluded(Actor Other)
+{
+    return HitExclusionList.Find(Other.Class != -1;
 }
 
 defaultproperties
