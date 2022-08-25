@@ -273,7 +273,7 @@ function LoginToGame()
 
 	SetString("loginText", LoggingInText );
 	SetBool("showLoading", true);
-	
+
 	// For XB1 we need to first read save data before attempting the "login"
 	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
 	{
@@ -303,19 +303,8 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 	// Ensure player controller updates its cached settings
 	KFPlayerController(GetPC()).OnReadProfileSettingsComplete( LocalUserNum, bWasSuccessful );
 
-	// Now we kick off stats read
-	OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate( OnStatsRead );
 	// Set the ID of the owning player
 	KFPlayerController(GetPC()).SetStatsReadOwningPlayerId( GetLP().GetUniqueNetId() );
-	KFPlayerController(GetPC()).ReadStats();
-}
-
-
-function OnStatsRead( bool bWasSuccessful )
-{
-	`log("stats read with success"@bWasSuccessful);
-
-	OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate( OnStatsRead );
 
 	// Now proceed with login
 	KFPlayerController(GetPC()).StartLogin(OnLoginToGameComplete, AutoLoginCompleteDelegate != none);
@@ -325,7 +314,7 @@ function OnStatsRead( bool bWasSuccessful )
 function OnLoginToGameComplete()
 {
 	// Detect logout during "login" process
-	if( OnlineSub.PlayerInterface.GetLoginStatus( GetLP().ControllerId ) != LS_LoggedIn && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) )
+	if (OnlineSub.PlayerInterface.GetLoginStatus(GetLP().ControllerId) != LS_LoggedIn && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
 	{
 		return;
 	}
@@ -333,9 +322,22 @@ function OnLoginToGameComplete()
 	// Flag us as logged in
 	KFGameEngine(class'Engine'.static.GetEngine()).LocalLoginStatus = LS_LoggedIn;
 
+	// Now we kick off stats read
+	OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnStatsRead);
+	KFPlayerController(GetPC()).ReadStats();
+}
+
+//read stats after we login because the login process will read title data.
+//title data will give us bunches of information like any seasonal events.
+function OnStatsRead( bool bWasSuccessful )
+{
+	`log("stats read with success"@bWasSuccessful);
+
+	OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate( OnStatsRead );
+
 	ProceedToMainMenu();
 
-	if( AutoLoginCompleteDelegate != none )
+	if (AutoLoginCompleteDelegate != none)
 	{
 		AutoLoginCompleteDelegate();
 		AutoLoginCompleteDelegate = none;
@@ -397,8 +399,8 @@ function ProceedToMainMenu()
 	}
 
 	// If controller is not connected when proceeding to main menu. We need to show the controller disconnect dialog again
-	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) && 
-		!OnlineSub.SystemInterface.IsControllerConnected(GetLP().ControllerId) && 
+	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) &&
+		!OnlineSub.SystemInterface.IsControllerConnected(GetLP().ControllerId) &&
 		!class'Engine'.static.GetEngine().GameViewport.bNeedsNewGamepadPairingForNewProfile )
 	{
 		PC.SetTimer( 0.01, false, 'ShowControllerDisconnectedDialog' );

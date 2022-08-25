@@ -123,6 +123,10 @@ function AddTrackedDamage(int Amount, class<DamageType> DamageType, class<Pawn> 
     {
         AddTrackedVsDamage(Amount, DamagerClass);
     }
+	else
+	{
+		Super.AddTrackedDamage(Amount, DamageType, DamagerClass, VictimClass);
+	}
 }
 
 /** @return TRUE if any of the gameplay post process effects have a strength greater than 0.

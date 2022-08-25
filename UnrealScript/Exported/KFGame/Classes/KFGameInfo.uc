@@ -882,10 +882,13 @@ static function bool IsGameModeSoloPlayAllowed( int GameModeNum )
 static function int GetGameModeIndexFromName(string FriendlyName)
 {
 	local int index;
+	local array<string> LocalizedGameModes;
 
-	for (index = 0; index < default.GameModes.length; index++)
+	LocalizedGameModes = class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
+
+	for (index = 0; index < LocalizedGameModes.length; index++)
 	{
-		if (default.GameModes[index].FriendlyName == FriendlyName)
+		if (LocalizedGameModes[index] == FriendlyName)
 		{
 			return index;
 		}

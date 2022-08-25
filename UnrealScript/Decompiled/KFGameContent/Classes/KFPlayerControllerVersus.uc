@@ -79,7 +79,11 @@ function AddTrackedDamage(int Amount, class<DamageType> DamageType, class<Pawn> 
 {
     if(VictimClass == Class'KFPawn_Human_Versus')
     {
-        AddTrackedVsDamage(Amount, DamagerClass);
+        AddTrackedVsDamage(Amount, DamagerClass);        
+    }
+    else
+    {
+        super.AddTrackedDamage(Amount, DamageType, DamagerClass, VictimClass);
     }
 }
 

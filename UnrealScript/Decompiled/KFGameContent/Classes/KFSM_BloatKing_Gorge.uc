@@ -56,6 +56,20 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         DeferredRemovalList.AddItem(PullPawn;        
     }    
     PullList.Length = 0;
+    super.SpecialMoveEnded(PrevMove, NextMove);
+}
+
+function PlayAnimation()
+{
+    local float Duration;
+
+    Duration = PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1, bLoopAnim);
+    KFPOwner.SetTimer(Duration + 2, false, 'TimeOut', self);
+}
+
+function TimeOut()
+{
+    BloatPawn.EndSpecialMove();
 }
 
 function Tick(float DeltaTime)

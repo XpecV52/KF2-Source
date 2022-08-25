@@ -1584,7 +1584,7 @@ defaultproperties
 	XPTable(24)=44775
 
     //Base Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,SecondaryType=DOST_KnifeDamage,ObjectiveClasses=(KFWeap_Edged_Knife, KFDT_Slashing_Knife,KFDT_Piercing_KnifeStab),CompletionAmount=2500))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,SecondaryType=DOST_KnifeDamage,ObjectiveClasses=(KFWeap_Edged_Knife,KFDT_Slashing_Knife,KFDT_Slashing_Knife_Berserker,KFDT_Slashing_Knife_Medic,KFDT_Slashing_Knife_SWAT,KFDT_Slashing_KnifeHeavy,KFDT_Slashing_KnifeHeavy_Berserker,KFDT_Slashing_KnifeHeavy_Medic,KFDT_Slashing_KnifeHeavy_SWAT,KFDT_Piercing_KnifeStab,KFDT_Piercing_KnifeStab_Berserker,KFDT_Piercing_KnifeStab_FieldMedic,KFDT_Piercing_KnifeStab_SWAT),CompletionAmount=2500))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_9mm, KFDT_Ballistic_9mm,KFDT_Bludgeon_9mm),CompletionAmount=2500))
 
     //Swat Weapons

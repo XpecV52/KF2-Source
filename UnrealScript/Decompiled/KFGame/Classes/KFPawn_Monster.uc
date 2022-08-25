@@ -392,6 +392,25 @@ simulated event PostBeginPlay()
     }
 }
 
+simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
+{
+    local int I;
+
+    super.SetMeshLightingChannels(NewLightingChannels);
+    I = 0;
+    J0x1E:
+
+    if(I < StaticAttachList.Length)
+    {
+        if(StaticAttachList[I] != none)
+        {
+            StaticAttachList[I].SetLightingChannels(NewLightingChannels);
+        }
+        ++ I;
+        goto J0x1E;
+    }
+}
+
 simulated function NotifyTeamChanged()
 {
     if(CharacterArch != none)

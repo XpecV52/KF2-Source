@@ -45,7 +45,9 @@ function OnDestroyOrReset()
 
     foreach TouchingActors(Class'KFPawn_Human', P)
     {
-        @NULL ==  != return;        
+        foreach @NULL(@NULL@NULL) == 
+        {
+        }
         @NULL
         default.@NULL
         @NULL

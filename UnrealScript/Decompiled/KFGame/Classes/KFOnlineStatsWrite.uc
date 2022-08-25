@@ -1609,7 +1609,7 @@ defaultproperties
     XPTable[22]=31999
     XPTable[23]=37852
     XPTable[24]=44775
-    DailyEvents(0)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_KnifeDamage,ObjectiveClasses=(KFWeap_Edged_Knife,KFDT_Slashing_Knife,KFDT_Piercing_KnifeStab),CompletionAmount=2500)
+    DailyEvents(0)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_KnifeDamage,ObjectiveClasses=(KFWeap_Edged_Knife,KFDT_Slashing_Knife,KFDT_Slashing_Knife_Berserker,KFDT_Slashing_Knife_Medic,KFDT_Slashing_Knife_SWAT,KFDT_Slashing_KnifeHeavy,KFDT_Slashing_KnifeHeavy_Berserker,KFDT_Slashing_KnifeHeavy_Medic,KFDT_Slashing_KnifeHeavy_SWAT,KFDT_Piercing_KnifeStab,KFDT_Piercing_KnifeStab_Berserker,KFDT_Piercing_KnifeStab_FieldMedic,KFDT_Piercing_KnifeStab_SWAT),CompletionAmount=2500)
     DailyEvents(1)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_Pistol_9mm,KFDT_Ballistic_9mm,KFDT_Bludgeon_9mm),CompletionAmount=2500)
     DailyEvents(2)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_SMG_MP7,KFDT_Ballistic_MP7,KFDT_Bludgeon_MP7),CompletionAmount=3000)
     DailyEvents(3)=(ObjectiveType=eDailyObjectiveType.DOT_WeaponDamage,SecondaryType=eDailyObjectiveSecondaryType.DOST_PlayPerk,ObjectiveClasses=(KFWeap_SMG_MP5RAS,KFDT_Ballistic_MP5RAS,KFDT_Bludgeon_MP5RAS),CompletionAmount=5000)

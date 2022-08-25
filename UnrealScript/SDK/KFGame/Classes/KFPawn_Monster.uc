@@ -671,6 +671,21 @@ simulated event PostBeginPlay()
 	}
 }
 
+simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
+{
+	local int i;
+
+	super.SetMeshLightingChannels(NewLightingChannels);
+
+	for (i = 0; i < StaticAttachList.Length; ++i)
+	{
+		if (StaticAttachList[i] != none)
+		{
+			StaticAttachList[i].SetLightingChannels(NewLightingChannels);
+		}
+	}
+}
+
 //update the portrait when we get a PRI
 simulated function NotifyTeamChanged()
 {

@@ -220,15 +220,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
     LogInternal((("Profile settings read for" @ string(LocalUserNum)) @ "with success") @ string(bWasSuccessful));
     OnlineSub.PlayerInterface.ClearReadProfileSettingsCompleteDelegate(byte(Outer.GetLP().ControllerId), OnReadProfileSettingsComplete);
     KFPlayerController(Outer.GetPC()).OnReadProfileSettingsComplete(LocalUserNum, bWasSuccessful);
-    OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnStatsRead);
     KFPlayerController(Outer.GetPC()).SetStatsReadOwningPlayerId(Outer.GetLP().GetUniqueNetId());
-    KFPlayerController(Outer.GetPC()).ReadStats();
-}
-
-function OnStatsRead(bool bWasSuccessful)
-{
-    LogInternal("stats read with success" @ string(bWasSuccessful));
-    OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnStatsRead);
     KFPlayerController(Outer.GetPC()).StartLogin(OnLoginToGameComplete, AutoLoginCompleteDelegate != none);
 }
 
@@ -239,6 +231,14 @@ function OnLoginToGameComplete()
         return;
     }
     KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus = 2;
+    OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnStatsRead);
+    KFPlayerController(Outer.GetPC()).ReadStats();
+}
+
+function OnStatsRead(bool bWasSuccessful)
+{
+    LogInternal("stats read with success" @ string(bWasSuccessful));
+    OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnStatsRead);
     ProceedToMainMenu();
     if(AutoLoginCompleteDelegate != none)
     {
