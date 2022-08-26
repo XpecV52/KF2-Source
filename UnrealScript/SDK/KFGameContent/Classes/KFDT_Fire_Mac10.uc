@@ -14,6 +14,7 @@ class KFDT_Fire_Mac10 extends KFDT_Ballistic_DragonsBreath
 
 defaultproperties
 {
+	GoreDamageGroup = DGT_Submachinegun
 	WeaponDef=class'KFWeapDef_Mac10'
 	ModifierPerkList(0)=class'KFPerk_Firebug'
 	ModifierPerkList(1)=class'KFPerk_SWAT'

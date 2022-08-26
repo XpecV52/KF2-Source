@@ -100,7 +100,7 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.13 // about twice as fast as single
 	InstantHitDamage(DEFAULT_FIREMODE)=53
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AF2011'
-	PenetrationPower(DEFAULT_FIREMODE)=2.0
+	PenetrationPower(DEFAULT_FIREMODE)=1.5
 	NumPojectiles(DEFAULT_FIREMODE) = 2
 	Spread(DEFAULT_FIREMODE)=0.01
     AmmoCost(DEFAULT_FIREMODE)=2
@@ -111,7 +111,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)= EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_PistolAF2011'
-	FireInterval(ALTFIRE_FIREMODE)=+0.11 // about twice as fast as single
+	FireInterval(ALTFIRE_FIREMODE)=+0.13 // about twice as fast as single
 	InstantHitDamage(ALTFIRE_FIREMODE)=53
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_AF2011'
 	PenetrationPower(ALTFIRE_FIREMODE)=1.5

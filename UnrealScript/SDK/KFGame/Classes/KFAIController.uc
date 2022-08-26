@@ -1963,22 +1963,15 @@ function bool DoHeavyZedBump( Actor Other, vector HitNormal )
 		return false;
 	}
 
-	if( (MyKFPawn.bIsSprinting && !MyKFPawn.IsDoingSpecialMove()) )
+	if( (MyKFPawn.bIsSprinting || MyKFPawn.IsEnraged()) )
 	{
-		BumpEffectDamage = ZedBumpEffectThreshold * BumpedMonster.ZedBumpDamageScale;
+		BumpEffectDamage = ZedBumpEffectThreshold * BumpedMonster.ZedBumpDamageScale * (MyKFPawn.bIsSprinting ? 2 : 1);
 
 		// If the Bumped Zed is near death, play either a knockdown or an immediate obliteration
 		if( BumpedMonster.Health - BumpEffectDamage <= 0 )
 		{
-			// Chance to obliterate if at low health
-			if( FRand() < ZedBumpObliterationEffectChance )
-			{
-				BumpedMonster.TakeDamage(BumpEffectDamage, self, BumpedMonster.Location, vect(0,0,0), MyKFPawn.GetBumpAttackDamageType());
-			}
-			else
-			{
-				BumpedMonster.Knockdown( , vect(1,1,1), Pawn.Location, 1000, 100 );
-			}
+			BumpedMonster.TakeDamage(BumpEffectDamage, self, BumpedMonster.Location, vect(0, 0, 0), MyKFPawn.GetBumpAttackDamageType());
+			BumpedMonster.Knockdown(, vect(1, 1, 1), Pawn.Location, 1000, 100);
 			return true;
 		}
 		else
@@ -1989,6 +1982,7 @@ function bool DoHeavyZedBump( Actor Other, vector HitNormal )
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -4715,7 +4709,7 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 		}
 	}
 	DisableBump( 0.25f );
-	if( MyKFPawn != none && MyKFPawn.Physics == PHYS_Falling )
+	if (MyKFPawn != none && MyKFPawn.Physics == PHYS_Falling)
 	{
 		return false;
 	}
@@ -4736,6 +4730,13 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 			DoStrike();
 		}
 	}
+
+	if (Role == ROLE_Authority && bCanDoHeavyBump)
+	{
+		DoHeavyZedBump(Other, HitNormal);
+		return true;
+	}
+
 	//      if( IgnoreNotifies() )
 	//      {
 	//           `AILog( "Bump ignoring notifies for "$GetActiveCommand(), 'BumpEvent' );
@@ -4757,11 +4758,6 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 		//{
 		//	return true;
 		//}
-	}
-
-	if( Role == ROLE_Authority && bCanDoHeavyBump )
-	{
-		DoHeavyZedBump(Other, HitNormal);
 	}
 
 	if( LastBumpedPawn == none || Pawn.IsSameTeam(LastBumpedPawn) || !LastBumpedPawn.IsAliveAndWell() || (Enemy != none && Enemy == Other) )

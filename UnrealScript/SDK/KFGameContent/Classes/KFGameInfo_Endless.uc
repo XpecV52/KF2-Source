@@ -720,6 +720,7 @@ function int CalculateMinimumRespawnDosh(float UsedMaxRespawnDosh)
 
 defaultproperties
 {
+	bIsEndlessGame = true
 	bGoToBossCameraOnDeath=false
 	bIsInHoePlus=false
 

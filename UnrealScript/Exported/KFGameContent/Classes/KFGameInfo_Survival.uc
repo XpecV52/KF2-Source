@@ -1604,6 +1604,8 @@ function NotifyTraderOpened()
  {
  	function BeginState( Name PreviousStateName )
 	{
+		LogInternal("KFGameInfo_Survival - MatchEnded.BeginState - AARDisplayDelay:" @ AARDisplayDelay);
+
 		MyKFGRI.EndGame();
 		MyKFGRI.bWaitingForAAR = true; //@HSL - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
 
@@ -1625,6 +1627,12 @@ function NotifyTraderOpened()
 		}
 	}
  }
+
+function RestartGame()
+{
+	LogInternal("KFGameInfo_Survival - RestartGame");
+	super.RestartGame();
+}
 
 function EndOfMatch(bool bVictory)
 {
@@ -1711,6 +1719,8 @@ function SetZedsToVictoryState()
 function ShowPostGameMenu()
 {
 	local KFGameReplicationInfo KFGRI;
+
+	LogInternal("KFGameInfo_Survival - ShowPostGameMenu");
 
 	MyKFGRI.bWaitingForAAR = false; //@HSL - JRO - 6/15/2016 - Make sure we're still at full speed before the end of game menu shows up
 

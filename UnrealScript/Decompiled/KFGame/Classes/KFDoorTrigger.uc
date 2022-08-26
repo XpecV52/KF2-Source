@@ -46,7 +46,7 @@ function OnDestroyOrReset()
     foreach TouchingActors(Class'KFPawn_Human', P)
     {
         
-        @NULL.Sort( != return + default.@NULL;
+        @NULL.Sort( != return /= default.@NULL;
         @NULL
     }
 }

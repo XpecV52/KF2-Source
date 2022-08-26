@@ -215,6 +215,7 @@ TanakaVaultRetroSuitDescription="看它的 8 位数荣耀值！也许是 16 位�
 DonovanVaultPreciousSuitDescription="紫色和金色，忠诚值颜色。与多诺万·尼尔兼容。"
 DJScullyVaultPreciousSuitDescription="金边可以提升一切值。与 DJ 斯库利兼容。"
 AnaVaultPreciousSuitDescription="金边可以提升一切值。与安娜·拉维兼容。"
+AnaVaultPreciousSuitDescription="金边可以提升一切值。与安娜·拉维兼容。"
 FosterVaultPreciousSuitDescription="金边可以提升一切值。与福斯特先生兼容。"
 AlanVaultPajamasVaultTileDescription="穿着保暖的服饰在打爆丧尸的头。这件时髦的连体睡衣能够让你在任何冬季清晨保持暖和！与经典马斯特森兼容。"
 AlbertsVaultPajamasVaultTileDescription="穿着保暖的服饰在打爆丧尸的头。这件时髦的连体睡衣能够让你在任何冬季清晨保持暖和！与教士艾伯特斯兼容。"
@@ -309,6 +310,8 @@ HorzineSupplyCrateSeries8Description="需要系列 #8 霍因供应箱钥匙才�
 
 HorzineSupplyCrateSeries9Description="需要系列 #9 霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">精神病人眼镜</font><br><font color="#4b69cd">闭合式精神病人面具</font><br><font color="#4b69cd">打开式精神病人面具</font><br><font color="#4b69cd">微笑精神病人面具</font><br><font color="#6600a1">血红精神病人眼镜</font><br><font color="#6600a1">血红闭合式精神病人面具</font><br><font color="#6600a1">血红打开式精神病人面具</font><br><font color="#6600a1">血红微笑精神病人面具</font><br><font color="#8847ff">闭合式精神病痛苦眼镜</font><br><font color="#8847ff">打开式精神病痛苦眼镜</font><br><font color="#8847ff">闭合式精神病痛苦面具</font><br><font color="#8847ff">打开式精神病痛苦面具</font><br><font color="#8847ff">微笑精神病痛苦面具</font><br><font color="#caab05">或一种极其稀有宝贵的配件！</font>"
 
+HorzineSupplyCrateSeries10Description="需要系列 #10 霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">叛徒头盔</font><br><font color="#4b69cd">叛徒面具</font><br><font color="#4b69cd">叛徒围脖</font><br><font color="#6600a1">叛徒头盔护目镜向下</font><br><font color="#6600a1">叛徒头盔护目镜向上</font><br><font color="#6600a1">蒸汽朋克防毒面具基础</font><br><font color="#8847ff">打开的蒸汽朋克防毒面具</font><br><font color="#8847ff">关闭的蒸汽朋克防毒面具</font><br><font color="#8847ff">过滤的蒸汽朋克防毒面具</font><br><font color="#8847ff">打开的过滤蒸汽朋克防毒面具</font><br><font color="#8847ff">关闭的过滤蒸汽朋克防毒面具</font><br><font color="#caab05">或者一种极其稀有宝贵的配件！</font>"
+
 HorzineSupplyCrateSeries11Description="需要系列 #11 霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">死神面部护甲</font><br><font color="#4b69cd">死神亡灵眼</font><br><font color="#4b69cd">死神亡灵兜帽</font><br><font color="#4b69cd">死神亡灵面具</font><br><font color="#6600a1">死神之下巴</font><br><font color="#6600a1">死神之眼</font><br><font color="#6600a1">列神之帽</font><br><font color="#8847ff">死神鸦下巴</font><br><font color="#8847ff">死神鸦眼</font><br><font color="#8847ff">死神鸦帽</font><br><font color="#caab05">或者一种极其稀有宝贵的配件！</font>"
 
 HorzineSupplyCrateSeries12Description="需要系列 #12 霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">Deepstrike 头盔</font><br><font color="#4b69cd">Deepstrike 护目镜</font><br><font color="#4b69cd">Deepstrike 面具</font><br><font color="#6600a1">Deepstrike 头盔面具</font><br><font color="#8847ff">Deepstrike 策略背包</font><br><font color="#caab05">或者一种极其稀有宝贵的配件！</font>"
@@ -327,7 +330,7 @@ EmoteCrateSeries2Description="需要系列 #2 表情供应箱钥匙才能打开�
 
 DoshVaultUnlockedCrate1Description="包含以下一种稀有或更好的配件：<br>玩家配件<br>面部彩绘<br>制服种类<br>武器皮肤<br><font color="#caab05">或者一种极其稀有宝物的配件！</font>"
 
-
+HorzineSupplyCrateSeriesDARDescription="Requires a D.A.R. Horzine Supply Crate Key to open. Contains one rare or better of the following D.A.R. accessories:<br><font color="#4b69cd">Flight P51 Armor or Helmet</font><br><font color="#4b69cd">CHONNE-E 5 Gym or Time Cube Armor</font><br><font color="#4b69cd">CHONNE-E 5 Chap or Steel Helmet</font><br><font color="#4b69cd">C3HZ Crash Armor or Helmet</font><br><font color="#4b69cd">C3HZ Flow Blue Armor or Helmet</font><br><font color="#6600a1">Flight Galactic Armor or Helmet</font><br><font color="#6600a1">Flight Scream Armor or Helmet</font><br><font color="#6600a1">CHONNE-E 5 BatCat Armor</font><br><font color="#6600a1">CHONNE-E 5 Vapor Helmet</font><br><font color="#6600a1">C3HZ Obsidian Armor or Helmet</font><br><font color="#6600a1">C3HZ Space Armor or Helmet</font><br><font color="#8847ff">Flight Blue Angel Armor or Helmet</font><br><font color="#8847ff">Flight Spitfire Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Horzine Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Radical Armor</font><br><font color="#8847ff">CHONNE-E 5 Sunset Helmet</font><br><font color="#8847ff">C3HZ Marble Armor or Helmet</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="霍因供应箱钥匙 | 系列 #1"
@@ -441,7 +444,7 @@ JunkyardEncryptedUSBDescription="需要垃圾场蓝图钥匙才能打开。包�
 
 NeonEncryptedUSBDescription="需要霓虹灯蓝图钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">SG 500 | 霓虹灯</font><br><font color="#4b69cd">轨炮 | 霓虹灯</font><br><font color="#4b69cd">RPG-7 | 霓虹灯</font><br><font color="#4b69cd">Scar | 霓虹灯</font><br><font color="#4b69cd">M1911 | 霓虹灯</font><br><font color="#4b69cd">武士刀 | 霓虹灯</font><br><font color="#4b69cd">龙息 | 霓虹灯</font><br><font color="#4b69cd">Kriss 冲锋枪 | 霓虹灯</font><br><font color="#6600a1">MP5RAS | 白色霍因精英</font><br><font color="#6600a1">MP5RAS | 绿色霍因精英 </font><br><font color="#8847ff">MP5RAS | 黑色霍因精英</font><br><font color="#8847ff">MP5RAS | 蓝色霍因精英</font><br><font color="#8847ff">MP5RAS | 红色霍因精英</font><br><font color="#caab05">或一种极其稀有宝物的皮肤！</font>"
 
-
+WeaponCollectorPack1EncryptedUSBDescription="Requires a Weapon Collector Pack 1 Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Crovel | Black Golden</font><br><font color="#4b69cd">9MM | Black Golden</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Black Golden</font><br><font color="#4b69cd">Dragonsbreath | Heirloom</font><br><font color="#4b69cd">Spitfire | Heirloom</font><br><font color="#4b69cd">M1911 | Heirloom</font><br><font color="#4b69cd">1858 Revolver | Heirloom</font><br><font color="#4b69cd">RPG-7 | Heirloom</font><br><font color="#4b69cd">Winchester 1894 | Heirloom</font><br><font color="#6600a1">Katana | Black Golden</font><br><font color="#6600a1">Eviscerator | Black Golden</font><br><font color="#6600a1">Zweihander | Black Golden</font><br><font color="#6600a1">Pulverizer | Black Golden</font><br><font color="#8847ff">HMTech Healer | Black Golden</font><br><font color="#8847ff">Welder | Black Golden</font><br><font color="#8847ff">Berserker Knife | Black Golden</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 ;usb key names
 CyberboneUSBKeyName="网骨 USB 钥匙"
@@ -535,9 +538,9 @@ HorzineSupplyCosmeticCrateSeries5Description="需要霍因供应箱钥匙才能�
 
 HorzineSupplyWeaponSkinCrateSeries6Description="需要霍因供应箱钥匙才能打开。包含以下一件稀有或更好的武器皮肤：<br><font color="#4b69cd">9MM | 深度强袭</font><br><font color="#4b69cd">弩弓 | 深度强袭</font><br><font color="#4b69cd">步枪 | 深度强袭</font><br><font color="#4b69cd">沙漠鹰手枪 | 深度强袭</font><br><font color="#6600a1">1894 杠杆步枪 | 深度强袭</font><br><font color="#6600a1">M79 | 深度强袭</font><br><font color="#6600a1">RPG-7 | 深度强袭</font><br><font color="#6600a1">Kriss 冲锋枪 | 霍因精英绿</font><br><font color="#6600a1">Kriss 冲锋枪 | 霍因精英白</font><br><font color="#8847ff">Kriss 冲锋枪 | 霍因精英红</font><br><font color="#8847ff">Kriss 冲锋枪 | 霍因精英蓝</font><br><font color="#caab05">或一件极其稀有、珍贵的武器皮肤！</font>"
 
+HorzineSupplyCosmeticCrateSeries6Description="需要霍因供应箱钥匙才能打开。包含以下一个稀有或更好的 D.A.R. 配件：<br><font color="#4b69cd">Flight P51 盔甲或头盔</font><br><font color="#4b69cd">CHONNE-E 5 健身或时间魔方盔甲</font><br><font color="#4b69cd">CHONNE-E 5 马术帽或钢铁头盔</font><br><font color="#4b69cd">C3HZ 碰撞盔甲或头盔</font><br><font color="#4b69cd">C3HZ 流蓝盔甲或头盔</font><br><font color="#6600a1">Flight 银河盔甲或头盔</font><br><font color="#6600a1">Flight 尖叫盔甲或</font><br><font color="#6600a1">CHONNE-E 5 蝙蝠猫盔甲</font><br><font color="#6600a1">CHONNE-E 5 蒸汽头盔</font><br><font color="#6600a1">C3HZ 黑曜石盔甲或头盔</font><br><font color="#6600a1">C3HZ 太空盔甲或头盔</font><br><font color="#8847ff">Flight 蓝色天使盔甲或头盔</font><br><font color="#8847ff">Flight 喷火盔甲或头盔</font><br><font color="#8847ff">CHONNE-E 5 霍因盔甲或头盔</font><br><font color="#8847ff">CHONNE-E 5 激进盔甲</font><br><font color="#8847ff">CHONNE-E 5 日落头盔</font><br><font color="#8847ff">C3HZ 大理石盔甲或头盔</font><br><font color="#caab05">或一个极其稀有、珍贵的配件！</font>"
 
-
-
+HorzineSupplyWeaponSkinCrateSeries7Description="需要霍因供应箱钥匙才能打开。包含以下一件稀有或更好的武器皮肤：<br><font color="#4b69cd">铁撬棍 | 黑金</font><br><font color="#4b69cd">9MM | 黑金</font><br><font color="#4b69cd">VLAD-1000 钉枪 | 黑金</font><br><font color="#4b69cd">龙之呼吸 | Heirloom</font><br><font color="#4b69cd">喷火枪 | Heirloom</font><br><font color="#4b69cd">M1911 | Heirloom</font><br><font color="#4b69cd">1858 左轮手枪 | Heirloom</font><br><font color="#4b69cd">RPG-7 | Heirloom</font><br><font color="#4b69cd">1894 杠杆步枪 | Heirloom</font><br><font color="#6600a1">武士刀 | 黑金</font><br><font color="#6600a1">开膛剑 | 黑金</font><br><font color="#6600a1">双手剑 | 黑金</font><br><font color="#6600a1">爆破锤 | 黑金</font><br><font color="#8847ff">HMTech 治疗者 | 黑金</font><br><font color="#8847ff">焊接者 | 黑金</font><br><font color="#8847ff">狂战士之刀 | 黑金</font><br><font color="#caab05">或一件极其稀有、珍贵的皮肤！</font>"
 
 
 ;PSN Key Names
@@ -2592,6 +2595,19 @@ ReaperDeadEyesRedName="死神亡灵眼 | 红色"
 ReaperDeadHoodBloodyName="死神亡灵兜帽 | 血红"
 ReaperDeadMaskBloodyName="死神亡灵面具 | 血红"
 ReaperFaceArmorSkullName="死神面部护甲 | 骷髅"
+SteampunkGasMaskBasicBrownName="蒸汽朋克防毒面具基础 | 棕色"
+SteampunkGasMaskBasicBlackName="蒸汽朋克防毒面具基础 | 黑色"
+SteampunkGasMaskOpenBrownName="蒸汽朋克防毒面具打开 | 棕色"
+SteampunkGasMaskOpenBlackName="蒸汽朋克防毒面具打开 | 黑色"
+SteampunkGasMaskClosedBrownName="蒸汽朋克防毒面具关闭 | 棕色"
+SteampunkGasMaskClosedBlackName="蒸汽朋克防毒面具关闭 | 黑色"
+SteampunkGasMaskClosedPreciousName="关闭的蒸汽朋克防毒面具 | 宝贵"
+SteampunkGasMaskFilteredBrownName="过滤的蒸汽朋克防毒面具 | 棕色"
+SteampunkGasMaskFilteredBlackName="过滤的蒸汽朋克防毒面具 | 黑色"
+SteampunkGasMaskOpenFilteredBrownName="过滤的蒸汽朋克防毒面具打开 | 棕色"
+SteampunkGasMaskOpenFilteredBlackName="过滤的蒸汽朋克防毒面具打开 | 黑色"
+SteampunkGasMaskClosedFilteredBrownName="过滤的蒸汽朋克防毒面具关闭 | 棕色"
+SteampunkGasMaskClosedFilteredBlackName="过滤的蒸汽朋克防毒面具关闭 | 黑色"
 MinotaurHelmetAgathaName="牛头人头盔 | 阿加莎"
 MinotaurHelmetCleeseName="牛头人头盔 | 克利斯"
 MinotaurHelmetJaimeName="牛头人头盔 | 杰米"
@@ -3335,6 +3351,12 @@ ReaperDeadEyesDescription="可在装备菜单进行装备；与 Oisten Jägerhor
 ReaperDeadHoodBloodyDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
 ReaperDeadMaskBloodyDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯-布莱尔、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、瑞伊-希金斯兼容。"
 ReaperFaceArmorSkullDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容。"
+SteampunkGasMaskBasicDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯-布莱尔、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容 "
+SteampunkGasMaskOpenDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯-布莱尔、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容"
+SteampunkGasMaskClosedDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯-布莱尔、福斯特先生、多诺万-尼尔、教士艾伯特斯、中将比尔-马斯特森、田中勇人、安娜-拉维、经典布莱尔、经典马斯特森、安东-斯特拉瑟、汤姆-班纳、瑞伊-希金斯兼容 "
+SteampunkGasMaskFilteredDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯·布莱尔、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、瑞伊·希金斯兼容。"
+SteampunkGasMaskOpenFilteredDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯·布莱尔、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、瑞伊·希金斯兼容。"
+SteampunkGasMaskClosedFilteredDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯·布莱尔、、福斯特先生、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、瑞伊·希金斯兼容。"
 MinotaurHelmetDescription="可在装备菜单进行装备；与 Oisten Jägerhorn、DJ 斯库利、PC 罗伯·布莱尔、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、汤姆·班纳、瑞伊·希金斯兼容。"
 RebelHelmetDescription="可在装备菜单进行装备；与 DJ 斯库利、PC 罗伯·布莱尔、福斯特先生、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、汤姆·班纳、瑞伊·希金斯兼容。"
 RebelHelmetGogglesDownDescription="可在装备菜单进行装备；与 PC 罗伯·布莱尔、多诺万·尼尔、教士艾伯特斯、中将比尔·马斯特森、田中勇人、安娜·拉维、经典布莱尔、经典马斯特森、安东·斯特拉瑟、汤姆·班纳、瑞伊·希金斯兼容。"

@@ -16,9 +16,9 @@ defaultproperties
 	KDeathUpKick=1000
 	KDeathVel=500
 
-	KnockdownPower=40 //200
-	StumblePower=70  //340
-	GunHitPower=55  //275
+	KnockdownPower=50 //40
+	StumblePower=100  //70
+	GunHitPower=68  //55
 
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
 

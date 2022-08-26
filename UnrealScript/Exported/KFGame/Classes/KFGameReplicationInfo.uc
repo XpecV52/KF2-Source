@@ -893,7 +893,7 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
     //  replicate track change
     MusicTrackRepCount++;
 
-    if( !IsBossWave() && WorldInfo.NetMode != NM_DedicatedServer )
+    if( !(IsBossWaveNext() && bWaveActive) && WorldInfo.NetMode != NM_DedicatedServer )
     {
         PlayNewMusicTrack( true );
     }
@@ -1515,7 +1515,7 @@ simulated function PlayNewMusicTrack( optional bool bGameStateChanged, optional 
     }
 
     // loop if we're designated to loop or this is the boss wave
-    if( bLoop || IsBossWave() )
+    if( bLoop || (!bEndlessMode && IsBossWave()))
     {
         NextMusicTrackInfo = CurrentMusicTrackInfo;
     }

@@ -179,7 +179,20 @@ function HandleLeaderChange(UniqueNetId AdminId)
 	Manager.HandleSteamLobbyLeaderTakeOver(AdminId);
 	if(LastLeaderID != ZeroUniqueId )
 	{
-		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, PartHostLeftString, PartyLeaderChangedString, class'KFCommon_LocalizedStrings'.default.OKString);
+		if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+		{
+			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, PartHostLeftString, "", class'KFCommon_LocalizedStrings'.default.OKString);
+			//party disband
+			if (OnlineLobby != none && OnlineLobby.IsInLobby())
+			{
+				OnlineLobby.QuitLobby();
+			}
+		}
+		else
+		{
+			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, PartHostLeftString, PartyLeaderChangedString, class'KFCommon_LocalizedStrings'.default.OKString);
+		}
+		
 	}
 	LastLeaderID = AdminId;
 }

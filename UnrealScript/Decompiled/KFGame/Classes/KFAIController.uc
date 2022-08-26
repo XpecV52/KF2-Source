@@ -1577,19 +1577,13 @@ function bool DoHeavyZedBump(Actor Other, Vector HitNormal)
     {
         return false;
     }
-    if(MyKFPawn.bIsSprinting && !MyKFPawn.IsDoingSpecialMove())
+    if(MyKFPawn.bIsSprinting || MyKFPawn.IsEnraged())
     {
-        BumpEffectDamage = int(float(ZedBumpEffectThreshold) * BumpedMonster.ZedBumpDamageScale);
+        BumpEffectDamage = int((float(ZedBumpEffectThreshold) * BumpedMonster.ZedBumpDamageScale) * float(((MyKFPawn.bIsSprinting) ? 2 : 1)));
         if((BumpedMonster.Health - BumpEffectDamage) <= 0)
         {
-            if(FRand() < ZedBumpObliterationEffectChance)
-            {
-                BumpedMonster.TakeDamage(BumpEffectDamage, self, BumpedMonster.Location, vect(0, 0, 0), MyKFPawn.GetBumpAttackDamageType());                
-            }
-            else
-            {
-                BumpedMonster.Knockdown(,, vect(1, 1, 1), Pawn.Location, 1000, 100);
-            }
+            BumpedMonster.TakeDamage(BumpEffectDamage, self, BumpedMonster.Location, vect(0, 0, 0), MyKFPawn.GetBumpAttackDamageType());
+            BumpedMonster.Knockdown(,, vect(1, 1, 1), Pawn.Location, 1000, 100);
             return true;            
         }
         else
@@ -3960,6 +3954,11 @@ event bool NotifyBump(Actor Other, Vector HitNormal)
             DoStrike();
         }
     }
+    if((Role == ROLE_Authority) && bCanDoHeavyBump)
+    {
+        DoHeavyZedBump(Other, HitNormal);
+        return true;
+    }
     if(CachedAICommandList != none)
     {
         if(!Class'Engine'.static.GetEngine().bDisableAILogging)
@@ -3973,10 +3972,6 @@ event bool NotifyBump(Actor Other, Vector HitNormal)
     }
     if(KfMovementPlugin != none)
     {
-    }
-    if((Role == ROLE_Authority) && bCanDoHeavyBump)
-    {
-        DoHeavyZedBump(Other, HitNormal);
     }
     if((((LastBumpedPawn == none) || Pawn.IsSameTeam(LastBumpedPawn)) || !LastBumpedPawn.IsAliveAndWell()) || (Enemy != none) && Enemy == Other)
     {

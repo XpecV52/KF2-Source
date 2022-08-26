@@ -183,11 +183,14 @@ function Callback_ReadyClicked(bool bReady)
         {
             if(KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
             {
-                if(KFPC.MyGFxManager.bMenusOpen && KFPC.MyGFxManager.CurrentMenu != KFPC.MyGFxManager.TraderMenu)
+                if((KFPC.MyGFxManager.bMenusOpen && KFPC.MyGFxManager.CurrentMenu != KFPC.MyGFxManager.TraderMenu) && !KFGRI.bVersusGame)
                 {
                     KFPRI.RequestSkiptTrader(KFPRI);
                     KFPC.MyGFxManager.CloseMenus();
-                    Manager.PartyWidget.ReadyButton.SetVisible(false);
+                    if((Manager != none) && Manager.PartyWidget != none)
+                    {
+                        Manager.PartyWidget.SetReadyButtonVisibility(false);
+                    }
                 }                
             }
             else

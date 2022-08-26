@@ -15,7 +15,7 @@ defaultproperties
     LocalizationKey=KFPawn_ZedFleshpoundMini
     MonsterArchPath="ZED_ARCH.ZED_FleshpoundMini_Archetype"
     DifficultySettings=class'KFDifficulty_FleshpoundMini'
-
+	ZedBumpDamageScale = 0.25f
     Health=750
     Mass=100
 

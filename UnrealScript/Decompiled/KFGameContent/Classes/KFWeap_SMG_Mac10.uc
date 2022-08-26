@@ -23,7 +23,7 @@ defaultproperties
     IronSightPosition=(X=15,Y=0,Z=0)
     GroupPriority=60
     WeaponSelectTexture=Texture2D'WEP_UI_MAC10_TEX.UI_WeaponSelect_Mac10'
-    SpareAmmoCapacity=320
+    SpareAmmoCapacity=384
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

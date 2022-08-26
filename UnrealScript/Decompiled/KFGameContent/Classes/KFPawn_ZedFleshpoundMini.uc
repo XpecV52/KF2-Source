@@ -26,6 +26,7 @@ defaultproperties
     XPValues[2]=30
     XPValues[3]=34
     DamageTypeModifiers=/* Array type was not detected. */
+    ZedBumpDamageScale=0.25
     DifficultySettings=Class'KFDifficulty_FleshpoundMini'
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshpoundMini.FootstepCameraShake0'
     LocalizationKey=KFPawn_ZedFleshpoundMini

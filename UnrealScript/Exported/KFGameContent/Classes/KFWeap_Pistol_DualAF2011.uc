@@ -48,7 +48,7 @@ defaultproperties
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
-   PenetrationPower(0)=2.000000
+   PenetrationPower(0)=1.500000
    PenetrationPower(1)=1.500000
    MeshIronSightFOV=77.000000
    PlayerIronSightFOV=77.000000
@@ -102,7 +102,7 @@ defaultproperties
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_PistolAF2011'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_PistolAF2011'
    FireInterval(0)=0.130000
-   FireInterval(1)=0.110000
+   FireInterval(1)=0.130000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()

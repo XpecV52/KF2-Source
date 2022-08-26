@@ -12,7 +12,7 @@ class KFProj_HuskCannon_Fireball extends KFProj_BallisticExplosive
 var float DamageScale;
 var float AOEScale;
 var float IncapScale;
-var int ChargeLevel;
+var repnotify int ChargeLevel;
 var const ParticleSystem ExplosionEffectL1;
 var const ParticleSystem ExplosionEffectL2;
 var const ParticleSystem ExplosionEffectL3;
@@ -36,7 +36,17 @@ var KFImpactEffectInfo AltGroundFire;
 replication
 {
      if(bNetInitial)
-        bSpawnGroundFire;
+        ChargeLevel, bSpawnGroundFire;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+    if(VarName == 'ChargeLevel')
+    {
+        bSpawnGroundFire = ChargeLevel == 3;
+        SpawnFlightEffects();
+    }
+    super(KFProjectile).ReplicatedEvent(VarName);
 }
 
 simulated function PostBeginPlay()
@@ -44,14 +54,17 @@ simulated function PostBeginPlay()
     local KFWeap_HuskCannon HuskCannon;
     local KFPlayerReplicationInfo InstigatorPRI;
 
-    if(Instigator != none)
+    if(Role == ROLE_Authority)
     {
         HuskCannon = KFWeap_HuskCannon(Owner);
         if(HuskCannon != none)
         {
             ChargeLevel = HuskCannon.GetChargeLevel();
+            bSpawnGroundFire = ChargeLevel == 3;
         }
-        bSpawnGroundFire = ChargeLevel == 3;
+    }
+    if(Instigator != none)
+    {
         if(AltGroundFire != none)
         {
             InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
@@ -215,6 +228,10 @@ function float GetIncapMod()
 
 simulated function SpawnFlightEffects()
 {
+    if(ChargeLevel == 0)
+    {
+        return;
+    }
     switch(ChargeLevel)
     {
         case 1:

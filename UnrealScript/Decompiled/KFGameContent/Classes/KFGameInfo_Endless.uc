@@ -691,6 +691,7 @@ defaultproperties
     OutbreakWaveStart=6
     bSplitBossDoshReward=false
     bGoToBossCameraOnDeath=false
+    bIsEndlessGame=true
     DifficultyInfoClass=Class'KFGameDifficulty_Endless'
     DifficultyInfoConsoleClass=Class'KFGameDifficulty_Endless_Console'
     SpawnManagerClasses=/* Array type was not detected. */

@@ -215,6 +215,7 @@ TanakaVaultRetroSuitDescription="8ビットの輝きをご覧あれ！または1
 DonovanVaultPreciousSuitDescription="紫と金、高貴な色です。ドノヴァン・ニールが装備できます。"
 DJScullyVaultPreciousSuitDescription="ゴールドトリムすべての見た目を良くします。DJスカリーに対応。"
 AnaVaultPreciousSuitDescription="ゴールドトリムはすべての見た目を良くします。アナ・ラリヴが装備できます。"
+AnaVaultPreciousSuitDescription="ゴールドトリムはすべての見た目を良くします。アナ・ラリヴが装備できます。"
 FosterVaultPreciousSuitDescription="ゴールドトリムはすべての見た目を良くします。Mr.フォスターが装備できます。"
 AlanVaultPajamasVaultTileDescription="Zedの頭を吹き飛ばす時も、暖かく。このスタイリッシュなロンパース・パジャマで、冬の寒い朝を乗り切りましょう！クラシックマスターソンが装備できます。"
 AlbertsVaultPajamasVaultTileDescription="Zedの頭を吹き飛ばす時も、暖かく。このスタイリッシュなロンパース・パジャマで、冬の寒い朝を乗り切りましょう！アルバーツが装備できます。"
@@ -309,6 +310,8 @@ HorzineSupplyCrateSeries8Description="開けるには「シリーズ#8ホージ�
 
 HorzineSupplyCrateSeries9Description="開けるには「シリーズ#9ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上が1つ入っています。<br><font color="#4b69cd">サイコゴーグル</font><br><font color="#4b69cd">サイコマスク(クローズド)</font><br><font color="#4b69cd">サイコマスク(オープン)</font><br><font color="#4b69cd">サイコマスク(スマイル)</font><br><font color="#6600a1">サイコゴーグル(ブラッディ)</font><br><font color="#6600a1">サイコマスク(クローズド・ブラッディ)</font><br><font color="#6600a1">サイコマスク(オープン・ブラッディ)</font><br><font color="#6600a1">サイコマスク(スマイル・ブラッディ)</font><br><font color="#8847ff">サイコペインゴーグル(クローズド)</font><br><font color="#8847ff">サイコペインゴーグル(オープン)</font><br><font color="#8847ff">サイコペインマスク(クローズド)</font><br><font color="#8847ff">サイコペインマスク(オープン)</font><br><font color="#8847ff">サイコペインマスク(スマイル)</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
 
+HorzineSupplyCrateSeries10Description="開けるには「シリーズ#10ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上が1つ入っています。<br><font color="#4b69cd">レベルヘルメット</font><br><font color="#4b69cd">レベルマスク</font><br><font color="#4b69cd">レベルネックウォーマー</font><br><font color="#6600a1">レベルヘルメット・ゴーグルダウン</font><br><font color="#6600a1">レベルヘルメット・ゴーグルアップ</font><br><font color="#6600a1">スチームパンク・ガスマスク（ベーシック）</font><br><font color="#8847ff">スチームパンク・ガスマスク（オープン）</font><br><font color="#8847ff">スチームパンク・ガスマスク（クローズド）</font><br><font color="#8847ff">スチームパンク・ガスマスク（フィルター）</font><br><font color="#8847ff">スチームパンク・ガスマスク（オープン・フィルター）</font><br><font color="#8847ff">スチームパンク・ガスマスク（クローズド・フィルター）</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
+
 HorzineSupplyCrateSeries11Description="開けるには「シリーズ#11ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上が1つ入っています。<br><font color="#4b69cd">リーパーフェイスアーマー</font><br><font color="#4b69cd">リーパーデッドアイズ</font><br><font color="#4b69cd">リーパーデッドフード</font><br><font color="#4b69cd">リーパーデッドマスク</font><br><font color="#6600a1">リーパージョー</font><br><font color="#6600a1">リーパーアイズ</font><br><font color="#6600a1">リーパーハット</font><br><font color="#8847ff">リーパーレイブンジョー</font><br><font color="#8847ff">リーパーレイブンアイズ</font><br><font color="#8847ff">リーパーレイブンハット</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
 
 HorzineSupplyCrateSeries12Description="開けるには「シリーズ#12ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上が1つ入っています。<br><font color="#4b69cd">ディープストライク・ヘルメット</font><br><font color="#4b69cd">ディープストライク・ゴーグル</font><br><font color="#4b69cd">ディープストライク・マスク</font><br><font color="#6600a1">ディープストライク・ヘルメットマスク</font><br><font color="#8847ff">ディープストライク・タクティカルバックバッグ</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
@@ -327,7 +330,7 @@ EmoteCrateSeries2Description="開けるには「シリーズ#2顔文字箱の鍵
 
 DoshVaultUnlockedCrate1Description="次の1つが入っています。<br>プレイヤーアクセサリー<br>フェイスペイント<br>ユニフォーム種類<br>武器スキン<br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
 
-
+HorzineSupplyCrateSeriesDARDescription="Requires a D.A.R. Horzine Supply Crate Key to open. Contains one rare or better of the following D.A.R. accessories:<br><font color="#4b69cd">Flight P51 Armor or Helmet</font><br><font color="#4b69cd">CHONNE-E 5 Gym or Time Cube Armor</font><br><font color="#4b69cd">CHONNE-E 5 Chap or Steel Helmet</font><br><font color="#4b69cd">C3HZ Crash Armor or Helmet</font><br><font color="#4b69cd">C3HZ Flow Blue Armor or Helmet</font><br><font color="#6600a1">Flight Galactic Armor or Helmet</font><br><font color="#6600a1">Flight Scream Armor or Helmet</font><br><font color="#6600a1">CHONNE-E 5 BatCat Armor</font><br><font color="#6600a1">CHONNE-E 5 Vapor Helmet</font><br><font color="#6600a1">C3HZ Obsidian Armor or Helmet</font><br><font color="#6600a1">C3HZ Space Armor or Helmet</font><br><font color="#8847ff">Flight Blue Angel Armor or Helmet</font><br><font color="#8847ff">Flight Spitfire Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Horzine Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Radical Armor</font><br><font color="#8847ff">CHONNE-E 5 Sunset Helmet</font><br><font color="#8847ff">C3HZ Marble Armor or Helmet</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="ホージン物資箱の鍵 | シリーズ#1"
@@ -441,7 +444,7 @@ JunkyardEncryptedUSBDescription="開けるにはジャンクヤード設計図�
 
 NeonEncryptedUSBDescription="開けるにはネオン設計図の鍵が必要です。次のレアまたはそれ以上の武器スキンのが1つ入っています。<br><font color="#4b69cd">SG 500 | ネオン</font><br><font color="#4b69cd">レールガン | ネオン</font><br><font color="#4b69cd">RPG-7 | ネオン</font><br><font color="#4b69cd">SCAR | ネオン</font><br><font color="#4b69cd">M1911 | ネオン</font><br><font color="#4b69cd">カタナ | ネオン</font><br><font color="#4b69cd">ドラゴンブレス | ネオン</font><br><font color="#4b69cd">クリスサブマシンガン | ネオン</font><br><font color="#6600a1">MP5RAS | ホージンエリートホワイト</font><br><font color="#6600a1">MP5RAS | ホージンエリートグリーン</font><br><font color="#8847ff">MP5RAS | ホージンエリートブラック</font><br><font color="#8847ff">MP5RAS | ホージンエリートブルー</font><br><font color="#8847ff">MP5RAS | ホージンエリートレッド</font><br><font color="#caab05">または激レアな貴重スキン！</font>"
 
-
+WeaponCollectorPack1EncryptedUSBDescription="Requires a Weapon Collector Pack 1 Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Crovel | Black Golden</font><br><font color="#4b69cd">9MM | Black Golden</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Black Golden</font><br><font color="#4b69cd">Dragonsbreath | Heirloom</font><br><font color="#4b69cd">Spitfire | Heirloom</font><br><font color="#4b69cd">M1911 | Heirloom</font><br><font color="#4b69cd">1858 Revolver | Heirloom</font><br><font color="#4b69cd">RPG-7 | Heirloom</font><br><font color="#4b69cd">Winchester 1894 | Heirloom</font><br><font color="#6600a1">Katana | Black Golden</font><br><font color="#6600a1">Eviscerator | Black Golden</font><br><font color="#6600a1">Zweihander | Black Golden</font><br><font color="#6600a1">Pulverizer | Black Golden</font><br><font color="#8847ff">HMTech Healer | Black Golden</font><br><font color="#8847ff">Welder | Black Golden</font><br><font color="#8847ff">Berserker Knife | Black Golden</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 ;usb key names
 CyberboneUSBKeyName="サイバーボーンUSBの鍵"
@@ -535,9 +538,9 @@ HorzineSupplyCosmeticCrateSeries5Description="開けるには「ホージン物�
 
 HorzineSupplyWeaponSkinCrateSeries6Description="開けるには「ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上の武器スキンが1つ入っています：<br><font color="#4b69cd">9MM | ディープストライク</font><br><font color="#4b69cd">クロスボウ | ディープストライク</font><br><font color="#4b69cd">Scar | ディープストライク</font><br><font color="#4b69cd">デザートイーグル | ディープストライク</font><br><font color="#6600a1">ウィンチェスター1894 | ディープストライク</font><br><font color="#6600a1">M79 | ディープストライク</font><br><font color="#6600a1">RPG-7 | ディープストライク</font><br><font color="#6600a1">クリスサブマシンガン | ホージンエリートグリーン</font><br><font color="#6600a1">クリスサブマシンガン | ホージンエリートホワイト</font><br><font color="#8847ff">クリスサブマシンガン | ホージンエリートレッド</font><br><font color="#8847ff">クリスサブマシンガン | ホージンエリートブルー</font><br><font color="#caab05">または激レアな貴重スキン！</font>"
 
+HorzineSupplyCosmeticCrateSeries6Description="開けるには「ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上のD.A.R.アクセサリーが1つ入っています：<br><font color="#4b69cd">飛行P51アーマーまたはヘルメット</font><br><font color="#4b69cd">CHONNE-E5ジムまたはタイムキューブアーマー</font><br><font color="#4b69cd">CHONNE-E5チャップまたはスチールヘルメット</font><br><font color="#4b69cd">C3HZクラッシュアーマーまたはヘルメット</font><br><font color="#4b69cd">C3HZフロウブルーアーマーまたはヘルメット</font><br><font color="#6600a1">飛行ギャラクティックアーマーまたはヘルメット</font><br><font color="#6600a1">飛行叫びアーマーまたはヘルメット</font><br><font color="#6600a1">CHONNE-E5バットキャットアーマー</font><br><font color="#6600a1">CHONNE-E5蒸気ヘルメット</font><br><font color="#6600a1">C3HZ黒曜石アーマーまたはヘルメット</font><br><font color="#6600a1">C3HZ Spaceアーマーまたはヘルメット</font><br><font color="#8847ff">飛行青い天使アーマーまたはヘルメット</font><br><font color="#8847ff">飛行スピットファイアアーマーまたはヘルメット</font><br><font color="#8847ff">CHONNE-E5ホージンアーマーまたはヘルメット</font><br><font color="#8847ff">CHONNE-E5ラディカルアーマー</font><br><font color="#8847ff">CHONNE-E5日没ヘルメット</font><br><font color="#8847ff">C3HZ大理石アーマーまたはヘルメット</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
 
-
-
+HorzineSupplyWeaponSkinCrateSeries7Description="開けるには「ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上の武器スキンが1つ入っています：<br><font color="#4b69cd">クロベル | ブラックゴールデン</font><br><font color="#4b69cd">9MM | ブラックゴールデン</font><br><font color="#4b69cd">VLAD-1000ネイルガン | ブラックゴールデン</font><br><font color="#4b69cd">ドラゴンブレス | 伝統</font><br><font color="#4b69cd">スピットファイア | 伝統</font><br><font color="#4b69cd">M1911 | 伝統</font><br><font color="#4b69cd">1858リボルバー | 伝統</font><br><font color="#4b69cd">RPG-7 | 伝統</font><br><font color="#4b69cd">ウィンチェスター1894 | 伝統</font><br><font color="#6600a1">カタナ | ブラックゴールデン</font><br><font color="#6600a1">エヴィスレイター | ブラックゴールデン</font><br><font color="#6600a1">ツヴァイヘンダー | ブラックゴールデン</font><br><font color="#6600a1">パルべライザー | ブラックゴールデン</font><br><font color="#8847ff">HMTechヒーラー | ブラックゴールデン</font><br><font color="#8847ff">溶接機 | ブラックゴールデン</font><br><font color="#8847ff">バーサーカーナイフ | ブラックゴールデン</font><br><font color="#caab05">または激レアな貴重スキン！</font>"
 
 
 ;PSN Key Names
@@ -2592,6 +2595,19 @@ ReaperDeadEyesRedName="リーパーデッドアイズ | レッド"
 ReaperDeadHoodBloodyName="リーパーデッドフード | ブラッディ"
 ReaperDeadMaskBloodyName="リーパーデッドマスク | ブラッディ"
 ReaperFaceArmorSkullName="リーパーフェイスアーマー | スカル"
+SteampunkGasMaskBasicBrownName="スチームパンクガスマスク・ベーシック | ブラウン"
+SteampunkGasMaskBasicBlackName="スチームパンクガスマスク・ベーシック | ブラック"
+SteampunkGasMaskOpenBrownName="スチームパンクガスマスク・開放 | ブラウン"
+SteampunkGasMaskOpenBlackName="スチームパンクガスマスク・開放 | ブラック"
+SteampunkGasMaskClosedBrownName="スチームパンクガスマスク・密閉 | ブラウン"
+SteampunkGasMaskClosedBlackName="スチームパンクガスマスク・密閉 | ブラック"
+SteampunkGasMaskClosedPreciousName="スチームパンク・ガスマスク（クローズド） | 希少"
+SteampunkGasMaskFilteredBrownName="スチームパンクガスマスク・フィルタ | ブラウン"
+SteampunkGasMaskFilteredBlackName="スチームパンクガスマスク・フィルタ | ブラック"
+SteampunkGasMaskOpenFilteredBrownName="スチームパンクガスマスク・開放フィルタ | ブラウン"
+SteampunkGasMaskOpenFilteredBlackName="スチームパンクガスマスク・開放フィルタ | ブラック"
+SteampunkGasMaskClosedFilteredBrownName="スチームパンクガスマスク・密閉フィルタ | ブラウン"
+SteampunkGasMaskClosedFilteredBlackName="スチームパンクガスマスク・密閉フィルタ | ブラック"
 MinotaurHelmetAgathaName="ミノタウロスヘルメット | アガサ"
 MinotaurHelmetCleeseName="ミノタウロスヘルメット | クリース"
 MinotaurHelmetJaimeName="ミノタウロスヘルメット | ジェイミー"
@@ -3335,6 +3351,12 @@ ReaperDeadEyesDescription="装備メニューから装備可能：オイステ�
 ReaperDeadHoodBloodyDescription="装備メニューから装備可能：オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 ReaperDeadMaskBloodyDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、レイ・ヒギンスに対応。"
 ReaperFaceArmorSkullDescription="装備メニューから装備可能：オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
+SteampunkGasMaskBasicDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ・ラリヴ、クラシックブライアー、クラシックマスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスが使用できます。"
+SteampunkGasMaskOpenDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ・ラリヴ、クラシックブライアー、クラシックマスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスが使用できます。"
+SteampunkGasMaskClosedDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、Mr.フォスター、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ・ラリヴ、クラシックブライアー、クラシックマスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスが使用できます。"
+SteampunkGasMaskFilteredDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、レイ・ヒギンスに対応。"
+SteampunkGasMaskOpenFilteredDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、レイ・ヒギンスに対応。"
+SteampunkGasMaskClosedFilteredDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、レイ・ヒギンスに対応。"
 MinotaurHelmetDescription="装備メニューから装備可能：オイステン・イェーガーホーン、DJスカリー、ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 RebelHelmetDescription="装備メニューから装備可能：DJスカリー、ロブ・ブライアー巡査、フォスター氏、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"
 RebelHelmetGogglesDownDescription="装備メニューから装備可能：ロブ・ブライアー巡査、ドノヴァン・ニール、アルバーツ牧師、ビル・マスターソン中尉、ハヤト・タナカ、アナ ラリヴ、クラシック・ブライアー、クラシック・マスターソン、アントン・シュトラッサー、トム・バナー、レイ・ヒギンスに対応。"

@@ -12,6 +12,7 @@ defaultproperties
 {
     BurnDamageType=Class'KFGame.KFDT_Fire_Mac10DoT'
     WeaponDef=Class'KFGame.KFWeapDef_Mac10'
+    GoreDamageGroup=EGoreDamageGroup.DGT_Submachinegun
     BurnPower=18.5
     ModifierPerkList=/* Array type was not detected. */
 }

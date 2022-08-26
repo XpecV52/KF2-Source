@@ -1041,6 +1041,12 @@ function NotifyTraderOpened()
     }
 }
 
+function RestartGame()
+{
+    LogInternal("KFGameInfo_Survival - RestartGame");
+    super(GameInfo).RestartGame();
+}
+
 function EndOfMatch(bool bVictory)
 {
     local KFPlayerController KFPC;
@@ -1119,6 +1125,7 @@ function ShowPostGameMenu()
 {
     local KFGameReplicationInfo KFGRI;
 
+    LogInternal("KFGameInfo_Survival - ShowPostGameMenu");
     MyKFGRI.bWaitingForAAR = false;
     bEnableDeadToVOIP = true;
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
@@ -1263,6 +1270,7 @@ state MatchEnded
 {
     function BeginState(name PreviousStateName)
     {
+        LogInternal("KFGameInfo_Survival - MatchEnded.BeginState - AARDisplayDelay:" @ string(AARDisplayDelay));
         MyKFGRI.EndGame();
         MyKFGRI.bWaitingForAAR = true;
         if(AllowBalanceLogging())

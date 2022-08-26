@@ -15,6 +15,7 @@ defaultproperties
 {
    BurnDamageType=Class'KFGame.KFDT_Fire_Mac10DoT'
    WeaponDef=Class'KFGame.KFWeapDef_Mac10'
+   GoreDamageGroup=DGT_Submachinegun
    BurnPower=18.500000
    ModifierPerkList(1)=Class'KFGame.KFPerk_SWAT'
    Name="Default__KFDT_Fire_Mac10"

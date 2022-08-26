@@ -201,14 +201,18 @@ function Callback_ReadyClicked( bool bReady )
 	    if (KFGRI.bMatchHasBegun)
 	    {
 			//player has spawned, skip trader time
-			if (KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn )
+			if (KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
 			{
-				if (KFPC.MyGFxManager.bMenusOpen && KFPC.MyGFxManager.CurrentMenu != KFPC.MyGFxManager.TraderMenu)
+				if (KFPC.MyGFxManager.bMenusOpen && KFPC.MyGFxManager.CurrentMenu != KFPC.MyGFxManager.TraderMenu && !KFGRI.bVersusGame)
 				{
 					//skip trader request
 					KFPRI.RequestSkiptTrader(KFPRI);
 					KFPC.MyGFxManager.CloseMenus();
-					Manager.PartyWidget.ReadyButton.SetVisible(false);
+					//Setready button visibility to false here
+					if (Manager != none && Manager.PartyWidget != none)
+					{
+						Manager.PartyWidget.SetReadyButtonVisibility(false);
+					}
 				}
 			}
 			else //spawn them

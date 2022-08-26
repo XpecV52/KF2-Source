@@ -24,7 +24,7 @@ defaultproperties
    IronSightPosition=(X=15.000000,Y=0.000000,Z=0.000000)
    GroupPriority=60.000000
    WeaponSelectTexture=Texture2D'WEP_UI_MAC10_TEX.UI_WeaponSelect_Mac10'
-   SpareAmmoCapacity(0)=320
+   SpareAmmoCapacity(0)=384
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
@@ -75,8 +75,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.010000
    Spread(1)=0.010000
-   InstantHitDamage(0)=30.000000
-   InstantHitDamage(1)=30.000000
+   InstantHitDamage(0)=25.000000
+   InstantHitDamage(1)=25.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Fire_Mac10'

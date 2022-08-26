@@ -106,6 +106,16 @@ simulated function ConsumeAmmo(byte FireModeNum)
     }
 }
 
+simulated function StartFire(byte FiremodeNum)
+{
+	if (IsTimerActive('RefireCheckTimer'))
+	{
+		return;
+	}
+
+	super.StartFire(FiremodeNum);
+}
+
 simulated function OnStartFire()
 {
 	local KFPawn PawnInst;
@@ -129,9 +139,9 @@ simulated function FireAmmunition()
 	case EWFT_InstantHit:
 		// Launch a projectile if we are in zed time, and this weapon has a projectile to launch for this mode
 		if (`IsInZedTime(self) && WeaponProjectiles[CurrentFireMode] != none )
-			{
+		{
 			ProjectileFire();
-			}
+		}
 		else
 		{
 			InstantFireClient();
@@ -213,7 +223,7 @@ simulated state HuskCannonCharge extends WeaponFiring
 			bIsFullyCharged = true;
 			ChargingPSC.SetTemplate(ChargedEffect);
 			KFPawn(Instigator).SetWeaponAmbientSound(FullyChargedSound.DefaultCue, FullyChargedSound.FirstPersonCue);
-			
+
 			ClearTimer(nameof(ConsumeChargeAmount)); //switch to a slower timer
 			SetTimer(FullChargedTimerInterval, true, nameof(ConsumeChargeAmount));
 		}
@@ -246,7 +256,6 @@ simulated state HuskCannonCharge extends WeaponFiring
         ClearPendingFire(CurrentFireMode);
 		ClearTimer(nameof(RefireCheckTimer));
 		ClearTimer(nameof(ConsumeChargeAmount));
-		
 
 		NotifyWeaponFinishedFiring(CurrentFireMode);
 
@@ -289,7 +298,6 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
         HuskBall.DamageScale = 1.f + DmgIncreasePerCharge * Charges;
         HuskBall.AOEScale = 1.f + AOEIncreasePerCharge * Charges;
         HuskBall.IncapScale = 1.f + IncapIncreasePerCharge * Charges;
-		HuskBall.ChargeLevel = GetChargeLevel();
 
         return HuskBall;
     }
@@ -326,7 +334,7 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
 	super.CauseMuzzleFlash(FireModeNum);
 }
 
-function int GetChargeLevel()
+simulated function int GetChargeLevel()
 {
 	local int MaxCharges;
 	local int Charges;
@@ -401,8 +409,8 @@ defaultproperties
 	IronSightPosition=(X=0,Y=0,Z=0)
 
 	// Ammo
-	MagazineCapacity[0]=25
-	SpareAmmoCapacity[0]=300
+	MagazineCapacity[0]=20  //25
+	SpareAmmoCapacity[0]=260 //300
 	InitialSpareMags[0]=4
 	AmmoPickupScale[0]=0.75
 	bCanBeReloaded=true
@@ -434,11 +442,11 @@ defaultproperties
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade' //@TODO: Replace me
 	FiringStatesArray(DEFAULT_FIREMODE)=HuskCannonCharge
-	
+
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	Spread(DEFAULT_FIREMODE) = 0.0085
     WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_HuskCannon_Fireball'
-	FireInterval(DEFAULT_FIREMODE)=+0.19 //0.15 850 RPM 0.25 //0.2
+	FireInterval(DEFAULT_FIREMODE)=+0.4 //0.15 850 RPM //0.19
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	WeaponFireTypes(ALTFIRE_FIREMODE) = EWFT_None

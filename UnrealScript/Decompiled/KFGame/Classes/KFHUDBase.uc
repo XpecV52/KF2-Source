@@ -817,7 +817,7 @@ function DrawZedIcon(Pawn ZedPawn, Vector PawnLocation, float NormalizedAngle)
     local float IconSizeMult, ResModifier;
 
     ResModifier = WorldInfo.GetResolutionBasedHUDScale() * FriendlyHudScale;
-    TargetLocation = PawnLocation + (vect(0, 0, 2.2) * ZedPawn.CylinderComponent.CollisionHeight);
+    TargetLocation = PawnLocation + (vect(0, 0, 2.5) * ZedPawn.CylinderComponent.CollisionHeight);
     ScreenPos = Canvas.Project(TargetLocation);
     IconSizeMult = (PlayerStatusIconSize * ResModifier) * 0.5;
     ScreenPos.X -= IconSizeMult;
@@ -840,7 +840,7 @@ function DrawZedIcon(Pawn ZedPawn, Vector PawnLocation, float NormalizedAngle)
     }
     Canvas.SetDrawColorStruct(ZedIconColor);
     Canvas.SetPos(ScreenPos.X, ScreenPos.Y);
-    Canvas.DrawTile(GenericZedIconTexture, PlayerStatusIconSize, PlayerStatusIconSize, 0, 0, 128, 128);
+    Canvas.DrawTile(GenericZedIconTexture, IconSizeMult, IconSizeMult, 0, 0, 128, 128);
 }
 
 function Vector GetClampedScreenPosition(Vector OldScreenPosition)

@@ -10,5 +10,21 @@ class KFDT_HeavyZedBump extends KFDamageType
 
 defaultproperties
 {
+    bCanGib=true
+    bCanObliterate=true
+    bUseHitLocationForGibImpulses=true
+    bPointImpulseTowardsOrigin=true
     bIgnoreZedOnZedScaling=true
+    GoreDamageGroup=EGoreDamageGroup.DGT_Explosive
+    KnockdownPower=200
+    StumblePower=550
+    MeleeHitPower=100
+    ObliterationDamageThreshold=1
+    MaxObliterationGibs=12
+    ImpulseOriginScale=100
+    ImpulseOriginLift=150
+    KDamageImpulse=3200
+    KDeathVel=375
+    KDeathUpKick=700
+    RadialDamageImpulse=8000
 }

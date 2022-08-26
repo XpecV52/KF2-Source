@@ -48,6 +48,7 @@ defaultproperties
    DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Explosive')
    DamageTypeModifiers(22)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.750000))
    DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.310000))
+   ZedBumpDamageScale=0.250000
    DifficultySettings=Class'kfgamecontent.KFDifficulty_FleshpoundMini'
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:FootstepCameraShake0'
    LocalizationKey="KFPawn_ZedFleshpoundMini"

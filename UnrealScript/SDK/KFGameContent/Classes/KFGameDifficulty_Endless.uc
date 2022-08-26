@@ -540,7 +540,8 @@ defaultproperties
 
 		ZedAdjustmentIncrement = {(
 			HealthScale=0.0,
-			DamageDealtScale=.01
+			DamageDealtScale=.01,
+			DamageTakenScale=0.0
 		)},
 
 		// Normal
@@ -917,7 +918,8 @@ defaultproperties
 
 		ZedAdjustmentIncrement = {(
 			HealthScale=0.0,
-			DamageDealtScale=.01
+			DamageDealtScale=.01,
+			DamageTakenScale=0.0
 		)},
 
 		// Normal
@@ -1296,7 +1298,8 @@ defaultproperties
 
 		ZedAdjustmentIncrement = {(
 			HealthScale=0.0,
-			DamageDealtScale=0.01
+			DamageDealtScale=0.01,
+			DamageTakenScale=0.0
 		)},
 
 		// Normal
@@ -1677,7 +1680,8 @@ defaultproperties
 
 		ZedAdjustmentIncrement = {(
 			HealthScale=0.0,
-			DamageDealtScale=.01
+			DamageDealtScale=.01,
+			DamageTakenScale=0.0
 		)},
 
 		// Normal

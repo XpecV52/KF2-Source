@@ -108,7 +108,7 @@ defaultproperties
     FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
     WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
     WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Hemogoblin'
-    InstantHitDamage(DEFAULT_FIREMODE)=50.0 //50
+    InstantHitDamage(DEFAULT_FIREMODE)=75.0 //50
     InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Hemogoblin'
     FireInterval(DEFAULT_FIREMODE)=0.25
     PenetrationPower(DEFAULT_FIREMODE)=0.0 //2.0

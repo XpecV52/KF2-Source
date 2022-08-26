@@ -815,14 +815,13 @@ simulated event name GetSeasonalStateName()
     //Remove any year information, just get 1s digit
     switch (class'KFGameEngine'.static.GetSeasonalEventID() % 10)
     {
-	case SEI_Spring:
-		return 'Spring';
 	case SEI_Summer:
 		return 'Summer_Sideshow';
 	case SEI_Fall:
 		return 'Fall';
 	case SEI_Winter:
 		return 'Winter';
+	case SEI_Spring:
     default:
         return 'No_Event';
     }

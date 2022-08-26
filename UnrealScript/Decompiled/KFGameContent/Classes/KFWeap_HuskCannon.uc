@@ -80,6 +80,15 @@ simulated function ConsumeAmmo(byte FireModeNum)
     }
 }
 
+simulated function StartFire(byte FireModeNum)
+{
+    if(IsTimerActive('RefireCheckTimer'))
+    {
+        return;
+    }
+    super.StartFire(FireModeNum);
+}
+
 simulated function OnStartFire()
 {
     local KFPawn PawnInst;
@@ -146,7 +155,6 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
         HuskBall.DamageScale = 1 + (DmgIncreasePerCharge * float(Charges));
         HuskBall.AOEScale = 1 + (AOEIncreasePerCharge * float(Charges));
         HuskBall.IncapScale = 1 + (IncapIncreasePerCharge * float(Charges));
-        HuskBall.ChargeLevel = GetChargeLevel();
         return HuskBall;
     }
     return none;
@@ -184,7 +192,7 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
     }
 }
 
-function int GetChargeLevel()
+simulated function int GetChargeLevel()
 {
     local int MaxCharges, Charges;
 
@@ -322,7 +330,7 @@ defaultproperties
     FullChargedTimerInterval=2
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=7
-    MagazineCapacity=25
+    MagazineCapacity=20
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -333,7 +341,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon'
-    SpareAmmoCapacity=300
+    SpareAmmoCapacity=260
     InitialSpareMags=4
     AmmoPickupScale=0.75
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'

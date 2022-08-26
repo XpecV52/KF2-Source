@@ -581,8 +581,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.025000
    Spread(1)=0.025000
-   InstantHitDamage(0)=100.000000
-   InstantHitDamage(1)=100.000000
+   InstantHitDamage(0)=120.000000
+   InstantHitDamage(1)=120.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=29.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Seeker6Impact'

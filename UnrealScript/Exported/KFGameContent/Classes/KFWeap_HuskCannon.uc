@@ -106,6 +106,16 @@ simulated function ConsumeAmmo(byte FireModeNum)
     }
 }
 
+simulated function StartFire(byte FiremodeNum)
+{
+	if (IsTimerActive('RefireCheckTimer'))
+	{
+		return;
+	}
+
+	super.StartFire(FiremodeNum);
+}
+
 simulated function OnStartFire()
 {
 	local KFPawn PawnInst;
@@ -129,9 +139,9 @@ simulated function FireAmmunition()
 	case EWFT_InstantHit:
 		// Launch a projectile if we are in zed time, and this weapon has a projectile to launch for this mode
 		if ((self.WorldInfo.TimeDilation < 1.f) && WeaponProjectiles[CurrentFireMode] != none )
-			{
+		{
 			ProjectileFire();
-			}
+		}
 		else
 		{
 			InstantFireClient();
@@ -213,7 +223,7 @@ simulated state HuskCannonCharge extends WeaponFiring
 			bIsFullyCharged = true;
 			ChargingPSC.SetTemplate(ChargedEffect);
 			KFPawn(Instigator).SetWeaponAmbientSound(FullyChargedSound.DefaultCue, FullyChargedSound.FirstPersonCue);
-			
+
 			ClearTimer(nameof(ConsumeChargeAmount)); //switch to a slower timer
 			SetTimer(FullChargedTimerInterval, true, nameof(ConsumeChargeAmount));
 		}
@@ -246,7 +256,6 @@ simulated state HuskCannonCharge extends WeaponFiring
         ClearPendingFire(CurrentFireMode);
 		ClearTimer(nameof(RefireCheckTimer));
 		ClearTimer(nameof(ConsumeChargeAmount));
-		
 
 		NotifyWeaponFinishedFiring(CurrentFireMode);
 
@@ -289,7 +298,6 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
         HuskBall.DamageScale = 1.f + DmgIncreasePerCharge * Charges;
         HuskBall.AOEScale = 1.f + AOEIncreasePerCharge * Charges;
         HuskBall.IncapScale = 1.f + IncapIncreasePerCharge * Charges;
-		HuskBall.ChargeLevel = GetChargeLevel();
 
         return HuskBall;
     }
@@ -326,7 +334,7 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
 	super.CauseMuzzleFlash(FireModeNum);
 }
 
-function int GetChargeLevel()
+simulated function int GetChargeLevel()
 {
 	local int MaxCharges;
 	local int Charges;
@@ -377,7 +385,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventorySize=7
-   MagazineCapacity(0)=25
+   MagazineCapacity(0)=20
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -388,7 +396,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon'
-   SpareAmmoCapacity(0)=300
+   SpareAmmoCapacity(0)=260
    InitialSpareMags(0)=4
    AmmoPickupScale(0)=0.750000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
@@ -440,7 +448,7 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_HuskCannon_Fireball'
-   FireInterval(0)=0.190000
+   FireInterval(0)=0.400000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()

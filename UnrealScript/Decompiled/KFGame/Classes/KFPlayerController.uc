@@ -684,14 +684,13 @@ simulated event name GetSeasonalStateName()
 {
     switch(Class'KFGameEngine'.static.GetSeasonalEventID() % 10)
     {
-        case 1:
-            return 'Spring';
         case 2:
             return 'Summer_Sideshow';
         case 3:
             return 'Fall';
         case 4:
             return 'Winter';
+        case 1:
         default:
             return 'No_Event';
             break;

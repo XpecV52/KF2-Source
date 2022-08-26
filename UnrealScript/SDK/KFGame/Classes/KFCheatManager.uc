@@ -4802,62 +4802,7 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
     return SpawnClass;
 }
 
-function int GetAITypeByName(string ZedName)
-{
-	local EAIType AIType;
-	AIType = INDEX_NONE;
-
-	if (Left(ZedName, 5) ~= "ClotA")
-	{
-		AIType = AT_AlphaClot;
-	}
-	else if (Left(ZedName, 5) ~= "ClotS")
-	{
-		AIType = AT_SlasherClot;
-	}
-	else if (Left(ZedName, 5) ~= "ClotC" || ZedName ~= "CLOT")
-	{
-		AIType = AT_Clot;
-	}
-	else if (Left(ZedName, 5) ~= "MiniF")
-	{
-		AIType = AT_FleshpoundMini;
-	}
-	else if (Left(ZedName, 1) ~= "F")
-	{
-		AIType = AT_FleshPound;
-	}
-	else if (Left(ZedName, 1) ~= "G")
-	{
-		AIType = AT_GoreFast;
-	}
-	else if (Left(ZedName, 2) ~= "St")
-	{
-		AIType = AT_Stalker;
-	}
-	else if (Left(ZedName, 1) ~= "B")
-	{
-		AIType = AT_Bloat;
-	}
-	else if (Left(ZedName, 2) ~= "Sc")
-	{
-		AIType = AT_Scrake;
-	}
-	else if (Left(ZedName, 2) ~= "Cr")
-	{
-		AIType = AT_Crawler;
-	}
-	else if (Left(ZedName, 2) ~= "Hu")
-	{
-		AIType = AT_Husk;
-	}
-	else if (Left(ZedName, 2) ~= "Si")
-	{
-		AIType = AT_Siren;
-	}
-
-	return AIType;
-}
+native function int GetAITypeByName(string ZedName);
 
 exec function SpawnHumanPawn(optional bool bEnemy, optional bool bUseGodMode, optional int CharIndex)
 {
@@ -5000,6 +4945,69 @@ simulated exec function KFPawn SpawnZed(string ZedName, optional float Distance 
 	}
 
 	return KFP;
+}
+
+simulated exec function SpawnZedAIGroup(
+	string ZedName,
+	int NumRows,
+	int NumCols,
+	optional float Spacing = 100.f)
+{
+	local class<KFPawn> SpawnClass;
+	local vector StartLoc, SpawnLoc, RightDir, FaceDir;
+	local rotator SpawnRot;
+	local KFPawn KFP;
+
+	local int i, j;
+
+
+	SpawnClass = LoadMonsterByName(ZedName);
+	if (SpawnClass == none)
+	{
+		return;
+	}
+
+	// The ZED should be spawned X units in front of the view location
+	if (Pawn != None)
+		StartLoc = Pawn.Location;
+	else
+		StartLoc = Location;
+
+	FaceDir = normal(GetRotatorAxis(Rotation, 0));
+	RightDir = normal(GetRotatorAxis(Rotation, 1));
+
+	for (i = 0; i < NumRows; i++)
+	{
+		for (j = 0; j < NumCols; j++)
+		{
+			SpawnLoc = StartLoc + (i + 1)*Spacing*FaceDir + (j - NumCols / 2)*Spacing*RightDir + vect(0, 0, 1) * 15;
+			SpawnRot.Yaw = Rotation.Yaw + 32768;
+
+			KFP = Spawn(SpawnClass, , , SpawnLoc, SpawnRot, , false);
+			if (KFP != None)
+			{
+				if (KFPawn_Monster(KFP) != none)
+				{
+					KFPawn_Monster(KFP).bDebug_SpawnedThroughCheat = true;
+				}
+				KFP.SetPhysics(PHYS_Falling);
+				KFGameInfo(WorldInfo.Game).SetMonsterDefaults(KFPawn_Monster(KFP));
+				if (KFP.Controller != none && KFAIController(KFP.Controller) != none)
+				{
+					KFGameInfo(WorldInfo.Game).GetAIDirector().AIList.AddItem(KFAIController(KFP.Controller));
+				}
+				KFP.SpawnDefaultController();
+				if (KFAIController(KFP.Controller) != none)
+				{
+					KFAIController(KFP.Controller).SetTeam(1);
+				}
+			}
+			else
+			{
+				ClientMessage("Could not spawn ZED ["$ZedName$"]. Please make sure that the ZED name to archetype mapping is set up correctly.", CheatType);
+			}
+		}
+	}
 }
 
 /**
@@ -7262,19 +7270,29 @@ exec function SetMissionObjectiveVisible(bool bVisible)
     }
 }
 
-exec function ForceSpecialWave(string ZedTypeName = "")
+exec function ForceSpecialWave(optional string ZedTypeName)
 {
+	local int AIType;
+
 	if (KFGameInfo(WorldInfo.Game) != none)
 	{
 		KFGameInfo(WorldInfo.Game).bForceSpecialWave = true;
-		if (ZedTypeName != "" && GetAITypeByName(ZedTypeName) != INDEX_NONE)
+		if(ZedTypeName != "")
 		{
-			KFGameInfo(WorldInfo.Game).DebugForceSpecialWaveZedType = GetAITypeByName(ZedTypeName);
+			AIType = GetAITypeByName(ZedTypeName);
+			if (AIType != INDEX_NONE)
+			{
+				KFGameInfo(WorldInfo.Game).DebugForceSpecialWaveZedType = AIType;
+			}
+			else
+			{
+				ClientMessage( ZedTypeName @ "is not a valid special wave type.", CheatType);
+			}
 		}
 	}
 }
 
-exec function ForceOutbreakWave(int OutbreakIdx = INDEX_NONE)
+exec function ForceOutbreakWave(optional int OutbreakIdx = INDEX_NONE)
 {
 	if (KFGameInfo(WorldInfo.Game) != none)
 	{

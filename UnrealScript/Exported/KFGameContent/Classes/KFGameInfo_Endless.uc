@@ -787,6 +787,7 @@ defaultproperties
    OutbreakWaveStart=6
    bSplitBossDoshReward=False
    bGoToBossCameraOnDeath=False
+   bIsEndlessGame=True
    DifficultyInfoClass=Class'kfgamecontent.KFGameDifficulty_Endless'
    DifficultyInfoConsoleClass=Class'kfgamecontent.KFGameDifficulty_Endless_Console'
    SpawnManagerClasses(0)=Class'kfgamecontent.KFAISpawnManager_Endless'

@@ -13,9 +13,9 @@ class KFDT_Ballistic_Seeker6Impact extends KFDT_Ballistic_Shell
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Seeker6'
-   KnockdownPower=40.000000
-   StumblePower=70.000000
-   GunHitPower=55.000000
+   KnockdownPower=50.000000
+   StumblePower=100.000000
+   GunHitPower=68.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDamageImpulse=3000.000000
    KDeathVel=500.000000

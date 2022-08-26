@@ -29,7 +29,7 @@ defaultproperties
 	End Object
 
 	Begin Object Name=MeleeHelper_0
-		MaxHitRange=200    //330 //400
+		MaxHitRange=240    //330 //400
 		// Override automatic hitbox creation (advanced)
 		HitboxChain.Add((BoneOffset=(X=+3,Z=190)))
 		HitboxChain.Add((BoneOffset=(X=-3,Z=170)))

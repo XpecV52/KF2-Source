@@ -215,6 +215,7 @@ TanakaVaultRetroSuitDescription="8 비트의 영광을 보십시오! 아니, 16 
 DonovanVaultPreciousSuitDescription="보라색과 금색, 왕족의 색입니다. 도노반 닐과 호환됩니다."
 DJScullyVaultPreciousSuitDescription="황금색 테두리는 모든 것을 멋지게 만들어줍니다. DJ 스컬리와 호환"
 AnaVaultPreciousSuitDescription="황금색 테두리는 모든 것을 멋지게 만들어줍니다. 아나 라리브와 호환됩니다."
+AnaVaultPreciousSuitDescription="황금색 테두리는 모든 것을 멋지게 만들어줍니다. 아나 라리브와 호환됩니다."
 FosterVaultPreciousSuitDescription="황금색 테두리는 모든 것을 멋지게 만들어줍니다. 미스터 포스터와 호환됩니다."
 AlanVaultPajamasVaultTileDescription="체온을 유지하면서 제드를 혼내줄 수 있습니다. 디자인이 뛰어난 파자마. 아무리 추운 겨울 아침에도 체온을 따뜻하게 유지할 수 있습니다! 클래식 마스터슨과 호환됩니다."
 AlbertsVaultPajamasVaultTileDescription="체온을 유지하면서 제드를 혼내줄 수 있습니다. 디자인이 뛰어난 파자마. 아무리 추운 겨울 아침에도 체온을 따뜻하게 유지할 수 있습니다! 알버츠 목사와 호환됩니다."
@@ -309,6 +310,8 @@ HorzineSupplyCrateSeries8Description="상자를 여시려면 시리즈 8 Horzine
 
 HorzineSupplyCrateSeries9Description="상자를 열려면 시리즈 9 Horzine 보급상자 열쇠가 필요합니다. 다음의 희귀 이상 아이템 포함:<br><font color="#4b69cd">사이코 고글</font><br><font color="#4b69cd">사이코 마스크 닫힘</font><br><font color="#4b69cd">사이코 마스크 열림</font><br><font color="#4b69cd">스마일 사이코 마스크</font><br><font color="#6600a1">사이코 고글 블러디</font><br><font color="#6600a1">사이코 마스크 닫힘 블러디</font><br><font color="#6600a1">사이코 마스크 열림 블러디</font><br><font color="#6600a1">스마일 사이코 마스크 블러디</font><br><font color="#8847ff">사이코 페인 고글 닫힘</font><br><font color="#8847ff">사이코 페인 고글 열림</font><br><font color="#8847ff">사이코 페인 마스크 닫힘</font><br><font color="#8847ff">사이코 페인 마스크 열림</font><br><font color="#8847ff">스마일 사이코 페인 마스크</font><br><font color="#caab05">또는 매우 희귀한 액세서리!</font>"
 
+HorzineSupplyCrateSeries10Description="상자를 여시려면 시리즈 10 Horzine 보급상자 열쇠가 필요합니다. <br><font color="#4b69cd">반란군 헬멧</font><br><font color="#4b69cd">반란군 마스크</font><br><font color="#4b69cd">반란군 넥 워머</font><br><font color="#6600a1">반란군 헬멧 고글 다운</font><br><font color="#6600a1">반란군 헬멧 고글 업</font><br><font color="#6600a1">스팀펑크 가스 마스크 베이직</font><br><font color="#8847ff">스팀펑크 가스 마스크 오픈</font><br><font color="#8847ff">스팀펑크 가스 마스크 닫힘</font><br><font color="#8847ff">스팀펑크 가스 마스크 필터</font><br><font color="#8847ff">스팀펑크 가스 마스크 열림 필터</font><br><font color="#8847ff">스팀펑크 가스 마스크 닫힘 필터</font><br><font color="#caab05">또는 매우 희귀한 고급 액세서리와 같은 희귀 이상의 아이템 중 하나를 포함합니다!</font>"
+
 HorzineSupplyCrateSeries11Description="상자를 여시려면 시리즈 11 Horzine 보급상자 열쇠가 필요합니다. <br><font color="#4b69cd">리퍼 안면 보호구</font><br><font color="#4b69cd">리퍼 데드 아이즈</font><br><font color="#4b69cd">리퍼 데드 후드</font><br><font color="#4b69cd">리퍼 데드 마스크</font><br><font color="#6600a1">리퍼 턱</font><br><font color="#6600a1">리퍼 아이즈</font><br><font color="#6600a1">리퍼 햇</font><br><font color="#8847ff">리퍼 레이븐 턱</font><br><font color="#8847ff">리퍼 레이븐 아이즈</font><br><font color="#8847ff">리퍼 레이븐 햇</font><br><font color="#caab05">또는 매우 희귀한 고급 액세서리와 같은 희귀 이상의 아이템 중 하나를 포함합니다!</font>"
 
 HorzineSupplyCrateSeries12Description="상자를 여시려면 시리즈 12 Horzine 보급상자 열쇠가 필요합니다. <br><font color="#4b69cd">딥스트라이크 헬멧</font><br><font color="#4b69cd">딥스트라이크 고글</font><br><font color="#4b69cd">딥스트라이크 마스크</font><br><font color="#6600a1">딥스트라이크 헬멧 마스크</font><br><font color="#8847ff">딥스트라이크 전술용 등가방</font><br><font color="#caab05">또는 매우 희귀한 고급 액세서리와 같은 희귀 이상의 아이템 중 하나를 포함합니다!</font>"
@@ -327,7 +330,7 @@ EmoteCrateSeries2Description="시리즈 2 Emote 보급상자 열쇠가 있어야
 
 DoshVaultUnlockedCrate1Description="다음 중 하나를 포함합니다.<br>플레이어 액세서리<br>페이스 페인트<br>유니폼 종료<br>무기 스킨<br><font color="#caab05">또는 대단히 희귀한 프레셔스 액세서리!</font>"
 
-
+HorzineSupplyCrateSeriesDARDescription="Requires a D.A.R. Horzine Supply Crate Key to open. Contains one rare or better of the following D.A.R. accessories:<br><font color="#4b69cd">Flight P51 Armor or Helmet</font><br><font color="#4b69cd">CHONNE-E 5 Gym or Time Cube Armor</font><br><font color="#4b69cd">CHONNE-E 5 Chap or Steel Helmet</font><br><font color="#4b69cd">C3HZ Crash Armor or Helmet</font><br><font color="#4b69cd">C3HZ Flow Blue Armor or Helmet</font><br><font color="#6600a1">Flight Galactic Armor or Helmet</font><br><font color="#6600a1">Flight Scream Armor or Helmet</font><br><font color="#6600a1">CHONNE-E 5 BatCat Armor</font><br><font color="#6600a1">CHONNE-E 5 Vapor Helmet</font><br><font color="#6600a1">C3HZ Obsidian Armor or Helmet</font><br><font color="#6600a1">C3HZ Space Armor or Helmet</font><br><font color="#8847ff">Flight Blue Angel Armor or Helmet</font><br><font color="#8847ff">Flight Spitfire Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Horzine Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Radical Armor</font><br><font color="#8847ff">CHONNE-E 5 Sunset Helmet</font><br><font color="#8847ff">C3HZ Marble Armor or Helmet</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine 보급상자 열쇠 | 시리즈 1"
@@ -441,7 +444,7 @@ JunkyardEncryptedUSBDescription="이 상자를 열려면 정크야드 블루프�
 
 NeonEncryptedUSBDescription="이 상자를 열려면 네온 블루프린트 열쇠가 필요합니다. 다음 희소 이상의 무기 스킨을 포함합니다.<br><font color="#4b69cd">SG 500 | 네온</font><br><font color="#4b69cd">레일건| 네온</font><br><font color="#4b69cd">RPG-7 | 네온</font><br><font color="#4b69cd">Scar | 네온</font><br><font color="#4b69cd">M1911 | 네온</font><br><font color="#4b69cd">카타나 | 네온</font><br><font color="#4b69cd">드래곤브레스 | 네온</font><br><font color="#4b69cd">크리스 SMG | 네온</font><br><font color="#6600a1">MP5RAS | Horzine 엘리트 화이트</font><br><font color="#6600a1">MP5RAS | Horzine 엘리트 그린</font><br><font color="#8847ff">MP5RAS | Horzine 엘리트 블랙</font><br><font color="#8847ff">MP5RAS | Horzine 엘리트 블루</font><br><font color="#8847ff">MP5RAS | Horzine 엘리트 레드</font><br><font color="#caab05">또는 대단히 희귀한 프레셔스 액세서리!</font>"
 
-
+WeaponCollectorPack1EncryptedUSBDescription="Requires a Weapon Collector Pack 1 Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Crovel | Black Golden</font><br><font color="#4b69cd">9MM | Black Golden</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Black Golden</font><br><font color="#4b69cd">Dragonsbreath | Heirloom</font><br><font color="#4b69cd">Spitfire | Heirloom</font><br><font color="#4b69cd">M1911 | Heirloom</font><br><font color="#4b69cd">1858 Revolver | Heirloom</font><br><font color="#4b69cd">RPG-7 | Heirloom</font><br><font color="#4b69cd">Winchester 1894 | Heirloom</font><br><font color="#6600a1">Katana | Black Golden</font><br><font color="#6600a1">Eviscerator | Black Golden</font><br><font color="#6600a1">Zweihander | Black Golden</font><br><font color="#6600a1">Pulverizer | Black Golden</font><br><font color="#8847ff">HMTech Healer | Black Golden</font><br><font color="#8847ff">Welder | Black Golden</font><br><font color="#8847ff">Berserker Knife | Black Golden</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 ;usb key names
 CyberboneUSBKeyName="사이버본 USB Key"
@@ -535,9 +538,9 @@ HorzineSupplyCosmeticCrateSeries5Description="Horzine 보급상자 열쇠가 있
 
 HorzineSupplyWeaponSkinCrateSeries6Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">9MM | 딥스트라이크</font><br><font color="#4b69cd">크로스보우 | 딥스트라이크</font><br><font color="#4b69cd">스카 | 딥스트라이크</font><br><font color="#4b69cd">데저트 이글 | 딥스트라이크</font><br><font color="#6600a1">윈체스터 1894 | 딥스트라이크</font><br><font color="#6600a1">M79 | 딥스트라이크</font><br><font color="#6600a1">RPG-7 | 딥스트라이크</font><br><font color="#6600a1">크리스 SMG | Horzine 엘리트 그린</font><br><font color="#6600a1">크리스 SMG | Horzine 엘리트 화이트</font><br><font color="#8847ff">크리스 SMG | Horzine 엘리트 레드</font><br><font color="#8847ff">크리스 SMG | Horzine 엘리트 블루</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
+HorzineSupplyCosmeticCrateSeries6Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 중 한 가지 희귀 이상의 D.A.R. 액세서리를 포함하고 있음:<br><font color="#4b69cd">비행 P51 장갑 또는 헬멧</font><br><font color="#4b69cd">CHONNE-E 5 짐 또는 타임 큐브 장갑</font><br><font color="#4b69cd">CHONNE-E 5 친구 또는 스틸 헬멧</font><br><font color="#4b69cd">C3HZ 충돌 장갑 또는 헬멧</font><br><font color="#4b69cd">C3HZ 플로 블루 장갑 도는 헬멧</font><br><font color="#6600a1">비행 빙하 장갑 또는 헬멧</font><br><font color="#6600a1">비행 비명 장갑 또는 헬멧</font><br><font color="#6600a1">CHONNE-E 5 배트캣 장갑</font><br><font color="#6600a1">CHONNE-E 5 증기 헬멧</font><br><font color="#6600a1">C3HZ 옵시디안 장갑 또는 헬멧</font><br><font color="#6600a1">C3HZ 스페이스 장갑 또는 헬멧</font><br><font color="#8847ff">비행 블루 앤젤 장갑 또는 헬멧</font><br><font color="#8847ff">비행 스핏파이어 장갑 또는 헬멧</font><br><font color="#8847ff">CHONNE-E 5 Horzine 장갑 또는 헬멧</font><br><font color="#8847ff">CHONNE-E 5 방사능 장갑</font><br><font color="#8847ff">CHONNE-E 5 일몰 헬멧</font><br><font color="#8847ff">C3HZ 마블 장갑 또는 헬멧</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 액세서리!</font>"
 
-
-
+HorzineSupplyWeaponSkinCrateSeries7Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">크로블 | 블랙 황금</font><br><font color="#4b69cd">9MM | 블랙 황금</font><br><font color="#4b69cd">VLAD-1000 네일건 | 블랙 황금</font><br><font color="#4b69cd">드래곤브레스 | 가보</font><br><font color="#4b69cd">스핏파이어 | 가보</font><br><font color="#4b69cd">M1911 | 가보</font><br><font color="#4b69cd">1858 리볼버 | 가보</font><br><font color="#4b69cd">RPG-7 | 가보</font><br><font color="#4b69cd">윈체스터 1894 | 가보</font><br><font color="#6600a1">카타나 | 블랙 황금</font><br><font color="#6600a1">내장 제거기 | 블랙 황금</font><br><font color="#6600a1">츠바인한더 | 블랙 황금</font><br><font color="#6600a1">분쇄기 | 블랙 황금</font><br><font color="#8847ff">HMTech 힐러 | 블랙 황금</font><br><font color="#8847ff">용접기 | 블랙 황금</font><br><font color="#8847ff">버서커 나이프 | 블랙 황금</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
 
 ;PSN Key Names
@@ -2592,6 +2595,19 @@ ReaperDeadEyesRedName="리퍼 데드 아이즈 | 레드"
 ReaperDeadHoodBloodyName="리퍼 데드 후드 | 블러디"
 ReaperDeadMaskBloodyName="리퍼 데드 마스크 | 블러디"
 ReaperFaceArmorSkullName="리퍼 안면 보호구 | 스컬"
+SteampunkGasMaskBasicBrownName="스팀펑크 가스 마스크 베이직 | 브라운"
+SteampunkGasMaskBasicBlackName="스팀펑크 가스 마스크 베이직 | 블랙"
+SteampunkGasMaskOpenBrownName="스팀펑크 가스 마스크 열림 | 브라운"
+SteampunkGasMaskOpenBlackName="스팀펑크 가스 마스크 열림 | 블랙"
+SteampunkGasMaskClosedBrownName="스팀펑크 가스 마스크 닫힘 | 브라운"
+SteampunkGasMaskClosedBlackName="스팀펑크 가스 마스크 닫힘 | 블랙"
+SteampunkGasMaskClosedPreciousName="스팀펑크 가스 마스크 닫힘 | 프레셔스"
+SteampunkGasMaskFilteredBrownName="스팀펑크 가스 마스크 필터 | 브라운"
+SteampunkGasMaskFilteredBlackName="스팀펑크 가스 마스크 필터 | 블랙"
+SteampunkGasMaskOpenFilteredBrownName="스팀펑크 가스 마스크 열림 필터 | 브라운"
+SteampunkGasMaskOpenFilteredBlackName="스팀펑크 가스 마스크 열림 필터 | 블랙"
+SteampunkGasMaskClosedFilteredBrownName="스팀펑크 가스 마스크 닫힘 필터 | 브라운"
+SteampunkGasMaskClosedFilteredBlackName="스팀펑크 가스 마스크 닫힘 필터 | 블랙"
 MinotaurHelmetAgathaName="미노타우르스 헬멧 | 아가사"
 MinotaurHelmetCleeseName="미노타우르스 헬멧 | 클리스"
 MinotaurHelmetJaimeName="미노타우르스 헬멧 | 제이미"
@@ -3335,6 +3351,12 @@ ReaperDeadEyesDescription="장비 메뉴에서 장착; 호환: 오이스텐 예�
 ReaperDeadHoodBloodyDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
 ReaperDeadMaskBloodyDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
 ReaperFaceArmorSkullDescription="장비 메뉴에서 장착; 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+SteampunkGasMaskBasicDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+SteampunkGasMaskOpenDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+SteampunkGasMaskClosedDescription="장비 메뉴에서 장착; 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
+SteampunkGasMaskFilteredDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
+SteampunkGasMaskOpenFilteredDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
+SteampunkGasMaskClosedFilteredDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 래 히긴스."
 MinotaurHelmetDescription="장비 메뉴에서 장착 가능, 호환: 오이스텐 예거호른, DJ 스컬리, PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
 RebelHelmetDescription="장비 메뉴에서 장착 가능, 호환: DJ 스컬리, PC 롭 브라이어, 미스터 포스터, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."
 RebelHelmetGogglesDownDescription="장비 메뉴에서 장착 가능, 호환: PC 롭 브라이어, 도노반 닐, 알버츠 신부, 빌 마스터슨 중위, 하야토 타나카, 아나 라리브, 클래식 브라이어, 클래식 마스터슨, 안톤 스트라서, 톰 배너, 래 히긴스."

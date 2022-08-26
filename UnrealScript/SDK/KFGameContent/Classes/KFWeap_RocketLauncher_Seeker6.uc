@@ -579,7 +579,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Rocket_Seeker6'
 	FireInterval(DEFAULT_FIREMODE)=+0.35
-	InstantHitDamage(DEFAULT_FIREMODE)=100.0
+	InstantHitDamage(DEFAULT_FIREMODE)=120.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Seeker6Impact'
 	Spread(DEFAULT_FIREMODE)=0.025
 	FireOffset=(X=20,Y=4.0,Z=-3)
@@ -590,7 +590,7 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Rocket_Seeker6'
 	FireInterval(ALTFIRE_FIREMODE)=+0.3 //0.1
-	InstantHitDamage(ALTFIRE_FIREMODE)=100.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=120.0
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Seeker6Impact'
 	Spread(ALTFIRE_FIREMODE)=0.025
 	AmmoCost(ALTFIRE_FIREMODE)=1

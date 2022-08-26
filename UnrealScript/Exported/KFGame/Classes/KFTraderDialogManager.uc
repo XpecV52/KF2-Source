@@ -1331,7 +1331,7 @@ static function BroadcastEndlessStartWaveDialog(int WaveNum, WorldInfo WI)
 		EventId = 155+ (WaveNum - 1);
 	}
 
-	PlayGlobalDialog(EventId, WI, true);
+	PlayGlobalDialog(EventId, WI);
 }
 
 static function BroadcastEndlessSpecialWaveDialog(int ModeIndex, WorldInfo WI)
@@ -1339,7 +1339,7 @@ static function BroadcastEndlessSpecialWaveDialog(int ModeIndex, WorldInfo WI)
 	local int EventId;
 
 	EventId = 271+ (ModeIndex % 3);
-	PlayGlobalDialog(EventId, WI, true);
+	PlayGlobalDialog(EventId, WI);
 }
 
 defaultproperties

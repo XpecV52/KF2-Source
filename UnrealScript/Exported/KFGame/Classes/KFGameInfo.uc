@@ -669,6 +669,7 @@ var transient KFSteamWebUpToDateCheck UpToDateChecker;
 
 /** If this is a versus game */
 var bool bIsVersusGame;
+var bool bIsEndlessGame;
 
 // NVCHANGE_BEGIN - RLS - Debugging Effects
 /************************************************************************************
@@ -1102,15 +1103,17 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		if( !bIsVersusGame && GametypeChecksDifficulty() && DesiredDifficulty != "" && int(DesiredDifficulty) != GameDifficulty )
 		{
 			LogInternal("Got bad difficulty"@DesiredDifficulty@"expected"@GameDifficulty);
-			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+			//ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+			ErrorMessage = "Server No longer available. Mismatch difficulty.";
 			return;
 		}
 
 		DesiredWaveLength = ParseOption( Options, "GameLength" );
-		if( !bIsVersusGame && GametypeChecksWaveLength() && DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
+		if( !bIsEndlessGame && !bIsVersusGame && GametypeChecksWaveLength() && DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
 		{
 			LogInternal("Got bad wave length"@DesiredWaveLength@"expected"@GameLength);
-			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+			//ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+			ErrorMessage = "Server No longer available. Mismatch GameLength.";
 			return;
 		}
 
@@ -1118,7 +1121,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		if( DesiredGameMode != "" && !(DesiredGameMode ~= GetFullGameModePath()) )
 		{
 			LogInternal("Got bad game mode"@DesiredGameMode@"expected"@GetFullGameModePath());
-			ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
+			ErrorMessage = "Server No longer available. Mismatch DesiredGameMode.";
 			return;
 		}
 	}
@@ -3771,8 +3774,9 @@ defaultproperties
    ForcedMusicTracks(1)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
    ForcedMusicTracks(2)=KFMusicTrackInfo'WW_MACT_Default.TI_SH_Boss_DieVolter'
    ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Patriarch'
-   ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_KingFP'
-   ForcedMusicTracks(5)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_Abomination'
+   ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer'
+   ForcedMusicTracks(5)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_KingFP'
+   ForcedMusicTracks(6)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_Abomination'
    DebugForcedOutbreakIdx=-1
    DebugForceSpecialWaveZedType=-1
    ReservationTimeout=32
