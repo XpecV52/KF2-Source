@@ -10,35 +10,23 @@
 class KFWeap_Pistol_DualAF2011 extends KFWeap_DualBase;
 
 var vector BarrelOffset;
-var(Weapon) array<byte>	NumPojectiles;
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir)
 {
-	local int i;
-
 	if (CurrentFireMode == GRENADE_FIREMODE)
 	{
 		return Super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
 	}
 
-	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
-	{
-		Super.SpawnProjectile(KFProjClass, RealStartLoc + BarrelOffset * float(i), AimDir);
-	}
+	Super.SpawnProjectile(KFProjClass, RealStartLoc + BarrelOffset / 2.f, AimDir);
+	Super.SpawnProjectile(KFProjClass, RealStartLoc - BarrelOffset / 2.f, AimDir);
 
 	return None;
-}
-
-simulated function byte GetNumProjectilesToFire(byte FireModeNum)
-{
-	return NumPojectiles[CurrentFireMode];
 }
 
 defaultproperties
 {
    BarrelOffset=(X=10.000000,Y=0.000000,Z=0.000000)
-   NumPojectiles(0)=2
-   NumPojectiles(1)=2
    LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-2.250000)
    SingleClass=Class'kfgamecontent.KFWeap_Pistol_AF2011'
    BonesToLockOnEmpty_L(1)="LW_Bullets1"

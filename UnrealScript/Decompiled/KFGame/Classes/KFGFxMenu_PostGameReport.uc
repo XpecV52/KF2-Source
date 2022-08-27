@@ -156,7 +156,10 @@ function SetSumarryInfo()
     if(KFPC.WorldInfo.GRI != none)
     {
         KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
-        TextObject.SetInt("voshDelta", KFPC.GetTotalDoshCount() - KFPC.BeginningRoundVaultAmount);
+        if(KFPC.BeginningRoundVaultAmount > -1)
+        {
+            TextObject.SetInt("voshDelta", KFPC.GetTotalDoshCount() - KFPC.BeginningRoundVaultAmount);
+        }
         GameDifficultyString = Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(KFGRI.GameDifficulty));
         GameTypeString = KFGRI.GameClass.default.GameName;
         TextObject.SetString("mapName", Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(CurrentMapName));

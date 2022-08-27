@@ -10,28 +10,18 @@
 class KFWeap_Pistol_DualAF2011 extends KFWeap_DualBase;
 
 var vector BarrelOffset;
-var(Weapon) array<byte>	NumPojectiles;
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir)
 {
-	local int i;
-
 	if (CurrentFireMode == GRENADE_FIREMODE)
 	{
 		return Super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
 	}
 
-	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
-	{
-		Super.SpawnProjectile(KFProjClass, RealStartLoc + BarrelOffset * float(i), AimDir);
-	}
+	Super.SpawnProjectile(KFProjClass, RealStartLoc + BarrelOffset / 2.f, AimDir);
+	Super.SpawnProjectile(KFProjClass, RealStartLoc - BarrelOffset / 2.f, AimDir);
 
 	return None;
-}
-
-simulated function byte GetNumProjectilesToFire(byte FireModeNum)
-{
-	return NumPojectiles[CurrentFireMode];
 }
 
 defaultproperties
@@ -101,7 +91,6 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=53
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AF2011'
 	PenetrationPower(DEFAULT_FIREMODE)=1.5
-	NumPojectiles(DEFAULT_FIREMODE) = 2
 	Spread(DEFAULT_FIREMODE)=0.01
     AmmoCost(DEFAULT_FIREMODE)=2
 
@@ -115,7 +104,6 @@ defaultproperties
 	InstantHitDamage(ALTFIRE_FIREMODE)=53
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_AF2011'
 	PenetrationPower(ALTFIRE_FIREMODE)=1.5
-	NumPojectiles(ALTFIRE_FIREMODE) = 2
 	Spread(ALTFIRE_FIREMODE)=0.01
     AmmoCost(ALTFIRE_FIREMODE) = 2
 

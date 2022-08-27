@@ -11306,6 +11306,7 @@ defaultproperties
    DebugLastSeenDoshVaultValue=-1
    DebugCurrentDoshVaultValue=-1
    DebugCurrentDoshVaultTier=-1
+   BeginningRoundVaultAmount=-1
    CameraClass=Class'KFGame.KFPlayerCamera'
    bCheckSoundOcclusion=True
    DesiredFOV=90.000000

@@ -59,7 +59,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	SavedGameModeIndexPending = SavedGameModeIndex;
 	NumDifficultyStrings = class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length;
 	AdjustSavedFiltersToMode();
-	ServerMenu.Manager.StartMenu.GetMapList(MapList);
+	ServerMenu.Manager.StartMenu.GetMapList(MapList, SavedGameModeIndexPending);
 	InitFiltersArray();
 	LocalizeText();
 	ClearPendingValues();
@@ -149,7 +149,7 @@ function LocalizeCheckBoxes()
 	local byte i;
 	local GFxObject FiltersArray;
 	local GFxObject TempObject;
-	
+
 	FiltersArray = CreateArray();
 
 	for ( i = 0; i < FILTERS_MAX; i++ )
@@ -180,7 +180,7 @@ function SetModeMenus(string DifficultyListString, string LengthListString, int 
 		{
 			LengthDataProvider.SetElementObject(i, None);
 		}
-	}	
+	}
 	if (SavedDifficultyIndexPending >= class'KFGameInfo'.default.GameModes[UseModeIndex].DifficultyLevels)
 	{
 		NewDifficultyIndex = 255;
@@ -212,7 +212,7 @@ function CreateList( string ListString, array<string> TextArray, int SelectedInd
 	local string 	TempString, ButtonLabel;
 	local int ListLength;
 
-	OptionList = GetObject(ListString);	
+	OptionList = GetObject(ListString);
 	DataProvider = OptionList.GetObject("dataProvider");
 
 	//`log("MaxListLength:"$MaxListLength$", Length:"$TextArray.length);
@@ -261,14 +261,18 @@ function ModeChanged(int index)
 {
 	if (index >= 0 && index < class'KFGameInfo'.default.GameModes.length)
 	{
-	SavedGameModeIndexPending = index;
+		SavedGameModeIndexPending = index;
 	}
 	else
 	{
 		SavedGameModeIndexPending = 255;
 	}
+
+	ServerMenu.Manager.StartMenu.GetMapList(MapList, SavedGameModeIndexPending);
+
 	//`log("Adjusting difficulty");
 	AdjustSavedFiltersToMode();
+
 	//`log("Localizing text");
 	LocalizeText();
 }
@@ -311,7 +315,7 @@ function ApplyFilters()
 
 	SavedGameModeIndex 		= SavedGameModeIndexPending;
 	SavedMapIndex 			= SavedMapIndexPending;
-	SavedDifficultyIndex 	= SavedDifficultyIndexPending; 
+	SavedDifficultyIndex 	= SavedDifficultyIndexPending;
 	SavedLengthIndex 		= SavedLengthIndexPending;
 	SavedPingIndex 			= SavedPingIndexPending;
 	//`log("ApplyFilters:"@bCustom);
@@ -359,7 +363,7 @@ function ResetFilters()
 
 	SavedGameModeIndex = 255;
 	SavedMapIndex = 255;
-	SavedDifficultyIndex = 255; 
+	SavedDifficultyIndex = 255;
 	SavedLengthIndex = 255;
 	SavedPingIndex = 255;
 	//`log("ResetFilters:"@bCustom);
@@ -430,7 +434,7 @@ function bool GetBoolByEFilter_Key(EFilter_Key Filter)
 
 		case NO_MUTATORS:
 			return bNoMutators;
-		
+
 		case NOT_FULL:
 			return bNotFull;
 
@@ -444,25 +448,25 @@ function bool GetBoolByEFilter_Key(EFilter_Key Filter)
 		//`log("GetBoolByEFilter_Key:"@bCustom);
 
 			return bCustom;
-		
+
 		case DEDICATED:
 			return bDedicated;
-		
+
 		/*case VAC_SECURE:
 			return bVAC_Secure;*/
-		
+
 		case IN_LOBBY:
 			return bInLobby;
-		
+
 		case IN_PROGRESS:
 			return bInProgress;
 
 		case LIMIT_SERVER_RESULTS:
 			return bLimitServerResults;
-		
+
 		/*case ONLY_STOCK_MAPS:
 			return bOnlyStockMaps;
-		
+
 		case ONLY_CUSTOM_MAPS:
 			return bOnlyCustomMaps;*/
 	}

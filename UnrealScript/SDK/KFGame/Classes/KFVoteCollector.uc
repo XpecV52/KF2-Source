@@ -220,6 +220,11 @@ function bool ShouldSkipTrader()
 	local array<KFPlayerReplicationInfo> PRIs;
 	local int i;
 	
+	if (PlayersReadyToSkipTrader.length <= 0)
+	{
+		return false;
+	}
+
 	GetKFPRIArray(PRIs);
 
 	for (i = 0; i < Pris.Length; i++)
@@ -230,7 +235,7 @@ function bool ShouldSkipTrader()
 		}
 	}
 
-	return PlayersReadyToSkipTrader.length == PRIs.length;
+	return true;
 }
 
 reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)

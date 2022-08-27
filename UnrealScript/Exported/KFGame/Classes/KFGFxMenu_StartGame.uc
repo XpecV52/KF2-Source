@@ -187,7 +187,7 @@ var transient string CurrentConnectMap;
 /** If we didn't boot up installing, we don't really need to do installation checks */
 var transient bool bIsPlayGoRun;
 
-native static function GetMapList( out array<string> MapList );
+native static function GetMapList( out array<string> MapList, optional int OverrideGameModeIndex = INDEX_NONE );
 
 // (cpptext)
 // (cpptext)
@@ -1641,7 +1641,7 @@ event int GetGameModeIndex()
 	{
 		return class'KFGameInfo'.static.GetGameModeIndexFromName(string(KFGRI.GameClass.name));
 	}
-	
+
 	return 0;
 }
 

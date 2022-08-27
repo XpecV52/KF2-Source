@@ -45,9 +45,18 @@ function OnDestroyOrReset()
 
     foreach TouchingActors(Class'KFPawn_Human', P)
     {
-        
-        @NULL.Sort( != return /= default.@NULL;
-        @NULL
+        /* Statement decompilation error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+            
+        */
+
+        /*@Error*/
+        // Failed to format nests!:System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UStruct.UByteCodeDecompiler.DecompileNests(Boolean outputAllRemainingNests)
+   at UELib.Core.UStruct.UByteCodeDecompiler.Decompile()
+        // 1 & Type:ForEach Position:0x1B00
     }
 }
 

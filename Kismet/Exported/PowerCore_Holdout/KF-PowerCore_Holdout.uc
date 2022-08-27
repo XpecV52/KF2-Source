@@ -26368,7 +26368,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_95
    InputLinks(0)=(DrawY=-2979,OverrideDelta=14)
    InputLinks(1)=(DrawY=-2958,OverrideDelta=35)
    InputLinks(2)=(DrawY=-2937,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-2958,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_144')),DrawY=-2958,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_771',SeqVar_Object'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_772'),DrawX=4358,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4409,OverrideDelta=76)
    EventLinks(0)=(DrawX=4458,OverrideDelta=119)
@@ -26383,17 +26383,17 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_95
 End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_144
-   Duration=8.000000
-   InputLinks(0)=(DrawY=-2899,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-2878,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-2857,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_95',InputLinkIdx=1)),DrawY=-2894,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-2862,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=4180,OverrideDelta=25)
+   Duration=6.000000
+   InputLinks(0)=(DrawY=-2971,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2950,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-2929,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_94',InputLinkIdx=1)),DrawY=-2966,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-2934,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=4612,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4128
-   ObjPosY=-2936
+   ObjPosX=4560
+   ObjPosY=-3008
    DrawWidth=106
    DrawHeight=109
    Name="SeqAct_Delay_144"
@@ -26469,7 +26469,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_57
    EventName="Sector2_GasTrapActivated"
    MaxWidth=295
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_23'),(LinkedOp=SeqAct_ChangeCollision'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_125'),(LinkedOp=SeqAct_ChangeCollision'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_127'),(LinkedOp=SeqAct_Toggle'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_94'),(LinkedOp=SeqAct_Delay'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_145'),(LinkedOp=SeqAct_Delay'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_144')),DrawY=-2438,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_23'),(LinkedOp=SeqAct_ChangeCollision'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_125'),(LinkedOp=SeqAct_ChangeCollision'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_127'),(LinkedOp=SeqAct_Toggle'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_95')),DrawY=-2438,OverrideDelta=11)
    VariableLinks(0)=(DrawX=3171,OverrideDelta=115)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence'
@@ -27347,74 +27347,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_772
    DrawHeight=32
    Name="SeqVar_Object_772"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_145
-   InputLinks(0)=(DrawY=-3155,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3134,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3113,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_94'),(LinkedOp=SeqAct_Delay'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_146')),DrawY=-3150,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-3118,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=4116,OverrideDelta=25)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4064
-   ObjPosY=-3192
-   DrawWidth=106
-   DrawHeight=109
-   Name="SeqAct_Delay_145"
-   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
-End Object
-
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_146
-   InputLinks(0)=(DrawY=-3251,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3230,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3209,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_94'),(LinkedOp=SeqAct_Delay'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_147')),DrawY=-3246,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-3214,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=4316,OverrideDelta=25)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4264
-   ObjPosY=-3288
-   DrawWidth=106
-   DrawHeight=109
-   Name="SeqAct_Delay_146"
-   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
-End Object
-
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_147
-   InputLinks(0)=(DrawY=-3275,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3254,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3233,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_94'),(LinkedOp=SeqAct_Delay'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_143')),DrawY=-3270,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-3238,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=4516,OverrideDelta=25)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4464
-   ObjPosY=-3312
-   DrawWidth=106
-   DrawHeight=109
-   Name="SeqAct_Delay_147"
-   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
-End Object
-
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_143
-   InputLinks(0)=(DrawY=-3203,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3182,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3161,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_94')),DrawY=-3198,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-3166,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=4772,OverrideDelta=25)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-PowerCore_Holdout.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4720
-   ObjPosY=-3240
-   DrawWidth=106
-   DrawHeight=109
-   Name="SeqAct_Delay_143"
-   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_94

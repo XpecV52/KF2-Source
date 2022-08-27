@@ -136,7 +136,10 @@ var config string TestLobbyOwnerPassword;
 var transient string CurrentConnectMap;
 
 // Export UKFGFxMenu_StartGame::execGetMapList(FFrame&, void* const)
-native static function GetMapList(out array<string> MapList);
+native static function GetMapList(out array<string> MapList, optional int OverrideGameModeIndex)
+{
+    OverrideGameModeIndex = -1;                
+}
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {

@@ -88,9 +88,9 @@ protected simulated function PrepareExplosionTemplate()
     ExplosionTemplate = default.ExplosionTemplate;
     ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
     ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
-    ExplosionTemplate.Damage = ExplosionTemplate.Damage;
-    ExplosionTemplate.DamageRadius = ExplosionTemplate.DamageRadius;
-    ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.DamageFalloffExponent;
+    ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
+    ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
+    ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
     if(Owner.Role == ROLE_Authority)
     {
         KFPC = KFPlayerController(Instigator.Controller);

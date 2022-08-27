@@ -2816,6 +2816,37 @@ AttachmentSkin2="Jamie"
 AttachmentSkin3="Perceval"
 AttachmentSkin4="Precious"
 
+[Cosmetic_SteampunkGasMaskBasic_ARCH]
+Attachment="Steampunk Gas Mask Basic"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskOpen_ARCH]
+Attachment="Steampunk Gas Mask Open"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskClosed_ARCH]
+Attachment="Steampunk Gas Mask Closed"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Precious"
+
+[Cosmetic_SteampunkGasMaskFiltered_ARCH]
+Attachment="Steampunk Gas Mask Filtered"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskOpenFiltered_ARCH]
+Attachment="Steampunk Gas Mask Open Filtered"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
+[Cosmetic_SteampunkGasMaskClosedFiltered_ARCH]
+Attachment="Steampunk Gas Mask Closed Filtered"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+
 [Cosmetic_RebelHelmet_ARCH]
 Attachment="Rebel Helmet"
 AttachmentSkin0="Black"

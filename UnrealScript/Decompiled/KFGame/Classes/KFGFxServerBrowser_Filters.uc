@@ -94,7 +94,7 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     SavedGameModeIndexPending = SavedGameModeIndex;
     NumDifficultyStrings = Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length;
     AdjustSavedFiltersToMode();
-    ServerMenu.Manager.StartMenu.GetMapList(MapList);
+    ServerMenu.Manager.StartMenu.GetMapList(MapList, SavedGameModeIndexPending);
     InitFiltersArray();
     LocalizeText();
     ClearPendingValues();
@@ -299,6 +299,7 @@ function ModeChanged(int Index)
     {
         SavedGameModeIndexPending = 255;
     }
+    ServerMenu.Manager.StartMenu.GetMapList(MapList, SavedGameModeIndexPending);
     AdjustSavedFiltersToMode();
     LocalizeText();
 }

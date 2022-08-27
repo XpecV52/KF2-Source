@@ -186,6 +186,7 @@ function HandleLeaderChange(UniqueNetId AdminId)
 			if (OnlineLobby != none && OnlineLobby.IsInLobby())
 			{
 				OnlineLobby.QuitLobby();
+				Manager.StartMenu.OpenMultiplayerMenu();
 			}
 		}
 		else

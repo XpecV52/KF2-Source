@@ -36,7 +36,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=35
     WeaponSelectTexture=Texture2D'WEP_UI_DualRemington1858_TEX.UI_WeaponSelect_DualRemington'
-    SpareAmmoCapacity=180
+    SpareAmmoCapacity=144
     InitialSpareMags=7
     IdleFidgetAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */

@@ -43,8 +43,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=6
-	SpareAmmoCapacity[0]=186
-	InitialSpareMags[0]=15
+	SpareAmmoCapacity[0]=144 //186
+	InitialSpareMags[0]=12 //15
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -71,7 +71,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RevolverRem1858'
 	FireInterval(DEFAULT_FIREMODE)=+0.2
-	InstantHitDamage(DEFAULT_FIREMODE)=60.0 //30.0
+	InstantHitDamage(DEFAULT_FIREMODE)=50.0 //30.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Rem1858'
 	Spread(DEFAULT_FIREMODE)=0.015
 	FireOffset=(X=20,Y=4.0,Z=-3)

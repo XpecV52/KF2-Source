@@ -144,9 +144,9 @@ simulated protected function PrepareExplosionTemplate()
 		ExplosionTemplate = default.ExplosionTemplate;
 		ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
 		ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
-		ExplosionTemplate.Damage = ExplosionTemplate.Damage;
-		ExplosionTemplate.DamageRadius = ExplosionTemplate.DamageRadius;
-		ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.DamageFalloffExponent;
+		ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
+		ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
+		ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
 	//}
 
 	// Change the radius and damage based on the perk

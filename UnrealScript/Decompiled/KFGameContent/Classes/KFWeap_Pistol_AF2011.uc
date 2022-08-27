@@ -10,38 +10,21 @@ class KFWeap_Pistol_AF2011 extends KFWeap_PistolBase
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
 var Vector BarrelOffset;
-var(Weapon) array<byte> NumPojectiles;
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
 {
-    local int I;
-
     if(CurrentFireMode == 4)
     {
         return super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
     }
-    I = 0;
-    J0x43:
-
-    if(I < GetNumProjectilesToFire(CurrentFireMode))
-    {
-        super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc + (BarrelOffset * float(I)), AimDir);
-        ++ I;
-        goto J0x43;
-    }
+    super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc + (BarrelOffset / 2), AimDir);
+    super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc - (BarrelOffset / 2), AimDir);
     return none;
-}
-
-simulated function byte GetNumProjectilesToFire(byte FireModeNum)
-{
-    return NumPojectiles[CurrentFireMode];
 }
 
 defaultproperties
 {
     BarrelOffset=(X=10,Y=0,Z=0)
-    NumPojectiles(0)=2
-    NumPojectiles(1)=2
     InventorySize=3
     MagazineCapacity=16
     bHasIronSights=true

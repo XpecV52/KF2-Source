@@ -10871,4 +10871,6 @@ defaultproperties
 	DebugLastSeenDoshVaultValue=INDEX_NONE
 	DebugCurrentDoshVaultValue=INDEX_NONE
 	DebugCurrentDoshVaultTier=INDEX_NONE
+
+	BeginningRoundVaultAmount=INDEX_NONE
 }
