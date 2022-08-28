@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFWeap_AssaultRifle_MedicRifleGrenadeLauncher extends KFWeap_AssaultRifle_Medic
+class KFWeap_AssaultRifle_MedicRifleGrenadeLauncher extends KFWeap_MedicBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
@@ -15,6 +15,7 @@ const SecondaryReloadAnim = 'Reload_Secondary';
 const SecondaryReloadAnim_Elite = 'Reload_Secondary_Elite';
 
 var(Positioning) Vector SecondaryFireOffset;
+var int ServerTotalAltAmmo;
 
 simulated function int GetSecondaryAmmoForHUD()
 {
@@ -39,6 +40,50 @@ function InitializeAmmo()
 {
     super(KFWeapon).InitializeAmmo();
     SpareAmmoCount[1] = Min(SpareAmmoCount[1] + (InitialSpareMags[1] * default.MagazineCapacity[1]), (GetMaxAmmoAmount(1)) - AmmoCount[1]);
+    ServerTotalAltAmmo += SpareAmmoCount[1];
+    if((Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
+    {
+        ServerTotalAltAmmo += AmmoCount[1];
+    }
+}
+
+simulated function ConsumeAmmo(byte FireModeNum)
+{
+    local byte AmmoType;
+    local bool bNoInfiniteAmmo;
+    local int OldAmmoCount;
+
+    if((((UsesSecondaryAmmo()) && FireModeNum == 1) && Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
+    {
+        AmmoType = byte(GetAmmoType(FireModeNum));
+        OldAmmoCount = AmmoCount[AmmoType];
+        super.ConsumeAmmo(FireModeNum);
+        bNoInfiniteAmmo = ((OldAmmoCount - AmmoCount[AmmoType]) > 0) || AmmoCount[AmmoType] == 0;
+        if(bNoInfiniteAmmo)
+        {
+            -- ServerTotalAltAmmo;
+        }        
+    }
+    else
+    {
+        super.ConsumeAmmo(FireModeNum);
+    }
+}
+
+simulated event bool HasAmmo(byte FireModeNum, optional int Amount)
+{
+    local byte AmmoType;
+
+    Amount = 1;
+    AmmoType = byte(GetAmmoType(FireModeNum));
+    if((((AmmoType == 1) && Role == ROLE_Authority) && UsesSecondaryAmmo()) && !Instigator.IsLocallyControlled())
+    {
+        if(ServerTotalAltAmmo <= 0)
+        {
+            return false;
+        }
+    }
+    return super(KFWeapon).HasAmmo(FireModeNum, Amount);
 }
 
 function int AddSecondaryAmmo(int Amount)
@@ -49,12 +94,19 @@ function int AddSecondaryAmmo(int Amount)
     {
         return 0;
     }
-    OldAmmo = SpareAmmoCount[1];
-    if(bAllowClientAmmoTracking)
+    if((Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
     {
+        OldAmmo = ServerTotalAltAmmo;
+        ServerTotalAltAmmo = Min(ServerTotalAltAmmo + Amount, GetMaxAmmoAmount(1));
         ClientGiveSecondaryAmmo(byte(Amount));
+        return ServerTotalAltAmmo - OldAmmo;        
     }
-    return SpareAmmoCount[1] - OldAmmo;
+    else
+    {
+        OldAmmo = SpareAmmoCount[1];
+        ClientGiveSecondaryAmmo(byte(Amount));
+        return SpareAmmoCount[1] - OldAmmo;
+    }
 }
 
 reliable client simulated function ClientGiveSecondaryAmmo(byte Amount)
@@ -65,8 +117,19 @@ reliable client simulated function ClientGiveSecondaryAmmo(byte Amount)
 
 function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
 {
+    local KFWeap_AssaultRifle_M16M203 Weap;
+
     super(KFWeapon).SetOriginalValuesFromPickup(PickedUpWeapon);
-    SpareAmmoCount[1] = PickedUpWeapon.SpareAmmoCount[1];
+    if((Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
+    {
+        Weap = KFWeap_AssaultRifle_M16M203(PickedUpWeapon);
+        ServerTotalAltAmmo = Weap.ServerTotalAltAmmo;
+        SpareAmmoCount[1] = ServerTotalAltAmmo - AmmoCount[1];        
+    }
+    else
+    {
+        SpareAmmoCount[1] = PickedUpWeapon.SpareAmmoCount[1];
+    }
 }
 
 simulated function CauseMuzzleFlash(byte FireModeNum)
@@ -295,7 +358,10 @@ defaultproperties
     PickupMeshName="WEP_3P_Medic_GrenadeLauncher_MESH.Wep_3rdP_Medic_GrenadeLauncher_Pickup"
     AttachmentArchetypeName="wep_medic_grenadelauncher_arch.Wep_Medic_GrenadeLauncher_3P"
     MuzzleFlashTemplateName="WEP_Medic_GrenadeLauncher_ARCH.Wep_Medic_GrenadeLauncher_MuzzleFlash"
+    bHasIronSights=true
     bCanRefillSecondaryAmmo=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=2
     InventorySize=8
@@ -303,7 +369,7 @@ defaultproperties
     MagazineCapacity[1]=1
     MeshFOV=65
     MeshIronSightFOV=45
-    IronSightPosition=(X=0,Y=0,Z=0)
+    PlayerIronSightFOV=70
     DOF_FG_FocalRadius=75
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=50
@@ -312,8 +378,12 @@ defaultproperties
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity[0]=210
     SpareAmmoCapacity[1]=9
+    InitialSpareMags[0]=2
     InitialSpareMags[1]=3
     AmmoPickupScale[1]=2
+    bLoopingFireAnim=/* Array type was not detected. */
+    bLoopingFireSnd=/* Array type was not detected. */
+    FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
@@ -324,12 +394,24 @@ defaultproperties
     maxRecoilYaw=125
     minRecoilYaw=-125
     RecoilRate=0.11
+    RecoilMaxYawLimit=500
+    RecoilMinYawLimit=65035
+    RecoilMaxPitchLimit=900
+    RecoilMinPitchLimit=65035
+    RecoilISMaxYawLimit=75
+    RecoilISMinYawLimit=65460
+    RecoilISMaxPitchLimit=375
+    RecoilISMinPitchLimit=65460
+    HippedRecoilModifier=1.5
+    IronSightMeshFOVCompensationScale=1.5
+    AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
     Spread=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
+    FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

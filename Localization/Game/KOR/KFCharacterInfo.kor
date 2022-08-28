@@ -90,7 +90,7 @@ HeadSkin2="레드"
 HeadSkin3="브라운"
 HeadSkin4="핑크"
 HeadSkin5="블랙"
-HeadSkin6="NEED NAME"
+HeadSkin6="핼러윈 2018"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -249,7 +249,7 @@ HeadSkin2="블러드 레드"
 HeadSkin3="금속 얼굴"
 HeadSkin4="거구의 스웨덴인"
 HeadSkin5="현기증"
-HeadSkin6="NEED NAME"
+HeadSkin6="핼러윈 2018"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="스파이키 카우보이 모자"
@@ -423,7 +423,7 @@ HeadSkin3="그린 해저드"
 HeadSkin4="레트로 스컬리"
 HeadSkin5="조용한 비명 스컬리 "
 HeadSkin6="배트캣"
-HeadSkin7="NEED NAME"
+HeadSkin7="핼러윈 2018"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="스컬리폰"
@@ -547,7 +547,7 @@ HeadSkin1="하이라이트"
 HeadSkin2="블랙"
 HeadSkin3="꼭두각시"
 HeadSkin4="죽은 자의 날"
-HeadSkin5="NEED NAME"
+HeadSkin5="핼러윈 2018"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="닥터 마스크"
@@ -675,7 +675,7 @@ HeadSkin4="브리티쉬 클래스"
 HeadSkin5="화가 난"
 HeadSkin6="Mr. Hans"
 HeadSkin7="도쉬 러버"
-HeadSkin8="NEED NAME"
+HeadSkin8="핼러윈 2018"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="스컬리폰"
@@ -904,7 +904,7 @@ HeadSkin1="탯"
 HeadSkin2="글레어"
 HeadSkin3="미소"
 HeadSkin4="어흥"
-HeadSkin5="NEED NAME"
+HeadSkin5="핼러윈 2018"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="복싱 헤드기어"
@@ -1018,7 +1018,7 @@ HeadSkin2="블랙"
 HeadSkin3="화이트"
 HeadSkin4="피에로"
 HeadSkin5="팬텀"
-HeadSkin6="NEED NAME"
+HeadSkin6="핼러윈 2018"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="안경"
@@ -1914,7 +1914,7 @@ HeadSkin1="카모"
 HeadSkin2="광대"
 HeadSkin3="뱀파이어"
 HeadSkin4="길로틴"
-HeadSkin5="NEED NAME"
+HeadSkin5="핼러윈 2018"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="그린"
@@ -2013,7 +2013,7 @@ HeadSkin0="블랙"
 HeadSkin1="금발"
 HeadSkin2="쿠마도리"
 HeadSkin3="타이탄"
-HeadSkin4="NEED NAME"
+HeadSkin4="핼러윈 2018"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="기품있게"
@@ -2149,7 +2149,7 @@ HeadSkin3="프리티 블루"
 HeadSkin4="데스메탈"
 HeadSkin5="Mrs. Stein"
 HeadSkin6="꽃"
-HeadSkin7="NEED NAME"
+HeadSkin7="핼러윈 2018"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="죽음의 비"
@@ -2343,7 +2343,7 @@ HeadSkin3="스웨덴 금발"
 HeadSkin4="스마일"
 HeadSkin5="Mr. Juice"
 HeadSkin6="굿 게임"
-HeadSkin7="NEED NAME"
+HeadSkin7="핼러윈 2018"
 
 [chr_alan_archetype]
 CharacterName="클래식 마스터슨"
@@ -2444,7 +2444,7 @@ HeadSkin3="장비를 갖춰!"
 HeadSkin4="기운내요, 친구!"
 HeadSkin5="넌 죽었어, 친구!"
 HeadSkin6="디지"
-HeadSkin7="NEED NAME"
+HeadSkin7="핼러윈 2018"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ 캡"
@@ -2546,7 +2546,7 @@ HeadSkin0="다크 스틸"
 HeadSkin1="블론드 스틸"
 HeadSkin2="미스터 데스"
 HeadSkin3="Mr Stein"
-HeadSkin4="NEED NAME"
+HeadSkin4="핼러윈 2018"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="독일 강철 헬멧"
@@ -2798,7 +2798,7 @@ HeadSkin4="틸"
 HeadSkin5="핑크"
 HeadSkin6="미스데스"
 HeadSkin7="사슴"
-HeadSkin8="NEED NAME"
+HeadSkin8="핼러윈 2018"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="아이 패치"

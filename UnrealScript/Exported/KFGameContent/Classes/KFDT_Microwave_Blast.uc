@@ -26,5 +26,5 @@ defaultproperties
    KDeathUpKick=500.000000
    RadialDamageImpulse=5000.000000
    Name="Default__KFDT_Microwave_Blast"
-   ObjectArchetype=KFDT_Microwave'kfgamecontent.Default__KFDT_Microwave'
+   ObjectArchetype=KFDT_Microwave'KFGame.Default__KFDT_Microwave'
 }

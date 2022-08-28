@@ -19,7 +19,7 @@ ServerTypeStrings[2]="排名——自定义"
 ServerTypeStrings[3]="非排名"
 
 PermissionStrings[0]="公开"
-PermissionStrings[1]="私人密码"
+PermissionStrings[1]="私人：加密的"
 
 ConsolePermissionStrings[0]="公开"
 ConsolePermissionStrings[1]="仅限邀请"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="浏览"
 TabStrings[1]="收藏夹"
-TabStrings[2]="好友"
+TabStrings[2]="公开好友"
 TabStrings[3]="历史"
 TabStrings[4]="LAN"
 
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="怪兽血浆",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="彻夜狂欢",DescriptionString="在困难或以上难度的无尽挑战中成功抵御 25 波丧尸");
 SpecialEventObjectiveInfoList[4]=(TitleString="堡垒之王",DescriptionString="在幸存者难度或以上难度中打败考特·汉斯");
 
-AllCompleteRewardDescriptionString="汉斯的MKB万圣节皮肤"
+AllCompleteRewardDescriptionString="汉斯的MKB：武器+万圣节皮肤"
 
 ChanceDropDescriptionStrings[0]="奖励劵"
 ChanceDropDescriptionStrings[1]="黄金券"
@@ -3067,6 +3067,7 @@ DisplayName="飞艇"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="怪物球"
+
 
 [KFMapInfo]
 ; defaults

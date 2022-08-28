@@ -19,7 +19,7 @@ ServerTypeStrings[2]="Clasificatoria - Per."
 ServerTypeStrings[3]="No clasificatoria"
 
 PermissionStrings[0]="Pública"
-PermissionStrings[1]="Privada-Contraseña"
+PermissionStrings[1]="Privado: contraseña"
 
 ConsolePermissionStrings[0]="Pública"
 ConsolePermissionStrings[1]="Solo por invitación"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 M"
 
 TabStrings[0]="EXPLORAR"
 TabStrings[1]="FAVORITOS"
-TabStrings[2]="AMIGOS"
+TabStrings[2]="AMIGOS PÚBL."
 TabStrings[3]="HISTORIAL"
 TabStrings[4]="LOCAL (LAN)"
 
@@ -2328,7 +2328,7 @@ USBSpitfire="Llave USB Escupefuego - 2,49 $"
 USBHighVoltage="Llave USB Alto voltaje - 2,49 $"
 MerchSale="¡Rebajas KF2! 25% menos hasta 30/4/17 (cód.: ZED)"
 FreeTrial="¡Compra hoy Killing Floor 2!"
-FeaturedCrossover="Promoción de crossover destacada
+FeaturedCrossover="Promoción de crossover destacada"
 
 [Objectives]
 HoldVolume="DEFENDER EL ÁREA"
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Mezcla de monstruos",DescriptionS
 SpecialEventObjectiveInfoList[3]=(TitleString="Noche de fiesta",DescriptionString="Completa la oleada 25 de Sin fin en la dificultad Difícil o superior");
 SpecialEventObjectiveInfoList[4]=(TitleString="El señor del castillo",DescriptionString="Derrota al conde Hans en Supervivencia con dificultad Difícil o superior");
 
-AllCompleteRewardDescriptionString="Apariencia MKB de Halloween"
+AllCompleteRewardDescriptionString="MKB de Hans: Arma + Apar. de Halloween"
 
 ChanceDropDescriptionStrings[0]="Bol. premiado"
 ChanceDropDescriptionStrings[1]="Boleto dorado"
@@ -3067,6 +3067,7 @@ DisplayName="Aeronave"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="Baile de monstruos"
+
 
 [KFMapInfo]
 ; defaults

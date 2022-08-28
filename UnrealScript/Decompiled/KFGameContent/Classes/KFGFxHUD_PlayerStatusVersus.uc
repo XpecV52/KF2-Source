@@ -54,7 +54,7 @@ function UpdateArmor();
 
 function UpdatePerk();
 
-function UpdateHealer();
+function UpdateHealer(optional bool bForce);
 
 function ShowActiveIndicators(array<string> IconPathStrings);
 

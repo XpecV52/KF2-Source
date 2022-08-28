@@ -33,6 +33,7 @@ defaultproperties
     SingleFireSoundIndex=1
     InventorySize=8
     MagazineCapacity=20
+    PenetrationPower=/* Array type was not detected. */
     MeshFOV=55
     MeshIronSightFOV=20
     PlayerIronSightFOV=70
@@ -52,10 +53,10 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=22,Y=11,Z=-3)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_FNFal.MeleeHelper'
-    maxRecoilPitch=185
-    minRecoilPitch=150
-    maxRecoilYaw=175
-    minRecoilYaw=-150
+    maxRecoilPitch=200
+    minRecoilPitch=165
+    maxRecoilYaw=190
+    minRecoilYaw=-165
     RecoilViewRotationScale=0.6
     RecoilMaxYawLimit=500
     RecoilMinYawLimit=65035

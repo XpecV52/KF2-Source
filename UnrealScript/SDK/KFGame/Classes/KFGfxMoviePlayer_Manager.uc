@@ -1663,6 +1663,15 @@ function bool IsInLobby()
 	return bPlayerInLobby;
 }
 
+function OnLoginFailed()
+{
+	if(PartyWidget != none)
+	{
+		PartyWidget.SetBool("bShowWaitingSpinner", false);
+		PartyWidget.SetBool("bInParty", false);
+	}
+}
+
 /*********************************************************************************************
 `* Start Menu States
 ********************************************************************************************* */
@@ -2046,13 +2055,13 @@ function currentFocus()
 defaultproperties
 {
 	InGamePartyWidgetClass = class'KFGFxWidget_PartyInGame'
-	BackgroundMovies(SEI_None) = TextureMovie'UI_Managers.MenuBG'
-	BackgroundMovies(SEI_Spring) = TextureMovie'UI_Managers.MenuBG'
-	BackgroundMovies(SEI_Summer) = TextureMovie'UI_Managers.SummerSideShowBGMovie'
-	BackgroundMovies(SEI_Fall) = TextureMovie'UI_Managers.MenuBG_Halloween'
-	BackgroundMovies(SEI_Winter) = TextureMovie'UI_Managers.Menu_Winter'
-	IISMovie = TextureMovie'UI_Managers.IIS'
-	MovieInfo = SwfMovie'UI_Managers.LoaderManager_SWF'
+	BackgroundMovies(SEI_None)=TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Spring)=TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Summer)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
+	BackgroundMovies(SEI_Fall)=TextureMovie'UI_Managers.MenuBG_Halloween'
+	BackgroundMovies(SEI_Winter)=TextureMovie'UI_Managers.Menu_Winter'
+	IISMovie=TextureMovie'UI_Managers.IIS'
+	MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
 	bCaptureInput = true
 	bAutoPlay = true
 

@@ -1463,6 +1463,15 @@ function bool IsInLobby()
     return bPlayerInLobby;
 }
 
+function OnLoginFailed()
+{
+    if(PartyWidget != none)
+    {
+        PartyWidget.SetBool("bShowWaitingSpinner", false);
+        PartyWidget.SetBool("bInParty", false);
+    }
+}
+
 function bool GetMultiplayerMenuActive()
 {
     if(CurrentMenuIndex == 16)

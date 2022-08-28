@@ -6,7 +6,7 @@
 // Killing Floor 2
 // Copyright (C) 2017 Tripwire Interactive LLC
 //=============================================================================
-class KFWeap_AssaultRifle_MedicRifleGrenadeLauncher extends KFWeap_AssaultRifle_Medic;
+class KFWeap_AssaultRifle_MedicRifleGrenadeLauncher extends KFWeap_MedicBase;
 
 var(Positioning) vector SecondaryFireOffset;
 
@@ -15,6 +15,10 @@ const SecondaryFireIronAnim = 'Shoot_Secondary_Iron';
 
 const SecondaryReloadAnim = 'Reload_Secondary';
 const SecondaryReloadAnim_Elite = 'Reload_Secondary_Elite';
+
+// Used on the server to keep track of grenades
+// TODO: ALL ServerTotalAltAmmo CODE IS COPY-PASTED FROM M16M203. THIS CODE NEEDS TO LIVE IN ONE PLACE.
+var int ServerTotalAltAmmo;
 
 simulated function int GetSecondaryAmmoForHUD()
 {
@@ -47,28 +51,88 @@ function InitializeAmmo()
 
 	// Add Secondary ammo to our secondary spare ammo count both of these are important, in order to allow dropping the weapon to function properly.
 	SpareAmmoCount[1]	= Min(SpareAmmoCount[1] + InitialSpareMags[1] * default.MagazineCapacity[1], GetMaxAmmoAmount(1) - AmmoCount[1]);
+	ServerTotalAltAmmo += SpareAmmoCount[1];
+
+	// Make sure the server doesn't get extra shots on listen servers.
+	if(Role == ROLE_Authority && !Instigator.IsLocallyControlled())
+	{
+		ServerTotalAltAmmo += AmmoCount[1];
+	}
 }
 
 /**
- *	Overridden so any grenades added will go to the spare ammo and not the clip.
+ * @see Weapon::ConsumeAmmo
+ */
+simulated function ConsumeAmmo( byte FireModeNum )
+{
+	local byte AmmoType;
+	local bool bNoInfiniteAmmo;
+	local int OldAmmoCount;
+
+	if(UsesSecondaryAmmo() && FireModeNum == ALTFIRE_FIREMODE && Role == ROLE_Authority && !Instigator.IsLocallyControlled())
+	{
+		AmmoType = GetAmmoType(FireModeNum);
+
+		OldAmmoCount = AmmoCount[AmmoType];
+		Super.ConsumeAmmo(FireModeNum);
+
+		bNoInfiniteAmmo = (OldAmmoCount - AmmoCount[AmmoType]) > 0 || AmmoCount[AmmoType] == 0;
+		if ( bNoInfiniteAmmo )
+		{
+			ServerTotalAltAmmo--;
+		}
+	}
+	else
+	{
+		Super.ConsumeAmmo(FireModeNum);
+	}
+}
+
+/** Make sure user can't fire infinitely if they cheat to get infinite ammo locally. */
+simulated event bool HasAmmo( byte FireModeNum, optional int Amount=1 )
+{
+	local byte AmmoType;
+
+	AmmoType = GetAmmoType(FireModeNum);
+
+	if(AmmoType == 1 && Role == ROLE_Authority && UsesSecondaryAmmo() && !Instigator.IsLocallyControlled())
+	{
+		if(ServerTotalAltAmmo <= 0)
+		{
+			return false;
+		}
+	}
+
+	return Super.HasAmmo(FireModeNum, Amount );
+}
+
+/**
+ *	Overridden so any grenades added will go to the spare ammo and no the clip.
  */
 function int AddSecondaryAmmo(int Amount)
 {
 	local int OldAmmo;
 
 	// If we can't accept spare ammo, then abort
-	if (!CanRefillSecondaryAmmo())
+	if( !CanRefillSecondaryAmmo() )
 	{
 		return 0;
 	}
 
-	OldAmmo = SpareAmmoCount[1];
-	if (bAllowClientAmmoTracking)
+	if(Role == ROLE_Authority && !Instigator.IsLocallyControlled())
 	{
-		ClientGiveSecondaryAmmo(Amount);
-	}
+		OldAmmo = ServerTotalAltAmmo;
 
-	return SpareAmmoCount[1] - OldAmmo;
+		ServerTotalAltAmmo = Min(ServerTotalAltAmmo + Amount, GetMaxAmmoAmount(1));
+		ClientGiveSecondaryAmmo(Amount);
+		return ServerTotalAltAmmo - OldAmmo;
+	}
+	else
+	{
+		OldAmmo = SpareAmmoCount[1];
+		ClientGiveSecondaryAmmo(Amount);
+		return SpareAmmoCount[1] - OldAmmo;
+	}
 }
 
 /** Give client specified amount of ammo (used player picks up ammo on the server) */
@@ -80,8 +144,21 @@ reliable client function ClientGiveSecondaryAmmo(byte Amount)
 
 function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 {
+	local KFWeap_AssaultRifle_M16M203 Weap;
+
 	Super.SetOriginalValuesFromPickup(PickedUpWeapon);
-	SpareAmmoCount[1] = PickedUpWeapon.SpareAmmoCount[1];
+
+	if(Role == ROLE_Authority && !Instigator.IsLocallyControlled())
+	{
+		Weap = KFWeap_AssaultRifle_M16M203(PickedUpWeapon);
+		ServerTotalAltAmmo = Weap.ServerTotalAltAmmo;
+		SpareAmmoCount[1] = ServerTotalAltAmmo - AmmoCount[1];
+	}
+	else
+	{
+		// If we're locally controlled, don't bother using ServerTotalAltAmmo.
+		SpareAmmoCount[1] = PickedUpWeapon.SpareAmmoCount[1];
+	}
 }
 
 /*********************************************************************************************

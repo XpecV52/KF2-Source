@@ -90,7 +90,7 @@ HeadSkin2="Красный цвет"
 HeadSkin3="Коричневый цвет"
 HeadSkin4="Розовый цвет"
 HeadSkin5="Черный цвет"
-HeadSkin6="NEED NAME"
+HeadSkin6="Хеллоуин 2018"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -249,7 +249,7 @@ HeadSkin2="Кроваво-красный"
 HeadSkin3="Маска рокера"
 HeadSkin4="Большой плохой швед"
 HeadSkin5="Головокружение"
-HeadSkin6="NEED NAME"
+HeadSkin6="Хеллоуин 2018"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Ковбойская шляпа"
@@ -423,7 +423,7 @@ HeadSkin3="Ядовито-зеленый"
 HeadSkin4="Ретро-Скалли"
 HeadSkin5="Безмолвный крик Скалли"
 HeadSkin6="BatCat"
-HeadSkin7="NEED NAME"
+HeadSkin7="Хеллоуин 2018"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Наушники Скалли"
@@ -547,7 +547,7 @@ HeadSkin1="Подсветка"
 HeadSkin2="Черный"
 HeadSkin3="Марионетка"
 HeadSkin4="День мертвых"
-HeadSkin5="NEED NAME"
+HeadSkin5="Хеллоуин 2018"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Маска врача"
@@ -675,7 +675,7 @@ HeadSkin4="Британский класс"
 HeadSkin5="Красная пелена"
 HeadSkin6="Г-н Ганс"
 HeadSkin7="Деньголюб"
-HeadSkin8="NEED NAME"
+HeadSkin8="Хеллоуин 2018"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Наушники Скалли"
@@ -904,7 +904,7 @@ HeadSkin1="Невзрачный"
 HeadSkin2="Блестящий"
 HeadSkin3="Ухмылка"
 HeadSkin4="Рык"
-HeadSkin5="NEED NAME"
+HeadSkin5="Хеллоуин 2018"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Боксерский шлем"
@@ -1018,7 +1018,7 @@ HeadSkin2="Черный"
 HeadSkin3="Белый"
 HeadSkin4="Пьеро"
 HeadSkin5="Видение"
-HeadSkin6="NEED NAME"
+HeadSkin6="Хеллоуин 2018"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Очки"
@@ -1914,7 +1914,7 @@ HeadSkin1="Камуфляж"
 HeadSkin2="Клоун"
 HeadSkin3="Вампир"
 HeadSkin4="Гильотина"
-HeadSkin5="NEED NAME"
+HeadSkin5="Хеллоуин 2018"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Зеленый"
@@ -2013,7 +2013,7 @@ HeadSkin0="Черный"
 HeadSkin1="Блондин"
 HeadSkin2="Кумадори"
 HeadSkin3="Титан"
-HeadSkin4="NEED NAME"
+HeadSkin4="Хеллоуин 2018"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="Стильный"
@@ -2149,7 +2149,7 @@ HeadSkin3="Синенький"
 HeadSkin4="Дэт-метал"
 HeadSkin5="Г-жа Штейн"
 HeadSkin6="Цветы"
-HeadSkin7="NEED NAME"
+HeadSkin7="Хеллоуин 2018"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Дождь смерти"
@@ -2343,7 +2343,7 @@ HeadSkin3="Швед-блондин"
 HeadSkin4="Улыбнись мне"
 HeadSkin5="Г-н Сок"
 HeadSkin6="Хорошая игра"
-HeadSkin7="NEED NAME"
+HeadSkin7="Хеллоуин 2018"
 
 [chr_alan_archetype]
 CharacterName="Классический Мастерсон"
@@ -2444,7 +2444,7 @@ HeadSkin3="Камуфлируй!"
 HeadSkin4="Веселее, приятель!"
 HeadSkin5="Ты сдох, дружок!"
 HeadSkin6="Цифровой"
-HeadSkin7="NEED NAME"
+HeadSkin7="Хеллоуин 2018"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="Кепка RQ"
@@ -2546,7 +2546,7 @@ HeadSkin0="Темная сталь"
 HeadSkin1="Светлая сталь"
 HeadSkin2="Мистер Смерть"
 HeadSkin3="Г-н Штейн"
-HeadSkin4="NEED NAME"
+HeadSkin4="Хеллоуин 2018"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Немецкая стальная каска"
@@ -2798,7 +2798,7 @@ HeadSkin4="Зеленовато-голубой"
 HeadSkin5="Розовый"
 HeadSkin6="Мисс Смерть"
 HeadSkin7="Олень"
-HeadSkin8="NEED NAME"
+HeadSkin8="Хеллоуин 2018"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Повязка на глаз"

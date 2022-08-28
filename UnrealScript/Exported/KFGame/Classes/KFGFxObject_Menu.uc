@@ -267,6 +267,41 @@ function Callback_PlayerClicked( int SlotIndex )
 	*/
 }
 
+function ConfirmCreateParty()
+{
+	local OnlineSubsystem OnlineSub;
+
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+
+	if (OnlineLobby != none)
+	{
+		if (OnlineSub != none && !OnlineSub.IsGameOwned() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+		{
+			if (OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+			{
+				Manager.HandleFreeTrialError(FTN_BuyGame);
+				return;
+			}
+
+			if (!OnlineSub.CanCheckFreeTrialState())
+			{
+				Manager.HandleFreeTrialError(FTN_NetworkCheckFailed);
+				return;
+			}
+		}
+
+		if (Class'WorldInfo'.Static.IsConsoleBuild())
+		{
+			OnlineLobby.MakeLobby(6, LV_Private);	// returns false if we're already in a lobby
+		}
+		else
+		{
+			OnlineLobby.MakeLobby(6, LV_Friends);	// returns false if we're already in a lobby
+		}
+		OnlineLobby.ShowLobbyInviteInterface(Class'WorldInfo'.Static.IsConsoleBuild() ? Localize("Notifications", "InviteMessage", "KFGameConsole") : "");
+	}
+}
+
 //==============================================================
 // Party Widget Callbacks
 //==============================================================
@@ -305,37 +340,18 @@ function Callback_ProfileOption(string OptionKey, int SlotIndex)
 
 function Callback_CreateParty()
 {
-	local OnlineSubsystem OnlineSub;
+	local KFPlayerController KFPC;
 
-	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
-
-	if( OnlineLobby != none )
+	KFPC = KFPlayerController(GetPC());
+	if (class'WorldInfo'.static.IsConsoleBuild())
 	{
-		if (OnlineSub != none && !OnlineSub.IsGameOwned() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
-		{
-			if (OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
-			{
-				Manager.HandleFreeTrialError(FTN_BuyGame);
-				return;
-			}
-
-			if (!OnlineSub.CanCheckFreeTrialState())
-			{
-				Manager.HandleFreeTrialError(FTN_NetworkCheckFailed);
-				return;
-			}
-		}
-
-		if (Class'WorldInfo'.Static.IsConsoleBuild())
-		{
-			OnlineLobby.MakeLobby(6, LV_Private);	// returns false if we're already in a lobby
-		}
-		else
-		{
-			OnlineLobby.MakeLobby(6, LV_Friends);	// returns false if we're already in a lobby
-		}
-		OnlineLobby.ShowLobbyInviteInterface(Class'WorldInfo'.Static.IsConsoleBuild() ? Localize("Notifications", "InviteMessage", "KFGameConsole") : "");
+		KFPC.StartLogin(ConfirmCreateParty, true);
 	}
+	else
+	{
+		ConfirmCreateParty();
+	}
+	
 }
 
 function Callback_LeaveParty()

@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Monster Mash",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="Party All Night Long",DescriptionString="Complete wave 25 on Endless Hard or higher difficulty")
 SpecialEventObjectiveInfoList[4]=(TitleString="Lord of the Castle",DescriptionString="Defeat Count Hans on Survival Hard or higher difficulty")
 
-AllCompleteRewardDescriptionString="Hans' Halloween MKB Skin"
+AllCompleteRewardDescriptionString="Hans' MKB: Weapon + Halloween Skin"
 
 ChanceDropDescriptionStrings[0]="Prize Ticket"
 ChanceDropDescriptionStrings[1]="Gold Ticket"

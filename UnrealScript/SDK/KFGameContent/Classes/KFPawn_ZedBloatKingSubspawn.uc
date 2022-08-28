@@ -116,7 +116,7 @@ defaultproperties
 
 	// Used for special crawler gas AOE attack "explosion" template
     Begin Object Class=KFGameExplosion Name=ExploTemplate0
-        Damage=12//50  //12 //16
+        Damage=15//50  //12 //16
         DamageRadius=425 //600 //450 //400
         DamageFalloffExponent=0.f
         DamageDelay=0.f
@@ -179,7 +179,7 @@ defaultproperties
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 
-	Health=650 //55 //450 //700 //900 //810
+	Health=450 //55 //450 //700 //900 //810
 	DoshValue=10
 	Mass=50.f
 	bKnockdownWhenJumpedOn=true

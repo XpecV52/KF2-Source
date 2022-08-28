@@ -19,7 +19,7 @@ ServerTypeStrings[2]="Ранговый — польз."
 ServerTypeStrings[3]="Без рангов"
 
 PermissionStrings[0]="Открытый"
-PermissionStrings[1]="Закрытый с паролем"
+PermissionStrings[1]="Закрытая: с паролем"
 
 ConsolePermissionStrings[0]="Открытый"
 ConsolePermissionStrings[1]="По приглашению"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 МС"
 
 TabStrings[0]="ОБЗОР"
 TabStrings[1]="ЛЮБИМЫЕ"
-TabStrings[2]="ДРУЗЬЯ"
+TabStrings[2]="ОТКРЫТ. ДРУЗЕЙ"
 TabStrings[3]="ИСТОРИЯ"
 TabStrings[4]="ЛОК. СЕТЬ"
 
@@ -803,7 +803,7 @@ DoshVaultString="ДЕНЬГОХРАНИЛИЩЕ"
 YourCratesString="Ваши ящики:"
 OpenCratesString="Открыть ящик(и)"
 CrateUnlockedString="ЯЩИК ПОЛУЧЕН!"
-DelayedCrateString="*Выдача ящиков из деньгохранилища может быть отложена до след. входа в игру"
+DelayedCrateString="*Выдача ящиков из деньгохранилища может быть отложена до след. входа"
 
 [KFGFxMenu_Gear]
 GearHeaderString="НАСТРОИТЬ СНАРЯЖЕНИЕ"
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Месиво из монстро�
 SpecialEventObjectiveInfoList[3]=(TitleString="Вечеринка на всю ночь",DescriptionString="Расправьтесь с волной 25 в бесконечном режиме на уровне «Сложно» или выше");
 SpecialEventObjectiveInfoList[4]=(TitleString="Владелец замка",DescriptionString="Победите графа Ганса в режиме «Выживание» на уровне «Сложно» или выше");
 
-AllCompleteRewardDescriptionString="Вид хеллоуинской MKB Ганса"
+AllCompleteRewardDescriptionString="MKB Ганса оружие и хелл. внешний вид"
 
 ChanceDropDescriptionStrings[0]="Призовой билет"
 ChanceDropDescriptionStrings[1]="Золотой билет"
@@ -3067,6 +3067,7 @@ DisplayName="Воздушное судно"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="Бал монстров"
+
 
 [KFMapInfo]
 ; defaults

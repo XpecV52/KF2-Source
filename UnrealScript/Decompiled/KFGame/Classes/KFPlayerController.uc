@@ -6935,7 +6935,7 @@ function OnLoginCompleted(bool bSuccess)
     {
         if(MyGFxManager != none)
         {
-            MyGFxManager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, Class'KFCommon_LocalizedStrings'.default.OKString);
+            MyGFxManager.OnLoginFailed();
         }
     }
     __LoginCompleteCallback__Delegate = None;
@@ -7073,7 +7073,7 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
     }
 }
 
-function CheckPrivilegesForMultiplayer()
+singular function CheckPrivilegesForMultiplayer()
 {
     local Engine.OnlineSubsystem.EFeaturePrivilegeLevel HintPrivLevel;
 

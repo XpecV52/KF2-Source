@@ -19,7 +19,7 @@ ServerTypeStrings[2]="Gewertet – Benutzerdef."
 ServerTypeStrings[3]="Ungewertet"
 
 PermissionStrings[0]="Öffentlich"
-PermissionStrings[1]="Privat-Passwort"
+PermissionStrings[1]="Privat: Passwort erf."
 
 ConsolePermissionStrings[0]="Öffentlich"
 ConsolePermissionStrings[1]="Nur mit Einladung"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="BROWSEN"
 TabStrings[1]="FAVORITEN"
-TabStrings[2]="FREUNDE"
+TabStrings[2]="ÖFF. FREUNDE"
 TabStrings[3]="VERLAUF"
 TabStrings[4]="LAN"
 
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Monstermanscher",DescriptionStrin
 SpecialEventObjectiveInfoList[3]=(TitleString="Jetzt wird durchgefeiert",DescriptionString="Schließe Welle 25 bei Endlos auf Schwer oder höher ab");
 SpecialEventObjectiveInfoList[4]=(TitleString="Schlossherr",DescriptionString="Besiege den Grafen Hans bei Überleben auf Schwer oder höher");
 
-AllCompleteRewardDescriptionString="Hans' Halloween-MKB-Skin"
+AllCompleteRewardDescriptionString="Hans‘ MKB: Waffe + Halloween-Skin"
 
 ChanceDropDescriptionStrings[0]="Gewinnschein"
 ChanceDropDescriptionStrings[1]="Goldschein"
@@ -3067,6 +3067,7 @@ DisplayName="Luftschiff"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="Monsterball"
+
 
 [KFMapInfo]
 ; defaults

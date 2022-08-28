@@ -90,7 +90,7 @@ HeadSkin2="紅色"
 HeadSkin3="棕色"
 HeadSkin4="粉紅"
 HeadSkin5="黑色"
-HeadSkin6="NEED NAME"
+HeadSkin6="2018年萬聖節"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -249,7 +249,7 @@ HeadSkin2="血紅"
 HeadSkin3="鐵面"
 HeadSkin4="瑞典大壞蛋"
 HeadSkin5="眩暈"
-HeadSkin6="NEED NAME"
+HeadSkin6="2018年萬聖節"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="牛仔帽"
@@ -423,7 +423,7 @@ HeadSkin3="綠色障礙"
 HeadSkin4="復古史骷利"
 HeadSkin5="沉默的吶喊史骷利"
 HeadSkin6="蝙蝠貓"
-HeadSkin7="NEED NAME"
+HeadSkin7="2018年萬聖節"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="史骷利耳機"
@@ -547,7 +547,7 @@ HeadSkin1="亮光"
 HeadSkin2="黑"
 HeadSkin3="寵物"
 HeadSkin4="死亡之日"
-HeadSkin5="NEED NAME"
+HeadSkin5="2018年萬聖節"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="醫生口罩"
@@ -675,7 +675,7 @@ HeadSkin4="英國風"
 HeadSkin5="看見紅色"
 HeadSkin6="漢斯先生"
 HeadSkin7="守財奴"
-HeadSkin8="NEED NAME"
+HeadSkin8="2018年萬聖節"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="史骷利耳機"
@@ -904,7 +904,7 @@ HeadSkin1="麻布"
 HeadSkin2="眩光"
 HeadSkin3="齜牙咧嘴"
 HeadSkin4="怒吼"
-HeadSkin5="NEED NAME"
+HeadSkin5="2018年萬聖節"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="拳擊頭盔"
@@ -1018,7 +1018,7 @@ HeadSkin2="黑"
 HeadSkin3="白"
 HeadSkin4="丑角"
 HeadSkin5="幽靈"
-HeadSkin6="NEED NAME"
+HeadSkin6="2018年萬聖節"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="眼鏡"
@@ -1914,7 +1914,7 @@ HeadSkin1="迷彩"
 HeadSkin2="小丑"
 HeadSkin3="吸血鬼"
 HeadSkin4="斷頭台"
-HeadSkin5="NEED NAME"
+HeadSkin5="2018年萬聖節"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="綠"
@@ -2013,7 +2013,7 @@ HeadSkin0="黑"
 HeadSkin1="金髮"
 HeadSkin2="隈取妝"
 HeadSkin3="泰坦巨人"
-HeadSkin4="NEED NAME"
+HeadSkin4="2018年萬聖節"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="上等"
@@ -2149,7 +2149,7 @@ HeadSkin3="蔚藍"
 HeadSkin4="死亡金屬"
 HeadSkin5="史坦太太"
 HeadSkin6="鮮花"
-HeadSkin7="NEED NAME"
+HeadSkin7="2018年萬聖節"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="死亡之雨"
@@ -2343,7 +2343,7 @@ HeadSkin3="金髮瑞典人"
 HeadSkin4="為我一笑"
 HeadSkin5="朱斯先生"
 HeadSkin6="甘敗下風"
-HeadSkin7="NEED NAME"
+HeadSkin7="2018年萬聖節"
 
 [chr_alan_archetype]
 CharacterName="典型麥斯特森"
@@ -2444,7 +2444,7 @@ HeadSkin3="來吧，兄弟！"
 HeadSkin4="加油，夥伴！"
 HeadSkin5="你死了，老兄！"
 HeadSkin6="數位"
-HeadSkin7="NEED NAME"
+HeadSkin7="2018年萬聖節"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ 帽"
@@ -2546,7 +2546,7 @@ HeadSkin0="黑鋼"
 HeadSkin1="金鋼"
 HeadSkin2="死神"
 HeadSkin3="史坦先生"
-HeadSkin4="NEED NAME"
+HeadSkin4="2018年萬聖節"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="德國鋼頭盔"
@@ -2798,7 +2798,7 @@ HeadSkin4="水鴨"
 HeadSkin5="粉紅"
 HeadSkin6="女死神"
 HeadSkin7="鹿"
-HeadSkin8="NEED NAME"
+HeadSkin8="2018年萬聖節"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="眼罩"

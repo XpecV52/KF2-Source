@@ -56,10 +56,10 @@ defaultproperties
 	bReloadFromMagazine=true
 
 	// Recoil
-	maxRecoilPitch=185
-	minRecoilPitch=150
-	maxRecoilYaw=175
-	minRecoilYaw=-150
+	maxRecoilPitch=200 //185
+	minRecoilPitch=165 //150
+	maxRecoilYaw=190 //175
+	minRecoilYaw=-165 //-150
 	RecoilRate=0.09
 	RecoilMaxYawLimit=500
 	RecoilMinYawLimit=65035
@@ -71,6 +71,7 @@ defaultproperties
 	RecoilISMinPitchLimit=65460
 	RecoilViewRotationScale=0.6
 	HippedRecoilModifier=1.5 //1.25
+
 
 	// Recoil
 	//maxRecoilPitch=150
@@ -99,7 +100,8 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_FNFal'
-	FireInterval(DEFAULT_FIREMODE)=+0.0857 // 700 RPM
+	FireInterval(DEFAULT_FIREMODE)=+0.099 // 700 RPM 0.0857
+	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	Spread(DEFAULT_FIREMODE)=0.007
 	InstantHitDamage(DEFAULT_FIREMODE)=70.0 //50
 
@@ -110,6 +112,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_FNFal'
 	FireInterval(ALTFIRE_FIREMODE)=+0.22  // 273 RPM
+	PenetrationPower(ALTFIRE_FIREMODE)=2.0
 	InstantHitDamage(ALTFIRE_FIREMODE)=70.0 //50
 	Spread(ALTFIRE_FIREMODE)=0.007
 

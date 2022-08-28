@@ -215,6 +215,7 @@ package tripwire.widgets
             this.controllerIcon.visible = false;
             TextFieldEx.setVerticalAlign(this.searchingTextField,TextFieldEx.VALIGN_CENTER);
             TextFieldEx.setVerticalAlign(this.matchStartContainer.messageTextField,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setTextAutoSize(this.readyButton.textField,TextFieldEx.TEXTAUTOSZ_FIT);
             this.leaveButton.addEventListener(ButtonEvent.CLICK,this.leaveParty,false,0,true);
             this.readyButton.addEventListener(ButtonEvent.CLICK,this.readyUp,false,0,true);
             this.createPartyButton.addEventListener(ButtonEvent.CLICK,this.createParty,false,0,true);
@@ -430,7 +431,7 @@ package tripwire.widgets
         
         public function set partyButtonVisible(param1:Boolean) : void
         {
-            if(this.createPartyButton.visible == param1)
+            if(this.createPartyButton.visible == param1 && param1)
             {
                 this.selectContainer();
                 return;

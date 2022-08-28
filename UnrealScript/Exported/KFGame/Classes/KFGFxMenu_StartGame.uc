@@ -228,7 +228,6 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 		{
 			Manager.DelayedOpenPopup(ENotification,EDPPID_Misc, Localize("Notifications", "PlayGoBusyTitle", "KFGameConsole"),  Localize("Notifications", "PlayGoBusyMessage", "KFGameConsole"), class'KFCommon_LocalizedStrings'.default.OKString);
 		}
-		//@HSL_END
 	}
 }
 
@@ -991,8 +990,28 @@ function Callback_OpenMatchMaking()
 	}
 }
 
+function Callback_OpenCreateGame()
+{
+	if (class'WorldInfo'.static.IsConsoleBuild())
+	{
+		KFPlayerController(GetPC()).StartLogin(ProceedToCreateGame, true);
+	}
+	else
+	{
+		ProceedToCreateGame();
+	}
+}
+
 // Call this to allow the player to go to the matchmaking screen on console.
-function ProceedToMatchMaking() { ActionScriptVoid("proceedToMatchMaking");}
+function ProceedToMatchMaking() 
+{
+	SetInt("externalMenuState", EMatchmaking);
+}
+
+function ProceedToCreateGame()
+{
+	SetInt("externalMenuState", ECreateGame);
+}
 
 function Callback_OpenServerBrowser()
 {
@@ -1813,30 +1832,25 @@ function OnCancelSearchComplete(bool bWasSuccessful)
 event int GetGameModeIndex()
 {
 	local KFGameReplicationInfo KFGRI;
-	LogInternal("IN GET GAME MODE INDEX!!!!");
 	KFGRI = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI);
 
 	if (OptionsComponent != none)
 	{
 		if (OptionsComponent.bIsSoloGame)
 		{
-			LogInternal("solo mode index: " @OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex));
 			return OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex);
 		}
 		else
 		{
-			LogInternal("not solo mode index: " @OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex));
 			return OptionsComponent.SavedModeIndex;
 		}
 	}
 	else if(Manager != none)
 	{
-		LogInternal("SDADAS");
 		return Manager.CachedProfile.GetProfileInt(KFID_SavedModeIndex);
 	}
 	else if (KFGRI != none)
 	{
-		LogInternal("SDADAS1111111111");
 		return class'KFGameInfo'.static.GetGameModeIndexFromName(string(KFGRI.GameClass.name));
 	}
 

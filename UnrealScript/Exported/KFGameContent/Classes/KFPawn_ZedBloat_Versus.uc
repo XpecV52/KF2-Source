@@ -45,7 +45,7 @@ defaultproperties
    DamageTypeModifiers(19)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.900000))
    DamageTypeModifiers(20)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.900000))
    DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Fire')
-   DamageTypeModifiers(22)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(1.500000))
+   DamageTypeModifiers(22)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(1.500000))
    DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.500000))
    DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.400000))
    DamageTypeModifiers(25)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.200000))

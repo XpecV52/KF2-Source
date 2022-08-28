@@ -8,67 +8,6 @@
 class QHCurrentKF extends QHCurrent
     config(webadmin);
 
-var WorkshopTool Tool;
-var KFWorkshopSteamworks workshop;
-var bool bValidSetup;
-var string WorkshopURL;
-var const localized string menuWorkshopTool;
-var const localized string menuWorkshopToolDesc;
-
-function Init(webadmin webapp)
-{
-    local int I;
-    local OnlineSubsystem OnlineSub;
-
-    super.Init(webapp);
-    webadmin = webapp;
-    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
-    if(OnlineSub == none)
-    {
-        ThrowError("No Online subsystem found (make sure you use this on server)!");
-        return;
-    }
-    Tool = webadmin.WorldInfo.Spawn(Class'WorkshopTool');
-    if(Tool == none)
-    {
-        ThrowError("No TWWorkshopSteamworks found!");
-        return;
-    }
-    Tool.InitWeb();
-    workshop = Tool.workshop;
-    if(workshop == none)
-    {
-        ThrowError("No TWWorkshopSteamworks found!");
-        return;
-    }
-    I = 0;
-    J0x1BE:
-
-    if(I < Class'TcpNetDriver'.default.DownloadManagers.Length)
-    {
-        if(Class'TcpNetDriver'.default.DownloadManagers[I] ~= "OnlineSubsystemSteamworks.SteamWorkshopDownload")
-        {
-            bValidSetup = true;
-            goto J0x266;
-        }
-        ++ I;
-        goto J0x1BE;
-    }
-    J0x266:
-
-}
-
-final function ThrowError(string Er)
-{
-    LogInternal("WorkshopTool ERROR: " $ Er);
-}
-
-function Cleanup()
-{
-    super.Cleanup();
-    Tool = none;
-}
-
 function registerMenuItems(WebAdminMenu menu)
 {
     super.registerMenuItems(menu);
@@ -76,7 +15,6 @@ function registerMenuItems(WebAdminMenu menu)
     menu.addMenu("/current/chat+frame", "", (self));
     menu.addMenu("/current/chat+frame+data", "", (self));
     menu.SetVisibility("/current/chat", false);
-    menu.addMenu(WorkshopURL, menuWorkshopTool, (self), menuWorkshopToolDesc);
 }
 
 function bool handleQuery(WebAdminQuery Q)
@@ -92,9 +30,6 @@ function bool handleQuery(WebAdminQuery Q)
             return true;
         case "/current/chat+frame+data":
             handleCurrentChatData(Q);
-            return true;
-        case "/current/workshoptool":
-            handleWorkshop(Q);
             return true;
         default:
             return super.handleQuery(Q);
@@ -240,119 +175,8 @@ function decorateChatWindow(WebAdminQuery Q)
     Q.Response.Subst("chatwindow", webadmin.Include(Q, "current_chat_frame.inc"));
 }
 
-function handleCurrentWorkshopAction(WebAdminQuery Q)
-{
-    local string Action, Idx;
-    local int I;
-
-    Action = Q.Request.GetVariable("action");
-    Idx = Q.Request.GetVariable("idx");
-    if(Idx == "123456789")
-    {
-        return;
-    }
-    if(Action != "")
-    {
-        if(Action ~= "delete")
-        {
-            I = 0;
-            J0xD3:
-
-            if(I < Tool.CurrentItems.Length)
-            {
-                if((Idx != "") && Idx == string(I))
-                {
-                    Tool.DeleteWorkshopItem(Q.User.getUsername(), I);
-                    goto J0x197;
-                }
-                ++ I;
-                goto J0xD3;
-            }
-            J0x197:
-            
-        }
-        else
-        {
-            if(Action ~= "add")
-            {
-                Tool.AddNewWorkshopItem(Q.User.getUsername(), Idx);                
-            }
-            else
-            {
-                if(Action ~= "download")
-                {
-                    workshop.UpdateWorkshopFiles();                    
-                }
-                else
-                {
-                    if(Action ~= "reload")
-                    {
-                        LogInternal("Net Driver settings reconfigured, restarting map...");
-                        Class'TcpNetDriver'.default.DownloadManagers.Insert(0, 1;
-                        Class'TcpNetDriver'.default.DownloadManagers[0] = "OnlineSubsystemSteamworks.SteamWorkshopDownload";
-                        Class'TcpNetDriver'.static.StaticSaveConfig();
-                        Tool.WorldInfo.Game.bUseSeamlessTravel = false;
-                        Tool.WorldInfo.ServerTravel("?restart");
-                        Tool.WorldInfo.NextSwitchCountdown = 0;
-                        bValidSetup = true;
-                        return;
-                    }
-                }
-            }
-        }
-    }
-}
-
-function handleWorkshop(WebAdminQuery Q)
-{
-    local int I;
-    local string workshopinstructions, workshopitemrowstring;
-    local bool bHaveContent;
-
-    handleCurrentWorkshopAction(Q);
-    bHaveContent = false;
-    Q.Response.Subst("isvalidsetup", string(true));
-    if(!bValidSetup)
-    {
-        Q.Response.Subst("isvalidsetup", string(false));
-    }
-    Q.Response.Subst("hasadditionalmessages", string(false));
-    if(workshop.CurrentDownloads.Length > 0)
-    {
-        Tool.CheckDownload();
-        Q.Response.Subst("row1", ((((("<font color=\"red\">Server is currently downloading</font><br />Items to download: " $ string(workshop.CurrentDownloads.Length)) $ "<br />Current item: ") $ Tool.LastDLID) $ " (") $ Tool.LastDLFile) $ ")");
-        Q.Response.Subst("hasadditionalmessages", string(true));        
-        workshopinstructions $= webadmin.Include(Q, "current_workshoptool_instructions.inc");
-        Q.Response.Subst("workshopinstructions", workshopinstructions);
-    }
-    if(Tool.CurrentItems.Length > 0)
-    {
-        bHaveContent = true;
-    }
-    I = 0;
-    J0x398:
-
-    if(I < Tool.CurrentItems.Length)
-    {
-        Q.Response.Subst("workshoptool.steamid", Tool.CurrentItems[I].Id);
-        Q.Response.Subst("workshoptool.steamname", Tool.CurrentItems[I].N);
-        Q.Response.Subst("index", string(I));
-        Q.Response.Subst("index", string(I));        
-        workshopitemrowstring $= webadmin.Include(Q, "current_workshoptool_row.inc");
-        ++ I;
-        goto J0x398;
-    }
-    if(!bHaveContent)
-    {
-        workshopitemrowstring = webadmin.Include(Q, "current_workshoptool_empty.inc");
-    }
-    Q.Response.Subst("workshop", workshopitemrowstring);
-    webadmin.sendPage(Q, "workshoptool.html");
-}
-
 defaultproperties
 {
-    WorkshopURL="/current/WorkshopTool"
     ChatRefresh=5000
     bConsoleEnabled=true
     bAdminConsoleCommandsHack=true

@@ -19,7 +19,7 @@ ServerTypeStrings[2]="排名 - 自訂"
 ServerTypeStrings[3]="未排名"
 
 PermissionStrings[0]="公開"
-PermissionStrings[1]="密碼私人遊戲"
+PermissionStrings[1]="私人：已加密"
 
 ConsolePermissionStrings[0]="公開"
 ConsolePermissionStrings[1]="僅限邀請"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="瀏覽"
 TabStrings[1]="我的最愛"
-TabStrings[2]="朋友"
+TabStrings[2]="公開好友"
 TabStrings[3]="瀏覽歷史"
 TabStrings[4]="LAN"
 
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="怪獸泥",DescriptionString="擊
 SpecialEventObjectiveInfoList[3]=(TitleString="通宵狂歡",DescriptionString="在無盡模式困難或更高難度下完成 25 波。");
 SpecialEventObjectiveInfoList[4]=(TitleString="城堡領主",DescriptionString="在生存模式困難或更高難度下擊敗康特·漢斯");
 
-AllCompleteRewardDescriptionString="漢斯的萬聖節 MKB 皮膚。"
+AllCompleteRewardDescriptionString="漢斯的MKB：武器+萬聖節飾品"
 
 ChanceDropDescriptionStrings[0]="獎品票券"
 ChanceDropDescriptionStrings[1]="黃金票券"
@@ -3067,6 +3067,7 @@ DisplayName="飛艇"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="怪獸舞會"
+
 
 [KFMapInfo]
 ; defaults

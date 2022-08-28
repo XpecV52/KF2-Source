@@ -56,7 +56,7 @@ function UpdatePerk()
 }
 
 
-function UpdateHealer()
+function UpdateHealer(Optional bool bForce)
 {
    
 }

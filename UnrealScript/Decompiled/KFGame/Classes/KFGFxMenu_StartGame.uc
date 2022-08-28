@@ -863,9 +863,26 @@ function Callback_OpenMatchMaking()
     }
 }
 
+function Callback_OpenCreateGame()
+{
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        KFPlayerController(Outer.GetPC()).StartLogin(ProceedToCreateGame, true);        
+    }
+    else
+    {
+        ProceedToCreateGame();
+    }
+}
+
 function ProceedToMatchMaking()
 {
-    ActionScriptVoid("proceedToMatchMaking");
+    SetInt("externalMenuState", 1);
+}
+
+function ProceedToCreateGame()
+{
+    SetInt("externalMenuState", 2);
 }
 
 function Callback_OpenServerBrowser()
@@ -1621,18 +1638,15 @@ event int GetGameModeIndex()
 {
     local KFGameReplicationInfo KFGRI;
 
-    LogInternal("IN GET GAME MODE INDEX!!!!");
     KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
     if(OptionsComponent != none)
     {
         if(OptionsComponent.bIsSoloGame)
         {
-            LogInternal("solo mode index: " @ string(OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex)));
             return OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex);            
         }
         else
         {
-            LogInternal("not solo mode index: " @ string(OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex)));
             return OptionsComponent.SavedModeIndex;
         }        
     }
@@ -1640,14 +1654,12 @@ event int GetGameModeIndex()
     {
         if(Manager != none)
         {
-            LogInternal("SDADAS");
             return Manager.CachedProfile.GetProfileInt(148);            
         }
         else
         {
             if(KFGRI != none)
             {
-                LogInternal("SDADAS1111111111");
                 return Class'KFGameInfo'.static.GetGameModeIndexFromName(string(KFGRI.GameClass.Name));
             }
         }

@@ -405,6 +405,7 @@ function ProceedToMainMenu()
 	{
 		PC.SetTimer( 0.01, false, 'ShowControllerDisconnectedDialog' );
 	}
+	PC.CheckPrivilegesForMultiplayer();
 }
 
 

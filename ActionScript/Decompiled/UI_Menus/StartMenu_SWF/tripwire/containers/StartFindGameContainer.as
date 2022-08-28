@@ -191,10 +191,10 @@ package tripwire.containers
             switch(param1.currentTarget)
             {
                 case this.matchMakingButton:
-                    this.myStartMenu.menuState = StartMenu.MENU_STATE_FIND_GAME;
+                    ExternalInterface.call("Callback_OpenMatchMaking");
                     break;
                 case this.createGameButton:
-                    this.myStartMenu.menuState = StartMenu.MENU_STATE_CREATE_GAME;
+                    ExternalInterface.call("Callback_OpenCreateGame");
                     break;
                 case this.serverBrowserButton:
                     this.myStartMenu.menuState = StartMenu.MENU_STATE_SERVER_BROWSER;

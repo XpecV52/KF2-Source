@@ -43,6 +43,8 @@ defaultproperties
    SingleFireSoundIndex=1
    InventorySize=8
    MagazineCapacity(0)=20
+   PenetrationPower(0)=2.000000
+   PenetrationPower(1)=2.000000
    MeshFOV=55.000000
    MeshIronSightFOV=20.000000
    PlayerIronSightFOV=70.000000
@@ -70,10 +72,10 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ScopedBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_FNFal:MeleeHelper_0'
-   maxRecoilPitch=185
-   minRecoilPitch=150
-   maxRecoilYaw=175
-   minRecoilYaw=-150
+   maxRecoilPitch=200
+   minRecoilPitch=165
+   maxRecoilYaw=190
+   minRecoilYaw=-165
    RecoilViewRotationScale=0.600000
    RecoilMaxYawLimit=500
    RecoilMinYawLimit=65035
@@ -93,7 +95,7 @@ defaultproperties
    FiringStatesArray(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
-   FireInterval(0)=0.085700
+   FireInterval(0)=0.099000
    FireInterval(1)=0.220000
    FireInterval(2)=()
    FireInterval(3)=()

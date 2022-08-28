@@ -19,7 +19,7 @@ ServerTypeStrings[2]="ランク―カスタム"
 ServerTypeStrings[3]="非ランク"
 
 PermissionStrings[0]="公開"
-PermissionStrings[1]="非公開―パスワード"
+PermissionStrings[1]="プライベート：パスワード保護済み"
 
 ConsolePermissionStrings[0]="公開"
 ConsolePermissionStrings[1]="招待のみ"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="閲覧"
 TabStrings[1]="お気に入り"
-TabStrings[2]="フレンド"
+TabStrings[2]="パブリックフレンド"
 TabStrings[3]="履歴"
 TabStrings[4]="LAN"
 
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="モンスターマッシュ",Desc
 SpecialEventObjectiveInfoList[3]=(TitleString="朝までパーティー",DescriptionString="エンドレスHard以上の難易度でウェーブ25をクリアする");
 SpecialEventObjectiveInfoList[4]=(TitleString="城の主",DescriptionString="サバイバルHard以上の難易度でハンス伯爵を倒す");
 
-AllCompleteRewardDescriptionString="ハンスのハロウィーンMKBスキン"
+AllCompleteRewardDescriptionString="ハンスのMKB：武器 + ハロウィーンスキン"
 
 ChanceDropDescriptionStrings[0]="景品チケット"
 ChanceDropDescriptionStrings[1]="黄金チケット"
@@ -3067,6 +3067,7 @@ DisplayName="飛行船"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="Monster Ball"
+
 
 [KFMapInfo]
 ; defaults

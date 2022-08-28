@@ -19,7 +19,7 @@ ServerTypeStrings[2]="Classé - Personnalisé"
 ServerTypeStrings[3]="Non classé"
 
 PermissionStrings[0]="Public"
-PermissionStrings[1]="Privé-Mot de passe"
+PermissionStrings[1]="Privé : mot de passe"
 
 ConsolePermissionStrings[0]="Public"
 ConsolePermissionStrings[1]="Invitation uniquement"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="PARCOURIR"
 TabStrings[1]="FAVORIS"
-TabStrings[2]="AMIS"
+TabStrings[2]="AMIS PUBLICS"
 TabStrings[3]="HISTORIQUE"
 TabStrings[4]="LAN"
 
@@ -759,7 +759,7 @@ DamageDealtString="Dégâts infligés :"
 
 [KFGFxWidget_BaseParty]
 PlayerReadyString="[ PRÊT ]"
-SkipTraderString="PASSER LA MARCHANDE"
+SkipTraderString="PASSER MARCH."
 WaitingString="EN ATTENTE DE JOUEUR(S)"
 MatchOverString="MATCH TERMINÉ \n Veuillez patienter..."
 DeployingString="DÉPLOIEMENT DANS "
@@ -2526,13 +2526,13 @@ ChanceDropDescriptionStrings[1]="Ticket Or"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="Terminez les objectifs du Bal des monstres pour des récompenses !"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Farce ou piège !",DescriptionString="Utiliser des pièges pour tuer 25 en une partie");
+SpecialEventObjectiveInfoList[0]=(TitleString="Farce ou piège !",DescriptionString="Utiliser des pièges pour tuer 25 Zeds en une partie");
 SpecialEventObjectiveInfoList[1]=(TitleString="Les morts ne parlent pas",DescriptionString="Éclater 10 crânes brillants de collection");
 SpecialEventObjectiveInfoList[2]=(TitleString="Ragoût de monstre",DescriptionString="Tuer 2 500 Zeds");
 SpecialEventObjectiveInfoList[3]=(TitleString="S'amuser toute la nuit",DescriptionString="Terminer 25 vagues en Infini en mode difficile ou supérieur");
 SpecialEventObjectiveInfoList[4]=(TitleString="Maître des lieux",DescriptionString="Vaincre le Comte Hans en Survie en mode Difficile ou supérieur");
 
-AllCompleteRewardDescriptionString="Modèle MKB d'Halloween de Hans"
+AllCompleteRewardDescriptionString="MKB de Hans : arme + modèle d'Halloween"
 
 ChanceDropDescriptionStrings[0]="Ticket de récompense"
 ChanceDropDescriptionStrings[1]="Ticket Or"
@@ -3067,6 +3067,7 @@ DisplayName="Dirigeable"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="Bal des monstres"
+
 
 [KFMapInfo]
 ; defaults

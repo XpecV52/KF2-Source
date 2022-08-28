@@ -6224,6 +6224,8 @@ simulated state Reloading
 
 		`DialogManager.PlayAmmoDialog( KFPawn(Instigator), float(SpareAmmoCount[0]) / float(GetMaxAmmoAmount(0)) );
 		CurrentFireMode = DEFAULT_FIREMODE;
+
+		ReloadStatus = RS_None;
 	}
 
 	simulated function BeginFire(byte FireModeNum)

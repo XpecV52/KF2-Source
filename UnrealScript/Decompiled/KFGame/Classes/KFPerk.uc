@@ -360,7 +360,7 @@ static function class<KFPerk> GetPerkFromDamageCauser(Actor WeaponActor, class<K
                 if(WeaponActor.IsA('KFSprayActor'))
                 {
                     KFSpray = KFSprayActor(WeaponActor);
-                    if(ClassIsChildOf(KFSpray.MyDamageType, Class'KFDT_Fire'))
+                    if(ClassIsChildOf(KFSpray.MyDamageType, Class'KFDT_Fire') || ClassIsChildOf(KFSpray.MyDamageType, Class'KFDT_Microwave'))
                     {
                         return Class'KFPerk_Firebug';                        
                     }

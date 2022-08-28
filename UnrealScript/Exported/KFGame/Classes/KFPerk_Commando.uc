@@ -573,12 +573,13 @@ simulated function DrawSpecialPerkHUD(Canvas C)
 			if( !KFPM.CanShowHealth()
 				|| !KFPM.IsAliveAndWell()
 				|| (WorldInfo.TimeSeconds - KFPM.Mesh.LastRenderTime) > 0.1f
-				|| VSizeSQ(KFPM.Location - OwnerPawn.Location) > DetectionRangeSq )
+				|| VSizeSQ(KFPM.Location - ViewLocation) > DetectionRangeSq )
 			{
 				continue;
 			}
 
-			ThisDot = ViewDir dot Normal( KFPM.Location - OwnerPawn.Location );
+			ThisDot = ViewDir dot Normal(KFPM.Location - ViewLocation);
+
 			if( ThisDot > 0.f )
 			{
 				DrawZedHealthbar( C, KFPM, ViewLocation, HealthbarHeight, HealthbarLength );

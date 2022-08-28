@@ -238,7 +238,7 @@ package tripwire.containers
             }
             else
             {
-                this.startGameButton.label = this.multiplayerLaunchString;
+                this.startGameButton.label = this.menuState != StartMenu.MENU_STATE_SOLO_GAME ? this.multiplayerLaunchString : this.lauchGameString;
                 this.dispatchEvent(new Event("FadeInMissionObjectives"));
             }
             this.privacyButton.enabled = !param1;

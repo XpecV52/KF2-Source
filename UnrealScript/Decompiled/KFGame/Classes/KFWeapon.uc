@@ -5164,6 +5164,7 @@ simulated state Reloading
             KFGameInfo(WorldInfo.Game).DialogManager.PlayAmmoDialog(KFPawn(Instigator), float(SpareAmmoCount[0]) / float(GetMaxAmmoAmount(0)));
         }
         CurrentFireMode = 0;
+        ReloadStatus = 0;
     }
 
     simulated function BeginFire(byte FireModeNum)

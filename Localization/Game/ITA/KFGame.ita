@@ -19,7 +19,7 @@ ServerTypeStrings[2]="Classificato - Custom"
 ServerTypeStrings[3]="Non classificato"
 
 PermissionStrings[0]="Pubblico"
-PermissionStrings[1]="Privato-Password"
+PermissionStrings[1]="Privacy: Con password"
 
 ConsolePermissionStrings[0]="Pubblico"
 ConsolePermissionStrings[1]="Solo invito"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="SFOGLIA"
 TabStrings[1]="PREFERITI"
-TabStrings[2]="AMICI"
+TabStrings[2]="AMICI PUBBLICI"
 TabStrings[3]="CRONOLOGIA"
 TabStrings[4]="LAN"
 
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Massacro di mostri",DescriptionSt
 SpecialEventObjectiveInfoList[3]=(TitleString="Una festa senza fine",DescriptionString="Completa l'ondata 25 in modalità difficile Infinito o superiore");
 SpecialEventObjectiveInfoList[4]=(TitleString="Lord del castello",DescriptionString="Sconfiggi il conte Hans in Survival difficile o superiore");
 
-AllCompleteRewardDescriptionString="Skin MKB Halloween di Hans"
+AllCompleteRewardDescriptionString="Mkb di Hans: Arma + Skin di Halloween"
 
 ChanceDropDescriptionStrings[0]="Biglietto premio"
 ChanceDropDescriptionStrings[1]="Biglietto Oro"
@@ -3067,6 +3067,7 @@ DisplayName="Aeronave"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="Festa dei mostri"
+
 
 [KFMapInfo]
 ; defaults

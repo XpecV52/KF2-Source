@@ -62,7 +62,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedClot:MeleeHelper_0'
    DoshValue=7
-   DamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.500000))
+   DamageTypeModifiers(0)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(0.500000))
    KnockedDownBySonicWaveOdds=0.230000
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
       BoneName="Dummy"

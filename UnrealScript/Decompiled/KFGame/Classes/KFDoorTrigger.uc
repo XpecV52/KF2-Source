@@ -45,8 +45,8 @@ function OnDestroyOrReset()
 
     foreach TouchingActors(Class'KFPawn_Human', P)
     {
-        class<ReturnValue>(@NULL)
-        ""                        
+        @NULL
+        P                        
     }
 }
 

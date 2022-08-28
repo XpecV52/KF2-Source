@@ -65,7 +65,7 @@ function ClearBuffIcons()
     SetObject("activeEffects", DataProvider);
 }
 
-function UpdateHealer()
+function UpdateHealer(optional bool bForce)
 {
     local float CurrentHealerAmmoPct;
 
@@ -78,9 +78,16 @@ function UpdateHealer()
         if((MyInventoryManager != none) && MyInventoryManager.HealerWeapon != none)
         {
             CurrentHealerAmmoPct = FClamp(float(MyInventoryManager.HealerWeapon.AmmoCount[0]) / float(MyInventoryManager.HealerWeapon.MagazineCapacity[0]), 0, 1);
+        }        
+    }
+    else
+    {
+        if(MyInventoryManager != none)
+        {
+            MyInventoryManager = none;
         }
     }
-    if(LastHealerAmmoPct != CurrentHealerAmmoPct)
+    if((LastHealerAmmoPct != CurrentHealerAmmoPct) || bForce)
     {
         SetInt("playerHealerCharge", int(CurrentHealerAmmoPct * 100));
         LastHealerAmmoPct = CurrentHealerAmmoPct;

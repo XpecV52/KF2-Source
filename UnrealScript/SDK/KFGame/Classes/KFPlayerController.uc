@@ -776,7 +776,7 @@ simulated event PostBeginPlay()
     InitMixerDelegates();
     InitLEDManager();
 	InitDiscord();
-	
+
 }
 
 function SpawnDefaultHUD()
@@ -1441,7 +1441,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		{
 			KFPRI.SelectCharacter(Profile.GetProfileInt(KFID_StoredCharIndex), true);
 		}
-		
+
 
 		KFInput = KFPlayerInput(PlayerInput);
 		if(KFInput != none)
@@ -1548,7 +1548,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 	{
 		OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
 	}
-	
+
 	// Update our cached Emote Id
 	class'KFEmoteList'.static.RefreshCachedEmoteId();
 	class'KFHeadShotEffectList'.static.RefreshCachedHeadShotEffectId();
@@ -4338,7 +4338,7 @@ function GetTriggerUseList(float interactDistanceToCheck, float crosshairDist, f
 reliable client event ReceiveLocalizedMessage( class<LocalMessage> Message, optional int Switch, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2, optional Object OptionalObject )
 {
 	local string TempMessage;
-	
+
 	// Wait for player to be up to date with replication when joining a server, before stacking up messages
 	if ( WorldInfo.NetMode == NM_DedicatedServer || WorldInfo.GRI == None )
 		return;
@@ -5435,7 +5435,7 @@ function string GetSteamAvatar( UniqueNetId NetID )
 		AvatarList.AddItem(CurrentAvatar);
 		if(OnlineSub != none)
 		{
-		        OnlineSub.ReadOnlineAvatar(NetID, 64, OnAvatarReceived);
+		    OnlineSub.ReadOnlineAvatar(NetID, 64, OnAvatarReceived);
 	    }
 	}
 
@@ -9891,7 +9891,7 @@ function OnLoginCompleted( bool bSuccess )
 	{
 		if(MyGFxManager != none)
 		{
-			MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_Misc, class'KFCommon_LocalizedStrings'.default.NoticeString, class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, class'KFCommon_LocalizedStrings'.default.OKString);
+			MyGFxManager.OnLoginFailed();
 		}
 	}
 
@@ -10038,7 +10038,7 @@ function OnOSSLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServ
 }
 
 
-function CheckPrivilegesForMultiplayer()
+singular function CheckPrivilegesForMultiplayer()
 {
 	local EFeaturePrivilegeLevel HintPrivLevel;
 

@@ -543,7 +543,7 @@ ItemCategory="Mitra"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Munizioni incendiarie a fuoco rapido. L’hai capita? A fuoco rapido. Perché è una mitragliatrice incendiaria! Oh, lascia perdere."
 
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
-ItemName="Fucile a granate HMTech-501"
+ItemName="Fuc. a granate HMTech-501"
 ItemCategory="Fucile d'assalto"
 ItemDescription="•Solo automatica.\n•Fuoco alternativo con granate mediche.\n•L'unica arma con cui va bene lanciare granate sui tuoi amici!"
 SecondaryAmmo="Granata medica"

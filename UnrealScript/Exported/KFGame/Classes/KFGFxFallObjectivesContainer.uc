@@ -40,7 +40,7 @@ defaultproperties
    ObjectiveIconURLs(3)="Halloween_UI.UI_Objectives_Halloween_Wave25"
    ObjectiveIconURLs(4)="Halloween_UI.UI_Objectives_Halloween_HansKill"
    AllCompleteRewardIconURL="WEP_SkinSet_Halloween_Item_TEX.hans_mkb42h.MKB42_HalloweenPrecious_Mint"
-   AllCompleteRewardDescriptionString="Hans' Halloween MKB Skin"
+   AllCompleteRewardDescriptionString="Hans' MKB: Weapon + Halloween Skin"
    ChanceDropIconURLs(0)="CHR_CosmeticSet_Halloween_01_Item_TEX.hllwn_treat_ticket"
    ChanceDropIconURLs(1)="CHR_CosmeticSet_Halloween_01_Item_TEX.hllwn_treat_ticket_precious"
    ChanceDropDescriptionStrings(0)="Prize Ticket"

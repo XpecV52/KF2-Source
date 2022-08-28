@@ -90,7 +90,7 @@ HeadSkin2="レッド"
 HeadSkin3="ブラウン"
 HeadSkin4="ピンク"
 HeadSkin5="ブラック"
-HeadSkin6="NEED NAME"
+HeadSkin6="ハロウィーン 2018"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -249,7 +249,7 @@ HeadSkin2="ブラッドレッド"
 HeadSkin3="メタルフェイス"
 HeadSkin4="大男の悪者のスウェーデン人"
 HeadSkin5="めまい"
-HeadSkin6="NEED NAME"
+HeadSkin6="ハロウィーン 2018"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="トゲトゲしたカウボーイハット"
@@ -423,7 +423,7 @@ HeadSkin3="グリーンハザード"
 HeadSkin4="レトロスカリー"
 HeadSkin5="サイレントスクリーム・スカリー"
 HeadSkin6="バットキャット"
-HeadSkin7="NEED NAME"
+HeadSkin7="ハロウィーン 2018"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="スカリーフォン"
@@ -547,7 +547,7 @@ HeadSkin1="ハイライト"
 HeadSkin2="ブラック"
 HeadSkin3="操り人形"
 HeadSkin4="デイ・オブ・ザ・デッド"
-HeadSkin5="NEED NAME"
+HeadSkin5="ハロウィーン 2018"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="医者のマスク"
@@ -675,7 +675,7 @@ HeadSkin4="ブリティッシュクラス"
 HeadSkin5="怒り"
 HeadSkin6="ミスター ハンス"
 HeadSkin7="doshラバー"
-HeadSkin8="NEED NAME"
+HeadSkin8="ハロウィーン 2018"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="スカリーフォン"
@@ -904,7 +904,7 @@ HeadSkin1="タトゥー"
 HeadSkin2="グレア"
 HeadSkin3="笑み"
 HeadSkin4="Rawr"
-HeadSkin5="NEED NAME"
+HeadSkin5="ハロウィーン 2018"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="ボクシング用ヘッドギア"
@@ -1018,7 +1018,7 @@ HeadSkin2="ブラック"
 HeadSkin3="ホワイト"
 HeadSkin4="ピエロ"
 HeadSkin5="ファントム"
-HeadSkin6="NEED NAME"
+HeadSkin6="ハロウィーン 2018"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="メガネ"
@@ -1914,7 +1914,7 @@ HeadSkin1="迷彩"
 HeadSkin2="道化師"
 HeadSkin3="吸血鬼"
 HeadSkin4="ギロチン"
-HeadSkin5="NEED NAME"
+HeadSkin5="ハロウィーン 2018"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="グリーン"
@@ -2013,7 +2013,7 @@ HeadSkin0="ブラック"
 HeadSkin1="ブロンド"
 HeadSkin2="隈取"
 HeadSkin3="タイタン"
-HeadSkin4="NEED NAME"
+HeadSkin4="ハロウィーン 2018"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="しかも上品"
@@ -2149,7 +2149,7 @@ HeadSkin3="プリティブルー"
 HeadSkin4="デスメタル"
 HeadSkin5="ミセス ステイン"
 HeadSkin6="花"
-HeadSkin7="NEED NAME"
+HeadSkin7="ハロウィーン 2018"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="デスレイン"
@@ -2343,7 +2343,7 @@ HeadSkin3="スウェーデンのブロンド"
 HeadSkin4="俺のために笑え"
 HeadSkin5="ミスター ジュース"
 HeadSkin6="グッドゲーム"
-HeadSkin7="NEED NAME"
+HeadSkin7="ハロウィーン 2018"
 
 [chr_alan_archetype]
 CharacterName="クラシック・マスターソン"
@@ -2444,7 +2444,7 @@ HeadSkin3="迷彩に身を包め！"
 HeadSkin4="元気を出せ！"
 HeadSkin5="おしまいだ！"
 HeadSkin6="デジ"
-HeadSkin7="NEED NAME"
+HeadSkin7="ハロウィーン 2018"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQキャップ"
@@ -2546,7 +2546,7 @@ HeadSkin0="ダークスチール"
 HeadSkin1="ブロンドスチール"
 HeadSkin2="ミスター・デス"
 HeadSkin3="ミスター ステイン"
-HeadSkin4="NEED NAME"
+HeadSkin4="ハロウィーン 2018"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="ドイツ軍スチールヘルメット"
@@ -2798,7 +2798,7 @@ HeadSkin4="ティール"
 HeadSkin5="ピンク"
 HeadSkin6="ミス・デス"
 HeadSkin7="鹿"
-HeadSkin8="NEED NAME"
+HeadSkin8="ハロウィーン 2018"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="眼帯"

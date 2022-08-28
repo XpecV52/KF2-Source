@@ -3068,6 +3068,7 @@ DisplayName="Aeronave"
 [KF-MonsterBall KFMapSummary]
 DisplayName="Baile de Monstros"
 
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% encontrou um item coletável. Faltam %y% para encontrar..."

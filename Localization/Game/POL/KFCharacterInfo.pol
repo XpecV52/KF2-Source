@@ -90,7 +90,7 @@ HeadSkin2="Czerwona"
 HeadSkin3="Brązowa"
 HeadSkin4="Różowa"
 HeadSkin5="Czarna"
-HeadSkin6="NEED NAME"
+HeadSkin6="Halloween 2018"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -249,7 +249,7 @@ HeadSkin2="Krwista czerwień"
 HeadSkin3="Metalowa twarz"
 HeadSkin4="Duży, zły Szwed"
 HeadSkin5="Zawrót głowy"
-HeadSkin6="NEED NAME"
+HeadSkin6="Halloween 2018"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Spiczasty kap. kowbojski"
@@ -423,7 +423,7 @@ HeadSkin3="Zielone zagrożenie"
 HeadSkin4="Retro Scully"
 HeadSkin5="Scully Cichy Krzyk"
 HeadSkin6="BatCat"
-HeadSkin7="NEED NAME"
+HeadSkin7="Halloween 2018"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Słuchawki Scully'ego"
@@ -547,7 +547,7 @@ HeadSkin1="Pasemka"
 HeadSkin2="Czarny"
 HeadSkin3="Marionetka"
 HeadSkin4="Dzień Zmarłych"
-HeadSkin5="NEED NAME"
+HeadSkin5="Halloween 2018"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Maska lekarza"
@@ -675,7 +675,7 @@ HeadSkin4="Brytyjski szyk"
 HeadSkin5="Widzieć na czerwono"
 HeadSkin6="Pan Hans"
 HeadSkin7="Miłośnik Forsy"
-HeadSkin8="NEED NAME"
+HeadSkin8="Halloween 2018"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Słuchawki Scully'ego"
@@ -904,7 +904,7 @@ HeadSkin1="Dziara"
 HeadSkin2="Barwy bojowe"
 HeadSkin3="Uśmieszek"
 HeadSkin4="Ryk"
-HeadSkin5="NEED NAME"
+HeadSkin5="Halloween 2018"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Kask bokserski"
@@ -1018,7 +1018,7 @@ HeadSkin2="Czarny"
 HeadSkin3="Biały"
 HeadSkin4="Pierrot"
 HeadSkin5="Duch"
-HeadSkin6="NEED NAME"
+HeadSkin6="Halloween 2018"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Okulary"
@@ -1914,7 +1914,7 @@ HeadSkin1="Kamuflaż"
 HeadSkin2="Klaun"
 HeadSkin3="Wampir"
 HeadSkin4="Gilotyna"
-HeadSkin5="NEED NAME"
+HeadSkin5="Halloween 2018"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Zielony"
@@ -2013,7 +2013,7 @@ HeadSkin0="Czarny"
 HeadSkin1="Blond"
 HeadSkin2="Kumadori"
 HeadSkin3="Tytan"
-HeadSkin4="NEED NAME"
+HeadSkin4="Halloween 2018"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="Stylowy"
@@ -2149,7 +2149,7 @@ HeadSkin3="Ładny niebieski"
 HeadSkin4="Death Metal"
 HeadSkin5="Pani Stein"
 HeadSkin6="Kwiaty"
-HeadSkin7="NEED NAME"
+HeadSkin7="Halloween 2018"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Deszcz krwi"
@@ -2343,7 +2343,7 @@ HeadSkin3="Szwedzki blondyn"
 HeadSkin4="Uśmiechnij się do mnie"
 HeadSkin5="Pan Soczek"
 HeadSkin6="Good Game"
-HeadSkin7="NEED NAME"
+HeadSkin7="Halloween 2018"
 
 [chr_alan_archetype]
 CharacterName="Klasyczny Masterson"
@@ -2444,7 +2444,7 @@ HeadSkin3="No dalej, kamuflaż!"
 HeadSkin4="Głowa do góry!"
 HeadSkin5="Nie żyjesz, stary!"
 HeadSkin6="Cyfrowy"
-HeadSkin7="NEED NAME"
+HeadSkin7="Halloween 2018"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="Czapka RQ"
@@ -2546,7 +2546,7 @@ HeadSkin0="Ciemny stalowy"
 HeadSkin1="Stalowy blond"
 HeadSkin2="Pan Śmierć"
 HeadSkin3="Pan Stein"
-HeadSkin4="NEED NAME"
+HeadSkin4="Halloween 2018"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Stahlhelm"
@@ -2798,7 +2798,7 @@ HeadSkin4="Turkusowy"
 HeadSkin5="Różowy"
 HeadSkin6="Panna Śmierć"
 HeadSkin7="Jeleń"
-HeadSkin8="NEED NAME"
+HeadSkin8="Halloween 2018"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Opaska na oko"

@@ -377,11 +377,11 @@ simulated function DrawSpecialPerkHUD(Canvas C)
         ViewDir = vector(OwnerPawn.GetViewRotation());
         foreach WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
         {
-            if(((!KFPM.CanShowHealth() || !KFPM.IsAliveAndWell()) || (WorldInfo.TimeSeconds - KFPM.Mesh.LastRenderTime) > 0.1) || VSizeSq(KFPM.Location - OwnerPawn.Location) > DetectionRangeSq)
+            if(((!KFPM.CanShowHealth() || !KFPM.IsAliveAndWell()) || (WorldInfo.TimeSeconds - KFPM.Mesh.LastRenderTime) > 0.1) || VSizeSq(KFPM.Location - ViewLocation) > DetectionRangeSq)
             {
                 continue;                
             }
-            ThisDot = ViewDir Dot Normal(KFPM.Location - OwnerPawn.Location);
+            ThisDot = ViewDir Dot Normal(KFPM.Location - ViewLocation);
             if(ThisDot > 0)
             {
                 DrawZedHealthbar(C, KFPM, ViewLocation, HealthbarHeight, HealthBarLength);

@@ -545,7 +545,7 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire t
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="HMTech-501 Grenade Rifle"
 ItemCategory="Assault Rifle"
-ItemDescription="•Firemode is full-auto only.\n•Alt-fire to fire medic grenades.\n•It's the only weapon where it's ok to lob grenades at your friends!"
+ItemDescription="•Fire mode is full-auto only.\n•Alt-fire to fire medic grenades.\n•It's the only weapon where it's ok to lob grenades at your friends!"
 SecondaryAmmo="Medic Grenade"
 
 [KFWeap_AssaultRifle_FNFal]

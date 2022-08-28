@@ -224,6 +224,38 @@ function Callback_ReadyClicked(bool bReady)
 
 function Callback_PlayerClicked(int SlotIndex);
 
+function ConfirmCreateParty()
+{
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if(OnlineLobby != none)
+    {
+        if(((OnlineSub != none) && !OnlineSub.IsGameOwned()) && Class'WorldInfo'.static.IsConsoleBuild(8))
+        {
+            if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+            {
+                Manager.HandleFreeTrialError(2);
+                return;
+            }
+            if(!OnlineSub.CanCheckFreeTrialState())
+            {
+                Manager.HandleFreeTrialError(1);
+                return;
+            }
+        }
+        if(Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            OnlineLobby.MakeLobby(6, 2);            
+        }
+        else
+        {
+            OnlineLobby.MakeLobby(6, 1);
+        }
+        OnlineLobby.ShowLobbyInviteInterface(((Class'WorldInfo'.static.IsConsoleBuild()) ? Localize("Notifications", "InviteMessage", "KFGameConsole") : ""));
+    }
+}
+
 function Callback_PerkChanged(int PerkIndex)
 {
     local KFPlayerController KFPC;
@@ -257,33 +289,16 @@ function Callback_ProfileOption(string OptionKey, int SlotIndex)
 
 function Callback_CreateParty()
 {
-    local OnlineSubsystem OnlineSub;
+    local KFPlayerController KFPC;
 
-    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
-    if(OnlineLobby != none)
+    KFPC = KFPlayerController(Outer.GetPC());
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        if(((OnlineSub != none) && !OnlineSub.IsGameOwned()) && Class'WorldInfo'.static.IsConsoleBuild(8))
-        {
-            if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
-            {
-                Manager.HandleFreeTrialError(2);
-                return;
-            }
-            if(!OnlineSub.CanCheckFreeTrialState())
-            {
-                Manager.HandleFreeTrialError(1);
-                return;
-            }
-        }
-        if(Class'WorldInfo'.static.IsConsoleBuild())
-        {
-            OnlineLobby.MakeLobby(6, 2);            
-        }
-        else
-        {
-            OnlineLobby.MakeLobby(6, 1);
-        }
-        OnlineLobby.ShowLobbyInviteInterface(((Class'WorldInfo'.static.IsConsoleBuild()) ? Localize("Notifications", "InviteMessage", "KFGameConsole") : ""));
+        KFPC.StartLogin(ConfirmCreateParty, true);        
+    }
+    else
+    {
+        ConfirmCreateParty();
     }
 }
 

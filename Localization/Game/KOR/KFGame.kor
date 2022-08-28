@@ -19,7 +19,7 @@ ServerTypeStrings[2]="랭크 - 커스텀"
 ServerTypeStrings[3]="언랭크"
 
 PermissionStrings[0]="공개"
-PermissionStrings[1]="비공개-패스워드"
+PermissionStrings[1]="비공개: 암호 있음"
 
 ConsolePermissionStrings[0]="공개"
 ConsolePermissionStrings[1]="초대 전용"
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="탐색"
 TabStrings[1]="즐겨찾기"
-TabStrings[2]="친구"
+TabStrings[2]="공개 친구"
 TabStrings[3]="내역"
 TabStrings[4]="LAN"
 
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="괴물 곤죽",DescriptionString=
 SpecialEventObjectiveInfoList[3]=(TitleString="밤샘 파티",DescriptionString="끝없는 도전 어려움 또는 그 이상 난이도에서 25 웨이브 완료하기");
 SpecialEventObjectiveInfoList[4]=(TitleString="성의 주인",DescriptionString="서바이벌 어려움 또는 그 이상 난이도에서 한스 백작 해치우기");
 
-AllCompleteRewardDescriptionString="한스 할로윈 MKB 스킨"
+AllCompleteRewardDescriptionString="한스의 MKB: 무기+핼러윈 스킨"
 
 ChanceDropDescriptionStrings[0]="상품권"
 ChanceDropDescriptionStrings[1]="골드 티켓"
@@ -3067,6 +3067,7 @@ DisplayName="비행선"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="괴물 무도회"
+
 
 [KFMapInfo]
 ; defaults

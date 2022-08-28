@@ -28,7 +28,7 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_FNFal'
-    StunPower=15
+    StunPower=10
     KnockdownPower=20
     StumblePower=18
     GunHitPower=50

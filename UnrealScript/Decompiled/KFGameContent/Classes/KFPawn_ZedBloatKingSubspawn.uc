@@ -104,7 +104,7 @@ defaultproperties
 {
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'CHR_Bile_ARCH.FX_Bile_Explosion_01'
-        Damage=12
+        Damage=15
         DamageRadius=425
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_BloatKingFart'
@@ -171,7 +171,7 @@ defaultproperties
     Mass=50
     GroundSpeed=400
     MaxFallSpeed=6000
-    Health=650
+    Health=450
     ControllerClass=Class'KFAIController_ZedBloatKingSubspawn'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         bPerBoneMotionBlur=false

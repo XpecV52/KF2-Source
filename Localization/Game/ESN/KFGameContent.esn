@@ -543,7 +543,7 @@ ItemCategory="Subfusil"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Posee munición incendiaria de fuego rápido. ¿Lo pillas? ¡Fuego rápido! ¡Porque es una metralleta incendiaria! Bah, olvídalo."
 
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
-ItemName="Rifle lanzagranadas HMTech-501"
+ItemName="Rifle lanzagr. HMTech-501"
 ItemCategory="Fusil de asalto"
 ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: dispara granadas.\n•¡La única arma que te permite lanzar granadas a tus amigos!"
 SecondaryAmmo="Granada médica"

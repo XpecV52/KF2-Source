@@ -19,7 +19,7 @@ ServerTypeStrings[2]="Rankingowy – niestand."
 ServerTypeStrings[3]="Nierankingowy"
 
 PermissionStrings[0]="Gra publiczna"
-PermissionStrings[1]="Prywatna (hasło)"
+PermissionStrings[1]="Prywatna: z hasłem"
 
 ConsolePermissionStrings[0]="Gra publiczna"
 ConsolePermissionStrings[1]="Tylko zaproszeni"
@@ -206,7 +206,7 @@ modeList2="Najemnicy Horzine kontra fale zetów kontrolowanych przez graczy i SI
 modeList3="Walka z niekończącymi się falami sterowanych przez SI zetów"
 difficultyList0="Zalecane dla początkujących graczy o randze specjalizacji 0–5"
 difficultyList1="Zalecane dla doświadczonych graczy o randze specjalizacji 6–15. Co falę rośnie prędkość, zdrowie, obrażenia i liczba zetów. Gracze otrzymują mniej forsy i przedmiotów."
-difficultyList2="Zalecane dla wytrawnych graczy o randze specjalizacji 15–25. Co falę rośnie prędkość, zdrowie, obrażenia i liczba zetów. Oprócz tego część zetów ma nowe ataki. Gracze otrzymują jeszcze mniej forsy i mniej zedmiotów."
+difficultyList2="Zalecane dla wytrawnych graczy o randze specjalizacji 15–25. Co falę rośnie prędkość, zdrowie, obrażenia i liczba zetów. Oprócz tego część zetów ma nowe ataki. Gracze otrzymują jeszcze mniej forsy i mniej przedmiotów."
 difficultyList3="Największe wyzwanie dla graczy o randze specjalizacji 25. Co falę jeszcze bardziej rośnie prędkość, zdrowie, obrażenia i liczba zetów. Gracze otrzymują jeszcze mniejszą ilość forsy i mniej przedmiotów."
 lengthList0=""
 lengthList1=""
@@ -323,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="PRZEGLĄDAJ"
 TabStrings[1]="ULUBIONE"
-TabStrings[2]="ZNAJOMI"
+TabStrings[2]="PUB. ZNAJOMYCH"
 TabStrings[3]="HISTORIA"
 TabStrings[4]="LAN"
 
@@ -2532,7 +2532,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Potworna jatka",DescriptionString
 SpecialEventObjectiveInfoList[3]=(TitleString="Impreza całą noc",DescriptionString="Ukończ falę 25 w trybie Bez końca na wysokim lub wyższym poziomie");
 SpecialEventObjectiveInfoList[4]=(TitleString="Władca zamku",DescriptionString="Pokonaj hrabiego Hansa w Przetrwaniu na wysokim lub wyższym poziomie");
 
-AllCompleteRewardDescriptionString="Skórka Halloween do MKB Hansa"
+AllCompleteRewardDescriptionString="MKB Hansa: Broń + Skórka Halloween"
 
 ChanceDropDescriptionStrings[0]="Kupon"
 ChanceDropDescriptionStrings[1]="Złoty kupon"
@@ -3067,6 +3067,7 @@ DisplayName="Statek powietrzny"
 
 [KF-MonsterBall KFMapSummary]
 DisplayName="Bal potworów"
+
 
 [KFMapInfo]
 ; defaults

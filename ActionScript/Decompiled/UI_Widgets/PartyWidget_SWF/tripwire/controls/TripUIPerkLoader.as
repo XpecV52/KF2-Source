@@ -12,11 +12,11 @@ package tripwire.controls
         
         private const PERK_ICON_DEFAULT_SIZE:int = 256;
         
-        private const PERK_ICON_PRESTIGE_SIZE:int = 192;
+        private const PERK_ICON_PRESTIGE_SIZE:int = 160;
         
-        private const PERK_ICON_PRESTIGE_X:int = 32;
+        private const PERK_ICON_PRESTIGE_X:int = 48;
         
-        private const PERK_ICON_PRESTIGE_Y:int = 16;
+        private const PERK_ICON_PRESTIGE_Y:int = 32;
         
         public function TripUIPerkLoader()
         {
@@ -30,6 +30,7 @@ package tripwire.controls
                 if(param1.perkIcon)
                 {
                     this.perkIcon.source = param1.perkIcon;
+                    this.perkIcon.invalidate();
                 }
                 else
                 {
@@ -43,6 +44,7 @@ package tripwire.controls
                     this.perkIcon.height = this.perkIcon.width;
                     this.perkIcon.x = this.PERK_ICON_PRESTIGE_X;
                     this.perkIcon.y = this.PERK_ICON_PRESTIGE_Y;
+                    this.prestigeIcon.invalidate();
                 }
                 else
                 {

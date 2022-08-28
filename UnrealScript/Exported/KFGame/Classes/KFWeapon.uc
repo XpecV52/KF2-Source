@@ -6478,6 +6478,8 @@ simulated state Reloading
 
 		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayAmmoDialog( KFPawn(Instigator), float(SpareAmmoCount[0]) / float(GetMaxAmmoAmount(0)) );
 		CurrentFireMode = DEFAULT_FIREMODE;
+
+		ReloadStatus = RS_None;
 	}
 
 	simulated function BeginFire(byte FireModeNum)

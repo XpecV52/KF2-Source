@@ -7,7 +7,7 @@
 // Copyright (C) 2017 Tripwire Interactive LLC
 //=============================================================================
 
-class KFDT_Ballistic_MedicRifleGrenadeLauncher extends KFDT_Ballistic_Shell
+class KFDT_Ballistic_MedicRifleGrenadeLauncher extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 

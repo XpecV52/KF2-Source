@@ -1732,6 +1732,15 @@ function bool IsInLobby()
 	return bPlayerInLobby;
 }
 
+function OnLoginFailed()
+{
+	if(PartyWidget != none)
+	{
+		PartyWidget.SetBool("bShowWaitingSpinner", false);
+		PartyWidget.SetBool("bInParty", false);
+	}
+}
+
 /*********************************************************************************************
 `* Start Menu States
 ********************************************************************************************* */

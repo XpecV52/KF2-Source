@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFDT_Ballistic_MedicRifleGrenadeLauncher extends KFDT_Ballistic_Shell
+class KFDT_Ballistic_MedicRifleGrenadeLauncher extends KFDT_Ballistic_AssaultRifle
     abstract;
 
 static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Controller InstigatedBy)
@@ -22,7 +22,6 @@ static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Co
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_MedicRifleGrenadeLauncher'
-    StumblePower=10
     GunHitPower=45
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=900

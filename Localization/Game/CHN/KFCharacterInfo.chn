@@ -90,7 +90,7 @@ HeadSkin2="红色"
 HeadSkin3="棕色"
 HeadSkin4="粉红"
 HeadSkin5="黑色"
-HeadSkin6="NEED NAME"
+HeadSkin6="2018年万圣节"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -249,7 +249,7 @@ HeadSkin2="血红"
 HeadSkin3="金属脸孔"
 HeadSkin4="大坏蛋瑞典人"
 HeadSkin5="眩晕"
-HeadSkin6="NEED NAME"
+HeadSkin6="2018年万圣节"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="尖顶牛仔帽"
@@ -423,7 +423,7 @@ HeadSkin3="绿色灾难"
 HeadSkin4="复古斯库利"
 HeadSkin5="无声尖叫斯库利"
 HeadSkin6="BatCat"
-HeadSkin7="NEED NAME"
+HeadSkin7="2018年万圣节"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="斯库利电话"
@@ -547,7 +547,7 @@ HeadSkin1="亮点"
 HeadSkin2="黑色"
 HeadSkin3="木偶"
 HeadSkin4="死亡之日"
-HeadSkin5="NEED NAME"
+HeadSkin5="2018年万圣节"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="博士面具"
@@ -675,7 +675,7 @@ HeadSkin4="英式"
 HeadSkin5="红色危机"
 HeadSkin6="汉斯先生"
 HeadSkin7="财迷"
-HeadSkin8="NEED NAME"
+HeadSkin8="2018年万圣节"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="斯库利电话"
@@ -904,7 +904,7 @@ HeadSkin1="梭织"
 HeadSkin2="眩光"
 HeadSkin3="露齿而笑"
 HeadSkin4="Rawr"
-HeadSkin5="NEED NAME"
+HeadSkin5="2018年万圣节"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="拳击帽"
@@ -1018,7 +1018,7 @@ HeadSkin2="黑色"
 HeadSkin3="白色"
 HeadSkin4="丑角"
 HeadSkin5="假想线"
-HeadSkin6="NEED NAME"
+HeadSkin6="2018年万圣节"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="眼镜"
@@ -1914,7 +1914,7 @@ HeadSkin1="迷彩"
 HeadSkin2="小丑"
 HeadSkin3="吸血鬼"
 HeadSkin4="断头台"
-HeadSkin5="NEED NAME"
+HeadSkin5="2018年万圣节"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="绿色"
@@ -2013,7 +2013,7 @@ HeadSkin0="黑色"
 HeadSkin1="金发"
 HeadSkin2="脸谱"
 HeadSkin3="巨人"
-HeadSkin4="NEED NAME"
+HeadSkin4="2018年万圣节"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="和经典"
@@ -2149,7 +2149,7 @@ HeadSkin3="迷人蓝"
 HeadSkin4="死亡金属"
 HeadSkin5="斯坦夫人"
 HeadSkin6="花"
-HeadSkin7="NEED NAME"
+HeadSkin7="2018年万圣节"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="死亡之雨"
@@ -2343,7 +2343,7 @@ HeadSkin3="瑞典金发"
 HeadSkin4="对我微笑"
 HeadSkin5="朱斯先生"
 HeadSkin6="竞技游戏"
-HeadSkin7="NEED NAME"
+HeadSkin7="2018年万圣节"
 
 [chr_alan_archetype]
 CharacterName="经典马斯特森"
@@ -2444,7 +2444,7 @@ HeadSkin3="来吧，伙计们！"
 HeadSkin4="高兴起来，伙伴！"
 HeadSkin5="你阵亡了，伙计！"
 HeadSkin6="数码"
-HeadSkin7="NEED NAME"
+HeadSkin7="2018年万圣节"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ 帽"
@@ -2546,7 +2546,7 @@ HeadSkin0="黑钢"
 HeadSkin1="金钢"
 HeadSkin2="死亡先生"
 HeadSkin3="斯坦先生"
-HeadSkin4="NEED NAME"
+HeadSkin4="2018年万圣节"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="德国钢盔"
@@ -2798,7 +2798,7 @@ HeadSkin4="水鸭色"
 HeadSkin5="粉红"
 HeadSkin6="死亡小姐"
 HeadSkin7="鹿"
-HeadSkin8="NEED NAME"
+HeadSkin8="2018年万圣节"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="眼罩"
