@@ -122,6 +122,7 @@ struct PerkXPGain
 	var Class<KFPerk> PerkClass;
 	var int XPDelta;
 	var int SecondaryXPGain;
+	var int BonusXP;
 	var float StartXPPercentage;
 	var int StartLevel;
 };
@@ -275,7 +276,7 @@ function ResetLastWaveInfo()
     ZedsKilledLastWave = 0;
 }
 
-function RecordPerkXPGain(class<KFPerk> PerkClass, int XPDelta)
+function RecordPerkXPGain(class<KFPerk> PerkClass, int XPDelta, int BonusXP)
 {
 	local int index;
 	local PerkXPGain TempPerkXPItem;
@@ -289,12 +290,14 @@ function RecordPerkXPGain(class<KFPerk> PerkClass, int XPDelta)
 		TempPerkXPItem.StartLevel			= GetPerkLevelFromPerkList(PerkClass);
 		TempPerkXPItem.StartXPPercentage	= GetPerkLevelProgressPercentage(PerkClass);
 		TempPerkXPItem.XPDelta 				+= XPDelta;
+		TempPerkXPItem.BonusXP				+= BonusXP;
 
 		PerkXPList.AddItem(TempPerkXPItem);
 	}
 	else
 	{
 		PerkXPList[index].XPDelta += XPDelta;
+		PerkXPList[index].BonusXP += BonusXP;
 	}
 }
 

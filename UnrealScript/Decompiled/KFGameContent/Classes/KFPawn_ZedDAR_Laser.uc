@@ -26,6 +26,7 @@ defaultproperties
     RangedProjectileClass=Class'KFProj_EvilDAR_Laser'
     FiringSocketLName=Laser_L
     FiringSocketRName=Laser_R
+    ExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedDAR_Laser.ExploTemplate0'
     MonsterArchPath="ZED_ARCH.ZED_DAR_Laser_Archetype"
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedDAR_Laser.MeleeHelper'
     DifficultySettings=Class'KFDifficulty_DAR_Laser'

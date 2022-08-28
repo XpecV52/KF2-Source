@@ -2264,7 +2264,7 @@ event NotifyPerkUpdated()
     }
 }
 
-function NotifyXPGain(class<KFPerk> PerkClass, int Amount)
+function NotifyXPGain(class<KFPerk> PerkClass, int Amount, int BonusXP)
 {
     if(((((PerkClass != none) && PerkClass == GetPerk().GetPerkClass()) && myGfxHUD != none) && myGfxHUD.PlayerStatusContainer != none) && IsLocalController())
     {
@@ -2273,7 +2273,7 @@ function NotifyXPGain(class<KFPerk> PerkClass, int Amount)
     KFGameReplicationInfo(WorldInfo.GRI).PrimaryXPAccumulator += Amount;
     if(((self != none) && self.MatchStats != none) && PerkClass != none)
     {
-        self.MatchStats.RecordPerkXPGain(PerkClass, Amount);
+        self.MatchStats.RecordPerkXPGain(PerkClass, Amount, BonusXP);
     }
 }
 
@@ -5448,7 +5448,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
     {
         if(((self != none) && self.MatchStats != none) && PerkList[I].PerkClass != none)
         {
-            self.MatchStats.RecordPerkXPGain(PerkList[I].PerkClass, 0);
+            self.MatchStats.RecordPerkXPGain(PerkList[I].PerkClass, 0, 0);
         }
         ++ I;
         goto J0x409;

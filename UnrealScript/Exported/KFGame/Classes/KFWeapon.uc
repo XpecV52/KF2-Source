@@ -3231,14 +3231,6 @@ simulated function StartFire(byte FireModeNum)
 	// Attempt auto-reload
 	if( FireModeNum == DEFAULT_FIREMODE || FireModeNum == ALTFIRE_FIREMODE )
 	{
-		if (CurrentFireMode == RELOAD_FIREMODE && bReloadFromMagazine)
-		{
-			return;
-		}
-		if (IsMeleeing())
-		{
-			return;
-		}
 		if ( ShouldAutoReload(FireModeNum) )
 		{
 			FireModeNum = RELOAD_FIREMODE;

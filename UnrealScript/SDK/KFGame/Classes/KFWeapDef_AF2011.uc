@@ -22,5 +22,5 @@ DefaultProperties
 
 	UpgradePrice[0]=1500
 
-    UpgradeSellPrice[0]=390 //1125
+    UpgradeSellPrice[0]=1125
 }

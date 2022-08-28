@@ -74,6 +74,7 @@ function OnZedDied(Controller Killer)
 
 defaultproperties
 {
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedDAR_EMP:ExploTemplate0'
    MonsterArchPath="ZED_ARCH.ZED_DAR_EMP_Archetype"
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedDAR:MeleeHelper_0'
       BaseDamage=10.000000

@@ -560,7 +560,7 @@ exec function GamepadSwitchFire()
         if(Outer.myGfxHUD.WeaponSelectWidget != none)
         {
             W = ((Outer.Pawn.InvManager.PendingWeapon != none) ? Outer.Pawn.InvManager.PendingWeapon : Outer.Pawn.Weapon);
-            if((W != none) && W.bCanThrow)
+            if((W != none) && W.CanThrow())
             {
                 Outer.ServerThrowOtherWeapon(W);
             }

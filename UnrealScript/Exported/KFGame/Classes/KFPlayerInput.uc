@@ -802,10 +802,9 @@ exec function GamepadSwitchFire()
 		if(MyGFxHUD.WeaponSelectWidget != none)
 		{
 			W = Pawn.InvManager.PendingWeapon != none ? Pawn.InvManager.PendingWeapon : Pawn.Weapon;
-			if( W != None && W.bCanThrow )
+			if( W != None && W.CanThrow() )
 			{
 				ServerThrowOtherWeapon(W);
-				//ThrowWeapon();
 			}
 		}
 	}

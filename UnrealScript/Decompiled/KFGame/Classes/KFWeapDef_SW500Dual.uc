@@ -15,6 +15,6 @@ defaultproperties
     BuyPrice=1500
     AmmoPricePerMag=50
     UpgradePrice(0)=1500
-    UpgradeSellPrice(0)=390
+    UpgradeSellPrice(0)=1125
     EffectiveRange=50
 }

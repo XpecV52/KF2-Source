@@ -3245,7 +3245,7 @@ event NotifyPerkUpdated()
 /*
  * Network: Local Player
  */
-function NotifyXPGain( class<KFPerk> PerkClass, int Amount )
+function NotifyXPGain( class<KFPerk> PerkClass, int Amount, int BonusXP )
 {
 	if( PerkClass != none && PerkClass == GetPerk().static.GetPerkClass() && MyGFxHUD != none && MyGFxHUD.PlayerStatusContainer != none && IsLocalController() )
 	{
@@ -3254,7 +3254,7 @@ function NotifyXPGain( class<KFPerk> PerkClass, int Amount )
 
 	KFGameReplicationInfo(WorldInfo.GRI).PrimaryXPAccumulator += Amount;
 
-	if(self!= none && self.MatchStats != none && PerkClass!= none){self.MatchStats.RecordPerkXPGain(PerkClass,Amount);};
+	if(self!= none && self.MatchStats != none && PerkClass!= none){self.MatchStats.RecordPerkXPGain(PerkClass,Amount,BonusXP);};
 }
 
 /*
@@ -7120,7 +7120,7 @@ simulated function OnStatsInitialized( bool bWasSuccessful )
 	//Get starting values for tracking xp changes on AAR -ZG
 	for (i = 0; i < PerkList.length; i++)
 	{
-		if(self!= none && self.MatchStats != none && PerkList[i].PerkClass!= none){self.MatchStats.RecordPerkXPGain(PerkList[i].PerkClass,0);};
+		if(self!= none && self.MatchStats != none && PerkList[i].PerkClass!= none){self.MatchStats.RecordPerkXPGain(PerkList[i].PerkClass,0,0);};
 	}
 }
 

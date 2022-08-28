@@ -46,7 +46,7 @@
 `define RecordBossMurderer(KFPC)					if(`KFPC != none && `KFPC.MatchStats != none ){`KFPC.MatchStats.bKilledBoss = true;}
 `define RecordAARIntStat(KFPC,ID,Value) 			if(`KFPC != none && `KFPC.MatchStats != none ){`KFPC.MatchStats.RecordIntStat(`MatchStatId(`ID),`Value);}
 `define RecordAARZedKill(KFPC,MonsterClass,DT) 		if(`KFPC != none && `KFPC.MatchStats != none ){`KFPC.MatchStats.RecordZedKill(`MonsterClass,`DT);}
-`define RecordAARPerkXPGain(KFPC,PerkClass,Value) 	if(`KFPC != none && `KFPC.MatchStats != none && `PerkClass != none){`KFPC.MatchStats.RecordPerkXPGain(`PerkClass,`Value);}
+`define RecordAARPerkXPGain(KFPC,PerkClass,Value,BonusValue) 	if(`KFPC != none && `KFPC.MatchStats != none && `PerkClass != none){`KFPC.MatchStats.RecordPerkXPGain(`PerkClass,`Value,`BonusValue);}
 `define RecordSecondaryXPGain(KFPC,PerkClass,Value) if(`KFPC != none && `KFPC.MatchStats != none && `PerkClass != none){`KFPC.MatchStats.RecordSecondaryXPGain(`PerkClass,`Value);}
 //Each Damage Type is going to have an ID that we are setting here.  We pass this id in to the function RecordWeaponDamage.  From there it is resolved 
 `define RecordWeaponDamage(InstigatedBy,KFDT,DamageValue,TargetPawn,HitZoneIdx)	if(`KFDT != none){`MatchStatsClass.static.RecordWeaponDamage(`InstigatedBy,`KFDT,`KFDT.default.WeaponDef,`DamageValue,`TargetPawn,`HitZoneIdx);}

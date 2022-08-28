@@ -2226,14 +2226,6 @@ simulated function StartFire(byte FireModeNum)
 {
     if((FireModeNum == 0) || FireModeNum == 1)
     {
-        if((CurrentFireMode == 2) && bReloadFromMagazine)
-        {
-            return;
-        }
-        if(IsMeleeing())
-        {
-            return;
-        }
         if(ShouldAutoReload(FireModeNum))
         {
             FireModeNum = 2;

@@ -16,7 +16,7 @@ defaultproperties
    BuyPrice=1500
    AmmoPricePerMag=54
    UpgradePrice(0)=1500
-   UpgradeSellPrice(0)=390
+   UpgradeSellPrice(0)=1125
    EffectiveRange=50
    Name="Default__KFWeapDef_AF2011Dual"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

@@ -941,6 +941,7 @@ private native final function int GetPSGFromProgress(int PerkProgress);
 private final event AddXP(class<KFPerk> PerkClass, int dXP)
 {
     local float XPMultiplier;
+    local int BonusXP;
 
     XPMultiplier = 0;
     if(PerkClass == none)
@@ -951,15 +952,16 @@ private final event AddXP(class<KFPerk> PerkClass, int dXP)
     {
         XPMultiplier = MyKFPC.GetPerkPrestigeXPMultiplier(PerkClass);
         dXP = int(float(dXP) * (1 + XPMultiplier));
+        BonusXP = int(float(dXP) * XPMultiplier);
     }
     IncrementXPStat(PerkClass, dXP);
     if(MyKFPC != none)
     {
-        MyKFPC.NotifyXPGain(PerkClass, dXP);
+        MyKFPC.NotifyXPGain(PerkClass, dXP, BonusXP);
     }
     if(bLogStatsWrite)
     {
-        LogInternal((("AddXP Perk:" $ string(PerkClass)) @ "dXP:") $ string(dXP));
+        LogInternal((((("AddXP Perk:" $ string(PerkClass)) @ "dXP:") $ string(dXP)) @ "bonus") @ string(BonusXP));
     }
 }
 

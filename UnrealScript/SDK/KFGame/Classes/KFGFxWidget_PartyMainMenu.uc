@@ -236,8 +236,6 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 			MemberSlots[SlotIndex].PerkClass = KFPRI.CurrentPerkClass;
 
 			PlayerInfoObject.SetString("perkLevel", CurrentPerk.GetLevel() @CurrentPerk.PerkName );
-			//PlayerInfoObject.SetString("perkIconPath", "img://"$CurrentPerk.GetPerkIconPath());
-
 			PerkIconObject = CreateObject("Object");
 			PerkIconObject.SetString("perkIcon", "img://"$MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
 			PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
@@ -252,12 +250,12 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 		if(MemberSlots[SlotIndex].PerkClass != none)
 		{
 			PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @MemberSlots[SlotIndex].PerkClass.default.PerkName);
-			//PlayerInfoObject.SetString("perkIconPath", "img://"$MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
 
 			PerkIconObject = CreateObject("Object");
 			PerkIconObject.SetString("perkIcon", "img://"$MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
-			PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
-
+			//player name 			
+			PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(byte(MemberSlots[SlotIndex].PrestigeLevel)));
+			
 			PlayerInfoObject.SetObject("perkImageSource", PerkIconObject);
 		}
 		
@@ -273,6 +271,7 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 		ReadablePlayerName = PC.PlayerReplicationInfo.GetHumanReadableName();
 		PlayerName = ReadablePlayerName == DefaultPlayerName ? DefaultPlayerName$SlotIndex : ReadablePlayerName;
 	}
+	
 	PlayerInfoObject.SetString("playerName", PlayerName);
 	//player icon
 
@@ -315,7 +314,7 @@ function UpdatePerks(string Message)
 	PerkLevel = PlayerInfoStrings[2];
 	PrestigeLevel = PlayerInfoStrings[3];
 
-    if(OnlineLobby == none)
+	if(OnlineLobby == none)
 	{
 		return;
 	}
@@ -332,16 +331,42 @@ function UpdatePerks(string Message)
 function UpdatePerkInfoForPlayerID(UniqueNetId PlayerID, class<KFPerk> PerkClass, string PerkLevel, string PrestigeLevel)
 {
 	local int i;
+	
 	for (i = 0; i < PlayerSlots; i++)
 	{
 		if(MemberSlots[i].PlayerUID == PlayerID)
-		{
+		{			
 			MemberSlots[i].PerkLevel = PerkLevel;
 			MemberSlots[i].PerkClass = PerkClass;	
 			MemberSlots[i].PrestigeLevel = PrestigeLevel;
 			return;
 		}
 	}	
+}
+
+
+function PrintoutDebugMemberSlotInfo()
+{
+	local string PlayerName;
+	local int i;
+	
+	for (i = 0; i < PlayerSlots; i++)
+	{
+		if (MemberSlots[i].PerkClass != none)
+		{
+			if (OnlineLobby != none)
+			{
+				PlayerName = OnlineLobby.GetFriendNickname(MemberSlots[i].PlayerUID);
+			}
+			else
+			{
+				`log("no online lobby.");
+			}
+
+			`log("$$ Printing INFO FOR: " @playerName @"Slot index" @MemberSlots[i].PerkClass @MemberSlots[i].PerkLevel @MemberSlots[i].PrestigeLevel);			
+		}
+	}
+	`log("###end printing out debug info");
 }
 
 function UpdateSearching(string Message)

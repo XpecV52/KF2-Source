@@ -10,11 +10,15 @@ class KFPawn_ZedDAR extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
+const ChestBombZoneIndex = 3;
+
 var protected KFAIController_ZedDAR MyDARController;
 var class<KFProjectile> RangedProjectileClass;
 var const name FiringSocketLName;
 var const name FiringSocketRName;
 var name FiringSocketName;
+var protected transient bool bHasExploded;
+var protected KFGameExplosion ExplosionTemplate;
 
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
@@ -118,8 +122,127 @@ simulated function NotifySpecialMoveEnded(KFSpecialMove FinishedMove, KFGame.KFP
     }
 }
 
+simulated function PlayDeadHitEffects(Vector HitLocation, Vector HitDirection, int HitZoneIndex, name HitZoneName, name HitBoneName, class<KFDamageType> dmgType, optional bool bUseHitImpulse)
+{
+    local class<KFProj_PinningBullet> PinProjectileClass;
+    local KFPawn DeadPawn;
+    local KFGoreManager GoreManager;
+    local bool bIsDismemberingHit, bWasObliterated;
+
+    if(bAllowRagdollAndGoreOnDeadBodies || (WorldInfo.TimeSeconds - TimeOfDeath) <= 3)
+    {
+        if(((InjuredHitZones & (1 << HitZoneIndex)) > 0) && !HitZones[HitZoneIndex].bPlayedInjury)
+        {
+            bIsDismemberingHit = PlayDismemberment(HitZoneIndex, dmgType, HitDirection);
+            if(!bIsDismemberingHit && (InjuredHitZones & (1 << 0)) > 0)
+            {
+                PlayHeadAsplode();
+                bIsDismemberingHit = true;
+            }
+        }
+        GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+        if(((GoreManager.AllowMutilation() && HitFxInfo.bObliterated || HitZoneIndex == 3) && (WorldInfo.TimeSeconds - TimeOfDeath) < 0.25) && !bUseDamageInflation)
+        {
+            bWasObliterated = true;
+            bIsDismemberingHit = true;
+            HandlePartialGoreAndGibs(dmgType, HitLocation, HitDirection, HitBoneName, true);
+            GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+            GoreManager.SpawnObliterationBloodEffect(self);            
+        }
+        else
+        {
+            PinProjectileClass = dmgType.static.GetPinProjectileClass();
+            if(PinProjectileClass != none)
+            {
+                DeadPawn = self;
+                PinProjectileClass.static.CreatePin(DeadPawn, HitLocation, HitDirection, HitBoneName);
+            }
+            HandlePartialGoreAndGibs(dmgType, HitLocation, HitDirection, HitBoneName, false);
+        }
+        HandleRagdollImpulseEffects(HitLocation, HitDirection, HitZoneName, HitBoneName, dmgType, bIsDismemberingHit, bUseHitImpulse);
+    }
+    ApplyBloodDecals(HitZoneIndex, HitLocation, HitDirection, HitZoneName, HitBoneName, dmgType, bIsDismemberingHit, bWasObliterated);
+}
+
+function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
+{
+    if((HitZoneIdx == 3) && !bPlayedDeath || WorldInfo.TimeSeconds == TimeOfDeath)
+    {
+        return true;
+    }
+    return super(KFPawn).CanInjureHitZone(DamageType, HitZoneIdx);
+}
+
+simulated function HitZoneInjured(optional int HitZoneIdx)
+{
+    HitZoneIdx = -1;
+    super.HitZoneInjured(HitZoneIdx);
+    if((Role == ROLE_Authority) && HitZoneIdx == 3)
+    {
+        TriggerExplosion(true);
+    }
+}
+
+simulated function TriggerExplosion(optional bool bIgnoreHumans)
+{
+    local KFExplosionActorReplicated ExploActor;
+    local Controller DamageInstigator, OldController;
+    local bool bExplodeOnDeath;
+
+    bExplodeOnDeath = WorldInfo.TimeSeconds == TimeOfDeath;
+    if(!bHasExploded)
+    {
+        OldController = Controller;
+        bHasExploded = true;
+        if(Role == ROLE_Authority)
+        {
+            ExploActor = Spawn(Class'KFExplosionActorReplicated', self);
+            if(ExploActor != none)
+            {
+                DamageInstigator = (((bIgnoreHumans && LastHitBy != none) && KFPlayerController(LastHitBy) != none) ? LastHitBy : MyKFAIC);
+                ExploActor.InstigatorController = DamageInstigator;
+                ExploActor.Instigator = self;
+                ExploActor.Attachee = self;
+                if(bIgnoreHumans)
+                {
+                    ExplosionTemplate.ActorClassToIgnoreForDamage = Class'KFPawn_Human';                    
+                }
+                else
+                {
+                    ExplosionTemplate.ActorClassToIgnoreForDamage = none;
+                }
+                ExploActor.Explode(ExplosionTemplate, vect(0, 0, 1));
+            }
+            if(!bPlayedDeath || bExplodeOnDeath)
+            {
+                TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
+            }
+        }
+        OnExploded(OldController);
+    }
+}
+
+function bool WeeklyShouldExplodeOnDeath()
+{
+    return !bHasExploded;
+}
+
+simulated function OnExploded(Controller SuicideController);
+
 defaultproperties
 {
+    begin object name=ExploTemplate0 class=KFGameExplosion
+        ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.EMPGrenade_Explosion'
+        Damage=25
+        DamageFalloffExponent=0.5
+        MyDamageType=Class'KFGame.KFDT_EMP'
+        ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_EMP.Play_WEP_EXP_Grenade_EMP_Explosion'
+        ExploLight=PointLightComponent'Default__KFPawn_ZedDAR.ExplosionPointLight'
+        ExploLightFadeOutTime=0.5
+        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.HuskSuicide'
+    object end
+    // Reference: KFGameExplosion'Default__KFPawn_ZedDAR.ExploTemplate0'
+    ExplosionTemplate=ExploTemplate0
     MinSpawnSquadSizeType=ESquadType.EST_Medium
     RepArmorPct[0]=255
     RepArmorPct[1]=255

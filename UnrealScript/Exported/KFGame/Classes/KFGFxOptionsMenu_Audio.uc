@@ -306,7 +306,6 @@ function Callback_ConfigureControllerSound( bool bEnabled )
 function Callback_MasterVolumeChanged( float NewVolume )
 {
 	local float MasterVolumeMultiplier;
-
 	MasterVolumeMultiplier = NewVolume;
 	class'KFGameEngine'.static.SetWWiseMasterVolume( MasterVolumeMultiplier);
 	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_MasterVolumeMultiplier, MasterVolumeMultiplier);
@@ -375,7 +374,7 @@ function ResetAudioOptions()
 	local KFGameEngine KFGE;
 	local float FloatValue;
 	local float DefaultGamma;
-
+	
 	// Don't try to set values of objects that aren't there on Console.
 	if( !GetPC().WorldInfo.IsConsoleBuild() )
 	{
@@ -408,6 +407,16 @@ function ResetAudioOptions()
 	Manager.CachedProfile.SetProfileSettingValueInt(KFID_MusicVocalsEnabled, Manager.CachedProfile.GetDefaultInt(KFID_MusicVocalsEnabled));
 	Manager.CachedProfile.SetProfileSettingValueInt(KFID_MinimalChatter , Manager.CachedProfile.GetDefaultInt(KFID_MinimalChatter));
 
+	Callback_MasterVolumeChanged(Manager.CachedProfile.GetDefaultFloat(KFID_MasterVolumeMultiplier));
+	Callback_DialogVolumeChanged(Manager.CachedProfile.GetDefaultFloat(KFID_DialogVolumeMultiplier));
+	Callback_MusicVolumeChanged(Manager.CachedProfile.GetDefaultFloat(KFID_MusicVolumeMultiplier));
+	Callback_SFxVolumeChanged(Manager.CachedProfile.GetDefaultFloat(KFID_SFXVolumeMultiplier));
+	Callback_ConfigureVocals(bool(Manager.CachedProfile.GetDefaultInt(KFID_MusicVocalsEnabled)));
+	Callback_ConfigureBattleChatter(bool(Manager.CachedProfile.GetDefaultInt(KFID_MinimalChatter)));
+	
+
+	Manager.CachedProfile.Save(GetLP().ControllerId);
+	SaveConfigValues();
 	InitValues();
 }
 

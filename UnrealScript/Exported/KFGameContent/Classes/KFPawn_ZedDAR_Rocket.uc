@@ -25,6 +25,7 @@ defaultproperties
    RangedProjectileClass=Class'kfgamecontent.KFProj_EvilDAR_Rocket'
    FiringSocketLName="Rocket_L"
    FiringSocketRName="Rocket_R"
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedDAR_Rocket:ExploTemplate0'
    MonsterArchPath="ZED_ARCH.ZED_DAR_Rocket_Archetype"
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedDAR:MeleeHelper_0'
       BaseDamage=10.000000

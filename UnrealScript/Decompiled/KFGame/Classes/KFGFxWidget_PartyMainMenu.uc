@@ -229,7 +229,7 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
             PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @ MemberSlots[SlotIndex].PerkClass.default.PerkName);
             PerkIconObject = Outer.CreateObject("Object");
             PerkIconObject.SetString("perkIcon", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
-            PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
+            PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(byte(MemberSlots[SlotIndex].PrestigeLevel)));
             PlayerInfoObject.SetObject("perkImageSource", PerkIconObject);
         }
     }
@@ -309,6 +309,34 @@ function UpdatePerkInfoForPlayerID(UniqueNetId PlayerID, class<KFPerk> PerkClass
         ++ I;
         goto J0x0B;
     }
+}
+
+function PrintoutDebugMemberSlotInfo()
+{
+    local string PlayerName;
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < PlayerSlots)
+    {
+        if(MemberSlots[I].PerkClass != none)
+        {
+            if(OnlineLobby != none)
+            {
+                PlayerName = OnlineLobby.GetFriendNickname(MemberSlots[I].PlayerUID);                
+            }
+            else
+            {
+                LogInternal("no online lobby.");
+            }
+            LogInternal((((("$$ Printing INFO FOR: " @ PlayerName) @ "Slot index") @ string(MemberSlots[I].PerkClass)) @ MemberSlots[I].PerkLevel) @ MemberSlots[I].PrestigeLevel);
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    LogInternal("###end printing out debug info");
 }
 
 function UpdateSearching(string Message)

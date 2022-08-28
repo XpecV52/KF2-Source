@@ -348,6 +348,14 @@ function ResetAudioOptions()
     Manager.CachedProfile.SetProfileSettingValueFloat(115, Manager.CachedProfile.GetDefaultFloat(115));
     Manager.CachedProfile.SetProfileSettingValueInt(118, Manager.CachedProfile.GetDefaultInt(118));
     Manager.CachedProfile.SetProfileSettingValueInt(119, Manager.CachedProfile.GetDefaultInt(119));
+    Callback_MasterVolumeChanged(Manager.CachedProfile.GetDefaultFloat(112));
+    Callback_DialogVolumeChanged(Manager.CachedProfile.GetDefaultFloat(113));
+    Callback_MusicVolumeChanged(Manager.CachedProfile.GetDefaultFloat(114));
+    Callback_SFxVolumeChanged(Manager.CachedProfile.GetDefaultFloat(115));
+    Callback_ConfigureVocals(bool(Manager.CachedProfile.GetDefaultInt(118)));
+    Callback_ConfigureBattleChatter(bool(Manager.CachedProfile.GetDefaultInt(119)));
+    Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
+    SaveConfigValues();
     InitValues();
 }
 

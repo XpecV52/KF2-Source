@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_Rifle_M99"
     ImagePath="WEP_UI_M99_TEX.UI_WeaponSelect_M99"
     BuyPrice=2500
-    AmmoPricePerMag=50
+    AmmoPricePerMag=38
     EffectiveRange=100
 }

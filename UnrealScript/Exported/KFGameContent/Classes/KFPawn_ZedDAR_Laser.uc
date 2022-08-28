@@ -25,6 +25,7 @@ defaultproperties
    RangedProjectileClass=Class'kfgamecontent.KFProj_EvilDAR_Laser'
    FiringSocketLName="Laser_L"
    FiringSocketRName="Laser_R"
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedDAR_Laser:ExploTemplate0'
    MonsterArchPath="ZED_ARCH.ZED_DAR_Laser_Archetype"
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedDAR:MeleeHelper_0'
       BaseDamage=10.000000
