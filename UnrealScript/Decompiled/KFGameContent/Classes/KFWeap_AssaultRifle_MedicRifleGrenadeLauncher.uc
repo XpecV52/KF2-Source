@@ -117,12 +117,12 @@ reliable client simulated function ClientGiveSecondaryAmmo(byte Amount)
 
 function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
 {
-    local KFWeap_AssaultRifle_M16M203 Weap;
+    local KFWeap_AssaultRifle_MedicRifleGrenadeLauncher Weap;
 
     super(KFWeapon).SetOriginalValuesFromPickup(PickedUpWeapon);
     if((Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
     {
-        Weap = KFWeap_AssaultRifle_M16M203(PickedUpWeapon);
+        Weap = KFWeap_AssaultRifle_MedicRifleGrenadeLauncher(PickedUpWeapon);
         ServerTotalAltAmmo = Weap.ServerTotalAltAmmo;
         SpareAmmoCount[1] = ServerTotalAltAmmo - AmmoCount[1];        
     }

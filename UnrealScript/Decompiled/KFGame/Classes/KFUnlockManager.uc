@@ -74,7 +74,7 @@ static event bool GetEmoteAvailable(int Id)
     return GetIDAvailable(Id);
 }
 
-static event bool GetHeadShotEffectAvailable(int Id)
+static final event bool GetHeadShotEffectAvailable(int Id)
 {
     return GetIDAvailable(Id);
 }

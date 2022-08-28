@@ -121,7 +121,7 @@ static event bool GetEmoteAvailable( INT ID )
 	return GetIDAvailable( ID );
 }
 
-static event bool GetHeadShotEffectAvailable(INT ID)
+static final event bool GetHeadShotEffectAvailable(INT ID)
 {
 	return GetIDAvailable(ID);
 }

@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 3263896996973365704 / 9/14/2018 11:20:12 PM
+Manifest ID / date     : 8508591425349233671 / 9/18/2018 11:03:27 PM
 Total number of files  : 4369
 Total number of chunks : 4434
-Total bytes on disk    : 93982052
-Total bytes compressed : 27159568
+Total bytes on disk    : 93944718
+Total bytes compressed : 27149184
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 27159568
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 8D0BADC214079B76B004D121D7A552251E9F29B0     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 A0A557304DB3599B53E3CB78FBD763F1D10B5476     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      64717824     62 01D342F757C6A96147CAC9EE95A58797BA3A8060     0 Binaries\Win64\KFEditor.exe
+      64680448     62 DCA92A19D697C717055818EFC99FDFF398B4365A     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -2313,7 +2313,7 @@ Total bytes compressed : 27159568
          15376      1 9BB72D386B4702521BEA3FF612CAD0AC79F28EDC     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_M16M203.uc
          10082      1 15F20E8763D936D217B22468A30716E0A1D376F4     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_MKB42.uc
           4617      1 2428E737D3078BA2715864CCD53AC2AD036BE6DD     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_Medic.uc
-         16669      1 B413A1B18A9EEDCCAA4B4B1F997598C17642A6FD     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_MedicRifleGrenadeLauncher.uc
+         16705      1 D38CDD008298F5B0A7F849551342AE29CDFA2CE5     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_MedicRifleGrenadeLauncher.uc
           4123      1 7D1996D3E24E1DCFDD705990AFB8961FF63B6A08     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_SCAR.uc
           1148      1 132A4CE034016FC7069848138546DE77504504FF     0 Development\Src\KFGameContent\Classes\KFWeap_AssetDummy.uc
           9035      1 9D91588C4EFFBE7A60D13C66202F82D14B007846     0 Development\Src\KFGameContent\Classes\KFWeap_Beam_Microwave.uc
@@ -2927,7 +2927,7 @@ Total bytes compressed : 27159568
           1321      1 8FE0A66D0E584E3CB70612E3DCE9E70D8DBC83E6     0 Development\Src\KFGame\Classes\KFTrigger_MinigameCash.uc
             83      1 A7C8E272FA003DC448940AADDF28E9D8F9C1749A     0 Development\Src\KFGame\Classes\KFUIDataProvider_SearchResult.uc
           3180      1 CE3C9B94C6ED0DF24407D7632323D5A9F151817F     0 Development\Src\KFGame\Classes\KFUIDataStore_GameResource.uc
-          8103      1 63D85A26A551D8633D5B7BFEE75EA2AA6B4AF750     0 Development\Src\KFGame\Classes\KFUnlockManager.uc
+          8109      1 9215BA5E337D81CF8F1F522DD840B6EDC921C0CB     0 Development\Src\KFGame\Classes\KFUnlockManager.uc
            478      1 1B9852496D884910981AA729EF42A9E38BEEB9DF     0 Development\Src\KFGame\Classes\KFUnlockableAsset.uc
           2308      1 BFFD1CA0996599C207ABC744B32D6587B7362CFE     0 Development\Src\KFGame\Classes\KFUsablePerkTrigger.uc
           2635      1 2AE748E01F5C9EC2E606795DF12814BF3D861ACE     0 Development\Src\KFGame\Classes\KFUsableTrigger.uc
