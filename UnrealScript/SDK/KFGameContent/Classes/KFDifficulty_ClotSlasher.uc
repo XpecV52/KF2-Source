@@ -27,18 +27,18 @@ defaultproperties
 	)}
 	
 	// Suicidal difficulty
-	Suicidal={(SprintChance=0.50000,
+	Suicidal={(SprintChance=0.850000, //0.5
 		DamagedSprintChance=1.000000,
-		MovementSpeedMod=1.1,
+		MovementSpeedMod=1.2, //1.1
 		ZedTimeSpeedScale=0.0,
 		EvadeOnDamageSettings={(Chance=1.0, DamagedHealthPctToTrigger=0.01)},
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=2.0, TakenDamageModifier=0.5)}//{(bCauseSprint=true, DealtDamageModifier=1.5, TakenDamageModifier=0.9)}
 	)}
 
 	// Hell On Earth difficulty
-	HellOnEarth={(SprintChance=0.70000,
+	HellOnEarth={(SprintChance=0.95000, //0.7
 		DamagedSprintChance=1.000000,
-		MovementSpeedMod=1.2,
+		MovementSpeedMod=1.3, //1.2
 		ZedTimeSpeedScale=0.0,
 		EvadeOnDamageSettings={(Chance=1.0, DamagedHealthPctToTrigger=0.01)},
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=2.0, TakenDamageModifier=0.5)} //{(bCauseSprint=true, DealtDamageModifier=1.5, TakenDamageModifier=0.9)}

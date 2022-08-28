@@ -93,6 +93,7 @@ defaultproperties
                     GameLength=GL_Normal,
                     MaxBoomsPerFrame=3,
 					WeeklyOutbreakId=0,
+                    WaveAICountScale=(0.4, 0.4, 0.4, 0.4, 0.4, 0.4), //This is per player-count
                     ZedsToAdjust={(
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedClot_Cyst',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedClot_Alpha',bExplosiveDeath=true,ExplosionTemplate=KFGameExplosion'GP_Weekly_ARCH.PawnExplosionTemplate',ExplosionIgnoreClass=class'KFPawn_Monster'),

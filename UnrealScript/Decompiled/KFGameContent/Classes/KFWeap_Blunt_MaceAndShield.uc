@@ -143,17 +143,21 @@ defaultproperties
     ParryStrength=6
     BlockTypes=/* Array type was not detected. */
     BlockDamageMitigation=0.3
-    ParryDamageMitigationPercent=0.4
+    ParryDamageMitigationPercent=0.3
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
+    PackageKey="Shield_Melee"
+    FirstPersonMeshName="wep_1p_shield_melee_mesh.Wep_1stP_Shield_Melee_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Shield_Melee_MESH.Wep_Shield_Melee_Pickup"
+    AttachmentArchetypeName="WEP_Shield_Melee_ARCH.Wep_MaceAndShield_3P"
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=9
+    InventorySize=7
     QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
     GrenadeFireOffset=(X=25,Y=15,Z=0)
     GroupPriority=110
     WeaponSelectTexture=Texture2D'WEP_UI_Shield_Melee_TEX.UI_WeaponSelect_MaceShield'
     NumBloodMapMaterials=2
-    AttachmentArchetype=KFWeapAttach_MaceAndShield'WEP_Shield_Melee_ARCH.Wep_MaceAndShield_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_F=/* Array type was not detected. */
         ChainSequence_B=/* Array type was not detected. */
@@ -165,24 +169,21 @@ defaultproperties
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Blunt_MaceAndShield.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'wep_1p_shield_melee_mesh.Wep_1stP_Shield_Melee_Rig'
-        AnimSets(0)=AnimSet'wep_1p_shield_melee_anim.Wep_1stP_Shield_Melee_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Blunt_MaceAndShield.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Bone Crusher"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Shield_Melee_MESH.Wep_Shield_Melee_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Blunt_MaceAndShield.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Shield_Melee_MESH.Wep_Shield_Melee_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Blunt_MaceAndShield.StaticPickupComponent'

@@ -18,11 +18,15 @@ defaultproperties
    ParryDamageMitigationPercent=0.400000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
-   InventorySize=6
+   PackageKey="Zweihander"
+   FirstPersonMeshName="WEP_1P_Zweihander_MESH.Wep_1stP_Zweihander_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_Zweihander_ANIM.Wep_1stP_Zweihander_Anim"
+   PickupMeshName="WEP_3P_Zweihander_MESH.Wep_Zweihander_Pickup"
+   AttachmentArchetypeName="WEP_Zweihander_ARCH.Wep_Zweihander_3P"
+   InventorySize=7
    GroupPriority=85.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
    PlayerViewOffset=(X=2.000000,Y=0.000000,Z=0.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_Zweihander_ARCH.Wep_Zweihander_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
@@ -55,6 +59,8 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Zweihander:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
+   WeaponUpgrades(1)=(IncrementDamage=1.050000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.100000)
    InstantHitDamage(0)=85.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
@@ -75,9 +81,7 @@ defaultproperties
    InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Slashing_ZweihanderHeavy'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000
-      SkeletalMesh=SkeletalMesh'WEP_1P_Zweihander_MESH.Wep_1stP_Zweihander_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_Zweihander_ANIM.Wep_1stP_Zweihander_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -91,7 +95,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Zweihander"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_MeleeBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Zweihander_MESH.Wep_Zweihander_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

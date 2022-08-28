@@ -11,12 +11,18 @@ class KFWeap_Pistol_Deagle extends KFWeap_PistolBase
 
 defaultproperties
 {
-    InventorySize=2
-    MagazineCapacity=7
+    PackageKey="Deagle"
+    FirstPersonMeshName="WEP_1P_Deagle_MESH.Wep_1stP_Deagle_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Deagle_MESH.Wep_Deagle_Pickup"
+    AttachmentArchetypeName="WEP_Deagle_ARCH.Wep_Deagle_3P"
+    MuzzleFlashTemplateName="WEP_Deagle_ARCH.Wep_Deagle_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    InventorySize=2
+    MagazineCapacity=7
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
@@ -36,9 +42,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=14,Y=10,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Deagle_ARCH.Wep_Deagle_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_Deagle.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Deagle_ARCH.Wep_Deagle_MuzzleFlash'
     maxRecoilPitch=650
     minRecoilPitch=550
     maxRecoilYaw=150
@@ -53,6 +57,7 @@ defaultproperties
     RecoilISMaxPitchLimit=500
     RecoilISMinPitchLimit=65485
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -62,21 +67,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=20,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Deagle_MESH.Wep_1stP_Deagle_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Deagle_ANIM.Wep_1st_Deagle_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_Deagle.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName=".50 Desert Eagle"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Deagle_MESH.Wep_DEagle_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Deagle.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Deagle_MESH.Wep_DEagle_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Deagle.StaticPickupComponent'

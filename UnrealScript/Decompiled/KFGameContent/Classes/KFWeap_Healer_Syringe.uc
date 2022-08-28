@@ -19,17 +19,18 @@ function InitializeAmmo()
 
 defaultproperties
 {
+    PackageKey="Healer"
+    FirstPersonMeshName="WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    AttachmentArchetypeName="WEP_Healer_ARCH.Wep_Healer_3P"
     FireModeIconPaths=/* Array type was not detected. */
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
     PlayerViewOffset=(X=20,Y=10,Z=-8)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Healer_ARCH.Wep_Healer_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Healer_Syringe.MeleeHelper'
     InstantHitDamageTypes=/* Array type was not detected. */
     bCanThrow=false
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig'
         Animations=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Healer'
-        AnimSets(0)=AnimSet'WEP_1P_Healer_ANIM.Wep_1st_Healer_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Healer_Syringe.FirstPersonMesh'

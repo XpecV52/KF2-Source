@@ -84,6 +84,24 @@ simulated protected event PostSkillUpdate()
 
 	// enable tick if we have the regeneration skill
 	SetTickIsDisabled( !IsNinjaActive() );
+	//clear parry
+	ParryTimer();
+}
+
+function ClearPerkEffects()
+{
+	ParryTimer();
+	Super.ClearPerkEffects();
+}
+
+reliable client function ClientClearPerkEffects()
+{
+	if (Role != ROLE_Authority)
+	{
+		super.ClientClearPerkEffects();
+
+		ParryTimer();
+	}
 }
 
 /**
@@ -890,4 +908,7 @@ DefaultProperties
 	HitAccuracyHandicap=2.5
 	HeadshotAccuracyHandicap=-2.0
 	AutoBuyLoadOutPath=(class'KFWeapDef_Crovel', class'KFWeapDef_Nailgun', class'KFWeapDef_Pulverizer', class'KFWeapDef_Eviscerator')
+
+	// Prestige Rewards
+	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.BerserkerKnife_PrestigePrecious_Mint_large"
 }

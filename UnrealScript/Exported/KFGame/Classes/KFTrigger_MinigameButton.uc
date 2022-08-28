@@ -43,6 +43,9 @@ var() float ActivationDelay;
 /** Player that last activated the button */
 var Pawn LastActivatingUser;
 
+/** Sound to play upon activation */
+var() AkEvent ActivationSoundEvent;
+
 /** KFInterface_Usable */
 simulated function bool GetIsUsable(Pawn User)
 {
@@ -56,7 +59,7 @@ simulated function bool ReadyToActivate()
 
 /** KFInterface_Usable */
 simulated function int GetInteractionIndex(Pawn User)
-{    
+{
     return IMT_UseMinigame;
 }
 
@@ -151,12 +154,14 @@ function ActivateGame()
             {
                 foreach MinigameActors(MinigameActor)
                 {
-                    Minigameactor.Activated(self);
+					MinigameActor.Activated(self);
                 }
             }
 
 			//Button spam prevention
 			SetTimer(ReactivationTime, false, 'AllowReactivation');
+
+			PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
         }
         else if (bInProgress && bDeactivateOnPress)
         {
@@ -168,14 +173,19 @@ function ActivateGame()
 /** Handle cleanup after minigame comes back for reactivation */
 function AllowReactivation()
 {
-    local int i;
-
     bAllowActivation = true;
 
-    for (i = 0; i < Touching.Length; ++i)
-    {
-        class'KFPlayerController'.static.UpdateInteractionMessages(Touching[i]);
-    }
+    BroadcastInteractionMessages();
+}
+
+function BroadcastInteractionMessages()
+{
+	local int i;
+
+	for (i = 0; i < Touching.Length; ++i)
+	{
+		class'KFPlayerController'.static.UpdateInteractionMessages(Touching[i]);
+	}
 }
 
 /** Whether or not all attached minigame actors are allowing activation */
@@ -225,7 +235,7 @@ function Deactivate()
     {
         AllowReactivation();
         ClearTimer('AllowReactivation');
-    }    
+    }
     ClearTimer('Deactivate');
 
     bInProgress = false;
@@ -250,7 +260,7 @@ function Deactivate()
         foreach MinigameActors(MinigameActor)
         {
             MinigameActor.Deactivated();
-        }        
+        }
     }
 }
 
@@ -261,7 +271,7 @@ function SetMinigameActive()
     {
         bActiveGame = true;
         MinigameStateUpdated();
-    }    
+    }
 }
 
 function SetMinigameInactive()
@@ -271,7 +281,7 @@ function SetMinigameInactive()
         bActiveGame = false;
         Deactivate();
         MinigameStateUpdated();
-    }    
+    }
 }
 
 function MinigameStateUpdated()
@@ -286,7 +296,7 @@ function MinigameStateUpdated()
         if (StateChangeEvent != none)
         {
             StateChangeEvent.StateChanged(none, self, bActiveGame);
-        }        
+        }
     }
 }
 

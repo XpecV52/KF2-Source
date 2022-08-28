@@ -16,4 +16,5 @@ defaultproperties
     HellOnEarth=(SprintChance=0.75,DamagedSprintChance=1,MovementSpeedMod=1.4,EvadeOnDamageSettings=(Chance=1,DamagedHealthPctToTrigger=0.01),RallySettings=(bCauseSprint=true,TakenDamageModifier=0.9,DealtDamageModifier=1.2))
     RallySettings_Versus=(bCauseSprint=true)
     RallySettings_Player_Versus=(DealtDamageModifier=1.2)
+    ChanceToSpawnAsSpecial=/* Array type was not detected. */
 }

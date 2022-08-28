@@ -11,16 +11,12 @@ class KFWeap_Blunt_Crovel extends KFWeap_MeleeBase;
 
 defaultproperties
 {
-	AttachmentArchetype=KFWeaponAttachment'WEP_Crovel_ARCH.Wep_Crovel_3P'
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Crovel_MESH.Wep_1stP_Crovel_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Crovel_ANIM.WEP_1P_Crovel_ANIM'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Crovel_Pickup'
-	End Object
+	// Content
+	PackageKey="Crovel"
+	FirstPersonMeshName="WEP_1P_Crovel_MESH.Wep_1stP_Crovel_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Crovel_ANIM.WEP_1P_Crovel_ANIM"
+	PickupMeshName="WEP_3P_Crovel_MESH.Wep_Crovel_Pickup"
+	AttachmentArchetypeName="WEP_Crovel_ARCH.Wep_Crovel_3P"
 
 	Begin Object Name=MeleeHelper_0
 		MaxHitRange=150
@@ -68,6 +64,12 @@ defaultproperties
 	ParryStrength=3
 	ParryDamageMitigationPercent=0.50
 	BlockDamageMitigation=0.60
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.45f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.65f,IncrementWeight=3)
+	WeaponUpgrades[4]=(IncrementDamage=1.85f,IncrementWeight=4)
 }
 
 

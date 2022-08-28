@@ -125,15 +125,21 @@ defaultproperties
    PelletSpread(4)=(X=-0.500000,Y=0.000000)
    PelletSpread(5)=(X=-0.250000,Y=-0.433000)
    PelletSpread(6)=(X=0.250000,Y=-0.433000)
+   PackageKey="HX25_Pistol"
+   FirstPersonMeshName="WEP_1P_HX25_Pistol_MESH.Wep_1stP_HX25_Pistol_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_HX25_Pistol_ANIM.Wep_1stP_HX25_Pistol_Anim"
+   PickupMeshName="wep_3p_hx25_pistol_mesh.WEP_HX25_Pickup"
+   AttachmentArchetypeName="WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_3P"
+   MuzzleFlashTemplateName="WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_MuzzleFlash"
+   bHasIronSights=True
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
+   bHasFireLastAnims=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventoryGroup=IG_Secondary
    InventorySize=4
    MagazineCapacity(0)=1
-   bHasIronSights=True
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
-   bHasFireLastAnims=True
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=73.000000
    FastZoomOutTime=0.200000
@@ -148,14 +154,12 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Fire_1P')
    WeaponDryFireSnd(0)=None
    PlayerViewOffset=(X=13.000000,Y=13.000000,Z=-4.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_GrenadeLauncher_HX25:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500
@@ -174,6 +178,10 @@ defaultproperties
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Gunslinger'
+   WeaponUpgrades(1)=(IncrementDamage=1.250000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.400000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.600000)
+   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=1.900000)
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -200,9 +208,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_HX25'
    FireOffset=(X=23.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_HX25_Pistol_MESH.Wep_1stP_HX25_Pistol_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_HX25_Pistol_ANIM.Wep_1stP_HX25_Pistol_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -216,7 +222,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="HX25 Grenade Pistol"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:StaticPickupComponent'
-      StaticMesh=StaticMesh'wep_3p_hx25_pistol_mesh.WEP_HX25_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

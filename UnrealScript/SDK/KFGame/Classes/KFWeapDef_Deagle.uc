@@ -19,4 +19,10 @@ DefaultProperties
 	ImagePath="WEP_UI_Deagle_TEX.UI_WeaponSelect_Deagle"
 
 	EffectiveRange=50
+
+	UpgradePrice[0]=700
+	UpgradePrice[1]=1500
+
+	UpgradeSellPrice[0]=525
+	UpgradeSellPrice[1]=1650
 }

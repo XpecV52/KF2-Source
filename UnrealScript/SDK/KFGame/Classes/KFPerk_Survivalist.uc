@@ -679,7 +679,7 @@ DefaultProperties
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Survivalist'
 
 	PrimaryWeaponDef=class'KFWeapDef_Random'
-	KnifeWeaponDef=class'KFweapDef_Knife_Support'
+	KnifeWeaponDef=class'KFweapDef_Knife_Survivalist'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Commando'
 	HealingGrenadeWeaponDef=class'KFWeapDef_Grenade_Medic'
 	MolotovGrenadeWeaponDef=class'KFWeapDef_Grenade_Firebug'
@@ -750,4 +750,7 @@ DefaultProperties
    	PrimaryWeaponPaths(7)=class'KFWeapDef_Winchester1894'
    	PrimaryWeaponPaths(8)=class'KFWeapDef_MP7'
    	AutoBuyLoadOutPath=(class'KFWeapDef_DragonsBreath', class'KFWeapDef_M16M203', class'KFWeapDef_MedicRifle')
+
+   	// Prestige Rewards
+	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
 }

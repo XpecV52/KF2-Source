@@ -79,7 +79,7 @@ event Destroyed()
  * Minigame Support
  *
  * Kind of a best worst case fix here.  One of our minigames is client-authority for win
- *      condition.  Using the thrown cash's owner (thrower PC) to notify the server that the 
+ *      condition.  Using the thrown cash's owner (thrower PC) to notify the server that the
  *      game is complete for victory condition.
  ********************************************************************************************/
 simulated function NotifyMinigameHit(KFInterface_MinigameTarget MinigameTarget)
@@ -126,7 +126,6 @@ defaultproperties
 {
    PickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Dosh'
    bUseLowHealthDelay=False
-   PickupDelay=0.200000
    Begin Object Class=SpriteComponent Name=Sprite Archetype=SpriteComponent'KFGame.Default__KFDroppedPickup:Sprite'
       Sprite=Texture2D'EditorResources.S_Inventory'
       SpriteCategoryName="Inventory"

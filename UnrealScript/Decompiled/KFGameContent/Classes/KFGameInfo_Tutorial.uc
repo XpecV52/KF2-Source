@@ -331,6 +331,11 @@ function OnTraderMenuClosed()
     }
 }
 
+function bool IsMapObjectiveEnabled()
+{
+    return false;
+}
+
 state TraderOpen
 {
     function BeginState(name PreviousStateName)

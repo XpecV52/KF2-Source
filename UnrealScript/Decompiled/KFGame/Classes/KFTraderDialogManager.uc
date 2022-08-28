@@ -432,22 +432,22 @@ simulated function PlayPlayerSurvivedLastWaveDialog(KFPlayerController KFPC)
     }
     if(KFPC.MatchStats.GetDamageTakenInWave() == 0)
     {
-        AddRandomOption(26, NumOptions, BestOptionID);        
+        AddRandomOption(26, NumOptions, BestOptionID);
     }
-    else
+    if(KFPH.HealthMax != KFPH.Health)
     {
         if(KFPC.MatchStats.GetDamageTakenInWave() < (KFPH.HealthMax / 2))
         {
             AddRandomOption(28, NumOptions, BestOptionID);
         }
-    }
-    if(KFPC.MatchStats.GetDamageTakenInWave() >= 300)
-    {
-        AddRandomOption(29, NumOptions, BestOptionID);
-    }
-    if((KFPC.MatchStats.GetDamageTakenInWave() >= 100) && KFPC.MatchStats.GetHealReceivedInWave() >= 100)
-    {
-        AddRandomOption(30, NumOptions, BestOptionID);
+        if(KFPC.MatchStats.GetDamageTakenInWave() >= 300)
+        {
+            AddRandomOption(29, NumOptions, BestOptionID);
+        }
+        if((KFPC.MatchStats.GetDamageTakenInWave() >= 100) && KFPC.MatchStats.GetHealReceivedInWave() >= 100)
+        {
+            AddRandomOption(30, NumOptions, BestOptionID);
+        }
     }
     if(KFPC.PWRI.bKilledFleshpoundLastWave)
     {

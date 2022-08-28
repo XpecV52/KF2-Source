@@ -15,16 +15,12 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=2,Y=0,Z=0)
 
-	AttachmentArchetype=KFWeaponAttachment'WEP_Katana_ARCH.Wep_Katana_3P'
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_KATANA_MESH.Wep_1stP_Katana_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_KATANA_ANIM.Katana_Anim_Master'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Katana_Pickup'
-	End Object
+	// Content
+	PackageKey="Katana"
+	FirstPersonMeshName="WEP_1P_KATANA_MESH.Wep_1stP_Katana_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_KATANA_ANIM.Katana_Anim_Master"
+	PickupMeshName="WEP_3P_KATANA_MESH.Wep_Katana_Pickup"
+	AttachmentArchetypeName="WEP_Katana_ARCH.Wep_Katana_3P"
 
 	Begin Object Name=MeleeHelper_0
 		MaxHitRange=190
@@ -59,7 +55,7 @@ defaultproperties
 
 	// Inventory
 	GroupPriority=100
-	InventorySize=3
+	InventorySize=4
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 	
@@ -70,6 +66,11 @@ defaultproperties
 	ParryDamageMitigationPercent=0.50
 	BlockDamageMitigation=0.60
 	ParryStrength=4
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.6f,IncrementWeight=3)
 }
 
 

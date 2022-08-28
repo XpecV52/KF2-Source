@@ -24,6 +24,7 @@ enum EInteractionMessageType
     IMT_HealSelfWarning,
     IMT_ClotGrabWarning,
     IMT_PlayerClotGrabWarning,
+    IMT_EMPGrabWarning,
     IMT_MAX
 };
 
@@ -44,6 +45,7 @@ var const localized string PlayerClotGrabWarningMessage;
 var const localized string UseMinigameMessage;
 var const localized string UseMinigameGeneratorMessage;
 var const localized string DoshActivateMessage;
+var const localized string EMPGrabWarningMessage;
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
 var const string HEAL_COMMAND_CONTROLLER;
@@ -91,6 +93,9 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
     }
     switch(Switch)
     {
+        case 15:
+            KeyString = "";
+            break;
         case 6:
             if(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
             {
@@ -194,6 +199,8 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             return default.UseMinigameMessage;
         case 9:
             return default.UseMinigameGeneratorMessage;
+        case 15:
+            return default.EMPGrabWarningMessage;
         default:
             return "";
             break;
@@ -212,7 +219,7 @@ static function string GetHexColor(int Switch)
 
 defaultproperties
 {
-    UseTraderMessage="USE TRADER<%HOLD%>AUTO-UPGRADE"
+    UseTraderMessage="USE TRADER<%HOLD%>AUTO-TRADE"
     UseDoorMessage="OPEN/CLOSE<%HOLD%>EQUIP WELDER"
     EquipWelderMessage="<%HOLD%>EQUIP WELDER"
     RepairDoorMessage="<%HOLD%>EQUIP WELDER TO FIX DOOR"
@@ -229,6 +236,7 @@ defaultproperties
     UseMinigameMessage="ACTIVATE"
     UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
     DoshActivateMessage="ACTIVATION COST"
+    EMPGrabWarningMessage="*** ! IMMOBOLIZED ! ***"
     USE_COMMAND="GBA_Use"
     HEAL_COMMAND="GBA_QuickHeal"
     HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"

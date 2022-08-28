@@ -82,12 +82,18 @@ defaultproperties
    End Object
    BulletMeshComponents(5)=BulletMeshComp5
    CylinderRotInfo=(InC=-60.000000,Time=0.017500)
-   InventorySize=2
-   MagazineCapacity(0)=6
+   PackageKey="Remington_1858"
+   FirstPersonMeshName="WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_Remington_1858_Anim.WEP_1P_Remington_1858_Anim"
+   PickupMeshName="WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup"
+   AttachmentArchetypeName="WEP_Remington_1858_ARCH.Wep_Remington_1858_3P"
+   MuzzleFlashTemplateName="WEP_Remington_1858_ARCH.Wep_Remington_1858_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   InventorySize=2
+   MagazineCapacity(0)=6
    MeshFOV=60.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
@@ -104,17 +110,15 @@ defaultproperties
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    BonesToLockOnEmpty(0)="RW_Hammer"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_DryFire'
    PlayerViewOffset=(X=15.000000,Y=14.000000,Z=-6.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_Remington_1858_ARCH.Wep_Remington_1858_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Revolver_Rem1858:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Remington_1858_ARCH.Wep_Remington_1858_MuzzleFlash'
    maxRecoilPitch=400
    minRecoilPitch=350
    maxRecoilYaw=125
@@ -132,6 +136,10 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Sharpshooter'
+   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.200000)
+   WeaponUpgrades(2)=(IncrementWeight=0,IncrementDamage=1.600000)
+   WeaponUpgrades(3)=(IncrementDamage=2.000000)
+   WeaponUpgrades(4)=(IncrementWeight=2,IncrementDamage=2.500000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -158,9 +166,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Rem1858'
    FireOffset=(X=20.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_PistolBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_Rig'
-      AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master_Revolver'
-      AnimSets(0)=AnimSet'WEP_1P_Remington_1858_Anim.WEP_1P_Remington_1858_Anim'
+      AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master_Revolver'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -174,7 +180,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="1858 Revolver"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_PistolBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

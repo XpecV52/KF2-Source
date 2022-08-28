@@ -83,6 +83,7 @@ function UpdatePlayerInfo(optional bool bForceUpdate)
 {
     local GFxObject TempObject;
     local byte CurrentPerkLevel;
+    local GFxObject PerkIconObject;
 
     if(SpectatedKFPRI == none)
     {
@@ -98,7 +99,10 @@ function UpdatePlayerInfo(optional bool bForceUpdate)
         {
             TempObject.SetString("playerName", SpectatedKFPRI.PlayerName);
             TempObject.SetString("playerPerk", (SpectatedKFPRI.CurrentPerkClass.default.LevelString @ string(SpectatedKFPRI.GetActivePerkLevel())) @ SpectatedKFPRI.CurrentPerkClass.default.PerkName);
-            TempObject.SetString("iconPath", "img://" $ SpectatedKFPRI.CurrentPerkClass.static.GetPerkIconPath());
+            PerkIconObject = Outer.CreateObject("Object");
+            PerkIconObject.SetString("perkIcon", "img://" $ SpectatedKFPRI.CurrentPerkClass.static.GetPerkIconPath());
+            PerkIconObject.SetString("prestigeIcon", SpectatedKFPRI.CurrentPerkClass.static.GetPrestigeIconPath(SpectatedKFPRI.GetActivePerkPrestigeLevel()));
+            TempObject.SetObject("perkImageSource", PerkIconObject);
             SetObject("playerData", TempObject);
         }
     }

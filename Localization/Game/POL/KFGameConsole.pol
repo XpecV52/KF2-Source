@@ -21,6 +21,8 @@ KF-Nightmare="Gra na mapie Koszmar"
 KF-KrampusLair="Rozgrywanie Leża Krampusa"
 KF-PowerCore_Holdout="rozgrywa: Rdzeń zasilający"
 KF-DieSector="rozgrywa: Sektor Śmierci"
+KF-Lockdown="Gra na mapie Kwarantanna"
+KF-Airship="Gra na mapie Statek powietrzny"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

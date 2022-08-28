@@ -3,7 +3,7 @@ package tripwire.containers.Perks
     import flash.display.MovieClip;
     import flash.text.TextField;
     import scaleform.gfx.TextFieldEx;
-    import tripwire.controls.TripUILoaderQueue;
+    import tripwire.controls.TripUIPerkLoader;
     import tripwire.managers.MenuManager;
     
     public class PerksHeaderContainer extends PerkContainerBase
@@ -18,7 +18,7 @@ package tripwire.containers.Perks
         
         public var perkRankTextField:TextField;
         
-        public var perkIcon:TripUILoaderQueue;
+        public var perkIcon:TripUIPerkLoader;
         
         public var progressBar:MovieClip;
         
@@ -41,14 +41,14 @@ package tripwire.containers.Perks
             this.data = param1;
             if(this.data != null)
             {
-                this.perkXPTextField.text = (!!this.data.xpString ? this.data.xpString : "") + " XP";
+                this.perkXPTextField.text = !!this.data.xpString ? this.data.xpString : "";
+                this.perkXPTextField.text = this.perkXPTextField.text.split("/").join(" / ");
                 this.progressBarWidth = !!this.data.xpPercent ? Number(this.data.xpPercent) : Number(0);
                 this.perkNameTextfield.text = !!this.data.perkTitle ? this.data.perkTitle : "";
                 this.perkLevelTextfield.text = !!this.data.perkLevel ? this.data.perkLevel : "";
-                _loc2_ = !!this.data.iconSource ? this.data.iconSource : "";
-                if(_loc2_ != "")
+                if(this.data.perkData)
                 {
-                    this.perkIcon.source = _loc2_;
+                    this.perkIcon.data = this.data.perkData;
                 }
                 this.perkRankTextField.text = !!this.data.prestigeLevel ? this.data.prestigeLevel : "";
             }
@@ -70,7 +70,10 @@ package tripwire.containers.Perks
         
         override public function selectContainer() : void
         {
-            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            if(MenuManager.manager != null)
+            {
+                defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            }
             super.selectContainer();
         }
     }

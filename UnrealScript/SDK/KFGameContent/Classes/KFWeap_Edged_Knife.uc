@@ -27,16 +27,7 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=10,Y=10,Z=0)
 
-	AttachmentArchetype=KFWeaponAttachment'WEP_CommandoKnife_ARCH.Wep_CommandoKnife_3P'
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_CommandoKnife_MESH.Wep_1stP_CommKnife_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_CommandoKnife_Pickup'
-	End Object
+	// Content
 
 	Begin Object Name=MeleeHelper_0
 		MaxHitRange=220
@@ -77,6 +68,6 @@ defaultproperties
 	// Block Sounds
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
 	ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
-	
+
 	ParryStrength=1
 }

@@ -189,11 +189,6 @@ simulated event PreBeginPlay()
 simulated event PostBeginPlay()
 {
 	Super.PostBeginPlay();
-
-	if( WorldInfo.NetMode != NM_Client )
-	{
-		`AnalyticsLog(("boss_spawn", None, Class.Name));
-	}
 }
 
 /** Called from Possessed event when this controller has taken control of a Pawn */

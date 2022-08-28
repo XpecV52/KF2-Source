@@ -16,7 +16,7 @@ var const protected array<float> ChestBeamCooldowns;
 /** Returns the per-difficulty cooldown time */
 static function float GetChestBeamCooldownTime( KFGameReplicationInfo KFGRI )
 {
-	return default.ChestBeamCooldowns[KFGRI.GameDifficulty];
+	return default.ChestBeamCooldowns[KFGRI.GetModifiedGameDifficulty()];
 }
 
 defaultproperties

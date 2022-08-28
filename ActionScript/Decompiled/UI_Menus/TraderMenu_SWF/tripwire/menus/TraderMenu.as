@@ -73,6 +73,8 @@ package tripwire.menus
         
         private var _selectString:String;
         
+        private var _upgradeString:String;
+        
         private var _exitPromptString;
         
         private var _backPromptString;
@@ -174,6 +176,7 @@ package tripwire.menus
             this._changePerkString = !!param1.changePerkString ? param1.changePerkString : "M_CHANGE PERK_M";
             this._autoTradeString = !!param1.autoTradeString ? param1.autoTradeString : "M_AUTOTRADE_M";
             this._selectString = !!param1.selectString ? param1.selectString : "M_SELECT_M";
+            this._upgradeString = !!param1.upgradeString ? param1.upgradeString : "M_UPGRADE_M";
         }
         
         public function set autofillCost(param1:String) : void
@@ -210,12 +213,17 @@ package tripwire.menus
                     "buttonDisplay":"xboxtypes_back"
                 });
                 _loc2_.push({
+                    "promptText":this._upgradeString,
+                    "buttonDisplay":"xboxtypes_rightthumbstick"
+                });
+                _loc2_.push({
                     "promptText":this._exitPromptString,
                     "buttonDisplay":"xboxtypes_b"
                 });
                 this.centralPrompts.promptData = _loc2_;
                 this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_back",!!this.itemDetailsContainer.bCanFavorite ? Number(1) : Number(this.disabledPromptAlpha));
                 this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_b",1);
+                this.centralPrompts.buttonPromptContainer.setPromptAlpha("xboxtypes_rightthumbstick",!!this.itemDetailsContainer.bCanUpgrade ? Number(1) : Number(this.disabledPromptAlpha));
             }
         }
         
@@ -316,6 +324,14 @@ package tripwire.menus
                         if(this.itemDetailsContainer.visible && this.itemDetailsContainer.bCanFavorite == true && !this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
                         {
                             this.itemDetailsContainer.favoriteItem();
+                            this.updateCentralPrompts();
+                            param1.handled = true;
+                        }
+                        break;
+                    case NavigationCode.GAMEPAD_R3:
+                        if(this.itemDetailsContainer.visible && this.itemDetailsContainer.bCanFavorite == true && !this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen && (this.itemDetailsContainer.cachedItemData && this.itemDetailsContainer.cachedItemData.upgradePrice))
+                        {
+                            this.itemDetailsContainer.upgradeItem();
                             this.updateCentralPrompts();
                             param1.handled = true;
                         }

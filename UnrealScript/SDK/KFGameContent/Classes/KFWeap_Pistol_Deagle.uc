@@ -24,16 +24,13 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=14.0,Y=10,Z=-4)
 
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Deagle_MESH.Wep_DEagle_Pickup'
-	End Object
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Deagle_MESH.Wep_1stP_Deagle_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Deagle_ANIM.Wep_1st_Deagle_Anim'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Deagle_ARCH.Wep_Deagle_3P'
+	// Content
+	PackageKey="Deagle"
+	FirstPersonMeshName="WEP_1P_Deagle_MESH.Wep_1stP_Deagle_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Deagle_ANIM.Wep_1st_Deagle_Anim"
+	PickupMeshName="WEP_3P_Deagle_MESH.Wep_Deagle_Pickup"
+	AttachmentArchetypeName="WEP_Deagle_ARCH.Wep_Deagle_3P"
+	MuzzleFlashTemplateName="WEP_Deagle_ARCH.Wep_Deagle_MuzzleFlash"
 
    	// Zooming/Position
 	IronSightPosition=(X=11,Y=0,Z=0)
@@ -81,7 +78,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=22
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Deagle_ARCH.Wep_Deagle_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_DesertEagle.Play_WEP_SA_DesertEagle_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_DesertEagle.Play_WEP_SA_DesertEagle_Fire_Single_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_DesertEagle.Play_WEP_SA_DesertEagle_Handling_DryFire'
 
@@ -109,4 +105,8 @@ defaultproperties
 	BonesToLockOnEmpty=(RW_Slide, RW_Bullets1)
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=2)
 }

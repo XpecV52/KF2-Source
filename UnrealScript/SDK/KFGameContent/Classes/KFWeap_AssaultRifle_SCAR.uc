@@ -29,16 +29,13 @@ defaultproperties
 	IronSightPosition=(X=20,Y=0,Z=0)
 	PlayerViewOffset=(X=18.0,Y=9,Z=-3.5)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_SCAR_MESH.Wep_1stP_SCAR_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_SCAR_ANIM.Wep_1stP_SCAR_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_SCAR_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_SCAR_ARCH.Wep_SCAR_3P'
+	// Content
+	PackageKey="SCAR"
+	FirstPersonMeshName="WEP_1P_SCAR_MESH.Wep_1stP_SCAR_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_SCAR_ANIM.Wep_1stP_SCAR_Anim"
+	PickupMeshName="WEP_3P_SCAR_MESH.Wep_SCAR_Pickup"
+	AttachmentArchetypeName="WEP_SCAR_ARCH.Wep_SCAR_3P"
+	MuzzleFlashTemplateName="WEP_SCAR_ARCH.Wep_Scar_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=20
@@ -64,7 +61,7 @@ defaultproperties
 	IronSightMeshFOVCompensationScale=4.0
 
 	// Inventory
-	InventorySize=6
+	InventorySize=5 //6
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
 
@@ -76,7 +73,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SCAR'
 	FireInterval(DEFAULT_FIREMODE)=+0.096 // 625 RPM
 	Spread(DEFAULT_FIREMODE)=0.007
-	InstantHitDamage(DEFAULT_FIREMODE)=55.0 //50
+	InstantHitDamage(DEFAULT_FIREMODE)=42.0 //50 //55
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -86,7 +83,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_SCAR'
 	FireInterval(ALTFIRE_FIREMODE)=+0.1
-	InstantHitDamage(ALTFIRE_FIREMODE)=55.0 //50
+	InstantHitDamage(ALTFIRE_FIREMODE)=42.0 //50 //55
 	Spread(ALTFIRE_FIREMODE)=0.007
 
 	// BASH_FIREMODE
@@ -94,7 +91,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_SCAR_ARCH.Wep_Scar_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_M', FirstPersonCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Fire_Loop_S')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Single_Fire_M', FirstPersonCue=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Single_Fire_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_SCAR.Play_WEP_SA_SCAR_Handling_DryFire'
@@ -111,4 +107,8 @@ defaultproperties
 	bHasFlashlight=false
 
 	AssociatedPerkClasses(0)=class'KFPerk_Commando'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=2)
 }

@@ -11,13 +11,19 @@ class KFWeap_Shotgun_AA12 extends KFWeap_ShotgunBase
 
 defaultproperties
 {
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=10
-    MagazineCapacity=20
+    PackageKey="AA12"
+    FirstPersonMeshName="Wep_1P_AA12_MESH.Wep_1stP_AA12_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_AA12_MESH.Wep_AA12_Pickup"
+    AttachmentArchetypeName="WEP_AA12_ARCH.Wep_AA12_3P"
+    MuzzleFlashTemplateName="WEP_AA12_ARCH.Wep_AA12_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=false
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=9
+    MagazineCapacity=20
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -33,9 +39,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=15,Y=8.5,Z=0)
-    AttachmentArchetype=KFWeaponAttachment'WEP_AA12_ARCH.Wep_AA12_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_AA12.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_AA12_ARCH.Wep_AA12_MuzzleFlash'
     maxRecoilPitch=250
     minRecoilPitch=225
     maxRecoilYaw=125
@@ -53,6 +57,7 @@ defaultproperties
     RecoilISMinPitchLimit=65460
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -61,21 +66,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=5,Z=-4)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'Wep_1P_AA12_MESH.Wep_1stP_AA12_Rig'
-        AnimSets(0)=AnimSet'Wep_1P_AA12_ANIM.Wep_1stP_AA12_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Shotgun_AA12.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="AA-12 Auto Shotgun"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AA12_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_AA12.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AA12_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_AA12.StaticPickupComponent'

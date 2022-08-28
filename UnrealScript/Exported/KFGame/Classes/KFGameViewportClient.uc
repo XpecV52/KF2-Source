@@ -113,17 +113,6 @@ function string GetRandomLoadingMessage()
 	return RandomLoadingStrings[Rand(RandomLoadingStrings.length)];
 }
 
-function bool HandleInputKey( int ControllerId, name Key, EInputEvent EventType, float AmountDepressed, optional bool bGamepad )
-{
-	LogInternal("HANDLE INPUT KEY!");
-	
-	if(Key == 'F10') 
-	{
-		// Cancel
-	}
-	return true;
-}
-
 /**
  * Print a centered transition message with a drop shadow.
  */
@@ -141,7 +130,7 @@ function DrawTransitionMessage(Canvas Canvas,string Message)
 		{
 			DrawDownloadingString(Canvas);
 		}
-		if(MapName != "")
+		if(MapName != "" && MapName != "KFMainMenu")
 		{
 			DrawCancelString(Canvas);
 		}
@@ -247,6 +236,7 @@ defaultproperties
    CommunityOfficialMaps(1)="KF-HostileGrounds"
    CommunityOfficialMaps(2)="KF-InfernalRealm"
    CommunityOfficialMaps(3)="KF-PowerCore_Holdout"
+   CommunityOfficialMaps(4)="KF-LockDown"
    BackgroundColor=(R=1.000000,G=1.000000,B=1.000000,A=1.000000)
    RandomLoadingStrings(0)="The fleshpound is vulnerable to explosives but resistant to bullets."
    RandomLoadingStrings(1)="The scrake is resistant to explosives but vulnerable to bullets."

@@ -85,6 +85,7 @@ simulated function SetWeaponGroupList(out array<KFWeapon> WeaponList, byte Group
 	local GFxObject DataProvider;
 	local GFxObject TempObj;
 	local bool bUsesAmmo;
+	
 
 	DataProvider = CreateArray();
 	if ( DataProvider == None )
@@ -95,7 +96,15 @@ simulated function SetWeaponGroupList(out array<KFWeapon> WeaponList, byte Group
 	for (i = 0; i < WeaponList.length; i++)
 	{
 	    TempObj = CreateObject( "Object" );
-	    TempObj.SetString( "weaponName", WeaponList[i].ItemName );
+		if (WeaponList[i].CurrentWeaponUpgradeIndex > 0)
+		{
+			TempObj.SetString("weaponName", WeaponList[i].ItemName);
+		}
+		else
+		{
+			TempObj.SetString("weaponName", WeaponList[i].ItemName );
+		}
+		TempObj.SetInt("weaponTier", WeaponList[i].CurrentWeaponUpgradeIndex);
 	    TempObj.SetString( "texturePath",  "img://"$PathName(WeaponList[i].WeaponSelectTexture));
 		TempObj.SetInt( "ammoCount", WeaponList[i].AmmoCount[0]);
 		TempObj.SetInt( "spareAmmoCount", WeaponList[i].SpareAmmoCount[0]);

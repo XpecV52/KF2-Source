@@ -99,6 +99,8 @@ const STATID_ACHIEVE_NightmareCollectibles = 4039;
 const STATID_ACHIEVE_KrampusCollectibles = 4040;
 const STATID_ACHIEVE_ArenaCollectibles = 4041;
 const STATID_ACHIEVE_PowercoreCollectibles = 4042;
+const STATID_ACHIEVE_AirshipCollectibles = 4043;
+const STATID_ACHIEVE_LockdownCollectibles = 4044;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -418,6 +420,7 @@ var(ZedMap) bool bTrackingMapTopView;
 var transient bool bNoGoActive;
 var class<KFPerk> MonsterPerkClass;
 var const name MusicMessageType;
+var const int EarnedDosh;
 var transient sPlayerZedSpawnInfo PlayerZedSpawnInfo;
 var KFPawn_Human UsablePawn;
 var protected float UnmodifiedFOV;
@@ -610,6 +613,12 @@ native function SetHardwarePhysicsEnabled(bool bEnabled);
 // Export UKFPlayerController::execSyncInventoryProperties(FFrame&, void* const)
 native function SyncInventoryProperties();
 
+// Export UKFPlayerController::execAddVStat(FFrame&, void* const)
+native function AddVStat(int Amount);
+
+// Export UKFPlayerController::execResetVStat(FFrame&, void* const)
+native function ResetVStat();
+
 // Export UKFPlayerController::execIsKeyboardAvailable(FFrame&, void* const)
 native simulated function bool IsKeyboardAvailable();
 
@@ -686,6 +695,22 @@ function ClearDownloadInfo()
     }
 }
 
+reliable server event AddV(int Amount)
+{
+    LogInternal("adding dosh: " @ string(Amount));
+    AddVStat(Amount);
+}
+
+reliable server event PushV()
+{
+    LogInternal("pushing dosh");
+    if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    {
+        WorldInfo.TWLogEvent("pc_dosh_earned", PlayerReplicationInfo, "#" $ string(EarnedDosh));
+    }
+    ResetVStat();
+}
+
 simulated event name GetSeasonalStateName()
 {
     switch(Class'KFGameEngine'.static.GetSeasonalEventID() % 10)
@@ -731,6 +756,11 @@ simulated event ReceivedPlayer()
     super(PlayerController).ReceivedPlayer();
     if(IsLocalPlayerController())
     {
+        if(((!Class'WorldInfo'.static.IsMenuLevel() && Class'WorldInfo'.static.IsConsoleBuild()) && !OnlineSub.IsGameOwned()) && !OnlineSub.IsFreeTrialPeriodActive())
+        {
+            LogInternal("Trail Check: Calling Disconnect KFPlayerController ReceivedPlayer");            
+            ConsoleCommand("Disconnect");
+        }
         if(OnlineSub.PlayerInterface.GetProfileSettings(byte(LocalPlayer(Player).ControllerId)) != none)
         {
             OnReadProfileSettingsComplete(byte(LocalPlayer(Player).ControllerId), true);            
@@ -750,7 +780,7 @@ simulated event ReceivedPlayer()
         if(WorldInfo.NetMode == NM_Client)
         {
             I = KFEngine.LastURL.Op.Length - 1;
-            J0x311:
+            J0x40D:
 
             if(I >= 0)
             {
@@ -759,7 +789,7 @@ simulated event ReceivedPlayer()
                     KFEngine.LastURL.Op.Remove(I, 1;
                 }
                 -- I;
-                goto J0x311;
+                goto J0x40D;
             }
         }
     }
@@ -1117,7 +1147,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
         if(KFPRI != none)
         {
-            KFPRI.SelectCharacter(Profile.GetProfileInt(111));
+            KFPRI.SelectCharacter(Profile.GetProfileInt(111), true);
         }
         KFInput = KFPlayerInput(PlayerInput);
         if(KFInput != none)
@@ -1705,6 +1735,19 @@ function OnPlayTogetherStarted()
     Viewport = KFGameViewportClient(Class'Engine'.static.GetEngine().GameViewport);
     if(Viewport.bSeenIIS)
     {
+        if(Class'WorldInfo'.static.IsConsoleBuild() && !OnlineSub.IsGameOwned())
+        {
+            if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+            {
+                Class'KFGFxMoviePlayer_Manager'.static.HandleFreeTrialError(2);
+                return;
+            }
+            if(!OnlineSub.CanCheckFreeTrialState())
+            {
+                Class'KFGFxMoviePlayer_Manager'.static.HandleFreeTrialError(1);
+                return;
+            }
+        }
         StartLogin(OnLoginForPlayTogetherComplete, true);        
     }
     else
@@ -3079,6 +3122,19 @@ reliable server function ServerThrowOtherWeapon(Weapon W)
     }
 }
 
+event TriggerWeaponContentLoad(class<KFWeapon> WeaponClass)
+{
+    ClientTriggerWeaponContentLoad(WeaponClass);
+}
+
+reliable client simulated function ClientTriggerWeaponContentLoad(class<KFWeapon> WeaponClass)
+{
+    if(WeaponClass != none)
+    {
+        WeaponClass.static.TriggerAsyncContentLoad();
+    }
+}
+
 function HandleWalking()
 {
     local bool bShouldSprint;
@@ -3721,6 +3777,25 @@ function SetGrabEffect(bool bValue, optional bool bPlayerZed, optional bool bSki
         {
             GameplayPostProcessEffectMIC.SetScalarParameterValue('Effect_Grabbed', 0);
         }
+    }
+}
+
+function SetGrabEffectEMP(bool bActive, optional bool bPlayerZed, optional bool bSkipMessage)
+{
+    local class<EmitterCameraLensEffectBase> LensEffectTemplate;
+
+    if(!bSkipMessage && bActive)
+    {
+        LensEffectTemplate = Class'KFCameraLensEmit_EMP';
+        if(LensEffectTemplate != none)
+        {
+            ClientSpawnCameraLensEffect(LensEffectTemplate);
+        }
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 15);        
+    }
+    else
+    {
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
     }
 }
 
@@ -5863,7 +5938,7 @@ function DrawDebugDifficulty(Canvas Canvas, out float out_YL, out float out_YPos
         Canvas.SetDrawColor(0, 255, 255);
         Canvas.SetPos(4, out_YPos);
         Canvas.DrawText("---------- KFPlayerController: Difficulty ----------");
-        DrawNextDebugLine(Canvas, out_YL, out_YPos, false, (("Current Difficulty: " @ "(") $ string(KFGI.GameDifficulty)) $ ")");
+        DrawNextDebugLine(Canvas, out_YL, out_YPos, false, ("Current Difficulty: (" $ string(KFGI.GameDifficulty)) @ ")");
         DrawNextDebugLine(Canvas, out_YL, out_YPos, true, "Global Health Mod: " @ string(KFGI.DifficultyInfo.GetGlobalHealthMod()));
         DrawNextDebugLine(Canvas, out_YL, out_YPos, true, "Ground Speed Mod: " @ string(KFGI.DifficultyInfo.GetAIGroundSpeedMod()));
         DrawNextDebugLine(Canvas, out_YL, out_YPos, false, "Difficulty Wave Count Mod: " @ string(KFGI.DifficultyInfo.GetDifficultyMaxAIModifier()));
@@ -6427,13 +6502,13 @@ exec function DoEmote()
     local byte SMFlags;
 
     MyPawn = KFPawn(Pawn);
-    if(((((MyPawn != none) && !bCinematicMode) && !MyPawn.IsDoingSpecialMove()) && Class'KFEmoteList'.static.GetEquippedEmoteId() != -1) && MyPawn.CanDoSpecialMove(34))
+    if(((((MyPawn != none) && !bCinematicMode) && !MyPawn.IsDoingSpecialMove()) && Class'KFEmoteList'.static.GetEquippedEmoteId() != -1) && MyPawn.CanDoSpecialMove(35))
     {
-        SMFlags = MyPawn.SpecialMoveHandler.SpecialMoveClasses[34].static.PackFlagsBase(MyPawn);
-        MyPawn.DoSpecialMove(34, true,, SMFlags);
-        if((Role < ROLE_Authority) && MyPawn.IsDoingSpecialMove(34))
+        SMFlags = MyPawn.SpecialMoveHandler.SpecialMoveClasses[35].static.PackFlagsBase(MyPawn);
+        MyPawn.DoSpecialMove(35, true,, SMFlags);
+        if((Role < ROLE_Authority) && MyPawn.IsDoingSpecialMove(35))
         {
-            MyPawn.ServerDoSpecialMove(34, true,, SMFlags);
+            MyPawn.ServerDoSpecialMove(35, true,, SMFlags);
         }
     }
     if((IsLocalController()) && LEDEffectsManager != none)

@@ -12,6 +12,7 @@ struct SMemberSlot
     var bool bIsReady;
     var bool bIsLeader;
     var string PerkLevel;
+    var string PrestigeLevel;
     var class<KFPerk> PerkClass;
     var Texture2D Avatar;
     var UniqueNetId PlayerUID;
@@ -23,6 +24,7 @@ struct SMemberSlot
         bIsReady=false
         bIsLeader=false
         PerkLevel=""
+        PrestigeLevel=""
         PerkClass=none
         Avatar=none
         PlayerUID=(Uid=none)

@@ -30,8 +30,8 @@ function InitRallySettings()
 	local class<KFDifficulty_ClotAlphaKing> MyDifficultySettings;
 
 	MyDifficultySettings = class<KFDifficulty_ClotAlphaKing>( MyKFPawn.DifficultySettings );
-    RallyChance = MyDifficultySettings.default.RallyTriggerSettings[WorldInfo.Game.GameDifficulty].RallyChance;
-    RallyCooldown = MyDifficultySettings.default.RallyTriggerSettings[WorldInfo.Game.GameDifficulty].Cooldown;
+    RallyChance = MyDifficultySettings.default.RallyTriggerSettings[WorldInfo.Game.GetModifiedGameDifficulty()].RallyChance;
+    RallyCooldown = MyDifficultySettings.default.RallyTriggerSettings[WorldInfo.Game.GetModifiedGameDifficulty()].Cooldown;
 
 
 

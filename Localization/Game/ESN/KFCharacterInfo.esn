@@ -1,3 +1,34 @@
+[CHR_MrsFoster_archetype]
+CharacterName="Sra. Foster"
+Description="Cuando entrevistó al Sr. Foster por un trabajo como mercader de productos básicos, la Sra. Foster ya era una mercader de increíble éxito en una gran empresa de Londres. Ella era lo que él quería ser, pero el Sr. Foster era un caso perdido como mercader ya que no sabía seguir reglas ni callarse. Pero tenía algo especial: era tan elegante y cortés, tan... singular. Tanto que le regaló una máscara de gas en su primera cita. Era casi como si supiera que un mutante enloquecido con una ametralladora iba a crear una horda de clones carnívoros y arruinar su racha multimillonaria. Pronto se casaron, en un torbellino de flores, encaje, zeds y explosivos. Puede que no puedan trabajar juntos en la ciudad para conseguir montañas de dinero, pero ¡sí que pueden trabajar juntos para exterminar zeds y conseguir montañas de dinero!"
+BodyMesh0="Chaleco"
+BodyMesh1="Steampunk"
+HeadMesh0="Máscara de gas"
+
+[CHR_MrsFoster_archetype.BodyMesh0]
+BodySkin0="Marrón"
+BodySkin1="Militar"
+BodySkin2="Rojo"
+BodySkin3="Azul"
+BodySkin4="Rosa"
+BodySkin5="Negro"
+
+[CHR_MrsFoster_archetype.BodyMesh1]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
+[CHR_MrsFoster_archetype.HeadMesh0]
+HeadSkin0="Blanco"
+HeadSkin1="Verde"
+HeadSkin2="Rojo"
+HeadSkin3="Marrón"
+HeadSkin4="Rosa"
+HeadSkin5="Negro"
+
 [CHR_DAR_archetype]
 CharacterName="D. A. R."
 Description="Este D. A. R., o Robot de Asistencia Doméstica, es una mejora del anterior modelo de D. A. R. y utiliza lo último en robótica experimental de Horzine. Se están probando unidades similares en varias bases de Horzine, esperando desarrollar el D. A. R. para consumidores y organismos de seguridad, pero este D. A. R. es especial. Este D. A. R. se encontró con zeds en la Avanzadilla ártica 12 de Horzine, y sus protocolos de seguridad de emergencia sobrescribieron su programación principal, convirtiendo a este D. A. R. en una máquina de matar robótica. Por desgracia, el D. A. R. desprecia a los humanos salvo por los empleados de Horzine, a quienes odia solo ligeramente menos que al resto de la humanidad. En vista de este nuevo mercado de robots militares, el D. A. R. se asignó a labores de contención de zeds para hacer pruebas de campo."
@@ -68,6 +99,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="¡Barbudos al poder!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -138,6 +170,14 @@ BodySkin6="Tela roja"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
+
+[CHR_Jagerhorn_Archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Rubio sueco"
@@ -232,6 +272,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="Máscara de Calavera"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -302,6 +343,14 @@ BodySkin6="Tela roja"
 [CHR_DJSkully_Archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
 
+[CHR_DJSkully_Archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="El negro más negro"
 HeadSkin1="Rojo Xtra"
@@ -342,6 +391,7 @@ BodyMesh5="NBQ"
 BodyMesh6="Pollo de comando"
 BodyMesh7="Pijama navideño"
 BodyMesh8="Pijama navideño de cámara"
+BodyMesh9="Steampunk"
 HeadMesh0="Pelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -418,6 +468,14 @@ BodySkin6="Tela roja"
 [chr_briar_archetype.BodyMesh8]
 BodySkin0="Estampado de cámara"
 
+[chr_briar_archetype.BodyMesh9]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Imprescindibles"
@@ -452,6 +510,7 @@ BodyMesh5="NBQ"
 BodyMesh6="Pollo de comando"
 BodyMesh7="Pijama navideño"
 BodyMesh8="Pijama navideño de cámara"
+BodyMesh9="Steampunk"
 HeadMesh0="Máscara de gas"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -532,6 +591,14 @@ BodySkin6="Tela roja"
 
 [CHR_MrFoster_archetype.BodyMesh8]
 BodySkin0="Estampado de cámara"
+
+[CHR_MrFoster_archetype.BodyMesh9]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Blanco original"
@@ -687,6 +754,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="Cara"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -755,6 +823,14 @@ BodySkin6="Tela roja"
 [CHR_Coleman_archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
 
+[CHR_Coleman_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tatu"
@@ -788,6 +864,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="Pelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -857,6 +934,14 @@ BodySkin6="Tela roja"
 
 [CHR_Alberts_archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
+
+[CHR_Alberts_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Gris"
@@ -1751,6 +1836,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="Cara"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -1829,6 +1915,14 @@ BodySkin6="Tela roja"
 [CHR_Masterson_archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
 
+[CHR_Masterson_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka es un tipo conflictivo con la mala costumbre de coquetear con la muerte. Nacido en Okinawa, creció rodeado de americanos en la milicia. Cuando volvió a Japón con su familia, el Tanaka americanizado no consiguió adaptarse y recibió clases de interpretación. Después de la universidad se mudó a Los Ángeles, donde interpretó unos cuantos papeles de secundario en películas malas antes de trasladarse a Europa en un intento de encontrar un trabajo más "serio". Todo lo que consiguió fue hacer del tipo malo en películas franceses de mafiosos y basura de ese tipo. Ahora, en el apocalipsis, parecía confundir su propia realidad con escenas de las películas en las que había participado. Esto parecía incluir visiones de la Yakuza, demonios y una escena de Hollywood sobre el bushido."
@@ -1841,6 +1935,7 @@ BodyMesh5="NBQ"
 BodyMesh6="Pollo de comando"
 BodyMesh7="Pijama navideño"
 BodyMesh8="Pijama navideño de cámara"
+BodyMesh9="Steampunk"
 HeadMesh0="Pelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -1926,6 +2021,14 @@ BodySkin6="Tela roja"
 [CHR_Tanaka_Archetype.BodyMesh8]
 BodySkin0="Estampado de cámara"
 
+[CHR_Tanaka_Archetype.BodyMesh9]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Casco"
 AttachmentSkin0="Sol naciente"
@@ -1964,6 +2067,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="Cresta"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2042,6 +2146,14 @@ BodySkin6="Tela roja"
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
 
+[CHR_Ana_Archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Gafas 3D"
 AttachmentSkin0="Anaglyph 3D"
@@ -2066,6 +2178,7 @@ BodyMesh5="NBQ"
 BodyMesh6="Pollo de comando"
 BodyMesh7="Pijama navideño"
 BodyMesh8="Pijama navideño de cámara"
+BodyMesh9="Steampunk"
 HeadMesh0="Pelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2142,6 +2255,14 @@ BodySkin6="Tela roja"
 [chr_mark_archetype.BodyMesh8]
 BodySkin0="Estampado de cámara"
 
+[chr_mark_archetype.BodyMesh9]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Trato hecho"
 HeadSkin1="Hora del té"
@@ -2162,6 +2283,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="Cara"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2233,6 +2355,14 @@ BodySkin6="Tela roja"
 [CHR_alan_archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
 
+[CHR_alan_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Trato hecho"
 HeadSkin1="¿Pelirrojo? ¡No!"
@@ -2260,6 +2390,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="Pelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2327,6 +2458,14 @@ BodySkin6="Tela roja"
 
 [CHR_strasser_archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
+
+[CHR_strasser_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acero oscuro"
@@ -2494,6 +2633,7 @@ BodyMesh4="NBQ"
 BodyMesh5="Pollo de comando"
 BodyMesh6="Pijama navideño"
 BodyMesh7="Pijama navideño de cámara"
+BodyMesh8="Steampunk"
 HeadMesh0="Cabeza por defecto"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2565,6 +2705,14 @@ BodySkin6="Tela roja"
 
 [chr_rockabilly_archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
+
+[chr_rockabilly_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Blanco"
+BodySkin3="Morado"
+BodySkin4="Rojo"
+BodySkin5="Amarillo"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Negro"
@@ -3943,3 +4091,87 @@ AttachmentSkin2="Naranja"
 AttachmentSkin3="Precioso"
 AttachmentSkin4="Morado"
 AttachmentSkin5="Rojo"
+
+[Cosmetic_SP_TopHat_ARCH]
+Attachment="Chistera steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Marrón"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_FlatCap_ARCH]
+Attachment="Gorra plana steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_WelderMask_ARCH]
+Attachment="Máscara de soldador steampunk"
+AttachmentSkin0="Latón"
+AttachmentSkin1="Gris"
+AttachmentSkin2="Pátina"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_ChimneyClock_ARCH]
+Attachment="Reloj de chimenea steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Brillo fresco"
+AttachmentSkin2="Brillo cálido"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_Goggles_ARCH]
+Attachment="Gafas steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Naranja"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_MedicalBag_ARCH]
+Attachment="Bolsa médica steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Cuero oscuro"
+AttachmentSkin2="Cuero"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_OctopusBackpack_ARCH]
+Attachment="Mochila pulpo steampunk"
+AttachmentSkin0="Latón"
+AttachmentSkin1="Pátina"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_TanksBackpack_ARCH]
+Attachment="Mochila tanques steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Rojo"
+AttachmentSkin2="Amarillo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_TentacleSkull_ARCH]
+Attachment="Calavera tentacular steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Rojo"
+AttachmentSkin2="Normal"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_DynamiteArm_ARCH]
+Attachment="Brazalete dinamita steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_MrsFosterHead_ARCH]
+Attachment="Máscara Sra. Foster steampunk"
+AttachmentSkin0="Cuero oscuro"
+AttachmentSkin1="Cuero"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_SkullyHead_ARCH]
+Attachment="Máscara de Calavera steampunk"
+AttachmentSkin0="Lejía"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Óxido"
+AttachmentSkin3="Precioso"

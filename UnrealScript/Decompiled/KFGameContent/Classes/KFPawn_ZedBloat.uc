@@ -227,7 +227,7 @@ defaultproperties
     PukeMineProjectileClass=Class'KFProj_BloatPukeMine'
     DeathPukeMineRotations(0)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_6999' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_6999' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -243,7 +243,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DeathPukeMineRotations(2)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_875' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_910' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -270,6 +270,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_875' was not fou
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Bloat'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedBloat.SprintAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
     LocalizationKey=KFPawn_ZedBloat
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -348,6 +349,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_875' was not fou
     Components(5)=AkComponent'Default__KFPawn_ZedBloat.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedBloat.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedBloat.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedBloat.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

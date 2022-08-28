@@ -137,6 +137,11 @@ package tripwire.containers.optionsControls
                     this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
                 }
             }
+            if(bManagerConsoleBuild)
+            {
+                TextFieldEx.setVerticalAlign(this.XboxTypeS_DPad_UpTextfield,TextFieldEx.VALIGN_BOTTOM);
+                TextFieldEx.setVerticalAlign(this.XboxTypeS_DPad_DownTextfield,TextFieldEx.VALIGN_TOP);
+            }
         }
         
         override protected function openAnimation(param1:Boolean = true) : *

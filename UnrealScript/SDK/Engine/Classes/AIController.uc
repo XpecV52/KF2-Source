@@ -55,7 +55,7 @@ event PreBeginPlay()
 		return;
 
 	if ( WorldInfo.Game != None )
-		Skill += WorldInfo.Game.GameDifficulty;
+		Skill += WorldInfo.Game.GetModifiedGameDifficulty();
 	Skill = FClamp(Skill, 0, 3);
 }
 

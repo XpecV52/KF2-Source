@@ -112,7 +112,7 @@ function TriggerGorge(bool bForced = false)
 	//If we aren't forced, trigger cooldown for gorge intended to pull humans
 	if (!bForced)
 	{
-		NextHumanGorgeAttackCheck = class'KFSM_BloatKing_Gorge'.static.GetGorgeCooldown(MyKFPawn, WorldInfo.Game.GameDifficulty);
+		NextHumanGorgeAttackCheck = class'KFSM_BloatKing_Gorge'.static.GetGorgeCooldown(MyKFPawn, WorldInfo.Game.GetModifiedGameDifficulty());
 	}
 }
 
@@ -281,7 +281,7 @@ function StartMinionWaves()
     ClearTimer('StartMinionWaves');
 
     KFGI = KFGameInfo(WorldInfo.Game);
-    TimerIdx = Clamp(KFGI.GameDifficulty, 0, 3);
+    TimerIdx = Clamp(KFGI.GetModifiedGameDifficulty(), 0, 3);
 
     SetTimer(MinionSpawnTimer[TimerIdx], true, 'SpawnMinions');
 }
@@ -295,7 +295,7 @@ function SpawnMinions()
 
     KFGI = KFGameInfo(WorldInfo.Game);
 
-    SpawnInfo = GetWaveInfo(KFGI.GameDifficulty);
+    SpawnInfo = GetWaveInfo(KFGI.GetModifiedGameDifficulty());
     KFGI.SpawnManager.SummonBossMinions(SpawnInfo.Squads, GetNumMinionsToSpawn(), false);
 
     //Stop spawning after a couple seconds until the next subwave comes through
@@ -343,7 +343,7 @@ function byte GetNumMinionsToSpawn()
     {
 		LivingPlayerCount = KFGameInfo(WorldInfo.Game).GetLivingPlayerCount();
 		MaxPlayers = float(WorldInfo.Game.MaxPlayers);
-		NumMinsToSpawn = byte(Lerp(NumMinionsToSpawn[KFGI.GameDifficulty].X, NumMinionsToSpawn[KFGI.GameDifficulty].Y, LivingPlayerCount / MaxPlayers));
+		NumMinsToSpawn = byte(Lerp(NumMinionsToSpawn[KFGI.GetModifiedGameDifficulty()].X, NumMinionsToSpawn[KFGI.GetModifiedGameDifficulty()].Y, LivingPlayerCount / MaxPlayers));
 
 		if (KFGI.bLogAICount) LogInternal("[KFAIController_ZedBloatKing::GetNumMinionsToSpawn] LivingPlayerCount:" @ LivingPlayerCount @ "Max Players:" @ MaxPlayers @ "NumMinionsToSpawn:" @ NumMinsToSpawn);
         return NumMinsToSpawn;

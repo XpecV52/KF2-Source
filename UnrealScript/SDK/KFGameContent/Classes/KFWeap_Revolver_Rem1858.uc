@@ -24,19 +24,19 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=15.0,Y=14,Z=-6)
 
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
-	End Object
+
+	// Content
+	PackageKey="Remington_1858"
+	FirstPersonMeshName="WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Remington_1858_Anim.WEP_1P_Remington_1858_Anim"
+	PickupMeshName="WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup"
+	AttachmentArchetypeName="WEP_Remington_1858_ARCH.Wep_Remington_1858_3P"
+	MuzzleFlashTemplateName="WEP_Remington_1858_ARCH.Wep_Remington_1858_MuzzleFlash"
 
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Remington_1858_MESH.Wep_1stP_Remington_1858_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Remington_1858_Anim.WEP_1P_Remington_1858_Anim'
-
-		// new anim tree with skelcontrol to rotate cylinder
-		AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master_Revolver'
+		// new anim tree with skelcontrol to rotate cylinders
+		AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master_Revolver'
 	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Remington_1858_ARCH.Wep_Remington_1858_3P'
 
    	// Zooming/Position
 	IronSightPosition=(X=4,Y=0,Z=0)
@@ -86,7 +86,6 @@ defaultproperties
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Rem1858'
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Remington_1858_ARCH.Wep_Remington_1858_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_DryFire'
 
@@ -217,5 +216,11 @@ defaultproperties
 	End Object
 	Components.Add(BulletMeshComp5)
 	BulletMeshComponents.Add(BulletMeshComp5)
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=0)
+	WeaponUpgrades[3]=(IncrementDamage=2.0f,IncrementWeight=1)
+	WeaponUpgrades[4]=(IncrementDamage=2.5f,IncrementWeight=2)
 }
 

@@ -32,4 +32,7 @@ defaultproperties
     RallyTriggerSettings(1)=(RallyChance=0,Cooldown=15,SelfDealtDamageModifier=2.5,SelfTakenDamageModifier=0.1)
     RallyTriggerSettings(2)=(RallyChance=0.7,Cooldown=15,SelfDealtDamageModifier=2.5,SelfTakenDamageModifier=0.1)
     RallyTriggerSettings(3)=(RallyChance=0.8,Cooldown=15,SelfDealtDamageModifier=2.5,SelfTakenDamageModifier=0.1)
+    Hard=(DamagedSprintChance=0.05)
+    Suicidal=(SprintChance=0.05)
+    HellOnEarth=(SprintChance=0.75)
 }

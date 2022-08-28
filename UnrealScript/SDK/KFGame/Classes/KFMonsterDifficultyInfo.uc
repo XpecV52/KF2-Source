@@ -84,6 +84,12 @@ var const float ZedTimeSpeedScale_Player_Versus;
 var bool bForceSpecialSpawn;
 `endif
 
+/** Chances, by difficulty, to spawn as an elite variant*/
+var array<float> ChanceToSpawnAsSpecial;
+
+/** If pawn can spawn as elite variant in versus mode */
+var bool bVersusCanSpawnAsSpecial;
+
 static function sEvadeOnDamageInfo GetEvadeOnDamageSettings( KFPawn_Monster MonsterPawn, KFGameReplicationInfo KFGRI )
 {
 	local byte Difficulty;
@@ -103,7 +109,7 @@ static function sEvadeOnDamageInfo GetEvadeOnDamageSettings( KFPawn_Monster Mons
 		}
 	}
 
-	Difficulty = KFGRI.GameDifficulty;
+	Difficulty = KFGRI.GetModifiedGameDifficulty();
 	if( Difficulty >= `DIFFICULTY_HELLONEARTH )
 	{
 		return default.HellOnEarth.EvadeOnDamageSettings;
@@ -116,7 +122,7 @@ static function sEvadeOnDamageInfo GetEvadeOnDamageSettings( KFPawn_Monster Mons
 	{
 		return default.Hard.EvadeOnDamageSettings;
 	}
-	return default.Normal.EvadeOnDamageSettings;	
+	return default.Normal.EvadeOnDamageSettings;
 }
 
 static function sRallyInfo GetRallySettings( KFPawn_Monster MonsterPawn, KFGameReplicationInfo KFGRI )
@@ -136,7 +142,7 @@ static function sRallyInfo GetRallySettings( KFPawn_Monster MonsterPawn, KFGameR
 		}
 	}
 
-	Difficulty = KFGRI.GameDifficulty;
+	Difficulty = KFGRI.GetModifiedGameDifficulty();
 	if( Difficulty >= `DIFFICULTY_HELLONEARTH )
 	{
 		return default.HellOnEarth.RallySettings;
@@ -169,7 +175,7 @@ static function sBlockInfo GetBlockSettings( KFPawn_Monster MonsterPawn, KFGameR
 		}
 	}
 
-	Difficulty = KFGRI.GameDifficulty;
+	Difficulty = KFGRI.GetModifiedGameDifficulty();
 	if( Difficulty >= `DIFFICULTY_HELLONEARTH )
 	{
 		return default.HellOnEarth.BlockSettings;
@@ -202,7 +208,7 @@ static function float GetZedTimeSpeedScale( KFPawn_Monster MonsterPawn, KFGameRe
 		}
 	}
 
-	Difficulty = KFGRI.GameDifficulty;
+	Difficulty = KFGRI.GetModifiedGameDifficulty();
 	if( Difficulty >= `DIFFICULTY_HELLONEARTH )
 	{
 		return default.HellOnEarth.ZedTimeSpeedScale;
@@ -215,7 +221,7 @@ static function float GetZedTimeSpeedScale( KFPawn_Monster MonsterPawn, KFGameRe
 	{
 		return default.Hard.ZedTimeSpeedScale;
 	}
-	return default.Normal.ZedTimeSpeedScale;	
+	return default.Normal.ZedTimeSpeedScale;
 }
 
 static function float GetMovementSpeedMod( KFPawn_Monster P, float GameDifficulty )
@@ -235,6 +241,26 @@ static function float GetMovementSpeedMod( KFPawn_Monster P, float GameDifficult
 	return default.Normal.MovementSpeedMod;
 }
 
+static function float GetSpecialSpawnChance(KFGameReplicationInfo KFGRI)
+{
+	if (default.ChanceToSpawnAsSpecial.length == 0)
+	{
+		return 0.f;
+	}
+
+	if (!default.bVersusCanSpawnAsSpecial && KFGRI.bVersusGame)
+	{
+		return 0.f;
+	}
+
+	`if(`notdefined(ShippingPC))
+	if (default.bForceSpecialSpawn)
+		return 1.f;
+	else
+	`endif
+		return default.ChanceToSpawnAsSpecial[Clamp(KFGRI.GetModifiedGameDifficulty(), 0, default.ChanceToSpawnAsSpecial.length-1)];
+}
+
 defaultproperties
 {
 	Normal=(DamageMod=0.5)
@@ -244,4 +270,6 @@ defaultproperties
 
 	ZedTimeSpeedScale_Versus=0.f
 	ZedTimeSpeedScale_Player_Versus=0.f
+
+	bVersusCanSpawnAsSpecial=false
 }

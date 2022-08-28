@@ -11,13 +11,19 @@ class KFWeap_AssaultRifle_Bullpup extends KFWeap_RifleBase
 
 defaultproperties
 {
+    PackageKey="L85A2"
+    FirstPersonMeshName="WEP_1P_L85A2_MESH.Wep_1stP_L85A2_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_L85A2_MESH.Wep_L85A2_Pickup"
+    AttachmentArchetypeName="WEP_L85A2_ARCH.Wep_L85A2_3P"
+    MuzzleFlashTemplateName="WEP_L85A2_ARCH.Wep_L85A2_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=6
     MagazineCapacity=30
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
     DOF_FG_FocalRadius=85
@@ -33,9 +39,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=3,Y=9,Z=-3)
-    AttachmentArchetype=KFWeaponAttachment'WEP_L85A2_ARCH.Wep_L85A2_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_Bullpup.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_L85A2_ARCH.Wep_L85A2_MuzzleFlash'
     maxRecoilPitch=150
     minRecoilPitch=115
     maxRecoilYaw=115
@@ -53,6 +57,7 @@ defaultproperties
     HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -61,21 +66,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_L85A2_MESH.Wep_1stP_L85A2_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_L85A2_ANIM.Wep_1st_L85A2_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_AssaultRifle_Bullpup.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="SA80 L85A2 Bullpup"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_L85A2_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_Bullpup.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_L85A2_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_Bullpup.StaticPickupComponent'

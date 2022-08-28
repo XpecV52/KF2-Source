@@ -89,6 +89,7 @@ var Rotator DisintegrateEffectRotation;
 var GameExplosionActor ExplosionActor;
 var float PostExplosionLifetime;
 var KFImpactEffectInfo AltExploEffects;
+var float UpgradeDamageMod;
 var export editinline ParticleSystemComponent ProjEffects;
 var(Projectile) ParticleSystem ProjFlightTemplate;
 var float ProjEffectsFadeOutDuration;
@@ -687,6 +688,8 @@ simulated function bool AllowNuke()
 protected simulated function PrepareExplosionTemplate()
 {
     GetRadialDamageValues(ExplosionTemplate.Damage, ExplosionTemplate.DamageRadius, ExplosionTemplate.DamageFalloffExponent);
+    ExplosionTemplate.Damage *= UpgradeDamageMod;
+    ExplosionTemplate.DamageRadius *= UpgradeDamageMod;
 }
 
 protected simulated function GetRadialDamageValues(out float outDamage, out float outRadius, out float outFalloff);
@@ -859,6 +862,7 @@ defaultproperties
     GravityScale=1
     DisintegrateSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Siren_Grenade_Dis'
     PostExplosionLifetime=1
+    UpgradeDamageMod=1
     MaxAIWarningDistSQ=4000000
     MaxAIWarningDistFromPointSQ=16384
     Speed=4000

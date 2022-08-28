@@ -454,6 +454,11 @@ function OnTraderMenuClosed()
     }
 }
 
+function bool IsMapObjectiveEnabled()
+{
+	return false;
+}
+
 DefaultProperties
 {
     StartMatchInfo=KFTutorialSectionInfo'GP_Tutorial_ARCH.StartMatchArch'

@@ -22,7 +22,7 @@ defaultproperties
    ItemPickups(7)=(ItemClass=Class'kfgamecontent.KFWeap_Pistol_Medic')
    ItemPickups(8)=(ItemClass=Class'kfgamecontent.KFWeap_SMG_MP7')
    Begin Object Class=StaticMeshComponent Name=StaticMeshComponent0 Archetype=StaticMeshComponent'KFGame.Default__KFPickupFactory_Item:StaticMeshComponent0'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
+      StaticMesh=StaticMesh'WEP_3P_AR15_9mm_MESH.Wep_AR15_Pickup'
       ReplacementPrimitive=None
       bCastDynamicShadow=False
       Translation=(X=0.000000,Y=0.000000,Z=-50.000000)

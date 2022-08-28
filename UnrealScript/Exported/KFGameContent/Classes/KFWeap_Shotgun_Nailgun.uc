@@ -101,15 +101,22 @@ defaultproperties
    AltFireSightedAnims(0)="Shoot_Iron_Single"
    AltFireAnim="Shoot_Single"
    AltFireRecoilModifier=0.500000
+   NumPellets(0)=8
    NumPellets(1)=1
-   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_NailsBurst'
-   FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Nail'
-   InventorySize=6
-   MagazineCapacity(0)=42
+   PackageKey="Nail_Shotgun"
+   FirstPersonMeshName="WEP_1P_Nail_Shotgun_MESH.Wep_1stP_Nail_ShotGun_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_Nail_Shotgun_ANIM.Wep_1stP_Nail_Shotgun_Anim"
+   PickupMeshName="WEP_3P_Nail_Shotgun_MESH.Wep_NailShotgun_Pickup"
+   AttachmentArchetypeName="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P"
+   MuzzleFlashTemplateName="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=False
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_NailsBurst'
+   FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Nail'
+   InventorySize=5
+   MagazineCapacity(0)=42
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=2.000000
    MeshIronSightFOV=52.000000
@@ -122,19 +129,17 @@ defaultproperties
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Dryfire'
-   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_nailgun.Play_WEP_SA_Nailgun_Dryfire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Dryfire'
+   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Dryfire'
    PlayerViewOffset=(X=10.000000,Y=8.000000,Z=-4.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_Nailgun:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_MuzzleFlash'
    maxRecoilPitch=550
    minRecoilPitch=450
    maxRecoilYaw=250
@@ -152,6 +157,9 @@ defaultproperties
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
+   WeaponUpgrades(1)=(IncrementDamage=1.200000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.250000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.400000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponAltFiring"
    FiringStatesArray(2)=()
@@ -164,15 +172,15 @@ defaultproperties
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Nail_Nailgun'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Nail_Nailgun'
-   FireInterval(0)=0.400000
-   FireInterval(1)=0.400000
+   FireInterval(0)=0.300000
+   FireInterval(1)=0.300000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.185000
    Spread(1)=0.020000
-   InstantHitDamage(0)=30.000000
-   InstantHitDamage(1)=30.000000
+   InstantHitDamage(0)=25.000000
+   InstantHitDamage(1)=25.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_NailShotgun'
@@ -181,9 +189,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_NailShotgun'
    FireOffset=(X=30.000000,Y=5.000000,Z=-4.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_Nail_Shotgun_MESH.Wep_1stP_Nail_ShotGun_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_Nail_Shotgun_ANIM.Wep_1stP_Nail_Shotgun_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -197,7 +203,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="VLAD-1000 Nailgun"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_ShotgunBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_NailShotgun_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

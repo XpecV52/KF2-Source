@@ -868,6 +868,7 @@ defaultproperties
    AutoBuyLoadOutPath(7)=Class'KFGame.KFWeapDef_SW500Dual'
    HitAccuracyHandicap=-5.000000
    HeadshotAccuracyHandicap=-8.000000
+   PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.GunslingerKnife_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Gunslinger"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

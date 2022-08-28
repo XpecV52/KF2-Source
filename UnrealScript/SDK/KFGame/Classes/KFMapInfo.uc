@@ -89,6 +89,8 @@ var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives;
 var(Objectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 
+var() string TraderVoiceGroupClassPath;
+
 cpptext
 {
 #if WITH_EDITOR
@@ -314,4 +316,6 @@ DefaultProperties
 	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_Z_MomentaryReprieve')
 	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_Z_PhantomSecurity')
 	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_Z_RendezvousPoint')
+
+	TraderVoiceGroupClassPath="KFGameContent.KFTraderVoiceGroup_Default"
 }

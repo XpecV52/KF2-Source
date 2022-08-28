@@ -94,6 +94,7 @@ var array<UniqueNetId> ConsoleGameSessionPendingPlayers;
 ************************************/
 var    				byte						GameLength;
 var    				byte						GameDifficulty;
+var    				byte						GameDifficultyModifier;
 var                 byte                        MaxPerkLevel;
 var 				bool 						bCustom;
 var                 float                       GameAmmoCostScale;
@@ -340,9 +341,9 @@ replication
 	if ( bNetDirty )
 		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount, bWaveIsActive, MaxHumanCount,
 		CurrentObjective, PreviousObjective, PreviousObjectiveResult, PreviousObjectiveXPResult, PreviousObjectiveVoshResult, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
-		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid; //@HSL - JRO - 3/21/2016 - PS4 Sessions
+		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid, GameDifficulty, GameDifficultyModifier, BossIndex; //@HSL - JRO - 3/21/2016 - PS4 Sessions
 	if ( bNetInitial )
-		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase, MaxPerkLevel, bTradersEnabled, BossIndex;
+		GameLength, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase, MaxPerkLevel, bTradersEnabled;
 	if ( bNetInitial && Role == ROLE_Authority )
 		ServerAdInfo;
 
@@ -355,7 +356,7 @@ replication
         bTrackingMapEnabled;
 	if ( bTrackingMapEnabled && bNetDirty )
 		SpawnVolumeInfos, ZedInfos, HumanInfos, FailedSpawnInfos, PickupInfos;
-	if(VoteCollector != none && VoteCollector.bIsVoteInProgress)
+	if( bNetDirty && VoteCollector != none && VoteCollector.bIsVoteInProgress)
 		RepKickVotes;
     if( bNetDirty )
         bGameConductorGraphingEnabled;
@@ -403,7 +404,7 @@ simulated event ReplicatedEvent(name VarName)
     else if( VarName == nameof(MusicTrackRepCount) )
     {
 		// don't start music for boss wave, boss will start it at end of monologue
-        if( !IsBossWave() )
+        if( !bWaveIsActive || !IsBossWave() )
         {
             PlayNewMusicTrack(true);
         }
@@ -483,12 +484,73 @@ simulated event PostBeginPlay()
 	// Override timer at a constant 1s instead of TimeDilation, so that it slows
 	// down during zedtime.  Also, removed the SetTimer() call from Timer()
 	SetTimer(1.f, true);
+
+	ActivateLevelLoadedEvents();
+}
+
+simulated function ActivateLevelLoadedEvents()
+{
+	local Sequence GameSeq;
+	local array<SequenceObject> AllSeqEvents;
+	local array<int> ActivateIndices;
+	local int i;
+
+	GameSeq = WorldInfo.GetGameSequence();
+	if (GameSeq != None)
+	{
+		// find any Level Loaded events that exist
+		GameSeq.FindSeqObjectsByClass(class'KFSeqEvent_LevelLoaded', true, AllSeqEvents);
+		ActivateIndices = GetKFSeqEventLevelLoadedIndices();
+
+		// activate them
+		for (i = 0; i < AllSeqEvents.Length; i++)
+		{
+			// We need the GRI to be able to activate the correct index (based on game length / type).
+			// If we've been waiting for the GRI, activate.
+			if (KFSeqEvent_LevelLoaded(AllSeqEvents[i]).bWaitingForGRI)
+			{
+				SeqEvent_LevelLoaded(AllSeqEvents[i]).CheckActivate(WorldInfo, None, false, ActivateIndices);
+				KFSeqEvent_LevelLoaded(AllSeqEvents[i]).bWaitingForGRI = false;
+			}
+		}
+	}
+}
+
+simulated function array<int> GetKFSeqEventLevelLoadedIndices()
+{
+	local array<int> ActivateIndices;
+
+	if (!bEndlessMode)
+	{
+		switch (GameLength)
+		{
+		case 0: // short
+			ActivateIndices[0] = 3;
+			break;
+
+		case 1: // medium
+			ActivateIndices[0] = 4;
+			break;
+
+		case 2: // long
+			ActivateIndices[0] = 5;
+			break;
+		};
+	}
+	else
+	{
+		ActivateIndices[0] = 6;
+	}
+
+	return ActivateIndices;
 }
 
 /** Called when the GameClass property is set (at startup for the server, after the variable has been replicated on clients) */
 simulated function ReceivedGameClass()
 {
 	local class<KFGameInfo> KFGameClass;
+	local KFMapInfo KFMI;
+	local class<KFTraderVoiceGroupBase> MapVoiceGroupClass;
 
 	KFGameClass = class<KFGameInfo>(GameClass);
 	if ( KFGameClass != None )
@@ -498,7 +560,28 @@ simulated function ReceivedGameClass()
 
 		if( TraderDialogManager != none )
 		{
+			// Priority for trader voice groups:
+			// 1. special game mode (e.g. endless)
+			// 2. map specific (e.g. Summer Sideshow)
+			// 3. purchaseable (for survival game mode)
+			// 4. default (for survival game mode)
+
 			TraderDialogManager.TraderVoiceGroupClass = KFGameClass.default.TraderVoiceGroupClass;
+
+			if (!KFGameClass.static.HasCustomTraderVoiceGroup())
+			{
+				// override default voice, if applicable
+
+				KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+				if (KFMI != None && KFMI.TraderVoiceGroupClassPath != "")
+				{
+					MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, class'Class'));
+					if (MapVoiceGroupClass != None)
+					{
+						TraderDialogManager.TraderVoiceGroupClass = MapVoiceGroupClass;
+					}
+				}
+			}
 		}
 
         if( KFGameClass.static.ShouldPlayMusicAtStart() && MusicComp == None )
@@ -710,7 +793,7 @@ simulated function OpenTrader(optional int time)
 				{
 					TraderOpenedEvt.Reset();
 					TraderOpenedEvt.SetWaveNum( WaveNum, WaveMax );
-					if( WaveNum == WaveMax - 1 && TraderOpenedEvt.OutputLinks.Length > 1 )
+					if( IsFinalWave() && TraderOpenedEvt.OutputLinks.Length > 1 )
 					{
 						OutputLinksToActivate.AddItem( 1 );
 					}
@@ -826,7 +909,7 @@ simulated function TriggerClientWaveStartEvents()
 				{
 					WaveStartEvt.Reset();
 					WaveStartEvt.SetWaveNum( WaveNum, WaveMax );
-					if( WaveNum == WaveMax && WaveStartEvt.OutputLinks.Length > 1 )
+					if( IsBossWave() && WaveStartEvt.OutputLinks.Length > 1 )
 					{
 						OutputLinksToActivate.AddItem( 1 );
 					}
@@ -1626,13 +1709,14 @@ function bool StartNextObjective()
 			}
 		}
 
-        if (KFMI.bUsePresetObjectives)
+        if (KFMI.bUsePresetObjectives && WaveNum <= GetPresetObjectiveLength(KFMI))
         {
-            return StartNextPresetObjective(KFMI);
+			return StartNextPresetObjective(KFMI);
         }
-        else if (KFMI.bUseRandomObjectives)
+
+        if (KFMI.bUseRandomObjectives)
         {
-            return StartNextRandomObjective(KFMI);
+			return StartNextRandomObjective(KFMI);
         }
     }
 
@@ -1643,22 +1727,27 @@ function bool StartNextPresetObjective(KFMapInfo KFMI)
 {
     local array<KFInterface_MapObjective> PossibleObjectives;
 
+	if (KFMI == none)
+	{
+		return false;
+	}
+
     //Grab appropriate list of possible objectives based on wave and game length
-    switch(WaveMax)
+    switch(GameLength)
     {
-    case 5:
+    case GL_Short:
         if (KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
         {
             PossibleObjectives = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives;
         }
         break;
-    case 8:
+    case GL_Normal:
         if (KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
         {
             PossibleObjectives = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives;
         }
         break;
-    case 11:
+    case GL_Long:
         if (KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
         {
             PossibleObjectives = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives;
@@ -1669,6 +1758,26 @@ function bool StartNextPresetObjective(KFMapInfo KFMI)
     }
 
     return AttemptObjectiveActivation(PossibleObjectives) != INDEX_NONE;
+}
+
+function int GetPresetObjectiveLength(KFMapInfo KFMI)
+{
+	if (KFMI == none)
+	{
+		return 0;
+	}
+
+	switch (GameLength)
+	{
+	case GL_Short:
+		return ArrayCount(KFMI.PresetWaveObjectives.ShortObjectives);
+	case GL_Normal:
+		return ArrayCount(KFMI.PresetWaveObjectives.MediumObjectives);
+	case GL_Long:
+		return ArrayCount(KFMI.PresetWaveObjectives.LongObjectives);
+	default:
+		return 0;
+	}
 }
 
 function bool StartNextRandomObjective(KFMapInfo KFMI)
@@ -1767,9 +1876,25 @@ function Timer_ActivateObjective()
 	}
 }
 
-simulated event byte GetGameDifficulty()
+function float GetMapObjectiveSpawnRateMod()
 {
-	return GameDifficulty;
+	if (ObjectiveInterface != none)
+	{
+		return ObjectiveInterface.GetSpawnRateMod();
+	}
+
+	return 1.f;
+}
+
+simulated event byte GetModifiedGameDifficulty()
+{
+	return GameDifficulty + GameDifficultyModifier;
+}
+
+simulated event SetModifiedGameDifficulty(byte NewDifficultyMod)
+{
+	GameDifficultyModifier = NewDifficultyMod;
+	bNetDirty = true;
 }
 
 defaultproperties

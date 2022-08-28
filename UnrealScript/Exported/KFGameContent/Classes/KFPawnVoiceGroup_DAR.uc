@@ -542,6 +542,8 @@ class KFPawnVoiceGroup_DAR extends KFPawnVoiceGroup;
 
 
 
+										  
+
 
 
 
@@ -845,6 +847,8 @@ defaultproperties
    DialogEvents(226)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_GenericBeep')
    DialogEvents(227)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_GenericBeep')
    DialogEvents(228)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_POSITIVE_GenericBeep')
+   DialogEvents(229)=()
+   DialogEvents(230)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_POSITIVE_Confirm')
    Name="Default__KFPawnVoiceGroup_DAR"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

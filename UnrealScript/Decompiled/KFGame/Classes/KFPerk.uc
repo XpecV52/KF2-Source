@@ -99,6 +99,8 @@ const STATID_ACHIEVE_NightmareCollectibles = 4039;
 const STATID_ACHIEVE_KrampusCollectibles = 4040;
 const STATID_ACHIEVE_ArenaCollectibles = 4041;
 const STATID_ACHIEVE_PowercoreCollectibles = 4042;
+const STATID_ACHIEVE_AirshipCollectibles = 4043;
+const STATID_ACHIEVE_LockdownCollectibles = 4044;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -189,6 +191,7 @@ var Texture2D PerkIcon;
 var array<string> ColumnOneIcons;
 var array<string> ColumnTwoIcons;
 var Texture2D InteractIcon;
+var array<Texture2D> PrestigeIcons;
 var const localized string WeaponDroppedMessage;
 var private const float AssistDoshModifier;
 var array<PerkSkill> PerkSkills;
@@ -231,6 +234,7 @@ var array<name> BackupWeaponDamageTypeNames;
 var array< class<KFWeaponDefinition> > AutoBuyLoadOutPath;
 var float HitAccuracyHandicap;
 var float HeadshotAccuracyHandicap;
+var array<string> PrestigeRewardItemIconPaths;
 var KFPlayerReplicationInfo MyPRI;
 var KFGameInfo MyKFGI;
 var KFGameReplicationInfo MyKFGRI;
@@ -642,6 +646,15 @@ static simulated event string GetPerkIconPath()
     return PerkIconPath;
 }
 
+static simulated event string GetPrestigeIconPath(byte PerkPrestigeLevel)
+{
+    if(PerkPrestigeLevel > 0)
+    {
+        return "img://" $ PathName(default.PrestigeIcons[PerkPrestigeLevel - 1]);
+    }
+    return "";
+}
+
 final simulated function int GetSavedBuild()
 {
     return SavedBuild;
@@ -734,6 +747,13 @@ function ApplySkillsToPawn()
         ApplyWeightLimits();
     }
 }
+
+function ClearPerkEffects()
+{
+    ClientClearPerkEffects();
+}
+
+reliable client simulated function ClientClearPerkEffects();
 
 function ApplyWeightLimits()
 {
@@ -1398,6 +1418,12 @@ function bool ShouldAutosellWeapon(class<KFWeaponDefinition> DefClass)
     return AutoBuyLoadOutPath.Find(DefClass == -1;
 }
 
+event Destroyed()
+{
+    ClearPerkEffects();
+    super(Actor).Destroyed();
+}
+
 function TickRegen(float DeltaTime)
 {
     local int OldHealth;
@@ -1520,6 +1546,11 @@ defaultproperties
     Passives(4)=(Title="",Description="",IconPath="")
     LevelString="Level"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
+    PrestigeIcons(0)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_1'
+    PrestigeIcons(1)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_2'
+    PrestigeIcons(2)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_3'
+    PrestigeIcons(3)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_4'
+    PrestigeIcons(4)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_5'
     WeaponDroppedMessage="You dropped%%%% because of your new carrying capacity!"
     AssistDoshModifier=1
     CurrentLevel=255
@@ -1535,6 +1566,7 @@ defaultproperties
     MaxGrenadeCount=5
     BackupWeaponDamageTypeNames(0)=KFDT_Ballistic_9mm
     BackupWeaponDamageTypeNames(1)=KFDT_Slashing_Knife
+    PrestigeRewardItemIconPaths(0)="Xmas_UI.UI_Objectives_Xmas_Krampus"
     bTickIsDisabled=true
     bOnlyRelevantToOwner=true
     bAlwaysRelevant=false

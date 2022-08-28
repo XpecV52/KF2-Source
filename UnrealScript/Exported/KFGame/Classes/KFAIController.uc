@@ -667,6 +667,9 @@ var float 		MaxMeleeHeightAngle;
 /** Last time a melee attack was performed */
 var float		LastAttackTime_Melee;
 
+/** Last time a we have taken damage */
+var float		LastDamageTime_Taken;
+
 /** Last time a melee attack decision was evaluated */
 var float		LastMeleeAttackDecisionTime;
 /** Last time an enemy was selected using SelectEnemy() */
@@ -4189,14 +4192,12 @@ function EvaluateStuckPossibility(float DeltaTime)
         FallingStuckNoZVelocityTime = 0;
     }
 
-    // Don;t check stuck if all the players are dead
-    if( GetIsInZedVictoryState() ||
-        (WorldInfo.GRI != none && !WorldInfo.GRI.bMatchHasBegun) )
-    {
-        StuckPossiblity=0;
-        bTryingToGetUnstuck=false;
-        return;
-    }
+	if( (WorldInfo.TimeSeconds - LastDamageTime_Taken) < 5.0 )
+	{
+		StuckPossiblity = 0;
+		bTryingToGetUnstuck = false;
+		return;
+	}
 
     // Don't check stuck if we recently melee'd
     if( (WorldInfo.TimeSeconds - LastAttackTime_Melee) < 5.0 )
@@ -6392,7 +6393,7 @@ function bool GetDangerEvadeDelay( Name InstigatorClassName, out float ReactionD
 		bShouldBlock = 0;
 
 		// Cache difficulty
-		D = WorldInfo.Game.GameDifficulty;
+		D = WorldInfo.Game.GetModifiedGameDifficulty();
 
 		// Check cooldown
 		if( DangerEvadeSettings[Index].LastEvadeTime > 0.f
@@ -6570,6 +6571,8 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
 		return;
 	}
 
+	UpdateLasDamageTime();
+
 	// See if we should trigger our block
 	if( !MyKFPawn.bIsBlocking )
 	{
@@ -6633,12 +6636,21 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
 	}
 }
 
+function UpdateLasDamageTime()
+{
+	LastDamageTime_Taken = WorldInfo.TimeSeconds;
+}
+
 /** Notification that we've been damaged by a friendly AI */
 function NotifyFriendlyAIDamageTaken( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
 {
 	local int Idx;
 	local Pawn BlockerPawn;
-
+		
+	if (DamageType.default.bIgnoreAggroOnDamage)
+	{
+		return;
+	}
 	// Retrieves the index and, if necessary, creates a new entry
 	Idx = UpdateFriendlyDamageHistory( DamagerController, Damage );
 	if( Idx == INDEX_NONE )
@@ -6650,7 +6662,7 @@ function NotifyFriendlyAIDamageTaken( Controller DamagerController, int Damage, 
 		&& DoorEnemy == none
 		&& PendingDoor == none
 		&& DamagerController.Pawn != Enemy
-		&& FriendlyDamageHistory[Idx].Damage >= float(Pawn.HealthMax) * AggroZedHealthPercentage )
+		&& FriendlyDamageHistory[Idx].Damage >= float(Pawn.HealthMax) * AggroZedHealthPercentage  )
 	{
 		BlockerPawn = GetPawnBlockingPathTo( DamagerController.Pawn );
 		if( BlockerPawn == none )

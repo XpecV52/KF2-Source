@@ -14,6 +14,7 @@ var protected int NumBlocks;
 var protected KFPawn.EPawnOctant ReactionDir;
 var protected bool bPlayedBlockBreak;
 var protected bool bUseBlockSprintSpeed;
+var protected float WindupTime;
 
 static function byte PackBlockSMFLags(byte BlockDir)
 {
@@ -56,7 +57,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         bUseBlockSprintSpeed = true;
         AdjustSprintSpeed();
         MyMonsterPawn.SetTimer(MyMonsterPawn.GetBlockSettings().Duration, false, 'Timer_BlockDurationExpired', self);
-        MyMonsterPawn.SetTimer(BlendInTime, false, 'Timer_EnableBlocking', self);
+        MyMonsterPawn.SetTimer(WindupTime, false, 'Timer_EnableBlocking', self);
     }
     super.SpecialMoveStarted(bForced, PrevMove);
 }
@@ -196,6 +197,7 @@ defaultproperties
     BlockAnims(1)=(Anims=(Block_Idle,Block_Idle))
     BlockAnims(2)=(Anims=(Block_R,Block_R))
     BlockAnims(3)=(Anims=(Block_L,Block_L))
+    WindupTime=0.25
     AnimStance=EAnimSlotStance.EAS_UpperBody
     bLoopAnim=true
     bCanBeInterrupted=true

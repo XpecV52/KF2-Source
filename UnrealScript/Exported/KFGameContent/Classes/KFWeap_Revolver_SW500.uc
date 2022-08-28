@@ -71,12 +71,18 @@ defaultproperties
    End Object
    BulletMeshComponents(4)=BulletMeshComp4
    CylinderRotInfo=(InC=-72.000000,Time=0.087500)
-   InventorySize=3
-   MagazineCapacity(0)=5
+   PackageKey="SW_500"
+   FirstPersonMeshName="WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_SW_500_ANIM.WEP_1stP_SW_500_Anim"
+   PickupMeshName="WEP_3P_SW_500_MESH.Wep_SW_500_Pickup"
+   AttachmentArchetypeName="WEP_SW_500_ARCH.Wep_SW_500_3P"
+   MuzzleFlashTemplateName="WEP_SW_500_ARCH.Wep_SW_500_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   InventorySize=2
+   MagazineCapacity(0)=5
    PenetrationPower(0)=3.000000
    PenetrationPower(1)=()
    MeshFOV=60.000000
@@ -100,14 +106,12 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Handling_DryFire'
    PlayerViewOffset=(X=22.000000,Y=12.000000,Z=-6.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_SW_500_ARCH.Wep_SW_500_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Revolver_SW500:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_SW_500_ARCH.Wep_SW_500_MuzzleFlash'
    maxRecoilPitch=850
    minRecoilPitch=750
    maxRecoilYaw=150
@@ -124,6 +128,8 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.400000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Sharpshooter'
+   WeaponUpgrades(1)=(IncrementDamage=1.230000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.420000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -140,7 +146,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.015000
-   InstantHitDamage(0)=160.000000
+   InstantHitDamage(0)=130.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=23.000000
@@ -150,9 +156,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_SW500'
    FireOffset=(X=20.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_PistolBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Rig'
-      AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master_Revolver'
-      AnimSets(0)=AnimSet'WEP_1P_SW_500_ANIM.WEP_1stP_SW_500_Anim'
+      AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master_Revolver'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -166,7 +170,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName=".500 Magnum Revolver"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_PistolBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_SW_500_MESH.Wep_SW_500_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

@@ -1052,12 +1052,26 @@ function Callback_UseItem(int ItemDefinition)
             }
             else
             {
-                OnlineSub.OpenMarketPlaceSearch(NeededItem);
+                if(OnlineSub.IsGameOwned())
+                {
+                    OnlineSub.OpenMarketPlaceSearch(NeededItem);                    
+                }
+                else
+                {
+                    Manager.DisplayFreeTrialFeatureBlockedPopUp();
+                }
             }            
         }
         else
         {
-            OnlineSub.OpenItemPurchaseOverlay(NeededItemID);
+            if(OnlineSub.IsGameOwned())
+            {
+                OnlineSub.OpenItemPurchaseOverlay(NeededItemID);                
+            }
+            else
+            {
+                Manager.DisplayFreeTrialFeatureBlockedPopUp();
+            }
         }
     }
 }

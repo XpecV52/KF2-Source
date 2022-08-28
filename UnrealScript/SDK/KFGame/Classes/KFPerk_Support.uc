@@ -72,7 +72,7 @@ function ApplySkillsToPawn()
 	{
 		return;
 	}
-	ResetSupplier();
+	//ResetSupplier();
 }
 
 /**
@@ -427,7 +427,7 @@ simulated function Interact( KFPawn_Human KFPH )
 			// resupply 1 mag for every 5 initial mags
 			MagCount = Max( KFW.InitialSpareMags[0] / 1.5, 1 ); // 3, 1
 			`QALog( "Supply Ammo Primary Weapon " @ KFW @ MagCount * KFW.MagazineCapacity[0], bLogPerk );
-			bReceivedAmmo = (KFW.AddAmmo( MagCount * KFW.MagazineCapacity[0] ) > 0 ) ? true : bReceivedAmmo;
+			bReceivedAmmo = (KFW.AddAmmo( MagCount * KFW.MagazineCapacity[0] * (IsResupplyActive() ? 1.3f : 1.0f) ) > 0 ) ? true : bReceivedAmmo;
 
 	        if( KFW.CanRefillSecondaryAmmo() )
 	        {
@@ -435,7 +435,7 @@ simulated function Interact( KFPawn_Human KFPH )
 	        	`QALog( "Supply Ammo Secondary Weapon" @ KFW @ Max( KFW.InitialSpareMags[1] / 3, 1 ), bLogPerk );
 
 	        	// If our secondary ammo isn't mag-based (like the Eviscerator), restore a portion of max ammo instead
-	        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max(KFW.AmmoPickupScale[1] * KFW.MagazineCapacity[1], 1) ) > 0) ? true : bReceivedAmmo;
+	        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max(KFW.AmmoPickupScale[1] * (IsResupplyActive() ? 1.3f : 1.0f) * KFW.MagazineCapacity[1], 1) ) > 0) ? true : bReceivedAmmo;
 	        }
 		}
 	}
@@ -843,6 +843,9 @@ DefaultProperties
 	HitAccuracyHandicap=-6.0
 	HeadshotAccuracyHandicap=-3.0
 	AutoBuyLoadOutPath=(class'KFWeapDef_MB500', class'KFWeapDef_DoubleBarrel', class'KFWeapDef_M4', class'KFWeapDef_AA12')
+
+	// Prestige Rewards
+	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.SupportKnife_PrestigePrecious_Mint_large"
 
 	ZedTimeModifyingStates(0)="WeaponFiring"
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"

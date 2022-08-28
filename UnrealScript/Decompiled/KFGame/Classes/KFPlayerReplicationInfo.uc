@@ -88,9 +88,9 @@ struct native CustomizationInfo
         HeadSkinIndex=0
         BodyMeshIndex=0
         BodySkinIndex=0
-        AttachmentMeshIndices[0]=255
-        AttachmentMeshIndices[1]=255
-        AttachmentMeshIndices[2]=255
+        AttachmentMeshIndices[0]=-1
+        AttachmentMeshIndices[1]=-1
+        AttachmentMeshIndices[2]=-1
         AttachmentSkinIndices[0]=0
         AttachmentSkinIndices[1]=0
         AttachmentSkinIndices[2]=0
@@ -120,6 +120,7 @@ var bool bPerkSecondarySupplyUsed;
 var bool bVotedToSkipTraderTime;
 var bool bObjectivePlayer;
 var bool bShowNonRelevantPlayers;
+var transient bool bWaitingForInventory;
 var string LastCrateGiftTimestamp;
 var int SecondsOfGameplay;
 var const array<KFCharacterInfo_Human> CharacterArchetypes;
@@ -134,6 +135,7 @@ var int VoiceCommsStatusDisplayIntervalMax;
 var private Vector PawnLocationCompressed;
 var private Vector LastReplicatedSmoothedLocation;
 var KFPlayerController KFPlayerOwner;
+var transient int WaitingForInventoryCharacterIndex;
 
 replication
 {
@@ -696,16 +698,61 @@ simulated function ClientInitialize(Controller C)
     }
 }
 
-simulated event SelectCharacter(optional int CharIndex)
+function OnInventoryReadComplete_Steamworks()
+{
+    Class'GameEngine'.static.GetOnlineSubsystem().ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete_Steamworks);
+    bWaitingForInventory = false;
+    SelectCharacter(WaitingForInventoryCharacterIndex);
+}
+
+function OnInventoryReadComplete_Playfab(bool bWasSuccessful)
+{
+    Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+    bWaitingForInventory = false;
+    SelectCharacter(WaitingForInventoryCharacterIndex);
+}
+
+simulated event SelectCharacter(optional int CharIndex, optional bool bWaitForInventory)
 {
     local OnlineProfileSettings Settings;
 
     CharIndex = -1;
+    bWaitForInventory = false;
     Settings = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(LocalPlayer(GetALocalPlayerController().Player).ControllerId));
     if(Settings == none)
     {
         LogInternal("Not selecting character just yet since there's no profile settings");
         return;
+    }
+    if(bWaitForInventory)
+    {
+        if(bWaitingForInventory)
+        {
+            return;            
+        }
+        else
+        {
+            if(Class'WorldInfo'.static.IsConsoleBuild())
+            {
+                if(Class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
+                {
+                    Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+                    WaitingForInventoryCharacterIndex = CharIndex;
+                    bWaitingForInventory = true;
+                    return;
+                }                
+            }
+            else
+            {
+                if(!Class'GameEngine'.static.GetOnlineSubsystem().bInventoryReady)
+                {
+                    Class'GameEngine'.static.GetOnlineSubsystem().AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete_Steamworks);
+                    WaitingForInventoryCharacterIndex = CharIndex;
+                    bWaitingForInventory = true;
+                    return;
+                }
+            }
+        }
     }
     LoadCharacterConfig(CharIndex);
     if(!Class'KFUnlockManager'.static.GetAvailable((CharacterArchetypes[CharIndex])))
@@ -1049,7 +1096,8 @@ defaultproperties
     CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
     CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
     CharacterArchetypes(14)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_DAR_archetype'
-    RepCustomizationInfo=(CharacterIndex=0,HeadMeshIndex=0,HeadSkinIndex=0,BodyMeshIndex=0,BodySkinIndex=0,AttachmentMeshIndices=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255,AttachmentSkinIndices=0,AttachmentSkinIndices[1]=0,AttachmentSkinIndices[2]=0)
+    CharacterArchetypes(15)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrsFoster_archetype'
+    RepCustomizationInfo=(CharacterIndex=0,HeadMeshIndex=0,HeadSkinIndex=0,BodyMeshIndex=0,BodySkinIndex=0,AttachmentMeshIndices=-1,AttachmentMeshIndices[1]=-1,AttachmentMeshIndices[2]=-1,AttachmentSkinIndices=0,AttachmentSkinIndices[1]=0,AttachmentSkinIndices[2]=0)
     VoiceCommsStatusDisplayInterval=5
     VoiceCommsStatusDisplayIntervalMax=1
 }

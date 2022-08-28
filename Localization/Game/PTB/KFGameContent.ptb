@@ -202,30 +202,35 @@ ItemName="Stoner 63A LMG"
 ItemCategory="Submetralhadora Leve"
 ItemDescription="• Disparo somente automático.\n• Uma submetralhadora dos SEALs da Marinha norte-americana usada na Guerra do Vietnã, a Stoner 63A tem alta capacidade de munição e um grande poder de contenção."
 
+[KFWeap_Knife_Survivalist]
+ItemName="Faca de Chacinador"
+ItemCategory="Corpo a corpo"
+ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt- bloquear/aparar.\n•Isso era de algum bicho. Agora é seu!"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Faca utilitária"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•É um estilete. Perfeita para abrir as caixas que você encontra no chão."
+ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•It’s a box cutter. Perfeita para abrir as caixas que você encontra no chão."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Bisturi"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•É um bisturi. Como você entende de medicina, presumimos que qualquer explicação seria desnecessária."
+ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•É um bisturi. Como você entende de medicina, presumimos que qualquer explicação seria desnecessária."
 
 [KFWeap_Knife_Firebug]
 ItemName="Faca de bombeiro"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•É uma faca de bombeiro. Como você é bombeiro, presumimos que qualquer explicação seria desnecessária."
+ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•É uma faca de bombeiro. Como você é bombeiro, presumimos que qualquer explicação seria desnecessária."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Faca de caça"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•A faca do Velho Oeste, só que maior. Perfeita para fatiar uns Zeds."
+ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•A faca do Velho Oeste, só que maior. Perfeita para fatiar uns Zeds."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•A faca tradicional dos gurkhas — mais para picar que para fatiar. "
+ItemDescription="•Principal - ataque de corte rápido; Aperte principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•A faca tradicional dos gurkhas — melhor para picar do que fatiar. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Faca tática"
@@ -255,7 +260,7 @@ ItemDescription="•Somente automático.\nTiro alt. atira dardos curativos que c
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="Espingarda de cano duplo"
 ItemCategory="Espingarda"
-ItemDescription="•O tiro principal usa um cano.\nTiro alt. atira com os dois canos de uma vez.\n•Espingarda de 2 canos, paralelos, calibre 12. Ideal para combates à curta distância. Até os maiores Zeds vão vacilar!"
+ItemDescription="•O tiro principal usa um cano.\n•Tiro alt. atira com os dois canos de uma vez.\n•Espingarda de cano duplo, calibre 12. Ideal para combates à curta distância. Até os maiores Zeds vão vacilar!"
 
 [KFWeap_Shotgun_AA12]
 ItemName="Espingarda autom. AA-12"
@@ -345,7 +350,7 @@ ItemCategory="Chamas"
 ItemDescription="• Disparo de projéteis explosivos e inflamáveis. \n• Disparo alternativo que alterna estilos de mira ao usar uma mira metálica.\n• Um par de lança-chamas."
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="Arma Incendiária"
+ItemName="Sopro de dragão"
 ItemCategory="Espingarda"
 ItemDescription="•O modo de tiro é só por bombeamento.\n•Uma espingarda que usa rodadas incendiárias de Sopro do Dragão. Além de mortal, é muito linda também."
 
@@ -510,10 +515,25 @@ ItemName="AF2011-A2 Dupla"
 ItemCategory="Pistola"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Duas armas com dois canos cada. Quatro vezes mais poder de fogo. É matemática. Não tem como discutir."
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="Bastão da Perdição"
+ItemCategory="Espingarda"
+ItemDescription="•O tiro principal usa um cano.\n•Tiro alt. atira com os quatro canos de uma vez.\n•Quando o dobro da diversão não for o bastante... quadruplique!"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="Batedoras Estáticas"
+ItemCategory="Corpo a corpo"
+ItemDescription="•Principal - ataque rápido de contusão, Segure Principal para combinação.\n•Secundário - ataque de contusão elétrico e pesado. É muito chocante! \n•Quer socar um zed no rosto? Seus problemas acabaram!"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="Submetralhadora"
 ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Vem com munição incendiária de rápido disparo. Entendeu? Rápido disparo? Porque é uma submetralhadora incendiária? Ah, esquece."
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="Rifle de elite"
+ItemDescription="•Apenas tem modo de tiro único.\n•Cada tiro tem um belo coice... é uma bala bem grande Alta penetração, alta dor."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

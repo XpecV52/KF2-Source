@@ -178,7 +178,7 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
     local UniqueNetId AdminId;
     local bool bIsLeader, bIsMyPlayer;
     local PlayerController PC;
-    local GFxObject PlayerInfoObject;
+    local GFxObject PlayerInfoObject, PerkIconObject;
     local string AvatarPath;
 
     PlayerInfoObject = Outer.CreateObject("Object");
@@ -194,11 +194,15 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
     MemberSlots[SlotIndex].PRI = KFPRI;
     MemberSlots[SlotIndex].PerkClass = KFPRI.CurrentPerkClass;
     MemberSlots[SlotIndex].PerkLevel = string(KFPRI.GetActivePerkLevel());
+    MemberSlots[SlotIndex].PrestigeLevel = string(KFPRI.GetActivePerkPrestigeLevel());
     PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);
     if(MemberSlots[SlotIndex].PerkClass != none)
     {
         PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @ MemberSlots[SlotIndex].PerkClass.default.PerkName);
-        PlayerInfoObject.SetString("perkIconPath", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+        PerkIconObject = Outer.CreateObject("Object");
+        PerkIconObject.SetString("perkIcon", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+        PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
+        PlayerInfoObject.SetObject("perkImageSource", PerkIconObject);
     }
     if(!bIsMyPlayer)
     {

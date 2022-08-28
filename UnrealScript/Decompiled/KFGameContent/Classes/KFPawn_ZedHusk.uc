@@ -66,7 +66,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(22))
+    if(IsDoingSpecialMove(23))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -74,7 +74,7 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 
 simulated function ANIMNOTIFY_FlameThrowerOff()
 {
-    if(IsDoingSpecialMove(22))
+    if(IsDoingSpecialMove(23))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOffFlamethrower();
     }
@@ -157,7 +157,7 @@ simulated function SetFireLightEnabled(bool bEnable)
 
 simulated event Tick(float DeltaTime)
 {
-    super(KFPawn).Tick(DeltaTime);
+    super.Tick(DeltaTime);
     if((((WorldInfo.NetMode == NM_DedicatedServer) || bPlayedDeath) || ChestLightComponent == none) || !ChestLightComponent.bAttached)
     {
         return;
@@ -219,7 +219,7 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
 
 simulated function TerminateEffectsOnDeath()
 {
-    if(IsDoingSpecialMove(22))
+    if(IsDoingSpecialMove(23))
     {
         SpecialMoveHandler.EndSpecialMove();
     }
@@ -243,7 +243,7 @@ simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayPartic
 
 simulated function KFGame.KFPawn.ESpecialMove GetSuicideSM()
 {
-    return 23;
+    return 24;
 }
 
 function ApplySpecialZoneHealthMod(float HealthMod)
@@ -321,7 +321,7 @@ simulated function OnExploded(Controller SuicideController);
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(23))
+    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(24))
     {
         InDamage = 10000;
     }
@@ -355,7 +355,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
     super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
-    if(bEmpDisrupted && IsDoingSpecialMove(23))
+    if(bEmpDisrupted && IsDoingSpecialMove(24))
     {
         Died(InstigatedBy, DamageType, HitLocation);
     }
@@ -370,7 +370,7 @@ function OnStackingAfflictionChanged(byte Id)
     }
     if(bEmpDisrupted)
     {
-        if(IsDoingSpecialMove(21) || IsDoingSpecialMove(22))
+        if(IsDoingSpecialMove(22) || IsDoingSpecialMove(23))
         {
             EndSpecialMove();
         }
@@ -420,6 +420,7 @@ defaultproperties
     FireballLightMinBrightness=1.1
     FireballLightMaxBrightness=1.25
     MonsterArchPath="ZED_ARCH.ZED_Husk_Archetype"
+    ElitePawnClass=/* Array type was not detected. */
     ParryResistance=2
     MinSpawnSquadSizeType=ESquadType.EST_Medium
     begin object name=MeleeHelper class=KFMeleeHelperAI
@@ -437,6 +438,7 @@ defaultproperties
     WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Husk'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedHusk.SprintAkComponent0'
     LocalizationKey=KFPawn_ZedHusk
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -507,6 +509,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedHusk.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedHusk.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHusk.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedHusk.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

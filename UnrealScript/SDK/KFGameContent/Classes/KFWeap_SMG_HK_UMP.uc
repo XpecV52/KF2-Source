@@ -192,16 +192,13 @@ defaultproperties
    // IronSightPosition=(X=10.f,Y=0,Z=0)
     //PlayerViewOffset=(X=17.f,Y=8,Z=-4.0)
 
-    Begin Object Name=FirstPersonMesh
-        SkeletalMesh=SkeletalMesh'WEP_1P_HK_UMP_MESH.Wep_1stP_HK_UMP_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_HK_UMP_ANIM.WEP_1stP_HK_UMP_Anim'
-    End Object
-
-    Begin Object Name=StaticPickupComponent
-        StaticMesh=StaticMesh'WEP_3P_HK_UMP_MESH.Wep_3rdP_HK_UMP_Pickup'
-    End Object
-
-    AttachmentArchetype=KFWeaponAttachment'WEP_HK_UMP_ARCH.Wep_HK_UMP_3P'
+	// Content
+	PackageKey="HK_UMP"
+	FirstPersonMeshName="WEP_1P_HK_UMP_MESH.Wep_1stP_HK_UMP_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_HK_UMP_ANIM.WEP_1stP_HK_UMP_Anim"
+	PickupMeshName="WEP_3P_HK_UMP_MESH.Wep_3rdP_HK_UMP_Pickup"
+	AttachmentArchetypeName="WEP_HK_UMP_ARCH.Wep_HK_UMP_3P"
+	MuzzleFlashTemplateName="WEP_HK_UMP_ARCH.Wep_HK_UMP_MuzzleFlash"
 
     // Ammo
     MagazineCapacity[0]=30
@@ -281,8 +278,6 @@ defaultproperties
     InstantHitDamage(BASH_FIREMODE)=24.0
 
     // Fire Effects
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_HK_UMP_ARCH.Wep_HK_UMP_MuzzleFlash'
-
     //@todo: add akevents when we have them
     WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_UMP.Play_WEP_UMP_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_UMP.Play_WEP_UMP_Fire_1P_Loop')
     WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_UMP.Play_WEP_UMP_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_UMP.Play_WEP_UMP_Fire_1P_Single')
@@ -300,4 +295,8 @@ defaultproperties
     bHasFlashlight=true
 
     AssociatedPerkClasses(0)=class'KFPerk_Swat'
+
+    // Weapon Upgrade stat boosts
+    WeaponUpgrades[1]=(IncrementDamage=1.13f,IncrementWeight=1)
+    WeaponUpgrades[2]=(IncrementDamage=1.24f,IncrementWeight=2)
 }

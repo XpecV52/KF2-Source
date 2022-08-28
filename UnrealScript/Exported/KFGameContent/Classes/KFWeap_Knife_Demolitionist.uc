@@ -12,8 +12,10 @@ class KFWeap_Knife_Demolitionist extends KFWeap_Edged_Knife;
 
 defaultproperties
 {
+   PackageKey="Demo_Knife"
+   FirstPersonMeshName="WEP_1P_Demo_Knife_MESH.Wep_1stP_Demo_Knife_Rig"
+   AttachmentArchetypeName="WEP_Demo_Knife_ARCH.Wep_Demo_Knife_3P"
    WeaponSelectTexture=Texture2D'WEP_UI_Demo_Knife_TEX.UI_WeaponSelect_DemoKnife'
-   AttachmentArchetype=KFWeaponAttachment'WEP_Demo_Knife_ARCH.Wep_Demo_Knife_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
@@ -50,7 +52,6 @@ defaultproperties
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
       MinTickTimeStep=0.025000
-      SkeletalMesh=SkeletalMesh'WEP_1P_Demo_Knife_MESH.Wep_1stP_Demo_Knife_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
       bOverrideAttachmentOwnerVisibility=True
@@ -66,7 +67,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Utility Knife"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_CommandoKnife_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

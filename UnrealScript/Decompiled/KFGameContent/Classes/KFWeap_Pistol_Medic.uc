@@ -17,12 +17,18 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFil
 defaultproperties
 {
     HealAmount=15
-    InventoryGroup=EInventoryGroup.IG_Secondary
-    InventorySize=1
-    MagazineCapacity=15
+    PackageKey="Medic_Pistol"
+    FirstPersonMeshName="WEP_1P_Medic_Pistol_MESH.Wep_1stP_Medic_Pistol_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_medic_pistol_mesh.Wep_Medic_Pistol_Pickup"
+    AttachmentArchetypeName="WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_3P"
+    MuzzleFlashTemplateName="WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    InventoryGroup=EInventoryGroup.IG_Secondary
+    InventorySize=1
+    MagazineCapacity=15
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
     IronSightPosition=(X=15,Y=0,Z=0)
@@ -37,9 +43,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=29,Y=13,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_Medic.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_MuzzleFlash'
     maxRecoilPitch=250
     minRecoilPitch=200
     maxRecoilYaw=100
@@ -54,6 +58,7 @@ defaultproperties
     RecoilISMaxPitchLimit=250
     RecoilISMinPitchLimit=65485
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -62,21 +67,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=20,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Pistol_MESH.Wep_1stP_Medic_Pistol_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Medic_Pistol_ANIM.WEP_1P_Medic_Pistol_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_Medic.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="HMTech-101 Pistol"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Pistol_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Medic.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Pistol_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Medic.StaticPickupComponent'

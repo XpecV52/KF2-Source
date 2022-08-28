@@ -64,6 +64,8 @@ struct native STraderItem
     var float GroupPriority;
     /** Dynamic array of stats to display. Each weapon has the opportunity to set its own stats. */
     var() editconst array<editconst STraderItemWeaponStats> WeaponStats;
+    var int WeaponUpgradeWeight[6];
+    var float WeaponUpgradeDmgMultiplier[6];
     var byte InitialSpareMags;
     var byte MagazineCapacity;
     var byte BlocksRequired;
@@ -85,6 +87,18 @@ struct native STraderItem
         SecondaryAmmoImagePath=""
         GroupPriority=0
         WeaponStats=none
+        WeaponUpgradeWeight[0]=0
+        WeaponUpgradeWeight[1]=0
+        WeaponUpgradeWeight[2]=0
+        WeaponUpgradeWeight[3]=0
+        WeaponUpgradeWeight[4]=0
+        WeaponUpgradeWeight[5]=0
+        WeaponUpgradeDmgMultiplier[0]=0
+        WeaponUpgradeDmgMultiplier[1]=0
+        WeaponUpgradeDmgMultiplier[2]=0
+        WeaponUpgradeDmgMultiplier[3]=0
+        WeaponUpgradeDmgMultiplier[4]=0
+        WeaponUpgradeDmgMultiplier[5]=0
         InitialSpareMags=0
         MagazineCapacity=0
         BlocksRequired=0

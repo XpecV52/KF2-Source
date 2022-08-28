@@ -609,6 +609,7 @@ enum ESpecialMove
 	SM_Block,
 	SM_Heal,
 	SM_Rally,
+	SM_SprintStart,
 
 	/** ZED special attacks */
 	SM_SonicAttack,
@@ -631,6 +632,7 @@ enum ESpecialMove
 	SM_HansGrappleVictim,
 	SM_SirenVortexVictim,
 	SM_Emote,
+	SM_DARGrappleVictim,
 
 	/** Boss special attacks */
 	SM_BossTheatrics,
@@ -2571,7 +2573,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		{
 			LastHeadShotReceivedTime = WorldInfo.TimeSeconds;
 			// potentially gives player extra XP
-			KFPC.AddZedHeadshot( KFGI.GameDifficulty, HitFxInfo.DamageType );
+			KFPC.AddZedHeadshot( KFGI.GetModifiedGameDifficulty(), HitFxInfo.DamageType );
 			`RecordWeaponHeadShot(KFPC, HitFxInfo.DamageType)
 		}
 

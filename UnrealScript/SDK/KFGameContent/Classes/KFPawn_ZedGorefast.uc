@@ -8,20 +8,6 @@
 //=============================================================================
 class KFPawn_ZedGorefast extends KFPawn_Monster;
 
-/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-	local WorldInfo WI;
-
-	WI = class'WorldInfo'.static.GetWorldInfo();
-	if( fRand() < class<KFDifficulty_Gorefast>(default.DifficultySettings).static.GetSpecialGorefastChance(KFGameReplicationInfo(WI.GRI)) )
-	{
-		return default.ElitePawnClass;
-	}
-
-	return super.GetAIPawnClassToSpawn();
-}
-
 /** Returns (hardcoded) dialog event ID for when trader gives advice to player who was killed by this zed type */
 static function int GetTraderAdviceID()
 {
@@ -79,7 +65,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// AI / Navigation
-	ElitePawnClass=class'KFPawn_ZedGorefastDualBlade'
+	ElitePawnClass.Add(class'KFPawn_ZedGorefastDualBlade')
 	ControllerClass=class'KFAIController_ZedGorefast'
 	ReachedEnemyThresholdScale=1.f
 	//ReachedGoalThresholdOverride=0
@@ -117,7 +103,7 @@ DefaultProperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.0))) //0.5  0.85
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(1.2)))  //1  //0.75
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(1.6)))   //1.5
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(1.0))) 
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(1.0)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(1.25)))   //0.5
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.8)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.9)))
@@ -134,7 +120,7 @@ DefaultProperties
 	// ---------------------------------------------
 	// Block Settings
 	MinBlockFOV=0.1f
-	
+
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Gorefast';
 `endif

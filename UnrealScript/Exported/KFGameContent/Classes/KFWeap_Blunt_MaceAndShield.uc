@@ -155,22 +155,26 @@ defaultproperties
    BlockTypes(5)=(dmgType=Class'kfgamecontent.KFDT_Explosive_PatMissile')
    BlockTypes(6)=(dmgType=Class'kfgamecontent.KFDT_Ballistic_HansAK12',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
    BlockDamageMitigation=0.300000
-   ParryDamageMitigationPercent=0.400000
+   ParryDamageMitigationPercent=0.300000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
+   PackageKey="Shield_Melee"
+   FirstPersonMeshName="wep_1p_shield_melee_mesh.Wep_1stP_Shield_Melee_Rig"
+   FirstPersonAnimSetNames(0)="wep_1p_shield_melee_anim.Wep_1stP_Shield_Melee_Anim"
+   PickupMeshName="WEP_3P_Shield_Melee_MESH.Wep_Shield_Melee_Pickup"
+   AttachmentArchetypeName="WEP_Shield_Melee_ARCH.Wep_MaceAndShield_3P"
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(1)=()
    FireModeIconPaths(2)=()
    FireModeIconPaths(3)=()
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-   InventorySize=9
+   InventorySize=7
    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
    GrenadeFireOffset=(X=25.000000,Y=15.000000,Z=0.000000)
    GroupPriority=110.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Shield_Melee_TEX.UI_WeaponSelect_MaceShield'
    NumBloodMapMaterials=2
-   AttachmentArchetype=KFWeapAttach_MaceAndShield'WEP_Shield_Melee_ARCH.Wep_MaceAndShield_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
@@ -192,12 +196,14 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_MaceAndShield:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
-   InstantHitDamage(0)=80.000000
+   WeaponUpgrades(1)=(IncrementDamage=1.100000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.250000)
+   InstantHitDamage(0)=73.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=175.000000
+   InstantHitDamage(3)=150.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=165.000000
+   InstantHitDamage(5)=160.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Bludgeon_MaceAndShield'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
@@ -206,9 +212,7 @@ defaultproperties
    InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Bludgeon_MaceAndShield_MaceHeavy'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000
-      SkeletalMesh=SkeletalMesh'wep_1p_shield_melee_mesh.Wep_1stP_Shield_Melee_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'wep_1p_shield_melee_anim.Wep_1stP_Shield_Melee_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -222,7 +226,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Bone Crusher"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_MeleeBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Shield_Melee_MESH.Wep_Shield_Melee_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

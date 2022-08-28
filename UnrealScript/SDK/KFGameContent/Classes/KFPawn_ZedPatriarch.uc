@@ -435,7 +435,7 @@ function SummonChildren()
     MyKFGameInfo.GetAIDirector().bForceFrustration = true;
 
     // Select the correct batch of zeds to spawn during this battle phase
-    MinionWave = GetWaveInfo(CurrentBattlePhase, MyKFGameInfo.GameDifficulty);
+    MinionWave = GetWaveInfo(CurrentBattlePhase, MyKFGameInfo.GetModifiedGameDifficulty());
     if( MinionWave != none )
     {
 		if( MyKFGameInfo.SpawnManager != none )
@@ -700,7 +700,7 @@ simulated function bool CanMoveWhenMinigunning()
 
 	// See if this battle phase allows it
 	KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
-	if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhenMinigunning[KFGRI.GameDifficulty] )
+	if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhenMinigunning[KFGRI.GetModifiedGameDifficulty()] )
 	{
 		return true;
 	}

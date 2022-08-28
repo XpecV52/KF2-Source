@@ -9,18 +9,6 @@ class KFPawn_ZedGorefast extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-    local WorldInfo WI;
-
-    WI = Class'WorldInfo'.static.GetWorldInfo();
-    if(FRand() < class<KFDifficulty_Gorefast>(default.DifficultySettings).static.GetSpecialGorefastChance(KFGameReplicationInfo(WI.GRI)))
-    {
-        return default.ElitePawnClass;
-    }
-    return super.GetAIPawnClassToSpawn();
-}
-
 static function int GetTraderAdviceID()
 {
     return 38;
@@ -29,7 +17,7 @@ static function int GetTraderAdviceID()
 defaultproperties
 {
     MonsterArchPath="ZED_ARCH.ZED_Gorefast_Archetype"
-    ElitePawnClass=Class'KFPawn_ZedGorefastDualBlade'
+    ElitePawnClass=/* Array type was not detected. */
     ParryResistance=2
     MinSpawnSquadSizeType=ESquadType.EST_Medium
     begin object name=MeleeHelper class=KFMeleeHelperAI
@@ -47,6 +35,7 @@ defaultproperties
     XPValues[3]=14
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Gorefast'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedGorefast.SprintAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast_Anim.Gorefast_AnimGroup'
     LocalizationKey=KFPawn_ZedGorefast
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -116,6 +105,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedGorefast.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedGorefast.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedGorefast.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedGorefast.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=48
         ReplacementPrimitive=none

@@ -618,5 +618,8 @@ DefaultProperties
 	HitAccuracyHandicap=5.0
 	HeadshotAccuracyHandicap=-0.75
 
+	// Prestige Rewards
+	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.MedicKnife_PrestigePrecious_Mint_large"
+
 	AutoBuyLoadOutPath=(class'KFWeapDef_MedicPistol', class'KFWeapDef_MedicSMG', class'KFWeapDef_MedicShotgun', class'KFWeapDef_MedicRifle')
 }

@@ -10,9 +10,6 @@
 
 class KFWeap_Rifle_RailGun extends KFWeap_ScopedBase;
 
-/** How long to wait after firing to force reload */
-var()			float		ForceReloadTime;
-
 var ScriptedTexture CanvasTexture;
 
 /** Current length of the square scope texture. This is checked against before modifying the
@@ -158,20 +155,16 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
     }
 }
 
-
-/**
- * PlayFireEffects Is the root function that handles all of the effects associated with
- * a weapon.  This function creates the 1st person effects.  It should only be called
- * on a locally controlled player.
- */
-simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocation )
+simulated function StartFire(byte FireModeNum)
 {
-    Super.PlayFireEffects( FireModeNum, HitLocation );
-
-	if( Instigator != none && Instigator.IsLocallyControlled() && AmmoCount[0] == 0 )
+	// Attempt auto-reload
+	if ( FireModeNum == ALTFIRE_FIREMODE )
 	{
-        SetTimer(ForceReloadTime, false, nameof( ForceReload ) );
+		`log("Nope, use the default you dirty cheater :)");
+		FiremodeNum = DEFAULT_FIREMODE;
 	}
+
+	Super.StartFire(FireModeNum);
 }
 
 /** Return true if this weapon should play the fire last animation for this shoot animation */
@@ -896,7 +889,7 @@ simulated state WeaponAbortEquip
 defaultproperties
 {
 	// Inventory / Grouping
-	InventorySize=10
+	InventorySize=9
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
    	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
@@ -920,20 +913,17 @@ defaultproperties
 	DOF_FG_FocalRadius=0//70
 	DOF_FG_MaxNearBlurSize=3.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_RailGun_MESH.WEP_1stP_RailGun_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_RailGun_ANIM.WEP_1P_RailGun_ANIM'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'wep_3p_railgun_mesh.Wep_3rdP_RailGun_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_RailGun_ARCH.Wep_RailGun_3P_Updated'
+	// Content
+	PackageKey="RailGun"
+	FirstPersonMeshName="WEP_1P_RailGun_MESH.WEP_1stP_RailGun_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_RailGun_ANIM.WEP_1P_RailGun_ANIM"
+	PickupMeshName="wep_3p_railgun_mesh.Wep_3rdP_RailGun_Pickup"
+	AttachmentArchetypeName="WEP_RailGun_ARCH.Wep_RailGun_3P_Updated"
+	MuzzleFlashTemplateName="WEP_RailGun_ARCH.Wep_RailGun_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=1
-	SpareAmmoCapacity[0]=20
+	SpareAmmoCapacity[0]=23 //20
 	InitialSpareMags[0]=6
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -972,13 +962,13 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RailGun'
-	InstantHitDamage(DEFAULT_FIREMODE)=375  //750
+	InstantHitDamage(DEFAULT_FIREMODE)=281  //750
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RailGun'
 	FireInterval(DEFAULT_FIREMODE)=0.1 //0.4
 	PenetrationPower(DEFAULT_FIREMODE)=10.0
 	Spread(DEFAULT_FIREMODE)=0.005
 	FireOffset=(X=30,Y=3.0,Z=-2.5)
-	ForceReloadTime=0.5
+	ForceReloadTimeOnEmpty=0.5
 
 	IronSightsSpreadMod=0.01
 
@@ -987,7 +977,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=none
-	InstantHitDamage(ALTFIRE_FIREMODE)=750 //750
+	InstantHitDamage(ALTFIRE_FIREMODE)=562 //750
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_RailGun'
 	FireInterval(ALTFIRE_FIREMODE)=0.1 //0.4
 	PenetrationPower(ALTFIRE_FIREMODE)=10.0
@@ -999,7 +989,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=30
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_RailGun_ARCH.Wep_RailGun_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_DryFire'
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_1P')
@@ -1044,4 +1033,8 @@ defaultproperties
 	TargetLocationReplicationInterval=0.016
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.335f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.469f,IncrementWeight=2)
 }

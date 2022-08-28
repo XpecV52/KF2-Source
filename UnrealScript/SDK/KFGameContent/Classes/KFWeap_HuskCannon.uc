@@ -16,7 +16,9 @@ var float AOEIncreasePerCharge;
 var float IncapIncreasePerCharge;
 var int AmmoIncreasePerCharge;
 
-var float StartFireTime;
+var transient float ChargeTime;
+var transient float ConsumeAmmoTime;
+var transient float MaxChargeLevel;
 
 var ParticleSystem ChargingEffect;
 var ParticleSystem ChargedEffect;
@@ -37,23 +39,6 @@ var float FullChargedTimerInterval;
 static simulated event EFilterTypeUI GetTraderFilter()
 {
     return FT_Flame;
-}
-
-simulated function ForceFire()
-{
-    GotoState('Active');
-}
-
-simulated function ConsumeChargeAmount()
-{
-	if (AmmoCount[DEFAULT_FIREMODE] > 0)
-	{
-		ConsumeAmmo(DEFAULT_FIREMODE);
-	}
-	else
-	{
-		ForceFire();
-	}
 }
 
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -99,9 +84,6 @@ simulated function ConsumeAmmo(byte FireModeNum)
     // If AmmoCount is being replicated, don't allow the client to modify it here
     if (Role == ROLE_Authority || bAllowClientAmmoTracking)
     {
-        //Charges = Max(1,Min((WorldInfo.TimeSeconds - StartFireTime) / ValueIncreaseTime, MaxChargeTime / ValueIncreaseTime));
-        // Ammo cost needs to be firemodenum because it is independent of ammo type.
-        //AmmoCount[AmmoType] = Max(AmmoCount[AmmoType] - Charges, 0);
 		super.ConsumeAmmo(FireModeNum);
     }
 }
@@ -157,8 +139,8 @@ simulated function FireAmmunition()
 		break;
 	}
 
-	// Decrement Ammo commented out because ammo is pre consumed
-	if (GetChargeLevel() <= 1)
+	// If we're firing without charging, still consume one ammo
+	if (GetChargeLevel() < 1)
 	{
 		ConsumeAmmo(CurrentFireMode);
 	}
@@ -179,8 +161,10 @@ simulated state HuskCannonCharge extends WeaponFiring
     simulated event BeginState(Name PreviousStateName)
     {
         super.BeginState(PreviousStateName);
-        StartFireTime = WorldInfo.TimeSeconds;
-        MaxChargeTime = FMin(default.MaxChargeTime, AmmoCount[DEFAULT_FIREMODE] * ValueIncreaseTime);
+
+		ChargeTime = 0;
+		ConsumeAmmoTime = 0;
+		MaxChargeLevel = int(MaxChargeTime / ValueIncreaseTime);
 
 		if (ChargingPSC == none)
 		{
@@ -210,26 +194,56 @@ simulated state HuskCannonCharge extends WeaponFiring
 		}
     }
 
+	simulated function bool ShouldRefire()
+	{
+		// ignore how much ammo is left (super/global counts ammo)
+		return StillFiring(CurrentFireMode);
+	}
+
     simulated event Tick(float DeltaTime)
     {
         local float ChargeRTPC;
-        ChargeRTPC = FMin(MaxChargeTime, WorldInfo.TimeSeconds - StartFireTime) / default.MaxChargeTime;
+
+		global.Tick(DeltaTime);
+
+		// Don't charge unless we're holding down the button
+		if (PendingFire(CurrentFireMode))
+		{
+			ConsumeAmmoTime += DeltaTime;
+		}
+
+		if (bIsFullyCharged)
+		{
+			if (ConsumeAmmoTime >= FullChargedTimerInterval)
+			{
+				ConsumeAmmo(DEFAULT_FIREMODE);
+				ConsumeAmmoTime -= FullChargedTimerInterval;
+			}
+
+			return;
+		}
+
+		// Don't charge unless we're holding down the button
+		if (PendingFire(CurrentFireMode))
+		{
+			ChargeTime += DeltaTime;
+		}
+
+		ChargeRTPC = FMin(ChargeTime / MaxChargeTime, 1.f);
         KFPawn(Instigator).SetWeaponComponentRTPCValue("Weapon_Charge", ChargeRTPC); //For looping component
         Instigator.SetRTPCValue('Weapon_Charge', ChargeRTPC); //For one-shot sounds
-        global.Tick(DeltaTime);
 
-		if (ChargeRTPC >= 1.f && !bIsFullyCharged)
+		if (ConsumeAmmoTime >= ValueIncreaseTime)
+		{
+			ConsumeAmmo(DEFAULT_FIREMODE);
+			ConsumeAmmoTime -= ValueIncreaseTime;
+		}
+
+		if (ChargeTime >= MaxChargeTime || !HasAmmo(DEFAULT_FIREMODE))
 		{
 			bIsFullyCharged = true;
 			ChargingPSC.SetTemplate(ChargedEffect);
 			KFPawn(Instigator).SetWeaponAmbientSound(FullyChargedSound.DefaultCue, FullyChargedSound.FirstPersonCue);
-
-			ClearTimer(nameof(ConsumeChargeAmount)); //switch to a slower timer
-			SetTimer(FullChargedTimerInterval, true, nameof(ConsumeChargeAmount));
-		}
-		else if(!IsTimerActive(nameof(ConsumeChargeAmount)) && !bIsFullyCharged)
-		{
-			SetTimer(ValueIncreaseTime, true, nameof(ConsumeChargeAmount)); //nom nom that ammo to charge (does not consume ammo on fire
 		}
     }
 
@@ -252,10 +266,9 @@ simulated state HuskCannonCharge extends WeaponFiring
 			SetTimer(0.3f, false, 'Timer_StopFireEffects');
 		}
 
-		ClearTimer(nameof(ForceFire));
+		ClearZedTimeResist();
         ClearPendingFire(CurrentFireMode);
 		ClearTimer(nameof(RefireCheckTimer));
-		ClearTimer(nameof(ConsumeChargeAmount));
 
 		NotifyWeaponFinishedFiring(CurrentFireMode);
 
@@ -272,8 +285,6 @@ simulated state HuskCannonCharge extends WeaponFiring
 // Placing the actual Weapon Firing end state here since we need it to happen at the end of the actual firing loop.
 simulated function Timer_StopFireEffects()
 {
-	ClearZedTimeResist();
-
 	// Simulate weapon firing effects on the local client
 	if (WorldInfo.NetMode == NM_Client)
 	{
@@ -294,7 +305,7 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
     //Calc and set scaling values
     if (HuskBall != none)
     {
-        Charges = Min((WorldInfo.TimeSeconds - StartFireTime) / ValueIncreaseTime, MaxChargeTime / ValueIncreaseTime);
+        Charges = GetChargeLevel();
         HuskBall.DamageScale = 1.f + DmgIncreasePerCharge * Charges;
         HuskBall.AOEScale = 1.f + AOEIncreasePerCharge * Charges;
         HuskBall.IncapScale = 1.f + IncapIncreasePerCharge * Charges;
@@ -314,7 +325,7 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
 
 	if (MuzzleFlash != none)
 	{
-		switch (GetChargeLevel())
+		switch (GetChargeFXLevel())
 		{
 		case 1:
 			MuzzleFlash.MuzzleFlash.ParticleSystemTemplate = MuzzleFlashEffectL1;
@@ -336,17 +347,20 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
 
 simulated function int GetChargeLevel()
 {
-	local int MaxCharges;
-	local int Charges;
+	return Min(ChargeTime / ValueIncreaseTime, MaxChargeLevel);
+}
 
-	MaxCharges = int(MaxChargeTime / ValueIncreaseTime);
-	Charges = Min((WorldInfo.TimeSeconds - StartFireTime) / ValueIncreaseTime, MaxCharges);
+// Should generally match up with KFWeapAttach_HuskCannon::GetChargeFXLevel
+simulated function int GetChargeFXLevel()
+{
+	local int ChargeLevel;
 
-	if (Charges <= 1)
+	ChargeLevel = GetChargeLevel();
+	if (ChargeLevel < 1)
 	{
 		return 1;
 	}
-	else if (Charges < MaxCharges)
+	else if (ChargeLevel < MaxChargeLevel)
 	{
 		return 2;
 	}
@@ -393,16 +407,13 @@ defaultproperties
 	DOF_FG_FocalRadius=150
 	DOF_FG_MaxNearBlurSize=1
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_HuskCannon_MESH.Wep_1stP_HuskCannon_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_HuskCannon_ANIM.Wep_1stP_HuskCannon_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'wep_3p_huskcannon_mesh.Wep_3rdP_HuskCannon_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_HuskCannon_ARCH.Wep_HuskCannon_3P'
+	// Content
+	PackageKey="HuskCannon"
+	FirstPersonMeshName="WEP_1P_HuskCannon_MESH.Wep_1stP_HuskCannon_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_HuskCannon_ANIM.Wep_1stP_HuskCannon_Anim"
+	PickupMeshName="wep_3p_huskcannon_mesh.Wep_3rdP_HuskCannon_Pickup"
+	AttachmentArchetypeName="WEP_HuskCannon_ARCH.Wep_HuskCannon_3P"
+	MuzzleFlashTemplateName="WEP_HuskCannon_ARCH.Wep_HuskCannon_MuzzleFlash"
 
    	// Zooming/Position
 	PlayerViewOffset=(X=20.0,Y=12,Z=-1)
@@ -456,7 +467,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=28
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_HuskCannon_ARCH.Wep_HuskCannon_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_3P_Start', FirstPersonCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_1P_Start')
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_3P_Fire', FirstPersonCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_1P_Fire')
 	FullyChargedSound=(DefaultCue = AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_Charged_3P', FirstPersonCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_Charged')
@@ -489,4 +499,8 @@ defaultproperties
 	MuzzleFlashEffectL3=ParticleSystem'WEP_HuskCannon_EMIT.FX_Huskcannon_MuzzleFlash_L3_1P'
 
 	FullChargedTimerInterval=2.0f
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.17f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.3f,IncrementWeight=2)
 }

@@ -33,6 +33,8 @@ var transient bool bPulverizerFireReleased;
 
 var bool bFriendlyFireEnabled;
 
+var class<KFExplosionActor> NukeExplosionActorClass;
+
 replication
 {
 	if (bNetInitial)
@@ -75,7 +77,7 @@ simulated function CustomFire()
 	}
 
 	PrepareExplosionTemplate();
-	//SetExplosionActorClass();
+	SetExplosionActorClass();
 
 	SpawnLoc = Instigator.GetWeaponStartTraceLocation();
 	SpawnRot = GetPulverizerAim(SpawnLoc);
@@ -116,11 +118,11 @@ simulated function CustomFire()
 // for nukes && concussive force
 simulated protected function PrepareExplosionTemplate()
 {
-	//local KFPlayerReplicationInfo InstigatorPRI;
+	local KFPlayerReplicationInfo InstigatorPRI;
 	local KFPlayerController KFPC;
 	local KFPerk InstigatorPerk;
 
-	/*if (bWasTimeDilated)
+	if (bWasTimeDilated)
 	{
 		InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
 		if (InstigatorPRI != none)
@@ -140,14 +142,14 @@ simulated protected function PrepareExplosionTemplate()
 		}
 	}
 	else
-	{*/
+	{
 		ExplosionTemplate = default.ExplosionTemplate;
 		ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
 		ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
 		ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
 		ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
 		ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
-	//}
+	}
 
 	// Change the radius and damage based on the perk
 	if (Owner.Role == ROLE_Authority)
@@ -172,7 +174,7 @@ simulated protected function SetExplosionActorClass()
 		{
 			if (InstigatorPRI.bNukeActive)
 			{
-				ExplosionActorClass = class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass();
+				ExplosionActorClass = NukeExplosionActorClass;
 				return;
 			}
 		}
@@ -356,18 +358,16 @@ simulated state MeleeHeavyAttacking
 
 defaultproperties
 {
-	AttachmentArchetype=KFWeaponAttachment'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 	AssociatedPerkClasses(1)=class'KFPerk_Demolitionist'
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New'
-		AnimSets(0)=AnimSet'WEP_1P_Pulverizer_ANIM.Wep_1stP_Pulverizer_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Pulverizer_Pickup'
-	End Object
+	// Content
+	PackageKey="Pulverizer"
+	FirstPersonMeshName="WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New"
+	FirstPersonAnimSetNames(0)="WEP_1P_Pulverizer_ANIM.Wep_1stP_Pulverizer_Anim"
+	PickupMeshName="WEP_3P_Pulverizer_MESH.Wep_Pulverizer_Pickup"
+	AttachmentArchetypeName="WEP_Pulverizer_ARCH.Wep_Pulverizer_3P"
+	MuzzleFlashTemplateName="WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash"
 
 	Begin Object Name=MeleeHelper_0
 		MaxHitRange=190
@@ -414,8 +414,9 @@ defaultproperties
 	// without loading the 1st person weapon content (avoid 'Begin Object')!
 	ExplosionActorClass=class'KFExplosionActorReplicated'
 	ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
-	//AltExploEffects = KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force' //Leave this alone until we want it
+	AltExploEffects = KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force' //Leave this alone until we want it
 
+	NukeExplosionActorClass=class'KFExplosion_ReplicatedNuke'
 
 	// RELOAD
 	FiringStatesArray(RELOAD_FIREMODE)=Reloading
@@ -433,7 +434,6 @@ defaultproperties
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash'
 	WeaponFireSnd(CUSTOM_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_1P')
 
 	// Block Effects
@@ -444,8 +444,11 @@ defaultproperties
 	ParryDamageMitigationPercent=0.40
 	BlockDamageMitigation=0.50
 
-
 	ParryStrength=5
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.05f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.1f,IncrementWeight=2)
 }
 
 

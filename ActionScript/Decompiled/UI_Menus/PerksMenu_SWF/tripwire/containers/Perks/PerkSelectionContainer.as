@@ -217,7 +217,10 @@ package tripwire.containers.Perks
         
         override public function selectContainer() : void
         {
-            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            if(MenuManager.manager != null)
+            {
+                defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            }
             super.selectContainer();
         }
     }

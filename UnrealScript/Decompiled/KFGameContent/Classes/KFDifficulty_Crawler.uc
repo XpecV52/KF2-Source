@@ -8,27 +8,13 @@
 class KFDifficulty_Crawler extends KFMonsterDifficultyInfo
     abstract;
 
-var array<float> ChanceToSpawnAsSpecial;
-
-static function float GetSpecialCrawlerChance(KFGameReplicationInfo KFGRI)
-{
-    if(KFGRI.bVersusGame)
-    {
-        return 0;
-    }
-    return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
-}
-
 defaultproperties
 {
-    ChanceToSpawnAsSpecial(0)=0
-    ChanceToSpawnAsSpecial(1)=0.01
-    ChanceToSpawnAsSpecial(2)=0.15
-    ChanceToSpawnAsSpecial(3)=0.2
     Normal=(HealthMod=0.75,HeadHealthMod=0.75,EvadeOnDamageSettings=(Chance=0.1,DamagedHealthPctToTrigger=0.01),RallySettings=(bCanRally=false))
     Hard=(DamagedSprintChance=0.01,DamageMod=0.75,EvadeOnDamageSettings=(Chance=0.4,DamagedHealthPctToTrigger=0.01),RallySettings=(bCanRally=false))
     Suicidal=(SprintChance=0.85,DamagedSprintChance=1,MovementSpeedMod=1.3,EvadeOnDamageSettings=(Chance=1,DamagedHealthPctToTrigger=0.01),RallySettings=(TakenDamageModifier=0.9,DealtDamageModifier=1.2))
     HellOnEarth=(SprintChance=1,DamagedSprintChance=1,MovementSpeedMod=1.4,EvadeOnDamageSettings=(Chance=1,DamagedHealthPctToTrigger=0.01),RallySettings=(bCauseSprint=true,TakenDamageModifier=0.9,DealtDamageModifier=1.2))
     RallySettings_Versus=(bCauseSprint=true)
     RallySettings_Player_Versus=(DealtDamageModifier=1.2)
+    ChanceToSpawnAsSpecial=/* Array type was not detected. */
 }

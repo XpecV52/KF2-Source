@@ -21,6 +21,8 @@ DARClassicLevel10BundleName="Pack classique niveau 10 de D.A.R."
 DARClassicLevel15BundleName="Pack classique niveau 15 de D.A.R."
 DARClassicLevel20BundleName="Pack classique niveau 20 de D.A.R."
 DARClassicLevel25BundleName="Pack classique niveau 25 de D.A.R."
+MrsFosterBundleName="Miss Foster"
+SteampunkOutfitBundleName="Pack de tenue punk"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Contient l'uniforme Policier londonien de Briar (5 modèles différents), et le casque de gardien (3 modèles différents)."
@@ -38,6 +40,8 @@ DARClassicLevel10BundleDescription="Contient des modèles de casque et d'armure 
 DARClassicLevel15BundleDescription="Contient des modèles de casque et d'armure Scully classiques. Compatible avec D.A.R."
 DARClassicLevel20BundleDescription="Contient des modèles de casque et d'armure Sanglant classiques. Compatible avec D.A.R."
 DARClassicLevel25BundleDescription="Contient des modèles de casque et d'armure Doré classiques. Compatible avec D.A.R."
+MrsFosterBundleDescription="Jouez avec Miss Foster, l'une des meilleures marchandes de Londres ! Contient la veste (6 modèles différents) et le masque à gaz (6 modèles différents)."
+SteampunkOutfitBundleDescription="Contient des tenues punk pour homme et pour femme (6 modèles différents chacun). Compatible avec la plupart des personnages."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Obtenez le nouvel uniforme typique Policier londonien pour PC Rob Briar. Contient l'uniforme Policier londonien de Briar (5 modèles différents), et le casque de gardien (3 modèles différents)."
@@ -52,6 +56,7 @@ BundleType="Pack"
 CosmeticUniformType="Tenue alternative"
 CosmeticHeadType="Tête de joueur alternative"
 CosmeticAccessoryType="Accessoire"
+PlayableCharacterType="Personnage jouable"
 
 ;bundle items
 BriarsLondonUniformName="Uniforme londonien de Briar"
@@ -100,13 +105,13 @@ StrasserVaultPajamasVaultTileName="Strasser | Coffre | Pyjama | Style coffre"
 TanakaVaultPajamasVaultTileName="Tanaka | Coffre | Pyjama | Style coffre"
 JagerhornVaultVaultTilePreciousName="Jägerhorn | Coffre | Style coffre | Doré"
 StrasserVaultVaultTilePreciousName="Strasser | Coffre | Style coffre | Doré"
-AlanVaultVaultTilePreciousName="Masterson (class.) | Coffre | Sty. coffre | Doré"
+AlanVaultVaultTilePreciousName="Masterson (classique) | Coffre | Style coffre | Doré"
 BriarVaultVaultTilePreciousName="Briar | Coffre | Style coffre | Doré"
 MarkVaultVaultTilePreciousName="Briar (classique) | Coffre | Style coffre | Doré"
-MastersonVaultVaultTilePreciousName="Lt. Masterson | Coffre | Style coffre | Doré"
+MastersonVaultVaultTilePreciousName="Lt. Bill Masterson | Coffre | Style coffre | Doré"
 RaeVaultVaultTilePreciousName="Rae | Coffre | Style coffre | Doré"
 TanakaVaultVaultTilePreciousName="Tanaka | Coffre | Style coffre | Doré"
-DJScullyVaultVaultTilePreciousName="DJ Scully | Coffre | Style coffre | Doré"
+DJScullyVaultVaultTilePreciousName="DJ Skully | Coffre | Style coffre | Doré"
 FosterVaultVaultTilePreciousName="Mr. Foster | Coffre | Style coffre | Doré"
 AlbertsVaultCamoBlotchesArcticName="Alberts | Coffre | Camouflage | Arctique"
 AlbertsVaultCamoBlotchesBlueName="Alberts | Coffre | Camouflage | Bleu"
@@ -222,7 +227,7 @@ AlbertsVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant 
 AnaVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant des Zeds. Ce pyj' une pièce classe vous tiendra au chaud durant les froides matinées d'hiver ! Compatible avec Ana."
 BriarVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant des Zeds. Ce pyj' une pièce classe vous tiendra au chaud durant les froides matinées d'hiver ! Compatible avec PC Rob Briar."
 DJScullyVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant des Zeds. Ce pyj' une pièce classe vous tiendra au chaud durant les froides matinées d'hiver ! Compatible avec DJ Scully."
-DonavanVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant des Zeds. Ce pyj' une pièce classe vous tiendra au chaud durant les froides matinées d'hiver ! Compatible avec Donovan."
+DonavanVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant des Zeds. Ce pyj' une pièce classe vous gardera au chaud lors des froides matinées d'hiver ! Compatible avec Donovan."
 FosterVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant des Zeds. Ce pyj' une pièce classe vous tiendra au chaud durant les froides matinées d'hiver ! Compatible avec Mr. Foster."
 JagerhornVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant des Zeds. Ce pyj' une pièce classe vous tiendra au chaud durant les froides matinées d'hiver ! Compatible avec Jägerhorn."
 MarkVaultPajamasVaultTileDescription="Restez bien au chaud tout en flinguant des Zeds. Ce pyj' une pièce classe vous tiendra au chaud durant les froides matinées d'hiver ! Compatible avec Briar (classique)."
@@ -257,6 +262,9 @@ StrasserVaultPreciousSuitDescription="Une coupe dorée qui en jette. Compatible 
 
 ;cyberpunk paint over description
 CyberPunkPaintoverDescription="Lorsque vous enfilez ce sublime uniforme cyberpunk, le futur vous ne pourra qu'envier votre style actuel."
+
+;steampunk head variant description
+SteampunkHeadVariantDescription="Remplace votre visage ordinaire par un faciès de rêve punk de l'ère victorienne."
 
 [KeyCrates]
 ;Key and Crate Type Section
@@ -398,6 +406,8 @@ VietnamEncryptedUSBName="Clé USB chiffrée Vietnam"
 JunkyardEncryptedUSBName="Clé USB chiffrée Décharge"
 NeonEncryptedUSBName="Clé USB chiffrée Néon"
 WeaponCollectorPack1USBName="Clé USB pack d'armes collector 1"
+NeonMKIIEncryptedUSBName="Clé USB chiffrée Néon MKII"
+BluefireEncryptedUSBName="Clé USB chiffrée Bluefire"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="S'ouvre avec une clé de schéma Cyberbone. Contient l'un des modèles d'arme rares ou supérieurs suivants :<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AK-12 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 | Putrid Bile</font><br><font color="#8847ff">AR15 | Containment</font><br><font color="#caab05">ou un modèle doré extrêmement rare !</font>"
@@ -446,6 +456,10 @@ NeonEncryptedUSBDescription="S'ouvre avec une clé de schéma Néon. Contient l�
 
 WeaponCollectorPack1EncryptedUSBDescription="Requires a Weapon Collector Pack 1 Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Crovel | Black Golden</font><br><font color="#4b69cd">9MM | Black Golden</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Black Golden</font><br><font color="#4b69cd">Dragonsbreath | Heirloom</font><br><font color="#4b69cd">Spitfire | Heirloom</font><br><font color="#4b69cd">M1911 | Heirloom</font><br><font color="#4b69cd">1858 Revolver | Heirloom</font><br><font color="#4b69cd">RPG-7 | Heirloom</font><br><font color="#4b69cd">Winchester 1894 | Heirloom</font><br><font color="#6600a1">Katana | Black Golden</font><br><font color="#6600a1">Eviscerator | Black Golden</font><br><font color="#6600a1">Zweihander | Black Golden</font><br><font color="#6600a1">Pulverizer | Black Golden</font><br><font color="#8847ff">HMTech Healer | Black Golden</font><br><font color="#8847ff">Welder | Black Golden</font><br><font color="#8847ff">Berserker Knife | Black Golden</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
+NeonMKIIEncryptedUSBDescription="S'ouvre avec une clé de schéma Néon MKII. Contient l'un des modèles d'arme rares ou supérieurs suivants :<br><font color="#4b69cd">Hemogoblin | Néon</font><br><font color="#4b69cd">M14EBR | Néon</font><br><font color="#4b69cd">Chercheur 6 | Néon</font><br><font color="#4b69cd">Stoner 63A | Néon</font><br><font color="#4b69cd">Heckler & Koch UMP | Néon</font><br><font color="#4b69cd">Pistolet HMTech-101 | Horzine élite bleu</font><br><font color="#4b69cd">Pistolet HMTech-101 | Horzine élite vert</font><br><font color="#4b69cd">Pistolet HMTech-101 | Horzine élite blanc</font><br><font color="#6600a1">Lance-flammes | Néon</font><br><font color="#6600a1">Pistolet à micro-ondes | Néon</font><br><font color="#8847ff">AA12 | Néon</font><br><font color="#8847ff">Pistolet HMTech-101 | Horzine élite noir</font><br><font color="#8847ff">Pistolet HMTech-101 | Horzine élite rouge</font><br><font color="#caab05">ou un modèle doré extrêmement rare !</font>"
+
+
+
 ;usb key names
 CyberboneUSBKeyName="Clé USB Cyberbone"
 DragonfireUSBKeyName="Clé USB Dragonfire"
@@ -470,6 +484,8 @@ VietnamUSBKeyName="Clé USB Vietnam"
 JunkyardUSBKeyName="Clé USB Décharge"
 NeonUSBKeyName="Clé USB Néon"
 WeaponCollectorPack1USBKeyName="Une clé USB pack d'armes collector 1"
+NeonMKIIUSBKeyName="Clé USB Néon MKII"
+BluefireUSBKeyName="Clé USB Bluefire"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Déchiffre uniquement le schéma Cyberbone chiffré"
@@ -495,6 +511,8 @@ VietnamUSBKeyDescription="Déchiffre uniquement le schéma Vietnam chiffré"
 JunkyardUSBKeyDescription="Déchiffre uniquement le schéma Décharge chiffré"
 NeonUSBKeyDescription="Déchiffre uniquement le schéma Néon chiffré"
 WeaponCollectorPack1USBKeyDescription="Déchiffre uniquement le schéma Pack d'armes collector 1 chiffré"
+NeonMKIIUSBKeyDescription="Déchiffre uniquement le schéma Néon MKII chiffré"
+BluefireUSBKeyDescription="Déchiffre uniquement le schéma Bluefire chiffré"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Caisse cosmétique Horzine | Série 1"
@@ -510,6 +528,9 @@ HorzineSupplyWeaponSkinCrateSeries4Name="Caisse de modèle Horzine | Série 4"
 HorzineSupplyWeaponSkinCrateSeries5Name="Caisse de modèle Horzine | Série 6"
 HorzineSupplyWeaponSkinCrateSeries6Name="Caisse de modèle Horzine | Série 6"
 HorzineSupplyWeaponSkinCrateSeries7Name="Caisse de modèle Horzine | Série 7"
+HorzineSupplyWeaponSkinCrateSeries8Name="Caisse de modèle Horzine | Série 8"
+HorzineSupplyWeaponSkinCrateSeries9Name="Caisse de modèle Horzine | Série 9"
+HorzineSupplyWeaponSkinCrateSeries10Name="Caisse de modèle Horzine | Série 10"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des objets rares ou supérieurs suivants :<br><font color="#4b69cd">Masque balistique Devtac</font><br><font color="#4b69cd">Masque à gaz U.S.</font><br><font color="#4b69cd">Cagoule et masque</font><br><font color="#4b69cd">Casquette de base-ball</font><br><font color="#6600a1">Sac militaire</font><br><font color="#6600a1">Masque à gaz allemand</font><br><font color="#6600a1">Masque à gaz chimique</font><br><font color="#6600a1">Sac pour RPG7</font><br><font color="#8847ff">Réservoir pour lance-flammes M2</font><br><font color="#caab05">ou un accessoire doré extrêmement rare !</font>"
@@ -541,6 +562,12 @@ HorzineSupplyWeaponSkinCrateSeries6Description="Utilisez une clé de caisse d'ap
 HorzineSupplyCosmeticCrateSeries6Description="Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des accessoires rares ou supérieurs de D.A.R. suivants :<br><font color="#4b69cd">Armure ou casque Pilote P51</font><br><font color="#4b69cd">Armure CHONNE-E 5 Gym ou Cube temporel</font><br><font color="#4b69cd">Casque CHONNE-E 5 Chap/Acier</font><br><font color="#4b69cd">Armure ou casque C3HZ Collision</font><br><font color="#4b69cd">Armure ou casque C3HZ Flot bleu</font><br><font color="#6600a1">Armure ou casque Pilote Galactique</font><br><font color="#6600a1">Armure ou casque Pilote Cri</font><br><font color="#6600a1">Armure CHONNE-E 5 BatCat</font><br><font color="#6600a1">Casque CHONNE-E 5 Vapeur</font><br><font color="#6600a1">Armure ou casque C3HZ Obsidienne</font><br><font color="#6600a1">Armure ou casque C3HZ Espace</font><br><font color="#8847ff">Armure ou casque Pilote Ange bleu</font><br><font color="#8847ff">Armure ou casque Pilote Cracheur de feu</font><br><font color="#8847ff">Armure ou casque CHONNE-E 5 Horzine</font><br><font color="#8847ff">Armure CHONNE-E 5 Radical</font><br><font color="#8847ff">Casque CHONNE-E 5 Coucher de soleil</font><br><font color="#8847ff">Armure ou casque C3HZ Marbre</font><br><font color="#caab05">ou un accessoire doré extrêmement rare !</font>"
 
 HorzineSupplyWeaponSkinCrateSeries7Description="Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des modèles d'arme rares ou supérieurs suivants :<br><font color="#4b69cd">Crovel | Noir doré</font><br><font color="#4b69cd">9 mm | Noir doré</font><br><font color="#4b69cd">VLAD-1000 Cloueuse | Noir doré</font><br><font color="#4b69cd">Souffle du Dragon | Héritage</font><br><font color="#4b69cd">Cracheur de feu| Héritage</font><br><font color="#4b69cd">M1911 | Héritage</font><br><font color="#4b69cd">Revolver 1858 | Héritage</font><br><font color="#4b69cd">RPG-7 | Héritage</font><br><font color="#4b69cd">Winchester 1894 | Héritage</font><br><font color="#6600a1">Katana | Noir doré</font><br><font color="#6600a1">Éviscérateur | Noir doré</font><br><font color="#6600a1">Zweihander | Noir doré</font><br><font color="#6600a1">Pulvériseur | Noir doré</font><br><font color="#8847ff">Médikit HMTech | Noir doré</font><br><font color="#8847ff">Soudeur | Noir doré</font><br><font color="#8847ff">Couteau de Fou furieux | Noir doré</font><br><font color="#caab05">ou un modèle doré extrêmement rare !</font>"
+
+HorzineSupplyWeaponSkinCrateSeries8Description="Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des modèles d'arme rares ou supérieurs suivants :<br><font color="#4b69cd">Hemogoblin | Néon</font><br><font color="#4b69cd">M14EBR | Néon</font><br><font color="#4b69cd">Chercheur 6 | Néon</font><br><font color="#4b69cd">Stoner 63A | Néon</font><br><font color="#4b69cd">Heckler & Koch UMP | Néon</font><br><font color="#4b69cd">Pistolet HMTech-101 | Horzine élite bleu</font><br><font color="#4b69cd">Pistolet HMTech-101 | Horzine élite vert</font><br><font color="#4b69cd">Pistolet HMTech-101 | Horzine élite blanc</font><br><font color="#6600a1">Lance-flammes | Néon</font><br><font color="#6600a1">Pistolet à micro-ondes | Néon</font><br><font color="#8847ff">AA12 | Néon</font><br><font color="#8847ff">Pistolet HMTech-101 | Horzine élite noir</font><br><font color="#8847ff">Pistolet HMTech-101 | Horzine élite rouge</font><br><font color="#caab05">ou un modèle doré extrêmement rare !</font>"
+
+
+
+HorzineSupplyWeaponSkinCrateSeries10Description="Utilisez une clé de caisse d'approvisionnement Horzine pour l'ouvrir. Contient l'un des modèles d'arme rares ou supérieurs suivants :<br><font color="#4b69cd">AA12 | Tactique</font><br><font color="#4b69cd">AK12 | Tactique</font><br><font color="#4b69cd">L85A2 | Tactique</font><br><font color="#4b69cd">SG500 | Tactique</font><br><font color="#4b69cd">Fusil d'assaut HMTech-401 | Tactique</font><br><font color="#4b69cd">Scar | Tactique</font><br><font color="#6600a1">Desert Eagle | Horzine élite vert</font><br><font color="#6600a1">Desert Eagle | Horzine élite blanc</font><br><font color="#8847ff">Desert Eagle | Horzine élite bleu</font><br><font color="#8847ff">Desert Eagle | Horzine élite rouge</font><br><font color="#caab05">ou un modèle doré extrêmement rare !</font>"
 
 
 ;PSN Key Names
@@ -580,6 +607,9 @@ FacePaintHalloweenType="Maquillage de Halloween"
 CosmeticChristmasType="Accessoire de Noël"
 FacePaintChristmasType="Maquillage de Noël"
 
+;Steampunk Type Section
+CosmeticSteampunkType="Accessoire punk"
+FacePaintSteampunkType="Maquillage punk"
 
 ;Dosh Vault Type Section
 CosmeticDoshVaultType="Accessoire Coffre à fric"
@@ -631,8 +661,8 @@ CommonWeaponSkinMaterialDescription="Matériau de fabrication original qui, lors
 UncommonWeaponSkinMaterialDescription="Matériau de fabrication supérieur qui, lorsqu'il est combiné, peut servir à faire des modèles d'armes rares."
 RareWeaponSkinMaterialDescription="Matériau de fabrication rare qui, lorsqu'il est combiné, peut servir à faire des modèles d'armes exceptionnels."
 ExceptionalWeaponSkinMaterialDescription="Matériau de fabrication exceptionnel qui, lorsqu'il est combiné, peut servir à faire des modèles d'armes que qualité de maître."
-CraftingSideshowDescription="Vous pouvez échanger les tickets de récompense contre un objet exclusif de cirque estival. <font color="#4b69cd">Nécessite 5 tickets de récompense.</font> Peuvent être échangés contre l'un des objets rares ou supérieurs suivants : <br><font color="#4b69cd">Chapeau de clown Cirque</font><br><font color="#4b69cd">Nez de clown Cirque</font><br><font color="#4b69cd">Maquillage Cirque</font><br><font color="#4b69cd">Masque de cochon Cirque</font><br><font color="#4b69cd">Mini fanfaron Cirque</font><br><font color="#4b69cd">Chapeau de gourou Cirque</font><br><font color="#4b69cd">Canon humain Cirque</font>"
-CraftingPremiumSideshowDescription="Ce ticket premium vous permettra d'obtenir un objet exclusif de l'événement estival ! <font color="#4b69cd">Ne nécessite qu'un seul ticket !</font> Peut être échangé contre l'un des objets rares ou supérieurs suivants : <br><font color="#4b69cd">Chapeau de clown Cirque</font></font><br><font color="#4b69cd">Nez de clown Cirque</font><br><font color="#4b69cd">Maquillage Cirque</font><br><font color="#4b69cd">Masque de cochon Cirque</font><br><font color="#4b69cd">Mini fanfaron Cirque</font><br><font color="#4b69cd">Chapeau de gourou Cirque</font><br><font color="#4b69cd">Canon humain Cirque</font><br><font color="#caab05">ou contre un accessoire doré extrêmement rare !</font>"
+CraftingSideshowDescription="Vous pouvez échanger les tickets de récompense contre un objet exclusif de cirque estival. <font color="#4b69cd">Nécessite 5 tickets de récompense.</font>"
+CraftingPremiumSideshowDescription="Ce ticket premium vous permettra d'obtenir un objet exclusif de l'événement estival ! <font color="#4b69cd">Un seul ticket requis !</font>"
 CraftingGoldenSideshowDescription="Vous avez obtenu un ticket doré ! <font color="#4b69cd">Ne nécessite qu'un seul ticket !</font> Vous pouvez échanger ce ticket doré contre un objet de cirque estival <font color="#caab05">DORÉ extrêmement rare.</font>"
 CraftingHllwnDescription="Vous pouvez échanger les tickets de récompense contre un objet exclusif de Halloween. <font color="#4b69cd">Nécessite 5 tickets de récompense.</font>"
 CraftingPremiumHllwnDescription="Ce ticket premium vous permettra d'obtenir un objet d'Halloween exclusif ! <font color="#4b69cd">Ne nécessite qu'un seul ticket !</font>"
@@ -829,6 +859,10 @@ AA12JunkyardBattleScarredName="AA12 | Décharge | Érodé"
 AA12VaultGGMintName="AA12 | Coffre | GG | Neuf"
 AA12VaultGGFieldTestedName="AA12 | Coffre | GG | Usé"
 AA12VaultGGBattleScarredName="AA12 | Coffre | GG | Érodé"
+AA12NeonMintName="AA12 | Néon | Neuf "
+AA12NeonFieldTestedName="AA12 | Néon | Usé "
+AA12NeonBattleScarredName="AA12 | Néon | Érodé "
+AA12NeonRGBPreciousName="AA12 | Néon RVB | Doré "
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Aspect : neuf | Dès qu'on rajoute des canons, tout s'améliore. Comme quand on ajoute du bacon."
@@ -895,6 +929,12 @@ AK12JunkyardBattleScarredName="AK12 | Décharge | Érodé"
 AK12VaultHonorableDeathMintName="AK12 | Coffre | Mort honorable | Neuf"
 AK12VaultHonorableDeathFieldTestedName="AK12 | Coffre | Mort honorable | Usé"
 AK12VaultHonorableDeathBattleScarredName="AK12 | Coffre | Mort honorable | Érodé"
+AK12BluefireMintName="AK12 | Bluefire | Neuf "
+AK12BluefireFieldTestedName="AK12 | Bluefire | Usé "
+AK12BluefireBattleScarredName="AK12 | Bluefire | Érodé "
+AK12HorzineFirstEncounterMintName="AK12 | Horzine First Encounter | Neuf "
+AK12HorzineFirstEncounterFieldTestedName="AK12 | Horzine First Encounter | Usé "
+AK12HorzineFirstEncounterBattleScarredName="AK12 | Horzine First Encounter | Érodé "
 
 ;AR15 Descriptions
 AR15MintDescription="Aspect : neuf | Pour les Zeds, pas pour la vermine."
@@ -938,6 +978,7 @@ BerserkerKnifePreciousDescription="Aspect : doré | Oui, c'est bien une lame de
 
 ;Berserker Knife Names
 BerserkerKnifePreciousName="Couteau de Fou furieux | Doré"
+BerserkerKnifePrestigePreciousName="Couteau de Fou furieux | Prestige | Doré"
 BerserkerKnifeVaultVoshPreciousName="Couteau de Fou furieux | Coffre | Cric | Doré"
 BerserkerKnifeBlackGoldenMintName="Couteau de Fou furieux | Noir doré | Neuf"
 BerserkerKnifeBlackGoldenFieldTestedName="Couteau de Fou furieux | Noir doré | Usé"
@@ -969,6 +1010,10 @@ BoomstickPreciousName="Boomstick | Doré"
 BoomstickJunkyardMintName="Boomstick | Décharge | Neuf"
 BoomstickJunkyardFieldTestedName="Boomstick | Décharge | Usé"
 BoomstickJunkyardBattleScarredName="Boomstick | Décharge | Érodé"
+BoomstickVaultVoshPreciousName="Boomstick | Coffre | Cric | Doré"
+BoomstickHorzineFirstEncounterMintName="Boomstick | Horzine First Encounter | Neuf "
+BoomstickHorzineFirstEncounterFieldTestedName="Boomstick | Horzine First Encounter | Usé "
+BoomstickHorzineFirstEncounterBattleScarredName="Boomstick | Horzine First Encounter | Érodé "
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Aspect : neuf | Lance-flammes artisanal portatif. N'essayez PAS d'en fabriquer un chez vous."
@@ -994,9 +1039,20 @@ CaulknBurnVaultVoshPreciousName="Brûleur | Coffre | Cric | Doré"
 
 ;Centerfire Descriptions
 CenterfireMintWeeklyDescription="Aspect : Neuf | Un fusil à levier et percussion centrale Mossberg moderne avec peu de recul et un pouvoir d'arrêt élevé. Un classique revisité. Vous avez déverrouillé cet objet en terminant une épidémie hebdomadaire."
+CenterfireMintDescription="Aspect : Neuf | Un fusil à levier et percussion centrale Mossberg moderne avec peu de recul et un pouvoir d'arrêt élevé. Un classique revisité."
+CenterfireFieldTestedDescription="Aspect : Usé | Un fusil à levier et percussion centrale Mossberg moderne avec peu de recul et un pouvoir d'arrêt élevé. Un classique revisité."
+CenterfireBattleScarredDescription="Aspect : Érodé | Un fusil à levier et percussion centrale Mossberg moderne avec peu de recul et un pouvoir d'arrêt élevé. Un classique revisité."
+CenterfirePreciousDescription="Aspect : Doré | Un fusil à levier et percussion centrale Mossberg moderne avec peu de recul et un pouvoir d'arrêt élevé. Un classique revisité."
 
 ;Centerfire Names
 CenterfireWeeklyName="Perc. centrale | Tir à la tête hebdo | Neuf"
+CenterfireHorzineFirstEncounterMintName="Perc. centrale | Horzine First Encounter | Neuf "
+CenterfireHorzineFirstEncounterFieldTestedName="Perc. centrale | Horzine First Encounter | Usé "
+CenterfireHorzineFirstEncounterBattleScarredName="Perc. centrale | Horzine First Encounter | Érodé "
+CenterfireBluefireMintName="Perc. centrale | Bluefire | Neuf "
+CenterfireBluefireFieldTestedName="Perc. centrale | Bluefire | Usé "
+CenterfireBluefireBattleScarredName="Perc. centrale | Bluefire | Érodé"
+CenterfirePreciousName="Perc. centrale | Doré "
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Aspect : neuf | Une arbalète de chasse puissante, dotée d'une bonne pénétration et d'un bon pouvoir d'arrêt !"
@@ -1018,6 +1074,7 @@ CrossbowIndustrialBattleScarredName="Arbalète | Industriel | Érodé"
 CrossbowHalloweenMintName="Arbalète | Halloween | Neuf"
 CrossbowHalloweenFieldTestedName="Arbalète | Halloween | Usé"
 CrossbowHalloweenBattleScarredName="Arbalète | Halloween | Érodé"
+CrossbowVaultVoshPreciousName="Arbalète | Coffre | Cric | Doré"
 
 ;Crovel Descriptions
 CrovelMintDescription="Aspect : neuf | Mi-pied-de-biche, mi-pelle, 100 % mortel."
@@ -1100,6 +1157,7 @@ DragonsbreathPreciousName="Souffle du Dragon | Doré"
 DragonsbreathHeirloomMintName="Souffle du Dragon | Héritage | Neuf"
 DragonsbreathHeirloomFieldTestedName="Souffle du Dragon | Héritage | Usé"
 DragonsbreathHeirloomBattleScarredName="Souffle du Dragon | Héritage | Érodé"
+DragonsbreathVaultVoshPreciousName="Souffle du Dragon | Coffre | Cric | Doré"
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="Aspect : neuf | Conçu lors d'un moment de folie du groupe SDS de Horzine, ce monstre ne fait pas dans la dentelle."
@@ -1127,6 +1185,7 @@ FiremansKnifeDragonfireMintName="Couteau de pompier | Dragonfire | Neuf"
 FiremansKnifeDragonfireFieldTestedName="Couteau de pompier | Dragonfire | Usé"
 FiremansKnifeDragonfireBattleScarredName="Couteau de pompier | Dragonfire | Érodé"
 FiremansKnifePreciousName="Couteau de pompier | Doré"
+FiremansKnifePrestigePreciousName="Couteau de pompier | Prestige | Doré"
 FiremansKnifeVaultVoshPreciousName="Couteau de pompier | Coffre | Cric | Doré"
 
 ;Flamethrower Descriptions
@@ -1146,6 +1205,10 @@ FlamethrowerHalloweenMintName="Lance-flammes | Halloween | Neuf"
 FlamethrowerHalloweenFieldTestedName="Lance-flammes | Halloween | Usé"
 FlamethrowerHalloweenBattleScarredName="Lance-flammes | Halloween | Érodé"
 FlamethrowerPreciousName="Lance-flammes | Doré"
+FlamethrowerNeonMintName="Lance-flammes | Néon | Neuf "
+FlamethrowerNeonFieldTestedName="Lance-flammes | Néon | Usé "
+FlamethrowerNeonBattleScarredName="Lance-flammes | Néon | Érodé "
+FlamethrowerNeonRGBPreciousName="Lance-flammes | Néon RVB | Doré "
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="Aspect : neuf | Système de tir plus pratique et moins encombrant."
@@ -1206,6 +1269,9 @@ FreezeThrowerAnodizedIceRedBattleScarredName="Lance-glace | Glace anodisée roug
 FreezeThrowerMinusZeroGreenMintName="Lance-glace | Moins zéro vert | Neuf"
 FreezeThrowerMinusZeroGreenFieldTestedName="Lance-glace | Minus Zero vert | Usé"
 FreezeThrowerMinusZeroGreenBattleScarredName="Lance-glace | Minus Zero vert | Érodé"
+FreezeThrowerBluefireMintName="Lance-glace | Bluefire | Neuf "
+FreezeThrowerBluefireFieldTestedName="Lance-glace | Bluefire | Usé "
+FreezeThrowerBluefireBattleScarredName="Lance-glace | Bluefire | Érodé "
 
 ;Freeze Thrower Descriptions
 FreezeThrowerMintDescription="Aspect : Neuf | La matière organique ne peut pas résister à un tel froid."
@@ -1221,6 +1287,13 @@ HemogoblinPreciousDescription="Aspect : doré | Ne permet pas de perdre du poid
 
 ;Hemogoblin Names
 HemogoblinPreciousName="Hemogoblin | Doré"
+HemogoblinBluefireMintName="Hemogoblin | Bluefire | Neuf "
+HemogoblinBluefireFieldTestedName="Hemogoblin | Bluefire | Usé "
+HemogoblinBluefireBattleScarredName="Hemogoblin | Bluefire | Érodé"
+HemogoblinNeonMintName="Hemogoblin | Néon | Neuf "
+HemogoblinNeonFieldTestedName="Hemogoblin | Néon | Usé "
+HemogoblinNeonBattleScarredName="Hemogoblin | Néon | Érodé"
+HemogoblinNeonRGBPreciousName="Hemogoblin | Néon RVB | Doré"
 
 ;HK UMP Descriptions
 HKUMPMintDescription="Aspect : neuf | L'un des tout derniers membres de la famille des MP. Peut-être un oncle ? Les mitraillettes ont-elles une famille ?"
@@ -1230,6 +1303,13 @@ HKUMPPreciousDescription="Aspect : doré | L'un des tout derniers membres de la
 
 ;HK UMP Names
 HKUMPPreciousName="Heckler & Koch UMP | Doré"
+HKUMPNeonMintName="Heckler & Koch UMP | Néon | Neuf "
+HKUMPNeonFieldTestedName="Heckler & Koch UMP | Néon | Usé "
+HKUMPNeonBattleScarredName="Heckler & Koch UMP | Néon | Érodé "
+HKUMPHorzineFirstEncounterMintName="Heckler & Koch UMP | Horzine First Encounter | Neuf "
+HKUMPHorzineFirstEncounterFieldTestedName="Heckler & Koch UMP | Horzine First Encounter | Usé "
+HKUMPHorzineFirstEncounterBattleScarredName="Heckler & Koch UMP | Horzine First Encounter | Érodé "
+HKUMPNeonRGBPreciousName="Heckler & Koch UMP |Néon RVB | Doré"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Aspect : neuf | Un scalpel. Comme vous êtes médecin, vous n'avez probablement pas besoin qu'on vous explique comment vous en servir."
@@ -1242,6 +1322,7 @@ HMTech001ScalpelEliteUnitMintName="Scalpel HMTech-001 | Unité d'élite | Neuf"
 HMTech001ScalpelEliteUnitFieldTestedName="Scalpel HMTech-001 | Unité d'élite | Usé"
 HMTech001ScalpelEliteUnitBattleScarredName="Scalpel HMTech-001 | Unité d'élite | Érodé"
 HMTech001ScalpelPreciousName="Scalpel HMTech-001 | Doré"
+HMTech001ScalpelPrestigePreciousName="Scalpel HMTech-001 | Prestige | Doré"
 HMTech001ScalpelVaultVoshPreciousName="Scalpel HMTech-001 | Coffre | Cric | Doré"
 
 ;HMTech-101 Pistol Descriptions
@@ -1271,6 +1352,21 @@ HMTech101PistolVaultOrangeCamoFieldTestedName="Pistolet HMTech-101 | Coffre | Ca
 HMTech101PistolVaultOrangeCamoBattleScarredName="Pistolet HMTech-101 | Coffre | Camo or. | Érodé"
 HMTech101PistolPreciousName="Pistolet HMTech-101 | Doré"
 HMTech101PistolVaultVoshPreciousName="Pistolet HMTech-101 | Coffre | Cric | Doré"
+HMTech101PistolHorzineEliteBlackMintName="Pistolet HMTech-101 | Horzine élite noir | Neuf "
+HMTech101PistolHorzineEliteBlackFieldTestedName="Pistolet HMTech-101 | Horzine élite noir | Usé "
+HMTech101PistolHorzineEliteBlackBattleScarredName="Pistolet HMTech-101 | Horzine élite noir | Érodé "
+HMTech101PistolHorzineEliteBlueMintName="Pistolet HMTech-101 | Horzine élite bleu | Neuf "
+HMTech101PistolHorzineEliteBlueFieldTestedName="Pistolet HMTech-101 | Horzine élite bleu | Usé "
+HMTech101PistolHorzineEliteBlueBattleScarredName="Pistolet HMTech-101 | Horzine élite bleu | Érodé "
+HMTech101PistolHorzineEliteGreenMintName="Pistolet HMTech-101 | Horzine élite vert | Neuf "
+HMTech101PistolHorzineEliteGreenFieldTestedName="Pistolet HMTech-101 | Horzine élite vert | Usé "
+HMTech101PistolHorzineEliteGreenBattleScarredName="Pistolet HMTech-101 | Horzine élite vert | Érodé "
+HMTech101PistolHorzineEliteRedMintName="Pistolet HMTech-101 | Horzine élite rouge | Neuf "
+HMTech101PistolHorzineEliteRedFieldTestedName="Pistolet HMTech-101 | Horzine élite rouge | Usé "
+HMTech101PistolHorzineEliteRedBattleScarredName="Pistolet HMTech-101 | Horzine élite rouge | Érodé "
+HMTech101PistolHorzineEliteWhiteMintName="Pistolet HMTech-101 | Horzine élite blanc | Neuf "
+HMTech101PistolHorzineEliteWhiteFieldTestedName="Pistolet HMTech-101 | Horzine élite blanc | Usé "
+HMTech101PistolHorzineEliteWhiteBattleScarredName="Pistolet HMTech-101 | Horzine élite blanc | Érodé "
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="Aspect : neuf | Tire des fléchettes de guérison pour soigner les coéquipiers. Votre pistolet, en plus costaud !"
@@ -1289,6 +1385,7 @@ HMTech201SMGEliteUnitGreenMintName="SMG HMTech-201 | Unité d'élite vert | Neuf
 HMTech201SMGEliteUnitGreenFieldTestedName="SMG HMTech-201 | Unité d'élite vert | Usé"
 HMTech201SMGEliteUnitGreenBattleScarredName="SMG HMTech-201 | Unité d'élite vert | Érodé"
 HMTech201SMGPreciousName="SMG HMTech-201 | Doré"
+HMTech201SMGVaultVoshPreciousName="HMTech-201 SMG | Coffre | Cric | Doré"
 
 ;HMTech-301 Shotgun Descriptions
 HMTech301ShotgunMintDescription="Aspect : neuf | Le pistolet HMTech en version fusil à pompe."
@@ -1386,6 +1483,9 @@ HZ12HalloweenMintName="HZ12 | Halloween | Neuf"
 HZ12HalloweenFieldTestedName="HZ12 | Halloween | Usé"
 HZ12HalloweenBattleScarredName="HZ12 | Halloween | Érodé"
 HZ12PreciousName="HZ12 | Doré"
+HZ12HorzineFirstEncounterMintName="HZ12 | Horzine First Encounter | Neuf "
+HZ12HorzineFirstEncounterFieldTestedName="HZ12 | Horzine First Encounter | Usé "
+HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine First Encounter | Érodé "
 
 ;Katana Descriptions
 KatanaMintDescription="Aspect : neuf | Sa classe force le respect."
@@ -1428,6 +1528,7 @@ KFBARStreetPunksMintName="KF-BAR | Street Punks | Neuf"
 KFBARStreetPunksFieldTestedName="KF-BAR | Street Punks | Usé"
 KFBARStreetPunksBattleScarredName="KF-BAR | Street Punks | Érodé"
 KFBARPreciousName="KF-BAR | Doré"
+KFBARPrestigePreciousName="KF-BAR | Prestige | Doré"
 KFBARVaultVoshPreciousName="KF-BAR | Coffre | Cric | Doré"
 
 ;Kriss Descriptions
@@ -1462,6 +1563,9 @@ KrissHalloweenBattleScarredName="Kriss SMG | Halloween | Érodé"
 KrissNeonMintName="Kriss SMG | Néon | Neuf"
 KrissNeonFieldTestedName="Kriss SMG | Néon | Usé"
 KrissNeonBattleScarredName="Kriss SMG | Néon | Érodé"
+KrissHorzineFirstEncounterMintName="Kriss SMG | Horzine First Encounter | Neuf "
+KrissHorzineFirstEncounterFieldTestedName="Kriss SMG | Horzine First Encounter | Usé "
+KrissHorzineFirstEncounterBattleScarredName="Kriss SMG | Horzine First Encounter | Érodé "
 
 ;L85A2 Descriptions
 L85A2MintDescription="Aspect : neuf | Le SA80 était l'arme de base de l'armée britannique, avant que l'armée ne se fasse bouffer."
@@ -1507,6 +1611,7 @@ L85A2VietnamBattleScarredName="L85A2 | Vietnam | Érodé"
 L85A2JunkyardMintName="L85A2 | Décharge | Neuf"
 L85A2JunkyardFieldTestedName="L85A2 | Décharge | Usé"
 L85A2JunkyardBattleScarredName="L85A2 | Décharge | Érodé"
+L85A2VaultVoshPreciousName="L85A2 | Coffre | Cric | Doré"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="Aspect : neuf | Le fusil de précision favori des Navy Seals, Delta Force, et autres durs à cuire."
@@ -1525,6 +1630,13 @@ M14EBRJunkyardMintName="M14EBR | Décharge | Neuf"
 M14EBRJunkyardFieldTestedName="M14EBR | Décharge | Usé"
 M14EBRJunkyardBattleScarredName="M14EBR | Décharge | Érodé"
 M14EBRPreciousName="M14 EBR | Doré"
+M14EBRHorzineFirstEncounterMintName="M14EBR | Horzine First Encounter | Neuf "
+M14EBRHorzineFirstEncounterFieldTestedName="M14EBR | Horzine First Encounter | Usé "
+M14EBRHorzineFirstEncounterBattleScarredName="M14EBR | Horzine First Encounter | Érodé "
+M14EBRNeonMintName="M14EBR | Néon | Neuf "
+M14EBRNeonFieldTestedName="M14EBR | Néon | Usé "
+M14EBRNeonBattleScarredName="M14EBR | Néon | Érodé "
+M14EBRNeonRGBPreciousName="M14EBR | Néon RVB | Doré "
 
 ;M16M203 Descriptions
 M16M203MintDescription="Aspect : Neuf | Pour ceux qui n'arrivent pas à choisir entre balles ou explosifs."
@@ -1561,6 +1673,10 @@ M1911PreciousName="M1911 | Doré"
 M1911HeirloomMintName="M1911 | Héritage | Neuf"
 M1911HeirloomFieldTestedName="M1911 | Héritage | Usé"
 M1911HeirloomBattleScarredName="M1911 | Héritage | Érodé"
+M1911VaultVoshPreciousName="M1911 | Coffre | Cric | Doré"
+M1911BluefireMintName="M1911 | Bluefire | Neuf "
+M1911BluefireFieldTestedName="M1911 | Bluefire | Usé "
+M1911BluefireBattleScarredName="M1911 | Bluefire | Érodé "
 
 ;M4 Descriptions
 M4MintDescription="Aspect : neuf | Le fusil à pompe de combat M4, conçu par Benelli pour l'armée américaine. Son mode de tir semi-automatique permet une cadence de tir régulière."
@@ -1585,6 +1701,9 @@ M4JunkyardMintName="M4 | Décharge | neuf"
 M4JunkyardFieldTestedName="M4 | Décharge | Usé"
 M4JunkyardBattleScarredName="M4 | Décharge | Érodé"
 M4PreciousName="M4 | Doré"
+M4BluefireMintName="M4 | Bluefire | Neuf "
+M4BluefireFieldTestedName="M4 | Bluefire | Usé "
+M4BluefireBattleScarredName="M4 | Bluefire | Érodé "
 
 ;M79 Descriptions
 M79MintDescription="Aspect : neuf | Ne s'arme qu'a quelques mètres pour que tu ne te fasses pas exploser la cervelle."
@@ -1615,6 +1734,12 @@ M79DeepstrikeBattleScarredName="M79 | Deepstrike | Érodé"
 M79HalloweenMintName="M79 | Halloween | Neuf"
 M79HalloweenFieldTestedName="M79 | Halloween | Usé"
 M79HalloweenBattleScarredName="M79 | Halloween | Érodé"
+M79BluefireMintName="M79 | Bluefire | Neuf "
+M79BluefireFieldTestedName="M79 | Bluefire | Usé "
+M79BluefireBattleScarredName="M79 | Bluefire | Érodé"
+M79HorzineFirstEncounterMintName="M79 | Horzine First Encounter | Neuf "
+M79HorzineFirstEncounterFieldTestedName="M79 | Horzine First Encounter | Usé "
+M79HorzineFirstEncounterBattleScarredName="M79 | Horzine First Encounter | Érodé "
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="Aspect : Neuf | Dispose d'une puissante attaque de bouclier."
@@ -1651,6 +1776,9 @@ Mac10PreciousDescription="Aspect : doré | Inclut des munitions incendiaires po
 
 ;Mac 10 Names
 Mac10PreciousName="Mac 10 | Doré"
+Mac10HorzineFirstEncounterMintName="MAC 10 | Horzine First Encounter | Neuf "
+Mac10HorzineFirstEncounterFieldTestedName="MAC 10 | Horzine First Encounter | Usé "
+Mac10HorzineFirstEncounterBattleScarredName="MAC 10 | Horzine First Encounter | Érodé "
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Aspect : neuf | Les merveilles de la technologie moderne : un cuiseur de Zed portatif."
@@ -1666,6 +1794,10 @@ MicrowaveGunHumanPopcornMintName="Pistolet à micro-ondes | Pop-corn humain | Ne
 MicrowaveGunHumanPopcornFieldTestedName="Pistolet à micro-ondes | Pop-corn humain | Usé"
 MicrowaveGunHumanPopcornBattleScarredName="Pistolet à micro-ondes | Pop-corn humain | Érodé"
 MicrowaveGunPreciousName="Pistolet à micro-ondes | Doré"
+MicrowaveGunNeonMintName="Pistolet à micro-ondes | Néon | Neuf "
+MicrowaveGunNeonFieldTestedName="Pistolet à micro-ondes | Néon | Usé "
+MicrowaveGunNeonBattleScarredName="Pistolet à micro-ondes | Néon | Érodé "
+MicrowaveGunNeonRGBPreciousName="Pistolet à micro-ondes | Néon RVB | Doré"
 
 ;MP5RAS Descriptions
 MP5RASMintDescription="Aspect : neuf | La dernière version de la mitraillette la plus utilisée au monde."
@@ -1696,6 +1828,10 @@ MP5RASHorzineEliteRedMintName="MP5RAS | Horzine élite rouge | Neuf"
 MP5RASHorzineEliteRedFieldTestedName="MP5RAS | Horzine élite rouge | Usé"
 MP5RASHorzineEliteRedBattleScarredName="MP5RAS | Horzine élite rouge | Érodé"
 MP5RASPreciousName="MP5RAS | Doré"
+MP5RASVaultVoshPreciousName="MP5RAS | Coffre | Cric | Doré"
+MP5RASHorzineFirstEncounterMintName="MP5RAS | Horzine First Encounter | Neuf "
+MP5RASHorzineFirstEncounterFieldTestedName="MP5RAS | Horzine First Encounter | Usé "
+MP5RASHorzineFirstEncounterBattleScarredName="MP5RAS | Horzine First Encounter | Érodé "
 
 ;MP7 Descriptions
 MP7MintDescription="Aspect : neuf | Utilisé par les agences secrètes et forces spéciales aux innombrables acronymes à travers le monde."
@@ -1715,6 +1851,9 @@ MP7VaultBlueCamoFieldTestedName="MP7 | Coffre | Camouflage bleu | Usé"
 MP7VaultBlueCamoBattleScarredName="MP7 | Coffre | Camouflage bleu | Érodé"
 MP7PreciousName="MP7 | Doré"
 MP7VaultVoshPreciousName="MP7 | Coffre | Cric | Doré"
+MP7BluefireMintName="MP7 | Bluefire | Neuf "
+MP7BluefireFieldTestedName="MP7 | Bluefire | Usé "
+MP7BluefireBattleScarredName="MP7 | Bluefire | Érodé "
 
 ;P90 Descriptions
 P90MintDescription="Aspect : neuf | Il a l'air bizarre mais il est parfait pour déchiqueter du Zed. Vous pouvez même faire des bruitages de laser si vous trouvez ça cool."
@@ -1766,6 +1905,9 @@ RailgunNeonMintName="Canon électrique | Néon | Neuf"
 RailgunNeonFieldTestedName="Canon électrique | Néon | Usé"
 RailgunNeonBattleScarredName="Canon électrique | Néon | Érodé"
 RailgunPreciousName="Canon électrique | Doré"
+RailgunBluefireMintName="Canon électrique | Bluefire | Neuf "
+RailgunBluefireFieldTestedName="Canon électrique | Bluefire | Usé "
+RailgunBluefireBattleScarredName="Canon électrique | Bluefire | Érodé "
 
 ;RPG-7 Descriptions
 RPG7MintDescription="Aspect : neuf | Ne s'arme qu'a quelques mètres pour que tu ne te fasses pas exploser la cervelle. Attention au retour de flamme !"
@@ -1796,6 +1938,12 @@ RPG7NeonBattleScarredName="RPG-7 | Néon | Érodé"
 RPG7HeirloomMintName="RPG-7 | Héritage | Neuf"
 RPG7HeirloomFieldTestedName="RPG-7 | Héritage | Usé"
 RPG7HeirloomBattleScarredName="RPG-7 | Héritage | Érodé"
+RPG7BluefireMintName="RPG-7 | Bluefire | Neuf "
+RPG7BluefireFieldTestedName="RPG-7 | Bluefire | Usé "
+RPG7BluefireBattleScarredName="RPG-7 | Bluefire | Érodé "
+RPG7HorzineFirstEncounterMintName="RPG-7 | Horzine First Encounter | Neuf "
+RPG7HorzineFirstEncounterFieldTestedName="RPG-7 | Horzine First Encounter | Usé "
+RPG7HorzineFirstEncounterBattleScarredName="RPG-7 | Horzine First Encounter | Érodé "
 
 ;Scar Descriptions
 ScarMintDescription="Aspect : neuf | Conçu tout spécialement pour le commandement des opérations spéciales américaines, il est effectivement très spécial !"
@@ -1850,6 +1998,9 @@ ScarJunkyardBattleScarredName="Scar | Décharge | Érodé"
 ScarNeonMintName="Scar | Néon | Neuf"
 ScarNeonFieldTestedName="Scar | Néon | Usé"
 ScarNeonBattleScarredName="Scar | Néon | Érodé"
+ScarHorzineFirstEncounterMintName="Scar | Horzine First Encounter | Neuf "
+ScarHorzineFirstEncounterFieldTestedName="Scar | Horzine First Encounter | Usé "
+ScarHorzineFirstEncounterBattleScarredName="Scar | Horzine First Encounter | Érodé "
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="Aspect : neuf | Arme polyvalente explosive pour viser et attaquer plusieurs cibles à la fois."
@@ -1859,6 +2010,13 @@ SeekerSixPreciousDescription="Aspect : doré | Arme polyvalente explosive pour 
 
 ;Seeker Six Names
 SeekerSixPreciousName="Chercheur 6 | Doré"
+SeekerSixNeonMintName="Chercheur 6 | Néon | Neuf "
+SeekerSixNeonFieldTestedName="Chercheur 6 | Néon | Usé "
+SeekerSixNeonBattleScarredName="Chercheur 6 | Néon | Érodé "
+SeekerSixBluefireMintName="Chercheur 6 | Bluefire | Neuf "
+SeekerSixBluefireFieldTestedName="Chercheur 6 | Bluefire | Usé "
+SeekerSixBluefireBattleScarredName="Chercheur 6 | Bluefire | Érodé "
+SeekerSixNeonRGBPreciousName="Chercheur 6 | Néon RVB | Doré "
 
 ;SG500 Descriptions
 SG500MintDescription="Aspect : neuf | Le fusil à pompe Mossberg SG 500, avec sa poignée de pistolet, est parfait pour anéantir du Zed à bout portant. Simple et efficace."
@@ -1920,6 +2078,10 @@ Stoner63APreciousName="Stoner 63A | Halloween | Doré"
 Stoner63AVietnamMintName="Stoner 63A | Vietnam | Neuf"
 Stoner63AVietnamFieldTestedName="Stoner 63A | Vietnam | Usé"
 Stoner63AVietnamBattleScarredName="Stoner 63A | Vietnam | Érodé"
+Stoner63ANeonMintName="Stoner 63A | Néon | Neuf "
+Stoner63ANeonFieldTestedName="Stoner 63A | Néon | Usé "
+Stoner63ANeonBattleScarredName="Stoner 63A | Néon | Érodé "
+Stoner63ANeonRGBPreciousName="Stoner 63A | Néon RVB | Doré "
 
 ;Support Knife Descriptions
 SupportKnifeMintDescription="Aspect : neuf | Ce n'est pas parce qu'on vous a donné le plus gros couteau que vous êtes spécial."
@@ -1935,6 +2097,7 @@ SupportKnifeVictorianMintName="Couteau de Soutien | Victorien | Neuf"
 SupportKnifeVictorianFieldTestedName="Couteau de Soutien | Victorien | Usé"
 SupportKnifeVictorianBattleScarredName="Couteau de Soutien | Victorien | Érodé"
 SupportKnifePreciousName="Couteau de Soutien | Doré"
+SupportKnifePrestigePreciousName="Couteau de Soutien | Prestige | Doré"
 SupportKnifeVaultVoshPreciousName="Couteau de Soutien | Coffre | Cric | Doré"
 
 ;VLAD-1000 Nailgun Descriptions
@@ -1954,6 +2117,10 @@ VLAD1000NailgunPreciousName="VLAD-1000 Cloueuse | Doré"
 VLAD1000NailgunBlackGoldenMintName="VLAD-1000 Cloueuse | Noir doré | Neuf"
 VLAD1000NailgunBlackGoldenFieldTestedName="VLAD-1000 Cloueuse | Noir doré | Usé"
 VLAD1000NailgunBlackGoldenBattleScarredName="VLAD-1000 Cloueuse | Noir doré | Érodé"
+VLAD1000NailgunVaultVoshPreciousName="VLAD-1000 Cloueuse | Coffre | Cric | Doré"
+VLAD1000NailgunBluefireMintName="VLAD-1000 Cloueuse | Bluefire | Neuf "
+VLAD1000NailgunBluefireFieldTestedName="VLAD-1000 Cloueuse | Bluefire | Usé "
+VLAD1000NailgunBluefireBattleScarredName="VLAD-1000 Cloueuse | Bluefire | Érodé "
 
 ;Welder Descriptions
 WelderMintDescription="Aspect : neuf | Soudeur, je m'occupe de souder cette porte !"
@@ -2025,6 +2192,7 @@ GunslingerKnifePreciousDescription="Aspect : doré | Le couteau surdimensionné
 
 ;GunslingerKnife Names
 GunslingerKnifePreciousName="Couteau de Flingueur | Doré"
+GunslingerKnifePrestigePreciousName="Couteau de Flingueur | Prestige | Doré"
 GunslingerKnifeVaultVoshPreciousName="Couteau de Flingueur | Coffre | Cric | Doré"
 
 ;Demo Knife Descriptions
@@ -2035,6 +2203,7 @@ DemoKnifePreciousDescription="Aspect : doré | Un cutter. Pour ouvrir toutes le
 
 ;Demo Knife Names
 DemoKnifePreciousName="Couteau de Démolisseur | Doré"
+DemoKnifePrestigePreciousName="Couteau de Démolisseur | Prestige | Doré"
 DemoKnifeVaultVoshPreciousName="Couteau de Démolisseur | Coffre | Cric | Doré"
 
 ;C4 Descriptions
@@ -2045,6 +2214,7 @@ C4PreciousDescription="Aspect : doré | Un pain de C4, connecté à un détonat
 
 ;C4 Names
 C4PreciousName="C4 | Doré"
+C4VaultVoshPreciousName="C4 | Coffre | Cric | Doré"
 
 ;SharpshooterKnife Descriptions
 SharpshooterKnifeMintDescription="Aspect : neuf | Le couteau traditionnel des Ghurkas. Un couteau pour couper plus que trancher."
@@ -2054,6 +2224,7 @@ SharpshooterKnifePreciousDescription="Aspect : doré | Le couteau traditionnel 
 
 ;SharpshooterKnife Names
 SharpshooterKnifePreciousName="Kukri | Doré"
+SharpshooterKnifePrestigePreciousName="Kukri | Prestige | Doré"
 SharpshooterKnifeVaultVoshPreciousName="Kukri | Coffre | Cric | Doré"
 
 ;SwatKnife Descriptions
@@ -2064,7 +2235,19 @@ SwatKnifePreciousDescription="Aspect : doré | Un couteau. Il coupe des trucs. 
 
 ;SwatKnife Names
 SwatKnifePreciousName="Couteau tactique | Doré"
+SwatKnifePrestigePreciousName="Couteau tactique | Prestige | Doré"
 SwatKnifeVaultVoshPreciousName="Couteau tactique | Coffre | Cric | Doré"
+
+;SurvivalistKnife Descriptions
+SurvivalistKnifeMintDescription="Aspect : Neuf | Éventrez vite ! Montrez-leur qui vous êtes."
+SurvivalistKnifeFieldTestedDescription="Aspect : Usé | Éventrez vite ! Montrez-leur qui vous êtes."
+SurvivalistKnifeBattleScarredDescription="Aspect : Érodé | Éventrez vite ! Montrez-leur qui vous êtes."
+SurvivalistKnifePreciousDescription="Aspect : Doré | Éventrez vite ! Montrez-leur qui vous êtes."
+
+;SurvivalistKnife Names
+SurvivalistKnifePreciousName="Surin d'éventreur | Doré"
+SurvivalistKnifePrestigePreciousName="Surin d'éventreur | Prestige | Doré"
+SurvivalistKnifeVaultVoshPreciousName="Surin d'éventreur | Coffre | Cric | Doré"
 
 [CosmeticSection]
 
@@ -3234,6 +3417,56 @@ DARClassicHelmetPreciousName="D.A.R. | Casque classique | Doré"
 DARClassicHelmetScullyName="D.A.R. | Casque classique | Scully"
 DARClassicHelmetStandardName="D.A.R. | Casque classique | Standard"
 
+;Steampunk Cosmetic Names
+SteampunkTopHatBlueName="Punk | Haut-de-forme | Bleu"
+SteampunkTopHatBrownName="Punk | Haut-de-forme | Marron"
+SteampunkTopHatRedName="Punk | Haut-de-forme | Rouge"
+SteampunkTopHatPreciousName="Punk | Haut-de-forme | Doré"
+SteampunkFlatCapBlueName="Punk | Casquette | Bleu"
+SteampunkFlatCapGreenName="Punk | Casquette | Vert"
+SteampunkFlatCapRedName="Punk | Casquette | Rouge"
+SteampunkFlatCapPreciousName="Punk | Casquette | Doré"
+SteampunkWeldersMaskBrassName="Punk | Masque de soudeur | Cuivré"
+SteampunkWeldersMaskGrayName="Punk | Masque de soudeur | Gris"
+SteampunkWeldersMaskPatinaName="Punk | Masque de soudeur | Patiné"
+SteampunkWeldersMaskPreciousName="Punk | Masque de soudeur | Doré"
+SteampunkChimneyClockStandardName="Punk | Horloge de cheminée | Standard"
+SteampunkChimneyClockCoolGlowName="Punk | Horloge de cheminée | Lueur froide"
+SteampunkChimneyClockWarmGlowName="Punk | Horloge de cheminée | Lueur chaude"
+SteampunkChimneyClockPreciousName="Punk | Horloge de cheminée | Doré"
+SteampunkGogglesBlueName="Punk | Lunettes | Bleu"
+SteampunkGogglesOrangeName="Punk | Lunettes | Orange"
+SteampunkGogglesRedName="Punk | Lunettes | Rouge"
+SteampunkGogglesPreciousName="Punk | Lunettes | Doré"
+SteampunkMedicalBagBlueName="Punk | Trousse médicale | Bleu"
+SteampunkMedicalBagDarkLeatherName="Punk | Trousse médicale | Cuir sombre"
+SteampunkMedicalBagLeatherName="Punk | Trousse médicale | Cuir"
+SteampunkMedicalBagPreciousName="Punk | Trousse médicale | Doré"
+SteampunkOctopusBackpackBrassName="Punk | Sac à dos pieuvre | Cuivré"
+SteampunkOctopusBackpackPatinaName="Punk | Sac à dos pieuvre | Patiné"
+SteampunkOctopusBackpackRedName="Punk | Sac à dos pieuvre | Rouge"
+SteampunkOctopusBackpackPreciousName="Punk | Sac à dos pieuvre | Doré"
+SteampunkTanksBackpackBlueName="Punk | Sac à dos bouteilles | Bleu"
+SteampunkTanksBackpackRedName="Punk | Sac à dos bouteilles | Rouge"
+SteampunkTanksBackpackYellowName="Punk | Sac à dos bouteilles | Jaune"
+SteampunkTanksBackpackPreciousName="Punk | Sac à dos bouteilles | Doré"
+SteampunkTentacleSkullBlueName="Punk | Crâne tentaculaire | Bleu"
+SteampunkTentacleSkullRedName="Punk | Crâne tentaculaire | Rouge"
+SteampunkTentacleSkullStandardName="Punk | Crâne tentaculaire | Standard"
+SteampunkTentacleSkullPreciousName="Punk | Crâne tentaculaire | Doré"
+SteampunkDynamiteArmBandBlueName="Punk | Bracelet dynamité | Bleu"
+SteampunkDynamiteArmBandGreenName="Punk | Bracelet dynamité | Vert"
+SteampunkDynamiteArmBandRedName="Punk | Bracelet dynamité | Rouge"
+SteampunkDynamiteArmBandPreciousName="Punk | Bracelet dynamité | Doré"
+SteampunkDJScullyMaskBleachName="Punk | Masque de DJ Scully | Décoloré"
+SteampunkDJScullyMaskBlueName="Punk | Masque de DJ Scully | Bleu"
+SteampunkDJScullyMaskRustName="Punk | Masque de DJ Scully | Rouille"
+SteampunkDJScullyMaskPreciousName="Punk | Masque de DJ Scully | Doré"
+SteampunkMrsFosterMaskDarkLeatherName="Punk | Masque de Miss Foster | Cuir sombre"
+SteampunkMrsFosterMaskLeatherName="Punk | Masque de Miss Foster | Cuir"
+SteampunkMrsFosterMaskRedName="Punk | Masque de Miss Foster | Rouge"
+SteampunkMrsFosterMaskPreciousName="Punk | Masque de Miss Foster | Doré"
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages. Cet objet n'est disponible que dans l'événement saisonnier « Cirque estival ». Se recycle en 1 ticket de cirque."
 SummerSideshowFacePaintDescription="Ouvrez le menu d'équipement pour l'utiliser. Cet objet n'est disponible que dans l'événement saisonnier « Cirque estival ». Se recycle en 1 ticket de cirque."
@@ -3243,6 +3476,9 @@ ChristmasAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Com
 ChristmasFacePaintDescription="Ouvrez le menu d'équipement pour l'utiliser."
 DoshVaultAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages."
 DoshVaultFacePaintDescription="Ouvrez le menu d'équipement pour l'utiliser."
+SteampunkAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages."
+SteampunkFacePaintDescription="Ouvrez le menu d'équipement pour l'utiliser."
+SteampunkMrsFosterMaskDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec Miss Foster, Ana Larive et Rae Higgins."
 DARAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec D.A.R."
 CyberPunkAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages. Cet objet n'est disponible que dans l'événement saisonnier « Cyberpunk »."
 WeeklyRewardDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages. Vous avez déverrouillé cet objet en terminant une épidémie hebdomadaire."

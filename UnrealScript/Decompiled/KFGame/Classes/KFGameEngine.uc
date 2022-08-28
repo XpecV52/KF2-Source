@@ -52,6 +52,7 @@ var config bool bEnableNative4k;
 var config bool bEnableAdvDebugLines;
 var private const int SeasonalEventId;
 var private int WeeklyEventIndex;
+var init array<init Object> CachedRootPackages;
 var float DefaultGammaMult;
 var float MusicVolumeMultiplier;
 var float SFxVolumeMultiplier;
@@ -73,6 +74,12 @@ var string ReturnToIISConnectionErrorMessage;
 var(Debug) config array<config name> AILogFilter;
 var private transient KFDebugLines KFDebugLines;
 var delegate<HandshakeCompleteCallback> __HandshakeCompleteCallback__Delegate;
+
+// Export UKFGameEngine::execCacheToRoot(FFrame&, void* const)
+native static function CacheToRoot(Object NewPackage);
+
+// Export UKFGameEngine::execClearCachedRootPackages(FFrame&, void* const)
+native static function ClearCachedRootPackages();
 
 // Export UKFGameEngine::execCheckSkipLobby(FFrame&, void* const)
 native static function bool CheckSkipLobby();

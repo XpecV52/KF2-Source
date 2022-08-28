@@ -113,7 +113,6 @@ simulated function ApplyHeadChunkGore(class<KFDamageType> DmgType, vector HitLoc
 defaultproperties
 {
    DeathExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedBloatKingSubspawn:ExploTemplate0'
-   bKnockdownWhenJumpedOn=True
    MonsterArchPath="ZED_ARCH.ZED_KingBloatSubspawn_Archetype"
    MinSpawnSquadSizeType=EST_Crawler
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
@@ -143,6 +142,15 @@ defaultproperties
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKingSubspawn'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
    LocalizationKey="KFPawn_ZedBloatKingSubspawn"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -224,12 +232,14 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       SpecialMoveClasses(38)=None
       SpecialMoveClasses(39)=None
-      SpecialMoveClasses(40)=Class'kfgamecontent.KFSM_BloatKingSubspawn_Explode'
+      SpecialMoveClasses(40)=None
+      SpecialMoveClasses(41)=None
+      SpecialMoveClasses(42)=Class'kfgamecontent.KFSM_BloatKingSubspawn_Explode'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -339,6 +349,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    bBlocksNavigation=True
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=90000,Yaw=45000,Roll=90000)

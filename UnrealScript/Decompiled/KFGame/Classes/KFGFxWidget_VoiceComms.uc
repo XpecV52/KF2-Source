@@ -110,7 +110,7 @@ function UpdateEmoteState()
     if(((PC != none) && PC.Pawn != none) && PC.Pawn.IsAliveAndWell())
     {
         KFP = KFPawn(PC.Pawn);
-        if(((KFP != none) && Class'KFEmoteList'.static.GetEquippedEmoteId() != -1) && KFP.CanDoSpecialMove(34))
+        if(((KFP != none) && Class'KFEmoteList'.static.GetEquippedEmoteId() != -1) && KFP.CanDoSpecialMove(35))
         {
             bEnabled = true;
         }

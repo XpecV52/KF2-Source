@@ -186,6 +186,18 @@ struct SPopupData
     }
 };
 
+var bool bDisplayedInitialFreePopUp;
+var bool bPostGameState;
+var bool bStatsInitialized;
+var bool bKickVotePopupActive;
+var bool bUsingGamepad;
+var bool bAfterLobby;
+var bool bMenusOpen;
+var bool bMenusActive;
+var bool bSearchingForGame;
+var bool bCanCloseMenu;
+var bool bPlayerInLobby;
+var bool bSetGamma;
 var SDelayedPriorityMessage DelayedPriorityMessage;
 var float LastForceCloseTime;
 var float AllowMenusOpenAfterForceCloseTime;
@@ -212,17 +224,6 @@ var KFGFxMenu_IIS IISMenu;
 var KFGFxMenu_DoshVault DoshVaultMenu;
 var KFGFxMoviePlayer_ScreenSize ScreenSizeMovie;
 var KFProfileSettings CachedProfile;
-var bool bPostGameState;
-var bool bStatsInitialized;
-var bool bKickVotePopupActive;
-var bool bUsingGamepad;
-var bool bAfterLobby;
-var bool bMenusOpen;
-var bool bMenusActive;
-var bool bSearchingForGame;
-var bool bCanCloseMenu;
-var bool bPlayerInLobby;
-var bool bSetGamma;
 var class<KFGFxWidget_PartyInGame> InGamePartyWidgetClass;
 var TextureMovie CurrentBackgroundMovie;
 var array<DelayedPopup> DelayedPopups;
@@ -459,6 +460,111 @@ function DisplayDelayedPriorityMessage()
     if(((KFPC != none) && KFPC.myGfxHUD != none) && KFPC.MyGFxManager != none)
     {
         KFPC.myGfxHUD.DisplayPriorityMessage(DelayedPriorityMessage.InPrimaryMessageString, KFPC.MyGFxManager.DelayedPriorityMessage.InSecondaryMessageString, KFPC.MyGFxManager.DelayedPriorityMessage.Lifetime, KFPC.MyGFxManager.DelayedPriorityMessage.MessageType);
+    }
+}
+
+static function HandleFreeTrialError(Engine.OnlineSubsystem.EFreeTrialNotification ErrorCode)
+{
+    local KFPlayerController KFPC;
+    local KFGFxMoviePlayer_Manager MovieManager;
+
+    KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+    if(KFPC == none)
+    {
+        LogInternal("KFPC is none, cannot display pop up.");
+        return;
+    }
+    MovieManager = KFPC.MyGFxManager;
+    if(MovieManager == none)
+    {
+        LogInternal("Movie manager is none, cannot display pop up.");
+        return;
+    }
+    switch(ErrorCode)
+    {
+        case 0:
+            MovieManager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.NotAvailableInFreeTrialString, Class'KFCommon_LocalizedStrings'.default.ConfirmString);
+            break;
+        case 1:
+            MovieManager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.NetworkCheckFreeTrialFailedString, Class'KFCommon_LocalizedStrings'.default.ConfirmString);
+            break;
+        case 2:
+            MovieManager.DelayedOpenPopup(0, 0, "", Class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, Class'KFCommon_LocalizedStrings'.default.BuyGameString, Class'KFCommon_LocalizedStrings'.default.OKString, MovieManager.OnBuyGamePressed);
+            break;
+        default:
+            break;
+    }
+}
+
+static function DisplayFreeTrialFeatureBlockedPopUp()
+{
+    local KFPlayerController KFPC;
+    local KFGFxMoviePlayer_Manager MovieManager;
+
+    KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+    if(KFPC == none)
+    {
+        LogInternal("KFPC is none, cannot display pop up.");
+        return;
+    }
+    MovieManager = KFPC.MyGFxManager;
+    if(MovieManager == none)
+    {
+        LogInternal("Movie manager is none, cannot display pop up.");
+        return;
+    }
+    MovieManager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.NotAvailableInFreeTrialString, Class'KFCommon_LocalizedStrings'.default.ConfirmString);
+}
+
+static function DisplayCouldNotCheckFreeTrialStatusErrorPopUp()
+{
+    local KFPlayerController KFPC;
+    local KFGFxMoviePlayer_Manager MovieManager;
+
+    KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+    if(KFPC == none)
+    {
+        LogInternal("KFPC is none, cannot display pop up.");
+        return;
+    }
+    MovieManager = KFPC.MyGFxManager;
+    if(MovieManager == none)
+    {
+        LogInternal("Movie manager is none, cannot display pop up.");
+        return;
+    }
+    MovieManager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.NetworkCheckFreeTrialFailedString, Class'KFCommon_LocalizedStrings'.default.ConfirmString);
+}
+
+static function DisplayFreeTrialOverPopUp()
+{
+    local KFPlayerController KFPC;
+    local KFGFxMoviePlayer_Manager MovieManager;
+
+    KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+    if(KFPC == none)
+    {
+        LogInternal("KFPC is none, cannot display pop up.");
+        return;
+    }
+    MovieManager = KFPC.MyGFxManager;
+    if(MovieManager == none)
+    {
+        LogInternal("Movie manager is none, cannot display pop up.");
+        return;
+    }
+    MovieManager.DelayedOpenPopup(0, 0, "", Class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, Class'KFCommon_LocalizedStrings'.default.BuyGameString, Class'KFCommon_LocalizedStrings'.default.OKString, MovieManager.OnBuyGamePressed);
+}
+
+function OnBuyGamePressed()
+{
+    local OnlineSubsystem MyOnlineSub;
+
+    LogInternal("On Buy game pressed");
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        MyOnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+        MyOnlineSub.OpenGameStorePage();
     }
 }
 
@@ -906,6 +1012,19 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     }
     if(CurrentMenuIndex == 0)
     {
+        if((((Class'WorldInfo'.static.IsMenuLevel() && OnlineSub != none) && !OnlineSub.IsGameOwned()) && Class'WorldInfo'.static.IsConsoleBuild(8)) && !bDisplayedInitialFreePopUp)
+        {
+            if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+            {
+                bDisplayedInitialFreePopUp = true;
+                HandleFreeTrialError(2);
+            }
+            if(!OnlineSub.CanCheckFreeTrialState())
+            {
+                bDisplayedInitialFreePopUp = true;
+                HandleFreeTrialError(1);
+            }
+        }
         if(StartMenuState == 1)
         {
             CurrentMenuIndex = 16;
@@ -1237,7 +1356,6 @@ function LoadPopup(string Path, optional string TitleString, optional string Des
 function UnloadCurrentPopup()
 {
     ManagerObject.ActionScriptVoid("unloadCurrentPopup");
-    LogInternal(((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "CurrentPopup:'") $ string(CurrentPopup)) $ "'");
     if(CurrentPopup != none)
     {
         CurrentPopup.OnClosed();

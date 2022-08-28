@@ -16,6 +16,14 @@ defaultproperties
    ImagePath="WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25"
    BuyPrice=300
    AmmoPricePerMag=9
+   UpgradePrice(0)=500
+   UpgradePrice(1)=600
+   UpgradePrice(2)=700
+   UpgradePrice(3)=1500
+   UpgradeSellPrice(0)=375
+   UpgradeSellPrice(1)=825
+   UpgradeSellPrice(2)=1350
+   UpgradeSellPrice(3)=2475
    EffectiveRange=25
    Name="Default__KFWeapDef_HX25"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

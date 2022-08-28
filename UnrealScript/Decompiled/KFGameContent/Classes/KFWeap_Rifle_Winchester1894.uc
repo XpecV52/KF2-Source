@@ -11,12 +11,18 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase
 
 defaultproperties
 {
-    InventorySize=5
-    MagazineCapacity=12
+    PackageKey="Winchester"
+    FirstPersonMeshName="WEP_1P_Winchester_MESH.Wep_1stP_Winchester_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Winchester_MESH.Wep_LAR1894_Pickup"
+    AttachmentArchetypeName="wep_winchester_arch.Wep_Winchester_3P"
+    MuzzleFlashTemplateName="wep_winchester_arch.Wep_Winchester_MuzzleFlash"
     bHasIronSights=true
     bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bHasFireLastAnims=true
+    InventorySize=4
+    MagazineCapacity=12
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=65
     MeshIronSightFOV=45
@@ -33,9 +39,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=8,Y=7,Z=-3.5)
-    AttachmentArchetype=KFWeaponAttachment'wep_winchester_arch.Wep_Winchester_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Rifle_Winchester1894.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'wep_winchester_arch.Wep_Winchester_MuzzleFlash'
     EjectedShellForegroundDuration=1.5
     maxRecoilPitch=500
     minRecoilPitch=400
@@ -53,6 +57,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -62,21 +67,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=25,Y=3,Z=-2.5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Winchester_MESH.Wep_1stP_Winchester_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Winchester_ANIM.Wep_1stP_Winchester_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Rifle_Winchester1894.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Winchester 1894"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Winchester_MESH.Wep_LAR1894_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Rifle_Winchester1894.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Winchester_MESH.Wep_LAR1894_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Rifle_Winchester1894.StaticPickupComponent'

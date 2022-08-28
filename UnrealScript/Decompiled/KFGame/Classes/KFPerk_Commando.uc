@@ -493,4 +493,5 @@ defaultproperties
     AutoBuyLoadOutPath(2)=class'KFWeapDef_AK12'
     AutoBuyLoadOutPath(3)=class'KFWeapDef_SCAR'
     HeadshotAccuracyHandicap=-3
+    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.CommandoKnife_PrestigePrecious_Mint_large"
 }

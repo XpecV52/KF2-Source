@@ -294,7 +294,7 @@ function SummonChildren()
 
     MyKFGameInfo = KFGameInfo(WorldInfo.Game);
     MyKFGameInfo.GetAIDirector().bForceFrustration = true;
-    MinionWave = GetWaveInfo(CurrentBattlePhase, int(MyKFGameInfo.GameDifficulty));
+    MinionWave = GetWaveInfo(CurrentBattlePhase, MyKFGameInfo.GetModifiedGameDifficulty());
     if(MinionWave != none)
     {
         if(MyKFGameInfo.SpawnManager != none)
@@ -516,7 +516,7 @@ simulated function bool CanMoveWhenMinigunning()
     local KFGameReplicationInfo KFGRI;
 
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && BattlePhases[CurrentBattlePhase - 1].bCanMoveWhenMinigunning[KFGRI.GameDifficulty])
+    if((KFGRI != none) && BattlePhases[CurrentBattlePhase - 1].bCanMoveWhenMinigunning[KFGRI.GetModifiedGameDifficulty()])
     {
         return true;
     }
@@ -777,7 +777,7 @@ simulated event Tick(float DeltaTime)
     local float MinCloakPct, Intensity, BoilPulseSin;
     local LinearColor ActualBoilColor;
 
-    super(KFPawn).Tick(DeltaTime);
+    super(KFPawn_Monster).Tick(DeltaTime);
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         if(BarrelSpinSkelCtrl != none)
@@ -1763,7 +1763,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_347' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_372' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1771,7 +1771,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_347' was not fou
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(1)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_3' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_3' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1841,6 +1841,7 @@ Parameter name: index
     object end
     // Reference: CameraShake'Default__KFPawn_ZedPatriarch.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.SprintAkComponent0'
     OnDeathAchievementID=130
     PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
     LocalizationKey=KFPawn_ZedPatriarch
@@ -1921,6 +1922,7 @@ Parameter name: index
     Components(5)=AkComponent'Default__KFPawn_ZedPatriarch.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedPatriarch.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedPatriarch.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedPatriarch.SprintAkComponent0'
     begin object name=CloakedAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -1928,7 +1930,7 @@ Parameter name: index
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedPatriarch.CloakedAkComponent0'
-    Components(8)=CloakedAkComponent0
+    Components(9)=CloakedAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

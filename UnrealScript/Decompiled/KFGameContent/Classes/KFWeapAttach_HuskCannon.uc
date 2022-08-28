@@ -65,7 +65,7 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byt
 {
     bIsCharging = false;
     bIsFullyCharged = false;
-    ChargeLevel = GetChargeLevel();
+    ChargeLevel = GetChargeFXLevel();
     if(ChargingPSC != none)
     {
         ChargingPSC.DeactivateSystem();
@@ -115,7 +115,7 @@ simulated function CauseMuzzleFlash(byte FiringMode)
     super.CauseMuzzleFlash(FiringMode);
 }
 
-function int GetChargeLevel()
+function int GetChargeFXLevel()
 {
     local int MaxCharges, Charges;
 

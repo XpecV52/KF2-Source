@@ -31,6 +31,9 @@ defaultproperties
    RallyTriggerSettings(1)=(Cooldown=15.000000,SelfDealtDamageModifier=2.500000,SelfTakenDamageModifier=0.100000)
    RallyTriggerSettings(2)=(RallyChance=0.700000,Cooldown=15.000000,SelfDealtDamageModifier=2.500000,SelfTakenDamageModifier=0.100000)
    RallyTriggerSettings(3)=(RallyChance=0.800000,Cooldown=15.000000,SelfDealtDamageModifier=2.500000,SelfTakenDamageModifier=0.100000)
+   Hard=(DamagedSprintChance=0.050000)
+   Suicidal=(SprintChance=0.050000)
+   HellOnEarth=(SprintChance=0.750000)
    Name="Default__KFDifficulty_ClotAlphaKing"
    ObjectArchetype=KFDifficulty_ClotAlpha'kfgamecontent.Default__KFDifficulty_ClotAlpha'
 }

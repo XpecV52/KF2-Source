@@ -36,7 +36,7 @@ function CheckMeleeTargetExplosion()
 {
     local Vector ToTarget;
 
-    if((Enemy == none) || PoopPawn.IsDoingSpecialMove(40))
+    if((Enemy == none) || PoopPawn.IsDoingSpecialMove(42))
     {
         return;
     }

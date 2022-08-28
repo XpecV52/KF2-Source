@@ -227,6 +227,9 @@ var(SprayDamage) bool  bCollideWithTeammates;
 /** Scales the momentum for damage taken */
 var(SprayDamage) float  MomentumScale;
 
+/** How much damage will be modified based on current weapon upgrade */
+var				 float  DamageModifier;
+
 struct native DamagedActorInfo
 {
     /** The Actor that was hit */
@@ -920,6 +923,11 @@ function SpawnImpactProjectile(vector SpawnLocation, vector SpawnRotation)
 	}
 }
 
+event float GetModifiedDamage()
+{
+	return SplashDamage * DamageModifier;
+}
+
 DefaultProperties
 {
 	bHidden=TRUE
@@ -945,6 +953,7 @@ DefaultProperties
 	MaxDecalEffectDistance=5000
 	ImpactProjectileInterval=0.2
 	bCollideWithTeammates=false
+	DamageModifier=1.f
 
 	// call SetTickIsDisabled( false ) when we need to use this actor
 	bTickIsDisabled=TRUE

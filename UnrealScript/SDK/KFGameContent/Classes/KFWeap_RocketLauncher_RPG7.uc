@@ -107,7 +107,7 @@ defaultproperties
 	// Inventory
 	InventoryGroup=IG_Primary
 	GroupPriority=100
-	InventorySize=9 //10
+	InventorySize=8 //10
 	WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
 
     // FOV
@@ -124,16 +124,13 @@ defaultproperties
 	PlayerViewOffset=(X=10.0,Y=10,Z=-2)
 	FastZoomOutTime=0.2
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_RPG7_ANIM.Wep_1stP_RPG7_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_RPG7_MESH.Wep_rpg7_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_RPG7_ARCH.Wep_RPG7_3P'
+	// Content
+	PackageKey="RPG7"
+	FirstPersonMeshName="WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_RPG7_ANIM.Wep_1stP_RPG7_Anim"
+	PickupMeshName="WEP_3P_RPG7_MESH.Wep_rpg7_Pickup"
+	AttachmentArchetypeName="WEP_RPG7_ARCH.Wep_RPG7_3P"
+	MuzzleFlashTemplateName="WEP_RPG7_ARCH.Wep_RPG7_MuzzleFlash"
 
    	// Zooming/Position
 	IronSightPosition=(X=0,Y=0,Z=0)
@@ -171,7 +168,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Custom
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Rocket_RPG7'
 	FireInterval(DEFAULT_FIREMODE)=+0.25
-	InstantHitDamage(DEFAULT_FIREMODE)=150.0
+	InstantHitDamage(DEFAULT_FIREMODE)=102.0 //150
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RPG7Impact'
 	Spread(DEFAULT_FIREMODE)=0.025
 	FireOffset=(X=20,Y=4.0,Z=-3)
@@ -190,7 +187,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=29
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_RPG7_ARCH.Wep_RPG7_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_1P')
 
 	//@todo: add akevent when we have it
@@ -209,4 +205,8 @@ defaultproperties
 	AssociatedPerkClasses(0)=class'KFPerk_Demolitionist'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.471f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.62f,IncrementWeight=2)
 }

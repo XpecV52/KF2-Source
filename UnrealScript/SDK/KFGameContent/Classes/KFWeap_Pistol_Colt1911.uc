@@ -25,16 +25,13 @@ defaultproperties
 	PlayerViewOffset=(X=22.0,Y=12,Z=-6)
 	IronSightPosition=(X=15,Y=0,Z=0)
 
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_M1911_MESH.Wep_M1911_Pickup'
-	End Object
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_M1911_MESH.Wep_1stP_M1911_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_M1911_ANIM.Wep_1stP_M1911_Anim'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_M1911_ARCH.Wep_M1911_3P'
+	// Content
+	PackageKey="M1911"
+	FirstPersonMeshName="WEP_1P_M1911_MESH.Wep_1stP_M1911_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_M1911_ANIM.Wep_1stP_M1911_Anim"
+	PickupMeshName="WEP_3P_M1911_MESH.Wep_M1911_Pickup"
+	AttachmentArchetypeName="WEP_M1911_ARCH.Wep_M1911_3P"
+	MuzzleFlashTemplateName="WEP_M1911_ARCH.Wep_M1911_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=8
@@ -81,7 +78,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=22
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_M1911_ARCH.Wep_M1911_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Handling_DryFire'
 
@@ -107,5 +103,10 @@ defaultproperties
 	bHasFireLastAnims=true
 
 	BonesToLockOnEmpty=(RW_Bolt, RW_Bullets1)
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=1)
+	WeaponUpgrades[3]=(IncrementDamage=2.0f,IncrementWeight=2)
 }
 

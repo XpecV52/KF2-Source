@@ -101,6 +101,7 @@ var(Objectives) PresetWavePairs PresetWaveObjectives<EditCondition=bUsePresetObj
 var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives;
 var(Objectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
+var() string TraderVoiceGroupClassPath;
 
 function MusicTrackStruct GetNextMusicTrackStruct(optional bool bActionTrack)
 {
@@ -307,4 +308,5 @@ defaultproperties
     AmbientMusicTracks(10)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_MomentaryReprieve'
     AmbientMusicTracks(11)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_PhantomSecurity'
     AmbientMusicTracks(12)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_RendezvousPoint'
+    TraderVoiceGroupClassPath="KFGameContent.KFTraderVoiceGroup_Default"
 }

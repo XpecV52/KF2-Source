@@ -101,7 +101,7 @@ function Timer_CheckEnemyLOS()
         EndTrace = StartTrace + (Normal(MyPatPawn.Controller.Enemy.Location - StartTrace) * 300);
         if(!MyPatPawn.FastTrace(EndTrace, StartTrace,, true))
         {
-            MyPatPawn.DoSpecialMove(22, true,, 128);
+            MyPatPawn.DoSpecialMove(23, true,, 128);
         }
     }
 }
@@ -173,7 +173,7 @@ function Timer_CheckIfFireAllowed()
     }
     if((MyPatController.Enemy == none) || !MyPatController.Enemy.IsAliveAndWell())
     {
-        MyPatPawn.DoSpecialMove(22, true,, 64);
+        MyPatPawn.DoSpecialMove(23, true,, 64);
         return;
     }
     PawnDir = vector(MyPatPawn.Rotation);
@@ -226,7 +226,7 @@ function Timer_SearchForMinigunTargets()
     }
     if((MyPatController.Enemy == none) || !MyPatPawn.FastTrace(MyPatController.Enemy.Location, MyPatPawn.Location,, true))
     {
-        MyPatPawn.DoSpecialMove(22, true,, 64);
+        MyPatPawn.DoSpecialMove(23, true,, 64);
     }
 }
 

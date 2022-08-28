@@ -48,6 +48,8 @@ function SetPathTarget(Actor NewTarget, optional Volume NewVolume, optional KFSe
     }
 }
 
+simulated function SetObjeciveType(KFInterface_MapObjective.EObjectiveType ObjEnum);
+
 simulated function InitPath()
 {
     ShowPath();
@@ -113,7 +115,7 @@ simulated function ShowPath()
         }
         if(bPathFound)
         {
-            Path = KFEmit_ScriptedPath(Target.Spawn(PathClass, PC,, PC.Pawn.Location));
+            Path = KFEmit_ScriptedPath(Target.Spawn(GetPathClass(), PC,, PC.Pawn.Location));
             if(Path != none)
             {
                 Path.SetDestination(Target.Location + vect(0, 0, 50));
@@ -126,6 +128,11 @@ simulated function ShowPath()
         PC.Pawn.ClearConstraints();
         PC.Pawn.PathSearchType = OldSearchType;        
     }    
+}
+
+simulated function class<KFEmit_Path> GetPathClass()
+{
+    return PathClass;
 }
 
 defaultproperties

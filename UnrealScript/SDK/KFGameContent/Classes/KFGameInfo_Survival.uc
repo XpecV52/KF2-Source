@@ -105,7 +105,7 @@ function StartMatch()
 
 function PlayWaveStartDialog()
 {
-	`DialogManager.PlayWaveStartDialog( WaveNum == WaveMax );
+	`DialogManager.PlayWaveStartDialog(MyKFGRI.IsBossWave());
 }
 
 /** Custom logic to determine what the game's current intensity is */
@@ -247,6 +247,11 @@ function RestartPlayer(Controller NewPlayer)
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> damageType)
 {
+	local Sequence GameSeq;
+	local array<SequenceObject> AllWaveProgressEvents;
+	local KFSeqEvent_WaveProgress WaveProgressEvt;
+	local int i;
+
 	super.Killed(Killer, KilledPlayer, KilledPawn, damageType);
 
 	// if not boss wave, play progress update trader dialog
@@ -254,6 +259,24 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     {
     	// no KFTraderDialogManager object on dedicated server, so use static function
     	class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog( MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo );
+
+		// Get the gameplay sequence.
+		GameSeq = WorldInfo.GetGameSequence();
+
+		if (GameSeq != none)
+		{
+			GameSeq.FindSeqObjectsByClass(class'KFSeqEvent_WaveProgress', TRUE, AllWaveProgressEvents);
+
+			for (i = 0; i < AllWaveProgressEvents.Length; i++)
+			{
+				WaveProgressEvt = KFSeqEvent_WaveProgress(AllWaveProgressEvents[i]);
+
+				if (WaveProgressEvt != None)
+				{
+					WaveProgressEvt.SetWaveProgress(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, self);
+				}
+			}
+		}
 	}
 
     //If a human died to a non-suicide
@@ -759,6 +782,8 @@ State PlayingWave
 	function BeginState( Name PreviousStateName )
 	{
 		MyKFGRI.SetWaveActive(TRUE, GetGameIntensityForMusic());
+		MyKFGRI.VoteCollector.ResetTraderVote();
+		
 		StartWave();
 		if ( AllowBalanceLogging() )
 		{
@@ -850,7 +875,7 @@ function byte GetWaveStartMessage()
 function ResetAllPickups()
 {
  	// for the boss wave request all ammo pickups
- 	if ( WaveNum == WaveMax )
+ 	if (MyKFGRI.IsBossWave())
  	{
  		// -1, so that we always have a different pickup to activate
  		NumAmmoPickups = Max(AmmoPickups.Length - 1, 0);
@@ -921,9 +946,10 @@ function byte DetermineNextTraderIndex()
 
 function WaveStarted()
 {
-	local array<SequenceObject> AllWaveStartEvents;
+	local array<SequenceObject> AllWaveStartEvents, AllWaveProgressEvents;
 	local array<int> OutputLinksToActivate;
 	local KFSeqEvent_WaveStart WaveStartEvt;
+	local KFSeqEvent_WaveProgress WaveProgressEvt;
 	local Sequence GameSeq;
 	local int i;
 	local KFPlayerController KFPC;
@@ -970,7 +996,7 @@ function WaveStarted()
 			{
 				WaveStartEvt.Reset();
 				WaveStartEvt.SetWaveNum( WaveNum, WaveMax );
-				if( WaveNum == WaveMax && WaveStartEvt.OutputLinks.Length > 1 )
+				if( MyKFGRI.IsBossWave() && WaveStartEvt.OutputLinks.Length > 1 )
 				{
 					OutputLinksToActivate.AddItem( 1 );
 				}
@@ -979,6 +1005,18 @@ function WaveStarted()
 					OutputLinksToActivate.AddItem( 0 );
 				}
 				WaveStartEvt.CheckActivate( self, self,, OutputLinksToActivate );
+			}
+		}
+
+		GameSeq.FindSeqObjectsByClass(class'KFSeqEvent_WaveProgress', TRUE, AllWaveProgressEvents);
+
+		for( i = 0; i < AllWaveProgressEvents.Length; i++ )
+		{
+			WaveProgressEvt = KFSeqEvent_WaveProgress(AllWaveProgressEvents[i]);
+
+			if( WaveProgressEvt != None  )
+			{
+				WaveProgressEvt.Reset();
 			}
 		}
 	}
@@ -992,17 +1030,20 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 {
     if( !MyKFGRI.bMatchHasBegun )
     {
+		`log("KFGameInfo - CheckWaveEnd - Cannot check if wave has ended since match has not begun. ");
     	return;
     }
 
-    `log("KFGameInfo.CheckWaveEnd() AIAliveCount:" @ AIAliveCount, SpawnManager.bLogAISpawning);
+    `log("KFGameInfo.CheckWaveEnd() AIAliveCount:" @ AIAliveCount/*, SpawnManager.bLogAISpawning*/);
 
     if( GetLivingPlayerCount() <= 0 )
 	{
+		`log("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_TeamWipedOut");
 		WaveEnded(WEC_TeamWipedOut);
 	}
 	else if( (AIAliveCount <= 0 && IsWaveActive() && SpawnManager.IsFinishedSpawning()) || bForceWaveEnd )
 	{
+		`log("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_WaveWon");
 		WaveEnded(WEC_WaveWon);
 	}
 }
@@ -1035,7 +1076,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 			{
 				WaveEndEvt.Reset();
 				WaveEndEvt.SetWaveNum( WaveNum, WaveMax );
-				if( WaveNum == WaveMax && WaveEndEvt.OutputLinks.Length > 1 )
+				if( MyKFGRI.IsBossWave() && WaveEndEvt.OutputLinks.Length > 1 )
 				{
 					OutputLinksToActivate.AddItem( 1 );
 				}
@@ -1276,7 +1317,7 @@ function NotifyTraderOpened()
 			{
 				TraderOpenedEvt.Reset();
 				TraderOpenedEvt.SetWaveNum( WaveNum, WaveMax );
-				if( WaveNum == WaveMax - 1 && TraderOpenedEvt.OutputLinks.Length > 1 )
+				if( MyKFGRI.IsFinalWave() && TraderOpenedEvt.OutputLinks.Length > 1 )
 				{
 					OutputLinksToActivate.AddItem( 1 );
 				}
@@ -1352,11 +1393,9 @@ function EndOfMatch(bool bVictory)
 	}
 
     foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
-    {
-        KFPC.ClientGameOver(WorldInfo.GetMapName(true), GameDifficulty, GameLength, IsMultiplayerGame(), WaveNum);
-    }
-
-	WorldInfo.TWPushLogs();
+	{
+		KFPC.ClientGameOver( WorldInfo.GetMapName(true), GameDifficulty, GameLength, IsMultiplayerGame(), WaveNum );
+	}
 
 	GotoState('MatchEnded');
 }
@@ -1429,6 +1468,8 @@ function ShowPostGameMenu()
 	class'EphemeralMatchStats'.Static.SendMapOptionsAndOpenAARMenu();
 
 	UpdateCurrentMapVoteTime( GetEndOfMatchTime(), true);
+
+	WorldInfo.TWPushLogs();
 }
 
 function float GetEndOfMatchTime()
@@ -1521,7 +1562,7 @@ DefaultProperties
 	bCanPerkAlwaysChange=false
 	MaxGameDifficulty=3
 
-	//ObjectiveSpawnDelay=5
+	ObjectiveSpawnDelay=5
 
 	SpawnManagerClasses(0)=class'KFGame.KFAISpawnManager_Short'
 	SpawnManagerClasses(1)=class'KFGame.KFAISpawnManager_Normal'

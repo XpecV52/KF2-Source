@@ -163,11 +163,26 @@ package tripwire.containers.objectiveStart
         
         public function set localizedText(param1:Object) : void
         {
-            this.titleTextfield.text = !!param1.title ? param1.title : "";
-            this.descTextfield.text = !!param1.description ? param1.description : "";
-            this.rewardTextfield.text = !!param1.reward ? param1.reward : "";
-            this.grantedTextfield.text = !!param1.granted ? param1.granted : "";
-            this.chanceOfDropTextfield.text = !!param1.chanceOfDrop ? param1.chanceOfDrop : "";
+            if(this.titleTextfield)
+            {
+                this.titleTextfield.text = !!param1.title ? param1.title : "";
+            }
+            if(this.descTextfield)
+            {
+                this.descTextfield.text = !!param1.description ? param1.description : "";
+            }
+            if(this.rewardTextfield)
+            {
+                this.rewardTextfield.text = !!param1.reward ? param1.reward : "";
+            }
+            if(this.grantedTextfield)
+            {
+                this.grantedTextfield.text = !!param1.granted ? param1.granted : "";
+            }
+            if(this.chanceOfDropTextfield)
+            {
+                this.chanceOfDropTextfield.text = !!param1.chanceOfDrop ? param1.chanceOfDrop : "";
+            }
         }
         
         public function initLists() : void
@@ -248,11 +263,9 @@ package tripwire.containers.objectiveStart
                     }
                     else
                     {
-                        this.objectiveList[_loc2_].data = null;
-                        if(this.vaultRewardTextfields[_loc2_])
-                        {
-                            this.vaultRewardTextfields[_loc2_].text = "";
-                        }
+                        this.objectiveList[_loc2_].visible = false;
+                        this.vaultRewardBGs[_loc2_].visible = false;
+                        this.vaultRewardTextfields[_loc2_].visible = false;
                     }
                     _loc2_++;
                 }

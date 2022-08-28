@@ -75,11 +75,11 @@ function ConfirmLeaveParty()
 	local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(GetPC());
-	
+
 	if(OnlineLobby != none)
-	{       
+	{
 		OnlineLobby.QuitLobby();
-		
+
         if ( KFPC != none && KFPC.MyGFxManager != none )
         {
         	if(KFPC.MyGFxManager.MenuBarWidget != none)
@@ -131,7 +131,7 @@ function Callback_ControllerCloseMenu()
 				{
 					Manager.CloseMenus();
 				}
-				else if ( Manager.bAfterLobby && ( Manager.CurrentMenu != None && Manager.PostGameMenu != None && Manager.CurrentMenu != Manager.PostGameMenu) ) 
+				else if ( Manager.bAfterLobby && ( Manager.CurrentMenu != None && Manager.PostGameMenu != None && Manager.CurrentMenu != Manager.PostGameMenu) )
 				{
 					// Allow for backing out of the pause screen into the AAR.
 					Manager.ToggleMenus();
@@ -305,8 +305,26 @@ function Callback_ProfileOption(string OptionKey, int SlotIndex)
 
 function Callback_CreateParty()
 {
+	local OnlineSubsystem OnlineSub;
+
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+
 	if( OnlineLobby != none && (Manager.GetMultiplayerMenuActive() || Class'WorldInfo'.Static.IsConsoleBuild()) )
 	{
+		if (OnlineSub != none && !OnlineSub.IsGameOwned() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+		{
+			if (OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+			{
+				Manager.HandleFreeTrialError(FTN_BuyGame);
+				return;
+			}
+
+			if (!OnlineSub.CanCheckFreeTrialState())
+			{
+				Manager.HandleFreeTrialError(FTN_NetworkCheckFailed);
+				return;
+			}
+		}
 		OnlineLobby.MakeLobby( 6, LV_Private);	// returns false if we're already in a lobby
 		OnlineLobby.ShowLobbyInviteInterface(Class'WorldInfo'.Static.IsConsoleBuild() ? Localize("Notifications", "InviteMessage", "KFGameConsole") : "");
 	}
@@ -330,8 +348,18 @@ function Callback_OpenPlayerList(int SlotIndex)
 
 function Callback_InviteFriend()
 {
+	local OnlineSubsystem OnlineSub;
+
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+
 	if ( Class'WorldInfo'.Static.IsConsoleBuild() )
 	{
+
+		if (OnlineSub != none && !OnlineSub.IsGameOwned() && !OnlineSub.IsFreeTrialPeriodActive() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+		{
+			class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialOverPopUp();
+			return;
+		}
 		// We have main menu parties and in game sessions, be sure to show the right interface when we want to invite someone
 		if(class'WorldInfo'.static.IsMenuLevel())
 		{
@@ -339,13 +367,14 @@ function Callback_InviteFriend()
 		}
 		else
 		{
-			class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.ShowInviteUI(Manager.GetLP().ControllerId, "");
+
+			OnlineSub.PlayerInterfaceEx.ShowInviteUI(Manager.GetLP().ControllerId, "");
 		}
 	}
 	else if ( OnlineLobby != none )
 	{
 		OnlineLobby.ShowLobbyInviteInterface("");
-	}	
+	}
 }
 
 /** Plays the view's open animation. */
@@ -365,7 +394,7 @@ function Callback_BroadcastChatMessage(string Message)
 	local string ChatMessage;
 
 	PRI = GetPC().PlayerReplicationInfo;
-	
+
     if(Message != "")
     {
     	if(class'WorldInfo'.static.IsMenuLevel())
@@ -381,12 +410,12 @@ function Callback_BroadcastChatMessage(string Message)
     		//game has started
     		if(Manager.bAfterLobby)
     		{
-    			GetPC().TeamSay(Message);	
+    			GetPC().TeamSay(Message);
     		}
 	    	else
 	    	{
-	    		GetPC().Say(Message);	
-	    	} 
+	    		GetPC().Say(Message);
+	    	}
     	}
     }
 }

@@ -627,7 +627,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
 		{
 			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-			if ( CosmeticMeshIdx != 255&& CosmeticMeshIdx != INDEX_NONE)
+			if ( CosmeticMeshIdx != -1&& CosmeticMeshIdx != INDEX_NONE)
 			{
 					bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
 
@@ -1019,8 +1019,8 @@ protected simulated function SetAttachmentSkinMaterial(
 
 /** Called on owning client to change a cosmetic attachment or on other clients via replication */
 private function SetAttachmentMeshAndSkin(
-	byte CurrentAttachmentMeshIndex,
-	byte CurrentAttachmentSkinIndex,
+	int CurrentAttachmentMeshIndex,
+	int CurrentAttachmentSkinIndex,
 	KFPawn KFP,
 	optional KFPlayerReplicationInfo KFPRI,
 	optional bool bIsFirstPerson )
@@ -1087,7 +1087,7 @@ private function SetAttachmentMeshAndSkin(
 	}
 
 	// Treat `CLEARED_ATTACHMENT_INDEX as special value (for client detachment)
-	if( CurrentAttachmentMeshIndex == 255)
+	if( CurrentAttachmentMeshIndex == -1)
 	{
 		RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
 	}
@@ -1097,13 +1097,13 @@ private function SetAttachmentMeshAndSkin(
  * Removes any attachments that exist in the same socket or have overriding cases
  * Network: Local Player
  */
-function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
+function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
 	local name NewAttachmentSocketName;
 	local int i, CurrentAttachmentIdx;
 
 	if ( CosmeticVariants.length > 0 &&
-		 NewAttachmentMeshIndex < CosmeticVariants.length )
+		 NewAttachmentMeshIndex < CosmeticVariants.length && NewAttachmentMeshIndex != INDEX_NONE)
 	{
 		// The socket that this attachment requires
 		NewAttachmentSocketName = CosmeticVariants[NewAttachmentMeshIndex].AttachmentItem.SocketName;
@@ -1111,7 +1111,7 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
 		for( i=0; i < 3; i++ )
 		{
 			CurrentAttachmentIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[i];
-			if ( CurrentAttachmentIdx == 255)
+			if ( CurrentAttachmentIdx == -1)
 				continue;
 
 			// Remove the object if it is taking up our desired slot
@@ -1131,7 +1131,7 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
 
 			// Check inverse override
 			if( GetOverrideCase(NewAttachmentMeshIndex, CurrentAttachmentIdx) )
-	{
+			{
 				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
 				continue;
 			}
@@ -1143,9 +1143,14 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
  * Removes any attachments that exist in the same socket or have overriding cases
  * Network: Local Player
  */
-function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
+function bool GetOverrideCase(int AttachmentIndex1, int AttachmentIndex2)
 {
 	local KFCharacterAttachment Attachment1;
+
+	if (AttachmentIndex1 == INDEX_NONE || AttachmentIndex2 == INDEX_NONE)
+	{
+		return false;
+	}
 
 	//dont try to access out of bound elements
 	if (AttachmentIndex1 >= CosmeticVariants.Length || AttachmentIndex2 >= CosmeticVariants.Length)
@@ -1192,7 +1197,7 @@ function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 	attachment (to be replaced)
  */
 function int GetAttachmentSlotIndex(
-	byte CurrentAttachmentMeshIndex,
+	int CurrentAttachmentMeshIndex,
 	KFPawn KFP)
 {
 	local int AttachmentIdx;
@@ -1204,6 +1209,7 @@ function int GetAttachmentSlotIndex(
 			return AttachmentIdx;
 		}
 	}
+	return INDEX_NONE;
 }
 
 /** Called on owning client directly to remove a cosmetic attachment, or by
@@ -1278,7 +1284,7 @@ simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerRepl
 	for (AttachmentIdx = 0; AttachmentIdx < 3; AttachmentIdx++)
 	{
 		CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-		if (CosmeticMeshIdx != 255&& CosmeticMeshIdx != INDEX_NONE)
+		if (CosmeticMeshIdx != -1&& CosmeticMeshIdx != INDEX_NONE)
 		{
 			LogInternal("Attach 1p mesh" @ CosmeticMeshIdx);
 

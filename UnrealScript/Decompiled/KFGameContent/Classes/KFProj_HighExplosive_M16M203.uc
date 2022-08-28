@@ -19,7 +19,7 @@ defaultproperties
     TerminalVelocity=4000
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'Wep_M16_M203_ARCH.M16_M203_Grenade_Explosion'
-        Damage=225
+        Damage=230
         DamageFalloffExponent=3
         MyDamageType=Class'KFDT_Explosive_M16M203'
         KnockDownStrength=0

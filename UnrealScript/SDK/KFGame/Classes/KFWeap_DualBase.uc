@@ -374,8 +374,8 @@ simulated function bool ShouldPlayFireLast(byte FireModeNum)
     return false;
 }
 
-/** Get name of the animation to play for PlayFireEffects 
-  * 
+/** Get name of the animation to play for PlayFireEffects
+  *
   * Overridden to allow for left weapon anims
   */
 simulated function name GetWeaponFireAnim(byte FireModeNum)
@@ -495,7 +495,7 @@ simulated event vector GetLeftMuzzleLoc()
 /**
  * Causes the muzzle flash to turn on and setup a time to
  * turn it back off again.
- * 
+ *
  * Overridden to cause left weapon flash
  */
 simulated function CauseMuzzleFlash(byte FireModeNum)
@@ -559,7 +559,7 @@ simulated event SetFOV( float NewFOV )
 simulated function StopFireEffects(byte FireModeNum)
 {
 	super.StopFireEffects( FireModeNum );
-	
+
 	if (LeftMuzzleFlash != None)
 	{
         LeftMuzzleFlash.StopMuzzleFlash();
@@ -582,7 +582,7 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 	local vector X,Y,Z;
 
 	super.SetupDroppedPickup( P, StartVelocity );
-	
+
 	if( Instigator != None && Instigator.InvManager != None )
 	{
 		KFIM = KFInventoryManager( Instigator.InvManager );
@@ -592,6 +592,7 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 		KFIM.bInfiniteWeight = false;
 		KFIM.bSuppressPickupMessages = false;
 	}
+
 	if( NewSingle != none )
 	{
 		// divide ammo between make sure we don't lose a round due to truncation.
@@ -604,6 +605,13 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 		// tell client about our modification
 		NewSingle.ClientForceAmmoUpdate(NewSingle.AmmoCount[0],NewSingle.SpareAmmoCount[0]);
 		NewSingle.ClientForceSecondaryAmmoUpdate(NewSingle.AmmoCount[1]);
+
+		NewSingle.SetWeaponUpgradeLevel(CurrentWeaponUpgradeIndex);
+		if(CurrentWeaponUpgradeIndex > 0)
+		{
+			KFInventoryManager(InvManager).AddCurrentCarryBlocks(NewSingle.static.GetUpgradeWeight(CurrentWeaponUpgradeIndex));
+			KFPawn(Instigator).NotifyInventoryWeightChanged();
+		}
 
 		// Drop second gun on death
 		if( Instigator.bPlayedDeath || Instigator.Health <= 0 )
@@ -639,7 +647,7 @@ simulated function PerformReload(optional byte FireModeNum)
 	CylinderRotInfo_L.NextDegrees = 0;
 }
 
-/** Locks the bolt bone in place to the open position (Called by animnotify) 
+/** Locks the bolt bone in place to the open position (Called by animnotify)
   * Completely overrides super to pick which bolt to lock back
   */
 simulated function ANIMNOTIFY_LockBolt()
@@ -784,20 +792,38 @@ simulated function RepositionUsedBullets( int FirstIndex, int UsedStartIdx, int 
 {
 	local int i;
 
-	// after cylinder reset, top-most bullet will be unused
-	BulletMeshComponents[FirstIndex].SetSkeletalMesh( UnusedBulletMeshTemplate );
+	if (BulletMeshComponents.length == 0)
+	{
+		return;
+	}
+
+	if(FirstIndex >= 0 && FirstIndex < BulletMeshComponents.length)
+	{
+		// after cylinder reset, top-most bullet will be unused
+		BulletMeshComponents[FirstIndex].SetSkeletalMesh( UnusedBulletMeshTemplate );
+	}
+	else
+	{
+		`warn(self @ "-" @ GetFuncName() @ "- First Index is out of bounds - FirstIndex:" @ FirstIndex @ "BulletMeshComponents.Length:" @ BulletMeshComponents.length);
+	}
 
 	// set used bullets to used mesh
 	for( i = UsedStartIdx; i > UsedEndIdx; i-=2 )
 	{
-		BulletMeshComponents[i].SetSkeletalMesh( UsedBulletMeshTemplate );
+		if(i >= 0 && i < BulletMeshComponents.length)
+		{
+			BulletMeshComponents[i].SetSkeletalMesh( UsedBulletMeshTemplate );
+		}
 	}
 
 	// set the rest of the bullets to unused
 	for( i = UsedEndIdx; i > FirstIndex; i-=2 )
+	{
+		if (i >= 0 && i < BulletMeshComponents.length)
 		{
-		BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
+			BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
 		}
+	}
 }
 
 /** Sets all bullet casing meshes back to unused state */
@@ -851,7 +877,7 @@ native simulated function AddAmmoToSingleOnSell( KFInventoryManager KFIM, int De
 ********************************************************************************************* */
 /**
  * @brief Checks if weapon should be auto-reloaded - overwritten to allow gunslinger insta switch
- * 
+ *
  * @param FireModeNum Current fire mode
  * @return auto reload or not
  */
@@ -874,7 +900,7 @@ simulated function AltFireMode()
  */
 simulated function StartFire(byte FireModeNum)
 {
-	// These weapons only have a mode toggle, so if we have alt-fire 
+	// These weapons only have a mode toggle, so if we have alt-fire
 	// bound (e.g. gamepad, custom bindings) then perform the  toggle
 	if( FireModeNum == ALTFIRE_FIREMODE )
 	{

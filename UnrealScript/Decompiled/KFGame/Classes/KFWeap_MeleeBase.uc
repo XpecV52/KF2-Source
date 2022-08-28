@@ -192,7 +192,7 @@ simulated function int GetMeleeDamage(byte FireModeNum, optional Vector RayDir)
     local int Damage;
     local KFPerk InstigatorPerk;
 
-    Damage = int(InstantHitDamage[FireModeNum]);
+    Damage = GetModifiedDamage(FireModeNum, RayDir);
     if(!IsZero(RayDir))
     {
         Damage *= FMin(VSize(RayDir), 1);
@@ -905,6 +905,10 @@ simulated state MeleeBlocking
         local KFPerk InstigatorPerk;
         local byte BlockTypeIndex;
 
+        if(Instigator.IsSameTeam(DamageCauser.Instigator))
+        {
+            return;
+        }
         Dir2d = Normal2D(DamageCauser.Location - Instigator.Location);
         FacingDot = vector(Instigator.Rotation) Dot Dir2d;
         if((FacingDot > 0.087) && CanBlockDamageType(DamageType, BlockTypeIndex))
@@ -1047,6 +1051,7 @@ defaultproperties
     BlockParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Block_melee_01'
     ParryParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Parry_melee_01'
     BlockEffectsSocketName=BlockEffect
+    bTargetAdhesionEnabled=false
     FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
     FireModeIconPaths(1)=none
     FireModeIconPaths(2)=none
@@ -1054,7 +1059,6 @@ defaultproperties
     FireModeIconPaths(4)=none
     FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
     InventoryGroup=EInventoryGroup.IG_Melee
-    bTargetAdhesionEnabled=false
     AmmoCost(0)=0
     AmmoCost(1)=0
     AmmoCost(2)=0

@@ -149,6 +149,7 @@ var private bool bIsClotClass;
 var private bool bIsBloatClass;
 var bool bMatchEnemySpeed;
 var bool bRestoreCollisionOnLand;
+var bool bPlayingSprintLoop;
 var transient bool bPlayedExplosionEffect;
 var bool bCouldTurnIntoShrapnel;
 var bool bDisableHeadless;
@@ -160,7 +161,7 @@ var bool bReducedZedOnZedPinchPointCollisionStateActive;
 var protected bool bOnDeathAchivementbDisabled;
 var const string MonsterArchPath;
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
-var const class<KFPawn_Monster> ElitePawnClass;
+var const array< class<KFPawn_Monster> > ElitePawnClass;
 /** Custom third person camera offsets */
 var() ViewOffsetData ThirdPersonViewOffset;
 var int RandomColorIdx;
@@ -185,6 +186,9 @@ var repnotify byte RepBleedInflateMatParam;
  *  if there are other zeds in the spawn squad that are larger).
  */
 var() KFSpawnVolume.ESquadType MinSpawnSquadSizeType;
+var repnotify byte RepArmorPct[3];
+var repnotify byte ArmorZoneStatus;
+var byte PreviousArmorZoneStatus;
 /** Object that manages melee attacks, and stores default damage */
 var(Weapon) export editinline KFMeleeHelperAI MeleeAttackHelper;
 var private const int DoshValue;
@@ -242,6 +246,10 @@ var CameraShake FootstepCameraShake;
 var float DesiredAdjustedGroundSpeed;
 var float DesiredAdjustedSprintSpeed;
 var float SpeedAdjustTransitionRate;
+var export editinline AkComponent SprintAkComponent;
+var AkEvent StartSprintingSound;
+var AkEvent SprintLoopingSound;
+var AkEvent StopSprintingSound;
 var transient array<AttachedGoreChunkInfo> AttachedGoreChunks;
 var transient int NumHeadChunksRemoved;
 var transient array<name> BrokenHeadBones;
@@ -252,6 +260,9 @@ var float DefaultCollisionRadius;
 var KFTrigger_ChokePoint CurrentChokePointTrigger;
 var const float CollisionRadiusForReducedZedOnZedPinchPointCollisionState;
 var protected const int OnDeathAchievementID;
+var class<KFZedArmorInfo> ArmorInfoClass;
+var KFZedArmorInfo ArmorInfo;
+var const int OverrideArmorFXIndex;
 var delegate<GoreChunkAttachmentCriteria> __GoreChunkAttachmentCriteria__Delegate;
 var delegate<GoreChunkDetachmentCriteria> __GoreChunkDetachmentCriteria__Delegate;
 
@@ -271,6 +282,9 @@ replication
 
      if(bNetDirty && bCanRage)
         bIsEnraged;
+
+     if(Role == ROLE_Authority)
+        ArmorZoneStatus, RepArmorPct;
 }
 
 simulated delegate bool GoreChunkAttachmentCriteria();
@@ -317,6 +331,18 @@ simulated event ReplicatedEvent(name VarName)
         case 'RepDamageInflateParam':
             HandleDamageInflation();
             break;
+        case 'RepArmorPct':
+            if(ArmorInfo != none)
+            {
+                ArmorInfo.UpdateArmorPieces();
+            }
+            break;
+        case 'ArmorZoneStatus':
+            if(ArmorInfo != none)
+            {
+                ArmorInfo.UpdateArmorPieces();
+            }
+            break;
         default:
             break;
     }
@@ -335,6 +361,13 @@ static simulated function float GetXPValue(byte Difficulty)
 
 static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
+    local WorldInfo WI;
+
+    WI = Class'WorldInfo'.static.GetWorldInfo();
+    if(((default.ElitePawnClass.Length > 0) && default.DifficultySettings != none) && FRand() < default.DifficultySettings.static.GetSpecialSpawnChance(KFGameReplicationInfo(WI.GRI)))
+    {
+        return default.ElitePawnClass[Rand(default.ElitePawnClass.Length)];
+    }
     return default.Class;
 }
 
@@ -367,6 +400,10 @@ simulated event PreBeginPlay()
     }
     NormalGroundSpeed = default.GroundSpeed;
     NormalSprintSpeed = default.SprintSpeed;
+    if(ArmorInfoClass != none)
+    {
+        ArmorInfo = new (self) ArmorInfoClass;
+    }
 }
 
 simulated event CheckShouldAlwaysBeRelevant()
@@ -390,6 +427,13 @@ simulated event PostBeginPlay()
     {
         SetRallySettings(DifficultySettings.static.GetRallySettings(self, KFGRI));
         SetZedTimeSpeedScale(DifficultySettings.static.GetZedTimeSpeedScale(self, KFGRI));
+    }
+    if((WorldInfo.NetMode != NM_Client) && IsABoss())
+    {
+        if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+        {
+            WorldInfo.TWLogEvent("boss_spawn", none, string(Class.Name));
+        }
     }
 }
 
@@ -472,6 +516,10 @@ function PossessedBy(Controller C, bool bVehicleTransition)
             MyKFAIC.EvadeOnDamageSettings = DifficultySettings.static.GetEvadeOnDamageSettings(self, KFGRI);
         }
     }
+    if(ArmorInfo != none)
+    {
+        ArmorInfo.InitArmor();
+    }
     SetSwitch('Player_Zed', ((IsHumanControlled()) ? 'Player' : 'NotPlayer'));
 }
 
@@ -520,7 +568,13 @@ function ApplySpecialZoneHealthMod(float HealthMod)
     HitZones[0].MaxGoreHealth = HitZones[0].GoreHealth;
 }
 
-function SetShieldScale(float InScale);
+function SetShieldScale(float InScale)
+{
+    if(ArmorInfo != none)
+    {
+        ArmorInfo.SetShieldScale(InScale);
+    }
+}
 
 function bool CanTakeOver()
 {
@@ -535,6 +589,44 @@ function bool CanTakeOver()
         return false;        
     }    
     return true;
+}
+
+simulated event Tick(float DeltaTime)
+{
+    super.Tick(DeltaTime);
+    if((WorldInfo.NetMode != NM_DedicatedServer) && IsAliveAndWell())
+    {
+        if(bIsSprinting && VSizeSq(Velocity) > 40000)
+        {
+            if(!bPlayingSprintLoop)
+            {
+                if((StartSprintingSound != none) && !SprintAkComponent.IsPlaying(StartSprintingSound))
+                {
+                    SprintAkComponent.PlayEvent(StartSprintingSound, true, true);
+                }
+            }
+            if((SprintLoopingSound != none) && !SprintAkComponent.IsPlaying(SprintLoopingSound))
+            {
+                SprintAkComponent.PlayEvent(SprintLoopingSound, true, true);
+                bPlayingSprintLoop = true;
+            }            
+        }
+        else
+        {
+            if(bPlayingSprintLoop && !bIsSprinting || VSizeSq(Velocity) <= 40000)
+            {
+                if((SprintLoopingSound != none) && SprintAkComponent.IsPlaying(SprintLoopingSound))
+                {
+                    SprintAkComponent.StopEvents();
+                    bPlayingSprintLoop = false;
+                }
+                if((StopSprintingSound != none) && !SprintAkComponent.IsPlaying(StopSprintingSound))
+                {
+                    SprintAkComponent.PlayEvent(StopSprintingSound, true, true);
+                }
+            }
+        }
+    }
 }
 
 // Export UKFPawn_Monster::execGetCharacterMonsterInfo(FFrame&, void* const)
@@ -1360,6 +1452,21 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     {
         InDamage = Max(InDamage, 1);
     }
+    if(ArmorInfo != none)
+    {
+        if(HitInfo.BoneName != 'None')
+        {
+            ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);            
+        }
+        else
+        {
+            ArmorInfo.AdjustNonBoneDamage(InDamage);
+        }
+        if(bLogTakeDamage)
+        {
+            LogInternal(((((((((string(self) @ string(GetFuncName())) @ " After armor adjustment Damage=") $ string(InDamage)) @ "Momentum=") $ string(Momentum)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
+        }
+    }
     if(bLogTakeDamage)
     {
         LogInternal((string(self) @ "Adjusted Monster Damage=") $ string(InDamage));
@@ -1384,7 +1491,7 @@ function float GetDamageTypeModifier(class<DamageType> DT)
         {
             if((WorldInfo.Game != none) && DamageTypeModifiers[I].DamageScale.Length > 1)
             {
-                DifficultyIdx = Min(int(WorldInfo.Game.GameDifficulty), DamageTypeModifiers[I].DamageScale.Length);
+                DifficultyIdx = Min(WorldInfo.Game.GetModifiedGameDifficulty(), DamageTypeModifiers[I].DamageScale.Length);
                 DamageModifier = DamageTypeModifiers[I].DamageScale[DifficultyIdx];                
             }
             else
@@ -3246,7 +3353,7 @@ simulated function GetOverheadDebugText(KFHUDBase HUD, out array<string> Overhea
     KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI != none)
     {
-        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
+        KFGI.DifficultyInfo.GetAIHealthModifier(self, float(KFGI.GetModifiedGameDifficulty()), byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
         if(bShowAllVerbose || HUD.ShouldDisplayDebug('ZedHealthVerbose'))
         {
             DebugText = ((((((((((((((" Health: " $ string(Health)) $ " HeadHealth: ") $ string(HitZones[0].GoreHealth)) $ "
@@ -3388,6 +3495,14 @@ static function string GetSeasonalLocalizationSuffix()
     return "";
 }
 
+function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
+{
+    if(ArmorInfo != none)
+    {
+        ArmorInfo.ExplodeArmor(ArmorZoneIdx, ArmorZoneName);
+    }
+}
+
 // Export UKFPawn_Monster::execShouldGrandOnDeathAchievement(FFrame&, void* const)
 protected native function bool ShouldGrandOnDeathAchievement();
 
@@ -3461,6 +3576,7 @@ state Dying
 defaultproperties
 {
     bCanMeleeAttack=true
+    bKnockdownWhenJumpedOn=true
     bDebug_UseIconForShowingSprintingOverheadInfo=true
     RandomColorIdx=-1
     DifficultyDamageMod=1
@@ -3509,6 +3625,14 @@ defaultproperties
     BumpFrequency=0.5
     BumpDamageType=Class'KFDT_NPCBump'
     SpeedAdjustTransitionRate=200
+    begin object name=SprintAkComponent0 class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.2
+    object end
+    // Reference: AkComponent'Default__KFPawn_Monster.SprintAkComponent0'
+    SprintAkComponent=SprintAkComponent0
     CollisionRadiusForReducedZedOnZedPinchPointCollisionState=1
     OnDeathAchievementID=-1
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -3592,7 +3716,9 @@ defaultproperties
         SpecialMoveClasses(32)=none
         SpecialMoveClasses(33)=none
         SpecialMoveClasses(34)=none
-        SpecialMoveClasses(35)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(35)=none
+        SpecialMoveClasses(36)=none
+        SpecialMoveClasses(37)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Monster.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler
@@ -3651,6 +3777,14 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_Monster.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_Monster.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_Monster.DialogAkSoundComponent'
+    begin object name=SprintAkComponent0 class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.2
+    object end
+    // Reference: AkComponent'Default__KFPawn_Monster.SprintAkComponent0'
+    Components(8)=SprintAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

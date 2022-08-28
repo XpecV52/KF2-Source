@@ -27,15 +27,19 @@ struct SWhatsNew
 var KFGFxMenu_StartGame StartMenu;
 var array<SWhatsNew> WhatsNewItems;
 var private const config array<config SWhatsNew> PS4WhatsNewItems;
+var private const config array<config SWhatsNew> PS4WhatsNewItemsFreeTrial;
 var array<SWhatsNew> PS4ActiveWhatsNewItems;
 var const localized string MultiplayerString;
 var const localized string SoloString;
 var const localized string TutorialString;
+var bool bTrialNewsActive;
+var OnlineSubsystem OnlineSub;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     LocalizeMenu();
     SetWhatsNewItems();
     if(Class'KFGameEngine'.static.IsSoloPlayDisabled())
@@ -55,52 +59,83 @@ function DisableSoloButton()
     }
 }
 
+function CheckNewsState()
+{
+    if(Class'WorldInfo'.static.IsConsoleBuild(8) && OnlineSub != none)
+    {
+        if(OnlineSub.IsGameOwned() && bTrialNewsActive)
+        {
+            SetWhatsNewItems();
+        }
+    }
+}
+
 function SetWhatsNewItems()
 {
     local GFxObject DataObject, DataArray, WhatsNewButton;
     local int I;
-    local OnlineSubsystem OSS;
     local bool bLoggedIn;
 
     WhatsNewButton = GetObject("whatsNewButton");
     DataArray = Outer.CreateArray();
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        OSS = Class'GameEngine'.static.GetOnlineSubsystem();
-        bLoggedIn = OSS.PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) == 2;
+        bLoggedIn = OnlineSub.PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) == 2;
         PS4ActiveWhatsNewItems.Length = 0;
-        WhatsNewButton.SetVisible(bLoggedIn);
-        I = 0;
-        J0x158:
-
-        if(I < PS4WhatsNewItems.Length)
+        WhatsNewButton.SetVisible(bLoggedIn && OnlineSub.CanCheckFreeTrialState());
+        if(Class'WorldInfo'.static.IsConsoleBuild(8) && !OnlineSub.IsGameOwned())
         {
-            if(Class'KFGameEngine'.static.GetSeasonalEventID() == 0)
-            {
-                if(PS4WhatsNewItems[I].TextField == "FeaturedEventItem")
-                {
-                    goto J0x3AB;
-                }
-            }
-            if(bLoggedIn || PS4WhatsNewItems[I].PSNProductId == "")
+            bTrialNewsActive = true;
+            I = 0;
+            J0x1A9:
+
+            if(I < PS4WhatsNewItemsFreeTrial.Length)
             {
                 DataObject = Outer.CreateObject("Object");
-                DataObject.SetString("label", Localize("WhatsNewMessages", PS4WhatsNewItems[I].TextField, "KFGame"));
-                DataObject.SetString("imageURL", PS4WhatsNewItems[I].ImageURL);
-                DataObject.SetString("redirectURL", PS4WhatsNewItems[I].RedirectURL);
+                DataObject.SetString("label", Localize("WhatsNewMessages", PS4WhatsNewItemsFreeTrial[I].TextField, "KFGame"));
+                DataObject.SetString("imageURL", PS4WhatsNewItemsFreeTrial[I].ImageURL);
+                DataObject.SetString("redirectURL", "OpenStore");
                 DataArray.SetElementObject(PS4ActiveWhatsNewItems.Length, DataObject);
-                PS4ActiveWhatsNewItems.AddItem(PS4WhatsNewItems[I];
-            }
-            J0x3AB:
+                PS4ActiveWhatsNewItems.AddItem(PS4WhatsNewItemsFreeTrial[I];
+                ++ I;
+                goto J0x1A9;
+            }            
+        }
+        else
+        {
+            bTrialNewsActive = false;
+            I = 0;
+            J0x367:
 
-            ++ I;
-            goto J0x158;
+            if(I < PS4WhatsNewItems.Length)
+            {
+                if(Class'KFGameEngine'.static.GetSeasonalEventID() == 0)
+                {
+                    if(PS4WhatsNewItems[I].TextField == "FeaturedEventItem")
+                    {
+                        goto J0x5BA;
+                    }
+                }
+                if(bLoggedIn || PS4WhatsNewItems[I].PSNProductId == "")
+                {
+                    DataObject = Outer.CreateObject("Object");
+                    DataObject.SetString("label", Localize("WhatsNewMessages", PS4WhatsNewItems[I].TextField, "KFGame"));
+                    DataObject.SetString("imageURL", PS4WhatsNewItems[I].ImageURL);
+                    DataObject.SetString("redirectURL", PS4WhatsNewItems[I].RedirectURL);
+                    DataArray.SetElementObject(PS4ActiveWhatsNewItems.Length, DataObject);
+                    PS4ActiveWhatsNewItems.AddItem(PS4WhatsNewItems[I];
+                }
+                J0x5BA:
+
+                ++ I;
+                goto J0x367;
+            }
         }        
     }
     else
     {
         I = 0;
-        J0x3C7:
+        J0x5D6:
 
         if(I < WhatsNewItems.Length)
         {
@@ -110,7 +145,7 @@ function SetWhatsNewItems()
             DataObject.SetString("redirectURL", WhatsNewItems[I].RedirectURL);
             DataArray.SetElementObject(I, DataObject);
             ++ I;
-            goto J0x3C7;
+            goto J0x5D6;
         }
     }
     SetObject("whatsNew", DataArray);
@@ -123,6 +158,7 @@ function LocalizeMenu()
     TextObject = Outer.CreateObject("Object");
     TextObject.SetString("home", StartMenu.FindGameString);
     TextObject.SetString("multiplayer", MultiplayerString);
+    TextObject.SetString("news", StartMenu.NewsPageString);
     TextObject.SetString("serverBrowser", StartMenu.ServerBrowserString);
     TextObject.SetString("solo", SoloString);
     TextObject.SetString("tutorial", TutorialString);
@@ -131,11 +167,11 @@ function LocalizeMenu()
 
 defaultproperties
 {
-    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_Event",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/",PSNProductId="")
-    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5803",PSNProductId="")
-    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_DARAssault",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/5787",PSNProductId="")
-    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_USBKey_WepCollection_01",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/5988",PSNProductId="")
-    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_DARCrate",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/5874",PSNProductId="")
+    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_Event",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/",PSNProductId="")
+    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/4928",PSNProductId="")
+    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_MrsFosterBundle",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/6185",PSNProductId="")
+    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_USBKey_Bluefire",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/6199",PSNProductId="")
+    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_USBKey_Neon",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/6197",PSNProductId="")
     WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
     WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
     WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")

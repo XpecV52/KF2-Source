@@ -22,6 +22,7 @@ enum EPartyNotificationStatus
     PNS_NonExistent,
     PNS_Creating,
     PNS_Created,
+    PNS_Complete,
     PNS_Dissolving,
     PNS_Dissolved,
     PNS_MAX
@@ -148,6 +149,14 @@ enum EOnlineCreateGameSessionFlag
     OCGSF_New,
     OCGSF_ReSubmit,
     OCGSF_MAX
+};
+
+enum EFreeTrialNotification
+{
+    FTN_FeatureUnavailable,
+    FTN_NetworkCheckFailed,
+    FTN_BuyGame,
+    FTN_MAX
 };
 
 enum EOnlineContentType
@@ -1246,6 +1255,15 @@ native function OpenURL(string WebsiteLink);
 
 // Export UOnlineSubsystem::execOpenGameStorePage(FFrame&, void* const)
 native function OpenGameStorePage();
+
+// Export UOnlineSubsystem::execIsGameOwned(FFrame&, void* const)
+native function bool IsGameOwned();
+
+// Export UOnlineSubsystem::execIsFreeTrialPeriodActive(FFrame&, void* const)
+native function bool IsFreeTrialPeriodActive();
+
+// Export UOnlineSubsystem::execCanCheckFreeTrialState(FFrame&, void* const)
+native function bool CanCheckFreeTrialState();
 
 // Export UOnlineSubsystem::execIsExchangeable(FFrame&, void* const)
 native function int IsExchangeable(int SourceSKU, out array<ExchangeRuleSets> Ret);

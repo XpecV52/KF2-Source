@@ -274,16 +274,13 @@ defaultproperties
 	DOF_FG_FocalRadius=150
 	DOF_FG_MaxNearBlurSize=1
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig'
-		AnimSets(0)=AnimSet'wep_1p_CryoGun_anim.Wep_1stP_CryoGun_anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_CryoGun_MESH.Wep_CryoGun_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_CryoGun_ARCH.Wep_CryoGun_3P'
+	// Content
+	PackageKey="CryoGun"
+	FirstPersonMeshName="WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_CryoGun_anim.Wep_1stP_CryoGun_anim"
+	PickupMeshName="WEP_3P_CryoGun_MESH.Wep_CryoGun_Pickup"
+	AttachmentArchetypeName="WEP_CryoGun_ARCH.Wep_CryoGun_3P"
+	MuzzleFlashTemplateName="WEP_CryoGun_ARCH.Wep_CryoGun_MuzzleFlash"
 
    	// Zooming/Position
 	PlayerViewOffset=(X=6.0,Y=15,Z=-5)
@@ -321,7 +318,7 @@ defaultproperties
 	AltFireRecoilScale=4.0f
 
     // Inventory
-	InventorySize=8
+	InventorySize=7
 	GroupPriority=75
 	WeaponSelectTexture=Texture2D'wep_ui_cryogun_tex.UI_WeaponSelect_Cryogun'
 
@@ -358,7 +355,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=28
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_CryoGun_ARCH.Wep_CryoGun_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_3P_Start', FirstPersonCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_1P_Start')
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_3P_Stop', FirstPersonCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_1P_Stop')
     WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_3P_Alt_Fire', FirstPersonCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_1P_Alt_Fire')
@@ -383,4 +379,8 @@ defaultproperties
    	AssociatedPerkClasses(0)=class'KFPerk_Survivalist'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2)
 }

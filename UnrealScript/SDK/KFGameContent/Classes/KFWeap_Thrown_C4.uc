@@ -420,21 +420,21 @@ static simulated event EFilterTypeUI GetTraderFilter()
 
 defaultproperties
 {
+	// start in detonate mode so that an attempt to detonate before any charges are thrown results in
+	// the proper third-person anim
+	CurrentFireMode=DETONATE_FIREMODE
+
 	// Zooming/Position
 	PlayerViewOffset=(X=6.0,Y=2,Z=-4)
 	FireOffset=(X=25,Y=15)
 	UpdateInterval=0.25f
-	// Mesh
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'Wep_1P_C4_MESH.Wep_1stP_C4_Rig'
-		AnimSets(0)=AnimSet'Wep_1P_C4_ANIM.Wep_1P_C4_ANIM'
-	End Object
 
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_C4_MESH.Wep_C4_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_C4_ARCH.Wep_C4_3P'
+	// Content
+	PackageKey="C4"
+	FirstPersonMeshName="Wep_1P_C4_MESH.Wep_1stP_C4_Rig"
+	FirstPersonAnimSetNames(0)="Wep_1P_C4_ANIM.Wep_1P_C4_ANIM"
+	PickupMeshName="WEP_3P_C4_MESH.Wep_C4_Pickup"
+	AttachmentArchetypeName="WEP_C4_ARCH.Wep_C4_3P"
 
 	ScreenUIClass=class'KFGFxWorld_C4Screen'
 
@@ -466,7 +466,7 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=23
 
 	// Inventory / Grouping
-	InventoryGroup=IG_Equipment
+	InventoryGroup=IG_Primary
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
 	InventorySize=3
@@ -475,6 +475,11 @@ defaultproperties
 
    	DetonateAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Detonate'
 	DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.05f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.1f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.15f,IncrementWeight=3)
 }
 
 

@@ -394,8 +394,8 @@ defaultproperties
     TargetValidationCheckInterval=0.1
     MinTargetDistFromCrosshairSQ=2500
     MaxLockMaintainFOVDotThreshold=0.36
-    LockAcquiredSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Locked'
-    LockLostSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Lost'
+    LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locked'
+    LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Lost'
     LockedOnIcon=Texture2D'Wep_Scope_TEX.Wep_1stP_Yellow_Red_Target'
     LockedIconColor=(R=1,G=0,B=0,A=0.5)
     begin object name=IronsightsComponent0 class=AkComponent
@@ -407,13 +407,19 @@ defaultproperties
     IronsightsZoomInSound=AkEvent'WW_WEP_Seeker_6.Play_Seeker_6_Iron_In'
     IronsightsZoomOutSound=AkEvent'WW_WEP_Seeker_6.Play_Seeker_6_Iron_In_Out'
     ForceReloadTime=0.4
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=9
-    MagazineCapacity=6
+    PackageKey="SeekerSix"
+    FirstPersonMeshName="WEP_1P_SeekerSix_MESH.Wep_1stP_SeekerSix_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_SeekerSix_MESH.Wep_3rdP_SeekerSix_Pickup"
+    AttachmentArchetypeName="WEP_SeekerSix_ARCH.Wep_SeekerSix_3P"
+    MuzzleFlashTemplateName="WEP_SeekerSix_ARCH.Wep_SeekerSix_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=8
+    MagazineCapacity=6
     MeshIronSightFOV=65
     PlayerIronSightFOV=70
     FastZoomOutTime=0.2
@@ -428,9 +434,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=20,Y=5,Z=-5)
-    AttachmentArchetype=KFWeaponAttachment'WEP_SeekerSix_ARCH.Wep_SeekerSix_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_RocketLauncher_Seeker6.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_SeekerSix_ARCH.Wep_SeekerSix_MuzzleFlash'
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500
@@ -448,6 +452,7 @@ defaultproperties
     HippedRecoilModifier=1.25
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -457,21 +462,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=20,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_SeekerSix_MESH.Wep_1stP_SeekerSix_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_SeekerSix_ANIM.Wep_1stP_SeekerSix_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_RocketLauncher_Seeker6.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Seeker Six"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_seekersix_mesh.Wep_3rdP_SeekerSix_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_RocketLauncher_Seeker6.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_seekersix_mesh.Wep_3rdP_SeekerSix_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_RocketLauncher_Seeker6.StaticPickupComponent'

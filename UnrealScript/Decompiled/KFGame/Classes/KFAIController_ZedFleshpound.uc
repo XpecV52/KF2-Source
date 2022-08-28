@@ -202,7 +202,7 @@ function DoSpawnRageCheck()
     {
         return;
     }
-    if(FRand() <= SpawnRagedChance[int(KFGI.GameDifficulty)])
+    if(FRand() <= SpawnRagedChance[KFGI.GetModifiedGameDifficulty()])
     {
         SpawnEnraged();
     }

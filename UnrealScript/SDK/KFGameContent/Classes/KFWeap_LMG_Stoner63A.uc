@@ -195,16 +195,13 @@ defaultproperties
 	DOF_FG_FocalRadius=85
 	DOF_FG_MaxNearBlurSize=2.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Stoner63A_MESH.Wep_1stP_Stoner63A_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Stoner63A_ANIM.Wep_1stP_Stoner63A_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh= StaticMesh'WEP_3P_Stoner63A_MESH.Wep_Stoner63A_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Stoner63A_ARCH.Wep_Stoner63A_3P'
+	// Content
+	PackageKey="Stoner63a"
+	FirstPersonMeshName="WEP_1P_Stoner63A_MESH.Wep_1stP_Stoner63A_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Stoner63A_ANIM.Wep_1stP_Stoner63A_Anim"
+	PickupMeshName="WEP_3P_Stoner63A_MESH.Wep_Stoner63A_Pickup"
+	AttachmentArchetypeName="WEP_Stoner63A_ARCH.Wep_Stoner63A_3P"
+	MuzzleFlashTemplateName="WEP_Stoner63A_ARCH.Wep_Stoner63A_MuzzleFlash"
 
    	// Zooming/Position
 	PlayerViewOffset=(X=4.0,Y=8,Z=-4)
@@ -236,7 +233,7 @@ defaultproperties
     HippedRecoilModifier=1.5
 
     // Inventory / Grouping
-	InventorySize=9
+	InventorySize=8
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'wep_ui_stoner63a_tex.UI_WeaponSelect_Stoner'
    	AssociatedPerkClasses(0)=class'KFPerk_Commando'
@@ -249,7 +246,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Stoner63A'
 	FireInterval(DEFAULT_FIREMODE)=+0.066 // 900 RPM
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=30.0 //25
+	InstantHitDamage(DEFAULT_FIREMODE)=20.0 //25 //30
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -262,7 +259,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Stoner63A_ARCH.Wep_Stoner63A_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Stoner.Play_WEP_Stoner_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_Stoner.Play_WEP_Stoner_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Stoner.Play_WEP_Stoner_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_Stoner.Play_WEP_Stoner_Fire_1P_Single')
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Stoner.Play_WEP_Stoner_Fire_3P_EndLoop', FirstPersonCue=AkEvent'WW_WEP_Stoner.Play_WEP_Stoner_Fire_1P_EndLoop')
@@ -283,4 +279,8 @@ defaultproperties
 	AmmoBeltBulletBonePrefix="RW_Bullets"
 	NumAmmoBeltBullets=14
 	LastAmmoCount=-1
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.5f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.9f,IncrementWeight=2)
 }

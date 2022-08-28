@@ -14,18 +14,6 @@ var protected float LastBumpLevelTime;
 var protected const KFGameExplosion DeathExplosionTemplate;
 var protected const float LowGoreExplosionImpulse;
 
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-    local WorldInfo WI;
-
-    WI = Class'WorldInfo'.static.GetWorldInfo();
-    if(FRand() < class<KFDifficulty_Crawler>(default.DifficultySettings).static.GetSpecialCrawlerChance(KFGameReplicationInfo(WI.GRI)))
-    {
-        return default.ElitePawnClass;
-    }
-    return super.GetAIPawnClassToSpawn();
-}
-
 event PossessedBy(Controller C, bool bVehicleTransition)
 {
     local KFAIController_ZedCrawler CrawlerController;
@@ -116,7 +104,7 @@ simulated function DrawDebugRotation()
 
 simulated function Tick(float DeltaTime)
 {
-    super(KFPawn).Tick(DeltaTime);
+    super.Tick(DeltaTime);
     if(bDebugCrawlerPhysics)
     {
         DrawDebugRotation();
@@ -180,10 +168,9 @@ defaultproperties
     // Reference: KFGameExplosion'Default__KFPawn_ZedCrawler.ExploTemplate0'
     DeathExplosionTemplate=ExploTemplate0
     LowGoreExplosionImpulse=5000
-    bKnockdownWhenJumpedOn=true
     bIsCrawlerClass=true
     MonsterArchPath="ZED_ARCH.ZED_Crawler_Archetype"
-    ElitePawnClass=Class'KFPawn_ZedCrawlerKing'
+    ElitePawnClass=/* Array type was not detected. */
     MinSpawnSquadSizeType=ESquadType.EST_Crawler
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=7
@@ -199,6 +186,7 @@ defaultproperties
     XPValues[3]=10
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Crawler'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedCrawler.SprintAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
     LocalizationKey=KFPawn_ZedCrawler
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -276,6 +264,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedCrawler.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedCrawler.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedCrawler.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedCrawler.SprintAkComponent0'
     bBlocksNavigation=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=40

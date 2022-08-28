@@ -10,12 +10,18 @@ class KFWeap_Shotgun_MB500 extends KFWeap_ShotgunBase;
 
 defaultproperties
 {
+   PackageKey="MB500"
+   FirstPersonMeshName="WEP_1P_MB500_MESH.Wep_1stP_MB500_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_MB500_ANIM.Wep_1st_MB500_Anim_New"
+   PickupMeshName="WEP_3P_MB500_MESH.Wep_MB500_Pickup"
+   AttachmentArchetypeName="WEP_MB500_ARCH.Wep_MB500_3P"
+   MuzzleFlashTemplateName="WEP_MB500_ARCH.Wep_MB500_MuzzleFlash"
+   bHasIronSights=True
+   bCanBeReloaded=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=5
    MagazineCapacity(0)=8
-   bHasIronSights=True
-   bCanBeReloaded=True
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshIronSightFOV=52.000000
@@ -28,19 +34,17 @@ defaultproperties
    SpareAmmoCapacity(0)=56
    InitialSpareMags(0)=3
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_mb500.Play_WEP_SA_MB500_Fire_M',FirstPersonCue=AkEvent'ww_wep_sa_mb500.Play_WEP_SA_MB500_Fire_S')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_mb500.Play_WEP_SA_MB500_Fire_M',FirstPersonCue=AkEvent'ww_wep_sa_mb500.Play_WEP_SA_MB500_Fire_S')
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_S')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_S')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
    PlayerViewOffset=(X=8.000000,Y=8.000000,Z=-3.500000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_MB500_ARCH.Wep_MB500_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_MB500:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_MB500_ARCH.Wep_MB500_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500
@@ -58,6 +62,10 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
+   WeaponUpgrades(1)=(IncrementDamage=1.250000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.500000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.750000)
+   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=2.000000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -84,9 +92,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_MB500'
    FireOffset=(X=30.000000,Y=3.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_MB500_MESH.Wep_1stP_MB500_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_MB500_ANIM.Wep_1st_MB500_Anim_New'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -100,7 +106,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="SG 500 Pump-Action"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_ShotgunBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_MB500_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

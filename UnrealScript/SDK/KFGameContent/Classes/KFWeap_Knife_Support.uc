@@ -14,11 +14,13 @@ defaultproperties
 {
 	// Zooming/Position
 	PlayerViewOffset=(X=10,Y=10,Z=0)
-	
-	AttachmentArchetype=KFWeaponAttachment'WEP_SupportKnife_ARCH.Wep_SupportKnife_3P'
+
+	// Content
+	PackageKey="SupportKnife"
+	FirstPersonMeshName="WEP_1P_SupportKnife_MESH.Wep_1stP_SupportKnife_Rig"
+	AttachmentArchetypeName="WEP_SupportKnife_ARCH.Wep_SupportKnife_3P"
 
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_SupportKnife_MESH.Wep_1stP_SupportKnife_Rig'
 		AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
 	End Object
 

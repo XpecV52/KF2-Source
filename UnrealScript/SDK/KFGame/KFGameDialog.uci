@@ -247,6 +247,7 @@
 `define OBJ_EscortPlayerDied          	227
 `define OBJ_EscortPackSecured         	228
 `define ACT_BerserkerRage				229
+`define COMM_ThankYou	              	230
 
 // Trader dialog IDs
 `define TRAD_Wave20pctDead				0
@@ -297,6 +298,7 @@
 `define TRAD_AdviceHusk                	45
 `define TRAD_AdvicePatriarch           	46
 `define TRAD_AdviceHans                	47
+`define TRAD_AdviceMatriarch           	48
 `define TRAD_ObjDefendT                	49
 `define TRAD_ObjDefendTWon             	50
 `define TRAD_ObjDefendTDeclined        	51
@@ -538,7 +540,7 @@
 `define TRAD_PATTY_KILLBOSS_13			268
 `define TRAD_PATTY_KILLBOSS_14			269
 `define TRAD_PATTY_KILLBOSS_15			270
-
+										  
 `define TRAD_SPECIALWAVE_1				271
 `define TRAD_SPECIALWAVE_2				272
 `define TRAD_SPECIALWAVE_3				273

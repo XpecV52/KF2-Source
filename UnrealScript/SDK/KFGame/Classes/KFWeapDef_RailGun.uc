@@ -14,9 +14,15 @@ DefaultProperties
 {
 	WeaponClassPath="KFGameContent.KFWeap_Rifle_RailGun"
 
-	BuyPrice=1500
-	AmmoPricePerMag=25
+	BuyPrice=1100
+	AmmoPricePerMag=20 //25
 	ImagePath="WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun"
 
 	EffectiveRange=100
+
+	UpgradePrice[0]=700
+	UpgradePrice[1]=1500
+
+	UpgradeSellPrice[0]=525
+	UpgradeSellPrice[1]=1650
 }

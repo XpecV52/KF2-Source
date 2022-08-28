@@ -297,7 +297,7 @@ simulated function int GetMeleeDamage(byte FireModeNum, optional vector RayDir)
 	local int Damage;
 	local KFPerk InstigatorPerk;
 
-	Damage = InstantHitDamage[FireModeNum];
+	Damage = GetModifiedDamage(FireModeNum, RayDir);
 	// decode damage scale (see GetDamageScaleByAngle) from the RayDir
 	if ( !IsZero(RayDir) )
 	{
@@ -923,6 +923,12 @@ simulated state MeleeBlocking
 		local vector Dir2d;
 		local KFPerk InstigatorPerk;
 		local byte BlockTypeIndex;
+
+		// don't apply block/parry effects for teammates
+		if (Instigator.IsSameTeam(DamageCauser.Instigator))
+		{
+			return;
+		}
 
 		// zero Z to give us a 2d dot product
 		Dir2d = Normal2d(DamageCauser.Location - Instigator.Location);

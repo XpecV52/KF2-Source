@@ -59,7 +59,7 @@ function HideLengthInfo()
 	local GFxObject InfoContainer;
 	local GFxObject LengthText;
 	local GFxObject LengthValueText;
-	
+
 
 	InfoContainer =  GetObject("infoContainer");
 
@@ -67,7 +67,7 @@ function HideLengthInfo()
 	{
 		LengthText = InfoContainer.GetObject("lengthTitle");
 		LengthValueText = InfoContainer.GetObject("lengthLabel");
-		
+
 		LengthText.SetVisible(false);
 		LengthValueText.SetVisible(false);
 	}
@@ -86,14 +86,14 @@ function LocalizeContainer()
 	LocalizedObject.SetString("mapTitle", StartMenu.MapTitle);
 	LocalizedObject.SetString("infoTitle", StartMenu.InfoTitle);
 	LocalizedObject.SetString("permissionsTitle", StartMenu.PermissionsTitle);
-	
+
 
 	WI = class'WorldInfo'.static.GetWorldInfo();
 	if( WI != none && WI.NetMode != NM_Standalone && !GetPC().WorldInfo.IsConsoleBuild() )
 	{
 		LocalizedObject.SetString("serverTitle", StartMenu.ServerTypeString);
 	}
-	
+
 	LocalizedObject.SetString("difficultyTitle", StartMenu.DifficultyTitle);
 	LocalizedObject.SetString("lengthTitle", StartMenu.LengthTitle);
 	LocalizedObject.SetString("changeString", ChangeString);
@@ -181,7 +181,7 @@ function ShowWelcomeScreen()
 		ImageDownloader.DownloadImageFromURL(KFGRI.ServerAdInfo.BannerLink, ImageDownloadComplete);
 		ServerWelcomeScreen.SetString("clanMotto", KFGRI.ServerAdInfo.ClanMotto);
 		ServerWelcomeScreen.SetString("messageOfTheDay", Repl(KFGRI.ServerAdInfo.ServerMOTD, "@nl@", Chr(10)));
-		ServerWelcomeScreen.SetString("serverName", WI.GRI.ServerName);    
+		ServerWelcomeScreen.SetString("serverName", WI.GRI.ServerName);
         ServerWelcomeScreen.SetString("serverIP", KFGRI.ServerAdInfo.WebsiteLink);
 	}
 }
@@ -194,7 +194,7 @@ function UpdateSharedContent()
 	local string PlayerNameList;
 	local KFGameReplicationInfo KFGRI;
 	local array<PlayerReplicationInfo> WeaponSharedList;
-	local bool bContentPreviouslyShared; 
+	local bool bContentPreviouslyShared;
 
 	if(class'WorldInfo'.static.IsMenuLevel())
 	{
@@ -213,18 +213,18 @@ function UpdateSharedContent()
 	itemCount = 0;
 
 	UnlockManagerClass = Class'KFUnlockManager';
-	
+
 	DataProvider = CreateArray();
 
 	//for each unlock item
 	for (i = 0;i < UnlockManagerClass.default.SharedContentList.length; i++)
 	{
-		//if unlocked 
+		//if unlocked
 		if(class'KFUnlockManager'.static.IsSharedContentUnlocked(ESharedContentUnlock(i)))
 		{
 			bContentShared = true;
 			TempWeaponObj = CreateObject("Object");
-			//formulate details 
+			//formulate details
 			TempWeaponObj.SetString("label", Localize(String(UnlockManagerClass.default.SharedContentList[i].Name), "ItemName", "KFGameContent"));
 			TempWeaponObj.SetString("sourceText", Localize(String(UnlockManagerClass.default.SharedContentList[i].Name), "SharedUnlockSource", "KFGameContent"));
 			TempWeaponObj.SetString("iconPath", "img://"$UnlockManagerClass.default.SharedContentList[i].IconPath);
@@ -242,7 +242,7 @@ function UpdateSharedContent()
 					PlayerNameList = PlayerNameList $"," @WeaponSharedList[j].PlayerName;
 				}
 			}
-			
+
 			TempWeaponObj.SetString("names", PlayerNameList);
 			//Add Item to list
 			DataProvider.SetElementObject(itemCount, TempWeaponObj);
@@ -250,7 +250,7 @@ function UpdateSharedContent()
 		}
 	}
 
-	SetObject("sharedContent", DataProvider);	
+	SetObject("sharedContent", DataProvider);
 
 	if(SharedContentButton != none )
 	{
@@ -331,12 +331,12 @@ function UpdateOverviewInGame()
 	local int CurrentLengthIndex, CurrentPrivacyIndex;
 	local bool bCustomDifficulty;
 	local bool bCustomLength;
-	
+
 	//not using these now
 	bCustomLength = false; //not using these now
 	bCustomDifficulty = false;
 
-	
+
 	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
@@ -358,16 +358,16 @@ function UpdateOverviewInGame()
     		UpdateDifficulty(GameDifficultyString);
     		LastDifficultyIndex = CurrentGameDifficulty;
     	}
-        
+
         CurrentLengthIndex = KFGRI.GameLength;
-        if(LastLengthIndex != CurrentLengthIndex)        
+        if(LastLengthIndex != CurrentLengthIndex)
         {
 			UpdateLength(bCustomLength ?  Class'KFCommon_LocalizedStrings'.default.CustomString : class'KFCommon_LocalizedStrings'.static.GetLengthString(CurrentLengthIndex));
 			LastLengthIndex = CurrentLengthIndex;
         }
 
 		UpdateServerType( class'KFCommon_LocalizedStrings'.static.GetServerTypeString(int(KFGRI.bCustom)) );
-		
+
 		if( StartMenu.OptionsComponent != none )
 		{
 			CurrentPrivacyIndex = StartMenu.OptionsComponent.GetPrivacyIndex();

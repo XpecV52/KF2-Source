@@ -15,7 +15,13 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Rifle_CenterfireMB464"
    ImagePath="WEP_UI_Centerfire_TEX.UI_WeaponSelect_Centerfire"
    BuyPrice=650
-   AmmoPricePerMag=50
+   AmmoPricePerMag=55
+   UpgradePrice(0)=600
+   UpgradePrice(1)=700
+   UpgradePrice(2)=1500
+   UpgradeSellPrice(0)=450
+   UpgradeSellPrice(1)=975
+   UpgradeSellPrice(2)=2100
    EffectiveRange=70
    Name="Default__KFWeapDef_CenterfireMB464"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

@@ -21,6 +21,8 @@ KF-Nightmare="악몽 플레이 중"
 KF-KrampusLair="크램퍼스 둥지 플레이 중"
 KF-PowerCore_Holdout="파워 코어 플레이하기"
 KF-DieSector="다이섹터 플레이하기"
+KF-Lockdown="락다운 플레이 중"
+KF-Airship="비행선 플레이 중"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

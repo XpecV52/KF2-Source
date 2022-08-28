@@ -715,5 +715,8 @@ DefaultProperties
 	HitAccuracyHandicap=0.0
 	HeadshotAccuracyHandicap=-3.0
 	AutoBuyLoadOutPath=(class'KFWeapDef_AR15', class'KFWeapDef_Bullpup', class'KFWeapDef_AK12', class'KFWeapDef_SCAR')
+
+	// Prestige Rewards
+	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.CommandoKnife_PrestigePrecious_Mint_large"
 }
 

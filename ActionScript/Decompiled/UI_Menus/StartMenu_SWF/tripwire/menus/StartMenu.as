@@ -70,6 +70,8 @@ package tripwire.menus
             this._currentContainer = this.findGameContainer;
             this.gameOptionsContainer.addEventListener(FADE_OUT_OBJECTIVES,this.fadeOutObjectives,false,0,true);
             this.gameOptionsContainer.addEventListener(FADE_IN_OBJECTIVES,this.fadeInObjectives,false,0,true);
+            this.findGameContainer.addEventListener(FADE_OUT_OBJECTIVES,this.fadeOutObjectives,false,0,true);
+            this.findGameContainer.addEventListener(FADE_IN_OBJECTIVES,this.fadeInObjectives,false,0,true);
         }
         
         override public function handleInput(param1:InputEvent) : void

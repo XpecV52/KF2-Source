@@ -5,29 +5,8 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFMapObjective_DoshHold extends Volume
-    hidecategories(Navigation,Object,Movement,Display)
-    implements(KFInterface_MapObjective);
-
-struct DoshHoldMaxReward
-{
-    var() int WaveMaxReward[11];
-
-    structdefaultproperties
-    {
-        WaveMaxReward[0]=0
-        WaveMaxReward[1]=0
-        WaveMaxReward[2]=0
-        WaveMaxReward[3]=0
-        WaveMaxReward[4]=0
-        WaveMaxReward[5]=0
-        WaveMaxReward[6]=0
-        WaveMaxReward[7]=0
-        WaveMaxReward[8]=0
-        WaveMaxReward[9]=0
-        WaveMaxReward[10]=0
-    }
-};
+class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense
+    hidecategories(Navigation,Object,Movement,Display);
 
 struct WaveLengthPctChances
 {
@@ -49,250 +28,54 @@ struct WaveLengthPctChances
     }
 };
 
-var string LocalizationKey;
-var string DescriptionLocKey;
-var string RequirementsLocKey;
-var array<KFPawn_Human> TouchingHumans;
-var array<KFPawn_Monster> TouchingZeds;
-/** Texture to use for the volume icon */
-var() Texture2D ObjectiveIcon;
-var bool bActive;
-/** Whether or not the zone is in the danger state */
-var() repnotify bool bDangerState;
-/** Whether or not to use the trader trail to lead players to the zone */
-var() bool bUseTrailToVolume;
-/**  
- *Emitter to use to visually define the area the players should hold out.
- *    Note: This is going to be removed in favor of a static mesh setup at some
- *          point in the near future.
- */
-var() array<Emitter> ZoneBoundariesEmitter;
-/** Meshes used to define the outer boundary of the objective area. */
-var() array<DynamicSMActor> ZoneBoundaryMeshes;
-/** Splines used to define the boundary of the objective area. */
-var() array<SplineLoftActor> ZoneBoundarySplines;
-/** Name of the param that sets on/off state of danger colors of the mesh array */
-var() name ZoneDangerMaterialParamName;
-var transient KFReplicatedShowPathActor TrailActor;
 /** Timer before penalty check starts */
 var() const float PenaltyStartupTimer;
-/** Max reward if users (theoretically) did the objective perfectly */
-var() const DoshHoldMaxReward MaxRewards[3];
-/** XP reward if user compeletes the objective. */
-var() const DoshHoldMaxReward XPRewards[3];
-var float CurrentRewardAmount;
 /** Timer length for checking the dosh penalty rule set */
 var() const float DoshPenaltyCheckTimer;
 /** Penalties for various states of the volume */
 var() const int NoHumansPenalty;
 var() const int ZedsPenalty;
-/** Per-player thresholds for amount of players needed in the volume before penalty stops ticking */
-var() const int PlayerThresholds[6];
-/** Per-player count thresholds for amount of zeds allowed in volume before penalty kicks in */
-var() const int ZedThresholds[6];
-/** If this is tied to an event, what season are we in? */
-var() KFGame.KFGameEngine.SeasonalEventIndex EventSeason;
-/** Index if this is tied to a season */
-var() int EventIndex;
-var float JustWinThreshold;
-var float StandardWinThreshold;
-var float GoodWinThreshold;
 var() WaveLengthPctChances ActivatePctChances[3];
-
-replication
-{
-     if(bNetDirty)
-        bActive;
-
-     if(Role == ROLE_Authority)
-        CurrentRewardAmount, bDangerState;
-}
-
-simulated event ReplicatedEvent(name VarName)
-{
-    if(VarName == 'bDangerState')
-    {
-        UpdateMeshArrayState();        
-    }
-    else
-    {
-        super(Actor).ReplicatedEvent(VarName);
-    }
-}
-
-simulated event PostBeginPlay()
-{
-    local int I, J, K;
-
-    super.PostBeginPlay();
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        I = 0;
-        J0x3E:
-
-        if(I < ZoneBoundaryMeshes.Length)
-        {
-            if(ZoneBoundaryMeshes[I] != none)
-            {
-                ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(true);
-                J = 0;
-                J0xB9:
-
-                if(ZoneBoundaryMeshes[I].StaticMeshComponent.GetMaterial(J) != none)
-                {
-                    ZoneBoundaryMeshes[I].StaticMeshComponent.CreateAndSetMaterialInstanceConstant(J);
-                    ++ J;
-                    goto J0xB9;
-                }
-            }
-            ++ I;
-            goto J0x3E;
-        }
-        I = 0;
-        J0x174:
-
-        if(I < ZoneBoundarySplines.Length)
-        {
-            if(ZoneBoundarySplines[I] != none)
-            {
-                J = 0;
-                J0x1B0:
-
-                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
-                {
-                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
-                    {
-                        ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(true);
-                        K = 0;
-                        J0x273:
-
-                        if(ZoneBoundarySplines[I].SplineMeshComps[J].GetMaterial(K) != none)
-                        {
-                            ZoneBoundarySplines[I].SplineMeshComps[J].CreateAndSetMaterialInstanceConstant(K);
-                            ++ K;
-                            goto J0x273;
-                        }
-                    }
-                    ++ J;
-                    goto J0x1B0;
-                }
-            }
-            ++ I;
-            goto J0x174;
-        }
-    }
-}
+/** Sound event to play when objective is activated (overrides default trader dialog for this event) */
+var() AkEvent ActivationSoundEventOverride;
+/** A sound to play when the objective is fully complete (overrides default trader dialog for this event) */
+var() AkEvent SuccessSoundEvent100pctOverride;
+/** A sound to play when the objective is mostly complete (overrides default trader dialog for this event) */
+var() AkEvent SuccessSoundEvent85pctOverride;
+/** A sound to play when the objective is adequately complete (overrides default trader dialog for this event) */
+var() AkEvent SuccessSoundEvent50pctOverride;
+/** A sound to play when the objective is barely complete (overrides default trader dialog for this event) */
+var() AkEvent SuccessSoundEvent25pctOverride;
+/** A sound to play when the objective is failed (overrides default trader dialog for this event) */
+var() AkEvent FailureSoundEventOverride;
+/** Sound event to play when wave is 25% complete */
+var() AkEvent WaveProgressSoundEvent25pct;
+/** Sound event to play when wave is 50% complete */
+var() AkEvent WaveProgressSoundEvent50pct;
+/** Sound event to play when wave is 75% complete */
+var() AkEvent WaveProgressSoundEvent75pct;
+/** Sound event to play when wave is 90% complete */
+var() AkEvent WaveProgressSoundEvent90pct;
+/** Sound event to play to remind players about the objective */
+var() AkEvent RemindPlayersSoundEvent;
+/** How often to remind players about the objective if they aren't engaged in completing it */
+var() float RemindPlayersTime;
+var transient float PrevWaveProgress;
+var transient bool bRemindPlayers;
 
 event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
 {
     local int PlayerCount;
 
-    super(Actor).Touch(Other, OtherComp, HitLocation, HitNormal);
+    super.Touch(Other, OtherComp, HitLocation, HitNormal);
     if((KFPawn_Human(Other) != none) && TouchingHumans.Find(Other == -1)
     {
-        TouchingHumans.AddItem(KFPawn_Human(Other);
         PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
         if((TouchingHumans.Length >= PlayerThresholds[PlayerCount]) && IsTimerActive('StartPenaltyCheck'))
         {
             StartPenaltyCheck();
-        }        
-    }
-    else
-    {
-        if((IsValidZed(Other)) && TouchingZeds.Find(Other == -1)
-        {
-            TouchingZeds.AddItem(KFPawn_Monster(Other);
         }
     }
-}
-
-event UnTouch(Actor Other)
-{
-    super(Actor).UnTouch(Other);
-    if(TouchingHumans.Find(Other != -1)
-    {
-        TouchingHumans.RemoveItem(Other;        
-    }
-    else
-    {
-        if(TouchingZeds.Find(Other != -1)
-        {
-            TouchingZeds.RemoveItem(Other;
-        }
-    }
-}
-
-simulated function UpdateMeshArrayState()
-{
-    local int I, J, K;
-
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        I = 0;
-        J0x34:
-
-        if(I < ZoneBoundaryMeshes.Length)
-        {
-            J = 0;
-            J0x57:
-
-            if(ZoneBoundaryMeshes[I].StaticMeshComponent.GetMaterial(J) != none)
-            {
-                MaterialInstance(ZoneBoundaryMeshes[I].StaticMeshComponent.GetMaterial(J)).SetScalarParameterValue(ZoneDangerMaterialParamName, ((bDangerState) ? 1 : 0));
-                ++ J;
-                goto J0x57;
-            }
-            ++ I;
-            goto J0x34;
-        }
-        I = 0;
-        J0x153:
-
-        if(I < ZoneBoundarySplines.Length)
-        {
-            if(ZoneBoundarySplines[I] != none)
-            {
-                J = 0;
-                J0x18F:
-
-                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
-                {
-                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
-                    {
-                        K = 0;
-                        J0x209:
-
-                        if(ZoneBoundarySplines[I].SplineMeshComps[J].GetMaterial(K) != none)
-                        {
-                            MaterialInstance(ZoneBoundarySplines[I].SplineMeshComps[J].GetMaterial(K)).SetScalarParameterValue(ZoneDangerMaterialParamName, ((bDangerState) ? 1 : 0));
-                            ++ K;
-                            goto J0x209;
-                        }
-                    }
-                    ++ J;
-                    goto J0x18F;
-                }
-            }
-            ++ I;
-            goto J0x153;
-        }
-    }
-}
-
-function bool IsValidZed(Actor PotentialZed)
-{
-    local KFPawn_Monster KFPM;
-
-    KFPM = KFPawn_Monster(PotentialZed);
-    if(KFPM == none)
-    {
-        return false;
-    }
-    if((KFPM.Health <= 0) || KFPM.IsHeadless())
-    {
-        return false;
-    }
-    return true;
 }
 
 function CheckBonusState()
@@ -304,14 +87,23 @@ function CheckBonusState()
     if(TouchingHumans.Length < PlayerThresholds[PlayerCount])
     {
         bDangerState = true;
-        CurrentRewardAmount -= float(NoHumansPenalty);        
+        CurrentRewardAmount -= float(NoHumansPenalty);
+        if(bRemindPlayers)
+        {
+            if(RemindPlayersSoundEvent != none)
+            {
+                PlaySoundBase(RemindPlayersSoundEvent,, WorldInfo.NetMode == NM_DedicatedServer);
+                SetTimer(RemindPlayersTime, false, 'Timer_AllowRemindPlayers');
+            }
+            bRemindPlayers = false;
+        }        
     }
     else
     {
         if(TouchingZeds.Length > 0)
         {
             I = TouchingZeds.Length - 1;
-            J0xC9:
+            J0x146:
 
             if(I >= 0)
             {
@@ -320,7 +112,7 @@ function CheckBonusState()
                     TouchingZeds.Remove(I, 1;
                 }
                 -- I;
-                goto J0xC9;
+                goto J0x146;
             }
             if(TouchingZeds.Length > ZedThresholds[PlayerCount])
             {
@@ -340,6 +132,11 @@ function CheckBonusState()
     UpdateMeshArrayState();
 }
 
+simulated function Timer_AllowRemindPlayers()
+{
+    bRemindPlayers = true;
+}
+
 function StartPenaltyCheck()
 {
     ClearTimer('StartPenaltyCheck');
@@ -351,17 +148,23 @@ function StartPenaltyCheck()
 
 function ActivationVO()
 {
-    Class'KFTraderDialogManager'.static.PlayGlobalDialog(57, WorldInfo, true);
+    if(ActivationSoundEventOverride != none)
+    {
+        PlaySoundBase(ActivationSoundEventOverride, false, WorldInfo.NetMode == NM_DedicatedServer);        
+    }
+    else
+    {
+        Class'KFTraderDialogManager'.static.PlayGlobalDialog(57, WorldInfo, true);
+    }
 }
 
 simulated function ActivateObjective()
 {
-    local int I, J, PlayerCount;
+    local int PlayerCount;
 
+    super.ActivateObjective();
     if(Role == ROLE_Authority)
     {
-        bActive = true;
-        CurrentRewardAmount = float(GetMaxDoshReward());
         PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
         if(TouchingHumans.Length >= PlayerThresholds[PlayerCount])
         {
@@ -372,82 +175,64 @@ simulated function ActivateObjective()
             SetTimer(PenaltyStartupTimer, false, 'StartPenaltyCheck');
         }
         SetTimer(0.01, false, 'ActivationVO');
+        SetTimer(1, true, 'Timer_CheckWaveProgress');
+        PrevWaveProgress = 0;
+        bRemindPlayers = true;
     }
-    if(WorldInfo.NetMode != NM_DedicatedServer)
+}
+
+simulated function Timer_CheckWaveProgress()
+{
+    local KFGameReplicationInfo KFGRI;
+    local float WaveProgress;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.Game.GameReplicationInfo);
+    if(KFGRI != none)
     {
-        I = 0;
-        J0x112:
-
-        if(I < ZoneBoundariesEmitter.Length)
+        WaveProgress = 1 - (float(KFGRI.AIRemaining) / float(KFGRI.WaveTotalAICount));
+        if((PrevWaveProgress < 0.25) && WaveProgress >= 0.25)
         {
-            if(ZoneBoundariesEmitter[I] != none)
-            {
-                ZoneBoundariesEmitter[I].ParticleSystemComponent.ActivateSystem();
-                ZoneBoundariesEmitter[I].bCurrentlyActive = true;
-            }
-            ++ I;
-            goto J0x112;
+            PlaySoundBase(WaveProgressSoundEvent25pct, false, WorldInfo.NetMode == NM_DedicatedServer);            
         }
-        I = 0;
-        J0x1C6:
-
-        if(I < ZoneBoundaryMeshes.Length)
+        else
         {
-            if(ZoneBoundaryMeshes[I] != none)
+            if((PrevWaveProgress < 0.5) && WaveProgress >= 0.5)
             {
-                ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(false);
+                PlaySoundBase(WaveProgressSoundEvent50pct, false, WorldInfo.NetMode == NM_DedicatedServer);                
             }
-            ++ I;
-            goto J0x1C6;
-        }
-        I = 0;
-        J0x24F:
-
-        if(I < ZoneBoundarySplines.Length)
-        {
-            if(ZoneBoundarySplines[I] != none)
+            else
             {
-                J = 0;
-                J0x28B:
-
-                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
+                if((PrevWaveProgress < 0.75) && WaveProgress >= 0.75)
                 {
-                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
+                    PlaySoundBase(WaveProgressSoundEvent75pct, false, WorldInfo.NetMode == NM_DedicatedServer);                    
+                }
+                else
+                {
+                    if((PrevWaveProgress < 0.9) && WaveProgress >= 0.9)
                     {
-                        ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(false);
+                        PlaySoundBase(WaveProgressSoundEvent90pct, false, WorldInfo.NetMode == NM_DedicatedServer);
                     }
-                    ++ J;
-                    goto J0x28B;
                 }
             }
-            ++ I;
-            goto J0x24F;
         }
-        UpdateMeshArrayState();
-        if(bUseTrailToVolume)
-        {
-            TrailActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathObjective', none);
-            if(TrailActor != none)
-            {
-                TrailActor.SetPathTarget(self, self, 2);
-            }
-        }
+        PrevWaveProgress = WaveProgress;
     }
 }
 
 simulated function DeactivateObjective()
 {
-    local int I, J;
     local KFPawn_Human KFPH;
     local KFPlayerController KFPC;
     local array<KFPawn_Human> CachedHumans;
     local bool bOneHumanAlive;
 
+    super.DeactivateObjective();
     if(Role == ROLE_Authority)
     {
-        bActive = false;
         ClearTimer('CheckBonusState');
         ClearTimer('StartPenaltyCheck');
+        ClearTimer('Timer_AllowRemindPlayers');
+        ClearTimer('Timer_CheckWaveProgress');
         bOneHumanAlive = false;
         foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
         {
@@ -463,89 +248,13 @@ simulated function DeactivateObjective()
             {
                 foreach CachedHumans(KFPH,)
                 {
-                    if(KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo) == none)
-                    {
-                        continue;                        
-                    }
-                    else
-                    {
-                        if(KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo).bOnlySpectator)
-                        {
-                            continue;                            
-                        }
-                        else
-                        {
-                            KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo).AddDosh(int(CurrentRewardAmount));
-                            if(KFPlayerController(KFPH.Controller) != none)
-                            {
-                                KFPlayerController(KFPH.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
-                                KFPlayerController(KFPH.Controller).ClientMapObjectiveCompleted(float(GetXPReward()));
-                            }                            
-                        }
-                    }
+                    GrantReward(KFPH);                    
                 }                
             }
         }
         if(bOneHumanAlive)
         {
             PlayDeactivationDialog();
-        }
-    }
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        I = 0;
-        J0x2D7:
-
-        if(I < ZoneBoundariesEmitter.Length)
-        {
-            if(ZoneBoundariesEmitter[I] != none)
-            {
-                ZoneBoundariesEmitter[I].ParticleSystemComponent.DeactivateSystem();
-                ZoneBoundariesEmitter[I].bCurrentlyActive = false;
-            }
-            ++ I;
-            goto J0x2D7;
-        }
-        I = 0;
-        J0x38A:
-
-        if(I < ZoneBoundaryMeshes.Length)
-        {
-            if(ZoneBoundaryMeshes[I] != none)
-            {
-                ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(true);
-            }
-            ++ I;
-            goto J0x38A;
-        }
-        I = 0;
-        J0x413:
-
-        if(I < ZoneBoundarySplines.Length)
-        {
-            if(ZoneBoundarySplines[I] != none)
-            {
-                J = 0;
-                J0x44F:
-
-                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
-                {
-                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
-                    {
-                        ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(true);
-                    }
-                    ++ J;
-                    goto J0x44F;
-                }
-            }
-            ++ I;
-            goto J0x413;
-        }
-        UpdateMeshArrayState();
-        if(bUseTrailToVolume && TrailActor != none)
-        {
-            TrailActor.Destroy();
-            TrailActor = none;
         }
     }
     KFPC = KFPlayerController(GetALocalPlayerController());
@@ -555,151 +264,85 @@ simulated function DeactivateObjective()
     }
 }
 
-simulated function bool IsActive()
-{
-    return bActive;
-}
-
 function PlayDeactivationDialog()
 {
     if(CurrentRewardAmount <= float(0))
     {
-        Class'KFTraderDialogManager'.static.PlayGlobalDialog(60, WorldInfo, true);
+        if(FailureSoundEventOverride != none)
+        {
+            PlaySoundBase(FailureSoundEventOverride, false, WorldInfo.NetMode == NM_DedicatedServer);            
+        }
+        else
+        {
+            Class'KFTraderDialogManager'.static.PlayGlobalDialog(60, WorldInfo, true);
+        }
         BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 6);        
     }
     else
     {
-        if((GetProgress()) < JustWinThreshold)
+        if((GetProgress()) <= JustWinThreshold)
         {
-            Class'KFTraderDialogManager'.static.PlayGlobalDialog(111, WorldInfo, true);            
-        }
-        else
-        {
-            if((GetProgress()) < StandardWinThreshold)
+            if(SuccessSoundEvent25pctOverride != none)
             {
-                Class'KFTraderDialogManager'.static.PlayGlobalDialog(58, WorldInfo, true);                
+                PlaySoundBase(SuccessSoundEvent25pctOverride, false, WorldInfo.NetMode == NM_DedicatedServer);                
             }
             else
             {
-                if((GetProgress()) < GoodWinThreshold)
+                Class'KFTraderDialogManager'.static.PlayGlobalDialog(111, WorldInfo, true);
+            }            
+        }
+        else
+        {
+            if((GetProgress()) <= StandardWinThreshold)
+            {
+                if(SuccessSoundEvent50pctOverride != none)
                 {
-                    Class'KFTraderDialogManager'.static.PlayGlobalDialog(112, WorldInfo, true);                    
+                    PlaySoundBase(SuccessSoundEvent50pctOverride, false, WorldInfo.NetMode == NM_DedicatedServer);                    
                 }
                 else
                 {
-                    Class'KFTraderDialogManager'.static.PlayGlobalDialog(113, WorldInfo, true);
+                    Class'KFTraderDialogManager'.static.PlayGlobalDialog(58, WorldInfo, true);
+                }                
+            }
+            else
+            {
+                if((GetProgress()) <= GoodWinThreshold)
+                {
+                    if(SuccessSoundEvent85pctOverride != none)
+                    {
+                        PlaySoundBase(SuccessSoundEvent85pctOverride, false, WorldInfo.NetMode == NM_DedicatedServer);                        
+                    }
+                    else
+                    {
+                        Class'KFTraderDialogManager'.static.PlayGlobalDialog(112, WorldInfo, true);
+                    }                    
+                }
+                else
+                {
+                    if(SuccessSoundEvent100pctOverride != none)
+                    {
+                        PlaySoundBase(SuccessSoundEvent100pctOverride, false, WorldInfo.NetMode == NM_DedicatedServer);                        
+                    }
+                    else
+                    {
+                        Class'KFTraderDialogManager'.static.PlayGlobalDialog(113, WorldInfo, true);
+                    }
                 }
             }
         }
     }
-}
-
-function bool CanActivateObjective()
-{
-    return true;
-}
-
-simulated function bool UsesProgress()
-{
-    return true;
 }
 
 simulated function float GetProgress()
 {
-    return CurrentRewardAmount / float(GetMaxDoshReward());
-}
+    local int MaxDoshReward;
 
-simulated function Vector GetIconLocation()
-{
-    return Location;
-}
-
-simulated function Texture2D GetIcon()
-{
-    return ObjectiveIcon;
-}
-
-function bool IsBonus()
-{
-    return true;
-}
-
-simulated function string GetLocalizedName()
-{
-    return Localize("Objectives", default.LocalizationKey, "KFGame");
-}
-
-simulated function int GetDoshReward()
-{
-    return int(CurrentRewardAmount);
-}
-
-simulated function int GetMaxDoshReward()
-{
-    local KFGameReplicationInfo KFGRI;
-    local int ArrayEnd;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI != none)
+    MaxDoshReward = GetMaxDoshReward();
+    if(MaxDoshReward == 0)
     {
-        ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, 11 - 1);
-        return default.MaxRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
+        return 0;
     }
-    return default.MaxRewards[0].WaveMaxReward[0];
-}
-
-simulated function int GetPlayersInObjective()
-{
-    return 0;
-}
-
-simulated function string GetLocalizedDescription()
-{
-    return Localize("Objectives", default.DescriptionLocKey, "KFGame");
-}
-
-simulated function string GetLocalizedRequirements()
-{
-    local int PlayerCount;
-
-    PlayerCount = Clamp(KFGameReplicationInfo(WorldInfo.GRI).GetNumPlayers(), 1, 6) - 1;
-    return (Localize("Objectives", default.RequirementsLocKey, "KFGame")) @ string(PlayerThresholds[PlayerCount]);
-}
-
-simulated function int GetVoshReward()
-{
-    return int((float(GetMaxVoshReward()) * float(GetDoshReward())) / float(GetMaxDoshReward()));
-}
-
-simulated function int GetMaxVoshReward()
-{
-    local KFGameReplicationInfo KFGRI;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI != none)
-    {
-        return Class'KFOnlineStatsWrite'.static.GetMapObjectiveVoshReward(KFGRI.GameLength, KFGRI.WaveNum);
-    }
-    return 0;
-}
-
-simulated function int GetXPReward()
-{
-    return int((float(GetMaxXPReward()) * float(GetDoshReward())) / float(GetMaxDoshReward()));
-}
-
-simulated function int GetMaxXPReward()
-{
-    local KFGameReplicationInfo KFGRI;
-    local int ArrayEnd;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI != none)
-    {
-        ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, 11 - 1);
-        return default.XPRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
-    }
-    return default.XPRewards[0].WaveMaxReward[0];
+    return CurrentRewardAmount / float(MaxDoshReward);
 }
 
 simulated function float GetActivationPctChance()
@@ -711,28 +354,37 @@ simulated function float GetActivationPctChance()
     if(KFGRI != none)
     {
         ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, 11 - 1);
-        return default.ActivatePctChances[KFGRI.GameLength].PctChances[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
+        return ActivatePctChances[KFGRI.GameLength].PctChances[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
     }
     return 1;
 }
 
+simulated function string GetLocalizedRequirements()
+{
+    local int PlayerCount;
+
+    PlayerCount = Clamp(KFGameReplicationInfo(WorldInfo.GRI).GetNumPlayers(), 1, 6) - 1;
+    return (Localize("Objectives", default.RequirementsLocKey, "KFGame")) @ string(PlayerThresholds[PlayerCount]);
+}
+
+simulated function bool HasFailedObjective()
+{
+    return (GetProgress()) <= 0;
+}
+
 defaultproperties
 {
-    LocalizationKey="DoshHold"
-    DescriptionLocKey="DescriptionDoshHold"
-    RequirementsLocKey="RequiredDoshHold"
-    ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
-    ZoneDangerMaterialParamName=Danger
     PenaltyStartupTimer=20
-    MaxRewards[0]=(WaveMaxReward=0,WaveMaxReward[1]=200,WaveMaxReward[2]=350,WaveMaxReward[3]=500,WaveMaxReward[4]=0,WaveMaxReward[5]=0,WaveMaxReward[6]=0,WaveMaxReward[7]=0,WaveMaxReward[8]=0,WaveMaxReward[9]=0,WaveMaxReward[10]=0)
-    MaxRewards[1]=(WaveMaxReward=0,WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=500,WaveMaxReward[7]=0,WaveMaxReward[8]=0,WaveMaxReward[9]=0,WaveMaxReward[10]=0)
-    MaxRewards[2]=(WaveMaxReward=0,WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=450,WaveMaxReward[7]=500,WaveMaxReward[8]=500,WaveMaxReward[9]=500,WaveMaxReward[10]=500)
-    XPRewards[0]=(WaveMaxReward=0,WaveMaxReward[1]=150,WaveMaxReward[2]=200,WaveMaxReward[3]=300,WaveMaxReward[4]=0,WaveMaxReward[5]=0,WaveMaxReward[6]=0,WaveMaxReward[7]=0,WaveMaxReward[8]=0,WaveMaxReward[9]=0,WaveMaxReward[10]=0)
-    XPRewards[1]=(WaveMaxReward=0,WaveMaxReward[1]=150,WaveMaxReward[2]=150,WaveMaxReward[3]=200,WaveMaxReward[4]=200,WaveMaxReward[5]=300,WaveMaxReward[6]=300,WaveMaxReward[7]=0,WaveMaxReward[8]=0,WaveMaxReward[9]=0,WaveMaxReward[10]=0)
-    XPRewards[2]=(WaveMaxReward=0,WaveMaxReward[1]=100,WaveMaxReward[2]=150,WaveMaxReward[3]=150,WaveMaxReward[4]=200,WaveMaxReward[5]=200,WaveMaxReward[6]=250,WaveMaxReward[7]=250,WaveMaxReward[8]=300,WaveMaxReward[9]=300,WaveMaxReward[10]=300)
     DoshPenaltyCheckTimer=1
     NoHumansPenalty=5
     ZedsPenalty=1
+    ActivatePctChances[0]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=1,PctChances[5]=1,PctChances[6]=1,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
+    ActivatePctChances[1]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
+    ActivatePctChances[2]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=0.35,PctChances[8]=0.35,PctChances[9]=0.35,PctChances[10]=0.35)
+    RemindPlayersTime=30
+    LocalizationKey="DoshHold"
+    DescriptionLocKey="DescriptionDoshHold"
+    RequirementsLocKey="RequiredDoshHold"
     PlayerThresholds[0]=1
     PlayerThresholds[1]=1
     PlayerThresholds[2]=2
@@ -745,13 +397,13 @@ defaultproperties
     ZedThresholds[3]=3
     ZedThresholds[4]=2
     ZedThresholds[5]=1
-    EventIndex=-1
-    JustWinThreshold=0.25
-    StandardWinThreshold=0.5
-    GoodWinThreshold=0.85
-    ActivatePctChances[0]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=1,PctChances[5]=1,PctChances[6]=1,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
-    ActivatePctChances[1]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
-    ActivatePctChances[2]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=0.35,PctChances[8]=0.35,PctChances[9]=0.35,PctChances[10]=0.35)
+    ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
+    MaxRewards[0]=(WaveMaxReward[1]=200,WaveMaxReward[2]=350,WaveMaxReward[3]=500)
+    MaxRewards[1]=(WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=500)
+    MaxRewards[2]=(WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=450,WaveMaxReward[7]=500,WaveMaxReward[8]=500,WaveMaxReward[9]=500,WaveMaxReward[10]=500)
+    XPRewards[0]=(WaveMaxReward[1]=150,WaveMaxReward[2]=200,WaveMaxReward[3]=300)
+    XPRewards[1]=(WaveMaxReward[1]=150,WaveMaxReward[2]=150,WaveMaxReward[3]=200,WaveMaxReward[4]=200,WaveMaxReward[5]=300,WaveMaxReward[6]=300)
+    XPRewards[2]=(WaveMaxReward[1]=100,WaveMaxReward[2]=150,WaveMaxReward[3]=150,WaveMaxReward[4]=200,WaveMaxReward[5]=200,WaveMaxReward[6]=250,WaveMaxReward[7]=250,WaveMaxReward[8]=300,WaveMaxReward[9]=300,WaveMaxReward[10]=300)
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end
@@ -762,9 +414,6 @@ defaultproperties
     object end
     // Reference: BrushComponent'Default__KFMapObjective_DoshHold.BrushComponent0'
     Components(0)=BrushComponent0
-    RemoteRole=ENetRole.ROLE_SimulatedProxy
-    bStatic=false
-    bAlwaysRelevant=true
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

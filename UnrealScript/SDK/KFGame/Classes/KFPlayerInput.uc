@@ -1660,7 +1660,7 @@ exec function InteractTimer()
 		{
 			return;
 		}
-		if(UsableTrigger.IsA('KFDoorTrigger'))
+		if(UsableTrigger.IsA('KFDoorTrigger') || UsableTrigger.IsA('KFRepairableActorTrigger'))
 		{
 			KFIM.QuickWeld();
 		}
@@ -2849,6 +2849,18 @@ exec function UnsuppressTrader(optional name ClassName)
 {
 	ClassName = (ClassName != '') ? ClassName : 'KFTraderTrigger';
 	ConsoleCommand("SETNOPEC" @ ClassName @ "bLogTrader true");
+}
+
+exec function SuppressWeaponUpgrade(optional name ClassName)
+{
+	ClassName = (ClassName != '') ? ClassName : 'KFWeapon';
+	ConsoleCommand("SETNOPEC" @ ClassName @ "bLogWeaponUpgrade false");
+}
+
+exec function UnsuppressWeaponUpgrade(optional name ClassName)
+{
+	ClassName = (ClassName != '') ? ClassName : 'KFWeapon';
+	ConsoleCommand("SETNOPEC" @ ClassName @ "bLogWeaponUpgrade true");
 }
 
 `if(`notdefined(ShippingPC))

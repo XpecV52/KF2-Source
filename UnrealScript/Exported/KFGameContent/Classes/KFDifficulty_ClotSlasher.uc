@@ -13,8 +13,8 @@ defaultproperties
 {
    Normal=(HealthMod=0.750000,HeadHealthMod=0.750000,EvadeOnDamageSettings=(Chance=0.100000,DamagedHealthPctToTrigger=0.010000),RallySettings=(bCanRally=False))
    Hard=(DamagedSprintChance=1.000000,EvadeOnDamageSettings=(Chance=0.400000,DamagedHealthPctToTrigger=0.010000),RallySettings=(bCanRally=False))
-   Suicidal=(SprintChance=0.500000,DamagedSprintChance=1.000000,MovementSpeedMod=1.100000,EvadeOnDamageSettings=(Chance=1.000000,DamagedHealthPctToTrigger=0.010000),RallySettings=(bCauseSprint=True,TakenDamageModifier=0.500000,DealtDamageModifier=2.000000))
-   HellOnEarth=(SprintChance=0.700000,DamagedSprintChance=1.000000,MovementSpeedMod=1.200000,EvadeOnDamageSettings=(Chance=1.000000,DamagedHealthPctToTrigger=0.010000),RallySettings=(bCauseSprint=True,TakenDamageModifier=0.500000,DealtDamageModifier=2.000000))
+   Suicidal=(SprintChance=0.850000,DamagedSprintChance=1.000000,MovementSpeedMod=1.200000,EvadeOnDamageSettings=(Chance=1.000000,DamagedHealthPctToTrigger=0.010000),RallySettings=(bCauseSprint=True,TakenDamageModifier=0.500000,DealtDamageModifier=2.000000))
+   HellOnEarth=(SprintChance=0.950000,DamagedSprintChance=1.000000,MovementSpeedMod=1.300000,EvadeOnDamageSettings=(Chance=1.000000,DamagedHealthPctToTrigger=0.010000),RallySettings=(bCauseSprint=True,TakenDamageModifier=0.500000,DealtDamageModifier=2.000000))
    RallySettings_Versus=(bCauseSprint=True)
    RallySettings_Player_Versus=(DealtDamageModifier=1.200000)
    ZedTimeSpeedScale_Versus=0.250000

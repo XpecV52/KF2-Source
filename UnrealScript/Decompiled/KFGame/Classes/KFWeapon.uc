@@ -91,22 +91,38 @@ struct native ImpactRepInfo
     }
 };
 
+struct native WeaponUpgradeInfo
+{
+    /** @name Weapon Upgrade System */
+    var() int IncrementWeight;
+    /** @name Weapon Upgrade System */
+    var() float IncrementDamage;
+    /** @name Weapon Upgrade System */
+    var() float IncrementHeal;
+    /** @name Weapon Upgrade System */
+    var() float IncrementHealFullRecharge;
+
+    structdefaultproperties
+    {
+        IncrementWeight=1
+        IncrementDamage=1
+        IncrementHeal=1
+        IncrementHealFullRecharge=1
+    }
+};
+
 var protected export editinline MeshComponent OverlayMesh;
 var export editinline KFSkeletalMeshComponent MySkelMesh;
-var array<Texture2D> FireModeIconPaths;
-var byte SingleFireSoundIndex;
-/** Number of shots to fire per burst. */
-var(Weapon) byte BurstAmount;
-/** Determines which group a weapon falls into in weapon select */
-var(Inventory) KFWeapon.EInventoryGroup InventoryGroup;
-/** Inventory (In blocks) cost */
-var(Inventory) byte InventorySize;
-var byte AmmoCount[2];
-/** Size of the weapon magazine, i.e. how many rounds it can hold */
-var(Inventory) byte MagazineCapacity[2];
-var KFWeapon.EReloadStatus ReloadStatus;
-var byte ReloadAmountLeft;
-var byte InitialReloadAmount;
+var const string PackageKey;
+var const string FirstPersonMeshName;
+var const array<string> FirstPersonAnimSetNames;
+var const string FirstPersonAnimTree;
+var const string PickupMeshName;
+var const string AttachmentArchetypeName;
+var const string MuzzleFlashTemplateName;
+var bool AttachOnContentLoad;
+var bool SetOnContentLoad;
+var bool WeaponContentLoaded;
 var bool bUseAltFireMode;
 var transient bool bStopAltFireOnNextRelease;
 var bool bGamepadFireEntry;
@@ -171,6 +187,21 @@ var config bool bLogStates;
 var bool bPauseWithPlayersOnly;
 var bool bDebugRecoilPosition;
 var config bool bLogAmmo;
+var config bool bLogWeaponUpgrade;
+var array<Texture2D> FireModeIconPaths;
+var byte SingleFireSoundIndex;
+/** Number of shots to fire per burst. */
+var(Weapon) byte BurstAmount;
+/** Determines which group a weapon falls into in weapon select */
+var(Inventory) KFWeapon.EInventoryGroup InventoryGroup;
+/** Inventory (In blocks) cost */
+var(Inventory) byte InventorySize;
+var byte AmmoCount[2];
+/** Size of the weapon magazine, i.e. how many rounds it can hold */
+var(Inventory) byte MagazineCapacity[2];
+var KFWeapon.EReloadStatus ReloadStatus;
+var byte ReloadAmountLeft;
+var byte InitialReloadAmount;
 var float MinFiringPutDownPct;
 /** How much penetration power does this fire mode have */
 var(Weapon) array<float> PenetrationPower;
@@ -281,6 +312,8 @@ var int InitialSpareMags[2];
 var(Inventory) float AmmoPickupScale[2];
 var int InitialReloadSpareAmmo;
 var transient float LastReloadAbortTime;
+/** How long to wait after firing to force reload */
+var() float ForceReloadTimeOnEmpty;
 var array<CameraAnim> FireCameraAnim;
 /** How much to scale the FireCameraAnim when in ironsights */
 var(Camera) float ShakeScaleSighted;
@@ -471,6 +504,8 @@ var float LastRecoilModifier;
  */
 var(Recoil) float IronSightMeshFOVCompensationScale;
 var(Weapon) protected array< class<KFPerk> > AssociatedPerkClasses;
+var array<WeaponUpgradeInfo> WeaponUpgrades;
+var int CurrentWeaponUpgradeIndex;
 
 replication
 {
@@ -478,8 +513,9 @@ replication
         AmmoCount;
 
      if(bNetDirty)
-        MagazineCapacity, SpareAmmoCapacity, 
-        SpareAmmoCount, bGivenAtStart;
+        CurrentWeaponUpgradeIndex, MagazineCapacity, 
+        SpareAmmoCapacity, SpareAmmoCount, 
+        bGivenAtStart;
 }
 
 // Export UKFWeapon::execEnsureWeaponOverlayComponentLast(FFrame&, void* const)
@@ -518,10 +554,6 @@ simulated event PreBeginPlay()
         RecoilYawBlendOutRate = int((float(maxRecoilYaw) / RecoilRate) * RecoilBlendOutRatio);
         RecoilPitchBlendOutRate = int((float(maxRecoilPitch) / RecoilRate) * RecoilBlendOutRatio);
     }
-    if(bHasLaserSight)
-    {
-        AttachLaserSight();
-    }
 }
 
 function SetShownInInventory(bool bValue);
@@ -540,16 +572,20 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
     {
         BuildEmptyMagNodeWeightList(EmptyMagBlendNode, BonesToLockOnEmpty);
     }
+    if(bHasLaserSight)
+    {
+        AttachLaserSight();
+    }
 }
 
 // Export UKFWeapon::execBuildEmptyMagNodeWeightList(FFrame&, void* const)
 native function BuildEmptyMagNodeWeightList(AnimNodeBlendPerBone EmptyNode, const out array<name> BonesToLock);
 
-simulated function InitializeEquipTime()
+simulated event InitializeEquipTime()
 {
     EquipTime = ((EquipTime > float(0)) ? EquipTime : 0.01);
     PutDownTime = ((PutDownTime > float(0)) ? PutDownTime : 0.01);
-    if(bUseAnimLenEquipTime)
+    if(bUseAnimLenEquipTime && WeaponContentLoaded)
     {
         EquipTime = MySkelMesh.GetAnimInterruptTime(EquipAnim);
         PutDownTime = MySkelMesh.GetAnimLength(PutDownAnim);
@@ -595,6 +631,15 @@ private reliable server native final event ServerUpdateWeaponSkin(int ItemId);
 // Export UKFWeapon::execClearSkinItemId(FFrame&, void* const)
 private native final function ClearSkinItemId();
 
+// Export UKFWeapon::execTriggerAsyncContentLoad(FFrame&, void* const)
+native static simulated function TriggerAsyncContentLoad();
+
+// Export UKFWeapon::execStartLoadWeaponContent(FFrame&, void* const)
+private native final function StartLoadWeaponContent();
+
+// Export UKFWeapon::execLoadWeaponContent(FFrame&, void* const)
+private native final function LoadWeaponContent();
+
 function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
 {
     super(Inventory).GivenTo(thisPawn, bDoNotActivate);
@@ -602,18 +647,52 @@ function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
     {
         ClearSkinItemId();
     }
-    KFInventoryManager(InvManager).AddCurrentCarryBlocks(InventorySize);
+    if((Role == ROLE_Authority) && !WeaponContentLoaded)
+    {
+        StartLoadWeaponContent();
+    }
+    KFInventoryManager(InvManager).AddCurrentCarryBlocks(GetModifiedWeightValue());
     KFPawn(Instigator).NotifyInventoryWeightChanged();
+}
+
+reliable client simulated function ClientGivenTo(Pawn NewOwner, bool bDoNotActivate)
+{
+    if((Role != ROLE_Authority) && !WeaponContentLoaded)
+    {
+        StartLoadWeaponContent();
+    }
+    super.ClientGivenTo(NewOwner, bDoNotActivate);
 }
 
 function ItemRemovedFromInvManager()
 {
+    local KFInventoryManager KFIM;
+
     super.ItemRemovedFromInvManager();
-    KFInventoryManager(InvManager).AddCurrentCarryBlocks(-InventorySize);
+    KFIM = KFInventoryManager(InvManager);
+    if(KFIM == none)
+    {
+        return;
+    }
+    if(KFIM.bLogInventory)
+    {
+        LogInternal((((((string(self) @ "-") @ string(GetFuncName())) @ "- CurrentCarryBlocks:") @ string(KFIM.CurrentCarryBlocks)) @ "ModifiedWeightValue:") @ string(GetModifiedWeightValue()));
+    }
+    KFIM.AddCurrentCarryBlocks(-GetModifiedWeightValue());
     KFPawn(Instigator).NotifyInventoryWeightChanged();
 }
 
 reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional bool bDoNotActivate)
+{
+    if(WeaponContentLoaded)
+    {
+        SetWeapon();
+    }
+    SetOnContentLoad = true;
+    super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
+}
+
+simulated event SetWeapon()
 {
     local PlayerController PC;
     local int I;
@@ -630,16 +709,20 @@ reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional b
             ClientSetFirstPersonSkin(SkinItemId);
         }
         I = 0;
-        J0x16D:
+        J0x16C:
 
         if(I < NumBloodMapMaterials)
         {
             WeaponMICs.AddItem(Mesh.CreateAndSetMaterialInstanceConstant(I);
             ++ I;
-            goto J0x16D;
+            goto J0x16C;
         }
     }
-    super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
+}
+
+simulated event TriggerAttachment()
+{
+    Activate();
 }
 
 simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name SocketName)
@@ -647,13 +730,17 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
     local KFPawn KFP;
     local int I;
 
+    if(!WeaponContentLoaded)
+    {
+        return;
+    }
     KFP = KFPawn(Instigator);
     if((KFP != none) && KFP.ArmsMesh != none)
     {
         KFP.ArmsMesh.SetParentAnimComponent(MySkelMesh);
         KFP.ArmsMesh.SetFOV(MySkelMesh.FOV);
         I = 0;
-        J0xEC:
+        J0xFD:
 
         if(I < 3)
         {
@@ -670,7 +757,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
                 }
             }
             ++ I;
-            goto J0xEC;
+            goto J0xFD;
         }
     }
     if(Instigator.IsFirstPerson())
@@ -695,7 +782,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
                 Mesh.SetShadowParent(KFP.ArmsMesh);
                 AttachComponent(KFP.ArmsMesh);
                 I = 0;
-                J0x433:
+                J0x444:
 
                 if(I < 3)
                 {
@@ -704,7 +791,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
                         AttachComponent(KFP.FirstPersonAttachments[I]);
                     }
                     ++ I;
-                    goto J0x433;
+                    goto J0x444;
                 }
             }
         }        
@@ -725,7 +812,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
             {
                 KFP.ArmsMesh.SetHidden(true);
                 I = 0;
-                J0x5CE:
+                J0x5DF:
 
                 if(I < 3)
                 {
@@ -734,7 +821,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
                         KFP.FirstPersonAttachments[I].SetHidden(true);
                     }
                     ++ I;
-                    goto J0x5CE;
+                    goto J0x5DF;
                 }
             }
         }
@@ -819,7 +906,7 @@ simulated function AttachLaserSight()
     {
         return;
     }
-    if(((MySkelMesh != none) && LaserSight == none) && bHasLaserSight)
+    if((((MySkelMesh != none) && LaserSight == none) && bHasLaserSight) && LaserSight == none)
     {
         LaserSight = new (self) Class'KFLaserSightAttachment' (LaserSightTemplate);
         LaserSight.AttachLaserSight(MySkelMesh, true);
@@ -879,14 +966,20 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     local byte I;
     local KFWeapon KFWInv;
 
+    if(PickedUpWeapon.CurrentWeaponUpgradeIndex > -1)
+    {
+        SetWeaponUpgradeLevel(PickedUpWeapon.CurrentWeaponUpgradeIndex);
+        KFInventoryManager(InvManager).AddCurrentCarryBlocks(WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementWeight);
+        KFPawn(Instigator).NotifyInventoryWeightChanged();
+    }
     I = 0;
-    J0x0C:
+    J0xD2:
 
     if(I < 2)
     {
         AmmoCount[I] = PickedUpWeapon.AmmoCount[I];
         ++ I;
-        goto J0x0C;
+        goto J0xD2;
     }
     SpareAmmoCount[0] = PickedUpWeapon.SpareAmmoCount[0];
     if(DualClass != none)
@@ -1857,6 +1950,10 @@ simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation
             }
             HandleRecoil();
             ShakeView();
+            if((AmmoCount[0] == 0) && ForceReloadTimeOnEmpty > float(0))
+            {
+                SetTimer(ForceReloadTimeOnEmpty, false, 'ForceReload');
+            }
         }
     }
 }
@@ -2104,6 +2201,10 @@ simulated function StartFire(byte FireModeNum)
 {
     if((FireModeNum == 0) || FireModeNum == 1)
     {
+        if(IsMeleeing())
+        {
+            return;
+        }
         if(ShouldAutoReload(FireModeNum))
         {
             FireModeNum = 2;
@@ -2529,15 +2630,13 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
     {
         if((InstantHitDamage.Length > CurrentFireMode) && InstantHitDamageTypes.Length > CurrentFireMode)
         {
-            ProjDamage = int(InstantHitDamage[CurrentFireMode]);
+            ProjDamage = GetModifiedDamage(CurrentFireMode);
             SpawnedProjectile.Damage = float(ProjDamage);
             SpawnedProjectile.MyDamageType = InstantHitDamageTypes[CurrentFireMode];
         }
-        if(SpawnedProjectile != none)
-        {
-            SpawnedProjectile.InitialPenetrationPower = GetInitialPenetrationPower(CurrentFireMode);
-            SpawnedProjectile.PenetrationPower = SpawnedProjectile.InitialPenetrationPower;
-        }
+        SpawnedProjectile.InitialPenetrationPower = GetInitialPenetrationPower(CurrentFireMode);
+        SpawnedProjectile.PenetrationPower = SpawnedProjectile.InitialPenetrationPower;
+        SpawnedProjectile.UpgradeDamageMod = GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
         SpawnedProjectile.Init(AimDir);
     }
     return SpawnedProjectile;
@@ -2580,7 +2679,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     {
         OriginalPenetrationVal = out_PenetrationVal;
         NumHits = Max(NumHits, 1);
-        TotalDamage = int(InstantHitDamage[FiringMode] * float(NumHits));
+        TotalDamage = (GetModifiedDamage(FiringMode)) * NumHits;
         if(Impact.HitActor.bWorldGeometry)
         {
             HitStaticMesh = StaticMeshComponent(Impact.HitInfo.HitComponent);
@@ -3484,6 +3583,74 @@ simulated function NotifyEndState()
     KFPawn(Instigator).WeaponStateChanged(0);
 }
 
+function bool CanUpgradeWeapon()
+{
+    if(bLogWeaponUpgrade)
+    {
+        LogInternal((((((string(self) @ "-") @ string(GetFuncName())) @ "- CurrentWeaponUpgradeIndex + 1:") @ string(CurrentWeaponUpgradeIndex + 1)) @ "WeaponUpgrades.length:") @ string(WeaponUpgrades.Length));
+    }
+    return (CurrentWeaponUpgradeIndex + 1) < WeaponUpgrades.Length;
+}
+
+simulated function UpgradeWeapon()
+{
+    if(CanUpgradeWeapon())
+    {
+        SetWeaponUpgradeLevel(CurrentWeaponUpgradeIndex + 1);
+    }
+}
+
+simulated function SetWeaponUpgradeLevel(int WeaponUpgradeLevel)
+{
+    if(bLogWeaponUpgrade)
+    {
+        LogInternal((((string(self) @ "-") @ string(GetFuncName())) @ "- Setting Upgrade Index to") @ string(WeaponUpgradeLevel));
+    }
+    CurrentWeaponUpgradeIndex = WeaponUpgradeLevel;
+    bNetDirty = true;
+}
+
+simulated function int GetModifiedWeightValue()
+{
+    return InventorySize + WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementWeight;
+}
+
+static simulated function int GetUpgradeWeight(int UpgradeIndex)
+{
+    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
+    {
+        return 0;
+    }
+    return default.WeaponUpgrades[UpgradeIndex].IncrementWeight;
+}
+
+static simulated function float GetUpgradeDamageMod(int UpgradeIndex)
+{
+    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
+    {
+        return 1;
+    }
+    return FMax(default.WeaponUpgrades[UpgradeIndex].IncrementDamage, 1);
+}
+
+static simulated function float GetUpgradeHealMod(int UpgradeIndex)
+{
+    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
+    {
+        return 1;
+    }
+    return default.WeaponUpgrades[UpgradeIndex].IncrementHeal;
+}
+
+static simulated function float GetUpgradeHealRechargeMod(int UpgradeIndex)
+{
+    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
+    {
+        return 1;
+    }
+    return default.WeaponUpgrades[UpgradeIndex].IncrementHealFullRecharge;
+}
+
 reliable server function ServerSyncReload(int ClientSpareAmmoCount)
 {
     local int ClientReloadAmount;
@@ -3498,6 +3665,11 @@ reliable server function ServerSyncReload(int ClientSpareAmmoCount)
 
 simulated function Activate()
 {
+    if(!WeaponContentLoaded)
+    {
+        AttachOnContentLoad = true;
+        return;
+    }
     if(bUseAltFireMode)
     {
         ClearPendingFire(0);        
@@ -3507,6 +3679,10 @@ simulated function Activate()
         ClearPendingFire(1);
     }
     AttachWeaponTo(Instigator.Mesh);
+    if((((MySkelMesh != none) && MySkelMesh.bAnimTreeInitialised) && WeaponAnimSeqNode == none) && Len(FirstPersonAnimTree) > 0)
+    {
+        PostInitAnimTree(MySkelMesh);
+    }
     super.Activate();
 }
 
@@ -3544,6 +3720,10 @@ simulated function TimeWeaponEquipping()
     local KFPerk InstigatorPerk;
     local float ModifiedEquipTime;
 
+    if(!WeaponContentLoaded)
+    {
+        return;
+    }
     ModifiedEquipTime = MySkelMesh.GetAnimLength(EquipAnim);
     InstigatorPerk = GetPerk();
     if(InstigatorPerk != none)
@@ -4031,6 +4211,11 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
     Duration = MySkelMesh.GetAnimLength(AnimName);
     Duration *= out_Rate;
     PlayAnimation(AnimName, Duration,, BlendTime);
+}
+
+simulated function int GetModifiedDamage(byte FireModeNum, optional Vector RayDir)
+{
+    return int(InstantHitDamage[FireModeNum] * FMax(WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementDamage, 1));
 }
 
 simulated function int GetMeleeDamage(byte FireModeNum, optional Vector RayDir)
@@ -5172,9 +5357,6 @@ simulated state WeaponSingleFireAndReload extends WeaponSingleFiring
 
 defaultproperties
 {
-    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
-    FireModeIconPaths(1)=none
-    SingleFireSoundIndex=255
     bTargetFrictionEnabled=true
     bTargetAdhesionEnabled=true
     DOF_bOverrideEnvironmentDOF=true
@@ -5182,6 +5364,9 @@ defaultproperties
     bAllowClientAmmoTracking=true
     bUseAnimLenEquipTime=true
     bUseAdditiveMoveAnim=true
+    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+    FireModeIconPaths(1)=none
+    SingleFireSoundIndex=255
     MinFiringPutDownPct=0.8
     PenetrationPower(0)=0
     PenetrationPower(1)=0
@@ -5298,6 +5483,7 @@ defaultproperties
     StanceCrouchedRecoilModifier=0.75
     LastRecoilModifier=1
     IronSightMeshFOVCompensationScale=1
+    WeaponUpgrades(0)=(IncrementWeight=0,IncrementDamage=1,IncrementHeal=1,IncrementHealFullRecharge=1)
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

@@ -26,7 +26,7 @@ var() float UnFastenRate;
 /** Percent repaired per fire interval */
 var() float RepairRate;
 
-/** Give the welder extra range when it has a WeldTarget to avoid the ready animation 
+/** Give the welder extra range when it has a WeldTarget to avoid the ready animation
 activating / deactivating on door that is is currently being damaged */
 var const float ExtraWeldingRange;
 
@@ -43,7 +43,7 @@ var name WeldOpenAnim;
 var name WeldCloseAnim;
 
 /** Reference to the door we're pointing at */
-var KFDoorActor WeldTarget;
+var KFWeldableActor WeldTarget;
 
 /** Store last update to we can prevent idle->ready->idle to quickly */
 var float LastTraceHitTime;
@@ -258,7 +258,6 @@ simulated function StartFire(byte FireModeNum)
 simulated function CustomFire()
 {
 	local float CurrentFastenRate, CurrentUnfastenRate;
-
 	WeldTarget = TraceDoorActors();
 	// Fasten/Unfasten the door
 	if ( Role == ROLE_Authority && WeldTarget != None )
@@ -269,17 +268,17 @@ simulated function CustomFire()
 		GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
 		SetTimer(AmmoRechargeRate, true, nameof(RechargeAmmo));
 
-		if ( WeldTarget.bIsDestroyed )
+		if ( WeldTarget.bIsDestroyed && !WeldTarget.IsA('KFRepairableActor') )
 		{
-			WeldTarget.RepairDoor(RepairRate, KFPawn(Instigator));
+			WeldTarget.Repair(RepairRate, KFPawn(Instigator));
 		}
 		else if ( CurrentFireMode == DEFAULT_FIREMODE )
 		{
-			WeldTarget.FastenDoor(CurrentFastenRate, KFPawn(Instigator));
+			WeldTarget.FastenWeld(CurrentFastenRate, KFPawn(Instigator));
 		}
 		else
 		{
-			WeldTarget.FastenDoor(CurrentUnfastenRate, KFPawn(Instigator));
+			WeldTarget.FastenWeld(CurrentUnfastenRate, KFPawn(Instigator));
 		}
 	}
 
@@ -305,7 +304,7 @@ simulated function bool CanWeldTarget( optional int FireModeNum=CurrentFireMode 
 	if ( FireModeNum == DEFAULT_FIREMODE &&
 		 WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity )
 	{
-		if( WelderPerk != none && WelderPerk.CanExplosiveWeld() )
+		if( WelderPerk != none && WelderPerk.CanExplosiveWeld() && WeldTarget.CanExplosiveWeld() )
 		{
 			return WeldTarget.DemoWeld < WeldTarget.default.DemoWeldRequired;
 		}
@@ -404,7 +403,7 @@ simulated function CheckDelayedStartFire()
  */
 simulated function bool TickWeldTarget()
 {
-	local KFDoorActor PreviousTarget;
+	local KFWeldableActor PreviousTarget;
 
 	// prevent state from changing too often (also a optimization)
 	if ( (WorldInfo.TimeSeconds - LastTraceHitTime) < 0.2f )
@@ -425,31 +424,41 @@ simulated function bool TickWeldTarget()
 }
 
 /** Network: All */
-simulated function KFDoorActor TraceDoorActors()
+simulated function KFWeldableActor TraceDoorActors()
 {
-	local KFDoorActor Door;
+	local KFWeldableActor WeldableActor;
 	local vector HitLoc, HitNorm, StartTrace, EndTrace, AdjustedAim;
+	local bool bIsRepairableActor;
 
 	// define range to use for CalcWeaponFire()
 	StartTrace = Instigator.GetWeaponStartTraceLocation();
 	AdjustedAim = vector(GetAdjustedAim(StartTrace));
 	EndTrace = StartTrace + AdjustedAim * WeldingRange;
 
-	// Give the welder extra range when it has a WeldTarget to avoid the ready animation 
-	// activating / deactivating on door that is is currently being damaged 
+	// Give the welder extra range when it has a WeldTarget to avoid the ready animation
+	// activating / deactivating on door that is is currently being damaged
 	if( WeldTarget != none )
 	{
 		EndTrace += AdjustedAim * ExtraWeldingRange;
 	}
 
 	// find door actor
-	foreach GetTraceOwner().TraceActors(class'KFDoorActor', Door, HitLoc, HitNorm, StartTrace, EndTrace)
+	foreach GetTraceOwner().TraceActors(class'KFWeldableActor', WeldableActor, HitLoc, HitNorm, StartTrace, EndTrace)
 	{
-		if ( !Door.bIsDestroyed )
+		bIsRepairableActor = WeldableActor.IsA('KFRepairableActor');
+
+		if (!bIsRepairableActor && WeldableActor.bIsDestroyed )
 		{
-			LastTraceHitTime = WorldInfo.TimeSeconds;
-			return Door;
+			continue;
 		}
+
+		if (bIsRepairableActor && WeldableActor.WeldIntegrity >= WeldableActor.MaxWeldIntegrity)
+		{
+			continue;
+		}
+
+		LastTraceHitTime = WorldInfo.TimeSeconds;
+		return WeldableActor;
 	}
 
 	return FindRepairableDoor();
@@ -476,7 +485,7 @@ simulated function KFDoorActor FindRepairableDoor()
 		}
 	}
 
-	UsableTrigger = class'KFPlayerController'.static.GetCurrentUsableActor(Instigator);	
+	UsableTrigger = class'KFPlayerController'.static.GetCurrentUsableActor(Instigator);
 	DoorTrigger = KFDoorTrigger(UsableTrigger);
 
 	// if we didn't find a door that could be welded, maybe there is one that can be repaired?
@@ -488,14 +497,14 @@ simulated function KFDoorActor FindRepairableDoor()
 		if ( FacingDot > 0.87 )
 		{
 			return DoorTrigger.DoorActor;
-		}			
+		}
 	}
 
 	return None;
 }
 
 /** Notify server of new WeldTarget for 'HasAmmo' */
-reliable server private function ServerSetWeldTarget(KFDoorActor NewTarget, bool bDelayedStart)
+reliable server private function ServerSetWeldTarget(KFWeldableActor NewTarget, bool bDelayedStart)
 {
 	WeldTarget = NewTarget;
 
@@ -506,7 +515,7 @@ reliable server private function ServerSetWeldTarget(KFDoorActor NewTarget, bool
 }
 
 /** Play a transition animation between idle ready states */
-simulated function bool PlayReadyTransition(KFDoorActor PreviousTarget)
+simulated function bool PlayReadyTransition(KFWeldableActor PreviousTarget)
 {
 	local name AnimName;
 	local float Duration;
@@ -621,12 +630,15 @@ simulated state Active
 /** Automatically equip previous weapon when leaving a door trigger */
 simulated function bool TickAutoUnequip()
 {
-	local KFDoorTrigger Trigger;
+	local Trigger_PawnsOnly Trigger;
 	local KFInventoryManager KFIM;
 
-	ForEach Instigator.TouchingActors(class'KFDoorTrigger', Trigger)
+	ForEach Instigator.TouchingActors(class'Trigger_PawnsOnly', Trigger)
 	{
-		return FALSE;
+		if(Trigger.IsA('KFDoorTrigger') || Trigger.IsA('KFRepairableActorTrigger'))
+		{
+			return FALSE;
+		}
 	}
 
 	KFIM = KFInventoryManager( Instigator.InvManager );
@@ -677,13 +689,18 @@ defaultproperties
    WeldOpenAnim="Weld_On"
    WeldCloseAnim="Weld_Off"
    ScreenUIClass=Class'KFGame.KFGFxWorld_WelderScreen'
+   PackageKey="Welder"
+   FirstPersonMeshName="WEP_1P_Welder_MESH.Wep_1stP_Welder_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_Welder_ANIM.Wep_1st_Welder_Anim"
+   AttachmentArchetypeName="WEP_Welder_ARCH.Welder_3P"
+   MuzzleFlashTemplateName="WEP_Welder_ARCH.Wep_Welder_MuzzleFlash"
+   bTargetAdhesionEnabled=False
+   bInfiniteSpareAmmo=True
+   bAllowClientAmmoTracking=False
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    InventoryGroup=IG_None
    MagazineCapacity(0)=100
-   bTargetAdhesionEnabled=False
-   bInfiniteSpareAmmo=True
-   bAllowClientAmmoTracking=False
    GroupPriority=5.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
    AmmoCost(0)=7
@@ -697,14 +714,12 @@ defaultproperties
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Welder.Play_WEP_SA_Welder_Fire_Loop_M',FirstPersonCue=AkEvent'WW_WEP_SA_Welder.Play_WEP_SA_Welder_Fire_Loop_S')
    WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Welder.Stop_WEP_SA_Welder_Fire_Loop_M',FirstPersonCue=AkEvent'WW_WEP_SA_Welder.Stop_WEP_SA_Welder_Fire_Loop_S')
    PlayerViewOffset=(X=20.000000,Y=10.000000,Z=-10.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_Welder_ARCH.Welder_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Welder:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Welder_ARCH.Wep_Welder_MuzzleFlash'
    AssociatedPerkClasses(0)=None
    FiringStatesArray(0)="WeaponWelding"
    FiringStatesArray(1)="WeaponWelding"
@@ -726,9 +741,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Welder'
    bCanThrow=False
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeapon:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_Welder_MESH.Wep_1stP_Welder_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_Welder_ANIM.Wep_1st_Welder_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None

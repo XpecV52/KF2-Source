@@ -17,13 +17,19 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFil
 defaultproperties
 {
     HealAmount=15
+    PackageKey="Medic_SMG"
+    FirstPersonMeshName="WEP_1P_Medic_SMG_MESH.Wep_1stP_Medic_SMG_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_medic_smg_mesh.Wep_Medic_SMG_Pickup"
+    AttachmentArchetypeName="WEP_Medic_SMG_ARCH.Wep_Medic_SMG_3P"
+    MuzzleFlashTemplateName="WEP_Medic_SMG_ARCH.Wep_Medic_SMG_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=3
     MagazineCapacity=40
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshFOV=81
     MeshIronSightFOV=64
     PlayerIronSightFOV=70
@@ -31,6 +37,7 @@ defaultproperties
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+    AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=480
     InitialSpareMags=5
     bLoopingFireAnim=/* Array type was not detected. */
@@ -39,9 +46,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=22,Y=10,Z=-4.5)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_SMG_ARCH.Wep_Medic_SMG_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_SMG_Medic.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_SMG_ARCH.Wep_Medic_SMG_MuzzleFlash'
     maxRecoilPitch=100
     minRecoilPitch=75
     maxRecoilYaw=75
@@ -57,6 +62,7 @@ defaultproperties
     RecoilISMinPitchLimit=65460
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
     Spread=/* Array type was not detected. */
@@ -64,21 +70,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Medic_SMG_MESH.Wep_1stP_Medic_SMG_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Medic_SMG_ANIM.Wep_1stP_Medic_SMG_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_SMG_Medic.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="HMTech-201 SMG"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_SMG_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_Medic.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_SMG_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_Medic.StaticPickupComponent'

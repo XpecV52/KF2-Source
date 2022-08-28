@@ -9,6 +9,7 @@ class KFGFxPerksContainer_Header extends KFGFxPerksContainer within GFxMoviePlay
 
 var GFxObject PerkTextField;
 var GFxObject LevelTextField;
+var const localized string PrestigeLevelString;
 var const localized string ExperienceString;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
@@ -22,19 +23,24 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 
 function UpdatePerkHeader(class<KFPerk> PerkClass)
 {
-    local GFxObject PerkDataProvider;
+    local GFxObject PerkDataProvider, PerkIconObject;
     local KFPlayerController KFPC;
     local int NextEXP, CurrentEXP;
     local float EXPPercent;
-    local byte PerkLevel;
+    local byte PerkLevel, PrestigeLevel;
 
     KFPC = KFPlayerController(Outer.GetPC());
     EXPPercent = KFPC.GetPerkLevelProgressPercentage(PerkClass, CurrentEXP, NextEXP);
     PerkLevel = KFPC.GetPerkLevelFromPerkList(PerkClass);
+    PrestigeLevel = KFPC.GetPerkPrestigeLevelFromPerkList(PerkClass);
     PerkDataProvider = Outer.CreateObject("Object");
+    PerkIconObject = Outer.CreateObject("Object");
+    PerkIconObject.SetString("perkIcon", "img://" $ PerkClass.static.GetPerkIconPath());
+    PerkIconObject.SetString("prestigeIcon", PerkClass.static.GetPrestigeIconPath(PrestigeLevel));
+    PerkDataProvider.SetObject("perkData", PerkIconObject);
     PerkDataProvider.SetString("perkTitle", PerkClass.default.PerkName);
     PerkDataProvider.SetString("perkLevel", LevelString @ string(PerkLevel));
-    PerkDataProvider.SetString("iconSource", "img://" $ PerkClass.static.GetPerkIconPath());
+    PerkDataProvider.SetString("prestigeLevel", Class'KFGFxMenu_Perks'.default.CurrentPrestigeLevelString @ string(PrestigeLevel));
     PerkDataProvider.SetString("xpString", (string(CurrentEXP) $ "/") $ string(NextEXP));
     PerkDataProvider.SetFloat("xpPercent", EXPPercent / float(100));
     SetObject("perkData", PerkDataProvider);
@@ -42,5 +48,6 @@ function UpdatePerkHeader(class<KFPerk> PerkClass)
 
 defaultproperties
 {
+    PrestigeLevelString="Prestige"
     ExperienceString="Experience"
 }

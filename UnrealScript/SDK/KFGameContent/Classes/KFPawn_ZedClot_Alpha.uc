@@ -8,20 +8,6 @@
 //=============================================================================
 class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot;
 
-/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-	local WorldInfo WI;
-
-	WI = class'WorldInfo'.static.GetWorldInfo();
-	if( fRand() < class<KFDifficulty_ClotAlpha>(default.DifficultySettings).static.GetSpecialAlphaChance(KFGameReplicationInfo(WI.GRI)) )
-	{
-		return default.ElitePawnClass;
-	}
-
-	return super.GetAIPawnClassToSpawn();
-}
-
 /** Returns (hardcoded) trader advice dialog ID */
 static function int GetTraderAdviceID()
 {
@@ -69,7 +55,7 @@ DefaultProperties
 	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=4.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
     IncapSettings(AF_Bleed)=    (Vulnerability=(2.0))
-	
+
 	ParryResistance=0
 
 	// ---------------------------------------------
@@ -87,7 +73,7 @@ DefaultProperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0))) //0.88
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Bleeding', 	                DamageScale=(1.0)))
-	
+
 
 	// ---------------------------------------------
 	// Special Case
@@ -102,11 +88,11 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// AI / Navigation
-	ElitePawnClass=class'KFPawn_ZedClot_AlphaKing'
+	ElitePawnClass.Add(class'KFPawn_ZedClot_AlphaKing')
 	ControllerClass=class'KFAIController_ZedClot_Alpha'
 	DamageRecoveryTimeHeavy=0.75f
 	DamageRecoveryTimeMedium=1.0f
-	
+
 	KnockdownImpulseScale=1.0f
 
 `if(`notdefined(ShippingPC))

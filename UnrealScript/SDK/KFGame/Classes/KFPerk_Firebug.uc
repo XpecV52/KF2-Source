@@ -678,4 +678,7 @@ DefaultProperties
 	HitAccuracyHandicap=-2.0
 	HeadshotAccuracyHandicap=5.0
 	AutoBuyLoadOutPath=(class'KFWeapDef_CaulkBurn', class'KFWeapDef_DragonsBreath', class'KFWeapDef_FlameThrower', class'KFWeapDef_MicrowaveGun')
+
+	// Prestige Rewards
+	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
 }

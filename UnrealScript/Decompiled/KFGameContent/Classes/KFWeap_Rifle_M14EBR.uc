@@ -19,13 +19,19 @@ defaultproperties
     SceneCapture=SceneCapture2DComponent0
     ScopeLenseMICTemplate=MaterialInstanceConstant'WEP_1P_M14EBR_MAT_TWO.WEP_1P_M14EBR_Scope_MAT'
     ScopedSensitivityMod=8
-    InventorySize=7
-    MagazineCapacity=20
+    PackageKey="M14EBR"
+    FirstPersonMeshName="WEP_1P_M14EBR_MESH.WEP_1stP_M14_EBR"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_M14EBR_MESH.Wep_M14EBR_Pickup"
+    AttachmentArchetypeName="WEP_M14EBR_ARCH.Wep_M14EBR_3P"
+    MuzzleFlashTemplateName="WEP_M14EBR_ARCH.Wep_M14EBR_MuzzleFlash"
     bHasIronSights=true
     bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasLaserSight=true
+    InventorySize=7
+    MagazineCapacity=20
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=70
     MeshIronSightFOV=27
@@ -43,9 +49,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=15,Y=11.5,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'WEP_M14EBR_ARCH.Wep_M14EBR_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Rifle_M14EBR.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_M14EBR_ARCH.Wep_M14EBR_MuzzleFlash'
     LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.LaserSight_WithAttachment_1P'
     maxRecoilPitch=225
     minRecoilPitch=200
@@ -62,6 +66,7 @@ defaultproperties
     RecoilISMaxPitchLimit=375
     RecoilISMinPitchLimit=65460
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -71,21 +76,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=3,Z=-2.5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_M14EBR_MESH.WEP_1stP_M14_EBR'
-        AnimSets(0)=AnimSet'WEP_1P_M14EBR_ANIM.Wep_1stP_M14_EBR_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Rifle_M14EBR.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="M14 EBR"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M14EBR_MESH.Wep_M14EBR_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Rifle_M14EBR.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M14EBR_MESH.Wep_M14EBR_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Rifle_M14EBR.StaticPickupComponent'

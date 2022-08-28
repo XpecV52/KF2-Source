@@ -552,6 +552,8 @@ class KFDT_Slashing extends KFDamageType
 
 
 
+										  
+
 
 
 

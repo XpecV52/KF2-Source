@@ -16,14 +16,20 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 
 defaultproperties
 {
-   NumPellets(0)=9
+   NumPellets(0)=8
    NumPellets(1)=()
+   PackageKey="DragonsBreath"
+   FirstPersonMeshName="WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_DragonsBreath_ANIM.WEP_1P_DragonsBreath_ANIM"
+   PickupMeshName="WEP_3P_DragonsBreath_MESH.Wep_DragonsBreath_Pickup"
+   AttachmentArchetypeName="WEP_DragonsBreath_ARCH.Wep_DragonsBreath_3P"
+   MuzzleFlashTemplateName="WEP_DragonsBreath_ARCH.Wep_DragonsBreath_MuzzleFlash_3P"
+   bHasIronSights=True
+   bCanBeReloaded=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=5
    MagazineCapacity(0)=6
-   bHasIronSights=True
-   bCanBeReloaded=True
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshFOV=75.000000
@@ -43,14 +49,12 @@ defaultproperties
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
    PlayerViewOffset=(X=10.000000,Y=7.500000,Z=-4.500000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_DragonsBreath_ARCH.Wep_DragonsBreath_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_DragonsBreath:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_DragonsBreath_ARCH.Wep_DragonsBreath_MuzzleFlash_3P'
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500
@@ -69,6 +73,9 @@ defaultproperties
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
+   WeaponUpgrades(1)=(IncrementDamage=1.100000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.200000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.300000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -87,7 +94,7 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.160000
    Spread(1)=()
-   InstantHitDamage(0)=27.000000
+   InstantHitDamage(0)=26.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=25.000000
@@ -97,9 +104,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_DragonsBreath'
    FireOffset=(X=30.000000,Y=3.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_DragonsBreath_ANIM.WEP_1P_DragonsBreath_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -111,9 +116,9 @@ defaultproperties
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   ItemName="Incendiary Trench Gun"
+   ItemName="Dragonsbreath"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_ShotgunBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_DragonsBreath_MESH.Wep_DragonsBreath_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

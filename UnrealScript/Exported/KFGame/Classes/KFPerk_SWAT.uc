@@ -73,7 +73,7 @@ function SetPlayerDefaults( Pawn PlayerPawn )
 			NewArmor += OwnerPawn.default.MaxArmor * GetSKillValue( PerkSkills[ESWAT_BodyArmor] );
 		}
 
-		OwnerPawn.AddArmor( Round( NewArmor ) );	
+		OwnerPawn.AddArmor( Round( NewArmor ) );
 	}
 }
 
@@ -91,7 +91,7 @@ function ApplySkillsToPawn()
 /* Returns the secondary weapon's class path for this perk */
 simulated function string GetSecondaryWeaponClassPath()
 {
-	return IsBackupActive() ? BackupSecondaryWeaponDef.default.WeaponClassPath : SecondaryWeaponDef.default.WeaponClassPath;    
+	return IsBackupActive() ? BackupSecondaryWeaponDef.default.WeaponClassPath : SecondaryWeaponDef.default.WeaponClassPath;
 }
 
 /*********************************************************************************************
@@ -203,7 +203,10 @@ simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
 function FinalizeSpeedVariables()
 {
     super.FinalizeSpeedVariables();
-    CurrentHealthPenalty = 1 - OwnerPawn.LowHealthSpeedPenalty;
+	if(OwnerPawn != none)
+	{
+		CurrentHealthPenalty = 1 - OwnerPawn.LowHealthSpeedPenalty;
+	}
 }
 
 /**
@@ -597,6 +600,7 @@ defaultproperties
    AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_P90'
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_Kriss'
    HeadshotAccuracyHandicap=-3.000000
+   PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SWATKnife_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_SWAT"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

@@ -14,11 +14,13 @@ defaultproperties
 {
 	// Zooming/Position
 	PlayerViewOffset=(X=10,Y=10,Z=0)
-	
-	AttachmentArchetype=KFWeaponAttachment'wep_sharpshooter_knife_arch.Wep_Sharpshooter_Knife_3P'
+
+	// Content
+	PackageKey="Sharpshooter_Knife"
+	FirstPersonMeshName="WEP_1P_Sharpshooter_Knife_MESH.Wep_1stP_SharpshooterKnife_Rig"
+	AttachmentArchetypeName="wep_sharpshooter_knife_arch.Wep_Sharpshooter_Knife_3P"
 
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Sharpshooter_Knife_MESH.Wep_1stP_SharpshooterKnife_Rig'
 		AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
 	End Object
 

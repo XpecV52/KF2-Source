@@ -26,16 +26,13 @@ defaultproperties
 	DOF_FG_FocalRadius=50
 	DOF_FG_MaxNearBlurSize=3.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Centerfire_MESH.Wep_1stP_Centerfire_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Centerfire_ANIM.Wep_1stP_Centerfire_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Centerfire_MESH.Wep_3rdP_Centerfire_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Centerfire_ARCH.Wep_Centerfire_3P'
+	// Content
+	PackageKey="Centerfire"
+	FirstPersonMeshName="WEP_1P_Centerfire_MESH.Wep_1stP_Centerfire_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Centerfire_ANIM.Wep_1stP_Centerfire_Anim"
+	PickupMeshName="WEP_3P_Centerfire_MESH.Wep_3rdP_Centerfire_Pickup"
+	AttachmentArchetypeName="WEP_Centerfire_ARCH.Wep_Centerfire_3P"
+	MuzzleFlashTemplateName="WEP_Centerfire_ARCH.Wep_Centerfire_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=10
@@ -75,7 +72,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Winchester1894'
-	InstantHitDamage(DEFAULT_FIREMODE)=180
+	InstantHitDamage(DEFAULT_FIREMODE)=165 //180
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_CenterfireMB464'
 	FireInterval(DEFAULT_FIREMODE)=0.4 //0.45
 	Spread(DEFAULT_FIREMODE)=0.007
@@ -96,7 +93,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Centerfire_ARCH.Wep_Centerfire_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Winchester.Play_WEP_Centerfire_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_Winchester.Play_WEP_Centerfire_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_Winchester.Play_WEP_SA_Winchester_Handling_DryFire'
 	EjectedShellForegroundDuration=1.5f
@@ -106,4 +102,9 @@ defaultproperties
 	bHasFlashlight=false
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.3f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.45f,IncrementWeight=3)
 }

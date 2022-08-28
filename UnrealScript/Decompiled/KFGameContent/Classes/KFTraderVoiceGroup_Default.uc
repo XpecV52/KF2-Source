@@ -57,6 +57,7 @@ defaultproperties
     DialogEvents[45]=(EventID=45,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Husk',Priority=1)
     DialogEvents[46]=(EventID=46,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Patty',Priority=1)
     DialogEvents[47]=(EventID=47,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Hans',Priority=1)
+    DialogEvents[48]=(EventID=48,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_ADVC_Matty',Priority=1)
     DialogEvents[49]=(EventID=49,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_Target',Priority=1)
     DialogEvents[50]=(EventID=50,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_Won',Priority=1)
     DialogEvents[51]=(EventID=51,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_DEF1_ObjDecl',Priority=1)

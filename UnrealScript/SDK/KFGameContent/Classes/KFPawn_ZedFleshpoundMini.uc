@@ -19,6 +19,8 @@ defaultproperties
     Health=750
     Mass=100
 
+	RageBumpDamageType = class'KFGameContent.KFDT_MediumZedBump'
+
     GroundSpeed=450.f //260
 	SprintSpeed=650.f     //600 //700
 

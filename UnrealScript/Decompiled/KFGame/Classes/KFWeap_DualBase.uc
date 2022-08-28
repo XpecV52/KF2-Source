@@ -336,6 +336,12 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
         SpareAmmoCount[0] /= float(2);
         NewSingle.ClientForceAmmoUpdate(NewSingle.AmmoCount[0], NewSingle.SpareAmmoCount[0]);
         NewSingle.ClientForceSecondaryAmmoUpdate(NewSingle.AmmoCount[1]);
+        NewSingle.SetWeaponUpgradeLevel(CurrentWeaponUpgradeIndex);
+        if(CurrentWeaponUpgradeIndex > 0)
+        {
+            KFInventoryManager(InvManager).AddCurrentCarryBlocks(NewSingle.GetUpgradeWeight(CurrentWeaponUpgradeIndex));
+            KFPawn(Instigator).NotifyInventoryWeightChanged();
+        }
         if(Instigator.bPlayedDeath || Instigator.Health <= 0)
         {
             GetAxes(Instigator.Rotation, X, Y, Z);
@@ -471,24 +477,41 @@ simulated function RepositionUsedBullets(int FirstIndex, int UsedStartIdx, int U
 {
     local int I;
 
-    BulletMeshComponents[FirstIndex].SetSkeletalMesh(UnusedBulletMeshTemplate);
+    if(BulletMeshComponents.Length == 0)
+    {
+        return;
+    }
+    if((FirstIndex >= 0) && FirstIndex < BulletMeshComponents.Length)
+    {
+        BulletMeshComponents[FirstIndex].SetSkeletalMesh(UnusedBulletMeshTemplate);        
+    }
+    else
+    {
+        WarnInternal((((((string(self) @ "-") @ string(GetFuncName())) @ "- First Index is out of bounds - FirstIndex:") @ string(FirstIndex)) @ "BulletMeshComponents.Length:") @ string(BulletMeshComponents.Length));
+    }
     I = UsedStartIdx;
-    J0x46:
+    J0x107:
 
     if(I > UsedEndIdx)
     {
-        BulletMeshComponents[I].SetSkeletalMesh(UsedBulletMeshTemplate);
+        if((I >= 0) && I < BulletMeshComponents.Length)
+        {
+            BulletMeshComponents[I].SetSkeletalMesh(UsedBulletMeshTemplate);
+        }
         I -= 2;
-        goto J0x46;
+        goto J0x107;
     }
     I = UsedEndIdx;
-    J0xB3:
+    J0x19D:
 
     if(I > FirstIndex)
     {
-        BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
+        if((I >= 0) && I < BulletMeshComponents.Length)
+        {
+            BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
+        }
         I -= 2;
-        goto J0xB3;
+        goto J0x19D;
     }
 }
 
@@ -688,10 +711,10 @@ defaultproperties
     LeftFireLastSightedAnim=Shoot_IronOG_LW_Last
     FireLastSightedAnim_Alt=Shoot_Iron_RW_Last
     LeftFireLastSightedAnim_Alt=Shoot_Iron_LW_Last
+    bSkipZoomInRotation=true
     FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
     FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
     InventoryGroup=EInventoryGroup.IG_Primary
-    bSkipZoomInRotation=true
     FireAnim=Shoot_RW
     FireLastAnim=Shoot_RW_Last
     FireSightedAnims(0)=Shoot_IronOG_RW

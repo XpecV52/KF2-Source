@@ -27,11 +27,14 @@ function InitializeAmmo()
 
 defaultproperties
 {
+   PackageKey="Healer"
+   FirstPersonMeshName="WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_Healer_ANIM.Wep_1st_Healer_Anim"
+   AttachmentArchetypeName="WEP_Healer_ARCH.Wep_Healer_3P"
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
    PlayerViewOffset=(X=20.000000,Y=10.000000,Z=-8.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_Healer_ARCH.Wep_Healer_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_HealerBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
@@ -42,7 +45,6 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Healer'
    bCanThrow=False
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_HealerBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       Begin Object Class=AnimTree Name=WEP_1stP_Animtree_Healer
          Begin Object Class=KFSkelControl_WeaponTilt Name=KFSkelControl_WeaponTilt_0
@@ -96,7 +98,6 @@ defaultproperties
          ObjectArchetype=AnimTree'Engine.Default__AnimTree'
       End Object
       Animations=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Healer'
-      AnimSets(0)=AnimSet'WEP_1P_Healer_ANIM.Wep_1st_Healer_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None

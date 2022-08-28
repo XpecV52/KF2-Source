@@ -21,6 +21,8 @@ KF-Nightmare="Sta giocando: Incubo"
 KF-KrampusLair="Giocando La Tana del Krampus"
 KF-PowerCore_Holdout="Sta giocando: Nucleo di energia"
 KF-DieSector="Sta giocando: Settore mortale"
+KF-Lockdown="In gioco - Debilitazione"
+KF-Airship="In gioco - Aeronave"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

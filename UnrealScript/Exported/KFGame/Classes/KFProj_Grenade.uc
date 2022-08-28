@@ -36,10 +36,20 @@ var() Texture2D WeaponSelectTexture;
 /** Set on the server and replicated to clients. Ensures that even if Instigator isn't relevant, we still have a valid team */
 var repnotify byte TeamNum;
 
+/** Should the grenade have the upgrade values of the owning weapon. */
+var bool bUpgradable;
+
 replication
 {
 	if( bNetInitial && !bNetOwner )
 		TeamNum;
+}
+
+function Init(vector Direction)
+{
+	super.Init(Direction);
+
+	LogInternal(self @ "-" @ GetFuncName() @ "- Owner:" @ Owner);
 }
 
 /* epic ===============================================
@@ -105,7 +115,7 @@ simulated function SpawnFlightEffects()
 /** Toggles an emitter in the projectile effects particle system to display a warning sprite */
 simulated function EnableGrenadeWarning()
 {
-	local PlayerController LocalPC;	
+	local PlayerController LocalPC;
 
 	if( ProjEffects == none || GetTeamNum() != 0 )
 	{
@@ -247,6 +257,19 @@ simulated event GrenadeIsAtRest()
 	RotationRate.Roll = 0;
 	NewRotation.Pitch=16384;
 	SetRotation(NewRotation);
+}
+
+/** Overriding so that the grenade doesn't take on the  */
+simulated protected function PrepareExplosionTemplate()
+{
+	if (bUpgradable)
+	{
+		super.PrepareExplosionTemplate();
+	}
+	else
+	{
+		GetRadialDamageValues(ExplosionTemplate.Damage, ExplosionTemplate.DamageRadius, ExplosionTemplate.DamageFalloffExponent);
+	}
 }
 
 //==============

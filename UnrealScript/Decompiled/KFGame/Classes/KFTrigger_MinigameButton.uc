@@ -27,6 +27,8 @@ var() array<KFTrigger_MinigameButton> LinkedButtons;
 /** Amount of delay between button press and activation of the game */
 var() float ActivationDelay;
 var Pawn LastActivatingUser;
+/** Sound to play upon activation */
+var() AkEvent ActivationSoundEvent;
 
 simulated function bool GetIsUsable(Pawn User)
 {
@@ -138,7 +140,8 @@ function ActivateGame()
                     MinigameActor.Activated(self);                    
                 }                
             }
-            SetTimer(ReactivationTime, false, 'AllowReactivation');            
+            SetTimer(ReactivationTime, false, 'AllowReactivation');
+            PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);            
         }
         else
         {
@@ -152,17 +155,22 @@ function ActivateGame()
 
 function AllowReactivation()
 {
+    bAllowActivation = true;
+    BroadcastInteractionMessages();
+}
+
+function BroadcastInteractionMessages()
+{
     local int I;
 
-    bAllowActivation = true;
     I = 0;
-    J0x17:
+    J0x0B:
 
     if(I < Touching.Length)
     {
         Class'KFPlayerController'.static.UpdateInteractionMessages(Touching[I]);
         ++ I;
-        goto J0x17;
+        goto J0x0B;
     }
 }
 

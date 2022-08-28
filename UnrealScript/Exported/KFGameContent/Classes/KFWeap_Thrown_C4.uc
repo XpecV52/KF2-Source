@@ -426,9 +426,13 @@ defaultproperties
    UpdateInterval=0.250000
    DetonateAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Detonate'
    DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
+   PackageKey="C4"
+   FirstPersonMeshName="Wep_1P_C4_MESH.Wep_1stP_C4_Rig"
+   FirstPersonAnimSetNames(0)="Wep_1P_C4_ANIM.Wep_1P_C4_ANIM"
+   PickupMeshName="WEP_3P_C4_MESH.Wep_C4_Pickup"
+   AttachmentArchetypeName="WEP_C4_ARCH.Wep_C4_3P"
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
-   InventoryGroup=IG_Equipment
    InventorySize=3
    MagazineCapacity(0)=1
    GroupPriority=50.000000
@@ -442,7 +446,6 @@ defaultproperties
    FireAnim="C4_Throw"
    FireLastAnim="C4_Throw_Last"
    PlayerViewOffset=(X=6.000000,Y=2.000000,Z=-4.000000)
-   AttachmentArchetype=KFWeapAttach_Dual_C4'WEP_C4_ARCH.Wep_C4_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ThrownBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
@@ -450,6 +453,10 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Thrown_C4:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
+   WeaponUpgrades(1)=(IncrementDamage=1.050000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.100000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.150000)
+   CurrentFireMode=5
    FiringStatesArray(5)="WeaponDetonating"
    WeaponFireTypes(5)=EWFT_Custom
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Thrown_C4'
@@ -463,9 +470,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_C4'
    FireOffset=(X=25.000000,Y=15.000000,Z=0.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ThrownBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'Wep_1P_C4_MESH.Wep_1stP_C4_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'Wep_1P_C4_ANIM.Wep_1P_C4_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -479,7 +484,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="C4 Explosives"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_ThrownBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_C4_MESH.Wep_C4_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

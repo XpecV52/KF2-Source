@@ -7,6 +7,8 @@
  *******************************************************************************/
 class KFCommon_LocalizedStrings extends Object;
 
+var const localized string PrestigeWarningString;
+var const localized string PrestigeBonusString;
 var const localized string FailedToReachInventoryServerString;
 var const localized array<localized string> DifficultyStrings;
 var const localized array<localized string> LengthStrings;
@@ -39,6 +41,7 @@ var const localized string AllString;
 var const localized string LoadingString;
 var const localized string AutoTradeCompleteString;
 var const localized string AutoFillCompleteString;
+var const localized string WeaponUpgradeComepleteString;
 var const localized string SecondaryWeaponPurchasedString;
 var const localized string NoItemsPurchasedString;
 var const localized string SetTakeoverServerPasswordTitle;
@@ -69,6 +72,8 @@ var const localized string DiscordBossWaveString;
 var const localized string DiscordWaveString;
 var const localized string ProceedToTutorialString;
 var const localized string ProceedToTutorialDescriptionString;
+var const localized string NotAvailableInFreeTrialString;
+var const localized string NetworkCheckFreeTrialFailedString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -166,6 +171,8 @@ static function string GetFriendlyMapName(string MapName)
 
 defaultproperties
 {
+    PrestigeWarningString="Reset Perk back to 0?  This cannot be undone."
+    PrestigeBonusString="Prestige Bonus"
     FailedToReachInventoryServerString="Failed to reach item server.  Inventory will not be available."
     DifficultyStrings(0)="Normal"
     DifficultyStrings(1)="Hard"
@@ -212,6 +219,7 @@ defaultproperties
     LoadingString="Loading..."
     AutoTradeCompleteString="Auto Trade Complete: "
     AutoFillCompleteString="Autofilled Supplies"
+    WeaponUpgradeComepleteString="Weapon Upgraded"
     SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
     NoItemsPurchasedString="No Items Purchased"
     SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"

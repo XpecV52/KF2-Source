@@ -202,30 +202,35 @@ ItemName="Stoner 63A LMG"
 ItemCategory="Leichtes Maschinengewehr"
 ItemDescription="•Der Feuer-Modus ist ausschließlich vollautomatisch.\n•Das Stoner 63A war im Vietnamkrieg Teil der Grundausrüstung der US Navy SEALs und verfügt über eine hohe Munitionskapazität und eine Menge Mannstoppwirkung."
 
+[KFWeap_Knife_Survivalist]
+ItemName="Blut-Shiv"
+ItemCategory="Nahkampf"
+ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Das hat mal zu was anderem gehört. Nun, jetzt gehört es dir!"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Allzweckmesser"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller Schlitzangriff, Halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Es ist ein Teppichmesser. Falls man auf dem Schlachtfeld mal die ein oder andere Kiste öffnen muss."
+ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Es ist ein Teppichmesser. Falls man auf dem Schlachtfeld mal die ein oder andere Kiste öffnen muss."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Skalpell"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller Schlitzangriff, Halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Es ist ein Skalpell. Du bist Sanitäter, also brauchst du auch hoffentlich keine Erklärung für dieses Messer."
+ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Es ist ein Skalpell. Du bist Sanitäter, also brauchst du auch hoffentlich keine Erklärung für dieses Messer."
 
 [KFWeap_Knife_Firebug]
 ItemName="Feuerwehrmesser"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller Schlitzangriff, Halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Es ist ein Feuerwehrmesser. Du bist Feuerwehrmann, also brauchst du auch hoffentlich keine Erklärung für dieses Messer."
+ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Es ist ein Feuerwehrmesser. Du bist Feuerwehrmann, also brauchst du auch hoffentlich keine Erklärung für dieses Messer."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Bowiemesser"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller Schlitzangriff, Halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Das überdimensionierte Messer des Wilden Westens. Eignet sich ganz toll für das Zerstückeln von Zeds im Hier und Jetzt."
+ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Das überdimensionierte Messer des Wilden Westens. Eignet sich ganz toll für das Zerstückeln von Zeds im Hier und Jetzt."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller Schlitzangriff, Halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Das traditionelle Messer der Ghurka, eher ein Hackmesser als ein Tranchiermesser. "
+ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Das traditionelle Messer der Gurkha, eher ein Hackmesser als ein Tranchiermesser. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Taktisches Messer"
@@ -255,7 +260,7 @@ ItemDescription="•Der Feuer-Modus ist ausschließlich halbautomatisch.\n•Alt
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="Doppellauf-Schießeisen"
 ItemCategory="Schrotflinte"
-ItemDescription="•Das Primär-Feuer nutzt nur einen einzelnen Lauf.\n•Alt-Feuer schießt aus beiden Läufen gleichzeitig.\n•Kaliber 12-Schrotflinte mit parallelem Doppellauf. Eignet sich perfekt für den Nahkampf. Bringt auch die größten Zeds zum Taumeln!"
+ItemDescription="•Das Primär-Feuer nutzt nur einen einzelnen Lauf.\n•Alt-Feuer schießt aus beiden Läufen gleichzeitig.\n•Kaliber-12-Schrotflinte mit parallelem Doppellauf. Eignet sich perfekt für den Nahkampf. Bringt auch die größten Zeds zum Taumeln!"
 
 [KFWeap_Shotgun_AA12]
 ItemName="AA-12 Auto-S-Flinte"
@@ -345,7 +350,7 @@ ItemCategory="Flammen"
 ItemDescription="•Der Feuer-Modus schießt explodierende, entzündliche Geschosse. \n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Hierbei handelt es sich um Spitfires im Doppelpack."
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="Brand-Grabenwaffe"
+ItemName="Drachenatem"
 ItemCategory="Schrotflinte"
 ItemDescription="•Der Feuer-Modus funktioniert nach Pumpprinzip.\n•Eine Schrotflinte mit Drachenatem-Brandmunition. Nicht nur tödlich, sondern sieht auch ziemlich toll aus."
 
@@ -510,10 +515,25 @@ ItemName="Dual-AF2011-A2"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Zwei Waffen mit jeweils zwei Läufen. Vierfache Feuerkraft. Das ist Mathematik. Gegen Mathematik lässt sich nichts sagen."
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="Doomstick"
+ItemCategory="Schrotflinte"
+ItemDescription="•Das Primär-Feuer nutzt nur einen einzelnen Lauf.\n•Alt-Feuer schießt aus beiden Läufen gleichzeitig.\n•Wenn zwei Mal so viel Spaß nicht reicht … wie wär's mit vier?"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="Statischer Schläger"
+ItemCategory="Nahkampf"
+ItemDescription="•Primär – schneller, stumpfer Angriff, Primär halten für Komboangriff.\n•Sekundär – schwerer, elektrischer, stumpfer Angriff. Ganz schön schockierend!\n•Willst du einem Zed ins Gesicht hauen? Dann ist das was für dich!"
+
 [KFWeap_SMG_Mac10]
 ItemName="MAC-10"
 ItemCategory="Maschinenpistole"
 ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\nNutzt Schnellfeuer-Brandmunition. Kapiert? Schnellfeuer? Weil es eine Brand-Maschinenpistole ist? Ach, vergiss es."
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="Scharfschützengewehr"
+ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Jeder Schuss teilt einen ordentlichen Schlag … äh, Kugel aus. Hoher Durchschlag, hoher Schmerz."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -11,12 +11,14 @@ class KFWeap_Knife_Demolitionist extends KFWeap_Edged_Knife
 
 defaultproperties
 {
+    PackageKey="Demo_Knife"
+    FirstPersonMeshName="WEP_1P_Demo_Knife_MESH.Wep_1stP_Demo_Knife_Rig"
+    AttachmentArchetypeName="WEP_Demo_Knife_ARCH.Wep_Demo_Knife_3P"
     WeaponSelectTexture=Texture2D'WEP_UI_Demo_Knife_TEX.UI_WeaponSelect_DemoKnife'
-    AttachmentArchetype=KFWeaponAttachment'WEP_Demo_Knife_ARCH.Wep_Demo_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Demolitionist.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Demo_Knife_MESH.Wep_1stP_Demo_Knife_Rig'
+        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_Demolitionist.FirstPersonMesh'

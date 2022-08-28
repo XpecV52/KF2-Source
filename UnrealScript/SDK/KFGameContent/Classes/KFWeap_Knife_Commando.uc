@@ -15,10 +15,14 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=10,Y=10,Z=0)
 
-	AttachmentArchetype=KFWeaponAttachment'WEP_CommandoKnife_ARCH.Wep_CommandoKnife_3P'
+	// Content
+	PackageKey="CommandoKnife"
+	FirstPersonMeshName="WEP_1P_CommandoKnife_MESH.Wep_1stP_CommKnife_Rig"
+	FirstPersonAnimSetNames(0) = "WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim"
+	PickupMeshName = "WEP_3P_CommandoKnife_MESH.Wep_CommandoKnife_Pickup"
+	AttachmentArchetypeName="WEP_CommandoKnife_ARCH.Wep_CommandoKnife_3P"
 
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_CommandoKnife_MESH.Wep_1stP_CommKnife_Rig'
 		AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
 	End Object
 

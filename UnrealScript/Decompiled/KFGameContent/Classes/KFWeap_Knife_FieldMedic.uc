@@ -11,13 +11,15 @@ class KFWeap_Knife_FieldMedic extends KFWeap_Edged_Knife
 
 defaultproperties
 {
+    PackageKey="Medic_Knife"
+    FirstPersonMeshName="Wep_1P_Medic_Knife_MESH.Wep_1stP_Medic_Knife_Rig"
+    AttachmentArchetypeName="WEP_Medic_Knife_ARCH.Wep_MedicKnife_3P"
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicKnife'
-    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Knife_ARCH.Wep_MedicKnife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_FieldMedic.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'Wep_1P_Medic_Knife_MESH.Wep_1stP_Medic_Knife_Rig'
+        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_FieldMedic.FirstPersonMesh'

@@ -33,7 +33,7 @@ function DoHeal()
 
     if((MyPatPawn != none) && MyPatPawn.WorldInfo.Game != none)
     {
-        MyDifficulty = int(MyPatPawn.WorldInfo.Game.GameDifficulty);
+        MyDifficulty = MyPatPawn.WorldInfo.Game.GetModifiedGameDifficulty();
         HealPercent = MyPatPawn.BattlePhases[BattlePhase].HealAmounts[MyDifficulty];
         HealPercent *= (1 + ((FRand() < 0.5) ? float(-Rand(50)) * 0.001 : float(Rand(50)) * 0.001));
         HealAmount = int(float(MyPatPawn.HealthMax) * (HealPercent - MyPatPawn.GetHealthPercentage()));

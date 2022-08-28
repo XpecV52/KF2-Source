@@ -96,13 +96,19 @@ defaultproperties
    NumPellets(1)=1
    HealAmount=15
    HealFullRechargeSeconds=12.000000
+   PackageKey="Medic_Shotgun"
+   FirstPersonMeshName="WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_Medic_Shotgun_ANIM.WEP_1P_Medic_Shotgun_ANIM"
+   PickupMeshName="wep_3p_medic_shotgun_mesh.Wep_Medic_Shotgun_Pickup"
+   AttachmentArchetypeName="WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P"
+   MuzzleFlashTemplateName="WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_MuzzleFlash"
+   bHasIronSights=True
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    InventorySize=6
    MagazineCapacity(0)=10
-   bHasIronSights=True
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshIronSightFOV=52.000000
@@ -117,19 +123,17 @@ defaultproperties
    SpareAmmoCapacity(0)=80
    InitialSpareMags(0)=3
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_medicshotgun.Play_SA_MedicShotgun_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
    PlayerViewOffset=(X=14.000000,Y=6.500000,Z=-3.500000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_Medic:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_MuzzleFlash'
    maxRecoilPitch=400
    minRecoilPitch=375
    maxRecoilYaw=250
@@ -149,6 +153,8 @@ defaultproperties
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
+   WeaponUpgrades(1)=(IncrementDamage=1.150000,IncrementHealFullRecharge=0.800000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000,IncrementHealFullRecharge=0.600000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)=()
@@ -161,7 +167,7 @@ defaultproperties
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pellet'
    WeaponProjectiles(1)=()
-   FireInterval(0)=0.200000
+   FireInterval(0)=0.297000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
@@ -178,9 +184,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Shotgun_Medic'
    FireOffset=(X=30.000000,Y=3.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_Medic_Shotgun_ANIM.WEP_1P_Medic_Shotgun_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -194,7 +198,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="HMTech-301 Shotgun"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Shotgun_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

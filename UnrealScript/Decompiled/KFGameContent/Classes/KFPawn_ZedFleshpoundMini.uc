@@ -12,6 +12,7 @@ class KFPawn_ZedFleshpoundMini extends KFPawn_ZedFleshpound
 defaultproperties
 {
     RageAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.RageAkComponent0'
+    RageBumpDamageType=Class'KFDT_MediumZedBump'
     BattlePhaseLightTemplateYellow=PointLightComponent'Default__KFPawn_ZedFleshpoundMini.PointLightComponent1'
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedFleshpoundMini.PointLightComponent2'
     MonsterArchPath="ZED_ARCH.ZED_FleshpoundMini_Archetype"
@@ -29,6 +30,7 @@ defaultproperties
     ZedBumpDamageScale=0.25
     DifficultySettings=Class'KFDifficulty_FleshpoundMini'
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshpoundMini.FootstepCameraShake0'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.SprintAkComponent0'
     LocalizationKey=KFPawn_ZedFleshpoundMini
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -86,7 +88,8 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshpoundMini.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpoundMini.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpoundMini.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundMini.RageAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundMini.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundMini.RageAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

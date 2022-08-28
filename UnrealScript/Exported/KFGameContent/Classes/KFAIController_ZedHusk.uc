@@ -7,7 +7,7 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
 
-class KFAIController_ZedHusk extends KFAIController_Monster;
+class KFAIController_ZedHusk extends KFAIController_Ranged;
 
 var bool bBaseCommandInitialized;
 
@@ -48,8 +48,7 @@ var name							FireballSocketName;
 var const	float					FireballAimError;
 /** Accuracy spread of leading a target for fireball aim attack */
 var const	float					FireballLeadTargetAimError;
-var const	bool					bDebugAimError;
-var const	bool					bCanLeadTarget;
+/** Speed of the fireball. Will override projectile speed. */
 var const	float					FireballSpeed;
 
 /** Chance to aim fireballs for splash damage on Normal difficulty */
@@ -73,37 +72,6 @@ var const float					FireballFireIntervalHellOnEarth;
 /** How much to scale the used FireballInterval to get the low intensity attack scale */
 var const float                 LowIntensityAttackScaleOfFireballInterval;
 
-//var transient array<KFDoorMarker> Doors;
-
-function bool IsNearDoor()
-{
-	//local int i;
-
-	//for( i = 0; i < Doors.Length; i++ )
-	//{
-	//	if( VSizeSq(Pawn.Location - Doors[i].Location) < 160000.f )
-	//	{
-	//		return true;
-	//	}
-	//}
-	return false;
-}
-
-event Possess( Pawn inPawn, bool bVehicleTransition )
-{
-//	local KFDoorMarker KFDM;
-//
-	super.Possess( inPawn, bVehicleTransition );
-
-	//if( Doors.Length == 0 )
-	//{
-	//	foreach WorldInfo.AllNavigationPoints( class'KFDoorMarker', KFDM )
-	//	{
-	//		Doors.AddItem( KFDM );
-	//	}
-	//}
-}
-
 event PostBeginPlay()
 {
 	local KFGameInfo KFGI;
@@ -114,7 +82,7 @@ event PostBeginPlay()
 	{
 		KFGI = KFGameInfo(WorldInfo.Game);
 		// If the difficulty is hard or higher, enable the flamethrower
-		if ( KFGI != none && KFGI.GameDifficulty >= KFGI.DifficultyInfo.GetDifficultyValue(2))
+		if ( KFGI != none && KFGI.GetModifiedGameDifficulty() >= KFGI.DifficultyInfo.GetDifficultyValue(2))
 		{
 			bCanUseFlameThrower = true;
 		}
@@ -304,7 +272,7 @@ function ShootFireball( class<KFProj_Husk_Fireball> FireballClass, vector Fireba
    	if( bDebugAimError )
 	{
 		// Render debug lines and simulate several shots at once to evaluate aimerror
-		DebugAimError();
+		DebugAimError(FireballSocketName, FireballAimError);
 		return;
 	}
 
@@ -421,35 +389,6 @@ function ShootFireball( class<KFProj_Husk_Fireball> FireballClass, vector Fireba
 	}
 }
 
-/** If bDebugAimError is true, this will render the projectile's trajectory with no aimerror in green and simulate 7 more shots, rendering
- *  those trajectories in red (using aimerror) */
-function DebugAimError()
-{
-	local int			i;
-	local KFDebugLines	KFDL;
-	local vector		SocketLocation, DirToEnemy;
-	local rotator		SocketRotation;
-
-	KFDL = class'KFDebugLines'.static.GetDebugLines();
-
-	if( KFDL == none )
-	{
-		msg( "You need to turn KFDebugLines on (bEnableAdvDebugLines in KFGame.ini) to do this." );
-		return;
-	}
-
-	MyKFPawn.Mesh.GetSocketWorldLocationAndRotation( FireballSocketName, SocketLocation, SocketRotation );
-
-	KFDL.AddDebugLine( SocketLocation, SocketLocation + normal(Enemy.Location - SocketLocation) * 3024.f, 0, 255, 0, TRUE );
-	for( i = 0; i < 7; i++ )
-	{
-		DirToEnemy = normal(Enemy.Location - SocketLocation) + VRand() * FireballAimError;
-		KFDL.AddDebugLine( SocketLocation, SocketLocation + DirToEnemy * 3024.f, 255, 0, 0, TRUE );
-	}
-	msg( "GAME PAUSED, UNPAUSE TO CONTINUE" );
-	DebugFreezeGame();
-}
-
 defaultproperties
 {
    MinDistanceToSuicide=280.000000
@@ -478,5 +417,5 @@ defaultproperties
    EvadeGrenadeChance=0.900000
    BaseShapeOfProjectileForCalc=(X=10.000000,Y=10.000000,Z=10.000000)
    Name="Default__KFAIController_ZedHusk"
-   ObjectArchetype=KFAIController_Monster'KFGame.Default__KFAIController_Monster'
+   ObjectArchetype=KFAIController_Ranged'kfgamecontent.Default__KFAIController_Ranged'
 }

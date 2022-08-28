@@ -100,6 +100,7 @@ var transient bool bRequestedGlobalStats;
  * native cheats
  *********************************************************************************************/
 exec native final function SetPerkLevel( int NewPerkLevel );
+exec native final function SetPerkPrestigeLevel(int NewPerkLevel);
 exec native final function ResetPerkLevels();
 exec native final function AnalyzeCharacterAttachments();
 exec native final function FixupCharacterAttachmentLocalization();
@@ -178,6 +179,17 @@ exec function SetInventoryFilter (string FilterType, int NewEnum)
         }
     }
 }
+
+exec function DisplayFreeTrialFeatureBlockedPopUp()
+{
+	class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialFeatureBlockedPopUp();
+}
+
+exec function DisplayFreeTrialOverPopUp()
+{
+	class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialOverPopUp();
+}
+
 
 exec function OpenScreenSizeMovie()
 {
@@ -266,7 +278,7 @@ exec function MakeFakePopUp()
     }
 }
 
-exec function SetCharacterAttachment(byte MeshIndex, byte SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots = false)
+exec function SetCharacterAttachment(int MeshIndex, int SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots = false)
 {
     local Pawn P;
     local KFPlayerController KFPC;
@@ -881,6 +893,7 @@ simulated exec function Pistols()
 {
     GiveWeapon( "KFGameContent.KFWeap_Pistol_9mm" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Deagle" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**
@@ -893,6 +906,7 @@ simulated exec function Dualies()
     GiveWeapon( "KFGameContent.KFWeap_Pistol_DualColt1911" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_DualRem1858" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_DualSW500" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhinoDual" );
 }
 
 simulated exec function Singles()
@@ -902,6 +916,7 @@ simulated exec function Singles()
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Colt1911" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_Rem1858" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_SW500" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**
@@ -924,6 +939,7 @@ simulated exec function Berserk()
 	GiveWeapon( "KFGameContent.KFWeap_Eviscerator" );
     GiveWeapon( "KFGameContent.KFWeap_Edged_Zweihander");
     GiveWeapon( "KFGameContent.KFWeap_Blunt_MaceAndShield");
+    GiveWeapon(" KFGameContent.KFWeap_Blunt_PowerGloves ");
 }
 
 /**
@@ -958,6 +974,7 @@ simulated exec function Assault()
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_AR15" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_SCAR" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_AK12" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MKB42" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_M16M203" );
     GiveWeapon( "KFGameContent.KFWeap_LMG_Stoner63A" );
 }
@@ -988,6 +1005,14 @@ simulated exec function March()
     GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
 }
 
+simulated exec function Summer() //give the player the weapons for the summer update
+{
+    GiveWeapon( "KFGameContent.KFWeap_Blunt_PowerGloves" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_M99" );
+    GiveWeapon( "KFGameContent.KFWeap_Shotgun_ElephantGun" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Thompson" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MKB42" );
+}
 /**
  * Give the player all Demolition weapons
  */
@@ -1053,6 +1078,7 @@ simulated exec function Sharpshooter()
     GiveWeapon( "KFGameContent.KFWeap_Rifle_M14EBR" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_RailGun" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_CenterfireMB464" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**
@@ -1807,6 +1833,26 @@ exec function DrawLineFromNPC( optional float Length=500.f )
 	}
 }
 
+exec function AllZedsTaunt(optional bool bSlow = true)
+{
+	local KFPawn_Monster KFPM;
+	local bool bFound;
+
+	foreach WorldInfo.AllPawns(class'KFPawn_Monster', KFPM)
+	{
+		if (KFPM.MyKFAIC != none && KFPM.IsAliveAndWell())
+		{
+			class'AICommand_TauntEnemy'.static.Taunt(KFPM.MyKFAIC, KFPawn(Pawn), TAUNT_EnemyKilled);
+			bFound = TRUE;
+		}
+	}
+
+	if (bFound && bSlow)
+	{
+		SetTimer(2.5f, false, nameof(ZedTauntTimer), self);
+	}
+}
+
 /** The best cheat ever. In fact you should consider removing every cheat in the game except this one just to
 	save them from the humiliation of being so ridiculously inferior. That's assuming that this still works (it might
 	not anymore).  Nevertheless, let it stand as a monument and never be forgotten. */
@@ -1842,6 +1888,12 @@ exec function SlasherTaunt( optional bool bSlow=true )
 	{
 		SetTimer(2.5f, false, nameof(SlasherTauntTimer), self);
 	}
+}
+
+/** Called by SlasherTaunt */
+function ZedTauntTimer()
+{
+	KFGameInfo(WorldInfo.Game).DramaticEvent(1.f, 13);
 }
 
 /** Called by SlasherTaunt */
@@ -4344,13 +4396,13 @@ exec function PlayTaunt()
 	}
 }
 
-exec function PlayKnockdown()
+exec function PlayKnockdown(optional vector LinearVelocity = vect(0,0,0) )
 {
 	local KFPawn_Monster P;
 
 	ForEach WorldInfo.AllPawns(class'KFPawn_Monster', P)
 	{
-		P.Knockdown(, vect(1,1,1), Pawn.Location, 1000, 100);
+		P.Knockdown(LinearVelocity, vect(1, 1, 1), Pawn.Location, 1000, 100);
 	}
 }
 
@@ -4854,6 +4906,18 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
     {
         SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch"$VersusSuffix, class'Class'));
     }
+	else if (Left(ZedName, 3) ~= "Emp")
+	{
+		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_EMP" $ VersusSuffix, class'Class'));
+	}
+	else if (Left(ZedName, 5) ~= "Laser")
+	{
+		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_Laser" $ VersusSuffix, class'Class'));
+	}
+	else if (Left(ZedName, 4) ~= "Rock")
+	{
+		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_Rocket" $ VersusSuffix, class'Class'));
+	}
 
     if( SpawnClass != none )
     {
@@ -5013,6 +5077,9 @@ simulated exec function KFPawn SpawnZed(string ZedName, optional float Distance 
 	return KFP;
 }
 
+/**
+* Spawn a group of ZEDs for profiling, shooting, etc.
+**/
 simulated exec function SpawnZedAIGroup(
 	string ZedName,
 	int NumRows,
@@ -5042,9 +5109,9 @@ simulated exec function SpawnZedAIGroup(
 	FaceDir = normal(GetRotatorAxis(Rotation, 0));
 	RightDir = normal(GetRotatorAxis(Rotation, 1));
 
-	for (i = 0; i < NumRows; i++)
+	for (i = 0; i<NumRows; i++)
 	{
-		for (j = 0; j < NumCols; j++)
+		for (j = 0; j<NumCols; j++)
 		{
 			SpawnLoc = StartLoc + (i + 1)*Spacing*FaceDir + (j - NumCols / 2)*Spacing*RightDir + vect(0, 0, 1) * 15;
 			SpawnRot.Yaw = Rotation.Yaw + 32768;
@@ -5768,6 +5835,23 @@ exec function SetDebugSceneView()
 	}
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 exec function ToggleSplatterGun()
 {
 	local KeyBind TempKeyBind;
@@ -5908,30 +5992,6 @@ exec function DisableAtkAnimDifficultyScaling()
 {
 	ConsoleCommand("SETNOPEC KFPawnAnimInfo bEnableDifficultyScaling false");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7336,6 +7396,17 @@ exec function SetMissionObjectiveVisible(bool bVisible)
     }
 }
 
+exec function UpgradeWeapon()
+{
+	local KFPawn MyPawn;
+
+	MyPawn = KFPawn(GetMyPawn());
+	if (MyPawn != none && MyPawn.MyKFWeapon != none)
+	{
+		MyPawn.MyKFWeapon.UpgradeWeapon();
+	}
+}
+
 exec function ForceSpecialWave(optional string ZedTypeName)
 {
 	local int AIType;
@@ -7375,6 +7446,19 @@ exec function ForceNextObjective()
 	if (KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).MyKFGRI != none)
 	{
 		KFGameInfo(WorldInfo.Game).MyKFGRI.bForceNextObjective = true;
+	}
+}
+
+exec function ActivateAllPickups()
+{
+	local int i;
+
+	if (KFGameInfo(WorldInfo.Game) != none)
+	{
+		for (i = 0; i < KFGameInfo(WorldInfo.Game).ItemPickups.Length; ++i)
+		{
+			KFGameInfo(WorldInfo.Game).ActivateNextPickup(KFGameInfo(WorldInfo.Game).ItemPickups[i], 1);
+		}
 	}
 }
 

@@ -100,6 +100,7 @@ defaultproperties
     MonsterArchPath="ZED_ARCH.ZED_CrawlerKing_Archetype"
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedCrawlerKing.MeleeHelper'
     DifficultySettings=Class'KFDifficulty_CrawlerKing'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedCrawlerKing.SprintAkComponent0'
     LocalizationKey=KFPawn_ZedCrawlerKing
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -153,6 +154,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedCrawlerKing.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedCrawlerKing.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedCrawlerKing.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedCrawlerKing.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

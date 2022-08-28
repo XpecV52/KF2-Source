@@ -28,12 +28,18 @@ defaultproperties
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)
     SingleClass=Class'KFWeap_Pistol_AF2011'
     BonesToLockOnEmpty_L=/* Array type was not detected. */
-    InventorySize=6
-    MagazineCapacity=32
+    PackageKey="Dual_AF2001"
+    FirstPersonMeshName="wep_1p_dual_af2001_mesh.Wep_1stP_Dual_AF2001_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_DUAL_AF2001_MESH.Wep_3rdP_AF2001_Pickup"
+    AttachmentArchetypeName="WEP_Dual_AF2001_ARCH.Wep_Dual_AF2001_3P"
+    MuzzleFlashTemplateName="WEP_Dual_AF2001_ARCH.Wep_Dual_AF2001_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    InventorySize=4
+    MagazineCapacity=32
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
@@ -50,9 +56,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=9,Y=0,Z=-5)
-    AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_AF2001_ARCH.Wep_Dual_AF2001_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_DualAF2011.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_AF2001_ARCH.Wep_Dual_AF2001_MuzzleFlash'
     maxRecoilPitch=650
     minRecoilPitch=550
     maxRecoilYaw=550
@@ -66,6 +70,7 @@ defaultproperties
     RecoilISMaxPitchLimit=500
     RecoilISMinPitchLimit=65485
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -75,21 +80,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=17,Y=4,Z=-2.25)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'wep_1p_dual_af2001_mesh.Wep_1stP_Dual_AF2001_Rig'
-        AnimSets(0)=AnimSet'wep_1p_dual_af2001_anim.Wep_1stP_Dual_AF2001_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_DualAF2011.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Dual AF2011-A1"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_AF2001_MESH.Wep_3rdP_AF2001_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_DualAF2011.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_AF2001_MESH.Wep_3rdP_AF2001_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_DualAF2011.StaticPickupComponent'

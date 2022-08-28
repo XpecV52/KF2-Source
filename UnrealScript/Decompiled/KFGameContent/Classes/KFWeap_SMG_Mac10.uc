@@ -9,15 +9,26 @@ class KFWeap_SMG_Mac10 extends KFWeap_SMGBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter()
+{
+    return 4;
+}
+
 defaultproperties
 {
+    PackageKey="MAC10"
+    FirstPersonMeshName="WEP_1P_MAC10_MESH.Wep_1stP_MAC10_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_MAC10_MESH.Wep_3rdP_MAC10_Pickup"
+    AttachmentArchetypeName="WEP_MAC10_ARCH.Wep_MAC10_3P"
+    MuzzleFlashTemplateName="WEP_MAC10_ARCH.Wep_MAC10_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=4
     MagazineCapacity=32
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshFOV=75
     MeshIronSightFOV=60
     IronSightPosition=(X=15,Y=0,Z=0)
@@ -32,9 +43,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=18,Y=8,Z=-5)
-    AttachmentArchetype=KFWeaponAttachment'WEP_MAC10_ARCH.Wep_MAC10_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_SMG_Mac10.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_MAC10_ARCH.Wep_MAC10_MuzzleFlash'
     maxRecoilPitch=60
     minRecoilPitch=40
     maxRecoilYaw=50
@@ -52,6 +61,7 @@ defaultproperties
     WalkingRecoilModifier=1.1
     IronSightMeshFOVCompensationScale=1.6
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -60,21 +70,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_MAC10_MESH.Wep_1stP_MAC10_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_MAC10_ANIM.WEP_1P_MAC10_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_SMG_Mac10.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Mac 10"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_MAC10_MESH.Wep_3rdP_MAC10_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_Mac10.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_MAC10_MESH.Wep_3rdP_MAC10_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_Mac10.StaticPickupComponent'

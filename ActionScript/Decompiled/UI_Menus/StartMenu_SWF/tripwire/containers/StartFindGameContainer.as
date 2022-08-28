@@ -12,6 +12,7 @@ package tripwire.containers
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
+    import tripwire.controls.TitleButton;
     import tripwire.controls.TripButton;
     import tripwire.managers.MenuManager;
     
@@ -19,9 +20,13 @@ package tripwire.containers
     {
         
         public static var WHATS_NEW_CLICKED = "WhatsNewClicked";
+        
+        public static var CLOSED_NEWS = "ClosedNewsPage";
          
         
         private const NUM_FINDGAME_OPTIONS:int = 3;
+        
+        public var newsButton:TitleButton;
         
         public var tutorialButton:TripButton;
         
@@ -32,6 +37,8 @@ package tripwire.containers
         public var serverBrowserButton:TripButton;
         
         public var findGameHeader:SectionHeaderContainer;
+        
+        public var newsPage:StartNewsContainer;
         
         public var whatsNewButton:WhatsNewButton;
         
@@ -48,9 +55,11 @@ package tripwire.containers
             if(bManagerConsoleBuild)
             {
                 this.serverBrowserButton.visible = false;
+                this.newsButton.y = this.tutorialButton.y;
                 this.tutorialButton.y = this.soloOfflineButton.y;
                 this.soloOfflineButton.y = this.serverBrowserButton.y;
             }
+            this.newsPage.visible = false;
         }
         
         public function set localizedText(param1:Object) : void
@@ -62,6 +71,7 @@ package tripwire.containers
                 this.serverBrowserButton.label = !!param1.serverBrowser ? param1.serverBrowser : "";
                 this.soloOfflineButton.label = !!param1.solo ? param1.solo : "";
                 this.tutorialButton.label = !!param1.tutorial ? param1.tutorial : "";
+                this.newsButton.label = !!param1.news ? param1.news : "M_NEWS_M";
             }
         }
         
@@ -80,6 +90,7 @@ package tripwire.containers
             this.tutorialButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.matchMakingButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.serverBrowserButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.newsButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.whatsNewButton.addEventListener(WHATS_NEW_CLICKED,this.whatsNewClicked,false,0,true);
         }
         
@@ -91,13 +102,17 @@ package tripwire.containers
             this.soloOfflineButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.matchMakingButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.serverBrowserButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
+            this.newsButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.whatsNewButton.removeEventListener(WHATS_NEW_CLICKED,this.whatsNewClicked);
         }
         
         override protected function onOpened(param1:TweenEvent = null) : void
         {
             super.onOpened(param1);
-            this.setTabIndexes();
+            if(!this.newsPage.visible)
+            {
+                this.setTabIndexes();
+            }
         }
         
         public function setTabIndexes() : *
@@ -112,7 +127,8 @@ package tripwire.containers
                 this.serverBrowserButton.tabIndex = 2;
                 this.soloOfflineButton.tabIndex = 3;
                 this.tutorialButton.tabIndex = 4;
-                this.whatsNewButton.tabIndex = 5;
+                this.newsButton.tabIndex = 5;
+                this.whatsNewButton.tabIndex = 6;
             }
             else if(!this.matchMakingButton.enabled)
             {
@@ -122,13 +138,15 @@ package tripwire.containers
                 {
                     this.soloOfflineButton.tabIndex = 1;
                     this.tutorialButton.tabIndex = 2;
-                    this.whatsNewButton.tabIndex = 3;
+                    this.newsButton.tabIndex = 3;
+                    this.whatsNewButton.tabIndex = 4;
                 }
                 else
                 {
                     this.soloOfflineButton.tabIndex = -1;
                     this.tutorialButton.tabIndex = 1;
-                    this.whatsNewButton.tabIndex = 2;
+                    this.newsButton.tabIndex = 2;
+                    this.whatsNewButton.tabIndex = 3;
                 }
             }
             if(currentElement == null)
@@ -173,6 +191,23 @@ package tripwire.containers
                     break;
                 case this.tutorialButton:
                     ExternalInterface.call("Callback_StartTutorial");
+                    break;
+                case this.newsButton:
+                    ExternalInterface.call("Callback_NewsButtonPressed");
+            }
+        }
+        
+        public function closedNewsPage(param1:Event) : void
+        {
+            this.newsButton.selected = false;
+            this.newsButton.hasAlert = false;
+            this.whatsNewButton.bDisableLeftRight = false;
+            this.newsPage.removeEventListener(CLOSED_NEWS,this.closedNewsPage);
+            this.dispatchEvent(new Event("FadeInMissionObjectives"));
+            if(bManagerUsingGamepad)
+            {
+                currentElement = this.newsButton;
+                FocusHandler.getInstance().setFocus(this.newsButton);
             }
         }
         
@@ -200,6 +235,9 @@ package tripwire.containers
                 switch(_loc2_.navEquivalent)
                 {
                     case NavigationCode.RIGHT:
+                        param1.handled = true;
+                        break;
+                    case NavigationCode.LEFT:
                         param1.handled = true;
                 }
             }

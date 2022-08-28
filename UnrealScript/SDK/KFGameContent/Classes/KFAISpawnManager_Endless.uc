@@ -31,8 +31,8 @@ function GetWaveSettings(out DifficultyWaveInfo WaveInfo)
 {
 	local int AdjustedGameDifficulty;
 	AdjustedGameDifficulty = EndlessDifficulty.GetCurrentDifficultyIndex();
-	WaveInfo = DifficultyWaves[BaseGameDifficulty].MacroDifficultyWaveSettings[AdjustedGameDifficulty];
-	`log("KFAISpawnManager_Endless - Setting WaveInfo to Base Game Difficulty:" @ BaseGameDifficulty @ "AdjustedGameDifficulty:" @ AdjustedGameDifficulty);
+	WaveInfo = DifficultyWaves[GameDifficulty].MacroDifficultyWaveSettings[AdjustedGameDifficulty]; //UPDATE DIFFICULTY HERE
+	`log("KFAISpawnManager_Endless - Setting WaveInfo to Base Game Difficulty:" @ GameDifficulty @ "AdjustedGameDifficulty:" @ AdjustedGameDifficulty);
 }
 
 function OnDifficultyUpdated()
@@ -184,27 +184,27 @@ defaultproperties
 	DifficultyWaves(3)={(
 		// Normal
 		MacroDifficultyWaveSettings[0] = {(
-			Waves[0] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Wave1_Endless_Norm',
-			Waves[1] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Wave2_Endless_Norm',
-			Waves[2] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Wave3_Endless_Norm',
-			Waves[3] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Wave4_Endless_Norm',
-			Waves[4] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Boss_Endless_Norm'
+			Waves[0] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave2_Endless_HOE',
+			Waves[1] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave3_Endless_HOE',
+			Waves[2] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave4_Endless_HOE',
+			Waves[3] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave5_Endless_HOE',
+			Waves[4] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Boss_Endless_HOE'
 		)},
 		// Hard
 		MacroDifficultyWaveSettings[1] = {(
-			Waves[0] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Wave5_Endless_Hard',
-			Waves[1] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Wave6_Endless_Hard',
-			Waves[2] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Wave7_Endless_Hard',
-			Waves[3] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Wave8_Endless_Hard',
-			Waves[4] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Boss_Endless_Hard'
+			Waves[0] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave6_Endless_HOE',
+			Waves[1] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave7_Endless_HOE',
+			Waves[2] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave8_Endless_HOE',
+			Waves[3] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave9_Endless_HOE',
+			Waves[4] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Boss_Endless_HOE'
 		)},
 		// Suicidal
 		MacroDifficultyWaveSettings[2] = {(
-			Waves[0] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Wave9_Endless_SUI',
-			Waves[1] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Wave10_Endless_SUI',
-			Waves[2] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Wave10_Endless_SUI',
-			Waves[3] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Wave10_Endless_SUI',
-			Waves[4] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Boss_Endless_SUI'
+			Waves[0] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',
+			Waves[1] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',
+			Waves[2] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',
+			Waves[3] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',
+			Waves[4] = KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Boss_Endless_HOE'
 		)},
 		// Hell on Earth
 		MacroDifficultyWaveSettings[3] = {(

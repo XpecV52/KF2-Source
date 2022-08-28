@@ -72,7 +72,7 @@ function ApplySkillsToPawn()
 	{
 		return;
 	}
-	ResetSupplier();
+	//ResetSupplier();
 }
 
 /**
@@ -427,7 +427,7 @@ simulated function Interact( KFPawn_Human KFPH )
 			// resupply 1 mag for every 5 initial mags
 			MagCount = Max( KFW.InitialSpareMags[0] / 1.5, 1 ); // 3, 1
 			;
-			bReceivedAmmo = (KFW.AddAmmo( MagCount * KFW.MagazineCapacity[0] ) > 0 ) ? true : bReceivedAmmo;
+			bReceivedAmmo = (KFW.AddAmmo( MagCount * KFW.MagazineCapacity[0] * (IsResupplyActive() ? 1.3f : 1.0f) ) > 0 ) ? true : bReceivedAmmo;
 
 	        if( KFW.CanRefillSecondaryAmmo() )
 	        {
@@ -435,7 +435,7 @@ simulated function Interact( KFPawn_Human KFPH )
 	        	;
 
 	        	// If our secondary ammo isn't mag-based (like the Eviscerator), restore a portion of max ammo instead
-	        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max(KFW.AmmoPickupScale[1] * KFW.MagazineCapacity[1], 1) ) > 0) ? true : bReceivedAmmo;
+	        	bReceivedAmmo = (KFW.AddSecondaryAmmo( Max(KFW.AmmoPickupScale[1] * (IsResupplyActive() ? 1.3f : 1.0f) * KFW.MagazineCapacity[1], 1) ) > 0) ? true : bReceivedAmmo;
 	        }
 		}
 	}
@@ -858,6 +858,7 @@ defaultproperties
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_AA12'
    HitAccuracyHandicap=-6.000000
    HeadshotAccuracyHandicap=-3.000000
+   PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SupportKnife_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Support"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

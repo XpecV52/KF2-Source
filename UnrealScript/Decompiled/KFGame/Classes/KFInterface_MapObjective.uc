@@ -8,6 +8,15 @@
 interface KFInterface_MapObjective extends Interface
     abstract;
 
+enum EObjectiveType
+{
+    EObj_Default,
+    EObj_SYG,
+    EObj_Weld,
+    EObj_Trigger,
+    EObj_MAX
+};
+
 simulated function ActivateObjective();
 
 simulated function DeactivateObjective();
@@ -36,11 +45,21 @@ function bool CanActivateObjective();
 
 simulated function float GetProgress();
 
+simulated function bool HasFailedObjective();
+
 simulated function float GetActivationPctChance();
+
+simulated function float GetSpawnRateMod();
+
+simulated function bool UsesMultipleActors();
+
+simulated function string GetActorCount();
 
 simulated function string GetLocalizedDescription();
 
 simulated function string GetLocalizedRequirements();
+
+simulated function bool ShouldDrawIcon();
 
 simulated function Vector GetIconLocation();
 

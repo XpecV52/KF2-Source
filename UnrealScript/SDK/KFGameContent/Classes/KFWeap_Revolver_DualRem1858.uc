@@ -12,20 +12,18 @@ class KFWeap_Revolver_DualRem1858 extends KFWeap_DualBase;
 
 defaultproperties
 {
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_DualRemington1858_MESH.Wep_1stP_DualRemington1858_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_DualRemington1858_Anim.WEP_1P_DualRemington1858_Anim'
+	// Content
+	PackageKey="DualRemington1858"
+	FirstPersonMeshName="WEP_1P_DualRemington1858_MESH.Wep_1stP_DualRemington1858_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_DualRemington1858_Anim.WEP_1P_DualRemington1858_Anim"
+	PickupMeshName="WEP_3P_DualRemington1858_MESH.Wep_3P_Remington_1858_Pickup"
+	AttachmentArchetypeName="WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P"
+	MuzzleFlashTemplateName="WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash"
 
+	Begin Object Name=FirstPersonMesh
 		// new anim tree with skelcontrol to rotate cylinders
 		AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master_Revolver'
 	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P'
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash'
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -326,5 +324,11 @@ defaultproperties
 	End Object
 	Components.Add(BulletMeshComp5_L)
 	BulletMeshComponents.Add(BulletMeshComp5_L)
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=0)
+	WeaponUpgrades[3]=(IncrementDamage=2.0f,IncrementWeight=2)
+	WeaponUpgrades[4]=(IncrementDamage=2.5f,IncrementWeight=4)
 }
 

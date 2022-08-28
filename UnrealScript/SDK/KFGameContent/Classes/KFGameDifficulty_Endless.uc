@@ -18,11 +18,36 @@ struct SpecialWaveInfo
 {
 	var() EAIType ZedType;
 	var() float PctChance;
+	var() float WaveScale;
+	var() float SpawnRateMultiplier;
+	var() bool bSpawnEnraged;
+
+	structdefaultproperties
+	{
+		WaveScale=1.f
+		PctChance=0.f
+		SpawnRateMultiplier=1.f
+	}
 };
 
 struct SpecialWaveDifficultyInfo
 {
 	var() array<SpecialWaveInfo> SpecialWaveInfos;
+
+	structdefaultproperties
+	{
+		SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.0f),
+		SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
+		SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f)
+	}
 };
 
 struct ZedDifficultyOverride
@@ -273,6 +298,11 @@ function EAIType GetSpecialWaveType()
 	SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
 	RandF = FRand();
 
+	if (SpecialWaves.length == 0)
+	{
+		return AT_Clot;
+	}
+
 	foreach SpecialWaves(It)
 	{
 		TotalProb += It.PctChance;
@@ -282,7 +312,68 @@ function EAIType GetSpecialWaveType()
 		}
 	}
 
-	return AT_Clot;
+	return SpecialWaves[RandRange(0, SpecialWaves.length - 1)].ZedType;
+}
+
+function GetSpecialWaveModifiers(EAIType AIType, out float WaveCountMod, out float SpawnRateMod)
+{
+	local array<SpecialWaveInfo> SpecialWaves;
+	local SpecialWaveInfo It;
+
+	SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+
+	WaveCountMod = 1.f;
+	SpawnRateMod = 1.f;
+
+	foreach SpecialWaves(It)
+	{
+		if (It.ZedType == AIType)
+		{
+			WaveCountMod = It.WaveScale;
+			SpawnRateMod = 1.f / It.SpawnRateMultiplier;
+			return;
+		}
+	}
+}
+
+function float GetSpecialWaveScale(EAIType AIType)
+{
+	local array<SpecialWaveInfo> SpecialWaves;
+	local SpecialWaveInfo It;
+
+	SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+
+	`log(self @ "-" @ GetFuncName() @ "- AIType:" @ AIType);
+
+	foreach SpecialWaves(It)
+	{
+		`log(self @ "-" @ GetFuncName() @ "- It.ZedType:" @ It.ZedType);
+		if (It.ZedType == AIType)
+		{
+			`log(self @ "-" @ GetFuncName() @ "- Wave Scale:" @ It.WaveScale);
+			return It.WaveScale;
+		}
+	}
+
+	return 1.f;
+}
+
+function float GetSpecialWaveSpawnRateMod(EAIType AIType)
+{
+	local array<SpecialWaveInfo> SpecialWaves;
+	local SpecialWaveInfo It;
+
+	SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+
+	foreach SpecialWaves(It)
+	{
+		if (It.ZedType == AIType)
+		{
+			return 1.f / It.SpawnRateMultiplier;
+		}
+	}
+
+	return 1.f;
 }
 
 function float GetAIDamageModifier(KFPawn_Monster P, float GameDifficulty, bool bSoloPlay)
@@ -372,12 +463,28 @@ function float GetCharHeadHealthModDifficulty(KFPawn_Monster P, float GameDiffic
 
 function float GetCharSprintChanceByDifficulty(KFPawn_Monster P, float GameDifficulty)
 {
+	local KFGameInfo_Endless KFGI;
+
+	KFGI = KFGameInfo_Endless(P.WorldInfo.Game);
+	if (KFGI != none && KFGI.bUseSpecialWave && ShouldSpawnEnraged(KFGI.SpecialWaveType))
+	{
+		return 1.f;
+	}
+
 	// Clamp Difficulty Index to normal difficulty range in case we're in Hell on Earth+.
 	return super.GetCharSprintChanceByDifficulty(P, Clamp(GetCurrentDifficultyIndex(), 0, 3));
 }
 
 function float GetCharSprintWhenDamagedChanceByDifficulty(KFPawn_Monster P, float GameDifficulty)
 {
+	local KFGameInfo_Endless KFGI;
+
+	KFGI = KFGameInfo_Endless(P.WorldInfo.Game);
+	if (KFGI != none && KFGI.bUseSpecialWave && ShouldSpawnEnraged(KFGI.SpecialWaveType))
+	{
+		return 1.f;
+	}
+
 	// Clamp Difficulty Index to normal difficulty range in case we're in Hell on Earth+.
 	return super.GetCharSprintWhenDamagedChanceByDifficulty(P, Clamp(GetCurrentDifficultyIndex(), 0, 3));
 }
@@ -385,6 +492,23 @@ function float GetCharSprintWhenDamagedChanceByDifficulty(KFPawn_Monster P, floa
 function int GetCurrentDifficultyIndex()
 {
 	return CurrentDifficultyScaling.CurrentDifficultyIndex;
+}
+
+function bool ShouldSpawnEnraged(EAIType AIType)
+{
+	local array<SpecialWaveInfo> CurrentSpecialWave;
+	local SpecialWaveInfo CurrentWaveInfo;
+
+	CurrentSpecialWave = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+	foreach CurrentSpecialWave(CurrentWaveInfo)
+	{
+		if (CurrentWaveInfo.ZedType == AIType)
+		{
+			return CurrentWaveInfo.bSpawnEnraged;
+		}
+	}
+
+	return false;
 }
 
 defaultproperties
@@ -682,85 +806,58 @@ defaultproperties
 		OutbreakPctChances[4]=0.5,   //0.3
 
 		// Normal
-		SpecialWavePctChance[0]=0.0, //
+		SpecialWavePctChance[0]=0.1, //
 		// Hard
-		SpecialWavePctChance[1]=0.2,  //0.1
+		SpecialWavePctChance[1]=0.25,  //0.1
 		// Suicidal
-		SpecialWavePctChance[2]=0.3,   //0.2
+		SpecialWavePctChance[2]=0.35,   //0.2
 		// Hell on Earth
-		SpecialWavePctChance[3]=0.4,  //0.025
+		SpecialWavePctChance[3]=0.45,  //0.025
 		// Hell on Earth Plus
 		SpecialWavePctChance[4]=0.5,   //0.3
 
 		// Normal
 		DifficultySpecialWaveTypes[0]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0)
+			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=3.f),
+			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0, WaveScale=0.5f, SpawnRateMultiplier=2.f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0, WaveScale=0.75f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hard
 		DifficultySpecialWaveTypes[1]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.1),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.1),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.1),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.1),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0)
+			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.2, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.2, WaveScale=1.f, SpawnRateMultiplier=3.f)
 		)},
 		// Suicidal
 		DifficultySpecialWaveTypes[2]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.1),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.1),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.1),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.17, WaveScale=0.75f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.17, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.17, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.17, WaveScale=0.5f, SpawnRateMultiplier=2.f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.17, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.17, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hell on Earth
 		DifficultySpecialWaveTypes[3]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.1),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.25, WaveScale=0.75f, SpawnRateMultiplier=1.5f, bSpawnEnraged=true),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.25, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.25, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.25, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hell on Earth Plus
 		DifficultySpecialWaveTypes[4]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.1),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)}
 	)}
 
@@ -1060,85 +1157,58 @@ defaultproperties
 		OutbreakPctChances[4]=0.5,   //0.3
 
 		// Normal
-		SpecialWavePctChance[0]=0.0, //
+		SpecialWavePctChance[0]=0.1, //
 		// Hard
-		SpecialWavePctChance[1]=0.2,  //0.1
+		SpecialWavePctChance[1]=0.25,  //0.1
 		// Suicidal
-		SpecialWavePctChance[2]=0.3,   //0.2
+		SpecialWavePctChance[2]=0.35,   //0.2
 		// Hell on Earth
-		SpecialWavePctChance[3]=0.4,  //0.025
+		SpecialWavePctChance[3]=0.45,  //0.025
 		// Hell on Earth Plus
 		SpecialWavePctChance[4]=0.5,   //0.3
 
 		// Normal
 		DifficultySpecialWaveTypes[0]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0)
+			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=3.f),
+			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0, WaveScale=0.5f, SpawnRateMultiplier=2.f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0, WaveScale=0.75f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hard
 		DifficultySpecialWaveTypes[1]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.1),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.1),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.1),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.1),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0)
+			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.2, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.2, WaveScale=1.f, SpawnRateMultiplier=3.f)
 		)},
 		// Suicidal
 		DifficultySpecialWaveTypes[2]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.1),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.1),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.1),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.17, WaveScale=0.75f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.17, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.17, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.17, WaveScale=0.5f, SpawnRateMultiplier=2.f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.17, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.17, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hell on Earth
 		DifficultySpecialWaveTypes[3]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.1),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.25, WaveScale=0.75f, SpawnRateMultiplier=1.5f, bSpawnEnraged=true),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.25, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.25, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.25, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hell on Earth Plus
 		DifficultySpecialWaveTypes[4]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.1),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)}
 	)}
 
@@ -1440,85 +1510,58 @@ defaultproperties
 		OutbreakPctChances[4]=0.5,   //0.3
 
 		// Normal
-		SpecialWavePctChance[0]=0.0, //
+		SpecialWavePctChance[0]=0.1, //
 		// Hard
-		SpecialWavePctChance[1]=0.2,  //0.1
+		SpecialWavePctChance[1]=0.25,  //0.1
 		// Suicidal
-		SpecialWavePctChance[2]=0.3,   //0.2
+		SpecialWavePctChance[2]=0.35,   //0.2
 		// Hell on Earth
-		SpecialWavePctChance[3]=0.4,  //0.025
+		SpecialWavePctChance[3]=0.45,  //0.025
 		// Hell on Earth Plus
 		SpecialWavePctChance[4]=0.5,   //0.3
 
 		// Normal
 		DifficultySpecialWaveTypes[0]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0)
+			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=3.f),
+			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0, WaveScale=0.5f, SpawnRateMultiplier=2.f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0, WaveScale=0.75f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hard
 		DifficultySpecialWaveTypes[1]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.1),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.1),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.1),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.1),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0)
+			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.2, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.2, WaveScale=1.f, SpawnRateMultiplier=3.f)
 		)},
 		// Suicidal
 		DifficultySpecialWaveTypes[2]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.1),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.1),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.1),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.17, WaveScale=0.75f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.17, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.17, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.17, WaveScale=0.5f, SpawnRateMultiplier=2.f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.17, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.17, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hell on Earth
 		DifficultySpecialWaveTypes[3]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.1),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.25, WaveScale=0.75f, SpawnRateMultiplier=1.5f, bSpawnEnraged=true),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.25, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.25, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.25, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hell on Earth Plus
 		DifficultySpecialWaveTypes[4]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.1),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)}
 	)}
 
@@ -1528,7 +1571,7 @@ defaultproperties
 		Difficulties[0]={(
 			TraderTime = 60,
 			MovementSpeedMod = 0.95, //1.05
-			SpawnRateModifier = 0.68, //1.0
+			SpawnRateModifier = 0.5, //1.0 //0.65
 			WaveCountMod = 0.850000, //1.0
 			DoshKillMod = 1.1, //0.8 0.6
 			StartingDosh = 250, //200
@@ -1543,7 +1586,7 @@ defaultproperties
 		Difficulties[1]={(
 			TraderTime = 60,
 			MovementSpeedMod = 0.95, //1.05
-			SpawnRateModifier = 0.65, //1.0
+			SpawnRateModifier = 0.5, //1.0
 			WaveCountMod = 0.9, //1.7
 			DoshKillMod = 1.000000,  //0.7 0.5
 			StartingDosh = 250, //200
@@ -1558,7 +1601,7 @@ defaultproperties
 		Difficulties[2]={(
 			TraderTime = 60,
 			MovementSpeedMod = 0.95, //1.05
-			SpawnRateModifier = 0.6, //1.0
+			SpawnRateModifier = 0.65, //1.0
 			WaveCountMod = 0.95, //1.7
 			DoshKillMod = 1.0,  //0.7 0.5
 			StartingDosh = 250, //200
@@ -1573,7 +1616,7 @@ defaultproperties
 		Difficulties[3]={(
 			TraderTime = 60,
 			MovementSpeedMod = 0.95, //1.05
-			SpawnRateModifier = 0.55, //1.0
+			SpawnRateModifier = 0.6, //1.0
 			WaveCountMod = 1.0, //1.7
 			DoshKillMod = 1.00000,  //0.7 0.5
 			StartingDosh = 250, //200
@@ -1588,7 +1631,7 @@ defaultproperties
 		Difficulties[4]={(
 			TraderTime = 60,
 			MovementSpeedMod = 0.95, //1.05
-			SpawnRateModifier = 0.50, //1.0
+			SpawnRateModifier = 0.55, //1.0
 			WaveCountMod = 1.05000, //1.7
 			DoshKillMod = 1.00000,  //0.7 0.5
 			StartingDosh = 250, //200
@@ -1623,40 +1666,40 @@ defaultproperties
 				// Normal
 		ZedAdjustmentsByDifficulty[0] = {(
 			ZedsToAdjust = {(
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.65,DamageDealtScale = 0.75,DoshGiven = 250),  //750
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.45,DamageDealtScale = 0.75,DoshGiven = 250),  //750
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.65,DamageDealtScale = 1.0,DoshGiven = 250),  //750
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.45,DamageDealtScale = 1.0,DoshGiven = 250),  //750
 
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.62,DamageDealtScale = 0.75,DoshGiven = 250), //750
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 0.5,DamageDealtScale = 0.85,DoshGiven = 5),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.62,DamageDealtScale = 1.0,DoshGiven = 250), //750
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 5),
 
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 0.42,DamageDealtScale = 0.75,DoshGiven = 250),  //750
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthScale = 0.42,DamageDealtScale = 0.75,DoshGiven = 11)
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 0.42,DamageDealtScale = 1.0,DoshGiven = 250),  //750
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthScale = 0.55,DamageDealtScale = 1.0,DoshGiven = 11)
 			)}
 		)},
 		// Hard
 		ZedAdjustmentsByDifficulty[1] = {(
 			ZedsToAdjust = {(
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.9,DamageDealtScale = 0.85,DoshGiven = 500),
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 500),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.9,DamageDealtScale = 1.0,DoshGiven = 500),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.85,DamageDealtScale = 1.0,DoshGiven = 500),
 
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 500),
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 5),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.85,DamageDealtScale = 1.0,DoshGiven = 500),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 5),
 
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 0.84,DamageDealtScale = 0.85,DoshGiven = 500),
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthScale = 0.84,DamageDealtScale = 0.85,DoshGiven = 11)
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 0.84,DamageDealtScale = 1.0,DoshGiven = 500),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthScale = 0.84,DamageDealtScale = 1.0,DoshGiven = 11)
 			)}
 		)},
 		// Suicidal
 		ZedAdjustmentsByDifficulty[2] = {(
 			ZedsToAdjust = {(
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.95,DamageDealtScale = 1.0,DoshGiven = 800),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.95,DamageDealtScale = 1.0,DoshGiven = 800),
 
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 0.85,DoshGiven = 5),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.95,DamageDealtScale = 1.0,DoshGiven = 800),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 5),
 
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
-				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthScale = 1.0,DamageDealtScale = 0.85,DoshGiven = 11)
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 0.95,DamageDealtScale = 1.0,DoshGiven = 800),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 11)
 			)}
 		)},
 		// Hell On Earth
@@ -1822,85 +1865,58 @@ defaultproperties
 		OutbreakPctChances[4]=0.5,   //0.3
 
 		// Normal
-		SpecialWavePctChance[0]=0.0, //
+		SpecialWavePctChance[0]=0.1, //
 		// Hard
-		SpecialWavePctChance[1]=0.2,  //0.1
+		SpecialWavePctChance[1]=0.25,  //0.1
 		// Suicidal
-		SpecialWavePctChance[2]=0.3,   //0.2
+		SpecialWavePctChance[2]=0.35,   //0.2
 		// Hell on Earth
-		SpecialWavePctChance[3]=0.4,  //0.025
+		SpecialWavePctChance[3]=0.45,  //0.025
 		// Hell on Earth Plus
 		SpecialWavePctChance[4]=0.5,   //0.3
 
 		// Normal
 		DifficultySpecialWaveTypes[0]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0)
+			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=3.f),
+			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0, WaveScale=0.5f, SpawnRateMultiplier=2.f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.25, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0, WaveScale=0.75f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hard
 		DifficultySpecialWaveTypes[1]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.1),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.1),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.1),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.1),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.0),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.0)
+			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.2, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.2, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.2, WaveScale=1.f, SpawnRateMultiplier=3.f)
 		)},
 		// Suicidal
 		DifficultySpecialWaveTypes[2]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.1),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.1),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.1),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.17, WaveScale=0.75f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.17, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.17, WaveScale=2.f, SpawnRateMultiplier=10.0f, bSpawnEnraged=true),
+			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.17, WaveScale=0.5f, SpawnRateMultiplier=2.f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.17, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.17, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hell on Earth
 		DifficultySpecialWaveTypes[3]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.1),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.0),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.25, WaveScale=0.75f, SpawnRateMultiplier=1.5f, bSpawnEnraged=true),
+			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.25, WaveScale=0.5f, SpawnRateMultiplier=1.5f),
+			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.25, WaveScale=0.75f, SpawnRateMultiplier=1.0f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.25, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)},
 		// Hell on Earth Plus
 		DifficultySpecialWaveTypes[4]={(
-			SpecialWaveInfos[0]=(ZedType=AT_Clot, PctChance=0.0),
-			SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0),
-			SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0),
-			SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.1),
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0),
-			SpecialWaveInfos[1]=(ZedType=AT_SlasherClot, PctChance=0.0),
-			SpecialWaveInfos[2]=(ZedType=AT_Crawler, PctChance=0.0),
-			SpecialWaveInfos[3]=(ZedType=AT_Stalker, PctChance=0.0),
-			SpecialWaveInfos[4]=(ZedType=AT_Siren, PctChance=0.1),
-			SpecialWaveInfos[5]=(ZedType=AT_Husk, PctChance=0.1),
-			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.1)
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)}
 	)}
 }

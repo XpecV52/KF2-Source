@@ -31,6 +31,7 @@ enum EInteractionMessageType
 	IMT_HealSelfWarning,
 	IMT_ClotGrabWarning,
 	IMT_PlayerClotGrabWarning,
+	IMT_EMPGrabWarning,
 };
 
 var localized string			UseTraderMessage;
@@ -50,6 +51,7 @@ var localized string 			PlayerClotGrabWarningMessage;
 var localized string            UseMinigameMessage;
 var localized string            UseMinigameGeneratorMessage;
 var localized string            DoshActivateMessage;
+var localized string			EMPGrabWarningMessage;
 
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
@@ -105,6 +107,9 @@ static function string GetKeyBind( PlayerController P, optional int Switch )
 	switch ( Switch )
 	{
 		// Use binding
+		case IMT_EMPGrabWarning:
+			KeyString = "";
+			break;
 		case IMT_UseDoorWelded:
 		if(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
 		{
@@ -216,6 +221,8 @@ static function string GetString(
             return default.UseMinigameMessage;
         case IMT_UseMinigameGenerator:
             return default.UseMinigameGeneratorMessage;
+		case IMT_EMPGrabWarning:
+			return default.EMPGrabWarningMessage;
 		default:
 			return "";
 	}

@@ -312,7 +312,7 @@ function bool CanUseStore()
 		return false;
 	}
 
-	if( class'WorldInfo'.static.IsConsoleBuild() && class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetLoginStatus( GetLP().ControllerId ) != LS_LoggedIn )
+	if( class'WorldInfo'.static.IsConsoleBuild() && class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetLoginStatus( GetLP().ControllerId ) != LS_LoggedIn || !class'GameEngine'.static.GetOnlineSubsystem().IsGameOwned())
 	{
 		return false;
 	}

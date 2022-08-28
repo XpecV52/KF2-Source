@@ -12,17 +12,13 @@ class KFWeap_Pistol_DualColt1911 extends KFWeap_DualBase;
 
 defaultproperties
 {
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Dual_M1911_MESH.Wep_1stP_Dual_M1911_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Dual_M1911_ANIM.Wep_1stP_Dual_M1911_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_M1911_MESH.Wep_M1911_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_M1911_ARCH.Wep_Dual_M1911_3P'
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_M1911_ARCH.Wep_Dual_M1911_MuzzleFlash'
+	// Content
+	PackageKey="Dual_M1911"
+	FirstPersonMeshName="WEP_1P_Dual_M1911_MESH.Wep_1stP_Dual_M1911_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Dual_M1911_ANIM.Wep_1stP_Dual_M1911_Anim"
+	PickupMeshName="WEP_3P_Dual_M1911_MESH.Wep_M1911_Pickup"
+	AttachmentArchetypeName="WEP_Dual_M1911_ARCH.Wep_Dual_M1911_3P"
+	MuzzleFlashTemplateName="WEP_Dual_M1911_ARCH.Wep_Dual_M1911_MuzzleFlash"
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -120,5 +116,10 @@ defaultproperties
     BonesToLockOnEmpty_L=(LW_Bolt, LW_Bullets1)
 
     bHasFireLastAnims=true
+
+    // Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=2.0f,IncrementWeight=4)
 }
 

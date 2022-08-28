@@ -59,7 +59,7 @@ simulated function PostBeginPlay()
         HuskCannon = KFWeap_HuskCannon(Owner);
         if(HuskCannon != none)
         {
-            ChargeLevel = HuskCannon.GetChargeLevel();
+            ChargeLevel = HuskCannon.GetChargeFXLevel();
             bSpawnGroundFire = ChargeLevel == 3;
         }
     }
@@ -79,11 +79,6 @@ simulated function PostBeginPlay()
         }
     }
     super(KFProjectile).PostBeginPlay();
-}
-
-function Init(Vector Direction)
-{
-    super(KFProjectile).Init(Direction);
 }
 
 protected simulated function PrepareExplosionActor(GameExplosionActor GEA)
@@ -287,7 +282,7 @@ defaultproperties
     ExplosionActorClass=Class'KFExplosionActor_HuskCannon'
     begin object name=ExploTemplate2 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HuskProjectile_Explosion'
-        Damage=100
+        Damage=60
         DamageRadius=100
         MyDamageType=Class'KFDT_Explosive_HuskCannon'
         MomentumTransferScale=6000

@@ -86,7 +86,10 @@ var array<PlayerController> ArbitrationPCs;
 /** Amount of time a client can take for arbitration handshaking before being kicked */
 var globalconfig float ArbitrationHandshakeTimeout;
 
-var globalconfig float        GameDifficulty;
+var   globalconfig float        GameDifficulty;
+`if(`__TW_)
+var float GameDifficultyModifier;
+`endif
 var	  globalconfig int		  GoreLevel;				// 0=Normal, increasing values=less gore
 var   float					  GameSpeed;				// Scale applied to game rate.
 
@@ -1183,6 +1186,11 @@ function PlayerController ProcessClientTravel( out string URL, Guid NextMapGuid,
 	}
 
 	return LP;
+}
+
+function byte GetModifiedGameDifficulty()
+{
+	return GameDifficulty;
 }
 
 function bool RequiresPassword()
@@ -2517,6 +2525,7 @@ function RestartGame()
 		}
 	}
 
+	`log("GameInfo - RestartGame - Call ServerTravel()");
 	WorldInfo.ServerTravel("?Restart",GetTravelType());
 }
 

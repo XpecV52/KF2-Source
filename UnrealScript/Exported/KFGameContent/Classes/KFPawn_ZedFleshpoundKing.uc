@@ -376,7 +376,7 @@ function SpawnSubWave()
 
     KFGI = KFGameInfo(WorldInfo.Game);
 
-    SpawnInfo = GetWaveInfo(CurrentPhase, KFGI.GameDifficulty);
+    SpawnInfo = GetWaveInfo(CurrentPhase, KFGI.GetModifiedGameDifficulty());
     KFGI.SpawnManager.SummonBossMinions(SpawnInfo.Squads, GetNumMinionsToSpawn(), false);
 
     //King fleshpound summons once and stops.  Force the stop a couple seconds after spawn.
@@ -455,9 +455,9 @@ function ActivateShield()
     if (KFGI != None)
     {
         HealthMod = 1.f;
-        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
+        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GetModifiedGameDifficulty(), KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
 
-        ShieldHealth = ShieldHealthMaxDefaults[KFGI.GameDifficulty] * HealthMod * ShieldHealthScale;
+        ShieldHealth = ShieldHealthMaxDefaults[KFGI.GetModifiedGameDifficulty()] * HealthMod * ShieldHealthScale;
         ShieldHealthMax = ShieldHealth;
         ShieldHealthPctByte = 1;
         UpdateShield();
@@ -672,6 +672,15 @@ defaultproperties
    DifficultySettings=Class'kfgamecontent.KFDifficulty_FleshpoundKing'
    MinBlockFOV=0.200000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:FootstepCameraShake0'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.King_Fleshpound_AnimGroup'
    LocalizationKey="KFPawn_ZedFleshpoundKing"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:ThirdPersonHead0'
@@ -766,8 +775,8 @@ defaultproperties
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
       SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_FleshpoundKing_ChestBeam'
-      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_FleshpoundKing_ChestBeam'
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
@@ -779,7 +788,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
    End Object
@@ -886,8 +897,9 @@ defaultproperties
    End Object
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=RageAkComponent0
-   Components(9)=BeamHitAC0
+   Components(8)=SprintAkComponent0
+   Components(9)=RageAkComponent0
+   Components(10)=BeamHitAC0
    bAlwaysRelevant=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedFleshpoundKing"

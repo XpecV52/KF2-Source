@@ -15,7 +15,9 @@ var float DmgIncreasePerCharge;
 var float AOEIncreasePerCharge;
 var float IncapIncreasePerCharge;
 var int AmmoIncreasePerCharge;
-var float StartFireTime;
+var transient float ChargeTime;
+var transient float ConsumeAmmoTime;
+var transient float MaxChargeLevel;
 var ParticleSystem ChargingEffect;
 var ParticleSystem ChargedEffect;
 var const ParticleSystem MuzzleFlashEffectL1;
@@ -30,23 +32,6 @@ var float FullChargedTimerInterval;
 static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
 {
     return 4;
-}
-
-simulated function ForceFire()
-{
-    GotoState('Active');
-}
-
-simulated function ConsumeChargeAmount()
-{
-    if(AmmoCount[0] > 0)
-    {
-        ConsumeAmmo(0);        
-    }
-    else
-    {
-        ForceFire();
-    }
 }
 
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -124,7 +109,7 @@ simulated function FireAmmunition()
         default:
             break;
     }
-    if((GetChargeLevel()) <= 1)
+    if((GetChargeLevel()) < 1)
     {
         ConsumeAmmo(CurrentFireMode);
     }
@@ -134,7 +119,6 @@ simulated function FireAmmunition()
 
 simulated function Timer_StopFireEffects()
 {
-    ClearZedTimeResist();
     if(WorldInfo.NetMode == NM_Client)
     {
         Instigator.WeaponStoppedFiring(self, false);
@@ -151,7 +135,7 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
     HuskBall = KFProj_HuskCannon_Fireball(super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir));
     if(HuskBall != none)
     {
-        Charges = Min(int((WorldInfo.TimeSeconds - StartFireTime) / ValueIncreaseTime), int(MaxChargeTime / ValueIncreaseTime));
+        Charges = GetChargeLevel();
         HuskBall.DamageScale = 1 + (DmgIncreasePerCharge * float(Charges));
         HuskBall.AOEScale = 1 + (AOEIncreasePerCharge * float(Charges));
         HuskBall.IncapScale = 1 + (IncapIncreasePerCharge * float(Charges));
@@ -168,7 +152,7 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
     }
     if(MuzzleFlash != none)
     {
-        switch(GetChargeLevel())
+        switch(GetChargeFXLevel())
         {
             case 1:
                 MuzzleFlash.MuzzleFlash.ParticleSystemTemplate = MuzzleFlashEffectL1;
@@ -194,17 +178,21 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
 
 simulated function int GetChargeLevel()
 {
-    local int MaxCharges, Charges;
+    return Min(int(ChargeTime / ValueIncreaseTime), int(MaxChargeLevel));
+}
 
-    MaxCharges = int(MaxChargeTime / ValueIncreaseTime);
-    Charges = Min(int((WorldInfo.TimeSeconds - StartFireTime) / ValueIncreaseTime), MaxCharges);
-    if(Charges <= 1)
+simulated function int GetChargeFXLevel()
+{
+    local int ChargeLevel;
+
+    ChargeLevel = GetChargeLevel();
+    if(ChargeLevel < 1)
     {
         return 1;        
     }
     else
     {
-        if(Charges < MaxCharges)
+        if(float(ChargeLevel) < MaxChargeLevel)
         {
             return 2;            
         }
@@ -231,8 +219,9 @@ simulated state HuskCannonCharge extends WeaponFiring
     simulated event BeginState(name PreviousStateName)
     {
         super.BeginState(PreviousStateName);
-        StartFireTime = WorldInfo.TimeSeconds;
-        MaxChargeTime = FMin(default.MaxChargeTime, float(AmmoCount[0]) * ValueIncreaseTime);
+        ChargeTime = 0;
+        ConsumeAmmoTime = 0;
+        MaxChargeLevel = float(int(MaxChargeTime / ValueIncreaseTime));
         if(ChargingPSC == none)
         {
             ChargingPSC = new (self) Class'ParticleSystemComponent';
@@ -257,28 +246,46 @@ simulated state HuskCannonCharge extends WeaponFiring
         }
     }
 
+    simulated function bool ShouldRefire()
+    {
+        return StillFiring(CurrentFireMode);
+    }
+
     simulated event Tick(float DeltaTime)
     {
         local float ChargeRTPC;
 
-        ChargeRTPC = FMin(MaxChargeTime, WorldInfo.TimeSeconds - StartFireTime) / default.MaxChargeTime;
+        global.Tick(DeltaTime);
+        if(PendingFire(CurrentFireMode))
+        {
+            ConsumeAmmoTime += DeltaTime;
+        }
+        if(bIsFullyCharged)
+        {
+            if(ConsumeAmmoTime >= FullChargedTimerInterval)
+            {
+                ConsumeAmmo(0);
+                ConsumeAmmoTime -= FullChargedTimerInterval;
+            }
+            return;
+        }
+        if(PendingFire(CurrentFireMode))
+        {
+            ChargeTime += DeltaTime;
+        }
+        ChargeRTPC = FMin(ChargeTime / MaxChargeTime, 1);
         KFPawn(Instigator).SetWeaponComponentRTPCValue("Weapon_Charge", ChargeRTPC);
         Instigator.SetRTPCValue('Weapon_Charge', ChargeRTPC);
-        global.Tick(DeltaTime);
-        if((ChargeRTPC >= 1) && !bIsFullyCharged)
+        if(ConsumeAmmoTime >= ValueIncreaseTime)
+        {
+            ConsumeAmmo(0);
+            ConsumeAmmoTime -= ValueIncreaseTime;
+        }
+        if((ChargeTime >= MaxChargeTime) || !HasAmmo(0))
         {
             bIsFullyCharged = true;
             ChargingPSC.SetTemplate(ChargedEffect);
             KFPawn(Instigator).SetWeaponAmbientSound(FullyChargedSound.DefaultCue, FullyChargedSound.FirstPersonCue);
-            ClearTimer('ConsumeChargeAmount');
-            SetTimer(FullChargedTimerInterval, true, 'ConsumeChargeAmount');            
-        }
-        else
-        {
-            if(!IsTimerActive('ConsumeChargeAmount') && !bIsFullyCharged)
-            {
-                SetTimer(ValueIncreaseTime, true, 'ConsumeChargeAmount');
-            }
         }
     }
 
@@ -297,10 +304,9 @@ simulated state HuskCannonCharge extends WeaponFiring
         {
             SetTimer(0.3, false, 'Timer_StopFireEffects');
         }
-        ClearTimer('ForceFire');
+        ClearZedTimeResist();
         ClearPendingFire(CurrentFireMode);
         ClearTimer('RefireCheckTimer');
-        ClearTimer('ConsumeChargeAmount');
         NotifyWeaponFinishedFiring(CurrentFireMode);
         KFPawn(Instigator).bHasStartedFire = false;
         KFPawn(Instigator).bNetDirty = true;
@@ -328,12 +334,18 @@ defaultproperties
     FullyChargedSound=(DefaultCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_Charged_3P',FirstPersonCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_Charged')
     SelfDamageReductionValue=0.05
     FullChargedTimerInterval=2
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=7
-    MagazineCapacity=20
+    PackageKey="HuskCannon"
+    FirstPersonMeshName="WEP_1P_HuskCannon_MESH.Wep_1stP_HuskCannon_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_huskcannon_mesh.Wep_3rdP_HuskCannon_Pickup"
+    AttachmentArchetypeName="WEP_HuskCannon_ARCH.Wep_HuskCannon_3P"
+    MuzzleFlashTemplateName="WEP_HuskCannon_ARCH.Wep_HuskCannon_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=7
+    MagazineCapacity=20
     MeshFOV=80
     MeshIronSightFOV=65
     PlayerIronSightFOV=50
@@ -352,9 +364,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=20,Y=12,Z=-1)
-    AttachmentArchetype=KFWeapAttach_HuskCannon'WEP_HuskCannon_ARCH.Wep_HuskCannon_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_HuskCannon.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_HuskCannon_ARCH.Wep_HuskCannon_MuzzleFlash'
     maxRecoilPitch=150
     minRecoilPitch=115
     maxRecoilYaw=115
@@ -372,6 +382,7 @@ defaultproperties
     HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -381,21 +392,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_HuskCannon_MESH.Wep_1stP_HuskCannon_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_HuskCannon_ANIM.Wep_1stP_HuskCannon_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_HuskCannon.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Husk Cannon"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_huskcannon_mesh.Wep_3rdP_HuskCannon_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_HuskCannon.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_huskcannon_mesh.Wep_3rdP_HuskCannon_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_HuskCannon.StaticPickupComponent'

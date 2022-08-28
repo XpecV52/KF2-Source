@@ -45,15 +45,23 @@ function SetPerkInfo()
 {
 	local KFPerk CurrentPerk;
 	local KFPlayerController KFPC;
+	local GFxObject PerkIconObject;
 
 	KFPC = KFPlayerController(GetPC());
 	if (KFPC != none)
 	{
-		CurrentPerk = KFPlayerController(GetPC()).CurrentPerk;
+		CurrentPerk = KFPC.CurrentPerk;
  		SetString("perkName", CurrentPerk.PerkName);
- 		SetString("perkIconPath", "img://"$CurrentPerk.GetPerkIconPath());
+ 		//SetString("perkIconPath", "img://"$CurrentPerk.GetPerkIconPath());
  		SetInt("perkLevel", CurrentPerk.GetLevel());
  		SetInt("xpBarValue", KFPC.GetPerkLevelProgressPercentage(CurrentPerk.Class));
+
+
+		PerkIconObject = CreateObject("Object");
+		PerkIconObject.SetString("perkIcon", "img://"$CurrentPerk.GetPerkIconPath());
+		PerkIconObject.SetString("prestigeIcon", CurrentPerk.GetPrestigeIconPath(KFPC.GetPerkPrestigeLevelFromPerkList(CurrentPerk.class)));
+
+		SetObject("perkImageSource", PerkIconObject);
 	}
 }
 

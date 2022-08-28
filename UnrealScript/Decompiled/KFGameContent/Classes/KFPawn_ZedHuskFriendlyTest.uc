@@ -29,6 +29,7 @@ defaultproperties
     ChestLightComponent=PointLightComponent'Default__KFPawn_ZedHuskFriendlyTest.ChestLightComponent0'
     CharacterMonsterArch=KFCharacterInfo_Monster'zed_husk_arch.ZED_Husk_Archetype'
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHuskFriendlyTest.MeleeHelper'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -82,6 +83,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

@@ -75,16 +75,13 @@ defaultproperties
 	DOF_FG_FocalRadius=0.0
 	DOF_FG_MaxNearBlurSize=3.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Crossbow_MESH.Wep_1stP_Crossbow_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Crossbow_ANIM.Wep_1stP_Crossbow_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Crossbow_MESH.Wep_Crossbow_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Crossbow_ARCH.Wep_Crossbow_3P'
+	// Content
+	PackageKey="Crossbow"
+	FirstPersonMeshName="WEP_1P_Crossbow_MESH.Wep_1stP_Crossbow_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Crossbow_ANIM.Wep_1stP_Crossbow_Anim"
+	PickupMeshName="WEP_3P_Crossbow_MESH.Wep_Crossbow_Pickup"
+	AttachmentArchetypeName="WEP_Crossbow_ARCH.Wep_Crossbow_3P"
+	MuzzleFlashTemplateName="WEP_Crossbow_ARCH.Wep_Crossbow_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=1
@@ -126,7 +123,6 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Crossbow_ARCH.Wep_Crossbow_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_DryFire'
 
@@ -146,4 +142,9 @@ defaultproperties
 	// Just like the launchers, this weapon has mag size of 1 and force reload which
 	// causes significant ammo sync issues.  This fix is far from perfect, but it helps.
 	bAllowClientAmmoTracking=true
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.6f,IncrementWeight=3)
 }

@@ -204,6 +204,7 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
 
  		// head
  		Outfit = CharArch.HeadVariants[PRI.RepCustomizationInfo.HeadMeshIndex];
+		
 		Skin = Outfit.SkinVariations[PRI.RepCustomizationInfo.HeadSkinIndex];
  		/*if( !GetIDAvailable(Outfit.UnlockAssetID) )
  		{
@@ -215,24 +216,27 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
  			ClearCharacterCustomization(PRI);
  			return FALSE;
  		}
-
+		
  		// accessory
 		for( i=0; i < `MAX_COSMETIC_ATTACHMENTS; i++ )
 		{
-			if ( PRI.RepCustomizationInfo.AttachmentMeshIndices[i] != `CLEARED_ATTACHMENT_INDEX  && PRI.RepCustomizationInfo.AttachmentMeshIndices[i] != INDEX_NONE)
+			if (PRI.RepCustomizationInfo.AttachmentSkinIndices[i] == INDEX_NONE)
 			{
-				Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[i]];
-				if (Attachment.AttachmentItem == None)
-				{
-					return FALSE;
-				}
-				Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[i]];
-
-				if( !GetIDAvailable(Skin.UnlockAssetID) )
-				{
- 					ClearCharacterCustomization(PRI);
- 					return FALSE;
-				}
+				continue;
+			}
+			
+			Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[i]];
+			if (Attachment.AttachmentItem == None)
+			{
+				return FALSE;
+			}
+				
+			Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[i]];
+				
+			if( !GetIDAvailable(Skin.UnlockAssetID) )
+			{	
+ 				ClearCharacterCustomization(PRI);
+ 				return FALSE;
 			}
 		}
 	}

@@ -16,6 +16,7 @@ DefaultProperties
 	DialogEvents[`COMM_RequestHelp]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_Help',TraderTimeAudioCue=none)
 	DialogEvents[`COMM_ConfirmGeneric]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_POSITIVE_Confirm',TraderTimeAudioCue=none)
 	DialogEvents[`COMM_DenyGeneric]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_Deny',TraderTimeAudioCue=none)
+	DialogEvents[`COMM_ThankYou]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_POSITIVE_Confirm',TraderTimeAudioCue=none)
 
 
 	DialogEvents[`ACT_WeldDoor]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_Welding',TraderTimeAudioCue=none)

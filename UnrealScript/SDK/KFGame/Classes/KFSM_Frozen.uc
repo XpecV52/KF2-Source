@@ -249,6 +249,16 @@ function DelayedShatterTimer()
 	class'KFDT_Freeze'.static.PlayShatter(KFPOwner, true);
 }
 
+function bool CanOverrideSpecialMove( Name InMove )
+{
+	if (InMove == 'KFSM_Block')
+	{
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 defaultproperties
 {
 	Handle=KFSM_Frozen

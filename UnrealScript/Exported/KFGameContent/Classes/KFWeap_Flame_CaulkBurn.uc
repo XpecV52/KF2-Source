@@ -104,13 +104,19 @@ defaultproperties
    End Object
    PSC_EndSpray=FlameEndSpray0
    MinAmmoConsumed=4
+   PackageKey="CaulkBurn"
+   FirstPersonMeshName="WEP_1P_CaulkBurn_MESH.Wep_1stP_CaulkBurn_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_CaulkBurn_ANIM.Wep_1stP_CaulkBurn_Anim"
+   PickupMeshName="WEP_3P_CaulkBurn_MESH.Wep_CaulkBurn_Pickup"
+   AttachmentArchetypeName="WEP_CaulkBurn_ARCH.Wep_Caulkburn_B_3P"
+   MuzzleFlashTemplateName="WEP_CaulkBurn_ARCH.Wep_CaulkBurn_MuzzleFlash"
+   bHasIronSights=True
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
    InventorySize=5
    MagazineCapacity(0)=50
-   bHasIronSights=True
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
    PlayerIronSightFOV=80.000000
    IronSightPosition=(X=-3.000000,Y=7.000000,Z=-2.000000)
    DOF_FG_FocalRadius=150.000000
@@ -132,14 +138,12 @@ defaultproperties
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_CaulkBurn.Play_SA_CaulkBurn_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_CaulkBurn.Play_SA_CaulkBurn_Handling_DryFire'
    PlayerViewOffset=(X=4.000000,Y=10.000000,Z=-4.000000)
-   AttachmentArchetype=KFWeapAttach_Flamethrower'WEP_CaulkBurn_ARCH.Wep_Caulkburn_B_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Flame_CaulkBurn:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_CaulkBurn_ARCH.Wep_CaulkBurn_MuzzleFlash'
    maxRecoilPitch=100
    minRecoilPitch=75
    maxRecoilYaw=75
@@ -157,6 +161,10 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
+   WeaponUpgrades(1)=(IncrementDamage=1.100000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.400000)
+   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=1.500000)
    FiringStatesArray(0)="SprayingFire"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -177,9 +185,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_CaulkBurn'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_FlameBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_CaulkBurn_MESH.Wep_1stP_CaulkBurn_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_CaulkBurn_ANIM.Wep_1stP_CaulkBurn_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -193,7 +199,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Caulk n' Burn"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_FlameBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_CaulkBurn_MESH.Wep_CaulkBurn_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

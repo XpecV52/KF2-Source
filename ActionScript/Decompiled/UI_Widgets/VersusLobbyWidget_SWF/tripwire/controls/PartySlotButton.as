@@ -46,9 +46,7 @@ package tripwire.controls
         
         public var profileImageContainer:MovieClip;
         
-        public var perkIconLoader:UILoader;
-        
-        public var perkIconLoaderContainer:MovieClip;
+        public var perkIconLoader:TripUIPerkLoader;
         
         public var perkLevelText:TextField;
         
@@ -98,7 +96,6 @@ package tripwire.controls
             preventAutosizing = true;
             this.ready = false;
             this.profileLoader = UILoader(this.profileImageContainer.profileLoader);
-            this.perkIconLoader = UILoader(this.perkIconLoaderContainer.perkIconLoader);
             this.isMuted = false;
             this.playerNameFormat = this.playerNameText.defaultTextFormat;
             this.playerNameOriginalSize = int(this.playerNameFormat.size);
@@ -112,17 +109,20 @@ package tripwire.controls
             {
                 this.bIsOccupied = true;
                 this.perkLevelText.text = !!param1.perkLevel ? param1.perkLevel : "";
-                this.perkImageSource = !!param1.perkIconPath ? param1.perkIconPath : "";
+                this.perkImageSource = !!param1.perkImageSource ? param1.perkImageSource : "";
                 this.playerNameString = !!param1.playerName ? param1.playerName : "";
                 this.profileImageSource = !!param1.profileImageSource ? param1.profileImageSource : "";
                 this.isMuted = !!param1.muted ? Boolean(param1.muted) : false;
                 this.ready = !!param1.ready ? Boolean(param1.ready) : false;
                 this.bIsLeader = !!param1.bLeader ? Boolean(param1.bLeader) : false;
+                if(param1.perkIconPath)
+                {
+                    this.perkImageSource = param1.perkIconPath;
+                }
             }
             else
             {
                 this.perkLevelText.text = "";
-                this.perkImageSource = "";
                 this.profileImageSource = "";
                 this.playerNameText.text = "";
                 this.isMuted = false;
@@ -167,7 +167,6 @@ package tripwire.controls
                     this.perkLevelText.textColor = this.zedColor;
                     this.playerNameText.textColor = this.zedColor;
                     this.iconTint.setTint(this.zedColor,1);
-                    this.perkIconLoaderContainer.transform.colorTransform = this.iconTint;
                     this.activeColor = this.zedColor;
                     this.inactiveColor = this.zedColor;
                 }
@@ -176,7 +175,6 @@ package tripwire.controls
                     this.perkLevelText.textColor = this.humanColor;
                     this.playerNameText.textColor = this.humanColor;
                     this.iconTint.setTint(this.humanColor,1);
-                    this.perkIconLoaderContainer.transform.colorTransform = this.iconTint;
                     this.activeColor = this.humanColor;
                     this.inactiveColor = this.humanColor;
                 }
@@ -294,7 +292,7 @@ package tripwire.controls
             return false;
         }
         
-        public function updatePerk(param1:String, param2:String, param3:String) : *
+        public function updatePerk(param1:String, param2:String, param3:Object) : *
         {
             if(param1 && param1 != "")
             {
@@ -323,12 +321,12 @@ package tripwire.controls
             return this.profileImageContainer.profileLoader.source;
         }
         
-        public function set perkImageSource(param1:String) : *
+        public function set perkImageSource(param1:Object) : *
         {
-            if(param1 && param1 != "")
+            if(param1 && param1 != null)
             {
                 this.perkIconLoader.visible = true;
-                this.perkIconLoaderContainer.perkIconLoader.source = param1;
+                this.perkIconLoader.data = param1;
             }
             else
             {
@@ -415,7 +413,6 @@ package tripwire.controls
         public function tintItems(param1:uint) : *
         {
             this.iconTint.setTint(param1,1);
-            this.perkIconLoaderContainer.transform.colorTransform = this.iconTint;
             this.perkLevelText.textColor = param1;
         }
         

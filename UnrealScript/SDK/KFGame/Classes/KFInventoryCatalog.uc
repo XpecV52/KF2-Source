@@ -1,4 +1,4 @@
-//This class is to keep track and look up the id-item matches so we can pass them to a matinee.  
+// This class is to keep track and look up the id-item matches so we can pass them to a matinee. 
 
 class KFInventoryCatalog extends Object;
 
@@ -42,6 +42,9 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_WS5,
 	ECrate_PSNHorzineSupply_WS6,
 	ECrate_PSNHorzineSupply_WS7,
+	ECrate_PSNHorzineSupply_WS8,
+	ECrate_PSNHorzineSupply_WS9,
+	ECrate_PSNHorzineSupply_WS10,
 	ECrate_PSNHorzineSupply_E1,
 	ECrate_PSNHorzineSupply_E2,
 	ECrate_HorzineSupply_S10,
@@ -63,7 +66,9 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S15,
 	ECrate_PSNHorzineSupply_WS15,
 	ECrate_Vault_Test,
-};
+	Ecrate_NeonMKII,
+	Ecrate_BlueFire,
+	};
 
 enum EItemDisplayContainerType
 {
@@ -152,6 +157,9 @@ DefaultProperties
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS5]=(ContainerID=5369, KeyID=4303, ItemSeriesName=psncrate_ws5, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS6]=(ContainerID=5901, KeyID=4303, ItemSeriesName=psncrate_ws6, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS7]=(ContainerID=5991, KeyID=4303, ItemSeriesName=psncrate_ws7, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS8]=(ContainerID=6201, KeyID=4303, ItemSeriesName=psncrate_ws8, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS9]=(ContainerID=6202, KeyID=4303, ItemSeriesName=psncrate_ws9, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS10]=(ContainerID=6218, KeyID=4303, ItemSeriesName=psncrate_ws10, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E1]=(ContainerID=5646, KeyID=4303, ItemSeriesName=emote1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E2]=(ContainerID=5647, KeyID=4303, ItemSeriesName=emote2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S10]=(ContainerID=4499, KeyID=4501, ItemSeriesName=horzine10, ContainerType=IDT_Crate)
@@ -174,4 +182,6 @@ DefaultProperties
 	ItemKeyArray[ECrate_HorzineSupply_S15]=(ContainerID=5233, KeyID=5234, ItemSeriesName=horzine15, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS15]=(ContainerID=5642, KeyID=4303, ItemSeriesName=horzine15, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_Vault_Test]=(ContainerID=5613, KeyID=-1, ItemSeriesName=vaultcrate_test, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_NeonMKII]=(ContainerID=6198, KeyID=6197, ItemSeriesName=NeonMKII, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_BlueFire]=(ContainerID=6200, KeyID=6199, ItemSeriesName=Bluefire, ContainerType=IDT_USB)
 } 

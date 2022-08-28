@@ -495,19 +495,26 @@ function SetupNextWave(byte NextWaveIndex, int TimeToNextWaveBuffer = 0)
         // Initialize our recycle number
         NumSpecialSquadRecycles = 0;
 
-        // Scale the number of zeds if the wave can be recycled
-        if( WaveSettings.Waves[NextWaveIndex].bRecycleWave )
-        {
-        	WaveTotalAI =	WaveSettings.Waves[NextWaveIndex].MaxAI *
-							DifficultyInfo.GetPlayerNumMaxAIModifier( GetNumHumanTeamPlayers() ) *
-							DifficultyInfo.GetDifficultyMaxAIModifier();
-        }
-        else
-        {
-         	WaveTotalAI =	WaveSettings.Waves[NextWaveIndex].MaxAI;
+		if (MyKFGRI.IsBossWave())
+		{
+			WaveTotalAI = 1;
 		}
-        WaveTotalAI *= GetTotalWaveCountScale();
-		WaveTotalAI = Max(1, WaveTotalAI);
+		else
+		{
+			// Scale the number of zeds if the wave can be recycled
+			if (WaveSettings.Waves[NextWaveIndex].bRecycleWave)
+			{
+				WaveTotalAI = WaveSettings.Waves[NextWaveIndex].MaxAI *
+					DifficultyInfo.GetPlayerNumMaxAIModifier(GetNumHumanTeamPlayers()) *
+					DifficultyInfo.GetDifficultyMaxAIModifier();
+			}
+			else
+			{
+				WaveTotalAI = WaveSettings.Waves[NextWaveIndex].MaxAI;
+			}
+			WaveTotalAI *= GetTotalWaveCountScale();
+			WaveTotalAI = Max(1, WaveTotalAI);
+		}
 
         GetAvailableSquads(NextWaveIndex, true);
 

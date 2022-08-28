@@ -11,13 +11,15 @@ class KFWeap_Knife_Berserker extends KFWeap_Edged_Knife
 
 defaultproperties
 {
+    PackageKey="BerserkerKnife"
+    FirstPersonMeshName="WEP_1P_BerserkerKnife_MESH.Wep_1stP_BerserkerKnife_Rig"
+    AttachmentArchetypeName="WEP_BerserkerKnife_ARCH.Wep_Knife_3P"
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_BerserkerKnife'
-    AttachmentArchetype=KFWeaponAttachment'WEP_BerserkerKnife_ARCH.Wep_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Berserker.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_BerserkerKnife_MESH.Wep_1stP_BerserkerKnife_Rig'
+        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_Berserker.FirstPersonMesh'

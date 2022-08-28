@@ -24,6 +24,7 @@ defaultproperties
 	Events[`COMM_RequestHelp]=			 	(EventID=`COMM_RequestHelp,                  Priority=0, Weight=1, Chance=1.0, CoolDownTime=1.0, CoolDownRadius=1000.0, Delay=0.0, bCanPlayAlone=true,															bCanBeMinimized=0)
 	Events[`COMM_ConfirmGeneric]=			(EventID=`COMM_ConfirmGeneric,               Priority=0, Weight=1, Chance=1.0, CoolDownTime=1.0, CoolDownRadius=1000.0, Delay=0.0, bCanPlayAlone=true,															bCanBeMinimized=0)
 	Events[`COMM_DenyGeneric]=			 	(EventID=`COMM_DenyGeneric,                  Priority=0, Weight=1, Chance=1.0, CoolDownTime=1.0, CoolDownRadius=1000.0, Delay=0.0, bCanPlayAlone=true,															bCanBeMinimized=0)
+	Events[`COMM_ThankYou]=			 		(EventID=`COMM_ThankYou,                 	 Priority=0, Weight=1, Chance=1.0, CoolDownTime=1.0, CoolDownRadius=1000.0, Delay=0.0, bCanPlayAlone=true,															bCanBeMinimized=0)
 
 	Events[`ACT_WeldDoor]=			 		(EventID=`ACT_WeldDoor,                      Priority=5, Weight=1, Chance=1.0, CoolDownTime=6.0, CoolDownRadius=1000.0, Delay=0.0,  bCanPlayAlone=true)
 	Events[`ACT_WeldDoorResp]=			 	(EventID=`ACT_WeldDoorResp,                  Priority=5, Weight=1, Chance=1.0, CoolDownTime=3.0, CoolDownRadius=1000.0, Delay=0.75, bCanPlayAlone=true,								CoolDownCategory=ECC_Resp)

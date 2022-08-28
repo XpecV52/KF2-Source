@@ -19,4 +19,14 @@ DefaultProperties
 	ImagePath="wep_ui_winchester_tex.UI_WeaponSelect_Winchester"
 
 	EffectiveRange=70
+
+	UpgradePrice[0]=500
+	UpgradePrice[1]=600
+	UpgradePrice[2]=700
+	UpgradePrice[3]=1500
+
+	UpgradeSellPrice[0]=375
+	UpgradeSellPrice[1]=825
+	UpgradeSellPrice[2]=1350
+	UpgradeSellPrice[3]=2475
 }

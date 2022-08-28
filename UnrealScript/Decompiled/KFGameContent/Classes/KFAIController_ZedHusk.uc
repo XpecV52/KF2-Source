@@ -5,14 +5,12 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFAIController_ZedHusk extends KFAIController_Monster
+class KFAIController_ZedHusk extends KFAIController_Ranged
     config(AI)
     hidecategories(Navigation);
 
 var bool bBaseCommandInitialized;
 var bool bCanUseFlameThrower;
-var const bool bDebugAimError;
-var const bool bCanLeadTarget;
 var float MinDistanceToSuicide;
 var float RequiredHealthPercentForSuicide;
 var Vector LastEnemySeenPosition;
@@ -41,16 +39,6 @@ var const float FireballFireIntervalSuicidal;
 var const float FireballFireIntervalHellOnEarth;
 var const float LowIntensityAttackScaleOfFireballInterval;
 
-function bool IsNearDoor()
-{
-    return false;
-}
-
-event Possess(Pawn inPawn, bool bVehicleTransition)
-{
-    super.Possess(inPawn, bVehicleTransition);
-}
-
 event PostBeginPlay()
 {
     local KFGameInfo KFGI;
@@ -59,7 +47,7 @@ event PostBeginPlay()
     if(WorldInfo.Game != none)
     {
         KFGI = KFGameInfo(WorldInfo.Game);
-        if((KFGI != none) && KFGI.GameDifficulty >= KFGI.DifficultyInfo.GetDifficultyValue(2))
+        if((KFGI != none) && float(KFGI.GetModifiedGameDifficulty()) >= KFGI.DifficultyInfo.GetDifficultyValue(2))
         {
             bCanUseFlameThrower = true;
         }
@@ -152,7 +140,7 @@ function bool IsSuicidal()
 
 function bool CanDoSuicide(float DistToTargetSq)
 {
-    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(23))
+    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(24))
     {
         return true;
     }
@@ -165,7 +153,7 @@ function bool CanDoFlamethrower(float DistToTargetSq)
     {
         return false;
     }
-    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(22))
+    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(23))
     {
         return true;
     }
@@ -178,12 +166,12 @@ function bool CanDoFireball(float DistToTargetSq)
     {
         return false;
     }
-    return ((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq >= Square(float(MinDistanceForFireBall))) && DistToTargetSq <= Square(float(MaxDistanceForFireBall))) && MyKFPawn.CanDoSpecialMove(21);
+    return ((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq >= Square(float(MinDistanceForFireBall))) && DistToTargetSq <= Square(float(MaxDistanceForFireBall))) && MyKFPawn.CanDoSpecialMove(22);
 }
 
 event bool SetEnemy(Pawn NewEnemy)
 {
-    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(21))
+    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(22))
     {
         if(MyKFPawn.NeedToTurn(NewEnemy.Location))
         {
@@ -215,7 +203,7 @@ function DoStrike()
             KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotRocketsDialog(MyKFPawn);
         }
     }
-    super.DoStrike();
+    super(KFAIController_Monster).DoStrike();
 }
 
 function ShootFireball(class<KFProj_Husk_Fireball> FireballClass, Vector FireballOffset)
@@ -237,11 +225,11 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass, Vector Firebal
     }
     if(bDebugAimError)
     {
-        DebugAimError();
+        DebugAimError(FireballSocketName, FireballAimError);
         return;
     }
     SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireballOffset >> Pawn.GetViewRotation());
-    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(21))
+    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(22))
     {
         AimLocation = Enemy.Location;
         if(Skill == Class'KFGameDifficultyInfo'.static.GetDifficultyValue(0))
@@ -312,7 +300,7 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass, Vector Firebal
                 {
                     self.AILog_Internal(((((((string(GetFuncName()) @ " HitActor: ") @ string(HitActor)) @ " Is NOT My Enemy: ") @ string(Enemy)) @ " and distanceToHitLoc: ") @ string(distanceToHitLoc)) @ " is too close so not firing!!!", 'FireBall');
                 }
-                MyKFPawn.SpecialMoves[21].AbortedByAICommand();
+                MyKFPawn.SpecialMoves[22].AbortedByAICommand();
                 LastFireBallTime = WorldInfo.TimeSeconds;
                 return;                
             }
@@ -337,35 +325,6 @@ function ShootFireball(class<KFProj_Husk_Fireball> FireballClass, Vector Firebal
         MyFireball.Init(DirToEnemy);
         LastFireBallTime = WorldInfo.TimeSeconds;
     }
-}
-
-function DebugAimError()
-{
-    local int I;
-    local KFDebugLines KFDL;
-    local Vector SocketLocation, DirToEnemy;
-    local Rotator SocketRotation;
-
-    KFDL = Class'KFDebugLines'.static.GetDebugLines();
-    if(KFDL == none)
-    {
-        msg("You need to turn KFDebugLines on (bEnableAdvDebugLines in KFGame.ini) to do this.");
-        return;
-    }
-    MyKFPawn.Mesh.GetSocketWorldLocationAndRotation(FireballSocketName, SocketLocation, SocketRotation);
-    KFDL.AddDebugLine(SocketLocation, SocketLocation + (Normal(Enemy.Location - SocketLocation) * 3024), 0, 255, 0, true);
-    I = 0;
-    J0x167:
-
-    if(I < 7)
-    {
-        DirToEnemy = Normal(Enemy.Location - SocketLocation) + (VRand() * FireballAimError);
-        KFDL.AddDebugLine(SocketLocation, SocketLocation + (DirToEnemy * 3024), 255, 0, 0, true);
-        ++ I;
-        goto J0x167;
-    }
-    msg("GAME PAUSED, UNPAUSE TO CONTINUE");
-    DebugFreezeGame();
 }
 
 defaultproperties

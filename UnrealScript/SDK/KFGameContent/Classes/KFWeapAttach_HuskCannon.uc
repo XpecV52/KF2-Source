@@ -74,7 +74,7 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byt
 	bIsCharging = false;
 	bIsFullyCharged = false;
 
-	ChargeLevel = GetChargeLevel();
+	ChargeLevel = GetChargeFXLevel();
 
 	if (ChargingPSC != none)
 	{
@@ -126,7 +126,8 @@ simulated function CauseMuzzleFlash(byte FiringMode)
 	Super.CauseMuzzleFlash(FiringMode);
 }
 
-function int GetChargeLevel()
+// Should generally match up with KFWeap_HuskCannon::GetChargeFXLevel
+function int GetChargeFXLevel()
 {
 	local int MaxCharges;
 	local int Charges;

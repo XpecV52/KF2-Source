@@ -72,9 +72,15 @@ package tripwire.menus
         
         public var disableAutoUpgradeCheckBox:TripCheckBox;
         
-        public var toggleMixerCheckBox:TripCheckBox;
+        public var toggleMixerButton:TripButton;
         
         public var defaultButton:TripButton;
+        
+        public var enableMixerString:String;
+        
+        public var disableMixerString:String;
+        
+        public var bEnableMixer:Boolean;
         
         public var genericSliderSoundEffect:String = "GEN_Click";
         
@@ -114,9 +120,9 @@ package tripwire.menus
             }
             this.killTickerCheckBox.tabIndex = _loc1_++;
             this.disableAutoUpgradeCheckBox.tabIndex = _loc1_++;
-            if(this.toggleMixerCheckBox)
+            if(this.toggleMixerButton)
             {
-                this.toggleMixerCheckBox.tabIndex = _loc1_++;
+                this.toggleMixerButton.tabIndex = _loc1_++;
             }
             this.closeButton.tabIndex = _loc1_++;
             if(!_loc2_)
@@ -154,10 +160,8 @@ package tripwire.menus
             {
                 this.antiMotionSicknessCheckBox.label = !!param1.antiMotionSickness ? param1.antiMotionSickness : "";
             }
-            if(this.toggleMixerCheckBox != null)
-            {
-                this.toggleMixerCheckBox.label = !!param1.enableMixer ? param1.enableMixer : "";
-            }
+            this.enableMixerString = !!param1.enableMixer ? param1.enableMixer : "";
+            this.disableMixerString = !!param1.disableMixer ? param1.disableMixer : "";
             this.fovMinimumText.text = !!param1.normal ? param1.normal : "";
             this.fovMaximumText.text = !!param1.wider ? param1.wider : "";
             this.killTickerCheckBox.label = !!param1.killTicker ? param1.killTicker : "";
@@ -188,10 +192,11 @@ package tripwire.menus
             {
                 this.antiMotionSicknessCheckBox.selected = !!param1.antiMotionSickness ? Boolean(param1.antiMotionSickness) : false;
             }
-            if(this.toggleMixerCheckBox)
+            if(this.toggleMixerButton)
             {
-                this.toggleMixerCheckBox.visible = !!param1.bDingo ? Boolean(param1.bDingo) : false;
-                this.toggleMixerCheckBox.selected = !!param1.bMixerEnabled ? Boolean(param1.bMixerEnabled) : false;
+                this.toggleMixerButton.visible = !!param1.bDingo ? Boolean(param1.bDingo) : false;
+                this.bEnableMixer = param1.bMixerEnabled;
+                this.toggleMixerButton.label = !!param1.bMixerEnabled ? this.disableMixerString : this.enableMixerString;
             }
         }
         
@@ -232,9 +237,9 @@ package tripwire.menus
             {
                 this.antiMotionSicknessCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             }
-            if(this.toggleMixerCheckBox)
+            if(this.toggleMixerButton)
             {
-                this.toggleMixerCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+                this.toggleMixerButton.addEventListener(ButtonEvent.PRESS,this.onCheckBoxClicked,false,0,true);
             }
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.onButtonClick,false,0,true);
         }
@@ -243,8 +248,10 @@ package tripwire.menus
         {
             switch(param1.target)
             {
-                case this.toggleMixerCheckBox:
-                    ExternalInterface.call("Callback_ToggleMixer",this.toggleMixerCheckBox.selected);
+                case this.toggleMixerButton:
+                    this.bEnableMixer = !this.bEnableMixer;
+                    this.toggleMixerButton.label = !!this.bEnableMixer ? this.disableMixerString : this.enableMixerString;
+                    ExternalInterface.call("Callback_ToggleMixer",this.bEnableMixer);
                     break;
                 case this.disableAutoUpgradeCheckBox:
                     ExternalInterface.call("Callback_DisableAutoUpgradeChanged",this.disableAutoUpgradeCheckBox.selected);

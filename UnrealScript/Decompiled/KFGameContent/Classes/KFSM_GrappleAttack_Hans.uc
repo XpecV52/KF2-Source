@@ -212,7 +212,7 @@ function Timer_DrainHealth()
     local KFPawn_ZedHansBase HansPawn;
     local int Damage;
 
-    if(((((KFPOwner != none) && KFPOwner.Health > 0) && Follower != none) && Follower.Health >= 0) && Follower.IsDoingSpecialMove(32))
+    if(((((KFPOwner != none) && KFPOwner.Health > 0) && Follower != none) && Follower.Health >= 0) && Follower.IsDoingSpecialMove(33))
     {
         if(NumDrainsRemaining > 0)
         {

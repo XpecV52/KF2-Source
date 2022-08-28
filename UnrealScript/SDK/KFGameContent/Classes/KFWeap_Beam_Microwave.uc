@@ -132,6 +132,7 @@ simulated function CustomFire()
 	local KFExplosionActorReplicated ExploActor;
 	local vector SpawnLoc;
 	local rotator SpawnRot;
+	local float ModifiedDamage, OriginalDamage, OriginalDamageRadius;
 
 	// Alt-fire blast only (server authoritative)
 	if ( CurrentFireMode != ALTFIRE_FIREMODE )
@@ -160,7 +161,18 @@ simulated function CustomFire()
 		ExploActor.bReplicateInstigator = true;
 		ExploActor.bSyncParticlesToMuzzle = true;
 
+		ModifiedDamage = static.GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
+
+		OriginalDamage = ExplosionTemplate.Damage;
+		OriginalDamageRadius = ExplosionTemplate.DamageRadius;
+
+		ExplosionTemplate.Damage *= ModifiedDamage;
+		ExplosionTemplate.DamageRadius *= ModifiedDamage;
+
 		ExploActor.Explode(ExplosionTemplate, vector(SpawnRot));
+
+		ExplosionTemplate.Damage = OriginalDamage;
+		ExplosionTemplate.DamageRadius = OriginalDamageRadius;
 	}
 
 	if ( bDebug )
@@ -220,22 +232,19 @@ defaultproperties
 	DOF_FG_FocalRadius=150
 	DOF_FG_MaxNearBlurSize=1
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Microwave_Gun_MESH.Wep_1stP_Microwave_Gun_Rig'
-		AnimSets(0)=AnimSet'WEP_1p_Microwave_Gun_ANIM.WEP_1p_Microwave_Gun_ANIM'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Microwave_Gun_MESH.Wep_Microwave_Gun_Pickup'.
-	End Object
-
-	AttachmentArchetype=KFWeapAttach_SprayBase'WEP_Microwave_Gun_ARCH.Microwave_Gun_3P'
+	// Content
+	PackageKey="Microwave_Gun"
+	FirstPersonMeshName="WEP_1P_Microwave_Gun_MESH.Wep_1stP_Microwave_Gun_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1p_Microwave_Gun_ANIM.WEP_1p_Microwave_Gun_ANIM"
+	PickupMeshName="WEP_3P_Microwave_Gun_MESH.Wep_Microwave_Gun_Pickup"
+	AttachmentArchetypeName="WEP_Microwave_Gun_ARCH.Microwave_Gun_3P"
+	MuzzleFlashTemplateName="WEP_Microwave_Gun_ARCH.Wep_Microwave_Gun_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=100
 	SpareAmmoCapacity[0]=500
 	InitialSpareMags[0]=0
-	AmmoPickupScale[0]=0.4
+	AmmoPickupScale[0]=0.5
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -258,7 +267,7 @@ defaultproperties
     HippedRecoilModifier=1.5
 
     // Inventory
-	InventorySize=10
+	InventorySize=8 //10
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
 
@@ -284,7 +293,7 @@ defaultproperties
 	Begin Object Class=GameExplosion Name=ExploTemplate0
 		bDirectionalExplosion=True
 		DirectionalExplosionAngleDeg=30
-		Damage=200
+		Damage=210 //200
 		DamageRadius=750
 		DamageFalloffExponent=1.0
 		MomentumTransferScale=200000.0
@@ -294,7 +303,6 @@ defaultproperties
 	ExplosionTemplate=ExploTemplate0
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Microwave_Gun_ARCH.Wep_Microwave_Gun_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_Secondary_3P', FirstPersonCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_Secondary_1P')
     WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_3P_LoopEnd', FirstPersonCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_1P_LoopEnd')
@@ -321,4 +329,8 @@ defaultproperties
  	// AI Warning
  	bWarnAIWhenFiring=true
     MaxAIWarningDistSQ=2250000
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
 }

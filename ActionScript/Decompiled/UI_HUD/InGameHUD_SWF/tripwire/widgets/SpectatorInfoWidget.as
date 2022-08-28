@@ -1,8 +1,8 @@
 package tripwire.widgets
 {
     import flash.text.TextField;
-    import scaleform.clik.controls.UILoader;
     import scaleform.clik.core.UIComponent;
+    import tripwire.controls.TripUIPerkLoader;
     
     public class SpectatorInfoWidget extends UIComponent
     {
@@ -18,7 +18,7 @@ package tripwire.widgets
         
         public var changeCameraText:TextField;
         
-        public var iconLoader:UILoader;
+        public var iconLoader:TripUIPerkLoader;
         
         private var _bUsingGamePad:Boolean;
         
@@ -57,7 +57,10 @@ package tripwire.widgets
         {
             this.spectatorInfoMC.playerNameText.text = !!param1.playerName ? param1.playerName : "";
             this.spectatorInfoMC.playerPerkText.text = !!param1.playerPerk ? param1.playerPerk : "";
-            this.spectatorInfoMC.iconLoader.source = !!param1.iconPath ? param1.iconPath : "";
+            if(param1.perkImageSource && param1.perkImageSource != null)
+            {
+                this.spectatorInfoMC.iconLoader.data = param1.perkImageSource;
+            }
             visible = true;
         }
     }

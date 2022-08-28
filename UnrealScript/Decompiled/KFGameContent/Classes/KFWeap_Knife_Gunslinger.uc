@@ -11,12 +11,14 @@ class KFWeap_Knife_Gunslinger extends KFWeap_Edged_Knife
 
 defaultproperties
 {
+    PackageKey="Gunslinger_Knife"
+    FirstPersonMeshName="WEP_1P_Gunslinger_Knife_MESH.Wep_1stP_GunslingerKnife_Rig"
+    AttachmentArchetypeName="WEP_Gunslinger_Knife_ARCH.Wep_Gunslinger_Knife_3P"
     WeaponSelectTexture=Texture2D'WEP_UI_Gunslinger_Knife_TEX.UI_WeaponSelect_GunslingerKnife'
-    AttachmentArchetype=KFWeaponAttachment'WEP_Gunslinger_Knife_ARCH.Wep_Gunslinger_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Gunslinger.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Gunslinger_Knife_MESH.Wep_1stP_GunslingerKnife_Rig'
+        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_Gunslinger.FirstPersonMesh'

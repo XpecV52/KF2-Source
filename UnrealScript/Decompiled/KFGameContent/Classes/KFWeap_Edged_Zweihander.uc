@@ -15,11 +15,15 @@ defaultproperties
     ParryDamageMitigationPercent=0.4
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
-    InventorySize=6
+    PackageKey="Zweihander"
+    FirstPersonMeshName="WEP_1P_Zweihander_MESH.Wep_1stP_Zweihander_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Zweihander_MESH.Wep_Zweihander_Pickup"
+    AttachmentArchetypeName="WEP_Zweihander_ARCH.Wep_Zweihander_3P"
+    InventorySize=7
     GroupPriority=85
     WeaponSelectTexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
     PlayerViewOffset=(X=2,Y=0,Z=0)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Zweihander_ARCH.Wep_Zweihander_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_F=/* Array type was not detected. */
         ChainSequence_B=/* Array type was not detected. */
@@ -31,25 +35,22 @@ defaultproperties
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Edged_Zweihander.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitMomentum=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Zweihander_MESH.Wep_1stP_Zweihander_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Zweihander_ANIM.Wep_1stP_Zweihander_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Edged_Zweihander.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Zweihander"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Zweihander_MESH.Wep_Zweihander_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Edged_Zweihander.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Zweihander_MESH.Wep_Zweihander_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Edged_Zweihander.StaticPickupComponent'

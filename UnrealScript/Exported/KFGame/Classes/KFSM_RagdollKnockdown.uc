@@ -58,6 +58,7 @@ protected function bool InternalCanDoSpecialMove()
 function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
 	local TWDeferredWorkManager DeferredWorkManager;
+
 	DeferredWorkManager = TWDeferredWorkManager(KFPOwner.WorldInfo.DeferredWorkManager);
 
 	// KnockdownImpulse is replicated before this move (if this has problems go back to repnotify KnockdownImpulse)
@@ -230,6 +231,13 @@ protected function KnockdownTimer()
 /** Initiate recover from ragdoll on the server */
 protected function EndKnockdown()
 {
+	//don't let them recover if they shouldn't
+	if (!(PawnOwner.Physics != PHYS_RigidBody || VSizeSq(PawnOwner.Velocity) < 100.f || !PawnOwner.Mesh.RigidBodyIsAwake()))
+	{
+		LogInternal("failed to recover from knockdown " @PawnOwner.Physics @VSizeSq(PawnOwner.Velocity) < 100.f @PawnOwner.Mesh.RigidBodyIsAwake());
+		return;
+	}
+	
 	PawnOwner.ClearTimer(nameof(EndKnockdown), self);
 	PawnOwner.ClearTimer(nameof(KnockdownTimer), self);
 

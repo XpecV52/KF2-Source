@@ -16,6 +16,11 @@ defaultproperties
    ParryDamageMitigationPercent=0.500000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Crovel'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
+   PackageKey="Crovel"
+   FirstPersonMeshName="WEP_1P_Crovel_MESH.Wep_1stP_Crovel_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_Crovel_ANIM.WEP_1P_Crovel_ANIM"
+   PickupMeshName="WEP_3P_Crovel_MESH.Wep_Crovel_Pickup"
+   AttachmentArchetypeName="WEP_Crovel_ARCH.Wep_Crovel_3P"
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(1)=()
    FireModeIconPaths(2)=()
@@ -25,7 +30,6 @@ defaultproperties
    InventorySize=4
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Crovel'
-   AttachmentArchetype=KFWeaponAttachment'WEP_Crovel_ARCH.Wep_Crovel_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
@@ -61,6 +65,10 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_Crovel:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
+   WeaponUpgrades(1)=(IncrementDamage=1.200000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.450000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.650000)
+   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=1.850000)
    InstantHitDamage(0)=49.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
@@ -75,9 +83,7 @@ defaultproperties
    InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Bludgeon_Crovel'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000
-      SkeletalMesh=SkeletalMesh'WEP_1P_Crovel_MESH.Wep_1stP_Crovel_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_Crovel_ANIM.WEP_1P_Crovel_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -91,7 +97,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Crovel Survival Tool"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_MeleeBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Crovel_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

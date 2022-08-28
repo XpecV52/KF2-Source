@@ -263,22 +263,29 @@ defaultproperties
     ParryDamageMitigationPercent=0.3
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
-    FireModeIconPaths=/* Array type was not detected. */
-    InventoryGroup=EInventoryGroup.IG_Primary
-    InventorySize=10
-    MagazineCapacity[0]=5
-    MagazineCapacity[1]=250
+    PackageKey="SawBlade"
+    FirstPersonMeshName="WEP_1P_SawBlade_MESH.Wep_1stP_SawBlade_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    FirstPersonAnimTree="WEP_1P_SawBlade_ANIM.1P_Sawblade_Animtree"
+    PickupMeshName="WEP_3P_SawBlade_MESH.Wep_SawShooter_Pickup"
+    AttachmentArchetypeName="WEP_Sawblade_ARCH.Wep_Eviscerator_3P"
+    MuzzleFlashTemplateName="WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash"
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     bHasLaserSight=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventoryGroup=EInventoryGroup.IG_Primary
+    InventorySize=8
+    MagazineCapacity[0]=5
+    MagazineCapacity[1]=250
     PenetrationPower=/* Array type was not detected. */
     QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=25
-    AmmoPickupScale[1]=0.5
+    AmmoPickupScale[1]=0.2
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
@@ -287,7 +294,6 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
-    AttachmentArchetype=KFWeapAttach_Eviscerator'WEP_Sawblade_ARCH.Wep_Eviscerator_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         MaxHitRange=180
         MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Eviscerator'
@@ -295,8 +301,8 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Eviscerator.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash'
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -306,22 +312,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=25,Y=5,Z=-10)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_SawBlade_MESH.Wep_1stP_SawBlade_Rig'
-        AnimTreeTemplate=AnimTree'WEP_1P_SawBlade_ANIM.1P_Sawblade_Animtree'
-        AnimSets(0)=AnimSet'WEP_1P_SawBlade_ANIM.WEP_1P_SawBlade_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Eviscerator.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Eviscerator"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_SawShooter_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Eviscerator.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_SawShooter_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Eviscerator.StaticPickupComponent'

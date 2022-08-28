@@ -15,6 +15,7 @@ class KFDT_HeavyZedBump extends KFDamageType
 defaultproperties
 {
    bCanGib=True
+   bIgnoreAggroOnDamage=True
    bCanObliterate=True
    bUseHitLocationForGibImpulses=True
    bPointImpulseTowardsOrigin=True

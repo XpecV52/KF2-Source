@@ -1,4 +1,6 @@
 [KFCommon_LocalizedStrings]
+PrestigeWarningString="병과를 0으로 초기화하시겠습니까? 이 작업은 취소할 수 없습니다."
+PrestigeBonusString="Prestige Bonus"
 FailedToReachInventoryServerString="아이템 서버에 연결하지 못했습니다. 소지품을 이용할 수 없게 됩니다."
 LoadingString="로딩 중..."
 DifficultyStrings[0]="보통"
@@ -56,6 +58,7 @@ NoSwitchReasonString="팀을 전환하면 팀 균형이 깨질 수 있습니다.
 
 AutoTradeCompleteString="자동 트레이드 완료: "
 AutoFillCompleteString="자동 보충 보급품 "
+WeaponUpgradeComepleteString="무기 업그레이드"
 SecondaryWeaponPurchasedString="보조 무기 구입"
 NoItemsPurchasedString="구입한 아이템 없음"
 
@@ -107,6 +110,9 @@ DiscordWaveString=": 웨이브"
 
 ProceedToTutorialString="훈련을 진행하시겠습니까?"
 ProceedToTutorialDescriptionString="통제된 환경으로 가서 기본 사항을 배우십시오.  완료되면 선택한 레벨 0 병과를 레벨 1에 부여하십시오."
+
+; placeholder01
+; placeholder02
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="아웃브레이크 완료 보상"
@@ -161,6 +167,7 @@ CreateMatchString="대전 생성"
 MatchmakingString="온라인 대전상대 찾기"
 ConsoleMatchmakingString="온라인 플레이"
 ServerBrowserString="서버 검색"
+NewsPageString="뉴스"
 
 DifficultyTitle="난이도"
 GameModeTitle="게임 모드"
@@ -214,6 +221,7 @@ privacyList3=""
 inProgressList0=""
 inProgressList1=""
 inProgressList2=""
+FailedToLoadNewsString="최신 뉴스 이미지를 불러오지 못했습니다.\n나중에 다시 시도하세요."
 
 [KFGFxStartGameContainer_Options]
 BackString="뒤로"
@@ -364,6 +372,8 @@ CannotSellString="판매할 수 없음"
 CannotBuyString="구입할 수 없음"
 FavoriteString="즐겨찾기"
 UnfavoriteString="즐겨찾기 제거"
+UpgradeCostString="업그레이드 비용"
+UpgradeString="업그레이드"
 
 [KFGFxTraderContainer_PlayerInventory]
 FillString="보충"
@@ -853,6 +863,7 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="경험"
+PrestigeLevelString="유명"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="구성"
@@ -862,6 +873,8 @@ SkillsString="기술"
 TierUnlockedText="새로운 등급 잠금해제!"
 TierUnlockedSecondaryText="다음 병과에서 새로운 등급을 잠금해제하였습니다."
 
+CurrentPrestigeLevelString="현재 프레스티지 랭크:"
+PrestigeString="프레스티지"
 
 [KFGFxPerksContainer_Details]
 ObjectivesString="XP 목표"
@@ -877,6 +890,17 @@ HeaderTitle="병과 선택"
 EndOfWaveString="병과 변경은 웨이브 종료 시에 적용됩니다!"
 ChangesAppliedOnCloseString="병과 변경은 이 메뉴가 닫힌 다음에 적용됩니다."
 OncePerWaveString="병과 변경은 웨이브 당 한 번만 적용됩니다!"
+
+[KFGFxPerksContainer_Prestige]
+AtMaxPrestigeLevelString="최대 병과 프레스티지 레벨이 되었습니다!"
+NotHightenoughLevelString="병과가 최대 레벨이 아닙니다. 사용자가 현재 프레스티지를 할 수 없습니다."
+CurrentRankString="현재 랭크"
+NextRankString="다음 랭크"
+RewardString="프레스티지 보상"
+PrestigeDescriptionString="> 병과 레벨을 0으로 초기화합니다. \n> 이 병과는 영구적으로 게임 종료 시 +30% XP 보너스를 적용합니다. \n> 이 병과의 편집된 병과 아이콘, 볼트 도쉬 및 유니크 무기 스킨을 획득하세요."
+PrestigeWarningString1="이 병과가 0으로 초기화됩니다."
+PrestigeWarningString2="계속하기 전에 내용을 꼭 확인하세요."
+PrestigeWarningString3="진행하면 되돌릴 수 없습니다."
 
 [KFGFxMenu_Store]
 StoreString="상점"
@@ -1205,9 +1229,10 @@ UseAltAimOnDualString="대체 쌍권총 조준 이용"
 AntiMotionSicknessString="멀미 방지"
 AutoTurnOffString="클롯 잡기 자동 켜짐 방지"
 ReduceHighPitchNoiseString="고음역 소음 감소"
-DisableAutoUpgradeString="자동 업그레이드 해제"
+DisableAutoUpgradeString="자동 거래 비활성화"
 
 EnableMixerString="토글 Mixer 상호작용"
+DisableMixerString="Mixer 비활성화"
 
 [LocalizedControls]
 ControllerLayoutDefault="초기 설정"
@@ -1371,6 +1396,8 @@ KickVoteNoSpectatorsString="참관자는 추방 투표를 시작할 수 없습�
 KickedFromServerString="서버에서 추방되었습니다."
 BannedFromServerString="이 서버에서 추방되었습니다. 이번에 다시 들어갈 수 없습니다."
 ServerNoLongerAvailableString="더 이상 서버 입장을 할 수 없습니다."
+SkipTraderTimeString="플레이어가 상인을 건너뛰도록 설정했습니다. 메뉴를 열고 '상인 건너뛰기'를 클릭하여 상인 건너뛰기에 투표하세요. 모든 플레이어가 동의해야 합니다."
+SkipTraderSuccessString="상인 건너뛰기 투표가 성공적으로 끝났습니다!"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="다음 플레이어에게 탄약을 받았습니다."
@@ -1441,7 +1468,7 @@ ZedWaitingForNextRoundString="제드 무리가 곧 침입합니다!"
 LastPlayerStandingString="최후의 승자"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="상점<%HOLD%>자동 업그레이드 이용"
+UseTraderMessage="상인<%HOLD%>자동 거래 이용"
 UseDoorMessage="<%HOLD%>용접기 장착 열기/닫기"
 EquipWelderMessage="<%HOLD%>용접기 장착"
 ZedUseDoorMessage="열기/닫기"
@@ -2287,19 +2314,24 @@ HorzineSupplyCrateKey13="Horzine 보급상자 열쇠 | 시리즈 13 - $2.49"
 USBSpitfire="스핏 파이어 USB 키 - $2.49"
 USBHighVoltage="고전압 USB 키 - $2.49"
 MerchSale="KF2 장비 세일! 2017년 4월 30일까지 25% 할인됩니다. 프로모 코드 ZED"
+; placeholder03
 
 [Objectives]
 HoldVolume="구역 방어"
 DoshHold="악바리"
+RepairObjective="용접과 수리"
 DescriptionDoshHold="표시된 구역에 제드가 들어가지 못하게 하십시오"
 RequiredDoshHold="인원 조건:"
 DoschHoldDesc="표시된 구역에 제드가 들어가지 못하게 하십시오"
 DescriptionHoldVolume="DescriptionHoldVolume"
 RequiredHoldVolume="RequiredHoldVolume"
-DestroyActor="수색 섬멸"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
+UseWelderToRepair="용접기로 물건을 수리하세요."
 FailedString="실패"
+DescriptionActivateTrigger="오브젝트 컨트롤을 활성화하세요."
+RequiredActivateTrigger="활성화 필요:"
+ActivateTrigger="조작 유지"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2323,6 +2355,9 @@ KFPawn_ZedClot_Alpha="Alpha Clot"
 KFPawn_ZedClot_AlphaKing="폭도"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
+KFPawn_ZedDAR_EMP="E.D.A.R 트래퍼"
+KFPawn_ZedDAR_Laser="E.D.A.R 블래스터"
+KFPawn_ZedDAR_Rocket="E.D.A.R 봄버"
 KFPawn_ZedPatriarch="Patriarch"
 KFPawn_ZedBloatKingSubspawn="새끼 괴물"
 ;Human zeds
@@ -2452,12 +2487,25 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Descri
 SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
 SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
 SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
-SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
 ChanceDropDescriptionStrings[0]="드롭 1"
 ChanceDropDescriptionStrings[1]="드롭 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="공중 수리",DescriptionString="비행선의 망가진 파이프를 수리하기");
+SpecialEventObjectiveInfoList[1]=(TitleString="상부 데크 방어",DescriptionString="비행선 상부 데크 방어하기");
+SpecialEventObjectiveInfoList[2]=(TitleString="파워업!",DescriptionString="비행선의 차단기 수리하기");
+SpecialEventObjectiveInfoList[3]=(TitleString="플러쉬 러쉬",DescriptionString="비행선 증기 엔진에 물 전달하기");
+SpecialEventObjectiveInfoList[4]=(TitleString="멋진 비행선",DescriptionString="비행선 어려움 이상 난이도 대전에서 승리하기");
+
+AllCompleteRewardDescriptionString="파자마 수트"
+
+ChanceDropDescriptionStrings[0]="상품권"
+ChanceDropDescriptionStrings[1]="골드 티켓"
 
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다."
@@ -2477,10 +2525,10 @@ ChanceDropDescriptionStrings[1]="골드 티켓"
 CurrentSpecialEventString="위험한 끝없는 도전"
 CurrentSpecialEventDescriptionString="웨이브를 깨부수고 전설 보상을 획득하십시오!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="끝없는 테스트 더미",DescriptionString="끝없는 웨이브 5",TierEventRewardName="D.A.R.++ 완료");
-SpecialEventObjectiveInfoList[1]=(TitleString="끝없는 드론",DescriptionString="끝없는 웨이브 10",TierEventRewardName="D.A.R. 완료 브론즈");
-SpecialEventObjectiveInfoList[2]=(TitleString="끝없는 센트리",DescriptionString="끝없는 웨이브 15",TierEventRewardName="실버 D.A.R. 완료");
-SpecialEventObjectiveInfoList[3]=(TitleString="끝없는 워머신",DescriptionString="끝없는 웨이브 20",TierEventRewardName="클래식 블루 D.A.R. 완료");
+SpecialEventObjectiveInfoList[0]=(TitleString="끝없는 테스트 더미",DescriptionString="끝없는 웨이브 5 완료",TierEventRewardName="클래식 D.A.R.");
+SpecialEventObjectiveInfoList[1]=(TitleString="끝없는 드론",DescriptionString="끝없는 웨이브 10 완료",TierEventRewardName="로더 D.A.R.");");
+SpecialEventObjectiveInfoList[2]=(TitleString="끝없는 드론",DescriptionString="끝없는 웨이브 15 완료",TierEventRewardName="로더 D.A.R.");");
+SpecialEventObjectiveInfoList[3]=(TitleString="끝없는 워머신",DescriptionString="끝없는 웨이브 20 완료",TierEventRewardName="블러디 D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="끝없는 옵티머스 D.A.R.",DescriptionString="끝없는 웨이브 25",TierEventRewardName="골드 D.A.R. 완료");
 
 
@@ -2896,6 +2944,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="바이오틱스 연구소"
 
@@ -2964,6 +3044,12 @@ DisplayName="파워 코어"
 
 [KF-DieSector KFMapSummary]
 DisplayName="다이 섹터"
+
+[KF-Lockdown KFMapSummary]
+DisplayName="락다운"
+
+[KF-Airship KFMapSummary]
+DisplayName="비행선"
 
 [KFMapInfo]
 ; defaults

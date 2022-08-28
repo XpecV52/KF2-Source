@@ -84,6 +84,24 @@ simulated protected event PostSkillUpdate()
 
 	// enable tick if we have the regeneration skill
 	SetTickIsDisabled( !IsNinjaActive() );
+	//clear parry
+	ParryTimer();
+}
+
+function ClearPerkEffects()
+{
+	ParryTimer();
+	Super.ClearPerkEffects();
+}
+
+reliable client function ClientClearPerkEffects()
+{
+	if (Role != ROLE_Authority)
+	{
+		super.ClientClearPerkEffects();
+
+		ParryTimer();
+	}
 }
 
 /**
@@ -892,6 +910,7 @@ defaultproperties
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_Eviscerator'
    HitAccuracyHandicap=2.500000
    HeadshotAccuracyHandicap=-2.000000
+   PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.BerserkerKnife_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Berserker"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

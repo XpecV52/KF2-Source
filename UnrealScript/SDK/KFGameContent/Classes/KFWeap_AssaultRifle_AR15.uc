@@ -28,16 +28,13 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=9.0,Y=10,Z=-4)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_AR15_9mm_MESH.Wep_1stP_AR15_9mm_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_AR15_9mm_ANIM.Wep_1stP_AR15_9mm_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_AR15_9mm_ARCH.Wep_AR15_9mm_3P'
+	// Content
+	PackageKey="AR15_9mm"
+	FirstPersonMeshName="WEP_1P_AR15_9mm_MESH.Wep_1stP_AR15_9mm_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_AR15_9mm_ANIM.Wep_1stP_AR15_9mm_Anim"
+	PickupMeshName="WEP_3P_AR15_9mm_MESH.Wep_AR15_Pickup"
+	AttachmentArchetypeName="WEP_AR15_9mm_ARCH.Wep_AR15_9mm_3P"
+	MuzzleFlashTemplateName="WEP_AR15_9mm_ARCH.Wep_AR15_9MM_MuzzleFlash"
 
    	// Zooming/Position
 	IronSightPosition=(X=7,Y=0,Z=0)
@@ -98,7 +95,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=24
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_AR15_9mm_ARCH.Wep_AR15_9MM_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Fire_1P')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Handling_DryFire'
@@ -109,5 +105,11 @@ defaultproperties
 	bHasFlashlight=true
 
 	AssociatedPerkClasses(0)=class'KFPerk_Commando'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.8f,IncrementWeight=3)
+	WeaponUpgrades[4]=(IncrementDamage=2.0f,IncrementWeight=4)
 }
 

@@ -5,11 +5,11 @@ package tripwire.widgets
     import flash.events.Event;
     import flash.text.TextField;
     import scaleform.clik.controls.TileList;
-    import scaleform.clik.controls.UILoader;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.data.DataProvider;
     import tripwire.Tools.TextfieldUtil;
     import tripwire.containers.ValueBarkContainer;
+    import tripwire.controls.TripUIPerkLoader;
     
     public class PlayerStatWidget extends UIComponent
     {
@@ -27,7 +27,7 @@ package tripwire.widgets
         
         protected var _perkLevelTextTF:TextField;
         
-        protected var _perkIconLoader:UILoader;
+        protected var _perkIconLoader:TripUIPerkLoader;
         
         protected var _healerChargeBarMC:MovieClip;
         
@@ -159,11 +159,11 @@ package tripwire.widgets
             this._perkLevelTextTF.text = param1.toString();
         }
         
-        public function set playerPerkIcon(param1:String) : void
+        public function set playerPerkIcon(param1:Object) : void
         {
-            if(param1 != null && param1 != "")
+            if(param1 && param1 != null)
             {
-                this._perkIconLoader.source = param1;
+                this._perkIconLoader.data = param1;
             }
         }
         

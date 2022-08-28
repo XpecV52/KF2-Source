@@ -19,7 +19,6 @@ enum ECustomizationOption
 
 var KFGFxObject_Container CustomizationComponent;
 var KFPlayerReplicationInfo MyKFPRI;
-var KFGFxGearContainer_PerksSelection PerkSelectionContainer;
 var const string HeadMeshKey;
 var const string HeadSkinKey;
 var const string HeadFunctionKey;
@@ -59,23 +58,6 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     UpdateCharacterList();
     UpdateGear();
     TraderItems = KFGameReplicationInfo(KFPlayerController(Outer.GetPC()).WorldInfo.GRI).TraderItems;
-}
-
-event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
-{
-    switch(WidgetName)
-    {
-        case 'PerkSelectionContainer':
-            if(PerkSelectionContainer == none)
-            {
-                PerkSelectionContainer = KFGFxGearContainer_PerksSelection(Widget);
-                PerkSelectionContainer.Initialize(self);
-            }
-            break;
-        default:
-            break;
-    }
-    return true;
 }
 
 function OnOpen()
@@ -147,14 +129,14 @@ function LocalizeText()
 
 function UpdateEmoteList()
 {
-    local byte ItemIndex, I;
+    local int ItemIndex, I;
     local GFxObject DataProvider, SlotObject;
     local string TexturePath;
 
     ItemIndex = 0;
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0x41:
+    J0x3F:
 
     if(I < EmoteList.Length)
     {
@@ -170,21 +152,21 @@ function UpdateEmoteList()
             ++ ItemIndex;            
         }
         ++ I;
-        goto J0x41;
+        goto J0x3F;
     }
     SetObject("emoteArray", DataProvider);
 }
 
 function UpdateCharacterList()
 {
-    local byte I, ItemIndex;
+    local int I, ItemIndex;
     local GFxObject DataProvider, SlotObject;
     local string TexturePath;
 
     ItemIndex = 0;
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0x41:
+    J0x3F:
 
     if(I < MyKFPRI.CharacterArchetypes.Length)
     {
@@ -200,7 +182,7 @@ function UpdateCharacterList()
             ++ ItemIndex;            
         }
         ++ I;
-        goto J0x41;
+        goto J0x3F;
     }
     SetObject("characterArray", DataProvider);
 }
@@ -230,7 +212,7 @@ function ReInitMenu()
 
 function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> Outfits, string DataArrayString)
 {
-    local byte I, ItemIndex;
+    local int I, ItemIndex;
     local GFxObject DataProvider, SlotObject;
     local string TexturePath;
     local OutfitVariants Outfit;
@@ -239,7 +221,7 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
     ItemIndex = 0;
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0x41:
+    J0x3F:
 
     if(I < Outfits.Length)
     {
@@ -257,14 +239,14 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
             ++ ItemIndex;            
         }
         ++ I;
-        goto J0x41;
+        goto J0x3F;
     }
     SetObject(DataArrayString, DataProvider);
 }
 
 function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 {
-    local byte I, ItemIndex;
+    local int I, ItemIndex;
     local GFxObject DataProvider, SlotObject;
     local string TexturePath;
     local AttachmentVariants Variant;
@@ -278,11 +260,12 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
     SlotObject = Outer.CreateObject("Object");
     SlotObject.SetString("label", NoneString);
     SlotObject.SetString("source", "img://" $ ClearImagePath);
+    SlotObject.SetInt("ItemIndex", -1);
     SlotObject.SetBool("enabled", true);
     DataProvider.SetElementObject(ItemIndex, SlotObject);
     ++ ItemIndex;
     I = 0;
-    J0x184:
+    J0x1AF:
 
     if(I < Attachments.Length)
     {
@@ -301,14 +284,14 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
             ++ ItemIndex;
         }
         ++ I;
-        goto J0x184;
+        goto J0x1AF;
     }
     SetObject("attachmentsArray", DataProvider);
 }
 
 function SkinVariant UpdateCosmeticVariants(string OutfitKey, string KeyName, KFCharacterAttachment Attachment, int OutfitIndex, out GFxObject MeshObject)
 {
-    local byte I, ItemIndex;
+    local int I, ItemIndex;
     local GFxObject DataProvider, SlotObject;
     local SkinVariant Skin, FirstSkin;
     local string TexturePath;
@@ -318,7 +301,7 @@ function SkinVariant UpdateCosmeticVariants(string OutfitKey, string KeyName, KF
     ItemIndex = 0;
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0x41:
+    J0x3F:
 
     if(I < Attachment.SkinVariations.Length)
     {
@@ -341,7 +324,7 @@ function SkinVariant UpdateCosmeticVariants(string OutfitKey, string KeyName, KF
             ++ ItemIndex;            
         }
         ++ I;
-        goto J0x41;
+        goto J0x3F;
     }
     MeshObject.SetObject("skinInfo", DataProvider);
     return FirstSkin;
@@ -349,7 +332,7 @@ function SkinVariant UpdateCosmeticVariants(string OutfitKey, string KeyName, KF
 
 function SkinVariant UpdateOutfitVariants(string OutfitKey, string KeyName, out array<SkinVariant> SkinVariations, int OutfitIndex, out GFxObject MeshObject)
 {
-    local byte I, ItemIndex;
+    local int I, ItemIndex;
     local GFxObject DataProvider, SlotObject;
     local SkinVariant Skin, FirstSkin;
     local string SectionPath, TexturePath;
@@ -359,7 +342,7 @@ function SkinVariant UpdateOutfitVariants(string OutfitKey, string KeyName, out 
     DataProvider = Outer.CreateArray();
     SectionPath = ((CharInfoPath $ ".") $ OutfitKey) $ string(OutfitIndex);
     I = 0;
-    J0x71:
+    J0x6F:
 
     if(I < SkinVariations.Length)
     {
@@ -381,7 +364,7 @@ function SkinVariant UpdateOutfitVariants(string OutfitKey, string KeyName, out 
             ++ ItemIndex;            
         }
         ++ I;
-        goto J0x71;
+        goto J0x6F;
     }
     MeshObject.SetObject("skinInfo", DataProvider);
     return FirstSkin;
@@ -396,8 +379,8 @@ function SetCurrentCharacterButtons()
     DataObject.SetString("characterBio", Localize(CharInfoPath, "Description", KFCharacterInfoString));
     DataObject.SetInt("selectedCharacterIndex", MyKFPRI.RepCustomizationInfo.CharacterIndex);
     SetObject("selectedCharacter", DataObject);
-    SetGearButtons(byte(MyKFPRI.RepCustomizationInfo.HeadMeshIndex), byte(MyKFPRI.RepCustomizationInfo.HeadSkinIndex), HeadMeshKey, HeadSkinKey, HeadFunctionKey);
-    SetGearButtons(byte(MyKFPRI.RepCustomizationInfo.BodyMeshIndex), byte(MyKFPRI.RepCustomizationInfo.BodySkinIndex), BodyMeshKey, BodySkinKey, BodyFunctionKey);
+    SetGearButtons(MyKFPRI.RepCustomizationInfo.HeadMeshIndex, MyKFPRI.RepCustomizationInfo.HeadSkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
+    SetGearButtons(MyKFPRI.RepCustomizationInfo.BodyMeshIndex, MyKFPRI.RepCustomizationInfo.BodySkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
     SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
     SetEmoteButton();
 }
@@ -422,13 +405,13 @@ function SetEmoteButton()
     SetObject("selectedEmote", DataObject);
 }
 
-function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string SkinKey, string sectionFunctionName)
+function SetGearButtons(int MeshIndex, int SkinIndex, string MeshKey, string SkinKey, string sectionFunctionName)
 {
     local string SectionPath, CurrentMesh, SkinName, MeshName;
     local GFxObject DataObject;
 
     DataObject = Outer.CreateObject("Object");
-    if(MeshIndex == 255)
+    if(MeshIndex == -1)
     {
         DataObject.SetString(sectionFunctionName, NoneString);        
     }
@@ -450,16 +433,16 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 {
     local string FinishedString;
     local GFxObject DataObject;
-    local byte I, AttachmentIndex;
+    local int I, AttachmentIndex;
 
     DataObject = Outer.CreateObject("Object");
     I = 0;
-    J0x3F:
+    J0x3E:
 
     if(I < 3)
     {
-        AttachmentIndex = byte(MyKFPRI.RepCustomizationInfo.AttachmentMeshIndices[I]);
-        if(AttachmentIndex == 255)
+        AttachmentIndex = MyKFPRI.RepCustomizationInfo.AttachmentMeshIndices[I];
+        if(AttachmentIndex == -1)
         {            
             FinishedString $= ("----" $ "
 ");            
@@ -470,7 +453,7 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 ");
         }
         ++ I;
-        goto J0x3F;
+        goto J0x3E;
     }
     DataObject.SetString(sectionFunctionName, FinishedString);
     SetObject(sectionFunctionName, DataObject);
@@ -553,7 +536,7 @@ function Callback_HeadCamera()
     }
 }
 
-private final function Callback_Emote(byte Index)
+private final function Callback_Emote(int Index)
 {
     local KFPlayerController KFPC;
 
@@ -569,7 +552,7 @@ private final function Callback_Emote(byte Index)
     SetEmoteButton();
 }
 
-private final function Callback_Character(byte Index)
+private final function Callback_Character(int Index)
 {
     local Pawn P;
 
@@ -578,13 +561,13 @@ private final function Callback_Character(byte Index)
     {
         if(KFPawn_Customization(P) != none)
         {
-            SelectCharacter(P, Index);
+            SelectCharacter(P, byte(Index));
         }
     }
     UpdateGear();
 }
 
-private final function Callback_Head(byte MeshIndex, byte SkinIndex)
+private final function Callback_Head(int MeshIndex, int SkinIndex)
 {
     local Pawn P;
     local KFPawn KFP;
@@ -601,7 +584,7 @@ private final function Callback_Head(byte MeshIndex, byte SkinIndex)
     SetGearButtons(MeshIndex, SkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
 }
 
-private final function Callback_Body(byte MeshIndex, byte SkinIndex)
+private final function Callback_Body(int MeshIndex, int SkinIndex)
 {
     local Pawn P;
     local KFPawn KFP;
@@ -620,7 +603,7 @@ private final function Callback_Body(byte MeshIndex, byte SkinIndex)
     SetGearButtons(MeshIndex, SkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
 }
 
-private final function Callback_Attachment(byte MeshIndex, byte SkinIndex)
+private final function Callback_Attachment(int MeshIndex, int SkinIndex)
 {
     local Pawn P;
     local KFPawn KFP;
@@ -640,7 +623,7 @@ private final function Callback_Attachment(byte MeshIndex, byte SkinIndex)
     SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
 }
 
-function RelayFromCheatManager(Pawn P, KFGFxMenu_Gear.ECustomizationOption CustomizationOption, byte MeshIndex, byte SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots)
+function RelayFromCheatManager(Pawn P, KFGFxMenu_Gear.ECustomizationOption CustomizationOption, int MeshIndex, int SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots)
 {
     bIgnoreConflictingSlots = false;
     if(!bIgnoreConflictingSlots)
@@ -655,7 +638,7 @@ function RelayFromCheatManager(Pawn P, KFGFxMenu_Gear.ECustomizationOption Custo
 private native final function SelectCharacter(Pawn P, byte CharacterIndex);
 
 // Export UKFGFxMenu_Gear::execSelectCustomizationOption(FFrame&, void* const)
-private native final function SelectCustomizationOption(Pawn P, KFGFxMenu_Gear.ECustomizationOption CustomizationOption, byte MeshIndex, byte SkinIndex, optional int AttachmentIndex);
+private native final function SelectCustomizationOption(Pawn P, KFGFxMenu_Gear.ECustomizationOption CustomizationOption, int MeshIndex, int SkinIndex, optional int AttachmentIndex);
 
 defaultproperties
 {

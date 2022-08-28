@@ -1,3 +1,34 @@
+[CHR_MrsFoster_archetype]
+CharacterName="福斯特夫人"
+Description="当她对福斯特先生进行面试时，福斯特夫人就已经是伦敦一家顶级公司极其成功的交易员了。她就是他想成为的那种人，但福斯特先生显然不是做交易员的料。他不遵循规则行事，嘴巴也不严实。不过，当时的他身上不乏可取之处：他是那么酷，那么温和，那么……独特。独特到他们第一次约会他就为她弄来了一副防毒面具。彷佛他早就预料到会有个端着机枪的突变体疯子制造出一群食人克隆体，然后毁掉她数百万英镑的奖金。在一阵鲜花、缎带、丧尸和炸药席卷而过之后，他们很快结婚了。也许他们不能一起在城市中朝九晚五赚大钱，但他们可以并肩作战消灭丧尸发大财！"
+BodyMesh0="背心"
+BodyMesh1="蒸汽朋克"
+HeadMesh0="防毒面具"
+
+[CHR_MrsFoster_archetype.BodyMesh0]
+BodySkin0="棕色"
+BodySkin1="军队"
+BodySkin2="红色"
+BodySkin3="蓝色"
+BodySkin4="粉红"
+BodySkin5="黑色"
+
+[CHR_MrsFoster_archetype.BodyMesh1]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
+[CHR_MrsFoster_archetype.HeadMesh0]
+HeadSkin0="白色"
+HeadSkin1="绿色"
+HeadSkin2="红色"
+HeadSkin3="棕色"
+HeadSkin4="粉红"
+HeadSkin5="黑色"
+
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
 Description="这台D.A.R.，即家用助理机器人，是旧版D.A.R.的升级版，应用了最新的霍因机器人技术。他们把相似的机器送到不同的霍因基地进行测试，希望开发出一种针对消费者与市场安全的D.A.R.，但这台D.A.R.与众不同。这台D.A.R.被部署在霍因12号北极前哨站时遭遇到了众多丧尸，于是它的紧急安全协议改写了它的主程序，将它变成了一台杀戮机器。不幸的是，这台D.A.R.不怎么关心人类的死活，除了霍因的员工，但它对他们的仇恨也只是比一般人稍微轻一些。在发现了军事机器人这一新市场后，D.A.R.转而承担起遏制丧尸的任务，并开始进行实战测试。"
@@ -68,6 +99,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="胡子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -138,6 +170,14 @@ BodySkin6="红色格子"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
 BodySkin0="金库图案"
+
+[CHR_Jagerhorn_Archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="瑞典金发"
@@ -232,6 +272,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="斯库利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -302,6 +343,14 @@ BodySkin6="红色格子"
 [CHR_DJSkully_Archetype.BodyMesh7]
 BodySkin0="金库图案"
 
+[CHR_DJSkully_Archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="乌黑"
 HeadSkin1="超红"
@@ -342,6 +391,7 @@ BodyMesh5="危险品"
 BodyMesh6="突击部队"
 BodyMesh7="假日睡衣服装"
 BodyMesh8="金库睡衣服装"
+BodyMesh9="蒸汽朋克"
 HeadMesh0="头发"
 
 [chr_briar_archetype.BodyMesh0]
@@ -418,6 +468,14 @@ BodySkin6="红色格子"
 [chr_briar_archetype.BodyMesh8]
 BodySkin0="金库图案"
 
+[chr_briar_archetype.BodyMesh9]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮点"
@@ -452,6 +510,7 @@ BodyMesh5="危险品"
 BodyMesh6="突击部队"
 BodyMesh7="假日睡衣服装"
 BodyMesh8="金库睡衣服装"
+BodyMesh9="蒸汽朋克"
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -532,6 +591,14 @@ BodySkin6="红色格子"
 
 [CHR_MrFoster_archetype.BodyMesh8]
 BodySkin0="金库图案"
+
+[CHR_MrFoster_archetype.BodyMesh9]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -687,6 +754,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="面部"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -755,6 +823,14 @@ BodySkin6="红色格子"
 [CHR_Coleman_archetype.BodyMesh7]
 BodySkin0="金库图案"
 
+[CHR_Coleman_archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="多诺万"
 HeadSkin1="梭织"
@@ -788,6 +864,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="头发"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -857,6 +934,14 @@ BodySkin6="红色格子"
 
 [CHR_Alberts_archetype.BodyMesh7]
 BodySkin0="金库图案"
+
+[CHR_Alberts_archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰色"
@@ -1751,6 +1836,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="面部"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -1829,6 +1915,14 @@ BodySkin6="红色格子"
 [CHR_Masterson_archetype.BodyMesh7]
 BodySkin0="金库图案"
 
+[CHR_Masterson_archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
 [CHR_Tanaka_Archetype]
 CharacterName="田中勇人"
 Description="田中是一个矛盾的个体，因为他有着严重的自杀倾向。他在日本冲绳县出生，在美国军队中长大。和家人搬到日本大陆后，习惯美国文化的田中无法融入社会，于是参加了戏剧班。大学毕业后，他搬到了洛杉矶，在三流电影中演一些小角色，后来搬到欧洲尝试寻找更加“正式”的工作。他总是在法国匪徒电影中演坏人和流氓。现在，在灾难中，他似乎把实际和所扮演的角色搞混了。他觉得自己是在好莱坞电影中扮演一个有着武士道精神的黑帮、恶棍。"
@@ -1841,6 +1935,7 @@ BodyMesh5="危险品"
 BodyMesh6="突击部队"
 BodyMesh7="假日睡衣服装"
 BodyMesh8="金库睡衣服装"
+BodyMesh9="蒸汽朋克"
 HeadMesh0="头发"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -1926,6 +2021,14 @@ BodySkin6="红色格子"
 [CHR_Tanaka_Archetype.BodyMesh8]
 BodySkin0="金库图案"
 
+[CHR_Tanaka_Archetype.BodyMesh9]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="头盔"
 AttachmentSkin0="升起的太阳"
@@ -1964,6 +2067,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="莫霍克族"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2042,6 +2146,14 @@ BodySkin6="红色格子"
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="金库图案"
 
+[CHR_Ana_Archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼镜"
 AttachmentSkin0="3D 浮雕装饰"
@@ -2066,6 +2178,7 @@ BodyMesh5="危险品"
 BodyMesh6="突击部队"
 BodyMesh7="假日睡衣服装"
 BodyMesh8="金库睡衣服装"
+BodyMesh9="蒸汽朋克"
 HeadMesh0="头发"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2142,6 +2255,14 @@ BodySkin6="红色格子"
 [chr_mark_archetype.BodyMesh8]
 BodySkin0="金库图案"
 
+[chr_mark_archetype.BodyMesh9]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="血腥 5 点钟"
@@ -2162,6 +2283,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="面部"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2233,6 +2355,14 @@ BodySkin6="红色格子"
 [CHR_alan_archetype.BodyMesh7]
 BodySkin0="金库图案"
 
+[CHR_alan_archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="姜！真的吗？"
@@ -2260,6 +2390,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="头发"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2327,6 +2458,14 @@ BodySkin6="红色格子"
 
 [CHR_strasser_archetype.BodyMesh7]
 BodySkin0="金库图案"
+
+[CHR_strasser_archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑钢"
@@ -2494,6 +2633,7 @@ BodyMesh4="危险品"
 BodyMesh5="突击部队"
 BodyMesh6="假日睡衣服装"
 BodyMesh7="金库睡衣服装"
+BodyMesh8="蒸汽朋克"
 HeadMesh0="默认头部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2565,6 +2705,14 @@ BodySkin6="红色格子"
 
 [chr_rockabilly_archetype.BodyMesh7]
 BodySkin0="金库图案"
+
+[chr_rockabilly_archetype.BodyMesh8]
+BodySkin0="蓝色"
+BodySkin1="绿色"
+BodySkin2="白色"
+BodySkin3="紫色"
+BodySkin4="红色"
+BodySkin5="黄色"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑色"
@@ -3943,3 +4091,87 @@ AttachmentSkin2="橙色"
 AttachmentSkin3="宝物"
 AttachmentSkin4="紫色"
 AttachmentSkin5="红色"
+
+[Cosmetic_SP_TopHat_ARCH]
+Attachment="蒸汽朋克大礼帽"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="棕色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_FlatCap_ARCH]
+Attachment="蒸汽朋克平顶帽"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_WelderMask_ARCH]
+Attachment="蒸汽朋克焊工面具"
+AttachmentSkin0="黄铜色"
+AttachmentSkin1="灰色"
+AttachmentSkin2="铜绿色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_ChimneyClock_ARCH]
+Attachment="蒸汽朋克座钟"
+AttachmentSkin0="标准"
+AttachmentSkin1="冷光"
+AttachmentSkin2="暖光"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_Goggles_ARCH]
+Attachment="蒸汽朋克护目镜"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="橙色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_MedicalBag_ARCH]
+Attachment="蒸汽朋克医疗箱"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="黑皮革"
+AttachmentSkin2="皮革"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_OctopusBackpack_ARCH]
+Attachment="蒸汽朋克章鱼背包"
+AttachmentSkin0="黄铜色"
+AttachmentSkin1="铜绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_TanksBackpack_ARCH]
+Attachment="蒸汽朋克坦克背包"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="红色"
+AttachmentSkin2="黄色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_TentacleSkull_ARCH]
+Attachment="蒸汽朋克触手骷髅"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="红色"
+AttachmentSkin2="标准"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_DynamiteArm_ARCH]
+Attachment="蒸汽朋克破坏臂环"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_MrsFosterHead_ARCH]
+Attachment="蒸汽朋克福斯特夫人面具"
+AttachmentSkin0="黑皮革"
+AttachmentSkin1="皮革"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_SP_SkullyHead_ARCH]
+Attachment="蒸汽朋克斯库利面具"
+AttachmentSkin0="漂白"
+AttachmentSkin1="蓝色"
+AttachmentSkin2="生锈"
+AttachmentSkin3="宝物"

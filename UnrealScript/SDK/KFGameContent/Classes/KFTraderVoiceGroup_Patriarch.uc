@@ -53,6 +53,7 @@ DefaultProperties
 	DialogEvents[`TRAD_AdviceHusk]=              	(EventID=`TRAD_AdviceHusk,	            AudioCue=AkEvent'WW_VOX_NPC_Patriarch_Trader.Play_Patriarch_ADVC_Husk', 			Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_AdvicePatriarch]=         	(EventID=`TRAD_AdvicePatriarch,	        AudioCue=AkEvent'WW_VOX_NPC_Patriarch_Trader.Play_Patriarch_ADVC_Patty', 			Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_AdviceHans]=              	(EventID=`TRAD_AdviceHans,	            AudioCue=AkEvent'WW_VOX_NPC_Patriarch_Trader.Play_Patriarch_ADVC_Hans', 			Priority=1, CoolDown=0.f)
+	DialogEvents[`TRAD_AdviceMatriarch]=         	(EventID=`TRAD_AdviceMatriarch,	        AudioCue=AkEvent'WW_VOX_NPC_Patriarch_Trader.Play_Patriarch_ADVC_Matty', 			Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_ObjDefendT]=              	(EventID=`TRAD_ObjDefendT,	            AudioCue=AkEvent'WW_VOX_NPC_Patriarch_Trader.Play_Patriarch_DEF1_Target', 			Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_ObjDefendTWon]=           	(EventID=`TRAD_ObjDefendTWon,	        AudioCue=AkEvent'WW_VOX_NPC_Patriarch_Trader.Play_Patriarch_DEF1_Won', 				Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_ObjDefendTDeclined]=      	(EventID=`TRAD_ObjDefendTDeclined,	    AudioCue=AkEvent'WW_VOX_NPC_Patriarch_Trader.Play_Patriarch_DEF1_ObjDecl', 			Priority=1, CoolDown=0.f)

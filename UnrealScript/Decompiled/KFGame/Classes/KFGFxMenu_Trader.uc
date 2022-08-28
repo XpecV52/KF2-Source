@@ -105,6 +105,7 @@ struct native SItemInformation
     var int AutoFillDosh;
     var int AmmoPricePerMagazine;
     var STraderItem DefaultItem;
+    var int ItemUpgradeLevel;
 
     structdefaultproperties
     {
@@ -117,7 +118,8 @@ struct native SItemInformation
         MagazineCapacity=0
         AutoFillDosh=0
         AmmoPricePerMagazine=0
-        DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1)
+        DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1)
+        ItemUpgradeLevel=0
     }
 };
 
@@ -165,6 +167,7 @@ function LocalizeText()
     TextObject.SetString("changePerkString", Class'KFGFxTraderContainer_PlayerInventory'.default.ChangePerkString);
     TextObject.SetString("selectString", Class'KFGFxWidget_ButtonPrompt'.default.ConfirmString);
     TextObject.SetString("autoFillString", Class'KFGFxTraderContainer_PlayerInventory'.default.AutoFillString);
+    TextObject.SetString("upgradeString", Class'KFGFxTraderContainer_ItemDetails'.default.UpgradeString);
     SetObject("localizeCentralPrompts", TextObject);
 }
 
@@ -335,7 +338,7 @@ function GiveExternalWeapon(KFWeapon KFW)
         ++ I;
         goto J0x0B;
     }
-    if((MyKFPC.GetPurchaseHelper().TotalBlocks + KFW.InventorySize) > MyKFPC.GetPurchaseHelper().MaxBlocks)
+    if((MyKFPC.GetPurchaseHelper().TotalBlocks + KFW.GetModifiedWeightValue()) > MyKFPC.GetPurchaseHelper().MaxBlocks)
     {
         if(MyKFPC.Pawn != none)
         {
@@ -344,7 +347,7 @@ function GiveExternalWeapon(KFWeapon KFW)
     }
     else
     {
-        MyKFPC.GetPurchaseHelper().AddBlocks(KFW.InventorySize);
+        MyKFPC.GetPurchaseHelper().AddBlocks(KFW.GetModifiedWeightValue());
         MyKFPC.GetPurchaseHelper().SetWeaponInformation(KFW);
         RefreshItemComponents();
     }
@@ -392,7 +395,7 @@ function SetPlayerItemDetails(int ItemIndex)
         bGenericItemSelected = false;
         SelectedItemIndex = byte(ItemIndex);
         SelectedItem = OwnedItemList[ItemIndex].DefaultItem;
-        ItemDetails.SetPlayerItemDetails(SelectedItem, OwnedItemList[ItemIndex].SellPrice);
+        ItemDetails.SetPlayerItemDetails(SelectedItem, OwnedItemList[ItemIndex].SellPrice, OwnedItemList[ItemIndex].ItemUpgradeLevel);
         bCanBuyOrSellItem = MyKFPC.GetPurchaseHelper().IsSellable(SelectedItem);
     }
 }
@@ -405,7 +408,7 @@ function SetGenericItemDetails(out STraderItem DefaultItemInfo, out SItemInforma
         LastItemInfo = ItemInfo;
         LastDefaultItemInfo = DefaultItemInfo;
         bGenericItemSelected = true;
-        ItemDetails.SetPlayerItemDetails(DefaultItemInfo, ItemInfo.SellPrice);
+        ItemDetails.SetPlayerItemDetails(DefaultItemInfo, ItemInfo.SellPrice, -1);
         bCanBuyOrSellItem = MyKFPC.GetPurchaseHelper().IsSellable(DefaultItemInfo);
     }
 }
@@ -551,9 +554,10 @@ function ToggleFavorite(name ClassName)
     SaveConfig();
 }
 
-simulated function int GetDisplayedBlocksRequiredFor(const out STraderItem Item)
+simulated function int GetDisplayedBlocksRequiredFor(const out STraderItem Item, optional int OverrideLevelValue)
 {
-    return MyKFIM.GetDisplayedBlocksRequiredFor(Item);
+    OverrideLevelValue = -1;
+    return MyKFIM.GetDisplayedBlocksRequiredFor(Item, OverrideLevelValue);
 }
 
 function Callback_BuyOrSellItem()
@@ -636,6 +640,24 @@ function Callback_TabChanged(int TabIndex)
         CurrentFilterIndex = 0;
     }
     RefreshShopItemList(CurrentTab, byte(CurrentFilterIndex));
+}
+
+function Callback_UpgradeItem()
+{
+    local SItemInformation ItemInfo;
+
+    if(SelectedList == 1)
+    {
+        if(MyKFPC.GetPurchaseHelper().UpgradeWeapon(SelectedItemIndex))
+        {
+            ItemInfo = OwnedItemList[SelectedItemIndex];
+            ++ ItemInfo.ItemUpgradeLevel;
+            MyKFPC.GetPurchaseHelper().OwnedItemList[SelectedItemIndex] = ItemInfo;
+            RefreshItemComponents();
+            ShopContainer.ActionScriptVoid("itemBought");
+            Class'KFMusicStingerHelper'.static.PlayWeaponUpgradeStinger(MyKFPC);
+        }
+    }
 }
 
 function Callback_BuyGrenade()
@@ -733,8 +755,8 @@ function Callback_Close()
 
 defaultproperties
 {
-    LastDefaultItemInfo=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1)
-    LastItemInfo=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1))
+    LastDefaultItemInfo=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1)
+    LastItemInfo=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1),ItemUpgradeLevel=0)
     ExitMenuString="EXIT MENU"
     SubWidgetBindings=/* Array type was not detected. */
 }

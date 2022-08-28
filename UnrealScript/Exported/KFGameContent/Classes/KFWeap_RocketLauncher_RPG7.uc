@@ -105,14 +105,20 @@ defaultproperties
    ExplosionTemplate=KFGameExplosion'WEP_RPG7_ARCH.Wep_RPG7_BackBlastExplosion'
    BackBlastOffset=(X=-20.000000,Y=4.000000,Z=-3.000000)
    ForceReloadTime=0.400000
-   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
-   FireModeIconPaths(1)=()
-   InventorySize=9
-   MagazineCapacity(0)=1
+   PackageKey="RPG7"
+   FirstPersonMeshName="WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_RPG7_ANIM.Wep_1stP_RPG7_Anim"
+   PickupMeshName="WEP_3P_RPG7_MESH.Wep_rpg7_Pickup"
+   AttachmentArchetypeName="WEP_RPG7_ARCH.Wep_RPG7_3P"
+   MuzzleFlashTemplateName="WEP_RPG7_ARCH.Wep_RPG7_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
+   FireModeIconPaths(1)=()
+   InventorySize=8
+   MagazineCapacity(0)=1
    MeshFOV=75.000000
    MeshIronSightFOV=65.000000
    PlayerIronSightFOV=70.000000
@@ -128,14 +134,12 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_DryFire'
    PlayerViewOffset=(X=10.000000,Y=10.000000,Z=-2.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_RPG7_ARCH.Wep_RPG7_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_RocketLauncher_RPG7:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_RPG7_ARCH.Wep_RPG7_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500
@@ -153,6 +157,8 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
+   WeaponUpgrades(1)=(IncrementDamage=1.471000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.620000)
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -169,7 +175,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.025000
-   InstantHitDamage(0)=150.000000
+   InstantHitDamage(0)=102.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=29.000000
@@ -179,9 +185,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_RPG7'
    FireOffset=(X=20.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_RPG7_ANIM.Wep_1stP_RPG7_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -195,7 +199,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="RPG-7"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_RPG7_MESH.Wep_rpg7_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

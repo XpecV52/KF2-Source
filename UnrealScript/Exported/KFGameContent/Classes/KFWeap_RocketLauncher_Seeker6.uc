@@ -500,8 +500,8 @@ defaultproperties
    TargetValidationCheckInterval=0.100000
    MinTargetDistFromCrosshairSQ=2500.000000
    MaxLockMaintainFOVDotThreshold=0.360000
-   LockAcquiredSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Locked'
-   LockLostSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Lost'
+   LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locked'
+   LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Lost'
    LockedOnIcon=Texture2D'Wep_Scope_TEX.Wep_1stP_Yellow_Red_Target'
    LockedIconColor=(R=1.000000,G=0.000000,B=0.000000,A=0.500000)
    Begin Object Class=AkComponent Name=IronsightsComponent0
@@ -514,14 +514,20 @@ defaultproperties
    IronsightsZoomInSound=AkEvent'WW_WEP_Seeker_6.Play_Seeker_6_Iron_In'
    IronsightsZoomOutSound=AkEvent'WW_WEP_Seeker_6.Play_Seeker_6_Iron_In_Out'
    ForceReloadTime=0.400000
-   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
-   FireModeIconPaths(1)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
-   InventorySize=9
-   MagazineCapacity(0)=6
+   PackageKey="SeekerSix"
+   FirstPersonMeshName="WEP_1P_SeekerSix_MESH.Wep_1stP_SeekerSix_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_SeekerSix_ANIM.Wep_1stP_SeekerSix_Anim"
+   PickupMeshName="WEP_3P_SeekerSix_MESH.Wep_3rdP_SeekerSix_Pickup"
+   AttachmentArchetypeName="WEP_SeekerSix_ARCH.Wep_SeekerSix_3P"
+   MuzzleFlashTemplateName="WEP_SeekerSix_ARCH.Wep_SeekerSix_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
+   FireModeIconPaths(1)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
+   InventorySize=8
+   MagazineCapacity(0)=6
    MeshIronSightFOV=65.000000
    PlayerIronSightFOV=70.000000
    FastZoomOutTime=0.200000
@@ -537,14 +543,12 @@ defaultproperties
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_DryFire'
    PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-5.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_SeekerSix_ARCH.Wep_SeekerSix_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_RocketLauncher_Seeker6:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_SeekerSix_ARCH.Wep_SeekerSix_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500
@@ -562,6 +566,8 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
+   WeaponUpgrades(1)=(IncrementDamage=1.480000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.650000)
    FiringStatesArray(0)="WeaponFiring"
    FiringStatesArray(1)="WeaponBurstFiring"
    FiringStatesArray(2)=()
@@ -581,8 +587,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.025000
    Spread(1)=0.025000
-   InstantHitDamage(0)=120.000000
-   InstantHitDamage(1)=120.000000
+   InstantHitDamage(0)=82.000000
+   InstantHitDamage(1)=82.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=29.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Seeker6Impact'
@@ -591,9 +597,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Seeker6'
    FireOffset=(X=20.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_SeekerSix_MESH.Wep_1stP_SeekerSix_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_SeekerSix_ANIM.Wep_1stP_SeekerSix_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -607,7 +611,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Seeker Six"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:StaticPickupComponent'
-      StaticMesh=StaticMesh'wep_3p_seekersix_mesh.Wep_3rdP_SeekerSix_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

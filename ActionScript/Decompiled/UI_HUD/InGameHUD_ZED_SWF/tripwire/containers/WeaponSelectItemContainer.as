@@ -44,6 +44,8 @@ package tripwire.containers
                 }
             }
             this.WeaponInfoContainer.WeaponName.text = param1.weaponName;
+            this.WeaponInfoContainer.weaponUpFrame.visible = !!param1.weaponTier ? true : false;
+            this.WeaponInfoContainer.upgradeTierTextfield.text = !!param1.weaponTier ? param1.weaponTier : "";
             this.updateCurrentAmmo(param1.ammoCount,param1.spareAmmoCount,param1.bUsesAmmo);
             this.updateSecondaryAmmo(param1.secondaryAmmoCount,param1.secondarySpareAmmoCount,param1.bUsesSecondaryAmmo,param1.bCanRefillSecondaryAmmo);
             this.enabled = !!param1.bEnabled ? Boolean(param1.bEnabled) : false;

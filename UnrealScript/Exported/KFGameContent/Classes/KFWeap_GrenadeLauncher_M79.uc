@@ -12,14 +12,20 @@ class KFWeap_GrenadeLauncher_M79 extends KFWeap_GrenadeLauncher_Base;
 
 defaultproperties
 {
-   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
-   FireModeIconPaths(1)=()
-   InventorySize=6
-   MagazineCapacity(0)=1
+   PackageKey="M79"
+   FirstPersonMeshName="WEP_1P_M79_MESH.Wep_1stP_M79_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_M79_ANIM.WEP_1P_M79_ANIM"
+   PickupMeshName="WEP_3P_M79_MESH.Wep_m79_Pickup"
+   AttachmentArchetypeName="WEP_M79_ARCH.Wep_M79_3P"
+   MuzzleFlashTemplateName="WEP_M79_ARCH.Wep_M79_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
+   FireModeIconPaths(1)=()
+   InventorySize=6
+   MagazineCapacity(0)=1
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=73.000000
    FastZoomOutTime=0.200000
@@ -32,14 +38,12 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_S')
    WeaponDryFireSnd(0)=None
    PlayerViewOffset=(X=13.000000,Y=13.000000,Z=-4.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_M79_ARCH.Wep_M79_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_GrenadeLauncher_M79:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_M79_ARCH.Wep_M79_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500
@@ -57,6 +61,9 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
+   WeaponUpgrades(1)=(IncrementDamage=1.120000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.550000)
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -83,9 +90,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_M79'
    FireOffset=(X=23.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_M79_MESH.Wep_1stP_M79_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_M79_ANIM.WEP_1P_M79_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -99,7 +104,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="M79 Grenade Launcher"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_M79_MESH.Wep_m79_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

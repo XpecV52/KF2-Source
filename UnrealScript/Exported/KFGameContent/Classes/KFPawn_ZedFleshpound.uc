@@ -35,20 +35,6 @@ var protected const float FootstepCameraShakeRollAmplitude;
 * Initialization
 ********************************************************************************************* */
 
-/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-	local WorldInfo WI;
-
-	WI = class'WorldInfo'.static.GetWorldInfo();
-	if(class<KFDifficulty_Fleshpound>(default.DifficultySettings) != none && fRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)) )
-	{
-		return default.ElitePawnClass;
-	}
-
-	return super.GetAIPawnClassToSpawn();
-}
-
 /** TEMP [See when this was added in sourcecontrol] */
 simulated event PreBeginPlay()
 {
@@ -496,6 +482,15 @@ defaultproperties
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpound:FootstepCameraShake0'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    OnDeathAchievementID=131
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
    LocalizationKey="KFPawn_ZedFleshpound"
@@ -554,7 +549,7 @@ defaultproperties
    IncapSettings(7)=(Cooldown=8.500000,Vulnerability=(1.000000,1.000000,3.000000,1.000000,1.000000))
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.250000,0.250000,0.500000,0.250000,0.400000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.500000,Vulnerability=(0.950000))
-   IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.800000))
+   IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.900000))
    IncapSettings(11)=(Vulnerability=(0.250000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
@@ -607,7 +602,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -717,7 +714,8 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=RageAkComponent0
+   Components(8)=SprintAkComponent0
+   Components(9)=RageAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=40000,Roll=50000)
    Name="Default__KFPawn_ZedFleshpound"

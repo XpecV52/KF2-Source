@@ -319,6 +319,7 @@ protected simulated function TurnOnFireSpray()
             if(Role == ROLE_Authority)
             {
                 ActiveFlameSpray.bVisualOnly = false;
+                ActiveFlameSpray.DamageModifier = GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
             }
             ActiveFlameSpray.BeginSpray();
             if(((Role == ROLE_Authority) && PrevFlameSpray != none) && PrevFlameSpray != ActiveFlameSpray)
@@ -343,6 +344,10 @@ protected simulated function TurnOffFireSpray()
     if(ActiveFlameSpray != none)
     {
         ActiveFlameSpray.DetachAndFinish();
+        if(Role == ROLE_Authority)
+        {
+            ActiveFlameSpray.DamageModifier = 1;
+        }
     }
     bFireSpraying = false;
 }

@@ -314,6 +314,15 @@ defaultproperties
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15',DamageScale=(0.400000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Bloat'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
    LocalizationKey="KFPawn_ZedBloat"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -414,7 +423,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -522,6 +533,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=20000,Roll=50000)
    Name="Default__KFPawn_ZedBloat"

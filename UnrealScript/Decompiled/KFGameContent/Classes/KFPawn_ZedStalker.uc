@@ -143,7 +143,7 @@ simulated event Tick(float DeltaTime)
 {
     local float MinCloakPct;
 
-    super(KFPawn).Tick(DeltaTime);
+    super.Tick(DeltaTime);
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         if(ViewerPlayer == none)
@@ -356,6 +356,7 @@ defaultproperties
     bCloakOnMeleeEnd=true
     bIsStalkerClass=true
     MonsterArchPath="ZED_ARCH.ZED_Stalker_Archetype"
+    ElitePawnClass=/* Array type was not detected. */
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=9
         MyDamageType=Class'KFDT_Slashing_ZedWeak'
@@ -370,6 +371,7 @@ defaultproperties
     XPValues[3]=10
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Stalker'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedStalker.SprintAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
     LocalizationKey=KFPawn_ZedStalker
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -443,6 +445,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedStalker.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedStalker.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedStalker.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedStalker.SprintAkComponent0'
     begin object name=CloakedAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -450,7 +453,7 @@ defaultproperties
         OcclusionUpdateInterval=0.4
     object end
     // Reference: AkComponent'Default__KFPawn_ZedStalker.CloakedAkComponent0'
-    Components(8)=CloakedAkComponent0
+    Components(9)=CloakedAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

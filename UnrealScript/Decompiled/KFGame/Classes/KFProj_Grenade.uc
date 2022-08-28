@@ -20,6 +20,7 @@ var() float DampenFactorParallel;
 var() Vector LandedTranslationOffset;
 /** Whether or not we want to prevent this grenade from being tossed during the initial zed grab rotation. If the nade can insta kill the player, set to false */
 var(Grab) bool bAllowTossDuringZedGrabRotation;
+var bool bUpgradable;
 /** The UI image for this grenade.  Needed so the images have a reference and are cooked into packages. */
 var() Texture2D WeaponSelectTexture;
 var repnotify byte TeamNum;
@@ -28,6 +29,12 @@ replication
 {
      if(bNetInitial && !bNetOwner)
         TeamNum;
+}
+
+function Init(Vector Direction)
+{
+    super.Init(Direction);
+    LogInternal((((string(self) @ "-") @ string(GetFuncName())) @ "- Owner:") @ string(Owner));
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -179,6 +186,18 @@ simulated event GrenadeIsAtRest()
     RotationRate.Roll = 0;
     NewRotation.Pitch = 16384;
     SetRotation(NewRotation);
+}
+
+protected simulated function PrepareExplosionTemplate()
+{
+    if(bUpgradable)
+    {
+        super.PrepareExplosionTemplate();        
+    }
+    else
+    {
+        GetRadialDamageValues(ExplosionTemplate.Damage, ExplosionTemplate.DamageRadius, ExplosionTemplate.DamageFalloffExponent);
+    }
 }
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)

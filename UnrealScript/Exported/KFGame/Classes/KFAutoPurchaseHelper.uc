@@ -58,6 +58,7 @@ function DoAutoPurchase()
 	local STraderItem TopTierWeapon;
 	local int ItemIndex;
 	local bool bSecondaryWeaponPurchased;
+	local bool bUpgradeSuccess;
 	local bool bAutoFillPurchasedItem;
 	local string AutoFillMessageString;
 
@@ -84,12 +85,12 @@ function DoAutoPurchase()
 	//can I afford my top teir without selling my current weapon?
 	if(!DoIOwnThisWeapon(TopTierWeapon) && GetCanAfford( GetAdjustedBuyPriceFor(TopTierWeapon) + DoshBuffer ) && CanCarry( TopTierWeapon ) )
 	{
-		AttemptUpgrade(TotalDosh, OnPerkWeapons, true);
+		bUpgradeSuccess = AttemptUpgrade(TotalDosh, OnPerkWeapons, true);
 	}
 	else
 	{
 		PotentialDosh = GetPotentialDosh();
-		AttemptUpgrade(PotentialDosh+TotalDosh, OnPerkWeapons);
+		bUpgradeSuccess = AttemptUpgrade(PotentialDosh+TotalDosh, OnPerkWeapons);
 	}
 
 	bAutoFillPurchasedItem = StartAutoFill();
@@ -104,7 +105,11 @@ function DoAutoPurchase()
 
 	MyKFIM.ServerCloseTraderMenu();
 
-	if(bSecondaryWeaponPurchased)
+	if(bUpgradeSuccess)
+	{
+		AutoFillMessageString = class'KFCommon_LocalizedStrings'.default.WeaponUpgradeComepleteString;
+	}
+	else if(bSecondaryWeaponPurchased)
 	{
 		AutoFillMessageString = class'KFCommon_LocalizedStrings'.default.SecondaryWeaponPurchasedString;
 	}
@@ -327,6 +332,36 @@ function bool CanCarry( const out STraderItem Item )
 	return true;
 }
 
+function bool CanUpgrade(STraderItem SelectedItem, out int CanCarryIndex, out int bCanAffordIndex, optional bool bPlayDialog)
+{
+	local bool bCanAfford, bCanCarry;
+	local int UpgradePrice;
+	local int ItemUpgradeLevel;
+	local KFPlayerController MyKFPC;
+	local int AddedWeightBlocks;
+
+	MyKFPC = Outer;
+
+	ItemUpgradeLevel = GetItemUpgradeLevel(SelectedItem);
+	if (ItemUpgradeLevel == INDEX_NONE || !(ItemUpgradeLevel < SelectedItem.WeaponDef.default.UpgradePrice.length))
+	{
+		LogInternal("Item at max level");
+		return false;
+	}
+	UpgradePrice = SelectedItem.WeaponDef.static.GetUpgradePrice(ItemUpgradeLevel);
+	bCanAfford = GetCanAfford(UpgradePrice);
+	AddedWeightBlocks = SelectedItem.WeaponUpgradeWeight[ItemUpgradeLevel + 1] - SelectedItem.WeaponUpgradeWeight[ItemUpgradeLevel];
+	bCanCarry = !(TotalBlocks + AddedWeightBlocks > MaxBlocks);
+	//bCanUpgrade = MyKFIM.ItemEligableForUpgrade(SelectedItem);
+	if (bPlayDialog)
+	{
+		MyKFPC.PlayTraderSelectItemDialog(!bCanAfford, !bCanCarry);
+	}
+	CanCarryIndex = bCanCarry ? 1 : 0;
+	bCanAffordIndex = bCanAfford ? 1 : 0;
+	return bCanAfford && bCanCarry;
+}
+
 function PurchaseWeapon(STraderItem ShopItem)
 {
 	if(!bCanPurchase(ShopItem))
@@ -335,20 +370,46 @@ function PurchaseWeapon(STraderItem ShopItem)
 	}
 
 	AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
-	AddBlocks( ShopItem.BlocksRequired );
-
+	AddBlocks(MyKFIM.GetWeaponBlocks(ShopItem));
 	AddWeaponToOwnedItemList(ShopItem);
 }
 
 function SellWeapon(SItemInformation ItemInfo, optional int SelectedItemIndex = -1)
 {
 	AddDosh(GetAdjustedSellPriceFor(ItemInfo.DefaultItem));
-   	AddBlocks( -ItemInfo.DefaultItem.BlocksRequired );
+   	AddBlocks( -MyKFIM.GetDisplayedBlocksRequiredFor(ItemInfo.DefaultItem) );
 
    	if(SelectedItemIndex != INDEX_NONE)
    	{
    		RemoveWeaponFromOwnedItemList( SelectedItemIndex );
    	}
+}
+
+function bool UpgradeWeapon(int OwnedItemIndex)
+{
+	local byte ItemIndex;
+	local STraderItem DefaultItemInfo;
+	local SItemInformation ItemInfo;
+	local int Test1, Test2; //place holder ints
+
+	ItemInfo = OwnedItemList[OwnedItemIndex];
+	DefaultItemInfo = ItemInfo.DefaultItem;
+
+	if (ItemInfo.bIsSecondaryAmmo || !CanUpgrade(DefaultItemInfo, Test1, Test2, true))
+	{
+		LogInternal("cannot upgrade");
+		return false;
+	}
+
+	TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItemInfo.ClassName);
+
+	MyKFIM.BuyUpgrade(ItemIndex, ItemInfo.ItemUpgradeLevel);
+	OwnedItemList[OwnedItemIndex].SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItemInfo);
+	if (MyGfxManager != none && MyGfxManager.TraderMenu != none)
+	{
+		MyGfxManager.TraderMenu.OwnedItemList = OwnedItemList;
+	}
+	return true;
 }
 
 /******************
@@ -912,6 +973,33 @@ simulated function int GetAdjustedSellPriceFor(const out STraderItem ShopItem)
 	return MyKFIM.GetAdjustedSellPriceFor(ShopItem, OwnedWeapon);
 }
 
+simulated function int GetAdjustedUpgradePriceFor(const out STraderItem ItemInfo, int UpgradeLevel)
+{
+	return MyKFIM.GetAdjustedUpgradePriceFor(ItemInfo, UpgradeLevel);
+}
+
+simulated function int GetItemUpgradeLevel(const out STraderItem ItemInfo)
+{
+	local int i;
+	local name OwnedItemClassName;
+
+	for (i = 0; i < OwnedItemList.Length; i++)
+	{
+		OwnedItemClassName = OwnedItemList[i].DefaultItem.ClassName;
+		if (OwnedItemClassName == '')
+		{
+			WarnInternal("Owned item with Class NAME_None");
+			continue;
+		}
+		else if (OwnedItemClassName == ItemInfo.ClassName)
+		{
+			return OwnedItemList[i].ItemUpgradeLevel;
+		}
+	}
+
+	return 0;
+}
+
 function bool IsInOwnedItemList( name ItemName )
 {
 	local int i;
@@ -1028,6 +1116,7 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
 	WeaponInfo.SecondaryAmmoCount = KFW.GetTotalAmmoAmount(1);
 	WeaponInfo.MaxSecondaryAmmo = KFW.GetMaxAmmoAmount(1);
 	WeaponInfo.DefaultItem = DefaultItem;
+	WeaponInfo.ItemUpgradeLevel = KFW.CurrentWeaponUpgradeIndex;
 
 	WeaponInfo.AmmoPricePerMagazine = AmmoCostScale * DefaultItem.WeaponDef.default.AmmoPricePerMag;
 	WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor( DefaultItem, KFW );
@@ -1043,7 +1132,7 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
 
 
 // We've bought a new item, add its information to our owned item list
-function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bDoNotBuy )
+function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bDoNotBuy, optional int OverrideItemUpgradeLevel = INDEX_NONE )
 {
 	local SItemInformation WeaponInfo;
 	local byte ItemIndex;
@@ -1097,6 +1186,8 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
                     //If rounding is causing problems, make sure our current ammo is never over the new max in the UI
                     WeaponInfo.SpareAmmoCount = Min(OwnedItemList[OwnedSingleIdx].SpareAmmoCount, WeaponInfo.MaxSpareAmmo);
                 }
+
+				WeaponInfo.ItemUpgradeLevel = OwnedItemList[OwnedSingleIdx].ItemUpgradeLevel;
 				break;
 			}
 		}
@@ -1118,29 +1209,33 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 
 	WeaponInfo.DefaultItem = DefaultItem;
 
+	if(OverrideItemUpgradeLevel > INDEX_NONE)
+	{
+		WeaponInfo.ItemUpgradeLevel = OverrideItemUpgradeLevel;
+	}
+
    	AddedWeaponIndex = AddItemByPriority( WeaponInfo );
 
-   	if( !bDoNotBuy )
-   	{
-	    // Tell the server to buy the weapon using its trader archetype info
-		TraderItems.GetItemIndicesFromArche( ItemIndex, DefaultItem.ClassName );
-		MyKFIM.ServerBuyWeapon(ItemIndex);
+	TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItem.ClassName);
+
+	if (!bDoNotBuy)
+	{
+		// Tell the server to buy the weapon using its trader archetype info
+		MyKFIM.ServerBuyWeapon(ItemIndex, WeaponInfo.ItemUpgradeLevel);
 	}
 	else
 	{
 		// Tell the server to add the weapon (without buying) using its trader archetype info
-		TraderItems.GetItemIndicesFromArche( ItemIndex, DefaultItem.ClassName );
-
-		MyKFIM.ServerAddTransactionItem(ItemIndex);
-		AddBlocks( DefaultItem.BlocksRequired );
+		MyKFIM.ServerAddTransactionItem(ItemIndex, WeaponInfo.ItemUpgradeLevel);
+		AddBlocks(MyKFIM.GetWeaponBlocks(DefaultItem, WeaponInfo.ItemUpgradeLevel));
 	}
 
 	// if adding a dual, set its transaction ammo (given at trader close) to reflect the single it's replacing
-   	if( bAddingDual )
-   	{
-   		AddTransactionAmmo( ItemIndex, SingleDualAmmoDiff /*+ WeaponInfo.MagazineCapacity/2*/, false );
-   		RemoveWeaponFromOwnedItemList( , DefaultItem.SingleClassName, true );
-   	}
+	if (bAddingDual)
+	{
+		AddTransactionAmmo(ItemIndex, SingleDualAmmoDiff /*+ WeaponInfo.MagazineCapacity/2*/, false);
+		RemoveWeaponFromOwnedItemList(, DefaultItem.SingleClassName, true);
+	}
 
    	return AddedWeaponIndex;
 }
@@ -1179,9 +1274,9 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 	else
 	{
 		// Remove the weapon from our inventory immediately (without selling)
+		AddBlocks(-MyKFIM.GetDisplayedBlocksRequiredFor(ItemInfo.DefaultItem));
 		TraderItems.GetItemIndicesFromArche( ItemIndex, ItemInfo.DefaultItem.ClassName );
 		MyKFIM.ServerRemoveTransactionItem( ItemIndex );
-		AddBlocks( -ItemInfo.DefaultItem.BlocksRequired );
 	}
 
 	// If we try to sell a weapons secondary ammo slot
@@ -1217,7 +1312,7 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 
 		if( TraderItems.GetItemIndicesFromArche( ItemIndex, ItemInfo.DefaultItem.SingleClassName) )
 		{
-			SingleOwnedIndex = AddWeaponToOwnedItemList( TraderItems.SaleItems[ItemIndex], true );
+			SingleOwnedIndex = AddWeaponToOwnedItemList( TraderItems.SaleItems[ItemIndex], true, ItemInfo.ItemUpgradeLevel);
 
 			// modify default single ammo based on how much ammo dual had when sold
             //      The now new single gun will spawn with default ammo.  We need to correct that down

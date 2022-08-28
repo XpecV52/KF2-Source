@@ -17,20 +17,6 @@ var protected const KFGameExplosion DeathExplosionTemplate;
 /** How much of an impulse to apply to crawler if gore settings prevent dismemberment */
 var protected const float LowGoreExplosionImpulse;
 
-/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-	local WorldInfo WI;
-
-	WI = class'WorldInfo'.static.GetWorldInfo();
-	if( fRand() < class<KFDifficulty_Crawler>(default.DifficultySettings).static.GetSpecialCrawlerChance(KFGameReplicationInfo(WI.GRI)) )
-	{
-		return default.ElitePawnClass;
-	}
-
-	return super.GetAIPawnClassToSpawn();
-}
-
 event PossessedBy( Controller C, bool bVehicleTransition )
 {
 	local KFAIController_ZedCrawler CrawlerController;
@@ -405,7 +391,7 @@ defaultproperties
 
 	// ---------------------------------------------
 	// AI / Navigation
-	ElitePawnClass=class'KFPawn_ZedCrawlerKing'
+	ElitePawnClass.Add(class'KFPawn_ZedCrawlerKing')
 	ControllerClass=class'KFAIController_ZedCrawler'
 	bDebugCrawlerPhysics=false
 	bDisableTurnInPlace=true
@@ -413,7 +399,7 @@ defaultproperties
 	//ExtraCostForPath=2000
 	DamageRecoveryTimeHeavy=0.75f
 	DamageRecoveryTimeMedium=1.0f
-	
+
 	KnockdownImpulseScale=1.0f
 
 	// ---------------------------------------------

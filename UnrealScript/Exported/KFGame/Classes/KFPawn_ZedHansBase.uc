@@ -439,7 +439,7 @@ simulated function bool CanMoveWhileThrowingGrenades()
 
     // See if this battle phase allows it
     KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
-    if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhileThrowingGrenades[KFGRI.GameDifficulty] )
+    if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhileThrowingGrenades[KFGRI.GetModifiedGameDifficulty()] )
     {
         return true;
     }
@@ -492,14 +492,14 @@ simulated function SetHuntAndHealMode( bool bOn )
             {
                 KFGI.DifficultyInfo.GetAIHealthModifier(
                     self,
-                    KFGI.GameDifficulty,
+                    KFGI.GetModifiedGameDifficulty(),
                     KFGI.GetLivingPlayerCount(),
                     HealthMod,
                     HeadHealthMod );
             }
 
             // Initialize shield health
-            ShieldHealthMax = BattlePhases[CurrentBattlePhase-1].MaxShieldHealth[WorldInfo.Game.GameDifficulty] * HealthMod * ShieldHealthScale;
+            ShieldHealthMax = BattlePhases[CurrentBattlePhase-1].MaxShieldHealth[WorldInfo.Game.GetModifiedGameDifficulty()] * HealthMod * ShieldHealthScale;
             ShieldHealth = ShieldHealthMax;
             UpdateShieldHealth();
 
@@ -552,7 +552,7 @@ function Timer_ResetShieldHealthPct()
 /** Returns the amount that Hans should heal for this phase */
 function float GetHealAmountForThisPhase()
 {
-    return float(HealthMax) * BattlePhases[CurrentBattlePhase-2].HealAmounts[WorldInfo.Game.GameDifficulty];
+    return float(HealthMax) * BattlePhases[CurrentBattlePhase-2].HealAmounts[WorldInfo.Game.GetModifiedGameDifficulty()];
 }
 
 /** Summons boss minions depending on difficulty and battle phase */
@@ -714,6 +714,15 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_MonsterBoss:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'KFGame.Default__KFPawn_ZedHansBase:MeleeHelper_0'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_MonsterBoss:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_MonsterBoss:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -776,7 +785,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object
@@ -880,6 +891,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedHansBase"
    ObjectArchetype=KFPawn_MonsterBoss'KFGame.Default__KFPawn_MonsterBoss'

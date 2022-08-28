@@ -11,12 +11,18 @@ class KFWeap_Rifle_CenterfireMB464 extends KFWeap_RifleBase
 
 defaultproperties
 {
-    InventorySize=5
-    MagazineCapacity=10
+    PackageKey="Centerfire"
+    FirstPersonMeshName="WEP_1P_Centerfire_MESH.Wep_1stP_Centerfire_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Centerfire_MESH.Wep_3rdP_Centerfire_Pickup"
+    AttachmentArchetypeName="WEP_Centerfire_ARCH.Wep_Centerfire_3P"
+    MuzzleFlashTemplateName="WEP_Centerfire_ARCH.Wep_Centerfire_MuzzleFlash"
     bHasIronSights=true
     bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bHasFireLastAnims=true
+    InventorySize=5
+    MagazineCapacity=10
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=40
@@ -34,9 +40,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=11,Y=8,Z=-2)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Centerfire_ARCH.Wep_Centerfire_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Rifle_CenterfireMB464.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Centerfire_ARCH.Wep_Centerfire_MuzzleFlash'
     EjectedShellForegroundDuration=1.5
     maxRecoilPitch=500
     minRecoilPitch=400
@@ -54,6 +58,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -63,21 +68,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=25,Y=3,Z=-2.5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Centerfire_MESH.Wep_1stP_Centerfire_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Centerfire_ANIM.Wep_1stP_Centerfire_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Rifle_CenterfireMB464.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="SPX 464 Centerfire"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Centerfire_MESH.Wep_3rdP_Centerfire_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Rifle_CenterfireMB464.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Centerfire_MESH.Wep_3rdP_Centerfire_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Rifle_CenterfireMB464.StaticPickupComponent'

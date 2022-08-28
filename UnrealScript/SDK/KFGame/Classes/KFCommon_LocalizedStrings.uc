@@ -11,6 +11,9 @@
 
 class KFCommon_LocalizedStrings extends Object;
 
+var localized string PrestigeWarningString;
+var localized string PrestigeBonusString;
+
 var localized string FailedToReachInventoryServerString;
 
 var localized array<string> DifficultyStrings;
@@ -50,6 +53,7 @@ var localized string LoadingString;
 
 var localized string AutoTradeCompleteString;
 var localized string AutoFillCompleteString;
+var localized string WeaponUpgradeComepleteString;
 var localized string SecondaryWeaponPurchasedString;
 var localized string NoItemsPurchasedString;
 
@@ -88,6 +92,9 @@ var localized string DiscordWaveString;
 
 var localized string ProceedToTutorialString;
 var localized string ProceedToTutorialDescriptionString;
+
+var localized string NotAvailableInFreeTrialString;
+var localized string NetworkCheckFreeTrialFailedString;
 
 static function array<string> GetDifficultyStringsArray()
 {

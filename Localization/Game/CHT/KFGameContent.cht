@@ -202,30 +202,35 @@ ItemName="斯通納63A輕機槍"
 ItemCategory="輕機槍"
 ItemDescription="•主要攻擊模式只有全自動。\n•美國海軍海豹部隊在越南戰爭主要使用的武器之一， 斯通納63A配備高攜彈量並具有強大的火力。"
 
+[KFWeap_Knife_Survivalist]
+ItemName="刺刀"
+ItemCategory="近戰"
+ItemDescription="•主要攻擊鍵 - 快速揮砍，長按以連續攻擊。\n•次要攻擊鍵 - 重砍。\n•次要功能鍵功能鍵 - 格擋/迴避。\n•曾經屬於別人。不過，現在它是你的了！"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="多功能小刀"
 ItemCategory="近身"
-ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•開箱子用的小刀。最適合用來開啟殺戮空間裡的任何箱子。"
+ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•就是一把美工刀。最適合用來割開你在遊戲中找到的箱子。"
 
 [KFWeap_Knife_FieldMedic]
 ItemName="手術刀"
 ItemCategory="近身"
-ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•是把手術刀。你是軍醫，所以我們應該不用再為你說明使用方法。"
+ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•就是一把解剖刀。你是一名醫療兵，無需我們廢話你也知道怎麼用它。"
 
 [KFWeap_Knife_Firebug]
 ItemName="消防員用刀"
 ItemCategory="近身"
-ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•消防員用刀。你是消防員，所以我們應該不用再為你說明使用方法。"
+ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•就是一把消防員的匕首。你是一名消防員，無需我們廢話你也知道怎麼用它。"
 
 [KFWeap_Knife_Gunslinger]
 ItemName="長獵刀"
 ItemCategory="近身"
-ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。•\n西部電影可以看到的那種大刀。適用於切割 Zed。"
+ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•大號的老西部匕首。最適合切碎這裡的Zed。"
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="庫克理彎刀"
 ItemCategory="近身"
-ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•印地安人的傳統用刀，比較適合拿來砍而不是切。 "
+ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•廓爾喀士兵的傳統匕首，更像是片刀而非砍刀。 "
 
 [KFWeap_Knife_SWAT]
 ItemName="戰略小刀"
@@ -255,7 +260,7 @@ ItemDescription="•主要攻擊模式只有全自動。\n•按下輔助功能�
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="雙發散彈槍"
 ItemCategory="霰彈槍"
-ItemDescription="•主要攻擊模式只射擊一發。\n•按下輔助功能鍵可同時射出兩發。\n•並排雙槍管 12 口徑霰彈槍。適合用在近距離戰鬥。就連最大型的 Zed 也會被震懾！"
+ItemDescription="•主要攻擊模式只射擊一發。\n•主要攻擊模式只射擊一發。\n•並排雙槍管 12 口徑霰彈槍。非常適合近戰。即使是最大的Zed也會被嚇到腳軟！"
 
 [KFWeap_Shotgun_AA12]
 ItemName="AA-12 自動霰彈槍"
@@ -345,7 +350,7 @@ ItemCategory="火焰"
 ItemDescription="•主要攻擊模式為發射爆炸性、火焰投擲物體。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•此為一對火槍。"
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="噴火霰彈槍"
+ItemName="龍息"
 ItemCategory="霰彈槍"
 ItemDescription="•主要攻擊模式只有泵動式。\n•會像龍一樣噴出火焰的霰彈槍。除了很致命之外，外型也很讚。"
 
@@ -510,10 +515,25 @@ ItemName="雙管 AF2011-A2"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•兩隻槍各有兩個槍管。四倍火力。這就是數學。你不能反駁數學。"
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="毀滅射手"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊模式只射擊一發。\n•按下輔助功能鍵可同時射出兩發。\n•雙發還不夠好玩？那麼就來四發！"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="靜電打擊者"
+ItemCategory="近身"
+ItemDescription="•主要功能鍵 - 主要攻擊為揮擊，長按以連擊。\n•次要功能鍵 - 帶電重揮擊。它是真的令人震驚！\n•想一拳揍在Zed臉上？選它就對了！"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="衝鋒槍"
 ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•特征是速射燃燒彈藥。懂了嗎？速射？因為它是衝鋒槍？哦，忘了那吧。"
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="狙擊步槍"
+ItemDescription="•主要攻擊模式只有單發。\n•每一發都是蓄力一擊……額，就是一發非常大的子彈。高穿透，高傷害。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

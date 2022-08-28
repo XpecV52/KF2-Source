@@ -81,6 +81,7 @@ const KFID_Native4kResolution = 169;#linenumber 13
 var KFGFxPerksContainer_Selection 		SelectionContainer;
 var KFGFxPerksContainer_Header			HeaderContainer;
 var KFGFxPerksContainer_Details			DetailsContainer;
+var KFGFxPerksContainer_Prestige		PrestigeContainer;
 var KFGFxPerksContainer_Skills			SkillsContainer;
 var KFGFxPerksContainer_SkillsSummary   SkillsSummaryContainer;
 
@@ -93,6 +94,11 @@ var class<KFPerk> PreviousPerk;
 var localized string TierUnlockedText;
 var localized string TierUnlockedSecondaryText;
 
+
+//prestige strings
+var localized string CurrentPrestigeLevelString;
+var localized string PrestigeString;
+
 var KFPlayerReplicationInfo MyKFPRI;
 
 /** Set to true if we change one of our skills */
@@ -104,11 +110,17 @@ var name PerkLevelupSound;
 
 var byte SelectedSkillsHolder[5];
 
+function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
+{
+	super.InitializeMenu(InManager);
+
+	KFPC = KFPlayerController(GetPC());
+}
+
 /** Ties the GFxClikWidget variables to the .swf containers and handles events */
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
 	local class<KFPerk> PerkClass;
-	
 	PerkClass = KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass;
 	switch(WidgetName)
 	{		
@@ -142,8 +154,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			    SkillsContainer.Initialize( self );
 			    SkillsContainer.UpdateSkills(PerkClass, SelectedSkillsHolder);
 		    }
-		 case ('NextRankContainer'):
-		 	//to do: Make this class.  It will be the best!
+			break;
+		 case ('PerkPrestigeContainer'):
+			 if (PrestigeContainer == none)
+			 {
+				 PrestigeContainer = KFGFxPerksContainer_Prestige(Widget);//some reason this is coming out to none!
+				 PrestigeContainer.Initialize(self);
+			 }
          break;
 
          case ('SelectedPerkSummaryContainer'):
@@ -161,15 +178,14 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 function OnOpen()
 {
-	if( KFPC == none )
-	{
-		KFPC = KFPlayerController( GetPC() );
-	}
-
 	LastPerkIndex = KFPC.SavedPerkIndex;
 
 	MyKFPRI = KFPlayerReplicationInfo( GetPC().PlayerReplicationInfo );
-    
+	if (KFPC == none)
+	{
+		LogInternal("NO KFPC!!");
+		KFPC = KFPlayerController(GetPC());
+	}
 	UpdateSkillsHolder(KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass);
     UpdateContainers(KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass); 
 
@@ -352,6 +368,10 @@ function UpdateContainers( class<KFPerk> PerkClass, optional bool bClickedIndex=
 			SelectionContainer.UpdatePerkSelection( LastPerkIndex );
 		}
 
+		if (PrestigeContainer != none)
+		{
+			PrestigeContainer.SendPerkData();
+		}
 		UpdateSkillsUI( PerkClass );
 	}
 }
@@ -373,13 +393,9 @@ function UpdateSkillsUI( Class<KFPerk> PerkClass )
 function UpdateSkillsHolder(class<KFPerk> PerkClass)
 {
 	local int PerkBuild;
+	
 
-	if( KFPC == none )
-	{
-		KFPC = KFPlayerController( GetPC() );
-	}
-
-	PerkBuild = KFPC.GetPerkBuildByPerkClass( PerkClass );	
+	PerkBuild = KFPC.GetPerkBuildByPerkClass( PerkClass );
 	KFPC.GetPerk().GetUnpackedSkillsArray( PerkClass, PerkBuild,  SelectedSkillsHolder);
 }
 
@@ -406,9 +422,51 @@ function SavePerkData()
 	}
 }
 
+function ConfirmPrestige()
+{
+	if (KFPC != none )
+	{
+		KFPC.PerformPrestigeReset(KFPC.CurrentPerk.class);
+		class'KFMusicStingerHelper'.static.PlayPerkPrestigeStinger(KFPC);
+		OnOpen();
+		ActionScriptVoid("playPrestigeAnimation");
+	}
+}
+
 //==============================================================
 // ActionScript Callbacks
 //==============================================================
+function Callback_ConfirmPerkReset()
+{
+	//if main menu, return and do nothing
+	if (!class'WorldInfo'.static.IsMenuLevel())
+	{
+		return;
+	}
+
+	if (KFPC != none)
+	{
+		if (KFPC.CurrentPerk.GetLevel() < 25)
+		{
+			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFGFxPerksContainer_Prestige'.default.NotHightenoughLevelString,
+				Class'KFCommon_LocalizedStrings'.default.ConfirmString);
+		}
+		else if (KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 1)
+		{
+			//show confirmation pop up here
+			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFGFxPerksContainer_Prestige'.default.AtMaxPrestigeLevelString,
+				Class'KFCommon_LocalizedStrings'.default.ConfirmString);
+		}
+		else
+		{
+			//show confirmation pop up here
+			Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.PrestigeWarningString,
+				Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmPrestige);
+		}	
+	}
+}
+
+
 function Callback_ReadyClicked( bool bReady )
 {
 	SavePerkData();
@@ -453,12 +511,15 @@ defaultproperties
    LastPerkLevel=255
    TierUnlockedText="New Tier Unlocked!"
    TierUnlockedSecondaryText="You have unlocked a new tier for the following perks:"
+   CurrentPrestigeLevelString="Current Prestige Rank:"
+   PrestigeString="PRESTIGE"
    PerkLevelupSound="LevelUp_Popup"
-   SubWidgetBindings(0)=(WidgetName="SelectionContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Selection')
-   SubWidgetBindings(1)=(WidgetName="HeaderContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Header')
-   SubWidgetBindings(2)=(WidgetName="SkillsContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Skills')
-   SubWidgetBindings(3)=(WidgetName="DetailsContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Details')
-   SubWidgetBindings(4)=(WidgetName="SelectedPerkSummaryContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_SkillsSummary')
+   SubWidgetBindings(0)=(WidgetName="PerkPrestigeContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Prestige')
+   SubWidgetBindings(1)=(WidgetName="SelectionContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Selection')
+   SubWidgetBindings(2)=(WidgetName="HeaderContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Header')
+   SubWidgetBindings(3)=(WidgetName="SkillsContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Skills')
+   SubWidgetBindings(4)=(WidgetName="DetailsContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_Details')
+   SubWidgetBindings(5)=(WidgetName="SelectedPerkSummaryContainer",WidgetClass=Class'KFGame.KFGFxPerksContainer_SkillsSummary')
    Name="Default__KFGFxMenu_Perks"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'
 }

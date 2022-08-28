@@ -110,14 +110,20 @@ defaultproperties
    PumpFireInterval=0.660000
    NumPellets(0)=10
    NumPellets(1)=()
-   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   InventorySize=5
-   MagazineCapacity(0)=16
+   PackageKey="HZ12"
+   FirstPersonMeshName="WEP_1P_HZ12_MESH.Wep_1stP_HZ12_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_HZ12_ANIM.Wep_1stP_HZ12_Anim"
+   PickupMeshName="WEP_3P_HZ12_MESH.Wep_3rdP_HZ12_Pickup"
+   AttachmentArchetypeName="WEP_HZ12_ARCH.Wep_HZ12_3P"
+   MuzzleFlashTemplateName="WEP_HZ12_ARCH.Wep_HZ12_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=False
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
+   FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
+   InventorySize=5
+   MagazineCapacity(0)=16
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshFOV=75.000000
@@ -131,19 +137,17 @@ defaultproperties
    SpareAmmoCapacity(0)=80
    InitialSpareMags(0)=1
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_hz12.Play_WEP_HZ12_Fire_3P',FirstPersonCue=AkEvent'ww_wep_hz12.Play_WEP_HZ12_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_hz12.Play_WEP_HZ12_Fire_3P',FirstPersonCue=AkEvent'ww_wep_hz12.Play_WEP_HZ12_Fire_1P')
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
    PlayerViewOffset=(X=20.000000,Y=7.600000,Z=-3.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_HZ12_ARCH.Wep_HZ12_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_HZ12:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_HZ12_ARCH.Wep_HZ12_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500
@@ -161,6 +165,9 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
+   WeaponUpgrades(1)=(IncrementDamage=1.100000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.200000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.300000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -189,9 +196,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_HZ12'
    FireOffset=(X=30.000000,Y=3.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_HZ12_MESH.Wep_1stP_HZ12_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_HZ12_ANIM.Wep_1stP_HZ12_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -205,7 +210,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="HZ12 Multi-Action"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_ShotgunBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_HZ12_MESH.Wep_3rdP_HZ12_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

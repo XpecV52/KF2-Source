@@ -12,12 +12,18 @@ class KFWeap_Pistol_Colt1911 extends KFWeap_PistolBase;
 
 defaultproperties
 {
-   InventorySize=2
-   MagazineCapacity(0)=8
+   PackageKey="M1911"
+   FirstPersonMeshName="WEP_1P_M1911_MESH.Wep_1stP_M1911_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_M1911_ANIM.Wep_1stP_M1911_Anim"
+   PickupMeshName="WEP_3P_M1911_MESH.Wep_M1911_Pickup"
+   AttachmentArchetypeName="WEP_M1911_ARCH.Wep_M1911_3P"
+   MuzzleFlashTemplateName="WEP_M1911_ARCH.Wep_M1911_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   InventorySize=2
+   MagazineCapacity(0)=8
    PenetrationPower(0)=1.000000
    PenetrationPower(1)=()
    MeshFOV=75.000000
@@ -41,14 +47,12 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_S')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Handling_DryFire'
    PlayerViewOffset=(X=22.000000,Y=12.000000,Z=-6.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_M1911_ARCH.Wep_M1911_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Pistol_Colt1911:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_M1911_ARCH.Wep_M1911_MuzzleFlash'
    maxRecoilPitch=450
    minRecoilPitch=400
    maxRecoilYaw=150
@@ -64,6 +68,9 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.350000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
+   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.400000)
+   WeaponUpgrades(2)=(IncrementDamage=1.800000)
+   WeaponUpgrades(3)=(IncrementWeight=2,IncrementDamage=2.000000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -90,9 +97,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Colt1911'
    FireOffset=(X=20.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_PistolBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_M1911_MESH.Wep_1stP_M1911_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_M1911_ANIM.Wep_1stP_M1911_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -106,7 +111,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="M1911 Pistol"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_PistolBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_M1911_MESH.Wep_M1911_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

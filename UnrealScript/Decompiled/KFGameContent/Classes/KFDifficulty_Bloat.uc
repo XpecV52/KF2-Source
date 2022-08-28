@@ -22,7 +22,7 @@ static function byte GetPukeMinesToSpawnOnDeath(KFPawn_ZedBloat BloatPawn, GameI
     {
         return default.PukeMinesToSpawnOnDeath_Versus;
     }
-    return default.PukeMinesToSpawnOnDeathByDifficulty[int(GI.GameDifficulty)];
+    return default.PukeMinesToSpawnOnDeathByDifficulty[GI.GetModifiedGameDifficulty()];
 }
 
 defaultproperties
@@ -34,9 +34,9 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PukeMinesToSpawnOnDeathByDifficulty(1)=.1P_Sawblade_Animtree_1421
-    PukeMinesToSpawnOnDeathByDifficulty(2)=.1P_Sawblade_Animtree
-    PukeMinesToSpawnOnDeathByDifficulty(3)=.1P_Sawblade_Animtree_6181
+    PukeMinesToSpawnOnDeathByDifficulty(1)=.3P_Sawblade_Animtree_1463
+    PukeMinesToSpawnOnDeathByDifficulty(2)=.3P_Sawblade_Animtree
+    PukeMinesToSpawnOnDeathByDifficulty(3)=.3P_Sawblade_Animtree_6442
     PukeMinesToSpawnOnDeath_Player_Versus=3
     Normal=(HealthMod=0.75,HeadHealthMod=0.75,DamageMod=0.4,SoloDamageMod=0.3,BlockSettings=(Duration=1.25,MaxBlocks=3,Cooldown=3.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.3,DamageModifier=0.3,AfflictionModifier=0.2,SoloChanceMultiplier=0.1),RallySettings=(bCanRally=false))
     Hard=(DamageMod=0.75,SoloDamageMod=0.75,BlockSettings=(Chance=0.1,Duration=1.25,MaxBlocks=4,Cooldown=3.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=0.1),RallySettings=(bCanRally=false))

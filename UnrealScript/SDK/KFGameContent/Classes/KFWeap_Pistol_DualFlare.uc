@@ -16,18 +16,17 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 
 defaultproperties
 {
+	//Content
+	PackageKey="Dual_FlareGun"
+	FirstPersonMeshName="WEP_1P_Dual_FlareGun_MESH.Wep_1stP_Dual_FlareGun_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Dual_FlareGun_ANIM.Wep_1stP_Dual_FlareGun_Anim"
+	PickupMeshName="WEP_3P_Dual_FlareGun_MESH.Wep_FlareGun_Pickup"
+	AttachmentArchetypeName="WEP_Dual_FlareGun_ARCH.Wep_Dual_FlareGun_3P"
+	MuzzleFlashTemplateName="WEP_Dual_FlareGun_ARCH.Wep_Flaregun_MuzzleFlash"
+
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Dual_FlareGun_MESH.Wep_1stP_Dual_FlareGun_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Dual_FlareGun_ANIM.Wep_1stP_Dual_FlareGun_Anim'
 		AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master_Revolver'
 	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_FlareGun_MESH.Wep_FlareGun_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_FlareGun_ARCH.Wep_Dual_FlareGun_3P'
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_FlareGun_ARCH.Wep_Flaregun_MuzzleFlash'
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -124,5 +123,10 @@ defaultproperties
 	bRevolver=true
 	CylinderRotInfo=(Inc=-60.0, Time=0.0875/*about 0.35 in the anim divided by ratescale of 4*/)
 	CylinderRotInfo_L=(Inc=-60.0, Time=0.0875/*about 0.35 in the anim divided by ratescale of 4*/)
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.75f,IncrementWeight=4)
 }
 

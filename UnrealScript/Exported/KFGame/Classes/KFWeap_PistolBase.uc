@@ -54,26 +54,6 @@ var CylinderRotationInfo CylinderRotInfo;
 // (cpptext)
 // (cpptext)
 
-/**
- * Called immediately before gameplay begins.
- */
-simulated event PreBeginPlay()
-{
-	local int i;
-
-	super.PreBeginPlay();
-
-	if( bRevolver )
-	{
-		// attach bullet meshes to correct sockets
-		for( i = 0; i < BulletMeshComponents.Length; ++i )
-		{
-			BulletMeshComponents[i].SetHidden( false );
-			MySkelMesh.AttachComponentToSocket( BulletMeshComponents[i], BulletFXSocketNames[i] );
-		}
-	}
-}
-
 /** Cache Anim Nodes from the tree
 * 	@note: skipped on server because AttachComponent/AttachWeaponTo is not called
 */
@@ -140,10 +120,19 @@ simulated state Reloading
 
 simulated event PostInitAnimTreeRevolver( SkeletalMeshComponent SkelComp )
 {
+	local int i;
+
 	CylinderRotInfo.Control = SkelControlSingleBone( SkelComp.FindSkelControl('CylinderControl') );
 	if( CylinderRotInfo.Control != none )
 	{
 		CylinderRotInfo.Control.SetSkelControlActive( true );
+	}
+
+	// attach bullet meshes to correct sockets
+	for( i = 0; i < BulletMeshComponents.Length; ++i )
+	{
+		BulletMeshComponents[i].SetHidden( false );
+		MySkelMesh.AttachComponentToSocket( BulletMeshComponents[i], BulletFXSocketNames[i] );
 	}
 }
 

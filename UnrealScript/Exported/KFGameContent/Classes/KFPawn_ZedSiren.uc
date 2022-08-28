@@ -160,6 +160,15 @@ defaultproperties
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858')
    DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_DBShotgun',DamageScale=(1.100000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Siren'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    OnDeathAchievementID=129
    PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
    LocalizationKey="KFPawn_ZedSiren"
@@ -221,7 +230,7 @@ defaultproperties
    IncapSettings(11)=(Vulnerability=(1.000000))
    PhysRagdollImpulseScale=0.500000
    KnockdownImpulseScale=0.500000
-   SprintSpeed=200.000000
+   SprintSpeed=275.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -255,8 +264,8 @@ defaultproperties
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Siren_Scream'
-      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Siren_Scream'
       SpecialMoveClasses(22)=None
       SpecialMoveClasses(23)=None
       SpecialMoveClasses(24)=None
@@ -270,7 +279,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -379,6 +390,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=20000,Roll=50000)
    Name="Default__KFPawn_ZedSiren"

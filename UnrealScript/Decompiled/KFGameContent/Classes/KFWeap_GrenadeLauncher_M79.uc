@@ -11,13 +11,19 @@ class KFWeap_GrenadeLauncher_M79 extends KFWeap_GrenadeLauncher_Base
 
 defaultproperties
 {
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=6
-    MagazineCapacity=1
+    PackageKey="M79"
+    FirstPersonMeshName="WEP_1P_M79_MESH.Wep_1stP_M79_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_M79_MESH.Wep_m79_Pickup"
+    AttachmentArchetypeName="WEP_M79_ARCH.Wep_M79_3P"
+    MuzzleFlashTemplateName="WEP_M79_ARCH.Wep_M79_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=6
+    MagazineCapacity=1
     MeshIronSightFOV=52
     PlayerIronSightFOV=73
     FastZoomOutTime=0.2
@@ -30,9 +36,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=13,Y=13,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'WEP_M79_ARCH.Wep_M79_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_GrenadeLauncher_M79.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_M79_ARCH.Wep_M79_MuzzleFlash'
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500
@@ -50,6 +54,7 @@ defaultproperties
     HippedRecoilModifier=1.25
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -59,21 +64,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=23,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_M79_MESH.Wep_1stP_M79_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_M79_ANIM.WEP_1P_M79_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_GrenadeLauncher_M79.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="M79 Grenade Launcher"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M79_MESH.Wep_m79_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_GrenadeLauncher_M79.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M79_MESH.Wep_m79_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_GrenadeLauncher_M79.StaticPickupComponent'

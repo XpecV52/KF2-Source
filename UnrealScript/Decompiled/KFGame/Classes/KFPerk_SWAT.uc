@@ -136,7 +136,10 @@ simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 function FinalizeSpeedVariables()
 {
     super.FinalizeSpeedVariables();
-    CurrentHealthPenalty = 1 - OwnerPawn.LowHealthSpeedPenalty;
+    if(OwnerPawn != none)
+    {
+        CurrentHealthPenalty = 1 - OwnerPawn.LowHealthSpeedPenalty;
+    }
 }
 
 simulated event float GetCrouchSpeedModifier(KFWeapon KFW)
@@ -400,4 +403,5 @@ defaultproperties
     AutoBuyLoadOutPath(2)=class'KFWeapDef_P90'
     AutoBuyLoadOutPath(3)=class'KFWeapDef_Kriss'
     HeadshotAccuracyHandicap=-3
+    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SWATKnife_PrestigePrecious_Mint_large"
 }

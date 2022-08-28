@@ -23,11 +23,17 @@ struct SpecialWaveInfo
 {
     var() KFGame.KFAISpawnManager.EAIType ZedType;
     var() float PctChance;
+    var() float WaveScale;
+    var() float SpawnRateMultiplier;
+    var() bool bSpawnEnraged;
 
     structdefaultproperties
     {
         ZedType=EAIType.AT_Clot
         PctChance=0
+        WaveScale=1
+        SpawnRateMultiplier=1
+        bSpawnEnraged=false
     }
 };
 
@@ -37,7 +43,17 @@ struct SpecialWaveDifficultyInfo
 
     structdefaultproperties
     {
-        SpecialWaveInfos=none
+        SpecialWaveInfos(0)=(ZedType=EAIType.AT_Clot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(1)=(ZedType=EAIType.AT_SlasherClot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(2)=(ZedType=EAIType.AT_Crawler,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(3)=(ZedType=EAIType.AT_Stalker,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(4)=(ZedType=EAIType.AT_Siren,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(5)=(ZedType=EAIType.AT_Husk,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(6)=(ZedType=EAIType.AT_Scrake,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(7)=(ZedType=EAIType.AT_AlphaClot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(8)=(ZedType=EAIType.AT_GoreFast,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(9)=(ZedType=EAIType.AT_Bloat,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(10)=(ZedType=EAIType.AT_FleshPound,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
     }
 };
 
@@ -392,6 +408,10 @@ function KFGame.KFAISpawnManager.EAIType GetSpecialWaveType()
 
     SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
     RandF = FRand();
+    if(SpecialWaves.Length == 0)
+    {
+        return 0;
+    }
     foreach SpecialWaves(It,)
     {
         TotalProb += It.PctChance;
@@ -400,7 +420,61 @@ function KFGame.KFAISpawnManager.EAIType GetSpecialWaveType()
             return It.ZedType;
         }        
     }    
-    return 0;
+    return SpecialWaves[int(RandRange(0, float(SpecialWaves.Length - 1)))].ZedType;
+}
+
+function GetSpecialWaveModifiers(KFGame.KFAISpawnManager.EAIType AIType, out float WaveCountMod, out float SpawnRateMod)
+{
+    local array<SpecialWaveInfo> SpecialWaves;
+    local SpecialWaveInfo It;
+
+    SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+    WaveCountMod = 1;
+    SpawnRateMod = 1;
+    foreach SpecialWaves(It,)
+    {
+        if(It.ZedType == AIType)
+        {
+            WaveCountMod = It.WaveScale;
+            SpawnRateMod = 1 / It.SpawnRateMultiplier;            
+            return;
+        }        
+    }    
+}
+
+function float GetSpecialWaveScale(KFGame.KFAISpawnManager.EAIType AIType)
+{
+    local array<SpecialWaveInfo> SpecialWaves;
+    local SpecialWaveInfo It;
+
+    SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+    LogInternal((((string(self) @ "-") @ string(GetFuncName())) @ "- AIType:") @ string(AIType));
+    foreach SpecialWaves(It,)
+    {
+        LogInternal((((string(self) @ "-") @ string(GetFuncName())) @ "- It.ZedType:") @ string(It.ZedType));
+        if(It.ZedType == AIType)
+        {
+            LogInternal((((string(self) @ "-") @ string(GetFuncName())) @ "- Wave Scale:") @ string(It.WaveScale));            
+            return It.WaveScale;
+        }        
+    }    
+    return 1;
+}
+
+function float GetSpecialWaveSpawnRateMod(KFGame.KFAISpawnManager.EAIType AIType)
+{
+    local array<SpecialWaveInfo> SpecialWaves;
+    local SpecialWaveInfo It;
+
+    SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+    foreach SpecialWaves(It,)
+    {
+        if(It.ZedType == AIType)
+        {            
+            return 1 / It.SpawnRateMultiplier;
+        }        
+    }    
+    return 1;
 }
 
 function float GetAIDamageModifier(KFPawn_Monster P, float GameDifficulty, bool bSoloPlay)
@@ -484,17 +558,47 @@ function float GetCharHeadHealthModDifficulty(KFPawn_Monster P, float GameDiffic
 
 function float GetCharSprintChanceByDifficulty(KFPawn_Monster P, float GameDifficulty)
 {
+    local KFGameInfo_Endless KFGI;
+
+    KFGI = KFGameInfo_Endless(P.WorldInfo.Game);
+    if(((KFGI != none) && KFGI.bUseSpecialWave) && ShouldSpawnEnraged(KFGI.SpecialWaveType))
+    {
+        return 1;
+    }
     return super.GetCharSprintChanceByDifficulty(P, float(Clamp(GetCurrentDifficultyIndex(), 0, 3)));
 }
 
 function float GetCharSprintWhenDamagedChanceByDifficulty(KFPawn_Monster P, float GameDifficulty)
 {
+    local KFGameInfo_Endless KFGI;
+
+    KFGI = KFGameInfo_Endless(P.WorldInfo.Game);
+    if(((KFGI != none) && KFGI.bUseSpecialWave) && ShouldSpawnEnraged(KFGI.SpecialWaveType))
+    {
+        return 1;
+    }
     return super.GetCharSprintWhenDamagedChanceByDifficulty(P, float(Clamp(GetCurrentDifficultyIndex(), 0, 3)));
 }
 
 function int GetCurrentDifficultyIndex()
 {
     return CurrentDifficultyScaling.CurrentDifficultyIndex;
+}
+
+function bool ShouldSpawnEnraged(KFGame.KFAISpawnManager.EAIType AIType)
+{
+    local array<SpecialWaveInfo> CurrentSpecialWave;
+    local SpecialWaveInfo CurrentWaveInfo;
+
+    CurrentSpecialWave = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+    foreach CurrentSpecialWave(CurrentWaveInfo,)
+    {
+        if(CurrentWaveInfo.ZedType == AIType)
+        {            
+            return CurrentWaveInfo.bSpawnEnraged;
+        }        
+    }    
+    return false;
 }
 
 defaultproperties

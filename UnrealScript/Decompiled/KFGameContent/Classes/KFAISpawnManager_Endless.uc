@@ -37,8 +37,8 @@ function GetWaveSettings(out DifficultyWaveInfo WaveInfo)
     local int AdjustedGameDifficulty;
 
     AdjustedGameDifficulty = Outer.EndlessDifficulty.GetCurrentDifficultyIndex();
-    WaveInfo = DifficultyWaves[int(Outer.BaseGameDifficulty)].MacroDifficultyWaveSettings[AdjustedGameDifficulty];
-    LogInternal((("KFAISpawnManager_Endless - Setting WaveInfo to Base Game Difficulty:" @ string(Outer.BaseGameDifficulty)) @ "AdjustedGameDifficulty:") @ string(AdjustedGameDifficulty));
+    WaveInfo = DifficultyWaves[int(Outer.GameDifficulty)].MacroDifficultyWaveSettings[AdjustedGameDifficulty];
+    LogInternal((("KFAISpawnManager_Endless - Setting WaveInfo to Base Game Difficulty:" @ string(Outer.GameDifficulty)) @ "AdjustedGameDifficulty:") @ string(AdjustedGameDifficulty));
 }
 
 function OnDifficultyUpdated()
@@ -77,14 +77,14 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing MacroDifficultyWaveSettings
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_347' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_372' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing MacroDifficultyWaveSettings
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_4' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_4' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -115,7 +115,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DifficultyWaves(3)=
 /* Exception thrown while deserializing DifficultyWaves
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_347' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_372' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

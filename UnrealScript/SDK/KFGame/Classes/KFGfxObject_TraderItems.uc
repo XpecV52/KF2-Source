@@ -79,6 +79,9 @@ struct native STraderItem
 	/** Dynamic array of stats to display. Each weapon has the opportunity to set its own stats. */
 	var() editconst array<STraderItemWeaponStats> WeaponStats;
 
+	var int WeaponUpgradeWeight[6];
+	var float WeaponUpgradeDmgMultiplier[6];
+
 /** BYTES - For alignment */
 
 	var byte InitialSpareMags;
@@ -93,7 +96,7 @@ struct native STraderItem
 	/** The group that this weapon belongs to */
 	var byte InventoryGroup;
 
-	var int ItemID; //used since the list will be sorted. 
+	var int ItemID; //used since the list will be sorted.
 
 	StructDefaultProperties
 	{

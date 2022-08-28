@@ -515,4 +515,5 @@ defaultproperties
     AutoBuyLoadOutPath(3)=class'KFWeapDef_RailGun'
     HitAccuracyHandicap=-9
     HeadshotAccuracyHandicap=-16
+    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SharpshooterKnife_PrestigePrecious_Mint_large"
 }

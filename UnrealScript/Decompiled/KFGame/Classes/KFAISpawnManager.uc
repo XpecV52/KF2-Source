@@ -162,16 +162,23 @@ function SetupNextWave(byte NextWaveIndex, optional int TimeToNextWaveBuffer)
         LeftoverSpawnSquad.Length = 0;
         NumSpawnListCycles = 1;
         NumSpecialSquadRecycles = 0;
-        if(WaveSettings.Waves[NextWaveIndex].bRecycleWave)
+        if(Outer.MyKFGRI.IsBossWave())
         {
-            WaveTotalAI = int((float(WaveSettings.Waves[NextWaveIndex].MaxAI) * Outer.DifficultyInfo.GetPlayerNumMaxAIModifier(byte(Outer.GetNumHumanTeamPlayers()))) * Outer.DifficultyInfo.GetDifficultyMaxAIModifier());            
+            WaveTotalAI = 1;            
         }
         else
         {
-            WaveTotalAI = WaveSettings.Waves[NextWaveIndex].MaxAI;
+            if(WaveSettings.Waves[NextWaveIndex].bRecycleWave)
+            {
+                WaveTotalAI = int((float(WaveSettings.Waves[NextWaveIndex].MaxAI) * Outer.DifficultyInfo.GetPlayerNumMaxAIModifier(byte(Outer.GetNumHumanTeamPlayers()))) * Outer.DifficultyInfo.GetDifficultyMaxAIModifier());                
+            }
+            else
+            {
+                WaveTotalAI = WaveSettings.Waves[NextWaveIndex].MaxAI;
+            }
+            WaveTotalAI *= Outer.GetTotalWaveCountScale();
+            WaveTotalAI = Max(1, WaveTotalAI);
         }
-        WaveTotalAI *= Outer.GetTotalWaveCountScale();
-        WaveTotalAI = Max(1, WaveTotalAI);
         GetAvailableSquads(NextWaveIndex, true);
         WaveStartTime = Outer.WorldInfo.TimeSeconds;
         TimeUntilNextSpawn = 5 + float(TimeToNextWaveBuffer);

@@ -11,13 +11,19 @@ class KFWeap_SMG_P90 extends KFWeap_SMGBase
 
 defaultproperties
 {
+    PackageKey="P90"
+    FirstPersonMeshName="wep_1p_p90_mesh.Wep_1stP_P90_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_p90_mesh.Wep_P90_Pickup"
+    AttachmentArchetypeName="wep_p90_arch.Wep_P90_3P"
+    MuzzleFlashTemplateName="wep_p90_arch.Wep_P90_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=5
     MagazineCapacity=50
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshFOV=75
     MeshIronSightFOV=55
     GroupPriority=80
@@ -30,9 +36,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=19,Y=10,Z=-0.5)
-    AttachmentArchetype=KFWeaponAttachment'wep_p90_arch.Wep_P90_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_SMG_P90.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'wep_p90_arch.Wep_P90_MuzzleFlash'
     maxRecoilPitch=80
     minRecoilPitch=65
     maxRecoilYaw=60
@@ -47,6 +51,7 @@ defaultproperties
     RecoilISMinPitchLimit=65435
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -55,21 +60,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'wep_1p_p90_mesh.Wep_1stP_P90_Rig'
-        AnimSets(0)=AnimSet'wep_1p_p90_anim.Wep_1stP_P90_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_SMG_P90.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="P90 SMG"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_p90_mesh.Wep_P90_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_P90.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_p90_mesh.Wep_P90_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_P90.StaticPickupComponent'

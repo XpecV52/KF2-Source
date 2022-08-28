@@ -1,3 +1,34 @@
+[CHR_MrsFoster_archetype]
+CharacterName="Mrs. Foster"
+Description="When she interviewed Mr. Foster for a commodities trader job, Mrs. Foster was already a scarily-successful trader at a top firm in London. She was what he wanted to be, but Mr. Foster was clearly a no-hoper as a trader; he couldn’t play by the rules or keep his mouth shut. Still, there was something about him; he was so cool, so suave, so... unique. Unique enough to give her a gas mask of her own on their first date. It was almost as if he'd known that a chain gun wielding mutant maniac was going to create a flesh-eating clone horde and ruin her streak of multi-million-pound bonuses. They were married soon after in a whirlwind of flowers, lace, Zeds, and explosives. They may not be able to work together in the city making huge piles of cash, but they can work together to exterminate zeds making huge piles of Dosh!"
+BodyMesh0="Vest"
+BodyMesh1="Steampunk"
+HeadMesh0="Gas Mask"
+
+[CHR_MrsFoster_archetype.BodyMesh0]
+BodySkin0="Brown"
+BodySkin1="Army"
+BodySkin2="Red"
+BodySkin3="Blue"
+BodySkin4="Pink"
+BodySkin5="Black"
+
+[CHR_MrsFoster_archetype.BodyMesh1]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
+[CHR_MrsFoster_archetype.HeadMesh0]
+HeadSkin0="White"
+HeadSkin1="Green"
+HeadSkin2="Red"
+HeadSkin3="Brown"
+HeadSkin4="Pink"
+HeadSkin5="Black"
+
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
 Description="This D.A.R., or Domestic Assistant Robot, is an upgraded version of the previous D.A.R. model and utilizes the latest in Horzine experimental robotics. Similar units are undergoing tests at various Horzine bases in the hopes of developing the D.A.R. for consumer and security markets, but this D.A.R. is special. This D.A.R. encountered Zeds while stationed at Horzine Arctic Outpost 12, and its primary programming was overwritten by its Emergency Security Protocols, turning D.A.R. into a robotic killing machine. Unfortunately, D.A.R. shows little concern for human beings except Horzine employees, who it only hates only slightly less than humanity in general. Seeing a new market in military robots, D.A.R. has been transferred to Zed Containment Duty for field testing."
@@ -68,6 +99,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Beard Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -138,6 +170,14 @@ BodySkin6="Red Plaid"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
+
+[CHR_Jagerhorn_Archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Swedish Blonde"
@@ -232,6 +272,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Scully Mask"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -302,6 +343,14 @@ BodySkin6="Red Plaid"
 [CHR_DJSkully_Archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
 
+[CHR_DJSkully_Archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Blackest Black"
 HeadSkin1="Xtra Red"
@@ -342,6 +391,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Commando Chicken"
 BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
+BodyMesh9="Steampunk"
 HeadMesh0="Hair"
 
 [chr_briar_archetype.BodyMesh0]
@@ -418,6 +468,14 @@ BodySkin6="Red Plaid"
 [chr_briar_archetype.BodyMesh8]
 BodySkin0="Vault Pattern"
 
+[chr_briar_archetype.BodyMesh9]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Highlights"
@@ -452,6 +510,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Commando Chicken"
 BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
+BodyMesh9="Steampunk"
 HeadMesh0="Gas Mask"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -532,6 +591,14 @@ BodySkin6="Red Plaid"
 
 [CHR_MrFoster_archetype.BodyMesh8]
 BodySkin0="Vault Pattern"
+
+[CHR_MrFoster_archetype.BodyMesh9]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original White"
@@ -687,6 +754,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Face"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -755,6 +823,14 @@ BodySkin6="Red Plaid"
 [CHR_Coleman_archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
 
+[CHR_Coleman_archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -788,6 +864,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Hair"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -857,6 +934,14 @@ BodySkin6="Red Plaid"
 
 [CHR_Alberts_archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
+
+[CHR_Alberts_archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grey"
@@ -1171,7 +1256,7 @@ AttachmentSkin8="Teal White"
 AttachmentSkin9="Precious"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment="Smashed Motorcycle Helmet"
+Attachment="Motorcycle Helmet Damaged"
 AttachmentSkin0="Black"
 AttachmentSkin1="Blue"
 AttachmentSkin2="Orange"
@@ -1751,6 +1836,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Face"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -1829,6 +1915,14 @@ BodySkin6="Red Plaid"
 [CHR_Masterson_archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
 
+[CHR_Masterson_archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka is a conflicted individual with a serious death-wish problem. Born in Okinawa, he was brought up around Americans in the military. Moving to mainland Japan with his family, the Americanized Tanaka failed to fit in and took up drama classes. After college he moved to LA, playing cliched bit-parts in bad movies, before moving on to Europe trying to find more 'serious' work. All he got there were bad-guy roles in French gangster films and some tats. Now, in the apocalypse, he seems to be confusing his own reality with some of the movie parts he has played. This seems to involve visions of the Yakuza, demon, and a Hollywood take on bushido."
@@ -1841,6 +1935,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Commando Chicken"
 BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
+BodyMesh9="Steampunk"
 HeadMesh0="Hair"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -1926,6 +2021,14 @@ BodySkin6="Red Plaid"
 [CHR_Tanaka_Archetype.BodyMesh8]
 BodySkin0="Vault Pattern"
 
+[CHR_Tanaka_Archetype.BodyMesh9]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helmet"
 AttachmentSkin0="Rising Sun"
@@ -1964,6 +2067,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2042,6 +2146,14 @@ BodySkin6="Red Plaid"
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
 
+[CHR_Ana_Archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D Glasses"
 AttachmentSkin0="Anaglyph 3D"
@@ -2066,6 +2178,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Commando Chicken"
 BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
+BodyMesh9="Steampunk"
 HeadMesh0="Hair"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2142,6 +2255,14 @@ BodySkin6="Red Plaid"
 [chr_mark_archetype.BodyMesh8]
 BodySkin0="Vault Pattern"
 
+[chr_mark_archetype.BodyMesh9]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Bloody 5 O'Clock"
@@ -2162,6 +2283,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Face"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2233,6 +2355,14 @@ BodySkin6="Red Plaid"
 [CHR_alan_archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
 
+[CHR_alan_archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Ginger! Really?"
@@ -2260,6 +2390,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Hair"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2327,6 +2458,14 @@ BodySkin6="Red Plaid"
 
 [CHR_strasser_archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
+
+[CHR_strasser_archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dark Steel"
@@ -2494,6 +2633,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Commando Chicken"
 BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
+BodyMesh8="Steampunk"
 HeadMesh0="Default Head"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2565,6 +2705,14 @@ BodySkin6="Red Plaid"
 
 [chr_rockabilly_archetype.BodyMesh7]
 BodySkin0="Vault Pattern"
+
+[chr_rockabilly_archetype.BodyMesh8]
+BodySkin0="Blue"
+BodySkin1="Green"
+BodySkin2="White"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="Yellow"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Black"
@@ -3292,7 +3440,7 @@ Attachment="Boom Goes the Dynamite"
 AttachmentSkin0="Mind Blown"
 
 [Cosmetic_BooniHat_ARCH]
-Attachment="Bonni Hat"
+Attachment="Booni Hat"
 AttachmentSkin0="Blue"
 AttachmentSkin1="Green"
 AttachmentSkin2="Purple"
@@ -3943,3 +4091,87 @@ AttachmentSkin2="Orange"
 AttachmentSkin3="Precious"
 AttachmentSkin4="Purple"
 AttachmentSkin5="Red"
+
+[Cosmetic_SP_TopHat_ARCH]
+Attachment="Steampunk Top Hat"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_FlatCap_ARCH]
+Attachment="Steampunk Flat Cap"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_WelderMask_ARCH]
+Attachment="Steampunk Welder's Mask"
+AttachmentSkin0="Brass"
+AttachmentSkin1="Gray"
+AttachmentSkin2="Patina"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_ChimneyClock_ARCH]
+Attachment="Steampunk Chimney Clock"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cool Glow"
+AttachmentSkin2="Warm Glow"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_Goggles_ARCH]
+Attachment="Steampunk Goggles"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Orange"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_MedicalBag_ARCH]
+Attachment="Steampunk Medical Bag"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Dark Leather"
+AttachmentSkin2="Leather"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_OctopusBackpack_ARCH]
+Attachment="Steampunk Octopus Backpack"
+AttachmentSkin0="Brass"
+AttachmentSkin1="Patina"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_TanksBackpack_ARCH]
+Attachment="Steampunk Tanks Backpack"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+AttachmentSkin2="Yellow"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_TentacleSkull_ARCH]
+Attachment="Steampunk Tentacle Skull"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+AttachmentSkin2="Standard"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_DynamiteArm_ARCH]
+Attachment="Steampunk Dynamite Arm Band"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_MrsFosterHead_ARCH]
+Attachment="Steampunk Mrs. Foster Mask"
+AttachmentSkin0="Dark Leather"
+AttachmentSkin1="Leather"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_SP_SkullyHead_ARCH]
+Attachment="Steampunk Scully Mask"
+AttachmentSkin0="Bleach"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Rust"
+AttachmentSkin3="Precious"

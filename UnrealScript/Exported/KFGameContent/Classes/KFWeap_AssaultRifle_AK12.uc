@@ -183,17 +183,23 @@ defaultproperties
    BurstFire3RdAnim="Shoot_Burst"
    BurstFire2RdSightedAnim="Shoot_Burst2_Iron"
    BurstFire3RdSightedAnim="Shoot_Burst_Iron"
-   WeaponFire2RdSnd=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
-   WeaponFire3RdSnd=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Burst_S')
+   WeaponFire2RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
+   WeaponFire3RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_S')
+   PackageKey="AK12"
+   FirstPersonMeshName="WEP_1P_AK12_MESH.Wep_1stP_AK12_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_AK12_ANIM.Wep_1st_AK12_Anim"
+   PickupMeshName="WEP_3P_AK12_MESH.Wep_AK12_Pickup"
+   AttachmentArchetypeName="WEP_AK12_ARCH.Wep_AK12_3P"
+   MuzzleFlashTemplateName="WEP_AK12_ARCH.Wep_AK12_MuzzleFlash"
+   bHasIronSights=True
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
    SingleFireSoundIndex=1
    BurstAmount=3
    InventorySize=6
    MagazineCapacity(0)=30
-   bHasIronSights=True
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
    MeshFOV=75.000000
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
@@ -203,20 +209,18 @@ defaultproperties
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Loop_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Loop_S')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Single_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Single_S')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Loop_End_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Loop_End_S')
-   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Handling_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Handling_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_S')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Single_S')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_End_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_End_S')
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
    PlayerViewOffset=(X=2.000000,Y=8.000000,Z=-3.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_AK12_ARCH.Wep_AK12_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_AK12:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_AK12_ARCH.Wep_AK12_MuzzleFlash'
    maxRecoilPitch=200
    minRecoilPitch=150
    maxRecoilYaw=175
@@ -232,6 +236,8 @@ defaultproperties
    RecoilISMinPitchLimit=65460
    IronSightMeshFOVCompensationScale=2.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Commando'
+   WeaponUpgrades(1)=(IncrementDamage=1.250000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.500000)
    FiringStatesArray(1)="WeaponBurstFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -255,9 +261,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_AK12'
    FireOffset=(X=32.000000,Y=4.000000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_RifleBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_AK12_MESH.Wep_1stP_AK12_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_AK12_ANIM.Wep_1st_AK12_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -271,7 +275,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Kalashnikov AK-12"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_RifleBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AK12_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

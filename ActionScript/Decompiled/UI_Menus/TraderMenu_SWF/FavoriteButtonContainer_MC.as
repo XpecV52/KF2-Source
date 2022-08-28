@@ -9,45 +9,45 @@ package
         public function FavoriteButtonContainer_MC()
         {
             super();
-            addFrameScript(9,this.frame10,19,this.frame20,29,this.frame30,39,this.frame40,49,this.frame50,59,this.frame60,69,this.frame70,79,this.frame80);
+            addFrameScript(10,this.frame11,20,this.frame21,30,this.frame31,40,this.frame41,50,this.frame51,60,this.frame61,70,this.frame71,80,this.frame81);
         }
         
-        function frame10() : *
+        function frame11() : *
         {
             stop();
         }
         
-        function frame20() : *
+        function frame21() : *
         {
             stop();
         }
         
-        function frame30() : *
+        function frame31() : *
         {
             stop();
         }
         
-        function frame40() : *
+        function frame41() : *
         {
             stop();
         }
         
-        function frame50() : *
+        function frame51() : *
         {
             stop();
         }
         
-        function frame60() : *
+        function frame61() : *
         {
             stop();
         }
         
-        function frame70() : *
+        function frame71() : *
         {
             stop();
         }
         
-        function frame80() : *
+        function frame81() : *
         {
             stop();
         }

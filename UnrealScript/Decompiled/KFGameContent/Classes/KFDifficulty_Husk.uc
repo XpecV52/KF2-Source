@@ -27,7 +27,7 @@ static function sHuskFireballSettings GetFireballSettings(KFPawn_ZedHusk HuskPaw
             return DefaultFireballSettings;
         }
     }
-    return default.FireballSettings[KFGRI.GameDifficulty];
+    return default.FireballSettings[Clamp(KFGRI.GetModifiedGameDifficulty(), 0, default.FireballSettings.Length - 1)];
 }
 
 defaultproperties
@@ -43,4 +43,5 @@ defaultproperties
     HellOnEarth=(HealthMod=1.3,HeadHealthMod=1.1,SprintChance=0.75,DamagedSprintChance=1,DamageMod=1.5,SoloDamageMod=0.75,RallySettings=(bCauseSprint=true,TakenDamageModifier=0.9,DealtDamageModifier=1.2))
     RallySettings_Versus=(bCauseSprint=true)
     RallySettings_Player_Versus=(DealtDamageModifier=1.2)
+    ChanceToSpawnAsSpecial=/* Array type was not detected. */
 }

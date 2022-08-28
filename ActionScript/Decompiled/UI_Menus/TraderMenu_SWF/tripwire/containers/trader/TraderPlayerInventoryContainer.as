@@ -59,6 +59,8 @@ package tripwire.containers.trader
         
         public var divLine:MovieClip;
         
+        public var upgradeBlockerTop:MovieClip;
+        
         public var lastMagItem:TraderPlayerAmmoItemRenderer;
         
         public var lastFillItem:TraderPlayerAmmoItemRenderer;
@@ -127,6 +129,22 @@ package tripwire.containers.trader
         
         public const INVITEM_KBM_LOCATION:int = 40;
         
+        public var currMouseX:Number = 0;
+        
+        public var currMouseTolerance:int = 0;
+        
+        public const MIN_MOUSE_TOLERANCE:int = 1;
+        
+        public var currMouseY:Number = 0;
+        
+        public const TOPBLOCKER_START_Y:int = 268;
+        
+        public const TOPBLOCKER_START_HEIGHT:int = 716;
+        
+        public const ITEM_MID_Y:int = 892;
+        
+        public const ITEM_HEIGHT:int = 88;
+        
         private var _bPerkMenuOpen:Boolean;
         
         public function TraderPlayerInventoryContainer()
@@ -183,6 +201,7 @@ package tripwire.containers.trader
             this.autoFillButton.tabEnabled = false;
             this.changePerkButton.tabEnabled = false;
             this.playerInfoContainer.owner = this;
+            this.upgradeBlockerTop.visible = false;
         }
         
         override public function selectContainer() : void
@@ -590,7 +609,62 @@ package tripwire.containers.trader
                     }
                     this.currentSelectedIndex = param1.index;
                 }
+                else
+                {
+                    this.activateUpgradeBlocker(this.infoList.getRendererAt(param1.index).y,this.infoList.getRendererAt(param1.index) as MovieClip);
+                }
             }
+        }
+        
+        public function checkUpgradeBlocker(param1:Event) : void
+        {
+            if(mouseX <= this.currMouseX + 1 || mouseY <= this.currMouseY)
+            {
+                if(this.currMouseTolerance >= this.MIN_MOUSE_TOLERANCE)
+                {
+                    this.upgradeBlockerTop.visible = false;
+                }
+                else
+                {
+                    this.currMouseTolerance += 1;
+                }
+            }
+            this.currMouseX = mouseX;
+            this.currMouseY = mouseY;
+        }
+        
+        public function stopUpdatingUpgradeBlocker(param1:Event) : void
+        {
+            this.currMouseX = mouseX;
+            this.currMouseY = mouseY;
+            this.currMouseTolerance = 0;
+            stage.addEventListener(Event.ENTER_FRAME,this.checkUpgradeBlocker,false,0,true);
+            this.upgradeBlockerTop.removeEventListener(MouseEvent.ROLL_OVER,this.stopUpdatingUpgradeBlocker);
+        }
+        
+        public function activateUpgradeBlocker(param1:int, param2:MovieClip) : void
+        {
+            if(param1 < this.ITEM_MID_Y)
+            {
+                this.upgradeBlockerTop.visible = true;
+                this.upgradeBlockerTop.y = param1 + this.ITEM_HEIGHT;
+                this.upgradeBlockerTop.height = this.TOPBLOCKER_START_HEIGHT - (this.upgradeBlockerTop.y - this.TOPBLOCKER_START_Y);
+                this.upgradeBlockerTop.addEventListener(MouseEvent.ROLL_OVER,this.stopUpdatingUpgradeBlocker,false,0,true);
+            }
+            else
+            {
+                this.upgradeBlockerTop.visible = false;
+            }
+            this.upgradeBlockerTop.addEventListener(MouseEvent.ROLL_OUT,this.deactivateUpgradeBlocker,false,0,true);
+            this.addEventListener(MouseEvent.ROLL_OUT,this.deactivateUpgradeBlocker,false,0,true);
+        }
+        
+        public function deactivateUpgradeBlocker(param1:Event) : void
+        {
+            stage.removeEventListener(Event.ENTER_FRAME,this.checkUpgradeBlocker);
+            this.removeEventListener(MouseEvent.ROLL_OUT,this.deactivateUpgradeBlocker);
+            this.upgradeBlockerTop.removeEventListener(MouseEvent.ROLL_OUT,this.deactivateUpgradeBlocker);
+            this.upgradeBlockerTop.visible = false;
         }
         
         protected function sellSelectedController() : void
@@ -764,6 +838,7 @@ package tripwire.containers.trader
             {
                 this.infoList.selectedIndex = 0;
             }
+            this.activateUpgradeBlocker(this.armorItem.y,this.armorItem);
         }
         
         protected function grenadeMouseOver(param1:MouseEvent) : void
@@ -779,6 +854,7 @@ package tripwire.containers.trader
             {
                 this.infoList.selectedIndex = 0;
             }
+            this.activateUpgradeBlocker(this.grenadeItem.y,this.grenadeItem);
         }
         
         protected function changeFocusIn(param1:FocusEvent) : void

@@ -1,4 +1,6 @@
 [KFCommon_LocalizedStrings]
+PrestigeWarningString="Resettare Classe a 0? Non sarà possibile tornare indietro."
+PrestigeBonusString="Prestige Bonus"
 FailedToReachInventoryServerString="Connessione server Oggetti fallita. L'inventario non sarà disponibile."
 LoadingString="Caricamento..."
 DifficultyStrings[0]="Normale"
@@ -56,6 +58,7 @@ NoSwitchReasonString="Con un cambio, le squadre sarebbero sbilanciate"
 
 AutoTradeCompleteString="Scambio automatico completato: "
 AutoFillCompleteString="Rifornimento scorte automatico"
+WeaponUpgradeComepleteString="Arma potenziata"
 SecondaryWeaponPurchasedString="Arma secondaria acquistata"
 NoItemsPurchasedString="Nessun oggetto acquistato"
 
@@ -107,6 +110,9 @@ DiscordWaveString=": Ondata"
 
 ProceedToTutorialString="INIZIARE ADDESTRAMENTO?"
 ProceedToTutorialDescriptionString="Vai in un ambiente controllato e impara le basi. Una volta completato otterrai il lv. 1 in una classe selezionata lv. 0."
+
+; placeholder01
+; placeholder02
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RICOMPENSA COMPLETAMENTO EPIDEMIA"
@@ -161,6 +167,7 @@ CreateMatchString="CREA INCONTRO"
 MatchmakingString="MATCHMAKING ONLINE"
 ConsoleMatchmakingString="GIOCA ONLINE"
 ServerBrowserString="Cerca server"
+NewsPageString="Notizie"
 
 DifficultyTitle="DIFFICOLTÀ"
 GameModeTitle="MODALITÀ GIOCO"
@@ -214,6 +221,7 @@ privacyList3=""
 inProgressList0=""
 inProgressList1=""
 inProgressList2=""
+FailedToLoadNewsString="Impossibile caricare l’immagine più recente delle notizie.\nRiprova più tardi."
 
 [KFGFxStartGameContainer_Options]
 BackString="INDIETRO"
@@ -364,6 +372,8 @@ CannotSellString="NON CONSENTITO"
 CannotBuyString="NON CONSENTITO"
 FavoriteString="PREFERITO"
 UnfavoriteString="NON PREFERITO"
+UpgradeCostString="COSTO POTENZIAM."
+UpgradeString="POTENZIA"
 
 [KFGFxTraderContainer_PlayerInventory]
 FillString="RIFO."
@@ -853,6 +863,7 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Esperienza"
+PrestigeLevelString="Reputazione"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="CONFIGURA"
@@ -862,6 +873,8 @@ SkillsString="ABILITÀ"
 TierUnlockedText="Nuovo livello sbloccato!"
 TierUnlockedSecondaryText="Hai sbloccato un nuovo livello per le classi seguenti:"
 
+CurrentPrestigeLevelString="Livello Reputazione attuale:"
+PrestigeString="AUM. REPUTAZIONE"
 
 [KFGFxPerksContainer_Details]
 ObjectivesString="OBIETTIVI XP"
@@ -877,6 +890,17 @@ HeaderTitle="SELEZIONA CLASSE"
 EndOfWaveString="Le classi saranno cambiate alla fine dell'ondata!"
 ChangesAppliedOnCloseString="Le classi saranno cambiate alla chiusura del menu."
 OncePerWaveString="Cambi classe consentiti una volta per ondata!"
+
+[KFGFxPerksContainer_Prestige]
+AtMaxPrestigeLevelString="Livello massimo reputazione classe raggiunto!"
+NotHightenoughLevelString="Classe non al livello massimo. L’utente non può aumentare la sua reputazione in questo momento."
+CurrentRankString="LIVELLO ATTUALE"
+NextRankString="LIVELLO SUCC."
+RewardString="RICOMPENSE REP."
+PrestigeDescriptionString="> Resetta il livello Classe a 0. \n> Modificatore bonus permanente di +30% punti XP, alla fine degli incontri in questa Classe. \n> Ottieni un'icona Classe modificata, Denaro Deposito e una skin arma unica per la Classe."
+PrestigeWarningString1="QUESTO RESETTERÀ LA CLASSE A 0"
+PrestigeWarningString2="CONTINUA SOLO SE SEI SICURO"
+PrestigeWarningString3="NON SI TORNA INDIETRO"
 
 [KFGFxMenu_Store]
 StoreString="NEGOZIO"
@@ -1205,9 +1229,10 @@ UseAltAimOnDualString="Mira pistole doppie alt."
 AntiMotionSicknessString="Anti chinetosi"
 AutoTurnOffString="Rot. auto off presa Clot"
 ReduceHighPitchNoiseString="Riduci suoni acuti"
-DisableAutoUpgradeString="Disattiva l'auto-upgrade"
+DisableAutoUpgradeString="Disattiva auto-scambio"
 
 EnableMixerString="Attiva/disattiva interattività Mixer"
+DisableMixerString="Disattiva Mixer"
 
 [LocalizedControls]
 ControllerLayoutDefault="Predefinito"
@@ -1371,6 +1396,8 @@ KickVoteNoSpectatorsString="Gli spettatori non possono richiedere un kick"
 KickedFromServerString="Sei stato rimosso dal server"
 BannedFromServerString="Sei stato rimosso da questo server Non puoi rientrare in questo momento"
 ServerNoLongerAvailableString="Impossibile raggiungere il server"
+SkipTraderTimeString="Un giocatore ha scelto di saltare il commerciante. Apri il menu e clicca su “SALTA COMMERCIANTE” per votare di saltare il commerciante. Tutti i giocatori devono essere d’accordo."
+SkipTraderSuccessString="Voto “Salta commerciante” approvato!"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Hai ricevuto munizioni da"
@@ -1441,7 +1468,7 @@ ZedWaitingForNextRoundString="Invasione di Zed imminente!"
 LastPlayerStandingString="ULTIMO GIOCATORE VIVO"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="COMMERCIANTE <%HOLD%> USA AUTOUPGRADE"
+UseTraderMessage="USA AUTO-SCAMBIO<%HOLD%>COMMERCIANTE"
 UseDoorMessage="APRI/CHIUDI<%HOLD%>EQUIPAGGIA SALDATORE"
 EquipWelderMessage="<%HOLD%>EQUIPAGGIA SALDATORE"
 ZedUseDoorMessage="APRI/CHIUDI"
@@ -2287,19 +2314,24 @@ HorzineSupplyCrateKey13="Chiave cassa Horzine | Serie #13 - $2.49"
 USBSpitfire="USB Spitfire - $2.49"
 USBHighVoltage="Chiave USB alta tensione - $2.49"
 MerchSale="Offerta Merchandise KF2! -25% fino al 30/04/17 Cod. promo ZED"
+; placeholder03
 
 [Objectives]
 HoldVolume="DIFENDI L'AREA"
 DoshHold="RESISTI"
+RepairObjective="SALDA E RIPARA"
 DescriptionDoshHold="Tieni gli Zed lontani dall'area evidenziata"
 RequiredDoshHold="Giocatori richiesti:"
 DoschHoldDesc="Tieni gli Zed lontani dall'area evidenziata"
 DescriptionHoldVolume="DescriptionHoldVolume"
 RequiredHoldVolume="RequiredHoldVolume"
-DestroyActor="CERCA E DISTRUGGI"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
+UseWelderToRepair="Usa Saldatore per riparare l'obiettivo/i"
 FailedString="FALLITO"
+DescriptionActivateTrigger="Attiva controllo obiettivo"
+RequiredActivateTrigger="Attivazioni rich.:"
+ActivateTrigger="AZIONA E CONTROLLA"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2323,6 +2355,9 @@ KFPawn_ZedClot_Alpha="Clot Alfa"
 KFPawn_ZedClot_AlphaKing="Rivoltoso"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Sirena"
+KFPawn_ZedDAR_EMP="Cacciatore di pelli E.D.A.R"
+KFPawn_ZedDAR_Laser="Annientatore E.D.A.R"
+KFPawn_ZedDAR_Rocket="Dinamitardo E.D.A.R"
 KFPawn_ZedPatriarch="Patriarca"
 KFPawn_ZedBloatKingSubspawn="Generazione Abominio"
 ;Human zeds
@@ -2452,12 +2487,25 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Descri
 SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
 SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
 SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
-SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
 ChanceDropDescriptionStrings[0]="Rilascio 1"
 ChanceDropDescriptionStrings[1]="Rilascio 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="Un evento a durata limitata con oggetti esclusivi."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Ripara nell’aria",DescriptionString="Ripara i tubi rotti nell’Aeronave");
+SpecialEventObjectiveInfoList[1]=(TitleString="Successo nel ponte superiore",DescriptionString="Difendi il ponte superiore nell’Aeronave");
+SpecialEventObjectiveInfoList[2]=(TitleString="A tutta corrente!",DescriptionString="Ripara i quadri elettrici nell’Aeronave");
+SpecialEventObjectiveInfoList[3]=(TitleString="Corsa al flusso",DescriptionString="Trasferisci l’acqua al motore a vapore nell’Aeronave");
+SpecialEventObjectiveInfoList[4]=(TitleString="Un grandioso vascello",DescriptionString="Vinci un incontro in modalità Difficile o superiore nell’Aeronave");
+
+AllCompleteRewardDescriptionString="Tuta Pigiama"
+
+ChanceDropDescriptionStrings[0]="Bigl. premio"
+ChanceDropDescriptionStrings[1]="Biglietto Oro"
 
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="Un evento a durata limitata con oggetti esclusivi."
@@ -2477,10 +2525,10 @@ ChanceDropDescriptionStrings[1]="Biglietto Oro"
 CurrentSpecialEventString="Intrepide sfide Infinito"
 CurrentSpecialEventDescriptionString="Sconfiggi le ondate per ottenere ricompense leggendarie!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Manichino da test Infinito",DescriptionString="Completa l'ondata Infinito 5",TierEventRewardName="D.A.R.++");
-SpecialEventObjectiveInfoList[1]=(TitleString="Drone Infinito",DescriptionString="Completa l'ondata Infinito 10",TierEventRewardName="D.A.R Bronzo");
-SpecialEventObjectiveInfoList[2]=(TitleString="Sentinella Infinito",DescriptionString="Completa l'ondata Infinito 15",TierEventRewardName="D.A.R. Argento");
-SpecialEventObjectiveInfoList[3]=(TitleString="Macchina da Guerra Infinito",DescriptionString="Completa l'ondata Infinito 20",TierEventRewardName="D.A.R. Blu classico");
+SpecialEventObjectiveInfoList[0]=(TitleString="Manichino da test infinito",DescriptionString="Completa l'ondata Infinito 5",TierEventRewardName="D.A.R. classico");
+SpecialEventObjectiveInfoList[1]=(TitleString="Drone Infinito",DescriptionString="Completa l'ondata Infinito 10",TierEventRewardName="D.A.R. caricatore");");
+SpecialEventObjectiveInfoList[2]=(TitleString="Sentinella Infinito",DescriptionString="Completa l'ondata Infinito 15",TierEventRewardName="D.A.R. Teschi");");
+SpecialEventObjectiveInfoList[3]=(TitleString="Macchina da Guerra Infinito",DescriptionString="Completa l'ondata Infinito 20",TierEventRewardName="D.A.R. insanguinato");");
 SpecialEventObjectiveInfoList[4]=(TitleString="D.A.R. Optimus Infinito",DescriptionString="Completa l'ondata Infinito 25",TierEventRewardName="D.A.R Oro");
 
 
@@ -2896,6 +2944,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio Biotics"
 
@@ -2964,6 +3044,12 @@ DisplayName="Nucleo di energia"
 
 [KF-DieSector KFMapSummary]
 DisplayName="Settore mortale"
+
+[KF-Lockdown KFMapSummary]
+DisplayName="Debilitazione"
+
+[KF-Airship KFMapSummary]
+DisplayName="Aeronave"
 
 [KFMapInfo]
 ; defaults

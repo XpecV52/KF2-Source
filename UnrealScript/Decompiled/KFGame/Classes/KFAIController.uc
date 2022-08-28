@@ -371,6 +371,7 @@ var float StrikeRangePercentage;
 var float DoorMeleeDistance;
 var float MaxMeleeHeightAngle;
 var float LastAttackTime_Melee;
+var float LastDamageTime_Taken;
 var float LastMeleeAttackDecisionTime;
 var float LastSelectEnemyTime;
 var float LastSetEnemyTime;
@@ -1331,7 +1332,7 @@ function bool CanTargetBeGrabbed(KFPawn TargetKFP)
 {
     local KFAIController OtherKFAIC;
 
-    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(30)) || TargetKFP.Physics == 2)
+    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(31)) || TargetKFP.Physics == 2)
     {
         return false;
     }
@@ -1453,7 +1454,7 @@ final event bool IsDoingAttackSpecialMove()
     if(MyKFPawn.IsDoingSpecialMove())
     {
         KFSM = MyKFPawn.SpecialMove;
-        if(((((KFSM == 1) || KFSM == 3) || KFSM == 20) || KFSM == 2) || KFSM == 23)
+        if(((((KFSM == 1) || KFSM == 3) || KFSM == 21) || KFSM == 2) || KFSM == 24)
         {
             return true;
         }
@@ -3292,7 +3293,7 @@ function EvaluateStuckPossibility(float DeltaTime)
     {
         FallingStuckNoZVelocityTime = 0;
     }
-    if((GetIsInZedVictoryState()) || (WorldInfo.GRI != none) && !WorldInfo.GRI.bMatchHasBegun)
+    if((WorldInfo.TimeSeconds - LastDamageTime_Taken) < 5)
     {
         StuckPossiblity = 0;
         bTryingToGetUnstuck = false;
@@ -3347,7 +3348,7 @@ function EvaluateStuckPossibility(float DeltaTime)
         return;
     }
     I = 0;
-    J0x551:
+    J0x516:
 
     if(I < RouteCache.Length)
     {
@@ -3361,7 +3362,7 @@ function EvaluateStuckPossibility(float DeltaTime)
             }
         }
         ++ I;
-        goto J0x551;
+        goto J0x516;
     }
     if((MyKFPawn.Physics != 2) && VSizeSq2D(MyKFPawn.Velocity) < StuckVelocityThreshholdSquared)
     {
@@ -3793,7 +3794,7 @@ event SeePlayer(Pawn Seen)
     }
     if((Enemy != none) && Enemy != Seen)
     {
-        if((((KFPawn(Seen) != none) && KFPawn(Seen).IsDoingSpecialMove(30)) && (NumberOfZedsTargetingPawn(Seen)) <= 3) && !bEnemyIsVisible)
+        if((((KFPawn(Seen) != none) && KFPawn(Seen).IsDoingSpecialMove(31)) && (NumberOfZedsTargetingPawn(Seen)) <= 3) && !bEnemyIsVisible)
         {
             SetEnemy(Seen);            
         }
@@ -5028,7 +5029,7 @@ function bool GetDangerEvadeDelay(name InstigatorClassName, out float ReactionDe
     if(Index != -1)
     {
         bShouldBlock = 0;
-        D = int(WorldInfo.Game.GameDifficulty);
+        D = WorldInfo.Game.GetModifiedGameDifficulty();
         if((DangerEvadeSettings[Index].LastEvadeTime > 0) && (WorldInfo.TimeSeconds - DangerEvadeSettings[Index].LastEvadeTime) < DangerEvadeSettings[Index].Cooldowns[D])
         {
             return false;
@@ -5170,6 +5171,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
     {
         return;
     }
+    UpdateLasDamageTime();
     if(!MyKFPawn.bIsBlocking)
     {
         BlockSettings = MyKFPawn.GetBlockSettings();
@@ -5215,11 +5217,20 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
     }
 }
 
+function UpdateLasDamageTime()
+{
+    LastDamageTime_Taken = WorldInfo.TimeSeconds;
+}
+
 function NotifyFriendlyAIDamageTaken(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
 {
     local int Idx;
     local Pawn BlockerPawn;
 
+    if(DamageType.default.bIgnoreAggroOnDamage)
+    {
+        return;
+    }
     Idx = UpdateFriendlyDamageHistory(DamagerController, Damage);
     if(Idx == -1)
     {

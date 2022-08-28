@@ -542,6 +542,8 @@ class KFPawnVoiceGroup_Ana extends KFPawnVoiceGroup;
 
 
 
+										  
+
 
 
 
@@ -846,6 +848,7 @@ defaultproperties
    DialogEvents(227)=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_OBJE_PlayerDiedPackage_Base')
    DialogEvents(228)=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_OBJE_PackageSecured_Base')
    DialogEvents(229)=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_KZED_SprintTowardsZ_Base')
+   DialogEvents(230)=(DefaultAudioCue=AkEvent'ww_vox_chr_AnaLarive.Play_AnaLarive_MAN_Thanks')
    Name="Default__KFPawnVoiceGroup_Ana"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

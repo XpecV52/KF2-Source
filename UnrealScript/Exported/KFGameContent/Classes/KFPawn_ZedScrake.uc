@@ -86,15 +86,15 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	}
 	else
 	{
-		if( WorldInfo.Game.GameDifficulty == 0 )
+		if( WorldInfo.Game.GetModifiedGameDifficulty() == 0 )
 		{
             RageHealthThreshold = RageHealthThresholdNormal;
 		}
-		else if( WorldInfo.Game.GameDifficulty == 1 )
+		else if( WorldInfo.Game.GetModifiedGameDifficulty() == 1 )
 		{
             RageHealthThreshold = RageHealthThresholdHard;
 		}
-		else if( WorldInfo.Game.GameDifficulty == 2 )
+		else if( WorldInfo.Game.GetModifiedGameDifficulty() == 2 )
 		{
             RageHealthThreshold = RageHealthThresholdSuicidal;
 		}
@@ -301,7 +301,7 @@ defaultproperties
    DamageTypeModifiers(5)=(DamageType=Class'KFGame.KFDT_Slashing')
    DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Bludgeon')
    DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.300000))
-   DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
+   DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(1.100000))
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.400000))
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.750000))
    DamageTypeModifiers(11)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_RPG7Impact',DamageScale=(4.000000))
@@ -309,6 +309,15 @@ defaultproperties
    ZedBumpDamageScale=0.100000
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Scrake'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    OnDeathAchievementID=132
    PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
    LocalizationKey="KFPawn_ZedScrake"
@@ -421,7 +430,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -531,7 +542,8 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=ChainsawAkComponent0
+   Components(8)=SprintAkComponent0
+   Components(9)=ChainsawAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=50000,Roll=50000)
    Name="Default__KFPawn_ZedScrake"

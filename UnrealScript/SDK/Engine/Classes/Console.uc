@@ -298,7 +298,6 @@ function PostRender_Console(Canvas Canvas);
 function bool InputKey( int ControllerId, name Key, EInputEvent Event, float AmountDepressed = 1.f, bool bGamepad = FALSE )
 {
 	local PlayerController PC;
-
 	if ( Event == IE_Pressed )
 	{
 
@@ -330,6 +329,13 @@ function bool InputKey( int ControllerId, name Key, EInputEvent Event, float Amo
 
 	return bCaptureKeyInput;
 }
+
+`if(`__TW_)
+function AttempDisconnect()
+{
+
+}
+`endif
 
 /**
  * Process a character input event (typing) routed through unrealscript from another object. This method is assigned as the value for the

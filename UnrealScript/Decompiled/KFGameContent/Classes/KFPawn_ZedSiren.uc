@@ -134,6 +134,7 @@ defaultproperties
     WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Siren'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedSiren.SprintAkComponent0'
     OnDeathAchievementID=129
     PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
     LocalizationKey=KFPawn_ZedSiren
@@ -151,7 +152,7 @@ defaultproperties
     IncapSettings=/* Array type was not detected. */
     PhysRagdollImpulseScale=0.5
     KnockdownImpulseScale=0.5
-    SprintSpeed=200
+    SprintSpeed=275
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -208,6 +209,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedSiren.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedSiren.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedSiren.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedSiren.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

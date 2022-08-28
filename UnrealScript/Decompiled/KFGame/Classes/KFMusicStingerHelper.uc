@@ -28,6 +28,34 @@ var AkEvent TeammateDeathStinger;
 var AkEvent ZedKillHumanStinger;
 var AkEvent ZedPlayerKilledStinger;
 var AkEvent ZedPlayerSuicideStinger;
+var AkEvent WeaponUpgradeStinger;
+var AkEvent PerkPrestigeStinger;
+
+static simulated function PlayWeaponUpgradeStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.WeaponUpgradeStinger);
+}
+
+static simulated function PlayPerkPrestigeStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.PerkPrestigeStinger);
+}
 
 static simulated function PlayTeammateDeathStinger(PlayerController P)
 {
@@ -315,4 +343,6 @@ defaultproperties
     ZedKillHumanStinger=AkEvent'WW_UI_Menu.Play_Zed_Kill_Human'
     ZedPlayerKilledStinger=AkEvent'WW_UI_Menu.Play_Zed_Player_Killed'
     ZedPlayerSuicideStinger=AkEvent'WW_UI_Menu.Play_Zed_Player_Suicide'
+    WeaponUpgradeStinger=AkEvent'WW_UI_Menu.Play_UI_Weapon_Upgrade'
+    PerkPrestigeStinger=AkEvent'WW_UI_Menu.Play_UI_Prestige_Lvl_Reset'
 }

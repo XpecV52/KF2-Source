@@ -16,4 +16,12 @@ DefaultProperties
 	ImagePath="wep_ui_dual_flaregun_tex.UI_WeaponSelect_DualFlaregun"
 
 	EffectiveRange=50
+
+	UpgradePrice[0]=600
+	UpgradePrice[1]=700
+	UpgradePrice[2]=1500
+
+	UpgradeSellPrice[0]=450
+	UpgradeSellPrice[1]=975
+	UpgradeSellPrice[2]=2100
 }

@@ -73,12 +73,12 @@ function SetCloaked(bool bNewCloaking)
 			Mesh.SetPerObjectShadows(!bNewCloaking);
 			ClearBloodDecals();
 		}
-		
+
 		super.SetCloaked( bNewCloaking );
 	}
 }
 
-/** 
+/**
  * bIsCloaking replicated state changed
  * Network: Local and Remote Clients
  */
@@ -88,7 +88,7 @@ simulated function ClientCloakingStateUpdated()
 	{
 		ClearBloodDecals();
 	}
-	
+
 	UpdateGameplayMICParams();
 	Mesh.SetPerObjectShadows( !bIsCloaking );
 }
@@ -135,7 +135,7 @@ simulated event NotifyGoreMeshActive()
 	// Set to our solid gore mat (only AI-controlled)
 	if( PlayerReplicationInfo == none && Mesh.SkeletalMesh.Materials.Length > 2 )
 	{
-		CharacterMICs[0].SetParent( Mesh.SkeletalMesh.Materials[2] );	
+		CharacterMICs[0].SetParent( Mesh.SkeletalMesh.Materials[2] );
 	}
 }
 
@@ -257,7 +257,7 @@ simulated event UpdateSpottedStatus()
 			}
 		}
 	}
-	
+
 	// If spotted by team already, there is no point in trying to update the MIC here
 	if ( !bIsCloakingSpottedByTeam )
 	{
@@ -439,6 +439,9 @@ defaultproperties
    bCloakOnMeleeEnd=True
    bIsStalkerClass=True
    MonsterArchPath="ZED_ARCH.ZED_Stalker_Archetype"
+   ElitePawnClass(0)=Class'kfgamecontent.KFPawn_ZedDAR_EMP'
+   ElitePawnClass(1)=Class'kfgamecontent.KFPawn_ZedDAR_Laser'
+   ElitePawnClass(2)=Class'kfgamecontent.KFPawn_ZedDAR_Rocket'
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=9.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'
@@ -466,6 +469,15 @@ defaultproperties
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Stalker'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
    LocalizationKey="KFPawn_ZedStalker"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -548,7 +560,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -656,7 +670,8 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=CloakedAkComponent0
+   Components(8)=SprintAkComponent0
+   Components(9)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
    Name="Default__KFPawn_ZedStalker"

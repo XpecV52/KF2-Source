@@ -156,7 +156,10 @@ private static final event bool CheckCustomizationOwnership(KFPlayerReplicationI
 
         if(I < 3)
         {
-            if((PRI.RepCustomizationInfo.AttachmentMeshIndices[I] != 255) && PRI.RepCustomizationInfo.AttachmentMeshIndices[I] != -1)
+            if(PRI.RepCustomizationInfo.AttachmentSkinIndices[I] == -1)
+            {                
+            }
+            else
             {
                 Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[I]];
                 if(Attachment.AttachmentItem == none)

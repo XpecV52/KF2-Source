@@ -38,7 +38,15 @@ package tripwire.containers.trader
         
         private var regularColor:uint = 12255231;
         
+        private var upgradePriceColor:uint = 0;
+        
+        private var upgradeWeightColor:uint = 0;
+        
         private var _iconColor:Color;
+        
+        private var _priceColor:Color;
+        
+        private var _weightColor:Color;
         
         private var _favoriteString:String;
         
@@ -47,6 +55,8 @@ package tripwire.containers.trader
         public var _bIsFavorite:Boolean;
         
         public var _bCanFavorite:Boolean;
+        
+        public var _bCanUpgrade:Boolean;
         
         public var perkSecondaryArrow:MovieClip;
         
@@ -60,15 +70,20 @@ package tripwire.containers.trader
         
         private const BAR_MAX_WIDTH:int = 144;
         
+        private const DOSH_ICON_OFFSET:int = 6;
+        
         private var cachedFavorite_X:Number;
         
-        private var cachedItemData:Object;
+        public var cachedItemData:Object;
         
         public function TraderItemDetailsContainer()
         {
             this._iconColor = new Color();
+            this._priceColor = new Color();
+            this._weightColor = new Color();
             super();
             this.detailedStats.favoriteButton.addEventListener(ButtonEvent.PRESS,this.onFavoriteItem,false,0,true);
+            this.detailedStats.upgradeButton.addEventListener(ButtonEvent.PRESS,this.onUpgradeItem,false,0,true);
             tabChildren = false;
             tabEnabled = false;
             this.updateControllerVisibility();
@@ -85,6 +100,7 @@ package tripwire.containers.trader
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            this.detailedStats.upgradeButton.focusable = false;
         }
         
         public function set localizeContainer(param1:Object) : void
@@ -96,9 +112,10 @@ package tripwire.containers.trader
             this.detailedStats.accuracyTitle.text = param1.accuracyTitle;
             this.detailedStats.ammoTitle.text = param1.capacityTitle;
             this.detailedStats.magTitle.text = param1.magTitle;
+            this.detailedStats.upgradeTextField.text = param1.upgradeCost;
             this._favoriteString = param1.favorite;
             this._unfavoriteString = param1.unfavorite;
-            this.cachedFavorite_X = this.detailedStats.favoriteTextField.x;
+            this.detailedStats.upgradeButton.label = this._favoriteString;
         }
         
         public function set itemData(param1:Object) : void
@@ -111,14 +128,22 @@ package tripwire.containers.trader
             this.nameTextField.text = !!param1.type ? param1.type : "";
             if(MenuManager.manager && MenuManager.manager.bUsingGamepad)
             {
-                this.detailedStats.favoriteIcon.visible = param1.bCanFavorite;
-                this.detailedStats.favoriteButton.visible = false;
             }
-            else
-            {
-                this.detailedStats.favoriteIcon.visible = false;
-                this.detailedStats.favoriteButton.visible = param1.bCanFavorite;
-            }
+            this.detailedStats.upgradeCostTextField.text = param1.upgradePrice;
+            this.detailedStats.upgradeWeightTextField.text = param1.upgradeWeight;
+            this.detailedStats.DoshIcon.x = this.detailedStats.upgradeCostTextField.getLineMetrics(0).x - this.DOSH_ICON_OFFSET;
+            this.upgradePriceColor = !!param1.bCanBuyUpgrade ? uint(this.activeColor) : uint(this.inactiveColor);
+            this.upgradeWeightColor = !!param1.bCanCarryUpgrade ? uint(this.activeColor) : uint(this.inactiveColor);
+            this._priceColor.setTint(this.upgradePriceColor,1);
+            this._weightColor.setTint(this.upgradeWeightColor,1);
+            this.detailedStats.upgradeCostTextField.textColor = this.upgradePriceColor;
+            this.detailedStats.upgradeWeightTextField.textColor = this.upgradeWeightColor;
+            this.detailedStats.DoshIcon.transform.colorTransform = this._priceColor;
+            this.detailedStats.upgradeWeightIcon.transform.colorTransform = this._weightColor;
+            this.detailedStats.upgradeWeightPlusIcon.transform.colorTransform = this._weightColor;
+            this.detailedStats.upgradeButton.enabled = param1.bCanBuyUpgrade && param1.bCanCarryUpgrade ? true : false;
+            this.detailedStats.upgradeButton.focused = 0;
+            this.detailedStats.upgradeButton.focusable = false;
             this.weaponLoader.source = !!param1.texturePath ? param1.texturePath : "";
             this.weaponLoader.visible = true;
             this.perkLoader.source = !!param1.perkIconPath ? param1.perkIconPath : "";
@@ -136,6 +161,13 @@ package tripwire.containers.trader
             }
             this.SetHideStats(param1.bHideStats);
             this.bCanFavorite = !!param1.bCanFavorite ? Boolean(param1.bCanFavorite) : false;
+            this.WeaponImageBorder.gotoAndStop(param1.weaponTier > 0 ? "upgrade" : "regular");
+            this.weaponUpPlusIcon.visible = param1.weaponTier > 0 ? true : false;
+            this.weaponUpNumText.text = param1.weaponTier > 0 ? param1.weaponTier : "";
+            this.nameTextField.textColor = param1.weaponTier > 0 ? uint(this.upgradeTextColor) : uint(this.regularColor);
+            this._iconColor.setTint(param1.weaponTier > 0 ? uint(this.upgradeTextColor) : uint(this.regularColor),1);
+            this.perkLoader.transform.colorTransform = this._iconColor;
+            this.detailedStats.upgradeFrame.visible = !!param1.weaponTier ? true : false;
             if(!param1.bHideStats)
             {
                 this.detailedStats.damageValue.text = param1.damageValue;
@@ -156,27 +188,10 @@ package tripwire.containers.trader
                 this.detailedStats.weightValue.text = param1.weight;
                 this.detailedStats.weightValue.visible = param1.weight > 0;
                 this.detailedStats.weightIcon.visible = param1.weight > 0;
-                this.WeaponImageBorder.gotoAndStop(!!param1.weaponTier ? "upgrade" : "regular");
-                this.weaponUpPlusIcon.visible = !!param1.weaponTier ? true : false;
-                this.weaponUpNumText.text = !!param1.weaponTier ? param1.weaponTier : "";
-                this.nameTextField.textColor = !!param1.weaponTier ? uint(this.upgradeTextColor) : uint(this.regularColor);
-                this._iconColor.setTint(!!param1.weaponTier ? uint(this.upgradeTextColor) : uint(this.regularColor),1);
-                this.perkLoader.transform.colorTransform = this._iconColor;
-                this.detailedStats.upgradeFrame.visible = !!param1.weaponTier ? true : false;
-                if(param1.bIsFavorite)
-                {
-                    this.detailedStats.favoriteIcon.gotoAndStop("favorited");
-                    this.detailedStats.favoriteButton.selected = true;
-                    this.detailedStats.favoriteButton.label = this._unfavoriteString;
-                    this.bIsFavorite = true;
-                }
-                else
-                {
-                    this.detailedStats.favoriteIcon.gotoAndStop("notFavorited");
-                    this.detailedStats.favoriteButton.selected = false;
-                    this.detailedStats.favoriteButton.label = this._favoriteString;
-                    this.bIsFavorite = false;
-                }
+                this.detailedStats.damageUpBar.x = this.detailedStats.damageBar.x;
+                this.detailedStats.damageUpBar.width = this.BAR_MAX_WIDTH * 0.01 * param1.damageUpgradePercent;
+                this.detailedStats.favoriteButton.selected = param1.bIsFavorite;
+                this.bCanUpgrade = param1.bCanBuyUpgrade && param1.bCanCarryUpgrade && param1.bCanUpgrade ? true : false;
                 if(param1.bCanCarry)
                 {
                     this._iconColor.setTint(!!param1.weaponTier ? uint(this.upgradeColor) : uint(this.activeColor),1);
@@ -197,6 +212,7 @@ package tripwire.containers.trader
             {
                 this.dispatchEvent(new Event("ItemUpdated"));
             }
+            this.updateControllerVisibility();
         }
         
         public function get bIsFavorite() : *
@@ -219,15 +235,36 @@ package tripwire.containers.trader
             this._bCanFavorite = param1;
         }
         
+        public function get bCanUpgrade() : *
+        {
+            return this._bCanUpgrade;
+        }
+        
+        public function set bCanUpgrade(param1:Boolean) : void
+        {
+            this._bCanUpgrade = param1;
+        }
+        
         public function updateControllerVisibility() : *
         {
             this.detailedStats.favoriteButton.visible = !bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
-            this.detailedStats.favoriteIcon.visible = bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
+            this.detailedStats.upgradeButton.visible = !bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanUpgrade;
+            this.detailedStats.upgradeTextField.visible = this.cachedItemData && this.cachedItemData.bCanUpgrade;
+            this.detailedStats.DoshIcon.visible = this.cachedItemData && this.cachedItemData.bCanUpgrade;
+            this.detailedStats.upgradeCostTextField.visible = this.cachedItemData && this.cachedItemData.bCanUpgrade;
+            this.detailedStats.upgradeWeightPlusIcon.visible = this.cachedItemData && this.cachedItemData.bCanUpgrade;
+            this.detailedStats.upgradeWeightIcon.visible = this.cachedItemData && this.cachedItemData.bCanUpgrade;
+            this.detailedStats.upgradeWeightTextField.visible = this.cachedItemData && this.cachedItemData.bCanUpgrade;
         }
         
         public function favoriteItem() : *
         {
             ExternalInterface.call("Callback_FavoriteItem");
+        }
+        
+        public function upgradeItem() : *
+        {
+            ExternalInterface.call("Callback_UpgradeItem");
         }
         
         protected function buyItem(param1:ButtonEvent) : *
@@ -238,6 +275,11 @@ package tripwire.containers.trader
         protected function onFavoriteItem(param1:ButtonEvent) : *
         {
             this.favoriteItem();
+        }
+        
+        protected function onUpgradeItem(param1:ButtonEvent) : *
+        {
+            this.upgradeItem();
         }
         
         protected function SetHideStats(param1:Boolean) : *

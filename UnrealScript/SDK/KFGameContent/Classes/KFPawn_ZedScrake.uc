@@ -86,15 +86,15 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	}
 	else
 	{
-		if( WorldInfo.Game.GameDifficulty == 0 )
+		if( WorldInfo.Game.GetModifiedGameDifficulty() == 0 )
 		{
             RageHealthThreshold = RageHealthThresholdNormal;
 		}
-		else if( WorldInfo.Game.GameDifficulty == 1 )
+		else if( WorldInfo.Game.GetModifiedGameDifficulty() == 1 )
 		{
             RageHealthThreshold = RageHealthThresholdHard;
 		}
-		else if( WorldInfo.Game.GameDifficulty == 2 )
+		else if( WorldInfo.Game.GetModifiedGameDifficulty() == 2 )
 		{
             RageHealthThreshold = RageHealthThresholdSuicidal;
 		}
@@ -336,7 +336,7 @@ defaultproperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(1.0))) //0.75
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(1.0))) //0.75
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 				    DamageScale=(1.0)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 				    DamageScale=(1.1)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(0.4)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.75)))	
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_RPG7Impact', 	    DamageScale=(4.f)))

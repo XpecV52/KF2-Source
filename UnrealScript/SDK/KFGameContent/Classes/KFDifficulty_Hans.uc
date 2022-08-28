@@ -38,7 +38,7 @@ defaultproperties
 		DamagedSprintChance=1.0,
 		DamageMod=1.15, //1.15
 		SoloDamageMod=0.40000, //0.6
-		EvadeOnDamageSettings={(Chance=0.2, DamagedHealthPctToTrigger=0.01, ForcedEvadeChance=(FL=0.6, FR=0.6))},  //0.6 //0.1 try lowering evade   0.40
+		EvadeOnDamageSettings={(Chance=0.1, DamagedHealthPctToTrigger=0.01, ForcedEvadeChance=(FL=0.6, FR=0.6))},  //0.6 //0.1 try lowering evade   0.40
 		BlockSettings={(Chance=0.3, Duration=1.0, MaxBlocks=5, Cooldown=7.0, DamagedHealthPctToTrigger=0.1,  //Cooldown=3.5  
 							MeleeDamageModifier=0.7, DamageModifier=0.7, AfflictionModifier=0.2, SoloChanceMultiplier=1.0)},
 		RallySettings={(bCanRally=false)}
@@ -51,7 +51,7 @@ defaultproperties
 		DamagedSprintChance=1.000000,
 		DamageMod=1.18000, //1.25 4percent reduction
 		SoloDamageMod=0.510000, //0.61
-		EvadeOnDamageSettings={(Chance=0.2, DamagedHealthPctToTrigger=0.01, ForcedEvadeChance=(FL=0.6f, FR=0.6f))},
+		EvadeOnDamageSettings={(Chance=0.1, DamagedHealthPctToTrigger=0.01, ForcedEvadeChance=(FL=0.6f, FR=0.6f))},
 		BlockSettings={(Chance=0.3, Duration=1.0, MaxBlocks=6, Cooldown=6.5, DamagedHealthPctToTrigger=0.1,
 							MeleeDamageModifier=0.7, DamageModifier=0.7, AfflictionModifier=0.2, SoloChanceMultiplier=1.0)},
 		RallySettings={(bCanRally=false)}

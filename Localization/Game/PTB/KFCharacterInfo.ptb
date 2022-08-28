@@ -1,3 +1,34 @@
+[CHR_MrsFoster_archetype]
+CharacterName="Mrs. Foster"
+Description="Quando entrevistou o Mr. Foster para um trabalho de negociante de commodities, a Sra. Foster já era muito bem sucedida nesse ramo em uma das melhores empresas em Londres. Ela era o que ele queria ser, mas era óbvio que o Mr. Foster não tinha futuro no ramo, ele não conseguia obedecer regras ou ficar calado. Mas ele era diferente... tão legal, tão suave, tão... único. Único o bastante para dar a ela uma máscara de gás no primeiro encontro. Era quase como se soubesse que um mutante de metralhadora fosse criar uma horda de clones canibais e acabar com a sequência de bônus de milhões de libras dela Eles se casaram logo depois em um turbilhão de flores, renda, Zeds e explosivos. Apesar de não trabalharem juntos na cidade ganhando muito dinheiro, eles exterminando zeds e ganhando muita Grana juntos!"
+BodyMesh0="Colete"
+BodyMesh1="Steampunk"
+HeadMesh0="Máscara de Gás"
+
+[CHR_MrsFoster_archetype.BodyMesh0]
+BodySkin0="Marrom"
+BodySkin1="Exército"
+BodySkin2="Vermelho"
+BodySkin3="Azul"
+BodySkin4="Rosa"
+BodySkin5="Preto"
+
+[CHR_MrsFoster_archetype.BodyMesh1]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
+[CHR_MrsFoster_archetype.HeadMesh0]
+HeadSkin0="Branco"
+HeadSkin1="Verde"
+HeadSkin2="Vermelho"
+HeadSkin3="Marrom"
+HeadSkin4="Rosa"
+HeadSkin5="Preto"
+
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
 Description="Este D.A.R. (Robô Assistente Doméstico), é uma versão melhorada do modelo de D.A.R. anterior e utiliza a última tecnologia em robótica experimental da Horzine. Unidades semelhantes estão em teste em várias bases da Horzine na esperança de desenvolver o D.A.R. para mercados de varejo e segurança, mas este D.A.R. é especial. Este D.A.R. encontrou os Zeds enquanto estava no Posto Avançado 12 da Horzine no Ártico, e os Protocolos de Segurança de Emergência substituíram sua programação principal, o que transformou o D.A.R. em uma máquina letal robótica. Infelizmente, o D.A.R. mostra pouca preocupação com seres humanos, exceto com funcionários Horzine, a quem ele odeia um pouco menos que os outro humanos em geral. Como um novo mercado entre os robôs militares, o D.A.R. foi transferido para o Serviço de Contenção de Zeds para testes em campo."
@@ -68,6 +99,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Poder da Barba!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -138,6 +170,14 @@ BodySkin6="Xadrez Vermelho"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
+
+[CHR_Jagerhorn_Archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Loira Sueca"
@@ -232,6 +272,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Máscara do Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -302,6 +343,14 @@ BodySkin6="Xadrez Vermelho"
 [CHR_DJSkully_Archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
 
+[CHR_DJSkully_Archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Preto Total"
 HeadSkin1="Vermelho Extra"
@@ -342,6 +391,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Galinha Comando"
 BodyMesh7="Pijamas Natalino"
 BodyMesh8="Pijamas de Cofre"
+BodyMesh9="Steampunk"
 HeadMesh0="Cabelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -418,6 +468,14 @@ BodySkin6="Xadrez Vermelho"
 [chr_briar_archetype.BodyMesh8]
 BodySkin0="Estampa de Cofre"
 
+[chr_briar_archetype.BodyMesh9]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Destaques"
@@ -452,6 +510,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Galinha Comando"
 BodyMesh7="Pijamas Natalino"
 BodyMesh8="Pijamas de Cofre"
+BodyMesh9="Steampunk"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -532,6 +591,14 @@ BodySkin6="Xadrez Vermelho"
 
 [CHR_MrFoster_archetype.BodyMesh8]
 BodySkin0="Estampa de Cofre"
+
+[CHR_MrFoster_archetype.BodyMesh9]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Branco Original"
@@ -687,6 +754,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Rosto"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -755,6 +823,14 @@ BodySkin6="Xadrez Vermelho"
 [CHR_Coleman_archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
 
+[CHR_Coleman_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -788,6 +864,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Cabelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -857,6 +934,14 @@ BodySkin6="Xadrez Vermelho"
 
 [CHR_Alberts_archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
+
+[CHR_Alberts_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Cinza"
@@ -1751,6 +1836,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Rosto"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -1829,6 +1915,14 @@ BodySkin6="Xadrez Vermelho"
 [CHR_Masterson_archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
 
+[CHR_Masterson_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka é um rapaz com sérios problemas pessoais e sério desejo de suicídio. Nascido em Okinawa, ele foi criado em meio a militares norte-americanos. Ao se mudar para a ilha central de Honshu com a família, o americanizado Tanaka não se adequou à nova vida e começou a fazer aulas de teatro. Depois do colegial, mudou-se para Los Angeles e começou a fazer pequenos papéis em filmes ruins até que se mudou para a Europa à procura de um trabalho mais “sério”. Porém, conseguiu apenas alguns papéis de vilão em filmes franceses de gângster e algumas tatuagens. Agora, no apocalipse, ele parece estar confundindo sua própria realidade com a dramaturgia. Com direito a visões de Yakuza, demônios e bushido em Hollywood."
@@ -1841,6 +1935,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Galinha Comando"
 BodyMesh7="Pijamas Natalino"
 BodyMesh8="Pijamas de Cofre"
+BodyMesh9="Steampunk"
 HeadMesh0="Cabelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -1926,6 +2021,14 @@ BodySkin6="Xadrez Vermelho"
 [CHR_Tanaka_Archetype.BodyMesh8]
 BodySkin0="Estampa de Cofre"
 
+[CHR_Tanaka_Archetype.BodyMesh9]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Capacete"
 AttachmentSkin0="Sol Nascente"
@@ -1964,6 +2067,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2042,6 +2146,14 @@ BodySkin6="Xadrez Vermelho"
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
 
+[CHR_Ana_Archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Óculos 3D"
 AttachmentSkin0="Anaglifo 3D"
@@ -2066,6 +2178,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Galinha Comando"
 BodyMesh7="Pijamas Natalino"
 BodyMesh8="Pijamas de Cofre"
+BodyMesh9="Steampunk"
 HeadMesh0="Cabelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2142,6 +2255,14 @@ BodySkin6="Xadrez Vermelho"
 [chr_mark_archetype.BodyMesh8]
 BodySkin0="Estampa de Cofre"
 
+[chr_mark_archetype.BodyMesh9]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="5 Horas Sangrentas"
@@ -2162,6 +2283,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Rosto"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2233,6 +2355,14 @@ BodySkin6="Xadrez Vermelho"
 [CHR_alan_archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
 
+[CHR_alan_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="Ruivo! Sério?"
@@ -2260,6 +2390,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Cabelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2327,6 +2458,14 @@ BodySkin6="Xadrez Vermelho"
 
 [CHR_strasser_archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
+
+[CHR_strasser_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Aço Escuro"
@@ -2494,6 +2633,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Galinha Comando"
 BodyMesh6="Pijamas Natalino"
 BodyMesh7="Pijamas de Cofre"
+BodyMesh8="Steampunk"
 HeadMesh0="Cabeça Padrão"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2565,6 +2705,14 @@ BodySkin6="Xadrez Vermelho"
 
 [chr_rockabilly_archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
+
+[chr_rockabilly_archetype.BodyMesh8]
+BodySkin0="Azul"
+BodySkin1="Verde"
+BodySkin2="Branco"
+BodySkin3="Roxo"
+BodySkin4="Vermelho"
+BodySkin5="Amarelo"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Preto"
@@ -3943,3 +4091,87 @@ AttachmentSkin2="Laranja"
 AttachmentSkin3="Precioso"
 AttachmentSkin4="Roxo"
 AttachmentSkin5="Vermelho"
+
+[Cosmetic_SP_TopHat_ARCH]
+Attachment="Cartola Steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Marrom"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_FlatCap_ARCH]
+Attachment="Boné de Pano Steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_WelderMask_ARCH]
+Attachment="Máscara de Soldador Steampunk"
+AttachmentSkin0="Latão"
+AttachmentSkin1="Cinza"
+AttachmentSkin2="Pátina"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_ChimneyClock_ARCH]
+Attachment="Relógio Chaminé Steampunk"
+AttachmentSkin0="Padrão"
+AttachmentSkin1="Brilho Maneiro"
+AttachmentSkin2="Brilho Caloroso"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_Goggles_ARCH]
+Attachment="Óculos Steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Laranja"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_MedicalBag_ARCH]
+Attachment="Bolsa Médica Steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Couro Escuro"
+AttachmentSkin2="Couro"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_OctopusBackpack_ARCH]
+Attachment="Mochila Octópode Steampunk"
+AttachmentSkin0="Latão"
+AttachmentSkin1="Pátina"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_TanksBackpack_ARCH]
+Attachment="Mochila de Tanques Steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Vermelho"
+AttachmentSkin2="Amarelo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_TentacleSkull_ARCH]
+Attachment="Caveira Tentaculada Steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Vermelho"
+AttachmentSkin2="Padrão"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_DynamiteArm_ARCH]
+Attachment="Pulseira de Dinamite Steampunk"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_MrsFosterHead_ARCH]
+Attachment="Másc. da Mrs. Foster Steampunk"
+AttachmentSkin0="Couro Escuro"
+AttachmentSkin1="Couro"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_SP_SkullyHead_ARCH]
+Attachment="Máscara do Scully Steampunk"
+AttachmentSkin0="Descolorido"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Ferrugem"
+AttachmentSkin3="Precioso"

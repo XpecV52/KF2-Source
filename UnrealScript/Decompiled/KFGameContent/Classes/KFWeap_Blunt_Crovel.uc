@@ -16,11 +16,15 @@ defaultproperties
     ParryDamageMitigationPercent=0.5
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Crovel'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
+    PackageKey="Crovel"
+    FirstPersonMeshName="WEP_1P_Crovel_MESH.Wep_1stP_Crovel_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Crovel_MESH.Wep_Crovel_Pickup"
+    AttachmentArchetypeName="WEP_Crovel_ARCH.Wep_Crovel_3P"
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=4
     GroupPriority=25
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Crovel'
-    AttachmentArchetype=KFWeaponAttachment'WEP_Crovel_ARCH.Wep_Crovel_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_B=/* Array type was not detected. */
         ChainSequence_L=/* Array type was not detected. */
@@ -31,24 +35,21 @@ defaultproperties
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Blunt_Crovel.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Crovel_MESH.Wep_1stP_Crovel_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Crovel_ANIM.WEP_1P_Crovel_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Blunt_Crovel.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Crovel Survival Tool"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Crovel_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Blunt_Crovel.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Crovel_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Blunt_Crovel.StaticPickupComponent'

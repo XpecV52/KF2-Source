@@ -37,6 +37,9 @@ var localized string KickedFromServerString;
 var localized string BannedFromServerString;
 var localized string ServerNoLongerAvailableString;
 
+var localized string SkipTraderTimeString; 
+var localized string SkipTraderSuccessString;
+
 enum ELocalMessageType
 {
     LMT_AdminLogin,
@@ -57,7 +60,9 @@ enum ELocalMessageType
     LMT_KickVoteMatchNotStarted,
     LMT_KickVoteMaxKicksReached,
     LMT_KickVoteNotEnoughPlayers,
-    LMT_KickVoteNoSpectators
+    LMT_KickVoteNoSpectators,
+	LMT_SkipTraderTime,
+	LMT_SkipTraderTimeSuccess
 };
 
 /** Message area on HUD (index into UTHUD.MessageOffset[]) */
@@ -137,6 +142,10 @@ static function string GetString(
 
     switch (Switch)
     {
+	case LMT_SkipTraderTimeSuccess:
+		return default.SkipTraderSuccessString;
+		case LMT_SkipTraderTime:
+			return default.SkipTraderTimeString;
         case LMT_AdminLogin:
             return RelatedPRI_1.PlayerName@Default.LoggedInAsAdminString;
             
@@ -245,6 +254,8 @@ static function string GetHexColor(int Switch)
         case LMT_AdminLogin:
         case LMT_AdminLogout:
 		case LMT_ServerMaintenance:
+		case LMT_SkipTraderTimeSuccess:
+		case LMT_SkipTraderTime:
             return default.PriorityColor;
         case LMT_KickVoteRejected:
         case LMT_KickVoteSucceeded:
@@ -252,6 +263,7 @@ static function string GetHexColor(int Switch)
         case LMT_KickVoteStarted:
         case LMT_KickVoteInProgress:
         case LMT_KickVoteDisabled:
+		
             return default.EventColor;
     }
     return default.DefaultColor;
@@ -297,6 +309,8 @@ defaultproperties
    KickedFromServerString="You have been removed from the server"
    BannedFromServerString="You have been removed from this server. You cannot rejoin at this time"
    ServerNoLongerAvailableString="The server is no longer available to join"
+   SkipTraderTimeString="SKIP TRADER activated. Select 'SKIP TRADER' on the game menu to vote.  All players must agree."
+   SkipTraderSuccessString="Skip trader vote successful!"
    MessageArea=1
    AnnouncementVolume=2.000000
    SayColor="FFFFFF"

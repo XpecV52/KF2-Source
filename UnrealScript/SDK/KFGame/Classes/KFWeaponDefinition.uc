@@ -84,7 +84,7 @@ static function bool UsesSecondaryAmmo()
 
 static function int GetUpgradePrice(int UpgradeTier)
 {
-	if (UpgradeTier >= 0 && UpgradeTier <= default.UpgradePrice.length)
+	if (UpgradeTier >= 0 && UpgradeTier < default.UpgradePrice.length)
 	{
 		return default.UpgradePrice[UpgradeTier];
 	}
@@ -102,17 +102,34 @@ static function int GetUpgradeSellPrice(int UpgradeTier)
 	return INDEX_NONE;
 }
 
+static function int GetTotalUpgradePrice(int UpgradeTier)
+{
+	local int i, TotalPrice;
+
+	TotalPrice = INDEX_NONE;
+	if (UpgradeTier >= 0 && UpgradeTier < default.UpgradePrice.length)
+	{
+		TotalPrice = 0;
+		for (i = 0; i <= UpgradeTier; i++)
+		{
+			TotalPrice += default.UpgradePrice[UpgradeTier];
+		}
+	}
+
+	return TotalPrice;
+}
+
 DefaultProperties
 {
 	WeaponClassPath=""
 
-	UpgradePrice[0]=400
-	UpgradePrice[1]=500
-	UpgradePrice[2]=600
-	UpgradePrice[3]=700
+	UpgradePrice[0]=450
+	//UpgradePrice[1]=550
+	//UpgradePrice[2]=600
+	//UpgradePrice[3]=1000
 
-	UpgradeSellPrice[0]=100
-	UpgradeSellPrice[1]=150
-	UpgradeSellPrice[2]=200
-	UpgradeSellPrice[3]=250
+	UpgradeSellPrice[0]=337
+	//UpgradeSellPrice[1]=750
+	//UpgradeSellPrice[2]=1200
+	//UpgradeSellPrice[3]=1950
 }

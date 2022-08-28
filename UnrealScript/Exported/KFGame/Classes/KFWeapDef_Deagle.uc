@@ -16,6 +16,10 @@ defaultproperties
    ImagePath="WEP_UI_Deagle_TEX.UI_WeaponSelect_Deagle"
    BuyPrice=550
    AmmoPricePerMag=21
+   UpgradePrice(0)=700
+   UpgradePrice(1)=1500
+   UpgradeSellPrice(0)=525
+   UpgradeSellPrice(1)=1650
    EffectiveRange=50
    Name="Default__KFWeapDef_Deagle"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

@@ -88,7 +88,6 @@ defaultproperties
     object end
     // Reference: BrushComponent'Default__NxGenericForceFieldBrush.BrushComponent0'
     Components(0)=BrushComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=false
     bProjTarget=true
     begin object name=BrushComponent0 class=BrushComponent

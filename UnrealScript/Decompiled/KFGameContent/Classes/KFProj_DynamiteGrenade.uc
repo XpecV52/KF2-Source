@@ -49,7 +49,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 protected simulated function PrepareExplosionTemplate()
 {
     Class'KFPerk_Demolitionist'.static.PrepareExplosive(Instigator, self);
-    super(KFProjectile).PrepareExplosionTemplate();
+    super.PrepareExplosionTemplate();
 }
 
 protected simulated function SetExplosionActorClass()

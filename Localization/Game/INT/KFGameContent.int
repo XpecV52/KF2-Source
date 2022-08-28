@@ -202,30 +202,35 @@ ItemName="Stoner 63A LMG"
 ItemCategory="Light Machine Gun"
 ItemDescription="•Fire mode is full-auto only.\n•A staple of U.S. Navy SEALs in the Vietnam War, the Stoner 63A has high ammo capacity and tons of stopping power."
 
+[KFWeap_Knife_Survivalist]
+ItemName="Gore Shiv"
+ItemCategory="Melee"
+ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•This used to belong to something. Well, now it's yours!"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Utility Knife"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a box cutter. Perfect for opening any boxes you may come across on the killing floor."
+ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a box cutter. Perfect for opening any boxes you may come across on the killing floor."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Scalpel"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack\n•Alt - block/parry\n•It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it."
+ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack\n•Alt - block/parry\n•It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it."
 
 [KFWeap_Knife_Firebug]
 ItemName="Fireman's Knife"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a fireman's knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it."
+ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a fireman's knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Bowie Knife"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
+ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The traditional knife of the Ghurka, it's more a chopping knife than a slicing knife. "
+ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The traditional knife of the Ghurka, it's more a chopping knife than a slicing knife. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Tactical Knife"
@@ -255,7 +260,7 @@ ItemDescription="•Fire mode is full-auto only.\n•Alt-fire shoots healing dar
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="Double-barrel Boomstick"
 ItemCategory="Shotgun"
-ItemDescription="•Primary fire uses a single barrel only.\n•Alt-fire shoots both barrels at once.\n•Double-barrelle, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger!"
+ItemDescription="•Primary fire uses a single barrel only.\n•Alt-fire shoots both barrels at once.\n•Double-barrelled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger!"
 
 [KFWeap_Shotgun_AA12]
 ItemName="AA-12 Auto Shotgun"
@@ -345,7 +350,7 @@ ItemCategory="Flames"
 ItemDescription="•Fire mode shoots exploding, flammable projectiles. \n•Alt-fire switches aiming styles when using iron sights.\n•This is a pair of Spitfires."
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="Incendiary Trench Gun"
+ItemName="Dragonsbreath"
 ItemCategory="Shotgun"
 ItemDescription="•Fire mode is pump-action only.\n•A shotgun using Dragon's Breath Incendiary Rounds. Not only deadly, but looks wonderful too."
 
@@ -510,10 +515,25 @@ ItemName="Dual AF2011-A1"
 ItemCategory="Hand Gun"
 ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•Two guns with two barrels each. Four times the firepower. That's math. You can't argue with math."
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="Doomstick"
+ItemCategory="Shotgun"
+ItemDescription="•Primary fire uses a single barrel only.\n•Alt-fire shoots all four barrels at once.\n•When having twice the fun is not enough...let's make it four!"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="Static Strikers"
+ItemCategory="Melee"
+ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack. \n•Secondary - heavy, electric blunt attack. It's quite shocking! \n•Wanna punch a zed in the face? Look no further!"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="Sub Machine Gun"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Features rapid-fire incendiary ammo. Get it? Rapid-fire? Because it's an incendiary submachinegun? Oh, forget it."
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="Sniper Rifle"
+ItemDescription="•Fire mode is single shot only. \n•Every shot packs a punch...well, one really big bullet. High penetration, high pain."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

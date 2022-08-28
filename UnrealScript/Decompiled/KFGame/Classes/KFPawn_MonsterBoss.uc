@@ -152,20 +152,13 @@ simulated event PreBeginPlay()
 simulated event PostBeginPlay()
 {
     super.PostBeginPlay();
-    if(WorldInfo.NetMode != NM_Client)
-    {
-        if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
-        {
-            WorldInfo.TWLogEvent("boss_spawn", none, string(Class.Name));
-        }
-    }
 }
 
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
     PlayBossMusic();
-    ServerDoSpecialMove(35);
+    ServerDoSpecialMove(37);
     if(!IsHumanControlled())
     {
         ActualSprintSpeed = SprintSpeed;
@@ -334,6 +327,7 @@ defaultproperties
     BossCaptionStrings(1)="Boss caption 2"
     MinSpawnSquadSizeType=ESquadType.EST_Boss
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_MonsterBoss.MeleeHelper'
+    SprintAkComponent=AkComponent'Default__KFPawn_MonsterBoss.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -388,6 +382,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_MonsterBoss.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_MonsterBoss.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_MonsterBoss.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_MonsterBoss.SprintAkComponent0'
     bAlwaysRelevant=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

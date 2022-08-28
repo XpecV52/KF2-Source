@@ -454,9 +454,9 @@ struct native CustomizationInfo
 	{
 		// Index of `CLEARED_ATTACHMENT_INDEX implies don't use any attachment
 		// Note: Array size should match MAX_COSMETIC_ATTACHMENTS
-		AttachmentMeshIndices[0]=255
-		AttachmentMeshIndices[1]=255
-		AttachmentMeshIndices[2]=255
+		AttachmentMeshIndices[0]=-1
+		AttachmentMeshIndices[1]=-1
+		AttachmentMeshIndices[2]=-1
 	}
 };
 
@@ -536,6 +536,11 @@ var 		bool 		bShowNonRelevantPlayers;
 
 /** Cached (non-replicated) player owner, used by server */
 var KFPlayerController KFPlayerOwner;
+
+/** Whether we're waiting for our online subsystem inventory to load (used to determine selectable characters) */
+var transient bool bWaitingForInventory;
+/** What character should be checked for selection once the online subsystem inventory loads */
+var transient int WaitingForInventoryCharacterIndex;
 
 /************************************
 *  native
@@ -1141,11 +1146,25 @@ simulated function ClientInitialize(Controller C)
 	}
 }
 
+function OnInventoryReadComplete_Steamworks()
+{
+	class'GameEngine'.static.GetOnlineSubsystem().ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete_Steamworks);
+	bWaitingForInventory = false;
+	SelectCharacter(WaitingForInventoryCharacterIndex);
+}
+
+function OnInventoryReadComplete_Playfab(bool bWasSuccessful)
+{
+	class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+	bWaitingForInventory = false;
+	SelectCharacter(WaitingForInventoryCharacterIndex);
+}
+
 /**
  * Network: Local Player
  * INDEX_NONE will load last character from config
  */
-simulated event SelectCharacter( optional int CharIndex=INDEX_None )
+simulated event SelectCharacter( optional int CharIndex=INDEX_None, optional bool bWaitForInventory=FALSE )
 {
 	local OnlineProfileSettings Settings;
 
@@ -1155,6 +1174,38 @@ simulated event SelectCharacter( optional int CharIndex=INDEX_None )
 	{
 		LogInternal("Not selecting character just yet since there's no profile settings");
 		return;
+	}
+
+	// We need to wait for the online subsystem inventory to be loaded in order to determine whether
+	// the requested character is available to select. If the inventory isn't ready, wait for it and
+	// handle selection after the callback.
+	// @TODO JDR: should this actually ignore additional calls to SelectCharacter while waiting for inventory?
+	if (bWaitForInventory)
+	{
+		if (bWaitingForInventory)
+		{
+			return;
+		}
+		else
+		{
+			if (class'WorldInfo'.static.IsConsoleBuild())
+			{
+				if (class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
+				{
+					class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+					WaitingForInventoryCharacterIndex = CharIndex;
+					bWaitingForInventory = true;
+					return;
+				}
+			}
+			else if (!class'GameEngine'.static.GetOnlineSubsystem().bInventoryReady)
+			{
+				class'GameEngine'.static.GetOnlineSubsystem().AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete_Steamworks);
+				WaitingForInventoryCharacterIndex = CharIndex;
+				bWaitingForInventory = true;
+				return;
+			}
+		}
 	}
 
 	LoadCharacterConfig(CharIndex);
@@ -1548,7 +1599,8 @@ defaultproperties
    CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
    CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
    CharacterArchetypes(14)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_DAR_archetype'
-   RepCustomizationInfo=(AttachmentMeshIndices[0]=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255)
+   CharacterArchetypes(15)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrsFoster_archetype'
+   RepCustomizationInfo=(AttachmentMeshIndices[0]=-1,AttachmentMeshIndices[1]=-1,AttachmentMeshIndices[2]=-1)
    VoiceCommsStatusDisplayInterval=5.000000
    VoiceCommsStatusDisplayIntervalMax=1
    Name="Default__KFPlayerReplicationInfo"

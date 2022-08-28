@@ -2470,6 +2470,9 @@ function PlayVoiceCommandDialog( KFPawn Speaker, int CommandIndex )
     case 7:
         PlayDialogEvent( Speaker,  `COMM_DenyGeneric);
         break;
+	case 9:
+		PlayDialogEvent(Speaker, `COMM_ThankYou);
+		break;
     };
 }
 

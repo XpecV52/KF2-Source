@@ -24,10 +24,10 @@ defaultproperties
 {
 	// Healing charge
     HealAmount=15
-	HealFullRechargeSeconds=10
+	HealFullRechargeSeconds=16
 
 	// Inventory
-	InventorySize=7
+	InventorySize=6 //7
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
@@ -46,16 +46,13 @@ defaultproperties
 	DOF_FG_FocalRadius=85
 	DOF_FG_MaxNearBlurSize=2.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Assault_MESH.Wep_1stP_Medic_Assault_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Medic_Assault_ANIM.Wep_1stP_Medic_Assault_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Assault_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_3P'
+	// Content
+	PackageKey="Medic_Assault"
+	FirstPersonMeshName="WEP_1P_Medic_Assault_MESH.Wep_1stP_Medic_Assault_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Medic_Assault_ANIM.Wep_1stP_Medic_Assault_Anim"
+	PickupMeshName="WEP_3P_Medic_Assault_MESH.Wep_Medic_Assault_Pickup"
+	AttachmentArchetypeName="WEP_Medic_Assault_ARCH.Wep_Medic_Assault_3P"
+	MuzzleFlashTemplateName="WEP_Medic_Assault_ARCH.Wep_Medic_Assault_MuzzleFlash"
 
    	// Zooming/Position
 	PlayerViewOffset=(X=15.0,Y=6.5,Z=-3)
@@ -93,7 +90,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Assault_Medic'
 	FireInterval(DEFAULT_FIREMODE)=+0.08 // //750  0.08    650 RPM 0.0923
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=35.0
+	InstantHitDamage(DEFAULT_FIREMODE)=25.0 //35
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALTFIRE_FIREMODE
@@ -104,7 +101,6 @@ defaultproperties
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Assault_Medic'
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_Single')
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_EndLoop', FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_EndLoop')
@@ -123,4 +119,8 @@ defaultproperties
 
    	AssociatedPerkClasses(0)=class'KFPerk_FieldMedic'
    	AssociatedPerkClasses(1)=class'KFPerk_Commando'
+
+   	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.4f, IncrementWeight=1, IncrementHealFullRecharge=.625)
+	WeaponUpgrades[2]=(IncrementDamage=1.6f, IncrementWeight=2, IncrementHealFullRecharge=.5625)
 }

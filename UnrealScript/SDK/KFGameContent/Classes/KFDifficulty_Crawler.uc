@@ -9,24 +9,6 @@
 class KFDifficulty_Crawler extends KFMonsterDifficultyInfo
 	abstract;
 
-/** Chances, by difficulty, to spawn as a special crawler */
-var array<float> ChanceToSpawnAsSpecial;
-
-static function float GetSpecialCrawlerChance( KFGameReplicationInfo KFGRI )
-{
-	if( KFGRI.bVersusGame )
-	{
-		return 0.f;
-	}
-	
-`if(`notdefined(ShippingPC))
-	if( default.bForceSpecialSpawn )
-		return 1.f;
-	else
-`endif
-	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
-}
-
 defaultproperties
 {
 	// Normal difficulty
@@ -42,7 +24,7 @@ defaultproperties
 		EvadeOnDamageSettings={(Chance=0.4, DamagedHealthPctToTrigger=0.01)},
 		RallySettings={(bCanRally=false)}
 	)}
-	
+
 	// Suicidal difficulty
 	Suicidal={(SprintChance=0.85,  //0.5
 		DamagedSprintChance=1.000000,

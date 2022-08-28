@@ -1,9 +1,11 @@
 package tripwire.containers.Perks
 {
+    import flash.display.MovieClip;
     import flash.text.TextField;
     import scaleform.clik.controls.ScrollingList;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.data.DataProvider;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripUILoaderQueue;
     import tripwire.controls.perks.PerksPassiveDataLineRenderer;
     import tripwire.managers.MenuManager;
@@ -30,6 +32,12 @@ package tripwire.containers.Perks
         
         public var weaponIconTextField3:TextField;
         
+        public var objectiveLine:MovieClip;
+        
+        public var bonusLine:MovieClip;
+        
+        public var loadoutLine:MovieClip;
+        
         public var weaponIcon0:TripUILoaderQueue;
         
         public var weaponIcon1:TripUILoaderQueue;
@@ -41,6 +49,10 @@ package tripwire.containers.Perks
         public var passivesList:ScrollingList;
         
         private var _passiveObjects:Vector.<PerksPassiveDataLineRenderer>;
+        
+        private const XP_TITLE_WIDTH:int = 312;
+        
+        private const SUB_TITLE_WIDTH:int = 632;
         
         public function PerkDetailsContainer()
         {
@@ -70,6 +82,15 @@ package tripwire.containers.Perks
                 this.SetDataSource(param1.WeaponImage3,this.weaponIcon3);
                 this.objectiveTextField1.text = !!param1.EXPAction1 ? param1.EXPAction1 : "";
                 this.objectiveTextField2.text = !!param1.EXPAction2 ? param1.EXPAction2 : "";
+                TextFieldEx.setVerticalAlign(this.objectiveTextField1,"center");
+                TextFieldEx.setVerticalAlign(this.objectiveTextField2,"center");
+                TextFieldEx.setVerticalAlign(this.weaponIconTextField0,"bottom");
+                TextFieldEx.setVerticalAlign(this.weaponIconTextField1,"bottom");
+                TextFieldEx.setVerticalAlign(this.weaponIconTextField2,"bottom");
+                TextFieldEx.setVerticalAlign(this.weaponIconTextField3,"bottom");
+                this.objectiveLine.width = this.XP_TITLE_WIDTH - this.objectivesTitleTextField.textWidth;
+                this.bonusLine.width = this.SUB_TITLE_WIDTH - this.perkBonusTextField.textWidth;
+                this.loadoutLine.width = this.SUB_TITLE_WIDTH - this.basicLoadoutTextField.textWidth;
             }
         }
         
@@ -88,7 +109,10 @@ package tripwire.containers.Perks
         
         override public function selectContainer() : void
         {
-            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            if(MenuManager.manager != null)
+            {
+                defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            }
             super.selectContainer();
         }
     }

@@ -721,6 +721,18 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
 	}
 }
 
+simulated function bool CanThrowWeapon()
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Controller);
+	if (KFPC != none && KFPC.MyGFxManager != none && KFPC.MyGFxManager.TraderMenu != none && KFPC.MyGFxManager.CurrentMenu == KFPC.MyGFxManager.TraderMenu)
+	{
+		return false;
+	}
+	return super.CanThrowWeapon();
+}
+
 /**
  * Event called from native code when Pawn starts crouching.
  * Called on non owned Pawns through bIsCrouched replication.
@@ -803,7 +815,7 @@ function float GetHealthMod()
 simulated function WeaponStateChanged(byte NewState, optional bool bViaReplication)
 {
 	CurrentWeaponState = NewState;
-
+	
 	// skip if this pawn was recently spawned, so we don't play out-of-date anims when pawns become relevant
 	if( (WorldInfo.TimeSeconds - CreationTime) < 1.f )
 	{
@@ -2160,11 +2172,13 @@ defaultproperties
       SpecialMoveClasses(27)=None
       SpecialMoveClasses(28)=None
       SpecialMoveClasses(29)=None
-      SpecialMoveClasses(30)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(31)=Class'KFGame.KFSM_DisabledGrappleVictim'
-      SpecialMoveClasses(32)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(33)=None
-      SpecialMoveClasses(34)=Class'KFGame.KFSM_Player_Emote'
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(32)=Class'KFGame.KFSM_DisabledGrappleVictim'
+      SpecialMoveClasses(33)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(34)=None
+      SpecialMoveClasses(35)=Class'KFGame.KFSM_Player_Emote'
+      SpecialMoveClasses(36)=Class'KFGame.KFSM_EvilDAR_EMPGrapple'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object

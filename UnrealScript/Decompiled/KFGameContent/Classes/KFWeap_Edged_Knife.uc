@@ -26,7 +26,6 @@ defaultproperties
     GroupPriority=10
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Knife'
     PlayerViewOffset=(X=10,Y=10,Z=0)
-    AttachmentArchetype=KFWeaponAttachment'WEP_CommandoKnife_ARCH.Wep_CommandoKnife_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_F=/* Array type was not detected. */
         ChainSequence_B=/* Array type was not detected. */
@@ -45,21 +44,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     bCanThrow=false
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_CommandoKnife_MESH.Wep_1stP_CommKnife_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Edged_Knife.FirstPersonMesh'
     Mesh=FirstPersonMesh
     bDropOnDeath=false
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_CommandoKnife_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Edged_Knife.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_CommandoKnife_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Edged_Knife.StaticPickupComponent'

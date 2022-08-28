@@ -279,6 +279,18 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
     }
 }
 
+simulated function bool CanThrowWeapon()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Controller);
+    if((((KFPC != none) && KFPC.MyGFxManager != none) && KFPC.MyGFxManager.TraderMenu != none) && KFPC.MyGFxManager.CurrentMenu == KFPC.MyGFxManager.TraderMenu)
+    {
+        return false;
+    }
+    return super(Pawn).CanThrowWeapon();
+}
+
 simulated event StartCrouch(float HeightAdjust)
 {
     super.StartCrouch(HeightAdjust);
@@ -373,9 +385,9 @@ simulated function StopAllAnimations()
 
 simulated function CheckAndEndActiveEMoteSpecialMove()
 {
-    if(IsDoingSpecialMove() && SpecialMove == 34)
+    if(IsDoingSpecialMove() && SpecialMove == 35)
     {
-        SpecialMoveHandler.EndSpecialMove(34);
+        SpecialMoveHandler.EndSpecialMove(35);
     }
 }
 
@@ -1497,11 +1509,13 @@ defaultproperties
         SpecialMoveClasses(27)=none
         SpecialMoveClasses(28)=none
         SpecialMoveClasses(29)=none
-        SpecialMoveClasses(30)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(31)=class'KFSM_DisabledGrappleVictim'
-        SpecialMoveClasses(32)=class'KFSM_HansGrappleVictim'
-        SpecialMoveClasses(33)=none
-        SpecialMoveClasses(34)=class'KFSM_Player_Emote'
+        SpecialMoveClasses(30)=none
+        SpecialMoveClasses(31)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(32)=class'KFSM_DisabledGrappleVictim'
+        SpecialMoveClasses(33)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(34)=none
+        SpecialMoveClasses(35)=class'KFSM_Player_Emote'
+        SpecialMoveClasses(36)=class'KFSM_EvilDAR_EMPGrapple'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Human.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

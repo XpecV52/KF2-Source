@@ -29,6 +29,8 @@ enum ELocalMessageType
     LMT_KickVoteMaxKicksReached,
     LMT_KickVoteNotEnoughPlayers,
     LMT_KickVoteNoSpectators,
+    LMT_SkipTraderTime,
+    LMT_SkipTraderTimeSuccess,
     LMT_MAX
 };
 
@@ -56,6 +58,8 @@ var const localized string KickVoteNoSpectatorsString;
 var const localized string KickedFromServerString;
 var const localized string BannedFromServerString;
 var const localized string ServerNoLongerAvailableString;
+var const localized string SkipTraderTimeString;
+var const localized string SkipTraderSuccessString;
 var int MessageArea;
 var int AnnouncementPriority;
 var bool bShowPortrait;
@@ -105,6 +109,10 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
     }
     switch(Switch)
     {
+        case 20:
+            return default.SkipTraderSuccessString;
+        case 19:
+            return default.SkipTraderTimeString;
         case 0:
             return RelatedPRI_1.PlayerName @ default.LoggedInAsAdminString;
         case 1:
@@ -185,6 +193,8 @@ static function string GetHexColor(int Switch)
         case 0:
         case 1:
         case 4:
+        case 20:
+        case 19:
             return default.PriorityColor;
         case 8:
         case 7:
@@ -242,6 +252,8 @@ defaultproperties
     KickedFromServerString="You have been removed from the server"
     BannedFromServerString="You have been removed from this server. You cannot rejoin at this time"
     ServerNoLongerAvailableString="The server is no longer available to join"
+    SkipTraderTimeString="SKIP TRADER activated. Select 'SKIP TRADER' on the game menu to vote.  All players must agree."
+    SkipTraderSuccessString="Skip trader vote successful!"
     MessageArea=1
     AnnouncementVolume=2
     SayColor="FFFFFF"

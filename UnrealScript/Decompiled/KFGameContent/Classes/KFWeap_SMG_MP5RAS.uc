@@ -11,14 +11,20 @@ class KFWeap_SMG_MP5RAS extends KFWeap_SMGBase
 
 defaultproperties
 {
+    PackageKey="MP5RAS"
+    FirstPersonMeshName="wep_1p_mp5ras_mesh.Wep_1stP_MP5RAS_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_mp5ras_mesh.Wep_MP5RAS_Pickup"
+    AttachmentArchetypeName="wep_mp5ras_arch.Wep_MP5RAS_3P"
+    MuzzleFlashTemplateName="wep_mp5ras_arch.Wep_MP5RAS_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     BurstAmount=3
     InventorySize=4
     MagazineCapacity=40
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshIronSightFOV=50
     IronSightPosition=(X=10,Y=0,Z=0)
     GroupPriority=60
@@ -31,9 +37,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=17,Y=8,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'wep_mp5ras_arch.Wep_MP5RAS_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_SMG_MP5RAS.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'wep_mp5ras_arch.Wep_MP5RAS_MuzzleFlash'
     maxRecoilPitch=60
     minRecoilPitch=40
     maxRecoilYaw=50
@@ -51,6 +55,7 @@ defaultproperties
     WalkingRecoilModifier=1.1
     IronSightMeshFOVCompensationScale=1.6
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -59,21 +64,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'wep_1p_mp5ras_mesh.Wep_1stP_MP5RAS_Rig'
-        AnimSets(0)=AnimSet'wep_1p_mp5ras_anim.wep_1p_mp5ras_anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_SMG_MP5RAS.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="MP5RAS SMG"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_mp5ras_mesh.Wep_MP5RAS_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_MP5RAS.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_mp5ras_mesh.Wep_MP5RAS_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_MP5RAS.StaticPickupComponent'

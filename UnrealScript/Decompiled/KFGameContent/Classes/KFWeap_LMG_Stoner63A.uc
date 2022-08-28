@@ -150,13 +150,19 @@ defaultproperties
     AmmoBeltBulletBonePrefix="RW_Bullets"
     NumAmmoBeltBullets=14
     LastAmmoCount=-1
-    FireModeIconPaths=/* Array type was not detected. */
-    SingleFireSoundIndex=1
-    InventorySize=9
-    MagazineCapacity=75
+    PackageKey="Stoner63a"
+    FirstPersonMeshName="WEP_1P_Stoner63A_MESH.Wep_1stP_Stoner63A_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Stoner63A_MESH.Wep_Stoner63A_Pickup"
+    AttachmentArchetypeName="WEP_Stoner63A_ARCH.Wep_Stoner63A_3P"
+    MuzzleFlashTemplateName="WEP_Stoner63A_ARCH.Wep_Stoner63A_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    FireModeIconPaths=/* Array type was not detected. */
+    SingleFireSoundIndex=1
+    InventorySize=8
+    MagazineCapacity=75
     MeshFOV=75
     MeshIronSightFOV=35
     PlayerIronSightFOV=70
@@ -174,9 +180,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=4,Y=8,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Stoner63A_ARCH.Wep_Stoner63A_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_LMG_Stoner63A.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Stoner63A_ARCH.Wep_Stoner63A_MuzzleFlash'
     EjectedShellForegroundDuration=0.8
     maxRecoilPitch=120
     minRecoilPitch=70
@@ -195,6 +199,7 @@ defaultproperties
     HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=2.3
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -203,21 +208,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Stoner63A_MESH.Wep_1stP_Stoner63A_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Stoner63A_ANIM.Wep_1stP_Stoner63A_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_LMG_Stoner63A.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Stoner 63A LMG"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Stoner63A_MESH.Wep_Stoner63A_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_LMG_Stoner63A.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Stoner63A_MESH.Wep_Stoner63A_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_LMG_Stoner63A.StaticPickupComponent'

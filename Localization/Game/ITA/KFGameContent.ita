@@ -202,30 +202,35 @@ ItemName="Stoner 63A LMG"
 ItemCategory="Mitragliatrice leggera"
 ItemDescription="•Solo automatica.\n•La Stoner 63a, arma fondamentale degli U.S. Navy SEALs nella guerra del Vietnam, ha una capacità di munizioni elevata e un buon potere d’arresto."
 
+[KFWeap_Knife_Survivalist]
+ItemName="Lama Goreshiv"
+ItemCategory="Mischia"
+ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Questa lama apparteneva a qualcosa. Ma ora è tua!"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Coltello multiuso"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un apriscatole. Perfetto per aprire le scatole in cui ti imbatti durante il massacro."
+ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un taglierino. Perfetto per aprire le scatole in cui ti imbatti durante il massacro."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Bisturi"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un bisturi. Sei un medico, quindi non pensiamo che serva spiegarti come si usa."
+ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un bisturi. Sei un medico, quindi non pensiamo che serva spiegarti come si usa."
 
 [KFWeap_Knife_Firebug]
 ItemName="Coltello da pompiere"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È il coltello di un pompiere. Sei un pompiere, quindi diamo per scontato che non serva spiegarti come si usa."
+ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un coltello da pompiere. Sei un pompiere, quindi diamo per scontato che non serva spiegarti come si usa."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Coltello Bowie"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Il coltello extra-large del vecchio West. Perfetto per fare a pezzi gli Zed qui e ora."
+ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Il coltello extra-large del vecchio West. Perfetto per fare a pezzi gli Zed qui e ora."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Il coltello tradizionale del Ghurka, più un coltello per disossare che per filettare. "
+ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Il coltello tradizionale del Gurkha, un coltello più per disossare che per filettare. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Coltello tattico"
@@ -255,7 +260,7 @@ ItemDescription="•Solo semiautomatica.\n•Usa il fuoco alternativo per lancia
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="Fucile a doppia canna"
 ItemCategory="Fucile"
-ItemDescription="•La modalità di fuoco primaria utilizza una sola canna.\n•Fuoco alternativo per usare entrambe le canne.\n•Fucile calibro .12 a doppia canna affiancata. Ideale per i combattimenti ravvicinati. Anche gli Zed più grossi vacilleranno!"
+ItemDescription="•La modalità di fuoco primaria utilizza una sola canna.\n•Fuoco alternativo per usare entrambe le canne.\n•Fucile calibro 12 a canna doppia affiancata. Ideale per i combattimenti ravvicinati. Anche gli Zed più grossi vacilleranno!"
 
 [KFWeap_Shotgun_AA12]
 ItemName="Fucile automatico AA-12"
@@ -345,7 +350,7 @@ ItemCategory="Fiamme"
 ItemDescription="•Lancia proiettili infiammabili ed esplosivi. \n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Sono due spitfire."
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="Fucile incendiario"
+ItemName="Respiro del Drago"
 ItemCategory="Fucile"
 ItemDescription="•Fuoco solo a pompa.\n•Un fucile che usa le pallottole incendiarie Respiro del Drago. Non è solo mortale, è anche bellissimo da vedere."
 
@@ -510,10 +515,25 @@ ItemName="Doppia AF2011-A2"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Due mitra a due canne ciascuna. Potenza di fuoco quadruplicata. È matematica. Con la matematica non si discute."
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="Bastone del destino"
+ItemCategory="Fucile"
+ItemDescription="•La modalità di fuoco primaria utilizza una sola canna.\n•Fuoco alternativo per usare tutte e quattro le canne.\n•Quando divertirsi il doppio non è abbastanza... divertiamoci il quadruplo!"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="Attaccanti statici"
+ItemCategory="Mischia"
+ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primario per le combo. \n•Secondario - attacco violento, contundente ed elettrico. Che shock! \n•Vuoi tirare un pugno in faccia a uno Zed? Ecco qua!"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="Mitra"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Munizioni incendiarie a fuoco rapido. L’hai capita? A fuoco rapido. Perché è una mitragliatrice incendiaria! Oh, lascia perdere."
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="Fucile di precisione"
+ItemDescription="•Spara un colpo alla volta. \n•Ogni colpo è come un pugno... beh, una pallottola molto grossa. Alta penetrazione, alto dolore."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

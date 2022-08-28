@@ -70,6 +70,7 @@ enum ESpecialMove
     SM_Block,
     SM_Heal,
     SM_Rally,
+    SM_SprintStart,
     SM_SonicAttack,
     SM_StandAndShootAttack,
     SM_HoseWeaponAttack,
@@ -85,6 +86,7 @@ enum ESpecialMove
     SM_HansGrappleVictim,
     SM_SirenVortexVictim,
     SM_Emote,
+    SM_DARGrappleVictim,
     SM_BossTheatrics,
     SM_ChangeStance,
     SM_Hans_ThrowGrenade,
@@ -1854,7 +1856,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         if((((KFPC != none) && KFGI != none) && (PlayerReplicationInfo == none) || PlayerReplicationInfo.GetTeamNum() == 255) && LastHeadShotReceivedTime != WorldInfo.TimeSeconds)
         {
             LastHeadShotReceivedTime = WorldInfo.TimeSeconds;
-            KFPC.AddZedHeadshot(byte(KFGI.GameDifficulty), HitFxInfo.DamageType);
+            KFPC.AddZedHeadshot(KFGI.GetModifiedGameDifficulty(), HitFxInfo.DamageType);
             if((KFPC != none) && HitFxInfo.DamageType != none)
             {
                 Class'EphemeralMatchStats'.static.RecordWeaponHeadShot(KFPC, HitFxInfo.DamageType);
@@ -3386,7 +3388,7 @@ simulated event bool IsMovementDisabledDuringSpecialMove()
 
 function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling, optional bool bAllowSameTeamGrab)
 {
-    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || !bAllowSameTeamGrab && IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(30))
+    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || !bAllowSameTeamGrab && IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(31))
     {
         return false;
     }

@@ -248,6 +248,7 @@ simulated function ProcessInstantHitEx( byte FiringMode, ImpactInfo Impact, opti
     local KFPawn HealTarget;
     local KFPlayerController Healer;
 	local KFPerk InstigatorPerk;
+	local float AdjustedHealAmount;
 
     HealTarget = KFPawn(Impact.HitActor);
     Healer = KFPlayerController(Instigator.Controller);
@@ -266,7 +267,8 @@ simulated function ProcessInstantHitEx( byte FiringMode, ImpactInfo Impact, opti
             Healer.AddShotsHit(1);
 		}
 
-    	HealTarget.HealDamage(HealAmount, Instigator.Controller, HealingDartDamageType);
+		AdjustedHealAmount = HealAmount * static.GetUpgradeHealMod(CurrentWeaponUpgradeIndex);
+    	HealTarget.HealDamage(AdjustedHealAmount, Instigator.Controller, HealingDartDamageType);
 
         // Play a healed impact sound for the healee
         if( HealImpactSoundPlayEvent != None && HealTarget != None && !bSuppressSounds  )
@@ -402,7 +404,7 @@ function StartHealRecharge()
 	if( Role == ROLE_Authority )
 	{
 		InstigatorPerk = GetPerk();
-		UsedHealRechargeTime = HealFullRechargeSeconds;
+		UsedHealRechargeTime = HealFullRechargeSeconds * static.GetUpgradeHealRechargeMod(CurrentWeaponUpgradeIndex);
 
         InstigatorPerk.ModifyHealerRechargeTime( UsedHealRechargeTime );
 		// Set the healing recharge rate whenever we start charging

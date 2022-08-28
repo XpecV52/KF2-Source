@@ -102,18 +102,14 @@ function RefreshPlayerInventory()
         }
         else
         {
-            if(MyTraderMenu.MyKFIM.bLogInventory)
-            {
-                LogInternal((("RefreshPlayerInventory: Slot=" $ string(SlotIndex)) @ "ItemInfo=") $ string(ItemInfo.DefaultItem.ClassName));
-            }
             TextureLocation = ItemInfo.DefaultItem.WeaponDef.static.GetImagePath();
             AmmoCount = ItemInfo.SpareAmmoCount;
             MaxAmmoCount = ItemInfo.MaxSpareAmmo;
             MagSize = ItemInfo.MagazineCapacity;
             PricePerMag = ItemInfo.AmmoPricePerMagazine;
             PricePerRound = ((MagSize > 0) ? float(PricePerMag) / float(MagSize) : 0);
-            BlocksRequired = ItemInfo.DefaultItem.BlocksRequired;
-            SetItemInfo(InfoSlot, ItemInfo.DefaultItem.WeaponDef, "ItemName", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired);
+            BlocksRequired = MyTraderMenu.GetDisplayedBlocksRequiredFor(ItemInfo.DefaultItem, ItemInfo.ItemUpgradeLevel);
+            SetItemInfo(InfoSlot, ItemInfo.DefaultItem.WeaponDef, "ItemName", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired, false, KFPC.GetPurchaseHelper().GetItemUpgradeLevel(ItemInfo.DefaultItem));
             SetMagInfo(MagSlot, AmmoCount, MaxAmmoCount, MagSize, PricePerMag, PricePerRound, FillAmmoCost);
             SetFillInfo(FillSlot, AmmoCount, MaxAmmoCount, PricePerRound, FillAmmoCost, AutoFillCost);
         }
@@ -171,13 +167,14 @@ function SetGrenadeInfo(out SItemInformation GrenadeInfo, out int AutoFillCost)
     AutoFillCost += FillCost;
 }
 
-function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef, string ItemKeyString, string TextureLocation, int AmmoCount, int MaxAmmoCount, int BlocksRequired, optional bool bSecondaryAmmo)
+function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef, string ItemKeyString, string TextureLocation, int AmmoCount, int MaxAmmoCount, int BlocksRequired, optional bool bSecondaryAmmo, optional int UpgradeLevel)
 {
     local string ItemTexPath;
 
     InfoSlot.SetString("itemName", WeaponDef.static.GetItemLocalization(ItemKeyString));
     InfoSlot.SetString("itemAmmo", (string(AmmoCount) $ "/") $ string(MaxAmmoCount));
     InfoSlot.SetInt("itemWeight", BlocksRequired);
+    InfoSlot.SetInt("weaponTier", UpgradeLevel);
     InfoSlot.SetBool("lowAmmo", ((MaxAmmoCount > 0) ? (float(AmmoCount) / float(MaxAmmoCount)) <= LowAmmoPercentThreshold : false));
     InfoSlot.SetBool("isSubAmmo", bSecondaryAmmo);
     ItemTexPath = "img://" $ TextureLocation;

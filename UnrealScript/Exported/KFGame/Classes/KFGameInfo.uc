@@ -898,10 +898,12 @@ native static function StaticSetNeedsRestart();
 */
 event InitGame( string Options, out string ErrorMessage )
 {
+	GameDifficulty = Max(0, GetIntOption(Options, "Difficulty", GameDifficulty));
+	GameDifficulty = Clamp(GameDifficulty, MinGameDifficulty, MaxGameDifficulty);
+
  	Super.InitGame( Options, ErrorMessage );
 
 	GameLength = Clamp(GetIntOption( Options, "GameLength", GameLength ), 0, SpawnManagerClasses.Length - 1);
-	GameDifficulty = Clamp(GameDifficulty, MinGameDifficulty, MaxGameDifficulty);
 
 	if( OnlineSub != none && OnlineSub.GetLobbyInterface() != none )
 	{
@@ -1109,7 +1111,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		}
 
 		DesiredWaveLength = ParseOption( Options, "GameLength" );
-		if( !bIsEndlessGame && !bIsVersusGame && GametypeChecksWaveLength() && DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
+		if(!bIsEndlessGame && !bIsVersusGame && GametypeChecksWaveLength() && DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength )
 		{
 			LogInternal("Got bad wave length"@DesiredWaveLength@"expected"@GameLength);
 			//ErrorMessage = "<Strings:KFGame.KFLocalMessage.ServerNoLongerAvailableString>";
@@ -1297,7 +1299,7 @@ function InitGameConductor()
 /* Initialize the GRI varaibles */
 function InitGRIVariables()
 {
-	MyKFGRI.GameDifficulty 	= GameDifficulty;
+	MyKFGRI.GameDifficulty = GameDifficulty;
 	MyKFGRI.GameLength 		= GameLength;
 	MyKFGRI.bVersusGame = bIsVersusGame;
 
@@ -1756,7 +1758,14 @@ function SetPlayerDefaults(Pawn PlayerPawn)
 	PlayerPawn.PhysicsVolume.ModifyPlayer(PlayerPawn);
 }
 
-function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed);
+function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed)
+{
+	if(OutbreakEvent != none)
+	{
+		OutbreakEvent.ModifyGroundSpeed(PlayerPawn, GroundSpeed);
+	}
+}
+
 function ModifySprintSpeed(KFPawn PlayerPawn, out float SprintSpeed);
 
 /** Used by wave based game types */
@@ -1765,7 +1774,18 @@ function bool IsWaveActive();
 /** Scale to use against WaveTotalAI to determine full wave size */
 function float GetTotalWaveCountScale()
 {
-    return 1.0f;
+	//Boss wave, don't scale it.
+	if (MyKFGRI.IsBossWave())
+	{
+		return 1.0f;
+	}
+
+	if (OutbreakEvent != none && OutbreakEvent.ActiveEvent.WaveAICountScale.Length > 0)
+	{
+		return GetLivingPlayerCount() > OutbreakEvent.ActiveEvent.WaveAICountScale.Length ? OutbreakEvent.ActiveEvent.WaveAICountScale[OutbreakEvent.ActiveEvent.WaveAICountScale.Length - 1] : OutbreakEvent.ActiveEvent.WaveAICountScale[GetLivingPlayerCount() - 1];
+	}
+
+	return 1.0f;
 }
 
 /** Returns NumAlwaysRelevantZeds, the number of remaining zeds before they become bAlwaysRelevant=true */
@@ -1805,7 +1825,21 @@ event PrePossessAdjustments(KFPawn NewSpawn);
 /** Allow specific game types to modify the spawn rate at a global level */
 function float GetGameInfoSpawnRateMod()
 {
-    return 1.f;
+	local float SpawnRateMod;
+
+	SpawnRateMod = 1.f;
+
+	if (OutbreakEvent != none)
+	{
+		SpawnRateMod *= 1.f / OutbreakEvent.ActiveEvent.SpawnRateMultiplier;
+	}
+
+	if (MyKFGRI != none)
+	{
+		SpawnRateMod *= MyKFGRI.GetMapObjectiveSpawnRateMod();
+	}
+
+	return SpawnRateMod;
 }
 
 /** Whether or not a specific primary weapon is allowed.  Called at player spawn time while setting inventory. */
@@ -1891,6 +1925,11 @@ function SetMonsterDefaults( KFPawn_Monster P )
 
 	P.ApplySpecialZoneHealthMod(HeadHealthMod);
 	P.GameResistancePct = DifficultyInfo.GetDamageResistanceModifier(LivingPlayerCount);
+
+	if (OutbreakEvent != none)
+	{
+		OutbreakEvent.AdjustMonsterDefaults(P);
+	}
 
 	// debug logging
    	if (bLogAIDefaults) LogInternal("==== SetMonsterDefaults for pawn: " @P @"====");
@@ -2037,6 +2076,11 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
 
 	// checks neutral zone and god mode and calls mutator hook
 	Super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
+
+	if (OutbreakEvent != none)
+	{
+		OutbreakEvent.ReduceDamage(Damage, Injured, InstigatedBy, DamageType, HitInfo);
+	}
 }
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DT)
@@ -2098,6 +2142,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 		}
 
 		KFPC = KFPlayerController( KilledPlayer );
+		if (KFPC == none) LogInternal("KFGameInfo - Killed - Current Killed Player is not a valid KFPlayerController. KilledPlayer:" @ KilledPlayer);
 		if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("player_death",
 					   KilledPRI,
 					   KillerLabel,
@@ -2317,22 +2362,46 @@ static function int GetBossKillScore()
 function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> damageType )
 {
 	if( InstigatedBy == none
-		|| !InstigatedBy.bIsPlayer
 		|| InstigatedBy.PlayerReplicationInfo == none
 		|| InstigatedBy.GetTeamNum() == DamagedPawn.GetTeamNum() )
 	{
 		return;
 	}
-
-	DamageAmount = Min( DamageAmount, HealthBeforeDamage );
-	KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
-	if (InstigatedBy.Pawn != none)
+	
+	if (InstigatedBy.bIsPlayer)
 	{
-		KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, damageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
+		DamageAmount = Min(DamageAmount, HealthBeforeDamage);
+		KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
+		if (InstigatedBy.Pawn != none)
+		{
+			KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, damageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
+		}
+	}
+	
+
+	if (OutbreakEvent != none)
+	{
+		OutbreakEvent.AdjustScoreDamage(InstigatedBy, DamagedPawn, damageType);
 	}
 }
 
-function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn);
+function ScoreHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn, class<DamageType> DamageType)
+{
+	super.ScoreHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn, DamageType);
+
+	if (OutbreakEvent != none && OutbreakEvent.ActiveEvent.bScaleOnHealth)
+	{
+		OutbreakEvent.AdjustPawnScale(HealedPawn);
+	}
+}
+
+function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn)
+{
+	if (OutbreakEvent != none && OutbreakEvent.ActiveEvent.bScaleOnHealth)
+	{
+		OutbreakEvent.AdjustPawnScale(HealedPawn);
+	}
+}
 
 function ScoreKill(Controller Killer, Controller Other)
 {
@@ -2357,6 +2426,11 @@ function ScoreKill(Controller Killer, Controller Other)
 	if ( Killer != None || MaxLives > 0 )
 	{
 		CheckScore(Killer.PlayerReplicationInfo);
+	}
+
+	if (OutbreakEvent != none && Role == ROLE_Authority && Other != none && Other.Pawn != none)
+	{
+		OutbreakEvent.OnScoreKill(Other.Pawn);
 	}
 }
 
@@ -2385,9 +2459,22 @@ protected function ScoreMonsterKill( Controller Killer, Controller Monster, KFPa
 }
 
 /** Called from pawn when a rally occurs.  Allows gametype to do any global behavior based on this. */
-function NotifyRally(KFPawn RalliedPawn);
+function NotifyRally(KFPawn RalliedPawn)
+{
+	if (OutbreakEvent != none && OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
+	{
+		OutbreakEvent.AdjustForBeefcakeRules(RalliedPawn, EBT_Rally);
+	}
+}
+
 /** Called from explosion actor when a scream occurs on an ignored pawn.  Allows gametype to do any global behavior based on this. */
-function NotifyIgnoredScream(KFPawn ScreamPawn);
+function NotifyIgnoredScream(KFPawn ScreamPawn)
+{
+	if (OutbreakEvent != none && OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
+	{
+		OutbreakEvent.AdjustForBeefcakeRules(ScreamPawn, EBT_Scream);
+	}
+}
 
 function CheckForBerserkerSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerController KFPC)
 {
@@ -2862,6 +2949,11 @@ simulated function ForceHansMusicTrack()
 simulated function ForcePatriarchMusicTrack()
 {
     MyKFGRI.ForceNewMusicTrack( default.ForcedMusicTracks[EFM_Boss2] );
+}
+
+simulated function ForceMatriarchMusicTrack()
+{
+    MyKFGRI.ForceNewMusicTrack( default.ForcedMusicTracks[EFM_Boss3] );
 }
 
 simulated function ForceKingFPMusicTrack()
@@ -3716,6 +3808,11 @@ function OnAIChangeEnemy( BaseAIController AI, Pawn Enemy )
 
 }
 
+static function bool HasCustomTraderVoiceGroup()
+{
+	return false;
+}
+
 defaultproperties
 {
    POINTS_FOR_BOSS_KILL=10000
@@ -3767,7 +3864,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout"))
+   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

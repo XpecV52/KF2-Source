@@ -11,12 +11,18 @@ class KFWeap_Pistol_9mm extends KFWeap_PistolBase
 
 defaultproperties
 {
-    MagazineCapacity=15
+    PackageKey="9mm"
+    FirstPersonMeshName="WEP_1P_9MM_MESH.Wep_1stP_9mm_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_9MM_MESH.Wep_9mm_Pickup"
+    AttachmentArchetypeName="WEP_9MM_ARCH.Wep_9mm_3P"
+    MuzzleFlashTemplateName="WEP_9MM_ARCH.Wep_9MM_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     bIsBackupWeapon=true
+    MagazineCapacity=15
     MeshFOV=96
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
@@ -26,17 +32,15 @@ defaultproperties
     GroupPriority=10
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
     DualClass=Class'KFWeap_Pistol_Dual9mm'
-    SpareAmmoCapacity=225
-    InitialSpareMags=7
+    SpareAmmoCapacity=75
+    InitialSpareMags=4
     IdleFidgetAnims=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=12,Y=12,Z=-6)
-    AttachmentArchetype=KFWeaponAttachment'WEP_9MM_ARCH.Wep_9mm_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_9mm.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_9MM_ARCH.Wep_9MM_MuzzleFlash'
     maxRecoilPitch=250
     minRecoilPitch=200
     maxRecoilYaw=100
@@ -51,6 +55,7 @@ defaultproperties
     RecoilISMaxPitchLimit=250
     RecoilISMinPitchLimit=65485
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -61,8 +66,6 @@ defaultproperties
     FireOffset=(X=20,Y=4,Z=-3)
     bCanThrow=false
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_9MM_MESH.Wep_1stP_9mm_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_9MM_ANIM.Wep_1stP_9MM_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_9mm.FirstPersonMesh'
@@ -70,13 +73,11 @@ defaultproperties
     ItemName="9mm Pistol"
     bDropOnDeath=false
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_9mm.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_9mm.StaticPickupComponent'

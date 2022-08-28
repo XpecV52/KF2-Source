@@ -24,6 +24,7 @@ var localized string HealAmountTitle, HealRechargeTitle;
 
 var localized string BuyString, SellString, CannotSellString, CannotBuyString;
 var localized string FavoriteString, UnfavoriteString;
+var localized string UpgradeCostString, UpgradeString;
 
 var GFxObject DetailsContainer;
 
@@ -62,9 +63,11 @@ function LocalizeContainer()
  	LocalizedObject.SetString("capacityTitle", CapacityTitle);
  	LocalizedObject.SetString("magTitle", MagTitle);
 
- 	LocalizedObject.SetString("favorite", FavoriteString);
+	LocalizedObject.SetString("upgradeCost", UpgradeCostString);
+
+	LocalizedObject.SetString("favorite", UpgradeString);
  	LocalizedObject.SetString("unfavorite", UnfavoriteString);
- 	
+
  	SetObject("localizeContainer", LocalizedObject);
 }
 
@@ -93,36 +96,66 @@ function SetShopItemDetails(out STraderItem TraderItem, int ItemPrice, bool bCan
 
  	ItemData.SetInt("price", ItemPrice);
  	ItemData.SetBool("bUsingBuyLabel", true);
- 
-	ItemData.SetString("buyOrSellLabel", BuyString);	
-	ItemData.SetString("cannotBuyOrSellLabel", CannotBuyString);	
-	
+
+	ItemData.SetString("buyOrSellLabel", BuyString);
+	ItemData.SetString("cannotBuyOrSellLabel", CannotBuyString);
+
  	ItemData.SetBool("bCanCarry", bCanCarry);
  	ItemData.SetBool("bCanBuyOrSell", bCanBuy);
 
  	ItemData.SetBool("bCanFavorite", true);
+	ItemData.SetBool("bCanUpgrade", false);
 
  	SetGenericItemDetails(TraderItem, ItemData);
 }
 
-function SetPlayerItemDetails(out STraderItem TraderItem, int ItemPrice)
+function SetPlayerItemDetails(out STraderItem TraderItem, int ItemPrice, optional int UpgradeLevel = INDEX_NONE)
 {
 	local GFxObject ItemData;
- 	ItemData = CreateObject("Object");
+	local int CanAffordIndex, CanCarryIndex;
 
- 	ItemData.SetInt("price", ItemPrice);
+	KFPC.GetPurchaseHelper().CanUpgrade(TraderItem, CanCarryIndex, CanAffordIndex);
+
+	ItemData = CreateObject("Object");
+
+	ItemData.SetInt("price", ItemPrice);
 	ItemData.SetBool("bUsingBuyLabel", false);
 
 	ItemData.SetString("buyOrSellLabel", SellString);
 	ItemData.SetString("cannotBuyOrSellLabel", CannotSellString);
-	
- 	ItemData.SetBool("bCanCarry", true);
- 	ItemData.SetBool("bCanBuyOrSell", KFPC.GetPurchaseHelper().IsSellable(TraderItem));
- 	ItemData.SetBool("bHideStats", (TraderItem.WeaponStats.Length == 0));
- 	
- 	ItemData.SetBool("bCanFavorite", KFPC.GetPurchaseHelper().IsSellable(TraderItem));
 
- 	SetGenericItemDetails(TraderItem, ItemData);
+	ItemData.SetBool("bCanUpgrade", true);
+	ItemData.SetBool("bCanBuyUpgrade", CanAffordIndex > 0);
+	ItemData.SetBool("bCanCarryUpgrade", CanCarryIndex > 0);
+
+	if (UpgradeLevel > INDEX_NONE)
+	{
+		if (TraderItem.WeaponDef.static.GetUpgradePrice(UpgradeLevel) == INDEX_NONE)
+		{
+			ItemData.SetInt("upgradePrice", 0);
+			ItemData.SetInt("upgradeWeight", 0);
+			ItemData.SetBool("bCanUpgrade", false);
+		}
+		else
+		{
+			ItemData.SetInt("upgradePrice", TraderItem.WeaponDef.static.GetUpgradePrice(UpgradeLevel));
+			ItemData.SetInt("upgradeWeight", TraderItem.WeaponUpgradeWeight[UpgradeLevel + 1] - TraderItem.WeaponUpgradeWeight[UpgradeLevel]);
+		}
+	}
+	else
+	{
+		ItemData.SetInt("upgradePrice", 0);
+		ItemData.SetInt("upgradeWeight", 0);
+	}
+	ItemData.SetInt("weaponTier", UpgradeLevel);
+
+	ItemData.SetBool("bCanCarry", true);
+	ItemData.SetBool("bCanBuyOrSell", KFPC.GetPurchaseHelper().IsSellable(TraderItem));
+	ItemData.SetBool("bHideStats", (TraderItem.WeaponStats.Length == 0));
+
+	ItemData.SetBool("bCanFavorite", true);//KFPC.GetPurchaseHelper().IsSellable(TraderItem));
+
+	SetGenericItemDetails(TraderItem, ItemData, UpgradeLevel);
 }
 
 function string GetLocalizedStatString( TraderWeaponStat Stat )
@@ -201,19 +234,31 @@ function float GetStatMax( TraderWeaponStat Stat )
 	return 1.f;
 }
 
-function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemData)
+function SetGenericItemDetails(const out STraderItem TraderItem, out GFxObject ItemData, optional int UpgradeLevel = INDEX_NONE)
 {
 	local KFPerk CurrentPerk;
 	local int FinalMaxSpareAmmoCount;
 	local byte FinalMagazineCapacity;
+	local Float DamageValue;
+	local Float NextDamageValue;
 
 	//@todo: rename flash objects to something more generic, like stat0text, stat0bar, etc.
 	if( TraderItem.WeaponStats.Length >= TWS_Damage && TraderItem.WeaponStats.length > 0)
 	{
+		DamageValue = TraderItem.WeaponStats[TWS_Damage].StatValue * (UpgradeLevel > INDEX_NONE ? TraderItem.WeaponUpgradeDmgMultiplier[UpgradeLevel] : 1.0f);
 		SetDetailsVisible("damage", true);
 		SetDetailsText("damage", GetLocalizedStatString(TraderItem.WeaponStats[TWS_Damage].StatType));
-		ItemData.SetInt("damageValue", TraderItem.WeaponStats[TWS_Damage].StatValue);
-		ItemData.SetInt("damagePercent", (FMin(TraderItem.WeaponStats[TWS_Damage].StatValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f);
+		ItemData.SetInt("damageValue", DamageValue);
+		ItemData.SetInt("damagePercent", (FMin(DamageValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f);
+
+		if (UpgradeLevel + 1 < ArrayCount(TraderItem.WeaponUpgradeDmgMultiplier))
+		{
+			NextDamageValue = TraderItem.WeaponStats[TWS_Damage].StatValue * TraderItem.WeaponUpgradeDmgMultiplier[UpgradeLevel + 1];
+			ItemData.SetInt("damageUpgradePercent", (FMin(NextDamageValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f);
+
+		}
+		//`log("THIS IS THE old DAMAGE VALUE: " @((FMin(DamageValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f));
+		//`log("THIS IS THE NEXT DAMAGE VALUE: " @((FMin(NextDamageValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f));
 	}
 	else
 	{
@@ -222,7 +267,7 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
 
 	if( TraderItem.WeaponStats.Length >= TWS_Penetration )
 	{
-		
+
 		SetDetailsVisible("penetration", true);
 		SetDetailsText("penetration", GetLocalizedStatString(TraderItem.WeaponStats[TWS_Penetration].StatType));
 		if(TraderItem.TraderFilter != FT_Melee)
@@ -298,9 +343,9 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
  	ItemData.SetInt("ammoCapacity", FinalMaxSpareAmmoCount);
  	ItemData.SetInt("magSizeValue", FinalMagazineCapacity);
 
-	ItemData.SetInt("weight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem)); 	
+	ItemData.SetInt("weight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem));
 
-	ItemData.SetBool("bIsFavorite", MyTraderMenu.GetIsFavorite(TraderItem.ClassName)); 	
+	ItemData.SetBool("bIsFavorite", MyTraderMenu.GetIsFavorite(TraderItem.ClassName));
 
  	ItemData.SetString("texturePath", "img://"$TraderItem.WeaponDef.static.GetImagePath());
  	if( TraderItem.AssociatedPerkClasses.length > 0 && TraderItem.AssociatedPerkClasses[0] != none )
@@ -310,7 +355,7 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
  		if( TraderItem.AssociatedPerkClasses.length > 1 )
  		{
  			ItemData.SetString("perkIconPathSecondary", "img://"$TraderItem.AssociatedPerkClasses[1].static.GetPerkIconPath());
- 		} 		
+ 		}
 	}
 	else
 	{
@@ -341,6 +386,8 @@ defaultproperties
    CannotBuyString="CANNOT BUY"
    FavoriteString="FAVORITE"
    UnfavoriteString="UNFAVORITE"
+   UpgradeCostString="UPGRADE COST"
+   UpgradeString="UPGRADE"
    Name="Default__KFGFxTraderContainer_ItemDetails"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
 }

@@ -553,6 +553,8 @@ class KFTraderDialogManager extends Actor
 
 
 
+										  
+
 
 
 
@@ -1101,27 +1103,31 @@ simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC )
 		AddRandomOption( 23, NumOptions, BestOptionID );
 	}
 
-	if( KFPC.MatchStats.GetDamageTakenInWave() == 0 )
+	if (KFPC.MatchStats.GetDamageTakenInWave() == 0)
 	{
 		// no damage taken
-		AddRandomOption( 26, NumOptions, BestOptionID );
-	}
-	else if( KFPC.MatchStats.GetDamageTakenInWave() < KFPH.HealthMax / 2 )
-	{
-		// less than half damage taken
-		AddRandomOption( 28, NumOptions, BestOptionID );
+		AddRandomOption(26, NumOptions, BestOptionID);
 	}
 
-	if( KFPC.MatchStats.GetDamageTakenInWave() >= 300 )
-	{
-		// took lots of damage but didn't die
-		AddRandomOption( 29, NumOptions, BestOptionID );
-	}
+	if (KFPH.HealthMax != KFPH.Health)
+	{	
+		if (KFPC.MatchStats.GetDamageTakenInWave() < KFPH.HealthMax / 2)
+		{
+			// less than half damage taken
+			AddRandomOption(28, NumOptions, BestOptionID);
+		}
 
-	if( KFPC.MatchStats.GetDamageTakenInWave() >= 100 && KFPC.MatchStats.GetHealReceivedInWave() >= 100 )
-	{
-		// took lots of damage and got healed a lot
-		AddRandomOption( 30, NumOptions, BestOptionID );
+		if (KFPC.MatchStats.GetDamageTakenInWave() >= 300)
+		{
+			// took lots of damage but didn't die
+			AddRandomOption(29, NumOptions, BestOptionID);
+		}
+
+		if (KFPC.MatchStats.GetDamageTakenInWave() >= 100 && KFPC.MatchStats.GetHealReceivedInWave() >= 100)
+		{
+			// took lots of damage and got healed a lot
+			AddRandomOption(30, NumOptions, BestOptionID);
+		}
 	}
 
 	if( KFPC.PWRI.bKilledFleshpoundLastWave )

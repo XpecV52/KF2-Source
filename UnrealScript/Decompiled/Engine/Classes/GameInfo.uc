@@ -82,6 +82,7 @@ var array<PlayerController> PendingArbitrationPCs;
 var array<PlayerController> ArbitrationPCs;
 var globalconfig float ArbitrationHandshakeTimeout;
 var globalconfig float GameDifficulty;
+var float GameDifficultyModifier;
 var globalconfig int GoreLevel;
 var float GameSpeed;
 var class<Pawn> DefaultPawnClass;
@@ -843,6 +844,11 @@ function PlayerController ProcessClientTravel(out string URL, Guid NextMapGuid, 
         P.PreClientTravel(URL, ((bAbsolute) ? 0 : 2), bSeamless);        
     }    
     return LP;
+}
+
+function byte GetModifiedGameDifficulty()
+{
+    return byte(GameDifficulty);
 }
 
 function bool RequiresPassword()
@@ -1818,6 +1824,7 @@ function RestartGame()
             return;
         }
     }
+    LogInternal("GameInfo - RestartGame - Call ServerTravel()");
     WorldInfo.ServerTravel("?Restart", GetTravelType());
 }
 

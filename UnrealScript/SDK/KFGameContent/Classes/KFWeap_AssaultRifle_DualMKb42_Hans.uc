@@ -62,6 +62,9 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=2.0,Y=8,Z=-3)
 
+	// Content
+	WeaponContentLoaded=true
+
 	AttachmentArchetype=KFWeapAttach_DualBase'WEP_DualMKB42_ARCH.Wep_DualMKB42_3P'
 
 	// Ammo

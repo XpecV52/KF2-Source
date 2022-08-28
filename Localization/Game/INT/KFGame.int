@@ -1,4 +1,6 @@
 [KFCommon_LocalizedStrings]
+PrestigeWarningString="Reset Perk back to 0?  This cannot be undone."
+PrestigeBonusString="Prestige Bonus"
 FailedToReachInventoryServerString="Failed to reach item server.  Inventory will not be available."
 LoadingString="Loading..."
 DifficultyStrings[0]="Normal"
@@ -56,6 +58,7 @@ NoSwitchReasonString="Switching teams would upset team balance"
 
 AutoTradeCompleteString="Auto Trade Complete: "
 AutoFillCompleteString="Autofilled Supplies"
+WeaponUpgradeComepleteString="Weapon Upgraded"
 SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
 NoItemsPurchasedString="No Items Purchased"
 
@@ -107,6 +110,9 @@ DiscordWaveString=": Wave "
 
 ProceedToTutorialString="PROCEED TO TRAINING?"
 ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
+
+; placeholder01
+; placeholder02
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="OUTBREAK COMPLETION REWARD"
@@ -161,6 +167,7 @@ CreateMatchString="CREATE MATCH"
 MatchmakingString="ONLINE MATCHMAKING"
 ConsoleMatchmakingString="PLAY ONLINE"
 ServerBrowserString="Browse Servers"
+NewsPageString="News"
 
 DifficultyTitle="DIFFICULTY"
 GameModeTitle="GAME MODE"
@@ -214,6 +221,7 @@ privacyList3=""
 inProgressList0=""
 inProgressList1=""
 inProgressList2=""
+FailedToLoadNewsString="Failed to Load latest news image.\nPlease try again later."
 
 [KFGFxStartGameContainer_Options]
 BackString="BACK"
@@ -364,6 +372,8 @@ CannotSellString="CANNOT SELL"
 CannotBuyString="CANNOT BUY"
 FavoriteString="FAVORITE"
 UnfavoriteString="UNFAVORITE"
+UpgradeCostString="UPGRADE COST"
+UpgradeString="UPGRADE"
 
 [KFGFxTraderContainer_PlayerInventory]
 FillString="FILL"
@@ -853,6 +863,7 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Experience"
+PrestigeLevelString="Prestige"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="CONFIGURE"
@@ -862,6 +873,8 @@ SkillsString="SKILLS"
 TierUnlockedText="New Tier Unlocked!"
 TierUnlockedSecondaryText="You have unlocked a new tier for the following perks:"
 
+CurrentPrestigeLevelString="Current Prestige Rank:"
+PrestigeString="PRESTIGE"
 
 [KFGFxPerksContainer_Details]
 ObjectivesString="XP OBJECTIVES"
@@ -877,6 +890,17 @@ HeaderTitle="SELECT PERK"
 EndOfWaveString="Perk changes will be applied at end of the wave!"
 ChangesAppliedOnCloseString="Perk changes will be applied when this menu is closed."
 OncePerWaveString="Perk changes can only be done once per wave!"
+
+[KFGFxPerksContainer_Prestige]
+AtMaxPrestigeLevelString="Max perk prestige level achieved!"
+NotHightenoughLevelString="Perk not at max level.  User cannot prestige at this time."
+CurrentRankString="CURRENT RANK"
+NextRankString="NEXT RANK"
+RewardString="PRESTIGE REWARDS"
+PrestigeDescriptionString="> Perk level will reset to 0. \n> Permanent +30% XP bonus modifier applied at end of game matches for this Perk. \n> Earn modified Perk icon, Vault Dosh, and a unique weapon skin for this Perk."
+PrestigeWarningString1="ACTION WILL RESET THIS PERK TO 0"
+PrestigeWarningString2="ONLY CONTINUE IF YOU ARE POSITIVELY SURE"
+PrestigeWarningString3="ONCE IT'S DONE, IT'S DONE"
 
 [KFGFxMenu_Store]
 StoreString="STORE"
@@ -1205,9 +1229,10 @@ UseAltAimOnDualString="Use Alt Dual Pistol Aim"
 AntiMotionSicknessString="Anti Motion Sickness"
 AutoTurnOffString="No Auto Turn On Clot Grab"
 ReduceHighPitchNoiseString="Reduce High Pitch Noise"
-DisableAutoUpgradeString="Disable Auto-Upgrade"
+DisableAutoUpgradeString="Disable Auto-Trade"
 
 EnableMixerString="Enable Mixer"
+DisableMixerString="Disable Mixer"
 
 [LocalizedControls]
 ControllerLayoutDefault="Default"
@@ -1371,6 +1396,8 @@ KickVoteNoSpectatorsString="Spectators may not initiate a kick vote"
 KickedFromServerString="You have been removed from the server"
 BannedFromServerString="You have been removed from this server. You cannot rejoin at this time"
 ServerNoLongerAvailableString="The server is no longer available to join"
+SkipTraderTimeString="SKIP TRADER activated. Select 'SKIP TRADER' on the game menu to vote.  All players must agree."
+SkipTraderSuccessString="Skip trader vote successful!"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="You received ammo from"
@@ -1441,7 +1468,7 @@ ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 LastPlayerStandingString="LAST PLAYER STANDING"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="USE TRADER<%HOLD%>AUTO-UPGRADE"
+UseTraderMessage="USE TRADER<%HOLD%>AUTO-TRADE"
 UseDoorMessage="OPEN/CLOSE<%HOLD%>EQUIP WELDER"
 EquipWelderMessage="<%HOLD%>EQUIP WELDER"
 ZedUseDoorMessage="OPEN/CLOSE"
@@ -1455,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>HEAL SELF"
 PressToBashWarning="BASH"
 GamepadWeaponSelectHint="<%HOLD%>WEAPON SELECT"
 PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
+
 UseMinigameMessage="ACTIVATE"
 UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
 DoshActivateMessage="ACTIVATION COST"
-
+EMPGrabWarningMessage="*** ! IMMOBOLIZED ! ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
 
@@ -2287,19 +2315,24 @@ HorzineSupplyCrateKey13="Horzine Supply Crate Key | Series #13 - $2.49"
 USBSpitfire="Spit Fire USB Key - $2.49"
 USBHighVoltage="High Voltage USB Key - $2.49"
 MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
+; placeholder03
 
 [Objectives]
 HoldVolume="DEFEND THE AREA"
 DoshHold="STAND YOUR GROUND"
+RepairObjective="WELD AND REPAIR"
 DescriptionDoshHold="Keep Zeds out of the marked area"
 RequiredDoshHold="Players required:"
 DoschHoldDesc="Keep Zeds out of the marked area"
 DescriptionHoldVolume="DescriptionHoldVolume"
 RequiredHoldVolume="RequiredHoldVolume"
-DestroyActor="SEARCH AND DESTROY"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
+UseWelderToRepair="Use the Welder to repair the objective(s)"
 FailedString="FAILED"
+DescriptionActivateTrigger="Activate the objective control"
+RequiredActivateTrigger="Activations required:"
+ActivateTrigger="OPERATE AND CONTROL"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2323,6 +2356,9 @@ KFPawn_ZedClot_Alpha="Alpha Clot"
 KFPawn_ZedClot_AlphaKing="Rioter"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
+KFPawn_ZedDAR_EMP="E.D.A.R Trapper"
+KFPawn_ZedDAR_Laser="E.D.A.R Blaster"
+KFPawn_ZedDAR_Rocket="E.D.A.R Bomber"
 KFPawn_ZedPatriarch="Patriarch"
 KFPawn_ZedBloatKingSubspawn="Abomination Spawn"
 ;Human zeds
@@ -2452,12 +2488,25 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Descri
 SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
 SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
 SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
-SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5")
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
 ChanceDropDescriptionStrings[0]="Drop 1"
 ChanceDropDescriptionStrings[1]="Drop 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="A time limited special event with exclusive items."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Repair in the Air",DescriptionString="Repair the broken pipes in Airship")
+SpecialEventObjectiveInfoList[1]=(TitleString="Top Decking Success",DescriptionString="Defend the top deck in Airship")
+SpecialEventObjectiveInfoList[2]=(TitleString="Power Up!",DescriptionString="Repair the electric breaker boxes in Airship")
+SpecialEventObjectiveInfoList[3]=(TitleString="Flush Rush",DescriptionString="Transfer water to the steam engine in Airship")
+SpecialEventObjectiveInfoList[4]=(TitleString="A Fine Vessel",DescriptionString="Win a match on Hard or higher in Airship")
+
+AllCompleteRewardDescriptionString="Steampunk Outfit Bundle"
+
+ChanceDropDescriptionStrings[0]="Prize Ticket"
+ChanceDropDescriptionStrings[1]="Gold Ticket"
 
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="A time limited special event with exclusive items."
@@ -2896,6 +2945,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2964,6 +3045,12 @@ DisplayName="Power Core"
 
 [KF-DieSector KFMapSummary]
 DisplayName="DieSector"
+
+[KF-Lockdown KFMapSummary]
+DisplayName="Lockdown"
+
+[KF-Airship KFMapSummary]
+DisplayName="Airship"
 
 [KFMapInfo]
 ; defaults

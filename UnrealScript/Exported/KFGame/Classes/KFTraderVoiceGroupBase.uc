@@ -542,6 +542,8 @@ class KFTraderVoiceGroupBase extends Object;
 
 
 
+										  
+
 
 
 
@@ -954,6 +956,7 @@ defaultproperties
    EventNames(45)="TRAD_AdviceHusk"
    EventNames(46)="TRAD_AdvicePatriarch"
    EventNames(47)="TRAD_AdviceHans"
+   EventNames(48)="TRAD_AdviceMatriarch"
    EventNames(49)="TRAD_ObjDefendT"
    EventNames(50)="TRAD_ObjDefendTWon"
    EventNames(51)="TRAD_ObjDefendTDeclined"

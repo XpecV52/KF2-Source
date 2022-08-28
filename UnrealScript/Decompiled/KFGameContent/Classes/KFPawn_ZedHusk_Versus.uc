@@ -17,7 +17,7 @@ var protected float FireballStrength;
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(25))
+    if(IsDoingSpecialMove(26))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -53,7 +53,7 @@ function ShootFireball()
     local Rotator ShootRotation;
     local Vector HitLocation, HitNormal, Dir, TraceStart, TraceEnd;
 
-    if((((Role == ROLE_Authority) && float(Health) > 0) && IsDoingSpecialMove(24)) && IsHumanControlled())
+    if((((Role == ROLE_Authority) && float(Health) > 0) && IsDoingSpecialMove(25)) && IsHumanControlled())
     {
         PC = PlayerController(Controller);
         if(PC == none)
@@ -124,12 +124,12 @@ simulated function OnExploded(Controller SuicideController)
 
 simulated function KFGame.KFPawn.ESpecialMove GetSuicideSM()
 {
-    return 29;
+    return 30;
 }
 
 simulated function bool UseAdjustedControllerSensitivity()
 {
-    return IsDoingSpecialMove(24);
+    return IsDoingSpecialMove(25);
 }
 
 simulated function Vector2D GetFireballStrengthRange()
@@ -178,6 +178,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedHusk_Versus.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -241,6 +242,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedHusk_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedHusk_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHusk_Versus.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedHusk_Versus.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

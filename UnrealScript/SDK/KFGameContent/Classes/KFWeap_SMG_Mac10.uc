@@ -9,6 +9,11 @@
 
 class KFWeap_SMG_Mac10 extends KFWeap_SMGBase;
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Flame;
+}
+
 defaultproperties
 {
 	// Inventory
@@ -31,17 +36,13 @@ defaultproperties
 	IronSightPosition=(X=15.f,Y=0,Z=0)
 	PlayerViewOffset=(X=18.f,Y=8,Z=-5.0)  //(X=17.f,Y=8,Z=-3.0)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_MAC10_MESH.Wep_1stP_MAC10_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_MAC10_ANIM.WEP_1P_MAC10_ANIM'
-
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_MAC10_MESH.Wep_3rdP_MAC10_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_MAC10_ARCH.Wep_MAC10_3P'
+	// Content
+	PackageKey="MAC10"
+	FirstPersonMeshName="WEP_1P_MAC10_MESH.Wep_1stP_MAC10_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_MAC10_ANIM.WEP_1P_MAC10_ANIM"
+	PickupMeshName="WEP_3P_MAC10_MESH.Wep_3rdP_MAC10_Pickup"
+	AttachmentArchetypeName="WEP_MAC10_ARCH.Wep_MAC10_3P"
+	MuzzleFlashTemplateName="WEP_MAC10_ARCH.Wep_MAC10_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=32   //40
@@ -95,9 +96,6 @@ defaultproperties
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Mac10'
 	InstantHitDamage(BASH_FIREMODE)=24.0
 
-	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_MAC10_ARCH.Wep_MAC10_MuzzleFlash'
-
 	//@todo: add akevents when we have them
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_1P_Single')
@@ -116,4 +114,8 @@ defaultproperties
 
 	AssociatedPerkClasses(0)=class'KFPerk_Firebug'
 	AssociatedPerkClasses(1) = class'KFPerk_SWAT'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.3f,IncrementWeight=2)
 }

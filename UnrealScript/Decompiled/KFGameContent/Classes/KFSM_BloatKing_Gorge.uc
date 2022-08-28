@@ -104,7 +104,7 @@ function Tick(float DeltaTime)
                     }
                     else
                     {
-                        TestPawn.TakeDamage(int(GorgeBaseDamage[int(KFPOwner.WorldInfo.Game.GameDifficulty)]), KFPOwner.Controller, TestPawn.Location, vect(0, 0, 0), Class'KFDT_Bludgeon_BloatKingGorge');
+                        TestPawn.TakeDamage(int(GorgeBaseDamage[KFPOwner.WorldInfo.Game.GetModifiedGameDifficulty()]), KFPOwner.Controller, TestPawn.Location, vect(0, 0, 0), Class'KFDT_Bludgeon_BloatKingGorge');
                     }                    
                 }
             }            

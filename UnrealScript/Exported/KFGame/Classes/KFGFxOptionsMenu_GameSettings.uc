@@ -100,6 +100,7 @@ var localized string AutoTurnOffString;
 var localized string ReduceHighPitchNoiseString;
 
 var localized string EnableMixerString;
+var localized string DisableMixerString;
 
 var localized array<string> GoreOptionStrings;
 
@@ -107,6 +108,7 @@ var float FOVMinValue, FOVMaxValue, FOVCurrentValue;
 var float FriendlyHudScaleMinValue, FriendlyHudScaleMaxValue;
 
 var const byte SHOW_NO_GORE_LEVEL;
+
 
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
@@ -151,6 +153,7 @@ function LocalizeText()
 	LocalizedObject.SetString("autoTurnOff", 			AutoTurnOffString);
 
 	LocalizedObject.SetString("enableMixer", 			EnableMixerString);
+	LocalizedObject.SetString("disableMixer",			DisableMixerString);
 	//woops these don't actually do anything
 	//LocalizedObject.SetString("reduceHighPitchNoise", 	ReduceHighPitchNoiseString);
 	//LocalizedObject.SetString("antiMotionSickness", 	AntiMotionSicknessString);
@@ -597,7 +600,7 @@ defaultproperties
    NormalString="Normal"
    ClassicWeaponSelectString="Weapon Quick Select"
    KillTickerString="Show Zed Kill Ticker"
-   DisableAutoUpgradeString="Disable Auto-Upgrade"
+   DisableAutoUpgradeString="Disable Auto-Trade"
    HideBossHealthBarString="Hide Boss Healthbar"
    ShowWelderInInvString="Show Welder In Inventory"
    UseAltAimOnDualString="Use Alt Dual Pistol Aim"
@@ -605,6 +608,7 @@ defaultproperties
    AutoTurnOffString="No Auto Turn On Clot Grab"
    ReduceHighPitchNoiseString="Reduce High Pitch Noise"
    EnableMixerString="Enable Mixer"
+   DisableMixerString="Disable Mixer"
    GoreOptionStrings(0)="Low Gore"
    GoreOptionStrings(1)="Medium Gore"
    GoreOptionStrings(2)="High Gore"

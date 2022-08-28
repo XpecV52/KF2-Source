@@ -29,12 +29,15 @@ var protected bool bPlayedBlockBreak;
 /** When TRUE, will use the Monster pawn's BlockSprintSpeedModifier */
 var protected bool bUseBlockSprintSpeed;
 
+/** How long from start of block until Zed can actually block. */
+var protected float WindupTime;
+
 static function byte PackBlockSMFLags( byte BlockDir )
 {
 	local byte Variant;
 
 	Variant = Rand( 2 );
-	return BlockDir + ( Variant << 4 );	
+	return BlockDir + ( Variant << 4 );
 }
 
 /** Checks to see if this Special Move can be done */
@@ -83,7 +86,7 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 		AdjustSprintSpeed();
 
 		MyMonsterPawn.SetTimer( MyMonsterPawn.GetBlockSettings().Duration, false, nameOf(Timer_BlockDurationExpired), self );
-		MyMonsterPawn.SetTimer( BlendInTime, false, nameOf(Timer_EnableBlocking), self );
+		MyMonsterPawn.SetTimer( WindupTime, false, nameOf(Timer_EnableBlocking), self );
 	}
 
 	super.SpecialMoveStarted( bForced, PrevMove );
@@ -119,7 +122,7 @@ function AdjustSprintSpeed()
 /**
  * Network: SERVER
  */
-function float GetSprintSpeedModifier() 
+function float GetSprintSpeedModifier()
 {
 	return bUseBlockSprintSpeed ? MyMonsterPawn.GetBlockingSprintSpeedModifier() : 1.0f;
 }
@@ -146,7 +149,7 @@ function PlayAnimation()
 /** Resets the special move flags on the pawn for future updates */
 function Timer_ResetSpecialMoveFlags()
 {
-	MyMonsterPawn.SpecialMoveFlags = 255;	
+	MyMonsterPawn.SpecialMoveFlags = 255;
 }
 
 /** Called when DoSpecialMove() is called again with this special move, but the special move flags have changed */
@@ -209,7 +212,7 @@ function Timer_BlockBroken()
 {
 	bPlayedBlockBreak = true;
 	MyMonsterPawn.StopBodyAnim( AnimStance, BlendOutTime );
-	MyMonsterPawn.PawnAnimInfo.PlayHitReactionAnim( MyMonsterPawn, HIT_Heavy, ReactionDir );	
+	MyMonsterPawn.PawnAnimInfo.PlayHitReactionAnim( MyMonsterPawn, HIT_Heavy, ReactionDir );
 	MyMonsterPawn.EndSpecialMove();
 }
 
@@ -249,6 +252,8 @@ DefaultProperties
 	// SpecialMove
 	Handle=KFSM_Block
 	bCanBeInterrupted=true
+
+	WindupTime=0.25f
 
 	// ---------------------------------------------
 	// Animations

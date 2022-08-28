@@ -17,7 +17,6 @@ var Protected int LastMatchTime;
 var localized string WaveString;
 var localized string FinalString;
 
-var int CurrentGameDifficulty;
 var string GameTypeString;
 var bool bLocalized;
 
@@ -38,9 +37,7 @@ function LocalizeText()
 
 	if(KFGRI != none)
 	{
-		CurrentGameDifficulty = KFGameReplicationInfo(GetPC().WorldInfo.GRI).GameDifficulty;
-
-		GameDifficultyString =  class'KFCommon_LocalizedStrings'.static.GetDifficultyString(CurrentGameDifficulty);
+		GameDifficultyString =  class'KFCommon_LocalizedStrings'.static.GetDifficultyString(KFGRI.GameDifficulty);
 		GameTypeString =  KFGRI.GameClass.default.GameName;
     	MatchInfoString = GameTypeString @"-" @GameDifficultyString;
 	}

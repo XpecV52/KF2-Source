@@ -43,26 +43,6 @@ var array<name> BulletFXSocketNames;
 var export editinline array<export editinline KFSkeletalMeshComponent> BulletMeshComponents;
 var CylinderRotationInfo CylinderRotInfo;
 
-simulated event PreBeginPlay()
-{
-    local int I;
-
-    super.PreBeginPlay();
-    if(bRevolver)
-    {
-        I = 0;
-        J0x22:
-
-        if(I < BulletMeshComponents.Length)
-        {
-            BulletMeshComponents[I].SetHidden(false);
-            MySkelMesh.AttachComponentToSocket(BulletMeshComponents[I], BulletFXSocketNames[I]);
-            ++ I;
-            goto J0x22;
-        }
-    }
-}
-
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
     super.PostInitAnimTree(SkelComp);
@@ -90,10 +70,22 @@ simulated function ConsumeAmmo(byte FireModeNum)
 
 simulated event PostInitAnimTreeRevolver(SkeletalMeshComponent SkelComp)
 {
+    local int I;
+
     CylinderRotInfo.Control = SkelControlSingleBone(SkelComp.FindSkelControl('CylinderControl'));
     if(CylinderRotInfo.Control != none)
     {
         CylinderRotInfo.Control.SetSkelControlActive(true);
+    }
+    I = 0;
+    J0xAE:
+
+    if(I < BulletMeshComponents.Length)
+    {
+        BulletMeshComponents[I].SetHidden(false);
+        MySkelMesh.AttachComponentToSocket(BulletMeshComponents[I], BulletFXSocketNames[I]);
+        ++ I;
+        goto J0xAE;
     }
 }
 

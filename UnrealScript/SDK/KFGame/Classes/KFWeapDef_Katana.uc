@@ -14,8 +14,16 @@ DefaultProperties
 {
 	WeaponClassPath="KFGameContent.KFWeap_Edged_Katana"
 
-	BuyPrice=600 //200
+	BuyPrice=850 //200
 	ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Katana"
 
 	EffectiveRange=2
+
+	UpgradePrice[0]=600
+	UpgradePrice[1]=700
+	UpgradePrice[2]=1500
+
+	UpgradeSellPrice[0]=450
+	UpgradeSellPrice[1]=975
+	UpgradeSellPrice[2]=2100
 }

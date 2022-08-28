@@ -29,17 +29,13 @@ defaultproperties
 
 	BarrelOffset=(X=10.0,Y=0,Z=0)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_dual_af2001_mesh.Wep_1stP_Dual_AF2001_Rig'
-		AnimSets(0)=AnimSet'wep_1p_dual_af2001_anim.Wep_1stP_Dual_AF2001_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_AF2001_MESH.Wep_3rdP_AF2001_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_AF2001_ARCH.Wep_Dual_AF2001_3P'
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_AF2001_ARCH.Wep_Dual_AF2001_MuzzleFlash'
+	// Content
+	PackageKey="Dual_AF2001"
+	FirstPersonMeshName="wep_1p_dual_af2001_mesh.Wep_1stP_Dual_AF2001_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_dual_af2001_anim.Wep_1stP_Dual_AF2001_Anim"
+	PickupMeshName="WEP_3P_DUAL_AF2001_MESH.Wep_3rdP_AF2001_Pickup"
+	AttachmentArchetypeName="WEP_Dual_AF2001_ARCH.Wep_Dual_AF2001_3P"
+	MuzzleFlashTemplateName="WEP_Dual_AF2001_ARCH.Wep_Dual_AF2001_MuzzleFlash"
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -88,7 +84,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_PistolAF2011'
 	FireInterval(DEFAULT_FIREMODE)=+0.13 // about twice as fast as single
-	InstantHitDamage(DEFAULT_FIREMODE)=53
+	InstantHitDamage(DEFAULT_FIREMODE)=43 //53
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AF2011'
 	PenetrationPower(DEFAULT_FIREMODE)=1.5
 	Spread(DEFAULT_FIREMODE)=0.01
@@ -101,7 +97,7 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)= EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_PistolAF2011'
 	FireInterval(ALTFIRE_FIREMODE)=+0.13 // about twice as fast as single
-	InstantHitDamage(ALTFIRE_FIREMODE)=53
+	InstantHitDamage(ALTFIRE_FIREMODE)=43 //53
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_AF2011'
 	PenetrationPower(ALTFIRE_FIREMODE)=1.5
 	Spread(ALTFIRE_FIREMODE)=0.01
@@ -125,7 +121,7 @@ defaultproperties
 	bHasFlashlight=false
 
 	// Inventory
-	InventorySize=6
+	InventorySize=4
 	GroupPriority=45
 	bCanThrow=true
 	bDropOnDeath=true
@@ -137,5 +133,9 @@ defaultproperties
     BonesToLockOnEmpty_L=(LW_Bolt, LW_Bullets1)
 
     bHasFireLastAnims=true
+
+    // Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=2)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=4)
 }
 

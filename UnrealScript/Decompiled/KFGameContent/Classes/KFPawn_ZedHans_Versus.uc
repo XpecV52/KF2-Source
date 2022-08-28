@@ -12,7 +12,7 @@ class KFPawn_ZedHans_Versus extends KFPawn_ZedHans
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super(KFPawn_ZedHansBase).PossessedBy(C, bVehicleTransition);
-    ServerDoSpecialMove(35);
+    ServerDoSpecialMove(37);
 }
 
 simulated function StartFire(byte FireModeNum)
@@ -30,9 +30,9 @@ simulated function StartFire(byte FireModeNum)
             }
             break;
         case 1:
-            if(!IsDoingSpecialMove(37))
+            if(!IsDoingSpecialMove(39))
             {
-                ServerDoSpecialMove(37);
+                ServerDoSpecialMove(39);
             }
             break;
         case 3:
@@ -110,6 +110,7 @@ defaultproperties
     ShieldShatterExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHans_Versus.ShatterExploTemplate0'
     bVersusZed=true
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHans_Versus.MeleeHelper'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedHans_Versus.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -162,6 +163,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedHans_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedHans_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHans_Versus.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedHans_Versus.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

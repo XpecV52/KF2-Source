@@ -66,7 +66,6 @@ function ApplySkillsToPawn()
     {
         return;
     }
-    ResetSupplier();
 }
 
 function OnWaveEnded()
@@ -726,7 +725,7 @@ defaultproperties
     NukeExplosionActorClass=Class'KFExplosion_Nuke'
     NukeDamageModifier=1.5
     NukeRadiusModifier=1.35
-    ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
+    ConcussiveExplosionSound=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Explosion'
     AoeDamageModifier=0.3
     LingeringNukePoisonDamage=20
     PassiveExtraAmmoIgnoredClassNames(0)=KFProj_DynamiteGrenade
@@ -777,6 +776,7 @@ defaultproperties
     ZedTimeModifyingStates(5)=FiringSecondaryState
     ZedTimeModifyingStates(6)=AltReloading
     ZedTimeModifyingStates(7)=WeaponThrowing
+    ZedTimeModifyingStates(8)=HuskCannonCharge
     PrimaryWeaponDef=Class'KFWeapDef_HX25'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Demo'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Demo'
@@ -785,4 +785,5 @@ defaultproperties
     AutoBuyLoadOutPath(2)=class'KFWeapDef_M16M203'
     AutoBuyLoadOutPath(3)=class'KFWeapDef_RPG7'
     HitAccuracyHandicap=2
+    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
 }

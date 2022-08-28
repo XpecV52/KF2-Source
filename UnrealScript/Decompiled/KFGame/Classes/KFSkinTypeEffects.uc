@@ -151,6 +151,7 @@ function ParticleSystemComponent AttachEffectToHitLocation(KFPawn P, ParticleSys
             }
         }
     }
+    return none;
 }
 
 function ParticleSystemComponent MeleeSpawnEffect(KFPawn P, ParticleSystem ParticleTemplate, Vector HitLocation, Vector HitDirection)

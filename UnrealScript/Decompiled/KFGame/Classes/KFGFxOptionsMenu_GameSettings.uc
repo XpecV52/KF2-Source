@@ -85,6 +85,7 @@ var const localized string AntiMotionSicknessString;
 var const localized string AutoTurnOffString;
 var const localized string ReduceHighPitchNoiseString;
 var const localized string EnableMixerString;
+var const localized string DisableMixerString;
 var const localized array<localized string> GoreOptionStrings;
 var float FOVMinValue;
 var float FOVMaxValue;
@@ -134,6 +135,7 @@ function LocalizeText()
     LocalizedObject.SetString("useAltAimOnDual", UseAltAimOnDualString);
     LocalizedObject.SetString("autoTurnOff", AutoTurnOffString);
     LocalizedObject.SetString("enableMixer", EnableMixerString);
+    LocalizedObject.SetString("disableMixer", DisableMixerString);
     SetObject("localizedText", LocalizedObject);
 }
 
@@ -486,7 +488,7 @@ defaultproperties
     NormalString="Normal"
     ClassicWeaponSelectString="Weapon Quick Select"
     KillTickerString="Show Zed Kill Ticker"
-    DisableAutoUpgradeString="Disable Auto-Upgrade"
+    DisableAutoUpgradeString="Disable Auto-Trade"
     HideBossHealthBarString="Hide Boss Healthbar"
     ShowWelderInInvString="Show Welder In Inventory"
     UseAltAimOnDualString="Use Alt Dual Pistol Aim"
@@ -494,6 +496,7 @@ defaultproperties
     AutoTurnOffString="No Auto Turn On Clot Grab"
     ReduceHighPitchNoiseString="Reduce High Pitch Noise"
     EnableMixerString="Enable Mixer"
+    DisableMixerString="Disable Mixer"
     GoreOptionStrings(0)="Low Gore"
     GoreOptionStrings(1)="Medium Gore"
     GoreOptionStrings(2)="High Gore"

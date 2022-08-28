@@ -29,7 +29,7 @@ static function byte GetPukeMinesToSpawnOnDeath( KFPawn_ZedBloat BloatPawn, Game
 	{
 		return default.PukeMinesToSpawnOnDeath_Versus;
 	}
-	return default.PukeMinesToSpawnOnDeathByDifficulty[GI.GameDifficulty];
+	return default.PukeMinesToSpawnOnDeathByDifficulty[GI.GetModifiedGameDifficulty()];
 }
 
 defaultproperties

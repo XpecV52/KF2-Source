@@ -21,6 +21,8 @@ KF-Nightmare="Jugando en Pesadilla"
 KF-KrampusLair="En la guarida del Krampus"
 KF-PowerCore_Holdout="está jugando en Núcleo de poder"
 KF-DieSector="está jugando en Sector mortal"
+KF-Lockdown="Jugando Bloqueo"
+KF-Airship="Jugando Aeronave"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

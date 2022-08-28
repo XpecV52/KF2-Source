@@ -552,6 +552,8 @@ class KFPawnVoiceGroupEventData_Player extends KFPawnVoiceGroupEventData;
 
 
 
+										  
+
 
 
 
@@ -855,6 +857,7 @@ defaultproperties
    Events(227)=(EventID=227)
    Events(228)=(EventID=228)
    Events(229)=(EventID=229,Chance=1.000000,CoolDownTime=1.000000,CoolDownRadius=10.000000)
+   Events(230)=(EventID=230,Chance=1.000000,CoolDownTime=1.000000,bCanBeMinimized=0)
    Name="Default__KFPawnVoiceGroupEventData_Player"
    ObjectArchetype=KFPawnVoiceGroupEventData'KFGame.Default__KFPawnVoiceGroupEventData'
 }

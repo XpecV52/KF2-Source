@@ -89,6 +89,9 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=2.0,Y=8,Z=-3)
 
+	// Content
+	WeaponContentLoaded=true
+
 	AttachmentArchetype=KFWeaponAttachment'WEP_Patriarch_ARCH.Wep_Patriarch_Minigun_3P'
 
 	// Ammo

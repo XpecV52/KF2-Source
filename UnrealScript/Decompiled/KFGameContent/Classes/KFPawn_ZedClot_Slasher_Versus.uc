@@ -49,6 +49,7 @@ defaultproperties
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     JumpBumpDamageType=Class'KFDT_Bludgeon_ZedJump'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher_Versus.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -111,6 +112,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedClot_Slasher_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedClot_Slasher_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot_Slasher_Versus.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedClot_Slasher_Versus.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

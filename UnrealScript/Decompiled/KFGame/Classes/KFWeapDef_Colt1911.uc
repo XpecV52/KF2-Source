@@ -14,5 +14,11 @@ defaultproperties
     ImagePath="WEP_UI_M1911_TEX.UI_WeaponSelect_M1911Colt"
     BuyPrice=325
     AmmoPricePerMag=13
+    UpgradePrice(0)=600
+    UpgradePrice(1)=700
+    UpgradePrice(2)=1500
+    UpgradeSellPrice(0)=450
+    UpgradeSellPrice(1)=975
+    UpgradeSellPrice(2)=2100
     EffectiveRange=50
 }

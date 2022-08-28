@@ -439,7 +439,7 @@ simulated function bool CanMoveWhileThrowingGrenades()
 
     // See if this battle phase allows it
     KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
-    if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhileThrowingGrenades[KFGRI.GameDifficulty] )
+    if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhileThrowingGrenades[KFGRI.GetModifiedGameDifficulty()] )
     {
         return true;
     }
@@ -492,14 +492,14 @@ simulated function SetHuntAndHealMode( bool bOn )
             {
                 KFGI.DifficultyInfo.GetAIHealthModifier(
                     self,
-                    KFGI.GameDifficulty,
+                    KFGI.GetModifiedGameDifficulty(),
                     KFGI.GetLivingPlayerCount(),
                     HealthMod,
                     HeadHealthMod );
             }
 
             // Initialize shield health
-            ShieldHealthMax = BattlePhases[CurrentBattlePhase-1].MaxShieldHealth[WorldInfo.Game.GameDifficulty] * HealthMod * ShieldHealthScale;
+            ShieldHealthMax = BattlePhases[CurrentBattlePhase-1].MaxShieldHealth[WorldInfo.Game.GetModifiedGameDifficulty()] * HealthMod * ShieldHealthScale;
             ShieldHealth = ShieldHealthMax;
             UpdateShieldHealth();
 
@@ -552,7 +552,7 @@ function Timer_ResetShieldHealthPct()
 /** Returns the amount that Hans should heal for this phase */
 function float GetHealAmountForThisPhase()
 {
-    return float(HealthMax) * BattlePhases[CurrentBattlePhase-2].HealAmounts[WorldInfo.Game.GameDifficulty];
+    return float(HealthMax) * BattlePhases[CurrentBattlePhase-2].HealAmounts[WorldInfo.Game.GetModifiedGameDifficulty()];
 }
 
 /** Summons boss minions depending on difficulty and battle phase */

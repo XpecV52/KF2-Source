@@ -21,6 +21,8 @@ KF-Nightmare="正在進行:夢魘"
 KF-KrampusLair="遊玩坎普斯巢穴"
 KF-PowerCore_Holdout="玩能量核心"
 KF-DieSector="玩死亡地帶"
+KF-Lockdown="進行封鎖遊戲中"
+KF-Airship="進行飛艇遊戲中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

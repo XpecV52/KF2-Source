@@ -168,6 +168,11 @@ protected function KnockdownTimer()
 
 protected function EndKnockdown()
 {
+    if(!((PawnOwner.Physics != 10) || VSizeSq(PawnOwner.Velocity) < 100) || !PawnOwner.Mesh.RigidBodyIsAwake())
+    {
+        LogInternal((("failed to recover from knockdown " @ string(PawnOwner.Physics)) @ string(VSizeSq(PawnOwner.Velocity) < 100)) @ string(PawnOwner.Mesh.RigidBodyIsAwake()));
+        return;
+    }
     PawnOwner.ClearTimer('EndKnockdown', self);
     PawnOwner.ClearTimer('KnockdownTimer', self);
     if(DazedPSC != none)

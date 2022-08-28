@@ -1250,7 +1250,7 @@ exec function InteractTimer()
         {
             return;
         }
-        if(UsableTrigger.IsA('KFDoorTrigger'))
+        if(UsableTrigger.IsA('KFDoorTrigger') || UsableTrigger.IsA('KFRepairableActorTrigger'))
         {
             KFIM.QuickWeld();            
         }
@@ -1936,17 +1936,17 @@ simulated function KFPawn.ESpecialMove GetVersusZedMoveType(KFPawn_Monster P, by
     switch(FireModeNum)
     {
         case 0:
-            return 24;
-        case 5:
             return 25;
-        case 3:
+        case 5:
             return 26;
-        case 1:
+        case 3:
             return 27;
-        case 8:
+        case 1:
             return 28;
-        case 4:
+        case 8:
             return 29;
+        case 4:
+            return 30;
         case 2:
             return 13;
         default:
@@ -2213,6 +2213,18 @@ exec function UnsuppressTrader(optional name ClassName)
 {
     ClassName = ((ClassName != 'None') ? ClassName : 'KFTraderTrigger');    
     Outer.ConsoleCommand(("SETNOPEC" @ string(ClassName)) @ "bLogTrader true");
+}
+
+exec function SuppressWeaponUpgrade(optional name ClassName)
+{
+    ClassName = ((ClassName != 'None') ? ClassName : 'KFWeapon');    
+    Outer.ConsoleCommand(("SETNOPEC" @ string(ClassName)) @ "bLogWeaponUpgrade false");
+}
+
+exec function UnsuppressWeaponUpgrade(optional name ClassName)
+{
+    ClassName = ((ClassName != 'None') ? ClassName : 'KFWeapon');    
+    Outer.ConsoleCommand(("SETNOPEC" @ string(ClassName)) @ "bLogWeaponUpgrade true");
 }
 
 defaultproperties

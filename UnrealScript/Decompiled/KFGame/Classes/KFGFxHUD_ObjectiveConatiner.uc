@@ -25,7 +25,7 @@ function LocalizeContainer()
     SetObject("localizedText", TextObject);
 }
 
-function SetActive(bool bActive)
+simulated function SetActive(bool bActive)
 {
     SetVisible(bActive);
     if(bActive)
@@ -33,7 +33,7 @@ function SetActive(bool bActive)
         CurrentObjectiveInterface = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI).ObjectiveInterface;
         if(NotEqual_InterfaceInterface(CurrentObjectiveInterface, (none)))
         {
-            SetFailState(CurrentObjectiveInterface.GetProgress() <= float(0));
+            SetFailState(CurrentObjectiveInterface.HasFailedObjective());
             SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
             SetCurrentIcon(PathName(CurrentObjectiveInterface.GetIcon()));
         }        
@@ -62,6 +62,19 @@ function TickHud(float DeltaTime)
     {
         SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
         SetInt("rewardValue", CurrentObjectiveInterface.GetDoshReward());
+        UpdateActorCount();
+    }
+}
+
+function UpdateActorCount()
+{
+    local GFxObject DataObject;
+
+    if(CurrentObjectiveInterface.UsesMultipleActors())
+    {
+        DataObject = Outer.CreateObject("Object");
+        DataObject.SetString("textValue", CurrentObjectiveInterface.GetActorCount());
+        SetObject("objectiveNumber", DataObject);
     }
 }
 

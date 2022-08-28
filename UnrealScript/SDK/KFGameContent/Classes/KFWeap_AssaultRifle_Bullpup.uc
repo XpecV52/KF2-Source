@@ -24,16 +24,13 @@ defaultproperties
 	DOF_FG_FocalRadius=85
 	DOF_FG_MaxNearBlurSize=2.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_L85A2_MESH.Wep_1stP_L85A2_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_L85A2_ANIM.Wep_1st_L85A2_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_L85A2_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_L85A2_ARCH.Wep_L85A2_3P'
+	// Content
+	PackageKey="L85A2"
+	FirstPersonMeshName="WEP_1P_L85A2_MESH.Wep_1stP_L85A2_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_L85A2_ANIM.Wep_1st_L85A2_Anim"
+	PickupMeshName="WEP_3P_L85A2_MESH.Wep_L85A2_Pickup"
+	AttachmentArchetypeName="WEP_L85A2_ARCH.Wep_L85A2_3P"
+	MuzzleFlashTemplateName="WEP_L85A2_ARCH.Wep_L85A2_MuzzleFlash"
 
    	// Zooming/Position
 	PlayerViewOffset=(X=3.0,Y=9,Z=-3)
@@ -96,7 +93,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_L85A2_ARCH.Wep_L85A2_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Fire_Loop_M', FirstPersonCue=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Fire_Loop_S')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Fire_Single_S')
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Fire_Loop_End_M', FirstPersonCue=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Fire_Loop_End_S')
@@ -112,6 +108,11 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.65f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.85f,IncrementWeight=3)
 }
 
 

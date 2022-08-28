@@ -1095,14 +1095,28 @@ function Callback_UseItem( int ItemDefinition )
 			}
 			else
 			{
-				//open market place item
-				OnlineSub.OpenMarketPlaceSearch(NeededItem);
+				if (OnlineSub.IsGameOwned())
+				{
+					//open market place item
+					OnlineSub.OpenMarketPlaceSearch(NeededItem);
+				}
+				else
+				{
+					Manager.DisplayFreeTrialFeatureBlockedPopUp();
+				}
 			}
 		}
 		else
 		{
-			//open key purchase
-			OnlineSub.OpenItemPurchaseOverlay(NeededItemID);
+			if (OnlineSub.IsGameOwned())
+			{
+				//open key purchase
+				OnlineSub.OpenItemPurchaseOverlay(NeededItemID);
+			}
+			else
+			{
+				Manager.DisplayFreeTrialFeatureBlockedPopUp();
+			}
 		}
 	}
 }

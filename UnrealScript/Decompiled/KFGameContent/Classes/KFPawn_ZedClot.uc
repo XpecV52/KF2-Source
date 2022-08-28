@@ -48,7 +48,6 @@ function int GetSpotterDialogID()
 defaultproperties
 {
     bCanGrabAttack=true
-    bKnockdownWhenJumpedOn=true
     bIsClotClass=true
     MonsterArchPath="ZED_ARCH.ZED_Clot_UnDev_Archetype"
     begin object name=MeleeHelper class=KFMeleeHelperAI
@@ -61,6 +60,7 @@ defaultproperties
     DoshValue=7
     DamageTypeModifiers=/* Array type was not detected. */
     KnockedDownBySonicWaveOdds=0.23
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedClot.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -121,6 +121,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedClot.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedClot.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedClot.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

@@ -61,7 +61,7 @@ function LocalizeContainer()
 	SetObject("localizeStrings", LocalizedObject);
 }
 
-//Updates the ablility to change the perk 
+//Updates the ablility to change the perk
 function UpdateLock()
 {
 	if (KFPC != none)
@@ -83,7 +83,7 @@ function RefreshPlayerInventory()
 	local string TextureLocation;
 	local GFxObject InfoSlot, MagSlot, FillSlot, SellSlot;
 	local GFxObject InfoDataProvider, FillDataProvider, MagDataProvider, SellDataProvider;	// This array of information is sent to ActionScript to update the item data
-   	local SItemInformation ItemInfo;	
+   	local SItemInformation ItemInfo;
 
 	InfoDataProvider = CreateArray();
 	FillDataProvider = CreateArray();
@@ -113,7 +113,7 @@ function RefreshPlayerInventory()
 			MagSize = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
 			PricePerMag = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
 			PricePerRound = ( MagSize > 0 ) ? float(PricePerMag) / float(MagSize) : 0.f;
-			BlocksRequired = -1; // This will hide the weight and 
+			BlocksRequired = -1; // This will hide the weight and
 
 			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "SecondaryAmmo", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired, true );
 			SetMagInfo( MagSlot, AmmoCount, MaxAmmoCount, MagSize, PricePerMag, PricePerRound, FillAmmoCost );
@@ -121,7 +121,6 @@ function RefreshPlayerInventory()
 		}
 		else
 		{
-			`log("RefreshPlayerInventory: Slot="$SlotIndex @ "ItemInfo="$ItemInfo.DefaultItem.ClassName, MyTraderMenu.MyKFIM.bLogInventory);
 			// @temp: Use LastPerkClass to determine correct knife image
 			TextureLocation = ItemInfo.DefaultItem.WeaponDef.static.GetImagePath();
 			AmmoCount = ItemInfo.SpareAmmoCount;
@@ -129,9 +128,9 @@ function RefreshPlayerInventory()
 			MagSize = ItemInfo.MagazineCapacity;
 			PricePerMag = ItemInfo.AmmoPricePerMagazine;
 			PricePerRound = ( MagSize > 0 ) ? float(PricePerMag) / float(MagSize) : 0.f;
-			BlocksRequired = ItemInfo.DefaultItem.BlocksRequired;
+			BlocksRequired = MyTraderMenu.GetDisplayedBlocksRequiredFor(ItemInfo.DefaultItem, ItemInfo.ItemUpgradeLevel);
 
-			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "ItemName", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired );
+			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "ItemName", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired, false, KFPC.GetPurchaseHelper().GetItemUpgradeLevel(ItemInfo.DefaultItem) );
 			SetMagInfo( MagSlot, AmmoCount, MaxAmmoCount, MagSize, PricePerMag, PricePerRound, FillAmmoCost );
 			SetFillInfo( FillSlot, AmmoCount, MaxAmmoCount, PricePerRound, FillAmmoCost, AutoFillCost );
 		}
@@ -156,15 +155,15 @@ function RefreshPlayerInventory()
 function SetArmorInfo(out SItemInformation ArmorInfo, out int AutoFillCost)
 {
 	local GFxObject SlotObject;
-	local int FillCost;	
+	local int FillCost;
 
 	FillCost = KFPC.GetPurchaseHelper().GetFillArmorCost();
 
 	SlotObject = CreateObject( "Object" );
-	SlotObject.SetInt("cost", FillCost);    
+	SlotObject.SetInt("cost", FillCost);
 
 	SlotObject.SetString("itemName", ArmorString);
-	SlotObject.SetString("itemSource", "img://"$ArmorInfo.DefaultItem.WeaponDef.static.GetImagePath());	
+	SlotObject.SetString("itemSource", "img://"$ArmorInfo.DefaultItem.WeaponDef.static.GetImagePath());
 	SlotObject.SetString("itemAmmo",  ArmorInfo.SpareAmmoCount$"/"$ArmorInfo.MaxSpareAmmo);
 	SlotObject.Setint("buttonState", GetButtonState( ArmorInfo.AmmoPricePerMagazine, ArmorInfo.SpareAmmoCount, ArmorInfo.MaxSpareAmmo ));
 	SlotObject.SetBool("lowAmmo", (ArmorInfo.MaxSpareAmmo > 0) ? (float(ArmorInfo.SpareAmmoCount) / float(ArmorInfo.MaxSpareAmmo)) <= LowAmmoPercentThreshold : false);
@@ -183,32 +182,34 @@ function SetGrenadeInfo(out SItemInformation GrenadeInfo, out int AutoFillCost)
 
     AmmoPricePerMagazine = GrenadeInfo.AmmoPricePerMagazine;
 
-	SlotObject = CreateObject("Object");	
+	SlotObject = CreateObject("Object");
 	SlotObject.SetString("itemSource", "img://" $ GrenadeInfo.DefaultItem.WeaponDef.static.GetImagePath());
 	SlotObject.SetString("itemName", GrenadeInfo.DefaultItem.WeaponDef.static.GetItemName());
 
 	FillCost = KFPC.GetPurchaseHelper().GetFillGrenadeCost();
 	MagCost = (GrenadeInfo.SpareAmmoCount != GrenadeInfo.MaxSpareAmmo) ? GrenadeInfo.AmmoPricePerMagazine : 0;
-	SlotObject.SetInt("magCost", MagCost);   
-	SlotObject.SetInt("fillCost", FillCost); 
+	SlotObject.SetInt("magCost", MagCost);
+	SlotObject.SetInt("fillCost", FillCost);
 	SlotObject.SetBool("lowAmmo", (GrenadeInfo.MaxSpareAmmo > 0) ? (float(GrenadeInfo.SpareAmmoCount) / float(GrenadeInfo.MaxSpareAmmo)) <= LowAmmoPercentThreshold : false);
 	SlotObject.SetString("itemAmmo", GrenadeInfo.SpareAmmoCount $"/"$GrenadeInfo.MaxSpareAmmo);
 	ButtonState = GetButtonState(AmmoPricePerMagazine, GrenadeInfo.SpareAmmoCount, GrenadeInfo.MaxSpareAmmo);
 
 	SlotObject.Setint("magButtonState", ButtonState);
-	SlotObject.Setint("fillButtonState", ButtonState);	
+	SlotObject.Setint("fillButtonState", ButtonState);
 
 	SetObject("grenadeInfo", SlotObject);
 	AutoFillCost += FillCost;
 }
 
-function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef, string ItemKeyString, string TextureLocation, int AmmoCount, int MaxAmmoCount, int BlocksRequired, optional bool bSecondaryAmmo )
+function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef, string ItemKeyString, string TextureLocation, int AmmoCount, int MaxAmmoCount, int BlocksRequired, optional bool bSecondaryAmmo, optional int UpgradeLevel )
 {
 	local string ItemTexPath;
 
     InfoSlot.SetString( "itemName", WeaponDef.static.GetItemLocalization(ItemKeyString) );
     InfoSlot.SetString( "itemAmmo", AmmoCount $"/" $MaxAmmoCount);
     InfoSlot.Setint( "itemWeight", BlocksRequired );
+	InfoSlot.Setint("weaponTier", UpgradeLevel);
+
     InfoSlot.SetBool("lowAmmo", (MaxAmmoCount > 0) ? (float(AmmoCount) / float(MaxAmmoCount)) <= LowAmmoPercentThreshold : false );
     InfoSlot.SetBool("isSubAmmo", bSecondaryAmmo );
 

@@ -81,7 +81,7 @@ function PlayWaveStartDialog()
 {
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
-        KFGameInfo(WorldInfo.Game).DialogManager.PlayWaveStartDialog(WaveNum == WaveMax);
+        KFGameInfo(WorldInfo.Game).DialogManager.PlayWaveStartDialog(MyKFGRI.IsBossWave());
     }
 }
 
@@ -260,10 +260,33 @@ function RestartPlayer(Controller NewPlayer)
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DamageType)
 {
+    local Sequence GameSeq;
+    local array<SequenceObject> AllWaveProgressEvents;
+    local KFSeqEvent_WaveProgress WaveProgressEvt;
+    local int I;
+
     super.Killed(Killer, KilledPlayer, KilledPawn, DamageType);
     if(!MyKFGRI.IsBossWave() && KilledPawn.IsA('KFPawn_Monster'))
     {
         Class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo);
+        GameSeq = WorldInfo.GetGameSequence();
+        if(GameSeq != none)
+        {
+            GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveProgress', true, AllWaveProgressEvents);
+            I = 0;
+            J0x150:
+
+            if(I < AllWaveProgressEvents.Length)
+            {
+                WaveProgressEvt = KFSeqEvent_WaveProgress(AllWaveProgressEvents[I]);
+                if(WaveProgressEvt != none)
+                {
+                    WaveProgressEvt.SetWaveProgress(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, self);
+                }
+                ++ I;
+                goto J0x150;
+            }
+        }
     }
     if(KilledPawn.IsA('KFPawn_Human') && DamageType != Class'DmgType_Suicided')
     {
@@ -736,7 +759,7 @@ function byte GetWaveStartMessage()
 
 function ResetAllPickups()
 {
-    if(WaveNum == WaveMax)
+    if(MyKFGRI.IsBossWave())
     {
         NumAmmoPickups = byte(Max(AmmoPickups.Length - 1, 0));
     }
@@ -791,9 +814,10 @@ function byte DetermineNextTraderIndex()
 
 function WaveStarted()
 {
-    local array<SequenceObject> AllWaveStartEvents;
+    local array<SequenceObject> AllWaveStartEvents, AllWaveProgressEvents;
     local array<int> OutputLinksToActivate;
     local KFSeqEvent_WaveStart WaveStartEvt;
+    local KFSeqEvent_WaveProgress WaveProgressEvt;
     local Sequence GameSeq;
     local int I;
     local KFPlayerController KFPC;
@@ -827,7 +851,7 @@ function WaveStarted()
             {
                 WaveStartEvt.Reset();
                 WaveStartEvt.SetWaveNum(WaveNum, WaveMax);
-                if((WaveNum == WaveMax) && WaveStartEvt.OutputLinks.Length > 1)
+                if(MyKFGRI.IsBossWave() && WaveStartEvt.OutputLinks.Length > 1)
                 {
                     OutputLinksToActivate.AddItem(1;                    
                 }
@@ -840,6 +864,20 @@ function WaveStarted()
             ++ I;
             goto J0x425;
         }
+        GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveProgress', true, AllWaveProgressEvents);
+        I = 0;
+        J0x5A3:
+
+        if(I < AllWaveProgressEvents.Length)
+        {
+            WaveProgressEvt = KFSeqEvent_WaveProgress(AllWaveProgressEvents[I]);
+            if(WaveProgressEvt != none)
+            {
+                WaveProgressEvt.Reset();
+            }
+            ++ I;
+            goto J0x5A3;
+        }
     }
     UpdateGameSettings();
 }
@@ -849,20 +887,20 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
     bForceWaveEnd = false;
     if(!MyKFGRI.bMatchHasBegun)
     {
+        LogInternal("KFGameInfo - CheckWaveEnd - Cannot check if wave has ended since match has not begun. ");
         return;
     }
-    if(SpawnManager.bLogAISpawning)
-    {
-        LogInternal("KFGameInfo.CheckWaveEnd() AIAliveCount:" @ string(AIAliveCount));
-    }
+    LogInternal("KFGameInfo.CheckWaveEnd() AIAliveCount:" @ string(AIAliveCount));
     if((GetLivingPlayerCount()) <= 0)
     {
+        LogInternal("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_TeamWipedOut");
         WaveEnded(1);        
     }
     else
     {
         if((((AIAliveCount <= 0) && IsWaveActive()) && SpawnManager.IsFinishedSpawning()) || bForceWaveEnd)
         {
+            LogInternal("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_WaveWon");
             WaveEnded(0);
         }
     }
@@ -895,7 +933,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             {
                 WaveEndEvt.Reset();
                 WaveEndEvt.SetWaveNum(WaveNum, WaveMax);
-                if((WaveNum == WaveMax) && WaveEndEvt.OutputLinks.Length > 1)
+                if(MyKFGRI.IsBossWave() && WaveEndEvt.OutputLinks.Length > 1)
                 {
                     OutputLinksToActivate.AddItem(1;                    
                 }
@@ -1025,7 +1063,7 @@ function NotifyTraderOpened()
             {
                 TraderOpenedEvt.Reset();
                 TraderOpenedEvt.SetWaveNum(WaveNum, WaveMax);
-                if((WaveNum == (WaveMax - 1)) && TraderOpenedEvt.OutputLinks.Length > 1)
+                if(MyKFGRI.IsFinalWave() && TraderOpenedEvt.OutputLinks.Length > 1)
                 {
                     OutputLinksToActivate.AddItem(1;                    
                 }
@@ -1073,7 +1111,6 @@ function EndOfMatch(bool bVictory)
     {
         KFPC.ClientGameOver(WorldInfo.GetMapName(true), byte(GameDifficulty), byte(GameLength), IsMultiplayerGame(), byte(WaveNum));        
     }    
-    WorldInfo.TWPushLogs();
     GotoState('MatchEnded');
 }
 
@@ -1135,6 +1172,7 @@ function ShowPostGameMenu()
     }
     Class'EphemeralMatchStats'.static.SendMapOptionsAndOpenAARMenu();
     UpdateCurrentMapVoteTime(byte(GetEndOfMatchTime()), true);
+    WorldInfo.TWPushLogs();
 }
 
 function float GetEndOfMatchTime()
@@ -1186,6 +1224,7 @@ state PlayingWave
     function BeginState(name PreviousStateName)
     {
         MyKFGRI.SetWaveActive(true, GetGameIntensityForMusic());
+        MyKFGRI.VoteCollector.ResetTraderVote();
         StartWave();
         if(AllowBalanceLogging())
         {
@@ -1324,6 +1363,7 @@ defaultproperties
     TimeBetweenWaves=60
     EndCinematicDelay=4
     AARDisplayDelay=15
+    ObjectiveSpawnDelay=5
     bCanPerkAlwaysChange=false
     bEnableGameAnalytics=true
     DifficultyInfoClass=Class'KFGameDifficulty_Survival'

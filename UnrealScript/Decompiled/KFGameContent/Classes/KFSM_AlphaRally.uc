@@ -64,7 +64,7 @@ defaultproperties
 {
     RallyAnims=Anims=/* Array type was not detected. */,Player_Taunt_V1=/* Unknown default property type! */,
 /* Exception thrown while deserializing RallyAnims
-System.ArgumentException: Requested value '1P_Sawblade_Animtree' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

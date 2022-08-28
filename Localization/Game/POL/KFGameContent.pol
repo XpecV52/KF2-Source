@@ -202,30 +202,35 @@ ItemName="Stoner 63A LMG"
 ItemCategory="Lekki pistolet maszynowy"
 ItemDescription="•Tryb ataku: tylko ogień ciągły.\n•Stoner 63A, używany przez amerykańskich Navy SEALs podczas wojny w Wietnamie, ma dużą pojemność magazynka i ogromną moc obalającą."
 
+[KFWeap_Knife_Survivalist]
+ItemName="Nóż rozpruwacza"
+ItemCategory="Walka wręcz"
+ItemDescription="• Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Kiedyś należał do kogoś innego. A teraz jest twój!"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Nóż uniwersalny"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•To otwieracz do pudełek. Idealny do otwierania wszelkich pudeł, na które się natkniesz w przerwach między zabijaniem zetów."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To zwykły przecinak. Idealny do otwierania wszelkich pudeł, na które się natkniesz w przerwach między zabijaniem zetów."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Skalpel"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•To zwykły skalpel. Skoro masz kwalifikacje medyczne, nie musimy wyjaśniać, jak się go używa."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To zwykły skalpel. Skoro masz kwalifikacje medyczne, nie musimy wyjaśniać, jak się go używa."
 
 [KFWeap_Knife_Firebug]
 ItemName="Nóż strażaka"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•To nóż strażaka. Skoro masz kwalifikacje strażackie, nie musimy wyjaśniać, jak się go używa."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To nóż strażaka. Skoro masz kwalifikacje strażackie, nie musimy wyjaśniać, jak się go używa."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Bowie"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Duży nóż z czasów Dzikiego Zachodu. Doskonały do krojenia zetów na kawałki tu i teraz."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Duży nóż z czasów Dzikiego Zachodu. Doskonały do krojenia zetów na kawałki tu i teraz."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Tradycyjny nóż Gurkhów, lepiej nadaje się do siekania niż krojenia. "
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Tradycyjny nóż Gurkhów, bardziej nadaje się do siekania niż krojenia. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Nóż taktyczny"
@@ -255,7 +260,7 @@ ItemDescription="•Tryb ataku: tylko ogień ciągły.\n•Tryb alternatywny poz
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="Dwururka"
 ItemCategory="Strzelba"
-ItemDescription="•Podstawowy tryb ognia to strzał z jednej lufy.\n•Tryb alternatywny umożliwia salwę z obu luf jednocześnie.\n•Dubeltówka kaliber 12. Idealna na bliskim dystansie. Zachwieje nawet największymi zetem."
+ItemDescription="•Podstawowy tryb ognia to strzał z jednej lufy.\n•Tryb alternatywny umożliwia salwę z obu luf jednocześnie.\n•Dubeltówka kaliber 12. Idealna na bliskim dystansie. Zachwieje nawet największym zetem!"
 
 [KFWeap_Shotgun_AA12]
 ItemName="Strzelba AA-12"
@@ -345,7 +350,7 @@ ItemCategory="Ogień"
 ItemDescription="•Tryb ataku: miotanie wybuchającymi, zapalnymi pociskami. \n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Para Spitfire'ów."
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="Strzelba zapalająca"
+ItemName="Smoczy Oddech"
 ItemCategory="Strzelba"
 ItemDescription="•Tryb ataku: tylko pump action.\n•Strzelba na naboje zapalające smoczy oddech. Nie dość, że zabójcza, to jeszcze ładnie wygląda."
 
@@ -510,10 +515,25 @@ ItemName="Podwójny AF2011-A2"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Dwie bronie, każda z dwoma lufami. Czterokrotność siły ognia. Czysta matematyka. Z nią nie ma co dyskutować."
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="Giwera"
+ItemCategory="Strzelba"
+ItemDescription="•Podstawowy tryb ognia to strzał z jednej lufy.\n•Tryb alternatywny umożliwia salwę ze wszystkich czterech luf jednocześnie.\n•Skoro dwa razy więcej radości to za mało... pomnóżmy ją przez cztery!"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="Piorunujące rękawice"
+ItemCategory="Broń biała"
+ItemDescription="•Główny atak – szybkie uderzenie. Przytrzymaj przycisk głównego ataku, by wykonać combo. \n•Drugi atak – silne, elektryzujące uderzenie. Może nieźle porazić! \n•Chcesz przywalić zetowi? Nie szukaj już innych sposobów!"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac-10"
 ItemCategory="Pistolet maszynowy"
 ItemDescription="•Tryb strzelania: ogień ciągły albo seria.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Obsługuje szybkostrzelną amunicję zapalającą. Łapiesz? Szybkostrzelną. Bo do broni maszynowej? Ech, mniejsza o to."
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="Karabin wyborowy"
+ItemDescription="•Wyłącznie tryb pojedynczego strzału. \n•Każdy strzał może spowodować potężne szkody... Pocisk jest naprawdę spory. Duża siła przebicia, dużo cierpienia."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

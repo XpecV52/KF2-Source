@@ -263,6 +263,7 @@ var(SprayDamage) float SplashDamageFalloffExponent;
 var(SprayDamage) float SplashDamageInstigatorDamageScale;
 /** Scales the momentum for damage taken */
 var(SprayDamage) float MomentumScale;
+var float DamageModifier;
 var array<DamagedActorInfo> RecentlyDamagedActors;
 var private transient SprayMeshContact HighestSprayMeshContactThisTick;
 var transient float bSprayMeshCollisionDuration;
@@ -776,6 +777,11 @@ function SpawnImpactProjectile(Vector SpawnLocation, Vector SpawnRotation)
     }
 }
 
+event float GetModifiedDamage()
+{
+    return SplashDamage * DamageModifier;
+}
+
 defaultproperties
 {
     MaxDecalEffectDistance=5000
@@ -783,6 +789,7 @@ defaultproperties
     DamageInterval=0.07
     SprayDamageScaleDistRange=(X=300,Y=300)
     SplashDamageInstigatorDamageScale=1
+    DamageModifier=1
     SeedSprayVel=5000
     SeedDecel=13000
     SeedMaxAge=0.4

@@ -27,7 +27,7 @@ defaultproperties
 	HealFullRechargeSeconds=15
 
 	// Inventory
-	InventorySize=3
+	InventorySize=3 //3
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
@@ -41,17 +41,13 @@ defaultproperties
 	IronSightPosition=(X=8,Y=0,Z=0)
 	PlayerViewOffset=(X=22,Y=10,Z=-4.5)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Medic_SMG_MESH.Wep_1stP_Medic_SMG_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Medic_SMG_ANIM.Wep_1stP_Medic_SMG_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_SMG_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Medic_SMG_ARCH.Wep_Medic_SMG_3P'
-	//SpectatorWeaponArchetype=KFWeaponAttachment'WEP_Medic_SMG_ARCH.Wep_Medic_SMG_3P'
+	// Content
+	PackageKey="Medic_SMG"
+	FirstPersonMeshName="WEP_1P_Medic_SMG_MESH.Wep_1stP_Medic_SMG_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Medic_SMG_ANIM.Wep_1stP_Medic_SMG_Anim"
+	PickupMeshName="wep_3p_medic_smg_mesh.Wep_Medic_SMG_Pickup"
+	AttachmentArchetypeName="WEP_Medic_SMG_ARCH.Wep_Medic_SMG_3P"
+	MuzzleFlashTemplateName="WEP_Medic_SMG_ARCH.Wep_Medic_SMG_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=40
@@ -84,18 +80,17 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SMG_Medic'
 	FireInterval(DEFAULT_FIREMODE)=+.075 // 800 RPM
 	Spread(DEFAULT_FIREMODE)=0.007
-	InstantHitDamage(DEFAULT_FIREMODE)=15.0
+	InstantHitDamage(DEFAULT_FIREMODE)=17.0  //15.0
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALTFIRE_FIREMODE
-	AmmoCost(ALTFIRE_FIREMODE)=50
+	AmmoCost(ALTFIRE_FIREMODE)=40
 
 	// BASH_FIREMODE
 	InstantHitDamage(BASH_FIREMODE)=23.0
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_SMG_Medic'
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_SMG_ARCH.Wep_Medic_SMG_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_1P_Single')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Handling_DryFire'
@@ -113,4 +108,10 @@ defaultproperties
 
 	AssociatedPerkClasses(0)=class'KFPerk_FieldMedic'
 	AssociatedPerkClasses(1)=class'KFPerk_SWAT'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1, IncrementHealFullRecharge=.8)
+	WeaponUpgrades[2]=(IncrementDamage=1.59f,IncrementWeight=2, IncrementHealFullRecharge=.7)
+	WeaponUpgrades[3]=(IncrementDamage=1.85f,IncrementWeight=3, IncrementHealFullRecharge=.6)
+	//need to do a full test on healing level increasing
 }

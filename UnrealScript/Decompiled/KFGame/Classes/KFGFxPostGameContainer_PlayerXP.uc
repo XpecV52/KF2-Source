@@ -51,9 +51,14 @@ function GFxObject MakePerkXPObject(PerkXPGain PerkXPObject)
 {
     local GFxObject TempGFxObject;
     local KFPlayerController KFPC;
+    local float BonusXPValue, BonusXPMultiplier;
 
     KFPC = KFPlayerController(Outer.GetPC());
     TempGFxObject = Outer.CreateObject("Object");
+    BonusXPMultiplier = KFPC.GetPerkPrestigeXPMultiplier(PerkXPObject.PerkClass);
+    BonusXPValue = float(PerkXPObject.XPDelta) - (float(PerkXPObject.XPDelta) / (float(1) + BonusXPMultiplier));
+    TempGFxObject.SetInt("bonusXP", int(BonusXPValue));
+    TempGFxObject.SetString("bonusXPMultiplier", (string(int(BonusXPMultiplier * float(100))) $ "%") @ Class'KFCommon_LocalizedStrings'.default.PrestigeBonusString);
     TempGFxObject.SetFloat("startXP", PerkXPObject.StartXPPercentage);
     TempGFxObject.SetFloat("finishXP", float(Min(int(KFPC.GetPerkLevelProgressPercentage(PerkXPObject.PerkClass)), 100)));
     TempGFxObject.SetFloat("xpDelta", float(PerkXPObject.XPDelta));
@@ -62,7 +67,7 @@ function GFxObject MakePerkXPObject(PerkXPGain PerkXPObject)
     TempGFxObject.SetString("perkName", PerkXPObject.PerkClass.default.PerkName);
     TempGFxObject.SetString("perkIcon", "img://" $ PerkXPObject.PerkClass.static.GetPerkIconPath());
     TempGFxObject.SetString("objective1", PerkXPObject.PerkClass.default.EXPAction1);
-    TempGFxObject.SetInt("objective1Value", PerkXPObject.XPDelta - PerkXPObject.SecondaryXPGain);
+    TempGFxObject.SetInt("objective1Value", int(float(PerkXPObject.XPDelta - PerkXPObject.SecondaryXPGain) - BonusXPValue));
     TempGFxObject.SetString("objective2", PerkXPObject.PerkClass.default.EXPAction2);
     TempGFxObject.SetInt("objective2Value", PerkXPObject.SecondaryXPGain);
     ++ ItemCount;

@@ -25,7 +25,6 @@ function string ConsoleLocalize( string Key, optional string SectionName )
 	return Localize( SectionName != "" ? SectionName : string(self.Class.Name), Key, "KFGameConsole" );
 }
 
-
 //==============================================================
 // Calls to ActionScript
 //==============================================================

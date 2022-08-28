@@ -5,7 +5,9 @@ package tripwire.menus
     import flash.events.Event;
     import flash.events.MouseEvent;
     import flash.external.ExternalInterface;
+    import scaleform.clik.constants.InputValue;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.events.InputEvent;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
     import scaleform.gfx.FocusManager;
@@ -15,6 +17,7 @@ package tripwire.menus
     import tripwire.containers.Perks.PerksHeaderContainer;
     import tripwire.containers.Perks.PerksNextRankContainer;
     import tripwire.containers.Perks.PerksSkillsSummaryContainer;
+    import tripwire.containers.Perks.PrestigeContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.perks.PerkSelectLineRenderer;
     import tripwire.managers.MenuManager;
@@ -35,6 +38,8 @@ package tripwire.menus
         
         public var SelectionContainer:PerkSelectionContainer;
         
+        public var PerkPrestigeContainer:PrestigeContainer;
+        
         private var _bLocked:Boolean;
         
         public var _tempSelected:int;
@@ -47,6 +52,8 @@ package tripwire.menus
         
         public var openPerkDetailsSoundEffect:String = "PERK_MENU_BUTTON_CLICK";
         
+        public var updatePrestigeStatus;
+        
         public function PerkSelectMenu()
         {
             super();
@@ -56,10 +63,15 @@ package tripwire.menus
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            this.isMaxPrestige = false;
             this.SelectedPerkSummaryContainer.owner = this;
             this.SelectionContainer.owner = this;
             this.SelectedPerkSummaryContainer.configureButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             this.SelectedPerkSummaryContainer.configureButton.clickSoundEffect = "SHARED_BUTTON_CLICK";
+            this.SelectedPerkSummaryContainer.prestigeButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
+            this.SelectedPerkSummaryContainer.prestigeButton.clickSoundEffect = "SHARED_BUTTON_CLICK";
+            this.PerkPrestigeContainer.cancelButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
+            this.PerkPrestigeContainer.cancelButton.clickSoundEffect = "SHARED_BUTTON_CLICK";
             this.SkillsContainer.confirmButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             this.addEventListener("changePerk",this.swapPerk,false,0,true);
             this.addEventListener("perkListEnabledUpdated",this.perkListStatusChanged,false,0,true);
@@ -74,6 +86,8 @@ package tripwire.menus
             this.SelectionContainer.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             leftSidePanels.push(this.SelectionContainer);
             this.SkillsContainer.addEventListener("SkillsConfiguredSeen",this.clearGlowOnPerk,false,0,true);
+            this.PerkPrestigeContainer.prestigeTimeline.addEventListener(TweenEvent.START,this.togglePerkSelect,false,0,true);
+            this.PerkPrestigeContainer.prestigeTimeline.addEventListener(TweenEvent.COMPLETE,this.togglePerkSelect,false,0,true);
         }
         
         override public function focusGroupIn() : void
@@ -94,6 +108,7 @@ package tripwire.menus
         {
             super.openContainer(param1);
             this.SkillsContainer.closeContainer();
+            this.PerkPrestigeContainer.closeContainer();
             this.SelectionContainer.openContainer();
             this.openPerkDetails();
         }
@@ -131,12 +146,29 @@ package tripwire.menus
             return this._bLocked;
         }
         
+        override public function handleInput(param1:InputEvent) : void
+        {
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                var _loc3_:* = _loc2_.navEquivalent;
+                switch(0)
+                {
+                }
+            }
+            super.handleInput(param1);
+        }
+        
         override protected function onBPressed(param1:InputDetails) : void
         {
             super.onBPressed(param1);
             if(this.SkillsContainer.bOpen)
             {
                 this.closeSkillConfigure();
+            }
+            if(this.PerkPrestigeContainer.bOpen)
+            {
+                this.closePrestige();
             }
             else
             {
@@ -202,6 +234,7 @@ package tripwire.menus
             this.DetailsContainer.openContainer();
             this.HeaderContainer.openContainer();
             this.SelectedPerkSummaryContainer.openContainer();
+            this.updatePrompts();
         }
         
         private function closePerkDetails() : void
@@ -209,6 +242,52 @@ package tripwire.menus
             this.DetailsContainer.closeContainer();
             this.HeaderContainer.closeContainer();
             this.SelectedPerkSummaryContainer.closeContainer();
+        }
+        
+        private function openPrestige() : void
+        {
+            TweenMax.killTweensOf([this.DetailsContainer,this.HeaderContainer,this.SelectedPerkSummaryContainer]);
+            this.closePerkDetails();
+            this.cachedSelectionIndex = this.SelectionContainer.SelectedIndex;
+            this.PerkPrestigeContainer.openContainer();
+            showDimLeftSide(true);
+            FocusManager.setModalClip(this.PerkPrestigeContainer);
+            containerDisplayPrompts = 2;
+        }
+        
+        private function closePrestige() : void
+        {
+            currentElement = this.SelectionContainer.perkScrollingList;
+            this.PerkPrestigeContainer.closeContainer();
+            this.SelectionContainer.SelectedIndex = this.cachedSelectionIndex;
+            this.SelectionContainer.selectContainer();
+            TweenMax.to(this,ANIM_TIME,{
+                "useFrames":true,
+                "onComplete":this.openPerkDetails
+            });
+            showDimLeftSide(false);
+            this.updatePrompts();
+        }
+        
+        public function togglePerkSelect(param1:TweenEvent) : void
+        {
+            if(this.PerkPrestigeContainer.prestigeTimeline.isActive())
+            {
+                this.SelectionContainer.perkScrollingList.enabled = false;
+                this.DetailsContainer.visible = false;
+                this.HeaderContainer.visible = false;
+                this.SelectedPerkSummaryContainer.visible = false;
+            }
+            else
+            {
+                this.locked = false;
+                this.closePrestige();
+            }
+        }
+        
+        public function playPrestigeAnimation() : void
+        {
+            this.PerkPrestigeContainer.prestigeTimeline.play(0);
         }
         
         public function onButtonClick(param1:ButtonEvent) : void
@@ -222,8 +301,14 @@ package tripwire.menus
                 case this.SelectedPerkSummaryContainer.configureButton:
                     this.openSkillConfigure();
                     break;
+                case this.SelectedPerkSummaryContainer.prestigeButton:
+                    this.openPrestige();
+                    break;
                 case this.SkillsContainer.confirmButton:
                     this.closeSkillConfigure();
+                    break;
+                case this.PerkPrestigeContainer.cancelButton:
+                    this.closePrestige();
             }
         }
         
@@ -246,6 +331,10 @@ package tripwire.menus
             }
             else
             {
+                if(this.PerkPrestigeContainer.visible)
+                {
+                    this.PerkPrestigeContainer.closeContainer();
+                }
                 this.closePerkDetails();
                 TweenMax.to(sectionHeader,ANIM_TIME,{
                     "useFrames":true,
@@ -256,7 +345,6 @@ package tripwire.menus
                     Extensions.gfxProcessSound(this,"UI",this.openPerkDetailsSoundEffect);
                 }
             }
-            this.updatePrompts();
         }
         
         public function perkListStatusChanged(param1:Event) : void
@@ -279,12 +367,16 @@ package tripwire.menus
             if(bManagerUsingGamepad)
             {
                 containerDisplayPrompts = this.SelectionContainer.currentPerk == this.SelectionContainer.SelectedIndex && this.SelectionContainer.perkListEnabled ? int(defaultNumPrompts) : 1;
+                this.SelectedPerkSummaryContainer.canPrestige = this.SelectionContainer.currentPerk == this.SelectionContainer.SelectedIndex;
             }
         }
         
         override public function selectContainer() : void
         {
-            defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            if(MenuManager.manager != null)
+            {
+                defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
+            }
             super.selectContainer();
             if(_bOpen)
             {
@@ -295,6 +387,11 @@ package tripwire.menus
                 }
                 showDimLeftSide(false);
             }
+        }
+        
+        public function set isMaxPrestige(param1:Boolean) : void
+        {
+            this.SelectedPerkSummaryContainer.prestigeButton.enabled = !param1;
         }
     }
 }

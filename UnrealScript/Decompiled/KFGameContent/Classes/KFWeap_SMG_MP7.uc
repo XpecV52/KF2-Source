@@ -11,13 +11,19 @@ class KFWeap_SMG_MP7 extends KFWeap_SMGBase
 
 defaultproperties
 {
+    PackageKey="MP7"
+    FirstPersonMeshName="wep_1p_mp7_mesh.Wep_1stP_MP7_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_mp7_mesh.Wep_MP7_Pickup"
+    AttachmentArchetypeName="wep_mp7_arch.Wep_MP7_3P"
+    MuzzleFlashTemplateName="wep_MP7_arch.Wep_MP7_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=4
     MagazineCapacity=30
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshFOV=81
     MeshIronSightFOV=55
     PlayerIronSightFOV=70
@@ -32,9 +38,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=18.5,Y=10.25,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'wep_mp7_arch.Wep_MP7_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_SMG_MP7.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'wep_mp7_arch.Wep_MP7_MuzzleFlash'
     maxRecoilPitch=50
     minRecoilPitch=40
     maxRecoilYaw=80
@@ -52,6 +56,7 @@ defaultproperties
     WalkingRecoilModifier=1.1
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -60,21 +65,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'wep_1p_mp7_mesh.Wep_1stP_MP7_Rig'
-        AnimSets(0)=AnimSet'wep_1p_mp7_anim.wep_1p_mp7_anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_SMG_MP7.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="MP7 SMG"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_mp7_mesh.Wep_MP7_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_MP7.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_mp7_mesh.Wep_MP7_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_MP7.StaticPickupComponent'

@@ -17,6 +17,7 @@ DefaultProperties
 	DialogEvents[`COMM_RequestHelp]=(DefaultAudioCue=AkEvent'ww_vox_chr_Alberts.Play_Alberts_MAN_RequestHelp_Base',TraderTimeAudioCue=none)
 	DialogEvents[`COMM_ConfirmGeneric]=(DefaultAudioCue=AkEvent'ww_vox_chr_Alberts.Play_Alberts_MAN_Confirm_Generic',TraderTimeAudioCue=none)
 	DialogEvents[`COMM_DenyGeneric]=(DefaultAudioCue=AkEvent'ww_vox_chr_Alberts.Play_Alberts_MAN_Deny_Generic',TraderTimeAudioCue=none)
+	DialogEvents[`COMM_ThankYou]=(DefaultAudioCue=AkEvent'ww_vox_chr_Alberts.Play_Alberts_MAN_Thanks',TraderTimeAudioCue=none)
 
 
 	DialogEvents[`ACT_WeldDoor]=(DefaultAudioCue=AkEvent'ww_vox_chr_Alberts.Play_Alberts_ACT_Weld_Base',TraderTimeAudioCue=none)

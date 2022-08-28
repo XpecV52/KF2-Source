@@ -11,13 +11,17 @@ class KFWeap_AssetDummy extends KFWeapon;
 
 defaultproperties
 {
-   MagazineCapacity(0)=30
+   PackageKey="AssetTest"
+   FirstPersonMeshName="WEP_1P_AssetTest_MESH.Wep_1stP_AssetTest_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_AssetTest_ANIM.Wep_1st_AssetTest_Anim"
+   PickupMeshName="WEP_3P_L85A2_MESH.Wep_L85A2_Pickup"
+   AttachmentArchetypeName="WEP_L85A2_ARCH.Wep_L85A2_3P"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
+   MagazineCapacity(0)=30
    SpareAmmoCapacity(0)=390
    InitialSpareMags(0)=4
-   AttachmentArchetype=KFWeaponAttachment'WEP_L85A2_ARCH.Wep_L85A2_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
@@ -30,9 +34,7 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeapon:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_AssetTest_MESH.Wep_1stP_AssetTest_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_AssetTest_ANIM.Wep_1st_AssetTest_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -45,7 +47,7 @@ defaultproperties
    End Object
    Mesh=FirstPersonMesh
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeapon:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_L85A2_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

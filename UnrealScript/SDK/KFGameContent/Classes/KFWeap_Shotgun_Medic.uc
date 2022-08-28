@@ -114,18 +114,15 @@ defaultproperties
 	PlayerViewOffset=(X=14.0,Y=6.5,Z=-3.5)
 	IronSightPosition=(X=12.0,Y=0,Z=0)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Medic_Shotgun_ANIM.WEP_1P_Medic_Shotgun_ANIM'
-	End Object
+	// Content
+	PackageKey="Medic_Shotgun"
+	FirstPersonMeshName="WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Medic_Shotgun_ANIM.WEP_1P_Medic_Shotgun_ANIM"
+	PickupMeshName="wep_3p_medic_shotgun_mesh.Wep_Medic_Shotgun_Pickup"
+	AttachmentArchetypeName="WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P"
+	MuzzleFlashTemplateName="WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_MuzzleFlash"
 
     bHasFireLastAnims=false
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Shotgun_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P'
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
@@ -135,7 +132,7 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=20.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Shotgun_Medic'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
-	FireInterval(DEFAULT_FIREMODE)=0.2 // 300 RPM
+	FireInterval(DEFAULT_FIREMODE)=0.297 //0.2  300 RPM  
 	FireOffset=(X=30,Y=3,Z=-3)
 	Spread(DEFAULT_FIREMODE)=0.07
 	// Shotgun
@@ -151,8 +148,6 @@ defaultproperties
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Shotgun_Medic'
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_MuzzleFlash'
-
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
     WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
 
@@ -193,4 +188,7 @@ defaultproperties
 	AssociatedPerkClasses(1)=class'KFPerk_Support'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
+
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1, IncrementHealFullRecharge=.8)
+	WeaponUpgrades[2]=(IncrementDamage=1.3f, IncrementWeight=2, IncrementHealFullRecharge=.6)
 }

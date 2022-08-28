@@ -97,7 +97,15 @@ simulated function SetWeaponGroupList(out array<KFWeapon> WeaponList, byte Group
     if(I < WeaponList.Length)
     {
         TempObj = Outer.CreateObject("Object");
-        TempObj.SetString("weaponName", WeaponList[I].ItemName);
+        if(WeaponList[I].CurrentWeaponUpgradeIndex > 0)
+        {
+            TempObj.SetString("weaponName", WeaponList[I].ItemName);            
+        }
+        else
+        {
+            TempObj.SetString("weaponName", WeaponList[I].ItemName);
+        }
+        TempObj.SetInt("weaponTier", WeaponList[I].CurrentWeaponUpgradeIndex);
         TempObj.SetString("texturePath", "img://" $ PathName(WeaponList[I].WeaponSelectTexture));
         TempObj.SetInt("ammoCount", WeaponList[I].AmmoCount[0]);
         TempObj.SetInt("spareAmmoCount", WeaponList[I].SpareAmmoCount[0]);

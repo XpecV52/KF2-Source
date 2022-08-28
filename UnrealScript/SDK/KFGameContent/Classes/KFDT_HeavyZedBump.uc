@@ -36,4 +36,5 @@ defaultproperties
 	bCanObliterate = true
 	ObliterationHealthThreshold = 0
 	ObliterationDamageThreshold = 1
+	bIgnoreAggroOnDamage=true
 }

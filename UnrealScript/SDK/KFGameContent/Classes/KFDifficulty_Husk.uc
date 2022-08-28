@@ -34,7 +34,7 @@ static function sHuskFireballSettings GetFireballSettings( KFPawn_ZedHusk HuskPa
 		}
 	}
 
-	return default.FireballSettings[KFGRI.GameDifficulty];
+	return default.FireballSettings[Clamp(KFGRI.GetModifiedGameDifficulty(), 0, default.FireballSettings.length-1)];
 }
 
 defaultproperties
@@ -51,7 +51,7 @@ defaultproperties
 	Hard={(SoloDamageMod=0.7500000,
 		RallySettings={(bCanRally=false)}
 	)}
-	
+
 	// Suicidal difficulty
 	Suicidal={(DamagedSprintChance=0.500000,
 		SoloDamageMod=0.7500000,
@@ -72,7 +72,13 @@ defaultproperties
 	RallySettings_Versus={(bCauseSprint=true)}
 	RallySettings_Player_Versus={(DealtDamageModifier=1.2)}
 
-	// Fireball settings by difficulty 
+	// Evil DAR spawn chances
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)=0.10// 0.0
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)=0.12//0.5
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Suicidal)=0.18//  0.15
+	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.25
+
+	// Fireball settings by difficulty
 	FireballSettings(`DIFFICULTY_Normal)		={(bSpawnGroundFire=false, ExplosionMomentum=50000.f)}
 	FireballSettings(`DIFFICULTY_Hard)			={(bSpawnGroundFire=false, ExplosionMomentum=55000.f)}
 	FireballSettings(`DIFFICULTY_Suicidal)		={(bSpawnGroundFire=true, ExplosionMomentum=60000.f)}

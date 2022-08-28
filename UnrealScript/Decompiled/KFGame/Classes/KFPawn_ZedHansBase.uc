@@ -313,7 +313,7 @@ simulated function bool CanMoveWhileThrowingGrenades()
     local KFGameReplicationInfo KFGRI;
 
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && BattlePhases[CurrentBattlePhase - 1].bCanMoveWhileThrowingGrenades[KFGRI.GameDifficulty])
+    if((KFGRI != none) && BattlePhases[CurrentBattlePhase - 1].bCanMoveWhileThrowingGrenades[KFGRI.GetModifiedGameDifficulty()])
     {
         return true;
     }
@@ -370,9 +370,9 @@ simulated function SetHuntAndHealMode(bool bOn)
             KFGI = KFGameInfo(WorldInfo.Game);
             if(KFGI != none)
             {
-                KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
+                KFGI.DifficultyInfo.GetAIHealthModifier(self, float(KFGI.GetModifiedGameDifficulty()), byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
             }
-            ShieldHealthMax = (float(BattlePhases[CurrentBattlePhase - 1].MaxShieldHealth[int(WorldInfo.Game.GameDifficulty)]) * HealthMod) * ShieldHealthScale;
+            ShieldHealthMax = (float(BattlePhases[CurrentBattlePhase - 1].MaxShieldHealth[WorldInfo.Game.GetModifiedGameDifficulty()]) * HealthMod) * ShieldHealthScale;
             ShieldHealth = ShieldHealthMax;
             UpdateShieldHealth();
             NumHuntAndHealEnemyBumps = 0;
@@ -416,7 +416,7 @@ function Timer_ResetShieldHealthPct()
 
 function float GetHealAmountForThisPhase()
 {
-    return float(HealthMax) * BattlePhases[CurrentBattlePhase - 2].HealAmounts[int(WorldInfo.Game.GameDifficulty)];
+    return float(HealthMax) * BattlePhases[CurrentBattlePhase - 2].HealAmounts[WorldInfo.Game.GetModifiedGameDifficulty()];
 }
 
 function SummonMinions()
@@ -551,6 +551,7 @@ defaultproperties
 {
     ShieldHealthScale=1
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHansBase.MeleeHelper'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedHansBase.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -602,6 +603,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedHansBase.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedHansBase.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHansBase.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedHansBase.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

@@ -267,14 +267,20 @@ defaultproperties
    End Object
    PSC_EndSpray=FlameEndSpray0
    MinAmmoConsumed=4
-   FireModeIconPaths(0)=Texture2D'wep_ui_cryogun_tex.UI_FireModeSelect_Cryogun'
-   FireModeIconPaths(1)=Texture2D'wep_ui_cryogun_tex.UI_FireModeSelect_2nd_Cryogun'
-   InventorySize=8
-   MagazineCapacity(0)=100
+   PackageKey="CryoGun"
+   FirstPersonMeshName="WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig"
+   FirstPersonAnimSetNames(0)="wep_1p_CryoGun_anim.Wep_1stP_CryoGun_anim"
+   PickupMeshName="WEP_3P_CryoGun_MESH.Wep_CryoGun_Pickup"
+   AttachmentArchetypeName="WEP_CryoGun_ARCH.Wep_CryoGun_3P"
+   MuzzleFlashTemplateName="WEP_CryoGun_ARCH.Wep_CryoGun_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   FireModeIconPaths(0)=Texture2D'wep_ui_cryogun_tex.UI_FireModeSelect_Cryogun'
+   FireModeIconPaths(1)=Texture2D'wep_ui_cryogun_tex.UI_FireModeSelect_2nd_Cryogun'
+   InventorySize=7
+   MagazineCapacity(0)=100
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=80.000000
    IronSightPosition=(X=20.000000,Y=8.000000,Z=-3.000000)
@@ -297,20 +303,18 @@ defaultproperties
    FireLoopSightedAnim="ShootLoop"
    FireLoopStartSightedAnim="ShootLoop_Start"
    FireLoopEndSightedAnim="ShootLoop_End"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_cryo_gun.Play_Cryo_Gun_3P_Start',FirstPersonCue=AkEvent'ww_wep_cryo_gun.Play_Cryo_Gun_1P_Start')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_cryo_gun.Play_Cryo_Gun_3P_Alt_Fire',FirstPersonCue=AkEvent'ww_wep_cryo_gun.Play_Cryo_Gun_1P_Alt_Fire')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_cryo_gun.Play_Cryo_Gun_3P_Stop',FirstPersonCue=AkEvent'ww_wep_cryo_gun.Play_Cryo_Gun_1P_Stop')
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_3P_Start',FirstPersonCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_1P_Start')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_3P_Alt_Fire',FirstPersonCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_1P_Alt_Fire')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_3P_Stop',FirstPersonCue=AkEvent'WW_WEP_Cryo_Gun.Play_Cryo_Gun_1P_Stop')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Handling_DryFire'
    PlayerViewOffset=(X=6.000000,Y=15.000000,Z=-5.000000)
-   AttachmentArchetype=KFWeapAttach_Flamethrower'WEP_CryoGun_ARCH.Wep_CryoGun_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Ice_FreezeThrower:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_CryoGun_ARCH.Wep_CryoGun_MuzzleFlash'
    maxRecoilPitch=150
    minRecoilPitch=115
    maxRecoilYaw=115
@@ -328,6 +332,8 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Survivalist'
+   WeaponUpgrades(1)=(IncrementDamage=1.400000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.800000)
    FiringStatesArray(0)="SprayingFire"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -355,9 +361,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Freezethrower'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_FlameBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'wep_1p_CryoGun_anim.Wep_1stP_CryoGun_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -371,7 +375,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Freezethrower"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_FlameBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_CryoGun_MESH.Wep_CryoGun_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

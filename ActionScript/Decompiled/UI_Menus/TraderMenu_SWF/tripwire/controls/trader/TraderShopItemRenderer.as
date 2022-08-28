@@ -31,6 +31,8 @@ package tripwire.controls.trader
         
         public var noIcon:MovieClip;
         
+        public var favoriteIcon:MovieClip;
+        
         public var doshIcon:MovieClip;
         
         public var weightIcon:MovieClip;
@@ -91,6 +93,7 @@ package tripwire.controls.trader
                 this.BuyButton.visible = !bManagerUsingGamepad;
                 this.BuyButton.label = !!param1.buyText ? param1.buyText : "";
                 this.buyTextField.text = !!param1.buyText ? param1.buyText : "";
+                this.favoriteIcon.visible = !!param1.bIsFavorite ? Boolean(param1.bIsFavorite) : false;
                 this.weaponCost.text = !!param1.weaponCost ? param1.weaponCost : "";
                 this.weaponWeight.text = !!param1.weaponWeight ? param1.weaponWeight : "";
                 if(this.weaponUpFrame != null)

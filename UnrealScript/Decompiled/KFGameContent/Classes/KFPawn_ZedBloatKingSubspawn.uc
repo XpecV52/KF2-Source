@@ -15,9 +15,9 @@ var bool bDelayedExplosion;
 
 simulated event bool CanDoSpecialMove(KFGame.KFPawn.ESpecialMove AMove, optional bool bForceCheck)
 {
-    if(AMove == 40)
+    if(AMove == 42)
     {
-        return !IsDoingSpecialMove(40);
+        return !IsDoingSpecialMove(42);
     }
     return super(KFPawn).CanDoSpecialMove(AMove, bForceCheck);
 }
@@ -33,7 +33,7 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
 
 simulated event Tick(float DeltaTime)
 {
-    super(KFPawn).Tick(DeltaTime);
+    super.Tick(DeltaTime);
     if(bDelayedExplosion && !bPlayedExplosion)
     {
         Explode();
@@ -119,7 +119,6 @@ defaultproperties
     object end
     // Reference: KFGameExplosion'Default__KFPawn_ZedBloatKingSubspawn.ExploTemplate0'
     DeathExplosionTemplate=ExploTemplate0
-    bKnockdownWhenJumpedOn=true
     MonsterArchPath="ZED_ARCH.ZED_KingBloatSubspawn_Archetype"
     MinSpawnSquadSizeType=ESquadType.EST_Crawler
     begin object name=MeleeHelper class=KFMeleeHelperAI
@@ -137,6 +136,7 @@ defaultproperties
     XPValues[3]=10
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_BloatKingSubspawn'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.SprintAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
     LocalizationKey=KFPawn_ZedBloatKingSubspawn
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -214,6 +214,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.SprintAkComponent0'
     bBlocksNavigation=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=40

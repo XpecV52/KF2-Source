@@ -58,16 +58,13 @@ defaultproperties
     DOF_FG_FocalRadius=0//70
     DOF_FG_MaxNearBlurSize=3.5
 
-    Begin Object Name=FirstPersonMesh
-        SkeletalMesh=SkeletalMesh'WEP_1P_Bleeder_MESH.WEP_1stP_Bleeder_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Bleeder_ANIM.Wep_1stP_Bleeder_Anim'
-    End Object
-
-    Begin Object Name=StaticPickupComponent
-        StaticMesh=StaticMesh'wep_3p_bleeder_mesh.Wep_3rdP_Bleeder_Pickup'
-    End Object
-
-    AttachmentArchetype=KFWeaponAttachment'WEP_Bleeder_ARCH.Wep_Bleeder_3P'
+	// Content
+	PackageKey="Bleeder"
+	FirstPersonMeshName="WEP_1P_Bleeder_MESH.WEP_1stP_Bleeder_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Bleeder_ANIM.Wep_1stP_Bleeder_Anim"
+	PickupMeshName="wep_3p_bleeder_mesh.Wep_3rdP_Bleeder_Pickup"
+    AttachmentArchetypeName="WEP_Bleeder_ARCH.Wep_Bleeder_3P"
+	MuzzleFlashTemplateName="WEP_Bleeder_ARCH.Wep_Bleeder_MuzzleFlash"
     
     LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.LaserSight_WithAttachment_1P'
 
@@ -123,7 +120,6 @@ defaultproperties
     InstantHitDamage(BASH_FIREMODE)=27
 
     // Fire Effects
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Bleeder_ARCH.Wep_Bleeder_MuzzleFlash'
     WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Bleeder.Play_WEP_Bleeder_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_Bleeder.Play_WEP_Bleeder_Fire_1P')  //@TODO: Replace
     WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_EBR.Play_WEP_SA_EBR_Handling_DryFire'  //@TODO: Replace
 
@@ -136,4 +132,7 @@ defaultproperties
     bHasLaserSight=false
 
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
+
+    WeaponUpgrades[1]=(IncrementDamage=1.6f,IncrementWeight=1, IncrementHealFullRecharge=.8)
+    WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2, IncrementHealFullRecharge=.6)
 }

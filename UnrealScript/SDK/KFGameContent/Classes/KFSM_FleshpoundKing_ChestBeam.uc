@@ -1,7 +1,8 @@
 //=============================================================================
 // KFSM_FleshpoundKing_ChestBeam
 //=============================================================================
-// Fleshpound king's chest beam attach
+// Fleshpound king's chest beam attach. Beam particle code from
+// KFSM_Matriarch_PlasmaCannon
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2017 Tripwire Interactive LLC
@@ -141,6 +142,15 @@ function SetBeamTarget()
 			KingPawnOwner.BeamHitAC.PlayEvent(BeamHitSFX);
         }
     }
+	else
+	{
+		if (BeamHitPSC != none && BeamHitPSC.bIsActive)
+		{
+			BeamHitPSC.DeactivateSystem();
+			BeamHitPSC = none;
+			KingPawnOwner.BeamHitAC.PlayEvent(BeamHitStopSFX);
+		}
+	}
 
     //Update location of sound/fx
     if (BeamHitPSC != none)
@@ -148,14 +158,7 @@ function SetBeamTarget()
         BeamHitPSC.SetAbsolute(true, true, false);
         BeamHitPSC.SetTranslation(BeamEnd);
         BeamHitPSC.SetRotation(KFPOwner.Rotation);
-        if (!bShouldActivateHit && BeamHitPSC.bIsActive)
-        {
-            BeamHitPSC.DeactivateSystem();
-            BeamHitPSC = none;
-			KingPawnOwner.BeamHitAC.PlayEvent(BeamHitStopSFX);
-        }
     }
-	//KingPawnOwner.BeamHitAC.Location = BeamEnd;
 
 	if( bDrawDebugBeam )
 	{
@@ -293,7 +296,7 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
 
-    DisableBeamFX();
+    ToggleBeam(false);
 
     //Start KFP beam SFX
     KFPOwner.SetWeaponAmbientSound(BeamEndSFX);

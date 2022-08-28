@@ -55,6 +55,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedStalker_Versus.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -118,7 +119,8 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedStalker_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedStalker_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedStalker_Versus.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedStalker_Versus.CloakedAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedStalker_Versus.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedStalker_Versus.CloakedAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

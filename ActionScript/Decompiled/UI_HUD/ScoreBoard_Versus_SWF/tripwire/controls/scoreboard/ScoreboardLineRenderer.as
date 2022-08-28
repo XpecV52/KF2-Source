@@ -4,6 +4,7 @@ package tripwire.controls.scoreboard
     import flash.text.TextField;
     import scaleform.clik.controls.ListItemRenderer;
     import tripwire.controls.TripUILoader;
+    import tripwire.controls.TripUIPerkLoader;
     
     public class ScoreboardLineRenderer extends ListItemRenderer
     {
@@ -39,7 +40,7 @@ package tripwire.controls.scoreboard
         
         public var avatarLoader:TripUILoader;
         
-        public var perkIconLoader:TripUILoader;
+        public var perkIconLoader:TripUIPerkLoader;
         
         public var playerID:int;
         
@@ -68,10 +69,13 @@ package tripwire.controls.scoreboard
                 this.assistsText.text = !!param1.assists ? param1.assists : "0";
                 this.doshAmount = !!param1.dosh ? param1.dosh : "0";
                 this.perkInfoText.text = (!!param1.perkLevel ? param1.perkLevel : "0") + " " + (!!param1.perkName ? param1.perkName : "");
-                this.iconSource = param1.iconPath;
                 if(param1.avatar)
                 {
                     this.avatarIcon = param1.avatar;
+                }
+                if(param1.iconPath)
+                {
+                    this.iconSource = param1.iconPath;
                 }
                 this.setHealthState(!!param1.health ? int(param1.health) : 0,!!param1.healthPercent ? int(param1.healthPercent) : 0);
             }
@@ -154,11 +158,11 @@ package tripwire.controls.scoreboard
             }
         }
         
-        public function set iconSource(param1:String) : void
+        public function set iconSource(param1:Object) : void
         {
-            if(param1 && param1 != "")
+            if(param1 && param1 != null)
             {
-                this.perkIconLoader.source = param1;
+                this.perkIconLoader.data = param1;
             }
         }
     }

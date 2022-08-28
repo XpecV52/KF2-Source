@@ -51,6 +51,8 @@ defaultproperties
 	ColumnIds.Add(STATID_ACHIEVE_KrampusCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_ArenaCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_PowercoreCollectibles)
+	ColumnIds.Add(STATID_ACHIEVE_AirshipCollectibles)
+	ColumnIds.Add(STATID_ACHIEVE_LockdownCollectibles)
 
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky5, Name="AchievementMrPerky5"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky10, Name = "AchievementMrPerky10"))
@@ -90,4 +92,6 @@ defaultproperties
 	ColumnMappings.Add((Id=STATID_ACHIEVE_KrampusCollectibles, Name="AchievementCollectKrampus"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_ArenaCollectibles, Name="AchievementCollectDiesector"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_PowercoreCollectibles, Name="AchievementCollectPowercore"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_AirshipCollectibles,Name="AchievementCollectAirship"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_LockdownCollectibles,Name="AchievementCollectLockdown"))
 }

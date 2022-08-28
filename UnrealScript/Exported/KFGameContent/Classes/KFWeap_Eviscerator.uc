@@ -368,6 +368,17 @@ defaultproperties
    ParryDamageMitigationPercent=0.300000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
+   PackageKey="SawBlade"
+   FirstPersonMeshName="WEP_1P_SawBlade_MESH.Wep_1stP_SawBlade_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_SawBlade_ANIM.WEP_1P_SawBlade_ANIM"
+   FirstPersonAnimTree="WEP_1P_SawBlade_ANIM.1P_Sawblade_Animtree"
+   PickupMeshName="WEP_3P_SawBlade_MESH.Wep_SawShooter_Pickup"
+   AttachmentArchetypeName="WEP_Sawblade_ARCH.Wep_Eviscerator_3P"
+   MuzzleFlashTemplateName="WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash"
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
+   bHasFireLastAnims=True
+   bHasLaserSight=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Sawblade'
    FireModeIconPaths(1)=()
    FireModeIconPaths(2)=()
@@ -375,13 +386,9 @@ defaultproperties
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=()
    InventoryGroup=IG_Primary
-   InventorySize=10
+   InventorySize=8
    MagazineCapacity(0)=5
    MagazineCapacity(1)=250
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
-   bHasFireLastAnims=True
-   bHasLaserSight=True
    PenetrationPower(0)=4.000000
    PenetrationPower(1)=()
    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
@@ -394,7 +401,7 @@ defaultproperties
    AmmoCost(4)=()
    AmmoCost(5)=1
    SpareAmmoCapacity(0)=25
-   AmmoPickupScale(1)=0.500000
+   AmmoPickupScale(1)=0.200000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    bLoopingFireAnim(0)=False
    bLoopingFireAnim(1)=False
@@ -422,7 +429,6 @@ defaultproperties
    WeaponDryFireSnd(3)=None
    WeaponDryFireSnd(4)=None
    WeaponDryFireSnd(5)=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Handling_DryFire'
-   AttachmentArchetype=KFWeapAttach_Eviscerator'WEP_Sawblade_ARCH.Wep_Eviscerator_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
@@ -433,8 +439,9 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Eviscerator:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
+   WeaponUpgrades(1)=(IncrementDamage=1.200000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)="Reloading"
@@ -455,12 +462,12 @@ defaultproperties
    FireInterval(4)=()
    FireInterval(5)=0.120000
    Spread(0)=0.020000
-   InstantHitDamage(0)=480.000000
+   InstantHitDamage(0)=250.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=90.000000
+   InstantHitDamage(3)=75.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=29.000000
+   InstantHitDamage(5)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
@@ -470,9 +477,7 @@ defaultproperties
    FireOffset=(X=25.000000,Y=5.000000,Z=-10.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000
-      SkeletalMesh=SkeletalMesh'WEP_1P_SawBlade_MESH.Wep_1stP_SawBlade_Rig'
-      AnimTreeTemplate=AnimTree'WEP_1P_SawBlade_ANIM.1P_Sawblade_Animtree'
-      AnimSets(0)=AnimSet'WEP_1P_SawBlade_ANIM.WEP_1P_SawBlade_ANIM'
+      AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -486,7 +491,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Eviscerator"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_MeleeBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_SawShooter_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

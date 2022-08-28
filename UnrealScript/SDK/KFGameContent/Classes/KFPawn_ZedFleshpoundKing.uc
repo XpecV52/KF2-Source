@@ -376,7 +376,7 @@ function SpawnSubWave()
 
     KFGI = KFGameInfo(WorldInfo.Game);
 
-    SpawnInfo = GetWaveInfo(CurrentPhase, KFGI.GameDifficulty);
+    SpawnInfo = GetWaveInfo(CurrentPhase, KFGI.GetModifiedGameDifficulty());
     KFGI.SpawnManager.SummonBossMinions(SpawnInfo.Squads, GetNumMinionsToSpawn(), false);
 
     //King fleshpound summons once and stops.  Force the stop a couple seconds after spawn.
@@ -455,9 +455,9 @@ function ActivateShield()
     if (KFGI != None)
     {
         HealthMod = 1.f;
-        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
+        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GetModifiedGameDifficulty(), KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
 
-        ShieldHealth = ShieldHealthMaxDefaults[KFGI.GameDifficulty] * HealthMod * ShieldHealthScale;
+        ShieldHealth = ShieldHealthMaxDefaults[KFGI.GetModifiedGameDifficulty()] * HealthMod * ShieldHealthScale;
         ShieldHealthMax = ShieldHealth;
         ShieldHealthPctByte = 1;
         UpdateShield();

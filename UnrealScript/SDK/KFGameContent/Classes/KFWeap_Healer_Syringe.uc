@@ -29,9 +29,13 @@ defaultproperties
 {
 	PlayerViewOffset=(X=20.0,Y=10,Z=-8)
 
+	// Content
+	PackageKey="Healer"
+	FirstPersonMeshName="WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Healer_ANIM.Wep_1st_Healer_Anim"
+	AttachmentArchetypeName="WEP_Healer_ARCH.Wep_Healer_3P"
+
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Healer_ANIM.Wep_1st_Healer_Anim'
 		Animations=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Healer'
 	End Object
 
@@ -43,8 +47,6 @@ defaultproperties
 	//Grouping
 	GroupPriority=6
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Healer_ARCH.Wep_Healer_3P'
 
 	bCanThrow=false
 	bDropOnDeath=false

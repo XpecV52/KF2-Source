@@ -89,7 +89,7 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
     local UniqueNetId AdminId;
     local bool bIsLeader, bIsMyPlayer;
     local PlayerController PC;
-    local GFxObject PlayerInfoObject;
+    local GFxObject PlayerInfoObject, PerkIconObject;
 
     CurrentTeamIndex = KFPRI.GetTeamNum();
     PlayerInfoObject = Outer.CreateObject("Object");
@@ -105,19 +105,24 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
     MemberSlots[SlotIndex].PRI = KFPRI;
     MemberSlots[SlotIndex].PerkClass = KFPRI.CurrentPerkClass;
     MemberSlots[SlotIndex].PerkLevel = string(KFPRI.GetActivePerkLevel());
+    MemberSlots[SlotIndex].PrestigeLevel = string(KFPRI.GetActivePerkPrestigeLevel());
     PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);
     if(MemberSlots[SlotIndex].PerkClass != none)
     {
+        PerkIconObject = Outer.CreateObject("Object");
         if(CurrentTeamIndex == 255)
         {
-            PlayerInfoObject.SetString("perkIconPath", "img://" $ PathName(ZedIconTexture));
+            PerkIconObject.SetString("perkIcon", "img://" $ PathName(ZedIconTexture));
             MemberSlots[SlotIndex].PerkClass = Class'KFPerk_Monster';            
         }
         else
         {
-            PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel);
-            PlayerInfoObject.SetString("perkIconPath", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+            PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @ MemberSlots[SlotIndex].PerkClass.default.PerkName);
+            PerkIconObject = Outer.CreateObject("Object");
+            PerkIconObject.SetString("perkIcon", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+            PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
         }
+        PlayerInfoObject.SetObject("perkImageSource", PerkIconObject);
     }
     if(!bIsMyPlayer)
     {

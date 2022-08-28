@@ -11,13 +11,19 @@ class KFWeap_SMG_Kriss extends KFWeap_SMGBase
 
 defaultproperties
 {
-    FireModeIconPaths=/* Array type was not detected. */
-    SingleFireSoundIndex=1
-    InventorySize=6
-    MagazineCapacity=33
+    PackageKey="Kriss"
+    FirstPersonMeshName="wep_1p_kriss_mesh.Wep_1stP_KRISS_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_kriss_mesh.Wep_KRISS_Pickup"
+    AttachmentArchetypeName="wep_kriss_arch.Wep_KRISS_3P"
+    MuzzleFlashTemplateName="wep_kriss_arch.Wep_KRISS_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    FireModeIconPaths=/* Array type was not detected. */
+    SingleFireSoundIndex=1
+    InventorySize=5
+    MagazineCapacity=33
     MeshIronSightFOV=45
     IronSightPosition=(X=15,Y=0,Z=0)
     GroupPriority=100
@@ -30,9 +36,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=20,Y=9.5,Z=-3)
-    AttachmentArchetype=KFWeaponAttachment'wep_kriss_arch.Wep_KRISS_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_SMG_Kriss.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'wep_kriss_arch.Wep_KRISS_MuzzleFlash'
     maxRecoilPitch=50
     minRecoilPitch=40
     maxRecoilYaw=80
@@ -50,6 +54,7 @@ defaultproperties
     WalkingRecoilModifier=1.1
     IronSightMeshFOVCompensationScale=1.85
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -58,21 +63,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'wep_1p_kriss_mesh.Wep_1stP_KRISS_Rig'
-        AnimSets(0)=AnimSet'wep_1p_kriss_anim.wep_1p_kriss_anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_SMG_Kriss.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Kriss SMG"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_kriss_mesh.Wep_KRISS_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_Kriss.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_kriss_mesh.Wep_KRISS_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_SMG_Kriss.StaticPickupComponent'

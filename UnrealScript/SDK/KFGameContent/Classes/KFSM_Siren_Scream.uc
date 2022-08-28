@@ -250,7 +250,7 @@ DefaultProperties
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		//Damage=15	@NOTE: This is now set using the ScreamDamage variable -MattF
-		DamageRadius=800 //800
+		DamageRadius=600 //800
 		DamageFalloffExponent=1f
 		DamageDelay=0.f
 
@@ -269,7 +269,7 @@ DefaultProperties
 		// Camera Shake
 		CamShake=CameraShake'FX_CameraShake_Arch.Misc_Explosions.SirenScream'
 		CamShakeInnerRadius=450
-		CamShakeOuterRadius=900
+		CamShakeOuterRadius=700 //900
 		CamShakeFalloff=1.f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object

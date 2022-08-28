@@ -277,7 +277,7 @@ function bool CanUseStore()
     {
         return false;
     }
-    if(Class'WorldInfo'.static.IsConsoleBuild() && Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) != 2)
+    if((Class'WorldInfo'.static.IsConsoleBuild() && Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetLoginStatus(byte(Outer.GetLP().ControllerId)) != 2) || !Class'GameEngine'.static.GetOnlineSubsystem().IsGameOwned())
     {
         return false;
     }

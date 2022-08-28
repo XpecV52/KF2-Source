@@ -38,16 +38,13 @@ defaultproperties
 	DOF_FG_FocalRadius=0//70
 	DOF_FG_MaxNearBlurSize=3.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_M14EBR_MESH.WEP_1stP_M14_EBR'
-		AnimSets(0)=AnimSet'WEP_1P_M14EBR_ANIM.Wep_1stP_M14_EBR_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_M14EBR_MESH.Wep_M14EBR_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_M14EBR_ARCH.Wep_M14EBR_3P'
+	// Content
+	PackageKey="M14EBR"
+	FirstPersonMeshName="WEP_1P_M14EBR_MESH.WEP_1stP_M14_EBR"
+	FirstPersonAnimSetNames(0)="WEP_1P_M14EBR_ANIM.Wep_1stP_M14_EBR_Anim"
+	PickupMeshName="WEP_3P_M14EBR_MESH.Wep_M14EBR_Pickup"
+	AttachmentArchetypeName="WEP_M14EBR_ARCH.Wep_M14EBR_3P"
+	MuzzleFlashTemplateName="WEP_M14EBR_ARCH.Wep_M14EBR_MuzzleFlash"
 
 	LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.LaserSight_WithAttachment_1P'
 
@@ -88,7 +85,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_M14EBR'
-	InstantHitDamage(DEFAULT_FIREMODE)=90.0 //75
+	InstantHitDamage(DEFAULT_FIREMODE)=80.0 //90
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M14EBR'
 	FireInterval(DEFAULT_FIREMODE)=0.22 //0.2
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
@@ -105,7 +102,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=27
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_M14EBR_ARCH.Wep_M14EBR_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_EBR.Play_WEP_SA_EBR_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_EBR.Play_WEP_SA_EBR_Fire_Single_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_EBR.Play_WEP_SA_EBR_Handling_DryFire'
 
@@ -118,4 +114,8 @@ defaultproperties
 	bHasLaserSight=true
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.3f,IncrementWeight=2)
 }

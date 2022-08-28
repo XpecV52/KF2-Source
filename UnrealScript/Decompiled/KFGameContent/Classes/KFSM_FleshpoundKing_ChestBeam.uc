@@ -86,6 +86,15 @@ function SetBeamTarget()
         {
             BeamHitPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter(BeamHitPSCTemplate, BeamEnd);
             KingPawnOwner.BeamHitAC.PlayEvent(BeamHitSFX);
+        }        
+    }
+    else
+    {
+        if((BeamHitPSC != none) && BeamHitPSC.bIsActive)
+        {
+            BeamHitPSC.DeactivateSystem();
+            BeamHitPSC = none;
+            KingPawnOwner.BeamHitAC.PlayEvent(BeamHitStopSFX);
         }
     }
     if(BeamHitPSC != none)
@@ -93,12 +102,6 @@ function SetBeamTarget()
         BeamHitPSC.SetAbsolute(true, true, false);
         BeamHitPSC.SetTranslation(BeamEnd);
         BeamHitPSC.SetRotation(KFPOwner.Rotation);
-        if(!bShouldActivateHit && BeamHitPSC.bIsActive)
-        {
-            BeamHitPSC.DeactivateSystem();
-            BeamHitPSC = none;
-            KingPawnOwner.BeamHitAC.PlayEvent(BeamHitStopSFX);
-        }
     }
     if(bDrawDebugBeam)
     {
@@ -217,7 +220,7 @@ function Timer_TickDamage()
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
-    DisableBeamFX();
+    ToggleBeam(false);
     KFPOwner.SetWeaponAmbientSound(BeamEndSFX);
     if((KFPOwner != none) && KFPOwner.IsAliveAndWell())
     {

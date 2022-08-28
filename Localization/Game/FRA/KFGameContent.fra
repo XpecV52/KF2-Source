@@ -202,6 +202,11 @@ ItemName="Stoner 63A LMG"
 ItemCategory="Mitrailleuse légère"
 ItemDescription="• Mode de tir uniquement automatique.\n• Incontournable chez les Navy Seals durant la guerre du Vietnam, la Stoner 63A est dotée d'une capacité en munitions importante et un bon pouvoir d'arrêt."
 
+[KFWeap_Knife_Survivalist]
+ItemName="Surin d'éventreur"
+ItemCategory="Mêlée"
+ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Cette arme appartenait à quelque chose. Elle vous appartient, à présent !"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Couteau utilitaire"
 ItemCategory="Mêlée"
@@ -345,7 +350,7 @@ ItemCategory="Flammes"
 ItemDescription="• Lance des projectiles explosifs inflammables. \n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Cracheurs de feu."
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="Trench Gun incendiaire"
+ItemName="Souffle du Dragon"
 ItemCategory="Fusil à pompe"
 ItemDescription="•Tir principal de type fusil à pompe.\n•Un fusil de chasse qui utilise des cartouches incendiaires Souffle du Dragon. Non seulement mortel, mais aussi très joli."
 
@@ -510,10 +515,25 @@ ItemName="Double AF2011-A2"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Deux pistolets avec deux canons chacun. Quatre fois plus de puissance de tir. C'est mathématique. On ne discute pas avec les maths."
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="Doomstick"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Le tir principal utilise uniquement un canon.\n•Alt-Feu tire avec les quatre canons à la fois.\n•Quand le double ne suffit plus, prenez en quatre !"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="Frappeurs statiques"
+ItemCategory="Mêlée"
+ItemDescription="•Principale - attaque contondante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque contondante électrique lourde. Un véritable choc ! \n•Envie de cogner un Zed en pleine face ? Ne cherchez plus !"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="Pistolet mitrailleur"
 ItemDescription="• Modes automatique et semi-automatique.\n• Tir alternatif pour passer d'un mode à l'autre.\n• Inclut des munitions incendiaires pour jouer avec le feu. Compris ? Jouer avec le feu ? Parce que c'est une mitraillette incendiaire ? Oh, laissez tomber."
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="Fusil de précision"
+ItemDescription="•Mode de tir manuel seulement.\n•Chaque tir balance du lourd... enfin, une grosse balle. Pénétration élevée, douleur élevée."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -12,7 +12,6 @@ class KFGameInfo_Endless extends KFGameInfo_Survival
 var bool bIsInHoePlus;
 var bool bUseSpecialWave;
 var KFGameDifficulty_Endless EndlessDifficulty;
-var() float BaseGameDifficulty;
 var int CurrentFrameBooms;
 var array<KFGame.KFAISpawnManager.EAIType> SpecialWaveTypes;
 var KFGame.KFAISpawnManager.EAIType SpecialWaveType;
@@ -23,7 +22,6 @@ event InitGame(string Options, out string ErrorMessage)
 {
     super(KFGameInfo).InitGame(Options, ErrorMessage);
     GameLength = 2;
-    BaseGameDifficulty = GameDifficulty;
     ResetDifficulty();
 }
 
@@ -32,12 +30,6 @@ event PostBeginPlay()
     super.PostBeginPlay();
     OutbreakEvent.CacheGRI();
     OutbreakEvent.CacheWorldInfo();
-}
-
-function InitGRIVariables()
-{
-    super(KFGameInfo).InitGRIVariables();
-    KFGameReplicationInfo_Endless(MyKFGRI).BaseGameDifficulty = byte(BaseGameDifficulty);
 }
 
 function InitSpawnManager()
@@ -56,7 +48,8 @@ function ResetDifficulty()
     }
     if(EndlessDifficulty != none)
     {
-        EndlessDifficulty.SetDifficultyScaling(BaseGameDifficulty);
+        EndlessDifficulty.SetDifficultyScaling(GameDifficulty);
+        EndlessDifficulty.CurrentDifficultyScaling.CurrentDifficultyIndex = 0;
         EndlessDifficulty.SetDifficultySettings(0);
     }
 }
@@ -69,7 +62,7 @@ static function bool GetShouldShowLength()
 function WaveStarted()
 {
     super.WaveStarted();
-    if((bForceOutbreakWave && !bUseSpecialWave) || bForceOutbreakWave && KFGameReplicationInfo_Endless(GameReplicationInfo).CurrentWeeklyMode == -1)
+    if((bForceSpecialWave && !bUseSpecialWave) || bForceOutbreakWave && KFGameReplicationInfo_Endless(GameReplicationInfo).CurrentWeeklyMode == -1)
     {
         TrySetNextWaveSpecial();
     }
@@ -284,8 +277,8 @@ function IncrementDifficulty()
         }
         else
         {
-            GameDifficulty = float(Clamp(int(GameDifficulty + float(1)), MinGameDifficulty, MaxGameDifficulty));
-            MyKFGRI.GameDifficulty = byte(GameDifficulty);
+            GameDifficultyModifier = float(Clamp(int(GameDifficultyModifier + float(1)), MinGameDifficulty, MaxGameDifficulty));
+            MyKFGRI.SetModifiedGameDifficulty(byte(GameDifficultyModifier));
             LogInternal("Increasing Difficulty to" @ string(GameDifficulty));
         }
         EndlessDifficulty.IncrementDifficulty();
@@ -455,15 +448,16 @@ function StartHoePlus()
     EndlessDifficulty.SetZedFullUpgradeToBase();
 }
 
-function SetMonsterDefaults(KFPawn_Monster P)
-{
-    super(KFGameInfo).SetMonsterDefaults(P);
-    OutbreakEvent.AdjustMonsterDefaults(P);
-}
-
 function float GetGameInfoSpawnRateMod()
 {
-    return 1 / OutbreakEvent.ActiveEvent.SpawnRateMultiplier;
+    local float AdjustedSpawnRateMod;
+
+    AdjustedSpawnRateMod = super(KFGameInfo).GetGameInfoSpawnRateMod();
+    if((EndlessDifficulty != none) && bUseSpecialWave)
+    {
+        AdjustedSpawnRateMod *= EndlessDifficulty.GetSpecialWaveSpawnRateMod(SpecialWaveType);
+    }
+    return AdjustedSpawnRateMod;
 }
 
 function RestartPlayer(Controller NewPlayer)
@@ -498,7 +492,6 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
             Damage *= ToAdjust.DamageDealtScale;
         }        
     }    
-    OutbreakEvent.ReduceDamage(Damage, injured, InstigatedBy, DamageType, HitInfo);
 }
 
 function StartOutbreakRound(int OutbreakIdx)
@@ -531,76 +524,6 @@ function Tick(float DeltaTime)
 {
     CurrentFrameBooms = 0;
     super(KFGameInfo).Tick(DeltaTime);
-}
-
-function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed)
-{
-    super(KFGameInfo).ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-    OutbreakEvent.ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-}
-
-function float GetTotalWaveCountScale()
-{
-    if(WaveNum == (WaveMax - 1))
-    {
-        return 1;
-    }
-    if(OutbreakEvent.ActiveEvent.WaveAICountScale.Length > 0)
-    {
-        return (((GetLivingPlayerCount()) > OutbreakEvent.ActiveEvent.WaveAICountScale.Length) ? OutbreakEvent.ActiveEvent.WaveAICountScale[OutbreakEvent.ActiveEvent.WaveAICountScale.Length - 1] : OutbreakEvent.ActiveEvent.WaveAICountScale[(GetLivingPlayerCount()) - 1]);
-    }
-    return 1;
-}
-
-function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType)
-{
-    super(KFGameInfo).ScoreDamage(DamageAmount, HealthBeforeDamage, InstigatedBy, DamagedPawn, DamageType);
-    OutbreakEvent.AdjustScoreDamage(InstigatedBy, DamagedPawn, DamageType);
-}
-
-function ScoreHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn, class<DamageType> DamageType)
-{
-    super(GameInfo).ScoreHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn, DamageType);
-    if(OutbreakEvent.ActiveEvent.bScaleOnHealth)
-    {
-        OutbreakEvent.AdjustPawnScale(HealedPawn);
-    }
-}
-
-function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn)
-{
-    super(KFGameInfo).PassiveHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn);
-    if(OutbreakEvent.ActiveEvent.bScaleOnHealth)
-    {
-        OutbreakEvent.AdjustPawnScale(HealedPawn);
-    }
-}
-
-function ScoreKill(Controller Killer, Controller Other)
-{
-    super(KFGameInfo).ScoreKill(Killer, Other);
-    if(((Role == ROLE_Authority) && Other != none) && Other.Pawn != none)
-    {
-        OutbreakEvent.OnScoreKill(Other.Pawn);
-    }
-}
-
-function NotifyRally(KFPawn RalliedPawn)
-{
-    super(KFGameInfo).NotifyRally(RalliedPawn);
-    if(OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
-    {
-        OutbreakEvent.AdjustForBeefcakeRules(RalliedPawn, 1);
-    }
-}
-
-function NotifyIgnoredScream(KFPawn ScreamPawn)
-{
-    super(KFGameInfo).NotifyIgnoredScream(ScreamPawn);
-    if(OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
-    {
-        OutbreakEvent.AdjustForBeefcakeRules(ScreamPawn, 2);
-    }
 }
 
 function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, class<KFPawn> ExplosionIgnoreClass)
@@ -650,12 +573,14 @@ exec function SetWave(byte NewWaveNum)
     GotoState('DebugSuspendWave');
     WaveNum = NewWaveNum - 1;
     MyKFGRI.WaveNum = byte(WaveNum);
-    SpawnManager.GetWaveSettings(SpawnManager.WaveSettings);
+    bIsInHoePlus = false;
     ResetDifficulty();
+    SpawnManager.GetWaveSettings(SpawnManager.WaveSettings);
+    UpdateGameSettings();
     CurrRound = 0;
-    J0xB6:
+    J0xCC:
 
-    if(CurrRound < (WaveNum - 1))
+    if(CurrRound < WaveNum)
     {
         if((CurrRound > 0) && (CurrRound % 5) == 0)
         {
@@ -663,7 +588,7 @@ exec function SetWave(byte NewWaveNum)
         }
         HellOnEarthPlusRoundIncrement();
         ++ CurrRound;
-        goto J0xB6;
+        goto J0xCC;
     }
     ResetAllPickups();
     GotoState('PlayingWave');
@@ -674,9 +599,52 @@ function int CalculateMinimumRespawnDosh(float UsedMaxRespawnDosh)
     return Round(UsedMaxRespawnDosh * float(Min(1, int(float(WaveNum) / 10))));
 }
 
+function float GetTotalWaveCountScale()
+{
+    local float WaveScale;
+
+    if(bForceSpecialWave && !bUseSpecialWave)
+    {
+        TrySetNextWaveSpecial();
+    }
+    WaveScale = super(KFGameInfo).GetTotalWaveCountScale();
+    if(bUseSpecialWave)
+    {
+        WaveScale *= EndlessDifficulty.GetSpecialWaveScale(SpecialWaveType);
+    }
+    return WaveScale;
+}
+
+static function bool HasCustomTraderVoiceGroup()
+{
+    return true;
+}
+
+function SetMonsterDefaults(KFPawn_Monster P)
+{
+    local KFAIController KFAIC;
+
+    if(bUseSpecialWave && EndlessDifficulty.ShouldSpawnEnraged(SpecialWaveType))
+    {
+        KFAIC = KFAIController(P.Controller);
+        if(KFAIC != none)
+        {
+            KFAIC.SetSprintingDisabled(false);
+            KFAIC.SetCanSprint(true);
+            KFAIC.SetCanSprintWhenDamaged(true);
+        }
+        if(P != none)
+        {
+            P.SetEnraged(true);
+            P.SetSprinting(true);
+        }
+    }
+    super(KFGameInfo).SetMonsterDefaults(P);
+}
+
 defaultproperties
 {
-    SpecialWaveTypes(0)=102
+    SpecialWaveTypes(0)=127
     SpecialWaveTypes(1)=1
     SpecialWaveTypes(2)=0
     SpecialWaveTypes(3)=0
@@ -684,7 +652,7 @@ defaultproperties
     SpecialWaveTypes(5)=0
     SpecialWaveTypes(6)=0
     SpecialWaveTypes(7)=0
-    SpecialWaveTypes(8)=109
+    SpecialWaveTypes(8)=134
     SpecialWaveTypes(9)=1
     SpecialWaveTypes(10)=0
     SpecialWaveStart=6

@@ -192,7 +192,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
     super(KFAIController).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
     if(!MyHansPawn.bHealedThisPhase && MyHansPawn.CurrentBattlePhase < 4)
     {
-        HealThreshold = MyHansPawn.BattlePhases[MyHansPawn.CurrentBattlePhase - 1].HealThresholds[int(WorldInfo.Game.GameDifficulty)];
+        HealThreshold = MyHansPawn.BattlePhases[MyHansPawn.CurrentBattlePhase - 1].HealThresholds[WorldInfo.Game.GetModifiedGameDifficulty()];
         HealthPct = GetHealthPercentage();
         if(!bSummonedThisPhase && HealthPct < (HealThreshold + 0.18))
         {
@@ -787,7 +787,7 @@ function TickGunSystem()
             }
             return;
         }
-        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(36) && !MyKFPawn.IsDoingSpecialMove(35))
+        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(38) && !MyKFPawn.IsDoingSpecialMove(37))
         {
             if((Pawn.IsFiring() || IsTimerActive('FireTimer', self)) || IsTimerActive('StartFireTiming', self))
             {
@@ -889,7 +889,7 @@ function DrawRangedAttackInfo(HUD HUD)
     DrawDebugText(HUD, "Battle Phase: " $ string(MyHansPawn.CurrentBattlePhase));
     DrawDebugText(HUD, "--Guns--");
     DrawDebugText(HUD, (("Guns Equipped: " $ string(MyHansPawn.bGunsEquipped)) $ " Can Use Guns In This Phase: ") $ string(MyHansPawn.CanUseGunsInThisPhase()));
-    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(36))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
+    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(38))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
     if((WorldInfo.TimeSeconds - StartDrawGunsTime) > DrawGunFireDelay)
     {
         UsedDrawGunsCooldown = 0;        
@@ -1049,7 +1049,7 @@ function bool GrenadeAttackInterruptGuns()
 
 function bool SetupGrenadeAttack()
 {
-    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(36)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
+    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(38)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
     {
         CurrentNadeAttackType = 0;
         if(!IsWithinAttackRange())
@@ -1363,7 +1363,7 @@ event bool CanGrabAttack()
         return false;
     }
     KFPawnEnemy = KFPawn(Enemy);
-    if(((KFPawnEnemy != none) && KFPawnEnemy.IsDoingSpecialMove(30)) && VSizeSq(MyHansPawn.Location - Enemy.Location) < Square(MinDistanceToPerformGrabAttack * 1.5))
+    if(((KFPawnEnemy != none) && KFPawnEnemy.IsDoingSpecialMove(31)) && VSizeSq(MyHansPawn.Location - Enemy.Location) < Square(MinDistanceToPerformGrabAttack * 1.5))
     {
         KFPawnEnemy.InteractionPawn.EndSpecialMove();
     }
@@ -1411,7 +1411,7 @@ function bool CanTargetBeGrabbed(KFPawn TargetKFP)
 {
     local KFAIController OtherKFAIC;
 
-    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(30)) || TargetKFP.Physics == 2)
+    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(31)) || TargetKFP.Physics == 2)
     {
         return false;
     }

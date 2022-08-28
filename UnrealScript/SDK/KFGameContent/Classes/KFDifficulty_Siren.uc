@@ -31,7 +31,7 @@ defaultproperties
 	Suicidal={(HealthMod=1.000000,
 		HeadHealthMod=1.000000,
 		DamageMod=1.000000,
-		DamagedSprintChance=0.050000,
+		DamagedSprintChance=0.65, //0.05
 		SoloDamageMod=0.650000,
 		RallySettings={(DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}
@@ -39,7 +39,7 @@ defaultproperties
 	// Hell On Earth difficulty
 	HellOnEarth={(HealthMod=1.000000,
 		HeadHealthMod=1.000000,
-		DamagedSprintChance=0.100000,
+		DamagedSprintChance=0.85, //0.1
 		DamageMod=1.000000,
 		SoloDamageMod=0.750000,
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=1.2, TakenDamageModifier=0.9)}

@@ -297,7 +297,7 @@ simulated function int GetMeleeDamage(byte FireModeNum, optional vector RayDir)
 	local int Damage;
 	local KFPerk InstigatorPerk;
 
-	Damage = InstantHitDamage[FireModeNum];
+	Damage = GetModifiedDamage(FireModeNum, RayDir);
 	// decode damage scale (see GetDamageScaleByAngle) from the RayDir
 	if ( !IsZero(RayDir) )
 	{
@@ -924,6 +924,12 @@ simulated state MeleeBlocking
 		local KFPerk InstigatorPerk;
 		local byte BlockTypeIndex;
 
+		// don't apply block/parry effects for teammates
+		if (Instigator.IsSameTeam(DamageCauser.Instigator))
+		{
+			return;
+		}
+
 		// zero Z to give us a 2d dot product
 		Dir2d = Normal2d(DamageCauser.Location - Instigator.Location);
 		FacingDot = vector(Instigator.Rotation) dot (Dir2d);
@@ -1264,6 +1270,7 @@ defaultproperties
    BlockParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Block_melee_01'
    ParryParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Parry_melee_01'
    BlockEffectsSocketName="BlockEffect"
+   bTargetAdhesionEnabled=False
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
    FireModeIconPaths(1)=()
    FireModeIconPaths(2)=None
@@ -1271,7 +1278,6 @@ defaultproperties
    FireModeIconPaths(4)=None
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
    InventoryGroup=IG_Melee
-   bTargetAdhesionEnabled=False
    AmmoCost(0)=0
    AmmoCost(1)=0
    AmmoCost(2)=0

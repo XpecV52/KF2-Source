@@ -14,6 +14,8 @@ struct native TransactionItem
     var string DLOString;
     var name ClassName;
     var int AddedAmmo[2];
+    var int AddedWeight;
+    var int WeaponUpgradeLevel;
 
     structdefaultproperties
     {
@@ -21,6 +23,8 @@ struct native TransactionItem
         ClassName=None
         AddedAmmo[0]=0
         AddedAmmo[1]=0
+        AddedWeight=0
+        WeaponUpgradeLevel=0
     }
 };
 
@@ -415,7 +419,7 @@ function bool ItemIsInInventory(Inventory Item)
     return false;
 }
 
-function bool ClassIsInInventory(class<Inventory> ItemClass)
+function bool ClassIsInInventory(class<Inventory> ItemClass, out Inventory out_Inventory)
 {
     local Inventory Inv;
 
@@ -426,6 +430,27 @@ function bool ClassIsInInventory(class<Inventory> ItemClass)
     {
         if(Inv.Class == ItemClass)
         {
+            out_Inventory = Inv;
+            return true;
+        }
+        Inv = Inv.Inventory;
+        goto J0x13;
+    }
+    return false;
+}
+
+function bool ClassNameIsInInventory(name ItemClassName, out Inventory out_Inventory)
+{
+    local Inventory Inv;
+
+    Inv = InventoryChain;
+    J0x13:
+
+    if(Inv != none)
+    {
+        if(Inv.Class.Name == ItemClassName)
+        {
+            out_Inventory = Inv;
             return true;
         }
         Inv = Inv.Inventory;
@@ -952,6 +977,7 @@ simulated function bool QuickWeld()
     local KFWeapon KFW;
     local KFInterface_Usable UsableTrigger;
     local KFDoorTrigger DoorTrigger;
+    local KFRepairableActorTrigger RepairableTrigger;
     local KFPlayerController KFPC;
 
     if((Instigator == none) || Instigator.Owner == none)
@@ -969,10 +995,9 @@ simulated function bool QuickWeld()
         UsableTrigger = KFPC.GetCurrentUsableActor(Instigator);
         if(NotEqual_InterfaceInterface(UsableTrigger, (none)))
         {
-            DoorTrigger = KFDoorTrigger(bool(UsableTrigger));
-            if((DoorTrigger != none) && DoorTrigger.DoorActor != none)
+            if(CanUseWelder(UsableTrigger, DoorTrigger, RepairableTrigger))
             {
-                if(DoorTrigger.DoorActor.bIsDoorOpen && !DoorTrigger.DoorActor.bIsDestroyed)
+                if(((DoorTrigger != none) && DoorTrigger.DoorActor.bIsDoorOpen) && !DoorTrigger.DoorActor.bIsDestroyed)
                 {
                     KFPC.Use();
                 }
@@ -993,6 +1018,13 @@ simulated function bool QuickWeld()
         }
     }
     return false;
+}
+
+simulated function bool CanUseWelder(KFInterface_Usable BaseTrigger, out KFDoorTrigger out_DoorTrigger, out KFRepairableActorTrigger out_RepairableTrigger)
+{
+    out_DoorTrigger = KFDoorTrigger(bool(BaseTrigger));
+    out_RepairableTrigger = KFRepairableActorTrigger(bool(BaseTrigger));
+    return ((out_DoorTrigger != none) && out_DoorTrigger.DoorActor != none) || (out_RepairableTrigger != none) && out_RepairableTrigger.RepairableActor != none;
 }
 
 simulated function bool DoshActivate()
@@ -1092,17 +1124,24 @@ reliable server function ServerThrowMoney()
     }
 }
 
-simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass)
+simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass, optional int WeaponUpgradeIndex)
 {
     local class<KFWeap_DualBase> DualWeaponClass;
+    local int DualAdjustedWeight, SingleAdjustedWeight, AdjustedWeight;
+    local Inventory InventoryItem;
+    local TransactionItem TransactionWeapon;
+    local KFWeap_DualBase WeaponItem;
 
-    if(bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name))
+    if(bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name, TransactionWeapon))
     {
         return false;
     }
-    if((WeaponClass.default.DualClass != none) && ClassIsInInventory(WeaponClass))
+    WeaponUpgradeIndex = Clamp(WeaponUpgradeIndex, 0, WeaponClass.default.WeaponUpgrades.Length - 1);
+    if((WeaponClass.default.DualClass != none) && ClassIsInInventory(WeaponClass, InventoryItem))
     {
-        if((((CurrentCarryBlocks + WeaponClass.default.DualClass.default.InventorySize) - WeaponClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
+        DualAdjustedWeight = WeaponClass.default.DualClass.default.InventorySize + WeaponClass.default.DualClass.GetUpgradeWeight(WeaponUpgradeIndex);
+        SingleAdjustedWeight = WeaponClass.default.InventorySize + WeaponClass.static.GetUpgradeWeight(WeaponUpgradeIndex);
+        if((((CurrentCarryBlocks + DualAdjustedWeight) - SingleAdjustedWeight) <= MaxCarryBlocks) || bInfiniteWeight)
         {
             return true;            
         }
@@ -1112,9 +1151,16 @@ simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass)
         }
     }
     DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
-    if(((DualWeaponClass != none) && DualWeaponClass.default.SingleClass != none) && ClassIsInInventory(DualWeaponClass.default.SingleClass))
+    if(((DualWeaponClass != none) && DualWeaponClass.default.SingleClass != none) && ClassIsInInventory(DualWeaponClass.default.SingleClass, InventoryItem))
     {
-        if((((CurrentCarryBlocks + DualWeaponClass.default.InventorySize) - DualWeaponClass.default.SingleClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
+        WeaponItem = KFWeap_DualBase(InventoryItem);
+        DualAdjustedWeight = WeaponItem.GetModifiedWeightValue();
+        SingleAdjustedWeight = DualWeaponClass.default.SingleClass.default.InventorySize + DualWeaponClass.default.SingleClass.default.WeaponUpgrades[WeaponItem.CurrentWeaponUpgradeIndex].IncrementWeight;
+        if(bLogInventory)
+        {
+            LogInternal((((((((((((string(self) @ "-") @ string(GetFuncName())) @ "- CurrentCarryBlocks:") @ string(CurrentCarryBlocks)) @ "DualWeaponClass:") @ string(DualWeaponClass)) @ "SingleClass:") @ string(DualWeaponClass.default.SingleClass)) @ "DualInventorySize:") @ string(DualAdjustedWeight)) @ "SingleInventorySize:") @ string(SingleAdjustedWeight));
+        }
+        if((((CurrentCarryBlocks + DualAdjustedWeight) - SingleAdjustedWeight) <= MaxCarryBlocks) || bInfiniteWeight)
         {
             return true;            
         }
@@ -1123,7 +1169,8 @@ simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass)
             return false;
         }
     }
-    if(((WeaponClass.default.InventorySize <= 0) || (CurrentCarryBlocks + WeaponClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
+    AdjustedWeight = WeaponClass.default.InventorySize + WeaponClass.static.GetUpgradeWeight(WeaponUpgradeIndex);
+    if(((WeaponClass.default.InventorySize <= 0) || (CurrentCarryBlocks + AdjustedWeight) <= MaxCarryBlocks) || bInfiniteWeight)
     {
         return true;
     }
@@ -1155,7 +1202,7 @@ simulated function CheckForExcessRemoval(KFWeapon NewWeap)
     }
 }
 
-simulated function bool IsTransactionWeapon(name WeaponClassName)
+simulated function bool IsTransactionWeapon(name WeaponClassName, out TransactionItem TransactionWeapon)
 {
     local int I;
 
@@ -1166,6 +1213,7 @@ simulated function bool IsTransactionWeapon(name WeaponClassName)
     {
         if(TransactionItems[I].ClassName == WeaponClassName)
         {
+            TransactionWeapon = TransactionItems[I];
             return true;
         }
         -- I;
@@ -1291,6 +1339,7 @@ function KFWeapon CombineWeaponsOnPickup(KFWeapon AddedWeapon)
     local KFWeap_DualBase AddedDual, NewDual;
     local int ExtraAmmo;
     local bool bEquipNewDual;
+    local int CurrentUpgrade;
 
     AddedDual = KFWeap_DualBase(AddedWeapon);
     if(AddedDual != none)
@@ -1299,7 +1348,9 @@ function KFWeapon CombineWeaponsOnPickup(KFWeapon AddedWeapon)
         {
             if(InvWeap.Class == AddedDual.SingleClass)
             {
+                CurrentUpgrade = InvWeap.CurrentWeaponUpgradeIndex;
                 RemoveFromInventory(InvWeap);
+                AddedDual.SetWeaponUpgradeLevel(CurrentUpgrade);
                 AddedDual.AmmoCount[0] += InvWeap.AmmoCount[0];
                 ExtraAmmo = Max(AddedDual.AmmoCount[0] - AddedDual.default.MagazineCapacity[0], 0);
                 AddedDual.AmmoCount[0] -= byte(ExtraAmmo);
@@ -1333,6 +1384,12 @@ function KFWeapon CombineWeaponsOnPickup(KFWeapon AddedWeapon)
                         NewDual.SpareAmmoCount[0] = Min((InvWeap.SpareAmmoCount[0] + AddedWeapon.SpareAmmoCount[0]) + ExtraAmmo, NewDual.default.SpareAmmoCapacity[0]);
                         NewDual.ClientForceAmmoUpdate(NewDual.AmmoCount[0], NewDual.SpareAmmoCount[0]);
                         NewDual.ClientForceSecondaryAmmoUpdate(NewDual.AmmoCount[1]);
+                        NewDual.SetWeaponUpgradeLevel(AddedWeapon.CurrentWeaponUpgradeIndex);
+                        if(NewDual.CurrentWeaponUpgradeIndex > 0)
+                        {
+                            AddCurrentCarryBlocks(NewDual.GetUpgradeWeight(NewDual.CurrentWeaponUpgradeIndex));
+                            KFPawn(NewDual.Instigator).NotifyInventoryWeightChanged();
+                        }
                         if(bEquipNewDual)
                         {
                             SetCurrentWeapon(NewDual);
@@ -1363,11 +1420,13 @@ reliable server function ServerCloseTraderMenu()
         KFWClass = class<KFWeapon>(DynamicLoadObject(TransactionItems[I].DLOString, Class'Class'));
         if(KFWClass != none)
         {
-            AddCurrentCarryBlocks(-KFWClass.default.InventorySize);
+            AddCurrentCarryBlocks(-1 * (KFWClass.default.InventorySize + TransactionItems[I].AddedWeight));
             KFWeap = KFWeapon(CreateInventory(KFWClass));
             if(KFWeap != none)
             {
+                AddCurrentCarryBlocks(TransactionItems[I].AddedWeight);
                 KFWeap.AddTransactionAmmo(TransactionItems[I].AddedAmmo[0], TransactionItems[I].AddedAmmo[1]);
+                KFWeap.SetWeaponUpgradeLevel(TransactionItems[I].WeaponUpgradeLevel);
             }
             if(Class'KFGameInfo'.static.AllowBalanceLogging())
             {
@@ -1519,6 +1578,105 @@ private reliable server final event ServerAddTransactionAmmo(int AmountAdded, by
     }
 }
 
+final simulated function BuyUpgrade(byte ItemIndex, int CurrentUpgradeLevel)
+{
+    local STraderItem WeaponItem;
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Instigator.Owner);
+    if(GetTraderItemFromWeaponLists(WeaponItem, ItemIndex))
+    {
+        KFPC.GetPurchaseHelper().AddDosh(-WeaponItem.WeaponDef.static.GetUpgradePrice(CurrentUpgradeLevel));
+        KFPC.GetPurchaseHelper().AddBlocks(-GetDisplayedBlocksRequiredFor(WeaponItem));
+        KFPC.GetPurchaseHelper().AddBlocks(GetDisplayedBlocksRequiredFor(WeaponItem, CurrentUpgradeLevel + 1));
+        ServerBuyUpgrade(ItemIndex, CurrentUpgradeLevel);
+    }
+}
+
+private reliable server final function ServerBuyUpgrade(byte ItemIndex, int CurrentUpgradeLevel)
+{
+    local STraderItem WeaponItem;
+    local KFWeapon KFW;
+    local int NewUpgradeLevel;
+
+    if((Role == ROLE_Authority) && bServerTraderMenuOpen)
+    {
+        if(GetTraderItemFromWeaponLists(WeaponItem, ItemIndex))
+        {
+            if(!ProcessUpgradeDosh(WeaponItem, CurrentUpgradeLevel))
+            {
+                return;
+            }
+            NewUpgradeLevel = CurrentUpgradeLevel + 1;
+            if(GetWeaponFromClass(KFW, WeaponItem.ClassName))
+            {
+                if(KFW != none)
+                {
+                    KFW.SetWeaponUpgradeLevel(NewUpgradeLevel);
+                    if(CurrentUpgradeLevel > 0)
+                    {
+                        AddCurrentCarryBlocks(-KFW.WeaponUpgrades[CurrentUpgradeLevel].IncrementWeight);
+                    }
+                    AddCurrentCarryBlocks(KFW.WeaponUpgrades[NewUpgradeLevel].IncrementWeight);
+                    if(Class'KFGameInfo'.static.AllowBalanceLogging())
+                    {
+                        WorldInfo.LogGameBalance(((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Upgrade,") @ string(KFW.Class)) $ ",") @ string(NewUpgradeLevel));
+                    }
+                    if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+                    {
+                        WorldInfo.TWLogEvent("upgrade", Instigator.PlayerReplicationInfo, "upgrade", string(KFW.Class), "#" $ string(NewUpgradeLevel));
+                    }
+                }                
+            }
+            else
+            {
+                ServerAddTransactionUpgrade(ItemIndex, NewUpgradeLevel);
+            }
+        }
+    }
+}
+
+private reliable server final event ServerAddTransactionUpgrade(int ItemIndex, int NewUpgradeLevel)
+{
+    if(bServerTraderMenuOpen)
+    {
+        AddTransactionUpgrade(ItemIndex, NewUpgradeLevel);
+    }
+}
+
+final function AddTransactionUpgrade(int ItemIndex, int NewUpgradeLevel)
+{
+    local STraderItem WeaponItem;
+    local int TransactionIndex;
+
+    if((Role < ROLE_Authority) || !bServerTraderMenuOpen)
+    {
+        return;
+    }
+    if(GetTraderItemFromWeaponLists(WeaponItem, byte(ItemIndex)))
+    {
+        TransactionIndex = GetTransactionItemIndex(WeaponItem.ClassName);
+        if(TransactionIndex != -1)
+        {
+            TransactionItems[TransactionIndex].WeaponUpgradeLevel = NewUpgradeLevel;
+            TransactionItems[TransactionIndex].AddedWeight = WeaponItem.WeaponUpgradeWeight[NewUpgradeLevel];
+            if(NewUpgradeLevel > 0)
+            {
+                AddCurrentCarryBlocks(-WeaponItem.WeaponUpgradeWeight[NewUpgradeLevel - 1]);
+            }
+            AddCurrentCarryBlocks(WeaponItem.WeaponUpgradeWeight[NewUpgradeLevel]);
+            if(Class'KFGameInfo'.static.AllowBalanceLogging())
+            {
+                WorldInfo.LogGameBalance(((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Upgrade,") @ string(WeaponItem.ClassName)) $ ",") @ string(NewUpgradeLevel));
+            }
+            if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("upgrade", Instigator.PlayerReplicationInfo, "upgrade", string(WeaponItem.ClassName), "#" $ string(NewUpgradeLevel));
+            }
+        }
+    }
+}
+
 private reliable server final function ServerBuyArmor(float PercentPurchased)
 {
     local KFPawn_Human KFP;
@@ -1564,7 +1722,7 @@ private reliable server final function ServerBuyGrenade(int AmountPurchased)
     }
 }
 
-reliable server final function ServerBuyWeapon(byte ItemIndex)
+reliable server final function ServerBuyWeapon(byte ItemIndex, optional byte WeaponUpgrade)
 {
     local STraderItem PurchasedItem;
     local int BlocksRequired;
@@ -1573,7 +1731,7 @@ reliable server final function ServerBuyWeapon(byte ItemIndex)
     {
         if(GetTraderItemFromWeaponLists(PurchasedItem, ItemIndex))
         {
-            BlocksRequired = GetDisplayedBlocksRequiredFor(PurchasedItem);
+            BlocksRequired = GetWeaponBlocks(PurchasedItem, WeaponUpgrade);
             if((CurrentCarryBlocks > (CurrentCarryBlocks + BlocksRequired)) || !ProcessWeaponDosh(PurchasedItem))
             {
                 return;
@@ -1582,7 +1740,7 @@ reliable server final function ServerBuyWeapon(byte ItemIndex)
             {
                 LogInternal("ServerBuyWeapon: Adding transaction item" @ string(PurchasedItem.ClassName));
             }
-            AddTransactionItem(PurchasedItem);
+            AddTransactionItem(PurchasedItem, WeaponUpgrade);
         }
     }
 }
@@ -1592,7 +1750,7 @@ function AddCurrentCarryBlocks(int AddAmount)
     CurrentCarryBlocks += byte(AddAmount);
 }
 
-final function AddTransactionItem(const out STraderItem ItemToAdd)
+final function AddTransactionItem(const out STraderItem ItemToAdd, optional byte WeaponUpgrade)
 {
     local TransactionItem NewTransactionItem;
 
@@ -1604,11 +1762,12 @@ final function AddTransactionItem(const out STraderItem ItemToAdd)
     NewTransactionItem.DLOString = ItemToAdd.WeaponDef.default.WeaponClassPath;
     NewTransactionItem.AddedAmmo[0] = 0;
     NewTransactionItem.AddedAmmo[1] = 0;
+    NewTransactionItem.WeaponUpgradeLevel = WeaponUpgrade;
     TransactionItems.AddItem(NewTransactionItem;
-    AddCurrentCarryBlocks(ItemToAdd.BlocksRequired);
+    AddCurrentCarryBlocks(GetWeaponBlocks(ItemToAdd, WeaponUpgrade));
 }
 
-reliable server final function ServerAddTransactionItem(byte ItemIndex)
+reliable server final function ServerAddTransactionItem(byte ItemIndex, optional byte WeaponUpgrade)
 {
     local STraderItem PurchasedItem;
 
@@ -1616,7 +1775,7 @@ reliable server final function ServerAddTransactionItem(byte ItemIndex)
     {
         if(GetTraderItemFromWeaponLists(PurchasedItem, ItemIndex))
         {
-            AddTransactionItem(PurchasedItem);
+            AddTransactionItem(PurchasedItem, WeaponUpgrade);
         }
     }
 }
@@ -1700,13 +1859,13 @@ final function RemoveTransactionItem(const out STraderItem ItemToRemove)
     }
     if(TransactionIndex != -1)
     {
-        AddCurrentCarryBlocks(-ItemToRemove.BlocksRequired);
+        AddCurrentCarryBlocks(-GetDisplayedBlocksRequiredFor(ItemToRemove, TransactionItems[TransactionIndex].WeaponUpgradeLevel));
         TransactionItems.Remove(TransactionIndex, 1;
     }
     if(bLogInventory)
     {
         I = 0;
-        J0x213:
+        J0x22E:
 
         if(I < TransactionItems.Length)
         {
@@ -1715,7 +1874,7 @@ final function RemoveTransactionItem(const out STraderItem ItemToRemove)
                 LogInternal((("RemoveTransactionItem: TransactionItems[" $ string(I)) $ "]=") $ string(TransactionItems[I].ClassName));
             }
             ++ I;
-            goto J0x213;
+            goto J0x22E;
         }
     }
 }
@@ -1843,6 +2002,26 @@ private final function bool ProcessAmmoDosh(out STraderItem PurchasedItem, int A
     return false;
 }
 
+private final function bool ProcessUpgradeDosh(const out STraderItem PurchasedItem, int NewUpgradeLevel)
+{
+    local int BuyPrice;
+    local KFPlayerController KFPC;
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPC = KFPlayerController(Instigator.Owner);
+    KFPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+    if((KFPC != none) && KFPRI != none)
+    {
+        BuyPrice = PurchasedItem.WeaponDef.static.GetUpgradePrice(NewUpgradeLevel);
+        if(float(BuyPrice) <= KFPRI.Score)
+        {
+            KFPRI.AddDosh(-BuyPrice);
+            return true;
+        }
+    }
+    return false;
+}
+
 private final function bool ProcessGrenadeDosh(int AmountPurchased)
 {
     local int BuyPrice;
@@ -1898,6 +2077,25 @@ private final function bool ProcessArmorDosh(float PercentPurchased)
     }
     LogInternal("Server failed to buy armor");
     return false;
+}
+
+private final simulated function int GetWeaponUpgradeLevelFromTransactionItems(const out STraderItem TraderItem)
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < TransactionItems.Length)
+    {
+        if(TransactionItems[I].ClassName == TraderItem.ClassName)
+        {
+            return TransactionItems[I].WeaponUpgradeLevel;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return 0;
 }
 
 private final simulated function bool GetTraderItemFromWeaponLists(out STraderItem TraderItem, byte ItemIndex)
@@ -1971,7 +2169,13 @@ simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem, co
 simulated function int GetAdjustedSellPriceFor(const out STraderItem OwnedItem, optional KFWeapon OwnedWeapon)
 {
     local int AdjustedSellPrice;
+    local KFWeapon WeaponToUpgrade;
+    local TransactionItem TransactionWeapon;
 
+    if(OwnedItem.WeaponDef == Class'KFWeapDef_9mm')
+    {
+        return 0;
+    }
     if((OwnedWeapon != none) && OwnedWeapon.bGivenAtStart)
     {
         AdjustedSellPrice = int(float(OwnedItem.WeaponDef.default.BuyPrice) * StartedWithWeaponPriceModifier);        
@@ -1980,6 +2184,25 @@ simulated function int GetAdjustedSellPriceFor(const out STraderItem OwnedItem, 
     {
         AdjustedSellPrice = int(float(OwnedItem.WeaponDef.default.BuyPrice) * SellPriceModifier);
     }
+    if(OwnedWeapon != none)
+    {
+        WeaponToUpgrade = OwnedWeapon;        
+    }
+    else
+    {
+        GetWeaponFromClass(WeaponToUpgrade, OwnedItem.ClassName);
+    }
+    if((WeaponToUpgrade != none) && WeaponToUpgrade.CurrentWeaponUpgradeIndex > 0)
+    {
+        AdjustedSellPrice += OwnedItem.WeaponDef.static.GetUpgradeSellPrice(WeaponToUpgrade.CurrentWeaponUpgradeIndex - 1);        
+    }
+    else
+    {
+        if((IsTransactionWeapon(OwnedItem.ClassName, TransactionWeapon)) && TransactionWeapon.WeaponUpgradeLevel > 0)
+        {
+            AdjustedSellPrice += OwnedItem.WeaponDef.static.GetUpgradeSellPrice(TransactionWeapon.WeaponUpgradeLevel - 1);
+        }
+    }
     if(OwnedItem.SingleClassName == 'KFWeap_Pistol_9mm')
     {
         AdjustedSellPrice *= 0.5;
@@ -1987,17 +2210,52 @@ simulated function int GetAdjustedSellPriceFor(const out STraderItem OwnedItem, 
     return AdjustedSellPrice;
 }
 
-simulated function int GetDisplayedBlocksRequiredFor(const out STraderItem ShopItem)
+simulated function int GetAdjustedUpgradePriceFor(const out STraderItem TraderItem, int UpgradeLevel)
 {
-    if((ShopItem.SingleClassName == 'None') || ShopItem.SingleClassName == 'KFWeap_Pistol_9mm')
+    return TraderItem.WeaponDef.static.GetUpgradePrice(UpgradeLevel);
+}
+
+simulated function bool ItemEligableForUpgrade(const out STraderItem OwnedItem)
+{
+    local KFWeapon WeaponToUpgrade;
+
+    if(GetWeaponFromClass(WeaponToUpgrade, OwnedItem.ClassName))
     {
-        return ShopItem.BlocksRequired;
+        return WeaponToUpgrade.CanUpgradeWeapon();
     }
-    if(GetIsOwned(ShopItem.SingleClassName))
+    return false;
+}
+
+simulated function int GetDisplayedBlocksRequiredFor(const out STraderItem ShopItem, optional int OverrideLevelValue)
+{
+    local int BlocksRequired;
+
+    OverrideLevelValue = -1;
+    BlocksRequired = GetWeaponBlocks(ShopItem, OverrideLevelValue);
+    if(!(ShopItem.SingleClassName == 'None') || ShopItem.SingleClassName == 'KFWeap_Pistol_9mm' && GetIsOwned(ShopItem.SingleClassName))
     {
-        return ShopItem.BlocksRequired / 2;
+        BlocksRequired /= float(2);
     }
-    return ShopItem.BlocksRequired;
+    return BlocksRequired;
+}
+
+simulated function int GetWeaponBlocks(const out STraderItem ShopItem, optional int OverrideLevelValue)
+{
+    local int ItemUpgradeLevel;
+    local KFPlayerController KFPC;
+    local Inventory InventoryItem;
+
+    OverrideLevelValue = -1;
+    KFPC = KFPlayerController(Instigator.Owner);
+    if(((ShopItem.SingleClassName != 'None') && OverrideLevelValue == -1) && ClassNameIsInInventory(ShopItem.SingleClassName, InventoryItem))
+    {
+        ItemUpgradeLevel = KFWeapon(InventoryItem).CurrentWeaponUpgradeIndex;        
+    }
+    else
+    {
+        ItemUpgradeLevel = ((OverrideLevelValue != -1) ? OverrideLevelValue : KFPC.GetPurchaseHelper().GetItemUpgradeLevel(ShopItem));
+    }
+    return ShopItem.BlocksRequired + ((ItemUpgradeLevel > -1) ? ShopItem.WeaponUpgradeWeight[ItemUpgradeLevel] : 0);
 }
 
 simulated function bool GetIsOwned(name ClassName)

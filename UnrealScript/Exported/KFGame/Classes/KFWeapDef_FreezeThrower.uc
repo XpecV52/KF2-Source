@@ -16,6 +16,10 @@ defaultproperties
    ImagePath="wep_ui_cryogun_tex.UI_WeaponSelect_Cryogun"
    BuyPrice=1100
    AmmoPricePerMag=45
+   UpgradePrice(0)=700
+   UpgradePrice(1)=1500
+   UpgradeSellPrice(0)=525
+   UpgradeSellPrice(1)=1650
    EffectiveRange=17
    Name="Default__KFWeapDef_FreezeThrower"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

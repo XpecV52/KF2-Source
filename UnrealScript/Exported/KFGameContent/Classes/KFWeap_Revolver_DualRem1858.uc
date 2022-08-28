@@ -152,12 +152,18 @@ defaultproperties
    End Object
    BulletMeshComponents(11)=BulletMeshComp5_L
    CylinderRotInfo=(InC=-60.000000,Time=0.087500)
-   InventorySize=4
-   MagazineCapacity(0)=12
+   PackageKey="DualRemington1858"
+   FirstPersonMeshName="WEP_1P_DualRemington1858_MESH.Wep_1stP_DualRemington1858_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_DualRemington1858_Anim.WEP_1P_DualRemington1858_Anim"
+   PickupMeshName="WEP_3P_DualRemington1858_MESH.Wep_3P_Remington_1858_Pickup"
+   AttachmentArchetypeName="WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P"
+   MuzzleFlashTemplateName="WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   InventorySize=4
+   MagazineCapacity(0)=12
    MeshFOV=60.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
@@ -171,19 +177,17 @@ defaultproperties
    InitialSpareMags(0)=7
    IdleFidgetAnims(3)="Guncheck_v4"
    BonesToLockOnEmpty(0)="RW_Hammer"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_1858.Play_WEP_SA_1858_Fire_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_1858.Play_WEP_SA_1858_Fire_DryFire'
    PlayerViewOffset=(X=23.000000,Y=0.000000,Z=-1.000000)
-   AttachmentArchetype=KFWeapAttach_DualBase'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_DualBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_DualBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Revolver_DualRem1858:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash'
    maxRecoilPitch=400
    minRecoilPitch=350
    maxRecoilYaw=125
@@ -200,6 +204,10 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
+   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.100000)
+   WeaponUpgrades(2)=(IncrementWeight=0,IncrementDamage=1.600000)
+   WeaponUpgrades(3)=(IncrementWeight=2,IncrementDamage=2.000000)
+   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=2.500000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -224,9 +232,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Rem1858'
    FireOffset=(X=17.000000,Y=4.000000,Z=-2.250000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_DualBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_DualRemington1858_MESH.Wep_1stP_DualRemington1858_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master_Revolver'
-      AnimSets(0)=AnimSet'WEP_1P_DualRemington1858_Anim.WEP_1P_DualRemington1858_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -240,7 +246,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Dual 1858 Revolvers"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_DualBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

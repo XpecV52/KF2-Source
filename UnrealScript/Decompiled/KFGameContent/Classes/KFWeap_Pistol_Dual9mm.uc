@@ -14,14 +14,20 @@ defaultproperties
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)
     SingleClass=Class'KFWeap_Pistol_9mm'
     BonesToLockOnEmpty_L=/* Array type was not detected. */
-    InventoryGroup=EInventoryGroup.IG_Secondary
-    InventorySize=2
-    MagazineCapacity=30
+    PackageKey="Dual_9mm"
+    FirstPersonMeshName="WEP_1P_Dual_9MM_MESH.Wep_1stP_Dual_9mm_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Dual_9MM_MESH.Wep_9mm_Pickup"
+    AttachmentArchetypeName="WEP_Dual_9MM_ARCH.WEP_Dual_9MM_3P"
+    MuzzleFlashTemplateName="wep_dual_9mm_arch.Wep_Dual_9MM_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     bIsBackupWeapon=true
+    InventoryGroup=EInventoryGroup.IG_Secondary
+    InventorySize=2
+    MagazineCapacity=30
     MeshFOV=96
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
@@ -31,15 +37,13 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=20
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
-    SpareAmmoCapacity=210
-    InitialSpareMags=3
+    SpareAmmoCapacity=60
+    InitialSpareMags=2
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=5,Y=0,Z=-5)
-    AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_9MM_ARCH.Wep_Dual_9mm_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_Dual9mm.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_9MM_ARCH.Wep_Dual_9MM_MuzzleFlash'
     maxRecoilPitch=250
     minRecoilPitch=200
     maxRecoilYaw=100
@@ -54,6 +58,7 @@ defaultproperties
     RecoilISMaxPitchLimit=250
     RecoilISMinPitchLimit=65485
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -62,21 +67,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=17,Y=4,Z=-2.25)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Dual_9MM_MESH.Wep_1stP_Dual_9mm_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Dual_9MM_ANIM.Wep_1stP_Dual_9MM_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_Dual9mm.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Dual 9mm Pistols"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Dual9mm.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Dual9mm.StaticPickupComponent'

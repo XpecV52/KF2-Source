@@ -257,8 +257,24 @@ function Callback_ProfileOption(string OptionKey, int SlotIndex)
 
 function Callback_CreateParty()
 {
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     if((OnlineLobby != none) && Manager.GetMultiplayerMenuActive() || Class'WorldInfo'.static.IsConsoleBuild())
     {
+        if(((OnlineSub != none) && !OnlineSub.IsGameOwned()) && Class'WorldInfo'.static.IsConsoleBuild(8))
+        {
+            if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+            {
+                Manager.HandleFreeTrialError(2);
+                return;
+            }
+            if(!OnlineSub.CanCheckFreeTrialState())
+            {
+                Manager.HandleFreeTrialError(1);
+                return;
+            }
+        }
         OnlineLobby.MakeLobby(6, 2);
         OnlineLobby.ShowLobbyInviteInterface(((Class'WorldInfo'.static.IsConsoleBuild()) ? Localize("Notifications", "InviteMessage", "KFGameConsole") : ""));
     }
@@ -282,15 +298,23 @@ function Callback_OpenPlayerList(int SlotIndex)
 
 function Callback_InviteFriend()
 {
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
+        if((((OnlineSub != none) && !OnlineSub.IsGameOwned()) && !OnlineSub.IsFreeTrialPeriodActive()) && Class'WorldInfo'.static.IsConsoleBuild(8))
+        {
+            Class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialOverPopUp();
+            return;
+        }
         if(Class'WorldInfo'.static.IsMenuLevel())
         {
             OnlineLobby.ShowLobbyInviteInterface(Localize("Notifications", "InviteMessage", "KFGameConsole"));            
         }
         else
         {
-            Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.ShowInviteUI(byte(Manager.GetLP().ControllerId), "");
+            OnlineSub.PlayerInterfaceEx.ShowInviteUI(byte(Manager.GetLP().ControllerId), "");
         }        
     }
     else

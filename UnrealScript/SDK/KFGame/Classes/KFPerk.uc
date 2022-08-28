@@ -66,6 +66,8 @@ var array<string> 	ColumnOneIcons;
 var array<string> 	ColumnTwoIcons;
 var Texture2D 		InteractIcon;
 
+var array<Texture2D> PrestigeIcons;
+
 var localized string WeaponDroppedMessage;
 /*********************************************************************************************
 * Skill related vars
@@ -180,6 +182,12 @@ var float 						HitAccuracyHandicap;
 
 /** How much to handicap this perk when calculating the player's headshot accuracy */
 var float 						HeadshotAccuracyHandicap;
+
+/*********************************************************************************************
+* @name Prestige Rewards
+********************************************************************************************* */
+
+var array<string> PrestigeRewardItemIconPaths;
 
 /*********************************************************************************************
 * Caching
@@ -701,6 +709,16 @@ static simulated event string GetPerkIconPath()
 	return PerkIconPath;
 }
 
+static simulated event string GetPrestigeIconPath(byte PerkPrestigeLevel)
+{
+	if (PerkPrestigeLevel > 0)
+	{
+		return "img://"$ PathName(default.PrestigeIcons[PerkPrestigeLevel - 1]); //0 based array but 0 level is ignored
+	}
+
+	return "";
+}
+
 simulated final function int GetSavedBuild()
 {
 	return SavedBuild;
@@ -818,9 +836,15 @@ function ApplySkillsToPawn()
 	}
 }
 
+function ClearPerkEffects()
+{
+	ClientClearPerkEffects();
+}
+reliable client function ClientClearPerkEffects();
+
 /**
  * We need to separate this from ApplySkillsToPawn() to avoid resetting weight limits (and losing weapons)
- * every time a skill or level is changed
+ * every time a skill or level is changed 
  */
 function ApplyWeightLimits()
 {
@@ -883,7 +907,7 @@ function AddDefaultInventory( KFPawn P )
         else
         {
             P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
-        }
+        }		
 		// Secondary weapon is spawned through the pawn unless we want an additional one  not anymore
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), class'Class')));
@@ -1209,12 +1233,12 @@ simulated event KFPawn_Human GetOwnerPawn()
 	return none;
 }
 
-protected function bool HitShouldStumble( byte BodyPart )
+protected function bool HitShouldStumble( byte BodyPart ) 
 {
 	return BodyPartsCanStumble.Find( BodyPart ) != INDEX_NONE;
 }
 
-protected function bool HitShouldKnockdown( byte BodyPart )
+protected function bool HitShouldKnockdown( byte BodyPart ) 
 {
 	return BodyPartsCanKnockDown.Find( BodyPart ) != INDEX_NONE;
 }
@@ -1222,6 +1246,12 @@ protected function bool HitShouldKnockdown( byte BodyPart )
 function bool ShouldAutosellWeapon(class<KFWeaponDefinition> DefClass)
 {
     return AutoBuyLoadOutPath.Find(DefClass) == INDEX_NONE;
+}
+
+event Destroyed()
+{
+	ClearPerkEffects();
+	super.Destroyed();
 }
 
 /*********************************************************************************************
@@ -1361,6 +1391,12 @@ DefaultProperties
 	CurrentLevel=255
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
 
+	PrestigeIcons(0)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_1'
+	PrestigeIcons(1)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_2'
+	PrestigeIcons(2)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_3'
+	PrestigeIcons(3)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_4'
+	PrestigeIcons(4)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_5'
+
 	ProgressStatID=INDEX_NONE
 
 	BarrageDamageModifier=1.15
@@ -1392,4 +1428,6 @@ DefaultProperties
 
 	SecondaryXPModifier=1
 	AssistDoshModifier=1.f
+
+	PrestigeRewardItemIconPaths[0]="Xmas_UI.UI_Objectives_Xmas_Krampus"
 }

@@ -135,16 +135,13 @@ defaultproperties
 	DOF_FG_FocalRadius=150
 	DOF_FG_MaxNearBlurSize=2
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_CaulkBurn_MESH.Wep_1stP_CaulkBurn_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_CaulkBurn_ANIM.Wep_1stP_CaulkBurn_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_CaulkBurn_MESH.Wep_CaulkBurn_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeapAttach_Flamethrower'WEP_CaulkBurn_ARCH.Wep_Caulkburn_B_3P'
+	// Content
+	PackageKey="CaulkBurn"
+	FirstPersonMeshName="WEP_1P_CaulkBurn_MESH.Wep_1stP_CaulkBurn_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_CaulkBurn_ANIM.Wep_1stP_CaulkBurn_Anim"
+	PickupMeshName="WEP_3P_CaulkBurn_MESH.Wep_CaulkBurn_Pickup"
+	AttachmentArchetypeName="WEP_CaulkBurn_ARCH.Wep_Caulkburn_B_3P"
+	MuzzleFlashTemplateName="WEP_CaulkBurn_ARCH.Wep_CaulkBurn_MuzzleFlash"
 
    	// Zooming/Position
 	PlayerViewOffset=(X=4.0,Y=10,Z=-4)
@@ -200,7 +197,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_CaulkBurn_ARCH.Wep_CaulkBurn_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_CaulkBurn.Play_SA_CaulkBurn_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_SA_CaulkBurn.Play_SA_CaulkBurn_Fire_1P_Loop')
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_CaulkBurn.Play_SA_CaulkBurn_Fire_3P_LoopEnd', FirstPersonCue=AkEvent'WW_WEP_SA_CaulkBurn.Play_SA_CaulkBurn_Fire_1P_LoopEnd')
 
@@ -223,4 +219,10 @@ defaultproperties
    	AssociatedPerkClasses(0)=class'KFPerk_Firebug'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.3f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.4f,IncrementWeight=3)
+	WeaponUpgrades[4]=(IncrementDamage=1.5f,IncrementWeight=4)
 }

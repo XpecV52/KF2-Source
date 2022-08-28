@@ -13,7 +13,7 @@ class KFWeap_SMG_Kriss extends KFWeap_SMGBase;
 defaultproperties
 {
 	// Inventory
-	InventorySize=6
+	InventorySize=5
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_KRISS_TEX.UI_WeaponSelect_KRISS'
 
@@ -26,16 +26,13 @@ defaultproperties
 	IronSightPosition=(X=15.f,Y=0.f,Z=0.0f)
 	PlayerViewOffset=(X=20.f,Y=9.5f,Z=-3.0f)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_kriss_mesh.Wep_1stP_KRISS_Rig'
-		AnimSets(0)=AnimSet'wep_1p_kriss_anim.wep_1p_kriss_anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'wep_3p_kriss_mesh.Wep_KRISS_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'wep_kriss_arch.Wep_KRISS_3P'
+	// Content
+	PackageKey="Kriss"
+	FirstPersonMeshName="wep_1p_kriss_mesh.Wep_1stP_KRISS_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_kriss_anim.wep_1p_kriss_anim"
+	PickupMeshName="wep_3p_kriss_mesh.Wep_KRISS_Pickup"
+	AttachmentArchetypeName="wep_kriss_arch.Wep_KRISS_3P"
+	MuzzleFlashTemplateName="wep_kriss_arch.Wep_KRISS_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=33
@@ -70,7 +67,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Kriss'
 	FireInterval(DEFAULT_FIREMODE)=+.05 // 1200 RPM
 	Spread(DEFAULT_FIREMODE)=0.015
-	InstantHitDamage(DEFAULT_FIREMODE)=33.0
+	InstantHitDamage(DEFAULT_FIREMODE)=29.0 //33
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -80,16 +77,13 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Kriss'
 	FireInterval(ALTFIRE_FIREMODE)=+.05 // 1200 RPM
-	InstantHitDamage(ALTFIRE_FIREMODE)=33.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=29.0  //29
 	Spread(ALTFIRE_FIREMODE)=0.015
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Kriss'
 	InstantHitDamage(BASH_FIREMODE)=26
-
-	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'wep_kriss_arch.Wep_KRISS_MuzzleFlash'
-
+	
 	//@todo: add akevents when we have them
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_KRISS.Play_KRISS_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_KRISS.Play_KRISS_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_KRISS.Play_KRISS_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_KRISS.Play_KRISS_Fire_1P_Single')
@@ -107,4 +101,8 @@ defaultproperties
 	bHasFlashlight=true
 
 	AssociatedPerkClasses(0)=class'KFPerk_Swat'
+
+    // Weapon Upgrade stat boosts
+    WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+    WeaponUpgrades[2]=(IncrementDamage=1.28f,IncrementWeight=2)
 }

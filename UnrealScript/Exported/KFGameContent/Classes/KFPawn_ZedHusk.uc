@@ -153,7 +153,7 @@ simulated function ANIMNOTIFY_WarnZedsOfFireball()
 		    else
 		    {
 			   AimDirection = TraceEnd - FireLocation;
-			}		
+			}
 		}
 		else
 		{
@@ -216,7 +216,7 @@ simulated event Tick( float DeltaTime )
 	}
 	else if( ChestLightComponent.Radius > default.ChestLightComponent.Radius )
 	{
-		ChestLightComponent.SetRadius( FInterpConstantTo(ChestLightComponent.Radius, default.ChestLightComponent.Radius, DeltaTime, AmbientLightRadiusInterpSpeed) );			
+		ChestLightComponent.SetRadius( FInterpConstantTo(ChestLightComponent.Radius, default.ChestLightComponent.Radius, DeltaTime, AmbientLightRadiusInterpSpeed) );
 	}
 }
 
@@ -501,6 +501,9 @@ defaultproperties
    FireballLightMinBrightness=1.100000
    FireballLightMaxBrightness=1.250000
    MonsterArchPath="ZED_ARCH.ZED_Husk_Archetype"
+   ElitePawnClass(0)=Class'kfgamecontent.KFPawn_ZedDAR_EMP'
+   ElitePawnClass(1)=Class'kfgamecontent.KFPawn_ZedDAR_Laser'
+   ElitePawnClass(2)=Class'kfgamecontent.KFPawn_ZedDAR_Rocket'
    ParryResistance=2
    MinSpawnSquadSizeType=EST_Medium
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
@@ -533,6 +536,15 @@ defaultproperties
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm')
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Husk'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    LocalizationKey="KFPawn_ZedHusk"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -627,10 +639,10 @@ defaultproperties
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
-      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_Husk_Suicide'
-      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
+      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_Husk_Suicide'
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
       SpecialMoveClasses(27)=None
@@ -641,7 +653,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -750,6 +764,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=66000,Roll=50000)
    Name="Default__KFPawn_ZedHusk"

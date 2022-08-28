@@ -81,13 +81,19 @@ defaultproperties
     ExplosionTemplate=KFGameExplosion'WEP_RPG7_ARCH.Wep_RPG7_BackBlastExplosion'
     BackBlastOffset=(X=-20,Y=4,Z=-3)
     ForceReloadTime=0.4
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=9
-    MagazineCapacity=1
+    PackageKey="RPG7"
+    FirstPersonMeshName="WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_RPG7_MESH.Wep_rpg7_Pickup"
+    AttachmentArchetypeName="WEP_RPG7_ARCH.Wep_RPG7_3P"
+    MuzzleFlashTemplateName="WEP_RPG7_ARCH.Wep_RPG7_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=8
+    MagazineCapacity=1
     MeshFOV=75
     MeshIronSightFOV=65
     PlayerIronSightFOV=70
@@ -104,9 +110,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=10,Y=10,Z=-2)
-    AttachmentArchetype=KFWeaponAttachment'WEP_RPG7_ARCH.Wep_RPG7_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_RocketLauncher_RPG7.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_RPG7_ARCH.Wep_RPG7_MuzzleFlash'
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500
@@ -124,6 +128,7 @@ defaultproperties
     HippedRecoilModifier=1.25
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -133,21 +138,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=20,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_RPG7_ANIM.Wep_1stP_RPG7_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_RocketLauncher_RPG7.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="RPG-7"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_RPG7_MESH.Wep_rpg7_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_RocketLauncher_RPG7.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_RPG7_MESH.Wep_rpg7_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_RocketLauncher_RPG7.StaticPickupComponent'

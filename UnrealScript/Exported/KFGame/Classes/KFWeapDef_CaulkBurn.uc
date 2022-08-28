@@ -16,6 +16,14 @@ defaultproperties
    ImagePath="WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn"
    BuyPrice=200
    AmmoPricePerMag=20
+   UpgradePrice(0)=500
+   UpgradePrice(1)=600
+   UpgradePrice(2)=700
+   UpgradePrice(3)=1500
+   UpgradeSellPrice(0)=375
+   UpgradeSellPrice(1)=825
+   UpgradeSellPrice(2)=1350
+   UpgradeSellPrice(3)=2475
    EffectiveRange=15
    Name="Default__KFWeapDef_CaulkBurn"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

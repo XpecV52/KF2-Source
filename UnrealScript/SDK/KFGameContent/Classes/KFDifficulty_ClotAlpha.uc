@@ -9,47 +9,28 @@
 class KFDifficulty_ClotAlpha extends KFMonsterDifficultyInfo
 	abstract;
 
-/** Chances, by difficulty, to spawn as a special crawler */
-var array<float> ChanceToSpawnAsSpecial;
-
-/** Chances, by difficulty, to spawn as a special gorefast */
-static function float GetSpecialAlphaChance( KFGameReplicationInfo KFGRI )
-{
-	if( KFGRI.bVersusGame )
-	{
-		return 0.f;
-	}
-	
-`if(`notdefined(ShippingPC))
-	if( default.bForceSpecialSpawn )
-		return 1.f;
-	else
-`endif
-	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
-}
-
 defaultproperties
 {
 	// Normal difficulty
-	Normal={(HealthMod=0.750000,
-		HeadHealthMod=0.750000,
+	Normal={(HealthMod=0.75,
+		HeadHealthMod=0.75,
 		RallySettings={(bCanRally=false)}
 	)}
 
 	// Hard difficulty
-	Hard={(DamagedSprintChance=0.050000,
+	Hard={(DamagedSprintChance=0.70, //0.05
 		RallySettings={(bCanRally=false)}
 	)}
-	
+
 	// Suicidal difficulty
-	Suicidal={(SprintChance=0.050000, //0.15
-		DamagedSprintChance=1.000000,
+	Suicidal={(SprintChance=0.50, //0.05
+		DamagedSprintChance=1.0,
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=2.0, TakenDamageModifier=0.5)} // 1.2
 	)}
 
 	// Hell On Earth difficulty
-	HellOnEarth={(SprintChance=0.750000,
-		DamagedSprintChance=1.000000,
+	HellOnEarth={(SprintChance=0.85, //0.75
+		DamagedSprintChance=1.0,
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=2.0, TakenDamageModifier=0.5)} //{(bCauseSprint=true, DealtDamageModifier=1.5, TakenDamageModifier=0.9)}
 	)}
 

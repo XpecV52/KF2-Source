@@ -170,12 +170,10 @@ defaultproperties
    SpecialEventObjectiveInfoList(1)=(TitleString="Test 2",DescriptionString="Description 2")
    SpecialEventObjectiveInfoList(2)=(TitleString="Test 3",DescriptionString="Description 3")
    SpecialEventObjectiveInfoList(3)=(TitleString="Test 4",DescriptionString="Description 4")
-   SpecialEventObjectiveInfoList(4)=(TitleString="Test 5",DescriptionString="Description 5")
    ObjectiveIconURLs(0)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
    ObjectiveIconURLs(1)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
    ObjectiveIconURLs(2)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
    ObjectiveIconURLs(3)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
-   ObjectiveIconURLs(4)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
    AllCompleteRewardIconURL="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
    AllCompleteRewardDescriptionString="Item description for all complete"
    ChanceDropIconURLs(0)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"

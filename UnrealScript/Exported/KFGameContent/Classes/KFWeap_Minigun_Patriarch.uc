@@ -74,11 +74,12 @@ simulated function rotator AddSpread(rotator BaseAim)
 
 defaultproperties
 {
+   WeaponContentLoaded=True
+   bHasIronSights=True
+   bUseAnimLenEquipTime=False
    SingleFireSoundIndex=1
    InventorySize=6
    MagazineCapacity(0)=60
-   bHasIronSights=True
-   bUseAnimLenEquipTime=False
    MeshFOV=75.000000
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
@@ -89,8 +90,8 @@ defaultproperties
    bLoopingFireSnd(0)=True
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_ZED_Patriarch.Play_Mini_Gun_LP',FirstPersonCue=AkEvent'WW_ZED_Patriarch.Play_Mini_Gun_LP')
    WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_ZED_Patriarch.Play_Mini_Gun_Tail',FirstPersonCue=AkEvent'WW_ZED_Patriarch.Play_Mini_Gun_Tail')
-   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Handling_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Handling_DryFire'
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
    PlayerViewOffset=(X=2.000000,Y=8.000000,Z=-3.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Patriarch_ARCH.Wep_Patriarch_Minigun_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'

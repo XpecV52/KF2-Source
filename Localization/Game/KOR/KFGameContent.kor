@@ -202,30 +202,35 @@ ItemName="스토너 63A LMG"
 ItemCategory="경기관총"
 ItemDescription="•전자동만 가능합니다.\n•베트남 전쟁에서 미국 해군 특수 물자의 주요품으로 쓰인 스토너 63A는 장탄수와 저지력이 높습니다."
 
+[KFWeap_Knife_Survivalist]
+ItemName="고어 쉬브"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•예전에 어딘가에 속하던 물건입니다. 하지만 이제 당신 거예요!"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="유틸리티 나이프"
 ItemCategory="백병전"
-ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•커터칼입니다. 박스를 여는데 최고의 나이프이며 킬링 플로어에 널려 있습니다."
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•커터칼입니다. 박스를 여는데 최고의 나이프이며 Killing Floor에 널려 있습니다."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="메스"
 ItemCategory="백병전"
-ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격\n•대체 - 차단/회피\n•메스입니다. 당신은 메딕이니 사용법은 따로 설명드릴 필요가 없을 겁니다."
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격\n•대체 - 차단/회피\n•메스입니다. 당신은 메딕이니 사용법은 따로 설명드릴 필요가 없을 겁니다."
 
 [KFWeap_Knife_Firebug]
 ItemName="소방관 나이프"
 ItemCategory="백병전"
-ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•소방관용 나이프입니다. 당신은 소방관이니 사용법은 따로 설명드릴 필요가 없을 겁니다."
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•소방관용 나이프입니다. 당신은 소방관이니 사용법은 따로 설명드릴 필요가 없을 겁니다."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="보위 나이프"
 ItemCategory="백병전"
-ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•옛날 서부에서 쓰던 큰 나이프입니다. 여기저기에서 제드를 썰고 다니는데 좋습니다."
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•옛날 서부에서 쓰던 큰 나이프입니다. 여기저기에서 Zed를 썰고 다니는데 좋습니다."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="쿠크리"
 ItemCategory="백병전"
-ItemDescription="•기본 - 빠른 베기 공격, 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•구르카의 전통 나이프이며 베기보다는 난도질하는데 좋습니다. "
+ItemDescription="•기본 - 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•구르카의 전통 나이프이며 베기보다는 난도질하는데 좋습니다. "
 
 [KFWeap_Knife_SWAT]
 ItemName="전술 나이프"
@@ -255,7 +260,7 @@ ItemDescription="•전자동 발사 모드 전용.\n•대체 사격으로 치�
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="2연발 붐스틱"
 ItemCategory="샷건"
-ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 사격 시 두 총구에서 한 번 총알을 발사합니다.\n•더블 배럴이 나란히 달린 12 게이지 샷건입니다. 근접전에 이상적입니다. 가장 큰 제드조차 비틀거릴 겁니다!"
+ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 사격 시 두 총구에서 한 번에 총알을 발사합니다.\n•더블 배럴이 나란히 달린 12게이지 산탄총입니다. 근접전에 이상적입니다. 가장 큰 Zed조차 비틀거릴 겁니다!"
 
 [KFWeap_Shotgun_AA12]
 ItemName="AA-12 자동 샷건"
@@ -345,7 +350,7 @@ ItemCategory="화염계 무기"
 ItemDescription="•폭발하는 인화성 투사체를 발사합니다. \n•아이언 사이트 사용 시 조준 방식을 변경할 수 있습니다.\n•스핏파이어 한 쌍으로 구성되어 있습니다."
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="화염 박격포"
+ItemName="드래곤 브레스"
 ItemCategory="샷건"
 ItemDescription="•펌프 액션 발사 모드 전용.\n•드래곤 브레스 발화탄을 이용한 샷건 치명적인 무기일뿐만 아니라 생긴 것도 멋있습니다."
 
@@ -510,10 +515,25 @@ ItemName="듀얼 AF2011-A2"
 ItemCategory="권총"
 ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•2개의 총구가 있는 총 두 정입니다. 화력이 네 배입니다. 산수죠. 너무 쉬운 산수입니다."
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="둠스틱"
+ItemCategory="산탄총"
+ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 사격 시 네 총구에서 한 번에 총알을 발사합니다.\n•더블 배럴이 부족하면 4개 배럴로 가는 거죠!"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="스태틱 스트라이커"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 둔기 공격, 오래 누르면 콤보 공격. \n•보조 - 세게 전격 둔기 공격. 충격적입니다! \n•Zed 얼굴에 한 방 먹여주고 싶다고요? 여기 해답이 있습니다!"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="서브머신건"
 ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•속사 화염 탄약을 지원합니다. 아시겠죠? 속사 화염이라구요! 화염 서브머신건이잖아요! 아, 됐어요."
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="스나이퍼 소총"
+ItemDescription="•기본 사격은 단발 전용입니다. \n•매 사격마다 엄청나게 큰 탄알을 발사합니다. 관통력이 높고, 고통도 엄청납니다."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

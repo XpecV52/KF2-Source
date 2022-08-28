@@ -68,7 +68,7 @@ event InitGame( string Options, out string ErrorMessage )
 
 	OutbreakEvent.SetActiveEvent(ActiveEventIdx);
 
-	SetGameDifficulty();
+	SetModifiedGameDifficulty();
     SetPickupItemList();
     SetZedTimeOverrides();
     SetSpawnPointOverrides();
@@ -83,7 +83,7 @@ event PreBeginPlay()
 	OutbreakEvent.UpdateGRI();
 }
 
-function SetGameDifficulty()
+function SetModifiedGameDifficulty()
 {
     //Set game difficulty.  super will create the intended DifficultyInfo object.
     MinGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
@@ -338,32 +338,6 @@ function EndOfMatch(bool bVictory)
     }
 }
 
-//-----------------------------------------------------------------------------
-// Gametype Functionality
-function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed)
-{
-    super.ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-
-    OutbreakEvent.ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-}
-
-//-----------------------------------------------------------------------------
-// Wave Status
-/** Scale to use against WaveTotalAI to determine full wave size */
-function float GetTotalWaveCountScale()
-{
-	//Boss wave, don't scale it.
-	if (WaveNum == WaveMax - 1)
-	{
-		return 1.0f;
-	}
-	if (OutbreakEvent.ActiveEvent.WaveAICountScale.Length > 0)
-	{
-		return GetLivingPlayerCount() > OutbreakEvent.ActiveEvent.WaveAICountScale.Length ? OutbreakEvent.ActiveEvent.WaveAICountScale[OutbreakEvent.ActiveEvent.WaveAICountScale.Length - 1] : OutbreakEvent.ActiveEvent.WaveAICountScale[GetLivingPlayerCount() - 1];
-	}
-	return 1.0f;
-}
-
 function StartWave()
 {
     super.StartWave();
@@ -559,20 +533,6 @@ function class<KFPawn_Monster> GetAISpawnType(EAIType AIType)
     return AIClassList[AIType];
 }
 
-function SetMonsterDefaults( KFPawn_Monster P )
-{
-    //Allow game type to set the defaults first, then override
-    super.SetMonsterDefaults(P);
-
-	OutbreakEvent.AdjustMonsterDefaults(P);
-}
-
-/** Allow specific game types to modify the spawn rate at a global level */
-function float GetGameInfoSpawnRateMod()
-{
-    return 1.0 / OutbreakEvent.ActiveEvent.SpawnRateMultiplier;
-}
-
 /** Whether or not a specific primary weapon is allowed.  Called at player spawn time while setting inventory. */
 function bool AllowPrimaryWeapon(string ClassPath)
 {
@@ -611,66 +571,6 @@ function RestartPlayer(Controller NewPlayer)
     OutbreakEvent.AdjustRestartedPlayer(KFPH);
 }
 
-//-----------------------------------------------------------------------------
-// Damage
-
-function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> damageType )
-{
-    super.ScoreDamage(DamageAmount, HealthBeforeDamage, InstigatedBy, DamagedPawn, damageType);
-
-    OutbreakEvent.AdjustScoreDamage(InstigatedBy, DamagedPawn, damageType);
-}
-
-function ScoreHeal( int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn, class<DamageType> DamageType )
-{
-    super.ScoreHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn, DamageType);
-
-    if (OutbreakEvent.ActiveEvent.bScaleOnHealth)
-    {
-        OutbreakEvent.AdjustPawnScale(HealedPawn);
-    }
-}
-
-function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn)
-{
-    super.PassiveHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn);
-
-    if (OutbreakEvent.ActiveEvent.bScaleOnHealth)
-    {
-		OutbreakEvent.AdjustPawnScale(HealedPawn);
-    }
-}
-
-function ScoreKill( Controller Killer, Controller Other )
-{
-    super.ScoreKill(Killer, Other);
-
-    if (Role == ROLE_Authority && Other != none && Other.Pawn != none)
-    {
-        OutbreakEvent.OnScoreKill(Other.Pawn);
-    }
-}
-
-function NotifyRally(KFPawn RalliedPawn)
-{
-    super.NotifyRally(RalliedPawn);
-
-    if (OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
-    {
-		OutbreakEvent.AdjustForBeefcakeRules(RalliedPawn, EBT_Rally);
-    }
-}
-
-function NotifyIgnoredScream(KFPawn ScreamPawn)
-{
-    super.NotifyIgnoredScream(ScreamPawn);
-
-    if (OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
-    {
-		OutbreakEvent.AdjustForBeefcakeRules(ScreamPawn, EBT_Scream);
-    }
-}
-
 function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, class<KFPawn> ExplosionIgnoreClass)
 {
     local KFExplosionActorReplicated ExploActor;
@@ -688,14 +588,6 @@ function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, clas
             ++CurrentFrameBooms;
         }
     }
-}
-
-//In our case, this should be better explained as a GameInfo-facing AdjustDamage.  Things are being done here that would be incredibly invasive in other classes given the size of our code base.
-function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
-{
-    super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
-
-    OutbreakEvent.ReduceDamage(Damage, Injured, InstigatedBy, DamageType, HitInfo);
 }
 
 defaultproperties

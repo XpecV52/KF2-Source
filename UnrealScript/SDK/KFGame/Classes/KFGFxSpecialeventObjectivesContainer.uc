@@ -169,7 +169,7 @@ DefaultProperties
     ObjectiveIconURLs[1]="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ObjectiveIconURLs[2]="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ObjectiveIconURLs[3]="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
-    ObjectiveIconURLs[4]="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
+    //ObjectiveIconURLs[4]="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     //defaults
     AllCompleteRewardIconURL="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ChanceDropIconURLs[0]="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"

@@ -43,6 +43,7 @@ var bool bAnyPerk;
 var bool bShouldSpawnBloodSplat;
 var bool bShouldSpawnPersistentBlood;
 var bool bCanGib;
+var bool bIgnoreAggroOnDamage;
 var bool bCanObliterate;
 var bool bUseHitLocationForGibImpulses;
 var bool bPointImpulseTowardsOrigin;

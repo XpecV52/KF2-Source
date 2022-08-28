@@ -8,20 +8,6 @@
 //=============================================================================
 class KFPawn_ZedGorefast extends KFPawn_Monster;
 
-/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-	local WorldInfo WI;
-
-	WI = class'WorldInfo'.static.GetWorldInfo();
-	if( fRand() < class<KFDifficulty_Gorefast>(default.DifficultySettings).static.GetSpecialGorefastChance(KFGameReplicationInfo(WI.GRI)) )
-	{
-		return default.ElitePawnClass;
-	}
-
-	return super.GetAIPawnClassToSpawn();
-}
-
 /** Returns (hardcoded) dialog event ID for when trader gives advice to player who was killed by this zed type */
 static function int GetTraderAdviceID()
 {
@@ -31,7 +17,7 @@ static function int GetTraderAdviceID()
 defaultproperties
 {
    MonsterArchPath="ZED_ARCH.ZED_Gorefast_Archetype"
-   ElitePawnClass=Class'kfgamecontent.KFPawn_ZedGorefastDualBlade'
+   ElitePawnClass(0)=Class'kfgamecontent.KFPawn_ZedGorefastDualBlade'
    ParryResistance=2
    MinSpawnSquadSizeType=EST_Medium
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
@@ -63,6 +49,15 @@ defaultproperties
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm')
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Gorefast'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast_Anim.Gorefast_AnimGroup'
    LocalizationKey="KFPawn_ZedGorefast"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -161,7 +156,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -271,6 +268,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
    Name="Default__KFPawn_ZedGorefast"

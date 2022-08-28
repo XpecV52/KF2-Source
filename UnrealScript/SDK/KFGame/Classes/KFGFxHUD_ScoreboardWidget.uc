@@ -174,7 +174,7 @@ function SortPlayerList(out array<KFPlayerReplicationinfo> PlayerList)
 
 function UpdatePlayerData()
 {
-	local GFxObject DataProvider,TempData;
+	local GFxObject DataProvider,TempData, PerkIconObject;
 	local int i;
     local KFPlayerReplicationinfo KFPRI;
     local KFPlayerController KFPC;
@@ -198,10 +198,16 @@ function UpdatePlayerData()
             TempData.SetInt("kills", KFPRI.Kills);
             TempData.SetInt("ping", KFPRI.Ping * `PING_SCALE);
             TempData.SetInt("perkLevel", KFPRI.GetActivePerkLevel());
+			TempData.SetInt("prestigeLevel", KFPRI.GetActivePerkPrestigeLevel());
             if( KFPRI.CurrentPerkClass != none )
             {
                 TempData.SetString("perkName", KFPRI.CurrentPerkClass.default.PerkName);
-                TempData.SetString("iconPath", "img://"$KFPRI.CurrentPerkClass.static.GetPerkIconPath());
+
+				PerkIconObject = CreateObject("Object");
+				PerkIconObject.SetString("perkIcon", "img://"$KFPRI.CurrentPerkClass.static.GetPerkIconPath());
+				PerkIconObject.SetString("prestigeIcon", KFPRI.CurrentPerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
+
+				TempData.SetObject("iconPath", PerkIconObject);
             }
 
 			if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )

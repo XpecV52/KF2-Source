@@ -284,10 +284,10 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
         if(AttachmentIdx < 3)
         {
             CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-            if((CosmeticMeshIdx != 255) && CosmeticMeshIdx != -1)
+            if((CosmeticMeshIdx != -1) && CosmeticMeshIdx != -1)
             {
                 bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
-                SetAttachmentMeshAndSkin(byte(CosmeticMeshIdx), byte(KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx]), KFP, KFPRI);
+                SetAttachmentMeshAndSkin(CosmeticMeshIdx, KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI);
             }
             ++ AttachmentIdx;
             goto J0x1CC;
@@ -626,7 +626,7 @@ protected simulated function SetAttachmentSkinMaterial(int PawnAttachmentIndex, 
     }
 }
 
-private final function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex, byte CurrentAttachmentSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI, optional bool bIsFirstPerson)
+private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, int CurrentAttachmentSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI, optional bool bIsFirstPerson)
 {
     local string CharAttachmentMeshName;
     local name CharAttachmentSocketName;
@@ -663,29 +663,29 @@ private final function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex,
                 KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = 'None';
             }
         }
-        SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], CurrentAttachmentSkinIndex, KFP, bIsFirstPerson);
+        SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, bIsFirstPerson);
     }
-    if(CurrentAttachmentMeshIndex == 255)
+    if(CurrentAttachmentMeshIndex == -1)
     {
         RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
     }
 }
 
-function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
+function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
     local name NewAttachmentSocketName;
     local int I, CurrentAttachmentIdx;
 
-    if((CosmeticVariants.Length > 0) && NewAttachmentMeshIndex < CosmeticVariants.Length)
+    if(((CosmeticVariants.Length > 0) && NewAttachmentMeshIndex < CosmeticVariants.Length) && NewAttachmentMeshIndex != -1)
     {
         NewAttachmentSocketName = CosmeticVariants[NewAttachmentMeshIndex].AttachmentItem.SocketName;
         I = 0;
-        J0x7F:
+        J0x90:
 
         if(I < 3)
         {
             CurrentAttachmentIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[I];
-            if(CurrentAttachmentIdx == 255)
+            if(CurrentAttachmentIdx == -1)
             {                
             }
             else
@@ -696,13 +696,13 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
                 }
                 else
                 {
-                    if(GetOverrideCase(byte(CurrentAttachmentIdx), NewAttachmentMeshIndex))
+                    if(GetOverrideCase(CurrentAttachmentIdx, NewAttachmentMeshIndex))
                     {
                         RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);                        
                     }
                     else
                     {
-                        if(GetOverrideCase(NewAttachmentMeshIndex, byte(CurrentAttachmentIdx)))
+                        if(GetOverrideCase(NewAttachmentMeshIndex, CurrentAttachmentIdx))
                         {
                             RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);                            
                         }
@@ -710,15 +710,19 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
                 }
             }
             ++ I;
-            goto J0x7F;
+            goto J0x90;
         }
     }
 }
 
-function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
+function bool GetOverrideCase(int AttachmentIndex1, int AttachmentIndex2)
 {
     local KFCharacterAttachment Attachment1;
 
+    if((AttachmentIndex1 == -1) || AttachmentIndex2 == -1)
+    {
+        return false;
+    }
     if((AttachmentIndex1 >= CosmeticVariants.Length) || AttachmentIndex2 >= CosmeticVariants.Length)
     {
         return false;
@@ -758,7 +762,7 @@ function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
     }
 }
 
-function int GetAttachmentSlotIndex(byte CurrentAttachmentMeshIndex, KFPawn KFP)
+function int GetAttachmentSlotIndex(int CurrentAttachmentMeshIndex, KFPawn KFP)
 {
     local int AttachmentIdx;
 
@@ -774,6 +778,7 @@ function int GetAttachmentSlotIndex(byte CurrentAttachmentMeshIndex, KFPawn KFP)
         ++ AttachmentIdx;
         goto J0x0B;
     }
+    return -1;
 }
 
 simulated function RemoveAttachmentMeshAndSkin(int PawnAttachmentIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
@@ -827,10 +832,10 @@ simulated function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerRepli
     if(AttachmentIdx < 3)
     {
         CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-        if((CosmeticMeshIdx != 255) && CosmeticMeshIdx != -1)
+        if((CosmeticMeshIdx != -1) && CosmeticMeshIdx != -1)
         {
             LogInternal("Attach 1p mesh" @ string(CosmeticMeshIdx));
-            SetAttachmentMeshAndSkin(byte(CosmeticMeshIdx), byte(KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx]), KFP, KFPRI, true);
+            SetAttachmentMeshAndSkin(CosmeticMeshIdx, KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI, true);
         }
         ++ AttachmentIdx;
         goto J0xB4;

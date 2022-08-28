@@ -137,6 +137,15 @@ defaultproperties
    SpecialMoveCooldowns(5)=(CoolDownTime=1.250000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-Jump',bShowOnHud=False)
    MinBlockFOV=0.000000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:FootstepCameraShake0'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -215,18 +224,20 @@ defaultproperties
       SpecialMoveClasses(21)=None
       SpecialMoveClasses(22)=None
       SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerFleshpound_Melee'
-      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerFleshpound_Melee2'
-      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerFleshpound_Rage'
-      SpecialMoveClasses(27)=Class'kfgamecontent.KFSM_PlayerFleshpound_Block'
-      SpecialMoveClasses(28)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerFleshpound_Melee'
+      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerFleshpound_Melee2'
+      SpecialMoveClasses(27)=Class'kfgamecontent.KFSM_PlayerFleshpound_Rage'
+      SpecialMoveClasses(28)=Class'kfgamecontent.KFSM_PlayerFleshpound_Block'
       SpecialMoveClasses(29)=None
       SpecialMoveClasses(30)=None
       SpecialMoveClasses(31)=None
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
    End Object
@@ -332,7 +343,8 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=RageAkComponent0
+   Components(8)=SprintAkComponent0
+   Components(9)=RageAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedFleshPound_Versus"
    ObjectArchetype=KFPawn_ZedFleshpound'kfgamecontent.Default__KFPawn_ZedFleshpound'

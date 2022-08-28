@@ -18,19 +18,19 @@ defaultproperties
 	)}
 
 	// Hard difficulty
-	Hard={(DamagedSprintChance=0.010000,
+	Hard={(DamagedSprintChance=0.70, //0.01
 		RallySettings={(bCanRally=false)}
 	)}
 	
 	// Suicidal difficulty
-	Suicidal={(SprintChance=0.050000,
-		DamagedSprintChance=1.000000,
+	Suicidal={(SprintChance=0.5, //0.05
+		DamagedSprintChance=1.0,
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=2.0, TakenDamageModifier=0.5)} //{(bCauseSprint=true, DealtDamageModifier=1.5, TakenDamageModifier=0.9)}
 	)}
 
 	// Hell On Earth difficulty
-	HellOnEarth={(SprintChance=0.400000,
-		DamagedSprintChance=0.800000,
+	HellOnEarth={(SprintChance=0.85, //0.4 
+		DamagedSprintChance=1., //0.8
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=2.0, TakenDamageModifier=0.5)}
 	)}
 

@@ -54,16 +54,13 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=29.0,Y=13,Z=-4)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Pistol_MESH.Wep_1stP_Medic_Pistol_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Medic_Pistol_ANIM.WEP_1P_Medic_Pistol_ANIM'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Pistol_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_3P'
+	//Content
+	PackageKey="Medic_Pistol"
+	FirstPersonMeshName="WEP_1P_Medic_Pistol_MESH.Wep_1stP_Medic_Pistol_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Medic_Pistol_ANIM.WEP_1P_Medic_Pistol_ANIM"
+	PickupMeshName="wep_3p_medic_pistol_mesh.Wep_Medic_Pistol_Pickup"
+	AttachmentArchetypeName="WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_3P"
+	MuzzleFlashTemplateName="WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_MuzzleFlash"
 
    	// Zooming/Position
 	IronSightPosition=(X=15,Y=0,Z=0)
@@ -106,7 +103,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=21
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Pistol_ARCH.Wep_Medic_Pistol_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_MedicPistol.Play_SA_MedicPistol_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_MedicPistol.Play_SA_MedicPistol_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_MedicPistol.Play_SA_MedicPistol_Handling_DryFire'
 	WeaponDryFireSnd(ALTFIRE_FIREMODE)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
@@ -114,5 +110,10 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
+
+	WeaponUpgrades[1]=(IncrementDamage=1.7f,IncrementWeight=0, IncrementHealFullRecharge=.9)
+	WeaponUpgrades[2]=(IncrementDamage=2.0f,IncrementWeight=1, IncrementHealFullRecharge=.8)
+	WeaponUpgrades[3]=(IncrementDamage=2.55f,IncrementWeight=2, IncrementHealFullRecharge=.7)
+	WeaponUpgrades[4]=(IncrementDamage=3.0f,IncrementWeight=3, IncrementHealFullRecharge=.6)
 }
 

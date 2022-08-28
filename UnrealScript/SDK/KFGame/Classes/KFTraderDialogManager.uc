@@ -490,27 +490,31 @@ simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC )
 		AddRandomOption( `TRAD_SurviveMultWaves, NumOptions, BestOptionID );
 	}
 
-	if( KFPC.MatchStats.GetDamageTakenInWave() == 0 )
+	if (KFPC.MatchStats.GetDamageTakenInWave() == 0)
 	{
 		// no damage taken
-		AddRandomOption( `TRAD_NoDamage, NumOptions, BestOptionID );
-	}
-	else if( KFPC.MatchStats.GetDamageTakenInWave() < KFPH.HealthMax / 2 )
-	{
-		// less than half damage taken
-		AddRandomOption( `TRAD_LT50PctDamTaken, NumOptions, BestOptionID );
+		AddRandomOption(`TRAD_NoDamage, NumOptions, BestOptionID);
 	}
 
-	if( KFPC.MatchStats.GetDamageTakenInWave() >= 300 )
-	{
-		// took lots of damage but didn't die
-		AddRandomOption( `TRAD_HighDmgSurvivor, NumOptions, BestOptionID );
-	}
+	if (KFPH.HealthMax != KFPH.Health)
+	{	
+		if (KFPC.MatchStats.GetDamageTakenInWave() < KFPH.HealthMax / 2)
+		{
+			// less than half damage taken
+			AddRandomOption(`TRAD_LT50PctDamTaken, NumOptions, BestOptionID);
+		}
 
-	if( KFPC.MatchStats.GetDamageTakenInWave() >= 100 && KFPC.MatchStats.GetHealReceivedInWave() >= 100 )
-	{
-		// took lots of damage and got healed a lot
-		AddRandomOption( `TRAD_HighDmgHighHeal, NumOptions, BestOptionID );
+		if (KFPC.MatchStats.GetDamageTakenInWave() >= 300)
+		{
+			// took lots of damage but didn't die
+			AddRandomOption(`TRAD_HighDmgSurvivor, NumOptions, BestOptionID);
+		}
+
+		if (KFPC.MatchStats.GetDamageTakenInWave() >= 100 && KFPC.MatchStats.GetHealReceivedInWave() >= 100)
+		{
+			// took lots of damage and got healed a lot
+			AddRandomOption(`TRAD_HighDmgHighHeal, NumOptions, BestOptionID);
+		}
 	}
 
 	if( KFPC.PWRI.bKilledFleshpoundLastWave )

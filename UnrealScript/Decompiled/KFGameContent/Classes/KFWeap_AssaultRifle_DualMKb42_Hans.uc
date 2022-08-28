@@ -36,11 +36,12 @@ simulated function ConsumeAmmo(byte FireModeNum);
 
 defaultproperties
 {
+    WeaponContentLoaded=true
+    bHasIronSights=true
+    bUseAnimLenEquipTime=false
     SingleFireSoundIndex=1
     InventorySize=6
     MagazineCapacity=60
-    bHasIronSights=true
-    bUseAnimLenEquipTime=false
     MeshFOV=75
     MeshIronSightFOV=33
     PlayerIronSightFOV=70

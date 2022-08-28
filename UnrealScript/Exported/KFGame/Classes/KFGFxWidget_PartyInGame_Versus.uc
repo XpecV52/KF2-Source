@@ -95,7 +95,7 @@ function GFxObject RefreshSlot( int SlotIndex, KFPlayerReplicationInfo KFPRI )
 	local bool bIsLeader;
 	local bool bIsMyPlayer;
 	local PlayerController PC;
-	local GFxObject PlayerInfoObject;
+	local GFxObject PlayerInfoObject, PerkIconObject;
 
 	CurrentTeamIndex = KFPRI.GetTeamNum();
 	PlayerInfoObject = CreateObject("Object");
@@ -116,22 +116,27 @@ function GFxObject RefreshSlot( int SlotIndex, KFPlayerReplicationInfo KFPRI )
 	MemberSlots[SlotIndex].PRI = KFPRI;
 	MemberSlots[SlotIndex].PerkClass = KFPRI.CurrentPerkClass;
 	MemberSlots[SlotIndex].PerkLevel = String(KFPRI.GetActivePerkLevel());
+	MemberSlots[SlotIndex].PrestigeLevel = String(KFPRI.GetActivePerkPrestigeLevel());
 	PlayerInfoObject.SetBool("myPlayer", bIsMyPlayer);
 
 	//perk info
 	if(MemberSlots[SlotIndex].PerkClass != none)
 	{
+		PerkIconObject = CreateObject("Object");
 		if( CurrentTeamIndex == 255 ) //zed team
    		{
-			PlayerInfoObject.SetString("perkIconPath", "img://"$PathName(ZedIConTexture));
+			PerkIconObject.SetString("perkIcon", "img://"$PathName(ZedIConTexture));
    			MemberSlots[SlotIndex].PerkClass = class'KFPerk_Monster';
 	   	}
 	   	else//human team
 	   	{
-	   		PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel );
-	   		PlayerInfoObject.SetString("perkIconPath", "img://"$MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+			PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @MemberSlots[SlotIndex].PerkClass.default.PerkName); //separate from icon
+
+			PerkIconObject = CreateObject("Object");
+			PerkIconObject.SetString("perkIcon", "img://"$MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+			PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
 	   	}
-		
+		PlayerInfoObject.SetObject("perkImageSource", PerkIconObject);
 	}
 	//perk info
 	if(!bIsMyPlayer)

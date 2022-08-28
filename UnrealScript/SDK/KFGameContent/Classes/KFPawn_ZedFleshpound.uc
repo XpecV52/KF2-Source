@@ -35,20 +35,6 @@ var protected const float FootstepCameraShakeRollAmplitude;
 * Initialization
 ********************************************************************************************* */
 
-/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-	local WorldInfo WI;
-
-	WI = class'WorldInfo'.static.GetWorldInfo();
-	if(class<KFDifficulty_Fleshpound>(default.DifficultySettings) != none && fRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)) )
-	{
-		return default.ElitePawnClass;
-	}
-
-	return super.GetAIPawnClassToSpawn();
-}
-
 /** TEMP [See when this was added in sourcecontrol] */
 simulated event PreBeginPlay()
 {
@@ -552,7 +538,7 @@ DefaultProperties
 	IncapSettings(AF_GunHit)=	(Vulnerability=(0.0, 0.0, 0.0, 0.0, 0.5),     Cooldown=1.7)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                         Cooldown=1.2)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                      Cooldown=20.5, Duration=5.0)
-	IncapSettings(AF_Microwave)=(Vulnerability=(0.8),                         Cooldown=17.0, Duration=2.5)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.9),                         Cooldown=17.0, Duration=2.5)
 	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                         Cooldown=10.0, Duration=3.5)
 	IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                        Cooldown=10.0, Duration=2.2)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(0.95),                        Cooldown=10.5,  Duration=1.0)

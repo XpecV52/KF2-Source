@@ -1,4 +1,6 @@
 [KFCommon_LocalizedStrings]
+PrestigeWarningString="Perkを0にリセットしますか？ この操作は取り消せません。"
+PrestigeBonusString="Prestige Bonus"
 FailedToReachInventoryServerString="アイテムサーバーに接続できませんでした。インベントリは利用できなくなります。"
 LoadingString="読み込み中..."
 DifficultyStrings[0]="Normal"
@@ -56,6 +58,7 @@ NoSwitchReasonString="チームを変更すると、チームバランスが乱�
 
 AutoTradeCompleteString="オートトレード完了： "
 AutoFillCompleteString="物資をオートフィルしました"
+WeaponUpgradeComepleteString="武器をアップグレードしました"
 SecondaryWeaponPurchasedString="セカンダリ武器を購入しました"
 NoItemsPurchasedString="購入したアイテムはありません"
 
@@ -107,6 +110,9 @@ DiscordWaveString=": ウェーブ"
 
 ProceedToTutorialString="トレーニングに進みますか？"
 ProceedToTutorialDescriptionString="基本を学ぶために制御環境へと向かいましょう。  一度完了すると選択されたレベル0Perkがレベル1になります。"
+
+; placeholder01
+; placeholder02
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="アウトブレイククリア報酬"
@@ -161,6 +167,7 @@ CreateMatchString="マッチ作成"
 MatchmakingString="オンラインマッチメイキング"
 ConsoleMatchmakingString="オンラインプレイ"
 ServerBrowserString="サーバーを閲覧する"
+NewsPageString="ニュース"
 
 DifficultyTitle="難易度"
 GameModeTitle="ゲームモード"
@@ -214,6 +221,7 @@ privacyList3=""
 inProgressList0=""
 inProgressList1=""
 inProgressList2=""
+FailedToLoadNewsString="最新ニュース画像のロードに失敗しました。\n後ほどもう一度お試しください。"
 
 [KFGFxStartGameContainer_Options]
 BackString="戻る"
@@ -364,6 +372,8 @@ CannotSellString="売却不可"
 CannotBuyString="購入不可"
 FavoriteString="お気に入り"
 UnfavoriteString="お気に入りオフ"
+UpgradeCostString="アップグレードコスト"
+UpgradeString="アップグレード"
 
 [KFGFxTraderContainer_PlayerInventory]
 FillString="FILL"
@@ -853,6 +863,7 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="経験値"
+PrestigeLevelString="名声"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="コンフィグ"
@@ -862,6 +873,8 @@ SkillsString="スキル"
 TierUnlockedText="新ティアをロック解除！"
 TierUnlockedSecondaryText="以下のPerkの新たなティアをロック解除しました："
 
+CurrentPrestigeLevelString="現在の名声ランク:"
+PrestigeString="名声"
 
 [KFGFxPerksContainer_Details]
 ObjectivesString="XP目標"
@@ -877,6 +890,17 @@ HeaderTitle="Perk選択"
 EndOfWaveString="Perk変更は、ウェーブの最後に適用されます！"
 ChangesAppliedOnCloseString="Perk変更は、このメニューを閉じると適用されます。"
 OncePerWaveString="Perk変更は各ウェーブで一度しか行えません！"
+
+[KFGFxPerksContainer_Prestige]
+AtMaxPrestigeLevelString="最大Perk名声レベルに到達しました！"
+NotHightenoughLevelString="Perkは最大レベルではありません。 ユーザーは現時点では名声を使用できません。"
+CurrentRankString="現在のランク"
+NextRankString="次のランク"
+RewardString="名声報酬"
+PrestigeDescriptionString="> Perkレベルが0にリセットされます。\n> このPerkに対して、ゲームマッチ終了時に永久+30% XP改良ボーナスが適用されます。\n> このPerkの改良Perkアイコン、Vault Dosh、特殊武器スキンを獲得します。"
+PrestigeWarningString1="実行するとPerkが0になります"
+PrestigeWarningString2="確認してから続行してください"
+PrestigeWarningString3="この操作は取り消せません"
 
 [KFGFxMenu_Store]
 StoreString="ストア"
@@ -1205,9 +1229,10 @@ UseAltAimOnDualString="オルトデュアルピストル照準を使用"
 AntiMotionSicknessString="乗り物酔い防止"
 AutoTurnOffString="クロトの掴みで自動ターンなし"
 ReduceHighPitchNoiseString="高ピッチ音を減少"
-DisableAutoUpgradeString="オートアップグレード無効化"
+DisableAutoUpgradeString="オートトレードを無効化"
 
 EnableMixerString="Mixer設定"
+DisableMixerString="Mixerを無効化"
 
 [LocalizedControls]
 ControllerLayoutDefault="初期設定"
@@ -1371,6 +1396,8 @@ KickVoteNoSpectatorsString="観客は追放投票を開始できません"
 KickedFromServerString="サーバーから取り除かれました"
 BannedFromServerString="このサーバーから取り除かれました。現時点では再加入できません"
 ServerNoLongerAvailableString="このサーバーにはもう参加できません"
+SkipTraderTimeString="プレイヤーの1人がトレーダータイムのスキップに投票しました。 トレーダーをスキップするには、メニューを開いて「トレーダーをスキップ」を選択してください。 実行するには、すべてのプレイヤーが同意する必要があります。"
+SkipTraderSuccessString="トレーダースキップの投票が成功しました！"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="弾薬を受け取りました："
@@ -1441,7 +1468,7 @@ ZedWaitingForNextRoundString="zedの大群の侵略が迫っています！"
 LastPlayerStandingString="生き残ったプレイヤー"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="トレーダー<%HOLD%>オートアップグレードを使用"
+UseTraderMessage="トレーダーを使用<%HOLD%>オートトレード"
 UseDoorMessage="<%HOLD%>装備溶接機を開く/閉じる"
 EquipWelderMessage="<%HOLD%>装備溶接機"
 ZedUseDoorMessage="開く/閉じる"
@@ -2287,19 +2314,24 @@ HorzineSupplyCrateKey13="ホージン物資箱の鍵 | シリーズ#13―$2.49"
 USBSpitfire="スピットファイアUSBの鍵―$2.49"
 USBHighVoltage="ハイボルテージUSBの鍵―$2.49"
 MerchSale="お得なKF2セール！2017年4月30日まで25%オフ、プロモコード：ZED"
+; placeholder03
 
 [Objectives]
 HoldVolume="エリアを守備せよ"
 DoshHold="意志を貫け"
+RepairObjective="溶接して修理しよう"
 DescriptionDoshHold="マークされたエリアにZedを入れるな"
 RequiredDoshHold="必要プレイヤー:"
 DoschHoldDesc="マークされたエリアにZedを入れるな"
 DescriptionHoldVolume="DescriptionHoldVolume"
 RequiredHoldVolume="RequiredHoldVolume"
-DestroyActor="追跡と破壊"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
+UseWelderToRepair="溶接機を使って目標を修理しよう"
 FailedString="失敗"
+DescriptionActivateTrigger="制御装置を起動しよう"
+RequiredActivateTrigger="起動に必要なもの:"
+ActivateTrigger="制御装置を使って掌握しよう"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2323,6 +2355,9 @@ KFPawn_ZedClot_Alpha="アルファクロト"
 KFPawn_ZedClot_AlphaKing="暴徒"
 KFPawn_ZedScrake="スクレイク"
 KFPawn_ZedSiren="サイレン"
+KFPawn_ZedDAR_EMP="E.D.A.Rトラッパー"
+KFPawn_ZedDAR_Laser="E.D.A.Rブラスター"
+KFPawn_ZedDAR_Rocket="E.D.A.Rボマー"
 KFPawn_ZedPatriarch="ペイトリアーク"
 KFPawn_ZedBloatKingSubspawn="アボミネーション・スポーン"
 ;Human zeds
@@ -2452,12 +2487,25 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Descri
 SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
 SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
 SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
-SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
 ChanceDropDescriptionStrings[0]="ドロップ1"
 ChanceDropDescriptionStrings[1]="ドロップ2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="空中での修理",DescriptionString="飛行船で壊れたパイプを修理する");
+SpecialEventObjectiveInfoList[1]=(TitleString="上面デッキで成功",DescriptionString="飛行船で上面デッキを防衛する");
+SpecialEventObjectiveInfoList[2]=(TitleString="パワーアップ！",DescriptionString="飛行船でブレーカーボックスを修理する");
+SpecialEventObjectiveInfoList[3]=(TitleString="フラッシュラッシュ",DescriptionString="飛行船で蒸気機関に水を送る");
+SpecialEventObjectiveInfoList[4]=(TitleString="上等な船",DescriptionString="飛行船にてHard以上でマッチに勝利する");
+
+AllCompleteRewardDescriptionString="パジャマスーツ"
+
+ChanceDropDescriptionStrings[0]="景品チケット"
+ChanceDropDescriptionStrings[1]="黄金チケット"
 
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント。"
@@ -2477,10 +2525,10 @@ ChanceDropDescriptionStrings[1]="黄金チケット"
 CurrentSpecialEventString="台単なるエンドレスチャレンジ"
 CurrentSpecialEventDescriptionString="ウェーブを打ち破って伝説的な報酬を手に入れよう！"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="エンドレステストダミー",DescriptionString="エンドレスウェーブ5をクリア",TierEventRewardName="D.A.R.++");
-SpecialEventObjectiveInfoList[1]=(TitleString="エンドレスドローン",DescriptionString="エンドレスウェーブ10をクリア",TierEventRewardName="D.A.R.ブロンズ");
-SpecialEventObjectiveInfoList[2]=(TitleString="エンドレスセントリー",DescriptionString="エンドレスウェーブ15をクリア",TierEventRewardName="シルバーD.A.R.");
-SpecialEventObjectiveInfoList[3]=(TitleString="エンドレスウォーマシン",DescriptionString="エンドレスウェーブ20をクリア",TierEventRewardName="クラシックブルーD.A.R.");
+SpecialEventObjectiveInfoList[0]=(TitleString="エンドレステストダミー",DescriptionString="エンドレスモードでウェーブ5をクリア",TierEventRewardName="クラシックD.A.R.");
+SpecialEventObjectiveInfoList[1]=(TitleString="エンドレスドローン",DescriptionString="エンドレスモードでウェーブ10をクリア",TierEventRewardName="ローダーD.A.R.");");
+SpecialEventObjectiveInfoList[2]=(TitleString="エンドレスセントリー",DescriptionString="エンドレスモードでウェーブ15をクリア",TierEventRewardName="スカリーD.A.R.");");
+SpecialEventObjectiveInfoList[3]=(TitleString="エンドレスウォーマシン",DescriptionString="エンドレスモードでウェーブ20をクリア",TierEventRewardName="ブラッディ－D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="エンドレスオプティマスD.A.R.",DescriptionString="エンドレスウェーブ25をクリア",TierEventRewardName="ゴールデンD.A.R.");
 
 
@@ -2896,6 +2944,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
 
@@ -2964,6 +3044,12 @@ DisplayName="Power Core"
 
 [KF-DieSector KFMapSummary]
 DisplayName="DieSector"
+
+[KF-Lockdown KFMapSummary]
+DisplayName="ロックダウン"
+
+[KF-Airship KFMapSummary]
+DisplayName="飛行船"
 
 [KFMapInfo]
 ; defaults

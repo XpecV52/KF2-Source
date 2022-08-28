@@ -34,6 +34,7 @@ var localized string AutoTurnOffString;
 var localized string ReduceHighPitchNoiseString;
 
 var localized string EnableMixerString;
+var localized string DisableMixerString;
 
 var localized array<string> GoreOptionStrings;
 
@@ -41,6 +42,7 @@ var float FOVMinValue, FOVMaxValue, FOVCurrentValue;
 var float FriendlyHudScaleMinValue, FriendlyHudScaleMaxValue;
 
 var const byte SHOW_NO_GORE_LEVEL;
+
 
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
@@ -85,6 +87,7 @@ function LocalizeText()
 	LocalizedObject.SetString("autoTurnOff", 			AutoTurnOffString);
 
 	LocalizedObject.SetString("enableMixer", 			EnableMixerString);
+	LocalizedObject.SetString("disableMixer",			DisableMixerString);
 	//woops these don't actually do anything
 	//LocalizedObject.SetString("reduceHighPitchNoise", 	ReduceHighPitchNoiseString);
 	//LocalizedObject.SetString("antiMotionSickness", 	AntiMotionSicknessString);

@@ -54,6 +54,7 @@ function SetPathTarget( Actor NewTarget, optional Volume NewVolume, optional eVo
 	}
 }
 
+simulated function SetObjeciveType(EObjectiveType ObjEnum);
 simulated function InitPath()
 {
 	ShowPath();
@@ -67,6 +68,8 @@ simulated function Timer_ShowPath()
 		ShowPath();
 	}
 }
+
+
 
 simulated function ShowPath()
 {
@@ -120,7 +123,7 @@ simulated function ShowPath()
 
 		if( bPathFound )
 		{
-			Path = KFEmit_ScriptedPath(Target.Spawn( PathClass, PC,, PC.Pawn.Location ));
+			Path = KFEmit_ScriptedPath(Target.Spawn( GetPathClass(), PC,, PC.Pawn.Location ));
 
 			if (Path != none)
 			{
@@ -137,6 +140,12 @@ simulated function ShowPath()
 		PC.Pawn.PathSearchType = OldSearchType;
 	}
 }
+
+simulated function class<KFEmit_Path> GetPathClass()
+{
+	return PathClass;
+}
+
 
 DefaultProperties
 {

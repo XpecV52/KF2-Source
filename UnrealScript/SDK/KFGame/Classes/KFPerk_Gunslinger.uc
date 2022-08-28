@@ -852,6 +852,9 @@ DefaultProperties
 	HitAccuracyHandicap=-5.0
 	HeadshotAccuracyHandicap=-8.0
 
+	// Prestige Rewards
+	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.GunslingerKnife_PrestigePrecious_Mint_large"
+
 	BodyPartsCanStumble(0)=0
 	BodyPartsCanStumble(1)=2
 	BodyPartsCanStumble(3)=3

@@ -176,12 +176,13 @@ defaultproperties
     ScreamDamageFrequency=0.5
     ScreamDamage=15
     begin object name=ExploTemplate0 class=KFGameExplosion
-        DamageRadius=800
+        DamageRadius=600
         ActorClassToIgnoreForDamage=Class'KFGame.KFPawn_Monster'
         MyDamageType=Class'KFGame.KFDT_Sonic'
         KnockDownStrength=0
         MomentumTransferScale=100
         CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.SirenScream'
+        CamShakeOuterRadius=700
     object end
     // Reference: KFGameExplosion'Default__KFSM_Siren_Scream.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

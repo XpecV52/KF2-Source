@@ -17,11 +17,17 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTrader
 defaultproperties
 {
     NumPellets=/* Array type was not detected. */
+    PackageKey="DragonsBreath"
+    FirstPersonMeshName="WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_DragonsBreath_MESH.Wep_DragonsBreath_Pickup"
+    AttachmentArchetypeName="WEP_DragonsBreath_ARCH.Wep_DragonsBreath_3P"
+    MuzzleFlashTemplateName="WEP_DragonsBreath_ARCH.Wep_DragonsBreath_MuzzleFlash_3P"
+    bHasIronSights=true
+    bCanBeReloaded=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=5
     MagazineCapacity=6
-    bHasIronSights=true
-    bCanBeReloaded=true
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=52
@@ -38,9 +44,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=10,Y=7.5,Z=-4.5)
-    AttachmentArchetype=KFWeaponAttachment'WEP_DragonsBreath_ARCH.Wep_DragonsBreath_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_DragonsBreath.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_DragonsBreath_ARCH.Wep_DragonsBreath_MuzzleFlash_3P'
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500
@@ -58,6 +62,7 @@ defaultproperties
     HippedRecoilModifier=1.25
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -67,21 +72,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=3,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_DragonsBreath_ANIM.WEP_1P_DragonsBreath_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Shotgun_DragonsBreath.FirstPersonMesh'
     Mesh=FirstPersonMesh
-    ItemName="Incendiary Trench Gun"
+    ItemName="Dragonsbreath"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_DragonsBreath_MESH.Wep_DragonsBreath_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_DragonsBreath.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_DragonsBreath_MESH.Wep_DragonsBreath_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_DragonsBreath.StaticPickupComponent'

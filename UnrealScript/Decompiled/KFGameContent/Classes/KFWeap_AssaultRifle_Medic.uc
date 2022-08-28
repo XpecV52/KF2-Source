@@ -17,14 +17,20 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFil
 defaultproperties
 {
     HealAmount=15
-    HealFullRechargeSeconds=10
-    FireModeIconPaths=/* Array type was not detected. */
-    SingleFireSoundIndex=1
-    InventorySize=7
-    MagazineCapacity=40
+    HealFullRechargeSeconds=16
+    PackageKey="Medic_Assault"
+    FirstPersonMeshName="WEP_1P_Medic_Assault_MESH.Wep_1stP_Medic_Assault_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Medic_Assault_MESH.Wep_Medic_Assault_Pickup"
+    AttachmentArchetypeName="WEP_Medic_Assault_ARCH.Wep_Medic_Assault_3P"
+    MuzzleFlashTemplateName="WEP_Medic_Assault_ARCH.Wep_Medic_Assault_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    FireModeIconPaths=/* Array type was not detected. */
+    SingleFireSoundIndex=1
+    InventorySize=6
+    MagazineCapacity=40
     MeshFOV=75
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -44,9 +50,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=15,Y=6.5,Z=-3)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_Medic.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_MuzzleFlash'
     maxRecoilPitch=140
     minRecoilPitch=105
     maxRecoilYaw=122
@@ -63,6 +67,7 @@ defaultproperties
     HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
     Spread=/* Array type was not detected. */
@@ -70,21 +75,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Assault_MESH.Wep_1stP_Medic_Assault_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Medic_Assault_ANIM.Wep_1stP_Medic_Assault_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_AssaultRifle_Medic.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="HMTech-401 Assault Rifle"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Assault_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_Medic.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Assault_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_Medic.StaticPickupComponent'

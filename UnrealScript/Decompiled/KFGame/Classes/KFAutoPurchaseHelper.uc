@@ -44,7 +44,7 @@ function DoAutoPurchase()
     local array<STraderItem> OnPerkWeapons;
     local STraderItem TopTierWeapon;
     local int ItemIndex;
-    local bool bSecondaryWeaponPurchased, bAutoFillPurchasedItem;
+    local bool bSecondaryWeaponPurchased, bUpgradeSuccess, bAutoFillPurchasedItem;
     local string AutoFillMessageString;
 
     GetTraderItems();
@@ -70,39 +70,46 @@ function DoAutoPurchase()
     TopTierWeapon = GetTopTierWeapon(OnPerkWeapons);
     if((!DoIOwnThisWeapon(TopTierWeapon) && GetCanAfford((GetAdjustedBuyPriceFor(TopTierWeapon)) + DoshBuffer)) && CanCarry(TopTierWeapon))
     {
-        AttemptUpgrade(TotalDosh, OnPerkWeapons, true);        
+        bUpgradeSuccess = AttemptUpgrade(TotalDosh, OnPerkWeapons, true);        
     }
     else
     {
         PotentialDosh = GetPotentialDosh();
-        AttemptUpgrade(PotentialDosh + TotalDosh, OnPerkWeapons);
+        bUpgradeSuccess = AttemptUpgrade(PotentialDosh + TotalDosh, OnPerkWeapons);
     }
     bAutoFillPurchasedItem = StartAutoFill();
     if(DoIOwnThisWeapon(TopTierWeapon))
     {
-        J0x28E:
+        J0x2A4:
 
         if(AttemptToPurchaseNextLowerTier(TotalDosh, OnPerkWeapons))
         {
             bSecondaryWeaponPurchased = true;
             AttemptToPurchaseNextLowerTier(TotalDosh, OnPerkWeapons);
-            goto J0x28E;
+            goto J0x2A4;
         }
     }
     MyKFIM.ServerCloseTraderMenu();
-    if(bSecondaryWeaponPurchased)
+    if(bUpgradeSuccess)
     {
-        AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.SecondaryWeaponPurchasedString;        
+        AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.WeaponUpgradeComepleteString;        
     }
     else
     {
-        if(bAutoFillPurchasedItem)
+        if(bSecondaryWeaponPurchased)
         {
-            AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.AutoFillCompleteString;            
+            AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.SecondaryWeaponPurchasedString;            
         }
         else
         {
-            AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.NoItemsPurchasedString;
+            if(bAutoFillPurchasedItem)
+            {
+                AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.AutoFillCompleteString;                
+            }
+            else
+            {
+                AutoFillMessageString = Class'KFCommon_LocalizedStrings'.default.NoItemsPurchasedString;
+            }
         }
     }
     if(Outer.myGfxHUD != none)
@@ -169,7 +176,7 @@ function int GetLastAffordableItemIndex(int UseableDosh, const out array<STrader
     TradeInItemWeight = MyKFIM.GetDisplayedBlocksRequiredFor(TradeInItem.DefaultItem);
     LastAfforableItemIndex = -1;
     I = 0;
-    J0x60:
+    J0x61:
 
     if(I < OnPerkWeapons.Length)
     {
@@ -183,12 +190,12 @@ function int GetLastAffordableItemIndex(int UseableDosh, const out array<STrader
         }
         else
         {
-            goto J0x17F;
+            goto J0x181;
         }
         ++ I;
-        goto J0x60;
+        goto J0x61;
     }
-    J0x17F:
+    J0x181:
 
     return LastAfforableItemIndex;
 }
@@ -332,6 +339,33 @@ function bool CanCarry(const out STraderItem Item)
     return true;
 }
 
+function bool CanUpgrade(STraderItem SelectedItem, out int CanCarryIndex, out int bCanAffordIndex, optional bool bPlayDialog)
+{
+    local bool bCanAfford, bCanCarry;
+    local int UpgradePrice, ItemUpgradeLevel;
+    local KFPlayerController MyKFPC;
+    local int AddedWeightBlocks;
+
+    MyKFPC = Outer;
+    ItemUpgradeLevel = GetItemUpgradeLevel(SelectedItem);
+    if((ItemUpgradeLevel == -1) || !ItemUpgradeLevel < SelectedItem.WeaponDef.default.UpgradePrice.Length)
+    {
+        LogInternal("Item at max level");
+        return false;
+    }
+    UpgradePrice = SelectedItem.WeaponDef.static.GetUpgradePrice(ItemUpgradeLevel);
+    bCanAfford = GetCanAfford(UpgradePrice);
+    AddedWeightBlocks = SelectedItem.WeaponUpgradeWeight[ItemUpgradeLevel + 1] - SelectedItem.WeaponUpgradeWeight[ItemUpgradeLevel];
+    bCanCarry = !(TotalBlocks + AddedWeightBlocks) > MaxBlocks;
+    if(bPlayDialog)
+    {
+        MyKFPC.PlayTraderSelectItemDialog(!bCanAfford, !bCanCarry);
+    }
+    CanCarryIndex = ((bCanCarry) ? 1 : 0);
+    bCanAffordIndex = ((bCanAfford) ? 1 : 0);
+    return bCanAfford && bCanCarry;
+}
+
 function PurchaseWeapon(STraderItem ShopItem)
 {
     if(!bCanPurchase(ShopItem))
@@ -339,7 +373,7 @@ function PurchaseWeapon(STraderItem ShopItem)
         return;
     }
     AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
-    AddBlocks(ShopItem.BlocksRequired);
+    AddBlocks(MyKFIM.GetWeaponBlocks(ShopItem));
     AddWeaponToOwnedItemList(ShopItem);
 }
 
@@ -347,11 +381,35 @@ function SellWeapon(SItemInformation ItemInfo, optional int SelectedItemIndex)
 {
     SelectedItemIndex = -1;
     AddDosh(GetAdjustedSellPriceFor(ItemInfo.DefaultItem));
-    AddBlocks(-ItemInfo.DefaultItem.BlocksRequired);
+    AddBlocks(-MyKFIM.GetDisplayedBlocksRequiredFor(ItemInfo.DefaultItem));
     if(SelectedItemIndex != -1)
     {
         RemoveWeaponFromOwnedItemList(SelectedItemIndex);
     }
+}
+
+function bool UpgradeWeapon(int OwnedItemIndex)
+{
+    local byte ItemIndex;
+    local STraderItem DefaultItemInfo;
+    local SItemInformation ItemInfo;
+    local int Test1, Test2;
+
+    ItemInfo = OwnedItemList[OwnedItemIndex];
+    DefaultItemInfo = ItemInfo.DefaultItem;
+    if(ItemInfo.bIsSecondaryAmmo || !CanUpgrade(DefaultItemInfo, Test1, Test2, true))
+    {
+        LogInternal("cannot upgrade");
+        return false;
+    }
+    TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItemInfo.ClassName);
+    MyKFIM.BuyUpgrade(ItemIndex, ItemInfo.ItemUpgradeLevel);
+    OwnedItemList[OwnedItemIndex].SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItemInfo);
+    if((Outer.MyGFxManager != none) && Outer.MyGFxManager.TraderMenu != none)
+    {
+        Outer.MyGFxManager.TraderMenu.OwnedItemList = OwnedItemList;
+    }
+    return true;
 }
 
 function int GetFillArmorCost()
@@ -853,6 +911,42 @@ simulated function int GetAdjustedSellPriceFor(const out STraderItem ShopItem)
     return MyKFIM.GetAdjustedSellPriceFor(ShopItem, OwnedWeapon);
 }
 
+simulated function int GetAdjustedUpgradePriceFor(const out STraderItem ItemInfo, int UpgradeLevel)
+{
+    return MyKFIM.GetAdjustedUpgradePriceFor(ItemInfo, UpgradeLevel);
+}
+
+simulated function int GetItemUpgradeLevel(const out STraderItem ItemInfo)
+{
+    local int I;
+    local name OwnedItemClassName;
+
+    I = 0;
+    J0x0B:
+
+    if(I < OwnedItemList.Length)
+    {
+        OwnedItemClassName = OwnedItemList[I].DefaultItem.ClassName;
+        if(OwnedItemClassName == 'None')
+        {
+            WarnInternal("Owned item with Class NAME_None");
+            goto J0xF7;            
+        }
+        else
+        {
+            if(OwnedItemClassName == ItemInfo.ClassName)
+            {
+                return OwnedItemList[I].ItemUpgradeLevel;
+            }
+        }
+        J0xF7:
+
+        ++ I;
+        goto J0x0B;
+    }
+    return 0;
+}
+
 function bool IsInOwnedItemList(name ItemName)
 {
     local int I;
@@ -970,6 +1064,7 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
     WeaponInfo.SecondaryAmmoCount = KFW.GetTotalAmmoAmount(1);
     WeaponInfo.MaxSecondaryAmmo = KFW.GetMaxAmmoAmount(1);
     WeaponInfo.DefaultItem = DefaultItem;
+    WeaponInfo.ItemUpgradeLevel = KFW.CurrentWeaponUpgradeIndex;
     WeaponInfo.AmmoPricePerMagazine = int(AmmoCostScale * float(DefaultItem.WeaponDef.default.AmmoPricePerMag));
     WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItem, KFW);
     AddItemByPriority(WeaponInfo);
@@ -979,7 +1074,7 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
     }
 }
 
-function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDoNotBuy)
+function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDoNotBuy, optional int OverrideItemUpgradeLevel)
 {
     local SItemInformation WeaponInfo;
     local byte ItemIndex;
@@ -988,6 +1083,7 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
     local float AmmoCostScale;
     local KFGameReplicationInfo KFGRI;
 
+    OverrideItemUpgradeLevel = -1;
     KFGRI = KFGameReplicationInfo(Outer.WorldInfo.GRI);
     if(KFGRI != none)
     {
@@ -1009,7 +1105,7 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
     if(bAddingDual)
     {
         OwnedSingleIdx = 0;
-        J0x35F:
+        J0x368:
 
         if(OwnedSingleIdx < OwnedItemList.Length)
         {
@@ -1025,13 +1121,14 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
                 {
                     WeaponInfo.SpareAmmoCount = Min(OwnedItemList[OwnedSingleIdx].SpareAmmoCount, WeaponInfo.MaxSpareAmmo);
                 }
-                goto J0x534;
+                WeaponInfo.ItemUpgradeLevel = OwnedItemList[OwnedSingleIdx].ItemUpgradeLevel;
+                goto J0x580;
             }
             ++ OwnedSingleIdx;
-            goto J0x35F;
+            goto J0x368;
         }
     }
-    J0x534:
+    J0x580:
 
     Outer.CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClasses, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
     WeaponInfo.SecondaryAmmoCount = DefaultItem.InitialSecondaryAmmo;
@@ -1042,17 +1139,20 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
     WeaponInfo.AmmoPricePerMagazine = int(AmmoCostScale * float(DefaultItem.WeaponDef.default.AmmoPricePerMag));
     WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItem);
     WeaponInfo.DefaultItem = DefaultItem;
+    if(OverrideItemUpgradeLevel > -1)
+    {
+        WeaponInfo.ItemUpgradeLevel = OverrideItemUpgradeLevel;
+    }
     AddedWeaponIndex = AddItemByPriority(WeaponInfo);
+    TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItem.ClassName);
     if(!bDoNotBuy)
     {
-        TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItem.ClassName);
-        MyKFIM.ServerBuyWeapon(ItemIndex);        
+        MyKFIM.ServerBuyWeapon(ItemIndex, byte(WeaponInfo.ItemUpgradeLevel));        
     }
     else
     {
-        TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItem.ClassName);
-        MyKFIM.ServerAddTransactionItem(ItemIndex);
-        AddBlocks(DefaultItem.BlocksRequired);
+        MyKFIM.ServerAddTransactionItem(ItemIndex, byte(WeaponInfo.ItemUpgradeLevel));
+        AddBlocks(MyKFIM.GetWeaponBlocks(DefaultItem, WeaponInfo.ItemUpgradeLevel));
     }
     if(bAddingDual)
     {
@@ -1098,9 +1198,9 @@ function RemoveWeaponFromOwnedItemList(optional int OwnedListIdx, optional name 
     }
     else
     {
+        AddBlocks(-MyKFIM.GetDisplayedBlocksRequiredFor(ItemInfo.DefaultItem));
         TraderItems.GetItemIndicesFromArche(ItemIndex, ItemInfo.DefaultItem.ClassName);
         MyKFIM.ServerRemoveTransactionItem(ItemIndex);
-        AddBlocks(-ItemInfo.DefaultItem.BlocksRequired);
     }
     if(OwnedItemList[OwnedListIdx].bIsSecondaryAmmo)
     {
@@ -1129,7 +1229,7 @@ function RemoveWeaponFromOwnedItemList(optional int OwnedListIdx, optional name 
     {
         if(TraderItems.GetItemIndicesFromArche(ItemIndex, ItemInfo.DefaultItem.SingleClassName))
         {
-            SingleOwnedIndex = AddWeaponToOwnedItemList(TraderItems.SaleItems[ItemIndex], true);
+            SingleOwnedIndex = AddWeaponToOwnedItemList(TraderItems.SaleItems[ItemIndex], true, ItemInfo.ItemUpgradeLevel);
             AddTransactionAmmo(ItemIndex, int((float(ItemInfo.SpareAmmoCount) - (float(ItemInfo.MaxSpareAmmo) / 2)) + ((float(ItemInfo.MaxSpareAmmo) / 2) - float(OwnedItemList[SingleOwnedIndex].SpareAmmoCount))), false);
             OwnedItemList[SingleOwnedIndex].SpareAmmoCount = ItemInfo.SpareAmmoCount;
         }
@@ -1226,8 +1326,8 @@ private native final function AddTransactionAmmo(byte ItemIndex, int Amount, boo
 
 defaultproperties
 {
-    GrenadeItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1))
-    ArmorItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1))
+    GrenadeItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1),ItemUpgradeLevel=0)
+    ArmorItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1),ItemUpgradeLevel=0)
     CostPerAutofillCycle=10
     DoshBuffer=150
 }

@@ -16,6 +16,7 @@ DefaultProperties
 	DialogEvents[`COMM_RequestHelp]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_MAN_RequestHelp_Base',TraderTimeAudioCue=none)
 	DialogEvents[`COMM_ConfirmGeneric]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_MAN_Confirm_Generic',TraderTimeAudioCue=none)
 	DialogEvents[`COMM_DenyGeneric]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_MAN_Deny_Generic',TraderTimeAudioCue=none)
+	DialogEvents[`COMM_ThankYou]=(DefaultAudioCue=AkEvent'ww_vox_chr_Foster.Play_Foster_MAN_Thanks',TraderTimeAudioCue=none)
 
 
 	DialogEvents[`ACT_WeldDoor]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_Foster.Play_Foster_ACT_Weld_Base',TraderTimeAudioCue=none)

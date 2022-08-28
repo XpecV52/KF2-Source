@@ -91,6 +91,7 @@ function UpdatePerk()
 {
     local byte CurrentPerkLevel;
     local int CurrentPerkEXP;
+    local GFxObject PerkIconObject;
 
     if((MyPC == none) || MyPC.CurrentPerk == none)
     {
@@ -100,7 +101,10 @@ function UpdatePerk()
     CurrentPerkEXP = MyPC.GetPerkXP(MyPC.CurrentPerk.Class);
     if((LastPerkClass != MyPC.CurrentPerk.Class) || LastPerkLevel != CurrentPerkLevel)
     {
-        SetString("playerPerkIcon", "img://" $ MyPC.CurrentPerk.GetPerkIconPath());
+        PerkIconObject = Outer.CreateObject("Object");
+        PerkIconObject.SetString("perkIcon", "img://" $ MyPC.CurrentPerk.GetPerkIconPath());
+        PerkIconObject.SetString("prestigeIcon", MyPC.CurrentPerk.GetPrestigeIconPath(MyPC.GetPerkPrestigeLevelFromPerkList(MyPC.CurrentPerk.Class)));
+        SetObject("playerPerkIcon", PerkIconObject);
         if(LastPerkLevel != CurrentPerkLevel)
         {
             if((LastPerkClass != none) && LastPerkClass == MyPC.CurrentPerk.Class)

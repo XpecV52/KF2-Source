@@ -104,8 +104,8 @@ simulated function SpawnTracer(vector EffectLocation, vector HitLocation)
 
 defaultproperties
 {
-   AmbientSoundPlayEvent=AkEvent'ww_wep_sa_railgun.Play_Railgun_Loop'
-   AmbientSoundStopEvent=AkEvent'ww_wep_sa_railgun.Stop_Railgun_Loop'
+   AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Loop'
+   AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Railgun.Stop_Railgun_Loop'
    Name="Default__KFWeapAttach_Railgun"
    ObjectArchetype=KFWeaponAttachment'KFGame.Default__KFWeaponAttachment'
 }

@@ -61,6 +61,8 @@ enum EPartyNotificationStatus
 	PNS_Creating,
 	/** Party has been created */
 	PNS_Created,
+	/** Party has been created and session request has comeback...everything is ready*/
+	PNS_Complete,
 	/** Party is in the process of being dissolved/destroyed */
 	PNS_Dissolving,
 	/** Party has been dissolved/destroyed */
@@ -223,7 +225,7 @@ struct native UniqueNetId
 		{
 			Uid = (QWORD)Id;
 			return *this;
-		}        
+		}
 #endif
 
 		/**
@@ -477,6 +479,14 @@ enum EOnlineCreateGameSessionFlag
 	OCGSF_ReSubmit
 };
 //@HSL_END_XBOX
+
+//@TW Trial Notification enum
+enum EFreeTrialNotification
+{
+	FTN_FeatureUnavailable,
+	FTN_NetworkCheckFailed,
+	FTN_BuyGame
+};
 
 /** Holds information about a player in a friends list */
 struct native OnlineFriend
@@ -1531,6 +1541,14 @@ native function OpenMarketPlaceSearch(ItemProperties Item);
 native function OpenItemPurchaseOverlay(int SKU);
 native function OpenURL(string WebsiteLink);
 native function OpenGameStorePage();
+
+//@TW Adam Massingale | Free trial support requires us to check if user owns game
+native function bool IsGameOwned();
+//@TW Adam Massingale | Free trial period check (checks backend service title data(Playfab))
+native function bool IsFreeTrialPeriodActive();
+//@TW Adam Massingale | Free trial check - see if we can obtain data to check state of free trial
+native function bool CanCheckFreeTrialState();
+
 
 // return a list of rulesets this item is a source for (Crates,
 // Crafting, ... )

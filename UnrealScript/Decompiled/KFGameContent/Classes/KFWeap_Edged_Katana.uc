@@ -15,11 +15,15 @@ defaultproperties
     ParryDamageMitigationPercent=0.5
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
-    InventorySize=3
+    PackageKey="Katana"
+    FirstPersonMeshName="WEP_1P_KATANA_MESH.Wep_1stP_Katana_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_KATANA_MESH.Wep_Katana_Pickup"
+    AttachmentArchetypeName="WEP_Katana_ARCH.Wep_Katana_3P"
+    InventorySize=4
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
     PlayerViewOffset=(X=2,Y=0,Z=0)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Katana_ARCH.Wep_Katana_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         MeleeImpactCamShakeScale=0.03
         MaxHitRange=190
@@ -29,24 +33,21 @@ defaultproperties
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Edged_Katana.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_KATANA_MESH.Wep_1stP_Katana_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_KATANA_ANIM.Katana_Anim_Master'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Edged_Katana.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Katana"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Katana_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Edged_Katana.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Katana_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Edged_Katana.StaticPickupComponent'

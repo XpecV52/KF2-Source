@@ -34,30 +34,27 @@ defaultproperties
 	PlayerViewOffset=(X=10.0,Y=7.5,Z=-4.5)
 	IronSightPosition=(X=7,Y=0,Z=-0.0)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_DragonsBreath_ANIM.WEP_1P_DragonsBreath_ANIM'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_DragonsBreath_MESH.Wep_DragonsBreath_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_DragonsBreath_ARCH.Wep_DragonsBreath_3P'
+	// Content
+	PackageKey="DragonsBreath"
+	FirstPersonMeshName="WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_DragonsBreath_ANIM.WEP_1P_DragonsBreath_ANIM"
+	PickupMeshName="WEP_3P_DragonsBreath_MESH.Wep_DragonsBreath_Pickup"
+	AttachmentArchetypeName="WEP_DragonsBreath_ARCH.Wep_DragonsBreath_3P"
+	MuzzleFlashTemplateName="WEP_DragonsBreath_ARCH.Wep_DragonsBreath_MuzzleFlash_3P"
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)="ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle"
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_DragonsBreath'
-	InstantHitDamage(DEFAULT_FIREMODE)=27 //15
+	InstantHitDamage(DEFAULT_FIREMODE)=26 //15 //27
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_DragonsBreath'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0 //3.0
 	FireInterval(DEFAULT_FIREMODE)=0.69 // 78 RPM //0.77
 	FireOffset=(X=30,Y=3,Z=-3)
 	// Shotgun
 	Spread(DEFAULT_FIREMODE)=0.16 //0.1
-	NumPellets(DEFAULT_FIREMODE)=9//7//10
+	NumPellets(DEFAULT_FIREMODE)=8 //9
 
 	// ALT_FIREMODE
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
@@ -69,8 +66,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_DragonsBreath_ARCH.Wep_DragonsBreath_MuzzleFlash_3P'
-
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_1P')
     WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_1P')
 
@@ -114,4 +109,9 @@ defaultproperties
 	BonesToLockOnEmpty=(RW_Hammer)
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.2f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.3f,IncrementWeight=3)
 }

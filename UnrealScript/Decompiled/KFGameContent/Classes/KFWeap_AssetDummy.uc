@@ -11,30 +11,30 @@ class KFWeap_AssetDummy extends KFWeapon
 
 defaultproperties
 {
-    MagazineCapacity=30
+    PackageKey="AssetTest"
+    FirstPersonMeshName="WEP_1P_AssetTest_MESH.Wep_1stP_AssetTest_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_L85A2_MESH.Wep_L85A2_Pickup"
+    AttachmentArchetypeName="WEP_L85A2_ARCH.Wep_L85A2_3P"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    MagazineCapacity=30
     SpareAmmoCapacity=390
     InitialSpareMags=4
-    AttachmentArchetype=KFWeaponAttachment'WEP_L85A2_ARCH.Wep_L85A2_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssetDummy.MeleeHelper'
     WeaponFireTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_AssetTest_MESH.Wep_1stP_AssetTest_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_AssetTest_ANIM.Wep_1st_AssetTest_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_AssetDummy.FirstPersonMesh'
     Mesh=FirstPersonMesh
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_L85A2_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssetDummy.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_L85A2_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssetDummy.StaticPickupComponent'

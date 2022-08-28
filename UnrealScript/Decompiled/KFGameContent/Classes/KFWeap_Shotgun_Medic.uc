@@ -77,12 +77,18 @@ defaultproperties
     NumPellets(1)=1
     HealAmount=15
     HealFullRechargeSeconds=12
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=6
-    MagazineCapacity=10
+    PackageKey="Medic_Shotgun"
+    FirstPersonMeshName="WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_medic_shotgun_mesh.Wep_Medic_Shotgun_Pickup"
+    AttachmentArchetypeName="WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P"
+    MuzzleFlashTemplateName="WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=6
+    MagazineCapacity=10
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -99,9 +105,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=14,Y=6.5,Z=-3.5)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_Medic.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_MuzzleFlash'
     maxRecoilPitch=400
     minRecoilPitch=375
     maxRecoilYaw=250
@@ -120,6 +124,7 @@ defaultproperties
     HippedRecoilModifier=1.5
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -129,21 +134,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=3,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Medic_Shotgun_ANIM.WEP_1P_Medic_Shotgun_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Shotgun_Medic.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="HMTech-301 Shotgun"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Shotgun_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_Medic.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Shotgun_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_Medic.StaticPickupComponent'

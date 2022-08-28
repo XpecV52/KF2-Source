@@ -17,20 +17,6 @@ var protected const KFGameExplosion DeathExplosionTemplate;
 /** How much of an impulse to apply to crawler if gore settings prevent dismemberment */
 var protected const float LowGoreExplosionImpulse;
 
-/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-	local WorldInfo WI;
-
-	WI = class'WorldInfo'.static.GetWorldInfo();
-	if( fRand() < class<KFDifficulty_Crawler>(default.DifficultySettings).static.GetSpecialCrawlerChance(KFGameReplicationInfo(WI.GRI)) )
-	{
-		return default.ElitePawnClass;
-	}
-
-	return super.GetAIPawnClassToSpawn();
-}
-
 event PossessedBy( Controller C, bool bVehicleTransition )
 {
 	local KFAIController_ZedCrawler CrawlerController;
@@ -331,10 +317,9 @@ defaultproperties
 {
    DeathExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedCrawler:ExploTemplate0'
    LowGoreExplosionImpulse=5000.000000
-   bKnockdownWhenJumpedOn=True
    bIsCrawlerClass=True
    MonsterArchPath="ZED_ARCH.ZED_Crawler_Archetype"
-   ElitePawnClass=Class'kfgamecontent.KFPawn_ZedCrawlerKing'
+   ElitePawnClass(0)=Class'kfgamecontent.KFPawn_ZedCrawlerKing'
    MinSpawnSquadSizeType=EST_Crawler
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=7.000000
@@ -363,6 +348,15 @@ defaultproperties
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Crawler'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
    LocalizationKey="KFPawn_ZedCrawler"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -444,7 +438,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -554,6 +550,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    bBlocksNavigation=True
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=90000,Yaw=45000,Roll=90000)

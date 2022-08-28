@@ -192,16 +192,13 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=2.0,Y=8,Z=-3)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_AK12_MESH.Wep_1stP_AK12_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_AK12_ANIM.Wep_1st_AK12_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AK12_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_AK12_ARCH.Wep_AK12_3P'
+	// Content
+	PackageKey="AK12"
+	FirstPersonMeshName="WEP_1P_AK12_MESH.Wep_1stP_AK12_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_AK12_ANIM.Wep_1st_AK12_Anim"
+	PickupMeshName="WEP_3P_AK12_MESH.Wep_AK12_Pickup"
+	AttachmentArchetypeName="WEP_AK12_ARCH.Wep_AK12_3P"
+	MuzzleFlashTemplateName="WEP_AK12_ARCH.Wep_AK12_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=30
@@ -267,7 +264,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_AK12_ARCH.Wep_AK12_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_M', FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Loop_S')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Single_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Handling_DryFire'
@@ -285,6 +281,10 @@ defaultproperties
 	bHasFlashlight=false
 
 	AssociatedPerkClasses(0)=class'KFPerk_Commando'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=2)
 }
 
 

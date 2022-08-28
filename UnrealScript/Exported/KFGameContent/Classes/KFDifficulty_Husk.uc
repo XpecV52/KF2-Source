@@ -34,7 +34,7 @@ static function sHuskFireballSettings GetFireballSettings( KFPawn_ZedHusk HuskPa
 		}
 	}
 
-	return default.FireballSettings[KFGRI.GameDifficulty];
+	return default.FireballSettings[Clamp(KFGRI.GetModifiedGameDifficulty(), 0, default.FireballSettings.length-1)];
 }
 
 defaultproperties
@@ -50,6 +50,10 @@ defaultproperties
    HellOnEarth=(HealthMod=1.300000,HeadHealthMod=1.100000,SprintChance=0.750000,DamagedSprintChance=1.000000,DamageMod=1.500000,SoloDamageMod=0.750000,RallySettings=(bCauseSprint=True,TakenDamageModifier=0.900000,DealtDamageModifier=1.200000))
    RallySettings_Versus=(bCauseSprint=True)
    RallySettings_Player_Versus=(DealtDamageModifier=1.200000)
+   ChanceToSpawnAsSpecial(0)=0.100000
+   ChanceToSpawnAsSpecial(1)=0.120000
+   ChanceToSpawnAsSpecial(2)=0.180000
+   ChanceToSpawnAsSpecial(3)=0.250000
    Name="Default__KFDifficulty_Husk"
    ObjectArchetype=KFMonsterDifficultyInfo'KFGame.Default__KFMonsterDifficultyInfo'
 }

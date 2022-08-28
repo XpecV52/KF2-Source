@@ -495,6 +495,7 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="Zkušenosti"
+PrestigeLevelString="Prestiž"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="UPRAVIT"
@@ -1150,11 +1151,11 @@ ParryDescription="Parrying an attack with a Berserker melee weapon will increase
 
 Smash="Smash"
 SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
-
+ 
 Fury="Massacre"
 FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED TIME - Spartan"
+Spartan="ZED TIME - Spartan" 
 SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
 
 Flash="ZED TIME - Berserker Rage"
@@ -1591,7 +1592,7 @@ RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carryi
 RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
 RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
 
-
+ 
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"

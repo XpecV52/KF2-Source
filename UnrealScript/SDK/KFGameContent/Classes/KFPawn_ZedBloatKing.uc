@@ -10,37 +10,6 @@
 class KFPawn_ZedBloatKing extends KFPawn_ZedBloat
     implements(KFInterface_MonsterBoss);
 
-const HeadBit = 0x1;
-const FrontBit = 0x2;
-const BackBit = 0x4;
-
-//local player so we can update the UI
-var KFPlayerController KFPC;
-
-//List of hit zones that can apply damage to armor before the body
-var array<name> ArmorHitzoneNames;
-
-//List of zones of armor (similar to hit zones)
-struct ArmorZoneInfo
-{
-    var() name ArmorZoneName;   //Name of the armor zone
-	var() name SocketName;		//Name of the socket explosion FX play from
-    var() int ArmorHealth;      //Amount of health the armor absorbs before it blows off
-	var() int ArmorHealthMax;
-	var() ParticleSystem ExplosionTemplate;
-	var() AkEvent ExplosionSFXTemplate;
-	var() Texture2D ZoneIcon;
-};
-var array<ArmorZoneInfo> ArmorZones;
-var float ArmorScale;
-
-//Byte array of armor percentages, replicated to clients
-var repnotify byte RepArmorPct[3];
-
-//Bit field for the status of the armor zones.  1 = attached
-var repnotify byte ArmorZoneStatus;
-var byte PreviousArmorZoneStatus;
-
 //Localization
 var localized array<string> BossCaptionStrings;
 
@@ -83,9 +52,6 @@ var repnotify byte PoopMonsterFXNotify;
 var const float PoopMonsterSpawnDelay;
 var int CurrentDelayedSpawns;
 
-//Hit FX overrides for hitting armor
-var const int OverrideArmorFXIndex;
-
 //Sprint speed specific to enrage
 var const float RageSprintSpeedMultiplier;
 
@@ -99,23 +65,15 @@ var protected const float FootstepCameraShakeRollAmplitude;
 replication
 {
     if (Role == ROLE_Authority)
-        ArmorZoneStatus, PullVictims, RepArmorPct, FartFXNotify, PoopMonsterFXNotify;
+        PullVictims, FartFXNotify, PoopMonsterFXNotify;
 }
 
 simulated event ReplicatedEvent(name VarName)
 {
-    if (VarName == 'ArmorZoneStatus')
-    {
-        UpdateArmorPieces();
-    }
-    else if (VarName == 'bIsEnraged')
+    if (VarName == 'bIsEnraged')
     {
         SetEnraged(bIsEnraged);
     }
-	else if (VarName == 'RepArmorPct')
-	{
-		UpdateArmorPieces();
-	}
 	else if (VarName == 'FartFXNotify')
 	{
 		PlayFartSpawnFX();
@@ -220,28 +178,27 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 
 	if(DifficultyFartAttackTimers.length > 0)
 	{
-		BaseFartAttackTimer = DifficultyFartAttackTimers[Min(WorldInfo.Game.GameDifficulty, DifficultyFartAttackTimers.length)];
+		BaseFartAttackTimer = DifficultyFartAttackTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyFartAttackTimers.length)];
 	}
 
 	if (DifficultyVarianceFartTimers.length > 0)
 	{
-		VarianceFartAttackTimer = DifficultyVarianceFartTimers[Min(WorldInfo.Game.GameDifficulty, DifficultyVarianceFartTimers.length)];
+		VarianceFartAttackTimer = DifficultyVarianceFartTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyVarianceFartTimers.length)];
 	}
 
 	if (DifficultyRageFartTimers.length > 0)
 	{
-		RageFartAttackTimer = DifficultyRageFartTimers[Min(WorldInfo.Game.GameDifficulty, DifficultyRageFartTimers.length)];
+		RageFartAttackTimer = DifficultyRageFartTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyRageFartTimers.length)];
 	}
 
 	if (DifficultyVarianceRageFartTimers.length > 0)
 	{
-		RageVarianceFartAttackTimer = DifficultyVarianceRageFartTimers[Min(WorldInfo.Game.GameDifficulty, DifficultyVarianceRageFartTimers.length)];
+		RageVarianceFartAttackTimer = DifficultyVarianceRageFartTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyVarianceRageFartTimers.length)];
 	}
 
 	PlayBossMusic();
 	ServerDoSpecialMove(SM_BossTheatrics);
 	SetFartAttackTimer();
-	InitArmor();
 
 	GorgeTrigger = Spawn(class'KFTrigger_BloatKingGorge', self, , Location, Rotation);
 	GorgeTrigger.SetBase(self);
@@ -272,142 +229,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	{
 		EnrageHealthThresholds.Remove(0, 1);
 		KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
-	}
-}
-
-function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
-{
-    super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-
-	//If the damage doesn't have a bone hit source, it's likely AoE.  Split over all remaining armor evenly.
-	if (HitInfo.BoneName != '')
-	{
-		AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);
-	}
-	else
-	{
-		AdjustNonBoneDamage(InDamage);
-	}
-
-	`log(self @ GetFuncName() @ " After armor adjustment Damage=" $ InDamage @ "Momentum=" $ Momentum @ "Zone=" $ HitInfo.BoneName @ "DamageType=" $ DamageType, bLogTakeDamage);
-}
-
-function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource)
-{
-	local int HitZoneIdx, ArmorZoneIdx;
-	local name IntendedArmorZoneName;
-	local int ArmorDamage;
-
-	//Make sure this hit zone is valid
-	HitZoneIdx = HitZones.Find('ZoneName', BoneName);
-	if (HitZoneIdx >= 0)
-	{
-		//Lookup valid armor zone if it exists in our armor list
-		ArmorZoneIdx = INDEX_NONE;
-		if (ArmorHitzoneNames.Find(HitZones[HitZoneIdx].ZoneName) != INDEX_NONE)
-		{
-			IntendedArmorZoneName = '';
-			switch (HitZones[HitZoneIdx].ZoneName)
-			{
-			case 'head':
-				IntendedArmorZoneName = 'head';
-				break;
-			default:
-				IntendedArmorZoneName = (DamagerSource - Location) dot Vector(Rotation) > 0 ? 'front' : 'back';
-				break;
-			}
-			ArmorZoneIdx = ArmorZones.Find('ArmorZoneName', IntendedArmorZoneName);
-		}
-
-		//Now that we have an armor zone, do adjustments
-		if (ArmorZoneIdx != INDEX_NONE && ArmorZones[ArmorZoneIdx].ArmorHealth > 0)
-		{
-			ArmorDamage = Clamp(InDamage, 0, ArmorZones[ArmorZoneIdx].ArmorHealth);
-			InDamage -= ArmorDamage;
-			ArmorZones[ArmorZoneIdx].ArmorHealth -= ArmorDamage;
-			RepArmorPct[ArmorZoneIdx] = FloatToByte(float(ArmorZones[ArmorZoneIdx].ArmorHealth) / float(ArmorZones[ArmorZoneIdx].ArmorHealthMax));
-
-			if (ArmorZones[ArmorZoneIdx].ArmorHealth <= 0)
-			{
-				ExplodeArmor(ArmorZoneIdx, IntendedArmorZoneName);
-				KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
-			}
-			UpdateArmorUI();
-		}
-	}
-}
-
-function AdjustNonBoneDamage(out int InDamage)
-{
-	local int ValidArmorZones;
-	local int ArmorReduction, ArmorRemainder, ArmorDamage;
-	local int Idx;
-
-	//Find amount of valid hit zones to split damage
-	ValidArmorZones = 0;
-	for (Idx = 0; Idx < ArmorZones.Length; ++Idx)
-	{
-		if (ArmorZones[Idx].ArmorHealth > 0)
-		{
-			ValidArmorZones++;
-		}
-	}
-
-	//Have some damageable zones around
-	if (ValidArmorZones > 0)
-	{
-		//Store the initial split.  Any modulo remainder will go in a holding value until later
-		//		We'll just lazily pull any remainder from surviving armor zones
-		ArmorReduction = InDamage / ValidArmorZones;
-		ArmorRemainder = InDamage % ValidArmorZones;
-
-		//First pass to do split damage
-		for (Idx = 0; Idx < ArmorZones.Length; ++Idx)
-		{
-			if (ArmorZones[Idx].ArmorHealth > 0)
-			{
-				//Find final damage value to this zone and add some into the remainder if needed
-				ArmorDamage = Clamp(ArmorReduction, 0, ArmorZones[Idx].ArmorHealth);
-				if (ArmorDamage < ArmorReduction)
-				{
-					ArmorRemainder += ArmorReduction - ArmorDamage;
-				}
-
-				//Update, do FX, etc.
-				InDamage -= ArmorDamage;
-				ArmorZones[Idx].ArmorHealth -= ArmorDamage;
-				RepArmorPct[Idx] = FloatToByte(float(ArmorZones[Idx].ArmorHealth) / float(ArmorZones[Idx].ArmorHealthMax));
-
-				if (ArmorZones[Idx].ArmorHealth <= 0)
-				{
-					ExplodeArmor(Idx, ArmorZones[Idx].ArmorZoneName);
-					KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
-				}
-				UpdateArmorUI();
-			}
-		}
-
-		//Second pass to clear out remaining damage.  If anything remains after this step, it'll go out via the InDamage variable
-		for (Idx = 0; Idx < ArmorZones.Length && ArmorRemainder > 0; ++Idx)
-		{
-			if (ArmorZones[Idx].ArmorHealth > 0)
-			{
-				ArmorDamage = Clamp(ArmorRemainder, 0, ArmorZones[Idx].ArmorHealth);
-
-				//Update, do FX, etc.
-				InDamage -= ArmorDamage;
-				ArmorRemainder -= ArmorDamage;
-				ArmorZones[Idx].ArmorHealth -= ArmorDamage;
-				RepArmorPct[Idx] = FloatToByte(float(ArmorZones[Idx].ArmorHealth) / float(ArmorZones[Idx].ArmorHealthMax));
-
-				if (ArmorZones[Idx].ArmorHealth <= 0)
-				{
-					ExplodeArmor(Idx, ArmorZones[Idx].ArmorZoneName);
-					KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
-				}
-				UpdateArmorUI();
-			}
-		}
 	}
 }
 
@@ -447,146 +268,10 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 	return super.GetHitZoneSkinTypeEffects(HitZoneIdx);
 }
 
-function ExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
+function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 {
-    local byte StatusField;
-
-    switch (ArmorZoneName)
-    {
-    case 'head':
-        StatusField = FrontBit | BackBit;
-        break;
-    case 'front':
-        StatusField = HeadBit | BackBit;
-        break;
-    case 'back':
-        StatusField = FrontBit | HeadBit;
-        break;
-    }
-
-    ArmorZoneStatus = ArmorZoneStatus & StatusField;
-    UpdateArmorPieces();
-}
-
-simulated function UpdateArmorPieces()
-{
-	local int i;
-	local Vector SocketLocation;
-	local Rotator SocketRotation;
-	local KFCharacterInfo_Monster MonsterArch;
-
-	if (WorldInfo.NetMode != NM_DedicatedServer)
-	{
-		MonsterArch = GetCharacterMonsterInfo();
-		switch (ArmorZoneStatus ^ PreviousArmorZoneStatus)
-		{
-		case HeadBit:
-			//King bloat uses 2 static attachments for the head piece.  Assume these are slot 0, 1 for future possible holiday purposes.
-			//		Min at list length in case there are fewer than default meshes.
-			for (i = Min(1, StaticAttachList.Length - 1); i >= 0; --i)
-			{
-				Mesh.DetachComponent(StaticAttachList[i]);
-				DetachComponent(StaticAttachList[i]);
-				StaticAttachList.Remove(i, 1);
-			}
-			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
-			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0], SocketLocation, SocketRotation);
-			PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-			break;
-		case FrontBit:
-			//Front armor is locked to attach list slot 1
-			DetachComponent(ThirdPersonAttachments[1]);
-			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
-			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1], SocketLocation, SocketRotation);
-			PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-			ThirdPersonAttachments[1] = none;
-			break;
-		case BackBit:
-			//Back armor is locked to attach list slot 2
-			DetachComponent(ThirdPersonAttachments[2]);
-			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[2].SocketName, SocketLocation, SocketRotation);
-			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[2], SocketLocation, SocketRotation);
-			PlaySoundBase(default.ArmorZones[2].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-			ThirdPersonAttachments[2] = none;
-			break;
-		default:
-			//Nothing changed
-			break;
-		}
-
-		UpdateArmorUI();
-	}
-
-	PreviousArmorZoneStatus = ArmorZoneStatus;
-}
-
-simulated function KFPlayerController GetKFPC()
-{
-	if (KFPC == none)
-	{
-		KFPC = KFPlayerController(GetALocalPlayerController());
-	}
-
-	return KFPC;
-}
-
-simulated function UpdateArmorUI()
-{
-	local SCompressedArmorInfo CompressedArmorInfoList[3];
-	local int i;
-
-	if (GetKFPC() == none)
-	{
-		return;
-	}
-
-	for (i = 0; i < ArmorZones.length; i++)
-	{
-		CompressedArmorInfoList[i].Percentage = ByteToFloat(RepArmorPct[i]);
-		CompressedArmorInfoList[i].IconTexture = default.ArmorZones[i].ZoneIcon;
-	}
-
-	if (KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.bossHealthBar != none)
-	{
-		KFPC.MyGFxHUD.bossHealthBar.UpdateArmorUI(CompressedArmorInfoList);
-	}
-}
-
-function InitArmor()
-{
-	local KFGameInfo KFGI;
-	local float HealthMod;
-	local float HeadHealthMod;
-	local int i;
-
-	KFGI = KFGameInfo(WorldInfo.Game);
-	if (KFGI != None)
-	{
-		HealthMod = 1.f;
-		HeadHealthMod = 1.f;
-		KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
-
-		for (i = 0; i < ArmorZones.Length; ++i)
-		{
-			ArmorZones[i].ArmorHealth *= HealthMod;
-			ArmorZones[i].ArmorHealthMax = ArmorZones[i].ArmorHealth;
-			RepArmorPct[i] = FloatToByte(float(ArmorZones[i].ArmorHealth) / float(ArmorZones[i].ArmorHealthMax));
-		}
-	}
-	UpdateArmorUI();
-}
-
-function SetShieldScale(float InScale)
-{
-	local int i;
-
-	ArmorScale = InScale;
-	for (i = 0; i < ArmorZones.Length; ++i)
-	{
-		ArmorZones[i].ArmorHealth *= InScale;
-		ArmorZones[i].ArmorHealthMax = ArmorZones[i].ArmorHealth;
-		RepArmorPct[i] = FloatToByte(float(ArmorZones[i].ArmorHealth) / float(ArmorZones[i].ArmorHealthMax));
-	}
+	super.ZedExplodeArmor(ArmorZoneIdx, ArmorZoneName);
+	KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
 }
 
 simulated event bool CanDoSpecialMove(ESpecialMove AMove, optional bool bForceCheck)
@@ -1036,18 +721,7 @@ defaultproperties
     SprintSpeed=330.0f   //260 //210  410 //315
 	RageSprintSpeedMultiplier=1.62f //1.25 1.45 //1.55
 
-    // Mapping between armor piece and hit zones to block pawn damage hitting active armor and apply that damage to the armor
-    ArmorHitzoneNames.Add(head)
-    ArmorHitzoneNames.Add(chest)
-    ArmorHitzoneNames.Add(heart)
-    ArmorHitzoneNames.Add(stomach)
-    ArmorHitzoneNames.Add(abdomen)
-
-    //Armor info
-    ArmorZones.Add((ArmorZoneName=head,SocketName=FX_Armor_Head,ArmorHealth=1000,ArmorHealthMax=2000,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Small_Armor_Explo',ZoneIcon=Texture2D'zed_bloatking_ui.BloatKing_Head_Armor'))
-    ArmorZones.Add((ArmorZoneName=front,SocketName=FX_Armor_Chest,ArmorHealth=4000,ArmorHealthMax=4000,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Large_Armor_Explo',ZoneIcon=Texture2D'zed_bloatking_ui.BloatKing_Chest_Armor'))
-    ArmorZones.Add((ArmorZoneName=back,SocketName=FX_Armor_Back,ArmorHealth=3000,ArmorHealthMax=3000,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Large_Armor_Explo',ZoneIcon=Texture2D'zed_bloatking_ui.BloatKing_Back_Armor'))
-	ArmorScale=1.f
+	ArmorInfoClass=class'KFZedArmorInfo_BloatKing'
 	RepArmorPct[0]=255
 	RepArmorPct[1]=255
 	RepArmorPct[2]=255

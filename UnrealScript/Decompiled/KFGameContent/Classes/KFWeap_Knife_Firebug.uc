@@ -11,12 +11,14 @@ class KFWeap_Knife_Firebug extends KFWeap_Edged_Knife
 
 defaultproperties
 {
+    PackageKey="FireBug_Knife"
+    FirstPersonMeshName="WEP_1P_FireBug_Knife_MESH.Wep_1stP_FirebugKnife_Rig"
+    AttachmentArchetypeName="WEP_FireBug_Knife_ARCH.Wep_FirebugKnife_3P"
     WeaponSelectTexture=Texture2D'WEP_UI_Firebug_Knife_TEX.UI_WeaponSelect_FirebugKnife'
-    AttachmentArchetype=KFWeaponAttachment'WEP_FireBug_Knife_ARCH.Wep_FirebugKnife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Firebug.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_FireBug_Knife_MESH.Wep_1stP_FirebugKnife_Rig'
+        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_Firebug.FirstPersonMesh'

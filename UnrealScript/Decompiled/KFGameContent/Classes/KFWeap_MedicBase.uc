@@ -163,6 +163,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     local KFPawn HealTarget;
     local KFPlayerController Healer;
     local KFPerk InstigatorPerk;
+    local float AdjustedHealAmount;
 
     HealTarget = KFPawn(Impact.HitActor);
     Healer = KFPlayerController(Instigator.Controller);
@@ -177,7 +178,8 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
         {
             Healer.AddShotsHit(1);
         }
-        HealTarget.HealDamage(HealAmount, Instigator.Controller, HealingDartDamageType);
+        AdjustedHealAmount = float(HealAmount) * (GetUpgradeHealMod(CurrentWeaponUpgradeIndex));
+        HealTarget.HealDamage(int(AdjustedHealAmount), Instigator.Controller, HealingDartDamageType);
         if(((HealImpactSoundPlayEvent != none) && HealTarget != none) && !bSuppressSounds)
         {
             HealTarget.PlaySoundBase(HealImpactSoundPlayEvent, false, false,, Impact.HitLocation);
@@ -263,7 +265,7 @@ function StartHealRecharge()
     if(Role == ROLE_Authority)
     {
         InstigatorPerk = GetPerk();
-        UsedHealRechargeTime = HealFullRechargeSeconds;
+        UsedHealRechargeTime = HealFullRechargeSeconds * (GetUpgradeHealRechargeMod(CurrentWeaponUpgradeIndex));
         InstigatorPerk.ModifyHealerRechargeTime(UsedHealRechargeTime);
         HealRechargePerSecond = float(MagazineCapacity[1]) / UsedHealRechargeTime;
         HealingIncrement = 0;
@@ -670,8 +672,8 @@ defaultproperties
     LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
     LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
     OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
-    MagazineCapacity[1]=100
     bCanRefillSecondaryAmmo=false
+    MagazineCapacity[1]=100
     AimCorrectionSize=40
     AmmoCost=/* Array type was not detected. */
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_MedicBase.MeleeHelper'

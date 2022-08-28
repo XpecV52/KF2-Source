@@ -39,6 +39,13 @@ struct native SItemInformation
 	var int AutoFillDosh, AmmoPricePerMagazine;
 	/** Holds trader and default weapon information such as prices and stats */
 	var STraderItem DefaultItem;
+
+	var int ItemUpgradeLevel;
+
+	StructDefaultProperties
+	{
+		ItemUpgradeLevel=0;
+	}
 };
 
 var KFPlayerController MyKFPC;
@@ -100,7 +107,7 @@ var array<SItemInformation> OwnedItemList;
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	super.InitializeMenu(InManager);
-	
+
 	SetString("exitMenuString", ExitMenuString);
 	SetString("exitPromptString", ExitMenuString);
 	SetString("backPromptString",Localize("KFGFxWidget_ButtonPrompt","CancelString","KFGame"));
@@ -124,6 +131,7 @@ function LocalizeText()
 	//TextObject.SetString("autoTradeString"	, 	Omelette Du Fromage); //not used at the moment
 	TextObject.SetString("selectString"		, 	Class'KFGFxWidget_ButtonPrompt'.default.ConfirmString);
 	TextObject.SetString("autoFillString"		, 	Class'KFGFxTraderContainer_PlayerInventory'.default.AutoFillString);
+	TextObject.SetString("upgradeString"	,	Class'KFGFxTraderContainer_ItemDetails'.default.UpgradeString);
 
 	SetObject("localizeCentralPrompts", TextObject);
 }
@@ -132,7 +140,7 @@ function OnOpen()
 {
 	local int i;
 	local name weaponName;
-	
+
 	MyKFPC = KFPlayerController ( GetPC() );
 
 	if (MyKFPC == none)
@@ -154,12 +162,12 @@ function OnOpen()
 		weaponName  = name(MyKFPC.MyGFxManager.CachedProfile.FavoriteWeapons[i]);
 		FavoritedItems.AddItem( weaponName );
 	}
-	
+
 	if( MyKFPC.Pawn != none || MyKFPC.PlayerReplicationInfo != none )
 	{
 		MyKFPC.CloseTraderMenu();
 	}
-	
+
 	RefreshItemComponents(true);
 
 	if( PlayerInventoryContainer != none )
@@ -314,7 +322,7 @@ function GiveExternalWeapon(KFWeapon KFW)
 	}
 
 	// Only add the item to our owned list if we have the capacity to carry it
-	if( MyKFPC.GetPurchaseHelper().TotalBlocks + KFW.InventorySize > MyKFPC.GetPurchaseHelper().MaxBlocks )
+	if( MyKFPC.GetPurchaseHelper().TotalBlocks + KFW.GetModifiedWeightValue() > MyKFPC.GetPurchaseHelper().MaxBlocks )
 	{
 		if( MyKFPC.Pawn != none )
 		{
@@ -324,7 +332,7 @@ function GiveExternalWeapon(KFWeapon KFW)
 	}
 	else
 	{
-		MyKFPC.GetPurchaseHelper().AddBlocks(KFW.InventorySize);
+		MyKFPC.GetPurchaseHelper().AddBlocks(KFW.GetModifiedWeightValue());
 		MyKFPC.GetPurchaseHelper().SetWeaponInformation(KFW);
 		RefreshItemComponents();
 	}
@@ -378,7 +386,7 @@ function SetPlayerItemDetails(int ItemIndex)
     	bGenericItemSelected = false;
 		SelectedItemIndex = ItemIndex;
 		SelectedItem = OwnedItemList[ItemIndex].DefaultItem;
-		ItemDetails.SetPlayerItemDetails(SelectedItem, OwnedItemList[ItemIndex].SellPrice);
+		ItemDetails.SetPlayerItemDetails(SelectedItem, OwnedItemList[ItemIndex].SellPrice, OwnedItemList[ItemIndex].ItemUpgradeLevel);
 		bCanBuyOrSellItem = MyKFPC.GetPurchaseHelper().IsSellable(SelectedItem);
 	}
 }
@@ -392,7 +400,7 @@ function SetGenericItemDetails(out STraderItem DefaultItemInfo, out SItemInforma
     	LastDefaultItemInfo = DefaultItemInfo;
     	bGenericItemSelected = true;
 		//SelectedItemIndex = ItemIndex;
-		ItemDetails.SetPlayerItemDetails(DefaultItemInfo, ItemInfo.SellPrice);
+		ItemDetails.SetPlayerItemDetails(DefaultItemInfo, ItemInfo.SellPrice, INDEX_NONE);
 		bCanBuyOrSellItem = MyKFPC.GetPurchaseHelper().IsSellable(DefaultItemInfo);
 	}
 }
@@ -418,7 +426,7 @@ function OnPerkChanged(int PerkIndex)
 	{
 		CurrentFilterIndex = PerkIndex;
 		RefreshShopItemList(CurrentTab, CurrentFilterIndex);
-	}	
+	}
 }
 
 function RefreshItemComponents(optional bool bInitOwnedItems=false)
@@ -530,9 +538,9 @@ function ToggleFavorite(name ClassName)
 }
 
 /** Modifies blocks required for the UI (e.g. in the case of dualies) */
-simulated function int GetDisplayedBlocksRequiredFor( const out STraderItem Item )
+simulated function int GetDisplayedBlocksRequiredFor( const out STraderItem Item, optional int OverrideLevelValue = INDEX_NONE)
 {
-	return MyKFIM.GetDisplayedBlocksRequiredFor( Item );
+	return MyKFIM.GetDisplayedBlocksRequiredFor( Item, OverrideLevelValue );
 }
 
 //==============================================================
@@ -561,7 +569,7 @@ function Callback_BuyOrSellItem()
 			ItemInfo = OwnedItemList[SelectedItemIndex];
 			`log("Callback_BuyOrSellItem: ItemInfo="$ItemInfo.DefaultItem.ClassName, MyKFIM.bLogInventory);
 			MyKFPC.GetPurchaseHelper().SellWeapon(ItemInfo, SelectedItemIndex);
-		    
+
 	   	    SetNewSelectedIndex(OwnedItemList.length);
 			SetPlayerItemDetails(SelectedItemIndex);
 			PlayerInventoryContainer.ActionScriptVoid("itemSold");
@@ -570,7 +578,7 @@ function Callback_BuyOrSellItem()
 	else if( SelectedList == TL_Shop )
 	{
 		ShopItem = MyKFPC.GetPurchaseHelper().TraderItems.SaleItems[SelectedItemIndex];
-		
+
 		MyKFPC.PlayTraderSelectItemDialog( !MyKFPC.GetPurchaseHelper().GetCanAfford( MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(ShopItem) ), !MyKFPC.GetPurchaseHelper().CanCarry( ShopItem ) );
 	}
 	RefreshItemComponents();
@@ -620,6 +628,28 @@ function Callback_TabChanged(int TabIndex)
 //==============================================================
 // ActionScript Callbacks - Player Inventory
 //==============================================================
+function Callback_UpgradeItem()
+{
+	local SItemInformation ItemInfo;
+	//only relevant in the player inventory
+	if (SelectedList == TL_Player)
+	{
+		if (MyKFPC.GetPurchaseHelper().UpgradeWeapon(SelectedItemIndex))
+		{
+			ItemInfo = OwnedItemList[SelectedItemIndex];
+			ItemInfo.ItemUpgradeLevel++;
+			MyKFPC.GetPurchaseHelper().OwnedItemList[SelectedItemIndex] = ItemInfo;			
+			RefreshItemComponents();
+			ShopContainer.ActionScriptVoid("itemBought");
+			class'KFMusicStingerHelper'.static.PlayWeaponUpgradeStinger(MyKFPC);
+		}
+		
+		//@TODO: change this to work with the weight system
+		//ShopContainer.ActionScriptVoid("itemBought");
+		//SetPlayerItemDetails(SelectedItemIndex);
+	}
+}
+
 function Callback_BuyGrenade()
 {
 	if( PlayerInventoryContainer != none )
@@ -660,13 +690,13 @@ function Callback_FillAmmo(int ItemIndex)
 function Callback_BuyMagazine(int ItemIndex)
 {
     MyKFPC.GetPurchaseHelper().BuyMagazine(ItemIndex);
-	RefreshItemComponents();	
+	RefreshItemComponents();
 }
 
 function Callback_AutoFill(int ItemIndex)
 {
     MyKFPC.GetPurchaseHelper().StartAutoFill();
-    RefreshItemComponents();	
+    RefreshItemComponents();
 }
 
 //==============================================================
@@ -702,7 +732,7 @@ function Callback_PerkChanged(int PerkIndex)
 	if( MyKFPRI.NetPerkIndex != PerkIndex )
 	{
 		MyKFPC.RequestPerkChange(PerkIndex);
-		
+
 		if( MyKFPC.CanUpdatePerkInfo() )
 		{
 			MyKFPC.SetHaveUpdatePerk(true);
@@ -710,7 +740,7 @@ function Callback_PerkChanged(int PerkIndex)
 
 		Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPerkIndex, PerkIndex);
 	}
-		
+
 	if( PlayerInventoryContainer != none )
 	{
 		PlayerInventoryContainer.UpdateLock();

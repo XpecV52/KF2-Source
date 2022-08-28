@@ -454,6 +454,11 @@ function OnTraderMenuClosed()
     }
 }
 
+function bool IsMapObjectiveEnabled()
+{
+	return false;
+}
+
 defaultproperties
 {
    MoviePlayerTutorialClass=Class'kfgamecontent.KFGFxMoviePlayer_Tutorial'

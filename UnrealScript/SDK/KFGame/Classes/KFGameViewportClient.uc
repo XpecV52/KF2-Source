@@ -113,17 +113,6 @@ function string GetRandomLoadingMessage()
 	return RandomLoadingStrings[Rand(RandomLoadingStrings.length)];
 }
 
-function bool HandleInputKey( int ControllerId, name Key, EInputEvent EventType, float AmountDepressed, optional bool bGamepad )
-{
-	`log("HANDLE INPUT KEY!");
-	
-	if(Key == 'F10') 
-	{
-		// Cancel
-	}
-	return true;
-}
-
 /**
  * Print a centered transition message with a drop shadow.
  */
@@ -141,7 +130,7 @@ function DrawTransitionMessage(Canvas Canvas,string Message)
 		{
 			DrawDownloadingString(Canvas);
 		}
-		if(MapName != "")
+		if(MapName != "" && MapName != "KFMainMenu")
 		{
 			DrawCancelString(Canvas);
 		}
@@ -228,7 +217,7 @@ function string GetAssociationIdentifier(KFMapSummary MapData)
 DefaultProperties
 {
 	TripWireOfficialMaps=("KF-BioticsLab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-VolterManor","KF-Outpost","KF-Prison","KF-ZedLanding","KF-TheDescent","KF-Nuked","KF-TragicKingdom", "KF-Nightmare","KF-KrampusLair","KF-DieSector")
-	CommunityOfficialMaps=("KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-PowerCore_Holdout")
+	CommunityOfficialMaps=("KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-PowerCore_Holdout","KF-LockDown")
 	//defaults
 	MessageFont=Font'UI_Canvas_Fonts.Font_Main'
 	FontScale=1.0f

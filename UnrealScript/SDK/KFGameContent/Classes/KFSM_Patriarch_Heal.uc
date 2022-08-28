@@ -46,7 +46,7 @@ function DoHeal()
 	if( MyPatPawn != None && MyPatPawn.WorldInfo.Game != None )
 	{
 		// Set our difficulty and phase-based heal amount
-		MyDifficulty = MyPatPawn.WorldInfo.Game.GameDifficulty;
+		MyDifficulty = MyPatPawn.WorldInfo.Game.GetModifiedGameDifficulty();
 		HealPercent = MyPatPawn.BattlePhases[BattlePhase].HealAmounts[MyDifficulty];
 
 		// Randomly scale heal amount by +/-5%

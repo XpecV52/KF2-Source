@@ -25,7 +25,7 @@ var() float AmmoRechargeRate;
 var name IdleWeldAnim;
 var name WeldOpenAnim;
 var name WeldCloseAnim;
-var KFDoorActor WeldTarget;
+var KFWeldableActor WeldTarget;
 var float LastTraceHitTime;
 var class<KFGFxWorld_WelderScreen> ScreenUIClass;
 var KFGFxWorld_WelderScreen ScreenUI;
@@ -207,19 +207,19 @@ simulated function CustomFire()
         CurrentUnfastenRate = UnfastenRate;
         GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
         SetTimer(AmmoRechargeRate, true, 'RechargeAmmo');
-        if(WeldTarget.bIsDestroyed)
+        if(WeldTarget.bIsDestroyed && !WeldTarget.IsA('KFRepairableActor'))
         {
-            WeldTarget.RepairDoor(RepairRate, KFPawn(Instigator));            
+            WeldTarget.Repair(RepairRate, KFPawn(Instigator));            
         }
         else
         {
             if(CurrentFireMode == 0)
             {
-                WeldTarget.FastenDoor(int(CurrentFastenRate), KFPawn(Instigator));                
+                WeldTarget.FastenWeld(int(CurrentFastenRate), KFPawn(Instigator));                
             }
             else
             {
-                WeldTarget.FastenDoor(int(CurrentUnfastenRate), KFPawn(Instigator));
+                WeldTarget.FastenWeld(int(CurrentUnfastenRate), KFPawn(Instigator));
             }
         }
     }
@@ -240,7 +240,7 @@ simulated function bool CanWeldTarget(optional int FireModeNum)
     WelderPerk = GetPerk();
     if((FireModeNum == 0) && WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity)
     {
-        if((WelderPerk != none) && WelderPerk.CanExplosiveWeld())
+        if(((WelderPerk != none) && WelderPerk.CanExplosiveWeld()) && WeldTarget.CanExplosiveWeld())
         {
             return WeldTarget.DemoWeld < WeldTarget.default.DemoWeldRequired;
         }
@@ -330,7 +330,7 @@ simulated function CheckDelayedStartFire()
 
 simulated function bool TickWeldTarget()
 {
-    local KFDoorActor PreviousTarget;
+    local KFWeldableActor PreviousTarget;
 
     if((WorldInfo.TimeSeconds - LastTraceHitTime) < 0.2)
     {
@@ -345,10 +345,12 @@ simulated function bool TickWeldTarget()
     return false;
 }
 
-simulated function KFDoorActor TraceDoorActors()
+simulated function KFWeldableActor TraceDoorActors()
 {
-    local KFDoorActor door;
+    local KFWeldableActor WeldableActor;
     local Vector HitLoc, HitNorm, StartTrace, EndTrace, AdjustedAim;
+
+    local bool bIsRepairableActor;
 
     StartTrace = Instigator.GetWeaponStartTraceLocation();
     AdjustedAim = vector(GetAdjustedAim(StartTrace));
@@ -357,13 +359,19 @@ simulated function KFDoorActor TraceDoorActors()
     {
         EndTrace += (AdjustedAim * ExtraWeldingRange);
     }
-    foreach GetTraceOwner().TraceActors(Class'KFDoorActor', door, HitLoc, HitNorm, StartTrace, EndTrace)
+    foreach GetTraceOwner().TraceActors(Class'KFWeldableActor', WeldableActor, HitLoc, HitNorm, StartTrace, EndTrace)
     {
-        if(!door.bIsDestroyed)
+        bIsRepairableActor = WeldableActor.IsA('KFRepairableActor');
+        if(!bIsRepairableActor && WeldableActor.bIsDestroyed)
         {
-            LastTraceHitTime = WorldInfo.TimeSeconds;            
-            return door;
-        }        
+            continue;            
+        }
+        if(bIsRepairableActor && WeldableActor.WeldIntegrity >= WeldableActor.MaxWeldIntegrity)
+        {
+            continue;            
+        }
+        LastTraceHitTime = WorldInfo.TimeSeconds;        
+        return WeldableActor;        
     }    
     return FindRepairableDoor();
 }
@@ -398,7 +406,7 @@ simulated function KFDoorActor FindRepairableDoor()
     return none;
 }
 
-private reliable server final function ServerSetWeldTarget(KFDoorActor NewTarget, bool bDelayedStart)
+private reliable server final function ServerSetWeldTarget(KFWeldableActor NewTarget, bool bDelayedStart)
 {
     WeldTarget = NewTarget;
     if(bDelayedStart)
@@ -407,7 +415,7 @@ private reliable server final function ServerSetWeldTarget(KFDoorActor NewTarget
     }
 }
 
-simulated function bool PlayReadyTransition(KFDoorActor PreviousTarget)
+simulated function bool PlayReadyTransition(KFWeldableActor PreviousTarget)
 {
     local name AnimName;
     local float Duration;
@@ -438,12 +446,15 @@ simulated function bool PlayReadyTransition(KFDoorActor PreviousTarget)
 
 simulated function bool TickAutoUnequip()
 {
-    local KFDoorTrigger Trigger;
+    local Trigger_PawnsOnly Trigger;
     local KFInventoryManager KFIM;
 
-    foreach Instigator.TouchingActors(Class'KFDoorTrigger', Trigger)
-    {        
-        return false;        
+    foreach Instigator.TouchingActors(Class'Trigger_PawnsOnly', Trigger)
+    {
+        if(Trigger.IsA('KFDoorTrigger') || Trigger.IsA('KFRepairableActorTrigger'))
+        {            
+            return false;
+        }        
     }    
     KFIM = KFInventoryManager(Instigator.InvManager);
     if(KFIM != none)
@@ -553,12 +564,17 @@ defaultproperties
     WeldOpenAnim=Weld_On
     WeldCloseAnim=Weld_Off
     ScreenUIClass=Class'KFGame.KFGFxWorld_WelderScreen'
-    FireModeIconPaths=/* Array type was not detected. */
-    InventoryGroup=EInventoryGroup.IG_None
-    MagazineCapacity=100
+    PackageKey="Welder"
+    FirstPersonMeshName="WEP_1P_Welder_MESH.Wep_1stP_Welder_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    AttachmentArchetypeName="WEP_Welder_ARCH.Welder_3P"
+    MuzzleFlashTemplateName="WEP_Welder_ARCH.Wep_Welder_MuzzleFlash"
     bTargetAdhesionEnabled=false
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false
+    FireModeIconPaths=/* Array type was not detected. */
+    InventoryGroup=EInventoryGroup.IG_None
+    MagazineCapacity=100
     GroupPriority=5
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
     AmmoCost=/* Array type was not detected. */
@@ -568,9 +584,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=20,Y=10,Z=-10)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Welder_ARCH.Welder_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Welder.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Welder_ARCH.Wep_Welder_MuzzleFlash'
     AssociatedPerkClasses=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
@@ -579,8 +593,6 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     bCanThrow=false
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Welder_MESH.Wep_1stP_Welder_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Welder_ANIM.Wep_1st_Welder_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Welder.FirstPersonMesh'

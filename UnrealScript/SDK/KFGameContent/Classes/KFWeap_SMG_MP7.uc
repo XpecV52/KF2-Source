@@ -26,16 +26,13 @@ defaultproperties
 	IronSightPosition=(X=5,Y=0,Z=0)
 	PlayerViewOffset=(X=18.5f,Y=10.25f,Z=-4.0f)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_mp7_mesh.Wep_1stP_MP7_Rig'
-		AnimSets(0)=AnimSet'wep_1p_mp7_anim.wep_1p_mp7_anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'wep_3p_mp7_mesh.Wep_MP7_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'wep_mp7_arch.Wep_MP7_3P'
+	// Content
+	PackageKey="MP7"
+	FirstPersonMeshName="wep_1p_mp7_mesh.Wep_1stP_MP7_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_mp7_anim.wep_1p_mp7_anim"
+	PickupMeshName="wep_3p_mp7_mesh.Wep_MP7_Pickup"
+	AttachmentArchetypeName="wep_mp7_arch.Wep_MP7_3P"
+	MuzzleFlashTemplateName="wep_MP7_arch.Wep_MP7_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=30
@@ -87,9 +84,6 @@ defaultproperties
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_MP7'
 	InstantHitDamage(BASH_FIREMODE)=24
 
-	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'wep_MP7_arch.Wep_MP7_MuzzleFlash'
-
 	//@todo: add akevents when we have them
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_MP7.Play_MP7_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_MP7.Play_MP7_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_MP7.Play_MP7_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_MP7.Play_MP7_Fire_1P_Single')
@@ -107,4 +101,10 @@ defaultproperties
 	bHasFlashlight=true
 
 	AssociatedPerkClasses(0)=class'KFPerk_Swat'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=2.1f,IncrementWeight=3)
+	WeaponUpgrades[4]=(IncrementDamage=2.3f,IncrementWeight=4)
 }

@@ -9,18 +9,6 @@ class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot
     config(Game)
     hidecategories(Navigation);
 
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-    local WorldInfo WI;
-
-    WI = Class'WorldInfo'.static.GetWorldInfo();
-    if(FRand() < class<KFDifficulty_ClotAlpha>(default.DifficultySettings).static.GetSpecialAlphaChance(KFGameReplicationInfo(WI.GRI)))
-    {
-        return default.ElitePawnClass;
-    }
-    return super(KFPawn_Monster).GetAIPawnClassToSpawn();
-}
-
 static function int GetTraderAdviceID()
 {
     return 35;
@@ -29,7 +17,7 @@ static function int GetTraderAdviceID()
 defaultproperties
 {
     MonsterArchPath="ZED_ARCH.ZED_Clot_Alpha_Archetype"
-    ElitePawnClass=Class'KFPawn_ZedClot_AlphaKing'
+    ElitePawnClass=/* Array type was not detected. */
     GrabAttackFrequency=0.33
     ParryResistance=0
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedClot_Alpha.MeleeHelper'
@@ -39,6 +27,7 @@ defaultproperties
     XPValues[3]=11
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_ClotAlpha'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha.SprintAkComponent0'
     LocalizationKey=KFPawn_ZedClot_Alpha
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -101,6 +90,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedClot_Alpha.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedClot_Alpha.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot_Alpha.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedClot_Alpha.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

@@ -26,16 +26,13 @@ defaultproperties
 	IronSightPosition=(X=0.f,Y=0.f,Z=0.f)
 	PlayerViewOffset=(X=19,Y=10,Z=-0.5)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_p90_mesh.Wep_1stP_P90_Rig'
-		AnimSets(0)=AnimSet'wep_1p_p90_anim.Wep_1stP_P90_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'wep_3p_p90_mesh.Wep_P90_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'wep_p90_arch.Wep_P90_3P'
+	//Content
+	PackageKey="P90"
+	FirstPersonMeshName="wep_1p_p90_mesh.Wep_1stP_P90_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_p90_anim.Wep_1stP_P90_Anim"
+	PickupMeshName="wep_3p_p90_mesh.Wep_P90_Pickup"
+	AttachmentArchetypeName="wep_p90_arch.Wep_P90_3P"
+	MuzzleFlashTemplateName="wep_p90_arch.Wep_P90_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=50
@@ -86,7 +83,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'wep_p90_arch.Wep_P90_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_P90.Play_P90_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_P90.Play_P90_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_P90.Play_P90_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_P90.Play_P90_Fire_1P_Single')
 
@@ -105,4 +101,8 @@ defaultproperties
 	bHasFlashlight=true
 
 	AssociatedPerkClasses(0)=class'KFPerk_Swat'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.14f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.28f,IncrementWeight=2)
 }

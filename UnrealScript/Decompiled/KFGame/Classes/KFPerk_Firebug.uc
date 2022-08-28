@@ -418,4 +418,5 @@ defaultproperties
     AutoBuyLoadOutPath(3)=class'KFWeapDef_MicrowaveGun'
     HitAccuracyHandicap=-2
     HeadshotAccuracyHandicap=5
+    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
 }

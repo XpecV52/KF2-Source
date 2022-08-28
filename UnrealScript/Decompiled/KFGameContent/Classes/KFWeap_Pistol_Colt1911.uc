@@ -11,12 +11,18 @@ class KFWeap_Pistol_Colt1911 extends KFWeap_PistolBase
 
 defaultproperties
 {
-    InventorySize=2
-    MagazineCapacity=8
+    PackageKey="M1911"
+    FirstPersonMeshName="WEP_1P_M1911_MESH.Wep_1stP_M1911_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_M1911_MESH.Wep_M1911_Pickup"
+    AttachmentArchetypeName="WEP_M1911_ARCH.Wep_M1911_3P"
+    MuzzleFlashTemplateName="WEP_M1911_ARCH.Wep_M1911_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    InventorySize=2
+    MagazineCapacity=8
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=60
@@ -36,9 +42,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=22,Y=12,Z=-6)
-    AttachmentArchetype=KFWeaponAttachment'WEP_M1911_ARCH.Wep_M1911_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_Colt1911.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_M1911_ARCH.Wep_M1911_MuzzleFlash'
     maxRecoilPitch=450
     minRecoilPitch=400
     maxRecoilYaw=150
@@ -54,6 +58,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.35
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -63,21 +68,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=20,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_M1911_MESH.Wep_1stP_M1911_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_M1911_ANIM.Wep_1stP_M1911_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_Colt1911.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="M1911 Pistol"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M1911_MESH.Wep_M1911_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Colt1911.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M1911_MESH.Wep_M1911_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Colt1911.StaticPickupComponent'

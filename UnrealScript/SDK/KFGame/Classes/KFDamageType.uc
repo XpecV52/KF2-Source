@@ -149,6 +149,8 @@ var bool bShouldSpawnPersistentBlood;
 /** If set, calls 'CauseGibsAndApplyImpulse' for radial damage when obliteration is not used */
 var bool bCanGib;
 
+var bool bIgnoreAggroOnDamage;
+
 /** If set, it can completely obliterate zeds when hit by this damage type.
 	Obliteration can also depend on other factors such as how close the zed
 	was to this damage type when taking damage, etc. Eg. explosives.

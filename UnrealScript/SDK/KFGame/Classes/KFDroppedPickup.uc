@@ -49,6 +49,8 @@ var protected float PickupDelay;
 var             bool                        bEmptyPickup;       // pickup has an inventory with no ammo
 var             LinearColor                 EmptyPickupColor;
 
+
+var				bool						bUpgradedPickup; //if the item has an upgrade level of > 0
 cpptext
 {
 	// AActor interface
@@ -62,13 +64,14 @@ replication
 		RBState, bUseAuthorityRBUpdate;
 
 	if ( bNetInitial )
-		SkinItemId, bEmptyPickup;
+		SkinItemId, bEmptyPickup, bUpgradedPickup;
 }
 
 /*********************************************************************************************
  Constructors, Destructors, and Loading
 ********************************************************************************************* */
 
+simulated native function StaticMesh GetPickupMesh(class<KFWeapon> ItemClass);
 /**
  * sets the pickups mesh and makes it the collision component so we can run rigid body physics on it
  */
@@ -85,6 +88,8 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 		{
 			SkinItemId = KFWeapon(Inventory).SkinItemId;
             bEmptyPickup = !KFWeapon(Inventory).HasAnyAmmo();
+			bUpgradedPickup = KFWeapon(Inventory).CurrentWeaponUpgradeIndex > 0;
+
 		}
 		SetTimer(LifeSpan, false, nameof(TryFadeOut));
 	}
@@ -104,6 +109,13 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 		else
 		{
 			Comp = CollisionComponent;
+		}
+
+		//Weapons packages are async loaded from string.  At this point the packages will be loaded into root,
+		//		but the asset still has to be grabbed and set.
+		if (class<KFWeapon>(InventoryClass) != none)
+		{
+			StaticMeshComponent(MyMeshComp).SetStaticMesh(GetPickupMesh(class<KFWeapon>(InventoryClass)));
 		}
 
 		// Set up physics on the cloned component
@@ -164,13 +176,31 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 			if ( SkinMICs.Length > 0 )
 			{
 				MyMeshComp.SetMaterial(0, SkinMICs[0]);
+
 			}
 		}
-
-        if (bEmptyPickup)
+		if (bUpgradedPickup)
+		{
+			SetUpgradedMaterial();
+		}
+		if (bEmptyPickup)
         {
             SetEmptyMaterial();
         }
+	}
+}
+
+simulated function SetUpgradedMaterial()
+{
+	local MaterialInstanceConstant MeshMIC;
+
+	if (MyMeshComp != None)
+	{
+		MeshMIC = MyMeshComp.CreateAndSetMaterialInstanceConstant(0);
+		if (MeshMIC != None)
+		{
+			MeshMIC.SetScalarParameterValue('Upgrade', 1);
+		}
 	}
 }
 
@@ -357,6 +387,13 @@ function GiveTo(Pawn P)
                 return;
             }
         }
+
+		if (KFWInvClass != none && KFWeapon(Inventory) != none && !KFIM.CanCarryWeapon(KFWInvClass, KFWeapon(Inventory).CurrentWeaponUpgradeIndex))
+		{
+			PlayerController(P.Owner).ReceiveLocalizedMessage(class'KFLocalMessage_Game', GMT_TooMuchWeight);
+			return;
+		}
+
         NewInventory = KFIM.CreateInventory(InventoryClass, true);
         if (NewInventory != none)
         {
@@ -567,7 +604,7 @@ function TryFadeOut()
             }
         }
     }
-	
+
 	GotoState('FadeOut');
 }
 

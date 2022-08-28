@@ -12,17 +12,13 @@ class KFWeap_Pistol_Dual9mm extends KFWeap_DualBase;
 
 defaultproperties
 {
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Dual_9MM_MESH.Wep_1stP_Dual_9mm_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Dual_9MM_ANIM.Wep_1stP_Dual_9MM_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_9MM_ARCH.WEP_Dual_9MM_3P'
-	MuzzleFlashTemplate=KFMuzzleFlash'wep_dual_9mm_arch.Wep_Dual_9MM_MuzzleFlash'
+	// Content
+	PackageKey="Dual_9mm"
+	FirstPersonMeshName="WEP_1P_Dual_9MM_MESH.Wep_1stP_Dual_9mm_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Dual_9MM_ANIM.Wep_1stP_Dual_9MM_Anim"
+	PickupMeshName="WEP_3P_Dual_9MM_MESH.Wep_9mm_Pickup"
+	AttachmentArchetypeName="WEP_Dual_9MM_ARCH.WEP_Dual_9MM_3P"
+	MuzzleFlashTemplateName="wep_dual_9mm_arch.Wep_Dual_9MM_MuzzleFlash"
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -48,8 +44,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=30 // twice as much as single
-	SpareAmmoCapacity[0]=210
-	InitialSpareMags[0]=3
+	SpareAmmoCapacity[0]=60 //210
+	InitialSpareMags[0]=2
 	AmmoPickupScale[0]=1.0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -73,8 +69,8 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pistol9mm'
-	FireInterval(DEFAULT_FIREMODE)=+0.1 // about twice as fast as single
-	InstantHitDamage(DEFAULT_FIREMODE)=15.0
+	FireInterval(DEFAULT_FIREMODE)=+0.12 // about twice as fast as single
+	InstantHitDamage(DEFAULT_FIREMODE)=25.0 //15
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_9mm'
 	Spread(DEFAULT_FIREMODE)=0.015
 
@@ -84,8 +80,8 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pistol9mm'
-	FireInterval(ALTFIRE_FIREMODE)=+0.1 // about twice as fast as single
-	InstantHitDamage(ALTFIRE_FIREMODE)=15.0
+	FireInterval(ALTFIRE_FIREMODE)=+0.12 // about twice as fast as single
+	InstantHitDamage(ALTFIRE_FIREMODE)=25.0 //15
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_9mm'
 	Spread(ALTFIRE_FIREMODE)=0.015
 
@@ -119,5 +115,12 @@ defaultproperties
     BonesToLockOnEmpty_L=(LW_Bolt, LW_Bullets1)
 
     bHasFireLastAnims=true
+
+    // Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=0) //1
+	WeaponUpgrades[3]=(IncrementDamage=1.9f,IncrementWeight=0) //1
+	WeaponUpgrades[4]=(IncrementDamage=2.2f,IncrementWeight=0) //2
+	WeaponUpgrades[5]=(IncrementDamage=2.5f,IncrementWeight=0) //3
 }
 

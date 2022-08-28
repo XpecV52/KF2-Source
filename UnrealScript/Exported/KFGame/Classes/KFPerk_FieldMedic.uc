@@ -596,6 +596,7 @@ defaultproperties
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_MedicRifle'
    HitAccuracyHandicap=5.000000
    HeadshotAccuracyHandicap=-0.750000
+   PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.MedicKnife_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_FieldMedic"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

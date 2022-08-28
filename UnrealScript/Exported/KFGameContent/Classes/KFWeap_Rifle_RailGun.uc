@@ -10,9 +10,6 @@
 
 class KFWeap_Rifle_RailGun extends KFWeap_ScopedBase;
 
-/** How long to wait after firing to force reload */
-var()			float		ForceReloadTime;
-
 var ScriptedTexture CanvasTexture;
 
 /** Current length of the square scope texture. This is checked against before modifying the
@@ -158,20 +155,16 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
     }
 }
 
-
-/**
- * PlayFireEffects Is the root function that handles all of the effects associated with
- * a weapon.  This function creates the 1st person effects.  It should only be called
- * on a locally controlled player.
- */
-simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocation )
+simulated function StartFire(byte FireModeNum)
 {
-    Super.PlayFireEffects( FireModeNum, HitLocation );
-
-	if( Instigator != none && Instigator.IsLocallyControlled() && AmmoCount[0] == 0 )
+	// Attempt auto-reload
+	if ( FireModeNum == ALTFIRE_FIREMODE )
 	{
-        SetTimer(ForceReloadTime, false, nameof( ForceReload ) );
+		LogInternal("Nope, use the default you dirty cheater :)");
+		FiremodeNum = DEFAULT_FIREMODE;
 	}
+
+	Super.StartFire(FireModeNum);
 }
 
 /** Return true if this weapon should play the fire last animation for this shoot animation */
@@ -895,7 +888,6 @@ simulated state WeaponAbortEquip
 
 defaultproperties
 {
-   ForceReloadTime=0.500000
    LockedHitZoneIcon=Texture2D'Wep_Scope_TEX.Wep_1stP_Yellow_Red_Target'
    DefaultHitZoneIcon=Texture2D'Wep_Scope_TEX.Wep_1stP_Blue_Target'
    RedIconColor=(R=1.000000,G=0.000000,B=0.000000,A=1.000000)
@@ -910,12 +902,12 @@ defaultproperties
    LockAim=0.995000
    MaxScopeScreenDot=0.200000
    LockTargetingSoundInterval=0.090000
-   LockAcquiredSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Locked'
-   LockLostSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Lost'
-   LockTargetingSoundFirstPerson=AkEvent'ww_wep_sa_railgun.Play_Railgun_Scope_Locking'
+   LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locked'
+   LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Lost'
+   LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locking'
    TargetLocationReplicationInterval=0.016000
-   AmbientSoundPlayEvent=AkEvent'ww_wep_sa_railgun.Play_Railgun_Loop'
-   AmbientSoundStopEvent=AkEvent'ww_wep_sa_railgun.Stop_Railgun_Loop'
+   AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Loop'
+   AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Railgun.Stop_Railgun_Loop'
    AmbientSoundSocketName="AmbientSound"
    Begin Object Class=TWSceneCapture2DDPGComponent Name=SceneCapture2DComponent0 Archetype=TWSceneCapture2DDPGComponent'KFGame.Default__KFWeap_ScopedBase:SceneCapture2DComponent0'
       bRenderForegroundDPG=False
@@ -933,14 +925,20 @@ defaultproperties
    SceneCapture=SceneCapture2DComponent0
    ScopeLenseMICTemplate=MaterialInstanceConstant'WEP_1P_RailGun_MAT.Wep_1stP_RailGun_Lens_MIC'
    ScopedSensitivityMod=16.000000
-   FireModeIconPaths(0)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
-   FireModeIconPaths(1)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_ManualTarget'
-   InventorySize=10
-   MagazineCapacity(0)=1
+   PackageKey="RailGun"
+   FirstPersonMeshName="WEP_1P_RailGun_MESH.WEP_1stP_RailGun_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_RailGun_ANIM.WEP_1P_RailGun_ANIM"
+   PickupMeshName="wep_3p_railgun_mesh.Wep_3rdP_RailGun_Pickup"
+   AttachmentArchetypeName="WEP_RailGun_ARCH.Wep_RailGun_3P_Updated"
+   MuzzleFlashTemplateName="WEP_RailGun_ARCH.Wep_RailGun_MuzzleFlash"
    bHasIronSights=True
    bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
+   FireModeIconPaths(0)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
+   FireModeIconPaths(1)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_ManualTarget'
+   InventorySize=9
+   MagazineCapacity(0)=1
    PenetrationPower(0)=10.000000
    PenetrationPower(1)=10.000000
    MeshIronSightFOV=27.000000
@@ -952,9 +950,10 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
-   SpareAmmoCapacity(0)=20
+   SpareAmmoCapacity(0)=23
    InitialSpareMags(0)=6
    AmmoPickupScale(0)=3.000000
+   ForceReloadTimeOnEmpty=0.500000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
@@ -985,19 +984,17 @@ defaultproperties
    BonesToLockOnEmpty(24)="RW_Bullets1"
    BonesToLockOnEmpty(25)="RW_AcceleratorMagnetrons"
    BonesToLockOnEmpty(26)="RW_Bolt"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_Fire_1P')
-   WeaponFireSnd(1)=(DefaultCue=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_Fire_3P',FirstPersonCue=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_Fire_1P')
-   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_DryFire'
-   WeaponDryFireSnd(1)=AkEvent'ww_wep_sa_railgun.Play_WEP_SA_Railgun_DryFire'
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_Fire_1P')
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_Railgun.Play_WEP_SA_Railgun_DryFire'
    PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-2.000000)
-   AttachmentArchetype=KFWeapAttach_Railgun'WEP_RailGun_ARCH.Wep_RailGun_3P_Updated'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ScopedBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ScopedBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Rifle_RailGun:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_RailGun_ARCH.Wep_RailGun_MuzzleFlash'
    IronSightsSpreadMod=0.010000
    maxRecoilPitch=600
    minRecoilPitch=450
@@ -1015,6 +1012,8 @@ defaultproperties
    HippedRecoilModifier=2.333330
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Sharpshooter'
+   WeaponUpgrades(1)=(IncrementDamage=1.335000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.469000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -1029,8 +1028,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.005000
    Spread(1)=0.005000
-   InstantHitDamage(0)=375.000000
-   InstantHitDamage(1)=750.000000
+   InstantHitDamage(0)=281.000000
+   InstantHitDamage(1)=562.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=30.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_RailGun'
@@ -1039,9 +1038,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_RailGun'
    FireOffset=(X=30.000000,Y=3.000000,Z=-2.500000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ScopedBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_RailGun_MESH.WEP_1stP_RailGun_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_RailGun_ANIM.WEP_1P_RailGun_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -1055,7 +1052,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Rail Gun"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_ScopedBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'wep_3p_railgun_mesh.Wep_3rdP_RailGun_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

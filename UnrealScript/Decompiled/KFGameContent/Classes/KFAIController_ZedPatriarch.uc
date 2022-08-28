@@ -126,12 +126,12 @@ simulated event Destroyed()
 
 function bool IsAggroEnemySwitchAllowed()
 {
-    return ((super(KFAIController).IsAggroEnemySwitchAllowed() && !MyPatPawn.IsDoingSpecialMove(21)) && !MyPatPawn.IsDoingSpecialMove(22)) && !MyPatPawn.IsDoingSpecialMove(3);
+    return ((super(KFAIController).IsAggroEnemySwitchAllowed() && !MyPatPawn.IsDoingSpecialMove(22)) && !MyPatPawn.IsDoingSpecialMove(23)) && !MyPatPawn.IsDoingSpecialMove(3);
 }
 
 function bool CanSwitchEnemies()
 {
-    return ((((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bIsCloaking) && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(21)) && !MyPatPawn.IsDoingSpecialMove(20)) && !MyPatPawn.IsDoingSpecialMove(3);
+    return ((((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bIsCloaking) && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(22)) && !MyPatPawn.IsDoingSpecialMove(21)) && !MyPatPawn.IsDoingSpecialMove(3);
 }
 
 function float GetAggroRating(KFPawn KFP)
@@ -588,7 +588,7 @@ function bool ShouldSprint()
 {
     if(((Enemy != none) && MyPatPawn != none) && !MyPatPawn.bIsHeadless)
     {
-        if(MyPatPawn.IsDoingSpecialMove(22))
+        if(MyPatPawn.IsDoingSpecialMove(23))
         {
             return false;
         }
@@ -627,7 +627,7 @@ function bool ShouldSprint()
 
 function bool CanSetSprinting(bool bNewSprintStatus)
 {
-    return super(KFAIController).CanSetSprinting(bNewSprintStatus) && !bNewSprintStatus || !MyPatPawn.IsDoingSpecialMove(22);
+    return super(KFAIController).CanSetSprinting(bNewSprintStatus) && !bNewSprintStatus || !MyPatPawn.IsDoingSpecialMove(23);
 }
 
 function bool IsCeilingClear()
@@ -887,9 +887,9 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
         }
         else
         {
-            if((Killed.Pawn == Enemy) && MyPatPawn.IsDoingSpecialMove(22))
+            if((Killed.Pawn == Enemy) && MyPatPawn.IsDoingSpecialMove(23))
             {
-                KFSM_Patriarch_MinigunBarrage(MyPatPawn.SpecialMoves[22]).Timer_SearchForMinigunTargets();
+                KFSM_Patriarch_MinigunBarrage(MyPatPawn.SpecialMoves[23]).Timer_SearchForMinigunTargets();
             }
         }
     }
@@ -978,7 +978,7 @@ function StartPaternalInstinct()
     bRaging = true;
     bRagedThisPhase = true;
     RageAttackCount = 0;
-    MaxRageAttacks = MyPatPawn.MaxRageAttacks + Max(0, int(MyKFGameInfo.GameDifficulty - float(1)));
+    MaxRageAttacks = MyPatPawn.MaxRageAttacks + Max(0, MyKFGameInfo.GetModifiedGameDifficulty() - 1);
     MyPatPawn.SetSprinting(true);
     SetTimer(RageTimeOut, false, 'Timer_RageTimeOut');
 }

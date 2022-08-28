@@ -88,7 +88,7 @@ function ApplySkillsToPawn()
 	{
 		return;
 	}
-	ResetSupplier();
+	//ResetSupplier();
 }
 
 /**
@@ -1112,11 +1112,14 @@ DefaultProperties
 	LingeringNukePoisonDamage=20
 	LingeringNukeDamageType=class'KFDT_DemoNuke_Toxic_Lingering'
 
-	ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
+	ConcussiveExplosionSound=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Explosion'
 
     // Skill tracking
 	HitAccuracyHandicap=2.0
 	HeadshotAccuracyHandicap=0.0
+
+	// Prestige Rewards
+	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
 
    	ZedTimeModifyingStates(0)="WeaponFiring"
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"
@@ -1126,6 +1129,7 @@ DefaultProperties
    	ZedTimeModifyingStates(5)="FiringSecondaryState"
    	ZedTimeModifyingStates(6)="AltReloading"
     ZedTimeModifyingStates(7)="WeaponThrowing"
+	ZedTimeModifyingStates(8)="HuskCannonCharge"
 
    	PassiveExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"
 

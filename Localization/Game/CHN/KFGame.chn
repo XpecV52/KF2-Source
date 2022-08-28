@@ -1,4 +1,6 @@
 [KFCommon_LocalizedStrings]
+PrestigeWarningString="重置天赋等级为0？ 此操作不可以撤销。"
+PrestigeBonusString="Prestige Bonus"
 FailedToReachInventoryServerString="无法连接物品服务器。 将无法使用仓库。"
 LoadingString="正在加载…"
 DifficultyStrings[0]="普通"
@@ -56,6 +58,7 @@ NoSwitchReasonString="切换团队会使团队失去平衡"
 
 AutoTradeCompleteString="自动交易完成： "
 AutoFillCompleteString="自动补充供应品"
+WeaponUpgradeComepleteString="武器已升级"
 SecondaryWeaponPurchasedString="辅助武器已购买"
 NoItemsPurchasedString="没有已买到的物品"
 
@@ -107,6 +110,9 @@ DiscordWaveString=": 波"
 
 ProceedToTutorialString="继续训练？"
 ProceedToTutorialDescriptionString="在受控制的环境中进行基础学习。  完成时可以使选择的0级天赋升级为1级天赋。"
+
+; placeholder01
+; placeholder02
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="爆发完成奖励"
@@ -161,6 +167,7 @@ CreateMatchString="创建比赛"
 MatchmakingString="在线比赛匹配"
 ConsoleMatchmakingString="在线玩"
 ServerBrowserString="浏览服务器"
+NewsPageString="新闻"
 
 DifficultyTitle="难度"
 GameModeTitle="游戏模式"
@@ -214,6 +221,7 @@ privacyList3=""
 inProgressList0=""
 inProgressList1=""
 inProgressList2=""
+FailedToLoadNewsString="载入最新新闻图像失败。\n请稍后再试一次。"
 
 [KFGFxStartGameContainer_Options]
 BackString="返回"
@@ -364,6 +372,8 @@ CannotSellString="不能卖出"
 CannotBuyString="不能购买"
 FavoriteString="收藏"
 UnfavoriteString="取消收藏"
+UpgradeCostString="升级花费"
+UpgradeString="升级"
 
 [KFGFxTraderContainer_PlayerInventory]
 FillString="补充"
@@ -853,6 +863,7 @@ LevelString=""
 
 [KFGFxPerksContainer_Header]
 ExperienceString="经验"
+PrestigeLevelString="威望"
 
 [KFGFxPerksContainer_SkillsSummary]
 ConfigureString="配置"
@@ -862,6 +873,8 @@ SkillsString="技能"
 TierUnlockedText="新等级已解锁！"
 TierUnlockedSecondaryText="你解锁了以下神射的新等级："
 
+CurrentPrestigeLevelString="目前威望等级："
+PrestigeString="提升威望"
 
 [KFGFxPerksContainer_Details]
 ObjectivesString="经验目标"
@@ -877,6 +890,17 @@ HeaderTitle="选择神射"
 EndOfWaveString="神射修改将在一波结束时应用！"
 ChangesAppliedOnCloseString="神射修改将在此菜单关闭后应用。"
 OncePerWaveString="神射在每一波只能修改一次！"
+
+[KFGFxPerksContainer_Prestige]
+AtMaxPrestigeLevelString="达到天赋最高威望等级！"
+NotHightenoughLevelString="天赋未达到最高等级。 用户目前无法提升威望。"
+CurrentRankString="目前等级"
+NextRankString="下一等级"
+RewardString="威望奖励"
+PrestigeDescriptionString="> 天赋等级将会重置为0\n> 这一天赋永久获得游戏比赛结束后 +30% 额外经验奖励。\n> 赢取这一天赋的精致头像，金库以及一款独特武器皮肤。"
+PrestigeWarningString1="此操作将会重置这一天赋等级为0"
+PrestigeWarningString2="只有在你完全确定时才能继续"
+PrestigeWarningString3="一经重置，无法撤回"
 
 [KFGFxMenu_Store]
 StoreString="商店"
@@ -1205,9 +1229,10 @@ UseAltAimOnDualString="使用备用双枪瞄准"
 AntiMotionSicknessString="反晕动病"
 AutoTurnOffString="不自动转向血凝丧尸抓取的方向"
 ReduceHighPitchNoiseString="减少高分贝噪音"
-DisableAutoUpgradeString="禁用“自动升级”功能"
+DisableAutoUpgradeString="禁用“自动交易”功能"
 
 EnableMixerString="切换Mixer互动功能"
+DisableMixerString="禁用“Mixer”功能"
 
 [LocalizedControls]
 ControllerLayoutDefault="默认"
@@ -1371,6 +1396,8 @@ KickVoteNoSpectatorsString="旁观者不能发起踢人投票"
 KickedFromServerString="你已被从服务器上删除"
 BannedFromServerString="你已被从本服务器上删除。你现在不能再次加入"
 ServerNoLongerAvailableString="服务器不能再用于加入"
+SkipTraderTimeString="一名玩家已经选择跳过商人时间。 打开菜单，点击“跳过商人”来投票表示跳过。 所有玩家最终必须达成一致意见。"
+SkipTraderSuccessString="跳过商人投票成功！"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="你收到了来自此人的弹药："
@@ -1441,7 +1468,7 @@ ZedWaitingForNextRoundString="丧尸群即将入侵！"
 LastPlayerStandingString="最后生还者"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="使用商人<%HOLD%>自动升级"
+UseTraderMessage="使用商人<%HOLD%>自动交易"
 UseDoorMessage="打开/关闭<%HOLD%>装备焊机"
 EquipWelderMessage="<%HOLD%>装备焊机"
 ZedUseDoorMessage="打开/关闭"
@@ -2287,19 +2314,24 @@ HorzineSupplyCrateKey13="霍因供应箱钥匙 | 系列 #13 - $2.49"
 USBSpitfire="喷火 USB 钥匙 - $2.49"
 USBHighVoltage="高电压 USB 钥匙 - $2.49"
 MerchSale="KF2 装备大促销！2017 年 4 月 30 日之前优惠至 7.5 折，促销码 ZED"
+; placeholder03
 
 [Objectives]
 HoldVolume="保卫区域"
 DoshHold="坚守阵地"
+RepairObjective="焊接和修理"
 DescriptionDoshHold="别让丧尸进入标记的区域中"
 RequiredDoshHold="需要玩家："
 DoschHoldDesc="别让丧尸进入标记的区域中"
 DescriptionHoldVolume="DescriptionHoldVolume"
 RequiredHoldVolume="RequiredHoldVolume"
-DestroyActor="搜索并破坏"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
+UseWelderToRepair="使用焊机来修理物品"
 FailedString="失败"
+DescriptionActivateTrigger="启动目标控制"
+RequiredActivateTrigger="需要启动："
+ActivateTrigger="操作控制"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2323,6 +2355,9 @@ KFPawn_ZedClot_Alpha="阿尔法血凝丧尸"
 KFPawn_ZedClot_AlphaKing="暴徒"
 KFPawn_ZedScrake="刮痕丧尸"
 KFPawn_ZedSiren="女妖"
+KFPawn_ZedDAR_EMP="精锐攻防机器人猎手"
+KFPawn_ZedDAR_Laser="精锐攻防机器人爆破手"
+KFPawn_ZedDAR_Rocket="精锐攻防机器人投弹手"
 KFPawn_ZedPatriarch="长老丧尸"
 KFPawn_ZedBloatKingSubspawn="生成憎恶"
 ;Human zeds
@@ -2452,12 +2487,25 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Descri
 SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
 SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
 SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
-SpecialEventObjectiveInfoList[4]=(TitleString="Test 5",DescriptionString="Description 5");
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
 ChanceDropDescriptionStrings[0]="掉落 1"
 ChanceDropDescriptionStrings[1]="掉落 2"
+
+[KFGFxSummerSideShowObjectivesContainer]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="空中修理",DescriptionString="修理飞艇的破裂管道");
+SpecialEventObjectiveInfoList[1]=(TitleString="顶层守御",DescriptionString="防守飞艇上层甲板");
+SpecialEventObjectiveInfoList[2]=(TitleString="电力恢复！",DescriptionString="修理飞艇的配电箱");
+SpecialEventObjectiveInfoList[3]=(TitleString="水流奔涌",DescriptionString="给飞艇的蒸汽引擎供水");
+SpecialEventObjectiveInfoList[4]=(TitleString="舟行自如",DescriptionString="以困难或更高难度在飞艇关卡上赢得一局匹配游戏");
+
+AllCompleteRewardDescriptionString="睡衣套装"
+
+ChanceDropDescriptionStrings[0]="奖励劵"
+ChanceDropDescriptionStrings[1]="黄金券"
 
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
@@ -2477,10 +2525,10 @@ ChanceDropDescriptionStrings[1]="黄金券"
 CurrentSpecialEventString="进行无尽挑战"
 CurrentSpecialEventDescriptionString="消灭一波又一波敌人，获取传说级的奖励！"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="无尽训练假人",DescriptionString="无尽挑战完成波数达到5",TierEventRewardName="D.A.R.++");
-SpecialEventObjectiveInfoList[1]=(TitleString="无尽无人机",DescriptionString="无尽挑战完成波数达到10",TierEventRewardName="D.A.R.青铜");
-SpecialEventObjectiveInfoList[2]=(TitleString="无尽哨兵",DescriptionString="无尽挑战完成波数达到15",TierEventRewardName="白银D.A.R.");
-SpecialEventObjectiveInfoList[3]=(TitleString="无尽战争机器",DescriptionString="无尽挑战完成波数达到20",TierEventRewardName="经典蓝D.A.R.");
+SpecialEventObjectiveInfoList[0]=(TitleString="无尽训练假人",DescriptionString="无尽挑战完成波数达到5",TierEventRewardName="经典D.A.R.");
+SpecialEventObjectiveInfoList[1]=(TitleString="无尽无人机",DescriptionString="无尽挑战完成波数达到10",TierEventRewardName="装载者D.A.R.");");
+SpecialEventObjectiveInfoList[2]=(TitleString="无尽哨兵",DescriptionString="无尽挑战完成波数达到15",TierEventRewardName="骷髅D.A.R.");");
+SpecialEventObjectiveInfoList[3]=(TitleString="无尽战争机器",DescriptionString="无尽挑战完成波数达到20",TierEventRewardName="血腥D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="无尽超级D.A.R.",DescriptionString="无尽挑战完成波数达到25",TierEventRewardName="黄金D.A.R.");
 
 
@@ -2896,6 +2944,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="生命学实验室"
 
@@ -2964,6 +3044,12 @@ DisplayName="能量核心"
 
 [KF-DieSector KFMapSummary]
 DisplayName="死亡地带"
+
+[KF-Lockdown KFMapSummary]
+DisplayName="封锁"
+
+[KF-Airship KFMapSummary]
+DisplayName="飞艇"
 
 [KFMapInfo]
 ; defaults

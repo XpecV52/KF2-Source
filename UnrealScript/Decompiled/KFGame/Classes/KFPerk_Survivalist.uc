@@ -519,9 +519,10 @@ defaultproperties
     ZedTimeModifyingStates(5)=WeaponAltFiring
     ZedTimeModifyingStates(6)=HuskCannonCharge
     PrimaryWeaponDef=Class'KFWeapDef_Random'
-    KnifeWeaponDef=Class'KFWeapDef_Knife_Support'
+    KnifeWeaponDef=Class'KFWeapDef_Knife_Survivalist'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'
     AutoBuyLoadOutPath(0)=class'KFWeapDef_DragonsBreath'
     AutoBuyLoadOutPath(1)=class'KFWeapDef_M16M203'
     AutoBuyLoadOutPath(2)=class'KFWeapDef_MedicRifle'
+    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
 }

@@ -1,3 +1,34 @@
+[CHR_MrsFoster_archetype]
+CharacterName="Miss Foster"
+Description="Quand elle accorda un entretien à Mr. Foster pour un poste, Miss Foster était déjà une marchande impitoyable dans une firme londonienne. Elle avait tout ce qu'il cherchait, mais il était incapable de se plier aux règles et n'était clairement pas fait pour le métier. Mais il avait quelque chose de spécial : il était si détaché, charmeur... unique. Assez unique pour lui offrir son propre masque à gaz lors de leur premier rendez-vous. C'était comme s'il savait qu'un mutant équipé d'une mitrailleuse allait créer une horde de clones mangeurs de chair et ruiner sa carrière. Ils se marièrent peu de temps après, dans un tourbillon de fleurs, de dentelle, de Zeds et d'explosifs. Ils ne peuvent peut-être pas travailler ensemble pour se faire du blé, mais ils peuvent exterminer des Zeds pour se faire un tas de fric !"
+BodyMesh0="Veste"
+BodyMesh1="Punk"
+HeadMesh0="Masque à gaz"
+
+[CHR_MrsFoster_archetype.BodyMesh0]
+BodySkin0="Marron"
+BodySkin1="Armée"
+BodySkin2="Rouge"
+BodySkin3="Bleu"
+BodySkin4="Rose"
+BodySkin5="Noir"
+
+[CHR_MrsFoster_archetype.BodyMesh1]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
+[CHR_MrsFoster_archetype.HeadMesh0]
+HeadSkin0="Blanc"
+HeadSkin1="Vert"
+HeadSkin2="Rouge"
+HeadSkin3="Marron"
+HeadSkin4="Rose"
+HeadSkin5="Noir"
+
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
 Description="Ce robot assistant domestique D.A.R. est une version améliorée du modèle précédent. Il utilise les toutes dernières innovations expérimentales de Horzine. Des unités similaires sont en phase de test dans différentes bases de Horzine afin de développer un D.A.R. pour les marchés des consommateurs et de la sécurité. Cependant, ce D.A.R. sort du lot. Après être tombé sur des Zeds à l'Avant-poste arctique 12 de Horzine, le programme principal de D.A.R. a été remplacé par ses protocoles d'urgence, faisant de lui une machine à tuer. Malheureusement, D.A.R. ne s'intéresse que très peu aux êtres humains, si ce n'est aux employés de Horzine, qu'il déteste un peu moins que le reste de l'humanité. Après le boom du marché des robots militaires, D.A.R. a été assigné au confinement des Zeds pour les essais sur le terrain."
@@ -68,6 +99,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Pouvoir aux barbus !"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -138,6 +170,14 @@ BodySkin6="Tartan rouge"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
+
+[CHR_Jagerhorn_Archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Blond suédois"
@@ -232,6 +272,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Masque de Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -302,6 +343,14 @@ BodySkin6="Tartan rouge"
 [CHR_DJSkully_Archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
 
+[CHR_DJSkully_Archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Noir ultime"
 HeadSkin1="Rouge Xtra"
@@ -342,6 +391,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
+BodyMesh9="Punk"
 HeadMesh0="Cheveux"
 
 [chr_briar_archetype.BodyMesh0]
@@ -418,6 +468,14 @@ BodySkin6="Tartan rouge"
 [chr_briar_archetype.BodyMesh8]
 BodySkin0="Motifs coffre"
 
+[chr_briar_archetype.BodyMesh9]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Faits marquants"
@@ -452,6 +510,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
+BodyMesh9="Punk"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -532,6 +591,14 @@ BodySkin6="Tartan rouge"
 
 [CHR_MrFoster_archetype.BodyMesh8]
 BodySkin0="Motifs coffre"
+
+[CHR_MrFoster_archetype.BodyMesh9]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Blanc original"
@@ -687,6 +754,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Visage"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -755,6 +823,14 @@ BodySkin6="Tartan rouge"
 [CHR_Coleman_archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
 
+[CHR_Coleman_archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Camelote"
@@ -788,6 +864,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Cheveux"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -857,6 +934,14 @@ BodySkin6="Tartan rouge"
 
 [CHR_Alberts_archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
+
+[CHR_Alberts_archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Gris"
@@ -1751,6 +1836,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Visage"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -1829,6 +1915,14 @@ BodySkin6="Tartan rouge"
 [CHR_Masterson_archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
 
+[CHR_Masterson_archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka est un individu en plein doute souffrant d'un sérieux penchant suicidaire. Né à Okinawa, il fut élevé parmi des Américains dans l'armée. Après un déménagement sur l'île principale du Japon avec sa famille, le jeune Tanaka, trop emprunt de culture américaine, ne parvint pas à s'intégrer et commença à suivre des cours de théâtre. Après le lycée, il s'installa à Los Angeles, où il joua des rôles de figurant clichés dans de mauvais films, avant de partir pour l'Europe où il se mit en quête d'un travail plus « sérieux ». Il n'eut droit qu'à des rôles de méchants dans des films de gangsters français et à quelques camelotes. Aujourd'hui, en plein apocalypse, il semble confondre la réalité et quelques-uns des rôles qu'il a interprétés. On y trouve pèle-mêle ses visions des Yakuzas, des démons, et l'interprétation hollywoodienne du bushido."
@@ -1841,6 +1935,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
+BodyMesh9="Punk"
 HeadMesh0="Cheveux"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -1926,6 +2021,14 @@ BodySkin6="Tartan rouge"
 [CHR_Tanaka_Archetype.BodyMesh8]
 BodySkin0="Motifs coffre"
 
+[CHR_Tanaka_Archetype.BodyMesh9]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Casque"
 AttachmentSkin0="Soleil levant"
@@ -1964,6 +2067,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2042,6 +2146,14 @@ BodySkin6="Tartan rouge"
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
 
+[CHR_Ana_Archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Lunettes 3D"
 AttachmentSkin0="Anaglyphes 3D"
@@ -2066,6 +2178,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
+BodyMesh9="Punk"
 HeadMesh0="Cheveux"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2142,6 +2255,14 @@ BodySkin6="Tartan rouge"
 [chr_mark_archetype.BodyMesh8]
 BodySkin0="Motifs coffre"
 
+[chr_mark_archetype.BodyMesh9]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Le seul et unique"
 HeadSkin1="Foutues 5h du mat'"
@@ -2162,6 +2283,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Visage"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2233,6 +2355,14 @@ BodySkin6="Tartan rouge"
 [CHR_alan_archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
 
+[CHR_alan_archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Le seul et unique"
 HeadSkin1="Roux ! Vraiment ?"
@@ -2260,6 +2390,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Cheveux"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2327,6 +2458,14 @@ BodySkin6="Tartan rouge"
 
 [CHR_strasser_archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
+
+[CHR_strasser_archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acier sombre"
@@ -2494,6 +2633,7 @@ BodyMesh4="Hazmat"
 BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
+BodyMesh8="Punk"
 HeadMesh0="Tête par défaut"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2565,6 +2705,14 @@ BodySkin6="Tartan rouge"
 
 [chr_rockabilly_archetype.BodyMesh7]
 BodySkin0="Motifs coffre"
+
+[chr_rockabilly_archetype.BodyMesh8]
+BodySkin0="Bleu"
+BodySkin1="Vert"
+BodySkin2="Blanc"
+BodySkin3="Violet"
+BodySkin4="Rouge"
+BodySkin5="Jaune"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Noir"
@@ -3943,3 +4091,87 @@ AttachmentSkin2="Orange"
 AttachmentSkin3="Doré"
 AttachmentSkin4="Violet"
 AttachmentSkin5="Rouge"
+
+[Cosmetic_SP_TopHat_ARCH]
+Attachment="Haut-de-forme punk"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Marron"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_FlatCap_ARCH]
+Attachment="Casquette punk"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_WelderMask_ARCH]
+Attachment="Masque de soudeur punk"
+AttachmentSkin0="Cuivré"
+AttachmentSkin1="Gris"
+AttachmentSkin2="Patiné"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_ChimneyClock_ARCH]
+Attachment="Horloge de cheminée punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Lueur froide"
+AttachmentSkin2="Lueur chaude"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_Goggles_ARCH]
+Attachment="Lunettes punk"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Orange"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_MedicalBag_ARCH]
+Attachment="Trousse médicale punk"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Cuir sombre"
+AttachmentSkin2="Cuir"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_OctopusBackpack_ARCH]
+Attachment="Sac à dos pieuvre punk"
+AttachmentSkin0="Cuivré"
+AttachmentSkin1="Patiné"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_TanksBackpack_ARCH]
+Attachment="Sac à dos bouteilles punk"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Rouge"
+AttachmentSkin2="Jaune"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_TentacleSkull_ARCH]
+Attachment="Crâne tentaculaire punk"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Rouge"
+AttachmentSkin2="Standard"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_DynamiteArm_ARCH]
+Attachment="Bracelet dynamité punk"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_MrsFosterHead_ARCH]
+Attachment="Masque de Miss Foster punk"
+AttachmentSkin0="Cuir sombre"
+AttachmentSkin1="Cuir"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_SP_SkullyHead_ARCH]
+Attachment="Masque de Scully punk"
+AttachmentSkin0="Décoloré"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Rouille"
+AttachmentSkin3="Doré"

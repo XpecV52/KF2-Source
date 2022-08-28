@@ -1,3 +1,34 @@
+[CHR_MrsFoster_archetype]
+CharacterName="Миссис Фостер"
+Description="Миссис Фостер была невероятно успешной коммерсанткой в одной из лучших фирм Лондона, когда к ней на собеседование пришел мистер Фостер, претендующий на должность коммивояжера. Он мечтал добиться такого же успеха, что и она, однако был безнадежно бездарным коммерсантом: не умел играть по правилам и держать язык за зубами. Однако что-то в нём было; он был таким крутым, элегантным... и уникальным. Настолько уникальным, что на первом свидании подарил ей противогаз. Он будто бы знал, что вскоре вооруженный цепной пилой мутант-маньяк создаст орду жадных до человеческой плоти клонов и лишит миссис Фостер многомиллионных бонусов. Вскоре мистер и миссис Фостер поженились в вихре цветов, лент, мутантов и взрывов."
+BodyMesh0="Жилет"
+BodyMesh1="Стимпанк"
+HeadMesh0="Противогаз"
+
+[CHR_MrsFoster_archetype.BodyMesh0]
+BodySkin0="Коричневый цвет"
+BodySkin1="Защитный цвет"
+BodySkin2="Красный цвет"
+BodySkin3="Синий цвет"
+BodySkin4="Розовый цвет"
+BodySkin5="Черный цвет"
+
+[CHR_MrsFoster_archetype.BodyMesh1]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
+[CHR_MrsFoster_archetype.HeadMesh0]
+HeadSkin0="Белый цвет"
+HeadSkin1="Зеленый цвет"
+HeadSkin2="Красный цвет"
+HeadSkin3="Коричневый цвет"
+HeadSkin4="Розовый цвет"
+HeadSkin5="Черный цвет"
+
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
 Description="Этот D.A.R., или домашний ассистент-робот, является улучшенной моделью предыдущего D.A.R., созданной с использованием последних достижений экспериментальной робототехники компании Horzine. Подобные модели проходят испытания на различных базах Horzine, поскольку компания надеется выпустить D.A.R. на потребительский рынок в качестве охранника, однако этот D.A.R. — особенный. Этому D.A.R. довелось столкнуться с мутантами, когда он служил на арктическом аванпосте 12 компании Horzine, после чего его собственные протоколы безопасности переписали основную программу, и теперь этот робот превратился в настоящую машину для убийств. К сожалению, D.A.R. наплевать на всех людей, кроме работников Horzine, которых он ненавидит чуть меньше, чем всё остальное человечество. Поскольку компания считает, что военные роботы — это перспективное направление, D.A.R. направили в зону содержания мутантов, чтобы провести полевые испытания."
@@ -68,6 +99,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Сила бороды!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -138,6 +170,14 @@ BodySkin6="Красная клетка"
 
 [CHR_Jagerhorn_Archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
+
+[CHR_Jagerhorn_Archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Швед-блондин"
@@ -232,6 +272,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Маска Скалли"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -302,6 +343,14 @@ BodySkin6="Красная клетка"
 [CHR_DJSkully_Archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
 
+[CHR_DJSkully_Archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Черный-черный"
 HeadSkin1="Экстра-красный"
@@ -342,6 +391,7 @@ BodyMesh5="Защитный"
 BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
+BodyMesh9="Стимпанк"
 HeadMesh0="Волосы"
 
 [chr_briar_archetype.BodyMesh0]
@@ -418,6 +468,14 @@ BodySkin6="Красная клетка"
 [chr_briar_archetype.BodyMesh8]
 BodySkin0="Узор хранилища"
 
+[chr_briar_archetype.BodyMesh9]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Оригинальный"
 HeadSkin1="Подсветка"
@@ -452,6 +510,7 @@ BodyMesh5="Защитный"
 BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
+BodyMesh9="Стимпанк"
 HeadMesh0="Противогаз"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -532,6 +591,14 @@ BodySkin6="Красная клетка"
 
 [CHR_MrFoster_archetype.BodyMesh8]
 BodySkin0="Узор хранилища"
+
+[CHR_MrFoster_archetype.BodyMesh9]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Оригинальный белый"
@@ -687,6 +754,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Лицо"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -755,6 +823,14 @@ BodySkin6="Красная клетка"
 [CHR_Coleman_archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
 
+[CHR_Coleman_archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Донован"
 HeadSkin1="Невзрачный"
@@ -788,6 +864,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Волосы"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -857,6 +934,14 @@ BodySkin6="Красная клетка"
 
 [CHR_Alberts_archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
+
+[CHR_Alberts_archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Серый"
@@ -1751,6 +1836,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Лицо"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -1829,6 +1915,14 @@ BodySkin6="Красная клетка"
 [CHR_Masterson_archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
 
+[CHR_Masterson_archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Хаято Танака"
 Description="Танака — сложная личность, отягощенная комплексом стремления к смерти. Он родился на Окинаве и вырос на американской военной базе. Вернувшись с семьей на основной остров Японии, «американец» Танака не вписался в общество. Он стал брать уроки сценического искусства. После колледжа он перебрался в Лос-Анжелес, где сыграл несколько «типовых» ролей в плохих фильмах, после чего переехал в Европу в поисках «настоящей» работы. Но его ждали лишь образы «плохих парней» во французских гангстерских лентах. Теперь же, когда наступил апокалипсис, он, кажется, путает реальность с сыгранными ролями. Среди его персонажей — мафиози-якудза, демоны и что-то из голливудского представления о самураях."
@@ -1841,6 +1935,7 @@ BodyMesh5="Защитный"
 BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
+BodyMesh9="Стимпанк"
 HeadMesh0="Волосы"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -1926,6 +2021,14 @@ BodySkin6="Красная клетка"
 [CHR_Tanaka_Archetype.BodyMesh8]
 BodySkin0="Узор хранилища"
 
+[CHR_Tanaka_Archetype.BodyMesh9]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Шлем"
 AttachmentSkin0="Восходящее солнце"
@@ -1964,6 +2067,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Ирокез"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2042,6 +2146,14 @@ BodySkin6="Красная клетка"
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
 
+[CHR_Ana_Archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-очки"
 AttachmentSkin0="Анаглиф 3D"
@@ -2066,6 +2178,7 @@ BodyMesh5="Защитный"
 BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
+BodyMesh9="Стимпанк"
 HeadMesh0="Волосы"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2142,6 +2255,14 @@ BodySkin6="Красная клетка"
 [chr_mark_archetype.BodyMesh8]
 BodySkin0="Узор хранилища"
 
+[chr_mark_archetype.BodyMesh9]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
 HeadSkin1="Кровавый полдник"
@@ -2162,6 +2283,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Лицо"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2233,6 +2355,14 @@ BodySkin6="Красная клетка"
 [CHR_alan_archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
 
+[CHR_alan_archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
 HeadSkin1="Рыжий! В самом деле?"
@@ -2260,6 +2390,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Волосы"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2327,6 +2458,14 @@ BodySkin6="Красная клетка"
 
 [CHR_strasser_archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
+
+[CHR_strasser_archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Темная сталь"
@@ -2494,6 +2633,7 @@ BodyMesh4="Защитный"
 BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
+BodyMesh8="Стимпанк"
 HeadMesh0="Обычная голова"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2565,6 +2705,14 @@ BodySkin6="Красная клетка"
 
 [chr_rockabilly_archetype.BodyMesh7]
 BodySkin0="Узор хранилища"
+
+[chr_rockabilly_archetype.BodyMesh8]
+BodySkin0="Синий цвет"
+BodySkin1="Зеленый цвет"
+BodySkin2="Белый цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Желтый цвет"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Черный"
@@ -3943,3 +4091,87 @@ AttachmentSkin2="Оранжевый цвет"
 AttachmentSkin3="Дор. вещь"
 AttachmentSkin4="Пурпурный цвет"
 AttachmentSkin5="Красный цвет"
+
+[Cosmetic_SP_TopHat_ARCH]
+Attachment="Стимпанковый цилиндр"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Коричневый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_FlatCap_ARCH]
+Attachment="Стимпанковая плоская кепка"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_WelderMask_ARCH]
+Attachment="Стимпанковая маска сварщика"
+AttachmentSkin0="Латунь"
+AttachmentSkin1="Серая"
+AttachmentSkin2="Патина"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_ChimneyClock_ARCH]
+Attachment="Стимпанковые настольные часы"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Холодный свет"
+AttachmentSkin2="Теплый свет"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_Goggles_ARCH]
+Attachment="Стимпанковые защитные очки"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Оранжевый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_MedicalBag_ARCH]
+Attachment="Стимпанковая медицинская сумка"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Темная кожа"
+AttachmentSkin2="Кожа"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_OctopusBackpack_ARCH]
+Attachment="Стимпанковый рюкзак-осьминог"
+AttachmentSkin0="Латунь"
+AttachmentSkin1="Патина"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_TanksBackpack_ARCH]
+Attachment="Стимпанковый рюкзак-танк"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Красный цвет"
+AttachmentSkin2="Желтый цвет"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_TentacleSkull_ARCH]
+Attachment="Стимпанк. череп с щупальцами"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Красный цвет"
+AttachmentSkin2="Стандартный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_DynamiteArm_ARCH]
+Attachment="Стимп. пов. на руку «Динамит»"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_MrsFosterHead_ARCH]
+Attachment="Стимп. маска миссис Фостер"
+AttachmentSkin0="Темная кожа"
+AttachmentSkin1="Кожа"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_SP_SkullyHead_ARCH]
+Attachment="Стимпанковая маска Скалли"
+AttachmentSkin0="Белизна"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Ржавый"
+AttachmentSkin3="Дор. вещь"

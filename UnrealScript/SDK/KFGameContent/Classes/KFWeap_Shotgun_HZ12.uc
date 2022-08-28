@@ -125,16 +125,13 @@ defaultproperties
 	PlayerViewOffset=(X=20,Y=7.6,Z=-3.0)
 	IronSightPosition=(X=6.0,Y=0,Z=0)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_HZ12_MESH.Wep_1stP_HZ12_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_HZ12_ANIM.Wep_1stP_HZ12_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_HZ12_MESH.Wep_3rdP_HZ12_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_HZ12_ARCH.Wep_HZ12_3P'
+	// Content
+	PackageKey="HZ12"
+	FirstPersonMeshName="WEP_1P_HZ12_MESH.Wep_1stP_HZ12_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_HZ12_ANIM.Wep_1stP_HZ12_Anim"
+	PickupMeshName="WEP_3P_HZ12_MESH.Wep_3rdP_HZ12_Pickup"
+	AttachmentArchetypeName="WEP_HZ12_ARCH.Wep_HZ12_3P"
+	MuzzleFlashTemplateName="WEP_HZ12_ARCH.Wep_HZ12_MuzzleFlash"
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)="ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle"
@@ -163,8 +160,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_HZ12_ARCH.Wep_HZ12_MuzzleFlash' 
-
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_1P')
     WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_HZ12.Play_WEP_HZ12_Fire_1P')
 
@@ -208,4 +203,9 @@ defaultproperties
 	AssociatedPerkClasses(0)=class'KFPerk_Support'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.2f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.3f,IncrementWeight=3)
 }

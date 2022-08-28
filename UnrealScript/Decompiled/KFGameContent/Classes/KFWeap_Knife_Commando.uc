@@ -11,8 +11,14 @@ class KFWeap_Knife_Commando extends KFWeap_Edged_Knife
 
 defaultproperties
 {
+    PackageKey="CommandoKnife"
+    FirstPersonMeshName="WEP_1P_CommandoKnife_MESH.Wep_1stP_CommKnife_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_CommandoKnife_MESH.Wep_CommandoKnife_Pickup"
+    AttachmentArchetypeName="WEP_CommandoKnife_ARCH.Wep_CommandoKnife_3P"
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Commando.MeleeHelper'
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
+        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_Commando.FirstPersonMesh'

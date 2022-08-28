@@ -14,11 +14,13 @@ defaultproperties
 {
 	// Zooming/Position
 	PlayerViewOffset=(X=10,Y=10,Z=0)
-	
-	AttachmentArchetype=KFWeaponAttachment'WEP_SWAT_Knife_ARCH.Wep_SWAT_Knife_3P'
+
+	// Content
+	PackageKey="Swat_Knife"
+	FirstPersonMeshName="wep_1p_swat_knife_mesh.Wep_1stP_SWAT_Knife_Rig"
+	AttachmentArchetypeName="WEP_SWAT_Knife_ARCH.Wep_SWAT_Knife_3P"
 
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_swat_knife_mesh.Wep_1stP_SWAT_Knife_Rig'
 		AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
 	End Object
 

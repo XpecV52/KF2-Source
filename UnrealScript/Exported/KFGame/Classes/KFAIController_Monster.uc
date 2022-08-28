@@ -370,7 +370,7 @@ function SetPawnDefaults()
 
 	KFGI = KFGameInfo( WorldInfo.Game );
 
-    GameDifficulty = KFGI.GameDifficulty;
+    GameDifficulty = KFGI.GetModifiedGameDifficulty();
     DifficultyInfo = KFGI.DifficultyInfo;
 
 	SprintChance = DifficultyInfo.GetCharSprintChanceByDifficulty( MyKFPawn, GameDifficulty );

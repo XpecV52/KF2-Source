@@ -17,16 +17,12 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=2,Y=0,Z=0)
 
-	AttachmentArchetype=KFWeaponAttachment'WEP_Zweihander_ARCH.Wep_Zweihander_3P'
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Zweihander_MESH.Wep_1stP_Zweihander_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Zweihander_ANIM.Wep_1stP_Zweihander_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Zweihander_MESH.Wep_Zweihander_Pickup'
-	End Object
+	// Content
+	PackageKey="Zweihander"
+	FirstPersonMeshName="WEP_1P_Zweihander_MESH.Wep_1stP_Zweihander_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Zweihander_ANIM.Wep_1stP_Zweihander_Anim"
+	PickupMeshName="WEP_3P_Zweihander_MESH.Wep_Zweihander_Pickup"
+	AttachmentArchetypeName="WEP_Zweihander_ARCH.Wep_Zweihander_3P"
 
 	Begin Object Name=MeleeHelper_0
 		MaxHitRange=240    //330 //400
@@ -63,7 +59,7 @@ defaultproperties
 
 	// Inventory
 	GroupPriority=85
-	InventorySize=6
+	InventorySize=7
 	WeaponSelectTexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 
@@ -74,6 +70,10 @@ defaultproperties
 	ParryDamageMitigationPercent=0.4
 	BlockDamageMitigation=0.5
 	ParryStrength=5
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.05f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.1f,IncrementWeight=2)
 }
 
 

@@ -104,6 +104,7 @@ var byte WaveMax;
 var repnotify byte WaveNum;
 var byte GameLength;
 var byte GameDifficulty;
+var byte GameDifficultyModifier;
 var byte MaxPerkLevel;
 var repnotify byte BossIndex;
 var private const byte GameSharedUnlocks;
@@ -190,21 +191,21 @@ var private float SteamHeartbeatAccumulator;
 replication
 {
      if(bNetDirty)
-        AIRemaining, ConsoleGameSessionGuid, 
-        CurrentObjective, GameSharedUnlocks, 
-        MaxHumanCount, MusicIntensity, 
-        MusicTrackRepCount, NextTrader, 
-        PreviousObjective, PreviousObjectiveResult, 
-        PreviousObjectiveVoshResult, PreviousObjectiveXPResult, 
-        ReplicatedMusicTrackInfo, TraderVolume, 
-        TraderVolumeCheckType, WaveNum, 
-        WaveTotalAICount, bHidePawnIcons, 
-        bIsUnrankedGame, bTraderIsOpen, 
-        bWaveIsActive;
+        AIRemaining, BossIndex, 
+        ConsoleGameSessionGuid, CurrentObjective, 
+        GameDifficulty, GameDifficultyModifier, 
+        GameSharedUnlocks, MaxHumanCount, 
+        MusicIntensity, MusicTrackRepCount, 
+        NextTrader, PreviousObjective, 
+        PreviousObjectiveResult, PreviousObjectiveVoshResult, 
+        PreviousObjectiveXPResult, ReplicatedMusicTrackInfo, 
+        TraderVolume, TraderVolumeCheckType, 
+        WaveNum, WaveTotalAICount, 
+        bHidePawnIcons, bIsUnrankedGame, 
+        bTraderIsOpen, bWaveIsActive;
 
      if(bNetInitial)
-        BossIndex, GameAmmoCostScale, 
-        GameDifficulty, GameLength, 
+        GameAmmoCostScale, GameLength, 
         MaxPerkLevel, TraderItems, 
         WaveMax, bAllowGrenadePurchase, 
         bCustom, bTradersEnabled, 
@@ -228,7 +229,7 @@ replication
         PickupInfos, SpawnVolumeInfos, 
         ZedInfos;
 
-     if((VoteCollector != none) && VoteCollector.bIsVoteInProgress)
+     if((bNetDirty && VoteCollector != none) && VoteCollector.bIsVoteInProgress)
         RepKickVotes;
 
      if(bNetDirty)
@@ -295,7 +296,7 @@ simulated event ReplicatedEvent(name VarName)
             {
                 if(VarName == 'MusicTrackRepCount')
                 {
-                    if(!IsBossWave())
+                    if(!bWaveIsActive || !IsBossWave())
                     {
                         PlayNewMusicTrack(true);
                     }                    
@@ -387,11 +388,70 @@ simulated event PostBeginPlay()
         TraderDialogManager = Spawn(TraderDialogManagerClass);
     }
     SetTimer(1, true);
+    ActivateLevelLoadedEvents();
+}
+
+simulated function ActivateLevelLoadedEvents()
+{
+    local Sequence GameSeq;
+    local array<SequenceObject> AllSeqEvents;
+    local array<int> ActivateIndices;
+    local int I;
+
+    GameSeq = WorldInfo.GetGameSequence();
+    if(GameSeq != none)
+    {
+        GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_LevelLoaded', true, AllSeqEvents);
+        ActivateIndices = GetKFSeqEventLevelLoadedIndices();
+        I = 0;
+        J0x89:
+
+        if(I < AllSeqEvents.Length)
+        {
+            if(KFSeqEvent_LevelLoaded(AllSeqEvents[I]).bWaitingForGRI)
+            {
+                SeqEvent_LevelLoaded(AllSeqEvents[I]).CheckActivate(WorldInfo, none, false, ActivateIndices);
+                KFSeqEvent_LevelLoaded(AllSeqEvents[I]).bWaitingForGRI = false;
+            }
+            ++ I;
+            goto J0x89;
+        }
+    }
+}
+
+simulated function array<int> GetKFSeqEventLevelLoadedIndices()
+{
+    local array<int> ActivateIndices;
+
+    if(!bEndlessMode)
+    {
+        switch(GameLength)
+        {
+            case 0:
+                ActivateIndices[0] = 3;
+                break;
+            case 1:
+                ActivateIndices[0] = 4;
+                break;
+            case 2:
+                ActivateIndices[0] = 5;
+                break;
+            default:
+                break;
+        }        
+    }
+    else
+    {
+        ActivateIndices[0] = 6;
+    }
+    return ActivateIndices;
 }
 
 simulated function ReceivedGameClass()
 {
     local class<KFGameInfo> KFGameClass;
+    local KFMapInfo KFMI;
+    local class<KFTraderVoiceGroupBase> MapVoiceGroupClass;
 
     KFGameClass = class<KFGameInfo>(GameClass);
     if(KFGameClass != none)
@@ -400,6 +460,18 @@ simulated function ReceivedGameClass()
         if(TraderDialogManager != none)
         {
             TraderDialogManager.TraderVoiceGroupClass = KFGameClass.default.TraderVoiceGroupClass;
+            if(!KFGameClass.static.HasCustomTraderVoiceGroup())
+            {
+                KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+                if((KFMI != none) && KFMI.TraderVoiceGroupClassPath != "")
+                {
+                    MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, Class'Class'));
+                    if(MapVoiceGroupClass != none)
+                    {
+                        TraderDialogManager.TraderVoiceGroupClass = MapVoiceGroupClass;
+                    }
+                }
+            }
         }
         if(KFGameClass.static.ShouldPlayMusicAtStart() && MusicComp == none)
         {
@@ -595,7 +667,7 @@ simulated function OpenTrader(optional int Time)
                 {
                     TraderOpenedEvt.Reset();
                     TraderOpenedEvt.SetWaveNum(WaveNum, WaveMax);
-                    if((WaveNum == (WaveMax - 1)) && TraderOpenedEvt.OutputLinks.Length > 1)
+                    if((IsFinalWave()) && TraderOpenedEvt.OutputLinks.Length > 1)
                     {
                         OutputLinksToActivate.AddItem(1;                        
                     }
@@ -708,7 +780,7 @@ simulated function TriggerClientWaveStartEvents()
                 {
                     WaveStartEvt.Reset();
                     WaveStartEvt.SetWaveNum(WaveNum, WaveMax);
-                    if((WaveNum == WaveMax) && WaveStartEvt.OutputLinks.Length > 1)
+                    if((IsBossWave()) && WaveStartEvt.OutputLinks.Length > 1)
                     {
                         OutputLinksToActivate.AddItem(1;                        
                     }
@@ -1434,16 +1506,13 @@ function bool StartNextObjective()
                 return false;
             }
         }
-        if(KFMI.bUsePresetObjectives)
+        if(KFMI.bUsePresetObjectives && WaveNum <= (GetPresetObjectiveLength(KFMI)))
         {
-            return StartNextPresetObjective(KFMI);            
+            return StartNextPresetObjective(KFMI);
         }
-        else
+        if(KFMI.bUseRandomObjectives)
         {
-            if(KFMI.bUseRandomObjectives)
-            {
-                return StartNextRandomObjective(KFMI);
-            }
+            return StartNextRandomObjective(KFMI);
         }
     }
     return false;
@@ -1453,21 +1522,25 @@ function bool StartNextPresetObjective(KFMapInfo KFMI)
 {
     local array<KFInterface_MapObjective> PossibleObjectives;
 
-    switch(WaveMax)
+    if(KFMI == none)
     {
-        case 5:
+        return false;
+    }
+    switch(GameLength)
+    {
+        case 0:
             if(KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
             {
                 PossibleObjectives = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives;
             }
             break;
-        case 8:
+        case 1:
             if(KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
             {
                 PossibleObjectives = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives;
             }
             break;
-        case 11:
+        case 2:
             if(KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
             {
                 PossibleObjectives = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives;
@@ -1478,6 +1551,26 @@ function bool StartNextPresetObjective(KFMapInfo KFMI)
             break;
     }
     return (AttemptObjectiveActivation(PossibleObjectives)) != -1;
+}
+
+function int GetPresetObjectiveLength(KFMapInfo KFMI)
+{
+    if(KFMI == none)
+    {
+        return 0;
+    }
+    switch(GameLength)
+    {
+        case 0:
+            return 5;
+        case 1:
+            return 8;
+        case 2:
+            return 11;
+        default:
+            return 0;
+            break;
+    }
 }
 
 function bool StartNextRandomObjective(KFMapInfo KFMI)
@@ -1571,9 +1664,24 @@ function Timer_ActivateObjective()
     }
 }
 
-simulated event byte GetGameDifficulty()
+function float GetMapObjectiveSpawnRateMod()
 {
-    return GameDifficulty;
+    if(NotEqual_InterfaceInterface(ObjectiveInterface, (none)))
+    {
+        return ObjectiveInterface.GetSpawnRateMod();
+    }
+    return 1;
+}
+
+simulated event byte GetModifiedGameDifficulty()
+{
+    return byte(GameDifficulty + GameDifficultyModifier);
+}
+
+simulated event SetModifiedGameDifficulty(byte NewDifficultyMod)
+{
+    GameDifficultyModifier = NewDifficultyMod;
+    bNetDirty = true;
 }
 
 defaultproperties

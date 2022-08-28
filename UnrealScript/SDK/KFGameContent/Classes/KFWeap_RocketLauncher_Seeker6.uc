@@ -500,7 +500,7 @@ defaultproperties
 	// Inventory
 	InventoryGroup=IG_Primary
 	GroupPriority=100
-	InventorySize=9 //10
+	InventorySize=8 //10
 	WeaponSelectTexture=Texture2D'WEP_UI_SeekerSix_TEX.UI_WeaponSelect_SeekerSix'
 
     // FOV
@@ -517,16 +517,13 @@ defaultproperties
 	PlayerViewOffset=(X=20.0,Y=5,Z=-5)
 	FastZoomOutTime=0.2
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_SeekerSix_MESH.Wep_1stP_SeekerSix_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_SeekerSix_ANIM.Wep_1stP_SeekerSix_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_SeekerSix_MESH.Wep_3rdP_SeekerSix_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_SeekerSix_ARCH.Wep_SeekerSix_3P'
+	// Content
+	PackageKey="SeekerSix"
+	FirstPersonMeshName="WEP_1P_SeekerSix_MESH.Wep_1stP_SeekerSix_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_SeekerSix_ANIM.Wep_1stP_SeekerSix_Anim"
+	PickupMeshName="WEP_3P_SeekerSix_MESH.Wep_3rdP_SeekerSix_Pickup"
+	AttachmentArchetypeName="WEP_SeekerSix_ARCH.Wep_SeekerSix_3P"
+	MuzzleFlashTemplateName="WEP_SeekerSix_ARCH.Wep_SeekerSix_MuzzleFlash"
 
 	// Target Locking
 	MinTargetDistFromCrosshairSQ=2500.0f // 0.5 meters
@@ -579,7 +576,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Rocket_Seeker6'
 	FireInterval(DEFAULT_FIREMODE)=+0.35
-	InstantHitDamage(DEFAULT_FIREMODE)=120.0
+	InstantHitDamage(DEFAULT_FIREMODE)=82.0 //100.00
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Seeker6Impact'
 	Spread(DEFAULT_FIREMODE)=0.025
 	FireOffset=(X=20,Y=4.0,Z=-3)
@@ -590,7 +587,7 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Rocket_Seeker6'
 	FireInterval(ALTFIRE_FIREMODE)=+0.3 //0.1
-	InstantHitDamage(ALTFIRE_FIREMODE)=120.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=82.0 //120
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Seeker6Impact'
 	Spread(ALTFIRE_FIREMODE)=0.025
 	AmmoCost(ALTFIRE_FIREMODE)=1
@@ -600,7 +597,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=29
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_SeekerSix_ARCH.Wep_SeekerSix_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Seeker_6.Play_WEP_Seeker_6_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_Seeker_6.Play_WEP_Seeker_6_Fire_1P')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Seeker_6.Play_WEP_Seeker_6_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_Seeker_6.Play_WEP_Seeker_6_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_DryFire'
@@ -630,4 +626,8 @@ defaultproperties
     Components.Add(IronsightsComponent0)
     IronsightsZoomInSound=AkEvent'WW_WEP_Seeker_6.Play_Seeker_6_Iron_In'
     IronsightsZoomOutSound=AkEvent'WW_WEP_Seeker_6.Play_Seeker_6_Iron_In_Out'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.48f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.65f,IncrementWeight=2)
 }

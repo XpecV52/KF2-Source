@@ -18,12 +18,18 @@ defaultproperties
 {
    bRevolver=True
    CylinderRotInfo=(InC=-60.000000,Time=0.017500)
-   InventorySize=2
-   MagazineCapacity(0)=6
+   PackageKey="FlareGun"
+   FirstPersonMeshName="WEP_1P_FlareGun_MESH.Wep_1stP_FlareGun_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_FlareGun_ANIM.Wep_1stP_FlareGun_Anim"
+   PickupMeshName="WEP_3P_FlareGun_MESH.Wep_FlareGun_Pickup"
+   AttachmentArchetypeName="WEP_FlareGun_ARCH.Wep_FlareGun_3P"
+   MuzzleFlashTemplateName="WEP_FlareGun_ARCH.Wep_Flaregun_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   InventorySize=2
+   MagazineCapacity(0)=6
    MeshFOV=60.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
@@ -40,14 +46,12 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_DryFire'
    PlayerViewOffset=(X=15.000000,Y=14.000000,Z=-6.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_FlareGun_ARCH.Wep_FlareGun_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Pistol_Flare:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_FlareGun_ARCH.Wep_Flaregun_MuzzleFlash'
    maxRecoilPitch=400
    minRecoilPitch=350
    maxRecoilYaw=125
@@ -66,6 +70,9 @@ defaultproperties
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Gunslinger'
    AssociatedPerkClasses(2)=Class'KFGame.KFPerk_Sharpshooter'
+   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.250000)
+   WeaponUpgrades(2)=(IncrementDamage=1.500000)
+   WeaponUpgrades(3)=(IncrementWeight=2,IncrementDamage=1.750000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -93,9 +100,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_FlareGun'
    FireOffset=(X=20.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_PistolBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_FlareGun_MESH.Wep_1stP_FlareGun_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master_Revolver'
-      AnimSets(0)=AnimSet'WEP_1P_FlareGun_ANIM.Wep_1stP_FlareGun_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -109,7 +114,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Spitfire"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_PistolBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_FlareGun_MESH.Wep_FlareGun_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

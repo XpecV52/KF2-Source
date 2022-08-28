@@ -12,6 +12,11 @@ class KFWeap_Knife_Commando extends KFWeap_Edged_Knife;
 
 defaultproperties
 {
+   PackageKey="CommandoKnife"
+   FirstPersonMeshName="WEP_1P_CommandoKnife_MESH.Wep_1stP_CommKnife_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim"
+   PickupMeshName="WEP_3P_CommandoKnife_MESH.Wep_CommandoKnife_Pickup"
+   AttachmentArchetypeName="WEP_CommandoKnife_ARCH.Wep_CommandoKnife_3P"
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
@@ -47,7 +52,6 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Knife_Commando:MeleeHelper_0'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
       MinTickTimeStep=0.025000
-      SkeletalMesh=SkeletalMesh'WEP_1P_CommandoKnife_MESH.Wep_1stP_CommKnife_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
       bOverrideAttachmentOwnerVisibility=True
@@ -63,7 +67,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="KF-BAR"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_CommandoKnife_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

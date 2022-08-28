@@ -33,6 +33,8 @@ var transient bool bPulverizerFireReleased;
 
 var bool bFriendlyFireEnabled;
 
+var class<KFExplosionActor> NukeExplosionActorClass;
+
 replication
 {
 	if (bNetInitial)
@@ -75,7 +77,7 @@ simulated function CustomFire()
 	}
 
 	PrepareExplosionTemplate();
-	//SetExplosionActorClass();
+	SetExplosionActorClass();
 
 	SpawnLoc = Instigator.GetWeaponStartTraceLocation();
 	SpawnRot = GetPulverizerAim(SpawnLoc);
@@ -116,11 +118,11 @@ simulated function CustomFire()
 // for nukes && concussive force
 simulated protected function PrepareExplosionTemplate()
 {
-	//local KFPlayerReplicationInfo InstigatorPRI;
+	local KFPlayerReplicationInfo InstigatorPRI;
 	local KFPlayerController KFPC;
 	local KFPerk InstigatorPerk;
 
-	/*if (bWasTimeDilated)
+	if (bWasTimeDilated)
 	{
 		InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
 		if (InstigatorPRI != none)
@@ -140,14 +142,14 @@ simulated protected function PrepareExplosionTemplate()
 		}
 	}
 	else
-	{*/
+	{
 		ExplosionTemplate = default.ExplosionTemplate;
 		ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
 		ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
 		ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
 		ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
 		ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
-	//}
+	}
 
 	// Change the radius and damage based on the perk
 	if (Owner.Role == ROLE_Authority)
@@ -172,7 +174,7 @@ simulated protected function SetExplosionActorClass()
 		{
 			if (InstigatorPRI.bNukeActive)
 			{
-				ExplosionActorClass = class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass();
+				ExplosionActorClass = NukeExplosionActorClass;
 				return;
 			}
 		}
@@ -358,10 +360,20 @@ defaultproperties
 {
    ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
    ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
+   AltExploEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force'
+   NukeExplosionActorClass=Class'KFGame.KFExplosion_ReplicatedNuke'
    ParryStrength=5
    ParryDamageMitigationPercent=0.400000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
+   PackageKey="Pulverizer"
+   FirstPersonMeshName="WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New"
+   FirstPersonAnimSetNames(0)="WEP_1P_Pulverizer_ANIM.Wep_1stP_Pulverizer_Anim"
+   PickupMeshName="WEP_3P_Pulverizer_MESH.Wep_Pulverizer_Pickup"
+   AttachmentArchetypeName="WEP_Pulverizer_ARCH.Wep_Pulverizer_3P"
+   MuzzleFlashTemplateName="WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash"
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(1)=()
    FireModeIconPaths(2)=()
@@ -371,14 +383,11 @@ defaultproperties
    FireModeIconPaths(6)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=6
    MagazineCapacity(0)=5
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
    AmmoCost(6)=1
    SpareAmmoCapacity(0)=15
    WeaponFireSnd(6)=(DefaultCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_1P')
-   AttachmentArchetype=KFWeapAttach_Pulverizer'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
@@ -409,9 +418,10 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_Pulverizer:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Demolitionist'
+   WeaponUpgrades(1)=(IncrementDamage=1.050000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.100000)
    FiringStatesArray(2)="Reloading"
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
@@ -434,9 +444,7 @@ defaultproperties
    InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Bludgeon_PulverizerHeavy'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000
-      SkeletalMesh=SkeletalMesh'WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_Pulverizer_ANIM.Wep_1stP_Pulverizer_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -450,7 +458,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Pulverizer"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_MeleeBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Pulverizer_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

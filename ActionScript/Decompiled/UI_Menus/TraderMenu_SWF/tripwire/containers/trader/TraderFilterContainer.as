@@ -34,6 +34,8 @@ package tripwire.containers.trader
         
         public var rightTriggerIcon:MovieClip;
         
+        public var descriptionTextField:TextField;
+        
         private var _filterIndex:int = 0;
         
         private var _tabIndex:int = 0;

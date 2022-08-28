@@ -23,12 +23,15 @@ struct SWhatsNew
 
 var array<SWhatsNew> WhatsNewItems;
 var const private config array<SWhatsNew> PS4WhatsNewItems;
+var const private config array<SWhatsNew> PS4WhatsNewItemsFreeTrial;
 var array<SWhatsNew> PS4ActiveWhatsNewItems;
 
 var localized string MultiplayerString;
 var localized string SoloString;
 var localized string TutorialString;
 
+var bool bTrialNewsActive;
+var OnlineSubsystem OnlineSub;
 //==============================================================
 // Initialization
 //==============================================================
@@ -36,6 +39,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 {
     super.Initialize( NewParentMenu );
     StartMenu = KFGFxMenu_StartGame( NewParentMenu );
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
     LocalizeMenu();
     SetWhatsNewItems();
 
@@ -56,13 +60,23 @@ function DisableSoloButton()
     }
 }
 
+function CheckNewsState()
+{
+	if (Class'WorldInfo'.Static.IsConsoleBuild(CONSOLE_Orbis) && OnlineSub != none)
+	{
+		if (OnlineSub.IsGameOwned() && bTrialNewsActive)
+		{
+			SetWhatsNewItems();
+		}
+	}
+}
+
 function SetWhatsNewItems()
 {
     local GFxObject DataObject;
     local GFxObject DataArray;
 	local GFxObject WhatsNewButton;
     local int i;
-	local OnlineSubsystem OSS;
 	local bool bLoggedIn;
 
 	WhatsNewButton = GetObject( "whatsNewButton" );
@@ -70,34 +84,53 @@ function SetWhatsNewItems()
     DataArray = CreateArray();
     if(Class'WorldInfo'.Static.IsConsoleBuild())
     {
-		OSS = class'GameEngine'.static.GetOnlineSubsystem();
-		bLoggedIn = OSS.PlayerInterface.GetLoginStatus( GetLP().ControllerId ) == LS_LoggedIn;
+		bLoggedIn = OnlineSub.PlayerInterface.GetLoginStatus( GetLP().ControllerId ) == LS_LoggedIn;
 		PS4ActiveWhatsNewItems.Length = 0;
 
-		WhatsNewButton.SetVisible( bLoggedIn );
-
-        for (i = 0; i < PS4WhatsNewItems.length; i++)
-        {
-            // When Summer Sideshow is off, we don't want to link to the time limited SS item.
-			if(class'KFGameEngine'.static.GetSeasonalEventId() == 0)
+		WhatsNewButton.SetVisible( bLoggedIn && OnlineSub.CanCheckFreeTrialState());
+																		//if we don't own the game, show the buy the game news item
+		if (Class'WorldInfo'.Static.IsConsoleBuild(CONSOLE_Orbis) && !OnlineSub.IsGameOwned())
+		{
+			bTrialNewsActive = true;
+			for (i = 0; i < PS4WhatsNewItemsFreeTrial.length; i++)
 			{
-				if(PS4WhatsNewItems[i].TextField == "FeaturedEventItem")
+				// Only show store items if we are logged in
+				DataObject = CreateObject("Object");
+				DataObject.SetString("label", Localize("WhatsNewMessages", PS4WhatsNewItemsFreeTrial[i].TextField, "KFGame"));
+				DataObject.SetString("imageURL", PS4WhatsNewItemsFreeTrial[i].ImageURL);
+				DataObject.SetString("redirectURL", "OpenStore");
+				DataArray.SetElementObject(PS4ActiveWhatsNewItems.Length, DataObject);
+				PS4ActiveWhatsNewItems.AddItem(PS4WhatsNewItemsFreeTrial[i]);
+			}
+		}
+		else
+		{
+			bTrialNewsActive = false;
+			for (i = 0; i < PS4WhatsNewItems.length; i++)
+			{
+
+				// When Summer Sideshow is off, we don't want to link to the time limited SS item.
+				if (class'KFGameEngine'.static.GetSeasonalEventId() == 0)
 				{
-					continue;
+					if (PS4WhatsNewItems[i].TextField == "FeaturedEventItem")
+					{
+						continue;
+					}
+				}
+
+				// Only show store items if we are logged in
+				if (bLoggedIn || PS4WhatsNewItems[i].PSNProductId == "")
+				{
+					DataObject = CreateObject("Object");
+					DataObject.SetString("label", Localize("WhatsNewMessages", PS4WhatsNewItems[i].TextField, "KFGame"));
+					DataObject.SetString("imageURL", PS4WhatsNewItems[i].ImageURL);
+					DataObject.SetString("redirectURL", PS4WhatsNewItems[i].RedirectURL);
+					DataArray.SetElementObject(PS4ActiveWhatsNewItems.Length, DataObject);
+					PS4ActiveWhatsNewItems.AddItem(PS4WhatsNewItems[i]);
 				}
 			}
-			
-			// Only show store items if we are logged in
-			if( bLoggedIn || PS4WhatsNewItems[i].PSNProductId == "" )
-			{
-				DataObject = CreateObject("Object");
-				DataObject.SetString("label",Localize("WhatsNewMessages",PS4WhatsNewItems[i].TextField,"KFGame"));
-				DataObject.SetString("imageURL",PS4WhatsNewItems[i].ImageURL);
-				DataObject.SetString("redirectURL",PS4WhatsNewItems[i].RedirectURL);
-				DataArray.SetElementObject(PS4ActiveWhatsNewItems.Length, DataObject);
-				PS4ActiveWhatsNewItems.AddItem( PS4WhatsNewItems[i] );
-			}
-        }
+		}
+        
     }
     else
     {
@@ -121,6 +154,7 @@ function LocalizeMenu()
     // Localize static text
     TextObject.SetString("home",StartMenu.FindGameString);  
     TextObject.SetString("multiplayer",MultiplayerString);  
+	TextObject.SetString("news", StartMenu.NewsPageString);
     TextObject.SetString("serverBrowser",StartMenu.ServerBrowserString);    
     TextObject.SetString("solo",SoloString);    
     TextObject.SetString("tutorial",TutorialString);
@@ -130,15 +164,15 @@ function LocalizeMenu()
 DefaultProperties
 {
 // Latest Update
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
 // Featured Time Limited Item
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/5803"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/4928"))
 // Featured Uniform Bundle
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_DARAssault", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/5787"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_MrsFosterBundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/6185"))
 // Featured Weapon Skin USB
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_USBKey_WepCollection_01", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/5988"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_USBKey_Bluefire", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/6199"))
 // Featured Crate Key
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_DARCrate", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/5874"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_USBKey_Neon", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/6197"))
 // Misc Community Links
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums", Textfield="Forums", RedirectURL="http://forums.tripwireinteractive.com/"))

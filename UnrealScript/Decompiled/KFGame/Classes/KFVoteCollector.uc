@@ -171,6 +171,9 @@ reliable server function SkipTraderTime()
 
 reliable server function RecieveSkipTraderTimeVote(PlayerReplicationInfo PRI)
 {
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(Outer.WorldInfo.Game);
     if(PlayersThatHaveVoted.Find(PRI == -1)
     {
         PlayersReadyToSkipTrader.AddItem(PRI;
@@ -178,6 +181,11 @@ reliable server function RecieveSkipTraderTimeVote(PlayerReplicationInfo PRI)
         {
             SkipTraderTime();
             ResetTraderVote();
+            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 20);            
+        }
+        else
+        {
+            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 19);
         }
     }
 }

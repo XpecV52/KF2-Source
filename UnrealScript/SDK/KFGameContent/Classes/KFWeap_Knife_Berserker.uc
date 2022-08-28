@@ -12,10 +12,12 @@ class KFWeap_Knife_Berserker extends KFWeap_Edged_Knife;
 
 defaultproperties
 {
-	AttachmentArchetype=KFWeaponAttachment'WEP_BerserkerKnife_ARCH.Wep_Knife_3P'
+	// Content
+	PackageKey="BerserkerKnife"
+	FirstPersonMeshName="WEP_1P_BerserkerKnife_MESH.Wep_1stP_BerserkerKnife_Rig"
+	AttachmentArchetypeName="WEP_BerserkerKnife_ARCH.Wep_Knife_3P"
 
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_BerserkerKnife_MESH.Wep_1stP_BerserkerKnife_Rig'
 		AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
 	End Object
 	

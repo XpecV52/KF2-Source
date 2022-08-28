@@ -12,17 +12,13 @@ class KFWeap_Pistol_DualDeagle extends KFWeap_DualBase;
 
 defaultproperties
 {
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Dual_Deagle_MESH.Wep_1stP_Dual_Deagle_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Dual_Deagle_ANIM.Wep_1stP_Dual_Deagle_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Deagle_MESH.Wep_DEagle_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_3P'
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_MuzzleFlash'
+	// Content
+	PackageKey="Dual_Deagle"
+	FirstPersonMeshName="WEP_1P_Dual_Deagle_MESH.Wep_1stP_Dual_Deagle_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Dual_Deagle_ANIM.Wep_1stP_Dual_Deagle_Anim"
+	PickupMeshName="WEP_3P_Dual_Deagle_MESH.Wep_Deagle_Pickup"
+	AttachmentArchetypeName="WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_3P"
+	MuzzleFlashTemplateName="WEP_Dual_Deagle_ARCH.Wep_Dual_Deagle_MuzzleFlash"
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
@@ -118,5 +114,9 @@ defaultproperties
     BonesToLockOnEmpty_L=(LW_Slide, LW_Bullets1)
 
     bHasFireLastAnims=true
+
+    // Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=2)
+	WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=4)
 }
 

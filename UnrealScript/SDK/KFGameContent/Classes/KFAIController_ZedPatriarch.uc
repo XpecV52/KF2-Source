@@ -1353,7 +1353,7 @@ function StartPaternalInstinct()
 	RageAttackCount = 0;
 
 	// Set the maximum number of attacks via phase and difficulty
-	MaxRageAttacks = MyPatPawn.MaxRageAttacks + Max(0, MyKFGameInfo.GameDifficulty - 1);
+	MaxRageAttacks = MyPatPawn.MaxRageAttacks + Max(0, MyKFGameInfo.GetModifiedGameDifficulty() - 1);
 
 	// Always sprint when raging
 	MyPatPawn.SetSprinting( true );

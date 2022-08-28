@@ -567,6 +567,15 @@ defaultproperties
    SpecialMoveCooldowns(7)=(CoolDownTime=999.000000,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Cloak',Charges=60)
    SpecialMoveCooldowns(8)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Patriarch_UI.ZED-VS_Icons_Generic-Jump',bShowOnHud=False)
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedPatriarch_Versus:FootstepCameraShake0'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -636,22 +645,24 @@ defaultproperties
       SpecialMoveClasses(17)=Class'KFGame.KFSM_Block'
       SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Patriarch_Heal'
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
-      SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerPatriarch_Melee'
-      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerPatriarch_MinigunBarrage'
-      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerPatriarch_TentacleGrab'
-      SpecialMoveClasses(27)=Class'kfgamecontent.KFSM_PlayerPatriarch_MissileAttack'
-      SpecialMoveClasses(28)=Class'kfgamecontent.KFSM_PlayerPatriarch_Heal'
-      SpecialMoveClasses(29)=Class'kfgamecontent.KFSM_PlayerPatriarch_MortarAttack'
-      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerPatriarch_Melee'
+      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerPatriarch_MinigunBarrage'
+      SpecialMoveClasses(27)=Class'kfgamecontent.KFSM_PlayerPatriarch_TentacleGrab'
+      SpecialMoveClasses(28)=Class'kfgamecontent.KFSM_PlayerPatriarch_MissileAttack'
+      SpecialMoveClasses(29)=Class'kfgamecontent.KFSM_PlayerPatriarch_Heal'
+      SpecialMoveClasses(30)=Class'kfgamecontent.KFSM_PlayerPatriarch_MortarAttack'
       SpecialMoveClasses(31)=None
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedPatriarch:SpecialMoveHandler_0'
    End Object
@@ -756,7 +767,8 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=CloakedAkComponent0
+   Components(8)=SprintAkComponent0
+   Components(9)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedPatriarch_Versus"
    ObjectArchetype=KFPawn_ZedPatriarch'kfgamecontent.Default__KFPawn_ZedPatriarch'

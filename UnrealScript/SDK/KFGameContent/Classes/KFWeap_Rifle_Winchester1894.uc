@@ -12,7 +12,7 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase;
 defaultproperties
 {
 	// Inventory / Grouping
-	InventorySize=5
+	InventorySize=4 //5
 	GroupPriority=25
 	WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
    	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
@@ -27,16 +27,13 @@ defaultproperties
 	DOF_FG_FocalRadius=50
 	DOF_FG_MaxNearBlurSize=3.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Winchester_MESH.Wep_1stP_Winchester_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Winchester_ANIM.Wep_1stP_Winchester_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Winchester_MESH.Wep_LAR1894_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'wep_winchester_arch.Wep_Winchester_3P'
+	// Content
+	PackageKey="Winchester"
+	FirstPersonMeshName="WEP_1P_Winchester_MESH.Wep_1stP_Winchester_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Winchester_ANIM.Wep_1stP_Winchester_Anim"
+	PickupMeshName="WEP_3P_Winchester_MESH.Wep_LAR1894_Pickup"
+	AttachmentArchetypeName="wep_winchester_arch.Wep_Winchester_3P"
+	MuzzleFlashTemplateName="wep_winchester_arch.Wep_Winchester_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=12
@@ -97,7 +94,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=25
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'wep_winchester_arch.Wep_Winchester_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Winchester.Play_WEP_SA_Winchester_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_Winchester.Play_WEP_SA_Winchester_Fire_Single_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_Winchester.Play_WEP_SA_Winchester_Handling_DryFire'
 	EjectedShellForegroundDuration=1.5f
@@ -107,4 +103,10 @@ defaultproperties
 	bHasFlashlight=false
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.6f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.9f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=2.3f,IncrementWeight=3)
+	WeaponUpgrades[4]=(IncrementDamage=2.5f,IncrementWeight=4)
 }

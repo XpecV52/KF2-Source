@@ -138,13 +138,27 @@ function int ChooseWeaponPickup()
     return DesiredItemIdx;
 }
 
+// Export UKFPickupFactory_Item::execGetPickupMesh(FFrame&, void* const)
+native simulated function GetPickupMesh(class<KFWeapon> ItemClass);
+
 simulated function SetPickupMesh()
 {
-    local editinline StaticMeshComponent FactoryPickupMesh, NewMeshComponent;
+    if(ItemPickups[PickupIndex].ItemClass.Name == ArmorClassName)
+    {
+        FinalizePickupMesh(StaticMeshComponent(ItemPickups[PickupIndex].ItemClass.default.PickupFactoryMesh).StaticMesh);        
+    }
+    else
+    {
+        GetPickupMesh(class<KFWeapon>(ItemPickups[PickupIndex].ItemClass));
+    }
+}
+
+simulated event FinalizePickupMesh(StaticMesh NewMesh)
+{
+    local editinline StaticMeshComponent FactoryPickupMesh;
 
     FactoryPickupMesh = StaticMeshComponent(PickupMesh);
-    NewMeshComponent = StaticMeshComponent(ItemPickups[PickupIndex].ItemClass.default.PickupFactoryMesh);
-    FactoryPickupMesh.SetStaticMesh(NewMeshComponent.StaticMesh);
+    FactoryPickupMesh.SetStaticMesh(NewMesh);
     FactoryPickupMesh.SetCullDistance(3500);
 }
 
@@ -269,7 +283,7 @@ defaultproperties
     ArmorClassName=KFInventory_Armor
     PickupIndex=255
     begin object name=StaticMeshComponent0 class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
+        StaticMesh=StaticMesh'WEP_3P_AR15_9mm_MESH.Wep_AR15_Pickup'
         ReplacementPrimitive=none
         bCastDynamicShadow=false
         Translation=(X=0,Y=0,Z=-50)
@@ -324,7 +338,7 @@ defaultproperties
     // Reference: PathRenderingComponent'Default__KFPickupFactory_Item.PathRenderer'
     Components(4)=PathRenderer
     begin object name=StaticMeshComponent0 class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
+        StaticMesh=StaticMesh'WEP_3P_AR15_9mm_MESH.Wep_AR15_Pickup'
         ReplacementPrimitive=none
         bCastDynamicShadow=false
         Translation=(X=0,Y=0,Z=-50)

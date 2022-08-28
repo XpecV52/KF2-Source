@@ -80,6 +80,9 @@ var name CheatType;
 // Export UKFCheatManager::execSetPerkLevel(FFrame&, void* const)
 native final exec function SetPerkLevel(int NewPerkLevel);
 
+// Export UKFCheatManager::execSetPerkPrestigeLevel(FFrame&, void* const)
+native final exec function SetPerkPrestigeLevel(int NewPerkLevel);
+
 // Export UKFCheatManager::execResetPerkLevels(FFrame&, void* const)
 native final exec function ResetPerkLevels();
 
@@ -146,6 +149,16 @@ exec function SetInventoryFilter(string FilterType, int NewEnum)
                 break;
         }
     }
+}
+
+exec function DisplayFreeTrialFeatureBlockedPopUp()
+{
+    Class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialFeatureBlockedPopUp();
+}
+
+exec function DisplayFreeTrialOverPopUp()
+{
+    Class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialOverPopUp();
 }
 
 exec function OpenScreenSizeMovie()
@@ -225,7 +238,7 @@ exec function MakeFakePopUp()
     }
 }
 
-exec function SetCharacterAttachment(byte MeshIndex, byte SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots)
+exec function SetCharacterAttachment(int MeshIndex, int SkinIndex, int AttachmentIndex, optional bool bIgnoreConflictingSlots)
 {
     local Pawn P;
     local KFPlayerController KFPC;
@@ -600,7 +613,7 @@ exec function HansGunsOut()
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.DoSpecialMove(36, false, none, 1);        
+        KFPM.DoSpecialMove(38, false, none, 1);        
     }    
 }
 
@@ -610,7 +623,7 @@ exec function HansGunsAway()
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.DoSpecialMove(36, false, none, 0);        
+        KFPM.DoSpecialMove(38, false, none, 0);        
     }    
 }
 
@@ -833,6 +846,7 @@ simulated exec function Pistols()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
     GiveWeapon("KFGameContent.KFWeap_Pistol_Deagle");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function Dualies()
@@ -842,6 +856,7 @@ simulated exec function Dualies()
     GiveWeapon("KFGameContent.KFWeap_Pistol_DualColt1911");
     GiveWeapon("KFGameContent.KFWeap_Revolver_DualRem1858");
     GiveWeapon("KFGameContent.KFWeap_Revolver_DualSW500");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhinoDual");
 }
 
 simulated exec function Singles()
@@ -851,6 +866,7 @@ simulated exec function Singles()
     GiveWeapon("KFGameContent.KFWeap_Pistol_Colt1911");
     GiveWeapon("KFGameContent.KFWeap_Revolver_Rem1858");
     GiveWeapon("KFGameContent.KFWeap_Revolver_SW500");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function DummyWeapon()
@@ -867,6 +883,7 @@ simulated exec function Berserk()
     GiveWeapon("KFGameContent.KFWeap_Eviscerator");
     GiveWeapon("KFGameContent.KFWeap_Edged_Zweihander");
     GiveWeapon("KFGameContent.KFWeap_Blunt_MaceAndShield");
+    GiveWeapon(" KFGameContent.KFWeap_Blunt_PowerGloves ");
 }
 
 simulated exec function Nails()
@@ -892,6 +909,7 @@ simulated exec function Assault()
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_AR15");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_SCAR");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_AK12");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MKB42");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_M16M203");
     GiveWeapon("KFGameContent.KFWeap_LMG_Stoner63A");
 }
@@ -914,6 +932,15 @@ simulated exec function March()
     GiveWeapon("KFGameContent.KFWeap_SMG_Mac10");
     GiveWeapon("KFGameContent.KFWeap_Pistol_AF2011");
     GiveWeapon("KFGameContent.KFWeap_HuskCannon");
+}
+
+simulated exec function Summer()
+{
+    GiveWeapon("KFGameContent.KFWeap_Blunt_PowerGloves");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_M99");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_ElephantGun");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Thompson");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MKB42");
 }
 
 simulated exec function Demo()
@@ -963,6 +990,7 @@ simulated exec function Sharpshooter()
     GiveWeapon("KFGameContent.KFWeap_Rifle_M14EBR");
     GiveWeapon("KFGameContent.KFWeap_Rifle_RailGun");
     GiveWeapon("KFGameContent.KFWeap_Rifle_CenterfireMB464");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function Swat()
@@ -1687,7 +1715,7 @@ exec function AIHuskFlamethrower()
     if((((KFAIC != none) && KFAIC.Pawn != none) && KFAIC.Pawn.Health > 0) && KFAIC.Pawn.IsA('KFPawn_ZedHusk'))
     {
         KFAIC.MovementPlugin.DisablePlugin();
-        KFPawn(KFAIC.Pawn).DoSpecialMove(22, true, Outer.Pawn, 255);        
+        KFPawn(KFAIC.Pawn).DoSpecialMove(23, true, Outer.Pawn, 255);        
     }
     else
     {
@@ -1708,6 +1736,26 @@ exec function DrawLineFromNPC(optional float Length)
         KFDL.AddDebugSphere(KFAIC.Pawn.Location, 32, 8, 0, 255, 0, true);
         KFDL.AddDebugLine(KFAIC.Pawn.Location, KFAIC.Pawn.Location + (vector(KFAIC.Pawn.Rotation) * Length), 255, 0, 0, true);
         KFDL.AddDebugText3D(KFAIC.Pawn.Location + (vector(KFAIC.Pawn.Rotation) * (Length * 0.5)), string(Length) @ "Units", true, 0, 0, 255, true);
+    }
+}
+
+exec function AllZedsTaunt(optional bool bSlow)
+{
+    local KFPawn_Monster KFPM;
+    local bool bFound;
+
+    bSlow = true;
+    foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
+    {
+        if((KFPM.MyKFAIC != none) && KFPM.IsAliveAndWell())
+        {
+            Class'AICommand_TauntEnemy'.static.Taunt(KFPM.MyKFAIC, KFPawn(Outer.Pawn), 1);
+            bFound = true;
+        }        
+    }    
+    if(bFound && bSlow)
+    {
+        Outer.SetTimer(2.5, false, 'ZedTauntTimer', self);
     }
 }
 
@@ -1741,6 +1789,11 @@ exec function SlasherTaunt(optional bool bSlow)
     {
         Outer.SetTimer(2.5, false, 'SlasherTauntTimer', self);
     }
+}
+
+function ZedTauntTimer()
+{
+    KFGameInfo(Outer.WorldInfo.Game).DramaticEvent(1, 13);
 }
 
 function SlasherTauntTimer()
@@ -2702,7 +2755,7 @@ exec function AIScream()
         if((KFPM.IsA('KFPawn_ZedSiren') && KFPM.IsAliveAndWell()) && KFPM.MyKFAIC != none)
         {
             Siren = KFPM;
-            KFPM.DoSpecialMove(20, true);
+            KFPM.DoSpecialMove(21, true);
         }        
     }    
     foreach Outer.DynamicActors(Class'KFPawn_Monster', KFPM)
@@ -4140,13 +4193,14 @@ exec function PlayTaunt()
     }    
 }
 
-exec function PlayKnockdown()
+exec function PlayKnockdown(optional Vector LinearVelocity)
 {
     local KFPawn_Monster P;
 
+    LinearVelocity = vect(0, 0, 0);
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', P)
     {
-        P.Knockdown(,, vect(1, 1, 1), Outer.Pawn.Location, 1000, 100);        
+        P.Knockdown(LinearVelocity, vect(1, 1, 1), Outer.Pawn.Location, 1000, 100);        
     }    
 }
 
@@ -4634,7 +4688,28 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
                                                                                                 {
                                                                                                     if(Left(ZedName, 1) ~= "P")
                                                                                                     {
-                                                                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch" $ VersusSuffix, Class'Class'));
+                                                                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch" $ VersusSuffix, Class'Class'));                                                                                                        
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        if(Left(ZedName, 3) ~= "Emp")
+                                                                                                        {
+                                                                                                            SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_EMP" $ VersusSuffix, Class'Class'));                                                                                                            
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            if(Left(ZedName, 5) ~= "Laser")
+                                                                                                            {
+                                                                                                                SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_Laser" $ VersusSuffix, Class'Class'));                                                                                                                
+                                                                                                            }
+                                                                                                            else
+                                                                                                            {
+                                                                                                                if(Left(ZedName, 4) ~= "Rock")
+                                                                                                                {
+                                                                                                                    SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_Rocket" $ VersusSuffix, Class'Class'));
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
                                                                                                     }
                                                                                                 }
                                                                                             }
@@ -6768,6 +6843,17 @@ exec function SetMissionObjectiveVisible(bool bVisible)
     }
 }
 
+exec function UpgradeWeapon()
+{
+    local KFPawn MyPawn;
+
+    MyPawn = KFPawn(GetMyPawn());
+    if((MyPawn != none) && MyPawn.MyKFWeapon != none)
+    {
+        MyPawn.MyKFWeapon.UpgradeWeapon();
+    }
+}
+
 exec function ForceSpecialWave(optional string ZedTypeName)
 {
     local int AIType;
@@ -6808,6 +6894,24 @@ exec function ForceNextObjective()
     if((KFGameInfo(Outer.WorldInfo.Game) != none) && KFGameInfo(Outer.WorldInfo.Game).MyKFGRI != none)
     {
         KFGameInfo(Outer.WorldInfo.Game).MyKFGRI.bForceNextObjective = true;
+    }
+}
+
+exec function ActivateAllPickups()
+{
+    local int I;
+
+    if(KFGameInfo(Outer.WorldInfo.Game) != none)
+    {
+        I = 0;
+        J0x4D:
+
+        if(I < KFGameInfo(Outer.WorldInfo.Game).ItemPickups.Length)
+        {
+            KFGameInfo(Outer.WorldInfo.Game).ActivateNextPickup(KFGameInfo(Outer.WorldInfo.Game).ItemPickups[I], 1);
+            ++ I;
+            goto J0x4D;
+        }
     }
 }
 

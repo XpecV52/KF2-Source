@@ -47,6 +47,17 @@ var private{private} const int SeasonalEventId;
 var private int WeeklyEventIndex;
 
 /************************************************************************************
+* @name		Content
+***********************************************************************************/
+/**
+	List of packages that were manually added to root for content precaching reasons.
+	These are removed from root during server travel in order to allow them to be
+	garbage collected while still maintaining a cached list in global space while a
+	level is running.
+ */
+var init array<Object> CachedRootPackages;
+
+/************************************************************************************
  * @name		User Options
  ***********************************************************************************/
 
@@ -166,6 +177,12 @@ var config bool	bEnableAdvDebugLines;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+
+/************************************************************************************
+* @name		Content
+***********************************************************************************/
+native static function CacheToRoot(Object NewPackage);
+native static function ClearCachedRootPackages();
 
 /***********************************************************************************
 * @name		Debug

@@ -69,6 +69,7 @@ defaultproperties
     EventNames[`TRAD_AdviceHusk]=                    TRAD_AdviceHusk
     EventNames[`TRAD_AdvicePatriarch]=               TRAD_AdvicePatriarch
     EventNames[`TRAD_AdviceHans]=                    TRAD_AdviceHans
+    EventNames[`TRAD_AdviceMatriarch]=               TRAD_AdviceMatriarch
     EventNames[`TRAD_ObjDefendT]=                    TRAD_ObjDefendT
     EventNames[`TRAD_ObjDefendTWon]=                 TRAD_ObjDefendTWon
     EventNames[`TRAD_ObjDefendTDeclined]=            TRAD_ObjDefendTDeclined

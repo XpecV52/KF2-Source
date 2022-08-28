@@ -24,24 +24,21 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=12.0,Y=12,Z=-6)
 
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
-	End Object
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_9MM_MESH.Wep_1stP_9mm_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_9MM_ANIM.Wep_1stP_9MM_Anim'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_9MM_ARCH.Wep_9mm_3P'
+	// Content
+	PackageKey="9mm"
+	FirstPersonMeshName="WEP_1P_9MM_MESH.Wep_1stP_9mm_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_9MM_ANIM.Wep_1stP_9MM_Anim"
+	PickupMeshName="WEP_3P_9MM_MESH.Wep_9mm_Pickup"
+	AttachmentArchetypeName="WEP_9MM_ARCH.Wep_9mm_3P"
+	MuzzleFlashTemplateName="WEP_9MM_ARCH.Wep_9MM_MuzzleFlash"
 
    	// Zooming/Position
 	IronSightPosition=(X=10,Y=0,Z=0)
 
 	// Ammo
 	MagazineCapacity[0]=15
-	SpareAmmoCapacity[0]=225
-	InitialSpareMags[0]=7
+	SpareAmmoCapacity[0]=75 //225
+	InitialSpareMags[0]=4
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -64,8 +61,8 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pistol9mm'
-	FireInterval(DEFAULT_FIREMODE)=+0.175
-	InstantHitDamage(DEFAULT_FIREMODE)=15.0
+	FireInterval(DEFAULT_FIREMODE)=+0.2 //0.175
+	InstantHitDamage(DEFAULT_FIREMODE)=25.0 //15
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_9mm'
 	Spread(DEFAULT_FIREMODE)=0.015
 	FireOffset=(X=20,Y=4.0,Z=-3)
@@ -79,7 +76,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=20
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_9MM_ARCH.Wep_9MM_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Handling_DryFire'
 
@@ -106,5 +102,12 @@ defaultproperties
 	bHasFireLastAnims=true
 
 	BonesToLockOnEmpty=(RW_Bolt, RW_Bullets1)
+
+	// Weapon Upgrade stat boosts. Setting weight to 0 because single 9MM cannot be sold.
+	WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=0) //1
+	WeaponUpgrades[3]=(IncrementDamage=1.9f,IncrementWeight=0) //1
+	WeaponUpgrades[4]=(IncrementDamage=2.2f,IncrementWeight=0) //2
+	WeaponUpgrades[5]=(IncrementDamage=2.5f,IncrementWeight=0) //3
 }
 

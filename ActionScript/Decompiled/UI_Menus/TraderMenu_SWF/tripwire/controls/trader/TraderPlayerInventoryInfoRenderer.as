@@ -29,6 +29,8 @@ package tripwire.controls.trader
         
         public var weaponUpNumText:TextField;
         
+        public var favoriteIcon:MovieClip;
+        
         public var weaponIcon:TripUILoaderQueue;
         
         public var _bHasLowAmmo:Boolean;
@@ -111,11 +113,21 @@ package tripwire.controls.trader
                 this.itemName.text = !!param1.itemName ? param1.itemName : "";
                 this.ammoNum.text = param1.itemAmmo && param1.itemAmmo != "0/0" ? param1.itemAmmo : "- - -";
                 this.bHasLowAmmo = !!param1.lowAmmo ? Boolean(param1.lowAmmo) : Boolean("");
+                if(this.favoriteIcon)
+                {
+                    this.favoriteIcon.visible = !!param1.bIsFavorite ? Boolean(param1.bIsFavorite) : false;
+                }
                 if(this.weaponUpFrame != null)
                 {
                     this.weaponUpFrame.visible = !!param1.weaponTier ? true : false;
-                    this.weaponUpPlusIcon.visible = !!param1.weaponTier ? true : false;
-                    this.weaponUpNumText.text = !!param1.weaponTier ? param1.weaponTier : "";
+                    if(this.weaponUpPlusIcon)
+                    {
+                        this.weaponUpPlusIcon.visible = !!param1.weaponTier ? true : false;
+                    }
+                    if(this.weaponUpNumText)
+                    {
+                        this.weaponUpNumText.text = !!param1.weaponTier ? param1.weaponTier : "";
+                    }
                     this.itemNameColor = !!param1.weaponTier ? uint(this.upgradeColor) : uint(this.regularColor);
                 }
                 if(!selected)
@@ -129,6 +141,10 @@ package tripwire.controls.trader
                 if(this.weaponIcon != null && param1.itemSource && param1.itemSource != "")
                 {
                     this.weaponIcon.source = param1.itemSource;
+                }
+                else
+                {
+                    trace("ITEM GETS NO ICON: ",this.weaponIcon,param1.itemSource);
                 }
                 if(this.itemWeight != null && this.weightIcon != null)
                 {

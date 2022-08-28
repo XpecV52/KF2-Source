@@ -11,6 +11,9 @@
 
 class KFCommon_LocalizedStrings extends Object;
 
+var localized string PrestigeWarningString;
+var localized string PrestigeBonusString;
+
 var localized string FailedToReachInventoryServerString;
 
 var localized array<string> DifficultyStrings;
@@ -50,6 +53,7 @@ var localized string LoadingString;
 
 var localized string AutoTradeCompleteString;
 var localized string AutoFillCompleteString;
+var localized string WeaponUpgradeComepleteString;
 var localized string SecondaryWeaponPurchasedString;
 var localized string NoItemsPurchasedString;
 
@@ -88,6 +92,9 @@ var localized string DiscordWaveString;
 
 var localized string ProceedToTutorialString;
 var localized string ProceedToTutorialDescriptionString;
+
+var localized string NotAvailableInFreeTrialString;
+var localized string NetworkCheckFreeTrialFailedString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -191,6 +198,8 @@ static function string GetFriendlyMapName(string MapName)
 
 defaultproperties
 {
+   PrestigeWarningString="Reset Perk back to 0?  This cannot be undone."
+   PrestigeBonusString="Prestige Bonus"
    FailedToReachInventoryServerString="Failed to reach item server.  Inventory will not be available."
    DifficultyStrings(0)="Normal"
    DifficultyStrings(1)="Hard"
@@ -237,6 +246,7 @@ defaultproperties
    LoadingString="Loading..."
    AutoTradeCompleteString="Auto Trade Complete: "
    AutoFillCompleteString="Autofilled Supplies"
+   WeaponUpgradeComepleteString="Weapon Upgraded"
    SecondaryWeaponPurchasedString="Secondary Weapon Purchased"
    NoItemsPurchasedString="No Items Purchased"
    SetTakeoverServerPasswordTitle="Enter a new password to protect your game:"

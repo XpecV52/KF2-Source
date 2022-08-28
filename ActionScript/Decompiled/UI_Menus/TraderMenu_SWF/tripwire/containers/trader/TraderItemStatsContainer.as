@@ -65,17 +65,28 @@ package tripwire.containers.trader
         
         public var favoriteButton:TripButton;
         
-        public var favoriteTextField:TextField;
+        public var upgradeButton:TripButton;
         
         public var favoriteControllerIcon:MovieClip;
         
-        public var favoriteIcon:MovieClip;
-        
         public var upgradeFrame:MovieClip;
+        
+        public var upgradeTextField:TextField;
+        
+        public var DoshIcon:MovieClip;
+        
+        public var upgradeCostTextField:TextField;
+        
+        public var upgradeWeightPlusIcon:MovieClip;
+        
+        public var upgradeWeightIcon:MovieClip;
+        
+        public var upgradeWeightTextField:TextField;
         
         public function TraderItemStatsContainer()
         {
             super();
+            this.upgradeButton.focusable = false;
         }
     }
 }

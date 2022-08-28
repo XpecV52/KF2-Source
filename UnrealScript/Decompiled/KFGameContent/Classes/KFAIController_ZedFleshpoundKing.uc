@@ -163,7 +163,7 @@ function NotifySpecialMoveEnded(KFSpecialMove SM)
 
 function bool CanSwitchEnemies()
 {
-    return (MyKFPawn != none) && MyKFPawn.SpecialMove != 22;
+    return (MyKFPawn != none) && MyKFPawn.SpecialMove != 23;
 }
 
 event bool FindNewEnemy()

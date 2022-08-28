@@ -12,14 +12,20 @@ class KFWeap_AssaultRifle_AR15 extends KFWeap_RifleBase;
 
 defaultproperties
 {
+   PackageKey="AR15_9mm"
+   FirstPersonMeshName="WEP_1P_AR15_9mm_MESH.Wep_1stP_AR15_9mm_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_AR15_9mm_ANIM.Wep_1stP_AR15_9mm_Anim"
+   PickupMeshName="WEP_3P_AR15_9mm_MESH.Wep_AR15_Pickup"
+   AttachmentArchetypeName="WEP_AR15_9mm_ARCH.Wep_AR15_9mm_3P"
+   MuzzleFlashTemplateName="WEP_AR15_9mm_ARCH.Wep_AR15_9MM_MuzzleFlash"
+   bHasIronSights=True
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    BurstAmount=3
    InventorySize=4
    MagazineCapacity(0)=20
-   bHasIronSights=True
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000
    IronSightPosition=(X=7.000000,Y=0.000000,Z=0.000000)
@@ -35,14 +41,12 @@ defaultproperties
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Handling_DryFire'
    PlayerViewOffset=(X=9.000000,Y=10.000000,Z=-4.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_AR15_9mm_ARCH.Wep_AR15_9mm_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_AR15:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_AR15_9mm_ARCH.Wep_AR15_9MM_MuzzleFlash'
    maxRecoilPitch=225
    minRecoilPitch=150
    maxRecoilYaw=150
@@ -59,6 +63,10 @@ defaultproperties
    RecoilISMinPitchLimit=65460
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Commando'
+   WeaponUpgrades(1)=(IncrementDamage=1.200000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.400000)
+   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.800000)
+   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=2.000000)
    FiringStatesArray(0)="WeaponBurstFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -83,9 +91,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_AR15'
    FireOffset=(X=30.000000,Y=4.500000,Z=-4.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_RifleBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_AR15_9mm_MESH.Wep_1stP_AR15_9mm_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_AR15_9mm_ANIM.Wep_1stP_AR15_9mm_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -99,7 +105,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="AR-15 Varmint Rifle"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_RifleBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

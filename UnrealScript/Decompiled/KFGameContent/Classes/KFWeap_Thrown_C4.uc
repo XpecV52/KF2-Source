@@ -348,8 +348,12 @@ defaultproperties
     UpdateInterval=0.25
     DetonateAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Detonate'
     DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
+    PackageKey="C4"
+    FirstPersonMeshName="Wep_1P_C4_MESH.Wep_1stP_C4_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_C4_MESH.Wep_C4_Pickup"
+    AttachmentArchetypeName="WEP_C4_ARCH.Wep_C4_3P"
     FireModeIconPaths=/* Array type was not detected. */
-    InventoryGroup=EInventoryGroup.IG_Equipment
     InventorySize=3
     MagazineCapacity=1
     GroupPriority=50
@@ -360,9 +364,10 @@ defaultproperties
     FireAnim=C4_Throw
     FireLastAnim=C4_Throw_Last
     PlayerViewOffset=(X=6,Y=2,Z=-4)
-    AttachmentArchetype=KFWeapAttach_Dual_C4'WEP_C4_ARCH.Wep_C4_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Thrown_C4.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
+    CurrentFireMode=5
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -371,21 +376,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=25,Y=15,Z=0)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'Wep_1P_C4_MESH.Wep_1stP_C4_Rig'
-        AnimSets(0)=AnimSet'Wep_1P_C4_ANIM.Wep_1P_C4_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Thrown_C4.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="C4 Explosives"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_C4_MESH.Wep_C4_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Thrown_C4.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_C4_MESH.Wep_C4_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Thrown_C4.StaticPickupComponent'

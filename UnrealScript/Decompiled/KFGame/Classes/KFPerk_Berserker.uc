@@ -61,6 +61,22 @@ protected simulated event PostSkillUpdate()
 {
     super.PostSkillUpdate();
     SetTickIsDisabled(!IsNinjaActive());
+    ParryTimer();
+}
+
+function ClearPerkEffects()
+{
+    ParryTimer();
+    super.ClearPerkEffects();
+}
+
+reliable client simulated function ClientClearPerkEffects()
+{
+    if(Role != ROLE_Authority)
+    {
+        super.ClientClearPerkEffects();
+        ParryTimer();
+    }
 }
 
 event Tick(float DeltaTime)
@@ -610,4 +626,5 @@ defaultproperties
     AutoBuyLoadOutPath(3)=class'KFWeapDef_Eviscerator'
     HitAccuracyHandicap=2.5
     HeadshotAccuracyHandicap=-2
+    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.BerserkerKnife_PrestigePrecious_Mint_large"
 }

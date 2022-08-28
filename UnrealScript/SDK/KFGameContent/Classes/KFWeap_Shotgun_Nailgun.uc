@@ -99,7 +99,7 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
 defaultproperties
 {
     // Inventory
-	InventorySize=6
+	InventorySize=5 //6
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
 
@@ -121,41 +121,38 @@ defaultproperties
 	PlayerViewOffset=(X=10.0,Y=8,Z=-4)
 	IronSightPosition=(X=12,Y=0,Z=0)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Nail_Shotgun_MESH.Wep_1stP_Nail_ShotGun_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_Nail_Shotgun_ANIM.Wep_1stP_Nail_Shotgun_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_NailShotgun_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P'
+	// Content
+	PackageKey="Nail_Shotgun"
+	FirstPersonMeshName="WEP_1P_Nail_Shotgun_MESH.Wep_1stP_Nail_ShotGun_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_Nail_Shotgun_ANIM.Wep_1stP_Nail_Shotgun_Anim"
+	PickupMeshName="WEP_3P_Nail_Shotgun_MESH.Wep_NailShotgun_Pickup""
+	AttachmentArchetypeName="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P"
+	MuzzleFlashTemplateName="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_MuzzleFlash"
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_NailsBurst'
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Nail_Nailgun'
-	InstantHitDamage(DEFAULT_FIREMODE)=30
+	InstantHitDamage(DEFAULT_FIREMODE)=25 //30
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_NailShotgun'
 	Spread(DEFAULT_FIREMODE)=0.185
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
-	FireInterval(DEFAULT_FIREMODE)=0.4 // 150 RPM
+	FireInterval(DEFAULT_FIREMODE)=0.3 // 0.4   150 RPM
 	FireOffset=(X=30,Y=5,Z=-4)
 	// Shotgun
-	NumPellets(DEFAULT_FIREMODE)=7
+	NumPellets(DEFAULT_FIREMODE)=8 //7
 
 	// ALT_FIREMODE
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Nail'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponAltFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Nail_Nailgun'
-	InstantHitDamage(ALTFIRE_FIREMODE)=30
+	InstantHitDamage(ALTFIRE_FIREMODE)=25 //30
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_NailShotgun'
 	Spread(ALTFIRE_FIREMODE)=0.02
 	PenetrationPower(ALTFIRE_FIREMODE)=2.0
-	FireInterval(ALTFIRE_FIREMODE)=0.4 // 150 RPM
+	FireInterval(ALTFIRE_FIREMODE)=0.3 // 0.4  150 RPM
 	AltFireRecoilModifier=0.5
 	// Shotgun
 	NumPellets(ALTFIRE_FIREMODE)=1
@@ -165,8 +162,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_MuzzleFlash'
-
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_1P')
     WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_Nailgun.Play_WEP_SA_Nailgun_Fire_1P')
 
@@ -205,4 +200,9 @@ defaultproperties
 	AssociatedPerkClasses(1)=class'KFPerk_Support'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.2f, IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.25f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.4f, IncrementWeight=3)
 }

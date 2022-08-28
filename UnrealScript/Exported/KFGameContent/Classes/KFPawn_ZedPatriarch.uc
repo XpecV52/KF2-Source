@@ -435,7 +435,7 @@ function SummonChildren()
     MyKFGameInfo.GetAIDirector().bForceFrustration = true;
 
     // Select the correct batch of zeds to spawn during this battle phase
-    MinionWave = GetWaveInfo(CurrentBattlePhase, MyKFGameInfo.GameDifficulty);
+    MinionWave = GetWaveInfo(CurrentBattlePhase, MyKFGameInfo.GetModifiedGameDifficulty());
     if( MinionWave != none )
     {
 		if( MyKFGameInfo.SpawnManager != none )
@@ -700,7 +700,7 @@ simulated function bool CanMoveWhenMinigunning()
 
 	// See if this battle phase allows it
 	KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
-	if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhenMinigunning[KFGRI.GameDifficulty] )
+	if( KFGRI != none && BattlePhases[CurrentBattlePhase-1].bCanMoveWhenMinigunning[KFGRI.GetModifiedGameDifficulty()] )
 	{
 		return true;
 	}
@@ -2093,6 +2093,15 @@ defaultproperties
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=1000.000000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedPatriarch:FootstepCameraShake0'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_MonsterBoss:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_MonsterBoss:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    OnDeathAchievementID=130
    PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
    LocalizationKey="KFPawn_ZedPatriarch"
@@ -2197,10 +2206,10 @@ defaultproperties
       SpecialMoveClasses(17)=Class'KFGame.KFSM_Block'
       SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Patriarch_Heal'
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
-      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
@@ -2212,7 +2221,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object
@@ -2322,7 +2333,8 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=CloakedAkComponent0
+   Components(8)=SprintAkComponent0
+   Components(9)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=50000,Roll=50000)
    Name="Default__KFPawn_ZedPatriarch"

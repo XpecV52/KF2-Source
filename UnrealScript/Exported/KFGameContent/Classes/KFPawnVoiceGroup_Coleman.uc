@@ -542,6 +542,8 @@ class KFPawnVoiceGroup_Coleman extends KFPawnVoiceGroup;
 
 
 
+										  
+
 
 
 
@@ -846,6 +848,7 @@ defaultproperties
    DialogEvents(227)=(DefaultAudioCue=AkEvent'ww_vox_chr_Coleman.Play_Coleman_OBJE_PlayerDiedPackage_Base')
    DialogEvents(228)=(DefaultAudioCue=AkEvent'ww_vox_chr_Coleman.Play_Coleman_OBJE_PackageSecured_Base')
    DialogEvents(229)=(DefaultAudioCue=AkEvent'ww_vox_chr_Coleman.Play_Coleman_KZED_SprintTowardsZ_Base')
+   DialogEvents(230)=(DefaultAudioCue=AkEvent'ww_vox_chr_Coleman.Play_Coleman_MAN_Thanks')
    Name="Default__KFPawnVoiceGroup_Coleman"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

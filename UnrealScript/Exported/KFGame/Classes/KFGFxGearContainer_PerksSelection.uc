@@ -66,10 +66,12 @@ function UpdatePerkSelection(byte SelectedPerkIndex)
 			class'KFPerk'.static.LoadTierUnlockFromConfig(PerkClass, bTierUnlocked, UnlockedPerkLevel);
 		    TempObj = CreateObject( "Object" );
 		    TempObj.SetInt( "PerkLevel", KFPC.PerkList[i].PerkLevel );
+			TempObj.SetInt("prestigeLevel", KFPC.PerkList[i].PrestigeLevel);
 		    TempObj.SetString( "Title",  PerkClass.default.PerkName );	
 			TempObj.SetString( "iconSource",  "img://"$PerkClass.static.GetPerkIconPath() );
 			TempObj.SetBool("bTierUnlocked", bool(bTierUnlocked) && KFPC.PerkList[i].PerkLevel >= UnlockedPerkLevel);
 			
+
 		    DataProvider.SetElementObject( i, TempObj );
 		}	
 		SetObject( "perkData", DataProvider );

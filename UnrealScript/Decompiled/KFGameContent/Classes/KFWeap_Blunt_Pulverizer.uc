@@ -23,6 +23,7 @@ var() KFGameExplosion ExplosionTemplate;
 var KFImpactEffectInfo AltExploEffects;
 var transient Actor BlastAttachee;
 var transient float BlastSpawnOffset;
+var class<KFExplosionActor> NukeExplosionActorClass;
 
 replication
 {
@@ -59,6 +60,7 @@ simulated function CustomFire()
         bWasTimeDilated = WorldInfo.TimeDilation < 1;
     }
     PrepareExplosionTemplate();
+    SetExplosionActorClass();
     SpawnLoc = Instigator.GetWeaponStartTraceLocation();
     SpawnRot = GetPulverizerAim(SpawnLoc);
     SpawnLoc += (vector(SpawnRot) * BlastSpawnOffset);
@@ -82,15 +84,41 @@ simulated function CustomFire()
 
 protected simulated function PrepareExplosionTemplate()
 {
+    local KFPlayerReplicationInfo InstigatorPRI;
     local KFPlayerController KFPC;
     local KFPerk InstigatorPerk;
 
-    ExplosionTemplate = default.ExplosionTemplate;
-    ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
-    ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
-    ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
-    ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
-    ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
+    if(bWasTimeDilated)
+    {
+        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+        if(InstigatorPRI != none)
+        {
+            if(InstigatorPRI.bNukeActive)
+            {
+                ExplosionTemplate = Class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
+                ExplosionTemplate.Damage = ExplosionTemplate.Damage * Class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
+                ExplosionTemplate.DamageRadius = ExplosionTemplate.DamageRadius * Class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
+                ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.DamageFalloffExponent;                
+            }
+            else
+            {
+                if(InstigatorPRI.bConcussiveActive && AltExploEffects != none)
+                {
+                    ExplosionTemplate.ExplosionEffects = AltExploEffects;
+                    ExplosionTemplate.ExplosionSound = Class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
+                }
+            }
+        }        
+    }
+    else
+    {
+        ExplosionTemplate = default.ExplosionTemplate;
+        ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
+        ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
+        ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
+        ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
+        ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
+    }
     if(Owner.Role == ROLE_Authority)
     {
         KFPC = KFPlayerController(Instigator.Controller);
@@ -113,7 +141,7 @@ protected simulated function SetExplosionActorClass()
         {
             if(InstigatorPRI.bNukeActive)
             {
-                ExplosionActorClass = Class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass();
+                ExplosionActorClass = NukeExplosionActorClass;
                 return;
             }
         }
@@ -263,22 +291,29 @@ defaultproperties
 {
     ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
     ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
+    AltExploEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force'
     BlastSpawnOffset=-10
+    NukeExplosionActorClass=Class'KFGame.KFExplosion_ReplicatedNuke'
     ParryStrength=5
     ParryDamageMitigationPercent=0.4
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
+    PackageKey="Pulverizer"
+    FirstPersonMeshName="WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Pulverizer_MESH.Wep_Pulverizer_Pickup"
+    AttachmentArchetypeName="WEP_Pulverizer_ARCH.Wep_Pulverizer_3P"
+    MuzzleFlashTemplateName="WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash"
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
     MagazineCapacity=5
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=15
     WeaponFireSnd=/* Array type was not detected. */
-    AttachmentArchetype=KFWeapAttach_Pulverizer'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_F=/* Array type was not detected. */
         ChainSequence_B=/* Array type was not detected. */
@@ -290,29 +325,25 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Blunt_Pulverizer.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash'
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New'
-        AnimSets(0)=AnimSet'WEP_1P_Pulverizer_ANIM.Wep_1stP_Pulverizer_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Blunt_Pulverizer.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Pulverizer"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Pulverizer_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Blunt_Pulverizer.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Pulverizer_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Blunt_Pulverizer.StaticPickupComponent'

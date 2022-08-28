@@ -13,13 +13,11 @@ const BOSS_WAVE = 5;
 
 var int CurrentWeeklyMode;
 var int CurrentSpecialMode;
-var byte BaseGameDifficulty;
 
 replication
 {
      if(bNetDirty)
-        BaseGameDifficulty, CurrentSpecialMode, 
-        CurrentWeeklyMode;
+        CurrentSpecialMode, CurrentWeeklyMode;
 }
 
 simulated function bool IsFinalWave()
@@ -64,11 +62,6 @@ simulated function WaveStarted()
     {
         Class'KFTraderDialogManager'.static.BroadcastEndlessStartWaveDialog(WaveNum, WorldInfo);
     }
-}
-
-simulated event byte GetGameDifficulty()
-{
-    return BaseGameDifficulty;
 }
 
 defaultproperties

@@ -39,16 +39,13 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=14.0,Y=10,Z=-4)
 
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_AF2001_MESH.Wep_3rdP_AF2001_Pickup'
-	End Object
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_af2001_mesh.Wep_1stP_AF2001_Rig'
-		AnimSets(0)=AnimSet'wep_1p_af2001_anim.Wep_1stP_AF2001_Anim'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_AF2001_ARCH.Wep_AF2001_3P'
+	// Content
+	PackageKey="AF2001"
+	FirstPersonMeshName="wep_1p_af2001_mesh.Wep_1stP_AF2001_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_af2001_anim.Wep_1stP_AF2001_Anim"
+	PickupMeshName="WEP_3P_AF2001_MESH.Wep_3rdP_AF2001_Pickup"
+	AttachmentArchetypeName="WEP_AF2001_ARCH.Wep_AF2001_3P"
+	MuzzleFlashTemplateName="WEP_AF2001_ARCH.Wep_AF2001_MuzzleFlash"
 
    	// Zooming/Position
 	IronSightPosition=(X=11,Y=0,Z=0)
@@ -81,7 +78,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)= EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_PistolAF2011'
 	FireInterval(DEFAULT_FIREMODE)=+0.1898
-	InstantHitDamage(DEFAULT_FIREMODE)=53 //91
+	InstantHitDamage(DEFAULT_FIREMODE)=43 //91 //53
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AF2011'
 	PenetrationPower(DEFAULT_FIREMODE)=1.5
 	Spread(DEFAULT_FIREMODE)=0.01
@@ -97,7 +94,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=22
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_AF2001_ARCH.Wep_AF2001_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_AF2011.Play_WEP_AF2011_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_AF2011.Play_WEP_AF2011_Fire_1P') //@TODO: Replace me
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_DesertEagle.Play_WEP_SA_DesertEagle_Handling_DryFire' //@TODO: Replace me
 
@@ -106,7 +102,7 @@ defaultproperties
 	bHasFlashlight=false
 
 	// Inventory
-	InventorySize=3
+	InventorySize=2
 	GroupPriority=25
 	bCanThrow=true
 	bDropOnDeath=true
@@ -125,4 +121,8 @@ defaultproperties
 	BonesToLockOnEmpty=(RW_Bolt, RW_Bullets1)
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
 }

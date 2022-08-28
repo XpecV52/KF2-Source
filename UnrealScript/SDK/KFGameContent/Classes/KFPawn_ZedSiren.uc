@@ -225,7 +225,7 @@ defaultproperties
 	// ---------------------------------------------
 	// Movement / Physics
 	GroundSpeed=200.0f
-	SprintSpeed=200.0f
+	SprintSpeed=275.0f //200.00
 	PhysRagdollImpulseScale=0.5f
 	KnockdownImpulseScale=0.5f
 

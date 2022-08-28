@@ -202,30 +202,35 @@ ItemName="斯通纳 63A 轻机枪"
 ItemCategory="轻机枪"
 ItemDescription="•射击模式是全自动的。\n•斯坦纳 63A 是美国海军海豹突击队在越南战争中使用的主要武器，其弹药容量高，而且停止力极高。"
 
+[KFWeap_Knife_Survivalist]
+ItemName="刺刀"
+ItemCategory="近战"
+ItemDescription="•主要攻击 - 用于快速砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•曾经属于别人。不过，现在它是你的了！"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="万用刀"
 ItemCategory="近战"
-ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把美工刀。最适合用来割开你在游戏中找到的箱子。"
+ItemDescription="•主要攻击 - 用于快速砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•就是一把美工刀。最适合用来割开你在游戏中找到的箱子。"
 
 [KFWeap_Knife_FieldMedic]
 ItemName="解剖刀"
 ItemCategory="近战"
-ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把解剖刀。你是一名医疗兵，无需我们废话你也知道怎么用它。"
+ItemDescription="•主要攻击 - 用于快速砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•就是一把解剖刀。你是一名医疗兵，无需我们废话你也知道怎么用它。"
 
 [KFWeap_Knife_Firebug]
 ItemName="消防员的匕首"
 ItemCategory="近战"
-ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把消防员的匕首。你是一名消防员，无需我们废话你也知道怎么用它。"
+ItemDescription="•主要攻击 - 用于快速砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•就是一把消防员的匕首。你是一名消防员，无需我们废话你也知道怎么用它。"
 
 [KFWeap_Knife_Gunslinger]
 ItemName="鲍伊猎刀"
 ItemCategory="近战"
-ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•大号的老西部匕首。最适合切碎这里的丧尸。"
+ItemDescription="•主要攻击 - 用于快速砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•大号的老西部匕首。最适合切碎这里的丧尸。"
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="反曲刀"
 ItemCategory="近战"
-ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•戈卡士兵的传统匕首，就是一把斩刀。 "
+ItemDescription="•主要攻击 - 用于快速砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•戈卡士兵的传统匕首，更像是片刀而非砍刀。 "
 
 [KFWeap_Knife_SWAT]
 ItemName="策略匕首"
@@ -255,7 +260,7 @@ ItemDescription="•射击模式只有全自动。\n•备用射击可以射出�
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="双发霰弹枪"
 ItemCategory="霰弹枪"
-ItemDescription="•主射击只使用单管。\n•备用射击可以一次射两发。\n•双发 12 子弹霰弹枪。非常适合近战。即使是最大的丧尸也会被吓到脚软！"
+ItemDescription="•主要攻击只射击一发。\n•辅助攻击可以一次射两发。\n•双发 12 子弹霰弹枪。非常适合近战。即使是最大的丧尸也会被吓到脚软！"
 
 [KFWeap_Shotgun_AA12]
 ItemName="AA-12 自动霰弹枪"
@@ -345,7 +350,7 @@ ItemCategory="火焰"
 ItemDescription="•射击模式发射爆炸、易燃的炮弹。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•这是一对喷火式战斗机。"
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="燃烧战壕枪"
+ItemName="龙息"
 ItemCategory="霰弹枪"
 ItemDescription="•射击模式只有压动式。\n•一把采用龙息燃烧弹的霰弹枪。不仅致命，看起来也超棒。"
 
@@ -510,10 +515,25 @@ ItemName="双持 AF2011-A2"
 ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•两支枪各配有两个弹筒。四倍火力。这就是数学。你不能不信数学。"
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="毁灭射手"
+ItemCategory="霰弹枪"
+ItemDescription="•主要攻击只射击一发。\n•辅助攻击可以一次射四发。\n•双发不够爽？咱们上四发！"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="静电打击者"
+ItemCategory="近战"
+ItemDescription="•主要攻击 - 用于快速钝击，按住可以进行连击。\n•次要攻击 - 重型带电钝击。它是真的令人震惊！\n•想一拳揍在丧尸脸上？选它就对了！"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="冲锋枪"
 ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•速射燃烧弹药就是其特色。明白了吗？速射？就因为它是冲锋枪？啊，别在意。"
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="狙击步枪"
+ItemDescription="•射击模式只有单发。\n•每一发都是蓄力一击……额，就是一发非常大的子弹。高穿透，高伤害。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

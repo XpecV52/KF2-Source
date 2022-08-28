@@ -304,7 +304,7 @@ package tripwire.widgets
             this.objectiveXPRewardTextfield.text = !!param1.xpBonus ? param1.xpBonus : "";
             this.objectiveVoshRewardTextfield.text = !!param1.voshBonus ? param1.voshBonus : "";
             this.objectiveDescTextfield.text = !!param1.descString ? param1.descString : "Defend the marked waypoint";
-            this.objectiveRequireTextfield.text = !!param1.requireString ? param1.requireString : "(%x% players required)";
+            this.objectiveRequireTextfield.text = !!param1.requireString ? param1.requireString : "";
             this.objectiveIcon.source = !!param1.iconPath ? param1.iconPath : "";
             this.currentObjectiveColor = !!param1.isBonus ? uint(this.BONUS_COLOR) : uint(this.PRIORITY_COLOR);
             TweenMax.allTo([this.objectiveMainBumper,this.objectiveSideBumper,this.objectiveRewardLine],0,{

@@ -71,7 +71,7 @@ static function bool UsesSecondaryAmmo()
 
 static function int GetUpgradePrice(int UpgradeTier)
 {
-    if((UpgradeTier >= 0) && UpgradeTier <= default.UpgradePrice.Length)
+    if((UpgradeTier >= 0) && UpgradeTier < default.UpgradePrice.Length)
     {
         return default.UpgradePrice[UpgradeTier];
     }
@@ -87,14 +87,29 @@ static function int GetUpgradeSellPrice(int UpgradeTier)
     return -1;
 }
 
+static function int GetTotalUpgradePrice(int UpgradeTier)
+{
+    local int I, TotalPrice;
+
+    TotalPrice = -1;
+    if((UpgradeTier >= 0) && UpgradeTier < default.UpgradePrice.Length)
+    {
+        TotalPrice = 0;
+        I = 0;
+        J0x4E:
+
+        if(I <= UpgradeTier)
+        {
+            TotalPrice += default.UpgradePrice[UpgradeTier];
+            ++ I;
+            goto J0x4E;
+        }
+    }
+    return TotalPrice;
+}
+
 defaultproperties
 {
-    UpgradePrice(0)=400
-    UpgradePrice(1)=500
-    UpgradePrice(2)=600
-    UpgradePrice(3)=700
-    UpgradeSellPrice(0)=100
-    UpgradeSellPrice(1)=150
-    UpgradeSellPrice(2)=200
-    UpgradeSellPrice(3)=250
+    UpgradePrice(0)=450
+    UpgradeSellPrice(0)=337
 }

@@ -579,13 +579,13 @@ defaultproperties
     StandAloneHealAmount=50
     ScreenUIClass=Class'KFGFxWorld_HealerScreen'
     UIUpdateInterval=1
-    InventoryGroup=EInventoryGroup.IG_Equipment
-    MagazineCapacity=100
     bTargetAdhesionEnabled=false
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false
+    InventoryGroup=EInventoryGroup.IG_Equipment
+    MagazineCapacity=100
     GroupPriority=6
     AmmoCost(0)=100
     AmmoCost(1)=100

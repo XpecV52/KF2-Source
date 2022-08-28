@@ -11,12 +11,14 @@ class KFWeap_Knife_Support extends KFWeap_Edged_Knife
 
 defaultproperties
 {
+    PackageKey="SupportKnife"
+    FirstPersonMeshName="WEP_1P_SupportKnife_MESH.Wep_1stP_SupportKnife_Rig"
+    AttachmentArchetypeName="WEP_SupportKnife_ARCH.Wep_SupportKnife_3P"
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SupportKnife'
-    AttachmentArchetype=KFWeaponAttachment'WEP_SupportKnife_ARCH.Wep_SupportKnife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Support.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_SupportKnife_MESH.Wep_1stP_SupportKnife_Rig'
+        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_Support.FirstPersonMesh'

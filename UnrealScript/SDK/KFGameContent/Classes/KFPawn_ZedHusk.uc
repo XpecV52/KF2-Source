@@ -153,7 +153,7 @@ simulated function ANIMNOTIFY_WarnZedsOfFireball()
 		    else
 		    {
 			   AimDirection = TraceEnd - FireLocation;
-			}		
+			}
 		}
 		else
 		{
@@ -216,7 +216,7 @@ simulated event Tick( float DeltaTime )
 	}
 	else if( ChestLightComponent.Radius > default.ChestLightComponent.Radius )
 	{
-		ChestLightComponent.SetRadius( FInterpConstantTo(ChestLightComponent.Radius, default.ChestLightComponent.Radius, DeltaTime, AmbientLightRadiusInterpSpeed) );			
+		ChestLightComponent.SetRadius( FInterpConstantTo(ChestLightComponent.Radius, default.ChestLightComponent.Radius, DeltaTime, AmbientLightRadiusInterpSpeed) );
 	}
 }
 
@@ -595,7 +595,7 @@ DefaultProperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.5)))  //0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(1.15)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(0.75)))
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5)))	
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))
 
 	//Special Case damage resistance
@@ -615,8 +615,12 @@ DefaultProperties
 	ControllerClass=class'KFAIController_ZedHusk'
 	DamageRecoveryTimeHeavy=0.75f
 	DamageRecoveryTimeMedium=1.0f
-	
+
 	KnockdownImpulseScale=1.0f
+
+	ElitePawnClass.Add(class'KFPawn_ZedDAR_EMP')
+	ElitePawnClass.Add(class'KFPawn_ZedDAR_Laser')
+	ElitePawnClass.Add(class'KFPawn_ZedDAR_Rocket')
 
 	// ---------------------------------------------
 	// Gameplay

@@ -8,6 +8,36 @@
 class KFReplicatedShowPathObjective extends KFReplicatedShowPathActor
     hidecategories(Navigation);
 
+var KFGame.KFInterface_MapObjective.EObjectiveType CurrentObjectiveType;
+
+replication
+{
+     if(bNetDirty)
+        CurrentObjectiveType;
+}
+
+simulated function SetObjeciveType(KFGame.KFInterface_MapObjective.EObjectiveType ObjEnum)
+{
+    CurrentObjectiveType = ObjEnum;
+    bNetDirty = true;
+}
+
+simulated function class<KFEmit_Path> GetPathClass()
+{
+    switch(CurrentObjectiveType)
+    {
+        case 2:
+            return Class'KFEmit_ObjectivePath_Weld';
+        case 3:
+            return Class'KFEmit_ObjectivePath_ActivateTrigger';
+        case 1:
+            return PathClass;
+        default:
+            return PathClass;
+            break;
+    }
+}
+
 defaultproperties
 {
     PathClass=Class'KFEmit_ObjectivePath'

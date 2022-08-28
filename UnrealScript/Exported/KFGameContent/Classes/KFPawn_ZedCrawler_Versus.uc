@@ -92,6 +92,15 @@ defaultproperties
    SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedMove_G,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Explode',NameLocalizationKey="Suicide")
    SpecialMoveCooldowns(7)=(CoolDownTime=0.850000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Crawler_UI.ZED-VS_Icons_Crawler-Jump',bShowOnHud=False)
    JumpBumpDamageType=Class'kfgamecontent.KFDT_Bludgeon_ZedJump'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedCrawler:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedCrawler:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedCrawler:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -176,18 +185,20 @@ defaultproperties
       SpecialMoveClasses(21)=None
       SpecialMoveClasses(22)=None
       SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerCrawler_Melee'
-      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerCrawler_Melee2'
-      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerCrawler_Melee'
+      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerCrawler_Melee2'
       SpecialMoveClasses(27)=None
       SpecialMoveClasses(28)=None
-      SpecialMoveClasses(29)=Class'kfgamecontent.KFSM_PlayerCrawler_Suicide'
-      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=Class'kfgamecontent.KFSM_PlayerCrawler_Suicide'
       SpecialMoveClasses(31)=None
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedCrawler:SpecialMoveHandler_0'
    End Object
@@ -294,6 +305,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedCrawler_Versus"
    ObjectArchetype=KFPawn_ZedCrawler'kfgamecontent.Default__KFPawn_ZedCrawler'

@@ -216,16 +216,13 @@ defaultproperties
 	DOF_FG_FocalRadius=150
 	DOF_FG_MaxNearBlurSize=1
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_Flamethrower_MESH.Wep_1stP_Flamethrower_Rig'
-		AnimSets(0)=AnimSet'wep_1p_flamethrower_anim.Wep_1stP_Flamethrower_anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_FlameThrower_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_Flamethrower_ARCH.Wep_Flamethrower_3P'
+	// Content
+	PackageKey="Flamethrower"
+	FirstPersonMeshName="WEP_1P_Flamethrower_MESH.Wep_1stP_Flamethrower_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_flamethrower_anim.Wep_1stP_Flamethrower_anim"
+	PickupMeshName="WEP_3P_Flamethrower_MESH.Wep_FlameThrower_Pickup"
+	AttachmentArchetypeName="WEP_Flamethrower_ARCH.Wep_Flamethrower_3P"
+	MuzzleFlashTemplateName="WEP_Flamethrower_ARCH.Wep_Flamethrower_MuzzleFlash"
 
    	// Zooming/Position
 	PlayerViewOffset=(X=3.0,Y=9,Z=-3)
@@ -258,7 +255,7 @@ defaultproperties
     HippedRecoilModifier=1.5
 
     // Inventory
-	InventorySize=8
+	InventorySize=7 //8
 	GroupPriority=75
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
 
@@ -281,7 +278,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=28
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Flamethrower_ARCH.Wep_Flamethrower_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Fire_1P_Loop')
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Fire_3P_LoopEnd', FirstPersonCue=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Fire_1P_LoopEnd')
 
@@ -304,4 +300,8 @@ defaultproperties
    	AssociatedPerkClasses(0)=class'KFPerk_Firebug'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.2f,IncrementWeight=2)
 }

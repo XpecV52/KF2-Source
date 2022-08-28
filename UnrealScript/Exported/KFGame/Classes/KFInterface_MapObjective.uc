@@ -10,6 +10,14 @@
 
 interface KFInterface_MapObjective;
 
+enum EObjectiveType
+{
+	EObj_Default,
+	EObj_SYG,
+	EObj_Weld,
+	EObj_Trigger,
+};
+
 // Status
 simulated function ActivateObjective();
 simulated function DeactivateObjective();
@@ -25,12 +33,18 @@ simulated function bool IsBonus();
 function string GetLocalizedName();
 function bool CanActivateObjective();
 simulated function float GetProgress();
+simulated function bool HasFailedObjective();
 simulated function float GetActivationPctChance();
+simulated function float GetSpawnRateMod();
+
+simulated function bool UsesMultipleActors();
+simulated function string GetActorCount();;
 
 simulated function string GetLocalizedDescription();
 simulated function string GetLocalizedRequirements();
 
 // HUD
+simulated function bool ShouldDrawIcon();
 simulated function Vector GetIconLocation();
 simulated function Texture2D GetIcon();
 

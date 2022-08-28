@@ -88,6 +88,15 @@ defaultproperties
    SpecialMoveCooldowns(3)=(CoolDownTime=0.200000,SMHandle=SM_PlayerZedMove_V,SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Evade',NameLocalizationKey="Evade")
    SpecialMoveCooldowns(4)=(CoolDownTime=1.000000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Jump',bShowOnHud=False)
    JumpBumpDamageType=Class'kfgamecontent.KFDT_Bludgeon_ZedJump'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Slasher:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Slasher:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot_Slasher:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -172,10 +181,10 @@ defaultproperties
       SpecialMoveClasses(21)=None
       SpecialMoveClasses(22)=None
       SpecialMoveClasses(23)=None
-      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerSlasher_Melee'
-      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerSlasher_Melee2'
-      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerSlasher_Roll'
-      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerSlasher_Melee'
+      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerSlasher_Melee2'
+      SpecialMoveClasses(27)=Class'kfgamecontent.KFSM_PlayerSlasher_Roll'
       SpecialMoveClasses(28)=None
       SpecialMoveClasses(29)=None
       SpecialMoveClasses(30)=None
@@ -183,7 +192,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedClot_Slasher:SpecialMoveHandler_0'
    End Object
@@ -289,6 +300,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedClot_Slasher_Versus"
    ObjectArchetype=KFPawn_ZedClot_Slasher'kfgamecontent.Default__KFPawn_ZedClot_Slasher'

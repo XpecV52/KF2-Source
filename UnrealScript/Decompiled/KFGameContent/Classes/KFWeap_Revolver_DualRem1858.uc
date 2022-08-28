@@ -21,12 +21,18 @@ defaultproperties
     BulletFXSocketNames=/* Array type was not detected. */
     BulletMeshComponents=/* Array type was not detected. */
     CylinderRotInfo=(InC=-60,Time=0.0875)
-    InventorySize=4
-    MagazineCapacity=12
+    PackageKey="DualRemington1858"
+    FirstPersonMeshName="WEP_1P_DualRemington1858_MESH.Wep_1stP_DualRemington1858_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_DualRemington1858_MESH.Wep_3P_Remington_1858_Pickup"
+    AttachmentArchetypeName="WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P"
+    MuzzleFlashTemplateName="WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    InventorySize=4
+    MagazineCapacity=12
     MeshFOV=60
     MeshIronSightFOV=55
     PlayerIronSightFOV=77
@@ -43,9 +49,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=23,Y=0,Z=-1)
-    AttachmentArchetype=KFWeapAttach_DualBase'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Revolver_DualRem1858.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_MuzzleFlash'
     maxRecoilPitch=400
     minRecoilPitch=350
     maxRecoilYaw=125
@@ -62,6 +66,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -70,22 +75,18 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=17,Y=4,Z=-2.25)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_DualRemington1858_MESH.Wep_1stP_DualRemington1858_Rig'
         AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master_Revolver'
-        AnimSets(0)=AnimSet'WEP_1P_DualRemington1858_Anim.WEP_1P_DualRemington1858_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualRem1858.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Dual 1858 Revolvers"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Revolver_DualRem1858.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Revolver_DualRem1858.StaticPickupComponent'

@@ -48,7 +48,7 @@ event InitGame(string Options, out string ErrorMessage)
         ActiveEventIdx = KGE.GetWeeklyEventIndex() % OutbreakEvent.SetEvents.Length;
     }
     OutbreakEvent.SetActiveEvent(ActiveEventIdx);
-    SetGameDifficulty();
+    SetModifiedGameDifficulty();
     SetPickupItemList();
     SetZedTimeOverrides();
     SetSpawnPointOverrides();
@@ -62,7 +62,7 @@ event PreBeginPlay()
     OutbreakEvent.UpdateGRI();
 }
 
-function SetGameDifficulty()
+function SetModifiedGameDifficulty()
 {
     MinGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
     MaxGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
@@ -296,25 +296,6 @@ function EndOfMatch(bool bVictory)
     }
 }
 
-function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed)
-{
-    super(KFGameInfo).ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-    OutbreakEvent.ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-}
-
-function float GetTotalWaveCountScale()
-{
-    if(WaveNum == (WaveMax - 1))
-    {
-        return 1;
-    }
-    if(OutbreakEvent.ActiveEvent.WaveAICountScale.Length > 0)
-    {
-        return (((GetLivingPlayerCount()) > OutbreakEvent.ActiveEvent.WaveAICountScale.Length) ? OutbreakEvent.ActiveEvent.WaveAICountScale[OutbreakEvent.ActiveEvent.WaveAICountScale.Length - 1] : OutbreakEvent.ActiveEvent.WaveAICountScale[(GetLivingPlayerCount()) - 1]);
-    }
-    return 1;
-}
-
 function StartWave()
 {
     super.StartWave();
@@ -480,17 +461,6 @@ function class<KFPawn_Monster> GetAISpawnType(KFGame.KFAISpawnManager.EAIType AI
     return AIClassList[AIType];
 }
 
-function SetMonsterDefaults(KFPawn_Monster P)
-{
-    super(KFGameInfo).SetMonsterDefaults(P);
-    OutbreakEvent.AdjustMonsterDefaults(P);
-}
-
-function float GetGameInfoSpawnRateMod()
-{
-    return 1 / OutbreakEvent.ActiveEvent.SpawnRateMultiplier;
-}
-
 function bool AllowPrimaryWeapon(string ClassPath)
 {
     local STraderItem Item;
@@ -527,57 +497,6 @@ function RestartPlayer(Controller NewPlayer)
     OutbreakEvent.AdjustRestartedPlayer(KFPH);
 }
 
-function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType)
-{
-    super(KFGameInfo).ScoreDamage(DamageAmount, HealthBeforeDamage, InstigatedBy, DamagedPawn, DamageType);
-    OutbreakEvent.AdjustScoreDamage(InstigatedBy, DamagedPawn, DamageType);
-}
-
-function ScoreHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn, class<DamageType> DamageType)
-{
-    super(GameInfo).ScoreHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn, DamageType);
-    if(OutbreakEvent.ActiveEvent.bScaleOnHealth)
-    {
-        OutbreakEvent.AdjustPawnScale(HealedPawn);
-    }
-}
-
-function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn)
-{
-    super(KFGameInfo).PassiveHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn);
-    if(OutbreakEvent.ActiveEvent.bScaleOnHealth)
-    {
-        OutbreakEvent.AdjustPawnScale(HealedPawn);
-    }
-}
-
-function ScoreKill(Controller Killer, Controller Other)
-{
-    super(KFGameInfo).ScoreKill(Killer, Other);
-    if(((Role == ROLE_Authority) && Other != none) && Other.Pawn != none)
-    {
-        OutbreakEvent.OnScoreKill(Other.Pawn);
-    }
-}
-
-function NotifyRally(KFPawn RalliedPawn)
-{
-    super(KFGameInfo).NotifyRally(RalliedPawn);
-    if(OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
-    {
-        OutbreakEvent.AdjustForBeefcakeRules(RalliedPawn, 1);
-    }
-}
-
-function NotifyIgnoredScream(KFPawn ScreamPawn)
-{
-    super(KFGameInfo).NotifyIgnoredScream(ScreamPawn);
-    if(OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
-    {
-        OutbreakEvent.AdjustForBeefcakeRules(ScreamPawn, 2);
-    }
-}
-
 function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, class<KFPawn> ExplosionIgnoreClass)
 {
     local KFExplosionActorReplicated ExploActor;
@@ -595,12 +514,6 @@ function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, clas
             ++ CurrentFrameBooms;
         }
     }
-}
-
-function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType, Actor DamageCauser, TraceHitInfo HitInfo)
-{
-    super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser, HitInfo);
-    OutbreakEvent.ReduceDamage(Damage, injured, InstigatedBy, DamageType, HitInfo);
 }
 
 state TraderOpen

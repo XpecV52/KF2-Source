@@ -554,6 +554,8 @@ class KFDialogManager extends Actor
 
 
 
+										  
+
 
 
 
@@ -3081,6 +3083,9 @@ function PlayVoiceCommandDialog( KFPawn Speaker, int CommandIndex )
     case 7:
         PlayDialogEvent( Speaker,  9);
         break;
+	case 9:
+		PlayDialogEvent(Speaker, 230);
+		break;
     };
 }
 

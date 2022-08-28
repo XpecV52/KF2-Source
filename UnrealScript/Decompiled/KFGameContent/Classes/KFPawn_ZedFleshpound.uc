@@ -24,18 +24,6 @@ var export editinline transient PointLightComponent BattlePhaseLightFront;
 var protected const float FootstepCameraShakePitchAmplitude;
 var protected const float FootstepCameraShakeRollAmplitude;
 
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-    local WorldInfo WI;
-
-    WI = Class'WorldInfo'.static.GetWorldInfo();
-    if((class<KFDifficulty_Fleshpound>(default.DifficultySettings) != none) && FRand() < class<KFDifficulty_Fleshpound>(default.DifficultySettings).static.GetSpecialFleshpoundChance(KFGameReplicationInfo(WI.GRI)))
-    {
-        return default.ElitePawnClass;
-    }
-    return super.GetAIPawnClassToSpawn();
-}
-
 simulated event PreBeginPlay()
 {
     super.PreBeginPlay();
@@ -282,7 +270,7 @@ simulated function AdjustAffliction(out float AfflictionPower)
 
 simulated event Tick(float DeltaTime)
 {
-    super(KFPawn).Tick(DeltaTime);
+    super.Tick(DeltaTime);
     if((WorldInfo.NetMode != NM_DedicatedServer) && IsAliveAndWell())
     {
         if((((bIsSprinting && IsEnraged()) && Physics == 1) && Mesh.RootMotionMode == 2) && VSizeSq(Velocity) > 40000)
@@ -423,6 +411,7 @@ defaultproperties
     object end
     // Reference: CameraShake'Default__KFPawn_ZedFleshpound.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.SprintAkComponent0'
     OnDeathAchievementID=131
     PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
     LocalizationKey=KFPawn_ZedFleshpound
@@ -502,6 +491,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshpound.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpound.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpound.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshpound.SprintAkComponent0'
     begin object name=RageAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -509,7 +499,7 @@ defaultproperties
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedFleshpound.RageAkComponent0'
-    Components(8)=RageAkComponent0
+    Components(9)=RageAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

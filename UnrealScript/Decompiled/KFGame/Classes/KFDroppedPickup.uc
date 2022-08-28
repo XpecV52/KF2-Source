@@ -18,6 +18,7 @@ var const bool bIgnoreBlockingVolumes;
 var protected const bool bUseLowHealthDelay;
 var protected bool bUseAuthorityRBUpdate;
 var bool bEmptyPickup;
+var bool bUpgradedPickup;
 var protectedwrite export editinline MeshComponent MyMeshComp;
 var protectedwrite export editinline CylinderComponent MyCylinderComp;
 var private int SkinItemId;
@@ -31,8 +32,12 @@ replication
         RBState, bUseAuthorityRBUpdate;
 
      if(bNetInitial)
-        SkinItemId, bEmptyPickup;
+        SkinItemId, bEmptyPickup, 
+        bUpgradedPickup;
 }
+
+// Export UKFDroppedPickup::execGetPickupMesh(FFrame&, void* const)
+native simulated function StaticMesh GetPickupMesh(class<KFWeapon> ItemClass);
 
 simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 {
@@ -47,6 +52,7 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
         {
             SkinItemId = KFWeapon(Inventory).SkinItemId;
             bEmptyPickup = !KFWeapon(Inventory).HasAnyAmmo();
+            bUpgradedPickup = KFWeapon(Inventory).CurrentWeaponUpgradeIndex > 0;
         }
         SetTimer(LifeSpan, false, 'TryFadeOut');
     }
@@ -64,6 +70,10 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
         else
         {
             Comp = CollisionComponent;
+        }
+        if(class<KFWeapon>(InventoryClass) != none)
+        {
+            StaticMeshComponent(MyMeshComp).SetStaticMesh(GetPickupMesh(class<KFWeapon>(InventoryClass)));
         }
         CollisionComponent.SetScale3D(NewPickupMesh.Scale3D);
         CollisionComponent.SetBlockRigidBody(true);
@@ -114,9 +124,27 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
                 MyMeshComp.SetMaterial(0, SkinMICs[0]);
             }
         }
+        if(bUpgradedPickup)
+        {
+            SetUpgradedMaterial();
+        }
         if(bEmptyPickup)
         {
             SetEmptyMaterial();
+        }
+    }
+}
+
+simulated function SetUpgradedMaterial()
+{
+    local MaterialInstanceConstant MeshMIC;
+
+    if(MyMeshComp != none)
+    {
+        MeshMIC = MyMeshComp.CreateAndSetMaterialInstanceConstant(0);
+        if(MeshMIC != none)
+        {
+            MeshMIC.SetScalarParameterValue('Upgrade', 1);
         }
     }
 }
@@ -252,6 +280,11 @@ function GiveTo(Pawn P)
                 return;
             }            
         }        
+        if(((KFWInvClass != none) && KFWeapon(Inventory) != none) && !KFIM.CanCarryWeapon(KFWInvClass, KFWeapon(Inventory).CurrentWeaponUpgradeIndex))
+        {
+            PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 18);
+            return;
+        }
         NewInventory = KFIM.CreateInventory(InventoryClass, true);
         if(NewInventory != none)
         {

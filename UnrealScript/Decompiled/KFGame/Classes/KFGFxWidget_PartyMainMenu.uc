@@ -192,9 +192,10 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
     local UniqueNetId AdminId;
     local bool bIsLeader, bIsMyPlayer;
     local PlayerController PC;
-    local GFxObject PlayerInfoObject;
+    local GFxObject PlayerInfoObject, PerkIconObject;
     local KFPerk CurrentPerk;
     local string AvatarPath;
+    local KFPlayerReplicationInfo KFPRI;
 
     PlayerInfoObject = Outer.CreateObject("Object");
     PC = Outer.GetPC();
@@ -202,6 +203,7 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
     }
+    KFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
     bIsLeader = PlayerUID == AdminId && PlayerUID != ZeroUniqueId;
     PlayerInfoObject.SetBool("bLeader", bIsLeader);
     bIsMyPlayer = (OnlineLobby != none) && OnlineLobby.GetMyId() == PlayerUID;
@@ -211,9 +213,12 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
         CurrentPerk = KFPC.GetPerk();
         if(CurrentPerk != none)
         {
-            MemberSlots[SlotIndex].PerkClass = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo).CurrentPerkClass;
+            MemberSlots[SlotIndex].PerkClass = KFPRI.CurrentPerkClass;
             PlayerInfoObject.SetString("perkLevel", string(CurrentPerk.GetLevel()) @ CurrentPerk.PerkName);
-            PlayerInfoObject.SetString("perkIconPath", "img://" $ CurrentPerk.GetPerkIconPath());
+            PerkIconObject = Outer.CreateObject("Object");
+            PerkIconObject.SetString("perkIcon", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+            PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
+            PlayerInfoObject.SetObject("perkImageSource", PerkIconObject);
         }        
     }
     else
@@ -222,7 +227,10 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
         if(MemberSlots[SlotIndex].PerkClass != none)
         {
             PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @ MemberSlots[SlotIndex].PerkClass.default.PerkName);
-            PlayerInfoObject.SetString("perkIconPath", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+            PerkIconObject = Outer.CreateObject("Object");
+            PerkIconObject.SetString("perkIcon", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
+            PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));
+            PlayerInfoObject.SetObject("perkImageSource", PerkIconObject);
         }
     }
     if(OnlineLobby != none)
@@ -255,7 +263,7 @@ function UpdatePerks(string Message)
 {
     local array<string> PlayerInfoStrings;
     local UniqueNetId PlayerID;
-    local string PerkLevel;
+    local string PerkLevel, PrestigeLevel;
     local ActiveLobbyInfo LobbyInfo;
     local int I, PerkIndex;
 
@@ -263,6 +271,7 @@ function UpdatePerks(string Message)
     Class'OnlineSubsystem'.static.StringToUniqueNetId(PlayerInfoStrings[0], PlayerID);
     PerkIndex = int(PlayerInfoStrings[1]);
     PerkLevel = PlayerInfoStrings[2];
+    PrestigeLevel = PlayerInfoStrings[3];
     if(OnlineLobby == none)
     {
         return;
@@ -270,18 +279,18 @@ function UpdatePerks(string Message)
     if(OnlineLobby.GetCurrentLobby(LobbyInfo))
     {
         I = 0;
-        J0xC7:
+        J0xDD:
 
         if(I < LobbyInfo.Members.Length)
         {
-            UpdatePerkInfoForPlayerID(PlayerID, KFPC.PerkList[PerkIndex].PerkClass, PerkLevel);
+            UpdatePerkInfoForPlayerID(PlayerID, KFPC.PerkList[PerkIndex].PerkClass, PerkLevel, PrestigeLevel);
             ++ I;
-            goto J0xC7;
+            goto J0xDD;
         }
     }
 }
 
-function UpdatePerkInfoForPlayerID(UniqueNetId PlayerID, class<KFPerk> PerkClass, string PerkLevel)
+function UpdatePerkInfoForPlayerID(UniqueNetId PlayerID, class<KFPerk> PerkClass, string PerkLevel, string PrestigeLevel)
 {
     local int I;
 
@@ -294,6 +303,7 @@ function UpdatePerkInfoForPlayerID(UniqueNetId PlayerID, class<KFPerk> PerkClass
         {
             MemberSlots[I].PerkLevel = PerkLevel;
             MemberSlots[I].PerkClass = PerkClass;
+            MemberSlots[I].PrestigeLevel = PrestigeLevel;
             return;
         }
         ++ I;
@@ -418,15 +428,16 @@ function SendMyOptions()
 {
     local KFPerk CurrentPerk;
     local int PerkIndex;
-    local string CurrentLevel, PerkMessage, UIDStrings;
+    local string CurrentLevel, PrestigeLevel, PerkMessage, UIDStrings;
     local UniqueNetId MyUniqueId;
 
     CurrentPerk = KFPC.GetPerk();
     PerkIndex = KFPC.GetPerkIndexFromClass(CurrentPerk.Class);
     CurrentLevel = string(KFPC.GetLevel());
+    PrestigeLevel = string(KFPC.GetPerkPrestigeLevelFromPerkList(CurrentPerk.Class));
     MyUniqueId = OnlineLobby.GetMyId();
     UIDStrings = Class'OnlineSubsystem'.static.UniqueNetIdToString(MyUniqueId);
-    PerkMessage = ((((PerkPrefix $ UIDStrings) $ "/") $ string(PerkIndex)) $ "/") $ CurrentLevel;
+    PerkMessage = ((((((PerkPrefix $ UIDStrings) $ "/") $ string(PerkIndex)) $ "/") $ CurrentLevel) $ "/") $ PrestigeLevel;
     if(OnlineLobby != none)
     {
         OnlineLobby.LobbyMessage(PerkMessage);

@@ -98,7 +98,7 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'bGunsEquipped')
     {
-        if(SpecialMove != 36)
+        if(SpecialMove != 38)
         {
             SetWeaponStance(bGunsEquipped);
         }        
@@ -457,7 +457,7 @@ function bool IsThrowingGrenade()
     {
         return false;
     }
-    return ((IsDoingSpecialMove(37) || IsDoingSpecialMove(39)) || IsDoingSpecialMove(38)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
+    return ((IsDoingSpecialMove(39) || IsDoingSpecialMove(41)) || IsDoingSpecialMove(40)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 function DrawDebugOverheadText(KFHUDBase HUD, out Vector2D ScreenPos)
@@ -1079,6 +1079,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Hans'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedHans.SprintAkComponent0'
     OnDeathAchievementID=133
     PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
     LocalizationKey=KFPawn_ZedHans
@@ -1152,6 +1153,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedHans.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedHans.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHans.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedHans.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

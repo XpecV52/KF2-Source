@@ -424,16 +424,13 @@ defaultproperties
 	DOF_FG_FocalRadius=75
 	DOF_FG_MaxNearBlurSize=3.5
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_m16_m203_mesh.Wep_1stP_M16_M203_Rig'
-		AnimSets(0)=AnimSet'wep_1p_m16_m203_anim.Wep_1stP_M16_M203_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_M16_M203_MESH.Wep_M4_M203_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeapAttach_MultiAmmo'Wep_M16_M203_ARCH.Wep_M16_M203_3P_new'
+	// Content
+	PackageKey="M16_M203"
+	FirstPersonMeshName="wep_1p_m16_m203_mesh.Wep_1stP_M16_M203_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_m16_m203_anim.Wep_1stP_M16_M203_Anim"
+	PickupMeshName="WEP_3P_M16_M203_MESH.Wep_M4_M203_Pickup"
+	AttachmentArchetypeName="Wep_M16_M203_ARCH.Wep_M16_M203_3P_new"
+	MuzzleFlashTemplateName="wep_m16_m203_arch.Wep_M16_M203_MuzzleFlash"
 
    	// Zooming/Position
 	PlayerViewOffset=(X=22.0,Y=9.f,Z=-2.f)
@@ -488,9 +485,9 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M16M203'
-	FireInterval(DEFAULT_FIREMODE)=+0.086 // 700 RPM
+	FireInterval(DEFAULT_FIREMODE)=+0.0896 // 0.086 700 RPM
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=30.0 //24
+	InstantHitDamage(DEFAULT_FIREMODE)=33.0 //24 //30
 	FireOffset=(X=30,Y=4.5,Z=-5)
 	SecondaryFireOffset=(X=20.f,Y=4.5,Z=-7.f)
 
@@ -501,7 +498,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_HighExplosive_M16M203'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_M203Impact'
 	FireInterval(ALTFIRE_FIREMODE)=+0.25f
-	InstantHitDamage(ALTFIRE_FIREMODE)=225.0 //150
+	InstantHitDamage(ALTFIRE_FIREMODE)=230.0 //150 //225
 	Spread(ALTFIRE_FIREMODE)=0.0085
 
 	// BASH_FIREMODE
@@ -509,7 +506,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=26
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'wep_m16_m203_arch.Wep_M16_M203_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_Loop')
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_EndLoop', FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_EndLoop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_M', FirstPersonCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_S')
@@ -526,4 +522,8 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
 }

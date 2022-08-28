@@ -10,48 +10,6 @@ class KFPawn_ZedBloatKing extends KFPawn_ZedBloat
     hidecategories(Navigation)
     implements(KFInterface_MonsterBoss);
 
-const HeadBit = 0x1;
-const FrontBit = 0x2;
-const BackBit = 0x4;
-
-struct ArmorZoneInfo
-{
-    /** List of zones of armor (similar to hit zones) */
-    var() name ArmorZoneName;
-    /** Name of the armor zone */
-    var() name SocketName;
-    /** Name of the socket explosion FX play from */
-    var() int ArmorHealth;
-    /** Amount of health the armor absorbs before it blows off */
-    var() int ArmorHealthMax;
-    /** Amount of health the armor absorbs before it blows off */
-    var() ParticleSystem ExplosionTemplate;
-    /** Amount of health the armor absorbs before it blows off */
-    var() AkEvent ExplosionSFXTemplate;
-    /** Amount of health the armor absorbs before it blows off */
-    var() Texture2D ZoneIcon;
-
-    structdefaultproperties
-    {
-        ArmorZoneName=None
-        SocketName=None
-        ArmorHealth=0
-        ArmorHealthMax=0
-        ExplosionTemplate=none
-        ExplosionSFXTemplate=none
-        ZoneIcon=none
-    }
-};
-
-var KFPlayerController KFPC;
-var array<name> ArmorHitzoneNames;
-var array<ArmorZoneInfo> ArmorZones;
-var float ArmorScale;
-var repnotify byte RepArmorPct[3];
-var repnotify byte ArmorZoneStatus;
-var byte PreviousArmorZoneStatus;
-var repnotify byte FartFXNotify;
-var repnotify byte PoopMonsterFXNotify;
 var const localized array<localized string> BossCaptionStrings;
 var bool bUseAnimatedCamera;
 var Vector AnimatedBossCameraOffset;
@@ -59,6 +17,8 @@ var KFPawn PullVictims[11];
 var protected const KFGameExplosion FartExplosionTemplate;
 var const ParticleSystem FartFXTemplate;
 var const name FartFXSocket;
+var repnotify byte FartFXNotify;
+var repnotify byte PoopMonsterFXNotify;
 var Vector2D BaseFartAttackTimer;
 var Vector2D VarianceFartAttackTimer;
 var Vector2D RageFartAttackTimer;
@@ -74,7 +34,6 @@ var AkEvent PoopMonsterSFXTemplate;
 var const name PoopMonsterFXSocket;
 var const float PoopMonsterSpawnDelay;
 var int CurrentDelayedSpawns;
-var const int OverrideArmorFXIndex;
 var const float RageSprintSpeedMultiplier;
 var array<float> EnrageHealthThresholds;
 var protected const float FootstepCameraShakePitchAmplitude;
@@ -83,46 +42,31 @@ var protected const float FootstepCameraShakeRollAmplitude;
 replication
 {
      if(Role == ROLE_Authority)
-        ArmorZoneStatus, FartFXNotify, 
-        PoopMonsterFXNotify, PullVictims, 
-        RepArmorPct;
+        FartFXNotify, PoopMonsterFXNotify, 
+        PullVictims;
 }
 
 simulated event ReplicatedEvent(name VarName)
 {
-    if(VarName == 'ArmorZoneStatus')
+    if(VarName == 'bIsEnraged')
     {
-        UpdateArmorPieces();        
+        SetEnraged(bIsEnraged);        
     }
     else
     {
-        if(VarName == 'bIsEnraged')
+        if(VarName == 'FartFXNotify')
         {
-            SetEnraged(bIsEnraged);            
+            PlayFartSpawnFX();            
         }
         else
         {
-            if(VarName == 'RepArmorPct')
+            if(VarName == 'PoopMonsterFXNotify')
             {
-                UpdateArmorPieces();                
+                PlayPoopSpawnFX();                
             }
             else
             {
-                if(VarName == 'FartFXNotify')
-                {
-                    PlayFartSpawnFX();                    
-                }
-                else
-                {
-                    if(VarName == 'PoopMonsterFXNotify')
-                    {
-                        PlayPoopSpawnFX();                        
-                    }
-                    else
-                    {
-                        super(KFPawn_Monster).ReplicatedEvent(VarName);
-                    }
-                }
+                super(KFPawn_Monster).ReplicatedEvent(VarName);
             }
         }
     }
@@ -203,24 +147,23 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     super(KFPawn_Monster).PossessedBy(C, bVehicleTransition);
     if(DifficultyFartAttackTimers.Length > 0)
     {
-        BaseFartAttackTimer = DifficultyFartAttackTimers[Min(int(WorldInfo.Game.GameDifficulty), DifficultyFartAttackTimers.Length)];
+        BaseFartAttackTimer = DifficultyFartAttackTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyFartAttackTimers.Length)];
     }
     if(DifficultyVarianceFartTimers.Length > 0)
     {
-        VarianceFartAttackTimer = DifficultyVarianceFartTimers[Min(int(WorldInfo.Game.GameDifficulty), DifficultyVarianceFartTimers.Length)];
+        VarianceFartAttackTimer = DifficultyVarianceFartTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyVarianceFartTimers.Length)];
     }
     if(DifficultyRageFartTimers.Length > 0)
     {
-        RageFartAttackTimer = DifficultyRageFartTimers[Min(int(WorldInfo.Game.GameDifficulty), DifficultyRageFartTimers.Length)];
+        RageFartAttackTimer = DifficultyRageFartTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyRageFartTimers.Length)];
     }
     if(DifficultyVarianceRageFartTimers.Length > 0)
     {
-        RageVarianceFartAttackTimer = DifficultyVarianceRageFartTimers[Min(int(WorldInfo.Game.GameDifficulty), DifficultyVarianceRageFartTimers.Length)];
+        RageVarianceFartAttackTimer = DifficultyVarianceRageFartTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyVarianceRageFartTimers.Length)];
     }
     PlayBossMusic();
-    ServerDoSpecialMove(35);
+    ServerDoSpecialMove(37);
     SetFartAttackTimer();
-    InitArmor();
     GorgeTrigger = Spawn(Class'KFTrigger_BloatKingGorge', self,, Location, Rotation);
     GorgeTrigger.SetBase(self);
     GorgeTrigger.SetRelativeLocation(vect(0, 0, 0));
@@ -247,135 +190,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     {
         EnrageHealthThresholds.Remove(0, 1;
         KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
-    }
-}
-
-function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
-{
-    super(KFPawn_Monster).AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if(HitInfo.BoneName != 'None')
-    {
-        AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);        
-    }
-    else
-    {
-        AdjustNonBoneDamage(InDamage);
-    }
-    if(bLogTakeDamage)
-    {
-        LogInternal(((((((((string(self) @ string(GetFuncName())) @ " After armor adjustment Damage=") $ string(InDamage)) @ "Momentum=") $ string(Momentum)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
-    }
-}
-
-function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource)
-{
-    local int HitZoneIdx, ArmorZoneIdx;
-    local name IntendedArmorZoneName;
-    local int ArmorDamage;
-
-    HitZoneIdx = HitZones.Find('ZoneName', BoneName;
-    if(HitZoneIdx >= 0)
-    {
-        ArmorZoneIdx = -1;
-        if(ArmorHitzoneNames.Find(HitZones[HitZoneIdx].ZoneName != -1)
-        {
-            IntendedArmorZoneName = 'None';
-            switch(HitZones[HitZoneIdx].ZoneName)
-            {
-                case 'head':
-                    IntendedArmorZoneName = 'head';
-                    break;
-                default:
-                    IntendedArmorZoneName = ((((DamagerSource - Location) Dot vector(Rotation)) > float(0)) ? 'Front' : 'back');
-                    break;
-                    break;
-            }
-            ArmorZoneIdx = ArmorZones.Find('ArmorZoneName', IntendedArmorZoneName;
-        }
-        if((ArmorZoneIdx != -1) && ArmorZones[ArmorZoneIdx].ArmorHealth > 0)
-        {
-            ArmorDamage = Clamp(InDamage, 0, ArmorZones[ArmorZoneIdx].ArmorHealth);
-            InDamage -= ArmorDamage;
-            ArmorZones[ArmorZoneIdx].ArmorHealth -= ArmorDamage;
-            RepArmorPct[ArmorZoneIdx] = FloatToByte(float(ArmorZones[ArmorZoneIdx].ArmorHealth) / float(ArmorZones[ArmorZoneIdx].ArmorHealthMax));
-            if(ArmorZones[ArmorZoneIdx].ArmorHealth <= 0)
-            {
-                ExplodeArmor(ArmorZoneIdx, IntendedArmorZoneName);
-                KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
-            }
-            UpdateArmorUI();
-        }
-    }
-}
-
-function AdjustNonBoneDamage(out int InDamage)
-{
-    local int ValidArmorZones, ArmorReduction, ArmorRemainder, ArmorDamage, Idx;
-
-    ValidArmorZones = 0;
-    Idx = 0;
-    J0x16:
-
-    if(Idx < ArmorZones.Length)
-    {
-        if(ArmorZones[Idx].ArmorHealth > 0)
-        {
-            ++ ValidArmorZones;
-        }
-        ++ Idx;
-        goto J0x16;
-    }
-    if(ValidArmorZones > 0)
-    {
-        ArmorReduction = InDamage / ValidArmorZones;
-        ArmorRemainder = InDamage % ValidArmorZones;
-        Idx = 0;
-        J0xC9:
-
-        if(Idx < ArmorZones.Length)
-        {
-            if(ArmorZones[Idx].ArmorHealth > 0)
-            {
-                ArmorDamage = Clamp(ArmorReduction, 0, ArmorZones[Idx].ArmorHealth);
-                if(ArmorDamage < ArmorReduction)
-                {
-                    ArmorRemainder += (ArmorReduction - ArmorDamage);
-                }
-                InDamage -= ArmorDamage;
-                ArmorZones[Idx].ArmorHealth -= ArmorDamage;
-                RepArmorPct[Idx] = FloatToByte(float(ArmorZones[Idx].ArmorHealth) / float(ArmorZones[Idx].ArmorHealthMax));
-                if(ArmorZones[Idx].ArmorHealth <= 0)
-                {
-                    ExplodeArmor(Idx, ArmorZones[Idx].ArmorZoneName);
-                    KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
-                }
-                UpdateArmorUI();
-            }
-            ++ Idx;
-            goto J0xC9;
-        }
-        Idx = 0;
-        J0x2E5:
-
-        if((Idx < ArmorZones.Length) && ArmorRemainder > 0)
-        {
-            if(ArmorZones[Idx].ArmorHealth > 0)
-            {
-                ArmorDamage = Clamp(ArmorRemainder, 0, ArmorZones[Idx].ArmorHealth);
-                InDamage -= ArmorDamage;
-                ArmorRemainder -= ArmorDamage;
-                ArmorZones[Idx].ArmorHealth -= ArmorDamage;
-                RepArmorPct[Idx] = FloatToByte(float(ArmorZones[Idx].ArmorHealth) / float(ArmorZones[Idx].ArmorHealthMax));
-                if(ArmorZones[Idx].ArmorHealth <= 0)
-                {
-                    ExplodeArmor(Idx, ArmorZones[Idx].ArmorZoneName);
-                    KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
-                }
-                UpdateArmorUI();
-            }
-            ++ Idx;
-            goto J0x2E5;
-        }
     }
 }
 
@@ -410,156 +224,10 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
     return super(KFPawn).GetHitZoneSkinTypeEffects(HitZoneIdx);
 }
 
-function ExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
+function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 {
-    local byte StatusField;
-
-    switch(ArmorZoneName)
-    {
-        case 'head':
-            StatusField = byte(2 | 4);
-            break;
-        case 'Front':
-            StatusField = byte(1 | 4);
-            break;
-        case 'back':
-            StatusField = byte(2 | 1);
-            break;
-        default:
-            break;
-    }
-    ArmorZoneStatus = byte(ArmorZoneStatus & StatusField);
-    UpdateArmorPieces();
-}
-
-simulated function UpdateArmorPieces()
-{
-    local int I;
-    local Vector SocketLocation;
-    local Rotator SocketRotation;
-    local KFCharacterInfo_Monster MonsterArch;
-
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        MonsterArch = GetCharacterMonsterInfo();
-        switch(ArmorZoneStatus ^ PreviousArmorZoneStatus)
-        {
-            case 1:
-                I = Min(1, StaticAttachList.Length - 1);
-                J0x7D:
-
-                if(I >= 0)
-                {
-                    Mesh.DetachComponent(StaticAttachList[I]);
-                    DetachComponent(StaticAttachList[I]);
-                    StaticAttachList.Remove(I, 1;
-                    -- I;
-                    goto J0x7D;
-                }
-                Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
-                WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0], SocketLocation, SocketRotation);
-                PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-                break;
-            case 2:
-                DetachComponent(ThirdPersonAttachments[1]);
-                Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
-                WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1], SocketLocation, SocketRotation);
-                PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-                ThirdPersonAttachments[1] = none;
-                break;
-            case 4:
-                DetachComponent(ThirdPersonAttachments[2]);
-                Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[2].SocketName, SocketLocation, SocketRotation);
-                WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[2], SocketLocation, SocketRotation);
-                PlaySoundBase(default.ArmorZones[2].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-                ThirdPersonAttachments[2] = none;
-                break;
-            default:
-                break;
-                break;
-        }
-        UpdateArmorUI();
-    }
-    PreviousArmorZoneStatus = ArmorZoneStatus;
-}
-
-simulated function KFPlayerController GetKFPC()
-{
-    if(KFPC == none)
-    {
-        KFPC = KFPlayerController(GetALocalPlayerController());
-    }
-    return KFPC;
-}
-
-simulated function UpdateArmorUI()
-{
-    local SCompressedArmorInfo CompressedArmorInfoList[3];
-    local int I;
-
-    if((GetKFPC()) == none)
-    {
-        return;
-    }
-    I = 0;
-    J0x1D:
-
-    if(I < ArmorZones.Length)
-    {
-        CompressedArmorInfoList[I].Percentage = ByteToFloat(RepArmorPct[I]);
-        CompressedArmorInfoList[I].IconTexture = default.ArmorZones[I].ZoneIcon;
-        ++ I;
-        goto J0x1D;
-    }
-    if((KFPC.myGfxHUD != none) && KFPC.myGfxHUD.bossHealthBar != none)
-    {
-        KFPC.myGfxHUD.bossHealthBar.UpdateArmorUI(CompressedArmorInfoList);
-    }
-}
-
-function InitArmor()
-{
-    local KFGameInfo KFGI;
-    local float HealthMod, HeadHealthMod;
-    local int I;
-
-    KFGI = KFGameInfo(WorldInfo.Game);
-    if(KFGI != none)
-    {
-        HealthMod = 1;
-        HeadHealthMod = 1;
-        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
-        I = 0;
-        J0xF0:
-
-        if(I < ArmorZones.Length)
-        {
-            ArmorZones[I].ArmorHealth *= HealthMod;
-            ArmorZones[I].ArmorHealthMax = ArmorZones[I].ArmorHealth;
-            RepArmorPct[I] = FloatToByte(float(ArmorZones[I].ArmorHealth) / float(ArmorZones[I].ArmorHealthMax));
-            ++ I;
-            goto J0xF0;
-        }
-    }
-    UpdateArmorUI();
-}
-
-function SetShieldScale(float InScale)
-{
-    local int I;
-
-    ArmorScale = InScale;
-    I = 0;
-    J0x1E:
-
-    if(I < ArmorZones.Length)
-    {
-        ArmorZones[I].ArmorHealth *= InScale;
-        ArmorZones[I].ArmorHealthMax = ArmorZones[I].ArmorHealth;
-        RepArmorPct[I] = FloatToByte(float(ArmorZones[I].ArmorHealth) / float(ArmorZones[I].ArmorHealthMax));
-        ++ I;
-        goto J0x1E;
-    }
+    super(KFPawn_Monster).ZedExplodeArmor(ArmorZoneIdx, ArmorZoneName);
+    KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
 }
 
 simulated event bool CanDoSpecialMove(KFGame.KFPawn.ESpecialMove AMove, optional bool bForceCheck)
@@ -596,7 +264,7 @@ simulated function SetEnraged(bool bNewEnraged)
         }
         if(bIsEnraged)
         {
-            DoSpecialMove(40, true,, SpecialMoveHandler.SpecialMoveClasses[40].static.PackFlagsBase(self));
+            DoSpecialMove(42, true,, SpecialMoveHandler.SpecialMoveClasses[42].static.PackFlagsBase(self));
             if(GetTimerCount('TimerFartAttack') > Lerp(RageFartAttackTimer.X, RageFartAttackTimer.Y, GetHealthPercentage()))
             {
                 ClearFartTimer();
@@ -854,20 +522,6 @@ simulated function ApplyHeadChunkGore(class<KFDamageType> dmgType, Vector HitLoc
 
 defaultproperties
 {
-    ArmorHitzoneNames(0)=head
-    ArmorHitzoneNames(1)=chest
-    ArmorHitzoneNames(2)=heart
-    ArmorHitzoneNames(3)=stomach
-    ArmorHitzoneNames(4)=abdomen
-    ArmorZones(0)=(ArmorZoneName=head,SocketName=FX_Armor_Head,ArmorHealth=1000,ArmorHealthMax=2000,ExplosionTemplate=none,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Small_Armor_Explo',ZoneIcon=Texture2D'zed_bloatking_ui.BloatKing_Head_Armor')
-    ArmorZones(1)=(ArmorZoneName=Front,SocketName=FX_Armor_Chest,ArmorHealth=4000,ArmorHealthMax=4000,ExplosionTemplate=none,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Large_Armor_Explo',ZoneIcon=Texture2D'zed_bloatking_ui.BloatKing_Chest_Armor')
-    ArmorZones(2)=(ArmorZoneName=back,SocketName=FX_Armor_Back,ArmorHealth=3000,ArmorHealthMax=3000,ExplosionTemplate=none,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Large_Armor_Explo',ZoneIcon=Texture2D'zed_bloatking_ui.BloatKing_Back_Armor')
-    ArmorScale=1
-    RepArmorPct[0]=255
-    RepArmorPct[1]=255
-    RepArmorPct[2]=255
-    ArmorZoneStatus=7
-    PreviousArmorZoneStatus=7
     BossCaptionStrings(0)="The Abomination has heavy armor plating that must be destroyed; it cannot be pierced, but you can shoot around it."
     BossCaptionStrings(1)="The Abomination can eat Zeds and pass them out again as... let's just say their smell does not improve."
     BossCaptionStrings(2)="Don't let the Abomination's size fool you; he can move fast when he wants."
@@ -1026,7 +680,6 @@ Parameter name: index
     PoopMonsterSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Bile_Spawn'
     PoopMonsterFXSocket=Poop_Attach
     PoopMonsterSpawnDelay=2
-    OverrideArmorFXIndex=200
     RageSprintSpeedMultiplier=1.62
     EnrageHealthThresholds(0)=0.75
     EnrageHealthThresholds(1)=0.5
@@ -1037,6 +690,11 @@ Parameter name: index
     bCanRage=true
     MonsterArchPath="ZED_ARCH.ZED_BloatKing_Archetype"
     ParryResistance=4
+    RepArmorPct[0]=255
+    RepArmorPct[1]=255
+    RepArmorPct[2]=255
+    ArmorZoneStatus=7
+    PreviousArmorZoneStatus=7
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=55
         MyDamageType=Class'KFDT_Bludgeon_BloatKing'
@@ -1061,6 +719,9 @@ Parameter name: index
     object end
     // Reference: CameraShake'Default__KFPawn_ZedBloatKing.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.SprintAkComponent0'
+    ArmorInfoClass=Class'KFZedArmorInfo_BloatKing'
+    OverrideArmorFXIndex=200
     PawnAnimInfo=KFPawnAnimInfo'ZED_BloatKing_ANIM.BloatKing_AnimGroup'
     LocalizationKey=KFPawn_ZedBloatKing
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -1126,6 +787,7 @@ Parameter name: index
     Components(5)=AkComponent'Default__KFPawn_ZedBloatKing.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedBloatKing.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedBloatKing.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedBloatKing.SprintAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

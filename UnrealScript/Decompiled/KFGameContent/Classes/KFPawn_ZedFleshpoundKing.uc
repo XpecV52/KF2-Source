@@ -153,7 +153,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super(KFPawn_Monster).PossessedBy(C, bVehicleTransition);
     PlayBossMusic();
-    ServerDoSpecialMove(35);
+    ServerDoSpecialMove(37);
 }
 
 function PlayBossMusic()
@@ -199,7 +199,7 @@ simulated function ToggleSMBeam(bool bEnable)
 {
     local KFSM_FleshpoundKing_ChestBeam BeamSM;
 
-    if(SpecialMove != 22)
+    if(SpecialMove != 23)
     {
         return;
     }
@@ -242,7 +242,7 @@ simulated function UpdateBattlePhaseLights()
         super.UpdateBattlePhaseLights();
         return;
     }
-    if(IsDoingSpecialMove(22))
+    if(IsDoingSpecialMove(23))
     {
         if(BattlePhaseLightFront != none)
         {
@@ -306,7 +306,7 @@ function SpawnSubWave()
     local KFGameInfo KFGI;
 
     KFGI = KFGameInfo(WorldInfo.Game);
-    SpawnInfo = GetWaveInfo(CurrentPhase, int(KFGI.GameDifficulty));
+    SpawnInfo = GetWaveInfo(CurrentPhase, KFGI.GetModifiedGameDifficulty());
     KFGI.SpawnManager.SummonBossMinions(SpawnInfo.Squads, GetNumMinionsToSpawn(), false);
     SetTimer(2, true, 'PauseBossWave');
 }
@@ -376,8 +376,8 @@ function ActivateShield()
     if(KFGI != none)
     {
         HealthMod = 1;
-        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
-        ShieldHealth = (ShieldHealthMaxDefaults[int(KFGI.GameDifficulty)] * HealthMod) * ShieldHealthScale;
+        KFGI.DifficultyInfo.GetAIHealthModifier(self, float(KFGI.GetModifiedGameDifficulty()), byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
+        ShieldHealth = (ShieldHealthMaxDefaults[KFGI.GetModifiedGameDifficulty()] * HealthMod) * ShieldHealthScale;
         ShieldHealthMax = ShieldHealth;
         ShieldHealthPctByte = 1;
         UpdateShield();
@@ -616,6 +616,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_FleshpoundKing'
     MinBlockFOV=0.2
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshpoundKing.FootstepCameraShake0'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.SprintAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.King_Fleshpound_AnimGroup'
     LocalizationKey=KFPawn_ZedFleshpoundKing
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -683,12 +684,13 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshpoundKing.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpoundKing.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpoundKing.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundKing.RageAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundKing.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundKing.RageAkComponent0'
     begin object name=BeamHitAC0 class=AkComponent
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn_ZedFleshpoundKing.BeamHitAC0'
-    Components(9)=BeamHitAC0
+    Components(10)=BeamHitAC0
     bAlwaysRelevant=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

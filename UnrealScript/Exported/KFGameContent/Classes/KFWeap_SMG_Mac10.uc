@@ -9,16 +9,27 @@
 
 class KFWeap_SMG_Mac10 extends KFWeap_SMGBase;
 
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Flame;
+}
+
 defaultproperties
 {
+   PackageKey="MAC10"
+   FirstPersonMeshName="WEP_1P_MAC10_MESH.Wep_1stP_MAC10_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1P_MAC10_ANIM.WEP_1P_MAC10_ANIM"
+   PickupMeshName="WEP_3P_MAC10_MESH.Wep_3rdP_MAC10_Pickup"
+   AttachmentArchetypeName="WEP_MAC10_ARCH.Wep_MAC10_3P"
+   MuzzleFlashTemplateName="WEP_MAC10_ARCH.Wep_MAC10_MuzzleFlash"
+   bHasIronSights=True
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=4
    MagazineCapacity(0)=32
-   bHasIronSights=True
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
    MeshFOV=75.000000
    MeshIronSightFOV=60.000000
    IronSightPosition=(X=15.000000,Y=0.000000,Z=0.000000)
@@ -33,17 +44,15 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_1P_Loop')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_1P_Single')
    WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_Mac_10.Play_Mac_10_Fire_1P_EndLoop')
-   WeaponDryFireSnd(0)=AkEvent'ww_wep_sa_medicsmg.Play_SA_MedicSMG_Handling_DryFire'
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
    PlayerViewOffset=(X=18.000000,Y=8.000000,Z=-5.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_MAC10_ARCH.Wep_MAC10_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_SMGBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_SMGBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_SMG_Mac10:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_MAC10_ARCH.Wep_MAC10_MuzzleFlash'
    maxRecoilPitch=60
    minRecoilPitch=40
    maxRecoilYaw=50
@@ -62,6 +71,8 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.600000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_SWAT'
+   WeaponUpgrades(1)=(IncrementDamage=1.150000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000)
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -85,9 +96,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Mac10'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_SMGBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_MAC10_MESH.Wep_1stP_MAC10_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1P_MAC10_ANIM.WEP_1P_MAC10_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -101,7 +110,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Mac 10"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_SMGBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_MAC10_MESH.Wep_3rdP_MAC10_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

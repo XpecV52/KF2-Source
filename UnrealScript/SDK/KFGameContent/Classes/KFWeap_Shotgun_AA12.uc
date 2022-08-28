@@ -13,7 +13,7 @@ class KFWeap_Shotgun_AA12 extends KFWeap_ShotgunBase;
 defaultproperties
 {
 	// Inventory
-	InventorySize=10
+	InventorySize=9
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
 
@@ -35,23 +35,20 @@ defaultproperties
 	PlayerViewOffset=(X=15.0,Y=8.5,Z=0.0)
 	IronSightPosition=(X=8,Y=0,Z=0)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'Wep_1P_AA12_MESH.Wep_1stP_AA12_Rig'
-		AnimSets(0)=AnimSet'Wep_1P_AA12_ANIM.Wep_1stP_AA12_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AA12_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_AA12_ARCH.Wep_AA12_3P'
+	// Content
+	PackageKey="AA12"
+	FirstPersonMeshName="Wep_1P_AA12_MESH.Wep_1stP_AA12_Rig"
+	FirstPersonAnimSetNames(0)="Wep_1P_AA12_ANIM.Wep_1stP_AA12_Anim"
+	PickupMeshName="WEP_3P_AA12_MESH.Wep_AA12_Pickup"
+	AttachmentArchetypeName="WEP_AA12_ARCH.Wep_AA12_3P"
+	MuzzleFlashTemplateName="WEP_AA12_ARCH.Wep_AA12_MuzzleFlash"
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunAuto'
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(DEFAULT_FIREMODE)=20.0 //25
+	InstantHitDamage(DEFAULT_FIREMODE)=12.0 //25 //20
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AA12Shotgun'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	FireInterval(DEFAULT_FIREMODE)=0.2 // 300 RPM
@@ -64,7 +61,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(ALTFIRE_FIREMODE)=20.0 //25
+	InstantHitDamage(ALTFIRE_FIREMODE)=12.0 //25 //20
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_AA12Shotgun'
 	PenetrationPower(ALTFIRE_FIREMODE)=2.0
 	FireInterval(ALTFIRE_FIREMODE)=0.2 // 300 RPM
@@ -79,8 +76,6 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=30
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_AA12_ARCH.Wep_AA12_MuzzleFlash'
-
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_1P')
     WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_AA12.Play_WEP_SA_AA12_Fire_1P')
 
@@ -93,7 +88,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=20
-	SpareAmmoCapacity[0]=120
+	SpareAmmoCapacity[0]=120 //120
 	InitialSpareMags[0]=1
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -121,4 +116,8 @@ defaultproperties
 	AssociatedPerkClasses(0)=class'KFPerk_Support'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.65f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.9f,IncrementWeight=2)
 }

@@ -26,16 +26,13 @@ defaultproperties
 	IronSightPosition=(X=10.f,Y=0,Z=0)
 	PlayerViewOffset=(X=17.f,Y=8,Z=-4.0)
 
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_mp5ras_mesh.Wep_1stP_MP5RAS_Rig'
-		AnimSets(0)=AnimSet'wep_1p_mp5ras_anim.wep_1p_mp5ras_anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'wep_3p_mp5ras_mesh.Wep_MP5RAS_Pickup'
-	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'wep_mp5ras_arch.Wep_MP5RAS_3P'
+	// Content
+	PackageKey="MP5RAS"
+	FirstPersonMeshName="wep_1p_mp5ras_mesh.Wep_1stP_MP5RAS_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_mp5ras_anim.wep_1p_mp5ras_anim"
+	PickupMeshName="wep_3p_mp5ras_mesh.Wep_MP5RAS_Pickup"
+	AttachmentArchetypeName="wep_mp5ras_arch.Wep_MP5RAS_3P"
+	MuzzleFlashTemplateName="wep_mp5ras_arch.Wep_MP5RAS_MuzzleFlash"
 
 	// Ammo
 	MagazineCapacity[0]=40
@@ -87,10 +84,7 @@ defaultproperties
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_MP5RAS'
 	InstantHitDamage(BASH_FIREMODE)=24.0
-
-	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'wep_mp5ras_arch.Wep_MP5RAS_MuzzleFlash'
-
+	
 	//@todo: add akevents when we have them
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_MP5.Play_MP5_Fire_3P_Loop', FirstPersonCue=AkEvent'WW_WEP_MP5.Play_MP5_Fire_1P_Loop')
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_MP5.Play_MP5_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_MP5.Play_MP5_Fire_1P_Single')
@@ -108,4 +102,9 @@ defaultproperties
 	bHasFlashlight=true
 
 	AssociatedPerkClasses(0)=class'KFPerk_Swat'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
+	WeaponUpgrades[3]=(IncrementDamage=1.6f,IncrementWeight=3)
 }

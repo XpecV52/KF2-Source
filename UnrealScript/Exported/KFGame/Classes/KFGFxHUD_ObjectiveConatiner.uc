@@ -20,15 +20,15 @@ function LocalizeContainer()
 	SetObject("localizedText", TextObject);
 }
 
-function SetActive(bool bActive)
+simulated function SetActive(bool bActive)
 {
 	SetVisible(bActive);
 	if (bActive)
 	{
 		CurrentObjectiveInterface = KFGameReplicationInfo(GetPC().WorldInfo.GRI).ObjectiveInterface;
 		if (CurrentObjectiveInterface != none)
-		{	
-			SetFailState(CurrentObjectiveInterface.GetProgress() <= 0);
+		{
+			SetFailState(CurrentObjectiveInterface.HasFailedObjective());
 			SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
 			SetCurrentIcon(PathName(CurrentObjectiveInterface.GetIcon()));
 		}
@@ -44,7 +44,7 @@ function SetCurrentIcon(string iconPath)
 {
 	if(iconPath == "")
 	{
-		SetString("currentIcon", "");	
+		SetString("currentIcon", "");
 	}
 	else
 	{
@@ -59,6 +59,19 @@ function TickHud(float DeltaTime)
 		SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
 		SetInt("rewardValue", CurrentObjectiveInterface.GetDoshReward());
 		//UpdateRequirements();
+		UpdateActorCount();
+	}
+}
+
+function UpdateActorCount()
+{
+	local GFxObject DataObject;
+
+	if (CurrentObjectiveInterface.UsesMultipleActors())
+	{
+		DataObject = CreateObject("Object");;
+		DataObject.SetString("textValue", CurrentObjectiveInterface.GetActorCount());
+		SetObject("objectiveNumber", DataObject);
 	}
 }
 
@@ -68,7 +81,7 @@ function UpdateRequirements()
 	if (CurrentObjectiveInterface != none && CurrentObjectiveInterface.UsesProgress())
 	{
 		DataObject = CreateObject("Object");
-		
+
 	}*/
 }
 

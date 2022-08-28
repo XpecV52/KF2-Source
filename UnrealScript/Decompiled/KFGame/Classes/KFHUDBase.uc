@@ -108,6 +108,7 @@ var int CurrentAlphaDelta;
 var float MinScreenClampPos;
 var float MaxScreenClampPos;
 var float MaxDrawDistanceObjective;
+var float PrestigeIconScale;
 var config float FriendlyHudScale;
 var Font GlowFonts[2];
 var FontRenderInfo TextRenderInfo;
@@ -523,6 +524,8 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     local float FontScale;
     local Color TempColor;
     local float ResModifier;
+    local byte PrestigeLevel;
+    local float PerkIconPosX, PerkIconPosY, PerkIconSize;
 
     ResModifier = WorldInfo.GetResolutionBasedHUDScale() * FriendlyHudScale;
     KFPRI = KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo);
@@ -556,8 +559,25 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + (BarHeight * float(3))) + ((float(36) * FontScale) * ResModifier));
     Canvas.DrawText(string(KFPRI.GetActivePerkLevel()) @ KFPRI.CurrentPerkClass.default.PerkName,, FontScale, FontScale, MyFontRenderInfo);
     Canvas.SetDrawColorStruct(PlayerBarIconColor);
-    Canvas.SetPos((ScreenPos.X - (BarLength * 0.5)) - (PlayerStatusIconSize * ResModifier), ScreenPos.Y + ((float(36) * FontScale) * ResModifier));
-    Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PlayerStatusIconSize * ResModifier, PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+    PrestigeLevel = KFPRI.GetActivePerkPrestigeLevel();
+    PerkIconSize = PlayerStatusIconSize * ResModifier;
+    PerkIconPosX = (ScreenPos.X - (BarLength * 0.5)) - PerkIconSize;
+    PerkIconPosY = ScreenPos.Y + ((float(36) * FontScale) * ResModifier);
+    if(((KFPRI.CurrentVoiceCommsRequest == 10) && KFPRI.CurrentPerkClass != none) && PrestigeLevel > 0)
+    {
+        Canvas.SetPos(PerkIconPosX, PerkIconPosY);
+        Canvas.DrawTile(KFPRI.CurrentPerkClass.default.PrestigeIcons[PrestigeLevel - 1], PerkIconSize, PerkIconSize, 0, 0, 256, 256);
+    }
+    if(PrestigeLevel > 0)
+    {
+        Canvas.SetPos(PerkIconPosX + ((PerkIconSize * (float(1) - PrestigeIconScale)) / float(2)), PerkIconPosY + (PerkIconSize * 0.05));
+        Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PerkIconSize * PrestigeIconScale, PerkIconSize * PrestigeIconScale, 0, 0, 256, 256);        
+    }
+    else
+    {
+        Canvas.SetPos(PerkIconPosX, PerkIconPosY);
+        Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PerkIconSize, PerkIconSize, 0, 0, 256, 256);
+    }
     if((KFPRI.PerkSupplyLevel > 0) && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none)
     {
         if(KFPRI.PerkSupplyLevel == 2)
@@ -600,6 +620,10 @@ simulated function bool DrawObjectiveHUD()
 
     ResModifier = WorldInfo.GetResolutionBasedHUDScale() * FriendlyHudScale;
     if(EqualEqual_InterfaceInterface(KFGRI.ObjectiveInterface, (none)))
+    {
+        return false;
+    }
+    if(!KFGRI.ObjectiveInterface.ShouldDrawIcon())
     {
         return false;
     }
@@ -901,6 +925,7 @@ defaultproperties
     MinScreenClampPos=0.1
     MaxScreenClampPos=0.4
     MaxDrawDistanceObjective=6000000
+    PrestigeIconScale=0.75
     FriendlyHudScale=1
     TextRenderInfo=(bClipText=false,bEnableShadow=false,GlowInfo=(bEnableGlow=false,GlowColor=(R=0,G=0,B=0,A=1),GlowOuterRadius=(X=0,Y=0),GlowInnerRadius=(X=0,Y=0)))
     PulseDuration=0.33

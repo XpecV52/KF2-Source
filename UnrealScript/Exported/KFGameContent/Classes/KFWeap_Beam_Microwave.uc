@@ -132,6 +132,7 @@ simulated function CustomFire()
 	local KFExplosionActorReplicated ExploActor;
 	local vector SpawnLoc;
 	local rotator SpawnRot;
+	local float ModifiedDamage, OriginalDamage, OriginalDamageRadius;
 
 	// Alt-fire blast only (server authoritative)
 	if ( CurrentFireMode != ALTFIRE_FIREMODE )
@@ -160,7 +161,18 @@ simulated function CustomFire()
 		ExploActor.bReplicateInstigator = true;
 		ExploActor.bSyncParticlesToMuzzle = true;
 
+		ModifiedDamage = static.GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
+
+		OriginalDamage = ExplosionTemplate.Damage;
+		OriginalDamageRadius = ExplosionTemplate.DamageRadius;
+
+		ExplosionTemplate.Damage *= ModifiedDamage;
+		ExplosionTemplate.DamageRadius *= ModifiedDamage;
+
 		ExploActor.Explode(ExplosionTemplate, vector(SpawnRot));
+
+		ExplosionTemplate.Damage = OriginalDamage;
+		ExplosionTemplate.DamageRadius = OriginalDamageRadius;
 	}
 
 	if ( bDebug )
@@ -221,14 +233,20 @@ defaultproperties
    End Object
    PSC_EndSpray=FlameEndSpray0
    MinAmmoConsumed=3
-   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
-   FireModeIconPaths(1)=()
-   InventorySize=10
-   MagazineCapacity(0)=100
+   PackageKey="Microwave_Gun"
+   FirstPersonMeshName="WEP_1P_Microwave_Gun_MESH.Wep_1stP_Microwave_Gun_Rig"
+   FirstPersonAnimSetNames(0)="WEP_1p_Microwave_Gun_ANIM.WEP_1p_Microwave_Gun_ANIM"
+   PickupMeshName="WEP_3P_Microwave_Gun_MESH.Wep_Microwave_Gun_Pickup"
+   AttachmentArchetypeName="WEP_Microwave_Gun_ARCH.Microwave_Gun_3P"
+   MuzzleFlashTemplateName="WEP_Microwave_Gun_ARCH.Wep_Microwave_Gun_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
+   FireModeIconPaths(1)=()
+   InventorySize=8
+   MagazineCapacity(0)=100
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=80.000000
    IronSightPosition=(X=3.000000,Y=0.000000,Z=0.000000)
@@ -239,7 +257,7 @@ defaultproperties
    WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
    AmmoCost(1)=10
    SpareAmmoCapacity(0)=500
-   AmmoPickupScale(0)=0.400000
+   AmmoPickupScale(0)=0.500000
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    FireSightedAnims(0)="Shoot"
@@ -257,14 +275,12 @@ defaultproperties
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_DryFire'
    PlayerViewOffset=(X=5.000000,Y=9.000000,Z=-3.000000)
-   AttachmentArchetype=KFWeapAttach_SprayBase'WEP_Microwave_Gun_ARCH.Microwave_Gun_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Beam_Microwave:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Microwave_Gun_ARCH.Wep_Microwave_Gun_MuzzleFlash'
    maxRecoilPitch=150
    minRecoilPitch=115
    maxRecoilYaw=115
@@ -282,6 +298,8 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
+   WeaponUpgrades(1)=(IncrementDamage=1.250000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.400000)
    FiringStatesArray(0)="SprayingFire"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -302,9 +320,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Flamethrower'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_FlameBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_Microwave_Gun_MESH.Wep_1stP_Microwave_Gun_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'WEP_1p_Microwave_Gun_ANIM.WEP_1p_Microwave_Gun_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -318,7 +334,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Microwave Gun"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_FlameBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Microwave_Gun_MESH.Wep_Microwave_Gun_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

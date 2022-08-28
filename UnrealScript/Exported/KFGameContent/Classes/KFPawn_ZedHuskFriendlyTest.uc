@@ -56,6 +56,15 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHusk:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHuskFriendlyTest:MeleeHelper_0'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -116,10 +125,10 @@ defaultproperties
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
-      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_Husk_Suicide'
-      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
+      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_Husk_Suicide'
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
       SpecialMoveClasses(27)=None
@@ -130,7 +139,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHusk:SpecialMoveHandler_0'
    End Object
@@ -237,6 +248,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedHuskFriendlyTest"
    ObjectArchetype=KFPawn_ZedHusk'kfgamecontent.Default__KFPawn_ZedHusk'

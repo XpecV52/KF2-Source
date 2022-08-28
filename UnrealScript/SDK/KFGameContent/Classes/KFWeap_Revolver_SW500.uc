@@ -24,19 +24,18 @@ defaultproperties
 	// Zooming/Position
 	PlayerViewOffset=(X=22,Y=12,Z=-6)
 
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_SW_500_MESH.Wep_SW_500_Pickup'
-	End Object
+	// Content
+	PackageKey="SW_500"
+	FirstPersonMeshName="WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_SW_500_ANIM.WEP_1stP_SW_500_Anim"
+	PickupMeshName="WEP_3P_SW_500_MESH.Wep_SW_500_Pickup"
+	AttachmentArchetypeName="WEP_SW_500_ARCH.Wep_SW_500_3P"
+	MuzzleFlashTemplateName="WEP_SW_500_ARCH.Wep_SW_500_MuzzleFlash"
 
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_SW_500_MESH.Wep_1stP_SW_500_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_SW_500_ANIM.WEP_1stP_SW_500_Anim'
-
-		// new anim tree with skelcontrol to rotate cylinder
-		AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master_Revolver'
+		// new anim tree with skelcontrol to rotate cylinders
+		AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master_Revolver'
 	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_SW_500_ARCH.Wep_SW_500_3P'
 
    	// Zooming/Position
 	IronSightPosition=(X=2,Y=0,Z=0)
@@ -70,7 +69,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RevolverSW500'
 	FireInterval(DEFAULT_FIREMODE)=+0.24
-	InstantHitDamage(DEFAULT_FIREMODE)=160.0 //150
+	InstantHitDamage(DEFAULT_FIREMODE)=130.0 //150 //160
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SW500'
 	Spread(DEFAULT_FIREMODE)=0.015
 	PenetrationPower(DEFAULT_FIREMODE)=3.0
@@ -86,7 +85,6 @@ defaultproperties
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_SW500'
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_SW_500_ARCH.Wep_SW_500_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Handling_DryFire'
 
@@ -95,7 +93,7 @@ defaultproperties
 	bHasFlashlight=true
 
 	// Inventory
-	InventorySize=3
+	InventorySize=2
 	GroupPriority=30
 	bCanThrow=true
 	bDropOnDeath=true
@@ -203,4 +201,8 @@ defaultproperties
 	BulletMeshComponents.Add(BulletMeshComp4)
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.23f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.42f,IncrementWeight=2)
 }

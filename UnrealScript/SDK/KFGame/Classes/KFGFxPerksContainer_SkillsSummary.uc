@@ -15,12 +15,20 @@ var KFGFxMenu_Perks PerkMenu;
 var byte SelectedSkillsHolder[`MAX_PERK_SKILLS];
 var localized string ConfigureString, SkillsString;
 
+var GFxObject PrestigeButton;
+
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	super.Initialize( NewParentMenu );
 	PerkMenu = KFGFxMenu_Perks(NewParentMenu);
 	LocalizeContainer();
 	`TimerHelper.SetTimer(0.1f, false,'DelayedRefresh', self);
+	PrestigeButton = GetObject("prestigeButton");
+	if (PrestigeButton != None)
+	{
+		PrestigeButton.SetVisible(class'WorldInfo'.static.IsMenuLevel());
+		PrestigeButton.SetBool("enabled", class'WorldInfo'.static.IsMenuLevel());
+	}
 }
 
 function DelayedRefresh()
@@ -34,6 +42,7 @@ function DelayedRefresh()
 function  LocalizeContainer()
 {
 	GetObject("configureButton").SetString("label", ConfigureString);
+	GetObject("prestigeButton").SetString("label", class'KFGFxMenu_Perks'.default.PrestigeString);
 	GetObject("titleTextfield").SetString("text", SkillsString);
 }
 
@@ -83,4 +92,9 @@ function UpdateSkills( class<KFPerk> PerkClass, const out byte SelectedSkills[`M
 	class'KFPerk'.static.LoadTierUnlockFromConfig(PerkClass, bTierUnlocked, UnlockedPerkLevel);
 	SetBool("bTierUnlocked" , bool(bTierUnlocked) && KFPC.GetPerkLevelFromPerkList( PerkClass ) >= UnlockedPerkLevel   );
 	SetObject("skillsData", DataProvider);
+
+	if (PrestigeButton != None)
+	{
+		PrestigeButton.SetBool("enabled", class'WorldInfo'.static.IsMenuLevel() && KFPC.GetPerkLevelFromPerkList(PerkClass) >= `MAX_PERK_LEVEL);
+	}
 }

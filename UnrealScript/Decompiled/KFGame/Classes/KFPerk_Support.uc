@@ -64,7 +64,6 @@ function ApplySkillsToPawn()
     {
         return;
     }
-    ResetSupplier();
 }
 
 function ApplyWeightLimits()
@@ -301,10 +300,10 @@ simulated function Interact(KFPawn_Human KFPH)
                 continue;                
             }
             MagCount = Max(int(float(KFW.InitialSpareMags[0]) / 1.5), 1);
-            bReceivedAmmo = ((KFW.AddAmmo(MagCount * KFW.MagazineCapacity[0]) > 0) ? true : bReceivedAmmo);
+            bReceivedAmmo = ((KFW.AddAmmo(int(float(MagCount * KFW.MagazineCapacity[0]) * ((IsResupplyActive()) ? 1.3 : 1))) > 0) ? true : bReceivedAmmo);
             if(KFW.CanRefillSecondaryAmmo())
             {
-                bReceivedAmmo = ((KFW.AddSecondaryAmmo(Max(int(KFW.AmmoPickupScale[1] * float(KFW.MagazineCapacity[1])), 1)) > 0) ? true : bReceivedAmmo);
+                bReceivedAmmo = ((KFW.AddSecondaryAmmo(Max(int((KFW.AmmoPickupScale[1] * ((IsResupplyActive()) ? 1.3 : 1)) * float(KFW.MagazineCapacity[1])), 1)) > 0) ? true : bReceivedAmmo);
             }            
         }        
     }
@@ -608,4 +607,5 @@ defaultproperties
     AutoBuyLoadOutPath(3)=class'KFWeapDef_AA12'
     HitAccuracyHandicap=-6
     HeadshotAccuracyHandicap=-3
+    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SupportKnife_PrestigePrecious_Mint_large"
 }

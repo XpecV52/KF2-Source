@@ -180,6 +180,8 @@ function ParticleSystemComponent AttachEffectToHitLocation( KFPawn P, ParticleSy
 			}
 		}
 	}
+
+	return none;
 }
 
 /** For melee weapons orient along the hit direction */

@@ -144,6 +144,8 @@ const STATID_ACHIEVE_NightmareCollectibles			= 4039;
 const STATID_ACHIEVE_KrampusCollectibles			= 4040;
 const STATID_ACHIEVE_ArenaCollectibles				= 4041;
 const STATID_ACHIEVE_PowercoreCollectibles			= 4042;
+const STATID_ACHIEVE_AirshipCollectibles			= 4043;
+const STATID_ACHIEVE_LockdownCollectibles			= 4044;
  
 #linenumber 15
 
@@ -198,6 +200,8 @@ var Texture2D 		PerkIcon;
 var array<string> 	ColumnOneIcons;
 var array<string> 	ColumnTwoIcons;
 var Texture2D 		InteractIcon;
+
+var array<Texture2D> PrestigeIcons;
 
 var localized string WeaponDroppedMessage;
 /*********************************************************************************************
@@ -313,6 +317,12 @@ var float 						HitAccuracyHandicap;
 
 /** How much to handicap this perk when calculating the player's headshot accuracy */
 var float 						HeadshotAccuracyHandicap;
+
+/*********************************************************************************************
+* @name Prestige Rewards
+********************************************************************************************* */
+
+var array<string> PrestigeRewardItemIconPaths;
 
 /*********************************************************************************************
 * Caching
@@ -834,6 +844,16 @@ static simulated event string GetPerkIconPath()
 	return PerkIconPath;
 }
 
+static simulated event string GetPrestigeIconPath(byte PerkPrestigeLevel)
+{
+	if (PerkPrestigeLevel > 0)
+	{
+		return "img://"$ PathName(default.PrestigeIcons[PerkPrestigeLevel - 1]); //0 based array but 0 level is ignored
+	}
+
+	return "";
+}
+
 simulated final function int GetSavedBuild()
 {
 	return SavedBuild;
@@ -951,9 +971,15 @@ function ApplySkillsToPawn()
 	}
 }
 
+function ClearPerkEffects()
+{
+	ClientClearPerkEffects();
+}
+reliable client function ClientClearPerkEffects();
+
 /**
  * We need to separate this from ApplySkillsToPawn() to avoid resetting weight limits (and losing weapons)
- * every time a skill or level is changed
+ * every time a skill or level is changed 
  */
 function ApplyWeightLimits()
 {
@@ -1016,7 +1042,7 @@ function AddDefaultInventory( KFPawn P )
         else
         {
             P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
-        }
+        }		
 		// Secondary weapon is spawned through the pawn unless we want an additional one  not anymore
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), class'Class')));
@@ -1342,12 +1368,12 @@ simulated event KFPawn_Human GetOwnerPawn()
 	return none;
 }
 
-protected function bool HitShouldStumble( byte BodyPart )
+protected function bool HitShouldStumble( byte BodyPart ) 
 {
 	return BodyPartsCanStumble.Find( BodyPart ) != INDEX_NONE;
 }
 
-protected function bool HitShouldKnockdown( byte BodyPart )
+protected function bool HitShouldKnockdown( byte BodyPart ) 
 {
 	return BodyPartsCanKnockDown.Find( BodyPart ) != INDEX_NONE;
 }
@@ -1355,6 +1381,12 @@ protected function bool HitShouldKnockdown( byte BodyPart )
 function bool ShouldAutosellWeapon(class<KFWeaponDefinition> DefClass)
 {
     return AutoBuyLoadOutPath.Find(DefClass) == INDEX_NONE;
+}
+
+event Destroyed()
+{
+	ClearPerkEffects();
+	super.Destroyed();
 }
 
 /*********************************************************************************************
@@ -1494,6 +1526,11 @@ defaultproperties
    SecondaryXPModifier(0)=1
    LevelString="Level"
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
+   PrestigeIcons(0)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_1'
+   PrestigeIcons(1)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_2'
+   PrestigeIcons(2)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_3'
+   PrestigeIcons(3)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_4'
+   PrestigeIcons(4)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_5'
    WeaponDroppedMessage="You dropped%%%% because of your new carrying capacity!"
    AssistDoshModifier=1.000000
    CurrentLevel=255
@@ -1509,6 +1546,7 @@ defaultproperties
    MaxGrenadeCount=5
    BackupWeaponDamageTypeNames(0)="KFDT_Ballistic_9mm"
    BackupWeaponDamageTypeNames(1)="KFDT_Slashing_Knife"
+   PrestigeRewardItemIconPaths(0)="Xmas_UI.UI_Objectives_Xmas_Krampus"
    bTickIsDisabled=True
    bOnlyRelevantToOwner=True
    bAlwaysRelevant=False

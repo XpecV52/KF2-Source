@@ -81,19 +81,19 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     }
     else
     {
-        if(WorldInfo.Game.GameDifficulty == float(0))
+        if(WorldInfo.Game.GetModifiedGameDifficulty() == 0)
         {
             RageHealthThreshold = RageHealthThresholdNormal;            
         }
         else
         {
-            if(WorldInfo.Game.GameDifficulty == float(1))
+            if(WorldInfo.Game.GetModifiedGameDifficulty() == 1)
             {
                 RageHealthThreshold = RageHealthThresholdHard;                
             }
             else
             {
-                if(WorldInfo.Game.GameDifficulty == float(2))
+                if(WorldInfo.Game.GetModifiedGameDifficulty() == 2)
                 {
                     RageHealthThreshold = RageHealthThresholdSuicidal;                    
                 }
@@ -266,6 +266,7 @@ defaultproperties
     ZedBumpDamageScale=0.1
     DifficultySettings=Class'KFDifficulty_Scrake'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedScrake.SprintAkComponent0'
     OnDeathAchievementID=132
     PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
     LocalizationKey=KFPawn_ZedScrake
@@ -344,6 +345,7 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedScrake.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedScrake.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedScrake.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_ZedScrake.SprintAkComponent0'
     begin object name=ChainsawAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -351,7 +353,7 @@ defaultproperties
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedScrake.ChainsawAkComponent0'
-    Components(8)=ChainsawAkComponent0
+    Components(9)=ChainsawAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

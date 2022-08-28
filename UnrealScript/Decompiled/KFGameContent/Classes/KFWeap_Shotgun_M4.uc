@@ -11,11 +11,18 @@ class KFWeap_Shotgun_M4 extends KFWeap_ShotgunBase
 
 defaultproperties
 {
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=7
-    MagazineCapacity=8
+    NumPellets=/* Array type was not detected. */
+    PackageKey="M4Shotgun"
+    FirstPersonMeshName="WEP_1P_M4Shotgun_MESH.Wep_1stP_M4Shotgun_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_M4Shotgun_MESH.Wep_M4Shotgun_Pickup"
+    AttachmentArchetypeName="WEP_M4Shotgun_ARCH.Wep_M4Shotgun_3P"
+    MuzzleFlashTemplateName="WEP_M4Shotgun_ARCH.Wep_M4Shotgun_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=6
+    MagazineCapacity=8
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=52
@@ -30,9 +37,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=15,Y=8.5,Z=-3.5)
-    AttachmentArchetype=KFWeaponAttachment'WEP_M4Shotgun_ARCH.Wep_M4Shotgun_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_M4.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_M4Shotgun_ARCH.Wep_M4Shotgun_MuzzleFlash'
     maxRecoilPitch=675
     minRecoilPitch=600
     maxRecoilYaw=375
@@ -51,6 +56,7 @@ defaultproperties
     HippedRecoilModifier=1.3
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -59,21 +65,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=5,Z=-4)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_M4Shotgun_MESH.Wep_1stP_M4Shotgun_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_M4Shotgun_ANIM.Wep_1st_M4Shotgun_ANIM'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Shotgun_M4.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="M4 Combat Shotgun"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_M4Shotgun_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_M4.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_M4Shotgun_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_M4.StaticPickupComponent'

@@ -11,12 +11,14 @@ class KFWeap_Knife_Sharpshooter extends KFWeap_Edged_Knife
 
 defaultproperties
 {
+    PackageKey="Sharpshooter_Knife"
+    FirstPersonMeshName="WEP_1P_Sharpshooter_Knife_MESH.Wep_1stP_SharpshooterKnife_Rig"
+    AttachmentArchetypeName="wep_sharpshooter_knife_arch.Wep_Sharpshooter_Knife_3P"
     WeaponSelectTexture=Texture2D'WEP_UI_Sharpshooter_Knife_TEX.UI_WeaponSelect_SharpshooterKnife'
-    AttachmentArchetype=KFWeaponAttachment'wep_sharpshooter_knife_arch.Wep_Sharpshooter_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Sharpshooter.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Sharpshooter_Knife_MESH.Wep_1stP_SharpshooterKnife_Rig'
+        AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_Sharpshooter.FirstPersonMesh'

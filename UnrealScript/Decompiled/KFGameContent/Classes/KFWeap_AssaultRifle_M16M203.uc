@@ -325,14 +325,20 @@ simulated state Active
 defaultproperties
 {
     SecondaryFireOffset=(X=20,Y=4.5,Z=-7)
+    PackageKey="M16_M203"
+    FirstPersonMeshName="wep_1p_m16_m203_mesh.Wep_1stP_M16_M203_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_M16_M203_MESH.Wep_M4_M203_Pickup"
+    AttachmentArchetypeName="Wep_M16_M203_ARCH.Wep_M16_M203_3P_new"
+    MuzzleFlashTemplateName="wep_m16_m203_arch.Wep_M16_M203_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=2
     InventorySize=6
     MagazineCapacity[0]=30
     MagazineCapacity[1]=1
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshFOV=65
     MeshIronSightFOV=45
     PlayerIronSightFOV=70
@@ -353,9 +359,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=22,Y=9,Z=-2)
-    AttachmentArchetype=KFWeapAttach_MultiAmmo'Wep_M16_M203_ARCH.Wep_M16_M203_3P_new'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_M16M203.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'Wep_M16_M203_ARCH.Wep_M16_M203_MuzzleFlash'
     maxRecoilPitch=120
     minRecoilPitch=70
     maxRecoilYaw=130
@@ -373,6 +377,7 @@ defaultproperties
     HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=1.7
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -382,21 +387,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'wep_1p_m16_m203_mesh.Wep_1stP_M16_M203_Rig'
-        AnimSets(0)=AnimSet'wep_1p_m16_m203_anim.Wep_1stP_M16_M203_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_AssaultRifle_M16M203.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="M16 M203 Assault Rifle"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M16_M203_MESH.Wep_M4_M203_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_M16M203.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M16_M203_MESH.Wep_M4_M203_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_M16M203.StaticPickupComponent'

@@ -23,6 +23,21 @@ var protected MeshComponent OverlayMesh;
 var KFSkeletalMeshComponent MySkelMesh;
 
 /************************************************************************************
+* @name	Content
+***********************************************************************************/
+var const string PackageKey;
+var const string FirstPersonMeshName;
+var const array<string> FirstPersonAnimSetNames;
+var const string FirstPersonAnimTree;
+var const string PickupMeshName;
+var const string AttachmentArchetypeName;
+var const string MuzzleFlashTemplateName;
+
+var bool AttachOnContentLoad;
+var bool SetOnContentLoad;
+var bool WeaponContentLoaded;
+
+/************************************************************************************
  * @name	Firing / Timing / States
  ***********************************************************************************/
 /** Fire mode 0 is the default weapon firing. */
@@ -353,6 +368,9 @@ var const bool bAllowClientAmmoTracking;
 
 /** Last time 'AbortReload' was called */
 var transient float LastReloadAbortTime;
+
+/** How long to wait after firing to force reload */
+var() float	ForceReloadTimeOnEmpty;
 
 /*********************************************************************************************
  * @name  Fire Effects
@@ -787,6 +805,32 @@ var bool bDebugRecoilPosition;
 /** temp ammo logging */
 var config bool	bLogAmmo;
 
+/** Log weapon upgrade system. */
+var config bool bLogWeaponUpgrade;
+
+/*********************************************************************************************
+ * @name Weapon Upgrade System
+ *********************************************************************************************/
+
+struct native WeaponUpgradeInfo
+{
+	var() int IncrementWeight;
+	var() float IncrementDamage;
+	var() float IncrementHeal;
+	var() float IncrementHealFullRecharge;
+
+	structdefaultproperties
+	{
+		IncrementWeight=1
+		IncrementDamage=1.f
+		IncrementHealFullRecharge=1.f
+		IncrementHeal=1.f
+	}
+};
+
+var array<WeaponUpgradeInfo> WeaponUpgrades;
+var int CurrentWeaponUpgradeIndex;
+
 cpptext
 {
 	// Actor
@@ -815,7 +859,7 @@ replication
 	if (bNetDirty && (bNetInitial || !bAllowClientAmmoTracking) )
 		AmmoCount;
 	if (bNetDirty)
-		SpareAmmoCount, MagazineCapacity, SpareAmmoCapacity, bGivenAtStart;
+		SpareAmmoCount, MagazineCapacity, SpareAmmoCapacity, bGivenAtStart,CurrentWeaponUpgradeIndex;
 }
 
 /*********************************************************************************************
@@ -874,11 +918,6 @@ simulated event PreBeginPlay()
 		RecoilYawBlendOutRate = maxRecoilYaw/RecoilRate * RecoilBlendOutRatio;
 		RecoilPitchBlendOutRate = maxRecoilPitch/RecoilRate * RecoilBlendOutRatio;
 	}
-
-	if( bHasLaserSight )
-	{
-		AttachLaserSight();
-	}
 }
 
 function SetShownInInventory(bool bValue);
@@ -903,18 +942,23 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	{
 		BuildEmptyMagNodeWeightList( EmptyMagBlendNode, BonesToLockOnEmpty );
 	}
+
+	if (bHasLaserSight)
+	{
+		AttachLaserSight();
+	}
 }
 
 /** Rebuilds weight list for "empty mag" bolt lock node after updating its target bones */
 native function BuildEmptyMagNodeWeightList( AnimNodeBlendPerBone EmptyNode, const out array<name> BonesToLock );
 
 /** Setup the time it takes before the equip anim can be interrupted */
-simulated function InitializeEquipTime()
+simulated event InitializeEquipTime()
 {
 	EquipTime = EquipTime>0 ? EquipTime : 0.01;
 	PutDownTime = PutDownTime>0 ? PutDownTime : 0.01;
 
-	if ( bUseAnimLenEquipTime )
+	if ( bUseAnimLenEquipTime && WeaponContentLoaded )
 	{
 		EquipTime = MySkelMesh.GetAnimInterruptTime(EquipAnim);
 		PutDownTime = MySkelMesh.GetAnimLength(PutDownAnim);
@@ -964,6 +1008,16 @@ native reliable client private function ClientSetFirstPersonSkin(int ItemId);
 native reliable server private event ServerUpdateWeaponSkin(int ItemId);
 native private function ClearSkinItemId();
 
+//StartLoad will trigger an async package load.  The registered callback will then
+//		call LoadWeaponContent on this weapon when the package is ready.
+//
+//TriggerAsync will be called statically and simply cache packages to root.  Useful
+//		for remote clients to preload content when a user picks up a weapon without
+//		having to do the full setting stack.
+simulated native static function TriggerAsyncContentLoad();
+native private function StartLoadWeaponContent();
+native private function LoadWeaponContent();
+
 /**
  * This Inventory Item has just been given to this Pawn
  * (server only)
@@ -978,8 +1032,22 @@ function GivenTo( Pawn thisPawn, optional bool bDoNotActivate )
 		ClearSkinItemId();
 	}
 
-	KFInventoryManager(InvManager).AddCurrentCarryBlocks( InventorySize );
+	if (Role == ROLE_Authority && !WeaponContentLoaded)
+	{
+		StartLoadWeaponContent();
+	}
+
+	KFInventoryManager(InvManager).AddCurrentCarryBlocks( GetModifiedWeightValue() );
 	KFPawn(Instigator).NotifyInventoryWeightChanged();
+}
+
+reliable client function ClientGivenTo(Pawn NewOwner, bool bDoNotActivate)
+{
+	if (Role != ROLE_Authority && !WeaponContentLoaded)
+	{
+		StartLoadWeaponContent();
+	}
+	super.ClientGivenTo(NewOwner, bDoNotActivate);
 }
 
 /**
@@ -988,42 +1056,64 @@ function GivenTo( Pawn thisPawn, optional bool bDoNotActivate )
  */
 function ItemRemovedFromInvManager()
 {
+	local KFInventoryManager KFIM;
+
 	Super.ItemRemovedFromInvManager();
 
-	KFInventoryManager(InvManager).AddCurrentCarryBlocks( -InventorySize );
+	KFIM = KFInventoryManager(InvManager);
+	if (KFIM == none)
+	{
+		return;
+	}
 
+	`log(self @ "-" @ GetFuncName() @ "- CurrentCarryBlocks:" @ KFIM.CurrentCarryBlocks @ "ModifiedWeightValue:" @ GetModifiedWeightValue(), KFIM.bLogInventory);
+	KFIM.AddCurrentCarryBlocks( -GetModifiedWeightValue());
 	KFPawn(Instigator).NotifyInventoryWeightChanged();
 }
 
 reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNotActivate)
 {
+	if (WeaponContentLoaded)
+	{
+		SetWeapon();
+	}
+	SetOnContentLoad = true;
+
+	Super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
+}
+
+simulated event SetWeapon()
+{
 	local PlayerController PC;
 	local int i;
 
 	// This is the first time we have a valid Instigator (see PendingClientWeaponSet)
-	if ( Instigator != None && InvManager != None
-		&& WorldInfo.NetMode != NM_DedicatedServer )
+	if (Instigator != None && InvManager != None
+		&& WorldInfo.NetMode != NM_DedicatedServer)
 	{
 		PC = PlayerController(Instigator.Controller);
-		if( PC != none && PC.myHUD != none )
+		if (PC != none && PC.myHUD != none)
 		{
 			InitFOV(PC.myHUD.SizeX, PC.myHUD.SizeY, PC.DefaultFOV);
 		}
 
 		// One-time skin initialization on local player
-		if ( SkinItemId > 0 )
+		if (SkinItemId > 0)
 		{
 			ClientSetFirstPersonSkin(SkinItemId);
 		}
 
 		// Weapon MICs for blood maps
-		for( i = 0; i < NumBloodMapMaterials; ++i )
+		for (i = 0; i < NumBloodMapMaterials; ++i)
 		{
-			WeaponMICs.AddItem( Mesh.CreateAndSetMaterialInstanceConstant(i) );
+			WeaponMICs.AddItem(Mesh.CreateAndSetMaterialInstanceConstant(i));
 		}
 	}
+}
 
-	Super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
+simulated event TriggerAttachment()
+{
+	Activate();
 }
 
  /**
@@ -1035,6 +1125,12 @@ simulated function AttachWeaponTo( SkeletalMeshComponent MeshCpnt, optional Name
 {
 	local KFPawn KFP;
 	local int i;
+
+	//Weapon not ready for attach - delay until ready
+	if (!WeaponContentLoaded)
+	{
+		return;
+	}
 
 	KFP = KFPawn(Instigator);
 	if( KFP != none && KFP.ArmsMesh != none )
@@ -1216,7 +1312,7 @@ simulated function AttachLaserSight()
         return;
 	}
 
-	if ( MySkelMesh != none && LaserSight == None && bHasLaserSight )
+	if ( MySkelMesh != none && LaserSight == None && bHasLaserSight && LaserSight == none )
 	{
 		LaserSight = new(self) Class'KFLaserSightAttachment' (LaserSightTemplate);
 		LaserSight.AttachLaserSight(MySkelMesh, true);
@@ -1293,6 +1389,13 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 {
 	local byte i;
 	local KFWeapon KFWInv;
+
+	if(PickedUpWeapon.CurrentWeaponUpgradeIndex > INDEX_NONE)
+	{
+		SetWeaponUpgradeLevel(PickedUpWeapon.CurrentWeaponUpgradeIndex);
+		KFInventoryManager(InvManager).AddCurrentCarryBlocks(WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementWeight);
+		KFPawn(Instigator).NotifyInventoryWeightChanged();
+	}
 
 	for (i = 0; i < 2; i++)
 	{
@@ -2527,6 +2630,11 @@ simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocatio
 
 			HandleRecoil();
 			ShakeView();
+
+			if (AmmoCount[0] == 0 && ForceReloadTimeOnEmpty > 0)
+			{
+				SetTimer(ForceReloadTimeOnEmpty, false, nameof(ForceReload));
+			}
 		}
 	}
 }
@@ -2849,6 +2957,10 @@ simulated function StartFire(byte FireModeNum)
 	// Attempt auto-reload
 	if( FireModeNum == DEFAULT_FIREMODE || FireModeNum == ALTFIRE_FIREMODE )
 	{
+		if (IsMeleeing())
+		{
+			return;
+		}
 		if ( ShouldAutoReload(FireModeNum) )
 		{
 			FireModeNum = RELOAD_FIREMODE;
@@ -3440,20 +3552,18 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 		// these properties are replicated via TakeHitInfo
 		if ( InstantHitDamage.Length > CurrentFireMode && InstantHitDamageTypes.Length > CurrentFireMode )
 		{
-            ProjDamage = InstantHitDamage[CurrentFireMode];
+            ProjDamage = GetModifiedDamage(CurrentFireMode);
             SpawnedProjectile.Damage = ProjDamage;
             SpawnedProjectile.MyDamageType = InstantHitDamageTypes[CurrentFireMode];
 		}
 
 		// Set the penetration power for this projectile
-        if( SpawnedProjectile != none )
-        {
-			// because of clientside hit detection, we need two variables --
-			// one that replicates on init and one that updates but doesn't replicate
-        	SpawnedProjectile.InitialPenetrationPower = GetInitialPenetrationPower(CurrentFireMode);
-			SpawnedProjectile.PenetrationPower = SpawnedProjectile.InitialPenetrationPower;
-        }
+		// because of clientside hit detection, we need two variables --
+		// one that replicates on init and one that updates but doesn't replicate
+		SpawnedProjectile.InitialPenetrationPower = GetInitialPenetrationPower(CurrentFireMode);
+		SpawnedProjectile.PenetrationPower = SpawnedProjectile.InitialPenetrationPower;
 
+		SpawnedProjectile.UpgradeDamageMod = static.GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
 		SpawnedProjectile.Init( AimDir );
 	}
 
@@ -3514,7 +3624,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 
         // default damage model is just hits * base damage
 		NumHits = Max(NumHits, 1);
-		TotalDamage = InstantHitDamage[FiringMode] * NumHits;
+		TotalDamage = GetModifiedDamage(FiringMode) * NumHits;
 
 		if ( Impact.HitActor.bWorldGeometry )
 		{
@@ -4657,6 +4767,76 @@ simulated function NotifyEndState()
 }
 
 /*********************************************************************************************
+* @name	Weapon Upgrades
+********************************************************************************************* */
+
+function bool CanUpgradeWeapon()
+{
+	`log(self @ "-" @ GetFuncName() @ "- CurrentWeaponUpgradeIndex + 1:" @ (CurrentWeaponUpgradeIndex + 1) @ "WeaponUpgrades.length:" @ WeaponUpgrades.length, bLogWeaponUpgrade);
+	return CurrentWeaponUpgradeIndex + 1 < WeaponUpgrades.length;
+}
+
+simulated function UpgradeWeapon()
+{
+	if(CanUpgradeWeapon())
+	{
+		SetWeaponUpgradeLevel(CurrentWeaponUpgradeIndex + 1);
+	}
+}
+
+simulated function SetWeaponUpgradeLevel(int WeaponUpgradeLevel)
+{
+	`log(self @ "-" @ GetFuncName() @ "- Setting Upgrade Index to" @ WeaponUpgradeLevel, bLogWeaponUpgrade);
+	CurrentWeaponUpgradeIndex = WeaponUpgradeLevel;
+	bNetDirty = TRUE;
+}
+
+simulated function int GetModifiedWeightValue()
+{
+	return InventorySize + WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementWeight;
+}
+
+simulated static function int GetUpgradeWeight(int UpgradeIndex)
+{
+	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.length)
+	{
+		return 0;
+	}
+
+	return default.WeaponUpgrades[UpgradeIndex].IncrementWeight;
+}
+
+simulated static function float GetUpgradeDamageMod(int UpgradeIndex)
+{
+	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.length)
+	{
+		return 1.f;
+	}
+
+	return FMax(default.WeaponUpgrades[UpgradeIndex].IncrementDamage, 1.f);
+}
+
+simulated static function float GetUpgradeHealMod(int UpgradeIndex)
+{
+	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.length)
+	{
+		return 1.f;
+	}
+
+	return default.WeaponUpgrades[UpgradeIndex].IncrementHeal;
+}
+
+simulated static function float GetUpgradeHealRechargeMod(int UpgradeIndex)
+{
+	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.length)
+	{
+		return 1.f;
+	}
+
+	return default.WeaponUpgrades[UpgradeIndex].IncrementHealFullRecharge;
+}
+
+/*********************************************************************************************
  * state Inactive
  * This state is the default state.  It needs to make sure Zooming is reset when entering/leaving
  *********************************************************************************************/
@@ -4737,6 +4917,12 @@ reliable server function ServerSyncReload(int ClientSpareAmmoCount)
 
 simulated function Activate()
 {
+	if (!WeaponContentLoaded)
+	{
+		AttachOnContentLoad = true;
+		return;
+	}
+
 	// Clear opposite firemode when coming from another weapon, this is required since
 	// StopFire() will only clear current firemode when the button is released.
 	if ( bUseAltFireMode )
@@ -4750,6 +4936,14 @@ simulated function Activate()
 
 	// The weapon is equipped, attach it to the mesh.
 	AttachWeaponTo( Instigator.Mesh );
+
+	// Due to delayed content loading, PostInitAnimTree won't be called (from UnSkeletalComponent::InitAnimTree)
+	// before being attached (because component owner will be None). So, if we have a FirstPersonAnimTree
+	// but no WeaponAnimSeqNode, call PostInitAnimTree now that we've attached.
+	if (MySkelMesh != none && MySkelMesh.bAnimTreeInitialised && WeaponAnimSeqNode == none && Len(FirstPersonAnimTree) > 0)
+	{
+		PostInitAnimTree(MySkelMesh);
+	}
 
 	super.Activate();
 }
@@ -5122,6 +5316,11 @@ simulated function TimeWeaponEquipping()
 {
 	local KFPerk InstigatorPerk;
 	local float ModifiedEquipTime;
+
+	if (!WeaponContentLoaded)
+	{
+		return;
+	}
 
 	ModifiedEquipTime = MySkelMesh.GetAnimLength( EquipAnim );
 
@@ -6615,6 +6814,11 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 	PlayAnimation(AnimName, Duration,, BlendTime);
 }
 
+simulated function int GetModifiedDamage(byte FireModeNum, optional vector RayDir)
+{
+	return InstantHitDamage[FireModeNum] * FMax(WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementDamage, 1.0f);
+}
+
 /** returns the damage amount for this attack */
 simulated function int GetMeleeDamage(byte FireModeNum, optional vector RayDir)
 {
@@ -7023,5 +7227,11 @@ defaultproperties
     TargetFrictionOffsetScaleCurve={(Points=((InVal=0.000000,OutVal=1.000000),
     										(InVal=0.900000,OutVal=0.900000,InterpMode=CIM_CurveAuto),
     										(InVal=1.000000,OutVal=0.000000,InterpMode=CIM_CurveAuto)))}
+
+	WeaponUpgrades[0]=(IncrementDamage=1.0f,IncrementWeight=0) // This needs to remain, this is the base for all weapons that are not upgraded.
+	//WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=1)
+	//WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=2)
+	//WeaponUpgrades[3]=(IncrementDamage=1.75f,IncrementWeight=3)
+	//WeaponUpgrades[4]=(IncrementDamage=2.0f,IncrementWeight=4)
 }
 

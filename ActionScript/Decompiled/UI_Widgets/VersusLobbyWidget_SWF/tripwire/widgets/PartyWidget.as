@@ -423,11 +423,9 @@ package tripwire.widgets
         {
             this.readyButton.visible = param1;
             this.readyArrows.visible = !bManagerUsingGamepad ? Boolean(param1) : false;
-            if(!param1 && this.startIcon.visible)
-            {
-                this.startIcon.visible = false;
-            }
+            this.startIcon.visible = !!bManagerUsingGamepad ? Boolean(param1) : false;
             this.matchStartContainer.visible = param1;
+            this.updateControllerIconVisibility();
         }
         
         public function set partyButtonVisible(param1:Boolean) : void

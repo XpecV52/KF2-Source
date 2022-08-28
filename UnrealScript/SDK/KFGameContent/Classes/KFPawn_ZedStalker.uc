@@ -73,12 +73,12 @@ function SetCloaked(bool bNewCloaking)
 			Mesh.SetPerObjectShadows(!bNewCloaking);
 			ClearBloodDecals();
 		}
-		
+
 		super.SetCloaked( bNewCloaking );
 	}
 }
 
-/** 
+/**
  * bIsCloaking replicated state changed
  * Network: Local and Remote Clients
  */
@@ -88,7 +88,7 @@ simulated function ClientCloakingStateUpdated()
 	{
 		ClearBloodDecals();
 	}
-	
+
 	UpdateGameplayMICParams();
 	Mesh.SetPerObjectShadows( !bIsCloaking );
 }
@@ -135,7 +135,7 @@ simulated event NotifyGoreMeshActive()
 	// Set to our solid gore mat (only AI-controlled)
 	if( PlayerReplicationInfo == none && Mesh.SkeletalMesh.Materials.Length > 2 )
 	{
-		CharacterMICs[0].SetParent( Mesh.SkeletalMesh.Materials[2] );	
+		CharacterMICs[0].SetParent( Mesh.SkeletalMesh.Materials[2] );
 	}
 }
 
@@ -257,7 +257,7 @@ simulated event UpdateSpottedStatus()
 			}
 		}
 	}
-	
+
 	// If spotted by team already, there is no point in trying to update the MIC here
 	if ( !bIsCloakingSpottedByTeam )
 	{
@@ -517,6 +517,9 @@ DefaultProperties
 	ControllerClass=class'KFAIController_ZedStalker'
 	DamageRecoveryTimeHeavy=0.65f
 	DamageRecoveryTimeMedium=1.0f
+	ElitePawnClass.Add(class'KFPawn_ZedDAR_EMP')
+	ElitePawnClass.Add(class'KFPawn_ZedDAR_Laser')
+	ElitePawnClass.Add(class'KFPawn_ZedDAR_Rocket')
 
 	RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
 

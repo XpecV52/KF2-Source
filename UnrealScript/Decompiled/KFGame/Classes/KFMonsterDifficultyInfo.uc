@@ -64,6 +64,8 @@ var const sRallyInfo RallySettings_Versus;
 var const sRallyInfo RallySettings_Player_Versus;
 var const float ZedTimeSpeedScale_Versus;
 var const float ZedTimeSpeedScale_Player_Versus;
+var array<float> ChanceToSpawnAsSpecial;
+var bool bVersusCanSpawnAsSpecial;
 
 static function sEvadeOnDamageInfo GetEvadeOnDamageSettings(KFPawn_Monster MonsterPawn, KFGameReplicationInfo KFGRI)
 {
@@ -82,7 +84,7 @@ static function sEvadeOnDamageInfo GetEvadeOnDamageSettings(KFPawn_Monster Monst
             return DefaultEvadeSettings;
         }
     }
-    Difficulty = KFGRI.GameDifficulty;
+    Difficulty = KFGRI.GetModifiedGameDifficulty();
     if(float(Difficulty) >= 3)
     {
         return default.HellOnEarth.EvadeOnDamageSettings;        
@@ -119,7 +121,7 @@ static function sRallyInfo GetRallySettings(KFPawn_Monster MonsterPawn, KFGameRe
             return default.RallySettings_Versus;
         }
     }
-    Difficulty = KFGRI.GameDifficulty;
+    Difficulty = KFGRI.GetModifiedGameDifficulty();
     if(float(Difficulty) >= 3)
     {
         return default.HellOnEarth.RallySettings;        
@@ -156,7 +158,7 @@ static function sBlockInfo GetBlockSettings(KFPawn_Monster MonsterPawn, KFGameRe
             return default.BlockSettings_Versus;
         }
     }
-    Difficulty = KFGRI.GameDifficulty;
+    Difficulty = KFGRI.GetModifiedGameDifficulty();
     if(float(Difficulty) >= 3)
     {
         return default.HellOnEarth.BlockSettings;        
@@ -193,7 +195,7 @@ static function float GetZedTimeSpeedScale(KFPawn_Monster MonsterPawn, KFGameRep
             return default.ZedTimeSpeedScale_Versus;
         }
     }
-    Difficulty = KFGRI.GameDifficulty;
+    Difficulty = KFGRI.GetModifiedGameDifficulty();
     if(float(Difficulty) >= 3)
     {
         return default.HellOnEarth.ZedTimeSpeedScale;        
@@ -236,6 +238,19 @@ static function float GetMovementSpeedMod(KFPawn_Monster P, float GameDifficulty
         }
     }
     return default.Normal.MovementSpeedMod;
+}
+
+static function float GetSpecialSpawnChance(KFGameReplicationInfo KFGRI)
+{
+    if(default.ChanceToSpawnAsSpecial.Length == 0)
+    {
+        return 0;
+    }
+    if(!default.bVersusCanSpawnAsSpecial && KFGRI.bVersusGame)
+    {
+        return 0;
+    }
+    return default.ChanceToSpawnAsSpecial[Clamp(KFGRI.GetModifiedGameDifficulty(), 0, default.ChanceToSpawnAsSpecial.Length - 1)];
 }
 
 defaultproperties

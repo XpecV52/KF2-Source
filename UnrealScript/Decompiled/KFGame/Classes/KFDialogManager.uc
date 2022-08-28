@@ -412,7 +412,7 @@ function bool DialogEventCanBePlayed(KFPawn KFP, const out DialogEventInfo Event
         }
         return false;
     }
-    if((KFP.SpecialMove == 32) && EventInfo.Priority > InterruptPriorityThreshold)
+    if((KFP.SpecialMove == 33) && EventInfo.Priority > InterruptPriorityThreshold)
     {
         if(bLogDialog)
         {
@@ -2181,6 +2181,9 @@ function PlayVoiceCommandDialog(KFPawn Speaker, int CommandIndex)
             break;
         case 7:
             PlayDialogEvent(Speaker, 9);
+            break;
+        case 9:
+            PlayDialogEvent(Speaker, 230);
             break;
         default:
             break;

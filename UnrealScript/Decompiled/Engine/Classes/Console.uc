@@ -236,6 +236,8 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
     return bCaptureKeyInput;
 }
 
+function AttempDisconnect();
+
 function bool InputChar(int ControllerId, string Unicode)
 {
     return bCaptureKeyInput;

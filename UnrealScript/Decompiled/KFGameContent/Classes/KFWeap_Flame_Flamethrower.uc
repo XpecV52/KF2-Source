@@ -183,12 +183,18 @@ defaultproperties
     // Reference: KFParticleSystemComponent'Default__KFWeap_Flame_Flamethrower.FlameEndSpray0'
     PSC_EndSpray=FlameEndSpray0
     MinAmmoConsumed=4
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=8
-    MagazineCapacity=100
+    PackageKey="Flamethrower"
+    FirstPersonMeshName="WEP_1P_Flamethrower_MESH.Wep_1stP_Flamethrower_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Flamethrower_MESH.Wep_FlameThrower_Pickup"
+    AttachmentArchetypeName="WEP_Flamethrower_ARCH.Wep_Flamethrower_3P"
+    MuzzleFlashTemplateName="WEP_Flamethrower_ARCH.Wep_Flamethrower_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=7
+    MagazineCapacity=100
     MeshIronSightFOV=52
     PlayerIronSightFOV=80
     IronSightPosition=(X=3,Y=6,Z=-1)
@@ -210,9 +216,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=3,Y=9,Z=-3)
-    AttachmentArchetype=KFWeapAttach_Flamethrower'WEP_Flamethrower_ARCH.Wep_Flamethrower_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Flame_Flamethrower.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Flamethrower_ARCH.Wep_Flamethrower_MuzzleFlash'
     maxRecoilPitch=150
     minRecoilPitch=115
     maxRecoilYaw=115
@@ -230,6 +234,7 @@ defaultproperties
     HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -237,21 +242,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Flamethrower_MESH.Wep_1stP_Flamethrower_Rig'
-        AnimSets(0)=AnimSet'wep_1p_flamethrower_anim.Wep_1stP_Flamethrower_anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Flame_Flamethrower.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Flamethrower"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_FlameThrower_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Flame_Flamethrower.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_FlameThrower_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Flame_Flamethrower.StaticPickupComponent'

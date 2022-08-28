@@ -152,6 +152,9 @@ var float PostExplosionLifetime;
 var bool    bAltExploEffects;
 var KFImpactEffectInfo AltExploEffects;
 
+/** Reference to upgrade damage modifer for any value that doesn't use projectile damage. */
+var float UpgradeDamageMod;
+
 /*********************************************************************************************
 * @name Flight Effects
 ********************************************************************************************* */
@@ -685,8 +688,8 @@ simulated function bool CheckRepeatingTouch(Actor Other)
   * Returns true if projectile actually bounced / was allowed to bounce */
 simulated function bool Bounce( vector HitNormal, Actor BouncedOff );
 
-/** 
- * Called by projectiles that bounce off world geometry when they touch a damagable non-pawn actor 
+/**
+ * Called by projectiles that bounce off world geometry when they touch a damagable non-pawn actor
  * @note: This may be deprecated now that KFDestructibleActor has bWorldGeometry=true
  */
 simulated function ProcessDestructibleTouchOnBounce( Actor Other, Vector HitLocation, Vector HitNormal )
@@ -891,9 +894,9 @@ simulated function Disintegrate( rotator InDisintegrateEffectRotation )
         }
     }
 
-	bHasDisintegrated = true;    
+	bHasDisintegrated = true;
 	DeferredDestroy(0.1f); // cleanup/destroy projectile
-    
+
 }
 
 /**
@@ -929,7 +932,7 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
 			// using a hit location slightly away from the impact point is nice for certain things
 			NudgedHitLocation = HitLocation + (HitNormal * 32.f);
 
-            SetExplosionActorClass();      
+            SetExplosionActorClass();
             if( ExplosionActorClass == class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass() )
             {
                 P = Pawn(HitActor);
@@ -1009,6 +1012,8 @@ simulated function bool AllowNuke()
 simulated protected function PrepareExplosionTemplate()
 {
 	GetRadialDamageValues(ExplosionTemplate.Damage, ExplosionTemplate.DamageRadius, ExplosionTemplate.DamageFalloffExponent);
+	ExplosionTemplate.Damage *= UpgradeDamageMod;
+	ExplosionTemplate.DamageRadius *= UpgradeDamageMod;
 }
 
 /** Returns values for radial damage. */
@@ -1266,4 +1271,6 @@ defaultproperties
 
     // global shared content
     DisintegrateSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Siren_Grenade_Dis'
+
+	UpgradeDamageMod=1.f
 }

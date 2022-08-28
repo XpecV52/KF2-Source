@@ -2,6 +2,7 @@ package tripwire.controls.postGameMenu
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.text.TextField;
     import scaleform.clik.controls.ListItemRenderer;
@@ -52,6 +53,8 @@ package tripwire.controls.postGameMenu
         public var perksubXP1Mask;
         
         public var perksubXP2Mask;
+        
+        public var perkBonusXP:MovieClip;
         
         public const perklevelFinX:Number = 480;
         
@@ -213,6 +216,11 @@ package tripwire.controls.postGameMenu
                 "ease":Cubic.easeOut,
                 "onComplete":this.doneAndDone
             });
+            TweenMax.to(this.perkBonusXP,4,{
+                "delay":32,
+                "alpha":1,
+                "useFrames":true
+            });
             if(this.startLevel == this.finishLevel)
             {
                 TweenMax.to(this.perkInfo.perkXPBar,8 * this.timeDialation,{
@@ -260,8 +268,9 @@ package tripwire.controls.postGameMenu
             this.perksubXP2Mask.width = this.perkSubWidth;
             this.perksubXP1.alpha = 1;
             this.perksubXP2.alpha = 1;
-            this.perksubXP1.perksubxpNum.text = "+" + this.finishSubXP1;
-            this.perksubXP2.perksubxpNum.text = "+" + this.finishSubXP2;
+            this.perkBonusXP.alpha = 1;
+            this.perksubXP1.perksubxpNum.text = "+" + this.finishSubXP1 + "XP";
+            this.perksubXP2.perksubxpNum.text = "+" + this.finishSubXP2 + "XP";
             this.perkInfo.perkXPBar.width = this.finishXPPercentage;
             this.doneAndDone();
         }
@@ -273,12 +282,12 @@ package tripwire.controls.postGameMenu
         
         private function changeSubXP1() : void
         {
-            this.perksubXP1.perksubxpNum.text = "+" + this.startSubXP1.toString();
+            this.perksubXP1.perksubxpNum.text = "+" + this.startSubXP1.toString() + "XP";
         }
         
         private function changeSubXP2() : void
         {
-            this.perksubXP2.perksubxpNum.text = "+" + this.startSubXP2.toString();
+            this.perksubXP2.perksubxpNum.text = "+" + this.startSubXP2.toString() + "XP";
         }
         
         override public function set data(param1:Object) : void
@@ -297,6 +306,8 @@ package tripwire.controls.postGameMenu
                 this.startXPPercentage = !!param1.startXP ? Number(param1.startXP) : Number(0);
                 this.finishXPPercentage = !!param1.finishXP ? Number(param1.finishXP) : Number(0);
                 this.xpDelta = !!param1.xpDelta ? int(param1.xpDelta) : 0;
+                this.perkBonusXP.perksubxpName.text = !!param1.bonusXPMultiplier ? param1.bonusXPMultiplier : "";
+                this.perkBonusXP.perksubxpNum.text = !!param1.bonusXP ? "+" + param1.bonusXP.toString() + "XP" : "0 XP";
                 this.perkLevel.text = this.startLevel;
                 if(this.bReadyToPlay)
                 {

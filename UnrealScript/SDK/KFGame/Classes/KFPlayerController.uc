@@ -10,7 +10,7 @@
 class KFPlayerController extends GamePlayerController
 	native(Controller)
 	nativereplication
-	dependson(EphemeralMatchStats);
+	dependson(EphemeralMatchStats, KFWeapon);
 
 `include(KFOnlineStats.uci)
 `include(KFProfileSettings.uci)
@@ -43,7 +43,7 @@ struct native PlayerStats
 struct native PerkInfo
 {
   	var class<KFPerk> 	PerkClass;
-	var byte			PerkLevel;	// This perk level is specifically used for clientside UI
+  	var byte			PerkLevel;	// This perk level is specifically used for clientside UI
 	var byte			PrestigeLevel;	// This perk level is specifically used for clientside UI
   	var KFPerk			PerkArchetype;
 };
@@ -98,6 +98,8 @@ var bool 				bWaitingForClientPerkData;
 var class<KFPerk>		MonsterPerkClass;
 
 var const Name 			MusicMessageType;
+
+var const int			EarnedDosh;
 
 /** Has perk xp/level been loaded (local player) */
 var	private const bool	bPerkStatsLoaded;
@@ -725,6 +727,9 @@ native function SetHardwarePhysicsEnabled(bool bEnabled);
 
 native function SyncInventoryProperties();
 
+native function AddVStat( int Amount );
+native function ResetVStat();
+
 /** @return Whether or not the user has a keyboard plugged-in. */
 native simulated function bool IsKeyboardAvailable() const;
 /** @return Whether or not the user has a mouse plugged-in. */
@@ -814,6 +819,22 @@ function ClearDownloadInfo()
 	}
 }
 
+reliable server event AddV( int Amount )
+{
+	`log("adding dosh: " @Amount );
+	AddVStat( Amount );
+}
+
+reliable server event PushV()
+{
+	`log("pushing dosh");
+	`AnalyticsLog(("pc_dosh_earned",
+				   PlayerReplicationInfo,
+				   "#"$EarnedDosh));
+
+	ResetVStat();
+}
+
 simulated event name GetSeasonalStateName()
 {
     //Remove any year information, just get 1s digit
@@ -866,6 +887,12 @@ simulated event ReceivedPlayer()
 	// Read profile settings for local player
 	if( IsLocalPlayerController()  )
 	{
+		if (!(class'WorldInfo'.Static.IsMenuLevel()) && class'WorldInfo'.Static.IsConsoleBuild() && !OnlineSub.IsGameOwned() && !OnlineSub.IsFreeTrialPeriodActive())
+		{
+			`log("Trail Check: Calling Disconnect KFPlayerController ReceivedPlayer");
+			ConsoleCommand("Disconnect");
+		}
+
 		// Check to see if we already have profile settings
 		if( OnlineSub.PlayerInterface.GetProfileSettings( LocalPlayer(Player).ControllerId ) != None )
 		{
@@ -1369,7 +1396,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
 		if(KFPRI != none)
 		{
-			KFPRI.SelectCharacter(Profile.GetProfileInt(KFID_StoredCharIndex));
+			KFPRI.SelectCharacter(Profile.GetProfileInt(KFID_StoredCharIndex), true);
 		}
 
 		KFInput = KFPlayerInput(PlayerInput);
@@ -1964,6 +1991,7 @@ function OnLoginForGameInviteComplete()
 
 	if (OnlineSub != None && OnlineSub.GameInterface != None && OnlineSub.SystemInterface != None)
 	{
+
 		// Make sure the login succeeded
 		if (OnlineSub.PlayerInterface.GetLoginStatus(LocalPlayer(Player).ControllerId) == LS_LoggedIn)
 		{
@@ -2101,10 +2129,26 @@ function OnPlayTogetherStarted()
 	local KFGameViewportClient Viewport;
 
 	`log("PLAY - OnPlayTogetherStarted");
-
 	Viewport = KFGameViewportClient( class'Engine'.static.GetEngine().GameViewport );
 	if( Viewport.bSeenIIS )
 	{
+		//`log("OnPlayTogetherStarted Trial Check " $ "Owned: " $ OnlineSub.IsGameOwned() $ " TrailOver: " $  OnlineSub.IsFreeTrialPeriodActive());
+		//free trial is over and we're already logged in trying to access playtogether feature...no!
+		if (class'WorldInfo'.Static.IsConsoleBuild() && !OnlineSub.IsGameOwned())
+		{
+			if (OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+			{
+				class'KFGFxMoviePlayer_Manager'.static.HandleFreeTrialError(FTN_BuyGame);
+				return;
+			}
+
+			if(!OnlineSub.CanCheckFreeTrialState())
+			{
+				class'KFGFxMoviePlayer_Manager'.static.HandleFreeTrialError(FTN_NetworkCheckFailed);
+				return;
+			}
+		}
+
 		StartLogin( OnLoginForPlayTogetherComplete, true );
 	}
 	else
@@ -3737,6 +3781,19 @@ reliable server function ServerThrowOtherWeapon(Weapon W)
 	}
 }
 
+event TriggerWeaponContentLoad(class<KFWeapon> WeaponClass)
+{
+	ClientTriggerWeaponContentLoad(WeaponClass);
+}
+
+reliable client function ClientTriggerWeaponContentLoad(class<KFWeapon> WeaponClass)
+{
+	if (WeaponClass != none)
+	{
+		WeaponClass.static.TriggerAsyncContentLoad();
+	}
+}
+
 /*********************************************************************************************
  * @name Player Movement
 ********************************************************************************************* */
@@ -4580,6 +4637,27 @@ function SetGrabEffect( bool bValue, optional bool bPlayerZed, optional bool bSk
 	   	}
    	}
 }
+
+/** Set the post processing effect of a zed grabbing a player to on or off */
+function SetGrabEffectEMP(bool bActive, optional bool bPlayerZed, optional bool bSkipMessage)
+{
+	local class<EmitterCameraLensEffectBase> LensEffectTemplate;
+
+	if (!bSkipMessage && bActive)
+	{		
+		LensEffectTemplate = class'KFCameraLensEmit_EMP';
+		if (LensEffectTemplate != none)
+		{
+			ClientSpawnCameraLensEffect(LensEffectTemplate);
+		}
+		ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_EMPGrabWarning);
+	}
+	else
+	{
+		ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_None);
+	}
+}
+
 
 /** Set the post processing effect of an active perk skill to on or off */
 function SetPerkEffect( bool bValue )
@@ -7048,7 +7126,7 @@ function DrawDebugDifficulty( Canvas Canvas, out float out_YL, out float out_YPo
      	Canvas.SetDrawColor(0,255,255);
 	    Canvas.SetPos(4,out_YPos);
 		Canvas.DrawText( "---------- KFPlayerController: Difficulty ----------" );
-		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "Current Difficulty: " @"("$KFGI.GameDifficulty$")" );
+		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "Current Difficulty: (" $KFGI.GameDifficulty@")" );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, true, 	"Global Health Mod: " @KFGI.DifficultyInfo.GetGlobalHealthMod() );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, true, 	"Ground Speed Mod: " @KFGI.DifficultyInfo.GetAIGroundSpeedMod() );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "Difficulty Wave Count Mod: " @KFGI.DifficultyInfo.GetDifficultyMaxAIModifier() );
@@ -9338,7 +9416,7 @@ function ForceDisconnect()
 	else
 	{
 		`log("Could not disconnect");
-	}
+}
 }
 
 function bool CanDisconnect()
@@ -9357,16 +9435,16 @@ function bool CanDisconnect()
 	}
 	else 
 	{
-		if (WorldInfo.bIsMenuLevel && !bDownloadingContent)
-		{
+	if(WorldInfo.bIsMenuLevel && !bDownloadingContent)
+	{
 			`log("returning false, in menu level and not downloading content");
-			return false;
-		}
-		else if (CurrentMovieString == "")
-		{
+		return false;
+	}
+	else if(CurrentMovieString == "")
+	{
 			`log("returning false, no movie playing.  This means you are loaded in.");
-			return false;
-		}
+		return false;
+	}
 	}	
 
 	return true;
@@ -10764,6 +10842,9 @@ simulated function CreateDiscordGamePresence()
 
 defaultproperties
 {
+	EarnedDosh=0
+
+    //Allow PC-based things to be properly ticked, but skip the rest of the tick in native
     bAlwaysTick=true
 
 	MatchStatsClass=Class'EphemeralMatchStats'
@@ -10953,6 +11034,6 @@ defaultproperties
 	DebugLastSeenDoshVaultValue=INDEX_NONE
 	DebugCurrentDoshVaultValue=INDEX_NONE
 	DebugCurrentDoshVaultTier=INDEX_NONE
-	
-	BeginningRoundVaultAmount = INDEX_NONE
+
+	BeginningRoundVaultAmount=INDEX_NONE
 }

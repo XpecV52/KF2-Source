@@ -14,12 +14,18 @@ defaultproperties
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)
     SingleClass=Class'KFWeap_Pistol_Colt1911'
     BonesToLockOnEmpty_L=/* Array type was not detected. */
-    InventorySize=4
-    MagazineCapacity=16
+    PackageKey="Dual_M1911"
+    FirstPersonMeshName="WEP_1P_Dual_M1911_MESH.Wep_1stP_Dual_M1911_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Dual_M1911_MESH.Wep_M1911_Pickup"
+    AttachmentArchetypeName="WEP_Dual_M1911_ARCH.Wep_Dual_M1911_3P"
+    MuzzleFlashTemplateName="WEP_Dual_M1911_ARCH.Wep_Dual_M1911_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    InventorySize=4
+    MagazineCapacity=16
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=60
@@ -36,9 +42,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=16,Y=0,Z=-5)
-    AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_M1911_ARCH.Wep_Dual_M1911_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_DualColt1911.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_M1911_ARCH.Wep_Dual_M1911_MuzzleFlash'
     maxRecoilPitch=450
     minRecoilPitch=400
     maxRecoilYaw=150
@@ -54,6 +58,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.35
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -62,21 +67,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=17,Y=4,Z=-2.25)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_Dual_M1911_MESH.Wep_1stP_Dual_M1911_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_Dual_M1911_ANIM.Wep_1stP_Dual_M1911_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_DualColt1911.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Dual M1911 Pistols"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M1911_MESH.Wep_M1911_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_DualColt1911.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_M1911_MESH.Wep_M1911_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_DualColt1911.StaticPickupComponent'

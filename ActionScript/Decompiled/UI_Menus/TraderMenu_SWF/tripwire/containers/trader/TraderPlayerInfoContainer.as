@@ -18,6 +18,7 @@ package tripwire.containers.trader
     import scaleform.clik.ui.InputDetails;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
+    import tripwire.controls.TripUIPerkLoader;
     
     public class TraderPlayerInfoContainer extends TripContainer
     {
@@ -47,7 +48,7 @@ package tripwire.containers.trader
         
         public var characterLoader:UILoader;
         
-        public var perkIconLoader:UILoader;
+        public var perkIconLoader:TripUIPerkLoader;
         
         public var bCanUseMenu:Boolean;
         
@@ -139,7 +140,14 @@ package tripwire.containers.trader
         
         public function set perkIconPath(param1:String) : void
         {
-            this.perkIconLoader.source = param1;
+        }
+        
+        public function set perkImageSource(param1:Object) : void
+        {
+            if(param1 && param1 != null)
+            {
+                this.perkIconLoader.data = param1;
+            }
         }
         
         public function set perkName(param1:String) : void

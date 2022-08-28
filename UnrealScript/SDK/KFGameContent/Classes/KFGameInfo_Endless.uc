@@ -15,8 +15,6 @@ var bool bIsInHoePlus;
 
 var KFGameDifficulty_Endless EndlessDifficulty;
 
-var() float BaseGameDifficulty;
-
 var int CurrentFrameBooms;
 
 var array<EAIType> SpecialWaveTypes;
@@ -34,7 +32,6 @@ event InitGame( string Options, out string ErrorMessage )
 	Super.InitGame( Options, ErrorMessage );
 
 	GameLength = 2;
-	BaseGameDifficulty = GameDifficulty;
 	ResetDifficulty();
 }
 
@@ -44,13 +41,6 @@ event PostBeginPlay()
 
 	OutbreakEvent.CacheGRI();
 	OutbreakEvent.CacheWorldInfo();
-}
-
-function InitGRIVariables()
-{
-	Super.InitGRIVariables();
-
-	KFGameReplicationInfo_Endless(MyKFGRI).BaseGameDifficulty = BaseGameDifficulty;
 }
 
 function InitSpawnManager()
@@ -70,7 +60,8 @@ function ResetDifficulty()
 
 	if (EndlessDifficulty != none)
 	{
-		EndlessDifficulty.SetDifficultyScaling(BaseGameDifficulty);
+		EndlessDifficulty.SetDifficultyScaling(GameDifficulty);
+		EndlessDifficulty.CurrentDifficultyScaling.CurrentDifficultyIndex = 0;
 		EndlessDifficulty.SetDifficultySettings(0);
 	}
 }
@@ -84,7 +75,7 @@ function WaveStarted()
 {
 	super.WaveStarted();
 
-	if ((bForceOutbreakWave && !bUseSpecialWave) || (bForceOutbreakWave && KFGameReplicationInfo_Endless(GameReplicationInfo).CurrentWeeklyMode == INDEX_NONE))
+	if ((bForceSpecialWave && !bUseSpecialWave) || (bForceOutbreakWave && KFGameReplicationInfo_Endless(GameReplicationInfo).CurrentWeeklyMode == INDEX_NONE))
 	{
 		TrySetNextWaveSpecial();
 	}
@@ -309,8 +300,8 @@ function IncrementDifficulty()
 		}
 		else
 		{
-			GameDifficulty = Clamp(GameDifficulty + 1, MinGameDifficulty, MaxGameDifficulty);
-			MyKFGRI.GameDifficulty = GameDifficulty;
+			GameDifficultyModifier = Clamp(GameDifficultyModifier + 1, MinGameDifficulty, MaxGameDifficulty);  //UPDATE DIFFICULTY HERE
+			MyKFGRI.SetModifiedGameDifficulty(GameDifficultyModifier); //UPDATE DIFFICULTY HERE
 
 			`log("Increasing Difficulty to" @ GameDifficulty);
 		}
@@ -324,9 +315,6 @@ function IncrementDifficulty()
 	}
 
 	TimeBetweenWaves = GetTraderTime();
-
-	//WaveMax = SpawnManager.WaveSettings.Waves.Length;
-	//MyKFGRI.WaveMax = WaveMax;
 
 	UpdateGameSettings();
 }
@@ -474,16 +462,18 @@ function StartHoePlus()
 	EndlessDifficulty.SetZedFullUpgradeToBase();
 }
 
-function SetMonsterDefaults(KFPawn_Monster P)
-{
-	super.SetMonsterDefaults(P);
-
-	OutbreakEvent.AdjustMonsterDefaults(P);
-}
-
 function float GetGameInfoSpawnRateMod()
 {
-	return 1.0 / OutbreakEvent.ActiveEvent.SpawnRateMultiplier;
+	local float AdjustedSpawnRateMod;
+
+	AdjustedSpawnRateMod = super.GetGameInfoSpawnRateMod();
+
+	if (EndlessDifficulty != none && bUseSpecialWave)
+	{
+		AdjustedSpawnRateMod *= EndlessDifficulty.GetSpecialWaveSpawnRateMod(SpecialWaveType);
+	}
+
+	return AdjustedSpawnRateMod;
 }
 
 function RestartPlayer(Controller NewPlayer)
@@ -523,8 +513,6 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
 			Damage *= ToAdjust.DamageDealtScale;
 		}
 	}
-
-	OutbreakEvent.ReduceDamage(Damage, Injured, InstigatedBy, DamageType, HitInfo);
 }
 
 function StartOutbreakRound(int OutbreakIdx)
@@ -560,84 +548,6 @@ function Tick(float DeltaTime)
 {
 	CurrentFrameBooms = 0;
 	Super.Tick(DeltaTime);
-}
-
-function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed)
-{
-	super.ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-
-	OutbreakEvent.ModifyGroundSpeed(PlayerPawn, GroundSpeed);
-}
-
-function float GetTotalWaveCountScale()
-{
-	//Boss wave, don't scale it.
-	if (WaveNum == WaveMax - 1)
-	{
-		return 1.0f;
-	}
-	if (OutbreakEvent.ActiveEvent.WaveAICountScale.Length > 0)
-	{
-		return GetLivingPlayerCount() > OutbreakEvent.ActiveEvent.WaveAICountScale.Length ? OutbreakEvent.ActiveEvent.WaveAICountScale[OutbreakEvent.ActiveEvent.WaveAICountScale.Length - 1] : OutbreakEvent.ActiveEvent.WaveAICountScale[GetLivingPlayerCount() - 1];
-	}
-	return 1.0f;
-}
-
-function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> damageType)
-{
-	super.ScoreDamage(DamageAmount, HealthBeforeDamage, InstigatedBy, DamagedPawn, damageType);
-
-	OutbreakEvent.AdjustScoreDamage(InstigatedBy, DamagedPawn, damageType);
-}
-
-function ScoreHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn, class<DamageType> DamageType)
-{
-	super.ScoreHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn, DamageType);
-
-	if (OutbreakEvent.ActiveEvent.bScaleOnHealth)
-	{
-		OutbreakEvent.AdjustPawnScale(HealedPawn);
-	}
-}
-
-function PassiveHeal(int HealAmount, int HealthBeforeHeal, Controller InstigatedBy, Pawn HealedPawn)
-{
-	super.PassiveHeal(HealAmount, HealthBeforeHeal, InstigatedBy, HealedPawn);
-
-	if (OutbreakEvent.ActiveEvent.bScaleOnHealth)
-	{
-		OutbreakEvent.AdjustPawnScale(HealedPawn);
-	}
-}
-
-function ScoreKill(Controller Killer, Controller Other)
-{
-	super.ScoreKill(Killer, Other);
-
-	if (Role == ROLE_Authority && Other != none && Other.Pawn != none)
-	{
-		OutbreakEvent.OnScoreKill(Other.Pawn);
-	}
-}
-
-function NotifyRally(KFPawn RalliedPawn)
-{
-	super.NotifyRally(RalliedPawn);
-
-	if (OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
-	{
-		OutbreakEvent.AdjustForBeefcakeRules(RalliedPawn, EBT_Rally);
-	}
-}
-
-function NotifyIgnoredScream(KFPawn ScreamPawn)
-{
-	super.NotifyIgnoredScream(ScreamPawn);
-
-	if (OutbreakEvent.ActiveEvent.bUseBeefcakeRules)
-	{
-		OutbreakEvent.AdjustForBeefcakeRules(ScreamPawn, EBT_Scream);
-	}
 }
 
 function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, class<KFPawn> ExplosionIgnoreClass)
@@ -691,13 +601,15 @@ exec function SetWave(byte NewWaveNum)
 	GotoState('DebugSuspendWave');
 	WaveNum = NewWaveNum - 1;
 	MyKFGRI.WaveNum = WaveNum;
+	bIsInHoePlus = false;
 
 	// Reset Endless Stats to round 1.
-	SpawnManager.GetWaveSettings(SpawnManager.WaveSettings);
 	ResetDifficulty();
+	SpawnManager.GetWaveSettings(SpawnManager.WaveSettings);
+	UpdateGameSettings();
 
 	// Apply Endless Stats round by round to ensure all numbers are correct.
-	for (CurrRound = 0; CurrRound < WaveNum - 1; CurrRound++)
+	for (CurrRound = 0; CurrRound < WaveNum; CurrRound++)
 	{
 		if (CurrRound > 0 && (CurrRound % 5) == 0)
 		{
@@ -716,6 +628,53 @@ exec function SetWave(byte NewWaveNum)
 function int CalculateMinimumRespawnDosh(float UsedMaxRespawnDosh)
 {
 	return Round(UsedMaxRespawnDosh * Min(1.f, (float(WaveNum) / 10.f)));
+}
+
+function float GetTotalWaveCountScale()
+{
+	local float WaveScale;
+
+	if ((bForceSpecialWave && !bUseSpecialWave))
+	{
+		TrySetNextWaveSpecial();
+	}
+
+	WaveScale = super.GetTotalWaveCountScale();
+	if (bUseSpecialWave)
+	{
+		WaveScale *= EndlessDifficulty.GetSpecialWaveScale(SpecialWaveType);
+	}
+
+	return WaveScale;
+}
+
+static function bool HasCustomTraderVoiceGroup()
+{
+	return true;
+}
+
+function SetMonsterDefaults(KFPawn_Monster P)
+{
+	local KFAIController KFAIC;
+
+	if (bUseSpecialWave && EndlessDifficulty.ShouldSpawnEnraged(SpecialWaveType))
+	{
+		KFAIC = KFAIController(P.Controller);
+		if(KFAIC != none)
+		{
+			KFAIC.SetSprintingDisabled(false);
+			KFAIC.SetCanSprint(true);
+			KFAIC.SetCanSprintWhenDamaged(true);
+		}
+
+		if(P != none)
+		{
+			P.SetEnraged(true);
+			P.SetSprinting(true);
+		}
+	}
+
+	super.SetMonsterDefaults(P);
 }
 
 defaultproperties

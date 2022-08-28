@@ -125,16 +125,12 @@ simulated state MeleeHeavyAttacking
 
 defaultproperties
 {
-	AttachmentArchetype=KFWeapAttach_MaceAndShield'WEP_Shield_Melee_ARCH.Wep_MaceAndShield_3P'
-
-	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'wep_1p_shield_melee_mesh.Wep_1stP_Shield_Melee_Rig'
-		AnimSets(0)=AnimSet'wep_1p_shield_melee_anim.Wep_1stP_Shield_Melee_Anim'
-	End Object
-
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Shield_Melee_MESH.Wep_Shield_Melee_Pickup'
-	End Object
+	// Content
+	PackageKey="Shield_Melee"
+	FirstPersonMeshName="wep_1p_shield_melee_mesh.Wep_1stP_Shield_Melee_Rig"
+	FirstPersonAnimSetNames(0)="wep_1p_shield_melee_anim.Wep_1stP_Shield_Melee_Anim"
+	PickupMeshName="WEP_3P_Shield_Melee_MESH.Wep_Shield_Melee_Pickup"
+	AttachmentArchetypeName="WEP_Shield_Melee_ARCH.Wep_MaceAndShield_3P"
 
 	Begin Object Name=MeleeHelper_0
 		// Override automatic hitbox creation (advanced)
@@ -173,26 +169,26 @@ defaultproperties
 
     // Inventory
 	GroupPriority=110
-	InventorySize=9
+	InventorySize=7
 	WeaponSelectTexture=Texture2D'WEP_UI_Shield_Melee_TEX.UI_WeaponSelect_MaceShield'
 
 	// For procedural weapon hiding
 	QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
 
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-	InstantHitDamage(DEFAULT_FIREMODE)=80 //70
+	InstantHitDamage(DEFAULT_FIREMODE)=73 //70
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Bludgeon_MaceAndShield'
 	MaceLightDamageType=class'KFDT_Bludgeon_MaceAndShield'
 	ShieldLightDamageType=class'KFDT_Bludgeon_MaceAndShield_ShieldLight'
 
 	FireModeIconPaths(HEAVY_ATK_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-	InstantHitDamage(HEAVY_ATK_FIREMODE)=165//200
+	InstantHitDamage(HEAVY_ATK_FIREMODE)=160//200
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Bludgeon_MaceAndShield_MaceHeavy'
 	MaceHeavyDamageType=class'KFDT_Bludgeon_MaceAndShield_MaceHeavy'
 	ShieldHeavyDamageType=class'KFDT_Bludgeon_MaceAndShield_ShieldHeavy'
 
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_MaceAndShield_Bash'
-	InstantHitDamage(BASH_FIREMODE)=175//250
+	InstantHitDamage(BASH_FIREMODE)=150//250
 
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 
@@ -209,9 +205,13 @@ defaultproperties
 	BlockTypes.Add((DmgType=class'KFDT_Ballistic_PatMinigun', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
 	BlockTypes.Add((DmgType=class'KFDT_Explosive_PatMissile'))
 	BlockTypes.Add((DmgType=class'KFDT_Ballistic_HansAK12', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
-	ParryDamageMitigationPercent=0.40
+	ParryDamageMitigationPercent=0.3
 	BlockDamageMitigation=0.3//0.5
 	ParryStrength=6
 
 	NumBloodMapMaterials=2
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
+	WeaponUpgrades[2]=(IncrementDamage=1.25f,IncrementWeight=2)
 }

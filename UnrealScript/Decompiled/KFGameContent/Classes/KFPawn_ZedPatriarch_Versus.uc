@@ -49,7 +49,7 @@ simulated event ReplicatedEvent(name VarName)
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
-    ServerDoSpecialMove(35);
+    ServerDoSpecialMove(37);
     MyKFPC = KFPlayerController(C);
     SetTimer(2 + FRand(), false, 'Timer_EnableCloak');
 }
@@ -290,12 +290,12 @@ private final function CheckHealth()
         {
             if((SpecialMoveCooldowns[5].Charges > 0) && HealthPct <= AutoHealThreshold)
             {
-                if(IsDoingSpecialMove() && !IsDoingSpecialMove(28))
+                if(IsDoingSpecialMove() && !IsDoingSpecialMove(29))
                 {
                     EndSpecialMove();
                 }
                 bAutoHealed = true;
-                DoSpecialMove(28, true);
+                DoSpecialMove(29, true);
             }
         }
         if((((!bWarnedLowHealthThisPhase && IsLocallyControlled()) && MyKFPC.myGfxHUD != none) && HealthPct <= LowHealthThreshold) && SpecialMoveCooldowns[5].Charges > 0)
@@ -337,7 +337,7 @@ simulated function bool ShouldDrawBossIcon()
 
 simulated function bool UseAdjustedControllerSensitivity()
 {
-    return IsDoingSpecialMove(25) || IsDoingSpecialMove(27);
+    return IsDoingSpecialMove(26) || IsDoingSpecialMove(28);
 }
 
 singular function SummonChildren()
@@ -401,7 +401,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_347' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_372' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -409,7 +409,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_347' was not fou
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(1)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -425,7 +425,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(3)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '1P_Sawblade_Animtree_1124' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_1160' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -444,6 +444,7 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_1124' was not fo
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedPatriarch_Versus.FootstepCameraShake0'
+    SprintAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.SprintAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -506,7 +507,8 @@ System.ArgumentException: Requested value '1P_Sawblade_Animtree_1124' was not fo
     Components(5)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.CloakedAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.CloakedAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

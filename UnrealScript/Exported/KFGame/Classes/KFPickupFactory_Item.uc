@@ -153,18 +153,29 @@ function int ChooseWeaponPickup()
 	return DesiredItemIdx;
 }
 
+simulated native function GetPickupMesh(class<KFWeapon> ItemClass);
+
 /** Use the pickups static mesh for this factory */
 simulated function SetPickupMesh()
 {
+	if (ItemPickups[PickupIndex].ItemClass.Name == ArmorClassName)
+	{
+		FinalizePickupMesh(StaticMeshComponent(ItemPickups[PickupIndex].ItemClass.default.PickupFactoryMesh).StaticMesh);
+	}
+	else
+	{
+		GetPickupMesh(class<KFWeapon>(ItemPickups[PickupIndex].ItemClass));
+	}
+}
+
+simulated event FinalizePickupMesh(StaticMesh NewMesh)
+{
 	local StaticMeshComponent FactoryPickupMesh;
-	local StaticMeshComponent NewMeshComponent;
 
-	FactoryPickupMesh = StaticMeshComponent( PickupMesh );
-	NewMeshComponent= StaticMeshComponent( ItemPickups[ PickupIndex ].ItemClass.default.PickupFactoryMesh );
-
-	FactoryPickupMesh.SetStaticMesh( NewMeshComponent.StaticMesh );
+	FactoryPickupMesh = StaticMeshComponent(PickupMesh);
+	FactoryPickupMesh.SetStaticMesh(NewMesh);
 	// Reset the cull distance for the new mesh
-	FactoryPickupMesh.SetCullDistance( 3500 );
+	FactoryPickupMesh.SetCullDistance(3500);
 }
 
 /** Give the pickup or its ammo to the player */
@@ -288,7 +299,7 @@ defaultproperties
    ArmorClassName="KFInventory_Armor"
    PickupIndex=255
    Begin Object Class=StaticMeshComponent Name=StaticMeshComponent0
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
+      StaticMesh=StaticMesh'WEP_3P_AR15_9mm_MESH.Wep_AR15_Pickup'
       ReplacementPrimitive=None
       bCastDynamicShadow=False
       Translation=(X=0.000000,Y=0.000000,Z=-50.000000)

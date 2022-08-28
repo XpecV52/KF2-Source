@@ -267,11 +267,12 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PelletSpread(6)=AltFireRecoilScale=4,bWarnAIWhenFiring=true,FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray',PSC_PilotLight=none,PSC_EndSpray=KFParticleSystemComponent'Default__KFWeap_Ice_FreezeThrower.FlameEndSpray0',MinAmmoConsumed=4,FireModeIconPaths=/* Array type was not detected. */,
+    PelletSpread(6)=AltFireRecoilScale=4,bWarnAIWhenFiring=true,FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray',PSC_PilotLight=none,PSC_EndSpray=KFParticleSystemComponent'Default__KFWeap_Ice_FreezeThrower.FlameEndSpray0',MinAmmoConsumed=4,PackageKey="CryoGun",FirstPersonMeshName="WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig",FirstPersonAnimSetNames=/* Array type was not detected. */,
 /* Exception thrown while deserializing PelletSpread
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
@@ -285,13 +286,19 @@ Parameter name: index
     // Reference: KFParticleSystemComponent'Default__KFWeap_Ice_FreezeThrower.FlameEndSpray0'
     PSC_EndSpray=FlameEndSpray0
     MinAmmoConsumed=4
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=8
-    MagazineCapacity=100
+    PackageKey="CryoGun"
+    FirstPersonMeshName="WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_CryoGun_MESH.Wep_CryoGun_Pickup"
+    AttachmentArchetypeName="WEP_CryoGun_ARCH.Wep_CryoGun_3P"
+    MuzzleFlashTemplateName="WEP_CryoGun_ARCH.Wep_CryoGun_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=7
+    MagazineCapacity=100
     MeshIronSightFOV=52
     PlayerIronSightFOV=80
     IronSightPosition=(X=20,Y=8,Z=-3)
@@ -315,9 +322,7 @@ Parameter name: index
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=6,Y=15,Z=-5)
-    AttachmentArchetype=KFWeapAttach_Flamethrower'WEP_CryoGun_ARCH.Wep_CryoGun_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Ice_FreezeThrower.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_CryoGun_ARCH.Wep_CryoGun_MuzzleFlash'
     maxRecoilPitch=150
     minRecoilPitch=115
     maxRecoilYaw=115
@@ -335,6 +340,7 @@ Parameter name: index
     HippedRecoilModifier=1.5
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -344,21 +350,17 @@ Parameter name: index
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig'
-        AnimSets(0)=AnimSet'wep_1p_CryoGun_anim.Wep_1stP_CryoGun_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Ice_FreezeThrower.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Freezethrower"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_CryoGun_MESH.Wep_CryoGun_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Ice_FreezeThrower.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_CryoGun_MESH.Wep_CryoGun_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Ice_FreezeThrower.StaticPickupComponent'

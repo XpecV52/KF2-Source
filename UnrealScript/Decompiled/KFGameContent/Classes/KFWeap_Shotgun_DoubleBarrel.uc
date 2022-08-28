@@ -13,8 +13,6 @@ class KFWeap_Shotgun_DoubleBarrel extends KFWeap_ShotgunBase
 var(Recoil) float DoubleFireRecoilModifier;
 /** Shoot animation to play when shooting both barrels from the hip */
 var(Animations) const editconst name FireDoubleAnim;
-/** How long the to wait after firing to force zoom out */
-var() float ForceReloadTime;
 /** How much momentum to apply when fired in double barrel */
 var(Recoil) float DoubleBarrelKickMomentum;
 /** How much to reduce shoot momentum when falling */
@@ -64,15 +62,6 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
         {
             return FireAnim;
         }
-    }
-}
-
-simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation)
-{
-    super(KFWeapon).PlayFireEffects(FireModeNum, HitLocation);
-    if(((Instigator != none) && Instigator.IsLocallyControlled()) && AmmoCount[0] == 0)
-    {
-        SetTimer(ForceReloadTime, false, 'ForceReload');
     }
 }
 
@@ -132,18 +121,23 @@ defaultproperties
 {
     DoubleFireRecoilModifier=2.2
     FireDoubleAnim=Shoot_Double
-    ForceReloadTime=0.3
     DoubleBarrelKickMomentum=1000
     FallingMomentumReduction=0.5
     NumPellets=/* Array type was not detected. */
-    FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=4
-    MagazineCapacity=2
+    PackageKey="Shotgun_DoubleBarrel"
+    FirstPersonMeshName="wep_1p_double_barrel_mesh.Wep_1stP_Double_Barrel"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_Double_Barrel_MESH.Wep_Double_Barrel_Pickup"
+    AttachmentArchetypeName="WEP_Shotgun_DoubleBarrel_ARCH.Wep_Shotgun_DoubleBarrel_3P"
+    MuzzleFlashTemplateName="WEP_Shotgun_DoubleBarrel_ARCH.Wep_Shotgun_DoubleBarrel_MuzzleFlash"
     bHasIronSights=true
     bNoMagazine=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=false
+    FireModeIconPaths=/* Array type was not detected. */
+    InventorySize=5
+    MagazineCapacity=2
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=52
@@ -156,15 +150,14 @@ defaultproperties
     SpareAmmoCapacity=46
     InitialSpareMags=11
     AmmoPickupScale=3
+    ForceReloadTimeOnEmpty=0.3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     FireAnim=Shoot_Single
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=4,Y=7,Z=-5)
-    AttachmentArchetype=KFWeaponAttachment'WEP_Shotgun_DoubleBarrel_ARCH.Wep_Shotgun_DoubleBarrel_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_DoubleBarrel.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Shotgun_DoubleBarrel_ARCH.Wep_Shotgun_DoubleBarrel_MuzzleFlash'
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500
@@ -182,6 +175,7 @@ defaultproperties
     HippedRecoilModifier=1.25
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -191,21 +185,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=25,Y=3.5,Z=-4)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'wep_1p_double_barrel_mesh.Wep_1stP_Double_Barrel'
-        AnimSets(0)=AnimSet'WEP_1P_Double_Barrel_ANIM.Wep_1stP_Double_Barrel_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Shotgun_DoubleBarrel.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Double-barrel Boomstick"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Double_Barrel_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_DoubleBarrel.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Double_Barrel_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Shotgun_DoubleBarrel.StaticPickupComponent'

@@ -145,22 +145,29 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PelletSpread(6)=FireModeIconPaths=/* Array type was not detected. */,
+    PelletSpread(6)=PackageKey="HX25_Pistol",FirstPersonMeshName="WEP_1P_HX25_Pistol_MESH.Wep_1stP_HX25_Pistol_Rig",FirstPersonAnimSetNames=/* Array type was not detected. */,
 /* Exception thrown while deserializing PelletSpread
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    FireModeIconPaths=/* Array type was not detected. */
-    InventoryGroup=EInventoryGroup.IG_Secondary
-    InventorySize=4
-    MagazineCapacity=1
+    PackageKey="HX25_Pistol"
+    FirstPersonMeshName="WEP_1P_HX25_Pistol_MESH.Wep_1stP_HX25_Pistol_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="wep_3p_hx25_pistol_mesh.WEP_HX25_Pickup"
+    AttachmentArchetypeName="WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_3P"
+    MuzzleFlashTemplateName="WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    FireModeIconPaths=/* Array type was not detected. */
+    InventoryGroup=EInventoryGroup.IG_Secondary
+    InventorySize=4
+    MagazineCapacity=1
     MeshIronSightFOV=52
     PlayerIronSightFOV=73
     FastZoomOutTime=0.2
@@ -174,9 +181,7 @@ Parameter name: index
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=13,Y=13,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_GrenadeLauncher_HX25.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_MuzzleFlash'
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500
@@ -194,6 +199,7 @@ Parameter name: index
     HippedRecoilModifier=1.25
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -203,21 +209,17 @@ Parameter name: index
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=23,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_HX25_Pistol_MESH.Wep_1stP_HX25_Pistol_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_HX25_Pistol_ANIM.Wep_1stP_HX25_Pistol_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_GrenadeLauncher_HX25.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="HX25 Grenade Pistol"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_hx25_pistol_mesh.WEP_HX25_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_GrenadeLauncher_HX25.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'wep_3p_hx25_pistol_mesh.WEP_HX25_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_GrenadeLauncher_HX25.StaticPickupComponent'

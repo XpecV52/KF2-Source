@@ -69,6 +69,9 @@ const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 
+var string WhatsNewPS;
+var string WhatsNewMS;
+var string WhatsNewSteam;
 var bool bIsLeader;
 var bool bIsInParty;
 var bool bSearchingForGame;
@@ -96,6 +99,7 @@ var KFGFxStartGameContainer_FindGame FindGameContainer;
 var KFGFxStartGameContainer_Options OptionsComponent;
 var KFGFxStartContainer_InGameOverview OverviewContainer;
 var KFGFxStartContainer_ServerBrowserOverview ServerBrowserOverviewContainer;
+var KFGFxStartContainer_NewsImageHolder NewsImageHolderContainer;
 var KFGFxMissionObjectivesContainer MissionObjectiveContainer;
 var GFxObject MatchMakingButton;
 var GFxObject ServerBrowserButton;
@@ -104,6 +108,7 @@ var const localized string HostOptionsString;
 var const localized string OverviewString;
 var const localized string MatchmakingString;
 var const localized string ServerBrowserString;
+var const localized string NewsPageString;
 var const localized string GameModeTitle;
 var const localized string DifficultyTitle;
 var const localized string LengthTitle;
@@ -195,6 +200,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
     switch(WidgetName)
     {
+        case 'newsPage':
+            if(NewsImageHolderContainer == none)
+            {
+                NewsImageHolderContainer = KFGFxStartContainer_NewsImageHolder(Widget);
+                NewsImageHolderContainer.Initialize(self);
+            }
+            break;
         case 'missionObjectivesContainerMC':
             if(MissionObjectiveContainer == none)
             {
@@ -406,6 +418,10 @@ function OneSecondLoop()
     {
         OverviewContainer.UpdateSharedContent();
     }
+    if(FindGameContainer != none)
+    {
+        FindGameContainer.CheckNewsState();
+    }
 }
 
 function byte GetStartMenuState()
@@ -597,10 +613,15 @@ function Callback_OnWhatsNewClicked(int Index)
     {
         if(Class'WorldInfo'.static.IsConsoleBuild())
         {
+            if(Class'WorldInfo'.static.IsConsoleBuild(8) && !OnlineSub.IsGameOwned())
+            {
+                Manager.OnBuyGamePressed();
+                return;
+            }
             if(FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId != "")
             {
                 I = 0;
-                J0xA8:
+                J0x113:
 
                 if(I < OnlineSub.ItemPropertiesList.Length)
                 {
@@ -621,12 +642,12 @@ function Callback_OnWhatsNewClicked(int Index)
                         {
                             WarnInternal("No PSN signed offer ID for item with product ID" @ FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId);
                         }
-                        goto J0x32A;
+                        goto J0x395;
                     }
                     ++ I;
-                    goto J0xA8;
+                    goto J0x113;
                 }
-                J0x32A:
+                J0x395:
                 
             }
             else
@@ -644,8 +665,50 @@ function Callback_OnWhatsNewClicked(int Index)
     }
 }
 
+function Callback_NewsButtonPressed()
+{
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if(OnlineSub == none)
+    {
+        return;
+    }
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        OnlineSub.OpenURL(default.WhatsNewPS);        
+    }
+    else
+    {
+        if(Class'WorldInfo'.static.IsConsoleBuild(9))
+        {
+            OnlineSub.OpenURL(default.WhatsNewMS);            
+        }
+        else
+        {
+            OnlineSub.OpenURL(default.WhatsNewSteam);
+        }
+    }
+}
+
 function Callback_StartTutorial()
 {
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if(!OnlineSub.IsGameOwned() && Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+        {
+            Manager.HandleFreeTrialError(2);
+            return;
+        }
+        if(!OnlineSub.CanCheckFreeTrialState())
+        {
+            Manager.HandleFreeTrialError(1);
+            return;
+        }
+    }
     Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialString, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialDescriptionString, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToTutorial);
 }
 
@@ -1317,6 +1380,22 @@ function Callback_StartGame()
 
 function Callback_StartOfflineGame()
 {
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if(!OnlineSub.IsGameOwned() && Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+        {
+            Manager.HandleFreeTrialError(2);
+            return;
+        }
+        if(!OnlineSub.CanCheckFreeTrialState())
+        {
+            Manager.HandleFreeTrialError(1);
+            return;
+        }
+    }
     Outer.ConsoleCommand("open" @ (MakeMapURL(OptionsComponent)));
 }
 
@@ -1375,6 +1454,22 @@ native function string GenerateRandomPassword();
 
 function Callback_StartOnlineGame()
 {
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if(!OnlineSub.IsGameOwned() && Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+        {
+            Manager.HandleFreeTrialError(2);
+            return;
+        }
+        if(!OnlineSub.CanCheckFreeTrialState())
+        {
+            Manager.HandleFreeTrialError(1);
+            return;
+        }
+    }
     if(Class'KFGameEngine'.static.IsFreeConsolePlayOver())
     {
         Manager.DelayedOpenPopup(0, 0, "", Class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, Class'KFCommon_LocalizedStrings'.default.BuyGameString, Class'KFCommon_LocalizedStrings'.default.OKString, OnBuyGamePressed);
@@ -1490,6 +1585,9 @@ function ShowOverview(bool bShowOverview, bool bLeader, bool bInMainMenu, bool b
 
 defaultproperties
 {
+    WhatsNewPS="killingfloor2.com/psnews"
+    WhatsNewMS="killingfloor2.com/xboxnews"
+    WhatsNewSteam="killingfloor2.com/pcnews"
     ModeKey="ModeKey"
     DifficultyKey="DifficultyKey"
     MapKey="MapKey"
@@ -1501,6 +1599,7 @@ defaultproperties
     FindGameString="HOME"
     MatchmakingString="ONLINE MATCHMAKING"
     ServerBrowserString="Browse Servers"
+    NewsPageString="News"
     GameModeTitle="GAME MODE"
     DifficultyTitle="DIFFICULTY"
     LengthTitle="LENGTH"

@@ -27,12 +27,18 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
 defaultproperties
 {
    BarrelOffset=(X=10.000000,Y=0.000000,Z=0.000000)
-   InventorySize=3
-   MagazineCapacity(0)=16
+   PackageKey="AF2001"
+   FirstPersonMeshName="wep_1p_af2001_mesh.Wep_1stP_AF2001_Rig"
+   FirstPersonAnimSetNames(0)="wep_1p_af2001_anim.Wep_1stP_AF2001_Anim"
+   PickupMeshName="WEP_3P_AF2001_MESH.Wep_3rdP_AF2001_Pickup"
+   AttachmentArchetypeName="WEP_AF2001_ARCH.Wep_AF2001_3P"
+   MuzzleFlashTemplateName="WEP_AF2001_ARCH.Wep_AF2001_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
+   InventorySize=2
+   MagazineCapacity(0)=16
    PenetrationPower(0)=1.500000
    PenetrationPower(1)=()
    MeshIronSightFOV=77.000000
@@ -56,14 +62,12 @@ defaultproperties
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_AF2011.Play_WEP_AF2011_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_AF2011.Play_WEP_AF2011_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_DesertEagle.Play_WEP_SA_DesertEagle_Handling_DryFire'
    PlayerViewOffset=(X=14.000000,Y=10.000000,Z=-4.000000)
-   AttachmentArchetype=KFWeaponAttachment'WEP_AF2001_ARCH.Wep_AF2001_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Pistol_AF2011:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_AF2001_ARCH.Wep_AF2001_MuzzleFlash'
    maxRecoilPitch=650
    minRecoilPitch=550
    maxRecoilYaw=550
@@ -77,6 +81,8 @@ defaultproperties
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
+   WeaponUpgrades(1)=(IncrementDamage=1.250000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.400000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -94,7 +100,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.010000
-   InstantHitDamage(0)=53.000000
+   InstantHitDamage(0)=43.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=22.000000
@@ -104,9 +110,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_AF2011'
    FireOffset=(X=20.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_PistolBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'wep_1p_af2001_mesh.Wep_1stP_AF2001_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'wep_1p_af2001_anim.Wep_1stP_AF2001_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -120,7 +124,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="AF2011-A1"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_PistolBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_AF2001_MESH.Wep_3rdP_AF2001_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

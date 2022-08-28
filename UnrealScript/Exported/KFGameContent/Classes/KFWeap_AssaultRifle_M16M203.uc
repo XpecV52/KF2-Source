@@ -409,15 +409,21 @@ simulated function TryToAltReload()
 defaultproperties
 {
    SecondaryFireOffset=(X=20.000000,Y=4.500000,Z=-7.000000)
+   PackageKey="M16_M203"
+   FirstPersonMeshName="wep_1p_m16_m203_mesh.Wep_1stP_M16_M203_Rig"
+   FirstPersonAnimSetNames(0)="wep_1p_m16_m203_anim.Wep_1stP_M16_M203_Anim"
+   PickupMeshName="WEP_3P_M16_M203_MESH.Wep_M4_M203_Pickup"
+   AttachmentArchetypeName="Wep_M16_M203_ARCH.Wep_M16_M203_3P_new"
+   MuzzleFlashTemplateName="wep_m16_m203_arch.Wep_M16_M203_MuzzleFlash"
+   bHasIronSights=True
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=2
    InventorySize=6
    MagazineCapacity(0)=30
    MagazineCapacity(1)=1
-   bHasIronSights=True
-   bCanBeReloaded=True
-   bReloadFromMagazine=True
    MeshFOV=65.000000
    MeshIronSightFOV=45.000000
    PlayerIronSightFOV=70.000000
@@ -435,21 +441,19 @@ defaultproperties
    bLoopingFireSnd(0)=True
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_3P_Loop',FirstPersonCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_1P_Loop')
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_Loop')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_S')
-   WeaponFireSnd(2)=(DefaultCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_3P_Single',FirstPersonCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_1P_Single')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_3P_EndLoop',FirstPersonCue=AkEvent'ww_wep_m16m203.Play_M16_Fire_1P_EndLoop')
+   WeaponFireSnd(2)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_Single')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_EndLoop')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Handling_DryFire'
    PlayerViewOffset=(X=22.000000,Y=9.000000,Z=-2.000000)
-   AttachmentArchetype=KFWeapAttach_MultiAmmo'Wep_M16_M203_ARCH.Wep_M16_M203_3P_new'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_M16M203:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'Wep_M16_M203_ARCH.Wep_M16_M203_MuzzleFlash'
    maxRecoilPitch=120
    minRecoilPitch=70
    maxRecoilYaw=130
@@ -468,6 +472,8 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.700000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Commando'
+   WeaponUpgrades(1)=(IncrementDamage=1.200000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.400000)
    FiringStatesArray(1)="FiringSecondaryState"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -478,15 +484,15 @@ defaultproperties
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_HighExplosive_M16M203'
-   FireInterval(0)=0.086000
+   FireInterval(0)=0.089600
    FireInterval(1)=0.250000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.008500
    Spread(1)=0.008500
-   InstantHitDamage(0)=30.000000
-   InstantHitDamage(1)=225.000000
+   InstantHitDamage(0)=33.000000
+   InstantHitDamage(1)=230.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_M16M203'
@@ -495,9 +501,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_M16M203'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_RifleBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'wep_1p_m16_m203_mesh.Wep_1stP_M16_M203_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'wep_1p_m16_m203_anim.Wep_1stP_M16_M203_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -511,7 +515,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="M16 M203 Assault Rifle"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_RifleBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_M16_M203_MESH.Wep_M4_M203_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

@@ -81,6 +81,10 @@ const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;#linenumber 16
 
+var string WhatsNewPS;
+var string WhatsNewMS;
+var string WhatsNewSteam;
+
 var bool bIsLeader;
 var bool bIsInParty;
 var bool bSearchingForGame;
@@ -99,6 +103,7 @@ var KFGFxStartGameContainer_FindGame FindGameContainer;
 var KFGFxStartGameContainer_Options OptionsComponent;
 var KFGFxStartContainer_InGameOverview OverviewContainer;
 var KFGFxStartContainer_ServerBrowserOverview ServerBrowserOverviewContainer;
+var KFGFxStartContainer_NewsImageHolder NewsImageHolderContainer;
 
 var KFGFxMissionObjectivesContainer MissionObjectiveContainer;
 
@@ -117,6 +122,7 @@ var localized string OverviewString;
 
 var localized string MatchmakingString;
 var localized string ServerBrowserString;
+var localized string NewsPageString;
 
 var localized string GameModeTitle;
 var localized string DifficultyTitle;
@@ -255,6 +261,14 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
 	switch(WidgetName)
 	{
+		case('newsPage'):
+		
+			if (NewsImageHolderContainer == none)
+			{
+				NewsImageHolderContainer = KFGFxStartContainer_NewsImageHolder(Widget);
+				NewsImageHolderContainer.Initialize(self);
+			}
+			break;
 		//mission objectives UI
 		case ('missionObjectivesContainerMC'):
 
@@ -489,6 +503,11 @@ function OneSecondLoop()
 		OverviewContainer.UpdateSharedContent();
 	}
 
+	if (FindGameContainer != none)
+	{
+		FindGameContainer.CheckNewsState();
+	}
+
 }
 
 //==============================================================
@@ -706,6 +725,11 @@ function Callback_OnWhatsNewClicked(int Index)
 	{
 		if(Class'WorldInfo'.Static.IsConsoleBuild())
     	{
+			if (Class'WorldInfo'.Static.IsConsoleBuild(CONSOLE_Orbis) && !OnlineSub.IsGameOwned())
+			{
+				Manager.OnBuyGamePressed();
+				return;
+			}
 			// If this is attached to a PSN product ID, we need to look up the signed offer Id
 			if( FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId != "" )
 			{
@@ -745,8 +769,51 @@ function Callback_OnWhatsNewClicked(int Index)
 	}
 }
 
+function Callback_NewsButtonPressed()
+{
+	local OnlineSubsystem				OnlineSub;	
+
+	OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+
+	if (OnlineSub == none)
+	{
+		return;
+	}
+	if(class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	{
+		OnlineSub.OpenURL(default.WhatsNewPS);
+	}
+	else if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
+	{
+		OnlineSub.OpenURL(default.WhatsNewMS);
+	}
+	else
+	{
+		OnlineSub.OpenURL(default.WhatsNewSteam);
+	}
+	
+}
+
 function Callback_StartTutorial()
 {
+	local OnlineSubsystem				OnlineSub;
+
+	OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+
+	if (!OnlineSub.IsGameOwned() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	{
+		if (OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+		{
+			Manager.HandleFreeTrialError(FTN_BuyGame);
+			return;
+		}
+
+		if(!OnlineSub.CanCheckFreeTrialState())
+		{
+			Manager.HandleFreeTrialError(FTN_NetworkCheckFailed);
+			return;
+		}
+	}
 	//make pop up
 	Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, class'KFCommon_LocalizedStrings'.default.ProceedToTutorialString, class'KFCommon_LocalizedStrings'.default.ProceedToTutorialDescriptionString, class'KFCommon_LocalizedStrings'.default.ConfirmString, class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToTutorial);
 }
@@ -1452,6 +1519,24 @@ function Callback_StartGame()
 
 function Callback_StartOfflineGame()
 {
+	local OnlineSubsystem				OnlineSub;
+
+	OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+
+	if (!OnlineSub.IsGameOwned() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	{
+		if (OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+		{
+			Manager.HandleFreeTrialError(FTN_BuyGame);
+			return;
+		}
+
+		if (!OnlineSub.CanCheckFreeTrialState())
+		{
+			Manager.HandleFreeTrialError(FTN_NetworkCheckFailed);
+			return;
+		}
+	}
 	ConsoleCommand("open" @ MakeMapURL(OptionsComponent));
 }
 
@@ -1533,6 +1618,25 @@ native function string GenerateRandomPassword();
 
 function Callback_StartOnlineGame()
 {
+	local OnlineSubsystem				OnlineSub;
+
+	OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+
+	if (!OnlineSub.IsGameOwned() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	{
+		if (OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
+		{
+			Manager.HandleFreeTrialError(FTN_BuyGame);
+			return;
+		}
+
+		if (!OnlineSub.CanCheckFreeTrialState())
+		{
+			Manager.HandleFreeTrialError(FTN_NetworkCheckFailed);
+			return;
+		}
+	}
+
 	if ( class'KFGameEngine'.static.IsFreeConsolePlayOver() )
 	{
 		Manager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, "",
@@ -1656,6 +1760,9 @@ function ShowOverview( bool bShowOverview, bool bLeader, bool bInMainMenu, bool 
 
 defaultproperties
 {
+   WhatsNewPS="killingfloor2.com/psnews"
+   WhatsNewMS="killingfloor2.com/xboxnews"
+   WhatsNewSteam="killingfloor2.com/pcnews"
    ModeKey="ModeKey"
    DifficultyKey="DifficultyKey"
    MapKey="MapKey"
@@ -1667,6 +1774,7 @@ defaultproperties
    FindGameString="HOME"
    MatchmakingString="ONLINE MATCHMAKING"
    ServerBrowserString="Browse Servers"
+   NewsPageString="News"
    GameModeTitle="GAME MODE"
    DifficultyTitle="DIFFICULTY"
    LengthTitle="LENGTH"
@@ -1716,6 +1824,7 @@ defaultproperties
    SubWidgetBindings(7)=(WidgetName="collapsedMissionObjectivesMC",WidgetClass=Class'KFGame.KFGFxCollapsedObjectivesContainer')
    SubWidgetBindings(8)=(WidgetName="specialEventContainerMC",WidgetClass=Class'KFGame.KFGFxSpecialEventObjectivesContainer')
    SubWidgetBindings(9)=(WidgetName="expandedMissionObjectivesMC",WidgetClass=Class'KFGame.KFGFxExpandedObjectivesContainer')
+   SubWidgetBindings(10)=(WidgetName="newsPage",WidgetClass=Class'KFGame.KFGFxStartContainer_NewsImageHolder')
    Name="Default__KFGFxMenu_StartGame"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'
 }

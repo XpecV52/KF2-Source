@@ -16,17 +16,17 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 
 defaultproperties
 {
-	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_FlareGun_MESH.Wep_FlareGun_Pickup'
-	End Object
+	// Content
+	PackageKey="FlareGun"
+	FirstPersonMeshName="WEP_1P_FlareGun_MESH.Wep_1stP_FlareGun_Rig"
+	FirstPersonAnimSetNames(0)="WEP_1P_FlareGun_ANIM.Wep_1stP_FlareGun_Anim"
+	PickupMeshName="WEP_3P_FlareGun_MESH.Wep_FlareGun_Pickup"
+	AttachmentArchetypeName="WEP_FlareGun_ARCH.Wep_FlareGun_3P"
+	MuzzleFlashTemplateName="WEP_FlareGun_ARCH.Wep_Flaregun_MuzzleFlash"
 
 	Begin Object Name=FirstPersonMesh
-		SkeletalMesh=SkeletalMesh'WEP_1P_FlareGun_MESH.Wep_1stP_FlareGun_Rig'
-		AnimSets(0)=AnimSet'WEP_1P_FlareGun_ANIM.Wep_1stP_FlareGun_Anim'
 		AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master_Revolver'
 	End Object
-
-	AttachmentArchetype=KFWeaponAttachment'WEP_FlareGun_ARCH.Wep_FlareGun_3P'
 
    	// Position and FOV
    	PlayerViewOffset=(X=15.0,Y=14,Z=-6)
@@ -83,7 +83,6 @@ defaultproperties
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_FlareGun'
 
 	// Fire Effects
-	MuzzleFlashTemplate=KFMuzzleFlash'WEP_FlareGun_ARCH.Wep_Flaregun_MuzzleFlash'
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_Fire_1P')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_DryFire'
 
@@ -110,5 +109,10 @@ defaultproperties
 	// Revolver
 	bRevolver=true
 	CylinderRotInfo=(Inc=-60.0, Time=0.0175/*about 0.07 in the anim divided by ratescale of 4*/)
+
+	// Weapon Upgrade stat boosts
+	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=1)
+	WeaponUpgrades[3]=(IncrementDamage=1.75f,IncrementWeight=2)
 }
 

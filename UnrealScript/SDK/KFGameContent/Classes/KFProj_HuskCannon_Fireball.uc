@@ -73,7 +73,7 @@ simulated function PostBeginPlay()
 		HuskCannon = KFWeap_HuskCannon(Owner);
 		if (HuskCannon != none)
 		{
-			ChargeLevel = HuskCannon.GetChargeLevel();
+			ChargeLevel = HuskCannon.GetChargeFXLevel();
 			bSpawnGroundFire = ChargeLevel == 3;
 		}
 	}
@@ -95,14 +95,6 @@ simulated function PostBeginPlay()
 	}
 
 	Super.PostBeginPlay();
-}
-
-/**
-* Initialize the Projectile
-*/
-function Init(vector Direction)
-{
-	Super.Init(Direction);
 }
 
 simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
@@ -356,7 +348,7 @@ defaultproperties
 	GroundFireExplosionTemplate=ExploTemplate1
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate2
-		Damage=100
+		Damage=60 //100
 		DamageRadius=100 //450 //550
 		DamageFalloffExponent=1.f //1.0
 		DamageDelay=0.f

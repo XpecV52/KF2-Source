@@ -8,36 +8,8 @@
 class KFProj_Bullet_Mac10 extends KFProj_Bullet_AssaultRifle
     hidecategories(Navigation);
 
-var Vector LastHitNormal;
-var float GroundFireChance;
-
-simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
-{
-    LastHitNormal = HitNormal;
-    super(KFProj_Bullet).ProcessTouch(Other, HitLocation, HitNormal);
-}
-
-simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
-{
-    LastHitNormal = HitNormal;
-    super(KFProj_Bullet).TriggerExplosion(HitLocation, HitNormal, HitActor);
-}
-
-protected simulated function StopSimulating()
-{
-    local Vector FlameSpawnVel;
-
-    if((Role == ROLE_Authority) && FRand() < GroundFireChance)
-    {
-        FlameSpawnVel = 0.25 * (CalculateResidualFlameVelocity(LastHitNormal, Normal(Velocity), VSize(Velocity)));
-        SpawnResidualFlame(Class'KFProj_Mac10Splash', Location + (LastHitNormal * 10), FlameSpawnVel);
-    }
-    super(KFProjectile).StopSimulating();
-}
-
 defaultproperties
 {
-    GroundFireChance=0.1
     ProjFlightTemplate=ParticleSystem'FX_Projectile_EMIT.FX_Tracer_9MM_ZEDTime'
     AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Projectile_Loop'
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_DragonsBreath.Stop_SA_DragonsBreath_Projectile_Loop'

@@ -5,66 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFSM_Husk_FireBallAttack extends KFSM_PlaySingleAnim;
-
-var array<name> AnimNames;
-var array<Vector> FireOffsets;
-var protected transient Vector FireOffset;
-
-static function byte PackFlagsBase(KFPawn P)
-{
-    return byte(Rand(default.AnimNames.Length));
-}
-
-protected function bool InternalCanDoSpecialMove()
-{
-    if(KFPOwner.IsHumanControlled())
-    {
-        return KFPOwner.IsCombatCapable();
-    }
-    if(((AIOwner == none) || AIOwner.MyKFPawn == none) || AIOwner.Enemy == none)
-    {
-        return false;
-    }
-    if(!KFPOwner.IsCombatCapable())
-    {
-        return false;
-    }
-    if(!AIOwner.DirectProjectileFireBehavior.IsThereClearDirectFireAttackLaneFromGivenLoc(PawnOwner.Location, AIOwner.Enemy))
-    {
-        return false;
-    }
-    return super(KFSpecialMove).InternalCanDoSpecialMove();
-}
-
-function Vector GetFireOffset()
-{
-    return FireOffset;
-}
-
-function SpecialMoveStarted(bool bForced, name PrevMove)
-{
-    super.SpecialMoveStarted(bForced, PrevMove);
-    SetLockPawnRotation(false);
-    if(AIOwner != none)
-    {
-        if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
-        {
-            AIOwner.AILog_Internal((string(self) @ "started for") @ string(AIOwner), 'Husk');
-        }
-        AIOwner.AIZeroMovementVariables();
-    }
-}
-
-function PlayAnimation()
-{
-    local int AnimNum;
-
-    AnimNum = Clamp(KFPOwner.SpecialMoveFlags, 0, AnimNames.Length);
-    AnimName = AnimNames[AnimNum];
-    FireOffset = FireOffsets[AnimNum];
-    super.PlayAnimation();
-}
+class KFSM_Husk_FireBallAttack extends KFSM_RangedAttack;
 
 function NotifyFireballFired()
 {
@@ -74,7 +15,6 @@ function NotifyFireballFired()
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
-    SetLockPawnRotation(false);
     if(AIOwner != none)
     {
         if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)
@@ -95,28 +35,9 @@ function bool CanOverrideMoveWith(name NewMove)
 
 defaultproperties
 {
-    AnimNames(0)=Atk_Shoot_V1
-    AnimNames(1)=Atk_Shoot_V2
-    FireOffsets(0)=
-/* Exception thrown while deserializing FireOffsets
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    FireOffsets(1)=
-/* Exception thrown while deserializing FireOffsets
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    bCanBeInterrupted=true
+    AnimNames=/* Array type was not detected. */
+    FireOffsets=/* Array type was not detected. */
     bUseCustomRotationRate=true
-    bDisableMovement=true
-    bDisableSteering=false
     bDisableTurnInPlace=true
     CustomRotationRate=(Pitch=66000,Yaw=30000,Roll=66000)
     Handle=KFSM_Husk_FireBallAttack

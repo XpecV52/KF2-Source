@@ -227,6 +227,9 @@ var(SprayDamage) bool  bCollideWithTeammates;
 /** Scales the momentum for damage taken */
 var(SprayDamage) float  MomentumScale;
 
+/** How much damage will be modified based on current weapon upgrade */
+var				 float  DamageModifier;
+
 struct native DamagedActorInfo
 {
     /** The Actor that was hit */
@@ -920,6 +923,11 @@ function SpawnImpactProjectile(vector SpawnLocation, vector SpawnRotation)
 	}
 }
 
+event float GetModifiedDamage()
+{
+	return SplashDamage * DamageModifier;
+}
+
 defaultproperties
 {
    bAllowSprayLights=True
@@ -928,6 +936,7 @@ defaultproperties
    DamageInterval=0.070000
    SprayDamageScaleDistRange=(X=300.000000,Y=300.000000)
    SplashDamageInstigatorDamageScale=1.000000
+   DamageModifier=1.000000
    SeedSprayVel=5000.000000
    SeedDecel=13000.000000
    SeedMaxAge=0.400000

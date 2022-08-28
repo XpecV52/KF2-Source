@@ -12,7 +12,11 @@ defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Edged_Zweihander"
     ImagePath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander"
-    BuyPrice=1000
+    BuyPrice=1300
+    UpgradePrice(0)=700
+    UpgradePrice(1)=1500
+    UpgradeSellPrice(0)=525
+    UpgradeSellPrice(1)=1650
     SharedUnlockId=ESharedContentUnlock.SCU_Zweihander
     EffectiveRange=3
 }

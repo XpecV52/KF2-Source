@@ -9,24 +9,6 @@
 class KFDifficulty_Gorefast extends KFMonsterDifficultyInfo
 	abstract;
 
-/** Chances, by difficulty, to spawn as a special gorefast */
-var array<float> ChanceToSpawnAsSpecial;
-
-static function float GetSpecialGorefastChance( KFGameReplicationInfo KFGRI )
-{
-	if( KFGRI.bVersusGame )
-	{
-		return 0.f;
-	}
-	
-`if(`notdefined(ShippingPC))
-	if( default.bForceSpecialSpawn )
-		return 1.f;
-	else
-`endif
-	return default.ChanceToSpawnAsSpecial[KFGRI.GameDifficulty];
-}
-
 defaultproperties
 {
 	// Normal difficulty
@@ -48,7 +30,7 @@ defaultproperties
 		SoloDamageMod=0.800000,
 		BlockSettings={(Chance=0.5, Duration=1.0, MaxBlocks=4, Cooldown=1.0, DamagedHealthPctToTrigger=0.01,
 							MeleeDamageModifier=0.8, DamageModifier=0.8, AfflictionModifier=0.2, SoloChanceMultiplier=0.3)},
-		RallySettings={(bCanRally=false)}		
+		RallySettings={(bCanRally=false)}
 	)}
 
 	// Suicidal difficulty

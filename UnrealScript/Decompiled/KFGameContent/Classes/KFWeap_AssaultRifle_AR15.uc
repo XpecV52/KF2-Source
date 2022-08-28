@@ -11,13 +11,19 @@ class KFWeap_AssaultRifle_AR15 extends KFWeap_RifleBase
 
 defaultproperties
 {
+    PackageKey="AR15_9mm"
+    FirstPersonMeshName="WEP_1P_AR15_9mm_MESH.Wep_1stP_AR15_9mm_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_AR15_9mm_MESH.Wep_AR15_Pickup"
+    AttachmentArchetypeName="WEP_AR15_9mm_ARCH.Wep_AR15_9mm_3P"
+    MuzzleFlashTemplateName="WEP_AR15_9mm_ARCH.Wep_AR15_9MM_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     BurstAmount=3
     InventorySize=4
     MagazineCapacity=20
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
     IronSightPosition=(X=7,Y=0,Z=0)
@@ -30,9 +36,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=9,Y=10,Z=-4)
-    AttachmentArchetype=KFWeaponAttachment'WEP_AR15_9mm_ARCH.Wep_AR15_9mm_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_AR15.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_AR15_9mm_ARCH.Wep_AR15_9MM_MuzzleFlash'
     maxRecoilPitch=225
     minRecoilPitch=150
     maxRecoilYaw=150
@@ -49,6 +53,7 @@ defaultproperties
     RecoilISMinPitchLimit=65460
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -57,21 +62,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=30,Y=4.5,Z=-4)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_AR15_9mm_MESH.Wep_1stP_AR15_9mm_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_AR15_9mm_ANIM.Wep_1stP_AR15_9mm_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_AssaultRifle_AR15.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="AR-15 Varmint Rifle"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_AR15.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_AR15.StaticPickupComponent'

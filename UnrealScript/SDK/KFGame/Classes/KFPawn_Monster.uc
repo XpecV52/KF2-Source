@@ -36,8 +36,8 @@ var const string MonsterArchPath;
  */
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
 
-/** Variant of this pawn that can be spawned sometimes */
-var const class<KFPawn_Monster> ElitePawnClass;
+/** List of variants that this pawn can be spawned as */
+var const array<class<KFPawn_Monster> > ElitePawnClass;
 
 /** Custom third person camera offsets */
 var() ViewOffsetData	ThirdPersonViewOffset;
@@ -408,6 +408,13 @@ var float DesiredAdjustedSprintSpeed;
 /** The rate to transition speeds when blending to new movement speeds */
 var float SpeedAdjustTransitionRate;
 
+var AkComponent SprintAkComponent;
+var AkEvent StartSprintingSound;
+var AkEvent SprintLoopingSound;
+var AkEvent StopSprintingSound;
+
+var bool bPlayingSprintLoop;
+
 /*********************************************************************************************
  * @name	Dismemberment / Gore
 ********************************************************************************************* */
@@ -484,6 +491,24 @@ var protected const int OnDeathAchievementID;
 var protected bool bOnDeathAchivementbDisabled;
 
 /*********************************************************************************************
+* @name	Armor
+********************************************************************************************* */
+
+/** Armor component to handle armor damage and detachment. */
+var class<KFZedArmorInfo> ArmorInfoClass;
+var KFZedArmorInfo ArmorInfo;
+
+//Byte array of armor percentages, replicated to clients
+var repnotify byte RepArmorPct[3];
+
+//Bit field for the status of the armor zones.  1 = attached
+var repnotify byte ArmorZoneStatus;
+var byte PreviousArmorZoneStatus;
+
+//Hit FX overrides for hitting armor
+var const int OverrideArmorFXIndex;
+
+/*********************************************************************************************
  * @name	Delegates
 ********************************************************************************************* */
 
@@ -502,6 +527,8 @@ replication
 		bIsCloakingSpottedByTeam;
 	if ( bNetDirty && bCanRage )
 		bIsEnraged;
+	if (Role == ROLE_Authority)
+		ArmorZoneStatus, RepArmorPct;
 }
 
 cpptext
@@ -576,6 +603,21 @@ simulated event ReplicatedEvent(name VarName)
     case nameof(RepDamageInflateParam):
         HandleDamageInflation();
         break;
+
+	case nameof(RepArmorPct):
+		if(ArmorInfo != none)
+		{
+			ArmorInfo.UpdateArmorPieces();
+		}
+		break;
+
+	case nameof(ArmorZoneStatus):
+		if (ArmorInfo != none)
+		{
+			ArmorInfo.UpdateArmorPieces();
+		}
+		break;
+
 	}
 
 	super.ReplicatedEvent( VarName );
@@ -599,6 +641,14 @@ simulated static function float GetXPValue(byte Difficulty)
 /** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
 static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
 {
+	local WorldInfo WI;
+
+	WI = class'WorldInfo'.static.GetWorldInfo();
+	if (default.ElitePawnClass.length > 0 && default.DifficultySettings != none && fRand() < default.DifficultySettings.static.GetSpecialSpawnChance(KFGameReplicationInfo(WI.GRI)))
+	{
+		return default.ElitePawnClass[Rand(default.ElitePawnClass.length)];
+	}
+
 	return default.class;
 }
 
@@ -642,6 +692,11 @@ simulated event PreBeginPlay()
 	}
 	NormalGroundSpeed = default.GroundSpeed;
 	NormalSprintSpeed = default.SprintSpeed;
+
+	if (ArmorInfoClass != none)
+	{
+		ArmorInfo = new(self) ArmorInfoClass;
+	}
 }
 
 simulated event CheckShouldAlwaysBeRelevant()
@@ -669,6 +724,11 @@ simulated event PostBeginPlay()
 	{
 		SetRallySettings( DifficultySettings.static.GetRallySettings(self, KFGRI) );
 		SetZedTimeSpeedScale( DifficultySettings.static.GetZedTimeSpeedScale(self, KFGRI) );
+	}
+
+	if( (WorldInfo.NetMode != NM_Client) && IsABoss() )
+	{
+		`AnalyticsLog(("boss_spawn", None, Class.Name));
 	}
 }
 
@@ -770,12 +830,16 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 		}
 	}
 
+	if (ArmorInfo != none)
+	{
+		ArmorInfo.InitArmor();
+	}
+
 	// Set audio switch based on AI or player-controlled
 `if(`notdefined(ShippingPC))
 	SetSwitch( 'Player_Zed', (IsHumanControlled() || (MyKFAIC != none && MyKFAIC.bIsSimulatedPlayerController)) ? 'Player' : 'NotPlayer' );
 `else
 	SetSwitch( 'Player_Zed', IsHumanControlled() ? 'Player' : 'NotPlayer' );
-
 `endif
 }
 
@@ -828,7 +892,13 @@ function ApplySpecialZoneHealthMod(float HealthMod)
     HitZones[HZI_HEAD].MaxGoreHealth = HitZones[HZI_HEAD].GoreHealth;
 }
 
-function SetShieldScale(float InScale);
+function SetShieldScale(float InScale)
+{
+	if (ArmorInfo != none)
+	{
+		ArmorInfo.SetShieldScale(InScale);
+	}
+}
 
 /** Used by the Versus takeover code to determine if this zed can be taken over */
 function bool CanTakeOver()
@@ -846,6 +916,44 @@ function bool CanTakeOver()
 	}
 
 	return true;
+}
+
+simulated event Tick(float DeltaTime)
+{
+	super.Tick(DeltaTime);
+
+	if (WorldInfo.NetMode != NM_DedicatedServer && IsAliveAndWell())
+	{
+		if (bIsSprinting && VSizeSQ(Velocity) > 40000.f)
+		{
+			if (!bPlayingSprintLoop)
+			{
+				if (StartSprintingSound != none && !SprintAkComponent.IsPlaying(StartSprintingSound))
+				{
+					SprintAkComponent.PlayEvent(StartSprintingSound, true, true);
+				}
+			}
+
+			if(SprintLoopingSound != none && !SprintAkComponent.IsPlaying(SprintLoopingSound))
+			{
+				SprintAkComponent.PlayEvent(SprintLoopingSound, true, true);
+				bPlayingSprintLoop = true;
+			}
+		}
+		else if (bPlayingSprintLoop && (!bIsSprinting || VSizeSQ(Velocity) <= 40000.f))
+		{
+			if (SprintLoopingSound != none && SprintAkComponent.IsPlaying(SprintLoopingSound))
+			{
+				SprintAkComponent.StopEvents();
+				bPlayingSprintLoop = false;
+			}
+
+			if (StopSprintingSound != none && !SprintAkComponent.IsPlaying(StopSprintingSound))
+			{
+				SprintAkComponent.PlayEvent(StopSprintingSound, true, true);
+			}
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -1899,7 +2007,22 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		InDamage = Max( InDamage, 1 );
 	}
 
-	`log(self@"Adjusted Monster Damage="$InDamage, bLogTakeDamage);
+	if (ArmorInfo != none)
+	{
+		//If the damage doesn't have a bone hit source, it's likely AoE.  Split over all remaining armor evenly.
+		if (HitInfo.BoneName != '')
+		{
+			ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);
+		}
+		else
+		{
+			ArmorInfo.AdjustNonBoneDamage(InDamage);
+		}
+
+		`log(self @ GetFuncName() @ " After armor adjustment Damage=" $ InDamage @ "Momentum=" $ Momentum @ "Zone=" $ HitInfo.BoneName @ "DamageType=" $ DamageType, bLogTakeDamage);
+	}
+
+	`log(self @ "Adjusted Monster Damage=" $ InDamage, bLogTakeDamage);
 }
 
 /** Returns damage multiplier for an incoming damage type @todo: c++?*/
@@ -1922,7 +2045,7 @@ function float GetDamageTypeModifier(class<DamageType> DT)
 			// If specified assign difficulty based value
 			if ( WorldInfo.Game != None && DamageTypeModifiers[i].DamageScale.Length > 1 )
 			{
-				DifficultyIdx = Min(WorldInfo.Game.GameDifficulty, DamageTypeModifiers[i].DamageScale.Length);
+				DifficultyIdx = Min(WorldInfo.Game.GetModifiedGameDifficulty(), DamageTypeModifiers[i].DamageScale.Length);
 				DamageModifier = DamageTypeModifiers[i].DamageScale[DifficultyIdx];
 			}
 			else
@@ -2079,7 +2202,7 @@ simulated function bool Rally(
 	local Name AltSocketBoneName;
 
     GetDifficultyRallyInfo( RallyInfo );
-	
+
     if( !RallyInfo.bCanRally || !IsAliveAndWell() )
     {
     	return false;
@@ -4117,7 +4240,7 @@ simulated function GetOverheadDebugText( KFHUDBase HUD, out array<string> Overhe
     KFGI = KFGameInfo(WorldInfo.Game);
 	if ( KFGI != none )
 	{
-        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GameDifficulty, KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
+        KFGI.DifficultyInfo.GetAIHealthModifier(self, KFGI.GetModifiedGameDifficulty(), KFGI.GetLivingPlayerCount(), HealthMod, HeadHealthMod);
 	    if( bShowAllVerbose || HUD.ShouldDisplayDebug('ZedHealthVerbose') )
         {
     	    DebugText = " Health: "$Health
@@ -4279,6 +4402,18 @@ static function string GetSeasonalLocalizationSuffix()
 	}
 
 	return "";
+}
+
+/*********************************************************************************************
+* @name   Armor
+********************************************************************************************* */
+
+function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
+{
+	if (ArmorInfo != none)
+	{
+		ArmorInfo.ExplodeArmor(ArmorZoneIdx, ArmorZoneName);
+	}
 }
 
 /*********************************************************************************************
@@ -4449,6 +4584,19 @@ DefaultProperties
 
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'GP_Debug.SineWaveMarker_TEX';
-`endif
-	OnDeathAchievementID=INDEX_NONE
+	`endif
+		OnDeathAchievementID = INDEX_NONE
+
+	bKnockdownWhenJumpedOn = True
+
+	// ---------------------------------------------
+    // sounds
+	Begin Object Class=AkComponent name=SprintAkComponent0
+		BoneName=dummy
+		bStopWhenOwnerDestroyed=true
+		bForceOcclusionUpdateInterval=true
+		OcclusionUpdateInterval=0.2f
+	End Object
+    SprintAkComponent=SprintAkComponent0
+    Components.Add(SprintAkComponent0)
 }

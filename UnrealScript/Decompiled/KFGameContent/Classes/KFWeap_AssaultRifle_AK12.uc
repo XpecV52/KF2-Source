@@ -147,16 +147,22 @@ defaultproperties
     BurstFire3RdAnim=Shoot_Burst
     BurstFire2RdSightedAnim=Shoot_Burst2_Iron
     BurstFire3RdSightedAnim=Shoot_Burst_Iron
-    WeaponFire2RdSnd=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
-    WeaponFire3RdSnd=(DefaultCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'ww_wep_sa_ak12.Play_WEP_SA_AK12_Fire_Burst_S')
+    WeaponFire2RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_2RdBurst_S')
+    WeaponFire3RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_S')
+    PackageKey="AK12"
+    FirstPersonMeshName="WEP_1P_AK12_MESH.Wep_1stP_AK12_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_AK12_MESH.Wep_AK12_Pickup"
+    AttachmentArchetypeName="WEP_AK12_ARCH.Wep_AK12_3P"
+    MuzzleFlashTemplateName="WEP_AK12_ARCH.Wep_AK12_MuzzleFlash"
+    bHasIronSights=true
+    bCanBeReloaded=true
+    bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     BurstAmount=3
     InventorySize=6
     MagazineCapacity=30
-    bHasIronSights=true
-    bCanBeReloaded=true
-    bReloadFromMagazine=true
     MeshFOV=75
     MeshIronSightFOV=33
     PlayerIronSightFOV=70
@@ -170,9 +176,7 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=2,Y=8,Z=-3)
-    AttachmentArchetype=KFWeaponAttachment'WEP_AK12_ARCH.Wep_AK12_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_AK12.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_AK12_ARCH.Wep_AK12_MuzzleFlash'
     maxRecoilPitch=200
     minRecoilPitch=150
     maxRecoilYaw=175
@@ -188,6 +192,7 @@ defaultproperties
     RecoilISMinPitchLimit=65460
     IronSightMeshFOVCompensationScale=2.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
@@ -196,21 +201,17 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=32,Y=4,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_AK12_MESH.Wep_1stP_AK12_Rig'
-        AnimSets(0)=AnimSet'WEP_1P_AK12_ANIM.Wep_1st_AK12_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_AssaultRifle_AK12.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Kalashnikov AK-12"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AK12_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_AK12.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AK12_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_AssaultRifle_AK12.StaticPickupComponent'

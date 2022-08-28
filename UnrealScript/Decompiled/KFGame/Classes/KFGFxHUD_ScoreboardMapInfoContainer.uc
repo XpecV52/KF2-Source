@@ -10,7 +10,6 @@ class KFGFxHUD_ScoreboardMapInfoContainer extends GFxObject within GFxMoviePlaye
 var protected int LastMatchTime;
 var const localized string WaveString;
 var const localized string FinalString;
-var int CurrentGameDifficulty;
 var string GameTypeString;
 var bool bLocalized;
 
@@ -29,8 +28,7 @@ function LocalizeText()
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
-        CurrentGameDifficulty = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI).GameDifficulty;
-        GameDifficultyString = Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(CurrentGameDifficulty));
+        GameDifficultyString = Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(KFGRI.GameDifficulty));
         GameTypeString = KFGRI.GameClass.default.GameName;
         MatchInfoString = (GameTypeString @ "-") @ GameDifficultyString;
     }

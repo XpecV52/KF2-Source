@@ -328,7 +328,7 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
     // When our health gets low, go hunt a player to draw life and enter the next battle phase
     if( !MyHansPawn.bHealedThisPhase && MyHansPawn.CurrentBattlePhase < 4 )
     {
-        HealThreshold = MyHansPawn.BattlePhases[MyHansPawn.CurrentBattlePhase-1].HealThresholds[WorldInfo.Game.GameDifficulty];
+        HealThreshold = MyHansPawn.BattlePhases[MyHansPawn.CurrentBattlePhase-1].HealThresholds[WorldInfo.Game.GetModifiedGameDifficulty()];
         HealthPct = GetHealthPercentage();
 
         // Summon minions if we haven't yet

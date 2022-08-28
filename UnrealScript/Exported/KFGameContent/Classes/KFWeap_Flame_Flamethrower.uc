@@ -186,13 +186,19 @@ defaultproperties
    End Object
    PSC_EndSpray=FlameEndSpray0
    MinAmmoConsumed=4
-   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
-   FireModeIconPaths(1)=()
-   InventorySize=8
-   MagazineCapacity(0)=100
+   PackageKey="Flamethrower"
+   FirstPersonMeshName="WEP_1P_Flamethrower_MESH.Wep_1stP_Flamethrower_Rig"
+   FirstPersonAnimSetNames(0)="wep_1p_flamethrower_anim.Wep_1stP_Flamethrower_anim"
+   PickupMeshName="WEP_3P_Flamethrower_MESH.Wep_FlameThrower_Pickup"
+   AttachmentArchetypeName="WEP_Flamethrower_ARCH.Wep_Flamethrower_3P"
+   MuzzleFlashTemplateName="WEP_Flamethrower_ARCH.Wep_Flamethrower_MuzzleFlash"
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
+   FireModeIconPaths(1)=()
+   InventorySize=7
+   MagazineCapacity(0)=100
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=80.000000
    IronSightPosition=(X=3.000000,Y=6.000000,Z=-1.000000)
@@ -215,14 +221,12 @@ defaultproperties
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Handling_DryFire'
    PlayerViewOffset=(X=3.000000,Y=9.000000,Z=-3.000000)
-   AttachmentArchetype=KFWeapAttach_Flamethrower'WEP_Flamethrower_ARCH.Wep_Flamethrower_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Flame_Flamethrower:MeleeHelper_0'
-   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Flamethrower_ARCH.Wep_Flamethrower_MuzzleFlash'
    maxRecoilPitch=150
    minRecoilPitch=115
    maxRecoilYaw=115
@@ -240,6 +244,8 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
+   WeaponUpgrades(1)=(IncrementDamage=1.150000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.200000)
    FiringStatesArray(0)="SprayingFire"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -260,9 +266,7 @@ defaultproperties
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Flamethrower'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_FlameBase:FirstPersonMesh'
-      SkeletalMesh=SkeletalMesh'WEP_1P_Flamethrower_MESH.Wep_1stP_Flamethrower_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
-      AnimSets(0)=AnimSet'wep_1p_flamethrower_anim.Wep_1stP_Flamethrower_anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
       ReplacementPrimitive=None
@@ -276,7 +280,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Flamethrower"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_FlameBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_FlameThrower_Pickup'
+      StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

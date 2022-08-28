@@ -202,30 +202,35 @@ ItemName="Stoner 63A LMG"
 ItemCategory="Ametralladora ligera"
 ItemDescription="•Solo dispara en modo automático.\n•La Stoner 63A fue un arma básica de las operaciones especiales de EE. UU. en Vietnam. Tiene gran capacidad de munición y es muy potente."
 
+[KFWeap_Knife_Survivalist]
+ItemName="Pincho de gore"
+ItemCategory="Cuerpo a cuerpo"
+ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Esto solía ser parte de algo. Bueno, ¡ahora es tuyo!"
+
 [KFWeap_Knife_Demolitionist]
 ItemName="Cúter"
 ItemCategory="Cuerpo a cuerpo"
-ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Es un cúter. Ideal para abrir las cajas de cartón que encuentres en medio de la masacre."
+ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Es un cúter. Ideal para abrir las cajas de cartón que encuentres en medio de la masacre."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Bisturí"
 ItemCategory="Cuerpo a cuerpo"
-ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Es un bisturí. Eres médico, así que damos por sentado que no tenemos que explicarte cómo se usa."
+ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Es un bisturí. Eres médico, así que damos por sentado que no tenemos que explicarte cómo se usa."
 
 [KFWeap_Knife_Firebug]
 ItemName="Cuchillo de bombero"
 ItemCategory="Cuerpo a cuerpo"
-ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Es un cuchillo de bombero. Eres bombero, así que damos por sentado que no tenemos que explicarte cómo se usa."
+ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Es un cuchillo de bombero. Eres bombero, así que damos por sentado que no tenemos que explicarte cómo se usa."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Cuchillo Bowie"
 ItemCategory="Cuerpo a cuerpo"
-ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Es el típico cuchillo extragrande del antiguo oeste. Perfecto para hacer picadillo a Zeds cuando más hace falta."
+ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•El típico cuchillo extragrande del antiguo oeste. Perfecto para hacer picadillo a Zeds cuando más hace falta."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Cuerpo a cuerpo"
-ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•Se trata del cuchillo tradicional de los Ghurka... Pensado más para cortar en pedacitos que en rebanadas, ya sabes. "
+ItemDescription="•Principal: ataque cortante rápido. Mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•El cuchillo tradicional de los Gurkha... Pensado más para cortar en pedacitos que en rebanadas, ya sabes. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Cuchillo táctico"
@@ -345,7 +350,7 @@ ItemCategory="Llamaradas"
 ItemDescription="•Modo de disparo: lanza proyectiles inflamables y explosivos. \n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de Escupefuegos."
 
 [KFWeap_Shotgun_DragonsBreath]
-ItemName="Escopeta incendiaria"
+ItemName="Aliento de dragón"
 ItemCategory="Escopeta"
 ItemDescription="•Modo de disparo: solo acción de bombeo.\n•Es una escopeta con cartuchos incendiarios Aliento de Dragón. Letal, sí, pero además es espectacular."
 
@@ -510,10 +515,25 @@ ItemName="AF2011-A2 dual"
 ItemCategory="Arma corta"
 ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Dos pistolas con dos cañones cada una. Una potencia de fuego cuatro veces mayor. Matemática pura. No puedes contradecir a las matemáticas."
 
+[KFWeap_Shotgun_ElephantGun]
+ItemName="Trabucondena"
+ItemCategory="Escopeta"
+ItemDescription="•El modo principal usa solo un cañón.\n•El modo alternativo dispara con los cuatro cañones a la vez.\n•Si dos barriles no son suficientes... ¡que sean cuatro!"
+
+[KFWeap_Blunt_PowerGloves]
+ItemName="Golpeador eléctrico"
+ItemCategory="Cuerpo a cuerpo"
+ItemDescription="•Principal: ataque contundente rápido. Mantén pulsado el botón del modo principal para hacer un combo.\n•Secundario: ataque contundente eléctrico potente. ¡Electrificante! \n•¿Quieres darle un puñetazo en la cara a un zed? ¡No busques más!"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="Subfusil"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Posee munición incendiaria de fuego rápido. ¿Lo pillas? ¡Fuego rápido! ¡Porque es una metralleta incendiaria! Bah, olvídalo."
+
+[KFWeap_Rifle_M99]
+ItemName="M99 AMR"
+ItemCategory="Fusil de francotirador"
+ItemDescription="•Modo de disparo: solo tiro único.\n•Cada disparo pega un buen golpe... Bueno, un buen balazo. Alta penetración, alto dolor."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

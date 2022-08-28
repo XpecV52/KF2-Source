@@ -54,6 +54,8 @@ package tripwire.containers.hud
         
         public var failedString:String;
         
+        public var objectiveNumberMC;
+        
         public function ObjectiveProgressContainer()
         {
             this.stateGlow = new GlowFilter(0,1,8,8,1,3,false,false);
@@ -71,6 +73,7 @@ package tripwire.containers.hud
             visible = false;
             this.objectiveRequirementContainer.visible = true;
             TextFieldEx.setTextAutoSize(this.objectiveRequirementContainer.requirementNumberTextfield,"shrink");
+            this.objectiveNumberMC.visible = false;
         }
         
         public function set localizedText(param1:Object) : void
@@ -97,9 +100,18 @@ package tripwire.containers.hud
             }
         }
         
+        public function set objectiveNumber(param1:Object) : void
+        {
+            if(param1)
+            {
+                this.objectiveNumberMC.visible = param1.textValue && param1.textValue != "";
+                this.objectiveNumberMC.numberTextfield.text = param1.textValue;
+            }
+            this.objectiveNumberMC.visble = false;
+        }
+        
         public function set currentProgress(param1:Number) : void
         {
-            var _loc2_:Object = null;
             if(this._currentProgress < param1)
             {
                 if(this.currentProgressColor.tintColor != this.normalColor)
@@ -112,31 +124,17 @@ package tripwire.containers.hud
                     this.doshIconMC.gotoAndStop(1);
                 }
             }
-            else if(this._currentProgress > param1)
+            else if(this._currentProgress <= param1)
             {
-                if(param1 == 0)
+                if(this.currentProgressColor.tintColor != this.defaultColor)
                 {
-                    _loc2_ = {"bFailed":true};
-                    this.failed = _loc2_;
-                }
-                else if(this.currentProgressColor.tintColor != this.failedColor)
-                {
-                    this.currentProgressColor.setTint(this.failedColor,1);
+                    this.currentProgressColor.setTint(this.defaultColor,1);
                     this.progressBarMC.transform.colorTransform = this.currentProgressColor;
                     this.bonusNumberTextfield.transform.colorTransform = this.currentProgressColor;
-                    this.stateGlow.color = this.failedColor;
+                    this.stateGlow.color = this.defaultColor;
                     this.bonusNumberTextfield.filters = [this.stateGlow];
-                    this.doshIconMC.gotoAndStop(2);
+                    this.doshIconMC.gotoAndStop(3);
                 }
-            }
-            else if(this.currentProgressColor.tintColor != this.defaultColor)
-            {
-                this.currentProgressColor.setTint(this.defaultColor,1);
-                this.progressBarMC.transform.colorTransform = this.currentProgressColor;
-                this.bonusNumberTextfield.transform.colorTransform = this.currentProgressColor;
-                this.stateGlow.color = this.defaultColor;
-                this.bonusNumberTextfield.filters = [this.stateGlow];
-                this.doshIconMC.gotoAndStop(3);
             }
             this.progressBarMC.gotoAndStop(param1 + 1);
             this._currentProgress = param1;

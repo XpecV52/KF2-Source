@@ -8,20 +8,6 @@
 //=============================================================================
 class KFPawn_ZedClot_Alpha extends KFPawn_ZedClot;
 
-/** Gets the actual classes used for spawning. Can be overridden to replace this monster with another */
-static event class<KFPawn_Monster> GetAIPawnClassToSpawn()
-{
-	local WorldInfo WI;
-
-	WI = class'WorldInfo'.static.GetWorldInfo();
-	if( fRand() < class<KFDifficulty_ClotAlpha>(default.DifficultySettings).static.GetSpecialAlphaChance(KFGameReplicationInfo(WI.GRI)) )
-	{
-		return default.ElitePawnClass;
-	}
-
-	return super.GetAIPawnClassToSpawn();
-}
-
 /** Returns (hardcoded) trader advice dialog ID */
 static function int GetTraderAdviceID()
 {
@@ -31,7 +17,7 @@ static function int GetTraderAdviceID()
 defaultproperties
 {
    MonsterArchPath="ZED_ARCH.ZED_Clot_Alpha_Archetype"
-   ElitePawnClass=Class'kfgamecontent.KFPawn_ZedClot_AlphaKing'
+   ElitePawnClass(0)=Class'kfgamecontent.KFPawn_ZedClot_AlphaKing'
    GrabAttackFrequency=0.330000
    ParryResistance=0
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedClot:MeleeHelper_0'
@@ -62,6 +48,15 @@ defaultproperties
    DamageTypeModifiers(13)=(DamageType=Class'KFGame.KFDT_Bleeding')
    DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Knife')
    DifficultySettings=Class'kfgamecontent.KFDifficulty_ClotAlpha'
+   Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot:SprintAkComponent0'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="SprintAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot:SprintAkComponent0'
+   End Object
+   SprintAkComponent=SprintAkComponent0
    LocalizationKey="KFPawn_ZedClot_Alpha"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -139,7 +134,9 @@ defaultproperties
       SpecialMoveClasses(32)=None
       SpecialMoveClasses(33)=None
       SpecialMoveClasses(34)=None
-      SpecialMoveClasses(35)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(35)=None
+      SpecialMoveClasses(36)=None
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedClot:SpecialMoveHandler_0'
    End Object
@@ -246,6 +243,7 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=SprintAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
    Name="Default__KFPawn_ZedClot_Alpha"

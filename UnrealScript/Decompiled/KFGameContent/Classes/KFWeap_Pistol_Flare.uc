@@ -18,12 +18,18 @@ defaultproperties
 {
     bRevolver=true
     CylinderRotInfo=(InC=-60,Time=0.0175)
-    InventorySize=2
-    MagazineCapacity=6
+    PackageKey="FlareGun"
+    FirstPersonMeshName="WEP_1P_FlareGun_MESH.Wep_1stP_FlareGun_Rig"
+    FirstPersonAnimSetNames=/* Array type was not detected. */
+    PickupMeshName="WEP_3P_FlareGun_MESH.Wep_FlareGun_Pickup"
+    AttachmentArchetypeName="WEP_FlareGun_ARCH.Wep_FlareGun_3P"
+    MuzzleFlashTemplateName="WEP_FlareGun_ARCH.Wep_Flaregun_MuzzleFlash"
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
+    InventorySize=2
+    MagazineCapacity=6
     MeshFOV=60
     MeshIronSightFOV=55
     PlayerIronSightFOV=77
@@ -40,9 +46,7 @@ defaultproperties
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=15,Y=14,Z=-6)
-    AttachmentArchetype=KFWeaponAttachment'WEP_FlareGun_ARCH.Wep_FlareGun_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_Flare.MeleeHelper'
-    MuzzleFlashTemplate=KFMuzzleFlash'WEP_FlareGun_ARCH.Wep_Flaregun_MuzzleFlash'
     maxRecoilPitch=400
     minRecoilPitch=350
     maxRecoilYaw=125
@@ -59,6 +63,7 @@ defaultproperties
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
+    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
@@ -68,22 +73,18 @@ defaultproperties
     InstantHitDamageTypes=/* Array type was not detected. */
     FireOffset=(X=20,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
-        SkeletalMesh=SkeletalMesh'WEP_1P_FlareGun_MESH.Wep_1stP_FlareGun_Rig'
         AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master_Revolver'
-        AnimSets(0)=AnimSet'WEP_1P_FlareGun_ANIM.Wep_1stP_FlareGun_Anim'
         ReplacementPrimitive=none
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_Flare.FirstPersonMesh'
     Mesh=FirstPersonMesh
     ItemName="Spitfire"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_FlareGun_MESH.Wep_FlareGun_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Flare.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_FlareGun_MESH.Wep_FlareGun_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Pistol_Flare.StaticPickupComponent'
