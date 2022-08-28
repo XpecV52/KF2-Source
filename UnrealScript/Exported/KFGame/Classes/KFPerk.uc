@@ -270,6 +270,7 @@ var 	protected const	class<KFDamageType>	ToxicDmgTypeClass;
 * Loading
 ********************************************************************************************* */
 var	const 	protected	byte	CurrentLevel;
+var	const 	protected	byte	CurrentPrestigeLevel;
 var			int					SavedBuild;
 
 /** Initialization */
@@ -342,7 +343,7 @@ var	config bool	bLogPerk;
 replication
 {
 	if( bNetDirty && bNetOwner )
-        CurrentLevel;
+        CurrentLevel, CurrentPrestigeLevel;
 }
 
 /**
@@ -361,7 +362,7 @@ native static final function LoadPerkData();
 native static final function SaveTierUnlockToConfig(class<KFPerk> PerkClass, byte bTierUnlocked, int PerkLevel);
 native final function SaveBuildToStats( Class<KFPerk> PerkClass, int NewPerkBuild );
 native final function SavePerkDataToConfig( Class<KFPerk> PerkClass, int NewPerkBuild );
-reliable server final private native event ServerSetPerkBuild( int NewPerkBuild, byte ClientLevel);
+reliable server final private native event ServerSetPerkBuild( int NewPerkBuild, byte ClientLevel, byte ClientPrestigeLevel);
 reliable client final private native event ClientACK( bool bSuccess, byte AckLevel, Int PerkBuild );
 
 /*********************************************************************************************
@@ -574,6 +575,11 @@ static function bool IsBackupWeapon( KFWeapon KFW )
 /*********************************************************************************************
 * @name	 Build / Level Management - Apply and save the updated build and level
 ********************************************************************************************* */
+simulated function int GetCurrentPrestigeLevel()
+{
+	return CurrentPrestigeLevel;
+}
+
 /**
  * @brief Gets the perk's level
  * @return The perk's level
@@ -586,6 +592,11 @@ simulated native function byte GetLevel();
  * @param NewLevel The new level
   */
 simulated native function SetLevel( byte NewLevel );
+
+
+simulated native function byte GetPrestigeLevel(byte NewLevel);
+simulated native function SetPrestigeLevel(byte NewLevel);
+static native final function int GetPrestigeRewardID(class<KFPerk> PerkClass, byte NewLvl);
 
 /** Whether or not the passed in perk level is active.
  *      Value will be 0-9, which then should be converted to
@@ -649,7 +660,7 @@ simulated event UpdatePerkBuild( const out byte InSelectedSkills[5], class<KFPer
 	if( Controller(Owner).IsLocalController() )
 	{
   		PackPerkBuild( NewPerkBuild, InSelectedSkills );
-		ServerSetPerkBuild( NewPerkBuild, CurrentLevel);
+		ServerSetPerkBuild( NewPerkBuild, CurrentLevel, CurrentPrestigeLevel);
 		SaveBuildToStats( PerkClass, NewPerkBuild );
 		SavePerkDataToConfig( PerkClass, NewPerkBuild );
 	}

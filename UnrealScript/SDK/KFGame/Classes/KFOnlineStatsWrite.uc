@@ -18,6 +18,7 @@ class KFOnlineStatsWrite extends OnlineStatsWrite
 const	WeldingPointsRequired = 510;
 const	HealingPointsRequired = 10;
 const 	MaxPerkLevel = `MAX_PERK_LEVEL;
+const 	MaxPrestigeLevel = `MAX_PRESTIGE_LEVEL;
 
 //Event consts
 const   SpecialEventObjectiveCountMax = 8;
@@ -421,7 +422,7 @@ cpptext
 
 	UBOOL IsDamageTypeChildOf(class UClass* DamageType, const TArray<FName>& ObjectiveClasses);
 
-	void CalculateZedKillsVoshReward();
+	void CalculateZedKillsDoshReward();
 
 	void IncrementZedsKilled(class UClass* MonsterType);
 }
@@ -755,12 +756,15 @@ private event SaveBuildToStats(class<KFPerk> InPerk, int Build)
 ********************************************************************************************* */
 
 // External get functions
+native final function int GetPerkPrestigeLevel(class<KFPerk> Perk);
 native final function int GetPerkLevel( class<KFPerk> Perk );
 native final function int GetPerkBuild( class<KFPerk> Perk );
 native final static function int GetXPNeededAt( int Level );
 
 // Use these instead of IncrementIntStat, etc...
 native final private function IncrementXPStat( class<KFPerk> PerkClass, optional int IncBy = 1 );
+native final private function bool IncrementPSGStat(class<KFPerk> PerkClass);
+
 native final private function int GetXPFromProgress( int PerkProgress );
 native final private function int GetLVLFromProgress( int PerkProgress );
 native final private function int GetPSGFromProgress( int PerkProgress );
@@ -783,12 +787,12 @@ private event AddXP( class<KFPerk> PerkClass, int dXP )
 }
 
 /** Called by IncrementXPStat when new level is achieved */
-private event NotifyLevelUp(class<KFPerk> PerkClass, int NewLVL)
+private event NotifyLevelUp(class<KFPerk> PerkClass, int NewLVL, int NewPrestigeLevel)
 {
 	if( MyKFPC != None )
 	{
-		MyKFPC.NotifyLevelUp( PerkClass, NewLVL );
-		`log(GetFuncName() @ "PerkClass:" @ PerkClass @ "New LVL:" @ NewLVL, bLogStatsWrite);
+		MyKFPC.NotifyLevelUp( PerkClass, NewLVL, NewPrestigeLevel);
+		`log(GetFuncName() @ "PerkClass:" @ PerkClass @ "New LVL:" @ NewLVL @ "NewPrestigeLevel" @NewPrestigeLevel, bLogStatsWrite);
 
 		if( NewLVL % 5 == 0 )
 		{
@@ -805,7 +809,7 @@ private event int GetPerkXP( int StatID )
 		case STATID_Cmdo_Progress:			return CommandoXP;
 		case STATID_Bsrk_Progress:			return BerserkerXP;
 		case STATID_Sup_Progress:			return SupportXP;
-		case STATID_Medic_Progress:		return MedicXP;
+		case STATID_Medic_Progress:			return MedicXP;
 		case STATID_Fire_Progress:			return FirebugXP;
 		case STATID_Demo_Progress:			return DemoXP;
 		case STATID_Guns_Progress:			return GunslingerXP;
@@ -825,7 +829,7 @@ private event int GetPerkLVLInternal( int StatID )
 		case STATID_Cmdo_Progress:			return CommandoLVL;
 		case STATID_Bsrk_Progress:			return BerserkerLVL;
 		case STATID_Sup_Progress:			return SupportLVL;
-		case STATID_Medic_Progress:		return MedicLVL;
+		case STATID_Medic_Progress:			return MedicLVL;
 		case STATID_Fire_Progress:			return FirebugLVL;
 		case STATID_Demo_Progress:			return DemoLVL;
 		case STATID_Guns_Progress:			return GunslingerLVL;
@@ -845,7 +849,7 @@ private event int GetPerkPSG( int StatID )
 		case STATID_Cmdo_Progress:			return CommandoPSG;
 		case STATID_Bsrk_Progress:			return BerserkerPSG;
 		case STATID_Sup_Progress:			return SupportPSG;
-		case STATID_Medic_Progress:		return MedicPSG;
+		case STATID_Medic_Progress:			return MedicPSG;
 		case STATID_Fire_Progress:			return FirebugPSG;
 		case STATID_Demo_Progress:			return DemoPSG;
 		case STATID_Guns_Progress:			return GunslingerPSG;
@@ -863,6 +867,15 @@ private event int GetPerkLVLByClass(class<KFPerk> PerkClass)
 
 	StatID = PerkClass.static.GetProgressStatID();
 	return GetPerkLVLInternal(StatID);
+}
+
+private event int GetPerkPrestigeLVLByClass(class<KFPerk> PerkClass)
+{
+	//local int StatID;
+
+	//StatID = PerkClass.static.GetProgressStatID();
+	//return GetPerkLVLInternal(StatID);
+	return 0;
 }
 
 /*********************************************************************************************
@@ -1539,6 +1552,7 @@ native final function int GetLastSeenDoshCount();
 native final function int GetUnseenDoshCount();
 native final function MarkDoshVaultSeen();
 native static final function int GetDoshVaultTierValue();
+native static final function int GetPreStigeValueDoshRewardValue();
 native final function CheckUnlockDoshVaultReward();
 native final function CheckHasViewedDoshVault();
 native final function VerifyDoshVaultCrates();
@@ -1646,6 +1660,7 @@ defaultproperties
     //Support Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_MB500, KFDT_Ballistic_MB500,KFDT_Bludgeon_MB500),CompletionAmount=3000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_DoubleBarrel, KFDT_Ballistic_DBShotgun,KFDT_Bludgeon_DBShotgun),CompletionAmount=5000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_HZ12, KFDT_Ballistic_HZ12,KFDT_Bludgeon_HZ12),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_M4, KFDT_Ballistic_M4Shotgun,KFDT_Bludgeon_M4Shotgun),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_AA12, KFDT_Ballistic_AA12Shotgun,KFDT_Bludgeon_AA12Shotgun),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_HZ12, KFDT_Ballistic_HZ12,KFDT_Bludgeon_HZ12),CompletionAmount=10000))
@@ -1654,6 +1669,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Medic, KFDT_Ballistic_Pistol_Medic,KFDT_Bludgeon_Pistol_Medic),CompletionAmount=3000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Medic, KFDT_Ballistic_SMG_Medic,KFDT_Bludgeon_SMG_Medic),CompletionAmount=5000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_Medic, KFDT_Ballistic_Shotgun_Medic,KFDT_Bludgeon_Shotgun_Medic),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Hemogoblin, KFDT_Ballistic_Hemogoblin, KFDT_Bludgeon_Hemogoblin),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Medic, KFDT_Ballistic_Assault_Medic,KFDT_Bludgeon_Assault_Medic),CompletionAmount=9000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Hemogoblin, KFDT_Ballistic_Hemogoblin, KFDT_Bludgeon_Hemogoblin),CompletionAmount=9000))
 
@@ -1677,6 +1693,7 @@ defaultproperties
     //Berserker Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Crovel, KFDT_Bludgeon_Crovel,KFDT_Bludgeon_CrovelBash,KFDT_Slashing_Crovel),CompletionAmount=3000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_Nailgun, KFDT_Ballistic_NailShotgun,KFDT_Bludgeon_NailShotgun),CompletionAmount=5000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_Katana, KFDT_Slashing_Katana,KFDT_Piercing_KatanaStab, KFDT_Slashing_KatanaHeavy),CompletionAmount=5000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Pulverizer, KFDT_Bludgeon_Pulverizer,KFDT_Bludgeon_PulverizerBash,KFDT_Bludgeon_PulverizerHeavy,KFDT_Explosive_Pulverizer),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Eviscerator, KFDT_Slashing_Eviscerator,KFDT_Slashing_EvisceratorProj),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_MaceAndShield, KFDT_Bludgeon_MaceAndShield,KFDT_Bludgeon_MaceAndShield_Bash,KFDT_Bludgeon_MaceAndShield_MaceHeavy,KFDT_Bludgeon_MaceAndShield_ShieldHeavy,KFDT_Bludgeon_MaceAndShield_ShieldLight),CompletionAmount=10000))

@@ -196,11 +196,11 @@ function ServerNotifyTeamChanged()
 
 		if( GetTeamNum() > 0 )
 		{
-			ServerSelectPerk( 255, 0, true );
+			ServerSelectPerk( 255, 0, 0, true );
 		}
 		else if( CurrentPerk != none && CurrentPerk.Class == MonsterPerkClass )
 		{
-			ServerSelectPerk( SavedPerkIndex, Perklist[SavedPerkIndex].PerkLevel, true );
+			ServerSelectPerk( SavedPerkIndex, Perklist[SavedPerkIndex].PerkLevel, Perklist[SavedPerkIndex].PrestigeLevel, true );
 		}
 	}
 }

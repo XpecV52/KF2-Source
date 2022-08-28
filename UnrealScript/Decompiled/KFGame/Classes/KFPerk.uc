@@ -195,6 +195,7 @@ var array<PerkSkill> PerkSkills;
 var protected byte SelectedSkills[5];
 var byte MaxAbilityPoints;
 var protected const byte CurrentLevel;
+var protected const byte CurrentPrestigeLevel;
 /** Duration till next RegenerationAmount */
 var() const float RegenerationInterval;
 /** Amount health given per RegenerationIntervall */
@@ -239,7 +240,7 @@ var KFPawn_Human OwnerPawn;
 replication
 {
      if(bNetDirty && bNetOwner)
-        CurrentLevel;
+        CurrentLevel, CurrentPrestigeLevel;
 }
 
 // Export UKFPerk::execCheckOwnerPawn(FFrame&, void* const)
@@ -264,7 +265,7 @@ native final function SaveBuildToStats(class<KFPerk> PerkClass, int NewPerkBuild
 native final function SavePerkDataToConfig(class<KFPerk> PerkClass, int NewPerkBuild);
 
 // Export UKFPerk::execServerSetPerkBuild(FFrame&, void* const)
-private reliable server native final event ServerSetPerkBuild(int NewPerkBuild, byte ClientLevel);
+private reliable server native final event ServerSetPerkBuild(int NewPerkBuild, byte ClientLevel, byte ClientPrestigeLevel);
 
 // Export UKFPerk::execClientACK(FFrame&, void* const)
 private reliable client native final simulated event ClientACK(bool bSuccess, byte AckLevel, int PerkBuild);
@@ -434,11 +435,25 @@ static function bool IsBackupWeapon(KFWeapon KFW)
     return (KFW != none) && KFW.default.bIsBackupWeapon;
 }
 
+simulated function int GetCurrentPrestigeLevel()
+{
+    return CurrentPrestigeLevel;
+}
+
 // Export UKFPerk::execGetLevel(FFrame&, void* const)
 native simulated function byte GetLevel();
 
 // Export UKFPerk::execSetLevel(FFrame&, void* const)
 native simulated function SetLevel(byte NewLevel);
+
+// Export UKFPerk::execGetPrestigeLevel(FFrame&, void* const)
+native simulated function byte GetPrestigeLevel(byte NewLevel);
+
+// Export UKFPerk::execSetPrestigeLevel(FFrame&, void* const)
+native simulated function SetPrestigeLevel(byte NewLevel);
+
+// Export UKFPerk::execGetPrestigeRewardID(FFrame&, void* const)
+native static final function int GetPrestigeRewardID(class<KFPerk> PerkClass, byte NewLVL);
 
 simulated function bool IsPerkLevelAllowed(int PerkIndex)
 {
@@ -486,7 +501,7 @@ simulated event UpdatePerkBuild(const out byte InSelectedSkills[5], class<KFPerk
     if(Controller(Owner).IsLocalController())
     {
         PackPerkBuild(NewPerkBuild, InSelectedSkills);
-        ServerSetPerkBuild(NewPerkBuild, CurrentLevel);
+        ServerSetPerkBuild(NewPerkBuild, CurrentLevel, CurrentPrestigeLevel);
         SaveBuildToStats(PerkClass, NewPerkBuild);
         SavePerkDataToConfig(PerkClass, NewPerkBuild);
     }

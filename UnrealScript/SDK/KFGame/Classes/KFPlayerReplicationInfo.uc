@@ -110,6 +110,7 @@ var int DamageDealtOnTeam;
 var  	byte			NetPerkIndex; // @todo: replace with class?
 var  			Class<KFPerk>	CurrentPerkClass;
 var private 	byte	ActivePerkLevel;
+var private 	byte	ActivePerkPrestigeLevel;
 /** Kill assists. Need an integer here because it is very easy to exceed 255 assists. */
 var 			int 			Assists;
 var 	byte			PlayerHealth; //represented as a percentage
@@ -179,7 +180,7 @@ cpptext
 replication
 {
 	if ( bNetDirty )
-		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, bHasSpawnedIn,
+		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
 		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest;
@@ -261,6 +262,11 @@ reliable client function ClientRecieveNewTeam();
 simulated function byte GetActivePerkLevel()
 {
 	return ActivePerkLevel;
+}
+
+simulated function byte GetActivePerkPrestigeLevel()
+{
+	return ActivePerkPrestigeLevel;
 }
 
 /*********************************************************************************************

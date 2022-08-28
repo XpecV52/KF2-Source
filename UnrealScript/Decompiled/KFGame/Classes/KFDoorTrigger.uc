@@ -50,7 +50,7 @@ Parameter name: index
             
         */
 
-        /*@Error*/
+        /*@Error*/;
         // Failed to format nests!:System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)

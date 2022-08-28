@@ -245,12 +245,14 @@ struct native PerkInfo
 {
     var class<KFPerk> PerkClass;
     var byte PerkLevel;
+    var byte PrestigeLevel;
     var KFPerk PerkArchetype;
 
     structdefaultproperties
     {
         PerkClass=none
         PerkLevel=0
+        PrestigeLevel=0
         PerkArchetype=none
     }
 };
@@ -375,6 +377,7 @@ var repnotify KFPerk CurrentPerk;
 var class<KFPerk> ServPendingPerkClass;
 var int ServPendingPerkBuild;
 var int ServPendingPerkLevel;
+var int ServPendingPerkPrestigeLevel;
 var bool bWaitingForClientPerkData;
 var private const bool bPerkStatsLoaded;
 var bool bAcuteHearing;
@@ -621,6 +624,9 @@ native function CheckBulletWhip(AkEvent BulletWhip, Vector FireLocation, Vector 
 
 // Export UKFPlayerController::execGetPerk(FFrame&, void* const)
 native final simulated function KFPerk GetPerk();
+
+// Export UKFPlayerController::execPerformPrestigeReset(FFrame&, void* const)
+native final function PerformPrestigeReset(class<KFPerk> PSGPerkClass);
 
 // Export UKFPlayerController::execPushPlayerStats(FFrame&, void* const)
 private reliable server native final event PushPlayerStats(PlayerStats Stats);
@@ -1818,6 +1824,15 @@ function NotifyPlayTogetherFailed(optional string LocKey)
     MyGFxManager.DelayedOpenPopup(2, 0, Localize("Notifications", LocKey $ "Title", "KFGameConsole"), Localize("Notifications", LocKey $ "Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
 }
 
+function int GetPreStigeValueDoshRewardValue()
+{
+    if(StatsWrite != none)
+    {
+        return StatsWrite.super(KFPlayerController).GetPreStigeValueDoshRewardValue();
+    }
+    return -1;
+}
+
 function float GetDoshVaultTierValue()
 {
     if(StatsWrite != none)
@@ -2060,22 +2075,34 @@ private reliable server native final event ServerSetLevel(class<KFPerk> PerkClas
 // Export UKFPlayerController::execClientSetLevelCheat(FFrame&, void* const)
 private reliable server native final event ClientSetLevelCheat(byte NewLevel);
 
+// Export UKFPlayerController::execServerSetPrestigeLevel(FFrame&, void* const)
+private reliable server native final event ServerSetPrestigeLevel(class<KFPerk> PerkClass, byte NewLevel);
+
+// Export UKFPlayerController::execSetActivePerkPrestigeLevel(FFrame&, void* const)
+private native final simulated function SetActivePerkPrestigeLevel(byte NewLevel);
+
+// Export UKFPlayerController::execClientSetPrestigeLevelCheat(FFrame&, void* const)
+private reliable server native final event ClientSetPrestigeLevelCheat(byte NewLevel);
+
+// Export UKFPlayerController::execGetPerkPrestigeXPMultiplier(FFrame&, void* const)
+native final function float GetPerkPrestigeXPMultiplier(class<KFPerk> PerkClass);
+
 // Export UKFPlayerController::execRequestPerkChange(FFrame&, void* const)
 native final event RequestPerkChange(byte NewPerkIndex);
 
 // Export UKFPlayerController::execServerSetPendingPerkUpdate(FFrame&, void* const)
-private reliable server native final event ServerSetPendingPerkUpdate(byte NewPerkIndex, int NewPerkBuild, byte NewLevel, optional bool bClientUpdate)
+private reliable server native final event ServerSetPendingPerkUpdate(byte NewPerkIndex, int NewPerkBuild, byte NewLevel, byte NewPerkPrestigeLevel, optional bool bClientUpdate)
 {
-    bClientUpdate = false;                        
+    bClientUpdate = false;                            
 }
 
 // Export UKFPlayerController::execServerSetSavedPerkIndex(FFrame&, void* const)
 private reliable server native final event ServerSetSavedPerkIndex(byte NewSavedPerkIndex);
 
 // Export UKFPlayerController::execServerSelectPerk(FFrame&, void* const)
-protected reliable server native final event ServerSelectPerk(byte NewPerkIndex, byte NewLevel, optional bool bForce)
+protected reliable server native final event ServerSelectPerk(byte NewPerkIndex, byte NewLevel, byte NewPrestigeLevel, optional bool bForce)
 {
-    bForce = false;                    
+    bForce = false;                        
 }
 
 // Export UKFPlayerController::execCanUpdatePerkInfo(FFrame&, void* const)
@@ -2180,13 +2207,13 @@ function NotifyXPGain(class<KFPerk> PerkClass, int Amount)
     }
 }
 
-function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel)
+function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel, byte NewPrestigeLevel)
 {
     local bool bTierUnlocked;
 
     if((PerkClass != none) && IsLocalController())
     {
-        if((PerkLevel % 5) == 0)
+        if(((PerkLevel % 5) == 0) && PerkLevel != 0)
         {
             bTierUnlocked = true;
             Class'KFPerk'.static.SaveTierUnlockToConfig(PerkClass, 1, PerkLevel);
@@ -2200,9 +2227,11 @@ function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel)
         }
         myGfxHUD.LevelUpNotificationWidget.ShowLevelUpNotification(PerkClass, PerkLevel, bTierUnlocked);
         PerkList[GetPerkIndexFromClass(PerkClass)].PerkLevel = PerkLevel;
+        PerkList[GetPerkIndexFromClass(PerkClass)].PrestigeLevel = NewPrestigeLevel;
         if(CurrentPerk.Class == PerkClass)
         {
             SetActivePerkLevel(PerkLevel);
+            SetActivePerkPrestigeLevel(NewPrestigeLevel);
             if(bTierUnlocked)
             {
                 PostTierUnlock(PerkClass);
@@ -2279,6 +2308,21 @@ native final function UpdateDOFIronSightsLerpControl(float DeltaTime);
 
 // Export UKFPlayerController::execUpdateFullscreenBlur(FFrame&, void* const)
 native final function UpdateFullscreenBlur(float DeltaTime);
+
+exec function PrintOutPrestigeInfo()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < PerkList.Length)
+    {
+        LogInternal(("Perk info:" @ string(PerkList[I].PerkLevel)) @ string(PerkList[I].PrestigeLevel));
+        ++ I;
+        goto J0x0B;
+    }
+}
 
 exec function ShowTestDownloadNotification(string ItemName, float PercentComplete)
 {
@@ -4582,7 +4626,7 @@ exec function StartAltFire(optional byte FireModeNum)
     super(PlayerController).StartAltFire(FireModeNum);
 }
 
-function KFAutoPurchaseHelper GetPurchaseHelper(optional bool bInitialize)
+simulated function KFAutoPurchaseHelper GetPurchaseHelper(optional bool bInitialize)
 {
     bInitialize = false;
     if(PurchaseHelper == none)
@@ -4758,7 +4802,7 @@ function UpdateRhythmCounterWidget(int Count, int Max)
     }
 }
 
-function SetObjectiveUIActive(bool bActive)
+simulated function SetObjectiveUIActive(bool bActive)
 {
     if(((myGfxHUD != none) && myGfxHUD.WaveInfoWidget != none) && myGfxHUD.WaveInfoWidget.ObjectiveContainer != none)
     {
@@ -5430,6 +5474,29 @@ reliable client simulated event ClientUnlockAchievement(int AchievementIndex, op
     }
 }
 
+event int GetXPDeltaForPerkClass(class<KFPerk> PerkClass)
+{
+    local int I;
+
+    if(MatchStats == none)
+    {
+        return 0;
+    }
+    I = 0;
+    J0x1C:
+
+    if(I < MatchStats.PerkXPList.Length)
+    {
+        if(PerkClass == MatchStats.PerkXPList[I].PerkClass)
+        {
+            return MatchStats.PerkXPList[I].XPDelta;
+        }
+        ++ I;
+        goto J0x1C;
+    }
+    return 0;
+}
+
 function float GetPerkLevelProgressPercentage(class<KFPerk> PerkClass, optional out int CurrentLevelEXP, optional out int NextLevelEXP)
 {
     local int NextEXP, CurrentEXP;
@@ -5450,6 +5517,25 @@ function float GetPerkLevelProgressPercentage(class<KFPerk> PerkClass, optional 
     CurrentLevelEXP = CurrentEXP;
     NextLevelEXP = NextEXP;
     return EXPPercent * float(100);
+}
+
+event byte GetPerkPrestigeLevelFromPerkList(class<KFPerk> PerkClass)
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < PerkList.Length)
+    {
+        if(PerkList[I].PerkClass == PerkClass)
+        {
+            return PerkList[I].PrestigeLevel;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return 0;
 }
 
 event byte GetPerkLevelFromPerkList(class<KFPerk> PerkClass)
@@ -6369,24 +6455,39 @@ function ForceDisconnect()
     if(CanDisconnect())
     {
         ClearDownloadInfo();        
-        ConsoleCommand("DISCONNECT");
+        ConsoleCommand("DISCONNECT");        
+    }
+    else
+    {
+        LogInternal("Could not disconnect");
     }
 }
 
 function bool CanDisconnect()
 {
-    local string CurrentMovieString;
+    local string TargetMapName, CurrentMovieString;
 
     GetCurrentMovie(CurrentMovieString);
-    if(WorldInfo.bIsMenuLevel && !bDownloadingContent)
+    TargetMapName = KFGameEngine(Class'Engine'.static.GetEngine()).TransitionDescription;
+    if((TargetMapName == "KFMainMenu") || TargetMapName == "")
     {
+        LogInternal("Returning false - Attempting to go to main menu when on main menu");
         return false;        
     }
     else
     {
-        if(CurrentMovieString == "")
+        if(WorldInfo.bIsMenuLevel && !bDownloadingContent)
         {
-            return false;
+            LogInternal("returning false, in menu level and not downloading content");
+            return false;            
+        }
+        else
+        {
+            if(CurrentMovieString == "")
+            {
+                LogInternal("returning false, no movie playing.  This means you are loaded in.");
+                return false;
+            }
         }
     }
     return true;
@@ -7904,16 +8005,16 @@ state Spectating
 
 defaultproperties
 {
-    PerkList(0)=(PerkClass=Class'KFPerk_Berserker',PerkLevel=0,PerkArchetype=none)
-    PerkList(1)=(PerkClass=Class'KFPerk_Commando',PerkLevel=0,PerkArchetype=none)
-    PerkList(2)=(PerkClass=Class'KFPerk_Support',PerkLevel=0,PerkArchetype=none)
-    PerkList(3)=(PerkClass=Class'KFPerk_FieldMedic',PerkLevel=0,PerkArchetype=none)
-    PerkList(4)=(PerkClass=Class'KFPerk_Demolitionist',PerkLevel=0,PerkArchetype=none)
-    PerkList(5)=(PerkClass=Class'KFPerk_Firebug',PerkLevel=0,PerkArchetype=none)
-    PerkList(6)=(PerkClass=Class'KFPerk_Gunslinger',PerkLevel=0,PerkArchetype=none)
-    PerkList(7)=(PerkClass=Class'KFPerk_Sharpshooter',PerkLevel=0,PerkArchetype=none)
-    PerkList(8)=(PerkClass=Class'KFPerk_SWAT',PerkLevel=0,PerkArchetype=none)
-    PerkList(9)=(PerkClass=Class'KFPerk_Survivalist',PerkLevel=0,PerkArchetype=none)
+    PerkList(0)=(PerkClass=Class'KFPerk_Berserker',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(1)=(PerkClass=Class'KFPerk_Commando',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(2)=(PerkClass=Class'KFPerk_Support',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(3)=(PerkClass=Class'KFPerk_FieldMedic',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(4)=(PerkClass=Class'KFPerk_Demolitionist',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(5)=(PerkClass=Class'KFPerk_Firebug',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(6)=(PerkClass=Class'KFPerk_Gunslinger',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(7)=(PerkClass=Class'KFPerk_Sharpshooter',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(8)=(PerkClass=Class'KFPerk_SWAT',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
+    PerkList(9)=(PerkClass=Class'KFPerk_Survivalist',PerkLevel=0,PrestigeLevel=0,PerkArchetype=none)
     ServPendingPerkBuild=-1
     ServPendingPerkLevel=-1
     bReflectionsEnabled=true

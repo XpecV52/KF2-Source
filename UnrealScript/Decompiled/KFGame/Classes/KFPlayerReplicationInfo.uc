@@ -102,6 +102,7 @@ var byte NumTimesReconnected;
 var repnotify byte VOIPStatus;
 var byte NetPerkIndex;
 var private byte ActivePerkLevel;
+var private byte ActivePerkPrestigeLevel;
 var byte PlayerHealth;
 var byte PlayerHealthPercent;
 var byte PerkSupplyLevel;
@@ -137,15 +138,16 @@ var KFPlayerController KFPlayerOwner;
 replication
 {
      if(bNetDirty)
-        ActivePerkLevel, Assists, 
-        CharPortrait, CurrentPerkClass, 
-        CurrentVoiceCommsRequest, DamageDealtOnTeam, 
-        NetPerkIndex, PerkSupplyLevel, 
-        PlayerHealth, PlayerHealthPercent, 
-        RepCustomizationInfo, bConcussiveActive, 
-        bExtraFireRange, bHasSpawnedIn, 
-        bNukeActive, bObjectivePlayer, 
-        bSplashActive, bVOIPRegisteredWithOSS;
+        ActivePerkLevel, ActivePerkPrestigeLevel, 
+        Assists, CharPortrait, 
+        CurrentPerkClass, CurrentVoiceCommsRequest, 
+        DamageDealtOnTeam, NetPerkIndex, 
+        PerkSupplyLevel, PlayerHealth, 
+        PlayerHealthPercent, RepCustomizationInfo, 
+        bConcussiveActive, bExtraFireRange, 
+        bHasSpawnedIn, bNukeActive, 
+        bObjectivePlayer, bSplashActive, 
+        bVOIPRegisteredWithOSS;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -223,6 +225,11 @@ reliable client simulated function ClientRecieveNewTeam();
 simulated function byte GetActivePerkLevel()
 {
     return ActivePerkLevel;
+}
+
+simulated function byte GetActivePerkPrestigeLevel()
+{
+    return ActivePerkPrestigeLevel;
 }
 
 reliable server function ServerNotifyStartVoip()

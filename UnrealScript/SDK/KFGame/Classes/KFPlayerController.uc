@@ -43,7 +43,8 @@ struct native PlayerStats
 struct native PerkInfo
 {
   	var class<KFPerk> 	PerkClass;
-  	var byte			PerkLevel;	// This perk level is specifically used for clientside UI
+	var byte			PerkLevel;	// This perk level is specifically used for clientside UI
+	var byte			PrestigeLevel;	// This perk level is specifically used for clientside UI
   	var KFPerk			PerkArchetype;
 };
 
@@ -90,6 +91,7 @@ var repnotify KFPerk   	CurrentPerk;
 var class<KFPerk>		ServPendingPerkClass;
 var int					ServPendingPerkBuild;
 var int					ServPendingPerkLevel;
+var int					ServPendingPerkPrestigeLevel;
 /** When true, the server has asked the client for perk data but the client has not yet responded */
 var bool 				bWaitingForClientPerkData;
 /** Used for player controlled zeds */
@@ -743,6 +745,8 @@ native function CheckBulletWhip(AkEvent BulletWhip, vector FireLocation, vector 
 
 /** Queries the PRI and returns our current Perk */
 native final simulated function KFPerk GetPerk();
+
+native final function PerformPrestigeReset(class<KFPerk> PSGPerkClass);
 
 native reliable server private event PushPlayerStats( PlayerStats Stats );
 
@@ -2253,6 +2257,16 @@ function NotifyPlayTogetherFailed(optional string LocKey = "UnableToPlayTogether
  * @name Dosh Vault
 ********************************************************************************************* */
 
+function int GetPreStigeValueDoshRewardValue()
+{
+	if (StatsWrite != none)
+	{
+		return StatsWrite.GetPreStigeValueDoshRewardValue();
+	}
+
+	return INDEX_NONE;
+}
+
 function float GetDoshVaultTierValue()
 {
 	if(StatsWrite != none)
@@ -2540,11 +2554,17 @@ native final simulated private function SetActivePerkLevel( byte NewLevel );
 native final reliable server private event ServerSetLevel(class <KFPerk> PerkClass, byte NewLevel );
 native final reliable server private event ClientSetLevelCheat( byte NewLevel );
 
+native final reliable server private event ServerSetPrestigeLevel(class <KFPerk> PerkClass, byte NewLevel);
+native final simulated private function SetActivePerkPrestigeLevel(byte NewLevel);
+native final reliable server private event ClientSetPrestigeLevelCheat(byte NewLevel);
+
+native final function float GetPerkPrestigeXPMultiplier(class <KFPerk> PerkClass);
+
 /** Called by UI to change/modify our perk */
 native final event						RequestPerkChange(byte NewPerkIndex);
-native final reliable server private event ServerSetPendingPerkUpdate( byte NewPerkIndex, int NewPerkBuild, byte NewLevel, bool bClientUpdate=false );
+native final reliable server private event ServerSetPendingPerkUpdate( byte NewPerkIndex, int NewPerkBuild, byte NewLevel, byte NewPerkPrestigeLevel, bool bClientUpdate=false );
 native final reliable server private event ServerSetSavedPerkIndex( byte NewSavedPerkIndex );
-native final reliable server protected event ServerSelectPerk( byte NewPerkIndex, byte NewLevel, optional bool bForce=false );
+native final reliable server protected event ServerSelectPerk( byte NewPerkIndex, byte NewLevel, byte NewPrestigeLevel, optional bool bForce=false );
 native final function bool CanUpdatePerkInfo();
 native final event bool WasPerkUpdatedThisRound();
 native final function ApplyPendingPerks();
@@ -2656,13 +2676,13 @@ function NotifyXPGain( class<KFPerk> PerkClass, int Amount )
 /*
  * Network: Local Player
  */
-function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel)
+function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel, byte NewPrestigeLevel)
 {
 	local bool bTierUnlocked;
 
 	if( PerkClass != none && IsLocalController() )
 	{
-		if( PerkLevel % 5 == 0 )
+		if( PerkLevel % 5 == 0  && PerkLevel != 0)
 		{
 			bTierUnlocked = true;
 			class'KFPerk'.static.SaveTierUnlockToConfig( PerkClass, 1, PerkLevel );
@@ -2682,11 +2702,13 @@ function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel)
 
 		// Update cached level for UI
 		PerkList[GetPerkIndexFromClass( PerkClass )].PerkLevel = PerkLevel;
+		PerkList[GetPerkIndexFromClass(PerkClass)].PrestigeLevel = NewPrestigeLevel;
 
 		// If this is our current perk, notify it of new level
 		if( CurrentPerk.Class == PerkClass )
 		{
 			SetActivePerkLevel( PerkLevel );
+			SetActivePerkPrestigeLevel(NewPrestigeLevel);
 			if(bTierUnlocked)
 			{
 				PostTierUnlock( PerkClass );
@@ -2768,6 +2790,17 @@ native final function UpdateDOF(float DeltaTime);
 native final function UpdateDOFGamePlayLerpControl(float DeltaTime);
 native final function UpdateDOFIronSightsLerpControl(float DeltaTime);
 native final function UpdateFullscreenBlur(float DeltaTime);
+
+
+exec function PrintOutPrestigeInfo()
+{
+	local int i;
+
+	for (i = 0; i < PerkList.length; i++)
+	{
+		`log("Perk info:" @PerkList[i].PerkLevel @PerkList[i].PrestigeLevel);
+	}
+}
 
 exec function ShowTestDownloadNotification (string ItemName, Float PercentComplete)
 {
@@ -5606,7 +5639,7 @@ exec function StartAltFire( optional Byte FireModeNum )
  * @name Trader
 ********************************************************************************************* */
 
-function KFAutoPurchaseHelper GetPurchaseHelper(optional bool bInitialize = false)
+simulated function KFAutoPurchaseHelper GetPurchaseHelper(optional bool bInitialize = false)
 {
 	if(PurchaseHelper == none)
 	{
@@ -5799,7 +5832,7 @@ function UpdateRhythmCounterWidget( int Count, int Max )
  * Objective
  * Tell the objective that a player has accepted/denied the objective
  *********************************************************************************************/
-function SetObjectiveUIActive(bool bActive)
+simulated function SetObjectiveUIActive(bool bActive)
 {
 	if(MyGFxHUD != none && MyGFxHUD.WaveInfoWidget != none
 	 	&& MyGFxHUD.WaveInfoWidget.ObjectiveContainer != none)
@@ -6615,6 +6648,26 @@ reliable client event ClientUnlockAchievement( int AchievementIndex, optional bo
 	}
 }
 
+event int GetXPDeltaForPerkClass(class<KFPerk> PerkClass)
+{
+	local int i;
+
+	if (MatchStats == none)
+	{
+		return 0;
+	}
+
+	for (i = 0; i < MatchStats.PerkXPList.length; i++)
+	{
+		if (PerkClass == MatchStats.PerkXPList[i].PerkClass)
+		{
+			return MatchStats.PerkXPList[i].XPDelta;
+		}
+	}
+
+	return 0;
+}
+
 function float GetPerkLevelProgressPercentage(Class<KFPerk> PerkClass, optional out int CurrentLevelEXP, optional out int NextLevelEXP)
 {
 	local int NextEXP, CurrentEXP;
@@ -6638,6 +6691,19 @@ function float GetPerkLevelProgressPercentage(Class<KFPerk> PerkClass, optional 
 	NextLevelEXP = NextEXP;
 
 	return EXPPercent  * 100;
+}
+
+event  byte GetPerkPrestigeLevelFromPerkList(Class<KFPerk> PerkClass)
+{
+	local int i;
+	for (i = 0; i < PerkList.Length; i++)
+	{
+		if (PerkList[i].PerkClass == PerkClass)
+		{
+			return 	PerkList[i].PrestigeLevel;
+		}
+	}
+	return 0;
 }
 
 event  byte GetPerkLevelFromPerkList(Class<KFPerk> PerkClass)
@@ -9269,22 +9335,39 @@ function ForceDisconnect()
 		ClearDownloadInfo();
 		ConsoleCommand("DISCONNECT");
 	}
+	else
+	{
+		`log("Could not disconnect");
+	}
 }
 
 function bool CanDisconnect()
 {
+	local String TargetMapName;
 	local string CurrentMovieString;
 
 	GetCurrentMovie(CurrentMovieString);
 
-	if(WorldInfo.bIsMenuLevel && !bDownloadingContent)
+	TargetMapName = KFGameEngine(Class'Engine'.static.GetEngine()).TransitionDescription;
+
+	if(TargetMapName == "KFMainMenu" || TargetMapName == "")
 	{
+		`log("Returning false - Attempting to go to main menu when on main menu");
 		return false;
 	}
-	else if(CurrentMovieString == "")
+	else 
 	{
-		return false;
-	}
+		if (WorldInfo.bIsMenuLevel && !bDownloadingContent)
+		{
+			`log("returning false, in menu level and not downloading content");
+			return false;
+		}
+		else if (CurrentMovieString == "")
+		{
+			`log("returning false, no movie playing.  This means you are loaded in.");
+			return false;
+		}
+	}	
 
 	return true;
 }
@@ -10681,7 +10764,6 @@ simulated function CreateDiscordGamePresence()
 
 defaultproperties
 {
-    //Allow PC-based things to be properly ticked, but skip the rest of the tick in native
     bAlwaysTick=true
 
 	MatchStatsClass=Class'EphemeralMatchStats'
@@ -10871,6 +10953,6 @@ defaultproperties
 	DebugLastSeenDoshVaultValue=INDEX_NONE
 	DebugCurrentDoshVaultValue=INDEX_NONE
 	DebugCurrentDoshVaultTier=INDEX_NONE
-
-	BeginningRoundVaultAmount=INDEX_NONE
+	
+	BeginningRoundVaultAmount = INDEX_NONE
 }
