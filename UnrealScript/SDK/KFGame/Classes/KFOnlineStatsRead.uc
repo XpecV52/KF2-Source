@@ -38,11 +38,51 @@ function OnStatsInitialized(bool bWasSuccessful)
 
 native function NativeOnReadComplete();
 
+function OnInventoryReadComplete_Steamworks()
+{
+	class'GameEngine'.static.GetOnlineSubsystem().ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete_Steamworks);
+	LinkedWriteObject.CheckPerkPSGRewards(None);
+}
+
+function OnInventoryReadComplete_Playfab(bool bWasSuccessful)
+{
+	class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+	if (bWasSuccessful)
+	{
+		LinkedWriteObject.CheckPerkPSGRewards(None);
+	}
+}
+
 event OnReadComplete()
 {
 	NativeOnReadComplete();
 	`log("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ Rows[0].Columns.Length @ `showvar(self), bLogStatsRead, 'DevOnline');
 
+	// Grant perk prestige rewards for all perks at their current prestige level, just in case a
+	// reward was missed due to network/infrastructure issues. We need to wait for the user's
+	// stats AND inventory to be loaded, though, so set a callback for the inventory if necessary.
+	if (class'WorldInfo'.static.IsConsoleBuild())
+	{
+		if (class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
+		{
+			class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+		}
+		else
+		{
+			LinkedWriteObject.CheckPerkPSGRewards(None);
+		}
+	}
+	else
+	{
+		if (!class'GameEngine'.static.GetOnlineSubsystem().bInventoryReady)
+		{
+			class'GameEngine'.static.GetOnlineSubsystem().AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete_Steamworks);
+		}
+		else
+		{
+			LinkedWriteObject.CheckPerkPSGRewards(None);
+		}
+	}
 }
 
 

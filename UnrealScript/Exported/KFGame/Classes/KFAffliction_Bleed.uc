@@ -233,7 +233,7 @@ function SetMaterialParameter(float ParamValue)
 defaultproperties
 {
    DeflateThreshold=65.000000
-   IncapModifier=0.300000
+   IncapModifier=0.500000
    DamageModifier=-0.300000
    SpeedModifier=0.700000
    AttackSpeedModifier=0.800000

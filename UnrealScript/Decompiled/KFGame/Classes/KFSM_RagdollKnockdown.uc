@@ -12,6 +12,8 @@ var(Physics) float KnockdownMaxZ;
 var const int MaxKnockdownPawns;
 var transient Vector KnockdownStartLoc;
 var export editinline transient ParticleSystemComponent DazedPSC;
+var int MaxKnockDownTests;
+var int CurrentKnockdownTests;
 
 protected function bool InternalCanDoSpecialMove()
 {
@@ -160,18 +162,24 @@ protected event KnockdownFailsafe()
 
 protected function KnockdownTimer()
 {
-    if(((PawnOwner.Physics != 10) || VSizeSq(PawnOwner.Velocity) < 100) || !PawnOwner.Mesh.RigidBodyIsAwake())
+    ++ CurrentKnockdownTests;
+    if((((PawnOwner.Physics != 10) || VSizeSq(PawnOwner.Velocity) < 100) || !PawnOwner.Mesh.RigidBodyIsAwake()) || MaxKnockDownTests == CurrentKnockdownTests)
     {
-        EndKnockdown();
+        EndKnockdown(true);
     }
 }
 
-protected function EndKnockdown()
+protected function EndKnockdown(optional bool bForceEnd)
 {
-    if(!((PawnOwner.Physics != 10) || VSizeSq(PawnOwner.Velocity) < 100) || !PawnOwner.Mesh.RigidBodyIsAwake())
+    bForceEnd = false;
+    CurrentKnockdownTests = 0;
+    if(!bForceEnd)
     {
-        LogInternal((("failed to recover from knockdown " @ string(PawnOwner.Physics)) @ string(VSizeSq(PawnOwner.Velocity) < 100)) @ string(PawnOwner.Mesh.RigidBodyIsAwake()));
-        return;
+        if(!((PawnOwner.Physics != 10) || VSizeSq(PawnOwner.Velocity) < 100) || !PawnOwner.Mesh.RigidBodyIsAwake())
+        {
+            LogInternal((("failed to recover from knockdown " @ string(PawnOwner.Physics)) @ string(VSizeSq(PawnOwner.Velocity) < 100)) @ string(PawnOwner.Mesh.RigidBodyIsAwake()));
+            return;
+        }
     }
     PawnOwner.ClearTimer('EndKnockdown', self);
     PawnOwner.ClearTimer('KnockdownTimer', self);
@@ -261,6 +269,7 @@ defaultproperties
 {
     KnockdownMaxZ=750
     MaxKnockdownPawns=5
+    MaxKnockDownTests=25
     bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true
     Handle=KFSM_Knockdown

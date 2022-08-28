@@ -13,7 +13,7 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_Rifle_Hemogoblin"
     ImagePath="WEP_UI_Bleeder_TEX.UI_WeaponSelect_Bleeder"
     BuyPrice=1100
-    AmmoPricePerMag=40
+    AmmoPricePerMag=35
     UpgradePrice(0)=700
     UpgradePrice(1)=1500
     UpgradeSellPrice(0)=525

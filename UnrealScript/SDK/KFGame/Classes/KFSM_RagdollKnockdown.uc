@@ -21,6 +21,10 @@ var transient vector KnockdownStartLoc;
 /** Dazed particle effect */
 var transient ParticleSystemComponent DazedPSC;
 
+//failsafe 
+var int MaxKnockDownTests;
+var int CurrentKnockdownTests;
+
 protected function bool InternalCanDoSpecialMove()
 {
 	local Pawn P;
@@ -222,20 +226,25 @@ protected event KnockdownFailsafe()
 /** Timer called to check if ragdoll has come to a rest */
 protected function KnockdownTimer()
 {
-	if ( PawnOwner.Physics != PHYS_RigidBody || VSizeSq( PawnOwner.Velocity) < 100.f || !PawnOwner.Mesh.RigidBodyIsAwake() )
+	CurrentKnockdownTests++;
+	if ( PawnOwner.Physics != PHYS_RigidBody || VSizeSq( PawnOwner.Velocity) < 100.f || !PawnOwner.Mesh.RigidBodyIsAwake() || MaxKnockdownTests == CurrentKnockdownTests)
 	{
-		EndKnockdown();
+		EndKnockdown(true);
 	}
 }
 
 /** Initiate recover from ragdoll on the server */
-protected function EndKnockdown()
+protected function EndKnockdown(optional bool bForceEnd = false)
 {
+	CurrentKnockdownTests = 0;
 	//don't let them recover if they shouldn't
-	if (!(PawnOwner.Physics != PHYS_RigidBody || VSizeSq(PawnOwner.Velocity) < 100.f || !PawnOwner.Mesh.RigidBodyIsAwake()))
+	if (!bForceEnd)
 	{
-		`log("failed to recover from knockdown " @PawnOwner.Physics @VSizeSq(PawnOwner.Velocity) < 100.f @PawnOwner.Mesh.RigidBodyIsAwake());
-		return;
+		if (!(PawnOwner.Physics != PHYS_RigidBody || VSizeSq(PawnOwner.Velocity) < 100.f || !PawnOwner.Mesh.RigidBodyIsAwake()))
+		{
+			`log("failed to recover from knockdown " @PawnOwner.Physics @VSizeSq(PawnOwner.Velocity) < 100.f @PawnOwner.Mesh.RigidBodyIsAwake());
+			return;
+		}
 	}
 	
 	PawnOwner.ClearTimer(nameof(EndKnockdown), self);
@@ -364,4 +373,5 @@ defaultproperties
 
 	bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true
+	MaxKnockdownTests=25
 }

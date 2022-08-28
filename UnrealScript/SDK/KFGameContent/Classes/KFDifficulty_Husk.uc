@@ -73,10 +73,10 @@ defaultproperties
 	RallySettings_Player_Versus={(DealtDamageModifier=1.2)}
 
 	// Evil DAR spawn chances
-	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)=0.10// 0.0
-	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)=0.12//0.5
-	ChanceToSpawnAsSpecial(`DIFFICULTY_Suicidal)=0.18//  0.15
-	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.25
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Normal)=0.08// 0.10
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Hard)=0.1//0.12
+	ChanceToSpawnAsSpecial(`DIFFICULTY_Suicidal)=0.15//  0.18
+	ChanceToSpawnAsSpecial(`DIFFICULTY_HellOnEarth)	=0.21 //0.25
 
 	// Fireball settings by difficulty
 	FireballSettings(`DIFFICULTY_Normal)		={(bSpawnGroundFire=false, ExplosionMomentum=50000.f)}

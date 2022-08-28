@@ -41,6 +41,10 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 
 defaultproperties
 {
+    //Healing
+    HealAmount=20
+    HealFullRechargeSeconds=12 //15
+
     // Inventory / Grouping
     InventorySize=8
     GroupPriority=75
@@ -70,7 +74,7 @@ defaultproperties
 
     // Ammo
     MagazineCapacity[0]=7
-    SpareAmmoCapacity[0]=77
+    SpareAmmoCapacity[0]=91 //77
     InitialSpareMags[0]=3
     bCanBeReloaded=true
     bReloadFromMagazine=true

@@ -121,12 +121,49 @@ function OnStatsInitialized(bool bWasSuccessful)
 // Export UKFOnlineStatsRead::execNativeOnReadComplete(FFrame&, void* const)
 native function NativeOnReadComplete();
 
+function OnInventoryReadComplete_Steamworks()
+{
+    Class'GameEngine'.static.GetOnlineSubsystem().ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete_Steamworks);
+    LinkedWriteObject.CheckPerkPSGRewards(none);
+}
+
+function OnInventoryReadComplete_Playfab(bool bWasSuccessful)
+{
+    Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+    if(bWasSuccessful)
+    {
+        LinkedWriteObject.CheckPerkPSGRewards(none);
+    }
+}
+
 event OnReadComplete()
 {
     NativeOnReadComplete();
     if(bLogStatsRead)
     {
         LogInternal(((("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ string(Rows[0].Columns.Length)) @ "self:'") $ string(self)) $ "'", 'DevOnline');
+    }
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        if(Class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
+        {
+            Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);            
+        }
+        else
+        {
+            LinkedWriteObject.CheckPerkPSGRewards(none);
+        }        
+    }
+    else
+    {
+        if(!Class'GameEngine'.static.GetOnlineSubsystem().bInventoryReady)
+        {
+            Class'GameEngine'.static.GetOnlineSubsystem().AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete_Steamworks);            
+        }
+        else
+        {
+            LinkedWriteObject.CheckPerkPSGRewards(none);
+        }
     }
 }
 

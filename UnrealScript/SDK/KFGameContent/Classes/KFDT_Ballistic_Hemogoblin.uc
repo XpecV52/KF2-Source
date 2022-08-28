@@ -117,7 +117,7 @@ defaultproperties
     DoT_Type=DOT_Bleeding
     DoT_Duration=5.0 //10
     DoT_Interval=1.0 //1.0
-    DoT_DamageScale=0.5
+    DoT_DamageScale=0.3 //0.5
 	bStackDoT=true
 
     WeaponDef=class'KFWeapDef_Hemogoblin'

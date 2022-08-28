@@ -35,6 +35,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 
 defaultproperties
 {
+    HealFullRechargeSeconds=12
     PackageKey="Bleeder"
     FirstPersonMeshName="WEP_1P_Bleeder_MESH.WEP_1stP_Bleeder_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -59,7 +60,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Bleeder_TEX.UI_WeaponSelect_Bleeder'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=77
+    SpareAmmoCapacity=91
     InitialSpareMags=3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
     FireSightedAnims=/* Array type was not detected. */

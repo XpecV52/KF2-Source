@@ -1454,6 +1454,11 @@ native final private function CheckAllPerksLvl25();
 native final function UnlockTutorialAchievement();
 native final function CheckForRoundTeamWinAchievements( byte WinningTeam );
 
+/**
+ * @brief Grant any perk prestige inventory rewards if necessary
+ */
+native final function CheckPerkPSGRewards(class<KFPerk> PSGPerkClass);
+
 /*********************************************************************************************
 * @name Events
 ********************************************************************************************* */
@@ -1661,7 +1666,7 @@ defaultproperties
 	XPTable(24)=44775
 
     //Base Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,SecondaryType=DOST_KnifeDamage,ObjectiveClasses=(KFWeap_Edged_Knife,KFDT_Slashing_Knife,KFDT_Slashing_Knife_Berserker,KFDT_Slashing_Knife_Medic,KFDT_Slashing_Knife_SWAT,KFDT_Slashing_KnifeHeavy,KFDT_Slashing_KnifeHeavy_Berserker,KFDT_Slashing_KnifeHeavy_Medic,KFDT_Slashing_KnifeHeavy_SWAT,KFDT_Piercing_KnifeStab,KFDT_Piercing_KnifeStab_Berserker,KFDT_Piercing_KnifeStab_FieldMedic,KFDT_Piercing_KnifeStab_SWAT),CompletionAmount=2500))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,SecondaryType=DOST_KnifeDamage,ObjectiveClasses=(KFWeap_Edged_Knife,KFDT_Slashing_Knife,KFDT_Slashing_Knife_Berserker,KFDT_Slashing_Knife_Medic,KFDT_Slashing_Knife_SWAT,KFDT_Slashing_KnifeHeavy,KFDT_Slashing_KnifeHeavy_Berserker,KFDT_Slashing_KnifeHeavy_Medic,KFDT_Slashing_KnifeHeavy_SWAT,KFDT_Piercing_KnifeStab,KFDT_Piercing_KnifeStab_Berserker,KFDT_Piercing_KnifeStab_FieldMedic,KFDT_Piercing_KnifeStab_SWAT,KFDT_Slashing_Knife_Survivalist,KFDT_Piercing_KnifeStab_Survivalist,KFDT_Slashing_KnifeHeavy_Survivalist),CompletionAmount=2500))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_9mm, KFDT_Ballistic_9mm,KFDT_Bludgeon_9mm),CompletionAmount=4000)) //2500
 
     //Swat Weapons

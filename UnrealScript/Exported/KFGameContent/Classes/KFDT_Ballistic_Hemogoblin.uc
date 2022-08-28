@@ -109,7 +109,7 @@ defaultproperties
    DoT_Type=DOT_Bleeding
    DoT_Duration=5.000000
    DoT_Interval=1.000000
-   DoT_DamageScale=0.500000
+   DoT_DamageScale=0.300000
    StumblePower=200.000000
    GunHitPower=0.000000
    BleedPower=50.000000

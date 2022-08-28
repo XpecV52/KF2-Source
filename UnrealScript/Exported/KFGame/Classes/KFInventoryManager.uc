@@ -1584,6 +1584,7 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 	if( WeaponClass.default.DualClass != none && ClassIsInInventory(WeaponClass, InventoryItem) )
 	{
 		WeaponItemSingle = KFWeapon(InventoryItem);
+		WeaponUpgradeIndex = Max(WeaponUpgradeIndex, WeaponItemSingle.CurrentWeaponUpgradeIndex);
 
 		DualAdjustedWeight = WeaponClass.default.DualClass.default.InventorySize + WeaponClass.default.DualClass.static.GetUpgradeWeight(WeaponUpgradeIndex);
 		SingleAdjustedWeight = WeaponItemSingle.GetModifiedWeightValue();

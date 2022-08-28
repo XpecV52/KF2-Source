@@ -91,7 +91,7 @@ defaultproperties
     DoT_Type=EDamageOverTimeGroup.DOT_Bleeding
     DoT_Duration=5
     DoT_Interval=1
-    DoT_DamageScale=0.5
+    DoT_DamageScale=0.3
     StumblePower=200
     GunHitPower=0
     BleedPower=50
