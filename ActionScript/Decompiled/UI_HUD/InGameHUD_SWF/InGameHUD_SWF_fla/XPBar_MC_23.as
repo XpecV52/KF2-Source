@@ -6,7 +6,7 @@ package InGameHUD_SWF_fla
     {
          
         
-        public var midbar:MovieClip;
+        public var midbar:HealthBar_Shield;
         
         public function XPBar_MC_23()
         {

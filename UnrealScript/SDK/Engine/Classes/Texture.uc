@@ -89,6 +89,8 @@ enum TextureGroup
 	TEXTUREGROUP_CosmeticNormalMap<DisplayName=CosmeticNormalMap>,
 	TEXTUREGROUP_CosmeticSpecular<DisplayName=CosmeticSpecular>,
 	TEXTUREGROUP_UIWithMips<DisplayName=UI With Mips>,
+	//@ TWI - bedwards: UI texture streaming support
+	TEXTUREGROUP_UIStreamable<DisplayName=UI Streamable>,
 `endif
 };
 
@@ -140,6 +142,8 @@ struct native TextureGroupContainer
 	var()	const bool	TEXTUREGROUP_CosmeticNormalMap;
 	var()	const bool	TEXTUREGROUP_CosmeticSpecular;
 	var()   const bool  TEXTUREGROUP_UIWithMips;
+	//@ TWI - bedwards: UI texture streaming support
+	var()   const bool  TEXTUREGROUP_UIStreamable;
 `endif
 };
 
@@ -396,6 +400,14 @@ cpptext
 	 *	@return	FLOAT					The average brightness of the texture
 	 */
 	virtual FLOAT GetAverageBrightness(UBOOL bIgnoreTrueBlack, UBOOL bUseGrayscale);
+
+	//@ TWI - bedwards: UI texture streaming support
+	static INT GetMinTextureResidentMipCount(BYTE InLODGroup);
+	FORCEINLINE static UBOOL AllowStreamOutAllMips(BYTE InLODGroup)
+	{
+		return InLODGroup == TEXTUREGROUP_UIStreamable;
+	}
+	//@ TWI - bedwards: UI texture streaming support
 
 	/** Helper functions for text output of texture properties... */
 	static const TCHAR* GetCompressionSettingsString(TextureCompressionSettings InCompressionSettings);

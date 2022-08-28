@@ -539,6 +539,7 @@ class KFDialogManager extends Actor
 
 
 
+										  
 
 
 
@@ -555,6 +556,8 @@ class KFDialogManager extends Actor
 
 
 										  
+
+
 
 
 
@@ -2166,6 +2169,11 @@ function CheckSpotMonsterDialog( Pawn Spotter, KFPawn_Monster Spotted )
     Spotted.MyKFAIC.bWasVisibleToEnemy = Spotted.MyKFAIC.bIsVisibleToEnemy;
 
     KFPHSpotter = KFPawn_Human(Spotter);
+	if (KFPHSpotter == none)
+	{
+		return;
+	}
+
     EventDataClass = KFPHSpotter.GetVoiceGroupEventDataClass();
 
     // if zed is within FOV

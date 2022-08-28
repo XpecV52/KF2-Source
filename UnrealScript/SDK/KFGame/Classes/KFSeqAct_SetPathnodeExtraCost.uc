@@ -29,4 +29,6 @@ defaultproperties
 {
 	ObjCategory="Killing Floor"
 	ObjName="Modify Extra Cost for Pathnode(s)"
+
+	bCallHandler=FALSE
 }

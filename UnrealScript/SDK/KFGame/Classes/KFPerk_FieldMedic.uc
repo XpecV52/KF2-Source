@@ -605,7 +605,7 @@ DefaultProperties
 	PerkSkills(EMedicHealingShield)=(Name="HealingShield",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CoagulantBooster", Increment=0.f,Rank=0,StartingValue=10.f,MaxValue=10.f) //25.0
 	PerkSkills(EMedicEnforcer)=(Name="Enforcer",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_BattleSurgeon", Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EMedicAirborneAgent)=(Name="AirborneAgent",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent", Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
-	PerkSkills(EMedicSlug)=(Name="Sedative",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative", Increment=0.f,Rank=0,StartingValue=100.0f,MaxValue=100.0f) //0.5
+	PerkSkills(EMedicSlug)=(Name="Sedative",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative", Increment=0.f,Rank=0,StartingValue=10.0f,MaxValue=10.0f) //0.5
 
 	VaccinationDuration=10.f
 
@@ -620,6 +620,7 @@ DefaultProperties
 
 	// Prestige Rewards
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.MedicKnife_PrestigePrecious_Mint_large"
+	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.MedicPistol_PrestigePrecious_Mint_large"
 
 	AutoBuyLoadOutPath=(class'KFWeapDef_MedicPistol', class'KFWeapDef_MedicSMG', class'KFWeapDef_MedicShotgun', class'KFWeapDef_MedicRifle')
 }

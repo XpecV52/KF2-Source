@@ -537,6 +537,7 @@ class KFPawnVoiceGroupEventData extends Object;
 
 
 
+										  
 
 
 
@@ -553,6 +554,8 @@ class KFPawnVoiceGroupEventData extends Object;
 
 
 										  
+
+
 
 
 

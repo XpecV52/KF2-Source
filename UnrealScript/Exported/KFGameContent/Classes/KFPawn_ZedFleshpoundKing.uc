@@ -440,6 +440,14 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
     }
 }
 
+function HandleAfflictionsOnHit(Controller DamageInstigator, vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
+{
+	if (ShieldHealthPctByte == 0)
+	{
+		super.HandleAfflictionsOnHit(DamageInstigator, HitDir, DamageType, DamageCauser);
+	}
+}
+
 function SetShieldScale(float InScale)
 {
 	ShieldHealthScale = InScale;
@@ -681,6 +689,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.King_Fleshpound_AnimGroup'
    LocalizationKey="KFPawn_ZedFleshpoundKing"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:ThirdPersonHead0'
@@ -898,8 +914,9 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
-   Components(9)=RageAkComponent0
-   Components(10)=BeamHitAC0
+   Components(9)=HeadshotAkComponent0
+   Components(10)=RageAkComponent0
+   Components(11)=BeamHitAC0
    bAlwaysRelevant=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedFleshpoundKing"

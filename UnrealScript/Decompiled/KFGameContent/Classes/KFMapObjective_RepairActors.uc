@@ -158,7 +158,11 @@ simulated function DeactivateObjective()
                         KFPlayerController(KFPH.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
                     }
                 }                
-            }            
+            }                        
+        }
+        else
+        {
+            LogInternal("objective failed");
         }
         PlayDeactivationDialog();
         ClearTimer('ActivateNextRepairableActor');
@@ -176,7 +180,7 @@ simulated function DeactivateObjective()
         }
     }
     I = 0;
-    J0x2BB:
+    J0x2D3:
 
     if(I < GeneratedEvents.Length)
     {
@@ -186,7 +190,7 @@ simulated function DeactivateObjective()
             ActivationEvent.NotifyDeactivation(self, self);
         }
         ++ I;
-        goto J0x2BB;
+        goto J0x2D3;
     }
     KFPC = KFPlayerController(GetALocalPlayerController());
     if((KFPC != none) && KFPC.myGfxHUD != none)
@@ -467,7 +471,25 @@ simulated function float GetSpawnRateMod()
 
 simulated function bool HasFailedObjective()
 {
-    return false;
+    return (GetLivingPlayerCount()) <= 0;
+}
+
+simulated function int GetLivingPlayerCount()
+{
+    local Controller P;
+    local int UsedLivingHumanPlayersCount;
+
+    foreach WorldInfo.AllControllers(Class'Controller', P)
+    {
+        if(((P != none) && P.Pawn != none) && P.Pawn.IsAliveAndWell())
+        {
+            if(P.GetTeamNum() != 255)
+            {
+                ++ UsedLivingHumanPlayersCount;
+            }
+        }        
+    }    
+    return UsedLivingHumanPlayersCount;
 }
 
 simulated function bool UsesMultipleActors()

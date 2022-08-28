@@ -31,13 +31,19 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 function LocalizeText()
 {
     local GFxObject LocalizedObject;
+    local string UpdatedDescriptionString;
+    local KFPerk CurrentPerk;
+    local int XpModifier;
 
+    CurrentPerk = KFPC.CurrentPerk;
+    XpModifier = int(KFPC.GetPerkPrestigeNextXPMultiplier(CurrentPerk.Class) * float(100));
+    UpdatedDescriptionString = Repl(PrestigeDescriptionString, "%x%", string(XpModifier), true);
     LocalizedObject = Outer.CreateObject("Object");
     LocalizedObject.SetString("prestige", Class'KFGFxMenu_Perks'.default.PrestigeString);
     LocalizedObject.SetString("currentRank", CurrentRankString);
     LocalizedObject.SetString("nextRank", NextRankString);
     LocalizedObject.SetString("rewards", RewardString);
-    LocalizedObject.SetString("description", PrestigeDescriptionString);
+    LocalizedObject.SetString("description", UpdatedDescriptionString);
     LocalizedObject.SetString("cancel", Class'KFCommon_LocalizedStrings'.default.CancelString);
     LocalizedObject.SetString("confirm", Class'KFCommon_LocalizedStrings'.default.ConfirmString);
     LocalizedObject.SetString("warning1", PrestigeWarningString1);
@@ -61,8 +67,8 @@ function SendPerkData()
     CurrentPerkDataObject.SetString("perkIcon", "img://" $ CurrentPerk.GetPerkIconPath());
     CurrentPerkDataObject.SetString("prestigeIcon", CurrentPerk.GetPrestigeIconPath(CurrentPrestigeLevel));
     DataObject.SetObject("currentRank", CurrentPerkDataObject);
-    ConfirmPrestigeButton.SetBool("enabled", CurrentPrestigeLevel < 1);
-    if(CurrentPrestigeLevel < 1)
+    ConfirmPrestigeButton.SetBool("enabled", CurrentPrestigeLevel < 2);
+    if(CurrentPrestigeLevel < 2)
     {
         NextPerkDataObject.SetString("perkIcon", "img://" $ CurrentPerk.GetPerkIconPath());
         NextPerkDataObject.SetString("prestigeIcon", CurrentPerk.GetPrestigeIconPath(byte(CurrentPrestigeLevel + 1)));
@@ -70,7 +76,7 @@ function SendPerkData()
         DataObject.SetString("rewardIcon", "img://" $ CurrentPerk.default.PrestigeRewardItemIconPaths[CurrentPrestigeLevel]);
     }
     DataObject.SetInt("doshVaultValue", KFPC.GetPreStigeValueDoshRewardValue());
-    DataObject.SetBool("bAtPrestigeMaxLevel", CurrentPrestigeLevel >= 1);
+    DataObject.SetBool("bAtPrestigeMaxLevel", CurrentPrestigeLevel >= 2);
     SetObject("perkData", DataObject);
 }
 
@@ -80,7 +86,7 @@ defaultproperties
     NextRankString="NEXT RANK"
     RewardString="PRESTIGE REWARDS"
     PrestigeDescriptionString="> Perk level will reset to 0. 
-> Permanent +30% XP bonus modifier applied at end of game matches for this Perk. 
+> Permanent +%x%% XP bonus modifier applied for this Perk. 
 > Earn modified Perk icon, Vault Dosh, and a unique weapon skin for this Perk."
     PrestigeWarningString1="ACTION WILL RESET THIS PERK TO 0"
     PrestigeWarningString2="ONLY CONTINUE IF YOU ARE POSITIVELY SURE"

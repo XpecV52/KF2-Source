@@ -9,13 +9,12 @@ package
         public function GameOptionsContainerMC()
         {
             super();
+            this.__setProp_regionList_GameOptionsContainerMC_RegionList_0();
             this.__setProp_privacyList_GameOptionsContainerMC_PrivacyList_0();
-            this.__setProp_inProgressList_GameOptionsContainerMC_inprogress_0();
-            this.__setProp_serverTypeList_GameOptionsContainerMC_serverType_0();
             this.__setProp_lengthList_GameOptionsContainerMC_LengthList_0();
             this.__setProp_difficultyList_GameOptionsContainerMC_DifficultyList_0();
-            this.__setProp_mapList_GameOptionsContainerMC_MapList_0();
             this.__setProp_modeList_GameOptionsContainerMC_ModeList_0();
+            this.__setProp_mapList_GameOptionsContainerMC_MapList_0();
             this.__setProp_mutatorButton_GameOptionsContainerMC_MutatorButton_0();
             this.__setProp_helperTextContainer_GameOptionsContainerMC_helpertextbox_0();
             this.__setProp_modeButton_GameOptionsContainerMC_Buttons_0();
@@ -24,9 +23,42 @@ package
             this.__setProp_lengthButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_privacyButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_startGameButton_GameOptionsContainerMC_Buttons_0();
-            this.__setProp_inProgressButton_GameOptionsContainerMC_Buttons_0();
-            this.__setProp_serverTypeButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_backButton_GameOptionsContainerMC_Buttons_0();
+            this.__setProp_regionButton_GameOptionsContainerMC_Buttons_0();
+        }
+        
+        function __setProp_regionList_GameOptionsContainerMC_RegionList_0() : *
+        {
+            try
+            {
+                regionList["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            regionList.enabled = true;
+            regionList.enableInitCallback = false;
+            regionList.focusable = true;
+            regionList.itemRendererName = "DefaultTripListItemRenderer";
+            regionList.itemRendererInstanceName = "";
+            regionList.margin = 0;
+            regionList.inspectablePadding = {
+                "top":2.5,
+                "right":8,
+                "bottom":8,
+                "left":-1.5
+            };
+            regionList.rowHeight = 0;
+            regionList.scrollBar = "ListScrollBar";
+            regionList.visible = true;
+            regionList.wrapping = "stick";
+            try
+            {
+                regionList["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
         }
         
         function __setProp_privacyList_GameOptionsContainerMC_PrivacyList_0() : *
@@ -57,74 +89,6 @@ package
             try
             {
                 privacyList["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_inProgressList_GameOptionsContainerMC_inprogress_0() : *
-        {
-            try
-            {
-                inProgressList["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            inProgressList.enabled = true;
-            inProgressList.enableInitCallback = false;
-            inProgressList.focusable = true;
-            inProgressList.itemRendererName = "DefaultTripListItemRenderer";
-            inProgressList.itemRendererInstanceName = "";
-            inProgressList.margin = 0;
-            inProgressList.inspectablePadding = {
-                "top":2.5,
-                "right":8,
-                "bottom":8,
-                "left":-1.5
-            };
-            inProgressList.rowHeight = 0;
-            inProgressList.scrollBar = "ListScrollBar";
-            inProgressList.visible = true;
-            inProgressList.wrapping = "stick";
-            try
-            {
-                inProgressList["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_serverTypeList_GameOptionsContainerMC_serverType_0() : *
-        {
-            try
-            {
-                serverTypeList["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            serverTypeList.enabled = true;
-            serverTypeList.enableInitCallback = false;
-            serverTypeList.focusable = true;
-            serverTypeList.itemRendererName = "DefaultTripListItemRenderer";
-            serverTypeList.itemRendererInstanceName = "";
-            serverTypeList.margin = 0;
-            serverTypeList.inspectablePadding = {
-                "top":2.5,
-                "right":8,
-                "bottom":8,
-                "left":-1.5
-            };
-            serverTypeList.rowHeight = 0;
-            serverTypeList.scrollBar = "ListScrollBar";
-            serverTypeList.visible = true;
-            serverTypeList.wrapping = "stick";
-            try
-            {
-                serverTypeList["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -199,40 +163,6 @@ package
             }
         }
         
-        function __setProp_mapList_GameOptionsContainerMC_MapList_0() : *
-        {
-            try
-            {
-                mapList["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            mapList.enabled = true;
-            mapList.enableInitCallback = false;
-            mapList.focusable = true;
-            mapList.itemRendererName = "DefaultTripListItemRenderer";
-            mapList.itemRendererInstanceName = "";
-            mapList.margin = 0;
-            mapList.inspectablePadding = {
-                "top":2.5,
-                "right":8,
-                "bottom":8,
-                "left":-1.5
-            };
-            mapList.rowHeight = 0;
-            mapList.scrollBar = "ListScrollBar";
-            mapList.visible = true;
-            mapList.wrapping = "stick";
-            try
-            {
-                mapList["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_modeList_GameOptionsContainerMC_ModeList_0() : *
         {
             try
@@ -261,6 +191,40 @@ package
             try
             {
                 modeList["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_mapList_GameOptionsContainerMC_MapList_0() : *
+        {
+            try
+            {
+                mapList["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            mapList.enabled = true;
+            mapList.enableInitCallback = false;
+            mapList.focusable = true;
+            mapList.itemRendererName = "DefaultTripListItemRenderer";
+            mapList.itemRendererInstanceName = "";
+            mapList.margin = 0;
+            mapList.inspectablePadding = {
+                "top":2.5,
+                "right":8,
+                "bottom":8,
+                "left":-1.5
+            };
+            mapList.rowHeight = 0;
+            mapList.scrollBar = "ListScrollBar";
+            mapList.visible = true;
+            mapList.wrapping = "stick";
+            try
+            {
+                mapList["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -450,7 +414,7 @@ package
             privacyButton.enableInitCallback = false;
             privacyButton.focusable = true;
             privacyButton.infoString = "_info";
-            privacyButton.label = "_Server Type";
+            privacyButton.label = "_privacy";
             privacyButton.selected = false;
             privacyButton.toggle = false;
             privacyButton.visible = true;
@@ -491,64 +455,6 @@ package
             }
         }
         
-        function __setProp_inProgressButton_GameOptionsContainerMC_Buttons_0() : *
-        {
-            try
-            {
-                inProgressButton["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            inProgressButton.autoRepeat = false;
-            inProgressButton.autoSize = "none";
-            inProgressButton.data = "";
-            inProgressButton.enabled = true;
-            inProgressButton.enableInitCallback = false;
-            inProgressButton.focusable = true;
-            inProgressButton.infoString = "_info";
-            inProgressButton.label = "_In Progress";
-            inProgressButton.selected = false;
-            inProgressButton.toggle = false;
-            inProgressButton.visible = true;
-            try
-            {
-                inProgressButton["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_serverTypeButton_GameOptionsContainerMC_Buttons_0() : *
-        {
-            try
-            {
-                serverTypeButton["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            serverTypeButton.autoRepeat = false;
-            serverTypeButton.autoSize = "none";
-            serverTypeButton.data = "";
-            serverTypeButton.enabled = true;
-            serverTypeButton.enableInitCallback = false;
-            serverTypeButton.focusable = true;
-            serverTypeButton.infoString = "_info";
-            serverTypeButton.label = "_Privacy";
-            serverTypeButton.selected = false;
-            serverTypeButton.toggle = false;
-            serverTypeButton.visible = true;
-            try
-            {
-                serverTypeButton["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
         function __setProp_backButton_GameOptionsContainerMC_Buttons_0() : *
         {
             try
@@ -571,6 +477,35 @@ package
             try
             {
                 backButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_regionButton_GameOptionsContainerMC_Buttons_0() : *
+        {
+            try
+            {
+                regionButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            regionButton.autoRepeat = false;
+            regionButton.autoSize = "none";
+            regionButton.data = "";
+            regionButton.enabled = true;
+            regionButton.enableInitCallback = false;
+            regionButton.focusable = true;
+            regionButton.infoString = "_info";
+            regionButton.label = "_region";
+            regionButton.selected = false;
+            regionButton.toggle = false;
+            regionButton.visible = true;
+            try
+            {
+                regionButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

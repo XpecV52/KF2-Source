@@ -195,7 +195,7 @@ ItemDescription="•Escolha entre automático ou 3 tiros seguidos.\nTiro alt. pa
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="Bullpup SA80 L85A2"
 ItemCategory="Fuzil de assalto"
-ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•O SA80 era a arma padrão do exército britânico, antes do exército ser... devorado."
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•O SA80 era a arma padrão do exército britânico, antes do exército ser... devorado."
 
 [KFWeap_LMG_Stoner63A]
 ItemName="Stoner 63A LMG"
@@ -312,6 +312,12 @@ ItemName="Pregadeira VLAD-1000"
 ItemCategory="Espingarda"
 ItemDescription="•Escolha entre modo de tiro único ou múltiplo.\n•Tiro alt. para alternar entre modos de tiro.\n•Soubemos que um dos cientistas Horzine pegou a pistola de pregos original de um zelador (morto)."
 
+[KFWeap_Blunt_ChainBat]
+ItemName="Redentor da Via"
+ItemCategory="Corpo a corpo"
+ItemDescription="•Principal - ataque contundente rápido, segure Principal para ataque sequencial.\n•Secundário - ataque contundente pesado.\n•Alt - bloqueio/aparo.\n•Seja o pugilista dos seus sonhos! Lembre-se de limpar após cada uso."
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulverizador"
 ItemCategory="Corpo a corpo"
@@ -327,7 +333,7 @@ SecondaryAmmo="Gasolina"
 ItemName="Espadão"
 ItemCategory="Corpo a corpo"
 ItemDescription="•Principal - dano médio/pesado, funciona também como controle de multidão.\n•Secundário - mais lento, porém causa mais dano.\n•Alt - bloquear/aparar\n•Você causa ainda mais dano ao se mover para frente."
-SharedUnlockSource="Guerra Medieval" "
+SharedUnlockSource="Guerra Medieval"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Esmaga-Osso"
@@ -505,6 +511,12 @@ ItemName="Canhão Esfolador"
 ItemCategory="Chamas"
 ItemDescription="•Carrega com o botão de disparo apertado e descarrega ao soltar o botão. \n•Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="Carabina MKb.42(H)"
+ItemCategory="Fuzil de assalto"
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático. \n•Tiro alt. para alternar entre os modos de tiro.\n•Mostre seu Hans interior! Sanidade não garantida."
+SharedUnlockSource="Ap. Hallow. de Hans"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="Pistola"
@@ -529,6 +541,17 @@ ItemDescription="•Principal - ataque rápido de contusão, Segure Principal pa
 ItemName="Mac 10"
 ItemCategory="Submetralhadora"
 ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Vem com munição incendiária de rápido disparo. Entendeu? Rápido disparo? Porque é uma submetralhadora incendiária? Ah, esquece."
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="Rifle Gr. HMTech-501"
+ItemCategory="Fuzil de assalto"
+ItemDescription="•Modo de tiro automático, somente.\n•Tiro alt. para atirar granadas médicas.\n•Só é legal jogar granadas nos seus amigos com essa arma!"
+SecondaryAmmo="Granada médica"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="Fuzil de assalto"
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático. \n•Tiro alt. para alternar entre os modos de tiro. \n•Podemos dizer que esta arma não FNFALHA... piadinha ruim."
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

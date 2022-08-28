@@ -134,7 +134,6 @@ function GoToMultiplayerMenu()
     CloseMenu();
     if(Manager.StartMenu != none)
     {
-        Manager.StartMenu.OpenMultiplayerMenu();
     }
 }
 
@@ -183,7 +182,7 @@ function CloseMenu()
 
 function Callback_CloseServerBrowser()
 {
-    HandleCloseRequest();
+    CloseMenu();
 }
 
 function Callback_RefreshServer()
@@ -375,7 +374,7 @@ function OnOpen()
 {
     if(Manager != none)
     {
-        Manager.SetStartMenuState(1);
+        Manager.SetStartMenuState(3);
         SetAllowSpectate(!Manager.IsInLobby());
     }
     if((ServerListContainer != none) && bUIComponentsInit)
@@ -477,7 +476,7 @@ defaultproperties
     PingOptionStrings(3)="< 200 MS"
     TabStrings(0)="BROWSE"
     TabStrings(1)="FAVORITES"
-    TabStrings(2)="FRIENDS"
+    TabStrings(2)="PUBLIC FRIENDS"
     TabStrings(3)="HISTORY"
     TabStrings(4)="LAN"
     SubWidgetBindings=/* Array type was not detected. */

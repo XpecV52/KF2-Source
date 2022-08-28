@@ -3,6 +3,13 @@ CharacterName="Mrs. Foster"
 Description="Quando entrevistou o Mr. Foster para um trabalho de negociante de commodities, a Sra. Foster já era muito bem sucedida nesse ramo em uma das melhores empresas em Londres. Ela era o que ele queria ser, mas era óbvio que o Mr. Foster não tinha futuro no ramo, ele não conseguia obedecer regras ou ficar calado. Mas ele era diferente... tão legal, tão suave, tão... único. Único o bastante para dar a ela uma máscara de gás no primeiro encontro. Era quase como se soubesse que um mutante de metralhadora fosse criar uma horda de clones canibais e acabar com a sequência de bônus de milhões de libras dela Eles se casaram logo depois em um turbilhão de flores, renda, Zeds e explosivos. Apesar de não trabalharem juntos na cidade ganhando muito dinheiro, eles exterminando zeds e ganhando muita Grana juntos!"
 BodyMesh0="Colete"
 BodyMesh1="Steampunk"
+BodyMesh2="Segurança de Horzine"
+BodyMesh3="Cavaleiro de Papelão"
+BodyMesh4="Sertão Devastado"
+BodyMesh5="Hazmat"
+BodyMesh6="Galinha Comando"
+BodyMesh7="Pijamas Natalino"
+BodyMesh8="Pijamas de Cofre"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -21,6 +28,61 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Amarelo"
 
+[CHR_MrsFoster_archetype.BodyMesh2]
+BodySkin0="Elite Azul"
+BodySkin1="Elite Verde"
+BodySkin2="Elite Vermelho"
+BodySkin3="Elite Branco"
+BodySkin4="Versão 7"
+BodySkin5="DigiCam da Neve"
+BodySkin6="Deserto"
+BodySkin7="Multicamuflagem"
+BodySkin8="Risco"
+BodySkin9="Adamâncio"
+BodySkin10="Caça-recompensas"
+BodySkin11="Preciosa"
+
+[CHR_MrsFoster_archetype.BodyMesh3]
+BodySkin0="Clássica"
+BodySkin1="Jittery Joe's"
+BodySkin2="Bio Cola"
+BodySkin3="Armazém Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrsFoster_archetype.BodyMesh4]
+BodySkin0="Herói"
+BodySkin1="Camuflagem"
+BodySkin2="Preto Moto"
+BodySkin3="Poe"
+BodySkin4="Bandido da Areia"
+
+[CHR_MrsFoster_archetype.BodyMesh5]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Equipe do Reino Trágico"
+
+[CHR_MrsFoster_archetype.BodyMesh6]
+BodySkin0="Usado"
+BodySkin1="Limpo"
+BodySkin2="Noite"
+BodySkin3="Ferida Séria"
+
+[CHR_MrsFoster_archetype.BodyMesh7]
+BodySkin0="Coelho"
+BodySkin1="Grana"
+BodySkin2="Xadrez verde"
+BodySkin3="Cobertor"
+BodySkin4="Neve vermelha"
+BodySkin5="Árvores"
+BodySkin6="Xadrez Vermelho"
+
+[CHR_MrsFoster_archetype.BodyMesh8]
+BodySkin0="Estampa de Cofre"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Branco"
 HeadSkin1="Verde"
@@ -28,6 +90,7 @@ HeadSkin2="Vermelho"
 HeadSkin3="Marrom"
 HeadSkin4="Rosa"
 HeadSkin5="Preto"
+HeadSkin6="NEED NAME"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -186,6 +249,7 @@ HeadSkin2="Vermelho-sangue"
 HeadSkin3="Rosto de Metal"
 HeadSkin4="Sueco Grande e Mau"
 HeadSkin5="Vertigem"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Chap. Caubói Espeto"
@@ -359,6 +423,7 @@ HeadSkin3="Verde Perigo"
 HeadSkin4="Scully Retrô"
 HeadSkin5="Sculli Grito Seco"
 HeadSkin6="Batcat"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Scullyfones"
@@ -482,6 +547,7 @@ HeadSkin1="Destaques"
 HeadSkin2="Preto"
 HeadSkin3="Títere"
 HeadSkin4="Dia de Finados"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Máscara de Médico"
@@ -609,6 +675,7 @@ HeadSkin4="Clássico Inglês"
 HeadSkin5="Visão Vermelha"
 HeadSkin6="Sr. Hans"
 HeadSkin7="Viciado em Grana"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Scullyfones"
@@ -837,6 +904,7 @@ HeadSkin1="Tat"
 HeadSkin2="Brilho"
 HeadSkin3="Sorriso"
 HeadSkin4="Rawr"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Protetor de Cabeça"
@@ -950,6 +1018,7 @@ HeadSkin2="Preto"
 HeadSkin3="Branco"
 HeadSkin4="Pierrô"
 HeadSkin5="Fantasma"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Óculos"
@@ -1256,7 +1325,7 @@ AttachmentSkin8="Branco Turquesa"
 AttachmentSkin9="Precioso"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment="Cap. de Moto Quebrado"
+Attachment="Capac. de Moto Danificado"
 AttachmentSkin0="Preto"
 AttachmentSkin1="Azul"
 AttachmentSkin2="Laranja"
@@ -1845,6 +1914,7 @@ HeadSkin1="Camuflagem"
 HeadSkin2="Palhaço"
 HeadSkin3="Vampiro"
 HeadSkin4="Guilhotina"
+HeadSkin5="NEED NAME"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Verde"
@@ -1943,6 +2013,7 @@ HeadSkin0="Preto"
 HeadSkin1="Loira"
 HeadSkin2="Kumadori"
 HeadSkin3="Titã"
+HeadSkin4="NEED NAME"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="E Estilosa"
@@ -2078,6 +2149,7 @@ HeadSkin3="Azul Bonito"
 HeadSkin4="Death Metal"
 HeadSkin5="Srta. Stein"
 HeadSkin6="Flores"
+HeadSkin7="NEED NAME"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Chuva da Morte"
@@ -2271,6 +2343,7 @@ HeadSkin3="Loira Sueca"
 HeadSkin4="Sorria para Mim"
 HeadSkin5="Sr. Juice"
 HeadSkin6="Bom Jogo"
+HeadSkin7="NEED NAME"
 
 [chr_alan_archetype]
 CharacterName="Masterson Clássico"
@@ -2371,6 +2444,7 @@ HeadSkin3="Camuflagem, amigo!"
 HeadSkin4="Anime-se, Amigo!"
 HeadSkin5="Você Morreu, Cara!"
 HeadSkin6="Digital"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="Chapéu EQ"
@@ -2472,6 +2546,7 @@ HeadSkin0="Aço Escuro"
 HeadSkin1="Aço Claro"
 HeadSkin2="Senhor Letal"
 HeadSkin3="Sr. Stein"
+HeadSkin4="NEED NAME"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Capacete de Aço Alemão"
@@ -2723,6 +2798,7 @@ HeadSkin4="Turquesa"
 HeadSkin5="Rosa"
 HeadSkin6="Dona Morte"
 HeadSkin7="Cervo"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Tapa-olho"
@@ -4175,3 +4251,123 @@ AttachmentSkin0="Descolorido"
 AttachmentSkin1="Azul"
 AttachmentSkin2="Ferrugem"
 AttachmentSkin3="Precioso"
+
+[Cosmetic_Halloween_AngelWings_ARCH]
+Attachment="Asas de Anjo de Halloween"
+AttachmentSkin0="Celestial"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_Cauldron_ARCH]
+Attachment="Mochila Caldeirão de Halloween"
+AttachmentSkin0="Docinhos"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_CoffinBackpack_ARCH]
+Attachment="Mochila Caixão de Halloween"
+AttachmentSkin0="RIP"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_CyclopsEye_ARCH]
+Attachment="Olhos de Ciclope de Halloween"
+AttachmentSkin0="Olho Maligno"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_Horns_ARCH]
+Attachment="Chifres de Halloween"
+AttachmentSkin0="Diabinho"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_IncognitoMask_ARCH]
+Attachment="Disfarce de Halloween"
+AttachmentSkin0="Graucho"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_PirateHat_ARCH]
+Attachment="Chapéu de Pirata de Halloween"
+AttachmentSkin0="Freeboot"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_WitchHat_ARCH]
+Attachment="Chapéu de Bruxa de Halloween"
+AttachmentSkin0="Magia Negra"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_FunnyZedBackpack_ARCH]
+Attachment="Mochila Coágulo de Halloween"
+AttachmentSkin0="Acompanhante"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_BatWings_ARCH]
+Attachment="Asas de Morcego de Halloween"
+AttachmentSkin0="Noturna"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_BatEars_ARCH]
+Attachment="Orelhas Morcego de Halloween"
+AttachmentSkin0="Radar"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_Halloween_MummyBackpack_ARCH]
+Attachment="Mochila de Múmia de Halloween"
+AttachmentSkin0="Preservada"
+AttachmentSkin1="Preciosa"
+
+[Cosmetic_BeastMask_ARCH]
+Attachment="Máscara da Fera"
+AttachmentSkin0="Clara"
+AttachmentSkin1="Escura"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_DancerMask_ARCH]
+Attachment="Máscara de Dançarino"
+AttachmentSkin0="Fogo"
+AttachmentSkin1="Água"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_DemonMask_ARCH]
+Attachment="Máscara Demoníaca"
+AttachmentSkin0="Fogo"
+AttachmentSkin1="Água"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_DoctorMask_ARCH]
+Attachment="Máscara de Médico"
+AttachmentSkin0="Clara"
+AttachmentSkin1="Escura"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_DreamerMask_ARCH]
+Attachment="Máscara de Sonhador"
+AttachmentSkin0="Fogo"
+AttachmentSkin1="Água"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_JokerMask_ARCH]
+Attachment="Máscara de Palhaço"
+AttachmentSkin0="Clara"
+AttachmentSkin1="Escura"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_LordMask_ARCH]
+Attachment="Máscara de Senhor"
+AttachmentSkin0="Fogo"
+AttachmentSkin1="Água"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_SleeperMask_ARCH]
+Attachment="Máscara de Adormecido"
+AttachmentSkin0="Fogo"
+AttachmentSkin1="Água"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_Undead_ARCH]
+Attachment="Máscara de Morto-vivo"
+AttachmentSkin0="Fogo"
+AttachmentSkin1="Água"
+AttachmentSkin2="Preciosa"
+
+[Cosmetic_Warrior_ARCH]
+Attachment="Máscara de Guerreiro"
+AttachmentSkin0="Fogo"
+AttachmentSkin1="Água"
+AttachmentSkin2="Preciosa"

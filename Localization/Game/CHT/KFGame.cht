@@ -1,4 +1,5 @@
 [KFCommon_LocalizedStrings]
+SpecialEffectsString="特殊效果"
 PrestigeWarningString="重置職業等級為0？ 此操作不可以還原。"
 PrestigeBonusString="聲望獎勵"
 FailedToReachInventoryServerString="無法連線至物品伺服器。 將無法使用庫存"
@@ -8,7 +9,6 @@ DifficultyStrings[1]="困難"
 DifficultyStrings[2]="自殺"
 DifficultyStrings[3]="地獄"
 BonusDoshString="獎勵金錢"
-
 LengthStrings[0]="短（4 波攻擊）"
 LengthStrings[1]="中（7 波攻擊）"
 LengthStrings[2]="長（10 波攻擊）"
@@ -19,8 +19,7 @@ ServerTypeStrings[2]="排名 - 自訂"
 ServerTypeStrings[3]="未排名"
 
 PermissionStrings[0]="公開"
-PermissionStrings[1]="僅限好友"
-PermissionStrings[2]="密碼私人遊戲"
+PermissionStrings[1]="密碼私人遊戲"
 
 ConsolePermissionStrings[0]="公開"
 ConsolePermissionStrings[1]="僅限邀請"
@@ -108,6 +107,9 @@ DiscordTraderTimeString=": 商人時間"
 DiscordBossWaveString=": Boss 波"
 DiscordWaveString=": 波"
 
+StartOfflineGameString="離線開始遊戲"
+StartOfflineGameDescriptionString="離線開始遊戲將解散你的隊伍。\n是否繼續？"
+
 ProceedToTutorialString="繼續訓練？"
 ProceedToTutorialDescriptionString="在受控的环境中进行基础学习。  完成時可以使所選的0級職業升級為1級職業。"
 
@@ -164,7 +166,7 @@ ExplosiveString="門上陷阱："
 
 [KFGFxMenu_StartGame]
 CreateMatchString="開新遊戲"
-MatchmakingString="線上配對"
+MatchmakingString="找到比賽"
 ConsoleMatchmakingString="線上模式"
 ServerBrowserString="瀏覽伺服器"
 NewsPageString="新聞"
@@ -191,29 +193,30 @@ CouldNotFindGameDescriptionStringPC="無法找到符合搜尋設定的伺服器�
 CouldNotFindGameDescriptionStringOrbis="無法找到符合搜尋設定的伺服器。請嘗試其他搜尋。"
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="線上配對"
+MultiplayerString="找到比賽"
 ConsoleMultiplayerString="線上模式"
+CreateGameString="開新遊戲"
 SoloString="離線單人模式"
 TutorialString="基本訓練"
 
 [StartMenuHelperText]
-modeList0="生存模式 – PVE 戰鬥，玩家對抗 AI 操控的 Zed"
-modeList1="每週暴動模式－每個禮拜都有不同的遊戲模式。"
-modeList2="對抗生存模式–PVP戰鬥，Horzine傭兵對抗玩家及人工智慧操控的Zed"
-modeList3="無盡——與 AI 控制的一波波 Zed 作戰，直至死亡"
-difficultyList0="普通：適合職業等級 0-5 的初階玩家。"
-difficultyList1="困難：適合職業等級 6-12 的進階玩家。每波進攻會有更多 Zed，它們移動速度更快，生命值也更高。可拾取的物品跟你的金錢都較少。"
-difficultyList2="自殺：適合職業等級 13 – 25 的高階玩家每波進攻會有更多 Zed，它們擁有新的攻擊模式，移動速度又更快。可拾取的物品跟你的金錢都變得更少。"
-difficultyList3="地獄：適合職業等級 25 的玩家，是最困難的挑戰。每波進攻會有更多 Zed，擁有新的攻擊模式。可拾取的物品跟你的金錢都大幅減少。"
+modeList0="與規定波數 AI 控制的 Zed 作戰。"
+modeList1="在本週獨特的遊戲模式中與一波波 AI 控制的 Zed 作戰。"
+modeList2="PVP 戰鬥，Horzine 傭兵對抗 AI 以及玩家操控的 Zed"
+modeList3="與無限波數 AI 控制的 Zed 作戰"
+difficultyList0="適合職業等級 0-5 的新手玩家"
+difficultyList1="適合職業等級 6-15 的進階玩家。增加了 Zed 的速度、生命、傷害和每波數量。玩家獲得金錢和拾取物變少。"
+difficultyList2="適合職業等級 15–25 的高階玩家進一步增加了 Zed 的速度、生命、傷害和每波數量，並且一些Zed具有新的攻擊方式。玩家獲得金錢和拾取物進一步變少。"
+difficultyList3="適合職業等級 25 的玩家，是最困難的挑戰。更進一步增加了 Zed 的速度、生命、傷害和每波數量，玩家獲得金錢和拾取物更進一步變少。"
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="排名 – 任何地圖、無法修改、不會擊中同伴、最多 6 人（對抗生存模式為最多 12 人）"
-serverTypeList1="制式排名 – 任何地圖、無法修改、不會擊中同伴、最多 6 人"
-serverTypeList2="自訂排名 – 任何地圖、使用白名單上的 MOD、任何伺服器設定"
-serverTypeList3="自訂未排名 –（僅限）未在白名單上的 MOD"
-serverTypeList4="無偏好 - 任何其他伺服器類型"
+serverTypeList0="任何地圖、無法使用 MOD、不會擊中同伴、最多 6 人，對抗生存模式最多 12 人。"
+serverTypeList1="離線地圖、無法使用 MOD、不會擊中同伴、最多 6 人，對抗生存模式最多 12 人。"
+serverTypeList2="任何地圖、使用白名單上的 MOD、任何伺服器設定"
+serverTypeList3="僅限非白名單上的 MOD"
+serverTypeList4="任何其他伺服器類型"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -268,6 +271,10 @@ BossWaveString="頭目"
 BossName="頭目"
 BossCaptionStrings[0]="頭目說明 1"
 BossCaptionStrings[1]="頭目說明 2"
+
+[KFGFxTraderContainer_ErrorMessage]
+CannotAffordString="資金不足以購買該物品。"
+CannotCarryString="無法攜帶物品。賣出其他物品以騰出空間。"
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="庫存"
@@ -765,6 +772,7 @@ DefaultPlayerName="玩家"
 
 PartyLeaderSearchingForMatchString="正在尋找配對…"
 PartyLeaderIsUpdatingMatchOptionsString="正在設定配對選項…"
+CreatingGameString="正在開新遊戲"
 PartyLeaderInServerBrowserString="正在搜尋伺服器瀏覽器…"
 PartyLeaderInOtherMenuString="正在其它選單…"
 SearchingForGameString="正在尋找連線遊戲…"
@@ -897,7 +905,7 @@ NotHightenoughLevelString="職業未達到最高等級。 用戶目前無法提�
 CurrentRankString="目前等級"
 NextRankString="下一等級"
 RewardString="聲望獎勵"
-PrestigeDescriptionString="> 職業等級將會重置為0\n> 這一職業永久獲得遊戲匹配結束後 +30% 額外經驗獎勵。\n> 贏取這一職業的精緻圖示，金庫幣以及一款獨特武器造型。"
+PrestigeDescriptionString="職業等級將重置為 0。\n>使用該職業將永久增加 %x%% XP 獎勵。\n>獲得特別改造的職業圖標、金庫幣、以及對應該職業的獨特武器飾品。"
 PrestigeWarningString1="此操作將會重置這一職業等級為0"
 PrestigeWarningString2="只有在你完全確定時才能繼續"
 PrestigeWarningString3="一經重置，無法撤回"
@@ -911,11 +919,13 @@ TotalString="總計"
 CheckOutString="結帳"
 
 [KFGFxStoreContainer_Main]
+FeaturedString="特賣"
 WeaponSkinsRotationString="武器飾品"
 WeaponSkinsString="武器飾品市場"
 MarketConsumablesString="箱子 / USB 市場"
 MarketCosmeticsString="妝容市場"
 MarketEmotesString="市場Emotes"
+MarketSFXString="市場特效"
 ThankYouString="感謝你的購買！這會幫我們開發新的物品，地圖，武器，喪屍和未來更新的新遊戲模式。"
 
 [KFGFxStoreContainer_Details]
@@ -940,6 +950,7 @@ MenuStrings[7]="離開"
 
 ServerBrowserString="伺服器瀏覽器"
 MatchmakingString="配對"
+CreateGameString="創建遊戲"
 SoloString="單人"
 OverviewString="遊戲一覽"
 
@@ -1230,6 +1241,7 @@ AntiMotionSicknessString="防手震"
 AutoTurnOffString="不自動開啟凝塊抓取"
 ReduceHighPitchNoiseString="降低高頻雜訊"
 DisableAutoUpgradeString="禁用「自動交易」功能"
+HideRemodeHeadshotEffectsString="禁用遠距離爆頭特效"
 
 EnableMixerString="啟動Mixer互動功能"
 DisableMixerString="禁用「Mixer」功能"
@@ -1486,7 +1498,7 @@ PlayerClotGrabWarningMessage="殺死 ZED 以重獲自由！"
 UseMinigameMessage="開啟"
 UseMinigameGeneratorMessage="啟動產生器"
 DoshActivateMessage="行動消耗"
-EMPGrabWarningMessage="*** ！動憚不得！  ***"
+EMPGrabWarningMessage="*** ！動憚不得！***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="隊伍人數不平均，將進行調整"
 
@@ -1764,7 +1776,7 @@ LargeMags="高容量彈匣"
 LargeMagsDescription="職業武器彈匣容量增加 50%"
 
 Backup="後援"
-BackupDescription="使用 9 釐米手槍與刀的傷害增加 50%，且武器切換速度增加 50%"
+BackupDescription="9 毫米手槍與刀類的傷害增加 50%，且武器切換速度增加 50%"
 
 Impact="衝擊回合"
 ImpactDescription="職業武器踉蹌力量增加 150%"
@@ -1782,7 +1794,7 @@ EatLead="吃鉛"
 EatLeadDescription="職業武器彈匣容量增加 100%"
 
 RapidFire="ZED 時間 - 機槍手"
-RapidFireDescription="Zed 時間發動時，增加職業武器傷害 3%，且所有槍枝的射速變為 3 倍。"
+RapidFireDescription="Zed 時間發動時，傷害增加 3%，且所有職業武器的射速變為 3 倍。"
 
 Professional="ZED 時間 - 謀略家"
 ProfessionalDescription="Zed 時間發動時，以全速裝填職業武器並以雙倍速度切換職業武器。"
@@ -2098,7 +2110,7 @@ TacticalMovement="戰略性移動"
 TacticalMovementDescription="手持職業武器時，使用瞄具或匍匐前進都不會受到移動懲罰。"
 
 Backup="近身戰鬥訓練"
-BackupDescription="使用 9 釐米手槍與刀的傷害增加 50%。你在每個遊戲開始時會擁有兩把 9 釐米手槍。"
+BackupDescription="使用 9 毫米手槍與刀類的傷害增加 50%。你在每個遊戲開始時會擁有兩把 9 毫米手槍。"
 
 TacticalReload="戰略裝填"
 TacticalReloadDescription="職業武器裝填速度增加"
@@ -2315,7 +2327,8 @@ HorzineSupplyCrateKey13="Horzine補給箱鑰匙|#13系列-$2.49"
 USBSpitfire="噴火USB鑰匙-$2.49"
 USBHighVoltage="高壓USB鑰匙-$2.49"
 MerchSale="KF2酷炫組特賣！特價75折只到2017年4月30日。促銷代碼ZED"
-FreeTrial="購買完全版遊戲"
+FreeTrial="立即購買《殺戮空間 2》"
+FeaturedCrossover="混合推廣特賣"
 
 [Objectives]
 HoldVolume="保衛區域"
@@ -2474,6 +2487,8 @@ zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="騎士制度宣傳影片"
+KFWeap_ChainBat="Road Redemption 推廣"
+KFWeap_MKB="漢斯的萬聖節武器"
 
 
 Source0="騎士制度宣傳影片"
@@ -2507,6 +2522,20 @@ AllCompleteRewardDescriptionString="蒸汽龐克服飾同捆包"
 
 ChanceDropDescriptionStrings[0]="獎勵券"
 ChanceDropDescriptionStrings[1]="黃金券"
+
+[KFGFxFallObjectivesContainer]
+CurrentSpecialEventString="完成怪獸舞會的目標以獲得獎勵！"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="萬陷節！",DescriptionString="在一次遊戲期間使用陷阱擊殺 25 只 Zed");
+SpecialEventObjectiveInfoList[1]=(TitleString="死無對證",DescriptionString="擊碎 10 個發光頭骨收集品");
+SpecialEventObjectiveInfoList[2]=(TitleString="怪獸泥",DescriptionString="擊殺 2500 只 Zed");
+SpecialEventObjectiveInfoList[3]=(TitleString="通宵狂歡",DescriptionString="在無盡模式困難或更高難度下完成 25 波。");
+SpecialEventObjectiveInfoList[4]=(TitleString="城堡領主",DescriptionString="在生存模式困難或更高難度下擊敗康特·漢斯");
+
+AllCompleteRewardDescriptionString="漢斯的萬聖節 MKB 皮膚。"
+
+ChanceDropDescriptionStrings[0]="獎品票券"
+ChanceDropDescriptionStrings[1]="黃金票券"
 
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="在限時活動中可獲得，內含特有道具。"
@@ -2945,37 +2974,21 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
-[KF-Lockdown KFMapSummary]
-DisplayName_CHN="封锁"
-DisplayName_CHT="封鎖"
-DisplayName_DEU="Sperrmodus"
-DisplayName_ESL="Bloqueo"
-DisplayName_ESN="Bloqueo"
-DisplayName_FRA="Confinement"
-DisplayName_FRC="Confinement"
-DisplayName_INT="Lockdown"
-DisplayName_ITA="Debilitazione"
-DisplayName_JPN="ロックダウン"
-DisplayName_KOR="락다운"
-DisplayName_POL="Kwarantanna"
-DisplayName_PTB="Confinamento"
-DisplayName_RUS="Изоляция"
-
-[KF-Airship KFMapSummary]
-DisplayName_CHN="飞艇"
-DisplayName_CHT="飛艇"
-DisplayName_DEU="Luftschiff"
-DisplayName_ESL="Aeronave"
-DisplayName_ESN="Aeronave"
-DisplayName_FRA="Dirigeable"
-DisplayName_FRC="Dirigeable"
-DisplayName_INT="Airship"
-DisplayName_ITA="Aeronave"
-DisplayName_JPN="飛行船"
-DisplayName_KOR="비행선"
-DisplayName_POL="Statek powietrzny"
-DisplayName_PTB="Aeronave"
-DisplayName_RUS="Воздушное судно"
+[KF-MonsterBall KFMapSummary]
+DisplayName_CHN="怪物球"
+DisplayName_CHT="怪獸舞會"
+DisplayName_DEU="Monsterball"
+DisplayName_ESL="Baile de monstruos"
+DisplayName_ESN="Baile de monstruos"
+DisplayName_FRA="Bal des monstres"
+DisplayName_FRC="Bal des monstres"
+DisplayName_INT="Monster Ball"
+DisplayName_ITA="Festa dei mostri"
+DisplayName_JPN="Monster Ball"
+DisplayName_KOR="괴물 무도회"
+DisplayName_POL="Bal potworów"
+DisplayName_PTB="Baile de Monstros"
+DisplayName_RUS="Бал монстров"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics 實驗室"
@@ -3051,6 +3064,9 @@ DisplayName="封鎖"
 
 [KF-Airship KFMapSummary]
 DisplayName="飛艇"
+
+[KF-MonsterBall KFMapSummary]
+DisplayName="怪獸舞會"
 
 [KFMapInfo]
 ; defaults

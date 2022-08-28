@@ -187,6 +187,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Crawler'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedCrawler.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedCrawler.HeadshotAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
     LocalizationKey=KFPawn_ZedCrawler
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -265,6 +266,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedCrawler.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedCrawler.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedCrawler.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedCrawler.HeadshotAkComponent0'
     bBlocksNavigation=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=40

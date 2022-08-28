@@ -40,6 +40,8 @@ var localized string NoString;
 
 var localized string DisbandPartyString;
 var localized string LeaveCurrentMenuString;
+var localized string StartOfflineGameString; 
+var localized string StartOfflineGameDescriptionString;
 var localized string ZedString;
 var localized string HumanString;
 var localized string SpectatorString;
@@ -95,6 +97,8 @@ var localized string ProceedToTutorialDescriptionString;
 
 var localized string NotAvailableInFreeTrialString;
 var localized string NetworkCheckFreeTrialFailedString;
+
+var localized string SpecialEffectsString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -213,8 +217,7 @@ defaultproperties
    ServerTypeStrings(2)="Ranked - Custom"
    ServerTypeStrings(3)="Unranked"
    PermissionStrings(0)="Public"
-   PermissionStrings(1)="Friends only"
-   PermissionStrings(2)="Private-Password"
+   PermissionStrings(1)="Private: Passworded"
    ConsolePermissionStrings(0)="Public"
    ConsolePermissionStrings(1)="Invite Only"
    ModeStrings(0)="Survival"
@@ -236,6 +239,8 @@ defaultproperties
    NoString="NO"
    DisbandPartyString="DISBAND PARTY"
    LeaveCurrentMenuString="Leave current menu?"
+   StartOfflineGameString="Start Offline Game"
+   StartOfflineGameDescriptionString="Starting an offline game will disband your party. \nWould you like to continue?"
    ZedString="ZED"
    HumanString="SURVIVOR"
    SpectatorString="SPECTATOR"
@@ -295,6 +300,7 @@ defaultproperties
    ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
    NotAvailableInFreeTrialString="Feature Not Available for Free Trial"
    NetworkCheckFreeTrialFailedString="Network Error: Free Event Status Unable to be Verified. Check Network Connection Status"
+   SpecialEffectsString="Special Effects"
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

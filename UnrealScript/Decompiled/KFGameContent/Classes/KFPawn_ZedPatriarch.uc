@@ -204,7 +204,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
     local int I;
     local KFCharacterInfo_Monster MonsterInfo;
 
-    super(KFPawn).SetCharacterArch(Info);
+    super(KFPawn_Monster).SetCharacterArch(Info);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
         I = 0;
@@ -1763,7 +1763,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_373' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_377' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1842,6 +1842,7 @@ Parameter name: index
     // Reference: CameraShake'Default__KFPawn_ZedPatriarch.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
     SprintAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.HeadshotAkComponent0'
     OnDeathAchievementID=130
     PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
     LocalizationKey=KFPawn_ZedPatriarch
@@ -1923,6 +1924,7 @@ Parameter name: index
     Components(6)=AkComponent'Default__KFPawn_ZedPatriarch.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedPatriarch.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedPatriarch.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedPatriarch.HeadshotAkComponent0'
     begin object name=CloakedAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -1930,7 +1932,7 @@ Parameter name: index
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedPatriarch.CloakedAkComponent0'
-    Components(9)=CloakedAkComponent0
+    Components(10)=CloakedAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

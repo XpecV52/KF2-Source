@@ -67,6 +67,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 enum EUIIndex
 {
@@ -106,11 +108,16 @@ enum EDelayedPopupPriorityId
 
 enum EStartMenuState
 {
+    EStartHome,
     EMatchmaking,
+    ECreateGame,
     EServerBrowser,
     ESoloGame,
+    ETutorial,
     EOverview,
     EServerBrowserOverview,
+    EOverview_Matchmaking,
+    EOverviewCreateGame,
     EStartMenuState_MAX
 };
 
@@ -948,6 +955,7 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
 
     bShowWidgets = true;
     PC = GetPC();
+    LogInternal("open menu: " @ string(NewMenuIndex));
     if(((PC.WorldInfo.TimeSeconds - LastForceCloseTime) < AllowMenusOpenAfterForceCloseTime) && LastForceCloseTime != float(0))
     {
         return;
@@ -959,11 +967,12 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
             return;
         }
     }
-    if((CurrentMenuIndex == 3) && NewMenuIndex != 3)
+    if(CurrentMenuIndex == 3)
     {
-        if(DoshVaultMenu != none)
+        if((DoshVaultMenu != none) && !DoshVaultMenu.CanCloseVaultMenu())
         {
-            DoshVaultMenu.AbortSquence();
+            MenuBarWidget.UpdateMenu(CurrentMenuIndex);
+            return;
         }
     }
     WI = Class'WorldInfo'.static.GetWorldInfo();
@@ -1029,27 +1038,19 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
                 HandleFreeTrialError(1);
             }
         }
-        if(StartMenuState == 1)
+        if(StartMenu != none)
         {
-            CurrentMenuIndex = 16;
-            NewMenuIndex = 16;            
-        }
-        else
-        {
-            if(StartMenu != none)
+            TempMenuState = StartMenu.GetStartMenuState();
+            if(((TempMenuState >= 6) && !IsInLobby()) && WI.IsMenuLevel())
             {
-                TempMenuState = StartMenu.GetStartMenuState();
-                if((((TempMenuState == 4) || TempMenuState == 3) && !IsInLobby()) && WI.IsMenuLevel())
+                if(StartMenu != none)
                 {
-                    if(StartMenu != none)
-                    {
-                        StartMenu.SetOverview();
-                    }                    
-                }
-                else
-                {
-                    SetStartMenuState(TempMenuState);
-                }
+                    StartMenu.SetOverview();
+                }                
+            }
+            else
+            {
+                SetStartMenuState(TempMenuState);
             }
         }
     }
@@ -1431,6 +1432,14 @@ function bool CanUnpauseMenuClosed()
 
 function ClientRecieveNewTeam();
 
+event SoloGameMenuOpened()
+{
+    if(PartyWidget != none)
+    {
+        PartyWidget.SoloGameMenuOpened();
+    }
+}
+
 function OnLobbyStatusChanged(bool bIsInLobby)
 {
     bPlayerInLobby = bIsInLobby;
@@ -1460,7 +1469,7 @@ function bool GetMultiplayerMenuActive()
     {
         return true;
     }
-    if(((StartMenu != none) && CurrentMenuIndex == 0) && StartMenu.GetStartMenuState() == 0)
+    if(((StartMenu != none) && CurrentMenuIndex == 0) && StartMenu.GetStartMenuState() == 1)
     {
         return true;
     }
@@ -1473,12 +1482,17 @@ function KFGFxMoviePlayer_Manager.EStartMenuState GetStartMenuState()
     {
         return StartMenu.GetStartMenuState();
     }
-    return 0;
+    return 1;
 }
 
-function SetStartMenuState(KFGFxMoviePlayer_Manager.EStartMenuState MenuState)
+function SetStartMenuState(KFGFxMoviePlayer_Manager.EStartMenuState MenuState, optional bool bChangeMenu)
 {
+    bChangeMenu = false;
     StartMenuState = MenuState;
+    if(bChangeMenu)
+    {
+        StartMenu.SetInt("externalMenuState", MenuState);
+    }
     UpdateMenuBar();
 }
 
@@ -1825,7 +1839,7 @@ defaultproperties
     BackgroundMovies(0)=TextureMovie'UI_Managers.MenuBG'
     BackgroundMovies(1)=TextureMovie'UI_Managers.MenuBG'
     BackgroundMovies(2)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
-    BackgroundMovies(3)=TextureMovie'UI_Managers.MenuBG'
+    BackgroundMovies(3)=TextureMovie'UI_Managers.MenuBG_Halloween'
     BackgroundMovies(4)=TextureMovie'UI_Managers.Menu_Winter'
     IISMovie=TextureMovie'UI_Managers.IIS'
     IgnoredCommands(0)="GBA_VoiceChat"

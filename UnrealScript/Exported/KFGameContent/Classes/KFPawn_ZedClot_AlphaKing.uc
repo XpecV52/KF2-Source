@@ -144,22 +144,31 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 	KFAIController_ZedClot_AlphaKing(Controller).StartArmorLoss();
 }
 
-simulated function SetEnraged(bool bNewEnraged)
+simulated function bool SetEnraged(bool bNewEnraged)
 {
-	if (Role == ROLE_Authority)
+	local bool bSuccess;
+
+	bSuccess = super.SetEnraged(bNewEnraged);
+	if (bSuccess && Role == ROLE_Authority && bNewEnraged)
 	{
 		PlaySoundBase(EnragedSoundEvent);
-		bIsEnraged = bNewEnraged;
-		if (MyKFAIC.bCanSprint)
-		{
-			SetSprinting(true);
-		}
+	}
+
+	return bSuccess;
+}
+
+function SetSprinting(bool bNewSprintStatus)
+{
+	if (bNewSprintStatus == false || (MyKFAIC != none && MyKFAIC.bCanSprint))
+	{
+		super.SetSprinting(bNewSprintStatus);
 	}
 }
 
 defaultproperties
 {
    EnragedSoundEvent=AkEvent'WW_ZED_Clot_Alpha.Play_Alpha_Clot_Special_Enrage'
+   bCanRage=True
    MonsterArchPath="ZED_ARCH.ZED_Clot_AlphaKing_Archetype"
    MinSpawnSquadSizeType=EST_Medium
    RepArmorPct(0)=255
@@ -198,6 +207,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    ArmorInfoClass=Class'kfgamecontent.KFZedArmorInfo_ClotKing'
    OverrideArmorFXIndex=200
    LocalizationKey="KFPawn_ZedClot_AlphaKing"
@@ -392,6 +409,7 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
+   Components(9)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedClot_AlphaKing"
    ObjectArchetype=KFPawn_ZedClot_Alpha'kfgamecontent.Default__KFPawn_ZedClot_Alpha'

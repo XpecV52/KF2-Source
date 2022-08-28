@@ -12,6 +12,7 @@ var const localized string ExitString;
 var const localized string CancelString;
 var const localized string ServerBrowserString;
 var const localized string MatchmakingString;
+var const localized string CreateGameString;
 var const localized string SoloString;
 var const localized string OverviewString;
 var const localized array<localized string> TitleStrings;
@@ -213,17 +214,20 @@ function string GetHomeButtonName()
         {
             switch(StartMenuState)
             {
-                case 0:
+                case 1:
                     LastHomeString = MatchmakingString;
                     break;
-                case 1:
-                    LastHomeString = ServerBrowserString;
-                    break;
                 case 2:
-                    LastHomeString = SoloString;
+                    LastHomeString = CreateGameString;
                     break;
                 case 3:
+                    LastHomeString = ServerBrowserString;
+                    break;
                 case 4:
+                    LastHomeString = SoloString;
+                    break;
+                case 6:
+                case 7:
                     LastHomeString = OverviewString;
                     break;
                 default:
@@ -298,6 +302,7 @@ defaultproperties
     CancelString="CANCEL"
     ServerBrowserString="SERVER BROWSER"
     MatchmakingString="MATCHMAKING"
+    CreateGameString="CREATE GAME"
     SoloString="SOLO"
     OverviewString="MATCH OVERVIEW"
     TitleStrings(0)="Abandoning the fight already?"

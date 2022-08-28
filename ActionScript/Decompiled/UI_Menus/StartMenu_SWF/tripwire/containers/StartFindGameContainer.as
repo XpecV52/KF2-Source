@@ -8,13 +8,13 @@ package tripwire.containers
     import scaleform.clik.controls.Button;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.ButtonEvent;
-    import scaleform.clik.events.IndexEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import tripwire.controls.TitleButton;
     import tripwire.controls.TripButton;
     import tripwire.managers.MenuManager;
+    import tripwire.menus.StartMenu;
     
     public class StartFindGameContainer extends TripContainer
     {
@@ -23,6 +23,8 @@ package tripwire.containers
         
         public static var CLOSED_NEWS = "ClosedNewsPage";
          
+        
+        public var myStartMenu:StartMenu;
         
         private const NUM_FINDGAME_OPTIONS:int = 3;
         
@@ -33,6 +35,8 @@ package tripwire.containers
         public var soloOfflineButton:TripButton;
         
         public var matchMakingButton:TripButton;
+        
+        public var createGameButton:TripButton;
         
         public var serverBrowserButton:TripButton;
         
@@ -68,6 +72,7 @@ package tripwire.containers
             {
                 this.findGameHeader.text = !!param1.home ? param1.home : "";
                 this.matchMakingButton.label = !!param1.multiplayer ? param1.multiplayer : "";
+                this.createGameButton.label = !!param1.createGame ? param1.createGame : "create";
                 this.serverBrowserButton.label = !!param1.serverBrowser ? param1.serverBrowser : "";
                 this.soloOfflineButton.label = !!param1.solo ? param1.solo : "";
                 this.tutorialButton.label = !!param1.tutorial ? param1.tutorial : "";
@@ -89,6 +94,7 @@ package tripwire.containers
             this.soloOfflineButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.tutorialButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.matchMakingButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.createGameButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.serverBrowserButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.newsButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.whatsNewButton.addEventListener(WHATS_NEW_CLICKED,this.whatsNewClicked,false,0,true);
@@ -101,6 +107,7 @@ package tripwire.containers
             this.tutorialButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.soloOfflineButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.matchMakingButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
+            this.createGameButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.serverBrowserButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.newsButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.whatsNewButton.removeEventListener(WHATS_NEW_CLICKED,this.whatsNewClicked);
@@ -117,36 +124,39 @@ package tripwire.containers
         
         public function setTabIndexes() : *
         {
+            var _loc1_:int = 0;
             if(currentElement == this)
             {
                 currentElement = null;
             }
             if(this.matchMakingButton.enabled)
             {
-                this.matchMakingButton.tabIndex = 1;
-                this.serverBrowserButton.tabIndex = 2;
-                this.soloOfflineButton.tabIndex = 3;
-                this.tutorialButton.tabIndex = 4;
-                this.newsButton.tabIndex = 5;
-                this.whatsNewButton.tabIndex = 6;
+                this.matchMakingButton.tabIndex = ++_loc1_;
+                this.createGameButton.tabIndex = ++_loc1_;
+                this.serverBrowserButton.tabIndex = ++_loc1_;
+                this.soloOfflineButton.tabIndex = ++_loc1_;
+                this.tutorialButton.tabIndex = ++_loc1_;
+                this.newsButton.tabIndex = ++_loc1_;
+                this.whatsNewButton.tabIndex = ++_loc1_;
             }
             else if(!this.matchMakingButton.enabled)
             {
                 this.matchMakingButton.tabIndex = -1;
+                this.createGameButton.tabIndex = -1;
                 this.serverBrowserButton.tabIndex = -1;
                 if(this.soloOfflineButton.enabled)
                 {
-                    this.soloOfflineButton.tabIndex = 1;
-                    this.tutorialButton.tabIndex = 2;
-                    this.newsButton.tabIndex = 3;
-                    this.whatsNewButton.tabIndex = 4;
+                    this.soloOfflineButton.tabIndex = ++_loc1_;
+                    this.tutorialButton.tabIndex = ++_loc1_;
+                    this.newsButton.tabIndex = ++_loc1_;
+                    this.whatsNewButton.tabIndex = ++_loc1_;
                 }
                 else
                 {
-                    this.soloOfflineButton.tabIndex = -1;
-                    this.tutorialButton.tabIndex = 1;
-                    this.newsButton.tabIndex = 2;
-                    this.whatsNewButton.tabIndex = 3;
+                    this.soloOfflineButton.tabIndex = ++_loc1_;
+                    this.tutorialButton.tabIndex = ++_loc1_;
+                    this.newsButton.tabIndex = ++_loc1_;
+                    this.whatsNewButton.tabIndex = ++_loc1_;
                 }
             }
             if(currentElement == null)
@@ -181,13 +191,16 @@ package tripwire.containers
             switch(param1.currentTarget)
             {
                 case this.matchMakingButton:
-                    dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,0));
+                    this.myStartMenu.menuState = StartMenu.MENU_STATE_FIND_GAME;
+                    break;
+                case this.createGameButton:
+                    this.myStartMenu.menuState = StartMenu.MENU_STATE_CREATE_GAME;
                     break;
                 case this.serverBrowserButton:
-                    dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,1));
+                    this.myStartMenu.menuState = StartMenu.MENU_STATE_SERVER_BROWSER;
                     break;
                 case this.soloOfflineButton:
-                    dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,2));
+                    ExternalInterface.call("Callback_SoloButtonPressed");
                     break;
                 case this.tutorialButton:
                     ExternalInterface.call("Callback_StartTutorial");
@@ -241,6 +254,11 @@ package tripwire.containers
                         param1.handled = true;
                 }
             }
+        }
+        
+        override protected function closeAnimation() : *
+        {
+            visible = false;
         }
     }
 }

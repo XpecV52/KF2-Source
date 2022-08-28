@@ -114,7 +114,7 @@ defaultproperties
    End Object
    LightMesh=LightMeshComponent0
    Begin Object Class=LensFlareComponent Name=LensFlareComponent0 Archetype=LensFlareComponent'Engine.Default__DominantDirectionalLight:LensFlareComponent0'
-      NextTraceTime=0.0 // Ka v oh
+      NextTraceTime=-0.604816
       ReplacementPrimitive=None
       Name="LensFlareComponent0"
       ObjectArchetype=LensFlareComponent'Engine.Default__DominantDirectionalLight:LensFlareComponent0'

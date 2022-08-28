@@ -27,6 +27,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_ClotSlasher'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.HeadshotAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.SlasherClot_AnimGroup'
     LocalizationKey=KFPawn_ZedClot_Slasher
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -87,6 +88,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedClot_Slasher.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot_Slasher.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedClot_Slasher.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedClot_Slasher.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

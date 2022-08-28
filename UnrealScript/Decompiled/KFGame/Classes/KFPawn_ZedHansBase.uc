@@ -72,9 +72,12 @@ var repnotify byte ShieldHealthPctByte;
 var int NumHuntAndHealEnemyBumps;
 var float LastHuntAndHealEnemyBumpTime;
 var class<KFProj_Grenade> ActiveGrenadeClass;
-var const class<KFProj_Grenade> ExplosiveGrenadeClass;
-var const class<KFProj_Grenade> NerveGasGrenadeClass;
-var const class<KFProj_Grenade> SmokeGrenadeClass;
+var class<KFProj_Grenade> ExplosiveGrenadeClass;
+var const class<KFProj_Grenade> SeasonalExplosiveGrenadeClasses[5];
+var class<KFProj_Grenade> NerveGasGrenadeClass;
+var const class<KFProj_Grenade> SeasonalNerveGasGrenadeClasses[5];
+var class<KFProj_Grenade> SmokeGrenadeClass;
+var const class<KFProj_Grenade> SeasonalSmokeGrenadeClasses[5];
 var name RightHandSocketName;
 var name LeftHandSocketName;
 var Vector GrenadeTossSpread;
@@ -120,6 +123,9 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     super.PossessedBy(C, bVehicleTransition);
     MyHansController = KFAIController_Hans(C);
     SetPhaseCooldowns(0);
+    ExplosiveGrenadeClass = SeasonalExplosiveGrenadeClasses[Class'KFGameEngine'.static.GetSeasonalEventID()];
+    NerveGasGrenadeClass = SeasonalNerveGasGrenadeClasses[Class'KFGameEngine'.static.GetSeasonalEventID()];
+    SmokeGrenadeClass = SeasonalSmokeGrenadeClasses[Class'KFGameEngine'.static.GetSeasonalEventID()];
 }
 
 function IncrementBattlePhase()
@@ -552,6 +558,7 @@ defaultproperties
     ShieldHealthScale=1
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHansBase.MeleeHelper'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedHansBase.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedHansBase.HeadshotAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -604,6 +611,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedHansBase.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHansBase.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedHansBase.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedHansBase.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

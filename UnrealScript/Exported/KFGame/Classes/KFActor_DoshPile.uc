@@ -12,12 +12,28 @@ var float LastPercent;
 var int MaterialSlot;
 var float ExplodeDelay;
 var bool bDelayActive;
+var bool bCreatedMic;
+
+var int PileIndexID;
 
 function SetValue(Float Percentfilled)
 {
+	// Only the main, central pile needs animate (i.e. create a MIC).
+	// If this is not the main pile, simple toggle hidden; creating a MIC causes visual problems.
+	if (PileIndexID != 0)
+	{
+		SetHidden(PercentFilled < 1.0);
+		return;
+	}
+
 	if(!bDelayActive)
 	{
-		StaticMeshComponent.CreateAndSetMaterialInstanceConstant(MaterialSlot);
+		if (!bCreatedMic)
+		{
+			StaticMeshComponent.CreateAndSetMaterialInstanceConstant(MaterialSlot);
+			bCreatedMic = true;
+		}
+
 		MaterialInstanceConstant(StaticMeshComponent.GetMaterial(MaterialSlot)).SetScalarParameterValue('Perc', Percentfilled);
 		LastPercent = Percentfilled;
 	}
@@ -49,35 +65,68 @@ function ExplodeIn()
 
 function ExplodeOut()
 {
-	bDelayActive = false;	
+	bDelayActive = false;
 	SetValue(0);
+}
+
+simulated function OnExplodeParticleSystemFinished(ParticleSystemComponent PSC)
+{
+	if (PSC == ExplodeInEffect && ExplodeInEffect != none)
+	{
+		ExplodeInEffect = none;
+	}
+	else if (PSC == ExplodeOutEffect && ExplodeInEffect != none)
+	{
+		ExplodeOutEffect = none;
+	}
+
+	DetachComponent(PSC);
+	WorldInfo.MyEmitterPool.OnParticleSystemFinished(PSC);
 }
 
 function SpawnCompleteParticleEffects(optional bool bExplodIn = true)
 {
+	if (bDelayActive)
+	{
+		return;
+	}
 	bDelayActive = true;
 
 	if(bExplodIn)
 	{
 		ExplodeInEffect = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ExplodeInTemplate);
-    
-    
-		ExplodeInEffect.SetAbsolute(false, false, false);
-		ExplodeInEffect.SetLODLevel(WorldInfo.bDropDetail ? 1 : 0);
-		ExplodeInEffect.bUpdateComponentInTick = true;
-		AttachComponent(ExplodeInEffect);	
+		if (ExplodeInEffect != none)
+		{
+			ExplodeInEffect.OnSystemFinished = OnExplodeParticleSystemFinished;
+			ExplodeInEffect.SetAbsolute(false, false, false);
+			ExplodeInEffect.SetLODLevel(WorldInfo.bDropDetail ? 1 : 0);
+			ExplodeInEffect.bUpdateComponentInTick = true;
+			AttachComponent(ExplodeInEffect);
+		}
+		else
+		{
+			LogInternal("Explode in effect failed to spawn. Is this setup correctly?");
+		}
+		
 		SetTimer(ExplodeDelay, false, nameof(ExplodeIn));
 	}
 	else
 	{
 		ExplodeOutEffect = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ExplodeOutTemplate);
-    
-    
-		ExplodeOutEffect.SetAbsolute(false, false, false);
-		ExplodeOutEffect.SetLODLevel(WorldInfo.bDropDetail ? 1 : 0);
-		ExplodeOutEffect.bUpdateComponentInTick = true;
-		AttachComponent(ExplodeOutEffect);	
-		SetTimer(ExplodeDelay, false, nameof(ExplodeOut));	
+		if (ExplodeOutEffect != none)
+		{
+			ExplodeOutEffect.OnSystemFinished = OnExplodeParticleSystemFinished;
+			ExplodeOutEffect.SetAbsolute(false, false, false);
+			ExplodeOutEffect.SetLODLevel(WorldInfo.bDropDetail ? 1 : 0);
+			ExplodeOutEffect.bUpdateComponentInTick = true;
+			AttachComponent(ExplodeOutEffect);
+		}
+		else
+		{
+			LogInternal("Explode out effect not spawned.  Is this setup correctly?");
+		}
+		
+		SetTimer(ExplodeDelay, false, nameof(ExplodeOut));
 	}
 
 	PlayDoshPileExplodeSound();
@@ -87,14 +136,14 @@ function SpawnCompleteParticleEffects(optional bool bExplodIn = true)
 function PlayDoshPileExplodeSound()
 {
 	local KFPlayerController KFPC;
-	
+
 	foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
 	{
 		if(KFPC.MyGfxManager != none)
 		{
-			KFPC.MyGfxManager.PlaySoundFromTheme( class'KFGFxMenu_DoshVault'.default.PileDisappearEventName, class'KFGFxMenu_DoshVault'.default.DoshVaultSoundThemeName);	
+			KFPC.MyGfxManager.PlaySoundFromTheme( class'KFGFxMenu_DoshVault'.default.PileDisappearEventName, class'KFGFxMenu_DoshVault'.default.DoshVaultSoundThemeName);
 		}
-	}		
+	}
 }
 
 function SpawnFillingParticleEffects()
@@ -107,6 +156,7 @@ defaultproperties
    DoshPileMax=1000000.000000
    ExplodeOutTemplate=ParticleSystem'FX_Environmental_EMIT_THREE.FX_Dosh_Vault_Disappear_01'
    ExplodeInTemplate=ParticleSystem'FX_Environmental_EMIT_THREE.FX_Dosh_Vault_Appear_01'
+   LastPercent=-1.000000
    MaterialSlot=1
    ExplodeDelay=1.000000
    Begin Object Class=StaticMeshComponent Name=StaticMeshComponent0 Archetype=StaticMeshComponent'Engine.Default__StaticMeshActor:StaticMeshComponent0'

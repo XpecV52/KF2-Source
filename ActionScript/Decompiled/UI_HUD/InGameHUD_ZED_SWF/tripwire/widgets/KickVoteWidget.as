@@ -108,7 +108,7 @@ package tripwire.widgets
             {
                 this.playerNameText.text = !!param1.playerName ? param1.playerName : "name not passed!";
                 visible = true;
-                this._currentTime = !!param1.voteDuation ? int(param1.voteDuraction - 1) : 0;
+                this._currentTime = !!param1.voteDuration ? int(param1.voteDuration - 1) : 0;
                 this.voteTimeText.text = TextfieldUtil.instance.getFormattedTimeFromSeconds(this._currentTime);
                 this._voteTimer.repeatCount = param1.voteDuation;
                 this._voteTimer.reset();

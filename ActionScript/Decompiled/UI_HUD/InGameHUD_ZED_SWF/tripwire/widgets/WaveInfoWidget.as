@@ -58,6 +58,10 @@ package tripwire.widgets
             {
                 this.ZedCountInfoContainer.ZedCount.text = this.bossWaveString;
             }
+            else if(param1 == -2)
+            {
+                this.ZedCountInfoContainer.ZedCount.text = "∞";
+            }
             else
             {
                 this.ZedCountInfoContainer.ZedCount.text = Math.max(param1,0).toString();

@@ -9,13 +9,14 @@ class KFGFxMenu_Inventory extends KFGFxObject_Menu within GFxMoviePlayer;
 
 enum EINventory_Filter
 {
-    EInv_All,
     EInv_WeaponSkins,
     EInv_Cosmetics,
     EInv_Consumables,
     EInv_Items,
     EInv_CraftingMats,
     EInv_Emotes,
+    EInv_SFX,
+    EInv_All,
     EInv_MAX
 };
 
@@ -235,7 +236,7 @@ function InitInventory()
         if((ItemIndex != -1) && OnlineSub.CurrentInventory[I].Definition != 0)
         {
             TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
-            if((((CurrentInventoryFilter == 0) || CurrentInventoryFilter == (TempItemDetailsHolder.Type + 1)) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
+            if((((CurrentInventoryFilter == 7) || CurrentInventoryFilter == TempItemDetailsHolder.Type) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
             {
                 ItemObject = Outer.CreateObject("Object");
                 HelperIndex = ActiveItems.Find('ItemDefinition', OnlineSub.CurrentInventory[I].Definition;
@@ -258,7 +259,7 @@ function InitInventory()
                 ItemObject.SetInt("type", TempItemDetailsHolder.Type);
                 ItemObject.SetBool("exchangeable", (IsItemExchangeable(TempItemDetailsHolder, ExchangeRules)) && Class'WorldInfo'.static.IsMenuLevel());
                 ItemObject.SetBool("recyclable", (IsItemRecyclable(TempItemDetailsHolder, ExchangeRules)) && Class'WorldInfo'.static.IsMenuLevel());
-                bActiveItem = IsItemActive(OnlineSub.CurrentInventory[I].Definition);
+                bActiveItem = (IsItemActive(OnlineSub.CurrentInventory[I].Definition)) || IsSFXActive(OnlineSub.CurrentInventory[I].Definition);
                 ItemObject.SetBool("active", bActiveItem);
                 ItemObject.SetInt("rarity", TempItemDetailsHolder.Rarity);
                 ItemObject.SetString("description", TempItemDetailsHolder.Description);
@@ -284,13 +285,13 @@ function InitInventory()
     }
     OnlineSub.ClearNewlyAdded();
     I = 0;
-    J0xAB5:
+    J0xAF9:
 
     if(I < ActiveItems.Length)
     {
         ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
         ++ I;
-        goto J0xAB5;
+        goto J0xAF9;
     }
     SetObject("inventoryList", ItemArray);
     if(Manager.SelectIDOnOpen != -1)
@@ -318,7 +319,7 @@ function bool DoesMatchFilter(ItemProperties InventoryItem)
     }
     if((CurrentRarityFilter != 6) && InventoryItem.Rarity != CurrentRarityFilter)
     {
-        if(((CurrentInventoryFilter == 5) || CurrentInventoryFilter == 3) && CurrentInventoryFilter == (InventoryItem.Type + 1))
+        if(((CurrentInventoryFilter == 4) || CurrentInventoryFilter == 2) && CurrentInventoryFilter == (InventoryItem.Type + 1))
         {
             return true;
         }
@@ -435,6 +436,18 @@ function bool IsItemActive(int ItemDefinition)
     return false;
 }
 
+function bool IsSFXActive(int ItemDefinition)
+{
+    local int ItemIndex;
+
+    ItemIndex = Class'KFHeadShotEffectList'.static.GetHeadShotEffectIndex(ItemDefinition);
+    if(ItemIndex == -1)
+    {
+        return false;
+    }
+    return Class'KFHeadShotEffectList'.static.IsHeadShotEffectEquipped(ItemDefinition);
+}
+
 function LocalizeText()
 {
     local GFxObject LocalizedObject, WeaponTypeList, RarityList, PerkList, TempObject;
@@ -450,6 +463,7 @@ function LocalizeText()
     LocalizedObject.SetString("unequip", UnequipString);
     LocalizedObject.SetString("useString", UseString);
     LocalizedObject.SetString("recycle", RecycleString);
+    LocalizedObject.SetString("sfx", Class'KFCommon_LocalizedStrings'.default.SpecialEffectsString);
     LocalizedObject.SetString("all", AllString);
     LocalizedObject.SetString("weaponSkins", WeaponSkinString);
     LocalizedObject.SetString("cosmetics", CosmeticString);
@@ -464,7 +478,7 @@ function LocalizeText()
     LocalizedObject.SetString("filterName_2", WeaponTypeFilterString);
     RarityList = Outer.CreateArray();
     I = 0;
-    J0x4DC:
+    J0x51F:
 
     if(I <= 6)
     {
@@ -479,11 +493,11 @@ function LocalizeText()
         }
         RarityList.SetElementObject(I, TempObject);
         ++ I;
-        goto J0x4DC;
+        goto J0x51F;
     }
     PerkList = Outer.CreateArray();
     I = 0;
-    J0x639:
+    J0x67C:
 
     if(I <= KFPC.PerkList.Length)
     {
@@ -498,11 +512,11 @@ function LocalizeText()
         }
         PerkList.SetElementObject(I, TempObject);
         ++ I;
-        goto J0x639;
+        goto J0x67C;
     }
     WeaponTypeList = Outer.CreateArray();
     I = 0;
-    J0x7F8:
+    J0x83B:
 
     if(I <= 10)
     {
@@ -517,7 +531,7 @@ function LocalizeText()
         }
         WeaponTypeList.SetElementObject(I, TempObject);
         ++ I;
-        goto J0x7F8;
+        goto J0x83B;
     }
     LocalizedObject.SetInt("filterIndex_0", CurrentRarityFilter);
     LocalizedObject.SetInt("filterIndex_1", CurrentPerkIndexFilter);
@@ -862,22 +876,25 @@ function Callback_InventoryFilter(int FilterIndex)
     switch(FilterIndex)
     {
         case 0:
-            NewFilter = 0;
+            NewFilter = 7;
             break;
         case 1:
-            NewFilter = 1;
+            NewFilter = 0;
             break;
         case 2:
-            NewFilter = 2;
+            NewFilter = 1;
             break;
         case 3:
-            NewFilter = 3;
+            NewFilter = 2;
             break;
         case 4:
-            NewFilter = 6;
+            NewFilter = 4;
             break;
         case 5:
             NewFilter = 5;
+            break;
+        case 6:
+            NewFilter = 6;
             break;
         default:
             break;
@@ -918,6 +935,26 @@ function Callback_Equip(int ItemDefinition)
                 Manager.CachedProfile.SaveWeaponSkin(WeaponDef.default.WeaponClassPath, ItemDefinition);
             }
         }
+    }
+    InitInventory();
+}
+
+function Callback_EquipSFX(int ItemDefinition)
+{
+    local int ItemIndex;
+
+    ItemIndex = Class'KFHeadShotEffectList'.static.GetHeadShotEffectIndex(ItemDefinition);
+    if(ItemIndex == -1)
+    {
+        return;
+    }
+    if(IsSFXActive(ItemDefinition))
+    {
+        Class'KFHeadShotEffectList'.static.SaveEquippedHeadShotEffect(0);        
+    }
+    else
+    {
+        Class'KFHeadShotEffectList'.static.SaveEquippedHeadShotEffect(ItemDefinition);
     }
     InitInventory();
 }

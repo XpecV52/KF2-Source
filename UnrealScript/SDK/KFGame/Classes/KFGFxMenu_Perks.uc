@@ -360,10 +360,10 @@ function ConfirmPrestige()
 {
 	if (KFPC != none )
 	{
+		ActionScriptVoid("playPrestigeAnimation");
 		KFPC.PerformPrestigeReset(KFPC.CurrentPerk.class);
 		class'KFMusicStingerHelper'.static.PlayPerkPrestigeStinger(KFPC);
-		OnOpen();
-		ActionScriptVoid("playPrestigeAnimation");
+		OnOpen();		
 	}
 }
 

@@ -24,6 +24,10 @@ simulated function AltFireMode()
     {
         return;
     }
+    if(ReloadStatus == 2)
+    {
+        return;
+    }
     if(AmmoCount[0] <= 1)
     {
         StartFire(0);        
@@ -139,7 +143,7 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=false
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=11
+    InventorySize=10
     MagazineCapacity=4
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=60
@@ -150,7 +154,7 @@ defaultproperties
     GroupPriority=110
     WeaponSelectTexture=Texture2D'WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=40
+    SpareAmmoCapacity=48
     InitialSpareMags=3
     AmmoPickupScale=2
     ForceReloadTimeOnEmpty=0.3

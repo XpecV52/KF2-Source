@@ -527,6 +527,7 @@ class KFTraderVoiceGroupBase extends Object;
 
 
 
+										  
 
 
 
@@ -613,6 +614,8 @@ class KFTraderVoiceGroupBase extends Object;
 
 
 
+
+
 #linenumber 3
 
 struct TraderDialogEventInfo
@@ -629,8 +632,8 @@ struct TraderDialogEventInfo
 	}
 };
 
-var TraderDialogEventInfo   DialogEvents[274];
-var name                    EventNames[274];
+var TraderDialogEventInfo   DialogEvents[275];
+var name                    EventNames[275];
 
 defaultproperties
 {
@@ -908,6 +911,7 @@ defaultproperties
    DialogEvents(271)=(Chance=1.000000)
    DialogEvents(272)=(Chance=1.000000)
    DialogEvents(273)=(Chance=1.000000)
+   DialogEvents(274)=(Chance=1.000000)
    EventNames(0)="TRAD_Wave20pctDead"
    EventNames(1)="TRAD_Wave80pctDead"
    EventNames(2)="TRAD_WaveLastZedDies"

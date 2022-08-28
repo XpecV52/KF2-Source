@@ -195,7 +195,7 @@ ItemDescription="•可選擇全自動或射擊三發子彈。\n•按下輔助�
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 小鬥牛"
 ItemCategory="突擊步槍"
-ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•SA80 是英國陸軍的標準配備，直到陸軍，呃，被吃了。"
+ItemDescription="•可選擇全自動和半自動射擊模式。\n•SA80 是英國陸軍的標準配備，直到陸軍，呃，被吃掉。"
 
 [KFWeap_LMG_Stoner63A]
 ItemName="斯通納63A輕機槍"
@@ -312,6 +312,12 @@ ItemName="VLAD-1000 釘槍"
 ItemCategory="霰彈槍"
 ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家是從一個（死去的）維修人員那裡拿來改造過的。"
 
+[KFWeap_Blunt_ChainBat]
+ItemName="道路救贖者"
+ItemCategory="近身"
+ItemDescription="•主要 - 快速鈍器攻擊，按住主要鍵即可進行連段攻擊。\n•次要 - 鈍器重擊。\n•Alt - 阻擋/迴避。\n成為你一直想成為的重擊者！每次使用后記得清洗。"
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="粉碎器"
 ItemCategory="近身"
@@ -327,7 +333,7 @@ SecondaryAmmo="汽油"
 ItemName="雙手劍"
 ItemCategory="近身"
 ItemDescription="•主要攻擊鍵：中 / 強傷害，控制力較佳。\n•次要攻擊鍵：較慢，但傷害較高。\n•輔助功能鍵：防禦 / 格擋。\n•一面前進一面攻擊傷害會更高。"
-SharedUnlockSource="騎士中古大戰 "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="碎骨者"
@@ -505,6 +511,12 @@ ItemName="焦驅砲"
 ItemCategory="火焰"
 ItemDescription="•按下開火按鈕後開始充能，鬆開按鈕後釋放能量。\nHorzine官方版本的焦驅砲。該型號保證95%不會爆炸。"
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="MKb.42(H) 卡賓步槍"
+ItemCategory="突擊步槍"
+ItemDescription="•可選擇全自動和半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•炫耀你的內在，漢斯！神智不保"
+SharedUnlockSource="漢斯的萬聖節飾品"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="手槍"
@@ -529,6 +541,17 @@ ItemDescription="•主要功能鍵 - 主要攻擊為揮擊，長按以連擊。
 ItemName="Mac 10"
 ItemCategory="衝鋒槍"
 ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•特征是速射燃燒彈藥。懂了嗎？速射？因為它是衝鋒槍？哦，忘了那吧。"
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="HMTech-501 榴彈步槍"
+ItemCategory="突擊步槍"
+ItemDescription="•僅可使用全自動射擊模式。\n•按下輔助功能鍵發射治療手榴彈\n•這是唯一一種可以用它將榴彈射向隊友的武器！"
+SecondaryAmmo="治療手榴彈"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG 瞄準鏡"
+ItemCategory="突擊步槍"
+ItemDescription="•可選擇全自動和半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•你可能會說，這把槍並不是FN FAL……是的，這可真是糟糕。"
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

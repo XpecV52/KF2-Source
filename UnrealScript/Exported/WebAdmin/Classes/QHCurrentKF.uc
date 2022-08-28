@@ -168,6 +168,64 @@ class QHCurrentKF extends QHCurrent;
 
 #linenumber 10
 
+var WorkshopTool Tool;
+var KFWorkshopSteamworks Workshop;
+var bool bValidSetup;
+var string WorkshopURL;
+
+var localized string menuWorkshopTool, menuWorkshopToolDesc;
+
+function init(WebAdmin webapp)
+{
+	local int i;
+	local OnlineSubsystem OnlineSub;
+	super.init(webapp);
+	webadmin = webapp;
+
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+	if (OnlineSub == None)
+	{
+		ThrowError("No Online subsystem found (make sure you use this on server)!");
+		return;
+	}
+
+	Tool = webadmin.WorldInfo.Spawn(class 'WorkshopTool');
+	if (Tool == None)
+	{
+		ThrowError("No TWWorkshopSteamworks found!");
+		return;
+	}
+
+	Tool.InitWeb();
+
+	Workshop = Tool.Workshop;
+	if (Workshop == None)
+	{
+		ThrowError("No TWWorkshopSteamworks found!");
+		return;
+	}
+
+	for (i = 0; i<class'TcpNetDriver'.Default.DownloadManagers.Length; ++i)
+	{
+		if (class'TcpNetDriver'.Default.DownloadManagers[i]~= "OnlineSubsystemSteamworks.SteamWorkshopDownload")
+		{
+			bValidSetup = true;
+			break;
+		}
+	}
+}
+
+final function ThrowError(string Er)
+{
+	LogInternal("WorkshopTool ERROR: "$Er);
+}
+
+function cleanup()
+{
+	super.cleanup();
+	Tool = none;
+}
+
 function registerMenuItems(WebAdminMenu menu)
 {
 	super.registerMenuItems(menu);
@@ -175,6 +233,8 @@ function registerMenuItems(WebAdminMenu menu)
 	menu.addMenu("/current/chat+frame", "", self);
 	menu.addMenu("/current/chat+frame+data", "", self);
 	menu.setVisibility("/current/chat", false);
+
+	menu.addMenu(WorkshopURL, menuWorkshopTool, self, menuWorkshopToolDesc);
 }
 
 function bool handleQuery(WebAdminQuery q)
@@ -190,6 +250,9 @@ function bool handleQuery(WebAdminQuery q)
 			return true;
 		case "/current/chat+frame+data":
 			handleCurrentChatData(q);
+			return true;
+		case "/current/workshoptool":
+			handleWorkshop(q);
 			return true;
 	}
 	return super.handleQuery(q);
@@ -330,8 +393,106 @@ function decorateChatWindow(WebAdminQuery q)
 	q.response.subst("chatwindow", webadmin.include(q, "current_chat_frame.inc"));
 }
 
+function handleCurrentWorkshopAction(WebAdminQuery q)
+{
+	local string action, idx;
+	local int i;
+
+	action = q.request.getVariable("action");
+
+	idx = q.request.getVariable("idx");
+
+	if (idx == "123456789")
+		return;
+
+	if (action != "")
+	{
+		if (action ~= "delete")
+		{
+			for (i = 0; i < Tool.CurrentItems.Length; ++i)
+			{
+				if (idx != "" && idx == string(i))
+				{
+					Tool.DeleteWorkshopItem(q.user.getUsername(), i);
+					break;
+				}
+			}
+		}
+		else if (action ~= "add")
+		{
+			Tool.AddNewWorkshopItem(q.user.getUsername(), idx);
+		}
+		else if (action ~= "download")
+		{
+			Workshop.UpdateWorkshopFiles();
+		}
+		else if (action ~= "reload")
+		{
+			LogInternal("Net Driver settings reconfigured, restarting map...");
+			class'TcpNetDriver'.Default.DownloadManagers.Insert(0, 1);
+			class'TcpNetDriver'.Default.DownloadManagers[0] = "OnlineSubsystemSteamworks.SteamWorkshopDownload";
+			class'TcpNetDriver'.Static.StaticSaveConfig();
+			Tool.WorldInfo.Game.bUseSeamlessTravel = false;
+			Tool.WorldInfo.ServerTravel("?restart");
+			Tool.WorldInfo.NextSwitchCountdown = 0;
+			bValidSetup = true;
+			return;
+		}
+	}
+}
+
+function handleWorkshop(WebAdminQuery q)
+{
+	local int i;
+	local string workshopinstructions, workshopitemrowstring;
+	local bool bHaveContent;
+
+	handleCurrentWorkshopAction(q);
+
+	bHaveContent = false;
+
+	q.response.subst("isvalidsetup", true);
+	if (!bValidSetup)
+		q.response.subst("isvalidsetup", false);
+
+	q.response.subst("hasadditionalmessages", false);
+	if (Workshop.CurrentDownloads.Length > 0)
+	{
+		Tool.CheckDownload();
+		q.response.subst("row1", "<font color=\"red\">Server is currently downloading</font><br />Items to download: "$Workshop.CurrentDownloads.Length$"<br />Current item: "$Tool.LastDLID$" ("$Tool.LastDLFile$")");
+
+		q.response.subst("hasadditionalmessages", true);
+		workshopinstructions $= webadmin.include(q, "current_workshoptool_instructions.inc");
+		q.response.subst("workshopinstructions", workshopinstructions);
+	}
+
+	if (Tool.CurrentItems.Length > 0)
+		bHaveContent = true;
+
+	for (i = 0; i < Tool.CurrentItems.Length; ++i)
+	{
+		q.response.subst("workshoptool.steamid", Tool.CurrentItems[i].ID);
+		q.response.subst("workshoptool.steamname", Tool.CurrentItems[i].N);
+		q.response.subst("index", i);
+		q.response.subst("index", i);
+
+		workshopitemrowstring $= webadmin.include(q, "current_workshoptool_row.inc");
+	}
+
+	// If we don't have any content, let the admin know.
+	if (!bHaveContent)
+	{
+		workshopitemrowstring = webadmin.include(q, "current_workshoptool_empty.inc");
+	}
+
+	q.response.subst("workshop", workshopitemrowstring);
+
+	webadmin.sendPage(q, "workshoptool.html");
+}
+
 defaultproperties
 {
+   WorkshopURL="/current/WorkshopTool"
    ChatRefresh=5000
    bConsoleEnabled=True
    bAdminConsoleCommandsHack=True

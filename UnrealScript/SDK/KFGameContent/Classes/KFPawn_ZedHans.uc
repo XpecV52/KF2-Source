@@ -175,6 +175,16 @@ simulated function SetCharacterAnimationInfo()
 {
 	Super.SetCharacterAnimationInfo();
 
+	// Hack so that designers can set Hans' melee and gun animsets from editor archetype
+	// Assumes archetype animsets slot 3 is melee and slot 4 is gun
+	// Assigns them and then then removes them from pawn animsets
+	if (Mesh.AnimSets.Length == 5)
+	{
+		MeleeAnimSet = Mesh.AnimSets[3];
+		GunsAnimSet = Mesh.AnimSets[4];
+		Mesh.AnimSets.Remove(3, 2);
+	}
+
 	// Initialize weapon type AnimSet
 	SetWeaponStance(bGunsEquipped, true);
 }
@@ -205,6 +215,8 @@ simulated function SetWeaponStance(bool bInEquipWeapons, optional bool bForce)
 			// SkelControl's BlendOutTime so that it matches with animation
 			RightHolsterSkelCtrl.SetSkelControlStrength(0.f, 0.f);
 			LeftHolsterSkelCtrl.SetSkelControlStrength(0.f, 0.f);
+
+			PlayExtraVFX('GunMode');
 		}
 		else
 		{
@@ -212,6 +224,8 @@ simulated function SetWeaponStance(bool bInEquipWeapons, optional bool bForce)
 			// Use SkelControl's default, editor set, BlendInTime
 			RightHolsterSkelCtrl.SetSkelControlActive(true);
 			LeftHolsterSkelCtrl.SetSkelControlActive(true);
+
+			StopExtraVFX('GunMode');
 		}
 
 		// Apply new anim set and refresh animtree
@@ -1120,8 +1134,23 @@ DefaultProperties
 	MeleeAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Melee_Master'
 	GunsAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Gun_Master'
 	ExplosiveGrenadeClass=class'KFGameContent.KFProj_HansHEGrenade'
+	SeasonalExplosiveGrenadeClasses(SEI_None)=class'KFGameContent.KFProj_HansHEGrenade'
+	SeasonalExplosiveGrenadeClasses(SEI_Spring)=class'KFGameContent.KFProj_HansHEGrenade'
+	SeasonalExplosiveGrenadeClasses(SEI_Summer)=class'KFGameContent.KFProj_HansHEGrenade'
+	SeasonalExplosiveGrenadeClasses(SEI_Fall)=class'KFGameContent.KFProj_HansHEGrenade_Halloween'
+	SeasonalExplosiveGrenadeClasses(SEI_Winter)=class'KFGameContent.KFProj_HansHEGrenade'
 	NerveGasGrenadeClass=class'KFGameContent.KFProj_HansNerveGasGrenade'
+	SeasonalNerveGasGrenadeClasses(SEI_None)=class'KFGameContent.KFProj_HansNerveGasGrenade'
+	SeasonalNerveGasGrenadeClasses(SEI_Spring)=class'KFGameContent.KFProj_HansNerveGasGrenade'
+	SeasonalNerveGasGrenadeClasses(SEI_Summer)=class'KFGameContent.KFProj_HansNerveGasGrenade'
+	SeasonalNerveGasGrenadeClasses(SEI_Fall)=class'KFGameContent.KFProj_HansNerveGasGrenade_Halloween'
+	SeasonalNerveGasGrenadeClasses(SEI_Winter)=class'KFGameContent.KFProj_HansNerveGasGrenade'
 	SmokeGrenadeClass=class'KFGameContent.KFProj_HansSmokeGrenade'
+	SeasonalSmokeGrenadeClasses(SEI_None)=class'KFGameContent.KFProj_HansSmokeGrenade'
+	SeasonalSmokeGrenadeClasses(SEI_Spring)=class'KFGameContent.KFProj_HansSmokeGrenade'
+	SeasonalSmokeGrenadeClasses(SEI_Summer)=class'KFGameContent.KFProj_HansSmokeGrenade'
+	SeasonalSmokeGrenadeClasses(SEI_Fall)=class'KFGameContent.KFProj_HansSmokeGrenade_Halloween'
+	SeasonalSmokeGrenadeClasses(SEI_Winter)=class'KFGameContent.KFProj_HansSmokeGrenade'
 	HeavyBumpDamageType=class'KFGameContent.KFDT_HeavyZedBump'
     DifficultySettings=class'KFDifficulty_Hans'
 

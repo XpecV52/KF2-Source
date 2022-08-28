@@ -21,6 +21,8 @@ var() bool bCollideWithTeammates;
 
 var bool bClientDudHit;
 
+var bool bIsTimedExplosive;
+
 /** Distance this projectile arms itself at */
 var()   float               ArmDistSquared;
 
@@ -36,8 +38,17 @@ var() float DampenFactor;
 /** Dampen amount for parallel angle to velocity */
 var() float DampenFactorParallel;
 
+/** Dampen amount for every bounce */
+var() float WallHitDampenFactor;
+
+/** Dampen amount for parallel angle to velocity */
+var() float WallHitDampenFactorParallel;
+
 /** How much to offset the emitter mesh when the grenade has landed so that it doesn't penetrate the ground */
 var() vector LandedTranslationOffset;
+
+//to keep track if we are hitting an actor multiple times.  
+var array<Actor> ImpactList;
 
 replication
 {
@@ -112,7 +123,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 /** Pre-process calling the Explode function so it can be overridden in subclasses */
 simulated function CallExplode( vector HitLocation, vector HitNormal )
 {
-    // Move this projectile to the explode location since it might have been
+	// Move this projectile to the explode location since it might have been
     // replicated, and this ensures it happens in the right place
     SetLocation( HitLocation );
     Super.Explode(HitLocation, HitNormal);
@@ -120,7 +131,7 @@ simulated function CallExplode( vector HitLocation, vector HitNormal )
 
 simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
 {
-    local Vector VNorm;
+	local Vector VNorm;
     local rotator NewRotation;
     local Vector Offset;
     local bool bWantsClientSideDudHit;
@@ -137,25 +148,16 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
 	TraveledDistance *= TraveledDistance;
 
     // Bounce off the wall and cause the shell to dud if we hit too close
-    if( bDud || ((TraveledDistance < ArmDistSquared) || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
+    if( bDud || ((TraveledDistance < ArmDistSquared) || bIsTimedExplosive || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
     {
+		// Reflect off Wall w/damping
+		VNorm = (Velocity dot HitNormal) * HitNormal;
+		Velocity = -VNorm * WallHitDampenFactor + (Velocity - VNorm) * WallHitDampenFactorParallel;
+		Speed = VSize(Velocity);
+
         if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) )
         {
-            bDud = true;
-            if( bWantsClientSideDudHit )
-            {
-                bClientDudHit = true;
-            }
-
-            LifeSpan = 1.0;
-            SetPhysics(PHYS_Falling);
-            GravityScale = 1.0;
-
-            // Replace the flying effects with the dud mesh effects
-            StopFlightEffects();
-            ProjFlightTemplate=ProjDudTemplate;
-            ProjFlightTemplateZedTime=ProjDudTemplate;
-            SpawnFlightEffects();
+			SetIsDud(bWantsClientSideDudHit, HitNormal);
         }
 
     	if ( WorldInfo.NetMode != NM_DedicatedServer && Pawn(Wall) == none )
@@ -163,11 +165,6 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
             // do the impact effects
     		`ImpactEffectManager.PlayImpactEffects(Location, Instigator, HitNormal, GrenadeBounceEffectInfo, true );
     	}
-
-        // Reflect off Wall w/damping
-        VNorm = (Velocity dot HitNormal) * HitNormal;
-        Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
-        Speed = VSize(Velocity);
 
 		// if we hit a pawn or we are moving too slowly stop moving and lay down flat
 		if ( Speed < 40  )
@@ -191,7 +188,7 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
 			SetLocation(Location + Offset);
 		}
 
-		if( !Wall.bStatic && Wall.bCanBeDamaged && (DamageRadius == 0 || bDamageDestructiblesOnTouch) )
+		if( !Wall.bStatic && Wall.bCanBeDamaged && (DamageRadius == 0 || bDamageDestructiblesOnTouch) && !CheckRepeatingTouch(Wall) )
 		{
 			HitInfo.HitComponent = WallComp;
 			HitInfo.Item = INDEX_None;
@@ -199,7 +196,7 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
 		}
     }
 
-    if( !bDud )
+    if( !bDud && !bIsTimedExplosive )
     {
         Super.HitWall(HitNormal, Wall, WallComp);
     }
@@ -226,9 +223,9 @@ function float GetTerminalVelocity()
 // Touching
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
-    local Vector VNorm;
     local bool bWantsClientSideDudHit;
 	local float TraveledDistance;
+	local Vector VNorm;
 
     // If we collided with a Siren shield, let the shield code handle touches
     if( Other.IsA('KFTrigger_SirenProjectileShield') )
@@ -254,7 +251,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 	TraveledDistance = (`TimeSince(CreationTime) * Speed);
 	TraveledDistance *= TraveledDistance;
 
-    if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) && ((TraveledDistance < ArmDistSquared) || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
+    if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) && ((TraveledDistance < ArmDistSquared) || bIsTimedExplosive || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
     {
         // Don't touch the same actor multiple time's immediately after just
         // touching it if the TouchTimeThreshhold is set to greater than 0.
@@ -266,42 +263,24 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
             return;
         }
 
+		if (Other != Instigator && !Other.bStatic && Other.GetTeamNum() != GetTeamNum() && !CheckRepeatingTouch(Other))
+		{
+			ProcessBulletTouch(Other, HitLocation, HitNormal);
+		}
+		// Reflect off Wall w/damping
+		VNorm = (Velocity dot HitNormal) * HitNormal;
+		Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
+		Speed = VSize(Velocity);
         //TODO: Add an impact sound here
-
-        bDud = true;
-
-    	if (Other != Instigator && !Other.bStatic)
-    	{
-    		ProcessBulletTouch(Other, HitLocation, HitNormal);
-        }
-
-        if( bWantsClientSideDudHit )
-        {
-            bClientDudHit = true;
-        }
-        LifeSpan=1.0;
-        SetPhysics(PHYS_Falling);
-        GravityScale=1.0;
-
-        // Reflect off Wall w/damping
-        VNorm = (Velocity dot HitNormal) * HitNormal;
-        Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
-        Speed = VSize(Velocity);
-
-        // Replace the flying effects with the dud mesh effects
-        StopFlightEffects();
-        ProjFlightTemplate=ProjDudTemplate;
-        ProjFlightTemplateZedTime=ProjDudTemplate;
-        SpawnFlightEffects();
+		SetIsDud(bWantsClientSideDudHit, HitNormal);
     }
-
-    if( !bDud )
-    {
+	if (!bDud && !bIsTimedExplosive)
+	{
         // Process impact hits
     	if (Other != Instigator && !Other.bStatic)
     	{
 			// check/ignore repeat touch events
-			if( !CheckRepeatingTouch(Other) )
+			if( !CheckRepeatingTouch(Other) && Other.GetTeamNum() != GetTeamNum())
 			{
 				ProcessBulletTouch(Other, HitLocation, HitNormal);
 			}
@@ -327,6 +306,43 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     	StopSimulating();
 	}
 }
+
+/** Handle bullet collision and damage */
+simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+{
+	if (ImpactList.Find(Other) != INDEX_NONE)
+	{
+		return;
+	}
+	if (Other != none)
+	{
+		ImpactList.AddItem(Other);
+	}
+	
+	super.ProcessBulletTouch(Other, HitLocation, HitNormal);
+}
+
+simulated function SetIsDud(bool bWantsClientSideDudHit, vector HitNormal)
+{
+	bDud = true;
+
+	if (bWantsClientSideDudHit)
+	{
+		bClientDudHit = true;
+	}
+	LifeSpan = 1.0;
+	SetPhysics(PHYS_Falling);
+	GravityScale = 1.0;
+
+	// Replace the flying effects with the dud mesh effects
+	StopFlightEffects();
+	ProjFlightTemplate = ProjDudTemplate;
+	ProjFlightTemplateZedTime = ProjDudTemplate;
+	SpawnFlightEffects();
+	OnDudEffect();
+}
+
+simulated function OnDudEffect();
 
 /** Returns a list of hitzone impacts for a collision with a given pawn
 * @note: To trace the PhysicsAsset the pawn cylinder should have BlockZeroExtent=FALSE
@@ -390,6 +406,8 @@ defaultproperties
 
     DampenFactor=0.025000
     DampenFactorParallel=0.050000
+	WallHitDampenFactor=0.025000
+	WallHitDampenFactorParallel=0.050000
     LandedTranslationOffset=(X=2)
 
     bCollideComplex=TRUE	// Ignore simple collision on StaticMeshes, and collide per poly

@@ -536,6 +536,7 @@ class KFDT_Sonic extends KFDamageType
 
 
 
+										  
 
 
 
@@ -552,6 +553,8 @@ class KFDT_Sonic extends KFDamageType
 
 
 										  
+
+
 
 
 

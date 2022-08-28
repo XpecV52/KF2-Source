@@ -56,4 +56,5 @@ defaultproperties
     bEvadeOnRunOverWarning=true
     bIsProbingMeleeRangeEvents=true
     SprintWithinEnemyRange=(X=600,Y=1200)
+    DangerEvadeSettings=/* Array type was not detected. */
 }

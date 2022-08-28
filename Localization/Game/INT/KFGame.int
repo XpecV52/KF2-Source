@@ -1,4 +1,5 @@
 [KFCommon_LocalizedStrings]
+SpecialEffectsString="Special Effects"
 PrestigeWarningString="Reset Perk back to 0?  This cannot be undone."
 PrestigeBonusString="Prestige Bonus"
 FailedToReachInventoryServerString="Failed to reach item server.  Inventory will not be available."
@@ -8,7 +9,6 @@ DifficultyStrings[1]="Hard"
 DifficultyStrings[2]="Suicidal"
 DifficultyStrings[3]="Hell on Earth"
 BonusDoshString="BONUS DOSH"
-
 LengthStrings[0]="Short (4 Waves)"
 LengthStrings[1]="Medium (7 Waves)"
 LengthStrings[2]="Long (10 Waves)"
@@ -19,8 +19,7 @@ ServerTypeStrings[2]="Ranked - Custom"
 ServerTypeStrings[3]="Unranked"
 
 PermissionStrings[0]="Public"
-PermissionStrings[1]="Friends only"
-PermissionStrings[2]="Private-Password"
+PermissionStrings[1]="Private: Passworded"
 
 ConsolePermissionStrings[0]="Public"
 ConsolePermissionStrings[1]="Invite Only"
@@ -108,6 +107,9 @@ DiscordTraderTimeString=": Trader Time"
 DiscordBossWaveString=": Boss Wave"
 DiscordWaveString=": Wave "
 
+StartOfflineGameString="Start Offline Game"
+StartOfflineGameDescriptionString="Starting an offline game will disband your party. \nWould you like to continue?"
+
 ProceedToTutorialString="PROCEED TO TRAINING?"
 ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
 
@@ -164,7 +166,7 @@ ExplosiveString="Door Trap:"
 
 [KFGFxMenu_StartGame]
 CreateMatchString="CREATE MATCH"
-MatchmakingString="ONLINE MATCHMAKING"
+MatchmakingString="FIND A MATCH"
 ConsoleMatchmakingString="PLAY ONLINE"
 ServerBrowserString="Browse Servers"
 NewsPageString="News"
@@ -191,29 +193,30 @@ CouldNotFindGameDescriptionStringPC="No servers matching the search settings wer
 CouldNotFindGameDescriptionStringOrbis="No servers matching the search settings were found. Try different filters."
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="Online Matchmaking"
+MultiplayerString="Find A Match"
 ConsoleMultiplayerString="Play Online"
+CreateGameString="Create A Match"
 SoloString="Play Solo Offline"
 TutorialString="Basic Training"
 
 [StartMenuHelperText]
-modeList0="Survival – PVE battle waves of AI controlled Zeds"
-modeList1="Weekly Outbreak – A different variant game mode each week."
-modeList2="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
-modeList3="Endless - Battle waves of AI controlled Zed until death"
-difficultyList0="Normal – For beginning players of perk rank 0-5."
-difficultyList1="Hard – For experienced players of perk rank 6-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
-difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and they move even faster. There are even fewer pickups, and you get even less dosh."
-difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
+modeList0="Battle set waves of AI-controlled Zeds"
+modeList1="Battle set waves of AI-controlled Zeds on a unique game mode of the week"
+modeList2="Horzine mercenaries vs waves of Player and AI-controlled Zeds"
+modeList3="Battle unlimited waves of AI-controlled Zeds"
+difficultyList0="Recommended for new players of perk rank 0-5"
+difficultyList1="Recommended for experienced players of perk rank 6-15. Zed speed, health, damage, and amount per wave increase. Players receive less dosh and fewer pickups."
+difficultyList2="Recommended for seasoned players of perk rank 15-25. Zed speed, health, damage, and amount per wave increase further, and some Zeds have new attacks. Players receive even less dosh and fewer pickups."
+difficultyList3="The most intense challenge for players of perk rank 25. Zed speed, health, damage, and amount per wave increase even further. Players receive an even lesser amount of dosh and fewer pickups."
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
-serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
-serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
-serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
-serverTypeList4="No preference - Any of the other server types"
+serverTypeList0="Any map, no mods, no friendly fire, 6 players max, 12 players max for VS Survival"
+serverTypeList1="Official maps, no mods, no friendly fire, 6 players max, 12 players max for VS Survival"
+serverTypeList2="Any map, whitelisted mods, any server setting"
+serverTypeList3="Non-whitelisted mods only"
+serverTypeList4="Any of the other server types"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -269,6 +272,10 @@ BossName="Boss"
 BossCaptionStrings[0]="Boss caption 1"
 BossCaptionStrings[1]="Boss caption 2"
 
+[KFGFxTraderContainer_ErrorMessage]
+CannotAffordString="Insufficient funds for this item."
+CannotCarryString="Cannot carry item. Sell others to make room."
+
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="INVENTORY"
 SelectPerkString="SELECT PERK"
@@ -316,7 +323,7 @@ PingOptionStrings[3]="< 200 MS"
 
 TabStrings[0]="BROWSE"
 TabStrings[1]="FAVORITES"
-TabStrings[2]="FRIENDS"
+TabStrings[2]="PUBLIC FRIENDS"
 TabStrings[3]="HISTORY"
 TabStrings[4]="LAN"
 
@@ -765,6 +772,7 @@ DefaultPlayerName="Player"
 
 PartyLeaderSearchingForMatchString="is searching for a match..."
 PartyLeaderIsUpdatingMatchOptionsString="is setting match options..."
+CreatingGameString="is creating a new game"
 PartyLeaderInServerBrowserString="is searching the server browser..."
 PartyLeaderInOtherMenuString="is in another menu..."
 SearchingForGameString="Searching for online game..."
@@ -897,7 +905,7 @@ NotHightenoughLevelString="Perk not at max level.  User cannot prestige at this 
 CurrentRankString="CURRENT RANK"
 NextRankString="NEXT RANK"
 RewardString="PRESTIGE REWARDS"
-PrestigeDescriptionString="> Perk level will reset to 0. \n> Permanent +30% XP bonus modifier applied at end of game matches for this Perk. \n> Earn modified Perk icon, Vault Dosh, and a unique weapon skin for this Perk."
+PrestigeDescriptionString="> Perk level will reset to 0. \n> Permanent +%x%% XP bonus modifier applied for this Perk. \n> Earn modified Perk icon, Vault Dosh, and a unique weapon skin for this Perk."
 PrestigeWarningString1="ACTION WILL RESET THIS PERK TO 0"
 PrestigeWarningString2="ONLY CONTINUE IF YOU ARE POSITIVELY SURE"
 PrestigeWarningString3="ONCE IT'S DONE, IT'S DONE"
@@ -911,11 +919,13 @@ TotalString="Total"
 CheckOutString="Check Out"
 
 [KFGFxStoreContainer_Main]
+FeaturedString="Featured"
 WeaponSkinsRotationString="Weapon Skins"
 WeaponSkinsString="Market Weapon Skins"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"
 MarketEmotesString="Market Emotes"
+MarketSFXString="Market SFX"
 ThankYouString="Thank you for your purchase! It will help us in developing new items, maps, weapons, zeds, and game modes for future updates."
 
 [KFGFxStoreContainer_Details]
@@ -940,6 +950,7 @@ MenuStrings[7]="EXIT"
 
 ServerBrowserString="SERVER BROWSER"
 MatchmakingString="MATCHMAKING"
+CreateGameString="CREATE GAME"
 SoloString="SOLO"
 OverviewString="MATCH OVERVIEW"
 
@@ -1230,6 +1241,7 @@ AntiMotionSicknessString="Anti Motion Sickness"
 AutoTurnOffString="No Auto Turn On Clot Grab"
 ReduceHighPitchNoiseString="Reduce High Pitch Noise"
 DisableAutoUpgradeString="Disable Auto-Trade"
+HideRemodeHeadshotEffectsString="Disable Remote Headshot effects"
 
 EnableMixerString="Enable Mixer"
 DisableMixerString="Disable Mixer"
@@ -1782,7 +1794,7 @@ EatLead="Eat Lead"
 EatLeadDescription="Increase magazine capacity of perk weapons 100%."
 
 RapidFire="ZED TIME - Machine Gunner"
-RapidFireDescription="During Zed time, you do 3% more damage with perk weapons and shoot 3x faster with all guns."
+RapidFireDescription="During Zed time, you do 3% more damage and shoot 3x faster with perk weapons."
 
 Professional="ZED TIME - Tactician"
 ProfessionalDescription="During Zed time, you reload perk weapons at full speed and switch perk weapons twice as fast."
@@ -2316,6 +2328,7 @@ USBSpitfire="Spit Fire USB Key - $2.49"
 USBHighVoltage="High Voltage USB Key - $2.49"
 MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 FreeTrial="Purchase Killing Floor 2 today!"
+FeaturedCrossover="Featured Crossover Promotion"
 
 [Objectives]
 HoldVolume="DEFEND THE AREA"
@@ -2474,6 +2487,8 @@ zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="Chivalry Promo"
+KFWeap_ChainBat="Road Redemption Promo"
+KFWeap_MKB="Hans' Halloween Weapon"
 
 
 Source0="Chivalry Promo"
@@ -2504,6 +2519,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="Flush Rush",DescriptionString="Tr
 SpecialEventObjectiveInfoList[4]=(TitleString="A Fine Vessel",DescriptionString="Win a match on Hard or higher in Airship")
 
 AllCompleteRewardDescriptionString="Steampunk Outfit Bundle"
+
+ChanceDropDescriptionStrings[0]="Prize Ticket"
+ChanceDropDescriptionStrings[1]="Gold Ticket"
+
+[KFGFxFallObjectivesContainer]
+CurrentSpecialEventString="Complete the objectives in Monster Ball to earn rewards!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Trick or Trap!",DescriptionString="Use traps to kill 25 Zeds in one game session")
+SpecialEventObjectiveInfoList[1]=(TitleString="Dead Men Tell No Tales",DescriptionString="Bust 10 glowing skull collectibles")
+SpecialEventObjectiveInfoList[2]=(TitleString="Monster Mash",DescriptionString="Kill 2500 Zeds")
+SpecialEventObjectiveInfoList[3]=(TitleString="Party All Night Long",DescriptionString="Complete wave 25 on Endless Hard or higher difficulty")
+SpecialEventObjectiveInfoList[4]=(TitleString="Lord of the Castle",DescriptionString="Defeat Count Hans on Survival Hard or higher difficulty")
+
+AllCompleteRewardDescriptionString="Hans' Halloween MKB Skin"
 
 ChanceDropDescriptionStrings[0]="Prize Ticket"
 ChanceDropDescriptionStrings[1]="Gold Ticket"
@@ -2945,37 +2974,21 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
-[KF-Lockdown KFMapSummary]
-DisplayName_CHN="封锁"
-DisplayName_CHT="封鎖"
-DisplayName_DEU="Sperrmodus"
-DisplayName_ESL="Bloqueo"
-DisplayName_ESN="Bloqueo"
-DisplayName_FRA="Confinement"
-DisplayName_FRC="Confinement"
-DisplayName_INT="Lockdown"
-DisplayName_ITA="Debilitazione"
-DisplayName_JPN="ロックダウン"
-DisplayName_KOR="락다운"
-DisplayName_POL="Kwarantanna"
-DisplayName_PTB="Confinamento"
-DisplayName_RUS="Изоляция"
-
-[KF-Airship KFMapSummary]
-DisplayName_CHN="飞艇"
-DisplayName_CHT="飛艇"
-DisplayName_DEU="Luftschiff"
-DisplayName_ESL="Aeronave"
-DisplayName_ESN="Aeronave"
-DisplayName_FRA="Dirigeable"
-DisplayName_FRC="Dirigeable"
-DisplayName_INT="Airship"
-DisplayName_ITA="Aeronave"
-DisplayName_JPN="飛行船"
-DisplayName_KOR="비행선"
-DisplayName_POL="Statek powietrzny"
-DisplayName_PTB="Aeronave"
-DisplayName_RUS="Воздушное судно"
+[KF-MonsterBall KFMapSummary]
+DisplayName_CHN="怪物球"
+DisplayName_CHT="怪獸舞會"
+DisplayName_DEU="Monsterball"
+DisplayName_ESL="Baile de monstruos"
+DisplayName_ESN="Baile de monstruos"
+DisplayName_FRA="Bal des monstres"
+DisplayName_FRC="Bal des monstres"
+DisplayName_INT="Monster Ball"
+DisplayName_ITA="Festa dei mostri"
+DisplayName_JPN="Monster Ball"
+DisplayName_KOR="괴물 무도회"
+DisplayName_POL="Bal potworów"
+DisplayName_PTB="Baile de Monstros"
+DisplayName_RUS="Бал монстров"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
@@ -3051,6 +3064,10 @@ DisplayName="Lockdown"
 
 [KF-Airship KFMapSummary]
 DisplayName="Airship"
+
+[KF-MonsterBall KFMapSummary]
+DisplayName="Monster Ball"
+
 
 [KFMapInfo]
 ; defaults

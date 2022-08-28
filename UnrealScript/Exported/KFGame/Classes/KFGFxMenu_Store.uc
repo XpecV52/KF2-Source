@@ -176,17 +176,17 @@ function Callback_AddToCartClicked(int ItemSKU)
 {
 	local ItemProperties StoreItemDetails;
 
-	if(OnlineSub != none)
+	if (OnlineSub != none)
 	{
 		StoreItemDetails = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemSKU)];
 
-		if( class'WorldInfo'.static.IsConsoleBuild() )
+		if (class'WorldInfo'.static.IsConsoleBuild())
 		{
-			if( StoreItemDetails.SignedOfferId != "" )
+			if (StoreItemDetails.SignedOfferId != "")
 			{
-				if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Durango ) )
+				if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
 				{
-					OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI( GetLP().ControllerId, StoreItemDetails.ProductID );
+					OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI(GetLP().ControllerId, StoreItemDetails.ProductID);
 				}
 				else
 				{
@@ -194,14 +194,14 @@ function Callback_AddToCartClicked(int ItemSKU)
 				}
 			}
 		}
-		else if( StoreItemDetails.Price == "" )
+		else if (StoreItemDetails.Price == "")
 		{
 			OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
 		}
 		else
 		{
 			OnlineSub.OpenItemPurchaseOverlay(ItemSKU);
-		}		
+		}
 	}
 }
 
@@ -221,10 +221,18 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
 	}
 	SetObject("storeItemDetails", CreateStoreItem(StoreItemDetails));
 
-	if( class'WorldInfo'.static.IsConsoleBuild() && StoreItemDetails.Price != "" )
+	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
-		AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.AddToCartString);
-		AddCartButton.SetVisible( true );
+		if (StoreItemDetails.Price != "")
+		{
+			AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.AddToCartString);
+			AddCartButton.SetVisible(true);
+		}
+		else
+		{
+			AddCartButton.SetString("label", "");
+			AddCartButton.SetVisible(false);
+		}
 	}
 }
 

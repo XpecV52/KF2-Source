@@ -115,7 +115,7 @@ package tripwire.controls.objectiveStart
                 }
                 label = !!data.label ? data.label : "";
                 this.checkBoxCheck.visible = !!data.complete ? Boolean(data.complete) : false;
-                this.progressBar.visible = !!data.showProgres ? Boolean(data.showProgres) : false;
+                this.progressBar.visible = !!data.showProgress ? Boolean(data.showProgress) : false;
                 this.progressBar.progress = !!data.progress ? Number(data.progress) : Number(0);
                 this.progressBar.progressText.text = !!data.textValue ? data.textValue : "";
             }

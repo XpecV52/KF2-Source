@@ -66,6 +66,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 var KFGFxPerksContainer_Selection SelectionContainer;
 var KFGFxPerksContainer_Header HeaderContainer;
@@ -382,10 +384,10 @@ function ConfirmPrestige()
 {
     if(KFPC != none)
     {
+        ActionScriptVoid("playPrestigeAnimation");
         KFPC.PerformPrestigeReset(KFPC.CurrentPerk.Class);
         Class'KFMusicStingerHelper'.static.PlayPerkPrestigeStinger(KFPC);
         OnOpen();
-        ActionScriptVoid("playPrestigeAnimation");
     }
 }
 
@@ -403,7 +405,7 @@ function Callback_ConfirmPerkReset()
         }
         else
         {
-            if(KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 1)
+            if(KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 2)
             {
                 Manager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFGFxPerksContainer_Prestige'.default.AtMaxPrestigeLevelString, Class'KFCommon_LocalizedStrings'.default.ConfirmString);                
             }

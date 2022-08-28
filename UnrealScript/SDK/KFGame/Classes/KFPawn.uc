@@ -198,6 +198,8 @@ struct native KFHitFxInfo
 	var bool				bRadialDamage;
 	/** Whether the pawn was obliterated */
 	var bool 				bObliterated;
+	//for special hit effects
+	var PlayerReplicationInfo DamagerPRI;
 };
 
 /** Additional replicated data if bRadialDamage = true */
@@ -2560,11 +2562,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	OldHealth = Health;
 	Super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
 
-    //Handle afflictions
-    if (AfflictionHandler != None)
-    {
-        AfflictionHandler.NotifyTakeHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType, DamageCauser);
-    }
+	HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType, DamageCauser);
 
 	ActualDamage = OldHealth - Health;
 	if( ActualDamage > 0 )
@@ -3382,6 +3380,12 @@ function AddHitFX(int Damage, Controller InstigatedBy, int HitZoneIdx, Vector Hi
 		HitFxInfo.HitBoneIndex = HitZoneIdx;
 		HitFxInfo.bRadialDamage = bTakingRadiusDamage;
 		HitFxInfo.DamageType = KFDT; 	// If we do not have a damagetype, replicate none
+		if (InstigatedBy != none)
+		{
+			HitFxInfo.DamagerPRI = InstigatedBy.PlayerReplicationInfo;
+		}
+
+
 		LastTakeHitTimeout = WorldInfo.TimeSeconds + (0.5f);
 
 		if (bTakingRadiusDamage && !IsZero(LastRadiusHurtOrigin))
@@ -3847,6 +3851,15 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
  * based on current situation / state.
  */
 simulated function AdjustAffliction(out float AfflictionPower);
+
+function HandleAfflictionsOnHit(Controller DamageInstigator, vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
+{
+	//Handle afflictions
+    if (AfflictionHandler != None)
+    {
+        AfflictionHandler.NotifyTakeHit(DamageInstigator, HitDir, DamageType, DamageCauser);
+    }
+}
 
 /*********************************************************************************************
  * @name	Damage over Time

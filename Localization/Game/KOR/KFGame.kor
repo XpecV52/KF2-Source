@@ -1,6 +1,7 @@
 [KFCommon_LocalizedStrings]
+SpecialEffectsString="특수 효과"
 PrestigeWarningString="병과를 0으로 초기화하시겠습니까? 이 작업은 취소할 수 없습니다."
-PrestigeBonusString="유명 보너스"
+PrestigeBonusString="프레스티지 보너스"
 FailedToReachInventoryServerString="아이템 서버에 연결하지 못했습니다. 소지품을 이용할 수 없게 됩니다."
 LoadingString="로딩 중..."
 DifficultyStrings[0]="보통"
@@ -8,7 +9,6 @@ DifficultyStrings[1]="어려움"
 DifficultyStrings[2]="자살행위"
 DifficultyStrings[3]="생지옥"
 BonusDoshString="보너스 도쉬"
-
 LengthStrings[0]="짧음 (4 웨이브)"
 LengthStrings[1]="중간 (7 웨이브)"
 LengthStrings[2]="김 (10 웨이브)"
@@ -19,8 +19,7 @@ ServerTypeStrings[2]="랭크 - 커스텀"
 ServerTypeStrings[3]="언랭크"
 
 PermissionStrings[0]="공개"
-PermissionStrings[1]="친구만"
-PermissionStrings[2]="비공개-패스워드"
+PermissionStrings[1]="비공개-패스워드"
 
 ConsolePermissionStrings[0]="공개"
 ConsolePermissionStrings[1]="초대 전용"
@@ -108,6 +107,9 @@ DiscordTraderTimeString=": 상인 시간"
 DiscordBossWaveString=": 보스 웨이브"
 DiscordWaveString=": 웨이브"
 
+StartOfflineGameString="온라인 게임 시작"
+StartOfflineGameDescriptionString="오프라인 게임을 시작하면 파티가 해산됩니다. \n계속 하시겠습니까?"
+
 ProceedToTutorialString="훈련을 진행하시겠습니까?"
 ProceedToTutorialDescriptionString="통제된 환경으로 가서 기본 사항을 배우십시오.  완료되면 선택한 레벨 0 병과를 레벨 1에 부여하십시오."
 
@@ -164,7 +166,7 @@ ExplosiveString="도어 트랩:"
 
 [KFGFxMenu_StartGame]
 CreateMatchString="대전 생성"
-MatchmakingString="온라인 대전상대 찾기"
+MatchmakingString="대전 찾기"
 ConsoleMatchmakingString="온라인 플레이"
 ServerBrowserString="서버 검색"
 NewsPageString="뉴스"
@@ -191,29 +193,30 @@ CouldNotFindGameDescriptionStringPC="설정에 맞는 서버 검색불가. 다�
 CouldNotFindGameDescriptionStringOrbis="설정에 맞는 서버 검색불가. 다른 필터를 이용하십시오."
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="온라인 대전상대 찾기"
+MultiplayerString="대전 찾기"
 ConsoleMultiplayerString="온라인 플레이"
+CreateGameString="대전 생성"
 SoloString="솔로 오프라인 플레이"
 TutorialString="기본 훈련"
 
 [StartMenuHelperText]
-modeList0="서바이벌 – 인공지능으로 제어되는 제드 웨이브와 PVE 전투"
-modeList1="주간 아웃브레이크 – 매주 다양하고 색다른 게임 모드가 제공됩니다."
-modeList2="VS 서바이벌 – PVP Horzine 용병 대 플레이어 웨이브 및 인공지능으로 제어되는 제드"
-modeList3="무한 - 사망할 때까지 AI가 조종하는 제드의 웨이브와 전투를 치릅니다"
-difficultyList0="일반 - 병과 랭크 0-5의 초보 플레이어"
-difficultyList1="어려움 - 병과 랭크 6-12의 경험 많은 플레이어 웨이브 당 제드는 숫자가 더 많고 더 빠르며 체력이 더 강합니다. 습득할 수 있는 무기가 적고 Dosh도 적게 받습니다."
-difficultyList2="자살행위– 병과 랭크 13-25의 숙련된 플레이어. 웨이브 당 제드의 수는 더 많아지며 새로운 공격을 이용하고 더욱 빨라집니다. 습득할 수 있는 무기는 더 적고 Dosh도 더 적게 받습니다."
-difficultyList3="생지옥 - 병과 랭크 25인 플레이어를 위한 가장 강력한 도전. 웨이브 당 제드가 더 많아지고 새로운 공격을 이용합니다. 습득할 수 있는 무기는 더욱 더 적고 Dosh도 더욱 적게 받습니다."
+modeList0="인공지능이 제어하는 Zed와 정해진 웨이브 수만큼 전투"
+modeList1="이번 주의 특별 게임 모드에서 인공지능이 제어하는 Zed와 정해진 웨이브 수만큼 전투"
+modeList2="Horzine 용병 대 플레이어와 인공지능이 제어하는 Zed 웨이브"
+modeList3="인공지능이 제어하는 Zed와 정해진 무한 웨이브 전투"
+difficultyList0="병과 랭크 0-5의 초보 플레이어에게 추천"
+difficultyList1="병과 랭크 6-15의 경험 많은 플레이어에게 추천 Zed 속도, 체력, 데미지, 웨이브당 수가 증가합니다. 플레이어가 습득하는 도쉬와 무기 수가 적어집니다."
+difficultyList2="병과 랭크 15-25의 고급 플레이어에게 추천 Zed 속도, 체력, 데미지, 웨이브당 수가 더욱 증가하고 일부 Zed는 새로운 공격을 합니다. 플레이어가 습득하는 도쉬와 무기 수가 더욱 적어집니다."
+difficultyList3="병과 랭크 25인 플레이어를 위한 가장 강력한 도전 Zed 속도, 체력, 데미지, 웨이브당 수가 더욱 증가합니다. 플레이어가 습득하는 도쉬와 무기 수가 더욱 적어집니다."
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="랭크 - 모든 맵, 모드 없음, 아군 공격 없음, 최대 6명의 플레이어 (VS 서버이벌의 경우 최대 12명의 플레이어)"
-serverTypeList1="랭크 스톡 - 공식 맵, 모드 없음, 아군 공격 없음, 최대 6명의 플레이어"
-serverTypeList2="랭크 커스텀 - 모든 맵, 화이트리스트 모드, 모든 서버 설정"
-serverTypeList3="언랭크 커스텀 - 화이트리스트가 아닌 모드 (전용)"
-serverTypeList4="설정 없음 - 다른 서버 유형 모두"
+serverTypeList0="모든 맵, 모드 없음, 아군 공격 없음, 최대 6명의 플레이어, VS 서바이벌의 경우 최대 12명의 플레이어"
+serverTypeList1="공식 맵, 모드 없음, 아군 공격 없음, 최대 6명의 플레이어, VS 서바이벌의 경우 최대 12명의 플레이어"
+serverTypeList2="모든 맵, 화이트리스트 모드, 모든 서버 설정"
+serverTypeList3="비 화이트리스트 모드만 허용"
+serverTypeList4="다른 서버 유형 모두"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -268,6 +271,10 @@ BossWaveString="보스"
 BossName="보스"
 BossCaptionStrings[0]="보스 자막 1"
 BossCaptionStrings[1]="보스 자막 2"
+
+[KFGFxTraderContainer_ErrorMessage]
+CannotAffordString="이 아이템을 구매할 재화가 부족합니다."
+CannotCarryString="아이템을 들 수 없습니다. 다른 아이템을 만들어 공간을 만드세요."
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="인벤토리"
@@ -765,6 +772,7 @@ DefaultPlayerName="플레이어"
 
 PartyLeaderSearchingForMatchString="님이 대전을 검색하고 있습니다..."
 PartyLeaderIsUpdatingMatchOptionsString="님이 대전 옵션을 설정 중입니다..."
+CreatingGameString="님이 새로운 게임 생성 중"
 PartyLeaderInServerBrowserString="님이 서버 브라우저를 검색 중입니다..."
 PartyLeaderInOtherMenuString="님이 다른 메뉴에 있습니다..."
 SearchingForGameString="온라인 게임 검색..."
@@ -897,7 +905,7 @@ NotHightenoughLevelString="병과가 최대 레벨이 아닙니다. 사용자가
 CurrentRankString="현재 랭크"
 NextRankString="다음 랭크"
 RewardString="프레스티지 보상"
-PrestigeDescriptionString="> 병과 레벨을 0으로 초기화합니다. \n> 이 병과는 영구적으로 게임 종료 시 +30% XP 보너스를 적용합니다. \n> 이 병과의 편집된 병과 아이콘, 볼트 도쉬 및 유니크 무기 스킨을 획득하세요."
+PrestigeDescriptionString=">병과 레벨을 0으로 초기화 \n>이 병과 사용 시 +%x%% XP 보너스 영구 적용 \n>이 병과 사용 시 변경된 병과 아이콘, 볼트 도쉬, 유니크 무기 스킨 획득"
 PrestigeWarningString1="이 병과가 0으로 초기화됩니다."
 PrestigeWarningString2="계속하기 전에 내용을 꼭 확인하세요."
 PrestigeWarningString3="진행하면 되돌릴 수 없습니다."
@@ -911,11 +919,13 @@ TotalString="총계"
 CheckOutString="결제"
 
 [KFGFxStoreContainer_Main]
+FeaturedString="기능"
 WeaponSkinsRotationString="무기 스킨"
 WeaponSkinsString="무기 스킨 거래"
 MarketConsumablesString="상자/USB 거래"
 MarketCosmeticsString="꾸미기 거래"
 MarketEmotesString="시장 Emote"
+MarketSFXString="마켓 SFX"
 ThankYouString="구매해주셔서 감사합니다! 새 아이템, 지도, 무기, 제드 및 게임 모드를 개발하여 이후 업데이트로 제공하는 데 많은 도움이 됩니다."
 
 [KFGFxStoreContainer_Details]
@@ -940,6 +950,7 @@ MenuStrings[7]="나가기"
 
 ServerBrowserString="서버 브라우저"
 MatchmakingString="대전상대 찾기"
+CreateGameString="게임 생성"
 SoloString="솔로"
 OverviewString="대전 개요"
 
@@ -1230,6 +1241,7 @@ AntiMotionSicknessString="멀미 방지"
 AutoTurnOffString="클롯 잡기 자동 켜짐 방지"
 ReduceHighPitchNoiseString="고음역 소음 감소"
 DisableAutoUpgradeString="자동 거래 비활성화"
+HideRemodeHeadshotEffectsString="원격 헤드샷 이펙트 비활성화"
 
 EnableMixerString="토글 Mixer 상호작용"
 DisableMixerString="Mixer 비활성화"
@@ -2315,7 +2327,8 @@ HorzineSupplyCrateKey13="Horzine 보급상자 열쇠 | 시리즈 13 - $2.49"
 USBSpitfire="스핏 파이어 USB 키 - $2.49"
 USBHighVoltage="고전압 USB 키 - $2.49"
 MerchSale="KF2 장비 세일! 2017년 4월 30일까지 25% 할인됩니다. 프로모 코드 ZED"
-FreeTrial="게임 완전판 구입"
+FreeTrial="오늘 Killing Floor 2를 구매하세요!"
+FeaturedCrossover="주요 크로스오버 프로모션"
 
 [Objectives]
 HoldVolume="구역 방어"
@@ -2474,6 +2487,8 @@ zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="기사 프로모션"
+KFWeap_ChainBat="Road Redemption 프로모션"
+KFWeap_MKB="한스 할로윈 무기"
 
 
 Source0="기사 프로모션"
@@ -2504,6 +2519,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="플러쉬 러쉬",DescriptionStri
 SpecialEventObjectiveInfoList[4]=(TitleString="멋진 비행선",DescriptionString="비행선 어려움 이상 난이도 대전에서 승리하기");
 
 AllCompleteRewardDescriptionString="스팀펑크 복장 번들"
+
+ChanceDropDescriptionStrings[0]="상품권"
+ChanceDropDescriptionStrings[1]="골드 티켓"
+
+[KFGFxFallObjectivesContainer]
+CurrentSpecialEventString="괴물 무도회에서 목표를 달성하고 보상을 받으세요!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="속거나 속이거나!",DescriptionString="한 게임 세션에서 함정을 사용하여 Zed 25마리 죽이기");
+SpecialEventObjectiveInfoList[1]=(TitleString="죽은 자는 말이 없다",DescriptionString="빛나는 해골 수집품 10개 파괴하기");
+SpecialEventObjectiveInfoList[2]=(TitleString="괴물 곤죽",DescriptionString="Zed 2500마리 죽이기");
+SpecialEventObjectiveInfoList[3]=(TitleString="밤샘 파티",DescriptionString="끝없는 도전 어려움 또는 그 이상 난이도에서 25 웨이브 완료하기");
+SpecialEventObjectiveInfoList[4]=(TitleString="성의 주인",DescriptionString="서바이벌 어려움 또는 그 이상 난이도에서 한스 백작 해치우기");
+
+AllCompleteRewardDescriptionString="한스 할로윈 MKB 스킨"
 
 ChanceDropDescriptionStrings[0]="상품권"
 ChanceDropDescriptionStrings[1]="골드 티켓"
@@ -2945,37 +2974,21 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
-[KF-Lockdown KFMapSummary]
-DisplayName_CHN="封锁"
-DisplayName_CHT="封鎖"
-DisplayName_DEU="Sperrmodus"
-DisplayName_ESL="Bloqueo"
-DisplayName_ESN="Bloqueo"
-DisplayName_FRA="Confinement"
-DisplayName_FRC="Confinement"
-DisplayName_INT="Lockdown"
-DisplayName_ITA="Debilitazione"
-DisplayName_JPN="ロックダウン"
-DisplayName_KOR="락다운"
-DisplayName_POL="Kwarantanna"
-DisplayName_PTB="Confinamento"
-DisplayName_RUS="Изоляция"
-
-[KF-Airship KFMapSummary]
-DisplayName_CHN="飞艇"
-DisplayName_CHT="飛艇"
-DisplayName_DEU="Luftschiff"
-DisplayName_ESL="Aeronave"
-DisplayName_ESN="Aeronave"
-DisplayName_FRA="Dirigeable"
-DisplayName_FRC="Dirigeable"
-DisplayName_INT="Airship"
-DisplayName_ITA="Aeronave"
-DisplayName_JPN="飛行船"
-DisplayName_KOR="비행선"
-DisplayName_POL="Statek powietrzny"
-DisplayName_PTB="Aeronave"
-DisplayName_RUS="Воздушное судно"
+[KF-MonsterBall KFMapSummary]
+DisplayName_CHN="怪物球"
+DisplayName_CHT="怪獸舞會"
+DisplayName_DEU="Monsterball"
+DisplayName_ESL="Baile de monstruos"
+DisplayName_ESN="Baile de monstruos"
+DisplayName_FRA="Bal des monstres"
+DisplayName_FRC="Bal des monstres"
+DisplayName_INT="Monster Ball"
+DisplayName_ITA="Festa dei mostri"
+DisplayName_JPN="Monster Ball"
+DisplayName_KOR="괴물 무도회"
+DisplayName_POL="Bal potworów"
+DisplayName_PTB="Baile de Monstros"
+DisplayName_RUS="Бал монстров"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="바이오틱스 연구소"
@@ -3051,6 +3064,9 @@ DisplayName="락다운"
 
 [KF-Airship KFMapSummary]
 DisplayName="비행선"
+
+[KF-MonsterBall KFMapSummary]
+DisplayName="괴물 무도회"
 
 [KFMapInfo]
 ; defaults

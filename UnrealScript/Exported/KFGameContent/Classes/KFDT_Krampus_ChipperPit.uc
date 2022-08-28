@@ -39,6 +39,7 @@ defaultproperties
 {
    SeasonIndex=SEI_Winter
    ObjectiveIndex=1
+   bIsTrapDamage=True
    Name="Default__KFDT_Krampus_ChipperPit"
    ObjectArchetype=KFDT_Bludgeon'KFGame.Default__KFDT_Bludgeon'
 }

@@ -1,4 +1,5 @@
 [KFCommon_LocalizedStrings]
+SpecialEffectsString="Efekty specjalne"
 PrestigeWarningString="Chcesz przywrócić specjalizację do poziomu 0? Nie można tego cofnąć."
 PrestigeBonusString="Premia prestiżu"
 FailedToReachInventoryServerString="Nie połączono z serwerem przedmiotów. Ekwipunek nie będzie dostępny."
@@ -8,7 +9,6 @@ DifficultyStrings[1]="Wysoki"
 DifficultyStrings[2]="Samobójczy"
 DifficultyStrings[3]="Piekło na Ziemi"
 BonusDoshString="DODATKOWA FORSA"
-
 LengthStrings[0]="Krótka (4 fale)"
 LengthStrings[1]="Średnia (7 fal)"
 LengthStrings[2]="Długa (10 fal)"
@@ -19,8 +19,7 @@ ServerTypeStrings[2]="Rankingowy – niestand."
 ServerTypeStrings[3]="Nierankingowy"
 
 PermissionStrings[0]="Gra publiczna"
-PermissionStrings[1]="Tylko znajomi"
-PermissionStrings[2]="Prywatna (hasło)"
+PermissionStrings[1]="Prywatna (hasło)"
 
 ConsolePermissionStrings[0]="Gra publiczna"
 ConsolePermissionStrings[1]="Tylko zaproszeni"
@@ -108,6 +107,9 @@ DiscordTraderTimeString=": Czas handlu"
 DiscordBossWaveString=": Fala – boss"
 DiscordWaveString=": Fala"
 
+StartOfflineGameString="Rozpocznij grę offline"
+StartOfflineGameDescriptionString="Rozpoczęcie gry offline spowoduje rozwiązanie drużyny. \nCzy chcesz kontynuować?"
+
 ProceedToTutorialString="PRZEJŚĆ DO SZKOLENIA?"
 ProceedToTutorialDescriptionString="Naucz się podstaw w kontrolowanym środowisku.  Po ukończeniu zapewnia wybrane klasy poziomu 0-1."
 
@@ -164,7 +166,7 @@ ExplosiveString="Zaminowane drzwi:"
 
 [KFGFxMenu_StartGame]
 CreateMatchString="STWÓRZ ROZGRYWKĘ"
-MatchmakingString="MATCHMAKING ONLINE"
+MatchmakingString="ZNAJDŹ ROZGRYWKĘ"
 ConsoleMatchmakingString="GRAJ ONLINE"
 ServerBrowserString="Przeglądaj serwery"
 NewsPageString="Aktualności"
@@ -191,29 +193,30 @@ CouldNotFindGameDescriptionStringPC="Nie znaleziono serwerów pasujących do kry
 CouldNotFindGameDescriptionStringOrbis="Nie znaleziono serwerów pasujących do kryteriów. Spróbuj innych filtrów."
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="Matchmaking online"
+MultiplayerString="Znajdź rozgrywkę"
 ConsoleMultiplayerString="Graj online"
+CreateGameString="Stwórz rozgrywkę"
 SoloString="Graj solo offline"
 TutorialString="Szkolenie podstawowe"
 
 [StartMenuHelperText]
-modeList0="Przetrwanie – bitwa PVE przeciw falom zetów kontrolowanych przez SI"
-modeList1="Tygodniowy incydent – co tydzień inny rodzaj trybu gry."
-modeList2="Przetrwanie VS – bitwa PVP pomiędzy najemnikami Horzine a falami zetów kontrolowanych przez graczy i SI"
-modeList3="Bez końca – Walcz z falami sterowanych przez SI zetów, aż zginiesz"
-difficultyList0="Zwykły – dla początkujących graczy o randze specjalizacji 0–5."
-difficultyList1="Wysoki – dla doświadczonych graczy o randze specjalizacji 6–12. W falach jest więcej zetów, które poruszają się szybciej i mają więcej zdrowia. Znajdujesz mniej przedmiotów i otrzymujesz mniej forsy."
-difficultyList2="Samobójczy – dla wytrawnych graczy o randze specjalizacji 13–25. W każdej fali jest jeszcze więcej zetów, które używają nowych ataków i poruszają się jeszcze szybciej. Znajdujesz jeszcze mniej przedmiotów i otrzymujesz jeszcze mniej forsy."
-difficultyList3="Piekło na Ziemi – największe wyzwanie dla graczy o randze specjalizacji 25. W każdej fali jest jeszcze więcej zetów, które używają nowych ataków. Znajdujesz dużo mniej przedmiotów i otrzymujesz dużo mniej forsy."
+modeList0="Walcz z ustalonymi falami sterowanych przez SI zetów"
+modeList1="Walcz z ustalonymi falami sterowanych przez SI zetów w wyjątkowym trybie tygodnia"
+modeList2="Najemnicy Horzine kontra fale zetów kontrolowanych przez graczy i SI"
+modeList3="Walka z niekończącymi się falami sterowanych przez SI zetów"
+difficultyList0="Zalecane dla początkujących graczy o randze specjalizacji 0–5"
+difficultyList1="Zalecane dla doświadczonych graczy o randze specjalizacji 6–15. Co falę rośnie prędkość, zdrowie, obrażenia i liczba zetów. Gracze otrzymują mniej forsy i przedmiotów."
+difficultyList2="Zalecane dla wytrawnych graczy o randze specjalizacji 15–25. Co falę rośnie prędkość, zdrowie, obrażenia i liczba zetów. Oprócz tego część zetów ma nowe ataki. Gracze otrzymują jeszcze mniej forsy i mniej zedmiotów."
+difficultyList3="Największe wyzwanie dla graczy o randze specjalizacji 25. Co falę jeszcze bardziej rośnie prędkość, zdrowie, obrażenia i liczba zetów. Gracze otrzymują jeszcze mniejszą ilość forsy i mniej przedmiotów."
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="Rankingowy – dowolna mapa, bez modów, bez ostrzału własnego, maks. 6 graczy (w przypadku Przetrwania VS maks. 12 graczy)"
-serverTypeList1="Rankingowy standardowy – oficjalne mapy, bez modów, bez ostrzału własnego, maks. 6 graczy"
-serverTypeList2="Rankingowy niestandardowy – dowolna mapa, mody z listy dozwolonych, dowolne ustawienia serwera"
-serverTypeList3="Nierankingowy niestandardowy – mody spoza listy dozwolonych (tylko)"
-serverTypeList4="Dowolnie — każdy inny typ serwera"
+serverTypeList0="Dowolna mapa, bez modów, bez ostrzału własnego, maks. 6 graczy (maks. 12 graczy w przypadku Przetrwania VS)"
+serverTypeList1="Oficjalne mapy, bez modów, bez ostrzału własnego, maks. 6 graczy (maks. 12 graczy w przypadku Przetrwania VS)"
+serverTypeList2="Dowolna mapa, mody z listy dozwolonych, dowolne ustawienia serwera"
+serverTypeList3="Tylko mody spoza listy dozwolonych"
+serverTypeList4="Każdy inny typ serwera"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -268,6 +271,10 @@ BossWaveString="BOSS"
 BossName="Boss"
 BossCaptionStrings[0]="Boss caption 1"
 BossCaptionStrings[1]="Boss caption 2"
+
+[KFGFxTraderContainer_ErrorMessage]
+CannotAffordString="Za mało funduszy na ten przedmiot."
+CannotCarryString="Brak miejsca. Sprzedaj coś, by zwolnić miejsce."
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="EKWIPUNEK"
@@ -765,6 +772,7 @@ DefaultPlayerName="Gracz"
 
 PartyLeaderSearchingForMatchString="wyszukuje rozgrywkę…"
 PartyLeaderIsUpdatingMatchOptionsString="ustawia opcje rozgrywki…"
+CreatingGameString="tworzy nową grę"
 PartyLeaderInServerBrowserString="korzysta z przeglądarki serwerów…"
 PartyLeaderInOtherMenuString="jest w innym menu…"
 SearchingForGameString="Wyszukiwanie gry online…"
@@ -897,7 +905,7 @@ NotHightenoughLevelString="Specjalizacja nie jest na maksymalnym poziomie. Użyt
 CurrentRankString="AKTUALNA RANGA"
 NextRankString="NASTĘPNA RANGA"
 RewardString="NAGRODY"
-PrestigeDescriptionString="> Specjalizacja zostanie przywrócona do poziomu 0. \n> Stały modyfikator premii +30% PD, stosowany na zakończenie rozgrywki dla tej specjalizacji. \n> Zdobądź zmodyfikowany symbol specjalizacji, skarbiec z forsą, oraz unikalną skórkę broni dla tej specjalizacji."
+PrestigeDescriptionString="> Poziom specjalizacji zostanie wyzerowany. \n> Do tej specjalizacji zostanie dodana stała premia +%x%% do PD. \n> Zdobądź zmodyfikowaną ikonę specjalizacji, forsę ze skarbca i unikalną skórkę broni dla tej specjalizacji."
 PrestigeWarningString1="SPECJALIZACJA UZYSKA POZIOM 0"
 PrestigeWarningString2="KONTYNUUJ, JEŻELI MASZ PEWNOŚĆ"
 PrestigeWarningString3="CZYNNOŚCI NIE DA SIĘ COFNĄĆ"
@@ -911,11 +919,13 @@ TotalString="Łącznie"
 CheckOutString="Zapłać"
 
 [KFGFxStoreContainer_Main]
+FeaturedString="Wyróżnione"
 WeaponSkinsRotationString="Skórki broni"
 WeaponSkinsString="Rynkowe skórki broni"
 MarketConsumablesString="Rynkowe skrzynie/USB"
 MarketCosmeticsString="Rynkowe ozdoby"
 MarketEmotesString="Rynkowe emocje"
+MarketSFXString="Efektu rynku"
 ThankYouString="Dziękujemy za zakup! Pomoże nam w tworzeniu nowych przedmiotów, map, broni, zetów i trybów gry do kolejnych aktualizacji."
 
 [KFGFxStoreContainer_Details]
@@ -940,6 +950,7 @@ MenuStrings[7]="WYJDŹ"
 
 ServerBrowserString="SERWERY"
 MatchmakingString="MATCHMAKING"
+CreateGameString="STWÓRZ GRĘ"
 SoloString="SOLO"
 OverviewString="PRZEGLĄD ROZGRYWKI"
 
@@ -1230,6 +1241,7 @@ AntiMotionSicknessString="Ograniczanie kinetozy"
 AutoTurnOffString="Bez obrotu po złapaniu"
 ReduceHighPitchNoiseString="Redukcja wys. dźwięków"
 DisableAutoUpgradeString="Wyłącz aut. wymianę"
+HideRemodeHeadshotEffectsString="Wył. efekty odl. strzałów w głowę"
 
 EnableMixerString="Wł./Wył. Mixer"
 DisableMixerString="Wyłącz Mixer"
@@ -1396,7 +1408,7 @@ KickVoteNoSpectatorsString="Widzowie nie mogą inicjować głosowania o wyrzucen
 KickedFromServerString="Usunięto cię z serwera"
 BannedFromServerString="Usunięto cię z tego serwera. Nie możesz teraz ponownie dołączyć"
 ServerNoLongerAvailableString="Nie można już dołączyć do serwera"
-SkipTraderTimeString="Aktywowano funkcję „HANDLARKA – POMIŃ”. Aby głosować, wybierz w menu gry opcję „HANDLARKA – POMIŃ”.  Wszyscy gracze muszą wyrazić zgodę."
+SkipTraderTimeString="Akt.  „HANDL. – POMIŃ”. Głosowanie: wybierz  „HANDL. – POMIŃ”.  Wsz. muszą wyrazić zgodę."
 SkipTraderSuccessString="Głosowanie nad pominięciem opcji handlowej zakończone!"
 
 [KFLocalMessage_Game]
@@ -1764,7 +1776,7 @@ LargeMags="Magazynki o dużej pojemności"
 LargeMagsDescription="Pojemność magazynka broni specjalizacji zwiększona o 50%."
 
 Backup="Rezerwa"
-BackupDescription="Obrażenia pistoletu 9 mm i noża zwiększone o 50% oraz o 50% szybsza zmiana broni."
+BackupDescription="50% większe obrażenia za pomocą pistoletu 9 mm i noża oraz o 50% szybsza zmiana broni."
 
 Impact="Pociski udarowe"
 ImpactDescription="Zwiększenie siły oszołamiania broni specjalizacji o 150%."
@@ -1782,7 +1794,7 @@ EatLead="Wypchaj się ołowiem"
 EatLeadDescription="Pojemność magazynka broni specjalizacji zwiększona o 100%."
 
 RapidFire="CZAS ZET – Kaemista"
-RapidFireDescription="W czasie zet zadajesz o 3% większe obrażenia bronią specjalizacji i strzelasz 3 razy szybciej bronią palną."
+RapidFireDescription="W czasie zet zadajesz o 3% większe obrażenia i strzelasz 3 razy szybciej bronią specjalizacji."
 
 Professional="CZAS ZET – Taktyk"
 ProfessionalDescription="W czasie zet przeładowujesz bronie specjalizacji z pełną szybkością i zmieniasz je dwa razy szybciej."
@@ -2315,7 +2327,8 @@ HorzineSupplyCrateKey13="Klucz do skrzyni Horzine | Seria 13 – 2,49 $"
 USBSpitfire="Klucz USB: Spitfire – 2,49 $"
 USBHighVoltage="Klucz USB: Wysokie napięcie – 2,49 $"
 MerchSale="Wyprzedaż KF2! -25% do 30.04.17 Kod promocyjny ZED"
-FreeTrial="KUP PEŁNĄ GRĘ"
+FreeTrial="Kup Killing Floor 2 już dziś!"
+FeaturedCrossover="Specjalna promocja crossover"
 
 [Objectives]
 HoldVolume="BROŃ OBSZARU"
@@ -2474,6 +2487,8 @@ zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="Promocja Chivalry"
+KFWeap_ChainBat="Promocja Odkupienie"
+KFWeap_MKB="Broń Halloween Hansa"
 
 
 Source0="Promocja Chivalry"
@@ -2504,6 +2519,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="Dostawa wody",DescriptionString="
 SpecialEventObjectiveInfoList[4]=(TitleString="Wspaniały okręt",DescriptionString="Wygraj grę na wysokim (albo wyższym) poz. trudności na mapie Statek powietrzny");
 
 AllCompleteRewardDescriptionString="Zestaw „Steampunkowy ubiór”"
+
+ChanceDropDescriptionStrings[0]="Kupon"
+ChanceDropDescriptionStrings[1]="Złoty kupon"
+
+[KFGFxFallObjectivesContainer]
+CurrentSpecialEventString="Ukończ cele w „Balu potworów”, aby zdobyć nagrody!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Pułapka albo psikus!",DescriptionString="Użyj pułapek, aby zabić w jednej sesji gry 25 zetów");
+SpecialEventObjectiveInfoList[1]=(TitleString="Umarlacy milczą",DescriptionString="Rozwal 10 świecących czaszek do zebrania");
+SpecialEventObjectiveInfoList[2]=(TitleString="Potworna jatka",DescriptionString="Zabij 2500 zetów");
+SpecialEventObjectiveInfoList[3]=(TitleString="Impreza całą noc",DescriptionString="Ukończ falę 25 w trybie Bez końca na wysokim lub wyższym poziomie");
+SpecialEventObjectiveInfoList[4]=(TitleString="Władca zamku",DescriptionString="Pokonaj hrabiego Hansa w Przetrwaniu na wysokim lub wyższym poziomie");
+
+AllCompleteRewardDescriptionString="Skórka Halloween do MKB Hansa"
 
 ChanceDropDescriptionStrings[0]="Kupon"
 ChanceDropDescriptionStrings[1]="Złoty kupon"
@@ -2945,37 +2974,21 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
-[KF-Lockdown KFMapSummary]
-DisplayName_CHN="封锁"
-DisplayName_CHT="封鎖"
-DisplayName_DEU="Sperrmodus"
-DisplayName_ESL="Bloqueo"
-DisplayName_ESN="Bloqueo"
-DisplayName_FRA="Confinement"
-DisplayName_FRC="Confinement"
-DisplayName_INT="Lockdown"
-DisplayName_ITA="Debilitazione"
-DisplayName_JPN="ロックダウン"
-DisplayName_KOR="락다운"
-DisplayName_POL="Kwarantanna"
-DisplayName_PTB="Confinamento"
-DisplayName_RUS="Изоляция"
-
-[KF-Airship KFMapSummary]
-DisplayName_CHN="飞艇"
-DisplayName_CHT="飛艇"
-DisplayName_DEU="Luftschiff"
-DisplayName_ESL="Aeronave"
-DisplayName_ESN="Aeronave"
-DisplayName_FRA="Dirigeable"
-DisplayName_FRC="Dirigeable"
-DisplayName_INT="Airship"
-DisplayName_ITA="Aeronave"
-DisplayName_JPN="飛行船"
-DisplayName_KOR="비행선"
-DisplayName_POL="Statek powietrzny"
-DisplayName_PTB="Aeronave"
-DisplayName_RUS="Воздушное судно"
+[KF-MonsterBall KFMapSummary]
+DisplayName_CHN="怪物球"
+DisplayName_CHT="怪獸舞會"
+DisplayName_DEU="Monsterball"
+DisplayName_ESL="Baile de monstruos"
+DisplayName_ESN="Baile de monstruos"
+DisplayName_FRA="Bal des monstres"
+DisplayName_FRC="Bal des monstres"
+DisplayName_INT="Monster Ball"
+DisplayName_ITA="Festa dei mostri"
+DisplayName_JPN="Monster Ball"
+DisplayName_KOR="괴물 무도회"
+DisplayName_POL="Bal potworów"
+DisplayName_PTB="Baile de Monstros"
+DisplayName_RUS="Бал монстров"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorium biotyczne"
@@ -3051,6 +3064,9 @@ DisplayName="Kwarantanna"
 
 [KF-Airship KFMapSummary]
 DisplayName="Statek powietrzny"
+
+[KF-MonsterBall KFMapSummary]
+DisplayName="Bal potworów"
 
 [KFMapInfo]
 ; defaults

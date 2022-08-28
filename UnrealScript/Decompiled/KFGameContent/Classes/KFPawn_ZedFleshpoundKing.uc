@@ -362,6 +362,14 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     }
 }
 
+function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
+{
+    if(ShieldHealthPctByte == 0)
+    {
+        super(KFPawn).HandleAfflictionsOnHit(DamageInstigator, HitDir, DamageType, DamageCauser);
+    }
+}
+
 function SetShieldScale(float InScale)
 {
     ShieldHealthScale = InScale;
@@ -569,6 +577,7 @@ defaultproperties
     begin object name=ShieldEffects class=KFSkinTypeEffects_HansShield
         ImpactFXArray[14]=(Type=EEffectDamageGroup.FXG_Flare)
         ImpactFXArray[15]=(Type=EEffectDamageGroup.FXG_Freeze)
+        ImpactFXArray[16]=(Type=EEffectDamageGroup.FXG_Bludgeon_Chains)
     object end
     // Reference: KFSkinTypeEffects_HansShield'Default__KFPawn_ZedFleshpoundKing.ShieldEffects'
     ShieldImpactEffects=ShieldEffects
@@ -617,6 +626,7 @@ defaultproperties
     MinBlockFOV=0.2
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshpoundKing.FootstepCameraShake0'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.HeadshotAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.King_Fleshpound_AnimGroup'
     LocalizationKey=KFPawn_ZedFleshpoundKing
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -685,12 +695,13 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpoundKing.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpoundKing.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundKing.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundKing.RageAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundKing.HeadshotAkComponent0'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshpoundKing.RageAkComponent0'
     begin object name=BeamHitAC0 class=AkComponent
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn_ZedFleshpoundKing.BeamHitAC0'
-    Components(10)=BeamHitAC0
+    Components(11)=BeamHitAC0
     bAlwaysRelevant=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

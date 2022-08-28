@@ -31,6 +31,8 @@ var const localized string YesString;
 var const localized string NoString;
 var const localized string DisbandPartyString;
 var const localized string LeaveCurrentMenuString;
+var const localized string StartOfflineGameString;
+var const localized string StartOfflineGameDescriptionString;
 var const localized string ZedString;
 var const localized string HumanString;
 var const localized string SpectatorString;
@@ -74,6 +76,7 @@ var const localized string ProceedToTutorialString;
 var const localized string ProceedToTutorialDescriptionString;
 var const localized string NotAvailableInFreeTrialString;
 var const localized string NetworkCheckFreeTrialFailedString;
+var const localized string SpecialEffectsString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -186,8 +189,7 @@ defaultproperties
     ServerTypeStrings(2)="Ranked - Custom"
     ServerTypeStrings(3)="Unranked"
     PermissionStrings(0)="Public"
-    PermissionStrings(1)="Friends only"
-    PermissionStrings(2)="Private-Password"
+    PermissionStrings(1)="Private: Passworded"
     ConsolePermissionStrings(0)="Public"
     ConsolePermissionStrings(1)="Invite Only"
     ModeStrings(0)="Survival"
@@ -209,6 +211,9 @@ defaultproperties
     NoString="NO"
     DisbandPartyString="DISBAND PARTY"
     LeaveCurrentMenuString="Leave current menu?"
+    StartOfflineGameString="Start Offline Game"
+    StartOfflineGameDescriptionString="Starting an offline game will disband your party. 
+Would you like to continue?"
     ZedString="ZED"
     HumanString="SURVIVOR"
     SpectatorString="SPECTATOR"
@@ -268,4 +273,5 @@ defaultproperties
     ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
     NotAvailableInFreeTrialString="Feature Not Available for Free Trial"
     NetworkCheckFreeTrialFailedString="Network Error: Free Event Status Unable to be Verified. Check Network Connection Status"
+    SpecialEffectsString="Special Effects"
 }

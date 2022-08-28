@@ -22,13 +22,20 @@ package tripwire.containers.store
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
+    import tripwire.controls.store.FeaturedStoreListItemRenderer;
     import tripwire.managers.MenuManager;
     
     public class StoreMainContainer extends TripContainer
     {
          
         
+        public var storeItemFeaturedScrollingList:TileList;
+        
         public var storeItemScrollingList:TileList;
+        
+        public var scrollbarFeatured:ScrollBar;
+        
+        public var featuredButton:Button;
         
         public var allButton:Button;
         
@@ -40,6 +47,8 @@ package tripwire.containers.store
         
         public var consumablesButton:Button;
         
+        public var sfxButton:Button;
+        
         public var marketWeaponSkinsButton:Button;
         
         public var marketCosmeticsButton:Button;
@@ -48,11 +57,15 @@ package tripwire.containers.store
         
         public var marketConsumableButton:Button;
         
+        public var marketSFXButton:Button;
+        
         public var scrollbar:ScrollBar;
         
         public var ListBG:MovieClip;
         
         public var thankYouTextfield:TextField;
+        
+        public var featuredItemRenderers:Vector.<FeaturedStoreListItemRenderer>;
         
         public var pageHeaderText:TextField;
         
@@ -70,8 +83,15 @@ package tripwire.containers.store
         
         public var buttonList:Vector.<TripButton>;
         
+        protected var currentSelectedScrollingList:TileList;
+        
+        protected var currentSelectedScroBar:ScrollBar;
+        
+        public var Num_Of_FeaturedItems:int = 5;
+        
         public function StoreMainContainer()
         {
+            this.featuredItemRenderers = new Vector.<FeaturedStoreListItemRenderer>();
             this.buttonList = new Vector.<TripButton>();
             super();
             enableInitCallback = true;
@@ -80,22 +100,25 @@ package tripwire.containers.store
         
         public function set localizedText(param1:Object) : void
         {
+            this.featuredButton.label = !!param1.featured ? param1.featured : "feaured swag";
             this.allButton.label = !!param1.all ? param1.all : "new stuff";
             this.weaponSkinsButton.label = !!param1.weaponSkin ? param1.weaponSkin : "no string";
             this.cosmeticsButton.label = !!param1.cosmetics ? param1.cosmetics : "dudes";
             this.emotesButton.label = !!param1.emotes ? param1.emotes : "lols";
             this.consumablesButton.label = !!param1.items ? param1.items : "shiny things";
+            this.sfxButton.label = !!param1.sfx ? param1.sfx : "sfx stuff";
             this.marketWeaponSkinsButton.label = !!param1.marketWeaponSkins ? param1.marketWeaponSkins : "w skins";
             this.marketCosmeticsButton.label = !!param1.marketCosmetics ? param1.marketCosmetics : "w skins";
             this.marketEmotesButton.label = !!param1.marketEmotes ? param1.marketEmotes : "m lols";
             this.marketConsumableButton.label = !!param1.marketConsumables ? param1.marketConsumables : "w skins";
+            this.marketSFXButton.label = !!param1.marketSFX ? param1.marketSFX : "m sfx";
             this.thankYouTextfield.text = !!param1.thankYouString ? param1.thankYouString : "wdsadasd";
-            this.pageHeaderText.text = this.allButton.label;
+            this.pageHeaderText.text = this.featuredButton.label;
         }
         
         override public function selectContainer() : void
         {
-            if(MenuManager.manager.bPopUpOpen)
+            if(MenuManager.manager && MenuManager.manager.bPopUpOpen)
             {
                 return;
             }
@@ -114,18 +137,14 @@ package tripwire.containers.store
             }
             else
             {
-                this.storeItemScrollingList.focused = 1;
-                this.storeItemScrollingList.selectedIndex = this._storeListSelectedIndex;
-                FocusManager.setModalClip(this.storeItemScrollingList);
+                this.currentSelectedScrollingList.focused = 1;
+                this.currentSelectedScrollingList.selectedIndex = 0;
+                FocusManager.setModalClip(this.currentSelectedScrollingList);
                 if(MenuManager.manager != null)
                 {
                     MenuManager.manager.numPrompts = 2;
                 }
             }
-        }
-        
-        public function set cartCount(param1:int) : void
-        {
         }
         
         override public function handleInput(param1:InputEvent) : void
@@ -142,17 +161,17 @@ package tripwire.containers.store
                 switch(_loc2_.navEquivalent)
                 {
                     case NavigationCode.UP:
-                        if(this.leftSideFocused && this.allButton.focused == 1)
+                        if(this.leftSideFocused && this.featuredButton.focused == 1)
                         {
                             param1.handled = true;
                         }
                         break;
                     case NavigationCode.DOWN:
-                        if(this.leftSideFocused && this.marketConsumableButton.focused == 1)
+                        if(this.leftSideFocused && this.marketSFXButton.focused == 1)
                         {
                             param1.handled = true;
                         }
-                        else if(bManagerConsoleBuild && this.leftSideFocused && this.consumablesButton.focused == 1)
+                        else if(bManagerConsoleBuild && this.leftSideFocused && this.sfxButton.focused == 1)
                         {
                             param1.handled = true;
                         }
@@ -194,16 +213,25 @@ package tripwire.containers.store
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.emotesButton,this.consumablesButton,this.marketWeaponSkinsButton,this.marketCosmeticsButton,this.marketEmotesButton,this.marketConsumableButton);
-            var _loc2_:int = 0;
-            while(_loc2_ < this.buttonList.length)
+            var _loc2_:int = 1;
+            while(_loc2_ <= this.Num_Of_FeaturedItems)
             {
-                this.buttonList[_loc2_].addEventListener(FocusEvent.FOCUS_IN,this.onSectionFocusIn,false,0,true);
-                this.buttonList[_loc2_].addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
-                this.buttonList[_loc2_].addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-                leftSidePanels.push(this.buttonList[_loc2_]);
+                this.featuredItemRenderers.push(this["featuredItem_" + _loc2_]);
                 _loc2_++;
             }
+            this.buttonList.push(this.featuredButton,this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.emotesButton,this.consumablesButton,this.sfxButton,this.marketWeaponSkinsButton,this.marketCosmeticsButton,this.marketEmotesButton,this.marketConsumableButton,this.marketSFXButton);
+            this.currentSelectedScrollingList = this.storeItemFeaturedScrollingList;
+            var _loc3_:int = 0;
+            while(_loc3_ < this.buttonList.length)
+            {
+                this.buttonList[_loc3_].addEventListener(FocusEvent.FOCUS_IN,this.onSectionFocusIn,false,0,true);
+                this.buttonList[_loc3_].addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
+                this.buttonList[_loc3_].addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+                leftSidePanels.push(this.buttonList[_loc3_]);
+                _loc3_++;
+            }
+            this.storeItemFeaturedScrollingList.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onStoreListFocusChange,false,0,true);
+            this.storeItemFeaturedScrollingList.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onStoreListFocusChange,false,0,true);
             this.storeItemScrollingList.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onStoreListFocusChange,false,0,true);
             this.storeItemScrollingList.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onStoreListFocusChange,false,0,true);
             this.setTabIndex();
@@ -211,39 +239,42 @@ package tripwire.containers.store
             this.storeItemScrollingList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.pageHeaderText.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.rightDimmingPanel.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            rightSidePanels.push(this.storeItemFeaturedScrollingList);
             rightSidePanels.push(this.storeItemScrollingList);
             rightSidePanels.push(this.pageHeaderText);
             rightSidePanels.push(this.storeItemScrollingList);
             rightSidePanels.push(this.pageHeaderText);
             rightSidePanels.push(this.ListBG);
-            this.allButton.selected = true;
-            this.currentFilter = this.allButton;
+            this.featuredButton.selected = true;
+            this.currentFilter = this.featuredButton;
             this.selectContainer();
             if(bManagerConsoleBuild)
             {
                 this.weaponSkinsButton.visible = false;
                 this.cosmeticsButton.visible = false;
                 this.consumablesButton.visible = false;
+                this.sfxButton.visible = false;
                 this.emotesButton.visible = false;
                 this.marketWeaponSkinsButton.visible = false;
                 this.marketCosmeticsButton.visible = false;
                 this.marketConsumableButton.visible = false;
                 this.marketEmotesButton.visible = false;
+                this.marketSFXButton.visible = false;
             }
+            this.ShowFeaturedItems();
+            this.makeFakeItems();
+            this.makeFeaturedItems();
         }
         
         public function onSectionFocusIn(param1:FocusEvent) : void
         {
             var _loc2_:TripButton = param1.target as TripButton;
-            this.currentFilter = _loc2_;
-            this.pageHeaderText.text = Button(param1.currentTarget).label;
             var _loc3_:int = 0;
             while(_loc3_ < this.buttonList.length)
             {
                 if(this.buttonList[_loc3_] == _loc2_)
                 {
                     this.buttonList[_loc3_].selected = true;
-                    ExternalInterface.call("Callback_StoreSectionChanged",_loc3_);
                 }
                 else
                 {
@@ -255,56 +286,62 @@ package tripwire.containers.store
         
         protected function setTabIndex() : *
         {
-            this.allButton.tabIndex = 1;
-            this.weaponSkinsButton.tabIndex = 2;
-            this.cosmeticsButton.tabIndex = 3;
-            this.emotesButton.tabIndex = 4;
-            this.consumablesButton.tabIndex = 5;
-            this.marketWeaponSkinsButton.tabIndex = 6;
-            this.marketCosmeticsButton.tabIndex = 7;
-            this.marketEmotesButton.tabIndex = 8;
-            this.marketConsumableButton.tabIndex = 9;
-            this.storeItemScrollingList.tabIndex = 10;
+            var _loc1_:int = 0;
+            this.storeItemScrollingList.tabIndex = _loc1_ = (this.marketSFXButton.tabIndex = int((this.marketConsumableButton.tabIndex = int((this.marketEmotesButton.tabIndex = int((this.marketCosmeticsButton.tabIndex = int((this.marketWeaponSkinsButton.tabIndex = int((this.sfxButton.tabIndex = int((this.consumablesButton.tabIndex = int((this.emotesButton.tabIndex = int((this.cosmeticsButton.tabIndex = int((this.weaponSkinsButton.tabIndex = int((this.allButton.tabIndex = int((this.featuredButton.tabIndex = int(_loc1_ + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1;
         }
         
         public function sectionButtonClicked(param1:ButtonEvent = null) : *
         {
             var _loc2_:TripButton = param1.currentTarget as TripButton;
+            if(_loc2_ != this.featuredButton)
+            {
+                this.ShowNonFeaturedItems();
+            }
             switch(param1.currentTarget)
             {
-                case this.allButton:
+                case this.featuredButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",0);
+                    this.ShowFeaturedItems();
                     break;
-                case this.weaponSkinsButton:
+                case this.allButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",1);
                     break;
-                case this.cosmeticsButton:
+                case this.weaponSkinsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",2);
                     break;
-                case this.consumablesButton:
+                case this.cosmeticsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",3);
                     break;
-                case this.emotesButton:
+                case this.consumablesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",4);
                     break;
-                case this.marketWeaponSkinsButton:
+                case this.emotesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",5);
                     break;
-                case this.marketCosmeticsButton:
+                case this.sfxButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",6);
                     break;
-                case this.marketConsumableButton:
+                case this.marketWeaponSkinsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",7);
                     break;
-                case this.marketEmotesButton:
+                case this.marketCosmeticsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",8);
+                    break;
+                case this.marketConsumableButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",9);
+                    break;
+                case this.marketEmotesButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",10);
+                    break;
+                case this.marketSFXButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",11);
             }
             this.deselectButtons();
-            this.storeItemScrollingList.focusable = true;
+            this.currentSelectedScrollingList.focusable = true;
             if(bManagerUsingGamepad)
             {
-                this.storeItemScrollingList.selectedIndex = 0;
-                FocusManager.setFocus(this.storeItemScrollingList);
+                this.currentSelectedScrollingList.selectedIndex = 0;
+                FocusManager.setFocus(this.currentSelectedScrollingList);
             }
             else
             {
@@ -315,23 +352,56 @@ package tripwire.containers.store
             this.currentFilter = _loc2_;
         }
         
+        private function ShowNonFeaturedItems() : *
+        {
+            var _loc1_:FeaturedStoreListItemRenderer = null;
+            this.currentSelectedScrollingList = this.storeItemScrollingList;
+            this.storeItemScrollingList.visible = true;
+            this.storeItemFeaturedScrollingList.visible = false;
+            this.scrollbar.visible = true;
+            this.scrollbarFeatured.visible = false;
+            this.pageHeaderText.visible = true;
+            for each(_loc1_ in this.featuredItemRenderers)
+            {
+                _loc1_.visible = false;
+            }
+        }
+        
+        private function ShowFeaturedItems() : *
+        {
+            var _loc1_:FeaturedStoreListItemRenderer = null;
+            this.currentSelectedScrollingList = this.storeItemFeaturedScrollingList;
+            this.storeItemScrollingList.visible = false;
+            this.storeItemFeaturedScrollingList.visible = true;
+            this.scrollbar.visible = false;
+            this.scrollbarFeatured.visible = true;
+            this.pageHeaderText.visible = false;
+            for each(_loc1_ in this.featuredItemRenderers)
+            {
+                _loc1_.visible = true;
+            }
+        }
+        
         private function deselectButtons() : *
         {
+            this.featuredButton.selected = false;
             this.allButton.selected = false;
             this.weaponSkinsButton.selected = false;
             this.cosmeticsButton.selected = false;
             this.consumablesButton.selected = false;
+            this.sfxButton.selected = false;
             this.marketWeaponSkinsButton.selected = false;
             this.marketCosmeticsButton.selected = false;
             this.marketConsumableButton.selected = false;
             this.marketEmotesButton.selected = false;
+            this.marketSFXButton.selected = false;
         }
         
         public function onStoreListFocusChange(param1:FocusHandlerEvent) : void
         {
             if(param1.target.hasFocus)
             {
-                FocusManager.setModalClip(this.storeItemScrollingList);
+                FocusManager.setModalClip(this.currentSelectedScrollingList);
                 this.leftSideFocused = false;
                 showDimLeftSide(true);
                 if(MenuManager.manager != null)
@@ -353,6 +423,12 @@ package tripwire.containers.store
             this.storeItemScrollingList.scrollPosition = 0;
         }
         
+        public function set storeItemFeaturedData(param1:Array) : void
+        {
+            this.storeItemFeaturedScrollingList.dataProvider = new DataProvider(param1);
+            this.storeItemFeaturedScrollingList.scrollPosition = 0;
+        }
+        
         override protected function onBPressed(param1:InputDetails) : void
         {
             super.onBPressed(param1);
@@ -362,26 +438,11 @@ package tripwire.containers.store
         public function makeFakeItems() : void
         {
             var _loc3_:Object = null;
-            var _loc1_:Array = new Array();
-            var _loc2_:int = 0;
-            while(_loc2_ < 20)
-            {
-                _loc3_ = new Object();
-                _loc3_.label = _loc2_.toString();
-                _loc3_.price = _loc2_;
-                _loc3_.description = "DESCRIption" + _loc2_.toString();
-                if(_loc2_ % 2 == 0)
-                {
-                    _loc3_.imageURL = "doge.png";
-                }
-                else
-                {
-                    _loc3_.imageURL = "maxresdefault.jpg";
-                }
-                _loc1_.push(_loc3_);
-                _loc2_++;
-            }
-            this.storeItemData = _loc1_;
+        }
+        
+        public function makeFeaturedItems() : void
+        {
+            var _loc3_:Object = null;
         }
     }
 }

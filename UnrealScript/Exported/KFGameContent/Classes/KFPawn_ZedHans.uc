@@ -175,6 +175,16 @@ simulated function SetCharacterAnimationInfo()
 {
 	Super.SetCharacterAnimationInfo();
 
+	// Hack so that designers can set Hans' melee and gun animsets from editor archetype
+	// Assumes archetype animsets slot 3 is melee and slot 4 is gun
+	// Assigns them and then then removes them from pawn animsets
+	if (Mesh.AnimSets.Length == 5)
+	{
+		MeleeAnimSet = Mesh.AnimSets[3];
+		GunsAnimSet = Mesh.AnimSets[4];
+		Mesh.AnimSets.Remove(3, 2);
+	}
+
 	// Initialize weapon type AnimSet
 	SetWeaponStance(bGunsEquipped, true);
 }
@@ -205,6 +215,8 @@ simulated function SetWeaponStance(bool bInEquipWeapons, optional bool bForce)
 			// SkelControl's BlendOutTime so that it matches with animation
 			RightHolsterSkelCtrl.SetSkelControlStrength(0.f, 0.f);
 			LeftHolsterSkelCtrl.SetSkelControlStrength(0.f, 0.f);
+
+			PlayExtraVFX('GunMode');
 		}
 		else
 		{
@@ -212,6 +224,8 @@ simulated function SetWeaponStance(bool bInEquipWeapons, optional bool bForce)
 			// Use SkelControl's default, editor set, BlendInTime
 			RightHolsterSkelCtrl.SetSkelControlActive(true);
 			LeftHolsterSkelCtrl.SetSkelControlActive(true);
+
+			StopExtraVFX('GunMode');
 		}
 
 		// Apply new anim set and refresh animtree
@@ -1152,8 +1166,23 @@ defaultproperties
    BattlePhases(2)=(bCanFrenzy=True,GlobalOffensiveNadePhaseCooldown=20.000000,bCanBarrageNerveGas=True,bCanUseGuns=True,GunAttackLengthPhase=5.000000,bCanTossGrenade=True,bCanMoveWhileThrowingGrenades=(False,False,True,True),HealThresholds=(0.250000,0.250000,0.250000,0.250000),HealAmounts=(0.125000,0.125000,0.125000,0.125000),MaxShieldHealth=(1030,1470,2100,2730))
    BattlePhases(3)=(bCanFrenzy=True,GlobalOffensiveNadePhaseCooldown=10.000000,bCanUseGuns=True,GunAttackPhaseCooldown=30.000000,GunAttackLengthPhase=4.000000,bCanBarrageGrenades=True,bCanMoveWhileThrowingGrenades=(False,False,True,True))
    ExplosiveGrenadeClass=Class'kfgamecontent.KFProj_HansHEGrenade'
+   SeasonalExplosiveGrenadeClasses(0)=Class'kfgamecontent.KFProj_HansHEGrenade'
+   SeasonalExplosiveGrenadeClasses(1)=Class'kfgamecontent.KFProj_HansHEGrenade'
+   SeasonalExplosiveGrenadeClasses(2)=Class'kfgamecontent.KFProj_HansHEGrenade'
+   SeasonalExplosiveGrenadeClasses(3)=Class'kfgamecontent.KFProj_HansHEGrenade_Halloween'
+   SeasonalExplosiveGrenadeClasses(4)=Class'kfgamecontent.KFProj_HansHEGrenade'
    NerveGasGrenadeClass=Class'kfgamecontent.KFProj_HansNerveGasGrenade'
+   SeasonalNerveGasGrenadeClasses(0)=Class'kfgamecontent.KFProj_HansNerveGasGrenade'
+   SeasonalNerveGasGrenadeClasses(1)=Class'kfgamecontent.KFProj_HansNerveGasGrenade'
+   SeasonalNerveGasGrenadeClasses(2)=Class'kfgamecontent.KFProj_HansNerveGasGrenade'
+   SeasonalNerveGasGrenadeClasses(3)=Class'kfgamecontent.KFProj_HansNerveGasGrenade_Halloween'
+   SeasonalNerveGasGrenadeClasses(4)=Class'kfgamecontent.KFProj_HansNerveGasGrenade'
    SmokeGrenadeClass=Class'kfgamecontent.KFProj_HansSmokeGrenade'
+   SeasonalSmokeGrenadeClasses(0)=Class'kfgamecontent.KFProj_HansSmokeGrenade'
+   SeasonalSmokeGrenadeClasses(1)=Class'kfgamecontent.KFProj_HansSmokeGrenade'
+   SeasonalSmokeGrenadeClasses(2)=Class'kfgamecontent.KFProj_HansSmokeGrenade'
+   SeasonalSmokeGrenadeClasses(3)=Class'kfgamecontent.KFProj_HansSmokeGrenade_Halloween'
+   SeasonalSmokeGrenadeClasses(4)=Class'kfgamecontent.KFProj_HansSmokeGrenade'
    RightHandSocketName="RightHandSocket"
    LeftHandSocketName="LeftHandSocket"
    GrenadeTossSpread=(X=0.000000,Y=0.200000,Z=0.040000)
@@ -1217,6 +1246,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=133
    PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
    LocalizationKey="KFPawn_ZedHans"
@@ -1435,6 +1472,7 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
+   Components(9)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=50000,Roll=50000)
    Name="Default__KFPawn_ZedHans"

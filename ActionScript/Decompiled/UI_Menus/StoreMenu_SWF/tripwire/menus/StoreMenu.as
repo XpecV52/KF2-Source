@@ -20,8 +20,6 @@ package tripwire.menus
         
         public var itemDetails:StoreItemDetailContainer;
         
-        public var storeCart:StoreCartContainer;
-        
         public var storeMainContainer:StoreMainContainer;
         
         public var coverBG:MovieClip;
@@ -83,6 +81,7 @@ package tripwire.menus
             super.addedToStage(param1);
             this.storeMainContainer.Owner = this;
             this.storeMainContainer.storeItemScrollingList.addEventListener(ListEvent.ITEM_PRESS,this.storeItemClicked,false,0,true);
+            this.storeMainContainer.storeItemFeaturedScrollingList.addEventListener(ListEvent.ITEM_PRESS,this.storeItemClicked,false,0,true);
             this.itemDetails.cancelButton.addEventListener(ButtonEvent.CLICK,this.onCancelClick,false,0,true);
             this.coverBGTween = new TweenMax(this.coverBG,8,{
                 "autoAlpha":1,
@@ -107,15 +106,6 @@ package tripwire.menus
             if(this.itemDetails.bOpen)
             {
                 this.storeMainContainer.selectContainer();
-            }
-        }
-        
-        public function showCart(param1:ButtonEvent) : void
-        {
-            this.storeCart.openContainer();
-            if(this.coverBGTween != null && this.coverBGTween.progress() < 1)
-            {
-                this.coverBGTween.play();
             }
         }
         

@@ -343,6 +343,7 @@ var transient   PointLightComponent AmplificationLight;
 var 	bool 	bShowKillTicker;
 var 	bool 	bDisableAutoUpgrade;
 var 	bool 	bHideBossHealthBar;
+var		bool	bHideRemotePlayerHeadshotEffects;
 
 /*********************************************************************************************
 * @name Input
@@ -775,6 +776,7 @@ simulated event PostBeginPlay()
     InitMixerDelegates();
     InitLEDManager();
 	InitDiscord();
+	
 }
 
 function SpawnDefaultHUD()
@@ -784,7 +786,7 @@ function SpawnDefaultHUD()
 	// Spawn the default HUD here
 	if (KFGFxHudWrapper(myHUD) != none)
 	{
-		if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !class'WorldInfo'.static.IsMenuLevel())
+		if (MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass() && !(class'WorldInfo'.Static.IsMenuLevel()))
 		{
 			KFGFxHudWrapper(myHUD).CreateHUDMovie();
 		}
@@ -798,7 +800,7 @@ reliable client function ClientSetHUD(class<HUD> newHUDType)
 	// Spawn the default HUD here
 	if (KFGFxHudWrapper(myHUD) != none)
 	{
-		if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !class'WorldInfo'.static.IsMenuLevel())
+		if (MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass())
 		{
 			KFGFxHudWrapper(myHUD).CreateHUDMovie();
 		}
@@ -888,6 +890,11 @@ simulated event ReplicatedEvent( name VarName )
 {
 	super.ReplicatedEvent( VarName );
 
+	if (VarName == 'PlayerReplicationInfo')
+	{
+		class'KFHeadShotEffectList'.static.RefreshCachedHeadShotEffectId();
+	}
+
 	if ( VarName == nameof(Pawn) )
 	{
 		//SetAmplificationLightEnabled(Pawn != None);
@@ -969,6 +976,8 @@ simulated event ReceivedPlayer()
 	HandleConsoleSessions();
 //@HSL_END
 }
+
+
 
 reliable server function AskForPawn()
 {
@@ -1089,9 +1098,9 @@ reliable client function ClientRestart(Pawn NewPawn)
 	// Spawn the default HUD here, if it has changed or hasn't spawned yet.
 	if (KFGFxHudWrapper(myHUD) != none)
 	{
-		if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !class'WorldInfo'.static.IsMenuLevel())
+		if (MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass())
 		{
-			KFGFxHudWrapper(myHUD).CreateHUDMovie();
+			KFGFxHudWrapper(myHUD).CreateHUDMovie(true);
 		}
 	}
 
@@ -1425,12 +1434,14 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		bNoEarRingingSound				= Profile.GetProfileBool(KFID_ReduceHightPitchSounds);
 		bHideBossHealthBar 				= Profile.GetProfileBool(KFID_HideBossHealthBar);
 		bDisableAutoUpgrade 			= Profile.GetProfileBool(KFID_DisableAutoUpgrade);
+		bHideRemotePlayerHeadshotEffects = Profile.GetProfileBool(KFID_HideRemoteHeadshotEffects);
 
 		KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
 		if(KFPRI != none)
 		{
 			KFPRI.SelectCharacter(Profile.GetProfileInt(KFID_StoredCharIndex), true);
 		}
+		
 
 		KFInput = KFPlayerInput(PlayerInput);
 		if(KFInput != none)
@@ -1537,9 +1548,10 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 	{
 		OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
 	}
-
+	
 	// Update our cached Emote Id
 	class'KFEmoteList'.static.RefreshCachedEmoteId();
+	class'KFHeadShotEffectList'.static.RefreshCachedHeadShotEffectId();
 }
 
 
@@ -2277,7 +2289,7 @@ function TryMainMenuPlayTogether()
 
 	if(MyGFxManager != none && MyGFxManager.StartMenu != none)
 	{
-		MyGFxManager.StartMenu.OpenMultiplayerMenu();
+//		MyGFxManager.StartMenu.OpenMultiplayerMenu();
 
 		MyGFxManager.OnlineLobby.MakeLobby(6, LV_Private);
 
@@ -2636,6 +2648,7 @@ native final simulated private function SetActivePerkPrestigeLevel(byte NewLevel
 native final reliable server private event ClientSetPrestigeLevelCheat(byte NewLevel);
 
 native final function float GetPerkPrestigeXPMultiplier(class <KFPerk> PerkClass);
+native final function float GetPerkPrestigeNextXPMultiplier(class <KFPerk> PerkClass);
 
 /** Called by UI to change/modify our perk */
 native final event						RequestPerkChange(byte NewPerkIndex);
@@ -2785,7 +2798,6 @@ function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel, byte NewPrestige
 		if( CurrentPerk.Class == PerkClass )
 		{
 			SetActivePerkLevel( PerkLevel );
-			SetActivePerkPrestigeLevel(NewPrestigeLevel);
 			if(bTierUnlocked)
 			{
 				PostTierUnlock( PerkClass );
@@ -3090,6 +3102,13 @@ function ResetFOV()
     }
 }
 
+exec function FOV(float F)
+{
+`if(`notdefined(ShippingPC))
+	super.FOV(F);
+`endif
+}
+
 /**
  * Replicated function to set camera style on client
  *
@@ -3277,7 +3296,7 @@ function ProcessViewRotation( float DeltaTime, out Rotator out_ViewRotation, Rot
 	super.ProcessViewRotation( DeltaTime, out_ViewRotation, DeltaRot );
 }
 
-function SetBossCamera( KFInterface_MonsterBoss Boss )
+simulated function SetBossCamera( KFInterface_MonsterBoss Boss )
 {
 	// If our view target has been obliterated, the camera will default to view the player controller.
 	// So, put the player controller where the view target was.
@@ -3832,6 +3851,7 @@ simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
 	// This event is called when content is done loading via TriggerAsyncContentLoad.
 
 	local KFPawn_Human KFPH;
+	local KFDroppedPickup KFDP;
 
 	// Attempt to set the weapon attachment for any player than might need theirs set. This is a backup
 	// for when content isn't quite ready when WeaponClassForAttachmentTemplate is replicated.
@@ -3840,6 +3860,17 @@ simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
 		if (WeaponClass == KFPH.WeaponClassForAttachmentTemplate)
 		{
 			KFPH.SetWeaponAttachmentFromWeaponClass(WeaponClass);
+		}
+	}
+
+	// The pickup's mesh is set on the client when it receives its InventoryClass via replication. If
+	// that happens before the content is done loading, we need to make sure to set the pickup's mesh
+	// after loading completes. This is probably a very unusual edge case.
+	foreach WorldInfo.AllActors(class'KFDroppedPickup', KFDP)
+	{
+		if (WeaponClass == KFDP.InventoryClass && KFDP.MyMeshComp == none)
+		{
+			KFDP.SetPickupMesh(WeaponClass.default.DroppedPickupMesh);
 		}
 	}
 }
@@ -4307,6 +4338,7 @@ function GetTriggerUseList(float interactDistanceToCheck, float crosshairDist, f
 reliable client event ReceiveLocalizedMessage( class<LocalMessage> Message, optional int Switch, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2, optional Object OptionalObject )
 {
 	local string TempMessage;
+	
 	// Wait for player to be up to date with replication when joining a server, before stacking up messages
 	if ( WorldInfo.NetMode == NM_DedicatedServer || WorldInfo.GRI == None )
 		return;
@@ -5600,7 +5632,10 @@ reliable client event TeamMessage( PlayerReplicationInfo PRI, coerce string S, n
     		}
     		else if( MyGFxHUD.HudChatBox != none && len(s) > 0 )
 			{
-				MyGFxHUD.HudChatBox.AddChatMessage(class'KFLocalMessage'.default.SystemString@S, class 'KFLocalMessage'.default.EventColor);
+				if (InStr(S, class'KFGFxWidget_BaseParty'.default.PerkPrefix) == INDEX_NONE && InStr(S, class'KFGFxWidget_BaseParty'.default.SearchingPrefix) == INDEX_NONE) //make sure it does not contain perk info
+				{
+					MyGFxHUD.HudChatBox.AddChatMessage(class'KFLocalMessage'.default.SystemString@S, class 'KFLocalMessage'.default.EventColor);
+				}
 			}
     	}
 	}
@@ -6369,6 +6404,12 @@ function SetUIScale(float fScale)
  * @name Stats Daily, Weekly and Special Event
  *********************************************************************************************/
 
+function GetSpecialEventKillsInfo(out int CurrentValue, out int MaxValue)
+{
+	CurrentValue = StatsWrite.GetSpecialEventKills();
+	MaxValue = StatsWrite.SeasonalKillsObjectiveThreshold;
+}
+
  simulated event CompletedDaily(int Index)
  {
  	//notify the hud
@@ -6874,7 +6915,7 @@ function AddZedHeadshot( byte Difficulty, class<DamageType> DT )
 native reliable client private function ClientAddZedHeadshot( byte Difficulty, class<DamageType> DT );
 
 /** Perk xp stat */
-native reliable client private event ClientAddPlayerXP( int XP, class<KFPerk> PerkClass );
+native reliable client private event ClientAddPlayerXP( int XP, class<KFPerk> PerkClass, bool bApplyPrestigeBonus = false );
 /** XP notification for mods (Network: Server) */
 event OnPlayerXPAdded(INT XP, class<KFPerk> PerkClass);
 
@@ -8840,10 +8881,7 @@ state Spectating
 		GFxHUDWrapper = KFGFxHudWrapper(myHUD);
 		if( GFxHUDWrapper != none)
 		{
-			if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !class'WorldInfo'.static.IsMenuLevel())
-			{
-				GFxHUDWrapper.CreateHUDMovie();
-			}
+		    GFxHUDWrapper.CreateHUDMovie();
 		}
 
 		// Make sure we nuke our customization pawn!
@@ -9409,6 +9447,35 @@ unreliable server function ServerPlayVoiceCommsDialog( int CommsIndex )
 exec function PlayVoiceCommsDialog( int CommsIndex )
 {
 	ServerPlayVoiceCommsDialog( CommsIndex );
+}
+
+function PlayTraderEndlessWaveStartDialog(int SpecialWaveEventId, int NormalWaveEventId)
+{
+	local int DialogEventID;
+	local KFTraderDialogManager TDM;
+
+	DialogEventID = NormalWaveEventId;
+
+	// Only play the special wave dialog if the trader voice group has that event.
+	// Otherwise, just play the normal wave dialog.
+	if (SpecialWaveEventId != INDEX_NONE)
+	{
+		TDM = KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager;
+		if (TDM != none)
+		{
+			if (TDM.TraderVoiceGroupClass.default.DialogEvents[SpecialWaveEventId].AudioCue != none)
+			{
+				DialogEventID = TDM.TraderVoiceGroupClass.default.DialogEvents[SpecialWaveEventId].EventID;
+			}
+		}
+	}
+
+	`TraderDialogManager.PlayDialog(DialogEventID, self);
+}
+
+reliable client function ClientPlayTraderEndlessWaveStartDialog(int SpecialWaveEventId, int NormalWaveEventId)
+{
+	PlayTraderEndlessWaveStartDialog(SpecialWaveEventId, NormalWaveEventId);
 }
 
 /**
@@ -10831,6 +10898,11 @@ simulated function CreateDiscordMenuPresence()
 	local int CurrentPlayers, MaxPlayers;
 	local KFOnlineLobbySteamworks SteamworksLobby;
 	local DiscordRPCIntegration Discord;
+
+	if (class'WorldInfo'.Static.IsConsoleBuild())
+	{
+		return; //Should not be attempting to make a discord call on Console
+	}
 	Discord = class'PlatformInterfaceBase'.static.GetDiscordRPCIntegration();
 
 	PresenceString = class'KFCommon_LocalizedStrings'.default.DiscordMenuPresenceString;

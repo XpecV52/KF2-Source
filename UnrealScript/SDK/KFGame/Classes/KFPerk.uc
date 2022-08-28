@@ -309,6 +309,7 @@ static function class<KFPerk> GetPerkFromDamageCauser( Actor WeaponActor, class<
 {
 	local KFWeapon KFW;
 	local KFProjectile KFPrj;
+	local KFSprayActor KFSpray;
 
 	KFW = KFWeapon(WeaponActor);
 	KFPrj = KFProjectile(WeaponActor);
@@ -323,20 +324,28 @@ static function class<KFPerk> GetPerkFromDamageCauser( Actor WeaponActor, class<
 		{
 			return GetPerkFromProjectile( WeaponActor );
 		}
-		else if( WeaponActor.IsA( 'SprayActor_Flame' ) )
+		else if( WeaponActor.IsA( 'KFSprayActor' ) )
+		{
+			KFSpray = KFSprayActor(WeaponActor);
+			if (ClassIsChildOf(KFSpray.MyDamageType, class'KFDT_Fire'))
 			{
-			return class'KFPerk_Firebug';
-		}
-		else if( WeaponActor.IsA( 'KFDoorActor' ) )
-				{
-			return class'KFPerk_Demolitionist';
+				return class'KFPerk_Firebug';
+			}
+			else if (ClassIsChildOf(KFSpray.MyDamageType, class'KFDT_Freeze'))
+			{
+				return class'KFPerk_Survivalist';
 			}
 		}
-
-		if( KFW != none ) // avoid accessed none if killed from cheat (killzeds, etc.)
+		else if( WeaponActor.IsA( 'KFDoorActor' ) )
 		{
-			return KFW.static.GetWeaponPerkClass( InstigatorPerkClass );
+			return class'KFPerk_Demolitionist';
 		}
+	}
+
+	if( KFW != none ) // avoid accessed none if killed from cheat (killzeds, etc.)
+	{
+		return KFW.static.GetWeaponPerkClass( InstigatorPerkClass );
+	}
 
 	return none;
 }
@@ -469,7 +478,7 @@ simulated native function byte GetLevel();
 simulated native function SetLevel( byte NewLevel );
 
 
-simulated native function byte GetPrestigeLevel(byte NewLevel);
+simulated native function byte GetPrestigeLevel();
 simulated native function SetPrestigeLevel(byte NewLevel);
 static native final function int GetPrestigeRewardID(class<KFPerk> PerkClass, byte NewLvl);
 
@@ -1118,7 +1127,7 @@ simulated function bool IsSlugActive(){ return false; }
 
 /** Firebug functions */
 simulated function bool IsFlarotovActive(){ return false; }
-function ModifyDoTScaler( out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected );
+function float GetDoTScalerAdditions(class<KFDamageType> KFDT);
 function bool GetFireStumble( optional KFPawn KFP, optional class<DamageType> DamageType ){ return false; }
 function bool CanSpreadNapalm(){ return false; }
 function bool CouldBeZedShrapnel( class<KFDamageType> KFDT ){ return false; }

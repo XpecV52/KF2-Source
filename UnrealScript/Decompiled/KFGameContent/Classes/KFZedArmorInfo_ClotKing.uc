@@ -50,7 +50,7 @@ simulated function UpdateArmorPieces()
                 Outer.Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
                 if(MonsterArch.ExtraVFX.Length > 0)
                 {
-                    Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0], SocketLocation, SocketRotation);
+                    Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0].VFX, SocketLocation, SocketRotation);
                 }
                 Outer.PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
                 break;
@@ -59,7 +59,7 @@ simulated function UpdateArmorPieces()
                 Outer.Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
                 if(MonsterArch.ExtraVFX.Length > 1)
                 {
-                    Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1], SocketLocation, SocketRotation);
+                    Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1].VFX, SocketLocation, SocketRotation);
                 }
                 Outer.PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
                 Outer.ThirdPersonAttachments[0] = none;

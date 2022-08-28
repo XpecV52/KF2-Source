@@ -195,7 +195,7 @@ ItemDescription="•Tryb ataku: ogień ciągły lub seria 3 strzałów .\n•Try
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="Bullpup SA80 L85A2"
 ItemCategory="Karabin szturmowy"
-ItemDescription="•Tryb ataku: ogień ciągły lub pojedynczy.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•SA80 był na standardowym wyposażeniu armii brytyjskiej, dopóki nie została, no cóż, zjedzona."
+ItemDescription="•Tryb strzelania: ogień ciągły lub pojedynczy.\n•SA80 był na standardowym wyposażeniu armii brytyjskiej, dopóki ta nie została, no cóż, zjedzona."
 
 [KFWeap_LMG_Stoner63A]
 ItemName="Stoner 63A LMG"
@@ -312,6 +312,12 @@ ItemName="Gwoździarka VLAD-1000"
 ItemCategory="Strzelba"
 ItemDescription="•Tryb ataku: strzał pojedynczym gwoździem lub wieloma.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Z tego, co nam wiadomo, jeden z naukowców Horzine pożyczył oryginalną gwoździarkę od (martwego) serwisanta."
 
+[KFWeap_Blunt_ChainBat]
+ItemName="Podróżny odkupiciel"
+ItemCategory="Broń biała"
+ItemDescription="•Główny atak – szybki cios obuchowy. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – ciężki cios obuchowy.\n•Alternatywny atak – blok/parowanie.\n•Zostań prawdziwą gwiazdą baseballu! Czyścić po każdym użyciu."
+SharedUnlockSource="Odkupienie w podróży"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="Miażdżyciel"
 ItemCategory="Broń biała"
@@ -327,7 +333,7 @@ SecondaryAmmo="Benzyna"
 ItemName="Miecz dwuręczny"
 ItemCategory="Broń biała"
 ItemDescription="•Główny atak – średnie/silne obrażenia oraz nieco kontroli tłumu.\n•Drugi atak– wolniejszy, ale jeszcze więcej obrażeń.\n•Alt. – blokowanie/parowanie\n•Poruszając się do przodu, zadajesz jeszcze więcej obrażeń."
-SharedUnlockSource="Chivalry: Medieval Warfare "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Łamignat"
@@ -505,6 +511,12 @@ ItemName="Truchla armata"
 ItemCategory="Ogień"
 ItemDescription="•Ładowanie odbywa się po naciśnięciu spustu, a rozładowanie po jego puszczeniu. \n•Oficjalna wersja truchlej armaty Horzine. 95% gwarancji niewybuchu."
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="Karabinek MKb.42(H)"
+ItemCategory="Karabin szturmowy"
+ItemDescription="•Tryb strzelania: ogień ciągły lub pojedynczy. \n•Naciśnij atak dodatkowy, aby przełączać tryby strzelania.\n•Pokaż, jaki z ciebie Hans! Poczytalność nie jest gwarantowana."
+SharedUnlockSource="Skórka Hallow. Hansa"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="Broń krótka"
@@ -529,6 +541,17 @@ ItemDescription="•Główny atak – szybkie uderzenie. Przytrzymaj przycisk g�
 ItemName="Mac-10"
 ItemCategory="Pistolet maszynowy"
 ItemDescription="•Tryb strzelania: ogień ciągły albo seria.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Obsługuje szybkostrzelną amunicję zapalającą. Łapiesz? Szybkostrzelną. Bo do broni maszynowej? Ech, mniejsza o to."
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="Karabin HMTech-501 z granatnikiem"
+ItemCategory="Karabin szturmowy"
+ItemDescription="•Tryb ataku: tylko ogień ciągły.\n•Alternatywny atak wystrzeliwuje granaty medyczne.\n•To jedyna broń, która pozwala bezkarnie strzelać granatami w znajomych!"
+SecondaryAmmo="Granat medyczny"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="Karabin szturmowy"
+ItemDescription="•Tryb strzelania: ogień ciągły lub pojedynczy. \n•Naciśnij alternatywny atak, aby przełączać tryby strzelania. \n•Ten pistolet nie jest FN FATALNY... No, kiepski dowcip."
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

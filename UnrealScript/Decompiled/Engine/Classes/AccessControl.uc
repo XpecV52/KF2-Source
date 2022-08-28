@@ -486,7 +486,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
     }
     else
     {
-        bHasPrivateServerOption = WorldInfo.Game.HasOption(Options, "friend");
+        bHasPrivateServerOption = WorldInfo.Game.HasOption(Options, "friend") || InPassword != "";
     }
     if((WorldInfo.NetMode != NM_Standalone) && WorldInfo.Game.AtCapacity(bSpectator, UniqueId))
     {
@@ -562,19 +562,19 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
                         }                        
                     }
                     I = 0;
-                    J0x975:
+                    J0x987:
 
                     if(I < ClientsPendingAuth.Length)
                     {
                         if(ClientsPendingAuth[I].ClientUID == UniqueId)
                         {
                             bFound = true;
-                            goto J0x9E5;
+                            goto J0x9F7;
                         }
                         ++ I;
-                        goto J0x975;
+                        goto J0x987;
                     }
-                    J0x9E5:
+                    J0x9F7:
 
                     if(!bFound)
                     {

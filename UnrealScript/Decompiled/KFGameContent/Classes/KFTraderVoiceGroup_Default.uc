@@ -164,4 +164,5 @@ defaultproperties
     DialogEvents[152]=(EventID=152,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COL9_WonGood',Priority=1)
     DialogEvents[153]=(EventID=153,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COL9_WonPerfect',Priority=1)
     DialogEvents[154]=(EventID=154,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_TeamLastOne',Priority=1)
+    DialogEvents[155]=(EventID=155,AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_FirstWave',Priority=1)
 }

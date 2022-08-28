@@ -2102,6 +2102,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_MonsterBoss:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_MonsterBoss:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_MonsterBoss:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=130
    PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
    LocalizationKey="KFPawn_ZedPatriarch"
@@ -2334,7 +2342,8 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
-   Components(9)=CloakedAkComponent0
+   Components(9)=HeadshotAkComponent0
+   Components(10)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=50000,Roll=50000)
    Name="Default__KFPawn_ZedPatriarch"

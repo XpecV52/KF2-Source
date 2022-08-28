@@ -64,6 +64,7 @@ function OnOpen()
 {
     super.OnOpen();
     bPausedForCrate = false;
+    bSeenAllDoshAnimation = false;
     if(Class'WorldInfo'.static.IsMenuLevel())
     {
         Manager.ManagerObject.SetBool("backgroundVisible", false);
@@ -183,14 +184,17 @@ function SendDoshInfo(int OldDosh, int NewDosh, int TierBase, int TierLength, in
     {
         Manager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, Class'KFCommon_LocalizedStrings'.default.OKString);
         LogInternal("something isn't right.  Connection issue may be present.  To prevent angry Reddit mobs, just don't animate");
+        bSeenAllDoshAnimation = true;
         return;
     }
     if(NewDosh < OldDosh)
     {
         NewDosh = OldDosh;
     }
-    if(OldDosh != NewDosh)
+    if(OldDosh == NewDosh)
     {
+        LogInternal("no new Vosh!");
+        bSeenAllDoshAnimation = true;
     }
     DataObject = Outer.CreateObject("Object");
     DataObject.SetInt("oldDosh", OldDosh);
@@ -199,6 +203,11 @@ function SendDoshInfo(int OldDosh, int NewDosh, int TierBase, int TierLength, in
     DataObject.SetInt("tierLength", TierLength);
     DataObject.SetInt("crateNum", CrateNum);
     SetObject("doshData", DataObject);
+}
+
+function bool CanCloseVaultMenu()
+{
+    return bSeenAllDoshAnimation;
 }
 
 function Callback_UpdateDosh(int NewValue)

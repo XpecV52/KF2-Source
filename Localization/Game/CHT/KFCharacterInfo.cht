@@ -3,6 +3,13 @@ CharacterName="佛斯特夫人"
 Description="在她給佛斯特先生進行面試時，佛斯特夫人就已經是倫敦一家頂級公司極其成功的交易員了。她就是他想成為的那種人，但佛斯特先生顯然不是做交易員的料。他不遵循規則行事，嘴巴也不嚴實。不過，他還是有點可取之處的，他是那麼酷，那麼溫柔，那麼……獨特。獨特到他們第一次約會他就為她弄來了一副防毒面具。彷彿他早就預料到會有個端著機槍的極端分子來製造出一群食人克隆體，然後毀掉她數百萬英鎊的獎金。在一陣鮮花、緞帶、Zed和炸藥席捲而過之後，他們很快結婚了。也許他們不能一起在城市中安穩賺大錢，但他們可以並肩作戰消滅Zed發大財！"
 BodyMesh0="背心"
 BodyMesh1="蒸汽龐克"
+BodyMesh2="Horzine 保全"
+BodyMesh3="紙板騎士"
+BodyMesh4="拓荒"
+BodyMesh5="災害應變"
+BodyMesh6="突雞部隊"
+BodyMesh7="節日睡衣服飾"
+BodyMesh8="金庫睡衣服飾"
 HeadMesh0="防毒面具"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -21,6 +28,61 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[CHR_MrsFoster_archetype.BodyMesh2]
+BodySkin0="精英藍"
+BodySkin1="精英綠"
+BodySkin2="精英紅"
+BodySkin3="精英白"
+BodySkin4="馬克 7"
+BodySkin5="飛雪偽裝"
+BodySkin6="沙漠"
+BodySkin7="多地形迷彩"
+BodySkin8="危機"
+BodySkin9="堅甲"
+BodySkin10="獎金獵人"
+BodySkin11="珍貴"
+
+[CHR_MrsFoster_archetype.BodyMesh3]
+BodySkin0="經典"
+BodySkin1="Jittery Joe's"
+BodySkin2="生化可樂"
+BodySkin3="Horzine 倉庫"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrsFoster_archetype.BodyMesh4]
+BodySkin0="英雄"
+BodySkin1="迷彩"
+BodySkin2="黑色車手裝"
+BodySkin3="波"
+BodySkin4="沙地騎士"
+
+[CHR_MrsFoster_archetype.BodyMesh5]
+BodySkin0="柯羅克"
+BodySkin1="葛洛佛"
+BodySkin2="熱浪"
+BodySkin3="Horzine"
+BodySkin4="馮布朗"
+BodySkin5="悲慘王國工作人員"
+
+[CHR_MrsFoster_archetype.BodyMesh6]
+BodySkin0="已使用"
+BodySkin1="乾淨"
+BodySkin2="夜晚"
+BodySkin3="重傷"
+
+[CHR_MrsFoster_archetype.BodyMesh7]
+BodySkin0="兔子"
+BodySkin1="金錢"
+BodySkin2="綠色格子"
+BodySkin3="被子"
+BodySkin4="紅雪"
+BodySkin5="樹"
+BodySkin6="紅色格子"
+
+[CHR_MrsFoster_archetype.BodyMesh8]
+BodySkin0="金庫圖案"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="白色"
 HeadSkin1="綠色"
@@ -28,6 +90,7 @@ HeadSkin2="紅色"
 HeadSkin3="棕色"
 HeadSkin4="粉紅"
 HeadSkin5="黑色"
+HeadSkin6="NEED NAME"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -186,6 +249,7 @@ HeadSkin2="血紅"
 HeadSkin3="鐵面"
 HeadSkin4="瑞典大壞蛋"
 HeadSkin5="眩暈"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="牛仔帽"
@@ -359,6 +423,7 @@ HeadSkin3="綠色障礙"
 HeadSkin4="復古史骷利"
 HeadSkin5="沉默的吶喊史骷利"
 HeadSkin6="蝙蝠貓"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="史骷利耳機"
@@ -482,6 +547,7 @@ HeadSkin1="亮光"
 HeadSkin2="黑"
 HeadSkin3="寵物"
 HeadSkin4="死亡之日"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="醫生口罩"
@@ -609,6 +675,7 @@ HeadSkin4="英國風"
 HeadSkin5="看見紅色"
 HeadSkin6="漢斯先生"
 HeadSkin7="守財奴"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="史骷利耳機"
@@ -837,6 +904,7 @@ HeadSkin1="麻布"
 HeadSkin2="眩光"
 HeadSkin3="齜牙咧嘴"
 HeadSkin4="怒吼"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="拳擊頭盔"
@@ -950,6 +1018,7 @@ HeadSkin2="黑"
 HeadSkin3="白"
 HeadSkin4="丑角"
 HeadSkin5="幽靈"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="眼鏡"
@@ -1256,7 +1325,7 @@ AttachmentSkin8="水鴨白"
 AttachmentSkin9="珍貴"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment="壓壞的機車安全帽"
+Attachment="破損機車安全帽"
 AttachmentSkin0="黑"
 AttachmentSkin1="藍"
 AttachmentSkin2="橘"
@@ -1845,6 +1914,7 @@ HeadSkin1="迷彩"
 HeadSkin2="小丑"
 HeadSkin3="吸血鬼"
 HeadSkin4="斷頭台"
+HeadSkin5="NEED NAME"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="綠"
@@ -1943,6 +2013,7 @@ HeadSkin0="黑"
 HeadSkin1="金髮"
 HeadSkin2="隈取妝"
 HeadSkin3="泰坦巨人"
+HeadSkin4="NEED NAME"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="上等"
@@ -2078,6 +2149,7 @@ HeadSkin3="蔚藍"
 HeadSkin4="死亡金屬"
 HeadSkin5="史坦太太"
 HeadSkin6="鮮花"
+HeadSkin7="NEED NAME"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="死亡之雨"
@@ -2271,6 +2343,7 @@ HeadSkin3="金髮瑞典人"
 HeadSkin4="為我一笑"
 HeadSkin5="朱斯先生"
 HeadSkin6="甘敗下風"
+HeadSkin7="NEED NAME"
 
 [chr_alan_archetype]
 CharacterName="典型麥斯特森"
@@ -2371,6 +2444,7 @@ HeadSkin3="來吧，兄弟！"
 HeadSkin4="加油，夥伴！"
 HeadSkin5="你死了，老兄！"
 HeadSkin6="數位"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ 帽"
@@ -2472,6 +2546,7 @@ HeadSkin0="黑鋼"
 HeadSkin1="金鋼"
 HeadSkin2="死神"
 HeadSkin3="史坦先生"
+HeadSkin4="NEED NAME"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="德國鋼頭盔"
@@ -2723,6 +2798,7 @@ HeadSkin4="水鴨"
 HeadSkin5="粉紅"
 HeadSkin6="女死神"
 HeadSkin7="鹿"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="眼罩"
@@ -4175,3 +4251,123 @@ AttachmentSkin0="漂白"
 AttachmentSkin1="藍色"
 AttachmentSkin2="生銹"
 AttachmentSkin3="珍貴"
+
+[Cosmetic_Halloween_AngelWings_ARCH]
+Attachment="萬聖節天使翅膀"
+AttachmentSkin0="天空"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_Cauldron_ARCH]
+Attachment="萬聖節大鍋背包"
+AttachmentSkin0="糖果"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_CoffinBackpack_ARCH]
+Attachment="萬聖節靈柩背包"
+AttachmentSkin0="RIP"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_CyclopsEye_ARCH]
+Attachment="萬聖節基克洛普斯之眼"
+AttachmentSkin0="惡魔之眼"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_Horns_ARCH]
+Attachment="萬聖節尖角"
+AttachmentSkin0="小惡魔"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_IncognitoMask_ARCH]
+Attachment="萬聖節隱藏者面具"
+AttachmentSkin0="格拉克"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_PirateHat_ARCH]
+Attachment="萬聖節海盜帽"
+AttachmentSkin0="成為海盜"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_WitchHat_ARCH]
+Attachment="萬聖節女巫帽"
+AttachmentSkin0="巫術"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_FunnyZedBackpack_ARCH]
+Attachment="萬聖節凝塊背包"
+AttachmentSkin0="同伴"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_BatWings_ARCH]
+Attachment="萬聖節蝙蝠翅膀"
+AttachmentSkin0="夜行"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_BatEars_ARCH]
+Attachment="萬聖節蝙蝠耳"
+AttachmentSkin0="回聲定位"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Halloween_MummyBackpack_ARCH]
+Attachment="萬聖節木乃伊背包"
+AttachmentSkin0="防腐"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_BeastMask_ARCH]
+Attachment="野獸面具"
+AttachmentSkin0="光"
+AttachmentSkin1="暗"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_DancerMask_ARCH]
+Attachment="舞者面具"
+AttachmentSkin0="火"
+AttachmentSkin1="水"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_DemonMask_ARCH]
+Attachment="惡魔面具"
+AttachmentSkin0="火"
+AttachmentSkin1="水"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_DoctorMask_ARCH]
+Attachment="醫生面具"
+AttachmentSkin0="光"
+AttachmentSkin1="暗"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_DreamerMask_ARCH]
+Attachment="夢想者面具"
+AttachmentSkin0="火"
+AttachmentSkin1="水"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_JokerMask_ARCH]
+Attachment="小丑面具"
+AttachmentSkin0="光"
+AttachmentSkin1="暗"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_LordMask_ARCH]
+Attachment="領主面具"
+AttachmentSkin0="火"
+AttachmentSkin1="水"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_SleeperMask_ARCH]
+Attachment="沉睡者面具"
+AttachmentSkin0="火"
+AttachmentSkin1="水"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Undead_ARCH]
+Attachment="不死者面具"
+AttachmentSkin0="火"
+AttachmentSkin1="水"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Warrior_ARCH]
+Attachment="戰士面具"
+AttachmentSkin0="火"
+AttachmentSkin1="水"
+AttachmentSkin2="珍貴"

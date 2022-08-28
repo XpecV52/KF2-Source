@@ -140,7 +140,9 @@ defaultproperties
    DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.200000))
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive')
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing')
-   DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
+   DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.000000))
+   DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingFart',DamageScale=(0.000000))
+   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatPukeMine',DamageScale=(0.000000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKingSubspawn'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
       BoneName="Dummy"
@@ -151,6 +153,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
    LocalizationKey="KFPawn_ZedBloatKingSubspawn"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -350,6 +360,7 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
+   Components(9)=HeadshotAkComponent0
    bBlocksNavigation=True
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=90000,Yaw=45000,Roll=90000)

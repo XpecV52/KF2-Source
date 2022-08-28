@@ -40,6 +40,8 @@ var localized string NoString;
 
 var localized string DisbandPartyString;
 var localized string LeaveCurrentMenuString;
+var localized string StartOfflineGameString; 
+var localized string StartOfflineGameDescriptionString;
 var localized string ZedString;
 var localized string HumanString;
 var localized string SpectatorString;
@@ -95,6 +97,8 @@ var localized string ProceedToTutorialDescriptionString;
 
 var localized string NotAvailableInFreeTrialString;
 var localized string NetworkCheckFreeTrialFailedString;
+
+var localized string SpecialEffectsString;
 
 static function array<string> GetDifficultyStringsArray()
 {

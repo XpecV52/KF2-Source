@@ -23,6 +23,7 @@ KF-PowerCore_Holdout="Joue sur Noyau d'énergie"
 KF-DieSector="Joue sur Secteur mortel"
 KF-Lockdown="Joue sur Confinement"
 KF-Airship="Joue sur Dirigeable"
+KF-MonsterBall="Joue au Bal des monstres"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

@@ -20,11 +20,11 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     StartMenu.MissionObjectiveContainer.UpdateSpecialEventActive();
 }
 
-function bool Refresh(optional bool bForceRefreshOfDaily)
+function bool Refresh(optional bool bForceRefresh)
 {
     if((SpecialEventsContainer != none) && WeeklyEventContainer != none)
     {
-        return (SpecialEventsContainer.PopulateData() || WeeklyEventContainer.PopulateData()) || DailyObjectiveContainer.PopulateData(bForceRefreshOfDaily);
+        return (SpecialEventsContainer.PopulateData() || WeeklyEventContainer.PopulateData()) || DailyObjectiveContainer.PopulateData(bForceRefresh);
     }
     return false;
 }

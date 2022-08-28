@@ -27,10 +27,13 @@ struct native WaveObjectivePair
 {
     /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
     var() array<KFInterface_MapObjective> PossibleObjectives;
+    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    var() bool bUseEndlessSpawning;
 
     structdefaultproperties
     {
         PossibleObjectives=none
+        bUseEndlessSpawning=false
     }
 };
 
@@ -42,30 +45,30 @@ struct native PresetWavePairs
 
     structdefaultproperties
     {
-        ShortObjectives[0]=(PossibleObjectives=none)
-        ShortObjectives[1]=(PossibleObjectives=none)
-        ShortObjectives[2]=(PossibleObjectives=none)
-        ShortObjectives[3]=(PossibleObjectives=none)
-        ShortObjectives[4]=(PossibleObjectives=none)
-        MediumObjectives[0]=(PossibleObjectives=none)
-        MediumObjectives[1]=(PossibleObjectives=none)
-        MediumObjectives[2]=(PossibleObjectives=none)
-        MediumObjectives[3]=(PossibleObjectives=none)
-        MediumObjectives[4]=(PossibleObjectives=none)
-        MediumObjectives[5]=(PossibleObjectives=none)
-        MediumObjectives[6]=(PossibleObjectives=none)
-        MediumObjectives[7]=(PossibleObjectives=none)
-        LongObjectives[0]=(PossibleObjectives=none)
-        LongObjectives[1]=(PossibleObjectives=none)
-        LongObjectives[2]=(PossibleObjectives=none)
-        LongObjectives[3]=(PossibleObjectives=none)
-        LongObjectives[4]=(PossibleObjectives=none)
-        LongObjectives[5]=(PossibleObjectives=none)
-        LongObjectives[6]=(PossibleObjectives=none)
-        LongObjectives[7]=(PossibleObjectives=none)
-        LongObjectives[8]=(PossibleObjectives=none)
-        LongObjectives[9]=(PossibleObjectives=none)
-        LongObjectives[10]=(PossibleObjectives=none)
+        ShortObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        ShortObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        ShortObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        ShortObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        ShortObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        MediumObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        MediumObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        MediumObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        MediumObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        MediumObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        MediumObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        MediumObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        MediumObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[8]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[9]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        LongObjectives[10]=(PossibleObjectives=none,bUseEndlessSpawning=false)
     }
 };
 
@@ -102,6 +105,7 @@ var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives;
 var(Objectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 var() string TraderVoiceGroupClassPath;
+var() string TraderVoiceGroupClassPath_Endless;
 
 function MusicTrackStruct GetNextMusicTrackStruct(optional bool bActionTrack)
 {

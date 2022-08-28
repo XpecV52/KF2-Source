@@ -224,10 +224,18 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
         AddCartButton.SetString("label", (Class'KFGFxStoreContainer_Details'.default.AddToCartString $ ":") $ StoreItemDetails.Price);
     }
     SetObject("storeItemDetails", CreateStoreItem(StoreItemDetails));
-    if(Class'WorldInfo'.static.IsConsoleBuild() && StoreItemDetails.Price != "")
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        AddCartButton.SetString("label", Class'KFGFxStoreContainer_Details'.default.AddToCartString);
-        AddCartButton.SetVisible(true);
+        if(StoreItemDetails.Price != "")
+        {
+            AddCartButton.SetString("label", Class'KFGFxStoreContainer_Details'.default.AddToCartString);
+            AddCartButton.SetVisible(true);            
+        }
+        else
+        {
+            AddCartButton.SetString("label", "");
+            AddCartButton.SetVisible(false);
+        }
     }
 }
 

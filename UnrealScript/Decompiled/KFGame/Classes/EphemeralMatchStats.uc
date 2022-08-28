@@ -665,7 +665,7 @@ static function SendMapOptionsAndOpenAARMenu()
             {
                 Class'KFGFxMenu_StartGame'.static.GetMapList(KFGRI.VoteCollector.MapList);
                 I = 0;
-                J0x17B:
+                J0x17C:
 
                 if(I < KFGRI.VoteCollector.MapList.Length)
                 {
@@ -675,7 +675,7 @@ static function SendMapOptionsAndOpenAARMenu()
                         -- I;
                     }
                     ++ I;
-                    goto J0x17B;
+                    goto J0x17C;
                 }
             }            
         }
@@ -683,7 +683,7 @@ static function SendMapOptionsAndOpenAARMenu()
         {
             KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
             I = 0;
-            J0x2B5:
+            J0x2B6:
 
             if(I < KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Length)
             {
@@ -695,7 +695,7 @@ static function SendMapOptionsAndOpenAARMenu()
                     }
                 }
                 ++ I;
-                goto J0x2B5;
+                goto J0x2B6;
             }
         }
         KFPC.ClientShowPostGameMenu();        

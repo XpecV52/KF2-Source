@@ -28,7 +28,7 @@
 `define MAX_PERK_LEVEL	25
 
 /** The maximum number of prestige level available in each perk */
-`define MAX_PRESTIGE_LEVEL	1
+`define MAX_PRESTIGE_LEVEL	2
 
 /** The maximum number of simultaneous cosmetic attachments supported for a character */
 `define MAX_COSMETIC_ATTACHMENTS 3

@@ -737,6 +737,7 @@ defaultproperties
    AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_M16M203'
    AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_MedicRifle'
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.FreezeThrower_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Survivalist"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

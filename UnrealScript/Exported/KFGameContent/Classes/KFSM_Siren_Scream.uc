@@ -171,6 +171,7 @@ function InitializeSirenExplosion()
 		{
 			ExplosionActor.Instigator = KFPOwner;
 			ExplosionActor.InstigatorController = KFPOwner.Controller;
+			ExplosionActor.SetBase(KFPOwner);
 
 			// Deal explosion damage instantly and over time
 			ScreamExplosion();
@@ -219,6 +220,12 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	ScreamCount = 0;
 
 	DestroyProjectileShield();
+
+	if (ExplosionActor != none)
+	{
+		ExplosionActor.Destroy();
+		ExplosionActor = none;
+	}
 
 	if( AIOwner != none )
 	{

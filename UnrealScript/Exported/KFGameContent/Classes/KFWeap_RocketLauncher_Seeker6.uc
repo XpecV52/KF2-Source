@@ -77,7 +77,7 @@ simulated event Tick( float DeltaTime )
     {
 		if( (WorldInfo.TimeSeconds - LastTargetLockTime) > TimeBetweenLockOns
 			&& LockedTargets.Length < AmmoCount[GetAmmoType(0)]
-			&& LockedTargets.Length < MAX_LOCKED_TARGETS )
+			&& LockedTargets.Length < MAX_LOCKED_TARGETS)
 		{
 	        bUpdateServerTargets = FindTargets( RecentlyLocked );
 	    }
@@ -107,6 +107,29 @@ simulated event Tick( float DeltaTime )
     }
 }
 
+
+/**
+* Given an potential target TA determine if we can lock on to it.  By default only allow locking on
+* to pawns.
+*/
+simulated function bool CanLockOnTo(Actor TA)
+{
+	Local KFPawn PawnTarget;
+
+	PawnTarget = KFPawn(TA);
+
+	// Make sure the pawn is legit, isn't dead, and isn't already at full health
+	if ((TA == None) || !TA.bProjTarget || TA.bDeleteMe || (PawnTarget == None) ||
+		(TA == Instigator) || (PawnTarget.Health <= 0) || PawnTarget.bIsCloaking ||
+		!HasAmmo(DEFAULT_FIREMODE))
+	{
+		return false;
+	}
+
+	// Make sure and only lock onto players on the same team
+	return !WorldInfo.GRI.OnSameTeam(Instigator, TA);
+}
+
 /** Finds a new lock on target, adds it to the target array and returns TRUE if the array was updated */
 simulated function bool FindTargets( out Pawn RecentlyLocked )
 {
@@ -129,6 +152,10 @@ simulated function bool FindTargets( out Pawn RecentlyLocked )
 
 	foreach WorldInfo.AllPawns( class'Pawn', P )
 	{
+		if (!CanLockOnTo(P))
+		{
+			continue;
+		}
 		// Want alive pawns and ones we already don't have locked
 		if( P != none && P.IsAliveAndWell() && P.GetTeamNum() != TeamNum && LockedTargets.Find(P) == INDEX_NONE )
 		{

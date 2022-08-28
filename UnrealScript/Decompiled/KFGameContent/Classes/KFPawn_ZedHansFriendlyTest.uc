@@ -28,6 +28,7 @@ defaultproperties
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Benchmark_Archetype'
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHansFriendlyTest.MeleeHelper'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedHansFriendlyTest.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedHansFriendlyTest.HeadshotAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -83,6 +84,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedHansFriendlyTest.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHansFriendlyTest.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedHansFriendlyTest.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedHansFriendlyTest.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

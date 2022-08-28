@@ -27,6 +27,7 @@ var const private config array<SWhatsNew> PS4WhatsNewItemsFreeTrial;
 var array<SWhatsNew> PS4ActiveWhatsNewItems;
 
 var localized string MultiplayerString;
+var localized string CreateGameString;
 var localized string SoloString;
 var localized string TutorialString;
 
@@ -154,6 +155,8 @@ function LocalizeMenu()
     // Localize static text
     TextObject.SetString("home",StartMenu.FindGameString);  
     TextObject.SetString("multiplayer",MultiplayerString);  
+	TextObject.SetString("createGame", CreateGameString);
+	
 	TextObject.SetString("news", StartMenu.NewsPageString);
     TextObject.SetString("serverBrowser",StartMenu.ServerBrowserString);    
     TextObject.SetString("solo",SoloString);    
@@ -164,15 +167,17 @@ function LocalizeMenu()
 DefaultProperties
 {
 // Latest Update
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_MonsterMasquerade", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
 // Featured Time Limited Item
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/4928"))
-// Featured Uniform Bundle
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_MrsFosterBundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/6185"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/5246"))
+// Featured Headshot Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Headshot_Bundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/6455"))
 // Featured Weapon Skin USB
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_USBKey_Bluefire", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/6199"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_USBKey_NeonMK3_21", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/6431"))
 // Featured Crate Key
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_Steampunk_USBKey_Neon", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/6197"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_HorzineKey_Loco_18", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/6446"))
+// Featured Crossover
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_RR_Promotion", Textfield="FeaturedCrossover", RedirectURL="https://store.steampowered.com/app/300380/Road_Redemption/"))
 // Misc Community Links
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums", Textfield="Forums", RedirectURL="http://forums.tripwireinteractive.com/"))

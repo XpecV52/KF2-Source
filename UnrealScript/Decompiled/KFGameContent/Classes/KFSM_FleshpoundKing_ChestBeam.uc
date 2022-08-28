@@ -50,7 +50,7 @@ function Tick(float DeltaTime)
 
 function bool IsValidBeamTarget(Actor HitActor)
 {
-    return ((Pawn(HitActor) != none) || (StaticMeshActor(HitActor) != none) && !StaticMeshActor(HitActor).bResetCapable) || SkeletalMeshActor(HitActor) != none;
+    return (((Pawn(HitActor) != none) || (StaticMeshActor(HitActor) != none) && !StaticMeshActor(HitActor).bResetCapable) || SkeletalMeshActor(HitActor) != none) || StaticMeshCollectionActor(HitActor) != none;
 }
 
 function SetBeamTarget()

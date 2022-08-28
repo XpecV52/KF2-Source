@@ -8,6 +8,21 @@
 //=============================================================================
 class KFZedArmorInfo_EvilDAR extends KFZedArmorInfo;
 
+function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource)
+{
+	local byte PrevArmorZoneStatus, HeadByte;
+
+	PrevArmorZoneStatus = PreviousArmorZoneStatus;
+	super.AdjustBoneDamage(InDamage, BoneName, DamagerSource);
+
+	// EDAR has no head, only head armor, so blow off his "head" when his head armor is blown off
+	HeadByte = HeadBit;
+	if (((ArmorZoneStatus ^ PrevArmorZoneStatus) & HeadByte) != 0)
+	{
+		HitZones[HZI_Head].GoreHealth = 0;
+	}
+}
+
 function ExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 {
 	local name AdjustedZoneName;
@@ -52,7 +67,7 @@ simulated function UpdateArmorPieces()
 
 			if (MonsterArch.ExtraVFX.length > 0)
 			{
-				WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0], SocketLocation, SocketRotation);
+				WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0].VFX, SocketLocation, SocketRotation);
 			}
 
 			PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
@@ -63,7 +78,7 @@ simulated function UpdateArmorPieces()
 
 			if (MonsterArch.ExtraVFX.length > 1)
 			{
-				WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1], SocketLocation, SocketRotation);
+				WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1].VFX, SocketLocation, SocketRotation);
 			}
 
 			PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);

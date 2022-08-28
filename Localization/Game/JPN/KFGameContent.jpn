@@ -195,7 +195,7 @@ ItemDescription="•フルオートまたは3連射のファイアモードを�
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 ブルパップ"
 ItemCategory="アサルトライフル"
-ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•SA80は、軍隊が…食われるまでは、イギリス軍の標準武器でした。"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•SA80は、イギリス軍の標準武器でした...軍隊が食われるまでは。"
 
 [KFWeap_LMG_Stoner63A]
 ItemName="ストーナー63A LMG"
@@ -312,6 +312,12 @@ ItemName="VLAD-1000 ネイルガン"
 ItemCategory="ショットガン"
 ItemDescription="•単発または複数発のネイルファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•ホージンの科学者がオリジナルのネイルガンを(死亡した)整備員から借りたと認識しております。"
 
+[KFWeap_Blunt_ChainBat]
+ItemName="ロードレディーマー"
+ItemCategory="近接"
+ItemDescription="•プライマリ ― 素早く殴りつけ、プライマリを長押しでコンボ攻撃。\n•セカンダリ ― 強烈な殴打。\n•オルト ― ブロック/受け流し。\n•いつも夢見ていた強打者になろう！使用後に清掃するのをお忘れなく。"
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="パルベライザー"
 ItemCategory="近接"
@@ -327,7 +333,7 @@ SecondaryAmmo="ガソリン"
 ItemName="ツヴァイヘンダー"
 ItemCategory="近接"
 ItemDescription="•プライマリ―中/強ダメージ、さらに戦況コントロールもできます。\n•セカンダリ―より遅いですが、ダメージは増えます。\n•オルト―ブロック/受け流し\n•前進するとさらにダメージが増えます。"
-SharedUnlockSource="Chivalry Medieval Warfare" "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="ボーンクラッシャー"
@@ -505,6 +511,12 @@ ItemName="ハスクキャノン"
 ItemCategory="火炎"
 ItemDescription="•発射ボタンを押している間はチャージされ、発射ボタンを離すと解放されます。\n•ハスクキャノンのホージン社公式バージョン。このモデルは95%の保証付きで爆発しません。"
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="MKb.42(H)カービンライフル"
+ItemCategory="アサルトライフル"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•君の内なるハンスを呼び起こせ！正気を保てるとは限らない。"
+SharedUnlockSource="ハンスのハロウィーンスキン"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="ハンドガン"
@@ -529,6 +541,17 @@ ItemDescription="•プライマリ - 素早く殴りつけ、プライマリ長
 ItemName="Mac 10"
 ItemCategory="サブマシンガン"
 ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•焼夷弾を高速で発射することが特徴です。わかりましたか？ラピッドファイア？それが焼夷サブマシンガンだから？ああ、忘れてください。"
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="HMTech-501手榴弾ライフル"
+ItemCategory="アサルトライフル"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアでメディック手榴弾を発射。\n•この手榴弾は友達に投げてもよい唯一の武器です！"
+SecondaryAmmo="メディック手榴弾"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="アサルトライフル"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•この銃はFNセーフではないことに注意します。ひどい目に遭いましたから。"
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

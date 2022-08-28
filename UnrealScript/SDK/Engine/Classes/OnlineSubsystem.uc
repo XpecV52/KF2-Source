@@ -1457,7 +1457,7 @@ enum ItemType
 	ITP_Item,
 	ITP_CraftingComponent,
 	ITP_Emote,
-
+	ITP_SFX,
 	ITP_NONE,
 };
 

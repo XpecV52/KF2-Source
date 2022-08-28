@@ -31,6 +31,7 @@ struct native FXTemplate
 };
 
 var private native const noexport Pointer VfTable_IInterface_NavigationHandle;
+var repnotify transient KFWeldableComponent WeldableComponent;
 var MaterialInstanceConstant IntegrityMIC;
 /** Whether or not to start welded */
 var() bool bStartWelded;
@@ -38,13 +39,13 @@ var repnotify transient bool bIsDestroyed;
 var repnotify transient bool bWasRepaired;
 /** Amount of damage a welded door can take */
 var() int MaxWeldIntegrity;
-var repnotify transient int WeldIntegrity;
+var transient int WeldIntegrity;
 var const float MinWeldScalar;
 var transient float LastWeldTime;
 var transient float LastUnweldTime;
 var transient KFPawn WelderPawn;
 var int DemoWeldRequired;
-var repnotify transient int DemoWeld;
+var transient int DemoWeld;
 var byte RepairProgress;
 /** Particle effect spawned when a door has been fully repaired */
 var() FXTemplate RepairFXTemplate;
@@ -58,11 +59,8 @@ var const localized string RepairProgressString;
 replication
 {
      if(bNetDirty)
-        DemoWeld, WeldIntegrity, 
-        bIsDestroyed, bWasRepaired;
-
-     if(bNetDirty && bIsDestroyed)
-        RepairProgress;
+        WeldableComponent, bIsDestroyed, 
+        bWasRepaired;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -85,9 +83,9 @@ simulated event ReplicatedEvent(name VarName)
         }
         else
         {
-            if(VarName == 'WeldIntegrity')
+            if(VarName == 'WeldableComponent')
             {
-                UpdateIntegrityMIC();                
+                InitializeWeldableComponent();                
             }
             else
             {
@@ -101,7 +99,14 @@ simulated event PostBeginPlay()
 {
     super.PostBeginPlay();
     WeldUILocation = Location + (vect(0, 0, 1) * 164);
+    if(Role == ROLE_Authority)
+    {
+        WeldableComponent = Spawn(Class'KFWeldableComponent', self);
+        InitializeWeldableComponent();
+    }
 }
+
+simulated function InitializeWeldableComponent();
 
 function FastenWeld(int Amount, optional KFPawn Welder);
 
@@ -109,7 +114,6 @@ simulated function UpdateWeldIntegrity(int Amount)
 {
     WeldIntegrity = Clamp(WeldIntegrity + Amount, 0, MaxWeldIntegrity);
     UpdateIntegrityMIC();
-    bForceNetUpdate = true;
 }
 
 function Repair(float Amount, optional KFPawn Welder);

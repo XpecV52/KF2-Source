@@ -1,4 +1,5 @@
 [KFCommon_LocalizedStrings]
+SpecialEffectsString="特殊效果"
 PrestigeWarningString="重置天赋等级为0？ 此操作不可以撤销。"
 PrestigeBonusString="威望奖励"
 FailedToReachInventoryServerString="无法连接物品服务器。 将无法使用仓库。"
@@ -8,7 +9,6 @@ DifficultyStrings[1]="困难"
 DifficultyStrings[2]="自杀"
 DifficultyStrings[3]="人间炼狱"
 BonusDoshString="奖励钱币"
-
 LengthStrings[0]="短（4 波）"
 LengthStrings[1]="中（7 波）"
 LengthStrings[2]="长（10 波）"
@@ -19,8 +19,7 @@ ServerTypeStrings[2]="排名——自定义"
 ServerTypeStrings[3]="非排名"
 
 PermissionStrings[0]="公开"
-PermissionStrings[1]="仅限朋友"
-PermissionStrings[2]="私人密码"
+PermissionStrings[1]="私人密码"
 
 ConsolePermissionStrings[0]="公开"
 ConsolePermissionStrings[1]="仅限邀请"
@@ -108,6 +107,9 @@ DiscordTraderTimeString=": 商人时间"
 DiscordBossWaveString=": Boss波"
 DiscordWaveString=": 波"
 
+StartOfflineGameString="开始离线游戏"
+StartOfflineGameDescriptionString="开始离线游戏将会解散你的队伍。\n你要继续吗？"
+
 ProceedToTutorialString="继续训练？"
 ProceedToTutorialDescriptionString="在受控制的环境中进行基础学习。  完成时可以使选择的0级天赋升级为1级天赋。"
 
@@ -164,7 +166,7 @@ ExplosiveString="陷阱门："
 
 [KFGFxMenu_StartGame]
 CreateMatchString="创建比赛"
-MatchmakingString="在线比赛匹配"
+MatchmakingString="寻找比赛"
 ConsoleMatchmakingString="在线玩"
 ServerBrowserString="浏览服务器"
 NewsPageString="新闻"
@@ -191,29 +193,30 @@ CouldNotFindGameDescriptionStringPC="没有找到与搜索设置匹配的服务�
 CouldNotFindGameDescriptionStringOrbis="没有找到与搜索设置匹配的服务器。尝试不同的过滤条件。"
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="在线比赛匹配"
+MultiplayerString="寻找比赛"
 ConsoleMultiplayerString="在线玩"
+CreateGameString="创建比赛"
 SoloString="玩离线单人模式"
 TutorialString="基准训练"
 
 [StartMenuHelperText]
-modeList0="生存——PVE 人工智能控制的丧尸战斗波"
-modeList1="每周爆发 - 每周推出一个不同的变种游戏模式。"
-modeList2="VS 生存——PVP 霍因佣兵 vs 玩家和人工智能控制的丧尸波"
-modeList3="无尽——与 AI 控制的一波波丧尸作战，直至死亡"
-difficultyList0="普通——适合神射 0-5 级的新手玩家。"
-difficultyList1="困难——适合神射 6-12 级的有经验玩家。每波的丧尸数量会更多，它们移动的速度更快，血值也更高。可以捡的物品更少，你得到的钱也更少。"
-difficultyList2="自杀——适合神射 13-25 级的熟练玩家。每波的丧尸数量甚至会更多，他们使用新的攻击，移动的速度甚至更快。可以捡的物品甚至更少，你得到的钱也更少。"
-difficultyList3="人间炼狱——非常激烈的挑战，适合神射 25 级的玩家。同样地，每波的丧尸数量甚至会更多，以及会使用新的攻击。可以捡的物品甚至更少，你得到的钱也更少。"
+modeList0="与设定好的人工智能控制的丧尸波次战斗"
+modeList1="在本周特殊的游戏模式中与设定好的人工智能控制的丧尸波次战斗"
+modeList2="霍因佣兵 vs 玩家和人工智能控制的丧尸波"
+modeList3="与无尽的人工智能控制的丧尸波次战斗"
+difficultyList0="适合天赋 0-5 级的新手玩家"
+difficultyList1="适合天赋 6-15 级的有经验的玩家。每波次丧尸速度、生命、伤害以及数量都会增加。玩家获得的钱币和拾取物品变少。"
+difficultyList2="适合天赋 15-25 级的熟练玩家。每波次丧尸速度、生命、伤害以及数量都会进一步增加，有些丧尸有新的攻击方式。玩家获得的钱币和拾取物品更少。"
+difficultyList3="非常激烈的挑战，适合天赋 25 级的玩家。每波次丧尸速度、生命、伤害以及数量都会大大增加。玩家获得的钱币和拾取物品大大减少。"
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="排名——任意地图，没有修改器，没有友军炮火，最多 6 名玩家（如果是 VS 生存，则最多 12 名玩家）"
-serverTypeList1="排名仓库——官方地图，没有修改器，没有友军炮火，最多 6 名玩家"
-serverTypeList2="排名自定义——任意地图，白名单修改器，任意服务器设置"
-serverTypeList3="非排名自定义——非白名单修改器（仅限）"
-serverTypeList4="没有偏好——任意其他服务器类型"
+serverTypeList0="任意地图，没有修改器，没有友军炮火，最多 6 名玩家，如果是 VS 生存，则最多 12 名玩家"
+serverTypeList1="官方地图，没有修改器，没有友军炮火，最多 6 名玩家，如果是 VS 生存，则最多 12 名玩家"
+serverTypeList2="任意地图，白名单修改器，任意服务器设置"
+serverTypeList3="仅限非白名单修改器"
+serverTypeList4="任意其他服务器类型"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -268,6 +271,10 @@ BossWaveString="首领"
 BossName="首领"
 BossCaptionStrings[0]="首领标题 1"
 BossCaptionStrings[1]="首领标题 2"
+
+[KFGFxTraderContainer_ErrorMessage]
+CannotAffordString="购买此物品的资金不足。"
+CannotCarryString="无法携带物品。出售其余的物品留出空间。"
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="仓库"
@@ -765,6 +772,7 @@ DefaultPlayerName="玩家"
 
 PartyLeaderSearchingForMatchString="正在搜索比赛…"
 PartyLeaderIsUpdatingMatchOptionsString="正在设置比赛选项…"
+CreatingGameString="正在创建新游戏"
 PartyLeaderInServerBrowserString="正在搜索服务器浏览器…"
 PartyLeaderInOtherMenuString="在另一个菜单中…"
 SearchingForGameString="正在搜索在线游戏…"
@@ -897,7 +905,7 @@ NotHightenoughLevelString="天赋未达到最高等级。 用户目前无法提�
 CurrentRankString="目前等级"
 NextRankString="下一等级"
 RewardString="威望奖励"
-PrestigeDescriptionString="> 天赋等级将会重置为0\n> 这一天赋永久获得游戏比赛结束后 +30% 额外经验奖励。\n> 赢取这一天赋的精致头像，金库以及一款独特武器皮肤。"
+PrestigeDescriptionString="> 天赋等级将会重置为 0。\n> 为该天赋永久 +%x%% 额外XP。\n> 获得改进的天赋图标，金库钱币及该天赋的独特武器皮肤。"
 PrestigeWarningString1="此操作将会重置这一天赋等级为0"
 PrestigeWarningString2="只有在你完全确定时才能继续"
 PrestigeWarningString3="一经重置，无法撤回"
@@ -911,11 +919,13 @@ TotalString="总计"
 CheckOutString="结账"
 
 [KFGFxStoreContainer_Main]
+FeaturedString="主打商品"
 WeaponSkinsRotationString="武器皮肤"
 WeaponSkinsString="市场武器皮肤"
 MarketConsumablesString="市场板条箱/USB"
 MarketCosmeticsString="市场装饰品"
 MarketEmotesString="市场表情"
+MarketSFXString="商店SFX"
 ThankYouString="感谢你的购买！这会帮我们开发新的物品，地图，武器，丧尸和未来更新的新游戏模式。"
 
 [KFGFxStoreContainer_Details]
@@ -940,6 +950,7 @@ MenuStrings[7]="退出"
 
 ServerBrowserString="服务器浏览器"
 MatchmakingString="比赛匹配"
+CreateGameString="创建游戏"
 SoloString="单人"
 OverviewString="比赛概述"
 
@@ -1230,6 +1241,7 @@ AntiMotionSicknessString="反晕动病"
 AutoTurnOffString="不自动转向血凝丧尸抓取的方向"
 ReduceHighPitchNoiseString="减少高分贝噪音"
 DisableAutoUpgradeString="禁用“自动交易”功能"
+HideRemodeHeadshotEffectsString="关闭远程爆头特效"
 
 EnableMixerString="切换Mixer互动功能"
 DisableMixerString="禁用“Mixer”功能"
@@ -1486,7 +1498,7 @@ PlayerClotGrabWarningMessage="杀死丧尸，冲出重围！"
 UseMinigameMessage="激活"
 UseMinigameGeneratorMessage="激活发生器"
 DoshActivateMessage="行动消耗"
-EMPGrabWarningMessage="*** ！无法动弹！  ***"
+EMPGrabWarningMessage="*** ！无法动弹！***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="目前的队伍不平衡，将会进行调整"
 
@@ -1782,7 +1794,7 @@ EatLead="吃我的子弹"
 EatLeadDescription="提升神射武器的容量弹匣 100%。"
 
 RapidFire="丧尸时间 - 机枪手"
-RapidFireDescription="在丧尸时间中，神射武器的伤害提升 3%，所有枪械的射击速度提升 3 倍。"
+RapidFireDescription="在丧尸时间中，使用天赋武器时伤害提升 3%，提升 3 倍射击速度。"
 
 Professional="丧尸时间 - 战术家"
 ProfessionalDescription="在丧尸时间中，你可以全速为神射武器填弹，切换神射武器的速度提升 2 倍。"
@@ -2315,7 +2327,8 @@ HorzineSupplyCrateKey13="霍因供应箱钥匙 | 系列 #13 - $2.49"
 USBSpitfire="喷火 USB 钥匙 - $2.49"
 USBHighVoltage="高电压 USB 钥匙 - $2.49"
 MerchSale="KF2 装备大促销！2017 年 4 月 30 日之前优惠至 7.5 折，促销码 ZED"
-FreeTrial="购买完全版游戏"
+FreeTrial="今天马上购买 Killing Floor 2 吧！"
+FeaturedCrossover="跨界商品促销"
 
 [Objectives]
 HoldVolume="保卫区域"
@@ -2474,6 +2487,8 @@ zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="骑士推销"
+KFWeap_ChainBat="Road Redemption 促销"
+KFWeap_MKB="汉斯的万圣节武器"
 
 
 Source0="骑士推销"
@@ -2504,6 +2519,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="水流奔涌",DescriptionString="
 SpecialEventObjectiveInfoList[4]=(TitleString="舟行自如",DescriptionString="以困难或更高难度在飞艇关卡上赢得一局匹配游戏");
 
 AllCompleteRewardDescriptionString="蒸汽朋克服装包"
+
+ChanceDropDescriptionStrings[0]="奖励劵"
+ChanceDropDescriptionStrings[1]="黄金券"
+
+[KFGFxFallObjectivesContainer]
+CurrentSpecialEventString="完成怪物球中的挑战，赢得奖励！"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="技巧或陷阱！",DescriptionString="在一场游戏中使用陷阱击杀 25 个丧尸");
+SpecialEventObjectiveInfoList[1]=(TitleString="死无对证",DescriptionString="摧毁 10 个发光头骨藏品");
+SpecialEventObjectiveInfoList[2]=(TitleString="怪兽血浆",DescriptionString="击杀 2500 个丧尸");
+SpecialEventObjectiveInfoList[3]=(TitleString="彻夜狂欢",DescriptionString="在困难或以上难度的无尽挑战中成功抵御 25 波丧尸");
+SpecialEventObjectiveInfoList[4]=(TitleString="堡垒之王",DescriptionString="在幸存者难度或以上难度中打败考特·汉斯");
+
+AllCompleteRewardDescriptionString="汉斯的MKB万圣节皮肤"
 
 ChanceDropDescriptionStrings[0]="奖励劵"
 ChanceDropDescriptionStrings[1]="黄金券"
@@ -2945,37 +2974,21 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
-[KF-Lockdown KFMapSummary]
-DisplayName_CHN="封锁"
-DisplayName_CHT="封鎖"
-DisplayName_DEU="Sperrmodus"
-DisplayName_ESL="Bloqueo"
-DisplayName_ESN="Bloqueo"
-DisplayName_FRA="Confinement"
-DisplayName_FRC="Confinement"
-DisplayName_INT="Lockdown"
-DisplayName_ITA="Debilitazione"
-DisplayName_JPN="ロックダウン"
-DisplayName_KOR="락다운"
-DisplayName_POL="Kwarantanna"
-DisplayName_PTB="Confinamento"
-DisplayName_RUS="Изоляция"
-
-[KF-Airship KFMapSummary]
-DisplayName_CHN="飞艇"
-DisplayName_CHT="飛艇"
-DisplayName_DEU="Luftschiff"
-DisplayName_ESL="Aeronave"
-DisplayName_ESN="Aeronave"
-DisplayName_FRA="Dirigeable"
-DisplayName_FRC="Dirigeable"
-DisplayName_INT="Airship"
-DisplayName_ITA="Aeronave"
-DisplayName_JPN="飛行船"
-DisplayName_KOR="비행선"
-DisplayName_POL="Statek powietrzny"
-DisplayName_PTB="Aeronave"
-DisplayName_RUS="Воздушное судно"
+[KF-MonsterBall KFMapSummary]
+DisplayName_CHN="怪物球"
+DisplayName_CHT="怪獸舞會"
+DisplayName_DEU="Monsterball"
+DisplayName_ESL="Baile de monstruos"
+DisplayName_ESN="Baile de monstruos"
+DisplayName_FRA="Bal des monstres"
+DisplayName_FRC="Bal des monstres"
+DisplayName_INT="Monster Ball"
+DisplayName_ITA="Festa dei mostri"
+DisplayName_JPN="Monster Ball"
+DisplayName_KOR="괴물 무도회"
+DisplayName_POL="Bal potworów"
+DisplayName_PTB="Baile de Monstros"
+DisplayName_RUS="Бал монстров"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="生命学实验室"
@@ -3051,6 +3064,9 @@ DisplayName="封锁"
 
 [KF-Airship KFMapSummary]
 DisplayName="飞艇"
+
+[KF-MonsterBall KFMapSummary]
+DisplayName="怪物球"
 
 [KFMapInfo]
 ; defaults

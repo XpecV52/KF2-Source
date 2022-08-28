@@ -31,6 +31,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_FleshpoundMini'
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshpoundMini.FootstepCameraShake0'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.HeadshotAkComponent0'
     LocalizationKey=KFPawn_ZedFleshpoundMini
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -89,7 +90,8 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpoundMini.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpoundMini.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundMini.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundMini.RageAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundMini.HeadshotAkComponent0'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshpoundMini.RageAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

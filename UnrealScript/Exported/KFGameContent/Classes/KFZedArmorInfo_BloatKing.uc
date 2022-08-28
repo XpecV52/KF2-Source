@@ -86,14 +86,14 @@ simulated function UpdateArmorPieces()
 				StaticAttachList.Remove(i, 1);
 			}
 			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
-			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0], SocketLocation, SocketRotation);
+			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0].VFX, SocketLocation, SocketRotation);
 			PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
 			break;
 		case FrontBit:
 			//Front armor is locked to attach list slot 1
 			DetachComponent(ThirdPersonAttachments[1]);
 			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
-			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1], SocketLocation, SocketRotation);
+			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1].VFX, SocketLocation, SocketRotation);
 			PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
 			ThirdPersonAttachments[1] = none;
 			break;
@@ -101,7 +101,7 @@ simulated function UpdateArmorPieces()
 			//Back armor is locked to attach list slot 2
 			DetachComponent(ThirdPersonAttachments[2]);
 			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[2].SocketName, SocketLocation, SocketRotation);
-			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[2], SocketLocation, SocketRotation);
+			WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[2].VFX, SocketLocation, SocketRotation);
 			PlaySoundBase(default.ArmorZones[2].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
 			ThirdPersonAttachments[2] = none;
 			break;

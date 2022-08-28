@@ -38,7 +38,7 @@ simulated event PostBeginPlay()
 
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
-    super(KFPawn).SetCharacterArch(Info);
+    super.SetCharacterArch(Info);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
         CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant(2);
@@ -128,26 +128,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     if((bCanRage && !bPlayedDeath) && (GetHealthPercentage() < RageHealthThreshold) || (GetHeadHealthPercent()) < RageHealthThreshold)
     {
         SetEnraged(true);
-    }
-}
-
-simulated function SetEnraged(bool bNewEnraged)
-{
-    if((Role == ROLE_Authority) && bNewEnraged == bIsEnraged)
-    {
-        return;
-    }
-    if(Role == ROLE_Authority)
-    {
-        bIsEnraged = bNewEnraged;
-        if(IsDoingSpecialMove(17))
-        {
-            EndSpecialMove();
-        }
-        if(!IsHumanControlled())
-        {
-            SetSprinting(bNewEnraged);
-        }
     }
 }
 
@@ -267,6 +247,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_Scrake'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedScrake.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedScrake.HeadshotAkComponent0'
     OnDeathAchievementID=132
     PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
     LocalizationKey=KFPawn_ZedScrake
@@ -346,6 +327,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedScrake.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedScrake.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedScrake.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedScrake.HeadshotAkComponent0'
     begin object name=ChainsawAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -353,7 +335,7 @@ defaultproperties
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedScrake.ChainsawAkComponent0'
-    Components(9)=ChainsawAkComponent0
+    Components(10)=ChainsawAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

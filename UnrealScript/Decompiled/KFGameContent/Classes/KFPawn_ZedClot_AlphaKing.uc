@@ -119,22 +119,30 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
     KFAIController_ZedClot_AlphaKing(Controller).StartArmorLoss();
 }
 
-simulated function SetEnraged(bool bNewEnraged)
+simulated function bool SetEnraged(bool bNewEnraged)
 {
-    if(Role == ROLE_Authority)
+    local bool bSuccess;
+
+    bSuccess = super(KFPawn_Monster).SetEnraged(bNewEnraged);
+    if((bSuccess && Role == ROLE_Authority) && bNewEnraged)
     {
         PlaySoundBase(EnragedSoundEvent);
-        bIsEnraged = bNewEnraged;
-        if(MyKFAIC.bCanSprint)
-        {
-            SetSprinting(true);
-        }
+    }
+    return bSuccess;
+}
+
+function SetSprinting(bool bNewSprintStatus)
+{
+    if((bNewSprintStatus == false) || (MyKFAIC != none) && MyKFAIC.bCanSprint)
+    {
+        super(KFPawn_Monster).SetSprinting(bNewSprintStatus);
     }
 }
 
 defaultproperties
 {
     EnragedSoundEvent=AkEvent'WW_ZED_Clot_Alpha.Play_Alpha_Clot_Special_Enrage'
+    bCanRage=true
     MonsterArchPath="ZED_ARCH.ZED_Clot_AlphaKing_Archetype"
     MinSpawnSquadSizeType=ESquadType.EST_Medium
     RepArmorPct[0]=255
@@ -149,6 +157,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_ClotAlphaKing'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_AlphaKing.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedClot_AlphaKing.HeadshotAkComponent0'
     ArmorInfoClass=Class'KFZedArmorInfo_ClotKing'
     OverrideArmorFXIndex=200
     LocalizationKey=KFPawn_ZedClot_AlphaKing
@@ -209,6 +218,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedClot_AlphaKing.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot_AlphaKing.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedClot_AlphaKing.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedClot_AlphaKing.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

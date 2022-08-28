@@ -356,7 +356,7 @@ simulated private final static function int GetExtraAmmo( int Level )
 * @name	 Selectable skills
 ********************************************************************************************* */
 
-static function PrepareExplosive( Pawn ProjOwner, KFProjectile Proj )
+static function PrepareExplosive( Pawn ProjOwner, KFProjectile Proj, optional float AuxRadiusMod = 1.0f, optional float AuxDmgMod = 1.0f )
 {
     local KFPlayerReplicationInfo InstigatorPRI;
     local KFPlayerController KFPC;
@@ -372,8 +372,8 @@ static function PrepareExplosive( Pawn ProjOwner, KFProjectile Proj )
 	            if( InstigatorPRI.bNukeActive && class'KFPerk_Demolitionist'.static.ProjectileShouldNuke(Proj) )
 	            {
 	                Proj.ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
-	                Proj.ExplosionTemplate.Damage = Proj.default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
-	                Proj.ExplosionTemplate.DamageRadius = Proj.default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
+	                Proj.ExplosionTemplate.Damage = Proj.default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier() * AuxDmgMod;
+	                Proj.ExplosionTemplate.DamageRadius = Proj.default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier() * AuxRadiusMod;
 	                Proj.ExplosionTemplate.DamageFalloffExponent = Proj.default.ExplosionTemplate.DamageFalloffExponent;        
 	            }
 	            else if( InstigatorPRI.bConcussiveActive && Proj.AltExploEffects != none )
@@ -391,7 +391,7 @@ static function PrepareExplosive( Pawn ProjOwner, KFProjectile Proj )
 	    	if( KFPC != none )
 	    	{
 		        InstigatorPerk = KFPC.GetPerk();
-		        Proj.ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
+		        Proj.ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier() * AuxRadiusMod;
 		    }
 	    }
 	}
@@ -1120,6 +1120,7 @@ DefaultProperties
 
 	// Prestige Rewards
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
+	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.HX25_PrestigePrecious_Mint_large"
 
    	ZedTimeModifyingStates(0)="WeaponFiring"
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"

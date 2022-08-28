@@ -46,6 +46,7 @@ const STATID_DailyEventInfo = 302;
 const STATID_DailyEventIDs = 303;
 const STATID_DailyEventStats1 = 304;
 const STATID_DailyEventStats2 = 305;
+const STATID_SpecialEventKills = 306;
 const STATID_DoshVaultTotal = 400;
 const STATID_LastViewedDoshVaultTotal = 401;
 const STATID_DoshVaultProgress = 402;
@@ -101,6 +102,8 @@ const STATID_ACHIEVE_ArenaCollectibles = 4041;
 const STATID_ACHIEVE_PowercoreCollectibles = 4042;
 const STATID_ACHIEVE_AirshipCollectibles = 4043;
 const STATID_ACHIEVE_LockdownCollectibles = 4044;
+const STATID_ACHIEVE_MonsterBallCollectibles = 4045;
+const STATID_ACHIEVE_MonsterBallSecretRoom = 4046;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -336,6 +339,7 @@ static function class<KFPerk> GetPerkFromDamageCauser(Actor WeaponActor, class<K
 {
     local KFWeapon KFW;
     local KFProjectile KFPrj;
+    local KFSprayActor KFSpray;
 
     KFW = KFWeapon(WeaponActor);
     KFPrj = KFProjectile(WeaponActor);
@@ -353,9 +357,20 @@ static function class<KFPerk> GetPerkFromDamageCauser(Actor WeaponActor, class<K
             }
             else
             {
-                if(WeaponActor.IsA('SprayActor_Flame'))
+                if(WeaponActor.IsA('KFSprayActor'))
                 {
-                    return Class'KFPerk_Firebug';                    
+                    KFSpray = KFSprayActor(WeaponActor);
+                    if(ClassIsChildOf(KFSpray.MyDamageType, Class'KFDT_Fire'))
+                    {
+                        return Class'KFPerk_Firebug';                        
+                    }
+                    else
+                    {
+                        if(ClassIsChildOf(KFSpray.MyDamageType, Class'KFDT_Freeze'))
+                        {
+                            return Class'KFPerk_Survivalist';
+                        }
+                    }                    
                 }
                 else
                 {
@@ -451,7 +466,7 @@ native simulated function byte GetLevel();
 native simulated function SetLevel(byte NewLevel);
 
 // Export UKFPerk::execGetPrestigeLevel(FFrame&, void* const)
-native simulated function byte GetPrestigeLevel(byte NewLevel);
+native simulated function byte GetPrestigeLevel();
 
 // Export UKFPerk::execSetPrestigeLevel(FFrame&, void* const)
 native simulated function SetPrestigeLevel(byte NewLevel);
@@ -1181,7 +1196,7 @@ simulated function bool IsFlarotovActive()
     return false;
 }
 
-function ModifyDoTScaler(out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected);
+function float GetDoTScalerAdditions(class<KFDamageType> KFDT);
 
 function bool GetFireStumble(optional KFPawn KFP, optional class<DamageType> DamageType)
 {

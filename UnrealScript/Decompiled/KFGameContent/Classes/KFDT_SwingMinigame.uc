@@ -14,6 +14,7 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
 
 defaultproperties
 {
+    bIsTrapDamage=true
     GoreDamageGroup=EGoreDamageGroup.DGT_Explosive
     GibImpulseScale=0.15
     OverrideImpactEffect=ParticleSystem'FX_Environmental_EMIT_THREE.FX_Swing_Ride_Bloodhit_01'

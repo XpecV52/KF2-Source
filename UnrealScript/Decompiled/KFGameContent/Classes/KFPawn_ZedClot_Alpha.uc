@@ -28,6 +28,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_ClotAlpha'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha.HeadshotAkComponent0'
     LocalizationKey=KFPawn_ZedClot_Alpha
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -91,6 +92,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedClot_Alpha.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot_Alpha.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedClot_Alpha.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedClot_Alpha.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

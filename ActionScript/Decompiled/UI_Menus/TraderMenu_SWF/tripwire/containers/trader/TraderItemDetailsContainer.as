@@ -129,8 +129,8 @@ package tripwire.containers.trader
             if(MenuManager.manager && MenuManager.manager.bUsingGamepad)
             {
             }
-            this.detailedStats.upgradeCostTextField.text = param1.upgradePrice;
-            this.detailedStats.upgradeWeightTextField.text = param1.upgradeWeight;
+            this.detailedStats.upgradeCostTextField.text = !!param1.upgradePrice ? param1.upgradePrice : "";
+            this.detailedStats.upgradeWeightTextField.text = !!param1.upgradeWeight ? param1.upgradeWeight : "";
             this.detailedStats.DoshIcon.x = this.detailedStats.upgradeCostTextField.getLineMetrics(0).x - this.DOSH_ICON_OFFSET;
             this.upgradePriceColor = !!param1.bCanBuyUpgrade ? uint(this.activeColor) : uint(this.inactiveColor);
             this.upgradeWeightColor = !!param1.bCanCarryUpgrade ? uint(this.activeColor) : uint(this.inactiveColor);
@@ -180,12 +180,13 @@ package tripwire.containers.trader
                 this.detailedStats.fireRateBar.width = this.BAR_MAX_WIDTH * 0.01 * param1.fireRatePercent;
                 this.detailedStats.penetrationBar.width = this.BAR_MAX_WIDTH * 0.01 * param1.penetrationPercent;
                 this.detailedStats.accuracyBar.width = this.BAR_MAX_WIDTH * 0.01 * param1.accuracyPercent;
-                this.detailedStats.damageUpBar.visible = this.detailedStats.damageBarBG.visible = this.detailedStats.damageBar.visible;
-                this.detailedStats.fireRateUpBar.visible = this.detailedStats.fireRateBarBG.visible = this.detailedStats.fireRateBar.visible;
-                this.detailedStats.penetrationUpBar.visible = this.detailedStats.penetrationBarBG.visible = this.detailedStats.penetrationBar.visible;
-                this.detailedStats.accuracyUpBar.visible = this.detailedStats.accuracyBarBG.visible = this.detailedStats.accuracyBar.visible = visible;
-                this.detailedStats.descriptionTextField.text = param1.description;
-                this.detailedStats.weightValue.text = param1.weight;
+                this.detailedStats.damageTitle.visible = this.detailedStats.damageUpBar.visible = this.detailedStats.damageBarBG.visible = this.detailedStats.damageBar.visible;
+                this.detailedStats.fireRateTitle.visible = this.detailedStats.fireRateUpBar.visible = this.detailedStats.fireRateBarBG.visible = this.detailedStats.fireRateBar.visible;
+                this.detailedStats.penetrationTitle.visible = this.detailedStats.penetrationUpBar.visible = this.detailedStats.penetrationBarBG.visible = this.detailedStats.penetrationBar.visible;
+                this.detailedStats.accuracyTitle.visible = this.detailedStats.accuracyUpBar.visible = this.detailedStats.accuracyBarBG.visible = this.detailedStats.accuracyBar.visible;
+                this.detailedStats.descriptionTextField.visible = !!param1.description ? true : false;
+                this.detailedStats.descriptionTextField.text = !!param1.description ? param1.description : "";
+                this.detailedStats.weightValue.text = !!param1.weight ? param1.weight : "";
                 this.detailedStats.weightValue.visible = param1.weight > 0;
                 this.detailedStats.weightIcon.visible = param1.weight > 0;
                 this.detailedStats.damageUpBar.x = this.detailedStats.damageBar.x;
@@ -206,7 +207,7 @@ package tripwire.containers.trader
             }
             else
             {
-                this.noStatsDescriptionTextField.text = param1.description;
+                this.noStatsDescriptionTextField.text = !!param1.description ? param1.description : "";
             }
             if(this.visible)
             {
@@ -247,6 +248,7 @@ package tripwire.containers.trader
         
         public function updateControllerVisibility() : *
         {
+            this.detailedStats.favoriteControllerIcon.visible = bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
             this.detailedStats.favoriteButton.visible = !bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
             this.detailedStats.upgradeButton.visible = !bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanUpgrade;
             this.detailedStats.upgradeTextField.visible = this.cachedItemData && this.cachedItemData.bCanUpgrade;

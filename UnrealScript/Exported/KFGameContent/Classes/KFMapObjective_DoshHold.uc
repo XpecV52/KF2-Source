@@ -539,6 +539,7 @@ class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense
 
 
 
+										  
 
 
 
@@ -555,6 +556,8 @@ class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense
 
 
 										  
+
+
 
 
 

@@ -16,6 +16,7 @@ package tripwire.containers.trader
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripUIPerkLoader;
@@ -49,6 +50,22 @@ package tripwire.containers.trader
         public var characterLoader:UILoader;
         
         public var perkIconLoader:TripUIPerkLoader;
+        
+        public var enhanceIcon_0:UILoader;
+        
+        public var enhanceIcon_1:UILoader;
+        
+        public var enhanceIcon_2:UILoader;
+        
+        public var enhanceIcon_3:UILoader;
+        
+        public var enhanceIcon_4:UILoader;
+        
+        public var enhanceIcon_5:UILoader;
+        
+        public var enhanceIcon_6:UILoader;
+        
+        public var enhanceIcon_7:UILoader;
         
         public var bCanUseMenu:Boolean;
         
@@ -100,6 +117,7 @@ package tripwire.containers.trader
             super.addedToStage(param1);
             this.perkListContainer.deselectContainer();
             this.perkListContainer.PlayerInventoryContainerRef = this.owner;
+            TextFieldEx.setTextAutoSize(this.perkNameTextField,"shrink");
         }
         
         public function set LocalizedText(param1:Object) : void
@@ -188,6 +206,10 @@ package tripwire.containers.trader
         {
             this.perkListContainer.perkList.dataProvider = new DataProvider(param1);
             this.perkListContainer.perkList.invalidateData();
+        }
+        
+        public function set enhancementData(param1:Object) : *
+        {
         }
         
         public function closeList() : *

@@ -23,6 +23,7 @@ DARClassicLevel20BundleName="D.A.R. – Zestaw klasyczny poz. 20"
 DARClassicLevel25BundleName="D.A.R. – Zestaw klasyczny poz. 25"
 MrsFosterBundleName="Pani Foster"
 SteampunkOutfitBundleName="Zestaw „Steampunkowy strój”"
+HeadshotFXBundle1Name="Pakiet efektów strzału w głowę 1"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="W zestawie londyński mundur Briara (wraz z 5 skórkami) i akcesorium hełm policyjny (wraz z 3 skórkami)."
@@ -42,6 +43,7 @@ DARClassicLevel20BundleDescription="W zestawie klasyczne skórki pancerza i heł
 DARClassicLevel25BundleDescription="W zestawie klasyczne skórki pancerza i hełmu w wersji Cenny egzemplarz. Dla: D.A.R."
 MrsFosterBundleDescription="Wciel się w Panią Foster, jedną z najlepszych specjalistek branży handlowej w Londynie! W zestawie z kamizelką (6 wersji skórki) i maską gazową (6 wersji skórki)."
 SteampunkOutfitBundleDescription="Zawiera męskie i damskie ubiory steampunkowe (6 wersji skórki dla każdego zestawu). Zestaw do wykorzystania przez większość postaci."
+HeadshotFXBundle1Description="Zawiera pięć efektów strzałów w głowę. Pełno forsy, Komiczna akcja, Czas na imprezę, Miłość od pierwszego strzału i Upiorne duchy."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Zgarnij nowy klasyczny mundur londyńskiego policjanta dla grywalnej postaci – posterunkowego Roba Briara. W zestawie londyński mundur Briara (wraz 5 skórkami) i akcesorium hełm policyjny (wraz z 3 skórkami)."
@@ -298,6 +300,7 @@ EmoteCrateSeries1Name="Skrzynia emocji | Seria 1"
 EmoteCrateSeries2Name="Skrzynia emocji | Seria 3"
 DoshVaultUnlockedCrate1Name="Skarbiec Forsy: skrzynię 1"
 HorzineSupplyCrateSeriesDARName="Skrzynia Horzine | Seria D.A.R."
+HorzineSupplyCrateSeriesLocoName="Skrzynia Horzine | Seria Loco"
 
 ;Crate Descriptions
 
@@ -340,6 +343,8 @@ DoshVaultUnlockedCrate1Description="Zawiera jeden przedmiot z następujących:<b
 
 HorzineSupplyCrateSeriesDARDescription="Requires a D.A.R. Horzine Supply Crate Key to open. Contains one rare or better of the following D.A.R. accessories:<br><font color="#4b69cd">Flight P51 Armor or Helmet</font><br><font color="#4b69cd">CHONNE-E 5 Gym or Time Cube Armor</font><br><font color="#4b69cd">CHONNE-E 5 Chap or Steel Helmet</font><br><font color="#4b69cd">C3HZ Crash Armor or Helmet</font><br><font color="#4b69cd">C3HZ Flow Blue Armor or Helmet</font><br><font color="#6600a1">Flight Galactic Armor or Helmet</font><br><font color="#6600a1">Flight Scream Armor or Helmet</font><br><font color="#6600a1">CHONNE-E 5 BatCat Armor</font><br><font color="#6600a1">CHONNE-E 5 Vapor Helmet</font><br><font color="#6600a1">C3HZ Obsidian Armor or Helmet</font><br><font color="#6600a1">C3HZ Space Armor or Helmet</font><br><font color="#8847ff">Flight Blue Angel Armor or Helmet</font><br><font color="#8847ff">Flight Spitfire Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Horzine Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Radical Armor</font><br><font color="#8847ff">CHONNE-E 5 Sunset Helmet</font><br><font color="#8847ff">C3HZ Marble Armor or Helmet</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
+
+
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Klucz do skrzyni Horzine | Seria 1"
 HorzineSupplyCrateKeySeries2Name="Klucz do skrzyni Horzine | Seria 2"
@@ -360,6 +365,7 @@ HorzineSupplyCrateKeySeries16Name="Klucz do skrzyni Horzine | Seria 16"
 EmoteCrateKeySeries1Name="Klucz do skrzyni emocji | Seria 1"
 EmoteCrateKeySeries2Name="Klucz do skrzyni emocji | Seria 3"
 HorzineSupplyCrateKeySeriesDARName="Klucz do skrzyni Horzine | Seria D.A.R."
+HorzineSupplyCrateKeySeriesLocoName="Klucz do skrzyni Horzine | Seria Loco"
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description="Ten klucz otwiera wyłącznie skrzynię Horzine serii 1."
@@ -381,6 +387,7 @@ HorzineSupplyCrateKeySeries16Description="Ten klucz otwiera wyłącznie skrzyni�
 EmoteCrateKeySeries1Description="Ten klucz otwiera wyłącznie skrzynię emocji serii 1."
 EmoteCrateKeySeries2Description="Ten klucz otwiera wyłącznie skrzynię emocji serii 2."
 HorzineSupplyCrateKeySeriesDARDescription="Ten klucz otwiera wyłącznie skrzynię serii D.A.R ."
+HorzineSupplyCrateKeySeriesLocoDescription="Ten klucz otwiera wyłącznie skrzynię Horzine serii Loco."
 
 ;UsbNames
 CyberboneEncryptedUSBName="Szyfrowy dysk USB Cyberbone"
@@ -408,6 +415,7 @@ NeonEncryptedUSBName="Zaszyfrowany dysk USB: Neon"
 WeaponCollectorPack1USBName="Paczka kolekcjonera broni 1 – USB"
 NeonMKIIEncryptedUSBName="Szyfrowy dysk USB Neon MKII"
 BluefireEncryptedUSBName="Szyfrowy dysk USB Bluefire"
+NeonMKIIIEncryptedUSBName="Szyfrowy dysk USB Neon MKIII"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="Do otwarcia potrzeba klucza planu Cyberbone. Zawiera jedną rzadką lub lepszą skórkę broni z następujących:<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AK-12 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 |Gnijąca żółć</font><br><font color="#8847ff">AR15 | Izolacja</font><br><font color="#caab05">lub niezmiernie rzadką cenną skórkę!</font>"
@@ -460,6 +468,8 @@ NeonMKIIEncryptedUSBDescription="Do odszyfrowania potrzeba klucza planu Neon MKI
 
 
 
+NeonMKIIIEncryptedUSBDescription="Do otwarcia potrzeba klucza planu Neon MKIII. Zawiera jedną z następujących rzadkich lub lepszych skórek broni:<br><font color="#4b69cd">9 mm | Neon</font><br><font color="#4b69cd">Centerfire | Neon</font><br><font color="#4b69cd">Truchla armata | Neon</font><br><font color="#6600a1">AF2011-A1 | Neon</font><br><font color="#6600a1">Pukawka | Neon</font><br><font color="#6600a1">M99 | Neon</font><br><font color="#8847ff">AK-12 | Neon</font><br><font color="#8847ff">M16 M203 | Neon</font><br><font color="#8847ff">P90 | Neon</font><br><font color="#8847ff">Statyczne groty | Neon</font><br><font color="#caab05">lub niezmiernie rzadką cenną skórkę!</font>"
+
 ;usb key names
 CyberboneUSBKeyName="Klucz USB Cyberbone"
 DragonfireUSBKeyName="Klucz USB smoczy ogień"
@@ -486,6 +496,7 @@ NeonUSBKeyName="Klucz USB: Neon"
 WeaponCollectorPack1USBKeyName="Paczka kolekcjonera broni 1 – Klucz USB"
 NeonMKIIUSBKeyName="Klucz Neon MKII USB"
 BluefireUSBKeyName="Klucz Bluefire USB"
+NeonMKIIIUSBKeyName="Klucz USB Neon MKIII"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Cyberbone"
@@ -513,6 +524,7 @@ NeonUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Neon"
 WeaponCollectorPack1USBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Paczki kolekcjonera broni 1"
 NeonMKIIUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Neon MKII"
 BluefireUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Bluefire"
+NeonMKIIIUSBKeyDescription="Ten klucz deszyfruje tylko zaszyfrowany plan Neon MKIII"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Skrzynia Horzine z ozdobami | Seria 1"
@@ -521,6 +533,7 @@ HorzineSupplyCosmeticCrateSeries3Name="Skrzynia Horzine z ozdobami | Seria 4"
 HorzineSupplyCosmeticCrateSeries4Name="Skrzynia Horzine z ozdobami | Seria 4"
 HorzineSupplyCosmeticCrateSeries5Name="Skrzynia Horzine z ozdobami | Seria 5"
 HorzineSupplyCosmeticCrateSeries6Name="Skrzynia Horzine z ozdobami | Seria 6"
+HorzineSupplyCosmeticCrateSeries7Name="Skrzynia Horzine z ozdobami | Seria 7"
 HorzineSupplyWeaponSkinCrateSeries1Name="Skrzynia Horzine ze skórkami broni | Seria 1"
 HorzineSupplyWeaponSkinCrateSeries2Name="Skrzynia Horzine ze skórkami broni | Seria 2"
 HorzineSupplyWeaponSkinCrateSeries3Name="Skrzynia Horzine ze skórkami broni | Seria 3"
@@ -531,6 +544,7 @@ HorzineSupplyWeaponSkinCrateSeries7Name="Skrzynia Horzine ze skórkami broni | S
 HorzineSupplyWeaponSkinCrateSeries8Name="Skrzynia Horzine ze skórkami broni | Seria 8"
 HorzineSupplyWeaponSkinCrateSeries9Name="Skrzynia Horzine ze skórkami broni | Seria 9"
 HorzineSupplyWeaponSkinCrateSeries10Name="Skrzynia Horzine ze skórkami broni | Seria 10"
+HorzineSupplyWeaponSkinCrateSeries11Name="Skrzynia Horzine ze skórkami broni | Seria 11"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="Do otwarcia potrzeba klucza do skrzyni Horzine. Zawiera jeden rzadki lub lepszy przedmiot z następujących:<br><font color="#4b69cd">Maska balistyczna Devtac</font><br><font color="#4b69cd">Amerykańska maska gazowa</font><br><font color="#4b69cd">Maska narciarska</font><br><font color="#4b69cd">Baseballówka</font><br><font color="#6600a1">Plecak taktyczny</font><br><font color="#6600a1">Niemiecka maska gazowa</font><br><font color="#6600a1">Chemiczna maska gazowa</font><br><font color="#6600a1">Plecak na RPG7</font><br><font color="#8847ff">Zbiornik miotacza M2</font><br><font color="#caab05">lub niezmiernie rzadkie cenne akcesorium!</font>"
@@ -568,6 +582,9 @@ HorzineSupplyWeaponSkinCrateSeries8Description="Do otwarcia potrzeba klucza do s
 
 
 HorzineSupplyWeaponSkinCrateSeries10Description="Do otwarcia potrzeba klucza do skrzyni Horzine. Zawiera jedną rzadką lub lepszą skórkę broni:<br><font color="#4b69cd">AA12 | Taktyczny</font><br><font color="#4b69cd">AK12 | Taktyczny</font><br><font color="#4b69cd">L85A2 | Taktyczny</font><br><font color="#4b69cd">SG500 | Taktyczny</font><br><font color="#4b69cd">Karabin szt. HMTech-401 | Taktyczny</font><br><font color="#4b69cd">SCAR | Taktyczny</font><br><font color="#6600a1">Desert Eagle | Elit. Horzine ziel.</font><br><font color="#6600a1">Desert Eagle | Elit. Horzine biały</font><br><font color="#8847ff">Desert Eagle | Elit. Horzine nieb.</font><br><font color="#8847ff">Desert Eagle | Elit. Horzine czer.</font><br><font color="#caab05">lub wyjątkowo rzadką skórkę, będącą cennym egzemplarzem!</font>"
+
+HorzineSupplyWeaponSkinCrateSeries11Description="Do otwarcia potrzeba klucza do skrzyni Horzine. Zawiera jedną z następujących rzadkich lub lepszych skórek broni:<br><font color="#4b69cd">9 mm | Neon</font><br><font color="#4b69cd">Centerfire | Neon</font><br><font color="#4b69cd">Truchla armata | Neon</font><br><font color="#6600a1">AF2011-A1 | Neon</font><br><font color="#6600a1">Pukawka | Neon</font><br><font color="#6600a1">M99 | Neon</font><br><font color="#8847ff">AK-12 | Neon</font><br><font color="#8847ff">M16 M203 | Neon</font><br><font color="#8847ff">P90 | Neon</font><br><font color="#8847ff">Statyczne groty | Neon</font><br><font color="#caab05">lub niezmiernie rzadką cenną skórkę!</font>"
+
 
 
 ;PSN Key Names
@@ -625,6 +642,9 @@ EmoteRareType="Rzadka emocja"
 EmoteExceptionalType="Wyjątkowa emocja"
 EmoteMasterCraftedType="Mistrzowsko wytworzona emocja"
 EmoteDeluxeType="Emocja de luxe"
+
+;FX Type Section
+FXDeluxeType="Efekty de luxe"
 
 [Crafting]
 
@@ -728,6 +748,7 @@ HMTechHealerBlackGoldenBattleScarredName="Uzdrowiciel HMTech | Czarno-złoty | W
 1858RevolverHeirloomMintName="Rewolwer 1858 | Pamiątka | Jak nowy"
 1858RevolverHeirloomFieldTestedName="Rewolwer 1858 | Pamiątka | Przetestowany"
 1858RevolverHeirloomBattleScarredName="Rewolwer 1858 | Pamiątka | Wysłużony"
+1858RevolverPrestigePreciousName="Rewolwer 1858 | Prestiż | Cenny egzemplarz"
 
 ;500 Magnum Revolver Descriptions
 500MagnumRevolverMintDescription="Stan zewnętrzny: Jak nowy | „Kolekcjoner kości”, prawdziwa ręczna artyleria w postaci rewolweru kalibru .50 z długą lufą, strzelającego nabojami Magnum. Dla poważnego rewolwerowca."
@@ -811,6 +832,10 @@ HMTechHealerBlackGoldenBattleScarredName="Uzdrowiciel HMTech | Czarno-złoty | W
 9MMBlackGoldenMintName="9 mm | Czarno-złoty | Jak nowy"
 9MMBlackGoldenFieldTestedName="9 mm | Czarno-złoty | Przetestowany"
 9MMBlackGoldenBattleScarredName="9 mm | Czarno-złoty| Wysłużony"
+9MMNeonBattleScarredName="9 mm | Neon | Wysłużony"
+9MMNeonFieldTestedName="9 mm| Neon | Przetestowany"
+9MMNeonMintName="9 mm| Neon | Jak nowy"
+9MMNeonRGBPreciousName="9 mm| Neon RGB | Cenny egzemplarz"
 
 ;AA12 Descriptions
 AA12MintDescription="Stan zewnętrzny: Jak nowa | AA-12 to strzelba automatyczna. Ma niszczycielską siłę ognia na krótkim i średnim dystansie, ale w trybie ognia ciągłego pożera amunicję!"
@@ -870,14 +895,20 @@ AF2011A1FieldTestedDescription="Stan zewnętrzny: Przetestowany | Więcej niż j
 AF2011A1BattleScarredDescription="Stan zewnętrzny: Wysłużony | Więcej niż jedna lufa to zawsze dobra wiadomość. To tak jak z bekonem."
 AF2011A1PreciousDescription="Stan zewnętrzny: Cenny egz. | Więcej niż jedna lufa to zawsze dobra wiadomość. To tak jak z bekonem."
 
+
 ;AF2011-A1 Names
 AF2011A1PreciousName="AF2011-A1 | Cenny egzemplarz"
+AF2011A1NeonBattleScarredName="AF2011-A1 | Neon | Wysłużony"
+AF2011A1NeonFieldTestedName="AF2011-A1 | Neon | Przetestowany"
+AF2011A1NeonMintName="AF2011-A1 | Neon | Jak nowy"
+AF2011A1NeonRGBPreciousName="AF2011-A1 | Neon RGB | Cenny egzemplarz"
 
 ;AK12 Descriptions
 AK12MintDescription="Stan zewnętrzny: Jak nowy | Ten AK-12 został zabrany martwemu rosyjskiemu operatorowi Specnazu w celu zeskanowania."
 AK12FieldTestedDescription="Stan zewnętrzny: Przetestowany | Ten AK-12 został zabrany martwemu rosyjskiemu operatorowi Specnazu w celu zeskanowania."
 AK12BattleScarredDescription="Stan zewnętrzny: Wysłużony | Ten AK-12 został zabrany martwemu rosyjskiemu operatorowi Specnazu w celu zeskanowania."
 AK12PreciousDescription="Stan zewnętrzny: Cenny | Ten AK-12 został zabrany martwemu rosyjskiemu operatorowi Specnazu w celu zeskanowania."
+
 
 ;AK12 Names
 AK12CyberboneMintName="AK-12 | Cyberbone | Jak nowy"
@@ -917,24 +948,29 @@ AK12TigerMintName="AK-12 | Paski | Jak nowy"
 AK12TigerTestedName="AK-12 | Paski | Przetestowany"
 AK12TigerBattleScarredName="AK-12 | Paski | Wysłużony"
 AK12PreciousName="AK-12 | Cenna"
-AK12TacticalMintName="AK12 | Taktyczny | Jak nowy"
-AK12TacticalFieldTestedName="AK12 | Taktyczny | Przetestowany"
-AK12TacticalBattleScarredName="AK12 | Taktyczny | Wysłużony"
-AK12VietnamMintName="AK12 | Wietnam | Jak nowy"
-AK12VietnamFieldTestedName="AK12 | Wietnam | Przetestowana"
-AK12VietnamBattleScarredName="AK12 | Wietnam | Wysłużona"
-AK12JunkyardMintName="AK12 | Złomowisko | Jak nowy"
-AK12JunkyardFieldTestedName="AK12 | Złomowisko | Przetestowana"
-AK12JunkyardBattleScarredName="AK12 | Złomowisko | Wysłużona"
-AK12VaultHonorableDeathMintName="AK12 | Skarbiec | Honorowa śmierć | Jak nowy"
-AK12VaultHonorableDeathFieldTestedName="AK12 | Skarbiec | Honorowa śmierć | Przetestowany"
-AK12VaultHonorableDeathBattleScarredName="AK12 | Skarbiec | Honorowa śmierć | Wysłużony"
-AK12BluefireMintName="AK12 | Bluefire | Jak nowy "
-AK12BluefireFieldTestedName="AK12 | Bluefire | Przetestowany "
-AK12BluefireBattleScarredName="AK12 | Bluefire | Wysłużony "
-AK12HorzineFirstEncounterMintName="AK12 | Spotkanie z Horzine | Jak nowy "
-AK12HorzineFirstEncounterFieldTestedName="AK12 | Spotkanie z Horzine | Przetestowany "
-AK12HorzineFirstEncounterBattleScarredName="AK12 | Spotkanie z Horzine | Wysłużony "
+AK12TacticalMintName="AK-12 | Taktyczny | Jak nowy"
+AK12TacticalFieldTestedName="AK-12 | Taktyczny | Przetestowany"
+AK12TacticalBattleScarredName="AK-12 | Taktyczny | Wysłużony"
+AK12VietnamMintName="AK-12 | Wietnam | Jak nowy"
+AK12VietnamFieldTestedName="AK-12 | Wietnam | Przetestowany"
+AK12VietnamBattleScarredName="AK-12 | Wietnam | Wysłużony"
+AK12JunkyardMintName="AK-12 | Złomowisko | Jak nowy"
+AK12JunkyardFieldTestedName="AK-12 | Złomowisko | Przetestowany"
+AK12JunkyardBattleScarredName="AK-12 | Złomowisko | Wysłużony"
+AK12VaultHonorableDeathMintName="AK-12 | Skarbiec | Honorowa śmierć | Jak nowy"
+AK12VaultHonorableDeathFieldTestedName="AK-12 | Skarbiec | Honorowa śmierć | Przetest."
+AK12VaultHonorableDeathBattleScarredName="AK-12 | Skarbiec | Honorowa śmierć | Wysłużony"
+AK12BluefireMintName="AK-12 | Niebieski ogień | Jak nowy "
+AK12BluefireFieldTestedName="AK-12 | Niebieski ogień | Przetestowany "
+AK12BluefireBattleScarredName="AK-12 | Niebieski ogień | Wysłużony "
+AK12HorzineFirstEncounterMintName="AK-12 | Spotkanie z Horzine | Jak nowy "
+AK12HorzineFirstEncounterFieldTestedName="AK-12 | Spotkanie z Horzine | Przetestowany "
+AK12HorzineFirstEncounterBattleScarredName="AK-12 | Spotkanie z Horzine | Wysłużony "
+AK12NeonBattleScarredName="AK-12 | Neon | Wysłużony"
+AK12NeonFieldTestedName="AK-12 | Neon | Przetestowany"
+AK12NeonMintName="AK-12 | Neon | Jak nowy"
+AK12NeonRGBPreciousName="AK-12 | Neon RGB | Cenny egzemplarz"
+AK12VaultVoshPreciousName="AK-12 | Skarbiec | Forsa | Cenny egzemplarz"
 
 ;AR15 Descriptions
 AR15MintDescription="Stan zewnętrzny: Jak nowy | Wbrew nazwie jest to broń na zetów, nie szkodniki."
@@ -969,6 +1005,7 @@ AR15VaultBlueCamoTestedName="AR15 | Skarbiec | Niebieski kamuflaż | Przetestowa
 AR15VaultBlueCamoBattleScarredName="AR15 | Skarbiec | Niebieski kamuflaż | Wysłużony"
 AR15PreciousName="AR15 | Cenna"
 AR15VaultVoshPreciousName="AR15 | Skarbiec | Forsa | Cenny egzemplarz"
+AR15PrestigePreciousName="AR15 | Prestiż | Cenny egzemplarz"
 
 ;Berserker Knife Descriptions
 BerserkerKnifeMintDescription="Stan zewnętrzny: Jak nowe | Tak, to naprawdę ostrze kosiarki. Miłej zabawy!"
@@ -1036,6 +1073,7 @@ CaulknBurnVaultSciFiFieldTestedName="Płomiennica | Skarbiec | Sci-Fi | Przetest
 CaulknBurnVaultSciFiBattleScarredName="Płomiennica | Skarbiec | Sci-Fi | Wysłużona"
 CaulknBurnPreciousName="Płomiennica | Cenna"
 CaulknBurnVaultVoshPreciousName="Płomiennica | Skarbiec | Forsa | Cenny egz."
+CaulknBurnPrestigePreciousName="Płomiennica | Prestiż | Cenny egzemplarz"
 
 ;Centerfire Descriptions
 CenterfireMintWeeklyDescription="Stan zewnętrzny: Jak nowy | Nowoczesny karabin centralnego zapłonu z zamkiem dźwigniowym oferujący mały odrzut i dużą mocą obalającą. Zaktualizowana klasyka. Przedmiot odblokowano, kończąc tygodniowy incydent."
@@ -1053,6 +1091,10 @@ CenterfireBluefireMintName="Centerfire | Bluefire | Jak nowy "
 CenterfireBluefireFieldTestedName="Centerfire | Bluefire | Przetestowany "
 CenterfireBluefireBattleScarredName="Centerfire | Bluefire | Wysłużony"
 CenterfirePreciousName="Centerfire | Cenny egz. "
+CenterfireNeonBattleScarredName="Centerfire | Neon | Wysłużony"
+CenterfireNeonFieldTestedName="Centerfire | Neon | Przetestowany"
+CenterfireNeonMintName="Centerfire | Neon | Jak nowy"
+CenterfireNeonRGBPreciousName="Centerfire | Neon RGB | Cenny egzemplarz"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Stan zewnętrzny: Jak nowa | Mocna kusza myśliwska zapewniającą dobrą penetrację i moc obalającą!"
@@ -1097,6 +1139,7 @@ CrovelVaultVoshPreciousName="Saperkołom | Skarbiec | Forsa | Cenny egzemplarz"
 CrovelBlackGoldenMintName="Saperkołom | Czarno-złoty | Jak nowy"
 CrovelBlackGoldenFieldTestedName="Saperkołom | Czarno-złoty | Przetestowany"
 CrovelBlackGoldenBattleScarredName="Saperkołom | Czarno-złoty| Wysłużony"
+CrovelPrestigePreciousName="Saperkołom | Prestiż | Cenny egzemplarz"
 
 ;Desert Eagle Descriptions
 DesertEagleMintDescription="Stan zewnętrzny: Jak nowy | Desert Eagle to potwór wśród broni krótkich, czemu zawdzięcza miano „ręcznej armaty”."
@@ -1130,6 +1173,19 @@ DesertEagleHorzineEliteRedBattleScarredName="Desert Eagle | Elit. Horzine czer. 
 DesertEagleHorzineEliteWhiteMintName="Desert Eagle | Elit. Horzine biały | Jak nowy"
 DesertEagleHorzineEliteWhiteFieldTestedName="Desert Eagle | Elit. Horzine biały | Przetestowany"
 DesertEagleHorzineEliteWhiteBattleScarredName="Desert Eagle | Elit. Horzine biały | Wysłużony"
+DesertEagleVaultVoshPreciousName="Desert Eagle | Skarbiec | Forsa | Cenny egz."
+
+;Doomstick Descriptions
+DoomstickMintDescription="Stan zewnętrzny: Jak nowy | Kiedy podwójna zabawa nie wystarcza... niech będzie poczwórna!"
+DoomstickFieldTestedDescription="Stan zewnętrzny: Przetestowany | Kiedy podwójna zabawa nie wystarcza... niech będzie poczwórna!"
+DoomstickBattleScarredDescription="Stan zewnętrzny: Wysłużony | Kiedy podwójna zabawa nie wystarcza... niech będzie poczwórna!"
+DoomstickPreciousDescription="Stan zewnętrzny: Cenny egzemplarz | Kiedy podwójna zabawa nie wystarcza... niech będzie poczwórna!"
+
+;Doomstick Names
+DoomstickNeonMintName="Pukawka | Neon | Jak nowa "
+DoomstickNeonFieldTestedName="Pukawka | Neon | Przetestowana "
+DoomstickNeonBattleScarredName="Pukawka | Neon | Wysłużona "
+DoomstickNeonRGBPreciousName="Pukawka | Neon RGB | Cenny egzemplarz "
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="Stan zewnętrzny: Jak nowa | Strzelba na naboje zapalające smoczy oddech. Nie dość, że zabójcza, to jeszcze ładnie wygląda."
@@ -1209,6 +1265,7 @@ FlamethrowerNeonMintName="Miotacz ognia | Neon | Jak nowy "
 FlamethrowerNeonFieldTestedName="Miotacz ognia | Neon | Przetestowany "
 FlamethrowerNeonBattleScarredName="Miotacz ognia | Neon | Wysłużony "
 FlamethrowerNeonRGBPreciousName="Miotacz ognia | Neon RGB | Cenny egz. "
+FlamethrowerVaultVoshPreciousName="Miotacz ognia | Skarbiec | Forsa | Cenny egz."
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="Stan zewnętrzny: Jak nowy | Miotanie ogniem za pomocą wygodnej podręcznej broni."
@@ -1272,6 +1329,8 @@ FreezeThrowerMinusZeroGreenBattleScarredName="Miotacz lodu | Arkt. zieleń| Wys�
 FreezeThrowerBluefireMintName="Miotacz lodu | Bluefire | Jak nowy "
 FreezeThrowerBluefireFieldTestedName="Miotacz lodu | Bluefire | Przetestowany "
 FreezeThrowerBluefireBattleScarredName="Miotacz lodu | Bluefire | Wysłużony "
+FreezeThrowerPrestigePreciousName="Miotacz lodu | Prestiż | Cenny egzemplarz"
+FreezeThrowerVaultVoshPreciousName="Miotacz lodu | Skarbiec | Forsa | Cenny egz."
 
 ;Freeze Thrower Descriptions
 FreezeThrowerMintDescription="Stan zewnętrzny: Jak nowy | Materia biologiczna nie jest w stanie wytrzymać takiego zimna."
@@ -1367,6 +1426,7 @@ HMTech101PistolHorzineEliteRedBattleScarredName="Pistolet HMTech-101 | Elit. Hor
 HMTech101PistolHorzineEliteWhiteMintName="Pistolet HMTech-101 | Elit. Horzine biały | Jak nowy "
 HMTech101PistolHorzineEliteWhiteFieldTestedName="Pistolet HMTech-101 | Elit. Horzine biały | Przetestowany "
 HMTech101PistolHorzineEliteWhiteBattleScarredName="Pistolet HMTech-101 | Elit. Horzine biały | Wysłużony "
+HMTech101PistolPrestigePreciousName="Pistolet HMTech-101 | Prestiż | Cenny egzemplarz"
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="Stan zewnętrzny: Jak nowy | Strzela strzałkami, które leczą członków drużyny. Pistolet HMTech, tyle że podrasowany."
@@ -1401,6 +1461,7 @@ HMTech301ShotgunEliteUnitRedMintName="Strzelba HMTech-301 | El. czerwona| Jak no
 HMTech301ShotgunEliteUnitRedFieldTestedName="Strzelba HMTech-301 | El. czerwona | Przetestowana"
 HMTech301ShotgunEliteUnitRedBattleScarredName="Strzelba HMTech-301 | El. czerwona | Wysłużona"
 HMTech301ShotgunPreciousName="Strzelba HMTech-301 | Cenna"
+HMTech301ShotgunVaultVoshPreciousName="Strz. HMTech-301 | Skarbiec | Forsa | Cenny egz."
 
 ;HMTech-401 Assault Rifle Descriptions
 HMTech401AssaultRifleMintDescription="Stan zewnętrzny: Jak nowy | Pistolet HMTech w wersji pełnoprawnego karabinu szturmowego."
@@ -1443,6 +1504,10 @@ HuskCannonPreciousDescription="Stan zewnętrzny: Cenny egzemplarz | Oficjalna we
 
 ;Husk Cannon Names
 HuskCannonPreciousName="Truchla armata | Cenny egzemplarz"
+HuskCannonNeonBattleScarredName="Truchla armata | Neon | Wysłużona"
+HuskCannonNeonFieldTestedName="Truchla armata | Neon | Przetestowana"
+HuskCannonNeonMintName="Truchla armata | Neon | Jak nowa"
+HuskCannonNeonRGBPreciousName="Truchla armata | Neon RGB | Cenny egzemplarz"
 
 ;HX25 Descriptions
 HX25MintDescription="Stan zewnętrzny: Jak nowy | Tryb ataku: ogień pociskami kasetowymi, które wybuchają przy kontakcie."
@@ -1471,6 +1536,7 @@ HX25VaultBlueCamoFieldTestedName="HX25 | Skarbiec | Niebieski kamuflaż | Przete
 HX25VaultBlueCamoBattleScarredName="HX25 | Skarbiec | Niebieski kamuflaż | Wysłużony"
 HX25PreciousName="HX25 | Cenny"
 HX25VaultVoshPreciousName="HX25 | Skarbiec | Forsa | Cenny egzemplarz"
+HX25PrestigePreciousName="HX25 | Prestiż | Cenny egzemplarz"
 
 ;HZ12 Descriptions
 HZ12MintDescription="Stan zewnętrzny: Jak nowa | Strzelba HZ12 to prototyp testowany przez ochroniarzy Horzine."
@@ -1637,6 +1703,7 @@ M14EBRNeonMintName="M14EBR | Neon | Jak nowy "
 M14EBRNeonFieldTestedName="M14EBR | Neon | Przetestowany "
 M14EBRNeonBattleScarredName="M14EBR | Neon | Wysłużony "
 M14EBRNeonRGBPreciousName="M14EBR | Neon RGB | Cenny egz. "
+M14EBRVaultVoshPreciousName="M14EBR | Skarbiec | Forsa | Cenny egzemplarz"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Stan zewnętrzny: Jak nowy | Dla tych, którzy nie potrafią wybrać między kulami a ładunkami wybuchowymi."
@@ -1652,6 +1719,10 @@ M16M203JunkyardMintName="M16 M203 | Złomowisko | Jak nowy"
 M16M203JunkyardFieldTestedName="M16 M203 | Złomowisko | Przetestowana"
 M16M203JunkyardBattleScarredName="M16 M203 | Złomowisko | Wysłużona"
 M16M203PreciousName="M16 M203 | Cenny egzemplarz"
+M16M2036NeonBattleScarredName="M16 M2036 | Neon | Wysłużony"
+M16M2036NeonFieldTestedName="M16 M2036 | Neon | Przetestowany"
+M16M2036NeonMintName="M16 M2036 | Neon | Jak nowy"
+M16M2036NeonRGBPreciousName="M16 M2036 | Neon RGB | Cenny egzemplarz"
 
 ;M1911 Descriptions
 M1911MintDescription="Stan zewnętrzny: Jak nowy | Klasyczny samopowtarzalny pistolet Colt 1911."
@@ -1704,6 +1775,7 @@ M4PreciousName="M4 | Cenny"
 M4BluefireMintName="M4 | Bluefire | Jak nowy "
 M4BluefireFieldTestedName="M4 | Bluefire | Przetestowany "
 M4BluefireBattleScarredName="M4 | Bluefire | Wysłużony "
+M4VaultVoshPreciousName="M4 | Skarbiec | Forsa | Cenny egzemplarz"
 
 ;M79 Descriptions
 M79MintDescription="Stan zewnętrzny: Jak nowy | Uzbraja się dopiero po kilku metrach, żeby strzelający nie urwał sobie twarzy."
@@ -1740,12 +1812,25 @@ M79BluefireBattleScarredName="M79 | Bluefire | Wysłużony"
 M79HorzineFirstEncounterMintName="M79 | Spotkanie z Horzine | Jak nowy "
 M79HorzineFirstEncounterFieldTestedName="M79 | Spotkanie z Horzine | Przetestowany "
 M79HorzineFirstEncounterBattleScarredName="M79 | Spotkanie z Horzine | Wysłużony "
+M79VaultVoshPreciousName="M79 | Skarbiec | Forsa | Cenny egzemplarz"
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="Stan zewnętrzny: Jak nowy | Potężny atak – uderzenie tarczą."
 MaceAndShieldFieldTestedDescription="Stan zewnętrzny: Przetestowany | Potężny atak – uderzenie tarczą."
 MaceAndShieldBattleScarredDescription="Stan zewnętrzny: Wysłużony | Potężny atak – uderzenie tarczą."
 MaceAndShieldPreciousDescription="Stan zewnętrzny: Cenny | Potężny atak – uderzenie tarczą."
+
+;M99 Descriptions
+M99MintDescription="Stan zewnętrzny: Jak nowy | Każdy z wielkich pocisków potrafi porządnie przywalić. Porządna penetracja, porządny ból."
+M99FieldTestedDescription="Stan zewnętrzny: Przetestowany | Każdy z wielkich pocisków potrafi porządnie przywalić. Porządna penetracja, porządny ból."
+M99BattleScarredDescription="Stan zewnętrzny: Wysłużony | Każdy z wielkich pocisków potrafi porządnie przywalić. Porządna penetracja, porządny ból."
+M99PreciousDescription="Stan zewnętrzny: Cenny egzemplarz | Każdy z wielkich pocisków potrafi porządnie przywalić. Porządna penetracja, porządny ból."
+
+;M99 Names
+M99NeonMintName="M99 | Neon | Jak nowy "
+M99NeonFieldTestedName="M99 | Neon | Przetestowany "
+M99NeonBattleScarredName="M99 | Neon | Wysłużony "
+M99NeonRGBPreciousName="M99 | Neon RGB | Cenny egzemplarz "
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="Łamignat | Obwody | Jak nowy"
@@ -1779,6 +1864,10 @@ Mac10PreciousName="Mac 10 | Cenny egzemplarz"
 Mac10HorzineFirstEncounterMintName="MAC 10 | Spotkanie z Horzine | Jak nowy "
 Mac10HorzineFirstEncounterFieldTestedName="MAC 10 | Spotkanie z Horzine | Przetestowany "
 Mac10HorzineFirstEncounterBattleScarredName="MAC 10 | Spotkanie z Horzine | Wysłużony "
+Mac10NeonMintName="MAC 10 | Neon | Jak nowy "
+Mac10NeonFieldTestedName="MAC 10 | Neon | Przetestowany "
+Mac10NeonBattleScarredName="MAC 10 | Neon | Wysłużony "
+Mac10NeonRGBPreciousName="MAC 10 | Neon RGB | Cenny egzemplarz "
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Stan zewnętrzny: Jak nowy | Cud nowoczesnej techniki: przenośny opiekacz zetów."
@@ -1854,6 +1943,7 @@ MP7VaultVoshPreciousName="MP7 | Skarbiec | Forsa | Cenny egzemplarz"
 MP7BluefireMintName="MP7 | Bluefire | Jak nowy "
 MP7BluefireFieldTestedName="MP7 | Bluefire | Przetestowany "
 MP7BluefireBattleScarredName="MP7 | Bluefire | Wysłużony "
+MP7PrestigePreciousName="MP7 | Prestiż | Cenny egzemplarz"
 
 ;P90 Descriptions
 P90MintDescription="Stan zewnętrzny: Jak nowy | Może i wygląda dziwnie, ale naprawdę dobrze rozwala zety, a jak się chce, to można sobie poudawać odgłosy lasera."
@@ -1866,6 +1956,11 @@ P90BuzzsawMintName="P90 | Piła tarczowa | Jak nowy"
 P90BuzzsawFieldTestedName="P90 | Piła tarczowa | Przetestowany"
 P90BuzzsawBattleScarredName="P90 | Piła tarczowa | Wysłużony"
 P90PreciousName="P90 | Cenny"
+P90NeonBattleScarredName="P90 | Neon | Wysłużony"
+P90NeonFieldTestedName="P90 | Neon | Przetestowany"
+P90NeonMintName="P90 | Neon | Jak nowy"
+P90NeonRGBPreciousName="P90 | Neon RGB | Cenny egzemplarz"
+P90VaultVoshPreciousName="P90 | Skarbiec | Forsa | Cenny egzemplarz"
 
 ;Pulverizer Descriptions
 PulverizerMintDescription="Stan zewnętrzny: Jak nowy | Kto nie chciałby młota dwuręcznego i strzelby w jednym?"
@@ -1890,6 +1985,7 @@ PulverizerPreciousName="Miażdżyciel | Cenny"
 PulverizerBlackGoldenMintName="Miażdżyciel | Czarno-złoty | Jak nowy"
 PulverizerBlackGoldenFieldTestedName="Miażdżyciel | Czarno-złoty | Przetestowany"
 PulverizerBlackGoldenBattleScarredName="Miażdżyciel | Czarno-złoty| Wysłużony"
+PulverizerVaultVoshPreciousName="Miażdżyciel | Skarbiec | Forsa | Cenny egz."
 
 ;Railgun Descriptions
 RailgunMintDescription="Stan zewnętrzny: Jak nowy | Ta broń wystrzeliwuje lite stalowe pociski z dużą prędkością za pomocą magnesów, przebijając zety jak bibułę."
@@ -2063,6 +2159,19 @@ SG500VaultBlueCamoMintName="SG 500 | Skarbiec| Niebieski kamuflaż | Jak nowy"
 SG500VaultBlueCamoFieldTestedName="SG 500 | Skarbiec | Nieb. kam. | Przetestowany"
 SG500VaultBlueCamoBattleScarredName="SG 500 | Skarbiec | Niebieski kam. | Wysłużony"
 SG500VaultVoshPreciousName="SG 500 | Skarbiec | Forsa | Cenny egzemplarz"
+SG500PrestigePreciousName="SG 500 | Prestiż | Cenna egzemplarz"
+
+;Static Strikers Descriptions
+StaticStrikersMintDescription="Stan zewnętrzny: Jak nowy | Chcesz przywalić zetowi w twarz? No to proszę!"
+StaticStrikersFieldTestedDescription="Stan zewnętrzny: Przetestowany | Chcesz przywalić zetowi w twarz? No to proszę!"
+StaticStrikersBattleScarredDescription="Stan zewnętrzny: Wysłużony | Chcesz przywalić zetowi w twarz? No to proszę!"
+StaticStrikersPreciousDescription="Stan zewnętrzny: Cenny egzemplarz | Chcesz przywalić zetowi w twarz? No to proszę!"
+
+;Static Strikers Names
+StaticStrikersNeonMintName="Statyczne groty | Neon | Jak nowe "
+StaticStrikersNeonFieldTestedName="Statyczne groty | Neon | Przetestowane "
+StaticStrikersNeonBattleScarredName="Statyczne groty | Neon | Wysłużone "
+StaticStrikersNeonRGBPreciousName="Statyczne groty | Neon RGB | Cenny egzemplarz "
 
 ;Stoner 63A Descriptions
 Stoner63AMintDescription="Stan zewnętrzny: Jak nowy | Stoner 63A, używany przez amerykańskich Navy SEALs podczas wojny w Wietnamie, ma dużą pojemność magazynka i ogromną moc obalającą."
@@ -2171,6 +2280,7 @@ Winchester1894VaultVoshPreciousName="Winchester 1894 | Skarbiec | Forsa | Cenny 
 Winchester1894HeirloomMintName="Winchester 1894 | Pamiątka | Jak nowy"
 Winchester1894HeirloomFieldTestedName="Winchester 1894 | Pamiątka | Przetestowany"
 Winchester1894HeirloomBattleScarredName="Winchester 1894 | Pamiątka | Wysłużony"
+Winchester1894PrestigePreciousName="Winchester 1894 | Prestiż | Cenny egzemplarz"
 
 ;Zweihander Descriptions
 ZweihanderMintDescription="Stan zewnętrzny: Jak nowy | Miecz. Naprawdę duży średniowieczny miecz."
@@ -2248,6 +2358,15 @@ SurvivalistKnifePreciousDescription="Stan zewnętrzny: Cenny egz. | Kiedyś nale
 SurvivalistKnifePreciousName="Nóż rozpruwacza | Cenny egz."
 SurvivalistKnifePrestigePreciousName="Nóż rozpruwacza | Prestiż | Cenny egz."
 SurvivalistKnifeVaultVoshPreciousName="Nóż rozpruwacza | Skarbiec | Forsa | Cenny egz."
+
+;MKB42 Descriptions
+MKB42MintDescription="Stan zewnętrzny: Jak nowy | Pokaż, jaki z ciebie Hans! Poczytalność nie jest gwarantowana."
+MKB42FieldTestedDescription="Stan zewnętrzny: Przetestowany | Pokaż, jaki z ciebie Hans! Poczytalność nie jest gwarantowana."
+MKB42BattleScarredDescription="Stan zewnętrzny: Wysłużony | Pokaż, jaki z ciebie Hans! Poczytalność nie jest gwarantowana."
+MKB42PreciousDescription="Stan zewnętrzny: Cenny egzemplarz | Pokaż, jaki z ciebie Hans! Poczytalność nie jest gwarantowana."
+
+;MKB42 Names
+MKB42HalloweenPreciousName="MKB42H | Halloween | Cenny egzemplarz"
 
 [CosmeticSection]
 
@@ -3467,6 +3586,76 @@ SteampunkMrsFosterMaskLeatherName="Steampunk | Maska Pani Foster | Skóra"
 SteampunkMrsFosterMaskRedName="Steampunk | Maska Pani Foster | Czerwona"
 SteampunkMrsFosterMaskPreciousName="Steampunk | Maska Pani Foster | Cenny egz."
 
+;Halloween 2018 Cosmetic Names
+HalloweenAngelWingsCelestialName="Halloween | Skrzydła anioła | Niebiańskie "
+HalloweenAngelWingsPreciousName="Halloween | Skrzydła anioła | Cenny egzemplarz "
+HalloweenCauldronBackpackSweetmeatName="Halloween | Plecak – kocioł | Słodycze "
+HalloweenCauldronBackpackPreciousName="Halloween | Plecak – kocioł | Cenny egzemplarz "
+HalloweenCoffinBackpackRIPName="Halloween | Plecak – trumna | Wieczny odp."
+HalloweenCoffinBackpackPreciousName="Halloween | Plecak – trumna | Cenny egzemplarz "
+HalloweenCyclopsEyeEvilEyeName="Halloween | Oko cyklopa | Złe oko "
+HalloweenCyclopsEyePreciousName="Halloween | Oko cyklopa | Cenny egzemplarz "
+HalloweenHornsImpName="Halloween | Rogi | Diablik "
+HalloweenHornsPreciousName="Halloween | Rogi | Cenny egzemplarz "
+HalloweenIncognitoMaskGrauchoName="Halloween | Maska incognito | Graucho "
+HalloweenIncognitoMaskPreciousName="Halloween | Maska incognito | Cenny egzemplarz "
+HalloweenPirateHatFreebootName="Halloween | Kapelusz pirata | Freeboot "
+HalloweenPirateHatPreciousName="Halloween | Kapelusz pirata | Cenny egzemplarz "
+HalloweenWitchHatBlackArtsName="Halloween | Kapelusz wiedźmy | Czarna magia "
+HalloweenWitchHatPreciousName="Halloween | Kapelusz wiedźmy | Cenny egzemplarz "
+HalloweenClotBackpackCompanionName="Halloween | Plecak – skrzep | Towarzysz "
+HalloweenClotBackpackPreciousName="Halloween | Plecak – skrzep | Cenny "
+HalloweenBatWingsNocturnalName="Halloween | Skrzydła nietoperza | Nocny "
+HalloweenBatWingsPreciousName="Halloween | Skrzydła nietoperza | Cenny egz. "
+HalloweenBatEarsEcholocatorName="Halloween | Uszy nietoperza | Echolokator "
+HalloweenBatEarsPreciousName="Halloween | Uszy nietoperza | Cenny egzemplarz "
+HalloweenMummyBackpackPreservedName="Halloween | Plecak – mumia | Zachowany "
+HalloweenMummyBackpackPreciousName="Halloween | Plecak – mumia | Cenny egzemplarz "
+Halloween2018FacePaintAnaName="Halloween 2018 – Farba do twarzy | Ana "
+Halloween2018FacePaintAlbertsName="Halloween 2018 – Farba do twarzy | Alberts "
+Halloween2018FacePaintBriarName="Halloween 2018 – Farba do twarzy | Briar "
+Halloween2018FacePaintTanakaName="Halloween 2018 – Farba do twarzy | Tanaka "
+Halloween2018FacePaintStrasserName="Halloween 2018 – Farba do twarzy | Strasser "
+Halloween2018FacePaintMastersonName="Halloween 2018 – Farba do twarzy | Masterson "
+Halloween2018FacePaintClassicBriarName="Halloween 2018 – Farba do twarzy | Klas. Briar "
+Halloween2018FacePaintDonovanName="Halloween 2018 – Farba do twarzy | Donovan "
+Halloween2018FacePaintClassicMastersonName="Halloween 2018 – Farba do tw. | Kl. Masterson "
+Halloween2018FacePaintJagerhornName="Halloween 2018 – Farba do twarzy | Jagerhorn "
+Halloween2018FacePaintRaeName="Halloween 2018 – Farba do twarzy | Rae "
+Halloween2018FacePaintMrFosterName="Halloween 2018 – Farba do twarzy | Pan Foster "
+Halloween2018FacePaintMrsFosterName="Halloween 2018 – Farba do twarzy | Pani Foster "
+Halloween2018FacePaintScullyName="Halloween 2018 – Farba do twarzy | Scully "
+LocoTribeMaskBeastLightName="Maska plemienia Loco | Bestia | Jasna "
+LocoTribeMaskBeastDarkName="Maska plemienia Loco | Bestia | Ciemna "
+LocoTribeMaskBeastPreciousName="Maska plemienia Loco | Bestia | Cenny egz."
+LocoTribeMaskDancerFireName="Maska plemienia Loco | Tancerz | Ogień "
+LocoTribeMaskDancerWaterName="Maska plemienia Loco | Tancerz | Woda "
+LocoTribeMaskDancerPreciousName="Maska plemienia Loco | Tancerz | Cenny egz. "
+LocoTribeMaskDemonFireName="Maska plemienia Loco | Demon | Ogień "
+LocoTribeMaskDemonWaterName="Maska plemienia Loco | Demon | Woda "
+LocoTribeMaskDemonPreciousName="Maska plemienia Loco | Demon | Cenny egzemplarz "
+LocoTribeMaskDoctorLightName="Maska plemienia Loco | Znachor | Jasna "
+LocoTribeMaskDoctorDarkName="Maska plemienia Loco | Znachor | Ciemna "
+LocoTribeMaskDoctorPreciousName="Maska plemienia Loco | Znachor | Cenny egz. "
+LocoTribeMaskDreamerFireName="Maska plemienia Loco | Marzyciel | Ogień "
+LocoTribeMaskDreamerWaterName="Maska plemienia Loco | Marzyciel | Woda "
+LocoTribeMaskDreamerPreciousName="Maska plemienia Loco | Marzyciel | Cenny egz. "
+LocoTribeMaskJokerLightName="Maska plemienia Loco | Joker | Jasna "
+LocoTribeMaskJokerDarkName="Maska plemienia Loco | Joker | Ciemna "
+LocoTribeMaskJokerPreciousName="Maska plemienia Loco | Joker | Cenny egzemplarz "
+LocoTribeMaskLordFireName="Maska plemienia Loco | Władca | Ogień "
+LocoTribeMaskLordWaterName="Maska plemienia Loco | Władca | Woda "
+LocoTribeMaskLordPreciousName="Maska plemienia Loco | Władca | Cenny egz."
+LocoTribeMaskSleeperFireName="Maska plemienia Loco | Śpiący | Ogień "
+LocoTribeMaskSleeperWaterName="Maska plemienia Loco | Śpiący | Woda "
+LocoTribeMaskSleeperPreciousName="Maska plemienia Loco | Śpiący | Cenny egz."
+LocoTribeMaskUndeadFireName="Maska plemienia Loco | Nieumarły | Ogień "
+LocoTribeMaskUndeadWaterName="Maska plemienia Loco | Nieumarły | Woda "
+LocoTribeMaskUndeadPreciousName="Maska plemienia Loco | Nieumarły | Cenny egz. "
+LocoTribeMaskWarriorFireName="Maska plemienia Loco | Wojownik | Ogień "
+LocoTribeMaskWarriorWaterName="Maska plemienia Loco | Wojownik | woda "
+LocoTribeMaskWarriorPreciousName="Maska plemienia Loco | Wojownik | Cenny egz. "
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Dostępne z menu sprzętu; Dla większości postaci. Ekskluzywny przedmiot wydarzenia sezonowego Pokaz Letni. Wymienia się na 1 kupon Pokazu."
 SummerSideshowFacePaintDescription="Dostępne z menu sprzętu. Ekskluzywny przedmiot wydarzenia sezonowego Pokaz Letni. Wymienia się na 1 kupon Pokazu."
@@ -3579,7 +3768,7 @@ WeldingMaskDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Sc
 ZEDDundeeHatDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 ReaperEyesDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 ReaperHatDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
-ReaperJawDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
+ReaperJawDescription="Dostępne z menu sprzętu; dla: DJ Scully, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 ReaperRavenEyesDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Ana Larive, klasyczny Briar, klasyczny Masterson, Anton Strasser, Tom Banner, Rae Higgins."
 ReaperRavenHatDescription="Dostępne z menu sprzętu; dla: Oisten Jägerhorn, DJ Scully, posterunkowy Rob Briar, pan Foster, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, Hayato Tanaka, Tom Banner, Rae Higgins."
 ReaperRavenJawDescription="Dostępne z menu sprzętu; dla: DJ Scully, posterunkowy Rob Briar, Donovan Neal, wielebny Alberts, porucznik Bill Masterson, klasyczny Briar, klasyczny Masterson."
@@ -3704,3 +3893,21 @@ ManiacDeluxeEmoteDescription="Trochę forsy dla ciebie, i dla ciebie... Można p
 TheRunningManDeluxeEmoteDescription="Ten taniec nigdy nie wyjdzie z mody! NIGDY! Można przekształcić w wyjątkową ozdobę."
 TheRobotDeluxeEmoteDescription="Domo arigato, panie Roboto. Można przekształcić w wyjątkową ozdobę."
 AirMetalDeluxeEmoteDescription="Obczajcie ten shred! WEENENENENENOOO! Można przekształcić w wyjątkową ozdobę."
+
+[FXSection]
+
+;FX Names
+
+DoshFXDeluxeName="Pełno forsy | Efekt"
+ConfettiFXDeluxeName="Czas na imprezę | Efekt"
+GhostFXDeluxeName="Upiorne duchy | Efekt"
+HeartsFXDeluxeName="Miłość od pierwszego strzału | Efekt"
+ComicFXDeluxeName="Komiczna akcja | Efekt"
+
+;FX Descriptions
+
+DoshFXDeluxeDescription="Efekt strzału w głowę, który zastępuje krew monetami i forsą."
+ConfettiFXDeluxeDescription="Efekt strzału w głowę, który zastępuje krew balonami i konfetti."
+GhostFXDeluxeDescription="Efekt strzału w głowę, który zastępuje krew duchami."
+HeartsFXDeluxeDescription="Efekt strzału w głowę, który zastępuje krew sercami."
+ComicFXDeluxeDescription="Efekt strzału w głowę, który zastępuje krew komicznymi słowami."

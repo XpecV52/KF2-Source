@@ -478,6 +478,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
    LocalizationKey="KFPawn_ZedStalker"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -671,7 +679,8 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
-   Components(9)=CloakedAkComponent0
+   Components(9)=HeadshotAkComponent0
+   Components(10)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
    Name="Default__KFPawn_ZedStalker"

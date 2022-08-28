@@ -19,12 +19,6 @@ var(Animations) const editconst	name	FireLastHeavyAnim;
 /** Shoot animation to play when shooting secondary fire last shot when aiming */
 var(Animations) const editconst	name	FireLastHeavySightedAnim;
 
-/** Shoot animation to play when ending looping fire on last shot */
-var(Animations) const editconst	name	FireLoopEndLastAnim;
-
-/** Shoot animation to play when ending looping fire on last shot  when aiming*/
-var(Animations) const editconst	name	FireLoopEndLastSightedAnim;
-
 /** Alt-fire explosion template */
 var() GameExplosion 		ExplosionTemplate;
 
@@ -77,37 +71,6 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
         	{
                 return FireAnim;
             }
-        }
-	}
-}
-
-/** Get name of the animation to play for PlayFireEffects */
-simulated function name GetLoopEndFireAnim(byte FireModeNum)
-{
-	local bool bPlayFireLast;
-
-    bPlayFireLast = ShouldPlayFireLast(FireModeNum);
-
-	if ( bUsingSights )
-	{
-    	if( bPlayFireLast && FireLoopEndLastSightedAnim != '' )
-        {
-            return FireLoopEndLastSightedAnim;
-        }
-        else
-        {
-            return FireLoopEndSightedAnim;
-        }
-	}
-	else
-	{
-    	if( bPlayFireLast && FireLoopEndLastAnim != '' )
-        {
-            return FireLoopEndLastAnim;
-        }
-        else
-        {
-            return FireLoopEndAnim;
         }
 	}
 }
@@ -209,8 +172,6 @@ defaultproperties
    FireHeavyAnim="Shoot_Heavy"
    FireLastHeavyAnim="Shoot_Heavy_Last"
    FireLastHeavySightedAnim="Shoot_Heavy_Iron_Last"
-   FireLoopEndLastAnim="ShootLoop_End_Last"
-   FireLoopEndLastSightedAnim="ShootLoop_Iron_End_Last"
    ExplosionTemplate=GameExplosion'kfgamecontent.Default__KFWeap_Beam_Microwave:ExploTemplate0'
    bWarnAIWhenFiring=True
    FlameSprayArchetype=SprayActor_Flame'WEP_Microwave_Gun_ARCH.WEP_Microwave_Gun_Flame'

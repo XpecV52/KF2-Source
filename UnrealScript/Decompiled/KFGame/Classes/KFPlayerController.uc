@@ -46,6 +46,7 @@ const STATID_DailyEventInfo = 302;
 const STATID_DailyEventIDs = 303;
 const STATID_DailyEventStats1 = 304;
 const STATID_DailyEventStats2 = 305;
+const STATID_SpecialEventKills = 306;
 const STATID_DoshVaultTotal = 400;
 const STATID_LastViewedDoshVaultTotal = 401;
 const STATID_DoshVaultProgress = 402;
@@ -101,6 +102,8 @@ const STATID_ACHIEVE_ArenaCollectibles = 4041;
 const STATID_ACHIEVE_PowercoreCollectibles = 4042;
 const STATID_ACHIEVE_AirshipCollectibles = 4043;
 const STATID_ACHIEVE_LockdownCollectibles = 4044;
+const STATID_ACHIEVE_MonsterBallCollectibles = 4045;
+const STATID_ACHIEVE_MonsterBallSecretRoom = 4046;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -160,6 +163,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 const MapObjectiveIndex = 4;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
@@ -399,6 +404,7 @@ var bool bRecursingZedTimeVisibility;
 var bool bShowKillTicker;
 var bool bDisableAutoUpgrade;
 var bool bHideBossHealthBar;
+var bool bHideRemotePlayerHeadshotEffects;
 var bool bDOFEnabled;
 var bool bGamePlayDOFActive;
 var bool bIronSightsDOFActive;
@@ -663,7 +669,7 @@ function SpawnDefaultHUD()
     super(PlayerController).SpawnDefaultHUD();
     if(KFGFxHudWrapper(myHUD) != none)
     {
-        if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
+        if((myGfxHUD == none) || (myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
         {
             KFGFxHudWrapper(myHUD).CreateHUDMovie();
         }
@@ -675,7 +681,7 @@ reliable client simulated function ClientSetHUD(class<HUD> newHUDType)
     super(PlayerController).ClientSetHUD(newHUDType);
     if(KFGFxHudWrapper(myHUD) != none)
     {
-        if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
+        if((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass())
         {
             KFGFxHudWrapper(myHUD).CreateHUDMovie();
         }
@@ -759,6 +765,10 @@ simulated event name GetSeasonalStateName()
 simulated event ReplicatedEvent(name VarName)
 {
     super(Controller).ReplicatedEvent(VarName);
+    if(VarName == 'PlayerReplicationInfo')
+    {
+        Class'KFHeadShotEffectList'.static.RefreshCachedHeadShotEffectId();
+    }
     if(VarName == 'Pawn')
     {
         ToggleHealthEffects(Pawn != none);
@@ -903,9 +913,9 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
     NewPawn.MovementSpeedModifier = 1;
     if(KFGFxHudWrapper(myHUD) != none)
     {
-        if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
+        if((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass())
         {
-            KFGFxHudWrapper(myHUD).CreateHUDMovie();
+            KFGFxHudWrapper(myHUD).CreateHUDMovie(true);
         }
     }
     if(myGfxHUD != none)
@@ -1171,6 +1181,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         bNoEarRingingSound = Profile.GetProfileBool(162);
         bHideBossHealthBar = Profile.GetProfileBool(158);
         bDisableAutoUpgrade = Profile.GetProfileBool(167);
+        bHideRemotePlayerHeadshotEffects = Profile.GetProfileBool(170);
         KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
         if(KFPRI != none)
         {
@@ -1259,6 +1270,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
     }
     Class'KFEmoteList'.static.RefreshCachedEmoteId();
+    Class'KFHeadShotEffectList'.static.RefreshCachedHeadShotEffectId();
 }
 
 simulated function HandleConnectionStatusChange(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
@@ -1317,7 +1329,7 @@ simulated function HandleNetworkError(bool bConnectionLost)
         }
         else
         {
-            if((MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.GetStartMenuState() == 0)
+            if((MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.GetStartMenuState() == 1)
             {
                 if(bConnectionLost)
                 {
@@ -1857,7 +1869,6 @@ function TryMainMenuPlayTogether()
 
     if((MyGFxManager != none) && MyGFxManager.StartMenu != none)
     {
-        MyGFxManager.StartMenu.OpenMultiplayerMenu();
         MyGFxManager.OnlineLobby.MakeLobby(6, 2);
         InviteMessage = Localize("Notifications", "InviteMessage", "KFGameConsole");
         MyGFxManager.OnlineLobby.SendInviteToUsers(OnlineSub.GameInterface.GetPendingMembersToInvite(), InviteMessage);
@@ -2157,6 +2168,9 @@ private reliable server native final event ClientSetPrestigeLevelCheat(byte NewL
 // Export UKFPlayerController::execGetPerkPrestigeXPMultiplier(FFrame&, void* const)
 native final function float GetPerkPrestigeXPMultiplier(class<KFPerk> PerkClass);
 
+// Export UKFPlayerController::execGetPerkPrestigeNextXPMultiplier(FFrame&, void* const)
+native final function float GetPerkPrestigeNextXPMultiplier(class<KFPerk> PerkClass);
+
 // Export UKFPlayerController::execRequestPerkChange(FFrame&, void* const)
 native final event RequestPerkChange(byte NewPerkIndex);
 
@@ -2301,7 +2315,6 @@ function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel, byte NewPrestige
         if(CurrentPerk.Class == PerkClass)
         {
             SetActivePerkLevel(PerkLevel);
-            SetActivePerkPrestigeLevel(NewPrestigeLevel);
             if(bTierUnlocked)
             {
                 PostTierUnlock(PerkClass);
@@ -2540,6 +2553,8 @@ function ResetFOV()
     }
 }
 
+exec function FOV(float F);
+
 reliable client simulated function ClientSetCameraMode(name NewCamMode)
 {
     local KFPawn KFP;
@@ -2680,7 +2695,7 @@ function ProcessViewRotation(float DeltaTime, out Rotator out_ViewRotation, Rota
     super(PlayerController).ProcessViewRotation(DeltaTime, out_ViewRotation, DeltaRot);
 }
 
-function SetBossCamera(KFInterface_MonsterBoss Boss)
+simulated function SetBossCamera(KFInterface_MonsterBoss Boss)
 {
     if(NotEqual_InterfaceInterface(Boss, (none)) && Boss.GetMonsterPawn().HitFxInfo.bObliterated)
     {
@@ -3165,12 +3180,20 @@ reliable client simulated function ClientTriggerWeaponContentLoad(class<KFWeapon
 simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
 {
     local KFPawn_Human KFPH;
+    local KFDroppedPickup KFDP;
 
     foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
     {
         if(WeaponClass == KFPH.WeaponClassForAttachmentTemplate)
         {
             KFPH.SetWeaponAttachmentFromWeaponClass(WeaponClass);
+        }        
+    }    
+    foreach WorldInfo.AllActors(Class'KFDroppedPickup', KFDP)
+    {
+        if((WeaponClass == KFDP.InventoryClass) && KFDP.MyMeshComp == none)
+        {
+            KFDP.SetPickupMesh(WeaponClass.default.DroppedPickupMesh);
         }        
     }    
 }
@@ -4598,7 +4621,10 @@ reliable client simulated event TeamMessage(PlayerReplicationInfo PRI, coerce st
             {
                 if((myGfxHUD.HudChatBox != none) && Len(S) > 0)
                 {
-                    myGfxHUD.HudChatBox.AddChatMessage(Class'KFLocalMessage'.default.SystemString @ S, Class'KFLocalMessage'.default.EventColor);
+                    if((InStr(S, Class'KFGFxWidget_BaseParty'.default.PerkPrefix) == -1) && InStr(S, Class'KFGFxWidget_BaseParty'.default.SearchingPrefix) == -1)
+                    {
+                        myGfxHUD.HudChatBox.AddChatMessage(Class'KFLocalMessage'.default.SystemString @ S, Class'KFLocalMessage'.default.EventColor);
+                    }
                 }
             }
         }
@@ -5219,6 +5245,12 @@ function SetUIScale(float fScale)
     }
 }
 
+function GetSpecialEventKillsInfo(out int CurrentValue, out int MaxValue)
+{
+    CurrentValue = StatsWrite.GetSpecialEventKills();
+    MaxValue = StatsWrite.SeasonalKillsObjectiveThreshold;
+}
+
 simulated event CompletedDaily(int Index)
 {
     if(((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController()) && !StatsWrite.IsDailyObjectiveComplete(Index))
@@ -5705,7 +5737,10 @@ function AddZedHeadshot(byte Difficulty, class<DamageType> DT)
 private reliable client native final simulated function ClientAddZedHeadshot(byte Difficulty, class<DamageType> DT);
 
 // Export UKFPlayerController::execClientAddPlayerXP(FFrame&, void* const)
-private reliable client native final simulated event ClientAddPlayerXP(int XP, class<KFPerk> PerkClass);
+private reliable client native final simulated event ClientAddPlayerXP(int XP, class<KFPerk> PerkClass, optional bool bApplyPrestigeBonus)
+{
+    bApplyPrestigeBonus = false;                    
+}
 
 event OnPlayerXPAdded(int XP, class<KFPerk> PerkClass);
 
@@ -6536,6 +6571,34 @@ exec function PlayVoiceCommsDialog(int CommsIndex)
     ServerPlayVoiceCommsDialog(CommsIndex);
 }
 
+function PlayTraderEndlessWaveStartDialog(int SpecialWaveEventId, int NormalWaveEventId)
+{
+    local int DialogEventID;
+    local KFTraderDialogManager TDM;
+
+    DialogEventID = NormalWaveEventId;
+    if(SpecialWaveEventId != -1)
+    {
+        TDM = KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager;
+        if(TDM != none)
+        {
+            if(TDM.TraderVoiceGroupClass.default.DialogEvents[SpecialWaveEventId].AudioCue != none)
+            {
+                DialogEventID = TDM.TraderVoiceGroupClass.default.DialogEvents[SpecialWaveEventId].EventID;
+            }
+        }
+    }
+    if(((WorldInfo.NetMode != NM_DedicatedServer) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none)
+    {
+        KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayDialog(DialogEventID, self);
+    }
+}
+
+reliable client simulated function ClientPlayTraderEndlessWaveStartDialog(int SpecialWaveEventId, int NormalWaveEventId)
+{
+    PlayTraderEndlessWaveStartDialog(SpecialWaveEventId, NormalWaveEventId);
+}
+
 exec function DoEmote()
 {
     local KFPawn MyPawn;
@@ -7100,7 +7163,7 @@ simulated function PerformLogout()
     ClearDownloadInfo();
     if(WorldInfo.bIsMenuLevel)
     {
-        if((MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.GetStartMenuState() == 0)
+        if((MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.GetStartMenuState() == 1)
         {
             MyGFxManager.StartMenu.ApproveMatchMakingLeave();
         }
@@ -7788,6 +7851,10 @@ simulated function CreateDiscordMenuPresence()
     local KFOnlineLobbySteamworks SteamworksLobby;
     local DiscordRPCIntegration Discord;
 
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        return;
+    }
     Discord = Class'PlatformInterfaceBase'.static.GetDiscordRPCIntegration();
     PresenceString = Class'KFCommon_LocalizedStrings'.default.DiscordMenuPresenceString;
     if((Discord != none) && Discord.bDiscordReady)
@@ -7990,10 +8057,7 @@ state Spectating
         GFxHUDWrapper = KFGFxHudWrapper(myHUD);
         if(GFxHUDWrapper != none)
         {
-            if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
-            {
-                GFxHUDWrapper.CreateHUDMovie();
-            }
+            GFxHUDWrapper.CreateHUDMovie();
         }
         if((Pawn != none) && KFPawn_Customization(Pawn) != none)
         {

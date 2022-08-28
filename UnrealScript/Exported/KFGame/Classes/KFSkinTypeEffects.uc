@@ -34,9 +34,10 @@ enum EEffectDamageGroup
 	FXG_ShieldBash,
 	FXG_MetalMace,
     FXG_Flare,
-	FXG_Freeze
+	FXG_Freeze,
+	FXG_Bludgeon_Chains
 };
-const FXG_MAX = 16; //!! Update me when the enum gets modified !!
+const FXG_MAX = 17; //!! Update me when the enum gets modified !!
 
 struct native SkinEffectInfo
 {

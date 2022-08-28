@@ -19,6 +19,7 @@ defaultproperties
     ChainsawIdleAkComponent=AkComponent'Default__KFPawn_ZedScrake_Mixer.ChainsawAkComponent0'
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedScrake_Mixer.MeleeHelper'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedScrake_Mixer.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedScrake_Mixer.HeadshotAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -71,7 +72,8 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedScrake_Mixer.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedScrake_Mixer.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedScrake_Mixer.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedScrake_Mixer.ChainsawAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedScrake_Mixer.HeadshotAkComponent0'
+    Components(10)=AkComponent'Default__KFPawn_ZedScrake_Mixer.ChainsawAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

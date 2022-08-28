@@ -1041,6 +1041,7 @@ function CheckAndDrawRemainingZedIcons()
 		|| KFPlayerOwner == none
 		|| KFPlayerOwner.PlayerCamera == none
 		|| KFGRI.IsBossWave()
+		|| KFGRI.IsEndlessWave()
 		|| KFGRI.AIRemaining > class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
 	{
 		return;

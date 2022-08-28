@@ -601,6 +601,7 @@ defaultproperties
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_Kriss'
    HeadshotAccuracyHandicap=-3.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SWATKnife_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MP7_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_SWAT"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

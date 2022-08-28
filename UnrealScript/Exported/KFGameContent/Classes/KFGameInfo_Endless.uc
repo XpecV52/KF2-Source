@@ -162,6 +162,9 @@ function byte GetWaveStartMessage()
 	return Super.GetWaveStartMessage();
 }
 
+// we don't need special "first wave" dialog in endless
+function PlayWaveStartDialog();
+
 function bool TrySetNextWaveSpecial()
 {
 	local float OutbreakPct, SpecialWavePct;

@@ -75,7 +75,10 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
-const KFID_Native4kResolution = 169;#linenumber 12
+const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID= 171;
+#linenumber 12
 
 struct native WeaponSkinPairs
 {
@@ -313,11 +316,13 @@ defaultproperties
    DefaultSettings(50)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=161,Data=(Type=SDT_Int32)))
    DefaultSettings(51)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=162,Data=(Type=SDT_Int32)))
    DefaultSettings(52)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=167,Data=(Type=SDT_Int32)))
-   DefaultSettings(53)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=165,Data=(Type=SDT_String)))
-   DefaultSettings(54)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
-   DefaultSettings(55)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=166,Data=(Type=SDT_Int32,Value1=-1)))
-   DefaultSettings(56)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=168,Data=(Type=SDT_Float)))
-   DefaultSettings(57)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=169,Data=(Type=SDT_Int32)))
+   DefaultSettings(53)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=170,Data=(Type=SDT_Int32,Value1=1)))
+   DefaultSettings(54)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=165,Data=(Type=SDT_String)))
+   DefaultSettings(55)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=163,Data=(Type=SDT_Int32,Value1=1)))
+   DefaultSettings(56)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=166,Data=(Type=SDT_Int32,Value1=-1)))
+   DefaultSettings(57)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=171,Data=(Type=SDT_Int32,Value1=-1)))
+   DefaultSettings(58)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=168,Data=(Type=SDT_Float)))
+   DefaultSettings(59)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=169,Data=(Type=SDT_Int32)))
    VersionNumber=4
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -372,11 +377,13 @@ defaultproperties
    ProfileMappings(50)=(Id=161,Name="Auto Turn off")
    ProfileMappings(51)=(Id=162,Name="Reduce High Pitch Sounds")
    ProfileMappings(52)=(Id=167,Name="Disable Auto Upgrade")
-   ProfileMappings(53)=(Id=165,Name="Weapon Skin KeyValue Pairs")
-   ProfileMappings(54)=(Id=163,Name="Show Console Crosshair")
-   ProfileMappings(55)=(Id=166,Name="Saved Emote ID")
-   ProfileMappings(56)=(Id=168,Name="Safe Frame")
-   ProfileMappings(57)=(Id=169,Name="Native 4k Resolution")
+   ProfileMappings(53)=(Id=170,Name="Hide Remote Player Headshot Effects")
+   ProfileMappings(54)=(Id=165,Name="Weapon Skin KeyValue Pairs")
+   ProfileMappings(55)=(Id=163,Name="Show Console Crosshair")
+   ProfileMappings(56)=(Id=166,Name="Saved Emote ID")
+   ProfileMappings(57)=(Id=171,Name="Saved Headshot ID")
+   ProfileMappings(58)=(Id=168,Name="Safe Frame")
+   ProfileMappings(59)=(Id=169,Name="Native 4k Resolution")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

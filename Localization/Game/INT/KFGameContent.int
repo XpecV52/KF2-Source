@@ -195,7 +195,7 @@ ItemDescription="•Choice of full-auto and 3-round-burst fire modes.\n•Alt-fi
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 Bullpup"
 ItemCategory="Assault Rifle"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The SA80 was the British Army's standard weapon before the Army was, well, eaten."
+ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•The SA80 was the British Army's standard weapon before the Army was, well, eaten."
 
 [KFWeap_LMG_Stoner63A]
 ItemName="Stoner 63A LMG"
@@ -312,6 +312,12 @@ ItemName="VLAD-1000 Nailgun"
 ItemCategory="Shotgun"
 ItemDescription="•Choice of single or multiple nail fire modes.\n•Alt-fire to toggle between fire modes.\n•We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man."
 
+[KFWeap_Blunt_ChainBat]
+ItemName="Road Redeemer"
+ItemCategory="Melee"
+ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack.\n•Secondary - heavy blunt attack.\n•Alt - block/parry.\n•Be the slugger you always wanted to be! Remember to clean after every use."
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulverizer"
 ItemCategory="Melee"
@@ -327,7 +333,7 @@ SecondaryAmmo="Gasoline"
 ItemName="Zweihander"
 ItemCategory="Melee"
 ItemDescription="•Primary - medium/heavy damage, with some crowd control.\n•Secondary - slower, but with more damage.\n•Alt - block/parry\n•You do even more damage when moving forwards."
-SharedUnlockSource="Chivalry Medieval Warfare" "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Bone Crusher"
@@ -505,6 +511,12 @@ ItemName="Husk Cannon"
 ItemCategory="Flames"
 ItemDescription="•Charges up while the fire button is pressed and discharges when the fire button is released. \n•The official Horzine version of the husk cannon. This model is 95% guaranteed not to explode."
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="MKb.42(H) Carbine Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="•Choice of full-auto and semi-auto fire modes. \n•Alt-fire to toggle between fire modes.\n•Show off your inner Hans! Sanity not guaranteed."
+SharedUnlockSource="Hans' Halloween Skin"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="Hand Gun"
@@ -529,6 +541,17 @@ ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack. 
 ItemName="Mac 10"
 ItemCategory="Sub Machine Gun"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Features rapid-fire incendiary ammo. Get it? Rapid-fire? Because it's an incendiary submachinegun? Oh, forget it."
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="HMTech-501 Grenade Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="•Firemode is full-auto only.\n•Alt-fire to fire medic grenades.\n•It's the only weapon where it's ok to lob grenades at your friends!"
+SecondaryAmmo="Medic Grenade"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="Assault Rifle"
+ItemDescription="•Choice of full-auto and semi-auto fire modes. \n•Alt-fire to toggle between fire modes. \n•You could say, this gun is not an FN FAIL...yeah, that was bad."
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

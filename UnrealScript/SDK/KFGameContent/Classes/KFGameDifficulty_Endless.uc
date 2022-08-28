@@ -856,7 +856,7 @@ defaultproperties
 		)},
 		// Hell on Earth Plus
 		DifficultySpecialWaveTypes[4]={(
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.15f),
 			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)}
 	)}
@@ -1207,7 +1207,7 @@ defaultproperties
 		)},
 		// Hell on Earth Plus
 		DifficultySpecialWaveTypes[4]={(
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.15f),
 			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)}
 	)}
@@ -1560,7 +1560,7 @@ defaultproperties
 		)},
 		// Hell on Earth Plus
 		DifficultySpecialWaveTypes[4]={(
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.15f),
 			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)}
 	)}
@@ -1915,7 +1915,7 @@ defaultproperties
 		)},
 		// Hell on Earth Plus
 		DifficultySpecialWaveTypes[4]={(
-			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f),
+			SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=0.2f, SpawnRateMultiplier=0.15f),
 			SpecialWaveInfos[6]=(ZedType=AT_Scrake, PctChance=0.5, WaveScale=0.2f, SpawnRateMultiplier=0.25f)
 		)}
 	)}

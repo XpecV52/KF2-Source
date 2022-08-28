@@ -48,7 +48,6 @@ simulated function ConsumeAmmo( byte FireModeNum )
 
 defaultproperties
 {
-   WeaponContentLoaded=True
    bHasIronSights=True
    bUseAnimLenEquipTime=False
    SingleFireSoundIndex=1

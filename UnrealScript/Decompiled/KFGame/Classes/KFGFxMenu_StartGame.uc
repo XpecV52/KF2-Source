@@ -68,6 +68,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -101,12 +103,14 @@ var KFGFxStartContainer_InGameOverview OverviewContainer;
 var KFGFxStartContainer_ServerBrowserOverview ServerBrowserOverviewContainer;
 var KFGFxStartContainer_NewsImageHolder NewsImageHolderContainer;
 var KFGFxMissionObjectivesContainer MissionObjectiveContainer;
+var GFxObject CreateGameButton;
 var GFxObject MatchMakingButton;
 var GFxObject ServerBrowserButton;
 var const localized string FindGameString;
 var const localized string HostOptionsString;
 var const localized string OverviewString;
 var const localized string MatchmakingString;
+var const localized string CreateMatchString;
 var const localized string ServerBrowserString;
 var const localized string NewsPageString;
 var const localized string GameModeTitle;
@@ -141,9 +145,9 @@ var config string TestLobbyOwnerPassword;
 var transient string CurrentConnectMap;
 
 // Export UKFGFxMenu_StartGame::execGetMapList(FFrame&, void* const)
-native static function GetMapList(out array<string> MapList, optional int OverrideGameModeIndex)
+native static function GetMapList(out array<string> MapList, optional int OverrideGameModeIndex, optional bool bStockMapsOnly)
 {
-    OverrideGameModeIndex = -1;                
+    OverrideGameModeIndex = -1;                        
 }
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
@@ -152,7 +156,6 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 
     super.InitializeMenu(InManager);
     SetSeasonalEventClass();
-    GetMapList(MapStringList);
     DSClient = Class'UIInteraction'.static.GetDataStoreClient();
     if(DSClient != none)
     {
@@ -187,7 +190,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 2:
             return Class'KFGFxSummerSideShowObjectivesContainer';
         case 3:
-            return Class'KFGFxSpecialEventObjectivesContainer';
+            return Class'KFGFxFallObjectivesContainer';
         case 4:
             return Class'KFGFxChristmasObjectivesContainer';
         default:
@@ -280,14 +283,21 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             break;
         case 'MatchMakingButton':
             MatchMakingButton = Widget;
-            if(Class'WorldInfo'.static.IsConsoleBuild() && ServerBrowserButton != none)
+            if(Class'WorldInfo'.static.IsConsoleBuild())
+            {
+                CheckGameFullyInstalled();
+            }
+            break;
+        case 'CreateGameButton':
+            CreateGameButton = Widget;
+            if(Class'WorldInfo'.static.IsConsoleBuild())
             {
                 CheckGameFullyInstalled();
             }
             break;
         case 'ServerBrowserButton':
             ServerBrowserButton = Widget;
-            if(Class'WorldInfo'.static.IsConsoleBuild() && MatchMakingButton != none)
+            if(Class'WorldInfo'.static.IsConsoleBuild())
             {
                 CheckGameFullyInstalled();
             }
@@ -316,15 +326,35 @@ function CheckGameFullyInstalled()
     {
         if(Class'GameEngine'.static.IsGameFullyInstalled())
         {
-            MatchMakingButton.SetBool("enabled", true);
-            ServerBrowserButton.SetBool("enabled", true);
+            if(MatchMakingButton != none)
+            {
+                MatchMakingButton.SetBool("enabled", true);
+            }
+            if(CreateGameButton != none)
+            {
+                CreateGameButton.SetBool("enabled", true);
+            }
+            if(ServerBrowserButton != none)
+            {
+                ServerBrowserButton.SetBool("enabled", true);
+            }
             InitializeMenu(Manager);
             ReloadSounds();            
         }
         else
         {
-            MatchMakingButton.SetBool("enabled", false);
-            ServerBrowserButton.SetBool("enabled", false);
+            if(MatchMakingButton != none)
+            {
+                MatchMakingButton.SetBool("enabled", false);
+            }
+            if(CreateGameButton != none)
+            {
+                CreateGameButton.SetBool("enabled", false);
+            }
+            if(ServerBrowserButton != none)
+            {
+                ServerBrowserButton.SetBool("enabled", false);
+            }
             Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(1, false, 'CheckGameFullyInstalled', self);
         }
     }
@@ -368,7 +398,6 @@ function SetOverview(optional bool bInitialize)
                     else
                     {
                         ShowOverview(false, bIsLeader, Class'WorldInfo'.static.IsMenuLevel(), false);
-                        OpenMultiplayerMenu();
                     }                    
                 }
                 else
@@ -455,19 +484,19 @@ function HandleSteamLobbyLeaderTakeOver(UniqueNetId AdminId)
     bClientIsLeader = Outer.GetPC().PlayerReplicationInfo.UniqueId == AdminId;
     switch(GetStartMenuState())
     {
-        case 3:
-            if(bClientIsLeader)
-            {
-                OpenMultiplayerMenu();
-                return;
-            }
-        case 4:
+        case 7:
             if(bClientIsLeader)
             {
                 Manager.OpenMenu(16);
                 return;
             }
         default:
+            if(bClientIsLeader)
+            {
+                Manager.SetStartMenuState(0);
+                SetInt("externalMenuState", 0);
+                return;
+            }
             if(!bClientIsLeader)
             {
                 SendToOverviewOnChange();
@@ -478,7 +507,7 @@ function HandleSteamLobbyLeaderTakeOver(UniqueNetId AdminId)
 
 function SendToOverviewOnChange()
 {
-    Manager.SetStartMenuState(3);
+    Manager.SetStartMenuState(6);
     Manager.OpenMenu(0);
     SetOverview(true);
 }
@@ -514,7 +543,6 @@ function SendLeaderOptions()
         SetLobbyData(GameLengthKey, string(OptionsComponent.GetLengthIndex()));
         SetLobbyData(DifficultyKey, string(OptionsComponent.GetDifficultyIndex()));
         SetLobbyData(MapKey, OptionsComponent.GetMapName());
-        SetLobbyData(ServerTypeKey, string(OptionsComponent.GetServerTypeIndex()));
         SetLobbyData(ModeKey, string(OptionsComponent.GetModeIndex()));
         SetLobbyData(PermissionsKey, string(OptionsComponent.GetPrivacyIndex()));
     }
@@ -551,7 +579,7 @@ function ApproveMatchMakingLeave()
             OnlineLobby.QuitLobby();
         }
         CancelGameSearch();
-        OptionsComponent.SetBool("approveMatchMakingLeave", true);
+        SetInt("externalMenuState", 0);
         UpdateStartMenuState();
     }
 }
@@ -571,11 +599,6 @@ function ClearLeaveMenuFlag()
     bPendingLeaveMenu = false;
 }
 
-function OpenMultiplayerMenu()
-{
-    ActionScriptVoid("openMultiplayerMenu");
-}
-
 function UpdateStartMenuState()
 {
     if(Manager != none)
@@ -583,11 +606,17 @@ function UpdateStartMenuState()
         Manager.SetStartMenuState(GetStartMenuState());
         switch(GetStartMenuState())
         {
-            case 0:
+            case 2:
+                OptionsComponent.bShowLengthNoPref = false;
                 OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
                 break;
-            case 2:
-                OptionsComponent.ModeChanged(OptionsComponent.SavedSoloModeIndex);
+            case 1:
+                OptionsComponent.bShowLengthNoPref = true;
+                OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
+                break;
+            case 4:
+                OptionsComponent.bShowLengthNoPref = false;
+                OptionsComponent.ModeChanged(OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex));
                 break;
             default:
                 break;
@@ -600,7 +629,42 @@ function UpdateStartMenuState()
 
 function ProceedToTutorial()
 {
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+    {
+        if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+        {
+            OnlineLobby.QuitLobby();
+        }
+    }
+    CancelGameSearch();
     Outer.ConsoleCommand("open KF-EvacuationPoint?game=KFGameContent.KFGameInfo_Tutorial");
+}
+
+function ProceedToSoloMenu()
+{
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+    {
+        if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+        {
+            OnlineLobby.QuitLobby();
+        }
+    }
+    Manager.SoloGameMenuOpened();
+    CancelGameSearch();
+    SetInt("externalMenuState", 4);
+}
+
+function PostPartyDisbandTutorial()
+{
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+    {
+        if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+        {
+            OnlineLobby.QuitLobby();
+        }
+    }
+    CancelGameSearch();
+    Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialString, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialDescriptionString, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToTutorial);
 }
 
 function Callback_OnWhatsNewClicked(int Index)
@@ -691,11 +755,24 @@ function Callback_NewsButtonPressed()
     }
 }
 
+function Callback_SoloButtonPressed()
+{
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+    {
+        Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.StartOfflineGameString, Class'KFCommon_LocalizedStrings'.default.StartOfflineGameDescriptionString, Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, Class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToSoloMenu);        
+    }
+    else
+    {
+        ProceedToSoloMenu();
+    }
+}
+
 function Callback_StartTutorial()
 {
     local OnlineSubsystem OnlineSub;
 
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    CancelGameSearch();
     if(!OnlineSub.IsGameOwned() && Class'WorldInfo'.static.IsConsoleBuild(8))
     {
         if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
@@ -709,7 +786,14 @@ function Callback_StartTutorial()
             return;
         }
     }
-    Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialString, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialDescriptionString, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToTutorial);
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+    {
+        Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.StartOfflineGameString, Class'KFCommon_LocalizedStrings'.default.StartOfflineGameDescriptionString, Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, Class'KFCommon_LocalizedStrings'.default.CancelString, PostPartyDisbandTutorial);        
+    }
+    else
+    {
+        Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialString, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialDescriptionString, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToTutorial);
+    }
 }
 
 function Callback_OnWebLinkClicked(string WebsiteLink)
@@ -733,34 +817,6 @@ function Callback_CancelSearch()
     }
 }
 
-function Callback_RequestLeaveMatchmaking()
-{
-    if(OptionsComponent != none)
-    {
-        if(OnlineLobby.IsInLobby())
-        {
-            if(bPendingLeaveMenu)
-            {
-                return;
-            }
-            if(Class'WorldInfo'.static.IsConsoleBuild())
-            {
-                Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, Localize("KFGFxMenu_StartGame", "LeaveMenuString", "KFGameConsole"), LeaveString, Class'KFCommon_LocalizedStrings'.default.CancelString, ApproveMatchMakingLeave, CancelLeaveMenu);
-                bPendingLeaveMenu = true;                
-            }
-            else
-            {
-                Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.LeaveCurrentMenuString, LeaveMenuString, Manager.BrowseServersString, Class'KFCommon_LocalizedStrings'.default.CancelString, GoToServerBrowser, CancelLeaveMenu, Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, ApproveMatchMakingLeave);
-                bPendingLeaveMenu = true;
-            }            
-        }
-        else
-        {
-            ApproveMatchMakingLeave();
-        }
-    }
-}
-
 function Callback_OptionListOpened(string ListName, int OptionIndex)
 {
     local string MessageString;
@@ -769,7 +825,7 @@ function Callback_OptionListOpened(string ListName, int OptionIndex)
     {
         OptionIndex = OptionsComponent.GetAdjustedGameModeIndex(OptionIndex);
     }
-    if((ListName == "mapList") || Outer.GetPC().WorldInfo.IsConsoleBuild() && ListName == "serverTypeList")
+    if((ListName == "mapList") || Outer.GetPC().WorldInfo.IsConsoleBuild() && ListName == "regionList")
     {
         return;
     }
@@ -844,6 +900,7 @@ function Callback_StartMenuRequestReinit()
 {
     if(OptionsComponent != none)
     {
+        OptionsComponent.bShowLengthNoPref = GetStartMenuState() == 1;
         OptionsComponent.InitializeGameOptions();
         OptionsComponent.SetOptions(true);
     }
@@ -891,14 +948,9 @@ function Callback_MapSelection(string MapKeyString)
     OptionsComponent.MapChanged(MapName);
 }
 
-function Callback_ServerType(int Index)
+function Callback_Region(int RegionIndex)
 {
-    OptionsComponent.ServerTypeChanged(Index);
-}
-
-function Callback_InProgress(int Index)
-{
-    OptionsComponent.InProgressChanged(Index);
+    OptionsComponent.SetRegionIndex(RegionIndex);
 }
 
 function SetLobbyData(string KeyName, string ValueData)
@@ -937,7 +989,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
             }
         }
     }
-    LengthIndex = InOptionsComponent.GetLengthIndex(1);
+    LengthIndex = InOptionsComponent.GetLengthIndex();
     return (((((MapName $ "?Game=") $ Class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.GetModeIndex())) $ "?Difficulty=") $ string(Class'KFGameDifficultyInfo'.static.GetDifficultyValue(byte(InOptionsComponent.GetDifficultyIndex())))) $ "?GameLength=") $ string(LengthIndex);
 }
 
@@ -1263,18 +1315,17 @@ function AddLobbyFilter(out array<LobbyFilter> Filters, bool bIsSet, string Key,
 function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGameContainer_Options Options, OnlineGameSearch Search)
 {
     local int GameMode, GameDifficulty, GameLength;
-    local bool AllowInProgress;
     local string GameTagFilters;
     local ActiveLobbyInfo LobbyInfo;
 
     Search.ClearServerFilters();
-    if(!Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        Search.AddServerFilter("version_match", string(Class'KFGameEngine'.static.GetKFGameVersion()));        
+        Search.AddGametagFilter(GameTagFilters, 'Region', Class'GameEngine'.static.GetPlayfabInterface().CurrRegionName);        
     }
     else
     {
-        Search.AddGametagFilter(GameTagFilters, 'Region', Class'GameEngine'.static.GetPlayfabInterface().CurrRegionName);
+        Search.AddServerFilter("version_match", string(Class'KFGameEngine'.static.GetKFGameVersion()));
     }
     if(OptionsComponent.GetMakeNewServer() || bAttemptingServerCreate)
     {
@@ -1313,29 +1364,11 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
             }
         }
         Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
-        AllowInProgress = OptionsComponent.GetAllowInProgress();
-        Search.TestAddBoolGametagFilter(GameTagFilters, !AllowInProgress, 'bInProgress', 0);
+        Search.TestAddBoolGametagFilter(GameTagFilters, false, 'bInProgress', 0);
         if(!Class'WorldInfo'.static.IsConsoleBuild())
         {
-            switch(OptionsComponent.GetServerTypeIndex())
-            {
-                case 0:
-                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 0);
-                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
-                    break;
-                case 2:
-                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 1);
-                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
-                    break;
-                case 3:
-                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 0);
-                    break;
-                default:
-                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 0);
-                    Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
-                    break;
-                    break;
-            }
+            Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bCustom', 0);
+            Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bUsesStats', 1);
         }
     }
     if(Len(GameTagFilters) > 0)
@@ -1375,7 +1408,14 @@ function bool ShouldUseLengthFilter(int GameModeIndex)
 
 function Callback_StartGame()
 {
-    Callback_StartOfflineGame();
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+    {
+        Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.StartOfflineGameString, Class'KFCommon_LocalizedStrings'.default.StartOfflineGameDescriptionString, Class'KFCommon_LocalizedStrings'.default.DisbandPartyString, Class'KFCommon_LocalizedStrings'.default.CancelString, Callback_StartOfflineGame);        
+    }
+    else
+    {
+        Callback_StartOfflineGame();
+    }
 }
 
 function Callback_StartOfflineGame()
@@ -1383,6 +1423,10 @@ function Callback_StartOfflineGame()
     local OnlineSubsystem OnlineSub;
 
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+    {
+        OnlineLobby.QuitLobby();
+    }
     if(!OnlineSub.IsGameOwned() && Class'WorldInfo'.static.IsConsoleBuild(8))
     {
         if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
@@ -1475,17 +1519,45 @@ function Callback_StartOnlineGame()
         Manager.DelayedOpenPopup(0, 0, "", Class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, Class'KFCommon_LocalizedStrings'.default.BuyGameString, Class'KFCommon_LocalizedStrings'.default.OKString, OnBuyGamePressed);
         return;
     }
-    LobbyOwnerPassword = "";
-    if(OptionsComponent.GetMakeNewServer())
+    bAttemptingServerCreate = false;
+    StartOnlineGame();
+}
+
+function Callback_CreateOnlineGame()
+{
+    local OnlineSubsystem OnlineSub;
+
+    CancelGameSearch();
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if(!OnlineSub.IsGameOwned() && Class'WorldInfo'.static.IsConsoleBuild(8))
     {
-        if(OptionsComponent.GetPrivacyIndex() == 2)
+        if(OnlineSub.CanCheckFreeTrialState() && !OnlineSub.IsFreeTrialPeriodActive())
         {
-            ShowServerTakeoverPasswordPrompt();
+            Manager.HandleFreeTrialError(2);
+            return;
+        }
+        if(!OnlineSub.CanCheckFreeTrialState())
+        {
+            Manager.HandleFreeTrialError(1);
             return;
         }
     }
-    bAttemptingServerCreate = false;
-    StartOnlineGame();
+    if(Class'KFGameEngine'.static.IsFreeConsolePlayOver())
+    {
+        Manager.DelayedOpenPopup(0, 0, "", Class'KFCommon_LocalizedStrings'.default.FreeConsolePlayOverString, Class'KFCommon_LocalizedStrings'.default.BuyGameString, Class'KFCommon_LocalizedStrings'.default.OKString, OnBuyGamePressed);
+        return;
+    }
+    LobbyOwnerPassword = "";
+    bAttemptingServerCreate = true;
+    if((OptionsComponent.GetPrivacyIndex() == 1) && !Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        ShowServerTakeoverPasswordPrompt();
+        return;        
+    }
+    else
+    {
+        StartOnlineGame();
+    }
 }
 
 function OnBuyGamePressed()
@@ -1549,15 +1621,18 @@ event int GetGameModeIndex()
 {
     local KFGameReplicationInfo KFGRI;
 
+    LogInternal("IN GET GAME MODE INDEX!!!!");
     KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
     if(OptionsComponent != none)
     {
         if(OptionsComponent.bIsSoloGame)
         {
-            return OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedSoloModeIndex);            
+            LogInternal("solo mode index: " @ string(OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex)));
+            return OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex);            
         }
         else
         {
+            LogInternal("not solo mode index: " @ string(OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex)));
             return OptionsComponent.SavedModeIndex;
         }        
     }
@@ -1565,12 +1640,14 @@ event int GetGameModeIndex()
     {
         if(Manager != none)
         {
+            LogInternal("SDADAS");
             return Manager.CachedProfile.GetProfileInt(148);            
         }
         else
         {
             if(KFGRI != none)
             {
+                LogInternal("SDADAS1111111111");
                 return Class'KFGameInfo'.static.GetGameModeIndexFromName(string(KFGRI.GameClass.Name));
             }
         }
@@ -1580,7 +1657,32 @@ event int GetGameModeIndex()
 
 function ShowOverview(bool bShowOverview, bool bLeader, bool bInMainMenu, bool bhostInServerBrowser)
 {
-    ActionScriptVoid("showOverview");
+    if(bShowOverview)
+    {
+        if(bInMainMenu)
+        {
+            if(!bLeader)
+            {
+                if(bhostInServerBrowser)
+                {
+                    SetInt("externalMenuState", 7);                    
+                }
+                else
+                {
+                    SetInt("externalMenuState", 6);
+                }
+            }            
+        }
+        else
+        {
+            SetInt("externalMenuState", 6);
+        }
+    }
+}
+
+function OnPartyLeave()
+{
+    SetInt("externalMenuState", 0);
 }
 
 defaultproperties
@@ -1597,7 +1699,8 @@ defaultproperties
     ServerTypeKey="ServerTypeKey"
     GameLengthKey="GameLengthKey"
     FindGameString="HOME"
-    MatchmakingString="ONLINE MATCHMAKING"
+    MatchmakingString="FIND A MATCH"
+    CreateMatchString="CREATE MATCH"
     ServerBrowserString="Browse Servers"
     NewsPageString="News"
     GameModeTitle="GAME MODE"
@@ -1622,8 +1725,8 @@ defaultproperties
     ServerConnectTimeout=4
     ServerTakeoverTimeout=30
     StockMaps(0)="kf-bioticslab"
-    StockMaps(1)="kf-outpost"
-    StockMaps(2)="kf-burningparis"
+    StockMaps(1)="kf-burningparis"
+    StockMaps(2)="kf-outpost"
     StockMaps(3)="kf-voltermanor"
     StockMaps(4)="kf-catacombs"
     StockMaps(5)="kf-evacuationpoint"
@@ -1640,5 +1743,9 @@ defaultproperties
     StockMaps(16)="kf-krampuslair"
     StockMaps(17)="kf-diesector"
     StockMaps(18)="kf-powercore_holdout"
+    StockMaps(19)="kf-lockdown"
+    StockMaps(20)="kf-monsterball"
+    StockMaps(21)="kf-airship"
+    StockMaps(22)="kf-tragickingdom"
     SubWidgetBindings=/* Array type was not detected. */
 }

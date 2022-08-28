@@ -251,12 +251,14 @@ private static final simulated function int GetExtraAmmo(int Level)
     return int(default.ExplosiveAmmo.Increment * float(FFloor(float(Level) / 5)));
 }
 
-static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj)
+static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj, optional float AuxRadiusMod, optional float AuxDmgMod)
 {
     local KFPlayerReplicationInfo InstigatorPRI;
     local KFPlayerController KFPC;
     local KFPerk InstigatorPerk;
 
+    AuxRadiusMod = 1;
+    AuxDmgMod = 1;
     if(ProjOwner != none)
     {
         if(Proj.bWasTimeDilated)
@@ -267,8 +269,8 @@ static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj)
                 if(InstigatorPRI.bNukeActive && Class'KFPerk_Demolitionist'.static.ProjectileShouldNuke(Proj))
                 {
                     Proj.ExplosionTemplate = Class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
-                    Proj.ExplosionTemplate.Damage = Proj.default.ExplosionTemplate.Damage * Class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
-                    Proj.ExplosionTemplate.DamageRadius = Proj.default.ExplosionTemplate.DamageRadius * Class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
+                    Proj.ExplosionTemplate.Damage = (Proj.default.ExplosionTemplate.Damage * Class'KFPerk_Demolitionist'.static.GetNukeDamageModifier()) * AuxDmgMod;
+                    Proj.ExplosionTemplate.DamageRadius = (Proj.default.ExplosionTemplate.DamageRadius * Class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier()) * AuxRadiusMod;
                     Proj.ExplosionTemplate.DamageFalloffExponent = Proj.default.ExplosionTemplate.DamageFalloffExponent;                    
                 }
                 else
@@ -287,7 +289,7 @@ static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj)
             if(KFPC != none)
             {
                 InstigatorPerk = KFPC.GetPerk();
-                Proj.ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
+                Proj.ExplosionTemplate.DamageRadius *= (InstigatorPerk.GetAoERadiusModifier() * AuxRadiusMod);
             }
         }
     }
@@ -786,4 +788,5 @@ defaultproperties
     AutoBuyLoadOutPath(3)=class'KFWeapDef_RPG7'
     HitAccuracyHandicap=2
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.HX25_PrestigePrecious_Mint_large"
 }

@@ -372,6 +372,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Stalker'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedStalker.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedStalker.HeadshotAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
     LocalizationKey=KFPawn_ZedStalker
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -446,6 +447,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedStalker.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedStalker.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedStalker.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedStalker.HeadshotAkComponent0'
     begin object name=CloakedAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -453,7 +455,7 @@ defaultproperties
         OcclusionUpdateInterval=0.4
     object end
     // Reference: AkComponent'Default__KFPawn_ZedStalker.CloakedAkComponent0'
-    Components(9)=CloakedAkComponent0
+    Components(10)=CloakedAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

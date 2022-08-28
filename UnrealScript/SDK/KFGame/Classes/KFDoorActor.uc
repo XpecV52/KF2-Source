@@ -778,6 +778,57 @@ private function TryPushPawns()
  * @name	Damage and Welding
  ********************************************************************************************* */
 
+simulated function InitializeWeldableComponent()
+{
+	WeldableComponent.SetOwner(self);
+	WeldableComponent.WeldIntegrity = (bStartWelded && !bStartDoorOpen) ? MaxWeldIntegrity : 0;
+	WeldableComponent.MaxWeldIntegrity = MaxWeldIntegrity;
+	WeldableComponent.DemoWeldRequired = DemoWeldRequired;
+	WeldableComponent.bWeldable = true;
+	WeldableComponent.bUnweldable = true;
+	WeldableComponent.bRepairable = true;
+	WeldableComponent.Delegate_AdjustWeldAmount = AdjustWeldCompWeldAmount;
+	WeldableComponent.Delegate_OnWeldIntegrityChanged = OnWeldCompWeldIntegrityChanged;
+	WeldableComponent.Delegate_OnRepairProgressChanged = OnWeldCompRepairProgressChanged;
+
+	WeldableComponent.SetCollisionCylinderSize(200, 200);
+}
+
+function AdjustWeldCompWeldAmount(out int Amount)
+{
+	// reduce weld strength if it's being attacked
+	if ( UnderAttack() )
+	{
+		Amount *= CombatWeldModifier;
+	}
+}
+
+simulated function OnWeldCompWeldIntegrityChanged(int Amount, KFPawn Welder)
+{
+	if (Role == ROLE_Authority)
+	{
+		FastenWeld(Amount, Welder);
+	}
+	else
+	{
+		WeldIntegrity = WeldableComponent.WeldIntegrity;
+		DemoWeld = WeldableComponent.DemoWeld;
+		UpdateIntegrityMIC();
+	}
+}
+
+simulated function OnWeldCompRepairProgressChanged(float Amount, KFPawn Welder)
+{
+	if (Role == ROLE_Authority)
+	{
+		Repair(Amount, Welder);
+	}
+	else
+	{
+		RepairProgress = WeldableComponent.RepairProgress;
+	}
+}
+
 /** When welded shut, do damage to the door */
 event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
@@ -819,6 +870,7 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 		}
 
 		UpdateWeldIntegrity(-Damage);
+		WeldableComponent.UpdateWeldIntegrity(-Damage);
 
 		// if weld is broken
 		if ( WeldIntegrity <= 0 || Health <= 0 )
@@ -859,6 +911,9 @@ function DestroyDoor( optional Controller DestructionInstigator )
 	WeldIntegrity = 0;
 	DemoWeld = 0;
 	Health = 0;
+
+	WeldableComponent.SetWeldIntegrity(0);
+	WeldableComponent.SetDemoWeld(0);
 
 	//UpdateHealthMICs();
     UpdateIntegrityMIC();
@@ -923,6 +978,8 @@ function FastenWeld(int Amount, optional KFPawn Welder)
 			bShouldExplode = false;
 			DemoWeld = 0;
 			ExplosionInstigatorController = none;
+
+			WeldableComponent.SetDemoWeld(0);
 		}
 	}
 	// handle fasten
@@ -1046,6 +1103,7 @@ function AddExplosiveWeld( int Amount, KFPlayerController PC )
 	{
 		ExplosionInstigatorController = PC;
 		bShouldExplode = true;
+		bForceNetUpdate = true;
 	}
 }
 
@@ -1149,6 +1207,10 @@ simulated function PlayDestroyed()
 	RepairProgress = 0;
     WeldIntegrity = 0;
 
+	WeldableComponent.SetDestroyed(true);
+	WeldableComponent.SetRepairProgress(0);
+	WeldableComponent.SetWeldIntegrity(0);
+
 	// If door is destroyed, it's dirty
 	bHasBeenDirtied = true;
 
@@ -1240,6 +1302,10 @@ simulated function ResetDoor( optional bool bRepaired )
 	    bShouldExplode = false;
 		WeldIntegrity = 0;
 	    DemoWeld = 0;
+
+		WeldableComponent.SetDestroyed(false);
+		WeldableComponent.SetWeldIntegrity(0);
+		WeldableComponent.SetDemoWeld(0);
 
 	    // Only open door if this wasn't a repair
 	    if( bRepaired )

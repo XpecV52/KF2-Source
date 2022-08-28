@@ -11,7 +11,7 @@ class KFDT_Ballistic_Stoner63A extends KFDT_Ballistic_AssaultRifle
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Stoner63A'
-    GunHitPower=0
+    GunHitPower=50
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=900
     KDeathVel=100

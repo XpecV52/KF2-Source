@@ -132,16 +132,22 @@ private static final simulated function float GetStartingAmmoPercent(int Level)
     return default.StartingAmmo.Increment * float(FFloor(float(Level) / 5));
 }
 
-function ModifyDoTScaler(out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected)
+function float GetDoTScalerAdditions(class<KFDamageType> KFDT)
 {
-    if(IsFuseActive() && IsDamageTypeOnPerk(KFDT))
+    local float ScalarAdditions;
+
+    if(IsDamageTypeOnPerk(KFDT))
     {
-        DoTScaler = GetSkillValue(PerkSkills[2]);
+        if(IsFuseActive())
+        {
+            ScalarAdditions += (GetSkillValue(PerkSkills[2]));
+        }
+        if(IsNapalmActive())
+        {
+            ScalarAdditions += (GetSkillValue(PerkSkills[4]));
+        }
     }
-    if(IsNapalmActive() && IsDamageTypeOnPerk(KFDT))
-    {
-        DoTScaler += (GetSkillValue(PerkSkills[4]));
-    }
+    return ScalarAdditions;
 }
 
 static function int GetNapalmDamage()
@@ -396,9 +402,9 @@ defaultproperties
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
     PerkSkills(0)=(Name="BringTheHeat",Increment=0,Rank=0,StartingValue=0.35,MaxValue=0.35,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat",bActive=false)
     PerkSkills(1)=(Name="HighCapFuelTank",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel",bActive=false)
-    PerkSkills(2)=(Name="Fuse",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Fuse",bActive=false)
+    PerkSkills(2)=(Name="Fuse",Increment=0,Rank=0,StartingValue=1.5,MaxValue=1.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Fuse",bActive=false)
     PerkSkills(3)=(Name="GroundFire",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HeatWave",bActive=false)
-    PerkSkills(4)=(Name="Napalm",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Napalm",bActive=false)
+    PerkSkills(4)=(Name="Napalm",Increment=0,Rank=0,StartingValue=1.5,MaxValue=1.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Napalm",bActive=false)
     PerkSkills(5)=(Name="ZedShrapnel",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_ZedShrapnel",bActive=false)
     PerkSkills(6)=(Name="SplashDamage",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_GroundFire",bActive=false)
     PerkSkills(7)=(Name="Range",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Range",bActive=false)
@@ -419,4 +425,5 @@ defaultproperties
     HitAccuracyHandicap=-2
     HeadshotAccuracyHandicap=5
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
 }

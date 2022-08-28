@@ -15,6 +15,7 @@ package
             this.__setProp_classicWeaponSelectCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
             this.__setProp_showWelderInInvCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
             this.__setProp_disableAutoUpgradeCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
+            this.__setProp_disableRemoteHeadshotEffectsCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
             this.__setProp_killTickerCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0();
             this.__setProp_useAltAimOnDualCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0();
             this.__setProp_closeButton_GameSettomgsContainerMC_header_0();
@@ -171,6 +172,32 @@ package
             try
             {
                 disableAutoUpgradeCheckBox["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_disableRemoteHeadshotEffectsCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0() : *
+        {
+            try
+            {
+                disableRemoteHeadshotEffectsCheckBox["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            disableRemoteHeadshotEffectsCheckBox.autoSize = "none";
+            disableRemoteHeadshotEffectsCheckBox.data = "";
+            disableRemoteHeadshotEffectsCheckBox.enabled = true;
+            disableRemoteHeadshotEffectsCheckBox.enableInitCallback = false;
+            disableRemoteHeadshotEffectsCheckBox.focusable = true;
+            disableRemoteHeadshotEffectsCheckBox.label = "Music Vocals";
+            disableRemoteHeadshotEffectsCheckBox.selected = false;
+            disableRemoteHeadshotEffectsCheckBox.visible = true;
+            try
+            {
+                disableRemoteHeadshotEffectsCheckBox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

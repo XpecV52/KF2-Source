@@ -525,4 +525,5 @@ defaultproperties
     AutoBuyLoadOutPath(1)=class'KFWeapDef_M16M203'
     AutoBuyLoadOutPath(2)=class'KFWeapDef_MedicRifle'
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.FreezeThrower_PrestigePrecious_Mint_large"
 }

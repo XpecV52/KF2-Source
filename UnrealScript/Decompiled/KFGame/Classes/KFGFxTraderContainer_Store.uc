@@ -50,7 +50,9 @@ function RefreshWeaponListByPerk(byte FilterIndex, const out array<STraderItem> 
     local GFxObject ItemDataArray;
     local array<STraderItem> OnPerkWeapons, SecondaryWeapons, OffPerkWeapons;
     local class<KFPerk> TargetPerkClass;
+    local bool bDebug;
 
+    bDebug = false;
     if((FilterIndex == 255) || FilterIndex == -1)
     {
         return;
@@ -68,19 +70,19 @@ function RefreshWeaponListByPerk(byte FilterIndex, const out array<STraderItem> 
         SlotIndex = 0;
         ItemDataArray = Outer.CreateArray();
         I = 0;
-        J0xFF:
+        J0x10B:
 
         if(I < ItemList.Length)
         {
-            if(IsItemFiltered(ItemList[I]))
+            if(IsItemFiltered(ItemList[I], bDebug))
             {
-                goto J0x38D;                
+                goto J0x3A3;                
             }
             else
             {
                 if((((ItemList[I].AssociatedPerkClasses.Length > 0) && ItemList[I].AssociatedPerkClasses[0] != none) && TargetPerkClass != Class'KFPerk_Survivalist') && (FilterIndex >= KFPC.PerkList.Length) || ItemList[I].AssociatedPerkClasses.Find(TargetPerkClass == -1)
                 {
-                    goto J0x38D;                    
+                    goto J0x3A3;                    
                 }
                 else
                 {
@@ -109,40 +111,40 @@ function RefreshWeaponListByPerk(byte FilterIndex, const out array<STraderItem> 
                     }
                 }
             }
-            J0x38D:
+            J0x3A3:
 
             ++ I;
-            goto J0xFF;
+            goto J0x10B;
         }
         I = 0;
-        J0x3A6:
+        J0x3BC:
 
         if(I < OnPerkWeapons.Length)
         {
             SetItemInfo(ItemDataArray, OnPerkWeapons[I], SlotIndex);
             ++ SlotIndex;
             ++ I;
-            goto J0x3A6;
+            goto J0x3BC;
         }
         I = 0;
-        J0x411:
+        J0x427:
 
         if(I < SecondaryWeapons.Length)
         {
             SetItemInfo(ItemDataArray, SecondaryWeapons[I], SlotIndex);
             ++ SlotIndex;
             ++ I;
-            goto J0x411;
+            goto J0x427;
         }
         I = 0;
-        J0x47C:
+        J0x492:
 
         if(I < OffPerkWeapons.Length)
         {
             SetItemInfo(ItemDataArray, OffPerkWeapons[I], SlotIndex);
             ++ SlotIndex;
             ++ I;
-            goto J0x47C;
+            goto J0x492;
         }
         SetObject("shopData", ItemDataArray);
     }
@@ -162,14 +164,14 @@ function RefreshItemsByType(byte FilterIndex, const out array<STraderItem> ItemL
     {
         if((IsItemFiltered(ItemList[I])) || !(FilterIndex == ItemList[I].TraderFilter) || FilterIndex == ItemList[I].AltTraderFilter)
         {
-            goto J0x12D;            
+            goto J0x12E;            
         }
         else
         {
             SetItemInfo(ItemDataArray, ItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0x12D:
+        J0x12E:
 
         ++ I;
         goto J0x3F;
@@ -191,14 +193,14 @@ function RefreshFavoriteItems(const out array<STraderItem> ItemList)
     {
         if((IsItemFiltered(ItemList[I])) || !MyTraderMenu.GetIsFavorite(ItemList[I].ClassName))
         {
-            goto J0x103;            
+            goto J0x104;            
         }
         else
         {
             SetItemInfo(ItemDataArray, ItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0x103:
+        J0x104:
 
         ++ I;
         goto J0x3F;
@@ -220,14 +222,14 @@ function RefreshAllItems(out array<STraderItem> ItemList)
     {
         if(IsItemFiltered(ItemList[I]))
         {
-            goto J0xB7;            
+            goto J0xB8;            
         }
         else
         {
             SetItemInfo(ItemDataArray, ItemList[I], SlotIndex);
             ++ SlotIndex;
         }
-        J0xB7:
+        J0xB8:
 
         ++ I;
         goto J0x3F;
@@ -274,26 +276,46 @@ function SetItemInfo(out GFxObject ItemDataArray, STraderItem TraderItem, int Sl
     ItemDataArray.SetElementObject(SlotIndex, SlotObject);
 }
 
-function bool IsItemFiltered(STraderItem Item)
+function bool IsItemFiltered(STraderItem Item, optional bool bDebug)
 {
     if(KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.ClassName))
     {
+        if(bDebug)
+        {
+            LogInternal("Item is owned");
+        }
         return true;
     }
     if(KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.DualClassName))
     {
+        if(bDebug)
+        {
+            LogInternal("dual Item is owned");
+        }
         return true;
     }
     if(!KFPC.GetPurchaseHelper().IsSellable(Item))
     {
+        if(bDebug)
+        {
+            LogInternal("Item is not sellable");
+        }
         return true;
     }
     if((Item.WeaponDef.default.SharedUnlockId != 0) && !Class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.WeaponDef.default.SharedUnlockId))
     {
+        if(bDebug)
+        {
+            LogInternal("Item is not unlocked");
+        }
         return true;
     }
     if((Item.WeaponDef.default.PlatformRestriction != 0) && Class'KFUnlockManager'.static.IsPlatformRestricted(Item.WeaponDef.default.PlatformRestriction))
     {
+        if(bDebug)
+        {
+            LogInternal("Item is platform restricted");
+        }
         return true;
     }
     return false;

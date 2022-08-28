@@ -148,13 +148,17 @@ function InitDoshLitter(int DoshTier)
 function CollectDoshPiles()
 {
     local KFActor_DoshPile DoshPile;
+    local int Index;
 
+    Index = 0;
     DoshVaultStacks.Length = 0;
     foreach AllActors(Class'KFActor_DoshPile', DoshPile)
     {
         DoshVaultStacks.AddItem(DoshPile;
         DoshPile.SetHidden(true);
-        DoshPile.SetValue(0);        
+        DoshPile.PileIndexID = Index;
+        DoshPile.SetValue(0);
+        ++ Index;        
     }    
 }
 

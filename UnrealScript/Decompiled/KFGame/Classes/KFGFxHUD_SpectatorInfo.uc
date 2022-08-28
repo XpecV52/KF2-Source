@@ -13,6 +13,8 @@ var const localized string ChangeCameraString;
 var GFxObject SpectatorInfoMC;
 var KFPlayerReplicationInfo SpectatedKFPRI;
 var byte LastPerkLevel;
+var byte LastPrestigeLevel;
+var bool bLastVisible;
 var class<KFPerk> LastPerkClass;
 
 function InitializeHUD()
@@ -34,8 +36,9 @@ function LocalizeText()
 
 function SetPlayerInfoVisible(bool bValue)
 {
-    if(SpectatorInfoMC != none)
+    if((SpectatorInfoMC != none) && bValue != bLastVisible)
     {
+        bLastVisible = bValue;
         SpectatorInfoMC.SetVisible(bValue);
     }
 }
@@ -52,8 +55,11 @@ function UpdateUsingGamePad(bool bIsUsingGamepad)
 
 function SetSpectatedKFPRI(KFPlayerReplicationInfo TempKFPRI)
 {
+    local bool bPRIChanged;
+
+    bPRIChanged = TempKFPRI != SpectatedKFPRI;
     SpectatedKFPRI = TempKFPRI;
-    UpdateSpectateeInfo(true);
+    UpdateSpectateeInfo(bPRIChanged);
 }
 
 function UpdateSpectateeInfo(optional bool bForceUpdate)
@@ -65,7 +71,6 @@ function UpdateSpectateeInfo(optional bool bForceUpdate)
     }
     else
     {
-        SetVisible(true);
         if((SpectatedKFPRI == Outer.GetPC().PlayerReplicationInfo) || SpectatedKFPRI == none)
         {
             SetPlayerInfoVisible(false);
@@ -82,7 +87,7 @@ function UpdateSpectateeInfo(optional bool bForceUpdate)
 function UpdatePlayerInfo(optional bool bForceUpdate)
 {
     local GFxObject TempObject;
-    local byte CurrentPerkLevel;
+    local byte CurrentPerkLevel, CurrentPrestigeLevel;
     local GFxObject PerkIconObject;
 
     if(SpectatedKFPRI == none)
@@ -90,10 +95,12 @@ function UpdatePlayerInfo(optional bool bForceUpdate)
         return;
     }
     CurrentPerkLevel = SpectatedKFPRI.GetActivePerkLevel();
-    if(((LastPerkClass != SpectatedKFPRI.CurrentPerkClass) || LastPerkLevel != CurrentPerkLevel) || bForceUpdate)
+    CurrentPrestigeLevel = SpectatedKFPRI.GetActivePerkPrestigeLevel();
+    if((((LastPerkClass != SpectatedKFPRI.CurrentPerkClass) || LastPerkLevel != CurrentPerkLevel) || LastPrestigeLevel != CurrentPrestigeLevel) || bForceUpdate)
     {
         LastPerkLevel = CurrentPerkLevel;
         LastPerkClass = SpectatedKFPRI.CurrentPerkClass;
+        LastPrestigeLevel = CurrentPrestigeLevel;
         TempObject = Outer.CreateObject("Object");
         if(TempObject != none)
         {

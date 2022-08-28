@@ -310,7 +310,7 @@ function StopPullingPawn(KFPawn OldVictim, optional bool bReachedEnd)
 defaultproperties
 {
     GorgeAttackRangeSq=490000
-    GorgeHumanAttackRangeSq=250000
+    GorgeHumanAttackRangeSq=350000
     GorgeMinAttackAngle=0.77
     GorgeAttackCooldown[0]=(X=8,Y=11)
     GorgeAttackCooldown[1]=(X=6,Y=9)

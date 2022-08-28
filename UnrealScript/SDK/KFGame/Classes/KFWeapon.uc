@@ -35,7 +35,7 @@ var const string MuzzleFlashTemplateName;
 
 var bool AttachOnContentLoad;
 var bool SetOnContentLoad;
-var bool WeaponContentLoaded;
+var transient bool WeaponContentLoaded;
 
 /************************************************************************************
  * @name	Firing / Timing / States
@@ -447,6 +447,10 @@ var(Animations) const editconst	name		FireLoopStartSightedAnim;
 var(Animations) const editconst	name		FireLoopEndAnim;
 /** Animation to play at the end of a looping fire anim */
 var(Animations) const editconst	name		FireLoopEndSightedAnim;
+/** Shoot animation to play when ending looping fire on last shot */
+var(Animations) const editconst	name		FireLoopEndLastAnim;
+/** Shoot animation to play when ending looping fire on last shot  when aiming*/
+var(Animations) const editconst	name		FireLoopEndLastSightedAnim;
 
 // Scoped Firing
 /** Animation to play when the weapon is fired */
@@ -2283,12 +2287,32 @@ simulated function name GetLoopStartFireAnim(byte FireModeNum)
 /** Get name of the animation to play for PlayFireEffects */
 simulated function name GetLoopEndFireAnim(byte FireModeNum)
 {
+	local bool bPlayFireLast;
+
+    bPlayFireLast = ShouldPlayFireLast(FireModeNum);
+
 	if ( bUsingSights )
 	{
-		return FireLoopEndSightedAnim;
+    	if( bPlayFireLast && FireLoopEndLastSightedAnim != '' )
+        {
+            return FireLoopEndLastSightedAnim;
+        }
+        else
+        {
+            return FireLoopEndSightedAnim;
+        }
 	}
-
-	return FireLoopEndAnim;
+	else
+	{
+    	if( bPlayFireLast && FireLoopEndLastAnim != '' )
+        {
+            return FireLoopEndLastAnim;
+        }
+        else
+        {
+            return FireLoopEndAnim;
+        }
+	}
 }
 
 /** Get name of the animation to play for PlayFireEffects */
@@ -7181,6 +7205,8 @@ defaultproperties
 	FireLastSightedAnim=Shoot_Iron_Last
 	FireLoopAnim=ShootLoop
 	FireLoopSightedAnim=ShootLoop_Iron
+	FireLoopEndLastAnim=ShootLoop_End_Last
+	FireLoopEndLastSightedAnim=ShootLoop_Iron_End_Last
 
 	// Equip/Idle
 	PutDownAnim=PutAway

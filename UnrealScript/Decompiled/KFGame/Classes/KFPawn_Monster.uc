@@ -118,6 +118,66 @@ struct native AttachedGoreChunkInfo
     }
 };
 
+struct native ExtraVFXInfo
+{
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play
+     */
+    var() ParticleSystem VFX;
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play// Socket to attach it to (if applicable)
+
+     */
+    var() name SocketName;
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play// Socket to attach it to (if applicable)
+// Label to use for code logic (if applicable)
+
+     */
+    var() name Label;
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play// Socket to attach it to (if applicable)
+// Label to use for code logic (if applicable)
+// Audio event to play when vfx start
+
+     */
+    var() AkEvent SFXStartEvent;
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play// Socket to attach it to (if applicable)
+// Label to use for code logic (if applicable)
+// Audio event to play when vfx start
+// Audio event to play when vfx stop
+
+     */
+    var() AkEvent SFXStopEvent;
+
+    structdefaultproperties
+    {
+        VFX=none
+        SocketName=None
+        Label=None
+        SFXStartEvent=none
+        SFXStopEvent=none
+    }
+};
+
+struct native ExtraVFXAttachmentInfo
+{
+    var export editinline ParticleSystemComponent VFXComponent;
+    var ExtraVFXInfo Info;
+
+    structdefaultproperties
+    {
+        VFXComponent=none
+        Info=(VFX=none,SocketName=None,Label=None,SFXStartEvent=none,SFXStopEvent=none)
+    }
+};
+
 var bool bLargeZed;
 var bool bVersusZed;
 var(Combat) bool bCanGrabAttack;
@@ -247,6 +307,7 @@ var float DesiredAdjustedGroundSpeed;
 var float DesiredAdjustedSprintSpeed;
 var float SpeedAdjustTransitionRate;
 var export editinline AkComponent SprintAkComponent;
+var export editinline AkComponent HeadShotAkComponent;
 var AkEvent StartSprintingSound;
 var AkEvent SprintLoopingSound;
 var AkEvent StopSprintingSound;
@@ -263,6 +324,7 @@ var protected const int OnDeathAchievementID;
 var class<KFZedArmorInfo> ArmorInfoClass;
 var KFZedArmorInfo ArmorInfo;
 var const int OverrideArmorFXIndex;
+var transient array<ExtraVFXAttachmentInfo> ExtraVFXAttachments;
 var delegate<GoreChunkAttachmentCriteria> __GoreChunkAttachmentCriteria__Delegate;
 var delegate<GoreChunkDetachmentCriteria> __GoreChunkDetachmentCriteria__Delegate;
 
@@ -342,6 +404,9 @@ simulated event ReplicatedEvent(name VarName)
             {
                 ArmorInfo.UpdateArmorPieces();
             }
+            break;
+        case 'bIsEnraged':
+            SetEnraged(bIsEnraged);
             break;
         default:
             break;
@@ -606,6 +671,12 @@ simulated event Tick(float DeltaTime)
             }
         }
     }
+}
+
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
+{
+    super.SetCharacterArch(Info, bForce);
+    PlayExtraVFX('AlwaysOn');
 }
 
 // Export UKFPawn_Monster::execGetCharacterMonsterInfo(FFrame&, void* const)
@@ -957,7 +1028,41 @@ native function KFPawn GetEnemy();
 // Export UKFPawn_Monster::execIsLocationValidForCombat(FFrame&, void* const)
 native final function bool IsLocationValidForCombat(KFPawn CheckPawn, const Vector CheckLocation);
 
-simulated function SetEnraged(bool bNewEnraged);
+simulated function bool SetEnraged(bool bNewEnraged)
+{
+    if(!bCanRage)
+    {
+        return false;
+    }
+    if(Role == ROLE_Authority)
+    {
+        if(bNewEnraged == bIsEnraged)
+        {
+            return false;
+        }
+        bIsEnraged = bNewEnraged;
+        if(IsDoingSpecialMove(17))
+        {
+            EndSpecialMove();
+        }
+        if(!IsHumanControlled())
+        {
+            SetSprinting(bNewEnraged);
+        }
+    }
+    if((WorldInfo.NetMode != NM_DedicatedServer) && !IsHumanControlled())
+    {
+        if(bNewEnraged)
+        {
+            PlayExtraVFX('Enraged');            
+        }
+        else
+        {
+            StopExtraVFX('Enraged');
+        }
+    }
+    return true;
+}
 
 simulated event bool IsEnraged();
 
@@ -1201,7 +1306,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 
     Timer_EndRallyBoost();
     super.PlayDying(DamageType, HitLoc);
-    if((IsABoss()) && KFGameInfo(WorldInfo.Game).bGoToBossCameraOnDeath)
+    if((IsABoss()) && class<KFGameInfo>(WorldInfo.GRI.GameClass).default.bGoToBossCameraOnDeath)
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
         if(KFPC != none)
@@ -1221,6 +1326,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
         PlayInflationDeath();
     }
     UpdateBleedIncapFX();
+    StopExtraVFX('None');
 }
 
 simulated function PlayInflationDeath()
@@ -2810,6 +2916,7 @@ simulated function PlayHeadAsplode()
         GoreManager.CrushBone(self, BoneName);
         SoundGroupArch.PlayHeadPopSounds(self, Mesh.GetBoneLocation(BoneName));
         HitZones[0].bPlayedInjury = true;
+        SpawnHeadShotFX(KFPlayerReplicationInfo(HitFxInfo.DamagerPRI));
     }
 }
 
@@ -2841,6 +2948,10 @@ simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType
                 InDmgType.static.GetBoneToDismember(self, HitDirection, HitZones[InHitZoneIndex].ZoneName, BreakBoneName);
             }
             GoreManager.CauseDismemberment(self, BreakBoneName, InDmgType);
+            if(InHitZoneIndex == 0)
+            {
+                SpawnHeadShotFX(KFPlayerReplicationInfo(HitFxInfo.DamagerPRI));
+            }
             PlayHitZoneGoreSounds(BreakBoneName, Mesh.GetBoneLocation(BreakBoneName));
             HitZones[InHitZoneIndex].bPlayedInjury = true;
             if((Health > 0) && bHasBrokenConstraints)
@@ -3037,6 +3148,32 @@ simulated function UpdateBleedIncapFX()
     }
 }
 
+private final simulated function SpawnHeadShotFX(KFPlayerReplicationInfo DamagerPRI)
+{
+    local KFPlayerController KFPC;
+    local HeadshotEffect SHeadshotEffect;
+    local Vector SpawnVector;
+
+    if(DamagerPRI != none)
+    {
+        if(WorldInfo.NetMode != NM_DedicatedServer)
+        {
+            KFPC = KFPlayerController(WorldInfo.GetALocalPlayerController());
+            if((KFPC == none) || KFPC.bHideRemotePlayerHeadshotEffects && DamagerPRI != KFPC.PlayerReplicationInfo)
+            {
+                return;
+            }
+            SHeadshotEffect = Class'KFHeadShotEffectList'.static.GetUnlockedHeadshotEffect(DamagerPRI.GetHeadShotEffectID());
+            if(SHeadshotEffect.Id != -1)
+            {
+                Mesh.GetSocketWorldLocationAndRotation(Class'KFSM_Stunned'.default.DazedFXSocketName, SpawnVector);
+                WorldInfo.MyEmitterPool.SpawnEmitter(SHeadshotEffect.EffectPS, SpawnVector);
+                HeadShotAkComponent.PlayEvent(SHeadshotEffect.HeadshotSoundEffect, true, true);
+            }
+        }
+    }
+}
+
 static function bool IsLargeZed()
 {
     return default.bLargeZed;
@@ -3089,7 +3226,7 @@ function float GetPerkDoTScaler(optional Controller InstigatedBy, optional class
             InstigatorPerk = KFPC.GetPerk();
             if(InstigatorPerk != none)
             {
-                InstigatorPerk.ModifyDoTScaler(DoTScaler, KFDT, IsNapalmInfected());
+                DoTScaler += InstigatorPerk.GetDoTScalerAdditions(KFDT);
             }
         }
     }
@@ -3491,6 +3628,116 @@ protected native function int GetZedOnDeathAchievement();
 // Export UKFPawn_Monster::execDisablebOnDeathAchivement(FFrame&, void* const)
 native function DisablebOnDeathAchivement();
 
+simulated function PlayExtraVFX(name FXLabel)
+{
+    local int I;
+    local ExtraVFXAttachmentInfo VFXAttachment;
+    local bool bActivatedExistingSystem;
+    local name SFXBoneName;
+
+    if((WorldInfo.NetMode == NM_DedicatedServer) || FXLabel == 'None')
+    {
+        return;
+    }
+    I = 0;
+    J0x4F:
+
+    if(I < ExtraVFXAttachments.Length)
+    {
+        if(ExtraVFXAttachments[I].Info.Label == FXLabel)
+        {
+            ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[I].Info.VFX, Mesh, ExtraVFXAttachments[I].Info.SocketName, true);
+            if(ExtraVFXAttachments[I].Info.SFXStartEvent != none)
+            {
+                SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[I].Info.SocketName);
+                if(SFXBoneName != 'None')
+                {
+                    PostAkEventOnBone(ExtraVFXAttachments[I].Info.SFXStartEvent, SFXBoneName, false, true);                    
+                }
+                else
+                {
+                    PostAkEvent(ExtraVFXAttachments[I].Info.SFXStartEvent, false, true, false);
+                }
+            }
+            bActivatedExistingSystem = true;
+        }
+        ++ I;
+        goto J0x4F;
+    }
+    if(bActivatedExistingSystem)
+    {
+        return;
+    }
+    I = 0;
+    J0x30A:
+
+    if(I < CharacterMonsterArch.ExtraVFX.Length)
+    {
+        if(CharacterMonsterArch.ExtraVFX[I].Label == FXLabel)
+        {
+            if(CharacterMonsterArch.ExtraVFX[I].SocketName == 'None')
+            {
+                WarnInternal(((((string(self) $ "::PlayExtraVFX - SocketName for ExtraVFX ") $ string(I)) $ " (") $ string(FXLabel)) $ ") is NONE");                
+            }
+            else
+            {
+                VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterMonsterArch.ExtraVFX[I].VFX, Mesh, CharacterMonsterArch.ExtraVFX[I].SocketName, true);
+                if(CharacterMonsterArch.ExtraVFX[I].SFXStartEvent != none)
+                {
+                    SFXBoneName = Mesh.GetSocketBoneName(CharacterMonsterArch.ExtraVFX[I].SocketName);
+                    if(SFXBoneName != 'None')
+                    {
+                        PostAkEventOnBone(CharacterMonsterArch.ExtraVFX[I].SFXStartEvent, SFXBoneName, false, true);                        
+                    }
+                    else
+                    {
+                        PostAkEvent(CharacterMonsterArch.ExtraVFX[I].SFXStartEvent, false, true, false);
+                    }
+                }
+                VFXAttachment.Info = CharacterMonsterArch.ExtraVFX[I];
+                ExtraVFXAttachments.AddItem(VFXAttachment;
+            }
+        }
+        ++ I;
+        goto J0x30A;
+    }
+}
+
+simulated function StopExtraVFX(name FXLabel)
+{
+    local int I;
+    local name SFXBoneName;
+
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
+    I = 0;
+    J0x36:
+
+    if(I < ExtraVFXAttachments.Length)
+    {
+        if((FXLabel == 'None') || ExtraVFXAttachments[I].Info.Label == FXLabel)
+        {
+            ExtraVFXAttachments[I].VFXComponent.SetActive(false);
+            if(ExtraVFXAttachments[I].Info.SFXStopEvent != none)
+            {
+                SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[I].Info.SocketName);
+                if(SFXBoneName != 'None')
+                {
+                    PostAkEventOnBone(ExtraVFXAttachments[I].Info.SFXStopEvent, SFXBoneName, false, true);                    
+                }
+                else
+                {
+                    PostAkEvent(ExtraVFXAttachments[I].Info.SFXStopEvent, false, true, false);
+                }
+            }
+        }
+        ++ I;
+        goto J0x36;
+    }
+}
+
 state Dying
 {
     event OnSleepRBPhysics()
@@ -3612,6 +3859,13 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFPawn_Monster.SprintAkComponent0'
     SprintAkComponent=SprintAkComponent0
+    begin object name=HeadshotAkComponent0 class=AkComponent
+        BoneName=head
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.2
+    object end
+    // Reference: AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
+    HeadShotAkComponent=HeadshotAkComponent0
     CollisionRadiusForReducedZedOnZedPinchPointCollisionState=1
     OnDeathAchievementID=-1
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -3764,6 +4018,13 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFPawn_Monster.SprintAkComponent0'
     Components(8)=SprintAkComponent0
+    begin object name=HeadshotAkComponent0 class=AkComponent
+        BoneName=head
+        bForceOcclusionUpdateInterval=true
+        OcclusionUpdateInterval=0.2
+    object end
+    // Reference: AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
+    Components(9)=HeadshotAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

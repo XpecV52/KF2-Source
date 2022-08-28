@@ -3,6 +3,13 @@ CharacterName="Mrs. Foster"
 Description="Als sie Mr. Foster für ein Vorstellungsgespräch empfing, war Mrs. Foster bereits die erfolgreiche Händlerin eines erstklassigen Unternehmens in London. Mr. Foster wollte sein wie sie, war aber als Händler ein hoffnungsloser Fall. Er konnte sich weder an Regeln noch seinen Mund halten. Dennoch war etwas an ihm besonders; er war so cool, so charmant, so … einzigartig. Einzigartig genug, ihr zum ersten Date eine eigene Gasmaske zu schenken. Es war so, als wüsste er, dass ein verrückter Mutant mit Kettensäge eine fleischfressende Horde Klone erschaffen und ihre Prämienserie in Millionenhöhe zunichte machen würde. Bald danach heirateten sie in einem Trubel aus Blumen, Spitze, Zeds und Sprengstoff. Mag sein, dass sie nicht in der Stadt zusammen Unmengen an Bargeld verdienen können, doch können sie Zeds vernichten und Kohle scheffeln!"
 BodyMesh0="Weste"
 BodyMesh1="Steampunk"
+BodyMesh2="Horzine-Security"
+BodyMesh3="Papp-Ritter"
+BodyMesh4="Ödland"
+BodyMesh5="Schutz"
+BodyMesh6="Kommando-Huhn"
+BodyMesh7="Pyjama-Outfit „Weihnachten“"
+BodyMesh8="Pyjama-Outfit „Kammer“"
 HeadMesh0="Gasmaske"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -21,6 +28,61 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Gelb"
 
+[CHR_MrsFoster_archetype.BodyMesh2]
+BodySkin0="Elite-Blau"
+BodySkin1="Elite-Grün"
+BodySkin2="Elite-Rot"
+BodySkin3="Elite-Weiß"
+BodySkin4="Mark 7"
+BodySkin5="Schnee DigiCam"
+BodySkin6="Wüste"
+BodySkin7="Multitarn"
+BodySkin8="Gefahr"
+BodySkin9="Adamant"
+BodySkin10="Kopfgeldjäger"
+BodySkin11="Edel"
+
+[CHR_MrsFoster_archetype.BodyMesh3]
+BodySkin0="Klassisch"
+BodySkin1="Jittery Joe's"
+BodySkin2="Bio-Cola"
+BodySkin3="Horzine-Depot"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrsFoster_archetype.BodyMesh4]
+BodySkin0="Held"
+BodySkin1="Tarnung"
+BodySkin2="Biker-Schwarz"
+BodySkin3="Poe"
+BodySkin4="Sandleute"
+
+[CHR_MrsFoster_archetype.BodyMesh5]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Hitzewelle"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Crew vom Tragischen Königreich"
+
+[CHR_MrsFoster_archetype.BodyMesh6]
+BodySkin0="Gebraucht"
+BodySkin1="Sauber"
+BodySkin2="Nacht"
+BodySkin3="Schwere Wunde"
+
+[CHR_MrsFoster_archetype.BodyMesh7]
+BodySkin0="Hase"
+BodySkin1="Kohle"
+BodySkin2="Grüne Karos"
+BodySkin3="Decke"
+BodySkin4="Roter Schnee"
+BodySkin5="Bäume"
+BodySkin6="Rote Karos"
+
+[CHR_MrsFoster_archetype.BodyMesh8]
+BodySkin0="Kammer-Muster"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Weiß"
 HeadSkin1="Grün"
@@ -28,6 +90,7 @@ HeadSkin2="Rot"
 HeadSkin3="Braun"
 HeadSkin4="Rosa"
 HeadSkin5="Schwarz"
+HeadSkin6="NEED NAME"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -186,6 +249,7 @@ HeadSkin2="Blutrot"
 HeadSkin3="Metal-Gesicht"
 HeadSkin4="Großer böser Schwede"
 HeadSkin5="Vertigo"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Stachliger Cowboy-Hut"
@@ -359,6 +423,7 @@ HeadSkin3="Grüne Gefahr"
 HeadSkin4="Retro-Scully"
 HeadSkin5="Stummer Schrei – Scully"
 HeadSkin6="Batcat"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Scullyphones"
@@ -482,6 +547,7 @@ HeadSkin1="Strähnchen"
 HeadSkin2="Schwarz"
 HeadSkin3="Puppe"
 HeadSkin4="Tag der Toten"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Arztmaske"
@@ -609,6 +675,7 @@ HeadSkin4="Britische Klasse"
 HeadSkin5="Rotsehen"
 HeadSkin6="Mr. Hans"
 HeadSkin7="Kohle-Fan"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Scullyphones"
@@ -837,6 +904,7 @@ HeadSkin1="Tattoo"
 HeadSkin2="Blendend"
 HeadSkin3="Grinsen"
 HeadSkin4="Roarr!"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Boxer-Kopfschutz"
@@ -950,6 +1018,7 @@ HeadSkin2="Schwarz"
 HeadSkin3="Weiß"
 HeadSkin4="Pierrot"
 HeadSkin5="Phantom"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Brille"
@@ -1256,7 +1325,7 @@ AttachmentSkin8="Seegrün-Weiß"
 AttachmentSkin9="Edel"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment="Eingehauener Motorradhelm"
+Attachment="Beschädigter Motorradhelm"
 AttachmentSkin0="Schwarz"
 AttachmentSkin1="Blau"
 AttachmentSkin2="Orange"
@@ -1845,6 +1914,7 @@ HeadSkin1="Tarnung"
 HeadSkin2="Clown"
 HeadSkin3="Vampir"
 HeadSkin4="Guillotine"
+HeadSkin5="NEED NAME"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Grün"
@@ -1943,6 +2013,7 @@ HeadSkin0="Schwarz"
 HeadSkin1="Blond"
 HeadSkin2="Kumadori"
 HeadSkin3="Titan"
+HeadSkin4="NEED NAME"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="Und mit Klasse"
@@ -2078,6 +2149,7 @@ HeadSkin3="Schönes Blau"
 HeadSkin4="Death Metal"
 HeadSkin5="Mrs. Stein"
 HeadSkin6="Blumen"
+HeadSkin7="NEED NAME"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Todesregen"
@@ -2271,6 +2343,7 @@ HeadSkin3="Blonder Schwede"
 HeadSkin4="Bitte lächeln"
 HeadSkin5="Mr. Juice"
 HeadSkin6="Gut gespielt"
+HeadSkin7="NEED NAME"
 
 [chr_alan_archetype]
 CharacterName="Classic Masterson"
@@ -2371,6 +2444,7 @@ HeadSkin3="Tarnung hoch, Leute!"
 HeadSkin4="Kopf hoch!"
 HeadSkin5="Du bist tot, Kumpel!"
 HeadSkin6="Digi"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ-Mütze"
@@ -2472,6 +2546,7 @@ HeadSkin0="Dunkler Stahl"
 HeadSkin1="Heller Stahl"
 HeadSkin2="Herr Tod"
 HeadSkin3="Mr. Stein"
+HeadSkin4="NEED NAME"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Deutscher Stahlhelm"
@@ -2723,6 +2798,7 @@ HeadSkin4="Seegrün"
 HeadSkin5="Rosa"
 HeadSkin6="Frau Tod"
 HeadSkin7="Reh"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Augenklappe"
@@ -4175,3 +4251,123 @@ AttachmentSkin0="Bleichmittel"
 AttachmentSkin1="Blau"
 AttachmentSkin2="Rost"
 AttachmentSkin3="Edel"
+
+[Cosmetic_Halloween_AngelWings_ARCH]
+Attachment="Halloween-Engelsflügel"
+AttachmentSkin0="Himmlisch"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_Cauldron_ARCH]
+Attachment="Halloween-Kesselrucksack"
+AttachmentSkin0="Süßigkeiten"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_CoffinBackpack_ARCH]
+Attachment="Halloween-Sargrucksack"
+AttachmentSkin0="Ruhe in Frieden"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_CyclopsEye_ARCH]
+Attachment="Halloween-Zyklopenauge"
+AttachmentSkin0="Böser Blick"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_Horns_ARCH]
+Attachment="Halloween-Hörner"
+AttachmentSkin0="Kobold"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_IncognitoMask_ARCH]
+Attachment="Halloween-Inkognitomaske"
+AttachmentSkin0="Graucho"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_PirateHat_ARCH]
+Attachment="Halloween-Piratenhut"
+AttachmentSkin0="Freibeuter"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_WitchHat_ARCH]
+Attachment="Halloween-Hexenhut"
+AttachmentSkin0="Schwarze Magie"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_FunnyZedBackpack_ARCH]
+Attachment="Halloween-Clot-Rucksack"
+AttachmentSkin0="Gefährte"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_BatWings_ARCH]
+Attachment="Halloween-Fledermaus-Flügel"
+AttachmentSkin0="Nachtaktiv"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_BatEars_ARCH]
+Attachment="Halloween-Fledermaus-Ohren"
+AttachmentSkin0="Echoorter"
+AttachmentSkin1="Edel"
+
+[Cosmetic_Halloween_MummyBackpack_ARCH]
+Attachment="Halloween-Mumienrucksack"
+AttachmentSkin0="Konserviert"
+AttachmentSkin1="Edel"
+
+[Cosmetic_BeastMask_ARCH]
+Attachment="Bestienmaske"
+AttachmentSkin0="Hell"
+AttachmentSkin1="Dunkel"
+AttachmentSkin2="Edel"
+
+[Cosmetic_DancerMask_ARCH]
+Attachment="Tänzermaske"
+AttachmentSkin0="Feuer"
+AttachmentSkin1="Wasser"
+AttachmentSkin2="Edel"
+
+[Cosmetic_DemonMask_ARCH]
+Attachment="Dämonenmaske"
+AttachmentSkin0="Feuer"
+AttachmentSkin1="Wasser"
+AttachmentSkin2="Edel"
+
+[Cosmetic_DoctorMask_ARCH]
+Attachment="Medizinmann-Maske"
+AttachmentSkin0="Hell"
+AttachmentSkin1="Dunkel"
+AttachmentSkin2="Edel"
+
+[Cosmetic_DreamerMask_ARCH]
+Attachment="Träumermaske"
+AttachmentSkin0="Feuer"
+AttachmentSkin1="Wasser"
+AttachmentSkin2="Edel"
+
+[Cosmetic_JokerMask_ARCH]
+Attachment="Schalkmaske"
+AttachmentSkin0="Hell"
+AttachmentSkin1="Dunkel"
+AttachmentSkin2="Edel"
+
+[Cosmetic_LordMask_ARCH]
+Attachment="Lordmaske"
+AttachmentSkin0="Feuer"
+AttachmentSkin1="Wasser"
+AttachmentSkin2="Edel"
+
+[Cosmetic_SleeperMask_ARCH]
+Attachment="Schläfermaske"
+AttachmentSkin0="Feuer"
+AttachmentSkin1="Wasser"
+AttachmentSkin2="Edel"
+
+[Cosmetic_Undead_ARCH]
+Attachment="Untotenmaske"
+AttachmentSkin0="Feuer"
+AttachmentSkin1="Wasser"
+AttachmentSkin2="Edel"
+
+[Cosmetic_Warrior_ARCH]
+Attachment="Kriegermaske"
+AttachmentSkin0="Feuer"
+AttachmentSkin1="Wasser"
+AttachmentSkin2="Edel"

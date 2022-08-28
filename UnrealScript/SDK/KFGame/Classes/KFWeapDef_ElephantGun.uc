@@ -13,7 +13,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Shotgun_ElephantGun"
 
 	BuyPrice=1500
-	AmmoPricePerMag=40 //25
+	AmmoPricePerMag=25 //25
 	ImagePath="WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel" //@TODO: Replace
 
 	EffectiveRange=15

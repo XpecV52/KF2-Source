@@ -63,6 +63,8 @@ package tripwire.containers.inventory
         
         public var craftingMatsButton:TripButton;
         
+        public var sfxButton:TripButton;
+        
         public var craftWeaponsButton:TripButton;
         
         public var craftCosmeticsButton:TripButton;
@@ -153,6 +155,7 @@ package tripwire.containers.inventory
                 this.emotesButton.label = !!param1.emotes ? param1.emotes : "";
                 this.consumablesButton.label = !!param1.items ? param1.items : "";
                 this.craftingMatsButton.label = !!param1.craftingMats ? param1.craftingMats : "";
+                this.sfxButton.label = !!param1.sfx ? param1.sfx : "sfx b";
                 this.craftWeaponsButton.label = !!param1.craftWeapon ? param1.craftWeapon : "";
                 this.craftCosmeticsButton.label = !!param1.craftCosmetic ? param1.craftCosmetic : "";
                 this.noItemsString = !!param1.noItems ? param1.noItems : "";
@@ -183,7 +186,7 @@ package tripwire.containers.inventory
             super.addedToStage(param1);
             this.craftWeaponsButton.bHasVerticalAlign = true;
             this.craftCosmeticsButton.bHasVerticalAlign = true;
-            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton,this.emotesButton,this.craftingMatsButton);
+            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton,this.craftingMatsButton,this.emotesButton,this.sfxButton);
             var _loc2_:int = 0;
             while(_loc2_ < this.buttonList.length)
             {
@@ -196,15 +199,16 @@ package tripwire.containers.inventory
             this.allButton.tabIndex = 1;
             this.weaponSkinsButton.tabIndex = 2;
             this.cosmeticsButton.tabIndex = 3;
-            this.emotesButton.tabIndex = 3;
             this.consumablesButton.tabIndex = 4;
             this.craftingMatsButton.tabIndex = 5;
-            this.inventoryItemScrollingList.tabIndex = 6;
-            this.filterDropdown_0.tabIndex = 7;
-            this.filterDropdown_1.tabIndex = 8;
-            this.filterDropdown_2.tabIndex = 9;
-            this.craftWeaponsButton.tabIndex = 10;
-            this.craftCosmeticsButton.tabIndex = 11;
+            this.emotesButton.tabIndex = 6;
+            this.sfxButton.tabIndex = 7;
+            this.inventoryItemScrollingList.tabIndex = 8;
+            this.filterDropdown_0.tabIndex = 9;
+            this.filterDropdown_1.tabIndex = 10;
+            this.filterDropdown_2.tabIndex = 11;
+            this.craftWeaponsButton.tabIndex = 12;
+            this.craftCosmeticsButton.tabIndex = 13;
             this.inventoryItemScrollingList.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onInventoryListFocusChange,false,0,true);
             this.inventoryItemScrollingList.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onInventoryListFocusChange,false,0,true);
             this.allButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
@@ -213,6 +217,7 @@ package tripwire.containers.inventory
             this.emotesButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.consumablesButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.craftingMatsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.sfxButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.craftWeaponsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.craftCosmeticsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.filtersText.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
@@ -228,6 +233,7 @@ package tripwire.containers.inventory
             leftSidePanels.push(this.craftWeaponsButton);
             leftSidePanels.push(this.emotesButton);
             leftSidePanels.push(this.craftingMatsButton);
+            leftSidePanels.push(this.sfxButton);
             leftSidePanels.push(this.craftCosmeticsButton);
             leftSidePanels.push(this.filtersText);
             rightSidePanels.push(this.inventoryItemScrollingList);
@@ -293,7 +299,7 @@ package tripwire.containers.inventory
                                 param1.handled = true;
                                 return;
                             }
-                            if(this.craftingMatsButton.focused == 1 && !this.craftCosmeticsButton.enabled && !this.craftWeaponsButton.enabled)
+                            if(this.sfxButton.focused == 1 && !this.sfxButton.enabled && !this.sfxButton.enabled)
                             {
                                 param1.handled = true;
                                 return;

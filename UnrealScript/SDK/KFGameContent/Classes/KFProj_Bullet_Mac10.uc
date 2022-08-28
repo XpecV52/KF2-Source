@@ -16,6 +16,6 @@ defaultproperties
 	ProjFlightTemplate = ParticleSystem'FX_Projectile_EMIT.FX_Tracer_9MM_ZEDTime'
 	ImpactEffects = KFImpactEffectInfo'WEP_MAC10_ARCH.Mac10_bullet_impact'
 
-	AmbientSoundPlayEvent = AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Projectile_Loop'
-	AmbientSoundStopEvent = AkEvent'WW_WEP_SA_DragonsBreath.Stop_SA_DragonsBreath_Projectile_Loop'
+	//AmbientSoundPlayEvent = AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Projectile_Loop'
+	//AmbientSoundStopEvent = AkEvent'WW_WEP_SA_DragonsBreath.Stop_SA_DragonsBreath_Projectile_Loop'
 }

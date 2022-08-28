@@ -615,6 +615,55 @@ private final function TryPushPawns()
     }    
 }
 
+simulated function InitializeWeldableComponent()
+{
+    WeldableComponent.SetOwner(self);
+    WeldableComponent.WeldIntegrity = ((bStartWelded && !bStartDoorOpen) ? MaxWeldIntegrity : 0);
+    WeldableComponent.MaxWeldIntegrity = MaxWeldIntegrity;
+    WeldableComponent.DemoWeldRequired = DemoWeldRequired;
+    WeldableComponent.bWeldable = true;
+    WeldableComponent.bUnweldable = true;
+    WeldableComponent.bRepairable = true;
+    WeldableComponent.__Delegate_AdjustWeldAmount__Delegate = AdjustWeldCompWeldAmount;
+    WeldableComponent.__Delegate_OnWeldIntegrityChanged__Delegate = OnWeldCompWeldIntegrityChanged;
+    WeldableComponent.__Delegate_OnRepairProgressChanged__Delegate = OnWeldCompRepairProgressChanged;
+    WeldableComponent.SetCollisionCylinderSize(200, 200);
+}
+
+function AdjustWeldCompWeldAmount(out int Amount)
+{
+    if(UnderAttack())
+    {
+        Amount *= CombatWeldModifier;
+    }
+}
+
+simulated function OnWeldCompWeldIntegrityChanged(int Amount, KFPawn Welder)
+{
+    if(Role == ROLE_Authority)
+    {
+        FastenWeld(Amount, Welder);        
+    }
+    else
+    {
+        WeldIntegrity = WeldableComponent.WeldIntegrity;
+        DemoWeld = WeldableComponent.DemoWeld;
+        UpdateIntegrityMIC();
+    }
+}
+
+simulated function OnWeldCompRepairProgressChanged(float Amount, KFPawn Welder)
+{
+    if(Role == ROLE_Authority)
+    {
+        Repair(Amount, Welder);        
+    }
+    else
+    {
+        RepairProgress = WeldableComponent.RepairProgress;
+    }
+}
+
 event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
     local KFPawn_Monster KFPM;
@@ -647,6 +696,7 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
             UpdateHealthMICs();
         }
         UpdateWeldIntegrity(-Damage);
+        WeldableComponent.UpdateWeldIntegrity(-Damage);
         if((WeldIntegrity <= 0) || Health <= 0)
         {
             DestroyDoor(EventInstigator);
@@ -689,6 +739,8 @@ function DestroyDoor(optional Controller DestructionInstigator)
     WeldIntegrity = 0;
     DemoWeld = 0;
     Health = 0;
+    WeldableComponent.SetWeldIntegrity(0);
+    WeldableComponent.SetDemoWeld(0);
     UpdateIntegrityMIC();
     PlayDestroyed();
     if((MyMarker != none) && bMonitorDoor)
@@ -745,6 +797,7 @@ function FastenWeld(int Amount, optional KFPawn Welder)
             bShouldExplode = false;
             DemoWeld = 0;
             ExplosionInstigatorController = none;
+            WeldableComponent.SetDemoWeld(0);
         }        
     }
     else
@@ -864,6 +917,7 @@ function AddExplosiveWeld(int Amount, KFPlayerController PC)
     {
         ExplosionInstigatorController = PC;
         bShouldExplode = true;
+        bForceNetUpdate = true;
     }
 }
 
@@ -945,6 +999,9 @@ simulated function PlayDestroyed()
     bIsDestroyed = true;
     RepairProgress = 0;
     WeldIntegrity = 0;
+    WeldableComponent.SetDestroyed(true);
+    WeldableComponent.SetRepairProgress(0);
+    WeldableComponent.SetWeldIntegrity(0);
     bHasBeenDirtied = true;
     if(DestroyedSound != none)
     {
@@ -1026,6 +1083,9 @@ simulated function ResetDoor(optional bool bRepaired)
         bShouldExplode = false;
         WeldIntegrity = 0;
         DemoWeld = 0;
+        WeldableComponent.SetDestroyed(false);
+        WeldableComponent.SetWeldIntegrity(0);
+        WeldableComponent.SetDemoWeld(0);
         if(bRepaired)
         {
             bIsDoorOpen = false;            
@@ -1092,7 +1152,7 @@ simulated function ResetDoor(optional bool bRepaired)
         AmbientSoundComponent.StopEvents();
     }
     I = 0;
-    J0x358:
+    J0x3B8:
 
     if(I < BrokenDoorParticleEffects.Length)
     {
@@ -1101,17 +1161,17 @@ simulated function ResetDoor(optional bool bRepaired)
             BrokenDoorParticleEffects[I].DeactivateSystem();
         }
         ++ I;
-        goto J0x358;
+        goto J0x3B8;
     }
     BrokenDoorParticleEffects.Length = 0;
     I = 0;
-    J0x405:
+    J0x465:
 
     if(I < BrokenDoorPhysicsActors.Length)
     {
         BrokenDoorPhysicsActors[I].Destroy();
         ++ I;
-        goto J0x405;
+        goto J0x465;
     }
     BrokenDoorPhysicsActors.Length = 0;
     if((bRepaired && RepairFXTemplate.ParticleTemplate != none) && WorldInfo.MyEmitterPool != none)

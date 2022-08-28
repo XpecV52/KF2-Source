@@ -78,7 +78,7 @@ enum TextureAddress<TA_Wrap.DisplayName=Wrap|TA_Clamp.DisplayName=Clamp|TA_Mirro
     TA_MAX
 };
 
-enum TextureGroup<TEXTUREGROUP_World.DisplayName=World|TEXTUREGROUP_WorldNormalMap.DisplayName=WorldNormalMap|TEXTUREGROUP_WorldSpecular.DisplayName=WorldSpecular|TEXTUREGROUP_Character.DisplayName=Character|TEXTUREGROUP_CharacterNormalMap.DisplayName=CharacterNormalMap|TEXTUREGROUP_CharacterSpecular.DisplayName=CharacterSpecular|TEXTUREGROUP_Weapon.DisplayName=Weapon|TEXTUREGROUP_WeaponNormalMap.DisplayName=WeaponNormalMap|TEXTUREGROUP_WeaponSpecular.DisplayName=WeaponSpecular|TEXTUREGROUP_Vehicle.DisplayName=Vehicle|TEXTUREGROUP_VehicleNormalMap.DisplayName=VehicleNormalMap|TEXTUREGROUP_VehicleSpecular.DisplayName=VehicleSpecular|TEXTUREGROUP_Cinematic.DisplayName=Cinematic|TEXTUREGROUP_Effects.DisplayName=Effects|TEXTUREGROUP_EffectsNotFiltered.DisplayName=EffectsNotFiltered|TEXTUREGROUP_Skybox.DisplayName=Skybox|TEXTUREGROUP_UI.DisplayName=UI|TEXTUREGROUP_Lightmap.DisplayName=Lightmap|TEXTUREGROUP_RenderTarget.DisplayName=RenderTarget|TEXTUREGROUP_MobileFlattened.DisplayName=MobileFlattened|TEXTUREGROUP_ProcBuilding_Face.DisplayName=ProcBuilding_Face|TEXTUREGROUP_ProcBuilding_LightMap.DisplayName=ProcBuilding_LightMap|TEXTUREGROUP_Shadowmap.DisplayName=Shadowmap|TEXTUREGROUP_ColorLookupTable.DisplayName=ColorLookupTable|TEXTUREGROUP_Terrain_Heightmap.DisplayName=Terrain_Heightmap|TEXTUREGROUP_Terrain_Weightmap.DisplayName=Terrain_Weightmap|TEXTUREGROUP_ImageBasedReflection.DisplayName=ImageBasedReflection|TEXTUREGROUP_Bokeh.DisplayName=Bokeh|TEXTUREGROUP_Creature.DisplayName=Creature|TEXTUREGROUP_CreatureNormalMap.DisplayName=CreatureNormalMap|TEXTUREGROUP_CreatureSpecular.DisplayName=CreatureSpecular|TEXTUREGROUP_Weapon3rd.DisplayName=Weapon3rd|TEXTUREGROUP_Weapon3rdNormalMap.DisplayName=Weapon3rdNormalMap|TEXTUREGROUP_Weapon3rdSpecular.DisplayName=Weapon3rdSpecular|TEXTUREGROUP_Splattermap.DisplayName=Splattermap|TEXTUREGROUP_Cosmetic.DisplayName=Cosmetic|TEXTUREGROUP_CosmeticNormalMap.DisplayName=CosmeticNormalMap|TEXTUREGROUP_CosmeticSpecular.DisplayName=CosmeticSpecular|TEXTUREGROUP_UIWithMips.DisplayName=UI With Mips>
+enum TextureGroup<TEXTUREGROUP_World.DisplayName=World|TEXTUREGROUP_WorldNormalMap.DisplayName=WorldNormalMap|TEXTUREGROUP_WorldSpecular.DisplayName=WorldSpecular|TEXTUREGROUP_Character.DisplayName=Character|TEXTUREGROUP_CharacterNormalMap.DisplayName=CharacterNormalMap|TEXTUREGROUP_CharacterSpecular.DisplayName=CharacterSpecular|TEXTUREGROUP_Weapon.DisplayName=Weapon|TEXTUREGROUP_WeaponNormalMap.DisplayName=WeaponNormalMap|TEXTUREGROUP_WeaponSpecular.DisplayName=WeaponSpecular|TEXTUREGROUP_Vehicle.DisplayName=Vehicle|TEXTUREGROUP_VehicleNormalMap.DisplayName=VehicleNormalMap|TEXTUREGROUP_VehicleSpecular.DisplayName=VehicleSpecular|TEXTUREGROUP_Cinematic.DisplayName=Cinematic|TEXTUREGROUP_Effects.DisplayName=Effects|TEXTUREGROUP_EffectsNotFiltered.DisplayName=EffectsNotFiltered|TEXTUREGROUP_Skybox.DisplayName=Skybox|TEXTUREGROUP_UI.DisplayName=UI|TEXTUREGROUP_Lightmap.DisplayName=Lightmap|TEXTUREGROUP_RenderTarget.DisplayName=RenderTarget|TEXTUREGROUP_MobileFlattened.DisplayName=MobileFlattened|TEXTUREGROUP_ProcBuilding_Face.DisplayName=ProcBuilding_Face|TEXTUREGROUP_ProcBuilding_LightMap.DisplayName=ProcBuilding_LightMap|TEXTUREGROUP_Shadowmap.DisplayName=Shadowmap|TEXTUREGROUP_ColorLookupTable.DisplayName=ColorLookupTable|TEXTUREGROUP_Terrain_Heightmap.DisplayName=Terrain_Heightmap|TEXTUREGROUP_Terrain_Weightmap.DisplayName=Terrain_Weightmap|TEXTUREGROUP_ImageBasedReflection.DisplayName=ImageBasedReflection|TEXTUREGROUP_Bokeh.DisplayName=Bokeh|TEXTUREGROUP_Creature.DisplayName=Creature|TEXTUREGROUP_CreatureNormalMap.DisplayName=CreatureNormalMap|TEXTUREGROUP_CreatureSpecular.DisplayName=CreatureSpecular|TEXTUREGROUP_Weapon3rd.DisplayName=Weapon3rd|TEXTUREGROUP_Weapon3rdNormalMap.DisplayName=Weapon3rdNormalMap|TEXTUREGROUP_Weapon3rdSpecular.DisplayName=Weapon3rdSpecular|TEXTUREGROUP_Splattermap.DisplayName=Splattermap|TEXTUREGROUP_Cosmetic.DisplayName=Cosmetic|TEXTUREGROUP_CosmeticNormalMap.DisplayName=CosmeticNormalMap|TEXTUREGROUP_CosmeticSpecular.DisplayName=CosmeticSpecular|TEXTUREGROUP_UIWithMips.DisplayName=UI With Mips|TEXTUREGROUP_UIStreamable.DisplayName=UI Streamable>
 {
     TEXTUREGROUP_World,
     TEXTUREGROUP_WorldNormalMap,
@@ -119,6 +119,7 @@ enum TextureGroup<TEXTUREGROUP_World.DisplayName=World|TEXTUREGROUP_WorldNormalM
     TEXTUREGROUP_CosmeticNormalMap,
     TEXTUREGROUP_CosmeticSpecular,
     TEXTUREGROUP_UIWithMips,
+    TEXTUREGROUP_UIStreamable,
     TEXTUREGROUP_MAX
 };
 
@@ -235,6 +236,9 @@ struct native TextureGroupContainer
     var() const bool TEXTUREGROUP_CosmeticSpecular;
     /** Select texture group(s) */
     var() const bool TEXTUREGROUP_UIWithMips;
+    /** Select texture group(s)//@ TWI - bedwards: UI texture streaming support
+ */
+    var() const bool TEXTUREGROUP_UIStreamable;
 
     structdefaultproperties
     {
@@ -277,6 +281,7 @@ struct native TextureGroupContainer
         TEXTUREGROUP_CosmeticNormalMap=false
         TEXTUREGROUP_CosmeticSpecular=false
         TEXTUREGROUP_UIWithMips=false
+        TEXTUREGROUP_UIStreamable=false
     }
 };
 

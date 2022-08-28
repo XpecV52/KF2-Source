@@ -132,7 +132,7 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=20.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Shotgun_Medic'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
-	FireInterval(DEFAULT_FIREMODE)=0.297 //0.2  300 RPM  
+	FireInterval(DEFAULT_FIREMODE)=0.2 //0.2  300 RPM  
 	FireOffset=(X=30,Y=3,Z=-3)
 	Spread(DEFAULT_FIREMODE)=0.07
 	// Shotgun

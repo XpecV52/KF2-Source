@@ -114,6 +114,19 @@ exec function SetInventoryFilter (string FilterType, int NewEnum)
     }
 }
 
+exec function PrintOutCurrentPrestigeInfo()
+{
+	local KFPlayerController KFPC;
+	local KFPlayerReplicationInfo KFPRI;
+
+	KFPC = KFPlayerController(Outer);
+	`log("Curennt perk prestige level: " @KFPC.CurrentPerk.GetPrestigeLevel());
+	
+	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+
+	`log("KPRI active prestige level: " @KFPRI.GetActivePerkPrestigeLevel());
+}
+
 exec function DisplayFreeTrialFeatureBlockedPopUp()
 {
 	class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialFeatureBlockedPopUp();
@@ -655,7 +668,7 @@ exec function DebugShowVoteKick()
 
 	if (KFPlayerController(Outer).MyGFxHUD != none && KFPRI != None)
 	{
-		KFPlayerController(Outer).MyGFxHUD.ShowKickVote(KFPRI, 1, true);
+		KFPlayerController(Outer).MyGFxHUD.ShowKickVote(KFPRI, 10, true);
 	}
 }
 
@@ -3969,6 +3982,20 @@ exec function KillOtherZeds()
 		}
 	}
 }
+
+`if(`notdefined(ShippingPC))
+exec function DoActionScriptVoidOnMenu(String VoidCommand)
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Outer);
+
+	if (KFPC != none && KFPC.MyGFxManager != none && KFPC.MyGFxManager.CurrentMenu != none)
+	{
+		KFPC.MyGFxManager.CurrentMenu.ActionScriptVoid(VoidCommand);
+	}
+}
+`endif
 
 exec function KillZeds( optional float KillDistance=0.f, optional bool LogKilledZedInfo=true )
 {

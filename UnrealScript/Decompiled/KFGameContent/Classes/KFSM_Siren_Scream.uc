@@ -123,6 +123,7 @@ function InitializeSirenExplosion()
         {
             ExplosionActor.Instigator = KFPOwner;
             ExplosionActor.InstigatorController = KFPOwner.Controller;
+            ExplosionActor.SetBase(KFPOwner);
             ScreamExplosion();
             KFPOwner.SetTimer(ScreamDamageFrequency, true, 'ScreamExplosion', self);
         }
@@ -162,6 +163,11 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     KFPOwner.ClearTimer('ScreamExplosion', self);
     ScreamCount = 0;
     DestroyProjectileShield();
+    if(ExplosionActor != none)
+    {
+        ExplosionActor.Destroy();
+        ExplosionActor = none;
+    }
     if(AIOwner != none)
     {
         if(!Class'Engine'.static.GetEngine().bDisableAILogging && AIOwner != none)

@@ -204,10 +204,10 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
-   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.100000)
+   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.150000)
    WeaponUpgrades(2)=(IncrementWeight=0,IncrementDamage=1.600000)
-   WeaponUpgrades(3)=(IncrementWeight=2,IncrementDamage=2.000000)
-   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=2.500000)
+   WeaponUpgrades(3)=(IncrementWeight=2,IncrementDamage=1.950000)
+   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=2.200000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

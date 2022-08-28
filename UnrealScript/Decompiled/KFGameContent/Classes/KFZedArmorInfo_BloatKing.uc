@@ -90,20 +90,20 @@ simulated function UpdateArmorPieces()
                     goto J0xE6;
                 }
                 Outer.Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
-                Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0], SocketLocation, SocketRotation);
+                Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0].VFX, SocketLocation, SocketRotation);
                 Outer.PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
                 break;
             case 2:
                 Outer.DetachComponent(Outer.ThirdPersonAttachments[1]);
                 Outer.Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
-                Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1], SocketLocation, SocketRotation);
+                Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1].VFX, SocketLocation, SocketRotation);
                 Outer.PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
                 Outer.ThirdPersonAttachments[1] = none;
                 break;
             case 4:
                 Outer.DetachComponent(Outer.ThirdPersonAttachments[2]);
                 Outer.Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[2].SocketName, SocketLocation, SocketRotation);
-                Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[2], SocketLocation, SocketRotation);
+                Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[2].VFX, SocketLocation, SocketRotation);
                 Outer.PlaySoundBase(default.ArmorZones[2].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
                 Outer.ThirdPersonAttachments[2] = none;
                 break;

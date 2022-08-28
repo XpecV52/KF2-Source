@@ -79,7 +79,10 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
-const KFID_Native4kResolution = 169;#linenumber 16
+const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID= 171;
+#linenumber 16
 //@HSL_MOD_END
 /** Debug scene related properties */
 var bool					bDebugSceneEnabled;
@@ -178,6 +181,19 @@ exec function SetInventoryFilter (string FilterType, int NewEnum)
                 LogInternal("Bad filter type provided!"@FilterType);
         }
     }
+}
+
+exec function PrintOutCurrentPrestigeInfo()
+{
+	local KFPlayerController KFPC;
+	local KFPlayerReplicationInfo KFPRI;
+
+	KFPC = KFPlayerController(Outer);
+	LogInternal("Curennt perk prestige level: " @KFPC.CurrentPerk.GetPrestigeLevel());
+	
+	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+
+	LogInternal("KPRI active prestige level: " @KFPRI.GetActivePerkPrestigeLevel());
 }
 
 exec function DisplayFreeTrialFeatureBlockedPopUp()
@@ -721,7 +737,7 @@ exec function DebugShowVoteKick()
 
 	if (KFPlayerController(Outer).MyGFxHUD != none && KFPRI != None)
 	{
-		KFPlayerController(Outer).MyGFxHUD.ShowKickVote(KFPRI, 1, true);
+		KFPlayerController(Outer).MyGFxHUD.ShowKickVote(KFPRI, 10, true);
 	}
 }
 
@@ -4035,6 +4051,20 @@ exec function KillOtherZeds()
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 exec function KillZeds( optional float KillDistance=0.f, optional bool LogKilledZedInfo=true )
 {

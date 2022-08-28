@@ -25,6 +25,9 @@ function PopulateData()
 	local class<KFGFxSpecialeventObjectivesContainer> SpecialEventClass;
 	local KFPlayerController KFPC; 
 
+	local int CurrentProgressValue, MaxProgressValue;
+	local float ProgressCompletePercentage;
+
 	KFPC = KFPlayerController(GetPC());
 	DataProvider = CreateArray();
 	ItemIndex = 0;
@@ -72,9 +75,14 @@ function PopulateData()
 	        DataObject.SetString("iconPath", "img://"$SpecialEventClass.default.ObjectiveIconURLs[i]);
 
 	        DataObject.SetBool("complete", KFPC.IsEventObjectiveComplete(i));
-	        DataObject.SetBool("showProgres", false);
-	        DataObject.SetFloat("progress", 0);
-	        DataObject.SetString("textValue", "");   
+	        DataObject.SetBool("showProgress", SpecialEventClass.default.UsesProgressList[i]);
+			
+			if (SpecialEventClass.default.UsesProgressList[i])
+			{
+				SpecialEventClass.Static.GetObjectiveProgressValues(i, CurrentProgressValue, MaxProgressValue, ProgressCompletePercentage);
+				DataObject.SetFloat("progress", ProgressCompletePercentage);
+				DataObject.SetString("textValue", CurrentProgressValue $"/" $MaxProgressValue);
+			}
 
 	        DataProvider.SetElementObject(ItemIndex, DataObject); //add it to the array
 	        ItemIndex++;

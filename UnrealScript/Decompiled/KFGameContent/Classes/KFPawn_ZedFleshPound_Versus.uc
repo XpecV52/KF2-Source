@@ -32,9 +32,11 @@ function SetSprinting(bool bNewSprintStatus)
     super(KFPawn_Monster).SetSprinting(bNewSprintStatus);
 }
 
-simulated function SetEnraged(bool bNewEnraged)
+simulated function bool SetEnraged(bool bNewEnraged)
 {
-    super.SetEnraged(bNewEnraged);
+    local bool bSuccess;
+
+    bSuccess = super.SetEnraged(bNewEnraged);
     if(bIsEnraged)
     {
         if(!IsTimerActive('Timer_RageBump'))
@@ -51,6 +53,7 @@ simulated function SetEnraged(bool bNewEnraged)
             SprintSpeed = default.SprintSpeed;
         }
     }
+    return bSuccess;
 }
 
 protected simulated function Timer_RageBump()
@@ -103,6 +106,7 @@ defaultproperties
     MinBlockFOV=0
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshPound_Versus.FootstepCameraShake0'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.HeadshotAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -165,7 +169,8 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.RageAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.HeadshotAkComponent0'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.RageAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

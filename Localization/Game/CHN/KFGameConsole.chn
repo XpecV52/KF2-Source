@@ -23,6 +23,7 @@ KF-PowerCore_Holdout="进行能量核心"
 KF-DieSector="进行死亡地带"
 KF-Lockdown="进行封锁关卡中"
 KF-Airship="进行飞艇关卡中"
+KF-MonsterBall="进行怪物球模式中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

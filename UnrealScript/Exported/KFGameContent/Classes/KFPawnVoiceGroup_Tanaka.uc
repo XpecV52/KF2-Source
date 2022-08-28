@@ -527,6 +527,7 @@ class KFPawnVoiceGroup_Tanaka extends KFPawnVoiceGroup;
 
 
 
+										  
 
 
 
@@ -543,6 +544,8 @@ class KFPawnVoiceGroup_Tanaka extends KFPawnVoiceGroup;
 
 
 										  
+
+
 
 
 

@@ -167,7 +167,7 @@ defaultproperties
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pellet'
    WeaponProjectiles(1)=()
-   FireInterval(0)=0.297000
+   FireInterval(0)=0.200000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()

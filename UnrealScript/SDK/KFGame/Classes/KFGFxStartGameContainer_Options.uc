@@ -14,27 +14,9 @@ class KFGFxStartGameContainer_Options extends KFGFxObject_Container
 
 `include(KFProfileSettings.uci)
 
-enum EServerType
-{
-	ES_Maps,     //No custom settings, no mods, any map
-	ES_Stock,    //No custom settings, no mods, Tripwire official maps
-	ES_Custom,   //Approved custom settings, whitelisted mods, any map
-	ES_Unranked, //Any settings, non-whitelisted mods, any map
-	//ES_Listen,
-
-};
-
-enum EInProgess
-{
-	EIP_Allow_In_Progress,
-	EIP_Not_Started,
-	EIP_Create_New,
-};
-
 enum EServerPrivacy
 {
 	ESPr_Public,
-	ESPr_FriendsOnly,
 	ESPr_PasswordProtected
 };
 
@@ -42,34 +24,24 @@ enum EServerPrivacy
 var int ModeFilter;
 var int DifficultyFilter;
 var int LengthFilter;
-var int ServerTypeFilter;
-var int InProgressFilter;
 var int PermissionsFilter;
 
 var bool bModeFilterSet;
 var bool bLengthFilterSet;
-var bool bServerTypeFilterSet;
-var bool bInProgressFilterSet;
 var bool bPermissionsFilterSet;
 //End match making filters
 
 var int InitialMapIndex; // The index of our current map upon initialization
-
-var byte 	SavedSoloModeIndex; // Save the game mode after it's selected in the menu
-var string 	SavedSoloMapString; // Temporarily save our last chosen map until we have map rotations set up
-var byte 	SavedSoloDifficultyIndex; // Save the game difficulty after it's selected in the menu
-var byte 	SavedSoloLengthIndex; // Save the game length after it's selected in the menu
 
 var byte   SavedModeIndex; // Save the game mode after it's selected in the menu
 var private string SavedMapString; // Temporarily save our last chosen map until we have map rotations set up
 var private byte   SavedDifficultyIndex; // Save the game difficulty after it's selected in the menu
 var private byte   SavedLengthIndex; // Save the game length after it's selected in the menu
 var private byte   SavedPrivacyIndex; // Save the privacy after it's selected in the menu
-var private byte   SavedServerTypeIndex;
-var private byte   SavedInProgressIndex;
+
 var private byte   RegionIndex;
 
-var config const bool bShowLengthNoPref;
+var bool bShowLengthNoPref;
 var config const bool bShowServerTypeNoPref;
 
 var KFGFxMenu_StartGame StartMenu;
@@ -86,17 +58,6 @@ var localized string MultiplayerLaunchString;
 var localized string SearchingString;
 var localized string CancelSearchingString;
 
-var localized string StandardServerString;
-var localized string UnrankedServerString;
-var localized string CustomServerString;
-
-var localized string AllowInProgressString;
-var localized string NotStartedString;
-
-
-var array<string> ServerTypeStrings;
-var array<string> InProgessOptionStrings;
-
 var localized array<string> GameTypes;
 
 var string PreviousMapName;
@@ -107,12 +68,11 @@ var private array<string> SupportedGameModeStrings;
 //==============================================================
 // Buttons
 //==============================================================
-var GFxObject ServerTypeButton;
-var GFxObject InProgressButton;
 var GFxObject PrivacyButton;
 var GFxObject LengthButton;
 var GFxObject DifficultyButton;
 var GfxObject MapButton;
+var GFxObject RegionButton;
 
 //==============================================================
 // Initialization
@@ -123,18 +83,16 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	GetButtons();
 	StartMenu = KFGFxMenu_StartGame( NewParentMenu );
 	InitializeGameOptions();
-	LocalizeArrays();
 	SetOptions();
 }
 
 function GetButtons()
 {
-	ServerTypeButton = GetObject("serverTypeButton");
-	InProgressButton = GetObject("inProgressButton");
 	PrivacyButton = GetObject("privacyButton");
 	LengthButton = GetObject("lengthButton");
 	DifficultyButton = GetObject("difficultyButton");
 	MapButton = GetObject("mapButton");
+	RegionButton = GetObject("regionButton");
 }
 
 function ClampSavedFiltersToMode()
@@ -155,9 +113,9 @@ function UpdateButtonsEnabled()
 {
 	local int AdjustedGameModeIndex;
 
-	if(bIsSoloGame)
+	if (bIsSoloGame)
 	{
-		AdjustedGameModeIndex = GetAdjustedGameModeIndex(SavedSoloModeIndex);
+		AdjustedGameModeIndex = GetAdjustedGameModeIndex(SavedModeIndex);
 
 		LengthButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].Lengths > 0);
 		DifficultyButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].DifficultyLevels > 0);
@@ -168,7 +126,6 @@ function UpdateButtonsEnabled()
 		LengthButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[SavedModeIndex].Lengths > 0);
 		DifficultyButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[SavedModeIndex].DifficultyLevels > 0);
 	}
-	CheckAndUpdateBasedOnPrivacy();
 }
 
 function SetHelpText(string TextValue)
@@ -185,8 +142,8 @@ function SetModeMenus(GFxObject TextObject, int ModeIndex)
 	Lengths = class'KFGameInfo'.default.GameModes[ModeIndex].Lengths;
 	NewDifficultyIndex = Clamp(NewDifficultyIndex, 0, DifficultyLevels);
 	NewLengthIndex = Clamp(NewLengthIndex, 0, Lengths);
-	TextObject.SetObject("difficultyList",	CreateList(class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), bIsSoloGame ? SavedSoloDifficultyIndex 	: SavedDifficultyIndex, false, false, byte(DifficultyLevels)));
-	TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), 	bIsSoloGame ? SavedSoloLengthIndex 		: SavedLengthIndex, 	bShowLengthNoPref, false, byte(Lengths)));
+	TextObject.SetObject("difficultyList",	CreateList(class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex, false, false, byte(DifficultyLevels)));
+	TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), 	SavedLengthIndex, 	bShowLengthNoPref, false, byte(Lengths)));
 }
 
 function InitializeGameOptions()
@@ -194,49 +151,37 @@ function InitializeGameOptions()
 	local GFxObject TextObject;
 	local int i, k;
 	local KFProfileSettings Profile;
+	local array<string> PlayfabRegionList;
 
 	Profile = StartMenu.Manager.CachedProfile;
 
-	SavedSoloModeIndex = Profile.GetProfileInt(KFID_SavedSoloModeIndex);
-	SavedModeIndex = Profile.GetProfileInt(KFID_SavedModeIndex);
+	bIsSoloGame = GetBool("bIsSoloGame");
+
+	SavedModeIndex = GetModeIndex();
+
+	StartMenu.GetMapList(StartMenu.MapStringList, SavedModeIndex, StartMenu.GetStartMenuState() == EMatchmaking);
 
 	if(StartMenu.Manager.CachedProfile.GetProfileSettingValue(KFID_SavedMapString, SavedMapString) == false)
 	{
 		SavedMapString = "";
 	}
 
-	if(StartMenu.Manager.CachedProfile.GetProfileSettingValue(KFID_SavedSoloMapString, SavedSoloMapString) == false)
-	{
-		SavedSoloMapString = "";
-	}
-
     // Override any map selection history preferences if in PS4 Playgo Mode. We only support KF-EvacuationPoint on early install.
     if( !class'GameEngine'.Static.IsGameFullyInstalled() )
     {
         SavedMapString = "KF-EvacuationPoint";
-        SavedSoloMapString = "KF-EvacuationPoint";
     }
-	// Defaulting to biotics lab if not set
-	else if( SavedSoloMapString == "" )
-	{
-		SavedSoloMapString = "KF-BioticsLab";
-	}
 
-
-	SavedSoloDifficultyIndex = Profile.GetProfileInt(KFID_SavedSoloDifficultyIndex);
-	SavedSoloLengthIndex = Profile.GetProfileInt(KFID_SavedSoloLengthIndex);
 	SavedLengthIndex = Profile.GetProfileInt(KFID_SavedLengthIndex);
-	SavedInProgressIndex = Profile.GetProfileInt(KFID_SavedInProgressIndex);
-	SavedServerTypeIndex = Profile.GetProfileInt(KFID_SavedServerTypeIndex);
+	if (!bShowLengthNoPref)
+	{
+		SavedLengthIndex = Clamp(SavedLengthIndex, 0, 2);
+	}
 	SavedPrivacyIndex = Profile.GetProfileInt(KFID_SavedPrivacyIndex);
 	SavedModeIndex = Profile.GetProfileInt(KFID_SavedModeIndex);
 	SavedDifficultyIndex = Profile.GetProfileInt(KFID_SavedDifficultyIndex);
 
-	bIsSoloGame = GetBool("bIsSoloGame");
-
-	InitialMapIndex = StartMenu.MapStringList.Find( bIsSoloGame ? SavedSoloMapString : SavedMapString );
-
-	ClampSavedFiltersToMode();
+	InitialMapIndex = StartMenu.MapStringList.Find( SavedMapString );
 
 	if(bIsSoloGame && InitialMapIndex == INDEX_NONE)
 	{
@@ -252,11 +197,14 @@ function InitializeGameOptions()
 		MapChanged(StartMenu.MapStringList[InitialMapIndex]);
 	}
 
+	ClampSavedFiltersToMode();
+
 	TextObject = CreateObject("Object");
 
 	// Localize static text
 	TextObject.SetString("soloGameString",SoloGameString);
 	TextObject.SetString("matchMakingString",StartMenu.MatchmakingString);
+	TextObject.SetString("createGameString", StartMenu.CreateMatchString);
 	TextObject.SetString("leaveMatchmakingString",LeaveMatchMakingString);
 	TextObject.SetString("backString",BackString);
 	TextObject.SetString("lauchGameString",LaunchGameString);
@@ -265,21 +213,18 @@ function InitializeGameOptions()
 
 
 	TextObject.SetString("mode", StartMenu.GameModeTitle);
-	TextObject.SetString("map", class'WorldInfo'.static.IsConsoleBuild() ? ConsoleLocalize("MapPreference") : StartMenu.MapTitle);
+	TextObject.SetString("map", StartMenu.MapTitle);
 	TextObject.SetString("difficulty",StartMenu.DifficultyTitle);
 	TextObject.SetString("length",StartMenu.LengthTitle);
 	TextObject.SetString("privacy",StartMenu.PermissionsTitle);
 
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
-		TextObject.SetString("serverType",ConsoleLocalize( "MatchmakingRegionString" ));
+		TextObject.SetString("regionTitle",ConsoleLocalize( "MatchmakingRegionString" ));
+		PlayfabRegionList = class'PlayfabInterface'.static.GetLocalizedRegionList();
 		RegionIndex = class'WorldInfo'.static.IsE3Build() ? 0 : byte(class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion());
-		TextObject.SetObject("serverTypeList",	CreateList( class'PlayfabInterface'.static.GetLocalizedRegionList(), RegionIndex, false));
-	}
-	else
-	{
-		TextObject.SetString("serverType",ServerTypeString);
-		TextObject.SetObject("serverTypeList",	CreateList(ServerTypeStrings, SavedServerTypeIndex, bShowServerTypeNoPref));
+		TextObject.SetObject("regionListData",	CreateList( PlayfabRegionList, RegionIndex, false));
+		
 	}
 
 	TextObject.SetString("inProgress", InProgressString);
@@ -302,33 +247,23 @@ function InitializeGameOptions()
 	}
 	// Since the Mode list can include "ANY" we need to just accept that the selected index could be the length of the supported modes.  Otherwise when "ANY" is selected we push the index to 1.
 	// Also don't include the "ANY" option on Console since PlayGo doesn't support searching multiple game types.  HSL_BB
-	TextObject.SetObject("modeList", 		CreateList(SupportedGameModeStrings, Min(bIsSoloGame ? SavedSoloModeIndex : SavedModeIndex , SupportedGameModeStrings.Length), false));
+	TextObject.SetObject("modeList", 		CreateList(SupportedGameModeStrings, Min(SavedModeIndex , SupportedGameModeStrings.Length), false));
 	SetModeMenus(TextObject, Min(SavedModeIndex, SupportedGameModeStrings.Length));
-    //TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex, true));
+    TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex, bShowLengthNoPref));
 	TextObject.SetObject("mapList",			CreateList(StartMenu.MapStringList, bIsSoloGame ? InitialMapIndex : InitialMapIndex+1, true, true));
-	//TextObject.SetObject("difficultyList",	CreateList(class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex, false));
-	TextObject.SetObject("inProgressList",	CreateList(InProgessOptionStrings, SavedInProgressIndex, false));
+	TextObject.SetObject("difficultyList",	CreateList(class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex, false));
 
 	TextObject.SetObject("privacyList",		CreateList(class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(class'WorldInfo'.static.IsConsoleBuild()), SavedPrivacyIndex, false));
 
-	SetObject("localizedText", TextObject);
-}
-
-function LocalizeArrays()
-{
-	ServerTypeStrings[ES_Stock]=Localize("KFGFxStartGameContainer_Options", "StandardServerString","KFGame");
-	ServerTypeStrings[ES_Custom]=Localize("KFGFxStartGameContainer_Options", "CustomServerString","KFGame");
-	ServerTypeStrings[ES_Unranked]=Localize("KFGFxStartGameContainer_Options", "UnrankedServerString","KFGame");
-	ServerTypeStrings[ES_Maps]=Localize("KFGFxStartGameContainer_Options", "AnyMapServerString","KFGame");
-
-
-	InProgessOptionStrings[EIP_Allow_In_Progress]=Localize("KFGFxStartGameContainer_Options", "AllowInProgressString","KFGame");
-	InProgessOptionStrings[EIP_Not_Started]=Localize("KFGFxStartGameContainer_Options", "NotStartedString","KFGame");
-	// BWJ - No create game option for console
-	if( !class'WorldInfo'.static.IsConsoleBuild() )
+	if (class'WorldInfo'.static.IsConsoleBuild())
 	{
-		InProgessOptionStrings[EIP_Create_New]=Localize("KFGFxStartGameContainer_Options", "CreateNewGameString","KFGame");
+		PlayfabRegionList = class'PlayfabInterface'.static.GetLocalizedRegionList();
+		TextObject.SetObject("regionList", CreateList(PlayfabRegionList, class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion(), false));
 	}
+
+	
+
+	SetObject("localizedText", TextObject);
 }
 
 function GFxObject CreateList( array<string> TextArray, byte SelectedIndex, bool bAddNoPrefString, optional bool bIsMapList, optional byte MaxLength)
@@ -395,9 +330,6 @@ function SetOptions( optional bool bMenuOpening )
 {
 	local array<string> PlayfabRegionList;
 
-	InProgressChanged(SavedInProgressIndex);
-	PrivacyChanged(SavedPrivacyIndex);
-
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{
 		if( bMenuOpening && !bIsSoloGame )
@@ -412,34 +344,24 @@ function SetOptions( optional bool bMenuOpening )
 					Localize("Notifications", "NewRegionTitle", "KFGameConsole"),
 					Localize("Notifications", "NewRegionMessage", "KFGameConsole"),
 					class'KFCommon_LocalizedStrings'.default.OKString);
+
+				RegionIndex = class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion();
+				class'GameEngine'.static.GetPlayfabInterface().SetIndexForCurrentRegion(RegionIndex);
+				PlayfabRegionList = class'PlayfabInterface'.static.GetLocalizedRegionList();
+
+				RegionButton.SetString("infoString", PlayfabRegionList[RegionIndex]); //just in case we are using region
 			}
-
-			RegionIndex = class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion();
-			PlayfabRegionList = class'PlayfabInterface'.static.GetLocalizedRegionList();
-
-			// Set the correct region now
-			ServerTypeButton.SetString("infoString", PlayfabRegionList[RegionIndex]);
 		}
-	}
-	else
-	{
-		ServerTypeChanged(SavedServerTypeIndex, true);
 	}
 }
 
 function SetSearching(bool bSearching)
 {
 	SetBool("bSearchingForGame", bSearching);
-	InProgressChanged(SavedInProgressIndex);
 	PrivacyChanged(SavedPrivacyIndex);
 	if(!bSearching)
 	{
-		CheckAndUpdateBasedOnPrivacy();
 		UpdateButtonsEnabled();
-	}
-	else
-	{
-		serverTypeButton.SetBool("enabled", false);
 	}
 
 	if(bSearching)
@@ -453,73 +375,41 @@ function SetSearching(bool bSearching)
 
 }
 
+event bool GetMakeNewServer()
+{
+	return StartMenu.bAttemptingServerCreate;
+}
+
 //==============================================================
 // Modified Game Option Functions
 //==============================================================
 function ModeChanged( int Index )
 {
-	if(bIsSoloGame)
-	{
-		SavedSoloModeIndex = Index;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedSoloModeIndex, SavedSoloModeIndex);
-	}
-	else
-	{
-		SavedModeIndex = Index;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedModeIndex, SavedModeIndex);
-	}
-
-	ClampSavedFiltersToMode();
-	StartMenu.GetMapList(StartMenu.MapStringList);
+	SavedModeIndex = Index;
+	StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedModeIndex, SavedModeIndex);
 	InitializeGameOptions();
 	SaveConfig();
 }
 
 function LengthChanged( int Index )
 {
-	if(bIsSoloGame)
-	{
-		SavedSoloLengthIndex = Index;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedSoloLengthIndex, SavedSoloLengthIndex);
-	}
-	else
-	{
-		SavedLengthIndex = Index;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedLengthIndex, SavedLengthIndex);
-	}
-
+	SavedLengthIndex = Index;
+	StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedLengthIndex, SavedLengthIndex);
 	SaveConfig();
 }
 
 // Save the game difficulty after it's selected in the menu
 function DifficultyChanged( int Index )
 {
-	if(bIsSoloGame)
-	{
-		SavedSoloDifficultyIndex = Index;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedSoloDifficultyIndex, SavedSoloDifficultyIndex);
-	}
-	else
-	{
-		SavedDifficultyIndex = Index;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedDifficultyIndex, SavedDifficultyIndex);
-	}
-
+	SavedDifficultyIndex = Index;
+	StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedDifficultyIndex, SavedDifficultyIndex);
 	SaveConfig();
 }
 
 function MapChanged( string MapName, optional bool bSave = true)
 {
-	if(bIsSoloGame)
-	{
-		SavedSoloMapString = MapName;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValue(KFID_SavedSoloMapString, SavedSoloMapString);
-	}
-	else
-	{
-		SavedMapString = MapName;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValue(KFID_SavedMapString, SavedMapString);
-	}
+	SavedMapString = MapName;
+	StartMenu.Manager.CachedProfile.SetProfileSettingValue(KFID_SavedMapString, SavedMapString);
 
 	if(bSave)
 	{
@@ -533,87 +423,33 @@ function PrivacyChanged( int Index, optional bool bSetText )
 	{
 		SavedPrivacyIndex = Index;
 		SaveConfig();
-		CheckAndUpdateBasedOnPrivacy();
 		if(bSetText)
 		{
-			PrivacyButton.SetString("infoString", class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(GetPC().WorldInfo.IsConsoleBuild())[SavedInProgressIndex]);
+			PrivacyButton.SetString("infoString", class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(GetPC().WorldInfo.IsConsoleBuild())[SavedPrivacyIndex]);
 		}
-		//SetBool("bPublicGame", GetPartyPrivacy() == LV_Public || GetPartyPrivacy() == LV_Friends );
 
 		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPrivacyIndex, SavedPrivacyIndex);
 	}
 }
 
-function CheckAndUpdateBasedOnPrivacy()
+function SetRegionIndex(int InRegionIndex, optional bool bSetText)
 {
-	if(GetPartyPrivacy() == LV_Public)
+	local array<String> PlayfabRegionList;
+	if (!class'WorldInfo'.static.IsConsoleBuild())
 	{
-		InProgressChanged(EIP_Allow_In_Progress, true);
-		//allow anything for game progress
-		ServerTypeButton.SetBool("enabled", true);
+		return;
+	}
+	if (RegionIndex != InRegionIndex)
+	{
+		RegionIndex = InRegionIndex;
+		class'GameEngine'.static.GetPlayfabInterface().SetIndexForCurrentRegion(RegionIndex);
+		if (bSetText)
+		{
+			PlayfabRegionList = class'PlayfabInterface'.static.GetLocalizedRegionList();
 
-	}
-	else
-	{
-		// Create New option doesn't exist for console
-		if( !class'WorldInfo'.static.IsConsoleBuild() )
-		{
-			//set progress to Create Game
-			InProgressChanged(EIP_Create_New, true);
+			RegionButton.SetString("infoString", PlayfabRegionList[RegionIndex]); //just in case we are using region
 		}
 	}
-	InProgressButton.SetBool("enabled", GetPartyPrivacy() == LV_Public);
-}
-
-function ServerTypeChanged( int Index, optional bool bSetText )
-{
-	if( class'WorldInfo'.static.IsConsoleBuild() )
-	{
-		RegionIndex = Index;
-		class'GameEngine'.static.GetPlayfabInterface().SetIndexForCurrentRegion( RegionIndex );
-	}
-	else
-	{
-		SavedServerTypeIndex = Index;
-		StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedServerTypeIndex, SavedServerTypeIndex);
-		SaveConfig();
-		if(bSetText)
-		{
-			ServerTypeButton.SetString("infoString", ServerTypeStrings[SavedServerTypeIndex]);
-		}
-		if (SavedServerTypeIndex == ES_Custom && !bIsSoloGame)
-		{
-			MapButton.SetBool("enabled", false);
-		}
-		else
-		{
-			MapButton.SetBool("enabled", true);
-		}
-	}
-}
-
-function InProgressChanged( int Index, optional bool bSetText )
-{
-	SavedInProgressIndex = Index;
-	StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedInProgressIndex, SavedInProgressIndex);
-	SaveConfig();
-	if(SavedInProgressIndex == EIP_Create_New)
-	{
-		ServerTypeChanged(ES_Stock, true);
-		ServerTypeButton.SetBool("enabled", false);
-	}
-	else
-	{
-		ServerTypeButton.SetBool("enabled", true);
-	}
-	if(bSetText)
-	{
-		if(SavedInProgressIndex < InProgessOptionStrings.length)
-		{
-			InProgressButton.SetString("infoString", InProgessOptionStrings[SavedInProgressIndex]);
-		}
-	}
-	//SetBool("bAllowGameInProgress", SavedInProgressIndex == EIP_Allow_In_Progress );
 }
 
 function UpdateFilters()
@@ -622,9 +458,9 @@ function UpdateFilters()
 
 	DataObject = GetObject("options");
 
-	ModeFilter 				= bIsSoloGame ? SavedSoloModeIndex : SavedModeIndex;
+	ModeFilter 				= SavedModeIndex;
 	bModeFilterSet 			= ModeFilter < class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray().length;
-	DifficultyFilter 		= bIsSoloGame ? SavedSoloDifficultyIndex : SavedDifficultyIndex;
+	DifficultyFilter 		= SavedDifficultyIndex;
 	if (DifficultyFilter >= class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().length)
 	{
 		DifficultyFilter = 0;
@@ -633,19 +469,15 @@ function UpdateFilters()
 	{
 		LengthFilter 			= DataObject.GetInt("length") - 1;
 		bLengthFilterSet 		= LengthFilter >= 0 && LengthFilter < class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray().length;
-
 	}
 	else
 	{
 		LengthFilter 			= DataObject.GetInt("length");
 		bLengthFilterSet 		= LengthFilter < class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray().length;
 	}
-	ServerTypeFilter 		= SavedServerTypeIndex;
-	bServerTypeFilterSet 	= LengthFilter < ServerTypeStrings.length;
-	InProgressFilter 		= SavedInProgressIndex;
-	bInProgressFilterSet   	= SavedInProgressIndex == EIP_Allow_In_Progress;
-	PermissionsFilter 		= SavedPrivacyIndex;
-	bPermissionsFilterSet 	= GetPartyPrivacy() != LV_Public;
+	
+	bPermissionsFilterSet 	= GetPartyPrivacy() != LV_Public && GetMakeNewServer();
+	PermissionsFilter = bPermissionsFilterSet ? SavedPrivacyIndex : byte(0);	
 }
 
 event int GetGameLength()
@@ -665,16 +497,6 @@ event int GetGameLength()
 	default:
 		return -1;
 	}
-}
-
-function bool GetMakeNewServer()
-{
-	return SavedInProgressIndex == EIP_Create_New;
-}
-
-function bool GetAllowInProgress()
-{
-	return bInProgressFilterSet;
 }
 
 private function int HandleNoPref(int Index, bool bShowNoPref)
@@ -700,7 +522,7 @@ function int GetModeIndex()
 {
 	if(bIsSoloGame)
 	{
-		return GetAdjustedGameModeIndex(SavedSoloModeIndex);
+		return GetAdjustedGameModeIndex(SavedModeIndex);
 	}
 	else
 	{
@@ -710,32 +532,23 @@ function int GetModeIndex()
 
 function int GetDifficultyIndex()
 {
-	if(bIsSoloGame)
-	{
-		return SavedSoloDifficultyIndex;
-	}
-	else
-	{
-		return SavedDifficultyIndex;
-	}
+	return SavedDifficultyIndex;
 }
 
 function int GetLengthIndex(optional int DefaultLength = -1)
 {
-	if(bIsSoloGame)
+	local int NewLengthIndex;
+	if ( bShowLengthNoPref && DefaultLength < 0 )
 	{
-		return SavedSoloLengthIndex;
+		NewLengthIndex = HandleNoPref(SavedLengthIndex, bShowLengthNoPref);
 	}
 	else
 	{
-		if ( bShowLengthNoPref && SavedLengthIndex == 0 && DefaultLength >= 0 )
-		{
-			//If a DefaultLength was passed in, we use it instead of returning the sentinel
-			//that means "Any"
-			return DefaultLength;
-		}
-		return HandleNoPref(SavedLengthIndex, bShowLengthNoPref);
+		//If a DefaultLength was passed in, we use it instead of returning the sentinel
+		//that means "Any"
+		NewLengthIndex = Clamp(SavedLengthIndex, 0, 2);
 	}
+	return NewLengthIndex;
 }
 
 function int GetDifficulty()
@@ -754,14 +567,7 @@ function int GetPrivacyIndex()
 
 function string GetMapName()
 {
-	if(bIsSoloGame)
-	{
-		return SavedSoloMapString;
-	}
-	else
-	{
-		return SavedMapString;
-	}
+	return SavedMapString;
 }
 
 //Convert from the offset in the list to the Steam privacy flag for a lobby
@@ -772,16 +578,8 @@ event ELobbyVisibility GetPartyPrivacy()
 		case 0:
 			return LV_Public;
 		case 1:
-			return LV_Friends;
-		case 2:
-		default:
-			return LV_Private;
+			return  class'WorldInfo'.static.IsConsoleBuild() ? LV_Friends : LV_Private;
 	}
-}
-
-function byte GetServerTypeIndex()
-{
-	return HandleNoPref(SavedServerTypeIndex, bShowServerTypeNoPref);
 }
 
 event int GetAdjustedGameModeIndex(int ModeIndex)
@@ -797,7 +595,7 @@ event int GetAdjustedGameModeIndex(int ModeIndex)
 			case 2: //versus
 				return 3;
 			default:
-				return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedSoloModeIndex]);
+				return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
 		}
 	}
 	else
@@ -811,4 +609,5 @@ native function bool DoesFilterMatchGameSettings( const KFOnlineGameSettings InG
 
 DefaultProperties
 {
+	RegionIndex=255
 }

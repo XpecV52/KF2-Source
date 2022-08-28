@@ -26,6 +26,11 @@ simulated function AltFireMode()
 	{
 		return;
 	}
+	if (ReloadStatus == RS_Reloading)
+	{
+		return;
+	}
+	
 
 	if (AmmoCount[0] <= 1)
 	{
@@ -139,7 +144,7 @@ simulated function BeginState(name PreviousStateName)
 defaultproperties
 {
 	// Inventory
-	InventorySize=11
+	InventorySize=10
 	GroupPriority=110
 	WeaponSelectTexture=Texture2D'WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel'
 
@@ -176,7 +181,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(DEFAULT_FIREMODE)=36.0 //40
+	InstantHitDamage(DEFAULT_FIREMODE)=40.0 //36
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_ElephantGun'
 	PenetrationPower(DEFAULT_FIREMODE)=4.0
 	FireInterval(DEFAULT_FIREMODE)=0.25 // 240 RPM
@@ -190,7 +195,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)= WeaponQuadBarrelFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(ALTFIRE_FIREMODE)=36.0 //40
+	InstantHitDamage(ALTFIRE_FIREMODE)=40.0 //36
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_ElephantGun'
 	PenetrationPower(ALTFIRE_FIREMODE)=4.0
 	FireInterval(ALTFIRE_FIREMODE)=0.25 // 240 RPM
@@ -217,7 +222,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=4
-	SpareAmmoCapacity[0]=40 //72
+	SpareAmmoCapacity[0]=48 //72
 	InitialSpareMags[0]=3 //8
 	AmmoPickupScale[0]=2.0 //3.0
 	bCanBeReloaded=true
@@ -249,5 +254,5 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
 }

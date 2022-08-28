@@ -25,8 +25,8 @@ struct TraderDialogEventInfo
     }
 };
 
-var TraderDialogEventInfo DialogEvents[274];
-var name EventNames[274];
+var TraderDialogEventInfo DialogEvents[275];
+var name EventNames[275];
 
 defaultproperties
 {
@@ -304,6 +304,7 @@ defaultproperties
     DialogEvents[271]=(EventID=0,AudioCue=none,Priority=0,Cooldown=0,Chance=1)
     DialogEvents[272]=(EventID=0,AudioCue=none,Priority=0,Cooldown=0,Chance=1)
     DialogEvents[273]=(EventID=0,AudioCue=none,Priority=0,Cooldown=0,Chance=1)
+    DialogEvents[274]=(EventID=0,AudioCue=none,Priority=0,Cooldown=0,Chance=1)
     EventNames[0]=TRAD_Wave20pctDead
     EventNames[1]=TRAD_Wave80pctDead
     EventNames[2]=TRAD_WaveLastZedDies

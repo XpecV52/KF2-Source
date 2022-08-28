@@ -199,5 +199,10 @@ package tripwire.containers
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CANCELLED_INDEX));
             }
         }
+        
+        override protected function closeAnimation() : *
+        {
+            visible = false;
+        }
     }
 }

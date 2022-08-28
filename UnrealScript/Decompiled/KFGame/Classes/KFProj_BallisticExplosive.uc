@@ -13,6 +13,7 @@ var repnotify bool bDud;
 /** When true this projectile will collide/hit/explode when hitting teammates */
 var() bool bCollideWithTeammates;
 var bool bClientDudHit;
+var bool bIsTimedExplosive;
 /** Distance this projectile arms itself at */
 var() float ArmDistSquared;
 /** The effect to display when the projectile becomes a dud */
@@ -22,8 +23,13 @@ var KFImpactEffectInfo GrenadeBounceEffectInfo;
 var() float DampenFactor;
 /** Dampen amount for parallel angle to velocity */
 var() float DampenFactorParallel;
+/** Dampen amount for every bounce */
+var() float WallHitDampenFactor;
+/** Dampen amount for parallel angle to velocity */
+var() float WallHitDampenFactorParallel;
 /** How much to offset the emitter mesh when the grenade has landed so that it doesn't penetrate the ground */
 var() Vector LandedTranslationOffset;
+var array<Actor> ImpactList;
 
 replication
 {
@@ -100,30 +106,19 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
     }
     TraveledDistance = (WorldInfo.TimeSeconds - CreationTime) * Speed;
     TraveledDistance *= TraveledDistance;
-    if(bDud || (TraveledDistance < ArmDistSquared) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
+    if(bDud || ((TraveledDistance < ArmDistSquared) || bIsTimedExplosive) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
     {
+        VNorm = (Velocity Dot HitNormal) * HitNormal;
+        Velocity = (-VNorm * WallHitDampenFactor) + ((Velocity - VNorm) * WallHitDampenFactorParallel);
+        Speed = VSize(Velocity);
         if(!bDud || bWantsClientSideDudHit && !bClientDudHit)
         {
-            bDud = true;
-            if(bWantsClientSideDudHit)
-            {
-                bClientDudHit = true;
-            }
-            LifeSpan = 1;
-            SetPhysics(2);
-            GravityScale = 1;
-            StopFlightEffects();
-            ProjFlightTemplate = ProjDudTemplate;
-            ProjFlightTemplateZedTime = ProjDudTemplate;
-            SpawnFlightEffects();
+            SetIsDud(bWantsClientSideDudHit, HitNormal);
         }
         if((WorldInfo.NetMode != NM_DedicatedServer) && Pawn(Wall) == none)
         {
             KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator, HitNormal, GrenadeBounceEffectInfo, true);
         }
-        VNorm = (Velocity Dot HitNormal) * HitNormal;
-        Velocity = (-VNorm * DampenFactor) + ((Velocity - VNorm) * DampenFactorParallel);
-        Speed = VSize(Velocity);
         if(Speed < float(40))
         {
             ImpactedActor = Wall;
@@ -141,14 +136,14 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
             Offset.Z = LandedTranslationOffset.X;
             SetLocation(Location + Offset);
         }
-        if((!Wall.bStatic && Wall.bCanBeDamaged) && (DamageRadius == float(0)) || bDamageDestructiblesOnTouch)
+        if(((!Wall.bStatic && Wall.bCanBeDamaged) && (DamageRadius == float(0)) || bDamageDestructiblesOnTouch) && !CheckRepeatingTouch(Wall))
         {
             HitInfo.HitComponent = WallComp;
             HitInfo.Item = -1;
             Wall.TakeDamage(int(Damage), InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
         }
     }
-    if(!bDud)
+    if(!bDud && !bIsTimedExplosive)
     {
         super.HitWall(HitNormal, Wall, WallComp);
     }
@@ -168,9 +163,9 @@ function float GetTerminalVelocity()
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
-    local Vector VNorm;
     local bool bWantsClientSideDudHit;
     local float TraveledDistance;
+    local Vector VNorm;
 
     if(Other.IsA('KFTrigger_SirenProjectileShield'))
     {
@@ -189,37 +184,26 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     }
     TraveledDistance = (WorldInfo.TimeSeconds - CreationTime) * Speed;
     TraveledDistance *= TraveledDistance;
-    if((!bDud || bWantsClientSideDudHit && !bClientDudHit) && (TraveledDistance < ArmDistSquared) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
+    if((!bDud || bWantsClientSideDudHit && !bClientDudHit) && ((TraveledDistance < ArmDistSquared) || bIsTimedExplosive) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
     {
         if(((LastTouched.Actor == Other) && TouchTimeThreshhold > float(0)) && (WorldInfo.TimeSeconds - LastTouched.Time) <= TouchTimeThreshhold)
         {
             return;
         }
-        bDud = true;
-        if((Other != Instigator) && !Other.bStatic)
+        if((((Other != Instigator) && !Other.bStatic) && Other.GetTeamNum() != GetTeamNum()) && !CheckRepeatingTouch(Other))
         {
             ProcessBulletTouch(Other, HitLocation, HitNormal);
         }
-        if(bWantsClientSideDudHit)
-        {
-            bClientDudHit = true;
-        }
-        LifeSpan = 1;
-        SetPhysics(2);
-        GravityScale = 1;
         VNorm = (Velocity Dot HitNormal) * HitNormal;
         Velocity = (-VNorm * DampenFactor) + ((Velocity - VNorm) * DampenFactorParallel);
         Speed = VSize(Velocity);
-        StopFlightEffects();
-        ProjFlightTemplate = ProjDudTemplate;
-        ProjFlightTemplateZedTime = ProjDudTemplate;
-        SpawnFlightEffects();
+        SetIsDud(bWantsClientSideDudHit, HitNormal);
     }
-    if(!bDud)
+    if(!bDud && !bIsTimedExplosive)
     {
         if((Other != Instigator) && !Other.bStatic)
         {
-            if(!CheckRepeatingTouch(Other))
+            if(!CheckRepeatingTouch(Other) && Other.GetTeamNum() != GetTeamNum())
             {
                 ProcessBulletTouch(Other, HitLocation, HitNormal);
             }
@@ -241,6 +225,38 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
         StopSimulating();
     }
 }
+
+simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+{
+    if(ImpactList.Find(Other != -1)
+    {
+        return;
+    }
+    if(Other != none)
+    {
+        ImpactList.AddItem(Other;
+    }
+    super.ProcessBulletTouch(Other, HitLocation, HitNormal);
+}
+
+simulated function SetIsDud(bool bWantsClientSideDudHit, Vector HitNormal)
+{
+    bDud = true;
+    if(bWantsClientSideDudHit)
+    {
+        bClientDudHit = true;
+    }
+    LifeSpan = 1;
+    SetPhysics(2);
+    GravityScale = 1;
+    StopFlightEffects();
+    ProjFlightTemplate = ProjDudTemplate;
+    ProjFlightTemplateZedTime = ProjDudTemplate;
+    SpawnFlightEffects();
+    OnDudEffect();
+}
+
+simulated function OnDudEffect();
 
 simulated function bool TraceProjHitZones(Pawn P, Vector EndTrace, Vector StartTrace, out array<ImpactInfo> out_Hits)
 {
@@ -289,6 +305,8 @@ defaultproperties
 {
     DampenFactor=0.025
     DampenFactorParallel=0.05
+    WallHitDampenFactor=0.025
+    WallHitDampenFactorParallel=0.05
     LandedTranslationOffset=(X=2,Y=0,Z=0)
     bSyncToOriginalLocation=true
     bSyncToThirdPersonMuzzleLocation=true
@@ -306,7 +324,7 @@ defaultproperties
     TouchTimeThreshhold=0.15
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_8721' was not found.
+System.ArgumentException: Requested value '!=_8801' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

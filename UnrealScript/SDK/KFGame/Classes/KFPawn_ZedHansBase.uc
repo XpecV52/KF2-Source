@@ -114,11 +114,14 @@ var             float           LastHuntAndHealEnemyBumpTime;
 /** Grenade tossing */
 var class<KFProj_Grenade>           ActiveGrenadeClass;
 /** Grenade tossing */
-var const class<KFProj_Grenade>	    ExplosiveGrenadeClass;
+var class<KFProj_Grenade>	    ExplosiveGrenadeClass;
+var const class<KFProj_Grenade>		SeasonalExplosiveGrenadeClasses[5];
 /** Grenade tossing */
-var const class<KFProj_Grenade>	    NerveGasGrenadeClass;
+var class<KFProj_Grenade>	    NerveGasGrenadeClass;
+var const class<KFProj_Grenade>		SeasonalNerveGasGrenadeClasses[5];
 /** Grenade tossing */
-var const class<KFProj_Grenade>	    SmokeGrenadeClass;
+var class<KFProj_Grenade>	    SmokeGrenadeClass;
+var const class<KFProj_Grenade>		SeasonalSmokeGrenadeClasses[5];
 /** Socket where grenade spawns when Hans throws with his right hand */
 var name RightHandSocketName;
 /** Socket where grenade spawns when Hans throws with his left hand */
@@ -187,6 +190,10 @@ function PossessedBy( Controller C, bool bVehicleTransition )
     MyHansController = KFAIController_Hans( C );
 
     SetPhaseCooldowns( 0 );
+
+	ExplosiveGrenadeClass = SeasonalExplosiveGrenadeClasses[class'KFGameEngine'.static.GetSeasonalEventID()];
+	NerveGasGrenadeClass = SeasonalNerveGasGrenadeClasses[class'KFGameEngine'.static.GetSeasonalEventID()];
+	SmokeGrenadeClass = SeasonalSmokeGrenadeClasses[class'KFGameEngine'.static.GetSeasonalEventID()];
 }
 
 /** Increment Hans to the next battle phase */

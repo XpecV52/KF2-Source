@@ -23,6 +23,7 @@ KF-PowerCore_Holdout="파워 코어 플레이하기"
 KF-DieSector="다이섹터 플레이하기"
 KF-Lockdown="락다운 플레이 중"
 KF-Airship="비행선 플레이 중"
+KF-MonsterBall="괴물 무도회 플레이 중"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

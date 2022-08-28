@@ -75,6 +75,7 @@ var bool bTradersEnabled;
 ************************************/
 var					byte						WaveMax;	// The "end" wave
 var repnotify		byte						WaveNum; 	// The wave we are currently in
+var					bool						bWaveIsEndless;
 var					int							AIRemaining;
 var					int							WaveTotalAICount;
 var					bool						bEndlessMode;
@@ -339,7 +340,7 @@ cpptext
 replication
 {
 	if ( bNetDirty )
-		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount, bWaveIsActive, MaxHumanCount,
+		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, bWaveIsEndless, AIRemaining, WaveTotalAICount, bWaveIsActive, MaxHumanCount,
 		CurrentObjective, PreviousObjective, PreviousObjectiveResult, PreviousObjectiveXPResult, PreviousObjectiveVoshResult, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
 		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid, GameDifficulty, GameDifficultyModifier, BossIndex; //@HSL - JRO - 3/21/2016 - PS4 Sessions
 	if ( bNetInitial )
@@ -568,19 +569,25 @@ simulated function ReceivedGameClass()
 
 			TraderDialogManager.TraderVoiceGroupClass = KFGameClass.default.TraderVoiceGroupClass;
 
-			if (!KFGameClass.static.HasCustomTraderVoiceGroup())
+			KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+			if (bEndlessMode)
 			{
-				// override default voice, if applicable
-
-				KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-				if (KFMI != None && KFMI.TraderVoiceGroupClassPath != "")
+				if (KFMI.TraderVoiceGroupClassPath_Endless != "")
+				{
+					MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath_Endless, class'Class'));
+				}
+			}
+			else
+			{
+				if (KFMI.TraderVoiceGroupClassPath != "")
 				{
 					MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, class'Class'));
-					if (MapVoiceGroupClass != None)
-					{
-						TraderDialogManager.TraderVoiceGroupClass = MapVoiceGroupClass;
-					}
 				}
+			}
+
+			if (MapVoiceGroupClass != None)
+			{
+				TraderDialogManager.TraderVoiceGroupClass = MapVoiceGroupClass;
 			}
 		}
 
@@ -992,6 +999,11 @@ simulated function bool IsBossWave()
 	return WaveNum == WaveMax;
 }
 
+simulated function bool IsInfiniteWave()
+{
+	return true;
+}
+
 simulated function bool IsBossWaveNext()
 {
 	return WaveNum == WaveMax - 1;
@@ -1005,6 +1017,11 @@ simulated function bool IsSpecialWave(out int ModIndex)
 simulated function bool IsWeeklyWave(out int ModIndex)
 {
 	return false;
+}
+
+simulated function bool IsEndlessWave()
+{
+	return bWaveIsEndless;
 }
 
 // Called once a second
@@ -1701,13 +1718,13 @@ function bool StartNextObjective()
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
     if (KFMI != none && !IsBossWave())
     {
-		if (KFMI.bEventLimitedObjectives)
+		/*if (KFMI.bEventLimitedObjectives)
 		{
 			if (class'KFGameEngine'.static.GetSeasonalEventID() != KFMI.EventHoliday)
 			{
 				return false;
 			}
-		}
+		}*/
 
         if (KFMI.bUsePresetObjectives && WaveNum <= GetPresetObjectiveLength(KFMI))
         {
@@ -1726,6 +1743,7 @@ function bool StartNextObjective()
 function bool StartNextPresetObjective(KFMapInfo KFMI)
 {
     local array<KFInterface_MapObjective> PossibleObjectives;
+	local bool bUseEndlessSpawning;
 
 	if (KFMI == none)
 	{
@@ -1739,25 +1757,28 @@ function bool StartNextPresetObjective(KFMapInfo KFMI)
         if (KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
         {
             PossibleObjectives = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives;
+			bUseEndlessSpawning = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].bUseEndlessSpawning;
         }
         break;
     case GL_Normal:
         if (KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
         {
             PossibleObjectives = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives;
+			bUseEndlessSpawning = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].bUseEndlessSpawning;
         }
         break;
     case GL_Long:
         if (KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
         {
             PossibleObjectives = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives;
+			bUseEndlessSpawning = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].bUseEndlessSpawning;
         }
         break;
     default: //Disable for mods with weird counts
         break;
     }
 
-    return AttemptObjectiveActivation(PossibleObjectives) != INDEX_NONE;
+    return AttemptObjectiveActivation(PossibleObjectives, bUseEndlessSpawning) != INDEX_NONE;
 }
 
 function int GetPresetObjectiveLength(KFMapInfo KFMI)
@@ -1803,7 +1824,7 @@ function bool StartNextRandomObjective(KFMapInfo KFMI)
 	return Idx != INDEX_NONE;
 }
 
-function int AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives)
+function int AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives, bool bUseEndlessSpawning = false)
 {
     local int RandID;
 	local float DieRoll, PctChanceToActivate;
@@ -1816,7 +1837,7 @@ function int AttemptObjectiveActivation(array<KFInterface_MapObjective> Possible
 		PctChanceToActivate = PossibleObjectives[RandID].GetActivationPctChance();
         if (bForceNextObjective || (PossibleObjectives[RandID].CanActivateObjective() && PreviousObjective != PossibleObjectives[RandID] && (PctChanceToActivate >= 1.f || DieRoll <= PctChanceToActivate)))
         {
-            ActivateObjective(PossibleObjectives[RandID]);
+            ActivateObjective(PossibleObjectives[RandID], bUseEndlessSpawning);
             return RandID;
         }
 
@@ -1826,8 +1847,10 @@ function int AttemptObjectiveActivation(array<KFInterface_MapObjective> Possible
     return -1;
 }
 
-function ActivateObjective(KFInterface_MapObjective NewObjective)
+function ActivateObjective(KFInterface_MapObjective NewObjective, bool bUseEndlessSpawning = false)
 {
+	local KFGameInfo KFGI;
+
     if (NewObjective != none)
     {
         CurrentObjective = Actor(NewObjective);
@@ -1842,11 +1865,24 @@ function ActivateObjective(KFInterface_MapObjective NewObjective)
 		{
 			Timer_ActivateObjective();
 		}
+
+		if (Role == ROLE_Authority && bUseEndlessSpawning)
+		{
+			KFGI = KFGameInfo(WorldInfo.Game);
+			if (KFGI != none && KFGI.SpawnManager != none)
+			{
+				KFGI.SpawnManager.bTemporarilyEndless = true;
+				bWaveIsEndless = true;
+			}
+		}
     }
 }
 
 function DeactivateObjective()
 {
+	local KFGameInfo KFGI;
+	local KFPawn_Monster KFPM;
+
     if (CurrentObjective != None)
     {
 		PreviousObjective = CurrentObjective;
@@ -1857,6 +1893,26 @@ function DeactivateObjective()
         ObjectiveInterface.DeactivateObjective();
         CurrentObjective = none;
         ObjectiveInterface = none;
+
+		if (Role == ROLE_Authority)
+		{
+			KFGI = KFGameInfo(WorldInfo.Game);
+			if (KFGI != none && KFGI.SpawnManager != none && KFGI.SpawnManager.bTemporarilyEndless)
+			{
+				KFGI.SpawnManager.bTemporarilyEndless = false;
+				bWaveIsEndless = false;
+				AIRemaining = KFGI.SpawnManager.GetAIAliveCount() + Max(0, KFGI.SpawnManager.WaveTotalAI - KFGI.NumAISpawnsQueued);
+
+				if( AIRemaining <= class'KFGameInfo'.static.GetNumAlwaysRelevantZeds() )
+				{
+					//Tell the remaining pawns to set themselves relevant.
+					foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM )
+					{
+						KFPM.CheckShouldAlwaysBeRelevant();
+					}
+				}
+			}
+		}
     }
 }
 

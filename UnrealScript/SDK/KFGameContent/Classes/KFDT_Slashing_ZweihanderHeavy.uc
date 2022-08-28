@@ -35,7 +35,7 @@ defaultproperties
 
 	KnockdownPower=0
 	StunPower=0
-	StumblePower=100
+	StumblePower=250
 	MeleeHitPower=100
 
 	WeaponDef=class'KFWeapDef_Zweihander'

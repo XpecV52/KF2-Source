@@ -538,6 +538,7 @@ class KFDT_Slashing_PatTentacle extends KFDT_Slashing
 
 
 
+										  
 
 
 
@@ -554,6 +555,8 @@ class KFDT_Slashing_PatTentacle extends KFDT_Slashing
 
 
 										  
+
+
 
 
 

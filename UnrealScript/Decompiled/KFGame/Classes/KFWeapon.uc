@@ -122,7 +122,7 @@ var const string AttachmentArchetypeName;
 var const string MuzzleFlashTemplateName;
 var bool AttachOnContentLoad;
 var bool SetOnContentLoad;
-var bool WeaponContentLoaded;
+var transient bool WeaponContentLoaded;
 var bool bUseAltFireMode;
 var transient bool bStopAltFireOnNextRelease;
 var bool bGamepadFireEntry;
@@ -358,6 +358,10 @@ var(Animations) const editconst name FireLoopStartSightedAnim;
 var(Animations) const editconst name FireLoopEndAnim;
 /** Animation to play at the end of a looping fire anim */
 var(Animations) const editconst name FireLoopEndSightedAnim;
+/** Shoot animation to play when ending looping fire on last shot */
+var(Animations) const editconst name FireLoopEndLastAnim;
+/** Shoot animation to play when ending looping fire on last shot  when aiming */
+var(Animations) const editconst name FireLoopEndLastSightedAnim;
 /** Animation to play when the weapon is fired */
 var(Animations) const editconst name FireScopedAnim;
 /** Animation to play when the weapon is fired and bLoopingFireAnim is true */
@@ -1679,11 +1683,31 @@ simulated function name GetLoopStartFireAnim(byte FireModeNum)
 
 simulated function name GetLoopEndFireAnim(byte FireModeNum)
 {
+    local bool bPlayFireLast;
+
+    bPlayFireLast = ShouldPlayFireLast(FireModeNum);
     if(bUsingSights)
     {
-        return FireLoopEndSightedAnim;
+        if(bPlayFireLast && FireLoopEndLastSightedAnim != 'None')
+        {
+            return FireLoopEndLastSightedAnim;            
+        }
+        else
+        {
+            return FireLoopEndSightedAnim;
+        }        
     }
-    return FireLoopEndAnim;
+    else
+    {
+        if(bPlayFireLast && FireLoopEndLastAnim != 'None')
+        {
+            return FireLoopEndLastAnim;            
+        }
+        else
+        {
+            return FireLoopEndAnim;
+        }
+    }
 }
 
 simulated function name GetMeleeAnimName(KFPawn.EPawnOctant AtkDir, KFMeleeHelperWeapon.EMeleeAttackType AtkType)
@@ -5452,6 +5476,8 @@ defaultproperties
     FireLoopStartSightedAnim=ShootLoop_Iron_Start
     FireLoopEndAnim=ShootLoop_End
     FireLoopEndSightedAnim=ShootLoop_Iron_End
+    FireLoopEndLastAnim=ShootLoop_End_Last
+    FireLoopEndLastSightedAnim=ShootLoop_Iron_End_Last
     MeleeAttackAnims(0)=Bash
     BonesToLockOnEmpty(0)=RW_Bolt
     WeaponFireSnd(0)=(DefaultCue=none,FirstPersonCue=none)

@@ -31,6 +31,7 @@ defaultproperties
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedDAR_Laser.MeleeHelper'
     DifficultySettings=Class'KFDifficulty_DAR_Laser'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedDAR_Laser.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedDAR_Laser.HeadshotAkComponent0'
     LocalizationKey=KFPawn_ZedDAR_Laser
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -89,6 +90,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedDAR_Laser.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedDAR_Laser.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedDAR_Laser.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedDAR_Laser.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

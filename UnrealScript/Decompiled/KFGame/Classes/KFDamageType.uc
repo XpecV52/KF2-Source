@@ -50,6 +50,7 @@ var bool bPointImpulseTowardsOrigin;
 var bool bNoPain;
 var bool bIgnoreSelfInflictedScale;
 var bool bIgnoreZedOnZedScaling;
+var bool bIsTrapDamage;
 var float HeadDestructionDamageScale;
 var float HeadDestructionImpulseForceScale;
 var KFDamageType.EDamageOverTimeGroup DoT_Type;
@@ -171,7 +172,7 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
 {
     local KFSkinTypeEffects SkinType;
 
-    if((P.CharacterArch != none) && default.EffectGroup < 16)
+    if((P.CharacterArch != none) && default.EffectGroup < 17)
     {
         SkinType = P.GetHitZoneSkinTypeEffects(HitZoneIndex);
         if(SkinType != none)

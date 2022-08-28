@@ -16,6 +16,7 @@ var localized string CancelString;
 
 var localized string ServerBrowserString;
 var localized string MatchmakingString;
+var localized string CreateGameString;
 var localized string SoloString;
 var localized string OverviewString;
 
@@ -244,6 +245,9 @@ function string GetHomeButtonName()
 			{
 				case EMatchmaking:
 					LastHomeString = MatchmakingString;
+					break;
+				case ECreateGame:
+					LastHomeString = CreateGameString;
 					break;
 				case EServerBrowser:
 					LastHomeString = ServerBrowserString;

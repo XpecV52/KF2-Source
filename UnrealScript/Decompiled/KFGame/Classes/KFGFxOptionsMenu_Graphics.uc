@@ -67,6 +67,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 enum PerfWarning
 {
@@ -2613,7 +2615,7 @@ defaultproperties
     VariableFrameratePresets(0)=(VariableFrameRate=false)
     VariableFrameratePresets(1)=(VariableFrameRate=true)
     FilmGrainMinMaxPreset(0)=(FilmGrainScale=0.5)
-    FilmGrainMinMaxPreset(1)=(FilmGrainScale=2)
+    FilmGrainMinMaxPreset(1)=(FilmGrainScale=37.5)
     FlexPresets(0)=(FlexLevel=0)
     FlexPresets(1)=(FlexLevel=1)
     FlexPresets(2)=(FlexLevel=2)

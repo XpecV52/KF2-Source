@@ -166,7 +166,7 @@ package tripwire.menus
             {
                 this.closeSkillConfigure();
             }
-            if(this.PerkPrestigeContainer.bOpen)
+            if(this.PerkPrestigeContainer.bOpen && !this.PerkPrestigeContainer.prestigeTimeline.isActive())
             {
                 this.closePrestige();
             }

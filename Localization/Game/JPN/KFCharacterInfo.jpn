@@ -3,6 +3,13 @@ CharacterName="Mrsフォスター"
 Description="商品トレードの仕事で彼女がMrフォスターに面接をしたとき、Mrsフォスターは既にロンドンのトップ企業で大成功したトレーダーだった。彼女はまさに彼自身の憧れだったが、Mrフォスターにはトレーダーとしての素質がまったくなかった。彼はルールに従うことも、黙っていることもできなかった。それでも、彼にもいいところはあった。冷静で、物腰が柔らかく、とても…変わり者だった。あまりにも変わり者で、彼女との初デートでガスマスクをプレゼントしたほどだ。まるで、彼は知っていたようだった。チェーンガンを振り回すミュータントの狂人が、肉食クローンの群れを作り出し、彼女の何百万ポンドというボーナスを台無しにすることを。花束とレース、Zed、爆発の嵐の後、まもなく彼らは結婚した。"
 BodyMesh0="ベスト"
 BodyMesh1="スチームパンク"
+BodyMesh2="ホージンセキュリティ"
+BodyMesh3="ダンボールの騎士"
+BodyMesh4="荒地"
+BodyMesh5="防護"
+BodyMesh6="コマンドーチキン"
+BodyMesh7="クリスマスパジャマファッション"
+BodyMesh8="Vaultパジャマファッション"
 HeadMesh0="ガスマスク"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -21,6 +28,61 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[CHR_MrsFoster_archetype.BodyMesh2]
+BodySkin0="エリートブルー"
+BodySkin1="エリートグリーン"
+BodySkin2="エリートレッド"
+BodySkin3="エリートホワイト"
+BodySkin4="Mark 7"
+BodySkin5="スノーデジカム"
+BodySkin6="砂漠"
+BodySkin7="マルチカメラ"
+BodySkin8="ハザード"
+BodySkin9="アダマント"
+BodySkin10="バウンティハンター"
+BodySkin11="希少"
+
+[CHR_MrsFoster_archetype.BodyMesh3]
+BodySkin0="クラシック"
+BodySkin1="Jittery Joe's"
+BodySkin2="Bio Cola"
+BodySkin3="ホージンデポ"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrsFoster_archetype.BodyMesh4]
+BodySkin0="英雄"
+BodySkin1="迷彩"
+BodySkin2="バイカーブラック"
+BodySkin3="ポー"
+BodySkin4="サンドレイダー"
+
+[CHR_MrsFoster_archetype.BodyMesh5]
+BodySkin0="クローカー"
+BodySkin1="グローバー"
+BodySkin2="ヒートウェーブ"
+BodySkin3="ホージン"
+BodySkin4="フォン・ブラウン"
+BodySkin5="Tragic Kingdomクルー"
+
+[CHR_MrsFoster_archetype.BodyMesh6]
+BodySkin0="中古"
+BodySkin1="クリーン"
+BodySkin2="夜"
+BodySkin3="ひどい怪我"
+
+[CHR_MrsFoster_archetype.BodyMesh7]
+BodySkin0="ウサギ"
+BodySkin1="Dosh"
+BodySkin2="緑のチェック"
+BodySkin3="キルト"
+BodySkin4="赤い雪"
+BodySkin5="ツリー"
+BodySkin6="赤い格子柄"
+
+[CHR_MrsFoster_archetype.BodyMesh8]
+BodySkin0="Vault模様"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="ホワイト"
 HeadSkin1="グリーン"
@@ -28,6 +90,7 @@ HeadSkin2="レッド"
 HeadSkin3="ブラウン"
 HeadSkin4="ピンク"
 HeadSkin5="ブラック"
+HeadSkin6="NEED NAME"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -186,6 +249,7 @@ HeadSkin2="ブラッドレッド"
 HeadSkin3="メタルフェイス"
 HeadSkin4="大男の悪者のスウェーデン人"
 HeadSkin5="めまい"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="トゲトゲしたカウボーイハット"
@@ -359,6 +423,7 @@ HeadSkin3="グリーンハザード"
 HeadSkin4="レトロスカリー"
 HeadSkin5="サイレントスクリーム・スカリー"
 HeadSkin6="バットキャット"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="スカリーフォン"
@@ -482,6 +547,7 @@ HeadSkin1="ハイライト"
 HeadSkin2="ブラック"
 HeadSkin3="操り人形"
 HeadSkin4="デイ・オブ・ザ・デッド"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="医者のマスク"
@@ -609,6 +675,7 @@ HeadSkin4="ブリティッシュクラス"
 HeadSkin5="怒り"
 HeadSkin6="ミスター ハンス"
 HeadSkin7="doshラバー"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="スカリーフォン"
@@ -837,6 +904,7 @@ HeadSkin1="タトゥー"
 HeadSkin2="グレア"
 HeadSkin3="笑み"
 HeadSkin4="Rawr"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="ボクシング用ヘッドギア"
@@ -950,6 +1018,7 @@ HeadSkin2="ブラック"
 HeadSkin3="ホワイト"
 HeadSkin4="ピエロ"
 HeadSkin5="ファントム"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="メガネ"
@@ -1256,7 +1325,7 @@ AttachmentSkin8="ティールホワイト"
 AttachmentSkin9="プレシャス"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment="粉々のバイク用ヘルメット"
+Attachment="バイク用ヘルメット(ダメージあり)"
 AttachmentSkin0="ブラック"
 AttachmentSkin1="ブルー"
 AttachmentSkin2="オレンジ"
@@ -1845,6 +1914,7 @@ HeadSkin1="迷彩"
 HeadSkin2="道化師"
 HeadSkin3="吸血鬼"
 HeadSkin4="ギロチン"
+HeadSkin5="NEED NAME"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="グリーン"
@@ -1943,6 +2013,7 @@ HeadSkin0="ブラック"
 HeadSkin1="ブロンド"
 HeadSkin2="隈取"
 HeadSkin3="タイタン"
+HeadSkin4="NEED NAME"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="しかも上品"
@@ -2078,6 +2149,7 @@ HeadSkin3="プリティブルー"
 HeadSkin4="デスメタル"
 HeadSkin5="ミセス ステイン"
 HeadSkin6="花"
+HeadSkin7="NEED NAME"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="デスレイン"
@@ -2271,6 +2343,7 @@ HeadSkin3="スウェーデンのブロンド"
 HeadSkin4="俺のために笑え"
 HeadSkin5="ミスター ジュース"
 HeadSkin6="グッドゲーム"
+HeadSkin7="NEED NAME"
 
 [chr_alan_archetype]
 CharacterName="クラシック・マスターソン"
@@ -2371,6 +2444,7 @@ HeadSkin3="迷彩に身を包め！"
 HeadSkin4="元気を出せ！"
 HeadSkin5="おしまいだ！"
 HeadSkin6="デジ"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQキャップ"
@@ -2472,6 +2546,7 @@ HeadSkin0="ダークスチール"
 HeadSkin1="ブロンドスチール"
 HeadSkin2="ミスター・デス"
 HeadSkin3="ミスター ステイン"
+HeadSkin4="NEED NAME"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="ドイツ軍スチールヘルメット"
@@ -2723,6 +2798,7 @@ HeadSkin4="ティール"
 HeadSkin5="ピンク"
 HeadSkin6="ミス・デス"
 HeadSkin7="鹿"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="眼帯"
@@ -3440,7 +3516,7 @@ Attachment="ダイナマイト爆発"
 AttachmentSkin0="ぶっ飛び"
 
 [Cosmetic_BooniHat_ARCH]
-Attachment="ボニーハット"
+Attachment="ブーニーハット"
 AttachmentSkin0="ブルー"
 AttachmentSkin1="グリーン"
 AttachmentSkin2="パープル"
@@ -4175,3 +4251,123 @@ AttachmentSkin0="ブリーチ"
 AttachmentSkin1="ブルー"
 AttachmentSkin2="ラスト"
 AttachmentSkin3="希少"
+
+[Cosmetic_Halloween_AngelWings_ARCH]
+Attachment="ハロウィーンの天使の羽"
+AttachmentSkin0="極上"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_Cauldron_ARCH]
+Attachment="ハロウィーンの釜バックパック"
+AttachmentSkin0="スウィートミート"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_CoffinBackpack_ARCH]
+Attachment="ハロウィーンの棺バックパック"
+AttachmentSkin0="RIP"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_CyclopsEye_ARCH]
+Attachment="ハロウィーンのキュクロープスの目"
+AttachmentSkin0="邪悪な目"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_Horns_ARCH]
+Attachment="ハロウィーンの角"
+AttachmentSkin0="小鬼"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_IncognitoMask_ARCH]
+Attachment="ハロウィーンの変装マスク"
+AttachmentSkin0="グルーチョ"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_PirateHat_ARCH]
+Attachment="ハロウィーンの海賊ハット"
+AttachmentSkin0="略奪品"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_WitchHat_ARCH]
+Attachment="ハロウィーンの魔女ハット"
+AttachmentSkin0="黒魔術"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_FunnyZedBackpack_ARCH]
+Attachment="ハロウィーンのクロトバックパック"
+AttachmentSkin0="仲間"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_BatWings_ARCH]
+Attachment="ハロウィーンのコウモリの羽"
+AttachmentSkin0="夜行性"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_BatEars_ARCH]
+Attachment="ハロウィーンのコウモリの耳"
+AttachmentSkin0="エコーロケーター"
+AttachmentSkin1="希少"
+
+[Cosmetic_Halloween_MummyBackpack_ARCH]
+Attachment="ハロウィーンのミイラバックパック"
+AttachmentSkin0="保存型"
+AttachmentSkin1="希少"
+
+[Cosmetic_BeastMask_ARCH]
+Attachment="ビーストマスク"
+AttachmentSkin0="ライト"
+AttachmentSkin1="ダーク"
+AttachmentSkin2="希少"
+
+[Cosmetic_DancerMask_ARCH]
+Attachment="ダンサーマスク"
+AttachmentSkin0="ファイア"
+AttachmentSkin1="ウォーター"
+AttachmentSkin2="希少"
+
+[Cosmetic_DemonMask_ARCH]
+Attachment="デーモンマスク"
+AttachmentSkin0="ファイア"
+AttachmentSkin1="ウォーター"
+AttachmentSkin2="希少"
+
+[Cosmetic_DoctorMask_ARCH]
+Attachment="医者のマスク"
+AttachmentSkin0="ライト"
+AttachmentSkin1="ダーク"
+AttachmentSkin2="希少"
+
+[Cosmetic_DreamerMask_ARCH]
+Attachment="ドリーマーマスク"
+AttachmentSkin0="ファイア"
+AttachmentSkin1="ウォーター"
+AttachmentSkin2="希少"
+
+[Cosmetic_JokerMask_ARCH]
+Attachment="ジョーカーマスク"
+AttachmentSkin0="ライト"
+AttachmentSkin1="ダーク"
+AttachmentSkin2="希少"
+
+[Cosmetic_LordMask_ARCH]
+Attachment="主のマスク"
+AttachmentSkin0="ファイア"
+AttachmentSkin1="ウォーター"
+AttachmentSkin2="希少"
+
+[Cosmetic_SleeperMask_ARCH]
+Attachment="スリーパーマスク"
+AttachmentSkin0="ファイア"
+AttachmentSkin1="ウォーター"
+AttachmentSkin2="希少"
+
+[Cosmetic_Undead_ARCH]
+Attachment="アンデッドマスク"
+AttachmentSkin0="ファイア"
+AttachmentSkin1="ウォーター"
+AttachmentSkin2="希少"
+
+[Cosmetic_Warrior_ARCH]
+Attachment="戦士マスク"
+AttachmentSkin0="ファイア"
+AttachmentSkin1="ウォーター"
+AttachmentSkin2="希少"

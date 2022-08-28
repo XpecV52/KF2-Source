@@ -30,8 +30,8 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_ElephantGun'
-    StumblePower=35
-    GunHitPower=45
+    StumblePower=55
+    GunHitPower=75
     GibImpulseScale=1
     BloodSpread=0.4
     BloodScale=0.6

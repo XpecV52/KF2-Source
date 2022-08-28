@@ -311,13 +311,18 @@ function int GetPotentialDosh()
     return PotentialDosh;
 }
 
-function bool bCanPurchase(STraderItem SelectedItem)
+function bool bCanPurchase(STraderItem SelectedItem, optional bool bReturnError)
 {
     local bool bCanAfford, bCanCarry, bNotOwned;
 
+    bReturnError = true;
     bCanAfford = GetCanAfford(GetAdjustedBuyPriceFor(SelectedItem));
     bCanCarry = CanCarry(SelectedItem);
     bNotOwned = !DoIOwnThisWeapon(SelectedItem);
+    if(((Outer.MyGFxManager != none) && Outer.MyGFxManager.TraderMenu != none) && bReturnError)
+    {
+        Outer.MyGFxManager.TraderMenu.PurchaseError(!bCanAfford, !bCanCarry);
+    }
     return (bCanCarry && bCanAfford) && bNotOwned;
 }
 
@@ -371,7 +376,7 @@ function PurchaseWeapon(STraderItem ShopItem)
 {
     local int ItemUpgradeLevel;
 
-    if(!bCanPurchase(ShopItem))
+    if(!bCanPurchase(ShopItem, true))
     {
         return;
     }

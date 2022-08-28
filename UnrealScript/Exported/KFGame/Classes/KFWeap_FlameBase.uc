@@ -700,6 +700,15 @@ simulated function ChangeVisibility(bool bIsVisible)
     	FlamePool[0].SkeletalSprayMesh.SetHidden(!bIsVisible);
     	FlamePool[1].SkeletalSprayMesh.SetHidden(!bIsVisible);
     }
+
+	if (bIsVisible)
+	{
+		TurnOnPilot();
+	}
+	else
+	{
+		TurnOffPilot();
+	}
 }
 
 /**

@@ -33,12 +33,9 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     SharedContentButton = GetObject("sharedContentButton");
     if(SharedContentButton != none)
     {
-        SharedContentButton.SetVisible((PC.WorldInfo.NetMode != NM_Standalone) && !PC.WorldInfo.IsConsoleBuild());
+        SharedContentButton.SetVisible(PC.WorldInfo.NetMode != NM_Standalone);
     }
-    if(!PC.WorldInfo.IsConsoleBuild())
-    {
-        UpdateSharedContent();
-    }
+    UpdateSharedContent();
     if(!Class'WorldInfo'.static.IsE3Build())
     {
         ShowWelcomeScreen();
@@ -164,12 +161,13 @@ function UpdateSharedContent()
     local string PlayerNameList;
     local KFGameReplicationInfo KFGRI;
     local array<PlayerReplicationInfo> WeaponSharedList;
-    local bool bContentPreviouslyShared;
+    local bool bContentPreviouslyShared, bIsConsoleBuild;
 
     if(Class'WorldInfo'.static.IsMenuLevel())
     {
         return;
     }
+    bIsConsoleBuild = Outer.GetPC().WorldInfo.IsConsoleBuild();
     bContentPreviouslyShared = bContentShared;
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI == none)
@@ -180,40 +178,48 @@ function UpdateSharedContent()
     UnlockManagerClass = Class'KFUnlockManager';
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0xF9:
+    J0x14F:
 
     if(I < UnlockManagerClass.default.SharedContentList.Length)
     {
-        if(Class'KFUnlockManager'.static.IsSharedContentUnlocked(byte(I)))
+        if(bIsConsoleBuild && byte(I) == 1)
+        {            
+        }
+        else
         {
-            bContentShared = true;
-            TempWeaponObj = Outer.CreateObject("Object");
-            TempWeaponObj.SetString("label", Localize(string(UnlockManagerClass.default.SharedContentList[I].Name), "ItemName", "KFGameContent"));
-            TempWeaponObj.SetString("sourceText", Localize(string(UnlockManagerClass.default.SharedContentList[I].Name), "SharedUnlockSource", "KFGameContent"));
-            TempWeaponObj.SetString("iconPath", "img://" $ UnlockManagerClass.default.SharedContentList[I].IconPath);
-            UnlockManagerClass.static.GetSharedContentPlayerList(byte(I), WeaponSharedList);
-            J = 0;
-            J0x35C:
-
-            if(J < WeaponSharedList.Length)
+            if(Class'KFUnlockManager'.static.IsSharedContentUnlocked(byte(I)))
             {
-                if(J == 0)
+                bContentShared = true;
+                TempWeaponObj = Outer.CreateObject("Object");
+                TempWeaponObj.SetString("label", Localize(string(UnlockManagerClass.default.SharedContentList[I].Name), "ItemName", "KFGameContent"));
+                TempWeaponObj.SetString("sourceText", Localize(string(UnlockManagerClass.default.SharedContentList[I].Name), "SharedUnlockSource", "KFGameContent"));
+                TempWeaponObj.SetString("iconPath", "img://" $ UnlockManagerClass.default.SharedContentList[I].IconPath);
+                UnlockManagerClass.static.GetSharedContentPlayerList(byte(I), WeaponSharedList);
+                J = 0;
+                J0x3DA:
+
+                if(J < WeaponSharedList.Length)
                 {
-                    PlayerNameList = SharedByString @ WeaponSharedList[J].PlayerName;                    
+                    if(J == 0)
+                    {
+                        PlayerNameList = SharedByString @ WeaponSharedList[J].PlayerName;                        
+                    }
+                    else
+                    {
+                        PlayerNameList = (PlayerNameList $ ",") @ WeaponSharedList[J].PlayerName;
+                    }
+                    ++ J;
+                    goto J0x3DA;
                 }
-                else
-                {
-                    PlayerNameList = (PlayerNameList $ ",") @ WeaponSharedList[J].PlayerName;
-                }
-                ++ J;
-                goto J0x35C;
+                TempWeaponObj.SetString("names", PlayerNameList);
+                DataProvider.SetElementObject(ItemCount, TempWeaponObj);
+                ++ ItemCount;
             }
-            TempWeaponObj.SetString("names", PlayerNameList);
-            DataProvider.SetElementObject(ItemCount, TempWeaponObj);
-            ++ ItemCount;
+            PlayerNameList = "";
+            WeaponSharedList.Length = 0;
         }
         ++ I;
-        goto J0xF9;
+        goto J0x14F;
     }
     SetObject("sharedContent", DataProvider);
     if(SharedContentButton != none)

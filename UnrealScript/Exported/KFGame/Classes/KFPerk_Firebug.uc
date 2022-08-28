@@ -221,18 +221,24 @@ simulated static private final function float GetStartingAmmoPercent( int Level 
  * @param DotScaler The time scaler
  * @param KFDT The damage type used
  */
-function ModifyDoTScaler( out float DoTScaler, optional class<KFDamageType> KFDT, optional bool bNapalmInfected )
+function float GetDoTScalerAdditions(class<KFDamageType> KFDT)
 {
-	if( IsFuseActive() && IsDamageTypeOnPerk( KFDT ) )
+	local float ScalarAdditions;
+
+	if (IsDamageTypeOnPerk(KFDT))
 	{
-		;
-		DoTScaler = GetSkillValue( PerkSkills[EFirebugFuse] );
+		if (IsFuseActive())
+		{
+			ScalarAdditions += GetSkillValue(PerkSkills[EFirebugFuse]);
+		}
+
+		if (IsNapalmActive())
+		{
+			ScalarAdditions += GetSkillValue(PerkSkills[EFirebugNapalm]);
+		}
 	}
 
-	if( IsNapalmActive() && IsDamageTypeOnPerk( KFDT ) )
-	{
-		DoTScaler += GetSkillValue( PerkSkills[EFirebugNapalm] );
-	}
+	return ScalarAdditions;
 }
 
 static function int GetNapalmDamage()
@@ -638,9 +644,9 @@ defaultproperties
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
    PerkSkills(0)=(Name="BringTheHeat",StartingValue=0.350000,MaxValue=0.350000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat")
    PerkSkills(1)=(Name="HighCapFuelTank",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel")
-   PerkSkills(2)=(Name="Fuse",StartingValue=2.500000,MaxValue=2.500000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Fuse")
+   PerkSkills(2)=(Name="Fuse",StartingValue=1.500000,MaxValue=1.500000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Fuse")
    PerkSkills(3)=(Name="GroundFire",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HeatWave")
-   PerkSkills(4)=(Name="Napalm",StartingValue=2.500000,MaxValue=2.500000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Napalm")
+   PerkSkills(4)=(Name="Napalm",StartingValue=1.500000,MaxValue=1.500000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Napalm")
    PerkSkills(5)=(Name="ZedShrapnel",StartingValue=1.200000,MaxValue=1.200000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_ZedShrapnel")
    PerkSkills(6)=(Name="SplashDamage",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_GroundFire")
    PerkSkills(7)=(Name="Range",StartingValue=0.300000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Range")
@@ -661,6 +667,7 @@ defaultproperties
    HitAccuracyHandicap=-2.000000
    HeadshotAccuracyHandicap=5.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Firebug"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

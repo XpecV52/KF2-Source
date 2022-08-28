@@ -3,6 +3,13 @@ CharacterName="Miss Foster"
 Description="Quand elle accorda un entretien à Mr. Foster pour un poste, Miss Foster était déjà une marchande impitoyable dans une firme londonienne. Elle avait tout ce qu'il cherchait, mais il était incapable de se plier aux règles et n'était clairement pas fait pour le métier. Mais il avait quelque chose de spécial : il était si détaché, charmeur... unique. Assez unique pour lui offrir son propre masque à gaz lors de leur premier rendez-vous. C'était comme s'il savait qu'un mutant équipé d'une mitrailleuse allait créer une horde de clones mangeurs de chair et ruiner sa carrière. Ils se marièrent peu de temps après, dans un tourbillon de fleurs, de dentelle, de Zeds et d'explosifs. Ils ne peuvent peut-être pas travailler ensemble pour se faire du blé, mais ils peuvent exterminer des Zeds pour se faire un tas de fric !"
 BodyMesh0="Veste"
 BodyMesh1="Punk"
+BodyMesh2="Horzine Security"
+BodyMesh3="Chevalier en carton"
+BodyMesh4="Désert"
+BodyMesh5="Hazmat"
+BodyMesh6="Poulet commando"
+BodyMesh7="Tenue de pyjama de Noël"
+BodyMesh8="Tenue de pyjama coffre"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -21,6 +28,61 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[CHR_MrsFoster_archetype.BodyMesh2]
+BodySkin0="Élite bleu"
+BodySkin1="Élite vert"
+BodySkin2="Élite rouge"
+BodySkin3="Élite blanc"
+BodySkin4="Mark 7"
+BodySkin5="DigiCam Snow"
+BodySkin6="Désert"
+BodySkin7="Multi-camouflage"
+BodySkin8="Risque biologique"
+BodySkin9="Adamantium"
+BodySkin10="Chasseur de démons"
+BodySkin11="Doré"
+
+[CHR_MrsFoster_archetype.BodyMesh3]
+BodySkin0="Classique"
+BodySkin1="Jittery Joe's"
+BodySkin2="Bio Cola"
+BodySkin3="Dépôt d'Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrsFoster_archetype.BodyMesh4]
+BodySkin0="Héros"
+BodySkin1="Camouflage"
+BodySkin2="Motard noir"
+BodySkin3="Poe"
+BodySkin4="Pillard du désert"
+
+[CHR_MrsFoster_archetype.BodyMesh5]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Vague de chaleur"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Employé du Royaume déchanté"
+
+[CHR_MrsFoster_archetype.BodyMesh6]
+BodySkin0="Détérioré"
+BodySkin1="Propre"
+BodySkin2="Nuit"
+BodySkin3="Blessure profonde"
+
+[CHR_MrsFoster_archetype.BodyMesh7]
+BodySkin0="Lapin"
+BodySkin1="Fric"
+BodySkin2="Tartan vert"
+BodySkin3="Couette"
+BodySkin4="Neige rouge"
+BodySkin5="Arbres"
+BodySkin6="Tartan rouge"
+
+[CHR_MrsFoster_archetype.BodyMesh8]
+BodySkin0="Motifs coffre"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Blanc"
 HeadSkin1="Vert"
@@ -28,6 +90,7 @@ HeadSkin2="Rouge"
 HeadSkin3="Marron"
 HeadSkin4="Rose"
 HeadSkin5="Noir"
+HeadSkin6="NEED NAME"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -186,6 +249,7 @@ HeadSkin2="Rouge sang"
 HeadSkin3="Visage métalleux"
 HeadSkin4="Grand méchant suédois"
 HeadSkin5="Vertige"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Chapeau de c-b à pointes"
@@ -359,6 +423,7 @@ HeadSkin3="Risque vert"
 HeadSkin4="Scully rétro"
 HeadSkin5="Scully Cri étouffé"
 HeadSkin6="Batcat"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Scullyphones"
@@ -482,6 +547,7 @@ HeadSkin1="Faits marquants"
 HeadSkin2="Noir"
 HeadSkin3="Marionnette"
 HeadSkin4="Jour des morts"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Masque du Docteur"
@@ -609,6 +675,7 @@ HeadSkin4="Classe britannique"
 HeadSkin5="Œil sanglant"
 HeadSkin6="M. Hans"
 HeadSkin7="Fan de Fric"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Scullyphones"
@@ -837,6 +904,7 @@ HeadSkin1="Camelote"
 HeadSkin2="Lueur"
 HeadSkin3="Rictus"
 HeadSkin4="Grrr"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Casque de boxe"
@@ -950,6 +1018,7 @@ HeadSkin2="Noir"
 HeadSkin3="Blanc"
 HeadSkin4="Pierrot"
 HeadSkin5="Spectre"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Lunettes"
@@ -1256,7 +1325,7 @@ AttachmentSkin8="Blanc sarcelle"
 AttachmentSkin9="Doré"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment="Casque de moto brisé"
+Attachment="Casque de motard endommagé"
 AttachmentSkin0="Noir"
 AttachmentSkin1="Bleu"
 AttachmentSkin2="Orange"
@@ -1845,6 +1914,7 @@ HeadSkin1="Camouflage"
 HeadSkin2="Clown"
 HeadSkin3="Vampire"
 HeadSkin4="Guillotine"
+HeadSkin5="NEED NAME"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Vert"
@@ -1943,6 +2013,7 @@ HeadSkin0="Noir"
 HeadSkin1="Blond"
 HeadSkin2="Kumadori"
 HeadSkin3="Titan"
+HeadSkin4="NEED NAME"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="Et classe"
@@ -2078,6 +2149,7 @@ HeadSkin3="Joli bleu"
 HeadSkin4="Death metal"
 HeadSkin5="Mme Stein"
 HeadSkin6="Fleurs"
+HeadSkin7="NEED NAME"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Pluie mortelle"
@@ -2271,6 +2343,7 @@ HeadSkin3="Blond suédois"
 HeadSkin4="Fais-moi un sourire"
 HeadSkin5="M. Juice"
 HeadSkin6="Belle partie"
+HeadSkin7="NEED NAME"
 
 [chr_alan_archetype]
 CharacterName="Masterson classique"
@@ -2371,6 +2444,7 @@ HeadSkin3="Camouflage, les gars !"
 HeadSkin4="Fais pas la tête !"
 HeadSkin5="T'es cuit, mon pote !"
 HeadSkin6="Digi"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="Casquette RQ"
@@ -2472,6 +2546,7 @@ HeadSkin0="Acier sombre"
 HeadSkin1="Acier blond"
 HeadSkin2="Monsieur Mort"
 HeadSkin3="M. Stein"
+HeadSkin4="NEED NAME"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Casque allemand en acier"
@@ -2723,6 +2798,7 @@ HeadSkin4="Sarcelle"
 HeadSkin5="Rose"
 HeadSkin6="Madame Mort"
 HeadSkin7="Cerf"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Bandeau"
@@ -4175,3 +4251,123 @@ AttachmentSkin0="Décoloré"
 AttachmentSkin1="Bleu"
 AttachmentSkin2="Rouille"
 AttachmentSkin3="Doré"
+
+[Cosmetic_Halloween_AngelWings_ARCH]
+Attachment="Ailes d'ange Halloween"
+AttachmentSkin0="Céleste"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_Cauldron_ARCH]
+Attachment="Sac à dos chaudron Halloween"
+AttachmentSkin0="Friandise"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_CoffinBackpack_ARCH]
+Attachment="Sac à dos cercueil Halloween"
+AttachmentSkin0="RIP"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_CyclopsEye_ARCH]
+Attachment="Œil de cyclope Halloween"
+AttachmentSkin0="Œil maléfique"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_Horns_ARCH]
+Attachment="Cornes Halloween"
+AttachmentSkin0="Diablotin"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_IncognitoMask_ARCH]
+Attachment="Masque incognito Halloween"
+AttachmentSkin0="Graucho"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_PirateHat_ARCH]
+Attachment="Chapeau pirate Halloween"
+AttachmentSkin0="Flibustier"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_WitchHat_ARCH]
+Attachment="Chapeau sorcière Halloween"
+AttachmentSkin0="Arts occultes"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_FunnyZedBackpack_ARCH]
+Attachment="Sac à dos Andouille Halloween"
+AttachmentSkin0="Compagnon"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_BatWings_ARCH]
+Attachment="Ailes chauve-souris Halloween"
+AttachmentSkin0="Nocturne"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_BatEars_ARCH]
+Attachment="Oreilles ch.-souris Halloween"
+AttachmentSkin0="Sonar"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Halloween_MummyBackpack_ARCH]
+Attachment="Sac à dos momie Halloween"
+AttachmentSkin0="Préservé"
+AttachmentSkin1="Doré"
+
+[Cosmetic_BeastMask_ARCH]
+Attachment="Masque de bête"
+AttachmentSkin0="Clair"
+AttachmentSkin1="Sombre"
+AttachmentSkin2="Doré"
+
+[Cosmetic_DancerMask_ARCH]
+Attachment="Masque de danseur"
+AttachmentSkin0="Feu"
+AttachmentSkin1="Eau"
+AttachmentSkin2="Doré"
+
+[Cosmetic_DemonMask_ARCH]
+Attachment="Masque de démon"
+AttachmentSkin0="Feu"
+AttachmentSkin1="Eau"
+AttachmentSkin2="Doré"
+
+[Cosmetic_DoctorMask_ARCH]
+Attachment="Masque de gourou"
+AttachmentSkin0="Clair"
+AttachmentSkin1="Sombre"
+AttachmentSkin2="Doré"
+
+[Cosmetic_DreamerMask_ARCH]
+Attachment="Masque de rêveur"
+AttachmentSkin0="Feu"
+AttachmentSkin1="Eau"
+AttachmentSkin2="Doré"
+
+[Cosmetic_JokerMask_ARCH]
+Attachment="Masque de farceur"
+AttachmentSkin0="Clair"
+AttachmentSkin1="Sombre"
+AttachmentSkin2="Doré"
+
+[Cosmetic_LordMask_ARCH]
+Attachment="Masque de seigneur"
+AttachmentSkin0="Feu"
+AttachmentSkin1="Eau"
+AttachmentSkin2="Doré"
+
+[Cosmetic_SleeperMask_ARCH]
+Attachment="Masque de dormeur"
+AttachmentSkin0="Feu"
+AttachmentSkin1="Eau"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Undead_ARCH]
+Attachment="Masque de mort-vivant"
+AttachmentSkin0="Feu"
+AttachmentSkin1="Eau"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Warrior_ARCH]
+Attachment="Masque de guerrier"
+AttachmentSkin0="Feu"
+AttachmentSkin1="Eau"
+AttachmentSkin2="Doré"

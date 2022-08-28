@@ -48,6 +48,7 @@ var(Locking) float LockAcquireTime;
 var(Locking) float LockTolerance;
 var bool bLockedOnTarget;
 var bool bTargetLockingActive;
+var bool bRechargeHealAmmo;
 var repnotify Actor LockedTarget;
 var repnotify Actor PendingLockedTarget;
 /** angle for locking for lock targets */
@@ -66,8 +67,11 @@ var KFGFxWorld_MedicOptics OpticsUI;
 replication
 {
      if(bNetDirty && Role == ROLE_Authority)
-        HealingDartAmmo, LockedTarget, 
-        PendingLockedTarget, bLockedOnTarget;
+        LockedTarget, PendingLockedTarget, 
+        bLockedOnTarget;
+
+     if(((bNetDirty && Role == ROLE_Authority) && bAllowClientAmmoTracking) && bRechargeHealAmmo)
+        HealingDartAmmo;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -110,10 +114,13 @@ simulated event ReplicatedEvent(name VarName)
         }
         else
         {
-            super(Actor).ReplicatedEvent(VarName);
             if(VarName == 'HealingDartAmmo')
             {
-                AmmoCount[1] = HealingDartAmmo;
+                AmmoCount[1] = HealingDartAmmo;                
+            }
+            else
+            {
+                super(Actor).ReplicatedEvent(VarName);
             }
         }
     }
@@ -148,12 +155,11 @@ simulated function ConsumeAmmo(byte FireModeNum)
         super.ConsumeAmmo(FireModeNum);
         return;
     }
-    if(Role == ROLE_Authority)
+    if((Role == ROLE_Authority) || bAllowClientAmmoTracking)
     {
         if((MagazineCapacity[1] > 0) && AmmoCount[1] > 0)
         {
             AmmoCount[1] = byte(Max(AmmoCount[1] - AmmoCost[1], 0));
-            HealingDartAmmo = byte(Max(HealingDartAmmo - AmmoCost[1], 0));
         }
     }
 }
@@ -241,7 +247,7 @@ simulated function ShakeView()
 
 simulated function StartFire(byte FireModeNum)
 {
-    if((FireModeNum == 1) && !HasAmmo(FireModeNum, AmmoCost[1]))
+    if((FireModeNum == 1) && !HasAmmo(FireModeNum, AmmoCost[FireModeNum]))
     {
         return;
     }
@@ -262,6 +268,10 @@ function StartHealRecharge()
     local KFPerk InstigatorPerk;
     local float UsedHealRechargeTime;
 
+    if(!bRechargeHealAmmo)
+    {
+        return;
+    }
     if(Role == ROLE_Authority)
     {
         InstigatorPerk = GetPerk();
@@ -274,18 +284,21 @@ function StartHealRecharge()
 
 function HealAmmoRegeneration(float DeltaTime)
 {
+    if(!bRechargeHealAmmo)
+    {
+        return;
+    }
     if(Role == ROLE_Authority)
     {
         HealingIncrement += (HealRechargePerSecond * DeltaTime);
-        if(HealingDartAmmo > AmmoCount[1])
+        if((HealingIncrement >= 1) && AmmoCount[1] < MagazineCapacity[1])
         {
-            HealingDartAmmo = AmmoCount[1];
-        }
-        if((HealingIncrement >= 1) && HealingDartAmmo < MagazineCapacity[1])
-        {
-            ++ HealingDartAmmo;
-            AmmoCount[1] = HealingDartAmmo;
+            ++ AmmoCount[1];
             HealingIncrement -= 1;
+            if(bAllowClientAmmoTracking)
+            {
+                HealingDartAmmo = AmmoCount[1];
+            }
         }
     }
 }
@@ -475,7 +488,7 @@ simulated function PlayFiringSound(byte FireModeNum)
 {
     if(!bPlayingLoopingFireSnd)
     {
-        if(FireModeNum == 1)
+        if((FireModeNum == 1) && bRechargeHealAmmo)
         {
             WeaponPlayFireSound(DartFireSnd.DefaultCue, DartFireSnd.FirstPersonCue);            
         }
@@ -667,6 +680,7 @@ defaultproperties
     LockRange=50000
     LockAcquireTime=0.2
     LockTolerance=0.2
+    bRechargeHealAmmo=true
     LockAim=0.98
     LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
     LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'

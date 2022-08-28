@@ -66,6 +66,7 @@ var() ESubGameType SubGameType;
 struct native WaveObjectivePair
 {
     var() array<KFInterface_MapObjective> PossibleObjectives;
+	var() bool bUseEndlessSpawning;
 };
 
 struct native PresetWavePairs
@@ -90,6 +91,7 @@ var(Objectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 
 var() string TraderVoiceGroupClassPath;
+var() string TraderVoiceGroupClassPath_Endless;
 
 cpptext
 {

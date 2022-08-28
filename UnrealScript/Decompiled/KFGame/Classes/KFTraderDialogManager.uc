@@ -106,9 +106,9 @@ simulated function PlayDialog(int EventID, Controller C, optional bool bInterrup
         LogInternal(("Failed to play dialog id " $ string(EventID)) $ ". Manager is disabled or trader voice group class is none.");
         return;
     }
-    if((EventID < 0) || EventID >= 274)
+    if((EventID < 0) || EventID >= 275)
     {
-        LogInternal((("Failed to play dialog id " $ string(EventID)) $ ". Event id is outside of range of 0 and ") $ string(274 - 1));
+        LogInternal((("Failed to play dialog id " $ string(EventID)) $ ". Event id is outside of range of 0 and ") $ string(275 - 1));
         return;
     }
     if((C.Pawn == none) || !C.Pawn.IsAliveAndWell())
@@ -205,7 +205,7 @@ simulated function PlayOpenTraderDialog(int WaveNum, int WaveMax, Controller C)
     {
         if(((KFGRI != none) && KFGRI.bEndlessMode) && KFGRI.IsBossWave())
         {
-            PlayDialog(256 + Clamp(WaveNum / 5, 0, 14), C);            
+            PlayDialog(257 + Clamp(WaveNum / 5, 0, 14), C);            
         }
         else
         {
@@ -612,27 +612,48 @@ simulated function PlaySelectItemDialog(Controller C, bool bTooExpensive, bool b
     PlayDialog(BestOptionID, C);
 }
 
-static function BroadcastEndlessStartWaveDialog(int WaveNum, WorldInfo WI)
+static function BroadcastEndlessStartWaveDialog(int WaveNum, int ModeIndex, WorldInfo WI)
 {
-    local int EventID;
+    local int SpecialWaveEventId, NormalWaveEventId;
+    local Controller C;
+    local KFPlayerController KFPC;
 
+    SpecialWaveEventId = -1;
+    NormalWaveEventId = -1;
+    if(ModeIndex != -1)
+    {
+        SpecialWaveEventId = 272 + (ModeIndex % 3);
+    }
     if(WaveNum > 100)
     {
-        EventID = 255;        
+        NormalWaveEventId = 256;        
     }
     else
     {
-        EventID = 155 + (WaveNum - 1);
+        NormalWaveEventId = 156 + (WaveNum - 1);
     }
-    PlayGlobalDialog(EventID, WI);
+    foreach WI.AllControllers(Class'Controller', C)
+    {
+        if(C.bIsPlayer)
+        {
+            KFPC = KFPlayerController(C);
+            if(KFPC == none)
+            {
+                continue;                
+            }
+            if(KFPC.IsLocalController())
+            {
+                KFPC.PlayTraderEndlessWaveStartDialog(SpecialWaveEventId, NormalWaveEventId);
+                continue;
+            }
+            KFPC.ClientPlayTraderEndlessWaveStartDialog(SpecialWaveEventId, NormalWaveEventId);
+        }        
+    }    
 }
 
-static function BroadcastEndlessSpecialWaveDialog(int ModeIndex, WorldInfo WI)
+static function PlayFirstWaveStartDialog(WorldInfo WI)
 {
-    local int EventID;
-
-    EventID = 271 + (ModeIndex % 3);
-    PlayGlobalDialog(EventID, WI);
+    PlayGlobalDialog(155, WI);
 }
 
 defaultproperties

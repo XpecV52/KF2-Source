@@ -16,6 +16,8 @@ struct native sReplicatedMovementData
 	var rotator NewRotation;
 };
 
+var bool bPlayingEmote;
+
 /** Post-spawn replicated location (we skip actor property replication, this allows us to update after spawn) */
 var repnotify sReplicatedMovementData ReplicatedMovementData;
 
@@ -216,6 +218,13 @@ simulated function PlayEmoteAnimation(optional bool bNewCharacter)
 	local name AnimName;
 	local float BlendInTime;
 
+	if (bPlayingEmote)
+	{
+		return;
+	}
+
+	bPlayingEmote = true;
+	
 	AnimName = class'KFEmoteList'.static.GetUnlockedEmote( class'KFEmoteList'.static.GetEquippedEmoteId() );	
 
 	BlendInTime = (bNewCharacter) ? 0.f : 0.4;
@@ -229,6 +238,7 @@ simulated function PlayEmoteAnimation(optional bool bNewCharacter)
 
 simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
+	bPlayingEmote = false;
 	PlayRandomIdleAnimation();
 }
 

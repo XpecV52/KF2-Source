@@ -70,6 +70,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 struct sHiddenHumanPawnInfo
 {
@@ -818,7 +820,7 @@ function CheckAndDrawRemainingZedIcons()
     local Vector ViewLocation, ViewDir, PawnLocation;
     local Rotator ViewRotation;
 
-    if(((((KFGRI == none) || KFPlayerOwner == none) || KFPlayerOwner.PlayerCamera == none) || KFGRI.IsBossWave()) || float(KFGRI.AIRemaining) > Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
+    if((((((KFGRI == none) || KFPlayerOwner == none) || KFPlayerOwner.PlayerCamera == none) || KFGRI.IsBossWave()) || KFGRI.IsEndlessWave()) || float(KFGRI.AIRemaining) > Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
     {
         return;
     }

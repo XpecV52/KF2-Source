@@ -52,8 +52,15 @@ simulated function SetObjeciveType(KFInterface_MapObjective.EObjectiveType ObjEn
 
 simulated function InitPath()
 {
-    ShowPath();
-    SetTimer(2, true, 'Timer_ShowPath');
+    if(Target != none)
+    {
+        ShowPath();
+        SetTimer(2, true, 'Timer_ShowPath');        
+    }
+    else
+    {
+        ClearTimer('Timer_ShowPath');
+    }
 }
 
 simulated function Timer_ShowPath()

@@ -54,14 +54,20 @@ simulated function bool IsWeeklyWave(out int ModIndex)
 simulated function WaveStarted()
 {
 	local int ModeIndex;
-	if(IsSpecialWave(ModeIndex) || IsWeeklyWave(ModeIndex))
+
+	ModeIndex = INDEX_NONE;
+	if (CurrentSpecialMode != INDEX_NONE)
 	{
-		class'KFTraderDialogManager'.static.BroadcastEndlessSpecialWaveDialog(ModeIndex, WorldInfo);
+		// is special wave
+		ModeIndex = CurrentSpecialMode;
 	}
-	else
+	else if (CurrentWeeklyMode != INDEX_NONE)
 	{
-		class'KFTraderDialogManager'.static.BroadcastEndlessStartWaveDialog(WaveNum, WorldInfo);
+		// is weekly wave
+		ModeIndex = class'KFOutbreakEvent_Endless'.static.GetOutbreakId(CurrentWeeklyMode);
 	}
+
+	class'KFTraderDialogManager'.static.BroadcastEndlessStartWaveDialog(WaveNum, ModeIndex, WorldInfo);
 }
 
 DefaultProperties

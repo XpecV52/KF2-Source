@@ -573,7 +573,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	}
 	else
 	{
-		bHasPrivateServerOption = WorldInfo.Game.HasOption( Options, "friend" );
+		bHasPrivateServerOption = WorldInfo.Game.HasOption(Options, "friend") || InPassword != "";
 	}
 
 
@@ -584,7 +584,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 
 
 	{
-	
+
 		OutError = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage>";
 
 
@@ -594,7 +594,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	else if ( (GamePassword != "" && !(InPassword == GamePassword) && (AdminPassword == "" || !(InPassword == AdminPassword))) ||
 		( Engine.bPrivateServer && !bHasPrivateServerOption ) )
 	{
-	
+
 		OutError = "<Strings:"$(InPassword == "") ? "Engine.AccessControl.NeedPassword>" : "Engine.AccessControl.WrongPassword>";
 
 
@@ -604,7 +604,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	// Check server IP bans (UID bans are checked in GameInfo::PreLogin)
 	if (!CheckIPPolicy(Address))
 	{
-			
+
 		OutError = "<Strings:Engine.AccessControl.IPBanned>";
 
 
@@ -634,7 +634,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 				{
 					if (OnlineSub.Class.Name == 'OnlineSubsystemSteamworks')
 					{
-		
+
 						OutError = "<Strings:Engine.Errors.SteamClientRequired>";
 
 
@@ -1194,7 +1194,7 @@ function ProcessServerAuthRetryRequest(Player ClientConnection)
 {
 	local bool bFoundAndAuthenticated;
 //@HSL_BEGIN_XBOX
-	local IpAddr ClientIP; 
+	local IpAddr ClientIP;
 //@HSL_END_XBOX
 	local int ClientPort, i, CurRetryIdx;
 	local UniqueNetId ClientUID;

@@ -41,12 +41,13 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	SharedContentButton = GetObject("sharedContentButton");
 	if(SharedContentButton != none)
 	{
-		SharedContentButton.SetVisible((PC.WorldInfo.NetMode != NM_Standalone) && !PC.WorldInfo.IsConsoleBuild());
+		SharedContentButton.SetVisible(PC.WorldInfo.NetMode != NM_Standalone);
 	}
-	if(!PC.WorldInfo.IsConsoleBuild())
+	/*if(!PC.WorldInfo.IsConsoleBuild())
 	{
+	*/
 		UpdateSharedContent();
-	}
+	//}
 	// BWJ - 5-5-16 - Hiding this for E3 build. Not guaranteed internet connection to download the images
 	if( !class'WorldInfo'.static.IsE3Build() )
 	{
@@ -195,11 +196,14 @@ function UpdateSharedContent()
 	local KFGameReplicationInfo KFGRI;
 	local array<PlayerReplicationInfo> WeaponSharedList;
 	local bool bContentPreviouslyShared;
+	local bool bIsConsoleBuild;
 
 	if(class'WorldInfo'.static.IsMenuLevel())
 	{
 		return;
 	}
+
+	bIsConsoleBuild = GetPC().WorldInfo.IsConsoleBuild();
 
 	bContentPreviouslyShared = bContentShared;
 
@@ -220,6 +224,10 @@ function UpdateSharedContent()
 	for (i = 0;i < UnlockManagerClass.default.SharedContentList.length; i++)
 	{
 		//if unlocked
+		if (bIsConsoleBuild && ESharedContentUnlock(i) == SCU_Zweihander) //SCU_Zweihander  is not supossed to show on console, it is unlocked by default
+		{
+			continue;
+		}
 		if(class'KFUnlockManager'.static.IsSharedContentUnlocked(ESharedContentUnlock(i)))
 		{
 			bContentShared = true;
@@ -248,6 +256,8 @@ function UpdateSharedContent()
 			DataProvider.SetElementObject(itemCount, TempWeaponObj);
 			itemCount++;
 		}
+		PlayerNameList = "";
+		WeaponSharedList.length = 0;
 	}
 
 	SetObject("sharedContent", DataProvider);

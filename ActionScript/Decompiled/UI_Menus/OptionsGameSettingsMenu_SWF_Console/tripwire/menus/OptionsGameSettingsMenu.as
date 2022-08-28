@@ -72,6 +72,8 @@ package tripwire.menus
         
         public var disableAutoUpgradeCheckBox:TripCheckBox;
         
+        public var disableRemoteHeadshotEffectsCheckBox:TripCheckBox;
+        
         public var toggleMixerButton:TripButton;
         
         public var defaultButton:TripButton;
@@ -120,6 +122,7 @@ package tripwire.menus
             }
             this.killTickerCheckBox.tabIndex = _loc1_++;
             this.disableAutoUpgradeCheckBox.tabIndex = _loc1_++;
+            this.disableRemoteHeadshotEffectsCheckBox.tabIndex = _loc1_++;
             if(this.toggleMixerButton)
             {
                 this.toggleMixerButton.tabIndex = _loc1_++;
@@ -166,6 +169,7 @@ package tripwire.menus
             this.fovMaximumText.text = !!param1.wider ? param1.wider : "";
             this.killTickerCheckBox.label = !!param1.killTicker ? param1.killTicker : "";
             this.disableAutoUpgradeCheckBox.label = !!param1.disableAutoUpgrade ? param1.disableAutoUpgrade : "";
+            this.disableRemoteHeadshotEffectsCheckBox.label = !!param1.hideRemoteHeadshotEffects ? param1.hideRemoteHeadshotEffects : "";
         }
         
         public function set dataValues(param1:Object) : void
@@ -180,6 +184,7 @@ package tripwire.menus
             }
             this.killTickerCheckBox.selected = !!param1.killTicker ? Boolean(param1.killTicker) : false;
             this.disableAutoUpgradeCheckBox.selected = !!param1.disableAutoUpgrade ? Boolean(param1.disableAutoUpgrade) : false;
+            this.disableRemoteHeadshotEffectsCheckBox.selected = !!param1.disableRemoteHeadShotEffects ? Boolean(param1.disableRemoteHeadShotEffects) : false;
             this.hideBossHealthBarCheckBox.selected = !!param1.hideBossHealthBar ? Boolean(param1.hideBossHealthBar) : false;
             this.showWelderInInvCheckBox.selected = !!param1.showWelderInInv ? Boolean(param1.showWelderInInv) : false;
             this.useAltAimOnDualCheckBox.selected = !!param1.useAltAimOnDual ? Boolean(param1.useAltAimOnDual) : false;
@@ -225,6 +230,7 @@ package tripwire.menus
             }
             this.killTickerCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.disableAutoUpgradeCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.disableRemoteHeadshotEffectsCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.hideBossHealthBarCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.showWelderInInvCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.useAltAimOnDualCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
@@ -255,6 +261,9 @@ package tripwire.menus
                     break;
                 case this.disableAutoUpgradeCheckBox:
                     ExternalInterface.call("Callback_DisableAutoUpgradeChanged",this.disableAutoUpgradeCheckBox.selected);
+                    break;
+                case this.disableRemoteHeadshotEffectsCheckBox:
+                    ExternalInterface.call("Callback_DisableRemoteHeadshotEffects",this.disableRemoteHeadshotEffectsCheckBox.selected);
                     break;
                 case this.killTickerCheckBox:
                     ExternalInterface.call("Callback_KillTickerChanged",this.killTickerCheckBox.selected);
@@ -302,6 +311,7 @@ package tripwire.menus
                 this.classicWeaponSelectCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
                 this.defaultButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
             }
+            this.disableRemoteHeadshotEffectsCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             this.disableAutoUpgradeCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             this.killTickerCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             this.hideBossHealthBarCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);

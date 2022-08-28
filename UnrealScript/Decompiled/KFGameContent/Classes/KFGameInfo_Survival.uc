@@ -83,6 +83,10 @@ function PlayWaveStartDialog()
     {
         KFGameInfo(WorldInfo.Game).DialogManager.PlayWaveStartDialog(MyKFGRI.IsBossWave());
     }
+    if(WaveNum == 1)
+    {
+        Class'KFTraderDialogManager'.static.PlayFirstWaveStartDialog(WorldInfo);
+    }
 }
 
 function byte GetGameIntensityForMusic()
@@ -1213,9 +1217,12 @@ function DebugKillZeds()
     if(AllowWaveCheats())
     {
         foreach WorldInfo.AllControllers(Class'PlayerController', PC)
-        {            
-            PC.ConsoleCommand("KillZeds");            
-            return;            
+        {
+            if(KFDemoRecSpectator(PC) == none)
+            {                
+                PC.ConsoleCommand("KillZeds");                
+                return;
+            }            
         }        
     }
 }

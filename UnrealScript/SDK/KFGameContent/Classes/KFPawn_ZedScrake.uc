@@ -133,30 +133,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 }
 
 /** Enrage this Scrake! */
-simulated function SetEnraged( bool bNewEnraged )
-{
-	if( Role == ROLE_Authority && bNewEnraged == bIsEnraged )
-	{
-		return;
-	}
-
-	if ( Role == ROLE_Authority )
-	{
-		bIsEnraged = bNewEnraged;
-
-		// End blocking on rage
-		if( IsDoingSpecialMove(SM_Block) )
-		{
-			EndSpecialMove();
-		}
-
-		// Sprint right away if we're AI
-		if( !IsHumanControlled() )
-		{
-			SetSprinting( bNewEnraged );
-		}
-	}
-}
+//simulated function SetEnraged( bool bNewEnraged );
 
 /** Returns TRUE if this zed can block attacks */
 function bool CanBlock()

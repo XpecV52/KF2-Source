@@ -28,7 +28,7 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
-    StumblePower=100
+    StumblePower=250
     KDamageImpulse=1600
     KDeathVel=500
     KDeathUpKick=200

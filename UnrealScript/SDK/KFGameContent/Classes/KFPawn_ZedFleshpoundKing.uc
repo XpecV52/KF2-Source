@@ -440,6 +440,14 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
     }
 }
 
+function HandleAfflictionsOnHit(Controller DamageInstigator, vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
+{
+	if (ShieldHealthPctByte == 0)
+	{
+		super.HandleAfflictionsOnHit(DamageInstigator, HitDir, DamageType, DamageCauser);
+	}
+}
+
 function SetShieldScale(float InScale)
 {
 	ShieldHealthScale = InScale;

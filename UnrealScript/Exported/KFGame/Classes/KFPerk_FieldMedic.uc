@@ -584,7 +584,7 @@ defaultproperties
    PerkSkills(6)=(Name="HealingShield",StartingValue=10.000000,MaxValue=10.000000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CoagulantBooster")
    PerkSkills(7)=(Name="Enforcer",StartingValue=0.200000,MaxValue=0.200000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_BattleSurgeon")
    PerkSkills(8)=(Name="AirborneAgent",StartingValue=0.200000,MaxValue=0.200000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent")
-   PerkSkills(9)=(Name="Sedative",StartingValue=100.000000,MaxValue=100.000000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative")
+   PerkSkills(9)=(Name="Sedative",StartingValue=10.000000,MaxValue=10.000000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative")
    VaccinationDuration=10.000000
    ToxicDmgTypeClass=Class'KFGame.KFDT_Toxic_AcidicRounds'
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_MedicPistol'
@@ -597,6 +597,7 @@ defaultproperties
    HitAccuracyHandicap=5.000000
    HeadshotAccuracyHandicap=-0.750000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.MedicKnife_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MedicPistol_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_FieldMedic"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

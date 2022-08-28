@@ -27,6 +27,7 @@ event Activated()
 
 defaultproperties
 {
+   bCallHandler=False
    ObjName="Modify Extra Cost for Pathnode(s)"
    ObjCategory="Killing Floor"
    Name="Default__KFSeqAct_SetPathnodeExtraCost"

@@ -326,9 +326,9 @@ defaultproperties
 	BulletMeshComponents.Add(BulletMeshComp5_L)
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=0)
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=0)
 	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=0)
-	WeaponUpgrades[3]=(IncrementDamage=2.0f,IncrementWeight=2)
-	WeaponUpgrades[4]=(IncrementDamage=2.5f,IncrementWeight=4)
+	WeaponUpgrades[3]=(IncrementDamage=1.95f,IncrementWeight=2)
+	WeaponUpgrades[4]=(IncrementDamage=2.2f,IncrementWeight=4)
 }
 

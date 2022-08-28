@@ -539,6 +539,7 @@ class KFDT_Explosive_HansHEGrenade extends KFDT_Explosive_HEGrenade
 
 
 
+										  
 
 
 
@@ -555,6 +556,8 @@ class KFDT_Explosive_HansHEGrenade extends KFDT_Explosive_HEGrenade
 
 
 										  
+
+
 
 
 

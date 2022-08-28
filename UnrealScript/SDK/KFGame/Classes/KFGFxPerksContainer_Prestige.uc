@@ -39,6 +39,14 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 function LocalizeText()
 {
 	local GFxObject LocalizedObject;
+	local String UpdatedDescriptionString;
+	local KFPerk CurrentPerk;
+	local int XpModifier;
+	CurrentPerk = KFPC.CurrentPerk;
+
+	XpModifier = KFPC.GetPerkPrestigeNextXPMultiplier(CurrentPerk.Class) * 100;
+
+	UpdatedDescriptionString = Repl(PrestigeDescriptionString, "%x%", string(XpModifier), true);
 
 	LocalizedObject = CreateObject("Object");
 
@@ -46,7 +54,7 @@ function LocalizeText()
 	LocalizedObject.SetString("currentRank", CurrentRankString);
 	LocalizedObject.SetString("nextRank", NextRankString);
 	LocalizedObject.SetString("rewards", RewardString);
-	LocalizedObject.SetString("description", PrestigeDescriptionString);
+	LocalizedObject.SetString("description", UpdatedDescriptionString);
 	LocalizedObject.SetString("cancel", class'KFCommon_LocalizedStrings'.default.CancelString);
 	LocalizedObject.SetString("confirm", class'KFCommon_LocalizedStrings'.default.ConfirmString);
 	LocalizedObject.SetString("warning1", PrestigeWarningString1);

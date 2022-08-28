@@ -40,8 +40,8 @@ var(ThirdPerson) array<SkeletalMesh> PACMeshList;
 /** List of possible randomized colors to apply to zed */
 var(ThirdPerson) array<ZedColorMod> RandomizedColors;
 
-/** List of additional particle systems that require unique effects per-event */
-var(Effects) array<ParticleSystem> ExtraVFX;
+/** List of additional particle systems that require unique effects and logic per-event */
+var(Effects) array<ExtraVFXInfo> ExtraVFX;
 
 struct native StaticAttachments
 {

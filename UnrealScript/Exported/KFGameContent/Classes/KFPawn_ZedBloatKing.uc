@@ -298,22 +298,13 @@ simulated event bool IsEnraged()
 }
 
 /** Enrage this FleshPound! */
-simulated function SetEnraged(bool bNewEnraged)
+simulated function bool SetEnraged(bool bNewEnraged)
 {
-    if (!bCanRage || (Role == ROLE_Authority && bNewEnraged == bIsEnraged))
-    {
-        return;
-    }
+	local bool bSuccess;
 
-    if (Role == ROLE_Authority)
-    {
-        bIsEnraged = bNewEnraged;
-
-        // End blocking on rage
-        if (IsDoingSpecialMove(SM_Block))
-        {
-            EndSpecialMove();
-        }
+	bSuccess = super.SetEnraged(bNewEnraged);
+	if (bSuccess && Role == ROLE_Authority)
+	{
 		if (bIsEnraged)
 		{
 			DoSpecialMove(SM_Custom1, true, , SpecialMoveHandler.SpecialMoveClasses[SM_Custom1].static.PackFlagsBase(self));
@@ -330,9 +321,9 @@ simulated function SetEnraged(bool bNewEnraged)
 				KFAIController_ZedBloatKing(Controller).SetEnrageTimer();
 			}
 		}
+	}
 
-        SetSprinting(bNewEnraged);
-    }
+	return bSuccess;
 }
 
 function AdjustMovementSpeed(float SpeedAdjust)
@@ -664,6 +655,7 @@ defaultproperties
    DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.400000))
    DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.500000))
    DamageTypeModifiers(25)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
+   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingFart',DamageScale=(0.000000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKing'
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000
@@ -677,6 +669,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    ArmorInfoClass=Class'kfgamecontent.KFZedArmorInfo_BloatKing'
    OverrideArmorFXIndex=200
    PawnAnimInfo=KFPawnAnimInfo'ZED_BloatKing_ANIM.BloatKing_AnimGroup'
@@ -728,7 +728,7 @@ defaultproperties
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.250000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
    IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.150000))
-   SprintSpeed=330.000000
+   SprintSpeed=380.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedBloat:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -825,7 +825,7 @@ defaultproperties
    End Object
    DialogAkComponent=DialogAkSoundComponent
    Mass=400.000000
-   GroundSpeed=231.000000
+   GroundSpeed=345.000000
    Health=9000
    ControllerClass=Class'kfgamecontent.KFAIController_ZedBloatKing'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedBloat:KFPawnSkeletalMeshComponent'
@@ -892,6 +892,7 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
+   Components(9)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedBloatKing"
    ObjectArchetype=KFPawn_ZedBloat'kfgamecontent.Default__KFPawn_ZedBloat'

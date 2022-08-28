@@ -137,6 +137,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_BloatKingSubspawn'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.HeadshotAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
     LocalizationKey=KFPawn_ZedBloatKingSubspawn
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -215,6 +216,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.HeadshotAkComponent0'
     bBlocksNavigation=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=40

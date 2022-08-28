@@ -67,6 +67,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 enum EItemType
 {
@@ -132,6 +134,7 @@ var KFGFxTraderContainer_Store ShopContainer;
 var KFGFxTraderContainer_PlayerInventory PlayerInventoryContainer;
 var KFGFxTraderContainer_PlayerInfo PlayerInfoContainer;
 var KFGFxTraderContainer_ItemDetails ItemDetails;
+var KFGFxTraderContainer_ErrorMessage ErrorMessageContainer;
 var bool bGenericItemSelected;
 var bool bCanBuyOrSellItem;
 var STraderItem LastDefaultItemInfo;
@@ -266,6 +269,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 ItemDetails.Initialize(self);
             }
             break;
+        case 'ErrorMessage':
+            if(ErrorMessageContainer == none)
+            {
+                ErrorMessageContainer = KFGFxTraderContainer_ErrorMessage(Widget);
+                ErrorMessageContainer.Initialize(self);
+            }
+            break;
         default:
             break;
     }
@@ -375,6 +385,7 @@ function SetTraderItemDetails(int ItemIndex)
             {
                 bCanBuyItem = true;
             }
+            PurchaseError(!bCanAfford, !bCanCarry);
             ItemDetails.SetShopItemDetails(SelectedItem, MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(SelectedItem), bCanCarry, bCanBuyItem);
             bCanBuyOrSellItem = bCanBuyItem;            
         }
@@ -397,6 +408,7 @@ function SetPlayerItemDetails(int ItemIndex)
         SelectedItem = OwnedItemList[ItemIndex].DefaultItem;
         ItemDetails.SetPlayerItemDetails(SelectedItem, OwnedItemList[ItemIndex].SellPrice, OwnedItemList[ItemIndex].ItemUpgradeLevel);
         bCanBuyOrSellItem = MyKFPC.GetPurchaseHelper().IsSellable(SelectedItem);
+        PurchaseError(false, false);
     }
 }
 
@@ -558,6 +570,28 @@ simulated function int GetDisplayedBlocksRequiredFor(const out STraderItem Item,
 {
     OverrideLevelValue = -1;
     return MyKFIM.GetDisplayedBlocksRequiredFor(Item, OverrideLevelValue);
+}
+
+simulated function PurchaseError(bool bCannotAfford, bool bCannotCarry)
+{
+    if(ErrorMessageContainer != none)
+    {
+        if(bCannotAfford)
+        {
+            ErrorMessageContainer.SetWarningMessage(ErrorMessageContainer.CannotAffordString);            
+        }
+        else
+        {
+            if(bCannotCarry)
+            {
+                ErrorMessageContainer.SetWarningMessage(ErrorMessageContainer.CannotCarryString);                
+            }
+            else
+            {
+                ErrorMessageContainer.SetWarningMessage("");
+            }
+        }
+    }
 }
 
 function Callback_BuyOrSellItem()
@@ -737,6 +771,8 @@ function Callback_PerkChanged(int PerkIndex)
         if(MyKFPC.CanUpdatePerkInfo())
         {
             MyKFPC.SetHaveUpdatePerk(true);
+            MyKFPC.GetPurchaseHelper().Initialize();
+            RefreshItemComponents();
         }
         Manager.CachedProfile.SetProfileSettingValueInt(105, PerkIndex);
     }

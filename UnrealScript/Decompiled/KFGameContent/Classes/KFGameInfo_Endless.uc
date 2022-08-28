@@ -99,6 +99,8 @@ function byte GetWaveStartMessage()
     return super.GetWaveStartMessage();
 }
 
+function PlayWaveStartDialog();
+
 function bool TrySetNextWaveSpecial()
 {
     local float OutbreakPct, SpecialWavePct;
@@ -644,7 +646,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
 
 defaultproperties
 {
-    SpecialWaveTypes(0)=128
+    SpecialWaveTypes(0)=132
     SpecialWaveTypes(1)=1
     SpecialWaveTypes(2)=0
     SpecialWaveTypes(3)=0
@@ -652,7 +654,7 @@ defaultproperties
     SpecialWaveTypes(5)=0
     SpecialWaveTypes(6)=0
     SpecialWaveTypes(7)=0
-    SpecialWaveTypes(8)=135
+    SpecialWaveTypes(8)=139
     SpecialWaveTypes(9)=1
     SpecialWaveTypes(10)=0
     SpecialWaveStart=6

@@ -69,6 +69,16 @@ simulated event Tick(float DeltaTime)
 	Super.Tick(DeltaTime);
 }
 
+simulated function FirstPersonFireEffects(Weapon W, vector HitLocation)
+{
+	super.FirstPersonFireEffects(W, HitLocation);
+
+	if (ChargingPSC != none)
+	{
+		ChargingPSC.DeactivateSystem();
+	}
+}
+
 simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
 	bIsCharging = false;
@@ -82,22 +92,6 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byt
 	}
 
 	return Super.ThirdPersonFireEffects(HitLocation, P, ThirdPersonAnimRateByte);
-}
-
-simulated function StopThirdPersonFireEffects()
-{
-	if (MuzzleFlash != none)
-	{
-		SetTimer(MuzzleFlash.MuzzleFlash.Duration, false, 'Timer_StopMuzzleFlash');
-	}
-}
-
-simulated function Timer_StopMuzzleFlash()
-{
-	if (MuzzleFlash != None)
-	{
-		MuzzleFlash.StopMuzzleFlash();
-	}
 }
 
 simulated function CauseMuzzleFlash(byte FiringMode)

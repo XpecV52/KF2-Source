@@ -20,6 +20,7 @@ var() bool bSkipLineCheckForPawns;
 /** if true, damage will ignore fall off */
 var() bool bDoFullDamage;
 var bool bWasFadedOut;
+var float FadeOutTime;
 var AkEvent LoopStartEvent;
 var AkEvent LoopStopEvent;
 var() ParticleSystem LoopingParticleEffect;
@@ -43,6 +44,7 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional Vector D
         {
             StartLoopingParticleEffect();
         }
+        SetTimer(float(Max(int(maxTime - FadeOutTime), int(0.1))), false, 'FadeOut');
     }
 }
 
@@ -51,7 +53,6 @@ simulated function StartLoopingParticleEffect()
     LoopingPSC = new (self) Class'ParticleSystemComponent';
     LoopingPSC.SetTemplate(LoopingParticleEffect);
     AttachComponent(LoopingPSC);
-    SetTimer(float(Max(int(maxTime - 0.5), int(0.1))), false, 'StopLoopingParticleEffect', self);
 }
 
 simulated function FadeOut(optional bool bDestroyImmediately)
@@ -68,7 +69,7 @@ simulated function FadeOut(optional bool bDestroyImmediately)
     StopLoopingParticleEffect();
     if(!bDeleteMe && !bPendingDelete)
     {
-        SetTimer(2, false, 'Destroy');
+        SetTimer(FadeOutTime, false, 'Destroy');
     }
 }
 
@@ -160,5 +161,6 @@ defaultproperties
     interval=0.25
     maxTime=2
     bOnlyDamagePawns=true
+    FadeOutTime=0.5
     bExplodeMoreThanOnce=true
 }

@@ -588,7 +588,7 @@ Begin Object Class=SeqAct_SetParticleSysParam Name=SeqAct_SetParticleSysParam_2
    ObjectArchetype=SeqAct_SetParticleSysParam'Engine.Default__SeqAct_SetParticleSysParam'
 End Object
 
-Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_6
+Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_14
    ConsoleEventName="rarityUncommon"
    MaxWidth=225
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkSetSwitch'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkSetSwitch_0')),DrawY=-2972,OverrideDelta=11)
@@ -599,7 +599,7 @@ Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_6
    ObjPosY=-3038
    DrawWidth=132
    DrawHeight=128
-   Name="SeqEvent_Console_6"
+   Name="SeqEvent_Console_14"
    ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
 End Object
 
@@ -869,7 +869,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_91
    VarName="Crate_Skel"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2832
+   ObjPosX=-2864
    ObjPosY=-4008
    DrawWidth=32
    DrawHeight=32
@@ -1434,8 +1434,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
    VarName="Trader_Skel"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2662
-   ObjPosY=-3778
+   ObjPosX=-2640
+   ObjPosY=-3920
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_55"
@@ -1720,7 +1720,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_93
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2544
-   ObjPosY=-3832
+   ObjPosY=-3920
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_93"
@@ -2266,7 +2266,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_75
    VarName="Crate_Cam"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2712
+   ObjPosX=-2752
    ObjPosY=-4008
    DrawWidth=32
    DrawHeight=32
@@ -2995,8 +2995,8 @@ Begin Object Class=SeqVar_Float Name=SeqVar_Float_1
    VarName="timeoutdelay"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2616
-   ObjPosY=-4032
+   ObjPosX=-2640
+   ObjPosY=-4008
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Float_1"
@@ -3274,7 +3274,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
-Begin Object Class=SeqVar_Named Name=SeqVar_Named_5
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_3
    ExpectedType=Class'Engine.SeqVar_Float'
    FindVarName="ForcedStartPosition"
    ObjInstanceVersion=1
@@ -3284,7 +3284,7 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_5
    ObjColor=(B=255,G=0,R=0,A=255)
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Named_5"
+   Name="SeqVar_Named_3"
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
@@ -3292,7 +3292,7 @@ Begin Object Class=SeqAct_SetFloat Name=SeqAct_SetFloat_1
    InputLinks(0)=(DrawY=-6798,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_23')),DrawY=-6798,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Float'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_8'),DrawX=-7590,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_5'),DrawX=-7534,OverrideDelta=68)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_3'),DrawX=-7534,OverrideDelta=68)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7624
@@ -3599,7 +3599,7 @@ Begin Object Class=SeqAct_SetFloat Name=SeqAct_SetFloat_2
    InputLinks(0)=(DrawY=-8765,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.EavulateForTier_0')),DrawY=-8765,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Float'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Float_0'),DrawX=-8279,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_7'),DrawX=-8223,OverrideDelta=68)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_13'),DrawX=-8223,OverrideDelta=68)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8313
@@ -3610,7 +3610,7 @@ Begin Object Class=SeqAct_SetFloat Name=SeqAct_SetFloat_2
    ObjectArchetype=SeqAct_SetFloat'Engine.Default__SeqAct_SetFloat'
 End Object
 
-Begin Object Class=SeqVar_Named Name=SeqVar_Named_7
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_13
    ExpectedType=Class'Engine.SeqVar_Float'
    FindVarName="ForcedStartPosition"
    ObjInstanceVersion=1
@@ -3620,7 +3620,7 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_7
    ObjColor=(B=255,G=0,R=0,A=255)
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Named_7"
+   Name="SeqVar_Named_13"
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
@@ -5496,8 +5496,9 @@ Begin Object Class=Sequence Name=EavulateForTier_0
    SequenceObjects(20)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.EavulateForTier_0.SeqAct_FinishSequence_9'
    SequenceObjects(21)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.EavulateForTier_0.SeqAct_FinishSequence_8'
    SequenceObjects(22)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.EavulateForTier_0.SeqAct_FinishSequence_7'
-   DefaultViewX=6041
-   DefaultViewY=6984
+   DefaultViewX=3400
+   DefaultViewY=2649
+   DefaultViewZoom=0.400000
    InputLinks(0)=(LinkDesc="In",LinkedOp=SeqEvent_SequenceActivated'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.EavulateForTier_0.SeqEvent_SequenceActivated_1',DrawY=-8818,OverrideDelta=71)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_18')),LinkDesc="Tier0",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.EavulateForTier_0.SeqAct_FinishSequence_12',DrawY=-8873,OverrideDelta=16)
    OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1')),LinkDesc="Tier2",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.EavulateForTier_0.SeqAct_FinishSequence_11',DrawY=-8829,OverrideDelta=60)
@@ -6579,17 +6580,17 @@ Begin Object Class=KFSeqEvent_DoshVault Name=KFSeqEvent_DoshVault_4
 End Object
 
 Begin Object Class=Sequence Name=crates
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_9
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_6
       ExpectedType=Class'Engine.SeqVar_Object'
       FindVarName="Crate_Skel"
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
-      ObjPosX=384
-      ObjPosY=256
+      ObjPosX=392
+      ObjPosY=1712
       ObjColor=(B=255,G=0,R=255,A=255)
       DrawWidth=32
       DrawHeight=32
-      Name="SeqVar_Named_9"
+      Name="SeqVar_Named_6"
       ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
    Begin Object Class=SeqVar_Named Name=SeqVar_Named_5
@@ -6598,7 +6599,7 @@ Begin Object Class=Sequence Name=crates
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=400
-      ObjPosY=1072
+      ObjPosY=1280
       ObjColor=(B=255,G=0,R=255,A=255)
       DrawWidth=32
       DrawHeight=32
@@ -6644,17 +6645,30 @@ Begin Object Class=Sequence Name=crates
       Name="SeqVar_Named_4"
       ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_3
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_2
       ExpectedType=Class'Engine.SeqVar_Object'
       FindVarName="Crate_Skel"
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
-      ObjPosX=392
-      ObjPosY=1512
+      ObjPosX=400
+      ObjPosY=1072
       ObjColor=(B=255,G=0,R=255,A=255)
       DrawWidth=32
       DrawHeight=32
-      Name="SeqVar_Named_3"
+      Name="SeqVar_Named_2"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+   End Object
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_16
+      ExpectedType=Class'Engine.SeqVar_Object'
+      FindVarName="Crate_Skel"
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
+      ObjPosX=384
+      ObjPosY=256
+      ObjColor=(B=255,G=0,R=255,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_16"
       ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
    Begin Object Class=SeqVar_Named Name=SeqVar_Named_10
@@ -6689,34 +6703,51 @@ Begin Object Class=Sequence Name=crates
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=416
-      ObjPosY=1680
+      ObjPosY=1880
       ObjColor=(B=255,G=0,R=255,A=255)
       DrawWidth=32
       DrawHeight=32
       Name="SeqVar_Named_0"
       ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqVar_External Name=SeqVar_External_0
+   Begin Object Class=SeqVar_External Name=SeqVar_External_2
       ExpectedType=Class'Engine.SeqVar_Bool'
       VariableLabel="Bool"
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
-      ObjPosX=1384
-      ObjPosY=1992
+      ObjPosX=1456
+      ObjPosY=2416
       ObjColor=(B=0,G=0,R=255,A=255)
       DrawWidth=32
       DrawHeight=32
-      Name="SeqVar_External_0"
+      Name="SeqVar_External_2"
       ObjectArchetype=SeqVar_External'Engine.Default__SeqVar_External'
+   End Object
+   Begin Object Class=SequenceFrame Name=SequenceFrame_5
+      SizeX=728
+      SizeY=252
+      BorderWidth=3
+      bDrawBox=True
+      BorderColor=(B=106,G=255,R=0,A=255)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
+      ObjPosX=-152
+      ObjPosY=1144
+      ObjComment="NEW"
+      DrawWidth=728
+      DrawHeight=252
+      Name="SequenceFrame_5"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
    Begin Object Class=SequenceFrame Name=SequenceFrame_4
       SizeX=601
       SizeY=219
+      BorderWidth=3
       bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=-32
-      ObjPosY=-640
+      ObjPosY=-649
       ObjComment="Dosh Vault Debug Crate"
       DrawWidth=601
       DrawHeight=219
@@ -6724,27 +6755,29 @@ Begin Object Class=Sequence Name=crates
       ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
    Begin Object Class=SequenceFrame Name=SequenceFrame_3
-      SizeX=612
-      SizeY=1042
+      SizeX=638
+      SizeY=1316
+      BorderWidth=3
       bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=-32
-      ObjPosY=128
+      ObjPosY=119
       ObjComment="PSN_Cosmetic_Crate"
-      DrawWidth=612
-      DrawHeight=1042
+      DrawWidth=638
+      DrawHeight=1316
       Name="SequenceFrame_3"
       ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
    Begin Object Class=SequenceFrame Name=SequenceFrame_2
       SizeX=590
       SizeY=428
+      BorderWidth=3
       bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
-      ObjPosX=-16
-      ObjPosY=1352
+      ObjPosX=-8
+      ObjPosY=1552
       ObjComment="Emote Crates"
       DrawWidth=590
       DrawHeight=428
@@ -6754,11 +6787,12 @@ Begin Object Class=Sequence Name=crates
    Begin Object Class=SequenceFrame Name=SequenceFrame_1
       SizeX=635
       SizeY=255
+      BorderWidth=3
       bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=-32
-      ObjPosY=-376
+      ObjPosY=-385
       ObjComment="Vault Crate"
       DrawWidth=635
       DrawHeight=255
@@ -6781,15 +6815,15 @@ Begin Object Class=Sequence Name=crates
       ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
    End Object
    Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_70
-      ConsoleEventName="open_psncrate_cs6"
-      EventDesc="psncrate_cs3"
+      ConsoleEventName="open_psncrate_cs7"
+      EventDesc="psncrate_cs7"
       MaxWidth=248
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_34')),DrawY=1026,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_34')),DrawY=1234,OverrideDelta=11)
       VariableLinks(0)=(DrawX=132,OverrideDelta=92)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=8
-      ObjPosY=960
+      ObjPosY=1168
       DrawWidth=144
       DrawHeight=128
       Name="SeqEvent_Console_70"
@@ -6821,6 +6855,21 @@ Begin Object Class=Sequence Name=crates
       DrawWidth=144
       DrawHeight=128
       Name="SeqEvent_Console_22"
+      ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+   End Object
+   Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_2
+      ConsoleEventName="open_psncrate_cs6"
+      EventDesc="psncrate_cs3"
+      MaxWidth=248
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_5')),DrawY=1026,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=132,OverrideDelta=92)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
+      ObjPosX=8
+      ObjPosY=960
+      DrawWidth=144
+      DrawHeight=128
+      Name="SeqEvent_Console_2"
       ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
    End Object
    Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_115
@@ -6871,11 +6920,11 @@ Begin Object Class=Sequence Name=crates
       ConsoleEventName="open_emote1"
       EventDesc="first emote crate"
       MaxWidth=208
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_4')),DrawY=1442,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_4')),DrawY=1642,OverrideDelta=11)
       VariableLinks(0)=(DrawX=104,OverrideDelta=72)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
-      ObjPosY=1376
+      ObjPosY=1576
       DrawWidth=124
       DrawHeight=128
       Name="SeqEvent_Console_1"
@@ -6885,11 +6934,11 @@ Begin Object Class=Sequence Name=crates
       ConsoleEventName="open_emote2"
       EventDesc="first emote crate"
       MaxWidth=208
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_0')),DrawY=1626,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_0')),DrawY=1826,OverrideDelta=11)
       VariableLinks(0)=(DrawX=104,OverrideDelta=72)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
-      ObjPosY=1560
+      ObjPosY=1760
       DrawWidth=124
       DrawHeight=128
       Name="SeqEvent_Console_0"
@@ -6988,7 +7037,7 @@ Begin Object Class=Sequence Name=crates
       MaterialIndex=1
       InputLinks(0)=(DrawY=210,OverrideDelta=11)
       OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),DrawY=210,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_9'),DrawX=485,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_16'),DrawX=485,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=440
@@ -7002,7 +7051,7 @@ Begin Object Class=Sequence Name=crates
       NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Crate_PSN_M'
       InputLinks(0)=(DrawY=210,OverrideDelta=11)
       OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_71')),DrawY=210,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_9'),DrawX=341,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_16'),DrawX=341,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=296
@@ -7012,15 +7061,30 @@ Begin Object Class=Sequence Name=crates
       Name="SeqAct_SetMaterial_70"
       ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
    End Object
+   Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_5
+      NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_DAR_M'
+      InputLinks(0)=(DrawY=1018,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_1')),DrawY=1018,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_2'),DrawX=365,OverrideDelta=23)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
+      ObjPosX=320
+      ObjPosY=984
+      ObjComment="DAR Cosmetic Crate"
+      DrawWidth=90
+      DrawHeight=61
+      Name="SeqAct_SetMaterial_5"
+      ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+   End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_4
       NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Emote_M'
-      InputLinks(0)=(DrawY=1434,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_3')),DrawY=1434,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_3'),DrawX=357,OverrideDelta=23)
+      InputLinks(0)=(DrawY=1634,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_3')),DrawY=1634,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_6'),DrawX=357,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=312
-      ObjPosY=1400
+      ObjPosY=1600
       DrawWidth=90
       DrawHeight=61
       Name="SeqAct_SetMaterial_4"
@@ -7058,28 +7122,28 @@ Begin Object Class=Sequence Name=crates
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_35
       NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
       MaterialIndex=1
-      InputLinks(0)=(DrawY=1018,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),DrawY=1018,OverrideDelta=11)
+      InputLinks(0)=(DrawY=1226,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),DrawY=1226,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_5'),DrawX=485,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=440
-      ObjPosY=984
+      ObjPosY=1192
       DrawWidth=90
       DrawHeight=61
       Name="SeqAct_SetMaterial_35"
       ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
    End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_34
-      NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_DAR_M'
-      InputLinks(0)=(DrawY=1018,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_35')),DrawY=1018,OverrideDelta=11)
+      NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Loco_M'
+      InputLinks(0)=(DrawY=1226,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_35')),DrawY=1226,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_5'),DrawX=365,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=320
-      ObjPosY=984
-      ObjComment="DAR Cosmetic Crate"
+      ObjPosY=1192
+      ObjComment="Loco Cosmetic Crate"
       DrawWidth=90
       DrawHeight=61
       Name="SeqAct_SetMaterial_34"
@@ -7117,13 +7181,13 @@ Begin Object Class=Sequence Name=crates
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_3
       NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Key_Emote_M'
       MaterialIndex=1
-      InputLinks(0)=(DrawY=1434,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),DrawY=1434,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_3'),DrawX=477,OverrideDelta=23)
+      InputLinks(0)=(DrawY=1634,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),DrawY=1634,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_6'),DrawX=477,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=432
-      ObjPosY=1400
+      ObjPosY=1600
       DrawWidth=90
       DrawHeight=61
       Name="SeqAct_SetMaterial_3"
@@ -7132,27 +7196,42 @@ Begin Object Class=Sequence Name=crates
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_2
       NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Key_Emote_02_M'
       MaterialIndex=1
-      InputLinks(0)=(DrawY=1618,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),DrawY=1618,OverrideDelta=11)
+      InputLinks(0)=(DrawY=1818,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),DrawY=1818,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_0'),DrawX=477,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=432
-      ObjPosY=1584
+      ObjPosY=1784
       DrawWidth=90
       DrawHeight=61
       Name="SeqAct_SetMaterial_2"
       ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
    End Object
+   Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_1
+      NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
+      MaterialIndex=1
+      InputLinks(0)=(DrawY=1018,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),DrawY=1018,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_2'),DrawX=485,OverrideDelta=23)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
+      ObjPosX=440
+      ObjPosY=984
+      DrawWidth=90
+      DrawHeight=61
+      Name="SeqAct_SetMaterial_1"
+      ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+   End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_0
       NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Emote_02_M'
-      InputLinks(0)=(DrawY=1618,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_2')),DrawY=1618,OverrideDelta=11)
+      InputLinks(0)=(DrawY=1818,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_2')),DrawY=1818,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_0'),DrawX=357,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
       ObjPosX=312
-      ObjPosY=1584
+      ObjPosY=1784
       DrawWidth=90
       DrawHeight=61
       Name="SeqAct_SetMaterial_0"
@@ -7183,17 +7262,17 @@ Begin Object Class=Sequence Name=crates
       ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
    End Object
    Begin Object Class=Sequence Name=PSN_WeaponSkinCrate
-      Begin Object Class=SeqVar_Named Name=SeqVar_Named_9
+      Begin Object Class=SeqVar_Named Name=SeqVar_Named_8
          ExpectedType=Class'Engine.SeqVar_Object'
          FindVarName="Crate_Skel"
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5376
-         ObjPosY=1376
+         ObjPosX=-5392
+         ObjPosY=104
          ObjColor=(B=255,G=0,R=255,A=255)
          DrawWidth=32
          DrawHeight=32
-         Name="SeqVar_Named_9"
+         Name="SeqVar_Named_8"
          ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
       End Object
       Begin Object Class=SeqVar_Named Name=SeqVar_Named_7
@@ -7202,7 +7281,7 @@ Begin Object Class=Sequence Name=crates
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
          ObjPosX=-5368
-         ObjPosY=1168
+         ObjPosY=1656
          ObjColor=(B=255,G=0,R=255,A=255)
          DrawWidth=32
          DrawHeight=32
@@ -7261,19 +7340,6 @@ Begin Object Class=Sequence Name=crates
          Name="SeqVar_Named_39"
          ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
       End Object
-      Begin Object Class=SeqVar_Named Name=SeqVar_Named_3
-         ExpectedType=Class'Engine.SeqVar_Object'
-         FindVarName="Crate_Skel"
-         ObjInstanceVersion=1
-         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5392
-         ObjPosY=104
-         ObjColor=(B=255,G=0,R=255,A=255)
-         DrawWidth=32
-         DrawHeight=32
-         Name="SeqVar_Named_3"
-         ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
-      End Object
       Begin Object Class=SeqVar_Named Name=SeqVar_Named_18
          ExpectedType=Class'Engine.SeqVar_Object'
          FindVarName="Crate_Skel"
@@ -7285,6 +7351,19 @@ Begin Object Class=Sequence Name=crates
          DrawWidth=32
          DrawHeight=32
          Name="SeqVar_Named_18"
+         ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      End Object
+      Begin Object Class=SeqVar_Named Name=SeqVar_Named_15
+         ExpectedType=Class'Engine.SeqVar_Object'
+         FindVarName="Crate_Skel"
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5376
+         ObjPosY=1376
+         ObjColor=(B=255,G=0,R=255,A=255)
+         DrawWidth=32
+         DrawHeight=32
+         Name="SeqVar_Named_15"
          ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
       End Object
       Begin Object Class=SeqVar_Named Name=SeqVar_Named_14
@@ -7313,34 +7392,34 @@ Begin Object Class=Sequence Name=crates
          Name="SeqVar_Named_13"
          ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
       End Object
-      Begin Object Class=SequenceFrame Name=SequenceFrame_7
-         SizeX=987
-         SizeY=843
-         bDrawBox=True
+      Begin Object Class=SeqVar_Named Name=SeqVar_Named_10
+         ExpectedType=Class'Engine.SeqVar_Object'
+         FindVarName="Crate_Skel"
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5808
-         ObjPosY=624
+         ObjPosX=-5368
+         ObjPosY=1168
+         ObjColor=(B=255,G=0,R=255,A=255)
+         DrawWidth=32
+         DrawHeight=32
+         Name="SeqVar_Named_10"
+         ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      End Object
+      Begin Object Class=SequenceFrame Name=SequenceFrame_7
+         SizeX=975
+         SizeY=236
+         BorderWidth=3
+         bDrawBox=True
+         BorderColor=(B=106,G=255,R=0,A=255)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5816
+         ObjPosY=1528
          ObjComment="NEW"
-         DrawWidth=987
-         DrawHeight=843
+         DrawWidth=975
+         DrawHeight=236
          Name="SequenceFrame_7"
          ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-      End Object
-      Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_81
-         ConsoleEventName="open_PSNcrate_WS10"
-         EventDesc="psncrate_ws5"
-         MaxWidth=266
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_49')),DrawY=1338,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=-5651,OverrideDelta=101)
-         ObjInstanceVersion=1
-         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5784
-         ObjPosY=1272
-         DrawWidth=153
-         DrawHeight=128
-         Name="SeqEvent_Console_81"
-         ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
       End Object
       Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_77
          ConsoleEventName="open_psncrate_ws3"
@@ -7388,16 +7467,16 @@ Begin Object Class=Sequence Name=crates
          ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
       End Object
       Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_6
-         ConsoleEventName="open_PSNcrate_WS9"
+         ConsoleEventName="open_PSNcrate_WS11"
          EventDesc=
-         MaxWidth=258
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_12')),DrawY=1130,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=-5647,OverrideDelta=97)
+         MaxWidth=266
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_12')),DrawY=1618,OverrideDelta=11)
+         VariableLinks(0)=(DrawX=-5643,OverrideDelta=101)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
          ObjPosX=-5776
-         ObjPosY=1064
-         DrawWidth=149
+         ObjPosY=1552
+         DrawWidth=153
          DrawHeight=128
          Name="SeqEvent_Console_6"
          ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
@@ -7415,6 +7494,21 @@ Begin Object Class=Sequence Name=crates
          DrawWidth=145
          DrawHeight=128
          Name="SeqEvent_Console_5"
+         ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+      End Object
+      Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_4
+         ConsoleEventName="open_PSNcrate_WS9"
+         EventDesc=
+         MaxWidth=258
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_6')),DrawY=1130,OverrideDelta=11)
+         VariableLinks(0)=(DrawX=-5647,OverrideDelta=97)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5776
+         ObjPosY=1064
+         DrawWidth=149
+         DrawHeight=128
+         Name="SeqEvent_Console_4"
          ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
       End Object
       Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_3
@@ -7459,6 +7553,21 @@ Begin Object Class=Sequence Name=crates
          DrawWidth=145
          DrawHeight=128
          Name="SeqEvent_Console_2"
+         ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+      End Object
+      Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_15
+         ConsoleEventName="open_PSNcrate_WS10"
+         EventDesc="psncrate_ws5"
+         MaxWidth=266
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_13')),DrawY=1338,OverrideDelta=11)
+         VariableLinks(0)=(DrawX=-5651,OverrideDelta=101)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5784
+         ObjPosY=1272
+         DrawWidth=153
+         DrawHeight=128
+         Name="SeqEvent_Console_15"
          ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
       End Object
       Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_113
@@ -7595,6 +7704,21 @@ Begin Object Class=Sequence Name=crates
          Name="SeqAct_SetMaterial_60"
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
+      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_6
+         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Bluefire_M'
+         InputLinks(0)=(DrawY=1114,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_3')),DrawY=1114,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_10'),DrawX=-5411,OverrideDelta=23)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5456
+         ObjPosY=1080
+         ObjComment="HORZINE SUPPLY WEAPON SKIN CRATE SERIES 9"
+         DrawWidth=90
+         DrawHeight=61
+         Name="SeqAct_SetMaterial_6"
+         ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+      End Object
       Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_59
          NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Spitfire_M'
          InputLinks(0)=(DrawY=-158,OverrideDelta=11)
@@ -7613,7 +7737,7 @@ Begin Object Class=Sequence Name=crates
          NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Neon_M'
          InputLinks(0)=(DrawY=50,OverrideDelta=11)
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_16')),DrawY=50,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_3'),DrawX=-5435,OverrideDelta=23)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_8'),DrawX=-5435,OverrideDelta=23)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
          ObjPosX=-5480
@@ -7621,36 +7745,6 @@ Begin Object Class=Sequence Name=crates
          DrawWidth=90
          DrawHeight=61
          Name="SeqAct_SetMaterial_5"
-         ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
-      End Object
-      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_49
-         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Tactical02_M'
-         InputLinks(0)=(DrawY=1322,OverrideDelta=11)
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_48')),DrawY=1322,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_9'),DrawX=-5419,OverrideDelta=23)
-         ObjInstanceVersion=1
-         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5464
-         ObjPosY=1288
-         ObjComment="HORZINE SUPPLY WEAPON SKIN CRATE SERIES 10"
-         DrawWidth=90
-         DrawHeight=61
-         Name="SeqAct_SetMaterial_49"
-         ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
-      End Object
-      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_48
-         NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
-         MaterialIndex=1
-         InputLinks(0)=(DrawY=1322,OverrideDelta=11)
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_20')),DrawY=1322,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_9'),DrawX=-5299,OverrideDelta=23)
-         ObjInstanceVersion=1
-         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5344
-         ObjPosY=1288
-         DrawWidth=90
-         DrawHeight=61
-         Name="SeqAct_SetMaterial_48"
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
       Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_46
@@ -7711,12 +7805,27 @@ Begin Object Class=Sequence Name=crates
          Name="SeqAct_SetMaterial_38"
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
+      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_3
+         NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
+         MaterialIndex=1
+         InputLinks(0)=(DrawY=1114,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_21')),DrawY=1114,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_10'),DrawX=-5291,OverrideDelta=23)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5336
+         ObjPosY=1080
+         DrawWidth=90
+         DrawHeight=61
+         Name="SeqAct_SetMaterial_3"
+         ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+      End Object
       Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_16
          NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
          MaterialIndex=1
          InputLinks(0)=(DrawY=50,OverrideDelta=11)
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_0')),DrawY=50,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_3'),DrawX=-5315,OverrideDelta=23)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_8'),DrawX=-5315,OverrideDelta=23)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
          ObjPosX=-5360
@@ -7726,16 +7835,46 @@ Begin Object Class=Sequence Name=crates
          Name="SeqAct_SetMaterial_16"
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
+      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_14
+         NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
+         MaterialIndex=1
+         InputLinks(0)=(DrawY=1322,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_23')),DrawY=1322,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_15'),DrawX=-5299,OverrideDelta=23)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5344
+         ObjPosY=1288
+         DrawWidth=90
+         DrawHeight=61
+         Name="SeqAct_SetMaterial_14"
+         ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+      End Object
+      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_13
+         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Tactical02_M'
+         InputLinks(0)=(DrawY=1322,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_14')),DrawY=1322,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_15'),DrawX=-5419,OverrideDelta=23)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5464
+         ObjPosY=1288
+         ObjComment="HORZINE SUPPLY WEAPON SKIN CRATE SERIES 10"
+         DrawWidth=90
+         DrawHeight=61
+         Name="SeqAct_SetMaterial_13"
+         ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+      End Object
       Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_12
-         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Bluefire_M'
-         InputLinks(0)=(DrawY=1114,OverrideDelta=11)
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_11')),DrawY=1114,OverrideDelta=11)
+         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Neon_MK3_M'
+         InputLinks(0)=(DrawY=1602,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_11')),DrawY=1602,OverrideDelta=11)
          VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_7'),DrawX=-5411,OverrideDelta=23)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
          ObjPosX=-5456
-         ObjPosY=1080
-         ObjComment="HORZINE SUPPLY WEAPON SKIN CRATE SERIES 9"
+         ObjPosY=1568
+         ObjComment="HORZINE SUPPLY WEAPON SKIN CRATE SERIES 11"
          DrawWidth=90
          DrawHeight=61
          Name="SeqAct_SetMaterial_12"
@@ -7744,13 +7883,13 @@ Begin Object Class=Sequence Name=crates
       Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_11
          NewMaterial=MaterialInstanceConstant'ECON_MAT_PSN.HorzineSupply1_Key_PSN_M'
          MaterialIndex=1
-         InputLinks(0)=(DrawY=1114,OverrideDelta=11)
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_4')),DrawY=1114,OverrideDelta=11)
+         InputLinks(0)=(DrawY=1602,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_4')),DrawY=1602,OverrideDelta=11)
          VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_7'),DrawX=-5291,OverrideDelta=23)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
          ObjPosX=-5336
-         ObjPosY=1080
+         ObjPosY=1568
          DrawWidth=90
          DrawHeight=61
          Name="SeqAct_SetMaterial_11"
@@ -7772,6 +7911,54 @@ Begin Object Class=Sequence Name=crates
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_4
+         OutputLabel="WS11"
+         InputLinks(0)=(DrawY=1602,OverrideDelta=11)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5032
+         ObjPosY=1568
+         DrawWidth=170
+         DrawHeight=45
+         Name="SeqAct_FinishSequence_4"
+         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
+      End Object
+      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_3
+         OutputLabel="WS7"
+         InputLinks(0)=(DrawY=346,OverrideDelta=11)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5048
+         ObjPosY=312
+         DrawWidth=162
+         DrawHeight=45
+         Name="SeqAct_FinishSequence_3"
+         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
+      End Object
+      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_26
+         OutputLabel="WS8"
+         InputLinks(0)=(DrawY=1034,OverrideDelta=11)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5024
+         ObjPosY=1000
+         DrawWidth=162
+         DrawHeight=45
+         Name="SeqAct_FinishSequence_26"
+         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
+      End Object
+      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_23
+         OutputLabel="WS10"
+         InputLinks(0)=(DrawY=1202,OverrideDelta=11)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
+         ObjPosX=-5032
+         ObjPosY=1168
+         DrawWidth=170
+         DrawHeight=45
+         Name="SeqAct_FinishSequence_23"
+         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
+      End Object
+      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_21
          OutputLabel="WS9"
          InputLinks(0)=(DrawY=1114,OverrideDelta=11)
          ObjInstanceVersion=1
@@ -7780,43 +7967,7 @@ Begin Object Class=Sequence Name=crates
          ObjPosY=1080
          DrawWidth=162
          DrawHeight=45
-         Name="SeqAct_FinishSequence_4"
-         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
-      End Object
-      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_3
-         OutputLabel="WS7"
-         InputLinks(0)=(DrawY=466,OverrideDelta=11)
-         ObjInstanceVersion=1
-         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5056
-         ObjPosY=432
-         DrawWidth=162
-         DrawHeight=45
-         Name="SeqAct_FinishSequence_3"
-         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
-      End Object
-      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_26
-         OutputLabel="WS8"
-         InputLinks(0)=(DrawY=906,OverrideDelta=11)
-         ObjInstanceVersion=1
-         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5024
-         ObjPosY=872
-         DrawWidth=162
-         DrawHeight=45
-         Name="SeqAct_FinishSequence_26"
-         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
-      End Object
-      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_20
-         OutputLabel="WS10"
-         InputLinks(0)=(DrawY=1322,OverrideDelta=11)
-         ObjInstanceVersion=1
-         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5040
-         ObjPosY=1288
-         DrawWidth=170
-         DrawHeight=45
-         Name="SeqAct_FinishSequence_20"
+         Name="SeqAct_FinishSequence_21"
          ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_2
@@ -7881,11 +8032,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_0
          OutputLabel="WS5"
-         InputLinks(0)=(DrawY=50,OverrideDelta=11)
+         InputLinks(0)=(DrawY=178,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
-         ObjPosX=-5056
-         ObjPosY=16
+         ObjPosX=-5048
+         ObjPosY=144
          DrawWidth=162
          DrawHeight=45
          Name="SeqAct_FinishSequence_0"
@@ -7906,7 +8057,7 @@ Begin Object Class=Sequence Name=crates
       SequenceObjects(12)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_5'
       SequenceObjects(13)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqEvent_Console_2'
       SequenceObjects(14)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_16'
-      SequenceObjects(15)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_3'
+      SequenceObjects(15)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_8'
       SequenceObjects(16)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_13'
       SequenceObjects(17)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_14'
       SequenceObjects(18)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_18'
@@ -7927,41 +8078,47 @@ Begin Object Class=Sequence Name=crates
       SequenceObjects(33)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_6'
       SequenceObjects(34)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_3'
       SequenceObjects(35)=SequenceFrame'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SequenceFrame_7'
-      SequenceObjects(36)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_4'
-      SequenceObjects(37)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_7'
-      SequenceObjects(38)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_11'
-      SequenceObjects(39)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqEvent_Console_6'
-      SequenceObjects(40)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_12'
+      SequenceObjects(36)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_21'
+      SequenceObjects(37)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_10'
+      SequenceObjects(38)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_3'
+      SequenceObjects(39)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqEvent_Console_4'
+      SequenceObjects(40)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_6'
       SequenceObjects(41)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_91'
       SequenceObjects(42)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqEvent_Console_25'
       SequenceObjects(43)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_90'
       SequenceObjects(44)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_43'
       SequenceObjects(45)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_26'
-      SequenceObjects(46)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_49'
-      SequenceObjects(47)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqEvent_Console_81'
-      SequenceObjects(48)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_48'
-      SequenceObjects(49)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_9'
-      SequenceObjects(50)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_20'
-      DefaultViewX=4620
-      DefaultViewY=-536
-      DefaultViewZoom=0.700000
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS1",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_16',DrawY=-473,OverrideDelta=16)
-      OutputLinks(1)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS2",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_17',DrawY=-450,OverrideDelta=39)
-      OutputLinks(2)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS3",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_18',DrawY=-427,OverrideDelta=62)
-      OutputLinks(3)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS4",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_19',DrawY=-404,OverrideDelta=85)
-      OutputLinks(4)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS5",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_0',DrawY=-381,OverrideDelta=108)
-      OutputLinks(5)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS6",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_2',DrawY=-358,OverrideDelta=131)
-      OutputLinks(6)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS7",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_3',DrawY=-335,OverrideDelta=154)
-      OutputLinks(7)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS9",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_4',DrawY=-312,OverrideDelta=177)
-      OutputLinks(8)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS8",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_26',DrawY=-289,OverrideDelta=200)
-      OutputLinks(9)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS10",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_20',DrawY=-266,OverrideDelta=223)
+      SequenceObjects(46)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_13'
+      SequenceObjects(47)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqEvent_Console_15'
+      SequenceObjects(48)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_14'
+      SequenceObjects(49)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_15'
+      SequenceObjects(50)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_23'
+      SequenceObjects(51)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_12'
+      SequenceObjects(52)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqEvent_Console_6'
+      SequenceObjects(53)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_SetMaterial_11'
+      SequenceObjects(54)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqVar_Named_7'
+      SequenceObjects(55)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_4'
+      DefaultViewX=1508
+      DefaultViewY=399
+      DefaultViewZoom=0.100000
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS1",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_16',DrawY=-1161,OverrideDelta=16)
+      OutputLinks(1)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS2",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_17',DrawY=-1138,OverrideDelta=39)
+      OutputLinks(2)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS3",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_18',DrawY=-1115,OverrideDelta=62)
+      OutputLinks(3)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS4",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_19',DrawY=-1092,OverrideDelta=85)
+      OutputLinks(4)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS5",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_0',DrawY=-1069,OverrideDelta=108)
+      OutputLinks(5)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS6",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_2',DrawY=-1046,OverrideDelta=131)
+      OutputLinks(6)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS7",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_3',DrawY=-1023,OverrideDelta=154)
+      OutputLinks(7)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS9",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_21',DrawY=-1000,OverrideDelta=177)
+      OutputLinks(8)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS8",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_26',DrawY=-977,OverrideDelta=200)
+      OutputLinks(9)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS10",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_23',DrawY=-954,OverrideDelta=223)
+      OutputLinks(10)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="WS11",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate.SeqAct_FinishSequence_4',DrawY=-931,OverrideDelta=246)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
-      ObjPosX=1208
-      ObjPosY=-512
+      ObjPosX=1168
+      ObjPosY=-1200
       ObjName="PSN_WeaponSkinCrate"
       DrawWidth=160
-      DrawHeight=261
+      DrawHeight=285
       Name="PSN_WeaponSkinCrate"
       ObjectArchetype=Sequence'Engine.Default__Sequence'
    End Object
@@ -8075,8 +8232,8 @@ Begin Object Class=Sequence Name=crates
          FindVarName="Crate_Skel"
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-4248
-         ObjPosY=4056
+         ObjPosX=-4240
+         ObjPosY=4272
          ObjColor=(B=255,G=0,R=255,A=255)
          DrawWidth=32
          DrawHeight=32
@@ -8174,6 +8331,19 @@ Begin Object Class=Sequence Name=crates
          Name="SeqVar_Named_20"
          ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
       End Object
+      Begin Object Class=SeqVar_Named Name=SeqVar_Named_1
+         ExpectedType=Class'Engine.SeqVar_Object'
+         FindVarName="Crate_Skel"
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
+         ObjPosX=-4248
+         ObjPosY=4056
+         ObjColor=(B=255,G=0,R=255,A=255)
+         DrawWidth=32
+         DrawHeight=32
+         Name="SeqVar_Named_1"
+         ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+      End Object
       Begin Object Class=SeqVar_Named Name=SeqVar_Named_0
          ExpectedType=Class'Engine.SeqVar_Object'
          FindVarName="Crate_Skel"
@@ -8187,18 +8357,20 @@ Begin Object Class=Sequence Name=crates
          Name="SeqVar_Named_0"
          ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
       End Object
-      Begin Object Class=SequenceFrame Name=SequenceFrame_8
-         SizeX=970
-         SizeY=220
+      Begin Object Class=SequenceFrame Name=SequenceFrame_0
+         SizeX=1020
+         SizeY=254
+         BorderWidth=3
          bDrawBox=True
+         BorderColor=(B=106,G=255,R=0,A=255)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-4632
-         ObjPosY=3928
+         ObjPosX=-4640
+         ObjPosY=4144
          ObjComment="NEW"
-         DrawWidth=970
-         DrawHeight=220
-         Name="SequenceFrame_8"
+         DrawWidth=1020
+         DrawHeight=254
+         Name="SequenceFrame_0"
          ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
       End Object
       Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_93
@@ -8392,7 +8564,7 @@ Begin Object Class=Sequence Name=crates
       Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_2
          ConsoleEventName="open_horzine3"
          MaxWidth=214
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_12')),DrawY=1218,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_8')),DrawY=1218,OverrideDelta=11)
          VariableLinks(0)=(DrawX=-4469,OverrideDelta=75)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
@@ -8419,16 +8591,16 @@ Begin Object Class=Sequence Name=crates
          ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
       End Object
       Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_109
-         ConsoleEventName="open_horzineDAR"
-         EventDesc="slaughterhouse crate"
-         MaxWidth=232
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_75')),DrawY=4042,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=-4492,OverrideDelta=84)
+         ConsoleEventName="open_HorzineLoco"
+         EventDesc="Loco Crate"
+         MaxWidth=238
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_75')),DrawY=4234,OverrideDelta=11)
+         VariableLinks(0)=(DrawX=-4505,OverrideDelta=63)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-4608
-         ObjPosY=3976
-         DrawWidth=136
+         ObjPosX=-4600
+         ObjPosY=4168
+         DrawWidth=139
          DrawHeight=128
          Name="SeqEvent_Console_109"
          ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
@@ -8446,6 +8618,21 @@ Begin Object Class=Sequence Name=crates
          DrawWidth=131
          DrawHeight=128
          Name="SeqEvent_Console_105"
+         ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+      End Object
+      Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
+         ConsoleEventName="open_horzineDAR"
+         EventDesc="DAR crate"
+         MaxWidth=232
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_0')),DrawY=4018,OverrideDelta=11)
+         VariableLinks(0)=(DrawX=-4492,OverrideDelta=84)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
+         ObjPosX=-4608
+         ObjPosY=3952
+         DrawWidth=136
+         DrawHeight=128
+         Name="SeqEvent_Console_0"
          ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
       End Object
       Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_93
@@ -8477,32 +8664,46 @@ Begin Object Class=Sequence Name=crates
          Name="SeqAct_SetMaterial_92"
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
-      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_75
-         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_DAR_M'
-         InputLinks(0)=(DrawY=3994,OverrideDelta=11)
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_74')),DrawY=3994,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_3'),DrawX=-4275,OverrideDelta=23)
+      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_8
+         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply3_Crate_M'
+         InputLinks(0)=(DrawY=1202,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_7')),DrawY=1202,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_25'),DrawX=-4139,OverrideDelta=23)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-4320
-         ObjPosY=3960
-         ObjComment="DAR Crate"
+         ObjPosX=-4184
+         ObjPosY=1168
+         DrawWidth=90
+         DrawHeight=61
+         Name="SeqAct_SetMaterial_8"
+         ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+      End Object
+      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_75
+         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_Loco_M'
+         InputLinks(0)=(DrawY=4210,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_74')),DrawY=4210,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_3'),DrawX=-4267,OverrideDelta=23)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
+         ObjPosX=-4312
+         ObjPosY=4176
+         ObjComment="Crate"
          DrawWidth=90
          DrawHeight=61
          Name="SeqAct_SetMaterial_75"
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
       Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_74
-         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Key_DAR_M'
+         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Key_Loco_M'
          MaterialIndex=1
-         InputLinks(0)=(DrawY=3994,OverrideDelta=11)
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_15')),DrawY=3994,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_3'),DrawX=-4139,OverrideDelta=23)
+         InputLinks(0)=(DrawY=4210,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_15')),DrawY=4210,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_3'),DrawX=-4131,OverrideDelta=23)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-4184
-         ObjPosY=3960
-         ObjComment="DAR Key"
+         ObjPosX=-4176
+         ObjPosY=4176
+         ObjComment="Key"
          DrawWidth=90
          DrawHeight=61
          Name="SeqAct_SetMaterial_74"
@@ -8889,7 +9090,7 @@ Begin Object Class=Sequence Name=crates
          NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply5_Key_M'
          MaterialIndex=1
          InputLinks(0)=(DrawY=1506,OverrideDelta=11)
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_4')),DrawY=1506,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_22')),DrawY=1506,OverrideDelta=11)
          VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_27'),DrawX=-4003,OverrideDelta=23)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
@@ -8929,27 +9130,44 @@ Begin Object Class=Sequence Name=crates
          Name="SeqAct_SetMaterial_13"
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
-      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_12
-         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply3_Crate_M'
-         InputLinks(0)=(DrawY=1202,OverrideDelta=11)
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_7')),DrawY=1202,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_25'),DrawX=-4139,OverrideDelta=23)
+      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_1
+         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Key_DAR_M'
+         MaterialIndex=1
+         InputLinks(0)=(DrawY=3994,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_16')),DrawY=3994,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_1'),DrawX=-4139,OverrideDelta=23)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
          ObjPosX=-4184
-         ObjPosY=1168
+         ObjPosY=3960
+         ObjComment="DAR Key"
          DrawWidth=90
          DrawHeight=61
-         Name="SeqAct_SetMaterial_12"
+         Name="SeqAct_SetMaterial_1"
+         ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+      End Object
+      Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_0
+         NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineSupply_Crate_DAR_M'
+         InputLinks(0)=(DrawY=3994,OverrideDelta=11)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_1')),DrawY=3994,OverrideDelta=11)
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_1'),DrawX=-4275,OverrideDelta=23)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
+         ObjPosX=-4320
+         ObjPosY=3960
+         ObjComment="DAR Crate"
+         DrawWidth=90
+         DrawHeight=61
+         Name="SeqAct_SetMaterial_0"
          ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_9
          OutputLabel="Horzine10"
-         InputLinks(0)=(DrawY=1850,OverrideDelta=11)
+         InputLinks(0)=(DrawY=2450,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1816
+         ObjPosX=-3824
+         ObjPosY=2416
          DrawWidth=196
          DrawHeight=45
          Name="SeqAct_FinishSequence_9"
@@ -8957,11 +9175,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_8
          OutputLabel="Horzine9"
-         InputLinks(0)=(DrawY=1794,OverrideDelta=11)
+         InputLinks(0)=(DrawY=2234,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1760
+         ObjPosX=-3824
+         ObjPosY=2200
          DrawWidth=188
          DrawHeight=45
          Name="SeqAct_FinishSequence_8"
@@ -8969,11 +9187,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_7
          OutputLabel="Horzine8"
-         InputLinks(0)=(DrawY=1738,OverrideDelta=11)
+         InputLinks(0)=(DrawY=2050,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1704
+         ObjPosX=-3832
+         ObjPosY=2016
          DrawWidth=188
          DrawHeight=45
          Name="SeqAct_FinishSequence_7"
@@ -8981,11 +9199,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_6
          OutputLabel="Horzine7"
-         InputLinks(0)=(DrawY=1682,OverrideDelta=11)
+         InputLinks(0)=(DrawY=1850,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1648
+         ObjPosX=-3832
+         ObjPosY=1816
          DrawWidth=188
          DrawHeight=45
          Name="SeqAct_FinishSequence_6"
@@ -8993,35 +9211,23 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_5
          OutputLabel="Horzine6"
-         InputLinks(0)=(DrawY=1634,OverrideDelta=11)
+         InputLinks(0)=(DrawY=1674,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1600
+         ObjPosX=-3824
+         ObjPosY=1640
          DrawWidth=188
          DrawHeight=45
          Name="SeqAct_FinishSequence_5"
          ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
       End Object
-      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_4
-         OutputLabel="Horzine5"
-         InputLinks(0)=(DrawY=1578,OverrideDelta=11)
-         ObjInstanceVersion=1
-         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1544
-         DrawWidth=188
-         DrawHeight=45
-         Name="SeqAct_FinishSequence_4"
-         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
-      End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_3
          OutputLabel="Horzine4"
-         InputLinks(0)=(DrawY=1522,OverrideDelta=11)
+         InputLinks(0)=(DrawY=1338,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1488
+         ObjPosX=-3840
+         ObjPosY=1304
          DrawWidth=188
          DrawHeight=45
          Name="SeqAct_FinishSequence_3"
@@ -9029,47 +9235,71 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_27
          OutputLabel="Horzine16"
-         InputLinks(0)=(DrawY=3770,OverrideDelta=11)
+         InputLinks(0)=(DrawY=3754,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3904
-         ObjPosY=3736
+         ObjPosX=-3872
+         ObjPosY=3720
          DrawWidth=196
          DrawHeight=45
          Name="SeqAct_FinishSequence_27"
          ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
       End Object
-      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_2
-         OutputLabel="Horzine3"
-         InputLinks(0)=(DrawY=1466,OverrideDelta=11)
+      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_22
+         OutputLabel="Horzine5"
+         InputLinks(0)=(DrawY=1482,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1432
+         ObjPosX=-3832
+         ObjPosY=1448
+         DrawWidth=188
+         DrawHeight=45
+         Name="SeqAct_FinishSequence_22"
+         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
+      End Object
+      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_2
+         OutputLabel="Horzine3"
+         InputLinks(0)=(DrawY=1202,OverrideDelta=11)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
+         ObjPosX=-3840
+         ObjPosY=1168
          DrawWidth=188
          DrawHeight=45
          Name="SeqAct_FinishSequence_2"
          ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
       End Object
-      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_15
+      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_16
          OutputLabel="HorzineDAR"
-         InputLinks(0)=(DrawY=3994,OverrideDelta=11)
+         InputLinks(0)=(DrawY=4010,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3904
-         ObjPosY=3960
+         ObjPosX=-3872
+         ObjPosY=3976
          DrawWidth=206
+         DrawHeight=45
+         Name="SeqAct_FinishSequence_16"
+         ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
+      End Object
+      Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_15
+         OutputLabel="HorzineLoco"
+         InputLinks(0)=(DrawY=4194,OverrideDelta=11)
+         ObjInstanceVersion=1
+         ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
+         ObjPosX=-3880
+         ObjPosY=4160
+         DrawWidth=211
          DrawHeight=45
          Name="SeqAct_FinishSequence_15"
          ObjectArchetype=SeqAct_FinishSequence'Engine.Default__SeqAct_FinishSequence'
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_14
          OutputLabel="Horzine15"
-         InputLinks(0)=(DrawY=2122,OverrideDelta=11)
+         InputLinks(0)=(DrawY=3562,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=2088
+         ObjPosX=-3856
+         ObjPosY=3528
          DrawWidth=196
          DrawHeight=45
          Name="SeqAct_FinishSequence_14"
@@ -9077,11 +9307,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_13
          OutputLabel="Horzine14"
-         InputLinks(0)=(DrawY=2074,OverrideDelta=11)
+         InputLinks(0)=(DrawY=3338,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=2040
+         ObjPosX=-3864
+         ObjPosY=3304
          DrawWidth=196
          DrawHeight=45
          Name="SeqAct_FinishSequence_13"
@@ -9089,11 +9319,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_12
          OutputLabel="Horzine13"
-         InputLinks(0)=(DrawY=2018,OverrideDelta=11)
+         InputLinks(0)=(DrawY=3114,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1984
+         ObjPosX=-3840
+         ObjPosY=3080
          DrawWidth=196
          DrawHeight=45
          Name="SeqAct_FinishSequence_12"
@@ -9101,11 +9331,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_11
          OutputLabel="Horzine12"
-         InputLinks(0)=(DrawY=1962,OverrideDelta=11)
+         InputLinks(0)=(DrawY=2842,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1928
+         ObjPosX=-3840
+         ObjPosY=2808
          DrawWidth=196
          DrawHeight=45
          Name="SeqAct_FinishSequence_11"
@@ -9113,11 +9343,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_10
          OutputLabel="Horzine11"
-         InputLinks(0)=(DrawY=1906,OverrideDelta=11)
+         InputLinks(0)=(DrawY=2626,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1872
+         ObjPosX=-3832
+         ObjPosY=2592
          DrawWidth=196
          DrawHeight=45
          Name="SeqAct_FinishSequence_10"
@@ -9125,11 +9355,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_1
          OutputLabel="Horzine2"
-         InputLinks(0)=(DrawY=1410,OverrideDelta=11)
+         InputLinks(0)=(DrawY=1010,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1376
+         ObjPosX=-3840
+         ObjPosY=976
          DrawWidth=188
          DrawHeight=45
          Name="SeqAct_FinishSequence_1"
@@ -9137,11 +9367,11 @@ Begin Object Class=Sequence Name=crates
       End Object
       Begin Object Class=SeqAct_FinishSequence Name=SeqAct_FinishSequence_0
          OutputLabel="Horzine1"
-         InputLinks(0)=(DrawY=1354,OverrideDelta=11)
+         InputLinks(0)=(DrawY=794,OverrideDelta=11)
          ObjInstanceVersion=1
          ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
-         ObjPosX=-3400
-         ObjPosY=1320
+         ObjPosX=-3848
+         ObjPosY=760
          DrawWidth=188
          DrawHeight=45
          Name="SeqAct_FinishSequence_0"
@@ -9155,7 +9385,7 @@ Begin Object Class=Sequence Name=crates
       SequenceObjects(5)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_2'
       SequenceObjects(6)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_7'
       SequenceObjects(7)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqEvent_Console_2'
-      SequenceObjects(8)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_12'
+      SequenceObjects(8)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_8'
       SequenceObjects(9)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_13'
       SequenceObjects(10)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqEvent_Console_41'
       SequenceObjects(11)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_14'
@@ -9215,7 +9445,7 @@ Begin Object Class=Sequence Name=crates
       SequenceObjects(65)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_1'
       SequenceObjects(66)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_2'
       SequenceObjects(67)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_3'
-      SequenceObjects(68)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_4'
+      SequenceObjects(68)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_22'
       SequenceObjects(69)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_5'
       SequenceObjects(70)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_6'
       SequenceObjects(71)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_7'
@@ -9227,46 +9457,52 @@ Begin Object Class=Sequence Name=crates
       SequenceObjects(77)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_13'
       SequenceObjects(78)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_14'
       SequenceObjects(79)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_27'
-      SequenceObjects(80)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_15'
-      SequenceObjects(81)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_3'
-      SequenceObjects(82)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_75'
-      SequenceObjects(83)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_74'
-      SequenceObjects(84)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqEvent_Console_109'
-      SequenceObjects(85)=SequenceFrame'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SequenceFrame_8'
-      DefaultViewX=3884
-      DefaultViewY=-2300
-      DefaultViewZoom=0.700000
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine1",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_0',DrawY=1386,OverrideDelta=19)
-      OutputLinks(1)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine2",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_1',DrawY=1409,OverrideDelta=42)
-      OutputLinks(2)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine3",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_2',DrawY=1432,OverrideDelta=65)
-      OutputLinks(3)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine4",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_3',DrawY=1455,OverrideDelta=88)
-      OutputLinks(4)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine5",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_4',DrawY=1478,OverrideDelta=111)
-      OutputLinks(5)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine6",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_5',DrawY=1501,OverrideDelta=134)
-      OutputLinks(6)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine7",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_6',DrawY=1524,OverrideDelta=157)
-      OutputLinks(7)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine8",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_7',DrawY=1547,OverrideDelta=180)
-      OutputLinks(8)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine9",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_8',DrawY=1570,OverrideDelta=203)
-      OutputLinks(9)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine10",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_9',DrawY=1593,OverrideDelta=226)
-      OutputLinks(10)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine11",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_10',DrawY=1616,OverrideDelta=249)
-      OutputLinks(11)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine12",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_11',DrawY=1639,OverrideDelta=272)
-      OutputLinks(12)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine13",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_12',DrawY=1662,OverrideDelta=295)
-      OutputLinks(13)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine14",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_13',DrawY=1685,OverrideDelta=318)
-      OutputLinks(14)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine15",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_14',DrawY=1708,OverrideDelta=341)
-      OutputLinks(15)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine16",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_27',DrawY=1731,OverrideDelta=364)
-      OutputLinks(16)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="HorzineDAR",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_15',DrawY=1754,OverrideDelta=387)
+      SequenceObjects(80)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_16'
+      SequenceObjects(81)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_1'
+      SequenceObjects(82)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_0'
+      SequenceObjects(83)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_1'
+      SequenceObjects(84)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqEvent_Console_0'
+      SequenceObjects(85)=SequenceFrame'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SequenceFrame_0'
+      SequenceObjects(86)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqEvent_Console_109'
+      SequenceObjects(87)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_74'
+      SequenceObjects(88)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_SetMaterial_75'
+      SequenceObjects(89)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqVar_Named_3'
+      SequenceObjects(90)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_15'
+      DefaultViewX=2718
+      DefaultViewY=-1197
+      DefaultViewZoom=0.400000
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine1",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_0',DrawY=2019,OverrideDelta=20)
+      OutputLinks(1)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine2",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_1',DrawY=2042,OverrideDelta=43)
+      OutputLinks(2)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine3",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_2',DrawY=2065,OverrideDelta=66)
+      OutputLinks(3)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine4",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_3',DrawY=2088,OverrideDelta=89)
+      OutputLinks(4)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine5",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_22',DrawY=2111,OverrideDelta=112)
+      OutputLinks(5)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine6",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_5',DrawY=2134,OverrideDelta=135)
+      OutputLinks(6)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine7",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_6',DrawY=2157,OverrideDelta=158)
+      OutputLinks(7)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine8",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_7',DrawY=2180,OverrideDelta=181)
+      OutputLinks(8)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine9",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_8',DrawY=2203,OverrideDelta=204)
+      OutputLinks(9)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine10",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_9',DrawY=2226,OverrideDelta=227)
+      OutputLinks(10)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine11",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_10',DrawY=2249,OverrideDelta=250)
+      OutputLinks(11)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine12",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_11',DrawY=2272,OverrideDelta=273)
+      OutputLinks(12)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine13",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_12',DrawY=2295,OverrideDelta=296)
+      OutputLinks(13)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine14",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_13',DrawY=2318,OverrideDelta=319)
+      OutputLinks(14)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine15",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_14',DrawY=2341,OverrideDelta=342)
+      OutputLinks(15)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="Horzine16",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_27',DrawY=2364,OverrideDelta=365)
+      OutputLinks(16)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="HorzineDAR",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_16',DrawY=2387,OverrideDelta=388)
+      OutputLinks(17)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43')),LinkDesc="HorzineLoco",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate.SeqAct_FinishSequence_15',DrawY=2410,OverrideDelta=411)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates'
-      ObjPosX=1176
-      ObjPosY=1344
+      ObjPosX=1224
+      ObjPosY=1976
       ObjName="HorzineSupplyCrate"
       DrawWidth=138
-      DrawHeight=429
+      DrawHeight=453
       Name="HorzineSupplyCrate"
       ObjectArchetype=Sequence'Engine.Default__Sequence'
    End Object
    SequenceObjects(0)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_0'
-   SequenceObjects(1)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_3'
+   SequenceObjects(1)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_6'
    SequenceObjects(2)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_10'
-   SequenceObjects(3)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_9'
+   SequenceObjects(3)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_16'
    SequenceObjects(4)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_40'
    SequenceObjects(5)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_4'
    SequenceObjects(6)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_1'
@@ -9294,7 +9530,7 @@ Begin Object Class=Sequence Name=crates
    SequenceObjects(28)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqEvent_Console_112'
    SequenceObjects(29)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_70'
    SequenceObjects(30)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43'
-   SequenceObjects(31)=SeqVar_External'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_External_0'
+   SequenceObjects(31)=SeqVar_External'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_External_2'
    SequenceObjects(32)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_44'
    SequenceObjects(33)=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.HorzineSupplyCrate'
    SequenceObjects(34)=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.PSN_WeaponSkinCrate'
@@ -9304,15 +9540,21 @@ Begin Object Class=Sequence Name=crates
    SequenceObjects(38)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqEvent_Console_23'
    SequenceObjects(39)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_86'
    SequenceObjects(40)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_41'
-   SequenceObjects(41)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_35'
-   SequenceObjects(42)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqEvent_Console_70'
-   SequenceObjects(43)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_34'
-   SequenceObjects(44)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_5'
-   DefaultViewX=-277
-   DefaultViewY=-1250
+   SequenceObjects(41)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_1'
+   SequenceObjects(42)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqEvent_Console_2'
+   SequenceObjects(43)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_5'
+   SequenceObjects(44)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_2'
+   SequenceObjects(45)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqVar_Named_5'
+   SequenceObjects(46)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_34'
+   SequenceObjects(47)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqEvent_Console_70'
+   SequenceObjects(48)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_SetMaterial_35'
+   SequenceObjects(49)=SequenceFrame'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SequenceFrame_5'
+   DefaultViewX=679
+   DefaultViewY=288
+   DefaultViewZoom=0.100000
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_3')),LinkDesc="Output",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_43',DrawY=-2828,OverrideDelta=13)
    OutputLinks(1)=(LinkDesc="Dead Pulse",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.crates.SeqAct_FinishSequence_44',DrawY=-2808,OverrideDelta=33)
-   VariableLinks(0)=(ExpectedType=Class'Engine.SeqVar_Bool',LinkDesc="Bool",LinkVar="SeqVar_External_0",MinVars=0,DrawX=-2934,OverrideDelta=29)
+   VariableLinks(0)=(ExpectedType=Class'Engine.SeqVar_Bool',LinkDesc="Bool",LinkVar="SeqVar_External_1",MinVars=0,DrawX=-2934,OverrideDelta=29)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2976
@@ -9763,19 +10005,6 @@ Begin Object Class=Sequence Name=usb
       Name="SeqVar_Named_8"
       ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_5
-      ExpectedType=Class'Engine.SeqVar_Object'
-      FindVarName="Trader_Skel"
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
-      ObjPosX=1920
-      ObjPosY=-624
-      ObjColor=(B=255,G=0,R=255,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_5"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
-   End Object
    Begin Object Class=SeqVar_Named Name=SeqVar_Named_45
       ExpectedType=Class'Engine.SeqVar_Object'
       FindVarName="Trader_Skel"
@@ -9789,7 +10018,33 @@ Begin Object Class=Sequence Name=usb
       Name="SeqVar_Named_45"
       ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_4
+      ExpectedType=Class'Engine.SeqVar_Object'
+      FindVarName="Trader_Skel"
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
+      ObjPosX=1920
+      ObjPosY=-624
+      ObjColor=(B=255,G=0,R=255,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_4"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+   End Object
    Begin Object Class=SeqVar_Named Name=SeqVar_Named_2
+      ExpectedType=Class'Engine.SeqVar_Object'
+      FindVarName="Trader_Skel"
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
+      ObjPosX=1864
+      ObjPosY=152
+      ObjColor=(B=255,G=0,R=255,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_2"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+   End Object
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_14
       ExpectedType=Class'Engine.SeqVar_Object'
       FindVarName="Trader_Skel"
       ObjInstanceVersion=1
@@ -9799,7 +10054,7 @@ Begin Object Class=Sequence Name=usb
       ObjColor=(B=255,G=0,R=255,A=255)
       DrawWidth=32
       DrawHeight=32
-      Name="SeqVar_Named_2"
+      Name="SeqVar_Named_14"
       ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
    Begin Object Class=SeqVar_Named Name=SeqVar_Named_137
@@ -10075,7 +10330,7 @@ Begin Object Class=Sequence Name=usb
       Name="SeqVar_Named_117"
       ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
    End Object
-   Begin Object Class=SeqVar_External Name=SeqVar_External_2
+   Begin Object Class=SeqVar_External Name=SeqVar_External_3
       ExpectedType=Class'Engine.SeqVar_Bool'
       VariableLabel="Bool"
       ObjInstanceVersion=1
@@ -10085,35 +10340,23 @@ Begin Object Class=Sequence Name=usb
       ObjColor=(B=0,G=0,R=255,A=255)
       DrawWidth=32
       DrawHeight=32
-      Name="SeqVar_External_2"
+      Name="SeqVar_External_3"
       ObjectArchetype=SeqVar_External'Engine.Default__SeqVar_External'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_5
-      SizeX=590
-      SizeY=436
+   Begin Object Class=SequenceFrame Name=SequenceFrame_8
+      SizeX=599
+      SizeY=241
+      BorderWidth=3
       bDrawBox=True
+      BorderColor=(B=106,G=255,R=0,A=255)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
-      ObjPosX=1504
-      ObjPosY=-440
+      ObjPosX=1448
+      ObjPosY=16
       ObjComment="NEW"
-      DrawWidth=590
-      DrawHeight=436
-      Name="SequenceFrame_5"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-   End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_13
-      SizeX=430
-      SizeY=244
-      bDrawBox=True
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
-      ObjPosX=1664
-      ObjPosY=-5680
-      ObjComment="New USB"
-      DrawWidth=430
-      DrawHeight=244
-      Name="SequenceFrame_13"
+      DrawWidth=599
+      DrawHeight=241
+      Name="SequenceFrame_8"
       ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
    Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_90
@@ -10361,7 +10604,7 @@ Begin Object Class=Sequence Name=usb
    Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_31
       ConsoleEventName="open_horzineissue"
       MaxWidth=239
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_11')),DrawY=-5334,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_4')),DrawY=-5334,OverrideDelta=11)
       VariableLinks(0)=(DrawX=1799,OverrideDelta=87)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
@@ -10458,9 +10701,23 @@ Begin Object Class=Sequence Name=usb
       ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
    End Object
    Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_102
+      ConsoleEventName="open_NeonMKIII"
+      MaxWidth=226
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_63')),DrawY=98,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=1649,OverrideDelta=81)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
+      ObjPosX=1536
+      ObjPosY=32
+      DrawWidth=133
+      DrawHeight=128
+      Name="SeqEvent_Console_102"
+      ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
+   End Object
+   Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_1
       ConsoleEventName="open_NeonMKII"
       MaxWidth=221
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_63')),DrawY=-334,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_2')),DrawY=-334,OverrideDelta=11)
       VariableLinks(0)=(DrawX=1630,OverrideDelta=78)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
@@ -10468,7 +10725,7 @@ Begin Object Class=Sequence Name=usb
       ObjPosY=-400
       DrawWidth=130
       DrawHeight=128
-      Name="SeqEvent_Console_102"
+      Name="SeqEvent_Console_1"
       ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
    End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_94
@@ -10532,15 +10789,15 @@ Begin Object Class=Sequence Name=usb
       ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
    End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_63
-      NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineFE_02_USB_M'
+      NewMaterial=MaterialInstanceConstant'ECON_MAT.Neon_MK3_USB_M'
       MaterialIndex=2
-      InputLinks(0)=(DrawY=-342,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41')),DrawY=-342,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_2'),DrawX=1877,OverrideDelta=23)
+      InputLinks(0)=(DrawY=90,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41')),DrawY=90,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_2'),DrawX=1893,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
-      ObjPosX=1832
-      ObjPosY=-376
+      ObjPosX=1848
+      ObjPosY=56
       DrawWidth=90
       DrawHeight=61
       Name="SeqAct_SetMaterial_63"
@@ -10651,6 +10908,21 @@ Begin Object Class=Sequence Name=usb
       Name="SeqAct_SetMaterial_44"
       ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
    End Object
+   Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_4
+      NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineIssue_USB_M'
+      MaterialIndex=2
+      InputLinks(0)=(DrawY=-5334,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41')),DrawY=-5334,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_118'),DrawX=1997,OverrideDelta=23)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
+      ObjPosX=1952
+      ObjPosY=-5368
+      DrawWidth=90
+      DrawHeight=61
+      Name="SeqAct_SetMaterial_4"
+      ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+   End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_31
       NewMaterial=MaterialInstanceConstant'ECON_MAT.EliteUnit-Medic_USB_M'
       MaterialIndex=2
@@ -10726,6 +10998,21 @@ Begin Object Class=Sequence Name=usb
       Name="SeqAct_SetMaterial_20"
       ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
    End Object
+   Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_2
+      NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineFE_02_USB_M'
+      MaterialIndex=2
+      InputLinks(0)=(DrawY=-342,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41')),DrawY=-342,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_14'),DrawX=1877,OverrideDelta=23)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
+      ObjPosX=1832
+      ObjPosY=-376
+      DrawWidth=90
+      DrawHeight=61
+      Name="SeqAct_SetMaterial_2"
+      ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
+   End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_19
       NewMaterial=MaterialInstanceConstant'ECON_MAT.FirstEncounter_USB_M'
       MaterialIndex=2
@@ -10776,7 +11063,7 @@ Begin Object Class=Sequence Name=usb
       MaterialIndex=2
       InputLinks(0)=(DrawY=-702,OverrideDelta=11)
       OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41')),DrawY=-702,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_5'),DrawX=1949,OverrideDelta=23)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_4'),DrawX=1949,OverrideDelta=23)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
       ObjPosX=1904
@@ -10784,21 +11071,6 @@ Begin Object Class=Sequence Name=usb
       DrawWidth=90
       DrawHeight=61
       Name="SeqAct_SetMaterial_13"
-      ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
-   End Object
-   Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_11
-      NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineIssue_USB_M'
-      MaterialIndex=2
-      InputLinks(0)=(DrawY=-5334,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41')),DrawY=-5334,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_118'),DrawX=1997,OverrideDelta=23)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb'
-      ObjPosX=1952
-      ObjPosY=-5368
-      DrawWidth=90
-      DrawHeight=61
-      Name="SeqAct_SetMaterial_11"
       ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
    End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_10
@@ -10894,67 +11166,70 @@ Begin Object Class=Sequence Name=usb
    SequenceObjects(21)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_117'
    SequenceObjects(22)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_47'
    SequenceObjects(23)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_78'
-   SequenceObjects(24)=SequenceFrame'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SequenceFrame_13'
-   SequenceObjects(25)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_61'
-   SequenceObjects(26)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_83'
-   SequenceObjects(27)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_56'
-   SequenceObjects(28)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_60'
-   SequenceObjects(29)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_94'
-   SequenceObjects(30)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_27'
-   SequenceObjects(31)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_89'
-   SequenceObjects(32)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_50'
-   SequenceObjects(33)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_55'
-   SequenceObjects(34)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_88'
-   SequenceObjects(35)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_90'
-   SequenceObjects(36)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_62'
-   SequenceObjects(37)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_65'
-   SequenceObjects(38)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_106'
-   SequenceObjects(39)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_75'
-   SequenceObjects(40)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_44'
-   SequenceObjects(41)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_31'
-   SequenceObjects(42)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_59'
-   SequenceObjects(43)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_56'
-   SequenceObjects(44)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_30'
-   SequenceObjects(45)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_27'
-   SequenceObjects(46)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_53'
-   SequenceObjects(47)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_0'
-   SequenceObjects(48)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_48'
-   SequenceObjects(49)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_51'
-   SequenceObjects(50)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_26'
-   SequenceObjects(51)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_20'
-   SequenceObjects(52)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_46'
-   SequenceObjects(53)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_45'
-   SequenceObjects(54)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_19'
-   SequenceObjects(55)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_18'
-   SequenceObjects(56)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_44'
-   SequenceObjects(57)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_11'
-   SequenceObjects(58)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_10'
-   SequenceObjects(59)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_9'
-   SequenceObjects(60)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_8'
-   SequenceObjects(61)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_31'
-   SequenceObjects(62)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_30'
-   SequenceObjects(63)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_29'
-   SequenceObjects(64)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_28'
-   SequenceObjects(65)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_36'
-   SequenceObjects(66)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_17'
-   SequenceObjects(67)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_13'
-   SequenceObjects(68)=SeqVar_External'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_External_2'
-   SequenceObjects(69)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41'
-   SequenceObjects(70)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_7'
-   SequenceObjects(71)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_13'
-   SequenceObjects(72)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_5'
-   SequenceObjects(73)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_8'
-   SequenceObjects(74)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_2'
-   SequenceObjects(75)=SequenceFrame'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SequenceFrame_5'
-   SequenceObjects(76)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_63'
-   SequenceObjects(77)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_102'
-   SequenceObjects(78)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_103'
-   SequenceObjects(79)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_1'
-   DefaultViewX=-881
-   DefaultViewY=671
+   SequenceObjects(24)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_61'
+   SequenceObjects(25)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_83'
+   SequenceObjects(26)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_56'
+   SequenceObjects(27)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_60'
+   SequenceObjects(28)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_94'
+   SequenceObjects(29)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_27'
+   SequenceObjects(30)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_89'
+   SequenceObjects(31)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_50'
+   SequenceObjects(32)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_55'
+   SequenceObjects(33)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_88'
+   SequenceObjects(34)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_90'
+   SequenceObjects(35)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_62'
+   SequenceObjects(36)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_65'
+   SequenceObjects(37)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_106'
+   SequenceObjects(38)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_75'
+   SequenceObjects(39)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_44'
+   SequenceObjects(40)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_31'
+   SequenceObjects(41)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_59'
+   SequenceObjects(42)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_56'
+   SequenceObjects(43)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_30'
+   SequenceObjects(44)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_27'
+   SequenceObjects(45)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_53'
+   SequenceObjects(46)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_0'
+   SequenceObjects(47)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_48'
+   SequenceObjects(48)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_51'
+   SequenceObjects(49)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_26'
+   SequenceObjects(50)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_20'
+   SequenceObjects(51)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_46'
+   SequenceObjects(52)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_45'
+   SequenceObjects(53)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_19'
+   SequenceObjects(54)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_18'
+   SequenceObjects(55)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_44'
+   SequenceObjects(56)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_4'
+   SequenceObjects(57)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_10'
+   SequenceObjects(58)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_9'
+   SequenceObjects(59)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_8'
+   SequenceObjects(60)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_31'
+   SequenceObjects(61)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_30'
+   SequenceObjects(62)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_29'
+   SequenceObjects(63)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_28'
+   SequenceObjects(64)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_36'
+   SequenceObjects(65)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_17'
+   SequenceObjects(66)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_13'
+   SequenceObjects(67)=SeqVar_External'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_External_3'
+   SequenceObjects(68)=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41'
+   SequenceObjects(69)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_7'
+   SequenceObjects(70)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_13'
+   SequenceObjects(71)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_4'
+   SequenceObjects(72)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_8'
+   SequenceObjects(73)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_14'
+   SequenceObjects(74)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_2'
+   SequenceObjects(75)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_1'
+   SequenceObjects(76)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_103'
+   SequenceObjects(77)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_1'
+   SequenceObjects(78)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_102'
+   SequenceObjects(79)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_63'
+   SequenceObjects(80)=SeqVar_Named'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqVar_Named_2'
+   SequenceObjects(81)=SequenceFrame'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SequenceFrame_8'
+   DefaultViewX=936
+   DefaultViewY=439
+   DefaultViewZoom=0.100000
    OutputLinks(0)=(LinkDesc="Dead Pulse",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_13',DrawY=-1426,OverrideDelta=33)
    OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),LinkDesc="Output",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41',DrawY=-1446,OverrideDelta=13)
-   VariableLinks(0)=(ExpectedType=Class'Engine.SeqVar_Bool',LinkDesc="Bool",LinkVar="SeqVar_External_2",MinVars=0,DrawX=-3010,OverrideDelta=29)
+   VariableLinks(0)=(ExpectedType=Class'Engine.SeqVar_Bool',LinkDesc="Bool",LinkVar="SeqVar_External_3",MinVars=0,DrawX=-3010,OverrideDelta=29)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3052

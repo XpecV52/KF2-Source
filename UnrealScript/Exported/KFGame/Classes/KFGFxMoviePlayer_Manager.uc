@@ -85,7 +85,10 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
-const KFID_Native4kResolution = 169;#linenumber 22
+const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID= 171;
+#linenumber 22
 
 /** Connects a menu ID with its path */
 enum EUIIndex
@@ -171,11 +174,16 @@ var TextureMovie CurrentBackgroundMovie;
 /** Connects the different layers of the start menu with an index */
 enum EStartMenuState
 {
+	EStartHome,
 	EMatchmaking,
+	ECreateGame,
 	EServerBrowser,
 	ESoloGame,
+	ETutorial,
 	EOverview,
 	EServerBrowserOverview,
+	EOverview_Matchmaking,
+	EOverviewCreateGame,
 };
 var EStartMenuState StartMenuState;
 
@@ -1111,7 +1119,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	local string MenuPath;
 
 	PC = GetPC();
-
+	LogInternal("open menu: " @NewMenuIndex); 
 	if(PC.WorldInfo.TimeSeconds - LastForceCloseTime < AllowMenusOpenAfterForceCloseTime && LastForceCloseTime != 0)
 	{
 		return;
@@ -1125,11 +1133,13 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		}
 	}
 
-	if(CurrentMenuIndex == UI_Dosh_Vault && NewMenuIndex != UI_Dosh_Vault)
+
+	if(CurrentMenuIndex == UI_Dosh_Vault)
 	{
-		if(DoshVaultMenu != none)
+		if(DoshVaultMenu != none && !DoshVaultMenu.CanCloseVaultMenu())
 		{
-			DoshVaultMenu.AbortSquence();
+			MenuBarWidget.UpdateMenu(CurrentMenuIndex);
+			return;
 		}
 	}
 
@@ -1213,15 +1223,10 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 			}
 		}
 
-		if (StartMenuState == EServerBrowser)
-		{
-			CurrentMenuIndex = UI_ServerBrowserMenu;
-			NewMenuIndex = UI_ServerBrowserMenu;
-		}
-		else if (StartMenu != none)
+		if (StartMenu != none)
 		{
 			TempMenuState = EStartMenuState(StartMenu.GetStartMenuState());
-			if ((TempMenuState == EServerBrowserOverview || TempMenuState == EOverview) && !IsInLobby() && WI.IsMenuLevel())
+			if (TempMenuState >= EOverview  && !IsInLobby() && WI.IsMenuLevel())
 			{
 				if (StartMenu != none)
 				{
@@ -1693,6 +1698,14 @@ function ClientRecieveNewTeam();
 `* Game Lobby
 ********************************************************************************************* */
 
+event SoloGameMenuOpened()
+{
+	if (PartyWidget != none)
+	{
+		PartyWidget.SoloGameMenuOpened();
+	}
+}
+
 /** Called when we exit or join a lobby */
 function OnLobbyStatusChanged(bool bIsInLobby)
 {
@@ -1731,11 +1744,6 @@ function bool GetMultiplayerMenuActive()
 		return true;
 	}
 
-	/*if( CurrentMenuIndex == UI_Store ) //This is not a multiplayer menu. -ZG
-	{
-		return true;
-	}*/
-
 	if(StartMenu != none && CurrentMenuIndex == UI_Start && StartMenu.GetStartMenuState() == EMatchmaking)
 	{
 		return true;
@@ -1753,9 +1761,14 @@ function EStartMenuState GetStartMenuState()
 	return EMatchmaking;
 }
 
-function SetStartMenuState(EStartMenuState MenuState)
+function SetStartMenuState(EStartMenuState MenuState, optional bool bChangeMenu = false)
 {
 	StartMenuState = MenuState;
+	if (bChangeMenu) 
+	{
+		StartMenu.SetInt("externalMenuState", MenuState);
+	}
+	
 	UpdateMenuBar();
 }
 
@@ -2137,7 +2150,7 @@ defaultproperties
    BackgroundMovies(0)=TextureMovie'UI_Managers.MenuBG'
    BackgroundMovies(1)=TextureMovie'UI_Managers.MenuBG'
    BackgroundMovies(2)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
-   BackgroundMovies(3)=TextureMovie'UI_Managers.MenuBG'
+   BackgroundMovies(3)=TextureMovie'UI_Managers.MenuBG_Halloween'
    BackgroundMovies(4)=TextureMovie'UI_Managers.Menu_Winter'
    IISMovie=TextureMovie'UI_Managers.IIS'
    IgnoredCommands(0)="GBA_VoiceChat"

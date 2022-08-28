@@ -144,16 +144,24 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 	KFAIController_ZedClot_AlphaKing(Controller).StartArmorLoss();
 }
 
-simulated function SetEnraged(bool bNewEnraged)
+simulated function bool SetEnraged(bool bNewEnraged)
 {
-	if (Role == ROLE_Authority)
+	local bool bSuccess;
+
+	bSuccess = super.SetEnraged(bNewEnraged);
+	if (bSuccess && Role == ROLE_Authority && bNewEnraged)
 	{
 		PlaySoundBase(EnragedSoundEvent);
-		bIsEnraged = bNewEnraged;
-		if (MyKFAIC.bCanSprint)
-		{
-			SetSprinting(true);
-		}
+	}
+
+	return bSuccess;
+}
+
+function SetSprinting(bool bNewSprintStatus)
+{
+	if (bNewSprintStatus == false || (MyKFAIC != none && MyKFAIC.bCanSprint))
+	{
+		super.SetSprinting(bNewSprintStatus);
 	}
 }
 
@@ -224,5 +232,6 @@ defaultproperties
 	RepArmorPct[0] = 255
 	RepArmorPct[1] = 255
 
+	bCanRage=true
 	EnragedSoundEvent=AkEvent'WW_ZED_Clot_Alpha.Play_Alpha_Clot_Special_Enrage'
 }

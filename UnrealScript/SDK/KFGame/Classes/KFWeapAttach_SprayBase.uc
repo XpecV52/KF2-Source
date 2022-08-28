@@ -476,6 +476,20 @@ simulated event Tick(float DeltaTime)
  	}
 }
 
+simulated event ChangeVisibility(bool bIsVisible)
+{
+	super.ChangeVisibility(bIsVisible);
+	
+	if (bIsVisible)
+	{
+		TurnOnPilot();
+	}
+	else
+	{
+		TurnOffPilot();
+	}
+}
+
 defaultproperties
 {
 	Begin Object Class=ParticleSystemComponent Name=FlameEndSpray0

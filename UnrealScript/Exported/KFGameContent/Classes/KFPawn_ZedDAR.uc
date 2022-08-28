@@ -277,6 +277,16 @@ function bool WeeklyShouldExplodeOnDeath()
 /** Do any explosion death-related actions */
 simulated function OnExploded(Controller SuicideController);
 
+/**
+ * Return true if this pawn is ok with having the input head bone be broken
+ *
+ * @param	BoneName	the head bone to check to see if we all it to break.
+ */
+simulated function bool ShouldAllowHeadBoneToBreak(name BoneName)
+{
+    return true;
+}
+
 defaultproperties
 {
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedDAR:ExploTemplate0'
@@ -320,6 +330,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    StartSprintingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_Start'
    SprintLoopingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_LP'
    StopSprintingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_Stop'
@@ -530,6 +548,7 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
+   Components(9)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=66000,Roll=50000)
    Name="Default__KFPawn_ZedDAR"

@@ -45,13 +45,6 @@ replication
 		TeamNum;
 }
 
-function Init(vector Direction)
-{
-	super.Init(Direction);
-
-	`log(self @ "-" @ GetFuncName() @ "- Owner:" @ Owner);
-}
-
 /* epic ===============================================
 * ::ReplicatedEvent
 *

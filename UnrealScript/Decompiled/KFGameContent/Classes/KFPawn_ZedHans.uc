@@ -135,6 +135,12 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 simulated function SetCharacterAnimationInfo()
 {
     super(KFPawn).SetCharacterAnimationInfo();
+    if(Mesh.AnimSets.Length == 5)
+    {
+        MeleeAnimSet = Mesh.AnimSets[3];
+        GunsAnimSet = Mesh.AnimSets[4];
+        Mesh.AnimSets.Remove(3, 2;
+    }
     SetWeaponStance(bGunsEquipped, true);
 }
 
@@ -155,13 +161,15 @@ simulated function SetWeaponStance(bool bInEquipWeapons, optional bool bForce)
         {
             Mesh.AnimSets[WeapAnimSetIdx] = GunsAnimSet;
             RightHolsterSkelCtrl.SetSkelControlStrength(0, 0);
-            LeftHolsterSkelCtrl.SetSkelControlStrength(0, 0);            
+            LeftHolsterSkelCtrl.SetSkelControlStrength(0, 0);
+            PlayExtraVFX('GunMode');            
         }
         else
         {
             Mesh.AnimSets[WeapAnimSetIdx] = MeleeAnimSet;
             RightHolsterSkelCtrl.SetSkelControlActive(true);
             LeftHolsterSkelCtrl.SetSkelControlActive(true);
+            StopExtraVFX('GunMode');
         }
         Mesh.UpdateAnimations();
     }
@@ -1020,6 +1028,7 @@ defaultproperties
     begin object name=ShieldEffects class=KFSkinTypeEffects_HansShield
         ImpactFXArray[14]=(Type=EEffectDamageGroup.FXG_Flare)
         ImpactFXArray[15]=(Type=EEffectDamageGroup.FXG_Freeze)
+        ImpactFXArray[16]=(Type=EEffectDamageGroup.FXG_Bludgeon_Chains)
     object end
     // Reference: KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHans.ShieldEffects'
     ShieldImpactEffects=ShieldEffects
@@ -1044,8 +1053,23 @@ defaultproperties
     ShieldCoreColorRed=(B=10,G=10,R=255,A=0)
     BattlePhases=/* Array type was not detected. */
     ExplosiveGrenadeClass=Class'KFProj_HansHEGrenade'
+    SeasonalExplosiveGrenadeClasses[0]=Class'KFProj_HansHEGrenade'
+    SeasonalExplosiveGrenadeClasses[1]=Class'KFProj_HansHEGrenade'
+    SeasonalExplosiveGrenadeClasses[2]=Class'KFProj_HansHEGrenade'
+    SeasonalExplosiveGrenadeClasses[3]=Class'KFProj_HansHEGrenade_Halloween'
+    SeasonalExplosiveGrenadeClasses[4]=Class'KFProj_HansHEGrenade'
     NerveGasGrenadeClass=Class'KFProj_HansNerveGasGrenade'
+    SeasonalNerveGasGrenadeClasses[0]=Class'KFProj_HansNerveGasGrenade'
+    SeasonalNerveGasGrenadeClasses[1]=Class'KFProj_HansNerveGasGrenade'
+    SeasonalNerveGasGrenadeClasses[2]=Class'KFProj_HansNerveGasGrenade'
+    SeasonalNerveGasGrenadeClasses[3]=Class'KFProj_HansNerveGasGrenade_Halloween'
+    SeasonalNerveGasGrenadeClasses[4]=Class'KFProj_HansNerveGasGrenade'
     SmokeGrenadeClass=Class'KFProj_HansSmokeGrenade'
+    SeasonalSmokeGrenadeClasses[0]=Class'KFProj_HansSmokeGrenade'
+    SeasonalSmokeGrenadeClasses[1]=Class'KFProj_HansSmokeGrenade'
+    SeasonalSmokeGrenadeClasses[2]=Class'KFProj_HansSmokeGrenade'
+    SeasonalSmokeGrenadeClasses[3]=Class'KFProj_HansSmokeGrenade_Halloween'
+    SeasonalSmokeGrenadeClasses[4]=Class'KFProj_HansSmokeGrenade'
     RightHandSocketName=RightHandSocket
     LeftHandSocketName=LeftHandSocket
     GrenadeTossSpread=(X=0,Y=0.2,Z=0.04)
@@ -1080,6 +1104,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_Hans'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedHans.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedHans.HeadshotAkComponent0'
     OnDeathAchievementID=133
     PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
     LocalizationKey=KFPawn_ZedHans
@@ -1154,6 +1179,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedHans.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHans.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedHans.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedHans.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

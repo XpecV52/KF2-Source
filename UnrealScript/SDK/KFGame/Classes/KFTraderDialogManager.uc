@@ -711,28 +711,56 @@ simulated function PlaySelectItemDialog( Controller C, bool bTooExpensive, bool 
 	PlayDialog( BestOptionID, C );
 }
 
-static function BroadcastEndlessStartWaveDialog(int WaveNum, WorldInfo WI)
+static function BroadcastEndlessStartWaveDialog(int WaveNum, int ModeIndex, WorldInfo WI)
 {
-	local int EventId;
+	local int SpecialWaveEventId, NormalWaveEventId;
+	local Controller C;
+	local KFPlayerController KFPC;
+
+	SpecialWaveEventId = INDEX_NONE;
+	NormalWaveEventId = INDEX_NONE;
+
+	if (ModeIndex != INDEX_NONE)
+	{
+		SpecialWaveEventId = `TRAD_SPECIALWAVE_1 + (ModeIndex % 3);
+	}
 
 	if (WaveNum > 100)
 	{
-		EventId = `TRAD_PATTY_WAVE_100Plus;
+		NormalWaveEventId = `TRAD_PATTY_WAVE_100Plus;
 	}
 	else
 	{
-		EventId = `TRAD_PATTY_WAVE_1 + (WaveNum - 1);
+		NormalWaveEventId = `TRAD_PATTY_WAVE_1 + (WaveNum - 1);
 	}
 
-	PlayGlobalDialog(EventId, WI);
+	// Play specific global dialog
+	// We can't just call "PlayGlobalDialog" because we need to do some extra logic client-side, where the trader voice group lives
+	foreach WI.AllControllers(class'Controller', C)
+	{
+		if( C.bIsPlayer )
+		{
+			KFPC = KFPlayerController( C );
+			if( KFPC == none )
+			{
+				continue;
+			}
+
+			if( KFPC.IsLocalController() )
+			{
+				KFPC.PlayTraderEndlessWaveStartDialog(SpecialWaveEventId, NormalWaveEventId);
+			}
+			else
+			{
+				KFPC.ClientPlayTraderEndlessWaveStartDialog(SpecialWaveEventId, NormalWaveEventId);
+			}
+		}
+	}
 }
 
-static function BroadcastEndlessSpecialWaveDialog(int ModeIndex, WorldInfo WI)
+static function PlayFirstWaveStartDialog(WorldInfo WI)
 {
-	local int EventId;
-
-	EventId = `TRAD_SPECIALWAVE_1 + (ModeIndex % 3);
-	PlayGlobalDialog(EventId, WI);
+    PlayGlobalDialog(`TRAD_FirstWave, WI);
 }
 
 defaultproperties

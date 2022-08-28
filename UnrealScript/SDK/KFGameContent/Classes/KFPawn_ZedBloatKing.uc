@@ -298,22 +298,13 @@ simulated event bool IsEnraged()
 }
 
 /** Enrage this FleshPound! */
-simulated function SetEnraged(bool bNewEnraged)
+simulated function bool SetEnraged(bool bNewEnraged)
 {
-    if (!bCanRage || (Role == ROLE_Authority && bNewEnraged == bIsEnraged))
-    {
-        return;
-    }
+	local bool bSuccess;
 
-    if (Role == ROLE_Authority)
-    {
-        bIsEnraged = bNewEnraged;
-
-        // End blocking on rage
-        if (IsDoingSpecialMove(SM_Block))
-        {
-            EndSpecialMove();
-        }
+	bSuccess = super.SetEnraged(bNewEnraged);
+	if (bSuccess && Role == ROLE_Authority)
+	{
 		if (bIsEnraged)
 		{
 			DoSpecialMove(SM_Custom1, true, , SpecialMoveHandler.SpecialMoveClasses[SM_Custom1].static.PackFlagsBase(self));
@@ -330,9 +321,9 @@ simulated function SetEnraged(bool bNewEnraged)
 				KFAIController_ZedBloatKing(Controller).SetEnrageTimer();
 			}
 		}
+	}
 
-        SetSprinting(bNewEnraged);
-    }
+	return bSuccess;
 }
 
 function AdjustMovementSpeed(float SpeedAdjust)
@@ -717,8 +708,8 @@ defaultproperties
     Mass=400.f
 
     RotationRate=(Pitch=50000,Yaw=20000,Roll=50000)
-    GroundSpeed=231.0f  //160 //210
-    SprintSpeed=330.0f   //260 //210  410 //315
+    GroundSpeed=345.0f  //160 //210 //231 //255
+    SprintSpeed=380.0f   //260 //210  410 //315 //330 //345
 	RageSprintSpeedMultiplier=1.62f //1.25 1.45 //1.55
 
 	ArmorInfoClass=class'KFZedArmorInfo_BloatKing'
@@ -755,7 +746,8 @@ defaultproperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave',                  DamageScale=(0.9)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',                  DamageScale=(0.4)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing',                   DamageScale=(0.5)))
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic',                      DamageScale=(0.05)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic',                      DamageScale=(0.05))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingFart',        DamageScale=(0.00)))
 
     ParryResistance=4
 

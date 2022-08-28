@@ -31,10 +31,14 @@ var array<string> ChanceDropIconURLs;
 var const localized array<localized string> ChanceDropDescriptionStrings;
 var string IconURL;
 var array<ObjectiveProgress> ObjectiveStatusList;
+var array<bool> UsesProgressList;
+var array<int> ObjectLastValue;
+var KFPlayerController KFPC;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
+    KFPC = KFPlayerController(Outer.GetPC());
     LocalizeMenu();
     PopulateData();
     PopulateReward();
@@ -56,7 +60,8 @@ function LocalizeMenu()
 function bool PopulateData()
 {
     local GFxObject DataObject, DataProvider;
-    local int I;
+    local int I, CurrentProgressValue, MaxProgressValue;
+    local float ProgressCompletePercentage;
 
     if(HasObjectiveStatusChanged())
     {
@@ -71,10 +76,14 @@ function bool PopulateData()
             DataObject.SetString("description", default.SpecialEventObjectiveInfoList[I].DescriptionString);
             DataObject.SetString("iconPath", "img://" $ default.ObjectiveIconURLs[I]);
             DataObject.SetBool("complete", ObjectiveStatusList[I].bComplete);
-            DataObject.SetInt("rewardValue", ObjectiveStatusList[I].NumericValue);
-            DataObject.SetBool("showProgres", false);
-            DataObject.SetFloat("progress", 0);
-            DataObject.SetString("textValue", "");
+            DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
+            DataObject.SetBool("showProgress", UsesProgressList[I]);
+            if(UsesProgressList[I])
+            {
+                GetObjectiveProgressValues(I, CurrentProgressValue, MaxProgressValue, ProgressCompletePercentage);
+                DataObject.SetFloat("progress", ProgressCompletePercentage);
+                DataObject.SetString("textValue", (string(CurrentProgressValue) $ "/") $ string(MaxProgressValue));
+            }
             DataProvider.SetElementObject(I, DataObject);
             ++ I;
             goto J0x41;
@@ -89,44 +98,53 @@ function bool PopulateData()
     return false;
 }
 
+static function GetObjectiveProgressValues(int ObjectiveID, out int CurrentValue, out int MaxValue, out float PercentComplete)
+{
+    CurrentValue = 0;
+    MaxValue = 0;
+    PercentComplete = 0;
+}
+
 function bool HasObjectiveStatusChanged()
 {
     local int I;
     local bool bHasChanged, bTempStatus;
-    local KFPlayerController KFPC;
+    local int ProgressValue, MaxValue;
+    local float PercentageValue;
 
-    KFPC = KFPlayerController(Outer.GetPC());
     if(SpecialEventObjectiveInfoList.Length != ObjectiveStatusList.Length)
     {
         ObjectiveStatusList.Length = SpecialEventObjectiveInfoList.Length;
         I = 0;
-        J0x6B:
+        J0x39:
 
         if(I < SpecialEventObjectiveInfoList.Length)
         {
+            GetObjectiveProgressValues(I, ProgressValue, MaxValue, PercentageValue);
             ObjectiveStatusList[I].bComplete = KFPC.IsEventObjectiveComplete(I);
-            ObjectiveStatusList[I].NumericValue = KFPC.GetSpecialEventRewardValue();
+            ObjectiveStatusList[I].NumericValue = ProgressValue;
             ++ I;
-            goto J0x6B;
+            goto J0x39;
         }
         bHasChanged = true;        
     }
     else
     {
         I = 0;
-        J0x141:
+        J0x127:
 
         if(I < SpecialEventObjectiveInfoList.Length)
         {
             bTempStatus = KFPC.IsEventObjectiveComplete(I);
-            if((ObjectiveStatusList[I].bComplete != bTempStatus) || ObjectiveStatusList[I].NumericValue != KFPC.GetSpecialEventRewardValue())
+            GetObjectiveProgressValues(I, ProgressValue, MaxValue, PercentageValue);
+            if((ObjectiveStatusList[I].bComplete != bTempStatus) || ObjectiveStatusList[I].NumericValue != ProgressValue)
             {
                 bHasChanged = true;
                 ObjectiveStatusList[I].bComplete = bTempStatus;
                 ObjectiveStatusList[I].NumericValue = KFPC.GetSpecialEventRewardValue();
             }
             ++ I;
-            goto J0x141;
+            goto J0x127;
         }
     }
     return bHasChanged;
@@ -180,4 +198,29 @@ defaultproperties
     ChanceDropIconURLs(1)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
     ChanceDropDescriptionStrings(0)="Drop 1"
     ChanceDropDescriptionStrings(1)="Drop 2"
+    UsesProgressList(0)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    UsesProgressList(1)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    UsesProgressList(2)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    UsesProgressList(3)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    UsesProgressList(4)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
 }

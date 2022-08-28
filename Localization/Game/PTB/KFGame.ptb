@@ -1,4 +1,5 @@
 [KFCommon_LocalizedStrings]
+SpecialEffectsString="Efeitos especiais"
 PrestigeWarningString="Redefinir classe para 0? Não é possível desfazer isso."
 PrestigeBonusString="Bônus de Prestígio"
 FailedToReachInventoryServerString="Falha ao localizar servidor de itens. O inventário não estará disponível."
@@ -8,7 +9,6 @@ DifficultyStrings[1]="Difícil"
 DifficultyStrings[2]="Suicida"
 DifficultyStrings[3]="Inferno na Terra"
 BonusDoshString="GRANA BÔNUS"
-
 LengthStrings[0]="Curto (4 levas)"
 LengthStrings[1]="Médio (7 levas)"
 LengthStrings[2]="Longo (10 levas)"
@@ -19,8 +19,7 @@ ServerTypeStrings[2]="Ranqueado - Personalizado"
 ServerTypeStrings[3]="Não ranqueado"
 
 PermissionStrings[0]="Público"
-PermissionStrings[1]="Apenas amigos"
-PermissionStrings[2]="Particular com senha"
+PermissionStrings[1]="Particular com senha"
 
 ConsolePermissionStrings[0]="Público"
 ConsolePermissionStrings[1]="Apenas convidados"
@@ -108,11 +107,14 @@ DiscordTraderTimeString=": Hora do comerciante"
 DiscordBossWaveString=": Leva do Chefe"
 DiscordWaveString=": Leva"
 
+StartOfflineGameString="Iniciar jogo off-line"
+StartOfflineGameDescriptionString="O grupo será desfeito se você iniciar um jogo off-line. \nContinuar?"
+
 ProceedToTutorialString="IR PARA O TREINAMENTO?"
 ProceedToTutorialDescriptionString="Vá a um ambiente controlado para aprender o básico. Concede classe nível 0 selecionada para nível 1 depois de concluído."
 
 NotAvailableInFreeTrialString="Recurso indisponível para avaliação gratuita"
-NetworkCheckFreeTrialFailedString="Erro de rede: impossível verificar status do evento gratuito. Verificar status da conexão de rede"
+NetworkCheckFreeTrialFailedString="Erro de rede: Impossível verificar status do evento gratuito. Verifique o status da conexão de rede"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RECOMPENSA DE CONCLUSÃO DE SURTO"
@@ -164,7 +166,7 @@ ExplosiveString="Alçapão:"
 
 [KFGFxMenu_StartGame]
 CreateMatchString="CRIAR PARTIDA"
-MatchmakingString="PARTIDAS ON-LINE"
+MatchmakingString="LOCALIZAR UMA PARTIDA"
 ConsoleMatchmakingString="JOGAR ON-LINE"
 ServerBrowserString="Procurar servidor"
 NewsPageString="Notícias"
@@ -191,29 +193,30 @@ CouldNotFindGameDescriptionStringPC="Nenhuma partida foi encontrada com essas op
 CouldNotFindGameDescriptionStringOrbis="Nenhuma partida foi encontrada com essas opções. Tente filtros diferentes."
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="Partidas on-line"
+MultiplayerString="Localizar uma partida"
 ConsoleMultiplayerString="Jogar on-line"
+CreateGameString="Criar uma partida"
 SoloString="Jogar solo off-line"
 TutorialString="Treinamento básico"
 
 [StartMenuHelperText]
-modeList0="Sobrevivência - JxA, batalha de levas de Zeds controlados por IA"
-modeList1="Surto Semanal – um modo de jogo variante diferente a cada semana."
-modeList2="Sobrevivência X - JxJ, mercenários Horzine contra levas de jogadores e Zeds controlados por IA"
-modeList3="Infinito - batalhe até a morte contra levas de Zeds controlados pela IA"
-difficultyList0="Normal - Para jogadores iniciantes de classificação de classe 0-5."
-difficultyList1="Difícil - Para jogadores experientes de classificação de classe 6-12. Há mais Zeds por leva: eles se movimentam rápido e têm mais vida. Há poucos itens e você ganha menos grana."
-difficultyList2="Suicida - Para jogadores especialistas de classificação de classe 13-25. Há ainda mais Zeds por leva: eles usam novos ataques e se movimentam mais rápido. Há menos itens e você ganha menos grana."
-difficultyList3="Inferno na Terra - O desafio mais intenso para jogadores de classificação de classe 25. Há ainda mais Zeds por leva e eles usam novos ataques. Há poucos itens e você ganha menos grana."
+modeList0="Enfrente ondas programadas de Zeds controlados por IA"
+modeList1="Enfrente ondas programadas de Zeds controlados por IA em um modo de jogo semanal único"
+modeList2="Mercenários Horzine contra levas de jogadores e Zeds controlados por IA"
+modeList3="Enfrente ondas ilimitadas de Zeds controlados por IA"
+difficultyList0="Recomendado para novos jogadores de classificação de classe 0-5."
+difficultyList1="Recomendado para jogadores experientes de classificação de classe 6-15. Velocidade de Zed, vida, dano e quantidade por onda aumentados. Os jogadores recebem menos grana e poucos itens."
+difficultyList2="Recomendado para jogadores especialistas de classificação de classe 15-25. Velocidade de Zed, vida, dano e quantidade por onda ainda maiores, e alguns Zeds com novos ataques. Os jogadores recebem ainda menos grana e poucos itens."
+difficultyList3="O desafio mais intenso para jogadores de classificação de classe 25. Velocidade de Zed, vida, dano e quantidade por onda muito aumentados. Os jogadores recebem uma quantidade de grana bem menor e poucos itens."
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="Ranqueado - Qualquer mapa, sem monstros, sem fogo amigo e máximo de 6 jogadores (se for Sobrevivência X, o máximo de jogadores passa a ser 12)"
-serverTypeList1="Ranqueado Estoque - Mapas oficiais, sem monstros, sem fogo amigo e máximo de 6 jogadores"
-serverTypeList2="Ranqueado Personalizado - Qualquer mapa, monstros permitidos e qualquer configuração do servidor"
-serverTypeList3="Não ranqueado personalizado - Modificadores não permitidos (somente)"
-serverTypeList4="Sem preferência - Qualquer um dos outros tipos do servidor"
+serverTypeList0="Qualquer mapa, sem modificadores, sem fogo amigo e máximo de 6 jogadores, máximo de 12 jogadores para Sobrevivência X."
+serverTypeList1="Mapas oficiais, sem modificadores, sem fogo amigo e máximo de 6 jogadores, máximo de 12 jogadores para Sobrevivência X."
+serverTypeList2="Qualquer mapa, modificadores permitidos e qualquer configuração do servidor."
+serverTypeList3="Somente modificadores não permitidos."
+serverTypeList4="Qualquer um dos outros tipos do servidor."
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -268,6 +271,10 @@ BossWaveString="Chefe"
 BossName="Chefe"
 BossCaptionStrings[0]="Boss caption 1"
 BossCaptionStrings[1]="Boss caption 2"
+
+[KFGFxTraderContainer_ErrorMessage]
+CannotAffordString="Fundos insuficientes para este item."
+CannotCarryString="Item não permitido. Venda p/ criar espaço."
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="INVENTÁRIO"
@@ -765,6 +772,7 @@ DefaultPlayerName="Jogador"
 
 PartyLeaderSearchingForMatchString="está procurando uma partida..."
 PartyLeaderIsUpdatingMatchOptionsString="está configurando opções..."
+CreatingGameString="está criando um novo jogo"
 PartyLeaderInServerBrowserString="está buscando no navegador..."
 PartyLeaderInOtherMenuString="está em outro menu..."
 SearchingForGameString="Buscando jogo on-line..."
@@ -897,7 +905,7 @@ NotHightenoughLevelString="A classe não está no nível máximo. O usuário nã
 CurrentRankString="CLASS. ATUAL"
 NextRankString="PRÓXIMA CLASS."
 RewardString="RECOMPENSAS"
-PrestigeDescriptionString="> O nível de classe será redefinido para 0. \n> Modificador de bônus permanente de +30% de EXP aplicado ao fim de partidas de jogo para esta classe.\n> Ganhe um ícone de classe modificado, um Cofre de Grana, uma aparência de arma exclusiva para esta Classe."
+PrestigeDescriptionString="> O nível de classe voltará para 0. \n> Bônus de Modificador de XP +%x%% permanente aplicado a esta Classe. \n>Ganhe ícone de Classe modificado, Cofre de Grana e uma aparência única de arma para esta Classe."
 PrestigeWarningString1="ISSO REDEFINIRÁ A CLASSE PARA 0"
 PrestigeWarningString2="CONTINUE APENAS SE TIVER CERTEZA"
 PrestigeWarningString3="DEPOIS DE FEITO, NÃO HÁ VOLTA"
@@ -911,11 +919,13 @@ TotalString="Total"
 CheckOutString="Confira"
 
 [KFGFxStoreContainer_Main]
+FeaturedString="Destaque"
 WeaponSkinsRotationString="Aparência de armas"
 WeaponSkinsString="Apar. armas mercado"
 MarketConsumablesString="Caixotes/USBs do mercado"
 MarketCosmeticsString="Cosméticos do mercado"
 MarketEmotesString="Emotes do mercado"
+MarketSFXString="Efeito Son. de Mercado"
 ThankYouString="Obrigado pela compra! Ela nos ajudará a desenvolver novos itens, mapas, armas, zeds e modos de jogo para atualizações futuras."
 
 [KFGFxStoreContainer_Details]
@@ -940,6 +950,7 @@ MenuStrings[7]="SAIR"
 
 ServerBrowserString="SERVIDOR LISTA"
 MatchmakingString="CRIADOR DE PARTIDA"
+CreateGameString="CRIAR JOGO"
 SoloString="SOLO"
 OverviewString="VISÃO GERAL"
 
@@ -1230,6 +1241,7 @@ AntiMotionSicknessString="Anticinetose"
 AutoTurnOffString="Sem ativ. aut. para coágulo"
 ReduceHighPitchNoiseString="Reduzir ruído de alta freq."
 DisableAutoUpgradeString="Desativar Loja Auto."
+HideRemodeHeadshotEffectsString="Desativar ef. remoto tiro na cabeça"
 
 EnableMixerString="Ativar/desativar interatividade do Mixer"
 DisableMixerString="Desativar mixer"
@@ -1396,7 +1408,7 @@ KickVoteNoSpectatorsString="Espectadores não podem iniciar uma votação de exp
 KickedFromServerString="Você foi removido do servidor."
 BannedFromServerString="Você foi removido deste servidor. Não é possível reentrar no momento"
 ServerNoLongerAvailableString="O servidor não está mais disponível para entrar"
-SkipTraderTimeString="IGNORAR COMERCIANTE Selecione “IGNORAR COMERCIANTE” no menu do jogo para votar.  Todos os jogadores devem aceitar."
+SkipTraderTimeString="IGNORAR COMERCIANTE ativado. Vote no menu de jogo.  Todos os jogadores devem aceitar."
 SkipTraderSuccessString="Votação para ignorar o comerciante bem sucedida!"
 
 [KFLocalMessage_Game]
@@ -1764,7 +1776,7 @@ LargeMags="Alta capacidade de munição"
 LargeMagsDescription="Aumenta em 50% a capacidade de munição de armas de classe."
 
 Backup="Retirada"
-BackupDescription="Aumenta em 50% o dano da pistola 9 mm e da faca e aumenta em 50% a velocidade de troca de arma."
+BackupDescription="Aumenta em 50% o dano de sua pistola 9 mm e de sua faca e aumenta em 50% a velocidade de troca de arma."
 
 Impact="Rodadas de impacto"
 ImpactDescription="Aumenta em 150% o poder de derrubar para armas de classe."
@@ -1782,7 +1794,7 @@ EatLead="Toma chumbo"
 EatLeadDescription="Aumenta em 100% a capacidade de munição de armas de classe."
 
 RapidFire="HORA DOS ZEDS - Artilheiro"
-RapidFireDescription="Durante a hora dos Zeds, concede 3% mais dano com armas de classe e atira 3x mais rápido com todas as armas."
+RapidFireDescription="Durante a hora dos Zeds, concede 3% mais dano e atira 3x mais rápido com armas de classe."
 
 Professional="HORAS DOS ZEDS - Tático"
 ProfessionalDescription="Durante a hora dos Zeds, recarrega armas de classe em velocidade máxima e troca armas de classe duas vezes mais rápido."
@@ -2315,7 +2327,8 @@ HorzineSupplyCrateKey13="Chave de cx. de sup. Horzine | S. 13 - US$2,49"
 USBSpitfire="Chave USB Cospe-fogo - US$2,49"
 USBHighVoltage="Chave de USB Alta Tensão - US$2,49"
 MerchSale="Promoção KF2! 25% menos até 30/4/17, cód. prom. ZED"
-FreeTrial="COMPRAR JOGO COMPLETO"
+FreeTrial="Compre Killing Floor 2 hoje!"
+FeaturedCrossover="Promoção de Crossover em destaque"
 
 [Objectives]
 HoldVolume="DEFENDA A ÁREA"
@@ -2474,6 +2487,8 @@ zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="Promoção Cavaleiros"
+KFWeap_ChainBat="Oferta Road Redemption"
+KFWeap_MKB="Ar. Hans Halloween"
 
 
 Source0="Promoção Cavaleiros"
@@ -2504,6 +2519,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="Descarga Rápida",DescriptionStri
 SpecialEventObjectiveInfoList[4]=(TitleString="Uma Ótima Embarcação",DescriptionString="Vença uma partida em Difícil ou mais na Aeronave");
 
 AllCompleteRewardDescriptionString="Pacote de Traje Steampunk"
+
+ChanceDropDescriptionStrings[0]="Bilh. Prêmio"
+ChanceDropDescriptionStrings[1]="Bilh. Ouro"
+
+[KFGFxFallObjectivesContainer]
+CurrentSpecialEventString="Conclua os objetivos no Baile dos Monstros e ganhe recompensas!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Travessuras ou armadilhas!",DescriptionString="Use armadilhas para matar 25 Zeds em uma sessão de jogo.");
+SpecialEventObjectiveInfoList[1]=(TitleString="Mortos não contam histórias",DescriptionString="Quebre 10 caveiras reluzentes colecionáveis.");
+SpecialEventObjectiveInfoList[2]=(TitleString="Sopa de Monstros",DescriptionString="Mate 2500 Zeds.");
+SpecialEventObjectiveInfoList[3]=(TitleString="Festa a noite toda",DescriptionString="Conclua a 25º leva no modo Difícil Infinito ou maior.");
+SpecialEventObjectiveInfoList[4]=(TitleString="Senhor do Castelo",DescriptionString="Derrote o Conde Hans no modo Sobrevivência Difícil ou maior.");
+
+AllCompleteRewardDescriptionString="Apar. MKB de Halloween de Hans"
 
 ChanceDropDescriptionStrings[0]="Bilh. Prêmio"
 ChanceDropDescriptionStrings[1]="Bilh. Ouro"
@@ -2945,37 +2974,21 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
-[KF-Lockdown KFMapSummary]
-DisplayName_CHN="封锁"
-DisplayName_CHT="封鎖"
-DisplayName_DEU="Sperrmodus"
-DisplayName_ESL="Bloqueo"
-DisplayName_ESN="Bloqueo"
-DisplayName_FRA="Confinement"
-DisplayName_FRC="Confinement"
-DisplayName_INT="Lockdown"
-DisplayName_ITA="Debilitazione"
-DisplayName_JPN="ロックダウン"
-DisplayName_KOR="락다운"
-DisplayName_POL="Kwarantanna"
-DisplayName_PTB="Confinamento"
-DisplayName_RUS="Изоляция"
-
-[KF-Airship KFMapSummary]
-DisplayName_CHN="飞艇"
-DisplayName_CHT="飛艇"
-DisplayName_DEU="Luftschiff"
-DisplayName_ESL="Aeronave"
-DisplayName_ESN="Aeronave"
-DisplayName_FRA="Dirigeable"
-DisplayName_FRC="Dirigeable"
-DisplayName_INT="Airship"
-DisplayName_ITA="Aeronave"
-DisplayName_JPN="飛行船"
-DisplayName_KOR="비행선"
-DisplayName_POL="Statek powietrzny"
-DisplayName_PTB="Aeronave"
-DisplayName_RUS="Воздушное судно"
+[KF-MonsterBall KFMapSummary]
+DisplayName_CHN="怪物球"
+DisplayName_CHT="怪獸舞會"
+DisplayName_DEU="Monsterball"
+DisplayName_ESL="Baile de monstruos"
+DisplayName_ESN="Baile de monstruos"
+DisplayName_FRA="Bal des monstres"
+DisplayName_FRC="Bal des monstres"
+DisplayName_INT="Monster Ball"
+DisplayName_ITA="Festa dei mostri"
+DisplayName_JPN="Monster Ball"
+DisplayName_KOR="괴물 무도회"
+DisplayName_POL="Bal potworów"
+DisplayName_PTB="Baile de Monstros"
+DisplayName_RUS="Бал монстров"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratório de Biótica"
@@ -3051,6 +3064,9 @@ DisplayName="Confinamento"
 
 [KF-Airship KFMapSummary]
 DisplayName="Aeronave"
+
+[KF-MonsterBall KFMapSummary]
+DisplayName="Baile de Monstros"
 
 [KFMapInfo]
 ; defaults

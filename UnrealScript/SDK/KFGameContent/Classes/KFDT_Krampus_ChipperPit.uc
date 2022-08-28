@@ -39,4 +39,5 @@ defaultproperties
 {
 	SeasonIndex=SEI_Winter
 	ObjectiveIndex=1
+	bIsTrapDamage=true
 }

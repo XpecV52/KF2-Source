@@ -357,6 +357,19 @@ simulated event Tick(float DeltaTime)
     }
 }
 
+simulated event ChangeVisibility(bool bIsVisible)
+{
+    super.ChangeVisibility(bIsVisible);
+    if(bIsVisible)
+    {
+        TurnOnPilot();        
+    }
+    else
+    {
+        TurnOffPilot();
+    }
+}
+
 defaultproperties
 {
     begin object name=PilotLight0 class=KFParticleSystemComponent

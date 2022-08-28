@@ -198,7 +198,9 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.2)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',   	            DamageScale=(1.0)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(1.0)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(0.0))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingFart',        DamageScale=(0.00))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatPukeMine',        DamageScale=(0.00)))
 
 
 

@@ -198,6 +198,10 @@ simulated function DeactivateObjective()
 				}
 			}
 		}
+		else
+		{
+			`log("objective failed");
+		}
 
 		PlayDeactivationDialog();
 
@@ -514,7 +518,30 @@ simulated function float GetSpawnRateMod()
 
 simulated function bool HasFailedObjective()
 {
-	return false;
+	return GetLivingPlayerCount() <= 0;
+}
+
+// Overridden because the native implementation will count human controlled zeds
+simulated function int GetLivingPlayerCount()
+{
+	local Controller P;
+	local int UsedLivingHumanPlayersCount;
+
+	foreach WorldInfo.AllControllers(class'Controller', P)
+	{
+		if (P != none && P.Pawn != none && P.Pawn.IsAliveAndWell())
+		{
+			if (P.GetTeamNum() != 255)
+			{
+				//`log(P$" TeamIndex = "$P.PlayerReplicationInfo.Team.TeamIndex);
+				UsedLivingHumanPlayersCount++;
+			}
+		}
+	}
+
+	//`log(GetFuncName()$" Player alive count: "$UsedLivingHumanPlayersCount);
+
+	return UsedLivingHumanPlayersCount;
 }
 
 simulated function bool UsesMultipleActors()

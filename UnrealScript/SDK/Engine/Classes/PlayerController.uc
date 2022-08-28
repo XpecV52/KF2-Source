@@ -2619,12 +2619,12 @@ function CleanupPawn()
 	if (DrivenVehicle != None)
 	{
 		Driver = DrivenVehicle.Driver;
-		DrivenVehicle.DriverLeave(TRUE); // Force the driver out of the car
-		if ( Driver != None )
-		{
-			Driver.Health = 0;
-			Driver.Died(Self, class'DmgType_Suicided', Driver.Location);
-		}
+DrivenVehicle.DriverLeave(TRUE); // Force the driver out of the car
+if (Driver != None)
+{
+	Driver.Health = 0;
+	Driver.Died(Self, class'DmgType_Suicided', Driver.Location);
+}
 	}
 	else if (Pawn != None)
 	{
@@ -2633,7 +2633,7 @@ function CleanupPawn()
 	}
 }
 
-event Exit(){}
+event Exit() {}
 
 event Destroyed()
 {
@@ -2643,26 +2643,26 @@ event Destroyed()
 	local MaterialInstanceConstant MIC;
 
 	// Disable any currently playing rumble
-	ClientPlayForceFeedbackWaveform(None,None);
+	ClientPlayForceFeedbackWaveform(None, None);
 
 	// if this is a local player, clear all online delegates
-	if ( Role < ROLE_Authority || LocalPlayer(Player) != None )
+	if (Role < ROLE_Authority || LocalPlayer(Player) != None)
 	{
 		ClearOnlineDelegates();
 	}
 
 	// cheatmanager and playerinput cleaned up in C++ PostScriptDestroyed()
-	if ( Pawn != None )
+	if (Pawn != None)
 	{
 		CleanupPawn();
 	}
-	if ( myHUD != None )
+	if (myHUD != None)
 	{
 		myHud.Destroy();
 		myHUD = None;
 	}
 
-	if( PlayerCamera != None )
+	if (PlayerCamera != None)
 	{
 		PlayerCamera.Destroy();
 		PlayerCamera = None;
@@ -2714,22 +2714,6 @@ function ResetFOV()
 	FOVAngle = DefaultFOV;
 }
 
-`if(`__TW_)
-function FOV(float F)
-{
-	if( PlayerCamera != None )
-	{
-		PlayerCamera.SetFOV( F );
-		return;
-	}
-
-	if( (F >= 80.0) || (WorldInfo.NetMode==NM_Standalone) || PlayerReplicationInfo.bOnlySpectator )
-	{
-		DefaultFOV = FClamp(F, 80, 100);
-		DesiredFOV = DefaultFOV;
-	}
-}
-`else
 exec function FOV(float F)
 {
 	if (PlayerCamera != None)
@@ -2744,7 +2728,6 @@ exec function FOV(float F)
 		DesiredFOV = DefaultFOV;
 	}
 }
-`endif
 
 exec function Mutate(string MutateString)
 {

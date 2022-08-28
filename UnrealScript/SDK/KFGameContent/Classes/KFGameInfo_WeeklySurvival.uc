@@ -21,16 +21,24 @@ var int ActiveEventIdx;
 static event class<GameInfo> SetGameType(string MapName, string Options, string Portal)
 {
     local KFGameEngine KGE;
+	local int WeeklyIndex;
 
     KGE = KFGameEngine(class'Engine'.static.GetEngine());
     if (KGE != none)
     {
+
         //Valid index
-        if (KGE.GetWeeklyEventIndex() >= 0)
+		WeeklyIndex = KGE.GetWeeklyEventIndex();
+		`log("Getting Weekly event index: value: " $ WeeklyIndex);
+        if (WeeklyIndex >= 0)
         {
             return super.SetGameType(MapName, Options, Portal);
         }
     }
+	else
+	{
+		`log("KFGameEngine is null for Weekly index");
+	}
 
     //Invalid state, set to normal survival
     return class'KFGameInfo_Survival';
@@ -51,29 +59,13 @@ static function bool GametypeChecksWaveLength()
 
 event InitGame( string Options, out string ErrorMessage )
 {
-    local KFGameEngine KGE;
-
-
-
 	Super.InitGame(Options, ErrorMessage);
 
-    //The KFGameEngine at startup will store the week index of our current time
-    //      Pull from there and figure out which event it corresponds to.
-    //      The beginning of time to reset the loop can be changed in UKFGameEngine::UpdateTimedGameEvents
-    KGE = KFGameEngine(class'Engine'.static.GetEngine());
-    if (KGE != none)
-    {
-        ActiveEventIdx = KGE.GetWeeklyEventIndex() % OutbreakEvent.SetEvents.Length;
-    }
-
-	OutbreakEvent.SetActiveEvent(ActiveEventIdx);
-
-	SetModifiedGameDifficulty();
+	//SetModifiedGameDifficulty();
     SetPickupItemList();
     SetZedTimeOverrides();
     SetSpawnPointOverrides();
     OutbreakEvent.SetWorldInfoOverrides();
-    SetGameLength();
 }
 
 event PreBeginPlay()
@@ -83,15 +75,50 @@ event PreBeginPlay()
 	OutbreakEvent.UpdateGRI();
 }
 
+function CreateOutbreakEvent()
+{
+	//The KFGameEngine at startup will store the week index of our current time
+	//      Pull from there and figure out which event it corresponds to.
+	//      The beginning of time to reset the loop can be changed in UKFGameEngine::UpdateTimedGameEvents
+
+	local KFGameEngine KGE;
+
+	super.CreateOutbreakEvent();
+
+	KGE = KFGameEngine(class'Engine'.static.GetEngine());
+	if (KGE != none)
+	{
+		ActiveEventIdx = KGE.GetWeeklyEventIndex() % OutbreakEvent.SetEvents.Length;
+	}
+	OutbreakEvent.SetActiveEvent(ActiveEventIdx);
+}
+
+function bool UsesModifiedDifficulty()
+{
+	return true;
+}
+
 function SetModifiedGameDifficulty()
 {
+	super.SetModifiedGameDifficulty();
+
+	if (OutbreakEvent == none)
+	{
+		CreateOutbreakEvent();
+	}
     //Set game difficulty.  super will create the intended DifficultyInfo object.
     MinGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
     MaxGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
 	GameDifficulty = Clamp(GameDifficulty, MinGameDifficulty, MaxGameDifficulty);
 }
 
-function SetGameLength()
+//for difficulty override
+function bool UsesModifiedLength()
+{
+	return true;
+}
+
+function SetModifiedGameLength()
 {
     GameLength = OutbreakEvent.ActiveEvent.GameLength;
 }

@@ -53,6 +53,8 @@ package tripwire.containers.inventory
         
         public const ITP_Item:int = 2;
         
+        public const ITP_SFX:int = 6;
+        
         public var _itemCount:int;
         
         public var bForceFocusToDetails:Boolean;
@@ -112,6 +114,10 @@ package tripwire.containers.inventory
                 {
                     ExternalInterface.call("Callback_Equip",this.currentItemDataObject.definition);
                 }
+                else if(this.currentItemDataObject.type == this.ITP_SFX)
+                {
+                    ExternalInterface.call("Callback_EquipSFX",this.currentItemDataObject.definition);
+                }
                 if(this.currentItemDataObject.exchangeable)
                 {
                     ExternalInterface.call("Callback_UseItem",this.currentItemDataObject.definition);
@@ -136,8 +142,8 @@ package tripwire.containers.inventory
             this.itemNameText.text = param1.label;
             this.itemDescText.htmlText = param1.description;
             this.itemCount = !!param1.count ? int(param1.count) : 0;
-            this.equipButton.visible = param1.type == this.ITP_WeaponSkin || param1.exchangeable;
-            if(param1.type == this.ITP_WeaponSkin)
+            this.equipButton.visible = param1.type == this.ITP_WeaponSkin || param1.type == this.ITP_SFX || param1.exchangeable;
+            if(param1.type == this.ITP_WeaponSkin || param1.type == this.ITP_SFX)
             {
                 this.equipButton.label = !!param1.active ? this.unequipString : this.equipString;
             }

@@ -1,4 +1,5 @@
 [KFCommon_LocalizedStrings]
+SpecialEffectsString="Spezialeffekte"
 PrestigeWarningString="Vorteil zurück auf 0 setzen? Das kann nicht rückgängig gemacht werden."
 PrestigeBonusString="Ansehen-Bonus"
 FailedToReachInventoryServerString="Gegenstandsserver unerreichbar. Inventar ist nicht verfügbar."
@@ -8,7 +9,6 @@ DifficultyStrings[1]="Schwer"
 DifficultyStrings[2]="Lebensmüde"
 DifficultyStrings[3]="Hölle auf Erden"
 BonusDoshString="BONUSKOHLE"
-
 LengthStrings[0]="Kurz (4 Wellen)"
 LengthStrings[1]="Mittel (7 Wellen)"
 LengthStrings[2]="Lang (10 Wellen)"
@@ -19,8 +19,7 @@ ServerTypeStrings[2]="Gewertet – Benutzerdef."
 ServerTypeStrings[3]="Ungewertet"
 
 PermissionStrings[0]="Öffentlich"
-PermissionStrings[1]="Nur Freunde"
-PermissionStrings[2]="Privat-Passwort"
+PermissionStrings[1]="Privat-Passwort"
 
 ConsolePermissionStrings[0]="Öffentlich"
 ConsolePermissionStrings[1]="Nur mit Einladung"
@@ -108,6 +107,9 @@ DiscordTraderTimeString=": Zeit für die Händlerin"
 DiscordBossWaveString=": Bosswelle"
 DiscordWaveString=": Welle"
 
+StartOfflineGameString="Offline-Spiel beginnen"
+StartOfflineGameDescriptionString="Wenn du ein Offline-Spiel beginnst, wird deine Gruppe aufgelöst. \nMöchtest du fortfahren?"
+
 ProceedToTutorialString="WEITER ZUM TRAINING??"
 ProceedToTutorialDescriptionString="Lerne die Grundlagen in einer kontrollierten Umgebung.  Bringt bei Abschluss ausgewählten Vorteil von Level 0 auf 1."
 
@@ -164,7 +166,7 @@ ExplosiveString="Tür-Falle:"
 
 [KFGFxMenu_StartGame]
 CreateMatchString="SPIEL ERSTELLEN"
-MatchmakingString="ONLINE-SPIELSUCHE"
+MatchmakingString="SPIEL FINDEN"
 ConsoleMatchmakingString="ONLINE SPIELEN"
 ServerBrowserString="Server browsen"
 NewsPageString="News"
@@ -191,29 +193,30 @@ CouldNotFindGameDescriptionStringPC="Keine zur Sucheinstellg. passende Server ge
 CouldNotFindGameDescriptionStringOrbis="Keine zur Sucheinstellg. passende Server gefunden. Versuche andere Filter."
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="Online-Spielsuche"
+MultiplayerString="Spiel finden"
 ConsoleMultiplayerString="Online spielen"
+CreateGameString="Spiel erstellen"
 SoloString="Spiele Solo Offline"
 TutorialString="Grundausbildung"
 
 [StartMenuHelperText]
-modeList0="Überleben – PVE Kämpfe gegen KI-gesteuerte Wellen von Zeds"
-modeList1="Wöchentlicher Ausbruch – Jede Woche ein anderer Spielmodus."
-modeList2="VS-Überleben – PVP Horzine-Söldner gegen Wellen von Spieler- und KI-gesteuerten Zeds"
-modeList3="Endlos – Kämpfe bis zum Tod gegen KI-gesteuerte Wellen von Zeds"
-difficultyList0="Normal – Für Anfänger mit Vorteil-Rang 0-5."
-difficultyList1="Schwer – Für erfahrene Spieler mit Vorteil-Rang 6-12. Es gibt mehr Zeds pro Welle, sie bewegen sich schneller und haben mehr Lebenspunkte. Es gibt weniger zum Aufsammeln und weniger Kohle."
-difficultyList2="Selbstmörderisch – Für routinierte Spieler mit Vorteil-Rang 13-25. Es gibt noch mehr Zeds pro Welle, sie benutzen neue Angriffe und bewegen sich noch schneller. Es gibt noch weniger zum Aufsammeln und noch weniger Kohle."
-difficultyList3="Hölle auf Erden – Die intensivste Herausforderung für Spieler mit Vorteil-Rang 25. Es gibt noch mehr Zeds pro Welle und sie benutzen neue Angriffe. Es gibt noch weniger zum Aufsammeln und noch weniger Kohle."
+modeList0="Kämpfe gegen festgelegte Wellen von KI-gesteuerten Zeds"
+modeList1="Kämpfe gegen festgelegte Wellen von KI-gesteuerten Zeds in einem einzigartigen Spielmodus der Woche"
+modeList2="Horzine-Söldner gegen Wellen von spieler- und KI-gesteuerten Zeds"
+modeList3="Kämpfe gegen endlose Wellen von KI-gesteuerten Zeds"
+difficultyList0="Empfohlen für neue Spieler mit Vorteil-Rang 0–5"
+difficultyList1="Empfohlen für erfahrene Spieler mit Vorteil-Rang 6–15. Erhöht bei Zeds Geschwindigkeit, Gesundheit, Schaden und Anzahl pro Welle. Spieler erhalten weniger Kohle und es gibt weniger zum Aufsammeln."
+difficultyList2="Empfohlen für routinierte Spieler mit Vorteil-Rang 15–25. Erhöht bei Zeds Geschwindigkeit, Gesundheit, Schaden und Anzahl pro Welle noch weiter. Einige Zeds verfügen über neue Angriffe. Spieler erhalten noch weniger Kohle und es gibt weniger zum Aufsammeln."
+difficultyList3="Die intensivste Herausforderung für Spieler mit Vorteil-Rang 25. Erhöht bei Zeds Geschwindigkeit, Gesundheit, Schaden und Anzahl pro Welle noch weiter. Spieler erhalten noch viel weniger Kohle und es gibt weniger zum Aufsammeln."
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="Gewertet – Beliebige Karte, keine Mods, kein Eigenbeschuss, maximal 6 Spieler (im VS Überleben sind das maximal 12 Spieler)"
-serverTypeList1="Gewertet Standard – Offizielle Karten, keine Mods, kein Eigenbeschuss, und maximal 6 Spieler"
-serverTypeList2="Gewertet Benutzerdefiniert – Beliebige Karte, Mods aus der weißen Liste, beliebige Servereinstellung"
-serverTypeList3="Ungewertet Benutzerdefiniert – Mods die nicht auf der weißen Liste sind (nur)"
-serverTypeList4="Keine Präferenz – Ein beliebiger der anderen Servertypen"
+serverTypeList0="Beliebige Karte, keine Mods, kein Eigenbeschuss, maximal 6 Spieler, maximal 12 Spieler im VS-Überleben"
+serverTypeList1="Offizielle Karten, keine Mods, kein Eigenbeschuss, maximal 6 Spieler, maximal 12 Spieler im VS-Überleben"
+serverTypeList2="Beliebige Karte, Mods aus der weißen Liste, beliebige Servereinstellung"
+serverTypeList3="Nur Mods, die nicht auf der weißen Liste sind"
+serverTypeList4="Ein beliebiger der anderen Servertypen"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -268,6 +271,10 @@ BossWaveString="BOSS"
 BossName="Boss"
 BossCaptionStrings[0]="Boss-Titel 1"
 BossCaptionStrings[1]="Boss-Titel 2"
+
+[KFGFxTraderContainer_ErrorMessage]
+CannotAffordString="Nicht genügend Mittel für diesen Gegenstand."
+CannotCarryString="Tragen nicht möglich. Verkaufe was für mehr Platz."
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="INVENTAR"
@@ -765,6 +772,7 @@ DefaultPlayerName="Spieler"
 
 PartyLeaderSearchingForMatchString="sucht ein Spiel …"
 PartyLeaderIsUpdatingMatchOptionsString="stellt Spieloptionen ein …"
+CreatingGameString="erstellt ein neues Spiel"
 PartyLeaderInServerBrowserString="sucht im Server-Browser …"
 PartyLeaderInOtherMenuString="ist in einem anderen Menü …"
 SearchingForGameString="Suche nach Online-Spiel …"
@@ -897,7 +905,7 @@ NotHightenoughLevelString="Vorteil nicht auf max. Level. Prestige zu dieser Zeit
 CurrentRankString="AKTUELLER RANG"
 NextRankString="NÄCHSTER RANG"
 RewardString="PRES.-BELOHNUNGEN"
-PrestigeDescriptionString="> Vorteilslevel wird auf 0 gesetzt. \n> Dauerhafter +30%-EP-Bonusmodifikator wird für diesen Vorteil am Ende von Spielen angewandt. \n> Erhalte für diesen Vorteil ein angepasstes Icon, Kammerkohle und einen einzigartigen Waffen-Skin."
+PrestigeDescriptionString="> Vorteilslevel wird auf 0 gesetzt. \n> Dauerhafter +%x%%-EP-Bonusmodifikator wird für diesen Vorteil angewandt. \n> Erhalte für diesen Vorteil ein angepasstes Icon, Kammerkohle und einen einzigartigen Waffen-Skin."
 PrestigeWarningString1="AKTION SETZT DIESEN VORTEIL AUF 0"
 PrestigeWarningString2="FORTFAHREN, WENN DU DIR SICHER BIST"
 PrestigeWarningString3="WAS GETAN IST, IST GETAN"
@@ -911,11 +919,13 @@ TotalString="Insgesamt"
 CheckOutString="Check Out"
 
 [KFGFxStoreContainer_Main]
+FeaturedString="Highlights"
 WeaponSkinsRotationString="Waffen-Skins"
 WeaponSkinsString="Markt: Waffen-Skins"
 MarketConsumablesString="Markt: Kisten/USBs"
 MarketCosmeticsString="Markt: Kosmetisches"
 MarketEmotesString="Markt: Emotes"
+MarketSFXString="Markt: SFX"
 ThankYouString="Danke für deinen Kauf! Er wird uns dabei helfen, neue Gegenstände, Karten, Waffen, Zeds und Spielmodi für zukünftige Updates zu entwickeln."
 
 [KFGFxStoreContainer_Details]
@@ -940,6 +950,7 @@ MenuStrings[7]="BEENDEN"
 
 ServerBrowserString="SERVER-BROWSER"
 MatchmakingString="SPIELSUCHE"
+CreateGameString="SPIEL ERSTELLEN"
 SoloString="SOLO"
 OverviewString="SPIELÜBERSICHT"
 
@@ -1230,6 +1241,7 @@ AntiMotionSicknessString="Anti-Spielübelkeit"
 AutoTurnOffString="Clot-Griff: Kein Autodreh"
 ReduceHighPitchNoiseString="Hohen Tonrausch reduzieren"
 DisableAutoUpgradeString="Auto-Handel deakt."
+HideRemodeHeadshotEffectsString="Fremdkopfschuss-Effekte deaktiv."
 
 EnableMixerString="Mixer-Interaktivität aktivieren/deaktivieren"
 DisableMixerString="Mixer deaktivieren"
@@ -1396,7 +1408,7 @@ KickVoteNoSpectatorsString="Zuschauer können keine Kick-Abstimmung initiieren"
 KickedFromServerString="Du wurdest von diesem Server entfernt"
 BannedFromServerString="Du wurdest von diesem Server entfernt. Du kannst zur Zeit nicht wieder beitreten"
 ServerNoLongerAvailableString="Dem Server kann nicht mehr beigetreten werden"
-SkipTraderTimeString="HÄNDLERIN ÜBERSPRINGEN aktiviert. Wähle im Spielmenü „HÄNDLERIN ÜBERSPRINGEN“, um abzustimmen.  Alle Spieler müssen zustimmen."
+SkipTraderTimeString="HÄNDLERIN ÜBERSPRINGEN aktiv. Wähl im Menü HÄNDLERIN ÜBERSPRINGEN zum Stimmen.  Alle müssen zustimmen."
 SkipTraderSuccessString="Abstimmung zum Überspringen der Händlerin erfolgreich!"
 
 [KFLocalMessage_Game]
@@ -1764,7 +1776,7 @@ LargeMags="Magazine hoher Kapazität"
 LargeMagsDescription="Erhöhe die Magazinkapazität von Vorteils-Waffen um 50%."
 
 Backup="Plan B"
-BackupDescription="Erhöhe den Schaden deiner 9mm-Pistole und deines Messers um 50%, und erhöhe die Waffen-Wechselgeschwindigkeit um 50%."
+BackupDescription="Erhöhe den Schaden deiner 9mm-Pistole und des Messers um 50%, und erhöhe die Waffen-Wechselgeschwindigkeit um 50%."
 
 Impact="Wirksame Geschosse"
 ImpactDescription="Erhöhe die Strauchel-Macht von Vorteils-Waffen um 150%."
@@ -1782,7 +1794,7 @@ EatLead="Friss Blei"
 EatLeadDescription="Erhöhe die Magazinkapazität von Vorteils-Waffen um 100%."
 
 RapidFire="ZED-ZEIT – MG-Schütze"
-RapidFireDescription="Während der Zed-Zeit verursachst du 3% mehr Schaden mit Vorteils-Waffen und schießt 3x schneller mit allen Schusswaffen."
+RapidFireDescription="Während der Zed-Zeit verursachst du 3% mehr Schaden und schießt 3x schneller mit Vorteils-Waffen."
 
 Professional="ZED-ZEIT – Taktiker"
 ProfessionalDescription="Während der Zed-Zeit lädst du Vorteils-Waffen mit voller Geschwindigkeit und wechselst Vorteils-Waffen doppelt so schnell."
@@ -2315,7 +2327,8 @@ HorzineSupplyCrateKey13="Horzine-Vorratskiste-Schl. | S. #13 – $2.49"
 USBSpitfire="Spitfire-USB-Schlüssel – $2.49"
 USBHighVoltage="Hochspannungs-USB-Schlüssel – $2.49"
 MerchSale="KF2-Ware-Sale! 25 % Rabatt bis 30.04.17, Code: ZED"
-FreeTrial="VOLLVERSION KAUFEN"
+FreeTrial="Kauf Killing Floor 2 noch heute!"
+FeaturedCrossover="Aktuelle Crossover-Promo"
 
 [Objectives]
 HoldVolume="VERTEIDIGE DAS GEBIET"
@@ -2332,7 +2345,7 @@ UseWelderToRepair="Schweißgerät verwenden, um die Ziele zu reparieren"
 FailedString="GESCHEITERT"
 DescriptionActivateTrigger="Zielsteuerung aktivieren"
 RequiredActivateTrigger="Benötigte Aktivierungen:"
-ActivateTrigger="BEDIENEN UND STEUERN"
+ActivateTrigger="STEUERN UND BEDIENEN"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2474,6 +2487,8 @@ zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="Chivalry-Promo"
+KFWeap_ChainBat="Road-Redemption-Promo"
+KFWeap_MKB="Hans' Halloween-Waffe"
 
 
 Source0="Chivalry-Promo"
@@ -2503,7 +2518,21 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Elektrisierend!",DescriptionStrin
 SpecialEventObjectiveInfoList[3]=(TitleString="Wasser-Marsch",DescriptionString="Leite Wasser zum Dampfmotor im Luftschiff");
 SpecialEventObjectiveInfoList[4]=(TitleString="Luftiger Kampf",DescriptionString="Gewinne ein Spiel auf Schwer oder höher im Luftschiff");
 
-AllCompleteRewardDescriptionString="Steampunk-Outfit-Paket"
+AllCompleteRewardDescriptionString="Steampunk-Outfitpaket"
+
+ChanceDropDescriptionStrings[0]="Gewinnschein"
+ChanceDropDescriptionStrings[1]="Goldschein"
+
+[KFGFxFallObjectivesContainer]
+CurrentSpecialEventString="Schließe die Monsterball-Aufgaben ab, um Belohnungen zu erhalten!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Rein in die Falle!",DescriptionString="Nutze Fallen, um in einer Spielsitzung 25 Zeds zu töten");
+SpecialEventObjectiveInfoList[1]=(TitleString="Tote reden nicht",DescriptionString="Zerstöre 10 leuchtende Schädel-Sammelstücke");
+SpecialEventObjectiveInfoList[2]=(TitleString="Monstermanscher",DescriptionString="Töte 2.500 Zeds");
+SpecialEventObjectiveInfoList[3]=(TitleString="Jetzt wird durchgefeiert",DescriptionString="Schließe Welle 25 bei Endlos auf Schwer oder höher ab");
+SpecialEventObjectiveInfoList[4]=(TitleString="Schlossherr",DescriptionString="Besiege den Grafen Hans bei Überleben auf Schwer oder höher");
+
+AllCompleteRewardDescriptionString="Hans' Halloween-MKB-Skin"
 
 ChanceDropDescriptionStrings[0]="Gewinnschein"
 ChanceDropDescriptionStrings[1]="Goldschein"
@@ -2945,37 +2974,21 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
-[KF-Lockdown KFMapSummary]
-DisplayName_CHN="封锁"
-DisplayName_CHT="封鎖"
-DisplayName_DEU="Sperrmodus"
-DisplayName_ESL="Bloqueo"
-DisplayName_ESN="Bloqueo"
-DisplayName_FRA="Confinement"
-DisplayName_FRC="Confinement"
-DisplayName_INT="Lockdown"
-DisplayName_ITA="Debilitazione"
-DisplayName_JPN="ロックダウン"
-DisplayName_KOR="락다운"
-DisplayName_POL="Kwarantanna"
-DisplayName_PTB="Confinamento"
-DisplayName_RUS="Изоляция"
-
-[KF-Airship KFMapSummary]
-DisplayName_CHN="飞艇"
-DisplayName_CHT="飛艇"
-DisplayName_DEU="Luftschiff"
-DisplayName_ESL="Aeronave"
-DisplayName_ESN="Aeronave"
-DisplayName_FRA="Dirigeable"
-DisplayName_FRC="Dirigeable"
-DisplayName_INT="Airship"
-DisplayName_ITA="Aeronave"
-DisplayName_JPN="飛行船"
-DisplayName_KOR="비행선"
-DisplayName_POL="Statek powietrzny"
-DisplayName_PTB="Aeronave"
-DisplayName_RUS="Воздушное судно"
+[KF-MonsterBall KFMapSummary]
+DisplayName_CHN="怪物球"
+DisplayName_CHT="怪獸舞會"
+DisplayName_DEU="Monsterball"
+DisplayName_ESL="Baile de monstruos"
+DisplayName_ESN="Baile de monstruos"
+DisplayName_FRA="Bal des monstres"
+DisplayName_FRC="Bal des monstres"
+DisplayName_INT="Monster Ball"
+DisplayName_ITA="Festa dei mostri"
+DisplayName_JPN="Monster Ball"
+DisplayName_KOR="괴물 무도회"
+DisplayName_POL="Bal potworów"
+DisplayName_PTB="Baile de Monstros"
+DisplayName_RUS="Бал монстров"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotika-Labor"
@@ -3051,6 +3064,9 @@ DisplayName="Sperrmodus"
 
 [KF-Airship KFMapSummary]
 DisplayName="Luftschiff"
+
+[KF-MonsterBall KFMapSummary]
+DisplayName="Monsterball"
 
 [KFMapInfo]
 ; defaults

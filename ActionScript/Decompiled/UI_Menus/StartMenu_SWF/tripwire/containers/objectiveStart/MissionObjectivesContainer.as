@@ -8,10 +8,13 @@ package tripwire.containers.objectiveStart
     import scaleform.clik.events.ButtonEvent;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
+    import tripwire.menus.StartMenu;
     
     public class MissionObjectivesContainer extends TripContainer
     {
          
+        
+        public var myStartMenu:StartMenu;
         
         public var collapsedMissionObjectivesMC:CollapsedMissionObjectiveContainer;
         

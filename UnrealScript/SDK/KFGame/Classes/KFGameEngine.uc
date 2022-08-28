@@ -569,6 +569,7 @@ function UnlockServer()
 
 	if (bUsedForTakeover)
 	{
+		`log("***The server is now unlocked and available for takeover!");
 		ConsoleGameSessionGuid = "";
 		KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI).ConsoleGameSessionHost = NullId;
 		bAvailableForTakeover = true;

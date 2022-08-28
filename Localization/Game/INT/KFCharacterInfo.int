@@ -90,6 +90,7 @@ HeadSkin2="Red"
 HeadSkin3="Brown"
 HeadSkin4="Pink"
 HeadSkin5="Black"
+HeadSkin6="Halloween 2018"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -248,6 +249,7 @@ HeadSkin2="Blood Red"
 HeadSkin3="Metal Face"
 HeadSkin4="Big Bad Swede"
 HeadSkin5="Vertigo"
+HeadSkin6="Halloween 2018"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Spiky Cowboy Hat"
@@ -421,6 +423,7 @@ HeadSkin3="Green Hazard"
 HeadSkin4="Retro Scully"
 HeadSkin5="Silent Scream Scully"
 HeadSkin6="BatCat"
+HeadSkin7="Halloween 2018"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Scullyphones"
@@ -544,6 +547,7 @@ HeadSkin1="Highlights"
 HeadSkin2="Black"
 HeadSkin3="Puppet"
 HeadSkin4="Day of the Dead"
+HeadSkin5="Halloween 2018"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Doctor's Mask"
@@ -671,6 +675,7 @@ HeadSkin4="British Class"
 HeadSkin5="Seeing Red"
 HeadSkin6="Mr. Hans"
 HeadSkin7="Dosh Lover"
+HeadSkin8="Halloween 2018"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Scullyphones"
@@ -899,6 +904,7 @@ HeadSkin1="Tat"
 HeadSkin2="Glare"
 HeadSkin3="Grin"
 HeadSkin4="Rawr"
+HeadSkin5="Halloween 2018"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Boxing Headgear"
@@ -1012,6 +1018,7 @@ HeadSkin2="Black"
 HeadSkin3="White"
 HeadSkin4="Pierrot"
 HeadSkin5="Phantom"
+HeadSkin6="Halloween 2018"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Glasses"
@@ -1907,6 +1914,7 @@ HeadSkin1="Camo"
 HeadSkin2="Clown"
 HeadSkin3="Vampire"
 HeadSkin4="Guillotine"
+HeadSkin5="Halloween 2018"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Green"
@@ -2005,6 +2013,7 @@ HeadSkin0="Black"
 HeadSkin1="Blonde"
 HeadSkin2="Kumadori"
 HeadSkin3="Titan"
+HeadSkin4="Halloween 2018"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="And Classy"
@@ -2140,6 +2149,7 @@ HeadSkin3="Pretty Blue"
 HeadSkin4="Death Metal"
 HeadSkin5="Mrs. Stein"
 HeadSkin6="Flowers"
+HeadSkin7="Halloween 2018"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Death Rain"
@@ -2333,6 +2343,7 @@ HeadSkin3="Swedish Blonde"
 HeadSkin4="Smile For Me"
 HeadSkin5="Mr. Juice"
 HeadSkin6="Good Game"
+HeadSkin7="Halloween 2018"
 
 [chr_alan_archetype]
 CharacterName="Classic Masterson"
@@ -2433,6 +2444,7 @@ HeadSkin3="Camo Up, Chaps!"
 HeadSkin4="Cheer Up, Mate!"
 HeadSkin5="You're Dead, Mate!"
 HeadSkin6="Digi"
+HeadSkin7="Halloween 2018"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ Cap"
@@ -2534,6 +2546,7 @@ HeadSkin0="Dark Steel"
 HeadSkin1="Blond Steel"
 HeadSkin2="Mister Death"
 HeadSkin3="Mr Stein"
+HeadSkin4="Halloween 2018"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="German Steel Helmet"
@@ -2785,6 +2798,7 @@ HeadSkin4="Teal"
 HeadSkin5="Pink"
 HeadSkin6="Miss Death"
 HeadSkin7="Deer"
+HeadSkin8="Halloween 2018"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Eye Patch"
@@ -4237,3 +4251,124 @@ AttachmentSkin0="Bleach"
 AttachmentSkin1="Blue"
 AttachmentSkin2="Rust"
 AttachmentSkin3="Precious"
+
+[Cosmetic_Halloween_AngelWings_ARCH]
+Attachment="Halloween Angel Wings"
+AttachmentSkin0="Celestial"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_Cauldron_ARCH]
+Attachment="Halloween Cauldron Backpack"
+AttachmentSkin0="Sweetmeat"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_CoffinBackpack_ARCH]
+Attachment="Halloween Coffin Backpack"
+AttachmentSkin0="RIP"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_CyclopsEye_ARCH]
+Attachment="Halloween Cyclops Eye"
+AttachmentSkin0="Evil Eye"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_Horns_ARCH]
+Attachment="Halloween Horns"
+AttachmentSkin0="Imp"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_IncognitoMask_ARCH]
+Attachment="Halloween Incognito Mask"
+AttachmentSkin0="Graucho"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_PirateHat_ARCH]
+Attachment="Halloween Pirate Hat"
+AttachmentSkin0="Freeboot"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_WitchHat_ARCH]
+Attachment="Halloween Witch Hat"
+AttachmentSkin0="Black Arts"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_FunnyZedBackpack_ARCH]
+Attachment="Halloween Clot Backpack"
+AttachmentSkin0="Companion"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_BatWings_ARCH]
+Attachment="Halloween Bat Wings"
+AttachmentSkin0="Nocturnal"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_BatEars_ARCH]
+Attachment="Halloween Bat Ears"
+AttachmentSkin0="Echolocator"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Halloween_MummyBackpack_ARCH]
+Attachment="Halloween Mummy Backpack"
+AttachmentSkin0="Preserved"
+AttachmentSkin1="Precious"
+
+[Cosmetic_BeastMask_ARCH]
+Attachment="Beast Mask"
+AttachmentSkin0="Light"
+AttachmentSkin1="Dark"
+AttachmentSkin2="Precious"
+
+[Cosmetic_DancerMask_ARCH]
+Attachment="Dancer Mask"
+AttachmentSkin0="Fire"
+AttachmentSkin1="Water"
+AttachmentSkin2="Precious"
+
+[Cosmetic_DemonMask_ARCH]
+Attachment="Demon Mask"
+AttachmentSkin0="Fire"
+AttachmentSkin1="Water"
+AttachmentSkin2="Precious"
+
+[Cosmetic_DoctorMask_ARCH]
+Attachment="Doctor Mask"
+AttachmentSkin0="Light"
+AttachmentSkin1="Dark"
+AttachmentSkin2="Precious"
+
+[Cosmetic_DreamerMask_ARCH]
+Attachment="Dreamer Mask"
+AttachmentSkin0="Fire"
+AttachmentSkin1="Water"
+AttachmentSkin2="Precious"
+
+[Cosmetic_JokerMask_ARCH]
+Attachment="Joker Mask"
+AttachmentSkin0="Light"
+AttachmentSkin1="Dark"
+AttachmentSkin2="Precious"
+
+[Cosmetic_LordMask_ARCH]
+Attachment="Lord Mask"
+AttachmentSkin0="Fire"
+AttachmentSkin1="Water"
+AttachmentSkin2="Precious"
+
+[Cosmetic_SleeperMask_ARCH]
+Attachment="Sleeper Mask"
+AttachmentSkin0="Fire"
+AttachmentSkin1="Water"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Undead_ARCH]
+Attachment="Undead Mask"
+AttachmentSkin0="Fire"
+AttachmentSkin1="Water"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Warrior_ARCH]
+Attachment="Warrior Mask"
+AttachmentSkin0="Fire"
+AttachmentSkin1="Water"
+AttachmentSkin2="Precious"
+

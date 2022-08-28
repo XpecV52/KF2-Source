@@ -80,7 +80,10 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
-const KFID_Native4kResolution = 169;#linenumber 17
+const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID= 171;
+#linenumber 17
 
 /** Cached a typed Player controller.  Unlike PawnOwner we only set this once in PostBeginPlay */
 var KFPlayerController KFPlayerOwner;
@@ -1107,6 +1110,7 @@ function CheckAndDrawRemainingZedIcons()
 		|| KFPlayerOwner == none
 		|| KFPlayerOwner.PlayerCamera == none
 		|| KFGRI.IsBossWave()
+		|| KFGRI.IsEndlessWave()
 		|| KFGRI.AIRemaining > class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
 	{
 		return;

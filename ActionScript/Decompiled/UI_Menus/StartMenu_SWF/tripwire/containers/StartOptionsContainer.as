@@ -1,7 +1,7 @@
 package tripwire.containers
 {
-    import com.greensock.TimelineMax;
-    import com.greensock.easing.Circ;
+    import com.greensock.*;
+    import com.greensock.easing.*;
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
@@ -9,23 +9,23 @@ package tripwire.containers
     import flash.external.ExternalInterface;
     import flash.ui.Keyboard;
     import scaleform.clik.controls.UILoader;
-    import scaleform.clik.core.UIComponent;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.interfaces.IDataProvider;
-    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
-    import scaleform.gfx.FocusManager;
     import tripwire.controls.CategoryButton;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripScrollingList;
     import tripwire.managers.MenuManager;
+    import tripwire.menus.StartMenu;
     
     public class StartOptionsContainer extends TripSubContainer
     {
          
+        
+        public var myStartMenu:StartMenu;
         
         public var helperTextContainer:TextContainer;
         
@@ -37,6 +37,8 @@ package tripwire.containers
         
         public var mutatorButton:TripButton;
         
+        public var menuBinder:MovieClip;
+        
         public var modeButton:CategoryButton;
         
         public var mapButton:CategoryButton;
@@ -45,11 +47,9 @@ package tripwire.containers
         
         public var lengthButton:CategoryButton;
         
-        public var serverTypeButton:CategoryButton;
-        
         public var privacyButton:CategoryButton;
         
-        public var inProgressButton:CategoryButton;
+        public var regionButton:CategoryButton;
         
         public var modeList:TripScrollingList;
         
@@ -61,9 +61,7 @@ package tripwire.containers
         
         public var privacyList:TripScrollingList;
         
-        public var serverTypeList:TripScrollingList;
-        
-        public var inProgressList:TripScrollingList;
+        public var regionList:TripScrollingList;
         
         private var _currentLoadedImageIndex:int = -1;
         
@@ -74,6 +72,8 @@ package tripwire.containers
         public var soloGameString:String = "_Solo Game";
         
         public var matchMakingString:String = "_Matchnaking";
+        
+        public var createGameString:String = "_create";
         
         public var leaveMatchmakingString:String = "_leave Matchmaking";
         
@@ -91,13 +91,25 @@ package tripwire.containers
         
         private var _bPublicGame:Boolean;
         
-        private var _bGameInProgress:Boolean;
-        
         private const HELPERTEXT_DEFAULT_Y:int = 400;
+        
+        private var _currentMenuState:int = -1;
         
         public var createGameMapImageContainerMC:MovieClip;
         
         public var fadeTimeline:TimelineMax;
+        
+        private var modeUIComponents:Vector.<MovieClip>;
+        
+        private var mapUIComponents:Vector.<MovieClip>;
+        
+        private var difficultyUIComponents:Vector.<MovieClip>;
+        
+        private var lengthUIComponents:Vector.<MovieClip>;
+        
+        private var privacyUIComponents:Vector.<MovieClip>;
+        
+        private var regionUIComponents:Vector.<MovieClip>;
         
         public function StartOptionsContainer()
         {
@@ -105,10 +117,17 @@ package tripwire.containers
                 "paused":true,
                 "useFrames":true
             });
+            this.modeUIComponents = new Vector.<MovieClip>();
+            this.mapUIComponents = new Vector.<MovieClip>();
+            this.difficultyUIComponents = new Vector.<MovieClip>();
+            this.lengthUIComponents = new Vector.<MovieClip>();
+            this.privacyUIComponents = new Vector.<MovieClip>();
+            this.regionUIComponents = new Vector.<MovieClip>();
             super();
             currentElement = defaultFirstElement = this.startGameButton;
             sectionHeader = this.optionsHeader;
             defaultNumPrompts = 2;
+            this.regionButton.visible = false;
         }
         
         public function set helpText(param1:String) : void
@@ -156,6 +175,7 @@ package tripwire.containers
         {
             this.soloGameString = !!param1.soloGameString ? param1.soloGameString : "";
             this.matchMakingString = !!param1.matchMakingString ? param1.matchMakingString : "";
+            this.createGameString = !!param1.createGameString ? param1.createGameString : "";
             this.leaveMatchmakingString = !!param1.leaveMatchmakingString ? param1.leaveMatchmakingString : "";
             this.backString = !!param1.backString ? param1.backString : "";
             this.lauchGameString = !!param1.lauchGameString ? param1.lauchGameString : "";
@@ -166,8 +186,7 @@ package tripwire.containers
             this.difficultyButton.label = !!param1.difficulty ? param1.difficulty : "";
             this.lengthButton.label = !!param1.length ? param1.length : "";
             this.privacyButton.label = !!param1.privacy ? param1.privacy : "";
-            this.serverTypeButton.label = !!param1.serverType ? param1.serverType : "";
-            this.inProgressButton.label = !!param1.inProgress ? param1.inProgress : "";
+            this.regionButton.label = !!param1.regionTitle ? param1.regionTitle : "";
             if(param1.modeList)
             {
                 this.setObjectList(this.modeList,param1.modeList);
@@ -188,35 +207,20 @@ package tripwire.containers
             {
                 this.setObjectList(this.privacyList,param1.privacyList);
             }
-            if(param1.serverTypeList)
+            if(param1.regionList)
             {
-                this.setObjectList(this.serverTypeList,param1.serverTypeList);
+                this.setObjectList(this.regionList,param1.regionList);
             }
-            if(param1.inProgressList)
-            {
-                this.setObjectList(this.inProgressList,param1.inProgressList);
-            }
+        }
+        
+        public function set regionListData(param1:Object) : void
+        {
+            this.setObjectList(this.regionList,param1);
         }
         
         public function set bIsSoloGame(param1:Boolean) : void
         {
             this._bIsSoloGame = param1;
-            this.serverTypeButton.visible = !param1;
-            this.privacyButton.visible = !param1;
-            this.inProgressButton.visible = !param1;
-            if(param1)
-            {
-                this.optionsHeader.text = this.soloGameString;
-                this.backButton.label = this.backString;
-                this.startGameButton.label = this.lauchGameString;
-            }
-            else
-            {
-                this.optionsHeader.text = this.matchMakingString;
-                this.backButton.label = this.leaveMatchmakingString;
-                this.startGameButton.label = this.multiplayerLaunchString;
-            }
-            ExternalInterface.call("Callback_StartMenuRequestReinit");
         }
         
         public function get bIsSoloGame() : Boolean
@@ -238,32 +242,132 @@ package tripwire.containers
                 this.dispatchEvent(new Event("FadeInMissionObjectives"));
             }
             this.privacyButton.enabled = !param1;
-            this.inProgressButton.enabled = !param1;
-            this.serverTypeButton.enabled = !param1;
             this.lengthButton.enabled = !param1;
             this.difficultyButton.enabled = !param1;
             this.mapButton.enabled = !param1;
             this.modeButton.enabled = !param1;
+            this.regionButton.enabled = !param1;
+        }
+        
+        public function get menuState() : int
+        {
+            return this._currentMenuState;
+        }
+        
+        public function set menuState(param1:int) : void
+        {
+            if(param1 != this._currentMenuState)
+            {
+                switch(param1)
+                {
+                    case StartMenu.MENU_STATE_CREATE_GAME:
+                        this.setToCreateGameOptions();
+                        ExternalInterface.call("Callback_StartMenuRequestReinit");
+                        break;
+                    case StartMenu.MENU_STATE_FIND_GAME:
+                        this.setToFindGameOptions();
+                        ExternalInterface.call("Callback_StartMenuRequestReinit");
+                        break;
+                    case StartMenu.MENU_STATE_SOLO_GAME:
+                        this.setSoloGameOptions();
+                        ExternalInterface.call("Callback_StartMenuRequestReinit");
+                        break;
+                    default:
+                        this.setToCreateGameOptions();
+                }
+                this._currentMenuState = param1;
+            }
+        }
+        
+        public function setElementsVisible(param1:Boolean, param2:Vector.<MovieClip>) : void
+        {
+            var _loc3_:MovieClip = null;
+            for each(_loc3_ in param2)
+            {
+                _loc3_.visible = param1;
+            }
+        }
+        
+        public function setElementsYValue(param1:Number, param2:Vector.<MovieClip>) : void
+        {
+            var _loc3_:MovieClip = null;
+            for each(_loc3_ in param2)
+            {
+                _loc3_.y = param1;
+            }
+        }
+        
+        private function setToCreateGameOptions() : *
+        {
+            this.modeButton.visible = true;
+            this.mapButton.visible = true;
+            this.difficultyButton.visible = true;
+            this.lengthButton.visible = true;
+            this.regionButton.visible = bManagerConsoleBuild;
+            this.privacyButton.visible = true;
+            this.createGameMapImageContainerMC.visible = true;
+            this.setElementsYValue(414,this.mapUIComponents);
+            this.setElementsYValue(468,this.modeUIComponents);
+            this.createGameMapImageContainerMC.y = 144;
+            this.setElementsYValue(522,this.difficultyUIComponents);
+            this.setElementsYValue(578,this.lengthUIComponents);
+            this.setElementsYValue(634,this.privacyUIComponents);
+            this.setElementsYValue(690,this.regionUIComponents);
+            this.menuBinder.height = !!bManagerConsoleBuild ? Number(this.regionButton.y - this.startGameButton.y + this.regionButton.height) : Number(this.privacyButton.y - this.startGameButton.y + this.privacyButton.height);
+            this.bIsSoloGame = false;
+            this.backButton.visible = !bManagerUsingGamepad;
+            this.optionsHeader.text = this.createGameString;
+            this.backButton.label = this.leaveMatchmakingString;
+            this.startGameButton.label = this.multiplayerLaunchString;
+        }
+        
+        private function setToFindGameOptions() : *
+        {
+            this.modeButton.visible = true;
+            this.mapButton.visible = false;
+            this.mapList.visible = false;
+            this.createGameMapImageContainerMC.visible = false;
+            this.difficultyButton.visible = true;
+            this.lengthButton.visible = true;
+            this.setElementsVisible(false,this.privacyUIComponents);
+            this.regionButton.visible = bManagerConsoleBuild;
+            this.setElementsYValue(136,this.modeUIComponents);
+            this.setElementsYValue(190,this.difficultyUIComponents);
+            this.setElementsYValue(244,this.lengthUIComponents);
+            this.setElementsYValue(300,this.regionUIComponents);
+            this.menuBinder.height = !!bManagerConsoleBuild ? Number(this.regionButton.y - this.startGameButton.y + this.regionButton.height) : Number(this.lengthButton.y - this.startGameButton.y + this.lengthButton.height);
+            this.bIsSoloGame = false;
+            this.backButton.visible = !bManagerUsingGamepad;
+            this.optionsHeader.text = this.matchMakingString;
+            this.backButton.label = this.leaveMatchmakingString;
+            this.startGameButton.label = this.multiplayerLaunchString;
+        }
+        
+        private function setSoloGameOptions() : *
+        {
+            this.modeButton.visible = true;
+            this.mapButton.visible = true;
+            this.createGameMapImageContainerMC.visible = true;
+            this.difficultyButton.visible = true;
+            this.lengthButton.visible = true;
+            this.setElementsVisible(false,this.privacyUIComponents);
+            this.setElementsVisible(false,this.regionUIComponents);
+            this.setElementsYValue(414,this.mapUIComponents);
+            this.setElementsYValue(468,this.modeUIComponents);
+            this.createGameMapImageContainerMC.y = 144;
+            this.setElementsYValue(522,this.difficultyUIComponents);
+            this.setElementsYValue(578,this.lengthUIComponents);
+            this.menuBinder.height = this.lengthButton.y - this.startGameButton.y + this.lengthButton.height;
+            this.bIsSoloGame = true;
+            this.backButton.visible = !bManagerUsingGamepad;
+            this.optionsHeader.text = this.soloGameString;
+            this.backButton.label = this.backString;
+            this.startGameButton.label = this.lauchGameString;
         }
         
         public function set bPublicGame(param1:Boolean) : void
         {
             this._bPublicGame = param1;
-            if(!this._bSearchingForGame)
-            {
-                this.inProgressButton.enabled = param1;
-                this.inProgressButton.infoTextField.visible = param1;
-            }
-        }
-        
-        public function set bAllowGameInProgress(param1:Boolean) : void
-        {
-            this._bGameInProgress = param1;
-            if(!this._bSearchingForGame)
-            {
-                this.privacyButton.enabled = !param1;
-                this.privacyButton.infoTextField.visible = !param1;
-            }
         }
         
         public function get options() : Object
@@ -272,8 +376,6 @@ package tripwire.containers
             _loc1_.mode = this.modeList.selectedIndex;
             _loc1_.difficulty = this.difficultyList.selectedIndex;
             _loc1_.length = this.lengthList.selectedIndex;
-            _loc1_.serverType = this.serverTypeList.selectedIndex;
-            _loc1_.inProgress = this.inProgressList.selectedIndex;
             _loc1_.permissions = this.privacyList.selectedIndex;
             return _loc1_;
         }
@@ -311,10 +413,9 @@ package tripwire.containers
             this.difficultyButton.tabIndex = 3;
             this.lengthButton.tabIndex = 4;
             this.privacyButton.tabIndex = 5;
-            this.startGameButton.tabIndex = 6;
-            this.serverTypeButton.tabIndex = 7;
-            this.inProgressButton.tabIndex = 8;
-            this.backButton.tabIndex = 9;
+            this.regionButton.tabIndex = 6;
+            this.startGameButton.tabIndex = 7;
+            this.backButton.tabIndex = 8;
         }
         
         override public function selectContainer() : void
@@ -327,30 +428,12 @@ package tripwire.containers
             this.difficultyButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.lengthButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.privacyButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
-            this.serverTypeButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
-            this.inProgressButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.regionButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             stage.addEventListener(KeyboardEvent.KEY_UP,this.onUserKeyUp,false,0,true);
-            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen && !MenuManager.manager.bPartyWidgetFocused)
-            {
-                if(currentElement != null)
-                {
-                    FocusHandler.getInstance().setFocus(currentElement);
-                }
-                showDimLeftSide(false);
-            }
-            this.backButton.visible = !bManagerUsingGamepad;
-            if(MenuManager.manager.bPartyWidgetFocused)
-            {
-                this.deselectContainer();
-            }
         }
         
         override public function deselectContainer() : void
         {
-            if(!MenuManager.manager.bPartyWidgetFocused)
-            {
-                currentElement = !!this._currentList ? this._currentList.associatedButton : FocusManager.getFocus() as UIComponent;
-            }
             this.closeHelpText();
             super.deselectContainer();
             this.backButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
@@ -360,8 +443,7 @@ package tripwire.containers
             this.difficultyButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.lengthButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.privacyButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
-            this.serverTypeButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
-            this.inProgressButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
+            this.regionButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             stage.removeEventListener(KeyboardEvent.KEY_UP,this.onUserKeyUp);
         }
         
@@ -380,17 +462,14 @@ package tripwire.containers
             this.difficultyButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.lengthButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.privacyButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.serverTypeButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.inProgressButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.regionButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.optionsHeader.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.createGameMapImageContainerMC.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.modeList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.mapList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.difficultyList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.lengthList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
-            this.serverTypeList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.privacyList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
-            this.inProgressList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             stage.addEventListener(MenuManager.PARTYFOCUS_CHANGED,this.onPartyFocusChanged,false,0,true);
             leftSidePanels.push(this.backButton);
             leftSidePanels.push(this.startGameButton);
@@ -399,23 +478,23 @@ package tripwire.containers
             leftSidePanels.push(this.difficultyButton);
             leftSidePanels.push(this.lengthButton);
             leftSidePanels.push(this.privacyButton);
-            leftSidePanels.push(this.serverTypeButton);
-            leftSidePanels.push(this.inProgressButton);
+            leftSidePanels.push(this.regionButton);
             leftSidePanels.push(this.optionsHeader);
             leftSidePanels.push(this.createGameMapImageContainerMC);
             rightSidePanels.push(this.modeList);
             rightSidePanels.push(this.mapList);
             rightSidePanels.push(this.difficultyList);
             rightSidePanels.push(this.lengthList);
-            rightSidePanels.push(this.serverTypeList);
             rightSidePanels.push(this.privacyList);
-            rightSidePanels.push(this.inProgressList);
             this.makeAnims();
-            if(bManagerConsoleBuild)
-            {
-                this.serverTypeButton.visible = false;
-            }
             this.mapList.addEventListener(MouseEvent.ROLL_OUT,this.resetMap,false,0,true);
+            this.modeUIComponents.push(this.modeButton,this.modeList);
+            this.mapUIComponents.push(this.mapButton,this.mapList);
+            this.difficultyUIComponents.push(this.difficultyButton,this.difficultyList);
+            this.lengthUIComponents.push(this.lengthButton,this.lengthList);
+            this.privacyUIComponents.push(this.privacyButton,this.privacyList);
+            this.regionUIComponents.push(this.regionButton,this.regionList);
+            this.backButton.visible = !bManagerUsingGamepad;
         }
         
         public function resetMap(param1:MouseEvent) : void
@@ -449,8 +528,7 @@ package tripwire.containers
             this.setListProps(this.difficultyList,this.difficultyButton);
             this.setListProps(this.lengthList,this.lengthButton);
             this.setListProps(this.privacyList,this.privacyButton);
-            this.setListProps(this.serverTypeList,this.serverTypeButton);
-            this.setListProps(this.inProgressList,this.inProgressButton);
+            this.setListProps(this.regionList,this.regionButton);
         }
         
         function setListProps(param1:TripScrollingList, param2:TripButton = null) : *
@@ -496,45 +574,42 @@ package tripwire.containers
                 case this.privacyButton:
                     this.showOptions(this.privacyList);
                     break;
-                case this.serverTypeButton:
-                    this.showOptions(this.serverTypeList);
-                    break;
-                case this.inProgressButton:
-                    this.showOptions(this.inProgressList);
+                case this.regionButton:
+                    this.showOptions(this.regionList);
                     break;
                 case this.startGameButton:
                     if(this._bIsSoloGame)
                     {
-                        ExternalInterface.call("Callback_StartOfflineGame");
+                        ExternalInterface.call("Callback_StartGame");
                     }
-                    else if(this._bSearchingForGame)
+                    else if(this.myStartMenu.menuState == StartMenu.MENU_STATE_FIND_GAME)
                     {
-                        ExternalInterface.call("Callback_CancelSearch");
+                        if(this._bSearchingForGame)
+                        {
+                            ExternalInterface.call("Callback_CancelSearch");
+                        }
+                        else
+                        {
+                            ExternalInterface.call("Callback_StartOnlineGame");
+                        }
                     }
-                    else
+                    else if(this.myStartMenu.menuState == StartMenu.MENU_STATE_CREATE_GAME)
                     {
-                        ExternalInterface.call("Callback_StartOnlineGame");
+                        ExternalInterface.call("Callback_CreateOnlineGame");
                     }
             }
         }
         
         public function attemptLeaveMenu() : *
         {
-            if(this._bIsSoloGame)
-            {
-                dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CANCELLED_INDEX));
-            }
-            else
-            {
-                ExternalInterface.call("Callback_RequestLeaveMatchmaking");
-            }
+            this.myStartMenu.menuState = StartMenu.MENU_STATE_HOME;
         }
         
         public function set approveMatchMakingLeave(param1:Boolean) : void
         {
             if(param1)
             {
-                dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CANCELLED_INDEX));
+                this.myStartMenu.menuState = StartMenu.MENU_STATE_HOME;
             }
         }
         
@@ -577,10 +652,6 @@ package tripwire.containers
                 _loc4_ = param1.index;
                 if(this._currentList != this.mapList)
                 {
-                    if(this._currentList == this.serverTypeList && bManagerConsoleBuild)
-                    {
-                        return;
-                    }
                     ExternalInterface.call("Callback_OptionListOpened",this._currentList.name,_loc4_);
                 }
             }
@@ -643,11 +714,8 @@ package tripwire.containers
                         case this.privacyList:
                             ExternalInterface.call("Callback_Privacy",param1.index);
                             break;
-                        case this.serverTypeList:
-                            ExternalInterface.call("Callback_ServerType",param1.index);
-                            break;
-                        case this.inProgressList:
-                            ExternalInterface.call("Callback_InProgress",param1.index);
+                        case this.regionList:
+                            ExternalInterface.call("Callback_Region",param1.index);
                     }
                     this.closeHelpText();
                 }
@@ -682,6 +750,11 @@ package tripwire.containers
                 this.closeHelpText();
                 this.helperTextContainer.visible = false;
             }
+        }
+        
+        override protected function closeAnimation() : *
+        {
+            visible = false;
         }
     }
 }

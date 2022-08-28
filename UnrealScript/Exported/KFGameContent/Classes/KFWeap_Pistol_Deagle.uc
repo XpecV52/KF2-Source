@@ -66,8 +66,8 @@ defaultproperties
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
-   WeaponUpgrades(1)=(IncrementDamage=1.300000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.500000)
+   WeaponUpgrades(1)=(IncrementDamage=1.250000)
+   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.400000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

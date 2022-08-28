@@ -3,10 +3,13 @@ package tripwire.containers
     import flash.events.Event;
     import flash.text.TextField;
     import scaleform.gfx.TextFieldEx;
+    import tripwire.menus.StartMenu;
     
     public class StartOverviewBrowserContainer extends TripContainer
     {
          
+        
+        public var myStartMenu:StartMenu;
         
         public var overviewHeader:SectionHeaderContainer;
         

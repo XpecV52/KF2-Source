@@ -22,8 +22,6 @@ simulated function SpawnExplosionParticleSystem(ParticleSystem Template)
 
 defaultproperties
 {
-   LoopStartEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
-   LoopStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'
    ExplosionLightPriority=LPP_Low
    Name="Default__KFExplosion_GroundIce"
    ObjectArchetype=KFExplosionActorLingering'KFGame.Default__KFExplosionActorLingering'

@@ -80,6 +80,7 @@ function OnOpen()
 {
 	super.OnOpen();
 	bPausedForCrate = false;
+	bSeenAllDoshAnimation = false;
 	if ( class'WorldInfo'.static.IsMenuLevel() )
 	{
 		Manager.ManagerObject.SetBool("backgroundVisible", false);
@@ -207,6 +208,7 @@ function SendDoshInfo(int OldDosh, int NewDosh, int TierBase, int TierLength, in
 	{
 		Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, class'KFCommon_LocalizedStrings'.default.NoticeString, class'KFCommon_LocalizedStrings'.default.FailedToReachInventoryServerString, class'KFCommon_LocalizedStrings'.default.OKString);
 		LogInternal("something isn't right.  Connection issue may be present.  To prevent angry Reddit mobs, just don't animate");
+		bSeenAllDoshAnimation = true;
 		return;
 	}
 
@@ -217,9 +219,10 @@ function SendDoshInfo(int OldDosh, int NewDosh, int TierBase, int TierLength, in
 	}
 
 	//start particles if not the same
-	if(OldDosh != NewDosh)
+	if(OldDosh == NewDosh)
 	{
-		//start paticle system here because we have new dosh data
+		LogInternal("no new Vosh!");
+		bSeenAllDoshAnimation = true;
 	}
 
 	DataObject = CreateObject("Object");
@@ -231,6 +234,11 @@ function SendDoshInfo(int OldDosh, int NewDosh, int TierBase, int TierLength, in
 	DataObject.SetInt("crateNum", 	CrateNum);
 
 	SetObject("doshData", DataObject);
+}
+
+function bool CanCloseVaultMenu()
+{
+	return bSeenAllDoshAnimation;
 }
 
 function Callback_UpdateDosh(int NewValue)

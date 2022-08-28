@@ -150,6 +150,7 @@ var				int 			VoiceCommsStatusDisplayIntervalMax;
  ************************************/
  var  		byte		SharedUnlocks;
 
+var private	int			CurrentHeadShotEffectID;
 /************************************
  *  Objective
  ************************************/
@@ -188,7 +189,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -750,6 +751,13 @@ native reliable server private event ServerSetSharedUnlocks(byte NewUnlocks);
 
 native reliable server private event ServerSetCharacterCustomization(CustomizationInfo NewMeshInfo);
 
+native reliable server private event ServerSetCurrentHeadShotEffect(int ItemID);
+
+simulated final function int GetHeadShotEffectID()
+{
+	return CurrentHeadShotEffectID;
+}
+
 native private function bool SaveCharacterConfig();
 native private function bool LoadCharacterConfig(out int CharacterIndex);
 native private function RetryCharacterOwnership();
@@ -928,6 +936,14 @@ function PlayerReplicationInfo Duplicate()
 	NewKFPRI.LastQuitTime = LastQuitTime;
 	NewKFPRI.NumTimesReconnected = NumTimesReconnected;
 	return NewKFPRI;
+}
+
+function OverrideWith(PlayerReplicationInfo PRI)
+{
+	super.OverrideWith(PRI);
+
+	// while super sets Team, SetPlayerTeam sets other important stuff, too
+	SetPlayerTeam(Team);
 }
 
 function SetPlayerTeam( TeamInfo NewTeam )
@@ -1234,6 +1250,6 @@ defaultproperties
     VoiceCommsStatusDisplayInterval=5.0f
     VoiceCommsStatusDisplayIntervalMax=1;
     VoiceCommsStatusDisplayIntervalCount=0;
-    CurrentVoiceCommsRequest = VCT_NONE
-
+	CurrentVoiceCommsRequest = VCT_NONE
+	CurrentHeadShotEffectID=-1;
 }

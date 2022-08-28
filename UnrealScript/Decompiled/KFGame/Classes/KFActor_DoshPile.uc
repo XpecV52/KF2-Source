@@ -17,12 +17,23 @@ var float LastPercent;
 var int MaterialSlot;
 var float ExplodeDelay;
 var bool bDelayActive;
+var bool bCreatedMic;
+var int PileIndexID;
 
 function SetValue(float Percentfilled)
 {
+    if(PileIndexID != 0)
+    {
+        SetHidden(Percentfilled < 1);
+        return;
+    }
     if(!bDelayActive)
     {
-        StaticMeshComponent.CreateAndSetMaterialInstanceConstant(MaterialSlot);
+        if(!bCreatedMic)
+        {
+            StaticMeshComponent.CreateAndSetMaterialInstanceConstant(MaterialSlot);
+            bCreatedMic = true;
+        }
         MaterialInstanceConstant(StaticMeshComponent.GetMaterial(MaterialSlot)).SetScalarParameterValue('Perc', Percentfilled);
         LastPercent = Percentfilled;
     }
@@ -56,26 +67,63 @@ function ExplodeOut()
     SetValue(0);
 }
 
+simulated function OnExplodeParticleSystemFinished(ParticleSystemComponent PSC)
+{
+    if((PSC == ExplodeInEffect) && ExplodeInEffect != none)
+    {
+        ExplodeInEffect = none;        
+    }
+    else
+    {
+        if((PSC == ExplodeOutEffect) && ExplodeInEffect != none)
+        {
+            ExplodeOutEffect = none;
+        }
+    }
+    DetachComponent(PSC);
+    WorldInfo.MyEmitterPool.OnParticleSystemFinished(PSC);
+}
+
 function SpawnCompleteParticleEffects(optional bool bExplodIn)
 {
     bExplodIn = true;
+    if(bDelayActive)
+    {
+        return;
+    }
     bDelayActive = true;
     if(bExplodIn)
     {
         ExplodeInEffect = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ExplodeInTemplate);
-        ExplodeInEffect.SetAbsolute(false, false, false);
-        ExplodeInEffect.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
-        ExplodeInEffect.bUpdateComponentInTick = true;
-        AttachComponent(ExplodeInEffect);
+        if(ExplodeInEffect != none)
+        {
+            ExplodeInEffect.__OnSystemFinished__Delegate = OnExplodeParticleSystemFinished;
+            ExplodeInEffect.SetAbsolute(false, false, false);
+            ExplodeInEffect.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
+            ExplodeInEffect.bUpdateComponentInTick = true;
+            AttachComponent(ExplodeInEffect);            
+        }
+        else
+        {
+            LogInternal("Explode in effect failed to spawn. Is this setup correctly?");
+        }
         SetTimer(ExplodeDelay, false, 'ExplodeIn');        
     }
     else
     {
         ExplodeOutEffect = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ExplodeOutTemplate);
-        ExplodeOutEffect.SetAbsolute(false, false, false);
-        ExplodeOutEffect.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
-        ExplodeOutEffect.bUpdateComponentInTick = true;
-        AttachComponent(ExplodeOutEffect);
+        if(ExplodeOutEffect != none)
+        {
+            ExplodeOutEffect.__OnSystemFinished__Delegate = OnExplodeParticleSystemFinished;
+            ExplodeOutEffect.SetAbsolute(false, false, false);
+            ExplodeOutEffect.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
+            ExplodeOutEffect.bUpdateComponentInTick = true;
+            AttachComponent(ExplodeOutEffect);            
+        }
+        else
+        {
+            LogInternal("Explode out effect not spawned.  Is this setup correctly?");
+        }
         SetTimer(ExplodeDelay, false, 'ExplodeOut');
     }
     PlayDoshPileExplodeSound();
@@ -101,6 +149,7 @@ defaultproperties
     DoshPileMax=1000000
     ExplodeOutTemplate=ParticleSystem'FX_Environmental_EMIT_THREE.FX_Dosh_Vault_Disappear_01'
     ExplodeInTemplate=ParticleSystem'FX_Environmental_EMIT_THREE.FX_Dosh_Vault_Appear_01'
+    LastPercent=-1
     MaterialSlot=1
     ExplodeDelay=1
     begin object name=StaticMeshComponent0 class=StaticMeshComponent

@@ -78,7 +78,10 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
-const KFID_Native4kResolution = 169;#linenumber 15;
+const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID= 171;
+#linenumber 15;
 
 /**
  * Predefined values
@@ -159,16 +162,19 @@ struct native PersistentSplatInfo
  	var vector Normal;
  	var float Scale;
  	var bool bRandomize;
+	var float TraceLength;
 
  	structcpptext
  	{
  		FPersistentSplatInfo() {}
 
- 		FPersistentSplatInfo(FVector InLocation, FVector InNormal, FLOAT InScale, UBOOL InRandomize) :
+	 	FPersistentSplatInfo(FVector InLocation, FVector InNormal, FLOAT InScale, UBOOL InRandomize, FLOAT TraceLength) :
  			Location(InLocation),
  			Normal(InNormal),
  			Scale(InScale),
- 			bRandomize(InRandomize) {}
+ 			bRandomize(InRandomize),
+			TraceLength(TraceLength) {}
+
  	}
 };
 
@@ -297,7 +303,7 @@ simulated function LeaveABodyWoundDecal(KFpawn InPawn, vector InHitLocation, vec
 /** Leaves a persistent blood splat on level geometry
 	bForceUpdate will force immediate update instead of queueing it up in the cyclic buffer
  */
-simulated native final function LeaveAPersistentBloodSplat(vector HitLoc, vector HitNorm, optional float BloodScale = 1.0, optional bool bRandomizeBloodScale = true, optional bool bForceUpdate = false);
+simulated native final function LeaveAPersistentBloodSplat(vector HitLoc, vector HitNorm, optional float BloodScale = 1.0, optional bool bRandomizeBloodScale = true, optional bool bForceUpdate = false, optional float TraceLength = PersistentSplatTraceLength);
 
 /** Helper function for LeaveAPersistentBloodSplat. Traces agains geometry and updates the splattermaps */
 simulated native final function PerformTraceAndUpdateSplattermap(const out PersistentSplatInfo InSplat);

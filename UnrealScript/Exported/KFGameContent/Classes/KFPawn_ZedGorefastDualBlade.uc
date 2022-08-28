@@ -44,6 +44,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedGorefast:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedGorefast:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedGorefast:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast2_ANIM.Gorefast2_AnimGroup'
    LocalizationKey="KFPawn_ZedGorefastDualBlade"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedGorefast:ThirdPersonHead0'
@@ -239,6 +247,7 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
+   Components(9)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedGorefastDualBlade"
    ObjectArchetype=KFPawn_ZedGorefast'kfgamecontent.Default__KFPawn_ZedGorefast'

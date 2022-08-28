@@ -13,6 +13,8 @@ enum ESharedContentUnlock
 {
     SCU_None,
     SCU_Zweihander,
+    SCU_MKB,
+    SCU_ChainBat,
     SCU_MAX
 };
 
@@ -50,6 +52,9 @@ native static function InitSharedUnlocksFor(KFPlayerReplicationInfo PRI);
 // Export UKFUnlockManager::execIsSharedContentUnlocked(FFrame&, void* const)
 native static function bool IsSharedContentUnlocked(KFUnlockManager.ESharedContentUnlock UnlockId);
 
+// Export UKFUnlockManager::execGetObjectiveItemGranted(FFrame&, void* const)
+native static function bool GetObjectiveItemGranted(KFUnlockManager.ESharedContentUnlock UnlockId);
+
 // Export UKFUnlockManager::execGetSharedContentPlayerList(FFrame&, void* const)
 native static function GetSharedContentPlayerList(KFUnlockManager.ESharedContentUnlock UnlockId, out array<PlayerReplicationInfo> out_PRIArray);
 
@@ -65,6 +70,11 @@ static function bool GetWeaponSkinAvailable(int Id)
 }
 
 static event bool GetEmoteAvailable(int Id)
+{
+    return GetIDAvailable(Id);
+}
+
+static event bool GetHeadShotEffectAvailable(int Id)
 {
     return GetIDAvailable(Id);
 }
@@ -190,4 +200,6 @@ defaultproperties
 {
     SharedContentList(0)=(Name=None,IconPath="",Id=0)
     SharedContentList(1)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",Id=219640)
+    SharedContentList(2)=(Name=KFWeap_AssaultRifle_MKB42,IconPath="WEP_UI_MKB42_TEX.UI_WeaponSelect_MKB42",Id=6456)
+    SharedContentList(3)=(Name=KFWeap_Blunt_ChainBat,IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",Id=300380)
 }

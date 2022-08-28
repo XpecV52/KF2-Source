@@ -539,6 +539,7 @@ class KFDamageType extends DamageType
 
 
 
+										  
 
 
 
@@ -555,6 +556,8 @@ class KFDamageType extends DamageType
 
 
 										  
+
+
 
 
 
@@ -833,6 +836,9 @@ var ParticleSystem OverrideImpactEffect;
 
 /** Custom override that bypasses skin type system for one-off damage types. */
 var AKEvent OverrideImpactSound;
+
+//For use on in world trap damage types
+var bool bIsTrapDamage;
 
 /**
  * Take the primary HitDirection and modify it to add more spread.

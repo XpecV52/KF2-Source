@@ -195,7 +195,7 @@ ItemDescription="•Elige entre dos modos de disparo: automático o ráfaga de 3
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="Bullpup SA80 L85A2"
 ItemCategory="Rifle de asalto"
-ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•El SA80 era el arma oficial del ejército británico antes de que se... Bueno, de que se lo comieran."
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•El SA80 era el arma estándar del ejército británico antes de acabar... bueno... devorado."
 
 [KFWeap_LMG_Stoner63A]
 ItemName="Stoner 63A LMG"
@@ -312,6 +312,12 @@ ItemName="P. clavos VLAD-1000"
 ItemCategory="Escopeta"
 ItemDescription="•Elige entre dos modos de disparo: un clavo o varios a la vez.\n•Además de distintos modos de disparo, tiene disparo alternativo.\nSuponemos que alguno de los científicos de Horzine debió de cogérsela prestada a un técnico de mantenimiento. Bueno, o a su cadáver."
 
+[KFWeap_Blunt_ChainBat]
+ItemName="Redentor del camino"
+ItemCategory="Cuerpo a cuerpo"
+ItemDescription="•Principal: ataque contundente rápido. Mantén pulsado el botón del modo principal para hacer un combo.\n•Secundario: fuerte ataque contundente.\n•Alternativo: bloquear/parar.\n•¡Conviértete en el luchador que siempre quisiste ser! No te olvides de limpiarlo después de usarlo."
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulverizador"
 ItemCategory="Cuerpo a cuerpo"
@@ -327,7 +333,7 @@ SecondaryAmmo="Gasolina"
 ItemName="Zweihander"
 ItemCategory="Cuerpo a cuerpo"
 ItemDescription="•Principal: daño medio/alto, con cierto control de masas.\n•Secundario: más lento, pero más lesivo.\n•Alternativo: bloquear/parar.\n•Si avanzas mientras lo usas, harás aún más daño."
-SharedUnlockSource="Chivalry Medieval Warfare "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Partehuesos"
@@ -505,6 +511,12 @@ ItemName="Cañón de husk"
 ItemCategory="Llamas"
 ItemDescription="•Se carga mientras se aprieta el botón de disparo y dispara cuando se suelta. \n•La versión oficial de Horzine del cañón de husk. La empresa garantiza que el modelo tiene un 95 % de probabilidades de no explotar."
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="Carabina MKb.42(H)"
+ItemCategory="Rifle de asalto"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Utiliza la función de disparo alternativo para cambiar de modo.\n•¡Saca tu Hans interior! La cordura no está garantizada."
+SharedUnlockSource="Apar. de Halloween"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="Arma corta"
@@ -529,6 +541,17 @@ ItemDescription="•Principal: ataque contundente rápido. Mantén pulsado el bo
 ItemName="Mac 10"
 ItemCategory="Subfusil"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Posee munición incendiaria de fuego rápido. ¿Lo pillas? ¡Fuego rápido! ¡Porque es una metralleta incendiaria! Bah, olvídalo."
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="Rifle lanzagranadas HMTech-501"
+ItemCategory="Fusil de asalto"
+ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: dispara granadas.\n•¡La única arma que te permite lanzar granadas a tus amigos!"
+SecondaryAmmo="Granada médica"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="Fusil de asalto"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Utiliza la función de disparo alternativo para cambiar de modo.\n•Se podría decir que esta arma no es una FN FALLOS... vale, no tiene gracia."
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

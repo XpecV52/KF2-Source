@@ -36,6 +36,11 @@ function InitializeWidget()
     SetReadyButtonVisibility(false);
 }
 
+event SoloGameMenuOpened()
+{
+    OneSecondLoop();
+}
+
 function SendSearching()
 {
     local string SearchingTextString, SearchingMessage;
@@ -62,13 +67,20 @@ function SendSearching()
                 }
                 else
                 {
-                    if(Manager.StartMenu.GetStartMenuState() == 0)
+                    if(Manager.StartMenu.GetStartMenuState() == 1)
                     {
                         SearchingMessage = UpdatingOptions;                        
                     }
                     else
                     {
-                        SearchingMessage = InOtherMenu;
+                        if(Manager.StartMenu.GetStartMenuState() == 2)
+                        {
+                            SearchingMessage = CreatingGame;                            
+                        }
+                        else
+                        {
+                            SearchingMessage = InOtherMenu;
+                        }
                     }
                 }                
             }
@@ -175,8 +187,8 @@ function HandleLeaderChange(UniqueNetId AdminId)
             if((OnlineLobby != none) && OnlineLobby.IsInLobby())
             {
                 OnlineLobby.QuitLobby();
-                Manager.StartMenu.OpenMultiplayerMenu();
-            }            
+            }
+            Manager.SetStartMenuState(0, true);            
         }
         else
         {
@@ -369,6 +381,10 @@ function UpdateSearching(string Message)
         case UpdatingOptions:
             Manager.ChangeOverviewState(false);
             SearchingText = PartyLeaderIsUpdatingMatchOptionsString;
+            break;
+        case CreatingGame:
+            Manager.ChangeOverviewState(false);
+            SearchingText = CreatingGameString;
             break;
         case InOtherMenu:
             SearchingText = PartyLeaderInOtherMenuString;

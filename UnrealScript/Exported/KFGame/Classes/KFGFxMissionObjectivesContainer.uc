@@ -110,11 +110,11 @@ function bool ShowShouldSpecialEvent()
             && ( KFPC.IsValidSpecialEventMap() || class'WorldInfo'.static.IsMenuLevel() );
 }
 
-function Refresh(optional bool bForceRefreshOfDaily)
+function Refresh(optional bool bForceRefresh)
 {
     if(KFPC.MyGFxManager.bMenusOpen)
     {
-        if(ExpandedObjectiveContainer.Refresh(bForceRefreshOfDaily))
+        if(ExpandedObjectiveContainer.Refresh(bForceRefresh))
         {
             CollapsedObjectiveContainer.PopulateData();
         }

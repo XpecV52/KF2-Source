@@ -87,11 +87,11 @@ function bool ShowShouldSpecialEvent()
     return (((Class'KFGameEngine'.static.GetSeasonalEventID() != 0) && Class'KFGameEngine'.static.GetSeasonalEventID() != -1) && Class'KFGFxMenu_StartGame'.static.GetSpecialEventClass(Class'KFGameEngine'.static.GetSeasonalEventID()) != Class'KFGFxSpecialEventObjectivesContainer') && KFPC.IsValidSpecialEventMap() || Class'WorldInfo'.static.IsMenuLevel();
 }
 
-function Refresh(optional bool bForceRefreshOfDaily)
+function Refresh(optional bool bForceRefresh)
 {
     if(KFPC.MyGFxManager.bMenusOpen)
     {
-        if(ExpandedObjectiveContainer.Refresh(bForceRefreshOfDaily))
+        if(ExpandedObjectiveContainer.Refresh(bForceRefresh))
         {
             CollapsedObjectiveContainer.PopulateData();
         }

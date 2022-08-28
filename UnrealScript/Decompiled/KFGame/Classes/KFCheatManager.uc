@@ -68,6 +68,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 var bool bDebugSceneEnabled;
 var transient bool bUsingSplatterGun;
@@ -149,6 +151,17 @@ exec function SetInventoryFilter(string FilterType, int NewEnum)
                 break;
         }
     }
+}
+
+exec function PrintOutCurrentPrestigeInfo()
+{
+    local KFPlayerController KFPC;
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPC = KFPlayerController(Outer);
+    LogInternal("Curennt perk prestige level: " @ string(KFPC.CurrentPerk.GetPrestigeLevel()));
+    KFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
+    LogInternal("KPRI active prestige level: " @ string(KFPRI.GetActivePerkPrestigeLevel()));
 }
 
 exec function DisplayFreeTrialFeatureBlockedPopUp()
@@ -711,7 +724,7 @@ exec function DebugShowVoteKick()
     KFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
     if((KFPlayerController(Outer).myGfxHUD != none) && KFPRI != none)
     {
-        KFPlayerController(Outer).myGfxHUD.ShowKickVote(KFPRI, 1, true);
+        KFPlayerController(Outer).myGfxHUD.ShowKickVote(KFPRI, 10, true);
     }
 }
 

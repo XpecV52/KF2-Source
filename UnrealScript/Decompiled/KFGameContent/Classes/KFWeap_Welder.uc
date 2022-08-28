@@ -25,7 +25,7 @@ var() float AmmoRechargeRate;
 var name IdleWeldAnim;
 var name WeldOpenAnim;
 var name WeldCloseAnim;
-var KFWeldableActor WeldTarget;
+var KFWeldableComponent WeldTarget;
 var float LastTraceHitTime;
 var class<KFGFxWorld_WelderScreen> ScreenUIClass;
 var KFGFxWorld_WelderScreen ScreenUI;
@@ -107,7 +107,7 @@ simulated function UpdateScreenUI()
             }
             if(WeldTarget != none)
             {
-                WeldPercentageFloat = (float(WeldTarget.WeldIntegrity) / float(WeldTarget.MaxWeldIntegrity)) * 100;
+                WeldPercentageFloat = WeldTarget.GetWeldPct();
                 if((WeldPercentageFloat < 1) && WeldPercentageFloat > 0)
                 {
                     WeldPercentageFloat = 1;                    
@@ -200,14 +200,14 @@ simulated function CustomFire()
 {
     local float CurrentFastenRate, CurrentUnfastenRate;
 
-    WeldTarget = TraceDoorActors();
+    WeldTarget = TraceWeldables();
     if((Role == ROLE_Authority) && WeldTarget != none)
     {
         CurrentFastenRate = FastenRate;
         CurrentUnfastenRate = UnfastenRate;
         GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
         SetTimer(AmmoRechargeRate, true, 'RechargeAmmo');
-        if(WeldTarget.bIsDestroyed && !WeldTarget.IsA('KFRepairableActor'))
+        if(WeldTarget.bIsDestroyed && !WeldTarget.Owner.IsA('KFRepairableActor'))
         {
             WeldTarget.Repair(RepairRate, KFPawn(Instigator));            
         }
@@ -215,11 +215,11 @@ simulated function CustomFire()
         {
             if(CurrentFireMode == 0)
             {
-                WeldTarget.FastenWeld(int(CurrentFastenRate), KFPawn(Instigator));                
+                WeldTarget.Weld(int(CurrentFastenRate), KFPawn(Instigator));                
             }
             else
             {
-                WeldTarget.FastenWeld(int(CurrentUnfastenRate), KFPawn(Instigator));
+                WeldTarget.Weld(int(CurrentUnfastenRate), KFPawn(Instigator));
             }
         }
     }
@@ -238,17 +238,17 @@ simulated function bool CanWeldTarget(optional int FireModeNum)
 
     FireModeNum = CurrentFireMode;
     WelderPerk = GetPerk();
-    if((FireModeNum == 0) && WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity)
+    if((FireModeNum == 0) && !WeldTarget.CanBeWelded())
     {
-        if(((WelderPerk != none) && WelderPerk.CanExplosiveWeld()) && WeldTarget.CanExplosiveWeld())
+        if((WelderPerk != none) && WelderPerk.CanExplosiveWeld())
         {
-            return WeldTarget.DemoWeld < WeldTarget.default.DemoWeldRequired;
+            return WeldTarget.CanBeDemoWelded();
         }
         return false;        
     }
     else
     {
-        if((FireModeNum == 1) && WeldTarget.WeldIntegrity <= 0)
+        if((FireModeNum == 1) && !WeldTarget.CanBeUnwelded())
         {
             return false;
         }
@@ -330,14 +330,14 @@ simulated function CheckDelayedStartFire()
 
 simulated function bool TickWeldTarget()
 {
-    local KFWeldableActor PreviousTarget;
+    local KFWeldableComponent PreviousTarget;
 
     if((WorldInfo.TimeSeconds - LastTraceHitTime) < 0.2)
     {
         return false;
     }
     PreviousTarget = WeldTarget;
-    WeldTarget = TraceDoorActors();
+    WeldTarget = TraceWeldables();
     if(PreviousTarget != WeldTarget)
     {
         return PlayReadyTransition(PreviousTarget);
@@ -345,12 +345,13 @@ simulated function bool TickWeldTarget()
     return false;
 }
 
-simulated function KFWeldableActor TraceDoorActors()
+simulated function KFWeldableComponent TraceWeldables()
 {
-    local KFWeldableActor WeldableActor;
+    local KFWeldableComponent WeldableComponent;
     local Vector HitLoc, HitNorm, StartTrace, EndTrace, AdjustedAim;
 
     local bool bIsRepairableActor;
+    local KFDoorActor WeldableDoor;
 
     StartTrace = Instigator.GetWeaponStartTraceLocation();
     AdjustedAim = vector(GetAdjustedAim(StartTrace));
@@ -359,21 +360,30 @@ simulated function KFWeldableActor TraceDoorActors()
     {
         EndTrace += (AdjustedAim * ExtraWeldingRange);
     }
-    foreach GetTraceOwner().TraceActors(Class'KFWeldableActor', WeldableActor, HitLoc, HitNorm, StartTrace, EndTrace)
+    foreach GetTraceOwner().TraceActors(Class'KFWeldableComponent', WeldableComponent, HitLoc, HitNorm, EndTrace, StartTrace)
     {
-        bIsRepairableActor = WeldableActor.IsA('KFRepairableActor');
-        if(!bIsRepairableActor && WeldableActor.bIsDestroyed)
+        if(WeldableComponent.Owner == none)
         {
             continue;            
         }
-        if(bIsRepairableActor && WeldableActor.WeldIntegrity >= WeldableActor.MaxWeldIntegrity)
+        if(Trace(HitLoc, HitNorm, EndTrace, StartTrace, true) != WeldableComponent.Owner)
+        {
+            continue;            
+        }
+        bIsRepairableActor = WeldableComponent.Owner.IsA('KFRepairableActor');
+        if(!bIsRepairableActor && WeldableComponent.bIsDestroyed)
+        {
+            continue;            
+        }
+        if(bIsRepairableActor && !WeldableComponent.CanBeWelded())
         {
             continue;            
         }
         LastTraceHitTime = WorldInfo.TimeSeconds;        
-        return WeldableActor;        
+        return WeldableComponent;        
     }    
-    return FindRepairableDoor();
+    WeldableDoor = FindRepairableDoor();
+    return ((WeldableDoor != none) ? WeldableDoor.WeldableComponent : none);
 }
 
 simulated function KFDoorActor FindRepairableDoor()
@@ -406,7 +416,7 @@ simulated function KFDoorActor FindRepairableDoor()
     return none;
 }
 
-private reliable server final function ServerSetWeldTarget(KFWeldableActor NewTarget, bool bDelayedStart)
+private reliable server final function ServerSetWeldTarget(KFWeldableComponent NewTarget, bool bDelayedStart)
 {
     WeldTarget = NewTarget;
     if(bDelayedStart)
@@ -415,7 +425,7 @@ private reliable server final function ServerSetWeldTarget(KFWeldableActor NewTa
     }
 }
 
-simulated function bool PlayReadyTransition(KFWeldableActor PreviousTarget)
+simulated function bool PlayReadyTransition(KFWeldableComponent PreviousTarget)
 {
     local name AnimName;
     local float Duration;
@@ -451,7 +461,7 @@ simulated function bool TickAutoUnequip()
 
     foreach Instigator.TouchingActors(Class'Trigger_PawnsOnly', Trigger)
     {
-        if(Trigger.IsA('KFDoorTrigger') || Trigger.IsA('KFRepairableActorTrigger'))
+        if((Trigger.IsA('KFDoorTrigger') || Trigger.IsA('KFRepairableActorTrigger')) || Trigger.IsA('KFWeldableTrigger'))
         {            
             return false;
         }        

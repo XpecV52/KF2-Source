@@ -14,6 +14,7 @@ package
             this.__setProp_soloOfflineButton_FindGameContainerMC_Buttons_0();
             this.__setProp_tutorialButton_FindGameContainerMC_Buttons_0();
             this.__setProp_newsButton_FindGameContainerMC_Buttons_0();
+            this.__setProp_createGameButton_FindGameContainerMC_Buttons_0();
         }
         
         function __setProp_matchMakingButton_FindGameContainerMC_Buttons_0() : *
@@ -150,6 +151,34 @@ package
             try
             {
                 newsButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_createGameButton_FindGameContainerMC_Buttons_0() : *
+        {
+            try
+            {
+                createGameButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            createGameButton.autoRepeat = false;
+            createGameButton.autoSize = "none";
+            createGameButton.data = "";
+            createGameButton.enabled = true;
+            createGameButton.enableInitCallback = true;
+            createGameButton.focusable = true;
+            createGameButton.label = "text";
+            createGameButton.selected = false;
+            createGameButton.toggle = false;
+            createGameButton.visible = true;
+            try
+            {
+                createGameButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

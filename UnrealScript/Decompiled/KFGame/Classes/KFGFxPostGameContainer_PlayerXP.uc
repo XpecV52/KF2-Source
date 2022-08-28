@@ -66,7 +66,7 @@ function GFxObject MakePerkXPObject(PerkXPGain PerkXPObject)
     TempGFxObject.SetString("perkName", PerkXPObject.PerkClass.default.PerkName);
     TempGFxObject.SetString("perkIcon", "img://" $ PerkXPObject.PerkClass.static.GetPerkIconPath());
     TempGFxObject.SetString("objective1", PerkXPObject.PerkClass.default.EXPAction1);
-    TempGFxObject.SetInt("objective1Value", PerkXPObject.XPDelta - PerkXPObject.SecondaryXPGain);
+    TempGFxObject.SetInt("objective1Value", (PerkXPObject.XPDelta - PerkXPObject.SecondaryXPGain) - PerkXPObject.BonusXP);
     TempGFxObject.SetString("objective2", PerkXPObject.PerkClass.default.EXPAction2);
     TempGFxObject.SetInt("objective2Value", PerkXPObject.SecondaryXPGain);
     ++ ItemCount;

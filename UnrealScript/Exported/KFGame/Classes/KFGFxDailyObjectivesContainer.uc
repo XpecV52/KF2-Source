@@ -29,6 +29,11 @@ struct ObjectiveProgress
 {
 	var bool bComplete;
 	var int NumericValue;
+
+	structdefaultproperties
+	{
+		NumericValue = INDEX_NONE;
+	}
 };
 
 var array<ObjectiveProgress> ObjectiveStatusList;
@@ -95,7 +100,7 @@ static function GFxObject MakeDailyDataObject(DailyEventInformation EventInfo, i
     RefDataObject.SetBool("complete",  MyKFPC.IsDailyObjectiveComplete(Index));     
 
 
-    RefDataObject.SetBool("showProgres", bProgressObjective);
+    RefDataObject.SetBool("showProgress", bProgressObjective);
     if(bProgressObjective)
     {
     	RefDataObject.SetFloat("progress", FClamp(Float(MyKFPC.GetCurrentDailyValue(Index)) / Float(MyKFPC.GetMaxDailyValue(Index)), 0, 1) );

@@ -195,7 +195,7 @@ ItemDescription="•전자동 및 3 탄환 발사 모드 선택.\n•대체 사�
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 불펍"
 ItemCategory="돌격소총"
-ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•SA80은 영국군이 잡아 먹히기 전에 표준 무기로 사용하였던 무기입니다."
+ItemDescription="•전자동 및 반자동 사격 모드를 선택할 수 있습니다.\n•SA80은 영국군이 잡아 먹히기 전에 표준 무기로 사용하였던 무기입니다."
 
 [KFWeap_LMG_Stoner63A]
 ItemName="스토너 63A LMG"
@@ -312,6 +312,12 @@ ItemName="VLAD-1000 네일건"
 ItemCategory="샷건"
 ItemDescription="•단발이나 연사 못 발사 모드 선택.\n•대체 사격으로 발사 모드를 전환할 수 있습니다.\n•Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
 
+[KFWeap_Blunt_ChainBat]
+ItemName="구세주의 길"
+ItemCategory="백병전"
+ItemDescription="•기본 - 빠른 둔기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 강하고 둔한 공격으로 방패를 유용하게 사용.\n•대체 - 차단/회피.\n•항상 꿈꿔오던 슬러거가 되어 보세요! 사용 후 꼭 청소하세요."
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="분쇄기"
 ItemCategory="백병전"
@@ -327,7 +333,7 @@ SecondaryAmmo="가솔린"
 ItemName="츠바이한더"
 ItemCategory="백병전"
 ItemDescription="•기본 - 중/강 데미지, 약간의 군중 제어 기술.\n•보조 - 느리지만 더 강한 데미지.\n•대체 - 차단/회피\n•앞으로 이동하면 더 강한 데미지를 가할 수 있습니다."
-SharedUnlockSource="중세 기사전" "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="본 크러셔"
@@ -505,6 +511,12 @@ ItemName="Husk 캐논"
 ItemCategory="화염"
 ItemDescription="•발사 버튼을 누르는 동안 충전되며 발사 버튼에서 손을 떼면 발사됩니다. \n•Husk 캐논의 공식 Horzine 버전입니다. 이 모델은 95% 확률로 폭발하지 않습니다."
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="MKb.42(H) 카빈 소총"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 및 반자동 사격 모드를 선택할 수 있습니다. \n•사격 모드 변경 가능.\n•내 안의 한스를 끌어내세요! 광기가 밀려올 수 있습니다."
+SharedUnlockSource="한스 할로윈 스킨"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="권총"
@@ -529,6 +541,17 @@ ItemDescription="•기본 - 빠른 둔기 공격, 오래 누르면 콤보 공�
 ItemName="Mac 10"
 ItemCategory="서브머신건"
 ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•속사 화염 탄약을 지원합니다. 아시겠죠? 속사 화염이라구요! 화염 서브머신건이잖아요! 아, 됐어요."
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="HMTech-501 유탄 소총"
+ItemCategory="돌격소총"
+ItemDescription="•전자동만 지원합니다.\n•대체 사격 시 수류탄 발사.\n•친구들에게 수류탄을 던져도 괜찮은 유일한 무기입니다!"
+SecondaryAmmo="치료용 수류탄"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 및 반자동 사격 모드를 선택할 수 있습니다. \n•사격 모드 변경 가능. \n•FN FAIL이 아니랍니다. 하하! ...죄송합니다."
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

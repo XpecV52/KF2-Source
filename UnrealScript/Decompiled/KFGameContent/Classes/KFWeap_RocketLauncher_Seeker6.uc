@@ -73,6 +73,18 @@ simulated event Tick(float DeltaTime)
     }
 }
 
+simulated function bool CanLockOnTo(Actor TA)
+{
+    local KFPawn PawnTarget;
+
+    PawnTarget = KFPawn(TA);
+    if((((((((TA == none) || !TA.bProjTarget) || TA.bDeleteMe) || PawnTarget == none) || TA == Instigator) || PawnTarget.Health <= 0) || PawnTarget.bIsCloaking) || !HasAmmo(0))
+    {
+        return false;
+    }
+    return !WorldInfo.GRI.OnSameTeam(Instigator, TA);
+}
+
 simulated function bool FindTargets(out Pawn RecentlyLocked)
 {
     local Pawn P, BestTargetLock;
@@ -92,6 +104,10 @@ simulated function bool FindTargets(out Pawn RecentlyLocked)
     }
     foreach WorldInfo.AllPawns(Class'Pawn', P)
     {
+        if(!CanLockOnTo(P))
+        {
+            continue;            
+        }
         if((((P != none) && P.IsAliveAndWell()) && P.GetTeamNum() != TeamNum) && LockedTargets.Find(P == -1)
         {
             TargetLoc = GetLockedTargetLoc(P);

@@ -23,6 +23,7 @@ KF-PowerCore_Holdout="玩能量核心"
 KF-DieSector="玩死亡地帶"
 KF-Lockdown="進行封鎖遊戲中"
 KF-Airship="進行飛艇遊戲中"
+KF-MonsterBall="遊玩怪獸舞會"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

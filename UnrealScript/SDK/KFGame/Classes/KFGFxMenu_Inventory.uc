@@ -101,13 +101,14 @@ var AkEvent KillThatDangSoundEvent;
 
 enum EINventory_Filter
 {
-	EInv_All,
 	EInv_WeaponSkins,
 	EInv_Cosmetics,
 	EInv_Consumables,
 	EInv_Items,
 	EInv_CraftingMats,
 	EInv_Emotes,
+	EInv_SFX,
+	EInv_All,
 };
 
 enum EInventoryWeaponType_Filter
@@ -255,7 +256,7 @@ function InitInventory()
 		{
 			TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
 
-			if( ((CurrentInventoryFilter == EInv_All ||  CurrentInventoryFilter == TempItemDetailsHolder.Type + 1  ) && DoesMatchFilter(TempItemDetailsHolder) )|| bool(OnlineSub.CurrentInventory[i].NewlyAdded)) //offset
+			if( ((CurrentInventoryFilter == EInv_All ||  Int(CurrentInventoryFilter) == Int(TempItemDetailsHolder.Type)) && DoesMatchFilter(TempItemDetailsHolder) )|| bool(OnlineSub.CurrentInventory[i].NewlyAdded)) //offset
 			{
 				ItemObject = CreateObject("Object");
 				HelperIndex = ActiveItems.Find('ItemDefinition', onlineSub.CurrentInventory[i].Definition);
@@ -281,7 +282,7 @@ function InitInventory()
 				ItemObject.SetInt("type", TempItemDetailsHolder.Type);
 				ItemObject.SetBool("exchangeable", IsItemExchangeable(TempItemDetailsHolder, ExchangeRules) && class'WorldInfo'.static.IsMenuLevel() );
 				ItemObject.SetBool("recyclable", IsItemRecyclable(TempItemDetailsHolder, ExchangeRules) && class'WorldInfo'.static.IsMenuLevel());
-				bActiveItem = IsItemActive(onlineSub.CurrentInventory[i].Definition);
+				bActiveItem = IsItemActive(onlineSub.CurrentInventory[i].Definition) || IsSFXActive(onlineSub.CurrentInventory[i].Definition);
 				ItemObject.SetBool("active", bActiveItem );
 				ItemObject.SetInt("rarity", TempItemDetailsHolder.Rarity);
 				ItemObject.SetString("description", TempItemDetailsHolder.Description);
@@ -471,6 +472,21 @@ function bool IsItemActive(int ItemDefinition)
 	return false;
 }
 
+
+function bool IsSFXActive(int ItemDefinition)
+{
+	local int ItemIndex;
+
+	ItemIndex = class'KFHeadShotEffectList'.static.GetHeadShotEffectIndex(ItemDefinition);
+
+	if (ItemIndex == INDEX_NONE)
+	{
+		return false;
+	}
+
+	return class'KFHeadShotEffectList'.Static.IsHeadShotEffectEquipped(ItemDefinition);
+}
+
 function LocalizeText()
 {
 	local GFxObject LocalizedObject;
@@ -491,6 +507,7 @@ function LocalizeText()
 	LocalizedObject.SetString("unequip", 					UnequipString);
 	LocalizedObject.SetString("useString", 					UseString);
 	LocalizedObject.SetString("recycle", 					RecycleString);
+	LocalizedObject.SetString("sfx",						Class'KFCommon_LocalizedStrings'.default.SpecialEffectsString);
 
 	LocalizedObject.SetString("all", 						AllString);
 	LocalizedObject.SetString("weaponSkins", 				WeaponSkinString);
@@ -906,11 +923,15 @@ function Callback_InventoryFilter( int FilterIndex )
 			NewFilter = EInv_Consumables;
 			break;
 		case 4:
-			NewFilter = EInv_Emotes;
-			break;
-		case 5:
 			NewFilter = EInv_CraftingMats;
 			break;
+		case 5:
+			NewFilter = EInv_Emotes;
+			break;
+		case 6:
+			NewFilter = EInv_SFX;
+			break;
+			
 	}
 
 	if(NewFilter != CurrentInventoryFilter)
@@ -953,7 +974,30 @@ function Callback_Equip( int ItemDefinition )
 				Manager.CachedProfile.SaveWeaponSkin(WeaponDef.default.WeaponClassPath, ItemDefinition);
 			}
 		}
+	}
 
+	//refresh inventory
+	InitInventory();
+}
+
+function Callback_EquipSFX(int ItemDefinition)
+{
+	local int ItemIndex;
+
+	ItemIndex = class'KFHeadShotEffectList'.static.GetHeadShotEffectIndex(ItemDefinition);
+
+	if (ItemIndex == INDEX_NONE)
+	{
+		return;
+	}
+
+	if (IsSFXActive(ItemDefinition))
+	{
+		class'KFHeadShotEffectList'.Static.SaveEquippedHeadShotEffect(0);
+	}
+	else
+	{
+		class'KFHeadShotEffectList'.Static.SaveEquippedHeadShotEffect(ItemDefinition);
 	}
 
 	//refresh inventory

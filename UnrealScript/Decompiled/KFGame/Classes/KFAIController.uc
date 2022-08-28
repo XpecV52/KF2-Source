@@ -1422,7 +1422,7 @@ final function Pawn GetClosestEnemy(optional Pawn ExcludePawn)
     bestDist = 1000000;
     foreach WorldInfo.AllPawns(Class'Pawn', P)
     {
-        if(!P.IsAliveAndWell() || (ExcludePawn != none) && ExcludePawn == P)
+        if((!P.IsAliveAndWell() || (ExcludePawn != none) && ExcludePawn == P) || !P.CanAITargetThisPawn(self))
         {
             continue;            
         }

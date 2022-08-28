@@ -229,10 +229,15 @@ function bool WeeklyShouldExplodeOnDeath()
 
 simulated function OnExploded(Controller SuicideController);
 
+simulated function bool ShouldAllowHeadBoneToBreak(name BoneName)
+{
+    return true;
+}
+
 defaultproperties
 {
     begin object name=ExploTemplate0 class=KFGameExplosion
-        ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.EMPGrenade_Explosion'
+        ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.EDar_EMP_Explosion'
         Damage=25
         DamageFalloffExponent=0.5
         MyDamageType=Class'KFGame.KFDT_EMP'
@@ -262,6 +267,7 @@ defaultproperties
     XPValues[3]=31
     DamageTypeModifiers=/* Array type was not detected. */
     SprintAkComponent=AkComponent'Default__KFPawn_ZedDAR.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedDAR.HeadshotAkComponent0'
     StartSprintingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_Start'
     SprintLoopingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_LP'
     StopSprintingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_Stop'
@@ -330,6 +336,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedDAR.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedDAR.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedDAR.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedDAR.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

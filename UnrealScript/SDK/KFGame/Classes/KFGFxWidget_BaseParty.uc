@@ -12,7 +12,7 @@ class KFGFxWidget_BaseParty extends KFGFxObject_Container;
 
 var localized string ReadyString, LeaveString, DefaultPlayerName, SquadString, SoloString, CreatePartyString, WaitingString, DeployingString, PlayerReadyString, PartyLeaderString, SkipTraderString;
 var localized string MuteString, UnmuteString, AddFriendString, RemoveFriendString, ViewProfileString, VoteKickString;// Profile options
-var localized string PartyLeaderSearchingForMatchString, PartyLeaderIsUpdatingMatchOptionsString, PartyLeaderInServerBrowserString, PartyLeaderInOtherMenuString, SearchingForGameString;
+var localized string PartyLeaderSearchingForMatchString, PartyLeaderIsUpdatingMatchOptionsString, PartyLeaderInServerBrowserString, PartyLeaderInOtherMenuString, SearchingForGameString, CreatingGameString;
 var localized string PartHostLeftString, PartyLeaderChangedString;
 var localized string DownLoadingString, RemainingString;
 var localized string MatchOverString;//text used to tell the player the match is over
@@ -23,7 +23,7 @@ var bool bInLobby;
 var KFPlayerController KFPC;
 var KFGFxHUD_ChatBoxWidget PartyChatWidget;
 var const string PerkPrefix;
-var const string SearchingPrefix, ServerBrowserOpen, SearchingForGame, UpdatingOptions, InOtherMenu;
+var const string SearchingPrefix, ServerBrowserOpen, SearchingForGame, CreatingGame, UpdatingOptions, InOtherMenu;
 var const string ViewProfileKey, AddFriendKey, KickKey, MuteKey;
 var int OccupiedSlots;
 var UniqueNetId LastLeaderID;
@@ -249,6 +249,8 @@ function AddStringOptionToList(string OptionKey, int ItemIndex, string Option, o
 	DataProvider.SetElementObject(ItemIndex, StringOption);
 }
 
+event SoloGameMenuOpened(){}
+
 function UpdateInLobby(bool bIsInLobby)
 {
 	local bool bShouldShowCreateParty;
@@ -281,7 +283,7 @@ function UpdateInLobby(bool bIsInLobby)
 	{
 		if(GetPC().WorldInfo.IsMenuLevel())
 		{
-			bShouldShowCreateParty = Manager.GetMultiplayerMenuActive() && !bInLobby;
+			bShouldShowCreateParty = !bInLobby && EStartMenuState(Manager.StartMenu.GetStartMenuState()) != ESoloGame;
 		}
 		else if(class'WorldInfo'.static.IsConsoleBuild())
 		{
@@ -479,6 +481,7 @@ function StopCountdown()
 
 DefaultProperties
 {
+	bCreatePartyVisible=true
 	PlayerSlots=6
 	//defaults
 	bReadyButtonVisible=true

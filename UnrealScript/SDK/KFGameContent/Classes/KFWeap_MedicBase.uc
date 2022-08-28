@@ -100,6 +100,7 @@ var float PendingLockTimeout;
 /** How much time is left before lock-on is lost */
 var float LockedOnTimeout;
 
+var bool bRechargeHealAmmo;
 /*********************************************************************************************
  @name Optics UI
 ********************************************************************************************* */
@@ -115,7 +116,10 @@ replication
 {
 	// Server->Client properties
 	if (bNetDirty && Role == ROLE_Authority)
-		bLockedOnTarget, LockedTarget, PendingLockedTarget, HealingDartAmmo;
+		bLockedOnTarget, LockedTarget, PendingLockedTarget;
+
+	if (bNetDirty && Role == ROLE_Authority && bAllowClientAmmoTracking && bRechargeHealAmmo)
+		HealingDartAmmo;
 }
 
 /* epic ===============================================
@@ -157,15 +161,13 @@ simulated event ReplicatedEvent(name VarName)
 			}
 		}
 	}
+	else if (VarName == nameof(HealingDartAmmo))
+	{
+		AmmoCount[ALTFIRE_FIREMODE] = HealingDartAmmo;
+	}
 	else
 	{
 		Super.ReplicatedEvent(VarName);
-
-		// This same variable has a replicated event in a base class, so it is not on the normal path.
-		if (VarName == nameof(HealingDartAmmo))
-		{
-			AmmoCount[1] = HealingDartAmmo;
-		}
 	}
 }
 
@@ -227,14 +229,13 @@ simulated function ConsumeAmmo( byte FireModeNum )
 `endif
 
 	// If AmmoCount is being replicated, don't allow the client to modify it here
-	if ( Role == ROLE_Authority )
+	if (Role == ROLE_Authority || bAllowClientAmmoTracking)
 	{
         // Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
 		if (MagazineCapacity[1] > 0 && AmmoCount[1] > 0)
 		{
 			// Reduce ammo amount by heal ammo cost
             AmmoCount[1] = Max(AmmoCount[1] - AmmoCost[1], 0);
-            HealingDartAmmo = Max(HealingDartAmmo - AmmoCost[1], 0);
 		}
 	}
 }
@@ -368,7 +369,7 @@ simulated state WeaponSingleFiring
 // This makes it impossible for the server to fire before the fire animation has the chance to play on the client side.
 simulated function StartFire(byte FireModeNum)
 {
-	if(FireModeNum == ALTFIRE_FIREMODE && !HasAmmo(FireModeNum, AmmoCost[1]))
+	if(FireModeNum == ALTFIRE_FIREMODE && !HasAmmo(FireModeNum, AmmoCost[FireModeNum]))
 	{
 		return;
 	}
@@ -399,7 +400,10 @@ function StartHealRecharge()
 {
 	local KFPerk InstigatorPerk;
 	local float UsedHealRechargeTime;
-
+	if (!bRechargeHealAmmo)
+	{
+		return;
+	}
 	// begin ammo recharge on server
 	if( Role == ROLE_Authority )
 	{
@@ -416,22 +420,25 @@ function StartHealRecharge()
 /** Heal Ammo Regen */
 function HealAmmoRegeneration(float DeltaTime)
 {
-	if( Role == ROLE_Authority )
+	if (!bRechargeHealAmmo)
+	{
+		return;
+	}
+	if ( Role == ROLE_Authority )
 	{
 		HealingIncrement += HealRechargePerSecond * DeltaTime;
 
-		if( HealingDartAmmo > AmmoCount[ALTFIRE_FIREMODE] )
+		if( HealingIncrement >= 1.0 && AmmoCount[ALTFIRE_FIREMODE] < MagazineCapacity[ALTFIRE_FIREMODE] )
 		{
-			HealingDartAmmo = AmmoCount[ALTFIRE_FIREMODE];
-		}
-
-		if( HealingIncrement >= 1.0 && HealingDartAmmo < MagazineCapacity[ALTFIRE_FIREMODE] )
-		{
-			// Use HealingDartAmmo to replicate the actual ammo you should have.
-			HealingDartAmmo++;
-			AmmoCount[ALTFIRE_FIREMODE] = HealingDartAmmo;
-
+			AmmoCount[ALTFIRE_FIREMODE]++;
 			HealingIncrement -= 1.0;
+
+			// Heal ammo regen is only tracked on the server, so even though we told the client he could
+			// keep track of ammo himself like a big boy, we still have to spoon-feed it to him.
+			if (bAllowClientAmmoTracking)
+			{
+				HealingDartAmmo = AmmoCount[ALTFIRE_FIREMODE];
+			}
 		}
 	}
 }
@@ -679,8 +686,8 @@ unreliable client function ClientPlayTargetingSound(AkBaseSoundObject Sound)
 simulated function PlayFiringSound( byte FireModeNum )
 {
 	if ( !bPlayingLoopingFireSnd )
-	{
-		if( FireModeNum == ALTFIRE_FIREMODE )
+	{											//uses darts
+		if( FireModeNum == ALTFIRE_FIREMODE && bRechargeHealAmmo)
 		{
     		WeaponPlayFireSound(DartFireSnd.DefaultCue, DartFireSnd.FirstPersonCue);
         }
@@ -940,5 +947,7 @@ defaultproperties
 
 	// Aim Assist
 	AimCorrectionSize=40.f
+
+	bRechargeHealAmmo=true
 }
 

@@ -11,4 +11,4 @@ ObjectContext_ReimportSubstance=서브스탄스 패키지 리임포트
 ObjectContext_ReimportImageInput=서브스탄스 이미지 입력 리임포트
 CannotDeleteSubstanceObject=그래프 인스턴스 에디터가 열려있는 동안에는 이 오브젝트를 삭제할 수 없습니다.
 FindParentInstance=부모 서브스탄스 그래프 인스턴스 찾기
-ModifiedInput=서브스탄스 입력 변경됨
+ModifiedInput=서브스탄스 입력 변경

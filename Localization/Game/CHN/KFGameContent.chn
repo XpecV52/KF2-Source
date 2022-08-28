@@ -195,7 +195,7 @@ ItemDescription="•可以选择全自动和三连发射击模式。\n•备用�
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 小斗牛式导弹"
 ItemCategory="突击步枪"
-ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•SA80 是英队的标准武器，呃，是在军队被吃掉之前。"
+ItemDescription="•选择全自动射击与半自动射击模式。\n• SA80 是英国军队的标准武器，呃，是在军队被吃掉之前。"
 
 [KFWeap_LMG_Stoner63A]
 ItemName="斯通纳 63A 轻机枪"
@@ -312,6 +312,12 @@ ItemName="VLAD-1000 钉枪"
 ItemCategory="霰弹枪"
 ItemDescription="•可以选择单发或多发钉枪射击模式。\n•备用射击可以切换射击模式。\n•我们知道一名霍因科学家从一个（死了的）维修工那里借了这把原始钉枪。"
 
+[KFWeap_Blunt_ChainBat]
+ItemName="马路救世主"
+ItemCategory="近战"
+ItemDescription="•主要 - 快速钝击，长按进行连击。\n•辅助 - 重击。\n•Alt - 阻挡/闪避。\n•立刻变身为你一直想做的猛男吧！记得每次用过后要清理干净喔。"
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="粉碎机"
 ItemCategory="近战"
@@ -327,7 +333,7 @@ SecondaryAmmo="汽油"
 ItemName="双手剑"
 ItemCategory="近战"
 ItemDescription="•主要 - 中/重伤害，可以对付一群怪物。\n•辅助 - 较慢，但是伤害力更高。\n•Alt - 阻挡/闪避\n•快速向前移动时伤害力甚至更大。"
-SharedUnlockSource="骑士精神：中世纪战争 (Chivalry: Medieval Warfare)”  "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="碎骨者"
@@ -505,6 +511,12 @@ ItemName="火球炮"
 ItemCategory="火焰"
 ItemDescription="•按下开火按钮后开始充能，松开按钮后释放能量。\n•霍因官方版本的果壳大炮。此型号经过保证在95%的情况下不会爆炸。"
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="MKb.42(H) 卡宾步枪"
+ItemCategory="突击步枪"
+ItemDescription="•选择全自动射击与半自动射击模式。\n•Alt - 开火以完成两种开火模式的切换。\n•释放体内的汉斯吧！不确定你还能不能坚守理智。"
+SharedUnlockSource="汉斯的万圣节皮肤"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="手枪"
@@ -529,6 +541,17 @@ ItemDescription="•主要攻击 - 用于快速钝击，按住可以进行连击
 ItemName="Mac 10"
 ItemCategory="冲锋枪"
 ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•速射燃烧弹药就是其特色。明白了吗？速射？就因为它是冲锋枪？啊，别在意。"
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="HMTech-501 手榴步枪"
+ItemCategory="突击步枪"
+ItemDescription="•只有全自动开火模式。\n•Alt - 释放治疗榴弹。\n•这是唯一一个能堂而皇之向你队友投掷榴弹的武器了！"
+SecondaryAmmo="医疗兵手榴弹"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL先进光学瞄准"
+ItemCategory="突击步枪"
+ItemDescription="•选择全自动射击与半自动射击模式。\n•Alt - 开火以完成两种开火模式的切换。\n•你会说，这和你想象中的 FN FAIL 不太一样……没错，它确实不怎么样。"
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

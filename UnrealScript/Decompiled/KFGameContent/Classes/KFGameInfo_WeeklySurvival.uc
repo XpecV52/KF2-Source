@@ -15,14 +15,21 @@ var int ActiveEventIdx;
 static event class<GameInfo> SetGameType(string MapName, string Options, string Portal)
 {
     local KFGameEngine KGE;
+    local int WeeklyIndex;
 
     KGE = KFGameEngine(Class'Engine'.static.GetEngine());
     if(KGE != none)
     {
-        if(KGE.GetWeeklyEventIndex() >= 0)
+        WeeklyIndex = KGE.GetWeeklyEventIndex();
+        LogInternal("Getting Weekly event index: value: " $ string(WeeklyIndex));
+        if(WeeklyIndex >= 0)
         {
             return super(KFGameInfo).SetGameType(MapName, Options, Portal);
-        }
+        }        
+    }
+    else
+    {
+        LogInternal("KFGameEngine is null for Weekly index");
     }
     return Class'KFGameInfo_Survival';
 }
@@ -39,21 +46,11 @@ static function bool GametypeChecksWaveLength()
 
 event InitGame(string Options, out string ErrorMessage)
 {
-    local KFGameEngine KGE;
-
     super(KFGameInfo).InitGame(Options, ErrorMessage);
-    KGE = KFGameEngine(Class'Engine'.static.GetEngine());
-    if(KGE != none)
-    {
-        ActiveEventIdx = KGE.GetWeeklyEventIndex() % OutbreakEvent.SetEvents.Length;
-    }
-    OutbreakEvent.SetActiveEvent(ActiveEventIdx);
-    SetModifiedGameDifficulty();
     SetPickupItemList();
     SetZedTimeOverrides();
     SetSpawnPointOverrides();
     OutbreakEvent.SetWorldInfoOverrides();
-    SetGameLength();
 }
 
 event PreBeginPlay()
@@ -62,14 +59,42 @@ event PreBeginPlay()
     OutbreakEvent.UpdateGRI();
 }
 
+function CreateOutbreakEvent()
+{
+    local KFGameEngine KGE;
+
+    super(KFGameInfo).CreateOutbreakEvent();
+    KGE = KFGameEngine(Class'Engine'.static.GetEngine());
+    if(KGE != none)
+    {
+        ActiveEventIdx = KGE.GetWeeklyEventIndex() % OutbreakEvent.SetEvents.Length;
+    }
+    OutbreakEvent.SetActiveEvent(ActiveEventIdx);
+}
+
+function bool UsesModifiedDifficulty()
+{
+    return true;
+}
+
 function SetModifiedGameDifficulty()
 {
+    super(KFGameInfo).SetModifiedGameDifficulty();
+    if(OutbreakEvent == none)
+    {
+        CreateOutbreakEvent();
+    }
     MinGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
     MaxGameDifficulty = OutbreakEvent.ActiveEvent.EventDifficulty;
     GameDifficulty = float(Clamp(int(GameDifficulty), MinGameDifficulty, MaxGameDifficulty));
 }
 
-function SetGameLength()
+function bool UsesModifiedLength()
+{
+    return true;
+}
+
+function SetModifiedGameLength()
 {
     GameLength = OutbreakEvent.ActiveEvent.GameLength;
 }

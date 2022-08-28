@@ -277,6 +277,16 @@ function bool WeeklyShouldExplodeOnDeath()
 /** Do any explosion death-related actions */
 simulated function OnExploded(Controller SuicideController);
 
+/**
+ * Return true if this pawn is ok with having the input head bone be broken
+ *
+ * @param	BoneName	the head bone to check to see if we all it to break.
+ */
+simulated function bool ShouldAllowHeadBoneToBreak(name BoneName)
+{
+    return true;
+}
+
 defaultproperties
 {
 	MinSpawnSquadSizeType=EST_Medium
@@ -337,7 +347,7 @@ defaultproperties
 	MyDamageType = class'KFDT_EMP'
 	FractureMeshRadius = 200.0
 	FracturePartVel = 500.0
-	ExplosionEffects = KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.EMPGrenade_Explosion'
+	ExplosionEffects = KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.EDar_EMP_Explosion'
 	ExplosionSound = AkEvent'WW_WEP_EXP_Grenade_EMP.Play_WEP_EXP_Grenade_EMP_Explosion'
 
 	// Dynamic Light

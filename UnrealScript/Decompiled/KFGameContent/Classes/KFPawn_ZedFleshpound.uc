@@ -161,28 +161,19 @@ simulated event bool IsEnraged()
     return bIsEnraged;
 }
 
-simulated function SetEnraged(bool bNewEnraged)
+simulated function bool SetEnraged(bool bNewEnraged)
 {
-    if(!bCanRage || (Role == ROLE_Authority) && bNewEnraged == bIsEnraged)
+    local bool bSuccess;
+
+    bSuccess = super.SetEnraged(bNewEnraged);
+    if(bSuccess)
     {
-        return;
-    }
-    if(Role == ROLE_Authority)
-    {
-        bIsEnraged = bNewEnraged;
-        if(IsDoingSpecialMove(17))
+        if(WorldInfo.NetMode != NM_DedicatedServer)
         {
-            EndSpecialMove();
-        }
-        if(!IsHumanControlled())
-        {
-            SetSprinting(bNewEnraged);
+            UpdateGameplayMICParams();
         }
     }
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        UpdateGameplayMICParams();
-    }
+    return bSuccess;
 }
 
 simulated function UpdateGameplayMICParams()
@@ -412,6 +403,7 @@ defaultproperties
     // Reference: CameraShake'Default__KFPawn_ZedFleshpound.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
     SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.HeadshotAkComponent0'
     OnDeathAchievementID=131
     PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
     LocalizationKey=KFPawn_ZedFleshpound
@@ -492,6 +484,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpound.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpound.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedFleshpound.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpound.HeadshotAkComponent0'
     begin object name=RageAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -499,7 +492,7 @@ defaultproperties
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedFleshpound.RageAkComponent0'
-    Components(9)=RageAkComponent0
+    Components(10)=RageAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

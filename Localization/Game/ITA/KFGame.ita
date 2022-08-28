@@ -1,4 +1,5 @@
 [KFCommon_LocalizedStrings]
+SpecialEffectsString="Effetti speciali"
 PrestigeWarningString="Resettare Classe a 0? Non sarà possibile tornare indietro."
 PrestigeBonusString="Bonus Reputazione"
 FailedToReachInventoryServerString="Connessione server Oggetti fallita. L'inventario non sarà disponibile."
@@ -8,7 +9,6 @@ DifficultyStrings[1]="Difficile"
 DifficultyStrings[2]="Suicidio"
 DifficultyStrings[3]="Inferno in Terra"
 BonusDoshString="DENARO BONUS"
-
 LengthStrings[0]="Corto (4 ondate)"
 LengthStrings[1]="Medio (7 ondate)"
 LengthStrings[2]="Lungo (10 ondate)"
@@ -19,8 +19,7 @@ ServerTypeStrings[2]="Classificato - Custom"
 ServerTypeStrings[3]="Non classificato"
 
 PermissionStrings[0]="Pubblico"
-PermissionStrings[1]="Solo amici"
-PermissionStrings[2]="Privato-Password"
+PermissionStrings[1]="Privato-Password"
 
 ConsolePermissionStrings[0]="Pubblico"
 ConsolePermissionStrings[1]="Solo invito"
@@ -108,6 +107,9 @@ DiscordTraderTimeString=": Commerciante"
 DiscordBossWaveString=": Ondata di Boss"
 DiscordWaveString=": Ondata"
 
+StartOfflineGameString="Inizia partita offline"
+StartOfflineGameDescriptionString="Iniziando una partita offline scioglierai il tuo party. \nVuoi continuare?"
+
 ProceedToTutorialString="INIZIARE ADDESTRAMENTO?"
 ProceedToTutorialDescriptionString="Vai in un ambiente controllato e impara le basi. Una volta completato otterrai il lv. 1 in una classe selezionata lv. 0."
 
@@ -164,7 +166,7 @@ ExplosiveString="Trappole sulle porte:"
 
 [KFGFxMenu_StartGame]
 CreateMatchString="CREA INCONTRO"
-MatchmakingString="MATCHMAKING ONLINE"
+MatchmakingString="TROVA UN INCONTRO"
 ConsoleMatchmakingString="GIOCA ONLINE"
 ServerBrowserString="Cerca server"
 NewsPageString="Notizie"
@@ -191,29 +193,30 @@ CouldNotFindGameDescriptionStringPC="Nessun server dalla ricerca. Prova filtri d
 CouldNotFindGameDescriptionStringOrbis="Nessun server dalla ricerca. Prova filtri differenti."
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="Matchmaking online"
+MultiplayerString="Trova un incontro"
 ConsoleMultiplayerString="Gioca online"
+CreateGameString="Crea un incontro"
 SoloString="Giocatore singolo offline"
 TutorialString="Addestramento di base"
 
 [StartMenuHelperText]
-modeList0="Survival - battaglie PVE contro ondate di Zed controllati dalla IA"
-modeList1="Epidemia Settimanale – Una modalità di gioco diversa ogni settimana."
-modeList2="Survival VS – battaglie PVP fra mercenari Horzine e ondate di Zed controllate da giocatore e IA"
-modeList3="Infinito - Affronta le ondate di Zed controllato dalla IA fino alla morte"
-difficultyList0="Normale - per principianti con livello classe 0-5."
-difficultyList1="Difficile - per giocatori esperti con livello classe 6-12. Ci sono più Zed per ogni ondata, i quali si muovono più velocemente e hanno salute maggiore. Gli oggetti e il denaro che puoi ottenere sono inferiori."
-difficultyList2="Suicidio - per giocatori molto esperti con livello classe 13-25. Ancora più Zed per ogni ondata, capaci di usare nuovi tipi di attacco e di muoversi ancora più velocemente. Gli oggetti e il denaro che puoi ottenere diminuiscono ancora."
-difficultyList3="Inferno in Terra - la sfida più intensa per giocatori di livello classe 25. Sempre più Zed per ogni ondata, capaci di usare nuovi tipi di attacco. Gli oggetti e il denaro che puoi ottenere diminuiscono ulteriormente."
+modeList0="Affronta ondate di Zed controllati dalla IA"
+modeList1="Affronta ondate di Zed controllati dalla IA in una modalità di gioco esclusiva della settimana"
+modeList2="Mercenari Horzine contro ondate di Zed controllate da giocatore e IA"
+modeList3="Affronta ondate illimitate di Zed controllati dalla IA"
+difficultyList0="Consigliato per principianti con livello classe 0-5."
+difficultyList1="Consigliato per giocatori esperti con livello classe 6-15. Velocità, salute, danni e quantità degli Zed aumentano ogni ondata. I giocatori ricevono meno denaro e oggetti."
+difficultyList2="Consigliato per giocatori molto esperti con livello classe 15-25. Velocità, salute, danni e quantità degli Zed aumentano ulteriormente ogni ondata, e alcuni Zed hanno nuovi attacchi. I giocatori ricevono ancora meno denaro e oggetti."
+difficultyList3="La sfida più intensa per giocatori di livello classe 25. Velocità, salute, danni e quantità degli Zed aumentano ancora di più ogni ondata. I giocatori ricevono ancora meno denaro e oggetti."
 lengthList0=""
 lengthList1=""
 lengthList2=""
 lengthList3=""
-serverTypeList0="Classificato - Qualsiasi mappa, niente mod, niente fuoco amico, massimo 6 giocatori (12 nella modalità Survival VS)"
-serverTypeList1="Classificato stock - Mappe ufficiali, niente mod, niente fuoco amico, massimo 6 giocatori"
-serverTypeList2="Classificato custom - Qualsiasi mappa, mod in whitelist, qualsiasi impostazione server"
-serverTypeList3="Non classificato custom - Solo mod non in whitelist"
-serverTypeList4="Nessuna preferenza - qualsiasi altro tipo di server"
+serverTypeList0="Qualsiasi mappa, niente mod, niente fuoco amico, massimo 6 giocatori, massimo 12 giocatori nella modalità Survival VS"
+serverTypeList1="Mappe ufficiali, niente mod, niente fuoco amico, massimo 6 giocatori, massimo 12 giocatori nella modalità Survival VS"
+serverTypeList2="Qualsiasi mappa, mod in whitelist, qualsiasi impostazione server"
+serverTypeList3="Solo mod non in whitelist"
+serverTypeList4="Qualsiasi altro tipo di server"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -268,6 +271,10 @@ BossWaveString="BOSS"
 BossName="Boss"
 BossCaptionStrings[0]="Descrizione boss 1"
 BossCaptionStrings[1]="Descrizione boss 2"
+
+[KFGFxTraderContainer_ErrorMessage]
+CannotAffordString="Fondi insufficienti per questo oggetto."
+CannotCarryString="Impossibile trasportare. Vendi per fare spazio."
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="INVENTARIO"
@@ -765,6 +772,7 @@ DefaultPlayerName="Giocatore"
 
 PartyLeaderSearchingForMatchString="sta cercando un incontro..."
 PartyLeaderIsUpdatingMatchOptionsString="sta configurando l'incontro..."
+CreatingGameString="sta creando una nuova partita"
 PartyLeaderInServerBrowserString="sta usando il server browser..."
 PartyLeaderInOtherMenuString="è in un altro menu..."
 SearchingForGameString="Ricerca partita online..."
@@ -897,7 +905,7 @@ NotHightenoughLevelString="Classe non al livello massimo. L’utente non può au
 CurrentRankString="LIVELLO ATTUALE"
 NextRankString="LIVELLO SUCC."
 RewardString="RICOMPENSE REP."
-PrestigeDescriptionString="> Resetta il livello Classe a 0. \n> Modificatore bonus permanente di +30% punti XP, alla fine degli incontri in questa Classe. \n> Ottieni un'icona Classe modificata, Denaro Deposito e una skin arma unica per la Classe."
+PrestigeDescriptionString="> Il livello classe si resetterà a 0. \n> Il modificatore bonus XP +%x%% applicato per questa classe. \n> Ottieni l'icona classe modificata, Vault Dosh e un'esclusiva skin arma per questa classe."
 PrestigeWarningString1="QUESTO RESETTERÀ LA CLASSE A 0"
 PrestigeWarningString2="CONTINUA SOLO SE SEI SICURO"
 PrestigeWarningString3="NON SI TORNA INDIETRO"
@@ -911,11 +919,13 @@ TotalString="Totale"
 CheckOutString="Check out"
 
 [KFGFxStoreContainer_Main]
+FeaturedString="In evidenza"
 WeaponSkinsRotationString="Skin armi"
 WeaponSkinsString="Skin armi in vendita"
 MarketConsumablesString="Casse/USB in vendita"
 MarketCosmeticsString="Estetica in vendita"
 MarketEmotesString="Vendita Emote"
+MarketSFXString="Vendita effetti sonori"
 ThankYouString="Grazie per l'acquisto! Ci aiuterà a sviluppare nuovi oggetti, mappe, armi, Zed e modalità di gioco che inseriremo nei prossimi aggiornamenti."
 
 [KFGFxStoreContainer_Details]
@@ -940,6 +950,7 @@ MenuStrings[7]="ESCI"
 
 ServerBrowserString="SERVER BROWSER"
 MatchmakingString="MATCHMAKING"
+CreateGameString="CREA PARTITA"
 SoloString="GIOCATORE SINGOLO"
 OverviewString="PANORAMICA"
 
@@ -1230,6 +1241,7 @@ AntiMotionSicknessString="Anti chinetosi"
 AutoTurnOffString="Rot. auto off presa Clot"
 ReduceHighPitchNoiseString="Riduci suoni acuti"
 DisableAutoUpgradeString="Disattiva auto-scambio"
+HideRemodeHeadshotEffectsString="Disattiva effetti headshot remoto"
 
 EnableMixerString="Attiva/disattiva interattività Mixer"
 DisableMixerString="Disattiva Mixer"
@@ -1396,7 +1408,7 @@ KickVoteNoSpectatorsString="Gli spettatori non possono richiedere un kick"
 KickedFromServerString="Sei stato rimosso dal server"
 BannedFromServerString="Sei stato rimosso da questo server Non puoi rientrare in questo momento"
 ServerNoLongerAvailableString="Impossibile raggiungere il server"
-SkipTraderTimeString="SALTA COMMERCIANTE attivo. Seleziona “SALTA COMMERCIANTE” nel menu di gioco per votare.  Tutti i giocatori devono essere d’accordo."
+SkipTraderTimeString="SALTA COMMERCIANTE attivo. Scegli SALTA COMMERCIANTE nel menu per votare.  Devono accettare tutti."
 SkipTraderSuccessString="Voto “Salta commerciante” approvato!"
 
 [KFLocalMessage_Game]
@@ -1764,7 +1776,7 @@ LargeMags="Caricatori ad alta capacità"
 LargeMagsDescription="Aumenta la capacità dei caricatori delle armi di classe del 50%."
 
 Backup="Ripiego"
-BackupDescription="Aumenta i danni da pistola 9mm e coltello del 50%, e aumenta la velocità di cambio arma del 50%."
+BackupDescription="Aumenta del 50% i danni con la pistola 9mm e il coltello e aumenta la velocità di cambio arma del 50%."
 
 Impact="Colpi a percussione"
 ImpactDescription="Aumenta la forza d'urto delle armi di classe del 150%."
@@ -1782,7 +1794,7 @@ EatLead="Mangiapiombo"
 EatLeadDescription="Aumenta la capacità dei caricatori delle armi di classe del 100%."
 
 RapidFire="ZED TIME - Mitragliatore"
-RapidFireDescription="Durante gli Zed time, danni aumentati del 3% con armi di classe e velocità di fuoco x3 con tutte le armi."
+RapidFireDescription="Durante gli Zed time, danni aumentati del 3% velocità di fuoco x3 con armi di classe."
 
 Professional="ZED TIME - Tattico"
 ProfessionalDescription="Durante gli Zed time, ricarica armi di classe a velocità massima e cambio armi di classe due volte più veloce."
@@ -2315,7 +2327,8 @@ HorzineSupplyCrateKey13="Chiave cassa Horzine | Serie #13 - $2.49"
 USBSpitfire="USB Spitfire - $2.49"
 USBHighVoltage="Chiave USB alta tensione - $2.49"
 MerchSale="Offerta Merchandise KF2! -25% fino al 30/04/17 Cod. promo ZED"
-FreeTrial="ACQUISTA GIOCO COMPLETO"
+FreeTrial="Acquista subito Killing Floor 2!"
+FeaturedCrossover="Promozione Crossover in evidenza"
 
 [Objectives]
 HoldVolume="DIFENDI L'AREA"
@@ -2474,6 +2487,8 @@ zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="Promo Chivalry"
+KFWeap_ChainBat="Promo Road Redemption"
+KFWeap_MKB="Arma di Halloween di Hans"
 
 
 Source0="Promo Chivalry"
@@ -2506,6 +2521,20 @@ SpecialEventObjectiveInfoList[4]=(TitleString="Un grandioso vascello",Descriptio
 AllCompleteRewardDescriptionString="Bundle Vestito Steampunk"
 
 ChanceDropDescriptionStrings[0]="Bigl. premio"
+ChanceDropDescriptionStrings[1]="Biglietto Oro"
+
+[KFGFxFallObjectivesContainer]
+CurrentSpecialEventString="Completa obiettivi nella Festa dei mostri e ottieni ricompense!"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Dolcetto o scherzetto!",DescriptionString="Usa le trappole per uccidere 25 Zed in una sessione");
+SpecialEventObjectiveInfoList[1]=(TitleString="I morti non parlano",DescriptionString="Distruggi 10 teschi luminosi");
+SpecialEventObjectiveInfoList[2]=(TitleString="Massacro di mostri",DescriptionString="Uccidi 2500 Zed");
+SpecialEventObjectiveInfoList[3]=(TitleString="Una festa senza fine",DescriptionString="Completa l'ondata 25 in modalità difficile Infinito o superiore");
+SpecialEventObjectiveInfoList[4]=(TitleString="Lord del castello",DescriptionString="Sconfiggi il conte Hans in Survival difficile o superiore");
+
+AllCompleteRewardDescriptionString="Skin MKB Halloween di Hans"
+
+ChanceDropDescriptionStrings[0]="Biglietto premio"
 ChanceDropDescriptionStrings[1]="Biglietto Oro"
 
 [KFGFxChristmasObjectivesContainer]
@@ -2945,37 +2974,21 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
-[KF-Lockdown KFMapSummary]
-DisplayName_CHN="封锁"
-DisplayName_CHT="封鎖"
-DisplayName_DEU="Sperrmodus"
-DisplayName_ESL="Bloqueo"
-DisplayName_ESN="Bloqueo"
-DisplayName_FRA="Confinement"
-DisplayName_FRC="Confinement"
-DisplayName_INT="Lockdown"
-DisplayName_ITA="Debilitazione"
-DisplayName_JPN="ロックダウン"
-DisplayName_KOR="락다운"
-DisplayName_POL="Kwarantanna"
-DisplayName_PTB="Confinamento"
-DisplayName_RUS="Изоляция"
-
-[KF-Airship KFMapSummary]
-DisplayName_CHN="飞艇"
-DisplayName_CHT="飛艇"
-DisplayName_DEU="Luftschiff"
-DisplayName_ESL="Aeronave"
-DisplayName_ESN="Aeronave"
-DisplayName_FRA="Dirigeable"
-DisplayName_FRC="Dirigeable"
-DisplayName_INT="Airship"
-DisplayName_ITA="Aeronave"
-DisplayName_JPN="飛行船"
-DisplayName_KOR="비행선"
-DisplayName_POL="Statek powietrzny"
-DisplayName_PTB="Aeronave"
-DisplayName_RUS="Воздушное судно"
+[KF-MonsterBall KFMapSummary]
+DisplayName_CHN="怪物球"
+DisplayName_CHT="怪獸舞會"
+DisplayName_DEU="Monsterball"
+DisplayName_ESL="Baile de monstruos"
+DisplayName_ESN="Baile de monstruos"
+DisplayName_FRA="Bal des monstres"
+DisplayName_FRC="Bal des monstres"
+DisplayName_INT="Monster Ball"
+DisplayName_ITA="Festa dei mostri"
+DisplayName_JPN="Monster Ball"
+DisplayName_KOR="괴물 무도회"
+DisplayName_POL="Bal potworów"
+DisplayName_PTB="Baile de Monstros"
+DisplayName_RUS="Бал монстров"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio Biotics"
@@ -3051,6 +3064,9 @@ DisplayName="Debilitazione"
 
 [KF-Airship KFMapSummary]
 DisplayName="Aeronave"
+
+[KF-MonsterBall KFMapSummary]
+DisplayName="Festa dei mostri"
 
 [KFMapInfo]
 ; defaults

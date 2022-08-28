@@ -128,7 +128,7 @@ Begin:
     }
     Outer.EnableMeleeRangeEventProbing();
     Outer.CheckInterruptCombatTransitions();
-    if(((Outer.Enemy == none) || Outer.Enemy.Health <= 0) || !Outer.IsValidAttackTarget(KFPawn(Outer.Enemy)))
+    if(!Outer.IsValidAttackTarget(KFPawn(Outer.Enemy)) || !Outer.Enemy.IsAliveAndWell())
     {
         Outer.SelectEnemy();
     }
@@ -158,12 +158,12 @@ Begin:
         }
         bWaitingOnMovementPlugIn = true;
         Outer.SetEnemyMoveGoal(self, true,,, ShouldAttackWhileMoving());
-        J0x86B:
+        J0x845:
 
         if(bWaitingOnMovementPlugIn && Outer.bUsePluginsForMovement)
         {
             Outer.Sleep(0.03);
-            goto J0x86B;
+            goto J0x845;
         }
         if(!Class'Engine'.static.GetEngine().bDisableAILogging)
         {
@@ -202,7 +202,7 @@ Begin:
         Outer.Sleep(0);
     }
     goto 'Begin';
-    stop;        
+    stop;                
 }
 
 defaultproperties

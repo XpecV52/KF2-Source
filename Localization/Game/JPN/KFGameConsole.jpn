@@ -23,6 +23,7 @@ KF-PowerCore_Holdout="Power Coreをプレイ中"
 KF-DieSector="DieSectorをプレイ中"
 KF-Lockdown="ロックダウンをプレイ中"
 KF-Airship="飛行船をプレイ中"
+KF-MonsterBall="Monster Ballプレイ中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

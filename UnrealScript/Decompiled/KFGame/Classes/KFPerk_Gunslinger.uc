@@ -546,7 +546,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_9156
+    BoneBreakerBodyParts(1)=.!=_9246
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -595,7 +595,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_1145
+    BodyPartsCanStumble(1)=.!=_1154
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4
@@ -614,4 +614,5 @@ Parameter name: index
     HitAccuracyHandicap=-5
     HeadshotAccuracyHandicap=-8
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.GunslingerKnife_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Remington1858_PrestigePrecious_Mint_large"
 }

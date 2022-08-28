@@ -194,6 +194,7 @@ struct native KFHitFxInfo
     var byte HitBoneIndex;
     var bool bRadialDamage;
     var bool bObliterated;
+    var PlayerReplicationInfo DamagerPRI;
 
     structdefaultproperties
     {
@@ -203,6 +204,7 @@ struct native KFHitFxInfo
         HitBoneIndex=0
         bRadialDamage=false
         bObliterated=false
+        DamagerPRI=none
     }
 };
 
@@ -1850,10 +1852,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     bAllowHeadshot = CanCountHeadshots();
     OldHealth = Health;
     super(Pawn).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
-    if(AfflictionHandler != none)
-    {
-        AfflictionHandler.NotifyTakeHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType, DamageCauser);
-    }
+    HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType, DamageCauser);
     actualDamage = OldHealth - Health;
     if(actualDamage > 0)
     {
@@ -2498,6 +2497,10 @@ function AddHitFX(int Damage, Controller InstigatedBy, int HitZoneIdx, Vector Hi
         HitFxInfo.HitBoneIndex = byte(HitZoneIdx);
         HitFxInfo.bRadialDamage = bTakingRadiusDamage;
         HitFxInfo.DamageType = KFDT;
+        if(InstigatedBy != none)
+        {
+            HitFxInfo.DamagerPRI = InstigatedBy.PlayerReplicationInfo;
+        }
         LastTakeHitTimeout = WorldInfo.TimeSeconds + 0.5;
         if(bTakingRadiusDamage && !IsZero(LastRadiusHurtOrigin))
         {
@@ -2833,6 +2836,14 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 }
 
 simulated function AdjustAffliction(out float AfflictionPower);
+
+function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
+{
+    if(AfflictionHandler != none)
+    {
+        AfflictionHandler.NotifyTakeHit(DamageInstigator, HitDir, DamageType, DamageCauser);
+    }
+}
 
 function ApplyDamageOverTime(int Damage, Controller InstigatedBy, class<KFDamageType> KFDT)
 {

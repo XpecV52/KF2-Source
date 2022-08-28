@@ -20,7 +20,6 @@ defaultproperties
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'Wep_M16_M203_ARCH.M16_M203_Grenade_Explosion'
         Damage=230
-        DamageFalloffExponent=3
         MyDamageType=Class'KFDT_Explosive_M16M203'
         KnockDownStrength=0
         ExplosionSound=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Explosion'

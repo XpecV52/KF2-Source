@@ -24,6 +24,13 @@ function PostBeginPlay()
 
 event tick(float deltatime)
 {
+
+	if (class'Engine'.static.IsEditor())
+	{
+		return;
+	}
+
+
 	if(pc == none)
     {
 		findOrCreatePlayerControllerAndDemorecSpectator();

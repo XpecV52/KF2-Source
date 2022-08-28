@@ -31,12 +31,6 @@ replication
         TeamNum;
 }
 
-function Init(Vector Direction)
-{
-    super.Init(Direction);
-    LogInternal((((string(self) @ "-") @ string(GetFuncName())) @ "- Owner:") @ string(Owner));
-}
-
 simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'TeamNum')

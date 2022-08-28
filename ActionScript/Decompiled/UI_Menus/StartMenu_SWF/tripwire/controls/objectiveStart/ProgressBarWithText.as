@@ -22,12 +22,19 @@ package tripwire.controls.objectiveStart
         public function ProgressBarWithText()
         {
             super();
+            if(this.fillBarOriginalWidth == 0)
+            {
+                this.fillBarOriginalWidth = this.fillBar.width;
+            }
         }
         
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            this.fillBarOriginalWidth = this.fillBar.width;
+            if(this.fillBarOriginalWidth == 0)
+            {
+                this.fillBarOriginalWidth = this.fillBar.width;
+            }
         }
         
         public function set progress(param1:Number) : void

@@ -3,6 +3,13 @@ CharacterName="Миссис Фостер"
 Description="Миссис Фостер была невероятно успешной коммерсанткой в одной из лучших фирм Лондона, когда к ней на собеседование пришел мистер Фостер, претендующий на должность коммивояжера. Он мечтал добиться такого же успеха, что и она, однако был безнадежно бездарным коммерсантом: не умел играть по правилам и держать язык за зубами. Однако что-то в нём было; он был таким крутым, элегантным... и уникальным. Настолько уникальным, что на первом свидании подарил ей противогаз. Он будто бы знал, что вскоре вооруженный цепной пилой мутант-маньяк создаст орду жадных до человеческой плоти клонов и лишит миссис Фостер многомиллионных бонусов. Вскоре мистер и миссис Фостер поженились в вихре цветов, лент, мутантов и взрывов."
 BodyMesh0="Жилет"
 BodyMesh1="Стимпанк"
+BodyMesh2="Охрана Horzine"
+BodyMesh3="Картонный рыцарь"
+BodyMesh4="Пустыня"
+BodyMesh5="Защитный"
+BodyMesh6="Курица-коммандос"
+BodyMesh7="Праздничная пижама"
+BodyMesh8="Пижама для хранилища"
 HeadMesh0="Противогаз"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -21,6 +28,61 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[CHR_MrsFoster_archetype.BodyMesh2]
+BodySkin0="Элитный синий"
+BodySkin1="Элитный зеленый"
+BodySkin2="Элитный красный"
+BodySkin3="Элитный белый"
+BodySkin4="Mark 7"
+BodySkin5="Снежный камуфляж"
+BodySkin6="Пустынный"
+BodySkin7="Мультикам"
+BodySkin8="Угроза"
+BodySkin9="Адамант"
+BodySkin10="Охотник на головами"
+BodySkin11="Дор. вещь"
+
+[CHR_MrsFoster_archetype.BodyMesh3]
+BodySkin0="Классика"
+BodySkin1="Jittery Joe's"
+BodySkin2="Биокола"
+BodySkin3="Склад Horzine"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrsFoster_archetype.BodyMesh4]
+BodySkin0="Герой"
+BodySkin1="Камуфляж"
+BodySkin2="Черный байкер"
+BodySkin3="По"
+BodySkin4="Пустынный пират"
+
+[CHR_MrsFoster_archetype.BodyMesh5]
+BodySkin0="Крокер"
+BodySkin1="Гловер"
+BodySkin2="Жара"
+BodySkin3="Horzine"
+BodySkin4="фон Браун"
+BodySkin5="Команда Корол. Трагедий"
+
+[CHR_MrsFoster_archetype.BodyMesh6]
+BodySkin0="Потрепанный вид"
+BodySkin1="Аккуратный вид"
+BodySkin2="Ночь"
+BodySkin3="Тяжелое ранение"
+
+[CHR_MrsFoster_archetype.BodyMesh7]
+BodySkin0="Кролик"
+BodySkin1="Тугрики"
+BodySkin2="Зеленый плед"
+BodySkin3="Лоскуты"
+BodySkin4="Красный снег"
+BodySkin5="Ёлки"
+BodySkin6="Красная клетка"
+
+[CHR_MrsFoster_archetype.BodyMesh8]
+BodySkin0="Узор хранилища"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Белый цвет"
 HeadSkin1="Зеленый цвет"
@@ -28,6 +90,7 @@ HeadSkin2="Красный цвет"
 HeadSkin3="Коричневый цвет"
 HeadSkin4="Розовый цвет"
 HeadSkin5="Черный цвет"
+HeadSkin6="NEED NAME"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -186,6 +249,7 @@ HeadSkin2="Кроваво-красный"
 HeadSkin3="Маска рокера"
 HeadSkin4="Большой плохой швед"
 HeadSkin5="Головокружение"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Ковбойская шляпа"
@@ -359,6 +423,7 @@ HeadSkin3="Ядовито-зеленый"
 HeadSkin4="Ретро-Скалли"
 HeadSkin5="Безмолвный крик Скалли"
 HeadSkin6="BatCat"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Наушники Скалли"
@@ -482,6 +547,7 @@ HeadSkin1="Подсветка"
 HeadSkin2="Черный"
 HeadSkin3="Марионетка"
 HeadSkin4="День мертвых"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Маска врача"
@@ -609,6 +675,7 @@ HeadSkin4="Британский класс"
 HeadSkin5="Красная пелена"
 HeadSkin6="Г-н Ганс"
 HeadSkin7="Деньголюб"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Наушники Скалли"
@@ -837,6 +904,7 @@ HeadSkin1="Невзрачный"
 HeadSkin2="Блестящий"
 HeadSkin3="Ухмылка"
 HeadSkin4="Рык"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Боксерский шлем"
@@ -950,6 +1018,7 @@ HeadSkin2="Черный"
 HeadSkin3="Белый"
 HeadSkin4="Пьеро"
 HeadSkin5="Видение"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Очки"
@@ -1845,6 +1914,7 @@ HeadSkin1="Камуфляж"
 HeadSkin2="Клоун"
 HeadSkin3="Вампир"
 HeadSkin4="Гильотина"
+HeadSkin5="NEED NAME"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Зеленый"
@@ -1943,6 +2013,7 @@ HeadSkin0="Черный"
 HeadSkin1="Блондин"
 HeadSkin2="Кумадори"
 HeadSkin3="Титан"
+HeadSkin4="NEED NAME"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="Стильный"
@@ -2078,6 +2149,7 @@ HeadSkin3="Синенький"
 HeadSkin4="Дэт-метал"
 HeadSkin5="Г-жа Штейн"
 HeadSkin6="Цветы"
+HeadSkin7="NEED NAME"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Дождь смерти"
@@ -2271,6 +2343,7 @@ HeadSkin3="Швед-блондин"
 HeadSkin4="Улыбнись мне"
 HeadSkin5="Г-н Сок"
 HeadSkin6="Хорошая игра"
+HeadSkin7="NEED NAME"
 
 [chr_alan_archetype]
 CharacterName="Классический Мастерсон"
@@ -2371,6 +2444,7 @@ HeadSkin3="Камуфлируй!"
 HeadSkin4="Веселее, приятель!"
 HeadSkin5="Ты сдох, дружок!"
 HeadSkin6="Цифровой"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="Кепка RQ"
@@ -2472,6 +2546,7 @@ HeadSkin0="Темная сталь"
 HeadSkin1="Светлая сталь"
 HeadSkin2="Мистер Смерть"
 HeadSkin3="Г-н Штейн"
+HeadSkin4="NEED NAME"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Немецкая стальная каска"
@@ -2723,6 +2798,7 @@ HeadSkin4="Зеленовато-голубой"
 HeadSkin5="Розовый"
 HeadSkin6="Мисс Смерть"
 HeadSkin7="Олень"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Повязка на глаз"
@@ -4175,3 +4251,123 @@ AttachmentSkin0="Белизна"
 AttachmentSkin1="Синий цвет"
 AttachmentSkin2="Ржавый"
 AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Halloween_AngelWings_ARCH]
+Attachment="Крылья хеллоуинского ангела"
+AttachmentSkin0="Небесный"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_Cauldron_ARCH]
+Attachment="Рюкзак в виде хелл. котла"
+AttachmentSkin0="Сладости"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_CoffinBackpack_ARCH]
+Attachment="Рюкзак в виде хелл. гроба"
+AttachmentSkin0="RIP"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_CyclopsEye_ARCH]
+Attachment="Глаз хеллоуинского циклопа"
+AttachmentSkin0="Сглаз"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_Horns_ARCH]
+Attachment="Хеллоуинские рога"
+AttachmentSkin0="Бес"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_IncognitoMask_ARCH]
+Attachment="Хелл. маска, закрывающая лицо"
+AttachmentSkin0="Граучо"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_PirateHat_ARCH]
+Attachment="Хеллоуинская пиратская шляпа"
+AttachmentSkin0="Флибустьер"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_WitchHat_ARCH]
+Attachment="Хеллоуинская шляпа ведьмы"
+AttachmentSkin0="Темная магия"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_FunnyZedBackpack_ARCH]
+Attachment="Рюкзак в виде хелл. зомби"
+AttachmentSkin0="Компаньон"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_BatWings_ARCH]
+Attachment="Крылья хелл. летучей мыши"
+AttachmentSkin0="Дитя ночи"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_BatEars_ARCH]
+Attachment="Уши хелл.летучей мыши"
+AttachmentSkin0="Эхолокаторы"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_Halloween_MummyBackpack_ARCH]
+Attachment="Рюкзак в виде хелл. мумии"
+AttachmentSkin0="Хорошо сохранилась"
+AttachmentSkin1="Дор. вещь"
+
+[Cosmetic_BeastMask_ARCH]
+Attachment="Маска зверя"
+AttachmentSkin0="Легкий"
+AttachmentSkin1="Темный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_DancerMask_ARCH]
+Attachment="Маска танцора"
+AttachmentSkin0="Огонь"
+AttachmentSkin1="Вода"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_DemonMask_ARCH]
+Attachment="Маска демона"
+AttachmentSkin0="Огонь"
+AttachmentSkin1="Вода"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_DoctorMask_ARCH]
+Attachment="Маска врача"
+AttachmentSkin0="Легкий"
+AttachmentSkin1="Темный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_DreamerMask_ARCH]
+Attachment="Маска мечтателя"
+AttachmentSkin0="Огонь"
+AttachmentSkin1="Вода"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_JokerMask_ARCH]
+Attachment="Маска джокера"
+AttachmentSkin0="Легкий"
+AttachmentSkin1="Темный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_LordMask_ARCH]
+Attachment="Маска лорда"
+AttachmentSkin0="Огонь"
+AttachmentSkin1="Вода"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_SleeperMask_ARCH]
+Attachment="Маска спящего"
+AttachmentSkin0="Огонь"
+AttachmentSkin1="Вода"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Undead_ARCH]
+Attachment="Маска нежити"
+AttachmentSkin0="Огонь"
+AttachmentSkin1="Вода"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Warrior_ARCH]
+Attachment="Маска воина"
+AttachmentSkin0="Огонь"
+AttachmentSkin1="Вода"
+AttachmentSkin2="Дор. вещь"

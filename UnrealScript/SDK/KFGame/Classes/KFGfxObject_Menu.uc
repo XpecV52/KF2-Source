@@ -88,7 +88,7 @@ function ConfirmLeaveParty()
         	}
         	if(KFPC.MyGFxManager.StartMenu != none && !OnlineLobby.IsLobbyOwner() )
         	{
-        		KFPC.MyGFxManager.StartMenu.ShowOverview(false, false, true, false);
+				KFPC.MyGFxManager.StartMenu.OnPartyLeave();
         	}
         }
 	}
@@ -309,7 +309,7 @@ function Callback_CreateParty()
 
 	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 
-	if( OnlineLobby != none && (Manager.GetMultiplayerMenuActive() || Class'WorldInfo'.Static.IsConsoleBuild()) )
+	if( OnlineLobby != none )
 	{
 		if (OnlineSub != none && !OnlineSub.IsGameOwned() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
 		{
@@ -325,7 +325,15 @@ function Callback_CreateParty()
 				return;
 			}
 		}
-		OnlineLobby.MakeLobby( `KF_MAX_PLAYERS, LV_Private);	// returns false if we're already in a lobby
+
+		if (Class'WorldInfo'.Static.IsConsoleBuild())
+		{
+			OnlineLobby.MakeLobby(`KF_MAX_PLAYERS, LV_Private);	// returns false if we're already in a lobby
+		}
+		else
+		{
+			OnlineLobby.MakeLobby(`KF_MAX_PLAYERS, LV_Friends);	// returns false if we're already in a lobby
+		}
 		OnlineLobby.ShowLobbyInviteInterface(Class'WorldInfo'.Static.IsConsoleBuild() ? Localize("Notifications", "InviteMessage", "KFGameConsole") : "");
 	}
 }
@@ -373,6 +381,7 @@ function Callback_InviteFriend()
 	}
 	else if ( OnlineLobby != none )
 	{
+		OnlineLobby.MakeLobby(`KF_MAX_PLAYERS, LV_Friends);	// returns false if we're already in a lobby
 		OnlineLobby.ShowLobbyInviteInterface("");
 	}
 }

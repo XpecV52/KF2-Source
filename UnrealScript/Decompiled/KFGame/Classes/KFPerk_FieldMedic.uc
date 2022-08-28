@@ -434,7 +434,7 @@ defaultproperties
     PerkSkills(6)=(Name="HealingShield",Increment=0,Rank=0,StartingValue=10,MaxValue=10,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CoagulantBooster",bActive=false)
     PerkSkills(7)=(Name="Enforcer",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_BattleSurgeon",bActive=false)
     PerkSkills(8)=(Name="AirborneAgent",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent",bActive=false)
-    PerkSkills(9)=(Name="Sedative",Increment=0,Rank=0,StartingValue=100,MaxValue=100,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative",bActive=false)
+    PerkSkills(9)=(Name="Sedative",Increment=0,Rank=0,StartingValue=10,MaxValue=10,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative",bActive=false)
     VaccinationDuration=10
     ToxicDmgTypeClass=Class'KFDT_Toxic_AcidicRounds'
     PrimaryWeaponDef=Class'KFWeapDef_MedicPistol'
@@ -447,4 +447,5 @@ defaultproperties
     HitAccuracyHandicap=5
     HeadshotAccuracyHandicap=-0.75
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.MedicKnife_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MedicPistol_PrestigePrecious_Mint_large"
 }

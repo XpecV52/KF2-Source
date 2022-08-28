@@ -45,6 +45,7 @@ const STATID_DailyEventInfo = 302;
 const STATID_DailyEventIDs = 303;
 const STATID_DailyEventStats1 = 304;
 const STATID_DailyEventStats2 = 305;
+const STATID_SpecialEventKills = 306;
 const STATID_DoshVaultTotal = 400;
 const STATID_LastViewedDoshVaultTotal = 401;
 const STATID_DoshVaultProgress = 402;
@@ -100,6 +101,8 @@ const STATID_ACHIEVE_ArenaCollectibles = 4041;
 const STATID_ACHIEVE_PowercoreCollectibles = 4042;
 const STATID_ACHIEVE_AirshipCollectibles = 4043;
 const STATID_ACHIEVE_LockdownCollectibles = 4044;
+const STATID_ACHIEVE_MonsterBallCollectibles = 4045;
+const STATID_ACHIEVE_MonsterBallSecretRoom = 4046;
 
 enum RealTimeActivityConnectionStatus
 {

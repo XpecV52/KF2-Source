@@ -26,6 +26,11 @@ simulated function AltFireMode()
 	{
 		return;
 	}
+	if (ReloadStatus == RS_Reloading)
+	{
+		return;
+	}
+	
 
 	if (AmmoCount[0] <= 1)
 	{
@@ -157,7 +162,7 @@ defaultproperties
    bHasFireLastAnims=False
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunAuto'
-   InventorySize=11
+   InventorySize=10
    MagazineCapacity(0)=4
    PenetrationPower(0)=4.000000
    PenetrationPower(1)=4.000000
@@ -169,7 +174,7 @@ defaultproperties
    GroupPriority=110.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel'
    AmmoCost(1)=4
-   SpareAmmoCapacity(0)=40
+   SpareAmmoCapacity(0)=48
    InitialSpareMags(0)=3
    AmmoPickupScale(0)=2.000000
    ForceReloadTimeOnEmpty=0.300000
@@ -205,7 +210,7 @@ defaultproperties
    HippedRecoilModifier=1.100000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
-   WeaponUpgrades(1)=(IncrementDamage=1.100000)
+   WeaponUpgrades(1)=(IncrementDamage=1.150000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponQuadBarrelFiring"
    FiringStatesArray(2)=()
@@ -225,8 +230,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.190000
    Spread(1)=0.190000
-   InstantHitDamage(0)=36.000000
-   InstantHitDamage(1)=36.000000
+   InstantHitDamage(0)=40.000000
+   InstantHitDamage(1)=40.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=27.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_ElephantGun'

@@ -401,7 +401,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_373' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_377' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -425,7 +425,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(3)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_1164' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_1172' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -445,6 +445,7 @@ System.ArgumentException: Requested value '3P_Sawblade_Animtree_1164' was not fo
     SpecialMoveCooldowns=/* Array type was not detected. */
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedPatriarch_Versus.FootstepCameraShake0'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.HeadshotAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -508,7 +509,8 @@ System.ArgumentException: Requested value '3P_Sawblade_Animtree_1164' was not fo
     Components(6)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.CloakedAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.HeadshotAkComponent0'
+    Components(10)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.CloakedAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

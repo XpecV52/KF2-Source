@@ -707,7 +707,7 @@ function CheckForIntermediateEnemies()
 	if( MyKFPawn != none && Enemy != none && !MyKFPawn.IsDoingSpecialMove() && VSizeSQ(Enemy.Location - MyKFPawn.Location) > 490000.f )
 	{
 		EnemyBlocker = GetPawnBlockingPathTo( Enemy, true, true );
-		if( EnemyBlocker != none )
+		if( EnemyBlocker != none && EnemyBlocker.CanAITargetThisPawn(Outer) )
 		{
 			ChangeEnemy( EnemyBlocker );
 		}

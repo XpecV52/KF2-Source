@@ -334,7 +334,7 @@ defaultproperties
     MinionSpawnTimer[2]=65
     MinionSpawnTimer[3]=60
     NumMinionsToSpawn[0]=(X=5,Y=30)
-    NumMinionsToSpawn[1]=(X=6,Y=66)
+    NumMinionsToSpawn[1]=(X=6,Y=36)
     NumMinionsToSpawn[2]=(X=6,Y=36)
     NumMinionsToSpawn[3]=(X=8,Y=48)
     ContinuousSpawnWaveInfos[0]=KFAIWaveInfo'GP_Spawning_ARCH.Special.Boss.BloatKing_Normal_WaveInfo'

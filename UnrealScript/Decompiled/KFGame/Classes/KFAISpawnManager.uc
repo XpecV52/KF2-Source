@@ -88,6 +88,7 @@ var() float LateWavesSpawnTimeModByPlayers[6];
 var bool bForceRequiredSquad;
 var bool bRecycleSpecialSquad;
 var bool bSummoningBossMinions;
+var bool bTemporarilyEndless;
 var config bool bLogAISpawning;
 var config bool bLogWaveSpawnTiming;
 var config bool bLogRateVolume;
@@ -363,10 +364,6 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     local array< class<KFPawn_Monster> > NewSquad, RequiredSquad;
     local int RandNum, AINeeded;
 
-    if((DesiredSquadType == 0) && LeftoverSpawnSquad.Length > 0)
-    {
-        LeftoverSpawnSquad.Length = 0;
-    }
     if(LeftoverSpawnSquad.Length > 0)
     {
         if(bLogAISpawning)
@@ -518,6 +515,14 @@ function bool IsFinishedSpawning()
         if(bLogAISpawning)
         {
             LogInternal("KFAISpawnManager.IsFinishedSpawning() Summoning Boss Minions.");
+        }
+        return false;
+    }
+    if(bTemporarilyEndless)
+    {
+        if(bLogAISpawning)
+        {
+            LogInternal("KFAISpawnManager.IsFinishedSpawning() Temporarily Endless");
         }
         return false;
     }
@@ -886,15 +891,7 @@ function int GetNumAINeeded()
     local int AINeeded, UsedMaxMonsters;
     local KFPawn_Monster ActiveBoss;
 
-    if(!bSummoningBossMinions)
-    {
-        if((WaveTotalAI - Outer.NumAISpawnsQueued) <= 0)
-        {
-            return 0;
-        }
-        UsedMaxMonsters = GetMaxMonsters();        
-    }
-    else
+    if(bSummoningBossMinions)
     {
         if(Outer.AIDirector != none)
         {
@@ -904,7 +901,22 @@ function int GetNumAINeeded()
                 return 0;
             }
         }
-        UsedMaxMonsters = MaxBossMinions + 1;
+        UsedMaxMonsters = MaxBossMinions + 1;        
+    }
+    else
+    {
+        if(bTemporarilyEndless)
+        {
+            UsedMaxMonsters = GetMaxMonsters();            
+        }
+        else
+        {
+            if((WaveTotalAI - Outer.NumAISpawnsQueued) <= 0)
+            {
+                return 0;
+            }
+            UsedMaxMonsters = GetMaxMonsters();
+        }
     }
     if(((ActiveSpawner != none) && ActiveSpawner.bIsSpawning) && ActiveSpawner.PendingSpawns.Length > 0)
     {
@@ -918,7 +930,7 @@ function int GetNumAINeeded()
     {
         AINeeded = UsedMaxMonsters - (GetAIAliveCount());
     }
-    if(!bSummoningBossMinions)
+    if(!bSummoningBossMinions && !bTemporarilyEndless)
     {
         if(AINeeded > WaveTotalAI)
         {

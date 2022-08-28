@@ -1,8 +1,8 @@
 package
 {
-    import tripwire.controls.store.StoreListItemRenderer;
+    import tripwire.controls.store.FeaturedStoreListItemRenderer;
     
-    public dynamic class StoreItem_MC extends StoreListItemRenderer
+    public dynamic class StoreItem_MC extends FeaturedStoreListItemRenderer
     {
          
         

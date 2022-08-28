@@ -39,8 +39,8 @@ defaultproperties
 	KDeathVel=650
 	GibImpulseScale=1.0
 
-    StumblePower=35
-	GunHitPower=45
+    StumblePower=55
+	GunHitPower=75
 	
 	WeaponDef=class'KFWeapDef_ElephantGun'
 }

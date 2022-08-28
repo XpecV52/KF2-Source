@@ -54,7 +54,10 @@ package tripwire.containers.objectiveStart
         public function updateObjective(param1:TimerEvent) : void
         {
             ++this.currentObjectiveIndex;
-            this.objectiveRenderer.data = this.dataArray[this.currentObjectiveIndex % this.dataArray.length];
+            if(this.dataArray[this.currentObjectiveIndex % this.dataArray.length])
+            {
+                this.objectiveRenderer.data = this.dataArray[this.currentObjectiveIndex % this.dataArray.length];
+            }
         }
     }
 }

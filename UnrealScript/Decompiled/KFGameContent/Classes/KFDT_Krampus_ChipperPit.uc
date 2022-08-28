@@ -34,4 +34,5 @@ defaultproperties
 {
     SeasonIndex=SeasonalEventIndex.SEI_Winter
     ObjectiveIndex=1
+    bIsTrapDamage=true
 }

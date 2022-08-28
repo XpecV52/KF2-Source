@@ -4,6 +4,7 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 DefaultProperties
 {
+	DialogEvents[`TRAD_FirstWave]=					(EventID=`TRAD_FirstWave,				AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_FirstWave',		Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_LastManStanding]=           	(EventID=`TRAD_LastManStanding,			AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_TeamLastOne',	Priority=1, CoolDown=0.f)
 	DialogEvents[`TRAD_Wave20pctDead]=           	(EventID=`TRAD_Wave20pctDead,			AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_20ZedDead', 		Priority=1, Chance=0.3f,  CoolDown=0.f)
 	DialogEvents[`TRAD_Wave80pctDead]=           	(EventID=`TRAD_Wave80pctDead,	        AudioCue=AkEvent'WW_VOX_NPC_Trader.Play_Trader_COM_80ZedDead', 		Priority=1, Chance=0.3f,  CoolDown=0.f)

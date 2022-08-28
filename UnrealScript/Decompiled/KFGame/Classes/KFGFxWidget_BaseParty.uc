@@ -55,6 +55,7 @@ var const localized string PartyLeaderIsUpdatingMatchOptionsString;
 var const localized string PartyLeaderInServerBrowserString;
 var const localized string PartyLeaderInOtherMenuString;
 var const localized string SearchingForGameString;
+var const localized string CreatingGameString;
 var const localized string PartHostLeftString;
 var const localized string PartyLeaderChangedString;
 var const localized string DownloadingString;
@@ -71,6 +72,7 @@ var const string PerkPrefix;
 var const string SearchingPrefix;
 var const string ServerBrowserOpen;
 var const string SearchingForGame;
+var const string CreatingGame;
 var const string UpdatingOptions;
 var const string InOtherMenu;
 var const string ViewProfileKey;
@@ -260,6 +262,8 @@ function AddStringOptionToList(string OptionKey, int ItemIndex, string Option, o
     DataProvider.SetElementObject(ItemIndex, StringOption);
 }
 
+event SoloGameMenuOpened();
+
 function UpdateInLobby(bool bIsInLobby)
 {
     local bool bShouldShowCreateParty;
@@ -288,7 +292,7 @@ function UpdateInLobby(bool bIsInLobby)
     {
         if(Outer.GetPC().WorldInfo.IsMenuLevel())
         {
-            bShouldShowCreateParty = Manager.GetMultiplayerMenuActive() && !bInLobby;            
+            bShouldShowCreateParty = !bInLobby && Manager.StartMenu.GetStartMenuState() != 4;            
         }
         else
         {
@@ -479,6 +483,7 @@ defaultproperties
     PartyLeaderInServerBrowserString="is searching the server browser..."
     PartyLeaderInOtherMenuString="is in another menu..."
     SearchingForGameString="Searching for online game..."
+    CreatingGameString="is creating a new game"
     PartHostLeftString="The party host has left"
     PartyLeaderChangedString="New Party Host Selected"
     DownloadingString="Downloading:"
@@ -486,6 +491,7 @@ defaultproperties
     MatchOverString="MATCH OVER 
  Please stand by..."
     bReadyButtonVisible=true
+    bCreatePartyVisible=true
     PerkPrefix="%&1&%"
     SearchingPrefix="%&2&%"
     ServerBrowserOpen="ServerBrowser"

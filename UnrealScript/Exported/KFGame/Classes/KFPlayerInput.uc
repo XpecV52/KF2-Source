@@ -1659,7 +1659,7 @@ exec function InteractTimer()
 		{
 			return;
 		}
-		if(UsableTrigger.IsA('KFDoorTrigger') || UsableTrigger.IsA('KFRepairableActorTrigger'))
+		if(UsableTrigger.IsA('KFDoorTrigger') || UsableTrigger.IsA('KFRepairableActorTrigger') || UsableTrigger.IsA('KFWeldableTrigger'))
 		{
 			KFIM.QuickWeld();
 		}

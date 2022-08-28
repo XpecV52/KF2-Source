@@ -209,35 +209,21 @@ simulated event bool IsEnraged()
 }
 
 /** Enrage this FleshPound! */
-simulated function SetEnraged( bool bNewEnraged )
+simulated function bool SetEnraged( bool bNewEnraged )
 {
-	if( !bCanRage || (Role == ROLE_Authority && bNewEnraged == bIsEnraged) )
+	local bool bSuccess;
+
+	bSuccess = super.SetEnraged(bNewEnraged);
+	if (bSuccess)
 	{
-		return;
-	}
-
-	if ( Role == ROLE_Authority )
-	{
-		bIsEnraged = bNewEnraged;
-
-		// End blocking on rage
-		if( IsDoingSpecialMove(SM_Block) )
+		if ( WorldInfo.NetMode != NM_DedicatedServer )
 		{
-			EndSpecialMove();
-		}
-
-		// Sprint right away if we're AI
-		if( !IsHumanControlled() )
-		{
-			SetSprinting( bNewEnraged );
+			/** Set the proper glow material */
+			UpdateGameplayMICParams();
 		}
 	}
 
-	if ( WorldInfo.NetMode != NM_DedicatedServer )
-	{
-		/** Set the proper glow material */
-		UpdateGameplayMICParams();
-	}
+	return bSuccess;
 }
 
 /** Handle GlowColor MIC Param */

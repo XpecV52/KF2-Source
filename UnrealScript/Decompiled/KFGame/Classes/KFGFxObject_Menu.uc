@@ -80,7 +80,7 @@ function ConfirmLeaveParty()
             }
             if((KFPC.MyGFxManager.StartMenu != none) && !OnlineLobby.IsLobbyOwner())
             {
-                KFPC.MyGFxManager.StartMenu.ShowOverview(false, false, true, false);
+                KFPC.MyGFxManager.StartMenu.OnPartyLeave();
             }
         }
     }
@@ -260,7 +260,7 @@ function Callback_CreateParty()
     local OnlineSubsystem OnlineSub;
 
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
-    if((OnlineLobby != none) && Manager.GetMultiplayerMenuActive() || Class'WorldInfo'.static.IsConsoleBuild())
+    if(OnlineLobby != none)
     {
         if(((OnlineSub != none) && !OnlineSub.IsGameOwned()) && Class'WorldInfo'.static.IsConsoleBuild(8))
         {
@@ -275,7 +275,14 @@ function Callback_CreateParty()
                 return;
             }
         }
-        OnlineLobby.MakeLobby(6, 2);
+        if(Class'WorldInfo'.static.IsConsoleBuild())
+        {
+            OnlineLobby.MakeLobby(6, 2);            
+        }
+        else
+        {
+            OnlineLobby.MakeLobby(6, 1);
+        }
         OnlineLobby.ShowLobbyInviteInterface(((Class'WorldInfo'.static.IsConsoleBuild()) ? Localize("Notifications", "InviteMessage", "KFGameConsole") : ""));
     }
 }
@@ -321,6 +328,7 @@ function Callback_InviteFriend()
     {
         if(OnlineLobby != none)
         {
+            OnlineLobby.MakeLobby(6, 1);
             OnlineLobby.ShowLobbyInviteInterface("");
         }
     }

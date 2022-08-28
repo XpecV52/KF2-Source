@@ -35,6 +35,7 @@ defaultproperties
     MoveListGamepadScheme=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     SprintAkComponent=AkComponent'Default__KFPawn_ZedSiren_Versus.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedSiren_Versus.HeadshotAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -98,6 +99,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedSiren_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedSiren_Versus.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedSiren_Versus.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedSiren_Versus.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

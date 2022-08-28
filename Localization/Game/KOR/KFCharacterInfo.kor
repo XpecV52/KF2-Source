@@ -3,6 +3,13 @@ CharacterName="포스터 부인"
 Description="포스터 부인의 면접을 진행했을 때, 그녀는 이미 런던 최고 상회에서 무서울 정도로 성공하고 있는 상인이었습니다. 포스터 부인은 그야말로 이상형이었지만, 포스터 씨는 상인으로서의 미래도 없었고 입을 다물 줄도 몰랐으며 규칙을 지키지도 않았습니다. 그래도 그에게는 뭔가 독특한 매력이 있었습니다. 그 매력 덕분에 그는 첫 데이트에서 포스터 부인에게 가스 마스크를 건넬 수 있었습니다. 마치 총을 든 미친 외계인들이 사람 잡아먹는 클론 떼를 끌고 내려와 그녀의 몇백만 달러어치 물건을 파괴할 걸 알았던 것처럼요. 이들은 꽃과 레이스, Zed, 폭탄 속에서 결혼식을 올렸습니다. 이들은 엄청난 현금 다발을 만드는 대신, Zed로 더 많은 도쉬를 만들며 살아가게 되었습니다!"
 BodyMesh0="조끼"
 BodyMesh1="스팀펑크"
+BodyMesh2="Horzine 경비대"
+BodyMesh3="카드보드 기사"
+BodyMesh4="웨이스트랜드"
+BodyMesh5="위험 물질"
+BodyMesh6="코만도 치킨"
+BodyMesh7="홀리데이 파자마 복장"
+BodyMesh8="볼트 파자마 복장"
 HeadMesh0="가스 마스크"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -21,6 +28,61 @@ BodySkin3="퍼플"
 BodySkin4="레드"
 BodySkin5="옐로우"
 
+[CHR_MrsFoster_archetype.BodyMesh2]
+BodySkin0="엘리트 블루"
+BodySkin1="엘리트 그린"
+BodySkin2="엘리트 레드"
+BodySkin3="엘리트 화이트"
+BodySkin4="마크 7"
+BodySkin5="스노우 디지캠"
+BodySkin6="데저트"
+BodySkin7="멀티캠"
+BodySkin8="해저드"
+BodySkin9="애더먼트"
+BodySkin10="현상금 사냥꾼"
+BodySkin11="프레셔스"
+
+[CHR_MrsFoster_archetype.BodyMesh3]
+BodySkin0="클래식"
+BodySkin1="Jittery Joe's"
+BodySkin2="바이오 콜라"
+BodySkin3="Horzine 창고"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrsFoster_archetype.BodyMesh4]
+BodySkin0="영웅"
+BodySkin1="카모"
+BodySkin2="바이커 블랙"
+BodySkin3="포"
+BodySkin4="모래 도적"
+
+[CHR_MrsFoster_archetype.BodyMesh5]
+BodySkin0="크로커"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="폰브라운"
+BodySkin5="비극의 왕국 크루"
+
+[CHR_MrsFoster_archetype.BodyMesh6]
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
+
+[CHR_MrsFoster_archetype.BodyMesh7]
+BodySkin0="버니"
+BodySkin1="도쉬"
+BodySkin2="녹색 격자무늬"
+BodySkin3="퀼트"
+BodySkin4="레드 스노우"
+BodySkin5="나무"
+BodySkin6="빨간색 격자무늬"
+
+[CHR_MrsFoster_archetype.BodyMesh8]
+BodySkin0="볼트 패턴"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="화이트"
 HeadSkin1="그린"
@@ -28,6 +90,7 @@ HeadSkin2="레드"
 HeadSkin3="브라운"
 HeadSkin4="핑크"
 HeadSkin5="블랙"
+HeadSkin6="NEED NAME"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -186,6 +249,7 @@ HeadSkin2="블러드 레드"
 HeadSkin3="금속 얼굴"
 HeadSkin4="거구의 스웨덴인"
 HeadSkin5="현기증"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="스파이키 카우보이 모자"
@@ -359,6 +423,7 @@ HeadSkin3="그린 해저드"
 HeadSkin4="레트로 스컬리"
 HeadSkin5="조용한 비명 스컬리 "
 HeadSkin6="배트캣"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="스컬리폰"
@@ -482,6 +547,7 @@ HeadSkin1="하이라이트"
 HeadSkin2="블랙"
 HeadSkin3="꼭두각시"
 HeadSkin4="죽은 자의 날"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="닥터 마스크"
@@ -609,6 +675,7 @@ HeadSkin4="브리티쉬 클래스"
 HeadSkin5="화가 난"
 HeadSkin6="Mr. Hans"
 HeadSkin7="도쉬 러버"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="스컬리폰"
@@ -837,6 +904,7 @@ HeadSkin1="탯"
 HeadSkin2="글레어"
 HeadSkin3="미소"
 HeadSkin4="어흥"
+HeadSkin5="NEED NAME"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="복싱 헤드기어"
@@ -950,6 +1018,7 @@ HeadSkin2="블랙"
 HeadSkin3="화이트"
 HeadSkin4="피에로"
 HeadSkin5="팬텀"
+HeadSkin6="NEED NAME"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="안경"
@@ -1256,7 +1325,7 @@ AttachmentSkin8="틸 화이트"
 AttachmentSkin9="프레셔스"
 
 [Cosmetic_MotoHelmDamaged_ARCH]
-Attachment="스매시 모터사이클 헬멧"
+Attachment="손상된 모터사이클 헬멧"
 AttachmentSkin0="블랙"
 AttachmentSkin1="블루"
 AttachmentSkin2="오렌지"
@@ -1845,6 +1914,7 @@ HeadSkin1="카모"
 HeadSkin2="광대"
 HeadSkin3="뱀파이어"
 HeadSkin4="길로틴"
+HeadSkin5="NEED NAME"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="그린"
@@ -1943,6 +2013,7 @@ HeadSkin0="블랙"
 HeadSkin1="금발"
 HeadSkin2="쿠마도리"
 HeadSkin3="타이탄"
+HeadSkin4="NEED NAME"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="기품있게"
@@ -2078,6 +2149,7 @@ HeadSkin3="프리티 블루"
 HeadSkin4="데스메탈"
 HeadSkin5="Mrs. Stein"
 HeadSkin6="꽃"
+HeadSkin7="NEED NAME"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="죽음의 비"
@@ -2271,6 +2343,7 @@ HeadSkin3="스웨덴 금발"
 HeadSkin4="스마일"
 HeadSkin5="Mr. Juice"
 HeadSkin6="굿 게임"
+HeadSkin7="NEED NAME"
 
 [chr_alan_archetype]
 CharacterName="클래식 마스터슨"
@@ -2371,6 +2444,7 @@ HeadSkin3="장비를 갖춰!"
 HeadSkin4="기운내요, 친구!"
 HeadSkin5="넌 죽었어, 친구!"
 HeadSkin6="디지"
+HeadSkin7="NEED NAME"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="RQ 캡"
@@ -2472,6 +2546,7 @@ HeadSkin0="다크 스틸"
 HeadSkin1="블론드 스틸"
 HeadSkin2="미스터 데스"
 HeadSkin3="Mr Stein"
+HeadSkin4="NEED NAME"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="독일 강철 헬멧"
@@ -2723,6 +2798,7 @@ HeadSkin4="틸"
 HeadSkin5="핑크"
 HeadSkin6="미스데스"
 HeadSkin7="사슴"
+HeadSkin8="NEED NAME"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="아이 패치"
@@ -4175,3 +4251,123 @@ AttachmentSkin0="블리치"
 AttachmentSkin1="블루"
 AttachmentSkin2="부식"
 AttachmentSkin3="프레셔스"
+
+[Cosmetic_Halloween_AngelWings_ARCH]
+Attachment="할로윈 천사 날개"
+AttachmentSkin0="셀레스티얼"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_Cauldron_ARCH]
+Attachment="할로윈 솥 백팩"
+AttachmentSkin0="달콤한 고기"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_CoffinBackpack_ARCH]
+Attachment="할로윈 관 백팩"
+AttachmentSkin0="RIP"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_CyclopsEye_ARCH]
+Attachment="할로윈 사이클롭스 눈"
+AttachmentSkin0="이블 아이"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_Horns_ARCH]
+Attachment="할로윈 뿔"
+AttachmentSkin0="임프"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_IncognitoMask_ARCH]
+Attachment="할로윈 인코그니토 가면"
+AttachmentSkin0="가우초"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_PirateHat_ARCH]
+Attachment="할로윈 해적 모자"
+AttachmentSkin0="프리부트"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_WitchHat_ARCH]
+Attachment="할로윈 마녀 모자"
+AttachmentSkin0="흑마술"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_FunnyZedBackpack_ARCH]
+Attachment="할로윈 덩어리 백팩"
+AttachmentSkin0="동반자"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_BatWings_ARCH]
+Attachment="할로윈 박쥐 날개"
+AttachmentSkin0="야행성"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_BatEars_ARCH]
+Attachment="할로윈 박쥐 귀"
+AttachmentSkin0="초음파 추적기"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Halloween_MummyBackpack_ARCH]
+Attachment="할로윈 미이라 백팩"
+AttachmentSkin0="보존"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_BeastMask_ARCH]
+Attachment="야수 가면"
+AttachmentSkin0="빛"
+AttachmentSkin1="어둠"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_DancerMask_ARCH]
+Attachment="댄서 가면"
+AttachmentSkin0="불"
+AttachmentSkin1="물"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_DemonMask_ARCH]
+Attachment="악마 가면"
+AttachmentSkin0="불"
+AttachmentSkin1="물"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_DoctorMask_ARCH]
+Attachment="무당 가면"
+AttachmentSkin0="빛"
+AttachmentSkin1="어둠"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_DreamerMask_ARCH]
+Attachment="예언자 가면"
+AttachmentSkin0="불"
+AttachmentSkin1="물"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_JokerMask_ARCH]
+Attachment="조커 가면"
+AttachmentSkin0="빛"
+AttachmentSkin1="어둠"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_LordMask_ARCH]
+Attachment="지배자 가면"
+AttachmentSkin0="불"
+AttachmentSkin1="물"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_SleeperMask_ARCH]
+Attachment="잠자는 자 가면"
+AttachmentSkin0="불"
+AttachmentSkin1="물"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Undead_ARCH]
+Attachment="죽지 못한 자 가면"
+AttachmentSkin0="불"
+AttachmentSkin1="물"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Warrior_ARCH]
+Attachment="전사 가면"
+AttachmentSkin0="불"
+AttachmentSkin1="물"
+AttachmentSkin2="프레셔스"

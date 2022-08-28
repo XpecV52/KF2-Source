@@ -13,7 +13,6 @@ var KFHTTPImageDownloader ImageDownLoader;
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
-    DownloadNewsImage();
     LocalizeContainer();
 }
 
@@ -51,5 +50,5 @@ function ImageDownloadComplete(bool bWasSuccessful)
 
 defaultproperties
 {
-    NewsImageLink="http://media.tripwirecdn.com/kf2news/currentnewsimage.png"
+    NewsImageLink="http://media.tripwirecdn.com/kf2news/currentnewsimage.jpg"
 }

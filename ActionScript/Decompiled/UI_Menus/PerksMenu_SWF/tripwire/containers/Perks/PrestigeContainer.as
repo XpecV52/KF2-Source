@@ -68,21 +68,29 @@ package tripwire.containers.Perks
         
         public var bg:MovieClip;
         
-        public const DEFAULT_PERK_LOC:int = 136;
+        public const ANIM_PERK_ICON_VARIABLES:Object = {
+            "defaultX":328,
+            "defaultY":144,
+            "defaultSize":320,
+            "maxX":368,
+            "maxY":208,
+            "maxSize":240
+        };
         
-        public const DEFAULT_PERK_SIZE:int = 144;
+        public const ANIM_PRESTIGE_ICON_VARIABLES:Object = {
+            "defaultX":232,
+            "defaultY":80,
+            "defaultSize":512,
+            "maxX":296,
+            "maxY":160,
+            "maxSize":384
+        };
         
-        public const MAX_PRESTIGE_X:int = 296;
-        
-        public const MAX_PRESTIGE_Y:int = 160;
-        
-        public const MAX_PRESTIGE_SIZE:int = 384;
-        
-        public const MAX_PERK_X:int = 368;
-        
-        public const MAX_PERK_Y:int = 208;
-        
-        public const MAX_PERK_SIZE:int = 240;
+        public const ANIM_NEXT_PRESTIGE_ICON_VARIABLES:Object = {
+            "defaultX":104,
+            "defaultY":-48,
+            "defaultSize":768
+        };
         
         public var animPerkName:String = "";
         
@@ -94,9 +102,13 @@ package tripwire.containers.Perks
         
         public var bIsMaxLevel:Boolean = false;
         
+        public var storedData:Object;
+        
         public var animPerkIcon:TripUILoaderQueue;
         
         public var animPrestigeIcon:TripUILoaderQueue;
+        
+        public var animNextPrestigeIcon:TripUILoaderQueue;
         
         public var prestigeTimeline:TimelineMax;
         
@@ -138,8 +150,12 @@ package tripwire.containers.Perks
         {
             if(param1)
             {
+                if(this.prestigeTimeline.isActive())
+                {
+                    return;
+                }
                 this.prestigeTimeline.pause("start");
-                this.resetAnimIcons();
+                this.animPerkName = this.animPrestigeName = this.animNextPrestigeName = "";
                 if(param1.currentRank)
                 {
                     this.currRankIcon.visible = true;
@@ -154,7 +170,8 @@ package tripwire.containers.Perks
                 {
                     this.nextRankIcon.visible = true;
                     this.nextRankIcon.data = param1.nextRank;
-                    this.animNextPrestigeName = param1.nextRank.prestigeIcon;
+                    this.animNextPrestigeName = !!param1.nextRank.prestigeIcon ? param1.nextRank.prestigeIcon : "";
+                    this.animNextPrestigeIcon.source = this.animNextPrestigeName;
                 }
                 else
                 {
@@ -201,22 +218,6 @@ package tripwire.containers.Perks
         public function makePrestigeTimeline() : void
         {
             this.prestigeTimeline.addLabel("start");
-            this.prestigeTimeline.set(this.animPerkIcon,{
-                "x":328,
-                "y":144,
-                "width":320,
-                "height":320,
-                "alpha":0,
-                "immediateRender":false
-            });
-            this.prestigeTimeline.set(this.animPrestigeIcon,{
-                "x":232,
-                "y":80,
-                "width":512,
-                "height":512,
-                "alpha":0,
-                "immediateRender":false
-            });
             this.prestigeTimeline.add(TweenMax.allFromTo([this.currRankTitleTextfield,this.nextRankTextfield,this.rewardsTextfield,this.doshTextField,this.vaultDoshBG,this.warningLine1Textfield,this.warningLine2Textfield,this.warningLine3Textfield,this.prestigeDescriptionTextfield,this.warningIcon1,this.warningIcon2,this.warningIcon3,this.rewardBackgroundMC,this.rewardDecorMC,this.nextRankIcon,this.maxLevelWarning,this.atMaxRankTextfield,this.confirmButton,this.cancelButton,this.currRankIcon,this.bg,this.titleTextfield,this.rewardIcon],5,{"alpha":1},{
                 "alpha":0,
                 "ease":Cubic.easeOut,
@@ -245,54 +246,41 @@ package tripwire.containers.Perks
                 "ease":Cubic.easeOut,
                 "immediateRender":false
             }));
-            this.prestigeTimeline.set(this.animPrestigeIcon,{
-                "x":104,
-                "y":-48,
-                "height":768,
-                "width":768,
-                "immediateRender":false
-            });
-            this.prestigeTimeline.call(this.swapPrestigeIcon,[],"+=1");
-            this.prestigeTimeline.set(this.animPrestigeIcon,{
-                "visible":true,
-                "alpha":0,
-                "immediateRender":false
-            });
-            this.prestigeTimeline.to(this.animPrestigeIcon,10,{
+            this.prestigeTimeline.to(this.animNextPrestigeIcon,10,{
                 "alpha":1,
-                "x":232,
-                "y":80,
-                "height":512,
-                "width":512,
+                "x":this.ANIM_PRESTIGE_ICON_VARIABLES.defaultX,
+                "y":this.ANIM_PRESTIGE_ICON_VARIABLES.defaultY,
+                "width":this.ANIM_PRESTIGE_ICON_VARIABLES.defaultSize,
+                "height":this.ANIM_PRESTIGE_ICON_VARIABLES.defaultSize,
                 "ease":Power4.easeIn,
                 "immediateRender":false
             });
-            this.prestigeTimeline.add(TweenMax.allTo([this.animPerkIcon,this.animPrestigeIcon],2,{
+            this.prestigeTimeline.add(TweenMax.allTo([this.animPerkIcon,this.animNextPrestigeIcon],2,{
                 "x":"-4",
                 "y":"+4",
                 "ease":Cubic.easeOut,
                 "immediateRender":false
             }));
-            this.prestigeTimeline.add(TweenMax.allTo([this.animPerkIcon,this.animPrestigeIcon],2,{
+            this.prestigeTimeline.add(TweenMax.allTo([this.animPerkIcon,this.animNextPrestigeIcon],2,{
                 "x":"+6",
                 "y":"-6",
                 "ease":Cubic.easeOut,
                 "immediateRender":false
             }));
-            this.prestigeTimeline.add(TweenMax.allTo([this.animPerkIcon,this.animPrestigeIcon],2,{
+            this.prestigeTimeline.add(TweenMax.allTo([this.animPerkIcon,this.animNextPrestigeIcon],2,{
                 "x":"-3",
                 "y":"+3",
                 "ease":Cubic.easeOut,
                 "immediateRender":false
             }));
-            this.prestigeTimeline.add(TweenMax.allTo([this.animPerkIcon,this.animPrestigeIcon],2,{
+            this.prestigeTimeline.add(TweenMax.allTo([this.animPerkIcon,this.animNextPrestigeIcon],2,{
                 "x":"+1",
                 "y":"-1",
                 "ease":Cubic.easeOut,
                 "immediateRender":false
             }));
             this.prestigeTimeline.to(this,25,{});
-            this.prestigeTimeline.add(TweenMax.allFromTo([this.animPerkIcon,this.animPrestigeIcon],10,{"alpha":1},{
+            this.prestigeTimeline.add(TweenMax.allFromTo([this.animPerkIcon,this.animNextPrestigeIcon],10,{"alpha":1},{
                 "alpha":0,
                 "ease":Cubic.easeOut,
                 "immediateRender":false
@@ -301,26 +289,26 @@ package tripwire.containers.Perks
             this.prestigeTimeline.pause("start");
         }
         
-        public function swapPrestigeIcon() : void
-        {
-            this.animPrestigeIcon.source = this.animNextPrestigeName;
-        }
-        
         public function toggleAnimIcons(param1:Boolean) : void
         {
             this.animPerkIcon.visible = param1;
             this.animPrestigeIcon.visible = this.animPrestigeName != "" ? Boolean(param1) : false;
         }
         
-        public function resetAnimIcons() : void
+        public function resetAnimIcons(param1:Boolean) : void
         {
-            this.animPerkName = this.animPrestigeName = this.animNextPrestigeName = "";
-            this.animPerkIcon.width = this.animPerkIcon.height = this.MAX_PERK_SIZE;
-            this.animPerkIcon.x = this.MAX_PERK_X;
-            this.animPerkIcon.y = this.MAX_PERK_Y;
-            this.animPrestigeIcon.width = this.animPrestigeIcon.height = this.MAX_PRESTIGE_SIZE;
-            this.animPrestigeIcon.x = this.MAX_PRESTIGE_X;
-            this.animPrestigeIcon.y = this.MAX_PRESTIGE_Y;
+            this.animPerkIcon.visible = true;
+            this.animPrestigeIcon.visible = this.animPrestigeName != "" ? true : false;
+            this.animPerkIcon.width = this.animPerkIcon.height = !!param1 ? Number(this.ANIM_PERK_ICON_VARIABLES.maxSize) : Number(this.ANIM_PERK_ICON_VARIABLES.defaultSize);
+            this.animPerkIcon.x = !!param1 ? Number(this.ANIM_PERK_ICON_VARIABLES.maxX) : Number(this.ANIM_PERK_ICON_VARIABLES.defaultX);
+            this.animPerkIcon.y = !!param1 ? Number(this.ANIM_PERK_ICON_VARIABLES.maxY) : Number(this.ANIM_PERK_ICON_VARIABLES.defaultY);
+            this.animPrestigeIcon.width = this.animPrestigeIcon.height = !!param1 ? Number(this.ANIM_PRESTIGE_ICON_VARIABLES.maxSize) : Number(this.ANIM_PRESTIGE_ICON_VARIABLES.defaultSize);
+            this.animPrestigeIcon.x = !!param1 ? Number(this.ANIM_PRESTIGE_ICON_VARIABLES.maxX) : Number(this.ANIM_PRESTIGE_ICON_VARIABLES.defaultX);
+            this.animPrestigeIcon.y = !!param1 ? Number(this.ANIM_PRESTIGE_ICON_VARIABLES.maxY) : Number(this.ANIM_PRESTIGE_ICON_VARIABLES.defaultY);
+            this.animNextPrestigeIcon.height = this.animNextPrestigeIcon.width = this.ANIM_NEXT_PRESTIGE_ICON_VARIABLES.defaultSize;
+            this.animNextPrestigeIcon.x = this.ANIM_NEXT_PRESTIGE_ICON_VARIABLES.defaultX;
+            this.animNextPrestigeIcon.y = this.ANIM_NEXT_PRESTIGE_ICON_VARIABLES.defaultY;
+            this.animNextPrestigeIcon.alpha = 0;
         }
         
         public function get userAtMaxLevel() : Boolean
@@ -351,9 +339,9 @@ package tripwire.containers.Perks
             this.nextRankIcon.visible = !param1;
             this.currRankIcon.visible = !param1;
             this.rewardIcon.visible = !param1;
-            this.toggleAnimIcons(param1);
             this.animPerkIcon.alpha = !!param1 ? Number(1) : Number(0);
             this.animPrestigeIcon.alpha = param1 && this.animPrestigeName != "" ? Number(1) : Number(0);
+            this.resetAnimIcons(param1);
         }
         
         override protected function onInputChange(param1:Event) : *
@@ -388,12 +376,18 @@ package tripwire.containers.Perks
         
         public function onConfirmPress(param1:ButtonEvent) : void
         {
-            ExternalInterface.call("Callback_ConfirmPerkReset");
+            if(!this.prestigeTimeline.isActive())
+            {
+                ExternalInterface.call("Callback_ConfirmPerkReset");
+            }
         }
         
         public function onCancelPress(param1:ButtonEvent) : void
         {
-            this.closeButton.dispatchEvent(new ButtonEvent(ButtonEvent.CLICK));
+            if(!this.prestigeTimeline.isActive())
+            {
+                this.closeButton.dispatchEvent(new ButtonEvent(ButtonEvent.CLICK));
+            }
         }
     }
 }

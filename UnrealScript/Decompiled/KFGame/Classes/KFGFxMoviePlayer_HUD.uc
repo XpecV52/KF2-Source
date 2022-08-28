@@ -296,6 +296,10 @@ function TickHud(float DeltaTime)
     {
         return;
     }
+    if(WaveInfoWidget != none)
+    {
+        WaveInfoWidget.TickHud(DeltaTime);
+    }
     if(!KFPC.myHUD.bShowHUD)
     {
         return;
@@ -329,10 +333,6 @@ function TickHud(float DeltaTime)
     if(TraderCompassWidget != none)
     {
         TraderCompassWidget.TickHud(DeltaTime);
-    }
-    if(WaveInfoWidget != none)
-    {
-        WaveInfoWidget.TickHud(DeltaTime);
     }
     if(GfxScoreBoardPlayer != none)
     {
@@ -1114,5 +1114,6 @@ defaultproperties
     bDisplayWithHudOff=false
     bAutoPlay=true
     bCaptureInput=true
+    SoundThemes=/* Array type was not detected. */
     WidgetBindings=/* Array type was not detected. */
 }

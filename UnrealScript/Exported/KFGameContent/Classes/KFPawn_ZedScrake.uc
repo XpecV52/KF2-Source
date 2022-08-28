@@ -133,30 +133,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 }
 
 /** Enrage this Scrake! */
-simulated function SetEnraged( bool bNewEnraged )
-{
-	if( Role == ROLE_Authority && bNewEnraged == bIsEnraged )
-	{
-		return;
-	}
-
-	if ( Role == ROLE_Authority )
-	{
-		bIsEnraged = bNewEnraged;
-
-		// End blocking on rage
-		if( IsDoingSpecialMove(SM_Block) )
-		{
-			EndSpecialMove();
-		}
-
-		// Sprint right away if we're AI
-		if( !IsHumanControlled() )
-		{
-			SetSprinting( bNewEnraged );
-		}
-	}
-}
+//simulated function SetEnraged( bool bNewEnraged );
 
 /** Returns TRUE if this zed can block attacks */
 function bool CanBlock()
@@ -318,6 +295,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=132
    PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
    LocalizationKey="KFPawn_ZedScrake"
@@ -543,7 +528,8 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
-   Components(9)=ChainsawAkComponent0
+   Components(9)=HeadshotAkComponent0
+   Components(10)=ChainsawAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=50000,Roll=50000)
    Name="Default__KFPawn_ZedScrake"

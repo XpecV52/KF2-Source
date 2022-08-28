@@ -70,6 +70,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 struct native PersistentSplatInfo
 {
@@ -77,6 +79,7 @@ struct native PersistentSplatInfo
     var Vector Normal;
     var float Scale;
     var bool bRandomize;
+    var float TraceLength;
 
     structdefaultproperties
     {
@@ -84,6 +87,7 @@ struct native PersistentSplatInfo
         Normal=(X=0,Y=0,Z=0)
         Scale=0
         bRandomize=false
+        TraceLength=0
     }
 };
 
@@ -191,11 +195,12 @@ simulated function LeaveABodyWoundDecal(KFPawn inPawn, Vector InHitLocation, Vec
 }
 
 // Export UKFGoreManager::execLeaveAPersistentBloodSplat(FFrame&, void* const)
-native final simulated function LeaveAPersistentBloodSplat(Vector HitLoc, Vector HitNorm, optional float BloodScale, optional bool bRandomizeBloodScale, optional bool bForceUpdate)
+native final simulated function LeaveAPersistentBloodSplat(Vector HitLoc, Vector HitNorm, optional float BloodScale, optional bool bRandomizeBloodScale, optional bool bForceUpdate, optional float TraceLength)
 {
     BloodScale = 1;
     bRandomizeBloodScale = true;
-    bForceUpdate = false;                            
+    bForceUpdate = false;
+    TraceLength = PersistentSplatTraceLength;                                
 }
 
 // Export UKFGoreManager::execPerformTraceAndUpdateSplattermap(FFrame&, void* const)

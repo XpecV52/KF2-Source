@@ -44,9 +44,8 @@ function OnDestroyOrReset()
 
     foreach TouchingActors(Class'KFPawn_Human', P)
     {
-        ByteProperty'J'
-        @NULL
-        @NULL <= return;
+        class<ReturnValue>(@NULL)
+        @NULL >= return;
         @NULL
         default.@NULL
         @NULL

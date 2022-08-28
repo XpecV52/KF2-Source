@@ -69,6 +69,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -132,6 +134,7 @@ var int Assists;
 var float VoiceCommsStatusDisplayInterval;
 var int VoiceCommsStatusDisplayIntervalCount;
 var int VoiceCommsStatusDisplayIntervalMax;
+var private int CurrentHeadShotEffectID;
 var private Vector PawnLocationCompressed;
 var private Vector LastReplicatedSmoothedLocation;
 var KFPlayerController KFPlayerOwner;
@@ -142,14 +145,14 @@ replication
      if(bNetDirty)
         ActivePerkLevel, ActivePerkPrestigeLevel, 
         Assists, CharPortrait, 
-        CurrentPerkClass, CurrentVoiceCommsRequest, 
-        DamageDealtOnTeam, NetPerkIndex, 
-        PerkSupplyLevel, PlayerHealth, 
-        PlayerHealthPercent, RepCustomizationInfo, 
-        bConcussiveActive, bExtraFireRange, 
-        bHasSpawnedIn, bNukeActive, 
-        bObjectivePlayer, bSplashActive, 
-        bVOIPRegisteredWithOSS;
+        CurrentHeadShotEffectID, CurrentPerkClass, 
+        CurrentVoiceCommsRequest, DamageDealtOnTeam, 
+        NetPerkIndex, PerkSupplyLevel, 
+        PlayerHealth, PlayerHealthPercent, 
+        RepCustomizationInfo, bConcussiveActive, 
+        bExtraFireRange, bHasSpawnedIn, 
+        bNukeActive, bObjectivePlayer, 
+        bSplashActive, bVOIPRegisteredWithOSS;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -671,6 +674,14 @@ private reliable server native final event ServerSetSharedUnlocks(byte NewUnlock
 // Export UKFPlayerReplicationInfo::execServerSetCharacterCustomization(FFrame&, void* const)
 private reliable server native final event ServerSetCharacterCustomization(CustomizationInfo NewMeshInfo);
 
+// Export UKFPlayerReplicationInfo::execServerSetCurrentHeadShotEffect(FFrame&, void* const)
+private reliable server native final event ServerSetCurrentHeadShotEffect(int ItemId);
+
+final simulated function int GetHeadShotEffectID()
+{
+    return CurrentHeadShotEffectID;
+}
+
 // Export UKFPlayerReplicationInfo::execSaveCharacterConfig(FFrame&, void* const)
 private native final function bool SaveCharacterConfig();
 
@@ -838,6 +849,12 @@ function PlayerReplicationInfo Duplicate()
     NewKFPRI.LastQuitTime = LastQuitTime;
     NewKFPRI.NumTimesReconnected = NumTimesReconnected;
     return NewKFPRI;
+}
+
+function OverrideWith(PlayerReplicationInfo PRI)
+{
+    super.OverrideWith(PRI);
+    SetPlayerTeam(Team);
 }
 
 function SetPlayerTeam(TeamInfo NewTeam)
@@ -1100,4 +1117,5 @@ defaultproperties
     RepCustomizationInfo=(CharacterIndex=0,HeadMeshIndex=0,HeadSkinIndex=0,BodyMeshIndex=0,BodySkinIndex=0,AttachmentMeshIndices=-1,AttachmentMeshIndices[1]=-1,AttachmentMeshIndices[2]=-1,AttachmentSkinIndices=0,AttachmentSkinIndices[1]=0,AttachmentSkinIndices[2]=0)
     VoiceCommsStatusDisplayInterval=5
     VoiceCommsStatusDisplayIntervalMax=1
+    CurrentHeadShotEffectID=-1
 }

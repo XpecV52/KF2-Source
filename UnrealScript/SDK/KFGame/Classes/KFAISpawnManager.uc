@@ -134,6 +134,8 @@ var array <Controller>	RecentSpawnSelectedHumanControllerList;
 /* Used to force a specific boss */
 var const int ForcedBossNum;
 
+var bool bTemporarilyEndless;
+
 
 /************************************************************************************
  * Debugging
@@ -453,11 +455,6 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
 	local array< class<KFPawn_Monster> >  NewSquad, RequiredSquad;
 	local int RandNum, AINeeded;
 
-    if( DesiredSquadType == EST_Boss && LeftoverSpawnSquad.Length > 0 )
-    {
-    	LeftoverSpawnSquad.Length = 0;
-    }
-
 	if( LeftoverSpawnSquad.Length > 0 )
     {
         if( bLogAISpawning )
@@ -620,6 +617,12 @@ function bool IsFinishedSpawning()
 		`log("KFAISpawnManager.IsFinishedSpawning() Summoning Boss Minions.", bLogAISpawning);
         return false;
     }
+
+	if (bTemporarilyEndless)
+	{
+		`log("KFAISpawnManager.IsFinishedSpawning() Temporarily Endless", bLogAISpawning);
+		return false;
+	}
 
 	if( NumAISpawnsQueued >= WaveTotalAI )
 	{
@@ -1064,16 +1067,7 @@ function int GetNumAINeeded()
 	local int UsedMaxMonsters;
 	local KFPawn_Monster ActiveBoss;
 
-	if( !bSummoningBossMinions )
-	{
-		if (WaveTotalAI - NumAISpawnsQueued <= 0)
-		{
-			return 0;
-		}
-
-	   UsedMaxMonsters =  GetMaxMonsters();
-	}
-	else
+	if (bSummoningBossMinions)
 	{
 		if (AIDirector != none)
 		{
@@ -1085,6 +1079,19 @@ function int GetNumAINeeded()
 		}
 
 	   UsedMaxMonsters = MaxBossMinions + 1; // Add 1 to include the Boss himself
+	}
+	else if (bTemporarilyEndless)
+	{
+		UsedMaxMonsters =  GetMaxMonsters();
+	}
+	else
+	{
+		if (WaveTotalAI - NumAISpawnsQueued <= 0)
+		{
+			return 0;
+		}
+
+	   UsedMaxMonsters =  GetMaxMonsters();
 	}
 
     if( ActiveSpawner != none && ActiveSpawner.bIsSpawning && ActiveSpawner.PendingSpawns.Length > 0 )
@@ -1098,7 +1105,7 @@ function int GetNumAINeeded()
         AINeeded = UsedMaxMonsters - GetAIAliveCount();
     }
 
-    if( !bSummoningBossMinions )
+    if( !bSummoningBossMinions && !bTemporarilyEndless )
     {
     	if( AINeeded > WaveTotalAI )
     	{

@@ -14,10 +14,13 @@ package tripwire.containers
     import tripwire.controls.TripButton;
     import tripwire.controls.TripScrollingList;
     import tripwire.managers.MenuManager;
+    import tripwire.menus.StartMenu;
     
     public class StartOverviewContainer extends TripContainer
     {
          
+        
+        public var myStartMenu:StartMenu;
         
         public var gameModeContainer:MovieClip;
         
@@ -129,21 +132,15 @@ package tripwire.containers
         {
             super.addedToStage(param1);
             this.initPermissionsItems();
-            if(!bManagerConsoleBuild)
-            {
-                defaultFirstElement = this.sharedContentButton;
-                currentElement = this.sharedContentButton;
-            }
+            defaultFirstElement = this.sharedContentButton;
+            currentElement = this.sharedContentButton;
             this.serverWelcomeScreen.visible = false;
         }
         
         private function initPermissionsItems() : void
         {
-            if(!bManagerConsoleBuild)
-            {
-                this.sharedContentButton.addEventListener(ButtonEvent.PRESS,this.onSharedContentPress,false,0,true);
-                this.sharedContentListContainer.sharedContentConfirmButton.addEventListener(ButtonEvent.PRESS,this.hideSharedContentList,false,0,true);
-            }
+            this.sharedContentButton.addEventListener(ButtonEvent.PRESS,this.onSharedContentPress,false,0,true);
+            this.sharedContentListContainer.sharedContentConfirmButton.addEventListener(ButtonEvent.PRESS,this.hideSharedContentList,false,0,true);
             this.serverWelcomeScreen.confirmButton.addEventListener(ButtonEvent.PRESS,this.hideWelcomeScreen,false,0,true);
             this.permissionsButton.visible = false;
             this.permissionsList.visible = false;
@@ -309,6 +306,11 @@ package tripwire.containers
             {
                 sectionHeader.controllerIconVisible = !bSelected && (!!bManagerConsoleBuild ? Boolean(this.serverWelcomeScreen.visible) : true);
             }
+        }
+        
+        override protected function closeAnimation() : *
+        {
+            visible = false;
         }
     }
 }

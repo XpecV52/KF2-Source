@@ -6,7 +6,7 @@ var KFHTTPImageDownloader ImageDownLoader;
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	Super.Initialize(NewParentMenu);
-	DownloadNewsImage();
+	//DownloadNewsImage();
 	LocalizeContainer();
 }
 
@@ -42,7 +42,7 @@ function ImageDownloadComplete(bool bWasSuccessful)
 
 defaultproperties
 {
-   NewsImageLink="http://media.tripwirecdn.com/kf2news/currentnewsimage.png"
+   NewsImageLink="http://media.tripwirecdn.com/kf2news/currentnewsimage.jpg"
    Name="Default__KFGFxStartContainer_NewsImageHolder"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
 }

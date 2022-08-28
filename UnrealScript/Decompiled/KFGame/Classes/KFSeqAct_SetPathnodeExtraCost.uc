@@ -28,6 +28,7 @@ event Activated()
 
 defaultproperties
 {
+    bCallHandler=false
     ObjName="Modify Extra Cost for Pathnode(s)"
     ObjCategory="Killing Floor"
 }

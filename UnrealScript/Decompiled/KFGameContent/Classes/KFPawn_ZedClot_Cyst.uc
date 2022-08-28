@@ -27,6 +27,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_ClotCyst'
     KnockedDownBySonicWaveOdds=0.35
     SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Cyst.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedClot_Cyst.HeadshotAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UnDevClot_AnimGroup'
     LocalizationKey=KFPawn_ZedClot_Cyst
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -86,6 +87,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedClot_Cyst.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot_Cyst.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedClot_Cyst.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedClot_Cyst.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

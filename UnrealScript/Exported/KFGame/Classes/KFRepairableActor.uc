@@ -88,6 +88,29 @@ simulated function InitializeRepairableActorMIC()
 	}
 }
 
+simulated function InitializeWeldableComponent()
+{
+	WeldableComponent.SetOwner(self);
+	WeldableComponent.MaxWeldIntegrity = MaxWeldIntegrity;
+	WeldableComponent.bWeldable = true;
+	WeldableComponent.Delegate_OnWeldIntegrityChanged = OnWeldCompWeldIntegrityChanged;
+
+	WeldableComponent.SetCollisionCylinderSize(200, 200);
+}
+
+simulated function OnWeldCompWeldIntegrityChanged(int Amount, KFPawn Welder)
+{
+	if (Role == ROLE_Authority)
+	{
+		FastenWeld(Amount, Welder);
+	}
+	else
+	{
+		WeldIntegrity = WeldableComponent.WeldIntegrity;
+		UpdateIntegrityMIC();
+	}
+}
+
 function Repair(float Amount, optional KFPawn Welder)
 {
 	FastenWeld(Amount, Welder);
@@ -131,6 +154,9 @@ simulated function PlayDestroyed()
 		bRepairComplete = false;
 		UpdateWeldIntegrity(-WeldIntegrity);
 
+		WeldableComponent.SetDestroyed(true);
+		WeldableComponent.SetWeldIntegrity(0);
+
 		foreach ActivationSoundEvents(ActivationSound)
 		{
 			PlaySoundBase(ActivationSound,, WorldInfo.NetMode == NM_DedicatedServer);
@@ -161,6 +187,7 @@ simulated function CompleteRepair()
 	if (Role == ROLE_Authority)
 	{
 		bRepairComplete = true;
+		bForceNetUpdate = true;
 	}
 
 	Reset();
@@ -182,6 +209,9 @@ simulated function Reset()
 		WeldIntegrity = MaxWeldIntegrity;
 		bIsDestroyed = false;
 		bWasRepaired = true;
+
+		WeldableComponent.SetWeldIntegrity(MaxWeldIntegrity);
+		WeldableComponent.SetDestroyed(false);
 
 		if (bRepairComplete)
 		{

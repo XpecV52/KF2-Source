@@ -627,4 +627,5 @@ defaultproperties
     HitAccuracyHandicap=2.5
     HeadshotAccuracyHandicap=-2
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.BerserkerKnife_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Crovel_PrestigePrecious_Mint_large"
 }

@@ -1134,6 +1134,7 @@ simulated function bool QuickWeld()
 	local KFInterface_Usable UsableTrigger;
 	local KFDoorTrigger DoorTrigger;
 	local KFRepairableActorTrigger RepairableTrigger;
+	local KFWeldableTrigger WeldableTrigger;
 	local KFPlayerController KFPC;
 
 	if( Instigator == none || Instigator.Owner == none )
@@ -1154,7 +1155,7 @@ simulated function bool QuickWeld()
 		UsableTrigger = KFPC.GetCurrentUsableActor( Instigator );
 		if( UsableTrigger != none )
 		{
-			if( CanUseWelder(UsableTrigger, DoorTrigger, RepairableTrigger) )
+			if( CanUseWelder(UsableTrigger, DoorTrigger, RepairableTrigger, WeldableTrigger) )
 			{
 				// Close the door if it's open already
 				if( DoorTrigger != none && DoorTrigger.DoorActor.bIsDoorOpen && !DoorTrigger.DoorActor.bIsDestroyed )
@@ -1185,12 +1186,13 @@ simulated function bool QuickWeld()
 	return false;
 }
 
-simulated function bool CanUseWelder(KFInterface_Usable BaseTrigger, out KFDoorTrigger out_DoorTrigger, out KFRepairableActorTrigger out_RepairableTrigger)
+simulated function bool CanUseWelder(KFInterface_Usable BaseTrigger, out KFDoorTrigger out_DoorTrigger, out KFRepairableActorTrigger out_RepairableTrigger, out KFWeldableTrigger out_WeldableTrigger)
 {
 	out_DoorTrigger = KFDoorTrigger(BaseTrigger);
 	out_RepairableTrigger = KFRepairableActorTrigger(BaseTrigger);
+	out_WeldableTrigger = KFWeldableTrigger(BaseTrigger);
 
-	return ((out_DoorTrigger != none && out_DoorTrigger.DoorActor != none) || (out_RepairableTrigger != none && out_RepairableTrigger.RepairableActor != none));
+	return ((out_DoorTrigger != none && out_DoorTrigger.DoorActor != none) || (out_RepairableTrigger != none && out_RepairableTrigger.RepairableActor != none) || (out_WeldableTrigger != none && out_WeldableTrigger.WeldableComponent != none));
 }
 
 /** Equip the welder immediately */

@@ -22,10 +22,11 @@ struct native sReplicatedMovementData
     }
 };
 
-var repnotify sReplicatedMovementData ReplicatedMovementData;
+var bool bPlayingEmote;
 var repnotify bool bServerHidden;
 var bool bLocalHidden;
 var bool bUsingCustomizationPoint;
+var repnotify sReplicatedMovementData ReplicatedMovementData;
 var AnimSet MaleCustomizationAnimSet;
 var AnimSet FemaleCustomizationAnimSet;
 
@@ -168,6 +169,11 @@ simulated function PlayEmoteAnimation(optional bool bNewCharacter)
     local name AnimName;
     local float BlendInTime;
 
+    if(bPlayingEmote)
+    {
+        return;
+    }
+    bPlayingEmote = true;
     AnimName = Class'KFEmoteList'.static.GetUnlockedEmote(Class'KFEmoteList'.static.GetEquippedEmoteId());
     BlendInTime = ((bNewCharacter) ? 0 : 0.4);
     BodyStanceNodes[0].SetActorAnimEndNotification(false);
@@ -177,6 +183,7 @@ simulated function PlayEmoteAnimation(optional bool bNewCharacter)
 
 simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
+    bPlayingEmote = false;
     PlayRandomIdleAnimation();
 }
 

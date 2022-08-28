@@ -30,6 +30,7 @@ package tripwire.controls
                 if(param1.perkIcon)
                 {
                     this.perkIcon.source = param1.perkIcon;
+                    this.perkIcon.invalidate();
                 }
                 else
                 {
@@ -43,6 +44,7 @@ package tripwire.controls
                     this.perkIcon.height = this.perkIcon.width;
                     this.perkIcon.x = this.PERK_ICON_PRESTIGE_X;
                     this.perkIcon.y = this.PERK_ICON_PRESTIGE_Y;
+                    this.prestigeIcon.invalidate();
                 }
                 else
                 {

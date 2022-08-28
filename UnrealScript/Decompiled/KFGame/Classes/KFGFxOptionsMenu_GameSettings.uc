@@ -66,6 +66,8 @@ const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID = 171;
 
 var const localized string SectionNameString;
 var const localized string GameSettingsString;
@@ -87,6 +89,7 @@ var const localized string ReduceHighPitchNoiseString;
 var const localized string EnableMixerString;
 var const localized string DisableMixerString;
 var const localized array<localized string> GoreOptionStrings;
+var const localized string HideRemodeHeadshotEffectsString;
 var float FOVMinValue;
 var float FOVMaxValue;
 var float FOVCurrentValue;
@@ -130,6 +133,7 @@ function LocalizeText()
     LocalizedObject.SetString("disableAutoUpgrade", DisableAutoUpgradeString);
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
     LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics", "DefaultString", "KFGame"));
+    LocalizedObject.SetString("hideRemoteHeadshotEffects", HideRemodeHeadshotEffectsString);
     LocalizedObject.SetString("hideBossHealthBar", HideBossHealthBarString);
     LocalizedObject.SetString("showWelderInInv", ShowWelderInInvString);
     LocalizedObject.SetString("useAltAimOnDual", UseAltAimOnDualString);
@@ -162,6 +166,7 @@ function InitValues()
     DataObject.SetBool("crosshair", ((Class'WorldInfo'.static.IsConsoleBuild()) ? Manager.CachedProfile.GetProfileBool(163) : Manager.CachedProfile.GetProfileBool(121)));
     DataObject.SetBool("killTicker", Manager.CachedProfile.GetProfileBool(123));
     DataObject.SetBool("disableAutoUpgrade", Manager.CachedProfile.GetProfileBool(167));
+    DataObject.SetBool("disableRemoteHeadShotEffects", Manager.CachedProfile.GetProfileBool(170));
     DataObject.SetBool("hideBossHealthBar", Manager.CachedProfile.GetProfileBool(158));
     DataObject.SetBool("showWelderInInv", Manager.CachedProfile.GetProfileBool(160));
     DataObject.SetBool("useAltAimOnDual", Manager.CachedProfile.GetProfileBool(157));
@@ -293,6 +298,17 @@ function Callback_DisableAutoUpgradeChanged(bool bActive)
     KFPC.bDisableAutoUpgrade = bActive;
     Settings = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId));
     Settings.SetProfileSettingValueInt(167, ((bActive) ? 1 : 0));
+}
+
+function Callback_DisableRemoteHeadshotEffects(bool bActive)
+{
+    local KFPlayerController KFPC;
+    local OnlineProfileSettings Settings;
+
+    KFPC = KFPlayerController(Outer.GetPC());
+    KFPC.bHideRemotePlayerHeadshotEffects = bActive;
+    Settings = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId));
+    Settings.SetProfileSettingValueInt(170, ((bActive) ? 1 : 0));
 }
 
 function Callback_KillTickerChanged(bool bActive)
@@ -500,6 +516,7 @@ defaultproperties
     GoreOptionStrings(0)="Low Gore"
     GoreOptionStrings(1)="Medium Gore"
     GoreOptionStrings(2)="High Gore"
+    HideRemodeHeadshotEffectsString="Disable Remote Headshot effects"
     FOVMinValue=1
     FOVMaxValue=1.25
     FriendlyHudScaleMinValue=0.25

@@ -38,9 +38,11 @@ function SetSprinting(bool bNewSprintStatus)
 }
 
 /** Enrage this FleshPound! */
-simulated function SetEnraged( bool bNewEnraged )
+simulated function bool SetEnraged( bool bNewEnraged )
 {
-	super.SetEnraged( bNewEnraged );
+	local bool bSuccess;
+
+	bSuccess = super.SetEnraged( bNewEnraged );
 
 	if( bIsEnraged )
 	{
@@ -57,6 +59,8 @@ simulated function SetEnraged( bool bNewEnraged )
 
 		SprintSpeed = default.SprintSpeed;
 	}
+
+	return bSuccess;
 }
 
 /** Applies damage and impulse to nearby pawns and objects */
@@ -146,6 +150,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -344,7 +356,8 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
-   Components(9)=RageAkComponent0
+   Components(9)=HeadshotAkComponent0
+   Components(10)=RageAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedFleshPound_Versus"
    ObjectArchetype=KFPawn_ZedFleshpound'kfgamecontent.Default__KFPawn_ZedFleshpound'

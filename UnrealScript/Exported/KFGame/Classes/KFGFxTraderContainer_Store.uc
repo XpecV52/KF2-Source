@@ -76,6 +76,8 @@ function RefreshWeaponListByPerk(byte FilterIndex, const out array<STraderItem> 
 	local GFxObject ItemDataArray; // This array of information is sent to ActionScript to update the Item data
 	local array<STraderItem> OnPerkWeapons, SecondaryWeapons, OffPerkWeapons;
 	local class<KFPerk> TargetPerkClass;
+	local bool bDebug;
+	bDebug = false;
 	if(FilterIndex == 255 || FilterIndex == INDEX_NONE)
 	{
 		return;
@@ -95,8 +97,8 @@ function RefreshWeaponListByPerk(byte FilterIndex, const out array<STraderItem> 
 	    ItemDataArray = CreateArray();
 
 		for (i = 0; i < ItemList.Length; i++)
-		{
-			if ( IsItemFiltered(ItemList[i]) )
+		{			
+			if ( IsItemFiltered(ItemList[i], bDebug) )
 			{
 				continue; // Skip this item if it's in our inventory
 			}
@@ -286,18 +288,48 @@ function SetItemInfo(out GFxObject ItemDataArray, STraderItem TraderItem, int Sl
 }
 
 /** returns true if this item should not be displayed */
-function bool IsItemFiltered(STraderItem Item)
+function bool IsItemFiltered(STraderItem Item, optional bool bDebug)
 {
-	if ( KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.ClassName) )
+	if (KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.ClassName))
+	{
+		if (bDebug)
+		{
+			LogInternal("Item is owned");
+		}
 		return true;
+	}
 	if ( KFPC.GetPurchaseHelper().IsInOwnedItemList(Item.DualClassName) )
+	{
+		if (bDebug)
+		{
+			LogInternal("dual Item is owned");
+		}
 		return true;
-	if ( !KFPC.GetPurchaseHelper().IsSellable(Item) )
+	}
+	if (!KFPC.GetPurchaseHelper().IsSellable(Item))
+	{
+		if (bDebug)
+		{
+			LogInternal("Item is not sellable");
+		}
 		return true;
-	if ( Item.WeaponDef.default.SharedUnlockId != SCU_None && !class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.WeaponDef.default.SharedUnlockId) )
-     	 	return true;
+	}
+	if (Item.WeaponDef.default.SharedUnlockId != SCU_None && !class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.WeaponDef.default.SharedUnlockId))
+	{
+		if (bDebug)
+		{
+			LogInternal("Item is not unlocked");
+		}
+		return true;
+	}
 	if ( Item.WeaponDef.default.PlatformRestriction != PR_All && class'KFUnlockManager'.static.IsPlatformRestricted( Item.WeaponDef.default.PlatformRestriction ) )
+	{
+		if (bDebug)
+		{
+			LogInternal("Item is platform restricted");
+		}
 		return true;
+	}
 
    	return false;
 }

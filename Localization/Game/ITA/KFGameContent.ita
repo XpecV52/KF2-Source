@@ -195,7 +195,7 @@ ItemDescription="•Modalità di fuoco a scelta tra raffiche di 3 colpi o automa
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="Bullpup SA80 L85A2"
 ItemCategory="Fucile d'assalto"
-ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n•Usa il fuoco alternativo per cambiare modalità.\n•Il SA80 era l'arma standard dell'Esercito britannico prima che l'esercito fosse, beh, mangiato."
+ItemDescription="•Scelta fra modalità automatica o semiautomatica.\n•Il SA80 era l'arma standard dell'Esercito britannico prima che l'esercito fosse, beh, mangiato."
 
 [KFWeap_LMG_Stoner63A]
 ItemName="Stoner 63A LMG"
@@ -312,6 +312,12 @@ ItemName="Sparachiodi VLAD-1000"
 ItemCategory="Fucile"
 ItemDescription="•Scelta tra modalità di fuoco singola o multipla.\n•Usa il fuoco alternativo per cambiare modalità.\n•Da quello che sappiamo, uno degli scienziati Horzine ha preso in prestito lo sparachiodi originale da un addetto alla manutenzione (morto)."
 
+[KFWeap_Blunt_ChainBat]
+ItemName="Redentore di strada"
+ItemCategory="Mischia"
+ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primario per le combo.\n•Secondario - attacco violento contundente.\n•Alt. - blocca/para.\n•Sii il picchiatore che hai sempre voluto essere! Da pulire dopo ogni uso."
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="Polverizzatore"
 ItemCategory="Mischia"
@@ -327,7 +333,7 @@ SecondaryAmmo="Benzina"
 ItemName="Zweihander"
 ItemCategory="Mischia"
 ItemDescription="•Primario - danno medio/pesanti, con controllo folla.\n•Secondario- più lento ma più dannoso.\n•Alt - blocca/para\n•Infligge più danno se ti muovi in avanti."
-SharedUnlockSource="Chivalry Medieval Warfare" "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Spezzaossa"
@@ -505,6 +511,12 @@ ItemName="Cannone Husk"
 ItemCategory="Fiamme"
 ItemDescription="•Si ricarica premendo il tasto fuoco e si scarica rilasciando il tasto fuoco. \n•La versione Horzine ufficiale del cannone Husk. La non esplosione di questo modello è garantita al 95%."
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="Carabina MKb.42(H)"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Scelta fra modalità automatica o semiautomatica. \n•Usa il fuoco alternativo per cambiare modalità.\n•Tira fuori l'Hans che c'è in te! Sanità mentale non garantita."
+SharedUnlockSource="Skin Halloween di Hans"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="Pistola"
@@ -529,6 +541,17 @@ ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primari
 ItemName="Mac 10"
 ItemCategory="Mitra"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Munizioni incendiarie a fuoco rapido. L’hai capita? A fuoco rapido. Perché è una mitragliatrice incendiaria! Oh, lascia perdere."
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="Fucile a granate HMTech-501"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Solo automatica.\n•Fuoco alternativo con granate mediche.\n•L'unica arma con cui va bene lanciare granate sui tuoi amici!"
+SecondaryAmmo="Granata medica"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Scelta fra modalità automatica o semiautomatica. \n•Usa il fuoco alternativo per cambiare modalità. \n•Con quest'arma non FAL-lirai... ok, era terribile."
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

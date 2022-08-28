@@ -106,6 +106,10 @@ function StartMatch()
 function PlayWaveStartDialog()
 {
 	`DialogManager.PlayWaveStartDialog(MyKFGRI.IsBossWave());
+	if (WaveNum == 1)
+	{
+		class'KFTraderDialogManager'.static.PlayFirstWaveStartDialog(WorldInfo);
+	}
 }
 
 /** Custom logic to determine what the game's current intensity is */
@@ -1548,8 +1552,11 @@ function DebugKillZeds()
 	{
 		foreach WorldInfo.AllControllers(class'PlayerController', PC)
 		{
-			PC.ConsoleCommand("KillZeds");
-			return;
+			if (KFDemoRecSpectator(PC) == none)
+			{
+				PC.ConsoleCommand("KillZeds");
+				return;
+			}
 		}
 	}
 }

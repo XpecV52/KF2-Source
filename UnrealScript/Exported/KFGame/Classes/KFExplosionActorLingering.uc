@@ -21,6 +21,7 @@ var() bool bSkipLineCheckForPawns;
 /** if true, damage will ignore fall off */
 var() bool bDoFullDamage;
 
+var float FadeOutTime;
 var bool bWasFadedOut;
 
 var AkEvent LoopStartEvent;
@@ -41,7 +42,6 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional vector D
 
 	if (Role == Role_Authority)
 	{
-		//DelayedExplosionDamage();
 		SetTimer(Interval, true, nameof(DelayedExplosionDamage), self);
 	}
 
@@ -56,6 +56,8 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional vector D
 		{
 			StartLoopingParticleEffect();
 		}
+
+		SetTimer(Max(MaxTime - FadeOutTime, 0.1f), false, nameOf(FadeOut));
 	}
 }
 
@@ -64,8 +66,6 @@ simulated function StartLoopingParticleEffect()
 	LoopingPSC = new(self) class'ParticleSystemComponent';
 	LoopingPSC.SetTemplate( LoopingParticleEffect );
 	AttachComponent(LoopingPSC);
-
-	SetTimer( Max(MaxTime - 0.5f, 0.1f), false, nameof(StopLoopingParticleEffect), self);
 }
 
 /** Fades explosion actor out over a couple seconds */
@@ -87,7 +87,7 @@ simulated function FadeOut( optional bool bDestroyImmediately )
 
 	if( !bDeleteMe && !bPendingDelete )
 	{
-		SetTimer( 2.f, false, nameOf(Destroy) );
+		SetTimer(FadeOutTime, false, nameOf(Destroy));
 	}
 }
 
@@ -199,6 +199,7 @@ defaultproperties
    interval=0.250000
    maxTime=2.000000
    bOnlyDamagePawns=True
+   FadeOutTime=0.500000
    bExplodeMoreThanOnce=True
    Name="Default__KFExplosionActorLingering"
    ObjectArchetype=KFExplosionActor'KFGame.Default__KFExplosionActor'

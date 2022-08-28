@@ -84,7 +84,10 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
-const KFID_Native4kResolution = 169;#linenumber 21
+const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID= 171;
+#linenumber 21
 
 enum EItemType
 {
@@ -124,6 +127,7 @@ var KFGFxTraderContainer_Store ShopContainer; // Items to buy
 var KFGFxTraderContainer_PlayerInventory PlayerInventoryContainer; // Items you own
 var KFGFxTraderContainer_PlayerInfo PlayerInfoContainer; // Your character info
 var KFGFxTraderContainer_ItemDetails ItemDetails; // The center pane with weapon info
+var KFGFxTraderContainer_ErrorMessage ErrorMessageContainer;
 
 var bool bGenericItemSelected; //used to keep track of the state of the details menu in between opening and closing menu
 var STraderItem LastDefaultItemInfo;
@@ -305,6 +309,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			    ItemDetails.Initialize( self );
 		    }
 		break;
+		case ('errorMessage'):
+			if (ErrorMessageContainer == none)
+			{
+				ErrorMessageContainer = KFGFxTraderContainer_ErrorMessage(Widget);
+				ErrorMessageContainer.Initialize(self);
+			}
+		break;
 	}
 
 	return true;
@@ -425,12 +436,15 @@ function SetTraderItemDetails(int ItemIndex)
 
 			if (!bCanAfford || !bCanCarry)
 			{
+				
 				bCanBuyItem = false;
 			}
 			else
 			{
 				bCanBuyItem = true;
 			}
+
+			PurchaseError(!bCanAfford, !bCanCarry);
 
 			ItemDetails.SetShopItemDetails(SelectedItem, MyKFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(SelectedItem), bCanCarry, bCanBuyItem);
 			bCanBuyOrSellItem = bCanBuyItem;
@@ -454,6 +468,7 @@ function SetPlayerItemDetails(int ItemIndex)
 		SelectedItem = OwnedItemList[ItemIndex].DefaultItem;
 		ItemDetails.SetPlayerItemDetails(SelectedItem, OwnedItemList[ItemIndex].SellPrice, OwnedItemList[ItemIndex].ItemUpgradeLevel);
 		bCanBuyOrSellItem = MyKFPC.GetPurchaseHelper().IsSellable(SelectedItem);
+		PurchaseError(false, false);//clear it
 	}
 }
 
@@ -609,6 +624,26 @@ simulated function int GetDisplayedBlocksRequiredFor( const out STraderItem Item
 	return MyKFIM.GetDisplayedBlocksRequiredFor( Item, OverrideLevelValue );
 }
 
+simulated function PurchaseError(bool bCannotAfford, bool bCannotCarry)
+{
+	if (ErrorMessageContainer != none) {
+		if (bCannotAfford)
+		{
+			ErrorMessageContainer.SetWarningMessage(ErrorMessageContainer.CannotAffordString);
+		}
+		else if (bCannotCarry)
+		{
+			ErrorMessageContainer.SetWarningMessage(ErrorMessageContainer.CannotCarryString);
+		}
+		else
+		{
+			//clear it
+			ErrorMessageContainer.SetWarningMessage("");
+		}
+		
+	}
+}
+
 //==============================================================
 // ActionScript Callbacks - Trader and Player Inventory
 //==============================================================
@@ -617,7 +652,7 @@ function Callback_BuyOrSellItem()
 {
 	local STraderItem ShopItem;
 	local SItemInformation ItemInfo;
-
+	
 	if (bCanBuyOrSellItem)
 	{
 		if (SelectedList == TL_Shop)
@@ -802,6 +837,10 @@ function Callback_PerkChanged(int PerkIndex)
 		if( MyKFPC.CanUpdatePerkInfo() )
 		{
 			MyKFPC.SetHaveUpdatePerk(true);
+
+			// re-initialize and refresh to reflect current carry weight (can change by perk)
+			MyKFPC.GetPurchaseHelper().Initialize();
+			RefreshItemComponents();
 		}
 
 		Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedPerkIndex, PerkIndex);
@@ -836,6 +875,7 @@ defaultproperties
    SubWidgetBindings(3)=(WidgetName="PlayerInfoContainer",WidgetClass=Class'KFGame.KFGFxTraderContainer_PlayerInfo')
    SubWidgetBindings(4)=(WidgetName="PlayerInventoryContainer",WidgetClass=Class'KFGame.KFGFxTraderContainer_PlayerInventory')
    SubWidgetBindings(5)=(WidgetName="ItemDetailsContainer",WidgetClass=Class'KFGame.KFGFxTraderContainer_ItemDetails')
+   SubWidgetBindings(6)=(WidgetName="ErrorMessage",WidgetClass=Class'KFGame.KFGFxTraderContainer_ErrorMessage')
    Name="Default__KFGFxMenu_Trader"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'
 }

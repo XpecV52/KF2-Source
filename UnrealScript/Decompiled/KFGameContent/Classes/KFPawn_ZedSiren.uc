@@ -19,7 +19,7 @@ var protected const float MaxFlickerBrightness;
 
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
-    super(KFPawn).SetCharacterArch(Info, bForce);
+    super.SetCharacterArch(Info, bForce);
     if(((WorldInfo.NetMode != NM_DedicatedServer) && !NeckLightComponent.bAttached) && WorldInfo.GetDetailMode() > 0)
     {
         Mesh.AttachComponentToSocket(NeckLightComponent, NeckLightSocketName);
@@ -135,6 +135,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Siren'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedSiren.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedSiren.HeadshotAkComponent0'
     OnDeathAchievementID=129
     PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
     LocalizationKey=KFPawn_ZedSiren
@@ -210,6 +211,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedSiren.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedSiren.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedSiren.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedSiren.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

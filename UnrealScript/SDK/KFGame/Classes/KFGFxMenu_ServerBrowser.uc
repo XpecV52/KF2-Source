@@ -146,7 +146,7 @@ function GoToMultiplayerMenu()
 	CloseMenu();
 	if(Manager.StartMenu != none)
 	{
-		Manager.StartMenu.OpenMultiplayerMenu();
+		//Manager.StartMenu.OpenMultiplayerMenu();
 	}
 }
 
@@ -202,7 +202,8 @@ function CloseMenu()
 
 function Callback_CloseServerBrowser()
 {
-	HandleCloseRequest();
+	CloseMenu();
+	//HandleCloseRequest();
 }
 
 function Callback_RefreshServer()

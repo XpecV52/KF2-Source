@@ -105,11 +105,16 @@ var TextureMovie CurrentBackgroundMovie;
 /** Connects the different layers of the start menu with an index */
 enum EStartMenuState
 {
+	EStartHome,
 	EMatchmaking,
+	ECreateGame,
 	EServerBrowser,
 	ESoloGame,
+	ETutorial,
 	EOverview,
 	EServerBrowserOverview,
+	EOverview_Matchmaking,
+	EOverviewCreateGame,
 };
 var EStartMenuState StartMenuState;
 
@@ -1045,7 +1050,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	local string MenuPath;
 
 	PC = GetPC();
-
+	`log("open menu: " @NewMenuIndex); 
 	if(PC.WorldInfo.TimeSeconds - LastForceCloseTime < AllowMenusOpenAfterForceCloseTime && LastForceCloseTime != 0)
 	{
 		return;
@@ -1059,11 +1064,13 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		}
 	}
 
-	if(CurrentMenuIndex == UI_Dosh_Vault && NewMenuIndex != UI_Dosh_Vault)
+
+	if(CurrentMenuIndex == UI_Dosh_Vault)
 	{
-		if(DoshVaultMenu != none)
+		if(DoshVaultMenu != none && !DoshVaultMenu.CanCloseVaultMenu())
 		{
-			DoshVaultMenu.AbortSquence();
+			MenuBarWidget.UpdateMenu(CurrentMenuIndex);
+			return;
 		}
 	}
 
@@ -1147,15 +1154,10 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 			}
 		}
 
-		if (StartMenuState == EServerBrowser)
-		{
-			CurrentMenuIndex = UI_ServerBrowserMenu;
-			NewMenuIndex = UI_ServerBrowserMenu;
-		}
-		else if (StartMenu != none)
+		if (StartMenu != none)
 		{
 			TempMenuState = EStartMenuState(StartMenu.GetStartMenuState());
-			if ((TempMenuState == EServerBrowserOverview || TempMenuState == EOverview) && !IsInLobby() && WI.IsMenuLevel())
+			if (TempMenuState >= EOverview  && !IsInLobby() && WI.IsMenuLevel())
 			{
 				if (StartMenu != none)
 				{
@@ -1627,6 +1629,14 @@ function ClientRecieveNewTeam();
 `* Game Lobby
 ********************************************************************************************* */
 
+event SoloGameMenuOpened()
+{
+	if (PartyWidget != none)
+	{
+		PartyWidget.SoloGameMenuOpened();
+	}
+}
+
 /** Called when we exit or join a lobby */
 function OnLobbyStatusChanged(bool bIsInLobby)
 {
@@ -1665,11 +1675,6 @@ function bool GetMultiplayerMenuActive()
 		return true;
 	}
 
-	/*if( CurrentMenuIndex == UI_Store ) //This is not a multiplayer menu. -ZG
-	{
-		return true;
-	}*/
-
 	if(StartMenu != none && CurrentMenuIndex == UI_Start && StartMenu.GetStartMenuState() == EMatchmaking)
 	{
 		return true;
@@ -1687,9 +1692,14 @@ function EStartMenuState GetStartMenuState()
 	return EMatchmaking;
 }
 
-function SetStartMenuState(EStartMenuState MenuState)
+function SetStartMenuState(EStartMenuState MenuState, optional bool bChangeMenu = false)
 {
 	StartMenuState = MenuState;
+	if (bChangeMenu) 
+	{
+		StartMenu.SetInt("externalMenuState", MenuState);
+	}
+	
 	UpdateMenuBar();
 }
 
@@ -2039,7 +2049,7 @@ defaultproperties
 	BackgroundMovies(SEI_None) = TextureMovie'UI_Managers.MenuBG'
 	BackgroundMovies(SEI_Spring) = TextureMovie'UI_Managers.MenuBG'
 	BackgroundMovies(SEI_Summer) = TextureMovie'UI_Managers.SummerSideShowBGMovie'
-	BackgroundMovies(SEI_Fall) = TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Fall) = TextureMovie'UI_Managers.MenuBG_Halloween'
 	BackgroundMovies(SEI_Winter) = TextureMovie'UI_Managers.Menu_Winter'
 	IISMovie = TextureMovie'UI_Managers.IIS'
 	MovieInfo = SwfMovie'UI_Managers.LoaderManager_SWF'

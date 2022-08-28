@@ -26,7 +26,7 @@ struct ObjectiveProgress
     structdefaultproperties
     {
         bComplete=false
-        NumericValue=0
+        NumericValue=-1
     }
 };
 
@@ -98,7 +98,7 @@ static function GFxObject MakeDailyDataObject(DailyEventInformation EventInfo, i
     RefDataObject.SetString("description", FormDescriptionForObjective(EventInfo));
     RefDataObject.SetString("iconPath", GetIconForObjective(EventInfo));
     RefDataObject.SetBool("complete", MyKFPC.IsDailyObjectiveComplete(Index));
-    RefDataObject.SetBool("showProgres", bProgressObjective);
+    RefDataObject.SetBool("showProgress", bProgressObjective);
     if(bProgressObjective)
     {
         RefDataObject.SetFloat("progress", FClamp(float(MyKFPC.GetCurrentDailyValue(Index)) / float(MyKFPC.GetMaxDailyValue(Index)), 0, 1));

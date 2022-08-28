@@ -259,6 +259,7 @@ defaultproperties
 	ProfileMappings.Add((Id=KFID_AutoTurnOff, Name="Auto Turn off", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_ReduceHightPitchSounds, Name="Reduce High Pitch Sounds", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_DisableAutoUpgrade, Name="Disable Auto Upgrade", MappingType=PVMT_RawValue))
+	ProfileMappings.Add((Id=KFID_HideRemoteHeadshotEffects, Name="Hide Remote Player Headshot Effects", MappingType=PVMT_RawValue))
 
 	//Added 9/6/2016- Support for WeaponSkins
 	ProfileMappings.Add((Id=KFID_WeaponSkinAssociations, Name="Weapon Skin KeyValue Pairs", MappingType=PVMT_RawValue))
@@ -266,6 +267,7 @@ defaultproperties
 	ProfileMappings.Add((Id=KFID_ShowConsoleCrossHair, Name="Show Console Crosshair", MappingType=PVMT_RawValue))
 
 	ProfileMappings.Add((Id=KFID_SavedEmoteId, Name="Saved Emote ID", MappingType=PVMT_RawValue))
+	ProfileMappings.Add((Id=KFID_SavedHeadshotID, Name="Saved Headshot ID", MappingType=PVMT_RawValue))
 
 	//Added 2/27/2017 - Support for safe frame setting
 	ProfileMappings.Add((Id=KFID_SafeFrameScale, Name="Safe Frame", MappingType=PVMT_RawValue))
@@ -330,6 +332,7 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_AutoTurnOff,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_ReduceHightPitchSounds,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_DisableAutoUpgrade,Data=(Type=SDT_Int32,Value1=0))))
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId= KFID_HideRemoteHeadshotEffects,Data=(Type=SDT_Int32,Value1=1))))
 
 	//Added 9/6/2016- Support for WeaponSkins
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_WeaponSkinAssociations,Data=(Type=SDT_String, Value1=0))))
@@ -338,6 +341,9 @@ defaultproperties
 
 	//Added 11/2/2016- Support for Emotes
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedEmoteId,Data=(Type=SDT_Int32,Value1=-1))))
+	//Added 6/6/2018- Support for Emotes
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedHeadshotID,Data=(Type=SDT_Int32,Value1=-1))))
+	
 
 	//Added 2/27/2017 - Support for safe frame setting
 	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_SafeFrameScale,Data=(Type=SDT_Float,Value1=0))))

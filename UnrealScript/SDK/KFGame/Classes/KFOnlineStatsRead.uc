@@ -160,6 +160,7 @@ defaultproperties
     ColumnIds.Add(STATID_DailyEventIDs)
     ColumnIds.Add(STATID_DailyEventStats1)
     ColumnIds.Add(STATID_DailyEventStats2)
+	ColumnIds.Add(STATID_SpecialEventKills);
 	ColumnIds.Add(STATID_PersonalBest_KnifeKills)
 	ColumnIds.Add(STATID_PersonalBest_PistolKills)
 	ColumnIds.Add(STATID_PersonalBest_HeadShots)
@@ -205,6 +206,7 @@ defaultproperties
     ColumnMappings.Add((Id=STATID_DailyEventIDs, Name="DailyEventIDs"))
     ColumnMappings.Add((Id=STATID_DailyEventStats1, Name="DailyEventStats1"))
     ColumnMappings.Add((Id=STATID_DailyEventStats2, Name="DailyEventStats2"))
+	ColumnMappings.Add((Id=STATID_SpecialEventKills, Name="SpecialEventKills"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_KnifeKills, Name = "PersonalBestKnifeKills"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_PistolKills, Name = "PersonalBestPistolKills"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_HeadShots, Name = "PersonalBestHeadshots"))

@@ -131,6 +131,8 @@ enum TextureGroup
 	TEXTUREGROUP_CosmeticNormalMap<DisplayName=CosmeticNormalMap>,
 	TEXTUREGROUP_CosmeticSpecular<DisplayName=CosmeticSpecular>,
 	TEXTUREGROUP_UIWithMips<DisplayName=UI With Mips>,
+	//@ TWI - bedwards: UI texture streaming support
+	TEXTUREGROUP_UIStreamable<DisplayName=UI Streamable>,
 
 };
 
@@ -182,6 +184,8 @@ struct native TextureGroupContainer
 	var()	const bool	TEXTUREGROUP_CosmeticNormalMap;
 	var()	const bool	TEXTUREGROUP_CosmeticSpecular;
 	var()   const bool  TEXTUREGROUP_UIWithMips;
+	//@ TWI - bedwards: UI texture streaming support
+	var()   const bool  TEXTUREGROUP_UIStreamable;
 
 };
 
@@ -322,6 +326,14 @@ var() TextureMipGenSettings MipGenSettings;
 var int RequiredCreationFlags;
 //@HSL_END_XBOX
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)

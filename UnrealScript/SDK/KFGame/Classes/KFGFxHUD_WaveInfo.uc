@@ -21,6 +21,10 @@ var int LastWave;
 //
 var int LastTraderTimeRemaining;
 
+const ENDLESS_WAVE_ID = -2;
+
+var KFPlayerController KFPC;
+
 var localized string WaveString;
 var localized string BossWaveString;
 var localized string FinalWaveString;
@@ -33,6 +37,7 @@ function InitializeHUD()
     SetString("bossText", BossWaveString); 
     SetString("finalText", FinalWaveString);
     UpdateWaveCount();
+	KFPC = KFPlayerController(GetPC());
 }
 
 function TickHud(float DeltaTime)
@@ -105,6 +110,11 @@ function UpdateZEDCount()
         SetInt("remainingZEDs" , INDEX_NONE);
         return;
     }
+	else if (KFGRI.IsEndlessWave())
+	{
+		SetInt("remainingZEDs", ENDLESS_WAVE_ID);
+		return;
+	}
 
     // # of ZEDs left to kill in this wave.
     CurrentZEDCount = KFGRI.AIRemaining;
@@ -129,6 +139,14 @@ function UpdateTraderTimeRemaining()
     {
         SetInt("remainingTraderTime" ,CurrentTraderTimeRemaining);
         LastTraderTimeRemaining = CurrentTraderTimeRemaining;
+		if (LastTraderTimeRemaining < 10 && LastTraderTimeRemaining >= 0)
+		{
+			if (KFPC != none && KFPC.MyGFxHUD != none)
+			{
+				KFPC.MyGFxHUD.PlaySoundFromTheme('TraderTime_Countdown', 'UI');
+			}
+			
+		}
     }
 }
 

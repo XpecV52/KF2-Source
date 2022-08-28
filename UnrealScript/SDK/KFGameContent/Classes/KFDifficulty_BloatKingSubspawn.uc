@@ -24,7 +24,7 @@ defaultproperties
 		HealthMod=0.95,
 		DamageMod=0.750000,
 		MovementSpeedMod=1.1,
-		EvadeOnDamageSettings={(Chance=0.4, DamagedHealthPctToTrigger=0.01)},
+		EvadeOnDamageSettings={(Chance=0.0, DamagedHealthPctToTrigger=0.01)},
 		RallySettings={(bCanRally=false)}
 	)}
 	
@@ -32,7 +32,7 @@ defaultproperties
 	Suicidal={(SprintChance=0.85,  //0.5
 		DamagedSprintChance=1.000000,
 		MovementSpeedMod=1.25,
-		EvadeOnDamageSettings={(Chance=1.0, DamagedHealthPctToTrigger=0.01)},
+		EvadeOnDamageSettings={(Chance=0.0, DamagedHealthPctToTrigger=0.01)},
 		RallySettings={(DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}
 
@@ -41,7 +41,7 @@ defaultproperties
 		HealthMod=1.0,
 		DamagedSprintChance=1.0,
 		MovementSpeedMod=1.25,
-		EvadeOnDamageSettings={(Chance=1.0, DamagedHealthPctToTrigger=0.01)},
+		EvadeOnDamageSettings={(Chance=0.0, DamagedHealthPctToTrigger=0.01)},
 		RallySettings={(bCauseSprint=true, DealtDamageModifier=1.2, TakenDamageModifier=0.9)}
 	)}
 

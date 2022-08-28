@@ -183,6 +183,11 @@ function UpdateRotation(float DeltaTime)
     }
 }
 
+exec function FOV(float F)
+{
+    super(PlayerController).FOV(F);
+}
+
 auto state Spectating
 {
     function BeginState(name PreviousStateName)

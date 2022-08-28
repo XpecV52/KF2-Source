@@ -16,6 +16,8 @@ enum ESharedContentUnlock
 {
 	SCU_None,
 	SCU_Zweihander,
+	SCU_MKB,
+	SCU_ChainBat,
 };
 
 
@@ -79,6 +81,11 @@ static native function 		InitSharedUnlocksFor(KFPlayerReplicationInfo PRI);
 static native function bool IsSharedContentUnlocked(ESharedContentUnlock UnlockId);
 
 /**
+*Returns TRUE if a player has event weapon skin
+*/
+static native function bool GetObjectiveItemGranted(ESharedContentUnlock UnlockId);
+
+/**
  * returns a list of all available (aka connected ) players with a given unlock
  * Network: All
  */
@@ -112,6 +119,11 @@ static function bool GetWeaponSkinAvailable(INT ID)
 static event bool GetEmoteAvailable( INT ID )
 {
 	return GetIDAvailable( ID );
+}
+
+static event bool GetHeadShotEffectAvailable(INT ID)
+{
+	return GetIDAvailable(ID);
 }
 
 //@HSL_BEGIN - JRO - 5/12/2016 - Need a native accessor method. Can't make GetAvailable an event due to the KFUnlockableAsset being a non-native interface
@@ -255,4 +267,6 @@ static native function TestSteamAPI(PlayerReplicationInfo PRI, byte CallFlags);
 defaultproperties
 {
 	SharedContentList(SCU_Zweihander)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",ID=219640)
+	SharedContentList(SCU_MKB)=(Name=KFWeap_AssaultRifle_MKB42,IconPath="WEP_UI_MKB42_TEX.UI_WeaponSelect_MKB42",ID=6456)
+	SharedContentList(SCU_ChainBat)=(Name=KFWeap_Blunt_ChainBat,IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",ID=300380)
 }

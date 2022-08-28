@@ -393,6 +393,6 @@ defaultproperties
     //1000 * 1000 - Squaring distance for performance
     //Also update the value in KFTrigger_BloatKingGorge or there may be some issues with first-frame spawn collision
     GorgeAttackRangeSq=490000		//490k = 700UU
-	GorgeHumanAttackRangeSq=250000	//250k = 500UU
+    GorgeHumanAttackRangeSq=350000  //250k = 500UU 250000
     GorgeMinAttackAngle=0.77f
 }

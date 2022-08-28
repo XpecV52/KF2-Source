@@ -7,11 +7,14 @@
  *******************************************************************************/
 class KFGFxHUD_WaveInfo extends GFxObject within GFxMoviePlayer;
 
+const ENDLESS_WAVE_ID = -2;
+
 var KFGameReplicationInfo KFGRI;
 var int LastWaveMax;
 var int LastZEDCount;
 var int LastWave;
 var int LastTraderTimeRemaining;
+var KFPlayerController KFPC;
 var const localized string WaveString;
 var const localized string BossWaveString;
 var const localized string FinalWaveString;
@@ -23,6 +26,7 @@ function InitializeHUD()
     SetString("bossText", BossWaveString);
     SetString("finalText", FinalWaveString);
     UpdateWaveCount();
+    KFPC = KFPlayerController(Outer.GetPC());
 }
 
 function TickHud(float DeltaTime)
@@ -85,7 +89,15 @@ function UpdateZEDCount()
     if(KFGRI.IsBossWave())
     {
         SetInt("remainingZEDs", -1);
-        return;
+        return;        
+    }
+    else
+    {
+        if(KFGRI.IsEndlessWave())
+        {
+            SetInt("remainingZEDs", -2);
+            return;
+        }
     }
     CurrentZEDCount = KFGRI.AIRemaining;
     if(LastZEDCount != CurrentZEDCount)
@@ -108,6 +120,13 @@ function UpdateTraderTimeRemaining()
     {
         SetInt("remainingTraderTime", CurrentTraderTimeRemaining);
         LastTraderTimeRemaining = CurrentTraderTimeRemaining;
+        if((LastTraderTimeRemaining < 10) && LastTraderTimeRemaining >= 0)
+        {
+            if((KFPC != none) && KFPC.myGfxHUD != none)
+            {
+                KFPC.myGfxHUD.PlaySoundFromTheme('TraderTime_Countdown', 'UI');
+            }
+        }
     }
 }
 

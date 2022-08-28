@@ -19,10 +19,34 @@ package tripwire.menus
     public class StartMenu extends TripContainer
     {
         
+        public static var MENU_STATE_HOME:int = 0;
+        
+        public static var MENU_STATE_FIND_GAME:int = 1;
+        
+        public static var MENU_STATE_CREATE_GAME:int = 2;
+        
+        public static var MENU_STATE_SERVER_BROWSER:int = 3;
+        
+        public static var MENU_STATE_SOLO_GAME:int = 4;
+        
+        public static var MENU_STATE_TUTORIAL_GAME:int = 5;
+        
+        public static var MENU_STATE_OVERVIEW:int = 6;
+        
+        public static var MENU_STATE_OVERVIEW_SERVER_BROWSER:int = 7;
+        
+        public static var MENU_STATE_OVERVIEW_MATCHMAKING:int = 8;
+        
+        public static var MENU_STATE_OVERVIEW_CREATE_GAME:int = 9;
+        
         public static var FADE_OUT_OBJECTIVES = "FadeOutMissionObjectives";
         
         public static var FADE_IN_OBJECTIVES = "FadeInMissionObjectives";
          
+        
+        public var _currentMenuState:int = -1;
+        
+        public var _previousMenuState:int = -1;
         
         public var findGameContainer:StartFindGameContainer;
         
@@ -34,23 +58,7 @@ package tripwire.menus
         
         public var missionObjectivesContainerMC:MissionObjectivesContainer;
         
-        public const FindGameMenu:int = 255;
-        
-        public const MatchMakingState:int = 0;
-        
-        public const ServerBrowserState:int = 1;
-        
-        public const SoloState:int = 2;
-        
-        public const OverviewState:int = 3;
-        
-        public const ServerBrowserOverviewState:int = 4;
-        
-        public var _currentMenuState:int = 255;
-        
         private var _currentContainer:TripContainer;
-        
-        private var _bOverview:Boolean;
         
         public function StartMenu()
         {
@@ -72,6 +80,17 @@ package tripwire.menus
             this.gameOptionsContainer.addEventListener(FADE_IN_OBJECTIVES,this.fadeInObjectives,false,0,true);
             this.findGameContainer.addEventListener(FADE_OUT_OBJECTIVES,this.fadeOutObjectives,false,0,true);
             this.findGameContainer.addEventListener(FADE_IN_OBJECTIVES,this.fadeInObjectives,false,0,true);
+            this.registerWithChildContainers();
+            this.menuState = MENU_STATE_HOME;
+        }
+        
+        public function registerWithChildContainers() : void
+        {
+            this.findGameContainer.myStartMenu = this;
+            this.gameOptionsContainer.myStartMenu = this;
+            this.overviewContainer.myStartMenu = this;
+            this.serverBrowserOverviewContainer.myStartMenu = this;
+            this.missionObjectivesContainerMC.myStartMenu = this;
         }
         
         override public function handleInput(param1:InputEvent) : void
@@ -117,144 +136,131 @@ package tripwire.menus
             this.findGameContainer.tabIndex = 1;
         }
         
-        public function openMultiplayerMenu() : void
-        {
-            this.gameOptionsContainer.bIsSoloGame = false;
-            this.showMenus(false,true,false,false);
-        }
-        
-        public function showOverview(param1:Boolean, param2:Boolean, param3:Boolean = false, param4:Boolean = false) : void
-        {
-            this._bOverview = param1;
-            if(param1)
-            {
-                if(param4)
-                {
-                    this.showMenus(false,false,false,true);
-                }
-                else
-                {
-                    this.showMenus(false,false,true,false);
-                    this.missionObjectivesContainerMC.interactable = true;
-                    this.overviewContainer.permissionsButton.enabled = false;
-                    this.overviewContainer.permissionsButton.focusable = false;
-                    this.overviewContainer.permissionsButton.visible = false;
-                }
-            }
-            else
-            {
-                this.showMenus(true,false,false,false);
-            }
-        }
-        
-        private function showMenus(param1:Boolean, param2:Boolean, param3:Boolean, param4:Boolean) : void
-        {
-            var _loc5_:TripContainer = null;
-            if(this._currentContainer != null)
-            {
-                _loc5_ = this._currentContainer;
-            }
-            if(param1)
-            {
-                this._currentContainer = this.findGameContainer;
-                this.menuState = this.FindGameMenu;
-            }
-            else if(param2)
-            {
-                this._currentContainer = this.gameOptionsContainer;
-                this.menuState = !!this.gameOptionsContainer.bIsSoloGame ? int(this.SoloState) : int(this.MatchMakingState);
-            }
-            else if(param3)
-            {
-                this._currentContainer = this.overviewContainer;
-                this.menuState = this.OverviewState;
-            }
-            else if(param4)
-            {
-                this._currentContainer = this.serverBrowserOverviewContainer;
-                this.menuState = this.ServerBrowserOverviewState;
-            }
-            if(this._currentContainer != _loc5_)
-            {
-                this.closeChildContainer(_loc5_);
-                this.openChildContainer(this._currentContainer);
-            }
-        }
-        
         public function get menuState() : int
         {
             return this._currentMenuState;
         }
         
+        public function set externalMenuState(param1:int) : *
+        {
+            this.menuState = param1;
+        }
+        
         public function set menuState(param1:int) : void
         {
-            if(param1 != this._currentMenuState)
+            if(this._currentMenuState != param1)
             {
+                this.closeMenuState(this._currentMenuState);
                 switch(param1)
                 {
-                    case this.OverviewState:
-                    case this.FindGameMenu:
+                    case MENU_STATE_OVERVIEW:
+                    case MENU_STATE_OVERVIEW_CREATE_GAME:
+                    case MENU_STATE_OVERVIEW_MATCHMAKING:
+                        this.overviewContainer.openContainer();
+                        this._currentContainer = this.overviewContainer;
                         this.missionObjectivesContainerMC.expanded = false;
                         this.missionObjectivesContainerMC.updateControllerIcons();
                         break;
+                    case MENU_STATE_OVERVIEW_SERVER_BROWSER:
+                        this._currentContainer = this.serverBrowserOverviewContainer;
+                        this.serverBrowserOverviewContainer.openContainer();
+                        this.missionObjectivesContainerMC.expanded = false;
+                        this.missionObjectivesContainerMC.updateControllerIcons();
+                        break;
+                    case MENU_STATE_FIND_GAME:
+                        this.gameOptionsContainer.menuState = MENU_STATE_FIND_GAME;
+                        this.gameOptionsContainer.openContainer();
+                        this._currentContainer = this.gameOptionsContainer;
+                        this.missionObjectivesContainerMC.expanded = false;
+                        this.missionObjectivesContainerMC.updateControllerIcons();
+                        break;
+                    case MENU_STATE_CREATE_GAME:
+                        this.gameOptionsContainer.menuState = MENU_STATE_CREATE_GAME;
+                        this.gameOptionsContainer.openContainer();
+                        this._currentContainer = this.gameOptionsContainer;
+                        this.missionObjectivesContainerMC.expanded = false;
+                        this.missionObjectivesContainerMC.updateControllerIcons();
+                        break;
+                    case MENU_STATE_SOLO_GAME:
+                        this.gameOptionsContainer.menuState = MENU_STATE_SOLO_GAME;
+                        this.gameOptionsContainer.openContainer();
+                        this._currentContainer = this.gameOptionsContainer;
+                        this.missionObjectivesContainerMC.expanded = false;
+                        this.missionObjectivesContainerMC.updateControllerIcons();
+                        break;
+                    case MENU_STATE_SERVER_BROWSER:
+                        this.missionObjectivesContainerMC.expanded = false;
+                        this.missionObjectivesContainerMC.updateControllerIcons();
+                        ExternalInterface.call("Callback_OpenServerBrowser");
+                        break;
+                    case MENU_STATE_HOME:
+                        this.findGameContainer.openContainer();
+                        this._currentContainer = this.findGameContainer;
+                        this.missionObjectivesContainerMC.expanded = false;
+                        this.missionObjectivesContainerMC.updateControllerIcons();
                     default:
                         this.missionObjectivesContainerMC.expanded = false;
                         this.missionObjectivesContainerMC.updateControllerIcons();
                 }
+                this._previousMenuState = this._currentMenuState;
+                this._currentMenuState = param1;
+                ExternalInterface.call("Callback_StartMenuChange");
             }
-            this._currentMenuState = param1;
-            ExternalInterface.call("Callback_StartMenuChange");
+        }
+        
+        public function closeMenuState(param1:int) : void
+        {
+            switch(param1)
+            {
+                case MENU_STATE_OVERVIEW:
+                case MENU_STATE_OVERVIEW_CREATE_GAME:
+                case MENU_STATE_OVERVIEW_MATCHMAKING:
+                    this.overviewContainer.closeContainer();
+                    break;
+                case MENU_STATE_OVERVIEW_SERVER_BROWSER:
+                    this.serverBrowserOverviewContainer.closeContainer();
+                    break;
+                case MENU_STATE_FIND_GAME:
+                    this.gameOptionsContainer.closeContainer();
+                    break;
+                case MENU_STATE_CREATE_GAME:
+                    this.gameOptionsContainer.closeContainer();
+                    break;
+                case MENU_STATE_SOLO_GAME:
+                    this.gameOptionsContainer.closeContainer();
+                    break;
+                case MENU_STATE_SERVER_BROWSER:
+                    break;
+                case MENU_STATE_HOME:
+                    this.findGameContainer.closeContainer();
+            }
         }
         
         public function proceedToMatchMaking() : void
         {
             this.gameOptionsContainer.bIsSoloGame = false;
-            this.showMenus(false,true,false,false);
         }
         
         protected function onBack(param1:IndexEvent) : void
         {
-            if(this._currentContainer == this.overviewContainer)
+            if(this._currentMenuState >= MENU_STATE_OVERVIEW)
             {
                 return;
-            }
-            switch(param1.index)
-            {
-                case TripContainer.CANCELLED_INDEX:
-                    if(this._currentContainer)
-                    {
-                        this.closeChildContainer(this._currentContainer);
-                        this.showMenus(true,false,false,false);
-                    }
-                    break;
-                case this.MatchMakingState:
-                    if(bManagerConsoleBuild)
-                    {
-                        ExternalInterface.call("Callback_OpenMatchMaking");
-                    }
-                    else
-                    {
-                        this.gameOptionsContainer.bIsSoloGame = false;
-                        this.showMenus(false,true,false,false);
-                    }
-                    break;
-                case this.ServerBrowserState:
-                    ExternalInterface.call("Callback_OpenServerBrowser");
-                    break;
-                case this.SoloState:
-                    this.gameOptionsContainer.bIsSoloGame = true;
-                    this.showMenus(false,true,false,false);
             }
         }
         
         override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
-            if(this._currentContainer)
+            if(this._currentMenuState < MENU_STATE_OVERVIEW && this.menuState != MENU_STATE_HOME)
+            {
+                this.menuState = MENU_STATE_HOME;
+            }
+            else if(this._currentContainer)
             {
                 this.openChildContainer(this._currentContainer);
             }
-            else if(this._bOverview)
+            else if(this._currentMenuState >= MENU_STATE_OVERVIEW)
             {
                 this.openChildContainer(this.overviewContainer);
                 this.overviewContainer.bBlockContainerFocus = false;
@@ -297,6 +303,10 @@ package tripwire.menus
         
         override public function closeContainer() : void
         {
+            if(this.menuState < MENU_STATE_OVERVIEW)
+            {
+                this.menuState = MENU_STATE_HOME;
+            }
             super.closeContainer();
             if(this._currentContainer != null)
             {
@@ -307,7 +317,6 @@ package tripwire.menus
         public function openChildContainer(param1:TripContainer) : void
         {
             param1.openContainer();
-            param1.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack,false,0,true);
         }
         
         public function closeChildContainer(param1:TripContainer) : void

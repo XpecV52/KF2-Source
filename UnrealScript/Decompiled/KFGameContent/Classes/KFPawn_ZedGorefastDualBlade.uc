@@ -20,6 +20,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_GorefastDualBlade'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.HeadshotAkComponent0'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast2_ANIM.Gorefast2_AnimGroup'
     LocalizationKey=KFPawn_ZedGorefastDualBlade
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -79,6 +80,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

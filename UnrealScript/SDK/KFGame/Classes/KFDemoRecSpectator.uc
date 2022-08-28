@@ -314,6 +314,12 @@ function UpdateRotation(float DeltaTime)
 	}
 }
 
+exec function FOV(float F)
+{
+	// skip over neutered kfplayercontroller version
+	super(PlayerController).FOV(F);
+}
+
 defaultproperties
 {
 	RemoteRole=ROLE_AutonomousProxy

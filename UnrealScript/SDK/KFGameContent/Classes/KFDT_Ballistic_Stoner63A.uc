@@ -17,7 +17,7 @@ defaultproperties
 	KDeathVel=100
 	
 	StumblePower=10
-	GunHitPower=0
+	GunHitPower=50
 
 	WeaponDef=class'KFWeapDef_Stoner63A'
 

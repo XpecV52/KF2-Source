@@ -55,7 +55,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
-    super(KFPawn).SetCharacterArch(Info, bForce);
+    super.SetCharacterArch(Info, bForce);
     if(((WorldInfo.NetMode != NM_DedicatedServer) && !ChestLightComponent.bAttached) && WorldInfo.GetDetailMode() > 0)
     {
         Mesh.AttachComponentToSocket(ChestLightComponent, ChestLightSocketName);
@@ -439,6 +439,7 @@ defaultproperties
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Husk'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedHusk.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedHusk.HeadshotAkComponent0'
     LocalizationKey=KFPawn_ZedHusk
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -510,6 +511,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedHusk.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHusk.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedHusk.SprintAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedHusk.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

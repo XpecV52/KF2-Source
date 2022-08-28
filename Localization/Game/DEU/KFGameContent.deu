@@ -195,7 +195,7 @@ ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi „vollautomatis
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 Kurzgewehr"
 ItemCategory="Sturmgewehr"
-ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer um zwischen den Feuer-Modi zu wechseln.\n•Das SA80 war die Standardwaffe der British Army, bis die Armee, nun ja, gefressen wurde."
+ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Die SA80 war die Standardwaffe der britischen Armee. Das war, bevor die Armee … na ja … auf der Speisekarte landete."
 
 [KFWeap_LMG_Stoner63A]
 ItemName="Stoner 63A LMG"
@@ -312,6 +312,12 @@ ItemName="VLAD-1000 Nagelpistole"
 ItemCategory="Schrotflinte"
 ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi für das Abschießen von einzelnen oder mehreren Nägeln.\n•Alt-Feuer um zwischen den Feuer-Modi zu wechseln.\n•Wir haben gehört, dass einer der Horzine-Wissenschaftler sich die ursprüngliche Nagelpistole von einem (toten) Hausmeister geliehen hat."
 
+[KFWeap_Blunt_ChainBat]
+ItemName="Road Redeemer"
+ItemCategory="Nahkampf"
+ItemDescription="•Primär – schneller stumpfer Angriff, Primär halten für Komboangriff.\n•Sekundär – schwerer stumpfer Angriff.\n•Alt – blocken/parieren.\n•Jetzt kannst du endlich richtig zuschlagen! Nach jedem Einsatz immer schön reinigen."
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulverisator"
 ItemCategory="Nahkampf"
@@ -327,7 +333,7 @@ SecondaryAmmo="Benzin"
 ItemName="Zweihänder"
 ItemCategory="Nahkampf"
 ItemDescription="•Primär – mittlerer/schwerer Schaden, mit etwas Feindeskontrolle (CC).\n•Sekundär – langsamer, aber mit mehr Schaden.\n•Alt – blocken/parieren\n•Du verursachst noch mehr Schaden, wenn du dich vorwärts bewegst."
-SharedUnlockSource="Chivalry Medieval Warfare "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Knochenmalmer"
@@ -505,6 +511,12 @@ ItemName="Husk-Kanone"
 ItemCategory="Flammen"
 ItemDescription="•Lädt bei gedrücktem Feuerknopf auf und feuert, wenn losgelassen wird. \n•Die offizielle Horzine-Version der Husk-Kanone. Dieses Modell ist zu 95% explosionssicher."
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="MKb.42(H)-Karab.-Gewehr"
+ItemCategory="Sturmgewehr"
+ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus. \n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Lass deinen inneren Hans raus! Könnte wahnsinnig machen."
+SharedUnlockSource="Hans' Halloween-Skin"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="Handfeuerwaffe"
@@ -529,6 +541,17 @@ ItemDescription="•Primär – schneller, stumpfer Angriff, Primär halten für
 ItemName="MAC-10"
 ItemCategory="Maschinenpistole"
 ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\nNutzt Schnellfeuer-Brandmunition. Kapiert? Schnellfeuer? Weil es eine Brand-Maschinenpistole ist? Ach, vergiss es."
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="HMTech-501-Granatgewehr"
+ItemCategory="Sturmgewehr"
+ItemDescription="•Der Feuer-Modus ist ausschließlich vollautomatisch.\n•Alt-Feuer zum Abfeuern von Sanitäter-Granaten.\n•Die einzige Waffe, bei der es in Ordnung ist, deine Freunde mit Granaten zu beschießen!"
+SecondaryAmmo="Sanitäter-Granate"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="Sturmgewehr"
+ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus. \n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln. \n•Diese Waffe ist sicher kein REIN-FAL … okay, der war echt mies."
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

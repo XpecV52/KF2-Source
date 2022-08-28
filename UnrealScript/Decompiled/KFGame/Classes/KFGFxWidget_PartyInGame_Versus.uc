@@ -117,7 +117,7 @@ function GFxObject RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
         }
         else
         {
-            PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel @ MemberSlots[SlotIndex].PerkClass.default.PerkName);
+            PlayerInfoObject.SetString("perkLevel", MemberSlots[SlotIndex].PerkLevel);
             PerkIconObject = Outer.CreateObject("Object");
             PerkIconObject.SetString("perkIcon", "img://" $ MemberSlots[SlotIndex].PerkClass.static.GetPerkIconPath());
             PerkIconObject.SetString("prestigeIcon", MemberSlots[SlotIndex].PerkClass.static.GetPrestigeIconPath(KFPRI.GetActivePerkPrestigeLevel()));

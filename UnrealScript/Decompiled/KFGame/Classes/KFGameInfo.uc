@@ -209,6 +209,8 @@ var int ZedTimeExtensionsUsed;
 var float LastZedTimeEvent;
 var class<KFGameplayEventsWriter> GameplayEventsWriterClass;
 var transient KFGameplayEventsWriter GameplayEventsWriter;
+var protected int NumOfTrapKills;
+var protected int TrapKillMilestone;
 var globalconfig array<config GameMapCycle> GameMapCycles;
 var globalconfig int ActiveMapCycle;
 var globalconfig int MapCycleIndex;
@@ -401,10 +403,24 @@ native static function StaticSetNeedsRestart();
 
 event InitGame(string Options, out string ErrorMessage)
 {
-    GameDifficulty = float(Max(0, GetIntOption(Options, "Difficulty", int(GameDifficulty))));
-    GameDifficulty = float(Clamp(int(GameDifficulty), MinGameDifficulty, MaxGameDifficulty));
     super(GameInfo).InitGame(Options, ErrorMessage);
-    GameLength = Clamp(GetIntOption(Options, "GameLength", GameLength), 0, SpawnManagerClasses.Length - 1);
+    if(UsesModifiedDifficulty())
+    {
+        SetModifiedGameDifficulty();        
+    }
+    else
+    {
+        GameDifficulty = float(Max(0, GetIntOption(Options, "Difficulty", int(GameDifficulty))));
+        GameDifficulty = float(Clamp(int(GameDifficulty), MinGameDifficulty, MaxGameDifficulty));
+    }
+    if(UsesModifiedLength())
+    {
+        SetModifiedGameLength();        
+    }
+    else
+    {
+        GameLength = Clamp(GetIntOption(Options, "GameLength", GameLength), 0, SpawnManagerClasses.Length - 1);
+    }
     if((OnlineSub != none) && OnlineSub.GetLobbyInterface() != none)
     {
         OnlineSub.GetLobbyInterface().LobbyJoinGame();
@@ -434,6 +450,20 @@ event InitGame(string Options, out string ErrorMessage)
     CheckForCustomSettings();
     CreateDifficultyInfo(Options);
 }
+
+function bool UsesModifiedLength()
+{
+    return false;
+}
+
+function SetModifiedGameLength();
+
+function bool UsesModifiedDifficulty()
+{
+    return false;
+}
+
+function SetModifiedGameDifficulty();
 
 function CreateDifficultyInfo(string Options)
 {
@@ -554,7 +584,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
             return;
         }
         DesiredWaveLength = ParseOption(Options, "GameLength");
-        if((((!bIsEndlessGame && !bIsVersusGame) && GametypeChecksWaveLength()) && DesiredWaveLength != "") && int(DesiredWaveLength) != GameLength)
+        if((((((!bIsEndlessGame && !bIsVersusGame) && GametypeChecksWaveLength()) && DesiredWaveLength != "") && int(DesiredWaveLength) != GameLength) && int(DesiredWaveLength) != 127) && int(DesiredWaveLength) != -1)
         {
             LogInternal((("Got bad wave length" @ DesiredWaveLength) @ "expected") @ string(GameLength));
             ErrorMessage = "Server No longer available. Mismatch GameLength.";
@@ -843,7 +873,10 @@ function EnableNewPickup(array<KFPickupFactory> PickupList, float RespawnDelay, 
         BaseMutator.ModifyActivatedPickupFactory(ActiveFactory, RespawnDelay);
     }
     ActivateNextPickup(ActiveFactory, int(RespawnDelay));
-    LastPickup.StartSleeping();
+    if(ActiveFactory != LastPickup)
+    {
+        LastPickup.StartSleeping();
+    }
 }
 
 function KFPickupFactory DetermineNextPickup(array<KFPickupFactory> PickupList, KFPickupFactory LastPickup)
@@ -1357,6 +1390,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     local string KillerLabel;
     local class<DamageType> LastHitByDamageType;
     local int I;
+    local class<KFDamageType> KFDT;
 
     if((KilledPlayer != none) && KilledPlayer.bIsPlayer)
     {
@@ -1472,10 +1506,10 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
             }
         }
         RefreshMonsterAliveCount();
-        if(SpawnManager != none)
+        if((SpawnManager != none) && MyKFGRI != none)
         {
             -- MyKFGRI.AIRemaining;
-            if((MyKFGRI != none) && float(MyKFGRI.AIRemaining) <= Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
+            if(!MyKFGRI.IsEndlessWave() && float(MyKFGRI.AIRemaining) <= Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
             {
                 foreach WorldInfo.AllPawns(Class'KFPawn_Monster', MonsterPawn)
                 {
@@ -1490,6 +1524,11 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
             {
                 LogInternal("@@@@ ZED COUNT DEBUG: AIAliveCount =" @ string(AIAliveCount));
             }
+        }
+        KFDT = class<KFDamageType>(DT);
+        if((KFDT != none) && KFDT.default.bIsTrapDamage)
+        {
+            AddTrapKill();
         }        
     }
     else
@@ -1507,6 +1546,15 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         }
     }
 }
+
+function AddTrapKill()
+{
+    ++ NumOfTrapKills;
+    CheckTrapMilestoneComplete();
+}
+
+// Export UKFGameInfo::execCheckTrapMilestoneComplete(FFrame&, void* const)
+private native final function CheckTrapMilestoneComplete();
 
 function class<DamageType> GetLastHitByDamageType(class<DamageType> DT, KFPawn_Monster P, Controller Killer)
 {
@@ -1567,7 +1615,10 @@ function BroadcastDeathMessage(Controller Killer, Controller Other, class<Damage
             }
         }
     }
-    SetTimer(1, false, 'CheckShouldBroadcastLastManStanding');
+    if((Other != none) && Other.GetTeamNum() != 255)
+    {
+        SetTimer(1, false, 'CheckShouldBroadcastLastManStanding');
+    }
 }
 
 function CheckShouldBroadcastLastManStanding()
@@ -1841,19 +1892,19 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
                             InstigatorPerk = KFPC.GetPerk();
                             if(InstigatorPerk.ShouldGetAllTheXP())
                             {
-                                AddPlayerXP(KFPC, int(MonsterClass.static.GetXPValue(byte(GameDifficulty))), InstigatorPerk.Class);                                
+                                AddPlayerXP(KFPC, int(MonsterClass.static.GetXPValue(byte(GameDifficulty))), InstigatorPerk.Class, true);                                
                             }
                             else
                             {
                                 XP = MonsterClass.static.GetXPValue(byte(GameDifficulty)) / float(DamageHistory[I].DamagePerks.Length);
                                 J = 0;
-                                J0x65D:
+                                J0x65E:
 
                                 if(J < DamageHistory[I].DamagePerks.Length)
                                 {
-                                    AddPlayerXP(KFPC, FCeil(XP), DamageHistory[I].DamagePerks[J]);
+                                    AddPlayerXP(KFPC, FCeil(XP), DamageHistory[I].DamagePerks[J], true);
                                     ++ J;
-                                    goto J0x65D;
+                                    goto J0x65E;
                                 }
                             }
                         }
@@ -1867,7 +1918,10 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 }
 
 // Export UKFGameInfo::execAddPlayerXP(FFrame&, void* const)
-private native final function AddPlayerXP(KFPlayerController PC, int XP, class<KFPerk> PerkClass);
+private native final function AddPlayerXP(KFPlayerController PC, int XP, class<KFPerk> PerkClass, optional bool bApplyPrestigeBonus)
+{
+    bApplyPrestigeBonus = false;                        
+}
 
 function DramaticEvent(float ZedTimeChance, optional float Duration)
 {
@@ -2165,6 +2219,12 @@ function string GetNextMap()
 function int GetCurrentMapCycleIndex(const out array<string> MapList)
 {
     return MapList.Find(string(WorldInfo.GetPackageName());
+}
+
+exec function SetFriendlyFireScale(float FFScale)
+{
+    FriendlyFireScale = FClamp(FFScale, 0, 1);
+    SaveConfig();
 }
 
 exec function FindCollectibles();
@@ -3043,7 +3103,8 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship"))
+    TrapKillMilestone=25
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-MonsterBall"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

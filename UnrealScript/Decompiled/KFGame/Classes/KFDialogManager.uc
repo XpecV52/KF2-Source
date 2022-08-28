@@ -1340,6 +1340,10 @@ function CheckSpotMonsterDialog(Pawn Spotter, KFPawn_Monster Spotted)
     BestSpottedEventID = -1;
     Spotted.MyKFAIC.bWasVisibleToEnemy = Spotted.MyKFAIC.bIsVisibleToEnemy;
     KFPHSpotter = KFPawn_Human(Spotter);
+    if(KFPHSpotter == none)
+    {
+        return;
+    }
     EventDataClass = KFPHSpotter.GetVoiceGroupEventDataClass();
     if(ActorWithinPawnFOV(Spotted, Spotter, GetEventFOV(125, EventDataClass)))
     {

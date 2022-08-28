@@ -341,6 +341,11 @@ function TickHud(float DeltaTime)
         return;
     }
 
+	if (WaveInfoWidget != none)
+	{
+		WaveInfoWidget.TickHUD(DeltaTime);
+	}
+
     if(!KFPC.MyHUD.bShowHUD)
     {
         return;
@@ -386,10 +391,7 @@ function TickHud(float DeltaTime)
         TraderCompassWidget.TickHUD( DeltaTime);
     }
 
-    if( WaveInfoWidget != none)
-    {
-        WaveInfoWidget.TickHUD( DeltaTime);
-    }
+  
 
     if(GfxScoreBoardPlayer != none)
     {
@@ -1228,6 +1230,8 @@ function Callback_VoteKick(bool bKick)
 
 DefaultProperties
 {
+	SoundThemes.Add((ThemeName = "UI",Theme = UISoundTheme'SoundsShared_UI.SoundTheme_UI'))
+
     ZEDTeamTextColor="0xBE0600"
     HumanTeamTextColor="0xBAFFFF"
     ScoreBoardClass=class'KFGFxMoviePlayer_ScoreBoard'

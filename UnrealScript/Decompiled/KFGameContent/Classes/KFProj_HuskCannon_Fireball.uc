@@ -158,7 +158,6 @@ protected simulated function PrepareExplosionTemplate()
             }
         }
     }
-    ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius * AOEScale;
     switch(ChargeLevel)
     {
         case 1:
@@ -200,7 +199,7 @@ protected simulated function PrepareExplosionTemplate()
         default:
             break;
     }
-    Class'KFPerk_Demolitionist'.static.PrepareExplosive(Instigator, self);
+    Class'KFPerk_Demolitionist'.static.PrepareExplosive(Instigator, self, AOEScale, DamageScale);
 }
 
 protected simulated function SetExplosionActorClass()

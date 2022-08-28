@@ -391,7 +391,10 @@ const KFID_WeaponSkinAssociations = 165;
 const KFID_SavedEmoteId = 166;
 const KFID_DisableAutoUpgrade = 167;
 const KFID_SafeFrameScale = 168;
-const KFID_Native4kResolution = 169;#linenumber 22;
+const KFID_Native4kResolution = 169;
+const KFID_HideRemoteHeadshotEffects = 170;
+const KFID_SavedHeadshotID= 171;
+#linenumber 22;
 
 /** The time at which this PRI left the game */
 var float LastQuitTime;
@@ -522,6 +525,7 @@ var				int 			VoiceCommsStatusDisplayIntervalMax;
  ************************************/
  var  		byte		SharedUnlocks;
 
+var private	int			CurrentHeadShotEffectID;
 /************************************
  *  Objective
  ************************************/
@@ -560,7 +564,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -1122,6 +1126,13 @@ native reliable server private event ServerSetSharedUnlocks(byte NewUnlocks);
 
 native reliable server private event ServerSetCharacterCustomization(CustomizationInfo NewMeshInfo);
 
+native reliable server private event ServerSetCurrentHeadShotEffect(int ItemID);
+
+simulated final function int GetHeadShotEffectID()
+{
+	return CurrentHeadShotEffectID;
+}
+
 native private function bool SaveCharacterConfig();
 native private function bool LoadCharacterConfig(out int CharacterIndex);
 native private function RetryCharacterOwnership();
@@ -1300,6 +1311,14 @@ function PlayerReplicationInfo Duplicate()
 	NewKFPRI.LastQuitTime = LastQuitTime;
 	NewKFPRI.NumTimesReconnected = NumTimesReconnected;
 	return NewKFPRI;
+}
+
+function OverrideWith(PlayerReplicationInfo PRI)
+{
+	super.OverrideWith(PRI);
+
+	// while super sets Team, SetPlayerTeam sets other important stuff, too
+	SetPlayerTeam(Team);
 }
 
 function SetPlayerTeam( TeamInfo NewTeam )
@@ -1603,6 +1622,7 @@ defaultproperties
    RepCustomizationInfo=(AttachmentMeshIndices[0]=-1,AttachmentMeshIndices[1]=-1,AttachmentMeshIndices[2]=-1)
    VoiceCommsStatusDisplayInterval=5.000000
    VoiceCommsStatusDisplayIntervalMax=1
+   CurrentHeadShotEffectID=-1
    Name="Default__KFPlayerReplicationInfo"
    ObjectArchetype=PlayerReplicationInfo'Engine.Default__PlayerReplicationInfo'
 }

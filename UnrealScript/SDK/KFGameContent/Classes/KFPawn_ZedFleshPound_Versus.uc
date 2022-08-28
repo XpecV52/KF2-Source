@@ -38,9 +38,11 @@ function SetSprinting(bool bNewSprintStatus)
 }
 
 /** Enrage this FleshPound! */
-simulated function SetEnraged( bool bNewEnraged )
+simulated function bool SetEnraged( bool bNewEnraged )
 {
-	super.SetEnraged( bNewEnraged );
+	local bool bSuccess;
+
+	bSuccess = super.SetEnraged( bNewEnraged );
 
 	if( bIsEnraged )
 	{
@@ -57,6 +59,8 @@ simulated function SetEnraged( bool bNewEnraged )
 
 		SprintSpeed = default.SprintSpeed;
 	}
+
+	return bSuccess;
 }
 
 /** Applies damage and impulse to nearby pawns and objects */

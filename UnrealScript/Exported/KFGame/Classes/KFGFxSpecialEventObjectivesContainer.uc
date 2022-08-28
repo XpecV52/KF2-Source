@@ -33,10 +33,18 @@ var string IconURL;
 
 var array<ObjectiveProgress> ObjectiveStatusList;
 
+var array<bool> UsesProgressList;
+
+var array<int> ObjectLastValue;
+
+var KFPlayerController KFPC;
+
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
     super.Initialize( NewParentMenu );
     
+	KFPC = KFPlayerController(GetPC());
+
     LocalizeMenu(); 
     PopulateData();
     PopulateReward();
@@ -61,6 +69,8 @@ function bool PopulateData()
     local GFxObject DataObject;
     local GFxObject DataProvider; //array containing the data objects 
     local int i;
+	local int CurrentProgressValue, MaxProgressValue;
+	local float ProgressCompletePercentage;
 
     if(HasObjectiveStatusChanged())
     {
@@ -74,10 +84,15 @@ function bool PopulateData()
             DataObject.SetString("description", default.SpecialEventObjectiveInfoList[i].DescriptionString);
             DataObject.SetString("iconPath", "img://"$default.ObjectiveIconURLs[i]);
             DataObject.SetBool("complete", ObjectiveStatusList[i].bComplete);
-			DataObject.SetInt("rewardValue", ObjectiveStatusList[i].NumericValue);
-            DataObject.SetBool("showProgres", false);
-            DataObject.SetFloat("progress", 0);
-            DataObject.SetString("textValue", "");   
+			DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
+            DataObject.SetBool("showProgress", UsesProgressList[i]);
+			if (UsesProgressList[i])
+			{
+				GetObjectiveProgressValues(i, CurrentProgressValue, MaxProgressValue, ProgressCompletePercentage);
+				DataObject.SetFloat("progress", ProgressCompletePercentage);
+				DataObject.SetString("textValue", CurrentProgressValue $"/" $MaxProgressValue);
+
+			}
 
             DataProvider.SetElementObject(i, DataObject); //add it to the array
         }
@@ -88,11 +103,17 @@ function bool PopulateData()
         }    
         
         SetObject("objectives", DataProvider);
-
         return true;
     }
 
     return false;
+}
+//Needs to br specific to the event.  Look for override in child class                                  0.0-1.0f
+static function GetObjectiveProgressValues(int ObjectiveID, out int CurrentValue, out int MaxValue, out float PercentComplete)
+{
+	CurrentValue = 0;
+	MaxValue = 0;
+	PercentComplete = 0.0f;
 }
 
 function bool HasObjectiveStatusChanged()
@@ -100,17 +121,17 @@ function bool HasObjectiveStatusChanged()
     local int i;
     local bool bHasChanged;
     local bool bTempStatus;
-	local KFPlayerController KFPC;
-
-	KFPC = KFPlayerController(GetPC());
+	local int ProgressValue, MaxValue;
+	local float PercentageValue;
 
     if(SpecialEventObjectiveInfoList.length != ObjectiveStatusList.length)
     {
         ObjectiveStatusList.length = SpecialEventObjectiveInfoList.length;
         for (i = 0; i < SpecialEventObjectiveInfoList.length; i++)
         {
+			GetObjectiveProgressValues(i, ProgressValue, MaxValue, PercentageValue);
             ObjectiveStatusList[i].bComplete = KFPC.IsEventObjectiveComplete(i);
-			ObjectiveStatusList[i].NumericValue = KFPC.GetSpecialEventRewardValue();
+			ObjectiveStatusList[i].NumericValue = ProgressValue;
         }
         bHasChanged = true;
     }
@@ -119,8 +140,8 @@ function bool HasObjectiveStatusChanged()
         for (i = 0; i < SpecialEventObjectiveInfoList.length; i++)
         {
             bTempStatus = KFPC.IsEventObjectiveComplete(i);
-
-            if(ObjectiveStatusList[i].bComplete != bTempStatus || ObjectiveStatusList[i].numericValue != KFPC.GetSpecialEventRewardValue())
+			GetObjectiveProgressValues(i, ProgressValue, MaxValue, PercentageValue);
+            if(ObjectiveStatusList[i].bComplete != bTempStatus || ObjectiveStatusList[i].NumericValue != ProgressValue)
             {
                 bHasChanged = true;
                 ObjectiveStatusList[i].bComplete = bTempStatus;
@@ -180,6 +201,11 @@ defaultproperties
    ChanceDropIconURLs(1)="UI_PerkIcons_TEX.UI_PerkIcon_Berserker"
    ChanceDropDescriptionStrings(0)="Drop 1"
    ChanceDropDescriptionStrings(1)="Drop 2"
+   UsesProgressList(0)=False
+   UsesProgressList(1)=False
+   UsesProgressList(2)=False
+   UsesProgressList(3)=False
+   UsesProgressList(4)=False
    Name="Default__KFGFxSpecialEventObjectivesContainer"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
 }

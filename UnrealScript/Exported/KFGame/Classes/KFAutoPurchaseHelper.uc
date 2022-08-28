@@ -301,13 +301,18 @@ function int GetPotentialDosh()
 /******************
 @Name - Trader Items
 *******************/
-function bool bCanPurchase(STraderItem SelectedItem)
+function bool bCanPurchase(STraderItem SelectedItem, optional bool bReturnError = true)
 {
 	local bool bCanAfford, bCanCarry, bNotOwned;
 
 	bCanAfford = GetCanAfford( GetAdjustedBuyPriceFor(SelectedItem) );
 	bCanCarry = CanCarry( SelectedItem );
     bNotOwned = !DoIOwnThisWeapon(SelectedItem);
+
+	if (MyGfxManager != none && MyGfxManager.TraderMenu != none && bReturnError)
+	{
+		MyGFxManager.TraderMenu.PurchaseError(!bCanAfford, !bCanCarry);
+	}
 
 	return bCanCarry && bCanAfford && bNotOwned;
 }
@@ -366,7 +371,7 @@ function PurchaseWeapon(STraderItem ShopItem)
 {
 	local int ItemUpgradeLevel;
 
-	if(!bCanPurchase(ShopItem))
+	if(!bCanPurchase(ShopItem, true))
 	{
 		return;
 	}

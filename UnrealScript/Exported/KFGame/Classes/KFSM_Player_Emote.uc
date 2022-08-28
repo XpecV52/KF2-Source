@@ -537,6 +537,7 @@ class KFSM_Player_Emote extends KFSM_PlaySingleAnim;
 
 
 
+										  
 
 
 
@@ -553,6 +554,8 @@ class KFSM_Player_Emote extends KFSM_PlaySingleAnim;
 
 
 										  
+
+
 
 
 

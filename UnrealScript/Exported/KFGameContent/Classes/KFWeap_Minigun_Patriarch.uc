@@ -74,7 +74,6 @@ simulated function rotator AddSpread(rotator BaseAim)
 
 defaultproperties
 {
-   WeaponContentLoaded=True
    bHasIronSights=True
    bUseAnimLenEquipTime=False
    SingleFireSoundIndex=1

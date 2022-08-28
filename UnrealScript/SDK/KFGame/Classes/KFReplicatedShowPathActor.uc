@@ -57,8 +57,15 @@ function SetPathTarget( Actor NewTarget, optional Volume NewVolume, optional eVo
 simulated function SetObjeciveType(EObjectiveType ObjEnum);
 simulated function InitPath()
 {
-	ShowPath();
-	SetTimer( 2.f, true, nameOf(Timer_ShowPath) );
+	if (Target != none)
+	{
+		ShowPath();
+		SetTimer( 2.f, true, nameOf(Timer_ShowPath) );
+	}
+	else
+	{
+		ClearTimer(nameof(Timer_ShowPath));
+	}
 }
 
 simulated function Timer_ShowPath()

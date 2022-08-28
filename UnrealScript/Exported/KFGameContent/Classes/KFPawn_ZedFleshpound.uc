@@ -209,35 +209,21 @@ simulated event bool IsEnraged()
 }
 
 /** Enrage this FleshPound! */
-simulated function SetEnraged( bool bNewEnraged )
+simulated function bool SetEnraged( bool bNewEnraged )
 {
-	if( !bCanRage || (Role == ROLE_Authority && bNewEnraged == bIsEnraged) )
+	local bool bSuccess;
+
+	bSuccess = super.SetEnraged(bNewEnraged);
+	if (bSuccess)
 	{
-		return;
-	}
-
-	if ( Role == ROLE_Authority )
-	{
-		bIsEnraged = bNewEnraged;
-
-		// End blocking on rage
-		if( IsDoingSpecialMove(SM_Block) )
+		if ( WorldInfo.NetMode != NM_DedicatedServer )
 		{
-			EndSpecialMove();
-		}
-
-		// Sprint right away if we're AI
-		if( !IsHumanControlled() )
-		{
-			SetSprinting( bNewEnraged );
+			/** Set the proper glow material */
+			UpdateGameplayMICParams();
 		}
 	}
 
-	if ( WorldInfo.NetMode != NM_DedicatedServer )
-	{
-		/** Set the proper glow material */
-		UpdateGameplayMICParams();
-	}
+	return bSuccess;
 }
 
 /** Handle GlowColor MIC Param */
@@ -491,6 +477,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
    End Object
    SprintAkComponent=SprintAkComponent0
+   Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+      BoneName="head"
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.200000
+      Name="HeadshotAkComponent0"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
+   End Object
+   HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=131
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
    LocalizationKey="KFPawn_ZedFleshpound"
@@ -715,7 +709,8 @@ defaultproperties
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
    Components(8)=SprintAkComponent0
-   Components(9)=RageAkComponent0
+   Components(9)=HeadshotAkComponent0
+   Components(10)=RageAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=40000,Roll=50000)
    Name="Default__KFPawn_ZedFleshpound"

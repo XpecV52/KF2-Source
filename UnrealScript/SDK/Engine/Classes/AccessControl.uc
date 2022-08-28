@@ -573,7 +573,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	}
 	else
 	{
-		bHasPrivateServerOption = WorldInfo.Game.HasOption( Options, "friend" );
+		bHasPrivateServerOption = WorldInfo.Game.HasOption(Options, "friend") || InPassword != "";
 	}
 `endif
 
@@ -584,7 +584,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	if (WorldInfo.NetMode != NM_Standalone && WorldInfo.Game.AtCapacity(bSpectator))
 `endif
 	{
-`if(`__TW_NETWORKING_)	
+`if(`__TW_NETWORKING_)
 		OutError = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage>";
 `else
 		OutError = PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage";
@@ -594,9 +594,9 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	else if ( (GamePassword != "" && !(InPassword == GamePassword) && (AdminPassword == "" || !(InPassword == AdminPassword))) ||
 		( Engine.bPrivateServer && !bHasPrivateServerOption ) )
 	{
-`if(`__TW_NETWORKING_)	
+`if(`__TW_NETWORKING_)
 		OutError = "<Strings:"$(InPassword == "") ? "Engine.AccessControl.NeedPassword>" : "Engine.AccessControl.WrongPassword>";
-`else		
+`else
 		OutError = (InPassword == "") ? "Engine.AccessControl.NeedPassword" : "Engine.AccessControl.WrongPassword";
 `endif
 	}
@@ -604,7 +604,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	// Check server IP bans (UID bans are checked in GameInfo::PreLogin)
 	if (!CheckIPPolicy(Address))
 	{
-`if(`__TW_)			
+`if(`__TW_)
 		OutError = "<Strings:Engine.AccessControl.IPBanned>";
 `else
 		OutError = "Engine.AccessControl.IPBanned";
@@ -634,7 +634,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 				{
 					if (OnlineSub.Class.Name == 'OnlineSubsystemSteamworks')
 					{
-`if(`__TW_)		
+`if(`__TW_)
 						OutError = "<Strings:Engine.Errors.SteamClientRequired>";
 `else
 						OutError = "Engine.Errors.SteamClientRequired";
@@ -646,7 +646,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 					OutError = "<Strings:KFEngine.Errors.RequiresAuthentication>";
 `else
 					OutError = "Server requires authentication";
-`endif			
+`endif
 					}
 				}
 
@@ -769,7 +769,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 							OutError = "<Strings:KFEngine.Errors.FailedKickOff>";
 `else
 							OutError = "Failed to kickoff authentication";
-`endif			
+`endif
 						}
 					}
 					// Reject the client if the current UID is already being authenticated
@@ -779,7 +779,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 						OutError = "<Strings:KFEngine.Errors.DuplicateUID>";
 `else
 						OutError = "Duplicate UID";
-`endif				
+`endif
 					}
 
 					// Reject the client straight away if their UID is null
@@ -789,7 +789,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 						OutError = "<Strings:KFEngine.Errors.InvalidUID>";
 `else
 						OutError = "Invalid UID";
-`endif							
+`endif
 					}
 				}
 				else if (OutError == "")
@@ -798,7 +798,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 					OutError = "<Strings:KFEngine.Errors.FailedKickOff>";
 `else
 					OutError = "Failed to kickoff authentication";
-`endif						
+`endif
 				}
 			}
 		}
@@ -1194,7 +1194,7 @@ function ProcessServerAuthRetryRequest(Player ClientConnection)
 {
 	local bool bFoundAndAuthenticated;
 //@HSL_BEGIN_XBOX
-	local IpAddr ClientIP; 
+	local IpAddr ClientIP;
 //@HSL_END_XBOX
 	local int ClientPort, i, CurRetryIdx;
 	local UniqueNetId ClientUID;

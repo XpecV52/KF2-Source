@@ -51,17 +51,17 @@ simulated function LeaveBloodSplats()
             ConeRimCenter = Location + (ConeSpreadRadius * FaceDir);
             ConeRimRadius = Tan(((MaxConeSpreadDegrees * BloodSpread) * 3.141593) / 180) * ConeSpreadRadius;
             Y = -1;
-            J0x160:
+            J0x161:
 
             if(Y <= 1)
             {
                 Z = -1;
-                J0x17E:
+                J0x17F:
 
                 if(Z <= 1)
                 {
                     Trace = 0;
-                    J0x198:
+                    J0x199:
 
                     if(Trace < NumConeSegmentTraces)
                     {
@@ -71,13 +71,13 @@ simulated function LeaveBloodSplats()
                         TraceDir = Normal(SamplePoint - Location);
                         GoreManager.LeaveAPersistentBloodSplat(Location, TraceDir, BloodScale, false, true);
                         ++ Trace;
-                        goto J0x198;
+                        goto J0x199;
                     }
                     Z += 2;
-                    goto J0x17E;
+                    goto J0x17F;
                 }
                 Y += 2;
-                goto J0x160;
+                goto J0x161;
             }
         }
     }

@@ -23,6 +23,7 @@ KF-PowerCore_Holdout="spielt Energiekern"
 KF-DieSector="spielt DieSektor"
 KF-Lockdown="Sperrmodus wird gespielt"
 KF-Airship="Luftschiff wird gespielt"
+KF-MonsterBall="Spielt Monsterball"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

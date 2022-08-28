@@ -146,7 +146,7 @@ function GoToMultiplayerMenu()
 	CloseMenu();
 	if(Manager.StartMenu != none)
 	{
-		Manager.StartMenu.OpenMultiplayerMenu();
+		//Manager.StartMenu.OpenMultiplayerMenu();
 	}
 }
 
@@ -202,7 +202,8 @@ function CloseMenu()
 
 function Callback_CloseServerBrowser()
 {
-	HandleCloseRequest();
+	CloseMenu();
+	//HandleCloseRequest();
 }
 
 function Callback_RefreshServer()
@@ -472,7 +473,7 @@ defaultproperties
    PingOptionStrings(3)="< 200 MS"
    TabStrings(0)="BROWSE"
    TabStrings(1)="FAVORITES"
-   TabStrings(2)="FRIENDS"
+   TabStrings(2)="PUBLIC FRIENDS"
    TabStrings(3)="HISTORY"
    TabStrings(4)="LAN"
    SubWidgetBindings(0)=(WidgetName="ServerBrowserHeader",WidgetClass=Class'GFxUI.GFxObject')

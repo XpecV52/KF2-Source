@@ -22,6 +22,7 @@ defaultproperties
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedFleshpound_Mixer.MeleeHelper'
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshpound_Mixer.FootstepCameraShake0'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.SprintAkComponent0'
+    HeadShotAkComponent=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.HeadshotAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -74,7 +75,8 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.RageAkComponent0'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.HeadshotAkComponent0'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.RageAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

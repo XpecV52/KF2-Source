@@ -163,7 +163,6 @@ defaultproperties
     DialogEvents[152]=(EventID=152)
     DialogEvents[153]=(EventID=153)
     DialogEvents[154]=(EventID=154)
-    DialogEvents[155]=(EventID=155)
     DialogEvents[156]=(EventID=156)
     DialogEvents[157]=(EventID=157)
     DialogEvents[158]=(EventID=158)
@@ -282,4 +281,5 @@ defaultproperties
     DialogEvents[271]=(EventID=271)
     DialogEvents[272]=(EventID=272)
     DialogEvents[273]=(EventID=273)
+    DialogEvents[274]=(EventID=274)
 }

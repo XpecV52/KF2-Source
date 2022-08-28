@@ -23,6 +23,7 @@ DARClassicLevel20BundleName="D.A.R. Классический набор 20 ур
 DARClassicLevel25BundleName="D.A.R. Классический набор 25 ур."
 MrsFosterBundleName="Миссис Фостер"
 SteampunkOutfitBundleName="Набор «Стимпанковый костюм»"
+HeadshotFXBundle1Name="Набор эффектов «Выстрел в голову» 1"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="В наборе: лондонская форма Бриара (5 скинов) и аксессуар — шлем констебля (3 скина)."
@@ -42,6 +43,7 @@ DARClassicLevel20BundleDescription="В наборе: классическая к
 DARClassicLevel25BundleDescription="В наборе: классическая дорогая броня и скины шлема. Подходит D.A.R."
 MrsFosterBundleDescription="Примерьте на себя роль миссис Фостер, одной из самых успешных коммерсанток в Лондоне! В наборе: жилет (6 скинов) и противогаз (6 скинов)."
 SteampunkOutfitBundleDescription="В наборе: женский и мужской костюмы в стиле стимпанк (6 скинов для каждого). Подходит большинству персонажей."
+HeadshotFXBundle1Description="В него входят пять эффектов выстрела в голову. «Шикарные тугрики», «Смешное действие», «Вечеринка», «Любовь с первого выстрела» и «Жуткие духи»."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Получите новую классическую форму лондонского бобби для констебля Роба Бриара. В наборе: лондонская форма Бриара (5 скинов) и аксессуар — шлем констебля (3 скина)."
@@ -298,6 +300,7 @@ EmoteCrateSeries1Name="Ящик с эмоцией | тип 1"
 EmoteCrateSeries2Name="Ящик с эмоцией | тип 3"
 DoshVaultUnlockedCrate1Name="Ящик для хранения ящиков №1"
 HorzineSupplyCrateSeriesDARName="Ящик Horzine | тип D.A.R."
+HorzineSupplyCrateSeriesLocoName="Ящик Horzine | тип «Псих»"
 
 ;Crate Descriptions
 
@@ -340,6 +343,8 @@ DoshVaultUnlockedCrate1Description="Содержит что-либо из сле
 
 HorzineSupplyCrateSeriesDARDescription="Requires a D.A.R. Horzine Supply Crate Key to open. Contains one rare or better of the following D.A.R. accessories:<br><font color="#4b69cd">Flight P51 Armor or Helmet</font><br><font color="#4b69cd">CHONNE-E 5 Gym or Time Cube Armor</font><br><font color="#4b69cd">CHONNE-E 5 Chap or Steel Helmet</font><br><font color="#4b69cd">C3HZ Crash Armor or Helmet</font><br><font color="#4b69cd">C3HZ Flow Blue Armor or Helmet</font><br><font color="#6600a1">Flight Galactic Armor or Helmet</font><br><font color="#6600a1">Flight Scream Armor or Helmet</font><br><font color="#6600a1">CHONNE-E 5 BatCat Armor</font><br><font color="#6600a1">CHONNE-E 5 Vapor Helmet</font><br><font color="#6600a1">C3HZ Obsidian Armor or Helmet</font><br><font color="#6600a1">C3HZ Space Armor or Helmet</font><br><font color="#8847ff">Flight Blue Angel Armor or Helmet</font><br><font color="#8847ff">Flight Spitfire Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Horzine Armor or Helmet</font><br><font color="#8847ff">CHONNE-E 5 Radical Armor</font><br><font color="#8847ff">CHONNE-E 5 Sunset Helmet</font><br><font color="#8847ff">C3HZ Marble Armor or Helmet</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
+
+
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Ключ от ящика Horzine | Тип 1"
 HorzineSupplyCrateKeySeries2Name="Ключ от ящика Horzine | Тип 2"
@@ -360,6 +365,7 @@ HorzineSupplyCrateKeySeries16Name="Ключ от ящика «Горизонт»
 EmoteCrateKeySeries1Name="Ключ от ящика с эмоцией | Тип 1"
 EmoteCrateKeySeries2Name="Ключ к ящику с эмоцией | тип 3"
 HorzineSupplyCrateKeySeriesDARName="Ключ от ящика Horzine | тип D.A.R."
+HorzineSupplyCrateKeySeriesLocoName="Ключ от ящика Horzine | тип «Псих»"
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description="Данный ключ открывает только ящики Horzine типа 1."
@@ -381,6 +387,7 @@ HorzineSupplyCrateKeySeries16Description="Данный ключ открывае
 EmoteCrateKeySeries1Description="Данный ключ открывает только ящики с эмоцией типа 1."
 EmoteCrateKeySeries2Description="Данный ключ открывает только ящики с эмоцией т. 2."
 HorzineSupplyCrateKeySeriesDARDescription="Данный ключ открывает только ящики Horzine типа D.A.R."
+HorzineSupplyCrateKeySeriesLocoDescription="Данный ключ открывает только ящики Horzine типа «Псих»."
 
 ;UsbNames
 CyberboneEncryptedUSBName="Зашифрованная флешка «Сайбербоун»"
@@ -408,6 +415,7 @@ NeonEncryptedUSBName="Зашифрованная флешка «Неон»"
 WeaponCollectorPack1USBName="USB-набор сборщика оружия 1"
 NeonMKIIEncryptedUSBName="Зашифрованная USB-флешка «Неон-MKII»"
 BluefireEncryptedUSBName="Зашифрованная USB-флешка «Синий огонь»"
+NeonMKIIIEncryptedUSBName="Зашифрованная флешка «Неон MKIII»"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="Для расшифровки необходим электронный ключ «Сайбербоун». Содержит один оружейный скин (редкий или лучше) из следующего списка:<br><font color="#4b69cd">AR15 | Сайбербоун</font><br><font color="#4b69cd">AK-12 | Сайбербоун</font><br><font color="#4b69cd">AA-12 | Сайбербоун</font><br><font color="#4b69cd">Катана | Сайбербоун</font><br><font color="#8847ff">M79 | Гнилая желчь</font><br><font color="#8847ff">AR15 | Сдерживание</font><br><font color="#caab05">или крайне редкий дорогой скин.</font>"
@@ -460,6 +468,8 @@ NeonMKIIEncryptedUSBDescription="Для расшифровки необходи�
 
 
 
+NeonMKIIIEncryptedUSBDescription="Для расшифровки необходим электронный ключ «Неон MKIII». Содержит один оружейный скин (редкий или лучше) из следующего списка:<br><font color="#4b69cd">9-мм | Неон</font><br><font color="#4b69cd">Центральный бой | Неон</font><br><font color="#4b69cd">Осколочная пушка | Неон</font><br><font color="#6600a1">AF2011-A1 | Неон</font><br><font color="#6600a1">Динамитная шашка | Неон</font><br><font color="#6600a1">M99 | Неон</font><br><font color="#8847ff">AK12 | Неон</font><br><font color="#8847ff">M16 M203 | Неон</font><br><font color="#8847ff">P90 | Неон</font><br><font color="#8847ff">Статические перчатки | Неон</font><br><font color="#caab05">или крайне редкий дорогой скин!</font>"
+
 ;usb key names
 CyberboneUSBKeyName="Электронный ключ «Сайбербоун»"
 DragonfireUSBKeyName="Электронный ключ «Драконий огонь»"
@@ -486,6 +496,7 @@ NeonUSBKeyName="Электронный ключ «Неон»"
 WeaponCollectorPack1USBKeyName="Ключ от USB-набора сборщика оружия 1"
 NeonMKIIUSBKeyName="USB-ключ «Неон-MKII»"
 BluefireUSBKeyName="USB-ключ «Синий огонь»"
+NeonMKIIIUSBKeyName="USB-ключ «Неон MKIII»"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Этот ключ расшифровывает только чертежи «Сайбербоун»"
@@ -513,6 +524,7 @@ NeonUSBKeyDescription="Этот ключ расшифровывает тольк
 WeaponCollectorPack1USBKeyDescription="Этот ключ расшифровывает только чертеж набора сборщика оружия 1"
 NeonMKIIUSBKeyDescription="Этот ключ расшифровывает только чертежи «Неон-MKII»"
 BluefireUSBKeyDescription="Этот ключ расшифровывает только чертежи «Синий огонь»"
+NeonMKIIIUSBKeyDescription="Этот ключ расшифровывает только чертежи «Неон MKIII»"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Ящик с аксессуарами Horzine | тип 1"
@@ -521,6 +533,7 @@ HorzineSupplyCosmeticCrateSeries3Name="Ящик с аксессуарами «Г
 HorzineSupplyCosmeticCrateSeries4Name="Ящик с аксессуарами «Горизонта» | тип 4"
 HorzineSupplyCosmeticCrateSeries5Name="Ящик с аксессуарами Horzine | тип 5"
 HorzineSupplyCosmeticCrateSeries6Name="Ящик с аксессуарами Horzine | тип 6"
+HorzineSupplyCosmeticCrateSeries7Name="Ящик с аксессуарами Horzine | тип 7"
 HorzineSupplyWeaponSkinCrateSeries1Name="Ящик с оружейными скинами Horzine | тип 1"
 HorzineSupplyWeaponSkinCrateSeries2Name="Ящик с оружейными скинами Horzine | тип 2"
 HorzineSupplyWeaponSkinCrateSeries3Name="Ящик с оружейными скинами Horzine | тип 3"
@@ -531,6 +544,7 @@ HorzineSupplyWeaponSkinCrateSeries7Name="Ящик с оружейными ски
 HorzineSupplyWeaponSkinCrateSeries8Name="Ящик Horzine с вн. видом оружия | Тип 8"
 HorzineSupplyWeaponSkinCrateSeries9Name="Ящик Horzine с вн. видом оружия | Тип 9"
 HorzineSupplyWeaponSkinCrateSeries10Name="Ящик Horzine с вн. видом оружия | Тип 10"
+HorzineSupplyWeaponSkinCrateSeries11Name="Ящик Horzine с вн. видом оружия | Тип 11"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="Чтобы открыть его, необходим ключ от ящика Horzine. Содержит один аксессуар (редкий или лучше) из следующего списка:<br><font color="#4b69cd">Баллистическая маска</font><br><font color="#4b69cd">Американский противогаз</font><br><font color="#4b69cd">Лыжная маска</font><br><font color="#4b69cd">Бейсболка</font><br><font color="#6600a1">Тактический рюкзак</font><br><font color="#6600a1">Немецкий противогаз</font><br><font color="#6600a1">Химическая маска</font><br><font color="#6600a1">Рюкзак RPG7</font><br><font color="#8847ff">Огнеметный бак M2</font><br><font color="#caab05">или крайне редкий дорогой аксессуар.</font>"
@@ -568,6 +582,9 @@ HorzineSupplyWeaponSkinCrateSeries8Description="Открывается ключ�
 
 
 HorzineSupplyWeaponSkinCrateSeries10Description="Открывается ключом от ящиков Horzine. Содержит один оружейный скин (редкий или лучше) из следующего списка:<br><font color="#4b69cd">AA12 | Тактика</font><br><font color="#4b69cd">AK12 | Тактика</font><br><font color="#4b69cd">L85A2 | Тактика</font><br><font color="#4b69cd">SG500 | Тактика</font><br><font color="#4b69cd">Автомат HMTech-401 | Тактика</font><br><font color="#4b69cd">Scar | Тактика</font><br><font color="#6600a1">Пустынный орел | Horzine элитный зеленый</font><br><font color="#6600a1">Пустынный орел | Horzine элитный белый</font><br><font color="#8847ff">Пустынный орел | Horzine элитный синий</font><br><font color="#8847ff">Пустынный орел | Horzine элитный красный</font><br><font color="#caab05">или крайне редкий дорогой скин!</font>"
+
+HorzineSupplyWeaponSkinCrateSeries11Description="Открывается ключом от ящиков Horzine. Содержит один оружейный скин (редкий или лучше) из следующего списка:<br><font color="#4b69cd">9-мм | Неон</font><br><font color="#4b69cd">Центральный бой | Неон</font><br><font color="#4b69cd">Осколочная пушка | Неон</font><br><font color="#6600a1">AF2011-A1 | Неон</font><br><font color="#6600a1">Динамитная шашка | Неон</font><br><font color="#6600a1">M99 | Неон</font><br><font color="#8847ff">AK12 | Неон</font><br><font color="#8847ff">M16 M203 | Неон</font><br><font color="#8847ff">P90 | Неон</font><br><font color="#8847ff">Статические перчатки | Неон</font><br><font color="#caab05">или крайне редкий дорогой скин!</font>"
+
 
 
 ;PSN Key Names
@@ -625,6 +642,9 @@ EmoteRareType="Редкая эмоция"
 EmoteExceptionalType="Исключительная эмоция"
 EmoteMasterCraftedType="Шедевральная эмоция"
 EmoteDeluxeType="Особая эмоция"
+
+;FX Type Section
+FXDeluxeType="Лучшие эффекты"
 
 [Crafting]
 
@@ -728,6 +748,7 @@ HMTechHealerBlackGoldenBattleScarredName="Мед. пистолет HMTech | Че
 1858RevolverHeirloomMintName="Револьвер 1858 г. | Реликвия | Нов."
 1858RevolverHeirloomFieldTestedName="Револьвер 1858 г. | Реликвия | Исп."
 1858RevolverHeirloomBattleScarredName="Револьвер 1858 г. | Реликвия | Пот."
+1858RevolverPrestigePreciousName="Револьвер 1858 г. | Престиж | Дор. вещь"
 
 ;500 Magnum Revolver Descriptions
 500MagnumRevolverMintDescription="Внешний вид: Новый | Настоящая карманная артиллерия в виде длинноствольного револьвера «Сборщик костей» калибра .50, стреляющего полновесными патронами Magnum. Для серьезных парней."
@@ -811,6 +832,10 @@ HMTechHealerBlackGoldenBattleScarredName="Мед. пистолет HMTech | Че
 9MMBlackGoldenMintName="9-мм | Черно-золотой | Нов."
 9MMBlackGoldenFieldTestedName="9-мм | Черно-золотой | Исп."
 9MMBlackGoldenBattleScarredName="9-мм | Черно-золотой | Пот."
+9MMNeonBattleScarredName="9-мм | Неон | Потертый"
+9MMNeonFieldTestedName="9-мм | Неон | Испытанный"
+9MMNeonMintName="9-мм | Неон | Новый"
+9MMNeonRGBPreciousName="9-мм | Красно-сине-зеленый неон | Дор. вещь"
 
 ;AA12 Descriptions
 AA12MintDescription="Внешний вид: Новый | AA-12 представляет собой автоматический дробовик. На ближней и средней дистанции обладает огромной мощью, но в автоматическом режиме жутко жрет боеприпасы."
@@ -870,14 +895,20 @@ AF2011A1FieldTestedDescription="Внешний вид: Испытанный | Н
 AF2011A1BattleScarredDescription="Внешний вид: Потертый | Нет вещи, которую нельзя украсить парочкой новых стволов. Это как розы из бекона."
 AF2011A1PreciousDescription="Внешний вид: Дор. вещь | Нет вещи, которую нельзя украсить парочкой новых стволов. Это как розы из бекона."
 
+
 ;AF2011-A1 Names
 AF2011A1PreciousName="AF2011-A1 | Дор. вещь"
+AF2011A1NeonBattleScarredName="AF2011-A1 | Неон | Потертый"
+AF2011A1NeonFieldTestedName="AF2011-A1 | Неон | Испытанный"
+AF2011A1NeonMintName="AF2011-A1 | Неон | Новый"
+AF2011A1NeonRGBPreciousName="AF2011-A1 | Красно-сине-зел. неон | Дор. вещь"
 
 ;AK12 Descriptions
 AK12MintDescription="Внешний вид: Новый | Данный АК-12 был взят для изучения с тела убитого российского спецназовца."
 AK12FieldTestedDescription="Внешний вид: Испытанный | Данный АК-12 был взят для изучения с тела убитого российского спецназовца."
 AK12BattleScarredDescription="Внешний вид: Потертый | Данный АК-12 был взят для изучения с тела убитого российского спецназовца."
 AK12PreciousDescription="Внешний вид: Дорогой | Данный АК-12 был взят для изучения с тела убитого российского спецназовца."
+
 
 ;AK12 Names
 AK12CyberboneMintName="АК-12 | Сайбербоун | Новый"
@@ -917,24 +948,29 @@ AK12TigerMintName="АК-12 | Тигр | Новый"
 AK12TigerTestedName="АК-12 | Тигр | Испытанный"
 AK12TigerBattleScarredName="АК-12 | Тигр | Потертый"
 AK12PreciousName="АК-12 | Дорогой"
-AK12TacticalMintName="AK12 | Тактика | Новый"
-AK12TacticalFieldTestedName="AK12 | Тактика | Испытанный"
-AK12TacticalBattleScarredName="AK12 | Тактика | Потертый"
-AK12VietnamMintName="AK12 | Вьетнам | Новый"
-AK12VietnamFieldTestedName="AK12 | Вьетнам | Испытанный"
-AK12VietnamBattleScarredName="AK12 | Вьетнам | Потертый"
-AK12JunkyardMintName="AK12 | Junkyard | Новый"
-AK12JunkyardFieldTestedName="AK12 | Junkyard | Испытанный"
-AK12JunkyardBattleScarredName="AK12 | Junkyard | Потертый"
-AK12VaultHonorableDeathMintName="AK12 | Хранилище | Почетная смерть | Новый"
-AK12VaultHonorableDeathFieldTestedName="AK12 | Хранилище | Почетная смерть | Испытанный"
-AK12VaultHonorableDeathBattleScarredName="AK12 | Хранилище | Почетная смерть | Потертый"
-AK12BluefireMintName="AK12 | Синий огонь | Новый "
-AK12BluefireFieldTestedName="AK12 | Синий огонь | Испытанный "
-AK12BluefireBattleScarredName="AK12 | Синий огонь | Потертый "
-AK12HorzineFirstEncounterMintName="AK12 | Horzine: первый контакт | Новый "
-AK12HorzineFirstEncounterFieldTestedName="AK12 | Horzine: первый контакт | Испытанный "
-AK12HorzineFirstEncounterBattleScarredName="AK12 | Horzine: первый контакт | Потертый "
+AK12TacticalMintName="AK-12 | Тактика | Новый"
+AK12TacticalFieldTestedName="AK-12 | Тактика | Испытанный"
+AK12TacticalBattleScarredName="AK-12 | Тактика | Потертый"
+AK12VietnamMintName="AK-12 | Вьетнам | Новый"
+AK12VietnamFieldTestedName="AK-12 | Вьетнам | Испытанный"
+AK12VietnamBattleScarredName="AK-12 | Вьетнам | Потертый"
+AK12JunkyardMintName="AK-12 | Свалка | Новый"
+AK12JunkyardFieldTestedName="AK-12 | Свалка | Испытанный"
+AK12JunkyardBattleScarredName="AK-12 | Свалка | Потертый"
+AK12VaultHonorableDeathMintName="AK-12 | Хранилище | Почетная смерть | Новый"
+AK12VaultHonorableDeathFieldTestedName="AK-12 | Хранилище | Почетная смерть | Исп."
+AK12VaultHonorableDeathBattleScarredName="AK-12 | Хранилище | Почетная смерть | Потерт."
+AK12BluefireMintName="AK-12 | Синий огонь | Новый "
+AK12BluefireFieldTestedName="AK-12 | Синий огонь | Испытанный "
+AK12BluefireBattleScarredName="AK-12 | Синий огонь | Потертый "
+AK12HorzineFirstEncounterMintName="AK-12 | Horzine: первый контакт | Новый "
+AK12HorzineFirstEncounterFieldTestedName="AK-12 | Horzine: первый контакт | Испытанный "
+AK12HorzineFirstEncounterBattleScarredName="AK-12 | Horzine: первый контакт | Потертый "
+AK12NeonBattleScarredName="AK-12 | Неон | Потертый"
+AK12NeonFieldTestedName="AK-12 | Неон | Испытанный"
+AK12NeonMintName="AK12 | Неон | Новый"
+AK12NeonRGBPreciousName="AK12 | Красно-сине-зел. неон | Дор. вещь"
+AK12VaultVoshPreciousName="AK-12 | Хранилище | Тугрики | Дорогая вещь"
 
 ;AR15 Descriptions
 AR15MintDescription="Внешний вид: Новый | Не будь шалопаем, стреляй по врагам!"
@@ -969,6 +1005,7 @@ AR15VaultBlueCamoTestedName="AR15 | Хранилище | Синий камуфл
 AR15VaultBlueCamoBattleScarredName="AR15 | Хранилище | Синий камуфляж | Потертый"
 AR15PreciousName="AR15 | Дорогой"
 AR15VaultVoshPreciousName="AR15 | Хр. | Тугрики | Дор. вещь"
+AR15PrestigePreciousName="AR15 | Престиж | Дорогая вещь"
 
 ;Berserker Knife Descriptions
 BerserkerKnifeMintDescription="Внешний вид: Новый | Да, это в самом деле лезвие от газонокосилки. Наслаждайтесь!"
@@ -1036,6 +1073,7 @@ CaulknBurnVaultSciFiFieldTestedName="Гори-гори ясно | Хранили
 CaulknBurnVaultSciFiBattleScarredName="Гори-гори ясно | Хранилище | Науч. фантастика | Потертый"
 CaulknBurnPreciousName="Гори-гори ясно | Дорогой"
 CaulknBurnVaultVoshPreciousName="Гори-гори ясно | Хр. | Тугрики | Дор. вещь"
+CaulknBurnPrestigePreciousName="Гори-гори ясно | Престиж | Дорогая вещь"
 
 ;Centerfire Descriptions
 CenterfireMintWeeklyDescription="Внешний вид: Новая | Современная винтовка рычажного действия Mossberg под патрон центрального боя со слабой отдачей и высоким останавливающим действием. Обновленная классика. Этот предмет открыт благодаря завершению еженедельной вспышки."
@@ -1053,6 +1091,10 @@ CenterfireBluefireMintName="Рычажная винтовка | Синий ог�
 CenterfireBluefireFieldTestedName="Рычажная винтовка | Синий огонь | Испытанная "
 CenterfireBluefireBattleScarredName="Рычажная винтовка | Синий огонь | Потертая"
 CenterfirePreciousName="Рычажная винтовка | Дорогая вещь "
+CenterfireNeonBattleScarredName="Центральный бой | Неон | Потертый"
+CenterfireNeonFieldTestedName="Центральный бой | Неон | Испытанный"
+CenterfireNeonMintName="Центральный бой | Неон | Новый"
+CenterfireNeonRGBPreciousName="Центр. бой | Кр.-сине-зел. неон | Дор. вещь"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Внешний вид: Новый | Мощный охотничий арбалет, обладающий хорошим пробивным и останавливающим действием."
@@ -1097,6 +1139,7 @@ CrovelVaultVoshPreciousName="Мультиинструмент | Хр. | Тугр
 CrovelBlackGoldenMintName="Мультиинструмент | Черно-золотой | Нов."
 CrovelBlackGoldenFieldTestedName="Мультиинструмент | Черно-золотой | Исп."
 CrovelBlackGoldenBattleScarredName="Мультиинструмент | Черно-золотой | Пот."
+CrovelPrestigePreciousName="Мультиинструмент | Престиж | Дорогая вещь"
 
 ;Desert Eagle Descriptions
 DesertEagleMintDescription="Внешний вид: Новый | «Пустынный орел» — лучший из пистолетов, недаром прозванный ручной пушкой."
@@ -1130,6 +1173,19 @@ DesertEagleHorzineEliteRedBattleScarredName="Пустын. орел | Horzine э
 DesertEagleHorzineEliteWhiteMintName="Пустынный орел | Horzine элитный белый | Новый"
 DesertEagleHorzineEliteWhiteFieldTestedName="Пустын. орел | Horzine элитный белый| Испытанный"
 DesertEagleHorzineEliteWhiteBattleScarredName="Пустынный орел | Horzine элитный белый| Потертый"
+DesertEagleVaultVoshPreciousName="Пустынный орел | Хран. | Тугрики | Дор. вещь"
+
+;Doomstick Descriptions
+DoomstickMintDescription="Внешний вид: Новый | Когда двойного веселья недостаточно, давайте устроим вчетверо больше веселья!"
+DoomstickFieldTestedDescription="Внешний вид: Испытанный | Когда двойного веселья недостаточно, давайте устроим вчетверо больше веселья!"
+DoomstickBattleScarredDescription="Внешний вид: Потертый | Когда двойного веселья недостаточно, давайте устроим вчетверо больше веселья!"
+DoomstickPreciousDescription="Внешний вид: Дорогая вещь | Когда двойного веселья недостаточно, давайте устроим вчетверо больше веселья!"
+
+;Doomstick Names
+DoomstickNeonMintName="Динамитная шашка | Неон | Новый "
+DoomstickNeonFieldTestedName="Динамитная шашка | Неон | Испытанный "
+DoomstickNeonBattleScarredName="Динамитная шашка | Неон | Потертый "
+DoomstickNeonRGBPreciousName="Динам. шашка | Кр.-сине-зел. неон | Дор. вещь "
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="Внешний вид: Новый | Дробовик, стреляющий зажигательными патронами «Дыхание дракона». Смертоносный и жутко красивый."
@@ -1209,6 +1265,7 @@ FlamethrowerNeonMintName="Огнемет | Неон | Новый "
 FlamethrowerNeonFieldTestedName="Огнемет | Неон | Испытанный "
 FlamethrowerNeonBattleScarredName="Огнемет | Неон | Потертый "
 FlamethrowerNeonRGBPreciousName="Огнемет | Красно-зелено-синий неон | Дорогая вещь "
+FlamethrowerVaultVoshPreciousName="Огнемет | Хранилище | Тугрики | Дорогая вещь"
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="Внешний вид: Новый | Система подачи огня в удобном переносном комплекте."
@@ -1272,6 +1329,8 @@ FreezeThrowerMinusZeroGreenBattleScarredName="Ледяной луч | Ниже �
 FreezeThrowerBluefireMintName="Ледяной луч | Синий огонь | Новый "
 FreezeThrowerBluefireFieldTestedName="Ледяной луч | Синий огонь | Испытанный "
 FreezeThrowerBluefireBattleScarredName="Ледяной луч | Синий огонь | Потертый "
+FreezeThrowerPrestigePreciousName="Ледяной луч | Престиж | Дорогая вещь"
+FreezeThrowerVaultVoshPreciousName="Ледяной луч | Хран. | Тугрики | Дор. вещь"
 
 ;Freeze Thrower Descriptions
 FreezeThrowerMintDescription="Внешний вид: Новый | Биологические вещества не выдержат такого холода."
@@ -1367,6 +1426,7 @@ HMTech101PistolHorzineEliteRedBattleScarredName="Пистолет HMTech-101 | H
 HMTech101PistolHorzineEliteWhiteMintName="Пистолет HMTech-101 | Horzine элитный белый | Новый "
 HMTech101PistolHorzineEliteWhiteFieldTestedName="Пистолет HMTech-101 | Horzine элитный белый | Испытанный "
 HMTech101PistolHorzineEliteWhiteBattleScarredName="Пистолет HMTech-101 | Horzine элитный белый | Потертый "
+HMTech101PistolPrestigePreciousName="Пистолет HMTech-101 | Престиж | Дорогая вещь"
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="Внешний вид: Новый | Стреляет медицинскими дротиками для лечения членов отряда. Тот же пистолет, только намного круче!"
@@ -1401,6 +1461,7 @@ HMTech301ShotgunEliteUnitRedMintName="Дробовик HMTech-301 | Элита (
 HMTech301ShotgunEliteUnitRedFieldTestedName="Дробовик HMTech-301 | Элита (красный) | Испытанный"
 HMTech301ShotgunEliteUnitRedBattleScarredName="Дробовик HMTech-301 | Элита (красный) | Потертый"
 HMTech301ShotgunPreciousName="Дробовик HMTech-301 | Дорогой"
+HMTech301ShotgunVaultVoshPreciousName="Дробовик HMTech-301 | Хр. | Тугр. | Дор. вещь"
 
 ;HMTech-401 Assault Rifle Descriptions
 HMTech401AssaultRifleMintDescription="Внешний вид: Новый | Вариант на тему пистолета HMTech «с полным фаршем»."
@@ -1443,6 +1504,10 @@ HuskCannonPreciousDescription="Внешний вид: Дор. вещь | Офи�
 
 ;Husk Cannon Names
 HuskCannonPreciousName="Осколочная пушка | Дор. вещь"
+HuskCannonNeonBattleScarredName="Осколочная пушка | Неон | Потертый"
+HuskCannonNeonFieldTestedName="Осколочная пушка | Неон | Испытанный"
+HuskCannonNeonMintName="Осколочная пушка | Неон | Новый"
+HuskCannonNeonRGBPreciousName="Оскол. пушка | Кр.-сине-зел. неон | Дор. вещь"
 
 ;HX25 Descriptions
 HX25MintDescription="Внешний вид: Новый | В режиме огня стреляет небольшими гранатами, которые взрываются при контакте."
@@ -1471,6 +1536,7 @@ HX25VaultBlueCamoFieldTestedName="HX25 | Хранилище | Синий кам�
 HX25VaultBlueCamoBattleScarredName="HX25 | Хранилище | Синий камуфляж | Потертый"
 HX25PreciousName="HX25 | Дорогой"
 HX25VaultVoshPreciousName="HX25 | Хр. | Тугрики | Дор. вещь"
+HX25PrestigePreciousName="HX25 | Престиж | Дорогая вещь"
 
 ;HZ12 Descriptions
 HZ12MintDescription="Внешний вид: Новый | Ружье HZ12 — экспериментальный прототип, который тестировали на охранных подразделениях компании «Горизонт»."
@@ -1637,6 +1703,7 @@ M14EBRNeonMintName="M14EBR | Неон | Новый "
 M14EBRNeonFieldTestedName="M14EBR | Неон | Испытанный "
 M14EBRNeonBattleScarredName="M14EBR | Неон | Потертый "
 M14EBRNeonRGBPreciousName="M14EBR | Красно-зелено-синий неон | Дорогая вещь "
+M14EBRVaultVoshPreciousName="M14EBR | Хранилище | Тугрики | Дорогая вещь"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Внешний вид: Новый | Для тех, кому трудно сделать выбор между пулями и взрывчаткой."
@@ -1652,6 +1719,10 @@ M16M203JunkyardMintName="M16 M203 | Junkyard | Новый"
 M16M203JunkyardFieldTestedName="M16 M203 | Junkyard | Испытанный"
 M16M203JunkyardBattleScarredName="M16 M203 | Junkyard | Потертый"
 M16M203PreciousName="M16 M203 | Дорогой"
+M16M2036NeonBattleScarredName="M16 M2036 | Неон | Потертый"
+M16M2036NeonFieldTestedName="M16 M2036 | Неон | Испытанный"
+M16M2036NeonMintName="M16 M2036 | Неон | Новый"
+M16M2036NeonRGBPreciousName="M16 M2036 | Красн.-сине-зел. неон | Дор. вещь"
 
 ;M1911 Descriptions
 M1911MintDescription="Внешний вид: Новый | Классический полуавтоматический пистолет Colt 1911."
@@ -1704,6 +1775,7 @@ M4PreciousName="M4 | Дорогой"
 M4BluefireMintName="M4 | Синий огонь | Новый "
 M4BluefireFieldTestedName="M4 | Синий огонь | Испытанный "
 M4BluefireBattleScarredName="M4 | Синий огонь | Потертый "
+M4VaultVoshPreciousName="M4 | Хранилище | Тугрики | Дорогая вещь"
 
 ;M79 Descriptions
 M79MintDescription="Внешний вид: Новый | Взрыватель активируется спустя некоторое время, чтобы избежать поражения стрелка."
@@ -1740,12 +1812,25 @@ M79BluefireBattleScarredName="M79 | Синий огонь | Потертый"
 M79HorzineFirstEncounterMintName="M79 | Horzine: первый контакт | Новый "
 M79HorzineFirstEncounterFieldTestedName="M79 | Horzine: первый контакт | Испытанный "
 M79HorzineFirstEncounterBattleScarredName="M79 | Horzine: первый контакт | Потертый "
+M79VaultVoshPreciousName="M79 | Хранилище | Тугрики | Дорогая вещь"
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="Внешний вид: Новый | Имеет мощный удар щитом."
 MaceAndShieldFieldTestedDescription="Внешний вид: Испытанный | Имеет мощный удар щитом."
 MaceAndShieldBattleScarredDescription="Внешний вид: Потертый | Имеет мощный удар щитом."
 MaceAndShieldPreciousDescription="Внешний вид: Дорогой| Имеет мощный удар щитом."
+
+;M99 Descriptions
+M99MintDescription="Внешний вид: Новый | Каждый выстрел сшибает с ног... одной большой пулей. Проникает глубоко, боли причиняет много."
+M99FieldTestedDescription="Внешний вид: Испытанный | Каждый выстрел сшибает с ног... одной большой пулей. Проникает глубоко, боли причиняет много."
+M99BattleScarredDescription="Внешний вид: Потертый | Каждый выстрел сшибает с ног... одной большой пулей. Проникает глубоко, боли причиняет много."
+M99PreciousDescription="Внешний вид: Дорогая вещь | Каждый выстрел сшибает с ног... одной большой пулей. Проникает глубоко, боли причиняет много."
+
+;M99 Names
+M99NeonMintName="M99 | Неон | Новый "
+M99NeonFieldTestedName="M99 | Неон | Испытанный "
+M99NeonBattleScarredName="M99 | Неон | Потертый "
+M99NeonRGBPreciousName="M99 | Красно-сине-зел. неон | Дор. вещь "
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="Костолом | Микросхема | Новый"
@@ -1779,6 +1864,10 @@ Mac10PreciousName="Mac 10 | Дор. вещь"
 Mac10HorzineFirstEncounterMintName="MAC 10 | Horzine Первый контакт | Новый "
 Mac10HorzineFirstEncounterFieldTestedName="MAC 10 | Horzine Первый контакт | Испытанный "
 Mac10HorzineFirstEncounterBattleScarredName="MAC 10 | Horzine Первый контакт | Потертый "
+Mac10NeonMintName="MAC 10 | Неон | Новый "
+Mac10NeonFieldTestedName="MAC 10 | Неон | Испытанный "
+Mac10NeonBattleScarredName="MAC 10 | Неон | Потертый "
+Mac10NeonRGBPreciousName="MAC 10 | Красно-сине-зелен. неон | Дор. вещь "
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Внешний вид: Новый | Чудо современной технологии: ручной гриль для мутантов."
@@ -1854,6 +1943,7 @@ MP7VaultVoshPreciousName="MP7 | Хр. | Тугрики | Дор. вещь"
 MP7BluefireMintName="MP7 | Синий огонь | Новый "
 MP7BluefireFieldTestedName="MP7 | Синий огонь | Испытанный "
 MP7BluefireBattleScarredName="MP7 | Синий огонь | Потертый "
+MP7PrestigePreciousName="MP7 | Престиж | Дорогая вещь"
 
 ;P90 Descriptions
 P90MintDescription="Внешний вид: Новый | Выглядит странно, зато косит мутантов, как траву. При желании можно уменьшить шум."
@@ -1866,6 +1956,11 @@ P90BuzzsawMintName="P90 | Дисковая пила | Новый"
 P90BuzzsawFieldTestedName="P90 | Дисковая пила | Испытанный"
 P90BuzzsawBattleScarredName="P90 | Дисковая пила | Потертый"
 P90PreciousName="P90 | Дорогой"
+P90NeonBattleScarredName="P90 | Неон | Потертый"
+P90NeonFieldTestedName="P90 | Неон | Испытанный"
+P90NeonMintName="P90 | Неон | Новый"
+P90NeonRGBPreciousName="P90 | Красно-сине-зел. неон | Дор. вещь"
+P90VaultVoshPreciousName="P90 | Хранилище | Тугрики | Дорогая вещь"
 
 ;Pulverizer Descriptions
 PulverizerMintDescription="Внешний вид: Новый | Отличная идея: скрестить дробовик с кувалдой."
@@ -1890,6 +1985,7 @@ PulverizerPreciousName="Распылитель | Дорогой"
 PulverizerBlackGoldenMintName="Распылитель | Черно-золотой | Нов."
 PulverizerBlackGoldenFieldTestedName="Распылитель | Черно-золотой | Исп."
 PulverizerBlackGoldenBattleScarredName="Распылитель | Черно-золотой | Пот."
+PulverizerVaultVoshPreciousName="Распылитель | Хран. | Тугрики | Дорогая вещь"
 
 ;Railgun Descriptions
 RailgunMintDescription="Внешний вид: Новый | Разгоняемая с помощью магнитов до огромной скорости цельностальная болванка прошивает мутантов, как бумагу."
@@ -2063,6 +2159,19 @@ SG500VaultBlueCamoMintName="SG 500 | Хранилище | Синий камуф�
 SG500VaultBlueCamoFieldTestedName="SG 500 | Хранилище | Синий камуфляж | Испытанный"
 SG500VaultBlueCamoBattleScarredName="SG 500 | Хранилище | Синий камуфляж | Потертый"
 SG500VaultVoshPreciousName="SG 500 | Хр. | Тугрики | Дор. вещь"
+SG500PrestigePreciousName="SG 500 | Престиж | Дорогой"
+
+;Static Strikers Descriptions
+StaticStrikersMintDescription="Внешний вид: Новый | Хотите дать мутанту по морде? Тогда вы нашли то, что нужно"
+StaticStrikersFieldTestedDescription="Внешний вид: Испытанный | Хотите дать мутанту по морде? Тогда вы нашли то, что нужно"
+StaticStrikersBattleScarredDescription="Внешний вид: Потертый | Хотите дать мутанту по морде? Тогда вы нашли то, что нужно"
+StaticStrikersPreciousDescription="Внешний вид: Дорогая вещь | Хотите дать мутанту по морде? Тогда вы нашли то, что нужно"
+
+;Static Strikers Names
+StaticStrikersNeonMintName="Статические перчатки | Неон | Новый "
+StaticStrikersNeonFieldTestedName="Статические перчатки | Неон | Испытанный "
+StaticStrikersNeonBattleScarredName="Статические перчатки | Неон | Потертый "
+StaticStrikersNeonRGBPreciousName="Стат. перч. | Кр-сине-зел. неон | Дор. вещь "
 
 ;Stoner 63A Descriptions
 Stoner63AMintDescription="Внешний вид: Новый | Основное оружие спецназа ВМФ США времен войны во Вьетнаме. Большой боезапас и прекрасная останавливающая способность."
@@ -2171,6 +2280,7 @@ Winchester1894VaultVoshPreciousName="Winchester 1894 | Хр. | Тугрики | 
 Winchester1894HeirloomMintName="Winchester 1894 | Реликвия | Нов."
 Winchester1894HeirloomFieldTestedName="Winchester 1894 | Реликвия | Исп."
 Winchester1894HeirloomBattleScarredName="Winchester 1894 | Реликвия | Пот."
+Winchester1894PrestigePreciousName="Winchester 1894 | Престиж | Дорогая вещь"
 
 ;Zweihander Descriptions
 ZweihanderMintDescription="Внешний вид: Новый | Это меч. Здоровенный средневековый меч."
@@ -2248,6 +2358,15 @@ SurvivalistKnifePreciousDescription="Внешний вид: Дорогая ве�
 SurvivalistKnifePreciousName="Кровавая заточка | Дорогая вещь"
 SurvivalistKnifePrestigePreciousName="Кровавая заточка | Престиж| Дорогая вещь"
 SurvivalistKnifeVaultVoshPreciousName="Кровавая заточка | Хранилище | Тугрики | Дорогая вещь"
+
+;MKB42 Descriptions
+MKB42MintDescription="Внешний вид: Новый | Выпустите на волю своего внутреннего Ганса! Нормальная психика не гарантируется."
+MKB42FieldTestedDescription="Внешний вид: Испытанный | Выпустите на волю своего внутреннего Ганса! Нормальная психика не гарантируется."
+MKB42BattleScarredDescription="Внешний вид: Потертый | Выпустите на волю своего внутреннего Ганса! Нормальная психика не гарантируется."
+MKB42PreciousDescription="Внешний вид: Дорогая вещь | Выпустите на волю своего внутреннего Ганса! Нормальная психика не гарантируется."
+
+;MKB42 Names
+MKB42HalloweenPreciousName="MKB42H | Хеллоуин | Дорогая вещь"
 
 [CosmeticSection]
 
@@ -3467,6 +3586,76 @@ SteampunkMrsFosterMaskLeatherName="Стимпанк | Маска миссис Ф
 SteampunkMrsFosterMaskRedName="Стимпанк | Маска миссис Фостер | Красный цвет"
 SteampunkMrsFosterMaskPreciousName="Стимпанк | Маска миссис Фостер | Дорогая вещь"
 
+;Halloween 2018 Cosmetic Names
+HalloweenAngelWingsCelestialName="Хеллоуин | Крылья ангела | Небесный "
+HalloweenAngelWingsPreciousName="Хеллоуин | Крылья ангела | Дорогая вещь "
+HalloweenCauldronBackpackSweetmeatName="Хеллоуин | Рюкзак в в. хелл. котла | Сладости "
+HalloweenCauldronBackpackPreciousName="Хеллоуин | Рюкзак в в. хелл. котла | Д. вещь "
+HalloweenCoffinBackpackRIPName="Хеллоуин | Рюкзак в виде хелл. гроба | RIP "
+HalloweenCoffinBackpackPreciousName="Хеллоуин | Рюкзак в в. хелл. гроба | Дор. вещь "
+HalloweenCyclopsEyeEvilEyeName="Хеллоуин | Глаз циклопа | Сглаз "
+HalloweenCyclopsEyePreciousName="Хеллоуин | Глаз циклопа | Дор. вещь "
+HalloweenHornsImpName="Хеллоуин | Рога | Бес "
+HalloweenHornsPreciousName="Хеллоуин | Рога | Дор. вещь "
+HalloweenIncognitoMaskGrauchoName="Хеллоуин | Маска, закрывающая лицо | Граучо "
+HalloweenIncognitoMaskPreciousName="Хеллоуин | Маска, закр. лицо | Дор. вещь "
+HalloweenPirateHatFreebootName="Хеллоуин | Пиратская шляпа | Флибустьер "
+HalloweenPirateHatPreciousName="Хеллоуин | Пиратская шляпа | Дор. вещь "
+HalloweenWitchHatBlackArtsName="Хеллоуин | Шляпа ведьмы | Темная магия "
+HalloweenWitchHatPreciousName="Хеллоуин | Шляпа ведьмы | Дор. вещь "
+HalloweenClotBackpackCompanionName="Хеллоуин | Рюкзак в виде зомби | Компаньон "
+HalloweenClotBackpackPreciousName="Хеллоуин | Рюкзак в виде зомби | Дор. вещь "
+HalloweenBatWingsNocturnalName="Хеллоуин | Крылья летучей мыши | Дитя ночи "
+HalloweenBatWingsPreciousName="Хеллоуин | Крылья летучей мыши | Дор. вещь "
+HalloweenBatEarsEcholocatorName="Хеллоуин | Уши летучей мыши | Эхолокаторы "
+HalloweenBatEarsPreciousName="Хеллоуин | Уши летучей мыши | Дор. вещь "
+HalloweenMummyBackpackPreservedName="Хеллоуин | Рюкзак в в. мумии | Хорошо сохр. "
+HalloweenMummyBackpackPreciousName="Хеллоуин | Рюкзак в в. мумии | Дор. вещь "
+Halloween2018FacePaintAnaName="Грим для хеллоуина 2018 | Ана "
+Halloween2018FacePaintAlbertsName="Грим для хеллоуина 2018 | Альбертс "
+Halloween2018FacePaintBriarName="Грим для хеллоуина 2018 | Бриар "
+Halloween2018FacePaintTanakaName="Грим для хеллоуина 2018 | Танака "
+Halloween2018FacePaintStrasserName="Грим для хеллоуина 2018 | Штрассер "
+Halloween2018FacePaintMastersonName="Грим для хеллоуина 2018 | Мастерсон "
+Halloween2018FacePaintClassicBriarName="Грим для хеллоуина 2018 | Классический Бриар "
+Halloween2018FacePaintDonovanName="Грим для хеллоуина 2018 | Донован "
+Halloween2018FacePaintClassicMastersonName="Грим для хеллоуина 2018 | Классич. Мастерсон "
+Halloween2018FacePaintJagerhornName="Грим для хеллоуина 2018 | Ягерхорн "
+Halloween2018FacePaintRaeName="Грим для хеллоуина 2018 | Рэй "
+Halloween2018FacePaintMrFosterName="Грим для хеллоуина 2018 | Г-н Фостер "
+Halloween2018FacePaintMrsFosterName="Грим для хеллоуина 2018 | Миссис Фостер "
+Halloween2018FacePaintScullyName="Грим для хеллоуина 2018 | Скалли "
+LocoTribeMaskBeastLightName="Маска племени безумцев | Зверь | Светлый цвет "
+LocoTribeMaskBeastDarkName="Маска племени безумцев | Зверь | Темный цвет "
+LocoTribeMaskBeastPreciousName="Маска племени безумцев | Зверь | Дорогая вещь "
+LocoTribeMaskDancerFireName="Маска племени безумцев | Танцор | Пламя "
+LocoTribeMaskDancerWaterName="Маска племени безумцев | Танцор | Вода "
+LocoTribeMaskDancerPreciousName="Маска племени безумцев | Танцор | Дор. вещь "
+LocoTribeMaskDemonFireName="Маска племени безумцев | Демон | Пламя "
+LocoTribeMaskDemonWaterName="Маска племени безумцев | Демон | Вода "
+LocoTribeMaskDemonPreciousName="Маска племени безумцев | Демон | Дор. вещь "
+LocoTribeMaskDoctorLightName="Маска племени безумцев | Доктор | Светлый цвет "
+LocoTribeMaskDoctorDarkName="Маска племени безумцев | Доктор | Темный цвет "
+LocoTribeMaskDoctorPreciousName="Маска племени безумцев | Доктор | Дор. вещь "
+LocoTribeMaskDreamerFireName="Маска племени безумцев | Мечтатель | Пламя "
+LocoTribeMaskDreamerWaterName="Маска племени безумцев | Мечтатель | Вода "
+LocoTribeMaskDreamerPreciousName="Маска племени безумцев | Мечтатель | Д. вещь "
+LocoTribeMaskJokerLightName="Маска племени безумцев | Джокер | Светлый цвет "
+LocoTribeMaskJokerDarkName="Маска племени безумцев | Джокер | Темный цвет "
+LocoTribeMaskJokerPreciousName="Маска племени безумцев | Джокер | Дор. вещь "
+LocoTribeMaskLordFireName="Маска племени безумцев | Лорд | Пламя "
+LocoTribeMaskLordWaterName="Маска племени безумцев | Лорд | Вода "
+LocoTribeMaskLordPreciousName="Маска племени безумцев | Лорд | Дорогая вещь "
+LocoTribeMaskSleeperFireName="Маска племени безумцев | Спящий | Пламя "
+LocoTribeMaskSleeperWaterName="Маска племени безумцев | Спящий | Вода "
+LocoTribeMaskSleeperPreciousName="Маска племени безумцев | Спящий | Дор. вещь "
+LocoTribeMaskUndeadFireName="Маска племени безумцев | Нежить | Пламя "
+LocoTribeMaskUndeadWaterName="Маска племени безумцев | Нежить | Вода "
+LocoTribeMaskUndeadPreciousName="Маска племени безумцев | Нежить | Дор. вещь "
+LocoTribeMaskWarriorFireName="Маска племени безумцев | Воин | Пламя "
+LocoTribeMaskWarriorWaterName="Маска племени безумцев | Воин | Вода "
+LocoTribeMaskWarriorPreciousName="Маска племени безумцев | Воин | Дорогая вещь "
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Устанавливается в меню снаряжения; подходит большинству персонажей. Это эксклюзивный предмет с мероприятия «Летний аттракцион». Можно переработать в 1 билет на аттракцион."
 SummerSideshowFacePaintDescription="Устанавливается в меню снаряжения. Это эксклюзивный предмет с мероприятия «Летний аттракцион». Можно переработать в 1 билет на аттракцион."
@@ -3579,7 +3768,7 @@ WeldingMaskDescription="Устанавливается в меню снаряж�
 ZEDDundeeHatDescription="Устанавливается в меню снаряжения; могут использовать: Ойстен Ягерхорн, ди-джей Скалли, констебль Роб Бриар, г-н Фостер, Донован Нил, преподобный Альбертс, лейтенант Билл Мастерсон, Хаято Танака, Ана Ларив, классический Бриар, классический Мастерсон, Антон Штрассер, Том Баннер, Рэй Хиггинс."
 ReaperEyesDescription="Устанавливается в меню снаряжения; могут использовать: Ойстен Ягерхорн, ди-джей Скалли, констебль Роб Бриар, Донован Нил, преподобный Альбертс, лейтенант Билл Мастерсон, Хаято Танака, Ана Ларив, классический Бриар, классический Мастерсон, Антон Штрассер, Том Баннер, Рэй Хиггинс."
 ReaperHatDescription="Устанавливается в меню снаряжения; могут использовать: Ойстен Ягерхорн, ди-джей Скалли, констебль Роб Бриар, г-н Фостер, Донован Нил, преподобный Альбертс, лейтенант Билл Мастерсон, Хаято Танака, Ана Ларив, классический Бриар, классический Мастерсон, Антон Штрассер, Том Баннер, Рэй Хиггинс."
-ReaperJawDescription="Устанавливается в меню снаряжения; могут использовать: Ойстен Ягерхорн, ди-джей Скалли, констебль Роб Бриар, Донован Нил, преподобный Альбертс, лейтенант Билл Мастерсон, Хаято Танака, Ана Ларив, классический Бриар, классический Мастерсон, Антон Штрассер, Том Баннер, Рэй Хиггинс."
+ReaperJawDescription="Устанавливается в меню снаряжения; могут использовать: ди-джей Скалли, констебль Роб Бриар, Донован Нил, преподобный Альбертс, лейтенант Билл Мастерсон, Хаято Танака, Ана Ларив, классический Бриар, классический Мастерсон, Антон Штрассер, Том Баннер, Рэй Хиггинс."
 ReaperRavenEyesDescription="Устанавливается в меню снаряжения; могут использовать: Ойстен Ягерхорн, констебль Роб Бриар, Донован Нил, преподобный Альбертс, лейтенант Билл Мастерсон, Хаято Танака, Ана Ларив, классический Бриар, классический Мастерсон, Антон Штрассер, Том Баннер, Рэй Хиггинс."
 ReaperRavenHatDescription="Устанавливается в меню снаряжения; могут использовать: Ойстен Ягерхорн, ди-джей Скалли, констебль Роб Бриар, г-н Фостер, Донован Нил, преподобный Альбертс, лейтенант Билл Мастерсон, Хаято Танака, Том Баннер, Рэй Хиггинс."
 ReaperRavenJawDescription="Устанавливается в меню снаряжения; могут использовать: ди-джей Скалли, констебль Роб Бриар, Донован Нил, преподобный Альбертс, лейтенант Билл Мастерсон, классический Бриар, классический Мастерсон."
@@ -3704,3 +3893,21 @@ ManiacDeluxeEmoteDescription="И вот бы деньжат, и еще бы де
 TheRunningManDeluxeEmoteDescription="Этот танец никогда не выйдет из моды! НИКОГДА! Можно переработать в исключительный косметический материал."
 TheRobotDeluxeEmoteDescription="Домо аригато, г-н Робото. Можно переработать в исключительный косметический материал."
 AirMetalDeluxeEmoteDescription="Смотри, как я умею! И-И-И-И-И-НЕ-НЕ-НЕТ! Можно переработать в исключительный косметический материал."
+
+[FXSection]
+
+;FX Names
+
+DoshFXDeluxeName="Шикарные тугрики | эффект"
+ConfettiFXDeluxeName="Вечеринка | эффект"
+GhostFXDeluxeName="Жуткие духи | эффект"
+HeartsFXDeluxeName="Любовь с первого выстрела | эффект"
+ComicFXDeluxeName="Смешное действие | эффект"
+
+;FX Descriptions
+
+DoshFXDeluxeDescription="Эффект выстрела в голову, который заменяет кровь и мозги монетами и тугриками."
+ConfettiFXDeluxeDescription="Эффект выстрела в голову, который заменяет кровь и мозги шариками и конфетти."
+GhostFXDeluxeDescription="Эффект выстрела в голову, который заменяет кровь и мозги призраками."
+HeartsFXDeluxeDescription="Эффект выстрела в голову, который заменяет кровь и мозги сердечками."
+ComicFXDeluxeDescription="Эффект выстрела в голову, который заменяет кровь и мозги словами из комиксов."

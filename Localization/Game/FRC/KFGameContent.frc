@@ -195,7 +195,7 @@ ItemDescription="•Modes tir automatique et rafale de 3 coups.\n•Alt-Feu pour
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 Bullpup"
 ItemCategory="Fusil d'assaut"
-ItemDescription="•Modes tir automatique et semi-automatique.\n•Alt-Feu pour alterner entre les modes de tir.\n•Le SA80 était l'arme de base de l'armée britannique, avant que l'armée ne se fasse bouffer."
+ItemDescription="• Modes automatique et semi-automatique.\n• Le SA80 était l'arme de base de l'armée britannique, avant que l'armée ne se fasse bouffer."
 
 [KFWeap_LMG_Stoner63A]
 ItemName="Stoner 63A LMG"
@@ -312,6 +312,12 @@ ItemName="VLAD-1000 Cloueuse"
 ItemCategory="Fusil à pompe"
 ItemDescription="•Tirs de clous uniques ou multiples.\n•Alt-Feu pour alterner entre les modes de tir.\n•Il semblerait que l'un des chercheurs de Horzine ait emprunté la cloueuse originale à un employé (décédé) du service d'entretien."
 
+[KFWeap_Blunt_ChainBat]
+ItemName="Rédempteur de route"
+ItemCategory="Mêlée"
+ItemDescription="• Principale - attaque contondante rapide, Maintenir pour enchaîner.\n• Secondaire - attaque tranchante puissante.\n• Alt - bloquer/parer.\n• Soyez le cogneur que vous avez toujours voulu être ! Rappelez-vous de le nettoyer après utilisation."
+SharedUnlockSource="Road Redemption"
+
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulvériseur"
 ItemCategory="Mêlée"
@@ -327,7 +333,7 @@ SecondaryAmmo="Essence"
 ItemName="Zweihander"
 ItemCategory="Mêlée"
 ItemDescription="•Principale - dégâts moyens/lourds, avec un peu de contrôle des foules.\n•Secondaire - plus lente, mais plus de dégâts.\n•Alt - bloquer/parer\n•Vous faites encore plus de dégâts quand vous avancez."
-SharedUnlockSource="Chivalry Medieval Warfare" "
+SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Broyeur d'os"
@@ -505,6 +511,12 @@ ItemName="Canon à Bogue"
 ItemCategory="Incendiaire"
 ItemDescription="• Se recharge lorsque vous appuyez sur le bouton de tir et se décharge lorsque vous le relâchez. \n• La version officielle du canon à Bogue signée Horzine. Ce modèle a 95 % de chance de ne pas exploser."
 
+[KFWeap_AssaultRifle_MKB42]
+ItemName="Carabine MKb.42(H)"
+ItemCategory="Fusil d'assaut"
+ItemDescription="• Modes automatique et semi-automatique. \n• Tir alternatif pour passer d'un mode à l'autre.\n• Montrez votre Hans intérieur ! Esprit sain non garanti."
+SharedUnlockSource="Hans d'Halloween"
+
 [KFWeap_Pistol_AF2011]
 ItemName="AF2011-A1"
 ItemCategory="Arme de poing"
@@ -529,6 +541,17 @@ ItemDescription="•Principale - attaque contondante rapide, Maintenir pour ench
 ItemName="Mac 10"
 ItemCategory="Pistolet mitrailleur"
 ItemDescription="• Modes automatique et semi-automatique.\n• Tir alternatif pour passer d'un mode à l'autre.\n• Inclut des munitions incendiaires pour jouer avec le feu. Compris ? Jouer avec le feu ? Parce que c'est une mitraillette incendiaire ? Oh, laissez tomber."
+
+[KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
+ItemName="Fusil grenade HMTech-501"
+ItemCategory="Fusil d'assaut"
+ItemDescription="• Mode de tire automatique seulement.\n• Tir alternatif pour lancer des grenades de médecin.\n• C'est la seule arme avec laquelle il est permis de tirer sur ses amis !"
+SecondaryAmmo="Grenade de médecin"
+
+[KFWeap_AssaultRifle_FNFal]
+ItemName="FN FAL ACOG"
+ItemCategory="Fusil d'assaut"
+ItemDescription="• Modes automatique et semi-automatique. \n• Tir alternatif pour passer d'un mode à l'autre. \n• Une arme qui ne passe pas... ACOGnito. Oui, c'était mauvais."
 
 [KFWeap_Rifle_M99]
 ItemName="M99 AMR"

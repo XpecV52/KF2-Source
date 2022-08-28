@@ -843,6 +843,7 @@ struct native TextureResolutionSetting
 		{
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UI).LODBias = UIBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UIWithMips).LODBias = UIBias;
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UIStreamable).LODBias = UIBias; //@ TWI - bedwards: UI texture streaming support
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Shadowmap).LODBias = ShadowmapBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_Character).LODBias = CharacterBias;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_CharacterNormalMap).LODBias = CharacterBias;
@@ -984,6 +985,7 @@ struct native TextureFilterSetting
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UIWithMips).Filter = Filter;
 
 			// Special texture groups /wo mip filtering
+			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UIStreamable).Filter = NoMipFilter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UI).Filter = NoMipFilter;
 			OutSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_EffectsNotFiltered).Filter = NoMipFilter;
 		}
@@ -1021,7 +1023,8 @@ struct native TextureFilterSetting
 
 			ESamplerFilter NoMipFilter;
 			NoMipFilter = InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UI).Filter;
-			if( NoMipFilter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_EffectsNotFiltered).Filter )
+			if( NoMipFilter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_EffectsNotFiltered).Filter ||
+				NoMipFilter != InSettings.TextureLODSettings.GetTextureLODGroup(TEXTUREGROUP_UIStreamable).Filter ) //@ TWI - bedwards: UI texture streaming support
 			{
 				warnf(TEXT("Settings mismatch for Texture Filter (No Mips)"));
 			}
@@ -3391,7 +3394,7 @@ defaultproperties
 
 	// Film Grain
 	FilmGrainMinMaxPreset(`MIN)={(FilmGrainScale=0.5)}
-	FilmGrainMinMaxPreset(`MAX)={(FilmGrainScale=2.0)}
+	FilmGrainMinMaxPreset(`MAX)={(FilmGrainScale=37.5)}
 
 	// Environment Detail
 	EnvironmentDetailPresets(0)={(DetailMode=0, DestructionLifetimeScale=0.25, bDisableCanBecomeDynamicWakeup=True, MakeDynamicCollisionThreshold=200, AllowLightFunctions=False)}
