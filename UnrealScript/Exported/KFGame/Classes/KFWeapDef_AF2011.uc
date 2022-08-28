@@ -13,12 +13,10 @@ defaultproperties
 {
    WeaponClassPath="KFGameContent.KFWeap_Pistol_AF2011"
    ImagePath="WEP_UI_AF2001_TEX.UI_WeaponSelect_AF2011"
-   BuyPrice=550
-   AmmoPricePerMag=23
-   UpgradePrice(0)=700
-   UpgradePrice(1)=1500
-   UpgradeSellPrice(0)=525
-   UpgradeSellPrice(1)=1650
+   BuyPrice=750
+   AmmoPricePerMag=27
+   UpgradePrice(0)=1500
+   UpgradeSellPrice(0)=390
    EffectiveRange=50
    Name="Default__KFWeapDef_AF2011"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

@@ -23,4 +23,9 @@ defaultproperties
 	RangeAttackIntervalHard=9.0
 	RangeAttackIntervalSuicidal=8.0
 	RangeAttackIntervalHellOnEarth=7.0
+
+	MinRangeAttackDist=250 //300
+	MaxRangeAttackDist=550 //4000
+
+	SprintWithinEnemyRange=(X=500.f,Y=5000.f)  //X=800.f,Y=1500
 }

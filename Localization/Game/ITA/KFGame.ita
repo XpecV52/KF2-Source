@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="Resettare Classe a 0? Non sarà possibile tornare indietro."
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="Bonus Reputazione"
 FailedToReachInventoryServerString="Connessione server Oggetti fallita. L'inventario non sarà disponibile."
 LoadingString="Caricamento..."
 DifficultyStrings[0]="Normale"
@@ -111,8 +111,8 @@ DiscordWaveString=": Ondata"
 ProceedToTutorialString="INIZIARE ADDESTRAMENTO?"
 ProceedToTutorialDescriptionString="Vai in un ambiente controllato e impara le basi. Una volta completato otterrai il lv. 1 in una classe selezionata lv. 0."
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="Funzionalità non disponibile nella prova gratuita"
+NetworkCheckFreeTrialFailedString="Errore di rete: impossibile verificare lo stato dell'evento gratuito. Controllare la connessione di rete"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RICOMPENSA COMPLETAMENTO EPIDEMIA"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="Gli spettatori non possono richiedere un kick"
 KickedFromServerString="Sei stato rimosso dal server"
 BannedFromServerString="Sei stato rimosso da questo server Non puoi rientrare in questo momento"
 ServerNoLongerAvailableString="Impossibile raggiungere il server"
-SkipTraderTimeString="Un giocatore ha scelto di saltare il commerciante. Apri il menu e clicca su “SALTA COMMERCIANTE” per votare di saltare il commerciante. Tutti i giocatori devono essere d’accordo."
+SkipTraderTimeString="SALTA COMMERCIANTE attivo. Seleziona “SALTA COMMERCIANTE” nel menu di gioco per votare.  Tutti i giocatori devono essere d’accordo."
 SkipTraderSuccessString="Voto “Salta commerciante” approvato!"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>CURATI"
 PressToBashWarning="COLPISCI"
 GamepadWeaponSelectHint="<%HOLD%>SELEZIONA ARMA"
 PlayerClotGrabWarningMessage="UCCIDI GLI ZED PER LA LIBERTÀ!"
+
 UseMinigameMessage="ATTIVA"
 UseMinigameGeneratorMessage="ATTIVA IL GENERATORE"
 DoshActivateMessage="COSTO DI ATTIVAZIONE"
-
+EMPGrabWarningMessage="*** ! IMMOBILIZZATO ! ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Le squadre sono sbilanciate e saranno regolate"
 
@@ -1763,7 +1764,7 @@ LargeMags="Caricatori ad alta capacità"
 LargeMagsDescription="Aumenta la capacità dei caricatori delle armi di classe del 50%."
 
 Backup="Ripiego"
-BackupDescription="Aumenta i danni da pistola 9mm e coltello del 110%, e aumenta la velocità di cambio arma del 50%."
+BackupDescription="Aumenta i danni da pistola 9mm e coltello del 50%, e aumenta la velocità di cambio arma del 50%."
 
 Impact="Colpi a percussione"
 ImpactDescription="Aumenta la forza d'urto delle armi di classe del 150%."
@@ -2097,7 +2098,7 @@ TacticalMovement="Movimento tattico"
 TacticalMovementDescription="Con armi di classe, nessuna penalità di movimento se si usa il mirino o se ci si muove accovacciati."
 
 Backup="Addest. combattimento ravvicinato"
-BackupDescription="Aumenta i danni da pistola 9mm e coltello del 110%. Ogni partita inizia con pistole 9mm doppie."
+BackupDescription="Aumenta i danni da pistola 9mm e coltello del 50%. Ogni partita inizia con pistole 9mm doppie."
 
 TacticalReload="Ricarica tattica"
 TacticalReloadDescription="Aumenta la velocità di ricarica con armi di classe."
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="Chiave cassa Horzine | Serie #13 - $2.49"
 USBSpitfire="USB Spitfire - $2.49"
 USBHighVoltage="Chiave USB alta tensione - $2.49"
 MerchSale="Offerta Merchandise KF2! -25% fino al 30/04/17 Cod. promo ZED"
-; placeholder03
+FreeTrial="ACQUISTA GIOCO COMPLETO"
 
 [Objectives]
 HoldVolume="DIFENDI L'AREA"
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="A tutta corrente!",DescriptionStr
 SpecialEventObjectiveInfoList[3]=(TitleString="Corsa al flusso",DescriptionString="Trasferisci l’acqua al motore a vapore nell’Aeronave");
 SpecialEventObjectiveInfoList[4]=(TitleString="Un grandioso vascello",DescriptionString="Vinci un incontro in modalità Difficile o superiore nell’Aeronave");
 
-AllCompleteRewardDescriptionString="Tuta Pigiama"
+AllCompleteRewardDescriptionString="Bundle Vestito Steampunk"
 
 ChanceDropDescriptionStrings[0]="Bigl. premio"
 ChanceDropDescriptionStrings[1]="Biglietto Oro"

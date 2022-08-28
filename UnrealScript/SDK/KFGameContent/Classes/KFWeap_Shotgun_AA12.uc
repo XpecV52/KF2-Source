@@ -13,7 +13,7 @@ class KFWeap_Shotgun_AA12 extends KFWeap_ShotgunBase;
 defaultproperties
 {
 	// Inventory
-	InventorySize=9
+	InventorySize=10
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
 
@@ -48,7 +48,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(DEFAULT_FIREMODE)=12.0 //25 //20
+	InstantHitDamage(DEFAULT_FIREMODE)=20.0 //25 //20
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AA12Shotgun'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	FireInterval(DEFAULT_FIREMODE)=0.2 // 300 RPM
@@ -61,7 +61,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(ALTFIRE_FIREMODE)=12.0 //25 //20
+	InstantHitDamage(ALTFIRE_FIREMODE)=20.0 //25 //20
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_AA12Shotgun'
 	PenetrationPower(ALTFIRE_FIREMODE)=2.0
 	FireInterval(ALTFIRE_FIREMODE)=0.2 // 300 RPM
@@ -118,6 +118,5 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.65f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.9f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
 }

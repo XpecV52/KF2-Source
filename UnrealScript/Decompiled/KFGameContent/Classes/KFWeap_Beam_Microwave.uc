@@ -213,7 +213,7 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=8
+    InventorySize=9
     MagazineCapacity=100
     MeshIronSightFOV=52
     PlayerIronSightFOV=80

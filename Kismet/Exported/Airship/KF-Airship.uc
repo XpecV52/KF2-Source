@@ -208,56 +208,22 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_25
 End Object
 
 Begin Object Class=InterpData Name=InterpData_25
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_10
-         AkEvents(0)=(Time=10.493827,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Open')
-         AkEvents(1)=(Time=38.065842,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Close')
-         TrackTitle="AkEvent_Doors"
-         Name="InterpTrackAkEvent_10"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_4
-         AkEvents(0)=(Time=0.148368,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_LP')
-         AkEvents(1)=(Time=43.409431,Event=AkEvent'WW_ENV_Airship.Stop_ENV_Airship_MiniAirship_Engine_LP')
-         TrackTitle="AkEvent_Motor"
-         Name="InterpTrackAkEvent_4"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_6
-         AkEvents(0)=(Time=0.178040,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Approach')
-         TrackTitle="AkEvent_Approach"
-         Name="InterpTrackAkEvent_6"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_8
-         AkEvents(0)=(Time=40.924099,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Depart')
-         TrackTitle="AkEvent_Depart"
-         Name="InterpTrackAkEvent_8"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=8516.607422,Y=11363.731445,Z=7824.004395),ArriveTangent=(X=2177.170166,Y=1594.479858,Z=859.945007),LeaveTangent=(X=2177.170166,Y=1594.479858,Z=859.945007),InterpMode=CIM_CurveAutoClamped),(InVal=5.800000,OutVal=(X=12627.586914,Y=13278.461914,Z=8790.328125),ArriveTangent=(X=262.346313,Y=42.420166,Z=0.000000),LeaveTangent=(X=262.346313,Y=42.420166,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=13015.097656,Y=13337.611328,Z=8750.326172),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=13015.097656,Y=13337.611328,Z=8750.326172),InterpMode=CIM_CurveAutoClamped),(InVal=42.000000,OutVal=(X=13445.107422,Y=13330.419922,Z=8798.327148),ArriveTangent=(X=321.865540,Y=-5.750610,Z=0.000000),LeaveTangent=(X=321.865540,Y=-5.750610,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=25481.341797,Y=-3332.102539,Z=1534.324707),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.000000,Z=-49.042969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.495277),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.495277),InterpMode=CIM_CurveAutoClamped),(InVal=5.800000,OutVal=(X=0.000000,Y=0.000000,Z=-67.873535),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.646729),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.646729),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.923340),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.923340),InterpMode=CIM_CurveAutoClamped),(InVal=42.000000,OutVal=(X=0.000000,Y=0.000000,Z=-103.447266),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.764094),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.764094),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=-170.991211),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=4.000000),(Time=5.800000),(Time=10.000000),(Time=40.000000),(Time=42.000000),(Time=50.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackAkEvent_4'
-      InterpTracks(2)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackAkEvent_6'
-      InterpTracks(3)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackAkEvent_8'
-      InterpTracks(4)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackAkEvent_10'
-      GroupName="DummyBox"
-      GroupColor=(B=216,G=0,R=102,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
+         EventTrack(0)=(Time=5.000000,EventName="ZapApproach1")
+         EventTrack(1)=(Time=10.000000,EventName="ZapIdle1")
+         EventTrack(2)=(Time=40.000000,EventName="ZapLeave1")
+         EventTrack(3)=(Time=42.000000,EventName="ZapOff1")
+         Name="InterpTrackEvent_1"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=10.000000,EventName="Dropoff?1")
+         EventTrack(1)=(Time=12.000000,EventName="Airship1SpawnOn")
+         EventTrack(2)=(Time=38.000000,EventName="Airship1SpawnOff")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="Approach_V1",AnimPlayRate=1.000000)
          AnimSeqs(1)=(StartTime=10.000000,AnimSeqName="Idle_Drop_Intro_V1",AnimPlayRate=1.000000)
@@ -279,21 +245,6 @@ Begin Object Class=InterpData Name=InterpData_25
          Name="InterpTrackAnimControl_0"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=10.000000,EventName="Dropoff?1")
-         EventTrack(1)=(Time=12.000000,EventName="Airship1SpawnOn")
-         EventTrack(2)=(Time=38.000000,EventName="Airship1SpawnOff")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
-         EventTrack(0)=(Time=5.000000,EventName="ZapApproach1")
-         EventTrack(1)=(Time=10.000000,EventName="ZapIdle1")
-         EventTrack(2)=(Time=40.000000,EventName="ZapLeave1")
-         EventTrack(3)=(Time=42.000000,EventName="ZapOff1")
-         Name="InterpTrackEvent_1"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
       InterpTracks(0)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1.InterpTrackEvent_0'
       InterpTracks(1)=InterpTrackAnimControl'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1.InterpTrackAnimControl_0'
       InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1.InterpTrackEvent_1'
@@ -302,6 +253,55 @@ Begin Object Class=InterpData Name=InterpData_25
       GroupAnimSets(0)=AnimSet'ENV_AirShip_ANIM_ANIM.ENV_AirShip_TransportShip_ANIM'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=8516.607422,Y=11363.731445,Z=7824.004395),ArriveTangent=(X=2177.170166,Y=1594.479858,Z=859.945007),LeaveTangent=(X=2177.170166,Y=1594.479858,Z=859.945007),InterpMode=CIM_CurveAutoClamped),(InVal=5.800000,OutVal=(X=12627.586914,Y=13278.461914,Z=8790.328125),ArriveTangent=(X=262.346313,Y=42.420166,Z=0.000000),LeaveTangent=(X=262.346313,Y=42.420166,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=13015.097656,Y=13337.611328,Z=8750.326172),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=13015.097656,Y=13337.611328,Z=8750.326172),InterpMode=CIM_CurveAutoClamped),(InVal=42.000000,OutVal=(X=13445.107422,Y=13330.419922,Z=8798.327148),ArriveTangent=(X=321.865540,Y=-5.750610,Z=0.000000),LeaveTangent=(X=321.865540,Y=-5.750610,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=25481.341797,Y=-3332.102539,Z=1534.324707),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.000000,Z=-49.042969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.495277),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.495277),InterpMode=CIM_CurveAutoClamped),(InVal=5.800000,OutVal=(X=0.000000,Y=0.000000,Z=-67.873535),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.646729),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.646729),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.923340),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.923340),InterpMode=CIM_CurveAutoClamped),(InVal=42.000000,OutVal=(X=0.000000,Y=0.000000,Z=-103.447266),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.764094),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.764094),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=-170.991211),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=4.000000),(Time=5.800000),(Time=10.000000),(Time=40.000000),(Time=42.000000),(Time=50.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_8
+         AkEvents(0)=(Time=40.924099,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Depart')
+         TrackTitle="AkEvent_Depart"
+         Name="InterpTrackAkEvent_8"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_6
+         AkEvents(0)=(Time=0.178040,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Approach')
+         TrackTitle="AkEvent_Approach"
+         Name="InterpTrackAkEvent_6"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_4
+         AkEvents(0)=(Time=0.148368,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_LP')
+         AkEvents(1)=(Time=43.409431,Event=AkEvent'WW_ENV_Airship.Stop_ENV_Airship_MiniAirship_Engine_LP')
+         TrackTitle="AkEvent_Motor"
+         Name="InterpTrackAkEvent_4"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_10
+         AkEvents(0)=(Time=10.493827,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Open')
+         AkEvents(1)=(Time=38.065842,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Close')
+         TrackTitle="AkEvent_Doors"
+         Name="InterpTrackAkEvent_10"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackAkEvent_4'
+      InterpTracks(2)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackAkEvent_6'
+      InterpTracks(3)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackAkEvent_8'
+      InterpTracks(4)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackAkEvent_10'
+      GroupName="DummyBox"
+      GroupColor=(B=216,G=0,R=102,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=50.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1'
@@ -1965,9 +1965,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_9
    InputLinks(2)=(DrawY=7578,OverrideDelta=59)
    InputLinks(3)=(DrawY=7600,OverrideDelta=81)
    InputLinks(4)=(DrawY=7622,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_67')),DrawY=7541,OverrideDelta=22)
-   OutputLinks(1)=(DrawY=7578,OverrideDelta=59)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_120')),LinkDesc="CoalWheelMove",DrawY=7615,OverrideDelta=96)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_67')),DrawY=7536,OverrideDelta=17)
+   OutputLinks(1)=(DrawY=7564,OverrideDelta=45)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),LinkDesc="CoalWheelMove",DrawY=7592,OverrideDelta=73)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_120')),LinkDesc="CoalWheelEnd",DrawY=7620,OverrideDelta=101)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9'),DrawX=6889,OverrideDelta=50)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),LinkDesc="Wheel",MinVars=0,DrawX=6941,OverrideDelta=97)
    ObjInstanceVersion=2
@@ -1981,22 +1982,7 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_9
 End Object
 
 Begin Object Class=InterpData Name=InterpData_9
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(ViewStartInput=-2.402765,ViewEndInput=5.674959,ViewStartOutput=-2.027595,ViewEndOutput=2.647010)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=0.004579,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_CoalWheel_Move')
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(EventName="CoalWheelMove")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=0.000732,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAuto),(InVal=1.200000,OutVal=(X=0.000732,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000174,Y=0.000000,Z=-0.000174),LeaveTangent=(X=0.000174,Y=0.000000,Z=-0.000174),InterpMode=CIM_CurveAuto),(InVal=1.400000,OutVal=(X=0.000977,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000814,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000814,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAuto),(InVal=1.500000,OutVal=(X=0.000977,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000407,Y=0.000000,Z=-0.000814),LeaveTangent=(X=0.000407,Y=0.000000,Z=-0.000814),InterpMode=CIM_CurveAuto),(InVal=1.700000,OutVal=(X=0.001099,Y=0.000000,Z=-0.000732),ArriveTangent=(X=-0.000488,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000488,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAuto),(InVal=2.000000,OutVal=(X=0.000732,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAuto)))
          EulerTrack=(Points=((OutVal=(X=0.000000,Y=-61.875000,Z=0.000000),InterpMode=CIM_CurveAuto),(InVal=1.200000,OutVal=(X=0.000000,Y=28.125000,Z=0.000000),ArriveTangent=(X=0.000000,Y=64.411270,Z=0.000000),LeaveTangent=(X=0.000000,Y=64.411270,Z=0.000000),InterpMode=CIM_CurveAuto),(InVal=1.400000,OutVal=(X=0.000000,Y=28.300781,Z=0.000000),InterpMode=CIM_CurveAuto),(InVal=1.500000,OutVal=(X=0.000000,Y=28.125000,Z=0.000000),ArriveTangent=(X=0.000000,Y=1.171875,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.171875,Z=0.000000),InterpMode=CIM_CurveAuto),(InVal=1.700000,OutVal=(X=0.000000,Y=28.652344,Z=0.000000),InterpMode=CIM_CurveAuto),(InVal=2.000000,OutVal=(X=0.000000,Y=28.125000,Z=0.000000),LeaveTangent=(X=0.000000,Y=44.618690,Z=0.000000),InterpMode=CIM_CurveAuto)))
@@ -2005,13 +1991,34 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_3
+         EventTrack(0)=(Time=1.000000,EventName="CoalWheelEnd")
+         Name="InterpTrackEvent_3"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(EventName="CoalWheelMove")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=0.004579,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_CoalWheel_Move')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
       InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackAkEvent_0'
       InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackEvent_0'
+      InterpTracks(3)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackEvent_3'
       GroupName="Wheel"
       GroupColor=(B=207,G=118,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(ViewStartInput=-2.402765,ViewEndInput=5.674959,ViewStartOutput=-2.027595,ViewEndOutput=2.647010)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0'
@@ -2218,24 +2225,55 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
 End Object
 
 Begin Object Class=InterpData Name=InterpData_12
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatMaterialParam'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_1.InterpTrackFloatMaterialParam_1',CurveColor=(B=0,G=136,R=197,A=255),CurveName="NewGroup_Float Material Param")),ViewStartInput=-0.264660,ViewEndInput=3.882541,ViewStartOutput=-1.543148,ViewEndOutput=0.456853)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
+   Begin Object Class=InterpGroup Name=InterpGroup_4
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=8.000000,InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-320.000031),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-320.000031),InterpMode=CIM_CurveAutoClamped),(InVal=22.000000,InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InVal=8.000000,InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,InterpMode=CIM_CurveAutoClamped),(InVal=22.000000,InterpMode=CIM_CurveAutoClamped)))
+         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.000031,Z=198.000046)),(InVal=20.000000,OutVal=(X=0.000000,Y=-0.000031,Z=198.000046)),(InVal=22.000000)))
+         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
          LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
          MoveFrame=IMF_RelativeToInitial
          Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackMove_3'
-      GroupName="Boiler1HeatingRod"
-      GroupColor=(B=58,G=0,R=228,A=255)
-      Name="InterpGroup_0"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=8.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
+         AkEvents(1)=(Time=20.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_4.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_4.InterpTrackAkEvent_1'
+      GroupName="Boiler1Door2"
+      GroupColor=(B=0,G=189,R=147,A=255)
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000046)),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000046)),(InVal=22.000000)))
+         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
+         LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=10.000000,EventName="Boiler1Sealed")
+         EventTrack(1)=(Time=20.000000,EventName="Boiler1Unsealed")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=8.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
+         AkEvents(1)=(Time=20.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackAkEvent_0'
+      InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackEvent_0'
+      GroupName="Boiler1Door1"
+      GroupColor=(B=139,G=0,R=195,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -2252,56 +2290,25 @@ Begin Object Class=InterpData Name=InterpData_12
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=8.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
-         AkEvents(1)=(Time=20.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=10.000000,EventName="Boiler1Sealed")
-         EventTrack(1)=(Time=20.000000,EventName="Boiler1Unsealed")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000046)),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000046)),(InVal=22.000000)))
-         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
+         PosTrack=(Points=((InVal=8.000000,InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-320.000031),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-320.000031),InterpMode=CIM_CurveAutoClamped),(InVal=22.000000,InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InVal=8.000000,InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,InterpMode=CIM_CurveAutoClamped),(InVal=22.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
          MoveFrame=IMF_RelativeToInitial
          Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackAkEvent_0'
-      InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackEvent_0'
-      GroupName="Boiler1Door1"
-      GroupColor=(B=139,G=0,R=195,A=255)
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackMove_3'
+      GroupName="Boiler1HeatingRod"
+      GroupColor=(B=58,G=0,R=228,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=8.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
-         AkEvents(1)=(Time=20.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.000031,Z=198.000046)),(InVal=20.000000,OutVal=(X=0.000000,Y=-0.000031,Z=198.000046)),(InVal=22.000000)))
-         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
-         LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_4.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_4.InterpTrackAkEvent_1'
-      GroupName="Boiler1Door2"
-      GroupColor=(B=0,G=189,R=147,A=255)
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatMaterialParam'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_1.InterpTrackFloatMaterialParam_1',CurveColor=(B=0,G=136,R=197,A=255),CurveName="NewGroup_Float Material Param")),ViewStartInput=-0.264660,ViewEndInput=3.882541,ViewStartOutput=-1.543148,ViewEndOutput=0.456853)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=25.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2'
@@ -2572,59 +2579,18 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_11
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
-         AkEvents(0)=(Time=8.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
-         AkEvents(1)=(Time=20.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
-         Name="InterpTrackAkEvent_2"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_3
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Airship_THREE_MAT.boiler.ENV_Airship_Boiler_Heating_Element_OFF2_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-AIRSHIP.TheWorld:PersistentLevel.InterpActor_37.StaticMeshComponent_2853')))
+         ParamName="Emissive_Intensity"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=75.000000,InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=75.000000,InterpMode=CIM_CurveAutoClamped),(InVal=23.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_3"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
       End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
-         EventTrack(0)=(Time=10.000000,EventName="Boiler2Sealed")
-         EventTrack(1)=(Time=20.000000,EventName="Boiler2Unsealed")
-         Name="InterpTrackEvent_1"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000092)),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000092)),(InVal=22.000000)))
-         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
-         LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_2.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_2.InterpTrackAkEvent_2'
-      InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_2.InterpTrackEvent_1'
-      GroupName="Boiler2Door1"
-      GroupColor=(B=139,G=0,R=195,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
-         AkEvents(0)=(Time=8.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
-         AkEvents(1)=(Time=20.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
-         Name="InterpTrackAkEvent_3"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.000061,Z=198.000092)),(InVal=20.000000,OutVal=(X=0.000000,Y=-0.000061,Z=198.000092)),(InVal=22.000000)))
-         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
-         LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_4.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_4.InterpTrackAkEvent_3'
-      GroupName="Boiler2Door2"
-      GroupColor=(B=0,G=189,R=147,A=255)
-      Name="InterpGroup_4"
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_6.InterpTrackFloatMaterialParam_3'
+      GroupName="Rod2Material"
+      GroupColor=(B=164,G=0,R=176,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
@@ -2642,19 +2608,60 @@ Begin Object Class=InterpData Name=InterpData_11
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_3
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Airship_THREE_MAT.boiler.ENV_Airship_Boiler_Heating_Element_OFF2_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-AIRSHIP.TheWorld:PersistentLevel.InterpActor_37.StaticMeshComponent_2853')))
-         ParamName="Emissive_Intensity"
-         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=75.000000,InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=75.000000,InterpMode=CIM_CurveAutoClamped),(InVal=23.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_3"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.000061,Z=198.000092)),(InVal=20.000000,OutVal=(X=0.000000,Y=-0.000061,Z=198.000092)),(InVal=22.000000)))
+         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
+         LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_6.InterpTrackFloatMaterialParam_3'
-      GroupName="Rod2Material"
-      GroupColor=(B=164,G=0,R=176,A=255)
-      Name="InterpGroup_6"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
+         AkEvents(0)=(Time=8.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
+         AkEvents(1)=(Time=20.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
+         Name="InterpTrackAkEvent_3"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_4.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_4.InterpTrackAkEvent_3'
+      GroupName="Boiler2Door2"
+      GroupColor=(B=0,G=189,R=147,A=255)
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000092)),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000092)),(InVal=22.000000)))
+         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
+         LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
+         EventTrack(0)=(Time=10.000000,EventName="Boiler2Sealed")
+         EventTrack(1)=(Time=20.000000,EventName="Boiler2Unsealed")
+         Name="InterpTrackEvent_1"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
+         AkEvents(0)=(Time=8.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
+         AkEvents(1)=(Time=20.000000,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_BoilerRoomDoor_Open')
+         Name="InterpTrackAkEvent_2"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_2.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_2.InterpTrackAkEvent_2'
+      InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_2.InterpTrackEvent_1'
+      GroupName="Boiler2Door1"
+      GroupColor=(B=139,G=0,R=195,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=25.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_2'
@@ -3593,12 +3600,15 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_191
 End Object
 
 Begin Object Class=InterpData Name=InterpData_7
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Tabs(0)=(ViewStartInput=-408.849945,ViewEndInput=361.501251,ViewStartOutput=-38.509029,ViewEndOutput=77.719215)
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=0.050000,OutVal=(X=-0.000671,Y=-0.000244,Z=-0.000122)),(InVal=0.100000,OutVal=(X=-0.000610,Y=-0.000244,Z=-0.000122)),(InVal=0.150000,OutVal=(X=-0.000427,Y=-0.000244,Z=-0.000122)),(InVal=10.000000,OutVal=(X=-0.000061,Y=0.000000,Z=0.000000)),(InVal=20.000000,OutVal=(X=-0.000305,Y=0.000000,Z=-0.000122)),(InVal=20.050001,OutVal=(X=-0.000549,Y=0.000000,Z=-0.000122)),(InVal=20.100000,OutVal=(X=-0.000488,Y=0.000000,Z=-0.000122)),(InVal=20.150000,OutVal=(X=-0.000305,Y=0.000000,Z=-0.000122)),(InVal=30.000000,OutVal=(X=-0.000366,Y=0.000000,Z=-0.000122)),(InVal=40.000000,OutVal=(X=-0.000244,Y=0.000000,Z=-0.000122)),(InVal=40.049999,OutVal=(X=-0.000610,Y=0.000000,Z=-0.000122)),(InVal=40.100002,OutVal=(X=-0.000549,Y=0.000000,Z=-0.000122)),(InVal=40.150002,OutVal=(X=-0.000366,Y=0.000000,Z=-0.000122)),(InVal=50.000000,OutVal=(X=-0.000183,Y=0.000000,Z=-0.000122)),(InVal=60.000000,OutVal=(X=-0.000183,Y=0.000000,Z=-0.000122)),(InVal=60.049999,OutVal=(X=-0.000671,Y=0.000000,Z=-0.000122)),(InVal=60.100002,OutVal=(X=-0.000610,Y=0.000000,Z=-0.000122)),(InVal=60.150002,OutVal=(X=-0.000427,Y=0.000000,Z=-0.000122)),(InVal=70.000000,OutVal=(X=-0.000183,Y=0.000000,Z=-0.000122)),(InVal=80.000000,OutVal=(X=-0.000183,Y=0.000000,Z=-0.000122))))
+         EulerTrack=(Points=(,(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=0.197754)),(InVal=0.100000,OutVal=(X=0.000000,Y=0.000000,Z=-0.043945)),(InVal=0.150000),(InVal=10.000000),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000)),(InVal=20.050001,OutVal=(X=0.000000,Y=0.000000,Z=90.197754)),(InVal=20.100000,OutVal=(X=0.000000,Y=0.000000,Z=89.956055)),(InVal=20.150000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000)),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000)),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=180.000000)),(InVal=40.049999,OutVal=(X=0.000000,Y=0.000000,Z=180.197754)),(InVal=40.100002,OutVal=(X=0.000000,Y=0.000000,Z=179.956055)),(InVal=40.150002,OutVal=(X=0.000000,Y=0.000000,Z=180.000000)),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=180.000000)),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=270.000000)),(InVal=60.049999,OutVal=(X=0.000000,Y=0.000000,Z=270.197754)),(InVal=60.100002,OutVal=(X=0.000000,Y=0.000000,Z=269.956055)),(InVal=60.150002,OutVal=(X=0.000000,Y=0.000000,Z=270.000000)),(InVal=70.000000,OutVal=(X=0.000000,Y=0.000000,Z=270.000000)),(InVal=80.000000,OutVal=(X=0.000000,Y=0.000000,Z=360.000000))))
+         LookupTrack=(Points=(,(Time=0.050000),(Time=0.100000),(Time=0.150000),(Time=10.000000),(Time=20.000000),(Time=20.050001),(Time=20.100000),(Time=20.150000),(Time=30.000000),(Time=40.000000),(Time=40.049999),(Time=40.100002),(Time=40.150002),(Time=50.000000),(Time=60.000000),(Time=60.049999),(Time=60.100002),(Time=60.150002),(Time=70.000000),(Time=80.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
       Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
          EventTrack(0)=(EventName="ArmPosition1")
          EventTrack(1)=(Time=10.000000,EventName="ArmPosition1Ended")
@@ -3611,20 +3621,17 @@ Begin Object Class=InterpData Name=InterpData_7
          Name="InterpTrackEvent_0"
          ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
       End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=0.050000,OutVal=(X=-0.000671,Y=-0.000244,Z=-0.000122)),(InVal=0.100000,OutVal=(X=-0.000610,Y=-0.000244,Z=-0.000122)),(InVal=0.150000,OutVal=(X=-0.000427,Y=-0.000244,Z=-0.000122)),(InVal=10.000000,OutVal=(X=-0.000061,Y=0.000000,Z=0.000000)),(InVal=20.000000,OutVal=(X=-0.000305,Y=0.000000,Z=-0.000122)),(InVal=20.050001,OutVal=(X=-0.000549,Y=0.000000,Z=-0.000122)),(InVal=20.100000,OutVal=(X=-0.000488,Y=0.000000,Z=-0.000122)),(InVal=20.150000,OutVal=(X=-0.000305,Y=0.000000,Z=-0.000122)),(InVal=30.000000,OutVal=(X=-0.000366,Y=0.000000,Z=-0.000122)),(InVal=40.000000,OutVal=(X=-0.000244,Y=0.000000,Z=-0.000122)),(InVal=40.049999,OutVal=(X=-0.000610,Y=0.000000,Z=-0.000122)),(InVal=40.100002,OutVal=(X=-0.000549,Y=0.000000,Z=-0.000122)),(InVal=40.150002,OutVal=(X=-0.000366,Y=0.000000,Z=-0.000122)),(InVal=50.000000,OutVal=(X=-0.000183,Y=0.000000,Z=-0.000122)),(InVal=60.000000,OutVal=(X=-0.000183,Y=0.000000,Z=-0.000122)),(InVal=60.049999,OutVal=(X=-0.000671,Y=0.000000,Z=-0.000122)),(InVal=60.100002,OutVal=(X=-0.000610,Y=0.000000,Z=-0.000122)),(InVal=60.150002,OutVal=(X=-0.000427,Y=0.000000,Z=-0.000122)),(InVal=70.000000,OutVal=(X=-0.000183,Y=0.000000,Z=-0.000122)),(InVal=80.000000,OutVal=(X=-0.000183,Y=0.000000,Z=-0.000122))))
-         EulerTrack=(Points=(,(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=0.197754)),(InVal=0.100000,OutVal=(X=0.000000,Y=0.000000,Z=-0.043945)),(InVal=0.150000),(InVal=10.000000),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000)),(InVal=20.050001,OutVal=(X=0.000000,Y=0.000000,Z=90.197754)),(InVal=20.100000,OutVal=(X=0.000000,Y=0.000000,Z=89.956055)),(InVal=20.150000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000)),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000)),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=180.000000)),(InVal=40.049999,OutVal=(X=0.000000,Y=0.000000,Z=180.197754)),(InVal=40.100002,OutVal=(X=0.000000,Y=0.000000,Z=179.956055)),(InVal=40.150002,OutVal=(X=0.000000,Y=0.000000,Z=180.000000)),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=180.000000)),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=270.000000)),(InVal=60.049999,OutVal=(X=0.000000,Y=0.000000,Z=270.197754)),(InVal=60.100002,OutVal=(X=0.000000,Y=0.000000,Z=269.956055)),(InVal=60.150002,OutVal=(X=0.000000,Y=0.000000,Z=270.000000)),(InVal=70.000000,OutVal=(X=0.000000,Y=0.000000,Z=270.000000)),(InVal=80.000000,OutVal=(X=0.000000,Y=0.000000,Z=360.000000))))
-         LookupTrack=(Points=(,(Time=0.050000),(Time=0.100000),(Time=0.150000),(Time=10.000000),(Time=20.000000),(Time=20.050001),(Time=20.100000),(Time=20.150000),(Time=30.000000),(Time=40.000000),(Time=40.049999),(Time=40.100002),(Time=40.150002),(Time=50.000000),(Time=60.000000),(Time=60.049999),(Time=60.100002),(Time=60.150002),(Time=70.000000),(Time=80.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
       InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0.InterpTrackEvent_0'
       GroupName="Wheel"
       GroupColor=(B=207,G=118,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Tabs(0)=(ViewStartInput=-408.849945,ViewEndInput=361.501251,ViewStartOutput=-38.509029,ViewEndOutput=77.719215)
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=80.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0'
@@ -6503,11 +6510,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_326
 End Object
 
 Begin Object Class=InterpData Name=InterpData_10
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0.InterpTrackMove_0',CurveColor=(B=207,G=118,R=0,A=255),CurveName="Wheel_Movement")),ViewStartInput=1.905628,ViewEndInput=2.151893,ViewStartOutput=-0.007983,ViewEndOutput=0.004099)
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=0.003906,Y=0.000000,Z=0.000641),InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.003906,Y=-0.000244,Z=0.000946),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.003906,Y=0.000000,Z=0.000641),InterpMode=CIM_CurveAutoClamped)))
@@ -6522,6 +6524,11 @@ Begin Object Class=InterpData Name=InterpData_10
       GroupColor=(B=207,G=118,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0.InterpTrackMove_0',CurveColor=(B=207,G=118,R=0,A=255),CurveName="Wheel_Movement")),ViewStartInput=1.905628,ViewEndInput=2.151893,ViewStartOutput=-0.007983,ViewEndOutput=0.004099)
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0'
@@ -6613,11 +6620,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_17
 End Object
 
 Begin Object Class=InterpData Name=InterpData_17
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Tabs(0)=(ViewStartInput=-0.310181,ViewEndInput=6.836466,ViewStartOutput=12.909475,ViewEndOutput=17.872446)
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000488,Y=0.000099,Z=0.000366),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -6632,6 +6634,11 @@ Begin Object Class=InterpData Name=InterpData_17
       GroupColor=(B=207,G=118,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Tabs(0)=(ViewStartInput=-0.310181,ViewEndInput=6.836466,ViewStartOutput=12.909475,ViewEndOutput=17.872446)
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_0'
@@ -6864,9 +6871,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_252
 End Object
 
 Begin Object Class=InterpData Name=InterpData_22
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="CamTrack_Main",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=203,G=126,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -6883,16 +6897,9 @@ Begin Object Class=InterpData Name=InterpData_22
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="CamTrack_Main",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=203,G=126,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=213.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroup_0'
@@ -7962,10 +7969,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_223
 End Object
 
 Begin Object Class=InterpData Name=InterpData_13
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000244,Y=-0.000244,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -7980,6 +7983,10 @@ Begin Object Class=InterpData Name=InterpData_13
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_0'
@@ -8041,10 +8048,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_14
 End Object
 
 Begin Object Class=InterpData Name=InterpData_14
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000244,Y=-0.000244,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -8059,6 +8062,10 @@ Begin Object Class=InterpData Name=InterpData_14
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpGroup_0'
@@ -8140,10 +8147,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_225
 End Object
 
 Begin Object Class=InterpData Name=InterpData_15
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000244,Y=-0.000244,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -8158,6 +8161,10 @@ Begin Object Class=InterpData Name=InterpData_15
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpGroup_0'
@@ -8715,10 +8722,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000488,Y=0.000137,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -8733,6 +8736,10 @@ Begin Object Class=InterpData Name=InterpData_0
       GroupColor=(B=207,G=118,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
@@ -8787,11 +8794,6 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_16
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_0.InterpTrackMove_0',CurveColor=(B=207,G=118,R=0,A=255),CurveName="Wheel_Movement")),ViewStartInput=-7.129838,ViewEndInput=12.970109,ViewStartOutput=-6.529852,ViewEndOutput=7.428441)
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000977,Y=0.000732,Z=0.000488)),(InVal=2.000000,OutVal=(X=0.000488,Y=0.000488,Z=0.000244))))
@@ -8806,6 +8808,11 @@ Begin Object Class=InterpData Name=InterpData_16
       GroupColor=(B=207,G=118,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_0.InterpTrackMove_0',CurveColor=(B=207,G=118,R=0,A=255),CurveName="Wheel_Movement")),ViewStartInput=-7.129838,ViewEndInput=12.970109,ViewStartOutput=-6.529852,ViewEndOutput=7.428441)
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_0'
@@ -9168,10 +9175,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_339
 End Object
 
 Begin Object Class=InterpData Name=InterpData_8
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000244,Y=-0.000244,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -9186,6 +9189,10 @@ Begin Object Class=InterpData Name=InterpData_8
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_0'
@@ -9382,10 +9389,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=-0.000641,Z=0.000854),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -9400,6 +9403,10 @@ Begin Object Class=InterpData Name=InterpData_2
       GroupColor=(B=187,G=0,R=151,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0'
@@ -9441,10 +9448,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_230
 End Object
 
 Begin Object Class=InterpData Name=InterpData_1
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=-0.000656,Z=0.000854),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -9459,6 +9462,10 @@ Begin Object Class=InterpData Name=InterpData_1
       GroupColor=(B=187,G=0,R=151,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
@@ -11951,10 +11958,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_20
 End Object
 
 Begin Object Class=InterpData Name=InterpData_20
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=0.000000,Y=0.000122,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,ArriveTangent=(X=0.000000,Y=-0.000496,Z=0.000895),LeaveTangent=(X=0.000000,Y=-0.000496,Z=0.000895),InterpMode=CIM_CurveAutoClamped),(InVal=2.500000,OutVal=(X=0.000000,Y=-0.000656,Z=0.000854),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -11969,6 +11972,10 @@ Begin Object Class=InterpData Name=InterpData_20
       GroupColor=(B=187,G=0,R=151,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_0'
@@ -12428,81 +12435,239 @@ Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_19
 End Object
 
 Begin Object Class=Sequence Name=Light7
-   Begin Object Class=InterpData Name=InterpData_5
-      Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-         Name="InterpCurveEdSetup_0"
-         ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-      End Object
-      Begin Object Class=InterpGroup Name=InterpGroup_0
-         Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-            EventTrack(0)=(Time=22.700001,EventName="Jump?")
-            Name="InterpTrackEvent_0"
-            ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-         End Object
-         Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
-            EventTrack(0)=(Time=27.200001,EventName="Jumped!")
-            Name="InterpTrackEvent_1"
-            ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-         End Object
-         Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-            PosTrack=(Points=((OutVal=(X=1119.987915,Y=5.218384,Z=0.148254),InterpMode=CIM_CurveAuto),(InVal=0.900000,OutVal=(X=1020.754639,Y=206.293152,Z=-115.039352),ArriveTangent=(X=-117.040482,Y=346.823914,Z=-231.195145),LeaveTangent=(X=-117.040482,Y=346.823914,Z=-231.195145),InterpMode=CIM_CurveUser),(InVal=2.000000,OutVal=(X=879.684326,Y=470.754944,Z=-311.099121),ArriveTangent=(X=-182.701263,Y=159.410965,Z=-124.182396),LeaveTangent=(X=-182.701263,Y=159.410965,Z=-124.182396),InterpMode=CIM_CurveAuto),(InVal=3.200000,OutVal=(X=600.541748,Y=572.938354,Z=-400.658875),ArriveTangent=(X=-247.098846,Y=61.794395,Z=-44.158360),LeaveTangent=(X=-247.098846,Y=61.794395,Z=-44.158360),InterpMode=CIM_CurveUser),(InVal=5.000000,OutVal=(X=236.958008,Y=665.429993,Z=-445.703674),ArriveTangent=(X=-229.006973,Y=14.677534,Z=-8.335954),LeaveTangent=(X=-229.006973,Y=14.677534,Z=-8.335954),InterpMode=CIM_CurveUser),(InVal=6.900000,OutVal=(X=-188.838806,Y=713.457397,Z=-486.429138),ArriveTangent=(X=-214.390961,Y=-23.066854,Z=15.409954),LeaveTangent=(X=-214.390961,Y=-23.066854,Z=15.409954),InterpMode=CIM_CurveUser),(InVal=8.700000,OutVal=(X=-480.310974,Y=534.663269,Z=-355.618896),ArriveTangent=(X=-120.830673,Y=-194.760422,Z=131.556931),LeaveTangent=(X=-120.830673,Y=-194.760422,Z=131.556931),InterpMode=CIM_CurveUser),(InVal=10.200000,OutVal=(X=-581.167297,Y=273.718018,Z=-180.689194),ArriveTangent=(X=-35.188965,Y=-187.077972,Z=128.642563),LeaveTangent=(X=-35.188965,Y=-187.077972,Z=128.642563),InterpMode=CIM_CurveUser),(InVal=11.600000,OutVal=(X=-640.031677,Y=7.812248,Z=6.738953),ArriveTangent=(X=17.248796,Y=-197.451141,Z=132.128372),LeaveTangent=(X=17.248796,Y=-197.451141,Z=132.128372),InterpMode=CIM_CurveAuto),(InVal=13.000000,OutVal=(X=-532.870667,Y=-279.145203,Z=189.270279),ArriveTangent=(X=157.399734,Y=-130.374329,Z=79.280983),LeaveTangent=(X=157.399734,Y=-130.374329,Z=79.280983),InterpMode=CIM_CurveUser),(InVal=14.300000,OutVal=(X=-327.565491,Y=-492.503174,Z=322.549683),ArriveTangent=(X=223.554977,Y=-92.203766,Z=61.754654),LeaveTangent=(X=223.554977,Y=-92.203766,Z=61.754654),InterpMode=CIM_CurveUser),(InVal=15.800000,OutVal=(X=-48.763733,Y=-556.679626,Z=375.132813),ArriveTangent=(X=199.631714,Y=-4.145827,Z=12.323256),LeaveTangent=(X=199.631714,Y=-4.145827,Z=12.323256),InterpMode=CIM_CurveUser),(InVal=17.300001,OutVal=(X=240.208374,Y=-576.355042,Z=397.995056),ArriveTangent=(X=212.938370,Y=-24.710400,Z=16.653526),LeaveTangent=(X=212.938370,Y=-24.710400,Z=16.653526),InterpMode=CIM_CurveUser),(InVal=18.800001,OutVal=(X=525.193420,Y=-572.638062,Z=386.284607),ArriveTangent=(X=277.793701,Y=37.352604,Z=-24.930321),LeaveTangent=(X=277.793701,Y=37.352604,Z=-24.930321),InterpMode=CIM_CurveUser),(InVal=20.200001,OutVal=(X=826.104065,Y=-458.994446,Z=301.022583),ArriveTangent=(X=179.509079,Y=96.193176,Z=-73.388832),LeaveTangent=(X=179.509079,Y=96.193176,Z=-73.388832),InterpMode=CIM_CurveUser),(InVal=21.500000,OutVal=(X=1058.614014,Y=-249.166153,Z=148.349426),ArriveTangent=(X=68.474480,Y=120.501854,Z=-80.625679),LeaveTangent=(X=68.474480,Y=120.501854,Z=-80.625679),InterpMode=CIM_CurveUser),(InVal=22.700001,OutVal=(X=1119.984009,Y=5.218552,Z=0.149109),ArriveTangent=(X=10.960904,Y=149.464890,Z=-216.186462),LeaveTangent=(X=10.960904,Y=149.464890,Z=-216.186462),InterpMode=CIM_CurveAuto),(InVal=23.200001,OutVal=(X=1077.247559,Y=4.924278,Z=-219.167709),ArriveTangent=(X=-129.043518,Y=-159.032074,Z=-332.034760),LeaveTangent=(X=-129.043518,Y=-159.032074,Z=-332.034760),InterpMode=CIM_CurveUser),(InVal=23.700001,OutVal=(X=1009.448730,Y=-298.228088,Z=-393.914246),ArriveTangent=(X=-0.337025,Y=-778.124207,Z=811.092407),LeaveTangent=(X=-0.337025,Y=-778.124207,Z=811.092407),InterpMode=CIM_CurveUser),(InVal=24.200001,OutVal=(X=1122.120361,Y=-161.035934,Z=120.940895),ArriveTangent=(X=0.000000,Y=493.534119,Z=815.490601),LeaveTangent=(X=0.000000,Y=493.534119,Z=815.490601),InterpMode=CIM_CurveAutoClamped),(InVal=24.700001,OutVal=(X=1118.611450,Y=287.977966,Z=421.576355),ArriveTangent=(X=-17.079144,Y=299.107086,Z=-53.560883),LeaveTangent=(X=-17.079144,Y=299.107086,Z=-53.560883),InterpMode=CIM_CurveUser),(InVal=25.200001,OutVal=(X=1118.814453,Y=249.940750,Z=221.302094),ArriveTangent=(X=1.302490,Y=-265.187683,Z=-511.322906),LeaveTangent=(X=1.302490,Y=-265.187683,Z=-511.322906),InterpMode=CIM_CurveAuto),(InVal=25.700001,OutVal=(X=1119.913940,Y=22.790268,Z=-89.746567),ArriveTangent=(X=2.779785,Y=-486.810303,Z=0.000000),LeaveTangent=(X=2.779785,Y=-486.810303,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=26.200001,OutVal=(X=1121.594238,Y=-236.869553,Z=13.552139),ArriveTangent=(X=103.881378,Y=-56.473511,Z=197.515533),LeaveTangent=(X=103.881378,Y=-56.473511,Z=197.515533),InterpMode=CIM_CurveUser),(InVal=26.700001,OutVal=(X=1233.248779,Y=-213.685104,Z=69.566071),ArriveTangent=(X=185.054611,Y=475.554413,Z=-249.595520),LeaveTangent=(X=185.054611,Y=475.554413,Z=-249.595520),InterpMode=CIM_CurveUser),(InVal=27.200001,OutVal=(X=1119.983887,Y=5.218544,Z=0.149124),LeaveTangent=(X=0.000000,Y=84.953064,Z=0.000000),InterpMode=CIM_CurveAuto)))
-            EulerTrack=(Points=((OutVal=(X=-0.021973,Y=-0.021973,Z=-0.043945),InterpMode=CIM_CurveAuto),(InVal=0.900000,OutVal=(X=-2.807007,Y=-6.569824,Z=11.458740),ArriveTangent=(X=-8.481445,Y=-23.159180,Z=39.704590),LeaveTangent=(X=-8.481445,Y=-23.159180,Z=39.704590),InterpMode=CIM_CurveUser),(InVal=2.000000,OutVal=(X=-8.503418,Y=-23.181152,Z=39.660645),ArriveTangent=(X=-10.164742,Y=-10.312819,Z=27.174444),LeaveTangent=(X=-10.164742,Y=-10.312819,Z=27.174444),InterpMode=CIM_CurveAuto),(InVal=3.200000,OutVal=(X=-26.185913,Y=-30.289307,Z=73.959961),ArriveTangent=(X=-25.361938,Y=-10.612793,Z=50.229492),LeaveTangent=(X=-25.361938,Y=-10.612793,Z=50.229492),InterpMode=CIM_CurveUser),(InVal=5.000000,OutVal=(X=-22.972412,Y=-32.211914,Z=69.774170),ArriveTangent=(X=-28.351593,Y=0.573349,Z=56.624222),LeaveTangent=(X=-28.351593,Y=0.573349,Z=56.624222),InterpMode=CIM_CurveUser),(InVal=6.900000,OutVal=(X=-36.666870,Y=-22.153931,Z=97.470703),ArriveTangent=(X=-10.419196,Y=6.346832,Z=22.318579),LeaveTangent=(X=-10.419196,Y=6.346832,Z=22.318579),InterpMode=CIM_CurveUser),(InVal=8.700000,OutVal=(X=-61.550903,Y=-8.745117,Z=152.369385),ArriveTangent=(X=-12.546387,Y=20.050049,Z=41.330566),LeaveTangent=(X=-12.546387,Y=20.050049,Z=41.330566),InterpMode=CIM_CurveUser),(InVal=10.200000,OutVal=(X=-65.516968,Y=-10.722656,Z=162.751465),ArriveTangent=(X=-2.074142,Y=0.000000,Z=9.482336),LeaveTangent=(X=-2.074142,Y=0.000000,Z=9.482336),InterpMode=CIM_CurveUser),(InVal=11.600000,OutVal=(X=-67.565918,Y=-0.296631,Z=179.879150),ArriveTangent=(X=2.297320,Y=12.449863,Z=17.238726),LeaveTangent=(X=2.297320,Y=12.449863,Z=17.238726),InterpMode=CIM_CurveAuto),(InVal=13.000000,OutVal=(X=-59.084473,Y=24.136963,Z=211.019897),ArriveTangent=(X=0.000000,Y=17.019655,Z=5.022278),LeaveTangent=(X=0.000000,Y=17.019655,Z=5.022278),InterpMode=CIM_CurveUser),(InVal=14.300000,OutVal=(X=-59.089966,Y=45.659180,Z=221.017456),ArriveTangent=(X=8.619490,Y=4.459016,Z=21.862791),LeaveTangent=(X=8.619490,Y=4.459016,Z=21.862791),InterpMode=CIM_CurveUser),(InVal=15.800000,OutVal=(X=-40.858154,Y=31.662598,Z=256.052856),ArriveTangent=(X=10.173494,Y=0.000000,Z=20.887215),LeaveTangent=(X=10.173494,Y=0.000000,Z=20.887215),InterpMode=CIM_CurveUser),(InVal=17.300001,OutVal=(X=-34.172974,Y=33.618164,Z=269.758301),ArriveTangent=(X=7.236643,Y=5.048932,Z=12.385884),LeaveTangent=(X=7.236643,Y=5.048932,Z=12.385884),InterpMode=CIM_CurveUser),(InVal=18.800001,OutVal=(X=-24.241333,Y=43.286133,Z=284.501953),ArriveTangent=(X=10.983943,Y=0.000000,Z=20.840139),LeaveTangent=(X=10.983943,Y=0.000000,Z=20.840139),InterpMode=CIM_CurveUser),(InVal=20.200001,OutVal=(X=-8.909912,Y=23.049316,Z=319.921875),ArriveTangent=(X=10.187532,Y=-15.779117,Z=27.266699),LeaveTangent=(X=10.187532,Y=-15.779117,Z=27.266699),InterpMode=CIM_CurveUser),(InVal=21.500000,OutVal=(X=0.225220,Y=5.405273,Z=349.963989),ArriveTangent=(X=0.000000,Y=-19.626488,Z=34.111500),LeaveTangent=(X=0.000000,Y=-19.626488,Z=34.111500),InterpMode=CIM_CurveUser),(InVal=22.700001,OutVal=(X=-0.131836,Y=-0.082397,Z=359.571533),ArriveTangent=(X=3.147259,Y=-26.444725,Z=70.684067),LeaveTangent=(X=3.147259,Y=-26.444725,Z=70.684067),InterpMode=CIM_CurveAuto),(InVal=23.200001,OutVal=(X=5.575562,Y=-39.550781,Z=470.126953),ArriveTangent=(X=0.000000,Y=0.000000,Z=176.264648),LeaveTangent=(X=0.000000,Y=0.000000,Z=176.264648),InterpMode=CIM_CurveUser),(InVal=23.700001,OutVal=(X=-112.741699,Y=-3.999023,Z=535.847168),ArriveTangent=(X=-104.886475,Y=48.339844,Z=270.000000),LeaveTangent=(X=-104.886475,Y=48.339844,Z=270.000000),InterpMode=CIM_CurveUser),(InVal=24.200001,OutVal=(X=-82.968750,Y=7.662964,Z=710.897827),ArriveTangent=(X=106.151276,Y=0.000000,Z=39.907104),LeaveTangent=(X=106.151276,Y=0.000000,Z=39.907104),InterpMode=CIM_CurveAutoClamped),(InVal=24.700001,OutVal=(X=11.640015,Y=0.126343,Z=719.340820),ArriveTangent=(X=50.803078,Y=0.569554,Z=0.023129),LeaveTangent=(X=50.803078,Y=0.569554,Z=0.023129),InterpMode=CIM_CurveUser),(InVal=25.200001,OutVal=(X=51.394043,Y=0.532837,Z=359.642944),ArriveTangent=(X=-33.848877,Y=-12.354126,Z=-522.460327),LeaveTangent=(X=-33.848877,Y=-12.354126,Z=-522.460327),InterpMode=CIM_CurveAuto),(InVal=25.700001,OutVal=(X=-22.208862,Y=-12.227783,Z=196.880493),ArriveTangent=(X=-93.784164,Y=0.000000,Z=0.000000),LeaveTangent=(X=-93.784164,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=26.200001,OutVal=(X=-50.229492,Y=42.973022,Z=244.885254),ArriveTangent=(X=0.000000,Y=0.000000,Z=142.547607),LeaveTangent=(X=0.000000,Y=0.000000,Z=142.547607),InterpMode=CIM_CurveUser),(InVal=26.700001,OutVal=(X=-17.325439,Y=9.431763,Z=339.400635),ArriveTangent=(X=50.097656,Y=-34.928848,Z=79.641739),LeaveTangent=(X=50.097656,Y=-34.928848,Z=79.641739),InterpMode=CIM_CurveUser),(InVal=27.200001,OutVal=(X=-0.131836,Y=-0.065918,Z=359.582520),LeaveTangent=(X=0.000000,Y=-0.004672,Z=0.000000),InterpMode=CIM_CurveAuto)))
-            LookupTrack=(Points=(,(Time=0.900000),(Time=2.000000),(Time=3.200000),(Time=5.000000),(Time=6.900000),(Time=8.700000),(Time=10.200000),(Time=11.600000),(Time=13.000000),(Time=14.300000),(Time=15.800000),(Time=17.300001),(Time=18.800001),(Time=20.200001),(Time=21.500000),(Time=22.700001),(Time=23.200001),(Time=23.700001),(Time=24.200001),(Time=24.700001),(Time=25.200001),(Time=25.700001),(Time=26.200001),(Time=26.700001),(Time=27.200001)))
-            MoveFrame=IMF_RelativeToInitial
-            Name="InterpTrackMove_0"
-            ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-         End Object
-         InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpGroup_0.InterpTrackMove_0'
-         InterpTracks(1)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpGroup_0.InterpTrackEvent_0'
-         InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpGroup_0.InterpTrackEvent_1'
-         GroupName="Shark"
-         GroupColor=(B=92,G=0,R=218,A=255)
-         Name="InterpGroup_0"
-         ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-      End Object
-      InterpLength=27.200001
-      InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpGroup_0'
-      CurveEdSetup=InterpCurveEdSetup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpCurveEdSetup_0'
-      SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
-      EdSectionEnd=27.200001
+   Begin Object Class=SeqVar_RandomFloat Name=SeqVar_RandomFloat_7
+      Min=60.000000
+      Max=10000.000000
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7592
+      ObjPosX=8232
+      ObjPosY=9536
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_RandomFloat_7"
+      ObjectArchetype=SeqVar_RandomFloat'Engine.Default__SeqVar_RandomFloat'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
+      ObjValue=PointLight'KF-AIRSHIP.TheWorld:PersistentLevel.PointLight_19'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=-9352
+      ObjPosY=-9544
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_28"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_100
+      ObjValue=InterpActor'KF-AIRSHIP.TheWorld:PersistentLevel.InterpActor_45'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=7712
       ObjPosY=9288
       DrawWidth=32
       DrawHeight=32
-      Name="InterpData_5"
-      ObjectArchetype=InterpData'Engine.Default__InterpData'
+      Name="SeqVar_Object_100"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_29
-      EventName="NoJumpy"
-      InputLinks(0)=(DrawY=9162,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=9162,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=8174,OverrideDelta=86)
-      ObjInstanceVersion=3
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=8056
-      ObjPosY=9128
-      DrawWidth=236
-      DrawHeight=61
-      Name="SeqAct_ActivateRemoteEvent_29"
-      ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
-   End Object
-   Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_2
-      InputLinks(0)=(DrawY=9421,OverrideDelta=14)
-      InputLinks(1)=(DrawY=9442,OverrideDelta=35)
-      InputLinks(2)=(DrawY=9463,OverrideDelta=56)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_SetBool_17')),DrawY=9426,OverrideDelta=19)
-      OutputLinks(1)=(DrawY=9458,OverrideDelta=51)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_RandomFloat'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_RandomFloat_7'),DrawX=8276,OverrideDelta=25)
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_54
+      ExpectedType=Class'Engine.SeqVar_Bool'
+      FindVarName="Jump?"
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=8224
-      ObjPosY=9384
-      DrawWidth=106
+      ObjPosX=8008
+      ObjPosY=9544
+      ObjColor=(B=0,G=0,R=255,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_54"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+   End Object
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_48
+      ExpectedType=Class'Engine.SeqVar_Bool'
+      FindVarName="Jump?"
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=7872
+      ObjPosY=9240
+      ObjColor=(B=0,G=0,R=255,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_48"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+   End Object
+   Begin Object Class=SeqVar_Named Name=SeqVar_Named_11
+      ExpectedType=Class'Engine.SeqVar_Bool'
+      FindVarName="Jump?"
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=8512
+      ObjPosY=9504
+      ObjColor=(B=0,G=0,R=255,A=255)
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Named_11"
+      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+   End Object
+   Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_42
+      bValue=1
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=8408
+      ObjPosY=9488
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Bool_42"
+      ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+   End Object
+   Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_3
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=7904
+      ObjPosY=9528
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Bool_3"
+      ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+   End Object
+   Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_18
+      VarName="Jump?"
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=7544
+      ObjPosY=9432
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Bool_18"
+      ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+   End Object
+   Begin Object Class=SequenceFrame Name=SequenceFrame_8
+      SizeX=1941
+      SizeY=718
+      bDrawBox=True
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=6960
+      ObjPosY=9040
+      ObjComment="Boring Kismet Don't Even Look At This"
+      DrawWidth=1941
+      DrawHeight=718
+      Name="SequenceFrame_8"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+   End Object
+   Begin Object Class=SequenceFrame Name=SequenceFrame_29
+      SizeX=828
+      SizeY=430
+      bDrawBox=True
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=-9736
+      ObjPosY=-9752
+      ObjComment="light test"
+      DrawWidth=828
+      DrawHeight=430
+      Name="SequenceFrame_29"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+   End Object
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_20
+      EventName="NoJumpy"
+      MaxWidth=175
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_Interp_5')),DrawY=9170,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=7335,OverrideDelta=55)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=7248
+      ObjPosY=9104
+      ObjComment="NoJumpy"
+      DrawWidth=107
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_20"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
+   End Object
+   Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_7
+      MaxWidth=136
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_Interp_5'),(LinkedOp=SeqAct_Delay'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_Delay_2')),ActivateDelay=5.000000,DrawY=9389,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=9410,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=9431,OverrideDelta=56)
+      ObjInstanceVersion=3
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=7264
+      ObjPosY=9320
+      DrawWidth=137
+      Name="SeqEvent_LevelLoaded_7"
+      ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
+   End Object
+   Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_23
+      MaxWidth=136
+      OutputLinks(0)=(DrawY=-9643,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-9622,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-9601,OverrideDelta=56)
+      ObjInstanceVersion=3
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=-9600
+      ObjPosY=-9712
+      DrawWidth=137
+      Name="SeqEvent_LevelLoaded_23"
+      ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
+   End Object
+   Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_33
+      InputLinks(0)=(DrawY=9158,OverrideDelta=23)
+      OutputLinks(0)=(DrawY=9148,OverrideDelta=13)
+      OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_ActivateRemoteEvent_29')),DrawY=9168,OverrideDelta=33)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Named_48'),DrawX=7901,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7951,OverrideDelta=59)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=7872
+      ObjPosY=9112
+      DrawWidth=115
+      DrawHeight=85
+      Name="SeqCond_CompareBool_33"
+      ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
+      InputLinks(0)=(DrawY=-9675,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-9654,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-9633,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-9654,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Object_28'),DrawX=-9306,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=-9255,OverrideDelta=76)
+      EventLinks(0)=(DrawX=-9206,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=-9344
+      ObjPosY=-9712
+      DrawWidth=173
       DrawHeight=109
-      Name="SeqAct_Delay_2"
-      ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+      Name="SeqAct_Toggle_0"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_20
+      InputLinks(0)=(DrawY=9474,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_Delay_2')),DrawY=9474,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Bool_3'),DrawX=7970,OverrideDelta=16)
+      VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Named_54'),DrawX=8026,OverrideDelta=68)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=7936
+      ObjPosY=9440
+      DrawWidth=128
+      DrawHeight=61
+      Name="SeqAct_SetBool_20"
+      ObjectArchetype=SeqAct_SetBool'Engine.Default__SeqAct_SetBool'
+   End Object
+   Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_17
+      InputLinks(0)=(DrawY=9434,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=9434,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Bool_42'),DrawX=8474,OverrideDelta=16)
+      VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Named_11'),DrawX=8530,OverrideDelta=68)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
+      ObjPosX=8440
+      ObjPosY=9400
+      DrawWidth=128
+      DrawHeight=61
+      Name="SeqAct_SetBool_17"
+      ObjectArchetype=SeqAct_SetBool'Engine.Default__SeqAct_SetBool'
    End Object
    Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_5
       bRewindOnPlay=True
@@ -12527,239 +12692,81 @@ Begin Object Class=Sequence Name=Light7
       Name="SeqAct_Interp_5"
       ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
    End Object
-   Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_17
-      InputLinks(0)=(DrawY=9434,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=9434,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Bool_42'),DrawX=8474,OverrideDelta=16)
-      VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Named_11'),DrawX=8530,OverrideDelta=68)
+   Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_2
+      InputLinks(0)=(DrawY=9421,OverrideDelta=14)
+      InputLinks(1)=(DrawY=9442,OverrideDelta=35)
+      InputLinks(2)=(DrawY=9463,OverrideDelta=56)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_SetBool_17')),DrawY=9426,OverrideDelta=19)
+      OutputLinks(1)=(DrawY=9458,OverrideDelta=51)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_RandomFloat'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_RandomFloat_7'),DrawX=8276,OverrideDelta=25)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=8440
-      ObjPosY=9400
-      DrawWidth=128
-      DrawHeight=61
-      Name="SeqAct_SetBool_17"
-      ObjectArchetype=SeqAct_SetBool'Engine.Default__SeqAct_SetBool'
-   End Object
-   Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_20
-      InputLinks(0)=(DrawY=9474,OverrideDelta=11)
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_Delay_2')),DrawY=9474,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Bool_3'),DrawX=7970,OverrideDelta=16)
-      VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Named_54'),DrawX=8026,OverrideDelta=68)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7936
-      ObjPosY=9440
-      DrawWidth=128
-      DrawHeight=61
-      Name="SeqAct_SetBool_20"
-      ObjectArchetype=SeqAct_SetBool'Engine.Default__SeqAct_SetBool'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
-      InputLinks(0)=(DrawY=-9675,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-9654,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-9633,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-9654,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Object_28'),DrawX=-9306,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=-9255,OverrideDelta=76)
-      EventLinks(0)=(DrawX=-9206,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=-9344
-      ObjPosY=-9712
-      DrawWidth=173
+      ObjPosX=8224
+      ObjPosY=9384
+      DrawWidth=106
       DrawHeight=109
-      Name="SeqAct_Toggle_0"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      Name="SeqAct_Delay_2"
+      ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
    End Object
-   Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_33
-      InputLinks(0)=(DrawY=9158,OverrideDelta=23)
-      OutputLinks(0)=(DrawY=9148,OverrideDelta=13)
-      OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_ActivateRemoteEvent_29')),DrawY=9168,OverrideDelta=33)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Named_48'),DrawX=7901,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7951,OverrideDelta=59)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7872
-      ObjPosY=9112
-      DrawWidth=115
-      DrawHeight=85
-      Name="SeqCond_CompareBool_33"
-      ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
-   End Object
-   Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_23
-      MaxWidth=136
-      OutputLinks(0)=(DrawY=-9643,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-9622,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-9601,OverrideDelta=56)
-      ObjInstanceVersion=3
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=-9600
-      ObjPosY=-9712
-      DrawWidth=137
-      Name="SeqEvent_LevelLoaded_23"
-      ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
-   End Object
-   Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_7
-      MaxWidth=136
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_Interp_5'),(LinkedOp=SeqAct_Delay'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_Delay_2')),ActivateDelay=5.000000,DrawY=9389,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=9410,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=9431,OverrideDelta=56)
-      ObjInstanceVersion=3
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7264
-      ObjPosY=9320
-      DrawWidth=137
-      Name="SeqEvent_LevelLoaded_7"
-      ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_20
+   Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_29
       EventName="NoJumpy"
-      MaxWidth=175
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqAct_Interp_5')),DrawY=9170,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=7335,OverrideDelta=55)
-      ObjInstanceVersion=2
+      InputLinks(0)=(DrawY=9162,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=9162,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=8174,OverrideDelta=86)
+      ObjInstanceVersion=3
       ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7248
-      ObjPosY=9104
-      ObjComment="NoJumpy"
-      DrawWidth=107
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_20"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
+      ObjPosX=8056
+      ObjPosY=9128
+      DrawWidth=236
+      DrawHeight=61
+      Name="SeqAct_ActivateRemoteEvent_29"
+      ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_29
-      SizeX=828
-      SizeY=430
-      bDrawBox=True
+   Begin Object Class=InterpData Name=InterpData_5
+      Begin Object Class=InterpGroup Name=InterpGroup_0
+         Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+            PosTrack=(Points=((OutVal=(X=1119.987915,Y=5.218384,Z=0.148254),InterpMode=CIM_CurveAuto),(InVal=0.900000,OutVal=(X=1020.754639,Y=206.293152,Z=-115.039352),ArriveTangent=(X=-117.040482,Y=346.823914,Z=-231.195145),LeaveTangent=(X=-117.040482,Y=346.823914,Z=-231.195145),InterpMode=CIM_CurveUser),(InVal=2.000000,OutVal=(X=879.684326,Y=470.754944,Z=-311.099121),ArriveTangent=(X=-182.701263,Y=159.410965,Z=-124.182396),LeaveTangent=(X=-182.701263,Y=159.410965,Z=-124.182396),InterpMode=CIM_CurveAuto),(InVal=3.200000,OutVal=(X=600.541748,Y=572.938354,Z=-400.658875),ArriveTangent=(X=-247.098846,Y=61.794395,Z=-44.158360),LeaveTangent=(X=-247.098846,Y=61.794395,Z=-44.158360),InterpMode=CIM_CurveUser),(InVal=5.000000,OutVal=(X=236.958008,Y=665.429993,Z=-445.703674),ArriveTangent=(X=-229.006973,Y=14.677534,Z=-8.335954),LeaveTangent=(X=-229.006973,Y=14.677534,Z=-8.335954),InterpMode=CIM_CurveUser),(InVal=6.900000,OutVal=(X=-188.838806,Y=713.457397,Z=-486.429138),ArriveTangent=(X=-214.390961,Y=-23.066854,Z=15.409954),LeaveTangent=(X=-214.390961,Y=-23.066854,Z=15.409954),InterpMode=CIM_CurveUser),(InVal=8.700000,OutVal=(X=-480.310974,Y=534.663269,Z=-355.618896),ArriveTangent=(X=-120.830673,Y=-194.760422,Z=131.556931),LeaveTangent=(X=-120.830673,Y=-194.760422,Z=131.556931),InterpMode=CIM_CurveUser),(InVal=10.200000,OutVal=(X=-581.167297,Y=273.718018,Z=-180.689194),ArriveTangent=(X=-35.188965,Y=-187.077972,Z=128.642563),LeaveTangent=(X=-35.188965,Y=-187.077972,Z=128.642563),InterpMode=CIM_CurveUser),(InVal=11.600000,OutVal=(X=-640.031677,Y=7.812248,Z=6.738953),ArriveTangent=(X=17.248796,Y=-197.451141,Z=132.128372),LeaveTangent=(X=17.248796,Y=-197.451141,Z=132.128372),InterpMode=CIM_CurveAuto),(InVal=13.000000,OutVal=(X=-532.870667,Y=-279.145203,Z=189.270279),ArriveTangent=(X=157.399734,Y=-130.374329,Z=79.280983),LeaveTangent=(X=157.399734,Y=-130.374329,Z=79.280983),InterpMode=CIM_CurveUser),(InVal=14.300000,OutVal=(X=-327.565491,Y=-492.503174,Z=322.549683),ArriveTangent=(X=223.554977,Y=-92.203766,Z=61.754654),LeaveTangent=(X=223.554977,Y=-92.203766,Z=61.754654),InterpMode=CIM_CurveUser),(InVal=15.800000,OutVal=(X=-48.763733,Y=-556.679626,Z=375.132813),ArriveTangent=(X=199.631714,Y=-4.145827,Z=12.323256),LeaveTangent=(X=199.631714,Y=-4.145827,Z=12.323256),InterpMode=CIM_CurveUser),(InVal=17.300001,OutVal=(X=240.208374,Y=-576.355042,Z=397.995056),ArriveTangent=(X=212.938370,Y=-24.710400,Z=16.653526),LeaveTangent=(X=212.938370,Y=-24.710400,Z=16.653526),InterpMode=CIM_CurveUser),(InVal=18.800001,OutVal=(X=525.193420,Y=-572.638062,Z=386.284607),ArriveTangent=(X=277.793701,Y=37.352604,Z=-24.930321),LeaveTangent=(X=277.793701,Y=37.352604,Z=-24.930321),InterpMode=CIM_CurveUser),(InVal=20.200001,OutVal=(X=826.104065,Y=-458.994446,Z=301.022583),ArriveTangent=(X=179.509079,Y=96.193176,Z=-73.388832),LeaveTangent=(X=179.509079,Y=96.193176,Z=-73.388832),InterpMode=CIM_CurveUser),(InVal=21.500000,OutVal=(X=1058.614014,Y=-249.166153,Z=148.349426),ArriveTangent=(X=68.474480,Y=120.501854,Z=-80.625679),LeaveTangent=(X=68.474480,Y=120.501854,Z=-80.625679),InterpMode=CIM_CurveUser),(InVal=22.700001,OutVal=(X=1119.984009,Y=5.218552,Z=0.149109),ArriveTangent=(X=10.960904,Y=149.464890,Z=-216.186462),LeaveTangent=(X=10.960904,Y=149.464890,Z=-216.186462),InterpMode=CIM_CurveAuto),(InVal=23.200001,OutVal=(X=1077.247559,Y=4.924278,Z=-219.167709),ArriveTangent=(X=-129.043518,Y=-159.032074,Z=-332.034760),LeaveTangent=(X=-129.043518,Y=-159.032074,Z=-332.034760),InterpMode=CIM_CurveUser),(InVal=23.700001,OutVal=(X=1009.448730,Y=-298.228088,Z=-393.914246),ArriveTangent=(X=-0.337025,Y=-778.124207,Z=811.092407),LeaveTangent=(X=-0.337025,Y=-778.124207,Z=811.092407),InterpMode=CIM_CurveUser),(InVal=24.200001,OutVal=(X=1122.120361,Y=-161.035934,Z=120.940895),ArriveTangent=(X=0.000000,Y=493.534119,Z=815.490601),LeaveTangent=(X=0.000000,Y=493.534119,Z=815.490601),InterpMode=CIM_CurveAutoClamped),(InVal=24.700001,OutVal=(X=1118.611450,Y=287.977966,Z=421.576355),ArriveTangent=(X=-17.079144,Y=299.107086,Z=-53.560883),LeaveTangent=(X=-17.079144,Y=299.107086,Z=-53.560883),InterpMode=CIM_CurveUser),(InVal=25.200001,OutVal=(X=1118.814453,Y=249.940750,Z=221.302094),ArriveTangent=(X=1.302490,Y=-265.187683,Z=-511.322906),LeaveTangent=(X=1.302490,Y=-265.187683,Z=-511.322906),InterpMode=CIM_CurveAuto),(InVal=25.700001,OutVal=(X=1119.913940,Y=22.790268,Z=-89.746567),ArriveTangent=(X=2.779785,Y=-486.810303,Z=0.000000),LeaveTangent=(X=2.779785,Y=-486.810303,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=26.200001,OutVal=(X=1121.594238,Y=-236.869553,Z=13.552139),ArriveTangent=(X=103.881378,Y=-56.473511,Z=197.515533),LeaveTangent=(X=103.881378,Y=-56.473511,Z=197.515533),InterpMode=CIM_CurveUser),(InVal=26.700001,OutVal=(X=1233.248779,Y=-213.685104,Z=69.566071),ArriveTangent=(X=185.054611,Y=475.554413,Z=-249.595520),LeaveTangent=(X=185.054611,Y=475.554413,Z=-249.595520),InterpMode=CIM_CurveUser),(InVal=27.200001,OutVal=(X=1119.983887,Y=5.218544,Z=0.149124),LeaveTangent=(X=0.000000,Y=84.953064,Z=0.000000),InterpMode=CIM_CurveAuto)))
+            EulerTrack=(Points=((OutVal=(X=-0.021973,Y=-0.021973,Z=-0.043945),InterpMode=CIM_CurveAuto),(InVal=0.900000,OutVal=(X=-2.807007,Y=-6.569824,Z=11.458740),ArriveTangent=(X=-8.481445,Y=-23.159180,Z=39.704590),LeaveTangent=(X=-8.481445,Y=-23.159180,Z=39.704590),InterpMode=CIM_CurveUser),(InVal=2.000000,OutVal=(X=-8.503418,Y=-23.181152,Z=39.660645),ArriveTangent=(X=-10.164742,Y=-10.312819,Z=27.174444),LeaveTangent=(X=-10.164742,Y=-10.312819,Z=27.174444),InterpMode=CIM_CurveAuto),(InVal=3.200000,OutVal=(X=-26.185913,Y=-30.289307,Z=73.959961),ArriveTangent=(X=-25.361938,Y=-10.612793,Z=50.229492),LeaveTangent=(X=-25.361938,Y=-10.612793,Z=50.229492),InterpMode=CIM_CurveUser),(InVal=5.000000,OutVal=(X=-22.972412,Y=-32.211914,Z=69.774170),ArriveTangent=(X=-28.351593,Y=0.573349,Z=56.624222),LeaveTangent=(X=-28.351593,Y=0.573349,Z=56.624222),InterpMode=CIM_CurveUser),(InVal=6.900000,OutVal=(X=-36.666870,Y=-22.153931,Z=97.470703),ArriveTangent=(X=-10.419196,Y=6.346832,Z=22.318579),LeaveTangent=(X=-10.419196,Y=6.346832,Z=22.318579),InterpMode=CIM_CurveUser),(InVal=8.700000,OutVal=(X=-61.550903,Y=-8.745117,Z=152.369385),ArriveTangent=(X=-12.546387,Y=20.050049,Z=41.330566),LeaveTangent=(X=-12.546387,Y=20.050049,Z=41.330566),InterpMode=CIM_CurveUser),(InVal=10.200000,OutVal=(X=-65.516968,Y=-10.722656,Z=162.751465),ArriveTangent=(X=-2.074142,Y=0.000000,Z=9.482336),LeaveTangent=(X=-2.074142,Y=0.000000,Z=9.482336),InterpMode=CIM_CurveUser),(InVal=11.600000,OutVal=(X=-67.565918,Y=-0.296631,Z=179.879150),ArriveTangent=(X=2.297320,Y=12.449863,Z=17.238726),LeaveTangent=(X=2.297320,Y=12.449863,Z=17.238726),InterpMode=CIM_CurveAuto),(InVal=13.000000,OutVal=(X=-59.084473,Y=24.136963,Z=211.019897),ArriveTangent=(X=0.000000,Y=17.019655,Z=5.022278),LeaveTangent=(X=0.000000,Y=17.019655,Z=5.022278),InterpMode=CIM_CurveUser),(InVal=14.300000,OutVal=(X=-59.089966,Y=45.659180,Z=221.017456),ArriveTangent=(X=8.619490,Y=4.459016,Z=21.862791),LeaveTangent=(X=8.619490,Y=4.459016,Z=21.862791),InterpMode=CIM_CurveUser),(InVal=15.800000,OutVal=(X=-40.858154,Y=31.662598,Z=256.052856),ArriveTangent=(X=10.173494,Y=0.000000,Z=20.887215),LeaveTangent=(X=10.173494,Y=0.000000,Z=20.887215),InterpMode=CIM_CurveUser),(InVal=17.300001,OutVal=(X=-34.172974,Y=33.618164,Z=269.758301),ArriveTangent=(X=7.236643,Y=5.048932,Z=12.385884),LeaveTangent=(X=7.236643,Y=5.048932,Z=12.385884),InterpMode=CIM_CurveUser),(InVal=18.800001,OutVal=(X=-24.241333,Y=43.286133,Z=284.501953),ArriveTangent=(X=10.983943,Y=0.000000,Z=20.840139),LeaveTangent=(X=10.983943,Y=0.000000,Z=20.840139),InterpMode=CIM_CurveUser),(InVal=20.200001,OutVal=(X=-8.909912,Y=23.049316,Z=319.921875),ArriveTangent=(X=10.187532,Y=-15.779117,Z=27.266699),LeaveTangent=(X=10.187532,Y=-15.779117,Z=27.266699),InterpMode=CIM_CurveUser),(InVal=21.500000,OutVal=(X=0.225220,Y=5.405273,Z=349.963989),ArriveTangent=(X=0.000000,Y=-19.626488,Z=34.111500),LeaveTangent=(X=0.000000,Y=-19.626488,Z=34.111500),InterpMode=CIM_CurveUser),(InVal=22.700001,OutVal=(X=-0.131836,Y=-0.082397,Z=359.571533),ArriveTangent=(X=3.147259,Y=-26.444725,Z=70.684067),LeaveTangent=(X=3.147259,Y=-26.444725,Z=70.684067),InterpMode=CIM_CurveAuto),(InVal=23.200001,OutVal=(X=5.575562,Y=-39.550781,Z=470.126953),ArriveTangent=(X=0.000000,Y=0.000000,Z=176.264648),LeaveTangent=(X=0.000000,Y=0.000000,Z=176.264648),InterpMode=CIM_CurveUser),(InVal=23.700001,OutVal=(X=-112.741699,Y=-3.999023,Z=535.847168),ArriveTangent=(X=-104.886475,Y=48.339844,Z=270.000000),LeaveTangent=(X=-104.886475,Y=48.339844,Z=270.000000),InterpMode=CIM_CurveUser),(InVal=24.200001,OutVal=(X=-82.968750,Y=7.662964,Z=710.897827),ArriveTangent=(X=106.151276,Y=0.000000,Z=39.907104),LeaveTangent=(X=106.151276,Y=0.000000,Z=39.907104),InterpMode=CIM_CurveAutoClamped),(InVal=24.700001,OutVal=(X=11.640015,Y=0.126343,Z=719.340820),ArriveTangent=(X=50.803078,Y=0.569554,Z=0.023129),LeaveTangent=(X=50.803078,Y=0.569554,Z=0.023129),InterpMode=CIM_CurveUser),(InVal=25.200001,OutVal=(X=51.394043,Y=0.532837,Z=359.642944),ArriveTangent=(X=-33.848877,Y=-12.354126,Z=-522.460327),LeaveTangent=(X=-33.848877,Y=-12.354126,Z=-522.460327),InterpMode=CIM_CurveAuto),(InVal=25.700001,OutVal=(X=-22.208862,Y=-12.227783,Z=196.880493),ArriveTangent=(X=-93.784164,Y=0.000000,Z=0.000000),LeaveTangent=(X=-93.784164,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=26.200001,OutVal=(X=-50.229492,Y=42.973022,Z=244.885254),ArriveTangent=(X=0.000000,Y=0.000000,Z=142.547607),LeaveTangent=(X=0.000000,Y=0.000000,Z=142.547607),InterpMode=CIM_CurveUser),(InVal=26.700001,OutVal=(X=-17.325439,Y=9.431763,Z=339.400635),ArriveTangent=(X=50.097656,Y=-34.928848,Z=79.641739),LeaveTangent=(X=50.097656,Y=-34.928848,Z=79.641739),InterpMode=CIM_CurveUser),(InVal=27.200001,OutVal=(X=-0.131836,Y=-0.065918,Z=359.582520),LeaveTangent=(X=0.000000,Y=-0.004672,Z=0.000000),InterpMode=CIM_CurveAuto)))
+            LookupTrack=(Points=(,(Time=0.900000),(Time=2.000000),(Time=3.200000),(Time=5.000000),(Time=6.900000),(Time=8.700000),(Time=10.200000),(Time=11.600000),(Time=13.000000),(Time=14.300000),(Time=15.800000),(Time=17.300001),(Time=18.800001),(Time=20.200001),(Time=21.500000),(Time=22.700001),(Time=23.200001),(Time=23.700001),(Time=24.200001),(Time=24.700001),(Time=25.200001),(Time=25.700001),(Time=26.200001),(Time=26.700001),(Time=27.200001)))
+            MoveFrame=IMF_RelativeToInitial
+            Name="InterpTrackMove_0"
+            ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+         End Object
+         Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
+            EventTrack(0)=(Time=27.200001,EventName="Jumped!")
+            Name="InterpTrackEvent_1"
+            ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+         End Object
+         Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+            EventTrack(0)=(Time=22.700001,EventName="Jump?")
+            Name="InterpTrackEvent_0"
+            ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+         End Object
+         InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpGroup_0.InterpTrackMove_0'
+         InterpTracks(1)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpGroup_0.InterpTrackEvent_0'
+         InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpGroup_0.InterpTrackEvent_1'
+         GroupName="Shark"
+         GroupColor=(B=92,G=0,R=218,A=255)
+         Name="InterpGroup_0"
+         ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+      End Object
+      Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+         Name="InterpCurveEdSetup_0"
+         ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+      End Object
+      InterpLength=27.200001
+      InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpGroup_0'
+      CurveEdSetup=InterpCurveEdSetup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.InterpData_5.InterpCurveEdSetup_0'
+      SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
+      EdSectionEnd=27.200001
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=-9736
-      ObjPosY=-9752
-      ObjComment="light test"
-      DrawWidth=828
-      DrawHeight=430
-      Name="SequenceFrame_29"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-   End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_8
-      SizeX=1941
-      SizeY=718
-      bDrawBox=True
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=6960
-      ObjPosY=9040
-      ObjComment="Boring Kismet Don't Even Look At This"
-      DrawWidth=1941
-      DrawHeight=718
-      Name="SequenceFrame_8"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-   End Object
-   Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_18
-      VarName="Jump?"
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7544
-      ObjPosY=9432
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Bool_18"
-      ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
-   End Object
-   Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_3
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7904
-      ObjPosY=9528
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Bool_3"
-      ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
-   End Object
-   Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_42
-      bValue=1
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=8408
-      ObjPosY=9488
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Bool_42"
-      ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
-   End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_11
-      ExpectedType=Class'Engine.SeqVar_Bool'
-      FindVarName="Jump?"
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=8512
-      ObjPosY=9504
-      ObjColor=(B=0,G=0,R=255,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_11"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
-   End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_48
-      ExpectedType=Class'Engine.SeqVar_Bool'
-      FindVarName="Jump?"
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7872
-      ObjPosY=9240
-      ObjColor=(B=0,G=0,R=255,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_48"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
-   End Object
-   Begin Object Class=SeqVar_Named Name=SeqVar_Named_54
-      ExpectedType=Class'Engine.SeqVar_Bool'
-      FindVarName="Jump?"
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=8008
-      ObjPosY=9544
-      ObjColor=(B=0,G=0,R=255,A=255)
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Named_54"
-      ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_100
-      ObjValue=InterpActor'KF-AIRSHIP.TheWorld:PersistentLevel.InterpActor_45'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=7712
+      ObjPosX=7592
       ObjPosY=9288
       DrawWidth=32
       DrawHeight=32
-      Name="SeqVar_Object_100"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
-      ObjValue=PointLight'KF-AIRSHIP.TheWorld:PersistentLevel.PointLight_19'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=-9352
-      ObjPosY=-9544
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_28"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_RandomFloat Name=SeqVar_RandomFloat_7
-      Min=60.000000
-      Max=10000.000000
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7'
-      ObjPosX=8232
-      ObjPosY=9536
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_RandomFloat_7"
-      ObjectArchetype=SeqVar_RandomFloat'Engine.Default__SeqVar_RandomFloat'
+      Name="InterpData_5"
+      ObjectArchetype=InterpData'Engine.Default__InterpData'
    End Object
    SequenceObjects(0)=SeqVar_Named'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Named_54'
    SequenceObjects(1)=SeqVar_Bool'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.Light7.SeqVar_Bool_3'
@@ -12944,11 +12951,67 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_65
 End Object
 
 Begin Object Class=InterpData Name=InterpData_26
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=-0.002930,Y=-0.005859,Z=0.001465),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=-4097.164063,Y=-29355.257813,Z=6560.006348),ArriveTangent=(X=-1084.799683,Y=0.000000,Z=281.602417),LeaveTangent=(X=-1084.799683,Y=0.000000,Z=281.602417),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-10848.000000,Y=-28187.308594,Z=7210.574707),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=-10848.000000,Y=-28187.308594,Z=7210.574707),InterpMode=CIM_CurveAutoClamped),(InVal=43.299999,OutVal=(X=-11333.696289,Y=-27848.458984,Z=7210.575195),ArriveTangent=(X=-280.525879,Y=198.964966,Z=0.000000),LeaveTangent=(X=-280.525879,Y=198.964966,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=-28008.585938,Y=-9097.517578,Z=-1599.987793),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=0.000000,Y=0.000000,Z=-87.868652),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=53.613281),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=53.613281),InterpMode=CIM_CurveAutoClamped),(InVal=43.299999,OutVal=(X=0.000000,Y=0.000000,Z=38.518066),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.258802),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.258802),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=31.003418),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=4.500000),(Time=10.000000),(Time=40.000000),(Time=43.299999),(Time=50.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_18
+         AkEvents(0)=(Time=10.493827,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Open')
+         AkEvents(1)=(Time=38.065842,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Close')
+         TrackTitle="AkEvent_Doors"
+         Name="InterpTrackAkEvent_18"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_16
+         AkEvents(0)=(Time=42.140751,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Depart')
+         TrackTitle="AkEvent_Depart"
+         Name="InterpTrackAkEvent_16"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_14
+         AkEvents(0)=(Time=1.988131,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Approach')
+         TrackTitle="AkEvent_Approach"
+         Name="InterpTrackAkEvent_14"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_12
+         AkEvents(0)=(Time=4.777446,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_LP')
+         AkEvents(1)=(Time=43.320423,Event=AkEvent'WW_ENV_Airship.Stop_ENV_Airship_MiniAirship_Engine_LP')
+         TrackTitle="AkEvent_Motor"
+         Name="InterpTrackAkEvent_12"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackAkEvent_12'
+      InterpTracks(2)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackAkEvent_14'
+      InterpTracks(3)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackAkEvent_16'
+      InterpTracks(4)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackAkEvent_18'
+      GroupName="DummyBox"
+      GroupColor=(B=136,G=0,R=197,A=255)
+      Name="InterpGroup_5"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_5
+         EventTrack(0)=(Time=5.000000,EventName="ZapApproach3")
+         EventTrack(1)=(Time=10.000000,EventName="ZapIdle3")
+         EventTrack(2)=(Time=40.000000,EventName="ZapLeave3")
+         EventTrack(3)=(Time=42.000000,EventName="ZapOff3")
+         Name="InterpTrackEvent_5"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=10.000000,EventName="Dropoff?3")
+         EventTrack(1)=(Time=12.000000,EventName="Airship3SpawnOn")
+         EventTrack(2)=(Time=38.000000,EventName="Airship3SpawnOff")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="Approach_V3",AnimPlayRate=1.000000)
          AnimSeqs(1)=(StartTime=10.000000,AnimSeqName="Idle_Drop_Intro_V3",AnimPlayRate=1.000000)
@@ -12970,21 +13033,6 @@ Begin Object Class=InterpData Name=InterpData_26
          Name="InterpTrackAnimControl_0"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=10.000000,EventName="Dropoff?3")
-         EventTrack(1)=(Time=12.000000,EventName="Airship3SpawnOn")
-         EventTrack(2)=(Time=38.000000,EventName="Airship3SpawnOff")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_5
-         EventTrack(0)=(Time=5.000000,EventName="ZapApproach3")
-         EventTrack(1)=(Time=10.000000,EventName="ZapIdle3")
-         EventTrack(2)=(Time=40.000000,EventName="ZapLeave3")
-         EventTrack(3)=(Time=42.000000,EventName="ZapOff3")
-         Name="InterpTrackEvent_5"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
       InterpTracks(0)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_1.InterpTrackEvent_0'
       InterpTracks(1)=InterpTrackAnimControl'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_1.InterpTrackAnimControl_0'
       InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_1.InterpTrackEvent_5'
@@ -12994,50 +13042,9 @@ Begin Object Class=InterpData Name=InterpData_26
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_12
-         AkEvents(0)=(Time=4.777446,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_LP')
-         AkEvents(1)=(Time=43.320423,Event=AkEvent'WW_ENV_Airship.Stop_ENV_Airship_MiniAirship_Engine_LP')
-         TrackTitle="AkEvent_Motor"
-         Name="InterpTrackAkEvent_12"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_14
-         AkEvents(0)=(Time=1.988131,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Approach')
-         TrackTitle="AkEvent_Approach"
-         Name="InterpTrackAkEvent_14"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_16
-         AkEvents(0)=(Time=42.140751,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Depart')
-         TrackTitle="AkEvent_Depart"
-         Name="InterpTrackAkEvent_16"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_18
-         AkEvents(0)=(Time=10.493827,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Open')
-         AkEvents(1)=(Time=38.065842,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Close')
-         TrackTitle="AkEvent_Doors"
-         Name="InterpTrackAkEvent_18"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=-0.002930,Y=-0.005859,Z=0.001465),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=-4097.164063,Y=-29355.257813,Z=6560.006348),ArriveTangent=(X=-1084.799683,Y=0.000000,Z=281.602417),LeaveTangent=(X=-1084.799683,Y=0.000000,Z=281.602417),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-10848.000000,Y=-28187.308594,Z=7210.574707),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=-10848.000000,Y=-28187.308594,Z=7210.574707),InterpMode=CIM_CurveAutoClamped),(InVal=43.299999,OutVal=(X=-11333.696289,Y=-27848.458984,Z=7210.575195),ArriveTangent=(X=-280.525879,Y=198.964966,Z=0.000000),LeaveTangent=(X=-280.525879,Y=198.964966,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=-28008.585938,Y=-9097.517578,Z=-1599.987793),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=0.000000,Y=0.000000,Z=-87.868652),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=53.613281),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=53.613281),InterpMode=CIM_CurveAutoClamped),(InVal=43.299999,OutVal=(X=0.000000,Y=0.000000,Z=38.518066),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.258802),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.258802),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=31.003418),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=4.500000),(Time=10.000000),(Time=40.000000),(Time=43.299999),(Time=50.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackAkEvent_12'
-      InterpTracks(2)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackAkEvent_14'
-      InterpTracks(3)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackAkEvent_16'
-      InterpTracks(4)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_5.InterpTrackAkEvent_18'
-      GroupName="DummyBox"
-      GroupColor=(B=136,G=0,R=197,A=255)
-      Name="InterpGroup_5"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=50.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_1'
@@ -13119,11 +13126,67 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_27
 End Object
 
 Begin Object Class=InterpData Name=InterpData_27
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=5959.036133,Y=-16907.703125,Z=4392.003906),ArriveTangent=(X=1217.167236,Y=-3543.239258,Z=856.269897),LeaveTangent=(X=1217.167236,Y=-3543.239258,Z=856.269897),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=8126.792969,Y=-23409.296875,Z=5847.680176),ArriveTangent=(X=118.156219,Y=-1118.048706,Z=51.162720),LeaveTangent=(X=118.156219,Y=-1118.048706,Z=51.162720),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=8279.181641,Y=-25121.927734,Z=5912.002930),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=8279.181641,Y=-25121.927734,Z=5912.002930),InterpMode=CIM_CurveAutoClamped),(InVal=42.900002,OutVal=(X=7529.137207,Y=-26302.148438,Z=6736.003906),ArriveTangent=(X=-452.859131,Y=-643.686829,Z=0.000000),LeaveTangent=(X=-452.859131,Y=-643.686829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=-10503.395508,Y=-37376.109375,Z=-1039.993652),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=0.000000,Y=0.000000,Z=24.323730),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=0.000000,Y=0.000000,Z=18.500977),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.976192),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.976192),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-21.357422),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=-21.357422),InterpMode=CIM_CurveAutoClamped),(InVal=42.900002,OutVal=(X=0.000000,Y=0.000000,Z=-62.182617),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.824463),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.824463),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=-99.602051),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=4.500000),(Time=6.500000),(Time=10.000000),(Time=40.000000),(Time=42.900002),(Time=50.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_34
+         AkEvents(0)=(Time=5.667654,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_LP')
+         AkEvents(1)=(Time=41.421295,Event=AkEvent'WW_ENV_Airship.Stop_ENV_Airship_MiniAirship_Engine_LP')
+         TrackTitle="AkEvent_Motor"
+         Name="InterpTrackAkEvent_34"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_32
+         AkEvents(0)=(Time=3.293768,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Approach')
+         TrackTitle="AkEvent_Approach"
+         Name="InterpTrackAkEvent_32"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_30
+         AkEvents(0)=(Time=40.627361,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Depart')
+         TrackTitle="AkEvent_Depart"
+         Name="InterpTrackAkEvent_30"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_28
+         AkEvents(0)=(Time=10.048723,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Open')
+         AkEvents(1)=(Time=38.065842,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Close')
+         TrackTitle="AkEvent_Doors"
+         Name="InterpTrackAkEvent_28"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackAkEvent_28'
+      InterpTracks(2)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackAkEvent_30'
+      InterpTracks(3)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackAkEvent_32'
+      InterpTracks(4)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackAkEvent_34'
+      GroupName="DummyBox"
+      GroupColor=(B=152,G=0,R=186,A=255)
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_7
+         EventTrack(0)=(Time=5.000000,EventName="ZapApproach4")
+         EventTrack(1)=(Time=10.000000,EventName="ZapIdle4")
+         EventTrack(2)=(Time=40.000000,EventName="ZapLeave4")
+         EventTrack(3)=(Time=42.000000,EventName="ZapOff4")
+         Name="InterpTrackEvent_7"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=10.000000,EventName="Dropoff?4")
+         EventTrack(1)=(Time=12.000000,EventName="Airship4SpawnOn")
+         EventTrack(2)=(Time=38.000000,EventName="Airship4SpawnOff")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="Approach_V4",AnimPlayRate=1.000000)
          AnimSeqs(1)=(StartTime=10.000000,AnimSeqName="Idle_Drop_Intro_V4",AnimPlayRate=1.000000)
@@ -13145,21 +13208,6 @@ Begin Object Class=InterpData Name=InterpData_27
          Name="InterpTrackAnimControl_0"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=10.000000,EventName="Dropoff?4")
-         EventTrack(1)=(Time=12.000000,EventName="Airship4SpawnOn")
-         EventTrack(2)=(Time=38.000000,EventName="Airship4SpawnOff")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_7
-         EventTrack(0)=(Time=5.000000,EventName="ZapApproach4")
-         EventTrack(1)=(Time=10.000000,EventName="ZapIdle4")
-         EventTrack(2)=(Time=40.000000,EventName="ZapLeave4")
-         EventTrack(3)=(Time=42.000000,EventName="ZapOff4")
-         Name="InterpTrackEvent_7"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
       InterpTracks(0)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1.InterpTrackEvent_0'
       InterpTracks(1)=InterpTrackAnimControl'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1.InterpTrackAnimControl_0'
       InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1.InterpTrackEvent_7'
@@ -13169,50 +13217,9 @@ Begin Object Class=InterpData Name=InterpData_27
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_28
-         AkEvents(0)=(Time=10.048723,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Open')
-         AkEvents(1)=(Time=38.065842,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Close')
-         TrackTitle="AkEvent_Doors"
-         Name="InterpTrackAkEvent_28"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_30
-         AkEvents(0)=(Time=40.627361,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Depart')
-         TrackTitle="AkEvent_Depart"
-         Name="InterpTrackAkEvent_30"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_32
-         AkEvents(0)=(Time=3.293768,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Approach')
-         TrackTitle="AkEvent_Approach"
-         Name="InterpTrackAkEvent_32"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_34
-         AkEvents(0)=(Time=5.667654,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_LP')
-         AkEvents(1)=(Time=41.421295,Event=AkEvent'WW_ENV_Airship.Stop_ENV_Airship_MiniAirship_Engine_LP')
-         TrackTitle="AkEvent_Motor"
-         Name="InterpTrackAkEvent_34"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=5959.036133,Y=-16907.703125,Z=4392.003906),ArriveTangent=(X=1217.167236,Y=-3543.239258,Z=856.269897),LeaveTangent=(X=1217.167236,Y=-3543.239258,Z=856.269897),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=8126.792969,Y=-23409.296875,Z=5847.680176),ArriveTangent=(X=118.156219,Y=-1118.048706,Z=51.162720),LeaveTangent=(X=118.156219,Y=-1118.048706,Z=51.162720),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=8279.181641,Y=-25121.927734,Z=5912.002930),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=8279.181641,Y=-25121.927734,Z=5912.002930),InterpMode=CIM_CurveAutoClamped),(InVal=42.900002,OutVal=(X=7529.137207,Y=-26302.148438,Z=6736.003906),ArriveTangent=(X=-452.859131,Y=-643.686829,Z=0.000000),LeaveTangent=(X=-452.859131,Y=-643.686829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=-10503.395508,Y=-37376.109375,Z=-1039.993652),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=0.000000,Y=0.000000,Z=24.323730),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=0.000000,Y=0.000000,Z=18.500977),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.976192),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.976192),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-21.357422),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=-21.357422),InterpMode=CIM_CurveAutoClamped),(InVal=42.900002,OutVal=(X=0.000000,Y=0.000000,Z=-62.182617),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.824463),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.824463),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=-99.602051),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=4.500000),(Time=6.500000),(Time=10.000000),(Time=40.000000),(Time=42.900002),(Time=50.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackAkEvent_28'
-      InterpTracks(2)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackAkEvent_30'
-      InterpTracks(3)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackAkEvent_32'
-      InterpTracks(4)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackAkEvent_34'
-      GroupName="DummyBox"
-      GroupColor=(B=152,G=0,R=186,A=255)
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=50.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1'
@@ -13232,11 +13239,67 @@ Begin Object Class=InterpData Name=InterpData_27
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.001953,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=101.290039,Y=-22350.917969,Z=5440.001953),ArriveTangent=(X=54.805779,Y=-3243.054932,Z=711.185913),LeaveTangent=(X=54.805779,Y=-3243.054932,Z=711.185913),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=398.766113,Y=-27993.203125,Z=6640.003418),ArriveTangent=(X=0.000000,Y=-0.000443,Z=0.000057),LeaveTangent=(X=0.000000,Y=-0.000443,Z=0.000057),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=398.766113,Y=-27993.207031,Z=6640.003906),ArriveTangent=(X=0.000000,Y=-0.000439,Z=0.000055),LeaveTangent=(X=0.000000,Y=-0.000439,Z=0.000055),InterpMode=CIM_CurveAutoClamped),(InVal=43.000000,OutVal=(X=-303.094971,Y=-28717.824219,Z=6824.005371),ArriveTangent=(X=-476.186340,Y=-216.301025,Z=0.000000),LeaveTangent=(X=-476.186340,Y=-216.301025,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=45.700001,OutVal=(X=-3467.560303,Y=-29226.123047,Z=6764.015137),ArriveTangent=(X=-1919.065918,Y=0.000000,Z=-47.418152),LeaveTangent=(X=-1919.065918,Y=0.000000,Z=-47.418152),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=-18546.093750,Y=-24753.230469,Z=-639.995117),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.000000,Z=10.239258),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=0.000000,Y=0.000000,Z=-35.617676),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=-35.617676),InterpMode=CIM_CurveAutoClamped),(InVal=43.000000,OutVal=(X=0.000000,Y=0.000000,Z=-68.247070),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.365113),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.365113),InterpMode=CIM_CurveAutoClamped),(InVal=45.700001,OutVal=(X=0.000000,Y=0.000000,Z=-83.781738),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.801346),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.801346),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=-126.386719),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=3.000000),(Time=6.500000),(Time=40.000000),(Time=43.000000),(Time=45.700001),(Time=50.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_26
+         AkEvents(0)=(Time=1.246293,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_LP')
+         AkEvents(1)=(Time=44.833824,Event=AkEvent'WW_ENV_Airship.Stop_ENV_Airship_MiniAirship_Engine_LP')
+         TrackTitle="AkEvent_Motor"
+         Name="InterpTrackAkEvent_26"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_24
+         AkEvents(0)=(Time=1.543027,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Approach')
+         TrackTitle="AkEvent_Approach"
+         Name="InterpTrackAkEvent_24"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_22
+         AkEvents(0)=(Time=41.517593,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Depart')
+         TrackTitle="AkEvent_Depart"
+         Name="InterpTrackAkEvent_22"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_20
+         AkEvents(0)=(Time=10.464153,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Open')
+         AkEvents(1)=(Time=38.065842,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Close')
+         TrackTitle="AkEvent_Doors"
+         Name="InterpTrackAkEvent_20"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackAkEvent_20'
+      InterpTracks(2)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackAkEvent_22'
+      InterpTracks(3)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackAkEvent_24'
+      InterpTracks(4)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackAkEvent_26'
+      GroupName="DummyBox"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_9
+         EventTrack(0)=(Time=5.000000,EventName="ZapApproach2")
+         EventTrack(1)=(Time=10.000000,EventName="ZapIdle2")
+         EventTrack(2)=(Time=40.000000,EventName="ZapLeave2")
+         EventTrack(3)=(Time=42.000000,EventName="ZapOff2")
+         Name="InterpTrackEvent_9"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=10.000000,EventName="Dropoff2?")
+         EventTrack(1)=(Time=12.000000,EventName="Airship2SpawnOn")
+         EventTrack(2)=(Time=38.000000,EventName="Airship2SpawnOff")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="Approach_V2",AnimPlayRate=1.000000)
          AnimSeqs(1)=(StartTime=10.000000,AnimSeqName="Idle_Drop_Intro_V2",AnimPlayRate=1.000000)
@@ -13258,21 +13321,6 @@ Begin Object Class=InterpData Name=InterpData_3
          Name="InterpTrackAnimControl_0"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=10.000000,EventName="Dropoff2?")
-         EventTrack(1)=(Time=12.000000,EventName="Airship2SpawnOn")
-         EventTrack(2)=(Time=38.000000,EventName="Airship2SpawnOff")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_9
-         EventTrack(0)=(Time=5.000000,EventName="ZapApproach2")
-         EventTrack(1)=(Time=10.000000,EventName="ZapIdle2")
-         EventTrack(2)=(Time=40.000000,EventName="ZapLeave2")
-         EventTrack(3)=(Time=42.000000,EventName="ZapOff2")
-         Name="InterpTrackEvent_9"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
       InterpTracks(0)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackEvent_0'
       InterpTracks(1)=InterpTrackAnimControl'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackAnimControl_0'
       InterpTracks(2)=InterpTrackEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackEvent_9'
@@ -13282,50 +13330,9 @@ Begin Object Class=InterpData Name=InterpData_3
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_20
-         AkEvents(0)=(Time=10.464153,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Open')
-         AkEvents(1)=(Time=38.065842,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_CargoDoors_Close')
-         TrackTitle="AkEvent_Doors"
-         Name="InterpTrackAkEvent_20"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_22
-         AkEvents(0)=(Time=41.517593,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Depart')
-         TrackTitle="AkEvent_Depart"
-         Name="InterpTrackAkEvent_22"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_24
-         AkEvents(0)=(Time=1.543027,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_Approach')
-         TrackTitle="AkEvent_Approach"
-         Name="InterpTrackAkEvent_24"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_26
-         AkEvents(0)=(Time=1.246293,Event=AkEvent'WW_ENV_Airship.Play_ENV_Airship_MiniAirship_Engine_LP')
-         AkEvents(1)=(Time=44.833824,Event=AkEvent'WW_ENV_Airship.Stop_ENV_Airship_MiniAirship_Engine_LP')
-         TrackTitle="AkEvent_Motor"
-         Name="InterpTrackAkEvent_26"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.001953,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=101.290039,Y=-22350.917969,Z=5440.001953),ArriveTangent=(X=54.805779,Y=-3243.054932,Z=711.185913),LeaveTangent=(X=54.805779,Y=-3243.054932,Z=711.185913),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=398.766113,Y=-27993.203125,Z=6640.003418),ArriveTangent=(X=0.000000,Y=-0.000443,Z=0.000057),LeaveTangent=(X=0.000000,Y=-0.000443,Z=0.000057),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=398.766113,Y=-27993.207031,Z=6640.003906),ArriveTangent=(X=0.000000,Y=-0.000439,Z=0.000055),LeaveTangent=(X=0.000000,Y=-0.000439,Z=0.000055),InterpMode=CIM_CurveAutoClamped),(InVal=43.000000,OutVal=(X=-303.094971,Y=-28717.824219,Z=6824.005371),ArriveTangent=(X=-476.186340,Y=-216.301025,Z=0.000000),LeaveTangent=(X=-476.186340,Y=-216.301025,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=45.700001,OutVal=(X=-3467.560303,Y=-29226.123047,Z=6764.015137),ArriveTangent=(X=-1919.065918,Y=0.000000,Z=-47.418152),LeaveTangent=(X=-1919.065918,Y=0.000000,Z=-47.418152),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=-18546.093750,Y=-24753.230469,Z=-639.995117),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.000000,Z=10.239258),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=0.000000,Y=0.000000,Z=-35.617676),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=-35.617676),InterpMode=CIM_CurveAutoClamped),(InVal=43.000000,OutVal=(X=0.000000,Y=0.000000,Z=-68.247070),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.365113),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.365113),InterpMode=CIM_CurveAutoClamped),(InVal=45.700001,OutVal=(X=0.000000,Y=0.000000,Z=-83.781738),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.801346),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.801346),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=0.000000,Z=-126.386719),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=3.000000),(Time=6.500000),(Time=40.000000),(Time=43.000000),(Time=45.700001),(Time=50.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackAkEvent_20'
-      InterpTracks(2)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackAkEvent_22'
-      InterpTracks(3)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackAkEvent_24'
-      InterpTracks(4)=InterpTrackAkEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackAkEvent_26'
-      GroupName="DummyBox"
-      GroupColor=(B=204,G=0,R=126,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=50.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1'
@@ -13434,10 +13441,6 @@ Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_5
 End Object
 
 Begin Object Class=InterpData Name=InterpData_19
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=0.000977,Y=-0.000031,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.001953,Y=-0.000031,Z=-0.000244),InterpMode=CIM_CurveAutoClamped)))
@@ -13452,6 +13455,10 @@ Begin Object Class=InterpData Name=InterpData_19
       GroupColor=(B=187,G=0,R=151,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpGroup_0'
@@ -18252,10 +18259,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.000366),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.000366)),(InVal=2.000000,OutVal=(X=0.000977,Y=0.000434,Z=0.000732))))
@@ -18270,6 +18273,10 @@ Begin Object Class=InterpData Name=InterpData_4
       GroupColor=(B=187,G=0,R=151,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0'
@@ -20309,10 +20316,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_271
 End Object
 
 Begin Object Class=InterpData Name=InterpData_23
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.031250,Z=-52480.007813),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=-178981.187500,Z=-12800.000977),ArriveTangent=(X=0.000000,Y=-54392.621094,Z=0.000000),LeaveTangent=(X=0.000000,Y=-54392.621094,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.000000,OutVal=(X=0.000000,Y=-380748.375000,Z=-18765.875000),ArriveTangent=(X=0.000000,Y=-56516.488281,Z=-4104.740723),LeaveTangent=(X=0.000000,Y=-56516.488281,Z=-4104.740723),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-518080.125000,Z=-53760.007813),InterpMode=CIM_CurveAutoClamped)))
@@ -20327,6 +20330,10 @@ Begin Object Class=InterpData Name=InterpData_23
       GroupColor=(B=164,G=0,R=176,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_23.InterpGroup_0'
@@ -20432,10 +20439,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_5
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=-0.007813,Y=0.015625,Z=-34560.007813),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-48817.812500,Y=247535.453125,Z=-3839.998047),ArriveTangent=(X=-964.961914,Y=51622.230469,Z=0.000000),LeaveTangent=(X=-964.961914,Y=51622.230469,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-50843.460938,Y=516222.312500,Z=-32000.001953),InterpMode=CIM_CurveAutoClamped)))
@@ -20450,6 +20453,10 @@ Begin Object Class=InterpData Name=InterpData_5
       GroupColor=(B=164,G=0,R=176,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0'
@@ -20535,23 +20542,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_24
 End Object
 
 Begin Object Class=InterpData Name=InterpData_24
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'Env_AirShip_MAT.airship.ENV_Airship_Cables_Movement_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-AIRSHIP.TheWorld:PersistentLevel.InterpActor_77.StaticMeshComponent_101')))
-         ParamName="Scalar_Emissive_Amount"
-         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=100.000000,InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
          Materials(0)=(TargetMaterial=MaterialInstanceConstant'Env_AirShip_MAT.airship.ENV_AirShip_PWR_Cables_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-AIRSHIP.TheWorld:PersistentLevel.InterpActor_0.StaticMeshComponent_652')))
          ParamName="Scalar_Emissive_Amount"
          FloatTrack=(Points=((InVal=0.600000,InterpMode=CIM_CurveAutoClamped),(InVal=1.100000,OutVal=100.000000,InterpMode=CIM_CurveAutoClamped),(InVal=1.600000,InterpMode=CIM_CurveAutoClamped)))
          Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'Env_AirShip_MAT.airship.ENV_Airship_Cables_Movement_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-AIRSHIP.TheWorld:PersistentLevel.InterpActor_77.StaticMeshComponent_101')))
+         ParamName="Scalar_Emissive_Amount"
+         FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=100.000000,InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
          ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
       End Object
       InterpTracks(0)=InterpTrackFloatMaterialParam'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0.InterpTrackFloatMaterialParam_0'
@@ -20560,6 +20563,10 @@ Begin Object Class=InterpData Name=InterpData_24
       GroupColor=(B=155,G=183,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.600000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0'
@@ -20603,7 +20610,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_46
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
-Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_120
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_0
    EventName="CoalWheelMove"
    InputLinks(0)=(DrawY=7618,OverrideDelta=11)
    OutputLinks(0)=(DrawY=7618,OverrideDelta=11)
@@ -20615,7 +20622,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_12
    ObjComment="CoalWheelMove"
    DrawWidth=281
    DrawHeight=61
-   Name="SeqAct_ActivateRemoteEvent_120"
+   Name="SeqAct_ActivateRemoteEvent_0"
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
@@ -21627,10 +21634,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_269
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=-102400.000000,Y=92160.007813,Z=-0.001953),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-60160.023438,Y=55040.019531,Z=-0.004883),ArriveTangent=(X=8112.505371,Y=-6194.815918,Z=-0.001923),LeaveTangent=(X=8112.505371,Y=-6194.815918,Z=-0.001923),InterpMode=CIM_CurveAutoClamped),(InVal=6.500000,OutVal=(X=-48494.312500,Y=47029.218750,Z=-2381.485352),ArriveTangent=(X=7873.981445,Y=-5067.583008,Z=-1589.143311),LeaveTangent=(X=7873.981445,Y=-5067.583008,Z=-1589.143311),InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,OutVal=(X=-40475.070313,Y=42371.062500,Z=-3972.863281),ArriveTangent=(X=6597.721680,Y=-3451.678223,Z=0.000000),LeaveTangent=(X=6597.721680,Y=-3451.678223,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=-32000.007813,Y=38400.023438,Z=-3840.015625),ArriveTangent=(X=4993.092285,Y=-1816.584961,Z=207.443481),LeaveTangent=(X=4993.092285,Y=-1816.584961,Z=207.443481),InterpMode=CIM_CurveAutoClamped),(InVal=10.500000,OutVal=(X=-25495.792969,Y=36697.265625,Z=-1467.423828),ArriveTangent=(X=3840.011719,Y=-1024.004639,Z=1677.740845),LeaveTangent=(X=3840.011719,Y=-1024.004639,Z=1677.740845),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=-12799.949219,Y=33280.000000,Z=4639.994141),ArriveTangent=(X=3672.149170,Y=-1940.130249,Z=1249.782593),LeaveTangent=(X=3672.149170,Y=-1940.130249,Z=1249.782593),InterpMode=CIM_CurveAutoClamped),(InVal=16.000000,OutVal=(X=-5298.972656,Y=25589.935547,Z=6399.995117),ArriveTangent=(X=3413.333252,Y=-3697.782471,Z=0.000000),LeaveTangent=(X=3413.333252,Y=-3697.782471,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=18.500000,OutVal=(X=2560.050781,Y=16639.978516,Z=6399.994141),ArriveTangent=(X=3687.551758,Y=-2855.796631,Z=-0.001099),LeaveTangent=(X=3687.551758,Y=-2855.796631,Z=-0.001099),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=9451.234375,Y=13425.289063,Z=4076.166016),ArriveTangent=(X=5479.100098,Y=-2492.467041,Z=-2044.211182),LeaveTangent=(X=5479.100098,Y=-2492.467041,Z=-2044.211182),InterpMode=CIM_CurveAutoClamped),(InVal=23.000000,OutVal=(X=28160.070313,Y=5119.964844,Z=-3840.012695),ArriveTangent=(X=6002.896484,Y=-3909.545166,Z=-0.005127),LeaveTangent=(X=6002.896484,Y=-3909.545166,Z=-0.005127),InterpMode=CIM_CurveAutoClamped),(InVal=24.500000,OutVal=(X=36588.835938,Y=-4167.664063,Z=-3840.016602),ArriveTangent=(X=8115.444824,Y=-9614.021484,Z=0.000000),LeaveTangent=(X=8115.444824,Y=-9614.021484,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=27.000000,OutVal=(X=65280.109375,Y=-43520.062500,Z=-3840.010742),ArriveTangent=(X=15884.505859,Y=-16670.085938,Z=0.001488),LeaveTangent=(X=15884.505859,Y=-16670.085938,Z=0.001488),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=296960.031250,Y=-184320.015625,Z=-3840.000977),InterpMode=CIM_CurveAutoClamped)))
@@ -21645,6 +21648,10 @@ Begin Object Class=InterpData Name=InterpData_6
       GroupColor=(B=164,G=0,R=176,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=35.000000
    InterpGroups(0)=InterpGroup'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0'
@@ -23993,6 +24000,22 @@ Begin Object Class=SeqAct_ModifyProperty Name=SeqAct_ModifyProperty_2
    DrawHeight=61
    Name="SeqAct_ModifyProperty_2"
    ObjectArchetype=SeqAct_ModifyProperty'GameFramework.Default__SeqAct_ModifyProperty'
+End Object
+
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_120
+   EventName="CoalWheelEnd"
+   InputLinks(0)=(DrawY=7738,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=7738,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=7255,OverrideDelta=103)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=7120
+   ObjPosY=7704
+   ObjComment="CoalWheelEnd"
+   DrawWidth=270
+   DrawHeight=61
+   Name="SeqAct_ActivateRemoteEvent_120"
+   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
 Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'

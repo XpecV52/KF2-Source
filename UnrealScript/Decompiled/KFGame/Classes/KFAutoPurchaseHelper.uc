@@ -80,13 +80,13 @@ function DoAutoPurchase()
     bAutoFillPurchasedItem = StartAutoFill();
     if(DoIOwnThisWeapon(TopTierWeapon))
     {
-        J0x2A4:
+        J0x2A5:
 
         if(AttemptToPurchaseNextLowerTier(TotalDosh, OnPerkWeapons))
         {
             bSecondaryWeaponPurchased = true;
             AttemptToPurchaseNextLowerTier(TotalDosh, OnPerkWeapons);
-            goto J0x2A4;
+            goto J0x2A5;
         }
     }
     MyKFIM.ServerCloseTraderMenu();
@@ -330,9 +330,10 @@ function bool GetCanAfford(int BuyPrice)
     return true;
 }
 
-function bool CanCarry(const out STraderItem Item)
+function bool CanCarry(const out STraderItem Item, optional int OverrideLevelValue)
 {
-    if((TotalBlocks + MyKFIM.GetDisplayedBlocksRequiredFor(Item)) > MaxBlocks)
+    OverrideLevelValue = -1;
+    if((TotalBlocks + MyKFIM.GetDisplayedBlocksRequiredFor(Item, OverrideLevelValue)) > MaxBlocks)
     {
         return false;
     }
@@ -347,7 +348,7 @@ function bool CanUpgrade(STraderItem SelectedItem, out int CanCarryIndex, out in
     local int AddedWeightBlocks;
 
     MyKFPC = Outer;
-    ItemUpgradeLevel = GetItemUpgradeLevel(SelectedItem);
+    ItemUpgradeLevel = GetItemUpgradeLevelByClassName(SelectedItem.ClassName);
     if((ItemUpgradeLevel == -1) || !ItemUpgradeLevel < SelectedItem.WeaponDef.default.UpgradePrice.Length)
     {
         LogInternal("Item at max level");
@@ -368,12 +369,15 @@ function bool CanUpgrade(STraderItem SelectedItem, out int CanCarryIndex, out in
 
 function PurchaseWeapon(STraderItem ShopItem)
 {
+    local int ItemUpgradeLevel;
+
     if(!bCanPurchase(ShopItem))
     {
         return;
     }
+    ItemUpgradeLevel = ((ShopItem.SingleClassName != 'None') ? GetItemUpgradeLevelByClassName(ShopItem.SingleClassName) : -1);
     AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
-    AddBlocks(MyKFIM.GetWeaponBlocks(ShopItem));
+    AddBlocks(MyKFIM.GetWeaponBlocks(ShopItem, ItemUpgradeLevel));
     AddWeaponToOwnedItemList(ShopItem);
 }
 
@@ -916,7 +920,7 @@ simulated function int GetAdjustedUpgradePriceFor(const out STraderItem ItemInfo
     return MyKFIM.GetAdjustedUpgradePriceFor(ItemInfo, UpgradeLevel);
 }
 
-simulated function int GetItemUpgradeLevel(const out STraderItem ItemInfo)
+simulated function int GetItemUpgradeLevelByClassName(name ClassName)
 {
     local int I;
     local name OwnedItemClassName;
@@ -930,16 +934,16 @@ simulated function int GetItemUpgradeLevel(const out STraderItem ItemInfo)
         if(OwnedItemClassName == 'None')
         {
             WarnInternal("Owned item with Class NAME_None");
-            goto J0xF7;            
+            goto J0xE4;            
         }
         else
         {
-            if(OwnedItemClassName == ItemInfo.ClassName)
+            if(OwnedItemClassName == ClassName)
             {
                 return OwnedItemList[I].ItemUpgradeLevel;
             }
         }
-        J0xF7:
+        J0xE4:
 
         ++ I;
         goto J0x0B;

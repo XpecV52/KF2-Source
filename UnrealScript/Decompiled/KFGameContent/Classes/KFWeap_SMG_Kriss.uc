@@ -22,7 +22,7 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
-    InventorySize=5
+    InventorySize=6
     MagazineCapacity=33
     MeshIronSightFOV=45
     IronSightPosition=(X=15,Y=0,Z=0)

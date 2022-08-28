@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="Perkを0にリセットしますか？ この操作は取り消せません。"
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="名声ボーナス"
 FailedToReachInventoryServerString="アイテムサーバーに接続できませんでした。インベントリは利用できなくなります。"
 LoadingString="読み込み中..."
 DifficultyStrings[0]="Normal"
@@ -111,8 +111,8 @@ DiscordWaveString=": ウェーブ"
 ProceedToTutorialString="トレーニングに進みますか？"
 ProceedToTutorialDescriptionString="基本を学ぶために制御環境へと向かいましょう。  一度完了すると選択されたレベル0Perkがレベル1になります。"
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="この機能は無料トライアルではご利用いただけません"
+NetworkCheckFreeTrialFailedString="ネットワークエラー:フリーイベントの状態を確認できません。ネットワークの接続状態をご確認ください。"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="アウトブレイククリア報酬"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="観客は追放投票を開始できません"
 KickedFromServerString="サーバーから取り除かれました"
 BannedFromServerString="このサーバーから取り除かれました。現時点では再加入できません"
 ServerNoLongerAvailableString="このサーバーにはもう参加できません"
-SkipTraderTimeString="プレイヤーの1人がトレーダータイムのスキップに投票しました。 トレーダーをスキップするには、メニューを開いて「トレーダーをスキップ」を選択してください。 実行するには、すべてのプレイヤーが同意する必要があります。"
+SkipTraderTimeString="「トレーダーのスキップ」を有効にしました。ゲームメニューの「トレーダーのスキップ」をオンにして選択できるようにします。  すべてのプレイヤーが同意する必要があります。"
 SkipTraderSuccessString="トレーダースキップの投票が成功しました！"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>自身を回復する"
 PressToBashWarning="強打"
 GamepadWeaponSelectHint="<%HOLD%>武器選択"
 PlayerClotGrabWarningMessage="zedをキルして逃げる！"
+
 UseMinigameMessage="起動"
 UseMinigameGeneratorMessage="ジェネレータ起動"
 DoshActivateMessage="アクティベーションコスト"
-
+EMPGrabWarningMessage="*** ! 行動不能！***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="チームのバランスが悪いため、調整されます"
 
@@ -1763,7 +1764,7 @@ LargeMags="高容量マガジン"
 LargeMagsDescription="Perk武器のマガジン容量が50%増加する。"
 
 Backup="予備"
-BackupDescription="9mmピストルおよびナイフによるダメージが110%増加する、武器切り替え速度が50%増加する。"
+BackupDescription="9mmピストルおよびナイフによるダメージが50%増加する、武器切り替え速度が50%増加する。"
 
 Impact="衝撃弾"
 ImpactDescription="Perk武器の怯みパワーが150%増加する。"
@@ -2097,7 +2098,7 @@ TacticalMovement="戦術的移動"
 TacticalMovementDescription="Perk武器でアイアンサイトやしゃがみ動作を使用することによる動作ペナルティはありません。"
 
 Backup="接近戦訓練"
-BackupDescription="9mmピストルおよびナイフによるダメージが110%増加する。各ゲームをデュアル9mmピストルで開始する。"
+BackupDescription="9mmピストルおよびナイフによるダメージが50%増加する。各ゲームをデュアル9mmピストルで開始する。"
 
 TacticalReload="戦術的リロード"
 TacticalReloadDescription="Perk武器のリロード速度が上昇する。"
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="ホージン物資箱の鍵 | シリーズ#13―$2.49"
 USBSpitfire="スピットファイアUSBの鍵―$2.49"
 USBHighVoltage="ハイボルテージUSBの鍵―$2.49"
 MerchSale="お得なKF2セール！2017年4月30日まで25%オフ、プロモコード：ZED"
-; placeholder03
+FreeTrial="製品版を購入"
 
 [Objectives]
 HoldVolume="エリアを守備せよ"
@@ -2331,7 +2332,7 @@ UseWelderToRepair="溶接機を使って目標を修理しよう"
 FailedString="失敗"
 DescriptionActivateTrigger="制御装置を起動しよう"
 RequiredActivateTrigger="起動に必要なもの:"
-ActivateTrigger="制御装置を使って掌握しよう"
+ActivateTrigger="操縦可能"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="パワーアップ！",Descriptio
 SpecialEventObjectiveInfoList[3]=(TitleString="フラッシュラッシュ",DescriptionString="飛行船で蒸気機関に水を送る");
 SpecialEventObjectiveInfoList[4]=(TitleString="上等な船",DescriptionString="飛行船にてHard以上でマッチに勝利する");
 
-AllCompleteRewardDescriptionString="パジャマスーツ"
+AllCompleteRewardDescriptionString="スチームパンク服バンドル"
 
 ChanceDropDescriptionStrings[0]="景品チケット"
 ChanceDropDescriptionStrings[1]="黄金チケット"

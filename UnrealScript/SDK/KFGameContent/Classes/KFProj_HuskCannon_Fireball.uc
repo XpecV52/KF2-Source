@@ -173,19 +173,24 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 simulated protected function PrepareExplosionTemplate()
 {
 	local bool bUseConcussiveForce;
+	local Weapon OwnerWeapon;
 	local Pawn OwnerPawn;
 	local KFPlayerReplicationInfo PRI;
 
 	super(KFProjectile).PrepareExplosionTemplate();
 
 	bUseConcussiveForce = false;
-	OwnerPawn = Pawn(Owner);
-	if (OwnerPawn != none)
+	OwnerWeapon = Weapon(Owner);
+	if (OwnerWeapon != none)
 	{
-		PRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
-		if (PRI != none)
+		OwnerPawn = Pawn(OwnerWeapon.Owner);
+		if (OwnerPawn != none)
 		{
-			bUseConcussiveForce = PRI.bConcussiveActive;
+			PRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
+			if (PRI != none)
+			{
+				bUseConcussiveForce = PRI.bConcussiveActive;
+			}
 		}
 	}
 
@@ -348,7 +353,7 @@ defaultproperties
 	GroundFireExplosionTemplate=ExploTemplate1
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate2
-		Damage=60 //100
+		Damage=80 //100
 		DamageRadius=100 //450 //550
 		DamageFalloffExponent=1.f //1.0
 		DamageDelay=0.f

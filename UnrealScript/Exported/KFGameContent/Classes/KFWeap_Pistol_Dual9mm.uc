@@ -66,11 +66,11 @@ defaultproperties
    RecoilISMaxPitchLimit=250
    RecoilISMinPitchLimit=65485
    AssociatedPerkClasses(0)=None
-   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.300000)
-   WeaponUpgrades(2)=(IncrementWeight=0,IncrementDamage=1.600000)
-   WeaponUpgrades(3)=(IncrementWeight=0,IncrementDamage=1.900000)
-   WeaponUpgrades(4)=(IncrementWeight=0,IncrementDamage=2.200000)
-   WeaponUpgrades(5)=(IncrementWeight=0,IncrementDamage=2.500000)
+   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.200000)
+   WeaponUpgrades(2)=(IncrementWeight=0,IncrementDamage=1.400000)
+   WeaponUpgrades(3)=(IncrementWeight=0,IncrementDamage=1.600000)
+   WeaponUpgrades(4)=(IncrementWeight=0,IncrementDamage=1.800000)
+   WeaponUpgrades(5)=(IncrementWeight=0,IncrementDamage=2.000000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

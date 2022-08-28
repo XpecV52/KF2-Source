@@ -15,11 +15,11 @@ defaultproperties
 	KDeathUpKick=800
 	KDeathVel=575 //400
 
-	KnockdownPower=150
+	KnockdownPower=90//150
 	StunPower=0
 	StumblePower=150
 	MeleeHitPower=100
-    EMPPower=49 //25
+    EMPPower=45 //49
 
 	WeaponDef=class'KFWeapDef_PowerGloves'
 	ModifierPerkList(0)=class'KFPerk_Berserker'

@@ -23,7 +23,7 @@ static simulated event EFilterTypeUI GetTraderFilter()
 defaultproperties
 {
    HealAmount=15
-   HealFullRechargeSeconds=16.000000
+   HealFullRechargeSeconds=10.000000
    PackageKey="Medic_Assault"
    FirstPersonMeshName="WEP_1P_Medic_Assault_MESH.Wep_1stP_Medic_Assault_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_Medic_Assault_ANIM.Wep_1stP_Medic_Assault_Anim"
@@ -36,7 +36,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=()
    SingleFireSoundIndex=1
-   InventorySize=6
+   InventorySize=7
    MagazineCapacity(0)=40
    MeshFOV=75.000000
    MeshIronSightFOV=52.000000
@@ -83,8 +83,7 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Commando'
-   WeaponUpgrades(1)=(IncrementDamage=1.400000,IncrementHealFullRecharge=0.625000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.600000,IncrementHealFullRecharge=0.562500)
+   WeaponUpgrades(1)=(IncrementDamage=1.150000,IncrementHealFullRecharge=0.900000)
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=()
    FireInterval(0)=0.080000
@@ -94,7 +93,7 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.008500
    Spread(1)=()
-   InstantHitDamage(0)=25.000000
+   InstantHitDamage(0)=35.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=27.000000

@@ -889,7 +889,7 @@ simulated state WeaponAbortEquip
 defaultproperties
 {
 	// Inventory / Grouping
-	InventorySize=9
+	InventorySize=9 //10
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
    	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
@@ -923,7 +923,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	SpareAmmoCapacity[0]=23 //20
+	SpareAmmoCapacity[0]=32 //20
 	InitialSpareMags[0]=6
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -962,7 +962,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RailGun'
-	InstantHitDamage(DEFAULT_FIREMODE)=281  //750
+	InstantHitDamage(DEFAULT_FIREMODE)=280  //375
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RailGun'
 	FireInterval(DEFAULT_FIREMODE)=0.1 //0.4
 	PenetrationPower(DEFAULT_FIREMODE)=10.0
@@ -977,7 +977,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=none
-	InstantHitDamage(ALTFIRE_FIREMODE)=562 //750
+	InstantHitDamage(ALTFIRE_FIREMODE)=560 //750
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_RailGun'
 	FireInterval(ALTFIRE_FIREMODE)=0.1 //0.4
 	PenetrationPower(ALTFIRE_FIREMODE)=10.0
@@ -1035,6 +1035,5 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.335f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.469f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=1)
 }

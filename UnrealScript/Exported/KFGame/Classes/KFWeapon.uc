@@ -1259,6 +1259,7 @@ simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
 
 /** Weapon skins */
 native reliable client private function ClientSetFirstPersonSkin(int ItemId);
+native function SetWeaponSkinPostLoad();
 native reliable server private event ServerUpdateWeaponSkin(int ItemId);
 native private function ClearSkinItemId();
 
@@ -1268,9 +1269,11 @@ native private function ClearSkinItemId();
 //TriggerAsync will be called statically and simply cache packages to root.  Useful
 //		for remote clients to preload content when a user picks up a weapon without
 //		having to do the full setting stack.
-simulated native static function TriggerAsyncContentLoad();
+simulated native static function TriggerAsyncContentLoad(class<KFWeapon> WeaponClass);
 native private function StartLoadWeaponContent();
 native private function LoadWeaponContent();
+native private function CacheWeaponContent();
+native private function UnloadWeaponContent();
 
 /**
  * This Inventory Item has just been given to this Pawn
@@ -1486,6 +1489,7 @@ function AttachThirdPersonWeapon(KFPawn P)
 	if ( Role == ROLE_Authority )
 	{
 		P.WeaponAttachmentTemplate = AttachmentArchetype;
+		P.WeaponClassForAttachmentTemplate = class;
 
 		// Assign replicated 3rd person skin (local & server)
 		if (P.IsHumanControlled())
@@ -1498,6 +1502,16 @@ function AttachThirdPersonWeapon(KFPawn P)
 			P.WeaponAttachmentChanged();
 		}
 	}
+}
+
+simulated function KFWeaponAttachment GetWeaponAttachmentTemplate()
+{
+	if (AttachmentArchetype == none)
+	{
+		TriggerAsyncContentLoad(Class);
+	}
+
+	return AttachmentArchetype;
 }
 
 /**
@@ -1522,6 +1536,7 @@ simulated function DetachWeapon()
 		if ( KFP.WeaponAttachmentTemplate == AttachmentArchetype )
 		{
 			KFP.WeaponAttachmentTemplate = None;
+			KFP.WeaponClassForAttachmentTemplate = none;
 			if ( WorldInfo.NetMode != NM_DedicatedServer )
 			{
 				KFP.WeaponAttachmentChanged();
@@ -1624,6 +1639,11 @@ function DropFrom(vector StartLocation, vector StartVelocity)
 	GotoState('');
 
 	AIController = None;
+}
+
+simulated function bool CanThrow()
+{
+	return super.CanThrow() && WeaponContentLoaded;
 }
 
 /** Sets up pickup. Allows subclasses to make adjustments (most notably dualbase) */
@@ -3211,6 +3231,10 @@ simulated function StartFire(byte FireModeNum)
 	// Attempt auto-reload
 	if( FireModeNum == DEFAULT_FIREMODE || FireModeNum == ALTFIRE_FIREMODE )
 	{
+		if (CurrentFireMode == RELOAD_FIREMODE && bReloadFromMagazine)
+		{
+			return;
+		}
 		if (IsMeleeing())
 		{
 			return;
@@ -5676,7 +5700,7 @@ simulated function SetSimplePutDown(bool bPutDownWeapon)
 
 simulated function bool CanSwitchWeapons()
 {
-    return true;
+    return WeaponContentLoaded;
 }
 
 /*********************************************************************************************
@@ -6437,6 +6461,7 @@ simulated state Reloading
 		NotifyEndState();
 
 		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayAmmoDialog( KFPawn(Instigator), float(SpareAmmoCount[0]) / float(GetMaxAmmoAmount(0)) );
+		CurrentFireMode = DEFAULT_FIREMODE;
 	}
 
 	simulated function BeginFire(byte FireModeNum)

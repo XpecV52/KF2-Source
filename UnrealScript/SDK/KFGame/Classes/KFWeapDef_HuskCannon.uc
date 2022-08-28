@@ -14,16 +14,14 @@ DefaultProperties
 {
     WeaponClassPath="KFGameContent.KFWeap_HuskCannon"
 
-    BuyPrice=1200 //1500
-    AmmoPricePerMag=40 //50
+    BuyPrice=1500
+    AmmoPricePerMag=50
     ImagePath="WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon"
 
 
     EffectiveRange=60
 
-	UpgradePrice[0]=700
-	UpgradePrice[1]=1500
+	UpgradePrice[0]=1500
 
-	UpgradeSellPrice[0]=525
-	UpgradeSellPrice[1]=1650
+    UpgradeSellPrice[0]=1125
 }

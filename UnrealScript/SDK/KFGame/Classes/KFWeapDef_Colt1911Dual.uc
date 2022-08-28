@@ -24,7 +24,7 @@ DefaultProperties
 	UpgradePrice[1]=700
 	UpgradePrice[2]=1500
 
-	UpgradeSellPrice[0]=450
-	UpgradeSellPrice[1]=975
-	UpgradeSellPrice[2]=2100
+	UpgradeSellPrice[0]=160 //450
+	UpgradeSellPrice[1]=260 //975
+	UpgradeSellPrice[2]=475 //2100
 }

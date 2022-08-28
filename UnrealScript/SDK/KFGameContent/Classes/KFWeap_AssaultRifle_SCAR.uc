@@ -61,7 +61,7 @@ defaultproperties
 	IronSightMeshFOVCompensationScale=4.0
 
 	// Inventory
-	InventorySize=5 //6
+	InventorySize=6
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
 
@@ -73,7 +73,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SCAR'
 	FireInterval(DEFAULT_FIREMODE)=+0.096 // 625 RPM
 	Spread(DEFAULT_FIREMODE)=0.007
-	InstantHitDamage(DEFAULT_FIREMODE)=42.0 //50 //55
+	InstantHitDamage(DEFAULT_FIREMODE)=55.0 //50 //55
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -83,7 +83,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_SCAR'
 	FireInterval(ALTFIRE_FIREMODE)=+0.1
-	InstantHitDamage(ALTFIRE_FIREMODE)=42.0 //50 //55
+	InstantHitDamage(ALTFIRE_FIREMODE)=55.0 //50 //55
 	Spread(ALTFIRE_FIREMODE)=0.007
 
 	// BASH_FIREMODE
@@ -109,6 +109,5 @@ defaultproperties
 	AssociatedPerkClasses(0)=class'KFPerk_Commando'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.22f,IncrementWeight=1)
 }

@@ -121,8 +121,6 @@ static function int GetTotalUpgradePrice(int UpgradeTier)
 
 defaultproperties
 {
-   UpgradePrice(0)=450
-   UpgradeSellPrice(0)=337
    Name="Default__KFWeaponDefinition"
    ObjectArchetype=Object'Core.Default__Object'
 }

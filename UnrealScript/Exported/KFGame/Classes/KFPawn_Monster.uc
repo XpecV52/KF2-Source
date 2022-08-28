@@ -1149,11 +1149,12 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 
 }
 
+/*
 simulated event FellOutOfWorld(class<DamageType> dmgType)
 {
 	local string Msg;
 
-	WarnInternal(self$" FELL OUT OF WORLD!");
+	`warn( self$" FELL OUT OF WORLD!" );
 	if( Health > 0 )
 	{
 		msg = WorldInfo.TimeSeconds@self@GetFuncName()@"fell out of world! Current location:"@Location;
@@ -1165,10 +1166,10 @@ simulated event FellOutOfWorld(class<DamageType> dmgType)
 				msg = msg@"MoveTarget:"@MyKFAIC.MoveTarget;
 			}
 		}
-		WarnInternal(msg);
+		`warn( msg );
 	}
 	super.FellOutOfWorld(dmgType);
-}
+}*/ //log spam
 
 event BaseChange()
 {

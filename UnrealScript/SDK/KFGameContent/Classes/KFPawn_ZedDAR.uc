@@ -134,7 +134,7 @@ defaultproperties
 
 	bEnableAimOffset=true
 
-	Health=562//462
+	Health=775//462 //562
 	DoshValue=17
 	Mass=85.f //65
 
@@ -148,7 +148,7 @@ defaultproperties
 	// ---------------------------------------------
 	// Movement / Physics
 	GroundSpeed=170.0f
-	SprintSpeed=550.0f //450
+	SprintSpeed=600.0f //450 //550
 
 	RotationRate=(Pitch=50000,Yaw=66000,Roll=50000)
 
@@ -194,15 +194,15 @@ defaultproperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(1.0)))  //0.75
     DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(1.25)))  //0.75
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(1.25)))  //0.85
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.75))) //0.5
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(2.0))) //0.85
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(1.5))) //0.5 //0.75
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(3.25))) //0.85 //2.0
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(1.0))) //0.6
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.85))) //0.5
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.05))) //0.25
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=350, DmgScale=1.001, SkinID=1)  // KF1=200     //154
-    HitZones[3]       =(ZoneName=heart,	   BoneName=Spine1,		  Limb=BP_Special,  GoreHealth=150, DmgScale=1.4, SkinID=2)
+    HitZones[3]       =(ZoneName=heart,	   BoneName=Spine1,		  Limb=BP_Special,  GoreHealth=150, DmgScale=3.5, SkinID=2) //1.4
 
 	StartSprintingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_Start'
 	SprintLoopingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_LP'

@@ -14,11 +14,9 @@ defaultproperties
 {
    WeaponClassPath="KFGameContent.KFWeap_Blunt_MaceAndShield"
    ImagePath="WEP_UI_Shield_Melee_TEX.UI_WeaponSelect_MaceShield"
-   BuyPrice=1300
-   UpgradePrice(0)=700
-   UpgradePrice(1)=1500
-   UpgradeSellPrice(0)=525
-   UpgradeSellPrice(1)=1650
+   BuyPrice=1600
+   UpgradePrice(0)=1500
+   UpgradeSellPrice(0)=1125
    EffectiveRange=3
    Name="Default__KFWeapDef_MaceAndShield"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

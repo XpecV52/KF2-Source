@@ -81,7 +81,7 @@ defaultproperties
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
-   InventorySize=2
+   InventorySize=3
    MagazineCapacity(0)=5
    PenetrationPower(0)=3.000000
    PenetrationPower(1)=()
@@ -128,8 +128,7 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.400000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Sharpshooter'
-   WeaponUpgrades(1)=(IncrementDamage=1.230000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.420000)
+   WeaponUpgrades(1)=(IncrementDamage=1.150000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -146,7 +145,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.015000
-   InstantHitDamage(0)=130.000000
+   InstantHitDamage(0)=160.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=23.000000

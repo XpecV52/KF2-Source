@@ -12,11 +12,9 @@ defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Beam_Microwave"
     ImagePath="WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun"
-    BuyPrice=1200
-    AmmoPricePerMag=80
-    UpgradePrice(0)=700
-    UpgradePrice(1)=1500
-    UpgradeSellPrice(0)=525
-    UpgradeSellPrice(1)=1650
+    BuyPrice=1500
+    AmmoPricePerMag=100
+    UpgradePrice(0)=1500
+    UpgradeSellPrice(0)=1125
     EffectiveRange=12
 }

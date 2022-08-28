@@ -758,8 +758,10 @@ var bool		bLandRecovery;			/** used by eyeheight adjustment. True if pawn recove
 var() array< class<Inventory> > DefaultInventory;
 var() array<Inventory>			DefaultInventoryArchetypes;
 
-/** Holds the class type of the current weapon attachment.  Replicated to all clients. */
-var	repnotify	KFWeaponAttachment			WeaponAttachmentTemplate;
+/** Holds the class type of the current weapon attachment. */
+var				KFWeaponAttachment			WeaponAttachmentTemplate;
+/** Holds the class type of the current weapon attachment's weapon class.  Replicated to all clients. */
+var	repnotify	class<KFWeapon>				WeaponClassForAttachmentTemplate;
 /** This holds the local copy of the current attachment.  This "attachment" actor will exist independantly on all clients */
 var				KFWeaponAttachment			WeaponAttachment;
 /** client side flag indicating whether attachment should be visible - primarily used when spawning the initial weapon attachment
@@ -1129,7 +1131,7 @@ replication
 {
     // Replicated to ALL
 	if ( bNetDirty )
-		AmbientSound, WeaponAttachmentTemplate, bIsSprinting, InjuredHitZones,
+		AmbientSound, WeaponClassForAttachmentTemplate, bIsSprinting, InjuredHitZones,
 		KnockdownImpulse, ReplicatedSpecialMove, bEmpDisrupted, bEmpPanicked, bFirePanicked,
         RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime, IntendedBodyScale,
 		IntendedHeadScale, AttackSpeedModifier, bHasStartedFire;
@@ -1335,8 +1337,8 @@ simulated event ReplicatedEvent(name VarName)
 {
 	switch( VarName )
 	{
-	case nameof(WeaponAttachmentTemplate):
-		WeaponAttachmentChanged();
+	case nameof(WeaponClassForAttachmentTemplate):
+		SetWeaponAttachmentFromWeaponClass(WeaponClassForAttachmentTemplate);
 		break;
 
 	case nameof(AmbientSound):
@@ -2076,6 +2078,27 @@ simulated function WeaponAttachmentChanged(optional bool bForceReattach)
 				WeaponAttachment.ChangeVisibility(bWeaponAttachmentVisible);
 				WeaponAttachment.SetMeshLightingChannels(PawnLightingChannel);
 			}
+		}
+	}
+}
+
+simulated function SetWeaponAttachmentFromWeaponClass(class<KFWeapon> WeaponClass)
+{
+	if (WeaponClass == none)
+	{
+		WeaponAttachmentTemplate = none;
+		WeaponAttachmentChanged();
+	}
+	else
+	{
+		if (WeaponClass.default.AttachmentArchetype == none)
+		{
+			WeaponClass.static.TriggerAsyncContentLoad(WeaponClass);
+		}
+		else
+		{
+			WeaponAttachmentTemplate = WeaponClass.default.AttachmentArchetype;
+			WeaponAttachmentChanged();
 		}
 	}
 }

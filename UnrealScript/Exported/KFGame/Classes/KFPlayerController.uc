@@ -1237,6 +1237,8 @@ native function SyncInventoryProperties();
 native function AddVStat( int Amount );
 native function ResetVStat();
 
+native function CheckPerkLevelAchievements();
+
 /** @return Whether or not the user has a keyboard plugged-in. */
 native simulated function bool IsKeyboardAvailable() const;
 /** @return Whether or not the user has a mouse plugged-in. */
@@ -1280,6 +1282,34 @@ simulated event PostBeginPlay()
     InitMixerDelegates();
     InitLEDManager();
 	InitDiscord();
+}
+
+function SpawnDefaultHUD()
+{
+	super.SpawnDefaultHUD();
+
+	// Spawn the default HUD here
+	if (KFGFxHudWrapper(myHUD) != none)
+	{
+		if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !class'WorldInfo'.static.IsMenuLevel())
+		{
+			KFGFxHudWrapper(myHUD).CreateHUDMovie();
+		}
+	}
+}
+
+reliable client function ClientSetHUD(class<HUD> newHUDType)
+{
+	super.ClientSetHUD(newHUDType);
+
+	// Spawn the default HUD here
+	if (KFGFxHudWrapper(myHUD) != none)
+	{
+		if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !class'WorldInfo'.static.IsMenuLevel())
+		{
+			KFGFxHudWrapper(myHUD).CreateHUDMovie();
+		}
+	}
 }
 
 simulated function CheckSpecialEventID()
@@ -1514,7 +1544,6 @@ event Possess(Pawn aPawn, bool bVehicleTransition)
 
 reliable client function ClientRestart(Pawn NewPawn)
 {
-	local KFGFxHudWrapper GFxHUDWrapper;
 	Super.ClientRestart(NewPawn);
 	if(NewPawn == none)
 	{
@@ -1563,12 +1592,16 @@ reliable client function ClientRestart(Pawn NewPawn)
 	}
 
 	NewPawn.MovementSpeedModifier = 1.f;
-	//Spawn hud here
-    GFxHUDWrapper = KFGFxHudWrapper(myHUD);
-    if( GFxHUDWrapper != none)
-    {
-        GFxHUDWrapper.CreateHUDMovie();
-    }
+
+	// Spawn the default HUD here, if it has changed or hasn't spawned yet.
+	if (KFGFxHudWrapper(myHUD) != none)
+	{
+		if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !class'WorldInfo'.static.IsMenuLevel())
+		{
+			KFGFxHudWrapper(myHUD).CreateHUDMovie();
+		}
+	}
+
     if(MyGFxHUD != none)
     {
     	MyGFxHUD.ReceivePawn(KFPawn(Pawn));
@@ -4297,7 +4330,24 @@ reliable client function ClientTriggerWeaponContentLoad(class<KFWeapon> WeaponCl
 {
 	if (WeaponClass != none)
 	{
-		WeaponClass.static.TriggerAsyncContentLoad();
+		WeaponClass.static.TriggerAsyncContentLoad(WeaponClass);
+	}
+}
+
+simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
+{
+	// This event is called when content is done loading via TriggerAsyncContentLoad.
+
+	local KFPawn_Human KFPH;
+
+	// Attempt to set the weapon attachment for any player than might need theirs set. This is a backup
+	// for when content isn't quite ready when WeaponClassForAttachmentTemplate is replicated.
+	foreach WorldInfo.Allpawns(class'KFPawn_Human', KFPH)
+	{
+		if (WeaponClass == KFPH.WeaponClassForAttachmentTemplate)
+		{
+			KFPH.SetWeaponAttachmentFromWeaponClass(WeaponClass);
+		}
 	}
 }
 
@@ -5151,7 +5201,7 @@ function SetGrabEffectEMP(bool bActive, optional bool bPlayerZed, optional bool 
 	local class<EmitterCameraLensEffectBase> LensEffectTemplate;
 
 	if (!bSkipMessage && bActive)
-	{		
+	{
 		LensEffectTemplate = class'KFCameraLensEmit_EMP';
 		if (LensEffectTemplate != none)
 		{
@@ -9297,7 +9347,10 @@ state Spectating
 		GFxHUDWrapper = KFGFxHudWrapper(myHUD);
 		if( GFxHUDWrapper != none)
 		{
-		    GFxHUDWrapper.CreateHUDMovie();
+			if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !class'WorldInfo'.static.IsMenuLevel())
+			{
+				GFxHUDWrapper.CreateHUDMovie();
+			}
 		}
 
 		// Make sure we nuke our customization pawn!
@@ -9940,7 +9993,7 @@ function bool CanDisconnect()
 		LogInternal("Returning false - Attempting to go to main menu when on main menu");
 		return false;
 	}
-	else 
+	else
 	{
 	if(WorldInfo.bIsMenuLevel && !bDownloadingContent)
 	{
@@ -9952,7 +10005,7 @@ function bool CanDisconnect()
 			LogInternal("returning false, no movie playing.  This means you are loaded in.");
 		return false;
 	}
-	}	
+	}
 
 	return true;
 }

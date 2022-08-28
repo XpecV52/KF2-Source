@@ -1987,7 +1987,7 @@ function ResetFOV()
     FOVAngle = DefaultFOV;
 }
 
-exec function FOV(float F)
+function FOV(float F)
 {
     if(PlayerCamera != none)
     {

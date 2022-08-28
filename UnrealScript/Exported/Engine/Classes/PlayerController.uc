@@ -2713,7 +2713,8 @@ function ResetFOV()
 	FOVAngle = DefaultFOV;
 }
 
-exec function FOV(float F)
+
+function FOV(float F)
 {
 	if( PlayerCamera != None )
 	{
@@ -2727,6 +2728,22 @@ exec function FOV(float F)
 		DesiredFOV = DefaultFOV;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 exec function Mutate(string MutateString)
 {

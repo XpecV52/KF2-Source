@@ -12,11 +12,9 @@ defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Pistol_DualAF2011"
     ImagePath="WEP_UI_AF2001_TEX.UI_WeaponSelect_DualAF2011"
-    BuyPrice=1100
-    AmmoPricePerMag=46
-    UpgradePrice(0)=700
-    UpgradePrice(1)=1500
-    UpgradeSellPrice(0)=525
-    UpgradeSellPrice(1)=1650
+    BuyPrice=1500
+    AmmoPricePerMag=54
+    UpgradePrice(0)=1500
+    UpgradeSellPrice(0)=390
     EffectiveRange=50
 }

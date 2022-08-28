@@ -111,8 +111,8 @@ DiscordWaveString=": Wave "
 ProceedToTutorialString="PROCEED TO TRAINING?"
 ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="Feature Not Available for Free Trial"
+NetworkCheckFreeTrialFailedString="Network Error: Free Event Status Unable to be Verified. Check Network Connection Status"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="OUTBREAK COMPLETION REWARD"
@@ -1486,7 +1486,7 @@ PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
 UseMinigameMessage="ACTIVATE"
 UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
 DoshActivateMessage="ACTIVATION COST"
-EMPGrabWarningMessage="*** ! IMMOBOLIZED ! ***"
+EMPGrabWarningMessage="*** ! IMMOBILIZED ! ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
 
@@ -1764,7 +1764,7 @@ LargeMags="High Capacity Mags"
 LargeMagsDescription="Increase magazine capacity of perk weapons 50%."
 
 Backup="Fallback"
-BackupDescription="Increase damage with your 9mm pistol and knife 110%, and increase weapon switching speed 50%."
+BackupDescription="Increase damage with your 9mm pistol and knife 50%, and increase weapon switching speed 50%."
 
 Impact="Impact Rounds"
 ImpactDescription="Increase stumble power for perk weapons 150%."
@@ -2098,7 +2098,7 @@ TacticalMovement="Tactical Movement"
 TacticalMovementDescription="No movement penalty for using iron sights or crouch movement with perk weapons."
 
 Backup="Close Combat Training"
-BackupDescription="Increase damage with your 9mm pistol and knife 110%. You begin each game with dual 9mm pistols."
+BackupDescription="Increase damage with your 9mm pistol and knife 50%. You begin each game with dual 9mm pistols."
 
 TacticalReload="Tactical Reload"
 TacticalReloadDescription="Increase reload speed with perk weapons."
@@ -2315,7 +2315,7 @@ HorzineSupplyCrateKey13="Horzine Supply Crate Key | Series #13 - $2.49"
 USBSpitfire="Spit Fire USB Key - $2.49"
 USBHighVoltage="High Voltage USB Key - $2.49"
 MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
-; placeholder03
+FreeTrial="Purchase Killing Floor 2 today!"
 
 [Objectives]
 HoldVolume="DEFEND THE AREA"

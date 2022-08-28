@@ -25,6 +25,11 @@ function CreateHUDMovie(optional bool bForce)
     HudMovie.Init(Class'Engine'.static.GetEngine().GamePlayers[HudMovie.LocalPlayerOwnerIndex]);
 }
 
+function class<KFGFxMoviePlayer_HUD> GetHUDClass()
+{
+    return HUDClass;
+}
+
 singular event Destroyed()
 {
     RemoveMovies();

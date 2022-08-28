@@ -477,9 +477,9 @@ defaultproperties
 	DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.05f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.1f,IncrementWeight=2)
-	WeaponUpgrades[3]=(IncrementDamage=1.15f,IncrementWeight=3)
+	//WeaponUpgrades[1]=(IncrementDamage=1.05f,IncrementWeight=1)
+	//WeaponUpgrades[2]=(IncrementDamage=1.1f,IncrementWeight=2)
+	//WeaponUpgrades[3]=(IncrementDamage=1.15f,IncrementWeight=3)
 }
 
 

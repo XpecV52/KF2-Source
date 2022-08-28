@@ -272,7 +272,7 @@ defaultproperties
     ArmorLossStumblePower=100
     bCanTeleportCloser=false
     bUseDesiredRotationForMelee=false
-    SprintWithinEnemyRange=(X=800,Y=1500)
+    SprintWithinEnemyRange=(X=500,Y=5000)
     EvadeGrenadeChance=0.9
     BaseShapeOfProjectileForCalc=(X=10,Y=10,Z=10)
     DangerEvadeSettings=/* Array type was not detected. */

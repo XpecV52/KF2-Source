@@ -29,7 +29,7 @@ defaultproperties
     bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    InventorySize=10
+    InventorySize=12
     MagazineCapacity=1
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=60
@@ -41,7 +41,7 @@ defaultproperties
     AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_M99_TEX.UI_WeaponSelect_M99'
-    SpareAmmoCapacity=30
+    SpareAmmoCapacity=20
     InitialSpareMags=6
     AmmoPickupScale=2
     ForceReloadTimeOnEmpty=0.5
@@ -68,7 +68,6 @@ defaultproperties
     RecoilISMinPitchLimit=65460
     HippedRecoilModifier=3
     AssociatedPerkClasses=/* Array type was not detected. */
-    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

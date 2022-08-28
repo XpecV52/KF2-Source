@@ -10532,7 +10532,7 @@ Begin Object Class=Sequence Name=usb
       ObjectArchetype=SeqAct_SetMaterial'Engine.Default__SeqAct_SetMaterial'
    End Object
    Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_63
-      NewMaterial=MaterialInstanceConstant'ECON_MAT.Neon_USB_M'
+      NewMaterial=MaterialInstanceConstant'ECON_MAT.HorzineFE_02_USB_M'
       MaterialIndex=2
       InputLinks(0)=(DrawY=-342,OverrideDelta=11)
       OutputLinks(0)=(Links=((LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41')),DrawY=-342,OverrideDelta=11)
@@ -10950,9 +10950,8 @@ Begin Object Class=Sequence Name=usb
    SequenceObjects(77)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_102'
    SequenceObjects(78)=SeqEvent_Console'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqEvent_Console_103'
    SequenceObjects(79)=SeqAct_SetMaterial'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_SetMaterial_1'
-   DefaultViewX=-651
-   DefaultViewY=530
-   DefaultViewZoom=0.867790
+   DefaultViewX=-881
+   DefaultViewY=671
    OutputLinks(0)=(LinkDesc="Dead Pulse",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_13',DrawY=-1426,OverrideDelta=33)
    OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),LinkDesc="Output",LinkedOp=SeqAct_FinishSequence'KFMainMenu.TheWorld:PersistentLevel.Main_Sequence.usb.SeqAct_FinishSequence_41',DrawY=-1446,OverrideDelta=13)
    VariableLinks(0)=(ExpectedType=Class'Engine.SeqVar_Bool',LinkDesc="Bool",LinkVar="SeqVar_External_2",MinVars=0,DrawX=-3010,OverrideDelta=29)

@@ -453,9 +453,6 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Thrown_C4:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
-   WeaponUpgrades(1)=(IncrementDamage=1.050000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.100000)
-   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.150000)
    CurrentFireMode=5
    FiringStatesArray(5)="WeaponDetonating"
    WeaponFireTypes(5)=EWFT_Custom

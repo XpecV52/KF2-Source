@@ -39,7 +39,7 @@ defaultproperties
    bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
-   InventorySize=10
+   InventorySize=12
    MagazineCapacity(0)=1
    PenetrationPower(0)=5.000000
    PenetrationPower(1)=()
@@ -52,7 +52,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M99_TEX.UI_WeaponSelect_M99'
-   SpareAmmoCapacity(0)=30
+   SpareAmmoCapacity(0)=20
    InitialSpareMags(0)=6
    AmmoPickupScale(0)=2.000000
    ForceReloadTimeOnEmpty=0.500000
@@ -85,8 +85,6 @@ defaultproperties
    RecoilISMinPitchLimit=65460
    HippedRecoilModifier=3.000000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Sharpshooter'
-   WeaponUpgrades(1)=(IncrementDamage=1.335000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.500000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -103,7 +101,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.006000
-   InstantHitDamage(0)=637.000000
+   InstantHitDamage(0)=850.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=30.000000

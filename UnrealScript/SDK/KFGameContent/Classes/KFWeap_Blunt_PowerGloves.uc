@@ -49,19 +49,19 @@ defaultproperties
 
     // Inventory
 	GroupPriority=110
-	InventorySize=6
+	InventorySize=7
 	WeaponSelectTexture=Texture2D'WEP_UI_Static_Strikers_TEX.UI_WeaponSelect_StaticStrikers'
 
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-	InstantHitDamage(DEFAULT_FIREMODE)=86 //95
+	InstantHitDamage(DEFAULT_FIREMODE)=95
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Bludgeon_PowerGloves'
 
 	FireModeIconPaths(HEAVY_ATK_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-	InstantHitDamage(HEAVY_ATK_FIREMODE)=160 //175
+	InstantHitDamage(HEAVY_ATK_FIREMODE)=175
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Bludgeon_PowerGlovesHeavy'
 
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_PowerGlovesBash'
-	InstantHitDamage(BASH_FIREMODE)=91 //100
+	InstantHitDamage(BASH_FIREMODE)=100
 
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 
@@ -75,7 +75,6 @@ defaultproperties
 
 	// Weapon Upgrade stat boosts
 	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.2f,IncrementWeight=1)
 }
 
 

@@ -1662,78 +1662,77 @@ defaultproperties
 
     //Base Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,SecondaryType=DOST_KnifeDamage,ObjectiveClasses=(KFWeap_Edged_Knife,KFDT_Slashing_Knife,KFDT_Slashing_Knife_Berserker,KFDT_Slashing_Knife_Medic,KFDT_Slashing_Knife_SWAT,KFDT_Slashing_KnifeHeavy,KFDT_Slashing_KnifeHeavy_Berserker,KFDT_Slashing_KnifeHeavy_Medic,KFDT_Slashing_KnifeHeavy_SWAT,KFDT_Piercing_KnifeStab,KFDT_Piercing_KnifeStab_Berserker,KFDT_Piercing_KnifeStab_FieldMedic,KFDT_Piercing_KnifeStab_SWAT),CompletionAmount=2500))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_9mm, KFDT_Ballistic_9mm,KFDT_Bludgeon_9mm),CompletionAmount=2500))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_9mm, KFDT_Ballistic_9mm,KFDT_Bludgeon_9mm),CompletionAmount=4000)) //2500
 
     //Swat Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP7, KFDT_Ballistic_MP7,KFDT_Bludgeon_MP7),CompletionAmount=3000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP5RAS, KFDT_Ballistic_MP5RAS,KFDT_Bludgeon_MP5RAS),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_P90, KFDT_Ballistic_P90,KFDT_Bludgeon_P90),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP7, KFDT_Ballistic_MP7,KFDT_Bludgeon_MP7),CompletionAmount=5000)) //3000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP5RAS, KFDT_Ballistic_MP5RAS,KFDT_Bludgeon_MP5RAS),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_P90, KFDT_Ballistic_P90,KFDT_Bludgeon_P90),CompletionAmount=10000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Kriss, KFDT_Ballistic_Kriss,KFDT_Bludgeon_Kriss),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_HK_UMP, KFDT_Ballistic_HK_UMP,KFDT_Bludgeon_HK_UMP),CompletionAmount=10000))
 
     //Commando Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_AR15, KFDT_Ballistic_AR15,KFDT_Bludgeon_AR15),CompletionAmount=3000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Bullpup, KFDT_Ballistic_Bullpup,KFDT_Bludgeon_Bullpup),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_AK12, KFDT_Ballistic_AK12,KFDT_Bludgeon_AK12),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_AR15, KFDT_Ballistic_AR15,KFDT_Bludgeon_AR15),CompletionAmount=5000)) //3000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Bullpup, KFDT_Ballistic_Bullpup,KFDT_Bludgeon_Bullpup),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_AK12, KFDT_Ballistic_AK12,KFDT_Bludgeon_AK12),CompletionAmount=10000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_SCAR, KFDT_Ballistic_SCAR,KFDT_Bludgeon_SCAR),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_LMG_Stoner63A, KFDT_Ballistic_Stoner63A,KFDT_Bludgeon_Stoner63A),CompletionAmount=10000))
 
     //Support Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_MB500, KFDT_Ballistic_MB500,KFDT_Bludgeon_MB500),CompletionAmount=3000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_DoubleBarrel, KFDT_Ballistic_DBShotgun,KFDT_Bludgeon_DBShotgun),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_HZ12, KFDT_Ballistic_HZ12,KFDT_Bludgeon_HZ12),CompletionAmount=7000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_M4, KFDT_Ballistic_M4Shotgun,KFDT_Bludgeon_M4Shotgun),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_MB500, KFDT_Ballistic_MB500,KFDT_Bludgeon_MB500),CompletionAmount=5000)) //3000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_DoubleBarrel, KFDT_Ballistic_DBShotgun,KFDT_Bludgeon_DBShotgun),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_HZ12, KFDT_Ballistic_HZ12,KFDT_Bludgeon_HZ12),CompletionAmount=10000)) //7000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_M4, KFDT_Ballistic_M4Shotgun,KFDT_Bludgeon_M4Shotgun),CompletionAmount=10000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_AA12, KFDT_Ballistic_AA12Shotgun,KFDT_Bludgeon_AA12Shotgun),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_ElephantGun, KFDT_Ballistic_ElephantGun,KFDT_Bludgeon_ElephantGun),CompletionAmount=10000))
 
     //Medic Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Medic, KFDT_Ballistic_Pistol_Medic,KFDT_Bludgeon_Pistol_Medic),CompletionAmount=3000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Medic, KFDT_Ballistic_SMG_Medic,KFDT_Bludgeon_SMG_Medic),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_Medic, KFDT_Ballistic_Shotgun_Medic,KFDT_Bludgeon_Shotgun_Medic),CompletionAmount=7000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Hemogoblin, KFDT_Ballistic_Hemogoblin, KFDT_Bludgeon_Hemogoblin),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Medic, KFDT_Ballistic_Pistol_Medic,KFDT_Bludgeon_Pistol_Medic),CompletionAmount=5000)) //3000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Medic, KFDT_Ballistic_SMG_Medic,KFDT_Bludgeon_SMG_Medic),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_Medic, KFDT_Ballistic_Shotgun_Medic,KFDT_Bludgeon_Shotgun_Medic),CompletionAmount=9000)) //7000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Hemogoblin, KFDT_Ballistic_Hemogoblin, KFDT_Bludgeon_Hemogoblin),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Medic, KFDT_Ballistic_Assault_Medic,KFDT_Bludgeon_Assault_Medic),CompletionAmount=9000))
 
     //Demo Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_GrenadeLauncher_HX25, KFDT_Ballistic_HX25Impact,KFDT_Ballistic_HX25SubmunitionImpact,KFDT_Bludgeon_HX25),CompletionAmount=3000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_GrenadeLauncher_HX25, KFDT_Ballistic_HX25Impact,KFDT_Ballistic_HX25SubmunitionImpact,KFDT_Bludgeon_HX25),CompletionAmount=5000)) //3000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Thrown_C4, KFDT_Explosive_C4,KFDT_Bludgeon_C4),CompletionAmount=2500))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_GrenadeLauncher_M79, KFDT_Ballistic_M79Impact,KFDT_Explosive_M79,KFDT_Bludgeon_M79),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_RocketLauncher_RPG7, KFDT_Ballistic_RPG7Impact,KFDT_Explosive_RPG7,KFDT_Explosive_RPG7BackBlast,KFDT_Bludgeon_RPG7),CompletionAmount=7500))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_M16M203, KFDT_Ballistic_M16M203,KFDT_Bludgeon_M16M203,KFDT_Ballistic_M203Impact,KFDT_Explosive_M16M203),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_M16M203, KFDT_Ballistic_M16M203,KFDT_Bludgeon_M16M203,KFDT_Ballistic_M203Impact,KFDT_Explosive_M16M203),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_RocketLauncher_Seeker6, KFDT_Explosive_Seeker6, KFDT_Bludgeon_Seeker6, KFDT_Ballistic_Seeker6Impact),CompletionAmount=7500))
 
     //Firebug Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_CaulkBurn, KFDT_Bludgeon_CaulkBurn,KFDT_Fire_CaulkBurn,KFDT_Fire_Ground_CaulkNBurn),CompletionAmount=3000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Flare, KFDT_Bludgeon_FlareGun,KFDT_Fire_FlareGun,KFDT_Fire_FlareGun_Dual,KFDT_Fire_FlareGunDoT),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_DragonsBreath, KFDT_Ballistic_DragonsBreath,KFDT_Bludgeon_DragonsBreath,KFDT_Fire_DragonsBreathDoT),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Mac10, KFDT_Bludgeon_Mac10,KFDT_Fire_Mac10,KFDT_Fire_Mac10DoT),CompletionAmount=7000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_Flamethrower, KFDT_Bludgeon_Flamethrower,KFDT_Fire_FlameThrower,KFDT_Fire_Ground_FlameThrower),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_CaulkBurn, KFDT_Bludgeon_CaulkBurn,KFDT_Fire_CaulkBurn,KFDT_Fire_Ground_CaulkNBurn),CompletionAmount=5000)) //3000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Flare, KFDT_Bludgeon_FlareGun,KFDT_Fire_FlareGun,KFDT_Fire_FlareGun_Dual,KFDT_Fire_FlareGunDoT),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_DragonsBreath, KFDT_Ballistic_DragonsBreath,KFDT_Bludgeon_DragonsBreath,KFDT_Fire_DragonsBreathDoT),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Mac10, KFDT_Bludgeon_Mac10,KFDT_Fire_Mac10,KFDT_Fire_Mac10DoT),CompletionAmount=9000)) //7000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_Flamethrower, KFDT_Bludgeon_Flamethrower,KFDT_Fire_FlameThrower,KFDT_Fire_Ground_FlameThrower),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Beam_Microwave, KFDT_Bludgeon_MicrowaveGun,KFDT_Fire_Ground_MicrowaveGun,KFDT_Microwave,KFDT_Microwave_Beam,KFDT_Microwave_Blast),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HuskCannon, KFDT_Bludgeon_HuskCannon, KFDT_Explosive_HuskCannon, KFDT_HuskCannonDot),CompletionAmount=10000))
 
     //Berserker Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Crovel, KFDT_Bludgeon_Crovel,KFDT_Bludgeon_CrovelBash,KFDT_Slashing_Crovel),CompletionAmount=3000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_Nailgun, KFDT_Ballistic_NailShotgun,KFDT_Bludgeon_NailShotgun),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_Katana, KFDT_Slashing_Katana,KFDT_Piercing_KatanaStab, KFDT_Slashing_KatanaHeavy),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Pulverizer, KFDT_Bludgeon_Pulverizer,KFDT_Bludgeon_PulverizerBash,KFDT_Bludgeon_PulverizerHeavy,KFDT_Explosive_Pulverizer),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Crovel, KFDT_Bludgeon_Crovel,KFDT_Bludgeon_CrovelBash,KFDT_Slashing_Crovel),CompletionAmount=5000)) //3000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_Nailgun, KFDT_Ballistic_NailShotgun,KFDT_Bludgeon_NailShotgun),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_Katana, KFDT_Slashing_Katana,KFDT_Piercing_KatanaStab, KFDT_Slashing_KatanaHeavy),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Pulverizer, KFDT_Bludgeon_Pulverizer,KFDT_Bludgeon_PulverizerBash,KFDT_Bludgeon_PulverizerHeavy,KFDT_Explosive_Pulverizer),CompletionAmount=10000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Eviscerator, KFDT_Slashing_Eviscerator,KFDT_Slashing_EvisceratorProj),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_MaceAndShield, KFDT_Bludgeon_MaceAndShield,KFDT_Bludgeon_MaceAndShield_Bash,KFDT_Bludgeon_MaceAndShield_MaceHeavy,KFDT_Bludgeon_MaceAndShield_ShieldHeavy,KFDT_Bludgeon_MaceAndShield_ShieldLight),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_PowerGloves, KFDT_Bludgeon_PowerGloves,KFDT_Bludgeon_PowerGlovesBash,KFDT_Bludgeon_PowerGlovesHeavy),CompletionAmount=10000))
 
     //Gunslinger Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Revolver_Rem1858, KFDT_Bludgeon_Rem1858,KFDT_Ballistic_Rem1858,KFDT_Ballistic_Rem1858_Dual),CompletionAmount=3000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Colt1911, KFDT_Bludgeon_Colt1911,KFDT_Ballistic_Colt1911),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Deagle, KFDT_Bludgeon_Deagle,KFDT_Ballistic_Deagle),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Revolver_Rem1858, KFDT_Bludgeon_Rem1858,KFDT_Ballistic_Rem1858,KFDT_Ballistic_Rem1858_Dual),CompletionAmount=5000)) //3000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Colt1911, KFDT_Bludgeon_Colt1911,KFDT_Ballistic_Colt1911),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Deagle, KFDT_Bludgeon_Deagle,KFDT_Ballistic_Deagle),CompletionAmount=10000)) // 7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Revolver_SW500, KFDT_Bludgeon_SW500,KFDT_Ballistic_SW500,KFDT_Ballistic_SW500_Dual),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_AF2011, KFDT_Bludgeon_AF2011,KFDT_Ballistic_AF2011),CompletionAmount=10000))
 
     //Sharpshooter Weapons
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Winchester1894, KFDT_Bludgeon_Winchester,KFDT_Ballistic_Winchester),CompletionAmount=2000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Bow_Crossbow, KFDT_Bludgeon_Crossbow,KFDT_Piercing_Crossbow),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_M14EBR, KFDT_Bludgeon_M14EBR,KFDT_Ballistic_M14EBR),CompletionAmount=7000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Winchester1894, KFDT_Bludgeon_Winchester,KFDT_Ballistic_Winchester),CompletionAmount=5000)) //2000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Bow_Crossbow, KFDT_Bludgeon_Crossbow,KFDT_Piercing_Crossbow),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_M14EBR, KFDT_Bludgeon_M14EBR,KFDT_Ballistic_M14EBR),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_RailGun, KFDT_Bludgeon_RailGun,KFDT_Ballistic_RailGun),CompletionAmount=5000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_CenterfireMB464, KFDT_Bludgeon_CenterfireMB464,KFDT_Ballistic_CenterfireMB464),CompletionAmount=5000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_CenterfireMB464, KFDT_Bludgeon_CenterfireMB464,KFDT_Ballistic_CenterfireMB464),CompletionAmount=7000)) //5000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_M99, KFDT_Bludgeon_M99,KFDT_Ballistic_M99),CompletionAmount=5000))
-
     //Survivalist Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Ice_FreezeThrower, KFDT_Bludgeon_Freezethrower, KFDT_Freeze_FreezeThrower, KFDT_Freeze_FreezeThrower_IceShards, KFDT_Freeze_Ground_FreezeThrower),CompletionAmount=7000))
 

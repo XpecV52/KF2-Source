@@ -362,7 +362,7 @@ defaultproperties
 {
 	// Inventory
 	GroupPriority=100
-	InventorySize=8
+	InventorySize=9
 	InventoryGroup=IG_Primary
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.GasTank'
@@ -387,7 +387,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Blade_Eviscerator'
-	InstantHitDamage(DEFAULT_FIREMODE)=250.0
+	InstantHitDamage(DEFAULT_FIREMODE)=300.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Slashing_EvisceratorProj'
 	Spread(DEFAULT_FIREMODE)=0.02
 	PenetrationPower(DEFAULT_FIREMODE)=4.0
@@ -399,7 +399,7 @@ defaultproperties
 
 	// Saw attack (uses fuel)
 	FiringStatesArray(HEAVY_ATK_FIREMODE)=MeleeSustained
-	InstantHitDamage(HEAVY_ATK_FIREMODE)=24
+	InstantHitDamage(HEAVY_ATK_FIREMODE)=29
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Slashing_Eviscerator'
 	FireInterval(HEAVY_ATK_FIREMODE)=+0.12
 	AmmoCost(HEAVY_ATK_FIREMODE)=1
@@ -408,7 +408,7 @@ defaultproperties
 	// BASH_FIREMODE
 	FiringStatesArray(BASH_FIREMODE)=MeleeAttackBasic
 	WeaponFireTypes(BASH_FIREMODE)=EWFT_Custom
-	InstantHitDamage(BASH_FIREMODE)=75
+	InstantHitDamage(BASH_FIREMODE)=90
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Slashing_Eviscerator'
 
 	// RELOAD
@@ -460,6 +460,5 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.3f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
 }

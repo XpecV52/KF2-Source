@@ -136,6 +136,7 @@ var const bool bShouldCommitPendingMapChange;
 var config bool bClearAnimSetLinkupCachesOnLoadMap;
 var config bool bEnableSecondaryDisplay;
 var config bool bEnableSecondaryViewport;
+var bool bPartialInstallLaunch;
 var const transient bool bTrialActive;
 var const transient OnlineSubsystem OnlineSubsystem;
 var const transient PlayfabInterface PlayfabInterfaceInst;
@@ -209,6 +210,9 @@ native static final function float GetChunksInstallProgress(const out array<int>
 
 // Export UGameEngine::execGetChunkInstallProgress(FFrame&, void* const)
 native static final function float GetChunkInstallProgress(int ChunkToCheck);
+
+// Export UGameEngine::execWasLaunchedOnPartialInstall(FFrame&, void* const)
+native static final function bool WasLaunchedOnPartialInstall();
 
 defaultproperties
 {

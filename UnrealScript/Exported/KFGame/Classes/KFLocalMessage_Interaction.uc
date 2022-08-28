@@ -258,7 +258,7 @@ defaultproperties
    UseMinigameMessage="ACTIVATE"
    UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
    DoshActivateMessage="ACTIVATION COST"
-   EMPGrabWarningMessage="*** ! IMMOBOLIZED ! ***"
+   EMPGrabWarningMessage="*** ! IMMOBILIZED ! ***"
    USE_COMMAND="GBA_Use"
    HEAL_COMMAND="GBA_QuickHeal"
    HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"

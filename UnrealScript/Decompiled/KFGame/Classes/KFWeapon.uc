@@ -625,6 +625,9 @@ simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
 // Export UKFWeapon::execClientSetFirstPersonSkin(FFrame&, void* const)
 private reliable client native final simulated function ClientSetFirstPersonSkin(int ItemId);
 
+// Export UKFWeapon::execSetWeaponSkinPostLoad(FFrame&, void* const)
+native function SetWeaponSkinPostLoad();
+
 // Export UKFWeapon::execServerUpdateWeaponSkin(FFrame&, void* const)
 private reliable server native final event ServerUpdateWeaponSkin(int ItemId);
 
@@ -632,13 +635,19 @@ private reliable server native final event ServerUpdateWeaponSkin(int ItemId);
 private native final function ClearSkinItemId();
 
 // Export UKFWeapon::execTriggerAsyncContentLoad(FFrame&, void* const)
-native static simulated function TriggerAsyncContentLoad();
+native static simulated function TriggerAsyncContentLoad(class<KFWeapon> WeaponClass);
 
 // Export UKFWeapon::execStartLoadWeaponContent(FFrame&, void* const)
 private native final function StartLoadWeaponContent();
 
 // Export UKFWeapon::execLoadWeaponContent(FFrame&, void* const)
 private native final function LoadWeaponContent();
+
+// Export UKFWeapon::execCacheWeaponContent(FFrame&, void* const)
+private native final function CacheWeaponContent();
+
+// Export UKFWeapon::execUnloadWeaponContent(FFrame&, void* const)
+private native final function UnloadWeaponContent();
 
 function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
 {
@@ -837,6 +846,7 @@ function AttachThirdPersonWeapon(KFPawn P)
     if(Role == ROLE_Authority)
     {
         P.WeaponAttachmentTemplate = AttachmentArchetype;
+        P.WeaponClassForAttachmentTemplate = Class;
         if(P.IsHumanControlled())
         {
             ServerUpdateWeaponSkin(SkinItemId);
@@ -846,6 +856,15 @@ function AttachThirdPersonWeapon(KFPawn P)
             P.WeaponAttachmentChanged();
         }
     }
+}
+
+simulated function KFWeaponAttachment GetWeaponAttachmentTemplate()
+{
+    if(AttachmentArchetype == none)
+    {
+        TriggerAsyncContentLoad(Class);
+    }
+    return AttachmentArchetype;
 }
 
 simulated function DetachWeapon()
@@ -864,6 +883,7 @@ simulated function DetachWeapon()
         if(KFP.WeaponAttachmentTemplate == AttachmentArchetype)
         {
             KFP.WeaponAttachmentTemplate = none;
+            KFP.WeaponClassForAttachmentTemplate = none;
             if(WorldInfo.NetMode != NM_DedicatedServer)
             {
                 KFP.WeaponAttachmentChanged();
@@ -874,7 +894,7 @@ simulated function DetachWeapon()
     {
         DetachComponent(KFP.ArmsMesh);
         I = 0;
-        J0x173:
+        J0x193:
 
         if(I < 3)
         {
@@ -883,7 +903,7 @@ simulated function DetachWeapon()
                 DetachComponent(KFP.FirstPersonAttachments[I]);
             }
             ++ I;
-            goto J0x173;
+            goto J0x193;
         }
     }
     SetBase(none);
@@ -948,6 +968,11 @@ function DropFrom(Vector StartLocation, Vector StartVelocity)
     Instigator = none;
     GotoState('None');
     AIController = none;
+}
+
+simulated function bool CanThrow()
+{
+    return super.CanThrow() && WeaponContentLoaded;
 }
 
 function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
@@ -2201,6 +2226,10 @@ simulated function StartFire(byte FireModeNum)
 {
     if((FireModeNum == 0) || FireModeNum == 1)
     {
+        if((CurrentFireMode == 2) && bReloadFromMagazine)
+        {
+            return;
+        }
         if(IsMeleeing())
         {
             return;
@@ -3756,7 +3785,7 @@ simulated function SetSimplePutDown(bool bPutDownWeapon)
 
 simulated function bool CanSwitchWeapons()
 {
-    return true;
+    return WeaponContentLoaded;
 }
 
 simulated function TimeWeaponPutDown()
@@ -5118,6 +5147,7 @@ simulated state Reloading
         {
             KFGameInfo(WorldInfo.Game).DialogManager.PlayAmmoDialog(KFPawn(Instigator), float(SpareAmmoCount[0]) / float(GetMaxAmmoAmount(0)));
         }
+        CurrentFireMode = 0;
     }
 
     simulated function BeginFire(byte FireModeNum)

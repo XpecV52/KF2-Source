@@ -24,10 +24,10 @@ defaultproperties
 {
 	// Healing charge
     HealAmount=15
-	HealFullRechargeSeconds=16
+	HealFullRechargeSeconds=10
 
 	// Inventory
-	InventorySize=6 //7
+	InventorySize=7
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
@@ -90,7 +90,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Assault_Medic'
 	FireInterval(DEFAULT_FIREMODE)=+0.08 // //750  0.08    650 RPM 0.0923
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=25.0 //35
+	InstantHitDamage(DEFAULT_FIREMODE)=35.0
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALTFIRE_FIREMODE
@@ -121,6 +121,5 @@ defaultproperties
    	AssociatedPerkClasses(1)=class'KFPerk_Commando'
 
    	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.4f, IncrementWeight=1, IncrementHealFullRecharge=.625)
-	WeaponUpgrades[2]=(IncrementDamage=1.6f, IncrementWeight=2, IncrementHealFullRecharge=.5625)
+	WeaponUpgrades[1]=(IncrementDamage=1.15f, IncrementWeight=1, IncrementHealFullRecharge=.9)
 }

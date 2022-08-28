@@ -384,7 +384,7 @@ defaultproperties
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_SWAT'
     PerkSkills(0)=(Name="HeavyArmor",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_HeavyArmor",bActive=false)
     PerkSkills(1)=(Name="TacticalMovement",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement",bActive=false)
-    PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=1.1,MaxValue=1.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup",bActive=false)
+    PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup",bActive=false)
     PerkSkills(3)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload",bActive=false)
     PerkSkills(4)=(Name="SpecialAmmunition",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition",bActive=false)
     PerkSkills(5)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest",bActive=false)

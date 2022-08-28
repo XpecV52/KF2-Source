@@ -11,10 +11,10 @@ class KFDT_Bludgeon_PowerGlovesHeavy extends KFDT_Bludgeon
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_PowerGloves'
-    KnockdownPower=150
+    KnockdownPower=90
     StumblePower=150
     MeleeHitPower=100
-    EMPPower=49
+    EMPPower=45
     ModifierPerkList=/* Array type was not detected. */
     OverrideImpactEffect=ParticleSystem'WEP_Static_Strikers_EMIT.FX_Static_Strikers_Impact'
     KDamageImpulse=3500

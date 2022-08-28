@@ -1315,7 +1315,8 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 	local int DualAdjustedWeight, SingleAdjustedWeight, AdjustedWeight;
 	local Inventory InventoryItem;
 	local TransactionItem TransactionWeapon;
-	local KFWeap_DualBase WeaponItem;
+	local KFWeapon WeaponItemSingle;
+	local KFWeap_DualBase WeaponItemDual;
 
 	// If the trader menu is open, check if this weapon is already part of our weapon transactions
 	if( bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name, TransactionWeapon) )
@@ -1328,8 +1329,10 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 	// if trying to add a second single, make sure player can carry dual (minus weight of first single
 	if( WeaponClass.default.DualClass != none && ClassIsInInventory(WeaponClass, InventoryItem) )
 	{
+		WeaponItemSingle = KFWeapon(InventoryItem);
+
 		DualAdjustedWeight = WeaponClass.default.DualClass.default.InventorySize + WeaponClass.default.DualClass.static.GetUpgradeWeight(WeaponUpgradeIndex);
-		SingleAdjustedWeight = WeaponClass.default.InventorySize + WeaponClass.static.GetUpgradeWeight(WeaponUpgradeIndex);
+		SingleAdjustedWeight = WeaponItemSingle.GetModifiedWeightValue();
 
 		// check weight of dual minus weight of single because we remove single when adding dual
 		if( ((CurrentCarryBlocks + DualAdjustedWeight - SingleAdjustedWeight) <= MaxCarryBlocks) || bInfiniteWeight)
@@ -1346,10 +1349,10 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 	DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
 	if( DualWeaponClass != none && DualWeaponClass.default.SingleClass != none && ClassIsInInventory(DualWeaponClass.default.SingleClass, InventoryItem) )
 	{
-		WeaponItem = KFWeap_DualBase(InventoryItem);
+		WeaponItemDual = KFWeap_DualBase(InventoryItem);
 
-		DualAdjustedWeight = WeaponItem.GetModifiedWeightValue();
-		SingleAdjustedWeight = DualWeaponClass.default.SingleClass.default.InventorySize + DualWeaponClass.default.SingleClass.default.WeaponUpgrades[WeaponItem.CurrentWeaponUpgradeIndex].IncrementWeight;
+		DualAdjustedWeight = WeaponItemDual.GetModifiedWeightValue();
+		SingleAdjustedWeight = DualWeaponClass.default.SingleClass.default.InventorySize + DualWeaponClass.default.SingleClass.default.WeaponUpgrades[WeaponItemDual.CurrentWeaponUpgradeIndex].IncrementWeight;
 
 		`log(self @ "-" @ GetFuncName() @ "- CurrentCarryBlocks:" @ CurrentCarryBlocks @ "DualWeaponClass:" @ DualWeaponClass @ "SingleClass:" @ DualWeaponClass.default.SingleClass @ "DualInventorySize:" @ DualAdjustedWeight @ "SingleInventorySize:" @ SingleAdjustedWeight, bLogInventory);
 		// check weight of dual minus weight of single because we remove single when adding dual
@@ -1544,7 +1547,7 @@ function KFWeapon CombineWeaponsOnPickup( KFWeapon AddedWeapon )
 	local KFWeap_DualBase AddedDual, NewDual;
 	local int ExtraAmmo;
 	local bool bEquipNewDual;
-	local int CurrentUpgrade;
+	local int CurrentUpgrade, NewDualUpgradeIndex;
 
 	AddedDual = KFWeap_DualBase( AddedWeapon );
 
@@ -1611,7 +1614,8 @@ function KFWeapon CombineWeaponsOnPickup( KFWeapon AddedWeapon )
 					NewDual.ClientForceAmmoUpdate(NewDual.AmmoCount[0],NewDual.SpareAmmoCount[0]);
 					NewDual.ClientForceSecondaryAmmoUpdate(NewDual.AmmoCount[1]);
 
-					NewDual.SetWeaponUpgradeLevel(AddedWeapon.CurrentWeaponUpgradeIndex);
+					NewDualUpgradeIndex = max(InvWeap.CurrentWeaponUpgradeIndex, AddedWeapon.CurrentWeaponUpgradeIndex);
+					NewDual.SetWeaponUpgradeLevel(NewDualUpgradeIndex);
 					if (NewDual.CurrentWeaponUpgradeIndex > 0)
 					{
 						AddCurrentCarryBlocks(NewDual.static.GetUpgradeWeight(NewDual.CurrentWeaponUpgradeIndex));
@@ -2478,7 +2482,7 @@ simulated function int GetWeaponBlocks(const out STraderItem ShopItem, optional 
 	}
 	else
 	{
-		ItemUpgradeLevel = OverrideLevelValue != INDEX_NONE ? OverrideLevelValue : KFPC.GetPurchaseHelper().GetItemUpgradeLevel(ShopItem);
+		ItemUpgradeLevel = OverrideLevelValue != INDEX_NONE ? OverrideLevelValue : KFPC.GetPurchaseHelper().GetItemUpgradeLevelByClassName(ShopItem.ClassName);
 	}
 
 	return ShopItem.BlocksRequired + (ItemUpgradeLevel > INDEX_NONE ? ShopItem.WeaponUpgradeWeight[ItemUpgradeLevel] : 0);

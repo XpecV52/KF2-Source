@@ -5,14 +5,57 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFDT_Fire_Mac10 extends KFDT_Ballistic_DragonsBreath
+class KFDT_Fire_Mac10 extends KFDT_Ballistic_Submachinegun
     abstract;
+
+var class<KFDamageType> BurnDamageType;
+
+static simulated function bool CanDismemberHitZone(name InHitZoneName)
+{
+    if(super(KFDT_Ballistic).CanDismemberHitZone(InHitZoneName))
+    {
+        return true;
+    }
+    switch(InHitZoneName)
+    {
+        case 'lupperarm':
+        case 'rupperarm':
+        case 'chest':
+        case 'heart':
+            return true;
+        default:
+            return false;
+            break;
+    }
+}
+
+static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDirection, byte HitZoneIndex, optional Pawn HitInstigator)
+{
+    if(P.bPlayedDeath && P.WorldInfo.TimeSeconds > P.TimeOfDeath)
+    {
+        default.BurnDamageType.static.PlayImpactHitEffects(P, HitLocation, HitDirection, HitZoneIndex, HitInstigator);
+        return;
+    }
+    super(KFDamageType).PlayImpactHitEffects(P, HitLocation, HitDirection, HitZoneIndex, HitInstigator);
+}
+
+static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Controller InstigatedBy)
+{
+    if(default.BurnDamageType.default.DoT_Type != 0)
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.BurnDamageType);
+    }
+}
 
 defaultproperties
 {
     BurnDamageType=Class'KFGame.KFDT_Fire_Mac10DoT'
     WeaponDef=Class'KFGame.KFWeapDef_Mac10'
-    GoreDamageGroup=EGoreDamageGroup.DGT_Submachinegun
+    EffectGroup=EEffectDamageGroup.FXG_IncendiaryRound
+    StumblePower=12
+    LegStumblePower=12
+    GunHitPower=12
     BurnPower=18.5
     ModifierPerkList=/* Array type was not detected. */
+    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
 }

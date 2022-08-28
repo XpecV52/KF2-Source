@@ -76,7 +76,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RevolverSW500'
 	FireInterval(DEFAULT_FIREMODE)=+0.19 // 0.14 about twice as fast as single
-	InstantHitDamage(DEFAULT_FIREMODE)=130.0 //150
+	InstantHitDamage(DEFAULT_FIREMODE)=160.0 //150
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SW500_Dual'
 	PenetrationPower(DEFAULT_FIREMODE)=3.0
 	Spread(DEFAULT_FIREMODE)=0.015
@@ -88,7 +88,7 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_RevolverSW500'
 	FireInterval(ALTFIRE_FIREMODE)=+0.19 // 0.14 about twice as fast as single
-	InstantHitDamage(ALTFIRE_FIREMODE)=130.0 //150
+	InstantHitDamage(ALTFIRE_FIREMODE)=160.0 //150
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_SW500_Dual'
 	PenetrationPower(ALTFIRE_FIREMODE)=3.0
 	Spread(ALTFIRE_FIREMODE)=0.015
@@ -111,7 +111,7 @@ defaultproperties
 	bHasFlashlight=true
 
 	// Inventory
-	InventorySize=4
+	InventorySize=6
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
 	bIsBackupWeapon=false
@@ -292,7 +292,6 @@ defaultproperties
 	BulletMeshComponents.Add(BulletMeshComp4_L)
 
     // Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=2)
-	WeaponUpgrades[2]=(IncrementDamage=1.42f,IncrementWeight=4)
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=2)
 }
 

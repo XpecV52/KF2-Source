@@ -69,7 +69,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_RevolverSW500'
 	FireInterval(DEFAULT_FIREMODE)=+0.24
-	InstantHitDamage(DEFAULT_FIREMODE)=130.0 //150 //160
+	InstantHitDamage(DEFAULT_FIREMODE)=160.0 //150
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SW500'
 	Spread(DEFAULT_FIREMODE)=0.015
 	PenetrationPower(DEFAULT_FIREMODE)=3.0
@@ -93,7 +93,7 @@ defaultproperties
 	bHasFlashlight=true
 
 	// Inventory
-	InventorySize=2
+	InventorySize=3
 	GroupPriority=30
 	bCanThrow=true
 	bDropOnDeath=true
@@ -203,6 +203,5 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.23f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.42f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
 }

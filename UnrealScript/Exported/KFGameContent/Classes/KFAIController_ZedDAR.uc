@@ -279,7 +279,7 @@ defaultproperties
    ArmorLossStumblePower=100
    bCanTeleportCloser=False
    bUseDesiredRotationForMelee=False
-   SprintWithinEnemyRange=(X=800.000000,Y=1500.000000)
+   SprintWithinEnemyRange=(X=500.000000,Y=5000.000000)
    EvadeGrenadeChance=0.900000
    BaseShapeOfProjectileForCalc=(X=10.000000,Y=10.000000,Z=10.000000)
    DangerEvadeSettings(0)=(ClassName="KFProj_Bullet_Pellet",Cooldowns=(3.000000,2.000000,1.000000,0.750000),EvadeChances=(0.100000,0.300000,0.500000,0.700000),ReactionDelayRanges=((X=0.000000,Y=0.200000),(X=0.000000,Y=0.000000),(X=0.000000,Y=0.150000),(X=0.000000,Y=0.000000)),SoloChanceMultiplier=1.000000)

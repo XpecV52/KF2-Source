@@ -156,8 +156,8 @@ defaultproperties
    DamageTypeModifiers(4)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle')
    DamageTypeModifiers(5)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(1.250000))
    DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(1.250000))
-   DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.750000))
-   DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(2.000000))
+   DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(1.500000))
+   DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(3.250000))
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive')
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.850000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
@@ -186,7 +186,7 @@ defaultproperties
    HitZones(0)=(GoreHealth=350,DmgScale=1.001000)
    HitZones(1)=()
    HitZones(2)=()
-   HitZones(3)=(BoneName="Spine1",DmgScale=1.400000,SkinID=2)
+   HitZones(3)=(BoneName="Spine1",DmgScale=3.500000,SkinID=2)
    HitZones(4)=()
    HitZones(5)=()
    HitZones(6)=()
@@ -220,7 +220,7 @@ defaultproperties
    IncapSettings(9)=(Duration=4.200000,Cooldown=1.000000,Vulnerability=(0.900000))
    IncapSettings(10)=(Duration=4.000000,Cooldown=6.500000,Vulnerability=(3.000000))
    IncapSettings(11)=(Vulnerability=(0.010000))
-   SprintSpeed=550.000000
+   SprintSpeed=600.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -313,7 +313,7 @@ defaultproperties
    DialogAkComponent=DialogAkSoundComponent
    Mass=85.000000
    GroundSpeed=170.000000
-   Health=562
+   Health=775
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000

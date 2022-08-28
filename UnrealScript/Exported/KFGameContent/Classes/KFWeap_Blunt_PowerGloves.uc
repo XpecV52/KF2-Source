@@ -28,7 +28,7 @@ defaultproperties
    FireModeIconPaths(3)=()
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-   InventorySize=6
+   InventorySize=7
    GroupPriority=110.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Static_Strikers_TEX.UI_WeaponSelect_StaticStrikers'
    PlayerViewOffset=(X=20.000000,Y=0.000000,Z=0.000000)
@@ -69,13 +69,12 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_PowerGloves:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    WeaponUpgrades(1)=(IncrementDamage=1.100000)
-   WeaponUpgrades(2)=(IncrementDamage=1.200000)
-   InstantHitDamage(0)=86.000000
+   InstantHitDamage(0)=95.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=91.000000
+   InstantHitDamage(3)=100.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=160.000000
+   InstantHitDamage(5)=175.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Bludgeon_PowerGloves'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

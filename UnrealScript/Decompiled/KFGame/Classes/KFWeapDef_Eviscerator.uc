@@ -12,12 +12,10 @@ defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Eviscerator"
     ImagePath="ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter"
-    BuyPrice=1300
-    AmmoPricePerMag=50
-    UpgradePrice(0)=700
-    UpgradePrice(1)=1500
-    UpgradeSellPrice(0)=525
-    UpgradeSellPrice(1)=1650
+    BuyPrice=1600
+    AmmoPricePerMag=75
+    UpgradePrice(0)=1500
+    UpgradeSellPrice(0)=1125
     SecondaryAmmoMagSize=10
     SecondaryAmmoMagPrice=10
     EffectiveRange=25

@@ -386,7 +386,7 @@ defaultproperties
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=()
    InventoryGroup=IG_Primary
-   InventorySize=8
+   InventorySize=9
    MagazineCapacity(0)=5
    MagazineCapacity(1)=250
    PenetrationPower(0)=4.000000
@@ -440,8 +440,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Eviscerator:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
-   WeaponUpgrades(1)=(IncrementDamage=1.200000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000)
+   WeaponUpgrades(1)=(IncrementDamage=1.100000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)="Reloading"
@@ -462,12 +461,12 @@ defaultproperties
    FireInterval(4)=()
    FireInterval(5)=0.120000
    Spread(0)=0.020000
-   InstantHitDamage(0)=250.000000
+   InstantHitDamage(0)=300.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=75.000000
+   InstantHitDamage(3)=90.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=24.000000
+   InstantHitDamage(5)=29.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

@@ -12,11 +12,7 @@ defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Rifle_M99"
     ImagePath="WEP_UI_M99_TEX.UI_WeaponSelect_M99"
-    BuyPrice=1100
-    AmmoPricePerMag=21
-    UpgradePrice(0)=700
-    UpgradePrice(1)=1500
-    UpgradeSellPrice(0)=525
-    UpgradeSellPrice(1)=1650
+    BuyPrice=2500
+    AmmoPricePerMag=50
     EffectiveRange=100
 }

@@ -173,19 +173,24 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 simulated protected function PrepareExplosionTemplate()
 {
 	local bool bUseConcussiveForce;
+	local Weapon OwnerWeapon;
 	local Pawn OwnerPawn;
 	local KFPlayerReplicationInfo PRI;
 
 	super(KFProjectile).PrepareExplosionTemplate();
 
 	bUseConcussiveForce = false;
-	OwnerPawn = Pawn(Owner);
-	if (OwnerPawn != none)
+	OwnerWeapon = Weapon(Owner);
+	if (OwnerWeapon != none)
 	{
-		PRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
-		if (PRI != none)
+		OwnerPawn = Pawn(OwnerWeapon.Owner);
+		if (OwnerPawn != none)
 		{
-			bUseConcussiveForce = PRI.bConcussiveActive;
+			PRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
+			if (PRI != none)
+			{
+				bUseConcussiveForce = PRI.bConcussiveActive;
+			}
 		}
 	}
 
@@ -307,7 +312,7 @@ defaultproperties
    ExplosionActorClass=Class'kfgamecontent.KFExplosionActor_HuskCannon'
    Begin Object Class=KFGameExplosion Name=ExploTemplate2
       ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HuskProjectile_Explosion'
-      Damage=60.000000
+      Damage=80.000000
       DamageRadius=100.000000
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_HuskCannon'
       MomentumTransferScale=6000.000000

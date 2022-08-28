@@ -13,7 +13,7 @@ class KFWeap_SMG_Kriss extends KFWeap_SMGBase;
 defaultproperties
 {
 	// Inventory
-	InventorySize=5
+	InventorySize=6
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_KRISS_TEX.UI_WeaponSelect_KRISS'
 
@@ -67,7 +67,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Kriss'
 	FireInterval(DEFAULT_FIREMODE)=+.05 // 1200 RPM
 	Spread(DEFAULT_FIREMODE)=0.015
-	InstantHitDamage(DEFAULT_FIREMODE)=29.0 //33
+	InstantHitDamage(DEFAULT_FIREMODE)=33.0 //33
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -77,7 +77,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Kriss'
 	FireInterval(ALTFIRE_FIREMODE)=+.05 // 1200 RPM
-	InstantHitDamage(ALTFIRE_FIREMODE)=29.0  //29
+	InstantHitDamage(ALTFIRE_FIREMODE)=33.0  //29
 	Spread(ALTFIRE_FIREMODE)=0.015
 
 	// BASH_FIREMODE
@@ -104,5 +104,4 @@ defaultproperties
 
     // Weapon Upgrade stat boosts
     WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
-    WeaponUpgrades[2]=(IncrementDamage=1.28f,IncrementWeight=2)
 }

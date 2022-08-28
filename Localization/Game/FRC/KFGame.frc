@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="Réinitialiser la classe à 0 ? Cette action est irréversible."
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="Bonus de Prestige"
 FailedToReachInventoryServerString="Impossible d'atteindre le serveur d'éléments. L'inventaire n'est pas accessible."
 LoadingString="Chargement..."
 DifficultyStrings[0]="Normal"
@@ -111,8 +111,8 @@ DiscordWaveString=": vague"
 ProceedToTutorialString="LANCER L'ENTRAÎNEMENT ?"
 ProceedToTutorialDescriptionString="Découvrez les bases dans un environnement contrôlé.  Une fois terminé, la classe sélectionnée passera au niveau 1."
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="Contenu indisponible pour le mode démo"
+NetworkCheckFreeTrialFailedString="Erreur réseau : Vérification du statut de l'évènement gratuit impossible. Vérifier l'état du réseau"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RÉCOMPENSE D'ACCOMPLISSEMENT D'ÉPIDÉMIE"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="Les spectateurs ne peuvent pas demander un vote d'ex
 KickedFromServerString="Vous avez été retiré du serveur"
 BannedFromServerString="Vous avez été retiré du serveur. Vous ne pouvez pas rejoindre pour le moment"
 ServerNoLongerAvailableString="Le serveur n'est plus disponible."
-SkipTraderTimeString="Un joueur a choisi de passer la marchande. Ouvrez le menu et cliquez sur PASSER LA MARCHANDE pour voter. Tous les joueurs doivent être d'accord."
+SkipTraderTimeString="PASSER LA MARCHANDE activé. Sélectionnez « PASSER LA MARCHANDE » dans le menu de jeu pour voter.  Tous les joueurs doivent accepter."
 SkipTraderSuccessString="Vote pour passer la marchande réussi !"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>SE SOIGNER"
 PressToBashWarning="FRAPPE"
 GamepadWeaponSelectHint="<%HOLD%>SÉLECTION DE L'ARME"
 PlayerClotGrabWarningMessage="TUEZ LE ZED POUR VOUS ÉCHAPPER !"
+
 UseMinigameMessage="ACTIVER"
 UseMinigameGeneratorMessage="ACTIVER GÉNÉRATEUR"
 DoshActivateMessage="COÛT D'ACTIVATION"
-
+EMPGrabWarningMessage="***! IMMOBILISATION !***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Les équipes ne sont pas équilibrées et vont être ajustées"
 
@@ -1763,7 +1764,7 @@ LargeMags="Chargeurs haute capacité"
 LargeMagsDescription="Augmente la capacité des armes de classe de 50 %."
 
 Backup="Plan B"
-BackupDescription="Augmente les dégâts de votre pistolet 9 mm et de votre couteau de 110 % et augmente la vitesse de changement d'arme de 50 %."
+BackupDescription="Augmente les dégâts de votre pistolet 9 mm et de votre couteau de 50 % et augmente la vitesse de changement d'arme de 50 %."
 
 Impact="Projectiles d'impact"
 ImpactDescription="Augmente le pouvoir de renversement des armes de classe de 150 %."
@@ -2097,7 +2098,7 @@ TacticalMovement="Mouvement tactique"
 TacticalMovementDescription="Aucune pénalité de mouvement avec la mire ou en mouvement accroupi avec les armes de classe."
 
 Backup="Entraînement au corps à corps"
-BackupDescription="Augmente les dégâts de votre pistolet 9 mm et de votre couteau de 110 %. Commencez les parties avec deux pistolets 9 mm."
+BackupDescription="Augmente les dégâts de votre pistolet 9 mm et de votre couteau de 50 %. Commencez les parties avec deux pistolets 9 mm."
 
 TacticalReload="Rechargement tactique"
 TacticalReloadDescription="Augmente la vitesse de rechargement des armes de classe."
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="Clé Horzine | Série 13 - 2,49 $"
 USBSpitfire="Clé USB Cracheur de feu - 2,49 $"
 USBHighVoltage="Clé USB Haute tension - 2,49 $"
 MerchSale="Super promo KF2 ! -25 % jusqu'au 30/04. Code : ZED"
-; placeholder03
+FreeTrial="ACHETER LE JEU COMPLET"
 
 [Objectives]
 HoldVolume="DÉFENDEZ LA ZONE"
@@ -2331,7 +2332,7 @@ UseWelderToRepair="Utiliser le soudeur pour réparer l'objectif"
 FailedString="ÉCHEC"
 DescriptionActivateTrigger="Activer la commande de l'objectif"
 RequiredActivateTrigger="Activations requises :"
-ActivateTrigger="UTILISER ET MAÎTRISER"
+ActivateTrigger="PRENDRE LE CONTRÔLE"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Chargez !",DescriptionString="R�
 SpecialEventObjectiveInfoList[3]=(TitleString="Trombe d'eau",DescriptionString="Transférer de l'eau dans le moteur à vapeur dans le Dirigeable");
 SpecialEventObjectiveInfoList[4]=(TitleString="Un bon vaisseau",DescriptionString="Gagner un match en mode Difficile ou plus dans le Dirigeable");
 
-AllCompleteRewardDescriptionString="Tenue de pyjama"
+AllCompleteRewardDescriptionString="Pack de tenue punk"
 
 ChanceDropDescriptionStrings[0]="Ticket récomp."
 ChanceDropDescriptionStrings[1]="Ticket Or"

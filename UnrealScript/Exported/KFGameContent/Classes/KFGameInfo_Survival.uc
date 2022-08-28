@@ -1340,16 +1340,16 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
     	return;
     }
 
-    LogInternal("KFGameInfo.CheckWaveEnd() AIAliveCount:" @ AIAliveCount);
+    if (SpawnManager.bLogAISpawning) LogInternal("KFGameInfo.CheckWaveEnd() AIAliveCount:" @ AIAliveCount);
 
     if( GetLivingPlayerCount() <= 0 )
 	{
-		LogInternal("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_TeamWipedOut");
+//		`log("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_TeamWipedOut");
 		WaveEnded(WEC_TeamWipedOut);
 	}
 	else if( (AIAliveCount <= 0 && IsWaveActive() && SpawnManager.IsFinishedSpawning()) || bForceWaveEnd )
 	{
-		LogInternal("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_WaveWon");
+		//`log("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_WaveWon");
 		WaveEnded(WEC_WaveWon);
 	}
 }

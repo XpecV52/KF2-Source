@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="重置天赋等级为0？ 此操作不可以撤销。"
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="威望奖励"
 FailedToReachInventoryServerString="无法连接物品服务器。 将无法使用仓库。"
 LoadingString="正在加载…"
 DifficultyStrings[0]="普通"
@@ -111,8 +111,8 @@ DiscordWaveString=": 波"
 ProceedToTutorialString="继续训练？"
 ProceedToTutorialDescriptionString="在受控制的环境中进行基础学习。  完成时可以使选择的0级天赋升级为1级天赋。"
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="免费试玩不支持该功能"
+NetworkCheckFreeTrialFailedString="网络错误：免费活动状态无法确认。检查网络连接状态"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="爆发完成奖励"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="旁观者不能发起踢人投票"
 KickedFromServerString="你已被从服务器上删除"
 BannedFromServerString="你已被从本服务器上删除。你现在不能再次加入"
 ServerNoLongerAvailableString="服务器不能再用于加入"
-SkipTraderTimeString="一名玩家已经选择跳过商人时间。 打开菜单，点击“跳过商人”来投票表示跳过。 所有玩家最终必须达成一致意见。"
+SkipTraderTimeString="跳过商人激活。在游戏菜单中选择“跳过商人”进行投票。  必须征得所有玩家同意。"
 SkipTraderSuccessString="跳过商人投票成功！"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>治愈自己"
 PressToBashWarning="猛击"
 GamepadWeaponSelectHint="<%HOLD%>武器选择"
 PlayerClotGrabWarningMessage="杀死丧尸，冲出重围！"
+
 UseMinigameMessage="激活"
 UseMinigameGeneratorMessage="激活发生器"
 DoshActivateMessage="行动消耗"
-
+EMPGrabWarningMessage="*** ！无法动弹！  ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="目前的队伍不平衡，将会进行调整"
 
@@ -1763,7 +1764,7 @@ LargeMags="高容量弹匣"
 LargeMagsDescription="提升神射武器的容量弹匣 50%。"
 
 Backup="撤退"
-BackupDescription="提升 9 毫米手枪和匕首的伤害 110%，提升武器切换速度 50%。"
+BackupDescription="提升 9 毫米手枪和匕首的伤害 50%，提升武器切换速度 50%。"
 
 Impact="冲击弹"
 ImpactDescription="提升神射武器的击退力 150%。"
@@ -2097,7 +2098,7 @@ TacticalMovement="策略移动"
 TacticalMovementDescription="使用机械瞄准或手握神射武器蹲伏都不会有移动惩罚。"
 
 Backup="近战训练"
-BackupDescription="提升 9 毫米手枪和匕首的伤害 110%。每次游戏开始时，你都有两把 9 毫米手枪。"
+BackupDescription="提升 9 毫米手枪和匕首的伤害 50%。每次游戏开始时，你都有两把 9 毫米手枪。"
 
 TacticalReload="策略填弹"
 TacticalReloadDescription="提升神射武器的填弹速度。"
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="霍因供应箱钥匙 | 系列 #13 - $2.49"
 USBSpitfire="喷火 USB 钥匙 - $2.49"
 USBHighVoltage="高电压 USB 钥匙 - $2.49"
 MerchSale="KF2 装备大促销！2017 年 4 月 30 日之前优惠至 7.5 折，促销码 ZED"
-; placeholder03
+FreeTrial="购买完全版游戏"
 
 [Objectives]
 HoldVolume="保卫区域"
@@ -2331,7 +2332,7 @@ UseWelderToRepair="使用焊机来修理物品"
 FailedString="失败"
 DescriptionActivateTrigger="启动目标控制"
 RequiredActivateTrigger="需要启动："
-ActivateTrigger="操作控制"
+ActivateTrigger="操作及控制"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="电力恢复！",DescriptionStrin
 SpecialEventObjectiveInfoList[3]=(TitleString="水流奔涌",DescriptionString="给飞艇的蒸汽引擎供水");
 SpecialEventObjectiveInfoList[4]=(TitleString="舟行自如",DescriptionString="以困难或更高难度在飞艇关卡上赢得一局匹配游戏");
 
-AllCompleteRewardDescriptionString="睡衣套装"
+AllCompleteRewardDescriptionString="蒸汽朋克服装包"
 
 ChanceDropDescriptionStrings[0]="奖励劵"
 ChanceDropDescriptionStrings[1]="黄金券"

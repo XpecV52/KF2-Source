@@ -653,7 +653,7 @@ defaultproperties
     AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
-    SpareAmmoCapacity=23
+    SpareAmmoCapacity=32
     InitialSpareMags=6
     AmmoPickupScale=3
     ForceReloadTimeOnEmpty=0.5

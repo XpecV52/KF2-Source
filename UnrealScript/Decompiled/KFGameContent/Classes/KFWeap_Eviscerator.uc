@@ -276,7 +276,7 @@ defaultproperties
     bHasLaserSight=true
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Primary
-    InventorySize=8
+    InventorySize=9
     MagazineCapacity[0]=5
     MagazineCapacity[1]=250
     PenetrationPower=/* Array type was not detected. */

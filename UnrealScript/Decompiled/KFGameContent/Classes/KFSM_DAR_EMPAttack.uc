@@ -109,6 +109,8 @@ function SetEMPEndPoint()
     local EMPBlastHitInfo BlastHitInfo;
     local Rotator SocketRot;
     local array<EMPBlastHitInfo> HitList;
+    local Vector HitLoc, HitNrm;
+    local Actor HitActor;
 
     KFPOwner.Mesh.GetSocketWorldLocationAndRotation(EMPSocketName, SocketLocation, SocketRot);
     bHitTarget = false;
@@ -130,8 +132,16 @@ function SetEMPEndPoint()
     {
         if(IsValidTarget(BlastHitInfo.HitActor))
         {
-            bHitTarget = true;
-            Victims.AddItem(BlastHitInfo;
+            HitActor = KFPOwner.Trace(HitLoc, HitNrm, BlastHitInfo.HitLocation, SocketLocation);
+            if(HitActor != BlastHitInfo.HitActor)
+            {
+                BlastHitInfo.HitLocation = HitLoc;                
+            }
+            else
+            {
+                bHitTarget = true;
+                Victims.AddItem(BlastHitInfo;
+            }
         }
         if(HitList.Length == 1)
         {

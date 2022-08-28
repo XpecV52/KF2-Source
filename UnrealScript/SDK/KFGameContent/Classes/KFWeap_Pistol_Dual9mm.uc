@@ -117,10 +117,10 @@ defaultproperties
     bHasFireLastAnims=true
 
     // Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=0)
-	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=0) //1
-	WeaponUpgrades[3]=(IncrementDamage=1.9f,IncrementWeight=0) //1
-	WeaponUpgrades[4]=(IncrementDamage=2.2f,IncrementWeight=0) //2
-	WeaponUpgrades[5]=(IncrementDamage=2.5f,IncrementWeight=0) //3
+	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=0)
+	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=0) //1
+	WeaponUpgrades[3]=(IncrementDamage=1.6f,IncrementWeight=0) //1
+	WeaponUpgrades[4]=(IncrementDamage=1.8f,IncrementWeight=0) //2
+	WeaponUpgrades[5]=(IncrementDamage=2.0f,IncrementWeight=0) //3
 }
 

@@ -479,38 +479,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_63
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_2
-   MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=-3195,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=-3174,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=-3153,OverrideDelta=56)
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5224
-   ObjPosY=-3264
-   DrawWidth=137
-   Name="SeqEvent_LevelLoaded_2"
-   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
-End Object
-
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_4
-   Duration=0.300000
-   InputLinks(0)=(DrawY=-3307,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3286,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3265,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0',InputLinkIdx=1)),DrawY=-3302,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-3270,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=5828,OverrideDelta=25)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5776
-   ObjPosY=-3344
-   DrawWidth=106
-   DrawHeight=109
-   Name="SeqAct_Delay_4"
-   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
-End Object
-
 Begin Object Class=SequenceFrame Name=SequenceFrame_1
    SizeX=5842
    SizeY=8423
@@ -1969,62 +1937,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_270
    DrawHeight=32
    Name="SeqVar_Object_270"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
-   InputLinks(0)=(DrawY=-3219,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3198,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3177,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_4')),DrawY=-3198,OverrideDelta=35)
-   VariableLinks(0)=(DrawX=5502,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=5553,OverrideDelta=76)
-   EventLinks(0)=(DrawX=5602,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5464
-   ObjPosY=-3256
-   ObjComment="Coal Emitter"
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_1"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
-   InputLinks(0)=(DrawY=-3315,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3294,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3273,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_67')),DrawY=-3294,OverrideDelta=35)
-   VariableLinks(0)=(DrawX=6014,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=6065,OverrideDelta=76)
-   EventLinks(0)=(DrawX=6114,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5976
-   ObjPosY=-3352
-   ObjComment="Coal Emitter"
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_0"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_67
-   Duration=0.300000
-   InputLinks(0)=(DrawY=-3059,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3038,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3017,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=-3054,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-3022,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=6348,OverrideDelta=25)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6296
-   ObjPosY=-3096
-   DrawWidth=106
-   DrawHeight=109
-   Name="SeqAct_Delay_67"
-   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_2
@@ -3889,12 +3801,12 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_108
    EventName="CoalWheelMove"
    MaxWidth=220
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=-2974,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=5558,OverrideDelta=78)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11')),DrawY=-3270,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=5446,OverrideDelta=78)
    ObjInstanceVersion=2
    ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5448
-   ObjPosY=-3040
+   ObjPosX=5336
+   ObjPosY=-3336
    ObjComment="CoalWheelMove"
    DrawWidth=130
    DrawHeight=128
@@ -3903,17 +3815,17 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_108
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
-   InputLinks(0)=(DrawY=-2995,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-2974,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-2953,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-2974,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15'),DrawX=5814,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=5865,OverrideDelta=76)
-   EventLinks(0)=(DrawX=5914,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-3219,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-3198,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-3177,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-3198,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_15'),DrawX=5734,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=5785,OverrideDelta=76)
+   EventLinks(0)=(DrawX=5834,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5776
-   ObjPosY=-3032
+   ObjPosX=5696
+   ObjPosY=-3256
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_11"
@@ -3924,8 +3836,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
    ObjValue=Emitter'FX_Airship.TheWorld:PersistentLevel.Emitter_3'
    ObjInstanceVersion=1
    ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5784
-   ObjPosY=-2864
+   ObjPosX=5704
+   ObjPosY=-3088
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_15"
@@ -4829,4 +4741,20 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_2
    DrawHeight=109
    Name="SeqAct_Delay_2"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_1
+   EventName="CoalWheelEnd"
+   MaxWidth=209
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'FX_Airship.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_11',InputLinkIdx=1)),DrawY=-3094,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=5448,OverrideDelta=72)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'FX_Airship.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5344
+   ObjPosY=-3160
+   ObjComment="CoalWheelEnd"
+   DrawWidth=124
+   DrawHeight=128
+   Name="SeqEvent_RemoteEvent_1"
+   ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
 End Object

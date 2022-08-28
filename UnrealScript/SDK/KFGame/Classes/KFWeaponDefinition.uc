@@ -123,12 +123,12 @@ DefaultProperties
 {
 	WeaponClassPath=""
 
-	UpgradePrice[0]=450
+	//UpgradePrice[0]=450
 	//UpgradePrice[1]=550
 	//UpgradePrice[2]=600
 	//UpgradePrice[3]=1000
 
-	UpgradeSellPrice[0]=337
+	//UpgradeSellPrice[0]=337
 	//UpgradeSellPrice[1]=750
 	//UpgradeSellPrice[2]=1200
 	//UpgradeSellPrice[3]=1950

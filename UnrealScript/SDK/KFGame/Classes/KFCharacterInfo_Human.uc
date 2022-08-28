@@ -734,6 +734,11 @@ private function SetAttachmentMeshAndSkin(
 	// Get a slot where this attachment could fit
 	AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP);
 
+	if (AttachmentSlotIndex == INDEX_NONE)
+	{
+		return;
+	}
+
 	// Since cosmetic attachments are optional, do not choose index 0 if none is
 	// specified unlike the the head and body meshes
 	if ( CosmeticVariants.length > 0 &&

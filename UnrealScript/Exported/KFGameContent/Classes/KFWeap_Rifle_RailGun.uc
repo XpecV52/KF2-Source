@@ -950,7 +950,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
-   SpareAmmoCapacity(0)=23
+   SpareAmmoCapacity(0)=32
    InitialSpareMags(0)=6
    AmmoPickupScale(0)=3.000000
    ForceReloadTimeOnEmpty=0.500000
@@ -1012,8 +1012,7 @@ defaultproperties
    HippedRecoilModifier=2.333330
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Sharpshooter'
-   WeaponUpgrades(1)=(IncrementDamage=1.335000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.469000)
+   WeaponUpgrades(1)=(IncrementDamage=1.250000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -1028,8 +1027,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.005000
    Spread(1)=0.005000
-   InstantHitDamage(0)=281.000000
-   InstantHitDamage(1)=562.000000
+   InstantHitDamage(0)=280.000000
+   InstantHitDamage(1)=560.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=30.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_RailGun'

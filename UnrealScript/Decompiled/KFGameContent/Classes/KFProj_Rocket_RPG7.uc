@@ -16,7 +16,7 @@ defaultproperties
     bWarnAIWhenFired=true
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion'
-        Damage=510
+        Damage=750
         DamageRadius=400
         DamageFalloffExponent=2
         MyDamageType=Class'KFDT_Explosive_RPG7'

@@ -22,7 +22,7 @@ defaultproperties
     PickupMeshName="WEP_3P_Static_Strikers_MESH.Wep_3rdP_Static_Strikers_Pickup"
     AttachmentArchetypeName="WEP_Static_Strikers_ARCH.Wep_Static_Strikers_3P"
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=6
+    InventorySize=7
     GroupPriority=110
     WeaponSelectTexture=Texture2D'WEP_UI_Static_Strikers_TEX.UI_WeaponSelect_StaticStrikers'
     PlayerViewOffset=(X=20,Y=0,Z=0)

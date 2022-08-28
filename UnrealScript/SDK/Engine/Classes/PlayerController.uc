@@ -2714,7 +2714,8 @@ function ResetFOV()
 	FOVAngle = DefaultFOV;
 }
 
-exec function FOV(float F)
+`if(`__TW_)
+function FOV(float F)
 {
 	if( PlayerCamera != None )
 	{
@@ -2728,6 +2729,22 @@ exec function FOV(float F)
 		DesiredFOV = DefaultFOV;
 	}
 }
+`else
+exec function FOV(float F)
+{
+	if (PlayerCamera != None)
+	{
+		PlayerCamera.SetFOV(F);
+		return;
+	}
+
+	if ((F >= 80.0) || (WorldInfo.NetMode == NM_Standalone) || PlayerReplicationInfo.bOnlySpectator)
+	{
+		DefaultFOV = FClamp(F, 80, 100);
+		DesiredFOV = DefaultFOV;
+	}
+}
+`endif
 
 exec function Mutate(string MutateString)
 {

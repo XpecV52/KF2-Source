@@ -19,6 +19,8 @@ function StartRangedAttack()
 defaultproperties
 {
     EMPSocketName=EMP_Blast
+    MinRangeAttackDist=250
+    MaxRangeAttackDist=550
     RangeAttackIntervalNormal=10
     RangeAttackIntervalHard=9
     RangeAttackIntervalSuicidal=8

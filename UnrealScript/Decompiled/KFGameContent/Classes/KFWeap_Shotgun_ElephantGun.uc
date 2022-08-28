@@ -35,6 +35,18 @@ simulated function AltFireMode()
     }
 }
 
+simulated function byte GetNumProjectilesToFire(byte FireModeNum)
+{
+    local float MagPercentFull;
+
+    if(FireModeNum == 1)
+    {
+        MagPercentFull = float(AmmoCount[0]) / float(default.AmmoCost[1]);
+        return byte(float(NumPellets[FireModeNum]) * MagPercentFull);
+    }
+    return NumPellets[CurrentFireMode];
+}
+
 simulated function name GetWeaponFireAnim(byte FireModeNum)
 {
     if(bUsingSights)
@@ -138,8 +150,8 @@ defaultproperties
     GroupPriority=110
     WeaponSelectTexture=Texture2D'WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=72
-    InitialSpareMags=8
+    SpareAmmoCapacity=40
+    InitialSpareMags=3
     AmmoPickupScale=2
     ForceReloadTimeOnEmpty=0.3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

@@ -1760,9 +1760,9 @@ function ShowOverview( bool bShowOverview, bool bLeader, bool bInMainMenu, bool 
 
 defaultproperties
 {
-   WhatsNewPS="killingfloor2.com/psnews"
-   WhatsNewMS="killingfloor2.com/xboxnews"
-   WhatsNewSteam="killingfloor2.com/pcnews"
+   WhatsNewPS="http://www.killingfloor2.com/psnews"
+   WhatsNewMS="http://www.killingfloor2.com/xboxnews"
+   WhatsNewSteam="http://www.killingfloor2.com/pcnews"
    ModeKey="ModeKey"
    DifficultyKey="DifficultyKey"
    MapKey="MapKey"

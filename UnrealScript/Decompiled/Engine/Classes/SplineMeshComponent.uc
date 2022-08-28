@@ -47,5 +47,6 @@ defaultproperties
     SplineXDir=(X=1,Y=0,Z=0)
     ReplacementPrimitive=none
     bUseAsOccluder=false
+    bAcceptsDynamicDecals=false
     bUsePrecomputedShadows=true
 }

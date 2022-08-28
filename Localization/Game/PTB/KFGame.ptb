@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="Redefinir classe para 0? Não é possível desfazer isso."
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="Bônus de Prestígio"
 FailedToReachInventoryServerString="Falha ao localizar servidor de itens. O inventário não estará disponível."
 LoadingString="Carregando..."
 DifficultyStrings[0]="Normal"
@@ -111,8 +111,8 @@ DiscordWaveString=": Leva"
 ProceedToTutorialString="IR PARA O TREINAMENTO?"
 ProceedToTutorialDescriptionString="Vá a um ambiente controlado para aprender o básico. Concede classe nível 0 selecionada para nível 1 depois de concluído."
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="Recurso indisponível para avaliação gratuita"
+NetworkCheckFreeTrialFailedString="Erro de rede: impossível verificar status do evento gratuito. Verificar status da conexão de rede"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RECOMPENSA DE CONCLUSÃO DE SURTO"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="Espectadores não podem iniciar uma votação de exp
 KickedFromServerString="Você foi removido do servidor."
 BannedFromServerString="Você foi removido deste servidor. Não é possível reentrar no momento"
 ServerNoLongerAvailableString="O servidor não está mais disponível para entrar"
-SkipTraderTimeString="Um jogador votou para ignorar a hora do comerciante. Abra o menu e clique em “IGNORAR COMERCIANTE” para votar para ignorar o comerciante. Todos os jogadores devem concordar com isso."
+SkipTraderTimeString="IGNORAR COMERCIANTE Selecione “IGNORAR COMERCIANTE” no menu do jogo para votar.  Todos os jogadores devem aceitar."
 SkipTraderSuccessString="Votação para ignorar o comerciante bem sucedida!"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>CURAR-SE"
 PressToBashWarning="PANCADA"
 GamepadWeaponSelectHint="<%HOLD%>SELEÇÃO DE ARMA"
 PlayerClotGrabWarningMessage="ABATA ZEDS PARA LIBERTAR-SE!"
+
 UseMinigameMessage="ATIVAR"
 UseMinigameGeneratorMessage="ATIVAR GERADOR"
 DoshActivateMessage="CUSTO DE ATIVAÇÃO"
-
+EMPGrabWarningMessage="*** ! IMOBILIZADO ! ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="As equipes estão desequilibradas e serão ajustadas"
 
@@ -1763,7 +1764,7 @@ LargeMags="Alta capacidade de munição"
 LargeMagsDescription="Aumenta em 50% a capacidade de munição de armas de classe."
 
 Backup="Retirada"
-BackupDescription="Aumenta em 110% o dano da pistola 9 mm e da faca e aumenta em 50% a velocidade de troca de arma."
+BackupDescription="Aumenta em 50% o dano da pistola 9 mm e da faca e aumenta em 50% a velocidade de troca de arma."
 
 Impact="Rodadas de impacto"
 ImpactDescription="Aumenta em 150% o poder de derrubar para armas de classe."
@@ -2097,7 +2098,7 @@ TacticalMovement="Movimento tático"
 TacticalMovementDescription="Sem penalidade de movimento por usar miras metálicas ou por agachar com armas de classe."
 
 Backup="Treinamento de combate próximo"
-BackupDescription="Aumenta em 110% o dano da pistola 9 mm e da faca. Você começa cada jogo com duas pistolas 9 mm."
+BackupDescription="Aumenta em 50% o dano da pistola 9 mm e da faca. Você começa cada jogo com duas pistolas 9 mm."
 
 TacticalReload="Recarga tática"
 TacticalReloadDescription="Aumenta a velocidade de recarga com armas de classe."
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="Chave de cx. de sup. Horzine | S. 13 - US$2,49"
 USBSpitfire="Chave USB Cospe-fogo - US$2,49"
 USBHighVoltage="Chave de USB Alta Tensão - US$2,49"
 MerchSale="Promoção KF2! 25% menos até 30/4/17, cód. prom. ZED"
-; placeholder03
+FreeTrial="COMPRAR JOGO COMPLETO"
 
 [Objectives]
 HoldVolume="DEFENDA A ÁREA"
@@ -2331,7 +2332,7 @@ UseWelderToRepair="Use o soldador para consertar o(s) objetivo(s)"
 FailedString="FALHA"
 DescriptionActivateTrigger="Ativar o controle de objetivo"
 RequiredActivateTrigger="Ativações necessárias:"
-ActivateTrigger="OPERE E CONTROLE"
+ActivateTrigger="OPERAR E CONTROLAR"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Fortalecido!",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="Descarga Rápida",DescriptionString="Transfira água para o motor a vapor na Aeronave");
 SpecialEventObjectiveInfoList[4]=(TitleString="Uma Ótima Embarcação",DescriptionString="Vença uma partida em Difícil ou mais na Aeronave");
 
-AllCompleteRewardDescriptionString="Conj. Pijamas"
+AllCompleteRewardDescriptionString="Pacote de Traje Steampunk"
 
 ChanceDropDescriptionStrings[0]="Bilh. Prêmio"
 ChanceDropDescriptionStrings[1]="Bilh. Ouro"

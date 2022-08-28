@@ -24,7 +24,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
-   InventorySize=5
+   InventorySize=6
    MagazineCapacity(0)=33
    MeshIronSightFOV=45.000000
    IronSightPosition=(X=15.000000,Y=0.000000,Z=0.000000)
@@ -64,7 +64,6 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.850000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_SWAT'
    WeaponUpgrades(1)=(IncrementDamage=1.150000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.280000)
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -78,8 +77,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.015000
    Spread(1)=0.015000
-   InstantHitDamage(0)=29.000000
-   InstantHitDamage(1)=29.000000
+   InstantHitDamage(0)=33.000000
+   InstantHitDamage(1)=33.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Kriss'

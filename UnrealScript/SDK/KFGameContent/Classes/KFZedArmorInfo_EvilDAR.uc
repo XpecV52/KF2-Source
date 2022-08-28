@@ -88,7 +88,7 @@ defaultproperties
     ArmorHitzoneNames.Add(abdomen)
 
     //Armor info
-    ArmorZones.Add((ArmorZoneName=head,SocketName=FX_Armor_Head,ArmorHealth=550,ArmorHealthMax=550,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Headshot')) //ArmorHealth=20, ArmorHealthMax=20
-    ArmorZones.Add((ArmorZoneName=front,SocketName=FX_Armor_Chest,ArmorHealth=500,ArmorHealthMax=500,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged')) //ArmorHealth=40, ArmorHealthMax=40
+    ArmorZones.Add((ArmorZoneName=head,SocketName=FX_Armor_Head,ArmorHealth=600,ArmorHealthMax=600,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Headshot')) //ArmorHealth=20, ArmorHealthMax=20
+    ArmorZones.Add((ArmorZoneName=front,SocketName=FX_Armor_Chest,ArmorHealth=225,ArmorHealthMax=225,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged')) //ArmorHealth=40, ArmorHealthMax=40
 	ArmorScale=1.f
 }

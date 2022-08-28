@@ -107,7 +107,7 @@ defaultproperties
 	// Inventory
 	InventoryGroup=IG_Primary
 	GroupPriority=100
-	InventorySize=8 //10
+	InventorySize=9 //10
 	WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
 
     // FOV
@@ -168,7 +168,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Custom
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Rocket_RPG7'
 	FireInterval(DEFAULT_FIREMODE)=+0.25
-	InstantHitDamage(DEFAULT_FIREMODE)=102.0 //150
+	InstantHitDamage(DEFAULT_FIREMODE)=150.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RPG7Impact'
 	Spread(DEFAULT_FIREMODE)=0.025
 	FireOffset=(X=20,Y=4.0,Z=-3)
@@ -207,6 +207,5 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.471f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.62f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
 }

@@ -267,7 +267,7 @@ defaultproperties
     HippedRecoilModifier=1.5
 
     // Inventory
-	InventorySize=8 //10
+	InventorySize=9 //10
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
 
@@ -331,6 +331,5 @@ defaultproperties
     MaxAIWarningDistSQ=2250000
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
 }

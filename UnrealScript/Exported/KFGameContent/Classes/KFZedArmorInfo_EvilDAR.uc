@@ -85,8 +85,8 @@ defaultproperties
    ArmorHitzoneNames(2)="heart"
    ArmorHitzoneNames(3)="stomach"
    ArmorHitzoneNames(4)="abdomen"
-   ArmorZones(0)=(ArmorZoneName="head",SocketName="FX_Armor_Head",ArmorHealth=550,ArmorHealthMax=550,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Headshot')
-   ArmorZones(1)=(ArmorZoneName="Front",SocketName="FX_Armor_Chest",ArmorHealth=500,ArmorHealthMax=500,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged')
+   ArmorZones(0)=(ArmorZoneName="head",SocketName="FX_Armor_Head",ArmorHealth=600,ArmorHealthMax=600,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Headshot')
+   ArmorZones(1)=(ArmorZoneName="Front",SocketName="FX_Armor_Chest",ArmorHealth=225,ArmorHealthMax=225,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged')
    ArmorScale=1.000000
    Name="Default__KFZedArmorInfo_EvilDAR"
    ObjectArchetype=KFZedArmorInfo'KFGame.Default__KFZedArmorInfo'

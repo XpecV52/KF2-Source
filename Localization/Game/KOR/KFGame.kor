@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="병과를 0으로 초기화하시겠습니까? 이 작업은 취소할 수 없습니다."
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="유명 보너스"
 FailedToReachInventoryServerString="아이템 서버에 연결하지 못했습니다. 소지품을 이용할 수 없게 됩니다."
 LoadingString="로딩 중..."
 DifficultyStrings[0]="보통"
@@ -111,8 +111,8 @@ DiscordWaveString=": 웨이브"
 ProceedToTutorialString="훈련을 진행하시겠습니까?"
 ProceedToTutorialDescriptionString="통제된 환경으로 가서 기본 사항을 배우십시오.  완료되면 선택한 레벨 0 병과를 레벨 1에 부여하십시오."
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="무료 체험에 사용할 수 없는 기능"
+NetworkCheckFreeTrialFailedString="네트워크 오류: 무료 이벤트 상태를 확인할 수 없습니다. 네트워크 연결 상태 확인"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="아웃브레이크 완료 보상"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="참관자는 추방 투표를 시작할 수 없습�
 KickedFromServerString="서버에서 추방되었습니다."
 BannedFromServerString="이 서버에서 추방되었습니다. 이번에 다시 들어갈 수 없습니다."
 ServerNoLongerAvailableString="더 이상 서버 입장을 할 수 없습니다."
-SkipTraderTimeString="플레이어가 상인을 건너뛰도록 설정했습니다. 메뉴를 열고 '상인 건너뛰기'를 클릭하여 상인 건너뛰기에 투표하세요. 모든 플레이어가 동의해야 합니다."
+SkipTraderTimeString="상인 건너뛰기 활성화 게임 메뉴에서 '상인 건너뛰기'를 선택하여 투표하세요.  모두가 동의해야 합니다."
 SkipTraderSuccessString="상인 건너뛰기 투표가 성공적으로 끝났습니다!"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>자체 치료"
 PressToBashWarning="충돌"
 GamepadWeaponSelectHint="<%HOLD%>무기 선택"
 PlayerClotGrabWarningMessage="제드를 죽이고 빠져나가십시오!"
+
 UseMinigameMessage="활성화"
 UseMinigameGeneratorMessage="미니게임 생성기 활성화"
 DoshActivateMessage="활성화 비용"
-
+EMPGrabWarningMessage="*** ! 이동 불가 ! ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="팀 균형이 맞지 않아 다시 조정됩니다"
 
@@ -1763,7 +1764,7 @@ LargeMags="고용량 탄창"
 LargeMagsDescription="병과 무기 탄창 용량 50% 증가"
 
 Backup="유비무환"
-BackupDescription="9mm 권총과 나이프 데미지 110% 증가 및 무기 전환 속도 50% 향상"
+BackupDescription="9mm 권총과 나이프 데미지 50% 증가 및 무기 전환 속도 50% 향상"
 
 Impact="임팩트 탄환"
 ImpactDescription="병과 무기 스텀블 파워 150% 증가"
@@ -2097,7 +2098,7 @@ TacticalMovement="전술 이동"
 TacticalMovementDescription="병과 무기 이용 시 가늠좌를 사용하거나 웅크린 상태에서도 이동 페널티가 없음"
 
 Backup="근접전 훈련"
-BackupDescription="9mm 권총과 나이프 데미지 110% 향상 각 게임을 9mm 권총 두 자루로 시작"
+BackupDescription="9mm 권총과 나이프 데미지 50% 향상 각 게임을 9mm 권총 두 자루로 시작"
 
 TacticalReload="전술 재장전"
 TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="Horzine 보급상자 열쇠 | 시리즈 13 - $2.49"
 USBSpitfire="스핏 파이어 USB 키 - $2.49"
 USBHighVoltage="고전압 USB 키 - $2.49"
 MerchSale="KF2 장비 세일! 2017년 4월 30일까지 25% 할인됩니다. 프로모 코드 ZED"
-; placeholder03
+FreeTrial="게임 완전판 구입"
 
 [Objectives]
 HoldVolume="구역 방어"
@@ -2331,7 +2332,7 @@ UseWelderToRepair="용접기로 물건을 수리하세요."
 FailedString="실패"
 DescriptionActivateTrigger="오브젝트 컨트롤을 활성화하세요."
 RequiredActivateTrigger="활성화 필요:"
-ActivateTrigger="조작 유지"
+ActivateTrigger="제어와 통제"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="파워업!",DescriptionString="�
 SpecialEventObjectiveInfoList[3]=(TitleString="플러쉬 러쉬",DescriptionString="비행선 증기 엔진에 물 전달하기");
 SpecialEventObjectiveInfoList[4]=(TitleString="멋진 비행선",DescriptionString="비행선 어려움 이상 난이도 대전에서 승리하기");
 
-AllCompleteRewardDescriptionString="파자마 수트"
+AllCompleteRewardDescriptionString="스팀펑크 복장 번들"
 
 ChanceDropDescriptionStrings[0]="상품권"
 ChanceDropDescriptionStrings[1]="골드 티켓"

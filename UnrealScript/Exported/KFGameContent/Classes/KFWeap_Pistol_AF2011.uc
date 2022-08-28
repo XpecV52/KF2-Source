@@ -37,7 +37,7 @@ defaultproperties
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
-   InventorySize=2
+   InventorySize=3
    MagazineCapacity(0)=16
    PenetrationPower(0)=1.500000
    PenetrationPower(1)=()
@@ -81,8 +81,7 @@ defaultproperties
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
-   WeaponUpgrades(1)=(IncrementDamage=1.250000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.400000)
+   WeaponUpgrades(1)=(IncrementDamage=1.125000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -100,7 +99,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.010000
-   InstantHitDamage(0)=43.000000
+   InstantHitDamage(0)=53.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=22.000000

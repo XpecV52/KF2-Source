@@ -396,7 +396,7 @@ defaultproperties
 
 	EvadeGrenadeChance=0.9f
 	CheckSpecialMoveTime=0.25f
-	SprintWithinEnemyRange=(X=800.f,Y=1500.f)  //X=600.f,Y=1200
+	SprintWithinEnemyRange=(X=500.f,Y=5000.f)  //X=800.f,Y=1500
 
 	RangeAttackIntervalNormal=7.0
 	RangeAttackIntervalHard=6.0

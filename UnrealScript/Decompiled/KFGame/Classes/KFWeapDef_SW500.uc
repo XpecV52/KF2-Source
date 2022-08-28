@@ -12,11 +12,9 @@ defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Revolver_SW500"
     ImagePath="WEP_UI_SW_500_TEX.UI_WeaponSelect_SW500"
-    BuyPrice=550
-    AmmoPricePerMag=22
-    UpgradePrice(0)=700
-    UpgradePrice(1)=1500
-    UpgradeSellPrice(0)=525
-    UpgradeSellPrice(1)=1650
+    BuyPrice=750
+    AmmoPricePerMag=25
+    UpgradePrice(0)=1500
+    UpgradeSellPrice(0)=390
     EffectiveRange=50
 }

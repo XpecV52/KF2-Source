@@ -107,9 +107,3 @@ static function int GetTotalUpgradePrice(int UpgradeTier)
     }
     return TotalPrice;
 }
-
-defaultproperties
-{
-    UpgradePrice(0)=450
-    UpgradeSellPrice(0)=337
-}

@@ -24,7 +24,7 @@ defaultproperties
    bHasFireLastAnims=False
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   InventorySize=9
+   InventorySize=10
    MagazineCapacity(0)=20
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=2.000000
@@ -68,8 +68,7 @@ defaultproperties
    RecoilISMinPitchLimit=65460
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
-   WeaponUpgrades(1)=(IncrementDamage=1.650000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.900000)
+   WeaponUpgrades(1)=(IncrementDamage=1.150000)
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -86,8 +85,8 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   InstantHitDamage(0)=12.000000
-   InstantHitDamage(1)=12.000000
+   InstantHitDamage(0)=20.000000
+   InstantHitDamage(1)=20.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=30.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_AA12Shotgun'

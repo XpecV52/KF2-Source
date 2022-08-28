@@ -23,7 +23,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
-   InventorySize=5
+   InventorySize=6
    MagazineCapacity(0)=20
    MeshFOV=70.000000
    MeshIronSightFOV=20.000000
@@ -65,8 +65,7 @@ defaultproperties
    RecoilISMinPitchLimit=65460
    IronSightMeshFOVCompensationScale=4.000000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Commando'
-   WeaponUpgrades(1)=(IncrementDamage=1.400000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.600000)
+   WeaponUpgrades(1)=(IncrementDamage=1.220000)
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -80,8 +79,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.007000
    Spread(1)=0.007000
-   InstantHitDamage(0)=42.000000
-   InstantHitDamage(1)=42.000000
+   InstantHitDamage(0)=55.000000
+   InstantHitDamage(1)=55.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SCAR'

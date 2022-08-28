@@ -580,7 +580,7 @@ DefaultProperties
 
  	PerkSkills(ESWAT_HeavyArmor)=(Name="HeavyArmor",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_HeavyArmor", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)    //0.1
 	PerkSkills(ESWAT_TacticalMovement)=(Name="TacticalMovement",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement", Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f)
-	PerkSkills(ESWAT_Backup)=(Name="Backup",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup", Increment=0.f,Rank=0,StartingValue=1.1f,MaxValue=1.1f) //1.0
+	PerkSkills(ESWAT_Backup)=(Name="Backup",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f) //1.1
 	PerkSkills(ESWAT_TacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload", Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
 	PerkSkills(ESWAT_SpecialAmmunition)=(Name="SpecialAmmunition",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition", Increment=0.f,Rank=0,StartingValue=2.0f,MaxValue=2.0f)
 	PerkSkills(ESWAT_AmmoVest)=(Name="AmmoVest",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest", Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)

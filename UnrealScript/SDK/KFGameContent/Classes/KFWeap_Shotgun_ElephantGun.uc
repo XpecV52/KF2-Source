@@ -38,6 +38,19 @@ simulated function AltFireMode()
 	}
 }
 
+/** Returns number of projectiles to fire from SpawnProjectile */
+simulated function byte GetNumProjectilesToFire(byte FireModeNum)
+{
+	local Float MagPercentFull;
+	if (FireModeNum == ALTFIRE_FIREMODE)
+	{
+		MagPercentFull = Float(AmmoCount[0]) / float(default.AmmoCost[ALTFIRE_FIREMODE]);
+		return NumPellets[FireModeNum] * MagPercentFull;
+	}
+
+	return NumPellets[CurrentFireMode];
+}
+
 /** Handle one-hand fire anims */
 simulated function name GetWeaponFireAnim(byte FireModeNum)
 {
@@ -163,7 +176,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(DEFAULT_FIREMODE)=30.0 //40
+	InstantHitDamage(DEFAULT_FIREMODE)=36.0 //40
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_ElephantGun'
 	PenetrationPower(DEFAULT_FIREMODE)=4.0
 	FireInterval(DEFAULT_FIREMODE)=0.25 // 240 RPM
@@ -177,13 +190,13 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)= WeaponQuadBarrelFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(ALTFIRE_FIREMODE)=30.0 //40
+	InstantHitDamage(ALTFIRE_FIREMODE)=36.0 //40
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_ElephantGun'
 	PenetrationPower(ALTFIRE_FIREMODE)=4.0
 	FireInterval(ALTFIRE_FIREMODE)=0.25 // 240 RPM
 	NumPellets(ALTFIRE_FIREMODE)=24
 	Spread(ALTFIRE_FIREMODE)=0.19
-	AmmoCost(ALTFIRE_FIREMODE)=2
+	AmmoCost(ALTFIRE_FIREMODE)=4
 	DoubleBarrelKickMomentum=1000
 	FallingMomentumReduction=0.5
 
@@ -204,8 +217,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=4
-	SpareAmmoCapacity[0]=72 //46 51
-	InitialSpareMags[0]=8
+	SpareAmmoCapacity[0]=40 //72
+	InitialSpareMags[0]=3 //8
 	AmmoPickupScale[0]=2.0 //3.0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -236,6 +249,5 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.65f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.9f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
 }

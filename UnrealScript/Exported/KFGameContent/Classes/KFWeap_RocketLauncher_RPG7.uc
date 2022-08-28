@@ -117,7 +117,7 @@ defaultproperties
    bHasFireLastAnims=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
    FireModeIconPaths(1)=()
-   InventorySize=8
+   InventorySize=9
    MagazineCapacity(0)=1
    MeshFOV=75.000000
    MeshIronSightFOV=65.000000
@@ -157,8 +157,7 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
-   WeaponUpgrades(1)=(IncrementDamage=1.471000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.620000)
+   WeaponUpgrades(1)=(IncrementDamage=1.100000)
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -175,7 +174,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.025000
-   InstantHitDamage(0)=102.000000
+   InstantHitDamage(0)=150.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=29.000000

@@ -152,7 +152,7 @@ defaultproperties
     PickupMeshName="WEP_3P_Shield_Melee_MESH.Wep_Shield_Melee_Pickup"
     AttachmentArchetypeName="WEP_Shield_Melee_ARCH.Wep_MaceAndShield_3P"
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=7
+    InventorySize=8
     QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
     GrenadeFireOffset=(X=25,Y=15,Z=0)
     GroupPriority=110

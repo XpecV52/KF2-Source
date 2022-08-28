@@ -169,26 +169,26 @@ defaultproperties
 
     // Inventory
 	GroupPriority=110
-	InventorySize=7
+	InventorySize=8
 	WeaponSelectTexture=Texture2D'WEP_UI_Shield_Melee_TEX.UI_WeaponSelect_MaceShield'
 
 	// For procedural weapon hiding
 	QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
 
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-	InstantHitDamage(DEFAULT_FIREMODE)=73 //70
+	InstantHitDamage(DEFAULT_FIREMODE)=80 //70
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Bludgeon_MaceAndShield'
 	MaceLightDamageType=class'KFDT_Bludgeon_MaceAndShield'
 	ShieldLightDamageType=class'KFDT_Bludgeon_MaceAndShield_ShieldLight'
 
 	FireModeIconPaths(HEAVY_ATK_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-	InstantHitDamage(HEAVY_ATK_FIREMODE)=160//200
+	InstantHitDamage(HEAVY_ATK_FIREMODE)=175 //200
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Bludgeon_MaceAndShield_MaceHeavy'
 	MaceHeavyDamageType=class'KFDT_Bludgeon_MaceAndShield_MaceHeavy'
 	ShieldHeavyDamageType=class'KFDT_Bludgeon_MaceAndShield_ShieldHeavy'
 
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_MaceAndShield_Bash'
-	InstantHitDamage(BASH_FIREMODE)=150//250
+	InstantHitDamage(BASH_FIREMODE)=165 //250
 
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
 
@@ -212,6 +212,5 @@ defaultproperties
 	NumBloodMapMaterials=2
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.25f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.135f,IncrementWeight=1)
 }

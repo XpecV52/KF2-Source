@@ -233,7 +233,7 @@ defaultproperties
     HippedRecoilModifier=1.5
 
     // Inventory / Grouping
-	InventorySize=8
+	InventorySize=9
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'wep_ui_stoner63a_tex.UI_WeaponSelect_Stoner'
    	AssociatedPerkClasses(0)=class'KFPerk_Commando'
@@ -246,7 +246,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Stoner63A'
 	FireInterval(DEFAULT_FIREMODE)=+0.066 // 900 RPM
 	Spread(DEFAULT_FIREMODE)=0.0085
-	InstantHitDamage(DEFAULT_FIREMODE)=20.0 //25 //30
+	InstantHitDamage(DEFAULT_FIREMODE)=30.0 //25 //30
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -281,6 +281,5 @@ defaultproperties
 	LastAmmoCount=-1
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.5f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.9f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.27f,IncrementWeight=1)
 }

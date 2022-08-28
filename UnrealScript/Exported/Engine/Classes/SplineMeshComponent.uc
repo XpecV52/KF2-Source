@@ -64,6 +64,7 @@ defaultproperties
    SplineXDir=(X=1.000000,Y=0.000000,Z=0.000000)
    ReplacementPrimitive=None
    bUseAsOccluder=False
+   bAcceptsDynamicDecals=False
    bUsePrecomputedShadows=True
    Name="Default__SplineMeshComponent"
    ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'

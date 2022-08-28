@@ -239,7 +239,7 @@ function SetItemInfo(out GFxObject ItemDataArray, STraderItem TraderItem, int Sl
 	local string IconPath;
 	local string SecondaryIconPath;
 	local bool bCanAfford, bCanCarry;
-	local int AdjustedBuyPrice;
+	local int AdjustedBuyPrice, ItemUpgradeLevel;
 
 	SlotObject = CreateObject( "Object" );
 
@@ -266,14 +266,18 @@ function SetItemInfo(out GFxObject ItemDataArray, STraderItem TraderItem, int Sl
 
 	SlotObject.SetString( "weaponName", TraderItem.WeaponDef.static.GetItemName() );
 	SlotObject.SetString( "weaponType", TraderItem.WeaponDef.static.GetItemCategory() );
-	SlotObject.SetInt( "weaponWeight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem) );
+
+	ItemUpgradeLevel = TraderItem.SingleClassName != '' ?
+		KFPC.GetPurchaseHelper().GetItemUpgradeLevelByClassName(TraderItem.SingleClassName) :
+		INDEX_None;
+	SlotObject.SetInt("weaponWeight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem, ItemUpgradeLevel));
 
 	AdjustedBuyPrice = KFPC.GetPurchaseHelper().GetAdjustedBuyPriceFor(TraderItem);
 
 	SlotObject.SetInt( "weaponCost",  AdjustedBuyPrice );
 
 	bCanAfford = KFPC.GetPurchaseHelper().GetCanAfford(AdjustedBuyPrice);
-	bCanCarry = KFPC.GetPurchaseHelper().CanCarry( TraderItem );
+	bCanCarry = KFPC.GetPurchaseHelper().CanCarry(TraderItem, ItemUpgradeLevel);
 
 	SlotObject.SetBool("bCanAfford", bCanAfford);
 	SlotObject.SetBool("bCanCarry", bCanCarry);

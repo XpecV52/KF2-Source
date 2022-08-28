@@ -105,7 +105,7 @@ defaultproperties
     FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
     WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
     WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Hemogoblin'
-    InstantHitDamage(DEFAULT_FIREMODE)=75.0 //50
+    InstantHitDamage(DEFAULT_FIREMODE)=50.0
     InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Hemogoblin'
     FireInterval(DEFAULT_FIREMODE)=0.25
     PenetrationPower(DEFAULT_FIREMODE)=0.0 //2.0
@@ -133,6 +133,6 @@ defaultproperties
 
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
 
-    WeaponUpgrades[1]=(IncrementDamage=1.6f,IncrementWeight=1, IncrementHealFullRecharge=.8)
+    WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1, IncrementHealFullRecharge=.8)
     WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2, IncrementHealFullRecharge=.6)
 }

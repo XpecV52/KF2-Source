@@ -38,6 +38,19 @@ simulated function AltFireMode()
 	}
 }
 
+/** Returns number of projectiles to fire from SpawnProjectile */
+simulated function byte GetNumProjectilesToFire(byte FireModeNum)
+{
+	local Float MagPercentFull;
+	if (FireModeNum == ALTFIRE_FIREMODE)
+	{
+		MagPercentFull = Float(AmmoCount[0]) / float(default.AmmoCost[ALTFIRE_FIREMODE]);
+		return NumPellets[FireModeNum] * MagPercentFull;
+	}
+
+	return NumPellets[CurrentFireMode];
+}
+
 /** Handle one-hand fire anims */
 simulated function name GetWeaponFireAnim(byte FireModeNum)
 {
@@ -155,9 +168,9 @@ defaultproperties
    DOF_FG_FocalRadius=65.000000
    GroupPriority=110.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel'
-   AmmoCost(1)=2
-   SpareAmmoCapacity(0)=72
-   InitialSpareMags(0)=8
+   AmmoCost(1)=4
+   SpareAmmoCapacity(0)=40
+   InitialSpareMags(0)=3
    AmmoPickupScale(0)=2.000000
    ForceReloadTimeOnEmpty=0.300000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
@@ -192,8 +205,7 @@ defaultproperties
    HippedRecoilModifier=1.100000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
-   WeaponUpgrades(1)=(IncrementDamage=1.650000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.900000)
+   WeaponUpgrades(1)=(IncrementDamage=1.100000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponQuadBarrelFiring"
    FiringStatesArray(2)=()
@@ -213,8 +225,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.190000
    Spread(1)=0.190000
-   InstantHitDamage(0)=30.000000
-   InstantHitDamage(1)=30.000000
+   InstantHitDamage(0)=36.000000
+   InstantHitDamage(1)=36.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=27.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_ElephantGun'

@@ -14,12 +14,10 @@ defaultproperties
 {
    WeaponClassPath="KFGameContent.KFWeap_AssaultRifle_Medic"
    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_MedicAssault"
-   BuyPrice=1100
-   AmmoPricePerMag=35
-   UpgradePrice(0)=700
-   UpgradePrice(1)=1500
-   UpgradeSellPrice(0)=525
-   UpgradeSellPrice(1)=1650
+   BuyPrice=1500
+   AmmoPricePerMag=40
+   UpgradePrice(0)=1500
+   UpgradeSellPrice(0)=1125
    EffectiveRange=70
    Name="Default__KFWeapDef_MedicRifle"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

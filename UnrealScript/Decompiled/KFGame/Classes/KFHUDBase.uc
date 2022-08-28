@@ -542,7 +542,7 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     {
         return false;
     }
-    FontScale = Class'KFGameEngine'.static.GetKFFontScale();
+    FontScale = Class'KFGameEngine'.static.GetKFFontScale() * FriendlyHudScale;
     Canvas.Font = Class'KFGameEngine'.static.GetKFCanvasFont();
     Canvas.SetDrawColorStruct(PlayerBarTextColor);
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), ScreenPos.Y);

@@ -1722,9 +1722,9 @@ defaultproperties
 	SubWidgetBindings.Add((WidgetName ="newsPage",WidgetClass=class'KFGFxStartContainer_NewsImageHolder'))
 
 
-	WhatsNewPS="killingfloor2.com/psnews"
-	WhatsNewMS="killingfloor2.com/xboxnews"
-	WhatsNewSteam="killingfloor2.com/pcnews"
+	WhatsNewPS="http://www.killingfloor2.com/psnews"
+	WhatsNewMS="http://www.killingfloor2.com/xboxnews"
+	WhatsNewSteam="http://www.killingfloor2.com/pcnews"
 }
 
 

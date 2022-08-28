@@ -701,7 +701,7 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 	}
 
 	//Draw player name (Top)
-	FontScale = class'KFGameEngine'.Static.GetKFFontScale();
+	FontScale = class'KFGameEngine'.Static.GetKFFontScale() * FriendlyHudScale;
 	Canvas.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
 	Canvas.SetDrawColorStruct(PlayerBarTextColor);
 	Canvas.SetPos(ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y);

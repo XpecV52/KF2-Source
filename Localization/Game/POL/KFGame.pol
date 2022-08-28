@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="Chcesz przywrócić specjalizację do poziomu 0? Nie można tego cofnąć."
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="Premia prestiżu"
 FailedToReachInventoryServerString="Nie połączono z serwerem przedmiotów. Ekwipunek nie będzie dostępny."
 LoadingString="Wczytywanie…"
 DifficultyStrings[0]="Zwykły"
@@ -111,8 +111,8 @@ DiscordWaveString=": Fala"
 ProceedToTutorialString="PRZEJŚĆ DO SZKOLENIA?"
 ProceedToTutorialDescriptionString="Naucz się podstaw w kontrolowanym środowisku.  Po ukończeniu zapewnia wybrane klasy poziomu 0-1."
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="Funkcja niedostępna w darmowej wersji próbnej"
+NetworkCheckFreeTrialFailedString="Błąd sieci: Nie można zweryfikować stanu darmowego wydarzenia. Sprawdź stan połączenia internetowego."
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="NAGRODA ZA UKOŃCZENIE INCYDENTU"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="Widzowie nie mogą inicjować głosowania o wyrzucen
 KickedFromServerString="Usunięto cię z serwera"
 BannedFromServerString="Usunięto cię z tego serwera. Nie możesz teraz ponownie dołączyć"
 ServerNoLongerAvailableString="Nie można już dołączyć do serwera"
-SkipTraderTimeString="Gracz zdecydował się pominąć opcję handlową. Otwórz menu i kliknij „HANDLARKA – POMIŃ”, aby zrezygnować z handlu. Wszyscy gracze muszą wyrazić zgodę."
+SkipTraderTimeString="Aktywowano funkcję „HANDLARKA – POMIŃ”. Aby głosować, wybierz w menu gry opcję „HANDLARKA – POMIŃ”.  Wszyscy gracze muszą wyrazić zgodę."
 SkipTraderSuccessString="Głosowanie nad pominięciem opcji handlowej zakończone!"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>LECZ SIEBIE"
 PressToBashWarning="CIOS"
 GamepadWeaponSelectHint="<%HOLD%>WYBÓR BRONI"
 PlayerClotGrabWarningMessage="ZABIJ ZETA, ŻEBY SIĘ UWOLNIĆ!"
+
 UseMinigameMessage="AKTYWUJ"
 UseMinigameGeneratorMessage="AKTYWUJ GENERATOR"
 DoshActivateMessage="KOSZT AKTYWACJI"
-
+EMPGrabWarningMessage="***! UNIERUCHOMIONO! ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Drużyny mają nierówną liczbę graczy i zostaną zrównoważone"
 
@@ -1763,7 +1764,7 @@ LargeMags="Magazynki o dużej pojemności"
 LargeMagsDescription="Pojemność magazynka broni specjalizacji zwiększona o 50%."
 
 Backup="Rezerwa"
-BackupDescription="Obrażenia pistoletu 9 mm i noża zwiększone o 110% oraz o 50% szybsza zmiana broni."
+BackupDescription="Obrażenia pistoletu 9 mm i noża zwiększone o 50% oraz o 50% szybsza zmiana broni."
 
 Impact="Pociski udarowe"
 ImpactDescription="Zwiększenie siły oszołamiania broni specjalizacji o 150%."
@@ -2097,7 +2098,7 @@ TacticalMovement="Ruch taktyczny"
 TacticalMovementDescription="Brak kary do ruchu podczas używania celownika mechanicznego lub kucania przy używaniu broni specjalizacji."
 
 Backup="Wyszkolenie w walce w zwarciu"
-BackupDescription="Obrażenia pistoletu 9 mm i noża zwiększone o 110%. Każdą grę rozpoczynasz z dwoma pistoletami 9 mm."
+BackupDescription="Obrażenia pistoletu 9 mm i noża zwiększone o 50%. Każdą grę rozpoczynasz z dwoma pistoletami 9 mm."
 
 TacticalReload="Taktyczne przeładowanie"
 TacticalReloadDescription="Zwiększenie szybkości przeładowywania broni specjalizacji."
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="Klucz do skrzyni Horzine | Seria 13 – 2,49 $"
 USBSpitfire="Klucz USB: Spitfire – 2,49 $"
 USBHighVoltage="Klucz USB: Wysokie napięcie – 2,49 $"
 MerchSale="Wyprzedaż KF2! -25% do 30.04.17 Kod promocyjny ZED"
-; placeholder03
+FreeTrial="KUP PEŁNĄ GRĘ"
 
 [Objectives]
 HoldVolume="BROŃ OBSZARU"
@@ -2331,7 +2332,7 @@ UseWelderToRepair="Użyj spawarki, aby naprawić obiekt(y)"
 FailedString="NIEUDANE"
 DescriptionActivateTrigger="Aktywuj sterowanie"
 RequiredActivateTrigger="Wymagana aktywacja:"
-ActivateTrigger="UŻYJ I KONTROLUJ"
+ActivateTrigger="UŻYJ STEROWANIA"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Więcej mocy!",DescriptionString=
 SpecialEventObjectiveInfoList[3]=(TitleString="Dostawa wody",DescriptionString="Dostarcz wodę do silnika parowego na mapie Statek powietrzny");
 SpecialEventObjectiveInfoList[4]=(TitleString="Wspaniały okręt",DescriptionString="Wygraj grę na wysokim (albo wyższym) poz. trudności na mapie Statek powietrzny");
 
-AllCompleteRewardDescriptionString="Piżama"
+AllCompleteRewardDescriptionString="Zestaw „Steampunkowy ubiór”"
 
 ChanceDropDescriptionStrings[0]="Kupon"
 ChanceDropDescriptionStrings[1]="Złoty kupon"

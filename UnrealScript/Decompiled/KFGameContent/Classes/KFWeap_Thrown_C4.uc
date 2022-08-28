@@ -366,7 +366,6 @@ defaultproperties
     PlayerViewOffset=(X=6,Y=2,Z=-4)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Thrown_C4.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
-    WeaponUpgrades=/* Array type was not detected. */
     CurrentFireMode=5
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */

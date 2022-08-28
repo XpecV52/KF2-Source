@@ -638,6 +638,10 @@ private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, 
         return;
     }
     AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP);
+    if(AttachmentSlotIndex == -1)
+    {
+        return;
+    }
     if((CosmeticVariants.Length > 0) && CurrentAttachmentMeshIndex < CosmeticVariants.Length)
     {
         CharAttachmentMeshName = ((bIsFirstPerson) ? Get1pMeshByIndex(CurrentAttachmentMeshIndex) : GetMeshByIndex(CurrentAttachmentMeshIndex));

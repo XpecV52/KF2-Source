@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="Vorteil zurück auf 0 setzen? Das kann nicht rückgängig gemacht werden."
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="Ansehen-Bonus"
 FailedToReachInventoryServerString="Gegenstandsserver unerreichbar. Inventar ist nicht verfügbar."
 LoadingString="Wird geladen …"
 DifficultyStrings[0]="Normal"
@@ -111,8 +111,8 @@ DiscordWaveString=": Welle"
 ProceedToTutorialString="WEITER ZUM TRAINING??"
 ProceedToTutorialDescriptionString="Lerne die Grundlagen in einer kontrollierten Umgebung.  Bringt bei Abschluss ausgewählten Vorteil von Level 0 auf 1."
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="Funktion in kostenloser Testversion nicht verfügbar"
+NetworkCheckFreeTrialFailedString="Netzwerk-Fehler: Status des kostenlosen Events konnte nicht verifiziert werden. Status der Netzwerk-Verbindung prüfen"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="AUSBRUCH-ABSCHLUSS-BELOHNUNG"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="Zuschauer können keine Kick-Abstimmung initiieren"
 KickedFromServerString="Du wurdest von diesem Server entfernt"
 BannedFromServerString="Du wurdest von diesem Server entfernt. Du kannst zur Zeit nicht wieder beitreten"
 ServerNoLongerAvailableString="Dem Server kann nicht mehr beigetreten werden"
-SkipTraderTimeString="Ein Spieler hat dafür gestimmt, die Zeit für die Händlerin zu überspringen. Öffne das Menü und wähle „HÄNDLERIN ÜBERSPRINGEN“, um dafür zu stimmen. Alle Spieler müssen zustimmen."
+SkipTraderTimeString="HÄNDLERIN ÜBERSPRINGEN aktiviert. Wähle im Spielmenü „HÄNDLERIN ÜBERSPRINGEN“, um abzustimmen.  Alle Spieler müssen zustimmen."
 SkipTraderSuccessString="Abstimmung zum Überspringen der Händlerin erfolgreich!"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>DICH SELBST HEILEN"
 PressToBashWarning="HIEB"
 GamepadWeaponSelectHint="<%HOLD%>WAFFENWAHL"
 PlayerClotGrabWarningMessage="TÖTE ZED UM DICH ZU BEFREIEN!"
+
 UseMinigameMessage="AKTIVIEREN"
 UseMinigameGeneratorMessage="GENERATOR AKTIVIEREN"
 DoshActivateMessage="AKTIVIERUNGSKOSTEN"
-
+EMPGrabWarningMessage="*** ! IMMOBILISIERT ! ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Die Teams sind unausgeglichen und werden angeglichen"
 
@@ -1763,7 +1764,7 @@ LargeMags="Magazine hoher Kapazität"
 LargeMagsDescription="Erhöhe die Magazinkapazität von Vorteils-Waffen um 50%."
 
 Backup="Plan B"
-BackupDescription="Erhöhe den Schaden deiner 9mm-Pistole und deines Messers um 110%, und erhöhe die Waffen-Wechselgeschwindigkeit um 50%."
+BackupDescription="Erhöhe den Schaden deiner 9mm-Pistole und deines Messers um 50%, und erhöhe die Waffen-Wechselgeschwindigkeit um 50%."
 
 Impact="Wirksame Geschosse"
 ImpactDescription="Erhöhe die Strauchel-Macht von Vorteils-Waffen um 150%."
@@ -2097,7 +2098,7 @@ TacticalMovement="Kriegsmarsch"
 TacticalMovementDescription="Kein Bewegungsnachteil beim Einsatz von Kimme und Korn oder geduckter Bewegung mit Vorteils-Waffen."
 
 Backup="Nahkampftraining"
-BackupDescription="Erhöhe den Schaden deiner 9mm-Pistole und deines Messers um 110%. Du beginnst jedes Spiel mit zwei 9mm-Pistolen."
+BackupDescription="Erhöhe den Schaden deiner 9mm-Pistole und deines Messers um 50%. Du beginnst jedes Spiel mit zwei 9mm-Pistolen."
 
 TacticalReload="Taktisches Nachladen"
 TacticalReloadDescription="Erhöhe die Nachladegeschwindigkeit mit Vorteils-Waffen"
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="Horzine-Vorratskiste-Schl. | S. #13 – $2.49"
 USBSpitfire="Spitfire-USB-Schlüssel – $2.49"
 USBHighVoltage="Hochspannungs-USB-Schlüssel – $2.49"
 MerchSale="KF2-Ware-Sale! 25 % Rabatt bis 30.04.17, Code: ZED"
-; placeholder03
+FreeTrial="VOLLVERSION KAUFEN"
 
 [Objectives]
 HoldVolume="VERTEIDIGE DAS GEBIET"
@@ -2331,7 +2332,7 @@ UseWelderToRepair="Schweißgerät verwenden, um die Ziele zu reparieren"
 FailedString="GESCHEITERT"
 DescriptionActivateTrigger="Zielsteuerung aktivieren"
 RequiredActivateTrigger="Benötigte Aktivierungen:"
-ActivateTrigger="STEUERN UND BEDIENEN"
+ActivateTrigger="BEDIENEN UND STEUERN"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Elektrisierend!",DescriptionStrin
 SpecialEventObjectiveInfoList[3]=(TitleString="Wasser-Marsch",DescriptionString="Leite Wasser zum Dampfmotor im Luftschiff");
 SpecialEventObjectiveInfoList[4]=(TitleString="Luftiger Kampf",DescriptionString="Gewinne ein Spiel auf Schwer oder höher im Luftschiff");
 
-AllCompleteRewardDescriptionString="Pyjama-Anzug"
+AllCompleteRewardDescriptionString="Steampunk-Outfit-Paket"
 
 ChanceDropDescriptionStrings[0]="Gewinnschein"
 ChanceDropDescriptionStrings[1]="Goldschein"

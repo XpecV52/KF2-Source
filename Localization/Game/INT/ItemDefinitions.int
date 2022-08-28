@@ -932,9 +932,9 @@ AK12VaultHonorableDeathBattleScarredName="AK12 | Vault | Honorable Death | Battl
 AK12BluefireMintName="AK12 | Bluefire | Mint" 
 AK12BluefireFieldTestedName="AK12 | Bluefire | Field-Tested" 
 AK12BluefireBattleScarredName="AK12 | Bluefire | Battle-Scarred" 
-AK12HorzineFirstEncounterMintName="AK12 | Horzine First Encounter | Mint" 
-AK12HorzineFirstEncounterFieldTestedName="AK12 | Horzine First Encounter | Field-Tested" 
-AK12HorzineFirstEncounterBattleScarredName="AK12 | Horzine First Encounter | Battle-Scarred" 
+AK12HorzineFirstEncounterMintName="AK-12 | Horzine First Encounter | Mint" 
+AK12HorzineFirstEncounterFieldTestedName="AK-12 | Horzine First Encounter | Field-Tested" 
+AK12HorzineFirstEncounterBattleScarredName="AK-12 | Horzine First Encounter | Battle-Scarred" 
 
 ;AR15 Descriptions
 AR15MintDescription="Exterior: Mint | This is for Zeds, not 'varmints.'"

@@ -153,7 +153,7 @@ defaultproperties
     HitZones=/* Array type was not detected. */
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedDAR.Afflictions'
     IncapSettings=/* Array type was not detected. */
-    SprintSpeed=550
+    SprintSpeed=600
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -171,7 +171,7 @@ defaultproperties
     DialogAkComponent=AkComponent'Default__KFPawn_ZedDAR.DialogAkSoundComponent'
     Mass=85
     GroundSpeed=170
-    Health=562
+    Health=775
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

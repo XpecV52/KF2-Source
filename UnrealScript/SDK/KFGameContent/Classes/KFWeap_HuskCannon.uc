@@ -421,7 +421,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=20  //25
-	SpareAmmoCapacity[0]=260 //300
+	SpareAmmoCapacity[0]=240 //300
 	InitialSpareMags[0]=4
 	AmmoPickupScale[0]=0.75
 	bCanBeReloaded=true
@@ -446,7 +446,7 @@ defaultproperties
     HippedRecoilModifier=1.5
 
     // Inventory
-	InventorySize=7
+	InventorySize=8
 	GroupPriority=75
 	WeaponSelectTexture=Texture2D'WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon' //@TODO: Replace me
 
@@ -501,6 +501,5 @@ defaultproperties
 	FullChargedTimerInterval=2.0f
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.17f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.3f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.1f,IncrementWeight=1)
 }

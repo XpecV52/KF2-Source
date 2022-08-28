@@ -293,6 +293,8 @@ defaultproperties
    DiscordWaveString=": Wave "
    ProceedToTutorialString="PROCEED TO TRAINING?"
    ProceedToTutorialDescriptionString="Go to a controlled environment to learn the basics.  Grants selected level 0 perk to level 1 once completed."
+   NotAvailableInFreeTrialString="Feature Not Available for Free Trial"
+   NetworkCheckFreeTrialFailedString="Network Error: Free Event Status Unable to be Verified. Check Network Connection Status"
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

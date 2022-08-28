@@ -14,12 +14,10 @@ defaultproperties
 {
    WeaponClassPath="KFGameContent.KFWeap_RocketLauncher_RPG7"
    ImagePath="WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7"
-   BuyPrice=1200
-   AmmoPricePerMag=26
-   UpgradePrice(0)=700
-   UpgradePrice(1)=1500
-   UpgradeSellPrice(0)=525
-   UpgradeSellPrice(1)=1650
+   BuyPrice=1500
+   AmmoPricePerMag=30
+   UpgradePrice(0)=1500
+   UpgradeSellPrice(0)=1125
    EffectiveRange=100
    Name="Default__KFWeapDef_RPG7"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

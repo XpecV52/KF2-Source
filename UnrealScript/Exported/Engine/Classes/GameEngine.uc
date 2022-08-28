@@ -170,7 +170,7 @@ var const transient DownloadableContentManager DLCManager;
 	{
 		var float AppTime, RenderThreadTime, GameThreadTime, GPUFrameTime, FrameTime;
 	};
-	
+
 	var array<BenchmarkSample> BenchmarkSamples;
 
 
@@ -202,8 +202,8 @@ var config	bool			bClearAnimSetLinkupCachesOnLoadMap;
 
 /** If true, and the platform allows it, the game engine will utilize a secondary screen */
 var config bool		bEnableSecondaryDisplay;
-/** 
- *	If true, the game engine will create a secondary viewport on init 
+/**
+ *	If true, the game engine will create a secondary viewport on init
  *	Dependent on bEnabledSecondaryDisplay being enabled.
  *	If false, and bEnableSecondaryDisplay is true, the secondary screen will just copy the first.
  */
@@ -285,6 +285,9 @@ struct native FullyLoadedPackagesInfo
 /** A list of tag/array pairs that is used at LoadMap time to fully load packages that may be needed for the map/game with DLC, but we can't use DynamicLoadObject to load from the packages */
 var array<FullyLoadedPackagesInfo> PackagesToFullyLoad;
 
+//keeps track of whether we launched on partial install ie playgo, etc
+var bool bPartialInstallLaunch;
+
 /** Struct to hold a UNetDriver and an assoicated name */
 struct native NamedNetDriver
 {
@@ -314,7 +317,7 @@ struct native AnimTag
  * Animation tag for stat system: This is temporary until we can add content tag to animation
  * Currently it auto tags based on "contains" - Check DefaultEngine.ini for modification
  */
-var config array<AnimTag> AnimTags;	
+var config array<AnimTag> AnimTags;
 
 //@HSL_BEGIN_XBOX
 /** True if trial mode is active */
@@ -380,6 +383,9 @@ native static final function float GetChunksInstallProgress(const out array<int>
 /** Gets the install progress of a particular chunk */
 native static final function float GetChunkInstallProgress(int ChunkToCheck);
 //@HSL_END
+
+//function to determine whether or not the game was launched on partial install, ie playgo, etc
+native static final function bool WasLaunchedOnPartialInstall();
 
 // (cpptext)
 // (cpptext)

@@ -12,10 +12,8 @@ defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Blunt_PowerGloves"
     ImagePath="WEP_UI_Static_Strikers_TEX.UI_WeaponSelect_StaticStrikers"
-    BuyPrice=1300
-    UpgradePrice(0)=700
-    UpgradePrice(1)=1500
-    UpgradeSellPrice(0)=525
-    UpgradeSellPrice(1)=1650
+    BuyPrice=1600
+    UpgradePrice(0)=1500
+    UpgradeSellPrice(0)=1125
     EffectiveRange=2
 }

@@ -38,7 +38,7 @@ defaultproperties
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
-    InventorySize=4
+    InventorySize=6
     MagazineCapacity=32
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=77

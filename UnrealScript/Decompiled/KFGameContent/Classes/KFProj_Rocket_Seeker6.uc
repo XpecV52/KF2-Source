@@ -46,7 +46,7 @@ defaultproperties
     bWarnAIWhenFired=true
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_SeekerSix_ARCH.FX_SeekerSix_Explosion'
-        Damage=85
+        Damage=125
         DamageRadius=250
         DamageFalloffExponent=2
         MyDamageType=Class'KFDT_Explosive_Seeker6'

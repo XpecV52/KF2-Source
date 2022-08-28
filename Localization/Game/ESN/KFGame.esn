@@ -1,6 +1,6 @@
 [KFCommon_LocalizedStrings]
 PrestigeWarningString="¿Reiniciar especialización a 0? Esta acción no se puede deshacer."
-PrestigeBonusString="Prestige Bonus"
+PrestigeBonusString="Bonificación de prestigio"
 FailedToReachInventoryServerString="No se ha podido conectar con el servidor de objetos. El inventario no estará disponible."
 LoadingString="Cargando..."
 DifficultyStrings[0]="Normal"
@@ -111,8 +111,8 @@ DiscordWaveString=": Oleada"
 ProceedToTutorialString="¿IR A ENTRENAMIENTO?"
 ProceedToTutorialDescriptionString="Ve al entorno controlado y aprende lo básico.  Si lo consigues, aumentas el nivel de la especialización elegida de 0 a 1."
 
-; placeholder01
-; placeholder02
+NotAvailableInFreeTrialString="No disponible en la versión de prueba"
+NetworkCheckFreeTrialFailedString="Error de red: No se pudo verificar el estado del evento gratis. Comprueba tu conexión de red"
 
 [KFMission_LocalizedStrings]
 GrantedWeeklyString="RECOMPENSA POR COMPLETAR UN BROTE"
@@ -1396,7 +1396,7 @@ KickVoteNoSpectatorsString="Los espectadores no pueden iniciar votaciones de exp
 KickedFromServerString="Te han expulsado del servidor"
 BannedFromServerString="Te han expulsado de este servidor. No puedes volver a unirte"
 ServerNoLongerAvailableString="Ya no puedes unirte a este servidor."
-SkipTraderTimeString="Un jugador ha seleccionado que quiere omitir al mercader. Abre el menú y haz clic en "OMITIR MERCADER" para votar que quieres omitir al mercader. Todos los jugadores deben estar de acuerdo."
+SkipTraderTimeString="SALTAR MERCADER activado. Selecciona “SALTAR MERCADER” en el menú del juego para votar.  Todos los jugadores deben aceptar."
 SkipTraderSuccessString="¡Voto de omitir mercader realizado!"
 
 [KFLocalMessage_Game]
@@ -1482,10 +1482,11 @@ HealSelfGamepadWarning="<%HOLD%>CURARSE"
 PressToBashWarning="GOLPEAR"
 GamepadWeaponSelectHint="<%HOLD%>SELECCIONAR ARMA"
 PlayerClotGrabWarningMessage="¡MATA AL ZED PARA SOLTARTE!"
+
 UseMinigameMessage="ACTIVAR"
 UseMinigameGeneratorMessage="ACTIVAR GENERADOR"
 DoshActivateMessage="COSTE DE ACTIVACIÓN"
-
+EMPGrabWarningMessage="*** ¡IMMOVILIZADO! ***"
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Los equipos están desequilibrados y van a ser ajustados"
 
@@ -1763,7 +1764,7 @@ LargeMags="Cargadores alta cap."
 LargeMagsDescription="Aumenta la capacidad de los cargadores de armas de esp. un 50 %."
 
 Backup="Plan B"
-BackupDescription="Aumenta un 110 % el daño con tu cuchillo y tu pistola de 9 mm, y aumenta un 50 % tu velocidad de cambio de arma."
+BackupDescription="Aumenta un 50 % el daño con tu cuchillo y tu pistola de 9 mm, y aumenta un 50 % tu velocidad de cambio de arma."
 
 Impact="Balas de impacto"
 ImpactDescription="Aumenta la capacidad de empuje de armas de esp. un 150 %."
@@ -2097,7 +2098,7 @@ TacticalMovement="Movimiento táctico"
 TacticalMovementDescription="No hay penalización por utilizar la mirilla o agacharse con armas de especialización."
 
 Backup="Entrenamiento cuerpo a cuerpo"
-BackupDescription="Aumenta un 110 % el daño con tu cuchillo y tu pistola de 9 mm. Empiezas cada partida con dos pistolas de 9 mm."
+BackupDescription="Aumenta un 50 % el daño con tu cuchillo y tu pistola de 9 mm. Empiezas cada partida con dos pistolas de 9 mm."
 
 TacticalReload="Recarga táctica"
 TacticalReloadDescription="Aumenta la velocidad de recarga con armas de especialización."
@@ -2314,7 +2315,7 @@ HorzineSupplyCrateKey13="Llave caja sumin. Horzine | Serie 13 - 2,49 $"
 USBSpitfire="Llave USB Escupefuego - 2,49 $"
 USBHighVoltage="Llave USB Alto voltaje - 2,49 $"
 MerchSale="¡Rebajas KF2! 25% menos hasta 30/4/17 (cód.: ZED)"
-; placeholder03
+FreeTrial="COMPRAR EL JUEGO"
 
 [Objectives]
 HoldVolume="DEFENDER EL ÁREA"
@@ -2331,7 +2332,7 @@ UseWelderToRepair="Usa el soldador para reparar objetivos"
 FailedString="NO LOGRADO"
 DescriptionActivateTrigger="Activa el control de objetivo"
 RequiredActivateTrigger="Activaciones neces.:"
-ActivateTrigger="OPERA Y CONTROLA"
+ActivateTrigger="OPERAR Y CONTROLAR"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2502,7 +2503,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Enciende la luz",DescriptionStrin
 SpecialEventObjectiveInfoList[3]=(TitleString="Tira de la cadena",DescriptionString="Transfiere el agua al motor de vapor en Aeronave");
 SpecialEventObjectiveInfoList[4]=(TitleString="Bonita nave",DescriptionString="Gana una partida en dificultad Difícil o superior en Aeronave");
 
-AllCompleteRewardDescriptionString="Pijama"
+AllCompleteRewardDescriptionString="Paquete de atuendo steampunk"
 
 ChanceDropDescriptionStrings[0]="Bol. premiado"
 ChanceDropDescriptionStrings[1]="Boleto dorado"

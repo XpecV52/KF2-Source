@@ -169,7 +169,7 @@ defaultproperties
    FireModeIconPaths(3)=()
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-   InventorySize=7
+   InventorySize=8
    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
    GrenadeFireOffset=(X=25.000000,Y=15.000000,Z=0.000000)
    GroupPriority=110.000000
@@ -196,14 +196,13 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_MaceAndShield:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
-   WeaponUpgrades(1)=(IncrementDamage=1.100000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.250000)
-   InstantHitDamage(0)=73.000000
+   WeaponUpgrades(1)=(IncrementDamage=1.135000)
+   InstantHitDamage(0)=80.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=150.000000
+   InstantHitDamage(3)=165.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=160.000000
+   InstantHitDamage(5)=175.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Bludgeon_MaceAndShield'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

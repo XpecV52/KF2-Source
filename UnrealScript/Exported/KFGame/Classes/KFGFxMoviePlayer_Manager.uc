@@ -523,6 +523,12 @@ function TextureMovie GetBackgroundMovie()
 {
 	local int EventIndex;
 
+	//if we launched partial install only show default movie
+	if (class'GameEngine'.static.WasLaunchedOnPartialInstall())
+	{
+		return BackgroundMovies[0];
+	}
+
 	EventIndex = class'KFGameEngine'.static.GetSeasonalEventId();
 
 	if(EventIndex != INDEX_NONE && EventIndex < BackgroundMovies.Length)

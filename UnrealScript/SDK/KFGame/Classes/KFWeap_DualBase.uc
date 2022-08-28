@@ -580,6 +580,13 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 	local KFWeapon NewSingle;
 	local KFInventoryManager KFIM;
 	local vector X,Y,Z;
+	local int NewSingleUpgradeIndex;
+
+	// For now, force the dropped single to be un-upgraded by setting this dual's upgrade index to 0.
+	// But remember what the upgrade index was so we can give the player a correctly upgraded single.
+	// SetWeaponUpgradeLevel(0) must be called before the super, because the pickup mesh is set there.
+	NewSingleUpgradeIndex = CurrentWeaponUpgradeIndex;
+	SetWeaponUpgradeLevel(0);
 
 	super.SetupDroppedPickup( P, StartVelocity );
 
@@ -606,10 +613,10 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 		NewSingle.ClientForceAmmoUpdate(NewSingle.AmmoCount[0],NewSingle.SpareAmmoCount[0]);
 		NewSingle.ClientForceSecondaryAmmoUpdate(NewSingle.AmmoCount[1]);
 
-		NewSingle.SetWeaponUpgradeLevel(CurrentWeaponUpgradeIndex);
-		if(CurrentWeaponUpgradeIndex > 0)
+		NewSingle.SetWeaponUpgradeLevel(NewSingleUpgradeIndex);
+		if(NewSingleUpgradeIndex > 0)
 		{
-			KFInventoryManager(InvManager).AddCurrentCarryBlocks(NewSingle.static.GetUpgradeWeight(CurrentWeaponUpgradeIndex));
+			KFInventoryManager(InvManager).AddCurrentCarryBlocks(NewSingle.static.GetUpgradeWeight(NewSingleUpgradeIndex));
 			KFPawn(Instigator).NotifyInventoryWeightChanged();
 		}
 

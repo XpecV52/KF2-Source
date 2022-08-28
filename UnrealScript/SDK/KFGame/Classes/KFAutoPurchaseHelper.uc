@@ -323,9 +323,9 @@ function bool GetCanAfford(int BuyPrice)
 }
 
 // Checks if we can have enough blocks to hold this item
-function bool CanCarry( const out STraderItem Item )
+function bool CanCarry(const out STraderItem Item, optional int OverrideLevelValue = INDEX_NONE)
 {
-	if (TotalBlocks + MyKFIM.GetDisplayedBlocksRequiredFor(Item) > MaxBlocks)
+	if (TotalBlocks + MyKFIM.GetDisplayedBlocksRequiredFor(Item, OverrideLevelValue) > MaxBlocks)
 	{
     	return false;
 	}
@@ -342,7 +342,7 @@ function bool CanUpgrade(STraderItem SelectedItem, out int CanCarryIndex, out in
 
 	MyKFPC = Outer;
 
-	ItemUpgradeLevel = GetItemUpgradeLevel(SelectedItem);
+	ItemUpgradeLevel = GetItemUpgradeLevelByClassName(SelectedItem.ClassName);
 	if (ItemUpgradeLevel == INDEX_NONE || !(ItemUpgradeLevel < SelectedItem.WeaponDef.default.UpgradePrice.length))
 	{
 		`log("Item at max level");
@@ -364,13 +364,19 @@ function bool CanUpgrade(STraderItem SelectedItem, out int CanCarryIndex, out in
 
 function PurchaseWeapon(STraderItem ShopItem)
 {
+	local int ItemUpgradeLevel;
+
 	if(!bCanPurchase(ShopItem))
 	{
 		return;
 	}
 
+	ItemUpgradeLevel = ShopItem.SingleClassName != '' ?
+		GetItemUpgradeLevelByClassName(ShopItem.SingleClassName) :
+		INDEX_None;
+
 	AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
-	AddBlocks(MyKFIM.GetWeaponBlocks(ShopItem));
+	AddBlocks(MyKFIM.GetWeaponBlocks(ShopItem, ItemUpgradeLevel));
 	AddWeaponToOwnedItemList(ShopItem);
 }
 
@@ -978,7 +984,7 @@ simulated function int GetAdjustedUpgradePriceFor(const out STraderItem ItemInfo
 	return MyKFIM.GetAdjustedUpgradePriceFor(ItemInfo, UpgradeLevel);
 }
 
-simulated function int GetItemUpgradeLevel(const out STraderItem ItemInfo)
+simulated function int GetItemUpgradeLevelByClassName(name ClassName)
 {
 	local int i;
 	local name OwnedItemClassName;
@@ -991,7 +997,7 @@ simulated function int GetItemUpgradeLevel(const out STraderItem ItemInfo)
 			`warn("Owned item with Class NAME_None");
 			continue;
 		}
-		else if (OwnedItemClassName == ItemInfo.ClassName)
+		else if (OwnedItemClassName == ClassName)
 		{
 			return OwnedItemList[i].ItemUpgradeLevel;
 		}

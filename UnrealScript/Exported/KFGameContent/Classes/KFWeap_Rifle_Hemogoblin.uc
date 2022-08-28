@@ -95,7 +95,7 @@ defaultproperties
    RecoilISMaxPitchLimit=375
    RecoilISMinPitchLimit=65460
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
-   WeaponUpgrades(1)=(IncrementDamage=1.600000,IncrementHealFullRecharge=0.800000)
+   WeaponUpgrades(1)=(IncrementDamage=1.400000,IncrementHealFullRecharge=0.800000)
    WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.800000,IncrementHealFullRecharge=0.600000)
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
@@ -111,7 +111,7 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.006000
    Spread(1)=()
-   InstantHitDamage(0)=75.000000
+   InstantHitDamage(0)=50.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=27.000000

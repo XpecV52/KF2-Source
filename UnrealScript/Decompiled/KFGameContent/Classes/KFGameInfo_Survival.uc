@@ -890,17 +890,18 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
         LogInternal("KFGameInfo - CheckWaveEnd - Cannot check if wave has ended since match has not begun. ");
         return;
     }
-    LogInternal("KFGameInfo.CheckWaveEnd() AIAliveCount:" @ string(AIAliveCount));
+    if(SpawnManager.bLogAISpawning)
+    {
+        LogInternal("KFGameInfo.CheckWaveEnd() AIAliveCount:" @ string(AIAliveCount));
+    }
     if((GetLivingPlayerCount()) <= 0)
     {
-        LogInternal("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_TeamWipedOut");
         WaveEnded(1);        
     }
     else
     {
         if((((AIAliveCount <= 0) && IsWaveActive()) && SpawnManager.IsFinishedSpawning()) || bForceWaveEnd)
         {
-            LogInternal("KFGameInfo.CheckWaveEnd() - Call Wave Ended - WEC_WaveWon");
             WaveEnded(0);
         }
     }

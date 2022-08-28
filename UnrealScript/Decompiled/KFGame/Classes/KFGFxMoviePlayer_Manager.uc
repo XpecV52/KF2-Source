@@ -435,6 +435,10 @@ function TextureMovie GetBackgroundMovie()
 {
     local int EventIndex;
 
+    if(Class'GameEngine'.static.WasLaunchedOnPartialInstall())
+    {
+        return BackgroundMovies[0];
+    }
     EventIndex = Class'KFGameEngine'.static.GetSeasonalEventID();
     if((EventIndex != -1) && EventIndex < BackgroundMovies.Length)
     {

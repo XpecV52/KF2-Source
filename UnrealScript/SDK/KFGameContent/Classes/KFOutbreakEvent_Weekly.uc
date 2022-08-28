@@ -107,11 +107,16 @@ defaultproperties
                     EventDifficulty=1,
                     GameLength=GL_Normal,
                     bHeadshotsOnly=true,
+                    SpawnReplacementList={(
+                                            
+                                            (SpawnEntry=AT_Stalker,NewClass=class'KFGameContent.KFPawn_ZedClot_Alpha',PercentChance=1.0),
+                                            (SpawnEntry=AT_Husk,NewClass=class'KFGameContent.KFPawn_ZedBloat',PercentChance=1.0)
+                    )},
                     ZedsToAdjust={(
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthScale=0.50), // HealthScale = 0.25, then .40
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale=0.75,ShieldScale=0.5),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthScale=0.40,ShieldScale=0.75), //HealthScale = 0.25, Shieldscale = 1.0
-									(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthScale=0.6,ShieldScale=0.75),
+                                    (ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthScale=0.6,ShieldScale=0.75),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale=0.25),
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundmini',HealthScale=0.9) //HealthScale = 1.0
                     )}

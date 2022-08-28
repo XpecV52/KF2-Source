@@ -68,4 +68,8 @@ defaultproperties
     bUseAsOccluder=FALSE
 	SplineXDir=(X=1)
 	bUsePrecomputedShadows=TRUE
+
+`if(`__TW_)	
+	bAcceptsDynamicDecals=False
+`endif
 }

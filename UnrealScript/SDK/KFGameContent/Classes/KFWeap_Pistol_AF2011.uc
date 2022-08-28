@@ -78,7 +78,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)= EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_PistolAF2011'
 	FireInterval(DEFAULT_FIREMODE)=+0.1898
-	InstantHitDamage(DEFAULT_FIREMODE)=43 //91 //53
+	InstantHitDamage(DEFAULT_FIREMODE)=53 //91
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AF2011'
 	PenetrationPower(DEFAULT_FIREMODE)=1.5
 	Spread(DEFAULT_FIREMODE)=0.01
@@ -102,7 +102,7 @@ defaultproperties
 	bHasFlashlight=false
 
 	// Inventory
-	InventorySize=2
+	InventorySize=3
 	GroupPriority=25
 	bCanThrow=true
 	bDropOnDeath=true
@@ -123,6 +123,5 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
+	WeaponUpgrades[1]=(IncrementDamage=1.125f,IncrementWeight=1)
 }

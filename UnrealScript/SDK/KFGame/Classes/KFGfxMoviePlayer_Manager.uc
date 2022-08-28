@@ -457,6 +457,12 @@ function TextureMovie GetBackgroundMovie()
 {
 	local int EventIndex;
 
+	//if we launched partial install only show default movie
+	if (class'GameEngine'.static.WasLaunchedOnPartialInstall())
+	{
+		return BackgroundMovies[0];
+	}
+
 	EventIndex = class'KFGameEngine'.static.GetSeasonalEventId();
 
 	if(EventIndex != INDEX_NONE && EventIndex < BackgroundMovies.Length)
@@ -2029,16 +2035,16 @@ function currentFocus()
 
 defaultproperties
 {
-	InGamePartyWidgetClass=class'KFGFxWidget_PartyInGame'
-	BackgroundMovies(SEI_None)=TextureMovie'UI_Managers.MenuBG'
-	BackgroundMovies(SEI_Spring)=TextureMovie'UI_Managers.MenuBG'
-	BackgroundMovies(SEI_Summer)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
-	BackgroundMovies(SEI_Fall)=TextureMovie'UI_Managers.MenuBG'
-	BackgroundMovies(SEI_Winter)=TextureMovie'UI_Managers.Menu_Winter'
+	InGamePartyWidgetClass = class'KFGFxWidget_PartyInGame'
+	BackgroundMovies(SEI_None) = TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Spring) = TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Summer) = TextureMovie'UI_Managers.SummerSideShowBGMovie'
+	BackgroundMovies(SEI_Fall) = TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Winter) = TextureMovie'UI_Managers.Menu_Winter'
 	IISMovie = TextureMovie'UI_Managers.IIS'
-    MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
-	bCaptureInput=true
-	bAutoPlay=true
+	MovieInfo = SwfMovie'UI_Managers.LoaderManager_SWF'
+	bCaptureInput = true
+	bAutoPlay = true
 
 	MouseInputChangedThreshold=5
 

@@ -442,7 +442,8 @@ var float BobTime;
 var Vector WalkBob;
 var() array< class<Inventory> > DefaultInventory;
 var() array<Inventory> DefaultInventoryArchetypes;
-var repnotify KFWeaponAttachment WeaponAttachmentTemplate;
+var KFWeaponAttachment WeaponAttachmentTemplate;
+var repnotify class<KFWeapon> WeaponClassForAttachmentTemplate;
 var KFWeaponAttachment WeaponAttachment;
 var export editinline KFSkeletalMeshComponent ArmsMesh;
 var name WeaponAttachmentSocket;
@@ -517,7 +518,7 @@ replication
         InjuredHitZones, IntendedBodyScale, 
         IntendedHeadScale, KnockdownImpulse, 
         RepFireBurnedAmount, ReplicatedSpecialMove, 
-        WeaponAttachmentTemplate, bEmpDisrupted, 
+        WeaponClassForAttachmentTemplate, bEmpDisrupted, 
         bEmpPanicked, bFirePanicked, 
         bHasStartedFire, bIsSprinting, 
         bMovesFastInZedTime, bUnaffectedByZedTime;
@@ -631,8 +632,8 @@ simulated event ReplicatedEvent(name VarName)
 {
     switch(VarName)
     {
-        case 'WeaponAttachmentTemplate':
-            WeaponAttachmentChanged();
+        case 'WeaponClassForAttachmentTemplate':
+            SetWeaponAttachmentFromWeaponClass(WeaponClassForAttachmentTemplate);
             break;
         case 'AmbientSound':
             SetPawnAmbientSound(AmbientSound);
@@ -1191,6 +1192,27 @@ simulated function WeaponAttachmentChanged(optional bool bForceReattach)
                 WeaponAttachment.ChangeVisibility(bWeaponAttachmentVisible);
                 WeaponAttachment.SetMeshLightingChannels(PawnLightingChannel);
             }
+        }
+    }
+}
+
+simulated function SetWeaponAttachmentFromWeaponClass(class<KFWeapon> WeaponClass)
+{
+    if(WeaponClass == none)
+    {
+        WeaponAttachmentTemplate = none;
+        WeaponAttachmentChanged();        
+    }
+    else
+    {
+        if(WeaponClass.default.AttachmentArchetype == none)
+        {
+            WeaponClass.static.TriggerAsyncContentLoad(WeaponClass);            
+        }
+        else
+        {
+            WeaponAttachmentTemplate = WeaponClass.default.AttachmentArchetype;
+            WeaponAttachmentChanged();
         }
     }
 }

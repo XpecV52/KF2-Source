@@ -130,7 +130,7 @@ function RefreshPlayerInventory()
 			PricePerRound = ( MagSize > 0 ) ? float(PricePerMag) / float(MagSize) : 0.f;
 			BlocksRequired = MyTraderMenu.GetDisplayedBlocksRequiredFor(ItemInfo.DefaultItem, ItemInfo.ItemUpgradeLevel);
 
-			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "ItemName", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired, false, KFPC.GetPurchaseHelper().GetItemUpgradeLevel(ItemInfo.DefaultItem) );
+			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "ItemName", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired, false, KFPC.GetPurchaseHelper().GetItemUpgradeLevelByClassName(ItemInfo.DefaultItem.ClassName) );
 			SetMagInfo( MagSlot, AmmoCount, MaxAmmoCount, MagSize, PricePerMag, PricePerRound, FillAmmoCost );
 			SetFillInfo( FillSlot, AmmoCount, MaxAmmoCount, PricePerRound, FillAmmoCost, AutoFillCost );
 		}

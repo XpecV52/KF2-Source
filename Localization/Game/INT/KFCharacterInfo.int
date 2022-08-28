@@ -3,6 +3,13 @@ CharacterName="Mrs. Foster"
 Description="When she interviewed Mr. Foster for a commodities trader job, Mrs. Foster was already a scarily-successful trader at a top firm in London. She was what he wanted to be, but Mr. Foster was clearly a no-hoper as a trader; he couldn’t play by the rules or keep his mouth shut. Still, there was something about him; he was so cool, so suave, so... unique. Unique enough to give her a gas mask of her own on their first date. It was almost as if he'd known that a chain gun wielding mutant maniac was going to create a flesh-eating clone horde and ruin her streak of multi-million-pound bonuses. They were married soon after in a whirlwind of flowers, lace, Zeds, and explosives. They may not be able to work together in the city making huge piles of cash, but they can work together to exterminate zeds making huge piles of Dosh!"
 BodyMesh0="Vest"
 BodyMesh1="Steampunk"
+BodyMesh2="Horzine Security"
+BodyMesh3="Cardboard Knight"
+BodyMesh4="Wasteland"
+BodyMesh5="Hazmat"
+BodyMesh6="Commando Chicken"
+BodyMesh7="Holiday Pajama Outfit"
+BodyMesh8="Vault Pajama Outfit"
 HeadMesh0="Gas Mask"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -20,6 +27,61 @@ BodySkin2="White"
 BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="Yellow"
+
+[CHR_MrsFoster_archetype.BodyMesh2]
+BodySkin0="Elite Blue"
+BodySkin1="Elite Green"
+BodySkin2="Elite Red"
+BodySkin3="Elite White"
+BodySkin4="Mark 7"
+BodySkin5="Snow DigiCam"
+BodySkin6="Desert"
+BodySkin7="Multicam"
+BodySkin8="Hazard"
+BodySkin9="Adamant"
+BodySkin10="Bounty Hunter"
+BodySkin11="Precious"
+
+[CHR_MrsFoster_archetype.BodyMesh3]
+BodySkin0="Classic"
+BodySkin1="Jittery Joe's"
+BodySkin2="Bio Cola"
+BodySkin3="Horzine Depot"
+BodySkin4="Tripwire"
+BodySkin5="ZedEx"
+
+[CHR_MrsFoster_archetype.BodyMesh4]
+BodySkin0="Hero"
+BodySkin1="Camo"
+BodySkin2="Biker Black"
+BodySkin3="Poe"
+BodySkin4="Sand Raider"
+
+[CHR_MrsFoster_archetype.BodyMesh5]
+BodySkin0="Croker"
+BodySkin1="Glover"
+BodySkin2="Heatwave"
+BodySkin3="Horzine"
+BodySkin4="Von Braun"
+BodySkin5="Tragic Kingdom Crew"
+
+[CHR_MrsFoster_archetype.BodyMesh6]
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_MrsFoster_archetype.BodyMesh7]
+BodySkin0="Bunny"
+BodySkin1="Dosh"
+BodySkin2="Green Plaid"
+BodySkin3="Quilt"
+BodySkin4="Red Snow"
+BodySkin5="Trees"
+BodySkin6="Red Plaid"
+
+[CHR_MrsFoster_archetype.BodyMesh8]
+BodySkin0="Vault Pattern"
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="White"

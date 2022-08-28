@@ -619,6 +619,9 @@ native function AddVStat(int Amount);
 // Export UKFPlayerController::execResetVStat(FFrame&, void* const)
 native function ResetVStat();
 
+// Export UKFPlayerController::execCheckPerkLevelAchievements(FFrame&, void* const)
+native function CheckPerkLevelAchievements();
+
 // Export UKFPlayerController::execIsKeyboardAvailable(FFrame&, void* const)
 native simulated function bool IsKeyboardAvailable();
 
@@ -653,6 +656,30 @@ simulated event PostBeginPlay()
     InitMixerDelegates();
     InitLEDManager();
     InitDiscord();
+}
+
+function SpawnDefaultHUD()
+{
+    super(PlayerController).SpawnDefaultHUD();
+    if(KFGFxHudWrapper(myHUD) != none)
+    {
+        if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
+        {
+            KFGFxHudWrapper(myHUD).CreateHUDMovie();
+        }
+    }
+}
+
+reliable client simulated function ClientSetHUD(class<HUD> newHUDType)
+{
+    super(PlayerController).ClientSetHUD(newHUDType);
+    if(KFGFxHudWrapper(myHUD) != none)
+    {
+        if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
+        {
+            KFGFxHudWrapper(myHUD).CreateHUDMovie();
+        }
+    }
 }
 
 simulated function CheckSpecialEventID()
@@ -846,8 +873,6 @@ event Possess(Pawn aPawn, bool bVehicleTransition)
 
 reliable client simulated function ClientRestart(Pawn NewPawn)
 {
-    local KFGFxHudWrapper GFxHUDWrapper;
-
     super(PlayerController).ClientRestart(NewPawn);
     if(NewPawn == none)
     {
@@ -876,10 +901,12 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
         bIsAchievementPlayer = true;
     }
     NewPawn.MovementSpeedModifier = 1;
-    GFxHUDWrapper = KFGFxHudWrapper(myHUD);
-    if(GFxHUDWrapper != none)
+    if(KFGFxHudWrapper(myHUD) != none)
     {
-        GFxHUDWrapper.CreateHUDMovie();
+        if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
+        {
+            KFGFxHudWrapper(myHUD).CreateHUDMovie();
+        }
     }
     if(myGfxHUD != none)
     {
@@ -3131,8 +3158,21 @@ reliable client simulated function ClientTriggerWeaponContentLoad(class<KFWeapon
 {
     if(WeaponClass != none)
     {
-        WeaponClass.static.TriggerAsyncContentLoad();
+        WeaponClass.static.TriggerAsyncContentLoad(WeaponClass);
     }
+}
+
+simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
+{
+    local KFPawn_Human KFPH;
+
+    foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
+    {
+        if(WeaponClass == KFPH.WeaponClassForAttachmentTemplate)
+        {
+            KFPH.SetWeaponAttachmentFromWeaponClass(WeaponClass);
+        }        
+    }    
 }
 
 function HandleWalking()
@@ -7950,7 +7990,10 @@ state Spectating
         GFxHUDWrapper = KFGFxHudWrapper(myHUD);
         if(GFxHUDWrapper != none)
         {
-            GFxHUDWrapper.CreateHUDMovie();
+            if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
+            {
+                GFxHUDWrapper.CreateHUDMovie();
+            }
         }
         if((Pawn != none) && KFPawn_Customization(Pawn) != none)
         {

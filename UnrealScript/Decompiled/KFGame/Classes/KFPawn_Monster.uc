@@ -523,27 +523,6 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     SetSwitch('Player_Zed', ((IsHumanControlled()) ? 'Player' : 'NotPlayer'));
 }
 
-simulated event FellOutOfWorld(class<DamageType> dmgType)
-{
-    local string msg;
-
-    WarnInternal(string(self) $ " FELL OUT OF WORLD!");
-    if(Health > 0)
-    {
-        msg = (((string(WorldInfo.TimeSeconds) @ string(self)) @ string(GetFuncName())) @ "fell out of world! Current location:") @ string(Location);
-        if(MyKFAIC != none)
-        {
-            msg = (((msg @ "Controller:") @ string(MyKFAIC)) @ "active command:") @ string(MyKFAIC.GetActiveCommand());
-            if(MyKFAIC.MoveTarget != none)
-            {
-                msg = (msg @ "MoveTarget:") @ string(MyKFAIC.MoveTarget);
-            }
-        }
-        WarnInternal(msg);
-    }
-    super(Pawn).FellOutOfWorld(dmgType);
-}
-
 event BaseChange()
 {
     if(IsAliveAndWell() && MyKFAIC != none)

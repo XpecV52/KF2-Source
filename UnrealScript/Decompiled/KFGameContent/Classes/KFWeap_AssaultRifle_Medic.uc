@@ -17,7 +17,7 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFil
 defaultproperties
 {
     HealAmount=15
-    HealFullRechargeSeconds=16
+    HealFullRechargeSeconds=10
     PackageKey="Medic_Assault"
     FirstPersonMeshName="WEP_1P_Medic_Assault_MESH.Wep_1stP_Medic_Assault_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -29,7 +29,7 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
-    InventorySize=6
+    InventorySize=7
     MagazineCapacity=40
     MeshFOV=75
     MeshIronSightFOV=52

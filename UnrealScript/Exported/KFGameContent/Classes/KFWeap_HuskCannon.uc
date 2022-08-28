@@ -407,7 +407,7 @@ defaultproperties
    bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
-   InventorySize=7
+   InventorySize=8
    MagazineCapacity(0)=20
    MeshFOV=80.000000
    MeshIronSightFOV=65.000000
@@ -416,7 +416,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon'
-   SpareAmmoCapacity(0)=260
+   SpareAmmoCapacity(0)=240
    InitialSpareMags(0)=4
    AmmoPickupScale(0)=0.750000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
@@ -455,8 +455,7 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Demolitionist'
-   WeaponUpgrades(1)=(IncrementDamage=1.170000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000)
+   WeaponUpgrades(1)=(IncrementDamage=1.100000)
    FiringStatesArray(0)="HuskCannonCharge"
    FiringStatesArray(1)=()
    FiringStatesArray(2)=()

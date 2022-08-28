@@ -843,6 +843,7 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 `endif
 }
 
+/*
 simulated event FellOutOfWorld(class<DamageType> dmgType)
 {
 	local string Msg;
@@ -862,7 +863,7 @@ simulated event FellOutOfWorld(class<DamageType> dmgType)
 		`warn( msg );
 	}
 	super.FellOutOfWorld(dmgType);
-}
+}*/ //log spam
 
 event BaseChange()
 {

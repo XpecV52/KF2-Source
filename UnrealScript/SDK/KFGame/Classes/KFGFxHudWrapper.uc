@@ -26,15 +26,21 @@ var KFInterface_MonsterBoss BossRef;
   * Create and initialize the HUDMovie.
   */
 function CreateHUDMovie(optional bool bForce)
-{	
+{
 	if(HudMovie != none && !bForce)
     {
         return;
     }
-	
+
 	HudMovie = new HUDClass;
 	HudMovie.SetTimingMode(TM_Real);
 	HudMovie.Init(class'Engine'.static.GetEngine().GamePlayers[HudMovie.LocalPlayerOwnerIndex]);
+}
+
+
+function class<KFGFxMoviePlayer_HUD> GetHUDClass()
+{
+	return HUDClass;
 }
 
 
@@ -237,10 +243,10 @@ function LocalizedMessage
     {
     	HudMovie.HudChatBox.AddChatMessage(MessageString, HexClr);
 	}
-    //Todo: Try to separate this from the HUD. 
+    //Todo: Try to separate this from the HUD.
     if(KFPC.MyGFxManager != none && KFPC.MyGFxManager.PartyWidget != none)
     {
-    	KFPC.MyGFxManager.PartyWidget.ReceiveMessage(MessageString, HexClr);	
+    	KFPC.MyGFxManager.PartyWidget.ReceiveMessage(MessageString, HexClr);
     }
 }
 

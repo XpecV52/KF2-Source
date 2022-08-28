@@ -13,7 +13,7 @@ class KFWeap_Rifle_M99 extends KFWeap_ScopedBase;
 defaultproperties
 {
 	// Inventory / Grouping
-	InventorySize=10 //12
+	InventorySize=12 //11
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_M99_TEX.UI_WeaponSelect_M99'
    	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
@@ -50,7 +50,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	SpareAmmoCapacity[0]=30
+	SpareAmmoCapacity[0]=20 //30
 	InitialSpareMags[0]=6
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -88,7 +88,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_M99'
-	InstantHitDamage(DEFAULT_FIREMODE)=637 //850
+	InstantHitDamage(DEFAULT_FIREMODE)=850 //850
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M99'
 	FireInterval(DEFAULT_FIREMODE)=0.2 //0.2
 	PenetrationPower(DEFAULT_FIREMODE)=5.0
@@ -117,7 +117,5 @@ defaultproperties
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
 
-	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.335f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=2)
+
 }
