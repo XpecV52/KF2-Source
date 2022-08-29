@@ -86,7 +86,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=40
-	SpareAmmoCapacity[0]=280
+	SpareAmmoCapacity[0]=320
 	InitialSpareMags[0]=2
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -162,7 +162,4 @@ defaultproperties
 	bHasFlashlight=false
 
 	AssociatedPerkClasses(0)=class'KFPerk_Firebug'
-
-	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f), (Stat=EWUS_Damage1, Scale=1.2f), (Stat=EWUS_Weight, Add=1)))
 }

@@ -2179,7 +2179,7 @@ ZedShrapnel="Spontaneous Zed-plosion"
 ZedShrapnelDescription="Zeds you kill have a 30% chance to explode, damaging and stunning nearby Zeds."
 
 MakeThingsGoBoom="Make Things go Boom"
-MakeThingsGoBoomDescription="Increase area of effect of all Explosives 50%."
+MakeThingsGoBoomDescription="Increase area of effect of all Explosives 40%."
 
 Madman="ZED TIME - Madman"
 MadmanDescription="During Zed time, all your weapons shoot 3x faster."

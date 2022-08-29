@@ -11,13 +11,9 @@ DefaultProperties
 {
 	WeaponClassPath="KFGameContent.KFWeap_AssaultRifle_Microwave"
 
-	BuyPrice=1500
+	BuyPrice=2000
 	AmmoPricePerMag=66
 	ImagePath="WEP_UI_Microwave_Assault_TEX.UI_WeaponSelect_Microwave_Assault"
 
 	EffectiveRange=70
-
-	UpgradePrice[0]=1500
-
-    UpgradeSellPrice[0]=1125
 }

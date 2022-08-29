@@ -2179,7 +2179,7 @@ ZedShrapnel="同時 Z 爆"
 ZedShrapnelDescription="你殺害的 Zed 有 30% 可能性會爆炸，對附近其他 Zed 造成傷害並使其暈眩。"
 
 MakeThingsGoBoom="四處炸裂"
-MakeThingsGoBoomDescription="所有炸藥影響範圍增加 50%。"
+MakeThingsGoBoomDescription="所有炸藥影響範圍增加 40%。"
 
 Madman="ZED 時間 - 狂人"
 MadmanDescription="Zed 時間發動時，你的所有武器射速變為 3 倍。"

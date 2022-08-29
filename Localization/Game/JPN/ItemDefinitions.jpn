@@ -1224,7 +1224,7 @@ AR15NeonRGBPreciousName="AR15 | ネオン RGB | 希少"
 ;BattleAxe Descriptions
 BattleAxeMintDescription="外観：新品 | 旧式ではあるが、大きく、鋭いトラックのような攻撃を行う。"
 BattleAxeFieldTestedDescription="外観：実地試験済み | 旧式ではあるが、大きく、鋭いトラックのような攻撃を行う。"
-BeattleAxeBattleScarredDescription="外観：歴戦 | 旧式ではあるが、大きく、鋭いトラックのような攻撃を行う。"
+BattleAxeBattleScarredDescription="外観：歴戦 | 旧式ではあるが、大きく、鋭いトラックのような攻撃を行う。"
 BattleAxePreciousDescription="外観：希少 | 旧式ではあるが、大きく、鋭いトラックのような攻撃を行う。"
 
 ;BattleAxe Names

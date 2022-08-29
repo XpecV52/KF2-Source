@@ -490,7 +490,7 @@ function Callback_ToggleToRunChanged(bool bActive)
         KFPI.bToggleToRun = bActive;
         if(bActive)
         {
-            KFPI.SetBind(SprintName, "Toggle bRun");            
+            KFPI.SetBind(SprintName, "ToggleSprint");            
         }
         else
         {
@@ -513,14 +513,12 @@ function ResetGameOptions()
     Callback_ReduceHighPitchNoiseChanged(Manager.CachedProfile.GetDefaultInt(162) != 0);
     Callback_DisableAutoUpgradeChanged(Manager.CachedProfile.GetDefaultInt(167) != 0);
     Callback_ToggleToRunChanged(Manager.CachedProfile.GetDefaultInt(172) != 0);
+    Callback_DisableRemoteHeadshotEffects(Manager.CachedProfile.GetDefaultInt(170) != 0);
     if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
-        Callback_WeaponSelectChanged(Manager.CachedProfile.GetDefaultInt(100) != 0);        
+        Callback_WeaponSelectChanged(Manager.CachedProfile.GetDefaultInt(100) != 0);
     }
-    else
-    {
-        Callback_FOVChanged(Manager.CachedProfile.GetDefaultFloat(122));
-    }
+    Callback_FOVChanged(Manager.CachedProfile.GetDefaultFloat(122));
     InitValues();
 }
 

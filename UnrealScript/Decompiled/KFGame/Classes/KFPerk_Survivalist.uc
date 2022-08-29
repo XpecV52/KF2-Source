@@ -467,7 +467,7 @@ defaultproperties
     MeleeExpertAttackSpeedModifier=0.2
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'
-        Damage=100
+        Damage=50
         DamageRadius=250
         MyDamageType=Class'KFDT_Explosive_Shrapnel'
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
@@ -514,7 +514,7 @@ defaultproperties
     PerkSkills(4)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_AmmoVest",bActive=false)
     PerkSkills(5)=(Name="BigPockets",Increment=0,Rank=0,StartingValue=5,MaxValue=5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_BigPockets",bActive=false)
     PerkSkills(6)=(Name="ZedShrapnel",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel",bActive=false)
-    PerkSkills(7)=(Name="MakeThingsGoBoom",Increment=0,Rank=0,StartingValue=1.5,MaxValue=1.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom",bActive=false)
+    PerkSkills(7)=(Name="MakeThingsGoBoom",Increment=0,Rank=0,StartingValue=1.4,MaxValue=1.4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom",bActive=false)
     PerkSkills(8)=(Name="MadMan",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman",bActive=false)
     PerkSkills(9)=(Name="IncapMaster",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring

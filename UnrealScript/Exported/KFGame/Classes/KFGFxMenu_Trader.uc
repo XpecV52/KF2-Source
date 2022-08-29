@@ -842,7 +842,7 @@ function Callback_PerkChanged(int PerkIndex)
 			MyKFPC.SetHaveUpdatePerk(true);
 
 			// re-initialize and refresh to reflect current carry weight (can change by perk)
-			MyKFPC.GetPurchaseHelper().Initialize();
+			MyKFPC.GetPurchaseHelper().Initialize(false);
 			RefreshItemComponents();
 		}
 

@@ -2179,7 +2179,7 @@ ZedShrapnel="自発的zed爆発"
 ZedShrapnelDescription="キルしたzedは30%の確率で爆発し、近くのzedにダメージを与えてスタンする。"
 
 MakeThingsGoBoom="ドカンと一発"
-MakeThingsGoBoomDescription="全爆発物の影響範囲が50%増加する。"
+MakeThingsGoBoomDescription="全爆発物の影響範囲が40%増加する。"
 
 Madman="Zed-Time―狂人"
 MadmanDescription="Zed-Time中、全武器の発射速度が3倍になる。"

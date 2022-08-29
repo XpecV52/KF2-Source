@@ -821,7 +821,7 @@ reliable client function ClientSetHUD(class<HUD> newHUDType)
 	// Spawn the default HUD here
 	if (KFGFxHudWrapper(myHUD) != none)
 	{
-		if (MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass())
+		if ((MyGFxHUD == none || MyGFxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !(class'WorldInfo'.Static.IsMenuLevel()))
 		{
 			KFGFxHudWrapper(myHUD).CreateHUDMovie();
 		}

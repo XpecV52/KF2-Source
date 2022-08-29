@@ -89,7 +89,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Assault_TEX.UI_WeaponSelect_Microwave_Assault'
-    SpareAmmoCapacity=280
+    SpareAmmoCapacity=320
     InitialSpareMags=2
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
@@ -113,7 +113,6 @@ defaultproperties
     RecoilISMinPitchLimit=65460
     IronSightMeshFOVCompensationScale=4
     AssociatedPerkClasses=/* Array type was not detected. */
-    WeaponUpgrades=/* Array type was not detected. */
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

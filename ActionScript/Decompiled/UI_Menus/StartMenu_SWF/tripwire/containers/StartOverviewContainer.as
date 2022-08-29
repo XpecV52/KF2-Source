@@ -57,7 +57,6 @@ package tripwire.containers
         {
             defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 7 : 6;
             super.selectContainer();
-            trace("StartOverviewContainer::selectContainer");
             if(this.serverWelcomeScreen.visible)
             {
                 currentElement = this.serverWelcomeScreen.confirmButton;

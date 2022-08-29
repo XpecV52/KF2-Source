@@ -2179,7 +2179,7 @@ ZedShrapnel="제드 자연 폭발"
 ZedShrapnelDescription="플레이어가 불로 처치한 Zed가 30%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 기절시킴"
 
 MakeThingsGoBoom="온 세상에 폭발을"
-MakeThingsGoBoomDescription="모든 폭발물의 영향 영역 50% 증가"
+MakeThingsGoBoomDescription="모든 폭발물의 영향 영역 40% 증가"
 
 Madman="제드 타임 - 미치광이"
 MadmanDescription="제드 타임 동안 모든 무기가 3배 빠르게 발사"

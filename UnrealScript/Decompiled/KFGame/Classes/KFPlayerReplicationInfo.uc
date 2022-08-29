@@ -124,7 +124,6 @@ var bool bVotedToSkipTraderTime;
 var bool bObjectivePlayer;
 var bool bShowNonRelevantPlayers;
 var transient bool bWaitingForInventory;
-var bool bCarryingCollectible;
 var string LastCrateGiftTimestamp;
 var int SecondsOfGameplay;
 var const array<KFCharacterInfo_Human> CharacterArchetypes;
@@ -151,11 +150,10 @@ replication
         CurrentVoiceCommsRequest, DamageDealtOnTeam, 
         NetPerkIndex, PerkSupplyLevel, 
         PlayerHealth, PlayerHealthPercent, 
-        RepCustomizationInfo, bCarryingCollectible, 
-        bConcussiveActive, bExtraFireRange, 
-        bHasSpawnedIn, bNukeActive, 
-        bObjectivePlayer, bSplashActive, 
-        bVOIPRegisteredWithOSS;
+        RepCustomizationInfo, bConcussiveActive, 
+        bExtraFireRange, bHasSpawnedIn, 
+        bNukeActive, bObjectivePlayer, 
+        bSplashActive, bVOIPRegisteredWithOSS;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;

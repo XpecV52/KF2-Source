@@ -11,7 +11,7 @@ DefaultProperties
 {
 	WeaponClassPath="KFGameContent.KFWeap_AssaultRifle_LazerCutter"
 
-	BuyPrice=2500
+	BuyPrice=2000
 	AmmoPricePerMag=84
 	ImagePath="WEP_UI_Laser_Cutter_TEX.UI_WeaponSelect_Laser_Cutter"
 

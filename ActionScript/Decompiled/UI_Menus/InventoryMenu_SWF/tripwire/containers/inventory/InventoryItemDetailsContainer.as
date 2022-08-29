@@ -176,7 +176,7 @@ package tripwire.containers.inventory
             }
             if(bManagerUsingGamepad && _bReadyForInput)
             {
-                FocusManager.setFocus(!!this.equipButton.visible ? this.equipButton : this.cancelButton);
+                FocusManager.setFocus(this.equipButton.visible && this.equipButton.enabled ? this.equipButton : this.cancelButton);
             }
             else
             {
@@ -264,7 +264,7 @@ package tripwire.containers.inventory
             super.onOpened(param1);
             if(bManagerUsingGamepad && this.bForceFocusToDetails && _bReadyForInput)
             {
-                FocusManager.setFocus(!!this.equipButton.visible ? this.equipButton : this.cancelButton);
+                FocusManager.setFocus(this.equipButton.visible && this.equipButton.enabled ? this.equipButton : this.cancelButton);
             }
         }
         

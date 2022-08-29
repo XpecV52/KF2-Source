@@ -2179,7 +2179,7 @@ ZedShrapnel="Spontane Zed-plosion"
 ZedShrapnelDescription="Von dir getötete Zeds haben eine Chance von 30%, zu explodieren, Zeds in der Nähe Schaden zuzufügen und sie zu betäuben."
 
 MakeThingsGoBoom="Bringe Dinge zum Explodieren"
-MakeThingsGoBoomDescription="Erhöhe den Wirkungsbereich aller Sprengstoffe um 50%."
+MakeThingsGoBoomDescription="Erhöhe den Wirkungsbereich aller Sprengstoffe um 40%."
 
 Madman="ZED-ZEIT – Irrer"
 MadmanDescription="Während der Zed-Zeit schießen alle deine Waffen 3x schneller."

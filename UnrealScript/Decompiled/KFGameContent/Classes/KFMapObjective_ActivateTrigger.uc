@@ -448,7 +448,7 @@ defaultproperties
     LocalizationKey="ActivateTrigger"
     DescriptionLocKey="DescriptionActivateTrigger"
     RequirementsLocKey="RequiredActivateTrigger"
-    ObjectiveIcon=Texture2D'Objectives_UI_Generic.DoNotShip.UI_Objectives_General_OperateControl'
+    ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_UI_Lever'
     GameModeBlacklist=/* Array type was not detected. */
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none

@@ -1224,7 +1224,7 @@ AR15NeonRGBPreciousName="AR15 | Neon RGB | Cenny egzemplarz"
 ;BattleAxe Descriptions
 BattleAxeMintDescription="Stan zewnętrzny: Jak nowy | Staroć, ale wali jak armata... duża i ostra armata."
 BattleAxeFieldTestedDescription="Stan zewnętrzny: Przetestowany | Staroć, ale wali jak armata... duża i ostra armata."
-BeattleAxeBattleScarredDescription="Stan zewnętrzny: Wysłużony | Staroć, ale wali jak armata... duża i ostra armata."
+BattleAxeBattleScarredDescription="Stan zewnętrzny: Wysłużony | Staroć, ale wali jak armata... duża i ostra armata."
 BattleAxePreciousDescription="Stan zewnętrzny: Cenny egz. | Staroć, ale wali jak armata... duża i ostra armata."
 
 ;BattleAxe Names

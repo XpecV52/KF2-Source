@@ -1,17 +1,13 @@
 //=============================================================================
 // KFProjectileStickHelper
 //=============================================================================
-// Manages projectile sticking and pinning functionality
+// Manages projectile sticking functionality
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2019 Tripwire Interactive LLC
 //=============================================================================
 
 class KFProjectileStickHelper extends Object within KFProjectile;
-
-var transient Pawn PinPawn;
-var transient name PinBoneName;
-var transient RB_ConstraintActorSpawnable PinConstraint;
 
 var AkEvent StickAkEvent;
 
@@ -20,12 +16,12 @@ simulated function TryStick(vector HitNormal, optional vector HitLocation, optio
 {
 	local TraceHitInfo HitInfo;
 
-	if (Instigator == None || !Instigator.IsLocallyControlled())
+	if (Instigator == None || !Instigator.IsLocallyControlled() || (Physics == PHYS_None && StuckToActor != none))
 	{
 		return;
 	}
 
-	if (HitActor != none && (HitActor == StuckToActor || HitActor == PinPawn))
+	if (HitActor != none && HitActor == StuckToActor)
 	{
 		return;
 	}
@@ -163,31 +159,6 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
 	local SkeletalMeshComponent SkelMeshComp;
 	local Name BoneName;
 
-	if (bCanPin)
-	{
-		// if StickTo pawn is dead, pin it and keep flying
-		if (Role == ROLE_Authority)
-		{
-			if (KFPawn(StickTo) != none && !KFPawn(StickTo).IsAliveAndWell())
-			{
-				Pin(StickTo, BoneIdx);
-				return;
-			}
-		}
-
-		if (WorldInfo.NetMode != NM_DedicatedServer && PinPawn != none)
-		{
-			// Pin pinned pawn to StickTo actor
-			PinPawn.Mesh.RetardRBLinearVelocity(vector(Rotation), 1.0);
-			PinPawn.Mesh.SetRBPosition(Location, PinBoneName);
-
-			PinConstraint = Spawn(class'RB_ConstraintActorSpawnable',,,Location);
-			PinConstraint.InitConstraint(PinPawn, none, PinBoneName, '');
-
-			PinPawn = none;
-		}
-	}
-
 	SetPhysics(PHYS_None);
 
 	PrevStuckToActor = StuckToActor;
@@ -229,25 +200,6 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
 
 		SetBase(StickTo);
 	}
-}
-
-simulated function Pin(Actor PinTo, int BoneIdx)
-{
-	if (Role == ROLE_Authority)
-	{
-		PinActor = PinTo;
-		PinBoneIdx = BoneIdx;
-	}
-
-	PinPawn = Pawn(PinTo);
-	PinBoneName = PinPawn.Mesh.GetBoneName(BoneIdx);
-
-	StuckToActor = none;
-	StuckToBoneIdx = INDEX_None;
-
-	SetBase(none);
-	SetPhysics(PHYS_Falling);
-	Velocity = Speed * vector(Rotation);
 }
 
 /** Attempts to retrieve skeletal mesh from actor */
@@ -323,16 +275,6 @@ simulated function UnStick()
 	SetPhysics(default.Physics);
 }
 
-simulated function UnPin()
-{
-	if (PinConstraint != none)
-	{
-		PinConstraint.TermConstraint();
-	}
-	PinConstraint = none;
-	PinPawn = none;
-}
-
 simulated function Tick()
 {
 	local int i;
@@ -342,38 +284,11 @@ simulated function Tick()
 	local KFDestructibleActor Destructible;
 	local Actor StuckTo;
 
-	local vector HitLocation, HitNormal;
-	local TraceHitInfo HitInfo;
-	local Actor HitActor;
-
-	if (PinPawn != none)
-	{
-		if (WorldInfo.NetMode != NM_DedicatedServer)
-		{
-			// set PinPawn rigid body position and velocity to make it look good,
-			// since it's not actually attached to this projectile, just "following" it
-			PinPawn.Mesh.SetRBLinearVelocity(Velocity * 0.9);
-			PinPawn.Mesh.SetRBPosition(Location, PinBoneName);
-		}
-
-		if (Instigator != none && Instigator.IsLocallyControlled())
-		{
-			// Trace ahead to see if there's something to stick to. Don't rely on collision component,
-			// because by the time the collision component collides, PinPawn will be jammed into the
-			// collision actor.
-			HitActor = Trace(HitLocation, HitNormal, Location, Location + Normal(Velocity) * 35,,, HitInfo, TRACEFLAG_Bullet);
-			if (HitActor != none && HitActor != PinActor && GetImpactResult(HitActor, HitInfo.HitComponent))
-			{
-				Stick(HitActor, Location, HitNormal, HitInfo);
-			}
-		}
-	}
-
 	StuckTo = StuckToActor;
 	if (StuckTo != none)
 	{
 		// always restart movement if torn off
-		if (StuckTo.bTearOff && PinPawn == none)
+		if (StuckTo.bTearOff)
 		{
 			UnStick();
 			return;

@@ -2176,6 +2176,9 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.05)))	
 
+    //special case
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MicrowaveRifle',   DamageScale=(0.7)))
+
 	// ---------------------------------------------
 	// Block Settings
 	MinBlockFOV=0.1f

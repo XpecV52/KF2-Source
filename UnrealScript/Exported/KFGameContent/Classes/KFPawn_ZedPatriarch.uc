@@ -2088,6 +2088,7 @@ defaultproperties
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.400000))
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.500000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
+   DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MicrowaveRifle',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Patriarch'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    FootstepCameraShakeInnerRadius=200.000000

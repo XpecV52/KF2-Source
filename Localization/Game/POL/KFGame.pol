@@ -2179,7 +2179,7 @@ ZedShrapnel="Spontaniczna zetsplozja"
 ZedShrapnelDescription="30% szans, że zabite przez ciebie zety eksplodują, ogłuszając inne, pobliskie zety i zadając im obrażenia."
 
 MakeThingsGoBoom="Wybuchowa natura"
-MakeThingsGoBoomDescription="Pole rażenia wszystkich ładunków wybuchowych wzrasta o 50%."
+MakeThingsGoBoomDescription="Pole rażenia wszystkich ładunków wybuchowych wzrasta o 40%."
 
 Madman="CZAS ZET – Szaleniec"
 MadmanDescription="W czasie zet każda twoja broń strzela 3 razy szybciej."

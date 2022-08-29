@@ -339,6 +339,14 @@ simulated function PlayFiringSound(byte FireModeNum)
     }
 }
 
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+    local float CalculatedDamage;
+
+    CalculatedDamage = default.InstantHitDamage[0];
+    return CalculatedDamage;
+}
+
 simulated state LazerCharge extends WeaponFiring
 {
     ignores FireAmmunition, AltFireMode, AltFireModeRelease;
@@ -836,7 +844,7 @@ defaultproperties
     FiringRotationSpeedLimit(1)=240
     FiringRotationSpeedLimit(2)=180
     FiringRotationSpeedLimit(3)=120
-    FiringMovementSpeedModifier=0.5
+    FiringMovementSpeedModifier=0.75
     BaseScale=40
     ScalePerChargeLevel=10
     DamagePerChargeLevel=5
@@ -909,7 +917,7 @@ defaultproperties
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_Laser_Cutter_TEX.UI_WeaponSelect_Laser_Cutter'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=250
+    SpareAmmoCapacity=300
     InitialSpareMags=1
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

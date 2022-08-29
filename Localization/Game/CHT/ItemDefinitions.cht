@@ -1224,7 +1224,7 @@ AR15NeonRGBPreciousName="AR15 | 霓虹 RGB | 珍貴"
 ;BattleAxe Descriptions
 BattleAxeMintDescription="外觀：全新 | 雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
 BattleAxeFieldTestedDescription="外觀：中古 | 雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
-BeattleAxeBattleScarredDescription="外觀：破舊 | 雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
+BattleAxeBattleScarredDescription="外觀：破舊 | 雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
 BattleAxePreciousDescription="外觀：珍貴 | 雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
 
 ;BattleAxe Names

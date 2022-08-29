@@ -605,7 +605,7 @@ defaultproperties
     DescriptionLocKey="EscortPawnsDescription"
     LocalizationPackageName="KFGame"
     bIsMissionCriticalObjective=true
-    DefaultIcon=Texture2D'Objectives_UI_Generic.DoNotShip.UI_Objectives_General_Escort'
+    DefaultIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_UI_CartObjective'
     GameModeBlacklist=/* Array type was not detected. */
     PerPlayerSpawnRateMod=/* Array type was not detected. */
     begin object name=Sprite class=SpriteComponent

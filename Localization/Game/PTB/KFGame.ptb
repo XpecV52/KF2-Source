@@ -2179,7 +2179,7 @@ ZedShrapnel="Explozeds espontâneas"
 ZedShrapnelDescription="Zeds abatidos têm 30% de chance de explodir, causando dano e atordoando os Zeds próximos."
 
 MakeThingsGoBoom="Explode Tudo"
-MakeThingsGoBoomDescription="Aumenta em 50% o dano em área de todos os explosivos."
+MakeThingsGoBoomDescription="Aumenta em 40% o dano em área de todos os explosivos."
 
 Madman="HORA DOS ZEDS - Maluco"
 MadmanDescription="Durante a hora dos Zeds, todas as armas atiram 3x mais rápido."

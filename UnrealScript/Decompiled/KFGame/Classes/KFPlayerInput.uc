@@ -609,6 +609,11 @@ exec function ToggleCrouch()
     }
 }
 
+exec function ToggleSprint()
+{
+    Outer.bRun = ((Outer.bRun == 0) ? 1 : 0);
+}
+
 simulated exec function IronSights(optional bool bHoldButtonMode)
 {
     local KFWeapon KFW;

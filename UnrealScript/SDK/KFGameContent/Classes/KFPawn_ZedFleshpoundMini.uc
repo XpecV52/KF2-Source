@@ -54,6 +54,9 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.31)))
     //DamageTypeModifiers.Add((DamageType=class'KFDamageType', 	DamageScale=(0.5))) // All others
 
+    //special case
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MicrowaveRifle',             DamageScale=(0.8)))
+
         // for reference: Vulnerability=(default, head, legs, arms, special)
     IncapSettings(AF_Stun)=     (Vulnerability=(0.5, 0.55, 0.5, 0.0, 0.55),   Cooldown=10.0, Duration=1.55) //1.2
     IncapSettings(AF_Knockdown)=(Vulnerability=(0.25, 0.25, 0.5, 0.25, 0.4),  Cooldown=10.0)  //leg 0.25

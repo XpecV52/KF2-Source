@@ -599,7 +599,7 @@ defaultproperties
 
 	PerPlayerSpawnRateMod=(1.f, 1.f, 1.f, 1.f, 1.f, 1.f)
 
-	DefaultIcon=Texture2D'Objectives_UI_Generic.DoNotShip.UI_Objectives_General_Escort'
+	DefaultIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_UI_CartObjective'
 
 	PoorHealthPctThreshold=0.5
 

@@ -92,7 +92,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Assault_TEX.UI_WeaponSelect_Microwave_Assault'
-   SpareAmmoCapacity(0)=280
+   SpareAmmoCapacity(0)=320
    InitialSpareMags(0)=2
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
@@ -123,7 +123,6 @@ defaultproperties
    RecoilISMinPitchLimit=65460
    IronSightMeshFOVCompensationScale=4.000000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.200000),(Add=1)))
    FiringStatesArray(1)="WeaponBurstFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

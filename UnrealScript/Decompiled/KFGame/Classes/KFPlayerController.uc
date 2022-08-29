@@ -705,7 +705,7 @@ reliable client simulated function ClientSetHUD(class<HUD> newHUDType)
     super(PlayerController).ClientSetHUD(newHUDType);
     if(KFGFxHudWrapper(myHUD) != none)
     {
-        if((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass())
+        if(((myGfxHUD == none) || myGfxHUD.Class != KFGFxHudWrapper(myHUD).GetHUDClass()) && !Class'WorldInfo'.static.IsMenuLevel())
         {
             KFGFxHudWrapper(myHUD).CreateHUDMovie();
         }

@@ -7,20 +7,17 @@
  *******************************************************************************/
 class KFProjectileStickHelper extends Object within KFProjectile;
 
-var transient Pawn PinPawn;
-var transient name PinBoneName;
-var transient RB_ConstraintActorSpawnable PinConstraint;
 var AkEvent StickAkEvent;
 
 simulated function TryStick(Vector HitNormal, optional Vector HitLocation, optional Actor HitActor)
 {
     local TraceHitInfo HitInfo;
 
-    if((Outer.Instigator == none) || !Outer.Instigator.IsLocallyControlled())
+    if(((Outer.Instigator == none) || !Outer.Instigator.IsLocallyControlled()) || (Outer.Physics == 0) && Outer.StuckToActor != none)
     {
         return;
     }
-    if((HitActor != none) && (HitActor == Outer.StuckToActor) || HitActor == PinPawn)
+    if((HitActor != none) && HitActor == Outer.StuckToActor)
     {
         return;
     }
@@ -125,25 +122,6 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
     local editinline SkeletalMeshComponent SkelMeshComp;
     local name BoneName;
 
-    if(Outer.bCanPin)
-    {
-        if(Outer.Role == ROLE_Authority)
-        {
-            if((KFPawn(StickTo) != none) && !KFPawn(StickTo).IsAliveAndWell())
-            {
-                Pin(StickTo, BoneIdx);
-                return;
-            }
-        }
-        if((Outer.WorldInfo.NetMode != NM_DedicatedServer) && PinPawn != none)
-        {
-            PinPawn.Mesh.RetardRBLinearVelocity(vector(Outer.Rotation), 1);
-            PinPawn.Mesh.SetRBPosition(Outer.Location, PinBoneName);
-            PinConstraint = Outer.Spawn(Class'RB_ConstraintActorSpawnable',,, Outer.Location);
-            PinConstraint.InitConstraint(PinPawn, none, PinBoneName, 'None');
-            PinPawn = none;
-        }
-    }
     Outer.SetPhysics(0);
     Outer.PrevStuckToActor = Outer.StuckToActor;
     Outer.StuckToActor = StickTo;
@@ -174,22 +152,6 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
         }
         Outer.SetBase(StickTo);
     }
-}
-
-simulated function Pin(Actor PinTo, int BoneIdx)
-{
-    if(Outer.Role == ROLE_Authority)
-    {
-        Outer.PinActor = PinTo;
-        Outer.PinBoneIdx = BoneIdx;
-    }
-    PinPawn = Pawn(PinTo);
-    PinBoneName = PinPawn.Mesh.GetBoneName(BoneIdx);
-    Outer.StuckToActor = none;
-    Outer.StuckToBoneIdx = -1;
-    Outer.SetBase(none);
-    Outer.SetPhysics(2);
-    Outer.Velocity = Outer.Speed * vector(Outer.Rotation);
 }
 
 simulated function SkeletalMeshComponent GetActorSkeletalMesh(Actor StickActor)
@@ -252,16 +214,6 @@ simulated function UnStick()
     Outer.SetPhysics(Outer.default.Physics);
 }
 
-simulated function UnPin()
-{
-    if(PinConstraint != none)
-    {
-        PinConstraint.TermConstraint();
-    }
-    PinConstraint = none;
-    PinPawn = none;
-}
-
 simulated function Tick()
 {
     local int I;
@@ -270,30 +222,11 @@ simulated function Tick()
     local KFDoorActor door;
     local KFDestructibleActor Destructible;
     local Actor StuckTo;
-    local Vector HitLocation, HitNormal;
-    local TraceHitInfo HitInfo;
-    local Actor HitActor;
 
-    if(PinPawn != none)
-    {
-        if(Outer.WorldInfo.NetMode != NM_DedicatedServer)
-        {
-            PinPawn.Mesh.SetRBLinearVelocity(Outer.Velocity * 0.9);
-            PinPawn.Mesh.SetRBPosition(Outer.Location, PinBoneName);
-        }
-        if((Outer.Instigator != none) && Outer.Instigator.IsLocallyControlled())
-        {
-            HitActor = Outer.Trace(HitLocation, HitNormal, Outer.Location, Outer.Location + (Normal(Outer.Velocity) * float(35)),,, HitInfo, Outer.1);
-            if(((HitActor != none) && HitActor != Outer.PinActor) && GetImpactResult(HitActor, HitInfo.HitComponent))
-            {
-                Stick(HitActor, Outer.Location, HitNormal, HitInfo);
-            }
-        }
-    }
     StuckTo = Outer.StuckToActor;
     if(StuckTo != none)
     {
-        if(StuckTo.bTearOff && PinPawn == none)
+        if(StuckTo.bTearOff)
         {
             UnStick();
             return;
@@ -330,7 +263,7 @@ simulated function Tick()
             if(Destructible != none)
             {
                 I = 0;
-                J0x556:
+                J0x279:
 
                 if(I < Destructible.SubObjects.Length)
                 {
@@ -340,7 +273,7 @@ simulated function Tick()
                         return;
                     }
                     ++ I;
-                    goto J0x556;
+                    goto J0x279;
                 }
             }
         }

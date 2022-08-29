@@ -116,11 +116,15 @@ package tripwire.controls
             super.updateScrollBar();
         }
         
-        override public function set selectedIndex(param1:int) : void
+        override protected function handleScroll(param1:Event) : void
         {
-            param1 += scrollPosition - this._lastScrollPosition;
+            super.handleScroll(param1);
+            if(selectedIndex != -1)
+            {
+                selectedIndex += scrollPosition - this._lastScrollPosition;
+                updateSelectedIndex();
+            }
             this._lastScrollPosition = scrollPosition;
-            super.selectedIndex = param1;
         }
         
         protected function open(param1:Boolean = true) : void

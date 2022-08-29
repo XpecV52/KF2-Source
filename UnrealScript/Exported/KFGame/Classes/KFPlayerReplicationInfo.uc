@@ -547,9 +547,6 @@ var transient bool bWaitingForInventory;
 /** What character should be checked for selection once the online subsystem inventory loads */
 var transient int WaitingForInventoryCharacterIndex;
 
-/** Whether the character is currently holding a transport objective */
-var bool bCarryingCollectible;
-
 /************************************
 *  native
 ************************************/
@@ -568,7 +565,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID, bCarryingCollectible;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )

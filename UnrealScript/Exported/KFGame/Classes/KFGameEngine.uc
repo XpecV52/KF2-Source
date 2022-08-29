@@ -648,7 +648,6 @@ defaultproperties
    FOVOptionsPercentageValue=1.000000
    LocalLoginStatus=LS_LoggedIn
    bDisableAILogging=True
-   TimeBetweenPurgingPendingKillObjects=0.000000
    SafeFrameScale=1.000000
    Name="Default__KFGameEngine"
    ObjectArchetype=GameEngine'Engine.Default__GameEngine'

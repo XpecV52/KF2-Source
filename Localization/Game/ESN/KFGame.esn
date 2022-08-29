@@ -2179,7 +2179,7 @@ ZedShrapnel="Zedbustión espontánea"
 ZedShrapnelDescription="Los zeds a los que mates tienen un 30 % de posibilidades de explotar, infligiendo daño y aturdimiento a otros zeds cercanos."
 
 MakeThingsGoBoom="Que haga bum"
-MakeThingsGoBoomDescription="Aumenta un 50 % el área de efecto de todos los explosivos."
+MakeThingsGoBoomDescription="Aumenta un 40 % el área de efecto de todos los explosivos."
 
 Madman="MOMENTO ZED - Demencia"
 MadmanDescription="En el momento zed, todas tus armas disparan 3 veces más rápido."

@@ -586,7 +586,7 @@ defaultproperties
    DescriptionLocKey="EscortPawnsDescription"
    LocalizationPackageName="KFGame"
    bIsMissionCriticalObjective=True
-   DefaultIcon=Texture2D'Objectives_UI_Generic.DoNotShip.UI_Objectives_General_Escort'
+   DefaultIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_UI_CartObjective'
    GameModeBlacklist(0)=Class'kfgamecontent.KFGameInfo_Endless'
    GameModeBlacklist(1)=Class'kfgamecontent.KFGameInfo_WeeklySurvival'
    PerPlayerSpawnRateMod(0)=1.000000

@@ -368,7 +368,7 @@ defaultproperties
     ShrapnelChance=0.3
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'
-        Damage=100
+        Damage=50
         DamageRadius=250
         MyDamageType=Class'KFDT_Explosive_Shrapnel'
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'

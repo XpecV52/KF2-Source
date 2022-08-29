@@ -2179,7 +2179,7 @@ ZedShrapnel="Zed-splosion spontanée"
 ZedShrapnelDescription="Les Zeds que vous tuez ont 30 % de chances d'exploser, infligeant des dommages et étourdissant les Zeds à proximité."
 
 MakeThingsGoBoom="Tout faire péter"
-MakeThingsGoBoomDescription="Augmente les dégâts de zone de tous les Explosifs de 50 %."
+MakeThingsGoBoomDescription="Augmente les dégâts de zone de tous les Explosifs de 40 %."
 
 Madman="ZED TIME - Malade mental"
 MadmanDescription="Pendant le Zed time, toutes vos armes tirent 3x plus vite."

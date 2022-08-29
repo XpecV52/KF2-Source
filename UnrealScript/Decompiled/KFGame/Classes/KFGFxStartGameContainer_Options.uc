@@ -580,11 +580,10 @@ event int GetAdjustedGameModeIndex(int ModeIndex)
         {
             case 0:
             case 1:
+            case 3:
                 return ModeIndex;
             case 2:
                 return 3;
-            case 3:
-                return 4;
             default:
                 return Class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
                 break;

@@ -122,10 +122,10 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:MeleeHelper_0'
    DoshValue=300
    XPValues(0)=105.000000
-   DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.750000))
-   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Explosive_RPG7',DamageScale=(1.500000))
-   DamageTypeModifiers(14)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(1.500000))
-   DamageTypeModifiers(15)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.500000))
+   DamageTypeModifiers(13)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.750000))
+   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Explosive_RPG7',DamageScale=(1.500000))
+   DamageTypeModifiers(15)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(1.500000))
+   DamageTypeModifiers(16)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.500000))
    MoveListGamepadScheme(0)=SM_None
    MoveListGamepadScheme(1)=SM_PlayerZedMove_MMB
    MoveListGamepadScheme(2)=SM_PlayerZedMove_LMB

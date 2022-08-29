@@ -1224,7 +1224,7 @@ AR15NeonRGBPreciousName="AR15 | 네온 RGB | 프레셔스"
 ;BattleAxe Descriptions
 BattleAxeMintDescription="외관: 민트 | 구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭."
 BattleAxeFieldTestedDescription="외관: 현장 테스트 | 구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭."
-BeattleAxeBattleScarredDescription="외관: 전투 흔적 | 구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭."
+BattleAxeBattleScarredDescription="외관: 전투 흔적 | 구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭."
 BattleAxePreciousDescription="외관: 프레셔스 | 구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭."
 
 ;BattleAxe Names

@@ -22,15 +22,19 @@ var int PrevArmor;
 var int CostPerAutofillCycle;
 var int DoshBuffer;
 
-function Initialize()
+function Initialize(optional bool bInitOwnedItems)
 {
+    bInitOwnedItems = true;
     if((Outer.Pawn != none) && Outer.PlayerReplicationInfo != none)
     {
         MyKFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
         MyKFIM = KFInventoryManager(Outer.Pawn.InvManager);
         if((MyKFPRI != none) && MyKFIM != none)
         {
-            InitializeOwnedItemList();
+            if(bInitOwnedItems)
+            {
+                InitializeOwnedItemList();
+            }
             TotalBlocks = MyKFIM.CurrentCarryBlocks;
             TotalDosh = int(MyKFPRI.Score);
             MaxBlocks = MyKFIM.MaxCarryBlocks;

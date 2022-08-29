@@ -386,6 +386,15 @@ simulated function PlayFiringSound(byte FireModeNum)
 	}
 }
 
+// the FlameBase CalculateTraderWeaponStatDamage uses spray damage
+// LazerCutter will just show the full auto damage like a normal KFWeapon
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+	local float CalculatedDamage;
+	CalculatedDamage = default.InstantHitDamage[DEFAULT_FIREMODE];
+	return CalculatedDamage;
+}
+
 simulated state LazerCharge extends WeaponFiring
 {
 	simulated function FireAmmunition(){}
@@ -965,7 +974,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0] = 50
-	SpareAmmoCapacity[0] = 250
+	SpareAmmoCapacity[0] = 300
 	InitialSpareMags[0] = 1
 	bCanBeReloaded = true
 	bReloadFromMagazine = true
@@ -1063,7 +1072,7 @@ defaultproperties
 	FiringRotationSpeedLimit(1)=240.f; 
 	FiringRotationSpeedLimit(2)=180.f;
 	FiringRotationSpeedLimit(3)=120.f;
-	FiringMovementSpeedModifier=0.5f;
+	FiringMovementSpeedModifier=0.75f;
 
 	MaxRotationAdjustmentTime = 0.25f;
 	RotationAdjustmentCurve = { (Points = ((InVal = 0.000000,OutVal = 120.0f),

@@ -30,7 +30,7 @@ var int PrevArmor;
 var int CostPerAutofillCycle;
 var int DoshBuffer;
 
-function Initialize()
+function Initialize(optional bool bInitOwnedItems = true)
 {
 	if( Pawn != none && PlayerReplicationInfo != none )
 	{
@@ -40,7 +40,10 @@ function Initialize()
 		if( MyKFPRI != none && MyKFIM != none )
 		{
 			// Grab the weapons in our inventory and add them to a stored array called OwnedItemList
-			InitializeOwnedItemList();
+			if (bInitOwnedItems)
+			{
+				InitializeOwnedItemList();
+			}
 			TotalBlocks = MyKFIM.CurrentCarryBlocks;
 			TotalDosh = MyKFPRI.Score;
 			MaxBlocks = MyKFIM.MaxCarryBlocks;

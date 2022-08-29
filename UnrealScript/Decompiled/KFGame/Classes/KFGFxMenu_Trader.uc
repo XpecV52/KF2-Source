@@ -192,14 +192,14 @@ function OnOpen()
     CurrentFilterIndex = GetPerkIndex();
     FavoritedItems.Remove(0, FavoritedItems.Length;
     I = 0;
-    J0x15D:
+    J0x15E:
 
     if(I < MyKFPC.MyGFxManager.CachedProfile.FavoriteWeapons.Length)
     {
         WeaponName = name(MyKFPC.MyGFxManager.CachedProfile.FavoriteWeapons[I]);
         FavoritedItems.AddItem(WeaponName;
         ++ I;
-        goto J0x15D;
+        goto J0x15E;
     }
     if((MyKFPC.Pawn != none) || MyKFPC.PlayerReplicationInfo != none)
     {
@@ -774,7 +774,7 @@ function Callback_PerkChanged(int PerkIndex)
         if(MyKFPC.CanUpdatePerkInfo())
         {
             MyKFPC.SetHaveUpdatePerk(true);
-            MyKFPC.GetPurchaseHelper().Initialize();
+            MyKFPC.GetPurchaseHelper().Initialize(false);
             RefreshItemComponents();
         }
         Manager.CachedProfile.SetProfileSettingValueInt(105, PerkIndex);

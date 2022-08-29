@@ -3,6 +3,7 @@ package tripwire.containers.objectiveStart
     import flash.display.MovieClip;
     import flash.events.Event;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.gfx.Extensions;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripTabButton;
@@ -44,6 +45,8 @@ package tripwire.containers.objectiveStart
         public const ButtonSlotWidth:Number = 640;
         
         public const ButtonSlotBuffer:Number = 64;
+        
+        public var clickSoundEffect:String = "SHARED_BUTTON_CLICK";
         
         protected var containerList:Vector.<TripContainer>;
         
@@ -192,6 +195,13 @@ package tripwire.containers.objectiveStart
                     this.specialEventButton.selected = true;
                     this.weeklyButton.selected = false;
                     this.dailyButton.selected = false;
+            }
+            if(bManagerUsingGamepad)
+            {
+                if(Extensions.gfxProcessSound != null)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
+                }
             }
             for each(_loc3_ in this.containerList)
             {

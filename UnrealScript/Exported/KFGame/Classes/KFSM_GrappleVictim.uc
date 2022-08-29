@@ -39,17 +39,20 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 		}
 	}
 
-	if( PawnOwner.Role == ROLE_Authority )
+	KFPH = KFPawn_Human(PawnOwner);
+	if (KFPH != none)
 	{
-		KFPH = KFPawn_Human( PawnOwner );
-		if( KFPH != none )
+		if (PawnOwner.Role == ROLE_Authority)
 		{
 			KFGI = KFGameInfo(KFPH.WorldInfo.Game);
-			if( KFGI != none && KFGI.DialogManager != none )
+			if (KFGI != none && KFGI.DialogManager != none)
 			{
-				KFGI.DialogManager.PlayPlayerGrabbedDialog( KFPH );
+				KFGI.DialogManager.PlayPlayerGrabbedDialog(KFPH);
 			}
+		}
 
+		if (KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
+		{
 			KFIM = KFInventoryManager(KFPH.InvManager);
 			if (KFIM != none && KFPH.MyKFWeapon != none && KFPH.MyKFWeapon.IsA('KFWeap_Welder'))
 			{

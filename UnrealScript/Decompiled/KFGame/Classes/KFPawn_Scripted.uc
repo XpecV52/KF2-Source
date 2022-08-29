@@ -661,6 +661,7 @@ function Finish(bool bHide)
             Velocity = vect(0, 0, 0);
         }
     }
+    DamageOverTimeArray.Length = 0;
     bPlayedDeath = true;
     SetCanBeTargeted(false);
     if(WeldableComponent != none)

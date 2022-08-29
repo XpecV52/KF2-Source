@@ -658,7 +658,7 @@ DefaultProperties
 	SecondaryXPModifier(3)=5
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=100  //231  //120
+		Damage=50  //231  //120
 		DamageRadius=250   //840  //600
 		DamageFalloffExponent=1
 		DamageDelay=0.f

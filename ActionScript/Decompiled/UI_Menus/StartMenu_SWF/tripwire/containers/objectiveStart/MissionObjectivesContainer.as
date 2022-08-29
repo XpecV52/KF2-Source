@@ -6,6 +6,7 @@ package tripwire.containers.objectiveStart
     import flash.events.Event;
     import flash.text.TextFieldAutoSize;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.gfx.Extensions;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
     import tripwire.menus.StartMenu;
@@ -29,6 +30,8 @@ package tripwire.containers.objectiveStart
         public var buttonPrompt:MovieClip;
         
         public var switchTimeline:TimelineMax;
+        
+        public var clickSoundEffect:String = "SHARED_BUTTON_CLICK";
         
         private const BG_Collapsed_Height:int = 120;
         
@@ -69,6 +72,13 @@ package tripwire.containers.objectiveStart
         public function toggleExpanded() : void
         {
             this.expanded = !this.bExpanded;
+            if(bManagerUsingGamepad)
+            {
+                if(Extensions.gfxProcessSound != null)
+                {
+                    Extensions.gfxProcessSound(this,"UI",this.clickSoundEffect);
+                }
+            }
         }
         
         public function set buttonPromptString(param1:String) : void

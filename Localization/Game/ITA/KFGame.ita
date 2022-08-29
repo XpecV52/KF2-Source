@@ -2179,7 +2179,7 @@ ZedShrapnel="Esplosione spontanea Zed"
 ZedShrapnelDescription="Gli Zed che uccidi hanno il 30% di possibilità di esplodere, danneggiando e stordendo gli Zed vicini."
 
 MakeThingsGoBoom="Che botto"
-MakeThingsGoBoomDescription="Aumenta del 50% l'area di effetto di tutti gli esplosivi."
+MakeThingsGoBoomDescription="Aumenta del 40% l'area di effetto di tutti gli esplosivi."
 
 Madman="ZED TIME - Follia"
 MadmanDescription="Durante gli Zed time, tutte le tue armi sparano 3 volte più veloci."

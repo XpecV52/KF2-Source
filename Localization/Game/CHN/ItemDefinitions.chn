@@ -1224,7 +1224,7 @@ AR15NeonRGBPreciousName="AR15 | 霓虹RGB | 宝物"
 ;BattleAxe Descriptions
 BattleAxeMintDescription="外部：硬币 | 过时但能仍然像卡车一样猛击……一辆大而锋利的卡车。"
 BattleAxeFieldTestedDescription="外部：久经沙场 | 过时但能仍然像卡车一样猛击……一辆大而锋利的卡车。"
-BeattleAxeBattleScarredDescription="外部：身经百战 | 过时但能仍然像卡车一样猛击……一辆大而锋利的卡车。"
+BattleAxeBattleScarredDescription="外部：身经百战 | 过时但能仍然像卡车一样猛击……一辆大而锋利的卡车。"
 BattleAxePreciousDescription="外部：宝物 | 过时但能仍然像卡车一样猛击……一辆大而锋利的卡车。"
 
 ;BattleAxe Names

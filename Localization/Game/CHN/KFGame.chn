@@ -2179,7 +2179,7 @@ ZedShrapnel="自发性丧尸爆炸"
 ZedShrapnelDescription="你杀死的丧尸有30%的几率爆炸，进而伤害和击倒附近的丧尸。"
 
 MakeThingsGoBoom="欣欣向荣"
-MakeThingsGoBoomDescription="爆炸范围效果提升50%。"
+MakeThingsGoBoomDescription="爆炸范围效果提升40%。"
 
 Madman="丧尸时间 - 狂人"
 MadmanDescription="在丧尸时间中，你的所有武器射击速度提升 3 倍。"

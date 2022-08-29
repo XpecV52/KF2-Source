@@ -699,6 +699,7 @@ function Finish(bool bHide)
 		}
 	}
 
+	DamageOverTimeArray.length = 0; // remove damage over time effects
 	bPlayedDeath = true; // forces zeds to find a new target
 	SetCanBeTargeted(false); // prevents zeds from re-targeting
 
