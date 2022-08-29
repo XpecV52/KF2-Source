@@ -170,8 +170,6 @@ function bool TrySetNextWaveSpecial()
 
 function WaveEnded(EWaveEndCondition WinCondition)
 {
-	local KFPlayerController KFPC;
-
 	WaveMax = WaveNum + 2;
 	MyKFGRI.WaveMax = WaveMax;
 
@@ -185,17 +183,6 @@ function WaveEnded(EWaveEndCondition WinCondition)
 	KFGameReplicationInfo_Endless(GameReplicationInfo).CurrentSpecialMode = INDEX_NONE;
 
 	HellOnEarthPlusRoundIncrement();
-
-	if (WinCondition == WEC_WaveWon)
-	{
-		foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
-		{
-			if (KFPC != none)
-			{
-				KFPC.OnEndlessWaveComplete(WaveNum);
-			}
-		}
-	}
 
 	Super.WaveEnded(WinCondition);
 

@@ -112,12 +112,7 @@ protected simulated function PrepareExplosionTemplate()
     }
     else
     {
-        ExplosionTemplate = default.ExplosionTemplate;
-        ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
-        ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
-        ExplosionTemplate.Damage = default.ExplosionTemplate.Damage;
-        ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius;
-        ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;
+        ExplosionTemplate = default.ExplosionTemplate.Duplicate();
     }
     if(Owner.Role == ROLE_Authority)
     {

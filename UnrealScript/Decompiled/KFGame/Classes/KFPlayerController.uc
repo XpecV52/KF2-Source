@@ -5923,7 +5923,7 @@ reliable client simulated event OnAllMapCollectiblesFound(string MapName)
     }
 }
 
-reliable client final simulated event OnEndlessWaveComplete(int CurrentWave)
+reliable client final simulated event OnWaveComplete(int CurrentWave)
 {
     if(StatsWrite != none)
     {

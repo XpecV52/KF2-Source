@@ -914,6 +914,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     local KFSeqEvent_WaveEnd WaveEndEvt;
     local Sequence GameSeq;
     local int I;
+    local KFPlayerController KFPC;
 
     GameSeq = WorldInfo.GetGameSequence();
     if(GameSeq != none)
@@ -964,6 +965,13 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
         {
             RewardSurvivingPlayers();
             UpdateWaveEndDialogInfo();
+            foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+            {
+                if(KFPC != none)
+                {
+                    KFPC.OnWaveComplete(WaveNum);
+                }                
+            }            
             if(WaveNum < WaveMax)
             {
                 GotoState('TraderOpen', 'Begin');                

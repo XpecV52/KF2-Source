@@ -8,7 +8,8 @@
 //  - Author 9/16/2013
 //=============================================================================
 
-class KFGameExplosion extends GameExplosion;
+class KFGameExplosion extends GameExplosion
+	native;
 
 /** When this projectile explodes, this is the shard to spawn, if any **/
 var() class<Projectile> ShardClass;
@@ -17,6 +18,8 @@ var() int NumShards;
 
 /** Impact info (decal, vfx, etc.), so that each explosion type on various surfaces can have different effects if desired. Doesn't do anything with the sound */
 var() KFImpactEffectInfo    ExplosionEffects;
+
+native function KFGameExplosion Duplicate();
 
 defaultproperties
 {

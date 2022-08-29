@@ -30,7 +30,7 @@ package
                 }
                 progressBar.enabled = true;
                 progressBar.enableInitCallback = false;
-                progressBar.fillBarOriginalWidth = 176;
+                progressBar.fillBarOriginalWidth = 160;
                 progressBar.visible = true;
                 try
                 {

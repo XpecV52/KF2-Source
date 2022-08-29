@@ -6,6 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFGameExplosion extends GameExplosion
+    native
     editinlinenew;
 
 /** When this projectile explodes, this is the shard to spawn, if any */
@@ -14,6 +15,9 @@ var() class<Projectile> ShardClass;
 var() int NumShards;
 /** Impact info (decal, vfx, etc.), so that each explosion type on various surfaces can have different effects if desired. Doesn't do anything with the sound */
 var() KFImpactEffectInfo ExplosionEffects;
+
+// Export UKFGameExplosion::execDuplicate(FFrame&, void* const)
+native function KFGameExplosion Duplicate();
 
 defaultproperties
 {

@@ -7624,7 +7624,7 @@ reliable client event OnAllMapCollectiblesFound(string MapName)
 }
 
 /** Called from the Server */
-reliable final client event OnEndlessWaveComplete(int CurrentWave)
+reliable final client event OnWaveComplete(int CurrentWave)
 {
 	if (StatsWrite != none)
 	{

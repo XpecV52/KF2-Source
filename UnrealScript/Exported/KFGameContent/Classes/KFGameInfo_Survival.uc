@@ -1363,6 +1363,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 	local KFSeqEvent_WaveEnd WaveEndEvt;
 	local Sequence GameSeq;
 	local int i;
+	local KFPlayerController KFPC;
 
 	// Get the gameplay sequence.
 	GameSeq = WorldInfo.GetGameSequence();
@@ -1407,6 +1408,14 @@ function WaveEnded(EWaveEndCondition WinCondition)
 	{
 		RewardSurvivingPlayers();
 		UpdateWaveEndDialogInfo();
+
+		foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+		{
+			if (KFPC != none)
+			{
+				KFPC.OnWaveComplete(WaveNum);
+			}
+		}
 
 		if( WaveNum < WaveMax )
 		{

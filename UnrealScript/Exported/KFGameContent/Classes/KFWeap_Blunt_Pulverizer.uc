@@ -143,12 +143,9 @@ simulated protected function PrepareExplosionTemplate()
 	}
 	else
 	{
-		ExplosionTemplate = default.ExplosionTemplate;
-		ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
-		ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
-		ExplosionTemplate.Damage = default.ExplosionTemplate.Damage;
-		ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius;
-		ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;
+		// We need to copy the default, otherwise we are assigning a reference that can permanently
+		// change the default (e.g. when scaling the radius below)
+		ExplosionTemplate = default.ExplosionTemplate.Duplicate();
 	}
 
 	// Change the radius and damage based on the perk
