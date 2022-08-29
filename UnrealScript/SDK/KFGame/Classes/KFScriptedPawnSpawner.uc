@@ -27,8 +27,9 @@ var(PathInfo) array<SplineActor> PathGoals;
 var transient SplineActor PathGoal;
 // How many subsegments the pawn will move through along the spline between two SplineActors (i.e. the higher the granularity, the more closely the pawn follows the curve of the spline)
 var(PathInfo) int SegmentGranularity<ClampMin=0>;
-var transient int NumSubSegments, NumSubSegmentsFinished;
+
 var transient bool bReachedStart, bReachedGoal;
+var transient float RouteDist, RouteDistTraversed;
 
 delegate Delegate_OnPawnStartedRoute(KFPawn_Scripted StartedPawn);
 delegate Delegate_OnPawnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx);
@@ -85,17 +86,20 @@ function SpawnPawn(bool bSpawnInactive)
 function SetupProgress()
 {
 	local array<SplineActor> Route;
+	local int i;
 
 	// @TODO: don't just pick a random goal?
 	PathGoal = PathGoals[Rand(PathGoals.Length)];
 	PathStart.FindSplinePathTo(PathGoal, Route);
-	NumSubSegments = (Route.Length - 1) * (SegmentGranularity + 1);
-	NumSubSegmentsFinished = 0;
+	for (i = 0; i < Route.Length - 1; ++i)
+	{
+		RouteDist += Route[i].FindSplineComponentTo(Route[i+1]).GetSplineLength();
+	}
 }
 
 simulated function float GetProgress()
 {
-	return float(NumSubSegmentsFinished) / float(NumSubSegments);
+	return RouteDistTraversed / RouteDist;
 }
 
 function SetupPawn()
@@ -125,11 +129,11 @@ function SetupPawn()
 	Pawn.Delegate_OnEndedRoute = OnPawnEndedRoute;
 }
 
-function OnPawnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx)
+function OnPawnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx, float DistSinceLastMarker)
 {
 	if (bReachedStart && !bReachedGoal)
 	{
-		++NumSubSegmentsFinished;
+		RouteDistTraversed += DistSinceLastMarker;
 
 		if (Delegate_OnPawnReachedRouteMarker != none)
 		{
@@ -141,7 +145,7 @@ function OnPawnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx)
 	{
 		bReachedStart = true;
 		Pawn.Start();
-		
+
 		if (Delegate_OnPawnStartedRoute != none)
 		{
 			Delegate_OnPawnStartedRoute(Pawn);

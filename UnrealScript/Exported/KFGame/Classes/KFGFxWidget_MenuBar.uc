@@ -26,8 +26,7 @@ var localized array<string> DescriptionStrings;
 var string LastHomeString;
 
 //@HSL_BEGIN - JRO - 4/28/2016 - Disable certain features for PlayGo
-var GFxObject InventoryButton;
-var GFxObject StoreButton;
+var GFxObject InventoryButton, StoreButton, VaultButton, GearButton;
 var int SaveCurrentMenuIndex;
 var bool bCachedGameFullyInstalled;
 //@HSL_END
@@ -110,16 +109,14 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 	{
 		case UI_Dosh_Vault:
 			GfxButton.SetBool( "enabled", CanUseDoshVault() );
+			VaultButton = GfxButton;
 			return;
 		case UI_GEAR:
 			// Disable the gear button if we're a spectator (must be done through data provider since buttons don't exist yet)
 			bGearButtonEnabled = CanUseGearButton( GetPC(), Manager );
 			GfxButton.SetBool( "enabled", bGearButtonEnabled );
+			GearButton = GfxButton;
 			return;
-
-		case UI_Dosh_Vault:
-			GfxButton.SetBool( "enabled", class'WorldInfo'.static.IsMenuLevel() );
-			break;
 		case UI_Start:
 			GfxButton.SetString( "label",  GetHomeButtonName());
 			GfxButton.SetBool( "bPulsing", ShouldStartMenuPulse() );
@@ -130,7 +127,7 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 			InventoryButton = GfxButton;
 			return;
 		case UI_Store:
-			// XB1 needs Xbox Store terminology 
+			// XB1 needs Xbox Store terminology
 			if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) )
 			{
 				GfxButton.SetString( "label", ConsoleLocalize("StoreStringXB1", "KFGFxMenu_Store") );
@@ -148,7 +145,7 @@ function UpdateInventoryButtonState()
 {
 	if(InventoryButton != none)
 	{
-		InventoryButton.SetBool( "enabled", CanUseInventory() ); 
+		InventoryButton.SetBool( "enabled", CanUseInventory() );
 	}
 }
 
@@ -177,14 +174,18 @@ function CheckGameFullyInstalled()
 		if( class'GameEngine'.static.IsGameFullyInstalled() )
 		{
 			bCachedGameFullyInstalled = true;
-			InventoryButton.SetBool("enabled", true);
-			StoreButton.SetBool("enabled", true);
+			InventoryButton.SetBool("enabled", CanUseInventory());
+			StoreButton.SetBool("enabled", CanUseStore());
+			VaultButton.SetBool("enabled", CanUseDoshVault());
+			GearButton.SetBool("enabled", CanUseGearButton(GetPC(), Manager));
 			UpdateMenu(SaveCurrentMenuIndex);
 		}
 		else
 		{
 			InventoryButton.SetBool("enabled", false);
 			StoreButton.SetBool("enabled", false);
+			VaultButton.SetBool("enabled", false);
+			GearButton.SetBool("enabled", false);
 			class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(1.0f, false, nameof(CheckGameFullyInstalled), self);
 		}
 	}
@@ -253,12 +254,12 @@ function string GetHomeButtonName()
 					LastHomeString = ServerBrowserString;
 					break;
 				case ESoloGame:
-					LastHomeString = SoloString;	
-					break;	
+					LastHomeString = SoloString;
+					break;
 				case EOverview:
 				case EServerBrowserOverview:
-					LastHomeString = OverviewString;	
-					break;	
+					LastHomeString = OverviewString;
+					break;
 				Default:
 					LastHomeString = MenuStrings[0];
 			}
@@ -280,6 +281,11 @@ function bool ShouldStartMenuPulse()
 
 static function bool CanUseGearButton( PlayerController PC, KFGfxMoviePlayer_Manager GfxManager )
 {
+	if (class'WorldInfo'.static.IsConsoleBuild() && !class'GameEngine'.static.IsGameFullyInstalled())
+	{
+		return false;
+	}
+
 	if( !GfxManager.bAfterLobby && (!PC.PlayerReplicationInfo.bOnlySpectator)
 		|| class'WorldInfo'.static.IsMenuLevel() )
 	{
@@ -296,6 +302,11 @@ function bool CanUseInventory()
 		return false;
 	}
 
+	if (class'WorldInfo'.static.IsConsoleBuild() && !class'GameEngine'.static.IsGameFullyInstalled())
+	{
+		return false;
+	}
+
 	if( GetPC().Pawn != none && !Manager.bAfterLobby ||class'WorldInfo'.static.IsMenuLevel() )
 	{
 		return true;
@@ -305,6 +316,11 @@ function bool CanUseInventory()
 
 function bool CanUseDoshVault()
 {
+	if (class'WorldInfo'.static.IsConsoleBuild() && !class'GameEngine'.static.IsGameFullyInstalled())
+	{
+		return false;
+	}
+
 	return class'WorldInfo'.static.IsMenuLevel();
 }
 

@@ -479,7 +479,7 @@ SecondaryAmmo="M203 Grenade"
 [KFWeap_SMG_MP5RAS]
 ItemName="MP5RAS SMG"
 ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest version of one of the most widely used submachine guns in the world."
+ItemDescription="•Choice of full-auto and 3-round-burst fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest version of one of the most widely used submachine guns in the world."
 
 [KFWeap_SMG_P90]
 ItemName="P90 SMG"
@@ -536,6 +536,16 @@ ItemDescription="•Primary fire uses a single barrel only.\n•Alt-fire shoots 
 ItemName="Static Strikers"
 ItemCategory="Melee"
 ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack. \n•Secondary - heavy, electric blunt attack. It's quite shocking! \n•Wanna punch a zed in the face? Look no further!"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="Killerwatt"
+ItemCategory="Assault Rifle"
+ItemDescription="•Choice of full-auto and overcharge fire modes.\n•Alt-fire to toggle between fire modes.\n•Overcharge mode - Charges up while the fire button is pressed and discharges when the fire button is released."
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="Helios Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="•Choice of full-auto and 3-round-burst fire modes.\n•Alt-fire to toggle between fire modes.\n•May the fire be with you."
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"

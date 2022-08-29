@@ -19,9 +19,6 @@ class KFWeap_MeleeBase extends KFWeapon
 const BLOCK_FIREMODE		= 1; // ALTFIRE_FIREMODE
 const HEAVY_ATK_FIREMODE	= 5; // NEW - IronSights Key
 
-/** A firemode that is manually set (>= PendingFire.Length) for weapons with special firing states */
-const CUSTOM_FIREMODE = 6;
-
 /** Set when blood material value is high */
 var bool bIsBloody;
 
@@ -32,6 +29,8 @@ var byte MaxChainAtkCount;
 var float MinMeleeSustainedTime;
 /** Minimum amount of time to wait before dealing damage in the  MeleeSustained state */
 var() float MeleeSustainedWarmupTime;
+/** Amount of time required between cancelling attacks with reload*/
+var private const float ReloadCancelTimeLimit;
 
 /*********************************************************************************************
  * @name Defensive Abilities
@@ -187,6 +186,23 @@ reliable server function ServerSetSlowMovement(bool bEnabled)
  */
 simulated function StartFire(byte FireModeNum)
 {
+	// if the weapon is currently attacking
+	if (CurrentFireMode == DEFAULT_FIREMODE || CurrentFireMode == ALTFIRE_FIREMODE || CurrentFireMode == BASH_FIREMODE)
+	{
+		// and the player tries to cancel with a reload action
+		if(FireModeNum == RELOAD_FIREMODE)
+		{
+			// stop them from reload cancelling if it has already happened too recently
+			if (IsTimerActive(nameof(Timer_FireCancel)))
+			{
+				return;
+			}
+			else
+			{
+				SetTimer(ReloadCancelTimeLimit, false, nameof(Timer_FireCancel));
+			}
+		}
+	}
 	// Get attack type and send to server
 	if( FireModeNum == DEFAULT_FIREMODE || FireModeNum == HEAVY_ATK_FIREMODE )
 	{
@@ -203,6 +219,8 @@ simulated function StartFire(byte FireModeNum)
 
 	Super.StartFire(FireModeNum);
 }
+
+simulated function Timer_FireCancel() {}
 
 /**
  * Like StartFire, but replicates a attack type
@@ -1325,22 +1343,25 @@ defaultproperties
 	ParryParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Parry_melee_01'
 	MeleeBlockHitAnims=(Block_Hit_V1, Block_Hit_V2, Block_Hit_V3);
 
-	DistortTrailParticle=ParticleSystem'FX_Gameplay_EMIT_THREE.Trails.FX_Trail_Distort_R_01'
-	WhiteTrailParticle=ParticleSystem'FX_Gameplay_EMIT_THREE.Trails.FX_Trail_White_R_01'
-	BlueTrailParticle=ParticleSystem'FX_Gameplay_EMIT_THREE.Trails.FX_Trail_Blue_R_01'
-	RedTrailParticle=ParticleSystem'FX_Gameplay_EMIT_THREE.Trails.FX_Trail_Red_R_01'
+	DistortTrailParticle = ParticleSystem'FX_Gameplay_EMIT_THREE.Trails.FX_Trail_Distort_R_01'
+	WhiteTrailParticle = ParticleSystem'FX_Gameplay_EMIT_THREE.Trails.FX_Trail_White_R_01'
+	BlueTrailParticle = ParticleSystem'FX_Gameplay_EMIT_THREE.Trails.FX_Trail_Blue_R_01'
+	RedTrailParticle = ParticleSystem'FX_Gameplay_EMIT_THREE.Trails.FX_Trail_Red_R_01'
 
 	//--------------------------------
 	// Animations
-	MaxChainAtkCount=3
+	MaxChainAtkCount = 3
 	MeleeAttackSettleAnims.Add(Settle_V1)
-	MinMeleeSustainedTime=0.5f
-	MeleeSustainedWarmupTime=0.25f
+	MinMeleeSustainedTime = 0.5f
+	MeleeSustainedWarmupTime = 0.25f
 
 	// Trader
-    EstimatedFireRate=100
+	EstimatedFireRate = 100
 
 	// Upgrades
-	UpgradeFireModes(BLOCK_FIREMODE)=0
-	UpgradeFireModes(HEAVY_ATK_FIREMODE)=1
+	UpgradeFireModes(BLOCK_FIREMODE) = 0
+	UpgradeFireModes(HEAVY_ATK_FIREMODE) = 1
+	UpgradeFireModes(CUSTOM_FIREMODE) = 1
+
+	ReloadCancelTimeLimit = 0.5f;
 }

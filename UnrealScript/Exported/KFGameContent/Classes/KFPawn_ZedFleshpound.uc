@@ -534,7 +534,7 @@ defaultproperties
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
    IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000,Vulnerability=(0.950000))
-   IncapSettings(1)=(Duration=3.500000,Cooldown=10.000000,Vulnerability=(0.700000))
+   IncapSettings(1)=(Duration=3.500000,Cooldown=10.000000,Vulnerability=(0.400000))
    IncapSettings(2)=(Cooldown=1.200000,Vulnerability=(1.000000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.000000,0.000000,0.000000,0.000000,0.500000))
    IncapSettings(4)=(Cooldown=5.000000,Vulnerability=(0.200000,0.250000,0.250000,0.000000,0.400000))
@@ -543,7 +543,7 @@ defaultproperties
    IncapSettings(7)=(Cooldown=8.500000,Vulnerability=(1.000000,1.000000,3.000000,1.000000,1.000000))
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.250000,0.250000,0.500000,0.250000,0.400000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.500000,Vulnerability=(0.950000))
-   IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.900000))
+   IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.500000))
    IncapSettings(11)=(Vulnerability=(0.750000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000

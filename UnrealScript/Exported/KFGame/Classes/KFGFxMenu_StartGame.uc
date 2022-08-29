@@ -82,6 +82,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
+const KFID_ToggleToRun=172;
 #linenumber 16
 
 var string WhatsNewPS;
@@ -246,7 +247,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 	switch (SpecialEventID)
 	{
 		case SEI_Spring:
-			return class'KFGFxEndlessDARObjectivesContainer';
+			return class'KFGFxSpring2019ObjectivesContainer';
 		case SEI_Summer:
 			return class'KFGFxSummerSideShowObjectivesContainer';
 		case SEI_Fall:
@@ -1956,6 +1957,7 @@ defaultproperties
    StockMaps(22)="kf-tragickingdom"
    StockMaps(23)="kf-shoppingspree"
    StockMaps(24)="kf-santasworkshop"
+   StockMaps(25)="kf-spillway"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

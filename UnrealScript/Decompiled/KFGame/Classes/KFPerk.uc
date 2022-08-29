@@ -112,6 +112,7 @@ const STATID_ACHIEVE_MonsterBallCollectibles = 4045;
 const STATID_ACHIEVE_MonsterBallSecretRoom = 4046;
 const STATID_ACHIEVE_SantasWorkshopCollectibles = 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
+const STATID_ACHIEVE_SpillwayCollectibles = 4049;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;

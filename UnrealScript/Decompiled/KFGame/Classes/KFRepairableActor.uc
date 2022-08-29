@@ -168,6 +168,7 @@ simulated function PlayDestroyed()
     if(RepairableActorMesh != none)
     {
         RepairableActorMesh.SetStaticMesh(BrokenMesh);
+        bForceNetUpdate = true;
     }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -180,6 +181,7 @@ simulated function PlayDestroyed()
             BrokenEmitter = WorldInfo.MyEmitterPool.SpawnEmitter(BrokenEmitterTemplate.ParticleTemplate, Location + BrokenEmitterTemplate.RelativeOffset, BrokenEmitterTemplate.RelativeRotation);
         }
     }
+    OnKismetEvent(0);
 }
 
 simulated function CompleteRepair()
@@ -195,6 +197,7 @@ simulated function CompleteRepair()
         WorldInfo.MyEmitterPool.SpawnEmitter(RepairFXTemplate.ParticleTemplate, Location + RepairFXTemplate.RelativeOffset);
     }
     OnRepairCompelete(self);
+    OnKismetEvent(1);
 }
 
 simulated function Reset()
@@ -275,6 +278,29 @@ simulated function OnToggleHidden(SeqAct_ToggleHidden Action)
     }
 }
 
+simulated function OnKismetEvent(int EventType)
+{
+    local int I;
+    local array<int> OutputLinksToActivate;
+    local KFSeqEvent_RepairableActor ProgressEvent;
+
+    OutputLinksToActivate.AddItem(EventType;
+    I = 0;
+    J0x21:
+
+    if(I < GeneratedEvents.Length)
+    {
+        ProgressEvent = KFSeqEvent_RepairableActor(GeneratedEvents[I]);
+        if(ProgressEvent != none)
+        {
+            ProgressEvent.Reset();
+            ProgressEvent.CheckActivate(self, self,, OutputLinksToActivate);
+        }
+        ++ I;
+        goto J0x21;
+    }
+}
+
 defaultproperties
 {
     begin object name=StaticMeshComponent0 class=StaticMeshComponent
@@ -317,4 +343,5 @@ defaultproperties
     bEdShouldSnap=true
     bIgnoreNetRelevancyCollision=true
     NetUpdateFrequency=0.1
+    SupportedEvents=/* Array type was not detected. */
 }

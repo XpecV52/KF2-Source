@@ -156,6 +156,7 @@ const STATID_ACHIEVE_MonsterBallCollectibles		= 4045;
 const STATID_ACHIEVE_MonsterBallSecretRoom			= 4046;
 const STATID_ACHIEVE_SantasWorkshopCollectibles		= 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles		= 4048;
+const STATID_ACHIEVE_SpillwayCollectibles			= 4049;
  
 #linenumber 14;
 

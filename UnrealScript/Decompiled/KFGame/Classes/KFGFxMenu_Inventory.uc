@@ -236,7 +236,7 @@ function InitInventory()
         if((ItemIndex != -1) && OnlineSub.CurrentInventory[I].Definition != 0)
         {
             TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
-            if(((CurrentInventoryFilter == 7) || (CurrentInventoryFilter == TempItemDetailsHolder.Type) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
+            if((((CurrentInventoryFilter == 7) || CurrentInventoryFilter == TempItemDetailsHolder.Type) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
             {
                 ItemObject = Outer.CreateObject("Object");
                 HelperIndex = ActiveItems.Find('ItemDefinition', OnlineSub.CurrentInventory[I].Definition;
@@ -426,7 +426,7 @@ function bool IsItemExchangeable(out ItemProperties ItemDetailsHolder, const out
 
     if(I < ExchangeRules.Length)
     {
-        if(ExchangeRules[I].Type != 4)
+        if(OnlineSub.ExchangeReady(ExchangeRules[I]))
         {
             return true;
         }

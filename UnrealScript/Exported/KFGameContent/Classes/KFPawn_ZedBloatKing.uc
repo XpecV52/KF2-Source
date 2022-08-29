@@ -197,7 +197,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 	}
 
 	PlayBossMusic();
-	ServerDoSpecialMove(SM_BossTheatrics);
+	class'KFPawn_MonsterBoss'.static.PlayBossEntranceTheatrics(self);
 	SetFartAttackTimer();
 
 	GorgeTrigger = Spawn(class'KFTrigger_BloatKingGorge', self, , Location, Rotation);

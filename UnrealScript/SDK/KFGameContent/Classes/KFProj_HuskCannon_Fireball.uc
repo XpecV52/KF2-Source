@@ -356,6 +356,7 @@ defaultproperties
 		DamageRadius=100 //450 //550
 		DamageFalloffExponent=1.f //1.0
 		DamageDelay=0.f
+		bUseOverlapCheck = true
 
 		// Damage Effects
 		MyDamageType=class'KFDT_Explosive_HuskCannon'

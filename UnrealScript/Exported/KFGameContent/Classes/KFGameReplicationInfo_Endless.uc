@@ -70,6 +70,11 @@ simulated function WaveStarted()
 	class'KFTraderDialogManager'.static.BroadcastEndlessStartWaveDialog(WaveNum, ModeIndex, WorldInfo);
 }
 
+simulated function bool ShouldSetBossCamOnBossDeath()
+{
+	return false;
+}
+
 defaultproperties
 {
    CurrentWeeklyMode=-1

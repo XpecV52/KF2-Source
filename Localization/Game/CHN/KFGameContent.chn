@@ -479,7 +479,7 @@ SecondaryAmmo="M203 手榴弹"
 [KFWeap_SMG_MP5RAS]
 ItemName="MP5RAS 冲锋枪"
 ItemCategory="冲锋枪"
-ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•全球使用最广的冲锋枪之一的最新版本。"
+ItemDescription="•可选择全自动以及3发爆炸开火射击模式。\n•备用射击可以切换射击模式。\n•全球使用最广的一种冲锋枪的全新版本。"
 
 [KFWeap_SMG_P90]
 ItemName="P90 冲锋枪"
@@ -536,6 +536,16 @@ ItemDescription="•主要攻击只射击一发。\n•辅助攻击可以一次�
 ItemName="静电打击者"
 ItemCategory="近战"
 ItemDescription="•主要攻击 - 用于快速钝击，按住可以进行连击。\n•次要攻击 - 重型带电钝击。它是真的令人震惊！\n•想一拳揍在丧尸脸上？选它就对了！"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="千瓦杀手"
+ItemCategory="突击步枪"
+ItemDescription="•拥有全自动与过充能开火模式可供选择。\n•按备用射击切换开火模式。\n•过充能模式 - 按下开火键即可持续充能，松开开火键即可发射。"
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="赫利俄斯步枪"
+ItemCategory="突击步枪"
+ItemDescription="•拥有全自动与 3 发爆发开火模式可供选择。\n•按备用射击切换开火模式。\n•愿火焰之力与你同在。"
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
@@ -710,6 +720,7 @@ GameName="每周爆发"
 
 [KFGameInfo_Endless]
 GameName="无尽"
+
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="没有剩余的治愈"

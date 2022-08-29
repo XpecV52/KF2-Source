@@ -61,3 +61,5 @@ simulated function OnMapCollectibleFound(PlayerReplicationInfo FinderPRI, int Co
 simulated event OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLength, bool bCoop);
 
 simulated function OnBossDied();
+
+simulated event OnWaveCompleted(class<GameInfo> GameClass, int Difficulty, int WaveNum);

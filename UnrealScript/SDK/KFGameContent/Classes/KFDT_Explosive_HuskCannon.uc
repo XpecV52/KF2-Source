@@ -45,7 +45,7 @@ defaultproperties
 	// unreal physics momentum
     bExtraMomentumZ=false
 
-	BurnPower = 25.0// 5
+	BurnPower = 50.0//5 //25
 
 	//Perk
 	ModifierPerkList(0) = class'KFPerk_Firebug'

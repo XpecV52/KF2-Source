@@ -93,7 +93,7 @@ static simulated event EFilterTypeUI GetTraderFilter()
 defaultproperties
 {
 	// Healing charge
-    HealAmount=15 //30
+    HealAmount=20 //30 //15
 	HealFullRechargeSeconds=12
 
 	// Inventory
@@ -129,7 +129,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(DEFAULT_FIREMODE)=20.0
+	InstantHitDamage(DEFAULT_FIREMODE)=25.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Shotgun_Medic'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	FireInterval(DEFAULT_FIREMODE)=0.2 //0.2  300 RPM  
@@ -160,7 +160,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=10
-	SpareAmmoCapacity[0]=80
+	SpareAmmoCapacity[0]=90
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=true

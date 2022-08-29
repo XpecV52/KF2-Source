@@ -394,7 +394,7 @@ defaultproperties
    MuzzleFlashEffectL2=ParticleSystem'WEP_HuskCannon_EMIT.FX_Huskcannon_MuzzleFlash_L2_1P'
    MuzzleFlashEffectL3=ParticleSystem'WEP_HuskCannon_EMIT.FX_Huskcannon_MuzzleFlash_L3_1P'
    FullyChargedSound=(DefaultCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_Charged_3P',FirstPersonCue=AkEvent'WW_WEP_Husk_Cannon.Play_WEP_Husk_Cannon_Charged')
-   SelfDamageReductionValue=0.050000
+   SelfDamageReductionValue=0.100000
    FullChargedTimerInterval=2.000000
    PackageKey="HuskCannon"
    FirstPersonMeshName="WEP_1P_HuskCannon_MESH.Wep_1stP_HuskCannon_Rig"

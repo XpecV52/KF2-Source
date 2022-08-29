@@ -13,6 +13,5 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_Edged_AbominationAxe"
     ImagePath="WEP_UI_KrampusAxe_TEX.UI_WeaponSelect_KrampusAxe"
     BuyPrice=2000
-    SharedUnlockId=ESharedContentUnlock.SCU_AbominationAxe
     EffectiveRange=5
 }

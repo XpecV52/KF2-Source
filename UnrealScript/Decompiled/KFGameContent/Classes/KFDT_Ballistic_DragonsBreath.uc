@@ -55,7 +55,7 @@ defaultproperties
     StumblePower=21
     LegStumblePower=21
     GunHitPower=12
-    BurnPower=25
+    BurnPower=20
     ModifierPerkList=/* Array type was not detected. */
     CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
     BloodSpread=0.4

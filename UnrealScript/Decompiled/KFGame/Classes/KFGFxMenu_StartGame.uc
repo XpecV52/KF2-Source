@@ -70,6 +70,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
+const KFID_ToggleToRun = 172;
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -186,7 +187,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
     switch(SpecialEventID)
     {
         case 1:
-            return Class'KFGFxEndlessDARObjectivesContainer';
+            return Class'KFGFxSpring2019ObjectivesContainer';
         case 2:
             return Class'KFGFxSummerSideShowObjectivesContainer';
         case 3:
@@ -1762,5 +1763,6 @@ defaultproperties
     StockMaps(22)="kf-tragickingdom"
     StockMaps(23)="kf-shoppingspree"
     StockMaps(24)="kf-santasworkshop"
+    StockMaps(25)="kf-spillway"
     SubWidgetBindings=/* Array type was not detected. */
 }

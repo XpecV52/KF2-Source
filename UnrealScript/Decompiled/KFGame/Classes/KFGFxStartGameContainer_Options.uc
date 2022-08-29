@@ -70,6 +70,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
+const KFID_ToggleToRun = 172;
 
 enum EServerPrivacy
 {
@@ -579,10 +580,11 @@ event int GetAdjustedGameModeIndex(int ModeIndex)
         {
             case 0:
             case 1:
-            case 3:
                 return ModeIndex;
             case 2:
                 return 3;
+            case 3:
+                return 4;
             default:
                 return Class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
                 break;

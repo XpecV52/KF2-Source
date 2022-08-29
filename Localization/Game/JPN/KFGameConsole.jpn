@@ -26,6 +26,7 @@ KF-Airship="飛行船をプレイ中"
 KF-MonsterBall="Monster Ballプレイ中"
 KF-ShoppingSpree="ショッピング三昧プレイ中"
 KF-SantasWorkshop="サンタの工房をプレイ中"
+KF-Spillway="Spillwayをプレイ中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

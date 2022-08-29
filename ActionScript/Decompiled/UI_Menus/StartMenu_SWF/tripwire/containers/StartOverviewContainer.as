@@ -49,17 +49,7 @@ package tripwire.containers
         public function StartOverviewContainer()
         {
             super();
-            if(bManagerConsoleBuild)
-            {
-                this.sharedContentButton.visible = false;
-            }
-            else
-            {
-                this.sharedContentButton.focusable = true;
-                this.sharedContentListContainer.sharedContentConfirmButton.focusable = true;
-                this.sharedContentButton.tabIndex = 1;
-                this.sharedContentListContainer.sharedContentConfirmButton.tabIndex = 2;
-            }
+            this.sharedContentButton.tabIndex = 1;
             sectionHeader = this.overviewHeader;
         }
         
@@ -67,20 +57,22 @@ package tripwire.containers
         {
             defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 7 : 6;
             super.selectContainer();
-            if(this.sharedContentButton.visible)
-            {
-                currentElement = this.sharedContentButton;
-                if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
-                {
-                    this.sharedContentButton.focused = 1;
-                }
-            }
-            else if(this.serverWelcomeScreen.visible)
+            trace("StartOverviewContainer::selectContainer");
+            if(this.serverWelcomeScreen.visible)
             {
                 currentElement = this.serverWelcomeScreen.confirmButton;
                 if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                 {
                     this.serverWelcomeScreen.confirmButton.focused = 1;
+                }
+                this.sharedContentButton.tabEnabled = false;
+            }
+            else if(this.sharedContentButton.visible)
+            {
+                currentElement = this.sharedContentButton;
+                if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+                {
+                    this.sharedContentButton.focused = 1;
                 }
             }
             if(currentElement)
@@ -155,6 +147,7 @@ package tripwire.containers
             {
                 FocusHandler.getInstance().setFocus(this.sharedContentButton);
             }
+            this.sharedContentButton.tabEnabled = true;
         }
         
         public function hideSharedContentList(param1:ButtonEvent = null) : void
@@ -177,6 +170,11 @@ package tripwire.containers
             {
                 FocusHandler.getInstance().setFocus(this.sharedContentListContainer.sharedContentConfirmButton);
             }
+        }
+        
+        public function GetPopUpVisible() : Boolean
+        {
+            return this.serverWelcomeScreen.visible || this.sharedContentListContainer.visible;
         }
         
         public function set sharedContent(param1:Array) : void

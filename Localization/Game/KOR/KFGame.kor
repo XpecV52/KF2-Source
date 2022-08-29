@@ -140,7 +140,7 @@ EarnXPString="XP 획득:"
 CompleteMapString="대전 완료 맵:"
 KillZedsString="제드 처치:"
 KillBossString="보스 처치:"
-KillBossDescriptionString=""
+KillBossDescriptionString="서바이벌 또는 주간"
 VersusKillsString="킬 VS 플레이어:"
 DealVersusDamageString="데미지 VS 플레이어:"
 VersusCompletionString="대전 완료:"
@@ -1245,6 +1245,7 @@ AutoTurnOffString="클롯 잡기 자동 켜짐 방지"
 ReduceHighPitchNoiseString="고음역 소음 감소"
 DisableAutoUpgradeString="자동 거래 비활성화"
 HideRemodeHeadshotEffectsString="원격 헤드샷 이펙트 비활성화"
+ToggleToRunString="토글하여 스프린트"
 
 EnableMixerString="토글 Mixer 상호작용"
 DisableMixerString="Mixer 비활성화"
@@ -1840,7 +1841,7 @@ SirenResistance="음파 저항 탄환"
 SirenResistanceDescription="폭발물이 Siren의 비명에 면역력을 갖고 항상 폭발"
 
 AreaOfEffect="산탄"
-AreaOfEffectDescription="폭발물 병과 무기의 효과 영역 50% 증가 및 데미지 30% 감소"
+AreaOfEffectDescription="무기 폭발 병과의 범위가 50% 증가함"
 
 CriticalHit="장갑 관통 탄환"
 CriticalHitDescription="병과 무기를 이용한 중요 부위 직접 히트 데미지 50% 증가 "
@@ -1934,7 +1935,7 @@ GroundFire="지상포"
 GroundFireDescription="지상포의 데미지 대규모 증가 및 제드 이동 속도 20% 감소"
 
 ZedShrapnel="제드 산탄"
-ZedShrapnelDescription="플레이어가 처치한 제드가 20%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 쓰러뜨림"
+ZedShrapnelDescription="플레이어가 처치한 Zed가 30%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 기절시킴"
 
 Napalm="네이팜"
 NapalmDescription="불에 타고 있는 제드가 다른 제드와 접촉하여 불을 옮기고 발화 효과가 150% 오래 지속됨"
@@ -2163,10 +2164,10 @@ TacticalReload="전술 재장전"
 TacticalReloadDescription="코만도, 건슬링거, SWAT 무기의 재장전 속도 향상"
 
 FieldMedic="메딕 훈련"
-FieldMedicDescription="치료 능력 20% 향상 및 주사기와 치료 다트의 쿨다운 25% 감소"
+FieldMedicDescription="치료 능력 30% 향상 및 주사기와 치료 다트의 쿨다운 50% 감소"
 
 MeleeExpert="백병전 전문가"
-MeleeExpertDescription="백병전 공격 속도 15% 향상, 데미지 10% 증가, 백병전 무기 이용 시 이동 속도 25% 향상"
+MeleeExpertDescription="백병전 공격 속도 20% 향상, 데미지 50% 증가, 백병전 무기 이용 시 이동 속도 25% 향상"
 
 AmmoVest="방탄조끼"
 AmmoVestDescription="모든 무기 및 탄약 15% 추가 운반 및 수류탄은 치료 수류탄으로 변환"
@@ -2175,10 +2176,10 @@ BigPockets="무기 하니스"
 BigPocketsDescription="운반 용량 5 증가 및 수류탄은 화염병으로 변환"
 
 ZedShrapnel="제드 자연 폭발"
-ZedShrapnelDescription="플레이어가 처치한 제드가 20%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 쓰러뜨림"
+ZedShrapnelDescription="플레이어가 불로 처치한 Zed가 30%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 기절시킴"
 
 MakeThingsGoBoom="온 세상에 폭발을"
-MakeThingsGoBoomDescription="모든 폭발물의 영향 영역 25% 증가"
+MakeThingsGoBoomDescription="모든 폭발물의 영향 영역 50% 증가"
 
 Madman="제드 타임 - 미치광이"
 MadmanDescription="제드 타임 동안 모든 무기가 3배 빠르게 발사"
@@ -2345,9 +2346,13 @@ DoschHoldDesc="표시된 구역에 제드가 들어가지 못하게 하십시오
 DescriptionDoshHold="표시된 구역에 제드가 들어가지 못하게 하십시오"
 RepairObjective="용접과 수리"
 UseWelderToRepair="용접기로 물건을 수리하세요."
+RepairObjectiveRequired="수리 목표:"
 EscortPawnsObjective="에스코트"
 EscortPawnsDescription="Zed로부터 대상을 보호하십시오."
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="수색 섬멸"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="제어와 통제"
 DescriptionActivateTrigger="오브젝트 컨트롤을 활성화하세요."
 RequiredActivateTrigger="활성화 필요:"
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="끝없는 드론",DescriptionStri
 SpecialEventObjectiveInfoList[3]=(TitleString="끝없는 워머신",DescriptionString="끝없는 웨이브 20 완료",TierEventRewardName="블러디 D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="끝없는 옵티머스 D.A.R.",DescriptionString="끝없는 웨이브 25",TierEventRewardName="골드 D.A.R. 완료");
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="보스 러쉬",DescriptionString="아무 지도에서나 보스 15마리를 처치하십시오")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 배수로",DescriptionString="배수로에서 주간 게임 모드를 완료하십시오")
+SpecialEventObjectiveInfoList[2]=(TitleString="청소부",DescriptionString="아무 지도에서 Zed 1500마리를 처치하십시오")
+SpecialEventObjectiveInfoList[3]=(TitleString="끝없는 배수로",DescriptionString="배수로에서 끝없는 도전 어려움 또는 그 이상 난이도에서 15 웨이브를 완료하십시오")
+SpecialEventObjectiveInfoList[4]=(TitleString="피의 배수로",DescriptionString="배수로에서 서바이벌 어려움 또는 그 이상 난이도에서 아무 보스 해치우기")
+
+AllCompleteRewardDescriptionString="남성 및 여성 사이버펑크 의상"
+
+ChanceDropDescriptionStrings[0]="상품권"
+ChanceDropDescriptionStrings[1]="골드 티켓"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3076,6 +3093,7 @@ DisplayName_KOR="산타의 작업장 "
 DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
+
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="바이오틱스 연구소"
@@ -3160,6 +3178,9 @@ DisplayName="연속 쇼핑"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="산타의 작업장 "
+
+[KF-Spillway KFMapSummary]
+DisplayName="배수로"
 
 [KFMapInfo]
 ; defaults

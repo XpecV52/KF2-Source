@@ -776,4 +776,6 @@ defaultproperties
     ScreenUIClass=class'KFGFxWorld_WelderScreen'
 
 	AssociatedPerkClasses(0)=none
+
+	bStorePreviouslyEquipped=false
 }

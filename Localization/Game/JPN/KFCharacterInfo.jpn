@@ -39,6 +39,7 @@ BodyMesh5="防護"
 BodyMesh6="コマンドーチキン"
 BodyMesh7="クリスマスパジャマファッション"
 BodyMesh8="Vaultパジャマファッション"
+BodyMesh9="サイバーパンク"
 HeadMesh0="ガスマスク"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -111,6 +112,15 @@ BodySkin6="赤い格子柄"
 
 [CHR_MrsFoster_archetype.BodyMesh8]
 BodySkin0="Vault模様"
+
+[CHR_MrsFoster_archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="ホワイト"
@@ -192,6 +202,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="髭パワー！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -270,6 +281,14 @@ BodySkin2="ホワイト"
 BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
+
+[CHR_Jagerhorn_Archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="スウェーデンのブロンド"
@@ -366,6 +385,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="スカリーマスク"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -444,6 +464,14 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[CHR_DJSkully_Archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="ブラッケストブラック"
 HeadSkin1="エクストラレッド"
@@ -486,6 +514,7 @@ BodyMesh6="コマンドーチキン"
 BodyMesh7="クリスマスパジャマファッション"
 BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="スチームパンク"
+BodyMesh10="サイバーパンク"
 HeadMesh0="髪"
 
 [chr_briar_archetype.BodyMesh0]
@@ -570,6 +599,14 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[chr_briar_archetype.BodyMesh10]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="オリジナル"
 HeadSkin1="ハイライト"
@@ -606,6 +643,7 @@ BodyMesh6="コマンドーチキン"
 BodyMesh7="クリスマスパジャマファッション"
 BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="スチームパンク"
+BodyMesh10="サイバーパンク"
 HeadMesh0="ガスマスク"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -694,6 +732,14 @@ BodySkin2="ホワイト"
 BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
+
+[CHR_MrFoster_archetype.BodyMesh10]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="オリジナルホワイト"
@@ -851,6 +897,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="顔"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -927,6 +974,14 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[CHR_Coleman_archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="ドノヴァン"
 HeadSkin1="タトゥー"
@@ -962,6 +1017,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="髪"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1039,6 +1095,14 @@ BodySkin2="ホワイト"
 BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
+
+[CHR_Alberts_archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="グレー"
@@ -1935,6 +1999,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="顔"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2022,6 +2087,14 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[CHR_Masterson_archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 [CHR_Tanaka_Archetype]
 CharacterName="ハヤト・タナカ"
 Description="タナカは、強い希死念慮を抱えた、葛藤する一人の人間だ。沖縄で生まれ、軍隊のアメリカ人が周りにいる中、育てられた。家族と共に本州に引っ越し、アメリカナイズされたタナカは周囲に馴染めず、演技のクラスに参加した。大学卒業後LAに引っ越し、いくつかの三流映画でありふれた端役をやり、その後ヨーロッパに渡ってもっと「本物の」仕事を探した。そこで得たものは、フランスのギャングスター映画での悪役と、いくつかの刺青だけだった。今、黙示録の最中において、自身の現実と、過去に演じた役とを混同しているようだ。これには、ヤクザに関する幻、悪魔、そしてハリウッドによる武士道についての見解が関わっているようだ。"
@@ -2035,6 +2108,7 @@ BodyMesh6="コマンドーチキン"
 BodyMesh7="クリスマスパジャマファッション"
 BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="スチームパンク"
+BodyMesh10="サイバーパンク"
 HeadMesh0="髪"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2129,6 +2203,14 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[CHR_Tanaka_Archetype.BodyMesh10]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="ヘルメット"
 AttachmentSkin0="ライジングサン"
@@ -2168,6 +2250,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="モヒカン"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2255,6 +2338,14 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[CHR_Ana_Archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3Dメガネ"
 AttachmentSkin0="アナグリフ3D"
@@ -2280,6 +2371,7 @@ BodyMesh6="コマンドーチキン"
 BodyMesh7="クリスマスパジャマファッション"
 BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="スチームパンク"
+BodyMesh10="サイバーパンク"
 HeadMesh0="髪"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2364,6 +2456,14 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[chr_mark_archetype.BodyMesh10]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
 HeadSkin1="クソ5時"
@@ -2386,6 +2486,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="顔"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2465,6 +2566,14 @@ BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
 
+[CHR_alan_archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
 HeadSkin1="ジンジャー！本当に？"
@@ -2494,6 +2603,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="髪"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2569,6 +2679,14 @@ BodySkin2="ホワイト"
 BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
+
+[CHR_strasser_archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="ダークスチール"
@@ -2738,6 +2856,7 @@ BodyMesh5="コマンドーチキン"
 BodyMesh6="クリスマスパジャマファッション"
 BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
+BodyMesh9="サイバーパンク"
 HeadMesh0="デフォルト頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2817,6 +2936,14 @@ BodySkin2="ホワイト"
 BodySkin3="パープル"
 BodySkin4="レッド"
 BodySkin5="イエロー"
+
+[chr_rockabilly_archetype.BodyMesh9]
+BodySkin0="ティール"
+BodySkin1="ブラック"
+BodySkin2="グリーン"
+BodySkin3="ライム"
+BodySkin4="レッド"
+BodySkin5="ホワイト"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="ブラック"
@@ -4564,3 +4691,162 @@ AttachmentSkin1="希少"
 AttachmentSkin2="グリーン"
 AttachmentSkin3="パープル"
 AttachmentSkin4="レッド"
+
+[Cosmetic_ArmorHood_ARCH]
+Attachment="アーマーフード"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="レッド"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="希少"
+
+[Cosmetic_FacelessMaskSingle_ARCH]
+Attachment="顔なしマスクシングル"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="レッド"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="ホワイト"
+AttachmentSkin5="希少"
+
+[Cosmetic_ScyfyHood_ARCH]
+Attachment="サイファイフード"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="希少"
+
+[Cosmetic_NoExpressionMask_ARCH]
+Attachment="無表情マスク"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="レッド"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="ホワイト"
+AttachmentSkin5="希少"
+
+[Cosmetic_AnubisMask_ARCH]
+Attachment="アヌビス"
+AttachmentSkin0="レッド"
+AttachmentSkin1="イエロー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="ブルー"
+AttachmentSkin4="希少"
+
+[Cosmetic_BastMask_ARCH]
+Attachment="バスト"
+AttachmentSkin0="イエロー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="ブルー"
+AttachmentSkin4="希少"
+
+[Cosmetic_RaMask_ARCH]
+Attachment="ラー"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="イエロー"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="レッド"
+AttachmentSkin4="希少"
+
+[Cosmetic_SobekMask_ARCH]
+Attachment="ソベック"
+AttachmentSkin0="グリーン"
+AttachmentSkin1="イエロー"
+AttachmentSkin2="ブルー"
+AttachmentSkin3="レッド"
+AttachmentSkin4="希少"
+
+[Cosmetic_CyberPunk_SkullHelm_ARCH]
+Attachment="スカルヘルム"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_EyeAndFacemask_ARCH]
+Attachment="アイ&フェイスマスク"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_ComlinkassistV2_ARCH]
+Attachment="デジタル アイ ディスプレイ A"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="レッド"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_Comlinkassist_ARCH]
+Attachment="デジタル アイ ディスプレイ B"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="レッド"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_TrinityPack_ARCH]
+Attachment="トリニティーリュック"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_BoostInjector_ARCH]
+Attachment="ブーストインジェクター"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_CyberPunk_HoloPack_ARCH]
+Attachment="ホロリュック"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="レッド"
+AttachmentSkin2="希少"
+
+[Cosmetic_CyberPunk_PsyClops_ARCH]
+Attachment="サイクロップス"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_TrinityMask_ARCH]
+Attachment="トリニティーマスク"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_TrinityArmband_ARCH]
+Attachment="トリニティーアームバンド"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_HoloArmbandA_ARCH]
+Attachment="ホロアームバンド"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="レッド"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
+Attachment="ホロアームバンド C"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="レッド"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_TrinityZedBackpack_ARCH]
+Attachment="トリニティーZed リュック"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_TechnomancerGoggles_ARCH]
+Attachment="テクノマンサーゴーグル"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="ジェットブラック"
+AttachmentSkin2="希少"
+
+[Cosmetic_Cyberpunk_Helmet_ARCH]
+Attachment="サイバーパンクヘルメット"
+AttachmentSkin0="ティール"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="グリーン"
+AttachmentSkin3="ライム"
+AttachmentSkin4="レッド"
+AttachmentSkin5="ホワイト"

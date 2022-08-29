@@ -24,9 +24,13 @@ var transient KFTrigger_NotifyOwner ProximityTrigger;
 var repnotify byte CurrentState;
 var byte PreviousState;
 var string IconPath;
+var KFDoorActor BlockingDoor;
+var float SpeedScalarForObstacles;
+var array<ExtraVFXInfo> ScriptedStateVFX;
 var delegate<Delegate_OnReachedRouteMarker> __Delegate_OnReachedRouteMarker__Delegate;
 var delegate<Delegate_OnEndedRoute> __Delegate_OnEndedRoute__Delegate;
 var delegate<Delegate_OnTakeDamage> __Delegate_OnTakeDamage__Delegate;
+var delegate<Delegate_OnHealDamage> __Delegate_OnHealDamage__Delegate;
 var delegate<Delegate_OnChangeState> __Delegate_OnChangeState__Delegate;
 
 replication
@@ -37,11 +41,13 @@ replication
         bActive;
 }
 
-delegate Delegate_OnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx);
+delegate Delegate_OnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx, float DistSinceLastMarker);
 
 delegate Delegate_OnEndedRoute(bool bSuccess);
 
-delegate Delegate_OnTakeDamage();
+delegate Delegate_OnTakeDamage(int Damage);
+
+delegate Delegate_OnHealDamage(int HealAmount);
 
 delegate Delegate_OnChangeState(int CurrState, int PrevState);
 
@@ -150,7 +156,7 @@ simulated function InitializeWeldableComponent()
         WeldCompRadius = WeldableComponent.GetCollisionCylinderRadius();
         WeldCompHeight = WeldableComponent.GetCollisionCylinderHeight();
         WeldableComponent.SetCollisionCylinderSize(WeldCompRadius * ScriptedCharArch.PawnWeldableComponentScale, WeldCompHeight);
-        WeldableComponent.SetCollision(false, false);
+        WeldableComponent.SetCollision(bActive, false);
     }
 }
 
@@ -178,14 +184,19 @@ simulated function InitializeProximityTrigger()
 
 simulated function OnWelded(int Amount, KFPawn Welder)
 {
-    local float WeldAmountPct;
+    local float WeldAmountPct, HealAmount;
 
     if((Role == ROLE_Authority) && WeldableComponent != none)
     {
         WeldAmountPct = float(Amount) / float(WeldableComponent.MaxWeldIntegrity);
-        Health += int(WeldAmountPct * float(HealthMax));
+        HealAmount = WeldAmountPct * float(HealthMax);
+        Health += int(HealAmount);
         UpdateWeldIntegrity();
         UpdatePawnState(1);
+        if(__Delegate_OnHealDamage__Delegate != none)
+        {
+            Delegate_OnHealDamage(int(HealAmount));
+        }
     }
 }
 
@@ -270,7 +281,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         UpdatePawnState(-1);
         if(__Delegate_OnTakeDamage__Delegate != none)
         {
-            Delegate_OnTakeDamage();
+            Delegate_OnTakeDamage(actualDamage);
         }
     }
 }
@@ -347,6 +358,7 @@ simulated function bool CanBeHealed()
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bRepairArmor, optional bool bMessageHealer)
 {
     local bool Result;
+    local int PrevHealth;
 
     bRepairArmor = true;
     bMessageHealer = true;
@@ -354,9 +366,14 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
     {
         return false;
     }
+    PrevHealth = Health;
     Result = super.HealDamage(Amount, Healer, DamageType, bRepairArmor, bMessageHealer);
     UpdateWeldIntegrity();
     UpdatePawnState(1);
+    if(__Delegate_OnHealDamage__Delegate != none)
+    {
+        Delegate_OnHealDamage(Health - PrevHealth);
+    }
     return Result;
 }
 
@@ -448,6 +465,7 @@ function UpdatePawnSpeed()
     {
         GroundSpeed *= ScriptedCharArch.SpeedScalarForPlayerProximity;
     }
+    GroundSpeed *= SpeedScalarForObstacles;
 }
 
 simulated function bool IsInCriticalCondition()
@@ -499,12 +517,12 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
             FX.SFXStartEvent = ScriptedCharArch.States[I].EnterFX[J].SFX;
             FX.SocketName = ScriptedCharArch.States[I].EnterFX[J].SocketName;
             FX.Label = name("EnterState" $ string(I));
-            CharacterArch.ExtraVFX.AddItem(FX;
+            ScriptedStateVFX.AddItem(FX;
             ++ J;
             goto J0xAD;
         }
         J = 0;
-        J0x2D2:
+        J0x2BD:
 
         if(J < ScriptedCharArch.States[I].ExitFX.Length)
         {
@@ -512,9 +530,9 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
             FX.SFXStartEvent = ScriptedCharArch.States[I].ExitFX[J].SFX;
             FX.SocketName = ScriptedCharArch.States[I].ExitFX[J].SocketName;
             FX.Label = name("ExitState" $ string(I));
-            CharacterArch.ExtraVFX.AddItem(FX;
+            ScriptedStateVFX.AddItem(FX;
             ++ J;
-            goto J0x2D2;
+            goto J0x2BD;
         }
         ++ I;
         goto J0x75;
@@ -557,11 +575,11 @@ function StartRoute(SplineActor SplineStart, SplineActor SplineEnd, int SegmentG
     Class'AICommand_ScriptedPawn_TraverseSpline'.static.TraverseSpline(MyKFAIC, SplineStart, SplineEnd, SegmentGranularity);
 }
 
-function ReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx)
+function ReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx, float DistSinceLastMarker)
 {
     if(__Delegate_OnReachedRouteMarker__Delegate != none)
     {
-        Delegate_OnReachedRouteMarker(MarkerIdx, Marker, SubIdx);
+        Delegate_OnReachedRouteMarker(MarkerIdx, Marker, SubIdx, DistSinceLastMarker);
     }
 }
 
@@ -626,12 +644,23 @@ function Start()
 
 function Finish(bool bHide)
 {
-    if(bHide)
+    if(ScriptedCharArch.bHideOnFinish)
     {
-        SetPhysics(0);
-        SetHidden(true);
+        if(bHide)
+        {
+            SetPhysics(0);
+            SetHidden(true);
+        }
+        SetCollision(false, false);        
     }
-    SetCollision(false, false);
+    else
+    {
+        if(bHide)
+        {
+            GroundSpeed = 0;
+            Velocity = vect(0, 0, 0);
+        }
+    }
     bPlayedDeath = true;
     SetCanBeTargeted(false);
     if(WeldableComponent != none)
@@ -817,12 +846,73 @@ simulated function string GetIconPath()
     return IconPath;
 }
 
+simulated function StartDoorWait(KFDoorActor door)
+{
+    BlockingDoor = door;
+    SpeedScalarForObstacles = 0;
+    UpdatePawnSpeed();
+    SetTimer(0.5, true, 'Timer_DoorWait', self);
+}
+
+simulated function PlayExtraVFX(name FXLabel)
+{
+    local int I;
+    local ExtraVFXAttachmentInfo VFXAttachment;
+    local bool bActivatedExistingSystem;
+
+    if((WorldInfo.NetMode != NM_DedicatedServer) && FXLabel != 'None')
+    {
+        I = 0;
+        J0x4D:
+
+        if(I < ExtraVFXAttachments.Length)
+        {
+            if(ExtraVFXAttachments[I].Info.Label == FXLabel)
+            {
+                bActivatedExistingSystem = true;
+            }
+            ++ I;
+            goto J0x4D;
+        }
+        if(!bActivatedExistingSystem)
+        {
+            I = 0;
+            J0xE0:
+
+            if(I < ScriptedStateVFX.Length)
+            {
+                if(ScriptedStateVFX[I].Label == FXLabel)
+                {
+                    SpawnExtraVFX(ScriptedStateVFX[I], VFXAttachment);
+                    VFXAttachment.Info = ScriptedStateVFX[I];
+                    ExtraVFXAttachments.AddItem(VFXAttachment;
+                }
+                ++ I;
+                goto J0xE0;
+            }
+        }
+    }
+    super.PlayExtraVFX(FXLabel);
+}
+
+simulated function Timer_DoorWait()
+{
+    if((BlockingDoor == none) || BlockingDoor.bIsDoorOpen)
+    {
+        BlockingDoor = none;
+        SpeedScalarForObstacles = 1;
+        UpdatePawnSpeed();
+        ClearTimer('Timer_DoorWait', self);
+    }
+}
+
 defaultproperties
 {
     ScriptedPawnString="V.I.P."
     CurrentState=255
     PreviousState=255
     IconPath="ZED_Patriarch_UI.ZED-VS_Icon_Boss"
+    SpeedScalarForObstacles=1
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

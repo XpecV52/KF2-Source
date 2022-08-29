@@ -42,19 +42,19 @@ function TickHud(float DeltaTime)
     if(KFPC.bHideBossHealthBar != bLastHideValue)
     {
         bLastHideValue = KFPC.bHideBossHealthBar;
-        if(KFPC.bHideBossHealthBar)
+        if(KFPC.bHideBossHealthBar && EscortPawn == none)
         {
             SetVisible(false);            
         }
         else
         {
-            if(NotEqual_InterfaceInterface(BossPawn, (none)))
+            if(NotEqual_InterfaceInterface(BossPawn, (none)) || EscortPawn != none)
             {
                 SetVisible(true);
             }
         }
     }
-    if(KFPC.bHideBossHealthBar)
+    if(KFPC.bHideBossHealthBar && EscortPawn == none)
     {
         return;
     }
@@ -85,10 +85,6 @@ function SetEscortPawn(KFPawn_Scripted NewPawn)
     EscortPawn = NewPawn;
     BossNameText = EscortPawn.GetLocalizedName();
     SetBossName(BossNameText);
-    if(KFPC.bHideBossHealthBar)
-    {
-        return;
-    }
     UpdateEscortPawnHealth();
     SetVisible(true);
     SetEscortIcon();
@@ -127,7 +123,7 @@ simulated function DeActivate()
 
 function OnNamePlateHidden()
 {
-    if(KFPC.bHideBossHealthBar)
+    if(KFPC.bHideBossHealthBar && EscortPawn == none)
     {
         return;
     }

@@ -12,7 +12,7 @@ class KFPawn_ZedHans_Versus extends KFPawn_ZedHans
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super(KFPawn_ZedHansBase).PossessedBy(C, bVehicleTransition);
-    ServerDoSpecialMove(37);
+    Class'KFPawn_MonsterBoss'.static.PlayBossEntranceTheatrics((self));
 }
 
 simulated function StartFire(byte FireModeNum)

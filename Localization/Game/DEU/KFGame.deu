@@ -140,7 +140,7 @@ EarnXPString="Erhalte EP:"
 CompleteMapString="Schließe ein Spiel ab in Karte:"
 KillZedsString="Töte Zeds:"
 KillBossString="Boss töten:"
-KillBossDescriptionString=""
+KillBossDescriptionString="In Überleben oder Wöchentlich"
 VersusKillsString="Töte Versus-Spieler als:"
 DealVersusDamageString="Füge Versus-Spielern Schaden zu als:"
 VersusCompletionString="Schließe ein Spiel ab als:"
@@ -1245,6 +1245,7 @@ AutoTurnOffString="Clot-Griff: Kein Autodreh"
 ReduceHighPitchNoiseString="Hohen Tonrausch reduzieren"
 DisableAutoUpgradeString="Auto-Handel deakt."
 HideRemodeHeadshotEffectsString="Fremdkopfschuss-Effekte deaktiv."
+ToggleToRunString="Schalten, um zu sprinten"
 
 EnableMixerString="Mixer-Interaktivität aktivieren/deaktivieren"
 DisableMixerString="Mixer deaktivieren"
@@ -1840,7 +1841,7 @@ SirenResistance="Schallresistente Geschosse"
 SirenResistanceDescription="Deine Sprengstoffe sind immun gegen den Schrei der Sirene und explodieren immer."
 
 AreaOfEffect="Splittergeschosse"
-AreaOfEffectDescription="Erhöhe den Wirkungsbereich explosiver Vorteils-Waffen um 50%, verringere jedoch den Schaden um 30%."
+AreaOfEffectDescription="Erhöhe den Wirkungsbereich der Vorteils-Waffen-Explosion um 50%."
 
 CriticalHit="Rüstungsdurchbohrende Geschosse"
 CriticalHitDescription="Erhöhe den Schaden direkter Treffer auf kritische Bereiche mit Vorteils-Waffen um 50%. "
@@ -1934,7 +1935,7 @@ GroundFire="Bodenfeuer"
 GroundFireDescription="Bodenfeuer verursachen massiv erhöhten Schaden und verringern die Bewegungsgeschwindigkeit der Zed um 20%."
 
 ZedShrapnel="Zed-Schrapnell"
-ZedShrapnelDescription="Von dir durch Feuer getötete Zeds haben eine Chance von 20% zu explodieren, Zeds in der Nähe Schaden zuzufügen und sie niederzuschlagen."
+ZedShrapnelDescription="Von dir durch Feuer getötete Zeds haben eine Chance von 30%, zu explodieren, Zeds in der Nähe Schaden zuzufügen und sie zu betäuben."
 
 Napalm="Napalm"
 NapalmDescription="Brennende Zeds, die mit anderen Zeds in Kontakt kommen, zünden diese an und der Brandeffekt hält 150% länger."
@@ -2163,10 +2164,10 @@ TacticalReload="Taktisches Nachladen"
 TacticalReloadDescription="Erhöhe die Nachladegeschwindigkeit mit Kommando-, Revolverhelden- und SWAT-Waffen."
 
 FieldMedic="Sanitäter-Ausbildung"
-FieldMedicDescription="Erhöhe die Wirksamkeit all deiner Heilungen um 20% und verringere die Abklingzeit deiner Spritze und heilenden Pfeile um 25%."
+FieldMedicDescription="Erhöhe die Wirksamkeit all deiner Heilungen um 30% und verringere die Abklingzeit deiner Spritze und heilenden Pfeile um 50%."
 
 MeleeExpert="Nahkampfexperte"
-MeleeExpertDescription="Erhöhe Nahkampf-Angriffsgeschwindigkeit um 15%, verursache 10% mehr Schaden und bewege dich 25% schneller, wenn du Nahkampfwaffen benutzt."
+MeleeExpertDescription="Erhöhe Nahkampf-Angriffsgeschwindigkeit um 20%, verursache 50% mehr Schaden und bewege dich 25% schneller, wenn du Nahkampfwaffen benutzt."
 
 AmmoVest="Munitionsweste"
 AmmoVestDescription="Trage bis zu 15% mehr Munition für alle Waffen und deine Granate wird zur Heilgranate."
@@ -2175,10 +2176,10 @@ BigPockets="Waffengurt"
 BigPocketsDescription="Erhöhe die Tragekapazität um 5 und deine Granate wird zum Molotowcocktail."
 
 ZedShrapnel="Spontane Zed-plosion"
-ZedShrapnelDescription="Von dir getötete Zeds haben eine Chance von 20% zu explodieren, Zeds in der Nähe Schaden zuzufügen und sie niederzuschlagen."
+ZedShrapnelDescription="Von dir getötete Zeds haben eine Chance von 30%, zu explodieren, Zeds in der Nähe Schaden zuzufügen und sie zu betäuben."
 
 MakeThingsGoBoom="Bringe Dinge zum Explodieren"
-MakeThingsGoBoomDescription="Erhöhe den Wirkungsbereich aller Sprengstoffe um 25%."
+MakeThingsGoBoomDescription="Erhöhe den Wirkungsbereich aller Sprengstoffe um 50%."
 
 Madman="ZED-ZEIT – Irrer"
 MadmanDescription="Während der Zed-Zeit schießen alle deine Waffen 3x schneller."
@@ -2345,9 +2346,13 @@ DoschHoldDesc="Halte die Zeds aus dem markierten Gebiet fern"
 DescriptionDoshHold="Halte die Zeds aus dem markierten Gebiet fern"
 RepairObjective="SCHWEIẞEN UND REPARIEREN"
 UseWelderToRepair="Schweißgerät verwenden, um die Ziele zu reparieren"
+RepairObjectiveRequired="Ziel(e), die repariert werden müssen:"
 EscortPawnsObjective="ESKORTIEREN"
 EscortPawnsDescription="Beschütze das Ziel vor den Zeds"
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="SUCHEN UND ZERSTÖREN"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="STEUERN UND BEDIENEN"
 DescriptionActivateTrigger="Zielsteuerung aktivieren"
 RequiredActivateTrigger="Benötigte Aktivierungen:"
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Endlos-Wache",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="Endlos-Kriegsmaschine",DescriptionString="Schließe Endlos-Welle 20 ab",TierEventRewardName="D.A.R. blutig");");
 SpecialEventObjectiveInfoList[4]=(TitleString="Endlos-Optimus-D.A.R.",DescriptionString="Schließe Endlos-Welle 25 ab",TierEventRewardName="D.A.R. Golden");
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="Ein zeitbegrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Bossansturm",DescriptionString="Töte 15 Bosse auf einer beliebigen Karte")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentlicher Überlauf",DescriptionString="Schaffe den wöchentlichen Überlauf")
+SpecialEventObjectiveInfoList[2]=(TitleString="Vernichter",DescriptionString="Töte 1.500 Zeds auf einer beliebigen Karte")
+SpecialEventObjectiveInfoList[3]=(TitleString="Endloser Überlauf",DescriptionString="Schließe Welle 15 von Überlauf bei Endlos auf mindestens Schwer ab")
+SpecialEventObjectiveInfoList[4]=(TitleString="Blut vergießen",DescriptionString="Besiege einen Boss von Überlauf bei Überleben auf mindestens Schwer")
+
+AllCompleteRewardDescriptionString="Cyberpunk-Outfits für Männer und Frauen"
+
+ChanceDropDescriptionStrings[0]="Gewinnschein"
+ChanceDropDescriptionStrings[1]="Goldschein"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3076,6 +3093,7 @@ DisplayName_KOR="산타의 작업장 "
 DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
+
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotika-Labor"
@@ -3160,6 +3178,9 @@ DisplayName="Kaufrausch"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="Santas Werkstatt"
+
+[KF-Spillway KFMapSummary]
+DisplayName="Überlauf"
 
 [KFMapInfo]
 ; defaults

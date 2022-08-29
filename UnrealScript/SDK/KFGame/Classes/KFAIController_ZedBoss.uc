@@ -119,7 +119,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
 
     // Play entrance animation
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if (KFGRI != none && KFGRI.IsBossWave())
+    if (KFGRI != none && KFGRI.IsBossWave() && KFGRI.ShouldSetBossCamOnBossSpawn())
     {
         class'AICommand_BossTheatrics'.static.DoTheatrics(self, THEATRIC_Entrance);
     }

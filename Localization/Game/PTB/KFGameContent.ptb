@@ -479,7 +479,7 @@ SecondaryAmmo="Granada M203"
 [KFWeap_SMG_MP5RAS]
 ItemName="SM MP5RAS"
 ItemCategory="Submetralhadora"
-ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•A versão mais recente é uma das submetralhadoras mais usadas no mundo todo."
+ItemDescription="•Escolha entre modo de tiro automático ou 3 tiros seguidos.\n•Use o tiro alternativo para trocar de modo.\n•A versão mais recente é uma das submetralhadoras mais usadas no mundo todo."
 
 [KFWeap_SMG_P90]
 ItemName="SM P90"
@@ -536,6 +536,16 @@ ItemDescription="•O tiro principal usa um cano.\n•Tiro alt. atira com os qua
 ItemName="Batedoras Estáticas"
 ItemCategory="Corpo a corpo"
 ItemDescription="•Principal - ataque rápido de contusão, Segure Principal para combinação.\n•Secundário - ataque de contusão elétrico e pesado. É muito chocante! \n•Quer socar um zed no rosto? Seus problemas acabaram!"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="Killerwatt"
+ItemCategory="Fuzil de Assalto"
+ItemDescription="•Escolha entre modo de tiro automático ou sobrecarregado.\n•Tiro alt. para alternar entre os modos de tiro.\n•Modo de sobrecarga - Carrega com o botão de disparo apertado e descarrega ao soltá-lo."
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="Rifle Helios"
+ItemCategory="Fuzil de Assalto"
+ItemDescription="•Escolha entre automático ou 3 tiros seguidos.\n•Tiro alt. para alternar entre os modos de tiro.\n•Que o fogo esteja com você."
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"

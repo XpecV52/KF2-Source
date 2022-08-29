@@ -256,7 +256,7 @@ function InitInventory()
 		{
 			TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
 
-			if( (CurrentInventoryFilter == EInv_All) ||  (Int(CurrentInventoryFilter) == Int(TempItemDetailsHolder.Type) && DoesMatchFilter(TempItemDetailsHolder) )|| bool(OnlineSub.CurrentInventory[i].NewlyAdded) ) //offset
+			if (((CurrentInventoryFilter == EInv_All || Int(CurrentInventoryFilter) == Int(TempItemDetailsHolder.Type)) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[i].NewlyAdded))
 			{
 				ItemObject = CreateObject("Object");
 				HelperIndex = ActiveItems.Find('ItemDefinition', onlineSub.CurrentInventory[i].Definition);
@@ -451,7 +451,7 @@ function bool IsItemExchangeable( out ItemProperties ItemDetailsHolder, out cons
 	local int i;
 	for( i = 0; i < ExchangeRules.Length; i++ )
 	{
-		if ( ExchangeRules[i].Type != ITP_CraftingComponent )
+		if (OnlineSub.ExchangeReady(ExchangeRules[i]))
 		{
 			//`log("exchange Yes ["$ItemDetailsHolder.Definition$"] ");
 

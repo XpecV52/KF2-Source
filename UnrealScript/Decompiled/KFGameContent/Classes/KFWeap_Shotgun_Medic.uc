@@ -75,7 +75,6 @@ defaultproperties
 {
     NumPellets(0)=6
     NumPellets(1)=1
-    HealAmount=15
     HealFullRechargeSeconds=12
     PackageKey="Medic_Shotgun"
     FirstPersonMeshName="WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig"
@@ -99,7 +98,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=80
+    SpareAmmoCapacity=90
     InitialSpareMags=3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     WeaponFireSnd=/* Array type was not detected. */

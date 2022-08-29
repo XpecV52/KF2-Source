@@ -83,6 +83,8 @@ var() float SpeedScalarForZedProximity<EditCondition=bUseZedProximityTrigger>;
 var() bool bUsePlayerProximityTrigger<EditCondition=bEnableProximityOptions>;
 // How pawn's speed should scale when players are close
 var() float SpeedScalarForPlayerProximity<EditCondition=bUsePlayerProximityTrigger>;
+// Whether the pawn should remove collision when reaching the goal and then become hidden when finished
+var() bool bHideOnFinish;
 
 /** Character mesh to use */
 var(ThirdPerson) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
@@ -113,6 +115,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 defaultproperties
 {
    PawnSpeed=150.000000
+   bHideOnFinish=True
    PawnBumpImpulse=100.000000
    PawnMaxWeldIntegrityPerPlayer(0)=1500.000000
    PawnMaxWeldIntegrityPerPlayer(1)=1500.000000

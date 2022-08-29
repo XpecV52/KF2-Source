@@ -39,6 +39,7 @@ BodyMesh5="Защитный"
 BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
+BodyMesh9="Киберпанк"
 HeadMesh0="Противогаз"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -111,6 +112,15 @@ BodySkin6="Красная клетка"
 
 [CHR_MrsFoster_archetype.BodyMesh8]
 BodySkin0="Узор хранилища"
+
+[CHR_MrsFoster_archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Белый цвет"
@@ -192,6 +202,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Сила бороды!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -270,6 +281,14 @@ BodySkin2="Белый цвет"
 BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
+
+[CHR_Jagerhorn_Archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Швед-блондин"
@@ -366,6 +385,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Маска Скалли"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -444,6 +464,14 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[CHR_DJSkully_Archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Черный-черный"
 HeadSkin1="Экстра-красный"
@@ -486,6 +514,7 @@ BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Стимпанк"
+BodyMesh10="Киберпанк"
 HeadMesh0="Волосы"
 
 [chr_briar_archetype.BodyMesh0]
@@ -570,6 +599,14 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[chr_briar_archetype.BodyMesh10]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Оригинальный"
 HeadSkin1="Подсветка"
@@ -606,6 +643,7 @@ BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Стимпанк"
+BodyMesh10="Киберпанк"
 HeadMesh0="Противогаз"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -694,6 +732,14 @@ BodySkin2="Белый цвет"
 BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
+
+[CHR_MrFoster_archetype.BodyMesh10]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Оригинальный белый"
@@ -851,6 +897,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Лицо"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -927,6 +974,14 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[CHR_Coleman_archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Донован"
 HeadSkin1="Невзрачный"
@@ -962,6 +1017,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Волосы"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1039,6 +1095,14 @@ BodySkin2="Белый цвет"
 BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
+
+[CHR_Alberts_archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Серый"
@@ -1935,6 +1999,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Лицо"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2022,6 +2087,14 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[CHR_Masterson_archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Хаято Танака"
 Description="Танака — сложная личность, отягощенная комплексом стремления к смерти. Он родился на Окинаве и вырос на американской военной базе. Вернувшись с семьей на основной остров Японии, «американец» Танака не вписался в общество. Он стал брать уроки сценического искусства. После колледжа он перебрался в Лос-Анжелес, где сыграл несколько «типовых» ролей в плохих фильмах, после чего переехал в Европу в поисках «настоящей» работы. Но его ждали лишь образы «плохих парней» во французских гангстерских лентах. Теперь же, когда наступил апокалипсис, он, кажется, путает реальность с сыгранными ролями. Среди его персонажей — мафиози-якудза, демоны и что-то из голливудского представления о самураях."
@@ -2035,6 +2108,7 @@ BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Стимпанк"
+BodyMesh10="Киберпанк"
 HeadMesh0="Волосы"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2129,6 +2203,14 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[CHR_Tanaka_Archetype.BodyMesh10]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Шлем"
 AttachmentSkin0="Восходящее солнце"
@@ -2168,6 +2250,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Ирокез"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2255,6 +2338,14 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[CHR_Ana_Archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-очки"
 AttachmentSkin0="Анаглиф 3D"
@@ -2280,6 +2371,7 @@ BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Стимпанк"
+BodyMesh10="Киберпанк"
 HeadMesh0="Волосы"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2364,6 +2456,14 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[chr_mark_archetype.BodyMesh10]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
 HeadSkin1="Кровавый полдник"
@@ -2386,6 +2486,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Лицо"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2465,6 +2566,14 @@ BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
 
+[CHR_alan_archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
 HeadSkin1="Рыжий! В самом деле?"
@@ -2494,6 +2603,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Волосы"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2569,6 +2679,14 @@ BodySkin2="Белый цвет"
 BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
+
+[CHR_strasser_archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Темная сталь"
@@ -2738,6 +2856,7 @@ BodyMesh5="Курица-коммандос"
 BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
+BodyMesh9="Киберпанк"
 HeadMesh0="Обычная голова"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2817,6 +2936,14 @@ BodySkin2="Белый цвет"
 BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Желтый цвет"
+
+[chr_rockabilly_archetype.BodyMesh9]
+BodySkin0="Зеленовато-голубой цвет"
+BodySkin1="Черный цвет"
+BodySkin2="Зеленый цвет"
+BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Черный"
@@ -4564,3 +4691,162 @@ AttachmentSkin1="Дорогая вещь"
 AttachmentSkin2="Зеленый цвет"
 AttachmentSkin3="Пурпурный цвет"
 AttachmentSkin4="Красный цвет"
+
+[Cosmetic_ArmorHood_ARCH]
+Attachment="Бронированный капюшон"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Зеленый цвет"
+AttachmentSkin4="Дор. вещь"
+
+[Cosmetic_FacelessMaskSingle_ARCH]
+Attachment="Одна маска безликого"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Зеленый цвет"
+AttachmentSkin4="Белый цвет"
+AttachmentSkin5="Дор. вещь"
+
+[Cosmetic_ScyfyHood_ARCH]
+Attachment="Технологичный капюшон"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Дор. вещь"
+
+[Cosmetic_NoExpressionMask_ARCH]
+Attachment="Маска без выражения"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Зеленый цвет"
+AttachmentSkin4="Белый цвет"
+AttachmentSkin5="Дор. вещь"
+
+[Cosmetic_AnubisMask_ARCH]
+Attachment="Анубис"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Желтый цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Дор. вещь"
+
+[Cosmetic_BastMask_ARCH]
+Attachment="Баст"
+AttachmentSkin0="Желтый цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Дор. вещь"
+
+[Cosmetic_RaMask_ARCH]
+Attachment="Ра"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Желтый цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Дор. вещь"
+
+[Cosmetic_SobekMask_ARCH]
+Attachment="Собек"
+AttachmentSkin0="Зеленый цвет"
+AttachmentSkin1="Желтый цвет"
+AttachmentSkin2="Синий цвет"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Дор. вещь"
+
+[Cosmetic_CyberPunk_SkullHelm_ARCH]
+Attachment="Шлем в виде черепа"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_EyeAndFacemask_ARCH]
+Attachment="Маска для глаз и лица"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_ComlinkassistV2_ARCH]
+Attachment="Электронный глаз: экран A"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Красный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_Comlinkassist_ARCH]
+Attachment="Электронный глаз: экран B"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Красный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_TrinityPack_ARCH]
+Attachment="Рюкзак «Тринити»"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_BoostInjector_ARCH]
+Attachment="Шприц для усилений"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_CyberPunk_HoloPack_ARCH]
+Attachment="Голографический рюкзак"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Красный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_CyberPunk_PsyClops_ARCH]
+Attachment="Псиклоп"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_TrinityMask_ARCH]
+Attachment="Маска «Тринити»"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_TrinityArmband_ARCH]
+Attachment="Повязка на руку «Тринити»"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_HoloArmbandA_ARCH]
+Attachment="Голографическая повязка на руку A"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Красный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
+Attachment="Голографическая повязка на руку С"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Красный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_TrinityZedBackpack_ARCH]
+Attachment="Рюкзак «Мутант Тринити»"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_TechnomancerGoggles_ARCH]
+Attachment="Защитные очки техноманта"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Cyberpunk_Helmet_ARCH]
+Attachment="Киберпанковый шлем"
+AttachmentSkin0="Зеленовато-голубой цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Лаймовый цвет"
+AttachmentSkin4="Красный цвет"
+AttachmentSkin5="Белый цвет"

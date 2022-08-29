@@ -30,8 +30,8 @@ var(PathInfo) array<SplineActor> PathGoals;
 var transient SplineActor PathGoal;
 /** How many subsegments the pawn will move through along the spline between two SplineActors (i.e. the higher the granularity, the more closely the pawn follows the curve of the spline) */
 var(PathInfo) int SegmentGranularity<ClampMin=0>;
-var transient int NumSubSegments;
-var transient int NumSubSegmentsFinished;
+var transient float RouteDist;
+var transient float RouteDistTraversed;
 var delegate<Delegate_OnPawnStartedRoute> __Delegate_OnPawnStartedRoute__Delegate;
 var delegate<Delegate_OnPawnReachedRouteMarker> __Delegate_OnPawnReachedRouteMarker__Delegate;
 var delegate<Delegate_OnPawnReachedGoal> __Delegate_OnPawnReachedGoal__Delegate;
@@ -87,16 +87,24 @@ function SpawnPawn(bool bSpawnInactive)
 function SetupProgress()
 {
     local array<SplineActor> Route;
+    local int I;
 
     PathGoal = PathGoals[Rand(PathGoals.Length)];
     PathStart.FindSplinePathTo(PathGoal, Route);
-    NumSubSegments = (Route.Length - 1) * (SegmentGranularity + 1);
-    NumSubSegmentsFinished = 0;
+    I = 0;
+    J0x5C:
+
+    if(I < (Route.Length - 1))
+    {
+        RouteDist += Route[I].FindSplineComponentTo(Route[I + 1]).GetSplineLength();
+        ++ I;
+        goto J0x5C;
+    }
 }
 
 simulated function float GetProgress()
 {
-    return float(NumSubSegmentsFinished) / float(NumSubSegments);
+    return RouteDistTraversed / RouteDist;
 }
 
 function SetupPawn()
@@ -121,11 +129,11 @@ function SetupPawn()
     Pawn.__Delegate_OnEndedRoute__Delegate = OnPawnEndedRoute;
 }
 
-function OnPawnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx)
+function OnPawnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx, float DistSinceLastMarker)
 {
     if(bReachedStart && !bReachedGoal)
     {
-        ++ NumSubSegmentsFinished;
+        RouteDistTraversed += DistSinceLastMarker;
         if(__Delegate_OnPawnReachedRouteMarker__Delegate != none)
         {
             Delegate_OnPawnReachedRouteMarker(MarkerIdx, Marker, SubIdx);

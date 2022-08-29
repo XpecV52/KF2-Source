@@ -30,10 +30,11 @@ defaultproperties
 	KDeathUpKick=-300
 	KDeathVel=100
 
-	StumblePower=0
 	GunHitPower=45
 
 	WeaponDef=class'KFWeapDef_MedicSMG'
 
-    ModifierPerkList(0)=class'KFPerk_Swat'
+    //Perk
+    ModifierPerkList(0)=class'KFPerk_FieldMedic'
+    ModifierPerkList(1)=class'KFPerk_Swat'
 }

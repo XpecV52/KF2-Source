@@ -61,6 +61,8 @@ var bool bImportantAmbientSound;
 var bool bAmbientSoundZedTimeOnly;
 var protected bool bIsAIProjectile;
 var protected const bool bWarnAIWhenFired;
+var const bool bCanStick;
+var const bool bCanPin;
 var float AlwaysRelevantDistanceSquared;
 var byte WeaponFireMode;
 var KFProjectile.FracturedMeshGlassShatterType GlassShatterType;
@@ -103,6 +105,14 @@ var KFImpactEffectInfo ImpactEffects;
 var class<KFPerk> AssociatedPerkClass;
 var protected const float MaxAIWarningDistSQ;
 var protected const float MaxAIWarningDistFromPointSQ;
+var repnotify transient Actor StuckToActor;
+var transient Actor PrevStuckToActor;
+var transient int StuckToBoneIdx;
+var transient Vector StuckToLocation;
+var transient Rotator StuckToRotation;
+var repnotify transient Actor PinActor;
+var transient int PinBoneIdx;
+var export editinline KFProjectileStickHelper StickHelper;
 
 replication
 {
@@ -123,6 +133,13 @@ replication
 
      if(bNetInitial && bNetOwner)
         WeaponFireMode;
+
+     if(bCanStick && bNetInitial || !bNetOwner)
+        StuckToActor, StuckToBoneIdx, 
+        StuckToLocation, StuckToRotation;
+
+     if(bCanPin && bNetDirty)
+        PinActor, PinBoneIdx;
 }
 
 // Export UKFProjectile::execGetTerminalVelocity(FFrame&, void* const)
@@ -242,7 +259,34 @@ simulated event ReplicatedEvent(name VarName)
                 }
                 else
                 {
-                    super(Actor).ReplicatedEvent(VarName);
+                    if(VarName == 'StuckToActor')
+                    {
+                        if(StuckToActor == none)
+                        {
+                            StickHelper.UnStick();                            
+                        }
+                        else
+                        {
+                            if(StuckToActor != PrevStuckToActor)
+                            {
+                                StickHelper.ReplicatedStick(StuckToActor, StuckToBoneIdx);
+                            }
+                        }                        
+                    }
+                    else
+                    {
+                        if(VarName == 'PinActor')
+                        {
+                            if((PinActor != none) && PinBoneIdx != -1)
+                            {
+                                StickHelper.Pin(PinActor, PinBoneIdx);
+                            }                            
+                        }
+                        else
+                        {
+                            super(Actor).ReplicatedEvent(VarName);
+                        }
+                    }
                 }
             }
         }
@@ -359,6 +403,12 @@ singular simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponen
     local TraceHitInfo HitInfo;
 
     super(Actor).HitWall(HitNormal, Wall, WallComp);
+    if(bCanStick || bCanPin)
+    {
+        LastTouchComponent = WallComp;
+        StickHelper.TryStick(HitNormal,, Wall);
+        return;
+    }
     if(Wall.bWorldGeometry)
     {
         HitStaticMesh = StaticMeshComponent(WallComp);
@@ -414,6 +464,11 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
     if(Other != Instigator)
     {
+        if(bCanStick || bCanPin)
+        {
+            StickHelper.TryStick(HitNormal, HitLocation, Other);
+            return;
+        }
         if(ExplosionTemplate != none)
         {
             TriggerExplosion(HitLocation, HitNormal, Other);
@@ -875,6 +930,13 @@ function SpawnResidualFlame(class<KFProjectile> SpawnClass, Vector SpawnLoc, Vec
         SpawnedProjectile.Velocity = SpawnVel;
         SpawnedProjectile.Speed = VSize(SpawnedProjectile.Velocity);
     }
+}
+
+simulated function SetStickOrientation(Vector HitNormal);
+
+reliable server function ServerStick(Actor StickTo, int BoneIdx, Vector StickLoc, Rotator StickRot)
+{
+    StickHelper.ServerStick(StickTo, BoneIdx, StickLoc, StickRot);
 }
 
 defaultproperties

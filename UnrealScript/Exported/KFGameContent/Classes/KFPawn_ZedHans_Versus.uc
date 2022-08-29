@@ -4,7 +4,7 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 {
 	super.PossessedBy(C, bVehicleTransition);
 
-	ServerDoSpecialMove(SM_BossTheatrics);
+	class'KFPawn_MonsterBoss'.static.PlayBossEntranceTheatrics(self);
 }
 
 /**

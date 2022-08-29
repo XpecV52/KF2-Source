@@ -768,15 +768,19 @@ simulated event EndCrouch( float HeightAdjust )
 function UpdateGroundSpeed()
 {
 	local KFInventoryManager InvM;
-	local float WeightMod, HealthMod;
+	local float WeightMod, HealthMod, WeaponMod;
     local KFGameInfo KFGI;
+	local KFWeapon CurrentWeapon;
 
 	if ( Role < ROLE_Authority )
 		return;
 
+	CurrentWeapon = KFWeapon(Weapon);
 	InvM = KFInventoryManager(InvManager);
 	WeightMod = (InvM != None) ? InvM.GetEncumbranceSpeedMod() : 1.f;
 	HealthMod = GetHealthMod();
+	// some weapons can change a player's movement speed during certain states
+	WeaponMod = (CurrentWeapon != None) ? CurrentWeapon.MovementSpeedMod : 1.f;
 
     //Grab new defaults
 	GroundSpeed = default.GroundSpeed;
@@ -791,8 +795,8 @@ function UpdateGroundSpeed()
     }
 
 	//Add pawn modifiers
-	GroundSpeed = GroundSpeed * WeightMod * HealthMod;
-    SprintSpeed = SprintSpeed * WeightMod * HealthMod;
+	GroundSpeed = GroundSpeed * WeightMod * HealthMod * WeaponMod;
+    SprintSpeed = SprintSpeed * WeightMod * HealthMod * WeaponMod;
 
 	// Ask our perk to set the new ground speed based on weapon type
 	if( GetPerk() != none )
@@ -800,6 +804,19 @@ function UpdateGroundSpeed()
 		GetPerk().ModifySpeed( GroundSpeed );
 		GetPerk().ModifySprintSpeed( SprintSpeed );
         GetPerk().FinalizeSpeedVariables();
+	}
+
+	if (CurrentWeapon != None)
+	{
+		if (CurrentWeapon.OverrideGroundSpeed >= 0.0f)
+		{
+			GroundSpeed = CurrentWeapon.OverrideGroundSpeed;
+		}
+
+		if (CurrentWeapon.OverrideSprintSpeed >= 0.0f)
+		{
+			SprintSpeed = CurrentWeapon.OverrideSprintSpeed;
+		}
 	}
 }
 
@@ -816,7 +833,7 @@ function float GetHealthMod()
 simulated function WeaponStateChanged(byte NewState, optional bool bViaReplication)
 {
 	CurrentWeaponState = NewState;
-	
+
 	// skip if this pawn was recently spawned, so we don't play out-of-date anims when pawns become relevant
 	if( (WorldInfo.TimeSeconds - CreationTime) < 1.f )
 	{
@@ -1335,6 +1352,13 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 
 	if (bLogTakeDamage) LogInternal(self @ GetFuncName()@"Adjusted Damage BEFORE =" @ InDamage);
 	super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+
+	// nullify damage during trader time
+	if (KFGameReplicationInfo(KFGameInfo(WorldInfo.Game).GameReplicationInfo).bTraderIsOpen)
+	{
+		InDamage = 0;
+		return;
+	}
 
 	MyKFPerk = GetPerk();
 	if( MyKFPerk != none )

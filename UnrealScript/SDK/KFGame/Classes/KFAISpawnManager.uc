@@ -1032,6 +1032,7 @@ function Update()
         	SpawnList = GetNextSpawnList();
 			NumAISpawnsQueued += SpawnSquad( SpawnList );
             TimeUntilNextSpawn = CalcNextGroupSpawnTime();
+			UpdateAIRemaining();
         }
 	}
 }

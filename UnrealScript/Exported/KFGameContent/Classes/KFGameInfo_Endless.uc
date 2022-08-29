@@ -729,7 +729,6 @@ defaultproperties
    SpecialWaveStart=6
    OutbreakWaveStart=6
    bSplitBossDoshReward=False
-   bGoToBossCameraOnDeath=False
    bIsEndlessGame=True
    DifficultyInfoClass=Class'kfgamecontent.KFGameDifficulty_Endless'
    DifficultyInfoConsoleClass=Class'kfgamecontent.KFGameDifficulty_Endless_Console'

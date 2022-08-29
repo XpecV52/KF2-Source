@@ -633,7 +633,7 @@ function DisplayExpandedWaveInfo()
                 }
                 else
                 {
-                    PriorityMessageObject.SetString("waveNum", (string(KFGRI.WaveNum) $ "/") @ string(KFGRI.WaveMax - 1));
+                    PriorityMessageObject.SetString("waveNum", (string(KFGRI.WaveNum) $ "/") @ string(KFGRI.GetFinalWaveNum()));
                 }
             }
         }
@@ -710,15 +710,12 @@ function bool ShouldCheckForObjective(KFLocalMessage_Priority.EGameMessageType M
     {
         return false;
     }
-    if(KFGRI.IsBossWave())
-    {
-        return false;
-    }
     switch(MessageType)
     {
         case 0:
         case 17:
         case 18:
+        case 19:
         case 1:
             return true;
         default:

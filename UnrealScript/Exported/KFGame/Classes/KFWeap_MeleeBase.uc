@@ -19,9 +19,6 @@ class KFWeap_MeleeBase extends KFWeapon
 const BLOCK_FIREMODE		= 1; // ALTFIRE_FIREMODE
 const HEAVY_ATK_FIREMODE	= 5; // NEW - IronSights Key
 
-/** A firemode that is manually set (>= PendingFire.Length) for weapons with special firing states */
-const CUSTOM_FIREMODE = 6;
-
 /** Set when blood material value is high */
 var bool bIsBloody;
 
@@ -32,6 +29,8 @@ var byte MaxChainAtkCount;
 var float MinMeleeSustainedTime;
 /** Minimum amount of time to wait before dealing damage in the  MeleeSustained state */
 var() float MeleeSustainedWarmupTime;
+/** Amount of time required between cancelling attacks with reload*/
+var private const float ReloadCancelTimeLimit;
 
 /*********************************************************************************************
  * @name Defensive Abilities
@@ -187,6 +186,23 @@ reliable server function ServerSetSlowMovement(bool bEnabled)
  */
 simulated function StartFire(byte FireModeNum)
 {
+	// if the weapon is currently attacking
+	if (CurrentFireMode == DEFAULT_FIREMODE || CurrentFireMode == ALTFIRE_FIREMODE || CurrentFireMode == BASH_FIREMODE)
+	{
+		// and the player tries to cancel with a reload action
+		if(FireModeNum == RELOAD_FIREMODE)
+		{
+			// stop them from reload cancelling if it has already happened too recently
+			if (IsTimerActive(nameof(Timer_FireCancel)))
+			{
+				return;
+			}
+			else
+			{
+				SetTimer(ReloadCancelTimeLimit, false, nameof(Timer_FireCancel));
+			}
+		}
+	}
 	// Get attack type and send to server
 	if( FireModeNum == DEFAULT_FIREMODE || FireModeNum == HEAVY_ATK_FIREMODE )
 	{
@@ -203,6 +219,8 @@ simulated function StartFire(byte FireModeNum)
 
 	Super.StartFire(FireModeNum);
 }
+
+simulated function Timer_FireCancel() {}
 
 /**
  * Like StartFire, but replicates a attack type
@@ -1263,6 +1281,7 @@ defaultproperties
    EstimatedFireRate=100
    MinMeleeSustainedTime=0.500000
    MeleeSustainedWarmupTime=0.250000
+   ReloadCancelTimeLimit=0.500000
    BlockTypes(0)=(dmgType=Class'KFGame.KFDT_Bludgeon')
    BlockTypes(1)=(dmgType=Class'KFGame.KFDT_Slashing')
    BlockDamageMitigation=0.500000
@@ -1302,6 +1321,7 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    UpgradeFireModes(1)=0
    UpgradeFireModes(5)=1
+   UpgradeFireModes(6)=1
    FiringStatesArray(0)="MeleeChainAttacking"
    FiringStatesArray(1)="MeleeBlocking"
    FiringStatesArray(2)="WeaponUpkeep"

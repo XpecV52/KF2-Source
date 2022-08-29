@@ -196,7 +196,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     Super.PossessedBy(C, bVehicleTransition);
 
     PlayBossMusic();
-    ServerDoSpecialMove(SM_BossTheatrics);
+    class'KFPawn_MonsterBoss'.static.PlayBossEntranceTheatrics(self);
 }
 
 /** Play music for this boss (overridden for each boss) */

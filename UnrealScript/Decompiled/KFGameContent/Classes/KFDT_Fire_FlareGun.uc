@@ -26,7 +26,7 @@ defaultproperties
     KnockdownPower=15
     StumblePower=100
     GunHitPower=150
-    BurnPower=15.5
+    BurnPower=30
     ModifierPerkList=/* Array type was not detected. */
     CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
     KDamageImpulse=1000

@@ -196,6 +196,7 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
     local byte HitZoneIdx;
     local float ReactionModifier, MeleeHitPower, GunHitPower;
     local KFWeapon DamageWeapon;
+    local KFInterface_DamageCauser KFDmgCauser;
 
     ReactionModifier = 1;
     if(InstigatorPerk != none)
@@ -217,6 +218,12 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
             MeleeHitPower = DamageType.default.MeleeHitPower;
             GunHitPower = DamageType.default.GunHitPower;
         }
+        KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
+        if(NotEqual_InterfaceInterface(KFDmgCauser, (none)))
+        {
+            MeleeHitPower *= KFDmgCauser.GetIncapMod();
+            GunHitPower *= KFDmgCauser.GetIncapMod();
+        }
         if(MeleeHitPower > float(0))
         {
             AccrueAffliction(2, MeleeHitPower * ReactionModifier, BodyPart);
@@ -237,6 +244,8 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
     local KFWeapon DamageWeapon;
     local float BurnPower, EMPPower, PoisonPower, MicrowavePower, BleedPower;
 
+    local KFInterface_DamageCauser KFDmgCauser;
+
     DamageWeapon = Class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
     if(DamageWeapon != none)
     {
@@ -253,6 +262,15 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
         PoisonPower = DamageType.default.PoisonPower;
         MicrowavePower = DamageType.default.MicrowavePower;
         BleedPower = DamageType.default.BleedPower;
+    }
+    KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
+    if(NotEqual_InterfaceInterface(KFDmgCauser, (none)))
+    {
+        BurnPower *= KFDmgCauser.GetIncapMod();
+        EMPPower *= KFDmgCauser.GetIncapMod();
+        PoisonPower *= KFDmgCauser.GetIncapMod();
+        MicrowavePower *= KFDmgCauser.GetIncapMod();
+        BleedPower *= KFDmgCauser.GetIncapMod();
     }
     if(Outer.bPlayedDeath && Outer.WorldInfo.TimeSeconds > Outer.TimeOfDeath)
     {

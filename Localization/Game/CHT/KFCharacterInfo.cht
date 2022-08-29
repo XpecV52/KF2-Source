@@ -39,6 +39,7 @@ BodyMesh5="災害應變"
 BodyMesh6="突雞部隊"
 BodyMesh7="節日睡衣服飾"
 BodyMesh8="金庫睡衣服飾"
+BodyMesh9="賽博龐克"
 HeadMesh0="防毒面具"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -111,6 +112,15 @@ BodySkin6="紅色格子"
 
 [CHR_MrsFoster_archetype.BodyMesh8]
 BodySkin0="金庫圖案"
+
+[CHR_MrsFoster_archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="白色"
@@ -192,6 +202,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="鬍子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -270,6 +281,14 @@ BodySkin2="白色"
 BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
+
+[CHR_Jagerhorn_Archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="金髮瑞典人"
@@ -366,6 +385,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="史骷利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -444,6 +464,14 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[CHR_DJSkully_Archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="黑中之黑"
 HeadSkin1="超級紅"
@@ -486,6 +514,7 @@ BodyMesh6="突雞部隊"
 BodyMesh7="節日睡衣服飾"
 BodyMesh8="金庫睡衣服飾"
 BodyMesh9="蒸汽龐克"
+BodyMesh10="賽博龐克"
 HeadMesh0="頭髮"
 
 [chr_briar_archetype.BodyMesh0]
@@ -570,6 +599,14 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[chr_briar_archetype.BodyMesh10]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮光"
@@ -606,6 +643,7 @@ BodyMesh6="突雞部隊"
 BodyMesh7="節日睡衣服飾"
 BodyMesh8="金庫睡衣服飾"
 BodyMesh9="蒸汽龐克"
+BodyMesh10="賽博龐克"
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -694,6 +732,14 @@ BodySkin2="白色"
 BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
+
+[CHR_MrFoster_archetype.BodyMesh10]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -851,6 +897,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="臉"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -927,6 +974,14 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[CHR_Coleman_archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="唐納文"
 HeadSkin1="麻布"
@@ -962,6 +1017,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="頭髮"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1039,6 +1095,14 @@ BodySkin2="白色"
 BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
+
+[CHR_Alberts_archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰"
@@ -1935,6 +1999,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="臉"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2022,6 +2087,14 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[CHR_Masterson_archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 [CHR_Tanaka_Archetype]
 CharacterName="田中隼人"
 Description="田中性格複雜，有時還有求死慾望。出生在沖繩，他從小就跟軍隊裡的美國人相處。後來跟父母搬到本州後，美國化的田中無法適應，開始對戲劇產生興趣。大學畢業後他搬到洛杉磯，在爛電影裡演了些小角色，後來又到歐洲找尋一些更好的機會。不過他還是只得到法國幫派電影的反派角色和一些跑龍套。天啟發生後，他似乎把現實跟一些之前扮演過的角色混淆了。這些角色包含黑社會、惡魔，還有好萊塢版的武士道。"
@@ -2035,6 +2108,7 @@ BodyMesh6="突雞部隊"
 BodyMesh7="節日睡衣服飾"
 BodyMesh8="金庫睡衣服飾"
 BodyMesh9="蒸汽龐克"
+BodyMesh10="賽博龐克"
 HeadMesh0="頭髮"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2129,6 +2203,14 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[CHR_Tanaka_Archetype.BodyMesh10]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="頭盔"
 AttachmentSkin0="太陽"
@@ -2168,6 +2250,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="莫霍克"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2255,6 +2338,14 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[CHR_Ana_Archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼鏡"
 AttachmentSkin0="浮雕 3D"
@@ -2280,6 +2371,7 @@ BodyMesh6="突雞部隊"
 BodyMesh7="節日睡衣服飾"
 BodyMesh8="金庫睡衣服飾"
 BodyMesh9="蒸汽龐克"
+BodyMesh10="賽博龐克"
 HeadMesh0="頭髮"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2364,6 +2456,14 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[chr_mark_archetype.BodyMesh10]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="真品"
 HeadSkin1="血腥 5 點鐘"
@@ -2386,6 +2486,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="臉"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2465,6 +2566,14 @@ BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
 
+[CHR_alan_archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="真品"
 HeadSkin1="打起精神！真的？"
@@ -2494,6 +2603,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="頭髮"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2569,6 +2679,14 @@ BodySkin2="白色"
 BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
+
+[CHR_strasser_archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑鋼"
@@ -2738,6 +2856,7 @@ BodyMesh5="突雞部隊"
 BodyMesh6="節日睡衣服飾"
 BodyMesh7="金庫睡衣服飾"
 BodyMesh8="蒸汽龐克"
+BodyMesh9="賽博龐克"
 HeadMesh0="預設頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2817,6 +2936,14 @@ BodySkin2="白色"
 BodySkin3="紫色"
 BodySkin4="紅色"
 BodySkin5="黃色"
+
+[chr_rockabilly_archetype.BodyMesh9]
+BodySkin0="藍綠"
+BodySkin1="黑"
+BodySkin2="綠"
+BodySkin3="萊姆"
+BodySkin4="紅"
+BodySkin5="白"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑"
@@ -4564,3 +4691,162 @@ AttachmentSkin1="珍貴"
 AttachmentSkin2="綠"
 AttachmentSkin3="紫"
 AttachmentSkin4="紅"
+
+[Cosmetic_ArmorHood_ARCH]
+Attachment="護甲頭罩"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="紅"
+AttachmentSkin3="綠"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_FacelessMaskSingle_ARCH]
+Attachment="無臉面具單色"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="紅"
+AttachmentSkin3="綠"
+AttachmentSkin4="白"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_ScyfyHood_ARCH]
+Attachment="科幻頭罩"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="綠"
+AttachmentSkin3="紅"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_NoExpressionMask_ARCH]
+Attachment="無表情面具"
+AttachmentSkin0="黑"
+AttachmentSkin1="藍"
+AttachmentSkin2="紅"
+AttachmentSkin3="綠"
+AttachmentSkin4="白"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_AnubisMask_ARCH]
+Attachment="阿努比斯"
+AttachmentSkin0="紅"
+AttachmentSkin1="黃"
+AttachmentSkin2="綠"
+AttachmentSkin3="藍"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_BastMask_ARCH]
+Attachment="芭斯特"
+AttachmentSkin0="黃"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="藍"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_RaMask_ARCH]
+Attachment="拉"
+AttachmentSkin0="藍"
+AttachmentSkin1="黃"
+AttachmentSkin2="綠"
+AttachmentSkin3="紅"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_SobekMask_ARCH]
+Attachment="索貝克"
+AttachmentSkin0="綠"
+AttachmentSkin1="黃"
+AttachmentSkin2="藍"
+AttachmentSkin3="紅"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_CyberPunk_SkullHelm_ARCH]
+Attachment="骷髏頭頭盔"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_EyeAndFacemask_ARCH]
+Attachment="眼睛與面罩"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_ComlinkassistV2_ARCH]
+Attachment="數位眼睛顯示 A"
+AttachmentSkin0="藍"
+AttachmentSkin1="紅"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_Comlinkassist_ARCH]
+Attachment="數位眼睛顯示 B"
+AttachmentSkin0="藍"
+AttachmentSkin1="紅"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_TrinityPack_ARCH]
+Attachment="三位一體套組"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_BoostInjector_ARCH]
+Attachment="強化注射器"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_CyberPunk_HoloPack_ARCH]
+Attachment="虛幻套組"
+AttachmentSkin0="藍"
+AttachmentSkin1="紅"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_CyberPunk_PsyClops_ARCH]
+Attachment="精神巨人"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_TrinityMask_ARCH]
+Attachment="三位一體面具"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_TrinityArmband_ARCH]
+Attachment="三位一體臂環"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_HoloArmbandA_ARCH]
+Attachment="虛幻臂環 A"
+AttachmentSkin0="藍"
+AttachmentSkin1="紅"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
+Attachment="虛幻臂環 C"
+AttachmentSkin0="藍"
+AttachmentSkin1="紅"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_TrinityZedBackpack_ARCH]
+Attachment="三位一體 Zed 背包"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_TechnomancerGoggles_ARCH]
+Attachment="機械巫師護目鏡"
+AttachmentSkin0="標準"
+AttachmentSkin1="墨黑"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Cyberpunk_Helmet_ARCH]
+Attachment="賽博龐克頭盔"
+AttachmentSkin0="藍綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="綠"
+AttachmentSkin3="萊姆"
+AttachmentSkin4="紅"
+AttachmentSkin5="白"

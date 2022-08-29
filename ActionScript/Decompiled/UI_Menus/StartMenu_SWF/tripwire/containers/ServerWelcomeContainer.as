@@ -83,6 +83,12 @@ package tripwire.containers
             this.clanMottoText.text = param1;
         }
         
+        override public function selectContainer() : void
+        {
+            trace("ServerWelcomeContainer::selectContainer");
+            super.selectContainer();
+        }
+        
         function __setProp_webLinkButton_ServerWelcomeContainer_confirmbutton_0() : *
         {
             try

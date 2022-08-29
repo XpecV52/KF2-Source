@@ -9,8 +9,7 @@
 // Copyright (C) 2017 Tripwire Interactive LLC
 // - Dan Weiss
 //=============================================================================
-class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense
-    placeable;
+class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense;
 
 
 
@@ -628,7 +627,7 @@ class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense
 
 
 
-#linenumber 15
+#linenumber 14
 
 /** Timer before penalty check starts */
 var() const float PenaltyStartupTimer;
@@ -1035,9 +1034,6 @@ defaultproperties
    ActivatePctChances(1)=(PctChances[1]=0.350000,PctChances[2]=0.350000,PctChances[3]=0.350000,PctChances[4]=0.350000,PctChances[5]=0.350000,PctChances[6]=0.350000,PctChances[7]=1.000000,PctChances[8]=1.000000,PctChances[9]=1.000000,PctChances[10]=1.000000)
    ActivatePctChances(2)=(PctChances[1]=0.350000,PctChances[2]=0.350000,PctChances[3]=0.350000,PctChances[4]=0.350000,PctChances[5]=0.350000,PctChances[6]=0.350000,PctChances[7]=0.350000,PctChances[8]=0.350000,PctChances[9]=0.350000,PctChances[10]=0.350000)
    RemindPlayersTime=30.000000
-   LocalizationKey="DoshHold"
-   DescriptionLocKey="DescriptionDoshHold"
-   RequirementsLocKey="RequiredDoshHold"
    PlayerThresholds(0)=1
    PlayerThresholds(1)=1
    PlayerThresholds(2)=2
@@ -1050,13 +1046,10 @@ defaultproperties
    ZedThresholds(3)=3
    ZedThresholds(4)=2
    ZedThresholds(5)=1
+   LocalizationKey="DoshHold"
+   DescriptionLocKey="DescriptionDoshHold"
+   RequirementsLocKey="RequiredDoshHold"
    ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
-   MaxRewards(0)=(WaveMaxReward[1]=200,WaveMaxReward[2]=350,WaveMaxReward[3]=500)
-   MaxRewards(1)=(WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=500)
-   MaxRewards(2)=(WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=450,WaveMaxReward[7]=500,WaveMaxReward[8]=500,WaveMaxReward[9]=500,WaveMaxReward[10]=500)
-   XPRewards(0)=(WaveMaxReward[1]=150,WaveMaxReward[2]=200,WaveMaxReward[3]=300)
-   XPRewards(1)=(WaveMaxReward[1]=150,WaveMaxReward[2]=150,WaveMaxReward[3]=200,WaveMaxReward[4]=200,WaveMaxReward[5]=300,WaveMaxReward[6]=300)
-   XPRewards(2)=(WaveMaxReward[1]=100,WaveMaxReward[2]=150,WaveMaxReward[3]=150,WaveMaxReward[4]=200,WaveMaxReward[5]=200,WaveMaxReward[6]=250,WaveMaxReward[7]=250,WaveMaxReward[8]=300,WaveMaxReward[9]=300,WaveMaxReward[10]=300)
    Begin Object Class=BrushComponent Name=BrushComponent0 Archetype=BrushComponent'kfgamecontent.Default__KFMapObjective_AreaDefense:BrushComponent0'
       ReplacementPrimitive=None
       bAcceptsLights=True

@@ -67,6 +67,7 @@ function bool UsedBy(Pawn User)
 {
 	local KFInterface_UsableTriggerTarget Target;
 
+	// MaxTriggeredCount is 0 when this should always be usable
 	if (MaxTriggeredCount == 0 || TriggeredCount < MaxTriggeredCount)
 	{
 		foreach Targets(Target)
@@ -74,7 +75,8 @@ function bool UsedBy(Pawn User)
 			Target.TriggerTarget(self, User);
 		}
 
-		if (TriggeredCount++ == MaxTriggeredCount)
+		// Check whether the UsableTrigger should be disabled because it has reached its limit on activations
+		if (++TriggeredCount == MaxTriggeredCount)
 		{
 			bActive = false;
 		}

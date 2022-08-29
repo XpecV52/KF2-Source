@@ -269,7 +269,7 @@ defaultproperties
     EMPStartSFX=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_EMP_LP'
     EMPEndSFX=AkEvent'WW_ZED_Evil_DAR.Stop_ZED_EvilDAR_SFX_EMP_LP'
     EMPSocketName=EMP_Blast
-    EMPDamageType=Class'KFGame.KFDT_EMP'
+    EMPDamageType=Class'KFDT_DAR_EMPBlast'
     MaxEMPLength=2500
     EMPExtent=(X=15,Y=15,Z=15)
     EMPDamage=10

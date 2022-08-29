@@ -20,6 +20,8 @@ var const localized array<localized string> DescriptionStrings;
 var string LastHomeString;
 var GFxObject InventoryButton;
 var GFxObject StoreButton;
+var GFxObject VaultButton;
+var GFxObject GearButton;
 var int SaveCurrentMenuIndex;
 var bool bCachedGameFullyInstalled;
 var bool bAllowBumper;
@@ -93,14 +95,13 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
     {
         case 3:
             GfxButton.SetBool("enabled", CanUseDoshVault());
+            VaultButton = GfxButton;
             return;
         case 2:
             bGearButtonEnabled = CanUseGearButton(Outer.GetPC(), Manager);
             GfxButton.SetBool("enabled", bGearButtonEnabled);
+            GearButton = GfxButton;
             return;
-        case 3:
-            GfxButton.SetBool("enabled", Class'WorldInfo'.static.IsMenuLevel());
-            break;
         case 0:
             GfxButton.SetString("label", GetHomeButtonName());
             GfxButton.SetBool("bPulsing", ShouldStartMenuPulse());
@@ -155,14 +156,18 @@ function CheckGameFullyInstalled()
         if(Class'GameEngine'.static.IsGameFullyInstalled())
         {
             bCachedGameFullyInstalled = true;
-            InventoryButton.SetBool("enabled", true);
-            StoreButton.SetBool("enabled", true);
+            InventoryButton.SetBool("enabled", CanUseInventory());
+            StoreButton.SetBool("enabled", CanUseStore());
+            VaultButton.SetBool("enabled", CanUseDoshVault());
+            GearButton.SetBool("enabled", CanUseGearButton(Outer.GetPC(), Manager));
             UpdateMenu(byte(SaveCurrentMenuIndex));            
         }
         else
         {
             InventoryButton.SetBool("enabled", false);
             StoreButton.SetBool("enabled", false);
+            VaultButton.SetBool("enabled", false);
+            GearButton.SetBool("enabled", false);
             Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(1, false, 'CheckGameFullyInstalled', self);
         }
     }
@@ -250,6 +255,10 @@ function bool ShouldStartMenuPulse()
 
 static function bool CanUseGearButton(PlayerController PC, KFGFxMoviePlayer_Manager GfxManager)
 {
+    if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'GameEngine'.static.IsGameFullyInstalled())
+    {
+        return false;
+    }
     if((!GfxManager.bAfterLobby && !PC.PlayerReplicationInfo.bOnlySpectator) || Class'WorldInfo'.static.IsMenuLevel())
     {
         return true;
@@ -263,6 +272,10 @@ function bool CanUseInventory()
     {
         return false;
     }
+    if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'GameEngine'.static.IsGameFullyInstalled())
+    {
+        return false;
+    }
     if(((Outer.GetPC().Pawn != none) && !Manager.bAfterLobby) || Class'WorldInfo'.static.IsMenuLevel())
     {
         return true;
@@ -272,6 +285,10 @@ function bool CanUseInventory()
 
 function bool CanUseDoshVault()
 {
+    if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'GameEngine'.static.IsGameFullyInstalled())
+    {
+        return false;
+    }
     return Class'WorldInfo'.static.IsMenuLevel();
 }
 

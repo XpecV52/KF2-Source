@@ -218,7 +218,7 @@ function SetSumarryInfo()
 			}
 			else
 			{
-				TextObject.SetString("waveTime", WaveString @ KFGRI.WaveNum $ "/" $(KFGRI.WaveMax - 1) @ "-" @ FormatTime(KFGRI.ElapsedTime));
+				TextObject.SetString("waveTime", WaveString @ KFGRI.WaveNum $ "/" $KFGRI.GetFinalWaveNum() @ "-" @ FormatTime(KFGRI.ElapsedTime));
 			}
 		}
 

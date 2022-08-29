@@ -105,7 +105,7 @@ function UpdateWaveCount()
 		}
 		else
 		{
-			SetString("waveNumber", CurrentWaveNum $ "/" $ (KFGRI.WaveMax - 1));
+			SetString("waveNumber", CurrentWaveNum $ "/" $ KFGRI.GetFinalWaveNum());
 		}
     }
 }

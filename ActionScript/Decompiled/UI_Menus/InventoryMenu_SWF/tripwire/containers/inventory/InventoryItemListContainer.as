@@ -431,7 +431,7 @@ package tripwire.containers.inventory
                     this.buttonList[_loc3_].selected = true;
                     ExternalInterface.call("Callback_InventoryFilter",_loc3_);
                     this.isInWeaponFilter = _loc2_ == this.weaponSkinsButton || _loc2_ == this.allButton;
-                    this.isRarityFilterEnabled = _loc2_ != this.craftingMatsButton && _loc2_ != this.consumablesButton;
+                    this.isRarityFilterEnabled = _loc2_ != this.consumablesButton;
                 }
                 else
                 {

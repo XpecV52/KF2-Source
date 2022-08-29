@@ -34,7 +34,7 @@ defaultproperties
    KnockdownPower=50.000000
    StumblePower=170.000000
    MeleeHitPower=50.000000
-   BurnPower=25.000000
+   BurnPower=50.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
    ModifierPerkList(1)=Class'KFGame.KFPerk_Demolitionist'
    GibImpulseScale=0.150000

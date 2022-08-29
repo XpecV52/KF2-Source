@@ -35,7 +35,7 @@ defaultproperties
 	DoT_Interval=0.4 //1.0
 	DoT_DamageScale=0.8 //1.5
 
-	BurnPower=15.5 //2.5
+	BurnPower=12 //15.5
 
     ModifierPerkList(0) = class'KFPerk_Firebug'
     ModifierPerkList(1) = class'KFPerk_Gunslinger'

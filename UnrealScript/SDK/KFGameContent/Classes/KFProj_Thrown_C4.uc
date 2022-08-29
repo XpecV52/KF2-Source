@@ -10,34 +10,8 @@
 
 class KFProj_Thrown_C4 extends KFProjectile;
 
-enum EImpactResult
-{
-	EIR_None,
-	EIR_Stick,
-	EIR_Bounce,
-};
-
-// replicated stick info.
-// needed to use a repnotify Actor, because UObjects that fail replication due to not being serializeable on the client will be sent again.
-/** Actor C4 is stuck to */
-var repnotify Actor	StuckToActor;
-/** Index of bone C4 is stuck to (if stuck to actor) */
-var int	StuckToBoneIdx;
-
-/** replicated stuck loc/rot (relative for skeletal meshes, absolute otherwise) */
-var transient vector StuckToLocation;
-var transient rotator StuckToRotation;
-
-/** Actor we were last stuck to */
-var Actor PrevStuckToActor;
-
 var KFImpactEffectInfo ImpactEffectInfo;
 
-/** How much to offset the emitter mesh when the grenade has landed so that it doesn't penetrate the ground */
-var() vector LandedTranslationOffset;
-
-/** sound to play on "impact" */
-var() AkEvent StickAkEvent;
 /** "beep" sound to play (on an interval) when instigator is within blast radius */
 var() AkEvent ProximityAlertAkEvent;
 /** Time between proximity beeps */
@@ -66,33 +40,8 @@ var repnotify int WeaponSkinId;
 
 replication
 {
-	if( bNetInitial || !bNetOwner )
-		StuckToActor, StuckToBoneIdx, StuckToLocation, StuckToRotation;
 	if(bNetDirty)
 		WeaponSkinId;
-}
-
-simulated event ReplicatedEvent( name VarName )
-{
-	if( VarName == nameof(StuckToActor) )
-	{
-		if( StuckToActor == none )
-		{
-			RestartMovement();
-		}
-		else if( StuckToActor != PrevStuckToActor )
-		{
-			ReplicatedStick( StuckToActor, StuckToBoneIdx );
-		}
-	}
-	else if (VarName == nameof(WeaponSkinId))
-	{
-		SetWeaponSkin(WeaponSkinId);
-	}
-	else
-	{
-		super.ReplicatedEvent( VarName );
-	}
 }
 
 simulated function PostBeginPlay()
@@ -122,75 +71,13 @@ simulated function PostBeginPlay()
 /** Used to check current status of StuckTo actor (to figure out if we should fall) */
 simulated event Tick( float DeltaTime )
 {
-	local int i;
-	local Pawn P;
-	local KFFracturedMeshActor FracMesh;
-	local KFDoorActor Door;
-	local KFDestructibleActor Destructible;
-	local Actor StuckTo;
+	super.Tick(DeltaTime);
 
-	super.Tick( DeltaTime );
+	StickHelper.Tick();
 
-	StuckTo = StuckToActor;
-	if( StuckTo != none )
+	if (StuckToActor != none)
 	{
-		UpdateAlert( DeltaTime );
-
-		// always restart movement if torn off
-		if( StuckTo.bTearOff )
-		{
-			RestartMovement();
-			return;
-		}
-
-		// if the bone we're stuck to is hidden (just head, probably), detatch
-		P = Pawn( StuckTo );
-		if( P != none )
-		{
-			if( P.Mesh.IsBoneHidden(StuckToBoneIdx) )
-			{
-				RestartMovement();
-			}
-			return;
-		}
-
-		// if the non-pawn actor we're stuck to is going away (could be due to non-relevancy, in which case they will not be torn off), detatch
-		if( StuckTo.bDeleteMe || StuckTo.bPendingDelete )
-		{
-			RestartMovement();
-			return;
-		}
-
-		// if the glass we're stuck to is fractured, detatch
-		FracMesh = KFFracturedMeshActor( StuckTo );
-		if( FracMesh != none && FracMesh.bHasLostChunk )
-		{
-			RestartMovement();
-			return;
-		}
-
-		// if the door we're stuck to is moving, detatch
-		// (we can't set our base to doors because they're world geometry, so we won't follow when they move)
-		Door = KFDoorActor( StuckTo );
-		if( Door != none && (!Door.bDoorMoveCompleted || Door.bIsDestroyed) )
-		{
-			RestartMovement();
-			return;
-		}
-
-		// if the replicated destructible we're stuck to is destroyed, detatch
-		Destructible = KFDestructibleActor( StuckTo );
-		if( Destructible != none )
-		{
-			for( i = 0; i < Destructible.SubObjects.Length; ++i )
-			{
-				if( Destructible.SubObjects[i].Mesh == LastTouchComponent && Destructible.SubObjects[i].Health <= 0 )
-				{
-					RestartMovement();
-					return;
-				}
-			}
-		}
+		UpdateAlert(DeltaTime);
 	}
 }
 
@@ -282,309 +169,12 @@ simulated function BlinkOff()
 	BlinkLightComp.SetEnabled( false );
 }
 
-/** Complete overrides super */
-simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+simulated function SetStickOrientation(vector HitNormal)
 {
-	TryStick( HitNormal, HitLocation, Other );
-}
-
-/** Complete overrides super */
-simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
-{
-	TryStick( HitNormal,, Wall );
-}
-
-/** Tries to stick projectile to hit actor. alternatively, tries to bounce it off of hit actor. */
-simulated function TryStick( vector HitNormal, optional vector HitLocation, optional Actor HitActor )
-{
-	local TraceHitInfo HitInfo;
-
-	if( Instigator == None || !Instigator.IsLocallyControlled() || (Physics == PHYS_None && StuckToActor != none) )
-	{
-		return;
-	}
-
-	GetImpactInfo( Velocity, HitLocation, HitNormal, HitInfo );
-
-	switch( GetImpactResult(HitActor, HitInfo.HitComponent) )
-	{
-		case EIR_Stick:
-			Stick( HitActor, HitLocation, HitNormal, HitInfo );
-			break;
-	};
-}
-
-/** Returns appropriate interaction with HitActor (stick or ignore, for now. add bounce later?) */
-simulated function EImpactResult GetImpactResult( Actor HitActor, PrimitiveComponent HitComp )
-{
-	local KFPawn_Human KFP;
-	local KFDestructibleActor D;
-	local StaticMeshComponent StaticMeshComp;
-
-	if( HitActor == none )
-	{
-		return EIR_Stick;
-	}
-
-	if( HitActor.RemoteRole == ROLE_None && !HitActor.bWorldGeometry )
-	{
-		return EIR_None;
-	}
-
-	// if we've already been dislodged from an actor, don't keep trying to stick to it while falling
-	if( HitActor.bTearOff || HitActor.bDeleteMe || HitActor.bPendingDelete || HitActor == PrevStuckToActor )
-	{
-		return EIR_None;
-	}
-
-	StaticMeshComp = StaticMeshComponent( HitComp );
-	if( StaticMeshComp != none )
-	{
-		// NOTE: Door actors fall into this category!
-
-		// pass through meshes that can move
-		return StaticMeshComp.CanBecomeDynamic() ? EIR_None : EIR_Stick;
-	}
-
-	KFP = KFPawn_Human( HitActor );
-	if( KFP != none )
-	{
-		// bounce off of player pawns, stick to other pawns
-		return EIR_None;
-	}
-
-	D = KFDestructibleActor( HitActor );
-	if( D != none )
-	{
-		// don't react to client-side-only destructibles, stick to others
-		return (D.ReplicationMode == RT_ClientSide) ? EIR_None : EIR_Stick;
-	}
-
-	return EIR_Stick;
-}
-
-/** Stops movement of projectile and calculates orientation to surface */
-simulated function Stick( Actor HitActor, vector HitLocation, vector HitNormal, const out TraceHitInfo HitInfo )
-{
-	local int BoneIdx;
 	local rotator StickRot;
 
-	// grenades use this, but we don't set LandedTranslationOffset for C4 currently
-	if( ProjEffects != none )
-	{
-        ProjEffects.SetTranslation(LandedTranslationOffset);
-    }
-
-    // Turn off location/rotation replication, because we'll handle this on the other side (REMEMBER TO TURN IT BACK ON IF WE NEED IT)
-    bReplicateMovement = false;
-    bOnlyDirtyReplication = true;
-    NetUpdateFrequency = 0.25f;
-    bForceNetUpdate = true;
-
-    if( !IsZero(HitLocation) )
-    {
-    	SetLocation( HitLocation );
-    }
-
-    StickRot = CalculateStickOrientation( HitNormal );
-    SetRotation( StickRot );
-
-	BoneIdx = INDEX_NONE;
-
-	if( HitInfo.BoneName != '' )
-	{
-		BoneIdx = GetBoneIndexFromActor( HitActor, HitInfo.BoneName );
-	}
-
-    StickToActor( HitActor, HitInfo.HitComponent, BoneIdx, true );
-
-    if( Role < ROLE_Authority )
-	{
-		ServerStick( HitActor, BoneIdx, StuckToLocation, StuckToRotation );
-	}
-
-	if( WorldInfo.NetMode != NM_DedicatedServer )
-	{
-		PlaySoundBase( StickAkEvent );
-	}
-}
-
-/** Get all relevant impact info (called after collision occurs to fill in details that we don't get in HitWall or ProcessTouch) */
-simulated function GetImpactInfo( vector in_Velocity, out vector out_HitLocation, out vector out_HitNormal, out TraceHitInfo out_HitInfo )
-{
-	local vector VelNorm;
-	local vector VelScaled;
-
-	VelNorm = Normal( in_Velocity );
-	VelScaled = VelNorm * 30;
-	Trace( out_HitLocation, out_HitNormal, Location + VelScaled, Location - VelScaled, , , out_HitInfo, TRACEFLAG_Bullet /*for complex collision*/ );
-}
-
-/** Changes the base of the charge to the stick actor and sets its relative loc/rot */
-simulated function StickToActor( Actor StickTo, PrimitiveComponent HitComp, int BoneIdx, optional bool bCalculateRelativeLocRot )
-{
-	local SkeletalMeshComponent SkelMeshComp;
-	local Name BoneName;
-
-	StopMovement();
-
-	PrevStuckToActor = StuckToActor;
-	StuckToActor = StickTo;
-	StuckToBoneIdx = BoneIdx;
-
-	// if we found a skel mesh, set our base to it and set relative loc/rot
-	if( BoneIdx != INDEX_NONE )
-	{
-		SkelMeshComp = SkeletalMeshComponent( HitComp );
-
-		BoneName = SkelMeshComp.GetBoneName( BoneIdx );
-
-		if( bCalculateRelativeLocRot )
-		{
-			// set replicated relative loc/rot
-			SkelMeshComp.TransformToBoneSpace( BoneName, Location, Rotation, StuckToLocation, StuckToRotation );
-		}
-
-		SetBase( StickTo,, SkelMeshComp, BoneName );
-		SetRelativeLocation( StuckToLocation );
-		SetRelativeRotation( StuckToRotation );
-	}
-	// otherwise, just set our base
-	else
-	{
-		if( bCalculateRelativeLocRot )
-		{
-			// set replicated loc/rot
-			StuckToLocation = Location;
-			StuckToRotation = Rotation;
-		}
-		else
-		{
-			// set loc/rot to replicated loc/rot
-			SetLocation( StuckToLocation );
-			SetRotation( StuckToRotation );
-		}
-
-		SetBase( StickTo );
-	}
-}
-
-/** Attempts to retrieve skeletal mesh from actor */
-simulated function SkeletalMeshComponent GetActorSkeletalMesh( Actor StickActor )
-{
-	local Pawn P;
-	local SkeletalMeshActor SM;
-
- 	P = Pawn( StickActor );
- 	if( P != none )
- 	{
- 		return P.Mesh;
- 	}
-
- 	SM = SkeletalMeshActor( StickActor );
- 	if( SM != none )
- 	{
- 		return SM.SkeletalMeshComponent;
- 	}
-
- 	return none;
-}
-
-/** Replicates stick to server from client */
-reliable server function ServerStick( Actor StickTo, int BoneIdx, vector StickLoc, rotator StickRot )
-{
-	StuckToLocation = StickLoc;
-	StuckToRotation = StickRot;
-	bForceNetUpdate = true;
-
-	ReplicatedStick( StickTo, BoneIdx );
-}
-
-/** Calls "Stick" with replicated info */
-simulated function ReplicatedStick( Actor StickTo, int BoneIdx )
-{
-	StickToActor( StickTo, GetActorSkeletalMesh(StickTo), BoneIdx );
-}
-
-/** Gets index for passed-in bone name for different kinds of actors that have differently-named skeletalmeshcomponents */
-simulated function int GetBoneIndexFromActor( Actor HitActor, Name BoneName )
-{
-	local Pawn P;
-	local SkeletalMeshActor SM;
-
- 	P = Pawn( HitActor );
- 	if( P != none )
- 	{
- 		return P.Mesh.MatchRefBone( BoneName );
- 	}
-
- 	SM = SkeletalMeshActor( HitActor );
- 	if( SM != none )
- 	{
- 		return SM.SkeletalMeshComponent.MatchRefBone( BoneName );
- 	}
-
- 	return INDEX_NONE;
-}
-
-/** Gets location for passed-in bone name for different kinds of actors that have differently-named skeletalmeshcomponents */
-simulated function GetBoneLocationFromActor( Actor HitActor, int BoneIdx, out vector BoneLoc )
-{
-	local Name BoneName;
-	local Pawn P;
-	local SkeletalMeshActor SM;
-
-	P = Pawn( HitActor );
-	if( P != none )
-	{
-		BoneName = P.Mesh.GetBoneName( BoneIdx );
-		BoneLoc = P.Mesh.GetBoneLocation( BoneName );
-		return;
-	}
-
-	SM = SkeletalMeshActor( HitActor );
-	if( SM != none )
-	{
-		BoneName = SM.SkeletalMeshComponent.GetBoneName( BoneIdx );
-		BoneLoc = SM.SkeletalMeshComponent.GetBoneLocation( BoneName );
-		return;
-	}
-}
-
-/** Clears physics/collision vars */
-simulated function StopMovement()
-{
-	SetPhysics(PHYS_None);
-
-	// turning off collision on server can prevent projectile from hitting/sticking to anything on the client
-
-    //SetCollision( false, false );
-	//bCollideWorld = false;
-}
-
-/** Resets physics/collision vars to defaults */
-simulated function RestartMovement()
-{
-	PrevStuckToActor = StuckToActor;
-
-	StuckToActor = none;
-	StuckToBoneIdx = INDEX_NONE;
-
-	StuckToLocation = vect(0,0,0);
-	StuckToRotation = rot(0,0,0);
-
-	SetBase( none );
-	SetPhysics( default.Physics );
-
-	bReplicateMovement = true;
-	NetUpdateFrequency = default.NetUpdateFrequency;
-	bOnlyDirtyReplication = false;
-	bForceNetUpdate = true;
-
-	// turning off collision on server can prevent projectile from hitting/sticking to anything on the client
-
-    //SetCollision( default.bCollideActors, default.bBlockActors );
-	//bCollideWorld = default.bCollideWorld;
+	StickRot = CalculateStickOrientation(HitNormal);
+    SetRotation(StickRot);
 }
 
 /** Causes charge to explode */
@@ -825,7 +415,6 @@ defaultproperties
 
 	ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
 
-	StickAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Place'
 	ProximityAlertAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Prox_Beep'
 	ProximityAlertInterval=1.0
 	ProximityAlertIntervalClose=0.5
@@ -835,4 +424,10 @@ defaultproperties
 	BlinkColorOn=(R=1, G=0, B=0)
 
 	BlinkFX=ParticleSystem'WEP_C4_EMIT.FX_C4_Glow'
+
+	bCanStick=true
+	Begin Object Class=KFProjectileStickHelper Name=StickHelper0
+		StickAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Place'
+	End Object
+	StickHelper=StickHelper0
 }

@@ -8,8 +8,26 @@
 class KFTrigger_ObjectiveLever extends KFTrigger_MinigameButton
     hidecategories(Navigation);
 
-var bool bFathersBlessing;
+var repnotify bool bFathersBlessing;
 var KFMapObjective_ActivateTrigger OwningObjective;
+
+replication
+{
+     if(bNetDirty)
+        bFathersBlessing;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+    if(VarName == 'bFathersBlessing')
+    {
+        if(OwningObjective != none)
+        {
+            OwningObjective.TriggerObjectiveProgressEvent(((bFathersBlessing) ? 2 : 3));
+        }
+    }
+    super(Actor).ReplicatedEvent(VarName);
+}
 
 simulated function bool ReadyToActivate()
 {
@@ -34,6 +52,19 @@ function AllowReactivation()
     if(OwningObjective != none)
     {
         OwningObjective.OnTriggerReactivated();
+    }
+}
+
+simulated function SetFathersBlessing(bool bNewBlessing)
+{
+    if(bNewBlessing != bFathersBlessing)
+    {
+        bFathersBlessing = bNewBlessing;
+        bForceNetUpdate = true;
+        if(OwningObjective != none)
+        {
+            OwningObjective.TriggerObjectiveProgressEvent(((bFathersBlessing) ? 2 : 3));
+        }
     }
 }
 

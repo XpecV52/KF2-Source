@@ -24,6 +24,7 @@ var KFImpactEffectInfo AltExploEffects;
 var transient Actor BlastAttachee;
 var transient float BlastSpawnOffset;
 var class<KFExplosionActor> NukeExplosionActorClass;
+var float StartingDamageRadius;
 
 replication
 {
@@ -37,6 +38,10 @@ simulated event PreBeginPlay()
     if((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game).FriendlyFireScale != 0)
     {
         bFriendlyFireEnabled = true;
+    }
+    if(ExplosionTemplate != none)
+    {
+        StartingDamageRadius = ExplosionTemplate.DamageRadius;
     }
 }
 
@@ -112,7 +117,8 @@ protected simulated function PrepareExplosionTemplate()
     }
     else
     {
-        ExplosionTemplate = default.ExplosionTemplate.Duplicate();
+        ExplosionTemplate = default.ExplosionTemplate;
+        ExplosionTemplate.DamageRadius = StartingDamageRadius;
     }
     if(Owner.Role == ROLE_Authority)
     {

@@ -371,6 +371,12 @@ const KFACHID_ShoppingSpreeSuicidal				=	236;
 const KFACHID_ShoppingSpreeHellOnEarth			=	237;
 const KFACHID_ShoppingSpreeCollectibles			=	238;
 
+const KFACHID_SpillwayNormal					=	239;
+const KFACHID_SpillwayHard					    =   240;
+const KFACHID_SpillwaySuicidal					=   241;
+const KFACHID_SpillwayHellOnEarth				=   242;
+const KFACHID_SpillwayCollectibles				=   243;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -390,7 +396,9 @@ var	config	bool	bAllowPerkCheats;
 var	private	const	bool	bDisabled;
 
 /** Max reward if users (theoretically) did the objective perfectly */
-var int VoshRewards[33];
+var int VoshRewards[11];
+/** Vosh Multiplier based on game difficulty */
+var array<float> VoshDifficultyScalar;
 /** Reward if user kills a zed. */
 var native map{ FName, INT } KillZedRewards;
 /** Keeps track of how many times player killed each zed. */
@@ -1654,7 +1662,7 @@ native final function bool IsWeeklyEventComplete();
 native static final function array<int> GetWeeklyOutbreakRewards(int Index = -1);
 
 /** Get the amount of Vosh a player would earn by completeting a map objective. */
-native static final function int GetMapObjectiveVoshReward(byte GameLength, byte WaveNum);
+native static final function int GetMapObjectiveVoshReward(byte Difficulty, byte WaveNum);
 
 /** Award the player the Vosh for completeting a map objective. */
 native final function MapObjectiveCompleted();
@@ -1893,6 +1901,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_Flamethrower, KFDT_Bludgeon_Flamethrower,KFDT_Fire_FlameThrower,KFDT_Fire_Ground_FlameThrower),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Beam_Microwave, KFDT_Bludgeon_MicrowaveGun,KFDT_Fire_Ground_MicrowaveGun,KFDT_Microwave,KFDT_Microwave_Beam,KFDT_Microwave_Blast),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HuskCannon, KFDT_Bludgeon_HuskCannon, KFDT_Explosive_HuskCannon, KFDT_HuskCannonDot),CompletionAmount=10000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Microwave, KFDT_Ballistic_MicrowaveRifle, KFDT_Fire_MicrowaveRifleDoT, KFDT_Bludgeon_MicrowaveRifle),CompletionAmount=10000))
 
     //Berserker Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Crovel, KFDT_Bludgeon_Crovel,KFDT_Bludgeon_CrovelBash,KFDT_Slashing_Crovel),CompletionAmount=5000)) //3000
@@ -1903,7 +1912,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Eviscerator, KFDT_Slashing_Eviscerator,KFDT_Slashing_EvisceratorProj),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_MaceAndShield, KFDT_Bludgeon_MaceAndShield,KFDT_Bludgeon_MaceAndShield_Bash,KFDT_Bludgeon_MaceAndShield_MaceHeavy,KFDT_Bludgeon_MaceAndShield_ShieldHeavy,KFDT_Bludgeon_MaceAndShield_ShieldLight),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_PowerGloves, KFDT_Bludgeon_PowerGloves,KFDT_Bludgeon_PowerGlovesBash,KFDT_Bludgeon_PowerGlovesHeavy),CompletionAmount=10000))
-    //DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_AbominationAxe, KFDT_Slashing_AbominationAxe,KFDT_Piercing_AbominationAxeStab,KFDT_Slashing_AbominationAxeHeavy),CompletionAmount=10000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_AbominationAxe, KFDT_Slashing_AbominationAxe,KFDT_Piercing_AbominationAxeStab,KFDT_Slashing_AbominationAxeHeavy),CompletionAmount=10000))
 
     //Gunslinger Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Revolver_Rem1858, KFDT_Bludgeon_Rem1858,KFDT_Ballistic_Rem1858,KFDT_Ballistic_Rem1858_Dual),CompletionAmount=5000)) //3000
@@ -1923,7 +1932,7 @@ defaultproperties
 
     //Survivalist Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Ice_FreezeThrower, KFDT_Bludgeon_Freezethrower, KFDT_Freeze_FreezeThrower, KFDT_Freeze_FreezeThrower_IceShards, KFDT_Freeze_Ground_FreezeThrower),CompletionAmount=7000))
-
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_LazerCutter, KFDT_Ballistic_LazerCutter, KFDT_LazerCutter_Beam, KFDT_Bludgeon_LazerCutter),CompletionAmount=10000))
 
     //Kills
     DailyEvents.Add((ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Alpha),CompletionAmount=20))
@@ -2032,6 +2041,9 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANTASWORKSHOP),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANTASWORKSHOP),CompletionAmount=2))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANTASWORKSHOP),CompletionAmount=3))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SPILLWAY),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SPILLWAY),CompletionAmount=2))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SPILLWAY),CompletionAmount=3))
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount

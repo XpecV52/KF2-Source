@@ -140,7 +140,7 @@ EarnXPString="XPの獲得："
 CompleteMapString="マップでマッチを終了："
 KillZedsString="Zedを殺す："
 KillBossString="ボス討伐："
-KillBossDescriptionString=""
+KillBossDescriptionString="サバイバルまたはウィークリーで"
 VersusKillsString="次のロールで対戦プレイヤーを殺す："
 DealVersusDamageString="次のロールで対戦プレイヤーにダメージを与える："
 VersusCompletionString="次のロールででマッチを終了："
@@ -1245,6 +1245,7 @@ AutoTurnOffString="クロトの掴みで自動ターンなし"
 ReduceHighPitchNoiseString="高ピッチ音を減少"
 DisableAutoUpgradeString="オートトレードを無効化"
 HideRemodeHeadshotEffectsString="遠隔ヘッドショットエフェクトを無効化"
+ToggleToRunString="切り替えてダッシュ"
 
 EnableMixerString="Mixer設定"
 DisableMixerString="Mixerを無効化"
@@ -1840,7 +1841,7 @@ SirenResistance="音波耐性弾"
 SirenResistanceDescription="爆発物がサイレンの叫び声の影響を受けず、必ず爆発する。"
 
 AreaOfEffect="破裂弾"
-AreaOfEffectDescription="爆発Perk武器の影響範囲が50%増加するが、ダメージが30%減少する。"
+AreaOfEffectDescription="Perk武器爆発の影響範囲が50%増加する。"
 
 CriticalHit="アーマー貫通弾"
 CriticalHitDescription="Perk武器によるクリティカルエリアへの直接ヒットのダメージが50%増加する。 "
@@ -1934,7 +1935,7 @@ GroundFire="地上炎"
 GroundFireDescription="地上炎はダメージを大幅に増加し、zedの移動速度が20%減少する。"
 
 ZedShrapnel="zed榴散弾"
-ZedShrapnelDescription="炎でキルしたzedは20%の確率で爆発し、近くのzedにダメージを与えてノックダウンする。"
+ZedShrapnelDescription="炎でキルしたzedは30%の確率で爆発し、近くのzedにダメージを与えてスタンする。"
 
 Napalm="ナパーム"
 NapalmDescription="燃焼中のzedが他のzedに触れると着火し、燃焼効果の持続時間が150%増加する。"
@@ -2163,10 +2164,10 @@ TacticalReload="戦術的リロード"
 TacticalReloadDescription="コマンドー武器、ガンスリンガー武器、スワット武器のリロード速度が増加する。"
 
 FieldMedic="メディック訓練"
-FieldMedicDescription="すべての回復の効力が20%増加し、注射器および回復ダーツのクールダウンが25%減少する。"
+FieldMedicDescription="すべての回復の効力が30%増加し、注射器および回復ダーツのクールダウンが50%減少する。"
 
 MeleeExpert="近接攻撃専門家"
-MeleeExpertDescription="近接武器を使用中、近接攻撃速度が15%、与えるダメージが10%、移動速度が25%増加する。"
+MeleeExpertDescription="近接武器を使用中、近接攻撃速度が20%、与えるダメージが50%、移動速度が25%増加する。"
 
 AmmoVest="弾薬ベスト"
 AmmoVestDescription="全武器の弾薬を持てる量が最大15%増加し、手榴弾が回復グレネードになる。"
@@ -2175,10 +2176,10 @@ BigPockets="武器ハーネス"
 BigPocketsDescription="運搬容量が5増加し、手榴弾がモロトフ火炎手榴弾になる。"
 
 ZedShrapnel="自発的zed爆発"
-ZedShrapnelDescription="キルしたzedは20%の確率で爆発し、近くのzedにダメージを与えてノックダウンする。"
+ZedShrapnelDescription="キルしたzedは30%の確率で爆発し、近くのzedにダメージを与えてスタンする。"
 
 MakeThingsGoBoom="ドカンと一発"
-MakeThingsGoBoomDescription="全爆発物の影響範囲が25%増加する。"
+MakeThingsGoBoomDescription="全爆発物の影響範囲が50%増加する。"
 
 Madman="Zed-Time―狂人"
 MadmanDescription="Zed-Time中、全武器の発射速度が3倍になる。"
@@ -2345,9 +2346,13 @@ DoschHoldDesc="マークされたエリアにZedを入れるな"
 DescriptionDoshHold="マークされたエリアにZedを入れるな"
 RepairObjective="溶接して修理しよう"
 UseWelderToRepair="溶接機を使って目標を修理しよう"
+RepairObjectiveRequired="復旧する任務："
 EscortPawnsObjective="護衛"
 EscortPawnsDescription="Zedからターゲットを保護する"
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="追跡と破壊"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="操縦可能"
 DescriptionActivateTrigger="制御装置を起動しよう"
 RequiredActivateTrigger="起動に必要なもの:"
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="エンドレスセントリー",D
 SpecialEventObjectiveInfoList[3]=(TitleString="エンドレスウォーマシン",DescriptionString="エンドレスモードでウェーブ20をクリア",TierEventRewardName="ブラッディ－D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="エンドレスオプティマスD.A.R.",DescriptionString="エンドレスウェーブ25をクリア",TierEventRewardName="ゴールデンD.A.R.");
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="ボスラッシュ",DescriptionString="マップを問わず、ボスを15人殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリーSpillway",DescriptionString="Spillwayでウィークリーをクリア")
+SpecialEventObjectiveInfoList[2]=(TitleString="絶滅者",DescriptionString="マップを問わず、Zedを1500体殺す")
+SpecialEventObjectiveInfoList[3]=(TitleString="エンドレスSpillway",DescriptionString="エンドレスHardかそれ以上の難易度で、Spillwayでのウェーブ15をクリアする")
+SpecialEventObjectiveInfoList[4]=(TitleString="スピリングブラッド",DescriptionString="サバイバルHardかそれ以上の難易度で、Spillwayにてボスを倒す")
+
+AllCompleteRewardDescriptionString="男性用と女性用のサイバーパンク衣装"
+
+ChanceDropDescriptionStrings[0]="景品チケット"
+ChanceDropDescriptionStrings[1]="黄金チケット"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3076,6 +3093,7 @@ DisplayName_KOR="산타의 작업장 "
 DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
+
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
@@ -3160,6 +3178,9 @@ DisplayName="ショッピング三昧"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="サンタの工房"
+
+[KF-Spillway KFMapSummary]
+DisplayName="Spillway"
 
 [KFMapInfo]
 ; defaults

@@ -83,6 +83,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
+const KFID_ToggleToRun=172;
 #linenumber 17
 
 /** Cached a typed Player controller.  Unlike PawnOwner we only set this once in PostBeginPlay */
@@ -730,12 +731,16 @@ function DrawHUD()
 			CheckAndDrawRemainingZedIcons();
 
 			//Draw our current objective location
-			if(KFGRI.CurrentObjective != none )
+			if(KFGRI.CurrentObjective != none && KFGRI.ObjectiveInterface != none)
 			{
+				KFGRI.ObjectiveInterface.DrawHUD(self, Canvas);
+
 				TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation();
 				ThisDot = Normal((TargetLocation + (class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) dot ViewVector;
 			
-				if (ThisDot > 0 &&  VSizeSq(TargetLocation - LocActor.Location) < MaxDrawDistanceObjective )
+				if (ThisDot > 0 &&  
+					KFGRI.ObjectiveInterface.ShouldShowObjectiveHUD() &&
+					(!KFGRI.ObjectiveInterFace.HasObjectiveDrawDistance() || VSizeSq(TargetLocation - LocActor.Location) < MaxDrawDistanceObjective))
 				{
 					DrawObjectiveHUD();
 				}
@@ -917,6 +922,9 @@ simulated function bool DrawScriptedPawnInfo(KFPawn_Scripted KFPS, float Normali
 	FontScale = class'KFGameEngine'.Static.GetKFFontScale() * FriendlyHudScale;
 	Percentage = FMin(float(KFPS.Health) / float(KFPS.HealthMax), 1);
 	
+	// Make sure that the entire health bar is on screen
+	ScreenPos.X = FClamp(ScreenPos.X, BarLength * 0.5f, Canvas.ClipX - BarLength * 0.5f);
+
 	DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y + BarHeight * 2 + (36 * FontScale * ResModifier), GetHealthStateColor(KFPS));
 	Canvas.SetDrawColorStruct(PlayerBarIconColor);
 	Canvas.SetPos(ScreenPos.X - PlayerStatusIconSize * ResModifier * 0.5f, ScreenPos.Y - (PlayerStatusIconSize * ResModifier));

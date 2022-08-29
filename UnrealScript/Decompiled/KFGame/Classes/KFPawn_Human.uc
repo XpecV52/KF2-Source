@@ -306,16 +306,19 @@ simulated event EndCrouch(float HeightAdjust)
 function UpdateGroundSpeed()
 {
     local KFInventoryManager InvM;
-    local float WeightMod, HealthMod;
+    local float WeightMod, HealthMod, WeaponMod;
     local KFGameInfo KFGI;
+    local KFWeapon CurrentWeapon;
 
     if(Role < ROLE_Authority)
     {
         return;
     }
+    CurrentWeapon = KFWeapon(Weapon);
     InvM = KFInventoryManager(InvManager);
     WeightMod = ((InvM != none) ? InvM.GetEncumbranceSpeedMod() : 1);
     HealthMod = GetHealthMod();
+    WeaponMod = ((CurrentWeapon != none) ? CurrentWeapon.MovementSpeedMod : 1);
     GroundSpeed = default.GroundSpeed;
     SprintSpeed = default.SprintSpeed;
     KFGI = KFGameInfo(WorldInfo.Game);
@@ -324,13 +327,24 @@ function UpdateGroundSpeed()
         KFGI.ModifyGroundSpeed(self, GroundSpeed);
         KFGI.ModifySprintSpeed(self, SprintSpeed);
     }
-    GroundSpeed = (GroundSpeed * WeightMod) * HealthMod;
-    SprintSpeed = (SprintSpeed * WeightMod) * HealthMod;
+    GroundSpeed = ((GroundSpeed * WeightMod) * HealthMod) * WeaponMod;
+    SprintSpeed = ((SprintSpeed * WeightMod) * HealthMod) * WeaponMod;
     if((GetPerk()) != none)
     {
         GetPerk().ModifySpeed(GroundSpeed);
         GetPerk().ModifySprintSpeed(SprintSpeed);
         GetPerk().FinalizeSpeedVariables();
+    }
+    if(CurrentWeapon != none)
+    {
+        if(CurrentWeapon.OverrideGroundSpeed >= 0)
+        {
+            GroundSpeed = CurrentWeapon.OverrideGroundSpeed;
+        }
+        if(CurrentWeapon.OverrideSprintSpeed >= 0)
+        {
+            SprintSpeed = CurrentWeapon.OverrideSprintSpeed;
+        }
     }
 }
 
@@ -778,6 +792,11 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
         LogInternal(((string(self) @ string(GetFuncName())) @ "Adjusted Damage BEFORE =") @ string(InDamage));
     }
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+    if(KFGameReplicationInfo(KFGameInfo(WorldInfo.Game).GameReplicationInfo).bTraderIsOpen)
+    {
+        InDamage = 0;
+        return;
+    }
     MyKFPerk = GetPerk();
     if(MyKFPerk != none)
     {

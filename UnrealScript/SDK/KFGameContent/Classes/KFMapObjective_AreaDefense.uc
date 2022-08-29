@@ -6,23 +6,8 @@
 // Killing Floor 2
 // Copyright (C) 2018 Tripwire Interactive LLC
 //=============================================================================
-class KFMapObjective_AreaDefense extends Volume
-	implements(KFInterface_MapObjective)
+class KFMapObjective_AreaDefense extends KFMapObjective_VolumeBase
 	abstract;
-
-struct DoshHoldMaxReward
-{
-	var() int WaveMaxReward[11];
-};
-
-var() string LocalizationKey;
-var() string DescriptionLocKey;
-var() string LocalizationPackageName;
-var() string RequirementsLocKey;
-var() bool bIsMissionCriticalObjective;
-
-/** Trader trail object being used */
-var transient KFReplicatedShowPathActor TrailActor;
 
 /** List of touching humans maintained by touch/untouch events */
 var array<KFPawn_Human> TouchingHumans;
@@ -34,53 +19,11 @@ var() const int PlayerThresholds[6];
 /** Per-player count thresholds for amount of zeds allowed in volume */
 var() const int ZedThresholds[6];
 
-/** Texture to use for the volume icon */
-var() Texture2D ObjectiveIcon;
-
-/** Whether or not I'm active */
-var repnotify bool bActive;
-
-/** Emitter to use to visually define the area the players should hold out.
-	Note: This is going to be removed in favor of a static mesh setup at some
-	point in the near future.
-*/
-var() array<Emitter> ZoneBoundariesEmitter;
-
-/** Meshes used to define the outer boundary of the objective area. */
-var() array<DynamicSMActor> ZoneBoundaryMeshes;
-
-/** Splines used to define the boundary of the objective area. */
-var() array<SplineLoftActor> ZoneBoundarySplines;
-
-/** Name of the param that sets on/off state of danger colors of the mesh array */
-var() name ZoneDangerMaterialParamName;
-
 /** Whether or not the zone is in the danger state */
 var() repnotify bool bDangerState;
 
-/** Whether or not to use the trader trail to lead players to the zone */
-var() bool bUseTrailToVolume;
-
-/** Max reward if users (theoretically) did the objective perfectly */
-var() const DoshHoldMaxReward MaxRewards[3];
-
-/** XP reward if user compeletes the objective. */
-var() const DoshHoldMaxReward XPRewards[3];
-
 /** Current reward amount */
 var float CurrentRewardAmount;
-
-/** If this is tied to an event, what season are we in? */
-var() SeasonalEventIndex EventSeason;
-
-/** Index if this is tied to a season */
-var() int EventIndex;
-
-/** Which game modes should this objective not support. */
-var() array<class<KFGameInfo> > GameModeBlacklist;
-
-/** Modify Spawn Rate based on how many players are alive. */
-var() array<float> PerPlayerSpawnRateMod;
 
 /** Win thresholds - Named to match the VO tracks*/
 var float JustWinThreshold;
@@ -89,9 +32,6 @@ var float GoodWinThreshold;
 
 replication
 {
-	if (bNetDirty)
-		bActive;
-
     if (Role == ROLE_Authority)
         CurrentRewardAmount, bDangerState;
 }
@@ -106,49 +46,6 @@ simulated event ReplicatedEvent(name VarName)
     {
         super.ReplicatedEvent(VarName);
     }
-}
-
-simulated event PostBeginPlay()
-{
-	local int i, j, k;
-	Super.PostBeginPlay();
-
-	if (WorldInfo.NetMode != NM_DedicatedServer)
-	{
-		for (i = 0; i < ZoneBoundaryMeshes.Length; ++i)
-		{
-			if (ZoneBoundaryMeshes[i] != none)
-			{
-				ZoneBoundaryMeshes[i].StaticMeshComponent.SetHidden(true);
-				j = 0;
-				while (ZoneBoundaryMeshes[i].StaticMeshComponent.GetMaterial(j) != none)
-				{
-					ZoneBoundaryMeshes[i].StaticMeshComponent.CreateAndSetMaterialInstanceConstant(j);
-					++j;
-				}
-			}
-		}
-
-		for (i = 0; i < ZoneBoundarySplines.length; ++i)
-		{
-			if (ZoneBoundarySplines[i] != none)
-			{
-				for (j = 0; j < ZoneBoundarySplines[i].SplineMeshComps.length; ++j)
-				{
-					if (ZoneBoundarySplines[i].SplineMeshComps[j] != none)
-					{
-						ZoneBoundarySplines[i].SplineMeshComps[j].SetHidden(true);
-						k = 0;
-						while (ZoneBoundarySplines[i].SplineMeshComps[j].GetMaterial(k) != none)
-						{
-							ZoneBoundarySplines[i].SplineMeshComps[j].CreateAndSetMaterialInstanceConstant(k);
-							++k;
-						}
-					}
-				}
-			}
-		}
-	}
 }
 
 //-----------------------------------------------------------------------------
@@ -242,8 +139,7 @@ function bool IsValidZed(Actor PotentialZed)
 
 simulated function ActivateObjective()
 {
-	local int i, j;
-	local KFSeqEvent_MapObjectiveActivated ActivationEvent;
+	super.ActivateObjective();
 
 	if (Role == ROLE_Authority)
 	{
@@ -251,48 +147,8 @@ simulated function ActivateObjective()
 		CurrentRewardAmount = GetMaxDoshReward();
 	}
 
-	for (i = 0; i < GeneratedEvents.Length; i++)
-	{
-		ActivationEvent = KFSeqEvent_MapObjectiveActivated(GeneratedEvents[i]);
-		if (ActivationEvent != none)
-		{
-			ActivationEvent.NotifyActivation(self, self);
-		}
-	}
-
 	if (WorldInfo.NetMode != NM_DedicatedServer)
     {
-        for (i = 0; i < ZoneBoundariesEmitter.Length; ++i)
-        {
-            if (ZoneBoundariesEmitter[i] != none)
-            {
-                ZoneBoundariesEmitter[i].ParticleSystemComponent.ActivateSystem();
-                ZoneBoundariesEmitter[i].bCurrentlyActive = true;
-            }
-        }
-
-        for (i = 0; i < ZoneBoundaryMeshes.Length; ++i)
-        {
-            if (ZoneBoundaryMeshes[i] != none)
-            {
-                ZoneBoundaryMeshes[i].StaticMeshComponent.SetHidden(false);
-            }
-        }
-
-		for (i = 0; i < ZoneBoundarySplines.length; ++i)
-		{
-			if (ZoneBoundarySplines[i] != none)
-			{
-				for(j = 0; j < ZoneBoundarySplines[i].SplineMeshComps.length; ++j)
-				{
-					if(ZoneBoundarySplines[i].SplineMeshComps[j] != none)
-					{
-						ZoneBoundarySplines[i].SplineMeshComps[j].SetHidden(false);
-					}
-				}
-			}
-		}
-
         UpdateMeshArrayState();
 
 		if (bUseTrailToVolume)
@@ -309,56 +165,15 @@ simulated function ActivateObjective()
 
 simulated function DeactivateObjective()
 {
-	local int i, j;
-	local KFSeqEvent_MapObjectiveActivated ActivationEvent;
+	super.DeactivateObjective();
 
 	if (Role == ROLE_Authority)
 	{
 		bActive = false;
 	}
 
-	for (i = 0; i < GeneratedEvents.Length; i++)
-	{
-		ActivationEvent = KFSeqEvent_MapObjectiveActivated(GeneratedEvents[i]);
-		if (ActivationEvent != none)
-		{
-			ActivationEvent.NotifyDeactivation(self, self);
-		}
-	}
-
 	if (WorldInfo.NetMode != NM_DedicatedServer)
 	{
-		for (i = 0; i < ZoneBoundariesEmitter.Length; ++i)
-		{
-			if (ZoneBoundariesEmitter[i] != none)
-			{
-				ZoneBoundariesEmitter[i].ParticleSystemComponent.DeactivateSystem();
-				ZoneBoundariesEmitter[i].bCurrentlyActive = false;
-			}
-		}
-
-		for (i = 0; i < ZoneBoundaryMeshes.Length; ++i)
-		{
-			if (ZoneBoundaryMeshes[i] != none)
-			{
-				ZoneBoundaryMeshes[i].StaticMeshComponent.SetHidden(true);
-			}
-		}
-
-		for (i = 0; i < ZoneBoundarySplines.length; ++i)
-		{
-			if (ZoneBoundarySplines[i] != none)
-			{
-				for (j = 0; j < ZoneBoundarySplines[i].SplineMeshComps.length; ++j)
-				{
-					if (ZoneBoundarySplines[i].SplineMeshComps[j] != none)
-					{
-						ZoneBoundarySplines[i].SplineMeshComps[j].SetHidden(true);
-					}
-				}
-			}
-		}
-
 		UpdateMeshArrayState();
 
 		if (bUseTrailToVolume && TrailActor != none)
@@ -366,27 +181,6 @@ simulated function DeactivateObjective()
 			TrailActor.Destroy();
 			TrailActor = none;
 		}
-	}
-}
-
-simulated function GrantReward(KFPawn_Human PlayerToReward)
-{
-	if (KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo) == none)
-	{
-		return;
-	}
-
-	if (KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).bOnlySpectator)
-	{
-		return;
-	}
-
-	KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).AddDosh(CurrentRewardAmount);
-
-	if (KFPlayerController(PlayerToReward.Controller) != none)
-	{
-		// @todo: hook up seasonal event here if/when desired
-		KFPlayerController(PlayerToReward.Controller).ClientMapObjectiveCompleted(GetXPReward());
 	}
 }
 
@@ -432,7 +226,7 @@ simulated function float GetActivationPctChance()
 	return 1.f;
 }
 
-function bool IsBonus()
+simulated function bool IsBonus()
 {
 	return true;
 }
@@ -440,21 +234,6 @@ function bool IsBonus()
 simulated function int GetPlayersInObjective()
 {
 	return 0;
-}
-
-simulated function float GetSpawnRateMod()
-{
-	local KFGameReplicationInfo KFGRI;
-	local int NumPlayersAlive;
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if (KFGRI != none)
-	{
-		NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, PerPlayerSpawnRateMod.length) - 1;
-		return PerPlayerSpawnRateMod[NumPlayersAlive];
-	}
-
-	return 1.f;
 }
 
 simulated function bool HasFailedObjective();
@@ -466,27 +245,6 @@ simulated function bool HasFailedObjective();
 simulated function int GetDoshReward()
 {
 	return CurrentRewardAmount;
-}
-
-simulated function int GetMaxDoshReward()
-{
-	local KFGameReplicationInfo KFGRI;
-	local int ArrayEnd;
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if (KFGRI != none)
-	{
-		// Since we're using a static array for rewards, we need to know the true end of the array.
-		ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, ArrayCount(default.MaxRewards[KFGRI.GameLength].WaveMaxReward) - 1);
-		return default.MaxRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
-	}
-
-	if (ArrayCount(default.MaxRewards) > 0 && ArrayCount(default.MaxRewards[0].WaveMaxReward) > 0)
-	{
-		return default.MaxRewards[0].WaveMaxReward[0];
-	}
-
-	return 0;
 }
 
 simulated function int GetVoshReward()
@@ -502,19 +260,6 @@ simulated function int GetVoshReward()
 	return GetMaxVoshReward() * float(GetDoshReward()) / float(MaxDoshReward);
 }
 
-simulated function int GetMaxVoshReward()
-{
-	local KFGameReplicationInfo KFGRI;
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if (KFGRI != none)
-	{
-		return class'KFOnlineStatsWrite'.static.GetMapObjectiveVoshReward(KFGRI.GameLength, KFGRI.WaveNum);
-	}
-
-	return 0;
-}
-
 simulated function int GetXPReward()
 {
 	local int MaxDoshReward;
@@ -528,27 +273,6 @@ simulated function int GetXPReward()
 	return GetMaxXPReward() * float(GetDoshReward()) / float(MaxDoshReward);
 }
 
-simulated function int GetMaxXPReward()
-{
-	local KFGameReplicationInfo KFGRI;
-	local int ArrayEnd;
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if (KFGRI != none)
-	{
-		// Since we're using a static array for rewards, we need to know the true end of the array.
-		ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, ArrayCount(default.XPRewards[KFGRI.GameLength].WaveMaxReward) - 1);
-		return default.XPRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
-	}
-
-	if (ArrayCount(default.XPRewards) > 0 && ArrayCount(default.XPRewards[0].WaveMaxReward) > 0)
-	{
-		return default.XPRewards[0].WaveMaxReward[0];
-	}
-
-	return 0;
-}
-
 //-----------------------------------------------------------------------------
 // HUD
 //-----------------------------------------------------------------------------
@@ -560,21 +284,6 @@ simulated function bool ShouldDrawIcon()
 simulated function Vector GetIconLocation()
 {
 	return Location;
-}
-
-simulated function Texture2D GetIcon()
-{
-	return ObjectiveIcon;
-}
-
-simulated function string GetLocalizedName()
-{
-	return Localize("Objectives", LocalizationKey, LocalizationPackageName);
-}
-
-simulated function string GetLocalizedDescription()
-{
-	return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
 }
 
 simulated function bool UsesMultipleActors()
@@ -599,13 +308,7 @@ defaultproperties
 
 	ZoneDangerMaterialParamName="Danger"
 
-	//SupportedEvents.Empty
-	SupportedEvents.Add(class'KFSeqEvent_MapObjectiveActivated')
-
 	PerPlayerSpawnRateMod=(1.f, 1.f, 1.f, 1.f, 1.f, 1.f)
-
-	EventSeason=SEI_None
-	EventIndex=-1
 
 	//These are basically range caps.  For example:
 	//		Just win would be 0% - 25%

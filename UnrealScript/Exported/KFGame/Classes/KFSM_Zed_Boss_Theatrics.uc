@@ -213,10 +213,6 @@ function PlayAnimation()
 				}
 				// Lengthen and add a tiny bit of blend out time to avoid snapping
 				KFPC.ClientPlayCameraAnim( CameraAnim, 1.f, 0.99f, BlendInTime, BlendOutTime + 0.03f, false, false );
-                if(KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.BossHealthBar != none)
-                {
-                    KFPC.MyGFxHUD.BossHealthBar.SetBossPawn(BossRef);
-                }
 			}
 		}
 	}

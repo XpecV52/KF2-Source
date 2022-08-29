@@ -17,6 +17,7 @@ package
             this.__setProp_useAltAimOnDualCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_disableAutoUpgradeCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_disableRemoteHeadshotEffectsCheckBox_GameSettomgsContainerMC_test_0();
+            this.__setProp_enableToggleToRunCheckbox_GameSettomgsContainerMC_test_0();
             this.__setProp_closeButton_GameSettomgsContainerMC_header_0();
         }
         
@@ -222,6 +223,32 @@ package
             try
             {
                 disableRemoteHeadshotEffectsCheckBox["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_enableToggleToRunCheckbox_GameSettomgsContainerMC_test_0() : *
+        {
+            try
+            {
+                enableToggleToRunCheckbox["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            enableToggleToRunCheckbox.autoSize = "none";
+            enableToggleToRunCheckbox.data = "";
+            enableToggleToRunCheckbox.enabled = true;
+            enableToggleToRunCheckbox.enableInitCallback = false;
+            enableToggleToRunCheckbox.focusable = true;
+            enableToggleToRunCheckbox.label = "Music Vocals";
+            enableToggleToRunCheckbox.selected = false;
+            enableToggleToRunCheckbox.visible = true;
+            try
+            {
+                enableToggleToRunCheckbox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

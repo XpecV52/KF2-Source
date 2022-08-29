@@ -267,6 +267,7 @@ var float DamageModifier;
 var array<DamagedActorInfo> RecentlyDamagedActors;
 var private transient SprayMeshContact HighestSprayMeshContactThisTick;
 var transient float bSprayMeshCollisionDuration;
+var(SprayCollision) int MaxSprayMeshesCollided;
 var transient AnimNodeBlendList AnimBlendNode;
 var transient AnimNodeSequence StartSpraySeqNode;
 var transient AnimNodeSequence EndSpraySeqNode;
@@ -790,6 +791,7 @@ defaultproperties
     SprayDamageScaleDistRange=(X=300,Y=300)
     SplashDamageInstigatorDamageScale=1
     DamageModifier=1
+    MaxSprayMeshesCollided=1
     SeedSprayVel=5000
     SeedDecel=13000
     SeedMaxAge=0.4

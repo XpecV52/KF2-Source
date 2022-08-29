@@ -43,7 +43,7 @@ function UpdateGameInfo()
 			else
 			{
 				// Show the upcoming wave number for every wave except the boss wave
-				FinalWaveString = WaveString @ (KFGRI.WaveNum) $"/"$(KFGRI.WaveMax - 1);
+				FinalWaveString = WaveString @ (KFGRI.WaveNum) $"/"$KFGRI.GetFinalWaveNum();
 			}
 		}
 

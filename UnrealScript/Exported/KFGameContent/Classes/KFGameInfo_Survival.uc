@@ -691,7 +691,14 @@ function UpdateGameSettings()
 					KFGameSettings.CurrentWave = WaveNum;
 				}
 				//Also from KF1
-				KFGameSettings.NumWaves = WaveMax - 1;
+				if(MyKFGRI != none)
+				{
+					KFGameSettings.NumWaves = MyKFGRI.GetFinalWaveNum();
+				}
+				else
+				{
+					KFGameSettings.NumWaves = WaveMax - 1;
+				}
 				KFGameSettings.OwningPlayerName = class'GameReplicationInfo'.default.ServerName;
 
 				KFGameSettings.NumPublicConnections = MaxPlayersAllowed;
@@ -925,7 +932,7 @@ function RewardSurvivingPlayers()
 
 function int CalculateMinimumRespawnDosh(float UsedMaxRespawnDosh)
 {
-	return Round(UsedMaxRespawnDosh * (float(WaveNum) / float(WaveMax - 1)));
+	return Round(UsedMaxRespawnDosh * (float(WaveNum) / float(MyKFGRI.GetFinalWaveNum())));
 }
 
 /**
@@ -1114,8 +1121,14 @@ function StartWave()
 {
 	local int WaveBuffer;
 	local KFPlayerController KFPC;
+
 	//closes trader on server
-	MyKFGRI.CloseTrader();
+	if (MyKFGRI.OpenedTrader != none)
+	{
+		MyKFGRI.CloseTrader();
+		NotifyTraderClosed();
+	}
+
 	WaveBuffer = 0;
 	WaveNum++;
 	MyKFGRI.WaveNum = WaveNum;
@@ -1129,7 +1142,7 @@ function StartWave()
 		}
 	}
 
-    SpawnManager.SetupNextWave(WaveNum-1, WaveBuffer);
+    SetupNextWave(WaveBuffer);
 
 	NumAISpawnsQueued = 0;
 	AIAliveCount = 0;
@@ -1166,6 +1179,11 @@ function StartWave()
 			KFPC.GetPerk().OnWaveStart();
 		}
 	}
+}
+
+function SetupNextWave(int WaveBuffer)
+{
+	SpawnManager.SetupNextWave(WaveNum-1, WaveBuffer);
 }
 
 function byte GetWaveStartMessage()
@@ -1771,6 +1789,31 @@ function NotifyTraderOpened()
 					OutputLinksToActivate.AddItem( 0 );
 				}
 				TraderOpenedEvt.CheckActivate( self, self,, OutputLinksToActivate );
+			}
+		}
+	}
+}
+
+/** Tell Kismet a Trader closed */
+function NotifyTraderClosed()
+{
+	local KFSeqEvent_TraderClosed TraderClosedEvt;
+	local array<SequenceObject> AllTraderClosedEvents;
+	local Sequence GameSeq;
+	local int i;
+
+	GameSeq = WorldInfo.GetGameSequence();
+	if (GameSeq != none)
+	{
+		GameSeq.FindSeqObjectsByClass(class'KFSeqEvent_TraderClosed', true, AllTraderClosedEvents);
+		for (i = 0; i < AllTraderClosedEvents.Length; ++i)
+		{
+			TraderClosedEvt = KFSeqEvent_TraderClosed(AllTraderClosedEvents[i]);
+			if (TraderClosedEvt != none)
+			{
+				TraderClosedEvt.Reset();
+				TraderClosedEvt.SetWaveNum(WaveNum, WaveMax);
+				TraderClosedEvt.CheckActivate(self, self);
 			}
 		}
 	}

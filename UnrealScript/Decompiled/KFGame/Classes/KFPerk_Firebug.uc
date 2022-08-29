@@ -365,11 +365,11 @@ defaultproperties
     OwnFireResistance=(Name="Own fire Resistance",Increment=0.03,Rank=0,StartingValue=0.25,MaxValue=1,ModifierValue=0,IconPath="",bActive=false)
     StartingAmmo=(Name="Starting Ammo",Increment=0.1,Rank=0,StartingValue=0,MaxValue=0.5,ModifierValue=0,IconPath="",bActive=false)
     HeatWaveRadiusSQ=90000
-    ShrapnelChance=0.2
+    ShrapnelChance=0.3
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'
-        Damage=10
-        DamageRadius=200
+        Damage=100
+        DamageRadius=250
         MyDamageType=Class'KFDT_Explosive_Shrapnel'
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
         CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Perk_ShrapnelCombustion'
@@ -427,4 +427,5 @@ defaultproperties
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Dragonsbreath_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.FlameThrower_PrestigePrecious_Mint_Large"
 }

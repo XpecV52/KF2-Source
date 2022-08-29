@@ -1336,6 +1336,18 @@ event PostBeginPlay()
 	}
 }
 
+// called at the end of PostBeginPlay, when the pawn has been added to the world's pawn list
+event PostAddPawn()
+{
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo(WorldInfo.Game);
+	if (KFGI != none)
+	{
+		KFGI.UpdateAIRemaining();
+	}
+}
+
 /* Reset actor to initial state - used when restarting level without reloading. */
 function Reset()
 {
@@ -1496,9 +1508,9 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 	if (Info != CharacterArch || bForce)
 	{
 		// Set Family Info
-		
+
 		// duplicate, so we can modify a single instance of the arch, if desired
-		CharacterArch = Info.Duplicate();
+		CharacterArch = Info;
 		CharacterArch.SetCharacterFromArch( self, KFPRI );
 		CharacterArch.SetCharacterMeshFromArch( self, KFPRI );
 		CharacterArch.SetFirstPersonArmsFromArch( self, KFPRI );
@@ -2199,10 +2211,15 @@ simulated function WeaponFired(Weapon InWeapon, bool bViaReplication, optional v
 			if( KFW != none )
 			{
 				KFProj = KFW.GetKFProjectileClass();
-				if( KFProj != none )
-				{
-					ImpactFX = KFProj.default.ImpactEffects;
-				}
+			}
+			else
+			{
+				KFProj = WeaponClassForAttachmentTemplate.static.GetKFProjectileClassByFiringMode(FiringMode, GetPerk());
+			}
+
+			if (KFProj != none)
+			{
+				ImpactFX = KFProj.default.ImpactEffects;
 			}
 
 			// no custom impact info, use ImpactEffectManager default
@@ -2266,6 +2283,50 @@ final simulated function bool CanReloadWeapon()
 	return TRUE;
 }
 
+function KFWeapon FindBestWeapon()
+{
+	local float BestPrimaryRating, BestSecondaryRating, BestMeleeRating;
+	local KFWeapon BestWeapon, BestPrimary, BestSecondary, BestMelee, TempWeapon;
+
+	foreach InvManager.InventoryActors(class'KFWeapon', TempWeapon)
+	{
+		// We only care about weapons we can actually drop
+		if (!TempWeapon.bDropOnDeath || !TempWeapon.CanThrow())
+		{
+			continue;
+		}
+
+		// Collect the best weapons from each inventory group
+		if (TempWeapon.InventoryGroup == IG_Primary)
+		{
+			if (BestPrimaryRating == 0.f || TempWeapon.GroupPriority > BestPrimaryRating)
+			{
+				BestPrimary = TempWeapon;
+				BestPrimaryRating = TempWeapon.GroupPriority;
+			}
+		}
+		else if (TempWeapon.InventoryGroup == IG_Secondary)
+		{
+			if (BestSecondaryRating == 0.f || TempWeapon.GroupPriority > BestSecondaryRating)
+			{
+				BestSecondary = TempWeapon;
+				BestSecondaryRating = TempWeapon.GroupPriority;
+			}
+		}
+		else if (TempWeapon.InventoryGroup == IG_Melee)
+		{
+			if (BestMeleeRating == 0.f || TempWeapon.GroupPriority > BestMeleeRating)
+			{
+				BestMelee = TempWeapon;
+				BestMeleeRating = TempWeapon.GroupPriority;
+			}
+		}
+	}
+
+	// Get our best possible weapon from all 3 categories and throw it
+	BestWeapon = BestPrimary != none ? BestPrimary : (BestSecondary != none ? BestSecondary : BestMelee);
+	return BestWeapon;
+}
 /**
  * Toss active weapon using default settings (location+velocity).
  *
@@ -2273,8 +2334,7 @@ final simulated function bool CanReloadWeapon()
  */
 function ThrowActiveWeapon( optional bool bDestroyWeap )
 {
-	local float BestPrimaryRating, BestSecondaryRating, BestMeleeRating;
-	local KFWeapon BestWeapon, BestPrimary, BestSecondary, BestMelee, TempWeapon;
+	local KFWeapon BestWeapon;
 
 	// Only throw on server
 	if( Role < ROLE_Authority )
@@ -2285,43 +2345,7 @@ function ThrowActiveWeapon( optional bool bDestroyWeap )
 	// If we're dead, throw our best weapon if the one we have out can't be thrown
 	if( InvManager != none && Health <= 0 && (Weapon == none || !Weapon.bDropOnDeath || !Weapon.CanThrow()) )
 	{
-		foreach InvManager.InventoryActors( class'KFWeapon', TempWeapon )
-		{
-			// We only care about weapons we can actually drop
-			if( !TempWeapon.bDropOnDeath || !TempWeapon.CanThrow() )
-			{
-				continue;
-			}
-
-			// Collect the best weapons from each inventory group
-			if( TempWeapon.InventoryGroup == IG_Primary )
-			{
-				if( BestPrimaryRating == 0.f || TempWeapon.GroupPriority > BestPrimaryRating )
-				{
-					BestPrimary = TempWeapon;
-					BestPrimaryRating = TempWeapon.GroupPriority;
-				}
-			}
-			else if( TempWeapon.InventoryGroup == IG_Secondary )
-			{
-				if( BestSecondaryRating == 0.f || TempWeapon.GroupPriority > BestSecondaryRating )
-				{
-					BestSecondary = TempWeapon;
-					BestSecondaryRating = TempWeapon.GroupPriority;
-				}
-			}
-			else if( TempWeapon.InventoryGroup == IG_Melee )
-			{
-				if( BestMeleeRating == 0.f || TempWeapon.GroupPriority > BestMeleeRating )
-				{
-					BestMelee = TempWeapon;
-					BestMeleeRating = TempWeapon.GroupPriority;
-				}
-			}
-		}
-
-		// Get our best possible weapon from all 3 categories and throw it
-		BestWeapon = BestPrimary != none ? BestPrimary : (BestSecondary != none ? BestSecondary : BestMelee);
+		BestWeapon = FindBestWeapon();
 		if( BestWeapon != none )
 		{
 			TossInventory( BestWeapon );
@@ -4643,6 +4667,13 @@ function SetWeaponComponentRTPCValue( String InRTPC, float targetvalue )
     WeaponAkComponent.SetRTPCValue( InRTPC, targetvalue);
 }
 
+/** starts playing the given sound event on the weapon audio component
+ */
+simulated function PlayWeaponSoundEvent(AkEvent NewSoundEvent)
+{
+	WeaponAkComponent.PlayEvent(NewSoundEvent, true, true);
+}
+
 simulated event Tick( float DeltaTime )
 {
     if( Role == ROLE_Authority )
@@ -5261,13 +5292,48 @@ static function string GetLocalizedName()
  * @name   ExtraVFX
  ********************************************************************************************* */
 
+ simulated function SpawnExtraVFX(ExtraVFXInfo info, ExtraVFXAttachmentInfo attachment)
+ {
+	 local name SFXBoneName;
+
+	 if (info.SocketName == '')
+	 {
+		 if (info.VFX != none)
+		 {
+			 attachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(info.VFX, Location, Rotation, self);
+		 }
+		 if (info.SFXStartEvent != none)
+		 {
+			 PostAkEvent(info.SFXStartEvent, false, true, false);
+		 }
+	 }
+	 else
+	 {
+		 if (info.VFX != none)
+		 {
+			 attachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(info.VFX, Mesh, info.SocketName, true);
+		 }
+		 if (info.SFXStartEvent != none)
+		 {
+			 SFXBoneName = Mesh.GetSocketBoneName(info.SocketName);
+			 if (SFXBoneName != '')
+			 {
+				 PostAkEventOnBone(info.SFXStartEvent, SFXBoneName, false, true);
+			 }
+			 else
+			 {
+				 PostAkEvent(info.SFXStartEvent, false, true, false);
+			 }
+		 }
+	 }
+ }
+
 // Plays extra VFX associated with FXLabel, or restarts deactivated effects if already attached
 simulated function PlayExtraVFX(Name FXLabel)
 {
 	local int i;
 	local ExtraVFXAttachmentInfo VFXAttachment;
 	local bool bActivatedExistingSystem;
-	local name SFXBoneName;
 
 	if (WorldInfo.NetMode == NM_DedicatedServer || FXLabel == '')
 	{
@@ -5279,37 +5345,7 @@ simulated function PlayExtraVFX(Name FXLabel)
 	{
 		if (ExtraVFXAttachments[i].Info.Label == FXLabel)
 		{
-			if (ExtraVFXAttachments[i].Info.SocketName == '')
-			{
-				if (ExtraVFXAttachments[i].Info.VFX != none)
-				{
-					ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(ExtraVFXAttachments[i].Info.VFX, Location, Rotation, self);
-				}
-				if (ExtraVFXAttachments[i].Info.SFXStartEvent != none)
-				{
-					PostAkEvent(ExtraVFXAttachments[i].Info.SFXStartEvent, false, true, false);
-				}
-			}
-			else
-			{
-				if (ExtraVFXAttachments[i].Info.VFX != none)
-				{
-					ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[i].Info.VFX, Mesh, ExtraVFXAttachments[i].Info.SocketName, true);
-				}
-				if (ExtraVFXAttachments[i].Info.SFXStartEvent != none)
-				{
-					SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[i].Info.SocketName);
-					if (SFXBoneName != '')
-					{
-						PostAkEventOnBone(ExtraVFXAttachments[i].Info.SFXStartEvent, SFXBoneName, false, true);
-					}
-					else
-					{
-						PostAkEvent(ExtraVFXAttachments[i].Info.SFXStartEvent, false, true, false);
-					}
-				}
-			}
-
+			SpawnExtraVFX(ExtraVFXAttachments[i].Info, ExtraVFXAttachments[i]);
 			bActivatedExistingSystem = true;
 		}
 	}
@@ -5324,37 +5360,7 @@ simulated function PlayExtraVFX(Name FXLabel)
 	{
 		if (CharacterArch.ExtraVFX[i].Label == FXLabel)
 		{
-			if (CharacterArch.ExtraVFX[i].SocketName == '')
-			{
-				if (CharacterArch.ExtraVFX[i].VFX != none)
-				{
-					VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(CharacterArch.ExtraVFX[i].VFX, Location, Rotation, self);
-				}
-				if (CharacterArch.ExtraVFX[i].SFXStartEvent != none)
-				{
-					PostAkEvent(CharacterArch.ExtraVFX[i].SFXStartEvent, false, true, false);
-				}
-			}
-			else
-			{
-				if (CharacterArch.ExtraVFX[i].VFX != none)
-				{
-					VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterArch.ExtraVFX[i].VFX, Mesh, CharacterArch.ExtraVFX[i].SocketName, true);
-				}
-				if (CharacterArch.ExtraVFX[i].SFXStartEvent != none)
-				{
-					SFXBoneName = Mesh.GetSocketBoneName(CharacterArch.ExtraVFX[i].SocketName);
-					if (SFXBoneName != '')
-					{
-						PostAkEventOnBone(CharacterArch.ExtraVFX[i].SFXStartEvent, SFXBoneName, false, true);
-					}
-					else
-					{
-						PostAkEvent(CharacterArch.ExtraVFX[i].SFXStartEvent, false, true, false);
-					}
-				}
-			}
-
+			SpawnExtraVFX(CharacterArch.ExtraVFX[i], VFXAttachment);
 			VFXAttachment.Info = CharacterArch.ExtraVFX[i];
 			ExtraVFXAttachments.AddItem(VFXAttachment);
 		}
@@ -5367,7 +5373,7 @@ simulated function StopExtraVFX(Name FXLabel)
 	local int i;
 	local name SFXBoneName;
 
-	if (WorldInfo.NetMode == NM_DedicatedServer) 
+	if (WorldInfo.NetMode == NM_DedicatedServer)
 	{
 		return;
 	}

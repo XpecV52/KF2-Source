@@ -23,13 +23,19 @@ DARClassicLevel20BundleName="Paquete clásico de nivel 20 de D. A. R."
 DARClassicLevel25BundleName="Paquete clásico de nivel 25 de D. A. R."
 MrsFosterBundleName="Sra. Foster"
 SteampunkOutfitBundleName="Paquete de atuendos steampunk"
+CyberpunkOutfitBundleName="Paquete de atuendos ciberpunk"
+CyberpunkOutfitObjectiveBundleName="Paquete de objetivos de atuendos ciberpunk"
 HeadshotFXBundle1Name="Paquete de efectos de disparo en la cabeza 1"
+HeadshotFXBundle2Name="Paquete de efectos de disparo en la cabeza 2"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Caja suministros cosméticos Horzine | Paquete de bronce Serie 4"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Caja suministros cosméticos Horzine | Paquete de plata Serie 4"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Caja suministros cosméticos Horzine | Paquete de oro Serie 4"
 HorzineSupplyCosmeticCrateSeries8BronzeBundlePackName="Caja sumin. cosmét. Horzine | Paq. bronce Serie 8"
 HorzineSupplyCosmeticCrateSeries8SilverBundlePackName="Caja sumin. cosmét. Horzine | Paq. plata Serie 8"
 HorzineSupplyCosmeticCrateSeries8GoldBundlePackName="Caja sumin. cosmét. Horzine | Paq. oro Serie 8"
+HorzineSupplyCosmeticCrateSeries9BronzeBundlePackName="Caja sumin. cosmét. Horzine | Paq. bronce Serie 9"
+HorzineSupplyCosmeticCrateSeries9SilverBundlePackName="Caja sumin. cosmét. Horzine | Paq. plata Serie 9"
+HorzineSupplyCosmeticCrateSeries9GoldBundlePackName="Caja sumin. cosmét. Horzine | Paq. oro Serie 9"
 HorzineSupplyEmoteCrateSeries1BronzeBundlePackName="Caja sumin. cosmét. Horzine | Paq. bronce Serie 1"
 HorzineSupplyEmoteCrateSeries1SilverBundlePackName="Caja sumin. emotes Horzine | Paq. plata Serie 1"
 HorzineSupplyEmoteCrateSeries1GoldBundlePackName="Caja sumin. emotes Horzine | Paq. oro Serie 1"
@@ -48,6 +54,12 @@ HorzineSupplyWeaponCrateSeries8GoldBundlePackName="Caja sumin. armas Horzine | P
 HorzineSupplyWeaponCrateSeries12BronzeBundlePackName="Caja sumin. armas Horzine | Paq. bronce Serie 12"
 HorzineSupplyWeaponCrateSeries12SilverBundlePackName="Caja sumin. armas Horzine | Paq. plata Serie 12"
 HorzineSupplyWeaponCrateSeries12GoldBundlePackName="Caja sumin. armas Horzine | Paq. oro Serie 12"
+HorzineSupplyWeaponCrateSeries13BronzeBundlePackName="Caja sumin. armas Horzine | Paq. bronce Serie 13"
+HorzineSupplyWeaponCrateSeries13SilverBundlePackName="Caja sumin. armas Horzine | Paq. plata Serie 13"
+HorzineSupplyWeaponCrateSeries13GoldBundlePackName="Caja sumin. armas Horzine | Paq. oro Serie 13"
+HorzineSupplyWeaponCrateSeries14BronzeBundlePackName="Caja sumin. armas Horzine | Paq. bronce Serie 14"
+HorzineSupplyWeaponCrateSeries14SilverBundlePackName="Caja sumin. armas Horzine | Paq. plata Serie 14"
+HorzineSupplyWeaponCrateSeries14GoldBundlePackName="Caja sumin. armas Horzine | Paq. oro Serie 14"
 HorzineSupplyCrateSeries15BronzeBundlePackName="Caja sumin. Horzine | Paq. bronce Serie 15"
 HorzineSupplyCrateSeries15SilverBundlePackName="Caja sumin. Horzine | Paq. plata Serie 15"
 HorzineSupplyCrateSeries15GoldBundlePackName="Caja sumin. Horzine | Paq. oro Serie 15"
@@ -73,6 +85,15 @@ NeonMKIVEncryptedUSBBronzeBundlePackName="Paquete de bronce USB cifrado neón MK
 NeonMKIVEncryptedUSBSilverBundlePackName="Paquete de plata USB cifrado neón MKIV"
 NeonMKIVEncryptedUSBGoldBundlePackName="Paquete de oro USB cifrado neón MKIV"
 BadAssSantaBundleName="Paquete Papá Noel brutal"
+NeonMKVEncryptedUSBBronzeBundlePackName="Paquete de bronce USB cifrado neón MKV"
+NeonMKVEncryptedUSBSilverBundlePackName="Paquete de plata USB cifrado neón MKV"
+NeonMKVEncryptedUSBGoldBundlePackName="Paquete de oro USB cifrado neón MKV"
+HorzineSupplyCrateSeriesDeityBronzeBundlePackName="Caja sumin. Horzine | Paq. bronce Serie deidad"
+HorzineSupplyCrateSeriesDeitySilverBundlePackName="Caja sumin. Horzine | Paq. plata Serie deidad"
+HorzineSupplyCrateSeriesDeityGoldBundlePackName="Caja sumin. Horzine | Paq. oro Serie deidad"
+DragonwaveEncryptedUSBBronzeBundlePackName="Paquete de bronce USB cifrado Ola de Dragón"
+DragonwaveEncryptedUSBSilverBundlePackName="Paquete de plata USB cifrado Ola de Dragón"
+DragonwaveEncryptedUSBGoldBundlePackName="Paquete de oro USB cifrado Ola de Dragón"
 
 
 ;Bundle Descriptions
@@ -93,13 +114,19 @@ DARClassicLevel20BundleDescription="Incluye una armadura sangrienta clásica y a
 DARClassicLevel25BundleDescription="Incluye una armadura preciosa clásica y apariencias de casco. Compatible con D. A. R."
 MrsFosterBundleDescription="¡Juega como la Sra. Foster, una de las mercaderes de más éxito de Londres! Incluye un chaleco (con 6 apariencias distintas) y una máscara de gas (con 6 apariencias distintas)."
 SteampunkOutfitBundleDescription="Incluye atuendos steampunk de hombre y mujer (con 6 apariencias cada uno). Compatible con la mayoría de los personajes."
+CyberpunkOutfitBundleDescription="Incluye atuendos ciberpunk de hombre (con 6 apariencias cada uno). Compatible con la mayoría de los personajes."
+CyberpunkOutfitObjectiveBundleDescription="Incluye atuendos ciberpunk de hombre (con 1 apariencia cada uno). Compatible con la mayoría de los personajes."
 HeadshotFXBundle1Description="Incluye cinco efectos especiales de disparo en la cabeza. Dinero pijo, Acción cómica, Hora de la fiesta, Amor a primer disparo y Espíritus espeluznantes."
+HeadshotFXBundle2Description="Contiene cinco efectos especiales de disparo en la cabeza. "¡Plaf!" de cómic, fuegos artificiales, pétalo de flor, fallo y circuito Horzine."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Contiene cinco cajas de suministros cosméticos Horzine | Caja de serie 4 con cinco llaves asociadas."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Contiene diez cajas de suministros cosméticos Horzine | Caja de serie 4 con diez llaves asociadas."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Contiene veinte cajas de suministros cosméticos Horzine | Caja de serie 4 con veinte llaves asociadas."
 HorzineSupplyCosmeticCrateSeries8BronzeBundlePackDescription="Contiene cinco cajas de suministros cosméticos Horzine | Caja de serie 8 con cinco llaves asociadas."
 HorzineSupplyCosmeticCrateSeries8SilverBundlePackDescription="Contiene diez cajas de suministros cosméticos Horzine | Caja de serie 8 con diez llaves asociadas."
 HorzineSupplyCosmeticCrateSeries8GoldBundlePackDescription="Contiene veinte cajas de suministros cosméticos Horzine | Caja de serie 8 con veinte llaves asociadas."
+HorzineSupplyCosmeticCrateSeries9BronzeBundlePackDescription="Contiene cinco cajas de cosméticos de Horzine | Caja de la Serie 9 y cinco llaves correspondientes."
+HorzineSupplyCosmeticCrateSeries9SilverBundlePackDescription="Contiene diez cajas de cosméticos de Horzine | Caja de la Serie 9 y diez llaves correspondientes."
+HorzineSupplyCosmeticCrateSeries9GoldBundlePackDescription="Contiene veinte cajas de cosméticos de Horzine | Caja de la Serie 9 y veinte llaves correspondientes."
 HorzineSupplyEmoteCrateSeries1BronzeBundlePackDescription="Contiene cinco cajas de suministros de emotes Horzine | Caja de serie 1 con cinco llaves asociadas."
 HorzineSupplyEmoteCrateSeries1SilverBundlePackDescription="Contiene diez cajas de suministros de emotes Horzine | Caja de serie 1 con diez llaves asociadas."
 HorzineSupplyEmoteCrateSeries1GoldBundlePackDescription="Contiene veinte cajas de suministros de emotes Horzine | Caja de serie 1 con veinte llaves asociadas."
@@ -118,6 +145,12 @@ HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="Contiene veinte cajas 
 HorzineSupplyWeaponCrateSeries12BronzeBundlePackDescription="Contiene cinco cajas de suministros de armas Horzine | Caja de serie 12 con cinco llaves asociadas."
 HorzineSupplyWeaponCrateSeries12SilverBundlePackDescription="Contiene diez cajas de suministros de armas Horzine | Caja de serie 12 con diez llaves asociadas."
 HorzineSupplyWeaponCrateSeries12GoldBundlePackDescription="Contiene veinte cajas de suministros de armas Horzine | Caja de serie 12 con veinte llaves asociadas."
+HorzineSupplyWeaponCrateSeries13BronzeBundlePackDescription="Contiene cinco cajas de armas de Horzine | Caja de la Serie 13 y cinco llaves correspondientes."
+HorzineSupplyWeaponCrateSeries13SilverBundlePackDescription="Contiene diez cajas de armas de Horzine | Caja de la Serie 13 y diez llaves correspondientes."
+HorzineSupplyWeaponCrateSeries13GoldBundlePackDescription="Contiene veinte cajas de armas de Horzine | Caja de la Serie 13 y veinte llaves correspondientes."
+HorzineSupplyWeaponCrateSeries14BronzeBundlePackDescription="Contiene cinco cajas de armas de Horzine | Caja de la Serie 14 y cinco llaves correspondientes."
+HorzineSupplyWeaponCrateSeries14SilverBundlePackDescription="Contiene diez cajas de armas de Horzine | Caja de la Serie 14 y diez llaves correspondientes."
+HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="Contiene veinte cajas de armas de Horzine | Caja de la Serie 14 y veinte llaves correspondientes."
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="Contiene cinco cajas de suministros Horzine | Caja de serie 15 con cinco llaves asociadas."
 HorzineSupplyCrateSeries15SilverBundlePackDescription="Contiene diez cajas de suministros Horzine | Caja de serie 15 con diez llaves asociadas."
 HorzineSupplyCrateSeries15GoldBundlePackDescription="Contiene veinte cajas de suministros Horzine | Caja de serie 15 con veinte llaves asociadas."
@@ -143,6 +176,15 @@ NeonMKIVEncryptedUSBBronzeBundlePackDescription="Contiene cinco cajas de USB cif
 NeonMKIVEncryptedUSBSilverBundlePackDescription="Contiene diez cajas de USB cifrado neón MKIV con diez llaves asociadas."
 NeonMKIVEncryptedUSBGoldBundlePackDescription="Contiene veinte cajas de USB cifrado neón MKIV con veinte llaves asociadas."
 BadAssSantaBundleDescription="¡Juega como Papá Noel brutal! Incluye un parche (con 1 apariencia distinta) y una mochila (con 1 apariencia distinta)."
+NeonMKVEncryptedUSBBronzeBundlePackDescription="Contiene cinco cajas de USB cifrado neón MKV con cinco llaves asociadas."
+NeonMKVEncryptedUSBSilverBundlePackDescription="Contiene diez cajas de USB cifrado MKV con diez llaves asociadas."
+NeonMKVEncryptedUSBGoldBundlePackDescription="Contiene veinte cajas de USB cifrado MKV con veinte llaves asociadas."
+DragonwaveEncryptedUSBBronzeBundlePackDescription="Contiene cinco cajas de USB cifrado Ola de Dragón con cinco llaves asociadas."
+DragonwaveEncryptedUSBSilverBundlePackDescription="Contiene diez cajas de USB cifrado Ola de Dragón con diez llaves asociadas."
+DragonwaveEncryptedUSBGoldBundlePackDescription="Contiene veinte cajas de USB cifrado Ola de Dragón con veinte llaves asociadas."
+HorzineSupplyCrateSeriesDeityBronzeBundlePackDescription="Contiene cinco cajas de suministros Horzine | Caja de Serie deidad con cinco llaves asociadas."
+HorzineSupplyCrateSeriesDeitySilverBundlePackDescription="Contiene diez cajas de suministros Horzine | Caja de Serie deidad con diez llaves asociadas."
+HorzineSupplyCrateSeriesDeityGoldBundlePackDescription="Contiene veinte cajas de suministros Horzine | Caja de Serie deidad con veinte llaves asociadas."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Consigue un uniforme de policía londinense para el personaje jugable Agente Rob Briar. Incluye el uniforme londinense de Briar (con 5 apariencias distintas) y el accesorio cosmético Casco guardián (con 3 apariencias distintas)."
@@ -237,6 +279,10 @@ JagerhornVaultPreciousSuitName="Jagerhorn | Cámara | Precioso"
 MastersonVaultPreciousSuitName="Tte. Bill Masterson | Cámara | Precioso"
 RaeVaultPreciousSuitName="Rae | Cámara | Precioso"
 StrasserVaultPreciousSuitName="Strasser | Cámara | Precioso"
+CyberpunkHelmetName="Casco ciberpunk"
+CyberpunkOutfitName="Atuendo ciberpunk"
+CyberpunkHelmetEventName="Casco de evento ciberpunk"
+CyberpunkOutfitEventName="Atuendo de evento ciberpunk"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Tte. Bill Masterson | Ciberpunk | Verde"
@@ -394,7 +440,7 @@ HorzineSupplyCrateSeries11Name="Caja de sum. Horzine | Serie 11"
 HorzineSupplyCrateSeries12Name="Caja de sum. Horzine | Serie 12"
 HorzineSupplyCrateSeries13Name="Caja de sum. Horzine | Serie 13"
 HorzineSupplyCrateSeries14Name="Caja de sum. Horzine | Serie 14"
-HorzineSupplyCrateSeries15Name="Caja de sum. de Horzine | Serie 16"
+HorzineSupplyCrateSeries15Name="Caja de sum. de Horzine | Serie 15"
 HorzineSupplyCrateSeries16Name="Caja de sum. de Horzine | Serie matadero"
 EmoteCrateSeries1Name="Caja de emote | Serie 1"
 EmoteCrateSeries2Name="Caja de emote | Serie 3"
@@ -402,10 +448,12 @@ DoshVaultUnlockedCrate1Name="Cajón de la bóveda serie # 1"
 HorzineSupplyCrateSeriesDARName="Caja de sum. Horzine | Serie D. A. R."
 HorzineSupplyCrateSeriesLocoName="Caja de sum. Horzine | Serie Loco"
 HorzineSupplyCrateSeriesCyberSamuraiName="Caja de sum. Horzine | Serie Cibersamurái"
+HorzineSupplyCrateSeriesDiety="Caja de sum. Horzine | Serie deidad"
 
 
 ;Crate Descriptions
 
+HorzineSupplyCrateSeries1Description="Requiere una llave de caja de suministros de Horzine de serie 1. Contiene uno de los siguientes objetos (de cat. infrecuente o superior):<br><font color="#4b69cd">Máscara de médico</font><br><font color="#4b69cd">Gafas de aviador</font><br><font color="#4b69cd">Máscara Devtac Ballistic</font><br><font color="#4b69cd">Gorra de béisbol</font><br><font color="#4b69cd">Parche</font><br><font color="#4b69cd">Gorra inglesa</font><br><font color="#4b69cd">Máscara de soldadura</font><br><font color="#6600a1">Sombrero de cocinero</font><br><font color="#6600a1">Máscara antigás</font><br><font color="#6600a1">Casco de boxeo</font><br><font color="#6600a1">Máscara antigás alemana</font><br><font color="#8847ff">Capa Van Alberts</font><br><font color="#8847ff">Gorro Van Alberts</font><br><font color="#8847ff">Máscara rompecráneos</font><br><font color="#8847ff">Casco rompecráneos</font><br><font color="#caab05">, ¡o un accesorio precioso sumamente infrecuente!</font>"
 
 HorzineSupplyCrateSeries2Description="Requiere una llave de caja de suministros de Horzine de serie 2. Contiene uno de los siguientes objetos (de cat. infrecuente o superior):<br><font color="#4b69cd">Cinta</font><br><font color="#4b69cd">Mempo</font><br><font color="#4b69cd">Gafas de sol retro</font><br><font color="#4b69cd">Pasamontañas</font><br><font color="#4b69cd">Casco Kevlar RU</font><br><font color="#6600a1">Gorra oficial alemán</font><br><font color="#6600a1">Gafas sagradas</font><br><font color="#6600a1">Casco de v. nocturna RU</font><br><font color="#6600a1">Casco K6</font><br><font color="#6600a1">Máscara de vuelo</font><br><font color="#6600a1">Casco de vuelo</font><br><font color="#8847ff">Máscara criminal</font><br><font color="#8847ff">Casco reforzado</font><br><font color="#caab05">o un accesorio sumamente infrecuente.</font>"
 
@@ -445,9 +493,11 @@ DoshVaultUnlockedCrate1Description="Contiene uno de los siguientes objetos:<br>A
 
 HorzineSupplyCrateSeriesDARDescription="Requiere D.A.R. Llave para abrir caja de suministros Horzine. Contiene uno de los siguientes accesorios D.A.R. de categoría infrecuente o superior:<br><font color="#4b69cd">Armadura o casco de vuelo P51</font><br><font color="#4b69cd">Armadura de gimnasio o cubo temporal CHONNE-E 5</font><br><font color="#4b69cd">Casco agrietado o de acero CHONNE-E 5</font><br><font color="#4b69cd">Armadura o casco dañada C3HZ</font><br><font color="#4b69cd">Armadura o casco flujo azul C3HZ</font><br><font color="#6600a1">Armadura o casco galáctico de vuelo</font><br><font color="#6600a1">Armadura o casco grito de vuelo</font><br><font color="#6600a1">Armadura gatociélago CHONNE-E 5</font><br><font color="#6600a1">Casco de vapor CHONNE-E 5</font><br><font color="#6600a1">Armadura o casco de obsidiana C3HZ</font><br><font color="#6600a1">Armadura o casco espacial C3HZ</font><br><font color="#8847ff">Armadura o casco de ángel de vuelo azul</font><br><font color="#8847ff">Armadura o casco de vuelo Spitfire</font><br><font color="#8847ff">Armadura o casco Horzine CHONNE-E 5</font><br><font color="#8847ff">Armadura Radical CHONNE-E 5</font><br><font color="#8847ff">Casco Crepúsculo CHONNE-E 5</font><br><font color="#8847ff">Armadura o caso de mármol C3HZ</font><br><font color="#caab05">, ¡o un accesorio precioso sumamente infrecuente!</font>"
 
+HorzineSupplyCrateSeriesLocoDescription="Requiere una llave de caja de suministros de Horzine Loco. Contiene una versión infrecuente o mejor de los siguientes:<br><font color="#4b69cd">Máscara de la tribu Loco | Bestia | Claro</font><br><font color="#4b69cd">Máscara de la tribu Loco | Bailarín | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Demonio | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Médico | Claro</font><br><font color="#4b69cd">Máscara de la tribu Loco | Soñador | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Payaso | Claro</font><br><font color="#4b69cd">Máscara de la tribu Loco | Señor | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Dormilón | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | No muerto | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Guerrero | Agua</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Ana</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Alberts</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Briar</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Strasser</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Masterson</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Donovan</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Rae</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Scully</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Briar clásico</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Masterson cl.</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Jagerhorn</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Sr. Foster</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Sra. Foster</font><br><font color="#8847ff">Máscara de la tribu Loco | Bestia | Oscuro</font><br><font color="#8847ff">Máscara de la tribu Loco | Bailarín | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Demonio | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Médico | Oscuro</font><br><font color="#8847ff">Máscara de la tribu Loco | Soñador | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Payaso | Oscuro</font><br><font color="#8847ff">Máscara de la tribu Loco | Señor | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Dormilón | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | No muerto | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Guerrero | Fuego</font><br><font color="#8847ff">Pintura facial de Halloween 2018 | Tanaka</font><br><font color="#caab05">, ¡o un accesorio precioso sumamente infrecuente!</font>"
 
+HorzineSupplyCrateSeriesCyberSamuraiDescription="Requiere una llave de caja de suministros de Horzine Cibersámurai. Contiene una versión infrecuente o mejor de los siguientes:<br><font color="#4b69cd">Casco de cuerno sci-fi | Verde</font><br><font color="#4b69cd">Casco de cuerno sci-fi | Morado</font><br><font color="#4b69cd">Casco sin cara sci-fi | Verde</font><br><font color="#4b69cd">Casco sin cara sci-fi | Morado</font><br><font color="#4b69cd">Casco respirador sci-fi A | Verde</font><br><font color="#4b69cd">Casco respirador sci-fi A | Morado</font><br><font color="#4b69cd">Casco respirador sci-fi B | Verde</font><br><font color="#4b69cd">Casco respirador sci-fi B | Morado</font><br><font color="#4b69cd">Casco sin expresión sci-fi | Verde</font><br><font color="#4b69cd">Casco sin expresión sci-fi | Morado</font><br><font color="#4b69cd">Casco samurái sci-fi | Verde</font><br><font color="#4b69cd">Casco samurái sci-fi | Morado</font><br><font color="#4b69cd">Piernas de armadura samurái | Verde</font><br><font color="#4b69cd">Piernas de armadura samurái | Morado</font><br><font color="#4b69cd">Pecho de armadura samurái | Azul</font><br><font color="#4b69cd">Pecho de armadura samurái | Verde</font><br><font color="#4b69cd">Gorro ronin | Verde</font><br><font color="#4b69cd">Gorro ronin | Amarillo</font><br><font color="#4b69cd">Gafas ronin | Verde</font><br><font color="#4b69cd">Gafas ronin | Amarillo</font><br><font color="#4b69cd">Máscara ronin | Verde</font><br><font color="#4b69cd">Máscara ronin | Amarillo</font><br><font color="#6600a1">Casco de cuerno sci-fi | Negro</font><br><font color="#6600a1">Casco de cuerno sci-fi | Azul</font><br><font color="#6600a1">Casco sin cara sci-fi | Azul</font><br><font color="#6600a1">Casco respirador sci-fi A | Azul</font><br><font color="#6600a1">Casco respirador sci-fi B | Azul</font><br><font color="#6600a1">Casco sin expresión sci-fi | Azul</font><br><font color="#6600a1">Casco samurái sci-fi | Azul</font><br><font color="#6600a1">Piernas de armadura samurái | Negro</font><br><font color="#6600a1">Piernas de armadura samurái | Azul</font><br><font color="#6600a1">Pecho de armadura samurái | Azul</font><br><font color="#6600a1">Pecho de armadura samurái | Verde</font><br><font color="#6600a1">Gorro ronin | Blanco</font><br><font color="#6600a1">Gafas ronin | Blanco</font><br><font color="#6600a1">Máscara ronin | Blanco</font><br><font color="#8847ff">Casco de cuerno sci-fi | Rojo</font><br><font color="#8847ff">Casco sin cara sci-fi | Rojo</font><br><font color="#8847ff">Casco respirador sci-fi A | Rojo</font><br><font color="#8847ff">Casco respirador sci-fi B | Rojo</font><br><font color="#8847ff">Casco sin expresión sci-fi | Rojo</font><br><font color="#8847ff">Casco samurái sci-fi | Rojo</font><br><font color="#8847ff">Piernas de armadura samurái | Rojo</font><br><font color="#8847ff">Pecho de armadura samurái | Rojo</font><br><font color="#8847ff">Gorro ronin | Rojo</font><br><font color="#8847ff">Gafas ronin | Rojo</font><br><font color="#8847ff">Máscara ronin | Rojo</font><br><font color="#caab05">¡o un accesorio precioso sumamente infrecuente!</font>"
 
-
+HorzineSupplyCrateSeriesDeityDescription="Requiere una llave de caja de suministros de Horzine. Contiene uno de los siguientes, infrecuente o superior<br><font color="#4b69cd">Armadura con capucha | Azul</font><br><font color="#4b69cd">Armadura con capucha | Verde</font><br><font color="#4b69cd">Máscara sin rostro | Azul</font><br><font color="#4b69cd">Máscara sin rostro | Verde</font><br><font color="#4b69cd">Capucha ciencia ficción | Azul</font><br><font color="#4b69cd">Capucha ciencia ficción | Verde</font><br><font color="#4b69cd">Máscara sin expresión | Azul</font><br><font color="#4b69cd">Máscara sin expresión | Verde</font><br><font color="#6600a1">Armadura con capucha | Rojo</font><br><font color="#6600a1">Máscara sin rostro | Rojo</font><br><font color="#6600a1">Capucha ciencia ficción | Rojo</font><br><font color="#6600a1">Máscara sin expresión | Rojo</font><br><font color="#6600a1">Bastet | Rojo</font><br><font color="#6600a1">Bastet | Amarillo</font><br><font color="#6600a1">Bastet | Verde</font><br><font color="#6600a1">Bastet | Azul</font><br><font color="#6600a1">Sobek | Rojo</font><br><font color="#6600a1">Sobek | Amarillo</font><br><font color="#6600a1">Sobek | Verde</font><br><font color="#6600a1">Sobek | Azul</font><br><font color="#8847ff">Armadura con capucha | Negro</font><br><font color="#8847ff">Máscara sin rostro | Negro</font><br><font color="#8847ff">Máscara sin rostro | Blanco</font><br><font color="#8847ff">Capucha ciencia ficción | Negro</font><br><font color="#8847ff">Máscara sin expresión | Negro</font><br><font color="#8847ff">Máscara sin expresión | Blanco</font><br><font color="#8847ff">Anubis | Rojo</font><br><font color="#8847ff">Anubis | Azul</font><br><font color="#8847ff">Anubis | Verde</font><br><font color="#8847ff">Anubis | Amarillo</font><br><font color="#8847ff">Ra | Rojo</font><br><font color="#8847ff">Ra | Azul</font><br><font color="#8847ff">Ra | Verde</font><br><font color="#8847ff">Ra | Amarillo</font><br><font color="#caab05">¡o un accesorio Precioso sumamente infrecuente!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Llave caja sumin. Horzine | Serie 1"
@@ -471,6 +521,7 @@ EmoteCrateKeySeries2Name="Llave caja emote | Serie 3"
 HorzineSupplyCrateKeySeriesDARName="Llave de caja de sum. Horzine | Serie D. A. R."
 HorzineSupplyCrateKeySeriesLocoName="Llave de caja de sum. Horzine | Serie Loco"
 HorzineSupplyCrateKeySeriesCyberSamuraiName="Llave caja suministros Horzine | Serie Cibersamurái"
+HorzineSupplyCrateKeySeriesDeityName="Llave de caja de sum. Horzine | Serie deidad"
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description="Esta llave solo abre la caja de suministros de Horzine de la serie 1."
@@ -493,7 +544,8 @@ EmoteCrateKeySeries1Description="Esta llave solo abre la caja de emote de la ser
 EmoteCrateKeySeries2Description="Esta llave solo abre la caja de emote serie 2."
 HorzineSupplyCrateKeySeriesDARDescription="Esta llave solo abre la caja de suministros de Horzine de serie D. A. R."
 HorzineSupplyCrateKeySeriesLocoDescription="Esta llave solo abre la caja de suministros de Horzine de la serie Loco."
-HorzineSupplyCrateKeySeriesLCyberSamuraiDescription="Esta llave solo abre la caja de suministros de Horzine de la serie Cibersamurái."
+HorzineSupplyCrateKeySeriesCyberSamuraiDescription="Esta llave solo abre la caja de suministros de Horzine de la serie Cibersamurái."
+HorzineSupplyCrateKeySeriesDeityDescription="Esta llave solo abre la caja de suministros de Horzine de la Serie deidad."
 
 ;UsbNames
 CyberboneEncryptedUSBName="USB Cyberbone cifrado"
@@ -523,6 +575,8 @@ NeonMKIIEncryptedUSBName="USB MKII neón cifrado"
 BluefireEncryptedUSBName="USB Fuegoazul cifrado"
 NeonMKIIIEncryptedUSBName="USB MKII de neón cifrado"
 NeonMKIVEncryptedUSBName="USB MKIV de neón cifrado"
+DragonwaveEncryptedUSBName="USB cifrado Ola de Dragón"
+NeonMKVEncryptedUSBName="USB cifrado neón MKV"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="Para abrirla, necesitas la llave de la copia de Cyberbone. Contiene una de las siguientes apariencias de arma (de cat. infrecuente o superior):<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AK-12 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 | Bilis pútrida</font><br><font color="#8847ff">AR15 | Contención</font><br><font color="#caab05">o una apariencia sumamente infrecuente.</font>"
@@ -573,12 +627,16 @@ WeaponCollectorPack1EncryptedUSBDescription="Requiere 1 llave modelo para abrir 
 
 NeonMKIIEncryptedUSBDescription="Requiere la llave modelo MKII neón. Contiene una de las siguientes apariencias de arma infrecuentes o mejores:<br><font color="#4b69cd">Hemogoblin | Neón</font><br><font color="#4b69cd">M14EBR | Neón</font><br><font color="#4b69cd">Seis letal | Neón</font><br><font color="#4b69cd">Stoner 63A | Neón</font><br><font color="#4b69cd">Heckler & Koch UMP | Neón</font><br><font color="#4b69cd">Pistola HMTech-101 | Élite azul de Horzine</font><br><font color="#4b69cd">Pistola HMTech-101 | Élite verde de Horzine</font><br><font color="#4b69cd">Pistola HMTech-101 | Élite blanca de Horzine</font><br><font color="#6600a1">Lanzallamas | Neón</font><br><font color="#6600a1">Arma de microondas | Neón</font><br><font color="#8847ff">AA12 | Neón</font><br><font color="#8847ff">Pistola HMTech-101 | Élite negra de Horzine</font><br><font color="#8847ff">Pistola HMTech-101 | Élite roja de Horzine</font><br><font color="#caab05">¡o una apariencia preciosa extremadamente rara!</font>"
 
-
+BluefireEncryptedUSBDescription="Requiere la llave modelo Fuegoazul. Contiene una versión infrecuente o mejor de las siguientes apariencias de armas:<br><font color="#4b69cd">AK12 | Fuegoazul</font><br><font color="#4b69cd">M1911 | Fuegoazul</font><br><font color="#4b69cd">M4 | Fuegoazul</font><br><font color="#4b69cd">M79 | Fuegoazul</font><br><font color="#4b69cd">MP7 | Fuegoazul</font><br><font color="#4b69cd">Pistola de clavos VLAD-1000 | Fuegoazul</font><br><font color="#4b69cd">Trabuco | 1.er encuentro de Horzine</font><br><font color="#4b69cd">HZ12 | 1.er encuentro de Horzine</font><br><font color="#4b69cd">M79 | 1.er encuentro de Horzine</font><br><font color="#4b69cd">MP5RAS | 1.er encuentro de Horzine</font><br><font color="#6600a1">Trabuco | 1.er encuentro de Horzine</font><br><font color="#6600a1">Cañón de riel | Fuegoazul</font><br><font color="#6600a1">Seis letal | Fuegoazul</font><br><font color="#6600a1">Subfusil Kriss | 1.er encuentro de Horzine</font><br><font color="#6600a1">RPG-7 | 1.er encuentro de Horzine</font><br><font color="#6600a1">Scar | 1.er encuentro de Horzine</font><br><font color="#8847ff">Fuego central | Fuegoazul</font><br><font color="#8847ff">Hemoglobina | Fuegoazul</font><br><font color="#8847ff">RPG-7 | Fuegoazul</font><br><font color="#8847ff">AK12 | 1.er encuentro de Horzine</font><br><font color="#8847ff">Fuego central | 1.er encuentro de Horzine</font><br><font color="#8847ff">M14EBR | 1.er encuentro de Horzine</font><br><font color="#8847ff">MAC 10 | 1.er encuentro de Horzine</font><br><font color="#8847ff">Heckler & Koch UMP | 1.er encuentro de Horzine</font><br><font color="#caab05">¡o una apariencia preciosa sumamente infrecuente!</font>"
 
 NeonMKIIIEncryptedUSBDescription="Requiere la llave modelo MKII de neón. Contiene una de las siguientes apariencias de arma de categoría infrecuente o superior:<br><font color="#4b69cd">9 mm | Neón</font><br><font color="#4b69cd">Fuego central | Neón</font><br><font color="#4b69cd">Cañón de husk | Neón</font><br><font color="#6600a1">AF2011-A1 | Neón</font><br><font color="#6600a1">Mosquetón | Neón</font><br><font color="#6600a1">M99 | Neón</font><br><font color="#8847ff">AK12 | Neón</font><br><font color="#8847ff">M16 M203 | Neón</font><br><font color="#8847ff">P90 | Neón</font><br><font color="#8847ff">Guanteletes estáticos | Neón</font><br><font color="#caab05">o una apariencia preciosa sumamente infrecuente.</font>"
 
 NeonMKIVEncryptedUSBDescription="Requiere la llave modelo MKIV de neón cifrado.Contiene una de las siguientes apariencias de arma de categoría infrecuente o superior:<br><font color="#4b69cd">Pistola HMTech-101 | Neón</font><br><font color="#4b69cd">M4 | Neón</font><br><font color="#6600a1">Escopeta HMTech-301 | Neón</font><br><font color="#6600a1"> RdA. HMTech-401 | Neón</font><br><font color="#6600a1">Rifle lanzagranadas HMTech-501 | Neón</font><br><font color="#6600a1">Partehuesos | Neón</font><br><font color="#8847ff">Subfusil HMTech-201 | Neón</font><br><font color="#8847ff">Mkb.42 | Neón</font><br><font color="#8847ff">Revólver Magnum .500 | Neon</font><br><font color="#8847ff">Lanzahielo | Neón</font><br><font color="#caab05">o una apariencia preciosa sumamente infrecuente.</font>"
-Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">HMTech-101 Pistol | Neon</font><br><font color="#4b69cd">M4 | Neon</font><br><font color="#6600a1">HMTech-301 Shotgun | Neon</font><br><font color="#6600a1">HMTech-401 Assault Rifle | Neon</font><br><font color="#6600a1">HMTech-501 Grenade Rifle | Neon</font><br><font color="#6600a1">Bone Crusher | Neon</font><br><font color="#8847ff">HMTech-201 SMG | Neon</font><br><font color="#8847ff">Mkb.42 | Neonn</font><br><font color="#8847ff">500 Magnum Revolver | Neon</font><br><font color="#8847ff">Freeze Thrower | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+
+DragonwaveEncryptedUSBDescription="Requiere la llave modelo Ola de Dragón. Contiene una de las siguientes apariencias de arma de categoría infrecuente o superior:<br><font color="#4b69cd">9 mm | Synthwave</font><br><font color="#4b69cd">Curador HMTech | Synthwave</font><br><font color="#4b69cd">Pulverizador | Synthwave</font><br><font color="#4b69cd">9 mm | Yin Yang</font><br><font color="#6600a1">Ak12 | Synthwave</font><br><font color="#6600a1">Desert Eagle | Synthwave</font><br><font color="#6600a1">Scar | Synthwave</font><br><font color="#6600a1">Escopeta | Ying Yang</font><br><font color="#6600a1">Aliento de dragón | Ying Yang</font><br><font color="#6600a1">Katana | Ying Yang</font><br><font color="#6600a1">M79 | Ying Yang</font><br><font color="#6600a1">Revólver Magnum .500 | Ying Yang</font><br><font color="#8847ff">Subfusil Kriss | Synthwave</font><br><font color="#8847ff">M1911 | Ying Yang</font><br><font color="#8847ff">Winchester 1894 | Ying Yang</font>"
+
+NeonMKVEncryptedUSBDescription="Requiere la llave modelo Neón MKV. Contiene una de las siguientes apariencias de arma de categoría infrecuente o superior:<br><font color="#4b69cd">AR15 | Neón</font><br><font color="#4b69cd">C4 | Neón</font><br><font color="#4b69cd">Hacha de fuego | Neón</font><br><font color="#4b69cd">MP7 | Neón</font><br><font color="#6600a1">Ballesta | Neón</font><br><font color="#6600a1">Desert Eagle | Neón</font><br><font color="#8847ff">Hacha de guerra | Neón</font><br><font color="#8847ff">FN FAL | Neón</font><br><font color="#8847ff">Tommy Gun | Neón</font><br><font color="#caab05">¡o una apariencia Precioso sumamente infrecuente!</font>"
+
 
 ;usb key names
 CyberboneUSBKeyName="Llave USB Ciberhueso"
@@ -608,6 +666,8 @@ NeonMKIIUSBKeyName="Llave USB MKII neón"
 BluefireUSBKeyName="Llave USB Fuegoazul"
 NeonMKIIIUSBKeyName="Llave USB MKIII de neón"
 NeonMKIVUSBKeyName="Llave USB MKIV de neón"
+DragonwaveUSBKeyName="Llave USB Ola de Dragón"
+NeonMKVUSBKeyName="Llave USB Neón MKV"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Esta llave tan solo descifra el plano cifrado Ciberhueso"
@@ -637,6 +697,8 @@ NeonMKIIUSBKeyDescription="Esta llave solo descifra el plano cifrado MKII neón"
 BluefireUSBKeyDescription="Esta llave solo descifra el plano cifrado Fuegoazul"
 NeonMKIIIUSBKeyDescription="Esta llave solo descifra el plano cifrado MKIII de neón"
 NeonMKIVUSBKeyDescription="Esta llave solo descifra el plano cifrado MKIV de neón"
+DragonwaveUSBKeyDescription="Esta llave solo descifra el plano cifrado MKIV de neón"
+NeonMKVUSBKeyDescription="Esta llave solo descifra el plano cifrado MKIV de neón"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Caja de sum. cosméti. de Ho. | Serie n.º 1"
@@ -647,6 +709,7 @@ HorzineSupplyCosmeticCrateSeries5Name="Caja suministros cosméticos Horzine | Se
 HorzineSupplyCosmeticCrateSeries6Name="Caja suministros cosméticos Horzine | Serie 6"
 HorzineSupplyCosmeticCrateSeries7Name="Caja suministros cosméticos Horzine | Serie 7"
 HorzineSupplyCosmeticCrateSeries8Name="Caja suministros cosméticos Horzine | Serie 8"
+HorzineSupplyCosmeticCrateSeries9Name="Caja suministros cosméticos Horzine | Serie 9"
 HorzineSupplyWeaponSkinCrateSeries1Name="Caja de s. de apar. de a. de Ho. | Serie n.º 1"
 HorzineSupplyWeaponSkinCrateSeries2Name="Caja de s. de apar. de a. de Ho. | Serie n.º 2"
 HorzineSupplyWeaponSkinCrateSeries3Name="Caja sum. apariencia arma Horzine | Serie 3"
@@ -659,6 +722,8 @@ HorzineSupplyWeaponSkinCrateSeries9Name="Caja sum. apariencia arma Horzine | Ser
 HorzineSupplyWeaponSkinCrateSeries10Name="Caja sum. apariencia arma Horzine | Serie 10"
 HorzineSupplyWeaponSkinCrateSeries11Name="Caja sum. de apar. de arma de Horzine | Serie 11"
 HorzineSupplyWeaponSkinCrateSeries12Name="Caja sum. de apar. de arma de Horzine | Serie 12"
+HorzineSupplyWeaponSkinCrateSeries13Name="Caja sum. de apar. de arma de Horzine | Serie 13"
+HorzineSupplyWeaponSkinCrateSeries14Name="Caja sum. de apar. de arma de Horzine | Serie 14"
 
 
 ;PSN Crate Descriptions
@@ -694,7 +759,7 @@ HorzineSupplyWeaponSkinCrateSeries7Description="Para abrirla, hace falta una lla
 
 HorzineSupplyWeaponSkinCrateSeries8Description="Para abrirla, hace falta una llave de caja de suministros de Horzine. Contiene una de las siguientes apariencias de arma infrecuentes o mejores:<br><font color="#4b69cd">Hemogoblin | Neón</font><br><font color="#4b69cd">M14EBR | Neón</font><br><font color="#4b69cd">Seis letal | Neón</font><br><font color="#4b69cd">Stoner 63A | Neón</font><br><font color="#4b69cd">Heckler & Koch UMP | Neón</font><br><font color="#4b69cd">Pistola HMTech-101 | Élite azul de Horzine</font><br><font color="#4b69cd">Pistola HMTech-101 | Élite verde de Horzine</font><br><font color="#4b69cd">Pistola HMTech-101 | Élite blanca de Horzine</font><br><font color="#6600a1">Lanzallamas | Neón</font><br><font color="#6600a1">Arma de microondas | Neón</font><br><font color="#8847ff">AA12 | Neón</font><br><font color="#8847ff">Pistola HMTech-101 | Élite negra de Horzine</font><br><font color="#8847ff">Pistola HMTech-101 | Élite roja de Horzine</font><br><font color="#caab05">¡o una apariencia preciosa extremadamente rara!</font>"
 
-
+HorzineSupplyWeaponSkinCrateSeries9Description="Requiere una llave de caja de suministros de Horzine. Contiene una versión infrecuente o mejor de las siguientes apariencias de armas:<br><font color="#4b69cd">AK12 | Fuegoazul</font><br><font color="#4b69cd">M1911 | Fuegoazul</font><br><font color="#4b69cd">M4 | Fuegoazul</font><br><font color="#4b69cd">M79 | Fuegoazul</font><br><font color="#4b69cd">MP7 | Fuegoazul</font><br><font color="#4b69cd">Pistola de clavos VLAD-1000 | Fuegoazul</font><br><font color="#4b69cd">Trabuco | 1.er encuentro de Horzine</font><br><font color="#4b69cd">HZ12 | 1.er encuentro de Horzine</font><br><font color="#4b69cd">M79 | 1.er encuentro de Horzine</font><br><font color="#4b69cd">MP5RAS | 1.er encuentro de Horzine</font><br><font color="#6600a1">Trabuco | 1.er encuentro de Horzine</font><br><font color="#6600a1">Cañón de riel | Fuegoazul</font><br><font color="#6600a1">Seis letal | Fuegoazul</font><br><font color="#6600a1">Subfusil Kriss | 1.er encuentro de Horzine</font><br><font color="#6600a1">RPG-7 | 1.er encuentro de Horzine</font><br><font color="#6600a1">Scar | 1.er encuentro de Horzine</font><br><font color="#8847ff">Fuego central | Fuegoazul</font><br><font color="#8847ff">Hemoglobina | Fuegoazul</font><br><font color="#8847ff">RPG-7 | Fuegoazul</font><br><font color="#8847ff">AK12 | 1.er encuentro de Horzine</font><br><font color="#8847ff">Fuego central | 1.er encuentro de Horzine</font><br><font color="#8847ff">M14EBR | 1.er encuentro de Horzine</font><br><font color="#8847ff">MAC 10 | 1.er encuentro de Horzine</font><br><font color="#8847ff">Heckler & Koch UMP | 1.er encuentro de Horzine</font><br><font color="#caab05">¡o una apariencia preciosa sumamente infrecuente!</font>"
 
 HorzineSupplyWeaponSkinCrateSeries10Description="Para abrirla, hace falta una llave de caja de suministros de Horzine. Contiene una de las siguientes apariencias de arma infrecuentes o mejores:<br><font color="#4b69cd">AA12 | Táctico</font><br><font color="#4b69cd">AK12 | Táctico</font><br><font color="#4b69cd">L85A2 | Táctico</font><br><font color="#4b69cd">SG500 | Táctico</font><br><font color="#4b69cd">RdA. HMTech-401 | Táctico</font><br><font color="#4b69cd">Scar | Táctico</font><br><font color="#6600a1">Desert Eagle | Élite verde de Horzine</font><br><font color="#6600a1">Desert Eagle | Élite blanca de Horzine</font><br><font color="#8847ff">Desert Eagle | Élite azul de Horzine</font><br><font color="#8847ff">Desert Eagle | Élite roja de Horzine</font><br><font color="#caab05">¡o una apariencia preciosa extremadamente rara!</font>"
 
@@ -702,9 +767,15 @@ HorzineSupplyWeaponSkinCrateSeries11Description="Requiere una llave de caja de s
 
 HorzineSupplyWeaponSkinCrateSeries12Description="Requiere una llave de caja de suministros de Horzine. Contiene una de las siguientes apariencias de arma de categoría infrecuente o superior:<br><font color="#4b69cd">Pistola HMTech-101 | Neón</font><br><font color="#4b69cd">M4 | Neón</font><br><font color="#6600a1">Escopeta HMTech-301 | Neón</font><br><font color="#6600a1"> RdA. HMTech-401 | Neón</font><br><font color="#6600a1">Rifle lanzagranadas HMTech-501 | Neón</font><br><font color="#6600a1">Partehuesos | Neón</font><br><font color="#8847ff">Subfusil HMTech-201 | Neón</font><br><font color="#8847ff">Mkb.42 | Neón</font><br><font color="#8847ff">Revólver Magnum .500 | Neon</font><br><font color="#8847ff">Lanzahielo | Neón</font><br><font color="#caab05">o una apariencia preciosa sumamente infrecuente.</font>"
 
+HorzineSupplyCosmeticCrateSeries7Description="Requiere una llave de caja de suministros de Horzine. Contiene una versión infrecuente o mejor de los siguientes:<br><font color="#4b69cd">Máscara de la tribu Loco | Bestia | Claro</font><br><font color="#4b69cd">Máscara de la tribu Loco | Bailarín | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Demonio | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Médico | Claro</font><br><font color="#4b69cd">Máscara de la tribu Loco | Soñador | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Payaso | Claro</font><br><font color="#4b69cd">Máscara de la tribu Loco | Señor | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Dormilón | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | No muerto | Agua</font><br><font color="#4b69cd">Máscara de la tribu Loco | Guerrero | Agua</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Ana</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Alberts</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Briar</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Strasser</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Masterson</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Donovan</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Rae</font><br><font color="#4b69cd">Pintura facial de Halloween 2018 | Scully</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Briar clásico</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Masterson cl.</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Jagerhorn</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Sr. Foster</font><br><font color="#6600a1">Pintura facial de Halloween 2018 | Sra. Foster</font><br><font color="#8847ff">Máscara de la tribu Loco | Bestia | Oscuro</font><br><font color="#8847ff">Máscara de la tribu Loco | Bailarín | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Demonio | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Médico | Oscuro</font><br><font color="#8847ff">Máscara de la tribu Loco | Soñador | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Payaso | Oscuro</font><br><font color="#8847ff">Máscara de la tribu Loco | Señor | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Dormilón | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | No muerto | Fuego</font><br><font color="#8847ff">Máscara de la tribu Loco | Guerrero | Fuego</font><br><font color="#8847ff">Pintura facial de Halloween 2018 | Tanaka</font><br><font color="#caab05">, ¡o un accesorio precioso sumamente infrecuente!</font>"
 
+HorzineSupplyCosmeticCrateSeries8Description="Requiere una llave de caja de suministros de Horzine. Contiene una versión infrecuente o mejor de los siguientes:<br><font color="#4b69cd">Casco de cuerno sci-fi | Verde</font><br><font color="#4b69cd">Casco de cuerno sci-fi | Morado</font><br><font color="#4b69cd">Casco sin cara sci-fi | Verde</font><br><font color="#4b69cd">Casco sin cara sci-fi | Morado</font><br><font color="#4b69cd">Casco respirador sci-fi A | Verde</font><br><font color="#4b69cd">Casco respirador sci-fi A | Morado</font><br><font color="#4b69cd">Casco respirador sci-fi B | Verde</font><br><font color="#4b69cd">Casco respirador sci-fi B | Morado</font><br><font color="#4b69cd">Casco sin expresión sci-fi | Verde</font><br><font color="#4b69cd">Casco sin expresión sci-fi | Morado</font><br><font color="#4b69cd">Casco samurái sci-fi | Verde</font><br><font color="#4b69cd">Casco samurái sci-fi | Morado</font><br><font color="#4b69cd">Piernas de armadura samurái | Verde</font><br><font color="#4b69cd">Piernas de armadura samurái | Morado</font><br><font color="#4b69cd">Pecho de armadura samurái | Azul</font><br><font color="#4b69cd">Pecho de armadura samurái | Verde</font><br><font color="#4b69cd">Gorro ronin | Verde</font><br><font color="#4b69cd">Gorro ronin | Amarillo</font><br><font color="#4b69cd">Gafas ronin | Verde</font><br><font color="#4b69cd">Gafas ronin | Amarillo</font><br><font color="#4b69cd">Máscara ronin | Verde</font><br><font color="#4b69cd">Máscara ronin | Amarillo</font><br><font color="#6600a1">Casco de cuerno sci-fi | Negro</font><br><font color="#6600a1">Casco de cuerno sci-fi | Azul</font><br><font color="#6600a1">Casco sin cara sci-fi | Azul</font><br><font color="#6600a1">Casco respirador sci-fi A | Azul</font><br><font color="#6600a1">Casco respirador sci-fi B | Azul</font><br><font color="#6600a1">Casco sin expresión sci-fi | Azul</font><br><font color="#6600a1">Casco samurái sci-fi | Azul</font><br><font color="#6600a1">Piernas de armadura samurái | Negro</font><br><font color="#6600a1">Piernas de armadura samurái | Azul</font><br><font color="#6600a1">Pecho de armadura samurái | Azul</font><br><font color="#6600a1">Pecho de armadura samurái | Verde</font><br><font color="#6600a1">Gorro ronin | Blanco</font><br><font color="#6600a1">Gafas ronin | Blanco</font><br><font color="#6600a1">Máscara ronin | Blanco</font><br><font color="#8847ff">Casco de cuerno sci-fi | Rojo</font><br><font color="#8847ff">Casco sin cara sci-fi | Rojo</font><br><font color="#8847ff">Casco respirador sci-fi A | Rojo</font><br><font color="#8847ff">Casco respirador sci-fi B | Rojo</font><br><font color="#8847ff">Casco sin expresión sci-fi | Rojo</font><br><font color="#8847ff">Casco samurái sci-fi | Rojo</font><br><font color="#8847ff">Piernas de armadura samurái | Rojo</font><br><font color="#8847ff">Pecho de armadura samurái | Rojo</font><br><font color="#8847ff">Gorro ronin | Rojo</font><br><font color="#8847ff">Gafas ronin | Rojo</font><br><font color="#8847ff">Máscara ronin | Rojo</font><br><font color="#caab05">¡o un accesorio precioso sumamente infrecuente!</font>"
 
+HorzineSupplyWeaponSkinCrateSeries13Description="Requiere una llave de caja de suministros de Horzine. Contiene una de las siguientes, infrecuente o superior:<br><font color="#4b69cd">9 mm | Synthwave</font><br><br><font color="#4b69cd">Curador HMTech | Synthwave</font><br><br><font color="#4b69cd">Pulverizador | Synthwave</font><br><br><font color="#4b69cd">9 mm | Yin Yang</font><br><br><font color="#6600a1">Ak12 | Synthwave</font><br><font color="#6600a1">Desert Eagle | Synthwave</font><br><font color="#6600a1">Scar | Synthwave</font><br><font color="#6600a1">Escopeta | Ying Yang</font><br><font color="#6600a1">Aliento de dragón | Ying Yang</font><br><font color="#6600a1">Katana | Ying Yang</font><br><font color="#6600a1">M79 | Ying Yang</font><br><font color="#6600a1">Revólver Magnum .500 | Ying Yang</font><br><font color="#8847ff">Subfusil Kriss | Synthwave</font><br><font color="#8847ff">M1911 | Ying Yang</font><br><font color="#8847ff">Winchester 1894 | Ying Yang</font><br><font color="#caab05">¡o un accesorio Precioso sumamente infrecuente!</font>"
 
+HorzineSupplyWeaponSkinCrateSeries14Description="Requiere una llave de caja de suministros de Horzine. Contiene una de las siguientes, infrecuente o superior:<br><font color="#4b69cd">AR15 | Neón</font><br><font color="#4b69cd">C4 | Neón</font><br><font color="#4b69cd">Hacha de fuego | Neón</font><br><font color="#4b69cd">MP7 | Neón</font><br><font color="#6600a1">Ballesta | Neón</font><br><font color="#6600a1">Desert Eagle | Neón</font><br><font color="#8847ff">Hacha de guerra | Neón</font><br><font color="#8847ff">FN FAL | Neón</font><br><font color="#8847ff">Tommy Gun | Neón</font><br><font color="#caab05">¡o un accesorio Precioso sumamente infrecuente!</font>"
+
+HorzineSupplyCosmeticCrateSeries9Description="Requiere una llave de caja de suministros de Horzine. Contiene uno de los siguientes, infrecuente o superior<br><font color="#4b69cd">Armadura con capucha | Azul</font><br><font color="#4b69cd">Armadura con capucha | Verde</font><br><font color="#4b69cd">Máscara sin rostro | Azul</font><br><font color="#4b69cd">Máscara sin rostro | Verde</font><br><font color="#4b69cd">Capucha ciencia ficción | Azul</font><br><font color="#4b69cd">Capucha ciencia ficción | Verde</font><br><font color="#4b69cd">Máscara sin expresión | Azul</font><br><font color="#4b69cd">Máscara sin expresión | Verde</font><br><font color="#6600a1">Armadura con capucha | Rojo</font><br><font color="#6600a1">Máscara sin rostro | Rojo</font><br><font color="#6600a1">Capucha ciencia ficción | Rojo</font><br><font color="#6600a1">Máscara sin expresión | Rojo</font><br><font color="#6600a1">Bastet | Rojo</font><br><font color="#6600a1">Bastet | Amarillo</font><br><font color="#6600a1">Bastet | Verde</font><br><font color="#6600a1">Bastet | Azul</font><br><font color="#6600a1">Sobek | Rojo</font><br><font color="#6600a1">Sobek | Amarillo</font><br><font color="#6600a1">Sobek | Verde</font><br><font color="#6600a1">Sobek | Azul</font><br><font color="#8847ff">Armadura con capucha | Negro</font><br><font color="#8847ff">Máscara sin rostro | Negro</font><br><font color="#8847ff">Máscara sin rostro | Blanco</font><br><font color="#8847ff">Capucha ciencia ficción | Negro</font><br><font color="#8847ff">Máscara sin expresión | Negro</font><br><font color="#8847ff">Máscara sin expresión | Blanco</font><br><font color="#8847ff">Anubis | Rojo</font><br><font color="#8847ff">Anubis | Azul</font><br><font color="#8847ff">Anubis | Verde</font><br><font color="#8847ff">Anubis | Amarillo</font><br><font color="#8847ff">Ra | Rojo</font><br><font color="#8847ff">Ra | Azul</font><br><font color="#8847ff">Ra | Verde</font><br><font color="#8847ff">Ra | Amarillo</font><br><font color="#caab05">¡o un accesorio Precioso sumamente infrecuente!</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Llave de caja de sum. de H."
@@ -842,6 +913,9 @@ HMTechHealerVaultVoshPreciousName="Curador HMTech | Cámara | Vosh | Precioso"
 HMTechHealerBlackGoldenMintName="Curador HMTech | Dorado oscuro | Impecable"
 HMTechHealerBlackGoldenFieldTestedName="Curador HMTech | Dorado oscuro | Usado"
 HMTechHealerBlackGoldenBattleScarredName="Curador HMTech | Dorado oscuro | Ajado"
+HMTechHealerSynthwaveMintName="Curador HMTech | Synthwave | Impecable"
+HMTechHealerSynthwaveFieldTestedName="Curador HMTech | Synthwave | Usado"
+HMTechHealerSynthwaveBattleScarredName="Curador HMTech | Synthwave | Ajado"
 
 ;1858 Revolver Descriptions
 1858RevolverMintDescription="Exterior: Impecable | Un magnífico ejemplo de un revólver Remington "Modelo 1858"; cuenta con capacidad para 6 balas del calibre 44. Antiguo, pero todavía potente."
@@ -887,11 +961,14 @@ HMTechHealerBlackGoldenBattleScarredName="Curador HMTech | Dorado oscuro | Ajado
 500MagnumRevolverIndustrialMintName="Revólver Magnum .500 | Industrial | Impecable"
 500MagnumRevolverIndustrialFieldTestedName="Revólver Magnum .500 | Industrial | Usado"
 500MagnumRevolverIndustrialBattleScarredName="Revólver Magnum .500 | Industrial | Ajado"
-500MagnumRevolverNeonMintName="Revólver Magnum 500 | Neón | Impecable"
-500MagnumRevolverNeonFieldTestedName="Revólver Magnum 500 | Neón | Usado"
-500MagnumRevolverNeonBattleScarredName="Revólver Magnum 500 | Neón | Ajado"
-500MagnumRevolverNeonRGBPreciousName="Revólver Magnum 500 | RVA neón | Precioso"
-500MagnumRevolverVaultVoshPreciousName="Revólver Magnum 500 | Cámara | Vosh | Precioso"
+500MagnumRevolverNeonMintName="Revólver Magnum .500 | Neón | Impecable"
+500MagnumRevolverNeonFieldTestedName="Revólver Magnum .500 | Neón | Usado"
+500MagnumRevolverNeonBattleScarredName="Revólver Magnum .500 | Neón | Ajado"
+500MagnumRevolverNeonRGBPreciousName="Revólver Magnum .500 | RVA neón | Precioso"
+500MagnumRevolverVaultVoshPreciousName="Revólver Magnum .500 | Cámara | Vosh | Precioso"
+500MagnumRevolverYinYangBattleScarredName="Revólver Magnum .500 | Ying Yang | Ajado"
+500MagnumRevolverYinYangFieldTestedName="Revólver Magnum .500 | Ying Yang | Usado"
+500MagnumRevolverYinYangMintName="Revólver Magnum .500 | Ying Yang | Impecable"
 
 ;9mm Descriptions
 9MMMintDescription="Exterior: Impecable | Sencillo y barato (muy barato, para qué andarnos con milongas), es el arma de apoyo básica de todo de todas las unidades de Horzine."
@@ -960,6 +1037,9 @@ HMTechHealerBlackGoldenBattleScarredName="Curador HMTech | Dorado oscuro | Ajado
 9MMNeonFieldTestedName="9 mm | Neón | Usado"
 9MMNeonMintName="9 mm | Neón | Impecable"
 9MMNeonRGBPreciousName="9 mm | RVA neón | Precioso"
+9MMSynthwaveMintName="9 mm | Synthwave | Impecable"
+9MMSynthwaveFieldTestedName="9 mm | Synthwave | Usado"
+9MMSynthwaveBattleScarredName="9 mm | Synthwave | Ajado"
 
 ;AA12 Descriptions
 AA12MintDescription="Exterior: Impecable | La AA-12 es una escopeta automática. Su potencia de fuego es devastadora a media y corta distancia, pero en modo automático consume mucha munición."
@@ -1027,6 +1107,7 @@ AF2011A1NeonBattleScarredName="AF2011-A1 | Neón | Ajado"
 AF2011A1NeonFieldTestedName="AF2011-A1 | Neón | Usado"
 AF2011A1NeonMintName="AF2011-A1 | Neón | Impecable"
 AF2011A1NeonRGBPreciousName="AF2011-A1 | RVA neón | Precioso"
+AF2011A1VaultVoshPreciousName="AF2011-A1 | Cámara | Vosh | Precioso"
 
 ;AK12 Descriptions
 AK12MintDescription="Exterior: Impecable | AK-12 arrebatado del cadáver de un Spestnaz ruso para analizarlo."
@@ -1093,9 +1174,13 @@ AK12HorzineFirstEncounterFieldTestedName="AK-12 | Primer encuentro de Horzine | 
 AK12HorzineFirstEncounterBattleScarredName="AK-12 | Primer encuentro de Horzine | Ajado "
 AK12NeonBattleScarredName="AK-12 | Neón | Ajado"
 AK12NeonFieldTestedName="AK-12 | Neón | Usado"
-AK12NeonMintName="AK12 | Neón | Impecable"
-AK12NeonRGBPreciousName="AK12 | RVA neón | Precioso"
-AK12VaultVoshPreciousName="AK12 | Cámara | Vosh | Precioso"
+AK12NeonMintName="AK-12 | Neón | Impecable"
+AK12NeonRGBPreciousName="AK-12 | RVA neón | Precioso"
+AK12VaultVoshPreciousName="AK-12 | Cámara | Vosh | Precioso"
+AK12SynthwaveMintName="AK-12 | Synthwave | Impecable"
+AK12SynthwaveFieldTestedName="AK-12 | Synthwave | Usado"
+AK12SynthwaveBattleScarredName="AK-12 | Synthwave | Ajado"
+AK12PrestigePreciousName="AK-12 | Prestigio | Precioso"
 
 ;AR15 Descriptions
 AR15MintDescription="Exterior: Impecable | Esto es para Zeds, no para "alimañas"."
@@ -1131,6 +1216,10 @@ AR15VaultBlueCamoBattleScarredName="AR15 | Cámara | Camuflaje azul | Ajado"
 AR15PreciousName="AR15 | Precioso"
 AR15VaultVoshPreciousName="AR15 | Cámara | Vosh | Precioso"
 AR15PrestigePreciousName="AR15 | Prestigio | Precioso"
+AR15NeonMintName="AR15 | Neón | Impecable"
+AR15NeonFieldTestedName="AR15 | Neón | Usado"
+AR15NeonBattleScarredName="AR15 | Neón | Ajado"
+AR15NeonRGBPreciousName="AR15 | RVA neón | Precioso"
 
 ;BattleAxe Descriptions
 BattleAxeMintDescription="Exterior: Impecable | Obsoleto, pero sigue golpeando como un camión... un camión grande y afilado."
@@ -1145,6 +1234,10 @@ BattleAxeVaultVoshPreciousName="Hacha de guerra | Cámara | Vosh | Precioso"
 BattleAxeBlackGoldenMintName="Hacha de guerra | Dorado oscuro | Impecable"
 BattleAxeBlackGoldenFieldTestedName="Hacha de guerra | Dorado oscuro | Usado"
 BattleAxeBlackGoldenBattleScarredName="Hacha de guerra | Dorado oscuro | Ajado"
+BattleAxeNeonMintName="Hacha de guerra | Neón | Impecable"
+BattleAxeNeonFieldTestedName="Hacha de guerra | Neón | Usado"
+BattleAxeNeonBattleScarredName="Hacha de guerra | Neón | Ajado"
+BattleAxeNeonRGBPreciousName="Hacha de guerra | RVA neón | Precioso"
 
 ;Berserker Knife Descriptions
 BerserkerKnifeMintDescription="Exterior: Impecable | Sí, en realidad es una cuchilla de una cortadora de césped. ¡Que la disfrutes!"
@@ -1235,6 +1328,7 @@ CenterfireNeonBattleScarredName="Fuego central | Neón | Ajado"
 CenterfireNeonFieldTestedName="Fuego central | Neón | Usado"
 CenterfireNeonMintName="Fuego central | Neón | Impecable"
 CenterfireNeonRGBPreciousName="Fuego central | RVA neón | Precioso"
+CenterfireVaultVoshPreciousName="Fuego central | Cámara | Vosh | Precioso"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Exterior: Impecable | Ballesta de caza de gran potencia y capacidad de perforación, ¡no se te acercará nadie!"
@@ -1258,6 +1352,10 @@ CrossbowHalloweenFieldTestedName="Ballesta | Halloween | Usado"
 CrossbowHalloweenBattleScarredName="Ballesta | Halloween | Ajado"
 CrossbowVaultVoshPreciousName="Ballesta | Cámara | Vosh | Precioso"
 CrossbowPrestigePreciousName="Ballesta | Prestigio | Precioso"
+CrossbowNeonMintName="Ballesta | Neón | Impecable"
+CrossbowNeonFieldTestedName="Ballesta | Neón | Usado"
+CrossbowNeonBattleScarredName="Ballesta | Neón | Ajado"
+CrossbowNeonRGBPreciousName="Ballesta | RVA neón | Precioso"
 
 ;Crovel Descriptions
 CrovelMintDescription="Exterior: Impecable | 50 % palanca, 50 % pala, 100 % letal."
@@ -1287,6 +1385,7 @@ DesertEagleMintDescription="Exterior: Impecable | El Desert Eagle es la mejor pi
 DesertEagleFieldTestedDescription="Exterior: Usado | El Desert Eagle es la mejor pistola de mano, y por eso se la conoce como el "Cañón de mano"."
 DesertEagleBattleScarredDescription="Exterior: Ajado | El Desert Eagle es la mejor pistola de mano, y por eso se la conoce como el "Cañón de mano"."
 DesertEaglePreciousDescription="Exterior: Precioso | El Desert Eagle es la mejor pistola de mano, y por eso se la conoce como el "Cañón de mano"."
+DesertEaglePrestigePreciousDescription="Exterior: Precioso | Desert Eagle es la mejor pistola de mano, y por eso se la conoce como el "Cañón de mano"."
 
 ;Desert Eagle Names
 DesertEagleEmergencyIssueMintName="Desert Eagle | Emergencias | Impecable"
@@ -1315,6 +1414,15 @@ DesertEagleHorzineEliteWhiteMintName="Desert Eagle | Éli. bl. de Ho. | Impecabl
 DesertEagleHorzineEliteWhiteFieldTestedName="Desert Eagle | Éli. bl. de Ho. | Usado"
 DesertEagleHorzineEliteWhiteBattleScarredName="Desert Eagle | Éli. bl. de Ho. | Ajado"
 DesertEagleVaultVoshPreciousName="Desert Eagle | Cámara | Vosh | Precioso"
+DesertEaglePrestigePreciousName="Desert Eagle | Prestigio | Precioso"
+DesertEagleNeonMintName="Desert Eagle | Neón | Impecable"
+DesertEagleNeonFieldTestedName="Desert Eagle | Neón | Usado"
+DesertEagleNeonBattleScarredName="Desert Eagle | Neón | Ajado"
+DesertEagleNeonRGBPreciousName="Desert Eagle | RVA neón | Precioso"
+DesertEagleSynthwaveMintName="Desert Eagle | Synthwave | Impecable"
+DesertEagleSynthwaveFieldTestedName="Desert Eagle | Synthwave | Usado"
+DesertEagleSynthwaveBattleScarredName="Desert Eagle | Synthwave | Ajado"
+
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Exterior: Impecable | Si no te basta con duplicar la diversión... ¡multiplícala por cuatro!"
@@ -1392,6 +1500,7 @@ FlamethrowerMintDescription="Exterior: Impecable | Un clásico que no pasa de mo
 FlamethrowerFieldTestedDescription="Exterior: Usado | Un clásico que no pasa de moda. En caso de duda, préndele fuego a todo."
 FlamethrowerBattleScarredDescription="Exterior: Ajado | Un clásico que no pasa de moda. En caso de duda, préndele fuego a todo."
 FlamethrowerPreciousDescription="Exterior: Precioso | Un clásico que no pasa de moda. En caso de duda, préndele fuego a todo."
+FlamethrowerPrestigePreciousDescription="Exterior: Precioso | Un clásico que no pasa de moda. En caso de duda, préndele fuego a todo."
 
 ;Flamethrower Names
 FlamethrowerDragonfireMintName="Lanzallamas | Fuego de dragón | Impecable"
@@ -1409,6 +1518,7 @@ FlamethrowerNeonFieldTestedName="Lanzallamas | Neón | Usado "
 FlamethrowerNeonBattleScarredName="Lanzallamas | Neón | Ajado "
 FlamethrowerNeonRGBPreciousName="Lanzallamas | Neón RVA | Precioso "
 FlamethrowerVaultVoshPreciousName="Lanzallamas | Cámara | Vosh | Precioso"
+FlamethrowerPrestigePreciousName="Lanzallamas | Prestigio | Precioso"
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="Exterior: Impecable | Sistema ígneo portátil y más cómodo de usar."
@@ -1442,6 +1552,7 @@ FlarePistolFlameRedBattleScarredName="Escupefuego | Llama Red | Ajado"
 FlarePistolHeirloomMintName="Escupefuego | Herencia | Impecable"
 FlarePistolHeirloomFieldTestedName="Escupefuego | Herencia | Usado"
 FlarePistolHeirloomBattleScarredName="Escupefuego | Herencia | Ajado"
+FlarePistolVaultVoshPreciousName="Escupefuego | Cámara | Vosh | Precioso"
 
 ;Freeze Thrower Names
 FreezeThrowerPreciousName="Lanzahielo | Precioso"
@@ -1500,12 +1611,14 @@ HemogoblinNeonMintName="Hemogoblin | Neón | Impecable "
 HemogoblinNeonFieldTestedName="Hemogoblin | Neón | Usado "
 HemogoblinNeonBattleScarredName="Hemogoblin | Neón | Ajado"
 HemogoblinNeonRGBPreciousName="Hemogoblin | Neón RVA | Precioso"
+HemogoblinVaultVoshPreciousName="Hemogoblin | Cámara | Vosh | Precioso"
 
 ;HK UMP Descriptions
 HKUMPMintDescription="Exterior: Impecable | Una de las nuevas incorporaciones de la familia MP. ¿Puede que sea un tío? ¿Las metralletas tienen familia?"
 HKUMPFieldTestedDescription="Exterior: Usado | Una de las nuevas incorporaciones de la familia MP. ¿Puede que sea un tío? ¿Las metralletas tienen familia?"
 HKUMPBattleScarredDescription="Exterior: Ajado | Una de las nuevas incorporaciones de la familia MP. ¿Puede que sea un tío? ¿Las metralletas tienen familia?"
 HKUMPPreciousDescription="Exterior: Precioso | Una de las nuevas incorporaciones de la familia MP. ¿Puede que sea un tío? ¿Las metralletas tienen familia?"
+HKUMPPrestigePreciousDescription="Exterior: Precioso | Una de las nuevas incorporaciones de la familia MP. ¿Puede que sea un tío? ¿Las metralletas tienen familia?"
 
 ;HK UMP Names
 HKUMPPreciousName="Heckler & Koch UMP | Precioso"
@@ -1516,6 +1629,8 @@ HKUMPHorzineFirstEncounterMintName="Heckler & Koch UMP | 1.er encuentro de Horzi
 HKUMPHorzineFirstEncounterFieldTestedName="Heckler & Koch UMP | 1.er encuentro de Horzine | Usado "
 HKUMPHorzineFirstEncounterBattleScarredName="Heckler & Koch UMP | 1.er encuentro de Horzine | Ajado "
 HKUMPNeonRGBPreciousName="Heckler & Koch UMP | Neón RVA | Precioso"
+HKUMPPrestigePreciousName="Heckler & Koch UMP | Prestigio | Precioso"
+HKUMPVaultVoshPreciousName="Heckler & Koch UMP | Cámara | Vosh | Precioso"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Exterior: Impecable | Es un bisturí. Eres médico, así que damos por sentado que no tenemos que explicarte cómo se usa."
@@ -1608,6 +1723,7 @@ HMTech301ShotgunMintDescription="Exterior: Impecable| La pistola HMTech en versi
 HMTech301ShotgunFieldTestedDescription="Exterior: Usado| La pistola HMTech en versión escopeta de combate."
 HMTech301ShotgunBattleScarredDescription="Exterior: Ajado| La pistola HMTech en versión escopeta de combate."
 HMTech301ShotgunPreciousDescription="Exterior: Precioso | La pistola HMTech en versión escopeta de combate."
+HMTech301ShotgunPrestigePreciousDescription="Exterior: Precioso | La pistola HMTech en versión escopeta de combate."
 
 ;HMTech-301 Shotgun Names
 HMTech301ShotgunEliteUnitMintName="Esc. HMTech-301 | Unidad de élite | Impecable"
@@ -1622,6 +1738,7 @@ HMTech301ShotgunNeonMintName="Escopeta HMTech-301 | Neón | Impecable"
 HMTech301ShotgunNeonFieldTestedName="Escopeta HMTech-301 | Neón | Usado"
 HMTech301ShotgunNeonBattleScarredName="Escopeta HMTech-301 | Neón | Ajado"
 HMTech301ShotgunNeonRGBPreciousName="Escopeta HMTech-301 | RVA neón | Precioso"
+HMTech301ShotgunPrestigePreciousName="Esc. HMTech-301 | Prestigio | Precioso"
 
 ;HMTech-401 Assault Rifle Descriptions
 HMTech401AssaultRifleMintDescription="Exterior: Impecable| La pistola HMTech en versión rifle de asalto completo."
@@ -1685,6 +1802,7 @@ HuskCannonNeonBattleScarredName="Cañón de husk | Neón | Ajado"
 HuskCannonNeonFieldTestedName="Cañón de husk | Neón | Usado"
 HuskCannonNeonMintName="Cañón de husk | Neón | Impecable"
 HuskCannonNeonRGBPreciousName="Cañón de husk | RVA neón | Precioso"
+HuskCannonVaultVoshPreciousName="Cañón de husk | Cámara | Vosh | Precioso"
 
 ;HX25 Descriptions
 HX25MintDescription="Exterior: Impecable | En modo fuego dispara múltiples municiones segundarias que explotan por contacto."
@@ -1728,7 +1846,8 @@ HZ12HalloweenBattleScarredName="HZ12 | Halloween | Ajado"
 HZ12PreciousName="HZ12 | Preciosa"
 HZ12HorzineFirstEncounterMintName="HZ12 | 1.er encuentro de Horzine | Impecable "
 HZ12HorzineFirstEncounterFieldTestedName="HZ12 | 1.er encuentro de Horzine | Usado "
-HZ12HorzineFirstEncounterBattleScarredName="HZ12 | 1.er encuentro de Horzine | Ajado "
+HZ12HorzineFirstEncounterBattleScarredName="HZ12 | 1.º enc. de Ho. | Ajado"
+HZ12VaultVoshPreciousName="HZ12 | Cámara | Vosh | Precioso" 
 
 ;Katana Descriptions
 KatanaMintDescription="Exterior: Impecable | Procura mostrar un poco de respeto por su clase."
@@ -1760,6 +1879,7 @@ KatanaBlackGoldenMintName="Katana | Dorado oscuro | Impecable"
 KatanaBlackGoldenFieldTestedName="Katana | Dorado oscuro | Usado"
 KatanaBlackGoldenBattleScarredName="Katana | Dorado oscuro | Ajado"
 KatanaPrestigePreciousName="Katana | Prestigio | Precioso"
+KatanaVaultVoshPreciousName="Katana | Cámara | Vosh | Precioso"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="Exterior: Impecable| Versión de Horzine del cuchillo de comando clásico."
@@ -1811,6 +1931,9 @@ KrissHorzineFirstEncounterMintName="Subfusil Kriss | 1.er encuentro de Horzine |
 KrissHorzineFirstEncounterFieldTestedName="Subfusil Kriss | 1.er encuentro de Horzine | Usado "
 KrissHorzineFirstEncounterBattleScarredName="Subfusil Kriss | 1.er encuentro de Horzine | Ajado "
 KrissVaultVoshPreciousName="Subfusil Kriss | Cámara | Vosh | Precioso"
+KrissSynthwaveMintName="Subfusil Kriss | Synthwave | Impecable"
+KrissSynthwaveFieldTestedName="Subfusil Kriss | Synthwave | Usado"
+KrissSynthwaveBattleScarredName="Subfusil Kriss | Synthwave | Ajado"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Exterior: Impecable | El SA80 era el arma estándar del ejército británico antes de acabar... bueno... devorado."
@@ -1864,6 +1987,7 @@ M14EBRMintDescription="Exterior: Impecable | El rifle favorito de los francotira
 M14EBRFieldTestedDescription="Exterior: Usado | El rifle favorito de los francotiradores de operaciones especiales y Delta Force, entre otros tipos duros."
 M14EBRBattleScarredDescription="Exterior: Ajado | El rifle favorito de los francotiradores de operaciones especiales y Delta Force, entre otros tipos duros."
 M14EBRPreciousDescription="Exterior: Precioso | El rifle favorito de los francotiradores de operaciones especiales y Delta Force, entre otros tipos duros."
+M14EBRPrestigePreciousDescription="Exterior: Precioso | El rifle favorito de los francotiradores de operaciones especiales y Delta Force, entre otros tipos duros."
 
 ;M14EBR Names
 M14EBRIndustrialMintName="R. de combate M14 | Industrial | Impecable"
@@ -1884,14 +2008,17 @@ M14EBRNeonFieldTestedName="M14EBR | Neón | Usado "
 M14EBRNeonBattleScarredName="M14EBR | Neón | Ajado "
 M14EBRNeonRGBPreciousName="M14EBR | Neón RVA | Precioso "
 M14EBRVaultVoshPreciousName="M14EBR | Cámara | Vosh | Precioso"
+M14EBRPrestigePreciousName="M14EBR | Prestigio | Precioso"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Exterior: Impecable | Para los que no se deciden entre balas y explosivos."
 M16M203FieldTestedDescription="Exterior: Usado | Para los que no se deciden entre balas y explosivos."
 M16M203BattleScarredDescription="Exterior: Ajado | Para los que no se deciden entre balas y explosivos."
 M16M203PreciousDescription="Exterior: Precioso | Para los que no se deciden entre balas y explosivos."
+M16M203PrestigePreciousDescription="Exterior: Precioso | Para los que no se deciden entre balas y explosivos."
 
 ;M16M203 Names
+M16M203VietnamMintName="M16 M203 | Vietnam | Impecable"
 M16M203VietnamMintName="M16 M203 | Vietnam | Impecable"
 M16M203VietnamFieldTestedName="M16 M203 | Vietnam | Usado"
 M16M203VietnamBattleScarredName="M16 M203 | Vietnam | Ajado"
@@ -1899,10 +2026,12 @@ M16M203JunkyardMintName="M16 M203 | Desguace | Impecable"
 M16M203JunkyardFieldTestedName="M16 M203 | Desguace | Usado"
 M16M203JunkyardBattleScarredName="M16 M203 | Desguace | Ajado"
 M16M203PreciousName="M16 M203 | Precioso"
-M16M2036NeonBattleScarredName="M16 M2036 | Neón | Ajado"
-M16M2036NeonFieldTestedName="M16 M2036 | Neón | Usado"
-M16M2036NeonMintName="M16 M2036 | Neón | Impecable"
-M16M2036NeonRGBPreciousName="M16 M2036 | RVA neón | Precioso"
+M16M2036NeonBattleScarredName="M16 M203 | Neón | Ajado"
+M16M2036NeonFieldTestedName="M16 M203 | Neón | Usado"
+M16M2036NeonMintName="M16 M203 | Neón | Impecable"
+M16M2036NeonRGBPreciousName="M16 M203 | RVA neón | Precioso"
+M16M203PrestigePreciousName="M16 M203 | Prestigio | Precioso"
+
 
 ;M1911 Descriptions
 M1911MintDescription="Exterior: Impecable | La clásica pistola Colt 1911 semiautomática."
@@ -1929,12 +2058,16 @@ M1911BluefireMintName="M1911 | Fuegoazul | Impecable "
 M1911BluefireFieldTestedName="M1911 | Fuegoazul | Usado "
 M1911BluefireBattleScarredName="M1911 | Fuegoazul | Ajado "
 M1911PrestigePreciousName="M1911 | Prestigio | Precioso"
+M1911YinYangMintName="M1911 | Ying yang | Impecable"
+M1911YinYangFieldTestedName="M1911 | Ying yang | Usado"
+M1911YinYangBattleScarredName="M1911 | Ying yang | Ajado"
 
 ;M4 Descriptions
 M4MintDescription="Exterior: Impecable | Benelli diseñó la escopeta de combate M4 para el ejército estadounidense. Es semiautomática, así que dispone de una buena y constante cadencia de fuego."
 M4FieldTestedDescription="Exterior: Usado | Benelli diseñó la escopeta de combate M4 para el ejército estadounidense. Es semiautomática, así que dispone de una buena y constante cadencia de fuego."
 M4BattleScarredDescription="Exterior: Ajado | Benelli diseñó la escopeta de combate M4 para el ejército estadounidense. Es semiautomática, así que dispone de una buena y constante cadencia de fuego."
 M4PreciousDescription="Exterior: Precioso | Benelli diseñó la escopeta de combate M4 para el ejército estadounidense. Es semiautomática, así que dispone de una buena y constante cadencia de fuego."
+M4PretigePreciousDescription="Exterior: Precioso | Benelli diseñó la escopeta de combate M4 para el ejército estadounidense. Es semiautomática, así que dispone de una buena y constante cadencia de fuego."
 
 ;M4 Names
 M4MonsterKillerMintName="M4 | Machacamonst. | Impecable"
@@ -1961,6 +2094,7 @@ M4NeonMintName="M4 | Neón | Impecable"
 M4NeonFieldTestedName="M4 | Neón | Usado"
 M4NeonBattleScarredName="M4 | Neón | Ajado"
 M4NeonRGBPreciousName="M4 | RVA neón | Precioso"
+M4PrestigePreciousName="M4 | Prestigio | Precioso"
 
 ;M79 Descriptions
 M79MintDescription="Exterior: Impecable | Solo se arma unos cuantos metros hacia abajo, para que así no te vueles tu propia cara."
@@ -2042,6 +2176,7 @@ MaceAndShieldNeonMintName="Partehuesos | Neón | Impecable"
 MaceAndShieldNeonFieldTestedName="Partehuesos | Neón | Usado"
 MaceAndShieldNeonBattleScarredName="Partehuesos | Neón | Ajado"
 MaceAndShieldNeonRGBPreciousName="Partehuesos | RVA neón | Precioso"
+MaceAndShieldVaultVoshPreciousName="Partehuesos | Cámara | Vosh | Precioso"
 
 ;Mac 10 Descriptions
 Mac10MintDescription="Exterior: Impecable | Posee munición incendiaria de fuego rápido. ¿Lo pillas? ¡Fuego rápido! ¡Porque es una metralleta incendiaria! Bah, olvídalo."
@@ -2058,6 +2193,12 @@ Mac10NeonMintName="MAC 10 | Neón | Impecable "
 Mac10NeonFieldTestedName="MAC 10 | Neón | Usado "
 Mac10NeonBattleScarredName="MAC 10 | Neón | Ajado "
 Mac10NeonRGBPreciousName="MAC 10 | RVA neón | Precioso "
+
+;Medic Bat Descriptions
+MedicBatPreciousDescription="Exterior: Precioso | Bate médico"
+
+;Medic Bat Names
+MedicBatPreciousName="Bate médico | Precioso"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Exterior: Impecable | Las maravillas de la tecnología moderna: un horno portátil para Zeds."
@@ -2136,6 +2277,10 @@ MP7BluefireMintName="MP7 | Fuegoazul | Impecable "
 MP7BluefireFieldTestedName="MP7 | Fuegoazul | Usado "
 MP7BluefireBattleScarredName="MP7 | Fuegoazul | Ajado "
 MP7PrestigePreciousName="MP7 | Prestigio | Precioso"
+MP7NeonMintName="MP7 | Neón | Impecable"
+MP7NeonFieldTestedName="MP7 | Neón | Usado"
+MP7NeonBattleScarredName="MP7 | Neón | Ajado"
+MP7NeonRGBPreciousName="MP7 | RVA neón | Precioso"
 
 ;P90 Descriptions
 P90MintDescription="Exterior: Impecable | Es cierto que tiene una pinta un poco rara, pero tritura zeds que da gusto y puedes ponerle sonidos de láser."
@@ -2159,6 +2304,7 @@ PulverizerMintDescription="Exterior: Impecable | ¿Por qué no ibas a querer una
 PulverizerFieldTestedDescription="Exterior: Usado | ¿Por qué no ibas a querer una escopeta y un mazo, todo en uno?"
 PulverizerBattleScarredDescription="Exterior: Ajado | ¿Por qué no ibas a querer una escopeta y un mazo, todo en uno?"
 PulverizerPreciousDescription="Exterior: Precioso | ¿Por qué no ibas a querer una escopeta y un mazo, todo en uno?"
+PulverizerPrestigePreciousDescription="Exterior: Precioso | ¿Por qué no ibas a querer una escopeta y un mazo, todo en uno?"
 
 ;Pulverizer Names
 PulverizerFleshMintName="Pulverizador | Carne | Impecable"
@@ -2178,6 +2324,10 @@ PulverizerBlackGoldenMintName="Pulverizador | Dorado oscuro | Impecable"
 PulverizerBlackGoldenFieldTestedName="Pulverizador | Dorado oscuro | Usado"
 PulverizerBlackGoldenBattleScarredName="Pulverizador | Dorado oscuro | Ajado"
 PulverizerVaultVoshPreciousName="Pulverizador | Cámara | Vosh | Precioso"
+PulverizerPrestigePreciousName="Pulverizador | Prestigio | Precioso"
+PulverizerSynthwaveMintName="Pulverizador | Synthwave | Impecable"
+PulverizerSynthwaveFieldTestedName="Pulverizador | Synthwave | Usado"
+PulverizerSynthwaveBattleScarredName="Pulverizador | Synthwave | Ajado"
 
 ;Railgun Descriptions
 RailgunMintDescription="Exterior: Impecable | Este rifle usa imanes para disparar una densa bala de acero a gran velocidad que atraviesa a los zeds como si fueran de papel."
@@ -2292,6 +2442,9 @@ ScarHorzineFirstEncounterMintName="Scar | 1.er encuentro de Horzine | Impecable 
 ScarHorzineFirstEncounterFieldTestedName="Scar | 1.er encuentro de Horzine | Usado "
 ScarHorzineFirstEncounterBattleScarredName="Scar | 1.er encuentro de Horzine | Ajado "
 ScarVaultVoshPreciousName="SCAR | Cámara | Vosh | Precioso"
+ScarSynthwaveMintName="Scar | Synthwave | Impecable"
+ScarSynthwaveFieldTestedName="Scar | Synthwave | Usado"
+ScarSynthwaveBattleScarredName="Scar | Synthwave | Ajado"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="Exterior: Impecable | Un arma explosiva muy versátil que puede rastrear y atacar a varios objetivos a la vez."
@@ -2409,6 +2562,7 @@ VLAD1000NailgunMintDescription="Exterior: Impecable | Damos por sentado que alg�
 VLAD1000NailgunFieldTestedDescription="Exterior: Usado | Damos por sentado que algún científico de Horzine habrá conseguido la pistola de clavos original de un encargado (muerto) de mantenimiento."
 VLAD1000NailgunBattleScarredDescription="Exterior: Ajado | Damos por sentado que algún científico de Horzine habrá conseguido la pistola de clavos original de un encargado (muerto) de mantenimiento."
 VLAD1000NailgunPreciousDescription="Exterior: Precioso | Damos por sentado que algún científico de Horzine habrá conseguido la pistola de clavos original de un encargado (muerto) de mantenimiento."
+VLAD1000NailgunPrestigePreciousDescription="Exterior: Precioso | Damos por sentado que algún científico de Horzine habrá conseguido la pistola de clavos original de un encargado (muerto) de mantenimiento."
 
 ;VLAD-1000 Nailgun Names
 VLAD1000NailgunArachnidMintName="P. cla. Vlad-1000 | Arácnido | Impecable"
@@ -2418,6 +2572,7 @@ VLAD1000NailgunEmergencyIssueMintName="P. cla. Vlad-1000 | Emergencias | Impecab
 VLAD1000NailgunEmergencyIssueFieldTestedName="P. cla. Vlad-1000 | Emergencias | Usado"
 VLAD1000NailgunEmergencyIssueBattleScarredName="P. cla. Vlad-1000 | Emergencias | Ajado"
 VLAD1000NailgunPreciousName="P. cla. Vlad-1000 | Precioso"
+VLAD1000NailgunPrestigePreciousName="P. cla. Vlad-1000 | Prestigio | Precioso"
 VLAD1000NailgunBlackGoldenMintName="P. clavos VLAD-1000 | Dorado oscuro | Impecable"
 VLAD1000NailgunBlackGoldenFieldTestedName="P. clavos VLAD-1000 | Dorado oscuro | Usado"
 VLAD1000NailgunBlackGoldenBattleScarredName="P. clavos VLAD-1000 | Dorado oscuro | Ajado"
@@ -2425,6 +2580,7 @@ VLAD1000NailgunVaultVoshPreciousName="Pistola de clavos VLAD-1000 | Cámara | Vo
 VLAD1000NailgunBluefireMintName="Pistola de clavos VLAD-1000 | Fuegoazul | Impecable "
 VLAD1000NailgunBluefireFieldTestedName="Pistola de clavos VLAD-1000 | Fuegoazul | Usado "
 VLAD1000NailgunBluefireBattleScarredName="Pistola de clavos VLAD-1000 | Fuegoazul | Ajado "
+VLAD1000NailgunPrestigePreciousName="P. cla. Vlad-1000 | Prestigio | Precioso"
 
 ;Welder Descriptions
 WelderMintDescription="Exterior: Impecable | Soldador, ¡estoy soldando esta puerta!"
@@ -2520,6 +2676,10 @@ C4PreciousDescription="Exterior: Precioso | Un bloque de C4 cableado para detona
 ;C4 Names
 C4PreciousName="C4 | Precioso"
 C4VaultVoshPreciousName="C4 | Cámara | Vosh | Precioso"
+C4NeonMintName="C4 | Neón | Impecable"
+C4NeonFieldTestedName="C4 | Neón | Usado"
+C4NeonBattleScarredName="C4 | Neón | Ajado"
+C4NeonRGBPreciousName="C4 | RVA neón | Precioso"
 
 ;SharpshooterKnife Descriptions
 SharpshooterKnifeMintDescription="Exterior: Impecable | Cuchillo tradicional de los Ghurka, pensado más para cortar en pedacitos que en rebanadas."
@@ -2575,6 +2735,47 @@ TommyGunPreciousDescription="Exterior: Precioso | Conocida como la Chicago Typew
 
 ;TommyGun Names
 TommyGunPrestigePreciousName="Tommy Gun | Prestigio | Precioso"
+TommyGunNeonMintName="Tommy Gun | Neón | Impecable"
+TommyGunNeonFieldTestedName="Tommy Gun | Neón | Usado"
+TommyGunNeonBattleScarredName="Tommy Gun | Neón | Ajado"
+TommyGunNeonRGBPreciousName="Tommy Gun | Neón RVA | Precioso"
+
+;FNFAL Descriptions
+FNFALMintDescription="Exterior: Impecable | Se podría decir que esta arma no es una FN FALLOS... Está bien, no es gracioso."
+FNFALFieldTestedDescription="Exterior: Usado | Se podría decir que esta arma no es una FN FALLOS... Está bien, no es gracioso."
+FNFALBattleScarredDescription="Exterior: Ajado | Se podría decir que esta arma no es una FN FALLOS... Está bien, no es gracioso."
+FNFALPreciousDescription="Exterior: Precioso | Se podría decir que esta arma no es una FN FALLOS... Está bien, no es gracioso."
+
+;FNFAL Names
+FNFALNeonMintName="FN FAL | Neón | Impecable"
+FNFALNeonFieldTestedName="FN FAL | Neón | Usado"
+FNFALNeonBattleScarredName="FN FAL | Neón | Ajado"
+FNFALNeonRGBPreciousName="FN FAL | RVA neón | Precioso"
+
+;FireAxe Descriptions
+FireAxeMintDescription="Exterior: Impecable | ¿Por qué hacha de fuego si no tiene fuego?"
+FireAxeFieldTestedDescription="Exterior: Usado | ¿Por qué hacha de fuego si no tiene fuego?"
+FireAxeBattleScarredDescription="Exterior: Ajado | ¿Por qué hacha de fuego si no tiene fuego?"
+FireAxePreciousDescription="Exterior: Precioso | ¿Por qué hacha de fuego si no tiene fuego?"
+
+;FireAxe Names
+FireAxeNeonMintName="Hacha de fuego | Neón | Impecable"
+FireAxeNeonFieldTestedName="Hacha de fuego | Neón | Usado"
+FireAxeNeonBattleScarredName="Hacha de fuego | Neón | Ajado"
+FireAxeNeonRGBPreciousName="Hacha de fuego | RVA neón | Precioso"
+FireAxeVaultVoshPreciousName="Hacha de fuego | Cámara | Vosh | Precioso"
+
+;M32 Descriptions
+M32MintDescription="Exterior: Impecable | Una solución más elegante que pegar seis lanzagranadas M79 juntos."
+M32FieldTestedDescription="Exterior: Usado | Una solución más elegante que pegar seis lanzagranadas M79 juntos."
+M32BattleScarredDescription="Exterior: Ajado | Una solución más elegante que pegar seis lanzagranadas M79 juntos."
+M32PreciousDescription="Exterior: Precioso | Una solución más elegante que pegar seis lanzagranadas M79 juntos."
+
+;M32 Names
+M32NeonMintName="M32 | Neón | Impecable"
+M32NeonFieldTestedName="M32 | Neón | Usado"
+M32NeonBattleScarredName="M32 | Neón | Ajado"
+M32NeonRGBPreciousName="M32 | RVA neón | Precioso"
 
 [CosmeticSection]
 
@@ -3960,6 +4161,141 @@ RoninMaskRedName="Máscara ronin | Rojo"
 RoninMaskWhiteName="Máscara ronin | Blanco"
 RoninMaskYellowName="Máscara ronin | Amarillo"
 
+;Cosmetic Item Set 17
+CyberpunkSkullHelmStandardName="Ciberpunk | Casco calavera | Normal"
+CyberpunkSkullHelmJetBlackName="Ciberpunk | Casco calavera | Negro azabache"
+CyberpunkSkullHelmPreciousName="Ciberpunk | Casco calavera | Precioso"
+CyberpunkEyeandFacemaskStandardName="Ciberpunk | Ojo y Máscara | Normal"
+CyberpunkEyeandFacemaskJetBlackName="Ciberpunk | Ojo y Máscara | Negro azabache"
+CyberpunkEyeandFacemaskPreciousName="Ciberpunk | Ojo y Máscara | Precioso"
+CyberpunkDigitalEyeDisplayABlueName="Ciberpunk | Pantalla ocular digital A | Azul"
+CyberpunkDigitalEyeDisplayARedName="Ciberpunk | Pantalla ocular digital A | Rojo"
+CyberpunkDigitalEyeDisplayAPreciousName="Ciberpunk | Pantalla ocular digital A | Precioso"
+CyberpunkDigitalEyeDisplayBBlueName="Ciberpunk | Pantalla ocular digital B | Azul"
+CyberpunkDigitalEyeDisplayBRedName="Ciberpunk | Pantalla ocular digital B | Rojo"
+CyberpunkDigitalEyeDisplayBPreciousName="Ciberpunk | Pantalla ocular digital B | Precioso"
+CyberpunkTrinityPackStandardName="Ciberpunk | Mochila trinidad | Normal"
+CyberpunkTrinityPackJetBlackName="Ciberpunk | Mochila trinidad | Negro azabache"
+CyberpunkTrinityPackPreciousName="Ciberpunk | Mochila trinidad | Precioso"
+CyberpunkBoostInjectorStandardName="Ciberpunk | Inyector de potencia | Normal"
+CyberpunkBoostInjectorJetBlackName="Ciberpunk | Inyector de potencia | Negro azabache"
+CyberpunkBoostInjectorPreciousName="Ciberpunk | Inyector de potencia | Precioso"
+CyberpunkHoloPackBlueName="Ciberpunk | Holomochila | Azul"
+CyberpunkHoloPackRedName="Ciberpunk | Holomochila | Rojo"
+CyberpunkHoloPackPreciousName="Ciberpunk | Holomochila | Precioso"
+CyberpunkPsy-ClopsStandardName="Ciberpunk | Psíclope | Normal"
+CyberpunkPsy-ClopsJetBlackName="Ciberpunk | Psíclope | Negro azabache"
+CyberpunkPsy-ClopsPreciousName="Ciberpunk | Psíclope | Precioso"
+CyberpunkTrinityMaskStandardName="Ciberpunk | Máscara trinidad | Normal"
+CyberpunkTrinityMaskJetBlackName="Ciberpunk | Máscara trinidad | Negro azabache"
+CyberpunkTrinityMaskPreciousName="Ciberpunk | Máscara trinidad | Precioso"
+CyberpunkTrinityArmbandStandardName="Ciberpunk | Brazalete trinidad | Normal"
+CyberpunkTrinityArmbandJetBlackName="Ciberpunk | Brazalete trinidad | Negro azabache"
+CyberpunkTrinityArmbandPreciousName="Ciberpunk | Brazalete trinidad | Precioso"
+CyberpunkHoloArmbandABlueName="Ciberpunk | Holobrazalete A | Azul"
+CyberpunkHoloArmbandARedName="Ciberpunk | Holobrazalete A | Rojo"
+CyberpunkHoloArmbandAPreciousName="Ciberpunk | Holobrazalete A | Precioso"
+CyberpunkHoloArmbandBBlueName="Ciberpunk | Holobrazalete B | Azul"
+CyberpunkHoloArmbandBRedName="Ciberpunk | Holobrazalete B | Rojo"
+CyberpunkHoloArmbandBPreciousName="Ciberpunk | Holobrazalete B | Precioso"
+CyberpunkTrinityZedBackpackStandardName="Ciberpunk | Mochila zed trinidad | Normal"
+CyberpunkTrinityZedBackpackJetBlackName="Ciberpunk | Mochila zed trinidad | Negro azabache"
+CyberpunkTrinityZedBackpackPreciousName="Ciberpunk | Mochila zed trinidad | Precioso"
+CyberpunkTechnomancerGogglesStandardName="Ciberpunk | Gafas de tecnólogo | Normal"
+CyberpunkTechnomancerGogglesJetBlackName="Ciberpunk | Gafas de tecnólogo | Negro azabache"
+CyberpunkTechnomancerGogglesPreciousName="Ciberpunk | Gafas de tecnólogo | Precioso"
+
+;Cosmetic Item Set 18
+SteampunkItem1Skin1Name="Steampunk | Objeto 1 | Apariencia 1"
+SteampunkItem1Skin2Name="Steampunk | Objeto 1 | Apariencia 2"
+SteampunkItem1PreciousName="Steampunk | Objeto 1 | Precioso"
+SteampunkItem2Skin1Name="Steampunk | Objeto 2 | Apariencia 1"
+SteampunkItem2Skin2Name="Steampunk | Objeto 2 | Apariencia 2"
+SteampunkItem2PreciousName="Steampunk | Objeto 2 | Precioso"
+SteampunkItem3Skin1Name="Steampunk | Objeto 3 | Apariencia 1"
+SteampunkItem3Skin2Name="Steampunk | Objeto 3 | Apariencia 2"
+SteampunkItem3PreciousName="Steampunk | Objeto 3 | Precioso"
+SteampunkItem4Skin1Name="Steampunk | Objeto 4 | Apariencia 1"
+SteampunkItem4Skin2Name="Steampunk | Objeto 4 | Apariencia 2"
+SteampunkItem4PreciousName="Steampunk | Objeto 4 | Precioso"
+SteampunkItem5Skin1Name="Steampunk | Objeto 5 | Apariencia 1"
+SteampunkItem5Skin2Name="Steampunk | Objeto 5 | Apariencia 2"
+SteampunkItem5PreciousName="Steampunk | Objeto 5 | Precioso"
+SteampunkItem6Skin1Name="Steampunk | Objeto 6 | Apariencia 1"
+SteampunkItem6Skin2Name="Steampunk | Objeto 6 | Apariencia 2"
+SteampunkItem6PreciousName="Steampunk | Objeto 6 | Precioso"
+SteampunkItem7Skin1Name="Steampunk | Objeto 7 | Apariencia 1"
+SteampunkItem7Skin2Name="Steampunk | Objeto 7 | Apariencia 2"
+SteampunkItem7PreciousName="Steampunk | Objeto 7 | Precioso"
+SteampunkItem8Skin1Name="Steampunk | Objeto 8 | Apariencia 1"
+SteampunkItem8Skin2Name="Steampunk | Objeto 8 | Apariencia 2"
+SteampunkItem8PreciousName="Steampunk | Objeto 8 | Precioso"
+SteampunkItem9Skin1Name="Steampunk | Objeto 9 | Apariencia 1"
+SteampunkItem9Skin2Name="Steampunk | Objeto 9 | Apariencia 2"
+SteampunkItem9PreciousName="Steampunk | Objeto 9 | Precioso"
+SteampunkItem10Skin1Name="Steampunk | Objeto 10 | Apariencia 1"
+SteampunkItem10Skin2Name="Steampunk | Objeto 10 | Apariencia 2"
+SteampunkItem10PreciousName="Steampunk | Objeto 10 | Precioso"
+SteampunkItem11Skin1Name="Steampunk | Objeto 11 | Apariencia 1"
+SteampunkItem11Skin2Name="Steampunk | Objeto 11 | Apariencia 2"
+SteampunkItem11PreciousName="Steampunk | Objeto 11 | Precioso"
+SteampunkItem12Skin1Name="Steampunk | Objeto 12 | Apariencia 1"
+SteampunkItem12Skin2Name="Steampunk | Objeto 12 | Apariencia 2"
+SteampunkItem12PreciousName="Steampunk | Objeto 12 | Precioso"
+SteampunkItem13Skin1Name="Steampunk | Objeto 13 | Apariencia 1"
+SteampunkItem13Skin2Name="Steampunk | Objeto 13 | Apariencia 2"
+SteampunkItem13PreciousName="Steampunk | Objeto 13 | Precioso"
+SteampunkItem14Skin1Name="Steampunk | Objeto 14 | Apariencia 1"
+SteampunkItem14Skin2Name="Steampunk | Objeto 14 | Apariencia 2"
+SteampunkItem14PreciousName="Steampunk | Objeto 14 | Precioso"
+SteampunkItem15Skin1Name="Steampunk | Objeto 15 | Apariencia 1"
+SteampunkItem15Skin2Name="Steampunk | Objeto 15 | Apariencia 2"
+SteampunkItem15PreciousName="Steampunk | Objeto 15 | Precioso"
+
+;Cosmetic Item Set 19
+ArmorHoodBlackName="Armadura con capucha | Negro"
+ArmorHoodBlueName="Armadura con capucha | Azul"
+ArmorHoodRedName="Armadura con capucha | Rojo"
+ArmorHoodGreenName="Armadura con capucha | Verde"
+ArmorHoodPreciousName="Armadura con capucha | Precioso"
+FacelessMaskSingleBlackName="Máscara sin rostro única | Negro"
+FacelessMaskSingleBlueName="Máscara sin rostro única | Azul"
+FacelessMaskSingleRedName="Máscara sin rostro única | Rojo"
+FacelessMaskSingleGreenName="Máscara sin rostro única | Verde"
+FacelessMaskSingleWhiteName="Máscara sin rostro única | Blanco"
+FacelessMaskSinglePreciousName="Máscara sin rostro única | Precioso"
+Scy-fyHoodBlackName="Capucha ciencia ficción | Negro"
+Scy-fyHoodBlueName="Capucha ciencia ficción | Azul"
+Scy-fyHoodGreenName="Capucha ciencia ficción | Verde"
+Scy-fyHoodRedName="Capucha ciencia ficción | Rojo"
+Scy-fyHoodPreciousName="Capucha ciencia ficción | Precioso"
+NoExpressionMaskBlackName="Máscara sin expresión | Negro"
+NoExpressionMaskBlueName="Máscara sin expresión | Azul"
+NoExpressionMaskRedName="Máscara sin expresión | Rojo"
+NoExpressionMaskGreenName="Máscara sin expresión | Verde"
+NoExpressionMaskWhiteName="Máscara sin expresión | Blanco"
+NoExpressionMaskPreciousName="Máscara sin expresión | Precioso"
+AnubisRedName="Anubis | Rojo"
+AnubisYellowName="Anubis | Amarillo"
+AnubisGreenName="Anubis | Verde"
+AnubisBlueName="Anubis | Azul"
+AnubisPreciousName="Anubis | Precioso"
+BastYellowName="Bastet | Amarillo"
+BastGreenName="Bastet | Verde"
+BastRedName="Bastet | Rojo"
+BastBlueName="Bastet | Azul"
+BastPreciousName="Bastet | Precioso"
+RaBlueName="Ra | Azul"
+RaYellowName="Ra | Amarillo"
+RaGreenName="Ra | Verde"
+RaRedName="Ra | Rojo"
+RaPreciousName="Ra | Precioso"
+SobekGreenName="Sobek | Verde"
+SobekYellowName="Sobek | Amarillo"
+SobekBlueName="Sobek | Azul"
+SobekRedName="Sobek | Rojo"
+SobekPreciousName="Sobek | Precioso"
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Equipable desde el menú de equip., compatible con la mayoría de personajes. Es un objeto exclusivo del evento estacional "Feria de verano". Puede reciclarse para conseguir un 1 boleto de feria."
 SummerSideshowFacePaintDescription="Equipable desde el menú de equipamiento. Es un objeto exclusivo del evento estacional Feria de verano. Puede reciclarse para conseguir un 1 boleto de feria."
@@ -4208,6 +4544,11 @@ ConfettiFXDeluxeName="Hora de la fiesta | Efectos especiales"
 GhostFXDeluxeName="Espíritus espeluznantes | Efectos especiales"
 HeartsFXDeluxeName="Amor a primer disparo | Efectos especiales"
 ComicFXDeluxeName="Acción cómica | Efectos especiales"
+FlowerPetalFXDeluxeName="Pétalo de flor | Efectos especiales"
+CartoonSplatFXDeluxeName=""¡Plaf!" de cómic | Efectos especiales"
+GameOverFXDeluxeName="Fin de la partida | Efectos especiales"
+GlitchFXDeluxeName="Fallo | Efectos especiales"
+HorzineFXDeluxeName="Circuito Horzine | Efectos especiales"
 
 ;FX Descriptions
 
@@ -4216,3 +4557,8 @@ ConfettiFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la s
 GhostFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la sangre por espíritus."
 HeartsFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la sangre por corazones."
 ComicFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la sangre por onomatopeyas de cómic."
+FlowerPetalFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la sangre por pétalos de flor"
+CartoonSplatFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la sangre por "¡Plaf!" de cómic"
+GameOverFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la sangre por fuegos artificiales"
+GlitchFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la sangre por interferencias digitales"
+HorzineFXDeluxeDescription="Efectos de disparo en la cabeza que sustituyen la sangre por la tarjeta de visita de un hacker"

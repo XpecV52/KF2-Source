@@ -140,7 +140,7 @@ EarnXPString="Earn XP:"
 CompleteMapString="Complete Match in Map:"
 KillZedsString="Kill Zeds:"
 KillBossString="Kill Boss:"
-KillBossDescriptionString=""
+KillBossDescriptionString="In Survival or Weekly"
 VersusKillsString=Kill Versus Players as:
 DealVersusDamageString=Damage Versus Players as:
 VersusCompletionString=Complete Match as:
@@ -1245,6 +1245,7 @@ AutoTurnOffString="No Auto Turn On Clot Grab"
 ReduceHighPitchNoiseString="Reduce High Pitch Noise"
 DisableAutoUpgradeString="Disable Auto-Trade"
 HideRemodeHeadshotEffectsString="Disable Remote Headshot effects"
+ToggleToRunString="Toggle to Sprint"
 
 EnableMixerString="Enable Mixer"
 DisableMixerString="Disable Mixer"
@@ -1840,7 +1841,7 @@ SirenResistance="Sonic Resistant Rounds"
 SirenResistanceDescription="Your explosives are immune to the siren’s scream and will always explode."
 
 AreaOfEffect="Fragmentation Rounds"
-AreaOfEffectDescription="Increase area of effect of explosive perk weapons 50%, but decrease damage 30%."
+AreaOfEffectDescription="Increase Perk weapon explosion area of effect by 50%."
 
 CriticalHit="Armor Piercing Rounds"
 CriticalHitDescription="Increase damage of direct hits to critical areas with perk weapons 50%. "
@@ -1934,7 +1935,7 @@ GroundFire="Ground Fire"
 GroundFireDescription="Ground fires do massively increased damage and reduce Zed movement speed 20%."
 
 ZedShrapnel="Zed Shrapnel"
-ZedShrapnelDescription="Zeds you kill with fire have a 20% chance to explode, damaging and knocking down nearby Zeds."
+ZedShrapnelDescription="Zeds you kill with fire have a 30% chance to explode, damaging and stunning nearby Zeds."
 
 Napalm="Napalm"
 NapalmDescription="Burning Zeds that make contact with other Zeds will light them on fire and the burn effect lasts 150% longer."
@@ -2163,10 +2164,10 @@ TacticalReload="Tactical Reload"
 TacticalReloadDescription="Increase reload speed with Commando, Gunslinger, and SWAT weapons."
 
 FieldMedic="Medic Training"
-FieldMedicDescription="Increase the potency of all your healing 20% and decrease the cooldown of your syringe and healing darts 25%."
+FieldMedicDescription="Increase the potency of all your healing 30% and decrease the cooldown of your syringe and healing darts 50%."
 
 MeleeExpert="Melee Expert"
-MeleeExpertDescription="Increase melee attack speed 15%, inflict 10% more damage, and move 25% faster when using any melee weapon."
+MeleeExpertDescription="Increase melee attack speed 20%, inflict 50% more damage, and move 25% faster when using any melee weapon."
 
 AmmoVest="Ammo Vest"
 AmmoVestDescription="Carry up to 15% more ammo for all weapons and your grenade becomes a healing grenade."
@@ -2175,10 +2176,10 @@ BigPockets="Weapon Harness"
 BigPocketsDescription="Increase carrying capacity by 5 and your grenade becomes a Molotov cocktail."
 
 ZedShrapnel="Spontaneous Zed-plosion"
-ZedShrapnelDescription="Zeds you kill have a 20% chance to explode, damaging and knocking down nearby Zeds."
+ZedShrapnelDescription="Zeds you kill have a 30% chance to explode, damaging and stunning nearby Zeds."
 
 MakeThingsGoBoom="Make Things go Boom"
-MakeThingsGoBoomDescription="Increase area of effect of all Explosives 25%."
+MakeThingsGoBoomDescription="Increase area of effect of all Explosives 50%."
 
 Madman="ZED TIME - Madman"
 MadmanDescription="During Zed time, all your weapons shoot 3x faster."
@@ -2345,9 +2346,13 @@ DoschHoldDesc="Keep Zeds out of the marked area"
 DescriptionDoshHold="Keep Zeds out of the marked area"
 RepairObjective="WELD AND REPAIR"
 UseWelderToRepair="Use the Welder to repair the objective(s)"
+RepairObjectiveRequired="Objective(s) to repair:"
 EscortPawnsObjective="ESCORT"
 EscortPawnsDescription="Protect the target from the Zeds"
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="SEARCH AND DESTROY"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="OPERATE AND CONTROL"
 DescriptionActivateTrigger="Activate the objective control"
 RequiredActivateTrigger="Activations required:"
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Endless Sentry",DescriptionString
 SpecialEventObjectiveInfoList[3]=(TitleString="Endless War Machine",DescriptionString="Complete Endless Wave 20",TierEventRewardName="Bloody D.A.R.")
 SpecialEventObjectiveInfoList[4]=(TitleString="Endless Optimus D.A.R.",DescriptionString="Complete Endless Wave 25",TierEventRewardName="Golden D.A.R.")
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="A time limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Boss Rush",DescriptionString="Kill 15 bosses on any map")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Spillway",DescriptionString="Complete the Weekly on Spillway")
+SpecialEventObjectiveInfoList[2]=(TitleString="Exterminator",DescriptionString="Kill 1500 Zeds on any map")
+SpecialEventObjectiveInfoList[3]=(TitleString="Endless Spillway",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Spillway")
+SpecialEventObjectiveInfoList[4]=(TitleString="Spilling Blood",DescriptionString="Defeat any boss on Survival Hard or higher difficulty on Spillway")
+
+AllCompleteRewardDescriptionString="Male and Female Cyberpunk Outfits"
+
+ChanceDropDescriptionStrings[0]="Prize Ticket"
+ChanceDropDescriptionStrings[1]="Gold Ticket"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3076,6 +3093,7 @@ DisplayName_KOR="산타의 작업장 "
 DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
+
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
@@ -3160,6 +3178,9 @@ DisplayName="Shopping Spree"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="Santas Workshop"
+
+[KF-Spillway KFMapSummary]
+DisplayName="Spillway"
 
 [KFMapInfo]
 ; defaults

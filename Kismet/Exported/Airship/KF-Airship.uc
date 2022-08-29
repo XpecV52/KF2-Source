@@ -22850,19 +22850,21 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_1
    bClientSideOnly=True
-   MaxWidth=207
-   OutputLinks(0)=(DrawY=-5792,OverrideDelta=17)
-   OutputLinks(1)=(DrawY=-5770,OverrideDelta=39)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Gate'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0',InputLinkIdx=1)),DrawY=-5660,OverrideDelta=149)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Gate'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-5748,OverrideDelta=61)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Gate'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-5726,OverrideDelta=83)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Gate'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-5704,OverrideDelta=105)
-   OutputLinks(6)=(DrawY=-5682,OverrideDelta=127)
-   ObjInstanceVersion=3
+   MaxWidth=216
+   OutputLinks(0)=(DrawY=-5794,OverrideDelta=15)
+   OutputLinks(1)=(DrawY=-5771,OverrideDelta=38)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Gate'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0',InputLinkIdx=1)),DrawY=-5748,OverrideDelta=61)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Gate'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-5725,OverrideDelta=84)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Gate'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-5702,OverrideDelta=107)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Gate'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-5679,OverrideDelta=130)
+   OutputLinks(6)=(DrawY=-5656,OverrideDelta=153)
+   OutputLinks(7)=(DrawY=-5633,OverrideDelta=176)
+   OutputLinks(8)=(DrawY=-5610,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=6592
    ObjPosY=-5864
-   DrawWidth=205
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_1"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -23136,19 +23138,21 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_0
    bClientSideOnly=True
-   MaxWidth=207
-   OutputLinks(0)=(DrawY=-9288,OverrideDelta=17)
-   OutputLinks(1)=(DrawY=-9266,OverrideDelta=39)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),DrawY=-9156,OverrideDelta=149)
-   OutputLinks(3)=(DrawY=-9244,OverrideDelta=61)
-   OutputLinks(4)=(DrawY=-9222,OverrideDelta=83)
-   OutputLinks(5)=(DrawY=-9200,OverrideDelta=105)
-   OutputLinks(6)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-9178,OverrideDelta=127)
-   ObjInstanceVersion=3
+   MaxWidth=216
+   OutputLinks(0)=(DrawY=-9290,OverrideDelta=15)
+   OutputLinks(1)=(DrawY=-9267,OverrideDelta=38)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),DrawY=-9244,OverrideDelta=61)
+   OutputLinks(3)=(DrawY=-9221,OverrideDelta=84)
+   OutputLinks(4)=(DrawY=-9198,OverrideDelta=107)
+   OutputLinks(5)=(DrawY=-9175,OverrideDelta=130)
+   OutputLinks(6)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-9152,OverrideDelta=153)
+   OutputLinks(7)=(DrawY=-9129,OverrideDelta=176)
+   OutputLinks(8)=(DrawY=-9106,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-AIRSHIP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7408
    ObjPosY=-9360
-   DrawWidth=205
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_0"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object

@@ -83,6 +83,8 @@ var() float SpeedScalarForZedProximity<EditCondition=bUseZedProximityTrigger>;
 var() bool bUsePlayerProximityTrigger<EditCondition=bEnableProximityOptions>;
 // How pawn's speed should scale when players are close
 var() float SpeedScalarForPlayerProximity<EditCondition=bUsePlayerProximityTrigger>;
+// Whether the pawn should remove collision when reaching the goal and then become hidden when finished
+var() bool bHideOnFinish;
 
 /** Character mesh to use */
 var(ThirdPerson) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
@@ -125,4 +127,6 @@ defaultproperties
 	ProximityTriggerScale=2.f
 	SpeedScalarForZedProximity=1.f
 	SpeedScalarForPlayerProximity=1.f
+
+	bHideOnFinish=true
 }

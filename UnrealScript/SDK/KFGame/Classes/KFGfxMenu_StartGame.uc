@@ -177,7 +177,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 	switch (SpecialEventID)
 	{
 		case SEI_Spring:
-			return class'KFGFxEndlessDARObjectivesContainer';
+			return class'KFGFxSpring2019ObjectivesContainer';
 		case SEI_Summer:
 			return class'KFGFxSummerSideShowObjectivesContainer';
 		case SEI_Fall:

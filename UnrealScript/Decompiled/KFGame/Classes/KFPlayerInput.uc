@@ -35,6 +35,7 @@ var(Adhesion) bool bTargetAdhesionEnabled;
 var(AutoTarget) bool bAutoTargetEnabled;
 /** @name  Force Feedback */
 var(ForceFeedback) bool bForceFeedbackEnabled;
+var bool bToggleToRun;
 var bool bVersusInput;
 var bool bUsingVersusGamepadScheme;
 var transient float PressedJumpTime;
@@ -439,7 +440,7 @@ function GamepadSprintTimer()
 
 exec function GamepadSprintRelease()
 {
-    if(ShouldActivateGamepadSprint())
+    if((ShouldActivateGamepadSprint()) && bToggleToRun)
     {
         bExtendedSprinting = true;        
     }
@@ -1258,7 +1259,14 @@ exec function InteractTimer()
         {
             if(UsableTrigger.IsA('KFTraderTrigger'))
             {
-                Outer.DoAutoPurchase();
+                Outer.DoAutoPurchase();                
+            }
+            else
+            {
+                if(UsableTrigger.IsA('KFUsableTrigger'))
+                {
+                    Outer.Use();
+                }
             }
         }
     }

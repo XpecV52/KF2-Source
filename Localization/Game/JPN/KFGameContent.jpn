@@ -479,7 +479,7 @@ SecondaryAmmo="M203手榴弾"
 [KFWeap_SMG_MP5RAS]
 ItemName="MP5RASサブマシンガン"
 ItemCategory="サブマシンガン"
-ItemDescription="•ファイアモードはフルオートまたはセミオートを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•世界で最も使用されているサブマシンガンの最新版です。"
+ItemDescription="•フルオートと3連射のファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替える。\n•世界で最も使用されているサブマシンガンの最新版です。"
 
 [KFWeap_SMG_P90]
 ItemName="P90サブマシンガン"
@@ -536,6 +536,16 @@ ItemDescription="•プライマリファイアはシングルバレルのみ使
 ItemName="スタティックストライカー"
 ItemCategory="近接"
 ItemDescription="•プライマリ - 素早く殴りつけ、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 重い電撃打撃。強烈な一撃を放ちます！\n•zedの顔面にパンチを食らわせたい？それならこれで決まり！"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="キラーワット"
+ItemCategory="アサルトライフル"
+ItemDescription="•フルオートまたはオーバーチャージのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•オーバーチャージモード - 発射ボタンを押している間はチャージされ、発射ボタンを離すと解放されます。"
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="ヘリオスライフル"
+ItemCategory="アサルトライフル"
+ItemDescription="•フルオートまたは3連射のファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•火が共にあらんことを。"
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"

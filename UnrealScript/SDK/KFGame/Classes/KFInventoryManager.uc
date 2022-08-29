@@ -896,10 +896,22 @@ simulated function HighlightWeapon( Weapon CandidateWeapon )
  */
 reliable server function ServerSetCurrentWeapon(Weapon DesiredWeapon)
 {
+	local KFWeapon PendingKFW;
+
 	if( !ItemIsInInventory(DesiredWeapon) )
 	{
 		`LogInv(DesiredWeapon$" is not in inventory!");
 		return;
+	}
+
+	// let weapons know when they were pending for equip and then removed from that queue
+	if (PendingWeapon != none && DesiredWeapon != PendingWeapon)
+	{
+		PendingKFW = KFWeapon(PendingWeapon);
+		if (PendingKFW != none)
+		{
+			PendingKFW.NotifyRemovedPending();
+		}
 	}
 
 	super.ServerSetCurrentWeapon(DesiredWeapon);
@@ -911,6 +923,7 @@ reliable client function SetCurrentWeapon(Weapon DesiredWeapon)
 	local KFWeapon CurrentKFW;
 	local bool bCurrentWeaponUsingSights;
 	local KFWeapon DesiredKFW;
+	local KFWeapon PendingKFW;
 
 	CurrentKFW = KFWeapon(Instigator.Weapon);
 	if ( CurrentKFW != none )
@@ -918,6 +931,16 @@ reliable client function SetCurrentWeapon(Weapon DesiredWeapon)
 		// Set the flag to switch to ironsights when the weapon is brought up
         bCurrentWeaponUsingSights = CurrentKFW.bUsingSights;
     }
+
+	// let weapons know when they were pending for equip and then removed from that queue
+	if (PendingWeapon != none && DesiredWeapon != PendingWeapon)
+	{
+		PendingKFW = KFWeapon(PendingWeapon);
+		if (PendingKFW != none)
+		{
+			PendingKFW.NotifyRemovedPending();
+		}
+	}
 
 	// Only change your weapon if it is different or we weant to equip the weapon we are currently putting down
 	DesiredKFW = KFWeapon(DesiredWeapon);
@@ -937,7 +960,9 @@ reliable client function SetCurrentWeapon(Weapon DesiredWeapon)
 		}
 
 		// Store last two uniqiue, non-equipment, equipped weapons (see SwitchToLastWeapon)
-		if ( CurrentKFW != none && CurrentKFW.InventoryGroup < IG_Equipment && CurrentKFW != PreviousEquippedWeapons[0] )
+		if ( CurrentKFW != none && 
+			(CurrentKFW.InventoryGroup < IG_Equipment || CurrentKFW.bStorePreviouslyEquipped)&&
+			 CurrentKFW != PreviousEquippedWeapons[0] )
 		{
 			PreviousEquippedWeapons[1] = PreviousEquippedWeapons[0];
 			PreviousEquippedWeapons[0] = CurrentKFW;

@@ -96,13 +96,16 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:Afflictions_0'
+   IncapSettings(1)=(Vulnerability=(0.450000))
+   IncapSettings(2)=()
+   IncapSettings(3)=()
    IncapSettings(4)=(Cooldown=3.500000,Vulnerability=(0.370000,0.460000,0.460000,0.150000,0.750000))
    IncapSettings(5)=()
    IncapSettings(6)=()
    IncapSettings(7)=()
    IncapSettings(8)=()
    IncapSettings(9)=()
-   IncapSettings(10)=(Vulnerability=(0.800000))
+   IncapSettings(10)=(Vulnerability=(0.550000))
    IncapSettings(11)=()
    SprintSpeed=650.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FirstPersonArms'

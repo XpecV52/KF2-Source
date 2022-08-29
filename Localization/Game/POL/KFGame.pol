@@ -140,7 +140,7 @@ EarnXPString="Zdobądź PD:"
 CompleteMapString="Ukończ mecz na mapie:"
 KillZedsString="Zabij zetów:"
 KillBossString="Zabij bossa:"
-KillBossDescriptionString=""
+KillBossDescriptionString="W Przetrwaniu lub trybie tygodniowym"
 VersusKillsString="Zabij wrogich graczy jako:"
 DealVersusDamageString="Zadaj obrażenia wrogim graczom jako:"
 VersusCompletionString="Ukończ mecz jako:"
@@ -1245,6 +1245,7 @@ AutoTurnOffString="Bez obrotu po złapaniu"
 ReduceHighPitchNoiseString="Redukcja wys. dźwięków"
 DisableAutoUpgradeString="Wyłącz aut. wymianę"
 HideRemodeHeadshotEffectsString="Wył. efekty odl. strzałów w głowę"
+ToggleToRunString="Przełącz bieg"
 
 EnableMixerString="Wł./Wył. Mixer"
 DisableMixerString="Wyłącz Mixer"
@@ -1840,7 +1841,7 @@ SirenResistance="Pociski odporne na efekty soniczne"
 SirenResistanceDescription="Twoje ładunki wybuchowe są odporne na krzyk syreny i zawsze eksplodują."
 
 AreaOfEffect="Pociski fragmentujące"
-AreaOfEffectDescription="Zwiększenie pola rażenia wybuchowej broni specjalizacji o 50%, ale zmniejszenie obrażeń o 30%."
+AreaOfEffectDescription="Zwiększenie pola rażenia eksplozji broni specjalizacji o 50%."
 
 CriticalHit="Pociski przeciwpancerne"
 CriticalHitDescription="Obrażenia przy bezpośrednim trafieniu miejsc krytycznych zwiększone o 50% podczas używania broni specjalizacji. "
@@ -1934,7 +1935,7 @@ GroundFire="Pożar ziemny"
 GroundFireDescription="Pożary powodują potężne obrażenia i zmniejszają szybkość ruchu zetów o 20%."
 
 ZedShrapnel="Szrapnel na zetów"
-ZedShrapnelDescription="20% szans, że zety zabite przez ciebie ogniem eksplodują, zadając obrażenia pobliskim zetom i powalając ich."
+ZedShrapnelDescription="30% szans, że zety zabite przez ciebie ogniem eksplodują, ogłuszając inne, pobliskie zety i zadając im obrażenia."
 
 Napalm="Napalm"
 NapalmDescription="Zety dotknięte przez podpalonych zetów także zostają podpalone, a efekt podpalenia trwa 150% dłużej."
@@ -2163,10 +2164,10 @@ TacticalReload="Taktyczne przeładowanie"
 TacticalReloadDescription="Zwiększenie szybkości przeładowywania broni komandosa, rewolwerowca i SWAT."
 
 FieldMedic="Wyszkolenie medyczne"
-FieldMedicDescription="Wartość leczenia zwiększona o 20%, a czas odnowienia strzykawki i strzałek leczniczych zmniejszony o 25%."
+FieldMedicDescription="Wartość twojego leczenia wzrasta o 30%, a czas odnowienia strzykawki i strzałek leczniczych zmniejsza się o 50%."
 
 MeleeExpert="Ekspert od broni białej"
-MeleeExpertDescription="Zwiększenie szybkości ataku o 15%, zadawanych obrażeń o 10% i szybkości ruchu o 25% podczas używania dowolnej broni białej."
+MeleeExpertDescription="Zwiększenie szybkości ataku o 20%, zadawanych obrażeń o 50% i szybkości ruchu o 25% podczas używania dowolnej broni białej."
 
 AmmoVest="Kamizelka z ładownicami"
 AmmoVestDescription="Możesz nosić 15% więcej amunicji dla każdej broni, a twój granat zmienia się w granat leczący."
@@ -2175,10 +2176,10 @@ BigPockets="Szelki na broń"
 BigPocketsDescription="Zwiększenie udźwigu o 5, a twój granat zmienia się w koktajl Mołotowa."
 
 ZedShrapnel="Spontaniczna zetsplozja"
-ZedShrapnelDescription="20% szans, że zabity przez ciebie zet eksploduje, zadając obrażenia pobliskim zetom i powalając ich."
+ZedShrapnelDescription="30% szans, że zabite przez ciebie zety eksplodują, ogłuszając inne, pobliskie zety i zadając im obrażenia."
 
 MakeThingsGoBoom="Wybuchowa natura"
-MakeThingsGoBoomDescription="Pola rażenia wszystkich ładunków wybuchowych wzrasta o 25%."
+MakeThingsGoBoomDescription="Pole rażenia wszystkich ładunków wybuchowych wzrasta o 50%."
 
 Madman="CZAS ZET – Szaleniec"
 MadmanDescription="W czasie zet każda twoja broń strzela 3 razy szybciej."
@@ -2345,9 +2346,13 @@ DoschHoldDesc="Trzymaj zety z dala od zaznaczonego obszaru"
 DescriptionDoshHold="Trzymaj zety z dala od zaznaczonego obszaru"
 RepairObjective="SPAWANIE I NAPRAWA"
 UseWelderToRepair="Użyj spawarki, aby naprawić obiekt(y)"
+RepairObjectiveRequired="Cele do naprawienia:"
 EscortPawnsObjective="ESKORTOWANIE"
 EscortPawnsDescription="Chroń cel przed zetami"
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="ZNAJDŹ I ZNISZCZ"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="UŻYJ STEROWANIA"
 DescriptionActivateTrigger="Aktywuj sterowanie"
 RequiredActivateTrigger="Wymagana aktywacja:"
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Straż bez końca",DescriptionStr
 SpecialEventObjectiveInfoList[3]=(TitleString="Wojna maszyn bez końca",DescriptionString="Ukończ falę 20",TierEventRewardName="Krwiożerczy D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="Optimus D.A.R. bez końca",DescriptionString="Ukończ falę 25 w trybie Bez końca",TierEventRewardName="Złoty D.A.R.");
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z wyjątkowymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Szarża na bossów",DescriptionString="Zabij 15 bossów na dowolnej mapie")
+SpecialEventObjectiveInfoList[1]=(TitleString="Tygodniowy Przelew",DescriptionString="Ukończ tygodniowe wydarzenia na mapie Przelew")
+SpecialEventObjectiveInfoList[2]=(TitleString="Tępiciel",DescriptionString="Zabij 1500 zetów na dowolnej mapie")
+SpecialEventObjectiveInfoList[3]=(TitleString="Przelew Bez Końca",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Przelew")
+SpecialEventObjectiveInfoList[4]=(TitleString="Przelewanie krwi",DescriptionString="Pokonaj dowolnego bossa w Przetrwaniu na wysokim lub wyższym poziomie trudności na mapie Przelew")
+
+AllCompleteRewardDescriptionString="Kobiece i męskie stroje cyberpunkowe"
+
+ChanceDropDescriptionStrings[0]="Kupon"
+ChanceDropDescriptionStrings[1]="Złoty kupon"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3076,6 +3093,7 @@ DisplayName_KOR="산타의 작업장 "
 DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
+
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorium biotyczne"
@@ -3160,6 +3178,9 @@ DisplayName="Szał zakupów"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="Warsztat Mikołaja"
+
+[KF-Spillway KFMapSummary]
+DisplayName="Przelew"
 
 [KFMapInfo]
 ; defaults

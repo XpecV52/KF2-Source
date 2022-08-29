@@ -63,32 +63,23 @@ static function ApplySecondaryDamage( KFPawn Victim, int DamageTaken, optional C
 defaultproperties
 {
 	GoreDamageGroup=DGT_Shotgun
-
 	BloodSpread=0.4
 	BloodScale=0.6
 
 	KDamageImpulse=900
 	KDeathUpKick=-500
 	KDeathVel=350
-	//KDamageImpulse=350
-	//KDeathUpKick=120
-	//KDeathVel=10
 
-    KnockdownPower=0
+	BurnPower=20
 	StumblePower=21
 	LegStumblePower=21
 	GunHitPower=12
 
 	WeaponDef=class'KFWeapDef_DragonsBreath'
-
-	// Even though with do DOT in a different class, we still
-	// Need burn power here for the initial incap from the pellet
-	// hit
-    BurnPower=25.0// 5
-
-	CameraLensEffectTemplate=class'KFCameraLensEmit_Fire'
-	EffectGroup=FXG_IncendiaryRound
 	BurnDamageType=class'KFDT_Fire_DragonsBreathDoT'
+	CameraLensEffectTemplate=class'KFCameraLensEmit_Fire'
+
+	EffectGroup=FXG_IncendiaryRound
 
 	ModifierPerkList(0)=class'KFPerk_Firebug'
 }

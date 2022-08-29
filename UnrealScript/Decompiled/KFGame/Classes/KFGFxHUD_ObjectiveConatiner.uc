@@ -38,14 +38,19 @@ simulated function SetActive(bool bActive)
     if(bActive)
     {
         CurrentObjectiveInterface = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI).ObjectiveInterface;
-        if(NotEqual_InterfaceInterface(CurrentObjectiveInterface, (none)))
+        if(NotEqual_InterfaceInterface(CurrentObjectiveInterface, (none)) && CurrentObjectiveInterface.ShouldShowObjectiveContainer())
         {
             SetFailState(CurrentObjectiveInterface.HasFailedObjective());
             SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
             UpdateActorCount();
             UpdateIcon();
             SetCompleted(CurrentObjectiveInterface.IsComplete());
-            SetMissionCritical(CurrentObjectiveInterface.GetIsMissionCritical());
+            SetMissionCritical(CurrentObjectiveInterface.GetIsMissionCritical());            
+        }
+        else
+        {
+            CurrentObjectiveInterface = none;
+            SetVisible(false);
         }        
     }
     else

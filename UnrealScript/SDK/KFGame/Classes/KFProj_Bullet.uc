@@ -37,7 +37,10 @@ function Init(vector Direction)
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
     local KFPawn KFP;
-    local bool bPassThrough;
+    local bool bPassThrough, bNoPenetrationDmgReduction;
+	local KFPerk CurrentPerk;
+	local InterpCurveFloat PenetrationCurve;
+	local KFWeapon KFW;
 
 	if (Other != Instigator)
 	{
@@ -49,18 +52,39 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 				return;
 			}
 
-			ProcessBulletTouch(Other, HitLocation, HitNormal);
-
-		    // Keep going if we need to keep penetrating
-			if( PenetrationPower > 0 || PassThroughDamage(Other) )
+			KFW = KFWeapon(Instigator.Weapon);
+			// Keep going if we need to keep penetrating
+			if (KFW.GetInitialPenetrationPower(Instigator.FiringMode) > 0.0f)
 			{
-                // Reduce penetration power for every KFPawn penetrated
-                KFP = KFPawn(Other);
-            	if ( KFP != none )
-            	{
-                    PenetrationPower -= KFP.PenetrationResistance;
-            	}
-				bPassThrough = TRUE;
+				if (PenetrationPower > 0 || PassThroughDamage(Other))
+				{
+					CurrentPerk = KFW.GetPerk();
+					if (CurrentPerk != none)
+					{
+						bNoPenetrationDmgReduction = CurrentPerk.IgnoresPenetrationDmgReduction();
+					}
+
+					PenetrationCurve = KFW.PenetrationDamageReductionCurve[Instigator.FiringMode];
+					if (!bNoPenetrationDmgReduction)
+					{
+						Damage *= EvalInterpCurveFloat(PenetrationCurve, PenetrationPower / KFW.GetInitialPenetrationPower(Instigator.FiringMode));
+					}
+
+					ProcessBulletTouch(Other, HitLocation, HitNormal);
+
+					// Reduce penetration power for every KFPawn penetrated
+					KFP = KFPawn(Other);
+					if (KFP != none)
+					{
+						PenetrationPower -= KFP.PenetrationResistance;
+					}
+
+					bPassThrough = TRUE;
+				}
+			}
+			else
+			{
+				ProcessBulletTouch(Other, HitLocation, HitNormal);
 			}
 		}
         // handle water pass through damage/hitfx

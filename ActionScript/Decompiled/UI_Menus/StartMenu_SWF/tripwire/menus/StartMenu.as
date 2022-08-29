@@ -104,6 +104,10 @@ package tripwire.menus
                 return;
             }
             super.handleInput(param1);
+            if(this.overviewContainer.visible && this.overviewContainer.GetPopUpVisible())
+            {
+                return;
+            }
             var _loc2_:InputDetails = param1.details;
             if(_loc2_.value == InputValue.KEY_DOWN)
             {

@@ -19,6 +19,9 @@ var class<KFWeaponDefinition> WeaponDef;
 /** Won't do damage to the instigator */
 var bool bNoInstigatorDamage;
 
+/** Won't do damage to teammates */
+var bool bNoFriendlyFire;
+
 /** Scale up damage to the zed when the head is blown off by this amount. Used for weapons with multiple projectiles like shotguns so you get the effect of all pellets hitting the head */
 var float HeadDestructionDamageScale;
 

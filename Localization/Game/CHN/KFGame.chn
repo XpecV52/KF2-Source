@@ -140,7 +140,7 @@ EarnXPString="赢得经验："
 CompleteMapString="在地图中完成比赛："
 KillZedsString="杀死丧尸："
 KillBossString="Boss击杀数："
-KillBossDescriptionString=""
+KillBossDescriptionString="在生存或每周中"
 VersusKillsString="杀死对手玩家："
 DealVersusDamageString="伤害对手玩家："
 VersusCompletionString="完成比赛："
@@ -1245,6 +1245,7 @@ AutoTurnOffString="不自动转向血凝丧尸抓取的方向"
 ReduceHighPitchNoiseString="减少高分贝噪音"
 DisableAutoUpgradeString="禁用“自动交易”功能"
 HideRemodeHeadshotEffectsString="关闭远程爆头特效"
+ToggleToRunString="切换为冲刺"
 
 EnableMixerString="切换Mixer互动功能"
 DisableMixerString="禁用“Mixer”功能"
@@ -1840,7 +1841,7 @@ SirenResistance="抗声波弹"
 SirenResistanceDescription="你的爆炸物对女妖的尖叫免疫，因此总是能够爆炸。"
 
 AreaOfEffect="分裂弹"
-AreaOfEffectDescription="提高爆炸神射武器的影响范围 50%，但是会减少伤害 30%。"
+AreaOfEffectDescription="天赋武器爆炸范围效果提升50%。"
 
 CriticalHit="护甲刺穿弹"
 CriticalHitDescription="提升神射武器对致命部位的直接攻击伤害 50%。 "
@@ -1934,7 +1935,7 @@ GroundFire="地火"
 GroundFireDescription="地火造成更大的伤害，同时降低丧尸移动速度 20%。"
 
 ZedShrapnel="丧尸弹片"
-ZedShrapnelDescription="你用火焰杀死的丧尸有 20% 的几率爆炸，从而伤害和击倒附近的丧尸。"
+ZedShrapnelDescription="你用火焰杀死的丧尸有30%的几率爆炸，进而伤害和击倒附近的丧尸。"
 
 Napalm="凝固汽油"
 NapalmDescription="燃烧的丧尸与其他丧尸接触后将会使其他丧尸也着火，燃烧效果延长 150%。"
@@ -2163,10 +2164,10 @@ TacticalReload="策略填弹"
 TacticalReloadDescription="提高突击兵、枪手和 SWAT 武器的填弹速度。"
 
 FieldMedic="医疗医疗兵训练"
-FieldMedicDescription="提高你的所有治愈效能 20%，减少注射器和治愈飞镖的冷却时间 25%。"
+FieldMedicDescription="使你各种治疗的效能提升30%，注射器和治愈飞镖的冷却时间减少50%。"
 
 MeleeExpert="近战专家"
-MeleeExpertDescription="使用任意近战武器时，提高近战速度 15%，造成 10% 额外伤害，移动速度提升 25%。"
+MeleeExpertDescription="使用任意近战武器时，近战速度提升20%，造成50%的额外伤害，移动速度提升25%。"
 
 AmmoVest="弹药背心"
 AmmoVestDescription="所有武器可以多携带 15% 弹药，而且手榴弹变成治愈手榴弹。"
@@ -2175,10 +2176,10 @@ BigPockets="武器控制"
 BigPocketsDescription="提高携带能力 5 格，而且手榴弹变成燃烧弹。"
 
 ZedShrapnel="自发性丧尸爆炸"
-ZedShrapnelDescription="你杀死的丧尸有 20% 的几率爆炸，从而伤害和击倒附近的丧尸。"
+ZedShrapnelDescription="你杀死的丧尸有30%的几率爆炸，进而伤害和击倒附近的丧尸。"
 
 MakeThingsGoBoom="欣欣向荣"
-MakeThingsGoBoomDescription="提高所有爆炸物的效果范围 25%。"
+MakeThingsGoBoomDescription="爆炸范围效果提升50%。"
 
 Madman="丧尸时间 - 狂人"
 MadmanDescription="在丧尸时间中，你的所有武器射击速度提升 3 倍。"
@@ -2345,9 +2346,13 @@ DoschHoldDesc="别让丧尸进入标记的区域中"
 DescriptionDoshHold="别让丧尸进入标记的区域中"
 RepairObjective="焊接和修理"
 UseWelderToRepair="使用焊机来修理物品"
+RepairObjectiveRequired="需要修理的目标："
 EscortPawnsObjective="护送"
 EscortPawnsDescription="保护目标不受丧尸伤害"
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="搜索破坏"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="操作及控制"
 DescriptionActivateTrigger="启动目标控制"
 RequiredActivateTrigger="需要启动："
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="无尽哨兵",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="无尽战争机器",DescriptionString="无尽挑战完成波数达到20",TierEventRewardName="血腥D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="无尽超级D.A.R.",DescriptionString="无尽挑战完成波数达到25",TierEventRewardName="黄金D.A.R.");
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="首领突袭",DescriptionString="在任意地图上击杀 15 名首领")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周泄洪口",DescriptionString="完成每周泄洪口")
+SpecialEventObjectiveInfoList[2]=(TitleString="歼灭者",DescriptionString="在任意地图击杀 1500 个丧尸")
+SpecialEventObjectiveInfoList[3]=(TitleString="无尽泄洪口",DescriptionString="在困难无尽或以上难度的泄洪口模式中成功抵御 15 波丧尸")
+SpecialEventObjectiveInfoList[4]=(TitleString="流血事件",DescriptionString="在困难生存或以上难度的泄洪口中成功击败任意首领")
+
+AllCompleteRewardDescriptionString="男女赛博朋克服装"
+
+ChanceDropDescriptionStrings[0]="奖品券"
+ChanceDropDescriptionStrings[1]="黄金券"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3076,6 +3093,7 @@ DisplayName_KOR="산타의 작업장 "
 DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
+
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="生命学实验室"
@@ -3160,6 +3178,9 @@ DisplayName="抢购狂欢"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="圣诞老人工坊"
+
+[KF-Spillway KFMapSummary]
+DisplayName="泄洪口"
 
 [KFMapInfo]
 ; defaults

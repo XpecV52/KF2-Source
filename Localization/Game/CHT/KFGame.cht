@@ -140,7 +140,7 @@ EarnXPString="賺取 XP："
 CompleteMapString="在地圖中的遊戲："
 KillZedsString="殺死 ZED："
 KillBossString="Boss 擊殺數："
-KillBossDescriptionString=""
+KillBossDescriptionString="生存模式或每週模式"
 VersusKillsString="殺死對抗玩家的身分："
 DealVersusDamageString="傷害對抗玩家的身分："
 VersusCompletionString="完成遊戲的身分："
@@ -1245,6 +1245,7 @@ AutoTurnOffString="不自動開啟凝塊抓取"
 ReduceHighPitchNoiseString="降低高頻雜訊"
 DisableAutoUpgradeString="禁用「自動交易」功能"
 HideRemodeHeadshotEffectsString="禁用遠距離爆頭特效"
+ToggleToRunString="切換至衝刺"
 
 EnableMixerString="啟動Mixer互動功能"
 DisableMixerString="禁用「Mixer」功能"
@@ -1840,7 +1841,7 @@ SirenResistance="防超音回合"
 SirenResistanceDescription="你的炸藥不受海妖的叫聲影響，一定會爆炸"
 
 AreaOfEffect="分裂回合"
-AreaOfEffectDescription="爆炸性職業武器影響範圍增加 50%，但傷害減少 30%"
+AreaOfEffectDescription="職業武器爆炸的影響範圍增加 50%"
 
 CriticalHit="破甲回合"
 CriticalHitDescription="職業武器直接命中重要部位時，傷害增加 50% "
@@ -1934,7 +1935,7 @@ GroundFire="地面火力"
 GroundFireDescription="地面火力可大幅加強傷害，且降低 Zed 移動速度 20%。"
 
 ZedShrapnel="Zed 霰彈"
-ZedShrapnelDescription="以火焰殺害的 Zed 有 20% 可能性會爆炸，對附近其他 Zed 造成傷害並將其擊倒。"
+ZedShrapnelDescription="以火焰殺害的 Zed 有 30% 可能性會爆炸，對附近其他 Zed 造成傷害並使其暈眩。"
 
 Napalm="凝固汽油"
 NapalmDescription="燃燒的 Zed 碰觸到其他 Zed 會使它們起火，燒傷效果延長 150%。"
@@ -2163,10 +2164,10 @@ TacticalReload="戰略裝填"
 TacticalReloadDescription="加強突擊隊、槍手以及特種部隊的裝填速度。"
 
 FieldMedic="醫護訓練"
-FieldMedicDescription="增加治療效果 20%，並將注射以及注射器的效用延長 25%。"
+FieldMedicDescription="增加治療效果 30%，並將注射以及注射器的效用延長 50%。"
 
 MeleeExpert="近身戰專家"
-MeleeExpertDescription="使用近身武器時增加近身攻速 15%，增加 10% 傷害並增加 25% 移動速度。"
+MeleeExpertDescription="使用近身武器時增加近身攻速 20%，增加 50% 傷害並增加 25% 移動速度。"
 
 AmmoVest="彈匣背心"
 AmmoVestDescription="為每樣武器多帶最多 15% 的彈藥，且你的手榴彈變為治療手榴彈"
@@ -2175,10 +2176,10 @@ BigPockets="武器甲冑"
 BigPocketsDescription="攜帶物品增加 5 樣，且你的手榴彈變為莫洛托夫雞尾酒"
 
 ZedShrapnel="同時 Z 爆"
-ZedShrapnelDescription="你殺害的 Zed 有 20% 可能性會爆炸，對附近其他 Zed 造成傷害並將其擊倒。"
+ZedShrapnelDescription="你殺害的 Zed 有 30% 可能性會爆炸，對附近其他 Zed 造成傷害並使其暈眩。"
 
 MakeThingsGoBoom="四處炸裂"
-MakeThingsGoBoomDescription="所有炸藥影響區域增加 25%。"
+MakeThingsGoBoomDescription="所有炸藥影響範圍增加 50%。"
 
 Madman="ZED 時間 - 狂人"
 MadmanDescription="Zed 時間發動時，你的所有武器射速變為 3 倍。"
@@ -2345,9 +2346,13 @@ DoschHoldDesc="別讓喪屍進入標記的區域中"
 DescriptionDoshHold="別讓喪屍進入標記的區域中"
 RepairObjective="焊接和維修"
 UseWelderToRepair="使用焊槍來維修物品"
+RepairObjectiveRequired="修理目標："
 EscortPawnsObjective="護送"
 EscortPawnsDescription="保護目標不受Zed傷害"
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="搜尋並破壞"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="操縱和控制"
 DescriptionActivateTrigger="啟動目標控制"
 RequiredActivateTrigger="需要啟動："
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="無盡哨兵",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="無盡戰爭機器",DescriptionString="擊敗波數20",TierEventRewardName="血腥D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="無盡無敵D.A.R.",DescriptionString="击败波数25",TierEventRewardName="黃金D.A.R.");
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="在限時活動中可獲得，內含特有道具"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="頭目連戰",DescriptionString="在任意地圖擊殺 15 個頭目")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週洩洪道",DescriptionString="在洩洪道完成每週任務")
+SpecialEventObjectiveInfoList[2]=(TitleString="殲滅者",DescriptionString="在任意地圖擊殺 1500 個 Zed")
+SpecialEventObjectiveInfoList[3]=(TitleString="無盡洩洪道",DescriptionString="在洩洪道以無盡模式困難或更高難度完成第 15 波")
+SpecialEventObjectiveInfoList[4]=(TitleString="揮灑熱血",DescriptionString="在洩洪道以生存模式困難或更高難度擊敗任意頭目")
+
+AllCompleteRewardDescriptionString="男性和女性賽博龐克服飾"
+
+ChanceDropDescriptionStrings[0]="獎品票券"
+ChanceDropDescriptionStrings[1]="黃金票券"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3076,6 +3093,7 @@ DisplayName_KOR="산타의 작업장 "
 DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
+
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics 實驗室"
@@ -3160,6 +3178,9 @@ DisplayName="購物狂歡"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="聖誕作坊"
+
+[KF-Spillway KFMapSummary]
+DisplayName="洩洪道"
 
 [KFMapInfo]
 ; defaults

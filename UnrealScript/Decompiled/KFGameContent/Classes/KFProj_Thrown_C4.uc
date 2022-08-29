@@ -8,24 +8,7 @@
 class KFProj_Thrown_C4 extends KFProjectile
     hidecategories(Navigation);
 
-enum EImpactResult
-{
-    EIR_None,
-    EIR_Stick,
-    EIR_Bounce,
-    EIR_MAX
-};
-
-var repnotify Actor StuckToActor;
-var int StuckToBoneIdx;
-var transient Vector StuckToLocation;
-var transient Rotator StuckToRotation;
-var Actor PrevStuckToActor;
 var KFImpactEffectInfo ImpactEffectInfo;
-/** How much to offset the emitter mesh when the grenade has landed so that it doesn't penetrate the ground */
-var() Vector LandedTranslationOffset;
-/** sound to play on "impact" */
-var() AkEvent StickAkEvent;
 /** "beep" sound to play (on an interval) when instigator is within blast radius */
 var() AkEvent ProximityAlertAkEvent;
 /** Time between proximity beeps */
@@ -45,41 +28,8 @@ var repnotify int WeaponSkinId;
 
 replication
 {
-     if(bNetInitial || !bNetOwner)
-        StuckToActor, StuckToBoneIdx, 
-        StuckToLocation, StuckToRotation;
-
      if(bNetDirty)
         WeaponSkinId;
-}
-
-simulated event ReplicatedEvent(name VarName)
-{
-    if(VarName == 'StuckToActor')
-    {
-        if(StuckToActor == none)
-        {
-            RestartMovement();            
-        }
-        else
-        {
-            if(StuckToActor != PrevStuckToActor)
-            {
-                ReplicatedStick(StuckToActor, StuckToBoneIdx);
-            }
-        }        
-    }
-    else
-    {
-        if(VarName == 'WeaponSkinId')
-        {
-            SetWeaponSkin(WeaponSkinId);            
-        }
-        else
-        {
-            super.ReplicatedEvent(VarName);
-        }
-    }
 }
 
 simulated function PostBeginPlay()
@@ -104,66 +54,11 @@ simulated function PostBeginPlay()
 
 simulated event Tick(float DeltaTime)
 {
-    local int I;
-    local Pawn P;
-    local KFFracturedMeshActor FracMesh;
-    local KFDoorActor door;
-    local KFDestructibleActor Destructible;
-    local Actor StuckTo;
-
     super(Actor).Tick(DeltaTime);
-    StuckTo = StuckToActor;
-    if(StuckTo != none)
+    StickHelper.Tick();
+    if(StuckToActor != none)
     {
         UpdateAlert(DeltaTime);
-        if(StuckTo.bTearOff)
-        {
-            RestartMovement();
-            return;
-        }
-        P = Pawn(StuckTo);
-        if(P != none)
-        {
-            if(P.Mesh.IsBoneHidden(StuckToBoneIdx))
-            {
-                RestartMovement();
-            }
-            return;
-        }
-        if(StuckTo.bDeleteMe || StuckTo.bPendingDelete)
-        {
-            RestartMovement();
-            return;
-        }
-        FracMesh = KFFracturedMeshActor(StuckTo);
-        if((FracMesh != none) && FracMesh.bHasLostChunk)
-        {
-            RestartMovement();
-            return;
-        }
-        door = KFDoorActor(StuckTo);
-        if((door != none) && !door.bDoorMoveCompleted || door.bIsDestroyed)
-        {
-            RestartMovement();
-            return;
-        }
-        Destructible = KFDestructibleActor(StuckTo);
-        if(Destructible != none)
-        {
-            I = 0;
-            J0x251:
-
-            if(I < Destructible.SubObjects.Length)
-            {
-                if((Destructible.SubObjects[I].Mesh == LastTouchComponent) && Destructible.SubObjects[I].Health <= 0)
-                {
-                    RestartMovement();
-                    return;
-                }
-                ++ I;
-                goto J0x251;
-            }
-        }
     }
 }
 
@@ -238,241 +133,12 @@ simulated function BlinkOff()
     BlinkLightComp.SetEnabled(false);
 }
 
-simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+simulated function SetStickOrientation(Vector HitNormal)
 {
-    TryStick(HitNormal, HitLocation, Other);
-}
-
-simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
-{
-    TryStick(HitNormal,, Wall);
-}
-
-simulated function TryStick(Vector HitNormal, optional Vector HitLocation, optional Actor HitActor)
-{
-    local TraceHitInfo HitInfo;
-
-    if(((Instigator == none) || !Instigator.IsLocallyControlled()) || (Physics == 0) && StuckToActor != none)
-    {
-        return;
-    }
-    GetImpactInfo(Velocity, HitLocation, HitNormal, HitInfo);
-    switch(GetImpactResult(HitActor, HitInfo.HitComponent))
-    {
-        case 1:
-            Stick(HitActor, HitLocation, HitNormal, HitInfo);
-            break;
-        default:
-            break;
-    }
-}
-
-simulated function KFProj_Thrown_C4.EImpactResult GetImpactResult(Actor HitActor, PrimitiveComponent HitComp)
-{
-    local KFPawn_Human KFP;
-    local KFDestructibleActor D;
-    local editinline StaticMeshComponent StaticMeshComp;
-
-    if(HitActor == none)
-    {
-        return 1;
-    }
-    if((HitActor.RemoteRole == ROLE_None) && !HitActor.bWorldGeometry)
-    {
-        return 0;
-    }
-    if(((HitActor.bTearOff || HitActor.bDeleteMe) || HitActor.bPendingDelete) || HitActor == PrevStuckToActor)
-    {
-        return 0;
-    }
-    StaticMeshComp = StaticMeshComponent(HitComp);
-    if(StaticMeshComp != none)
-    {
-        return ((StaticMeshComp.CanBecomeDynamic()) ? 0 : 1);
-    }
-    KFP = KFPawn_Human(HitActor);
-    if(KFP != none)
-    {
-        return 0;
-    }
-    D = KFDestructibleActor(HitActor);
-    if(D != none)
-    {
-        return ((D.ReplicationMode == 2) ? 0 : 1);
-    }
-    return 1;
-}
-
-simulated function Stick(Actor HitActor, Vector HitLocation, Vector HitNormal, const out TraceHitInfo HitInfo)
-{
-    local int BoneIdx;
     local Rotator StickRot;
 
-    if(ProjEffects != none)
-    {
-        ProjEffects.SetTranslation(LandedTranslationOffset);
-    }
-    bReplicateMovement = false;
-    bOnlyDirtyReplication = true;
-    NetUpdateFrequency = 0.25;
-    bForceNetUpdate = true;
-    if(!IsZero(HitLocation))
-    {
-        SetLocation(HitLocation);
-    }
     StickRot = CalculateStickOrientation(HitNormal);
     SetRotation(StickRot);
-    BoneIdx = -1;
-    if(HitInfo.BoneName != 'None')
-    {
-        BoneIdx = GetBoneIndexFromActor(HitActor, HitInfo.BoneName);
-    }
-    StickToActor(HitActor, HitInfo.HitComponent, BoneIdx, true);
-    if(Role < ROLE_Authority)
-    {
-        ServerStick(HitActor, BoneIdx, StuckToLocation, StuckToRotation);
-    }
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        PlaySoundBase(StickAkEvent);
-    }
-}
-
-simulated function GetImpactInfo(Vector in_Velocity, out Vector out_HitLocation, out Vector out_HitNormal, out TraceHitInfo out_HitInfo)
-{
-    local Vector VelNorm, VelScaled;
-
-    VelNorm = Normal(in_Velocity);
-    VelScaled = VelNorm * float(30);
-    Trace(out_HitLocation, out_HitNormal, Location + VelScaled, Location - VelScaled,,, out_HitInfo, 1);
-}
-
-simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int BoneIdx, optional bool bCalculateRelativeLocRot)
-{
-    local editinline SkeletalMeshComponent SkelMeshComp;
-    local name BoneName;
-
-    StopMovement();
-    PrevStuckToActor = StuckToActor;
-    StuckToActor = StickTo;
-    StuckToBoneIdx = BoneIdx;
-    if(BoneIdx != -1)
-    {
-        SkelMeshComp = SkeletalMeshComponent(HitComp);
-        BoneName = SkelMeshComp.GetBoneName(BoneIdx);
-        if(bCalculateRelativeLocRot)
-        {
-            SkelMeshComp.TransformToBoneSpace(BoneName, Location, Rotation, StuckToLocation, StuckToRotation);
-        }
-        SetBase(StickTo,, SkelMeshComp, BoneName);
-        SetRelativeLocation(StuckToLocation);
-        SetRelativeRotation(StuckToRotation);        
-    }
-    else
-    {
-        if(bCalculateRelativeLocRot)
-        {
-            StuckToLocation = Location;
-            StuckToRotation = Rotation;            
-        }
-        else
-        {
-            SetLocation(StuckToLocation);
-            SetRotation(StuckToRotation);
-        }
-        SetBase(StickTo);
-    }
-}
-
-simulated function SkeletalMeshComponent GetActorSkeletalMesh(Actor StickActor)
-{
-    local Pawn P;
-    local SkeletalMeshActor SM;
-
-    P = Pawn(StickActor);
-    if(P != none)
-    {
-        return P.Mesh;
-    }
-    SM = SkeletalMeshActor(StickActor);
-    if(SM != none)
-    {
-        return SM.SkeletalMeshComponent;
-    }
-    return none;
-}
-
-reliable server function ServerStick(Actor StickTo, int BoneIdx, Vector StickLoc, Rotator StickRot)
-{
-    StuckToLocation = StickLoc;
-    StuckToRotation = StickRot;
-    bForceNetUpdate = true;
-    ReplicatedStick(StickTo, BoneIdx);
-}
-
-simulated function ReplicatedStick(Actor StickTo, int BoneIdx)
-{
-    StickToActor(StickTo, GetActorSkeletalMesh(StickTo), BoneIdx);
-}
-
-simulated function int GetBoneIndexFromActor(Actor HitActor, name BoneName)
-{
-    local Pawn P;
-    local SkeletalMeshActor SM;
-
-    P = Pawn(HitActor);
-    if(P != none)
-    {
-        return P.Mesh.MatchRefBone(BoneName);
-    }
-    SM = SkeletalMeshActor(HitActor);
-    if(SM != none)
-    {
-        return SM.SkeletalMeshComponent.MatchRefBone(BoneName);
-    }
-    return -1;
-}
-
-simulated function GetBoneLocationFromActor(Actor HitActor, int BoneIdx, out Vector BoneLoc)
-{
-    local name BoneName;
-    local Pawn P;
-    local SkeletalMeshActor SM;
-
-    P = Pawn(HitActor);
-    if(P != none)
-    {
-        BoneName = P.Mesh.GetBoneName(BoneIdx);
-        BoneLoc = P.Mesh.GetBoneLocation(BoneName);
-        return;
-    }
-    SM = SkeletalMeshActor(HitActor);
-    if(SM != none)
-    {
-        BoneName = SM.SkeletalMeshComponent.GetBoneName(BoneIdx);
-        BoneLoc = SM.SkeletalMeshComponent.GetBoneLocation(BoneName);
-        return;
-    }
-}
-
-simulated function StopMovement()
-{
-    SetPhysics(0);
-}
-
-simulated function RestartMovement()
-{
-    PrevStuckToActor = StuckToActor;
-    StuckToActor = none;
-    StuckToBoneIdx = -1;
-    StuckToLocation = vect(0, 0, 0);
-    StuckToRotation = rot(0, 0, 0);
-    SetBase(none);
-    SetPhysics(default.Physics);
-    bReplicateMovement = true;
-    NetUpdateFrequency = default.NetUpdateFrequency;
-    bOnlyDirtyReplication = false;
-    bForceNetUpdate = true;
 }
 
 function Detonate()
@@ -592,9 +258,7 @@ simulated function SetWeaponSkin(int SkinID)
 
 defaultproperties
 {
-    StuckToBoneIdx=-1
     ImpactEffectInfo=KFImpactEffectInfo'WEP_C4_ARCH.C4_Projectile_Impacts'
-    StickAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Place'
     ProximityAlertAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Prox_Beep'
     ProximityAlertInterval=1
     ProximityAlertIntervalClose=0.5
@@ -628,6 +292,7 @@ defaultproperties
     BlinkFX=ParticleSystem'WEP_C4_EMIT.FX_C4_Glow'
     bAlwaysReplicateExplosion=true
     bCanDisintegrate=true
+    bCanStick=true
     AlwaysRelevantDistanceSquared=6250000
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterDamaged
     TossZ=100
@@ -650,6 +315,12 @@ defaultproperties
     ExplosionTemplate=ExploTemplate0
     ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
     AltExploEffects=KFImpactEffectInfo'WEP_C4_ARCH.C4_Explosion_Concussive_Force'
+    StuckToBoneIdx=-1
+    begin object name=StickHelper0 class=KFProjectileStickHelper
+        StickAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Place'
+    object end
+    // Reference: KFProjectileStickHelper'Default__KFProj_Thrown_C4.StickHelper0'
+    StickHelper=StickHelper0
     Speed=1200
     MaxSpeed=1200
     bBlockedByInstigator=false

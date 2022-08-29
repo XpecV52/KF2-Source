@@ -24,6 +24,10 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
     local KFPawn_Monster KFPM;
 
+    if(Role < ROLE_Authority)
+    {
+        return;
+    }
     KFPM = KFPawn_Monster(Other);
     if((KFPM != none) && KFPM.IsDoingSpecialMove(6) || !KFPM.IsAliveAndWell())
     {
@@ -89,6 +93,7 @@ defaultproperties
     object end
     // Reference: KFGameExplosion'Default__KFProj_Husk_Fireball.ExploTemplate1'
     GroundFireExplosionTemplate=ExploTemplate1
+    bAlwaysReplicateExplosion=true
     bAutoStartAmbientSound=true
     bStopAmbientSoundOnExplode=true
     ExplosionActorClass=Class'KFGame.KFExplosionActor'
@@ -135,6 +140,7 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFProj_Husk_Fireball.AmbientAkSoundComponent'
     Components(1)=AmbientAkSoundComponent
+    bNetTemporary=false
     bCollideComplex=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

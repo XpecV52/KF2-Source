@@ -777,10 +777,20 @@ simulated function HighlightWeapon(Weapon CandidateWeapon)
 
 reliable server function ServerSetCurrentWeapon(Weapon DesiredWeapon)
 {
+    local KFWeapon PendingKFW;
+
     if(!ItemIsInInventory(DesiredWeapon))
     {
         LogInternal(((((((((string(WorldInfo.TimeSeconds) @ "Self:") @ string(self)) @ "Instigator:") @ string(Instigator)) @ string(GetStateName())) $ "::") $ string(GetFuncName())) @ string(DesiredWeapon)) $ " is not in inventory!", 'Inventory');
         return;
+    }
+    if((PendingWeapon != none) && DesiredWeapon != PendingWeapon)
+    {
+        PendingKFW = KFWeapon(PendingWeapon);
+        if(PendingKFW != none)
+        {
+            PendingKFW.NotifyRemovedPending();
+        }
     }
     super.ServerSetCurrentWeapon(DesiredWeapon);
 }
@@ -789,12 +799,20 @@ reliable client simulated function SetCurrentWeapon(Weapon DesiredWeapon)
 {
     local KFWeapon CurrentKFW;
     local bool bCurrentWeaponUsingSights;
-    local KFWeapon DesiredKFW;
+    local KFWeapon DesiredKFW, PendingKFW;
 
     CurrentKFW = KFWeapon(Instigator.Weapon);
     if(CurrentKFW != none)
     {
         bCurrentWeaponUsingSights = CurrentKFW.bUsingSights;
+    }
+    if((PendingWeapon != none) && DesiredWeapon != PendingWeapon)
+    {
+        PendingKFW = KFWeapon(PendingWeapon);
+        if(PendingKFW != none)
+        {
+            PendingKFW.NotifyRemovedPending();
+        }
     }
     DesiredKFW = KFWeapon(DesiredWeapon);
     if((DesiredKFW != none) && (DesiredKFW != Instigator.Weapon) || Instigator.Weapon.IsInState('WeaponPuttingDown'))
@@ -810,7 +828,7 @@ reliable client simulated function SetCurrentWeapon(Weapon DesiredWeapon)
                 DesiredKFW.bIronSightOnBringUp = false;
             }
         }
-        if(((CurrentKFW != none) && CurrentKFW.InventoryGroup < 3) && CurrentKFW != PreviousEquippedWeapons[0])
+        if(((CurrentKFW != none) && (CurrentKFW.InventoryGroup < 3) || CurrentKFW.bStorePreviouslyEquipped) && CurrentKFW != PreviousEquippedWeapons[0])
         {
             PreviousEquippedWeapons[1] = PreviousEquippedWeapons[0];
             PreviousEquippedWeapons[0] = CurrentKFW;

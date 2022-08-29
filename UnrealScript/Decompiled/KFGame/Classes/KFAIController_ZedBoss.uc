@@ -91,7 +91,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
 
     super.Possess(inPawn, bVehicleTransition);
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && KFGRI.IsBossWave())
+    if(((KFGRI != none) && KFGRI.IsBossWave()) && KFGRI.ShouldSetBossCamOnBossSpawn())
     {
         Class'AICommand_BossTheatrics'.static.DoTheatrics(self, 0);
     }

@@ -394,6 +394,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
+const KFID_ToggleToRun=172;
 #linenumber 22;
 
 /** The time at which this PRI left the game */
@@ -546,6 +547,9 @@ var transient bool bWaitingForInventory;
 /** What character should be checked for selection once the online subsystem inventory loads */
 var transient int WaitingForInventoryCharacterIndex;
 
+/** Whether the character is currently holding a transport objective */
+var bool bCarryingCollectible;
+
 /************************************
 *  native
 ************************************/
@@ -564,7 +568,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID, bCarryingCollectible;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -1193,9 +1197,13 @@ function OnInventoryReadComplete_Steamworks()
 
 function OnInventoryReadComplete_Playfab(bool bWasSuccessful)
 {
-	class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
-	bWaitingForInventory = false;
-	SelectCharacter(WaitingForInventoryCharacterIndex);
+	if(bWasSuccessful)
+	{
+		// select character requires the inventory be set up, so keep this callback around until the inventory read is successful
+		class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+		bWaitingForInventory = false;
+		SelectCharacter(WaitingForInventoryCharacterIndex);
+	}
 }
 
 /**

@@ -81,6 +81,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
+const KFID_ToggleToRun=172;
 #linenumber 15;
 //@HSL_MOD_END
 

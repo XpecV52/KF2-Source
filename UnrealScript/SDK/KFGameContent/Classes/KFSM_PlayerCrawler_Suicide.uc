@@ -134,7 +134,7 @@ defaultproperties
     /** Used for suicide gas AOE attack "explosion" template */
     Begin Object Class=KFGameExplosion Name=ExploTemplate1
         Damage=10 //10
-        DamageRadius=600
+        DamageRadius=450 //600
         DamageFalloffExponent=0.f
         DamageDelay=0.f
         MyDamageType=class'KFDT_Toxic_PlayerCrawlerSuicide'

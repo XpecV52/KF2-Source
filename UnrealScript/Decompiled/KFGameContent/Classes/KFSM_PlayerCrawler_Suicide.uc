@@ -60,7 +60,7 @@ defaultproperties
     begin object name=ExploTemplate1 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_Crawler_ARCH.ToxicGasAoE_Explosion'
         Damage=10
-        DamageRadius=600
+        DamageRadius=450
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_PlayerCrawlerSuicide'
         KnockDownStrength=0

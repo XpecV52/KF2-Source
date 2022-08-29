@@ -153,7 +153,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super(KFPawn_Monster).PossessedBy(C, bVehicleTransition);
     PlayBossMusic();
-    ServerDoSpecialMove(37);
+    Class'KFPawn_MonsterBoss'.static.PlayBossEntranceTheatrics((self));
 }
 
 function PlayBossMusic()
@@ -583,6 +583,8 @@ defaultproperties
         ImpactFXArray[14]=(Type=EEffectDamageGroup.FXG_Flare)
         ImpactFXArray[15]=(Type=EEffectDamageGroup.FXG_Freeze)
         ImpactFXArray[16]=(Type=EEffectDamageGroup.FXG_Bludgeon_Chains)
+        ImpactFXArray[17]=(Type=EEffectDamageGroup.FXG_MicrowaveProj)
+        ImpactFXArray[18]=(Type=EEffectDamageGroup.FXG_Electricity)
     object end
     // Reference: KFSkinTypeEffects_HansShield'Default__KFPawn_ZedFleshpoundKing.ShieldEffects'
     ShieldImpactEffects=ShieldEffects

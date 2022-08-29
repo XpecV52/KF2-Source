@@ -17,6 +17,7 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFil
 defaultproperties
 {
     HealAmount=15
+    HealFullRechargeSeconds=13
     PackageKey="Medic_SMG"
     FirstPersonMeshName="WEP_1P_Medic_SMG_MESH.Wep_1stP_Medic_SMG_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -47,11 +48,11 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=22,Y=10,Z=-4.5)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_SMG_Medic.MeleeHelper'
-    maxRecoilPitch=100
-    minRecoilPitch=75
-    maxRecoilYaw=75
-    minRecoilYaw=-75
-    RecoilRate=0.07
+    maxRecoilPitch=75
+    minRecoilPitch=50
+    maxRecoilYaw=50
+    minRecoilYaw=-50
+    RecoilRate=0.06
     RecoilMaxYawLimit=500
     RecoilMinYawLimit=65035
     RecoilMaxPitchLimit=900

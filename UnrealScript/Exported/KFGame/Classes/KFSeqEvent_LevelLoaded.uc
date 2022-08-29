@@ -12,7 +12,7 @@ var bool bWaitingForGRI;
 
 static event int GetObjClassVersion()
 {
-	return Super.GetObjClassVersion() + 1;
+	return Super.GetObjClassVersion() + 2;
 }
 
 event VersionUpdated(int OldVersion, int NewVersion)
@@ -21,10 +21,16 @@ event VersionUpdated(int OldVersion, int NewVersion)
 	local SeqOpOutputLink NewOutputLink;
 	
 	SuperVersion = Super.GetObjClassVersion();
-	if (NewVersion == SuperVersion + 1)
+	if (NewVersion >= SuperVersion + 1)
 	{
 		NewOutputLink.LinkDesc = "Loaded and Visible - Weekly";
 		OutputLinks[7]=NewOutputLink;
+	}
+	
+	if (NewVersion >= SuperVersion + 2)
+	{
+		NewOutputLink.LinkDesc = "Loaded and Visible - Objective";
+		OutputLinks[8]=NewOutputLink;
 	}
 }
 
@@ -71,6 +77,7 @@ defaultproperties
    OutputLinks(5)=(LinkDesc="Loaded and Visible - Long")
    OutputLinks(6)=(LinkDesc="Loaded and Visible - Endless")
    OutputLinks(7)=(LinkDesc="Loaded and Visible - Weekly")
+   OutputLinks(8)=(LinkDesc="Loaded and Visible - Objective")
    ObjCategory="KF"
    Name="Default__KFSeqEvent_LevelLoaded"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'

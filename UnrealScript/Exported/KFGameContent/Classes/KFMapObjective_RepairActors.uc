@@ -7,26 +7,13 @@
 // Killing Floor 2
 // Copyright (C) 2018 Tripwire Interactive LLC
 //=============================================================================
-class KFMapObjective_RepairActors extends Actor
-	implements(KFInterface_MapObjective)
-	placeable;
-
-var() string LocalizationKey;
-var() string DescriptionLocKey;
-var() string LocalizationPackageName;
-var() bool bIsMissionCriticalObjective;
-
-/** Is the current objective active or not. */
-var bool bIsActive;
+class KFMapObjective_RepairActors extends KFMapObjective_ActorBase;
 
 /** How many actors needs to be repaired for the objective to be completed, per number of players */
 var() const int ActivationsRequiredForPlayerCount[6];
 
 /** A delay from the the start of an objective, so the player can't automatically repair the first actor */
 var() float ActivationDelay;
-
-/** A sound to play when this objective is activated */
-var() AkEvent ActivationSoundEvent;
 
 /** A sound to play when each repair actor is activated */
 var() array<AkEvent> ActorActivationSoundEvents;
@@ -38,7 +25,7 @@ var() array<AkEvent> ActorRepairedSoundEvents;
 var int ActivationsRequired;
 
 /** How many actors have been repaired. */
-var int ActorsRepaired;
+var repnotify int ActorsRepaired;
 
 /** List of all the actors that must be repaired by the user. */
 var() array<KFRepairableActor> RepairableActors;
@@ -52,29 +39,8 @@ var KFRepairableActor LastRepairedActor;
 /** Current Actor that needs to be repaired. */
 var repnotify KFRepairableActor CurrentActorToRepair;
 
-/** Whether or not to use the trader trail to lead players to the objective */
-var() bool bUseTrailToObjective;
-
-/** Trader trail object being used */
-var transient KFReplicatedShowPathActor TrailActor;
-
-/** If this is tied to an event, what season are we in? */
-var() SeasonalEventIndex EventSeason;
-
-/** Index if this is tied to a season */
-var() int EventIndex;
-
-/** Which game modes should this objective not support. */
-var() array<class<KFGameInfo> > GameModeBlacklist;
-
-/** Modify Spawn Rate based on how many players are alive. */
-var() array<float> PerPlayerSpawnRateMod;
-
 /** How long until the next repairable actor can be activated. */
 var() float TimeUntilNextActivation;
-
-/** Texture to use for the actor icon */
-var() Texture2D ObjectiveIcon;
 
 /** A sound to play when the objective is fully complete */
 var() AkEvent SuccessSoundEvent100pct;
@@ -88,21 +54,18 @@ var() AkEvent SuccessSoundEvent50pct;
 /** A sound to play when the objective is barely complete */
 var() AkEvent SuccessSoundEvent25pct;
 
-/** A sound to play when the objective is failed */
-var() AkEvent FailureSoundEvent;
-
 /** Win thresholds - Named to match the VO tracks*/
 var float JustWinThreshold;
 var float StandardWinThreshold;
 var float GoodWinThreshold;
 
+/** Whether the sequence of repairables should be randomized */
+var() bool bRandomSequence;
+
 replication
 {
-	if(bNetInitial)
-		ObjectiveIcon;
-
 	if(bNetDirty)
-		bIsActive, CurrentActorToRepair, ActorsRepaired, ActivationsRequired, LocalizationKey, DescriptionLocKey, LocalizationPackageName;
+		CurrentActorToRepair, ActorsRepaired, ActivationsRequired;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -110,6 +73,13 @@ simulated event ReplicatedEvent(name VarName)
 	if (VarName == nameof(CurrentActorToRepair))
 	{
 		UpdateTrailActor();
+	}
+	else if (VarName == nameof(ActorsRepaired))
+	{
+		if (ActorsRepaired != 0)
+		{
+			TriggerObjectiveProgressEvent(, float(ActorsRepaired)/float(ActivationsRequired));
+		}
 	}
 	else
 	{
@@ -119,9 +89,10 @@ simulated event ReplicatedEvent(name VarName)
 
 simulated function ActivateObjective()
 {
-	local int i, PlayerCount;
-	local KFSeqEvent_MapObjectiveActivated ActivationEvent;
+	local int PlayerCount;
 	local KFRepairableActor CurrActor;
+
+	super.ActivateObjective();
 
 	foreach RepairableActors(CurrActor)
 	{
@@ -156,15 +127,6 @@ simulated function ActivateObjective()
 
 		PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
 	}
-
-	for (i = 0; i < GeneratedEvents.Length; i++)
-	{
-		ActivationEvent = KFSeqEvent_MapObjectiveActivated(GeneratedEvents[i]);
-		if (ActivationEvent != none)
-		{
-			ActivationEvent.NotifyActivation(self, self);
-		}
-	}
 }
 
 simulated function DeactivateObjective()
@@ -172,8 +134,8 @@ simulated function DeactivateObjective()
 	local KFPlayerController KFPC;
 	local KFPawn_Human KFPH;
 	local KFRepairableActor CurrActor;
-	local int i;
-	local KFSeqEvent_MapObjectiveActivated ActivationEvent;
+
+	super.DeactivateObjective();
 
 	if(Role == ROLE_Authority)
 	{
@@ -183,18 +145,7 @@ simulated function DeactivateObjective()
 		{
 			foreach WorldInfo.AllPawns(class'KFPawn_Human', KFPH)
 			{
-				if (KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo) == none)
-				{
-					continue;
-				}
-
-				if (KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo).bOnlySpectator)
-				{
-					continue;
-				}
-				//these scale
-				KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo).AddDosh(GetDoshReward());
-				KFPlayerController(KFPH.Controller).ClientMapObjectiveCompleted(GetXPReward());
+				GrantReward(KFPH);
 
 				if (KFPlayerController(KFPH.Controller) != none)
 				{
@@ -226,15 +177,6 @@ simulated function DeactivateObjective()
 		{
 			TrailActor.Destroy();
 			TrailActor = none;
-		}
-	}
-
-	for (i = 0; i < GeneratedEvents.Length; i++)
-	{
-		ActivationEvent = KFSeqEvent_MapObjectiveActivated(GeneratedEvents[i]);
-		if (ActivationEvent != none)
-		{
-			ActivationEvent.NotifyDeactivation(self, self);
 		}
 	}
 
@@ -326,7 +268,16 @@ function KFRepairableActor ChooseNextActorToRepair()
 		ValidActors.RemoveItem(LastRepairedActor);
 	}
 
-	ChosenActorIndex = RandRange(0, ValidActors.length - 1);
+	if (bRandomSequence)
+	{
+		ChosenActorIndex = RandRange(0, ValidActors.length - 1);
+	}
+	else
+	{
+		// if not random choose the next actor in the sequence
+		ChosenActorIndex = 0;
+	}
+
 	ChosenActor = ValidActors[ChosenActorIndex];
 	UnusedRepairableActors.Remove(ChosenActorIndex, 1);
 
@@ -351,6 +302,8 @@ function OnActorRepaired(KFRepairableActor RepairedActor)
 	}
 
 	ActorsRepaired++;
+	TriggerObjectiveProgressEvent(, float(ActorsRepaired) / float(ActivationsRequired));
+
 	if (GetTotalProgress() >= 1.f)
 	{
 		KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
@@ -406,14 +359,14 @@ function bool IsCurrentGameModeBlacklisted()
 
 simulated function bool UsesProgress()
 {
-	return true;
+	return false;
 }
 
 simulated function float GetProgress()
 {
-	if (CurrentActorToRepair != none)
+	if (!HasFailedObjective())
 	{
-		return FClamp(float(CurrentActorToRepair.WeldIntegrity) / float(CurrentActorToRepair.MaxWeldIntegrity), 0.f, 1.f);
+		return float(ActorsRepaired) / float(ActivationsRequired);
 	}
 
 	return 0.f;
@@ -439,19 +392,9 @@ simulated function float GetActivationPctChance()
 	return 1.f;
 }
 
-simulated function string GetLocalizedDescription()
-{
-	return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
-}
-
 simulated function string GetLocalizedRequirements()
 {
-	return "";
-}
-
-simulated function string GetLocalizedName()
-{
-	return Localize("Objectives", LocalizationKey, LocalizationPackageName);
+	return Localize("Objectives", default.RequirementsLocKey, "KFGame") @ ActivationsRequired;
 }
 
 simulated function bool ShouldDrawIcon()
@@ -469,11 +412,6 @@ simulated function Vector GetIconLocation()
 	return Location;
 }
 
-simulated function Texture2D GetIcon()
-{
-	return ObjectiveIcon;
-}
-
 simulated function int GetDoshReward()
 {
 	local int MaxDosh;
@@ -485,11 +423,6 @@ simulated function int GetDoshReward()
 	}
 
 	return int(MaxDosh * GetTotalProgress());
-}
-
-simulated function int GetMaxDoshReward()
-{
-	return 300;
 }
 
 simulated function int GetVoshReward()
@@ -505,11 +438,6 @@ simulated function int GetVoshReward()
 	return int(MaxDosh * GetTotalProgress());
 }
 
-simulated function int GetMaxVoshReward()
-{
-	return 2000;
-}
-
 simulated function int GetXPReward()
 {
 	local int MaxXP;
@@ -521,26 +449,6 @@ simulated function int GetXPReward()
 	}
 
 	return int(MaxXP * GetTotalProgress());
-}
-
-simulated function int GetMaxXPReward()
-{
-	return 330;
-}
-
-simulated function float GetSpawnRateMod()
-{
-	local KFGameReplicationInfo KFGRI;
-	local int NumPlayersAlive;
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if(KFGRI != none)
-	{
-		NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, PerPlayerSpawnRateMod.length) - 1;
-		return PerPlayerSpawnRateMod[NumPlayersAlive];
-	}
-
-	return 1.f;
 }
 
 simulated function bool HasFailedObjective()
@@ -581,13 +489,77 @@ simulated function bool GetIsMissionCritical()
 	return bIsMissionCriticalObjective;
 }
 
+// this is currently a copy of DrawObjectiveHUD, 
+// except it uses the individual repairable weld completion instead of the overall objective completion
+simulated function DrawHUD(KFHUDBase hud, Canvas drawCanvas)
+{
+	local float Percentage;
+	local float BarHeight, BarLength;
+	local vector ScreenPos, TargetLocation;
+	local float ResModifier;
+	local float ThisDot;
+	local KFGameReplicationInfo KFGRI;
+	local vector ViewLocation, ViewVector;
+	local rotator ViewRotation;
+	local KFPlayerController KFPC;
+
+	ResModifier = WorldInfo.static.GetResolutionBasedHUDScale() * hud.FriendlyHudScale;
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	KFPC = KFPlayerController(GetALocalPlayerController());
+
+	if (!ShouldDrawIcon() || KFGRI.bHidePawnIcons)
+	{
+		return;
+	}
+
+	if (KFPC != none)
+	{
+		KFPC.GetPlayerViewPoint(ViewLocation, ViewRotation);
+	}
+	ViewVector = vector(ViewRotation);
+
+	ThisDot = Normal((GetIconLocation() + (class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) dot ViewVector;
+
+	if (ThisDot > 0 && KFGRI.ObjectiveInterface.ShouldShowObjectiveHUD())
+	{
+		BarLength = FMin(hud.PlayerStatusBarLengthMax * (drawCanvas.ClipX / 1024.f), hud.PlayerStatusBarLengthMax) * ResModifier;
+		BarHeight = FMin(8.f * (drawCanvas.ClipX / 1024.f), 8.f) * ResModifier;
+		TargetLocation = GetIconLocation();
+		ScreenPos = drawCanvas.Project(TargetLocation);
+		if (ScreenPos.X < 0 || ScreenPos.X > drawCanvas.ClipX || ScreenPos.Y < 0 || ScreenPos.Y > drawCanvas.ClipY)
+		{
+			//if it is off screen, do not render
+			return;
+		}
+
+		//Draw progress bar
+		Percentage = FMin(FClamp(float(CurrentActorToRepair.WeldIntegrity) / float(CurrentActorToRepair.MaxWeldIntegrity), 0.f, 1.f), 1);
+		hud.DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, hud.HealthColor);
+
+		//draw objective icon
+		if (GetIcon() != none)
+		{
+			drawCanvas.SetDrawColorStruct(hud.PlayerBarIconColor);
+			drawCanvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
+			drawCanvas.DrawTile(GetIcon(), hud.PlayerStatusIconSize * ResModifier, hud.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+		}
+	}
+}
+
 defaultproperties
 {
+   ActivationsRequired=6
+   TimeUntilNextActivation=5.000000
+   JustWinThreshold=0.250000
+   StandardWinThreshold=0.500000
+   GoodWinThreshold=0.850000
+   bRandomSequence=True
    LocalizationKey="RepairObjective"
    DescriptionLocKey="UseWelderToRepair"
    LocalizationPackageName="KFGame"
+   RequirementsLocKey="RepairObjectiveRequired"
    bUseTrailToObjective=True
-   ActivationsRequired=6
+   ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
    GameModeBlacklist(0)=Class'kfgamecontent.KFGameInfo_Endless'
    GameModeBlacklist(1)=Class'kfgamecontent.KFGameInfo_WeeklySurvival'
    PerPlayerSpawnRateMod(0)=1.000000
@@ -596,11 +568,6 @@ defaultproperties
    PerPlayerSpawnRateMod(3)=1.000000
    PerPlayerSpawnRateMod(4)=1.000000
    PerPlayerSpawnRateMod(5)=1.000000
-   TimeUntilNextActivation=5.000000
-   ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
-   JustWinThreshold=0.250000
-   StandardWinThreshold=0.500000
-   GoodWinThreshold=0.850000
    Begin Object Class=SpriteComponent Name=Sprite
       ReplacementPrimitive=None
       HiddenGame=True
@@ -612,7 +579,7 @@ defaultproperties
    Components(0)=Sprite
    RemoteRole=ROLE_SimulatedProxy
    bAlwaysRelevant=True
-   SupportedEvents(0)=Class'KFGame.KFSeqEvent_MapObjectiveActivated'
+   SupportedEvents(7)=Class'KFGame.KFSeqEvent_ObjectiveProgress'
    Name="Default__KFMapObjective_RepairActors"
-   ObjectArchetype=Actor'Engine.Default__Actor'
+   ObjectArchetype=KFMapObjective_ActorBase'KFGame.Default__KFMapObjective_ActorBase'
 }

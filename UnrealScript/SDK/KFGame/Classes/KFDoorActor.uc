@@ -23,6 +23,8 @@ const KActorOffset = 25;
 /** Reference to the door trigger */
 var KFDoorTrigger DoorTrigger;
 
+var bool bIsInteractive;
+
 /*********************************************************************************************
  * @name	Meshes / Materials / Particles
  ********************************************************************************************* */
@@ -95,6 +97,7 @@ var () bool bStartDoorOpen;
 var repnotify transient bool bIsDoorOpen;
 var transient bool bLocalIsDoorOpen;
 var transient bool bReverseHinge;
+var transient bool bCanCloseDoor;
 
 /** When true, the door can be processed for resets */
 var transient bool bHasBeenDirtied;
@@ -246,7 +249,7 @@ cpptext
 replication
 {
 	if ( bNetDirty )
-		HitCount, bIsDoorOpen, Health, bShouldExplode;
+		HitCount, bIsDoorOpen, Health, bShouldExplode, bIsInteractive;
 
 	if ( bNetDirty && DoorMechanism == EDM_Hinge )
 		bReverseHinge;
@@ -604,7 +607,7 @@ simulated private function OpenSwingingDoor(Pawn P)
 /** To close the door, just reverse the animation */
 simulated private function CloseDoor()
 {
-	if( bIsDestroyed || !bLocalIsDoorOpen )
+	if( bIsDestroyed || !bLocalIsDoorOpen || !bCanCloseDoor)
 	{
 	 	return;
 	}
@@ -838,6 +841,11 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 	local class<KFDamageType> KFDT;
 
 	if ( Role < ROLE_Authority )
+	{
+		return;
+	}
+
+	if (!bIsInteractive)
 	{
 		return;
 	}
@@ -1888,6 +1896,15 @@ simulated function Reset()
 	}
 }
 
+simulated function SetInteractive(bool InInteractive)
+{
+	if (Role == ROLE_Authority)
+	{
+		bIsInteractive = InInteractive;
+		DoorTrigger.SetCollision(InInteractive, DoorTrigger.bBlockActors);
+	}
+}
+
 defaultproperties
 {
 	Begin Object Class=SpriteComponent Name=Sprite
@@ -1901,6 +1918,8 @@ defaultproperties
 
  	// UI
 	WelderIcon=Texture2D'UI_World_TEX.welder_door_icon'
+
+	bIsInteractive=true
 
 	bDoorMoveCompleted=true
 	bStartDoorOpen=true
@@ -2015,4 +2034,6 @@ defaultproperties
 	RepairSound=AkEvent'WW_ENV_Destruction.Play_Door_Heal'
 
 	//NavigationHandleClass=class'KFNavigationHandle'
+
+	bCanCloseDoor=true
 }

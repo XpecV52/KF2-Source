@@ -1,4 +1,4 @@
-//NOTES:
+NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -479,7 +479,7 @@ SecondaryAmmo="Granat do M203"
 [KFWeap_SMG_MP5RAS]
 ItemName="SMG MP5RAS"
 ItemCategory="Pistolet maszynowy"
-ItemDescription="•Tryb ataku: ogień ciągły lub pojedynczy.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Najnowsza wersja jednego z najpopularniejszych pistoletów maszynowych na świecie."
+ItemDescription="•Tryb ataku: ogień ciągły lub seria 3 pocisków.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Najnowsza wersja jednego z najpopularniejszych pistoletów maszynowych na świecie."
 
 [KFWeap_SMG_P90]
 ItemName="SMG P90"
@@ -536,6 +536,16 @@ ItemDescription="•Podstawowy tryb ognia to strzał z jednej lufy.\n•Tryb alt
 ItemName="Piorunujące rękawice"
 ItemCategory="Broń biała"
 ItemDescription="•Główny atak – szybkie uderzenie. Przytrzymaj przycisk głównego ataku, by wykonać combo. \n•Drugi atak – silne, elektryzujące uderzenie. Może nieźle porazić! \n•Chcesz przywalić zetowi? Nie szukaj już innych sposobów!"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="Killerwatt"
+ItemCategory="Karabin szturmowy"
+ItemDescription="• Strzela ogniem ciągłym i w trybie przesterowania.\nTryb alternatywny: przełączanie trybów prowadzenia ogna.\n• Tryb przesterowania – ładuje, gdy przycisk strzelania jest naciśnięty i wyładowuje, gdy przycisk zostanie puszczony."
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="Karabin Helios"
+ItemCategory="Karabin szturmowy"
+ItemDescription="• Tryb strzelania: ogień ciągły albo seria 3 pocisków.\n• Tryb alternatywny umożliwia przełączanie trybów ognia.\n• Niech ogień będzie z tobą."
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac-10"

@@ -56,6 +56,7 @@ defaultproperties
    ColumnIds(92)=4046
    ColumnIds(93)=4047
    ColumnIds(94)=4048
+   ColumnIds(95)=4049
    ColumnMappings(51)=(Id=4001,Name="AchievementMrPerky5")
    ColumnMappings(52)=(Id=4002,Name="AchievementMrPerky10")
    ColumnMappings(53)=(Id=4003,Name="AchievementMrPerky15")
@@ -100,6 +101,7 @@ defaultproperties
    ColumnMappings(92)=(Id=4046,Name="AchievementMonsterBallSecretRoom")
    ColumnMappings(93)=(Id=4047,Name="AchievementCollectSantasWorkshop")
    ColumnMappings(94)=(Id=4048,Name="AchievementCollectShoppingSpree")
+   ColumnMappings(95)=(Id=4049,Name="AchievementCollectSpillway")
    Name="Default__KFOnlineStatsReadDingo"
    ObjectArchetype=KFOnlineStatsRead'KFGame.Default__KFOnlineStatsRead'
 }

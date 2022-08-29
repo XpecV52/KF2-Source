@@ -89,7 +89,7 @@ Begin:
 	else
 	{
 		// consider the pawn to have "reached" the node it spawns at
-		MyScriptedPawn.ReachedRouteMarker(0, Route[0], 0);
+		MyScriptedPawn.ReachedRouteMarker(0, Route[0], 0, 0);
 
 		SegIdx = 1;
 		do // for each segment (space between two spline actors)...
@@ -117,7 +117,11 @@ Begin:
 					Sleep(0.f);
 				} until (PawnReachedDestination(SubSegEnd)); // until we've reached the next segment "granule"
 
-				MyScriptedPawn.ReachedRouteMarker(SegIdx, SubSegIdx == (SegmentGranularity + 1) ? Route[SegIdx] : none, SubSegIdx);
+				MyScriptedPawn.ReachedRouteMarker(
+					SegIdx,
+					SubSegIdx == (SegmentGranularity + 1) ? Route[SegIdx] : none,
+					SubSegIdx,
+					SegSplineLen / float(SegmentGranularity+1));
 
 				++SubSegIdx;
 			} until (PawnReachedDestination(Route[SegIdx].Location) && SubSegIdx == (SegmentGranularity + 2)); // until we've reached the next spline actor AND we've reached each "granule" ...

@@ -5,4 +5,10 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFDT_DAR_EMPBlast extends KFDamageType;
+class KFDT_DAR_EMPBlast extends KFDT_EMP
+    abstract;
+
+defaultproperties
+{
+    bArmorStops=true
+}

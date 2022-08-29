@@ -9,8 +9,7 @@
 // Copyright (C) 2017 Tripwire Interactive LLC
 // - Dan Weiss
 //=============================================================================
-class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense
-    placeable;
+class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense;
 
 `include(KFGame/KFGameDialog.uci)
 
@@ -419,74 +418,6 @@ defaultproperties
 	DoshPenaltyCheckTimer=1.f
 	NoHumansPenalty=5
 	ZedsPenalty=1
-
-	// Short Match
-	MaxRewards[0]={(
-		WaveMaxReward[0]=0,
-		WaveMaxReward[1]=200,
-		WaveMaxReward[2]=350,
-		WaveMaxReward[3]=500
-	)},
-
-	// Normal Match
-	MaxRewards[1]={(
-		WaveMaxReward[0]=0,
-		WaveMaxReward[1]=200,
-		WaveMaxReward[2]=250,
-		WaveMaxReward[3]=300,
-		WaveMaxReward[4]=350,
-		WaveMaxReward[5]=400,
-		WaveMaxReward[6]=500
-	)},
-
-	// Long Match
-	MaxRewards[2]={(
-		WaveMaxReward[0]=0,
-		WaveMaxReward[1]=200,
-		WaveMaxReward[2]=250,
-		WaveMaxReward[3]=300,
-		WaveMaxReward[4]=350,
-		WaveMaxReward[5]=400,
-		WaveMaxReward[6]=450,
-		WaveMaxReward[7]=500,
-		WaveMaxReward[8]=500,
-		WaveMaxReward[9]=500,
-		WaveMaxReward[10]=500
-	)}
-
-	// Short Match
-	XPRewards[0]={(
-		WaveMaxReward[0]=0,
-		WaveMaxReward[1]=150,
-		WaveMaxReward[2]=200,
-		WaveMaxReward[3]=300
-	)},
-
-	// Normal Match
-	XPRewards[1]={(
-		WaveMaxReward[0]=0,
-		WaveMaxReward[1]=150,
-		WaveMaxReward[2]=150,
-		WaveMaxReward[3]=200,
-		WaveMaxReward[4]=200,
-		WaveMaxReward[5]=300,
-		WaveMaxReward[6]=300
-	)},
-
-	// Long Match
-	XPRewards[2]={(
-		WaveMaxReward[0]=0,
-		WaveMaxReward[1]=100,
-		WaveMaxReward[2]=150,
-		WaveMaxReward[3]=150,
-		WaveMaxReward[4]=200,
-		WaveMaxReward[5]=200,
-		WaveMaxReward[6]=250,
-		WaveMaxReward[7]=250,
-		WaveMaxReward[8]=300,
-		WaveMaxReward[9]=300,
-		WaveMaxReward[10]=300
-	)}
 
 	// Short Match
 	ActivatePctChances[0]={(

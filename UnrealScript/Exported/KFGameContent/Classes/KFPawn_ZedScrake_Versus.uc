@@ -168,7 +168,7 @@ defaultproperties
    IncapSettings(7)=(Duration=1.500000,Cooldown=8.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
    IncapSettings(8)=(Vulnerability=(0.200000))
    IncapSettings(9)=(Duration=0.500000,Cooldown=1.500000,Vulnerability=(0.500000))
-   IncapSettings(10)=(Vulnerability=(0.500000))
+   IncapSettings(10)=()
    IncapSettings(11)=(Vulnerability=(0.250000))
    SprintSpeed=530.000000
    SprintStrafeSpeed=350.000000

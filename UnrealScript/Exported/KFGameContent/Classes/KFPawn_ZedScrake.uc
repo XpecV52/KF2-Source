@@ -135,6 +135,12 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 /** Enrage this Scrake! */
 //simulated function SetEnraged( bool bNewEnraged );
 
+/** Return current rage status */
+simulated event bool IsEnraged()
+{
+	return bIsEnraged;
+}
+
 /** Returns TRUE if this zed can block attacks */
 function bool CanBlock()
 {
@@ -354,7 +360,7 @@ defaultproperties
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
    IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000,Vulnerability=(0.980000))
-   IncapSettings(1)=(Duration=3.500000,Cooldown=7.000000,Vulnerability=(0.800000))
+   IncapSettings(1)=(Duration=3.500000,Cooldown=7.000000,Vulnerability=(0.400000))
    IncapSettings(2)=(Cooldown=1.350000,Vulnerability=(1.000000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.200000))
    IncapSettings(4)=(Cooldown=3.500000,Vulnerability=(0.300000))
@@ -363,7 +369,7 @@ defaultproperties
    IncapSettings(7)=(Duration=3.000000,Cooldown=5.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000))
    IncapSettings(8)=(Cooldown=10.000000,Vulnerability=(0.400000,0.400000,0.500000,0.400000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=6.000000,Vulnerability=(0.980000))
-   IncapSettings(10)=(Duration=2.500000,Cooldown=10.000000,Vulnerability=(1.000000))
+   IncapSettings(10)=(Duration=2.500000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(11)=(Vulnerability=(0.750000))
    KnockdownImpulseScale=2.000000
    SprintSpeed=600.000000

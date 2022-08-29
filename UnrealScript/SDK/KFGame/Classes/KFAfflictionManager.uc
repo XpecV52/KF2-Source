@@ -274,6 +274,7 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
 	local byte HitZoneIdx;
 	local float ReactionModifier, MeleeHitPower, GunHitPower;
 	local KFWeapon DamageWeapon;
+	local KFInterface_DamageCauser KFDmgCauser;
 
 	ReactionModifier = 1.f;
 	// Allow damage instigator perk to modify reaction
@@ -301,6 +302,13 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
 			GunHitPower = DamageType.default.GunHitPower;
 		}
 
+		KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
+		if (KFDmgCauser != None)
+		{
+			MeleeHitPower *= KFDmgCauser.GetIncapMod();
+			GunHitPower *= KFDmgCauser.GetIncapMod();
+		}
+
 		// Check hard hit reaction
 		if (MeleeHitPower > 0)
 		{
@@ -324,6 +332,7 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
 {
 	local KFWeapon DamageWeapon;
 	local float BurnPower, EMPPower, PoisonPower, MicrowavePower, BleedPower;
+	local KFInterface_DamageCauser KFDmgCauser;
 
 	// Get upgraded affliction power
 	DamageWeapon = class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
@@ -342,6 +351,16 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
 		PoisonPower = DamageType.default.PoisonPower;
 		MicrowavePower = DamageType.default.MicrowavePower;
 		BleedPower = DamageType.default.BleedPower;
+	}
+
+	KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
+	if (KFDmgCauser != None)
+	{
+		BurnPower *= KFDmgCauser.GetIncapMod();
+		EMPPower *= KFDmgCauser.GetIncapMod();
+		PoisonPower *= KFDmgCauser.GetIncapMod();
+		MicrowavePower *= KFDmgCauser.GetIncapMod();
+		BleedPower *= KFDmgCauser.GetIncapMod();
 	}
 
 	// these afflictions can apply on killing blow, but fire can apply after death

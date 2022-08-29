@@ -588,12 +588,14 @@ event int GetAdjustedGameModeIndex(int ModeIndex)
 	{
 		switch (ModeIndex)
 		{
-			case 0:
-			case 1:
-			case 3:
+			case 0: // survival
+			case 1: // weekly
 				return ModeIndex;
-			case 2: //versus
-				return 3;
+			// skip versus
+			case 2:
+				return 3; // endless
+			case 3:
+				return 4; // objective
 			default:
 				return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
 		}

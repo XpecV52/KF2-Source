@@ -185,7 +185,7 @@ defaultproperties
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:Afflictions_0'
    IncapSettings(0)=(Vulnerability=(0.300000))
-   IncapSettings(1)=(Cooldown=12.000000)
+   IncapSettings(1)=(Cooldown=12.000000,Vulnerability=(0.700000))
    IncapSettings(2)=()
    IncapSettings(3)=()
    IncapSettings(4)=(Cooldown=7.000000)
@@ -194,7 +194,7 @@ defaultproperties
    IncapSettings(7)=(Duration=1.500000,Vulnerability=(0.700000,0.700000,1.000000,0.700000))
    IncapSettings(8)=(Vulnerability=(0.250000,0.250000,0.250000,0.250000,0.400000))
    IncapSettings(9)=(Duration=0.500000,Cooldown=1.500000,Vulnerability=(0.500000))
-   IncapSettings(10)=(Vulnerability=(0.500000))
+   IncapSettings(10)=()
    IncapSettings(11)=(Vulnerability=(0.250000))
    SprintSpeed=550.000000
    SprintStrafeSpeed=450.000000

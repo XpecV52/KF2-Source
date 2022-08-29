@@ -47,6 +47,8 @@ var private const array<class<KFWeaponDefinition> > PrimaryWeaponPaths;
 var private const array<string>	KnifeWeaponPaths;
 var int StartingWeaponClassIndex;
 
+var private const array<name>		TacticalReloadAsReloadRateClassNames;
+
 /*********************************************************************************************
 * @name	 Perk init and spawning
 ******************************************************************************************** */
@@ -251,6 +253,13 @@ simulated function float GetReloadRateScale( KFWeapon KFW )
 		return 1.f -  GetPassiveValue( ZedTimeReload, GetLevel() );
 	}
 
+	if (((IsTacticalReloadActive() && IsWeaponOnPerkLight(KFW)) ||
+		(IsHeavyReloadActive() && IsWeaponOnPerkHeavy(KFW)))
+		&& TacticalReloadAsReloadRateClassNames.Find(KFW.class.Name) != INDEX_NONE)
+	{
+		return 0.8f;
+	}
+
 	return 1.f;
 }
 
@@ -291,8 +300,9 @@ function ModifyArmor( out byte MaxArmor )
  */
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	return ( (IsTacticalReloadActive() && IsWeaponOnPerkLight( KFW )) ||
-			 (IsHeavyReloadActive() && IsWeaponOnPerkHeavy( KFW )) );
+	return (((IsTacticalReloadActive() && IsWeaponOnPerkLight(KFW)) ||
+			(IsHeavyReloadActive() && IsWeaponOnPerkHeavy(KFW))) &&
+		    TacticalReloadAsReloadRateClassNames.Find(KFW.class.Name) == INDEX_NONE);
 }
 
 simulated function bool IsWeaponOnPerkLight( KFWeapon KFW )
@@ -692,26 +702,26 @@ DefaultProperties
 	HeavyBodyArmor=(Name="Heavy Body Armor",Increment=0.01,Rank=0,StartingValue=0.f,MaxValue=0.25)
    	ZedTimeReload=(Name="Zed Time Reload",Increment=0.03f,Rank=0,StartingValue=0.f,MaxValue=0.75f)
 
- 	PerkSkills(ESurvivalist_TacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_TacticalReload", Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)    //0.1
+ 	PerkSkills(ESurvivalist_TacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_TacticalReload", Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
 	PerkSkills(ESurvivalist_HeavyWeaponsReload)=(Name="HeavyWeaponsReload",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_HeavyWeapons", Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f)
-	PerkSkills(ESurvivalist_FieldMedic)=(Name="FieldMedic",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_FieldMedic", Increment=0.f,Rank=0,StartingValue=0.25f,MaxValue=0.25f)
-	PerkSkills(ESurvivalist_MeleeExpert)=(Name="MeleeExpert",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert", Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
+	PerkSkills(ESurvivalist_FieldMedic)=(Name="FieldMedic",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_FieldMedic", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(ESurvivalist_MeleeExpert)=(Name="MeleeExpert",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(ESurvivalist_AmmoVest)=(Name="AmmoVest",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_AmmoVest", Increment=0.f,Rank=0,StartingValue=0.15f,MaxValue=0.15f)
 	PerkSkills(ESurvivalist_BigPockets)=(Name="BigPockets",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_BigPockets", Increment=0.f,Rank=0,StartingValue=5.f,MaxValue=5.f)
 	PerkSkills(ESurvivalist_Shrapnel)=(Name="ZedShrapnel",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel", Increment=0.f,Rank=0,StartingValue=2.f,MaxValue=2.f)
-	PerkSkills(ESurvivalist_MakeThingsGoBoom)=(Name="MakeThingsGoBoom",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom", Increment=0.f,Rank=0,StartingValue=1.25f,MaxValue=1.25f)
+	PerkSkills(ESurvivalist_MakeThingsGoBoom)=(Name="MakeThingsGoBoom",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom", Increment=0.f,Rank=0,StartingValue=1.5f,MaxValue=1.5f)
 	PerkSkills(ESurvivalist_MadMan)=(Name="MadMan",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(ESurvivalist_IncapMaster)=(Name="IncapMaster",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster", Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 
-	InjectionPotencyModifier=1.20
-	MeleeExpertAttackSpeedModifier=0.15f
-	ShrapnelChance=0.2f
+	InjectionPotencyModifier=1.3f
+	MeleeExpertAttackSpeedModifier=0.2f
+	ShrapnelChance=0.3f
 	SnarePower=20
-	MeleeExpertMovementSpeedModifier=0.25 //0.25
+	MeleeExpertMovementSpeedModifier=0.25
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=10  //231  //120
-		DamageRadius=200   //840  //600
+		Damage=100  //231  //120
+		DamageRadius=250   //840  //600
 		DamageFalloffExponent=1
 		DamageDelay=0.f
 		MyDamageType=class'KFDT_Explosive_Shrapnel'
@@ -755,4 +765,7 @@ DefaultProperties
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.FreezeThrower_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.TommyGun_PrestigePrecious_Mint_large"
+	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.VLAD-1000Nailgun_PrestigePrecious_Mint_large"
+
+	TacticalReloadAsReloadRateClassNames(0)="KFWeap_GrenadeLauncher_M32"
 }

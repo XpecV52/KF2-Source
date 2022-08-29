@@ -479,7 +479,7 @@ SecondaryAmmo="Granada M203"
 [KFWeap_SMG_MP5RAS]
 ItemName="Subfusil MP5RAS"
 ItemCategory="Subfusil"
-ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•La versión más actual de uno de los subfusiles más utilizados del mundo."
+ItemDescription="•Elige entre dos modos de disparo: automático o ráfaga de 3 disparos.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•La versión más actual de uno de los subfusiles más utilizados del mundo."
 
 [KFWeap_SMG_P90]
 ItemName="Subfusil P90"
@@ -536,6 +536,16 @@ ItemDescription="•El modo principal usa solo un cañón.\n•El modo alternati
 ItemName="Golpeador eléctrico"
 ItemCategory="Cuerpo a cuerpo"
 ItemDescription="•Principal: ataque contundente rápido. Mantén pulsado el botón del modo principal para hacer un combo.\n•Secundario: ataque contundente eléctrico potente. ¡Electrificante! \n•¿Quieres darle un puñetazo en la cara a un zed? ¡No busques más!"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="Vatio asesino"
+ItemCategory="Fusil de asalto"
+ItemDescription="•Permite elegir entre los modos de disparo automático y de sobrecarga.\nUtiliza la función de disparo alternativo para cambiar de modo.\n•Modo de sobrecarga: se carga mientras se aprieta el botón de disparo y dispara cuando se suelta."
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="Fusil Helios"
+ItemCategory="Fusil de asalto"
+ItemDescription="•Permite elegir entre los modos de disparo automático y de ráfagas de 3 disparos.\nUtiliza la función de disparo alternativo para cambiar de modo.\n•Que el fuego esté contigo."
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"

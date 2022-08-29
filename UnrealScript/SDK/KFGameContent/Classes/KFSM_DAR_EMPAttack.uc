@@ -338,7 +338,7 @@ defaultproperties
 	EMPHitStopSFX=none
 
 	EMPDamage=10;
-	EMPDamageType=class'KFDT_EMP'
+	EMPDamageType=class'KFDT_DAR_EMPBlast'
 	EMPExtent=(X=15.f, Y=15.f, Z=15.f)
 	MaxEMPLength = 2500.f
 

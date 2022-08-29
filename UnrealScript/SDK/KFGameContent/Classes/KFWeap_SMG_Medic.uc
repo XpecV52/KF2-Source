@@ -24,10 +24,10 @@ defaultproperties
 {
 	// Healing charge
     HealAmount=15
-	HealFullRechargeSeconds=15
+	HealFullRechargeSeconds=13 //15
 
 	// Inventory
-	InventorySize=3 //3
+	InventorySize=3
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
@@ -57,11 +57,11 @@ defaultproperties
 	bReloadFromMagazine=true
 
 	// Recoil
-	maxRecoilPitch=100
-	minRecoilPitch=75
-	maxRecoilYaw=75
-	minRecoilYaw=-75
-	RecoilRate=0.07
+	maxRecoilPitch=75
+	minRecoilPitch=50
+	maxRecoilYaw=50
+	minRecoilYaw=-50
+	RecoilRate=0.06
 	RecoilMaxYawLimit=500
 	RecoilMinYawLimit=65035
 	RecoilMaxPitchLimit=900
@@ -80,7 +80,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SMG_Medic'
 	FireInterval(DEFAULT_FIREMODE)=+.075 // 800 RPM
 	Spread(DEFAULT_FIREMODE)=0.007
-	InstantHitDamage(DEFAULT_FIREMODE)=17.0  //15.0
+	InstantHitDamage(DEFAULT_FIREMODE)=20.0  //15.0
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALTFIRE_FIREMODE
@@ -114,8 +114,7 @@ defaultproperties
 	//WeaponUpgrades[2]=(IncrementDamage=1.59f,IncrementWeight=2, IncrementHealFullRecharge=.7)
 	//WeaponUpgrades[3]=(IncrementDamage=1.85f,IncrementWeight=3, IncrementHealFullRecharge=.6)
 
-	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Weight, Add=1), (Stat=EWUS_HealFullRecharge, Scale=0.8f)))
-	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.59f), (Stat=EWUS_Weight, Add=2), (Stat=EWUS_HealFullRecharge, Scale=0.7f)))
-	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.85f), (Stat=EWUS_Weight, Add=3), (Stat=EWUS_HealFullRecharge, Scale=0.6f)))
-	//need to do a full test on healing level increasing
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f), (Stat=EWUS_Weight, Add=1), (Stat=EWUS_HealFullRecharge, Scale=0.85f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Weight, Add=2), (Stat=EWUS_HealFullRecharge, Scale=0.77f)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.6f), (Stat=EWUS_Weight, Add=3), (Stat=EWUS_HealFullRecharge, Scale=0.6f)))
 }

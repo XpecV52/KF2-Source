@@ -54,7 +54,6 @@ function SetPathTarget( Actor NewTarget, optional Volume NewVolume, optional eVo
 	}
 }
 
-simulated function SetObjeciveType(EObjectiveType ObjEnum);
 simulated function InitPath()
 {
 	if (Target != none)

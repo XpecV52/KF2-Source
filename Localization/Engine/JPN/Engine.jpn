@@ -98,7 +98,7 @@ Upgrade=このサーバーに入るには、Epic 社の最新の Unreal 無料�
 UpgradeURL=http://www.unreal.com/upgrade
 UpgradeQuestion=ウェブブラウザを起ちあげてアップグレードのページを開きますか?
 Version=バージョン %i
-SplashScreen_CopyrightInfo=Copyright ©2009-2017 Killing Floor® Tripwire Interactive LLC   All rights reserved.
+SplashScreen_CopyrightInfo=Copyright ©2009-2019 Killing Floor® Tripwire Interactive LLC   All rights reserved.
 SplashScreen_ThirdPartyCopyrightInfo=Uses Bink Video, Copyright © 1997-2011 by RAD Game Tools, Inc.
 
 [Menu]

@@ -20,6 +20,8 @@ const SecondaryReloadAnim_Elite = 'Reload_Secondary_Elite';
 // TODO: ALL ServerTotalAltAmmo CODE IS COPY-PASTED FROM M16M203. THIS CODE NEEDS TO LIVE IN ONE PLACE.
 var int ServerTotalAltAmmo;
 
+var transient bool bCanceledAltAutoReload;
+
 simulated function int GetSecondaryAmmoForHUD()
 {
 	return SpareAmmoCount[1];
@@ -35,6 +37,13 @@ simulated function AltFireMode()
 {
 	if ( !Instigator.IsLocallyControlled() )
 	{
+		return;
+	}
+
+	if (bCanceledAltAutoReload)
+	{
+		bCanceledAltAutoReload = false;
+		TryToAltReload();
 		return;
 	}
 
@@ -285,6 +294,12 @@ simulated state AltReloading extends Reloading
 		return (bTacticalReload ? WEP_ReloadSecondary_Elite : WEP_ReloadSecondary);
 	}
 
+	simulated event BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+		bCanceledAltAutoReload = true;
+	}
+
 	// Overridding super so we don't call functions we don't want to call.
 	simulated function EndState(Name NextStateName)
 	{
@@ -333,6 +348,8 @@ simulated state AltReloading extends Reloading
 		{
 			ServerSetAltAmmoCount(AmmoCount[1]);
 		}
+
+		bCanceledAltAutoReload = false;
 	}
 
 	simulated function EReloadStatus GetNextReloadStatus(optional byte FireModeNum)
@@ -400,6 +417,11 @@ simulated function bool CanAltAutoReload()
 		return false;
 	}
 
+	if (bCanceledAltAutoReload)
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -462,7 +484,7 @@ defaultproperties
 	FirstPersonMeshName="wep_1p_medic_grenadelauncher_mesh.Wep_1stP_Medic_GrenadeLauncher_Rig"
 	FirstPersonAnimSetNames(0)="wep_1p_medic_grenadelauncher_anim.Wep_1stP_Medic_GrenadeLauncher_Anim"
 	PickupMeshName="WEP_3P_Medic_GrenadeLauncher_MESH.Wep_3rdP_Medic_GrenadeLauncher_Pickup"
-	AttachmentArchetypeName="wep_medic_grenadelauncher_arch.Wep_Medic_GrenadeLauncher_3P" 
+	AttachmentArchetypeName="wep_medic_grenadelauncher_arch.Wep_Medic_GrenadeLauncher_3P"
 
 	MuzzleFlashTemplateName="WEP_Medic_GrenadeLauncher_ARCH.Wep_Medic_GrenadeLauncher_MuzzleFlash"
 

@@ -616,7 +616,7 @@ defaultproperties
    OwnFireResistance=(Name="Own fire Resistance",Increment=0.030000,StartingValue=0.250000,MaxValue=1.000000)
    StartingAmmo=(Name="Starting Ammo",Increment=0.100000,MaxValue=0.500000)
    HeatWaveRadiusSQ=90000
-   ShrapnelChance=0.200000
+   ShrapnelChance=0.300000
    ExplosionTemplate=KFGameExplosion'KFGame.Default__KFPerk_Firebug:ExploTemplate0'
    SnarePower=100.000000
    SnareCausingDmgTypeClass=Class'KFGame.KFDT_Fire_Ground'
@@ -669,6 +669,7 @@ defaultproperties
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Dragonsbreath_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.FlameThrower_PrestigePrecious_Mint_Large"
    Name="Default__KFPerk_Firebug"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

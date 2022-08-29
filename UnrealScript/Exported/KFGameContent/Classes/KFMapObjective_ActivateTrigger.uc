@@ -8,11 +8,10 @@
 // Killing Floor 2
 // Copyright (C) 2018 Tripwire Interactive LLC
 //=============================================================================
-class KFMapObjective_ActivateTrigger extends KFMapObjective_AreaDefense
-	placeable;
+class KFMapObjective_ActivateTrigger extends KFMapObjective_AreaDefense;
 
 /** How many times the players have pulled the trigger. */
-var int TriggerPulls;
+var repnotify int TriggerPulls;
 
 /** How many times a trigger has to be pulled until the objective is complete, per number of players */
 var() const int TriggerPullsRequiredForPlayerCount[6];
@@ -25,9 +24,6 @@ var() KFTrigger_ObjectiveLever ObjectiveLever;
 
 /** A delay from the the start of an objective, so the player can't automatically pull the lever. */
 var() float ActivationDelay;
-
-/** A sound to play when this objective is activated */
-var() AkEvent ActivationSoundEvent;
 
 /** A sound to play when the trigger is ready to be triggered (e.g. after activation delay or trigger reset delay) */
 var() array<AkEvent> TriggerReadySoundEvents;
@@ -47,9 +43,6 @@ var() AkEvent SuccessSoundEvent50pct;
 /** A sound to play when the objective is barely complete */
 var() AkEvent SuccessSoundEvent25pct;
 
-/** A sound to play when the objective is failed */
-var() AkEvent FailureSoundEvent;
-
 /** Sound event to play when players are engaged with too many zeds in the zone */
 var() AkEvent TooManyZedsSoundEvent;
 
@@ -66,11 +59,15 @@ var() array<AkEvent> TriggerReminderSoundEvents;
 var() float ReadyTriggerReminderTime;
 
 var transient bool bObjectiveLeverActiveBefore;
+var transient bool bObjectiveLeverBlessedBefore;
+
+/** Incremented whenever the lever gets activated, used to kick off a kismet node */
+var repnotify int nNumLeversActivated;
 
 replication
 {
 	if(bNetDirty)
-		TriggerPulls, TriggerPullsRequired;
+		TriggerPulls, TriggerPullsRequired, nNumLeversActivated;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -84,6 +81,17 @@ simulated event ReplicatedEvent(name VarName)
 		{
 			KFPC.MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetActive(bActive);
 		}
+	}
+	else if (VarName == nameof(TriggerPulls))
+	{
+		if (TriggerPulls != 0)
+		{
+			TriggerObjectiveProgressEvent(EActivateTriggerProgressEvent_TriggerPulled, float(TriggerPulls)/float(TriggerPullsRequired));
+		}
+	}
+	else if (VarName == nameof(nNumLeversActivated))
+	{
+		TriggerObjectiveProgressEvent(EActivateTriggerProgressEvent_TriggerReady);
 	}
 	else
 	{
@@ -99,7 +107,7 @@ simulated function ActivateObjective()
 	{
 		ObjectiveLever.OwningObjective = self;
 	}
-	
+
 	super.ActivateObjective();
 
 	if (Role == ROLE_Authority)
@@ -112,7 +120,7 @@ simulated function ActivateObjective()
 		LogInternal(self @ "-" @ GetFuncName() @ "- ActivationDelay:" @ ActivationDelay);
 		if (ObjectiveLever != none)
 		{
-			ObjectiveLever.bFathersBlessing = false;
+			ObjectiveLever.SetFathersBlessing(false);
 		}
 
 		bActive = false;
@@ -127,6 +135,7 @@ simulated function ActivateObjective()
 
 		CurrentRewardAmount = 0;
 		bObjectiveLeverActiveBefore = false;
+		bObjectiveLeverBlessedBefore = false;
 
 		// don't allow "too few players" reminder to be played right away
 		SetTimer(RemindPlayersTime, false, nameof(Timer_TooFewPlayersReminderCooldown));
@@ -154,7 +163,7 @@ simulated function DeactivateObjective()
 		if (ObjectiveLever != none)
 		{
 			// Lever should work as trap outside of objective.
-			ObjectiveLever.bFathersBlessing = true;
+			ObjectiveLever.SetFathersBlessing(true);
 		}
 
 		if (CurrentRewardAmount > 0)
@@ -206,18 +215,23 @@ function PlayDeactivationDialog()
 simulated function ActivateTrigger()
 {
 	local KFPlayerController KFPC;
+	local int PlayerCount;
 	LogInternal(self @ "-" @ GetFuncName());
 
 	bActive = true;
 
 	if (ObjectiveLever != none)
 	{
-		ObjectiveLever.bFathersBlessing = true;
+		PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
+		ObjectiveLever.SetFathersBlessing(TouchingZeds.length < ZedThresholds[PlayerCount] && TouchingHumans.Length >= PlayerThresholds[PlayerCount]);
 	}
+
+	nNumLeversActivated++;
+	TriggerObjectiveProgressEvent(EActivateTriggerProgressEvent_TriggerReady);
 
 	SetTimer(0.25f, true, 'Timer_CheckObjective');
 
-	//Show hud 
+	//Show hud
 	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 	{
 		if (KFPC != none && KFPC.MyGFxHUD != none)
@@ -244,7 +258,7 @@ event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vecto
 	{
 		if (ObjectiveLever != none && bActive)
 		{
-			ObjectiveLever.bFathersBlessing = false;
+			ObjectiveLever.SetFathersBlessing(false);
 			CheckTriggerActivation();
 		}
 	}
@@ -252,7 +266,7 @@ event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vecto
 	{
 		if (ObjectiveLever != none && bActive)
 		{
-			ObjectiveLever.bFathersBlessing = true;
+			ObjectiveLever.SetFathersBlessing(true);
 			CheckTriggerActivation();
 		}
 	}
@@ -269,7 +283,7 @@ event UnTouch(Actor Other)
 	{
 		if (ObjectiveLever != none && bActive)
 		{
-			ObjectiveLever.bFathersBlessing = false;
+			ObjectiveLever.SetFathersBlessing(false);
 			CheckTriggerActivation();
 		}
 	}
@@ -277,7 +291,7 @@ event UnTouch(Actor Other)
 	{
 		if (ObjectiveLever != none && bActive)
 		{
-			ObjectiveLever.bFathersBlessing = true;
+			ObjectiveLever.SetFathersBlessing(true);
 			CheckTriggerActivation();
 		}
 	}
@@ -296,50 +310,64 @@ simulated function Timer_CheckObjective()
 	}
 
 	PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
-	if (bActive && TouchingZeds.length < ZedThresholds[PlayerCount] && ObjectiveLever != none)
+	if (bActive && ObjectiveLever != none)
 	{
-		ObjectiveLever.bFathersBlessing = true;
+		ObjectiveLever.SetFathersBlessing(TouchingZeds.length < ZedThresholds[PlayerCount] && TouchingHumans.Length >= PlayerThresholds[PlayerCount]);
 		CheckTriggerActivation();
 	}
 
+	if(ObjectiveLever != none && ObjectiveLever.bAllowActivation && !bObjectiveLeverActiveBefore)
+	{
+		if (TriggerReadySoundEvents.Length > TriggerPulls)
+		{
+			PlaySoundBase(TriggerReadySoundEvents[TriggerPulls],true);
+		}
+	}
+
+	bObjectiveLeverActiveBefore = ObjectiveLever.bAllowActivation;
+
+
 	if (Role == ROLE_Authority)
 	{
-		if(ObjectiveLever != none && ObjectiveLever.bAllowActivation && !bObjectiveLeverActiveBefore)
-		{
-			if (TriggerReadySoundEvents.Length > TriggerPulls)
-			{
-				PlaySoundBase(TriggerReadySoundEvents[TriggerPulls],false,WorldInfo.NetMode == NM_DedicatedServer);
-			}
-		}
-
-		bObjectiveLeverActiveBefore = ObjectiveLever.bAllowActivation;
-
 		if (bActive)
 		{
 			PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
 			if (TouchingHumans.Length < PlayerThresholds[PlayerCount])
 			{
-				if (TooFewPlayersSoundEvent != none && !IsTimerActive(nameof(Timer_TooFewPlayersReminderCooldown)))
+				if (!IsTimerActive(nameof(Timer_TooFewPlayersReminderCooldown)))
 				{
-					PlaySoundBase(TooFewPlayersSoundEvent,, WorldInfo.NetMode == NM_DedicatedServer);
+					// trigger sound event
+					if (TooFewPlayersSoundEvent != none)
+					{
+						PlaySoundBase(TooFewPlayersSoundEvent, , WorldInfo.NetMode == NM_DedicatedServer);
+					}
+
 					SetTimer(RemindPlayersTime, false, nameof(Timer_TooFewPlayersReminderCooldown));
 				}
 			}
-			
+
 			if (TouchingZeds.Length > ZedThresholds[PlayerCount])
 			{
-				if (TooManyZedsSoundEvent != none && !IsTimerActive(nameof(Timer_TooManyZedsReminderCooldown)))
+				if (!IsTimerActive(nameof(Timer_TooManyZedsReminderCooldown)))
 				{
-					PlaySoundBase(TooManyZedsSoundEvent,, WorldInfo.NetMode == NM_DedicatedServer);
+					if (TooManyZedsSoundEvent != none)
+					{
+						PlaySoundBase(TooManyZedsSoundEvent, , WorldInfo.NetMode == NM_DedicatedServer);
+					}
+
 					SetTimer(RemindPlayersTime, false, nameof(Timer_TooManyZedsReminderCooldown));
 				}
 			}
-			
+
 			if (ObjectiveLever != none && ObjectiveLever.bAllowActivation)
 			{
 				if (TriggerPulls < TriggerReminderSoundEvents.Length && TriggerReminderSoundEvents[TriggerPulls] != none && !IsTimerActive(nameof(Timer_TriggerReadyReminderCooldown)))
 				{
-					PlaySoundBase(TriggerReminderSoundEvents[TriggerPulls],, WorldInfo.NetMode == NM_DedicatedServer);
+					if (TriggerReminderSoundEvents[TriggerPulls] != none)
+					{
+						PlaySoundBase(TriggerReminderSoundEvents[TriggerPulls], , WorldInfo.NetMode == NM_DedicatedServer);
+					}
+
 					SetTimer(ReadyTriggerReminderTime, false, nameof(Timer_TriggerReadyReminderCooldown));
 				}
 			}
@@ -362,6 +390,7 @@ simulated function OnTriggerActivated()
 	}
 
 	TriggerPulls++;
+	TriggerObjectiveProgressEvent(EActivateTriggerProgressEvent_TriggerPulled, float(TriggerPulls) / float(TriggerPullsRequired));
 
 	if (Role == ROLE_Authority)
 	{
@@ -385,6 +414,8 @@ simulated function OnTriggerActivated()
 simulated function OnTriggerReactivated()
 {
 	CheckTriggerActivation();
+	nNumLeversActivated++;
+	TriggerObjectiveProgressEvent(EActivateTriggerProgressEvent_TriggerReady);
 }
 
 simulated function CheckTriggerActivation()
@@ -443,9 +474,6 @@ defaultproperties
    TriggerPullsRequired=6
    ActivationDelay=5.000000
    RemindPlayersTime=30.000000
-   LocalizationKey="ActivateTrigger"
-   DescriptionLocKey="DescriptionActivateTrigger"
-   RequirementsLocKey="RequiredActivateTrigger"
    PlayerThresholds(0)=1
    PlayerThresholds(1)=1
    PlayerThresholds(2)=2
@@ -458,12 +486,10 @@ defaultproperties
    ZedThresholds(3)=3
    ZedThresholds(4)=2
    ZedThresholds(5)=1
-   MaxRewards(0)=(WaveMaxReward[1]=200,WaveMaxReward[2]=350,WaveMaxReward[3]=500)
-   MaxRewards(1)=(WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=500)
-   MaxRewards(2)=(WaveMaxReward[1]=200,WaveMaxReward[2]=250,WaveMaxReward[3]=300,WaveMaxReward[4]=350,WaveMaxReward[5]=400,WaveMaxReward[6]=450,WaveMaxReward[7]=500,WaveMaxReward[8]=500,WaveMaxReward[9]=500,WaveMaxReward[10]=500)
-   XPRewards(0)=(WaveMaxReward[1]=150,WaveMaxReward[2]=200,WaveMaxReward[3]=300)
-   XPRewards(1)=(WaveMaxReward[1]=150,WaveMaxReward[2]=150,WaveMaxReward[3]=200,WaveMaxReward[4]=200,WaveMaxReward[5]=300,WaveMaxReward[6]=300)
-   XPRewards(2)=(WaveMaxReward[1]=100,WaveMaxReward[2]=150,WaveMaxReward[3]=150,WaveMaxReward[4]=200,WaveMaxReward[5]=200,WaveMaxReward[6]=250,WaveMaxReward[7]=250,WaveMaxReward[8]=300,WaveMaxReward[9]=300,WaveMaxReward[10]=300)
+   LocalizationKey="ActivateTrigger"
+   DescriptionLocKey="DescriptionActivateTrigger"
+   RequirementsLocKey="RequiredActivateTrigger"
+   ObjectiveIcon=Texture2D'Objectives_UI_Generic.DoNotShip.UI_Objectives_General_OperateControl'
    GameModeBlacklist(0)=Class'kfgamecontent.KFGameInfo_Endless'
    GameModeBlacklist(1)=Class'kfgamecontent.KFGameInfo_WeeklySurvival'
    Begin Object Class=BrushComponent Name=BrushComponent0 Archetype=BrushComponent'kfgamecontent.Default__KFMapObjective_AreaDefense:BrushComponent0'
@@ -481,6 +507,7 @@ defaultproperties
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
    CollisionComponent=BrushComponent0
+   SupportedEvents(7)=Class'KFGame.KFSeqEvent_ActivateTriggerProgress'
    Name="Default__KFMapObjective_ActivateTrigger"
    ObjectArchetype=KFMapObjective_AreaDefense'kfgamecontent.Default__KFMapObjective_AreaDefense'
 }

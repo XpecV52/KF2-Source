@@ -1,5 +1,6 @@
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
-   MaxWidth=136
+   bClientSideOnly=True
+   MaxWidth=207
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_Prison.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),ActivateDelay=2.000000,DrawY=213,OverrideDelta=14)
    OutputLinks(1)=(DrawY=234,OverrideDelta=35)
    OutputLinks(2)=(DrawY=255,OverrideDelta=56)
@@ -7,7 +8,7 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    ParentSequence=Sequence'SND_Prison.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=440
    ObjPosY=144
-   DrawWidth=137
+   DrawWidth=172
    Name="SeqEvent_LevelLoaded_0"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
 End Object

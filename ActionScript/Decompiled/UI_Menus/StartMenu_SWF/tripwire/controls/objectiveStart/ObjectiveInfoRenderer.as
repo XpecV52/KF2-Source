@@ -69,6 +69,8 @@ package tripwire.controls.objectiveStart
         
         public var descriptionFormat:TextFormat;
         
+        private var oldDescription:String = "PLACEHOLDER_DESC";
+        
         public function ObjectiveInfoRenderer()
         {
             this.rewardColor = new Color();
@@ -131,8 +133,12 @@ package tripwire.controls.objectiveStart
                 this.progressBar.visible = !!data.showProgress ? Boolean(data.showProgress) : false;
                 this.progressBar.progress = !!data.progress ? Number(data.progress) : Number(0);
                 this.progressBar.progressText.text = !!data.textValue ? data.textValue : "";
-                this.descriptionFormat.size = this.descriptionTextField.height > 61 ? 18 : 20;
-                this.descriptionTextField.setTextFormat(this.descriptionFormat);
+                if(data.description && data.description != this.oldDescription)
+                {
+                    this.descriptionFormat.size = this.descriptionTextField.numLines > 2 ? 18 : 20;
+                    this.descriptionTextField.setTextFormat(this.descriptionFormat);
+                    this.oldDescription = data.description;
+                }
             }
             else
             {

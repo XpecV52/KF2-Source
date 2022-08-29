@@ -479,7 +479,7 @@ SecondaryAmmo="M203-Granate"
 [KFWeap_SMG_MP5RAS]
 ItemName="MP5RAS-MP"
 ItemCategory="Maschinenpistole"
-ItemDescription="•Hier besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer wechselt den Feuer-Modus.\n•Die aktuellste Version einer der am meisten verwendeten Maschinenpistolen der Welt."
+ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi „vollautomatisch“ und „3-Schuss-Salve“.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Die aktuellste Version einer der am meisten verwendeten Maschinenpistolen der Welt."
 
 [KFWeap_SMG_P90]
 ItemName="P90-MP"
@@ -536,6 +536,16 @@ ItemDescription="•Das Primär-Feuer nutzt nur einen einzelnen Lauf.\n•Alt-Fe
 ItemName="Statischer Schläger"
 ItemCategory="Nahkampf"
 ItemDescription="•Primär – schneller, stumpfer Angriff, Primär halten für Komboangriff.\n•Sekundär – schwerer, elektrischer, stumpfer Angriff. Ganz schön schockierend!\n•Willst du einem Zed ins Gesicht hauen? Dann ist das was für dich!"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="Killerwatt"
+ItemCategory="Sturmgewehr"
+ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi „vollautomatisch“ und „Überladung“.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Überladungsmodus – Lädt bei gedrückter Feuer-Taste auf und feuert, wenn losgelassen wird."
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="Helios-Gewehr"
+ItemCategory="Sturmgewehr"
+ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi „vollautomatisch“ und „3-Schuss-Salve“.\n•Alt-Feuer um zwischen den Feuer-Modi zu wechseln.\n•Möge das Feuer mit dir sein."
 
 [KFWeap_SMG_Mac10]
 ItemName="MAC-10"

@@ -157,6 +157,7 @@ const STATID_ACHIEVE_MonsterBallCollectibles		= 4045;
 const STATID_ACHIEVE_MonsterBallSecretRoom			= 4046;
 const STATID_ACHIEVE_SantasWorkshopCollectibles		= 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles		= 4048;
+const STATID_ACHIEVE_SpillwayCollectibles			= 4049;
  
 #linenumber 15
 
@@ -228,6 +229,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
+const KFID_ToggleToRun=172;
 #linenumber 16
 
 
@@ -884,6 +886,17 @@ enum EAnalogMovementSpeed
 /** Real-time timer for IgnoreMoveInput */
 var private transient float PauseMoveInputTimeLeft;
 
+/** Interval for reducing the rotation speed limit*/
+var float RotationAdjustmentInterval;
+/** Amount of time over which to reduce the rotation speed limit back to normal*/
+var float MaxRotationAdjustmentTime;
+/** Current amount of time in the rotation speed limit reduction process*/
+var float CurrentRotationAdjustmentTime;
+/** Curve used for determining how much to reduce the rotation speed to*/
+var InterpCurveFloat RotationAdjustmentCurve;
+/** Adds a clamp to the amount of rotation that can happen*/
+var float RotationSpeedLimit;
+
 /*********************************************************************************************
 * @name Night Vision
 ********************************************************************************************* */
@@ -1294,9 +1307,13 @@ simulated event PostBeginPlay()
     UpdateSeasonalState();
 	MatchStats = new(Self) MatchStatsClass;
 	ClearDownloadInfo();
-    InitMixerDelegates();
-    InitLEDManager();
-	InitDiscord();
+
+	if (WorldInfo.NetMode != NM_DedicatedServer)
+	{
+		InitMixerDelegates();
+		InitLEDManager();
+		InitDiscord();
+	}
 
 	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 	if (OnlineSub != none)
@@ -1406,6 +1423,7 @@ simulated event name GetSeasonalStateName()
 	case SEI_Winter:
 		return 'Winter';
 	case SEI_Spring:
+		return 'Spring';
     default:
         return 'No_Event';
     }
@@ -2021,6 +2039,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 			KFInput.GamepadSensitivityScale = Profile.GetProfileFloat(KFID_GamepadSensitivityScale);
 			KFInput.GamepadZoomedSensitivityScale = Profile.GetProfileFloat(KFID_GamepadZoomedSensitivityScale);
 			KFInput.SetGamepadLayout(Profile.GetProfileInt(KFID_CurrentLayoutIndex));
+			KFInput.bToggleToRun = Profile.GetProfileBool(KFID_ToggleToRun);
 
 			KFInput.ReInitializeControlsUI();
 		}
@@ -3724,7 +3743,11 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 	}
 	else
 	{
-		HideBossNameplate();
+		// if the "BossHealthBar" is actually the escort health bar, don't hide the nameplate (when doing things like emoting)
+		if (MyGFxHUD == none || MyGFxHUD.BossHealthBar == none || MyGFxHUD.BossHealthBar.EscortPawn == none)
+		{
+			HideBossNameplate();
+		}
 
 		// Apply the same camera offset that Camera.uc uses to avoid popping
 		if( NewCamMode == 'FreeCam' )
@@ -4530,7 +4553,8 @@ function CheckJumpOrDuck()
 	}
 	if ( Pawn.Physics != PHYS_Falling && Pawn.bCanCrouch )
 	{
-		Pawn.ShouldCrouch(bDuck != 0 && bRun == 0);
+		// player is set to crouch and isn't running or is not moving
+		Pawn.ShouldCrouch(bDuck != 0 && (bRun == 0 || VSize(Velocity) == 0));
 	}
 }
 
@@ -4723,11 +4747,50 @@ function SetForceLookAtPawn(KFPawn P)
 	}
 }
 
+
+simulated function StartRotationAdjustment(InterpCurveFloat RotationCurve, float MaxTime)
+{
+	CurrentRotationAdjustmentTime = 0.0f;
+	RotationAdjustmentCurve = RotationCurve;
+	MaxRotationAdjustmentTime = MaxTime;
+	SetTimer(RotationAdjustmentInterval, true, nameof(Timer_RotationAdjustment));
+}
+
+simulated function Timer_RotationAdjustment()
+{
+	CurrentRotationAdjustmentTime += RotationAdjustmentInterval;
+
+	if (CurrentRotationAdjustmentTime / MaxRotationAdjustmentTime >= 1.0f)
+	{
+		// set all the way to unlimited
+		RotationSpeedLimit = -1.f;
+		CurrentRotationAdjustmentTime = 0.0f;
+		ClearTimer(nameof(Timer_RotationAdjustment));
+	}
+	else
+	{
+		RotationSpeedLimit = EvalInterpCurveFloat(RotationAdjustmentCurve, CurrentRotationAdjustmentTime / MaxRotationAdjustmentTime);
+	}
+}
+
 /** Called from PlayerController.UpdateRotation; Takes ForceLookAtPawn, bAutoTargetEnabled, and bTargetAdhesionEnabled into account */
 function ModifyUpdateRotation( float DeltaTime, out Rotator DeltaRot )
 {
 	local KFPlayerInput KFInput;
+	local float LimitModifier;
+
+	// some weapons can limit how quickly the player can rotate while in certain states
 	KFInput = KFPlayerInput(PlayerInput);
+	if (RotationSpeedLimit > 0)
+	{
+		LimitModifier = Abs(DeltaRot.Yaw) > Abs(DeltaRot.Pitch) ? Abs(DeltaRot.Yaw) / RotationSpeedLimit : Abs(DeltaRot.Pitch) / RotationSpeedLimit;
+			
+		if(LimitModifier > 1)
+		{
+			DeltaRot.Yaw /= LimitModifier;
+			DeltaRot.Pitch /= LimitModifier;
+		}
+	}
 
 	if( Pawn != none && ForceLookAtPawn != none && (ForceLookAtPawnTime >= 0 || bLockToForceLookAtPawn) )
 	{
@@ -9239,8 +9302,11 @@ event Destroyed()
 		OnlineSub.ClearAllReadOnlineAvatarCompleteDelegates();
 	}
 
-    ClearMixerDelegates();
-	ClearDiscord();
+	if (WorldInfo.NetMode != NM_DedicatedServer)
+	{
+		ClearMixerDelegates();
+		ClearDiscord();
+	}
     ClientMatchEnded();
 
 	Super.Destroyed();
@@ -9248,7 +9314,7 @@ event Destroyed()
 
 event Exit()
 {
-	if (LEDEffectsManager != none)
+	if (LEDEffectsManager != none && WorldInfo.NetMode != NM_DedicatedServer)
 	{
 		LEDEffectsManager.LedStopEffects();
 	}
@@ -11521,7 +11587,7 @@ simulated function CreateDiscordGamePresence()
 				}
 				else
 				{
-					DetailsString = DetailsString $ class'KFCommon_LocalizedStrings'.default.DiscordWaveString $ GRI.WaveNum $ "/" $ (GRI.WaveMax - 1);
+					DetailsString = DetailsString $ class'KFCommon_LocalizedStrings'.default.DiscordWaveString $ GRI.WaveNum $ "/" $ GRI.GetFinalWaveNum();
 				}
 			}
 
@@ -11602,6 +11668,8 @@ defaultproperties
       ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'
    End Object
    AmplificationLightTemplate=AmplificationLightTemplate_0
+   RotationAdjustmentInterval=0.100000
+   RotationSpeedLimit=-1.000000
    Begin Object Class=PointLightComponent Name=NVGLightTemplate_0
       Radius=800.000000
       bAIIgnoreLuminosity=True

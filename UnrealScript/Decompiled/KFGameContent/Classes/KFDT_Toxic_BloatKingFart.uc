@@ -13,5 +13,6 @@ defaultproperties
     bNoInstigatorDamage=true
     bConsideredIndirectOrAoE=true
     DoT_Type=EDamageOverTimeGroup.DOT_None
+    PoisonPower=0
     CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Puke_Light'
 }

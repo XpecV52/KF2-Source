@@ -724,6 +724,7 @@ defaultproperties
    bTargetAdhesionEnabled=False
    bInfiniteSpareAmmo=True
    bAllowClientAmmoTracking=False
+   bStorePreviouslyEquipped=False
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    InventoryGroup=IG_None

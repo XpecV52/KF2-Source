@@ -33,6 +33,11 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
 	local KFPawn_Monster KFPM;
 
+	if (Role < ROLE_Authority)
+	{
+		return;
+	}
+
 	KFPM = KFPawn_Monster(Other);
 
 	if (KFPM != none && (KFPM.IsDoingSpecialMove(SM_Knockdown) || !KFPM.IsAliveAndWell()))
@@ -108,6 +113,9 @@ DefaultProperties
 
     bCollideComplex=true	// Ignore simple collision on StaticMeshes, and collide per poly
 	bBlockedByInstigator=false
+
+	bNetTemporary=False
+	bAlwaysReplicateExplosion=true
 
 	// Grenade explosion light
 	Begin Object Class=PointLightComponent Name=ExplosionPointLight

@@ -628,7 +628,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
 
 defaultproperties
 {
-    SpecialWaveTypes(0)=145
+    SpecialWaveTypes(0)=164
     SpecialWaveTypes(1)=1
     SpecialWaveTypes(2)=0
     SpecialWaveTypes(3)=0
@@ -636,13 +636,12 @@ defaultproperties
     SpecialWaveTypes(5)=0
     SpecialWaveTypes(6)=0
     SpecialWaveTypes(7)=0
-    SpecialWaveTypes(8)=152
+    SpecialWaveTypes(8)=171
     SpecialWaveTypes(9)=1
     SpecialWaveTypes(10)=0
     SpecialWaveStart=6
     OutbreakWaveStart=6
     bSplitBossDoshReward=false
-    bGoToBossCameraOnDeath=false
     bIsEndlessGame=true
     DifficultyInfoClass=Class'KFGameDifficulty_Endless'
     DifficultyInfoConsoleClass=Class'KFGameDifficulty_Endless_Console'

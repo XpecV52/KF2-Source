@@ -727,7 +727,7 @@ function DisplayExpandedWaveInfo()
 				}
 				else
 				{
-					PriorityMessageObject.SetString("waveNum", KFGRI.WaveNum $"/"@(KFGRI.WaveMax - 1));
+					PriorityMessageObject.SetString("waveNum", KFGRI.WaveNum $"/"@KFGRI.GetFinalWaveNum());
 				}
 			}
 		}
@@ -808,15 +808,12 @@ function bool ShouldCheckForObjective(EGameMessageType MessageType)
 		return false;
 	}
 
-	if (KFGRI.IsBossWave())
-	{
-		return false;
-	}
 	switch (MessageType)
 	{
 		case GMT_WaveStart:
 		case GMT_WaveStartWeekly:
 		case GMT_WaveStartSpecial:
+		case GMT_WaveSBoss:
 		case GMT_WaveEnd:
 			return true;
 	}

@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_SMG_Medic"
    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_MedicSMG"
    BuyPrice=650
-   AmmoPricePerMag=20
+   AmmoPricePerMag=21
    UpgradePrice(0)=600
    UpgradePrice(1)=700
    UpgradePrice(2)=1500

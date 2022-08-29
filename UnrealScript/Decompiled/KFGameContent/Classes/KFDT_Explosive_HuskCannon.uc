@@ -26,7 +26,7 @@ defaultproperties
     KnockdownPower=50
     StumblePower=170
     MeleeHitPower=50
-    BurnPower=25
+    BurnPower=50
     ModifierPerkList=/* Array type was not detected. */
     GibImpulseScale=0.15
     bExtraMomentumZ=false

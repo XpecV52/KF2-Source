@@ -864,6 +864,7 @@ function Update()
             SpawnList = GetNextSpawnList();
             Outer.NumAISpawnsQueued += (SpawnSquad(SpawnList));
             TimeUntilNextSpawn = CalcNextGroupSpawnTime();
+            Outer.UpdateAIRemaining();
         }
     }
 }

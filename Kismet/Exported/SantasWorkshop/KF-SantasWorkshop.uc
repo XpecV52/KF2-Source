@@ -81,7 +81,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_75
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
-Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_0
+Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_3
    EventName="Area1Door1Open"
    MaxWidth=227
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_5',InputLinkIdx=1)),DrawY=-5454,OverrideDelta=11)
@@ -93,7 +93,7 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_0
    ObjComment="Area1Door1Open"
    DrawWidth=133
    DrawHeight=128
-   Name="SeqEvent_RemoteEvent_0"
+   Name="SeqEvent_RemoteEvent_3"
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
 End Object
 
@@ -2011,7 +2011,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_16
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-5578,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-5555,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-5532,OverrideDelta=61)
@@ -2020,11 +2020,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_16
    OutputLinks(5)=(Links=((LinkedOp=SeqAct_SetBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_15')),DrawY=-5463,OverrideDelta=130)
    OutputLinks(6)=(DrawY=-5440,OverrideDelta=153)
    OutputLinks(7)=(DrawY=-5417,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-5394,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9288
    ObjPosY=-5648
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_16"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -2314,7 +2315,7 @@ End Object
 
 Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_2
    InputLinks(0)=(DrawY=-9150,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-9150,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_0')),DrawY=-9150,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_19'),DrawX=-4686,OverrideDelta=16)
    VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_16'),DrawX=-4630,OverrideDelta=68)
    ObjInstanceVersion=1
@@ -2470,9 +2471,20 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_294
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.000732,Z=-0.000122),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=188,R=149,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -2489,20 +2501,9 @@ Begin Object Class=InterpData Name=InterpData_5
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.000732,Z=-0.000122),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=188,R=149,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1'
@@ -2628,7 +2629,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_183
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_63
    InputLinks(0)=(DrawY=573,OverrideDelta=14)
    InputLinks(1)=(DrawY=594,OverrideDelta=35)
    InputLinks(2)=(DrawY=615,OverrideDelta=56)
@@ -2642,7 +2643,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
    ObjPosY=536
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_13"
+   Name="SeqAct_Toggle_63"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
@@ -2820,8 +2821,8 @@ End Object
 Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_1
    MaxTriggerCount=0
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_14'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_22'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_47')),DrawY=-4580,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_22'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_14'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_47')),DrawY=-4560,OverrideDelta=33)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_14'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_22'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_54')),DrawY=-4580,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_22'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_14'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_54')),DrawY=-4560,OverrideDelta=33)
    VariableLinks(0)=(DrawX=-9221,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-9160,OverrideDelta=86)
    VariableLinks(2)=(DrawX=-9079,OverrideDelta=139)
@@ -2857,9 +2858,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_16
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000244,Y=-0.000122,Z=0.000015),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_1.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=188,R=149,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -2876,20 +2888,9 @@ Begin Object Class=InterpData Name=InterpData_16
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000244,Y=-0.000122,Z=0.000015),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_1.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=188,R=149,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_1'
@@ -2955,9 +2956,20 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_501
 End Object
 
 Begin Object Class=InterpData Name=InterpData_17
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000122,Y=-0.000977,Z=-0.000008),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_1.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=188,R=149,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -2974,20 +2986,9 @@ Begin Object Class=InterpData Name=InterpData_17
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000122,Y=-0.000977,Z=-0.000008),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_1.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=188,R=149,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_1'
@@ -3047,9 +3048,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_10
 End Object
 
 Begin Object Class=InterpData Name=InterpData_10
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=225.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_1.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=188,R=149,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -3066,20 +3078,9 @@ Begin Object Class=InterpData Name=InterpData_10
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=225.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_1.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=188,R=149,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_1'
@@ -3219,7 +3220,7 @@ End Object
 Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_0
    MaxTriggerCount=0
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_13'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_3'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_51')),DrawY=-860,OverrideDelta=13)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_13'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_3'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_53')),DrawY=-860,OverrideDelta=13)
    OutputLinks(1)=(DrawY=-840,OverrideDelta=33)
    VariableLinks(0)=(DrawX=-9357,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-9296,OverrideDelta=86)
@@ -3525,9 +3526,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_16
 End Object
 
 Begin Object Class=InterpData Name=InterpData_11
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.000732,Z=-0.000122),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_1.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=188,R=149,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -3544,20 +3556,9 @@ Begin Object Class=InterpData Name=InterpData_11
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000244,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.000732,Z=-0.000122),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=112.500000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_1.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=188,R=149,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_1'
@@ -3734,7 +3735,7 @@ Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_9
    MaxTriggerCount=0
    MaxWidth=248
    OutputLinks(0)=(DrawY=-3996,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_108')),DrawY=-3976,OverrideDelta=33)
+   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_47')),DrawY=-3976,OverrideDelta=33)
    VariableLinks(0)=(DrawX=-6733,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-6672,OverrideDelta=86)
    VariableLinks(2)=(DrawX=-6591,OverrideDelta=139)
@@ -3745,24 +3746,6 @@ Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_9
    DrawWidth=175
    DrawHeight=168
    Name="KFSeqEvent_WaveStart_9"
-   ObjectArchetype=KFSeqEvent_WaveStart'KFGame.Default__KFSeqEvent_WaveStart'
-End Object
-
-Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_4
-   MaxTriggerCount=0
-   MaxWidth=248
-   OutputLinks(0)=(DrawY=-2468,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_115')),DrawY=-2448,OverrideDelta=33)
-   VariableLinks(0)=(DrawX=-6765,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-6704,OverrideDelta=86)
-   VariableLinks(2)=(DrawX=-6623,OverrideDelta=139)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6808
-   ObjPosY=-2536
-   DrawWidth=175
-   DrawHeight=168
-   Name="KFSeqEvent_WaveStart_4"
    ObjectArchetype=KFSeqEvent_WaveStart'KFGame.Default__KFSeqEvent_WaveStart'
 End Object
 
@@ -4578,13 +4561,13 @@ End Object
 
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_108
    EventName="BossWave"
-   InputLinks(0)=(DrawY=-3838,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-3838,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-6206,OverrideDelta=90)
+   InputLinks(0)=(DrawY=-3790,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-3790,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6022,OverrideDelta=90)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6328
-   ObjPosY=-3872
+   ObjPosX=-6144
+   ObjPosY=-3824
    ObjComment="BossWave"
    DrawWidth=245
    DrawHeight=61
@@ -4617,7 +4600,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_149
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_150
-   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_12'
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_73'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4672
@@ -5025,7 +5008,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_0
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-6866,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-6843,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-6820,OverrideDelta=61)
@@ -5034,11 +5017,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_0
    OutputLinks(5)=(DrawY=-6751,OverrideDelta=130)
    OutputLinks(6)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_0')),DrawY=-6728,OverrideDelta=153)
    OutputLinks(7)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_0')),DrawY=-6705,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-6682,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=7552
    ObjPosY=-6936
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_0"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -5059,134 +5043,6 @@ Begin Object Class=SeqAct_ToggleHidden Name=SeqAct_ToggleHidden_0
    DrawHeight=109
    Name="SeqAct_ToggleHidden_0"
    ObjectArchetype=SeqAct_ToggleHidden'Engine.Default__SeqAct_ToggleHidden'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
-   InputLinks(0)=(DrawY=-8619,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-8598,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-8577,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),ActivateDelay=1.000000,DrawY=-8598,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_598',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_599',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_638',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_639',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_640',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_641',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_642',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_643',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_644',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_645',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_646',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_647',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_648',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_649',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_650',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_651',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_652',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_653',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_654',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_655',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_656',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_657',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_658',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_659',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_660',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_661',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_662',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_663',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_664',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_665'),DrawX=-2570,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-2519,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-2470,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2608
-   ObjPosY=-8656
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_7"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_0
-   LinkCount=5
-   IncrementAmount=0
-   InputLinks(0)=(DrawY=-8746,OverrideDelta=31)
-   InputLinks(1)=(DrawY=-8690,OverrideDelta=87)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=-8762,OverrideDelta=15)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),LinkDesc="Link 2",DrawY=-8740,OverrideDelta=37)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),LinkDesc="Link 3",DrawY=-8718,OverrideDelta=59)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_67')),LinkDesc="Link 4",DrawY=-8696,OverrideDelta=81)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),LinkDesc="Link 5",DrawY=-8674,OverrideDelta=103)
-   VariableLinks(0)=(DrawX=-2188,OverrideDelta=23)
-   ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2232
-   ObjPosY=-8800
-   DrawWidth=89
-   DrawHeight=173
-   Name="SeqAct_RandomSwitch_0"
-   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_67
-   InputLinks(0)=(DrawY=-8507,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-8486,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-8465,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-8486,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_586',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_587',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_588',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_589',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_590',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_591'),DrawX=-1434,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-1383,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-1334,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1472
-   ObjPosY=-8544
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_67"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
-   InputLinks(0)=(DrawY=-9563,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-9542,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-9521,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-9542,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_225',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_227',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_246',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_249',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_250',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_281'),DrawX=-1426,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-1375,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-1326,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1464
-   ObjPosY=-9600
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_5"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
-   InputLinks(0)=(DrawY=-8867,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-8846,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-8825,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-8846,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_414',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_581',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_582',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_583',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_584',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_585'),DrawX=-1426,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-1375,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-1326,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1464
-   ObjPosY=-8904
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_4"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
-   InputLinks(0)=(DrawY=-9203,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-9182,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-9161,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-9182,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_316',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_319',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_410',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_411',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_412',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_413'),DrawX=-1418,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-1367,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-1318,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1456
-   ObjPosY=-9240
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_3"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SequenceFrame Name=SequenceFrame_48
-   SizeX=2378
-   SizeY=2035
-   BorderWidth=5
-   bDrawBox=True
-   FillColor=(B=0,G=156,R=255,A=16)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3144
-   ObjPosY=-9760
-   ObjComment="Randomized Starting Spawns"
-   DrawWidth=2378
-   DrawHeight=2035
-   Name="SequenceFrame_48"
-   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_233
@@ -5352,7 +5208,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_29
    EventName="Escort1BStart"
    MaxWidth=209
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_13'),(LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5'),(LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_23')),DrawY=458,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_63'),(LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5'),(LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_23')),DrawY=458,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-2320,OverrideDelta=72)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -6860,22 +6716,6 @@ Begin Object Class=KFSeqEvent_TraderOpened Name=KFSeqEvent_TraderOpened_3
    ObjectArchetype=KFSeqEvent_TraderOpened'KFGame.Default__KFSeqEvent_TraderOpened'
 End Object
 
-Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_115
-   EventName="BossWave"
-   InputLinks(0)=(DrawY=-2358,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-2358,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-6254,OverrideDelta=90)
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6376
-   ObjPosY=-2392
-   ObjComment="BossWave"
-   DrawWidth=245
-   DrawHeight=61
-   Name="SeqAct_ActivateRemoteEvent_115"
-   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_452
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_71'
    ObjInstanceVersion=1
@@ -7403,13 +7243,13 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_26
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Opening_intro'
-   InputLinks(0)=(DrawY=-2566,ActivateDelay=4.000000,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-2566,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-2824,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-2558,ActivateDelay=3.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-2558,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-2656,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2872
-   ObjPosY=-2600
+   ObjPosX=-2704
+   ObjPosY=-2592
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_26"
@@ -7417,15 +7257,15 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_26
 End Object
 
 Begin Object Class=SeqAct_Gate Name=SeqAct_Gate_0
-   InputLinks(0)=(DrawY=-2587,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-2565,OverrideDelta=36)
-   InputLinks(2)=(DrawY=-2543,OverrideDelta=58)
-   InputLinks(3)=(DrawY=-2521,OverrideDelta=80)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0',InputLinkIdx=2),(LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_26')),DrawY=-2554,OverrideDelta=47)
+   InputLinks(0)=(DrawY=-2579,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2557,OverrideDelta=36)
+   InputLinks(2)=(DrawY=-2535,OverrideDelta=58)
+   InputLinks(3)=(DrawY=-2513,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0',InputLinkIdx=2),(LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_26')),DrawY=-2546,OverrideDelta=47)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3088
-   ObjPosY=-2624
+   ObjPosX=-2920
+   ObjPosY=-2616
    DrawWidth=82
    DrawHeight=117
    Name="SeqAct_Gate_0"
@@ -7451,20 +7291,21 @@ End Object
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_1
    MaxTriggerCount=0
    bClientSideOnly=True
-   MaxWidth=207
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-2674,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-2651,OverrideDelta=38)
    OutputLinks(2)=(Links=((LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0',InputLinkIdx=1)),DrawY=-2628,OverrideDelta=61)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-2605,OverrideDelta=84)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-2582,OverrideDelta=107)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-2559,OverrideDelta=130)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=-2605,OverrideDelta=84)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=-2582,OverrideDelta=107)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=-2559,OverrideDelta=130)
    OutputLinks(6)=(DrawY=-2536,OverrideDelta=153)
    OutputLinks(7)=(DrawY=-2513,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-2490,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3536
    ObjPosY=-2744
-   DrawWidth=205
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_1"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -7599,9 +7440,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_90
 End Object
 
 Begin Object Class=InterpData Name=InterpData_1
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="CamTrack_Main",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=203,G=126,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -7618,16 +7466,9 @@ Begin Object Class=InterpData Name=InterpData_1
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="CamTrack_Main",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=203,G=126,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
@@ -7854,7 +7695,7 @@ End Object
 Begin Object Class=KFSeqEvent_MapObjectiveActivated Name=KFSeqEvent_MapObjectiveActivated_0
    Originator=KFMapObjective_ActivateTrigger'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMapObjective_ActivateTrigger_2'
    MaxWidth=411
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1'),(LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_13')),DrawY=7044,OverrideDelta=13)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_85'),(LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_13')),DrawY=7044,OverrideDelta=13)
    OutputLinks(1)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_0'),(LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_52')),DrawY=7064,OverrideDelta=33)
    VariableLinks(0)=(DrawX=-875,OverrideDelta=173)
    ObjInstanceVersion=1
@@ -7891,10 +7732,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_15
 End Object
 
 Begin Object Class=InterpData Name=InterpData_15
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000244,Y=-0.000244,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=22.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -7909,6 +7746,10 @@ Begin Object Class=InterpData Name=InterpData_15
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=22.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpGroup_0'
@@ -7950,10 +7791,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_505
 End Object
 
 Begin Object Class=InterpData Name=InterpData_14
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000244,Y=-0.000244,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=22.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -7968,6 +7805,10 @@ Begin Object Class=InterpData Name=InterpData_14
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=22.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpGroup_0'
@@ -8029,10 +7870,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_13
 End Object
 
 Begin Object Class=InterpData Name=InterpData_13
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000244,Y=-0.000244,Z=0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=22.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -8047,6 +7884,10 @@ Begin Object Class=InterpData Name=InterpData_13
       GroupColor=(B=206,G=120,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=22.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_0'
@@ -8738,7 +8579,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_14
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-7074,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-7051,OverrideDelta=38)
    OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_66',InputLinkIdx=1)),DrawY=-7028,OverrideDelta=61)
@@ -8747,11 +8588,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_14
    OutputLinks(5)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_66',InputLinkIdx=1)),DrawY=-6959,OverrideDelta=130)
    OutputLinks(6)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),ActivateDelay=2.000000,DrawY=-6936,OverrideDelta=153)
    OutputLinks(7)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),ActivateDelay=2.000000,DrawY=-6913,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-6890,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3056
    ObjPosY=-7144
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_14"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -8843,9 +8685,27 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_43
 End Object
 
 Begin Object Class=InterpData Name=InterpData_43
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_10
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_9
+         AkEvents(0)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=6.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_9"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_10.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_10.InterpTrackAkEvent_9'
+      GroupName="DummyBox"
+      GroupColor=(B=220,G=0,R=92,A=255)
+      Name="InterpGroup_10"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -8860,27 +8720,9 @@ Begin Object Class=InterpData Name=InterpData_43
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_10
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_9
-         AkEvents(0)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=6.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_9"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_10.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_10.InterpTrackAkEvent_9'
-      GroupName="DummyBox"
-      GroupColor=(B=220,G=0,R=92,A=255)
-      Name="InterpGroup_10"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=7.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_1'
@@ -9724,7 +9566,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_49
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_75
    InputLinks(0)=(DrawY=7165,OverrideDelta=14)
    InputLinks(1)=(DrawY=7186,OverrideDelta=35)
    InputLinks(2)=(DrawY=7207,OverrideDelta=56)
@@ -9738,16 +9580,16 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    ObjPosY=7128
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_10"
+   Name="SeqAct_Toggle_75"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_85
    Duration=20.000000
    InputLinks(0)=(DrawY=6949,OverrideDelta=14)
    InputLinks(1)=(DrawY=6970,OverrideDelta=35)
    InputLinks(2)=(DrawY=6991,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_47'),(LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10')),DrawY=6954,OverrideDelta=19)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_47'),(LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_75')),DrawY=6954,OverrideDelta=19)
    OutputLinks(1)=(DrawY=6986,OverrideDelta=51)
    VariableLinks(0)=(DrawX=-556,OverrideDelta=25)
    ObjInstanceVersion=1
@@ -9756,7 +9598,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
    ObjPosY=6912
    DrawWidth=106
    DrawHeight=109
-   Name="SeqAct_Delay_1"
+   Name="SeqAct_Delay_85"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
@@ -10191,7 +10033,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_4
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-4850,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-4827,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-4804,OverrideDelta=61)
@@ -10200,11 +10042,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_4
    OutputLinks(5)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_48')),ActivateDelay=2.000000,DrawY=-4735,OverrideDelta=130)
    OutputLinks(6)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_65',InputLinkIdx=1)),ActivateDelay=3.000000,DrawY=-4712,OverrideDelta=153)
    OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_65',InputLinkIdx=1)),ActivateDelay=3.000000,DrawY=-4689,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-4666,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=112
    ObjPosY=-4920
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_4"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -10326,7 +10169,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_2
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-8938,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-8915,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-8892,OverrideDelta=61)
@@ -10335,11 +10178,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_2
    OutputLinks(5)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_11')),DrawY=-8823,OverrideDelta=130)
    OutputLinks(6)=(DrawY=-8800,OverrideDelta=153)
    OutputLinks(7)=(DrawY=-8777,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-8754,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4288
    ObjPosY=-9008
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_2"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -10365,6 +10209,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_730
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5952
    ObjPosY=-528
+   ObjComment="Cart Collision"
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_730"
@@ -10626,10 +10471,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
 End Object
 
 Begin Object Class=InterpData Name=InterpData_8
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.249466,OutVal=(X=0.000244,Y=0.000122,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,InterpMode=CIM_CurveAutoClamped)))
@@ -10644,6 +10485,10 @@ Begin Object Class=InterpData Name=InterpData_8
       GroupColor=(B=0,G=109,R=212,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.505454
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_0'
@@ -10816,9 +10661,20 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_342
 End Object
 
 Begin Object Class=InterpData Name=InterpData_21
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_1.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=188,R=149,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -10835,20 +10691,9 @@ Begin Object Class=InterpData Name=InterpData_21
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_1.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=188,R=149,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_1'
@@ -11570,7 +11415,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_9
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-6578,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-6555,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-6532,OverrideDelta=61)
@@ -11579,11 +11424,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_9
    OutputLinks(5)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_58')),DrawY=-6463,OverrideDelta=130)
    OutputLinks(6)=(DrawY=-6440,OverrideDelta=153)
    OutputLinks(7)=(DrawY=-6417,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-6394,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=96
    ObjPosY=-6648
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_9"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -11916,26 +11762,6 @@ Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_2
    DrawHeight=85
    Name="SeqCond_CompareBool_2"
    ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
-End Object
-
-Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_17
-   MaxTriggerCount=0
-   MaxWidth=202
-   OutputLinks(0)=(DrawY=-9074,OverrideDelta=15)
-   OutputLinks(1)=(DrawY=-9051,OverrideDelta=38)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7',InputLinkIdx=1)),DrawY=-9028,OverrideDelta=61)
-   OutputLinks(3)=(DrawY=-9005,OverrideDelta=84)
-   OutputLinks(4)=(DrawY=-8982,OverrideDelta=107)
-   OutputLinks(5)=(DrawY=-8959,OverrideDelta=130)
-   OutputLinks(6)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-8936,OverrideDelta=153)
-   OutputLinks(7)=(DrawY=-8913,OverrideDelta=176)
-   ObjInstanceVersion=4
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2984
-   ObjPosY=-9144
-   DrawWidth=203
-   Name="KFSeqEvent_LevelLoaded_17"
-   ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
 
 Begin Object Class=KFSeqEvent_PlayerDied Name=KFSeqEvent_PlayerDied_0
@@ -12369,7 +12195,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_3
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21',InputLinkIdx=1)),ActivateDelay=0.500000,DrawY=-9178,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-9155,OverrideDelta=38)
    OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_21',InputLinkIdx=1)),DrawY=-9132,OverrideDelta=61)
@@ -12378,11 +12204,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_3
    OutputLinks(5)=(DrawY=-9063,OverrideDelta=130)
    OutputLinks(6)=(DrawY=-9040,OverrideDelta=153)
    OutputLinks(7)=(DrawY=-9017,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-8994,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-120
    ObjPosY=-9248
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_3"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -13838,21 +13665,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_19
 End Object
 
 Begin Object Class=InterpData Name=InterpData_19
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -13866,6 +13678,21 @@ Begin Object Class=InterpData Name=InterpData_19
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpGroup_0'
@@ -13951,9 +13778,20 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_334
 End Object
 
 Begin Object Class=InterpData Name=InterpData_20
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_1.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=188,R=149,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -13970,20 +13808,9 @@ Begin Object Class=InterpData Name=InterpData_20
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_1.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=188,R=149,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_1'
@@ -14083,21 +13910,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_308
 End Object
 
 Begin Object Class=InterpData Name=InterpData_7
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -14111,6 +13923,21 @@ Begin Object Class=InterpData Name=InterpData_7
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0'
@@ -14172,21 +13999,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -14200,6 +14012,21 @@ Begin Object Class=InterpData Name=InterpData_0
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
@@ -14283,9 +14110,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_27
 End Object
 
 Begin Object Class=InterpData Name=InterpData_27
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=188,R=149,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -14302,20 +14140,9 @@ Begin Object Class=InterpData Name=InterpData_27
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=188,R=149,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1'
@@ -14381,21 +14208,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_370
 End Object
 
 Begin Object Class=InterpData Name=InterpData_34
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -14409,6 +14221,21 @@ Begin Object Class=InterpData Name=InterpData_34
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_0'
@@ -14472,21 +14299,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_24
 End Object
 
 Begin Object Class=InterpData Name=InterpData_24
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -14500,6 +14312,21 @@ Begin Object Class=InterpData Name=InterpData_24
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0'
@@ -14585,21 +14412,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_362
 End Object
 
 Begin Object Class=InterpData Name=InterpData_30
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -14613,6 +14425,21 @@ Begin Object Class=InterpData Name=InterpData_30
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0'
@@ -14676,21 +14503,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_32
 End Object
 
 Begin Object Class=InterpData Name=InterpData_32
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -14704,6 +14516,21 @@ Begin Object Class=InterpData Name=InterpData_32
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_0'
@@ -14789,21 +14616,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_307
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -14817,6 +14629,21 @@ Begin Object Class=InterpData Name=InterpData_6
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0'
@@ -14901,21 +14728,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_368
 End Object
 
 Begin Object Class=InterpData Name=InterpData_33
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -14929,6 +14741,21 @@ Begin Object Class=InterpData Name=InterpData_33
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_0'
@@ -14992,21 +14819,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_29
 End Object
 
 Begin Object Class=InterpData Name=InterpData_29
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -15020,6 +14832,21 @@ Begin Object Class=InterpData Name=InterpData_29
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_0'
@@ -15125,21 +14952,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_343
 End Object
 
 Begin Object Class=InterpData Name=InterpData_22
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -15153,6 +14965,21 @@ Begin Object Class=InterpData Name=InterpData_22
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroup_0'
@@ -15252,21 +15079,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_25
 End Object
 
 Begin Object Class=InterpData Name=InterpData_25
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -15280,6 +15092,21 @@ Begin Object Class=InterpData Name=InterpData_25
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0'
@@ -15363,21 +15190,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_352
 End Object
 
 Begin Object Class=InterpData Name=InterpData_26
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -15391,6 +15203,21 @@ Begin Object Class=InterpData Name=InterpData_26
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_0'
@@ -15493,21 +15320,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_363
 End Object
 
 Begin Object Class=InterpData Name=InterpData_31
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -15521,6 +15333,21 @@ Begin Object Class=InterpData Name=InterpData_31
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_0'
@@ -15602,21 +15429,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_28
 End Object
 
 Begin Object Class=InterpData Name=InterpData_28
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -15630,6 +15442,21 @@ Begin Object Class=InterpData Name=InterpData_28
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_0'
@@ -15732,21 +15559,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_35
 End Object
 
 Begin Object Class=InterpData Name=InterpData_35
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -15760,6 +15572,21 @@ Begin Object Class=InterpData Name=InterpData_35
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0'
@@ -15845,21 +15672,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_374
 End Object
 
 Begin Object Class=InterpData Name=InterpData_36
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_36.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -15873,6 +15685,21 @@ Begin Object Class=InterpData Name=InterpData_36
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_36.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_36.InterpGroup_0'
@@ -15972,21 +15799,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_37
 End Object
 
 Begin Object Class=InterpData Name=InterpData_37
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_37.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -16000,6 +15812,21 @@ Begin Object Class=InterpData Name=InterpData_37
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_37.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_37.InterpGroup_0'
@@ -16065,21 +15892,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_346
 End Object
 
 Begin Object Class=InterpData Name=InterpData_23
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_23.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Door1"
-      GroupColor=(B=158,G=0,R=181,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -16093,6 +15905,21 @@ Begin Object Class=InterpData Name=InterpData_23
       GroupName="Door2"
       GroupColor=(B=0,G=188,R=149,A=255)
       Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=78.750000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_23.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Door1"
+      GroupColor=(B=158,G=0,R=181,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_23.InterpGroup_0'
@@ -16151,8 +15978,8 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_60
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_79
-   SizeX=1713
-   SizeY=824
+   SizeX=2506
+   SizeY=1579
    BorderWidth=5
    bDrawBox=True
    ObjInstanceVersion=1
@@ -16160,8 +15987,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_79
    ObjPosX=-6008
    ObjPosY=-9392
    ObjComment="Endless / Weekly"
-   DrawWidth=1713
-   DrawHeight=824
+   DrawWidth=2506
+   DrawHeight=1579
    Name="SequenceFrame_79"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
@@ -16644,7 +16471,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_10
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=102,OverrideDelta=15)
    OutputLinks(1)=(DrawY=125,OverrideDelta=38)
    OutputLinks(2)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_1',InputLinkIdx=1)),DrawY=148,OverrideDelta=61)
@@ -16653,11 +16480,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_10
    OutputLinks(5)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_1')),ActivateDelay=2.000000,DrawY=217,OverrideDelta=130)
    OutputLinks(6)=(DrawY=240,OverrideDelta=153)
    OutputLinks(7)=(DrawY=263,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=286,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6368
    ObjPosY=32
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_10"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -19100,32 +18928,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_224
 End Object
 
 Begin Object Class=InterpData Name=InterpData_18
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=1239.510742,Y=-818.495300,Z=-0.000122),ArriveTangent=(X=321.518066,Y=-178.857880,Z=0.000000),LeaveTangent=(X=321.518066,Y=-178.857880,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.000000,OutVal=(X=2250.626465,Y=-1252.005127,Z=131.999786),ArriveTangent=(X=88.365280,Y=-277.686554,Z=0.000000),LeaveTangent=(X=88.365280,Y=-277.686554,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=2372.287109,Y=-3063.656006,Z=131.999725),ArriveTangent=(X=90.459274,Y=-231.943909,Z=0.000000),LeaveTangent=(X=90.459274,Y=-231.943909,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=(X=3599.326660,Y=-3407.759277,Z=146.999664),ArriveTangent=(X=325.694489,Y=0.000000,Z=0.000000),LeaveTangent=(X=325.694489,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=17.000000,OutVal=(X=4652.148438,Y=-3120.901611,Z=125.999603),ArriveTangent=(X=211.986542,Y=154.642426,Z=0.000000),LeaveTangent=(X=211.986542,Y=154.642426,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=5117.565918,Y=-1868.486328,Z=128.999542),ArriveTangent=(X=228.132278,Y=44.221062,Z=0.000000),LeaveTangent=(X=228.132278,Y=44.221062,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=6783.930664,Y=-1786.354004,Z=125.999481),ArriveTangent=(X=383.854980,Y=14.731174,Z=0.000000),LeaveTangent=(X=383.854980,Y=14.731174,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=29.000000,OutVal=(X=8572.260742,Y=-1735.905762,Z=230.999390),ArriveTangent=(X=108.975693,Y=0.000000,Z=12.738941),LeaveTangent=(X=108.975693,Y=0.000000,Z=12.738941),InterpMode=CIM_CurveAutoClamped),(InVal=33.000000,OutVal=(X=8770.196289,Y=-2872.592529,Z=257.999390),ArriveTangent=(X=32.436073,Y=-335.188416,Z=1.650901),LeaveTangent=(X=32.436073,Y=-335.188416,Z=1.650901),InterpMode=CIM_CurveAutoClamped),(InVal=37.000000,OutVal=(X=8849.003906,Y=-4417.413086,Z=260.999390),ArriveTangent=(X=0.000000,Y=-82.170174,Z=0.000000),LeaveTangent=(X=0.000000,Y=-82.170174,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=42.000000,OutVal=(X=7186.267578,Y=-4591.153320,Z=194.999390),InterpMode=CIM_CurveAutoClamped),(InVal=47.000000,OutVal=(X=7193.124512,Y=-3194.297363,Z=284.999390),ArriveTangent=(X=0.000000,Y=43.080917,Z=0.000000),LeaveTangent=(X=0.000000,Y=43.080917,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=51.000000,OutVal=(X=6201.903809,Y=-3115.008545,Z=-144.000656),ArriveTangent=(X=0.000000,Y=37.306320,Z=-18.875347),LeaveTangent=(X=0.000000,Y=37.306320,Z=-18.875347),InterpMode=CIM_CurveAutoClamped),(InVal=57.000000,OutVal=(X=8758.985352,Y=-2448.248779,Z=-189.000809),ArriveTangent=(X=446.295258,Y=208.807816,Z=-8.400030),LeaveTangent=(X=446.295258,Y=208.807816,Z=-8.400030),InterpMode=CIM_CurveAutoClamped),(InVal=61.000000,OutVal=(X=10664.856445,Y=-945.204773,Z=-228.000961),ArriveTangent=(X=405.472626,Y=82.584274,Z=0.000000),LeaveTangent=(X=405.472626,Y=82.584274,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=64.000000,OutVal=(X=11603.310547,Y=-825.228455,Z=-225.001266),ArriveTangent=(X=402.721191,Y=0.000000,Z=0.000000),LeaveTangent=(X=402.721191,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=68.000000,OutVal=(X=13484.154297,Y=-872.919739,Z=-255.001373),ArriveTangent=(X=9.496338,Y=0.000000,Z=0.000000),LeaveTangent=(X=9.496338,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=71.000000,OutVal=(X=13496.720703,Y=-97.315430,Z=-105.001434),ArriveTangent=(X=0.000000,Y=302.909180,Z=3.900677),LeaveTangent=(X=0.000000,Y=302.909180,Z=3.900677),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=13457.025391,Y=1247.444580,Z=-99.001556),ArriveTangent=(X=0.000000,Y=344.778595,Z=0.000000),LeaveTangent=(X=0.000000,Y=344.778595,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=79.000000,OutVal=(X=13523.511719,Y=2660.913330,Z=-99.001740),ArriveTangent=(X=0.000000,Y=200.680908,Z=-0.000101),LeaveTangent=(X=0.000000,Y=200.680908,Z=-0.000101),InterpMode=CIM_CurveAutoClamped),(InVal=85.000000,OutVal=(X=11170.471680,Y=3309.082275,Z=-126.001892),ArriveTangent=(X=-298.135132,Y=10.656052,Z=-0.000058),LeaveTangent=(X=-298.135132,Y=10.656052,Z=-0.000058),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=10144.822266,Y=3332.661865,Z=-126.002014),ArriveTangent=(X=-177.697662,Y=11.525650,Z=-0.000061),LeaveTangent=(X=-177.697662,Y=11.525650,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=9393.495117,Y=4540.252441,Z=-129.002136),ArriveTangent=(X=-163.136627,Y=32.339493,Z=-0.600024),LeaveTangent=(X=-163.136627,Y=32.339493,Z=-0.600024),InterpMode=CIM_CurveAutoClamped),(InVal=100.000000,OutVal=(X=8513.456055,Y=4609.386719,Z=-132.002258),ArriveTangent=(X=0.000000,Y=34.848755,Z=0.000000),LeaveTangent=(X=0.000000,Y=34.848755,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=104.000000,OutVal=(X=8793.093750,Y=5943.333008,Z=-54.002380),ArriveTangent=(X=0.000000,Y=241.596298,Z=0.000000),LeaveTangent=(X=0.000000,Y=241.596298,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=108.000000,OutVal=(X=7163.347168,Y=6570.314453,Z=-90.002502),ArriveTangent=(X=-339.389282,Y=0.000000,Z=-6.068533),LeaveTangent=(X=-339.389282,Y=0.000000,Z=-6.068533),InterpMode=CIM_CurveAutoClamped),(InVal=112.000000,OutVal=(X=6077.979492,Y=5251.832031,Z=-105.002625),ArriveTangent=(X=-287.668518,Y=-133.368118,Z=0.000000),LeaveTangent=(X=-287.668518,Y=-133.368118,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=116.000000,OutVal=(X=4861.999023,Y=4984.452637,Z=95.997284),ArriveTangent=(X=-393.274353,Y=-91.542236,Z=20.815845),LeaveTangent=(X=-393.274353,Y=-91.542236,Z=20.815845),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=2931.784668,Y=4519.494141,Z=137.997223),ArriveTangent=(X=-310.794861,Y=-171.787231,Z=0.000000),LeaveTangent=(X=-310.794861,Y=-171.787231,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=124.000000,OutVal=(X=2184.340332,Y=3610.154785,Z=125.997162),ArriveTangent=(X=0.000000,Y=-256.955200,Z=-1.425699),LeaveTangent=(X=0.000000,Y=-256.955200,Z=-1.425699),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=2394.560059,Y=2463.852539,Z=122.997101),ArriveTangent=(X=78.491104,Y=-176.559708,Z=-1.786783),LeaveTangent=(X=78.491104,Y=-176.559708,Z=-1.786783),InterpMode=CIM_CurveAutoClamped),(InVal=131.000000,OutVal=(X=2733.778076,Y=2137.051270,Z=98.997070),ArriveTangent=(X=22.992146,Y=-184.067551,Z=-14.373737),LeaveTangent=(X=22.992146,Y=-184.067551,Z=-14.373737),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=2771.897705,Y=820.765259,Z=-24.003021),ArriveTangent=(X=23.017181,Y=-272.781097,Z=0.000000),LeaveTangent=(X=23.017181,Y=-272.781097,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=139.000000,OutVal=(X=4061.111572,Y=-45.197571,Z=23.996857),ArriveTangent=(X=219.494949,Y=-258.784119,Z=17.999969),LeaveTangent=(X=219.494949,Y=-258.784119,Z=17.999969),InterpMode=CIM_CurveAutoClamped),(InVal=142.000000,OutVal=(X=4489.105469,Y=-990.723572,Z=101.996765),ArriveTangent=(X=187.265457,Y=0.000000,Z=0.000000),LeaveTangent=(X=187.265457,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=146.000000,OutVal=(X=5380.180664,Y=-666.181458,Z=101.996704),ArriveTangent=(X=0.000000,Y=172.975952,Z=-0.000041),LeaveTangent=(X=0.000000,Y=172.975952,Z=-0.000041),InterpMode=CIM_CurveAutoClamped),(InVal=149.000000,OutVal=(X=5173.953613,Y=677.933411,Z=98.996643),ArriveTangent=(X=0.000000,Y=418.776581,Z=-2.454630),LeaveTangent=(X=0.000000,Y=418.776581,Z=-2.454630),InterpMode=CIM_CurveAutoClamped),(InVal=152.000000,OutVal=(X=5345.668457,Y=1846.478027,Z=-90.003448),ArriveTangent=(X=120.096802,Y=320.726654,Z=-4.818298),LeaveTangent=(X=120.096802,Y=320.726654,Z=-4.818298),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=6452.520508,Y=2602.293213,Z=-96.003571),ArriveTangent=(X=0.000000,Y=142.278122,Z=0.000000),LeaveTangent=(X=0.000000,Y=142.278122,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=158.000000,OutVal=(X=5624.336914,Y=2842.434814,Z=44.996307),ArriveTangent=(X=0.000000,Y=131.101669,Z=50.499966),LeaveTangent=(X=0.000000,Y=131.101669,Z=50.499966),InterpMode=CIM_CurveAutoClamped),(InVal=161.000000,OutVal=(X=5672.293945,Y=3437.245850,Z=206.996216),ArriveTangent=(X=33.231293,Y=107.703209,Z=0.000000),LeaveTangent=(X=33.231293,Y=107.703209,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=165.000000,OutVal=(X=6316.103027,Y=3666.253174,Z=176.996216),ArriveTangent=(X=248.730255,Y=68.987061,Z=-18.303726),LeaveTangent=(X=248.730255,Y=68.987061,Z=-18.303726),InterpMode=CIM_CurveAutoClamped),(InVal=168.000000,OutVal=(X=7413.405762,Y=3920.155273,Z=-120.003815),ArriveTangent=(X=0.000000,Y=124.779663,Z=-9.539619),LeaveTangent=(X=0.000000,Y=124.779663,Z=-9.539619),InterpMode=CIM_CurveAutoClamped),(InVal=171.000000,OutVal=(X=6526.147461,Y=4414.931152,Z=-132.003937),ArriveTangent=(X=-291.852325,Y=0.000000,Z=-0.000083),LeaveTangent=(X=-291.852325,Y=0.000000,Z=-0.000083),InterpMode=CIM_CurveAutoClamped),(InVal=175.000000,OutVal=(X=5370.439453,Y=4170.277832,Z=-132.004059),ArriveTangent=(X=-228.111938,Y=-126.848274,Z=-0.000076),LeaveTangent=(X=-228.111938,Y=-126.848274,Z=-0.000076),InterpMode=CIM_CurveAutoClamped),(InVal=179.000000,OutVal=(X=4701.251953,Y=2696.646484,Z=-162.004196),ArriveTangent=(X=-189.119354,Y=-250.061234,Z=0.000000),LeaveTangent=(X=-189.119354,Y=-250.061234,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=183.000000,OutVal=(X=3857.484619,Y=2075.958008,Z=104.995697),ArriveTangent=(X=-189.718262,Y=0.000000,Z=0.000000),LeaveTangent=(X=-189.718262,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=186.000000,OutVal=(X=3373.224121,Y=2507.562012,Z=89.995636),ArriveTangent=(X=0.000000,Y=153.478195,Z=0.000000),LeaveTangent=(X=0.000000,Y=153.478195,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=190.000000,OutVal=(X=4602.748535,Y=3150.305420,Z=143.995605),ArriveTangent=(X=174.660950,Y=273.017426,Z=14.571416),LeaveTangent=(X=174.660950,Y=273.017426,Z=14.571416),InterpMode=CIM_CurveAutoClamped),(InVal=193.000000,OutVal=(X=4914.808594,Y=4418.684082,Z=191.995544),ArriveTangent=(X=193.829010,Y=350.226044,Z=29.041584),LeaveTangent=(X=193.829010,Y=350.226044,Z=29.041584),InterpMode=CIM_CurveAutoClamped),(InVal=196.000000,OutVal=(X=6071.309082,Y=5251.661621,Z=353.995483),ArriveTangent=(X=381.523224,Y=0.000000,Z=13.971106),LeaveTangent=(X=381.523224,Y=0.000000,Z=13.971106),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=7585.471191,Y=4346.184082,Z=377.995483),ArriveTangent=(X=0.000000,Y=-202.648438,Z=6.857143),LeaveTangent=(X=0.000000,Y=-202.648438,Z=6.857143),InterpMode=CIM_CurveAutoClamped),(InVal=203.000000,OutVal=(X=6987.998535,Y=3833.122559,Z=401.995483),ArriveTangent=(X=-267.881805,Y=-111.124268,Z=0.000000),LeaveTangent=(X=-267.881805,Y=-111.124268,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=207.000000,OutVal=(X=5680.638672,Y=3568.314209,Z=194.995483),ArriveTangent=(X=0.000000,Y=-128.371109,Z=-55.714291),LeaveTangent=(X=0.000000,Y=-128.371109,Z=-55.714291),InterpMode=CIM_CurveAutoClamped),(InVal=210.000000,OutVal=(X=5682.281250,Y=2809.570557,Z=11.995453),ArriveTangent=(X=1.367569,Y=0.000000,Z=-47.500034),LeaveTangent=(X=1.367569,Y=0.000000,Z=-47.500034),InterpMode=CIM_CurveAutoClamped),(InVal=213.000000,OutVal=(X=6979.635742,Y=2841.388184,Z=-90.004730),ArriveTangent=(X=340.810699,Y=0.000000,Z=0.000000),LeaveTangent=(X=340.810699,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=216.000000,OutVal=(X=7727.145508,Y=2210.179199,Z=-51.004852),ArriveTangent=(X=160.373123,Y=-322.836304,Z=6.028211),LeaveTangent=(X=160.373123,Y=-322.836304,Z=6.028211),InterpMode=CIM_CurveAutoClamped),(InVal=220.000000,OutVal=(X=8102.247559,Y=322.857056,Z=-39.004913),ArriveTangent=(X=66.642342,Y=-346.499786,Z=6.886207),LeaveTangent=(X=66.642342,Y=-346.499786,Z=6.886207),InterpMode=CIM_CurveAutoClamped),(InVal=222.000000,OutVal=(X=8198.175781,Y=-185.171509,Z=-0.005035),ArriveTangent=(X=92.101982,Y=0.000000,Z=35.532440),LeaveTangent=(X=92.101982,Y=0.000000,Z=35.532440),InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,OutVal=(X=9127.511719,Y=333.568817,Z=269.994873),ArriveTangent=(X=193.558975,Y=135.178864,Z=16.490259),LeaveTangent=(X=193.558975,Y=135.178864,Z=16.490259),InterpMode=CIM_CurveAutoClamped),(InVal=229.000000,OutVal=(X=9570.958984,Y=761.080505,Z=296.994873),ArriveTangent=(X=0.000000,Y=134.250595,Z=0.000000),LeaveTangent=(X=0.000000,Y=134.250595,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=233.000000,OutVal=(X=9534.509766,Y=1407.573608,Z=284.994873),ArriveTangent=(X=-21.508051,Y=165.828232,Z=-6.581221),LeaveTangent=(X=-21.508051,Y=165.828232,Z=-6.581221),InterpMode=CIM_CurveAutoClamped),(InVal=236.000000,OutVal=(X=9263.210938,Y=1921.878174,Z=227.994873),ArriveTangent=(X=-13.813648,Y=294.037659,Z=-42.172153),LeaveTangent=(X=-13.813648,Y=294.037659,Z=-42.172153),InterpMode=CIM_CurveAutoClamped),(InVal=238.000000,OutVal=(X=9249.797852,Y=2877.761963,Z=-9.005219),ArriveTangent=(X=0.000000,Y=383.042297,Z=-51.998219),LeaveTangent=(X=0.000000,Y=383.042297,Z=-51.998219),InterpMode=CIM_CurveAutoClamped),(InVal=241.000000,OutVal=(X=9443.810547,Y=3837.089600,Z=-84.005341),ArriveTangent=(X=106.823364,Y=0.000000,Z=-10.810299),LeaveTangent=(X=106.823364,Y=0.000000,Z=-10.810299),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=10167.019531,Y=3357.866699,Z=-105.005463),ArriveTangent=(X=134.379761,Y=-206.653748,Z=0.000000),LeaveTangent=(X=134.379761,Y=-206.653748,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=248.000000,OutVal=(X=10444.030273,Y=2385.050781,Z=17.994415),ArriveTangent=(X=0.000000,Y=-281.721375,Z=0.000000),LeaveTangent=(X=0.000000,Y=-281.721375,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=251.000000,OutVal=(X=9908.518555,Y=1667.538452,Z=-18.005707),ArriveTangent=(X=0.000000,Y=-315.495605,Z=-23.658783),LeaveTangent=(X=0.000000,Y=-315.495605,Z=-23.658783),InterpMode=CIM_CurveAutoClamped),(InVal=254.000000,OutVal=(X=9921.749023,Y=492.077118,Z=-186.005844),ArriveTangent=(X=9.961639,Y=-7.702560,Z=0.000000),LeaveTangent=(X=9.961639,Y=-7.702560,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=258.000000,OutVal=(X=11317.210938,Y=480.610687,Z=-177.005997),ArriveTangent=(X=154.644577,Y=-6.616074,Z=0.000000),LeaveTangent=(X=154.644577,Y=-6.616074,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=263.000000,OutVal=(X=11699.511719,Y=-798.075989,Z=-204.006149),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.000000,Z=71.542969),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.640482),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.640482),InterpMode=CIM_CurveAutoClamped),(InVal=7.000000,OutVal=(X=0.000000,Y=1.933594,Z=88.417969),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=1.933594,Z=85.605469),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.197469),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.197469),InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=(X=0.000000,Y=-3.691406,Z=34.804688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.354911),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.354911),InterpMode=CIM_CurveAutoClamped),(InVal=17.000000,OutVal=(X=0.000000,Y=-3.691406,Z=-0.878906),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.450892),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.450892),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=-3.691406,Z=-45.351563),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=0.000000,Y=-2.988281,Z=0.351563),InterpMode=CIM_CurveAutoClamped),(InVal=29.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-91.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=-22.609863),LeaveTangent=(X=0.000000,Y=0.000000,Z=-22.609863),InterpMode=CIM_CurveAutoClamped),(InVal=33.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-180.527344),ArriveTangent=(X=0.000000,Y=0.000000,Z=-13.536157),LeaveTangent=(X=0.000000,Y=0.000000,Z=-13.536157),InterpMode=CIM_CurveAutoClamped),(InVal=37.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-212.167969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.488281),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.488281),InterpMode=CIM_CurveAutoClamped),(InVal=42.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-274.921875),InterpMode=CIM_CurveAutoClamped),(InVal=47.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-272.988281),InterpMode=CIM_CurveAutoClamped),(InVal=51.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-359.121094),InterpMode=CIM_CurveAutoClamped),(InVal=57.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-340.839844),ArriveTangent=(X=0.000000,Y=0.000000,Z=3.111328),LeaveTangent=(X=0.000000,Y=0.000000,Z=3.111328),InterpMode=CIM_CurveAutoClamped),(InVal=61.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-328.007813),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.851120),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.851120),InterpMode=CIM_CurveAutoClamped),(InVal=64.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-197.402344),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.458757),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.458757),InterpMode=CIM_CurveAutoClamped),(InVal=68.000000,OutVal=(X=0.000000,Y=-4.921875,Z=-181.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.260358),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.260358),InterpMode=CIM_CurveAutoClamped),(InVal=71.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-181.230469),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.197625),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.197625),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-179.824219),InterpMode=CIM_CurveAutoClamped),(InVal=79.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-180.351563),InterpMode=CIM_CurveAutoClamped),(InVal=85.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-94.570313),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.820313),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.820313),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-6.328125),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-60.117188),InterpMode=CIM_CurveAutoClamped),(InVal=100.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-9.140625),InterpMode=CIM_CurveAutoClamped),(InVal=104.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-92.109375),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.790805),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.790805),InterpMode=CIM_CurveAutoClamped),(InVal=108.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-95.097656),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.686316),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.686316),InterpMode=CIM_CurveAutoClamped),(InVal=112.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-128.847656),InterpMode=CIM_CurveAutoClamped),(InVal=116.000000,OutVal=(X=0.000000,Y=-4.042969,Z=0.351563),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-2.812500),InterpMode=CIM_CurveAutoClamped),(InVal=124.000000,OutVal=(X=0.000000,Y=-4.042969,Z=1.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.472190),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.472190),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=0.000000,Y=-4.218750,Z=31.289063),ArriveTangent=(X=0.000000,Y=0.000000,Z=11.902902),LeaveTangent=(X=0.000000,Y=0.000000,Z=11.902902),InterpMode=CIM_CurveAutoClamped),(InVal=131.000000,OutVal=(X=0.000000,Y=-3.691406,Z=85.253906),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=0.000000,Y=-3.691406,Z=81.914063),InterpMode=CIM_CurveAutoClamped),(InVal=139.000000,OutVal=(X=0.000000,Y=-3.691406,Z=130.605469),InterpMode=CIM_CurveAutoClamped),(InVal=142.000000,OutVal=(X=0.000000,Y=-3.691406,Z=116.542969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.329392),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.329392),InterpMode=CIM_CurveAutoClamped),(InVal=146.000000,OutVal=(X=0.000000,Y=-2.988281,Z=47.812500),ArriveTangent=(X=0.000000,Y=0.000000,Z=-17.151228),LeaveTangent=(X=0.000000,Y=0.000000,Z=-17.151228),InterpMode=CIM_CurveAutoClamped),(InVal=149.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-3.515625),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.671323),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.671323),InterpMode=CIM_CurveAutoClamped),(InVal=152.000000,OutVal=(X=0.000000,Y=2.988281,Z=-25.312500),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.344114),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.344114),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=0.000000,Y=0.351563,Z=-85.078125),InterpMode=CIM_CurveAutoClamped),(InVal=158.000000,OutVal=(X=0.000000,Y=0.351563,Z=-9.140625),InterpMode=CIM_CurveAutoClamped),(InVal=161.000000,OutVal=(X=0.000000,Y=0.351563,Z=-53.261719),InterpMode=CIM_CurveAutoClamped),(InVal=165.000000,OutVal=(X=0.000000,Y=-3.515625,Z=8.085938),ArriveTangent=(X=0.000000,Y=-0.507097,Z=26.716587),LeaveTangent=(X=0.000000,Y=-0.507097,Z=26.716587),InterpMode=CIM_CurveAutoClamped),(InVal=168.000000,OutVal=(X=0.000000,Y=-4.394531,Z=135.878906),ArriveTangent=(X=0.000000,Y=0.000000,Z=25.522560),LeaveTangent=(X=0.000000,Y=0.000000,Z=25.522560),InterpMode=CIM_CurveAutoClamped),(InVal=171.000000,OutVal=(X=0.000000,Y=-4.394531,Z=180.175781),ArriveTangent=(X=0.000000,Y=0.000000,Z=12.530692),LeaveTangent=(X=0.000000,Y=0.000000,Z=12.530692),InterpMode=CIM_CurveAutoClamped),(InVal=175.000000,OutVal=(X=0.000000,Y=-4.394531,Z=223.593750),InterpMode=CIM_CurveAutoClamped),(InVal=179.000000,OutVal=(X=0.000000,Y=-4.394531,Z=222.011719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.976200),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.976200),InterpMode=CIM_CurveAutoClamped),(InVal=183.000000,OutVal=(X=0.000000,Y=-2.285156,Z=80.859375),ArriveTangent=(X=0.000000,Y=0.000000,Z=-19.854275),LeaveTangent=(X=0.000000,Y=0.000000,Z=-19.854275),InterpMode=CIM_CurveAutoClamped),(InVal=186.000000,OutVal=(X=0.000000,Y=-2.285156,Z=45.527344),InterpMode=CIM_CurveAutoClamped),(InVal=190.000000,OutVal=(X=0.000000,Y=-4.394531,Z=144.492188),ArriveTangent=(X=0.000000,Y=0.000000,Z=25.136719),LeaveTangent=(X=0.000000,Y=0.000000,Z=25.136719),InterpMode=CIM_CurveAutoClamped),(InVal=193.000000,OutVal=(X=0.000000,Y=-4.394531,Z=221.484375),InterpMode=CIM_CurveAutoClamped),(InVal=196.000000,OutVal=(X=0.000000,Y=-4.394531,Z=191.601563),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.852710),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.852710),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=0.000000,Y=-4.394531,Z=181.757813),InterpMode=CIM_CurveAutoClamped),(InVal=203.000000,OutVal=(X=0.000000,Y=-8.261719,Z=227.285156),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.970983),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.970983),InterpMode=CIM_CurveAutoClamped),(InVal=207.000000,OutVal=(X=0.000000,Y=-2.812500,Z=293.554688),ArriveTangent=(X=0.000000,Y=0.000000,Z=19.109934),LeaveTangent=(X=0.000000,Y=0.000000,Z=19.109934),InterpMode=CIM_CurveAutoClamped),(InVal=210.000000,OutVal=(X=0.000000,Y=-2.812500,Z=361.054688),InterpMode=CIM_CurveAutoClamped),(InVal=213.000000,OutVal=(X=0.000000,Y=-2.812500,Z=352.968750),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.276480),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.276480),InterpMode=CIM_CurveAutoClamped),(InVal=216.000000,OutVal=(X=0.000000,Y=2.460938,Z=316.406250),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.445889),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.445889),InterpMode=CIM_CurveAutoClamped),(InVal=220.000000,OutVal=(X=0.000000,Y=-2.109375,Z=172.792969),ArriveTangent=(X=0.000000,Y=-0.314033,Z=-19.320204),LeaveTangent=(X=0.000000,Y=-0.314033,Z=-19.320204),InterpMode=CIM_CurveAutoClamped),(InVal=222.000000,OutVal=(X=0.000000,Y=-2.460938,Z=148.007813),ArriveTangent=(X=0.000000,Y=-0.269625,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.269625,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,OutVal=(X=0.000000,Y=-3.691406,Z=180.527344),ArriveTangent=(X=0.000000,Y=-0.578782,Z=19.751293),LeaveTangent=(X=0.000000,Y=-0.578782,Z=19.751293),InterpMode=CIM_CurveAutoClamped),(InVal=229.000000,OutVal=(X=0.000000,Y=-6.679688,Z=358.066406),InterpMode=CIM_CurveAutoClamped),(InVal=233.000000,OutVal=(X=0.000000,Y=-5.449219,Z=330.644531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.476005),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.476005),InterpMode=CIM_CurveAutoClamped),(InVal=236.000000,OutVal=(X=0.000000,Y=-5.449219,Z=277.734375),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.199870),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.199870),InterpMode=CIM_CurveAutoClamped),(InVal=238.000000,OutVal=(X=0.000000,Y=-5.449219,Z=266.835938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.394531),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.394531),InterpMode=CIM_CurveAutoClamped),(InVal=241.000000,OutVal=(X=0.000000,Y=-5.449219,Z=255.761719),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=0.000000,Y=-5.449219,Z=319.394531),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.795201),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.795201),InterpMode=CIM_CurveAutoClamped),(InVal=248.000000,OutVal=(X=0.000000,Y=-5.449219,Z=366.328125),InterpMode=CIM_CurveAutoClamped),(InVal=251.000000,OutVal=(X=0.000000,Y=-4.570313,Z=360.351563),InterpMode=CIM_CurveAutoClamped),(InVal=254.000000,OutVal=(X=0.000000,Y=-4.570313,Z=361.757813),InterpMode=CIM_CurveAutoClamped),(InVal=258.000000,OutVal=(X=0.000000,Y=-4.570313,Z=358.945313),InterpMode=CIM_CurveAutoClamped),(InVal=263.000000,OutVal=(X=0.000000,Y=-4.570313,Z=452.812500),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=4.000000),(Time=7.000000),(Time=10.000000),(Time=13.000000),(Time=17.000000),(Time=20.000000),(Time=25.000000),(Time=29.000000),(Time=33.000000),(Time=37.000000),(Time=42.000000),(Time=47.000000),(Time=51.000000),(Time=57.000000),(Time=61.000000),(Time=64.000000),(Time=68.000000),(Time=71.000000),(Time=75.000000),(Time=79.000000),(Time=85.000000),(Time=90.000000),(Time=95.000000),(Time=100.000000),(Time=104.000000),(Time=108.000000),(Time=112.000000),(Time=116.000000),(Time=120.000000),(Time=124.000000),(Time=128.000000),(Time=131.000000),(Time=135.000000),(Time=139.000000),(Time=142.000000),(Time=146.000000),(Time=149.000000),(Time=152.000000),(Time=155.000000),(Time=158.000000),(Time=161.000000),(Time=165.000000),(Time=168.000000),(Time=171.000000),(Time=175.000000),(Time=179.000000),(Time=183.000000),(Time=186.000000),(Time=190.000000),(Time=193.000000),(Time=196.000000),(Time=200.000000),(Time=203.000000),(Time=207.000000),(Time=210.000000),(Time=213.000000),(Time=216.000000),(Time=220.000000),(Time=222.000000),(Time=225.000000),(Time=229.000000),(Time=233.000000),(Time=236.000000),(Time=238.000000),(Time=241.000000),(Time=245.000000),(Time=248.000000),(Time=251.000000),(Time=254.000000),(Time=258.000000),(Time=263.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_1.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_1.InterpTrackFloatProp_1'
-      GroupName="NewCameraGroup"
-      GroupColor=(B=0,G=172,R=167,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_1
       Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_1
          CutTrack(0)=(TargetCamGroup="NewCameraGroup",ShotNumber=10)
@@ -19136,6 +18938,32 @@ Begin Object Class=InterpData Name=InterpData_18
       GroupColor=(B=199,G=133,R=0,A=255)
       Name="InterpGroupDirector_1"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=1239.510742,Y=-818.495300,Z=-0.000122),ArriveTangent=(X=321.518066,Y=-178.857880,Z=0.000000),LeaveTangent=(X=321.518066,Y=-178.857880,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.000000,OutVal=(X=2250.626465,Y=-1252.005127,Z=131.999786),ArriveTangent=(X=88.365280,Y=-277.686554,Z=0.000000),LeaveTangent=(X=88.365280,Y=-277.686554,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=2372.287109,Y=-3063.656006,Z=131.999725),ArriveTangent=(X=90.459274,Y=-231.943909,Z=0.000000),LeaveTangent=(X=90.459274,Y=-231.943909,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=(X=3599.326660,Y=-3407.759277,Z=146.999664),ArriveTangent=(X=325.694489,Y=0.000000,Z=0.000000),LeaveTangent=(X=325.694489,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=17.000000,OutVal=(X=4652.148438,Y=-3120.901611,Z=125.999603),ArriveTangent=(X=211.986542,Y=154.642426,Z=0.000000),LeaveTangent=(X=211.986542,Y=154.642426,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=5117.565918,Y=-1868.486328,Z=128.999542),ArriveTangent=(X=228.132278,Y=44.221062,Z=0.000000),LeaveTangent=(X=228.132278,Y=44.221062,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=6783.930664,Y=-1786.354004,Z=125.999481),ArriveTangent=(X=383.854980,Y=14.731174,Z=0.000000),LeaveTangent=(X=383.854980,Y=14.731174,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=29.000000,OutVal=(X=8572.260742,Y=-1735.905762,Z=230.999390),ArriveTangent=(X=108.975693,Y=0.000000,Z=12.738941),LeaveTangent=(X=108.975693,Y=0.000000,Z=12.738941),InterpMode=CIM_CurveAutoClamped),(InVal=33.000000,OutVal=(X=8770.196289,Y=-2872.592529,Z=257.999390),ArriveTangent=(X=32.436073,Y=-335.188416,Z=1.650901),LeaveTangent=(X=32.436073,Y=-335.188416,Z=1.650901),InterpMode=CIM_CurveAutoClamped),(InVal=37.000000,OutVal=(X=8849.003906,Y=-4417.413086,Z=260.999390),ArriveTangent=(X=0.000000,Y=-82.170174,Z=0.000000),LeaveTangent=(X=0.000000,Y=-82.170174,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=42.000000,OutVal=(X=7186.267578,Y=-4591.153320,Z=194.999390),InterpMode=CIM_CurveAutoClamped),(InVal=47.000000,OutVal=(X=7193.124512,Y=-3194.297363,Z=284.999390),ArriveTangent=(X=0.000000,Y=43.080917,Z=0.000000),LeaveTangent=(X=0.000000,Y=43.080917,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=51.000000,OutVal=(X=6201.903809,Y=-3115.008545,Z=-144.000656),ArriveTangent=(X=0.000000,Y=37.306320,Z=-18.875347),LeaveTangent=(X=0.000000,Y=37.306320,Z=-18.875347),InterpMode=CIM_CurveAutoClamped),(InVal=57.000000,OutVal=(X=8758.985352,Y=-2448.248779,Z=-189.000809),ArriveTangent=(X=446.295258,Y=208.807816,Z=-8.400030),LeaveTangent=(X=446.295258,Y=208.807816,Z=-8.400030),InterpMode=CIM_CurveAutoClamped),(InVal=61.000000,OutVal=(X=10664.856445,Y=-945.204773,Z=-228.000961),ArriveTangent=(X=405.472626,Y=82.584274,Z=0.000000),LeaveTangent=(X=405.472626,Y=82.584274,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=64.000000,OutVal=(X=11603.310547,Y=-825.228455,Z=-225.001266),ArriveTangent=(X=402.721191,Y=0.000000,Z=0.000000),LeaveTangent=(X=402.721191,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=68.000000,OutVal=(X=13484.154297,Y=-872.919739,Z=-255.001373),ArriveTangent=(X=9.496338,Y=0.000000,Z=0.000000),LeaveTangent=(X=9.496338,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=71.000000,OutVal=(X=13496.720703,Y=-97.315430,Z=-105.001434),ArriveTangent=(X=0.000000,Y=302.909180,Z=3.900677),LeaveTangent=(X=0.000000,Y=302.909180,Z=3.900677),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=13457.025391,Y=1247.444580,Z=-99.001556),ArriveTangent=(X=0.000000,Y=344.778595,Z=0.000000),LeaveTangent=(X=0.000000,Y=344.778595,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=79.000000,OutVal=(X=13523.511719,Y=2660.913330,Z=-99.001740),ArriveTangent=(X=0.000000,Y=200.680908,Z=-0.000101),LeaveTangent=(X=0.000000,Y=200.680908,Z=-0.000101),InterpMode=CIM_CurveAutoClamped),(InVal=85.000000,OutVal=(X=11170.471680,Y=3309.082275,Z=-126.001892),ArriveTangent=(X=-298.135132,Y=10.656052,Z=-0.000058),LeaveTangent=(X=-298.135132,Y=10.656052,Z=-0.000058),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=10144.822266,Y=3332.661865,Z=-126.002014),ArriveTangent=(X=-177.697662,Y=11.525650,Z=-0.000061),LeaveTangent=(X=-177.697662,Y=11.525650,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=9393.495117,Y=4540.252441,Z=-129.002136),ArriveTangent=(X=-163.136627,Y=32.339493,Z=-0.600024),LeaveTangent=(X=-163.136627,Y=32.339493,Z=-0.600024),InterpMode=CIM_CurveAutoClamped),(InVal=100.000000,OutVal=(X=8513.456055,Y=4609.386719,Z=-132.002258),ArriveTangent=(X=0.000000,Y=34.848755,Z=0.000000),LeaveTangent=(X=0.000000,Y=34.848755,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=104.000000,OutVal=(X=8793.093750,Y=5943.333008,Z=-54.002380),ArriveTangent=(X=0.000000,Y=241.596298,Z=0.000000),LeaveTangent=(X=0.000000,Y=241.596298,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=108.000000,OutVal=(X=7163.347168,Y=6570.314453,Z=-90.002502),ArriveTangent=(X=-339.389282,Y=0.000000,Z=-6.068533),LeaveTangent=(X=-339.389282,Y=0.000000,Z=-6.068533),InterpMode=CIM_CurveAutoClamped),(InVal=112.000000,OutVal=(X=6077.979492,Y=5251.832031,Z=-105.002625),ArriveTangent=(X=-287.668518,Y=-133.368118,Z=0.000000),LeaveTangent=(X=-287.668518,Y=-133.368118,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=116.000000,OutVal=(X=4861.999023,Y=4984.452637,Z=95.997284),ArriveTangent=(X=-393.274353,Y=-91.542236,Z=20.815845),LeaveTangent=(X=-393.274353,Y=-91.542236,Z=20.815845),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=2931.784668,Y=4519.494141,Z=137.997223),ArriveTangent=(X=-310.794861,Y=-171.787231,Z=0.000000),LeaveTangent=(X=-310.794861,Y=-171.787231,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=124.000000,OutVal=(X=2184.340332,Y=3610.154785,Z=125.997162),ArriveTangent=(X=0.000000,Y=-256.955200,Z=-1.425699),LeaveTangent=(X=0.000000,Y=-256.955200,Z=-1.425699),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=2394.560059,Y=2463.852539,Z=122.997101),ArriveTangent=(X=78.491104,Y=-176.559708,Z=-1.786783),LeaveTangent=(X=78.491104,Y=-176.559708,Z=-1.786783),InterpMode=CIM_CurveAutoClamped),(InVal=131.000000,OutVal=(X=2733.778076,Y=2137.051270,Z=98.997070),ArriveTangent=(X=22.992146,Y=-184.067551,Z=-14.373737),LeaveTangent=(X=22.992146,Y=-184.067551,Z=-14.373737),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=2771.897705,Y=820.765259,Z=-24.003021),ArriveTangent=(X=23.017181,Y=-272.781097,Z=0.000000),LeaveTangent=(X=23.017181,Y=-272.781097,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=139.000000,OutVal=(X=4061.111572,Y=-45.197571,Z=23.996857),ArriveTangent=(X=219.494949,Y=-258.784119,Z=17.999969),LeaveTangent=(X=219.494949,Y=-258.784119,Z=17.999969),InterpMode=CIM_CurveAutoClamped),(InVal=142.000000,OutVal=(X=4489.105469,Y=-990.723572,Z=101.996765),ArriveTangent=(X=187.265457,Y=0.000000,Z=0.000000),LeaveTangent=(X=187.265457,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=146.000000,OutVal=(X=5380.180664,Y=-666.181458,Z=101.996704),ArriveTangent=(X=0.000000,Y=172.975952,Z=-0.000041),LeaveTangent=(X=0.000000,Y=172.975952,Z=-0.000041),InterpMode=CIM_CurveAutoClamped),(InVal=149.000000,OutVal=(X=5173.953613,Y=677.933411,Z=98.996643),ArriveTangent=(X=0.000000,Y=418.776581,Z=-2.454630),LeaveTangent=(X=0.000000,Y=418.776581,Z=-2.454630),InterpMode=CIM_CurveAutoClamped),(InVal=152.000000,OutVal=(X=5345.668457,Y=1846.478027,Z=-90.003448),ArriveTangent=(X=120.096802,Y=320.726654,Z=-4.818298),LeaveTangent=(X=120.096802,Y=320.726654,Z=-4.818298),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=6452.520508,Y=2602.293213,Z=-96.003571),ArriveTangent=(X=0.000000,Y=142.278122,Z=0.000000),LeaveTangent=(X=0.000000,Y=142.278122,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=158.000000,OutVal=(X=5624.336914,Y=2842.434814,Z=44.996307),ArriveTangent=(X=0.000000,Y=131.101669,Z=50.499966),LeaveTangent=(X=0.000000,Y=131.101669,Z=50.499966),InterpMode=CIM_CurveAutoClamped),(InVal=161.000000,OutVal=(X=5672.293945,Y=3437.245850,Z=206.996216),ArriveTangent=(X=33.231293,Y=107.703209,Z=0.000000),LeaveTangent=(X=33.231293,Y=107.703209,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=165.000000,OutVal=(X=6316.103027,Y=3666.253174,Z=176.996216),ArriveTangent=(X=248.730255,Y=68.987061,Z=-18.303726),LeaveTangent=(X=248.730255,Y=68.987061,Z=-18.303726),InterpMode=CIM_CurveAutoClamped),(InVal=168.000000,OutVal=(X=7413.405762,Y=3920.155273,Z=-120.003815),ArriveTangent=(X=0.000000,Y=124.779663,Z=-9.539619),LeaveTangent=(X=0.000000,Y=124.779663,Z=-9.539619),InterpMode=CIM_CurveAutoClamped),(InVal=171.000000,OutVal=(X=6526.147461,Y=4414.931152,Z=-132.003937),ArriveTangent=(X=-291.852325,Y=0.000000,Z=-0.000083),LeaveTangent=(X=-291.852325,Y=0.000000,Z=-0.000083),InterpMode=CIM_CurveAutoClamped),(InVal=175.000000,OutVal=(X=5370.439453,Y=4170.277832,Z=-132.004059),ArriveTangent=(X=-228.111938,Y=-126.848274,Z=-0.000076),LeaveTangent=(X=-228.111938,Y=-126.848274,Z=-0.000076),InterpMode=CIM_CurveAutoClamped),(InVal=179.000000,OutVal=(X=4701.251953,Y=2696.646484,Z=-162.004196),ArriveTangent=(X=-189.119354,Y=-250.061234,Z=0.000000),LeaveTangent=(X=-189.119354,Y=-250.061234,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=183.000000,OutVal=(X=3857.484619,Y=2075.958008,Z=104.995697),ArriveTangent=(X=-189.718262,Y=0.000000,Z=0.000000),LeaveTangent=(X=-189.718262,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=186.000000,OutVal=(X=3373.224121,Y=2507.562012,Z=89.995636),ArriveTangent=(X=0.000000,Y=153.478195,Z=0.000000),LeaveTangent=(X=0.000000,Y=153.478195,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=190.000000,OutVal=(X=4602.748535,Y=3150.305420,Z=143.995605),ArriveTangent=(X=174.660950,Y=273.017426,Z=14.571416),LeaveTangent=(X=174.660950,Y=273.017426,Z=14.571416),InterpMode=CIM_CurveAutoClamped),(InVal=193.000000,OutVal=(X=4914.808594,Y=4418.684082,Z=191.995544),ArriveTangent=(X=193.829010,Y=350.226044,Z=29.041584),LeaveTangent=(X=193.829010,Y=350.226044,Z=29.041584),InterpMode=CIM_CurveAutoClamped),(InVal=196.000000,OutVal=(X=6071.309082,Y=5251.661621,Z=353.995483),ArriveTangent=(X=381.523224,Y=0.000000,Z=13.971106),LeaveTangent=(X=381.523224,Y=0.000000,Z=13.971106),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=7585.471191,Y=4346.184082,Z=377.995483),ArriveTangent=(X=0.000000,Y=-202.648438,Z=6.857143),LeaveTangent=(X=0.000000,Y=-202.648438,Z=6.857143),InterpMode=CIM_CurveAutoClamped),(InVal=203.000000,OutVal=(X=6987.998535,Y=3833.122559,Z=401.995483),ArriveTangent=(X=-267.881805,Y=-111.124268,Z=0.000000),LeaveTangent=(X=-267.881805,Y=-111.124268,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=207.000000,OutVal=(X=5680.638672,Y=3568.314209,Z=194.995483),ArriveTangent=(X=0.000000,Y=-128.371109,Z=-55.714291),LeaveTangent=(X=0.000000,Y=-128.371109,Z=-55.714291),InterpMode=CIM_CurveAutoClamped),(InVal=210.000000,OutVal=(X=5682.281250,Y=2809.570557,Z=11.995453),ArriveTangent=(X=1.367569,Y=0.000000,Z=-47.500034),LeaveTangent=(X=1.367569,Y=0.000000,Z=-47.500034),InterpMode=CIM_CurveAutoClamped),(InVal=213.000000,OutVal=(X=6979.635742,Y=2841.388184,Z=-90.004730),ArriveTangent=(X=340.810699,Y=0.000000,Z=0.000000),LeaveTangent=(X=340.810699,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=216.000000,OutVal=(X=7727.145508,Y=2210.179199,Z=-51.004852),ArriveTangent=(X=160.373123,Y=-322.836304,Z=6.028211),LeaveTangent=(X=160.373123,Y=-322.836304,Z=6.028211),InterpMode=CIM_CurveAutoClamped),(InVal=220.000000,OutVal=(X=8102.247559,Y=322.857056,Z=-39.004913),ArriveTangent=(X=66.642342,Y=-346.499786,Z=6.886207),LeaveTangent=(X=66.642342,Y=-346.499786,Z=6.886207),InterpMode=CIM_CurveAutoClamped),(InVal=222.000000,OutVal=(X=8198.175781,Y=-185.171509,Z=-0.005035),ArriveTangent=(X=92.101982,Y=0.000000,Z=35.532440),LeaveTangent=(X=92.101982,Y=0.000000,Z=35.532440),InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,OutVal=(X=9127.511719,Y=333.568817,Z=269.994873),ArriveTangent=(X=193.558975,Y=135.178864,Z=16.490259),LeaveTangent=(X=193.558975,Y=135.178864,Z=16.490259),InterpMode=CIM_CurveAutoClamped),(InVal=229.000000,OutVal=(X=9570.958984,Y=761.080505,Z=296.994873),ArriveTangent=(X=0.000000,Y=134.250595,Z=0.000000),LeaveTangent=(X=0.000000,Y=134.250595,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=233.000000,OutVal=(X=9534.509766,Y=1407.573608,Z=284.994873),ArriveTangent=(X=-21.508051,Y=165.828232,Z=-6.581221),LeaveTangent=(X=-21.508051,Y=165.828232,Z=-6.581221),InterpMode=CIM_CurveAutoClamped),(InVal=236.000000,OutVal=(X=9263.210938,Y=1921.878174,Z=227.994873),ArriveTangent=(X=-13.813648,Y=294.037659,Z=-42.172153),LeaveTangent=(X=-13.813648,Y=294.037659,Z=-42.172153),InterpMode=CIM_CurveAutoClamped),(InVal=238.000000,OutVal=(X=9249.797852,Y=2877.761963,Z=-9.005219),ArriveTangent=(X=0.000000,Y=383.042297,Z=-51.998219),LeaveTangent=(X=0.000000,Y=383.042297,Z=-51.998219),InterpMode=CIM_CurveAutoClamped),(InVal=241.000000,OutVal=(X=9443.810547,Y=3837.089600,Z=-84.005341),ArriveTangent=(X=106.823364,Y=0.000000,Z=-10.810299),LeaveTangent=(X=106.823364,Y=0.000000,Z=-10.810299),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=10167.019531,Y=3357.866699,Z=-105.005463),ArriveTangent=(X=134.379761,Y=-206.653748,Z=0.000000),LeaveTangent=(X=134.379761,Y=-206.653748,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=248.000000,OutVal=(X=10444.030273,Y=2385.050781,Z=17.994415),ArriveTangent=(X=0.000000,Y=-281.721375,Z=0.000000),LeaveTangent=(X=0.000000,Y=-281.721375,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=251.000000,OutVal=(X=9908.518555,Y=1667.538452,Z=-18.005707),ArriveTangent=(X=0.000000,Y=-315.495605,Z=-23.658783),LeaveTangent=(X=0.000000,Y=-315.495605,Z=-23.658783),InterpMode=CIM_CurveAutoClamped),(InVal=254.000000,OutVal=(X=9921.749023,Y=492.077118,Z=-186.005844),ArriveTangent=(X=9.961639,Y=-7.702560,Z=0.000000),LeaveTangent=(X=9.961639,Y=-7.702560,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=258.000000,OutVal=(X=11317.210938,Y=480.610687,Z=-177.005997),ArriveTangent=(X=154.644577,Y=-6.616074,Z=0.000000),LeaveTangent=(X=154.644577,Y=-6.616074,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=263.000000,OutVal=(X=11699.511719,Y=-798.075989,Z=-204.006149),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.000000,Z=71.542969),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.640482),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.640482),InterpMode=CIM_CurveAutoClamped),(InVal=7.000000,OutVal=(X=0.000000,Y=1.933594,Z=88.417969),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=1.933594,Z=85.605469),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.197469),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.197469),InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=(X=0.000000,Y=-3.691406,Z=34.804688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.354911),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.354911),InterpMode=CIM_CurveAutoClamped),(InVal=17.000000,OutVal=(X=0.000000,Y=-3.691406,Z=-0.878906),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.450892),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.450892),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=-3.691406,Z=-45.351563),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=0.000000,Y=-2.988281,Z=0.351563),InterpMode=CIM_CurveAutoClamped),(InVal=29.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-91.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=-22.609863),LeaveTangent=(X=0.000000,Y=0.000000,Z=-22.609863),InterpMode=CIM_CurveAutoClamped),(InVal=33.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-180.527344),ArriveTangent=(X=0.000000,Y=0.000000,Z=-13.536157),LeaveTangent=(X=0.000000,Y=0.000000,Z=-13.536157),InterpMode=CIM_CurveAutoClamped),(InVal=37.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-212.167969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.488281),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.488281),InterpMode=CIM_CurveAutoClamped),(InVal=42.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-274.921875),InterpMode=CIM_CurveAutoClamped),(InVal=47.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-272.988281),InterpMode=CIM_CurveAutoClamped),(InVal=51.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-359.121094),InterpMode=CIM_CurveAutoClamped),(InVal=57.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-340.839844),ArriveTangent=(X=0.000000,Y=0.000000,Z=3.111328),LeaveTangent=(X=0.000000,Y=0.000000,Z=3.111328),InterpMode=CIM_CurveAutoClamped),(InVal=61.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-328.007813),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.851120),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.851120),InterpMode=CIM_CurveAutoClamped),(InVal=64.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-197.402344),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.458757),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.458757),InterpMode=CIM_CurveAutoClamped),(InVal=68.000000,OutVal=(X=0.000000,Y=-4.921875,Z=-181.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.260358),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.260358),InterpMode=CIM_CurveAutoClamped),(InVal=71.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-181.230469),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.197625),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.197625),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-179.824219),InterpMode=CIM_CurveAutoClamped),(InVal=79.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-180.351563),InterpMode=CIM_CurveAutoClamped),(InVal=85.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-94.570313),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.820313),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.820313),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-6.328125),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=0.000000,Y=-6.328125,Z=-60.117188),InterpMode=CIM_CurveAutoClamped),(InVal=100.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-9.140625),InterpMode=CIM_CurveAutoClamped),(InVal=104.000000,OutVal=(X=0.000000,Y=-5.449219,Z=-92.109375),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.790805),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.790805),InterpMode=CIM_CurveAutoClamped),(InVal=108.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-95.097656),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.686316),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.686316),InterpMode=CIM_CurveAutoClamped),(InVal=112.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-128.847656),InterpMode=CIM_CurveAutoClamped),(InVal=116.000000,OutVal=(X=0.000000,Y=-4.042969,Z=0.351563),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-2.812500),InterpMode=CIM_CurveAutoClamped),(InVal=124.000000,OutVal=(X=0.000000,Y=-4.042969,Z=1.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.472190),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.472190),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=0.000000,Y=-4.218750,Z=31.289063),ArriveTangent=(X=0.000000,Y=0.000000,Z=11.902902),LeaveTangent=(X=0.000000,Y=0.000000,Z=11.902902),InterpMode=CIM_CurveAutoClamped),(InVal=131.000000,OutVal=(X=0.000000,Y=-3.691406,Z=85.253906),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=0.000000,Y=-3.691406,Z=81.914063),InterpMode=CIM_CurveAutoClamped),(InVal=139.000000,OutVal=(X=0.000000,Y=-3.691406,Z=130.605469),InterpMode=CIM_CurveAutoClamped),(InVal=142.000000,OutVal=(X=0.000000,Y=-3.691406,Z=116.542969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.329392),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.329392),InterpMode=CIM_CurveAutoClamped),(InVal=146.000000,OutVal=(X=0.000000,Y=-2.988281,Z=47.812500),ArriveTangent=(X=0.000000,Y=0.000000,Z=-17.151228),LeaveTangent=(X=0.000000,Y=0.000000,Z=-17.151228),InterpMode=CIM_CurveAutoClamped),(InVal=149.000000,OutVal=(X=0.000000,Y=-2.988281,Z=-3.515625),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.671323),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.671323),InterpMode=CIM_CurveAutoClamped),(InVal=152.000000,OutVal=(X=0.000000,Y=2.988281,Z=-25.312500),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.344114),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.344114),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=0.000000,Y=0.351563,Z=-85.078125),InterpMode=CIM_CurveAutoClamped),(InVal=158.000000,OutVal=(X=0.000000,Y=0.351563,Z=-9.140625),InterpMode=CIM_CurveAutoClamped),(InVal=161.000000,OutVal=(X=0.000000,Y=0.351563,Z=-53.261719),InterpMode=CIM_CurveAutoClamped),(InVal=165.000000,OutVal=(X=0.000000,Y=-3.515625,Z=8.085938),ArriveTangent=(X=0.000000,Y=-0.507097,Z=26.716587),LeaveTangent=(X=0.000000,Y=-0.507097,Z=26.716587),InterpMode=CIM_CurveAutoClamped),(InVal=168.000000,OutVal=(X=0.000000,Y=-4.394531,Z=135.878906),ArriveTangent=(X=0.000000,Y=0.000000,Z=25.522560),LeaveTangent=(X=0.000000,Y=0.000000,Z=25.522560),InterpMode=CIM_CurveAutoClamped),(InVal=171.000000,OutVal=(X=0.000000,Y=-4.394531,Z=180.175781),ArriveTangent=(X=0.000000,Y=0.000000,Z=12.530692),LeaveTangent=(X=0.000000,Y=0.000000,Z=12.530692),InterpMode=CIM_CurveAutoClamped),(InVal=175.000000,OutVal=(X=0.000000,Y=-4.394531,Z=223.593750),InterpMode=CIM_CurveAutoClamped),(InVal=179.000000,OutVal=(X=0.000000,Y=-4.394531,Z=222.011719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.976200),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.976200),InterpMode=CIM_CurveAutoClamped),(InVal=183.000000,OutVal=(X=0.000000,Y=-2.285156,Z=80.859375),ArriveTangent=(X=0.000000,Y=0.000000,Z=-19.854275),LeaveTangent=(X=0.000000,Y=0.000000,Z=-19.854275),InterpMode=CIM_CurveAutoClamped),(InVal=186.000000,OutVal=(X=0.000000,Y=-2.285156,Z=45.527344),InterpMode=CIM_CurveAutoClamped),(InVal=190.000000,OutVal=(X=0.000000,Y=-4.394531,Z=144.492188),ArriveTangent=(X=0.000000,Y=0.000000,Z=25.136719),LeaveTangent=(X=0.000000,Y=0.000000,Z=25.136719),InterpMode=CIM_CurveAutoClamped),(InVal=193.000000,OutVal=(X=0.000000,Y=-4.394531,Z=221.484375),InterpMode=CIM_CurveAutoClamped),(InVal=196.000000,OutVal=(X=0.000000,Y=-4.394531,Z=191.601563),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.852710),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.852710),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=0.000000,Y=-4.394531,Z=181.757813),InterpMode=CIM_CurveAutoClamped),(InVal=203.000000,OutVal=(X=0.000000,Y=-8.261719,Z=227.285156),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.970983),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.970983),InterpMode=CIM_CurveAutoClamped),(InVal=207.000000,OutVal=(X=0.000000,Y=-2.812500,Z=293.554688),ArriveTangent=(X=0.000000,Y=0.000000,Z=19.109934),LeaveTangent=(X=0.000000,Y=0.000000,Z=19.109934),InterpMode=CIM_CurveAutoClamped),(InVal=210.000000,OutVal=(X=0.000000,Y=-2.812500,Z=361.054688),InterpMode=CIM_CurveAutoClamped),(InVal=213.000000,OutVal=(X=0.000000,Y=-2.812500,Z=352.968750),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.276480),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.276480),InterpMode=CIM_CurveAutoClamped),(InVal=216.000000,OutVal=(X=0.000000,Y=2.460938,Z=316.406250),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.445889),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.445889),InterpMode=CIM_CurveAutoClamped),(InVal=220.000000,OutVal=(X=0.000000,Y=-2.109375,Z=172.792969),ArriveTangent=(X=0.000000,Y=-0.314033,Z=-19.320204),LeaveTangent=(X=0.000000,Y=-0.314033,Z=-19.320204),InterpMode=CIM_CurveAutoClamped),(InVal=222.000000,OutVal=(X=0.000000,Y=-2.460938,Z=148.007813),ArriveTangent=(X=0.000000,Y=-0.269625,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.269625,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,OutVal=(X=0.000000,Y=-3.691406,Z=180.527344),ArriveTangent=(X=0.000000,Y=-0.578782,Z=19.751293),LeaveTangent=(X=0.000000,Y=-0.578782,Z=19.751293),InterpMode=CIM_CurveAutoClamped),(InVal=229.000000,OutVal=(X=0.000000,Y=-6.679688,Z=358.066406),InterpMode=CIM_CurveAutoClamped),(InVal=233.000000,OutVal=(X=0.000000,Y=-5.449219,Z=330.644531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.476005),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.476005),InterpMode=CIM_CurveAutoClamped),(InVal=236.000000,OutVal=(X=0.000000,Y=-5.449219,Z=277.734375),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.199870),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.199870),InterpMode=CIM_CurveAutoClamped),(InVal=238.000000,OutVal=(X=0.000000,Y=-5.449219,Z=266.835938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.394531),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.394531),InterpMode=CIM_CurveAutoClamped),(InVal=241.000000,OutVal=(X=0.000000,Y=-5.449219,Z=255.761719),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=0.000000,Y=-5.449219,Z=319.394531),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.795201),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.795201),InterpMode=CIM_CurveAutoClamped),(InVal=248.000000,OutVal=(X=0.000000,Y=-5.449219,Z=366.328125),InterpMode=CIM_CurveAutoClamped),(InVal=251.000000,OutVal=(X=0.000000,Y=-4.570313,Z=360.351563),InterpMode=CIM_CurveAutoClamped),(InVal=254.000000,OutVal=(X=0.000000,Y=-4.570313,Z=361.757813),InterpMode=CIM_CurveAutoClamped),(InVal=258.000000,OutVal=(X=0.000000,Y=-4.570313,Z=358.945313),InterpMode=CIM_CurveAutoClamped),(InVal=263.000000,OutVal=(X=0.000000,Y=-4.570313,Z=452.812500),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=4.000000),(Time=7.000000),(Time=10.000000),(Time=13.000000),(Time=17.000000),(Time=20.000000),(Time=25.000000),(Time=29.000000),(Time=33.000000),(Time=37.000000),(Time=42.000000),(Time=47.000000),(Time=51.000000),(Time=57.000000),(Time=61.000000),(Time=64.000000),(Time=68.000000),(Time=71.000000),(Time=75.000000),(Time=79.000000),(Time=85.000000),(Time=90.000000),(Time=95.000000),(Time=100.000000),(Time=104.000000),(Time=108.000000),(Time=112.000000),(Time=116.000000),(Time=120.000000),(Time=124.000000),(Time=128.000000),(Time=131.000000),(Time=135.000000),(Time=139.000000),(Time=142.000000),(Time=146.000000),(Time=149.000000),(Time=152.000000),(Time=155.000000),(Time=158.000000),(Time=161.000000),(Time=165.000000),(Time=168.000000),(Time=171.000000),(Time=175.000000),(Time=179.000000),(Time=183.000000),(Time=186.000000),(Time=190.000000),(Time=193.000000),(Time=196.000000),(Time=200.000000),(Time=203.000000),(Time=207.000000),(Time=210.000000),(Time=213.000000),(Time=216.000000),(Time=220.000000),(Time=222.000000),(Time=225.000000),(Time=229.000000),(Time=233.000000),(Time=236.000000),(Time=238.000000),(Time=241.000000),(Time=245.000000),(Time=248.000000),(Time=251.000000),(Time=254.000000),(Time=258.000000),(Time=263.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_1.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_1.InterpTrackFloatProp_1'
+      GroupName="NewCameraGroup"
+      GroupColor=(B=0,G=172,R=167,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=263.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_1'
@@ -20004,7 +19832,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_52
    InputLinks(0)=(DrawY=7245,OverrideDelta=14)
    InputLinks(1)=(DrawY=7266,OverrideDelta=35)
    InputLinks(2)=(DrawY=7287,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_10',InputLinkIdx=1)),DrawY=7250,OverrideDelta=19)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_75',InputLinkIdx=1)),DrawY=7250,OverrideDelta=19)
    OutputLinks(1)=(DrawY=7282,OverrideDelta=51)
    VariableLinks(0)=(DrawX=-268,OverrideDelta=25)
    ObjInstanceVersion=1
@@ -20041,23 +19869,18 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_12
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatMaterialParam'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackFloatMaterialParam_0',CurveColor=(B=198,G=0,R=136,A=255),CurveName="BluePaper_Float Material Param"),(CurveObject=InterpTrackFloatMaterialParam'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackFloatMaterialParam_0',CurveColor=(B=80,G=0,R=222,A=255),CurveName="BackPaper_Float Material Param")),ViewStartInput=-0.823735,ViewEndInput=20.409927,ViewStartOutput=-1.632194,ViewEndOutput=3.509141)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
+   Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_SantasWorkshop_MAT.workshop_machine.Env_Machine_WrappingPaper_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.InterpActor_104.StaticMeshComponent_4649',MaterialIndex=1)))
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_SantasWorkshop_MAT.workshop_machine.Env_Machine_WrappingPaper3_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.InterpActor_104.StaticMeshComponent_4649',MaterialIndex=3)))
          ParamName="Scalar_panner_speed"
-         FloatTrack=(Points=((OutVal=1.000000,ArriveTangent=1.075593,InterpMode=CIM_Constant),(InVal=23.990000,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=24.000000,ArriveTangent=1.075593,InterpMode=CIM_Constant)))
+         FloatTrack=(Points=((OutVal=1.000000,InterpMode=CIM_Constant),(InVal=23.990000,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=24.000000,InterpMode=CIM_Constant)))
          Name="InterpTrackFloatMaterialParam_0"
          ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
       End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackFloatMaterialParam_0'
-      GroupName="BluePaper"
-      GroupColor=(B=198,G=0,R=136,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackFloatMaterialParam_0'
+      GroupName="BackPaper"
+      GroupColor=(B=80,G=0,R=222,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -20074,19 +19897,24 @@ Begin Object Class=InterpData Name=InterpData_12
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
+   Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_SantasWorkshop_MAT.workshop_machine.Env_Machine_WrappingPaper3_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.InterpActor_104.StaticMeshComponent_4649',MaterialIndex=3)))
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_SantasWorkshop_MAT.workshop_machine.Env_Machine_WrappingPaper_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.InterpActor_104.StaticMeshComponent_4649',MaterialIndex=1)))
          ParamName="Scalar_panner_speed"
-         FloatTrack=(Points=((OutVal=1.000000,InterpMode=CIM_Constant),(InVal=23.990000,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=24.000000,InterpMode=CIM_Constant)))
+         FloatTrack=(Points=((OutVal=1.000000,ArriveTangent=1.075593,InterpMode=CIM_Constant),(InVal=23.990000,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=24.000000,ArriveTangent=1.075593,InterpMode=CIM_Constant)))
          Name="InterpTrackFloatMaterialParam_0"
          ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
       End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackFloatMaterialParam_0'
-      GroupName="BackPaper"
-      GroupColor=(B=80,G=0,R=222,A=255)
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackFloatMaterialParam_0'
+      GroupName="BluePaper"
+      GroupColor=(B=198,G=0,R=136,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatMaterialParam'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackFloatMaterialParam_0',CurveColor=(B=198,G=0,R=136,A=255),CurveName="BluePaper_Float Material Param"),(CurveObject=InterpTrackFloatMaterialParam'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackFloatMaterialParam_0',CurveColor=(B=80,G=0,R=222,A=255),CurveName="BackPaper_Float Material Param")),ViewStartInput=-0.823735,ViewEndInput=20.409927,ViewStartOutput=-1.632194,ViewEndOutput=3.509141)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=24.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0'
@@ -20182,7 +20010,7 @@ End Object
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_6
    MaxTriggerCount=0
    bClientSideOnly=True
-   MaxWidth=207
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-6858,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-6835,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-6812,OverrideDelta=61)
@@ -20191,11 +20019,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_6
    OutputLinks(5)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_58')),DrawY=-6743,OverrideDelta=130)
    OutputLinks(6)=(DrawY=-6720,OverrideDelta=153)
    OutputLinks(7)=(DrawY=-6697,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-6674,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-56
    ObjPosY=-6928
-   DrawWidth=205
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_6"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -20595,7 +20424,7 @@ End Object
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_8
    MaxTriggerCount=0
    bClientSideOnly=True
-   MaxWidth=207
+   MaxWidth=216
    OutputLinks(0)=(DrawY=22,OverrideDelta=15)
    OutputLinks(1)=(DrawY=45,OverrideDelta=38)
    OutputLinks(2)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_1',InputLinkIdx=1)),DrawY=68,OverrideDelta=61)
@@ -20604,11 +20433,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_8
    OutputLinks(5)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_1')),ActivateDelay=2.000000,DrawY=137,OverrideDelta=130)
    OutputLinks(6)=(DrawY=160,OverrideDelta=153)
    OutputLinks(7)=(DrawY=183,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=206,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6072
    ObjPosY=-48
-   DrawWidth=205
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_8"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -20653,8 +20483,8 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_12
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5144
-   ObjPosY=-8928
+   ObjPosX=-5056
+   ObjPosY=-8840
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_12"
@@ -20666,8 +20496,8 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_12
    FindVarName="Endless"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5056
-   ObjPosY=-8928
+   ObjPosX=-4968
+   ObjPosY=-8840
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
@@ -20676,14 +20506,14 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_12
 End Object
 
 Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_0
-   InputLinks(0)=(DrawY=-9006,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-9006,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_12'),DrawX=-5094,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_12'),DrawX=-5038,OverrideDelta=68)
+   InputLinks(0)=(DrawY=-8918,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-8918,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_12'),DrawX=-5006,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_12'),DrawX=-4950,OverrideDelta=68)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5128
-   ObjPosY=-9040
+   ObjPosX=-5040
+   ObjPosY=-8952
    DrawWidth=128
    DrawHeight=61
    Name="SeqAct_SetBool_0"
@@ -20868,7 +20698,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_7
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_1')),DrawY=-5602,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-5579,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-5556,OverrideDelta=61)
@@ -20877,12 +20707,13 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_7
    OutputLinks(5)=(DrawY=-5487,OverrideDelta=130)
    OutputLinks(6)=(DrawY=-5464,OverrideDelta=153)
    OutputLinks(7)=(DrawY=-5441,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-5418,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-4584
    ObjPosY=-5672
    ObjComment="Close all doors at match start (so paths build properly through doors)"
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_7"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -21005,7 +20836,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_12
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-1506,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-1483,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-1460,OverrideDelta=61)
@@ -21013,12 +20844,13 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_12
    OutputLinks(4)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_27')),DrawY=-1414,OverrideDelta=107)
    OutputLinks(5)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_27')),DrawY=-1391,OverrideDelta=130)
    OutputLinks(6)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_64',InputLinkIdx=1)),ActivateDelay=0.500000,DrawY=-1368,OverrideDelta=153)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_64',InputLinkIdx=1),(LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_2')),DrawY=-1345,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_64',InputLinkIdx=1)),ActivateDelay=0.500000,DrawY=-1345,OverrideDelta=176)
+   OutputLinks(8)=(DrawY=-1322,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6392
    ObjPosY=-1576
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_12"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -21347,7 +21179,7 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_52
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
-Begin Object Class=SeqVar_Named Name=SeqVar_Named_57
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_59
    ExpectedType=Class'Engine.SeqVar_Bool'
    FindVarName="Endless"
    ObjInstanceVersion=1
@@ -21357,11 +21189,11 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_57
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Named_57"
+   Name="SeqVar_Named_59"
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
-Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_62
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_64
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -21369,43 +21201,43 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_62
    ObjPosY=104
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Bool_62"
+   Name="SeqVar_Bool_64"
    ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
 End Object
 
-Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_51
+Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_53
    InputLinks(0)=(DrawY=38,OverrideDelta=23)
    OutputLinks(0)=(DrawY=28,OverrideDelta=13)
    OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_15')),DrawY=48,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_57'),DrawX=-8963,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_62'),DrawX=-8913,OverrideDelta=59)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_59'),DrawX=-8963,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_64'),DrawX=-8913,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8992
    ObjPosY=-8
    DrawWidth=115
    DrawHeight=85
-   Name="SeqCond_CompareBool_51"
+   Name="SeqCond_CompareBool_53"
    ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
 End Object
 
-Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_47
+Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_54
    InputLinks(0)=(DrawY=-4354,OverrideDelta=23)
    OutputLinks(0)=(DrawY=-4364,OverrideDelta=13)
    OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_0')),DrawY=-4344,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_54'),DrawX=-8875,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_60'),DrawX=-8825,OverrideDelta=59)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_60'),DrawX=-8875,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_65'),DrawX=-8825,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8904
    ObjPosY=-4400
    DrawWidth=115
    DrawHeight=85
-   Name="SeqCond_CompareBool_47"
+   Name="SeqCond_CompareBool_54"
    ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
 End Object
 
-Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_60
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_65
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -21413,21 +21245,21 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_60
    ObjPosY=-4280
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Bool_60"
+   Name="SeqVar_Bool_65"
    ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
 End Object
 
-Begin Object Class=SeqVar_Named Name=SeqVar_Named_54
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_60
    ExpectedType=Class'Engine.SeqVar_Bool'
    FindVarName="Endless"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8920
+   ObjPosX=-8919
    ObjPosY=-4272
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Named_54"
+   Name="SeqVar_Named_60"
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
@@ -21473,744 +21305,6 @@ Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_38
    ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_225
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_0'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1552
-   ObjPosY=-9432
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_225"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_227
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_4'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1456
-   ObjPosY=-9432
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_227"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_246
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_3'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1352
-   ObjPosY=-9432
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_246"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_249
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_5'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1248
-   ObjPosY=-9424
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_249"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_250
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_2'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1144
-   ObjPosY=-9424
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_250"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_281
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_1'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1048
-   ObjPosY=-9424
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_281"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_316
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_22'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1528
-   ObjPosY=-9064
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_316"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_319
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_21'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1432
-   ObjPosY=-9064
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_319"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_410
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_20'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1328
-   ObjPosY=-9064
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_410"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_411
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_19'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1232
-   ObjPosY=-9064
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_411"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_412
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_18'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1128
-   ObjPosY=-9064
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_412"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_413
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_8'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1032
-   ObjPosY=-9064
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_413"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_414
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_25'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1576
-   ObjPosY=-8680
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_414"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_581
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_11'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1472
-   ObjPosY=-8680
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_581"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_582
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_28'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1376
-   ObjPosY=-8680
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_582"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_583
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_27'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1272
-   ObjPosY=-8680
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_583"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_584
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_26'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1176
-   ObjPosY=-8680
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_584"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_585
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_24'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1072
-   ObjPosY=-8680
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_585"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_586
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_34'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1560
-   ObjPosY=-8328
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_586"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_587
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_9'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1464
-   ObjPosY=-8328
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_587"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_588
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_6'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1360
-   ObjPosY=-8328
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_588"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_589
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_10'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1264
-   ObjPosY=-8328
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_589"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_590
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_35'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1160
-   ObjPosY=-8328
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_590"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_591
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_7'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1064
-   ObjPosY=-8328
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_591"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
-   InputLinks(0)=(DrawY=-8155,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-8134,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-8113,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-8134,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_592',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_593',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_594',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_595',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_596',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_597'),DrawX=-1434,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-1383,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-1334,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1472
-   ObjPosY=-8192
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_6"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_592
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_29'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1576
-   ObjPosY=-7984
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_592"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_593
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_23'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1480
-   ObjPosY=-7984
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_593"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_594
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_31'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1376
-   ObjPosY=-7984
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_594"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_595
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_33'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1280
-   ObjPosY=-7984
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_595"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_596
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_32'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1176
-   ObjPosY=-7984
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_596"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_597
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_30'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-1080
-   ObjPosY=-7984
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_597"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_598
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_25'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2792
-   ObjPosY=-8248
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_598"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_599
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_0'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2688
-   ObjPosY=-8248
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_599"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_638
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_1'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2592
-   ObjPosY=-8248
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_638"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_639
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_2'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2488
-   ObjPosY=-8248
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_639"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_640
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_3'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2392
-   ObjPosY=-8248
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_640"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_641
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_4'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2288
-   ObjPosY=-8248
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_641"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_642
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_5'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2192
-   ObjPosY=-8248
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_642"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_643
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_18'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2088
-   ObjPosY=-8248
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_643"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_644
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_19'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2784
-   ObjPosY=-8416
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_644"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_645
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_20'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2680
-   ObjPosY=-8416
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_645"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_646
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_21'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2584
-   ObjPosY=-8416
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_646"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_647
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_8'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2480
-   ObjPosY=-8416
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_647"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_648
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_22'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2384
-   ObjPosY=-8416
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_648"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_649
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_24'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2280
-   ObjPosY=-8416
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_649"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_650
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_26'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2848
-   ObjPosY=-8168
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_650"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_651
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_27'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2744
-   ObjPosY=-8168
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_651"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_652
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_28'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2648
-   ObjPosY=-8168
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_652"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_653
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_11'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2544
-   ObjPosY=-8168
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_653"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_654
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_6'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2448
-   ObjPosY=-8168
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_654"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_655
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_7'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2344
-   ObjPosY=-8168
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_655"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_656
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_9'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2248
-   ObjPosY=-8168
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_656"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_657
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_10'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2144
-   ObjPosY=-8168
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_657"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_658
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_34'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2840
-   ObjPosY=-8336
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_658"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_659
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_35'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2736
-   ObjPosY=-8336
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_659"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_660
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_30'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2640
-   ObjPosY=-8336
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_660"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_661
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_31'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2536
-   ObjPosY=-8336
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_661"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_662
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_32'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2440
-   ObjPosY=-8336
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_662"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_663
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_33'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2336
-   ObjPosY=-8336
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_663"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_664
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_29'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2240
-   ObjPosY=-8336
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_664"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_665
-   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_23'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2136
-   ObjPosY=-8336
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_665"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_38
    PlayRate=0.500000
    bLooping=True
@@ -22234,10 +21328,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_38
 End Object
 
 Begin Object Class=InterpData Name=InterpData_38
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="MachineArms_Loop",AnimPlayRate=1.000000)
@@ -22250,6 +21340,10 @@ Begin Object Class=InterpData Name=InterpData_38
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_MachineArms_ANIM'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=8.000566
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0'
@@ -22578,30 +21672,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_39
 End Object
 
 Begin Object Class=InterpData Name=InterpData_39
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_Machine_Tube_Swells')
-         AkEvents(1)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_Machine_Tube_Swells')
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Toy_TubeAnimation_V1",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackAnimControl_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackAkEvent_0'
-      GroupName="Tubes"
-      GroupColor=(B=138,G=195,R=0,A=255)
-      GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Machine_ToyChute_ANIM'
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_2
          AnimSeqs(0)=(StartTime=0.360000,AnimSeqName="Toy_TubeAnimation_V1",AnimPlayRate=1.000000)
@@ -22614,6 +21684,30 @@ Begin Object Class=InterpData Name=InterpData_39
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Machine_ToyChute_ANIM'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Toy_TubeAnimation_V1",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_Machine_Tube_Swells')
+         AkEvents(1)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_Machine_Tube_Swells')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackAnimControl_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackAkEvent_0'
+      GroupName="Tubes"
+      GroupColor=(B=138,G=195,R=0,A=255)
+      GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Machine_ToyChute_ANIM'
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.380000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0'
@@ -22645,31 +21739,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_483
 End Object
 
 Begin Object Class=InterpData Name=InterpData_9
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyPlane_LP')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=350.381592,Y=646.542725,Z=-71.838257),ArriveTangent=(X=358.419342,Y=0.000000,Z=-37.333393),LeaveTangent=(X=358.419342,Y=0.000000,Z=-37.333393),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=1088.001465,Y=640.000000,Z=-112.000183),ArriveTangent=(X=359.365570,Y=-10.778534,Z=0.000000),LeaveTangent=(X=359.365570,Y=-10.778534,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=1440.001953,Y=-0.000488,Z=-80.000244),ArriveTangent=(X=0.000000,Y=-416.000244,Z=0.000000),LeaveTangent=(X=0.000000,Y=-416.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=1072.002441,Y=-608.000732,Z=-80.000305),ArriveTangent=(X=-367.999756,Y=-0.000427,Z=-0.000041),LeaveTangent=(X=-367.999756,Y=-0.000427,Z=-0.000041),InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,OutVal=(X=336.002686,Y=-608.000977,Z=-80.000366),ArriveTangent=(X=-349.358856,Y=0.000000,Z=0.000000),LeaveTangent=(X=-349.358856,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=0.231934,Y=-0.856689,Z=-0.135559),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.500000),(Time=3.000000),(Time=4.500000),(Time=6.000000),(Time=7.500000),(Time=9.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackAkEvent_1'
-      GroupName="DummyBox"
-      GroupColor=(B=213,G=105,R=0,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
          AnimSeqs(0)=(AnimSeqName="Toy_AirplaneAnim_V1",AnimPlayRate=1.000000)
@@ -22682,6 +21751,31 @@ Begin Object Class=InterpData Name=InterpData_9
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Plane_ANIM'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=350.381592,Y=646.542725,Z=-71.838257),ArriveTangent=(X=358.419342,Y=0.000000,Z=-37.333393),LeaveTangent=(X=358.419342,Y=0.000000,Z=-37.333393),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=1088.001465,Y=640.000000,Z=-112.000183),ArriveTangent=(X=359.365570,Y=-10.778534,Z=0.000000),LeaveTangent=(X=359.365570,Y=-10.778534,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=1440.001953,Y=-0.000488,Z=-80.000244),ArriveTangent=(X=0.000000,Y=-416.000244,Z=0.000000),LeaveTangent=(X=0.000000,Y=-416.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=1072.002441,Y=-608.000732,Z=-80.000305),ArriveTangent=(X=-367.999756,Y=-0.000427,Z=-0.000041),LeaveTangent=(X=-367.999756,Y=-0.000427,Z=-0.000041),InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,OutVal=(X=336.002686,Y=-608.000977,Z=-80.000366),ArriveTangent=(X=-349.358856,Y=0.000000,Z=0.000000),LeaveTangent=(X=-349.358856,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=0.231934,Y=-0.856689,Z=-0.135559),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.500000),(Time=3.000000),(Time=4.500000),(Time=6.000000),(Time=7.500000),(Time=9.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyPlane_LP')
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackAkEvent_1'
+      GroupName="DummyBox"
+      GroupColor=(B=213,G=105,R=0,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=8.967281
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_1'
@@ -22736,9 +21830,27 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_468
 End Object
 
 Begin Object Class=InterpData Name=InterpData_44
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_13
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_11
+         AkEvents(0)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=5.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_11"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_13.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_13.InterpTrackAkEvent_11'
+      GroupName="DummyBox"
+      GroupColor=(B=161,G=178,R=0,A=255)
+      Name="InterpGroup_13"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -22753,27 +21865,9 @@ Begin Object Class=InterpData Name=InterpData_44
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_13
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_11
-         AkEvents(0)=(Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=5.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_11"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_13.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_13.InterpTrackAkEvent_11'
-      GroupName="DummyBox"
-      GroupColor=(B=161,G=178,R=0,A=255)
-      Name="InterpGroup_13"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=5.200000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_1'
@@ -22987,9 +22081,27 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_45
 End Object
 
 Begin Object Class=InterpData Name=InterpData_45
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
-      Name="InterpCurveEdSetup_5"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=0.900000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=5.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_45.InterpGroup_2.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_45.InterpGroup_2.InterpTrackAkEvent_1'
+      GroupName="DummyBox"
+      GroupColor=(B=216,G=99,R=0,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -23004,27 +22116,9 @@ Begin Object Class=InterpData Name=InterpData_45
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=0.900000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=5.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_45.InterpGroup_2.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_45.InterpGroup_2.InterpTrackAkEvent_1'
-      GroupName="DummyBox"
-      GroupColor=(B=216,G=99,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
+      Name="InterpCurveEdSetup_5"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_45.InterpGroup_1'
@@ -23068,9 +22162,27 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_481
 End Object
 
 Begin Object Class=InterpData Name=InterpData_46
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=0.300000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=6.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_2.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_2.InterpTrackAkEvent_1'
+      GroupName="DummyBox"
+      GroupColor=(B=165,G=174,R=0,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -23085,27 +22197,9 @@ Begin Object Class=InterpData Name=InterpData_46
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=0.300000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=6.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_2.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_2.InterpTrackAkEvent_1'
-      GroupName="DummyBox"
-      GroupColor=(B=165,G=174,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.200000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_1'
@@ -23199,32 +22293,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_47
 End Object
 
 Begin Object Class=InterpData Name=InterpData_47
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_6
-      Name="InterpCurveEdSetup_6"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=1.400000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=6.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_47.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_47.InterpGroup_0.InterpTrackAkEvent_1'
-      GroupName="DummyBox"
-      GroupColor=(B=121,G=0,R=206,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
          AnimSeqs(0)=(AnimSeqName="Toy_Train_V1",AnimPlayRate=1.000000)
@@ -23237,6 +22305,32 @@ Begin Object Class=InterpData Name=InterpData_47
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=1.400000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=6.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_47.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_47.InterpGroup_0.InterpTrackAkEvent_1'
+      GroupName="DummyBox"
+      GroupColor=(B=121,G=0,R=206,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_6
+      Name="InterpCurveEdSetup_6"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.700000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_47.InterpGroup_1'
@@ -23280,9 +22374,27 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_489
 End Object
 
 Begin Object Class=InterpData Name=InterpData_48
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_7
-      Name="InterpCurveEdSetup_7"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
+         AkEvents(0)=(Time=0.300000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=3.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_3"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_48.InterpGroup_4.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_48.InterpGroup_4.InterpTrackAkEvent_3'
+      GroupName="DummyBox"
+      GroupColor=(B=197,G=0,R=138,A=255)
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -23297,27 +22409,9 @@ Begin Object Class=InterpData Name=InterpData_48
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
-         AkEvents(0)=(Time=0.300000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=3.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_3"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_48.InterpGroup_4.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_48.InterpGroup_4.InterpTrackAkEvent_3'
-      GroupName="DummyBox"
-      GroupColor=(B=197,G=0,R=138,A=255)
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_7
+      Name="InterpCurveEdSetup_7"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.400000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_48.InterpGroup_1'
@@ -23531,9 +22625,27 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_49
 End Object
 
 Begin Object Class=InterpData Name=InterpData_49
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_17
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_15
+         AkEvents(0)=(Time=2.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=5.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_15"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_49.InterpGroup_17.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_49.InterpGroup_17.InterpTrackAkEvent_15'
+      GroupName="DummyBox"
+      GroupColor=(B=0,G=163,R=176,A=255)
+      Name="InterpGroup_17"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -23548,27 +22660,9 @@ Begin Object Class=InterpData Name=InterpData_49
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_17
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_15
-         AkEvents(0)=(Time=2.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=5.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_15"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_49.InterpGroup_17.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_49.InterpGroup_17.InterpTrackAkEvent_15'
-      GroupName="DummyBox"
-      GroupColor=(B=0,G=163,R=176,A=255)
-      Name="InterpGroup_17"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.000000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_49.InterpGroup_1'
@@ -23612,9 +22706,27 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_507
 End Object
 
 Begin Object Class=InterpData Name=InterpData_50
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_15
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_13
+         AkEvents(0)=(Time=0.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=4.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_13"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_15.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_15.InterpTrackAkEvent_13'
+      GroupName="DummyBox"
+      GroupColor=(B=42,G=230,R=0,A=255)
+      Name="InterpGroup_15"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -23629,27 +22741,9 @@ Begin Object Class=InterpData Name=InterpData_50
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_15
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_13
-         AkEvents(0)=(Time=0.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=4.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_13"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_15.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_15.InterpTrackAkEvent_13'
-      GroupName="DummyBox"
-      GroupColor=(B=42,G=230,R=0,A=255)
-      Name="InterpGroup_15"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_1'
    InterpGroups(1)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_15'
@@ -23742,9 +22836,27 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_41
 End Object
 
 Begin Object Class=InterpData Name=InterpData_41
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_19
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_17
+         AkEvents(0)=(Time=0.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=5.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_17"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_19.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_19.InterpTrackAkEvent_17'
+      GroupName="DummyBox"
+      GroupColor=(B=103,G=0,R=214,A=255)
+      Name="InterpGroup_19"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -23759,27 +22871,9 @@ Begin Object Class=InterpData Name=InterpData_41
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_19
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_17
-         AkEvents(0)=(Time=0.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=5.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_17"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_19.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_19.InterpTrackAkEvent_17'
-      GroupName="DummyBox"
-      GroupColor=(B=103,G=0,R=214,A=255)
-      Name="InterpGroup_19"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=5.600000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_1'
@@ -23823,9 +22917,27 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_508
 End Object
 
 Begin Object Class=InterpData Name=InterpData_51
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_21
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_19
+         AkEvents(0)=(Time=0.300000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=6.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_19"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_51.InterpGroup_21.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_51.InterpGroup_21.InterpTrackAkEvent_19'
+      GroupName="DummyBox"
+      GroupColor=(B=179,G=159,R=0,A=255)
+      Name="InterpGroup_21"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -23840,27 +22952,9 @@ Begin Object Class=InterpData Name=InterpData_51
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_21
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_19
-         AkEvents(0)=(Time=0.300000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=6.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_19"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_51.InterpGroup_21.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_51.InterpGroup_21.InterpTrackAkEvent_19'
-      GroupName="DummyBox"
-      GroupColor=(B=179,G=159,R=0,A=255)
-      Name="InterpGroup_21"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.200000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_51.InterpGroup_1'
@@ -24074,9 +23168,27 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_40
 End Object
 
 Begin Object Class=InterpData Name=InterpData_40
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_9
-      Name="InterpCurveEdSetup_9"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_7
+         AkEvents(0)=(Time=1.300000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=6.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_7"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_8.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_8.InterpTrackAkEvent_7'
+      GroupName="DummyBox"
+      GroupColor=(B=0,G=145,R=191,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -24091,27 +23203,9 @@ Begin Object Class=InterpData Name=InterpData_40
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_7
-         AkEvents(0)=(Time=1.300000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=6.000000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_7"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_8.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_8.InterpTrackAkEvent_7'
-      GroupName="DummyBox"
-      GroupColor=(B=0,G=145,R=191,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_9
+      Name="InterpCurveEdSetup_9"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.400000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_1'
@@ -24155,9 +23249,27 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_332
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_8
-      Name="InterpCurveEdSetup_8"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_5
+         AkEvents(0)=(Time=0.200000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=6.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_5"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6.InterpTrackAkEvent_5'
+      GroupName="DummyBox"
+      GroupColor=(B=84,G=221,R=0,A=255)
+      Name="InterpGroup_6"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -24172,27 +23284,9 @@ Begin Object Class=InterpData Name=InterpData_2
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_5
-         AkEvents(0)=(Time=0.200000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=6.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_5"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6.InterpTrackAkEvent_5'
-      GroupName="DummyBox"
-      GroupColor=(B=84,G=221,R=0,A=255)
-      Name="InterpGroup_6"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_8
+      Name="InterpCurveEdSetup_8"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.700000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1'
@@ -24316,9 +23410,27 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_42
 End Object
 
 Begin Object Class=InterpData Name=InterpData_42
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_23
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_21
+         AkEvents(0)=(Time=1.600000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
+         AkEvents(1)=(Time=6.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
+         Name="InterpTrackAkEvent_21"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_42.InterpGroup_23.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_42.InterpGroup_23.InterpTrackAkEvent_21'
+      GroupName="DummyBox"
+      GroupColor=(B=0,G=200,R=131,A=255)
+      Name="InterpGroup_23"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_3
@@ -24333,27 +23445,9 @@ Begin Object Class=InterpData Name=InterpData_42
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_23
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_21
-         AkEvents(0)=(Time=1.600000,Event=AkEvent'WW_ENV_SantasWorkshop.Play_ENV_SantasWorkshop_ToyTrain_LP')
-         AkEvents(1)=(Time=6.500000,Event=AkEvent'WW_ENV_SantasWorkshop.Stop_ENV_SantasWorkshop_Toy_Train_LP')
-         Name="InterpTrackAkEvent_21"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=186.610107,Y=237.865967,Z=0.000000),ArriveTangent=(X=72.377487,Y=276.521606,Z=0.000000),LeaveTangent=(X=72.377487,Y=276.521606,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=222.489868,Y=553.043213,Z=0.000000),ArriveTangent=(X=0.000000,Y=292.074829,Z=0.000000),LeaveTangent=(X=0.000000,Y=292.074829,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=123.536255,Y=822.015625,Z=0.000000),ArriveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),LeaveTangent=(X=-152.494705,Y=256.156006,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-86.911499,Y=1065.355225,Z=0.000000),ArriveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),LeaveTangent=(X=-104.806725,Y=268.592896,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-142.960327,Y=1359.201416,Z=0.000000),ArriveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),LeaveTangent=(X=-61.456512,Y=296.732422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-209.824524,Y=1658.820068,Z=0.000000),ArriveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),LeaveTangent=(X=-120.751427,Y=263.907013,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,OutVal=(X=-352.000000,Y=1807.999756,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.700000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000),(Time=5.000000),(Time=6.000000),(Time=6.700000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_42.InterpGroup_23.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_42.InterpGroup_23.InterpTrackAkEvent_21'
-      GroupName="DummyBox"
-      GroupColor=(B=0,G=200,R=131,A=255)
-      Name="InterpGroup_23"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.700000
    InterpGroups(0)=InterpGroup'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_42.InterpGroup_1'
@@ -24489,7 +23583,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_11
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-9178,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-9155,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-9132,OverrideDelta=61)
@@ -24497,27 +23591,28 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_11
    OutputLinks(4)=(DrawY=-9086,OverrideDelta=107)
    OutputLinks(5)=(DrawY=-9063,OverrideDelta=130)
    OutputLinks(6)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_119')),DrawY=-9040,OverrideDelta=153)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_SetBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_0')),DrawY=-9017,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_119')),DrawY=-9017,OverrideDelta=176)
+   OutputLinks(8)=(DrawY=-8994,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-5440
    ObjPosY=-9248
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_11"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_68
-   SizeX=1082
-   SizeY=575
+   SizeX=2349
+   SizeY=1413
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5472
-   ObjPosY=-9272
+   ObjPosX=-5920
+   ObjPosY=-9320
    ObjComment="Section A"
-   DrawWidth=1082
-   DrawHeight=575
+   DrawWidth=2349
+   DrawHeight=1413
    Name="SequenceFrame_68"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
@@ -26638,39 +25733,21 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_724
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_DrawText Name=SeqAct_DrawText_16
-   DisplayTimeSeconds=8.000000
-   DrawTextInfo=(MessageText="TEST1",MessageFont=Font'UI_Canvas_Fonts.Font_General')
-   InputLinks(0)=(DrawY=-7268,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-7248,OverrideDelta=33)
-   OutputLinks(0)=(DrawY=-7258,OverrideDelta=23)
-   VariableLinks(0)=(DrawX=823,OverrideDelta=17)
-   VariableLinks(1)=()
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=784
-   ObjPosY=-7304
-   DrawWidth=78
-   DrawHeight=85
-   Name="SeqAct_DrawText_16"
-   ObjectArchetype=SeqAct_DrawText'Engine.Default__SeqAct_DrawText'
-End Object
-
-Begin Object Class=SeqAct_DrawText Name=SeqAct_DrawText_17
+Begin Object Class=SeqAct_DrawText Name=SeqAct_DrawText_0
    DisplayTimeSeconds=8.000000
    DrawTextInfo=(MessageText="TEST2",MessageFont=Font'UI_Canvas_Fonts.Font_General')
-   InputLinks(0)=(DrawY=-7412,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-7392,OverrideDelta=33)
-   OutputLinks(0)=(DrawY=-7402,OverrideDelta=23)
-   VariableLinks(0)=(DrawX=815,OverrideDelta=17)
+   InputLinks(0)=(DrawY=-8268,OverrideDelta=13)
+   InputLinks(1)=(DrawY=-8248,OverrideDelta=33)
+   OutputLinks(0)=(DrawY=-8258,OverrideDelta=23)
+   VariableLinks(0)=(DrawX=-8073,OverrideDelta=17)
    VariableLinks(1)=()
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=776
-   ObjPosY=-7448
+   ObjPosX=-8112
+   ObjPosY=-8304
    DrawWidth=78
    DrawHeight=85
-   Name="SeqAct_DrawText_17"
+   Name="SeqAct_DrawText_0"
    ObjectArchetype=SeqAct_DrawText'Engine.Default__SeqAct_DrawText'
 End Object
 
@@ -27281,20 +26358,21 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_15
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=990,OverrideDelta=15)
    OutputLinks(1)=(DrawY=1013,OverrideDelta=38)
    OutputLinks(2)=(DrawY=1036,OverrideDelta=61)
    OutputLinks(3)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_21')),DrawY=1059,OverrideDelta=84)
    OutputLinks(4)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_21')),DrawY=1082,OverrideDelta=107)
-   OutputLinks(5)=(ActivateDelay=2.000000,DrawY=1105,OverrideDelta=130)
+   OutputLinks(5)=(DrawY=1105,OverrideDelta=130)
    OutputLinks(6)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_21')),DrawY=1128,OverrideDelta=153)
    OutputLinks(7)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_21')),DrawY=1151,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=1174,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6008
    ObjPosY=920
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_15"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -27415,7 +26493,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_18
    MaxTriggerCount=0
-   MaxWidth=202
+   MaxWidth=216
    OutputLinks(0)=(DrawY=-2738,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-2715,OverrideDelta=38)
    OutputLinks(2)=(DrawY=-2692,OverrideDelta=61)
@@ -27424,11 +26502,12 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_18
    OutputLinks(5)=(DrawY=-2623,OverrideDelta=130)
    OutputLinks(6)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_73',InputLinkIdx=1)),ActivateDelay=2.000000,DrawY=-2600,OverrideDelta=153)
    OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_73',InputLinkIdx=1)),ActivateDelay=2.000000,DrawY=-2577,OverrideDelta=176)
-   ObjInstanceVersion=4
+   OutputLinks(8)=(DrawY=-2554,OverrideDelta=199)
+   ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1512
    ObjPosY=-2808
-   DrawWidth=203
+   DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_18"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object
@@ -30075,4 +29154,2240 @@ Begin Object Class=SeqAct_Gate Name=SeqAct_Gate_1
    DrawHeight=117
    Name="SeqAct_Gate_1"
    ObjectArchetype=SeqAct_Gate'Engine.Default__SeqAct_Gate'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1752
+   ObjPosY=-9416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_58"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_30'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1832
+   ObjPosY=-9424
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_59"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_32'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1936
+   ObjPosY=-9424
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_60"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_33'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1776
+   ObjPosY=-9496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_61"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1880
+   ObjPosY=-9496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_62"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_29'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1976
+   ObjPosY=-9496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_63"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_13
+   EventName="SpawnsOff"
+   MaxWidth=188
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_62',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_77',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2',InputLinkIdx=1)),DrawY=-8830,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-1754,OverrideDelta=62)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1848
+   ObjPosY=-8896
+   ObjComment="SpawnsOff"
+   DrawWidth=114
+   DrawHeight=128
+   Name="SeqEvent_RemoteEvent_13"
+   ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
+End Object
+
+Begin Object Class=SeqEvent_PlayerSpawned Name=SeqEvent_PlayerSpawned_1
+   MaxTriggerCount=0
+   MaxWidth=156
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0',InputLinkIdx=1),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_55')),DrawY=-9102,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-2360,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2290,OverrideDelta=96)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2408
+   ObjPosY=-9168
+   DrawWidth=98
+   DrawHeight=144
+   Name="SeqEvent_PlayerSpawned_1"
+   ObjectArchetype=SeqEvent_PlayerSpawned'Engine.Default__SeqEvent_PlayerSpawned'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
+   InputLinks(0)=(DrawY=-9275,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-9254,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-9233,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-9254,OverrideDelta=35)
+   VariableLinks(0)=(DrawX=-2370,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2319,OverrideDelta=76)
+   EventLinks(0)=(LinkedEvents=(SeqEvent_PlayerSpawned'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqEvent_PlayerSpawned_1'),DrawX=-2270,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2408
+   ObjPosY=-9312
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_0"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_3
+   EventName="SpawnsOff"
+   InputLinks(0)=(DrawY=-9638,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),ActivateDelay=1.000000,DrawY=-9638,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-2092,OverrideDelta=92)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2216
+   ObjPosY=-9672
+   ObjComment="SpawnsOff"
+   DrawWidth=249
+   DrawHeight=61
+   Name="SeqAct_ActivateRemoteEvent_3"
+   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
+   InputLinks(0)=(DrawY=-9659,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-9638,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-9617,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-9638,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_63',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_62',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_60',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_59',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_58'),DrawX=-1842,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1791,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1742,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1880
+   ObjPosY=-9696
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_1"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_88
+   Duration=20.000000
+   InputLinks(0)=(DrawY=-9355,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-9334,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-9313,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_3')),DrawY=-9350,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-9318,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-2100,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2152
+   ObjPosY=-9392
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_88"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_330
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2128
+   ObjPosY=-8400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_330"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_331
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_29'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2232
+   ObjPosY=-8400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_331"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_397
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_33'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2328
+   ObjPosY=-8400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_397"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_400
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_32'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2432
+   ObjPosY=-8400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_400"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_405
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2528
+   ObjPosY=-8400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_405"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_424
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_30'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2632
+   ObjPosY=-8400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_424"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_426
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_35'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2728
+   ObjPosY=-8400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_426"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_430
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_34'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2832
+   ObjPosY=-8400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_430"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_558
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2136
+   ObjPosY=-8232
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_558"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_559
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2240
+   ObjPosY=-8232
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_559"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_560
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2336
+   ObjPosY=-8232
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_560"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_561
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2440
+   ObjPosY=-8232
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_561"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_633
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2536
+   ObjPosY=-8232
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_633"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_636
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_28'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2640
+   ObjPosY=-8232
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_636"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_637
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_27'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2736
+   ObjPosY=-8232
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_637"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_731
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_26'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2840
+   ObjPosY=-8232
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_731"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_732
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_24'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2272
+   ObjPosY=-8480
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_732"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_739
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_22'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2376
+   ObjPosY=-8480
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_739"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_740
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2472
+   ObjPosY=-8480
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_740"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_741
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_21'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2576
+   ObjPosY=-8480
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_741"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_764
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2672
+   ObjPosY=-8480
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_764"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_765
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2776
+   ObjPosY=-8480
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_765"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_770
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_18'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2080
+   ObjPosY=-8312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_770"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_771
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2184
+   ObjPosY=-8312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_771"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_772
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2280
+   ObjPosY=-8312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_772"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_773
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2384
+   ObjPosY=-8312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_773"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_806
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2480
+   ObjPosY=-8312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_806"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_807
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2584
+   ObjPosY=-8312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_807"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_808
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2680
+   ObjPosY=-8312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_808"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_809
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_25'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2784
+   ObjPosY=-8312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_809"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_810
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_30'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1072
+   ObjPosY=-8048
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_810"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_811
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_32'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1168
+   ObjPosY=-8048
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_811"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_812
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_33'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1272
+   ObjPosY=-8048
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_812"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_813
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1368
+   ObjPosY=-8048
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_813"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_814
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1472
+   ObjPosY=-8048
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_814"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_815
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_29'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1568
+   ObjPosY=-8048
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_815"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
+   InputLinks(0)=(DrawY=-8219,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-8198,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-8177,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-8198,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_815',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_814',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_813',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_812',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_811',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_810'),DrawX=-1426,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1375,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1326,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1464
+   ObjPosY=-8256
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_2"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_816
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1056
+   ObjPosY=-8392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_816"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_817
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_35'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1152
+   ObjPosY=-8392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_817"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_818
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1256
+   ObjPosY=-8392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_818"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_819
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1352
+   ObjPosY=-8392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_819"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_820
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1456
+   ObjPosY=-8392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_820"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_821
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_34'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1552
+   ObjPosY=-8392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_821"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_822
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_24'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1064
+   ObjPosY=-8744
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_822"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_823
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_26'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1168
+   ObjPosY=-8744
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_823"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_824
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_27'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1264
+   ObjPosY=-8744
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_824"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_825
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_28'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1368
+   ObjPosY=-8744
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_825"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_826
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1464
+   ObjPosY=-8744
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_826"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_827
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_25'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1568
+   ObjPosY=-8744
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_827"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_828
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1024
+   ObjPosY=-9128
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_828"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_829
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_18'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1120
+   ObjPosY=-9128
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_829"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_830
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1224
+   ObjPosY=-9128
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_830"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_831
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1320
+   ObjPosY=-9128
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_831"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_832
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_21'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1424
+   ObjPosY=-9128
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_832"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_833
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_22'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1520
+   ObjPosY=-9128
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_833"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_834
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1040
+   ObjPosY=-9488
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_834"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_835
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1136
+   ObjPosY=-9488
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_835"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_836
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1240
+   ObjPosY=-9488
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_836"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_837
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1344
+   ObjPosY=-9496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_837"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_838
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1448
+   ObjPosY=-9496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_838"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_839
+   ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1544
+   ObjPosY=-9496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_839"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_13
+   MaxTriggerCount=0
+   MaxWidth=216
+   OutputLinks(0)=(DrawY=-9034,OverrideDelta=15)
+   OutputLinks(1)=(DrawY=-9011,OverrideDelta=38)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_78',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=-8988,OverrideDelta=61)
+   OutputLinks(3)=(DrawY=-8965,OverrideDelta=84)
+   OutputLinks(4)=(DrawY=-8942,OverrideDelta=107)
+   OutputLinks(5)=(DrawY=-8919,OverrideDelta=130)
+   OutputLinks(6)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),DrawY=-8896,OverrideDelta=153)
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),DrawY=-8873,OverrideDelta=176)
+   OutputLinks(8)=(DrawY=-8850,OverrideDelta=199)
+   ObjInstanceVersion=5
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3008
+   ObjPosY=-9104
+   DrawWidth=217
+   Name="KFSeqEvent_LevelLoaded_13"
+   ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_48
+   SizeX=2378
+   SizeY=2035
+   BorderWidth=5
+   bDrawBox=True
+   FillColor=(B=0,G=156,R=255,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3136
+   ObjPosY=-9824
+   ObjComment="Randomized Starting Spawns"
+   DrawWidth=2378
+   DrawHeight=2035
+   Name="SequenceFrame_48"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
+   InputLinks(0)=(DrawY=-9267,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-9246,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-9225,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-9246,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_833',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_832',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_831',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_830',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_829',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_828'),DrawX=-1410,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1359,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1310,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1448
+   ObjPosY=-9304
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_9"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
+   InputLinks(0)=(DrawY=-8931,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-8910,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-8889,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-8910,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_827',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_826',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_825',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_824',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_823',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_822'),DrawX=-1418,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1367,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1318,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1456
+   ObjPosY=-8968
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_12"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_62
+   InputLinks(0)=(DrawY=-9627,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-9606,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-9585,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-9606,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_839',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_838',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_837',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_836',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_835',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_834'),DrawX=-1418,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1367,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1318,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1456
+   ObjPosY=-9664
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_62"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_77
+   InputLinks(0)=(DrawY=-8571,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-8550,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-8529,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-8550,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_821',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_820',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_819',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_818',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_817',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_816'),DrawX=-1426,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1375,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1326,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1464
+   ObjPosY=-8608
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_77"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_1
+   LinkCount=5
+   IncrementAmount=0
+   InputLinks(0)=(DrawY=-8802,OverrideDelta=31)
+   InputLinks(1)=(DrawY=-8746,OverrideDelta=87)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_62')),DrawY=-8818,OverrideDelta=15)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),LinkDesc="Link 2",DrawY=-8796,OverrideDelta=37)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_12')),LinkDesc="Link 3",DrawY=-8774,OverrideDelta=59)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_77')),LinkDesc="Link 4",DrawY=-8752,OverrideDelta=81)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),LinkDesc="Link 5",DrawY=-8730,OverrideDelta=103)
+   VariableLinks(0)=(DrawX=-2020,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2064
+   ObjPosY=-8856
+   DrawWidth=89
+   DrawHeight=173
+   Name="SeqAct_RandomSwitch_1"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_78
+   InputLinks(0)=(DrawY=-8699,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-8678,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-8657,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),ActivateDelay=1.000000,DrawY=-8678,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_809',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_808',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_807',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_806',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_773',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_772',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_771',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_770',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_765',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_764',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_741',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_740',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_739',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_732',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_731',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_637',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_636',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_633',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_561',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_560',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_559',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_558',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_430',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_426',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_424',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_405',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_400',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_397',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_331',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_330'),DrawX=-2450,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2399,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2350,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2488
+   ObjPosY=-8736
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_78"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_0
+   InputLinks(0)=(DrawY=-8979,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-8958,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-8937,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-8958,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_872',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_873',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_874',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_875',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_876',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_877',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_878',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_879',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_880',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_881',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_882',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_883',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_884',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_885',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_886',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_887',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_888',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_889',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_890',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_891',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_892',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_893',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_894',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_895',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_896',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_897',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_898',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_899',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_900',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_901',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_902',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_903',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_904',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_905',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_906',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_907',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_908',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_909',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_910',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_911',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_912',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_913',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_914',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_915',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_916',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_917',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_918',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_919',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_920',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_921',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_922',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_923',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_924',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_925',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_926',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_927',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_928',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_929',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_930',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_931',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_932',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_933',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_934',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_935',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_936',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_937',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_938',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_939',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_940',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_941',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_942',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_943',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_944',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_945',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_946',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_947',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_948',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_949',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_950',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_951',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_952',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_953',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_954',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_955',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_956',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_957',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_958',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_959'),DrawX=-4210,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4159,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-4110,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4248
+   ObjPosY=-9016
+   DrawWidth=173
+   DrawHeight=109
+   Name="KFSeqAct_ToggleEx_0"
+   ObjectArchetype=KFSeqAct_ToggleEx'KFGame.Default__KFSeqAct_ToggleEx'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_872
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_82'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5840
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_872"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_873
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5744
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_873"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_874
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_38'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5640
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_874"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_875
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_58'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5544
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_875"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_876
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5440
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_876"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_877
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5344
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_877"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_878
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5240
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_878"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_879
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_33'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5144
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_879"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_880
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5040
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_880"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_881
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_66'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4944
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_881"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_882
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_14'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4840
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_882"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_883
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_15'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4744
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_883"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_884
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_16'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4640
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_884"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_885
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_39'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4544
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_885"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_886
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_18'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4440
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_886"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_887
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4344
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_887"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_888
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4240
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_888"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_889
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_22'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4144
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_889"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_890
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_17'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4040
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_890"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_891
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3944
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_891"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_892
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_24'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4464
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_892"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_893
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_25'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4368
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_893"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_894
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_26'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4264
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_894"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_895
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_27'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4168
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_895"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_896
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_52'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4064
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_896"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_897
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_29'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5760
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_897"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_898
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_30'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5656
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_898"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_899
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_21'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5560
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_899"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_900
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_34'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5456
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_900"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_901
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5360
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_901"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_902
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_35'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5256
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_902"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_903
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_37'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5160
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_903"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_904
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5056
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_904"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_905
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_40'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4960
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_905"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_906
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_42'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4856
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_906"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_907
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_36'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4760
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_907"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_908
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_43'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4656
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_908"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_909
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_44'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4560
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_909"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_910
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_45'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5832
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_910"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_911
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_46'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5736
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_911"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_912
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_47'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5632
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_912"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_913
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_48'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5536
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_913"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_914
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_49'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5432
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_914"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_915
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_50'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5336
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_915"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_916
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_51'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5232
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_916"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_917
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_41'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5136
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_917"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_918
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_28'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5032
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_918"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_919
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_54'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4936
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_919"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_920
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_55'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4832
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_920"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_921
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_56'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4736
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_921"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_922
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_57'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4632
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_922"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_923
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_59'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4536
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_923"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_924
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_60'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4432
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_924"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_925
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_61'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4336
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_925"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_926
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_62'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4232
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_926"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_927
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_63'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4136
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_927"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_928
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4032
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_928"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_929
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_64'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3936
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_929"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_930
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_32'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3832
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_930"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_931
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_79'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3736
+   ObjPosY=-8328
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_931"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_932
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3952
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_932"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_933
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_77'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3856
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_933"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_934
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_72'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3752
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_934"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_935
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_71'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3656
+   ObjPosY=-8576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_935"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_936
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5792
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_936"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_937
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_70'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5696
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_937"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_938
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_69'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5592
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_938"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_939
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_80'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5496
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_939"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_940
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_67'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5400
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_940"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_941
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_78'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5304
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_941"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_942
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_76'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5200
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_942"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_943
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_68'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5104
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_943"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_944
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_65'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5000
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_944"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_945
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_13'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4904
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_945"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_946
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_53'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4800
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_946"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_947
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4704
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_947"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_948
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4600
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_948"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_949
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_75'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4504
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_949"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_950
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4400
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_950"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_951
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_74'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4304
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_951"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_952
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_85'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4200
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_952"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_953
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_83'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4104
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_953"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_954
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_12'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4000
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_954"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_955
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_81'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3904
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_955"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_956
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_86'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3800
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_956"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_957
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_87'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3704
+   ObjPosY=-8416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_957"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_958
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_88'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3824
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_958"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_959
+   ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_84'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3728
+   ObjPosY=-8496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_959"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_54
+   ExpectedType=Class'Engine.SeqVar_Bool'
+   FindVarName="Endless"
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-6424
+   ObjPosY=-3800
+   ObjColor=(B=0,G=0,R=255,A=255)
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Named_54"
+   ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+End Object
+
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_60
+   bValue=1
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-6336
+   ObjPosY=-3808
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Bool_60"
+   ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+End Object
+
+Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_47
+   InputLinks(0)=(DrawY=-3882,OverrideDelta=23)
+   OutputLinks(0)=(DrawY=-3892,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_108')),DrawY=-3872,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_54'),DrawX=-6379,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_60'),DrawX=-6329,OverrideDelta=59)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-6408
+   ObjPosY=-3928
+   DrawWidth=115
+   DrawHeight=85
+   Name="SeqCond_CompareBool_47"
+   ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
+End Object
+
+Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_55
+   InputLinks(0)=(DrawY=-9130,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_88')),DrawY=-9140,OverrideDelta=13)
+   OutputLinks(1)=(DrawY=-9120,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_61'),DrawX=-2147,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_66'),DrawX=-2097,OverrideDelta=59)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2176
+   ObjPosY=-9176
+   DrawWidth=115
+   DrawHeight=85
+   Name="SeqCond_CompareBool_55"
+   ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
+End Object
+
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_66
+   bValue=1
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2104
+   ObjPosY=-9072
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Bool_66"
+   ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+End Object
+
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_61
+   ExpectedType=Class'Engine.SeqVar_Bool'
+   FindVarName="Endless"
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2192
+   ObjPosY=-9056
+   ObjColor=(B=0,G=0,R=255,A=255)
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Named_61"
+   ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
+   InputLinks(0)=(DrawY=-2683,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2662,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-2641,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-2678,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-2646,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-3084,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3136
+   ObjPosY=-2720
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_1"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object

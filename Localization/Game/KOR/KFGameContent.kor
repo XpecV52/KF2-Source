@@ -479,7 +479,7 @@ SecondaryAmmo="M203 수류탄"
 [KFWeap_SMG_MP5RAS]
 ItemName="MP5RAS SMG"
 ItemCategory="서브머신건"
-ItemDescription="•전자동 및 반자동 사격 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•세계에서 가장 많이 사용된 서브머신건의 최신 버전"
+ItemDescription="•전자동 및 3점 연사 모드 선택.\n•대체 사격으로 사격 모드 전환.\n•세계에서 가장 많이 사용된 서브머신건의 최신 버전"
 
 [KFWeap_SMG_P90]
 ItemName="P90 SMG"
@@ -536,6 +536,16 @@ ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 사격 �
 ItemName="스태틱 스트라이커"
 ItemCategory="백병전"
 ItemDescription="•기본 - 빠른 둔기 공격, 오래 누르면 콤보 공격. \n•보조 - 세게 전격 둔기 공격. 충격적입니다! \n•Zed 얼굴에 한 방 먹여주고 싶다고요? 여기 해답이 있습니다!"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="킬러와트"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•오버차지 모드 - 발사 버튼을 누르는 동안 충전되며 발사 버튼에서 손을 떼면 발사됩니다."
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="헬리오스 소총"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 및 3발 연사 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•화염이 그대와 함께하기를."
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"

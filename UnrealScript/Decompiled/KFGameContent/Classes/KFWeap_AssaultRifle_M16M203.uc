@@ -16,6 +16,7 @@ const SecondaryReloadAnim_Elite = 'Reload_Secondary_Elite';
 
 var(Positioning) Vector SecondaryFireOffset;
 var int ServerTotalAltAmmo;
+var transient bool bCanceledAltAutoReload;
 
 static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter()
 {
@@ -26,6 +27,12 @@ simulated function AltFireMode()
 {
     if(!Instigator.IsLocallyControlled())
     {
+        return;
+    }
+    if(bCanceledAltAutoReload)
+    {
+        bCanceledAltAutoReload = false;
+        TryToAltReload();
         return;
     }
     StartFire(1);
@@ -215,6 +222,10 @@ simulated function bool CanAltAutoReload()
     {
         return false;
     }
+    if(bCanceledAltAutoReload)
+    {
+        return false;
+    }
     return true;
 }
 
@@ -271,6 +282,12 @@ simulated state AltReloading extends Reloading
         return byte(((bTacticalReload) ? 10 : 9));
     }
 
+    simulated event BeginState(name PreviousStateName)
+    {
+        super.BeginState(PreviousStateName);
+        bCanceledAltAutoReload = true;
+    }
+
     simulated function EndState(name NextStateName)
     {
         ClearZedTimeResist();
@@ -313,6 +330,7 @@ simulated state AltReloading extends Reloading
         {
             ServerSetAltAmmoCount(AmmoCount[1]);
         }
+        bCanceledAltAutoReload = false;
     }
 
     simulated function KFGame.KFWeapon.EReloadStatus GetNextReloadStatus(optional byte FireModeNum)

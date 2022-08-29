@@ -35,6 +35,8 @@ var bool bFriendlyFireEnabled;
 
 var class<KFExplosionActor> NukeExplosionActorClass;
 
+var float StartingDamageRadius;
+
 replication
 {
 	if (bNetInitial)
@@ -49,6 +51,11 @@ simulated event PreBeginPlay()
 	if(Role == ROLE_Authority && KFGameInfo(WorldInfo.Game).FriendlyFireScale != 0.f)
 	{
 		bFriendlyFireEnabled = true;
+	}
+
+	if (ExplosionTemplate != none)
+	{
+		StartingDamageRadius = ExplosionTemplate.DamageRadius;
 	}
 }
 
@@ -143,9 +150,10 @@ simulated protected function PrepareExplosionTemplate()
 	}
 	else
 	{
-		// We need to copy the default, otherwise we are assigning a reference that can permanently
-		// change the default (e.g. when scaling the radius below)
-		ExplosionTemplate = default.ExplosionTemplate.Duplicate();
+		// When copying the default, we are assigning a reference that can change the default
+		// So since we are changing the DamageRadius, save that default off and re-apply it here
+		ExplosionTemplate = default.ExplosionTemplate;
+		ExplosionTemplate.DamageRadius = StartingDamageRadius;
 	}
 
 	// Change the radius and damage based on the perk

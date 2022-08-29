@@ -229,6 +229,31 @@ var protected const float MaxAIWarningDistSQ;
 var protected const float MaxAIWarningDistFromPointSQ;
 
 /*********************************************************************************************
+* @name Stick/Pin
+********************************************************************************************* */
+
+/** Whether projectile can stick to actors */
+var const bool bCanStick;
+/** Whether projectile can pin pawns */
+var const bool bCanPin;
+
+/** Actor projectile is stuck to */
+var transient repnotify Actor StuckToActor;
+var transient Actor PrevStuckToActor;
+/** Index of bone projectile is stuck to (if stuck to actor) */
+var transient int StuckToBoneIdx;
+/** replicated stuck loc/rot (relative for skeletal meshes, absolute otherwise) */
+var transient vector StuckToLocation;
+var transient rotator StuckToRotation;
+
+/** Actor projectile has pinned */
+var transient repnotify Actor PinActor;
+/** Bone projectile has pinned */
+var transient int PinBoneIdx;
+
+var instanced KFProjectileStickHelper StickHelper;
+
+/*********************************************************************************************
 * End Vars
 ********************************************************************************************* */
 
@@ -264,6 +289,11 @@ replication
     // Only need to replicate this to owner
     if( bNetInitial && bNetOwner )
         WeaponFireMode;
+
+	if (bCanStick && (bNetInitial || !bNetOwner))
+		StuckToActor, StuckToBoneIdx, StuckToLocation, StuckToRotation;
+	if (bCanPin && bNetDirty)
+		PinActor, PinBoneIdx;
 }
 
 /** returns terminal velocity (max speed while falling) for this actor.  Unless overridden, it returns the TerminalVelocity of the PhysicsVolume in which this actor is located.
@@ -411,6 +441,24 @@ simulated event ReplicatedEvent(name VarName)
     {
         PenetrationPower = InitialPenetrationPower;
     }
+	else if (VarName == nameof(StuckToActor))
+	{
+		if (StuckToActor == none)
+		{
+			StickHelper.UnStick();
+		}
+		else if (StuckToActor != PrevStuckToActor)
+		{
+			StickHelper.ReplicatedStick(StuckToActor, StuckToBoneIdx);
+		}
+	}
+	else if (VarName == nameof(PinActor))
+	{
+		if (PinActor != none && PinBoneIdx != INDEX_None)
+		{
+			StickHelper.Pin(PinActor, PinBoneIdx);
+		}
+	}
 	else
 	{
 		Super.ReplicatedEvent(VarName);
@@ -600,6 +648,13 @@ simulated singular event HitWall( vector HitNormal, actor Wall, PrimitiveCompone
 
     Super(Actor).HitWall(HitNormal, Wall, WallComp);
 
+	if (bCanStick || bCanPin)
+	{
+		LastTouchComponent = WallComp;
+		StickHelper.TryStick(HitNormal,, Wall);
+		return;
+	}
+
     if ( Wall.bWorldGeometry )
     {
         HitStaticMesh = StaticMeshComponent(WallComp);
@@ -656,6 +711,12 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
     if (Other != Instigator)
 	{
+		if (bCanStick || bCanPin)
+		{
+			StickHelper.TryStick(HitNormal, HitLocation, Other);
+			return;
+		}
+
 		if (ExplosionTemplate != None)
         {
         	TriggerExplosion(HitLocation, HitNormal, Other);
@@ -1276,6 +1337,17 @@ function SpawnResidualFlame( class<KFProjectile> SpawnClass, vector SpawnLoc, ve
         SpawnedProjectile.Velocity = SpawnVel;
         SpawnedProjectile.Speed = VSize( SpawnedProjectile.Velocity );
     }
+}
+
+/*********************************************************************************************
+* @name Stick/Pin
+********************************************************************************************* */
+
+simulated function SetStickOrientation(vector HitNormal);
+
+reliable server function ServerStick(Actor StickTo, int BoneIdx, vector StickLoc, rotator StickRot)
+{
+	StickHelper.ServerStick(StickTo, BoneIdx, StickLoc, StickRot);
 }
 
 defaultproperties

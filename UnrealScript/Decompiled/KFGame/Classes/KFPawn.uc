@@ -674,6 +674,17 @@ event PostBeginPlay()
     }
 }
 
+event PostAddPawn()
+{
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if(KFGI != none)
+    {
+        KFGI.UpdateAIRemaining();
+    }
+}
+
 function Reset()
 {
     DetachFromController(true);
@@ -795,7 +806,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
     if((Info != CharacterArch) || bForce)
     {
-        CharacterArch = Info.Duplicate();
+        CharacterArch = Info;
         CharacterArch.SetCharacterFromArch(self, KFPRI);
         CharacterArch.SetCharacterMeshFromArch(self, KFPRI);
         CharacterArch.SetFirstPersonArmsFromArch(self, KFPRI);
@@ -1325,11 +1336,15 @@ simulated function WeaponFired(Weapon InWeapon, bool bViaReplication, optional V
             KFW = KFWeapon(InWeapon);
             if(KFW != none)
             {
-                KFProj = KFW.GetKFProjectileClass();
-                if(KFProj != none)
-                {
-                    ImpactFX = KFProj.default.ImpactEffects;
-                }
+                KFProj = KFW.GetKFProjectileClass();                
+            }
+            else
+            {
+                KFProj = WeaponClassForAttachmentTemplate.static.GetKFProjectileClassByFiringMode(FiringMode, GetPerk());
+            }
+            if(KFProj != none)
+            {
+                ImpactFX = KFProj.default.ImpactEffects;
             }
             KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, self,, ImpactFX);
         }
@@ -1383,10 +1398,51 @@ final simulated function bool CanReloadWeapon()
     return true;
 }
 
-function ThrowActiveWeapon(optional bool bDestroyWeap)
+function KFWeapon FindBestWeapon()
 {
     local float BestPrimaryRating, BestSecondaryRating, BestMeleeRating;
     local KFWeapon BestWeapon, BestPrimary, BestSecondary, BestMelee, TempWeapon;
+
+    foreach InvManager.InventoryActors(Class'KFWeapon', TempWeapon)
+    {
+        if(!TempWeapon.bDropOnDeath || !TempWeapon.CanThrow())
+        {
+            continue;            
+        }
+        if(TempWeapon.InventoryGroup == 0)
+        {
+            if((BestPrimaryRating == 0) || TempWeapon.GroupPriority > BestPrimaryRating)
+            {
+                BestPrimary = TempWeapon;
+                BestPrimaryRating = TempWeapon.GroupPriority;
+            }
+            continue;
+        }
+        if(TempWeapon.InventoryGroup == 1)
+        {
+            if((BestSecondaryRating == 0) || TempWeapon.GroupPriority > BestSecondaryRating)
+            {
+                BestSecondary = TempWeapon;
+                BestSecondaryRating = TempWeapon.GroupPriority;
+            }
+            continue;
+        }
+        if(TempWeapon.InventoryGroup == 2)
+        {
+            if((BestMeleeRating == 0) || TempWeapon.GroupPriority > BestMeleeRating)
+            {
+                BestMelee = TempWeapon;
+                BestMeleeRating = TempWeapon.GroupPriority;
+            }
+        }        
+    }    
+    BestWeapon = ((BestPrimary != none) ? BestPrimary : ((BestSecondary != none) ? BestSecondary : BestMelee));
+    return BestWeapon;
+}
+
+function ThrowActiveWeapon(optional bool bDestroyWeap)
+{
+    local KFWeapon BestWeapon;
 
     if(Role < ROLE_Authority)
     {
@@ -1394,40 +1450,7 @@ function ThrowActiveWeapon(optional bool bDestroyWeap)
     }
     if(((InvManager != none) && Health <= 0) && ((Weapon == none) || !Weapon.bDropOnDeath) || !Weapon.CanThrow())
     {
-        foreach InvManager.InventoryActors(Class'KFWeapon', TempWeapon)
-        {
-            if(!TempWeapon.bDropOnDeath || !TempWeapon.CanThrow())
-            {
-                continue;                
-            }
-            if(TempWeapon.InventoryGroup == 0)
-            {
-                if((BestPrimaryRating == 0) || TempWeapon.GroupPriority > BestPrimaryRating)
-                {
-                    BestPrimary = TempWeapon;
-                    BestPrimaryRating = TempWeapon.GroupPriority;
-                }
-                continue;
-            }
-            if(TempWeapon.InventoryGroup == 1)
-            {
-                if((BestSecondaryRating == 0) || TempWeapon.GroupPriority > BestSecondaryRating)
-                {
-                    BestSecondary = TempWeapon;
-                    BestSecondaryRating = TempWeapon.GroupPriority;
-                }
-                continue;
-            }
-            if(TempWeapon.InventoryGroup == 2)
-            {
-                if((BestMeleeRating == 0) || TempWeapon.GroupPriority > BestMeleeRating)
-                {
-                    BestMelee = TempWeapon;
-                    BestMeleeRating = TempWeapon.GroupPriority;
-                }
-            }            
-        }        
-        BestWeapon = ((BestPrimary != none) ? BestPrimary : ((BestSecondary != none) ? BestSecondary : BestMelee));
+        BestWeapon = FindBestWeapon();
         if(BestWeapon != none)
         {
             TossInventory(BestWeapon);
@@ -3291,6 +3314,11 @@ function SetWeaponComponentRTPCValue(string InRTPC, float targetvalue)
     WeaponAkComponent.SetRTPCValue(InRTPC, targetvalue);
 }
 
+simulated function PlayWeaponSoundEvent(AkEvent NewSoundEvent)
+{
+    WeaponAkComponent.PlayEvent(NewSoundEvent, true, true);
+}
+
 simulated event Tick(float DeltaTime)
 {
     if(Role == ROLE_Authority)
@@ -3644,12 +3672,47 @@ simulated function DetachEmitter(out ParticleSystemComponent Emitter)
     }
 }
 
+simulated function SpawnExtraVFX(ExtraVFXInfo Info, ExtraVFXAttachmentInfo Attachment)
+{
+    local name SFXBoneName;
+
+    if(Info.SocketName == 'None')
+    {
+        if(Info.VFX != none)
+        {
+            Attachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(Info.VFX, Location, Rotation, self);
+        }
+        if(Info.SFXStartEvent != none)
+        {
+            PostAkEvent(Info.SFXStartEvent, false, true, false);
+        }        
+    }
+    else
+    {
+        if(Info.VFX != none)
+        {
+            Attachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(Info.VFX, Mesh, Info.SocketName, true);
+        }
+        if(Info.SFXStartEvent != none)
+        {
+            SFXBoneName = Mesh.GetSocketBoneName(Info.SocketName);
+            if(SFXBoneName != 'None')
+            {
+                PostAkEventOnBone(Info.SFXStartEvent, SFXBoneName, false, true);                
+            }
+            else
+            {
+                PostAkEvent(Info.SFXStartEvent, false, true, false);
+            }
+        }
+    }
+}
+
 simulated function PlayExtraVFX(name FXLabel)
 {
     local int I;
     local ExtraVFXAttachmentInfo VFXAttachment;
     local bool bActivatedExistingSystem;
-    local name SFXBoneName;
 
     if((WorldInfo.NetMode == NM_DedicatedServer) || FXLabel == 'None')
     {
@@ -3662,36 +3725,7 @@ simulated function PlayExtraVFX(name FXLabel)
     {
         if(ExtraVFXAttachments[I].Info.Label == FXLabel)
         {
-            if(ExtraVFXAttachments[I].Info.SocketName == 'None')
-            {
-                if(ExtraVFXAttachments[I].Info.VFX != none)
-                {
-                    ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(ExtraVFXAttachments[I].Info.VFX, Location, Rotation, self);
-                }
-                if(ExtraVFXAttachments[I].Info.SFXStartEvent != none)
-                {
-                    PostAkEvent(ExtraVFXAttachments[I].Info.SFXStartEvent, false, true, false);
-                }                
-            }
-            else
-            {
-                if(ExtraVFXAttachments[I].Info.VFX != none)
-                {
-                    ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[I].Info.VFX, Mesh, ExtraVFXAttachments[I].Info.SocketName, true);
-                }
-                if(ExtraVFXAttachments[I].Info.SFXStartEvent != none)
-                {
-                    SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[I].Info.SocketName);
-                    if(SFXBoneName != 'None')
-                    {
-                        PostAkEventOnBone(ExtraVFXAttachments[I].Info.SFXStartEvent, SFXBoneName, false, true);                        
-                    }
-                    else
-                    {
-                        PostAkEvent(ExtraVFXAttachments[I].Info.SFXStartEvent, false, true, false);
-                    }
-                }
-            }
+            SpawnExtraVFX(ExtraVFXAttachments[I].Info, ExtraVFXAttachments[I]);
             bActivatedExistingSystem = true;
         }
         ++ I;
@@ -3702,47 +3736,18 @@ simulated function PlayExtraVFX(name FXLabel)
         return;
     }
     I = 0;
-    J0x501:
+    J0x125:
 
     if(I < CharacterArch.ExtraVFX.Length)
     {
         if(CharacterArch.ExtraVFX[I].Label == FXLabel)
         {
-            if(CharacterArch.ExtraVFX[I].SocketName == 'None')
-            {
-                if(CharacterArch.ExtraVFX[I].VFX != none)
-                {
-                    VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(CharacterArch.ExtraVFX[I].VFX, Location, Rotation, self);
-                }
-                if(CharacterArch.ExtraVFX[I].SFXStartEvent != none)
-                {
-                    PostAkEvent(CharacterArch.ExtraVFX[I].SFXStartEvent, false, true, false);
-                }                
-            }
-            else
-            {
-                if(CharacterArch.ExtraVFX[I].VFX != none)
-                {
-                    VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterArch.ExtraVFX[I].VFX, Mesh, CharacterArch.ExtraVFX[I].SocketName, true);
-                }
-                if(CharacterArch.ExtraVFX[I].SFXStartEvent != none)
-                {
-                    SFXBoneName = Mesh.GetSocketBoneName(CharacterArch.ExtraVFX[I].SocketName);
-                    if(SFXBoneName != 'None')
-                    {
-                        PostAkEventOnBone(CharacterArch.ExtraVFX[I].SFXStartEvent, SFXBoneName, false, true);                        
-                    }
-                    else
-                    {
-                        PostAkEvent(CharacterArch.ExtraVFX[I].SFXStartEvent, false, true, false);
-                    }
-                }
-            }
+            SpawnExtraVFX(CharacterArch.ExtraVFX[I], VFXAttachment);
             VFXAttachment.Info = CharacterArch.ExtraVFX[I];
             ExtraVFXAttachments.AddItem(VFXAttachment;
         }
         ++ I;
-        goto J0x501;
+        goto J0x125;
     }
 }
 

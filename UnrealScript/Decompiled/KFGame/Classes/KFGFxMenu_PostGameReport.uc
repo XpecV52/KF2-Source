@@ -176,7 +176,7 @@ function SetSumarryInfo()
             }
             else
             {
-                TextObject.SetString("waveTime", ((((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));
+                TextObject.SetString("waveTime", ((((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.GetFinalWaveNum())) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));
             }
         }
         TextObject.SetString("winLost", ((KFGRI.bMatchVictory) ? VictoryString : DefeatString));

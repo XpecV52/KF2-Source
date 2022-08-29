@@ -142,6 +142,7 @@ var bool bIsCloakingSpottedByLP;
 var repnotify bool bIsCloakingSpottedByTeam;
 var bool bCanRage;
 var repnotify bool bIsEnraged;
+var transient bool bRageAfterPanic;
 var private bool bIsStalkerClass;
 var private bool bIsCrawlerClass;
 var private bool bIsFleshpoundClass;
@@ -215,6 +216,7 @@ var float InflationExplosionTimer;
 var const ParticleSystem BleedIncapFX;
 var export editinline ParticleSystemComponent BleedIncapPSC;
 var KFAnim_RandomScripted WalkBlendList;
+var KFAnim_Movement MovementAnimNode;
 var protected transient sBlockInfo DifficultyBlockSettings;
 var protected const float MinBlockFOV;
 var protected const float BlockSprintSpeedModifier;
@@ -439,6 +441,10 @@ simulated event PostBeginPlay()
             WorldInfo.TWLogEvent("boss_spawn", none, string(Class.Name));
         }
     }
+    if(IsABoss())
+    {
+        Class'KFPawn_MonsterBoss'.static.SetupHealthBar((self));
+    }
 }
 
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
@@ -543,6 +549,10 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
     super.PostInitAnimTree(SkelComp);
     WalkBlendList = KFAnim_RandomScripted(SkelComp.FindAnimNode('WalkRandomList'));
+    foreach SkelComp.AllAnimNodes(Class'KFAnim_Movement', MovementAnimNode)
+    {
+        break;        
+    }    
 }
 
 function ApplySpecialZoneHealthMod(float HealthMod)
@@ -641,6 +651,10 @@ function AdjustMovementSpeed(float SpeedAdjust)
     else
     {
         DesiredAdjustedSprintSpeed = FMax((default.SprintSpeed * SpeedAdjust) * InitialGroundSpeedModifier, DesiredAdjustedGroundSpeed);
+    }
+    if(bPlayPanicked)
+    {
+        DesiredAdjustedGroundSpeed = float(Min(int(DesiredAdjustedGroundSpeed), int(MovementAnimNode.Constraints[1])));
     }
     NormalGroundSpeed = DesiredAdjustedGroundSpeed;
     NormalSprintSpeed = DesiredAdjustedSprintSpeed;
@@ -979,6 +993,11 @@ simulated function bool SetEnraged(bool bNewEnraged)
         {
             return false;
         }
+        if(bNewEnraged && ShouldBeWandering())
+        {
+            bRageAfterPanic = true;
+            return false;
+        }
         bIsEnraged = bNewEnraged;
         if(IsDoingSpecialMove(17))
         {
@@ -1245,7 +1264,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 
     Timer_EndRallyBoost();
     super.PlayDying(DamageType, HitLoc);
-    if((IsABoss()) && class<KFGameInfo>(WorldInfo.GRI.GameClass).default.bGoToBossCameraOnDeath)
+    if((IsABoss()) && KFGameReplicationInfo(WorldInfo.GRI).ShouldSetBossCamOnBossDeath())
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
         if(KFPC != none)
@@ -1621,6 +1640,7 @@ function bool HasReducedMeleeDamage()
 function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum, Actor DamageCauser)
 {
     local KFPawn_Human KFPH_Instigator;
+    local KFGameInfo KFGI;
 
     super(Pawn).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum, DamageCauser);
     if((InstigatedBy != none) && InstigatedBy.Pawn != none)
@@ -1637,6 +1657,11 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
     if(SpecialMove != 0)
     {
         SpecialMoves[SpecialMove].NotifyOwnerTakeHit(class<KFDamageType>(DamageType), HitLocation, Normal(Momentum), InstigatedBy);
+    }
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if(KFGI != none)
+    {
+        KFGI.NotifyTakeHit(self, InstigatedBy, HitLocation, Damage, DamageType, Momentum, DamageCauser);
     }
     if(!Class'Engine'.static.GetEngine().bDisableAILogging && MyKFAIC != none)
     {
@@ -2052,6 +2077,11 @@ function CausePanicWander()
         {
             return;
         }
+        if(IsEnraged())
+        {
+            bRageAfterPanic = true;
+            SetEnraged(false);
+        }
         if(MyKFAIC != none)
         {
             MyKFAIC.SetSprintingDisabled(true);
@@ -2072,6 +2102,11 @@ function EndPanicWander()
     if(IsAliveAndWell() && MyKFAIC != none)
     {
         MyKFAIC.EndPanicWander();
+    }
+    if(bRageAfterPanic)
+    {
+        bRageAfterPanic = false;
+        SetEnraged(true);
     }
 }
 

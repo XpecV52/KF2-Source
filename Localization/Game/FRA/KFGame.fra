@@ -140,7 +140,7 @@ EarnXPString="Gagner de l'XP :"
 CompleteMapString="Gagner le match sur la carte :"
 KillZedsString="Tuer des Zeds :"
 KillBossString="Tuer le boss :"
-KillBossDescriptionString=""
+KillBossDescriptionString="En Survie ou Hebdomadaire"
 VersusKillsString="Tuer un joueur versus en tant que :"
 DealVersusDamageString="Blesser un joueur versus en tant que :"
 VersusCompletionString="Finir le match en tant que :"
@@ -1245,6 +1245,7 @@ AutoTurnOffString="Pas vir. auto. si attrapé"
 ReduceHighPitchNoiseString="Réduction du bruit élevé"
 DisableAutoUpgradeString="Désactiver l'éch. auto"
 HideRemodeHeadshotEffectsString="Désactiver effets de tirs à la tête"
+ToggleToRunString="Basculez pour courir"
 
 EnableMixerString="Bouton d'interaction du Mixer"
 DisableMixerString="Désactiver le Mixer"
@@ -1840,7 +1841,7 @@ SirenResistance="Munitions résistantes au son"
 SirenResistanceDescription="Vos explosifs ne sont pas affectés par le cri des sirènes et explosent toujours."
 
 AreaOfEffect="Munitions à fragmentation"
-AreaOfEffectDescription="Augmente la zone d'effet des armes de classe explosives de 50 % mais réduit les dégâts de 30 %."
+AreaOfEffectDescription="Augmente les dégâts de zone de l'explosion de l'arme de classe de 50 %."
 
 CriticalHit="Balles perçantes"
 CriticalHitDescription="Augment les dégâts des tirs directs des armes de classe dans les zones critiques de 50 %. "
@@ -1934,7 +1935,7 @@ GroundFire="Incendie au sol"
 GroundFireDescription="Les incendies au sol infligent des dégâts beaucoup plus importants et réduisent la vitesse de mouvement des Zeds de 20 %."
 
 ZedShrapnel="Shrapnel Zed"
-ZedShrapnelDescription="Les Zeds que vous tuez par le feu ont 20 % de chance d'exploser, infligeant des dégâts et renversant les Zeds proches."
+ZedShrapnelDescription="Les Zeds que vous tuez par le feu ont 30 % de chances d'exploser, infligeant des dommages et étourdissant les Zeds à proximité."
 
 Napalm="Napalm"
 NapalmDescription="Les Zeds enflammés touchant d'autres Zeds enflamment ces derniers et l'effet de brûlure dure 150 % plus longtemps."
@@ -2163,10 +2164,10 @@ TacticalReload="Rechargement tactique"
 TacticalReloadDescription="Augmente la vitesse de rechargement des armes de Commando, Flingueur et SWAT."
 
 FieldMedic="Formation médicale"
-FieldMedicDescription="Augmente la puissance de tous vos soins de 20 % et réduit le temps de rechargement de la seringue et des fléchettes soignantes de 25 %."
+FieldMedicDescription="Augmente la puissance de vos soins de 30 %, réduit le temps de recharge de votre seringue et de vos fléchettes de soin de 50 %."
 
 MeleeExpert="Expert en mêlée"
-MeleeExpertDescription="Augmente la vitesse des attaques en mêlée de 15 %, les dégâts de 10 % et la vitesse de déplacement de 25 % en utilisant une arme de mêlée."
+MeleeExpertDescription="Augmente la vitesse des attaques de mêlée de 20 %, les dégâts de 50 %, et la vitesse de déplacement de 25 % lorsque vous utilisez une arme de mêlée."
 
 AmmoVest="Veste tactique"
 AmmoVestDescription="Transportez jusqu'à 15 % de munitions en plus. Vos grenades deviennent des grenades soignantes."
@@ -2175,10 +2176,10 @@ BigPockets="Harnais d'armes"
 BigPocketsDescription="Augmente votre capacité de charge de 5 et vos grenades deviennent des cocktails Molotov."
 
 ZedShrapnel="Zed-splosion spontanée"
-ZedShrapnelDescription="Les Zeds que vous tuez ont 20 % de chance d'exploser, infligeant des dégâts et renversant les Zeds proches."
+ZedShrapnelDescription="Les Zeds que vous tuez ont 30 % de chances d'exploser, infligeant des dommages et étourdissant les Zeds à proximité."
 
 MakeThingsGoBoom="Tout faire péter"
-MakeThingsGoBoomDescription="Augmente la zone d'effet de tous les Explosifs de 25 %."
+MakeThingsGoBoomDescription="Augmente les dégâts de zone de tous les Explosifs de 50 %."
 
 Madman="ZED TIME - Malade mental"
 MadmanDescription="Pendant le Zed time, toutes vos armes tirent 3x plus vite."
@@ -2345,9 +2346,13 @@ DoschHoldDesc="Empêchez les Zeds d'entrer dans la zone indiquée"
 DescriptionDoshHold="Empêchez les Zeds d'entrer dans la zone indiquée"
 RepairObjective="SOUDER ET RÉPARER"
 UseWelderToRepair="Utiliser le soudeur pour réparer l'objectif"
+RepairObjectiveRequired="Objectif(s) à réparer :"
 EscortPawnsObjective="ESCORTER"
 EscortPawnsDescription="Protéger la cible contre les Zeds"
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="RECHERCHE ET DESTRUCTION"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="PRENDRE LE CONTRÔLE"
 DescriptionActivateTrigger="Activer la commande de l'objectif"
 RequiredActivateTrigger="Activations requises :"
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Sentinelle infinie",DescriptionSt
 SpecialEventObjectiveInfoList[3]=(TitleString="Machine de guerre infinie",DescriptionString="Terminer la vague infinie 20",TierEventRewardName="D.A.R. sanglant");");
 SpecialEventObjectiveInfoList[4]=(TitleString="D.A.R. Optimus infini",DescriptionString="Terminer la vague infinie 25",TierEventRewardName="D.A.R. doré");
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Boss en folie",DescriptionString="Tuer 15 boss sur n'importe quelle carte")
+SpecialEventObjectiveInfoList[1]=(TitleString="Exutoire hebdomadaire",DescriptionString="Terminer l'hebdomadaire de l'Exutoire")
+SpecialEventObjectiveInfoList[2]=(TitleString="Exterminateur",DescriptionString="Tuer 1 500 Zeds sur n'importe quelle carte")
+SpecialEventObjectiveInfoList[3]=(TitleString="Exutoire infini",DescriptionString="Terminer 15 vagues en Infini en mode difficile ou supérieur en Exutoire")
+SpecialEventObjectiveInfoList[4]=(TitleString="Versement de sang",DescriptionString="Vaincre n'importe quel boss en Survie en mode difficile ou supérieur en Exutoire")
+
+AllCompleteRewardDescriptionString="Tenues cyberpunk pour homme et pour femme"
+
+ChanceDropDescriptionStrings[0]="Ticket de récompense"
+ChanceDropDescriptionStrings[1]="Ticket Or"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3077,6 +3094,7 @@ DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
 
+
 [KF-BioticsLab KFMapSummary]
 DisplayName="Labo biotique"
 
@@ -3094,6 +3112,9 @@ GameName="Hebdomadaire"
 
 [Endless KFGameInfoSummary]
 GameName="Infini"
+
+[Objective KFGameInfoSummary]
+GameName="Objectif"
 
 [KF-VolterManor KFMapSummary]
 DisplayName="Manoir Volter"
@@ -3160,6 +3181,9 @@ DisplayName="Achats en folie"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="l'atelier du Père Noël"
+
+[KF-Spillway KFMapSummary]
+DisplayName="Exutoire"
 
 [KFMapInfo]
 ; defaults

@@ -382,7 +382,7 @@ function AdjustDamage(out int InDamage, class<DamageType> DamageType, Actor Dama
 
 defaultproperties
 {
-	SelfDamageReductionValue=0.05f
+	SelfDamageReductionValue=0.1f
     //Gameplay Props
     MaxChargeTime=1.0
     ValueIncreaseTime=0.2

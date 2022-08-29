@@ -40,6 +40,7 @@ var class<KFWeaponDefinition> MolotovGrenadeWeaponDef;
 var private const array< class<KFWeaponDefinition> > PrimaryWeaponPaths;
 var private const array<string> KnifeWeaponPaths;
 var int StartingWeaponClassIndex;
+var private const array<name> TacticalReloadAsReloadRateClassNames;
 
 function SetPlayerDefaults(Pawn PlayerPawn)
 {
@@ -180,6 +181,10 @@ simulated function float GetReloadRateScale(KFWeapon KFW)
     {
         return 1 - (GetPassiveValue(ZedTimeReload, GetLevel()));
     }
+    if(((IsTacticalReloadActive() && IsWeaponOnPerkLight(KFW)) || IsHeavyReloadActive() && IsWeaponOnPerkHeavy(KFW)) && TacticalReloadAsReloadRateClassNames.Find(KFW.Class.Name != -1)
+    {
+        return 0.8;
+    }
     return 1;
 }
 
@@ -202,7 +207,7 @@ function ModifyArmor(out byte MaxArmor)
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return (IsTacticalReloadActive() && IsWeaponOnPerkLight(KFW)) || IsHeavyReloadActive() && IsWeaponOnPerkHeavy(KFW);
+    return ((IsTacticalReloadActive() && IsWeaponOnPerkLight(KFW)) || IsHeavyReloadActive() && IsWeaponOnPerkHeavy(KFW)) && TacticalReloadAsReloadRateClassNames.Find(KFW.Class.Name == -1;
 }
 
 simulated function bool IsWeaponOnPerkLight(KFWeapon KFW)
@@ -458,19 +463,19 @@ defaultproperties
     DamageResistance=(Name="Damage Resistance",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     HeavyBodyArmor=(Name="Heavy Body Armor",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     ZedTimeReload=(Name="Zed Time Reload",Increment=0.03,Rank=0,StartingValue=0,MaxValue=0.75,ModifierValue=0,IconPath="",bActive=false)
-    InjectionPotencyModifier=1.2
-    MeleeExpertAttackSpeedModifier=0.15
+    InjectionPotencyModifier=1.3
+    MeleeExpertAttackSpeedModifier=0.2
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'
-        Damage=10
-        DamageRadius=200
+        Damage=100
+        DamageRadius=250
         MyDamageType=Class'KFDT_Explosive_Shrapnel'
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
         CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Perk_ShrapnelCombustion'
     object end
     // Reference: KFGameExplosion'Default__KFPerk_Survivalist.ExploTemplate0'
     ShrapnelExplosionTemplate=ExploTemplate0
-    ShrapnelChance=0.2
+    ShrapnelChance=0.3
     SnarePower=20
     MeleeExpertMovementSpeedModifier=0.25
     HealingGrenadeWeaponDef=Class'KFWeapDef_Grenade_Medic'
@@ -485,6 +490,7 @@ defaultproperties
     PrimaryWeaponPaths(7)=class'KFWeapDef_Winchester1894'
     PrimaryWeaponPaths(8)=class'KFWeapDef_MP7'
     StartingWeaponClassIndex=-1
+    TacticalReloadAsReloadRateClassNames(0)=KFWeap_GrenadeLauncher_M32
     ProgressStatID=70
     PerkBuildStatID=71
     PerkName="Survivalist"
@@ -503,12 +509,12 @@ defaultproperties
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Survivalist'
     PerkSkills(0)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_TacticalReload",bActive=false)
     PerkSkills(1)=(Name="HeavyWeaponsReload",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_HeavyWeapons",bActive=false)
-    PerkSkills(2)=(Name="FieldMedic",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_FieldMedic",bActive=false)
-    PerkSkills(3)=(Name="MeleeExpert",Increment=0,Rank=0,StartingValue=0.1,MaxValue=0.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert",bActive=false)
+    PerkSkills(2)=(Name="FieldMedic",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_FieldMedic",bActive=false)
+    PerkSkills(3)=(Name="MeleeExpert",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert",bActive=false)
     PerkSkills(4)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_AmmoVest",bActive=false)
     PerkSkills(5)=(Name="BigPockets",Increment=0,Rank=0,StartingValue=5,MaxValue=5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_BigPockets",bActive=false)
     PerkSkills(6)=(Name="ZedShrapnel",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel",bActive=false)
-    PerkSkills(7)=(Name="MakeThingsGoBoom",Increment=0,Rank=0,StartingValue=1.25,MaxValue=1.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom",bActive=false)
+    PerkSkills(7)=(Name="MakeThingsGoBoom",Increment=0,Rank=0,StartingValue=1.5,MaxValue=1.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom",bActive=false)
     PerkSkills(8)=(Name="MadMan",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman",bActive=false)
     PerkSkills(9)=(Name="IncapMaster",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
@@ -527,4 +533,5 @@ defaultproperties
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.FreezeThrower_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.TommyGun_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.VLAD-1000Nailgun_PrestigePrecious_Mint_large"
 }

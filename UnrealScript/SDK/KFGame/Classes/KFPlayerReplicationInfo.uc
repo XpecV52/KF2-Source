@@ -171,6 +171,9 @@ var transient bool bWaitingForInventory;
 /** What character should be checked for selection once the online subsystem inventory loads */
 var transient int WaitingForInventoryCharacterIndex;
 
+/** Whether the character is currently holding a transport objective */
+var bool bCarryingCollectible;
+
 /************************************
 *  native
 ************************************/
@@ -189,7 +192,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID, bCarryingCollectible;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -818,9 +821,13 @@ function OnInventoryReadComplete_Steamworks()
 
 function OnInventoryReadComplete_Playfab(bool bWasSuccessful)
 {
-	class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
-	bWaitingForInventory = false;
-	SelectCharacter(WaitingForInventoryCharacterIndex);
+	if(bWasSuccessful)
+	{
+		// select character requires the inventory be set up, so keep this callback around until the inventory read is successful
+		class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+		bWaitingForInventory = false;
+		SelectCharacter(WaitingForInventoryCharacterIndex);
+	}
 }
 
 /**
@@ -1280,4 +1287,6 @@ defaultproperties
     VoiceCommsStatusDisplayIntervalCount=0;
 	CurrentVoiceCommsRequest = VCT_NONE
 	CurrentHeadShotEffectID=-1;
+
+	bCarryingCollectible=false;
 }

@@ -36,6 +36,7 @@ enum EGoreDamageGroup
 
 var class<KFWeaponDefinition> WeaponDef;
 var bool bNoInstigatorDamage;
+var bool bNoFriendlyFire;
 var bool bConsideredIndirectOrAoE;
 var bool bAllowAIDoorDestruction;
 var bool bStackDoT;
@@ -172,7 +173,7 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
 {
     local KFSkinTypeEffects SkinType;
 
-    if((P.CharacterArch != none) && default.EffectGroup < 17)
+    if((P.CharacterArch != none) && default.EffectGroup < 19)
     {
         SkinType = P.GetHitZoneSkinTypeEffects(HitZoneIndex);
         if(SkinType != none)

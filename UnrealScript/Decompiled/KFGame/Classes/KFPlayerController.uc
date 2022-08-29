@@ -112,6 +112,7 @@ const STATID_ACHIEVE_MonsterBallCollectibles = 4045;
 const STATID_ACHIEVE_MonsterBallSecretRoom = 4046;
 const STATID_ACHIEVE_SantasWorkshopCollectibles = 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
+const STATID_ACHIEVE_SpillwayCollectibles = 4049;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -173,6 +174,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
+const KFID_ToggleToRun = 172;
 const MapObjectiveIndex = 4;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
@@ -513,6 +515,11 @@ var float ZedTimeSightCounter;
 var() export editinline PointLightComponent AmplificationLightTemplate;
 var export editinline transient PointLightComponent AmplificationLight;
 var private transient float PauseMoveInputTimeLeft;
+var float RotationAdjustmentInterval;
+var float MaxRotationAdjustmentTime;
+var float CurrentRotationAdjustmentTime;
+var InterpCurveFloat RotationAdjustmentCurve;
+var float RotationSpeedLimit;
 /** @name Night Vision */
 var() export editinline PointLightComponent NVGLightTemplate;
 var export editinline transient PointLightComponent NVGLight;
@@ -667,9 +674,12 @@ simulated event PostBeginPlay()
     UpdateSeasonalState();
     MatchStats = new (self) MatchStatsClass;
     ClearDownloadInfo();
-    InitMixerDelegates();
-    InitLEDManager();
-    InitDiscord();
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        InitMixerDelegates();
+        InitLEDManager();
+        InitDiscord();
+    }
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     if(OnlineSub != none)
     {
@@ -769,6 +779,7 @@ simulated event name GetSeasonalStateName()
         case 4:
             return 'Winter';
         case 1:
+            return 'Spring';
         default:
             return 'No_Event';
             break;
@@ -1253,6 +1264,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
             KFInput.GamepadSensitivityScale = Profile.GetProfileFloat(133);
             KFInput.GamepadZoomedSensitivityScale = Profile.GetProfileFloat(135);
             KFInput.SetGamepadLayout(Profile.GetProfileInt(101));
+            KFInput.bToggleToRun = Profile.GetProfileBool(172);
             KFInput.ReInitializeControlsUI();
         }
         KFGI = KFGameInfo(WorldInfo.Game);
@@ -2642,7 +2654,10 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
     }
     else
     {
-        HideBossNamePlate();
+        if(((myGfxHUD == none) || myGfxHUD.bossHealthBar == none) || myGfxHUD.bossHealthBar.EscortPawn == none)
+        {
+            HideBossNamePlate();
+        }
         if(NewCamMode == 'FreeCam')
         {
             if((PlayerCamera != none) && PlayerCamera.CameraStyle != NewCamMode)
@@ -3293,7 +3308,7 @@ function CheckJumpOrDuck()
     }
     if((Pawn.Physics != 2) && Pawn.bCanCrouch)
     {
-        Pawn.ShouldCrouch((bDuck != 0) && bRun == 0);
+        Pawn.ShouldCrouch((bDuck != 0) && (bRun == 0) || VSize(Velocity) == float(0));
     }
 }
 
@@ -3397,11 +3412,44 @@ function SetForceLookAtPawn(KFPawn P)
     }
 }
 
+simulated function StartRotationAdjustment(InterpCurveFloat RotationCurve, float maxTime)
+{
+    CurrentRotationAdjustmentTime = 0;
+    RotationAdjustmentCurve = RotationCurve;
+    MaxRotationAdjustmentTime = maxTime;
+    SetTimer(RotationAdjustmentInterval, true, 'Timer_RotationAdjustment');
+}
+
+simulated function Timer_RotationAdjustment()
+{
+    CurrentRotationAdjustmentTime += RotationAdjustmentInterval;
+    if((CurrentRotationAdjustmentTime / MaxRotationAdjustmentTime) >= 1)
+    {
+        RotationSpeedLimit = -1;
+        CurrentRotationAdjustmentTime = 0;
+        ClearTimer('Timer_RotationAdjustment');        
+    }
+    else
+    {
+        RotationSpeedLimit = EvalInterpCurveFloat(RotationAdjustmentCurve, CurrentRotationAdjustmentTime / MaxRotationAdjustmentTime);
+    }
+}
+
 function ModifyUpdateRotation(float DeltaTime, out Rotator DeltaRot)
 {
     local KFPlayerInput KFInput;
+    local float LimitModifier;
 
     KFInput = KFPlayerInput(PlayerInput);
+    if(RotationSpeedLimit > float(0))
+    {
+        LimitModifier = ((Abs(float(DeltaRot.Yaw)) > Abs(float(DeltaRot.Pitch))) ? Abs(float(DeltaRot.Yaw)) / RotationSpeedLimit : Abs(float(DeltaRot.Pitch)) / RotationSpeedLimit);
+        if(LimitModifier > float(1))
+        {
+            DeltaRot.Yaw /= LimitModifier;
+            DeltaRot.Pitch /= LimitModifier;
+        }
+    }
     if(((Pawn != none) && ForceLookAtPawn != none) && (ForceLookAtPawnTime >= float(0)) || bLockToForceLookAtPawn)
     {
         if(!bLockToForceLookAtPawn)
@@ -6191,15 +6239,18 @@ event Destroyed()
         OnlineSub.ClearAllReadOnlineAvatarByNameCompleteDelegates();
         OnlineSub.ClearAllReadOnlineAvatarCompleteDelegates();
     }
-    ClearMixerDelegates();
-    ClearDiscord();
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        ClearMixerDelegates();
+        ClearDiscord();
+    }
     ClientMatchEnded();
     super(PlayerController).Destroyed();
 }
 
 event Exit()
 {
-    if(LEDEffectsManager != none)
+    if((LEDEffectsManager != none) && WorldInfo.NetMode != NM_DedicatedServer)
     {
         LEDEffectsManager.LedStopEffects();
     }
@@ -7955,7 +8006,7 @@ simulated function CreateDiscordGamePresence()
                     }
                     else
                     {
-                        DetailsString = (((DetailsString $ Class'KFCommon_LocalizedStrings'.default.DiscordWaveString) $ string(GRI.WaveNum)) $ "/") $ string(GRI.WaveMax - 1);
+                        DetailsString = (((DetailsString $ Class'KFCommon_LocalizedStrings'.default.DiscordWaveString) $ string(GRI.WaveNum)) $ "/") $ string(GRI.GetFinalWaveNum());
                     }
                 }
             }
@@ -8309,6 +8360,8 @@ defaultproperties
     object end
     // Reference: PointLightComponent'Default__KFPlayerController.AmplificationLightTemplate'
     AmplificationLightTemplate=AmplificationLightTemplate
+    RotationAdjustmentInterval=0.1
+    RotationSpeedLimit=-1
     begin object name=NVGLightTemplate class=PointLightComponent
         Radius=800
         bAIIgnoreLuminosity=true

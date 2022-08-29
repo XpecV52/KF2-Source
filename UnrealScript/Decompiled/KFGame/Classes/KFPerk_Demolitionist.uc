@@ -738,7 +738,6 @@ defaultproperties
     NukeDamageModifier=1.5
     NukeRadiusModifier=1.35
     ConcussiveExplosionSound=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Explosion'
-    AoeDamageModifier=0.3
     LingeringNukePoisonDamage=20
     PassiveExtraAmmoIgnoredClassNames(0)=KFProj_DynamiteGrenade
     ExtraAmmoIgnoredClassNames(0)=KFProj_DynamiteGrenade
@@ -801,4 +800,5 @@ defaultproperties
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.HX25_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.M79_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.M16M203_PrestigePrecious_Mint_Large"
 }

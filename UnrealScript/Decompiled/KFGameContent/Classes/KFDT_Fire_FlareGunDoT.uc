@@ -29,6 +29,6 @@ defaultproperties
     DoT_Duration=1.7
     DoT_Interval=0.4
     DoT_DamageScale=0.8
-    BurnPower=15.5
+    BurnPower=12
     ModifierPerkList=/* Array type was not detected. */
 }

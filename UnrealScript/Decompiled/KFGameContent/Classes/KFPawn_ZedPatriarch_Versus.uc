@@ -49,7 +49,7 @@ simulated event ReplicatedEvent(name VarName)
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
-    ServerDoSpecialMove(37);
+    Class'KFPawn_MonsterBoss'.static.PlayBossEntranceTheatrics((self));
     MyKFPC = KFPlayerController(C);
     SetTimer(2 + FRand(), false, 'Timer_EnableCloak');
 }
@@ -401,7 +401,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_390' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_409' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -425,7 +425,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(3)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_1191' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_1228' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

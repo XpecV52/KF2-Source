@@ -63,6 +63,19 @@ struct native DoorMeshAttachment
 };
 
 var KFDoorTrigger DoorTrigger;
+var bool bIsInteractive;
+/** If set, door opens and closes automatically */
+var(Opening) const editconst bool bAutomaticDoor;
+var transient bool bDoorMoveCompleted;
+/** current state of the door if it hasn't been destroyed - note it's possible for bIsDoorOpen to be false and bIsDoorDestroyed to be true so check both */
+var() bool bStartDoorOpen;
+var repnotify transient bool bIsDoorOpen;
+var transient bool bLocalIsDoorOpen;
+var transient bool bReverseHinge;
+var transient bool bCanCloseDoor;
+var transient bool bHasBeenDirtied;
+var repnotify transient bool bShouldExplode;
+var bool bMonitorDoor;
 /** Information of all the mesh attachments for the vehicle */
 var() array<DoorMeshAttachment> MeshAttachments;
 /** Mesh for the weld that goes between the center of two doors or the end of the left door */
@@ -85,17 +98,6 @@ var(Opening) int HingedRotation;
 var(Opening) int SlideTranslation;
 /** ONLY FOR LIFT DOORS Defines how far we want lift doors to raise */
 var(Opening) int LiftTranslation;
-/** If set, door opens and closes automatically */
-var(Opening) const editconst bool bAutomaticDoor;
-var transient bool bDoorMoveCompleted;
-/** current state of the door if it hasn't been destroyed - note it's possible for bIsDoorOpen to be false and bIsDoorDestroyed to be true so check both */
-var() bool bStartDoorOpen;
-var repnotify transient bool bIsDoorOpen;
-var transient bool bLocalIsDoorOpen;
-var transient bool bReverseHinge;
-var transient bool bHasBeenDirtied;
-var repnotify transient bool bShouldExplode;
-var bool bMonitorDoor;
 var transient float LastUsedTime;
 /** Starting health for a door */
 var() int MaxHealth;
@@ -145,7 +147,8 @@ replication
 {
      if(bNetDirty)
         Health, HitCount, 
-        bIsDoorOpen, bShouldExplode;
+        bIsDoorOpen, bIsInteractive, 
+        bShouldExplode;
 
      if(bNetDirty && DoorMechanism == 0)
         bReverseHinge;
@@ -476,7 +479,7 @@ private final simulated function OpenSwingingDoor(Pawn P)
 
 private final simulated function CloseDoor()
 {
-    if(bIsDestroyed || !bLocalIsDoorOpen)
+    if((bIsDestroyed || !bLocalIsDoorOpen) || !bCanCloseDoor)
     {
         return;
     }
@@ -672,6 +675,10 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
     local class<KFDamageType> KFDT;
 
     if(Role < ROLE_Authority)
+    {
+        return;
+    }
+    if(!bIsInteractive)
     {
         return;
     }
@@ -1590,8 +1597,21 @@ simulated function Reset()
     }
 }
 
+simulated function SetInteractive(bool InInteractive)
+{
+    if(Role == ROLE_Authority)
+    {
+        bIsInteractive = InInteractive;
+        DoorTrigger.SetCollision(InInteractive, DoorTrigger.bBlockActors);
+    }
+}
+
 defaultproperties
 {
+    bIsInteractive=true
+    bDoorMoveCompleted=true
+    bStartDoorOpen=true
+    bCanCloseDoor=true
     MeshAttachments(0)=(Component=StaticMeshComponent'Default__KFDoorActor.StaticMeshComponent0',AttachTo=DoorLeft,bSocketAttach=false)
     MeshAttachments(1)=(Component=StaticMeshComponent'Default__KFDoorActor.StaticMeshComponent1',AttachTo=DoorRight,bSocketAttach=false)
     begin object name=StaticMeshComponent2 class=StaticMeshComponent
@@ -1621,8 +1641,6 @@ defaultproperties
     HingedRotation=90
     SlideTranslation=-100
     LiftTranslation=245
-    bDoorMoveCompleted=true
-    bStartDoorOpen=true
     MaxHealth=4000
     CombatWeldModifier=0.6
     CombatLength=1.25

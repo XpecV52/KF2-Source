@@ -20,6 +20,8 @@ const SecondaryReloadAnim_Elite = 'Reload_Secondary_Elite';
 // Used on the server to keep track of grenades
 var int ServerTotalAltAmmo;
 
+var transient bool bCanceledAltAutoReload;
+
 static simulated event EFilterTypeUI GetAltTraderFilter()
 {
 	return FT_Explosive;
@@ -30,6 +32,13 @@ simulated function AltFireMode()
 {
 	if ( !Instigator.IsLocallyControlled() )
 	{
+		return;
+	}
+
+	if (bCanceledAltAutoReload)
+	{
+		bCanceledAltAutoReload = false;
+		TryToAltReload();
 		return;
 	}
 
@@ -293,6 +302,12 @@ simulated state AltReloading extends Reloading
 		return (bTacticalReload ? WEP_ReloadSecondary_Elite : WEP_ReloadSecondary);
 	}
 
+	simulated event BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+		bCanceledAltAutoReload = true;
+	}
+
 	// Overridding super so we don't call functions we don't want to call.
 	simulated function EndState(Name NextStateName)
 	{
@@ -341,6 +356,8 @@ simulated state AltReloading extends Reloading
 		{
 			ServerSetAltAmmoCount(AmmoCount[1]);
 		}
+
+		bCanceledAltAutoReload = false;
 	}
 
 	simulated function EReloadStatus GetNextReloadStatus(optional byte FireModeNum)
@@ -404,6 +421,11 @@ simulated function bool CanAltAutoReload()
 	}
 
 	if(!CanReload(ALTFIRE_FIREMODE))
+	{
+		return false;
+	}
+
+	if (bCanceledAltAutoReload)
 	{
 		return false;
 	}

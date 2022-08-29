@@ -253,6 +253,7 @@ var bool bPlayShambling;
 
 /** Cached anim nodes */
 var KFAnim_RandomScripted WalkBlendList;
+var KFAnim_Movement MovementAnimNode;
 
 /*********************************************************************************************
  * @name	Special Abilities
@@ -314,6 +315,8 @@ var 			KFPlayerController	LastStoredCC;
 /** Rage flags */
 var				bool 	bCanRage;
 var repnotify	bool	bIsEnraged;
+
+var	transient	bool	bRageAfterPanic;
 
 /** Particle system component for player alpha rally effect */
 var transient 	ParticleSystemComponent RallyPSC;
@@ -734,6 +737,11 @@ simulated event PostBeginPlay()
 	{
 		`AnalyticsLog(("boss_spawn", None, Class.Name));
 	}
+
+	if (IsABoss())
+	{
+		class'KFPawn_MonsterBoss'.static.SetupHealthBar(self);
+	}
 }
 
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
@@ -887,6 +895,12 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	Super.PostInitAnimTree(SkelComp);
 
 	WalkBlendList = KFAnim_RandomScripted(SkelComp.FindAnimNode('WalkRandomList'));
+
+	// Cache all AnimNodeSlots.
+	foreach SkelComp.AllAnimNodes(class'KFAnim_Movement', MovementAnimNode)
+	{
+		break;
+	}
 }
 
 /** Initialize GoreHealth (Server only) */
@@ -1000,6 +1014,12 @@ function AdjustMovementSpeed( float SpeedAdjust )
 	else
 	{
 	    DesiredAdjustedSprintSpeed = fMax( default.SprintSpeed * SpeedAdjust * InitialGroundSpeedModifier, DesiredAdjustedGroundSpeed );
+	}
+
+	if (bPlayPanicked)
+	{
+		// Make sure groundspeed is in "walk" range so animtree can play correct panic anim
+		DesiredAdjustedGroundSpeed = Min(DesiredAdjustedGroundSpeed, MovementAnimNode.Constraints[1]);
 	}
 
     NormalGroundSpeed = DesiredAdjustedGroundSpeed;
@@ -1382,6 +1402,12 @@ simulated function bool SetEnraged(bool bNewEnraged)
 			return false;
 		}
 
+		if (bNewEnraged && ShouldBeWandering())
+		{
+			bRageAfterPanic = true;
+			return false;
+		}
+
 		bIsEnraged = bNewEnraged;
 
 		// End blocking on rage
@@ -1704,7 +1730,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 	super.PlayDying(DamageType, HitLoc);
 
     //Shared functionality for boss death
-    if (IsABoss() && class<KFGameInfo>(WorldInfo.GRI.GameClass).default.bGoToBossCameraOnDeath)
+    if (IsABoss() && KFGameReplicationInfo(WorldInfo.GRI).ShouldSetBossCamOnBossDeath())
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
         if(KFPC != none)
@@ -2202,6 +2228,7 @@ function bool HasReducedMeleeDamage()
 function NotifyTakeHit(Controller InstigatedBy, vector HitLocation, int Damage, class<DamageType> DamageType, vector Momentum, Actor DamageCauser)
 {
 	local KFPawn_Human KFPH_Instigator;
+	local KFGameInfo KFGI;
 
 	Super.NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum, DamageCauser);
 
@@ -2219,6 +2246,12 @@ function NotifyTakeHit(Controller InstigatedBy, vector HitLocation, int Damage, 
 	if( SpecialMove != SM_None )
 	{
 		SpecialMoves[SpecialMove].NotifyOwnerTakeHit(class<KFDamageType>(damageType), HitLocation, Normal(Momentum), InstigatedBy);
+	}
+
+	KFGI = KFGameInfo(WorldInfo.Game);
+	if (KFGI != none)
+	{
+		KFGI.NotifyTakeHit(self, InstigatedBy, HitLocation, Damage, DamageType, Momentum, DamageCauser);
 	}
 
 	`AILog_Ext(GetFuncName()$"() Instigator:"$InstigatedBy$" DT: "$DamageType, 'Damage', MyKFAIC);
@@ -2693,6 +2726,12 @@ function CausePanicWander()
 			return;
 		}
 
+		if (IsEnraged())
+		{
+			bRageAfterPanic = true;
+			SetEnraged(false);
+		}
+
 		if( MyKFAIC != none )
 		{
 			MyKFAIC.SetSprintingDisabled(true);
@@ -2718,6 +2757,12 @@ function EndPanicWander()
 	if( IsAliveAndWell() && MyKFAIC != none )
 	{
 		MyKFAIC.EndPanicWander();
+	}
+
+	if (bRageAfterPanic)
+	{
+		bRageAfterPanic = false;
+		SetEnraged(true);
 	}
 }
 

@@ -80,7 +80,7 @@ function UpdateWaveCount()
 
 
     // Max # of waves.
-    CurrentWaveMax = KFGRI.WaveMax-1;
+	CurrentWaveMax = KFGRI.GetFinalWaveNum();
     if(LastWaveMax != CurrentWaveMax)
     {
         SetInt("maxWaves" , KFGRI.default.bEndlessMode ? INDEX_NONE : CurrentWaveMax);

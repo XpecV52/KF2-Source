@@ -29,9 +29,15 @@ var transient bool bStartInactive;
 
 var string IconPath;
 
-delegate Delegate_OnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx);
+var KFDoorActor BlockingDoor;
+var float SpeedScalarForObstacles;
+
+var array<ExtraVFXInfo> ScriptedStateVFX;
+
+delegate Delegate_OnReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx, float DistSinceLastMarker);
 delegate Delegate_OnEndedRoute(bool bSuccess);
-delegate Delegate_OnTakeDamage();
+delegate Delegate_OnTakeDamage(int Damage);
+delegate Delegate_OnHealDamage(int HealAmount);
 delegate Delegate_OnChangeState(int CurrState, int PrevState);
 
 replication
@@ -162,7 +168,7 @@ simulated function InitializeWeldableComponent()
 		WeldCompRadius = WeldableComponent.GetCollisionCylinderRadius();
 		WeldCompHeight = WeldableComponent.GetCollisionCylinderHeight();
 		WeldableComponent.SetCollisionCylinderSize(WeldCompRadius * ScriptedCharArch.PawnWeldableComponentScale, WeldCompHeight);
-		WeldableComponent.SetCollision(false, false);
+		WeldableComponent.SetCollision(bActive, false);
 	}
 }
 
@@ -192,15 +198,21 @@ simulated function InitializeProximityTrigger()
 simulated function OnWelded(int Amount, KFPawn Welder)
 {
 	local float WeldAmountPct;
+	local float HealAmount;
 
 	if (Role == ROLE_Authority && WeldableComponent != none)
 	{
 		WeldAmountPct = float(Amount) / float(WeldableComponent.MaxWeldIntegrity);
-		Health += WeldAmountPct * float(HealthMax);
+		HealAmount = WeldAmountPct * float(HealthMax);
+		Health += HealAmount;
 
 		UpdateWeldIntegrity();
-
 		UpdatePawnState(1);
+
+		if (Delegate_OnHealDamage != none)
+		{
+			Delegate_OnHealDamage(HealAmount);
+		}
 	}
 }
 
@@ -295,7 +307,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 		if (Delegate_OnTakeDamage != none)
 		{
-			Delegate_OnTakeDamage();
+			Delegate_OnTakeDamage(ActualDamage);
 		}
 	}
 }
@@ -374,16 +386,23 @@ simulated function bool CanBeHealed()
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bRepairArmor=true, optional bool bMessageHealer=true)
 {
 	local bool result;
+	local int PrevHealth;
 
 	if (!bActive || !ScriptedCharArch.bPawnCanBeHealed)
 	{
 		return false;
 	}
 
+	PrevHealth = Health;
 	result = Super.HealDamage(Amount, Healer, DamageType, bRepairArmor, bMessageHealer);
 
 	UpdateWeldIntegrity();
 	UpdatePawnState(1);
+
+	if (Delegate_OnHealDamage != none)
+	{
+		Delegate_OnHealDamage(Health - PrevHealth);
+	}
 
 	return result;
 }
@@ -474,6 +493,9 @@ function UpdatePawnSpeed()
 	{
 		GroundSpeed *= ScriptedCharArch.SpeedScalarForPlayerProximity;
 	}
+
+	// used to pause the scripted pawn in front of closed doors and other obstacles
+	GroundSpeed *= SpeedScalarForObstacles;
 }
 
 simulated function bool IsInCriticalCondition()
@@ -514,7 +536,8 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
 
 	ScriptedCharArch = KFCharacterInfo_ScriptedPawn(CharacterArch);
 
-	// copy state effects to ExtraVFX array so we can use that system
+	// utilized by the PlayExtraVFX system similar to the archetype's ExtraVFX array
+	// putting these effects in a separate array so that the archetype asset storing ExtraVFX won't be modified
 	// must be setup before updating pawn state
 
 	// normally ExtraVFX has start and stop SFX events, but EnterFX will handle the start and ExitFX
@@ -527,7 +550,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
 			FX.SFXStartEvent = ScriptedCharArch.States[i].EnterFX[j].SFX;
 			FX.SocketName = ScriptedCharArch.States[i].EnterFX[j].SocketName;
 			FX.Label = Name("EnterState"$i);
-			CharacterArch.ExtraVFX.AddItem(FX);
+			ScriptedStateVFX.AddItem(FX);
 		}
 
 		for (j = 0; j < ScriptedCharArch.States[i].ExitFX.Length; ++j)
@@ -536,7 +559,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
 			FX.SFXStartEvent = ScriptedCharArch.States[i].ExitFX[j].SFX;
 			FX.SocketName = ScriptedCharArch.States[i].ExitFX[j].SocketName;
 			FX.Label = Name("ExitState"$i);
-			CharacterArch.ExtraVFX.AddItem(FX);
+			ScriptedStateVFX.AddItem(FX);
 		}
 	}
 }
@@ -578,11 +601,11 @@ function StartRoute(SplineActor SplineStart, SplineActor SplineEnd, int SegmentG
 	class'AICommand_ScriptedPawn_TraverseSpline'.static.TraverseSpline(MyKFAIC, SplineStart, SplineEnd, SegmentGranularity);
 }
 
-function ReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx)
+function ReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubIdx, float DistSinceLastMarker)
 {
 	if (Delegate_OnReachedRouteMarker != none)
 	{
-		Delegate_OnReachedRouteMarker(MarkerIdx, Marker, SubIdx);
+		Delegate_OnReachedRouteMarker(MarkerIdx, Marker, SubIdx, DistSinceLastMarker);
 	}
 }
 
@@ -656,13 +679,26 @@ function Start()
 // Stuff that happens when the pawn ends its route
 function Finish(bool bHide)
 {
-	if (bHide)
+	if (ScriptedCharArch.bHideOnFinish)
 	{
-		SetPhysics(PHYS_None);
-		SetHidden(true);
+		if (bHide)
+		{
+			SetPhysics(PHYS_None);
+			SetHidden(true);
+		}
+
+		SetCollision(false, false);
+	}
+	else
+	{
+		// manually stop the cart at the end since physics are still enabled if the pawn doesn't get hidden
+		if (bHide)
+		{	
+			GroundSpeed = 0.0f;
+			Velocity = vect(0, 0, 0);
+		}
 	}
 
-	SetCollision(false, false);
 	bPlayedDeath = true; // forces zeds to find a new target
 	SetCanBeTargeted(false); // prevents zeds from re-targeting
 
@@ -871,6 +907,59 @@ simulated function string GetIconPath()
 	return IconPath;
 }
 
+simulated function StartDoorWait(KFDoorActor Door)
+{
+	BlockingDoor = Door;
+	SpeedScalarForObstacles = 0.0f;
+	UpdatePawnSpeed();
+	SetTimer(0.5f, true, nameof(Timer_DoorWait), self);
+}
+
+simulated function PlayExtraVFX(Name FXLabel)
+{
+	local int i;
+	local ExtraVFXAttachmentInfo VFXAttachment;
+	local bool bActivatedExistingSystem;
+
+	if (WorldInfo.NetMode != NM_DedicatedServer && FXLabel != `NAME_NONE)
+	{
+		// if this has already been spawned before, play the existing system in the parent instead
+		for (i = 0; i < ExtraVFXAttachments.Length; ++i)
+		{
+			if (ExtraVFXAttachments[i].Info.Label == FXLabel)
+			{
+				bActivatedExistingSystem = true;
+			}
+		}
+
+		if (!bActivatedExistingSystem)
+		{
+			for (i = 0; i < ScriptedStateVFX.Length; ++i)
+			{
+				if (ScriptedStateVFX[i].Label == FXLabel)
+				{
+					SpawnExtraVFX(ScriptedStateVFX[i], VFXAttachment);
+					VFXAttachment.Info = ScriptedStateVFX[i];
+					ExtraVFXAttachments.AddItem(VFXAttachment);
+				}
+			}
+		}
+	}
+
+	super.PlayExtraVFX(FXLabel);
+}
+
+simulated function Timer_DoorWait()
+{
+	if (BlockingDoor == none || BlockingDoor.bIsDoorOpen)
+	{
+		BlockingDoor = none;
+		SpeedScalarForObstacles = 1.0f;
+		UpdatePawnSpeed();
+		ClearTimer(nameof(Timer_DoorWait), self);
+	}
+}
+
 defaultproperties
 {
 	ControllerClass=class'KFGame.KFAIController_ScriptedPawn'
@@ -898,4 +987,6 @@ defaultproperties
 	End Object
 
 	IconPath="ZED_Patriarch_UI.ZED-VS_Icon_Boss"
+
+	SpeedScalarForObstacles=1.0f;
 }

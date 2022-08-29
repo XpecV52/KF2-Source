@@ -11,7 +11,7 @@ class KFDT_Explosive_Shrapnel extends KFDT_Explosive
 defaultproperties
 {
     bShouldSpawnPersistentBlood=true
-    KnockdownPower=500
+    StunPower=500
     StumblePower=500
     MeleeHitPower=500
     ModifierPerkList(0)=class'KFPerk_Firebug'

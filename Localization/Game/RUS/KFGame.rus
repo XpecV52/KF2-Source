@@ -140,7 +140,7 @@ EarnXPString="Получить опыта:"
 CompleteMapString="Сыграть на карте:"
 KillZedsString="Убить мутантов:"
 KillBossString="Убить босса:"
-KillBossDescriptionString=""
+KillBossDescriptionString="В еженедельном режиме или режиме «Выживание»"
 VersusKillsString="Убить против игроков как:"
 DealVersusDamageString="Урон против игроков как:"
 VersusCompletionString="Сыграть как:"
@@ -1245,6 +1245,7 @@ AutoTurnOffString="Откл. автовкл. захв. зомби"
 ReduceHighPitchNoiseString="Менее пронзительные шум"
 DisableAutoUpgradeString="Отключить автоторговлю"
 HideRemodeHeadshotEffectsString="Откл. эф. попадания в голову других"
+ToggleToRunString="Переключите, чтобы выполнить перебежку"
 
 EnableMixerString="Переключить интерактивность Mixer"
 DisableMixerString="Отключить Mixer"
@@ -1840,7 +1841,7 @@ SirenResistance="Звукоустойчивые боеприпасы"
 SirenResistanceDescription="Взрывные устройства устойчивы к крику сирен и всегда взрываются."
 
 AreaOfEffect="Осколочные боеприпасы"
-AreaOfEffectDescription="Повышает радиус поражения профильного взрывчатого оружия на 50%, но снижает урон на 30%."
+AreaOfEffectDescription="На 50% повышает взрывную область профильного оружия."
 
 CriticalHit="Бронебойные боеприпасы"
 CriticalHitDescription="Повышает урон прямых попаданий из профильного оружия в жизненно важные зоны на 50%. "
@@ -1934,7 +1935,7 @@ GroundFire="Огонь на земле"
 GroundFireDescription="Огонь на земле наносит сильно повышенный урон и снижает скорость движения мутантов на 20%,"
 
 ZedShrapnel="Шрапнель из мутантов"
-ZedShrapnelDescription="У убитых мутантов есть 20% шанс взорваться, нанести урон ближайшим мутантам и сбить их с ног."
+ZedShrapnelDescription="У убитых огнем мутантов есть 30% шанс взорваться, нанести урон ближайшим мутантам и оглушить их."
 
 Napalm="Напалм"
 NapalmDescription="Горящие мутанты поджигают других мутантов при касании, а эффект горения длится на 150% дольше."
@@ -2163,10 +2164,10 @@ TacticalReload="Тактическое заряжание"
 TacticalReloadDescription="Повышает скорость заряжания оружия для коммандос, стрелка и спецназовца."
 
 FieldMedic="Обучение медика"
-FieldMedicDescription="Повышает эффективность лечения на 20% и сокращает время восстановления шприца и лечащих дротиков на 25%."
+FieldMedicDescription="Повышает эффективность лечения на 30% и сокращает время восстановления шприца и лечащих дротиков на 50%."
 
 MeleeExpert="Спец по рукопашной"
-MeleeExpertDescription="При использовании холодного оружия скорость атаки растет на 15%, урон — на 10%, а скорость движения — на 25%."
+MeleeExpertDescription="При использовании оружия ближнего боя скорость атаки растет на 20%, урон — на 50%, а скорость движения — на 25%."
 
 AmmoVest="Разгрузочный жилет"
 AmmoVestDescription="Макс. боезапас всего оружия растет на 15%, а граната становится лечащей."
@@ -2175,10 +2176,10 @@ BigPockets="Оружейный ремень"
 BigPocketsDescription="Повышает грузоподъемность на 5, а граната превращается в коктейль Молотова."
 
 ZedShrapnel="Спонтанный взрыв мутантов"
-ZedShrapnelDescription="У убитых мутантов есть 20% шанс взорваться, нанести урон ближайшим мутантам и сбить их с ног."
+ZedShrapnelDescription="У убитых мутантов есть 30% шанс взорваться, нанести урон ближайшим мутантам и оглушить их."
 
 MakeThingsGoBoom="Делаем ба-бах"
-MakeThingsGoBoomDescription="Радиус поражения всех взрывных устройств растет на 25%."
+MakeThingsGoBoomDescription="На 50% повышает радиус поражения всех взрывных устройств."
 
 Madman="МУТАНТ ВРЕМЯ — безумец"
 MadmanDescription="При замедлении времени все оружие стреляет в 3 раза быстрее."
@@ -2345,9 +2346,13 @@ DoschHoldDesc="Не пускать мутантов в отмеченную об
 DescriptionDoshHold="Не пускать мутантов в отмеченную область"
 RepairObjective="СВАРКА И РЕМОНТ"
 UseWelderToRepair="Исп. свар. аппарат, чтобы починить цель."
+RepairObjectiveRequired="Задачи на ремонт:"
 EscortPawnsObjective="СОПРОВОЖДЕНИЕ"
 EscortPawnsDescription="Защитите цель от мутантов"
 RequiredHoldVolume="RequiredHoldVolume"
+DestroyActor="НАЙТИ И УНИЧТОЖИТЬ"
+DescriptionDestroyActor="DescriptionDestroyActor"
+RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="УПРАВЛЯЙТЕ"
 DescriptionActivateTrigger="Активировать управление цели"
 RequiredActivateTrigger="Требуется активация:"
@@ -2583,6 +2588,19 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Бесконечный карау
 SpecialEventObjectiveInfoList[3]=(TitleString="Бесконечная машина войны",DescriptionString="Сразитесь с бесконечной волной 20",TierEventRewardName="Кровавый D.A.R.");");
 SpecialEventObjectiveInfoList[4]=(TitleString="Бесконечный лучший D.A.R.",DescriptionString="Сразитесь с бесконечной волной 25",TierEventRewardName="Золотой D.A.R.");
 
+[KFGFxSpring2019ObjectivesContainer]
+CurrentSpecialEventString="Временное особое событие, где можно получить эксклюзивные предметы"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Спешка босса",DescriptionString="Убить 15 боссов на любой карте")
+SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельный водоотвод",DescriptionString="Выполнить еженедельное задание в водоотводе")
+SpecialEventObjectiveInfoList[2]=(TitleString="Уничтожитель",DescriptionString="Убить 1500 мутантов на любой карте")
+SpecialEventObjectiveInfoList[3]=(TitleString="Бесконечный водоотвод",DescriptionString="Расправиться с волной 15 в бесконечном режиме на уровне «Сложно» или выше в водоотводе")
+SpecialEventObjectiveInfoList[4]=(TitleString="Проливая кровь",DescriptionString="Победить любого босса в режиме «Выживание» на уровне «Сложно» или выше в водоотводе")
+
+AllCompleteRewardDescriptionString="Наряды в стиле «Киберпанк»: мужской и женский варианты"
+
+ChanceDropDescriptionStrings[0]="Призовой билет"
+ChanceDropDescriptionStrings[1]="Золотой билет"
 
 ;============================================
 ; Daily Localization
@@ -3044,7 +3062,6 @@ DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
 
-
 [KF-ShoppingSpree KFMapSummary]
 DisplayName_CHN="抢购狂欢"
 DisplayName_CHT="購物狂歡"
@@ -3076,6 +3093,7 @@ DisplayName_KOR="산타의 작업장 "
 DisplayName_POL="Warsztat Mikołaja"
 DisplayName_PTB="Fábrica do Papai Noel"
 DisplayName_RUS="Мастерскую Санты"
+
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Биотич. лаборатория"
@@ -3160,6 +3178,9 @@ DisplayName="Веселье в магазине"
 
 [KF-SantasWorkshop KFMapSummary]
 DisplayName="Мастерскую Санты"
+
+[KF-Spillway KFMapSummary]
+DisplayName="Водоотвод"
 
 [KFMapInfo]
 ; defaults

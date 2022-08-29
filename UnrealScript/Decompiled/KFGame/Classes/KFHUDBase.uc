@@ -72,6 +72,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
+const KFID_ToggleToRun = 172;
 
 struct sHiddenHumanPawnInfo
 {
@@ -522,11 +523,12 @@ function DrawHUD()
         {
             CheckAndDrawHiddenPlayerIcons(VisibleHumanPlayers, HiddenHumanPlayers);
             CheckAndDrawRemainingZedIcons();
-            if(KFGRI.CurrentObjective != none)
+            if((KFGRI.CurrentObjective != none) && NotEqual_InterfaceInterface(KFGRI.ObjectiveInterface, (none)))
             {
+                KFGRI.ObjectiveInterface.DrawHUD(self, Canvas);
                 TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation();
                 ThisDot = Normal((TargetLocation + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) Dot ViewVector;
-                if((ThisDot > float(0)) && VSizeSq(TargetLocation - LocActor.Location) < MaxDrawDistanceObjective)
+                if(((ThisDot > float(0)) && KFGRI.ObjectiveInterface.ShouldShowObjectiveHUD()) && !KFGRI.ObjectiveInterface.HasObjectiveDrawDistance() || VSizeSq(TargetLocation - LocActor.Location) < MaxDrawDistanceObjective)
                 {
                     DrawObjectiveHUD();
                 }
@@ -666,6 +668,7 @@ simulated function bool DrawScriptedPawnInfo(KFPawn_Scripted KFPS, float Normali
     }
     FontScale = Class'KFGameEngine'.static.GetKFFontScale() * FriendlyHudScale;
     Percentage = FMin(float(KFPS.Health) / float(KFPS.HealthMax), 1);
+    ScreenPos.X = FClamp(ScreenPos.X, BarLength * 0.5, Canvas.ClipX - (BarLength * 0.5));
     DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + (BarHeight * float(2))) + ((float(36) * FontScale) * ResModifier), GetHealthStateColor(KFPS));
     Canvas.SetDrawColorStruct(PlayerBarIconColor);
     Canvas.SetPos(ScreenPos.X - ((PlayerStatusIconSize * ResModifier) * 0.5), ScreenPos.Y - (PlayerStatusIconSize * ResModifier));

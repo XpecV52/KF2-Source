@@ -417,8 +417,6 @@ var const int 	ReconnectRespawnTime;
 
 var private const float XPMultiplier;
 
-var bool bGoToBossCameraOnDeath;
-
 /************************************************************************************
  * @name		Game Difficulty
  ***********************************************************************************/
@@ -954,7 +952,7 @@ event InitGame( string Options, out string ErrorMessage )
 	{
 		GameLength = Clamp(GetIntOption(Options, "GameLength", GameLength), 0, SpawnManagerClasses.Length - 1);
 	}
-	
+
 
 	if( OnlineSub != none && OnlineSub.GetLobbyInterface() != none )
 	{
@@ -1175,7 +1173,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		}
 
 		DesiredWaveLength = ParseOption( Options, "GameLength" );
-		
+
 		if(!bIsEndlessGame && !bIsVersusGame && GametypeChecksWaveLength() && DesiredWaveLength != "" && int(DesiredWaveLength) != GameLength && int(DesiredWaveLength) != 127 && int(DesiredWaveLength) != INDEX_NONE)
 		{
 			LogInternal("Got bad wave length"@DesiredWaveLength@"expected"@GameLength);
@@ -2141,7 +2139,14 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
 		// Friendly fire is scaled for all humans
 		if ( Injured.IsHumanControlled() && Injured.GetTeamNum() == InstigatedBy.GetTeamNum() )
 		{
-			Damage *= FriendlyFireScale;
+			if (KFDT.default.bNoFriendlyFire)
+			{
+				Damage = 0;
+			}
+			else
+			{
+				Damage *= FriendlyFireScale;
+			}
 
 			// For now, don't apply momentum transfer to friendly pawns
 			Momentum = vect(0,0,0);
@@ -2156,6 +2161,9 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
 		OutbreakEvent.ReduceDamage(Damage, Injured, InstigatedBy, DamageType, HitInfo);
 	}
 }
+
+function NotifyTakeHit(KFPawn Pawn, Controller InstigatedBy, vector HitLocation, int Damage,
+	class<DamageType> DamageType, vector Momentum, Actor DamageCauser);
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DT)
 {
@@ -2291,7 +2299,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 
 		if( SpawnManager != None && MyKFGRI != none )
 		{
-			MyKFGRI.AIRemaining--;
+			UpdateAIRemaining();
 
 			if( !MyKFGRI.IsEndlessWave() && MyKFGRI.AIRemaining <= class'KFGameInfo'.static.GetNumAlwaysRelevantZeds() )
 			{
@@ -2320,6 +2328,17 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     }
 }
 
+function UpdateAIRemaining()
+{
+	if (Role == ROLE_AUTHORITY)
+	{
+		if (MyKFGRI != none && SpawnManager != none)
+		{
+			RefreshMonsterAliveCount();
+			MyKFGRI.AIRemaining = Max(0.0f, SpawnManager.WaveTotalAI - NumAISpawnsQueued) + AIAliveCount;
+		}
+	}
+}
 /** Get Last Damage type current monster was hit by, just in case passed in damage has no definition. */
 function class<DamageType> GetLastHitByDamageType(class<DamageType> DT, KFPawn_Monster P, Controller Killer)
 {
@@ -2453,7 +2472,7 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
 	{
 		return;
 	}
-	
+
 	if (InstigatedBy.bIsPlayer)
 	{
 		DamageAmount = Min(DamageAmount, HealthBeforeDamage);
@@ -2463,7 +2482,7 @@ function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller Insti
 			KFPlayerController(InstigatedBy).AddTrackedDamage(DamageAmount, damageType, InstigatedBy.Pawn.Class, DamagedPawn.Class);
 		}
 	}
-	
+
 
 	if (OutbreakEvent != none)
 	{
@@ -2730,6 +2749,10 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 						KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(EarnedDosh);
 					}
 
+					if (!ValidateMonsterClassForXP(MonsterClass))
+					{
+						continue;
+					}
 
 					if( DamageHistory[i].DamagePerks.Length <= 0 )
 					{
@@ -2759,6 +2782,9 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 		}
 	}
 }
+
+/** Gives us a chance to validate monster class before calling AddPlayerXP */
+native private final function bool ValidateMonsterClassForXP(class<KFPawn_Monster> MonsterClass);
 
 /** Grant xp rewards */
 native private function AddPlayerXP(KFPlayerController PC, INT XP, class<KFPerk> PerkClass, bool bApplyPrestigeBonus = false);
@@ -3923,7 +3949,6 @@ defaultproperties
    bEnableMapObjectives=True
    bEnableDeadToVOIP=True
    bCanPerkAlwaysChange=True
-   bGoToBossCameraOnDeath=True
    bUseMapList=True
    bLogReservations=True
    bLogGroupTeamBalance=True
@@ -3963,7 +3988,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop"))
+   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

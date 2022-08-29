@@ -7,7 +7,7 @@
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
- 
+
  /** Same as cpp */
 `define NAME_NONE ''
 
@@ -16,7 +16,7 @@
 `define	DIFFICULTY_HARD 		1.0
 `define	DIFFICULTY_SUICIDAL		2.0
 `define	DIFFICULTY_HELLONEARTH	3.0
- 
+
 /** The maximum number of players allowed in a regular KF Game*/
 `define KF_MAX_PLAYERS	6
 `define KF_MAX_PLAYERS_VERSUS	12
@@ -28,7 +28,7 @@
 `define MAX_PERK_LEVEL	25
 
 /** The maximum number of prestige level available in each perk */
-`define MAX_PRESTIGE_LEVEL	3
+`define MAX_PRESTIGE_LEVEL	4
 
 /** The maximum number of simultaneous cosmetic attachments supported for a character */
 `define MAX_COSMETIC_ATTACHMENTS 3
@@ -67,7 +67,7 @@
 `define IsInZedTime(Actor) (`Actor.WorldInfo.TimeDilation < 1.f)
 `define NotInZedTime(Actor) !`IsInZedTime(`Actor)
 
-`define AnalyticsLog( arg ) if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent `arg 
+`define AnalyticsLog( arg ) if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent `arg
 `define BalanceLog(tag,pri,text) if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(`tag$","$`PRI.PlayerName$","$`text)
 
 /** dev-only logs */

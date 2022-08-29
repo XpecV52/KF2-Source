@@ -13,7 +13,7 @@ var bool bWaitingForGRI;
 
 static event int GetObjClassVersion()
 {
-    return super.GetObjClassVersion() + 1;
+    return super.GetObjClassVersion() + 2;
 }
 
 event VersionUpdated(int OldVersion, int NewVersion)
@@ -22,10 +22,15 @@ event VersionUpdated(int OldVersion, int NewVersion)
     local SeqOpOutputLink NewOutputLink;
 
     SuperVersion = GetObjClassVersion();
-    if(NewVersion == (SuperVersion + 1))
+    if(NewVersion >= (SuperVersion + 1))
     {
         NewOutputLink.LinkDesc = "Loaded and Visible - Weekly";
         OutputLinks[7] = NewOutputLink;
+    }
+    if(NewVersion >= (SuperVersion + 2))
+    {
+        NewOutputLink.LinkDesc = "Loaded and Visible - Objective";
+        OutputLinks[8] = NewOutputLink;
     }
 }
 
@@ -67,5 +72,6 @@ defaultproperties
     OutputLinks(5)=(Links=none,LinkDesc="Loaded and Visible - Long",bHasImpulse=false,bDisabled=false,bDisabledPIE=false,LinkedOp=none,ActivateDelay=0,DrawY=0,bHidden=false,bMoving=false,bClampedMax=false,bClampedMin=false,OverrideDelta=0,PIEActivationTime=0,bIsActivated=false)
     OutputLinks(6)=(Links=none,LinkDesc="Loaded and Visible - Endless",bHasImpulse=false,bDisabled=false,bDisabledPIE=false,LinkedOp=none,ActivateDelay=0,DrawY=0,bHidden=false,bMoving=false,bClampedMax=false,bClampedMin=false,OverrideDelta=0,PIEActivationTime=0,bIsActivated=false)
     OutputLinks(7)=(Links=none,LinkDesc="Loaded and Visible - Weekly",bHasImpulse=false,bDisabled=false,bDisabledPIE=false,LinkedOp=none,ActivateDelay=0,DrawY=0,bHidden=false,bMoving=false,bClampedMax=false,bClampedMin=false,OverrideDelta=0,PIEActivationTime=0,bIsActivated=false)
+    OutputLinks(8)=(Links=none,LinkDesc="Loaded and Visible - Objective",bHasImpulse=false,bDisabled=false,bDisabledPIE=false,LinkedOp=none,ActivateDelay=0,DrawY=0,bHidden=false,bMoving=false,bClampedMax=false,bClampedMin=false,OverrideDelta=0,PIEActivationTime=0,bIsActivated=false)
     ObjCategory="KF"
 }

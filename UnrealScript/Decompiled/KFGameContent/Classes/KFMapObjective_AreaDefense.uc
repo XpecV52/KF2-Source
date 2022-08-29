@@ -5,84 +5,25 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFMapObjective_AreaDefense extends Volume
+class KFMapObjective_AreaDefense extends KFMapObjective_VolumeBase
     abstract
-    hidecategories(Navigation,Object,Movement,Display)
-    implements(KFInterface_MapObjective);
+    hidecategories(Navigation,Object,Movement,Display);
 
-struct DoshHoldMaxReward
-{
-    var() int WaveMaxReward[11];
-
-    structdefaultproperties
-    {
-        WaveMaxReward[0]=0
-        WaveMaxReward[1]=0
-        WaveMaxReward[2]=0
-        WaveMaxReward[3]=0
-        WaveMaxReward[4]=0
-        WaveMaxReward[5]=0
-        WaveMaxReward[6]=0
-        WaveMaxReward[7]=0
-        WaveMaxReward[8]=0
-        WaveMaxReward[9]=0
-        WaveMaxReward[10]=0
-    }
-};
-
-var() string LocalizationKey;
-var() string DescriptionLocKey;
-var() string LocalizationPackageName;
-var() string RequirementsLocKey;
-var() bool bIsMissionCriticalObjective;
-var repnotify bool bActive;
-/** Whether or not the zone is in the danger state */
-var() repnotify bool bDangerState;
-/** Whether or not to use the trader trail to lead players to the zone */
-var() bool bUseTrailToVolume;
-var transient KFReplicatedShowPathActor TrailActor;
 var array<KFPawn_Human> TouchingHumans;
 var array<KFPawn_Monster> TouchingZeds;
 /** Per-player thresholds for amount of players needed in the volume */
 var() const int PlayerThresholds[6];
 /** Per-player count thresholds for amount of zeds allowed in volume */
 var() const int ZedThresholds[6];
-/** Texture to use for the volume icon */
-var() Texture2D ObjectiveIcon;
-/**  
- *Emitter to use to visually define the area the players should hold out.
- *       Note: This is going to be removed in favor of a static mesh setup at some
- *       point in the near future.
- */
-var() array<Emitter> ZoneBoundariesEmitter;
-/** Meshes used to define the outer boundary of the objective area. */
-var() array<DynamicSMActor> ZoneBoundaryMeshes;
-/** Splines used to define the boundary of the objective area. */
-var() array<SplineLoftActor> ZoneBoundarySplines;
-/** Name of the param that sets on/off state of danger colors of the mesh array */
-var() name ZoneDangerMaterialParamName;
-/** Max reward if users (theoretically) did the objective perfectly */
-var() const DoshHoldMaxReward MaxRewards[3];
-/** XP reward if user compeletes the objective. */
-var() const DoshHoldMaxReward XPRewards[3];
+/** Whether or not the zone is in the danger state */
+var() repnotify bool bDangerState;
 var float CurrentRewardAmount;
-/** If this is tied to an event, what season are we in? */
-var() KFGame.KFGameEngine.SeasonalEventIndex EventSeason;
-/** Index if this is tied to a season */
-var() int EventIndex;
-/** Which game modes should this objective not support. */
-var() array< class<KFGameInfo> > GameModeBlacklist;
-/** Modify Spawn Rate based on how many players are alive. */
-var() array<float> PerPlayerSpawnRateMod;
 var float JustWinThreshold;
 var float StandardWinThreshold;
 var float GoodWinThreshold;
 
 replication
 {
-     if(bNetDirty)
-        bActive;
-
      if(Role == ROLE_Authority)
         CurrentRewardAmount, bDangerState;
 }
@@ -96,69 +37,6 @@ simulated event ReplicatedEvent(name VarName)
     else
     {
         super(Actor).ReplicatedEvent(VarName);
-    }
-}
-
-simulated event PostBeginPlay()
-{
-    local int I, J, K;
-
-    super.PostBeginPlay();
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        I = 0;
-        J0x3E:
-
-        if(I < ZoneBoundaryMeshes.Length)
-        {
-            if(ZoneBoundaryMeshes[I] != none)
-            {
-                ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(true);
-                J = 0;
-                J0xB9:
-
-                if(ZoneBoundaryMeshes[I].StaticMeshComponent.GetMaterial(J) != none)
-                {
-                    ZoneBoundaryMeshes[I].StaticMeshComponent.CreateAndSetMaterialInstanceConstant(J);
-                    ++ J;
-                    goto J0xB9;
-                }
-            }
-            ++ I;
-            goto J0x3E;
-        }
-        I = 0;
-        J0x174:
-
-        if(I < ZoneBoundarySplines.Length)
-        {
-            if(ZoneBoundarySplines[I] != none)
-            {
-                J = 0;
-                J0x1B0:
-
-                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
-                {
-                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
-                    {
-                        ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(true);
-                        K = 0;
-                        J0x273:
-
-                        if(ZoneBoundarySplines[I].SplineMeshComps[J].GetMaterial(K) != none)
-                        {
-                            ZoneBoundarySplines[I].SplineMeshComps[J].CreateAndSetMaterialInstanceConstant(K);
-                            ++ K;
-                            goto J0x273;
-                        }
-                    }
-                    ++ J;
-                    goto J0x1B0;
-                }
-            }
-            ++ I;
-            goto J0x174;
-        }
     }
 }
 
@@ -269,77 +147,14 @@ function bool IsValidZed(Actor PotentialZed)
 
 simulated function ActivateObjective()
 {
-    local int I, J;
-    local KFSeqEvent_MapObjectiveActivated ActivationEvent;
-
+    super.ActivateObjective();
     if(Role == ROLE_Authority)
     {
         bActive = true;
         CurrentRewardAmount = float(GetMaxDoshReward());
     }
-    I = 0;
-    J0x41:
-
-    if(I < GeneratedEvents.Length)
-    {
-        ActivationEvent = KFSeqEvent_MapObjectiveActivated(GeneratedEvents[I]);
-        if(ActivationEvent != none)
-        {
-            ActivationEvent.NotifyActivation(self, self);
-        }
-        ++ I;
-        goto J0x41;
-    }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        I = 0;
-        J0xF1:
-
-        if(I < ZoneBoundariesEmitter.Length)
-        {
-            if(ZoneBoundariesEmitter[I] != none)
-            {
-                ZoneBoundariesEmitter[I].ParticleSystemComponent.ActivateSystem();
-                ZoneBoundariesEmitter[I].bCurrentlyActive = true;
-            }
-            ++ I;
-            goto J0xF1;
-        }
-        I = 0;
-        J0x1A5:
-
-        if(I < ZoneBoundaryMeshes.Length)
-        {
-            if(ZoneBoundaryMeshes[I] != none)
-            {
-                ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(false);
-            }
-            ++ I;
-            goto J0x1A5;
-        }
-        I = 0;
-        J0x22E:
-
-        if(I < ZoneBoundarySplines.Length)
-        {
-            if(ZoneBoundarySplines[I] != none)
-            {
-                J = 0;
-                J0x26A:
-
-                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
-                {
-                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
-                    {
-                        ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(false);
-                    }
-                    ++ J;
-                    goto J0x26A;
-                }
-            }
-            ++ I;
-            goto J0x22E;
-        }
         UpdateMeshArrayState();
         if(bUseTrailToVolume)
         {
@@ -355,99 +170,19 @@ simulated function ActivateObjective()
 
 simulated function DeactivateObjective()
 {
-    local int I, J;
-    local KFSeqEvent_MapObjectiveActivated ActivationEvent;
-
+    super.DeactivateObjective();
     if(Role == ROLE_Authority)
     {
         bActive = false;
     }
-    I = 0;
-    J0x2B:
-
-    if(I < GeneratedEvents.Length)
-    {
-        ActivationEvent = KFSeqEvent_MapObjectiveActivated(GeneratedEvents[I]);
-        if(ActivationEvent != none)
-        {
-            ActivationEvent.NotifyDeactivation(self, self);
-        }
-        ++ I;
-        goto J0x2B;
-    }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        I = 0;
-        J0xDB:
-
-        if(I < ZoneBoundariesEmitter.Length)
-        {
-            if(ZoneBoundariesEmitter[I] != none)
-            {
-                ZoneBoundariesEmitter[I].ParticleSystemComponent.DeactivateSystem();
-                ZoneBoundariesEmitter[I].bCurrentlyActive = false;
-            }
-            ++ I;
-            goto J0xDB;
-        }
-        I = 0;
-        J0x18E:
-
-        if(I < ZoneBoundaryMeshes.Length)
-        {
-            if(ZoneBoundaryMeshes[I] != none)
-            {
-                ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(true);
-            }
-            ++ I;
-            goto J0x18E;
-        }
-        I = 0;
-        J0x217:
-
-        if(I < ZoneBoundarySplines.Length)
-        {
-            if(ZoneBoundarySplines[I] != none)
-            {
-                J = 0;
-                J0x253:
-
-                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
-                {
-                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
-                    {
-                        ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(true);
-                    }
-                    ++ J;
-                    goto J0x253;
-                }
-            }
-            ++ I;
-            goto J0x217;
-        }
         UpdateMeshArrayState();
         if(bUseTrailToVolume && TrailActor != none)
         {
             TrailActor.Destroy();
             TrailActor = none;
         }
-    }
-}
-
-simulated function GrantReward(KFPawn_Human PlayerToReward)
-{
-    if(KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo) == none)
-    {
-        return;
-    }
-    if(KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).bOnlySpectator)
-    {
-        return;
-    }
-    KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).AddDosh(int(CurrentRewardAmount));
-    if(KFPlayerController(PlayerToReward.Controller) != none)
-    {
-        KFPlayerController(PlayerToReward.Controller).ClientMapObjectiveCompleted(float(GetXPReward()));
     }
 }
 
@@ -492,7 +227,7 @@ simulated function float GetActivationPctChance()
     return 1;
 }
 
-function bool IsBonus()
+simulated function bool IsBonus()
 {
     return true;
 }
@@ -502,43 +237,11 @@ simulated function int GetPlayersInObjective()
     return 0;
 }
 
-simulated function float GetSpawnRateMod()
-{
-    local KFGameReplicationInfo KFGRI;
-    local int NumPlayersAlive;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI != none)
-    {
-        NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, PerPlayerSpawnRateMod.Length) - 1;
-        return PerPlayerSpawnRateMod[NumPlayersAlive];
-    }
-    return 1;
-}
-
 simulated function bool HasFailedObjective();
 
 simulated function int GetDoshReward()
 {
     return int(CurrentRewardAmount);
-}
-
-simulated function int GetMaxDoshReward()
-{
-    local KFGameReplicationInfo KFGRI;
-    local int ArrayEnd;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI != none)
-    {
-        ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, 11 - 1);
-        return default.MaxRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
-    }
-    if((3 > 0) && 11 > 0)
-    {
-        return default.MaxRewards[0].WaveMaxReward[0];
-    }
-    return 0;
 }
 
 simulated function int GetVoshReward()
@@ -553,18 +256,6 @@ simulated function int GetVoshReward()
     return int((float(GetMaxVoshReward()) * float(GetDoshReward())) / float(MaxDoshReward));
 }
 
-simulated function int GetMaxVoshReward()
-{
-    local KFGameReplicationInfo KFGRI;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI != none)
-    {
-        return Class'KFOnlineStatsWrite'.static.GetMapObjectiveVoshReward(KFGRI.GameLength, KFGRI.WaveNum);
-    }
-    return 0;
-}
-
 simulated function int GetXPReward()
 {
     local int MaxDoshReward;
@@ -577,24 +268,6 @@ simulated function int GetXPReward()
     return int((float(GetMaxXPReward()) * float(GetDoshReward())) / float(MaxDoshReward));
 }
 
-simulated function int GetMaxXPReward()
-{
-    local KFGameReplicationInfo KFGRI;
-    local int ArrayEnd;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI != none)
-    {
-        ArrayEnd = Clamp(KFGRI.WaveMax - 2, 0, 11 - 1);
-        return default.XPRewards[KFGRI.GameLength].WaveMaxReward[Clamp(KFGRI.WaveNum - 1, 0, ArrayEnd)];
-    }
-    if((3 > 0) && 11 > 0)
-    {
-        return default.XPRewards[0].WaveMaxReward[0];
-    }
-    return 0;
-}
-
 simulated function bool ShouldDrawIcon()
 {
     return true;
@@ -603,21 +276,6 @@ simulated function bool ShouldDrawIcon()
 simulated function Vector GetIconLocation()
 {
     return Location;
-}
-
-simulated function Texture2D GetIcon()
-{
-    return ObjectiveIcon;
-}
-
-simulated function string GetLocalizedName()
-{
-    return Localize("Objectives", LocalizationKey, LocalizationPackageName);
-}
-
-simulated function string GetLocalizedDescription()
-{
-    return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
 }
 
 simulated function bool UsesMultipleActors()
@@ -636,18 +294,12 @@ simulated function bool GetIsMissionCritical()
 
 defaultproperties
 {
-    LocalizationPackageName="KFGame"
-    ZoneDangerMaterialParamName=Danger
-    EventIndex=-1
-    PerPlayerSpawnRateMod(0)=1
-    PerPlayerSpawnRateMod(1)=1
-    PerPlayerSpawnRateMod(2)=1
-    PerPlayerSpawnRateMod(3)=1
-    PerPlayerSpawnRateMod(4)=1
-    PerPlayerSpawnRateMod(5)=1
     JustWinThreshold=0.25
     StandardWinThreshold=0.5
     GoodWinThreshold=0.85
+    LocalizationPackageName="KFGame"
+    PerPlayerSpawnRateMod=/* Array type was not detected. */
+    ZoneDangerMaterialParamName=Danger
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end
@@ -666,5 +318,4 @@ defaultproperties
     object end
     // Reference: BrushComponent'Default__KFMapObjective_AreaDefense.BrushComponent0'
     CollisionComponent=BrushComponent0
-    SupportedEvents=/* Array type was not detected. */
 }

@@ -807,19 +807,51 @@ simulated event PostBeginPlay()
 	Super.PostBeginPlay();
 }
 
+static simulated function SetupHealthBar(KFInterface_MonsterBoss BossRef)
+{
+	local KFPawn_Monster BossMonster;
+	local KFPlayerController LocalKFPC;
+
+	BossMonster = KFPawn_Monster(BossRef);
+	if (BossMonster != none && BossMonster.WorldInfo.NetMode != NM_DedicatedServer)
+	{
+		LocalKFPC = KFPlayerController(BossMonster.GetALocalPlayerController());
+		if(LocalKFPC.MyGFxHUD != none && LocalKFPC.MyGFxHUD.BossHealthBar != none)
+		{
+			LocalKFPC.MyGFxHUD.BossHealthBar.SetBossPawn(BossRef);
+
+			if (!KFGameReplicationInfo(BossMonster.WorldInfo.GRI).ShouldSetBossCamOnBossSpawn())
+			{
+				LocalKFPC.MyGFxHUD.BossHealthBar.OnNamePlateHidden();
+			}
+		}
+	}
+}
+
 /** Called from Possessed event when this controller has taken control of a Pawn */
 function PossessedBy( Controller C, bool bVehicleTransition )
 {
 	Super.PossessedBy( C, bVehicleTransition );
 
 	PlayBossMusic();
-    ServerDoSpecialMove(SM_BossTheatrics);
+	PlayBossEntranceTheatrics(self);
 
 	// Set a timer to begin increasing this boss's speed after enough time has elapsed
 	if( !IsHumanControlled() )
 	{
 		ActualSprintSpeed = SprintSpeed;
 		SetTimer( TimeUntilSpeedIncrease, false, nameOf(Timer_IncreaseSpeed) );
+	}
+}
+
+static function PlayBossEntranceTheatrics(KFInterface_MonsterBoss BossRef)
+{
+	local KFPawn_Monster BossMonster;
+
+	BossMonster = KFPawn_Monster(BossRef);
+	if (BossMonster != none && KFGameReplicationInfo(BossMonster.WorldInfo.GRI).ShouldSetBossCamOnBossSpawn())
+	{
+		BossMonster.ServerDoSpecialMove(SM_BossTheatrics);
 	}
 }
 

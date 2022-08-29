@@ -187,10 +187,6 @@ function PlayAnimation()
                     }
                 }
                 KFPC.ClientPlayCameraAnim(CameraAnim, 1, 0.99, BlendInTime, BlendOutTime + 0.03, false, false);
-                if((KFPC.myGfxHUD != none) && KFPC.myGfxHUD.bossHealthBar != none)
-                {
-                    KFPC.myGfxHUD.bossHealthBar.SetBossPawn(BossRef);
-                }
             }
         }
     }

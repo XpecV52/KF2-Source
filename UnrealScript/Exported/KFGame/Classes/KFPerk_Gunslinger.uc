@@ -871,6 +871,7 @@ defaultproperties
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.GunslingerKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Remington1858_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.M1911_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.DesertEagle_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Gunslinger"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

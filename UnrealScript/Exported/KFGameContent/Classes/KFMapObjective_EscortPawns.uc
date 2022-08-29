@@ -8,16 +8,7 @@
 // Copyright (C) 2018 Tripwire Interactive LLC
 //=============================================================================
 
-class KFMapObjective_EscortPawns extends Actor
-	placeable
-	implements(KFInterface_MapObjective);
-
-var() string LocalizationKey;
-var() string DescriptionLocKey;
-var() string LocalizationPackageName;
-var bool bIsActive;	
-var() bool bIsMissionCriticalObjective;
-var Texture2D DefaultIcon;
+class KFMapObjective_EscortPawns extends KFMapObjective_ActorBase;
 
 // Scripted pawn spawners that will spawn the escorts related to this objective
 var() array<KFScriptedPawnSpawner> EscortPawnSpawners;
@@ -29,21 +20,6 @@ var float Progress;
 var repnotify transient Actor ActiveEscortActor;
 var float CompletionPct;
 
-/** Whether or not to use the trader trail to lead players to the objective */
-var() bool bUseTrailToObjective;
-/** Trader trail object being used */
-var transient KFReplicatedShowPathActor TrailActor;
-/** Texture to use for the actor icon */
-var() Texture2D ObjectiveIcon;
-/** Which game modes should this objective not support. */
-var() array<class<KFGameInfo> > GameModeBlacklist;
-/** Modify Spawn Rate based on how many players are alive. */
-var() array<float> PerPlayerSpawnRateMod;
-
-/** A sound to play when this objective is activated */
-var() AkEvent ActivationSoundEvent;
-/** A sound to play when the objective is failed */
-var() AkEvent FailureSoundEvent;
 // Sound to play when escort is 100% done and in perfect health
 var() AkEvent ProgressSoundEvent100pctPerfect;
 // Sound to play when escort is 100% done
@@ -80,24 +56,159 @@ var() AkEvent EscortPawnCriticalReminderEvent;
 // How frequently to remind players that escort is in critical condition
 var() float EscortPawnCriticalReminderEventInterval;
 
+var repnotify int CompletionProgressIdx, HealthProgressIdx;
+
 replication
 {
 	if (bNetDirty)
-		bIsActive, Progress, ActiveEscortActor, CompletionPct;
-
-	if (bNetInitial)
-		ObjectiveIcon, bUseTrailToObjective, bIsMissionCriticalObjective, LocalizationKey, DescriptionLocKey, LocalizationPackageName;
+		Progress, ActiveEscortActor, CompletionPct, CompletionProgressIdx, HealthProgressIdx;
 }
 
 simulated function ReplicatedEvent(name VarName)
 {
-	if (VarName == nameof(ActiveEscortActor))
+	switch (VarName)
 	{
+	case nameof(ActiveEscortActor):
 		UpdateTrailActor();
-	}
-	else
-	{
+		break;
+
+	case nameof(CompletionProgressIdx):
+		TriggerCompletionPctProgress();
+		break;
+
+	case nameof(HealthProgressIdx):
+		TriggerHealthPctProgress();
+		break;
+
+	default:
 		super.ReplicatedEvent(VarName);
+	};
+}
+
+function CheckCompletionPctProgress(float PrevCompletionPct, float CurrCompletionPct)
+{
+	local int PrevCompletionProgressIdx, GenEvtIdx, i;
+	local KFSeqEvent_EscortPawnsCompletionPct GenEvt;
+
+	PrevCompletionProgressIdx = CompletionProgressIdx;
+
+	// check the first applicable generated event (assumes all applicable events are identical)
+	for (GenEvtIdx = 0; GenEvtIdx < GeneratedEvents.Length; GenEvtIdx++)
+	{
+		GenEvt = KFSeqEvent_EscortPawnsCompletionPct(GeneratedEvents[GenEvtIdx]);
+		if (GenEvt != None)
+		{
+			for (i = 0; i < GenEvt.ProgressThresholds.Length; i++)
+			{
+				if (PrevCompletionPct < GenEvt.ProgressThresholds[i] &&
+					CurrCompletionPct >= GenEvt.ProgressThresholds[i])
+				{
+					CompletionProgressIdx = GenEvt.ProgressOutputStartIndex + i;
+					break;
+				}
+			}
+			break;
+		}
+	}
+
+	if (CompletionProgressIdx != PrevCompletionProgressIdx)
+	{
+		TriggerCompletionPctProgress();
+	}
+}
+
+simulated function TriggerCompletionPctProgress()
+{
+	local int GenEvtIdx;
+	local KFSeqEvent_EscortPawnsCompletionPct GenEvt;
+	local array<int> ActivateIndices;
+
+	ActivateIndices.AddItem(CompletionProgressIdx);
+
+	// notify all applicable generated events (assumes all applicable events are identical)
+	for (GenEvtIdx = 0; GenEvtIdx < GeneratedEvents.Length; GenEvtIdx++)
+	{
+		GenEvt = KFSeqEvent_EscortPawnsCompletionPct(GeneratedEvents[GenEvtIdx]);
+		if (GenEvt != None)
+		{
+			GenEvt.Reset();
+			GenEvt.CheckActivate(self, self,, ActivateIndices);
+		}
+	}
+}
+
+function CheckHealthPctProgress(float PrevHealthPct, float CurrHealthPct)
+{
+	local int PrevHealthProgressIdx, GenEvtIdx, i;
+	local KFSeqEvent_EscortPawnsHealthPct GenEvt;
+
+	PrevHealthProgressIdx = HealthProgressIdx;
+
+	// check the first applicable generated event (assumes all applicable events are identical)
+	for (GenEvtIdx = 0; GenEvtIdx < GeneratedEvents.Length; GenEvtIdx++)
+	{
+		GenEvt = KFSeqEvent_EscortPawnsHealthPct(GeneratedEvents[GenEvtIdx]);
+		if (GenEvt != None)
+		{
+			if (GenEvt.bUseReverseProgress)
+			{
+				for (i = 0; i < GenEvt.ProgressThresholds.Length; i++)
+				{
+					if (PrevHealthPct >= GenEvt.ProgressThresholds[i] &&
+						CurrHealthPct < GenEvt.ProgressThresholds[i])
+					{
+						// set idx negative for reverse progress
+						// add 1 to keep idx from being 0, since 0 is ambiguous
+						HealthProgressIdx = -(GenEvt.ProgressOutputStartIndex + i + 1);
+						break;
+					}
+				}
+			}
+			else
+			{
+				for (i = 0; i < GenEvt.ProgressThresholds.Length; i++)
+				{
+					if (PrevHealthPct < GenEvt.ProgressThresholds[i] &&
+						CurrHealthPct >= GenEvt.ProgressThresholds[i])
+					{
+						// add 1 to keep idx from being 0, since 0 is ambiguous
+						HealthProgressIdx = GenEvt.ProgressOutputStartIndex + i + 1;
+						break;
+					}
+				}
+			}
+
+			if (HealthProgressIdx != PrevHealthProgressIdx)
+			{
+				TriggerHealthPctProgress();
+				break;
+			}
+		}
+	}
+}
+
+simulated function TriggerHealthPctProgress()
+{
+	local int GenEvtIdx;
+	local KFSeqEvent_EscortPawnsHealthPct GenEvt;
+	local array<int> ActivateIndices;
+
+	// subtract the 1 that we added in CheckHealthPctProgress
+	ActivateIndices.AddItem(Max(HealthProgressIdx, -HealthProgressIdx) - 1);
+
+	// notify all applicable generated events (assumes all applicable events are identical)
+	for (GenEvtIdx = 0; GenEvtIdx < GeneratedEvents.Length; GenEvtIdx++)
+	{
+		GenEvt = KFSeqEvent_EscortPawnsHealthPct(GeneratedEvents[GenEvtIdx]);
+		if (GenEvt != None)
+		{
+			if ((GenEvt.bUseReverseProgress && HealthProgressIdx < 0) ||
+				(!GenEvt.bUseReverseProgress && HealthProgressIdx > 0))
+			{
+				GenEvt.Reset();
+				GenEvt.CheckActivate(self, self,, ActivateIndices);
+			}
+		}
 	}
 }
 
@@ -106,6 +217,8 @@ simulated function ReplicatedEvent(name VarName)
 simulated function ActivateObjective()
 {
 	local KFScriptedPawnSpawner EscortPawnStart;
+
+	super.ActivateObjective();
 
 	if (Role == ROLE_Authority)
 	{
@@ -120,6 +233,14 @@ simulated function ActivateObjective()
 			EscortPawnStart.Delegate_OnPawnReachedRouteMarker = OnEscortReachedRouteMarker;
 			EscortPawnStart.Delegate_OnPawnReachedGoal = OnEscortReachedGoal;
 			EscortPawnStart.Delegate_OnPawnEndedRoute = OnEscortEndedRoute;
+
+			// reset progress goals if this has already been completed once
+			if (EscortPawnStart.bReachedGoal)
+			{
+				EscortPawnStart.bReachedStart = false;
+				EscortPawnStart.bReachedGoal = false;
+				EscortPawnStart.RouteDistTraversed = 0;
+			}
 
 			// make sure to set up any scripted pawns that were spawned before the objective started
 			if (EscortPawnStart.Pawn != none && EscortPawnStart.bReachedStart)
@@ -139,6 +260,8 @@ simulated function DeactivateObjective()
 {
 	local KFPawn_Human KFPH;
 
+	super.DeactivateObjective();
+
 	if (Role == ROLE_Authority)
 	{
 		bIsActive = false;
@@ -147,18 +270,7 @@ simulated function DeactivateObjective()
 		{
 			foreach WorldInfo.AllPawns(class'KFPawn_Human', KFPH)
 			{
-				if (KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo) == none)
-				{
-					continue;
-				}
-
-				if (KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo).bOnlySpectator)
-				{
-					continue;
-				}
-				
-				KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo).AddDosh(GetDoshReward());
-				KFPlayerController(KFPH.Controller).ClientMapObjectiveCompleted(GetXPReward());
+				GrantReward(KFPH);
 			}
 		}
 		else
@@ -195,60 +307,6 @@ simulated function bool UsesProgress()
 	return true;
 }
 
-simulated function int GetDoshReward()
-{
-	local int MaxDosh;
-
-	MaxDosh = GetMaxDoshReward();
-	if (MaxDosh == 0)
-	{
-		return MaxDosh;
-	}
-
-	return int(MaxDosh * GetProgress());
-}
-
-simulated function int GetMaxDoshReward()
-{
-	return 400;
-}
-
-simulated function int GetVoshReward()
-{
-	local int MaxDosh;
-
-	MaxDosh = GetMaxVoshReward();
-	if (MaxDosh == 0)
-	{
-		return MaxDosh;
-	}
-
-	return int(MaxDosh * GetProgress());
-}
-
-simulated function int GetMaxVoshReward()
-{
-	return 2000;
-}
-
-simulated function int GetXPReward()
-{
-	local int MaxXP;
-
-	MaxXP = GetMaxXPReward();
-	if (MaxXP == 0)
-	{
-		return MaxXP;
-	}
-
-	return int(MaxXP * GetProgress());
-}
-
-simulated function int GetMaxXPReward()
-{
-	return 330;
-}
-
 simulated function bool IsBonus();
 
 function bool CanActivateObjective()
@@ -273,7 +331,7 @@ function bool IsCurrentGameModeBlacklisted()
 
 simulated function float GetProgress()
 {
-	return Progress;
+	return FClamp(Progress, 0.f, 1.f);
 }
 
 simulated function bool IsComplete()
@@ -288,21 +346,6 @@ simulated function float GetActivationPctChance()
 	return 1.f;
 }
 
-simulated function float GetSpawnRateMod()
-{
-	local KFGameReplicationInfo KFGRI;
-	local int NumPlayersAlive;
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if(KFGRI != none)
-	{
-		NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, PerPlayerSpawnRateMod.length) - 1;
-		return PerPlayerSpawnRateMod[NumPlayersAlive];
-	}
-
-	return 1.f;
-}
-
 simulated function bool UsesMultipleActors()
 {
 	return false;
@@ -310,19 +353,9 @@ simulated function bool UsesMultipleActors()
 
 simulated function string GetActorCount();
 
-simulated function string GetLocalizedDescription()
-{
-	return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
-}
-
 simulated function string GetLocalizedRequirements()
 {
 	return "";
-}
-
-simulated function string GetLocalizedName()
-{
-	return Localize("Objectives", LocalizationKey, LocalizationPackageName);
 }
 
 simulated function bool ShouldDrawIcon(){}
@@ -347,6 +380,7 @@ function OnEscortStarted(KFPawn_Scripted StartedPawn)
 	UpdateTrailActor();
 
 	StartedPawn.Delegate_OnTakeDamage = OnEscortTakeDamage;
+	StartedPawn.Delegate_OnHealDamage = OnEscortHealDamage;
 	StartedPawn.Delegate_OnChangeState = OnEscortChangeState;
 
 	OnEscortChangeState(0, 0);
@@ -364,6 +398,9 @@ function OnEscortReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubId
 	}
 
 	ActivePawnHealthPct = float(KFPawn_Scripted(ActiveEscortActor).Health) / float(KFPawn_Scripted(ActiveEscortActor).HealthMax);
+
+	CheckCompletionPctProgress(Progress, PawnsProgress);
+
 	CompletionPct = ActivePawnHealthPct;
 
 	if (Progress < 0.25 && PawnsProgress >= 0.25)
@@ -425,8 +462,6 @@ function OnEscortReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubId
 		{
 			PlaySoundBase(ProgressSoundEvent100pctPoor, false, WorldInfo.NetMode == NM_DedicatedServer);
 		}
-
-		CompletionPct = ActivePawnHealthPct;
 	}
 
 	Progress = PawnsProgress;
@@ -446,8 +481,9 @@ function OnEscortEndedRoute(bool bSuccess)
 	if (bSuccess)
 	{
 		++NumEscortsAccomplished;
+		TriggerObjectiveProgressEvent();
 	}
-	
+
 	if ((NumEscortsAccomplished >= NumEscortsRequired) ||
 		(NumEscortsFinished == EscortPawnSpawners.Length) ||
 		(((EscortPawnSpawners.Length - NumEscortsFinished) + NumEscortsAccomplished) < NumEscortsRequired))
@@ -455,6 +491,7 @@ function OnEscortEndedRoute(bool bSuccess)
 		KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 		if (KFGRI != none)
 		{
+			Progress = 1.0f; // ensure this is set to completed
 			KFGRI.DeactivateObjective();
 		}
 	}
@@ -466,18 +503,39 @@ function OnEscortEndedRoute(bool bSuccess)
 	ClearTimer(nameof(Timer_EscortPawnCriticalReminderEventInterval));
 }
 
-function OnEscortTakeDamage()
+function OnEscortTakeDamage(int Damage)
 {
+	local KFPawn_Scripted KFPS;
+	local float PrevHealthPct, CurrHealthPct;
+
 	if (EscortPawnTakeDamageEvent != none && !IsTimerActive(nameof(Timer_EscortPawnTakeDamageEventCooldown)))
 	{
 		PlaySoundBase(EscortPawnTakeDamageEvent,, WorldInfo.NetMode == NM_DedicatedServer);
 		SetTimer(EscortPawnTakeDamageEventCooldown, false, nameof(Timer_EscortPawnTakeDamageEventCooldown));
 	}
+
+	KFPS = KFPawn_Scripted(ActiveEscortActor);
+	PrevHealthPct = float(KFPS.Health + Damage) / float(KFPS.HealthMax);
+	CurrHealthPct = float(KFPS.Health) / float(KFPS.HealthMax);
+
+	CheckHealthPctProgress(PrevHealthPct, CurrHealthPct);
 }
 
 function Timer_EscortPawnTakeDamageEventCooldown()
 {
 	// this function is just here to allow us to set a timer, which we check the activity of
+}
+
+function OnEscortHealDamage(int HealAmount)
+{
+	local KFPawn_Scripted KFPS;
+	local float PrevHealthPct, CurrHealthPct;
+
+	KFPS = KFPawn_Scripted(ActiveEscortActor);
+	PrevHealthPct = float(KFPS.Health - HealAmount) / float(KFPS.HealthMax);
+	CurrHealthPct = float(KFPS.Health) / float(KFPS.HealthMax);
+
+	CheckHealthPctProgress(PrevHealthPct, CurrHealthPct);
 }
 
 function OnEscortChangeState(int CurrState, int PrevState)
@@ -521,11 +579,14 @@ simulated function bool GetIsMissionCritical()
 
 defaultproperties
 {
+   PoorHealthPctThreshold=0.500000
+   CompletionProgressIdx=999
+   HealthProgressIdx=999
    LocalizationKey="EscortPawnsObjective"
    DescriptionLocKey="EscortPawnsDescription"
    LocalizationPackageName="KFGame"
    bIsMissionCriticalObjective=True
-   DefaultIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_UI_CartObjective'
+   DefaultIcon=Texture2D'Objectives_UI_Generic.DoNotShip.UI_Objectives_General_Escort'
    GameModeBlacklist(0)=Class'kfgamecontent.KFGameInfo_Endless'
    GameModeBlacklist(1)=Class'kfgamecontent.KFGameInfo_WeeklySurvival'
    PerPlayerSpawnRateMod(0)=1.000000
@@ -534,7 +595,6 @@ defaultproperties
    PerPlayerSpawnRateMod(3)=1.000000
    PerPlayerSpawnRateMod(4)=1.000000
    PerPlayerSpawnRateMod(5)=1.000000
-   PoorHealthPctThreshold=0.500000
    Begin Object Class=SpriteComponent Name=Sprite
       ReplacementPrimitive=None
       HiddenGame=True
@@ -546,6 +606,8 @@ defaultproperties
    Components(0)=Sprite
    RemoteRole=ROLE_SimulatedProxy
    bAlwaysRelevant=True
+   SupportedEvents(7)=Class'kfgamecontent.KFSeqEvent_EscortPawnsCompletionPct'
+   SupportedEvents(8)=Class'kfgamecontent.KFSeqEvent_EscortPawnsHealthPct'
    Name="Default__KFMapObjective_EscortPawns"
-   ObjectArchetype=Actor'Engine.Default__Actor'
+   ObjectArchetype=KFMapObjective_ActorBase'KFGame.Default__KFMapObjective_ActorBase'
 }

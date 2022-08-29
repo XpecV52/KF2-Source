@@ -62,6 +62,7 @@ defaultproperties
     DealDamageString="Deal Damage:"
     EarnXPString="Earn XP:"
     KillBossString="Kill Boss:"
+    KillBossDescriptionString="In Survival or Weekly"
     CompleteMapString="Complete Match in Map:"
     KillZedsString="Kill Zeds:"
     DealVersusDamageString="Damage Versus Players as:"

@@ -112,6 +112,8 @@ var() bool bEnableProximityOptions;
 var() bool bUseZedProximityTrigger<EditCondition=bEnableProximityOptions>;
 /** Whether pawn/player behavior changes when players are close */
 var() bool bUsePlayerProximityTrigger<EditCondition=bEnableProximityOptions>;
+/** Whether the pawn should remove collision when reaching the goal and then become hidden when finished */
+var() bool bHideOnFinish;
 /** How hard pawn bumps other pawns */
 var() float PawnBumpImpulse;
 /** How much pawn can be welded */
@@ -150,6 +152,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
 defaultproperties
 {
     PawnSpeed=150
+    bHideOnFinish=true
     PawnBumpImpulse=100
     PawnMaxWeldIntegrityPerPlayer[0]=1500
     PawnMaxWeldIntegrityPerPlayer[1]=1500

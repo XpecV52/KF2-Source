@@ -212,6 +212,11 @@ var(ForceFeedback) bool bForceFeedbackEnabled;
 var const float DoubleTapDelay;
 
 /*********************************************************************************************
+ * @name Run/Sprint
+********************************************************************************************* */
+var bool bToggleToRun;
+
+/*********************************************************************************************
 * @name	Game class
 ********************************************************************************************* */
 var bool 	bVersusInput;
@@ -550,7 +555,7 @@ function AdjustMouseSensitivity(float FOVScale)
 		FOVScale = GetSensitivityByFOV( ZoomedSensitivityScale );
 	}
 
-	Super.AdjustMouseSensitivity( FOVScale );
+	Super.AdjustMouseSensitivity(FOVScale);
 }
 
 
@@ -649,7 +654,7 @@ function GamepadSprintTimer()
 /** On release: Crouch or switch to 'ExtendedSprint' */
 exec function GamepadSprintRelease()
 {
-	if( ShouldActivateGamepadSprint() )
+	if( ShouldActivateGamepadSprint() && bToggleToRun)
 	{
 		// end sprint; begin extended (non-pressed) sprint
 		bExtendedSprinting = true;
@@ -1667,6 +1672,10 @@ exec function InteractTimer()
 		{
 			DoAutoPurchase();
 		}
+		else if (UsableTrigger.IsA('KFUsableTrigger'))
+		{
+			Outer.Use();
+		}
 	}
 }
 
@@ -1772,7 +1781,7 @@ function PreProcessGamepadInput( float DeltaTime )
 	CurrLookUp *= FOVScale;
 
 	// Globally scale the turning and up/down sensitivity
-    CurrTurn *= GamepadSensitivityScale;
+	CurrTurn *= GamepadSensitivityScale;
 	CurrLookUp *= GamepadSensitivityScale;
 
 	// be less sensitive while sprinting

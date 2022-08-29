@@ -624,7 +624,7 @@ DefaultProperties
     NapalmDamage=7 //50
 	NapalmCheckCollisionScale=2.0f //6.0
 
-   	ShrapnelChance=0.20   //0.2
+   	ShrapnelChance=0.3f   //0.2
 
    	SnarePower=100
    	SnareCausingDmgTypeClass="KFDT_Fire_Ground"
@@ -658,8 +658,8 @@ DefaultProperties
 	SecondaryXPModifier(3)=5
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=10  //231  //120
-		DamageRadius=200   //840  //600
+		Damage=100  //231  //120
+		DamageRadius=250   //840  //600
 		DamageFalloffExponent=1
 		DamageDelay=0.f
 		MyDamageType=class'KFDT_Explosive_Shrapnel'
@@ -689,4 +689,5 @@ DefaultProperties
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.Dragonsbreath_PrestigePrecious_Mint_large"
+	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.FlameThrower_PrestigePrecious_Mint_Large"
 }

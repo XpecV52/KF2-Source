@@ -15,6 +15,7 @@ defaultproperties
    bNoInstigatorDamage=True
    bConsideredIndirectOrAoE=True
    DoT_Type=DOT_None
+   PoisonPower=0.000000
    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Puke_Light'
    Name="Default__KFDT_Toxic_BloatKingFart"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'

@@ -23,6 +23,7 @@ static simulated event EFilterTypeUI GetTraderFilter()
 defaultproperties
 {
    HealAmount=15
+   HealFullRechargeSeconds=13.000000
    PackageKey="Medic_SMG"
    FirstPersonMeshName="WEP_1P_Medic_SMG_MESH.Wep_1stP_Medic_SMG_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_Medic_SMG_ANIM.Wep_1stP_Medic_SMG_Anim"
@@ -61,11 +62,11 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_SMG_Medic:MeleeHelper_0'
-   maxRecoilPitch=100
-   minRecoilPitch=75
-   maxRecoilYaw=75
-   minRecoilYaw=-75
-   RecoilRate=0.070000
+   maxRecoilPitch=75
+   minRecoilPitch=50
+   maxRecoilYaw=50
+   minRecoilYaw=-50
+   RecoilRate=0.060000
    RecoilMaxYawLimit=500
    RecoilMinYawLimit=65035
    RecoilMaxPitchLimit=900
@@ -77,9 +78,9 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_SWAT'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Add=1),(Stat=EWUS_HealFullRecharge,Scale=0.800000)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.590000),(Add=2),(Stat=EWUS_HealFullRecharge,Scale=0.700000)))
-   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.850000),(Add=3),(Stat=EWUS_HealFullRecharge,Scale=0.600000)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Add=1),(Stat=EWUS_HealFullRecharge,Scale=0.850000)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Add=2),(Stat=EWUS_HealFullRecharge,Scale=0.770000)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.600000),(Add=3),(Stat=EWUS_HealFullRecharge,Scale=0.600000)))
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=()
    FireInterval(0)=0.075000
@@ -89,7 +90,7 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.007000
    Spread(1)=()
-   InstantHitDamage(0)=17.000000
+   InstantHitDamage(0)=20.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=23.000000

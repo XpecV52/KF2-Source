@@ -14,7 +14,6 @@ enum ESharedContentUnlock
     SCU_None,
     SCU_Zweihander,
     SCU_ChainBat,
-    SCU_AbominationAxe,
     SCU_MAX
 };
 
@@ -202,5 +201,4 @@ defaultproperties
     SharedContentList(0)=(Name=None,IconPath="",Id=0)
     SharedContentList(1)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",Id=219640)
     SharedContentList(2)=(Name=KFWeap_Blunt_ChainBat,IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",Id=300380)
-    SharedContentList(3)=(Name=KFWeap_Edged_AbominationAxe,IconPath="WEP_UI_KrampusAxe_TEX.UI_WeaponSelect_KrampusAxe",Id=5378)
 }

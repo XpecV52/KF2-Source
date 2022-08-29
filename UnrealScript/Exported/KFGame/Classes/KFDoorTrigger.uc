@@ -33,19 +33,45 @@ simulated event PostBeginPlay()
 
 simulated event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal)
 {
+	local KFPawn_Scripted ScriptedPawn;
+
 	Super.Touch(Other, OtherComp, HitLocation, HitNormal);
 	if( Role == ROLE_Authority )
 	{
 		class'KFPlayerController'.static.UpdateInteractionMessages( Other );
+
+		// touched a scripted pawn
+		ScriptedPawn = KFPawn_Scripted(Other);
+		if (ScriptedPawn != none && DoorActor != none)
+		{
+			// disable closing the door while the scripted pawn is moving through
+			DoorActor.bCanCloseDoor = false;
+
+			// if the door is closed, tell the scripted pawn to wait until the door is opened
+			if (!DoorActor.bIsDoorOpen)
+			{
+				ScriptedPawn.StartDoorWait(DoorActor);
+			}
+		}
 	}
 }
 
 simulated event UnTouch(Actor Other)
 {
+	local KFPawn_Scripted ScriptedPawn;
+
 	super.UnTouch( Other );
 	if( Role == ROLE_Authority )
 	{
 		class'KFPlayerController'.static.UpdateInteractionMessages( Other );
+
+		// stopped touched a scripted pawn
+		ScriptedPawn = KFPawn_Scripted(Other);
+		if (ScriptedPawn != none && DoorActor != none)
+		{
+			// tell the door that it can be closed again
+			DoorActor.bCanCloseDoor = true;
+		}
 	}
 }
 

@@ -56,6 +56,7 @@ var const string MuzzleFlashTemplateName;
 var bool AttachOnContentLoad;
 var bool SetOnContentLoad;
 var transient bool WeaponContentLoaded;
+var int WeaponPackagesPendingLoad;
 
 /************************************************************************************
  * @name	Firing / Timing / States
@@ -70,6 +71,8 @@ const RELOAD_FIREMODE			= 2;
 const BASH_FIREMODE				= 3;
 /** Firing mode used when doing a melee attack */
 const GRENADE_FIREMODE			= 4;
+/** A firemode that is manually set (>= PendingFire.Length) for weapons with special firing states */
+const CUSTOM_FIREMODE			= 6;
 
 /** Invalid firemode */
 const FIREMODE_NONE				= 255;
@@ -149,6 +152,13 @@ var() const float AimCorrectionSize;
 
 /** Current KFPlayerController controlling this weapon */
 var KFPlayerController KFPlayer;
+
+/** Adjusts the equipping player's movement speeds*/
+/** Modifying existing speed */
+var float MovementSpeedMod;
+/** Overrides other speed modifiers, hard set at that value*/
+var float OverrideGroundSpeed;
+var float OverrideSprintSpeed;
 
 /************************************************************************************
  * @name	Weapon positioning: Iron sights, hipped, etc
@@ -941,7 +951,9 @@ var int CurrentWeaponUpgradeIndex;
 
 // Actual firemodes (0-5) need to be mapped to upgrade firemodes (0, 1, and 2) since they don't line up
 // and are different between guns and melee weapons
-var int UpgradeFireModes[6];
+var int UpgradeFireModes[7];
+
+var bool bStorePreviouslyEquipped;
 
 cpptext
 {
@@ -1000,6 +1012,8 @@ native function SetZedTimeResist(float ResistPct);
 native function ClearZedTimeResist();
 /** Allow weapons with abnormal state transitions to always use zed time resist*/
 simulated function bool HasAlwaysOnZedTimeResist(){return false;}
+/** Get beam hit detection between points*/
+native function array<Actor> BeamLineCheck(vector BeamEnd, vector BeamStart, vector BeamExtent, out array<vector> OutHitLocations);
 
 /*********************************************************************************************
  * @name	Constructors, Destructors, and Loading
@@ -1501,7 +1515,9 @@ function DropFrom(vector StartLocation, vector StartVelocity)
 
 simulated function bool CanThrow()
 {
-	return super.CanThrow() && WeaponContentLoaded;
+	// still throw the weapon on death even if it doesn't have its content loaded
+	return super.CanThrow() &&
+		(WeaponContentLoaded || (Instigator != none && (Instigator.bPlayedDeath || Instigator.Health <= 0)));
 }
 
 /** Sets up pickup. Allows subclasses to make adjustments (most notably dualbase) */
@@ -1580,28 +1596,34 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 {
 	local bool bDenyPickUp;
 	local KFPlayerController KFPC;
+	local class<KFWeapon> KFWeapClass;
 
-	if( ItemClass == class )
+	if (ItemClass == class)
 	{
-		// Unless ammo is full, allow the pickup to handle giving ammo
-		// @note: projectile pickups can only refill primary ammo
-		if( CanRefillSecondaryAmmo() && !Pickup.IsA('Projectile') )
+		KFWeapClass = class<KFWeapon>(ItemClass);
+		// don't do this ammo check if the player is trying to pick up the second dual weapon
+		if (KFWeapClass == none || KFWeapClass.default.DualClass == none || KFWeapClass.default.DualClass != default.DualClass)
 		{
-			bDenyPickUp =((SpareAmmoCount[0] + MagazineCapacity[0]) >= GetMaxAmmoAmount(0) && AmmoCount[1] >= MagazineCapacity[1]);
-		}
-		else
-		{
-			bDenyPickUp = ((SpareAmmoCount[0] + MagazineCapacity[0]) >= GetMaxAmmoAmount(0));
+			// Unless ammo is full, allow the pickup to handle giving ammo
+			// @note: projectile pickups can only refill primary ammo
+			if (CanRefillSecondaryAmmo() && !Pickup.IsA('Projectile'))
+			{
+				bDenyPickUp = ((SpareAmmoCount[0] + AmmoCount[0]) >= GetMaxAmmoAmount(0) && AmmoCount[1] >= MagazineCapacity[1]);
+			}
+			else
+			{
+				bDenyPickUp = ((SpareAmmoCount[0] + AmmoCount[0]) >= GetMaxAmmoAmount(0));
+			}
 		}
 
-		if(bDenyPickUp)
+		if (bDenyPickUp)
 		{
 			KFPC = KFPlayerController(Instigator.Controller);
 			//show non critical message for deny pickup
-			if ( KFPC != None )
- 			{
- 				KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Game', (MagazineCapacity[0] == 0) ? GMT_AlreadyCarryingWeapon : GMT_AmmoIsFull);
- 			}
+			if (KFPC != None)
+			{
+				KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Game', (MagazineCapacity[0] == 0) ? GMT_AlreadyCarryingWeapon : GMT_AmmoIsFull);
+			}
 		}
 	}
 
@@ -3116,11 +3138,14 @@ simulated function StartFire(byte FireModeNum)
 	}
 
 	// Convert to altfire if we have alt fire mode active
-	bStopAltFireOnNextRelease = false;
-	if ( FireModeNum == DEFAULT_FIREMODE && bUseAltFireMode && !bGamepadFireEntry )
+	if (FireModeNum == DEFAULT_FIREMODE)
 	{
-		FireModeNum = ALTFIRE_FIREMODE;
-		bStopAltFireOnNextRelease = true;
+		bStopAltFireOnNextRelease = false;
+		if (bUseAltFireMode && !bGamepadFireEntry)
+		{
+			FireModeNum = ALTFIRE_FIREMODE;
+			bStopAltFireOnNextRelease = true;
+		}
 	}
 
 	if ( FireModeNum == RELOAD_FIREMODE )
@@ -3613,6 +3638,18 @@ simulated function class<KFProjectile> GetKFProjectileClass()
 	else
 	{
 		return (CurrentFireMode < WeaponProjectiles.length) ? class<KFProjectile>( WeaponProjectiles[CurrentFireMode] ) : None;
+	}
+}
+
+static simulated function class<KFProjectile> GetKFProjectileClassByFiringMode(int FiringMode, KFPerk Perk)
+{
+	if (FiringMode == GRENADE_FIREMODE)
+	{
+		return Perk.GetGrenadeClass();
+	}
+	else
+	{
+		return (FiringMode < default.WeaponProjectiles.length) ? class<KFProjectile>(default.WeaponProjectiles[FiringMode]) : None;
 	}
 }
 
@@ -7348,6 +7385,9 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 	return FT_None;
 }
 
+// when the weapon was pending equip and then overriden by another pending equip
+simulated function NotifyRemovedPending();
+
 defaultproperties
 {
 	Begin Object class=KFAnimSeq_Tween Name=MeshSequenceA
@@ -7627,5 +7667,11 @@ defaultproperties
 	UpgradeFireModes(RELOAD_FIREMODE)=0
 	UpgradeFireModes(BASH_FIREMODE)=2
 	UpgradeFireModes(GRENADE_FIREMODE)=0
+
+	MovementSpeedMod=1.f;
+	OverrideGroundSpeed=-1.f; // defaults to -1 (disabled)
+	OverrideSprintSpeed=-1.f; // defaults to -1 (disabled)
+
+	bStorePreviouslyEquipped=true
 }
 

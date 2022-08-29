@@ -13,7 +13,6 @@ class KFWeap_MeleeBase extends KFWeapon
 
 const BLOCK_FIREMODE = 1;
 const HEAVY_ATK_FIREMODE = 5;
-const CUSTOM_FIREMODE = 6;
 const MeleeAttackAnim_F = 'Atk_F';
 const MeleeAttackAnim_B = 'Atk_B';
 const MeleeAttackAnim_L = 'Atk_L';
@@ -71,6 +70,7 @@ var() byte EstimatedFireRate;
 var float MinMeleeSustainedTime;
 /** Minimum amount of time to wait before dealing damage in the  MeleeSustained state */
 var() float MeleeSustainedWarmupTime;
+var private const float ReloadCancelTimeLimit;
 var array<BlockEffectInfo> BlockTypes;
 /** Damage while blocking will be mitigated by this percentage */
 var() float BlockDamageMitigation;
@@ -115,6 +115,20 @@ reliable server function ServerSetSlowMovement(bool bEnabled)
 
 simulated function StartFire(byte FireModeNum)
 {
+    if(((CurrentFireMode == 0) || CurrentFireMode == 1) || CurrentFireMode == 3)
+    {
+        if(FireModeNum == 2)
+        {
+            if(IsTimerActive('Timer_FireCancel'))
+            {
+                return;                
+            }
+            else
+            {
+                SetTimer(ReloadCancelTimeLimit, false, 'Timer_FireCancel');
+            }
+        }
+    }
     if((FireModeNum == 0) || FireModeNum == 5)
     {
         StartMeleeFire(FireModeNum, MeleeAttackHelper.ChooseAttackDir(), 0);
@@ -127,6 +141,8 @@ simulated function StartFire(byte FireModeNum)
     }
     super.StartFire(FireModeNum);
 }
+
+simulated function Timer_FireCancel();
 
 simulated function StartMeleeFire(byte FireModeNum, KFPawn.EPawnOctant AttackDir, KFMeleeHelperWeapon.EMeleeAttackType AtkType)
 {
@@ -1040,6 +1056,7 @@ defaultproperties
     EstimatedFireRate=100
     MinMeleeSustainedTime=0.5
     MeleeSustainedWarmupTime=0.25
+    ReloadCancelTimeLimit=0.5
     BlockTypes(0)=(dmgType=Class'KFDT_Bludgeon',BlockSound=none,ParrySound=none,BlockParticleSys=none,ParryParticleSys=none)
     BlockTypes(1)=(dmgType=Class'KFDT_Slashing',BlockSound=none,ParrySound=none,BlockParticleSys=none,ParryParticleSys=none)
     BlockDamageMitigation=0.5
@@ -1079,6 +1096,7 @@ defaultproperties
     MeleeAttackHelper=MeleeHelper
     UpgradeFireModes[1]=0
     UpgradeFireModes[5]=1
+    UpgradeFireModes[6]=1
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */

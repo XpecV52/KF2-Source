@@ -71,6 +71,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
+const KFID_ToggleToRun = 172;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -123,6 +124,7 @@ var bool bVotedToSkipTraderTime;
 var bool bObjectivePlayer;
 var bool bShowNonRelevantPlayers;
 var transient bool bWaitingForInventory;
+var bool bCarryingCollectible;
 var string LastCrateGiftTimestamp;
 var int SecondsOfGameplay;
 var const array<KFCharacterInfo_Human> CharacterArchetypes;
@@ -149,10 +151,11 @@ replication
         CurrentVoiceCommsRequest, DamageDealtOnTeam, 
         NetPerkIndex, PerkSupplyLevel, 
         PlayerHealth, PlayerHealthPercent, 
-        RepCustomizationInfo, bConcussiveActive, 
-        bExtraFireRange, bHasSpawnedIn, 
-        bNukeActive, bObjectivePlayer, 
-        bSplashActive, bVOIPRegisteredWithOSS;
+        RepCustomizationInfo, bCarryingCollectible, 
+        bConcussiveActive, bExtraFireRange, 
+        bHasSpawnedIn, bNukeActive, 
+        bObjectivePlayer, bSplashActive, 
+        bVOIPRegisteredWithOSS;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -741,9 +744,12 @@ function OnInventoryReadComplete_Steamworks()
 
 function OnInventoryReadComplete_Playfab(bool bWasSuccessful)
 {
-    Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
-    bWaitingForInventory = false;
-    SelectCharacter(WaitingForInventoryCharacterIndex);
+    if(bWasSuccessful)
+    {
+        Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+        bWaitingForInventory = false;
+        SelectCharacter(WaitingForInventoryCharacterIndex);
+    }
 }
 
 simulated event SelectCharacter(optional int CharIndex, optional bool bWaitForInventory)

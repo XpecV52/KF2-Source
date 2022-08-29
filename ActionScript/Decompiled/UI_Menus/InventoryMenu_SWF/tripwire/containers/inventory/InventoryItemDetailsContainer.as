@@ -10,7 +10,10 @@ package tripwire.containers.inventory
     import flash.external.ExternalInterface;
     import flash.text.TextField;
     import flash.ui.Keyboard;
+    import scaleform.clik.constants.InputValue;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.events.InputEvent;
+    import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
@@ -19,6 +22,10 @@ package tripwire.containers.inventory
     
     public class InventoryItemDetailsContainer extends TripContainer
     {
+        
+        public static var GAMEPAD_RIGHT_STICK_UP:int = 112;
+        
+        public static var GAMEPAD_RIGHT_STICK_DOWN:int = 113;
          
         
         public var recycleButton:TripButton;
@@ -51,7 +58,13 @@ package tripwire.containers.inventory
         
         public const ITP_CharacterSkin:int = 1;
         
-        public const ITP_Item:int = 2;
+        public const ITP_KeyCrate:int = 2;
+        
+        public const ITP_Item:int = 3;
+        
+        public const ITP_CraftingComponent:int = 4;
+        
+        public const ITP_Emote:int = 5;
         
         public const ITP_SFX:int = 6;
         
@@ -142,14 +155,19 @@ package tripwire.containers.inventory
             this.itemNameText.text = param1.label;
             this.itemDescText.htmlText = param1.description;
             this.itemCount = !!param1.count ? int(param1.count) : 0;
-            this.equipButton.visible = param1.type == this.ITP_WeaponSkin || param1.type == this.ITP_SFX || param1.exchangeable;
+            this.equipButton.visible = param1.type != this.ITP_CharacterSkin && param1.type != this.ITP_Emote;
+            this.equipButton.enabled = true;
             if(param1.type == this.ITP_WeaponSkin || param1.type == this.ITP_SFX)
             {
                 this.equipButton.label = !!param1.active ? this.unequipString : this.equipString;
             }
-            else if(param1.exchangeable)
+            else
             {
                 this.equipButton.label = this.useString;
+                if(param1.type == this.ITP_CraftingComponent)
+                {
+                    this.equipButton.enabled = param1.exchangeable;
+                }
             }
             this.recycleButton.visible = param1.recyclable;
             if(param1.iconURLLarge && param1.iconURLLarge != "")
@@ -254,6 +272,23 @@ package tripwire.containers.inventory
         {
             super.onClosed(param1);
             this.readyToReopen = true;
+        }
+        
+        override public function handleInput(param1:InputEvent) : void
+        {
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN || _loc2_.value == InputValue.KEY_HOLD)
+            {
+                switch(_loc2_.code)
+                {
+                    case GAMEPAD_RIGHT_STICK_UP:
+                        --this.itemDescText.scrollV;
+                        break;
+                    case GAMEPAD_RIGHT_STICK_DOWN:
+                        ++this.itemDescText.scrollV;
+                }
+            }
+            super.handleInput(param1);
         }
     }
 }

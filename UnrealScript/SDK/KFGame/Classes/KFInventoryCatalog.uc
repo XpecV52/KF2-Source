@@ -20,18 +20,27 @@ enum ECrateSeries
 	Ecrate_Victorian,
     Ecrate_WeaponCollector_S1,
 	Ecrate_MaceShield,
-	ECrate_HorzineSupply_S1,
-	ECrate_HorzineSupply_S2,
-	ECrate_HorzineSupply_S3,
-	ECrate_HorzineSupply_S4,
-	ECrate_HorzineSupply_S5,
-	ECrate_HorzineSupply_S6,
-	ECrate_HorzineSupply_S7,
-	ECrate_HorzineSupply_S8,
-	ECrate_HorzineSupply_S9,
+	ECrate_Emote_S1,
+	Ecrate_TacticalHorzineMKII,
+	ECrate_Deepstrike,
+	ECrate_HighVoltage,
+	ECrate_Flare,
+	ECrate_Junkyard,
+	ECrate_Vietnam,
+	ECrate_Emote_S2,
+	Ecrate_BlueFire,
+	ECrate_Vault,
+	ECrate_Vault_Test,
+	ECrate_Neon,
+	Ecrate_NeonMKII,
+	Ecrate_NeonMKIII,
+	Ecrate_NeonMKIV,
+	Ecrate_NeonMKV,
+	Ecrate_Dragonwave,
 	ECrate_HorzineSupply_SDAR,
 	ECrate_HorzineSupply_SLOCO,
 	ECrate_HorzineSupply_SCyberSamurai,
+	ECrate_HorzineSupply_SDeity,
 	ECrate_PSNHorzineSupply_CS1,
 	ECrate_PSNHorzineSupply_CS2,
 	ECrate_PSNHorzineSupply_CS3,
@@ -39,6 +48,7 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_CS6,
 	ECrate_PSNHorzineSupply_CS7,
 	ECrate_PSNHorzineSupply_CS8,
+	ECrate_PSNHorzineSupply_CS9,
 	ECrate_PSNHorzineSupply_WS1,
 	ECrate_PSNHorzineSupply_WS2,
 	ECrate_PSNHorzineSupply_WS3,
@@ -51,31 +61,27 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_WS10,
 	ECrate_PSNHorzineSupply_WS11,
 	ECrate_PSNHorzineSupply_WS12,
+	ECrate_PSNHorzineSupply_WS13,
+	ECrate_PSNHorzineSupply_WS14,
+	ECrate_PSNHorzineSupply_WS15,
 	ECrate_PSNHorzineSupply_E1,
 	ECrate_PSNHorzineSupply_E2,
+	ECrate_HorzineSupply_S1,
+	ECrate_HorzineSupply_S2,
+	ECrate_HorzineSupply_S3,
+	ECrate_HorzineSupply_S4,
+	ECrate_HorzineSupply_S5,
+	ECrate_HorzineSupply_S6,
+	ECrate_HorzineSupply_S7,
+	ECrate_HorzineSupply_S8,
+	ECrate_HorzineSupply_S9,
 	ECrate_HorzineSupply_S10,
 	ECrate_HorzineSupply_S11,
-	ECrate_Emote_S1,
-	Ecrate_TacticalHorzineMKII,
 	ECrate_HorzineSupply_S12,
-	ECrate_Deepstrike,
 	ECrate_HorzineSupply_S13,
-	ECrate_HighVoltage,
-	ECrate_Flare,
 	ECrate_HorzineSupply_S14,
-	ECrate_Junkyard,
-	ECrate_Vietnam,
-	ECrate_Emote_S2,
-	ECrate_HorzineSupply_S16,
-	ECrate_Neon,
-	ECrate_Vault,
 	ECrate_HorzineSupply_S15,
-	ECrate_PSNHorzineSupply_WS15,
-	ECrate_Vault_Test,
-	Ecrate_NeonMKII,
-	Ecrate_NeonMKIII,
-	Ecrate_BlueFire,
-	Ecrate_NeonMKIV,
+	ECrate_HorzineSupply_S16,
 
 	};
 
@@ -156,6 +162,7 @@ DefaultProperties
 	ItemKeyArray[Ecrate_HorzineSupply_SDAR]=(ContainerID=5873, KeyID=5874, ItemSeriesName=horzineDAR, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_HorzineSupply_SLOCO]=(ContainerID=6445, KeyID=6446, ItemSeriesName=horzineLOCO, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_HorzineSupply_SCyberSamurai]=(ContainerID=6616, KeyID=6617, ItemSeriesName=horzineCyberSamurai, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_HorzineSupply_SDeity]=(ContainerID=7120, KeyID=7126, ItemSeriesName=horzineDeity, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS1]=(ContainerID=4304, KeyID=4303, ItemSeriesName=psncrate_cs1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS2]=(ContainerID=4305, KeyID=4303, ItemSeriesName=psncrate_cs2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS3]=(ContainerID=5371, KeyID=4303, ItemSeriesName=psncrate_cs3, ContainerType=IDT_Crate)
@@ -163,6 +170,7 @@ DefaultProperties
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS6]=(ContainerID=5989, KeyID=4303, ItemSeriesName=psncrate_cs6, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS7]=(ContainerID=6457, KeyID=4303, ItemSeriesName=psncrate_cs7, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS8]=(ContainerID=6658, KeyID=4303, ItemSeriesName=psncrate_cs8, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_CS9]=(ContainerID=7127, KeyID=4303, ItemSeriesName=psncrate_cs9, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS1]=(ContainerID=4307, KeyID=4303, ItemSeriesName=psncrate_ws1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS2]=(ContainerID=4306, KeyID=4303, ItemSeriesName=psncrate_ws2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS3]=(ContainerID=4569, KeyID=4303, ItemSeriesName=psncrate_ws3, ContainerType=IDT_Crate)
@@ -175,6 +183,8 @@ DefaultProperties
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS10]=(ContainerID=6218, KeyID=4303, ItemSeriesName=psncrate_ws10, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS11]=(ContainerID=6433, KeyID=4303, ItemSeriesName=psncrate_ws11, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS12]=(ContainerID=6667, KeyID=4303, ItemSeriesName=psncrate_ws12, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS13]=(ContainerID=7117, KeyID=4303, ItemSeriesName=psncrate_ws13, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS14]=(ContainerID=7119, KeyID=4303, ItemSeriesName=psncrate_ws14, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E1]=(ContainerID=5646, KeyID=4303, ItemSeriesName=emote1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E2]=(ContainerID=5647, KeyID=4303, ItemSeriesName=emote2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S10]=(ContainerID=4499, KeyID=4501, ItemSeriesName=horzine10, ContainerType=IDT_Crate)
@@ -201,4 +211,6 @@ DefaultProperties
 	ItemKeyArray[Ecrate_NeonMKIII]=(ContainerID=6430, KeyID=6431, ItemSeriesName=NeonMKIII, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_BlueFire]=(ContainerID=6200, KeyID=6199, ItemSeriesName=Bluefire, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_NeonMKIV]=(ContainerID=6665, KeyID=6666, ItemSeriesName=NeonMKIV, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_NeonMKV]=(ContainerID=7107, KeyID=7108, ItemSeriesName=NeonMKV, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_Dragonwave]=(ContainerID=7114, KeyID=7115, ItemSeriesName=Dragonwave, ContainerType=IDT_USB)
 } 

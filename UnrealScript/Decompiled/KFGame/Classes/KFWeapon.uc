@@ -17,6 +17,7 @@ const ALTFIRE_FIREMODE = 1;
 const RELOAD_FIREMODE = 2;
 const BASH_FIREMODE = 3;
 const GRENADE_FIREMODE = 4;
+const CUSTOM_FIREMODE = 6;
 const FIREMODE_NONE = 255;
 const PRIMARY_AMMO = 0;
 const SECONDARY_AMMO = 1;
@@ -292,6 +293,8 @@ var bool bPauseWithPlayersOnly;
 var bool bDebugRecoilPosition;
 var config bool bLogAmmo;
 var const bool bLogWeaponUpgrade;
+var bool bStorePreviouslyEquipped;
+var int WeaponPackagesPendingLoad;
 var array<Texture2D> FireModeIconPaths;
 var byte SingleFireSoundIndex;
 /** Number of shots to fire per burst. */
@@ -336,6 +339,9 @@ var() InterpCurveFloat TargetFrictionDistanceScaleCurve;
 /** Aim correction - headshot offset */
 var() const float AimCorrectionSize;
 var KFPlayerController KFPlayer;
+var float MovementSpeedMod;
+var float OverrideGroundSpeed;
+var float OverrideSprintSpeed;
 var Vector HiddenWeaponsOffset;
 /** The default FOV to use for this weapon when not in ironsights */
 var(Camera) float MeshFOV;
@@ -614,7 +620,7 @@ var(Recoil) float IronSightMeshFOVCompensationScale;
 var(Weapon) protected array< class<KFPerk> > AssociatedPerkClasses;
 var array<WeaponUpgradeInfo> WeaponUpgrades;
 var int CurrentWeaponUpgradeIndex;
-var int UpgradeFireModes[6];
+var int UpgradeFireModes[7];
 
 replication
 {
@@ -646,6 +652,9 @@ simulated function bool HasAlwaysOnZedTimeResist()
 {
     return false;
 }
+
+// Export UKFWeapon::execBeamLineCheck(FFrame&, void* const)
+native function array<Actor> BeamLineCheck(Vector BeamEnd, Vector BeamStart, Vector BeamExtent, out array<Vector> OutHitLocations);
 
 simulated event PreBeginPlay()
 {
@@ -1081,7 +1090,7 @@ function DropFrom(Vector StartLocation, Vector StartVelocity)
 
 simulated function bool CanThrow()
 {
-    return super.CanThrow() && WeaponContentLoaded;
+    return super.CanThrow() && WeaponContentLoaded || (Instigator != none) && Instigator.bPlayedDeath || Instigator.Health <= 0;
 }
 
 function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
@@ -1146,16 +1155,21 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 {
     local bool bDenyPickUp;
     local KFPlayerController KFPC;
+    local class<KFWeapon> KFWeapClass;
 
     if(ItemClass == Class)
     {
-        if((CanRefillSecondaryAmmo()) && !Pickup.IsA('Projectile'))
+        KFWeapClass = class<KFWeapon>(ItemClass);
+        if(((KFWeapClass == none) || KFWeapClass.default.DualClass == none) || KFWeapClass.default.DualClass != default.DualClass)
         {
-            bDenyPickUp = ((SpareAmmoCount[0] + MagazineCapacity[0]) >= (GetMaxAmmoAmount(0))) && AmmoCount[1] >= MagazineCapacity[1];            
-        }
-        else
-        {
-            bDenyPickUp = (SpareAmmoCount[0] + MagazineCapacity[0]) >= (GetMaxAmmoAmount(0));
+            if((CanRefillSecondaryAmmo()) && !Pickup.IsA('Projectile'))
+            {
+                bDenyPickUp = ((SpareAmmoCount[0] + AmmoCount[0]) >= (GetMaxAmmoAmount(0))) && AmmoCount[1] >= MagazineCapacity[1];                
+            }
+            else
+            {
+                bDenyPickUp = (SpareAmmoCount[0] + AmmoCount[0]) >= (GetMaxAmmoAmount(0));
+            }
         }
         if(bDenyPickUp)
         {
@@ -2360,11 +2374,14 @@ simulated function StartFire(byte FireModeNum)
             FireModeNum = 2;
         }
     }
-    bStopAltFireOnNextRelease = false;
-    if(((FireModeNum == 0) && bUseAltFireMode) && !bGamepadFireEntry)
+    if(FireModeNum == 0)
     {
-        FireModeNum = 1;
-        bStopAltFireOnNextRelease = true;
+        bStopAltFireOnNextRelease = false;
+        if(bUseAltFireMode && !bGamepadFireEntry)
+        {
+            FireModeNum = 1;
+            bStopAltFireOnNextRelease = true;
+        }
     }
     if(FireModeNum == 2)
     {
@@ -2726,6 +2743,18 @@ simulated function class<KFProjectile> GetKFProjectileClass()
     else
     {
         return ((CurrentFireMode < WeaponProjectiles.Length) ? class<KFProjectile>(WeaponProjectiles[CurrentFireMode]) : none);
+    }
+}
+
+static simulated function class<KFProjectile> GetKFProjectileClassByFiringMode(int FiringMode, KFPerk Perk)
+{
+    if(FiringMode == 4)
+    {
+        return Perk.GetGrenadeClass();        
+    }
+    else
+    {
+        return ((FiringMode < default.WeaponProjectiles.Length) ? class<KFProjectile>(default.WeaponProjectiles[FiringMode]) : none);
     }
 }
 
@@ -4678,6 +4707,8 @@ static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter(
     return 10;
 }
 
+simulated function NotifyRemovedPending();
+
 auto state Inactive
 {
     ignores ForceReload, ShouldAutoReload, AllowIronSights;
@@ -5738,6 +5769,7 @@ defaultproperties
     bAllowClientAmmoTracking=true
     bUseAnimLenEquipTime=true
     bUseAdditiveMoveAnim=true
+    bStorePreviouslyEquipped=true
     FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
     FireModeIconPaths(1)=none
     SingleFireSoundIndex=255
@@ -5753,6 +5785,9 @@ defaultproperties
     TargetAdhesionDistanceScaleCurve=(Points=/* Array type was not detected. */,InVal=0.1,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     TargetFrictionOffsetScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     TargetFrictionDistanceScaleCurve=(Points=/* Array type was not detected. */,InVal=0.5,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_CurveAuto)
+    MovementSpeedMod=1
+    OverrideGroundSpeed=-1
+    OverrideSprintSpeed=-1
     MeshFOV=86
     MeshIronSightFOV=75
     PlayerIronSightFOV=75

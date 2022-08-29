@@ -394,7 +394,6 @@ simulated event PostBeginPlay()
         TraderDialogManager = Spawn(TraderDialogManagerClass);
     }
     SetTimer(1, true);
-    ActivateLevelLoadedEvents();
 }
 
 simulated function ActivateLevelLoadedEvents()
@@ -508,6 +507,7 @@ simulated function ReceivedGameClass()
         }
     }
     DebugingNextTraderIndex = -1;
+    ActivateLevelLoadedEvents();
     super.ReceivedGameClass();
 }
 
@@ -761,6 +761,10 @@ simulated function CloseTrader()
 {
     local KFPlayerController KFPC;
     local PlayerController LocalPC;
+    local KFSeqEvent_TraderClosed TraderClosedEvt;
+    local array<SequenceObject> AllTraderClosedEvents;
+    local Sequence GameSeq;
+    local int I;
 
     LocalPC = GetALocalPlayerController();
     if(OpenedTrader != none)
@@ -771,6 +775,29 @@ simulated function CloseTrader()
         if(((WorldInfo.NetMode != NM_DedicatedServer) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none)
         {
             KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayCloseTraderDialog(LocalPC);
+        }
+        if(WorldInfo.NetMode == NM_Client)
+        {
+            GameSeq = WorldInfo.GetGameSequence();
+            if(GameSeq != none)
+            {
+                GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_TraderClosed', true, AllTraderClosedEvents);
+                I = 0;
+                J0x1EE:
+
+                if(I < AllTraderClosedEvents.Length)
+                {
+                    TraderClosedEvt = KFSeqEvent_TraderClosed(AllTraderClosedEvents[I]);
+                    if((TraderClosedEvt != none) && TraderClosedEvt.bClientSideOnly)
+                    {
+                        TraderClosedEvt.Reset();
+                        TraderClosedEvt.SetWaveNum(WaveNum, WaveMax);
+                        TraderClosedEvt.CheckActivate(self, self);
+                    }
+                    ++ I;
+                    goto J0x1EE;
+                }
+            }
         }
     }
     KFPC = KFPlayerController(LocalPC);
@@ -1756,6 +1783,21 @@ simulated event SetModifiedGameDifficulty(byte NewDifficultyMod)
 {
     GameDifficultyModifier = NewDifficultyMod;
     bNetDirty = true;
+}
+
+simulated function bool ShouldSetBossCamOnBossSpawn()
+{
+    return true;
+}
+
+simulated function bool ShouldSetBossCamOnBossDeath()
+{
+    return true;
+}
+
+simulated function int GetFinalWaveNum()
+{
+    return WaveMax - 1;
 }
 
 defaultproperties

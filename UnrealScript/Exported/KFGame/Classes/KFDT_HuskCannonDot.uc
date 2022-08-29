@@ -29,6 +29,7 @@ static function int GetDamageeDialogID()
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_HuskCannon'
+   bNoInstigatorDamage=True
    DoT_Duration=2.500000
    DoT_Interval=0.500000
    DoT_DamageScale=0.100000

@@ -39,7 +39,7 @@ CreateMatchError=创建比赛发生错误
 UsedCheatCommands=使用了在网站中不允许使用的控制台命令。您必须重启游戏创建一场比赛。
 FailedFindPackage=无法找到必需的软件包 '`~'
 ConnectionTimeout=链接到主机超时
-NegativeDeltaTime=发现CPU时间不准的问题！请查看版本注释来解决此问题。 
+NegativeDeltaTime=发现CPU时间不准的问题！请查看版本注释来解决此问题。
 SteamClientRequired=主机正在运行Steam，所以您也应该运行。请通过Steam启动游戏。
 SteamAuthFailed=Steam无法为您授权连接到此服务器。
 ServerHostingDifferentGame=服务器正在进行一个不同的游戏。您不能与此服务器连接。
@@ -97,8 +97,8 @@ Upgrade=要进入该服务器，您需要进行最新免费虚幻更新，Epic�
 UpgradeURL=http://www.unreal.com/upgrade中提供相关更新
 UpgradeQuestion=您想要启动您的网页浏览器，马上进入升级页面吗？
 Version=版本 `~
-SplashScreen_CopyrightInfo=Copyright ©2009-2017 Killing Floor® Tripwire Interactive LLC   All rights reserved.
-SplashScreen_ThirdPartyCopyrightInfo=使用Bink Video, Copyright ? 1997-2011 by RAD Game Tools, 
+SplashScreen_CopyrightInfo=Copyright ©2009-2019 Killing Floor® Tripwire Interactive LLC   All rights reserved.
+SplashScreen_ThirdPartyCopyrightInfo=使用Bink Video, Copyright ? 1997-2011 by RAD Game Tools,
 Inc.
 
 [Menu]

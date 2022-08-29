@@ -490,8 +490,6 @@ simulated event PostBeginPlay()
 	// Override timer at a constant 1s instead of TimeDilation, so that it slows
 	// down during zedtime.  Also, removed the SetTimer() call from Timer()
 	SetTimer(1.f, true);
-
-	ActivateLevelLoadedEvents();
 }
 
 simulated function ActivateLevelLoadedEvents()
@@ -613,6 +611,8 @@ simulated function ReceivedGameClass()
 	}
 
 	DebugingNextTraderIndex = -1;
+
+	ActivateLevelLoadedEvents();
 
 	Super.ReceivedGameClass();
 }
@@ -883,6 +883,10 @@ simulated function CloseTrader()
 {
     local KFPlayerController KFPC;
     local PlayerController LocalPC;
+	local KFSeqEvent_TraderClosed TraderClosedEvt;
+	local array<SequenceObject> AllTraderClosedEvents;
+	local Sequence GameSeq;
+	local int i;
 
     LocalPC = GetALocalPlayerController();
 
@@ -893,6 +897,25 @@ simulated function CloseTrader()
 		OpenedTrader = none;
 
 		`TraderDialogManager.PlayCloseTraderDialog( LocalPC );
+
+		if (WorldInfo.NetMode == NM_Client)
+		{
+			GameSeq = WorldInfo.GetGameSequence();
+			if (GameSeq != none)
+			{
+				GameSeq.FindSeqObjectsByClass(class'KFSeqEvent_TraderClosed', true, AllTraderClosedEvents);
+				for (i = 0; i < AllTraderClosedEvents.Length; ++i)
+				{
+					TraderClosedEvt = KFSeqEvent_TraderClosed(AllTraderClosedEvents[i]);
+					if (TraderClosedEvt != none && TraderClosedEvt.bClientSideOnly)
+					{
+						TraderClosedEvt.Reset();
+						TraderClosedEvt.SetWaveNum(WaveNum, WaveMax);
+						TraderClosedEvt.CheckActivate(self, self);
+					}
+				}
+			}
+		}
 	}
 
     //KFPC.bPlayerUsedUpdatePerk should always be set to false here
@@ -1965,6 +1988,21 @@ simulated event SetModifiedGameDifficulty(byte NewDifficultyMod)
 {
 	GameDifficultyModifier = NewDifficultyMod;
 	bNetDirty = true;
+}
+
+simulated function bool ShouldSetBossCamOnBossSpawn()
+{
+	return true;
+}
+
+simulated function bool ShouldSetBossCamOnBossDeath()
+{
+	return true;
+}
+
+simulated function int GetFinalWaveNum()
+{
+	return WaveMax - 1;
 }
 
 defaultproperties

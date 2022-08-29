@@ -194,7 +194,7 @@ cpptext
 
 defaultproperties
 {
-	VersionNumber=4
+	VersionNumber=5
 	Dirty=false
 
 	// UI readable versions of the owners
@@ -275,6 +275,9 @@ defaultproperties
 	//Added 8/21/2017 - Support for native 4k rendering on Xbox One X (Scorpio)
 	ProfileMappings.Add((Id=KFID_Native4kResolution, Name="Native 4k Resolution", MappingType=PVMT_RawValue))
 
+	//Added 1/31/2019 - Toggle for Sprint
+	ProfileMappings.Add((Id=KFID_ToggleToRun, Name="Toggle To Run", MappingType=PVMT_RawValue))
+
 
 	// Hex values for SDT_Float values, I use http://www.h-schmidt.net/FloatConverter/IEEE754.html for conversion
 
@@ -350,4 +353,7 @@ defaultproperties
 
 	//Added 8/21/2017 - Support for native 4k rendering on Xbox One X (Scorpio)
 	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_Native4kResolution,Data=(Type=SDT_Int32,Value1=0))))
+
+	//Added 1/31/2019 - Toggle for Sprint
+	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_ToggleToRun, Data=(Type=SDT_INT32, Value1=0))))
 }

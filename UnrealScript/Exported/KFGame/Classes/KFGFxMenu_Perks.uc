@@ -79,6 +79,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
+const KFID_ToggleToRun=172;
 #linenumber 13
 
 var KFGFxPerksContainer_Selection 		SelectionContainer;
@@ -454,7 +455,7 @@ function Callback_ConfirmPerkReset()
 			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFGFxPerksContainer_Prestige'.default.NotHightenoughLevelString,
 				Class'KFCommon_LocalizedStrings'.default.ConfirmString);
 		}
-		else if (KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 3)
+		else if (KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 4)
 		{
 			//show confirmation pop up here
 			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFGFxPerksContainer_Prestige'.default.AtMaxPrestigeLevelString,

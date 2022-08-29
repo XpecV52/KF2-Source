@@ -273,6 +273,8 @@ var(SprayCollision) bool bDoCollideComplex;
 /** Will always trace with Extent traces for the flame mesh collision checks. Slower, but will hit the collision cylinder of pawns making them easier to hit */
 var(SprayCollision) bool bUseExtentTracing;
 
+var(SprayCollision) int MaxSprayMeshesCollided;
+
 /*********************************************************************************************
 * Animation nodes & Skeltal controls
 ********************************************************************************************* */
@@ -360,8 +362,8 @@ public:
 	virtual FLOAT GetGravityZ();
 	virtual void TickSpecial( FLOAT DeltaSeconds );
 
-	/** Returns true if line misses just to be consistant with SingleLineCheck */
-	UBOOL SprayMeshLineCheck(const FVector& End, const FVector& Start, DWORD TraceFlags, const FVector& Extent, INT BoneChainIndex=INDEX_NONE);
+	/** Returns the number of hits, if line misses this returns 0, will stop at MaxSprayMeshesCollided */
+	INT SprayMeshLineCheck(const FVector& End, const FVector& Start, DWORD TraceFlags, const FVector& Extent, TArray<AActor*>& arrActorsHit, INT BoneChainIndex=INDEX_NONE, INT CurrentNumHit=0);
 };
 
 /*********************************************************************************************
@@ -957,4 +959,6 @@ DefaultProperties
 
 	// call SetTickIsDisabled( false ) when we need to use this actor
 	bTickIsDisabled=TRUE
+
+	MaxSprayMeshesCollided=1;
 }

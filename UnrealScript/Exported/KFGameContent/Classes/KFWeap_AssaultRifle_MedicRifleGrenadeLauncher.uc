@@ -20,6 +20,8 @@ const SecondaryReloadAnim_Elite = 'Reload_Secondary_Elite';
 // TODO: ALL ServerTotalAltAmmo CODE IS COPY-PASTED FROM M16M203. THIS CODE NEEDS TO LIVE IN ONE PLACE.
 var int ServerTotalAltAmmo;
 
+var transient bool bCanceledAltAutoReload;
+
 simulated function int GetSecondaryAmmoForHUD()
 {
 	return SpareAmmoCount[1];
@@ -35,6 +37,13 @@ simulated function AltFireMode()
 {
 	if ( !Instigator.IsLocallyControlled() )
 	{
+		return;
+	}
+
+	if (bCanceledAltAutoReload)
+	{
+		bCanceledAltAutoReload = false;
+		TryToAltReload();
 		return;
 	}
 
@@ -285,6 +294,12 @@ simulated state AltReloading extends Reloading
 		return (bTacticalReload ? WEP_ReloadSecondary_Elite : WEP_ReloadSecondary);
 	}
 
+	simulated event BeginState(Name PreviousStateName)
+	{
+		super.BeginState(PreviousStateName);
+		bCanceledAltAutoReload = true;
+	}
+
 	// Overridding super so we don't call functions we don't want to call.
 	simulated function EndState(Name NextStateName)
 	{
@@ -333,6 +348,8 @@ simulated state AltReloading extends Reloading
 		{
 			ServerSetAltAmmoCount(AmmoCount[1]);
 		}
+
+		bCanceledAltAutoReload = false;
 	}
 
 	simulated function EReloadStatus GetNextReloadStatus(optional byte FireModeNum)
@@ -396,6 +413,11 @@ simulated function bool CanAltAutoReload()
 	}
 
 	if(!CanReload(ALTFIRE_FIREMODE))
+	{
+		return false;
+	}
+
+	if (bCanceledAltAutoReload)
 	{
 		return false;
 	}

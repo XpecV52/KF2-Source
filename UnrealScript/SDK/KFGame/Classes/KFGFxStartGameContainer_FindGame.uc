@@ -167,15 +167,19 @@ function LocalizeMenu()
 DefaultProperties
 {
 // Latest Update
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Xmas_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_CyberRevolt_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
 // Featured Time Limited Item
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Christmas_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/5588"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/5803"))
 // Featured Character Bundle
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Xmas_BadSanta", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/6670"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_CyberpunkBundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7041"))
+// Featured Headshot Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_HeadshotBundle02", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7047"))
 // Featured Weapon Skin USB
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Xmas_USBKey_NeonMK4_22", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/6666"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_USBKey_NeonMK5_24", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/7108"))
+// Featured Weapon Skin USB
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_USBKey_Dragonwave_23", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/7115"))
 // Featured Crate Key
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Xmas_Crate_CyberSamurai_19", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/6617"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Spring_Crate_Deity_20", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/7126"))
 // Featured Crossover
 
 // Misc Community Links

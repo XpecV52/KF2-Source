@@ -1023,7 +1023,7 @@ DefaultProperties
 	ExplosiveResistableDamageTypeSuperClass=class'KFDT_Explosive'
 	ExplosiveResistanceRadius=500.f
 
-	AoeDamageModifier=0.3f
+	AoeDamageModifier=0 //0.3f
 	DaZedEMPPower=0 //100
 
 	ProfessionalAoEModifier=0.25
@@ -1136,6 +1136,7 @@ DefaultProperties
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.HX25_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.M79_PrestigePrecious_Mint_large"
+	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.M16M203_PrestigePrecious_Mint_Large"
 
    	ZedTimeModifyingStates(0)="WeaponFiring"
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"

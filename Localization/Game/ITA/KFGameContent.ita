@@ -479,7 +479,7 @@ SecondaryAmmo="Granata M203"
 [KFWeap_SMG_MP5RAS]
 ItemName="SMG MP5RAS"
 ItemCategory="Mitra"
-ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n•Usa il fuoco alternativo per cambiare modalità.\n•La versione più recente di uno dei mitra più utilizzati al mondo."
+ItemDescription="•Scelta fra modalità di fuoco automatico o raffiche di 3 colpi.\n•Usa il fuoco alternativo per cambiare modalità.\n•La versione più recente di uno dei mitra più utilizzati al mondo."
 
 [KFWeap_SMG_P90]
 ItemName="SMG P90"
@@ -536,6 +536,16 @@ ItemDescription="•La modalità di fuoco primaria utilizza una sola canna.\n•
 ItemName="Attaccanti statici"
 ItemCategory="Mischia"
 ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primario per le combo. \n•Secondario - attacco violento, contundente ed elettrico. Che shock! \n•Vuoi tirare un pugno in faccia a uno Zed? Ecco qua!"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="Killerwatt"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Scelta fra modalità di fuoco automatico o sovraccarico.\n•Usa il fuoco alternativo per cambiare modalità.\n•Modalità sovraccarico, si ricarica premendo il tasto fuoco e si scarica rilasciando il tasto fuoco."
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="Fucile Helios"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Scelta fra modalità di fuoco automatico o raffiche di 3 colpi\n•Usa il fuoco alternativo per cambiare modalità.\n•Che il fuoco sia con te."
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"

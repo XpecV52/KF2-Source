@@ -479,7 +479,7 @@ SecondaryAmmo="Lance-grenade M203"
 [KFWeap_SMG_MP5RAS]
 ItemName="MP5RAS SMG"
 ItemCategory="Pistolet mitrailleur"
-ItemDescription="•Mode de tir au choix entre automatique et semi-automatique.\n•Tir alternatif pour changer de mode de tir.\n•La dernière version du pistolet mitrailleur le plus utilisé au monde."
+ItemDescription="•Mode de tir automatique ou en rafale de 3 balles.\n•Tir alternatif pour changer de mode de tir.\n•Le dernier modèle de l'un des pistolets mitrailleurs les plus utilisés au monde."
 
 [KFWeap_SMG_P90]
 ItemName="P90 SMG"
@@ -536,6 +536,16 @@ ItemDescription="•Le tir principal utilise uniquement un canon.\n•Alt-Feu ti
 ItemName="Frappeurs statiques"
 ItemCategory="Mêlée"
 ItemDescription="•Principale - attaque contondante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque contondante électrique lourde. Un véritable choc ! \n•Envie de cogner un Zed en pleine face ? Ne cherchez plus !"
+
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="Flingue à watts"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Modes automatique et surcharge.\n•Alt + tir permet de passer d'un mode à l'autre.\n•Mode surcharge - Se recharge lorsque vous appuyez sur le bouton de tir et se décharge lorsque vous le relâchez."
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="Carabine d'Helios"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Modes automatique et rafale de 3 coups.\n•Alt + tir pour passer d'un mode à l'autre.\n•Que le tir soit avec vous."
 
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"

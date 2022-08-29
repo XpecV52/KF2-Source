@@ -161,7 +161,6 @@ var globalconfig bool bDisableTeamCollision;
 var globalconfig bool bEnableDeadToVOIP;
 var globalconfig bool bDisablePublicVOIPChannel;
 var const bool bCanPerkAlwaysChange;
-var bool bGoToBossCameraOnDeath;
 var bool bZedTimeBlendingOut;
 var config bool bEnableGameAnalytics;
 var config bool bRecordGameStatsFile;
@@ -1406,7 +1405,14 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
     {
         if(injured.IsHumanControlled() && injured.GetTeamNum() == InstigatedBy.GetTeamNum())
         {
-            Damage *= FriendlyFireScale;
+            if(KFDT.default.bNoFriendlyFire)
+            {
+                Damage = 0;                
+            }
+            else
+            {
+                Damage *= FriendlyFireScale;
+            }
             Momentum = vect(0, 0, 0);
         }
     }
@@ -1416,6 +1422,8 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
         OutbreakEvent.ReduceDamage(Damage, injured, InstigatedBy, DamageType, HitInfo);
     }
 }
+
+function NotifyTakeHit(KFPawn Pawn, Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum, Actor DamageCauser);
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DT)
 {
@@ -1544,7 +1552,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         RefreshMonsterAliveCount();
         if((SpawnManager != none) && MyKFGRI != none)
         {
-            -- MyKFGRI.AIRemaining;
+            UpdateAIRemaining();
             if(!MyKFGRI.IsEndlessWave() && float(MyKFGRI.AIRemaining) <= Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
             {
                 foreach WorldInfo.AllPawns(Class'KFPawn_Monster', MonsterPawn)
@@ -1574,6 +1582,18 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
                     KFPC.AddNonZedKill(KilledPawn.Class, byte(GameDifficulty));
                 }
             }
+        }
+    }
+}
+
+function UpdateAIRemaining()
+{
+    if(Role == ROLE_Authority)
+    {
+        if((MyKFGRI != none) && SpawnManager != none)
+        {
+            RefreshMonsterAliveCount();
+            MyKFGRI.AIRemaining = Max(0, SpawnManager.WaveTotalAI - NumAISpawnsQueued) + AIAliveCount;
         }
     }
 }
@@ -1913,30 +1933,36 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
                     {
                         KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(EarnedDosh);
                     }
-                    if(DamageHistory[I].DamagePerks.Length <= 0)
+                    if(!ValidateMonsterClassForXP(MonsterClass))
                     {                        
                     }
                     else
                     {
-                        KFPC = KFPlayerController(DamagerKFPRI.Owner);
-                        if(KFPC != none)
+                        if(DamageHistory[I].DamagePerks.Length <= 0)
+                        {                            
+                        }
+                        else
                         {
-                            InstigatorPerk = KFPC.GetPerk();
-                            if(InstigatorPerk.ShouldGetAllTheXP())
+                            KFPC = KFPlayerController(DamagerKFPRI.Owner);
+                            if(KFPC != none)
                             {
-                                AddPlayerXP(KFPC, int(MonsterClass.static.GetXPValue(byte(GameDifficulty))), InstigatorPerk.Class, true);                                
-                            }
-                            else
-                            {
-                                XP = MonsterClass.static.GetXPValue(byte(GameDifficulty)) / float(DamageHistory[I].DamagePerks.Length);
-                                J = 0;
-                                J0x65E:
-
-                                if(J < DamageHistory[I].DamagePerks.Length)
+                                InstigatorPerk = KFPC.GetPerk();
+                                if(InstigatorPerk.ShouldGetAllTheXP())
                                 {
-                                    AddPlayerXP(KFPC, FCeil(XP), DamageHistory[I].DamagePerks[J], true);
-                                    ++ J;
-                                    goto J0x65E;
+                                    AddPlayerXP(KFPC, int(MonsterClass.static.GetXPValue(byte(GameDifficulty))), InstigatorPerk.Class, true);                                    
+                                }
+                                else
+                                {
+                                    XP = MonsterClass.static.GetXPValue(byte(GameDifficulty)) / float(DamageHistory[I].DamagePerks.Length);
+                                    J = 0;
+                                    J0x679:
+
+                                    if(J < DamageHistory[I].DamagePerks.Length)
+                                    {
+                                        AddPlayerXP(KFPC, FCeil(XP), DamageHistory[I].DamagePerks[J], true);
+                                        ++ J;
+                                        goto J0x679;
+                                    }
                                 }
                             }
                         }
@@ -1948,6 +1974,9 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
         goto J0x139;
     }
 }
+
+// Export UKFGameInfo::execValidateMonsterClassForXP(FFrame&, void* const)
+private native final function bool ValidateMonsterClassForXP(class<KFPawn_Monster> MonsterClass);
 
 // Export UKFGameInfo::execAddPlayerXP(FFrame&, void* const)
 private native final function AddPlayerXP(KFPlayerController PC, int XP, class<KFPerk> PerkClass, optional bool bApplyPrestigeBonus)
@@ -3097,7 +3126,6 @@ defaultproperties
     bEnableMapObjectives=true
     bEnableDeadToVOIP=true
     bCanPerkAlwaysChange=true
-    bGoToBossCameraOnDeath=true
     bUseMapList=true
     bLogReservations=true
     bLogGroupTeamBalance=true
@@ -3137,7 +3165,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

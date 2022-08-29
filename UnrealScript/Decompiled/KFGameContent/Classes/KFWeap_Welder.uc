@@ -593,6 +593,7 @@ defaultproperties
     bTargetAdhesionEnabled=false
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false
+    bStorePreviouslyEquipped=false
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_None
     MagazineCapacity=100

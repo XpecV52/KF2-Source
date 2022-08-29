@@ -273,6 +273,8 @@ var(SprayCollision) bool bDoCollideComplex;
 /** Will always trace with Extent traces for the flame mesh collision checks. Slower, but will hit the collision cylinder of pawns making them easier to hit */
 var(SprayCollision) bool bUseExtentTracing;
 
+var(SprayCollision) int MaxSprayMeshesCollided;
+
 /*********************************************************************************************
 * Animation nodes & Skeltal controls
 ********************************************************************************************* */
@@ -937,6 +939,7 @@ defaultproperties
    SprayDamageScaleDistRange=(X=300.000000,Y=300.000000)
    SplashDamageInstigatorDamageScale=1.000000
    DamageModifier=1.000000
+   MaxSprayMeshesCollided=1
    SeedSprayVel=5000.000000
    SeedDecel=13000.000000
    SeedMaxAge=0.400000

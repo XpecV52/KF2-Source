@@ -30,10 +30,12 @@ defaultproperties
 {
 	WeaponDef=class'KFWeapDef_HuskCannon'
 
+
 	DoT_Type=DOT_Fire
 	DoT_Duration=2.5 //5.0 //1.7
 	DoT_Interval=0.5 //1.0 //0.4
 	DoT_DamageScale=0.1 //1.5
+	bNoInstigatorDamage=true
 
 	BurnPower=15.5 //2.5
 

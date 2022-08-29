@@ -48,8 +48,6 @@ function SetPathTarget(Actor NewTarget, optional Volume NewVolume, optional KFSe
     }
 }
 
-simulated function SetObjeciveType(KFInterface_MapObjective.EObjectiveType ObjEnum);
-
 simulated function InitPath()
 {
     if(Target != none)

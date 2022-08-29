@@ -135,6 +135,12 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 /** Enrage this Scrake! */
 //simulated function SetEnraged( bool bNewEnraged );
 
+/** Return current rage status */
+simulated event bool IsEnraged()
+{
+	return bIsEnraged;
+}
+
 /** Returns TRUE if this zed can block attacks */
 function bool CanBlock()
 {
@@ -272,8 +278,8 @@ defaultproperties
     IncapSettings(AF_GunHit)=	(Vulnerability=(0.2),                     Cooldown=1.7)
     IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=1.35)
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
-    IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=10.0, Duration=2.5)
-    IncapSettings(AF_FirePanic)=(Vulnerability=(0.8),                     Cooldown=7.0,  Duration=3.5)
+    IncapSettings(AF_Microwave)=(Vulnerability=(0.5),                     Cooldown=10.0, Duration=2.5)
+    IncapSettings(AF_FirePanic)=(Vulnerability=(0.4),                     Cooldown=7.0,  Duration=3.5)
     IncapSettings(AF_EMP)=		(Vulnerability=(0.98),                    Cooldown=10.0, Duration=2.2)
     IncapSettings(AF_Freeze)=	(Vulnerability=(0.98),                    Cooldown=6.0,  Duration=1.0)
     IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0),      Cooldown=5.5,  Duration=3.0)
@@ -315,7 +321,7 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 				    DamageScale=(1.1)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(0.4)))
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.75)))	
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.75)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_RPG7Impact', 	    DamageScale=(4.f)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))
 
@@ -378,6 +384,6 @@ defaultproperties
 	// ---------------------------------------------
 	// Spawning
     MinSpawnSquadSizeType=EST_Large
-    
+
     OnDeathAchievementID=KFACHID_HackAndSlash
 }

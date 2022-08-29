@@ -20,10 +20,9 @@ defaultproperties
 	KDeathUpKick=900   //1000
 	KDeathVel=200      //300
 
-	KnockdownPower=500
+	StunPower=500
 	StumblePower=500
 	MeleeHitPower=500
-
 
 	ModifierPerkList(0)=class'KFPerk_Firebug'	
 }

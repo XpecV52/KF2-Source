@@ -27,10 +27,10 @@ struct native RegionDefinition
 
 var private native const noexport Pointer VfTable_FTickableObject;
 var OnlineGameSearch PendingGameSearch;
-var const string CachedPlayfabId;
-var const string CachedSessionTicket;
-var const string CachedAuthCode;
-var const string CachedAuthForEntitlements;
+var init const string CachedPlayfabId;
+var init const string CachedSessionTicket;
+var init const string CachedAuthCode;
+var init const string CachedAuthForEntitlements;
 var private const bool bLoginProcessFinished;
 var private const bool bLaunchedByPlayfab;
 var private const bool bCloudServer;
@@ -38,22 +38,23 @@ var private bool bServerAllocated;
 var private bool bServerDeallocated;
 var private const int LastAuthRefreshTime;
 var private const int SecondsForAuthRefreshTime;
+var private const float VerifyCertificateTime;
 var int LoginAttempts;
 var private const int MaxRetryLoginAttempts;
-var private const config string CatalogName;
+var init private const config string CatalogName;
 var const config array<config RegionDefinition> KnownRegions;
-var string CurrRegionName;
+var init string CurrRegionName;
 var const int PlayfabNPServiceLabel;
 var native Map_Mirror TitleData;
-var private const string CachedLobbyId;
-var private const string CachedServerId;
+var init private const string CachedLobbyId;
+var init private const string CachedServerId;
 var private const float ElapsedTimeSinceLastHeartBeat;
 var private const float HeartbeatInterval;
 var private OnlineGameSettings CachedGameSettings;
 var private const float CountdownToReregister;
 var private const float ReregisterInterval;
-var private const string AllocateAPIEndpoint;
-var private const string DeallocateAPIEndpoint;
+var init private const string AllocateAPIEndpoint;
+var init private const string DeallocateAPIEndpoint;
 var private const QWord DeallocatedTimeStamp;
 var private const float TimeSinceLastDeallocationUpdate;
 var private const float DeallocateTimeUpdateInterval;
@@ -483,6 +484,7 @@ private native final function OnlineServiceAuthComplete(string ForURL, string To
 defaultproperties
 {
     SecondsForAuthRefreshTime=3600
+    VerifyCertificateTime=600
     MaxRetryLoginAttempts=3
     PlayfabNPServiceLabel=1
     HeartbeatInterval=60

@@ -162,7 +162,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
         RageVarianceFartAttackTimer = DifficultyVarianceRageFartTimers[Min(WorldInfo.Game.GetModifiedGameDifficulty(), DifficultyVarianceRageFartTimers.Length)];
     }
     PlayBossMusic();
-    ServerDoSpecialMove(37);
+    Class'KFPawn_MonsterBoss'.static.PlayBossEntranceTheatrics((self));
     SetFartAttackTimer();
     GorgeTrigger = Spawn(Class'KFTrigger_BloatKingGorge', self,, Location, Rotation);
     GorgeTrigger.SetBase(self);

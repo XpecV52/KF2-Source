@@ -16,8 +16,7 @@ enum ESharedContentUnlock
 {
 	SCU_None,
 	SCU_Zweihander,
-	SCU_ChainBat,
-	SCU_AbominationAxe
+	SCU_ChainBat
 };
 
 
@@ -219,7 +218,7 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
 
  		// head
  		Outfit = CharArch.HeadVariants[PRI.RepCustomizationInfo.HeadMeshIndex];
-		
+
 		Skin = Outfit.SkinVariations[PRI.RepCustomizationInfo.HeadSkinIndex];
  		/*if( !GetIDAvailable(Outfit.UnlockAssetID) )
  		{
@@ -231,7 +230,7 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
  			ClearCharacterCustomization(PRI);
  			return FALSE;
  		}
-		
+
  		// accessory
 		for( i=0; i < 3; i++ )
 		{
@@ -239,17 +238,17 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
 			{
 				continue;
 			}
-			
+
 			Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[i]];
 			if (Attachment.AttachmentItem == None)
 			{
 				return FALSE;
 			}
-				
+
 			Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[i]];
-				
+
 			if( !GetIDAvailable(Skin.UnlockAssetID) )
-			{	
+			{
  				ClearCharacterCustomization(PRI);
  				return FALSE;
 			}
@@ -271,7 +270,6 @@ defaultproperties
 {
    SharedContentList(1)=(Name="KFWeap_Edged_Zweihander",IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",Id=219640)
    SharedContentList(2)=(Name="KFWeap_Blunt_ChainBat",IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",Id=300380)
-   SharedContentList(3)=(Name="KFWeap_Edged_AbominationAxe",IconPath="WEP_UI_KrampusAxe_TEX.UI_WeaponSelect_KrampusAxe",Id=5378)
    Name="Default__KFUnlockManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

@@ -37,7 +37,7 @@ function UpdateGameInfo()
             }
             else
             {
-                FinalWaveString = ((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1);
+                FinalWaveString = ((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.GetFinalWaveNum());
             }
         }
         SetString("waveValue", FinalWaveString);

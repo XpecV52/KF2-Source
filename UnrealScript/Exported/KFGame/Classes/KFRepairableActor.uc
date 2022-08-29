@@ -190,6 +190,7 @@ simulated function PlayDestroyed()
 	if(RepairableActorMesh != none)
 	{
 		RepairableActorMesh.SetStaticMesh(BrokenMesh);
+		bForceNetUpdate = true;
 	}
 
 	if(WorldInfo.NetMode != NM_DedicatedServer)
@@ -204,6 +205,9 @@ simulated function PlayDestroyed()
 			BrokenEmitter = WorldInfo.MyEmitterPool.SpawnEmitter(BrokenEmitterTemplate.ParticleTemplate, Location + BrokenEmitterTemplate.RelativeOffset, BrokenEmitterTemplate.RelativeRotation);
 		}
 	}
+
+	// activate kismet event
+	OnKismetEvent(ERepairableActorEvent_Activated);
 }
 
 simulated function CompleteRepair()
@@ -222,6 +226,9 @@ simulated function CompleteRepair()
 	}
 
 	OnRepairCompelete(self);
+
+	// repaired kismet event
+	OnKismetEvent(ERepairableActorEvent_Repaired);
 }
 
 simulated function Reset()
@@ -311,6 +318,24 @@ simulated function OnToggleHidden(SeqAct_ToggleHidden Action)
 	}
 }
 
+simulated function OnKismetEvent(int EventType)
+{
+	local int i;
+	local array<int> OutputLinksToActivate;
+	local KFSeqEvent_RepairableActor ProgressEvent;
+
+	OutputLinksToActivate.AddItem(EventType);
+	for (i = 0; i < GeneratedEvents.Length; i++)
+	{
+		ProgressEvent = KFSeqEvent_RepairableActor(GeneratedEvents[i]);
+		if (ProgressEvent != none)
+		{
+			ProgressEvent.Reset();
+			ProgressEvent.CheckActivate(self, self, , OutputLinksToActivate);
+		}
+	}
+}
+
 defaultproperties
 {
    Begin Object Class=StaticMeshComponent Name=StaticMeshComponent0
@@ -355,6 +380,7 @@ defaultproperties
    bEdShouldSnap=True
    bIgnoreNetRelevancyCollision=True
    NetUpdateFrequency=0.100000
+   SupportedEvents(6)=Class'KFGame.KFSeqEvent_RepairableActor'
    Name="Default__KFRepairableActor"
    ObjectArchetype=KFWeldableActor'KFGame.Default__KFWeldableActor'
 }

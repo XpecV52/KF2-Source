@@ -1,3 +1,4 @@
+
 //NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
@@ -479,7 +480,7 @@ SecondaryAmmo="M203 手榴彈"
 [KFWeap_SMG_MP5RAS]
 ItemName="MP5RAS 突擊步槍"
 ItemCategory="衝鋒槍"
-ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•全世界最常用的衝鋒槍之一，最新版本。"
+ItemDescription="•可選擇全自動或三連發射擊模式。\n•按下Alt-fire可在攻擊模式間切換。\n•全世界最常用的衝鋒槍之一，最新版本。"
 
 [KFWeap_SMG_P90]
 ItemName="P90 突擊步槍"
@@ -537,6 +538,16 @@ ItemName="靜電打擊者"
 ItemCategory="近身"
 ItemDescription="•主要功能鍵 - 主要攻擊為揮擊，長按以連擊。\n•次要功能鍵 - 帶電重揮擊。它是真的令人震驚！\n•想一拳揍在Zed臉上？選它就對了！"
 
+[KFWeap_AssaultRifle_LazerCutter]
+ItemName="雷霆殺手"
+ItemCategory="突擊步槍"
+ItemDescription="•全自動與過載攻擊模式。\n•按下輔助功能鍵變更攻擊模式\n•過載模式 - 按下開火按鈕後開始充能，鬆開按鈕後釋放能量。"
+
+[KFWeap_AssaultRifle_Microwave]
+ItemName="赫利奧斯步槍"
+ItemCategory="突擊步槍"
+ItemDescription="•可選擇全自動或三連射射擊模式。\n•按下輔助功能鍵變更攻擊模式。\n•愿火焰護佑著你。"
+
 [KFWeap_SMG_Mac10]
 ItemName="Mac 10"
 ItemCategory="衝鋒槍"
@@ -547,7 +558,6 @@ ItemName="戰斧"
 ItemCategory="近身"
 ItemDescription="•主要攻擊鍵：慢速揮砍，長按以連續攻擊。\n•次要攻擊鍵：慢速重攻擊，消滅死亡之物。\n•輔助功能鍵：防禦 / 格擋。\n•雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
 SharedUnlockSource="戰斧"
-
 
 [KFWeap_Edged_FireAxe]
 ItemName="火斧"

@@ -64,6 +64,7 @@ simulated function OnZedKilled(class<KFPawn_Monster> MonsterClass, int Difficult
 simulated function OnMapCollectibleFound(PlayerReplicationInfo FinderPRI, int CollectibleID);
 simulated event OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLength, bool bCoOp);
 simulated function OnBossDied();
+simulated event OnWaveCompleted(class<GameInfo> GameClass, int Difficulty, int WaveNum);
 
 defaultproperties
 {

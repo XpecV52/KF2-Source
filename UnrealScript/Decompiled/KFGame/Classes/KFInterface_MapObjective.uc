@@ -8,18 +8,11 @@
 interface KFInterface_MapObjective extends Interface
     abstract;
 
-enum EObjectiveType
-{
-    EObj_Default,
-    EObj_SYG,
-    EObj_Weld,
-    EObj_Trigger,
-    EObj_MAX
-};
-
 simulated function ActivateObjective();
 
 simulated function DeactivateObjective();
+
+simulated function GrantReward(KFPawn_Human PlayerToReward);
 
 simulated function bool IsActive();
 
@@ -63,8 +56,24 @@ simulated function string GetLocalizedRequirements();
 
 simulated function bool GetIsMissionCritical();
 
+simulated function float GetDoshValueModifier();
+
 simulated function bool ShouldDrawIcon();
 
 simulated function Vector GetIconLocation();
 
 simulated function Texture2D GetIcon();
+
+simulated function DrawHUD(KFHUDBase HUD, Canvas DrawCanvas);
+
+simulated function bool HasObjectiveDrawDistance();
+
+simulated function bool ShouldShowObjectiveHUD();
+
+simulated function bool ShouldShowObjectiveContainer();
+
+simulated function TriggerObjectiveProgressEvent(optional int EventType, optional float ProgressMade)
+{
+    EventType = -1;
+    ProgressMade = -1;
+}

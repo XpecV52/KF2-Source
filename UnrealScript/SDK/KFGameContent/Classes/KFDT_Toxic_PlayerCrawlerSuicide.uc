@@ -15,6 +15,8 @@ defaultproperties
 	// override DoT from KFDT_Toxic
 	DoT_Type=DOT_None
 
+	PoisonPower=0
+
 	CameraLensEffectTemplate=class'KFCameraLensEmit_Puke_Light'
 	AltCameraLensEffectTemplate=class'KFCameraLensEmit_Puke_Light'
 

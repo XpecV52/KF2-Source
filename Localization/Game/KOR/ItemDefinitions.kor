@@ -23,13 +23,19 @@ DARClassicLevel20BundleName="D.A.R. 클래식 레벨 20 번들"
 DARClassicLevel25BundleName="D.A.R. 클래식 레벨 25 번들"
 MrsFosterBundleName="포스터 부인"
 SteampunkOutfitBundleName="스팀펑크 의상 번들"
+CyberpunkOutfitBundleName="사이버펑크 의상 번들"
+CyberpunkOutfitObjectiveBundleName="사이버펑크 의상 목표 번들"
 HeadshotFXBundle1Name="헤드샷 FX 번들 1"
+HeadshotFXBundle2Name="헤드샷 FX 번들 2"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #4 브론즈 번들 팩"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #4 실버 번들 팩"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #4 골드 번들 팩"
 HorzineSupplyCosmeticCrateSeries8BronzeBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #8 브론즈 번들 팩"
 HorzineSupplyCosmeticCrateSeries8SilverBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #8 실버 번들 팩"
 HorzineSupplyCosmeticCrateSeries8GoldBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #8 골드 번들 팩"
+HorzineSupplyCosmeticCrateSeries9BronzeBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #9 브론즈 번들 팩"
+HorzineSupplyCosmeticCrateSeries9SilverBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #9 실버 번들 팩"
+HorzineSupplyCosmeticCrateSeries9GoldBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #9 골드 번들 팩"
 HorzineSupplyEmoteCrateSeries1BronzeBundlePackName="Horzine Emote 보급상자 | 시리즈 #1 브론즈 번들 팩"
 HorzineSupplyEmoteCrateSeries1SilverBundlePackName="Horzine Emote 보급상자 | 시리즈 #1 실버 번들 팩"
 HorzineSupplyEmoteCrateSeries1GoldBundlePackName="Horzine Emote 보급상자 | 시리즈 #1 골드 번들 팩"
@@ -48,6 +54,12 @@ HorzineSupplyWeaponCrateSeries8GoldBundlePackName="Horzine 무기 보급상자 |
 HorzineSupplyWeaponCrateSeries12BronzeBundlePackName="Horzine 무기 보급상자 | 시리즈 #12 브론즈 번들 팩"
 HorzineSupplyWeaponCrateSeries12SilverBundlePackName="Horzine 무기 보급상자 | 시리즈 #12 실버 번들 팩"
 HorzineSupplyWeaponCrateSeries12GoldBundlePackName="Horzine 무기 보급상자 | 시리즈 #12 골드 번들 팩"
+HorzineSupplyWeaponCrateSeries13BronzeBundlePackName="Horzine 무기 보급상자 | 시리즈 #13 브론즈 번들 팩"
+HorzineSupplyWeaponCrateSeries13SilverBundlePackName="Horzine 무기 보급상자 | 시리즈 #13 실버 번들 팩"
+HorzineSupplyWeaponCrateSeries13GoldBundlePackName="Horzine 무기 보급상자 | 시리즈 #13 골드 번들 팩"
+HorzineSupplyWeaponCrateSeries14BronzeBundlePackName="Horzine 무기 보급상자 | 시리즈 #14 브론즈 번들 팩"
+HorzineSupplyWeaponCrateSeries14SilverBundlePackName="Horzine 무기 보급상자 | 시리즈 #14 실버 번들 팩"
+HorzineSupplyWeaponCrateSeries14GoldBundlePackName="Horzine 무기 보급상자 | 시리즈 #14 골드 번들 팩"
 HorzineSupplyCrateSeries15BronzeBundlePackName="Horzine 보급상자 | 시리즈 #15 브론즈 번들 팩"
 HorzineSupplyCrateSeries15SilverBundlePackName="Horzine 보급상자 | 시리즈 #15 실버 번들 팩"
 HorzineSupplyCrateSeries15GoldBundlePackName="Horzine 보급상자 | 시리즈 #15 골드 번들 팩"
@@ -73,6 +85,15 @@ NeonMKIVEncryptedUSBBronzeBundlePackName="네온 MKIV 암호화 USB 브론즈 �
 NeonMKIVEncryptedUSBSilverBundlePackName="네온 MKIV 암호화 USB 실버 번들 팩"
 NeonMKIVEncryptedUSBGoldBundlePackName="네온 MKIV 암호화 USB 골드 번들 팩"
 BadAssSantaBundleName="상남자 산타 번들"
+NeonMKVEncryptedUSBBronzeBundlePackName="네온 MKV 암호화 USB 브론즈 번들 팩"
+NeonMKVEncryptedUSBSilverBundlePackName="네온 MKV 암호화 USB 실버 번들 팩"
+NeonMKVEncryptedUSBGoldBundlePackName="네온 MKV 암호화 USB 골드 번들 팩"
+HorzineSupplyCrateSeriesDeityBronzeBundlePackName="Horzine 보급상자 | 시리즈 신 브론즈 번들 팩"
+HorzineSupplyCrateSeriesDeitySilverBundlePackName="Horzine 보급상자 | 시리즈 신 실버 번들 팩"
+HorzineSupplyCrateSeriesDeityGoldBundlePackName="Horzine 보급상자 | 시리즈 신 골드 번들 팩"
+DragonwaveEncryptedUSBBronzeBundlePackName="드래곤웨이브 암호화 USB 브론즈 번들 팩"
+DragonwaveEncryptedUSBSilverBundlePackName="드래곤웨이브 암호화 USB 실버 번들 팩"
+DragonwaveEncryptedUSBGoldBundlePackName="드래곤웨이브 암호화 USB 골드 번들 팩"
 
 
 ;Bundle Descriptions
@@ -93,13 +114,19 @@ DARClassicLevel20BundleDescription="클래식 블러디 장갑 및 헬멧 스킨
 DARClassicLevel25BundleDescription="클래식 프레셔스 장갑 및 헬멧 스킨이 지급됩니다. D.A.R.과 호환됩니다."
 MrsFosterBundleDescription="런던의 가장 성공적인 상인 중 하나인 포스터 부인이 되세요! 조끼(스킨 6종 포함) 및 가스 마스크 (스킨 6종 포함)이 지급됩니다."
 SteampunkOutfitBundleDescription="여성 및 남성 의상 (각각 스킨 6종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
+CyberpunkOutfitBundleDescription="남성 사이버펑크 의상(각각 스킨 6종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
+CyberpunkOutfitObjectiveBundleDescription="남성 사이버펑크 의상(각각 스킨 1종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
 HeadshotFXBundle1Description="헤드샷 FX 5종이 포함되어 있습니다. 포쉬도쉬, 만화 액션, 파티 타임, 첫 발에 반하다, 유령이 있습니다."
+HeadshotFXBundle2Description="헤드샷 FX가 포함되어 있습니다. 만화, 불꽃놀이, 꽃잎, 글리치, Horzine 서킷."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #4 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #4 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #4 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 HorzineSupplyCosmeticCrateSeries8BronzeBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #8 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyCosmeticCrateSeries8SilverBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #8 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyCosmeticCrateSeries8GoldBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #8 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
+HorzineSupplyCosmeticCrateSeries9BronzeBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #9 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
+HorzineSupplyCosmeticCrateSeries9SilverBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #9 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
+HorzineSupplyCosmeticCrateSeries9GoldBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #9 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 HorzineSupplyEmoteCrateSeries1BronzeBundlePackDescription="Horzine Emote 보급상자 | 시리즈 #1 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyEmoteCrateSeries1SilverBundlePackDescription="Horzine Emote 보급상자 | 시리즈 #1 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyEmoteCrateSeries1GoldBundlePackDescription="Horzine Emote 보급상자 | 시리즈 #1 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
@@ -118,6 +145,12 @@ HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="Horzine 무기 보급�
 HorzineSupplyWeaponCrateSeries12BronzeBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #12 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries12SilverBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #12 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries12GoldBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #12 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
+HorzineSupplyWeaponCrateSeries13BronzeBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #13 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
+HorzineSupplyWeaponCrateSeries13SilverBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #13 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
+HorzineSupplyWeaponCrateSeries13GoldBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #13 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
+HorzineSupplyWeaponCrateSeries14BronzeBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #14 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
+HorzineSupplyWeaponCrateSeries14SilverBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #14 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
+HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #14 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="Horzine 보급상자 | 시리즈 #15 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyCrateSeries15SilverBundlePackDescription="Horzine 보급상자 | 시리즈 #15 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyCrateSeries15GoldBundlePackDescription="Horzine 보급상자 | 시리즈 #15 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
@@ -143,6 +176,15 @@ NeonMKIVEncryptedUSBBronzeBundlePackDescription="네온 MKIV 암호화 USB 상�
 NeonMKIVEncryptedUSBSilverBundlePackDescription="네온 MKIV 암호화 USB 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 NeonMKIVEncryptedUSBGoldBundlePackDescription="네온 MKIV 암호화 USB 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 BadAssSantaBundleDescription="상남자 산타를 플레이하세요 안대(1 스킨 스타일 포함)와 백팩(1 스킨 스타일 포함)이 함께 제공됩니다"
+NeonMKVEncryptedUSBBronzeBundlePackDescription="네온 MKV 암호화 USB 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
+NeonMKVEncryptedUSBSilverBundlePackDescription="네온 MKV 암호화 USB 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
+NeonMKVEncryptedUSBGoldBundlePackDescription="네온 MKV 암호화 USB 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
+DragonwaveEncryptedUSBBronzeBundlePackDescription="드래곤웨이브 암호화 USB 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
+DragonwaveEncryptedUSBSilverBundlePackDescription="드래곤웨이브 암호화 USB 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
+DragonwaveEncryptedUSBGoldBundlePackDescription="드래곤웨이브 암호화 USB 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
+HorzineSupplyCrateSeriesDeityBronzeBundlePackDescription="Horzine 보급상자 5개 포함 | 시리즈 신 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
+HorzineSupplyCrateSeriesDeitySilverBundlePackDescription="Horzine 보급상자 10개 포함 | 시리즈 신 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
+HorzineSupplyCrateSeriesDeityGoldBundlePackDescription="Horzine 보급상자 20개 포함 | 시리즈 신 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="플레이가 가능한 캐릭터 PC 롭 브라이어의 새로운 고전적인 런던 보비 유니폼을 받아보세요. 브라이어의 런던 유니폼 (5 스킨 스타일 포함), 관리인 헬멧 꾸미기 액세서리(3 스킨 스타일 포함)가 제공됩니다."
@@ -237,6 +279,10 @@ JagerhornVaultPreciousSuitName="예거호른 | 볼트 | 프레셔스"
 MastersonVaultPreciousSuitName="빌 마스터슨 중위 | 볼트 | 프레셔스"
 RaeVaultPreciousSuitName="래 | 볼트 | 프레셔스"
 StrasserVaultPreciousSuitName="스트라서 | 볼트 | 프레셔스"
+CyberpunkHelmetName="사이버펑크 헬멧"
+CyberpunkOutfitName="사이버펑크 의상"
+CyberpunkHelmetEventName="사이버펑크 이벤트 헬멧"
+CyberpunkOutfitEventName="사이버펑크 이벤트 의상"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="빌 마스터슨 중위 | 사이버펑크 | 그린"
@@ -393,8 +439,8 @@ HorzineSupplyCrateSeries10Name="Horzine 보급상자 | 시리즈 10"
 HorzineSupplyCrateSeries11Name="Horzine 보급상자 | 시리즈 11"
 HorzineSupplyCrateSeries12Name="Horzine 보급상자 | 시리즈 12"
 HorzineSupplyCrateSeries13Name="Horzine 보급상자 | 시리즈 13"
-HorzineSupplyCrateSeries14Name="Horzine 보급상자 | 시리즈 #14"
-HorzineSupplyCrateSeries15Name="Horzine 보급상자 | 시리즈 #16"
+HorzineSupplyCrateSeries14Name="Horzine 보급상자 | 시리즈 14"
+HorzineSupplyCrateSeries15Name="Horzine 보급상자 | 시리즈 15"
 HorzineSupplyCrateSeries16Name="Horzine 보급상자 | 시리즈 도살장"
 EmoteCrateSeries1Name="Emote 상자 | 시리즈 1"
 EmoteCrateSeries2Name="Emote 상자 | 시리즈 3"
@@ -402,10 +448,12 @@ DoshVaultUnlockedCrate1Name="도쉬 볼트 잠금해제된 상자 #1"
 HorzineSupplyCrateSeriesDARName="Horzine 보급상자 | 시리즈 D.A.R."
 HorzineSupplyCrateSeriesLocoName="Horzine 보급상자 | 시리즈 로코"
 HorzineSupplyCrateSeriesCyberSamuraiName="Horzine 보급상자 | 시리즈 사이버 사무라이"
+HorzineSupplyCrateSeriesDiety="Horzine 보급상자 | 시리즈 신"
 
 
 ;Crate Descriptions
 
+HorzineSupplyCrateSeries1Description="상자를 여시려면 시리즈 1 Horzine 보급상자 열쇠가 필요합니다. 다음의 희귀 이상 아이템을 포함함:<br><font color="#4b69cd">의사 마스크</font><br><font color="#4b69cd">조종사</font><br><font color="#4b69cd">데브택 볼리스틱 마스크</font><br><font color="#4b69cd">야구모자</font><br><font color="#4b69cd">안대</font><br><font color="#4b69cd">플랫캡</font><br><font color="#4b69cd">용접 마스크</font><br><font color="#6600a1">요리사 모자</font><br><font color="#6600a1">화학가스 마스크</font><br><font color="#6600a1">복싱 헤드기어</font><br><font color="#6600a1">독일 가스 마스크</font><br><font color="#8847ff">밴 알버츠 클록</font><br><font color="#8847ff">밴 알버츠 모자</font><br><font color="#8847ff">스컬 브레이커 마스크</font><br><font color="#8847ff">스컬 브레이커 헬멧</font><br><font color="#caab05">또는 매우 희귀한 액세서리!</font>"
 
 HorzineSupplyCrateSeries2Description="상자를 여시려면 시리즈 2 Horzine 보급상자 열쇠가 필요합니다. 다음의 희귀 이상 아이템을 포함함:<br><font color="#4b69cd">헤드밴드</font><br><font color="#4b69cd">멤포</font><br><font color="#4b69cd">레트로 선글라스</font><br><font color="#4b69cd">스키 마스크</font><br><font color="#4b69cd">영국 케블라 헬멧</font><br><font color="#6600a1">독일 장교 모자</font><br><font color="#6600a1">홀리 글래스</font><br><font color="#6600a1">영국 나이트비전 헬멧</font><br><font color="#6600a1">안면 보호구</font><br><font color="#6600a1">비행용 마스크</font><br><font color="#6600a1">비행용 헬멧</font><br><font color="#8847ff">심신미약 마스크</font><br><font color="#8847ff">강화 헬멧</font><br><font color="#caab05">또는 매우 희귀한 액세서리!</font>"
 
@@ -445,9 +493,11 @@ DoshVaultUnlockedCrate1Description="다음 중 하나를 포함합니다.<br>플
 
 HorzineSupplyCrateSeriesDARDescription="D.A.R. Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 중 한 가지 희귀 이상의 D.A.R. 액세서리를 포함하고 있음:<br><font color="#4b69cd">비행 P51 장갑 또는 헬멧</font><br><font color="#4b69cd">CHONNE-E 5 짐 또는 타임 큐브 장갑</font><br><font color="#4b69cd">CHONNE-E 5 친구 또는 스틸 헬멧</font><br><font color="#4b69cd">C3HZ 충돌 장갑 또는 헬멧</font><br><font color="#4b69cd">C3HZ 플로 블루 장갑 또는 헬멧</font><br><font color="#6600a1">비행 빙하 장갑 또는 헬멧</font><br><font color="#6600a1">비행 비명 장갑 또는 헬멧</font><br><font color="#6600a1">CHONNE-E 5 배트캣 장갑</font><br><font color="#6600a1">CHONNE-E 5 증기 헬멧</font><br><font color="#6600a1">C3HZ 옵시디안 장갑 또는 헬멧</font><br><font color="#6600a1">C3HZ 스페이스 장갑 또는 헬멧</font><br><font color="#8847ff">비행 블루 앤젤 장갑 또는 헬멧</font><br><font color="#8847ff">비행 스핏파이어 장갑 또는 헬멧</font><br><font color="#8847ff">CHONNE-E 5 Horzine 장갑 또는 헬멧</font><br><font color="#8847ff">CHONNE-E 5 방사능 장갑</font><br><font color="#8847ff">CHONNE-E 5 일몰 헬멧</font><br><font color="#8847ff">C3HZ 마블 장갑 또는 헬멧</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 액세서리!</font>"
 
+HorzineSupplyCrateSeriesLocoDescription="로코 Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상 아이템 한 개 포함:<br><font color="#4b69cd">로코 부족 가면 | 야수 | 빛</font><br><font color="#4b69cd">로코 부족 가면 | 댄서 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 악마 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 무당 | 빛</font><br><font color="#4b69cd">로코 부족 가면 | 예언자 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 조커 | 빛</font><br><font color="#4b69cd">로코 부족 가면 | 지배자 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 잠자는 자 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 죽지 못한 자 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 전사 | 물</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 아나</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 알버츠</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 브라이어</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 스트라서</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 마스터슨</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 도노반</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 래</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 스컬리</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 클래식 브라이어</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 클래식 마스터슨</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 예거호른</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 미스터 포스터</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 미세스 포스터</font><br><font color="#8847ff">로코 부족 가면 | 야수 | 어둠</font><br><font color="#8847ff">로코 부족 가면 | 댄서 | 불</font><br><font color="#8847ff">로코 부족 가면 | 악마 | 불</font><br><font color="#8847ff">로코 부족 가면 | 무당 | 어둠로코 부족 가면 | 무당 | 어둠</font><br><font color="#8847ff">로코 부족 가면 | 예언자 | 불</font><br><font color="#8847ff">로코 부족 가면 | 조커 | 어둠</font><br><font color="#8847ff">로코 부족 가면 | 지배자 | 불</font><br><font color="#8847ff">로코 부족 가면 | 잠자는 자 | 불</font><br><font color="#8847ff">로코 부족 가면 | 죽지 못한 자 | 불</font><br><font color="#8847ff">로코 부족 가면 | 전사 | 불</font><br><font color="#8847ff">할로윈 2018 페이스 페인트 | 타나카</font><br><font color="#caab05">또는 매우 희귀한 액세서리!</font>"
 
+HorzineSupplyCrateSeriesCyberSamuraiDescription="사이버 사무라이 Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상 아이템 한 개 포함:<br><font color="#4b69cd">SF 호른 헬멧 | 그린</font><br><font color="#4b69cd">SF 호른 헬멧 | 퍼플</font><br><font color="#4b69cd">SF 페이스리스헬멧 | 그린</font><br><font color="#4b69cd">SF 페이스리스헬멧 | 퍼플</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 A | 그린</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 A | 퍼플</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 B | 그린</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 B | 퍼플</font><br><font color="#4b69cd">SF 무표정 헬멧 | 그린</font><br><font color="#4b69cd">SF 무표정 헬멧 | 퍼플</font><br><font color="#4b69cd">SF 사무라이 헬멧 | 그린</font><br><font color="#4b69cd">SF 사무라이 헬멧 | 퍼플</font><br><font color="#4b69cd">사무라이 다리 장갑 | 그린</font><br><font color="#4b69cd">사무라이 다리 장갑 | 퍼플</font><br><font color="#4b69cd">사무라이 가슴 장갑 | 블루</font><br><font color="#4b69cd">사무라이 가슴 장갑 | 그린</font><br><font color="#4b69cd">로닌 모자 | 그린</font><br><font color="#4b69cd">로닌 모자 | 옐로우</font><br><font color="#4b69cd">로닌 고글 | 그린</font><br><font color="#4b69cd">로닌 고글 | 옐로우</font><br><font color="#4b69cd">로닌 마스크 | 그린</font><br><font color="#4b69cd">로닌 마스크 | 옐로우</font><br><font color="#4b69cd">SF 호른 헬멧 | 블랙</font><br><font color="#4b69cd">SF 호른 헬멧 | 블루</font><br><font color="#4b69cd">SF 페이스리스 헬멧 | 블루</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 A | 블루</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 B | 블루</font><br><font color="#4b69cd">SF 무표정 헬멧 | 블루</font><br><font color="#4b69cd">SF 사무라이 헬멧 | 레드</font><br><font color="#4b69cd">사무라이 다리 장갑 | 레드</font><br><font color="#4b69cd">사무라이 가슴 장갑 | 레드로닌 모자 | 레드</font><br><font color="#4b69cd">로닌 고글 | 레드</font><br><font color="#4b69cd">로닌 마스크 | 레드</font><br><font color="#caab05">또는 매우 희귀한 액세서리!</font>"
 
-
+HorzineSupplyCrateSeriesDeityDescription="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 아이템을 포함합니다.<br><font color="#4b69cd">아머 후드 | 블루</font><br><font color="#4b69cd">아머 후드 | 그린</font><br><font color="#4b69cd">얼굴 없는 마스크 | 블루</font><br><font color="#4b69cd">얼굴 없는 마스크 | 그린</font><br><font color="#4b69cd">사이파이 후드 | 블루</font><br><font color="#4b69cd">사이파이 후드 | 그린</font><br><font color="#4b69cd">무표정 마스크 | 블루</font><br><font color="#4b69cd">무표정 마스크 | 그린</font><br><font color="#4b69cd">아머 후드 | 레드</font><br><font color="#4b69cd">얼굴 없는 마스크 | 레드</font><br><font color="#4b69cd">사이파이 후드 | 레드</font><br><font color="#4b69cd">무표정 마스크 | 레드</font><br><font color="#4b69cd">바스트 | 레드</font><br><font color="#4b69cd">바스트 | 옐로우</font><br><font color="#4b69cd">바스트 | 그린</font><br><font color="#4b69cd">바스트 | 블루</font><br><font color="#4b69cd">소벡 | 레드</font><br><font color="#4b69cd">소벡 | 옐로우</font><br><font color="#4b69cd">소벡 | 그린</font><br><font color="#4b69cd">소벡 | 블루</font><br><font color="#4b69cd">아머 후드 | 블랙</font><br><font color="#4b69cd">얼굴 없는 마스크 | 블랙</font><br><font color="#4b69cd">얼굴 없는 마스크 | 화이트</font><br><font color="#4b69cd">사이파이 후드 | 블랙</font><br><font color="#4b69cd">무표정 마스크 | 블랙</font><br><font color="#4b69cd">무표정 마스크 | 화이트</font><br><font color="#4b69cd">아누비스 | 레드</font><br><font color="#4b69cd">아누비스 | 블루</font><br><font color="#4b69cd">아누비스 | 그린</font><br><font color="#4b69cd">아누비스 | 옐로우</font><br><font color="#4b69cd">라 | 레드</font><br><font color="#4b69cd">라 | 블루</font><br><font color="#4b69cd">라 | 그린</font><br><font color="#4b69cd">라 | 옐로우</font><br><font color="#4b69cd">또는 매우 희귀한 프레셔스 스킨!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine 보급상자 열쇠 | 시리즈 1"
@@ -467,10 +517,11 @@ HorzineSupplyCrateKeySeries14Name="Horzine 보급상자 열쇠 | 시리즈 #14"
 HorzineSupplyCrateKeySeries15Name="Horzine 보급상자 열쇠 | 시리즈 #15"
 HorzineSupplyCrateKeySeries16Name="Horzine 보급상자 열쇠 | 시리즈 #16"
 EmoteCrateKeySeries1Name="Emote 상자 키 | 시리즈 1"
-EmoteCrateKeySeries2Name="Emote 상자 키 | 시리즈 3"
+EmoteCrateKeySeries2Name="Emote 상자 키 | 시리즈 2"
 HorzineSupplyCrateKeySeriesDARName="Horzine 보급상자 열쇠 | 시리즈 D.A.R."
 HorzineSupplyCrateKeySeriesLocoName="Horzine 보급상자 열쇠 | 시리즈 로코"
 HorzineSupplyCrateKeySeriesCyberSamuraiName="Horzine 보급상자 열쇠 | 시리즈 사이버 사무라이"
+HorzineSupplyCrateKeySeriesDeityName="Horzine 보급상자 열쇠 | 시리즈 신"
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description="이 열쇠는 Horzine 시리즈 1 보급상자만 엽니다."
@@ -493,7 +544,8 @@ EmoteCrateKeySeries1Description="이 열쇠는 시리즈 1 Emote 상자만 엽�
 EmoteCrateKeySeries2Description="이 열쇠는 시리즈 2 Emote 상자만 엽니다."
 HorzineSupplyCrateKeySeriesDARDescription="이 열쇠는 Horzine 시리즈 D.A.R.만 열 수 있습니다. 보급상자입니다."
 HorzineSupplyCrateKeySeriesLocoDescription="이 열쇠는 Horzine 시리즈 로코 보급상자만 열 수 있습니다."
-HorzineSupplyCrateKeySeriesLCyberSamuraiDescription="이 열쇠는 Horzine 시리즈 사이버 사무라이 보급상자만 열 수 있습니다."
+HorzineSupplyCrateKeySeriesCyberSamuraiDescription="이 열쇠는 Horzine 시리즈 사이버 사무라이 보급상자만 열 수 있습니다."
+HorzineSupplyCrateKeySeriesDeityDescription="이 열쇠는 Horzine 시리즈 신 보급상자만 열 수 있습니다."
 
 ;UsbNames
 CyberboneEncryptedUSBName="사이버본 암호화 USB"
@@ -523,6 +575,8 @@ NeonMKIIEncryptedUSBName="네온 MKII 암호화 USB"
 BluefireEncryptedUSBName="블루파이어 암호화 USB"
 NeonMKIIIEncryptedUSBName="네온 MKIII 암호화 USB"
 NeonMKIVEncryptedUSBName="네온 MKIV 암호화 USB"
+DragonwaveEncryptedUSBName="드래곤웨이브 암호화 USB"
+NeonMKVEncryptedUSBName="네온 MKV 암호화 USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="상자를 여시려면 사이버본 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">AR15 | 사이버본</font><br><font color="#4b69cd">AA-12 | 사이버본</font><br><font color="#4b69cd">AA-12 | 사이버본</font><br><font color="#4b69cd">카타나 | 사이버본</font><br><font color="#8847ff">M79 | 푸트리드 바일</font><br><font color="#8847ff">AR15 | 폐쇄</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
@@ -573,12 +627,16 @@ WeaponCollectorPack1EncryptedUSBDescription="무기 콜렉터 팩 1 블루프린
 
 NeonMKIIEncryptedUSBDescription="열려면 네온 MKII 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">헤모글로빈 | 네온</font><br><font color="#4b69cd">M14EBR | 네온</font><br><font color="#4b69cd">시커 6 | 네온</font><br><font color="#4b69cd">스토너 63A | 네온</font><br><font color="#4b69cd">Heckler & Koch UMP | 네온</font><br><font color="#4b69cd">HMTech-101 피스톨 | Horzine 엘리트 블루</font><br><font color="#4b69cd">HMTech-101 피스톨 | Horzine 엘리트 그린</font><br><font color="#4b69cd">HMTech-101 피스톨 | Horzine 엘리트 화이트</font><br><font color="#6600a1">화염방사기 | 네온</font><br><font color="#6600a1">마이크로웨이브 건 | 네온</font><br><font color="#8847ff">AA12 | 네온</font><br><font color="#8847ff">HMTech-101 피스톨 | Horzine 엘리트 블랙</font><br><font color="#8847ff">HMTech-101 피스톨 | Horzine 엘리트 레드</font><br><font color="#caab05">또는 매우 희귀한 고급 스킨!</font>"
 
-
+BluefireEncryptedUSBDescription="이 상자를 열려면 블루파이어 블루프린트 열쇠가 필요합니다. 다음 희귀 이상 무기 스킨 한 개 포함:<br><font color="#4b69cd">AK12 | 블루파이어</font><br><font color="#4b69cd">M1911 | 블루파이어</font><br><font color="#4b69cd">M4 | 블루파이어</font><br><font color="#4b69cd">M79 | 블루파이어</font><br><font color="#4b69cd">MP7 | 블루파이어</font><br><font color="#4b69cd">VLAD-1000 네일건 | 블루파이어</font><br><font color="#4b69cd">붐스틱 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">HZ12 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">M79 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">MP5RAS | Horzine 퍼스트 엔카운터</font><br><font color="#6600a1">동결 투척자 | 블루파이어</font><br><font color="#6600a1">레일건 | 블루파이어</font><br><font color="#6600a1">시커 6 | 블루파이어</font><br><font color="#6600a1">크리스 SMG | Horzine 퍼스트 엔카운터</font><br><font color="#6600a1">RPG-7 | Horzine 퍼스트 엔카운터</font><br><font color="#6600a1">스카 | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">센터파이어 | 블루파이어</font><br><font color="#8847ff">헤모글로빈 | 블루파이어</font><br><font color="#8847ff">RPG-7 | 블루파이어</font><br><font color="#8847ff">AK12 | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">센터파이어 | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">M14EBR | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">MAC 10 | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">Heckler & Koch UMP | Horzine 퍼스트 엔카운터</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
 
 NeonMKIIIEncryptedUSBDescription="이 상자를 열려면 네온 MKIII 블루프린트 열쇠가 필요합니다. 다음 희귀 이상의 무기 스킨을 포함합니다.<br><font color="#4b69cd">9MM | 네온</font><br><font color="#4b69cd">센터파이어 | 네온</font><br><font color="#4b69cd">Husk 캐논 | 네온</font><br><font color="#6600a1">AF2011-A1 | 네온</font><br><font color="#6600a1">둠스틱 | 네온</font><br><font color="#6600a1">M99 | 네온</font><br><font color="#8847ff">AK12 | 네온</font><br><font color="#8847ff">M16 M203 | 네온</font><br><font color="#8847ff">P90 | 네온</font><br><font color="#8847ff">스태틱 스트라이커 | 네온</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
 NeonMKIVEncryptedUSBDescription="네온 MKIV 블루프린트 열쇠로 열 수 있습니다.다음 희귀 이상의 무기 스킨이 포함됩니다.<br><font color="#4b69cd">HMTech-101 권총 | 네온</font><br><font color="#4b69cd">M4 | 네온</font><br><font color="#6600a1">HMTech-301 산탄총 | 네온</font><br><font color="#6600a1">HMTech-401 돌격소총 | 네온</font><br><font color="#6600a1">HMTech-501 유탄 소총 | 네온</font><br><font color="#6600a1">본 크러셔 | 네온</font><br><font color="#8847ff">HMTech-201 SMG | 네온</font><br><font color="#8847ff">Mkb.42 | 네온</font><br><font color="#8847ff">500 매그넘 리볼버 | 네온</font><br><font color="#8847ff">동결 투척자 | 네온</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
-Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">HMTech-101 Pistol | Neon</font><br><font color="#4b69cd">M4 | Neon</font><br><font color="#6600a1">HMTech-301 Shotgun | Neon</font><br><font color="#6600a1">HMTech-401 Assault Rifle | Neon</font><br><font color="#6600a1">HMTech-501 Grenade Rifle | Neon</font><br><font color="#6600a1">Bone Crusher | Neon</font><br><font color="#8847ff">HMTech-201 SMG | Neon</font><br><font color="#8847ff">Mkb.42 | Neonn</font><br><font color="#8847ff">500 Magnum Revolver | Neon</font><br><font color="#8847ff">Freeze Thrower | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+
+DragonwaveEncryptedUSBDescription="이 상자를 열려면 드래곤웨이브 블루프린트 열쇠가 필요합니다. 다음 희귀 이상의 무기 스킨을 포함합니다.<br><font color="#4b69cd">9mm | 신스웨이브</font><br><font color="#4b69cd">HMTech 힐러 | 신스웨이브</font><br><font color="#4b69cd">분쇄기 | 신스웨이브</font><br><font color="#4b69cd">9mm | 음양</font><br><font color="#6600a1">Ak12 | 신스웨이브</font><br><font color="#6600a1">데저트 이글 | 신스웨이브</font><br><font color="#6600a1">스카 | 신스웨이브</font><br><font color="#6600a1">붐스틱 | 음양</font><br><font color="#6600a1">드래곤 브레스 | 음양</font><br><font color="#6600a1">카타나 | 음양</font><br><font color="#6600a1">M79 | 음양</font><br><font color="#6600a1">500 매그넘 리볼버 | 음양</font><br><font color="#8847ff">크리스 SMG | 신스웨이브</font><br><font color="#8847ff">M1911 | 음양</font><br><font color="#8847ff">윈체스터 1894 | 음양</font>"
+
+NeonMKVEncryptedUSBDescription="이 상자를 열려면 네온 MKV 블루프린트 열쇠가 필요합니다. 다음 희귀 이상의 무기 스킨을 포함합니다.<br><font color="#4b69cd">AR-15 | 네온</font><br><font color="#4b69cd">C4 | 네온</font><br><font color="#4b69cd">소방 도끼 | 네온</font><br><font color="#4b69cd">MP7 | 네온</font><br><font color="#6600a1">크로스보우 | 네온</font><br><font color="#6600a1">데저트 이글 | 네온</font><br><font color="#8847ff">전투도끼 | 네온</font><br><font color="#8847ff">FN FAL | 네온</font><br><font color="#8847ff">토미건 | 네온</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 액세서리!</font>"
+
 
 ;usb key names
 CyberboneUSBKeyName="사이버본 USB Key"
@@ -608,6 +666,8 @@ NeonMKIIUSBKeyName="네온 MKII USB 키"
 BluefireUSBKeyName="블루파이어 USB 키"
 NeonMKIIIUSBKeyName="네온 MKIII USB 키"
 NeonMKIVUSBKeyName="네온 MKIV USB 키"
+DragonwaveUSBKeyName="드래곤웨이브 USB 열쇠"
+NeonMKVUSBKeyName="네온 MKV USB 열쇠"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="이 키는 사이버본 암호화 블루프린트만 해독합니다."
@@ -637,6 +697,8 @@ NeonMKIIUSBKeyDescription="이 키는 네온 MKII 암호화 블루프린트만 �
 BluefireUSBKeyDescription="이 키는 블루파이어 암호화 블루프린트만 해독합니다."
 NeonMKIIIUSBKeyDescription="이 키는 네온 MKIII 암호화 블루프린트만 해독합니다."
 NeonMKIVUSBKeyDescription="이 키는 네온 MKIV 암호화 블루프린트만 해독합니다."
+DragonwaveUSBKeyDescription="이 키는 네온 MKIV 암호화 블루프린트만 해독합니다."
+NeonMKVUSBKeyDescription="이 키는 네온 MKIV 암호화 블루프린트만 해독합니다."
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Horzine 꾸미기 보급상자 | 시리즈 1"
@@ -647,6 +709,7 @@ HorzineSupplyCosmeticCrateSeries5Name="Horzine 꾸미기 보급상자 | 시리�
 HorzineSupplyCosmeticCrateSeries6Name="Horzine 꾸미기 보급상자 | 시리즈 6"
 HorzineSupplyCosmeticCrateSeries7Name="Horzine 꾸미기 보급상자 | 시리즈 7"
 HorzineSupplyCosmeticCrateSeries8Name="Horzine 꾸미기 보급상자 | 시리즈 8"
+HorzineSupplyCosmeticCrateSeries9Name="Horzine 꾸미기 보급상자 | 시리즈 9"
 HorzineSupplyWeaponSkinCrateSeries1Name="Horzine 보급 무기 스킨 상자 | 시리즈 1"
 HorzineSupplyWeaponSkinCrateSeries2Name="Horzine 보급 무기 스킨 상자 | 시리즈 2"
 HorzineSupplyWeaponSkinCrateSeries3Name="Horzine 보급 무기 스킨 상자 | 시리즈 3"
@@ -659,6 +722,8 @@ HorzineSupplyWeaponSkinCrateSeries9Name="Horzine 보급 무기 스킨 상자 | �
 HorzineSupplyWeaponSkinCrateSeries10Name="Horzine 보급 무기 스킨 상자 | 시리즈 10"
 HorzineSupplyWeaponSkinCrateSeries11Name="Horzine 보급 무기 스킨 상자 | 시리즈 11"
 HorzineSupplyWeaponSkinCrateSeries12Name="Horzine 보급 무기 스킨 상자 | 시리즈 12"
+HorzineSupplyWeaponSkinCrateSeries13Name="Horzine 보급 무기 스킨 상자 | 시리즈 13"
+HorzineSupplyWeaponSkinCrateSeries14Name="Horzine 보급 무기 스킨 상자 | 시리즈 14"
 
 
 ;PSN Crate Descriptions
@@ -694,7 +759,7 @@ HorzineSupplyWeaponSkinCrateSeries7Description="Horzine 보급상자 열쇠가 �
 
 HorzineSupplyWeaponSkinCrateSeries8Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">헤모글로빈 | 네온</font><br><font color="#4b69cd">M14EBR | 네온</font><br><font color="#4b69cd">시커 6 | 네온</font><br><font color="#4b69cd">스토너 63A | 네온</font><br><font color="#4b69cd">Heckler & Koch UMP | 네온</font><br><font color="#4b69cd">HMTech-101 피스톨 | Horzine 엘리트 블루</font><br><font color="#4b69cd">HMTech-101 피스톨 | Horzine 엘리트 그린</font><br><font color="#4b69cd">HMTech-101 피스톨 | Horzine 엘리트 화이트</font><br><font color="#6600a1">화염방사기 | 네온</font><br><font color="#6600a1">마이크로웨이브 건 | 네온</font><br><font color="#8847ff">AA12 | 네온</font><br><font color="#8847ff">HMTech-101 피스톨 | Horzine 엘리트 블랙</font><br><font color="#8847ff">HMTech-101 피스톨 | Horzine 엘리트 레드</font><br><font color="#caab05">또는 매우 희귀한 고급 스킨!</font>"
 
-
+HorzineSupplyWeaponSkinCrateSeries9Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상 무기 스킨 한 개 포함:<br><font color="#4b69cd">AK12 | 블루파이어</font><br><font color="#4b69cd">M1911 | 블루파이어</font><br><font color="#4b69cd">M4 | 블루파이어</font><br><font color="#4b69cd">M79 | 블루파이어</font><br><font color="#4b69cd">MP7 | 블루파이어</font><br><font color="#4b69cd">VLAD-1000 네일건 | 블루파이어</font><br><font color="#4b69cd">붐스틱 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">HZ12 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">M79 | Horzine 퍼스트 엔카운터</font><br><font color="#4b69cd">MP5RAS | Horzine 퍼스트 엔카운터</font><br><font color="#6600a1">동결 투척자 | 블루파이어</font><br><font color="#6600a1">레일건 | 블루파이어</font><br><font color="#6600a1">시커 6 | 블루파이어</font><br><font color="#6600a1">크리스 SMG | Horzine 퍼스트 엔카운터</font><br><font color="#6600a1">RPG-7 | Horzine 퍼스트 엔카운터</font><br><font color="#6600a1">스카 | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">센터파이어 | 블루파이어</font><br><font color="#8847ff">헤모글로빈 | 블루파이어</font><br><font color="#8847ff">RPG-7 | 블루파이어</font><br><font color="#8847ff">AK12 | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">센터파이어 | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">M14EBR | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">MAC 10 | Horzine 퍼스트 엔카운터</font><br><font color="#8847ff">Heckler & Koch UMP | Horzine 퍼스트 엔카운터</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
 
 HorzineSupplyWeaponSkinCrateSeries10Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. <br><font color="#4b69cd">AA12 | 전술용</font><br><font color="#4b69cd">AK12 | 전술용</font><br><font color="#4b69cd">L85A2 | 전술용</font><br><font color="#4b69cd">SG500 | 전술용</font><br><font color="#4b69cd">HMTech-401 돌격소총 | 전술용</font><br><font color="#4b69cd">스카 | 전술용</font><br><font color="#6600a1">데저트 이글 | Horzine 엘리트 그린</font><br><font color="#6600a1">데저트 이글 | Horzine 엘리트 화이트</font><br><font color="#8847ff">데저트 이글 | Horzine 엘리트 Blue</font><br><font color="#8847ff">데저트 이글 | Horzine 엘리트 레드</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨과 같은 희귀 이상의 무기 스킨 중 하나를 포함합니다!</font>"
 
@@ -702,9 +767,15 @@ HorzineSupplyWeaponSkinCrateSeries11Description="Horzine 보급상자 열쇠가 
 
 HorzineSupplyWeaponSkinCrateSeries12Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 무기 스킨이 포함됩니다.<br><font color="#4b69cd">HMTech-101 권총 | 네온</font><br><font color="#4b69cd">M4 | 네온</font><br><font color="#6600a1">HMTech-301 산탄총 | 네온</font><br><font color="#6600a1">HMTech-401 돌격소총 | 네온</font><br><font color="#6600a1">HMTech-501 유탄 소총 | 네온</font><br><font color="#6600a1">본 크러셔 | 네온</font><br><font color="#8847ff">HMTech-201 SMG | 네온</font><br><font color="#8847ff">Mkb.42 | 네온</font><br><font color="#8847ff">500 매그넘 리볼버 | 네온</font><br><font color="#8847ff">동결 투척자 | 네온</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
+HorzineSupplyCosmeticCrateSeries7Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상 아이템 한 개 포함:<br><font color="#4b69cd">로코 부족 가면 | 야수 | 빛</font><br><font color="#4b69cd">로코 부족 가면 | 댄서 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 악마 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 무당 | 빛</font><br><font color="#4b69cd">로코 부족 가면 | 예언자 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 조커 | 빛</font><br><font color="#4b69cd">로코 부족 가면 | 지배자 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 잠자는 자 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 죽지 못한 자 | 물</font><br><font color="#4b69cd">로코 부족 가면 | 전사 | 물</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 아나</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 알버츠</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 브라이어</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 스트라서</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 마스터슨</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 도노반</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 래</font><br><font color="#4b69cd">할로윈 2018 페이스 페인트 | 스컬리</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 클래식 브라이어</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 클래식 마스터슨</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 예거호른</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 미스터 포스터</font><br><font color="#6600a1">할로윈 2018 페이스 페인트 | 미세스 포스터</font><br><font color="#8847ff">로코 부족 가면 | 야수 | 어둠</font><br><font color="#8847ff">로코 부족 가면 | 댄서 | 불</font><br><font color="#8847ff">로코 부족 가면 | 악마 | 불</font><br><font color="#8847ff">로코 부족 가면 | 무당 | 어둠로코 부족 가면 | 무당 | 어둠</font><br><font color="#8847ff">로코 부족 가면 | 예언자 | 불</font><br><font color="#8847ff">로코 부족 가면 | 조커 | 어둠</font><br><font color="#8847ff">로코 부족 가면 | 지배자 | 불</font><br><font color="#8847ff">로코 부족 가면 | 잠자는 자 | 불</font><br><font color="#8847ff">로코 부족 가면 | 죽지 못한 자 | 불</font><br><font color="#8847ff">로코 부족 가면 | 전사 | 불</font><br><font color="#8847ff">할로윈 2018 페이스 페인트 | 타나카</font><br><font color="#caab05">또는 매우 희귀한 액세서리!</font>"
 
+HorzineSupplyCosmeticCrateSeries8Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상 아이템 한 개 포함:<br><font color="#4b69cd">SF 호른 헬멧 | 그린</font><br><font color="#4b69cd">SF 호른 헬멧 | 퍼플</font><br><font color="#4b69cd">SF 페이스리스헬멧 | 그린</font><br><font color="#4b69cd">SF 페이스리스헬멧 | 퍼플</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 A | 그린</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 A | 퍼플</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 B | 그린</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 B | 퍼플</font><br><font color="#4b69cd">SF 무표정 헬멧 | 그린</font><br><font color="#4b69cd">SF 무표정 헬멧 | 퍼플</font><br><font color="#4b69cd">SF 사무라이 헬멧 | 그린</font><br><font color="#4b69cd">SF 사무라이 헬멧 | 퍼플</font><br><font color="#4b69cd">사무라이 다리 장갑 | 그린</font><br><font color="#4b69cd">사무라이 다리 장갑 | 퍼플</font><br><font color="#4b69cd">사무라이 가슴 장갑 | 블루</font><br><font color="#4b69cd">사무라이 가슴 장갑 | 그린</font><br><font color="#4b69cd">로닌 모자 | 그린</font><br><font color="#4b69cd">로닌 모자 | 옐로우</font><br><font color="#4b69cd">로닌 고글 | 그린</font><br><font color="#4b69cd">로닌 고글 | 옐로우</font><br><font color="#4b69cd">로닌 마스크 | 그린</font><br><font color="#4b69cd">로닌 마스크 | 옐로우</font><br><font color="#4b69cd">SF 호른 헬멧 | 블랙</font><br><font color="#4b69cd">SF 호른 헬멧 | 블루</font><br><font color="#4b69cd">SF 페이스리스 헬멧 | 블루</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 A | 블루</font><br><font color="#4b69cd">SF 숨쉬는 헬멧 B | 블루</font><br><font color="#4b69cd">SF 무표정 헬멧 | 블루</font><br><font color="#4b69cd">SF 사무라이 헬멧 | 레드</font><br><font color="#4b69cd">사무라이 다리 장갑 | 레드</font><br><font color="#4b69cd">사무라이 가슴 장갑 | 레드로닌 모자 | 레드</font><br><font color="#4b69cd">로닌 고글 | 레드</font><br><font color="#4b69cd">로닌 마스크 | 레드</font><br><font color="#caab05">또는 매우 희귀한 액세서리!</font>"
 
+HorzineSupplyWeaponSkinCrateSeries13Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 아이템을 포함합니다.<br><font color="#4b69cd">9mm | 신스웨이브</font><br><br><font color="#4b69cd">HMTech 힐러 | 신스웨이브</font><br><br><font color="#4b69cd">분쇄기 | 신스웨이브</font><br><br><font color="#4b69cd">9mm | 음양</font><br><br><font color="#6600a1">Ak12 | 신스웨이브</font><br><font color="#6600a1">데저트 이글 | 신스웨이브</font><br><font color="#6600a1">스카 | 신스웨이브</font><br><font color="#6600a1">붐스틱 | 음양</font><br><font color="#6600a1">드래곤 브레스 | 음양</font><br><font color="#6600a1">카타나 | 음양</font><br><font color="#6600a1">M79 | 음양</font><br><font color="#6600a1">500 매그넘 리볼버 | 음양</font><br><font color="#8847ff">크리스 SMG | 신스웨이브</font><br><font color="#8847ff">M1911 | 음양</font><br><font color="#8847ff">윈체스터 1894 | 음양</font><br><font color="#caab05">또는 매우 희귀한 희귀 프레셔스 액세서리!"
 
+HorzineSupplyWeaponSkinCrateSeries14Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 아이템을 포함합니다.<br><font color="#4b69cd">AR-15 | 네온</font><br><font color="#4b69cd">C4 | 네온</font><br><font color="#4b69cd">소방 도끼 | 네온</font><br><font color="#4b69cd">MP7 | 네온</font><br><font color="#6600a1">크로스보우 | 네온</font><br><font color="#6600a1">데저트 이글 | 네온</font><br><font color="#8847ff">전투도끼 | 네온</font><br><font color="#8847ff">FN FAL | 네온</font><br><font color="#8847ff">토미건 | 네온</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 액세서리!</font>"
+
+HorzineSupplyCosmeticCrateSeries9Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 아이템을 포함합니다.<br><font color="#4b69cd">아머 후드 | 블루</font><br><font color="#4b69cd">아머 후드 | 그린</font><br><font color="#4b69cd">얼굴 없는 마스크 | 블루</font><br><font color="#4b69cd">얼굴 없는 마스크 | 그린</font><br><font color="#4b69cd">사이파이 후드 | 블루</font><br><font color="#4b69cd">사이파이 후드 | 그린</font><br><font color="#4b69cd">무표정 마스크 | 블루</font><br><font color="#4b69cd">무표정 마스크 | 그린</font><br><font color="#4b69cd">아머 후드 | 레드</font><br><font color="#4b69cd">얼굴 없는 마스크 | 레드</font><br><font color="#4b69cd">사이파이 후드 | 레드</font><br><font color="#4b69cd">무표정 마스크 | 레드</font><br><font color="#4b69cd">바스트 | 레드</font><br><font color="#4b69cd">바스트 | 옐로우</font><br><font color="#4b69cd">바스트 | 그린</font><br><font color="#4b69cd">바스트 | 블루</font><br><font color="#4b69cd">소벡 | 레드</font><br><font color="#4b69cd">소벡 | 옐로우</font><br><font color="#4b69cd">소벡 | 그린</font><br><font color="#4b69cd">소벡 | 블루</font><br><font color="#4b69cd">아머 후드 | 블랙</font><br><font color="#4b69cd">얼굴 없는 마스크 | 블랙</font><br><font color="#4b69cd">얼굴 없는 마스크 | 화이트</font><br><font color="#4b69cd">사이파이 후드 | 블랙</font><br><font color="#4b69cd">무표정 마스크 | 블랙</font><br><font color="#4b69cd">무표정 마스크 | 화이트</font><br><font color="#4b69cd">아누비스 | 레드</font><br><font color="#4b69cd">아누비스 | 블루</font><br><font color="#4b69cd">아누비스 | 그린</font><br><font color="#4b69cd">아누비스 | 옐로우</font><br><font color="#4b69cd">라 | 레드</font><br><font color="#4b69cd">라 | 블루</font><br><font color="#4b69cd">라 | 그린</font><br><font color="#4b69cd">라 | 옐로우</font><br><font color="#4b69cd">또는 매우 희귀한 프레셔스 스킨!</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Horzine 보급상자 열쇠"
@@ -842,6 +913,9 @@ HMTechHealerVaultVoshPreciousName="HMTech 힐러 | 볼트 | 보쉬 | 프레셔�
 HMTechHealerBlackGoldenMintName="HMTech 힐러 | 블랙 황금 | 민트"
 HMTechHealerBlackGoldenFieldTestedName="HMTech 힐러 | 블랙 황금 | 현장 테스트"
 HMTechHealerBlackGoldenBattleScarredName="HMTech 힐러 | 블랙 황금 | 전투 흔적"
+HMTechHealerSynthwaveMintName="HMTech 힐러 | 신스웨이브 | 민트급"
+HMTechHealerSynthwaveFieldTestedName="HMTech 힐러 | 신스웨이브 | 현장 테스트"
+HMTechHealerSynthwaveBattleScarredName="HMTech 힐러 | 신스웨이브 | 전투 흔적"
 
 ;1858 Revolver Descriptions
 1858RevolverMintDescription="외관: 민트급 | 멋진 .44-구경 레밍턴 '모델 1858' 6-발 싱글액션 군용 리볼버입니다. 오래된 무기이지만 아직 쓸만합니다."
@@ -887,11 +961,14 @@ HMTechHealerBlackGoldenBattleScarredName="HMTech 힐러 | 블랙 황금 | 전투
 500MagnumRevolverIndustrialMintName=".500 매그넘 리볼버 | 공업용 | 민트"
 500MagnumRevolverIndustrialFieldTestedName=".500 매그넘 리볼버 | 공업용 | 현장 테스트"
 500MagnumRevolverIndustrialBattleScarredName=".500 매그넘 리볼버 | 공업용 | 전투 흔적"
-500MagnumRevolverNeonMintName="500 매그넘 리볼버 | 네온 | 민트"
-500MagnumRevolverNeonFieldTestedName="500 매그넘 리볼버 | 네온 | 현장 테스트"
-500MagnumRevolverNeonBattleScarredName="500 매그넘 리볼버 | 네온 | 전투 흔적"
-500MagnumRevolverNeonRGBPreciousName="500 매그넘 리볼버 | 네온 RGB | 프레셔스"
-500MagnumRevolverVaultVoshPreciousName="500 매그넘 리볼버 | 볼트 | 보쉬 | 프레셔스"
+500MagnumRevolverNeonMintName=".500 매그넘 리볼버 | 네온 | 민트급"
+500MagnumRevolverNeonFieldTestedName=".500 매그넘 리볼버 | 네온 | 현장 테스트"
+500MagnumRevolverNeonBattleScarredName=".500 매그넘 리볼버 | 네온 | 전투 흔적"
+500MagnumRevolverNeonRGBPreciousName=".500 매그넘 리볼버 | 네온 RGB | 프레셔스"
+500MagnumRevolverVaultVoshPreciousName=".500 매그넘 리볼버 | 볼트 | 보쉬 | 프레셔스"
+500MagnumRevolverYinYangBattleScarredName="500 매그넘 리볼버 | 음양 | 전투 흔적"
+500MagnumRevolverYinYangFieldTestedName="500 매그넘 리볼버 | 음양 | 현장 테스트"
+500MagnumRevolverYinYangMintName="500 매그넘 리볼버 | 음양 | 민트"
 
 ;9mm Descriptions
 9MMMintDescription="외관: 민트급 | 단순하고 저렴하며 (정말 쌉니다) 모든 Horzine 요원을 위한 보조 무기입니다."
@@ -960,6 +1037,9 @@ HMTechHealerBlackGoldenBattleScarredName="HMTech 힐러 | 블랙 황금 | 전투
 9MMNeonFieldTestedName="9MM | 네온 | 현장 테스트"
 9MMNeonMintName="9MM | 네온 | 민트급"
 9MMNeonRGBPreciousName="9MM | 네온 RGB | 프레셔스"
+9MMSynthwaveMintName="9MM | 신스웨이브 | 민트급"
+9MMSynthwaveFieldTestedName="9MM | 신스웨이브 | 현장 테스트"
+9MMSynthwaveBattleScarredName="9MM | 신스웨이브 | 전투 흔적"
 
 ;AA12 Descriptions
 AA12MintDescription="외관: 민트급 | The AA-12는 자동 샷건입니다. 근거리에서 중거리까지 파괴적인 화력을 발휘하지만 완전 자동으로 탄약을 먹어 치웁니다!"
@@ -1027,6 +1107,7 @@ AF2011A1NeonBattleScarredName="AF2011-A1 | 네온 | 전투 흔적"
 AF2011A1NeonFieldTestedName="AF2011-A1 | 네온 | 현장 테스트"
 AF2011A1NeonMintName="AF2011-A1 | 네온 | 민트급"
 AF2011A1NeonRGBPreciousName="AF2011-A1 | 네온 RGB | 프레셔스"
+AF2011A1VaultVoshPreciousName="AF2011-A1 | 볼트 | 보쉬 | 프레셔스"
 
 ;AK12 Descriptions
 AK12MintDescription="외관: 민트급 | 이 AK-12는 사망한 러시아 스페츠나츠 요원에게서 조사를 위해 가져온 것입니다."
@@ -1091,11 +1172,15 @@ AK12BluefireBattleScarredName="AK-12 | 블루파이어 | 전투흔적 "
 AK12HorzineFirstEncounterMintName="AK-12 | Horzine 퍼스트 엔카운터 | 민트급 "
 AK12HorzineFirstEncounterFieldTestedName="AK-12 | Horzine 퍼스트 엔카운터 | 현장 테스트 "
 AK12HorzineFirstEncounterBattleScarredName="AK-12 | Horzine 퍼스트 엔카운터 | 전투흔적 "
-AK12NeonBattleScarredName="AK-12 | 네온 | 전투흔적"
+AK12NeonBattleScarredName="AK-12 | 네온 | 전투 흔적"
 AK12NeonFieldTestedName="AK-12 | 네온 | 현장 테스트"
-AK12NeonMintName="AK12 | 네온 | 민트급"
-AK12NeonRGBPreciousName="AK12 | 네온 RGB | 프레셔스"
-AK12VaultVoshPreciousName="AK12 | 볼트 | 보쉬 | 프레셔스"
+AK12NeonMintName="AK-12 | 네온 | 민트급"
+AK12NeonRGBPreciousName="AK-12 | 네온 RGB | 프레셔스"
+AK12VaultVoshPreciousName="AK-12 | 볼트 | 보쉬 | 프레셔스"
+AK12SynthwaveMintName="AK-12 | 신스웨이브 | 민트급"
+AK12SynthwaveFieldTestedName="AK-12 | 신스웨이브 | 현장 테스트"
+AK12SynthwaveBattleScarredName="AK-12 | 신스웨이브 | 전투 흔적"
+AK12PrestigePreciousName="AK-12 | 프레스티지 | 프레셔스"
 
 ;AR15 Descriptions
 AR15MintDescription="외관: 민트급 | 이 총은 제드용이지 ‘사냥용’이 아닙니다."
@@ -1131,6 +1216,10 @@ AR15VaultBlueCamoBattleScarredName="AR15 | 볼트 | 블루 카모 | 전투 흔�
 AR15PreciousName="AR15 | 프레셔스"
 AR15VaultVoshPreciousName="AR15 | 볼트 | 보쉬 | 프레셔스"
 AR15PrestigePreciousName="AR15 | 프레스티지 | 프레셔스"
+AR15NeonMintName="AR15 | 네온 | 민트급"
+AR15NeonFieldTestedName="AR15 | 네온 | 현장 테스트"
+AR15NeonBattleScarredName="AR15 | 네온 | 전투 흔적"
+AR15NeonRGBPreciousName="AR15 | 네온 RGB | 프레셔스"
 
 ;BattleAxe Descriptions
 BattleAxeMintDescription="외관: 민트 | 구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭."
@@ -1145,6 +1234,10 @@ BattleAxeVaultVoshPreciousName="전투도끼 | 볼트 | 보쉬 | 프레셔스"
 BattleAxeBlackGoldenMintName="전투도끼 | 블랙 골든 | 민트"
 BattleAxeBlackGoldenFieldTestedName="전투도끼 | 블랙 골든 | 현장 테스트"
 BattleAxeBlackGoldenBattleScarredName="전투도끼 | 블랙 골든 | 전투 흔적"
+BattleAxeNeonMintName="전투도끼 | 네온 | 민트급"
+BattleAxeNeonFieldTestedName="전투도끼 | 네온 | 현장 테스트"
+BattleAxeNeonBattleScarredName="전투도끼 | 네온 | 전투 흔적"
+BattleAxeNeonRGBPreciousName="전투도끼 | 네온 RGB | 프레셔스"
 
 ;Berserker Knife Descriptions
 BerserkerKnifeMintDescription="외관: 민트급 | 네, 정말 잔디깎기 날입니다. 즐겨보세요!"
@@ -1235,6 +1328,7 @@ CenterfireNeonBattleScarredName="센터파이어 | 네온 | 전투 흔적"
 CenterfireNeonFieldTestedName="센터파이어 | 네온 | 현장 테스트"
 CenterfireNeonMintName="센터파이어 | 네온 | 민트급"
 CenterfireNeonRGBPreciousName="센터파이어 | 네온 RGB | 프레셔스"
+CenterfireVaultVoshPreciousName="센터파이어 | 볼트 | 보쉬 | 프레셔스"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="외관: 민트급 | 고성능 사냥용 크로스보우, 우수한 관통력과 우수한 저지력!"
@@ -1258,6 +1352,10 @@ CrossbowHalloweenFieldTestedName="크로스보우 | 할로윈 | 현장 테스트
 CrossbowHalloweenBattleScarredName="크로스보우 | 할로윈 | 전투 흔적"
 CrossbowVaultVoshPreciousName="크로스보우 | 볼트 | 보쉬 | 프레셔스"
 CrossbowPrestigePreciousName="석궁 | 프레스티지 | 프레셔스"
+CrossbowNeonMintName="석궁 | 네온 | 민트급"
+CrossbowNeonFieldTestedName="석궁 | 네온 | 현장 테스트"
+CrossbowNeonBattleScarredName="석궁 | 네온 | 전투 흔적"
+CrossbowNeonRGBPreciousName="석궁 | 네온 RGB | 프레셔스"
 
 ;Crovel Descriptions
 CrovelMintDescription="외관: 민트급 | 한쪽은 빠루, 한쪽은 삽, 살벌하네요."
@@ -1287,6 +1385,7 @@ DesertEagleMintDescription="외관: 민트 | 데저트 이글은 핸드건의 �
 DesertEagleFieldTestedDescription="외관: 현장 테스트 | 데저트 이글은 핸드건의 괴수입니다. 그렇기 때문에 ‘핸드 캐논’이라고 부르죠."
 DesertEagleBattleScarredDescription="외관: 전투흔적 | 데저트 이글은 핸드건의 괴수입니다. 그렇기 때문에 ‘핸드 캐논’이라고 부르죠."
 DesertEaglePreciousDescription="외관: 프레셔스 | 데저트 이글은 핸드건의 괴수입니다. 그렇기 때문에 ‘핸드 캐논’이라고 부르죠."
+DesertEaglePrestigePreciousDescription="외관: 프레셔스 | 데저트 이글은 핸드건의 괴수입니다. 그렇기 때문에 ‘핸드 캐논’이라고 부르죠."
 
 ;Desert Eagle Names
 DesertEagleEmergencyIssueMintName="데저트 이글 | 이머전시 이슈 | 민트급"
@@ -1315,6 +1414,15 @@ DesertEagleHorzineEliteWhiteMintName="데저트 이글 | Horzine 엘리트 화�
 DesertEagleHorzineEliteWhiteFieldTestedName="데저트 이글 | Horzine 엘리트 화이트 | 현장 테스트"
 DesertEagleHorzineEliteWhiteBattleScarredName="데저트 이글 | Horzine 엘리트 화이트 | 전투흔적"
 DesertEagleVaultVoshPreciousName="데저트 이글 | 볼트 | 보쉬 | 프레셔스"
+DesertEaglePrestigePreciousName="데저트 이글 | 프레스티지 | 프레셔스"
+DesertEagleNeonMintName="데저트 이글 | 네온 | 민트급"
+DesertEagleNeonFieldTestedName="데저트 이글 | 네온 | 현장 테스트"
+DesertEagleNeonBattleScarredName="데저트 이글 | 네온 | 전투 흔적"
+DesertEagleNeonRGBPreciousName="데저트 이글 | 네온 RGB | 프레셔스"
+DesertEagleSynthwaveMintName="데저트 이글 | 신스웨이브 | 민트급"
+DesertEagleSynthwaveFieldTestedName="데저트 이글 | 신스웨이브 | 현장 테스트"
+DesertEagleSynthwaveBattleScarredName="데저트 이글 | 신스웨이브 | 전투 흔적"
+
 
 ;Doomstick Descriptions
 DoomstickMintDescription="외관: 민트급 | 즐거움 두 배는 부족합니다. 네 배로 갑니다!"
@@ -1392,6 +1500,7 @@ FlamethrowerMintDescription="외관: 민트급 | 세대가 지나도 변치 않�
 FlamethrowerFieldTestedDescription="외관: 현장 테스트 | 세대가 지나도 변치 않는 고전 의심스럽다면 불을 질러보세요."
 FlamethrowerBattleScarredDescription="외관: 전투흔적 | 세대가 지나도 변치 않는 고전 의심스럽다면 불을 질러보세요."
 FlamethrowerPreciousDescription="외관: 프레셔스 | 세대가 지나도 변치 않는 고전 의심스럽다면 불을 질러보세요."
+FlamethrowerPrestigePreciousDescription="외관: 프레셔스 | 세대가 지나도 변치 않는 고전 의심스럽다면 불을 질러보세요."
 
 ;Flamethrower Names
 FlamethrowerDragonfireMintName="화염방사기 | 드래곤파이어 | 민트급"
@@ -1409,6 +1518,7 @@ FlamethrowerNeonFieldTestedName="화염방사기 | 네온 | 현장 테스트 "
 FlamethrowerNeonBattleScarredName="화염방사기 | 네온 | 전투 흔적 "
 FlamethrowerNeonRGBPreciousName="화염방사기 | 네온 RGB | 프레셔스 "
 FlamethrowerVaultVoshPreciousName="화염방사기 | 볼트 | 보쉬 | 프레셔스"
+FlamethrowerPrestigePreciousName="전투도끼 | 프레스티지 | 프레셔스"
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="외관: 민트 | 더욱 휴대성이 용이해진 휴대용 가방 크기의 화염 방사 시스템."
@@ -1442,6 +1552,7 @@ FlarePistolFlameRedBattleScarredName="스핏파이어 | 플레임 레드 | 전�
 FlarePistolHeirloomMintName="스핏파이어 | 가보 | 민트"
 FlarePistolHeirloomFieldTestedName="스핏파이어 | 가보 | 현장 테스트"
 FlarePistolHeirloomBattleScarredName="스핏파이어 | 가보 | 전투 흔적"
+FlarePistolVaultVoshPreciousName="스핏파이어 | 볼트 | 보쉬 | 프레셔스"
 
 ;Freeze Thrower Names
 FreezeThrowerPreciousName="던져서 얼리기 | 프레셔스"
@@ -1500,12 +1611,14 @@ HemogoblinNeonMintName="헤모글로빈 | 네온 | 민트급 "
 HemogoblinNeonFieldTestedName="헤모글로빈 | 네온 | 현장 테스트 "
 HemogoblinNeonBattleScarredName="헤모글로빈 | 네온 | 전투 흔적"
 HemogoblinNeonRGBPreciousName="헤모글로빈 | 네온 RGB | 프레셔스"
+HemogoblinVaultVoshPreciousName="헤모글로빈 | 볼트 | 보쉬 | 프레셔스"
 
 ;HK UMP Descriptions
 HKUMPMintDescription="외관: 민트 | 새로이 추가된 MP 계열 총기 중 하나입니다. 삼촌급 정도 되려나? 서브머신건에도 가족이 있나 보지?"
 HKUMPFieldTestedDescription="외관: 현장 테스트 | 새로이 추가된 MP 계열 총기 중 하나입니다. 삼촌급 정도 되려나? 서브머신건에도 가족이 있나 보지?"
 HKUMPBattleScarredDescription="외관: 전투 흔적 | 새로이 추가된 MP 계열 총기 중 하나입니다. 삼촌급 정도 되려나? 서브머신건에도 가족이 있나 보지?"
 HKUMPPreciousDescription="외관: 프레셔스 | 새로이 추가된 MP 계열 총기 중 하나입니다. 삼촌급 정도 되려나? 서브머신건에도 가족이 있나 보지?"
+HKUMPPrestigePreciousDescription="외관: 프레셔스 | 새로이 추가된 MP 계열 총기 중 하나입니다. 삼촌급 정도 되려나? 서브머신건에도 가족이 있나 보지?"
 
 ;HK UMP Names
 HKUMPPreciousName="Heckler & Koch UMP | 프레셔스"
@@ -1516,6 +1629,8 @@ HKUMPHorzineFirstEncounterMintName="Heckler & Koch UMP | Horzine First 엔카운
 HKUMPHorzineFirstEncounterFieldTestedName="Heckler & Koch UMP | Horzine First 엔카운터 | 현장 테스트 "
 HKUMPHorzineFirstEncounterBattleScarredName="Heckler & Koch UMP | Horzine First 엔카운터 | 전투 흔적 "
 HKUMPNeonRGBPreciousName="Heckler & Koch UMP | 네온 RGB | 프레셔스"
+HKUMPPrestigePreciousName="Heckler & Koch UMP | 프레스티지 | 프레셔스"
+HKUMPVaultVoshPreciousName="Heckler & Koch UMP | 볼트 | 보쉬 | 프레셔스"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="외관: 민트급 | 메스입니다. 당신은 메딕이니 사용법은 따로 설명드릴 필요가 없을 겁니다."
@@ -1608,6 +1723,7 @@ HMTech301ShotgunMintDescription="외관: 민트급 | HMTech 권총의 전투용 
 HMTech301ShotgunFieldTestedDescription="외관: 현장 테스트 | HMTech 권총의 전투용 샷건 버전입니다."
 HMTech301ShotgunBattleScarredDescription="외관: 전투흔적 | HMTech 권총의 전투용 샷건 버전입니다."
 HMTech301ShotgunPreciousDescription="외관: 프레셔스 | HMTech 권총의 전투용 샷건 버전입니다."
+HMTech301ShotgunPrestigePreciousDescription="외관: 프레셔스 | HMTech 권총의 전투용 산탄총 버전입니다."
 
 ;HMTech-301 Shotgun Names
 HMTech301ShotgunEliteUnitMintName="HMTech-301 샷건 | 엘리트 유닛 | 민트급"
@@ -1622,6 +1738,7 @@ HMTech301ShotgunNeonMintName="HMTech-301 산탄총 | 네온 | 민트"
 HMTech301ShotgunNeonFieldTestedName="HMTech-301 산탄총 | 네온 | 현장 테스트"
 HMTech301ShotgunNeonBattleScarredName="HMTech-301 산탄총 | 네온 | 전투 흔적"
 HMTech301ShotgunNeonRGBPreciousName="HMTech-301 산탄총 | 네온 RGB | 프레셔스"
+HMTech301ShotgunPrestigePreciousName="HMTech-301 산탄총 | 프레스티지 | 프레셔스"
 
 ;HMTech-401 Assault Rifle Descriptions
 HMTech401AssaultRifleMintDescription="외관: 민트급 | HMTech 권총을 완전히 강화한 돌격소총 버전입니다."
@@ -1685,6 +1802,7 @@ HuskCannonNeonBattleScarredName="Husk 캐논 | 네온 | 전투 흔적"
 HuskCannonNeonFieldTestedName="Husk 캐논 | 네온 | 현장 테스트"
 HuskCannonNeonMintName="Husk 캐논 | 네온 | 민트급"
 HuskCannonNeonRGBPreciousName="Husk 캐논 | 네온 RGB | 프레셔스"
+HuskCannonVaultVoshPreciousName="Husk 캐논 | 볼트 | 보쉬 | 프레셔스"
 
 ;HX25 Descriptions
 HX25MintDescription="외관: 민트급 | 발사 모드는 접촉 시 폭발하는 여러 개의 작은 탄환을 발사합니다."
@@ -1728,7 +1846,8 @@ HZ12HalloweenBattleScarredName="HZ12 | 할로윈 | 전투 흔적"
 HZ12PreciousName="HZ12 | 프레셔스"
 HZ12HorzineFirstEncounterMintName="HZ12 | Horzine 퍼스트 엔카운터 | 민트급 "
 HZ12HorzineFirstEncounterFieldTestedName="HZ12 | Horzine 퍼스트 엔카운터 | 현장 테스트 "
-HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine 퍼스트 엔카운터 | 전투 흔적 "
+HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine 퍼스트 엔카운터 | 전투 흔적"
+HZ12VaultVoshPreciousName="HZ12 | 볼트 | 보쉬 | 프레셔스" 
 
 ;Katana Descriptions
 KatanaMintDescription="외관: 민트급 | 이 무기의 품위를 조금만 존중해주세요."
@@ -1760,6 +1879,7 @@ KatanaBlackGoldenMintName="카타나 | 블랙 황금 | 민트"
 KatanaBlackGoldenFieldTestedName="카타나 | 블랙 황금 | 현장 테스트"
 KatanaBlackGoldenBattleScarredName="카타나 | 블랙 황금 | 전투 흔적"
 KatanaPrestigePreciousName="카타나 | 프레스티지 | 프레셔스"
+KatanaVaultVoshPreciousName="카타나 | 볼트 | 보쉬 | 프레셔스"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="외관: 민트급 | Horzine 버전의 고전적인 코만도 나이프입니다."
@@ -1811,6 +1931,9 @@ KrissHorzineFirstEncounterMintName="크리스 SMG | Horzine 퍼스트 엔카운�
 KrissHorzineFirstEncounterFieldTestedName="크리스 SMG | Horzine 퍼스트 엔카운터 | 현장 테스트 "
 KrissHorzineFirstEncounterBattleScarredName="크리스 SMG | Horzine 퍼스트 엔카운터 | 전투 흔적 "
 KrissVaultVoshPreciousName="크리스 SMG | 볼트 | 보쉬 | 프레셔스"
+KrissSynthwaveMintName="크리스 SMG | 신스웨이브 | 민트급"
+KrissSynthwaveFieldTestedName="크리스 SMG | 신스웨이브 | 현장 테스트"
+KrissSynthwaveBattleScarredName="크리스 SMG | 신스웨이브 | 전투 흔적"
 
 ;L85A2 Descriptions
 L85A2MintDescription="외관: 민트급 | SA80은 영국군이 잡아 먹히기 전에 표준 무기로 사용하였던 무기입니다."
@@ -1864,6 +1987,7 @@ M14EBRMintDescription="외관: 민트 | 해군 특수 부대, 델타 포스 및 
 M14EBRFieldTestedDescription="외관: 현장 테스트 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
 M14EBRBattleScarredDescription="외관: 전투 흔적 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
 M14EBRPreciousDescription="외관: 프레셔스 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
+M14EBRPrestigePreciousDescription="외관: 프레셔스 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
 
 ;M14EBR Names
 M14EBRIndustrialMintName="M14 EBR | 공업용 | 민트"
@@ -1884,14 +2008,17 @@ M14EBRNeonFieldTestedName="M14EBR | 네온 | 현장 테스트 "
 M14EBRNeonBattleScarredName="M14EBR | 네온 | 전투 흔적 "
 M14EBRNeonRGBPreciousName="M14EBR | 네온 RGB | 프레셔스 "
 M14EBRVaultVoshPreciousName="M14EBR | 볼트 | 보쉬 | 프레셔스"
+M14EBRPrestigePreciousName="M14EBR | 프레스티지 | 프레셔스"
 
 ;M16M203 Descriptions
 M16M203MintDescription="외관: 민트급 | 총알과 폭탄 중에 선택을 못하신 분에게 권합니다."
 M16M203FieldTestedDescription="외관: 현장 테스트 | 총알과 폭탄 중에 선택을 못하신 분에게 권합니다."
 M16M203BattleScarredDescription="외관: 전투흔적 | 총알과 폭탄 중에 선택을 못하신 분에게 권합니다."
 M16M203PreciousDescription="외관: 프레셔스 | 총알과 폭탄 중에 선택을 못하신 분에게 권합니다."
+M16M203PrestigePreciousDescription="외관: 프레셔스 | 총알과 폭탄 중에 선택을 못하신 분에게 권합니다."
 
 ;M16M203 Names
+M16M203VietnamMintName="M16 M203 | 베트남 | 민트급"
 M16M203VietnamMintName="M16 M203 | 베트남 | 민트급"
 M16M203VietnamFieldTestedName="M16 M203 | 베트남 | 현장 테스트"
 M16M203VietnamBattleScarredName="M16 M203 | 베트남 | 전투흔적"
@@ -1899,10 +2026,12 @@ M16M203JunkyardMintName="M16 M203 | 정크야드 | 민트급"
 M16M203JunkyardFieldTestedName="M16 M203 | 정크야드 | 현장 테스트"
 M16M203JunkyardBattleScarredName="M16 M203 | 정크야드 | 전투흔적"
 M16M203PreciousName="M16 M203 | 프레셔스"
-M16M2036NeonBattleScarredName="M16 M2036 | 네온 | 전투흔적"
-M16M2036NeonFieldTestedName="M16 M2036 | 네온 | 현장 테스트"
-M16M2036NeonMintName="M16 M2036 | 네온 | 민트급"
-M16M2036NeonRGBPreciousName="M16 M2036 | 네온 RGB | 프레셔스"
+M16M2036NeonBattleScarredName="M16 M203 | 네온 | 전투 흔적"
+M16M2036NeonFieldTestedName="M16 M203 | 네온 | 현장 테스트"
+M16M2036NeonMintName="M16 M203 | 네온 | 민트급"
+M16M2036NeonRGBPreciousName="M16 M203 | 네온 RGB | 프레셔스"
+M16M203PrestigePreciousName="M16 M203 | 프레스티지 | 프레셔스"
+
 
 ;M1911 Descriptions
 M1911MintDescription="외관: 민트급 | 클래식 1911 반자동 권총"
@@ -1929,12 +2058,16 @@ M1911BluefireMintName="M1911 | 블루파이어 | 민트급 "
 M1911BluefireFieldTestedName="M1911 | 블루파이어 | 현장 테스트 "
 M1911BluefireBattleScarredName="M1911 | 블루파이어 | 전투 흔적 "
 M1911PrestigePreciousName="M1911 | 프레스티지 | 프레셔스"
+M1911YinYangMintName="M1911 | 음양 | 민트급"
+M1911YinYangFieldTestedName="M1911 | 음양 | 현장 테스트"
+M1911YinYangBattleScarredName="M1911 | 음양 | 전투 흔적"
 
 ;M4 Descriptions
 M4MintDescription="외관: 민트급 | 베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
 M4FieldTestedDescription="외관: 현장 테스트 | 베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
 M4BattleScarredDescription="외관: 전투흔적 | 베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
 M4PreciousDescription="외관: 프레셔스 | 베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
+M4PretigePreciousDescription="외관: 프레셔스 | 베넬리에서 미군을 위해 M4 전투 산탄총을 설계하였습니다. 반자동 산탄총으로 지속적인 발사속도를 유지합니다."
 
 ;M4 Names
 M4MonsterKillerMintName="M4 | 몬스터 킬러 | 민트급"
@@ -1961,6 +2094,7 @@ M4NeonMintName="M4 | 네온 | 민트"
 M4NeonFieldTestedName="M4 | 네온 | 현장 테스트"
 M4NeonBattleScarredName="M4 | 네온 | 전투 흔적"
 M4NeonRGBPreciousName="M4 | 네온 RGB | 프레셔스"
+M4PrestigePreciousName="M4 | 프레스티지 | 프레셔스"
 
 ;M79 Descriptions
 M79MintDescription="외관: 민트급 | 발사 거리가 몇 미터에 불과하므로 본인의 얼굴을 날려버리지 않도록 주의하십시오."
@@ -2042,6 +2176,7 @@ MaceAndShieldNeonMintName="본 크러셔 | 네온 | 민트"
 MaceAndShieldNeonFieldTestedName="본 크러셔 | 네온 | 현장 테스트"
 MaceAndShieldNeonBattleScarredName="본 크러셔 | 네온 | 전투 흔적"
 MaceAndShieldNeonRGBPreciousName="본 크러셔 | 네온 RGB | 프레셔스"
+MaceAndShieldVaultVoshPreciousName="본 크러셔 | 볼트 | 보쉬 | 프레셔스"
 
 ;Mac 10 Descriptions
 Mac10MintDescription="외관: 민트 | 속사 화염 탄약 지원. 아시겠죠? 속사 화염이라구요! 화염 서브머신건이잖아요! 아, 됐어요."
@@ -2058,6 +2193,12 @@ Mac10NeonMintName="MAC 10 | 네온 | 민트급 "
 Mac10NeonFieldTestedName="MAC 10 | 네온 | 현장 테스트 "
 Mac10NeonBattleScarredName="MAC 10 | 네온 | 전투 흔적 "
 Mac10NeonRGBPreciousName="MAC 10 | 네온 RGB | 프레셔스 "
+
+;Medic Bat Descriptions
+MedicBatPreciousDescription="외관: 프레셔스 | 위생병 배트"
+
+;Medic Bat Names
+MedicBatPreciousName="위생병 배트 | 프레셔스"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="외관: 민트급 | 현대 기술의 경이로움: 휴대용 제드 요리기."
@@ -2136,6 +2277,10 @@ MP7BluefireMintName="MP7 | 블루파이어 | 민트급 "
 MP7BluefireFieldTestedName="MP7 | 블루파이어 | 현장 테스트 "
 MP7BluefireBattleScarredName="MP7 | 블루파이어 | 전투 흔적 "
 MP7PrestigePreciousName="MP7 | 프레스티지 | 프레셔스"
+MP7NeonMintName="MP7 | 네온 | 민트급"
+MP7NeonFieldTestedName="MP7 | 네온 | 현장 테스트"
+MP7NeonBattleScarredName="MP7 | 네온 | 전투 흔적"
+MP7NeonRGBPreciousName="MP7 | 네온 RGB | 프레셔스"
 
 ;P90 Descriptions
 P90MintDescription="외관: 민트 | 확실히 괴상한 외형을 지녔지만, 제드를 제거하는 데 탁월하며 필요하다면 레이저음을 낼 수도 있다."
@@ -2159,6 +2304,7 @@ PulverizerMintDescription="외관: 민트급 | 샷건 슬레지해머를 조합�
 PulverizerFieldTestedDescription="외관: 현장 테스트 | 샷건 슬레지해머를 조합해서 써보시는 건 어떨까요?"
 PulverizerBattleScarredDescription="외관: 전투흔적 | 샷건 슬레지해머를 조합해서 써보시는 건 어떨까요?"
 PulverizerPreciousDescription="외관: 프레셔스 | 샷건 슬레지해머를 조합해서 써보시는 건 어떨까요?"
+PulverizerPrestigePreciousDescription="외관: 프레셔스 | 산탄총 슬레지해머를 조합해서 써보시는 건 어떨까요?"
 
 ;Pulverizer Names
 PulverizerFleshMintName="분쇄기 | 플레시 | 민트급"
@@ -2178,6 +2324,10 @@ PulverizerBlackGoldenMintName="분쇄기 | 블랙 황금 | 민트"
 PulverizerBlackGoldenFieldTestedName="분쇄기 | 블랙 황금 | 현장 테스트"
 PulverizerBlackGoldenBattleScarredName="분쇄기 | 블랙 황금 | 전투 흔적"
 PulverizerVaultVoshPreciousName="분쇄기 | 볼트 | 보쉬 | 프레셔스"
+PulverizerPrestigePreciousName="분쇄기 | 프레스티지 | 프레셔스"
+PulverizerSynthwaveMintName="분쇄기 | 신스웨이브 | 민트"
+PulverizerSynthwaveFieldTestedName="분쇄기 | 신스웨이브 | 현장 테스트"
+PulverizerSynthwaveBattleScarredName="분쇄기 | 신스웨이브 | 전투흔적"
 
 ;Railgun Descriptions
 RailgunMintDescription="외관: 민트 | 이 무기는 자력을 이용하여 단단한 강철탄을 빠른 속도로 발사해 제드를 휴지조각처럼 찢어버린다."
@@ -2292,6 +2442,9 @@ ScarHorzineFirstEncounterMintName="스카 | Horzine 퍼스트 엔카운터 | 민
 ScarHorzineFirstEncounterFieldTestedName="스카 | Horzine 퍼스트 엔카운터 | 현장 테스트 "
 ScarHorzineFirstEncounterBattleScarredName="스카 | Horzine 퍼스트 엔카운터 | 전투 흔적 "
 ScarVaultVoshPreciousName="SCAR | 볼트 | 보쉬 | 프레셔스"
+ScarSynthwaveMintName="스카 | 신스웨이브 | 민트급"
+ScarSynthwaveFieldTestedName="스카 | 신스웨이브 | 현장 테스트"
+ScarSynthwaveBattleScarredName="스카 | 신스웨이브 | 전투 흔적"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="외관: 민트 | 한 번에 여러 목표물을 추적하여 공격하는 다용도 고성능 폭탄 무기입니다."
@@ -2409,6 +2562,7 @@ VLAD1000NailgunMintDescription="외관: 민트급 | Horzine 과학자 중 한 �
 VLAD1000NailgunFieldTestedDescription="외관: 현장 테스트 | Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
 VLAD1000NailgunBattleScarredDescription="외관: 전투흔적 | Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
 VLAD1000NailgunPreciousDescription="외관: 프레셔스 | Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
+VLAD1000NailgunPrestigePreciousDescription="외관: 프레셔스 | Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
 
 ;VLAD-1000 Nailgun Names
 VLAD1000NailgunArachnidMintName="VLAD-1000 네일건 | 아라크니드 | 민트급"
@@ -2418,6 +2572,7 @@ VLAD1000NailgunEmergencyIssueMintName="VLAD-1000 네일건 | 이머전시 이슈
 VLAD1000NailgunEmergencyIssueFieldTestedName="VLAD-1000 네일건 | 이머전시 이슈 | 현장 테스트"
 VLAD1000NailgunEmergencyIssueBattleScarredName="VLAD-1000 네일건 | 이머전시 이슈 | 전투흔적"
 VLAD1000NailgunPreciousName="VLAD-1000 네일건 | 프레셔스"
+VLAD1000NailgunPrestigePreciousName="VLAD-1000 네일건 | 프레스티지 | 프레셔스"
 VLAD1000NailgunBlackGoldenMintName="VLAD-1000 네일건 | 블랙 황금 | 민트"
 VLAD1000NailgunBlackGoldenFieldTestedName="VLAD-1000 네일건 | 블랙 황금 | 현장 테스트"
 VLAD1000NailgunBlackGoldenBattleScarredName="VLAD-1000 네일건 | 블랙 황금 | 전투 흔적"
@@ -2425,6 +2580,7 @@ VLAD1000NailgunVaultVoshPreciousName="VLAD-1000 네일건 | 볼트 | 보쉬 | �
 VLAD1000NailgunBluefireMintName="VLAD-1000 네일건 | 블루파이어 | 민트급 "
 VLAD1000NailgunBluefireFieldTestedName="VLAD-1000 네일건 | 블루파이어 | 현장 테스트 "
 VLAD1000NailgunBluefireBattleScarredName="VLAD-1000 네일건 | 블루파이어 | 전투 흔적 "
+VLAD1000NailgunPrestigePreciousName="VLAD-1000 네일건 | 프레스티지 | 프레셔스"
 
 ;Welder Descriptions
 WelderMintDescription="외관: 민트급 | 용접기, 난 이 도어를 용접합니다!"
@@ -2520,6 +2676,10 @@ C4PreciousDescription="외관: 프레셔스 | 원격 폭발용 와이어를 장�
 ;C4 Names
 C4PreciousName="C4 | 프레셔스"
 C4VaultVoshPreciousName="C4 | 볼트 | 보쉬 | 프레셔스"
+C4NeonMintName="C4 | 네온 | 민트급"
+C4NeonFieldTestedName="C4 | 네온 | 현장 테스트"
+C4NeonBattleScarredName="C4 | 네온 | 전투 흔적"
+C4NeonRGBPreciousName="C4 | 네온 RGB | 프레셔스"
 
 ;SharpshooterKnife Descriptions
 SharpshooterKnifeMintDescription="외관: 민트 | 구르카의 전통적인 나이프이며, 베기보다는 난도질하기에 좋습니다."
@@ -2575,6 +2735,47 @@ TommyGunPreciousDescription="외관: 프레셔스 | 시카고 타자기로 알�
 
 ;TommyGun Names
 TommyGunPrestigePreciousName="토미 건 | 프레스티지 | 프레셔스"
+TommyGunNeonMintName="토미건 | 네온 | 민트급"
+TommyGunNeonFieldTestedName="토미건 | 네온 | 현장 테스트"
+TommyGunNeonBattleScarredName="토미건 | 네온 | 전투 흔적"
+TommyGunNeonRGBPreciousName="토미건 | 네온 RGB | 프레셔스"
+
+;FNFAL Descriptions
+FNFALMintDescription="외관: 민트급 | FN FAIL이 아니랍니다. 하하! ...죄송합니다."
+FNFALFieldTestedDescription="외관: 현장 테스트 | FN FAIL이 아니랍니다. 하하! ...죄송합니다."
+FNFALBattleScarredDescription="외관: 전투 흔적 | FN FAIL이 아니랍니다. 하하! ...죄송합니다."
+FNFALPreciousDescription="외관: 프레셔스 | FN FAIL이 아니랍니다. 하하! ...죄송합니다."
+
+;FNFAL Names
+FNFALNeonMintName="FN FAL | 네온 | 민트급"
+FNFALNeonFieldTestedName="FN FAL | 네온 | 현장 테스트"
+FNFALNeonBattleScarredName="FN FAL | 네온 | 전투 흔적"
+FNFALNeonRGBPreciousName="FN FAL | 네온 RGB | 프레셔스"
+
+;FireAxe Descriptions
+FireAxeMintDescription="외관: 민트급 | 불이 난 것도 아닌데 왜 소방 도끼라고 하는 걸까요?"
+FireAxeFieldTestedDescription="외관: 현장 테스트 | 불이 난 것도 아닌데 왜 소방 도끼라고 하는 걸까요?"
+FireAxeBattleScarredDescription="외관: 전투 흔적 | 불이 난 것도 아닌데 왜 소방 도끼라고 하는 걸까요?"
+FireAxePreciousDescription="외관: 프레셔스 | 불이 난 것도 아닌데 왜 소방 도끼라고 하는 걸까요?"
+
+;FireAxe Names
+FireAxeNeonMintName="소방 도끼 | 네온 | 민트급"
+FireAxeNeonFieldTestedName="소방 도끼 | 네온 | 현장 테스트"
+FireAxeNeonBattleScarredName="소방 도끼 | 네온 | 전투 흔적"
+FireAxeNeonRGBPreciousName="소방 도끼 | 네온 RGB | 프레셔스"
+FireAxeVaultVoshPreciousName="소방 도끼 | 볼트 | 보쉬 | 프레셔스"
+
+;M32 Descriptions
+M32MintDescription="외관: 민트급 | M79 유탄 발사기 6대를 테이프로 둘둘 감는 것보다 훨씬 우아한 수단입니다."
+M32FieldTestedDescription="외관: 현장 테스트 | M79 유탄 발사기 6대를 테이프로 둘둘 감는 것보다 훨씬 우아한 수단입니다."
+M32BattleScarredDescription="외관: 전투 흔적 | M79 유탄 발사기 6대를 테이프로 둘둘 감는 것보다 훨씬 우아한 수단입니다."
+M32PreciousDescription="외관: 프레셔스 | M79 유탄 발사기 6대를 테이프로 둘둘 감는 것보다 훨씬 우아한 수단입니다."
+
+;M32 Names
+M32NeonMintName="M32 | 네온 | 민트급"
+M32NeonFieldTestedName="M32 | 네온 | 현장 테스트"
+M32NeonBattleScarredName="M32 | 네온 | 전투 흔적"
+M32NeonRGBPreciousName="M32 | 네온 RGB | 프레셔스"
 
 [CosmeticSection]
 
@@ -3960,6 +4161,141 @@ RoninMaskRedName="로닌 마스크 | 레드"
 RoninMaskWhiteName="로닌 마스크 | 화이트"
 RoninMaskYellowName="로닌 마스크 | 옐로우"
 
+;Cosmetic Item Set 17
+CyberpunkSkullHelmStandardName="사이버펑크 | 스컬 헬멧 | 표준"
+CyberpunkSkullHelmJetBlackName="사이버펑크 | 스컬 헬멧 | 제트 블랙"
+CyberpunkSkullHelmPreciousName="사이버펑크 | 스컬 헬멧 | 프레셔스"
+CyberpunkEyeandFacemaskStandardName="사이버펑크 | 눈 및 안면 마스크 | 표준"
+CyberpunkEyeandFacemaskJetBlackName="사이버펑크 | 눈 및 안면 마스크 | 제트 블랙"
+CyberpunkEyeandFacemaskPreciousName="사이버펑크 | 눈 및 안면 마스크 | 프레셔스"
+CyberpunkDigitalEyeDisplayABlueName="사이버펑크 | 디지털 눈 디스플레이 A | 블루"
+CyberpunkDigitalEyeDisplayARedName="사이버펑크 | 디지털 눈 디스플레이 A | 레드"
+CyberpunkDigitalEyeDisplayAPreciousName="사이버펑크 | 디지털 눈 디스플레이 A | 프레셔스"
+CyberpunkDigitalEyeDisplayBBlueName="사이버펑크 | 디지털 눈 디스플레이 B | 블루"
+CyberpunkDigitalEyeDisplayBRedName="사이버펑크 | 디지털 눈 디스플레이 B | 레드"
+CyberpunkDigitalEyeDisplayBPreciousName="사이버펑크 | 디지털 눈 디스플레이 B | 프레셔스"
+CyberpunkTrinityPackStandardName="사이버펑크 | 트리니티 팩 | 표준"
+CyberpunkTrinityPackJetBlackName="사이버펑크 | 트리니티 팩 | 제트 블랙"
+CyberpunkTrinityPackPreciousName="사이버펑크 | 트리니티 팩 | 프레셔스"
+CyberpunkBoostInjectorStandardName="사이버펑크 | 부스트 인젝터 | 표준"
+CyberpunkBoostInjectorJetBlackName="사이버펑크 | 부스트 인젝터 | 제트 블랙"
+CyberpunkBoostInjectorPreciousName="사이버펑크 | 부스트 인젝터 | 프레셔스"
+CyberpunkHoloPackBlueName="사이버펑크 | 홀로 팩 | 블루"
+CyberpunkHoloPackRedName="사이버펑크 | 홀로 팩 | 레드"
+CyberpunkHoloPackPreciousName="사이버펑크 | 홀로 팩 | 프레셔스"
+CyberpunkPsy-ClopsStandardName="사이버펑크 | 사이클롭스 | 표준"
+CyberpunkPsy-ClopsJetBlackName="사이버펑크 | 사이클롭스 | 제트 블랙"
+CyberpunkPsy-ClopsPreciousName="사이버펑크 | 사이클롭스 | 프레셔스"
+CyberpunkTrinityMaskStandardName="사이버펑크 | 트리니티 마스크 | 표준"
+CyberpunkTrinityMaskJetBlackName="사이버펑크 | 트리니티 마스크 | 제트 블랙"
+CyberpunkTrinityMaskPreciousName="사이버펑크 | 트리니티 마스크 | 프레셔스"
+CyberpunkTrinityArmbandStandardName="사이버펑크 | 트리니티 암밴드 | 표준"
+CyberpunkTrinityArmbandJetBlackName="사이버펑크 | 트리니티 암밴드 | 제트 블랙"
+CyberpunkTrinityArmbandPreciousName="사이버펑크 | 트리니티 암밴드 | 프레셔스"
+CyberpunkHoloArmbandABlueName="사이버펑크 | 홀로 암밴드 A | 블루"
+CyberpunkHoloArmbandARedName="사이버펑크 | 홀로 암밴드 A | 레드"
+CyberpunkHoloArmbandAPreciousName="사이버펑크 | 홀로 암밴드 A | 프레셔스"
+CyberpunkHoloArmbandBBlueName="사이버펑크 | 홀로 암밴드 B | 블루"
+CyberpunkHoloArmbandBRedName="사이버펑크 | 홀로 암밴드 B | 레드"
+CyberpunkHoloArmbandBPreciousName="사이버펑크 | 홀로 암밴드 B | 프레셔스"
+CyberpunkTrinityZedBackpackStandardName="사이버펑크 | 트리니티 Zed 백팩 | 표준"
+CyberpunkTrinityZedBackpackJetBlackName="사이버펑크 | 트리니티 Zed 백팩 | 제트 블랙"
+CyberpunkTrinityZedBackpackPreciousName="사이버펑크 | 트리니티 Zed 백팩 | 프레셔스"
+CyberpunkTechnomancerGogglesStandardName="사이버펑크 | 테크노맨서 고글 | 표준"
+CyberpunkTechnomancerGogglesJetBlackName="사이버펑크 | 테크노맨서 고글 | 제트 블랙"
+CyberpunkTechnomancerGogglesPreciousName="사이버펑크 | 테크노맨서 고글 | 프레셔스"
+
+;Cosmetic Item Set 18
+SteampunkItem1Skin1Name="스팀펑크 | 아이템 1 | 스킨 1"
+SteampunkItem1Skin2Name="스팀펑크 | 아이템 1 | 스킨 2"
+SteampunkItem1PreciousName="스팀펑크 | 아이템 1 | 프레셔스"
+SteampunkItem2Skin1Name="스팀펑크 | 아이템 2 | 스킨 1"
+SteampunkItem2Skin2Name="스팀펑크 | 아이템 2 | 스킨 2"
+SteampunkItem2PreciousName="스팀펑크 | 아이템 2 | 프레셔스"
+SteampunkItem3Skin1Name="스팀펑크 | 아이템 3 | 스킨 1"
+SteampunkItem3Skin2Name="스팀펑크 | 아이템 3 | 스킨 2"
+SteampunkItem3PreciousName="스팀펑크 | 아이템 3 | 프레셔스"
+SteampunkItem4Skin1Name="스팀펑크 | 아이템 4 | 스킨 1"
+SteampunkItem4Skin2Name="스팀펑크 | 아이템 4 | 스킨 2"
+SteampunkItem4PreciousName="스팀펑크 | 아이템 4 | 프레셔스"
+SteampunkItem5Skin1Name="스팀펑크 | 아이템 5 | 스킨 1"
+SteampunkItem5Skin2Name="스팀펑크 | 아이템 5 | 스킨 2"
+SteampunkItem5PreciousName="스팀펑크 | 아이템 5 | 프레셔스"
+SteampunkItem6Skin1Name="스팀펑크 | 아이템 6 | 스킨 1"
+SteampunkItem6Skin2Name="스팀펑크 | 아이템 6 | 스킨 2"
+SteampunkItem6PreciousName="스팀펑크 | 아이템 6 | 프레셔스"
+SteampunkItem7Skin1Name="스팀펑크 | 아이템 7 | 스킨 1"
+SteampunkItem7Skin2Name="스팀펑크 | 아이템 7 | 스킨 2"
+SteampunkItem7PreciousName="스팀펑크 | 아이템 7 | 프레셔스"
+SteampunkItem8Skin1Name="스팀펑크 | 아이템 8 | 스킨 1"
+SteampunkItem8Skin2Name="스팀펑크 | 아이템 8 | 스킨 2"
+SteampunkItem8PreciousName="스팀펑크 | 아이템 8 | 프레셔스"
+SteampunkItem9Skin1Name="스팀펑크 | 아이템 9 | 스킨 1"
+SteampunkItem9Skin2Name="스팀펑크 | 아이템 9 | 스킨 2"
+SteampunkItem9PreciousName="스팀펑크 | 아이템 9 | 프레셔스"
+SteampunkItem10Skin1Name="스팀펑크 | 아이템 10 | 스킨 1"
+SteampunkItem10Skin2Name="스팀펑크 | 아이템 10 | 스킨 2"
+SteampunkItem10PreciousName="스팀펑크 | 아이템 10 | 프레셔스"
+SteampunkItem11Skin1Name="스팀펑크 | 아이템 11 | 스킨 1"
+SteampunkItem11Skin2Name="스팀펑크 | 아이템 11 | 스킨 2"
+SteampunkItem11PreciousName="스팀펑크 | 아이템 11 | 프레셔스"
+SteampunkItem12Skin1Name="스팀펑크 | 아이템 12 | 스킨 1"
+SteampunkItem12Skin2Name="스팀펑크 | 아이템 12 | 스킨 2"
+SteampunkItem12PreciousName="스팀펑크 | 아이템 12 | 프레셔스"
+SteampunkItem13Skin1Name="스팀펑크 | 아이템 13 | 스킨 1"
+SteampunkItem13Skin2Name="스팀펑크 | 아이템 13 | 스킨 2"
+SteampunkItem13PreciousName="스팀펑크 | 아이템 13 | 프레셔스"
+SteampunkItem14Skin1Name="스팀펑크 | 아이템 14 | 스킨 1"
+SteampunkItem14Skin2Name="스팀펑크 | 아이템 14 | 스킨 2"
+SteampunkItem14PreciousName="스팀펑크 | 아이템 14 | 프레셔스"
+SteampunkItem15Skin1Name="스팀펑크 | 아이템 15 | 스킨 1"
+SteampunkItem15Skin2Name="스팀펑크 | 아이템 15 | 스킨 2"
+SteampunkItem15PreciousName="스팀펑크 | 아이템 15 | 프레셔스"
+
+;Cosmetic Item Set 19
+ArmorHoodBlackName="아머 후드 | 블랙"
+ArmorHoodBlueName="아머 후드 | 블루"
+ArmorHoodRedName="아머 후드 | 레드"
+ArmorHoodGreenName="아머 후드 | 그린"
+ArmorHoodPreciousName="아머 후드 | 프레셔스"
+FacelessMaskSingleBlackName="얼굴 없는 마스크 싱글 | 블랙"
+FacelessMaskSingleBlueName="얼굴 없는 마스크 싱글 | 블루"
+FacelessMaskSingleRedName="얼굴 없는 마스크 싱글 | 레드"
+FacelessMaskSingleGreenName="얼굴 없는 마스크 싱글 | 그린"
+FacelessMaskSingleWhiteName="얼굴 없는 마스크 싱글 | 화이트"
+FacelessMaskSinglePreciousName="얼굴 없는 마스크 싱글 | 프레셔스"
+Scy-fyHoodBlackName="사이파이 후드 | 블랙"
+Scy-fyHoodBlueName="사이파이 후드 | 블루"
+Scy-fyHoodGreenName="사이파이 후드 | 그린"
+Scy-fyHoodRedName="사이파이 후드 | 레드"
+Scy-fyHoodPreciousName="사이파이 후드 | 프레셔스"
+NoExpressionMaskBlackName="무표정 마스크 | 블랙"
+NoExpressionMaskBlueName="무표정 마스크 | 블루"
+NoExpressionMaskRedName="무표정 마스크 | 레드"
+NoExpressionMaskGreenName="무표정 마스크 | 그린"
+NoExpressionMaskWhiteName="무표정 마스크 | 화이트"
+NoExpressionMaskPreciousName="무표정 마스크 | 프레셔스"
+AnubisRedName="아누비스 | 레드"
+AnubisYellowName="아누비스 | 옐로우"
+AnubisGreenName="아누비스 | 그린"
+AnubisBlueName="아누비스 | 블루"
+AnubisPreciousName="아누비스 | 프레셔스"
+BastYellowName="바스트 | 옐로우"
+BastGreenName="바스트 | 그린"
+BastRedName="바스트 | 레드"
+BastBlueName="바스트 | 블루"
+BastPreciousName="바스트 | 프레셔스"
+RaBlueName="라 | 블루"
+RaYellowName="라 | 옐로우"
+RaGreenName="라 | 그린"
+RaRedName="라 | 레드"
+RaPreciousName="라 | 프레셔스"
+SobekGreenName="소벡 | 그린"
+SobekYellowName="소벡 | 옐로우"
+SobekBlueName="소벡 | 블루"
+SobekRedName="소벡 | 레드"
+SobekPreciousName="소벡 | 프레셔스"
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="장비 메뉴에서 장착 가능하며, 대부분의 캐릭터와 호환됩니다. 이것은 '여름 사이드쇼' 시즌 이벤트의 특별한 아이템입니다. 사이드쇼 티켓 1장으로 재활용됩니다."
 SummerSideshowFacePaintDescription="장비 메뉴에서 장착할 수 있습니다. 이것은 여름 사이드쇼 시즌 이벤트의 특별한 아이템입니다. 사이드쇼 티켓 1장으로 재활용됩니다."
@@ -4208,6 +4544,11 @@ ConfettiFXDeluxeName="파티 타임 | FX"
 GhostFXDeluxeName="유령 | FX"
 HeartsFXDeluxeName="첫 발에 반하다 | FX"
 ComicFXDeluxeName="만화 액션 | FX"
+FlowerPetalFXDeluxeName="꽃잎 | FX"
+CartoonSplatFXDeluxeName="만화 | FX"
+GameOverFXDeluxeName="게임 오버 | FX"
+GlitchFXDeluxeName="글리치 | FX"
+HorzineFXDeluxeName="Horzine 서킷 | FX"
 
 ;FX Descriptions
 
@@ -4216,3 +4557,8 @@ ConfettiFXDeluxeDescription="고어한 헤드샷 FX가 풍선과 색종이로 �
 GhostFXDeluxeDescription="고어한 헤드샷 FX가 유령으로 변경됩니다."
 HeartsFXDeluxeDescription="고어한 헤드샷 FX가 하트로 변경됩니다."
 ComicFXDeluxeDescription="고어한 헤드샷 FX가 만화 의성어로 변경됩니다."
+FlowerPetalFXDeluxeDescription="고어한 헤드샷 FX가 꽃잎으로 변경됩니다."
+CartoonSplatFXDeluxeDescription="고어한 헤드샷 FX가 만화로 변경됩니다."
+GameOverFXDeluxeDescription="고어한 헤드샷 FX가 불꽃놀이로 변경됩니다."
+GlitchFXDeluxeDescription="고어한 헤드샷 FX가 디지털 노이즈로 변경됩니다."
+HorzineFXDeluxeDescription="고어한 헤드샷 FX가 해커 콜링 카드로 변경됩니다."

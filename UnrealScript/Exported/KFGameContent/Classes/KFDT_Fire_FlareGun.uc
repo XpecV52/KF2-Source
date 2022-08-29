@@ -32,7 +32,7 @@ defaultproperties
    KnockdownPower=15.000000
    StumblePower=100.000000
    GunHitPower=150.000000
-   BurnPower=15.500000
+   BurnPower=30.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
    ModifierPerkList(1)=Class'KFGame.KFPerk_Gunslinger'
    ModifierPerkList(2)=Class'KFGame.KFPerk_Sharpshooter'

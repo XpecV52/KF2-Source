@@ -380,7 +380,14 @@ function UpdateGameSettings()
                     KFGameSettings.bInProgress = true;
                     KFGameSettings.CurrentWave = WaveNum;
                 }
-                KFGameSettings.NumWaves = WaveMax - 1;
+                if(MyKFGRI != none)
+                {
+                    KFGameSettings.NumWaves = MyKFGRI.GetFinalWaveNum();                    
+                }
+                else
+                {
+                    KFGameSettings.NumWaves = WaveMax - 1;
+                }
                 KFGameSettings.OwningPlayerName = Class'GameReplicationInfo'.default.ServerName;
                 KFGameSettings.NumPublicConnections = MaxPlayersAllowed;
                 KFGameSettings.bRequiresPassword = RequiresPassword();
@@ -397,7 +404,7 @@ function UpdateGameSettings()
                     if(GameReplicationInfo != none)
                     {
                         I = 0;
-                        J0x4A3:
+                        J0x4F3:
 
                         if(I < GameReplicationInfo.PRIArray.Length)
                         {
@@ -406,7 +413,7 @@ function UpdateGameSettings()
                                 ++ NumHumanPlayers;
                             }
                             ++ I;
-                            goto J0x4A3;
+                            goto J0x4F3;
                         }
                     }
                     KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
@@ -573,7 +580,7 @@ function RewardSurvivingPlayers()
 
 function int CalculateMinimumRespawnDosh(float UsedMaxRespawnDosh)
 {
-    return Round(UsedMaxRespawnDosh * (float(WaveNum) / float(WaveMax - 1)));
+    return Round(UsedMaxRespawnDosh * (float(WaveNum) / float(MyKFGRI.GetFinalWaveNum())));
 }
 
 function int GetAdjustedDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI, optional bool bLateJoiner)
@@ -707,7 +714,11 @@ function StartWave()
     local int WaveBuffer;
     local KFPlayerController KFPC;
 
-    MyKFGRI.CloseTrader();
+    if(MyKFGRI.OpenedTrader != none)
+    {
+        MyKFGRI.CloseTrader();
+        NotifyTraderClosed();
+    }
     WaveBuffer = 0;
     ++ WaveNum;
     MyKFGRI.WaveNum = byte(WaveNum);
@@ -719,7 +730,7 @@ function StartWave()
             WaveBuffer = ObjectiveSpawnDelay;
         }
     }
-    SpawnManager.SetupNextWave(byte(WaveNum - 1), WaveBuffer);
+    SetupNextWave(WaveBuffer);
     NumAISpawnsQueued = 0;
     AIAliveCount = 0;
     MyKFGRI.bForceNextObjective = false;
@@ -746,6 +757,11 @@ function StartWave()
             KFPC.GetPerk().OnWaveStart();
         }        
     }    
+}
+
+function SetupNextWave(int WaveBuffer)
+{
+    SpawnManager.SetupNextWave(byte(WaveNum - 1), WaveBuffer);
 }
 
 function byte GetWaveStartMessage()
@@ -1205,6 +1221,35 @@ function NotifyTraderOpened()
                     OutputLinksToActivate.AddItem(0;
                 }
                 TraderOpenedEvt.CheckActivate(self, self,, OutputLinksToActivate);
+            }
+            ++ I;
+            goto J0x75;
+        }
+    }
+}
+
+function NotifyTraderClosed()
+{
+    local KFSeqEvent_TraderClosed TraderClosedEvt;
+    local array<SequenceObject> AllTraderClosedEvents;
+    local Sequence GameSeq;
+    local int I;
+
+    GameSeq = WorldInfo.GetGameSequence();
+    if(GameSeq != none)
+    {
+        GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_TraderClosed', true, AllTraderClosedEvents);
+        I = 0;
+        J0x75:
+
+        if(I < AllTraderClosedEvents.Length)
+        {
+            TraderClosedEvt = KFSeqEvent_TraderClosed(AllTraderClosedEvents[I]);
+            if(TraderClosedEvt != none)
+            {
+                TraderClosedEvt.Reset();
+                TraderClosedEvt.SetWaveNum(WaveNum, WaveMax);
+                TraderClosedEvt.CheckActivate(self, self);
             }
             ++ I;
             goto J0x75;

@@ -1213,7 +1213,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
 End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_6
-   MaxWidth=136
+   bClientSideOnly=True
+   MaxWidth=207
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-CONTAINMENTSTATION.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),ActivateDelay=2.000000,DrawY=1269,OverrideDelta=14)
    OutputLinks(1)=(DrawY=1290,OverrideDelta=35)
    OutputLinks(2)=(DrawY=1311,OverrideDelta=56)
@@ -1221,7 +1222,7 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_6
    ParentSequence=Sequence'KF-CONTAINMENTSTATION.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=2928
    ObjPosY=1200
-   DrawWidth=137
+   DrawWidth=172
    Name="SeqEvent_LevelLoaded_6"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
 End Object

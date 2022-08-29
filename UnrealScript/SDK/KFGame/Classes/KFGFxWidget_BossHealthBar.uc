@@ -42,19 +42,23 @@ function TickHud(float DeltaTime)
     if(KFPC.bHideBossHealthBar != bLastHideValue)
     {
         bLastHideValue = KFPC.bHideBossHealthBar;
-        if(KFPC.bHideBossHealthBar)
+		// hide boss health bar shouldn't affect the escort pawn
+        if(KFPC.bHideBossHealthBar && EscortPawn == none)
         {
             SetVisible(false);
         }
-        else if(BossPawn != none)
+        else if(BossPawn != none || EscortPawn != none)
         {
             SetVisible(true);
         }
     }
-    if(KFPC.bHideBossHealthBar)
+
+	// hide boss health bar shouldn't affect the escort pawn
+    if(KFPC.bHideBossHealthBar && EscortPawn == none)
     {
         return;
     }
+
     if(BossPawn != none)
     {
         if(KFPC != none &&
@@ -85,10 +89,6 @@ function SetEscortPawn(KFPawn_Scripted NewPawn)
 	BossNameText = EscortPawn.GetLocalizedName();
 	
 	SetBossName(BossNameText);
-	if (KFPC.bHideBossHealthBar)
-	{
-		return;
-	}
 	UpdateEscortPawnHealth();
 	SetVisible(true);
 	SetEscortIcon();
@@ -128,7 +128,7 @@ simulated function Deactivate()
 
 function OnNamePlateHidden()
 {
-    if(KFPC.bHideBossHealthBar)
+    if(KFPC.bHideBossHealthBar && EscortPawn == none)
     {
         return;
     }

@@ -30,14 +30,14 @@ class PlayfabInterface extends Object
 var OnlineGameSearch PendingGameSearch;
 
 /** The playfab ID with successful login */
-var const string CachedPlayfabId;
+var const init string CachedPlayfabId;
 /** The session ticket with successful login */
-var const string CachedSessionTicket;
+var const init string CachedSessionTicket;
 
 /** The cached auth code for when talking to a backend */
-var const string CachedAuthCode;
+var const init string CachedAuthCode;
 /** Cached auth code for consuming entitlements. Used for XB1 only */
-var const string CachedAuthForEntitlements;
+var const init string CachedAuthForEntitlements;
 
 /** TRUE if login process has finished */
 var const private bool bLoginProcessFinished;
@@ -48,13 +48,16 @@ var const private INT LastAuthRefreshTime;
 /** The time in seconds for when auth should be refreshed */
 var const private INT SecondsForAuthRefreshTime;
 
+/** The time to verify the certificate at */
+var const private float VerifyCertificateTime;
+
 /** The number of login attempts we've had */
 var int LoginAttempts;
 var const private int MaxRetryLoginAttempts;
 
 
 /** The name of the catalog to use */
-var const private{private} config string CatalogName;
+var const init private{private} config string CatalogName;
 
 struct native RegionDefinition
 {
@@ -78,7 +81,7 @@ var const config array<RegionDefinition> KnownRegions;
 // var const config array<string> RegionNames;
 
 /** The current region index for the player */
-var string CurrRegionName;
+var init string CurrRegionName;
 
 /** Service label used to consume PSN entitlements */
 var const int PlayfabNPServiceLabel;
@@ -96,10 +99,10 @@ var const private{private} bool bLaunchedByPlayfab;
 var const private{private} bool bCloudServer;
 
 /** The lobby ID of the server */
-var const private{private} string CachedLobbyId;
+var const init private{private} string CachedLobbyId;
 
 /** Server ID used for registration with multiplay */
-var const private{private} string CachedServerId;
+var const init private{private} string CachedServerId;
 
 /** The elapsed time since the last heartbeat for the server */
 var const private{private} float ElapsedTimeSinceLastHeartBeat;
@@ -117,8 +120,8 @@ var const private{private} float CountdownToReregister;
 var const private{private} float ReregisterInterval;
 
 /** Endpoint APIs specified by multiplay via commandline */
-var const private{private} string AllocateAPIEndpoint;
-var const private{private} string DeallocateAPIEndpoint;
+var const init private{private} string AllocateAPIEndpoint;
+var const init private{private} string DeallocateAPIEndpoint;
 
 /** TRUE if server is actively allocated with backend */
 var private{private} bool bServerAllocated;
@@ -383,6 +386,7 @@ cpptext
 
 	UBOOL WasLaunchedByPlayfab() { return bLaunchedByPlayfab; }
 
+	virtual FString GetLobbyId() { return CachedLobbyId; }
 	virtual void SetLobbyId( const FString& InLobbyId ) { CachedLobbyId = InLobbyId; }
 
 	// Notification from OSS after entitlements have been read
@@ -413,4 +417,5 @@ defaultproperties
 	PlayfabNPServiceLabel=1
 	ReregisterInterval=10.0
 	MaxRetryLoginAttempts=3
+	VerifyCertificateTime=600.0
 }

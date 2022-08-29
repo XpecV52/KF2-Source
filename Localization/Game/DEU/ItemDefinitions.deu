@@ -23,13 +23,19 @@ DARClassicLevel20BundleName="D.A.R. – Klassisches Paket Level 20"
 DARClassicLevel25BundleName="D.A.R. – Klassisches Paket Level 25"
 MrsFosterBundleName="Mrs. Foster"
 SteampunkOutfitBundleName="Steampunk-Outfitpaket"
+CyberpunkOutfitBundleName="Cyberpunk-Outfitpaket"
+CyberpunkOutfitObjectiveBundleName="Cyberpunk-Outfit-Aufgabenpaket"
 HeadshotFXBundle1Name="Kopfschuss-FX Paket 1"
+HeadshotFXBundle2Name="Kopfschuss-FX Paket 2"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Serie #4 Verschönerungs-Bronze-Box"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Serie #4 Verschönerungs-Silber-Box"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Serie #4 Verschönerungs-Gold-Box"
 HorzineSupplyCosmeticCrateSeries8BronzeBundlePackName="Serie #8 Verschönerungs-Bronze-Box"
 HorzineSupplyCosmeticCrateSeries8SilverBundlePackName="Serie #8 Verschönerungs-Silber-Box"
 HorzineSupplyCosmeticCrateSeries8GoldBundlePackName="Serie #8 Verschönerungs-Gold-Box"
+HorzineSupplyCosmeticCrateSeries9BronzeBundlePackName="Serie #9 Verschönerungs-Bronze-Box"
+HorzineSupplyCosmeticCrateSeries9SilverBundlePackName="Serie #9 Verschönerungs-Silber-Box"
+HorzineSupplyCosmeticCrateSeries9GoldBundlePackName="Serie #9 Verschönerungs-Gold-Box"
 HorzineSupplyEmoteCrateSeries1BronzeBundlePackName="Serie #1 Emote-Bronze-Box"
 HorzineSupplyEmoteCrateSeries1SilverBundlePackName="Serie #1 Emote-Silber-Box"
 HorzineSupplyEmoteCrateSeries1GoldBundlePackName="Serie #1 Emote-Gold-Box"
@@ -48,6 +54,12 @@ HorzineSupplyWeaponCrateSeries8GoldBundlePackName="Serie #8 Waffen-Gold-Box"
 HorzineSupplyWeaponCrateSeries12BronzeBundlePackName="Serie #12 Waffen-Bronze-Box"
 HorzineSupplyWeaponCrateSeries12SilverBundlePackName="Serie #12 Waffen-Silber-Box"
 HorzineSupplyWeaponCrateSeries12GoldBundlePackName="Serie #12 Waffen-Gold-Box"
+HorzineSupplyWeaponCrateSeries13BronzeBundlePackName="Serie #13 Waffen-Bronze-Box"
+HorzineSupplyWeaponCrateSeries13SilverBundlePackName="Serie #13 Waffen-Silber-Box"
+HorzineSupplyWeaponCrateSeries13GoldBundlePackName="Serie #13 Waffen-Gold-Box"
+HorzineSupplyWeaponCrateSeries14BronzeBundlePackName="Serie #14 Waffen-Bronze-Box"
+HorzineSupplyWeaponCrateSeries14SilverBundlePackName="Serie #14 Waffen-Silber-Box"
+HorzineSupplyWeaponCrateSeries14GoldBundlePackName="Serie #14 Waffen-Gold-Box"
 HorzineSupplyCrateSeries15BronzeBundlePackName="Serie #15 Vorrats-Bronze-Box"
 HorzineSupplyCrateSeries15SilverBundlePackName="Serie #15 Vorrats-Silber-Box"
 HorzineSupplyCrateSeries15GoldBundlePackName="Serie #15 Vorrats-Gold-Box"
@@ -73,6 +85,15 @@ NeonMKIVEncryptedUSBBronzeBundlePackName="Verschlüsselter-Neon-MKIV-USB-Bronze-
 NeonMKIVEncryptedUSBSilverBundlePackName="Verschlüsselter-Neon-MKIV-USB-Silber-Box"
 NeonMKIVEncryptedUSBGoldBundlePackName="Verschlüsselter-Neon-MKIV-USB-Gold-Box"
 BadAssSantaBundleName="Krasses Santa-Paket"
+NeonMKVEncryptedUSBBronzeBundlePackName="Verschlüsselter-Neon-MKV-USB-Bronze-Box"
+NeonMKVEncryptedUSBSilverBundlePackName="Verschlüsselter-Neon-MKV-USB-Silber-Box"
+NeonMKVEncryptedUSBGoldBundlePackName="Verschlüsselter-Neon-MKV-USB-Gold-Box"
+HorzineSupplyCrateSeriesDeityBronzeBundlePackName="Gottheit-Bronze-Box"
+HorzineSupplyCrateSeriesDeitySilverBundlePackName="Gottheit-Silber-Box"
+HorzineSupplyCrateSeriesDeityGoldBundlePackName="Gottheit-Gold-Box"
+DragonwaveEncryptedUSBBronzeBundlePackName="Verschlüsselter-Drachenwelle-USB-Bronze-Box"
+DragonwaveEncryptedUSBSilverBundlePackName="Verschlüsselter-Drachenwelle-USB-Silber-Box"
+DragonwaveEncryptedUSBGoldBundlePackName="Verschlüsselter-Drachenwelle-USB-Gold-Box"
 
 
 ;Bundle Descriptions
@@ -93,13 +114,19 @@ DARClassicLevel20BundleDescription="Beinhaltet Klassische Blutige Panzerung und 
 DARClassicLevel25BundleDescription="Beinhaltet Klassische Edle Panzerung und Helm-Skins. Mit D.A.R. kompatibel."
 MrsFosterBundleDescription="Spiele als Mrs. Foster, einer der erfolgreichsten Händlerinnen Londons! Beinhaltet Weste (inklusive 6 Skin-Stilen) und Gasmaske (inklusive 6 Skin-Stilen)."
 SteampunkOutfitBundleDescription="Beinhaltet Steampunk-Outfits für Männer und Frauen (inklusive je 6 Skin-Stilen). Mit den meisten Charakteren kompatibel."
+CyberpunkOutfitBundleDescription="Beinhaltet Cyberpunk-Outfits für Männer (inklusive je 6 Skin-Stilen). Mit den meisten Charakteren kompatibel."
+CyberpunkOutfitObjectiveBundleDescription="Beinhaltet Cyberpunk-Outfits für Männer (inklusive je 1 Skin-Stil). Mit den meisten Charakteren kompatibel."
 HeadshotFXBundle1Description="Kommt mit fünf Kopfschuss-FX. Noble Kohle, Comic-Action, Partyzeit, Liebe auf den ersten Schuss und Gruselgeister."
+HeadshotFXBundle2Description="Kommt mit fünf Kopfschuss-FX. Cartoon Platscher, Feuerwerk, Blütenblatt, Bug und Horzine-Schaltkreis."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #4 Verschönerungs-Kiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Enthält zehn Exemplare der Serie #4 Verschönerungs-Kiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #4 Verschönerungs-Kiste sowie zwanzig dazugehörige Schlüssel."
 HorzineSupplyCosmeticCrateSeries8BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #8 Verschönerungs-Kiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyCosmeticCrateSeries8SilverBundlePackDescription="Enthält zehn Exemplare der Serie #8 Verschönerungs-Kiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyCosmeticCrateSeries8GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #8 Verschönerungs-Kiste sowie zwanzig dazugehörige Schlüssel."
+HorzineSupplyCosmeticCrateSeries9BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #9 Verschönerungs-Kiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyCosmeticCrateSeries9SilverBundlePackDescription="Enthält zehn Exemplare der Serie #9 Verschönerungs-Kiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyCosmeticCrateSeries9GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #9 Verschönerungs-Kiste sowie zwanzig dazugehörige Schlüssel."
 HorzineSupplyEmoteCrateSeries1BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #1 Emote-Kiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyEmoteCrateSeries1SilverBundlePackDescription="Enthält zehn Exemplare der Serie #1 Emote-Kiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyEmoteCrateSeries1GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #1 Emote-Kiste sowie zwanzig dazugehörige Schlüssel."
@@ -118,6 +145,12 @@ HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="Enthält zwanzig Exemp
 HorzineSupplyWeaponCrateSeries12BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #12 Waffenkiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries12SilverBundlePackDescription="Enthält zehn Exemplare der Serie #12 Waffenkiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries12GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #12 Waffenkiste sowie zwanzig dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries13BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #13 Waffenkiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries13SilverBundlePackDescription="Enthält zehn Exemplare der Serie #13 Waffenkiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries13GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #13 Waffenkiste sowie zwanzig dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries14BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #14 Waffenkiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries14SilverBundlePackDescription="Enthält zehn Exemplare der Serie #14 Waffenkiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #14 Waffenkiste sowie zwanzig dazugehörige Schlüssel."
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #15 Vorratskiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyCrateSeries15SilverBundlePackDescription="Enthält zehn Exemplare der Serie #15 Vorratskiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyCrateSeries15GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #15 Vorratskiste sowie zwanzig dazugehörige Schlüssel."
@@ -143,6 +176,15 @@ NeonMKIVEncryptedUSBBronzeBundlePackDescription="Enthält fünf Exemplare der Ve
 NeonMKIVEncryptedUSBSilverBundlePackDescription="Enthält zehn Exemplare der Verschlüsselter-Neon-MKIV-USB-Kiste sowie zehn dazugehörige Schlüssel."
 NeonMKIVEncryptedUSBGoldBundlePackDescription="Enthält zwanzig Exemplare der Verschlüsselter-Neon-MKIV-USB-Kiste sowie zwanzig dazugehörige Schlüssel."
 BadAssSantaBundleDescription="Spiel als krasser Santa! Beinhaltet Augenklappe (inklusive 1 Skin-Stil) und Rucksack (inklusive 1 Skin-Stil)."
+NeonMKVEncryptedUSBBronzeBundlePackDescription="Enthält fünf Exemplare der Verschlüsselter-Neon-MKV-USB-Kiste sowie fünf dazugehörige Schlüssel."
+NeonMKVEncryptedUSBSilverBundlePackDescription="Enthält zehn Exemplare der Verschlüsselter-Neon-MKV-USB-Kiste sowie zehn dazugehörige Schlüssel."
+NeonMKVEncryptedUSBGoldBundlePackDescription="Enthält zwanzig Exemplare der Verschlüsselter-Neon-MKV-USB-Kiste sowie zwanzig dazugehörige Schlüssel."
+DragonwaveEncryptedUSBBronzeBundlePackDescription="Enthält fünf Exemplare der Verschlüsselter-Drachenwelle-USB-Kiste sowie fünf dazugehörige Schlüssel."
+DragonwaveEncryptedUSBSilverBundlePackDescription="Enthält zehn Exemplare der Verschlüsselter-Drachenwelle-USB-Kiste sowie zehn dazugehörige Schlüssel."
+DragonwaveEncryptedUSBGoldBundlePackDescription="Enthält zwanzig Exemplare der Verschlüsselter-Drachenwelle-USB-Kiste sowie zwanzig dazugehörige Schlüssel."
+HorzineSupplyCrateSeriesDeityBronzeBundlePackDescription="Enthält fünf Exemplare der Gottheit-Kiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyCrateSeriesDeitySilverBundlePackDescription="Enthält zehn Exemplare der Gottheit-Kiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyCrateSeriesDeityGoldBundlePackDescription="Enthält zwanzig Exemplare der Gottheit-Kiste sowie zwanzig dazugehörige Schlüssel."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Erhalte eine neue klassische Uniform eines Londoner Polizisten für den spielbaren Charakter Wachtmeister Rob Briar. Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
@@ -237,6 +279,10 @@ JagerhornVaultPreciousSuitName="Jägerhorn | Kammer | Edel"
 MastersonVaultPreciousSuitName="Lt. Masterson | Kammer | Edel"
 RaeVaultPreciousSuitName="Rae | Kammer | Edel"
 StrasserVaultPreciousSuitName="Strasser | Kammer | Edel"
+CyberpunkHelmetName="Cyberpunk-Helm"
+CyberpunkOutfitName="Cyberpunk-Outfit"
+CyberpunkHelmetEventName="Cyberpunk-Event-Helm"
+CyberpunkOutfitEventName="Cyberpunk-Event-Outfit"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Lt. Masterson | Cyberpunk | Grün"
@@ -394,7 +440,7 @@ HorzineSupplyCrateSeries11Name="Horzine-Vorratskiste | Serie #11"
 HorzineSupplyCrateSeries12Name="Horzine-Vorratskiste | Serie #12"
 HorzineSupplyCrateSeries13Name="Horzine-Vorratskiste | Serie #13"
 HorzineSupplyCrateSeries14Name="Horzine-Vorratskiste | Serie #14"
-HorzineSupplyCrateSeries15Name="Horzine-Vorratskiste | Serie #16"
+HorzineSupplyCrateSeries15Name="Horzine-Vorratskiste | Serie #15"
 HorzineSupplyCrateSeries16Name="Horzine-Vorratskiste | Serie Schlachthaus"
 EmoteCrateSeries1Name="Emote-Kiste | Serie #1"
 EmoteCrateSeries2Name="Emote-Kiste | Serie #3"
@@ -402,10 +448,12 @@ DoshVaultUnlockedCrate1Name="Kohlekammer, Kiste #1"
 HorzineSupplyCrateSeriesDARName="Horzine-Vorratskiste | Serie D.A.R."
 HorzineSupplyCrateSeriesLocoName="Horzine-Vorratskiste | Serie Loco"
 HorzineSupplyCrateSeriesCyberSamuraiName="Cyber-Samurai-Kiste"
+HorzineSupplyCrateSeriesDiety="Horzine-Vorratskiste | Serie Gottheit"
 
 
 ;Crate Descriptions
 
+HorzineSupplyCrateSeries1Description="Man braucht einen Horzine-Vorratskistenschlüssel der Serie #1 zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Doktormaske</font><br><font color="#4b69cd">Flieger</font><br><font color="#4b69cd">Kugelsichere Devtac-Maske</font><br><font color="#4b69cd">Baseballkappe</font><br><font color="#4b69cd">Augenklappe</font><br><font color="#4b69cd">Schiebermütze</font><br><font color="#4b69cd">Schweißermaske</font><br><font color="#6600a1">Kochhut</font><br><font color="#6600a1">Chemische Gasmaske</font><br><font color="#6600a1">Boxer-Kopfschutz</font><br><font color="#6600a1">Deutsche Gasmaske</font><br><font color="#8847ff">Van Alberts-Umhang</font><br><font color="#8847ff">Van Alberts-Hut</font><br><font color="#8847ff">Schädelbrecher-Maske</font><br><font color="#8847ff">Schädelbrecher-Helm</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
 HorzineSupplyCrateSeries2Description="Man braucht einen Horzine-Vorratskistenschlüssel der Serie #2 zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Kopfband</font><br><font color="#4b69cd">Mempo</font><br><font color="#4b69cd">Retro-Sonnenbrille</font><br><font color="#4b69cd">Skimaske</font><br><font color="#4b69cd">UK-Kevlarhelm</font><br><font color="#6600a1">Deutscher Offiziershut</font><br><font color="#6600a1">Heilige Brille</font><br><font color="#6600a1">UK-Nachtsichthelm</font><br><font color="#6600a1">Vorderreihe-Schutz</font><br><font color="#6600a1">Flugmaske</font><br><font color="#6600a1">Flughelm</font><br><font color="#8847ff">Geistergestörten-Maske</font><br><font color="#8847ff">Verstärkter Helm</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
@@ -445,9 +493,11 @@ DoshVaultUnlockedCrate1Description="Beinhaltet einen der folgenden Gegenstände:
 
 HorzineSupplyCrateSeriesDARDescription="Benötigt einen D.A.R.- Vorratskistenschlüssel zum Öffnen. Beinhaltet 1 d. folg. D.A.R.-Accessoires von selt. o. bess. Qual.:<br><font color="#4b69cd">Flug-Pz. o. Helm „P51“</font><br><font color="#4b69cd">CHONN-E-5-Pz. „Gym“ o. „Zeitwürfel“</font><br><font color="#4b69cd">CHONN-E-5-Helm „Chap“ o. „Stahl“</font><br><font color="#4b69cd">C-3HZ-Pz. o. Helm „Crash“</font><br><font color="#4b69cd">C-3HZ-Pz. o. Helm „Fluss-Blau“</font><br><font color="#6600a1">Flug-Pz. o. Helm „Galaktisch“</font><br><font color="#6600a1">Flug-Pz. o. Helm „Schrei“ </font><br><font color="#6600a1">CHONN-E-5-Pz. „Batcat“</font><br><font color="#6600a1">CHONN-E-5-Helm „Dunst“</font><br><font color="#6600a1">C-3HZ-Pz. o. Helm „Obsidian“</font><br><font color="#6600a1">C-3HZ-Pz. o. Helm „Raum“</font><br><font color="#8847ff">Flug-Pz. o. Helm „Blauer Engel“</font><br><font color="#8847ff">Flug-Pz. o. Helm „Spitfire“</font><br><font color="#8847ff">CHONN-E-5-Pz. o. Helm „Horzine“</font><br><font color="#8847ff">CHONN-E-5-Pz. „Radikal“</font><br><font color="#8847ff">CHONN-E-5-Helm „Sonnenuntergang“</font><br><font color="#8847ff">C-3HZ-Pz. o. Helm „Marmor“</font><br><font color="#caab05">o. 1 extr. selt. u. wertv. Accessoire!</font>"
 
+HorzineSupplyCrateSeriesLocoDescription="Man braucht zum Öffnen einen Loco-Horzine-Vorratskisten-Schlüssel. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">Loco-Stammesmaske | Bestie | Hell</font><br><font color="#4b69cd">Loco-Stammesmaske | Tänzer | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Dämon | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Medizinmann | Hell</font><br><font color="#4b69cd">Loco-Stammesmaske | Träumer | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Schalk | Hell</font><br><font color="#4b69cd">Loco-Stammesmaske | Lord | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Schläfer | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Untoter | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Krieger | Wasser</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Ana</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Alberts</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Briar</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Strasser</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Masterson</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Donovan</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Rae</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Scully</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Klassischer Briar</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Klass. Masterson</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Jägerhorn</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Mr. Foster</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Mrs. Foster</font><br><font color="#8847ff">Loco-Stammesmaske | Bestie | Dunkel</font><br><font color="#8847ff">Loco-Stammesmaske | Tänzer | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Dämon | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Medizinmann | Dunkel</font><br><font color="#8847ff">Loco-Stammesmaske | Träumer | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Schalk | Dunkel</font><br><font color="#8847ff">Loco-Stammesmaske | Lord | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Schläfer | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Untoter | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Krieger | Feuer</font><br><font color="#8847ff">Halloween-Gesichtsfarbe 2018 | Tanaka</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
+HorzineSupplyCrateSeriesCyberSamuraiDescription="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel der Serie Cyber Samurai. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">SciFi-Horn-Helm | Grün</font><br><font color="#4b69cd">SciFi-Horn-Helm | Lila</font><br><font color="#4b69cd">SciFi-Helm ohne Gesicht | Grün</font><br><font color="#4b69cd">SciFi-Helm ohne Gesicht | Lila</font><br><font color="#4b69cd">SciFi-Atemhelm A | Grün</font><br><font color="#4b69cd">SciFi-Atemhelm A | Lila</font><br><font color="#4b69cd">SciFi-Atemhelm B | Grün</font><br><font color="#4b69cd">SciFi-Atemhelm B | Lila</font><br><font color="#4b69cd">Ausdrucksloser SciFi-Helm | Grün</font><br><font color="#4b69cd">Ausdrucksloser SciFi-Helm | Lila</font><br><font color="#4b69cd">SciFi-Helm für Samurai | Grün</font><br><font color="#4b69cd">SciFi-Helm für Samurai | Lila</font><br><font color="#4b69cd">Beinrüstung für Samurai | Grün</font><br><font color="#4b69cd">Beinrüstung für Samurai | Lila</font><br><font color="#4b69cd">Brustpanzer für Samurai | Blau</font><br><font color="#4b69cd">Brustpanzer für Samurai | Grün</font><br><font color="#4b69cd">Ronin-Hut | Grün</font><br><font color="#4b69cd">Ronin-Hut | Gelb</font><br><font color="#4b69cd">Ronin-Brille | Grün</font><br><font color="#4b69cd">Ronin-Brille | Gelb</font><br><font color="#4b69cd">Ronin-Maske | Grün</font><br><font color="#4b69cd">Ronin-Maske | Gelb</font><br><font color="#6600a1">SciFi-Horn-Helm | Schwarz</font><br><font color="#6600a1">SciFi-Horn-Helm | Blau</font><br><font color="#6600a1">SciFi-Helm ohne Gesicht | Blau</font><br><font color="#6600a1">SciFi-Atemhelm A | Blau</font><br><font color="#6600a1">SciFi-Atemhelm B | Blau</font><br><font color="#6600a1">Ausdrucksloser SciFi-Helm | Blau</font><br><font color="#6600a1">SciFi-Helm für Samurai | Blau</font><br><font color="#6600a1">Beinrüstung für Samurai | Schwarz</font><br><font color="#6600a1">Beinrüstung für Samurai | Blau</font><br><font color="#6600a1">Brustpanzer für Samurai | Blau</font><br><font color="#6600a1">Brustpanzer für Samurai | Grün</font><br><font color="#6600a1">Ronin-Hut | Weiß</font><br><font color="#6600a1">Ronin-Brille | Weiß</font><br><font color="#6600a1">Ronin-Maske | Weiß</font><br><font color="#8847ff">SciFi-Horn-Helm | Rot</font><br><font color="#8847ff">SciFi-Helm ohne Gesicht | Rot</font><br><font color="#8847ff">SciFi-Atemhelm A | Rot</font><br><font color="#8847ff">SciFi-Atemhelm B | Rot</font><br><font color="#8847ff">Ausdrucksloser SciFi-Helm | Rot</font><br><font color="#8847ff">SciFi-Helm für Samurai | Rot</font><br><font color="#8847ff">Beinrüstung für Samurai | Rot</font><br><font color="#8847ff">Brustpanzer für Samurai | Rot</font><br><font color="#8847ff">Ronin-Hut | Rot</font><br><font color="#8847ff">Ronin-Brille | Rot</font><br><font color="#8847ff">Ronin-Maske | Rot</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
-
+HorzineSupplyCrateSeriesDeityDescription="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">Panzerungskapuze | Blau</font><br><font color="#4b69cd">Panzerungskapuze | Grün</font><br><font color="#4b69cd">Gesichtslose Maske | Blau</font><br><font color="#4b69cd">Gesichtslose Maske | Grün</font><br><font color="#4b69cd">SciFi-Kapuze | Blau</font><br><font color="#4b69cd">SciFi-Kapuze | Grün</font><br><font color="#4b69cd">Ausdruckslose Maske | Blau</font><br><font color="#4b69cd">Ausdruckslose Maske | Grün</font><br><font color="#6600a1">Panzerungskapuze | Rot</font><br><font color="#6600a1">Gesichtslose Maske | Rot</font><br><font color="#6600a1">SciFi-Kapuze | Rot</font><br><font color="#6600a1">Ausdruckslose Maske | Rot</font><br><font color="#6600a1">Bast | Rot</font><br><font color="#6600a1">Bast | Gelb</font><br><font color="#6600a1">Bast | Grün</font><br><font color="#6600a1">Bast | Blau</font><br><font color="#6600a1">Sobek | Rot</font><br><font color="#6600a1">Sobek | Gelb</font><br><font color="#6600a1">Sobek | Grün</font><br><font color="#6600a1">Sobek | Blau</font><br><font color="#8847ff">Panzerungskapuze | Schwarz</font><br><font color="#8847ff">Gesichtslose Maske | Schwarz</font><br><font color="#8847ff">Gesichtslose Maske | Weiß</font><br><font color="#8847ff">SciFi-Kapuze | Schwarz</font><br><font color="#8847ff">Ausdruckslose Maske | Schwarz</font><br><font color="#8847ff">Ausdruckslose Maske | Weiß</font><br><font color="#8847ff">Anubis | Rot</font><br><font color="#8847ff">Anubis | Blau</font><br><font color="#8847ff">Anubis | Grün</font><br><font color="#8847ff">Anubis | Gelb</font><br><font color="#8847ff">Ra | Rot</font><br><font color="#8847ff">Ra | Blau</font><br><font color="#8847ff">Ra | Grün</font><br><font color="#8847ff">Ra | Gelb</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine-Vorratskistenschlüssel | Serie #1"
@@ -467,10 +517,11 @@ HorzineSupplyCrateKeySeries14Name="Horzine-Vorratskisten-Schlüssel | Serie #14"
 HorzineSupplyCrateKeySeries15Name="Horzine-Vorratskisten-Schlüssel | Serie #15"
 HorzineSupplyCrateKeySeries16Name="Horzine-Vorratskisten-Schlüssel | Serie #16"
 EmoteCrateKeySeries1Name="Emote-Kistenschlüssel | Serie #1"
-EmoteCrateKeySeries2Name="Emote-Kistenschlüssel | Serie #3"
+EmoteCrateKeySeries2Name="Emote-Kistenschlüssel | Serie #2"
 HorzineSupplyCrateKeySeriesDARName="Horzine-Vorratskisten-Schlüssel | Serie D.A.R."
 HorzineSupplyCrateKeySeriesLocoName="Horzine-Vorratskisten-Schlüssel | Serie Loco"
 HorzineSupplyCrateKeySeriesCyberSamuraiName="Cyber-Samurai-Kistenschlüssel"
+HorzineSupplyCrateKeySeriesDeityName="Horzine-Vorratskisten-Schlüssel | Serie Gottheit"
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie #1."
@@ -493,7 +544,8 @@ EmoteCrateKeySeries1Description="Dieser Schlüssel öffnet ausschließlich die E
 EmoteCrateKeySeries2Description="Dieser Schlüssel öffnet ausschließlich die Emote-Kiste der Serie #2."
 HorzineSupplyCrateKeySeriesDARDescription="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie D.A.R."
 HorzineSupplyCrateKeySeriesLocoDescription="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie Loco."
-HorzineSupplyCrateKeySeriesLCyberSamuraiDescription="Dieser Schlüssel öffnet die Vorratskiste der Serie Cyber Samurai."
+HorzineSupplyCrateKeySeriesCyberSamuraiDescription="Dieser Schlüssel öffnet die Horzine-Vorratskiste der Serie Cyber Samurai."
+HorzineSupplyCrateKeySeriesDeityDescription="Dieser Schlüssel öffnet die Horzine-Vorratskiste der Serie Gottheit."
 
 ;UsbNames
 CyberboneEncryptedUSBName="Verschlüsselter Cyberknochen-USB"
@@ -523,6 +575,8 @@ NeonMKIIEncryptedUSBName="Verschlüsselter Neon-MKII-USB"
 BluefireEncryptedUSBName="Verschlüsselter Blaufeuer-USB"
 NeonMKIIIEncryptedUSBName="Verschlüsselter Neon-MKIII-USB"
 NeonMKIVEncryptedUSBName="Verschlüsselter Neon-MKIV-USB"
+DragonwaveEncryptedUSBName="Verschlüsselter Drachenwelle-USB"
+NeonMKVEncryptedUSBName="Verschlüsselter-Neon-MKV-USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="Benötigt einen Cyberknochen-Bauplan-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">AR15 | Cyberknochen</font><br><font color="#4b69cd">AK-12 | Cyberknochen</font><br><font color="#4b69cd">AA-12 | Cyberknochen</font><br><font color="#4b69cd">Katana | Cyberknochen</font><br><font color="#8847ff">M79 | Gallensäure</font><br><font color="#8847ff">AR15 | Eindämmung</font><br><font color="#caab05">oder ein extrem seltener und wertvoller Skin!</font>"
@@ -573,12 +627,16 @@ WeaponCollectorPack1EncryptedUSBDescription="Benötigt einen Waffensammler-Pack-
 
 NeonMKIIEncryptedUSBDescription="Man braucht einen Neon-MKII-Bauplan-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">Hemogoblin | Neon</font><br><font color="#4b69cd">M14EBR | Neon</font><br><font color="#4b69cd">Seeker Six | Neon</font><br><font color="#4b69cd">Stoner 63A | Neon</font><br><font color="#4b69cd">Heckler & Koch UMP | Neon</font><br><font color="#4b69cd">HMTech-101 Pistole | Horzine-Elite-Blau</font><br><font color="#4b69cd">HMTech-101 Pistole | Horzine-Elite-Grün</font><br><font color="#4b69cd">HMTech-101 Pistole | Horzine-Elite-Weiß</font><br><font color="#8847ff">Flammenwerfer | Neon</font><br><font color="#8847ff">Mikrowellenwaffe | Neon</font><br><font color="#caab05">AA12 | Neon</font><br><font color="#8847ff">HMTech-101 Pistole | Horzine-Elite-Schwarz</font><br><font color="#6600a1">HMTech-101 Pistole | Horzine-Elite-Rot</font><br><font color="#6600a1">oder einen extrem seltenen und wertvollen Skin!</font>"
 
-
+BluefireEncryptedUSBDescription="Man braucht zum Öffnen einen Blaufeuer-Bauplan-Schlüssel. Beinhaltet einen dieser seltenen oder besseren Waffen-Skins:<br><font color="#4b69cd">AK12 | Blaufeuer</font><br><font color="#4b69cd">M1911 | Blaufeuer</font><br><font color="#4b69cd">M4 | Blaufeuer</font><br><font color="#4b69cd">M79 | Blaufeuer</font><br><font color="#4b69cd">MP7 | Blaufeuer</font><br><font color="#4b69cd">VLAD-1000 Nagelpistole | Blaufeuer</font><br><font color="#4b69cd">Boom-Knüppel | Horzine-Erstbegegnung</font><br><font color="#4b69cd">HZ12 | Horzine-Erstbegegnung</font><br><font color="#4b69cd">M79 | Horzine-Erstbegegnung</font><br><font color="#4b69cd">MP5RAS | Horzine-Erstbegegnung</font><br><font color="#6600a1">Eiswerfer | Blaufeuer</font><br><font color="#6600a1">Railgun | Blaufeuer</font><br><font color="#6600a1">Seeker Six | Blaufeuer</font><br><font color="#6600a1">Kriss-MP | Horzine-Erstbegegnung</font><br><font color="#6600a1">RPG-7 | Horzine-Erstbegegnung</font><br><font color="#6600a1">Scar | Horzine-Erstbegegnung</font><br><font color="#8847ff">Centerfire | Blaufeuer</font><br><font color="#8847ff">Hemogoblin | Blaufeuer</font><br><font color="#8847ff">RPG-7 | Blaufeuer</font><br><font color="#8847ff">AK12 | Horzine-Erstbegegnung</font><br><font color="#8847ff">Centerfire | Horzine-Erstbegegnung</font><br><font color="#8847ff">M14 EBR | Horzine-Erstbegegnung</font><br><font color="#8847ff">MAC 10 | Horzine-Erstbegegnung</font><br><font color="#8847ff">Heckler & Koch UMP | Horzine-Erstbegegnung</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
 
 NeonMKIIIEncryptedUSBDescription="Man braucht einen Neon-MKIII-Bauplan-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">9MM | Neon</font><br><font color="#4b69cd">Centerfire | Neon</font><br><font color="#4b69cd">Husk-Kanone | Neon</font><br><font color="#6600a1">AF2011-A1 | Neon</font><br><font color="#6600a1">Doomstick | Neon</font><br><font color="#6600a1">M99 | Neon</font><br><font color="#8847ff">AK-12 | Neon</font><br><font color="#8847ff">M16 M203 | Neon</font><br><font color="#8847ff">P90 | Neon</font><br><font color="#8847ff">Statischer Schläger | Neon</font><br><font color="#caab05">oder einen extrem seltenen und edlen Skin!</font>"
 
 NeonMKIVEncryptedUSBDescription="Man braucht einen Neon-MKIV-Bauplan-Schlüssel zum Öffnen.Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">HMTech-101-Pistole | Neon</font><br><font color="#4b69cd">M4 | Neon</font><br><font color="#6600a1">HMTech-301-Schrotflinte | Neon</font><br><font color="#6600a1">HMTech-401-Sturmgewehr | Neon</font><br><font color="#6600a1">HMTech-501-Granatgewehr | Neon</font><br><font color="#6600a1">Knochenmalmer | Neon</font><br><font color="#8847ff">HMTech-201 MP | Neon</font><br><font color="#8847ff">Mkb.42 | Neon</font><br><font color="#8847ff">500 Magnum Revolver | Neon</font><br><font color="#8847ff">Eiswerfer | Neon</font><br><font color="#caab05">oder einen extrem seltenen und edlen Skin!</font>"
-Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">HMTech-101 Pistol | Neon</font><br><font color="#4b69cd">M4 | Neon</font><br><font color="#6600a1">HMTech-301 Shotgun | Neon</font><br><font color="#6600a1">HMTech-401 Assault Rifle | Neon</font><br><font color="#6600a1">HMTech-501 Grenade Rifle | Neon</font><br><font color="#6600a1">Bone Crusher | Neon</font><br><font color="#8847ff">HMTech-201 SMG | Neon</font><br><font color="#8847ff">Mkb.42 | Neonn</font><br><font color="#8847ff">500 Magnum Revolver | Neon</font><br><font color="#8847ff">Freeze Thrower | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+
+DragonwaveEncryptedUSBDescription="Man braucht zum Öffnen einen Dragonwave-Bauplan-Schlüssel. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">9mm | Synthwave</font><br><font color="#4b69cd">HMTech-Heiler | Synthwave</font><br><font color="#4b69cd">Pulverisator | Synthwave</font><br><font color="#4b69cd">9mm | Yin-Yang</font><br><font color="#6600a1">Ak12 | Synthwave</font><br><font color="#6600a1">Desert Eagle | Synthwave</font><br><font color="#6600a1">Scar | Synthwave</font><br><font color="#6600a1">Boom-Knüppel | Yin-Yang</font><br><font color="#6600a1">Drachenatem | Yin-Yang</font><br><font color="#6600a1">Katana | Yin-Yang</font><br><font color="#6600a1">M79 | Yin-Yang</font><br><font color="#6600a1">500 Magnum Revolver | Yin-Yang</font><br><font color="#8847ff">Kriss-MP | Synthwave</font><br><font color="#8847ff">M1911 | Yin-Yang</font><br><font color="#8847ff">Winchester 1894 | Yin-Yang</font>"
+
+NeonMKVEncryptedUSBDescription="Man braucht zum Öffnen einen Neon-MKV-Bauplan-Schlüssel. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">AR15 | Neon</font><br><font color="#4b69cd">C4 | Neon</font><br><font color="#4b69cd">Feueraxt | Neon</font><br><font color="#4b69cd">MP7 | Neon</font><br><font color="#6600a1">Armbrust | Neon</font><br><font color="#6600a1">Desert Eagle | Neon</font><br><font color="#8847ff">Kampfaxt | Neon</font><br><font color="#8847ff">FN FAL | Neon</font><br><font color="#8847ff">Tommy-Pistole | Neon</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
+
 
 ;usb key names
 CyberboneUSBKeyName="Cyberknochen-USB-Schlüssel"
@@ -608,6 +666,8 @@ NeonMKIIUSBKeyName="Neon-MKII-USB-Schlüssel"
 BluefireUSBKeyName="Blaufeuer-USB-Schlüssel"
 NeonMKIIIUSBKeyName="Neon-MKIII-USB-Schlüssel"
 NeonMKIVUSBKeyName="Neon-MKIV-USB-Schlüssel"
+DragonwaveUSBKeyName="Drachenwelle-USB-Schlüssel"
+NeonMKVUSBKeyName="Neon-MKV-USB-Schlüssel"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="Dieser Schlüssel dient ausschließlich zur Entschlüsselung des Cyberknochen-Bauplans"
@@ -637,6 +697,8 @@ NeonMKIIUSBKeyDescription="Schlüssel zur Entschlüsselung des Neon-MKII-Bauplan
 BluefireUSBKeyDescription="Schlüssel zur Entschlüsselung des Neon-Blaufeuer-Bauplans"
 NeonMKIIIUSBKeyDescription="Dieser Schlüssel dient ausschließlich zur Entschlüsselung des Neon-MKIII-Bauplans"
 NeonMKIVUSBKeyDescription="Dieser Schlüssel dient ausschließlich zur Entschlüsselung des Verschlüsselten Neon-MKIV-Bauplans"
+DragonwaveUSBKeyDescription="Dieser Schlüssel dient ausschließlich zur Entschlüsselung des Verschlüsselten Neon-MKIV-Bauplans"
+NeonMKVUSBKeyDescription="Dieser Schlüssel dient ausschließlich zur Entschlüsselung des Verschlüsselten Neon-MKIV-Bauplans"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Horzine-Verschönerungs-Vorratskiste | Serie #1"
@@ -647,6 +709,7 @@ HorzineSupplyCosmeticCrateSeries5Name="Horzine-Verschönerungs-Vorratskiste | Se
 HorzineSupplyCosmeticCrateSeries6Name="Horzine-Verschönerungs-Vorratskiste | Serie #6"
 HorzineSupplyCosmeticCrateSeries7Name="Horzine-Verschönerungs-Vorratskiste | Serie #7"
 HorzineSupplyCosmeticCrateSeries8Name="Serie #8 Verschönerungs-Kiste"
+HorzineSupplyCosmeticCrateSeries9Name="Serie #9 Verschönerungs-Kiste"
 HorzineSupplyWeaponSkinCrateSeries1Name="Horzine Waffen-Skin Vorratskiste | Serie #1"
 HorzineSupplyWeaponSkinCrateSeries2Name="Horzine Waffen-Skin Vorratskiste | Serie #2"
 HorzineSupplyWeaponSkinCrateSeries3Name="Horzine Waffen-Skin Vorratskiste | Serie #3"
@@ -659,6 +722,8 @@ HorzineSupplyWeaponSkinCrateSeries9Name="Horzine Waffen-Skin Vorratskiste | Seri
 HorzineSupplyWeaponSkinCrateSeries10Name="Horzine Waffen-Skin Vorratskiste | Serie #10"
 HorzineSupplyWeaponSkinCrateSeries11Name="Horzine-Waffen-Skin-Vorratskiste | Serie #11"
 HorzineSupplyWeaponSkinCrateSeries12Name="Serie #12 Horzine-Waffen-Skin-Kiste"
+HorzineSupplyWeaponSkinCrateSeries13Name="Serie #13 Horzine-Waffen-Skin-Kiste"
+HorzineSupplyWeaponSkinCrateSeries14Name="Serie #14 Horzine-Waffen-Skin-Kiste"
 
 
 ;PSN Crate Descriptions
@@ -694,7 +759,7 @@ HorzineSupplyWeaponSkinCrateSeries7Description="Man braucht einen Horzine-Vorrat
 
 HorzineSupplyWeaponSkinCrateSeries8Description="Man braucht einen Horzine-Vorratskisten-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">Hemogoblin | Neon</font><br><font color="#4b69cd">M14EBR | Neon</font><br><font color="#4b69cd">Seeker Six | Neon</font><br><font color="#4b69cd">Stoner 63A | Neon</font><br><font color="#4b69cd">Heckler & Koch UMP | Neon</font><br><font color="#4b69cd">HMTech-101 Pistole | Horzine-Elite-Blau</font><br><font color="#4b69cd">HMTech-101 Pistole | Horzine-Elite-Grün</font><br><font color="#4b69cd">HMTech-101 Pistole | Horzine-Elite-Weiß</font><br><font color="#8847ff">Flammenwerfer | Neon</font><br><font color="#8847ff">Mikrowellenwaffe | Neon</font><br><font color="#caab05">AA12 | Neon</font><br><font color="#8847ff">HMTech-101 Pistole | Horzine-Elite-Schwarz</font><br><font color="#6600a1">HMTech-101 Pistole | Horzine-Elite-Rot</font><br><font color="#6600a1">oder einen extrem seltenen und wertvollen Skin!</font>"
 
-
+HorzineSupplyWeaponSkinCrateSeries9Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen dieser seltenen oder besseren Waffen-Skins:<br><font color="#4b69cd">AK12 | Blaufeuer</font><br><font color="#4b69cd">M1911 | Blaufeuer</font><br><font color="#4b69cd">M4 | Blaufeuer</font><br><font color="#4b69cd">M79 | Blaufeuer</font><br><font color="#4b69cd">MP7 | Blaufeuer</font><br><font color="#4b69cd">VLAD-1000 Nagelpistole | Blaufeuer</font><br><font color="#4b69cd">Boom-Knüppel | Horzine-Erstbegegnung</font><br><font color="#4b69cd">HZ12 | Horzine-Erstbegegnung</font><br><font color="#4b69cd">M79 | Horzine-Erstbegegnung</font><br><font color="#4b69cd">MP5RAS | Horzine-Erstbegegnung</font><br><font color="#6600a1">Eiswerfer | Blaufeuer</font><br><font color="#6600a1">Railgun | Blaufeuer</font><br><font color="#6600a1">Seeker Six | Blaufeuer</font><br><font color="#6600a1">Kriss-MP | Horzine-Erstbegegnung</font><br><font color="#6600a1">RPG-7 | Horzine-Erstbegegnung</font><br><font color="#6600a1">Scar | Horzine-Erstbegegnung</font><br><font color="#8847ff">Centerfire | Blaufeuer</font><br><font color="#8847ff">Hemogoblin | Blaufeuer</font><br><font color="#8847ff">RPG-7 | Blaufeuer</font><br><font color="#8847ff">AK12 | Horzine-Erstbegegnung</font><br><font color="#8847ff">Centerfire | Horzine-Erstbegegnung</font><br><font color="#8847ff">M14 EBR | Horzine-Erstbegegnung</font><br><font color="#8847ff">MAC 10 | Horzine-Erstbegegnung</font><br><font color="#8847ff">Heckler & Koch UMP | Horzine-Erstbegegnung</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
 
 HorzineSupplyWeaponSkinCrateSeries10Description="Man braucht einen Horzine-Vorratskisten-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">AA12 | Taktisch</font><br><font color="#4b69cd">AK12 | Taktisch</font><br><font color="#4b69cd">L85A2 | Taktisch</font><br><font color="#4b69cd">SG500 | Taktisch</font><br><font color="#4b69cd">HMTech-401 Sturmgewehr | Taktisch</font><br><font color="#4b69cd">Scar | Taktisch</font><br><font color="#6600a1">Desert Eagle | Horzine-Elite-Grün</font><br><font color="#6600a1">Desert Eagle | Horzine-Elite-Weiß</font><br><font color="#8847ff">Desert Eagle | Horzine-Elite-Blau</font><br><font color="#8847ff">Desert Eagle | Horzine-Elite-Rot</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
 
@@ -702,9 +767,15 @@ HorzineSupplyWeaponSkinCrateSeries11Description="Man braucht einen Horzine-Vorra
 
 HorzineSupplyWeaponSkinCrateSeries12Description="Man braucht einen Horzine-Vorratskistenschlüssel zum Öffnen. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">HMTech-101-Pistole | Neon</font><br><font color="#4b69cd">M4 | Neon</font><br><font color="#6600a1">HMTech-301-Schrotflinte | Neon</font><br><font color="#6600a1">HMTech-401-Sturmgewehr | Neon</font><br><font color="#6600a1">HMTech-501-Granatgewehr | Neon</font><br><font color="#6600a1">Knochenmalmer | Neon</font><br><font color="#8847ff">HMTech-201 MP | Neon</font><br><font color="#8847ff">Mkb.42 | Neon</font><br><font color="#8847ff">500 Magnum Revolver | Neon</font><br><font color="#8847ff">Eiswerfer | Neon</font><br><font color="#caab05">oder einen extrem seltenen und edlen Skin!</font>"
 
+HorzineSupplyCosmeticCrateSeries7Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">Loco-Stammesmaske | Bestie | Hell</font><br><font color="#4b69cd">Loco-Stammesmaske | Tänzer | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Dämon | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Medizinmann | Hell</font><br><font color="#4b69cd">Loco-Stammesmaske | Träumer | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Schalk | Hell</font><br><font color="#4b69cd">Loco-Stammesmaske | Lord | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Schläfer | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Untoter | Wasser</font><br><font color="#4b69cd">Loco-Stammesmaske | Krieger | Wasser</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Ana</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Alberts</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Briar</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Strasser</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Masterson</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Donovan</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Rae</font><br><font color="#4b69cd">Halloween-Gesichtsfarbe 2018 | Scully</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Klassischer Briar</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Klass. Masterson</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Jägerhorn</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Mr. Foster</font><br><font color="#6600a1">Halloween-Gesichtsfarbe 2018 | Mrs. Foster</font><br><font color="#8847ff">Loco-Stammesmaske | Bestie | Dunkel</font><br><font color="#8847ff">Loco-Stammesmaske | Tänzer | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Dämon | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Medizinmann | Dunkel</font><br><font color="#8847ff">Loco-Stammesmaske | Träumer | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Schalk | Dunkel</font><br><font color="#8847ff">Loco-Stammesmaske | Lord | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Schläfer | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Untoter | Feuer</font><br><font color="#8847ff">Loco-Stammesmaske | Krieger | Feuer</font><br><font color="#8847ff">Halloween-Gesichtsfarbe 2018 | Tanaka</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
+HorzineSupplyCosmeticCrateSeries8Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">SciFi-Horn-Helm | Grün</font><br><font color="#4b69cd">SciFi-Horn-Helm | Lila</font><br><font color="#4b69cd">SciFi-Helm ohne Gesicht | Grün</font><br><font color="#4b69cd">SciFi-Helm ohne Gesicht | Lila</font><br><font color="#4b69cd">SciFi-Atemhelm A | Grün</font><br><font color="#4b69cd">SciFi-Atemhelm A | Lila</font><br><font color="#4b69cd">SciFi-Atemhelm B | Grün</font><br><font color="#4b69cd">SciFi-Atemhelm B | Lila</font><br><font color="#4b69cd">Ausdrucksloser SciFi-Helm | Grün</font><br><font color="#4b69cd">Ausdrucksloser SciFi-Helm | Lila</font><br><font color="#4b69cd">SciFi-Helm für Samurai | Grün</font><br><font color="#4b69cd">SciFi-Helm für Samurai | Lila</font><br><font color="#4b69cd">Beinrüstung für Samurai | Grün</font><br><font color="#4b69cd">Beinrüstung für Samurai | Lila</font><br><font color="#4b69cd">Brustpanzer für Samurai | Blau</font><br><font color="#4b69cd">Brustpanzer für Samurai | Grün</font><br><font color="#4b69cd">Ronin-Hut | Grün</font><br><font color="#4b69cd">Ronin-Hut | Gelb</font><br><font color="#4b69cd">Ronin-Brille | Grün</font><br><font color="#4b69cd">Ronin-Brille | Gelb</font><br><font color="#4b69cd">Ronin-Maske | Grün</font><br><font color="#4b69cd">Ronin-Maske | Gelb</font><br><font color="#6600a1">SciFi-Horn-Helm | Schwarz</font><br><font color="#6600a1">SciFi-Horn-Helm | Blau</font><br><font color="#6600a1">SciFi-Helm ohne Gesicht | Blau</font><br><font color="#6600a1">SciFi-Atemhelm A | Blau</font><br><font color="#6600a1">SciFi-Atemhelm B | Blau</font><br><font color="#6600a1">Ausdrucksloser SciFi-Helm | Blau</font><br><font color="#6600a1">SciFi-Helm für Samurai | Blau</font><br><font color="#6600a1">Beinrüstung für Samurai | Schwarz</font><br><font color="#6600a1">Beinrüstung für Samurai | Blau</font><br><font color="#6600a1">Brustpanzer für Samurai | Blau</font><br><font color="#6600a1">Brustpanzer für Samurai | Grün</font><br><font color="#6600a1">Ronin-Hut | Weiß</font><br><font color="#6600a1">Ronin-Brille | Weiß</font><br><font color="#6600a1">Ronin-Maske | Weiß</font><br><font color="#8847ff">SciFi-Horn-Helm | Rot</font><br><font color="#8847ff">SciFi-Helm ohne Gesicht | Rot</font><br><font color="#8847ff">SciFi-Atemhelm A | Rot</font><br><font color="#8847ff">SciFi-Atemhelm B | Rot</font><br><font color="#8847ff">Ausdrucksloser SciFi-Helm | Rot</font><br><font color="#8847ff">SciFi-Helm für Samurai | Rot</font><br><font color="#8847ff">Beinrüstung für Samurai | Rot</font><br><font color="#8847ff">Brustpanzer für Samurai | Rot</font><br><font color="#8847ff">Ronin-Hut | Rot</font><br><font color="#8847ff">Ronin-Brille | Rot</font><br><font color="#8847ff">Ronin-Maske | Rot</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
+HorzineSupplyWeaponSkinCrateSeries13Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">9mm | Synthwave</font><br><br><font color="#4b69cd">HMTech-Heiler | Synthwave</font><br><br><font color="#4b69cd">Pulverisator | Synthwave</font><br><br><font color="#4b69cd">9mm | Yin-Yang</font><br><br><font color="#6600a1">Ak12 | Synthwave</font><br><font color="#6600a1">Desert Eagle | Synthwave</font><br><font color="#6600a1">Scar | Synthwave</font><br><font color="#6600a1">Boom-Knüppel | Yin-Yang</font><br><font color="#6600a1">Drachenatem | Yin-Yang</font><br><font color="#6600a1">Katana | Yin-Yang</font><br><font color="#6600a1">M79 | Yin-Yang</font><br><font color="#6600a1">500 Magnum Revolver | Yin-Yang</font><br><font color="#8847ff">Kriss-MP | Synthwave</font><br><font color="#8847ff">M1911 | Yin-Yang</font><br><font color="#8847ff">Winchester 1894 | Yin-Yang</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
+HorzineSupplyWeaponSkinCrateSeries14Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">AR15 | Neon</font><br><font color="#4b69cd">C4 | Neon</font><br><font color="#4b69cd">Feueraxt | Neon</font><br><font color="#4b69cd">MP7 | Neon</font><br><font color="#6600a1">Armbrust | Neon</font><br><font color="#6600a1">Desert Eagle | Neon</font><br><font color="#8847ff">Kampfaxt | Neon</font><br><font color="#8847ff">FN FAL | Neon</font><br><font color="#8847ff">Tommy-Pistole | Neon</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
+
+HorzineSupplyCosmeticCrateSeries9Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">Panzerungskapuze | Blau</font><br><font color="#4b69cd">Panzerungskapuze | Grün</font><br><font color="#4b69cd">Gesichtslose Maske | Blau</font><br><font color="#4b69cd">Gesichtslose Maske | Grün</font><br><font color="#4b69cd">SciFi-Kapuze | Blau</font><br><font color="#4b69cd">SciFi-Kapuze | Grün</font><br><font color="#4b69cd">Ausdruckslose Maske | Blau</font><br><font color="#4b69cd">Ausdruckslose Maske | Grün</font><br><font color="#6600a1">Panzerungskapuze | Rot</font><br><font color="#6600a1">Gesichtslose Maske | Rot</font><br><font color="#6600a1">SciFi-Kapuze | Rot</font><br><font color="#6600a1">Ausdruckslose Maske | Rot</font><br><font color="#6600a1">Bast | Rot</font><br><font color="#6600a1">Bast | Gelb</font><br><font color="#6600a1">Bast | Grün</font><br><font color="#6600a1">Bast | Blau</font><br><font color="#6600a1">Sobek | Rot</font><br><font color="#6600a1">Sobek | Gelb</font><br><font color="#6600a1">Sobek | Grün</font><br><font color="#6600a1">Sobek | Blau</font><br><font color="#8847ff">Panzerungskapuze | Schwarz</font><br><font color="#8847ff">Gesichtslose Maske | Schwarz</font><br><font color="#8847ff">Gesichtslose Maske | Weiß</font><br><font color="#8847ff">SciFi-Kapuze | Schwarz</font><br><font color="#8847ff">Ausdruckslose Maske | Schwarz</font><br><font color="#8847ff">Ausdruckslose Maske | Weiß</font><br><font color="#8847ff">Anubis | Rot</font><br><font color="#8847ff">Anubis | Blau</font><br><font color="#8847ff">Anubis | Grün</font><br><font color="#8847ff">Anubis | Gelb</font><br><font color="#8847ff">Ra | Rot</font><br><font color="#8847ff">Ra | Blau</font><br><font color="#8847ff">Ra | Grün</font><br><font color="#8847ff">Ra | Gelb</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Horzine-Vorratskistenschlüssel"
@@ -842,6 +913,9 @@ HMTechHealerVaultVoshPreciousName="HMTech-Heiler | Kammer | Vosh | Edel"
 HMTechHealerBlackGoldenMintName="HMTech-Heiler | Schwarz-Gold | Tadellos"
 HMTechHealerBlackGoldenFieldTestedName="HMTech-Heiler | Schwarz-Gold | Praxisbewährt"
 HMTechHealerBlackGoldenBattleScarredName="HMTech-Heiler | Schwarz-Gold | Kampferprobt"
+HMTechHealerSynthwaveMintName="HMTech-Heiler | Synthwave | Tadellos"
+HMTechHealerSynthwaveFieldTestedName="HMTech-Heiler | Synthwave | Praxisbewährt"
+HMTechHealerSynthwaveBattleScarredName="HMTech-Heiler | Synthwave | Kampferprobt"
 
 ;1858 Revolver Descriptions
 1858RevolverMintDescription="Äußeres: Tadellos | Ein wunderbares Beispiel des 6-Schuss-Armeerevolvers mit Hahnspannung des Kaliber .44 der Marke Remington „Modell 1858“. Uralt, aber nicht veraltet."
@@ -887,11 +961,14 @@ HMTechHealerBlackGoldenBattleScarredName="HMTech-Heiler | Schwarz-Gold | Kampfer
 500MagnumRevolverIndustrialMintName=".500 Magnum Revolver | Industriell | Tadellos"
 500MagnumRevolverIndustrialFieldTestedName=".500 Magnum Revolver | Industriell | Praxisbew."
 500MagnumRevolverIndustrialBattleScarredName=".500 Magnum Revolver | Industriell | Kampferpr."
-500MagnumRevolverNeonMintName="500 Magnum Revolver | Neon | Tadellos"
-500MagnumRevolverNeonFieldTestedName="500 Magnum Revolver | Neon | Praxisbewährt "
-500MagnumRevolverNeonBattleScarredName="500 Magnum Revolver | Neon | Kampferprobt"
-500MagnumRevolverNeonRGBPreciousName="500 Magnum Revolver | Neon-RGB | Edel"
-500MagnumRevolverVaultVoshPreciousName="500 Magnum Revolver | Kammer | Vosh | Edel"
+500MagnumRevolverNeonMintName=".500 Magnum Revolver | Neon | Tadellos"
+500MagnumRevolverNeonFieldTestedName=".500 Magnum Revolver | Neon | Praxisbewährt"
+500MagnumRevolverNeonBattleScarredName=".500 Magnum Revolver | Neon | Kampferprobt"
+500MagnumRevolverNeonRGBPreciousName=".500 Magnum Revolver | Neon-RGB | Edel"
+500MagnumRevolverVaultVoshPreciousName=".500 Magnum Revolver | Kammer | Vosh | Edel"
+500MagnumRevolverYinYangBattleScarredName="500 Magnum Revolver | Yin-Yang | Kampferprobt"
+500MagnumRevolverYinYangFieldTestedName="500 Magnum Revolver | Yin-Yang | Praxisbewährt"
+500MagnumRevolverYinYangMintName="500 Magnum Revolver | Yin-Yang | Tadellos"
 
 ;9mm Descriptions
 9MMMintDescription="Äußeres: Tadellos | Diese einfache und billige (für dich wohl eher sehr billige) Seitenwaffe wird von allen Horzine-Agenten eingesetzt."
@@ -960,6 +1037,9 @@ HMTechHealerBlackGoldenBattleScarredName="HMTech-Heiler | Schwarz-Gold | Kampfer
 9MMNeonFieldTestedName="9MM | Neon | Praxisbewährt"
 9MMNeonMintName="9MM | Neon | Tadellos"
 9MMNeonRGBPreciousName="9MM | Neon-RGB | Edel"
+9MMSynthwaveMintName="9MM | Synthwave | Tadellos"
+9MMSynthwaveFieldTestedName="9MM | Synthwave | Praxisbewährt"
+9MMSynthwaveBattleScarredName="9MM | Synthwave | Kampferprobt"
 
 ;AA12 Descriptions
 AA12MintDescription="Äußeres: Tadellos | Die AA-12 ist eine automatische Schrotflinte. Auf kurzer bis mittlerer RW strotzt sie nur so vor Zerstörungskraft, jedoch verbraucht ihr Vollautomatik-Modus Unmengen an Munition!"
@@ -1027,6 +1107,7 @@ AF2011A1NeonBattleScarredName="AF2011-A1 | Neon | Kampferprobt"
 AF2011A1NeonFieldTestedName="AF2011-A1 | Neon | Praxisbewährt"
 AF2011A1NeonMintName="AF2011-A1 | Neon | Tadellos"
 AF2011A1NeonRGBPreciousName="AF2011-A1 | Neon-RGB | Edel"
+AF2011A1VaultVoshPreciousName="AF2011-A1 | Kammer | Vosh | Edel"
 
 ;AK12 Descriptions
 AK12MintDescription="Äußeres: Tadellos | Diese AK-12 wurde von einem toten russischen Speznas-Agenten zum Scannen geborgen."
@@ -1096,6 +1177,10 @@ AK12NeonFieldTestedName="AK-12 | Neon | Praxisbewährt"
 AK12NeonMintName="AK-12 | Neon | Tadellos"
 AK12NeonRGBPreciousName="AK-12 | Neon-RGB | Edel"
 AK12VaultVoshPreciousName="AK-12 | Kammer | Vosh | Edel"
+AK12SynthwaveMintName="AK-12 | Synthwave | Tadellos"
+AK12SynthwaveFieldTestedName="AK-12 | Synthwave | Praxisbewährt"
+AK12SynthwaveBattleScarredName="AK-12 | Synthwave | Kampferprobt"
+AK12PrestigePreciousName="AK-12 | Ansehen | Edel"
 
 ;AR15 Descriptions
 AR15MintDescription="Äußeres: Tadellos | Ein altbewährtes Mittel gegen Zeds, nicht gegen Ungeziefer."
@@ -1131,6 +1216,10 @@ AR15VaultBlueCamoBattleScarredName="AR-15 | Kammer | Blaue Tarnung | Kampferprob
 AR15PreciousName="AR15 | Edel"
 AR15VaultVoshPreciousName="AR15 | Kammer | Vosh | Edel"
 AR15PrestigePreciousName="AR15 | Ansehen | Edel"
+AR15NeonMintName="AR15 | Neon | Tadellos"
+AR15NeonFieldTestedName="AR15 | Neon | Praxisbewährt"
+AR15NeonBattleScarredName="AR15 | Neon | Kampferprobt"
+AR15NeonRGBPreciousName="AR15 | Neon-RGB | Edel"
 
 ;BattleAxe Descriptions
 BattleAxeMintDescription="Äußeres: Tadellos | Altmodisch, haut aber immer noch rein wie ein Laster. Ein großer, scharfer Laster."
@@ -1145,6 +1234,10 @@ BattleAxeVaultVoshPreciousName="Kampfaxt | Kammer | Vosh | Edel"
 BattleAxeBlackGoldenMintName="Kampfaxt | Schwarz-Gold | Tadellos"
 BattleAxeBlackGoldenFieldTestedName="Kampfaxt | Schwarz-Gold | Praxisbewährt"
 BattleAxeBlackGoldenBattleScarredName="Kampfaxt | Schwarz-Gold | Kampferprobt"
+BattleAxeNeonMintName="Kampfaxt | Neon | Tadellos"
+BattleAxeNeonFieldTestedName="Kampfaxt | Neon | Praxisbewährt"
+BattleAxeNeonBattleScarredName="Kampfaxt | Neon | Kampferprobt"
+BattleAxeNeonRGBPreciousName="Kampfaxt | Neon-RGB | Edel"
 
 ;Berserker Knife Descriptions
 BerserkerKnifeMintDescription="Äußeres: Tadellos | Ja, hierbei handelt es sich tatsächlich um das Schneidmesser eines Rasenmähers. Viel Spaß!"
@@ -1235,6 +1328,7 @@ CenterfireNeonBattleScarredName="Centerfire | Neon | Kampferprobt"
 CenterfireNeonFieldTestedName="Centerfire | Neon | Praxisbewährt"
 CenterfireNeonMintName="Centerfire | Neon | Tadellos"
 CenterfireNeonRGBPreciousName="Centerfire | Neon-RGB | Edel"
+CenterfireVaultVoshPreciousName="Centerfire | Kammer | Vosh | Edel"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Äußeres: Tadellos | Eine leistungsstarke Jagdarmbrust mit gutem Durchschlag und Mannstoppwirkung!"
@@ -1258,6 +1352,10 @@ CrossbowHalloweenFieldTestedName="Armbrust | Halloween | Praxisbewährt"
 CrossbowHalloweenBattleScarredName="Armbrust | Halloween | Kampferprobt"
 CrossbowVaultVoshPreciousName="Armbrust | Kammer | Vosh | Edel"
 CrossbowPrestigePreciousName="Armbrust | Ansehen | Edel"
+CrossbowNeonMintName="Armbrust | Neon | Tadellos"
+CrossbowNeonFieldTestedName="Armbrust | Neon | Praxisbewährt"
+CrossbowNeonBattleScarredName="Armbrust | Neon | Kampferprobt"
+CrossbowNeonRGBPreciousName="Armbrust | Neon-RGB | Edel"
 
 ;Crovel Descriptions
 CrovelMintDescription="Äußeres: Tadellos | Halb Brechstange, halb Schaufel. Ganz tödlich."
@@ -1287,6 +1385,7 @@ DesertEagleMintDescription="Äußeres: Tadellos | Die Desert Eagle ist das Monst
 DesertEagleFieldTestedDescription="Äußeres: Praxisbewährt | Die Desert Eagle ist das Monster unter den Handfeuerwaffen. Deswegen nennt man sie auch „Handkanone“."
 DesertEagleBattleScarredDescription="Äußeres: Kampferprobt | Die Desert Eagle ist das Monster unter den Handfeuerwaffen. Deswegen nennt man sie auch „Handkanone“."
 DesertEaglePreciousDescription="Äußeres: Edel | Die Desert Eagle ist das Monster unter den Handfeuerwaffen. Deswegen nennt man sie auch „Handkanone“."
+DesertEaglePrestigePreciousDescription="Äußeres: Edel | Die Desert Eagle ist das Monster unter den Handfeuerwaffen. Deswegen nennt man sie auch „Handkanone“."
 
 ;Desert Eagle Names
 DesertEagleEmergencyIssueMintName="Desert Eagle | Notfall | Tadellos"
@@ -1315,6 +1414,15 @@ DesertEagleHorzineEliteWhiteMintName="Desert Eagle | Horzine-Elite-Weiß | Tadel
 DesertEagleHorzineEliteWhiteFieldTestedName="Desert Eagle | Horzine-Elite-Weiß | Praxisbewährt"
 DesertEagleHorzineEliteWhiteBattleScarredName="Desert Eagle | Horzine-Elite-Weiß | Kampferprobt"
 DesertEagleVaultVoshPreciousName="Desert Eagle | Kammer | Vosh | Edel"
+DesertEaglePrestigePreciousName="Desert Eagle | Ansehen | Edel"
+DesertEagleNeonMintName="Desert Eagle | Neon | Tadellos"
+DesertEagleNeonFieldTestedName="Desert Eagle | Neon | Praxisbewährt"
+DesertEagleNeonBattleScarredName="Desert Eagle | Neon | Kampferprobt"
+DesertEagleNeonRGBPreciousName="Desert Eagle | Neon-RGB | Edel"
+DesertEagleSynthwaveMintName="Desert Eagle | Synthwave | Tadellos"
+DesertEagleSynthwaveFieldTestedName="Desert Eagle | Synthwave | Praxisbewährt"
+DesertEagleSynthwaveBattleScarredName="Desert Eagle | Synthwave | Kampferprobt"
+
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Äußeres: Tadellos | Wenn zwei Mal so viel Spaß nicht reicht … wie wär's mit vier?"
@@ -1392,6 +1500,7 @@ FlamethrowerMintDescription="Äußeres: Tadellos | Ein Klassiker, egal, wie alt 
 FlamethrowerFieldTestedDescription="Äußeres: Praxisbewährt | Ein Klassiker, egal, wie alt man ist. Im Zweifelsfall einfach alles niederbrennen."
 FlamethrowerBattleScarredDescription="Äußeres: Kampferprobt | Ein Klassiker, egal, wie alt man ist. Im Zweifelsfall einfach alles niederbrennen."
 FlamethrowerPreciousDescription="Äußeres: Edel | Ein Klassiker, egal, wie alt man ist. Im Zweifelsfall einfach alles niederbrennen."
+FlamethrowerPrestigePreciousDescription="Äußeres: Edel | Ein Klassiker, egal, wie alt man ist. Im Zweifelsfall einfach alles niederbrennen."
 
 ;Flamethrower Names
 FlamethrowerDragonfireMintName="Flammenwerfer | Drachenfeuer | Tadellos"
@@ -1409,6 +1518,7 @@ FlamethrowerNeonFieldTestedName="Flammenwerfer | Neon | Praxisbewährt "
 FlamethrowerNeonBattleScarredName="Flammenwerfer | Neon | Kampferprobt "
 FlamethrowerNeonRGBPreciousName="Flammenwerfer | Neon-RGB | Edel "
 FlamethrowerVaultVoshPreciousName="Flammenwerfer | Kammer | Vosh | Edel"
+FlamethrowerPrestigePreciousName="Flammenwerfer | Ansehen | Edel"
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="Äußeres: Tadellos | Ein Feuer-System in einem praktischeren Paket in Reisegröße."
@@ -1442,6 +1552,7 @@ FlarePistolFlameRedBattleScarredName="Spitfire | Flammenrot | Kampferprobt"
 FlarePistolHeirloomMintName="Spitfire | Erbstück | Tadellos"
 FlarePistolHeirloomFieldTestedName="Spitfire | Erbstück | Praxisbewährt"
 FlarePistolHeirloomBattleScarredName="Spitfire | Erbstück | Kampferprobt"
+FlarePistolVaultVoshPreciousName="Spitfire | Kammer | Vosh | Edel"
 
 ;Freeze Thrower Names
 FreezeThrowerPreciousName="Eiswerfer | Edel"
@@ -1500,12 +1611,14 @@ HemogoblinNeonMintName="Hemogoblin | Neon | Tadellos "
 HemogoblinNeonFieldTestedName="Hemogoblin | Neon | Praxisbewährt "
 HemogoblinNeonBattleScarredName="Hemogoblin | Neon | Kampferprobt"
 HemogoblinNeonRGBPreciousName="Hemogoblin | Neon-RGB | Edel"
+HemogoblinVaultVoshPreciousName="Hemogoblin | Kammer | Vosh | Edel"
 
 ;HK UMP Descriptions
 HKUMPMintDescription="Äußeres: Tadellos | Eines der neueren Mitglieder der MP-Familie. Vielleicht ein Onkel? Haben Maschinenpistolen Familien?"
 HKUMPFieldTestedDescription="Äußeres: Praxisbewährt | Eines der neueren Mitglieder der MP-Familie. Vielleicht ein Onkel? Haben Maschinenpistolen Familien?"
 HKUMPBattleScarredDescription="Äußeres: Kampferprobt | Eines der neueren Mitglieder der MP-Familie. Vielleicht ein Onkel? Haben Maschinenpistolen Familien?"
 HKUMPPreciousDescription="Äußeres: Edel | Eines der neueren Mitglieder der MP-Familie. Vielleicht ein Onkel? Haben Maschinenpistolen Familien?"
+HKUMPPrestigePreciousDescription="Äußeres: Edel | Eines der neueren Mitglieder der MP-Familie. Vielleicht ein Onkel? Haben Maschinenpistolen Familien?"
 
 ;HK UMP Names
 HKUMPPreciousName="Heckler & Koch UMP | Edel"
@@ -1516,6 +1629,8 @@ HKUMPHorzineFirstEncounterMintName="Heckler & Koch UMP | Horzine-Erstbegegnung |
 HKUMPHorzineFirstEncounterFieldTestedName="Heckler & Koch UMP | Horzine-Erstbegegnung | Praxisbewährt "
 HKUMPHorzineFirstEncounterBattleScarredName="Heckler & Koch UMP | Horzine-Erstbegegnung | Kampferprobt "
 HKUMPNeonRGBPreciousName="Heckler & Koch UMP | Neon-RGB | Edel"
+HKUMPPrestigePreciousName="Heckler & Koch UMP | Ansehen | Edel"
+HKUMPVaultVoshPreciousName="Heckler & Koch UMP | Kammer | Vosh | Edel"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Äußeres: Tadellos | Ein Skalpell. Du bist Sanitäter, also brauchst du auch hoffentlich keine Erklärung für dieses Messer."
@@ -1608,6 +1723,7 @@ HMTech301ShotgunMintDescription="Äußeres: Tadellos | Wie die HMTech-Pistole, n
 HMTech301ShotgunFieldTestedDescription="Äußeres: Praxisbewährt | Wie die HMTech-Pistole, nur eben eine Kampfschrotflinte."
 HMTech301ShotgunBattleScarredDescription="Äußeres: Kampferprobt | Wie die HMTech-Pistole, nur eben eine Kampfschrotflinte."
 HMTech301ShotgunPreciousDescription="Äußeres: Edel | Wie die HMTech-Pistole, nur eben eine Kampfschrotflinte."
+HMTech301ShotgunPrestigePreciousDescription="Äußeres: Edel | Wie die HMTech-Pistole, nur eben eine Kampfschrotflinte."
 
 ;HMTech-301 Shotgun Names
 HMTech301ShotgunEliteUnitMintName="HMTech-301-Schrotflinte | Elite | Tadellos"
@@ -1622,6 +1738,7 @@ HMTech301ShotgunNeonMintName="HMTech-301-Schrotflinte | Neon | Tadellos"
 HMTech301ShotgunNeonFieldTestedName="HMTech-301-Schrotflinte | Neon | Praxisbewährt"
 HMTech301ShotgunNeonBattleScarredName="HMTech-301-Schrotflinte | Neon | Kampferprobt"
 HMTech301ShotgunNeonRGBPreciousName="HMTech-301-Schrotflinte | Neon-RGB | Edel"
+HMTech301ShotgunPrestigePreciousName="HMTech-301-Schrotflinte | Ansehen | Edel"
 
 ;HMTech-401 Assault Rifle Descriptions
 HMTech401AssaultRifleMintDescription="Äußeres: Tadellos | Wie die HMTech-Pistole, nur eben ein waschechtes Sturmgewehr."
@@ -1685,6 +1802,7 @@ HuskCannonNeonBattleScarredName="Husk-Kanone | Neon | Kampferprobt"
 HuskCannonNeonFieldTestedName="Husk-Kanone | Neon | Praxisbewährt"
 HuskCannonNeonMintName="Husk-Kanone | Neon | Tadellos"
 HuskCannonNeonRGBPreciousName="Husk-Kanone | Neon-RGB | Edel"
+HuskCannonVaultVoshPreciousName="Husk-Kanone | Kammer | Vosh | Edel"
 
 ;HX25 Descriptions
 HX25MintDescription="Äußeres: Tadellos | Der Feuer-Modus feuert Submunition ab, die beim Aufprall explodiert."
@@ -1728,7 +1846,8 @@ HZ12HalloweenBattleScarredName="HZ12 | Halloween | Kampferprobt"
 HZ12PreciousName="HZ12 | Edel"
 HZ12HorzineFirstEncounterMintName="HZ12 | Horzine-Erstbegegnung | Tadellos "
 HZ12HorzineFirstEncounterFieldTestedName="HZ12 | Horzine-Erstbegegnung | Praxisbewährt "
-HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine-Erstbegegnung | Kampferprobt "
+HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine-Erstbegegnung | Kampferprobt"
+HZ12VaultVoshPreciousName="HZ12 | Kammer | Vosh | Edel" 
 
 ;Katana Descriptions
 KatanaMintDescription="Äußeres: Tadellos | Zeig dieser Waffe gefälligst ein bisschen mehr Respekt!"
@@ -1760,6 +1879,7 @@ KatanaBlackGoldenMintName="Katana | Schwarz-Gold | Tadellos"
 KatanaBlackGoldenFieldTestedName="Katana | Schwarz-Gold | Praxisbewährt"
 KatanaBlackGoldenBattleScarredName="Katana | Schwarz-Gold | Kampferprobt"
 KatanaPrestigePreciousName="Katana | Ansehen | Edel"
+KatanaVaultVoshPreciousName="Katana | Kammer | Vosh | Edel"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="Äußeres: Tadellos | Horzines Interpretation des klassischen Kommandomessers."
@@ -1811,6 +1931,9 @@ KrissHorzineFirstEncounterMintName="Kriss-MP | Horzine-Erstbegegnung | Tadellos 
 KrissHorzineFirstEncounterFieldTestedName="Kriss-MP | Horzine-Erstbegegnung | Praxisbewährt "
 KrissHorzineFirstEncounterBattleScarredName="Kriss-MP | Horzine-Erstbegegnung | Kampferprobt "
 KrissVaultVoshPreciousName="Kriss-MP | Kammer | Vosh | Edel"
+KrissSynthwaveMintName="Kriss-MP | Synthwave | Tadellos"
+KrissSynthwaveFieldTestedName="Kriss-MP | Synthwave | Praxisbewährt"
+KrissSynthwaveBattleScarredName="Kriss-MP | Synthwave | Kampferprobt"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Äußeres: Tadellos | Die SA80 war die Standardwaffe der britischen Armee. Das war, bevor die Armee ... naja ... auf der Speisekarte landete."
@@ -1864,6 +1987,7 @@ M14EBRMintDescription="Äußeres: Tadellos | Das bevorzugte Scharfschützengeweh
 M14EBRFieldTestedDescription="Äußeres: Praxisbewährt | Das bevorzugte Scharfschützengewehr der Navy SEALs, Delta Force und anderen knallharten Typen."
 M14EBRBattleScarredDescription="Äußeres: Kampferprobt | Das bevorzugte Scharfschützengewehr der Navy SEALs, Delta Force und anderen knallharten Typen."
 M14EBRPreciousDescription="Äußeres: Edel | Das bevorzugte Scharfschützengewehr der Navy SEALs, Delta Force und anderen knallharten Typen."
+M14EBRPrestigePreciousDescription="Äußeres: Edel | Das bevorzugte Scharfschützengewehr der Navy SEALs, Delta Force und anderen knallharten Typen."
 
 ;M14EBR Names
 M14EBRIndustrialMintName="M14 EBR | Industriell | Tadellos"
@@ -1884,14 +2008,17 @@ M14EBRNeonFieldTestedName="M14EBR | Neon | Praxisbewährt "
 M14EBRNeonBattleScarredName="M14EBR | Neon | Kampferprobt "
 M14EBRNeonRGBPreciousName="M14EBR | Neon-RGB | Edel "
 M14EBRVaultVoshPreciousName="M14 EBR | Kammer | Vosh | Edel"
+M14EBRPrestigePreciousName="M14 EBR | Ansehen | Edel"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Äußeres: Tadellos | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
 M16M203FieldTestedDescription="Äußeres: Praxisbewährt | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
 M16M203BattleScarredDescription="Äußeres: Kampferprobt | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
 M16M203PreciousDescription="Äußeres: Edel | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
+M16M203PrestigePreciousDescription="Äußeres: Edel | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
 
 ;M16M203 Names
+M16M203VietnamMintName="M16 M203 | Vietnam | Tadellos"
 M16M203VietnamMintName="M16 M203 | Vietnam | Tadellos"
 M16M203VietnamFieldTestedName="M16 M203 | Vietnam | Praxisbewährt"
 M16M203VietnamBattleScarredName="M16 M203 | Vietnam | Kampferprobt"
@@ -1899,10 +2026,12 @@ M16M203JunkyardMintName="M16 M203 | Schrottplatz | Tadellos"
 M16M203JunkyardFieldTestedName="M16 M203 | Schrottplatz | Praxisbewährt"
 M16M203JunkyardBattleScarredName="M16 M203 | Schrottplatz | Kampferprobt"
 M16M203PreciousName="M16 M203 | Edel"
-M16M2036NeonBattleScarredName="M16 M2036 | Neon | Kampferprobt"
-M16M2036NeonFieldTestedName="M16 M2036 | Neon | Praxisbewährt"
-M16M2036NeonMintName="M16 M2036 | Neon | Tadellos"
-M16M2036NeonRGBPreciousName="M16 M2036 | Neon-RGB | Edel"
+M16M2036NeonBattleScarredName="M16 M203 | Neon | Kampferprobt"
+M16M2036NeonFieldTestedName="M16 M203 | Neon | Praxisbewährt"
+M16M2036NeonMintName="M16 M203 | Neon | Tadellos"
+M16M2036NeonRGBPreciousName="M16 M203 | Neon-RGB | Edel"
+M16M203PrestigePreciousName="M16 M203 | Ansehen | Edel"
+
 
 ;M1911 Descriptions
 M1911MintDescription="Äußeres: Tadellos | Der klassische Colt 1911, eine Halbautomatikpistole."
@@ -1929,12 +2058,16 @@ M1911BluefireMintName="M1911 | Blaufeuer | Tadellos "
 M1911BluefireFieldTestedName="M1911 | Blaufeuer | Praxisbewährt "
 M1911BluefireBattleScarredName="M1911 | Blaufeuer | Kampferprobt "
 M1911PrestigePreciousName="M1911 | Ansehen | Edel"
+M1911YinYangMintName="M1911 | Yin-Yang | Tadellos"
+M1911YinYangFieldTestedName="M1911 | Yin-Yang | Praxisbewährt"
+M1911YinYangBattleScarredName="M1911 | Yin-Yang | Kampferprobt"
 
 ;M4 Descriptions
 M4MintDescription="Äußeres: Tadellos | Benelli entwarf die M4-Kampfschrotflinte für das US-Militär. Da es sich hierbei um eine halbautomatische Waffe handelt, besticht sie durch eine beeindruckende Schussfolge."
 M4FieldTestedDescription="Äußeres: Praxisbewährt | Benelli entwarf die M4-Kampfschrotflinte für das US-Militär. Da es sich hierbei um eine halbautomatische Waffe handelt, besticht sie durch eine beeindruckende Schussfolge."
 M4BattleScarredDescription="Äußeres: Kampferprobt | Benelli entwarf die M4-Kampfschrotflinte für das US-Militär. Da es sich hierbei um eine halbautomatische Waffe handelt, besticht sie durch eine beeindruckende Schussfolge."
 M4PreciousDescription="Äußeres: Edel | Benelli entwarf die M4-Kampfschrotflinte für das US-Militär. Da es sich hierbei um eine halbautomatische Waffe handelt, besticht sie durch eine beeindruckende Schussfolge."
+M4PretigePreciousDescription="Äußeres: Edel | Benelli entwarf die M4-Kampfschrotflinte für das US-Militär. Da es sich hierbei um eine halbautomatische Waffe handelt, besticht sie durch eine beeindruckende Schussfolge."
 
 ;M4 Names
 M4MonsterKillerMintName="M4 | Monster-Killer | Tadellos"
@@ -1961,6 +2094,7 @@ M4NeonMintName="M4 | Neon | Tadellos"
 M4NeonFieldTestedName="M4 | Neon | Praxisbewährt"
 M4NeonBattleScarredName="M4 | Neon | Kampferprobt"
 M4NeonRGBPreciousName="M4 | Neon-RGB | Edel"
+M4PrestigePreciousName="M4 | Ansehen | Edel"
 
 ;M79 Descriptions
 M79MintDescription="Äußeres: Tadellos | Die Munition wird erst in ein paar Metern Entfernung scharf, damit du dir nicht aus Versehen dein eigenes Gesicht wegbläst."
@@ -2042,6 +2176,7 @@ MaceAndShieldNeonMintName="Knochenmalmer | Neon | Tadellos"
 MaceAndShieldNeonFieldTestedName="Knochenmalmer | Neon | Praxisbewährt"
 MaceAndShieldNeonBattleScarredName="Knochenmalmer | Neon | Kampferprobt"
 MaceAndShieldNeonRGBPreciousName="Knochenmalmer | Neon-RGB | Edel"
+MaceAndShieldVaultVoshPreciousName="Knochenmalmer | Kammer | Vosh | Edel"
 
 ;Mac 10 Descriptions
 Mac10MintDescription="Äußeres: Tadellos | Nutzt Schnellfeuer-Brandmunition. Kapiert? Schnellfeuer? Weil es eine Brand-Maschinenpistole ist? Ach, vergiss es."
@@ -2058,6 +2193,12 @@ Mac10NeonMintName="MAC-10 | Neon | Tadellos "
 Mac10NeonFieldTestedName="MAC-10 | Neon | Praxisbewährt "
 Mac10NeonBattleScarredName="MAC-10 | Neon | Kampferprobt "
 Mac10NeonRGBPreciousName="MAC-10 | Neon-RGB | Edel "
+
+;Medic Bat Descriptions
+MedicBatPreciousDescription="Äußeres: Edel | Sanitäter-Schlagstock"
+
+;Medic Bat Names
+MedicBatPreciousName="Sanitäter-Schlagstock | Edel"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Äußeres: Tadellos | Die Wunder der modernen Technologie: ein handlicher Zed-Kocher."
@@ -2136,6 +2277,10 @@ MP7BluefireMintName="MP7 | Blaufeuer | Tadellos "
 MP7BluefireFieldTestedName="MP7 | Blaufeuer | Praxisbewährt "
 MP7BluefireBattleScarredName="MP7 | Blaufeuer | Kampferprobt "
 MP7PrestigePreciousName="MP7 | Ansehen | Edel"
+MP7NeonMintName="MP7 | Neon | Tadellos"
+MP7NeonFieldTestedName="MP7 | Neon | Praxisbewährt"
+MP7NeonBattleScarredName="MP7 | Neon | Kampferprobt"
+MP7NeonRGBPreciousName="MP7 | Neon-RGB | Edel"
 
 ;P90 Descriptions
 P90MintDescription="Äußeres: Tadellos | Sieht zwar komisch aus, aber Zeds lösen sich damit förmlich in Luft auf. Außerdem kann man Lasergeräusche machen, man auf so etwas steht."
@@ -2159,6 +2304,7 @@ PulverizerMintDescription="Äußeres: Tadellos | Wer sagt denn schon zu einer Sc
 PulverizerFieldTestedDescription="Äußeres: Praxisbewährt | Wer sagt denn schon zu einer Schrotflinte mit einem Vorschlaghammer Nein?"
 PulverizerBattleScarredDescription="Äußeres: Kampferprobt | Wer sagt denn schon zu einer Schrotflinte mit einem Vorschlaghammer Nein?"
 PulverizerPreciousDescription="Äußeres: Edel | Wer sagt denn schon zu einer Schrotflinte mit einem Vorschlaghammer Nein?"
+PulverizerPrestigePreciousDescription="Äußeres: Edel | Wer sagt denn schon zu einer Schrotflinte mit einem Vorschlaghammer Nein?"
 
 ;Pulverizer Names
 PulverizerFleshMintName="Pulverisator | Fleisch | Tadellos"
@@ -2178,6 +2324,10 @@ PulverizerBlackGoldenMintName="Pulverisator | Schwarz-Gold | Tadellos"
 PulverizerBlackGoldenFieldTestedName="Pulverisator | Schwarz-Gold | Praxisbewährt"
 PulverizerBlackGoldenBattleScarredName="Pulverisator | Schwarz-Gold | Kampferprobt"
 PulverizerVaultVoshPreciousName="Pulverisator | Kammer | Vosh | Edel"
+PulverizerPrestigePreciousName="Pulverisator | Ansehen | Edel"
+PulverizerSynthwaveMintName="Pulverisator | Synthwave | Tadellos"
+PulverizerSynthwaveFieldTestedName="Pulverisator | Synthwave | Praxisbewährt"
+PulverizerSynthwaveBattleScarredName="Pulverisator | Synthwave | Kampferprobt"
 
 ;Railgun Descriptions
 RailgunMintDescription="Äußeres: Tadellos | Diese Waffe feuert ein Stahlgeschoss mittels Magneten ab, das Zeds zu extrem hohen Geschwindigkeiten mit Leichtigkeit durchlöchert."
@@ -2292,6 +2442,9 @@ ScarHorzineFirstEncounterMintName="Scar | Horzine-Erstbegegnung | Tadellos "
 ScarHorzineFirstEncounterFieldTestedName="Scar | Horzine-Erstbegegnung | Praxisbewährt "
 ScarHorzineFirstEncounterBattleScarredName="Scar | Horzine-Erstbegegnung | Kampferprobt "
 ScarVaultVoshPreciousName="SCAR | Kammer | Vosh | Edel"
+ScarSynthwaveMintName="Scar | Synthwave | Tadellos"
+ScarSynthwaveFieldTestedName="Scar | Synthwave | Praxisbewährt"
+ScarSynthwaveBattleScarredName="Scar | Synthwave | Kampferprobt"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="Äußeres: Tadellos | Eine vielseitige, hochexplosive Waffe, die mehrere Ziele auf einmal verfolgen und bekämpfen kann."
@@ -2409,6 +2562,7 @@ VLAD1000NailgunMintDescription="Äußeres: Tadellos | Wie wir hörten, hat einer
 VLAD1000NailgunFieldTestedDescription="Äußeres: Praxisbewährt | Wie wir hörten, hat einer von Horzines Wissenschaftlern sich die Nagelpistole von einem (toten) Wartungsarbeiter ausgeliehen."
 VLAD1000NailgunBattleScarredDescription="Äußeres: Kampferprobt | Wie wir hörten, hat einer von Horzines Wissenschaftlern sich die Nagelpistole von einem (toten) Wartungsarbeiter ausgeliehen."
 VLAD1000NailgunPreciousDescription="Äußeres: Edel | Wie wir hörten, hat einer von Horzines Wissenschaftlern sich die Nagelpistole von einem (toten) Wartungsarbeiter ausgeliehen."
+VLAD1000NailgunPrestigePreciousDescription="Äußeres: Edel | Wie wir hörten, hat einer von Horzines Wissenschaftlern sich die Nagelpistole von einem (toten) Wartungsarbeiter ausgeliehen."
 
 ;VLAD-1000 Nailgun Names
 VLAD1000NailgunArachnidMintName="VLAD-1000-Nagel. | Arachnide | Tadellos"
@@ -2418,6 +2572,7 @@ VLAD1000NailgunEmergencyIssueMintName="VLAD-1000-Nagel. | Notfall | Tadellos"
 VLAD1000NailgunEmergencyIssueFieldTestedName="VLAD-1000-Nagel. | Notfall | Praxisbewährt"
 VLAD1000NailgunEmergencyIssueBattleScarredName="VLAD-1000-Nagel. | Notfall | Kampferprobt"
 VLAD1000NailgunPreciousName="VLAD-1000-Nagel. | Edel"
+VLAD1000NailgunPrestigePreciousName="VLAD-1000-Nagel. | Ansehen | Edel"
 VLAD1000NailgunBlackGoldenMintName="VLAD-1000-Nagelpistole | Schwarz-Gold | Tadellos"
 VLAD1000NailgunBlackGoldenFieldTestedName="VLAD-1000-Nagelpist. | Schwarz-Gold | Praxisbew."
 VLAD1000NailgunBlackGoldenBattleScarredName="VLAD-1000-Nagelpist. | Schwarz-Gold | Kampferpr."
@@ -2425,6 +2580,7 @@ VLAD1000NailgunVaultVoshPreciousName="VLAD-1000 Nagelpistole | Kammer | Vosh | E
 VLAD1000NailgunBluefireMintName="VLAD-1000 Nagelpistole | Blaufeuer | Tadellos "
 VLAD1000NailgunBluefireFieldTestedName="VLAD-1000 Nagelpistole | Blaufeuer | Praxisbewährt "
 VLAD1000NailgunBluefireBattleScarredName="VLAD-1000 Nagelpistole | Blaufeuer | Kampferprobt "
+VLAD1000NailgunPrestigePreciousName="VLAD-1000-Nagel. | Ansehen | Edel"
 
 ;Welder Descriptions
 WelderMintDescription="Äußeres: Tadellos | Schweißer, ich schweiße die Tür zu!"
@@ -2520,6 +2676,10 @@ C4PreciousDescription="Äußeres: Edel | Ein Block Plastiksprengstoff zur fernge
 ;C4 Names
 C4PreciousName="C4 | Edel"
 C4VaultVoshPreciousName="C4 | Kammer | Vosh | Edel"
+C4NeonMintName="C4 | Neon | Tadellos"
+C4NeonFieldTestedName="C4 | Neon | Praxisbewährt"
+C4NeonBattleScarredName="C4 | Neon | Kampferprobt"
+C4NeonRGBPreciousName="C4 | Neon-RGB | Edel"
 
 ;SharpshooterKnife Descriptions
 SharpshooterKnifeMintDescription="Äußeres: Tadellos | Das traditionelle Messer der Ghurka, eher ein Hackmesser als ein Tranchiermesser."
@@ -2575,6 +2735,47 @@ TommyGunPreciousDescription="Äußeres: Edel | Früher als Chicago Typewriter be
 
 ;TommyGun Names
 TommyGunPrestigePreciousName="Tommy-Pistole | Ansehen | Edel"
+TommyGunNeonMintName="Tommy-Pistole | Neon | Tadellos"
+TommyGunNeonFieldTestedName="Tommy-Pistole | Neon | Praxisbewährt"
+TommyGunNeonBattleScarredName="Tommy-Pistole | Neon | Kampferprobt"
+TommyGunNeonRGBPreciousName="Tommy-Pistole | Neon-RGB | Edel"
+
+;FNFAL Descriptions
+FNFALMintDescription="Äußeres: Tadellos | Diese Waffe ist sicher kein REIN-FAL … okay, der war echt mies."
+FNFALFieldTestedDescription="Äußeres: Praxisbewährt | Diese Waffe ist sicher kein REIN-FAL … okay, der war echt mies."
+FNFALBattleScarredDescription="Äußeres: Kampferprobt | Diese Waffe ist sicher kein REIN-FAL … okay, der war echt mies."
+FNFALPreciousDescription="Äußeres: Edel | Diese Waffe ist sicher kein REIN-FAL … okay, der war echt mies."
+
+;FNFAL Names
+FNFALNeonMintName="FN FAL | Neon | Tadellos"
+FNFALNeonFieldTestedName="FN FAL | Neon | Praxisbewährt"
+FNFALNeonBattleScarredName="FN FAL | Neon | Kampferprobt"
+FNFALNeonRGBPreciousName="FN FAL | Neon-RGB | Edel"
+
+;FireAxe Descriptions
+FireAxeMintDescription="Äußeres: Tadellos | Warum heißt sie Feueraxt, wenn sie nicht brennt?"
+FireAxeFieldTestedDescription="Äußeres: Praxisbewährt | Warum heißt sie Feueraxt, wenn sie nicht brennt?"
+FireAxeBattleScarredDescription="Äußeres: Kampferprobt | Warum heißt sie Feueraxt, wenn sie nicht brennt?"
+FireAxePreciousDescription="Äußeres: Edel | Warum heißt sie Feueraxt, wenn sie nicht brennt?"
+
+;FireAxe Names
+FireAxeNeonMintName="Feueraxt | Neon | Tadellos"
+FireAxeNeonFieldTestedName="Feueraxt | Neon | Praxisbewährt"
+FireAxeNeonBattleScarredName="Feueraxt | Neon | Kampferprobt"
+FireAxeNeonRGBPreciousName="Feueraxt | Neon-RGB | Edel"
+FireAxeVaultVoshPreciousName="Feueraxt | Kammer | Vosh | Edel"
+
+;M32 Descriptions
+M32MintDescription="Äußeres: Tadellos | Eleganter, als 6 M79-Granatwerfer aneinanderzukleben."
+M32FieldTestedDescription="Äußeres: Praxisbewährt | Eleganter, als 6 M79-Granatwerfer aneinanderzukleben."
+M32BattleScarredDescription="Äußeres: Kampferprobt | Eleganter, als 6 M79-Granatwerfer aneinanderzukleben."
+M32PreciousDescription="Äußeres: Edel | Eleganter, als 6 M79-Granatwerfer aneinanderzukleben."
+
+;M32 Names
+M32NeonMintName="M32 | Neon | Tadellos"
+M32NeonFieldTestedName="M32 | Neon | Praxisbewährt"
+M32NeonBattleScarredName="M32 | Neon | Kampferprobt"
+M32NeonRGBPreciousName="M32 | Neon-RGB | Edel"
 
 [CosmeticSection]
 
@@ -3960,6 +4161,141 @@ RoninMaskRedName="Ronin-Maske | Rot"
 RoninMaskWhiteName="Ronin-Maske | Weiß"
 RoninMaskYellowName="Ronin-Maske | Gelb"
 
+;Cosmetic Item Set 17
+CyberpunkSkullHelmStandardName="Cyberpunk | Schädelhelm | Standard"
+CyberpunkSkullHelmJetBlackName="Cyberpunk | Schädelhelm | Mattschwarz"
+CyberpunkSkullHelmPreciousName="Cyberpunk | Schädelhelm | Edel"
+CyberpunkEyeandFacemaskStandardName="Cyberpunk | Augen- und Gesichtsmaske | Standard"
+CyberpunkEyeandFacemaskJetBlackName="Cyberpunk | Augen- und Gesichtsmaske | Mattschwarz"
+CyberpunkEyeandFacemaskPreciousName="Cyberpunk | Augen- und Gesichtsmaske | Edel"
+CyberpunkDigitalEyeDisplayABlueName="Cyberpunk | Digitalauge-Anzeige A | Blau"
+CyberpunkDigitalEyeDisplayARedName="Cyberpunk | Digitalauge-Anzeige A | Rot"
+CyberpunkDigitalEyeDisplayAPreciousName="Cyberpunk | Digitalauge-Anzeige A | Edel"
+CyberpunkDigitalEyeDisplayBBlueName="Cyberpunk | Digitalauge-Anzeige B | Blau"
+CyberpunkDigitalEyeDisplayBRedName="Cyberpunk | Digitalauge-Anzeige B | Rot"
+CyberpunkDigitalEyeDisplayBPreciousName="Cyberpunk | Digitalauge-Anzeige B | Edel"
+CyberpunkTrinityPackStandardName="Cyberpunk | Trinitäts-Rucksack | Standard"
+CyberpunkTrinityPackJetBlackName="Cyberpunk | Trinitäts-Rucksack | Mattschwarz"
+CyberpunkTrinityPackPreciousName="Cyberpunk | Trinitäts-Rucksack | Edel"
+CyberpunkBoostInjectorStandardName="Cyberpunk | Boost-Injektor | Standard"
+CyberpunkBoostInjectorJetBlackName="Cyberpunk | Boost-Injektor | Mattschwarz"
+CyberpunkBoostInjectorPreciousName="Cyberpunk | Boost-Injektor | Edel"
+CyberpunkHoloPackBlueName="Cyberpunk | Holo-Rucksack | Blau"
+CyberpunkHoloPackRedName="Cyberpunk | Holo-Rucksack | Rot"
+CyberpunkHoloPackPreciousName="Cyberpunk | Holo-Rucksack | Edel"
+CyberpunkPsy-ClopsStandardName="Cyberpunk | Psy-Clops | Standard"
+CyberpunkPsy-ClopsJetBlackName="Cyberpunk | Psy-Clops | Mattschwarz"
+CyberpunkPsy-ClopsPreciousName="Cyberpunk | Psy-Clops | Edel"
+CyberpunkTrinityMaskStandardName="Cyberpunk | Trinitäts-Maske | Standard"
+CyberpunkTrinityMaskJetBlackName="Cyberpunk | Trinitäts-Maske | Mattschwarz"
+CyberpunkTrinityMaskPreciousName="Cyberpunk | Trinitäts-Maske | Edel"
+CyberpunkTrinityArmbandStandardName="Cyberpunk | Trinitäts-Armband | Standard"
+CyberpunkTrinityArmbandJetBlackName="Cyberpunk | Trinitäts-Armband | Mattschwarz"
+CyberpunkTrinityArmbandPreciousName="Cyberpunk | Trinitäts-Armband | Edel"
+CyberpunkHoloArmbandABlueName="Cyberpunk | Holo-Armband A | Blau"
+CyberpunkHoloArmbandARedName="Cyberpunk | Holo-Armband A | Rot"
+CyberpunkHoloArmbandAPreciousName="Cyberpunk | Holo-Armband A | Edel"
+CyberpunkHoloArmbandBBlueName="Cyberpunk | Holo-Armband B | Blau"
+CyberpunkHoloArmbandBRedName="Cyberpunk | Holo-Armband B | Rot"
+CyberpunkHoloArmbandBPreciousName="Cyberpunk | Holo-Armband B | Edel"
+CyberpunkTrinityZedBackpackStandardName="Cyberpunk | Trinitäts-Zed-Rucksack | Standard"
+CyberpunkTrinityZedBackpackJetBlackName="Cyberpunk | Trinitäts-Zed-Rucksack | Mattschwarz"
+CyberpunkTrinityZedBackpackPreciousName="Cyberpunk | Trinitäts-Zed-Rucksack | Edel"
+CyberpunkTechnomancerGogglesStandardName="Cyberpunk | Technomancer-Brille | Standard"
+CyberpunkTechnomancerGogglesJetBlackName="Cyberpunk | Technomancer-Brille | Mattschwarz"
+CyberpunkTechnomancerGogglesPreciousName="Cyberpunk | Technomancer-Brille | Edel"
+
+;Cosmetic Item Set 18
+SteampunkItem1Skin1Name="Steampunk | Gegenstand 1 | Skin 1"
+SteampunkItem1Skin2Name="Steampunk | Gegenstand 1 | Skin 2"
+SteampunkItem1PreciousName="Steampunk | Gegenstand 1 | Edel"
+SteampunkItem2Skin1Name="Steampunk | Gegenstand 2 | Skin 1"
+SteampunkItem2Skin2Name="Steampunk | Gegenstand 2 | Skin 2"
+SteampunkItem2PreciousName="Steampunk | Gegenstand 2 | Edel"
+SteampunkItem3Skin1Name="Steampunk | Gegenstand 3 | Skin 1"
+SteampunkItem3Skin2Name="Steampunk | Gegenstand 3 | Skin 2"
+SteampunkItem3PreciousName="Steampunk | Gegenstand 3 | Edel"
+SteampunkItem4Skin1Name="Steampunk | Gegenstand 4 | Skin 1"
+SteampunkItem4Skin2Name="Steampunk | Gegenstand 4 | Skin 2"
+SteampunkItem4PreciousName="Steampunk | Gegenstand 4 | Edel"
+SteampunkItem5Skin1Name="Steampunk | Gegenstand 5 | Skin 1"
+SteampunkItem5Skin2Name="Steampunk | Gegenstand 5 | Skin 2"
+SteampunkItem5PreciousName="Steampunk | Gegenstand 5 | Edel"
+SteampunkItem6Skin1Name="Steampunk | Gegenstand 6 | Skin 1"
+SteampunkItem6Skin2Name="Steampunk | Gegenstand 6 | Skin 2"
+SteampunkItem6PreciousName="Steampunk | Gegenstand 6 | Edel"
+SteampunkItem7Skin1Name="Steampunk | Gegenstand 7 | Skin 1"
+SteampunkItem7Skin2Name="Steampunk | Gegenstand 7 | Skin 2"
+SteampunkItem7PreciousName="Steampunk | Gegenstand 7 | Edel"
+SteampunkItem8Skin1Name="Steampunk | Gegenstand 8 | Skin 1"
+SteampunkItem8Skin2Name="Steampunk | Gegenstand 8 | Skin 2"
+SteampunkItem8PreciousName="Steampunk | Gegenstand 8 | Edel"
+SteampunkItem9Skin1Name="Steampunk | Gegenstand 9 | Skin 1"
+SteampunkItem9Skin2Name="Steampunk | Gegenstand 9 | Skin 2"
+SteampunkItem9PreciousName="Steampunk | Gegenstand 9 | Edel"
+SteampunkItem10Skin1Name="Steampunk | Gegenstand 10 | Skin 1"
+SteampunkItem10Skin2Name="Steampunk | Gegenstand 10 | Skin 2"
+SteampunkItem10PreciousName="Steampunk | Gegenstand 10 | Edel"
+SteampunkItem11Skin1Name="Steampunk | Gegenstand 11 | Skin 1"
+SteampunkItem11Skin2Name="Steampunk | Gegenstand 11 | Skin 2"
+SteampunkItem11PreciousName="Steampunk | Gegenstand 11 | Edel"
+SteampunkItem12Skin1Name="Steampunk | Gegenstand 12 | Skin 1"
+SteampunkItem12Skin2Name="Steampunk | Gegenstand 12 | Skin 2"
+SteampunkItem12PreciousName="Steampunk | Gegenstand 12 | Edel"
+SteampunkItem13Skin1Name="Steampunk | Gegenstand 13 | Skin 1"
+SteampunkItem13Skin2Name="Steampunk | Gegenstand 13 | Skin 2"
+SteampunkItem13PreciousName="Steampunk | Gegenstand 13 | Edel"
+SteampunkItem14Skin1Name="Steampunk | Gegenstand 14 | Skin 1"
+SteampunkItem14Skin2Name="Steampunk | Gegenstand 14 | Skin 2"
+SteampunkItem14PreciousName="Steampunk | Gegenstand 14 | Edel"
+SteampunkItem15Skin1Name="Steampunk | Gegenstand 15 | Skin 1"
+SteampunkItem15Skin2Name="Steampunk | Gegenstand 15 | Skin 2"
+SteampunkItem15PreciousName="Steampunk | Gegenstand 15 | Edel"
+
+;Cosmetic Item Set 19
+ArmorHoodBlackName="Panzerungskapuze | Schwarz"
+ArmorHoodBlueName="Panzerungskapuze | Blau"
+ArmorHoodRedName="Panzerungskapuze | Rot"
+ArmorHoodGreenName="Panzerungskapuze | Grün"
+ArmorHoodPreciousName="Panzerungskapuze | Edel"
+FacelessMaskSingleBlackName="Gesichtslose Einzelmaske | Schwarz"
+FacelessMaskSingleBlueName="Gesichtslose Einzelmaske | Blau"
+FacelessMaskSingleRedName="Gesichtslose Einzelmaske | Rot"
+FacelessMaskSingleGreenName="Gesichtslose Einzelmaske | Grün"
+FacelessMaskSingleWhiteName="Gesichtslose Einzelmaske | Weiß"
+FacelessMaskSinglePreciousName="Gesichtslose Einzelmaske | Edel"
+Scy-fyHoodBlackName="Scy-fy-Kapuze | Schwarz"
+Scy-fyHoodBlueName="Scy-fy-Kapuze | Blau"
+Scy-fyHoodGreenName="Scy-fy-Kapuze | Grün"
+Scy-fyHoodRedName="Scy-fy-Kapuze | Rot"
+Scy-fyHoodPreciousName="Scy-fy-Kapuze | Edel"
+NoExpressionMaskBlackName="Ausdruckslose Maske | Schwarz"
+NoExpressionMaskBlueName="Ausdruckslose Maske | Blau"
+NoExpressionMaskRedName="Ausdruckslose Maske | Rot"
+NoExpressionMaskGreenName="Ausdruckslose Maske | Grün"
+NoExpressionMaskWhiteName="Ausdruckslose Maske | Weiß"
+NoExpressionMaskPreciousName="Ausdruckslose Maske | Edel"
+AnubisRedName="Anubis | Rot"
+AnubisYellowName="Anubis | Gelb"
+AnubisGreenName="Anubis | Grün"
+AnubisBlueName="Anubis | Blau"
+AnubisPreciousName="Anubis | Edel"
+BastYellowName="Bast | Gelb"
+BastGreenName="Bast | Grün"
+BastRedName="Bast | Rot"
+BastBlueName="Bast | Blau"
+BastPreciousName="Bast | Edel"
+RaBlueName="Ra | Blau"
+RaYellowName="Ra | Gelb"
+RaGreenName="Ra | Grün"
+RaRedName="Ra | Rot"
+RaPreciousName="Ra | Edel"
+SobekGreenName="Sobek | Grün"
+SobekYellowName="Sobek | Gelb"
+SobekBlueName="Sobek | Blau"
+SobekRedName="Sobek | Rot"
+SobekPreciousName="Sobek | Edel"
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Kann im Ausrüstung-Menü angelegt werden. Mit den meisten Charakteren kompatibel. Dies ist ein exklusiver Gegenstand aus dem „Summer Sideshow“-Saison-Event. Kann zu 1 Sideshow-Ticket recycelt werden."
 SummerSideshowFacePaintDescription="Kann im Ausrüstung-Menü angelegt werden. Dies ist ein exklusiver Gegenstand aus dem „Summer Sideshow“-Saison-Event. Kann zu 1 Sideshow-Ticket recycelt werden."
@@ -4208,6 +4544,11 @@ ConfettiFXDeluxeName="Partyzeit | FX"
 GhostFXDeluxeName="Gruselgeister | FX"
 HeartsFXDeluxeName="Liebe auf den ersten Schuss | FX"
 ComicFXDeluxeName="Comic-Action | FX"
+FlowerPetalFXDeluxeName="Blütenblatt | FX"
+CartoonSplatFXDeluxeName="Cartoon Platscher | FX"
+GameOverFXDeluxeName="Game Over | FX"
+GlitchFXDeluxeName="Bug | FX"
+HorzineFXDeluxeName="Horzine-Schaltkreis | FX"
 
 ;FX Descriptions
 
@@ -4216,3 +4557,8 @@ ConfettiFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch Ballons und
 GhostFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch Geister ersetzt wird."
 HeartsFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch Herzen ersetzt wird."
 ComicFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch Comic-Action-Wörter ersetzt wird."
+FlowerPetalFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch Blütenblätter ersetzt wird."
+CartoonSplatFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch Cartoon Platscher ersetzt wird."
+GameOverFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch Feuerwerk ersetzt wird."
+GlitchFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch Digitale Störung ersetzt wird."
+HorzineFXDeluxeDescription="Kopfschuss-FX, wobei Blut am Kopf durch die Visitenkarte eines Hackers ersetzt wird."

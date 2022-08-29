@@ -11,10 +11,29 @@ class KFTrigger_ObjectiveLever extends KFTrigger_MinigameButton
 	config(Game);
 
 /** If the owning Map Objective says we can be activated or not. */
-var bool bFathersBlessing;
+var repnotify bool bFathersBlessing;
 
 /** Reference to owning map objective. */
 var KFMapObjective_ActivateTrigger OwningObjective;
+
+replication
+{
+	if (bNetDirty)
+		bFathersBlessing;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+	if (VarName == nameof(bFathersBlessing))
+	{
+		if (OwningObjective != none)
+		{
+			OwningObjective.TriggerObjectiveProgressEvent(bFathersBlessing ? EActivateTriggerProgressEvent_ZoneEnabled : EActivateTriggerProgressEvent_ZoneDisabled);
+		}
+	}
+
+	super.ReplicatedEvent(VarName);
+}
 
 simulated function bool ReadyToActivate()
 {
@@ -44,6 +63,19 @@ function AllowReactivation()
 	}
 }
 
+simulated function SetFathersBlessing(bool bNewBlessing)
+{
+	if (bNewBlessing != bFathersBlessing)
+	{
+		bFathersBlessing = bNewBlessing;
+		bForceNetUpdate = true;
+
+		if (OwningObjective != none)
+		{
+			OwningObjective.TriggerObjectiveProgressEvent(bFathersBlessing ? EActivateTriggerProgressEvent_ZoneEnabled : EActivateTriggerProgressEvent_ZoneDisabled);
+		}
+	}
+}
 defaultproperties
 {
 	bFathersBlessing=true

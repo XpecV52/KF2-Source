@@ -36,6 +36,6 @@ defaultproperties
 	DoT_Interval=0.5
 	DoT_DamageScale=0.7 //1.0
 
-	BurnPower=18.5 //1.0
+	BurnPower=10 //1.0 //18.5
 }
 

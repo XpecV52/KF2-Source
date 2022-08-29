@@ -131,6 +131,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     }
 }
 
+simulated event bool IsEnraged()
+{
+    return bIsEnraged;
+}
+
 function bool CanBlock()
 {
     return !bIsEnraged && super.CanBlock();

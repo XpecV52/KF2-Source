@@ -48,6 +48,8 @@ package tripwire.controls
         
         public var bDropDown:Boolean = false;
         
+        private var _lastScrollPosition:int = 0;
+        
         public function TripScrollingList()
         {
             super();
@@ -112,6 +114,13 @@ package tripwire.controls
                 scrollBar.visible = dataProvider.length > _totalRenderers;
             }
             super.updateScrollBar();
+        }
+        
+        override public function set selectedIndex(param1:int) : void
+        {
+            param1 += scrollPosition - this._lastScrollPosition;
+            this._lastScrollPosition = scrollPosition;
+            super.selectedIndex = param1;
         }
         
         protected function open(param1:Boolean = true) : void

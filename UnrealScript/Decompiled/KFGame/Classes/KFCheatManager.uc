@@ -70,6 +70,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
+const KFID_ToggleToRun = 172;
 
 var bool bDebugSceneEnabled;
 var transient bool bUsingSplatterGun;
@@ -875,7 +876,6 @@ simulated exec function Pistols()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
     GiveWeapon("KFGameContent.KFWeap_Pistol_Deagle");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function Dualies()
@@ -885,7 +885,6 @@ simulated exec function Dualies()
     GiveWeapon("KFGameContent.KFWeap_Pistol_DualColt1911");
     GiveWeapon("KFGameContent.KFWeap_Revolver_DualRem1858");
     GiveWeapon("KFGameContent.KFWeap_Revolver_DualSW500");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhinoDual");
 }
 
 simulated exec function Singles()
@@ -895,7 +894,6 @@ simulated exec function Singles()
     GiveWeapon("KFGameContent.KFWeap_Pistol_Colt1911");
     GiveWeapon("KFGameContent.KFWeap_Revolver_Rem1858");
     GiveWeapon("KFGameContent.KFWeap_Revolver_SW500");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function DummyWeapon()
@@ -967,7 +965,7 @@ simulated exec function Summer()
 {
     GiveWeapon("KFGameContent.KFWeap_Blunt_PowerGloves");
     GiveWeapon("KFGameContent.KFWeap_Rifle_M99");
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_ElephantGun");
+    GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_M32");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Thompson");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MKB42");
 }
@@ -1019,7 +1017,6 @@ simulated exec function Sharpshooter()
     GiveWeapon("KFGameContent.KFWeap_Rifle_M14EBR");
     GiveWeapon("KFGameContent.KFWeap_Rifle_RailGun");
     GiveWeapon("KFGameContent.KFWeap_Rifle_CenterfireMB464");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function Swat()

@@ -94,7 +94,6 @@ defaultproperties
 {
    NumPellets(0)=6
    NumPellets(1)=1
-   HealAmount=15
    HealFullRechargeSeconds=12.000000
    PackageKey="Medic_Shotgun"
    FirstPersonMeshName="WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig"
@@ -120,7 +119,7 @@ defaultproperties
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
    AmmoCost(1)=40
-   SpareAmmoCapacity(0)=80
+   SpareAmmoCapacity(0)=90
    InitialSpareMags(0)=3
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')
@@ -174,7 +173,7 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.070000
    Spread(1)=()
-   InstantHitDamage(0)=20.000000
+   InstantHitDamage(0)=25.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000

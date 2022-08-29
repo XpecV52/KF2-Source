@@ -74,6 +74,8 @@ package tripwire.menus
         
         public var disableRemoteHeadshotEffectsCheckBox:TripCheckBox;
         
+        public var enableToggleToRunCheckbox:TripCheckBox;
+        
         public var toggleMixerButton:TripButton;
         
         public var defaultButton:TripButton;
@@ -127,6 +129,10 @@ package tripwire.menus
             {
                 this.toggleMixerButton.tabIndex = _loc1_++;
             }
+            if(this.enableToggleToRunCheckbox)
+            {
+                this.enableToggleToRunCheckbox.tabIndex = _loc1_++;
+            }
             this.closeButton.tabIndex = _loc1_++;
             if(!_loc2_)
             {
@@ -170,6 +176,10 @@ package tripwire.menus
             this.killTickerCheckBox.label = !!param1.killTicker ? param1.killTicker : "";
             this.disableAutoUpgradeCheckBox.label = !!param1.disableAutoUpgrade ? param1.disableAutoUpgrade : "";
             this.disableRemoteHeadshotEffectsCheckBox.label = !!param1.hideRemoteHeadshotEffects ? param1.hideRemoteHeadshotEffects : "";
+            if(this.enableToggleToRunCheckbox != null)
+            {
+                this.enableToggleToRunCheckbox.label = !!param1.enableToggleToRun ? param1.enableToggleToRun : "";
+            }
         }
         
         public function set dataValues(param1:Object) : void
@@ -203,6 +213,10 @@ package tripwire.menus
                 this.bEnableMixer = param1.bMixerEnabled;
                 this.toggleMixerButton.label = !!param1.bMixerEnabled ? this.disableMixerString : this.enableMixerString;
             }
+            if(this.enableToggleToRunCheckbox != null)
+            {
+                this.enableToggleToRunCheckbox.selected = !!param1.enableToggleToRun ? Boolean(param1.enableToggleToRun) : false;
+            }
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -234,6 +248,7 @@ package tripwire.menus
             this.hideBossHealthBarCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.showWelderInInvCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.useAltAimOnDualCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.enableToggleToRunCheckbox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.autoTurnOffCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             if(this.reduceHighPitchNoiseCheckBox != null)
             {
@@ -291,6 +306,9 @@ package tripwire.menus
                     break;
                 case this.reduceHighPitchNoiseCheckBox:
                     ExternalInterface.call("Callback_ReduceHighPitchNoiseChanged",this.reduceHighPitchNoiseCheckBox.selected);
+                    break;
+                case this.enableToggleToRunCheckbox:
+                    ExternalInterface.call("Callback_ToggleToRunChanged",this.enableToggleToRunCheckbox.selected);
             }
         }
         
@@ -325,6 +343,10 @@ package tripwire.menus
             if(this.antiMotionSicknessCheckBox != null)
             {
                 this.antiMotionSicknessCheckBox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            }
+            if(this.enableToggleToRunCheckbox != null)
+            {
+                this.enableToggleToRunCheckbox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             }
             this.closeButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
         }

@@ -69,6 +69,7 @@ const KFID_SafeFrameScale = 168;
 const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
+const KFID_ToggleToRun = 172;
 
 struct native WeaponSkinPairs
 {
@@ -253,6 +254,6 @@ native function ExpandExtraFromProfileSettings();
 defaultproperties
 {
     DefaultSettings=/* Array type was not detected. */
-    VersionNumber=4
+    VersionNumber=5
     ProfileMappings=/* Array type was not detected. */
 }

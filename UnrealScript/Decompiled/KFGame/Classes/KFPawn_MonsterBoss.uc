@@ -154,15 +154,46 @@ simulated event PostBeginPlay()
     super.PostBeginPlay();
 }
 
+static simulated function SetupHealthBar(KFInterface_MonsterBoss BossRef)
+{
+    local KFPawn_Monster BossMonster;
+    local KFPlayerController LocalKFPC;
+
+    BossMonster = KFPawn_Monster(bool(BossRef));
+    if((BossMonster != none) && BossMonster.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        LocalKFPC = KFPlayerController(BossMonster.GetALocalPlayerController());
+        if((LocalKFPC.myGfxHUD != none) && LocalKFPC.myGfxHUD.bossHealthBar != none)
+        {
+            LocalKFPC.myGfxHUD.bossHealthBar.SetBossPawn(BossRef);
+            if(!KFGameReplicationInfo(BossMonster.WorldInfo.GRI).ShouldSetBossCamOnBossSpawn())
+            {
+                LocalKFPC.myGfxHUD.bossHealthBar.OnNamePlateHidden();
+            }
+        }
+    }
+}
+
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
     PlayBossMusic();
-    ServerDoSpecialMove(37);
+    PlayBossEntranceTheatrics((self));
     if(!IsHumanControlled())
     {
         ActualSprintSpeed = SprintSpeed;
         SetTimer(TimeUntilSpeedIncrease, false, 'Timer_IncreaseSpeed');
+    }
+}
+
+static function PlayBossEntranceTheatrics(KFInterface_MonsterBoss BossRef)
+{
+    local KFPawn_Monster BossMonster;
+
+    BossMonster = KFPawn_Monster(bool(BossRef));
+    if((BossMonster != none) && KFGameReplicationInfo(BossMonster.WorldInfo.GRI).ShouldSetBossCamOnBossSpawn())
+    {
+        BossMonster.ServerDoSpecialMove(37);
     }
 }
 

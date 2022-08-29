@@ -39,6 +39,7 @@ BodyMesh5="Hazmat"
 BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -111,6 +112,15 @@ BodySkin6="Tartan rouge"
 
 [CHR_MrsFoster_archetype.BodyMesh8]
 BodySkin0="Motifs coffre"
+
+[CHR_MrsFoster_archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Blanc"
@@ -192,6 +202,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Pouvoir aux barbus !"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -270,6 +281,14 @@ BodySkin2="Blanc"
 BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
+
+[CHR_Jagerhorn_Archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Blond suédois"
@@ -366,6 +385,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Masque de Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -444,6 +464,14 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[CHR_DJSkully_Archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Noir ultime"
 HeadSkin1="Rouge Xtra"
@@ -486,6 +514,7 @@ BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
 BodyMesh9="Punk"
+BodyMesh10="Cyberpunk"
 HeadMesh0="Cheveux"
 
 [chr_briar_archetype.BodyMesh0]
@@ -570,6 +599,14 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[chr_briar_archetype.BodyMesh10]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Faits marquants"
@@ -606,6 +643,7 @@ BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
 BodyMesh9="Punk"
+BodyMesh10="Cyberpunk"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -694,6 +732,14 @@ BodySkin2="Blanc"
 BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
+
+[CHR_MrFoster_archetype.BodyMesh10]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Blanc original"
@@ -851,6 +897,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Visage"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -927,6 +974,14 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[CHR_Coleman_archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Camelote"
@@ -962,6 +1017,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Cheveux"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1039,6 +1095,14 @@ BodySkin2="Blanc"
 BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
+
+[CHR_Alberts_archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Gris"
@@ -1935,6 +1999,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Visage"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2022,6 +2087,14 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[CHR_Masterson_archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka est un individu en plein doute souffrant d'un sérieux penchant suicidaire. Né à Okinawa, il fut élevé parmi des Américains dans l'armée. Après un déménagement sur l'île principale du Japon avec sa famille, le jeune Tanaka, trop emprunt de culture américaine, ne parvint pas à s'intégrer et commença à suivre des cours de théâtre. Après le lycée, il s'installa à Los Angeles, où il joua des rôles de figurant clichés dans de mauvais films, avant de partir pour l'Europe où il se mit en quête d'un travail plus « sérieux ». Il n'eut droit qu'à des rôles de méchants dans des films de gangsters français et à quelques camelotes. Aujourd'hui, en plein apocalypse, il semble confondre la réalité et quelques-uns des rôles qu'il a interprétés. On y trouve pèle-mêle ses visions des Yakuzas, des démons, et l'interprétation hollywoodienne du bushido."
@@ -2035,6 +2108,7 @@ BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
 BodyMesh9="Punk"
+BodyMesh10="Cyberpunk"
 HeadMesh0="Cheveux"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2129,6 +2203,14 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[CHR_Tanaka_Archetype.BodyMesh10]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Casque"
 AttachmentSkin0="Soleil levant"
@@ -2168,6 +2250,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2255,6 +2338,14 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[CHR_Ana_Archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Lunettes 3D"
 AttachmentSkin0="Anaglyphes 3D"
@@ -2280,6 +2371,7 @@ BodyMesh6="Poulet commando"
 BodyMesh7="Tenue de pyjama de Noël"
 BodyMesh8="Tenue de pyjama coffre"
 BodyMesh9="Punk"
+BodyMesh10="Cyberpunk"
 HeadMesh0="Cheveux"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2364,6 +2456,14 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[chr_mark_archetype.BodyMesh10]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Le seul et unique"
 HeadSkin1="Foutues 5h du mat'"
@@ -2386,6 +2486,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Visage"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2465,6 +2566,14 @@ BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
 
+[CHR_alan_archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Le seul et unique"
 HeadSkin1="Roux ! Vraiment ?"
@@ -2494,6 +2603,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Cheveux"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2569,6 +2679,14 @@ BodySkin2="Blanc"
 BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
+
+[CHR_strasser_archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acier sombre"
@@ -2738,6 +2856,7 @@ BodyMesh5="Poulet commando"
 BodyMesh6="Tenue de pyjama de Noël"
 BodyMesh7="Tenue de pyjama coffre"
 BodyMesh8="Punk"
+BodyMesh9="Cyberpunk"
 HeadMesh0="Tête par défaut"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2817,6 +2936,14 @@ BodySkin2="Blanc"
 BodySkin3="Violet"
 BodySkin4="Rouge"
 BodySkin5="Jaune"
+
+[chr_rockabilly_archetype.BodyMesh9]
+BodySkin0="Sarcelle"
+BodySkin1="Noir"
+BodySkin2="Vert"
+BodySkin3="Citron vert"
+BodySkin4="Rouge"
+BodySkin5="Blanc"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Noir"
@@ -4564,3 +4691,162 @@ AttachmentSkin1="Doré"
 AttachmentSkin2="Vert"
 AttachmentSkin3="Violet"
 AttachmentSkin4="Rouge"
+
+[Cosmetic_ArmorHood_ARCH]
+Attachment="Capuche d'armure"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Vert"
+AttachmentSkin4="Doré"
+
+[Cosmetic_FacelessMaskSingle_ARCH]
+Attachment="Masque unique sans visage"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Vert"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Doré"
+
+[Cosmetic_ScyfyHood_ARCH]
+Attachment="Capuche science-fiction"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Doré"
+
+[Cosmetic_NoExpressionMask_ARCH]
+Attachment="Masque sans expression"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Vert"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Doré"
+
+[Cosmetic_AnubisMask_ARCH]
+Attachment="Anubis"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Jaune"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Doré"
+
+[Cosmetic_BastMask_ARCH]
+Attachment="Bastet"
+AttachmentSkin0="Jaune"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Doré"
+
+[Cosmetic_RaMask_ARCH]
+Attachment="Râ"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Jaune"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Doré"
+
+[Cosmetic_SobekMask_ARCH]
+Attachment="Sobek"
+AttachmentSkin0="Vert"
+AttachmentSkin1="Jaune"
+AttachmentSkin2="Bleu"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Doré"
+
+[Cosmetic_CyberPunk_SkullHelm_ARCH]
+Attachment="Casque de squelette"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_EyeAndFacemask_ARCH]
+Attachment="Masque oculaire et facial"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_ComlinkassistV2_ARCH]
+Attachment="Écran oculaire numérique A"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Rouge"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_Comlinkassist_ARCH]
+Attachment="Écran oculaire numérique B"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Rouge"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_TrinityPack_ARCH]
+Attachment="Sac à dos triangulaire"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_BoostInjector_ARCH]
+Attachment="Injecteur d'accélérateur"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_CyberPunk_HoloPack_ARCH]
+Attachment="Sac à dos holographique"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Rouge"
+AttachmentSkin2="Doré"
+
+[Cosmetic_CyberPunk_PsyClops_ARCH]
+Attachment="Psy-clope"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_TrinityMask_ARCH]
+Attachment="Masque triangulaire"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_TrinityArmband_ARCH]
+Attachment="Brassard triangulaire"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_HoloArmbandA_ARCH]
+Attachment="Brassard holographique A"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Rouge"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
+Attachment="Brassard holographique C"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Rouge"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_TrinityZedBackpack_ARCH]
+Attachment="Sac à dos Zed triangulaire"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_TechnomancerGoggles_ARCH]
+Attachment="Lunettes de Technomancien"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Cyberpunk_Helmet_ARCH]
+Attachment="Casque Cyberpunk"
+AttachmentSkin0="Sarcelle"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Citron vert"
+AttachmentSkin4="Rouge"
+AttachmentSkin5="Blanc"

@@ -664,7 +664,6 @@ function SetMonsterDefaults(KFPawn_Monster P)
 defaultproperties
 {
 	bIsEndlessGame = true
-	bGoToBossCameraOnDeath=false
 	bIsInHoePlus=false
 
 	SpawnManagerClasses(0)=class'KFGameContent.KFAISpawnManager_Endless'

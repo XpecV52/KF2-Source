@@ -84,17 +84,17 @@ state TraversingSpline
     }
     else
     {
-        MyScriptedPawn.ReachedRouteMarker(0, Route[0], 0);
+        MyScriptedPawn.ReachedRouteMarker(0, Route[0], 0, 0);
         SegIdx = 1;
-        J0x5D:
+        J0x62:
 
         SegSplineComp = Route[SegIdx - 1].FindSplineComponentTo(Route[SegIdx]);
         SegSplineLen = SegSplineComp.GetSplineLength();
         SubSegIdx = 1;
-        J0xDA:
+        J0xDF:
 
         SubSegEnd = ((SegSplineComp != none) ? SegSplineComp.GetLocationAtDistanceAlongSpline((float(SubSegIdx) / float(SegmentGranularity + 1)) * SegSplineLen) : Route[SegIdx].Location);
-        J0x162:
+        J0x167:
 
         Direction = SubSegEnd - Outer.Pawn.Location;
         if(MyScriptedPawn.Physics == 1)
@@ -106,17 +106,17 @@ state TraversingSpline
         MyScriptedPawn.SetDesiredRotation(rotator(Direction),,, 0.1);
         Outer.Sleep(0);
         if(!(PawnReachedDestination(SubSegEnd)))
-            goto J0x162;
-        MyScriptedPawn.ReachedRouteMarker(SegIdx, ((SubSegIdx == (SegmentGranularity + 1)) ? Route[SegIdx] : none), SubSegIdx);
+            goto J0x167;
+        MyScriptedPawn.ReachedRouteMarker(SegIdx, ((SubSegIdx == (SegmentGranularity + 1)) ? Route[SegIdx] : none), SubSegIdx, SegSplineLen / float(SegmentGranularity + 1));
         ++ SubSegIdx;
         if(!((PawnReachedDestination(Route[SegIdx].Location)) && SubSegIdx == (SegmentGranularity + 2)))
-            goto J0xDA;
+            goto J0xDF;
         ++ SegIdx;
         if(!(SegIdx == Route.Length))
-            goto J0x5D;
+            goto J0x62;
         MyScriptedPawn.Acceleration = vect(0, 0, 0);
         Status = 'Success';
     }
     Outer.PopCommand(self);
-    stop;                    
+    stop;            
 }

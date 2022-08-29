@@ -26,6 +26,7 @@ KF-Airship="Gra na mapie Statek powietrzny"
 KF-MonsterBall="rozgrywa: Bal potworów"
 KF-ShoppingSpree="rozgrywa: Szał zakupów"
 KF-SantasWorkshop="Gra w Warsztat Mikołaja"
+KF-Spillway="rozgrywa: Przelew"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

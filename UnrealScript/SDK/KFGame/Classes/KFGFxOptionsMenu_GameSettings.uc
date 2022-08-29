@@ -39,6 +39,7 @@ var localized string DisableMixerString;
 var localized array<string> GoreOptionStrings;
 
 var localized string HideRemodeHeadshotEffectsString;
+var localized string ToggleToRunString;
 
 var float FOVMinValue, FOVMaxValue, FOVCurrentValue;
 var float FriendlyHudScaleMinValue, FriendlyHudScaleMaxValue;
@@ -82,6 +83,7 @@ function LocalizeText()
 	LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
 	LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
 	LocalizedObject.SetString("hideRemoteHeadshotEffects", HideRemodeHeadshotEffectsString);
+	LocalizedObject.SetString("enableToggleToRun", ToggleToRunString);
 
 	LocalizedObject.SetString("hideBossHealthBar", 		HideBossHealthBarString);
 	LocalizedObject.SetString("showWelderInInv", 		ShowWelderInInvString);
@@ -136,6 +138,7 @@ function  InitValues()
 	DataObject.SetBool("useAltAimOnDual", 		Manager.CachedProfile.GetProfileBool(KFID_UseAltAimOnDuals));
 	
 	DataObject.SetBool("autoTurnOff", 			Manager.CachedProfile.GetProfileBool(KFID_AutoTurnOff));
+	DataObject.SetBool("enableToggleToRun",		Manager.CachedProfile.GetProfileBool(KFID_ToggletoRun));
 
 	if(class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
 	{
@@ -482,6 +485,36 @@ function CallBack_ResetGameOptions()
 		ResetGameOptions);
 }
 
+
+function Callback_ToggleToRunChanged(bool bActive)
+{
+	local OnlineProfileSettings Settings;
+	local name SprintName;
+	local KFPlayerInput KFPI;
+
+	SprintName='GBA_Sprint';
+	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId);
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+
+	if (Settings != none)
+	{
+		Settings.SetProfileSettingValueInt(KFID_ToggleToRun, bActive ? 1 : 0);
+	}	
+
+	if (KFPI != none)
+	{
+		KFPI.bToggleToRun = bActive;
+		if (bActive)
+		{
+			KFPI.SetBind(SprintName, "Toggle bRun");
+		}
+		else
+		{
+			KFPI.SetBind(SprintName, "Button bRun");
+		}
+	}
+}
+
 function ResetGameOptions()
 {
 	//local KFPlayerController KFPC;
@@ -524,6 +557,8 @@ function ResetGameOptions()
 	//Manager.CachedProfile.SetProfileSettingValueInt(KFID_ReduceHightPitchSounds, KFPC.bNoEarRingingSound);
 
     Callback_DisableAutoUpgradeChanged(Manager.CachedProfile.GetDefaultInt(KFID_DisableAutoUpgrade) != 0);
+
+	Callback_ToggleToRunChanged(Manager.CachedProfile.GetDefaultInt(KFID_ToggleToRun) != 0);
 
 	if ( !GetPC().WorldInfo.IsConsoleBuild() )
 	{
