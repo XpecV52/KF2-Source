@@ -2,7 +2,9 @@ package tripwire.controls.objectiveStart
 {
     import fl.motion.Color;
     import flash.display.MovieClip;
+    import flash.events.Event;
     import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
     import scaleform.clik.controls.ListItemRenderer;
     import tripwire.controls.TripUILoader;
     
@@ -76,6 +78,12 @@ package tripwire.controls.objectiveStart
             this.rewardBG.visible = false;
             this.rewardImageLoader.visible = false;
             this.tierColorArray = [this.TIER_1_COLOR,this.TIER_2_COLOR,this.TIER_3_COLOR,this.TIER_4_COLOR,this.TIER_5_COLOR];
+        }
+        
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.descriptionTextField.autoSize = TextFieldAutoSize.LEFT;
         }
         
         override public function set data(param1:Object) : void

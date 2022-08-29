@@ -216,6 +216,8 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
 	local KFPawn_Monster AIP;
 	local KFPlayerController KFPC;
 
+	super.BossDied(Killer, bCheckWaveEnded);
+
 	KFPC = KFPlayerController(Killer);
 	`RecordBossMurderer(KFPC);
 
@@ -224,14 +226,6 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
 		if (AIP.Health > 0)
 		{
 			AIP.Died(none, none, AIP.Location);
-		}
-	}
-
-	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
-	{
-		if (KFPC != none)
-		{
-			KFPC.ClientOnBossDied();
 		}
 	}
 
@@ -253,7 +247,7 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
 function SetBossIndex()
 {
 	local int OldBossIndex;
-	local SpawnReplacement Replacement;
+	local BossSpawnReplacement Replacement;
 	local int ReplaceIdx;
 	local bool bShouldCacheBoss;
 

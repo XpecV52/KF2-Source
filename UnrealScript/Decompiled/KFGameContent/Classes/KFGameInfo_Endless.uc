@@ -198,6 +198,7 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded)
     local KFPlayerController KFPC;
 
     bCheckWaveEnded = true;
+    super.BossDied(Killer, bCheckWaveEnded);
     KFPC = KFPlayerController(Killer);
     if((KFPC != none) && KFPC.MatchStats != none)
     {
@@ -208,13 +209,6 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded)
         if(AIP.Health > 0)
         {
             AIP.Died(none, none, AIP.Location);
-        }        
-    }    
-    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-    {
-        if(KFPC != none)
-        {
-            KFPC.ClientOnBossDied();
         }        
     }    
     if(KFAISpawnManager_Endless(SpawnManager) != none)
@@ -232,7 +226,7 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded)
 function SetBossIndex()
 {
     local int OldBossIndex;
-    local SpawnReplacement Replacement;
+    local BossSpawnReplacement Replacement;
     local int ReplaceIdx;
     local bool bShouldCacheBoss;
 
@@ -250,11 +244,11 @@ function SetBossIndex()
                 {
                     bShouldCacheBoss = true;
                     BossIndex = ReplaceIdx;
-                    goto J0x152;
+                    goto J0x154;
                 }
             }            
         }
-        J0x152:
+        J0x154:
         
     }
     if(bShouldCacheBoss)
@@ -301,7 +295,7 @@ function class<KFPawn_Monster> GetAISpawnType(KFGame.KFAISpawnManager.EAIType AI
 
     if(bUseSpecialWave)
     {
-        return super(KFGameInfo).GetAISpawnType(SpecialWaveType);
+        return super.GetAISpawnType(SpecialWaveType);
     }
     if(ShouldFullyUpgradeAIType())
     {
@@ -337,7 +331,7 @@ function class<KFPawn_Monster> GetAISpawnType(KFGame.KFAISpawnManager.EAIType AI
         }
         return OverrideType;
     }
-    return super(KFGameInfo).GetAISpawnType(AIType);
+    return super.GetAISpawnType(AIType);
 }
 
 function bool ShouldUpgradeAIType()
@@ -454,7 +448,7 @@ function float GetGameInfoSpawnRateMod()
 {
     local float AdjustedSpawnRateMod;
 
-    AdjustedSpawnRateMod = super(KFGameInfo).GetGameInfoSpawnRateMod();
+    AdjustedSpawnRateMod = super.GetGameInfoSpawnRateMod();
     if((EndlessDifficulty != none) && bUseSpecialWave)
     {
         AdjustedSpawnRateMod *= EndlessDifficulty.GetSpecialWaveSpawnRateMod(SpecialWaveType);
@@ -609,7 +603,7 @@ function float GetTotalWaveCountScale()
     {
         TrySetNextWaveSpecial();
     }
-    WaveScale = super(KFGameInfo).GetTotalWaveCountScale();
+    WaveScale = super.GetTotalWaveCountScale();
     if(bUseSpecialWave)
     {
         WaveScale *= EndlessDifficulty.GetSpecialWaveScale(SpecialWaveType);
@@ -646,7 +640,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
 
 defaultproperties
 {
-    SpecialWaveTypes(0)=132
+    SpecialWaveTypes(0)=145
     SpecialWaveTypes(1)=1
     SpecialWaveTypes(2)=0
     SpecialWaveTypes(3)=0
@@ -654,7 +648,7 @@ defaultproperties
     SpecialWaveTypes(5)=0
     SpecialWaveTypes(6)=0
     SpecialWaveTypes(7)=0
-    SpecialWaveTypes(8)=139
+    SpecialWaveTypes(8)=152
     SpecialWaveTypes(9)=1
     SpecialWaveTypes(10)=0
     SpecialWaveStart=6

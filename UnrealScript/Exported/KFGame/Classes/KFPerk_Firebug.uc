@@ -668,6 +668,7 @@ defaultproperties
    HeadshotAccuracyHandicap=5.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Dragonsbreath_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Firebug"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

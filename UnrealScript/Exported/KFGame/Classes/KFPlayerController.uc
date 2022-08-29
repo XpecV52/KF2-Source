@@ -75,12 +75,18 @@ const STATID_DailyEventInfo =           302;
 const STATID_DailyEventIDs =            303;
 const STATID_DailyEventStats1 =         304;
 const STATID_DailyEventStats2 =         305;
-const STATID_SpecialEventKills =		306;
+const STATID_SpecialEventKills_DEPRECATED =		306;
+const STATID_SeasonalEventStats1 =		307;
+const STATID_SeasonalEventStats2 =		308;
+const STATID_SeasonalEventStats3 =		309;
+const STATID_SeasonalEventStats4 =		310;
+const STATID_SeasonalEventStats5 =		311;
 
  
 const STATID_DoshVaultTotal =           400;
 const STATID_LastViewedDoshVaultTotal = 401;
 const STATID_DoshVaultProgress =		402;
+const STATID_DoshVaultRecovered =		403;
 
  
 const STATID_AchievementPlaceholder	 =	500;
@@ -149,6 +155,8 @@ const STATID_ACHIEVE_AirshipCollectibles			= 4043;
 const STATID_ACHIEVE_LockdownCollectibles			= 4044;
 const STATID_ACHIEVE_MonsterBallCollectibles		= 4045;
 const STATID_ACHIEVE_MonsterBallSecretRoom			= 4046;
+const STATID_ACHIEVE_SantasWorkshopCollectibles		= 4047;
+const STATID_ACHIEVE_ShoppingSpreeCollectibles		= 4048;
  
 #linenumber 15
 
@@ -1290,6 +1298,12 @@ simulated event PostBeginPlay()
     InitLEDManager();
 	InitDiscord();
 
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+	if (OnlineSub != none)
+	{
+		OnlineSub.AddOnReadOnlineAvatarCompleteDelegate(OnAvatarReceived);
+		OnlineSub.AddOnReadOnlineAvatarByNameCompleteDelegate(OnAvatarURLPS4Received);
+	}
 }
 
 function SpawnDefaultHUD()
@@ -1624,21 +1638,60 @@ reliable client function ClientRestart(Pawn NewPawn)
 
 }
 
+function ActivatePlayerDiedSequenceEvents()
+{
+	local Sequence GameSeq;
+	local array<SequenceObject> AllSeqEvents;
+	local array<int> ActivateIndices;
+	local int i;
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo(WorldInfo.Game);
+	GameSeq = WorldInfo.GetGameSequence();
+	if (GameSeq != None && KFGI != none)
+	{
+		// find any "player died" events that exist
+		GameSeq.FindSeqObjectsByClass(class'KFSeqEvent_PlayerDied', true, AllSeqEvents);
+
+		if (KFGI.GetLivingPlayerCount() > 0)
+		{
+			ActivateIndices[0] = 0;
+		}
+		else
+		{
+			ActivateIndices[0] = 1;
+		}
+
+		// activate them
+		for (i = 0; i < AllSeqEvents.Length; i++)
+		{
+			KFSeqEvent_PlayerDied(AllSeqEvents[i]).CheckActivate(WorldInfo, None, false, ActivateIndices);
+		}
+	}
+}
+
 /** Need to handle death of our customization pawn */
 function PawnDied( Pawn inPawn )
 {
-	if( inPawn == Pawn && KFPawn_Customization(InPawn) != none )
+	if (inPawn == Pawn)
 	{
-		if( !Pawn.bDeleteMe && !Pawn.bPendingDelete )
+		if (KFPawn_Customization(InPawn) != none)
 		{
-			Pawn.UnPossessed();
+			if( !Pawn.bDeleteMe && !Pawn.bPendingDelete )
+			{
+				Pawn.UnPossessed();
+			}
+			Pawn = none;
+			if( MyGFxManager != none )
+			{
+				MyGFxManager.CloseMenus();
+			}
+			return;
 		}
-		Pawn = none;
-		if( MyGFxManager != none )
+		else
 		{
-			MyGFxManager.CloseMenus();
+			ActivatePlayerDiedSequenceEvents();
 		}
-		return;
 	}
 
 	super.PawnDied( inPawn );
@@ -2431,8 +2484,16 @@ simulated function OnJoinGameSessionComplete(name SessionName,bool bWasSuccessfu
 	OnlineSub.GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameSessionComplete);
 }
 
+simulated function ResetMusicStateForTravel()
+{
+	// Make sure to reset music state before map travelling (lookin' at you, Monster Ball)
+	PlaySoundBase(AkEvent'WW_MSTG_Global.Set_State_Music_Reset', true);
+}
+
 event PreClientTravel( string PendingURL, ETravelType TravelType, bool bIsSeamlessTravel )
 {
+	ResetMusicStateForTravel();
+
 	super.PreClientTravel(PendingURL, TravelType, bIsSeamlessTravel);
 
 	// If this is a serveraltravel start loading movie early
@@ -5851,6 +5912,11 @@ reliable client function ClientOnBossDied()
 		MyGFxHUD.bossHealthBar.RemoveArmorUI();
 	}
 	HideBossNameplate();
+
+	if (StatsWrite != none)
+	{
+		StatsWrite.SeasonalEventStats_OnBossDied();
+	}
 }
 
 /* SpawnInGameFrontEnd()
@@ -5948,7 +6014,7 @@ function string GetSteamAvatar( UniqueNetId NetID )
 		AvatarList.AddItem(CurrentAvatar);
 		if(OnlineSub != none)
 		{
-		    OnlineSub.ReadOnlineAvatar(NetID, 64, OnAvatarReceived);
+		    OnlineSub.ReadOnlineAvatar(NetID, 64);
 	    }
 	}
 
@@ -6003,7 +6069,7 @@ function string GetPS4Avatar( const string InPlayerName )
 
 		if(OnlineSub != none)
 		{
-			OnlineSub.ReadOnlineAvatarByName(InPlayerName, 64, OnAvatarURLPS4Received);
+			OnlineSub.ReadOnlineAvatarByName(InPlayerName, 64);
 		}
 	}
 
@@ -6917,10 +6983,10 @@ function SetUIScale(float fScale)
  * @name Stats Daily, Weekly and Special Event
  *********************************************************************************************/
 
-function GetSpecialEventKillsInfo(out int CurrentValue, out int MaxValue)
+function GetSeasonalEventStatInfo(int StatIdx, out int CurrentValue, out int MaxValue)
 {
-	CurrentValue = StatsWrite.GetSpecialEventKills();
-	MaxValue = StatsWrite.SeasonalKillsObjectiveThreshold;
+	CurrentValue = StatsWrite.GetSeasonalEventStatValue(StatIdx);
+	MaxValue = StatsWrite.GetSeasonalEventStatMaxValue(StatIdx);
 }
 
  simulated event CompletedDaily(int Index)
@@ -7223,8 +7289,6 @@ reliable client function ClientWonGame( string MapName, byte Difficulty, byte Ga
 	if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() )
 	{
 		StatsWrite.OnGameWon( MapName, Difficulty, GameLength, bCoop, GetPerk().class );
-
-        CheckForEventMapCompletion(GetMapSpecialEventIndex(), MapObjectiveIndex, Difficulty);
 	}
 }
 
@@ -7240,14 +7304,14 @@ reliable client function ClientGameOver(string MapName, byte Difficulty, byte Ga
 {
 	if(WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController())
 	{
-		StatsWrite.OnGameEnd(MapName, Difficulty, GameLength, bCoop, FinalWaveNum, GetPerk().class);
+		StatsWrite.OnGameEnd(MapName, Difficulty, GameLength, FinalWaveNum, bCoop, GetPerk().class);
 	}
 }
 
 /** Triggered when a special event meant to be tracked is completed.  The index is the bit turned on/off in the stats write object. */
 final function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
-    if (IsValidSpecialEventMap())
+    if (StatsWrite.SeasonalEventIsValid())
     {
         ClientFinishedSpecialEvent(EventIndex, ObjectiveIndex);
     }
@@ -7255,7 +7319,7 @@ final function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 
 reliable final client event ClientFinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
 {
-    if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && IsValidSpecialEventMap() && !StatsWrite.IsEventObjectiveComplete(ObjectiveIndex))
+    if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && StatsWrite.SeasonalEventIsValid() && !StatsWrite.IsEventObjectiveComplete(ObjectiveIndex))
 	{
 		StatsWrite.UpdateSpecialEvent( EventIndex, ObjectiveIndex );
 		if(MyGFxHUD != none && MyGFxHUD.LevelUpNotificationWidget != none && ((class'KFGameEngine'.static.GetSeasonalEventID() % 10) == EventIndex))
@@ -7270,14 +7334,10 @@ reliable final client event ClientFinishedSpecialEvent(int EventIndex, int Objec
 	}
 }
 
-// trigger that we finished a map, check for completion, and trigger stat update if needed
-simulated native function CheckForEventMapCompletion(int EventIndex, int ObjectiveIndex, int Difficulty);
-
-// whether or not the current map is on our list of valid special event maps
-simulated native function bool IsValidSpecialEventMap();
-
-// what the special event index of the current map is, -1 if not valid
-simulated native function int  GetMapSpecialEventIndex();
+simulated function bool SeasonalEventIsValid()
+{
+	return StatsWrite != none && StatsWrite.SeasonalEventIsValid();
+}
 
 native function bool IsValidWeeklySurvivalMatch();
 
@@ -7301,8 +7361,13 @@ reliable final client function ClientCompletedWeeklySurvival()
 reliable final client function ClientMapObjectiveCompleted(float XPValue)
 {
 	StatsWrite.MapObjectiveCompleted();
-	ClientAddPlayerXP(XPValue, GetPerk().class);
+	ClientAddPlayerXP(XPValue, GetPerk().class, true);
 	OnPlayerXPAdded(XPValue, GetPerk().class);
+}
+
+final simulated function SeasonalEventStats_OnMapObjectiveDeactivated(Actor ObjectiveInterfaceActor)
+{
+	StatsWrite.SeasonalEventStats_OnMapObjectiveDeactivated(ObjectiveInterfaceActor);
 }
 
 /**
@@ -7564,6 +7629,11 @@ reliable client event OnMapCollectibleFound( PlayerReplicationInfo FinderPRI, in
 	CollectibleFoundMsg = repl( CollectibleFoundMsg, "%y%", KFMI.CollectiblesToFind - CollectibleID );
 
 	MyGFxHUD.ShowNonCriticalMessage( CollectibleFoundMsg );
+
+	if (StatsWrite != none)
+	{
+		StatsWrite.SeasonalEventStats_OnMapCollectibleFound(FinderPRI, CollectibleID);
+	}
 }
 
 /** Called from native (AKFCollectibleActor::OnCollect) when the final collectible is found */
@@ -9189,6 +9259,12 @@ event Destroyed()
 		LocalCustomizationPawn.Destroy();
 	}
 
+	if (OnlineSub != none)
+	{
+		OnlineSub.ClearAllReadOnlineAvatarByNameCompleteDelegates();
+		OnlineSub.ClearAllReadOnlineAvatarCompleteDelegates();
+	}
+
     ClearMixerDelegates();
 	ClearDiscord();
     ClientMatchEnded();
@@ -10159,6 +10235,8 @@ reliable client event bool ShowConnectionProgressPopup( EProgressMessageType Pro
  */
 event bool NotifyDisconnect(string Command)
 {
+	ResetMusicStateForTravel();
+
 	// See also UnregisterPlayer()
 	ClientWriteAndFlushStats();
 	DestroyOnlineGame();
@@ -10405,6 +10483,7 @@ function OnLoginCompleted( bool bSuccess )
 		if(MyGFxManager != none)
 		{
 			MyGFxManager.OnLoginFailed();
+
 		}
 	}
 
@@ -10546,7 +10625,6 @@ function OnOSSLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServ
 	else if( ErrorCode != OSCS_Connected )
 	{
 		OnLoginCompleted( false );
-		WarnInternal("UNHANDLED LOGIN ERROR"@ErrorCode);
 	}
 }
 

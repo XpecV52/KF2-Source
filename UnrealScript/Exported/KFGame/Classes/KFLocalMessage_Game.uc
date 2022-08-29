@@ -82,6 +82,9 @@ var localized string 			KillzedBy_ZedStalkerString;
 var localized string 			KillzedBy_ZedClot_CystString;
 var localized string 			KillzedBy_ZedClot_AlphaString;
 var localized string 			KillzedBy_ZedClot_SlasherString;
+var localized string 			KillzedBy_ZedDAR_EMPString;
+var localized string 			KillzedBy_ZedDAR_LaserString;
+var localized string 			KillzedBy_ZedDAR_RocketString;
 
 var localized string 			FoundAMapCollectibleMessage;
 var localized string			FoundAllMapCollectiblesMessage;
@@ -233,7 +236,12 @@ static function string GetKilledByZedMessage( Object KillerObject )
 				return default.KillzedBy_ZedClot_AlphaString;
 			case 'KFAIController_ZedClot_Slasher':
 				return default.KillzedBy_ZedClot_SlasherString;
-			
+			case 'KFAIController_ZedDAR_EMP':
+				return default.KillzedBy_ZedDAR_EMPString;
+			case 'KFAIController_ZedDAR_Laser':
+				return default.KillzedBy_ZedDAR_LaserString;
+			case 'KFAIController_ZedDAR_Rocket':
+				return default.KillzedBy_ZedDAR_RocketString;
 		}
 	}
 	else
@@ -313,6 +321,9 @@ defaultproperties
    KillzedBy_ZedClot_CystString=" has suffered an underwhelming death"
    KillzedBy_ZedClot_AlphaString=" was grabbed inappropriately"
    KillzedBy_ZedClot_SlasherString=" no longer likes slasher flicks"
+   KillzedBy_ZedDAR_EMPString=" was shocked to find they were trapped"
+   KillzedBy_ZedDAR_LaserString=" was blasted into bits"
+   KillzedBy_ZedDAR_RocketString=" was rocketed out of commission"
    FoundAMapCollectibleMessage="%x% found a %y%. %z% left..."
    FoundAllMapCollectiblesMessage="Every %x% has been found!"
    MapCollectibleName="piece of dosh bling"

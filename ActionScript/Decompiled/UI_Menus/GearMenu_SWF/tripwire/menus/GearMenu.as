@@ -5,6 +5,7 @@ package tripwire.menus
     import flash.events.Event;
     import flash.events.MouseEvent;
     import flash.external.ExternalInterface;
+    import flash.text.TextFieldAutoSize;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
@@ -16,6 +17,7 @@ package tripwire.menus
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.CategoryButton;
+    import tripwire.controls.CategoryExpandedButton;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripTextArea;
     import tripwire.managers.MenuManager;
@@ -42,7 +44,7 @@ package tripwire.menus
         
         public var bodyButton:CategoryButton;
         
-        public var attachmentButton:CategoryButton;
+        public var attachmentButton:CategoryExpandedButton;
         
         public var rotateCameraWindow:MovieClip;
         
@@ -253,7 +255,23 @@ package tripwire.menus
         
         public function set selectedAttachment(param1:Object) : void
         {
-            this.attachmentButton.infoString = !!param1.selectedAttachment ? param1.selectedAttachment : "";
+            var _loc2_:int = 0;
+            while(_loc2_ < 3)
+            {
+                switch(_loc2_)
+                {
+                    case 0:
+                        this.attachmentButton.infoTextField_0.text = !!param1.selectedAttachment_0 ? param1.selectedAttachment_0 : "";
+                        break;
+                    case 1:
+                        this.attachmentButton.infoTextField_1.text = !!param1.selectedAttachment_1 ? param1.selectedAttachment_1 : "";
+                        break;
+                    case 2:
+                        this.attachmentButton.infoTextField_2.text = !!param1.selectedAttachment_2 ? param1.selectedAttachment_2 : "";
+                        break;
+                }
+                _loc2_++;
+            }
             this._selectedAttachmentIndex = !!param1.selectedAttachmentIndex ? int(param1.selectedAttachmentIndex) : 0;
             this._selectedAttachmentSkinIndex = !!param1.selectedAttachmentSkinIndex ? int(param1.selectedAttachmentSkinIndex) : 0;
             this._selectedAttachmentSkinIndex = this._selectedAttachmentSkinIndex == this.Item_None ? 0 : int(this._selectedAttachmentSkinIndex);
@@ -408,7 +426,12 @@ package tripwire.menus
             leftSidePanels.push(this.attachmentButton);
             rightSidePanels.push(this.gearList);
             rightSidePanels.push(this.skinList);
-            this.testMenu();
+            this.characterButton.textField.autoSize = TextFieldAutoSize.RIGHT;
+            this.emoteButton.textField.autoSize = TextFieldAutoSize.RIGHT;
+            this.bioTextArea.textField.autoSize = TextFieldAutoSize.RIGHT;
+            this.headButton.textField.autoSize = TextFieldAutoSize.RIGHT;
+            this.bodyButton.textField.autoSize = TextFieldAutoSize.RIGHT;
+            this.attachmentButton.textField.autoSize = TextFieldAutoSize.RIGHT;
         }
         
         protected function handleButtonEvent(param1:ButtonEvent) : void

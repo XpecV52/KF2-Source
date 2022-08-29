@@ -8,6 +8,7 @@ package tripwire.widgets
     import flash.text.TextField;
     import scaleform.clik.core.UIComponent;
     import tripwire.containers.hud.BossArmorGaugeContainer;
+    import tripwire.controls.TripUILoaderQueue;
     
     public class BossHealthBarWidget extends UIComponent
     {
@@ -20,6 +21,8 @@ package tripwire.widgets
         public var healthBarRed:MovieClip;
         
         public var healthBarGlow:MovieClip;
+        
+        public var targetIconLoader:TripUILoaderQueue;
         
         public var bossArmorName:String = "bossArmor_";
         
@@ -53,6 +56,18 @@ package tripwire.widgets
             this.healthBarGlow.width = 0;
             visible = false;
             this.currentShieldPercecntValue = 0;
+        }
+        
+        public function set iconPath(param1:String) : void
+        {
+            if(param1)
+            {
+                this.targetIconLoader.source = "img://" + param1;
+            }
+            else
+            {
+                this.targetIconLoader.visible = false;
+            }
         }
         
         public function onGlowComplete(param1:Event = null) : void

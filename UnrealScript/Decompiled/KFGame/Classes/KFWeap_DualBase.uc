@@ -317,7 +317,7 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
     local KFWeapon NewSingle;
     local KFInventoryManager KFIM;
     local Vector X, Y, Z;
-    local int NewSingleUpgradeIndex;
+    local int NewSingleUpgradeIndex, SingleSpareAmmoCount;
 
     NewSingleUpgradeIndex = CurrentWeaponUpgradeIndex;
     SetWeaponUpgradeLevel(0);
@@ -335,8 +335,9 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
     {
         NewSingle.AmmoCount[0] = byte((((AmmoCount[0] & 1) == 0) ? AmmoCount[0] / 2 : (AmmoCount[0] / 2) + 1));
         AmmoCount[0] /= 2;
-        NewSingle.SpareAmmoCount[0] = (((SpareAmmoCount[0] & 1) == 0) ? SpareAmmoCount[0] / 2 : (SpareAmmoCount[0] / 2) + 1);
-        SpareAmmoCount[0] /= float(2);
+        SingleSpareAmmoCount = Min(SpareAmmoCount[0], NewSingle.SpareAmmoCapacity[0]);
+        NewSingle.SpareAmmoCount[0] = SingleSpareAmmoCount;
+        SpareAmmoCount[0] -= SingleSpareAmmoCount;
         NewSingle.ClientForceAmmoUpdate(NewSingle.AmmoCount[0], NewSingle.SpareAmmoCount[0]);
         NewSingle.ClientForceSecondaryAmmoUpdate(NewSingle.AmmoCount[1]);
         NewSingle.SetWeaponUpgradeLevel(NewSingleUpgradeIndex);
@@ -345,6 +346,7 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
             KFInventoryManager(InvManager).AddCurrentCarryBlocks(NewSingle.GetUpgradeWeight(NewSingleUpgradeIndex));
             KFPawn(Instigator).NotifyInventoryWeightChanged();
         }
+        NewSingle.bGivenAtStart = bGivenAtStart;
         if(Instigator.bPlayedDeath || Instigator.Health <= 0)
         {
             GetAxes(Instigator.Rotation, X, Y, Z);

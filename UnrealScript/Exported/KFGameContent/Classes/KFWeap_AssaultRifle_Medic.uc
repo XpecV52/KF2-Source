@@ -83,7 +83,7 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Commando'
-   WeaponUpgrades(1)=(IncrementDamage=1.150000,IncrementHealFullRecharge=0.900000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Add=1),(Stat=EWUS_HealFullRecharge,Scale=0.900000)))
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=()
    FireInterval(0)=0.080000

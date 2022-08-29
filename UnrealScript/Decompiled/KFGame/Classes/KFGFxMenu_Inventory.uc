@@ -236,7 +236,7 @@ function InitInventory()
         if((ItemIndex != -1) && OnlineSub.CurrentInventory[I].Definition != 0)
         {
             TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
-            if((((CurrentInventoryFilter == 7) || CurrentInventoryFilter == TempItemDetailsHolder.Type) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
+            if(((CurrentInventoryFilter == 7) || (CurrentInventoryFilter == TempItemDetailsHolder.Type) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
             {
                 ItemObject = Outer.CreateObject("Object");
                 HelperIndex = ActiveItems.Find('ItemDefinition', OnlineSub.CurrentInventory[I].Definition;
@@ -305,19 +305,22 @@ function InitInventory()
 
 function bool DoesMatchFilter(ItemProperties InventoryItem)
 {
-    if(((CurrentWeaponTypeFilter != 10) || CurrentPerkIndexFilter != KFPC.PerkList.Length) && InventoryItem.Type != 0)
+    if((CurrentInventoryFilter == 7) || CurrentInventoryFilter == 0)
     {
-        return false;
+        if(((CurrentWeaponTypeFilter != 10) || CurrentPerkIndexFilter != KFPC.PerkList.Length) && InventoryItem.Type != 0)
+        {
+            return false;
+        }
+        if((CurrentWeaponTypeFilter != 10) && CurrentWeaponTypeFilter != InventoryItem.WeaponType)
+        {
+            return false;
+        }
+        if((CurrentPerkIndexFilter != KFPC.PerkList.Length) && !(CurrentPerkIndexFilter == InventoryItem.PerkId) || CurrentPerkIndexFilter == InventoryItem.AltPerkId)
+        {
+            return false;
+        }
     }
-    if((CurrentWeaponTypeFilter != 10) && CurrentWeaponTypeFilter != InventoryItem.WeaponType)
-    {
-        return false;
-    }
-    if((CurrentPerkIndexFilter != KFPC.PerkList.Length) && !(CurrentPerkIndexFilter == InventoryItem.PerkId) || CurrentPerkIndexFilter == InventoryItem.AltPerkId)
-    {
-        return false;
-    }
-    if((CurrentRarityFilter != 6) && InventoryItem.Rarity != CurrentRarityFilter)
+    if(((CurrentRarityFilter != 6) && InventoryItem.Rarity != CurrentRarityFilter) && CurrentInventoryFilter != 2)
     {
         if(((CurrentInventoryFilter == 4) || CurrentInventoryFilter == 2) && CurrentInventoryFilter == (InventoryItem.Type + 1))
         {
@@ -397,15 +400,40 @@ function OnInventoryReadComplete()
 
 function bool IsItemRecyclable(ItemProperties ItemDetailsHolder, const out array<ExchangeRuleSets> ExchangeRules)
 {
-    local int RequireRulesToRecycle;
+    local int I;
 
-    RequireRulesToRecycle = ((Class'WorldInfo'.static.IsConsoleBuild()) ? 1 : 2);
-    return !IsKeylessCrate(ItemDetailsHolder.Definition) && ((ExchangeRules.Length > 0) && ((ItemDetailsHolder.Type == 0) || ItemDetailsHolder.Type == 1) || ItemDetailsHolder.Type == 5) || (ItemDetailsHolder.Type == 2) && ExchangeRules.Length == RequireRulesToRecycle;
+    I = 0;
+    J0x0B:
+
+    if(I < ExchangeRules.Length)
+    {
+        if(ExchangeRules[I].Type == 4)
+        {
+            return true;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return false;
 }
 
 function bool IsItemExchangeable(out ItemProperties ItemDetailsHolder, const out array<ExchangeRuleSets> ExchangeRules)
 {
-    return (IsKeylessCrate(ItemDetailsHolder.Definition)) || ((ExchangeRules.Length > 0) || ItemDetailsHolder.RequiredKeyId != "") && (ItemDetailsHolder.Type == 2) || IsSpecialEventItem(ItemDetailsHolder.Definition);
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < ExchangeRules.Length)
+    {
+        if(ExchangeRules[I].Type != 4)
+        {
+            return true;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return false;
 }
 
 function bool IsSpecialEventItem(int ItemId)
@@ -663,54 +691,16 @@ function int GetCountOfItem(int ItemDefinition)
     return Count;
 }
 
-function OnPlayfabExchangeComplete(bool bWasSuccessful, string FunctionName, JsonObject FunctionResult)
+function PerformExchange(ExchangeRuleSets ForRuleset, optional bool AllButOne)
 {
-    if(FunctionName == "ExchangeItems")
-    {
-        if(bWasSuccessful)
-        {
-            PlayfabInter.ReadInventory();            
-        }
-        else
-        {
-            Manager.DelayedOpenPopup(2, 0, ItemExchangeTimeOutString, TryAgainString, Class'KFCommon_LocalizedStrings'.default.OKString);
-            SetVisible(true);
-        }
-    }
-    PlayfabInter.ClearOnCloudScriptExecutionCompleteDelegate(OnPlayfabExchangeComplete);
-}
-
-function PerformExchange(ExchangeRuleSets ForRuleset, optional int NumBatches)
-{
-    local JsonObject Parms, ItemObj, ItemsObj;
-    local int I;
-
-    NumBatches = 1;
+    AllButOne = false;
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        Parms = new Class'JsonObject';
-        Parms.SetStringValue("RequestedItem", string(ForRuleset.Target));
-        ItemsObj = new Class'JsonObject';
-        Parms.SetObject("ExchangeData", ItemsObj);
-        Parms.SetIntValue("NumBatches", NumBatches);
-        I = 0;
-        J0x119:
-
-        if(I < ForRuleset.Sources.Length)
-        {
-            ItemObj = new Class'JsonObject';
-            ItemObj.SetStringValue("ItemID", string(ForRuleset.Sources[I].Definition));
-            ItemObj.SetIntValue("Count", ForRuleset.Sources[I].Quantity);
-            ItemsObj.ObjectArray.AddItem(ItemObj;
-            ++ I;
-            goto J0x119;
-        }
-        PlayfabInter.AddOnCloudScriptExecutionCompleteDelegate(OnPlayfabExchangeComplete);
-        PlayfabInter.ExecuteCloudScript("ExchangeItems", Parms);        
+        PlayfabInter.PerformRuleExchange(ForRuleset, AllButOne);        
     }
     else
     {
-        OnlineSub.Exchange(ForRuleset);
+        OnlineSub.Exchange(ForRuleset, AllButOne);
     }
 }
 
@@ -725,24 +715,16 @@ function ConfirmRecycle()
 
     if(RuleIndex < ExchangeRules.Length)
     {
-        if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]) && ExchangeRules[RuleIndex].Sources.Length == 1)
+        if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]) && ExchangeRules[RuleIndex].Type == 4)
         {
             OnlineSub.ClearInFlight();
-            PerformExchange(ExchangeRules[RuleIndex]);
+            PerformExchange(ExchangeRules[RuleIndex], false);
             SetVisible(false);            
             KFPC.ConsoleCommand("CE Recycle_Start");
             return;
         }
         ++ RuleIndex;
         goto J0x3C;
-    }
-}
-
-function ExchangeDuplicatesEx()
-{
-    if(OnlineSub.ExchangeDuplicates(RuleToExchange, 10) > 0)
-    {
-        KFPC.SetTimer(0.1, false, 'ExchangeDuplicatesEx', self);
     }
 }
 
@@ -757,18 +739,10 @@ function ConfirmDuplicatesRecycle()
 
     if(RuleIndex < ExchangeRules.Length)
     {
-        if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]) && ExchangeRules[RuleIndex].Sources.Length == 1)
+        if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]) && ExchangeRules[RuleIndex].Type == 4)
         {
-            RuleToExchange = ExchangeRules[RuleIndex];
             OnlineSub.ClearInFlight();
-            if(Class'WorldInfo'.static.IsConsoleBuild())
-            {
-                PerformExchange(RuleToExchange, (GetCountOfItem(TempItemIdHolder)) - 1);                
-            }
-            else
-            {
-                KFPC.SetTimer(0.1, false, 'ExchangeDuplicatesEx', self);
-            }
+            PerformExchange(ExchangeRules[RuleIndex], true);
             SetVisible(false);            
             KFPC.ConsoleCommand("CE Recycle_Start");
             return;
@@ -796,7 +770,8 @@ function ConfirmCraft()
     {
         if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]))
         {
-            PerformExchange(ExchangeRules[RuleIndex]);
+            OnlineSub.ClearInFlight();
+            PerformExchange(ExchangeRules[RuleIndex], false);
             SetVisible(false);            
             KFPC.ConsoleCommand("CE Craft_Start");
             return;
@@ -1012,54 +987,44 @@ function Callback_UseItem(int ItemDefinition)
     local array<ExchangeRuleSets> ExchangeRules;
     local string ItemSeriesCommand;
     local ItemProperties NeededItem, CurrItem;
-    local int NeededItemID;
-    local bool bExchangeFound;
-    local int RuleIndex;
+    local int NeededItemID, RuleIndex;
 
     TempItemIdHolder = ItemDefinition;
     CurrItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemDefinition];
+    if(CurrItem.Type == 4)
+    {
+        Callback_CraftOption(ItemDefinition);
+        return;
+    }
     if(IsSpecialEventItem(TempItemIdHolder))
     {
         Callback_CraftOption(TempItemIdHolder);
         return;
     }
-    if((CurrItem.RequiredKeyId != "") || (IsKeylessCrate(ItemDefinition)) && Class'WorldInfo'.static.IsConsoleBuild())
+    if(OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules) == 0)
     {
-        if(OnlineSub.HasKeyForItem(ItemDefinition, NeededItemID) || IsKeylessCrate(ItemDefinition))
-        {
-            SetVisible(false);
-            PlayfabInter.UnlockContainer(string(ItemDefinition));
-            ItemSeriesCommand = "CE open_" $ string(Class'KFInventoryCatalog'.static.GetItemSeries(ItemDefinition));            
-            KFPC.ConsoleCommand(ItemSeriesCommand);
-        }        
+        return;
     }
-    else
-    {
-        OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules);
-        RuleIndex = 0;
-        J0x22D:
+    RuleIndex = 0;
+    J0x11B:
 
-        if(RuleIndex < ExchangeRules.Length)
+    if(RuleIndex < ExchangeRules.Length)
+    {
+        if(ExchangeRules[RuleIndex].Type == 4)
+        {            
+        }
+        else
         {
-            if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]) && (ExchangeRules[RuleIndex].Sources.Length == 2) || IsKeylessCrate(ItemDefinition))
+            if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]))
             {
                 SetVisible(false);
-                PerformExchange(ExchangeRules[RuleIndex]);
+                PerformExchange(ExchangeRules[RuleIndex], false);
                 ItemSeriesCommand = "CE open_" $ string(Class'KFInventoryCatalog'.static.GetItemSeries(ItemDefinition));                
-                KFPC.ConsoleCommand(ItemSeriesCommand);
-                bExchangeFound = true;
+                KFPC.ConsoleCommand(ItemSeriesCommand);                
             }
-            ++ RuleIndex;
-            goto J0x22D;
-        }
-        if(!bExchangeFound)
-        {
-            RuleIndex = 0;
-            J0x391:
-
-            if(RuleIndex < ExchangeRules.Length)
+            else
             {
-                if(ExchangeRules[RuleIndex].Sources.Length == 2)
+                if(ExchangeRules[RuleIndex].Sources.Length > 1)
                 {
                     if(ExchangeRules[RuleIndex].Sources[0].Definition == ItemDefinition)
                     {
@@ -1068,16 +1033,13 @@ function Callback_UseItem(int ItemDefinition)
                     else
                     {
                         NeededItemID = ExchangeRules[RuleIndex].Sources[0].Definition;
-                    }
-                    goto J0x4BE;
+                    }                    
                 }
-                ++ RuleIndex;
-                goto J0x391;
             }
         }
+        ++ RuleIndex;
+        goto J0x11B;
     }
-    J0x4BE:
-
     if(NeededItemID > 0)
     {
         NeededItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', NeededItemID];

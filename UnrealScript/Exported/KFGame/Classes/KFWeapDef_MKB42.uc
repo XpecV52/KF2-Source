@@ -17,7 +17,6 @@ defaultproperties
    UpgradePrice(1)=1500
    UpgradeSellPrice(0)=525
    UpgradeSellPrice(1)=1650
-   SharedUnlockId=SCU_MKB
    EffectiveRange=67
    Name="Default__KFWeapDef_MKB42"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

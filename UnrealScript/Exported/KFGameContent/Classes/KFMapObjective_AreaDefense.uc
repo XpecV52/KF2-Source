@@ -15,9 +15,11 @@ struct DoshHoldMaxReward
 	var() int WaveMaxReward[11];
 };
 
-var string LocalizationKey;
-var string DescriptionLocKey;
-var string RequirementsLocKey;
+var() string LocalizationKey;
+var() string DescriptionLocKey;
+var() string LocalizationPackageName;
+var() string RequirementsLocKey;
+var() bool bIsMissionCriticalObjective;
 
 /** Trader trail object being used */
 var transient KFReplicatedShowPathActor TrailActor;
@@ -295,17 +297,15 @@ simulated function ActivateObjective()
 
 		if (bUseTrailToVolume)
 		{
-			TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathObjective', none);
+			TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathActor', none);
 			if (TrailActor != none)
 			{
-				SetTrailActorType();
+				TrailActor.SetEmitterTemplate(ParticleSystem'FX_Gameplay_EMIT.FX_Objective_Trail');
 				TrailActor.SetPathTarget(self, self, VCT_NotInVolume);
 			}
 		}
     }
 }
-
-simulated function SetTrailActorType();
 
 simulated function DeactivateObjective()
 {
@@ -421,6 +421,11 @@ simulated function bool UsesProgress()
 }
 
 simulated function float GetProgress();
+
+simulated function bool IsComplete()
+{
+	return GetProgress() >= 1.f;
+}
 
 simulated function float GetActivationPctChance()
 {
@@ -564,12 +569,12 @@ simulated function Texture2D GetIcon()
 
 simulated function string GetLocalizedName()
 {
-	return Localize("Objectives", default.LocalizationKey, "KFGame");
+	return Localize("Objectives", LocalizationKey, LocalizationPackageName);
 }
 
 simulated function string GetLocalizedDescription()
 {
-	return Localize("Objectives", default.DescriptionLocKey, "KFGame");
+	return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
 }
 
 simulated function bool UsesMultipleActors()
@@ -581,8 +586,14 @@ simulated function string GetLocalizedRequirements();
 
 simulated function string GetActorCount();
 
+simulated function bool GetIsMissionCritical()
+{
+	return bIsMissionCriticalObjective;
+}
+
 defaultproperties
 {
+   LocalizationPackageName="KFGame"
    ZoneDangerMaterialParamName="Danger"
    EventIndex=-1
    PerPlayerSpawnRateMod(0)=1.000000

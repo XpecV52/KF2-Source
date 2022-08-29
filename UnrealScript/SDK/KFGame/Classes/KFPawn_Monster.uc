@@ -510,32 +510,6 @@ var byte PreviousArmorZoneStatus;
 var const int OverrideArmorFXIndex;
 
 /*********************************************************************************************
-* @name	ExtraVFX
-********************************************************************************************* */
-
-struct native ExtraVFXInfo
-{
-	// Particle effect to play
-	var() ParticleSystem VFX;
-	// Socket to attach it to (if applicable)
-	var() Name SocketName;
-	// Label to use for code logic (if applicable)
-	var() Name Label;
-	// Audio event to play when vfx start
-	var() AkEvent SFXStartEvent;
-	// Audio event to play when vfx stop
-	var() AkEvent SFXStopEvent;
-};
-
-struct native ExtraVFXAttachmentInfo
-{
-	var ParticleSystemComponent VFXComponent;
-	var ExtraVFXInfo Info;
-};
-
-var transient array<ExtraVFXAttachmentInfo> ExtraVFXAttachments;
-
-/*********************************************************************************************
  * @name	Delegates
 ********************************************************************************************* */
 
@@ -2000,6 +1974,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	local int ExtraHeadDamage;
 	local KFPerk InstigatorPerk;
 	local class<KFDamageType> KFDT;
+	local vector DamageSource;
 
 	Super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
 
@@ -2096,7 +2071,20 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		//If the damage doesn't have a bone hit source, it's likely AoE.  Split over all remaining armor evenly.
 		if (HitInfo.BoneName != '')
 		{
-			ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);
+			if (InstigatedBy != none && InstigatedBy.Pawn != none)
+			{
+				DamageSource = InstigatedBy.Pawn.Location;
+			}
+			else if (KFWeapon(DamageCauser) != none)
+			{
+				DamageSource = KFWeapon(DamageCauser).GetMuzzleLoc();
+			}
+			else
+			{
+				DamageSource = DamageCauser.Location;
+			}
+
+			ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageSource);
 		}
 		else
 		{
@@ -3799,7 +3787,7 @@ simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType
 				InDmgType.static.GetBoneToDismember(self, HitDirection, HitZones[InHitZoneIndex].ZoneName, BreakBoneName);
 			}
 			// Dismember
-			
+
 			GoreManager.CauseDismemberment(self, BreakBoneName, InDmgType);
 			if (InHitZoneIndex == HZI_HEAD)
 			{
@@ -4019,7 +4007,7 @@ private final simulated function SpawnHeadShotFX(KFPlayerReplicationInfo Damager
 	local KFPlayerController KFPC;
 	local HeadshotEffect SHeadshotEffect;
 	local vector SpawnVector;
-	
+
 	if (DamagerPRI != none)
 	{
 		if (WorldInfo.NetMode != NM_DedicatedServer)
@@ -4539,114 +4527,6 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 native protected function bool ShouldGrandOnDeathAchievement();
 native protected function int GetZedOnDeathAchievement();
 native function DisablebOnDeathAchivement();
-
-/*********************************************************************************************
- * @name   ExtraVFX
- ********************************************************************************************* */
-
-// Plays extra VFX associated with FXLabel, or restarts deactivated effects if already attached
-simulated function PlayExtraVFX(Name FXLabel)
-{
-	local int i;
-	local ExtraVFXAttachmentInfo VFXAttachment;
-	local bool bActivatedExistingSystem;
-	local name SFXBoneName;
-
-	if (WorldInfo.NetMode == NM_DedicatedServer || FXLabel == `NAME_NONE)
-	{
-		return;
-	}
-
-	// re-play an existing effect
-	for (i = 0; i < ExtraVFXAttachments.Length; ++i)
-	{
-		if (ExtraVFXAttachments[i].Info.Label == FXLabel)
-		{
-			ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[i].Info.VFX, Mesh, ExtraVFXAttachments[i].Info.SocketName, true);
-			if (ExtraVFXAttachments[i].Info.SFXStartEvent != none)
-			{
-				SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[i].Info.SocketName);
-				if (SFXBoneName != `NAME_NONE)
-				{
-					PostAkEventOnBone(ExtraVFXAttachments[i].Info.SFXStartEvent, SFXBoneName, false, true);
-				}
-				else
-				{
-					PostAkEvent(ExtraVFXAttachments[i].Info.SFXStartEvent, false, true, false);
-				}
-			}
-
-			bActivatedExistingSystem = true;
-		}
-	}
-
-	if (bActivatedExistingSystem)
-	{
-		return;
-	}
-
-	// play a new effect
-	for (i = 0; i < CharacterMonsterArch.ExtraVFX.Length; ++i)
-	{
-		if (CharacterMonsterArch.ExtraVFX[i].Label == FXLabel)
-		{
-			if (CharacterMonsterArch.ExtraVFX[i].SocketName == `NAME_NONE)
-			{
-				`warn(self$"::PlayExtraVFX - SocketName for ExtraVFX "$i$" ("$FXLabel$") is NONE");
-				continue;
-			}
-
-			VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterMonsterArch.ExtraVFX[i].VFX, Mesh, CharacterMonsterArch.ExtraVFX[i].SocketName, true);
-			if (CharacterMonsterArch.ExtraVFX[i].SFXStartEvent != none)
-			{
-				SFXBoneName = Mesh.GetSocketBoneName(CharacterMonsterArch.ExtraVFX[i].SocketName);
-				if (SFXBoneName != `NAME_NONE)
-				{
-					PostAkEventOnBone(CharacterMonsterArch.ExtraVFX[i].SFXStartEvent, SFXBoneName, false, true);
-				}
-				else
-				{
-					PostAkEvent(CharacterMonsterArch.ExtraVFX[i].SFXStartEvent, false, true, false);
-				}
-			}
-
-			VFXAttachment.Info = CharacterMonsterArch.ExtraVFX[i];
-			ExtraVFXAttachments.AddItem(VFXAttachment);
-		}
-	}
-}
-
-// Stops all extra VFX associated with the FXLabel, or all extra VFX is FXLabel is NAME_NONE
-simulated function StopExtraVFX(Name FXLabel)
-{
-	local int i;
-	local name SFXBoneName;
-
-	if (WorldInfo.NetMode == NM_DedicatedServer) 
-	{
-		return;
-	}
-
-	for (i = 0; i < ExtraVFXAttachments.Length; ++i)
-	{
-		if (FXLabel == `NAME_NONE || ExtraVFXAttachments[i].Info.Label == FXLabel)
-		{
-			ExtraVFXAttachments[i].VFXComponent.SetActive(false);
-			if (ExtraVFXAttachments[i].Info.SFXStopEvent != none)
-			{
-				SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[i].Info.SocketName);
-				if (SFXBoneName != `NAME_NONE)
-				{
-					PostAkEventOnBone(ExtraVFXAttachments[i].Info.SFXStopEvent, SFXBoneName, false, true);
-				}
-				else
-				{
-					PostAkEvent(ExtraVFXAttachments[i].Info.SFXStopEvent, false, true, false);
-				}
-			}
-		}
-	}
-}
 
 DefaultProperties
 {

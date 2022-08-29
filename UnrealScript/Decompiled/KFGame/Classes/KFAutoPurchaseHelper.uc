@@ -413,7 +413,7 @@ function bool UpgradeWeapon(int OwnedItemIndex)
     }
     TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItemInfo.ClassName);
     MyKFIM.BuyUpgrade(ItemIndex, ItemInfo.ItemUpgradeLevel);
-    OwnedItemList[OwnedItemIndex].SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItemInfo);
+    OwnedItemList[OwnedItemIndex].SellPrice = GetAdjustedSellPriceFor(DefaultItemInfo);
     if((Outer.MyGFxManager != none) && Outer.MyGFxManager.TraderMenu != none)
     {
         Outer.MyGFxManager.TraderMenu.OwnedItemList = OwnedItemList;
@@ -914,10 +914,7 @@ simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem)
 
 simulated function int GetAdjustedSellPriceFor(const out STraderItem ShopItem)
 {
-    local KFWeapon OwnedWeapon;
-
-    MyKFIM.GetWeaponFromClass(OwnedWeapon, ShopItem.ClassName);
-    return MyKFIM.GetAdjustedSellPriceFor(ShopItem, OwnedWeapon);
+    return MyKFIM.GetAdjustedSellPriceFor(ShopItem, OwnedItemList);
 }
 
 simulated function int GetAdjustedUpgradePriceFor(const out STraderItem ItemInfo, int UpgradeLevel)
@@ -1052,7 +1049,7 @@ function SetWeaponInformation(KFWeapon KFW)
     }
 }
 
-function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
+function SetWeaponInfo(const KFWeapon KFW, STraderItem DefaultItem)
 {
     local SItemInformation WeaponInfo;
     local float AmmoCostScale;
@@ -1075,7 +1072,7 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
     WeaponInfo.DefaultItem = DefaultItem;
     WeaponInfo.ItemUpgradeLevel = KFW.CurrentWeaponUpgradeIndex;
     WeaponInfo.AmmoPricePerMagazine = int(AmmoCostScale * float(DefaultItem.WeaponDef.default.AmmoPricePerMag));
-    WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItem, KFW);
+    WeaponInfo.SellPrice = GetAdjustedSellPriceFor(DefaultItem);
     AddItemByPriority(WeaponInfo);
     if(DefaultItem.SingleClassName != 'None')
     {
@@ -1146,7 +1143,7 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
     WeaponInfo.MaxSecondaryAmmo = DefaultItem.MaxSecondaryAmmo;
     Outer.CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSecondaryAmmo, DefaultItem, true);
     WeaponInfo.AmmoPricePerMagazine = int(AmmoCostScale * float(DefaultItem.WeaponDef.default.AmmoPricePerMag));
-    WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItem);
+    WeaponInfo.SellPrice = GetAdjustedSellPriceFor(DefaultItem);
     WeaponInfo.DefaultItem = DefaultItem;
     if(OverrideItemUpgradeLevel > -1)
     {

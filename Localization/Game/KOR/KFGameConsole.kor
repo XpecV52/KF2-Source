@@ -24,6 +24,8 @@ KF-DieSector="다이섹터 플레이하기"
 KF-Lockdown="락다운 플레이 중"
 KF-Airship="비행선 플레이 중"
 KF-MonsterBall="괴물 무도회 플레이 중"
+KF-ShoppingSpree="연속 쇼핑 플레이 중"
+KF-SantasWorkshop="산타의 작업장 플레이"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

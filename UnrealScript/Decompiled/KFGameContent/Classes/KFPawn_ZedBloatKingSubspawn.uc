@@ -15,9 +15,9 @@ var bool bDelayedExplosion;
 
 simulated event bool CanDoSpecialMove(KFGame.KFPawn.ESpecialMove AMove, optional bool bForceCheck)
 {
-    if(AMove == 42)
+    if(AMove == 43)
     {
-        return !IsDoingSpecialMove(42);
+        return !IsDoingSpecialMove(43);
     }
     return super(KFPawn).CanDoSpecialMove(AMove, bForceCheck);
 }

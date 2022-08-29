@@ -1,3 +1,32 @@
+[CHR_BadSanta_Archetype]
+CharacterName="Badass Santa"
+Description="Вначале Крампус забрал его эльфов и оленей. Потом Крампус забрал дом. Но терпение Санты закончилось. И он добыл пулемет. Хо-хо-хо!\n\nСвятой Николай начал присматривать за детьми сотни лет назад. Он думал, что всегда будет приносить рождественское веселье и подарки хорошим девочкам и мальчикам со всего мира.  Но потом появился Крампус.  В год, последовавший за Рождеством Крампуса, Санта-Клаус посвятил себя мести за павших работников, друзей и семью. Круглый животик его больше не трясется, когда Санта-Клаус над чем-то смеется, ведь улыбку заменил оскал, а животик пропал. Теперь Санта-Клаус состоит из одних мышц! В этом праздничном сезоне не будет тихой дивной ночи. В этом году у Санты нет рождественского настроения. У него есть кипящая ярость и огромное количество боеприпасов, которые в этом году будут звенеть вместо рождественских колокольчиков."
+BodyMesh0="Santa Outfit"
+BodyMesh1="Курица-коммандос"
+HeadMesh0="Santa Head"
+
+[CHR_BadSanta_Archetype.BodyMesh0]
+BodySkin0="Классический Санта"
+BodySkin1="Синий снег"
+BodySkin2="Коричневый наряд"
+BodySkin3="Конфета в виде трости"
+BodySkin4="Веселый и зеленый"
+BodySkin5="Кремовый винтаж"
+
+[CHR_BadSanta_archetype.BodyMesh1]
+BodySkin0="Потрепанный вид"
+BodySkin1="Аккуратный вид"
+BodySkin2="Ночь"
+BodySkin3="Тяжелое ранение"
+
+[CHR_BadSanta_Archetype.HeadMesh0]
+HeadSkin0="Классический Санта"
+HeadSkin1="Золотой Санта"
+HeadSkin2="Конфетный Санта"
+HeadSkin3="Веселый Санта"
+HeadSkin4="Юный Санта"
+HeadSkin5="Темный Санта"
+
 [CHR_MrsFoster_archetype]
 CharacterName="Миссис Фостер"
 Description="Миссис Фостер была невероятно успешной коммерсанткой в одной из лучших фирм Лондона, когда к ней на собеседование пришел мистер Фостер, претендующий на должность коммивояжера. Он мечтал добиться такого же успеха, что и она, однако был безнадежно бездарным коммерсантом: не умел играть по правилам и держать язык за зубами. Однако что-то в нём было; он был таким крутым, элегантным... и уникальным. Настолько уникальным, что на первом свидании подарил ей противогаз. Он будто бы знал, что вскоре вооруженный цепной пилой мутант-маньяк создаст орду жадных до человеческой плоти клонов и лишит миссис Фостер многомиллионных бонусов. Вскоре мистер и миссис Фостер поженились в вихре цветов, лент, мутантов и взрывов."
@@ -4371,3 +4400,167 @@ Attachment="Маска воина"
 AttachmentSkin0="Огонь"
 AttachmentSkin1="Вода"
 AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Christmas_SantaBackpack_ARCH]
+Attachment="Рождественский рюкзак"
+AttachmentSkin0="Коричневый цвет"
+
+[Cosmetic_Christmas_SantaEyepatch_ARCH]
+Attachment="Рождественская повязка на глаз"
+AttachmentSkin0="Красный цвет"
+
+[Cosmetic_Christmas_TurkeyHat_ARCH]
+Attachment="Рождественская шляпа «Индейка»"
+AttachmentSkin0="Недожаренная"
+AttachmentSkin1="Пережаренная"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_Candycanebackpack_ARCH]
+Attachment="Рюкзак «Конфета в виде трости»"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_ChimneyHat_ARCH]
+Attachment="Рождественская шляпа «Камин»"
+AttachmentSkin0="Красный кирпич"
+AttachmentSkin1="Зеленый кирпич"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_DeerAntlers_ARCH]
+Attachment="Рога рождественского оленя"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_Glassesboxframe_ARCH]
+Attachment="Рождественские очки «Конфетное зрение»"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_Glassesfeline_ARCH]
+Attachment="Рождественские кошачьи очки"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_PenguinHat_ARCH]
+Attachment="Рождественская шляпа «Пингвин»"
+AttachmentSkin0="Классический"
+AttachmentSkin1="Императорский"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_Christmashood_ARCH]
+Attachment="Рождественский капюшон Санты"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_TreeHat_ARCH]
+Attachment="Рождественская шляпа «Елка»"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_Wreathbackpack_ARCH]
+Attachment="Рюкзак «Рождественский венок»"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Christmas_Zedbackpack_ARCH]
+Attachment="Рюкзак «Рождественский мутант»"
+AttachmentSkin0="Красный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_ScifyHornHelmet_ARCH]
+Attachment="Технологичный шлем с рогом"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Пурпурный цвет"
+AttachmentSkin4="Красный цвет"
+AttachmentSkin5="Дорогая вещь"
+
+[Cosmetic_ScifyFacelessHelmet_ARCH]
+Attachment="Технологичный шлем «Безликий»"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Дорогая вещь"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Пурпурный цвет"
+AttachmentSkin4="Красный цвет"
+
+[Cosmetic_ScifyBreathingHelmetA_ARCH]
+Attachment="Технологичный шлем «Дыхание» A"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Дорогая вещь"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Пурпурный цвет"
+AttachmentSkin4="Красный цвет"
+
+[Cosmetic_ScifyBreathingHelmetB_ARCH]
+Attachment="Технологичный шлем «Дыхание» B"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Дорогая вещь"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Пурпурный цвет"
+AttachmentSkin4="Красный цвет"
+
+[Cosmetic_ScifySamuraiHelmet_ARCH]
+Attachment="Технологичный шлем «Самурай»"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Дорогая вещь"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Пурпурный цвет"
+AttachmentSkin4="Красный цвет"
+
+[Cosmetic_SamuraiArmorLegs_ARCH]
+Attachment="Поножи самурая"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Пурпурный цвет"
+AttachmentSkin4="Красный цвет"
+AttachmentSkin5="Дорогая вещь"
+
+[Cosmetic_SamuraiArmorChest_ARCH]
+Attachment="Панцирь самурая"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_RoninHat_ARCH]
+Attachment="Шляпа ронина"
+AttachmentSkin0="Дорогая вещь"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Белый цвет"
+AttachmentSkin4="Желтый цвет"
+
+[Cosmetic_RoninGoggles_ARCH]
+Attachment="Защитные очки ронина"
+AttachmentSkin0="Дорогая вещь"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Белый цвет"
+AttachmentSkin4="Желтый цвет"
+
+[Cosmetic_RoninMask_ARCH]
+Attachment="Маска ронина"
+AttachmentSkin0="Дорогая вещь"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Белый цвет"
+AttachmentSkin4="Желтый цвет"
+
+[Cosmetic_ScifyNoExpresionHelmet_ARCH]
+Attachment="Технологичный шлем без выражения"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Дорогая вещь"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Пурпурный цвет"
+AttachmentSkin4="Красный цвет"

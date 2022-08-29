@@ -187,6 +187,12 @@ native function string GetTitleDataForKey(string InKey);
 // Export UPlayfabInterface::execUnlockContainer(FFrame&, void* const)
 native function UnlockContainer(string ContainerId);
 
+// Export UPlayfabInterface::execPerformRuleExchange(FFrame&, void* const)
+native function PerformRuleExchange(ExchangeRuleSets ForRuleset, optional bool AllButOne)
+{
+    AllButOne = false;                
+}
+
 // Export UPlayfabInterface::execConsumeEntitlements(FFrame&, void* const)
 native function ConsumeEntitlements(optional bool bWasPurchase)
 {

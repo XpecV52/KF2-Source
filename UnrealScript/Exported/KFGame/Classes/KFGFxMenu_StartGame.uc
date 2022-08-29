@@ -725,6 +725,8 @@ function UpdateStartMenuState()
 			case EMatchmaking:
 				OptionsComponent.bShowLengthNoPref = true;
 				OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
+				//set match privacy to public for find match
+				OptionsComponent.PrivacyChanged(0);
 				break;
 			case ESoloGame:
 				OptionsComponent.bShowLengthNoPref = false;
@@ -1003,7 +1005,7 @@ function Callback_OpenCreateGame()
 }
 
 // Call this to allow the player to go to the matchmaking screen on console.
-function ProceedToMatchMaking() 
+function ProceedToMatchMaking()
 {
 	SetInt("externalMenuState", EMatchmaking);
 }
@@ -1140,7 +1142,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 			MapName = "kf-bioticslab";
 		}
 	}
-	LengthIndex = InOptionsComponent.GetLengthIndex();	
+	LengthIndex = InOptionsComponent.GetLengthIndex();
 	return MapName$"?Game="$class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.GetModeIndex())
 	       $"?Difficulty="$class'KFGameDifficultyInfo'.static.GetDifficultyValue( InOptionsComponent.GetDifficultyIndex() )
 		   $"?GameLength="$LengthIndex;
@@ -1952,6 +1954,8 @@ defaultproperties
    StockMaps(20)="kf-monsterball"
    StockMaps(21)="kf-airship"
    StockMaps(22)="kf-tragickingdom"
+   StockMaps(23)="kf-shoppingspree"
+   StockMaps(24)="kf-santasworkshop"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

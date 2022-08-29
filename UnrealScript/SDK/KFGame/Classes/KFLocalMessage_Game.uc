@@ -82,6 +82,9 @@ var localized string 			KillzedBy_ZedStalkerString;
 var localized string 			KillzedBy_ZedClot_CystString;
 var localized string 			KillzedBy_ZedClot_AlphaString;
 var localized string 			KillzedBy_ZedClot_SlasherString;
+var localized string 			KillzedBy_ZedDAR_EMPString;
+var localized string 			KillzedBy_ZedDAR_LaserString;
+var localized string 			KillzedBy_ZedDAR_RocketString;
 
 var localized string 			FoundAMapCollectibleMessage;
 var localized string			FoundAllMapCollectiblesMessage;
@@ -233,7 +236,12 @@ static function string GetKilledByZedMessage( Object KillerObject )
 				return default.KillzedBy_ZedClot_AlphaString;
 			case 'KFAIController_ZedClot_Slasher':
 				return default.KillzedBy_ZedClot_SlasherString;
-			
+			case 'KFAIController_ZedDAR_EMP':
+				return default.KillzedBy_ZedDAR_EMPString;
+			case 'KFAIController_ZedDAR_Laser':
+				return default.KillzedBy_ZedDAR_LaserString;
+			case 'KFAIController_ZedDAR_Rocket':
+				return default.KillzedBy_ZedDAR_RocketString;
 		}
 	}
 	else

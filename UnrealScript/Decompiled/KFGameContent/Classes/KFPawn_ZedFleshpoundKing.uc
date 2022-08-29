@@ -513,6 +513,11 @@ simulated function UpdateShieldUI()
     }
 }
 
+simulated function string GetIconPath()
+{
+    return "ZED_Patriarch_UI.ZED-VS_Icon_Boss";
+}
+
 defaultproperties
 {
     begin object name=ExploTemplate0 class=KFGameExplosion

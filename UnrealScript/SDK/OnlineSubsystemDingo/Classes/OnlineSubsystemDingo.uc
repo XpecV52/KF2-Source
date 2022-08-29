@@ -139,11 +139,6 @@ var array<delegate<OnUserAccountInfoRetrieved> > UserAccountInfoRetrievedDelegat
 /** The array of delegates to notify when a remote talker is talking or not */
 var array<delegate<OnRemoteTalkerStatusChange> > RemoteTalkerStatusChangeDelegates;
 
-//@HSL_BEGIN UDR Player Avatar interface
-/** The array of delegates to notify when a user's avatar has been loaded */
-var array<delegate<OnReadOnlineAvatarComplete> > ReadOnlineAvatarCompleteDelegates;
-//@HSL_END
-
 /** Keep track of what user/contexts have connected to RTA services */
 var native Map{FString, UBOOL} UsersConnectedToRTA;
 
@@ -3174,40 +3169,6 @@ function IsConnectedToOnlineService();
 function SetSystemSafeFrame( float fSafeFrame );
 function float GetSystemSafeFrame( );
 
-//@HSL_BEGIN UDR Player Avatar Interface
-/**
-* Sets the delegate used to notify the game an avatar has been loaded
-*
-* @param LocalUserNum the controller number of the associated user
-* @param LogoutDelegate the delegate to use for notifications
-*/
-function AddReadOnlineAvatarCompleteDelegate( delegate<OnReadOnlineAvatarComplete> AvatarDelegate )
-{
-	// Add this delegate to the array if not already present
-	if ( ReadOnlineAvatarCompleteDelegates.Find( AvatarDelegate ) == INDEX_NONE )
-	{
-		ReadOnlineAvatarCompleteDelegates[ReadOnlineAvatarCompleteDelegates.Length] = AvatarDelegate;
-	}
-}
-
-/**
-* Removes the specified delegate from the notification list
-*
-* @param LocalUserNum the controller number of the associated user
-* @param LogoutDelegate the delegate to use for notifications
-*/
-function ClearReadOnlineAvatarCompleteDelegate( delegate<OnReadOnlineAvatarComplete> AvatarDelegate )
-{
-	local int RemoveIndex;
-
-	// Remove this delegate from the array if found
-	RemoveIndex = ReadOnlineAvatarCompleteDelegates.Find( AvatarDelegate );
-	if ( RemoveIndex != INDEX_NONE )
-	{
-		ReadOnlineAvatarCompleteDelegates.Remove( RemoveIndex, 1 );
-	}
-}
-
 /**
 * Starts an asynchronous request for a user's avatar.
 *
@@ -3216,7 +3177,7 @@ function ClearReadOnlineAvatarCompleteDelegate( delegate<OnReadOnlineAvatarCompl
 * @param Size The desired resolution of the avatar (Size x Size). Final texture size may vary.
 * @param Obsolete Obsolete
 */
-native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
+native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size);
 //@HSL_END
 
 

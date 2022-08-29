@@ -111,9 +111,14 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=false
 
-	WeaponUpgrades[1]=(IncrementDamage=1.7f,IncrementWeight=0, IncrementHealFullRecharge=.9)
-	WeaponUpgrades[2]=(IncrementDamage=2.0f,IncrementWeight=1, IncrementHealFullRecharge=.8)
-	WeaponUpgrades[3]=(IncrementDamage=2.55f,IncrementWeight=2, IncrementHealFullRecharge=.7)
-	WeaponUpgrades[4]=(IncrementDamage=3.0f,IncrementWeight=3, IncrementHealFullRecharge=.6)
+	//WeaponUpgrades[1]=(IncrementDamage=1.7f,IncrementWeight=0, IncrementHealFullRecharge=.9)
+	//WeaponUpgrades[2]=(IncrementDamage=2.0f,IncrementWeight=1, IncrementHealFullRecharge=.8)
+	//WeaponUpgrades[3]=(IncrementDamage=2.55f,IncrementWeight=2, IncrementHealFullRecharge=.7)
+	//WeaponUpgrades[4]=(IncrementDamage=3.0f,IncrementWeight=3, IncrementHealFullRecharge=.6)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.7f), (Stat=EWUS_HealFullRecharge, Scale=0.9f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=2.0f), (Stat=EWUS_Weight, Add=1), (Stat=EWUS_HealFullRecharge, Scale=0.8f)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=2.55f), (Stat=EWUS_Weight, Add=2), (Stat=EWUS_HealFullRecharge, Scale=0.7f)))
+	WeaponUpgrades[4]=(Stats=((Stat=EWUS_Damage0, Scale=3.0f), (Stat=EWUS_Weight, Add=3), (Stat=EWUS_HealFullRecharge, Scale=0.6f)))
 }
 

@@ -503,6 +503,7 @@ replication
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
 
 /*********************************************************************************************
 * @name  General
@@ -880,6 +881,10 @@ simulated function CheckAndEndActiveEMoteSpecialMove()
 /*********************************************************************************************
 * @name Health
 ********************************************************************************************* */
+simulated function bool CanBeHealed()
+{
+	return true;
+}
 
 
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bCanRepairArmor=true, optional bool bMessageHealer=true)

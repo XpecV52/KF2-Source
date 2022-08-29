@@ -5,27 +5,6 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
     super.Initialize( NewParentMenu );
 }
 
-static function GetObjectiveProgressValues(int ObjectiveID, out int CurrentValue, out int MaxValue, out float PercentComplete)
-{
-	local KFPlayerController LocalKFPC;
-	local int TempCurrentValue, TempMaxValue;
-
-	//the only one we are using atm
-	if (ObjectiveID != 2)
-	{
-		super.GetObjectiveProgressValues(ObjectiveID, CurrentValue, MaxValue, PercentComplete);
-		return;
-	}
-	
-	LocalKFPC = KFPlayerController(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
-	//we do not use objective id yet.
-	LocalKFPC.GetSpecialEventKillsInfo(TempCurrentValue, TempMaxValue);
-
-	MaxValue = TempMaxValue;
-	CurrentValue = Clamp(TempCurrentValue, 0, MaxValue);
-	PercentComplete = FClamp((float(CurrentValue) / float(MaxValue)), 0, 1.0f);
-}
-
 DefaultProperties
 {
 	

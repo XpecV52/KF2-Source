@@ -1,3 +1,6 @@
+[KFPawn_Scripted]
+ScriptedPawnString="V.I.P."
+
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="Efectos especiales"
 PrestigeWarningString="¿Reiniciar especialización a 0? Esta acción no se puede deshacer."
@@ -1450,6 +1453,9 @@ KillzedBy_ZedStalkerString=" no lo vio venir"
 KillzedBy_ZedClot_CystString=" ha sufrido una muerte terrible"
 KillzedBy_ZedClot_AlphaString=" ha sido objeto de abusos inmorales"
 KillzedBy_ZedClot_SlasherString=" ha perdido el gusto por las pelis slasher flick"
+KillzedBy_ZedDAR_EMPString=" se quedó de piedra al descubrir que estaban atrapados"
+KillzedBy_ZedDAR_LaserString=" explotó en mil pedazos"
+KillzedBy_ZedDAR_RocketString=" salió disparado"
 
 FoundAMapCollectibleMessage="%x% ha encontrado un(a) %y%. Quedan %z%..."
 FoundAllMapCollectiblesMessage="¡Ya no queda ni un(a) %x%!"
@@ -2332,20 +2338,36 @@ FeaturedCrossover="Promoción de crossover destacada"
 
 [Objectives]
 HoldVolume="DEFENDER EL ÁREA"
+DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="MANTENER LA POSICIÓN"
-RepairObjective="SOLDAR Y REPARAR"
-DescriptionDoshHold="Mantener a los zeds fuera de la zona marcada."
 RequiredDoshHold="Jugadores necesarios:"
 DoschHoldDesc="Mantener a los zeds fuera de la zona marcada."
-DescriptionHoldVolume="DescriptionHoldVolume"
-RequiredHoldVolume="RequiredHoldVolume"
-DescriptionDestroyActor="DescriptionDestroyActor"
-RequiredDestroyActor="RequiredDestroyActor"
+DescriptionDoshHold="Mantener a los zeds fuera de la zona marcada."
+RepairObjective="SOLDAR Y REPARAR"
 UseWelderToRepair="Usa el soldador para reparar objetivos"
-FailedString="NO LOGRADO"
+EscortPawnsObjective="ESCORT"
+EscortPawnsDescription="Protect the target from the Zeds"
+RequiredHoldVolume="RequiredHoldVolume"
+ActivateTrigger="OPERAR Y CONTROLAR"
 DescriptionActivateTrigger="Activa el control de objetivo"
 RequiredActivateTrigger="Activaciones neces.:"
-ActivateTrigger="OPERAR Y CONTROLAR"
+FailedString="NO LOGRADO"
+RepairObjSantaWorkshopCustomTitle1="REPARA LA ELECTRICIDAD"
+RepairObjSantaWorkshopCustomDescr1="Repara 3 circuitos impresos con el soldador"
+RepairObjSantaWorkshopCustomTitle2="REPARA LAS PUERTAS"
+RepairObjSantaWorkshopCustomDescr2="Repara 4 puertas rotas con el soldador"
+EscortObjSantaWorkshopCustomTitle1="REPARA Y ESCOLTA"
+EscortObjSantaWorkshopCustomDescr1="Repara el carro con el soldador\nQuédate cerca para aumentar la veloc. y aleja a los zeds"
+EscortObjSantaWorkshopCustomTitle2="DEFIENDE Y ESCOLTA"
+EscortObjSantaWorkshopCustomDescr2="Protege el carro y llévalo a la máq. de la Cámara mágica\nQuédate cerca para subir la velocidad"
+EscortObjSantaWorkshopCustomTitle3="DEFIENDE Y ESCOLTA"
+EscortObjSantaWorkshopCustomDescr3="Protege el carro y llévalo a la sala del portal\nQuédate cerca para aum. la velocidad"
+OperateObjSantaWorkshopCustomTitle1="ACCIONA LA MANIVELA"
+OperateObjSantaWorkshopCustomDescr1="Mantén a los zeds lejos de la zona"
+OperateObjSantaWorkshopCustomTitle2="ACCIONA LA MANIVELA"
+OperateObjSantaWorkshopCustomDescr2="Mantén a los zeds lejos de la zona"
+OperateObjSantaWorkshopCustomTitle3="ACCIONA LA MANIVELA"
+OperateObjSantaWorkshopCustomDescr3="Mantén a los zeds lejos de la zona"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2532,7 +2554,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Mezcla de monstruos",DescriptionS
 SpecialEventObjectiveInfoList[3]=(TitleString="Noche de fiesta",DescriptionString="Completa la oleada 25 de Sin fin en la dificultad Difícil o superior");
 SpecialEventObjectiveInfoList[4]=(TitleString="El señor del castillo",DescriptionString="Derrota al conde Hans en Supervivencia con dificultad Difícil o superior");
 
-AllCompleteRewardDescriptionString="MKB de Hans: Arma + Apar. de Halloween"
+AllCompleteRewardDescriptionString="MKB de Hans: Arma + ap. Halloween"
 
 ChanceDropDescriptionStrings[0]="Bol. premiado"
 ChanceDropDescriptionStrings[1]="Boleto dorado"
@@ -2540,13 +2562,13 @@ ChanceDropDescriptionStrings[1]="Boleto dorado"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="Un evento especial por tiempo limitado con objetos exclusivos."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Allanamiento",DescriptionString="Rompe los dijes del Krampus en su guarida.");
-SpecialEventObjectiveInfoList[1]=(TitleString="Carne picada",DescriptionString="Mata a un zed en la trituradora del Krampus.");
-SpecialEventObjectiveInfoList[2]=(TitleString="Firmes",DescriptionString="Completa el objetivo Mantener la posición en la guarida del Krampus.");
-SpecialEventObjectiveInfoList[3]=(TitleString="Prisiones de nieve",DescriptionString="Encuentra diez artículos coleccionables en la guarida del Krampus.");
-SpecialEventObjectiveInfoList[4]=(TitleString="Buenas noches a todos",DescriptionString="Mata al Krampus en dificultad Difícil o superior en su guarida.");
+SpecialEventObjectiveInfoList[0]=(TitleString="El regalo perfecto",DescriptionString="Completa todos los objetivos de escolta con el carro a máx. salud en modo Superv. difícil o superior");
+SpecialEventObjectiveInfoList[1]=(TitleString="Especial semanal",DescriptionString="Completa la semana en Compra comp.");
+SpecialEventObjectiveInfoList[2]=(TitleString="Paseo mortal",DescriptionString="Mata a 2500 zeds");
+SpecialEventObjectiveInfoList[3]=(TitleString="Toma castaña",DescriptionString="Mata a 25 jefes");
+SpecialEventObjectiveInfoList[4]=(TitleString="Reyerta en el taller",DescriptionString="Derrota a Krampus en el Taller de Papá Noel en la modo Superv. difícil o superior");
 
-AllCompleteRewardDescriptionString="Pijama"
+AllCompleteRewardDescriptionString="Hacha de guerra + apar. Navidad"
 
 ChanceDropDescriptionStrings[0]="Bol. premiado"
 ChanceDropDescriptionStrings[1]="Boleto dorado"
@@ -2974,6 +2996,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-MonsterBall KFMapSummary]
 DisplayName_CHN="怪物球"
 DisplayName_CHT="怪獸舞會"
@@ -2989,6 +3043,39 @@ DisplayName_KOR="괴물 무도회"
 DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
+
+
+[KF-ShoppingSpree KFMapSummary]
+DisplayName_CHN="抢购狂欢"
+DisplayName_CHT="購物狂歡"
+DisplayName_DEU="Kaufrausch"
+DisplayName_ESL="Compra compulsiva"
+DisplayName_ESN="Compra compulsiva"
+DisplayName_FRA="Achats en folie"
+DisplayName_FRC="Achats en folie"
+DisplayName_INT="Shopping Spree"
+DisplayName_ITA="Shopping compulsivo"
+DisplayName_JPN="ショッピング三昧"
+DisplayName_KOR="연속 쇼핑"
+DisplayName_POL="Szał zakupów"
+DisplayName_PTB="Farra de compras"
+DisplayName_RUS="Веселье в магазине"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName_CHN="圣诞老人工坊"
+DisplayName_CHT="聖誕作坊"
+DisplayName_DEU="Santas Werkstatt"
+DisplayName_ESL=" El taller de Papá Noel"
+DisplayName_ESN=" El taller de Papá Noel"
+DisplayName_FRA="l'atelier du Père Noël"
+DisplayName_FRC="l'atelier du Père Noël"
+DisplayName_INT="Santa's Workshop"
+DisplayName_ITA="Laboratorio di Babbo Natale"
+DisplayName_JPN="サンタの工房"
+DisplayName_KOR="산타의 작업장 "
+DisplayName_POL="Warsztat Mikołaja"
+DisplayName_PTB="Fábrica do Papai Noel"
+DisplayName_RUS="Мастерскую Санты"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio biótico"
@@ -3068,6 +3155,11 @@ DisplayName="Aeronave"
 [KF-MonsterBall KFMapSummary]
 DisplayName="Baile de monstruos"
 
+[KF-ShoppingSpree KFMapSummary]
+DisplayName="Compra compulsiva"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName="Santas Workshop"
 
 [KFMapInfo]
 ; defaults

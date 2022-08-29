@@ -21,12 +21,14 @@ struct SpecialWaveInfo
 	var() float WaveScale;
 	var() float SpawnRateMultiplier;
 	var() bool bSpawnEnraged;
+	var() float NextSpawnTimeModMin;
 
 	structdefaultproperties
 	{
 		WaveScale=1.f
 		PctChance=0.f
 		SpawnRateMultiplier=1.f
+		NextSpawnTimeModMin=0.f
 	}
 };
 
@@ -46,7 +48,7 @@ struct SpecialWaveDifficultyInfo
 		SpecialWaveInfos[7]=(ZedType=AT_AlphaClot, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
 		SpecialWaveInfos[8]=(ZedType=AT_GoreFast, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
 		SpecialWaveInfos[9]=(ZedType=AT_Bloat, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f),
-		SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f)
+		SpecialWaveInfos[10]=(ZedType=AT_FleshPound, PctChance=0.0, WaveScale=1.f, SpawnRateMultiplier=1.f, NextSpawnTimeModMin=0.25f)
 	}
 };
 
@@ -315,7 +317,7 @@ function EAIType GetSpecialWaveType()
 	return SpecialWaves[RandRange(0, SpecialWaves.length - 1)].ZedType;
 }
 
-function GetSpecialWaveModifiers(EAIType AIType, out float WaveCountMod, out float SpawnRateMod)
+function bool GetSpecialWaveModifiers(EAIType AIType, out float WaveCountMod, out float SpawnRateMod)
 {
 	local array<SpecialWaveInfo> SpecialWaves;
 	local SpecialWaveInfo It;
@@ -331,9 +333,11 @@ function GetSpecialWaveModifiers(EAIType AIType, out float WaveCountMod, out flo
 		{
 			WaveCountMod = It.WaveScale;
 			SpawnRateMod = 1.f / It.SpawnRateMultiplier;
-			return;
+			return true;
 		}
 	}
+
+	return false;
 }
 
 function float GetSpecialWaveScale(EAIType AIType)
@@ -374,6 +378,24 @@ function float GetSpecialWaveSpawnRateMod(EAIType AIType)
 	}
 
 	return 1.f;
+}
+
+function float GetSpecialWaveSpawnTimeModMin(EAIType AIType)
+{
+	local array<SpecialWaveInfo> SpecialWaves;
+	local SpecialWaveInfo It;
+
+	SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+
+	foreach SpecialWaves(It)
+	{
+		if (It.ZedType == AIType)
+		{
+			return It.NextSpawnTimeModMin;
+		}
+	}
+
+	return 0.f;
 }
 
 function float GetAIDamageModifier(KFPawn_Monster P, float GameDifficulty, bool bSoloPlay)

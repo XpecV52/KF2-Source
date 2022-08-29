@@ -21,11 +21,15 @@ struct SCompressedArmorInfo
 
 var GFxObject bossNameTextField;
 var KFInterface_MonsterBoss BossPawn;
+var KFPawn_Scripted EscortPawn;
 var float UpdateTickTime;
 var float LastUpdateTime;
 var array<int> BattlePhaseColors;
 var KFPlayerController KFPC;
 var bool bLastHideValue;
+var byte LastState;
+var string BossIconPath;
+var string EscortIconPath;
 
 function InitializeHUD()
 {
@@ -56,11 +60,38 @@ function TickHud(float DeltaTime)
     }
     if(NotEqual_InterfaceInterface(BossPawn, (none)))
     {
-        if((Outer.GetPC() != none) && (Outer.GetPC().WorldInfo.TimeSeconds - LastUpdateTime) > UpdateTickTime)
+        if((KFPC != none) && (KFPC.WorldInfo.TimeSeconds - LastUpdateTime) > UpdateTickTime)
         {
             UpdateBossHealth();
         }
     }
+    if(EscortPawn != none)
+    {
+        if((KFPC != none) && (KFPC.WorldInfo.TimeSeconds - LastUpdateTime) > UpdateTickTime)
+        {
+            UpdateEscortPawnHealth();
+        }
+    }
+}
+
+function SetEscortPawn(KFPawn_Scripted NewPawn)
+{
+    local string BossNameText;
+
+    if(NewPawn == none)
+    {
+        return;
+    }
+    EscortPawn = NewPawn;
+    BossNameText = EscortPawn.GetLocalizedName();
+    SetBossName(BossNameText);
+    if(KFPC.bHideBossHealthBar)
+    {
+        return;
+    }
+    UpdateEscortPawnHealth();
+    SetVisible(true);
+    SetEscortIcon();
 }
 
 function SetBossPawn(KFInterface_MonsterBoss NewBoss)
@@ -84,6 +115,14 @@ function SetBossPawn(KFInterface_MonsterBoss NewBoss)
     }
     UpdateBossHealth();
     UpdateBossBattlePhase(1);
+    SetBossIcon();
+}
+
+simulated function DeActivate()
+{
+    EscortPawn = none;
+    BossPawn = none;
+    SetVisible(false);
 }
 
 function OnNamePlateHidden()
@@ -108,6 +147,37 @@ function SetBossName(string BossName)
     {
         bossNameTextField.SetText(BossName);
     }
+}
+
+simulated function SetBossIcon()
+{
+    if(NotEqual_InterfaceInterface(BossPawn, (none)))
+    {
+        SetString("iconPath", BossPawn.GetIconPath());
+    }
+}
+
+simulated function SetEscortIcon()
+{
+    if(EscortPawn != none)
+    {
+        SetString("iconPath", EscortPawn.GetIconPath());
+    }
+}
+
+function UpdateEscortPawnHealth()
+{
+    if(EscortPawn.CurrentState != LastState)
+    {
+        LastState = EscortPawn.CurrentState;
+        UpdateEscortPawnStateColor(EscortPawn.CurrentState);
+    }
+    SetFloat("currentHealthPercentValue", EscortPawn.GetHealthPercent());
+}
+
+function UpdateEscortPawnStateColor(int PawnState)
+{
+    SetInt("currentBattlePhaseColor", BattlePhaseColors[PawnState]);
 }
 
 function UpdateBossHealth()
@@ -166,4 +236,5 @@ defaultproperties
     BattlePhaseColors(2)=16736256
     BattlePhaseColors(3)=11343377
     BattlePhaseColors(4)=0
+    LastState=255
 }

@@ -115,9 +115,9 @@ protected simulated function PrepareExplosionTemplate()
         ExplosionTemplate = default.ExplosionTemplate;
         ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
         ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
-        ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
-        ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
-        ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
+        ExplosionTemplate.Damage = default.ExplosionTemplate.Damage;
+        ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius;
+        ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;
     }
     if(Owner.Role == ROLE_Authority)
     {

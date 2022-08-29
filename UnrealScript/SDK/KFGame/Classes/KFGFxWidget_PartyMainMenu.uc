@@ -228,10 +228,7 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 	if(OnlineLobby != none)
 	{
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
-	}
-
-	KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
-	
+	}	
 	//leader
 	bIsLeader = (PlayerUID == AdminId && PlayerUID != ZeroUniqueId);
 	PlayerInfoObject.SetBool("bLeader", bIsLeader);
@@ -244,6 +241,7 @@ function GFxObject RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 		CurrentPerk = KFPC.GetPerk();
 		if (CurrentPerk != none)
 		{			
+			KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
 			MemberSlots[SlotIndex].PerkClass = KFPRI.CurrentPerkClass;
 
 			PlayerInfoObject.SetString("perkLevel", CurrentPerk.GetLevel() @CurrentPerk.PerkName );

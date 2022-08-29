@@ -542,11 +542,31 @@ ItemName="Mac 10"
 ItemCategory="Sub Machine Gun"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Features rapid-fire incendiary ammo. Get it? Rapid-fire? Because it's an incendiary submachinegun? Oh, forget it."
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="Battleaxe"
+ItemCategory="Melee"
+ItemDescription="•Primary - slow slash attack, Hold Primary for combo attack.\n•Secondary - heavy, slow attack that obliterates on death.\n•Alt - block / parry\n•Outdated but still hits like a truck...a large, sharp truck."
+
+[KFWeap_Edged_FireAxe]
+ItemName="Fire Axe"
+ItemCategory="Melee"
+ItemDescription="•Primary - slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block / parry\n•Why is it called a fire axe if it's not on fire?"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="M32 Grenade Launcher"
+ItemCategory="Explosives"
+ItemDescription="•Fire mode launches grenade.\n•Grenade explodes on impact.\n•A more elegant solution than duct taping six M79 Grenade Launchers together."
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="HMTech-501 Grenade Rifle"
 ItemCategory="Assault Rifle"
 ItemDescription="•Fire mode is full-auto only.\n•Alt-fire to fire medic grenades.\n•It's the only weapon where it's ok to lob grenades at your friends!"
 SecondaryAmmo="Medic Grenade"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="Tommy Gun"
+ItemCategory="Assault Rifle"
+ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Known as the Chicago Typewriter by some, it is a suitable gun to write your name out with."
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL ACOG"

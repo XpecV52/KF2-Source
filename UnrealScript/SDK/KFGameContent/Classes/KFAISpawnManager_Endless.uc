@@ -46,6 +46,22 @@ function OnBossDied()
 	AvailableSquads.length = 0;
 }
 
+function float GetNextSpawnTimeMod()
+{
+	local float SpawnTimeMod, SpawnTimeModMin;
+	local int TempModIdx;
+
+	SpawnTimeMod = super.GetNextSpawnTimeMod();
+
+	if (MyKFGRI.IsSpecialWave(TempModIdx))
+	{
+		SpawnTimeModMin = EndlessDifficulty.GetSpecialWaveSpawnTimeModMin(SpecialWaveType);
+		SpawnTimeMod = Max(SpawnTimeMod, SpawnTimeModMin);
+	}
+
+	return SpawnTimeMod;
+}
+
 defaultproperties
 {
 	// Normal

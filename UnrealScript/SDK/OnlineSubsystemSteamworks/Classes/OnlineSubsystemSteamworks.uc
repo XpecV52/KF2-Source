@@ -395,9 +395,6 @@ struct native QueuedAvatarRequest
 
 	/** Size, in pixels, of desired avatar image (width and height are equal). */
 	var const int Size;
-
-	/** delegate to trigger when we have a result. */
-	var const delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate;
 };
 
 /** Pending avatar lookups. */
@@ -676,8 +673,8 @@ delegate OnMutingChange();
 delegate OnFriendsChange();
 
 //@HSL_BEGIN_XBOX
-/** 
-* Delegate called when OSS-side tokens are acquired 
+/**
+* Delegate called when OSS-side tokens are acquired
 */
 delegate OnTokenAndSignatureRetrieved(byte LocalUserNum, string URL, string Token, string Signature);
 
@@ -838,7 +835,7 @@ delegate OnSystemUserControllerPairingChanged(INT NewLocalUserNum, INT PreviousL
 function AddSystemUserContrllerPairingChangedDelegate(delegate<OnSystemUserControllerPairingChanged> PairingChangeDelegate);
 
 /**
-* Removes the specified delegate from the notification list 
+* Removes the specified delegate from the notification list
 *
 * @param PairingChangeDelegate the delegate to remove from notification
 */
@@ -899,7 +896,7 @@ function bool GetUniquePlayerId(byte LocalUserNum,out UniqueNetId PlayerId)
 
 //@HSL_BEGIN_XBOX
 /**
-* Gets the ControllerId for the platform specific unique Id 
+* Gets the ControllerId for the platform specific unique Id
 *
 * @param PlayerId the platform specific unique Id
 * @param ControllerId the byte that will receive the controllerId
@@ -907,7 +904,7 @@ function bool GetUniquePlayerId(byte LocalUserNum,out UniqueNetId PlayerId)
 * @return TRUE if the call succeeded, FALSE otherwise
 */
 function bool GetControllerIdFromNetId(UniqueNetId PlayerId, out byte ControllerId);
-//@HSL_END_XBOX 
+//@HSL_END_XBOX
 
 /**
  * Reads the player's nick name from the online service
@@ -1785,7 +1782,7 @@ function bool AreAnyLocalTalkersRegistered();
 *
 * @param MessageType the type of message sent
 * @param Sender the Unique Net Id for the sender who sent the packet
-* @param InData the reliable voice data 
+* @param InData the reliable voice data
 *
 */
 function ReceiveReliableVoicePacket( byte MessageType, UniqueNetId Sender, int Length, byte InData[60]);
@@ -3316,7 +3313,7 @@ native function bool ShowDeviceSelectionUI(byte LocalUserNum,int SizeNeeded,opti
  * Displays the marketplace UI for content
  *
  * @param LocalUserNum the local user viewing available content
- * @param ParentProductType the type of the parent product specified by ParentProductId 
+ * @param ParentProductType the type of the parent product specified by ParentProductId
  *                          (use constants defined in OnlineSubsyste.uc, generally this should be PIT_Game)
  * @param RequestedProductTypes the types of child products to show in the marketplace UI
  *                          (use constants defined in OnlineSubsyste.uc, generally this should be PIT_Durable | PIT_Consumable)
@@ -3333,7 +3330,7 @@ native function bool ShowDeviceSelectionUI(byte LocalUserNum,int SizeNeeded,opti
 function bool ShowContentPurchaseUI(byte LocalUserNum, string Offer);
 
 /**
- * Displays the UI for a products details 
+ * Displays the UI for a products details
  *
  * @param LocalUserNum the local user viewing available content
  * @param ParentProductId the product ID of the parent product for which to show child content
@@ -3800,14 +3797,6 @@ native function bool ShowCustomPlayersUI(byte LocalUserNum,const out array<Uniqu
 
 `if(`__TW_ONLINESUBSYSTEM_)
 /**
- * Notifies the interested party that the avatar read has completed
- *
- * @param PlayerNetId Id of the Player whose avatar this is.
- * @param Avatar the avatar texture. None on error or no avatar available.
- */
-delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Avatar);
-
-/**
  * Reads an avatar images for the specified player. Results are delivered via OnReadOnlineAvatarComplete delegates.
  *
  * @param PlayerNetId the unique id to read avatar for
@@ -3817,7 +3806,7 @@ delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Ava
  *              currently offers images in 32, 64, and 184 pixels. Other OnlineSubsystems may vary.
  * @param ReadOnlineAvatarCompleteDelegate The delegate to call with results.
  */
-native function ReadOnlineAvatar( const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate );
+native function ReadOnlineAvatar( const UniqueNetId PlayerNetId, int Size );
 
 `endif
 
@@ -3959,7 +3948,7 @@ function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
 function ReadStoreData();
 delegate OnStoreDataRead( bool bSuccessful );
 function AddStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate );
-function ClearStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate ); 
+function ClearStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate );
 
 function ReadEntitlements();
 delegate OnEntitlementsRead( bool bSuccess );
@@ -4520,7 +4509,7 @@ function ClearAllDelegates()
 }
 
 `if (`__TW_NETWORKING_)
-	
+
 // VoIP
 native function SetVoIPVolume(float Volume);
 native function float GetVoIPVolume();

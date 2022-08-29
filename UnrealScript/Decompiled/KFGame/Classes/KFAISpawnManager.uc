@@ -674,8 +674,8 @@ function float GetNextSpawnTimeMod()
             LogInternal("Spawn rate modifier (difficulty):" @ string(Outer.DifficultyInfo.GetSpawnRateModifier()));
         }
     }
-    SpawnTimeMod *= Outer.GetGameInfoSpawnRateMod();
-    return SpawnTimeMod * Outer.GameConductor.CurrentSpawnRateModification;
+    SpawnTimeMod *= (Outer.GetGameInfoSpawnRateMod() * Outer.GameConductor.CurrentSpawnRateModification);
+    return float(Max(int(SpawnTimeMod), 0));
 }
 
 function float GetSineMod()

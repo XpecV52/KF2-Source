@@ -270,6 +270,26 @@ class KFWeapon extends Weapon
 
 #linenumber 17;
 
+// variables used to rotate cylinder
+struct native CylinderRotationInfo
+{
+	// how many degrees to rotate the cylinder by each shot
+	var float Inc;
+	// rotation starting point
+	var transient float PrevDegrees;
+	// rotation goal
+	var transient float NextDegrees;
+	// how quickly to rotate
+	var float Time;
+	// timer to keep track of rotation time
+	var transient float Timer;
+	// the skelcontrol that controls the cylinder (cached)
+	var transient SkelControlSingleBone Control;
+
+	// tracks cylinder state (before fire, after fire but before rotating, rotating)
+	var transient int State;
+};
+
 /** mesh for overlay - Each weapon will need to add its own overlay mesh in its default props */
 var protected MeshComponent OverlayMesh;
 
@@ -1064,30 +1084,118 @@ var bool bDebugRecoilPosition;
 var config bool	bLogAmmo;
 
 /** Log weapon upgrade system. */
-var config bool bLogWeaponUpgrade;
+var const bool bLogWeaponUpgrade;
 
 /*********************************************************************************************
  * @name Weapon Upgrade System
  *********************************************************************************************/
 
-struct native WeaponUpgradeInfo
+enum EWeaponUpgradeStat
 {
-	var() int IncrementWeight;
-	var() float IncrementDamage;
-	var() float IncrementHeal;
-	var() float IncrementHealFullRecharge;
+	// general stats
+	EWUS_Weight,
+	EWUS_Heal,
+	EWUS_HealFullRecharge,
+	EWUS_BlockDmgMitigation, // TODO
+	EWUS_ParryDmgMitigation, // TODO
+
+	// firemode stats (0 = default/primary, 1 = altfire/secondary, 2 = bash/tertiary)
+	EWUS_Damage0,
+	EWUS_Damage1,
+	EWUS_Damage2,
+	EWUS_MagCapacity0,
+	EWUS_MagCapacity1,
+	EWUS_MagCapacity2,
+	EWUS_SpareCapacity0,
+	EWUS_SpareCapacity1,
+	EWUS_SpareCapacity2,
+	EWUS_Spread0,
+	EWUS_Spread1,
+	EWUS_Spread2,
+	EWUS_Penetration0,
+	EWUS_Penetration1,
+	EWUS_Penetration2,
+	EWUS_ExploRadius0,
+	EWUS_ExploRadius1,
+	EWUS_ExploRadius2,
+	EWUS_ReloadRate0,
+	EWUS_ReloadRate1,
+	EWUS_ReloadRate2,
+	EWUS_Recoil0,
+	EWUS_Recoil1,
+	EWUS_Recoil2,
+	EWUS_MeleeSpeed0,
+	EWUS_MeleeSpeed1,
+	EWUS_MeleeSpeed2,
+	EWUS_AfflictEMP0,
+	EWUS_AfflictEMP1,
+	EWUS_AfflictEMP2,
+	EWUS_AfflictFire0,
+	EWUS_AfflictFire1,
+	EWUS_AfflictFire2,
+	EWUS_AfflictMelee0,
+	EWUS_AfflictMelee1,
+	EWUS_AfflictMelee2,
+	EWUS_AfflictGun0,
+	EWUS_AfflictGun1,
+	EWUS_AfflictGun2,
+	EWUS_AfflictStumble0,
+	EWUS_AfflictStumble1,
+	EWUS_AfflictStumble2,
+	EWUS_AfflictStun0,
+	EWUS_AfflictStun1,
+	EWUS_AfflictStun2,
+	EWUS_AfflictPoison0,
+	EWUS_AfflictPoison1,
+	EWUS_AfflictPoison2,
+	EWUS_AfflictSnare0,
+	EWUS_AfflictSnare1,
+	EWUS_AfflictSnare2,
+	EWUS_AfflictKnockdown0,
+	EWUS_AfflictKnockdown1,
+	EWUS_AfflictKnockdown2,
+	EWUS_AfflictFreeze0,
+	EWUS_AfflictFreeze1,
+	EWUS_AfflictFreeze2,
+	EWUS_AfflictMicrowave0,
+	EWUS_AfflictMicrowave1,
+	EWUS_AfflictMicrowave2,
+	EWUS_AfflictBleed0,
+	EWUS_AfflictBleed1,
+	EWUS_AfflictBleed2,
+
+	// custom (for modders)
+	EWUS_Custom1,
+	EWUS_Custom2,
+	EWUS_Custom3,
+	EWUS_Custom4,
+	EWUS_Custom5,
+};
+
+struct native WeaponUpgradeStatInc
+{
+	var EWeaponUpgradeStat Stat;
+	var float Scale;
+	var int Add;
 
 	structdefaultproperties
 	{
-		IncrementWeight=1
-		IncrementDamage=1.f
-		IncrementHealFullRecharge=1.f
-		IncrementHeal=1.f
+		Scale=1.f
+		Add=0
 	}
+};
+
+struct native WeaponUpgradeInfo
+{
+	var array<WeaponUpgradeStatInc> Stats;
 };
 
 var array<WeaponUpgradeInfo> WeaponUpgrades;
 var int CurrentWeaponUpgradeIndex;
+
+// Actual firemodes (0-5) need to be mapped to upgrade firemodes (0, 1, and 2) since they don't line up
+// and are different between guns and melee weapons
+var int UpgradeFireModes[6];
 
 // (cpptext)
 // (cpptext)
@@ -1671,7 +1779,7 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 	if(PickedUpWeapon.CurrentWeaponUpgradeIndex > INDEX_NONE)
 	{
 		SetWeaponUpgradeLevel(PickedUpWeapon.CurrentWeaponUpgradeIndex);
-		KFInventoryManager(InvManager).AddCurrentCarryBlocks(WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementWeight);
+		KFInventoryManager(InvManager).AddCurrentCarryBlocks(GetUpgradeStatAdd(EWUS_Weight, CurrentWeaponUpgradeIndex));
 		KFPawn(Instigator).NotifyInventoryWeightChanged();
 	}
 
@@ -3612,7 +3720,7 @@ simulated function rotator AddSpread(rotator BaseAim)
 		return BaseAim;
 	}
 
-	CurrentSpread = Spread[CurrentFireMode];
+	CurrentSpread = GetUpgradedSpread(CurrentFireMode);
 
 	if( bUsingSights )
 	{
@@ -3670,7 +3778,7 @@ simulated event HandleRecoil()
 		return;
 	}
 
-	CurrentRecoilModifier = 1.0;
+	CurrentRecoilModifier = GetUpgradedRecoilModifier(CurrentFireMode);
 
 	NewRecoilRotation.Pitch = RandRange( minRecoilPitch, maxRecoilPitch );
 	NewRecoilRotation.Yaw = RandRange( minRecoilYaw, maxRecoilYaw );
@@ -3857,7 +3965,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 		SpawnedProjectile.InitialPenetrationPower = GetInitialPenetrationPower(CurrentFireMode);
 		SpawnedProjectile.PenetrationPower = SpawnedProjectile.InitialPenetrationPower;
 
-		SpawnedProjectile.UpgradeDamageMod = static.GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
+		SpawnedProjectile.UpgradeDamageMod = GetUpgradeDamageMod();
 		SpawnedProjectile.Init( AimDir );
 	}
 
@@ -3876,9 +3984,9 @@ simulated event float GetInitialPenetrationPower(byte FiringMode)
 	local KFPlayerController KFPC;
 
 	// Set the initial penetration power for this shot
-	if ( PenetrationPower.Length > FiringMode && PenetrationPower[FiringMode] > 0 )
+	if (PenetrationPower.Length > FiringMode)
     {
-        UsedPenetrationPower = default.PenetrationPower[FiringMode];
+		UsedPenetrationPower = GetUpgradedPenetration(FiringMode);
     }
 
 	InstigatorPerk = GetPerk();
@@ -3910,7 +4018,6 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     local float InitialPenetrationPower, OriginalPenetrationVal;
     local KFPerk CurrentPerk;
     local bool bNoPenetrationDmgReduction;
-
 
 	if (Impact.HitActor != None)
 	{
@@ -4245,30 +4352,12 @@ static simulated event bool CanRefillSecondaryAmmo()
  */
 function InitializeAmmo()
 {
-	local KFPerk CurrentPerk;
-
-	CurrentPerk = GetPerk();
-
-	// Let the perk change mag numbers etc if needed
-	if( CurrentPerk != none )
-	{
-		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[0] );
-		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[1],, true );
-
-		CurrentPerk.ModifyMaxSpareAmmoAmount( self, SpareAmmoCapacity[0] );
-		CurrentPerk.ModifyMaxSpareAmmoAmount( self, SpareAmmoCapacity[1],, true );
-	}
+	InitializeAmmoCapacity();
 
 	AmmoCount[0] = MagazineCapacity[0];
 	AmmoCount[1] = MagazineCapacity[1];
 
-	AddAmmo(InitialSpareMags[0] * default.MagazineCapacity[0]);
-
-	if( CurrentPerk != none )
-	{
-		CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[0]);
-		CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[1],, true);
-	}
+	AddAmmo(default.InitialSpareMags[0] * default.MagazineCapacity[0]);
 
 	// HACK: Finalize our spare ammo values
 	AddAmmo(0);
@@ -4288,11 +4377,7 @@ function ReInitializeAmmoCounts(KFPerk CurrentPerk)
 		SpareAmmoCapacity[0]	= default.SpareAmmoCapacity[0];
 		SpareAmmoCapacity[1]	= default.SpareAmmoCapacity[1];
 
-		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[0] );
-		CurrentPerk.ModifyMagSizeAndNumber( self, MagazineCapacity[1],, true );
-
-		CurrentPerk.ModifyMaxSpareAmmoAmount( self, SpareAmmoCapacity[0] );
-		CurrentPerk.ModifyMaxSpareAmmoAmount( self, SpareAmmoCapacity[1],, true );
+		InitializeAmmoCapacity(, CurrentPerk);
 
 		// We don't want to modify current ammo, but spare ammo should respect perk and level
 		AddAmmo(0);
@@ -5082,53 +5167,304 @@ simulated function SetWeaponUpgradeLevel(int WeaponUpgradeLevel)
 {
 	if (bLogWeaponUpgrade) LogInternal(self @ "-" @ GetFuncName() @ "- Setting Upgrade Index to" @ WeaponUpgradeLevel);
 	CurrentWeaponUpgradeIndex = WeaponUpgradeLevel;
+
+	InitializeAmmoCapacity();
+
 	bNetDirty = TRUE;
 }
 
+simulated function InitializeAmmoCapacity(optional int UpgradeIndex = INDEX_NONE, optional KFPerk CurrentPerk)
+{
+	ModifyMagSizeAndNumber(MagazineCapacity[DEFAULT_FIREMODE], DEFAULT_FIREMODE, UpgradeIndex, CurrentPerk);
+	ModifyMagSizeAndNumber(MagazineCapacity[ALTFIRE_FIREMODE], ALTFIRE_FIREMODE, UpgradeIndex, CurrentPerk);
+
+	ModifySpareAmmoCapacity(SpareAmmoCapacity[DEFAULT_FIREMODE], DEFAULT_FIREMODE, UpgradeIndex, CurrentPerk);
+	ModifySpareAmmoCapacity(SpareAmmoCapacity[ALTFIRE_FIREMODE], ALTFIRE_FIREMODE, UpgradeIndex, CurrentPerk);
+}
+
+simulated static function GetUpgradeStatInc(EWeaponUpgradeStat Stat, int UpgradeIndex, out float OutScale, out int OutAdd)
+{
+	local int i;
+
+	OutScale = 1.f;
+	OutAdd = 0;
+
+	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.Length)
+	{
+		if (default.bLogWeaponUpgrade) WarnInternal(default.Class$"::GetUpgradeStatInc - UpgradeIndex "$UpgradeIndex$" is out of range (WeaponUpgrades.Length is "$default.WeaponUpgrades.Length$"). Returning unmodified input values.");
+		return;
+	}
+
+	for (i = 0; i < default.WeaponUpgrades[UpgradeIndex].Stats.Length; ++i)
+	{
+		if (default.WeaponUpgrades[UpgradeIndex].Stats[i].Stat == Stat)
+		{
+			OutScale = default.WeaponUpgrades[UpgradeIndex].Stats[i].Scale;
+			OutAdd = default.WeaponUpgrades[UpgradeIndex].Stats[i].Add;
+			return;
+		}
+	}
+
+	if (default.bLogWeaponUpgrade) WarnInternal(default.Class$"::GetUpgradeStatInc - Could not find stat "$Stat$". Returning default values.");
+}
+
+simulated static function float GetUpgradeStatScale(EWeaponUpgradeStat Stat, int UpgradeIndex)
+{
+	local float StatScale;
+	local int StatAdd;
+	GetUpgradeStatInc(Stat, UpgradeIndex, StatScale, StatAdd);
+	return StatScale;
+}
+
+simulated static function int GetUpgradeStatAdd(EWeaponUpgradeStat Stat, int UpgradeIndex)
+{
+	local float StatScale;
+	local int StatAdd;
+	GetUpgradeStatInc(Stat, UpgradeIndex, StatScale, StatAdd);
+	return StatAdd;
+}
+
+simulated static function float GetUpgradedStatValue(float InStatVal, EWeaponUpgradeStat Stat, int UpgradeIndex)
+{
+	local float StatScale;
+	local int StatAdd;
+
+	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.Length)
+	{
+		if (default.bLogWeaponUpgrade) WarnInternal(default.Class$"::GetUpgradedStatValue - UpgradeIndex "$UpgradeIndex$" is out of range (WeaponUpgrades.Length is "$default.WeaponUpgrades.Length$"). Returning unmodified input value.");
+		return InStatVal;
+	}
+
+	GetUpgradeStatInc(Stat, UpgradeIndex, StatScale, StatAdd);
+	return (InStatVal * StatScale) + StatAdd;
+}
+
+// Upgrade: Weight
+
 simulated function int GetModifiedWeightValue()
 {
-	return InventorySize + WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementWeight;
+	return GetUpgradedStatValue(InventorySize, EWUS_Weight, CurrentWeaponUpgradeIndex);
+}
+
+simulated static function int GetDefaultModifiedWeightValue(int UpgradeIndex)
+{
+	return GetUpgradedStatValue(default.InventorySize, EWUS_Weight, UpgradeIndex);
 }
 
 simulated static function int GetUpgradeWeight(int UpgradeIndex)
 {
-	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.length)
-	{
-		return 0;
-	}
-
-	return default.WeaponUpgrades[UpgradeIndex].IncrementWeight;
+	return GetUpgradeStatAdd(EWUS_Weight, UpgradeIndex);
 }
 
-simulated static function float GetUpgradeDamageMod(int UpgradeIndex)
+// Upgrade: Damage
+
+simulated function float GetUpgradeDamageMod(optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
 {
-	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.length)
+	if (UpgradeIndex == INDEX_NONE)
 	{
-		return 1.f;
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
 	}
 
-	return FMax(default.WeaponUpgrades[UpgradeIndex].IncrementDamage, 1.f);
+	return GetUpgradeStatScale(EWeaponUpgradeStat(EWUS_Damage0 + UpgradeFireModes[FireMode]), UpgradeIndex);
 }
+
+simulated function float GetUpgradedDamage(optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
+{
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	return int(GetUpgradedStatValue(default.InstantHitDamage[FireMode], EWeaponUpgradeStat(EWUS_Damage0 + UpgradeFireModes[FireMode]), UpgradeIndex));
+}
+
+// Upgrade: Heal
 
 simulated static function float GetUpgradeHealMod(int UpgradeIndex)
 {
-	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.length)
-	{
-		return 1.f;
-	}
-
-	return default.WeaponUpgrades[UpgradeIndex].IncrementHeal;
+	return GetUpgradeStatScale(EWUS_Heal, UpgradeIndex);
 }
+
+// Upgrade: Heal Recharge
 
 simulated static function float GetUpgradeHealRechargeMod(int UpgradeIndex)
 {
-	if (UpgradeIndex < 0 || UpgradeIndex >= default.WeaponUpgrades.length)
+	return GetUpgradeStatScale(EWUS_HealFullRecharge, UpgradeIndex);
+}
+
+// Upgrade: Magazine Capacity
+
+simulated function int GetUpgradedMagCapacity(optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
+{
+	if (UpgradeIndex == INDEX_NONE)
 	{
-		return 1.f;
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
 	}
 
-	return default.WeaponUpgrades[UpgradeIndex].IncrementHealFullRecharge;
+	return int(GetUpgradedStatValue(default.MagazineCapacity[FireMode], EWeaponUpgradeStat(EWUS_MagCapacity0 + UpgradeFireModes[FireMode]), UpgradeIndex));
 }
+
+simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE, optional KFPerk CurrentPerk)
+{
+	if (FireMode == BASH_FIREMODE)
+	{
+		return;
+	}
+
+	InMagazineCapacity = GetUpgradedMagCapacity(FireMode, UpgradeIndex);
+
+	if (CurrentPerk == none)
+	{
+		CurrentPerk = GetPerk();
+	}
+
+	if (CurrentPerk != none)
+	{
+		CurrentPerk.ModifyMagSizeAndNumber(self, InMagazineCapacity, AssociatedPerkClasses, FireMode == ALTFIRE_FIREMODE, Class.Name);
+	}
+}
+
+// Upgrade: Spare Ammo Capacity
+
+simulated function int GetUpgradedSpareAmmoCapacity(optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
+{
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	return int(GetUpgradedStatValue(default.SpareAmmoCapacity[FireMode], EWeaponUpgradeStat(EWUS_SpareCapacity0 + UpgradeFireModes[FireMode]), UpgradeIndex));
+}
+
+simulated function ModifySpareAmmoCapacity(out int InSpareAmmo, optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE, optional KFPerk CurrentPerk)
+{
+	if (FireMode == BASH_FIREMODE)
+	{
+		return;
+	}
+
+	InSpareAmmo = GetUpgradedSpareAmmoCapacity(FireMode, UpgradeIndex);
+
+	if (CurrentPerk == none)
+	{
+		CurrentPerk = GetPerk();
+	}
+
+	if (CurrentPerk != none)
+	{
+		CurrentPerk.ModifyMaxSpareAmmoAmount(self, InSpareAmmo,, FireMode == ALTFIRE_FIREMODE);
+	}
+}
+
+// Upgrade: Spread
+
+simulated function float GetUpgradedSpread(optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
+{
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	return GetUpgradedStatValue(default.Spread[FireMode], EWeaponUpgradeStat(EWUS_Spread0 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+// Upgrade: Penetration
+
+simulated function float GetUpgradedPenetration(optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
+{
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	return int(GetUpgradedStatValue(default.PenetrationPower[FireMode], EWeaponUpgradeStat(EWUS_Penetration0 + UpgradeFireModes[FireMode]), UpgradeIndex));
+}
+
+// Upgrade: Explosion Radius
+
+simulated function ModifyExplosionRadius(out float InRadius, optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
+{
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	InRadius = GetUpgradedStatValue(InRadius, EWeaponUpgradeStat(EWUS_ExploRadius0 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+// Upgrade: Reload Speed
+
+simulated function float GetUpgradedReloadRateScale(optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
+{
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	return GetUpgradeStatScale(EWeaponUpgradeStat(EWUS_ReloadRate0 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+// Upgrade: Recoil
+
+simulated function float GetUpgradedRecoilModifier(optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE)
+{
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	return GetUpgradeStatScale(EWeaponUpgradeStat(EWUS_Recoil0 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+// Upgrade: Melee speed
+
+simulated function ModifyMeleeAttackSpeed(out float InSpeed, optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE, optional KFPerk CurrentPerk)
+{
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	InSpeed = GetUpgradedStatValue(InSpeed, EWeaponUpgradeStat(EWUS_MeleeSpeed0 + UpgradeFireModes[FireMode]), UpgradeIndex);
+
+	if (CurrentPerk == none)
+	{
+		CurrentPerk = GetPerk();
+	}
+
+	if (CurrentPerk != none)
+	{
+		CurrentPerk.ModifyMeleeAttackSpeed(InSpeed, self);
+	}
+}
+
+// Upgrade: Afflictions
+
+simulated function float GetUpgradedAfflictionPower(EAfflictionType AfflictionType, float InPower, optional int FireMode = INDEX_NONE, optional int UpgradeIndex = INDEX_NONE)
+{
+	local EWeaponUpgradeStat BaseAfflictStat;
+
+	if (FireMode == INDEX_NONE)
+	{
+		FireMode = CurrentFireMode;
+	}
+
+	if (UpgradeIndex == INDEX_NONE)
+	{
+		UpgradeIndex = CurrentWeaponUpgradeIndex;
+	}
+
+	// Get the stat index for the affliction type
+	// (EWUS_AfflictEmp0 is the first affliction stat, and there are 3 firemodes for each stat)
+	BaseAfflictStat = EWeaponUpgradeStat(EWUS_AfflictEmp0 + AfflictionType * 3);
+
+	return GetUpgradedStatValue(InPower, EWeaponUpgradeStat(BaseAfflictStat + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+// Upgrade: Block/Parry (implemented in KFWeap_MeleeBase)
+
+static simulated function float GetUpgradedBlockDamageMitigation(int UpgradeIndex);
+static simulated function float GetUpgradedParryDamageMitigation(int UpgradeIndex);
 
 /*********************************************************************************************
  * state Inactive
@@ -6643,12 +6979,14 @@ simulated function float GetReloadRateScale()
 	local float Rate;
 	local KFPerk MyPerk;
 
-	Rate = 1.f;
+	//Rate = 1.f;
+	Rate = GetUpgradedReloadRateScale(GetStateName() == 'Reloading' ? DEFAULT_FIREMODE : ALTFIRE_FIREMODE);
 
 	MyPerk = GetPerk();
 	if( MyPerk != None )
 	{
-		Rate = MyPerk.GetReloadRateScale( self );
+		//Rate = MyPerk.GetReloadRateScale( self );
+		Rate *= MyPerk.GetReloadRateScale(self);
 	}
 
 	return Rate;
@@ -7080,15 +7418,10 @@ simulated state MeleeAttackBasic
 	/** Gets the current animation rate, scaled or not */
 	simulated function float GetThirdPersonAnimRate()
 	{
-		local KFPerk CurrentPerk;
 		local float ScaledRate;
 
 		ScaledRate = 1.0f;
-		CurrentPerk = GetPerk();
-		if ( CurrentPerk != none )
-		{
-			CurrentPerk.ModifyMeleeAttackSpeed( ScaledRate, self );
-		}
+		ModifyMeleeAttackSpeed(ScaledRate, CurrentFireMode);
 
 		return 1.f / ScaledRate;
 	}
@@ -7097,15 +7430,9 @@ simulated state MeleeAttackBasic
 /** Called from the MeleeHelper class to allow for the weapon to override settings */
 simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float BlendTime)
 {
-	local KFPerk InstigatorPerk;
 	local float Duration;
 
-	InstigatorPerk = GetPerk();
-	if ( InstigatorPerk != none )
-	{
-		InstigatorPerk.ModifyMeleeAttackSpeed( out_Rate, self );
-	}
-
+	ModifyMeleeAttackSpeed(out_Rate, CurrentFireMode);
 	Duration = MySkelMesh.GetAnimLength(AnimName);
 	Duration *= out_Rate; // scale by desired rate
 	PlayAnimation(AnimName, Duration,, BlendTime);
@@ -7113,7 +7440,7 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 
 simulated function int GetModifiedDamage(byte FireModeNum, optional vector RayDir)
 {
-	return InstantHitDamage[FireModeNum] * FMax(WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementDamage, 1.0f);
+	return GetUpgradedStatValue(InstantHitDamage[FireModeNum], FireModeNum == 0 ? EWUS_Damage0 : EWUS_Damage1, CurrentWeaponUpgradeIndex);
 }
 
 /** returns the damage amount for this attack */
@@ -7396,7 +7723,9 @@ defaultproperties
    StanceCrouchedRecoilModifier=0.750000
    LastRecoilModifier=1.000000
    IronSightMeshFOVCompensationScale=1.000000
-   WeaponUpgrades(0)=(IncrementWeight=0)
+   WeaponUpgrades(0)=(Stats=((Stat=EWUS_Damage0),))
+   UpgradeFireModes(1)=1
+   UpgradeFireModes(3)=2
    FiringStatesArray(0)="WeaponFiring"
    FiringStatesArray(1)="WeaponFiring"
    FiringStatesArray(2)="Reloading"

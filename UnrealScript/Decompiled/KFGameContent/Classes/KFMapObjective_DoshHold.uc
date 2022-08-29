@@ -345,6 +345,11 @@ simulated function float GetProgress()
     return CurrentRewardAmount / float(MaxDoshReward);
 }
 
+simulated function bool IsComplete()
+{
+    return ((GetProgress()) > 0) && !bActive;
+}
+
 simulated function float GetActivationPctChance()
 {
     local KFGameReplicationInfo KFGRI;

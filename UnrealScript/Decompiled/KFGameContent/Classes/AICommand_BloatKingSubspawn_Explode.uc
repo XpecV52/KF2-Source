@@ -50,7 +50,7 @@ state Command_SpecialMove
 {
     function KFGame.KFPawn.ESpecialMove GetSpecialMove()
     {
-        return 42;
+        return 43;
     }
 
     function byte GetSpecialMoveFlags(KFGame.KFPawn.ESpecialMove InSpecialMove)

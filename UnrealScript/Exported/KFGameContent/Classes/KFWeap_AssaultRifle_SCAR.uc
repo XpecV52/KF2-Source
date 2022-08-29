@@ -65,7 +65,7 @@ defaultproperties
    RecoilISMinPitchLimit=65460
    IronSightMeshFOVCompensationScale=4.000000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Commando'
-   WeaponUpgrades(1)=(IncrementDamage=1.220000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.220000),(Stat=EWUS_Damage1,Scale=1.220000),(Add=1)))
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

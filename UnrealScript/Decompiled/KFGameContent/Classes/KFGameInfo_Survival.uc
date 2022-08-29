@@ -270,7 +270,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     local int I;
 
     super.Killed(Killer, KilledPlayer, KilledPawn, DamageType);
-    if(!MyKFGRI.IsBossWave() && KilledPawn.IsA('KFPawn_Monster'))
+    if((!MyKFGRI.IsBossWave() && !MyKFGRI.IsEndlessWave()) && KilledPawn.IsA('KFPawn_Monster'))
     {
         Class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo);
         GameSeq = WorldInfo.GetGameSequence();
@@ -278,7 +278,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         {
             GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveProgress', true, AllWaveProgressEvents);
             I = 0;
-            J0x150:
+            J0x176:
 
             if(I < AllWaveProgressEvents.Length)
             {
@@ -288,7 +288,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
                     WaveProgressEvt.SetWaveProgress(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, self);
                 }
                 ++ I;
-                goto J0x150;
+                goto J0x176;
             }
         }
     }
@@ -319,6 +319,7 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded)
     local KFPlayerController KFPC;
 
     bCheckWaveEnded = true;
+    super.BossDied(Killer, bCheckWaveEnded);
     KFPC = KFPlayerController(Killer);
     if((KFPC != none) && KFPC.MatchStats != none)
     {
@@ -747,11 +748,6 @@ function StartWave()
     }    
 }
 
-function bool IsMapObjectiveEnabled()
-{
-    return bEnableMapObjectives;
-}
-
 function byte GetWaveStartMessage()
 {
     if(MyKFGRI.IsBossWave())
@@ -911,11 +907,6 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
     }
 }
 
-function ObjectiveFailed()
-{
-    MyKFGRI.DeactivateObjective();
-}
-
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
     local array<SequenceObject> AllWaveEndEvents;
@@ -1031,6 +1022,135 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
     }
 }
 
+function class<KFPawn_Monster> GetAISpawnType(KFGame.KFAISpawnManager.EAIType AIType)
+{
+    local KFMapInfo KFMI;
+    local KFGameReplicationInfo KFGRI;
+    local array<SpawnReplacement> SpawnReplacements;
+    local int I;
+
+    KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+    if(KFMI != none)
+    {
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+        if(KFMI.bUsePresetObjectives && !KFMI.WaveHasPresetObjectives(WaveNum, GameLength) || ((KFGRI != none) && NotEqual_InterfaceInterface(KFGRI.ObjectiveInterface, (none))) && KFGRI.ObjectiveInterface.CanActivateObjective())
+        {
+            switch(GameLength)
+            {
+                case 0:
+                    SpawnReplacements = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].SpawnReplacements;
+                    break;
+                case 1:
+                    SpawnReplacements = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].SpawnReplacements;
+                    break;
+                case 2:
+                    SpawnReplacements = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].SpawnReplacements;
+                    break;
+                default:
+                    break;
+            }
+            if(SpawnReplacements.Length > 0)
+            {
+                I = 0;
+                J0x2A6:
+
+                if(I < SpawnReplacements.Length)
+                {
+                    if((SpawnReplacements[I].SpawnEntry == AIType) && FRand() < SpawnReplacements[I].PercentChance)
+                    {
+                        if(SpawnReplacements[I].NewClass.Length > 0)
+                        {
+                            return SpawnReplacements[I].NewClass[Rand(SpawnReplacements[I].NewClass.Length)];
+                        }
+                    }
+                    ++ I;
+                    goto J0x2A6;
+                }
+            }
+        }
+    }
+    return AIClassList[AIType];
+}
+
+function float GetTotalWaveCountScale()
+{
+    local float WaveScale;
+    local KFMapInfo KFMI;
+    local KFGameReplicationInfo KFGRI;
+
+    WaveScale = super.GetTotalWaveCountScale();
+    KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+    if(KFMI != none)
+    {
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+        if(KFMI.bUsePresetObjectives && !KFMI.WaveHasPresetObjectives(WaveNum, GameLength) || ((KFGRI != none) && NotEqual_InterfaceInterface(KFGRI.ObjectiveInterface, (none))) && KFGRI.ObjectiveInterface.CanActivateObjective())
+        {
+            switch(GameLength)
+            {
+                case 0:
+                    WaveScale *= KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].WaveScale;
+                    break;
+                case 1:
+                    WaveScale *= KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].WaveScale;
+                    break;
+                case 2:
+                    WaveScale *= KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].WaveScale;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+        }/* !MISMATCHING REMOVE, tried If got Type:Else Position:0x2A2! */
+        return WaveScale;
+    }/* !MISMATCHING REMOVE, tried Else got Type:If Position:0x046! */
+}
+
+function float GetGameInfoSpawnRateMod()
+{
+    local float SpawnRateMod;
+    local KFGameReplicationInfo KFGRI;
+    local KFMapInfo KFMI;
+    local int NumPlayersAlive;
+
+    SpawnRateMod = super.GetGameInfoSpawnRateMod();
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI == none)
+    {
+        return SpawnRateMod;
+    }
+    KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+    if(KFMI == none)
+    {
+        return SpawnRateMod;
+    }
+    if(KFMI.bUsePresetObjectives && !KFMI.WaveHasPresetObjectives(WaveNum, GameLength) || ((KFGRI != none) && NotEqual_InterfaceInterface(KFGRI.ObjectiveInterface, (none))) && KFGRI.ObjectiveInterface.CanActivateObjective())
+    {
+        switch(GameLength)
+        {
+            case 0:
+                NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PerPlayerSpawnRateMod.Length) - 1;
+                SpawnRateMod *= KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PerPlayerSpawnRateMod[NumPlayersAlive];
+                break;
+            case 1:
+                NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PerPlayerSpawnRateMod.Length) - 1;
+                SpawnRateMod *= KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PerPlayerSpawnRateMod[NumPlayersAlive];
+                break;
+            case 2:
+                NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PerPlayerSpawnRateMod.Length) - 1;
+                SpawnRateMod *= KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PerPlayerSpawnRateMod[NumPlayersAlive];
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
+        return SpawnRateMod;
+    }
+}
+
 function CloseTraderTimer();
 
 function SkipTrader(int TimeAfterSkipTrader)
@@ -1082,12 +1202,6 @@ function NotifyTraderOpened()
             goto J0x75;
         }
     }
-}
-
-function RestartGame()
-{
-    LogInternal("KFGameInfo_Survival - RestartGame");
-    super(GameInfo).RestartGame();
 }
 
 function EndOfMatch(bool bVictory)
@@ -1208,6 +1322,21 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime)
 function TryRestartGame()
 {
     RestartGame();
+}
+
+function bool IsMapObjectiveEnabled()
+{
+    return bEnableMapObjectives;
+}
+
+function ObjectiveFailed()
+{
+    MyKFGRI.DeactivateObjective();
+}
+
+function OnEndlessSpawningObjectiveDeactivated()
+{
+    CheckWaveEnd();
 }
 
 function DebugKillZeds()

@@ -119,11 +119,21 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     {
         Weap = KFWeap_AssaultRifle_M16M203(PickedUpWeapon);
         ServerTotalAltAmmo = Weap.ServerTotalAltAmmo;
-        SpareAmmoCount[1] = ServerTotalAltAmmo - AmmoCount[1];        
+        SpareAmmoCount[1] = ServerTotalAltAmmo - AmmoCount[1];
+        ClientForceSecondarySpareAmmo(byte(SpareAmmoCount[1]));        
     }
     else
     {
         SpareAmmoCount[1] = PickedUpWeapon.SpareAmmoCount[1];
+    }
+}
+
+reliable client simulated function ClientForceSecondarySpareAmmo(byte NewSecondarySpareAmmo)
+{
+    if(Role < ROLE_Authority)
+    {
+        SpareAmmoCount[1] = NewSecondarySpareAmmo;
+        NotifyHUDofWeapon(Pawn(Owner));
     }
 }
 

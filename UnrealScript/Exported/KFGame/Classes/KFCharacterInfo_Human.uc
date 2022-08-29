@@ -943,9 +943,6 @@ protected simulated function SetAttachmentMesh(int CurrentAttachmentMeshIndex, i
 			AttachmentSocket.RelativeScale * AttachmentScaleRelativeToSocket);
 	}
 
-	// Update the pawn's attachment metadata
-	KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
-
 	if(bIsFirstPerson)
 	{
 		KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
@@ -1022,7 +1019,7 @@ private function SetAttachmentMeshAndSkin(
 	int CurrentAttachmentMeshIndex,
 	int CurrentAttachmentSkinIndex,
 	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI,
+	KFPlayerReplicationInfo KFPRI,
 	optional bool bIsFirstPerson )
 {
 	local string CharAttachmentMeshName;
@@ -1038,7 +1035,7 @@ private function SetAttachmentMeshAndSkin(
 	// Clear any previously attachments for the same slot
 	//DetachConflictingAttachments(CurrentAttachmentMeshIndex, KFP, KFPRI);
 	// Get a slot where this attachment could fit
-	AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP);
+	AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP, KFPRI);
 
 	if (AttachmentSlotIndex == INDEX_NONE)
 	{
@@ -1203,13 +1200,22 @@ function bool GetOverrideCase(int AttachmentIndex1, int AttachmentIndex2)
  */
 function int GetAttachmentSlotIndex(
 	int CurrentAttachmentMeshIndex,
-	KFPawn KFP)
+	KFPawn KFP,
+	KFPlayerReplicationInfo KFPRI)
 {
 	local int AttachmentIdx;
-	// Otherwise, return the next available attachment index
+
+	if (KFPRI == none)
+	{
+		WarnInternal("GetAttachmentSlotIndex - NO KFPRI");
+		return INDEX_NONE;
+	}
+
+	// Return the next available attachment index or the index that matches this mesh
 	for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
 	{
-		if( (KFP.ThirdPersonAttachmentBitMask & (1 << AttachmentIdx) ) == 0 )
+		if (KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == INDEX_NONE ||
+			KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == CurrentAttachmentMeshIndex)
 		{
 			return AttachmentIdx;
 		}
@@ -1261,7 +1267,6 @@ function DetachAttachment(int PawnAttachmentIndex, KFPawn KFP)
 	}
 
 	// Update the pawn's attachment metadata
-	KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask & ~(1 << PawnAttachmentIndex);
 	KFP.ThirdPersonAttachmentSocketNames[PawnAttachmentIndex] = '';
 	KFP.FirstPersonAttachmentSocketNames[PawnAttachmentIndex] = '';
 }

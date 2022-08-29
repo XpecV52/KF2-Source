@@ -1,3 +1,32 @@
+[CHR_BadSanta_Archetype]
+CharacterName="Badass Santa"
+Description="Primero, Krampus fue a por sus duendes y sus renos. Después, fue a por su hogar. Pero Papá Noel ya no se anda con chiquitas. Ahora tiene una ametralladora. ¡Jo, jo, jo!\n\nSan Nicolás comenzó a vigilar a los niños del mundo hace cientos de años, pensando que pasaría la eternidad trayendo alegría navideña y juguetes a los niños y niñas buenos del mundo.  Pero entonces llegó Krampus.  En el año transcurrido desde la Navidad de Krampus, Papá Noel se ha dedicado a vengar a sus trabajadores, amigos y familiares caídos. Atrás quedaron sus mejillas rosadas y su barrigota mullidita, ahora luce un ceño fruncido permanente y una tableta que no es de turrón. Estas fiestas no habrá noche de paz: este año, la buena voluntad y la alegría de Papá Noel no vuelven a casa por Navidad. Solo trae ira, venganza y una gran cantidad de munición para celebrar la Navidad."
+BodyMesh0="Santa Outfit"
+BodyMesh1="Pollo de comando"
+HeadMesh0="Santa Head"
+
+[CHR_BadSanta_Archetype.BodyMesh0]
+BodySkin0="Papá Noel clásico"
+BodySkin1="Nieve azul"
+BodySkin2="Higo marrón"
+BodySkin3="Bastón de caramelo"
+BodySkin4="Verde feliz"
+BodySkin5="Crema retro"
+
+[CHR_BadSanta_archetype.BodyMesh1]
+BodySkin0="Gastado"
+BodySkin1="Limpio"
+BodySkin2="Nocturno"
+BodySkin3="Herida de gravedad"
+
+[CHR_BadSanta_Archetype.HeadMesh0]
+HeadSkin0="Papá Noel clásico"
+HeadSkin1="Papá Noel dorado"
+HeadSkin2="Papá Noel de caramelo"
+HeadSkin3="Papá Noel alegre"
+HeadSkin4="Papá Noel joven"
+HeadSkin5="Papá Noel oscuro"
+
 [CHR_MrsFoster_archetype]
 CharacterName="Sra. Foster"
 Description="Cuando entrevistó al Sr. Foster por un trabajo como mercader de productos básicos, la Sra. Foster ya era una mercader de increíble éxito en una gran empresa de Londres. Ella era lo que él quería ser, pero el Sr. Foster era un caso perdido como mercader ya que no sabía seguir reglas ni callarse. Pero tenía algo especial: era tan elegante y cortés, tan... singular. Tanto que le regaló una máscara de gas en su primera cita. Era casi como si supiera que un mutante enloquecido con una ametralladora iba a crear una horda de clones carnívoros y arruinar su racha multimillonaria. Pronto se casaron, en un torbellino de flores, encaje, zeds y explosivos. Puede que no puedan trabajar juntos en la ciudad para conseguir montañas de dinero, pero ¡sí que pueden trabajar juntos para exterminar zeds y conseguir montañas de dinero!"
@@ -4371,3 +4400,167 @@ Attachment="Máscara de guerrero"
 AttachmentSkin0="Fuego"
 AttachmentSkin1="Agua"
 AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_SantaBackpack_ARCH]
+Attachment="Mochila navideña"
+AttachmentSkin0="Marrón"
+
+[Cosmetic_Christmas_SantaEyepatch_ARCH]
+Attachment="Parche navideño"
+AttachmentSkin0="Rojo"
+
+[Cosmetic_Christmas_TurkeyHat_ARCH]
+Attachment="Gorro de pavo navideño"
+AttachmentSkin0="Poco hecho"
+AttachmentSkin1="Muy hecho"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_Candycanebackpack_ARCH]
+Attachment="Mochila de bastón de caramelo"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_ChimneyHat_ARCH]
+Attachment="Gorro de chimenea navideña"
+AttachmentSkin0="Ladrillo rojo"
+AttachmentSkin1="Ladrillo verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_DeerAntlers_ARCH]
+Attachment="Asta de ciervo navideño"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_Glassesboxframe_ARCH]
+Attachment="Gafas de visión de caramelo navideño"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_Glassesfeline_ARCH]
+Attachment="Gafas de gato navideño"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_PenguinHat_ARCH]
+Attachment="Gorro de pingüino navideño"
+AttachmentSkin0="Clásico"
+AttachmentSkin1="Emperador"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_Christmashood_ARCH]
+Attachment="Capucha de Papá Noel"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_TreeHat_ARCH]
+Attachment="Gorro de árbol navideño"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_Wreathbackpack_ARCH]
+Attachment="Mochila de corona navideña"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Christmas_Zedbackpack_ARCH]
+Attachment="Mochila de zed navideño"
+AttachmentSkin0="Rojo"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_ScifyHornHelmet_ARCH]
+Attachment="Casco de cuerno sci-fi"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_ScifyFacelessHelmet_ARCH]
+Attachment="Casco sin cara sci-fi"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Precioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Rojo"
+
+[Cosmetic_ScifyBreathingHelmetA_ARCH]
+Attachment="Casco respirador sci-fi A"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Precioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Rojo"
+
+[Cosmetic_ScifyBreathingHelmetB_ARCH]
+Attachment="Casco respirador sci-fi B"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Precioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Rojo"
+
+[Cosmetic_ScifySamuraiHelmet_ARCH]
+Attachment="Casco samurái sci-fi"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Precioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Rojo"
+
+[Cosmetic_SamuraiArmorLegs_ARCH]
+Attachment="Piernas de armadura samurái"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Rojo"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_SamuraiArmorChest_ARCH]
+Attachment="Pecho de armadura samurái"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_RoninHat_ARCH]
+Attachment="Gorro ronin"
+AttachmentSkin0="Precioso"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Blanco"
+AttachmentSkin4="Amarillo"
+
+[Cosmetic_RoninGoggles_ARCH]
+Attachment="Gafas ronin"
+AttachmentSkin0="Precioso"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Blanco"
+AttachmentSkin4="Amarillo"
+
+[Cosmetic_RoninMask_ARCH]
+Attachment="Máscara ronin"
+AttachmentSkin0="Precioso"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Blanco"
+AttachmentSkin4="Amarillo"
+
+[Cosmetic_ScifyNoExpresionHelmet_ARCH]
+Attachment="Casco sin expresión sci-fi"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Precioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Rojo"

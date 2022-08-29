@@ -71,7 +71,7 @@ defaultproperties
 	RecoilISMinPitchLimit=65460
 	RecoilViewRotationScale=0.6
 	HippedRecoilModifier=1.5 //1.25
-
+	
 
 	// Recoil
 	//maxRecoilPitch=150
@@ -145,5 +145,7 @@ defaultproperties
 	AssociatedPerkClasses(1)=class'KFPerk_Commando'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+	//WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
 }

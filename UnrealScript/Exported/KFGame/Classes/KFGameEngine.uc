@@ -42,6 +42,7 @@ var bool bReadingPlayfabStoreData;
 
 /** Currently running event */
 var private{private} const int SeasonalEventId;
+var private const int LoadedSeasonalEventId;
 
 /** Week index of the year - Used as index into weekly event */
 var private int WeeklyEventIndex;
@@ -137,6 +138,7 @@ var transient private KFDebugLines	KFDebugLines;
 /** Set to true to enable usage of KFDebugLines (see KFDebugLines.uc) */
 var config bool	bEnableAdvDebugLines;
 
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -636,6 +638,7 @@ defaultproperties
    KFFontScale=0.600000
    bMuteOnLossOfFocus=True
    SeasonalEventId=-1
+   LoadedSeasonalEventId=-1
    WeeklyEventIndex=-1
    DefaultGammaMult=0.680000
    MusicVolumeMultiplier=50.000000

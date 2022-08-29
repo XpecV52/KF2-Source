@@ -196,6 +196,7 @@ cpptext
 	INT* GetOptimizedRepList( BYTE* InDefault, FPropertyRetirement* Retire, INT* Ptr, UPackageMap* Map, UActorChannel* Channel );
 	virtual void TickAuthoritative( FLOAT DeltaSeconds );
 	virtual FLOAT MaxSpeedModifier();
+	virtual UBOOL ShouldTrace(UPrimitiveComponent* Primitive,AActor *SourceActor, DWORD TraceFlags);
 }
 
 /*********************************************************************************************
@@ -574,6 +575,10 @@ simulated function CheckAndEndActiveEMoteSpecialMove()
 /*********************************************************************************************
 * @name Health
 ********************************************************************************************* */
+simulated function bool CanBeHealed()
+{
+	return true;
+}
 
 `if(`__TW_)
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bCanRepairArmor=true, optional bool bMessageHealer=true)

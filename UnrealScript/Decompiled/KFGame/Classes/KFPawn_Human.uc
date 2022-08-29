@@ -391,6 +391,11 @@ simulated function CheckAndEndActiveEMoteSpecialMove()
     }
 }
 
+simulated function bool CanBeHealed()
+{
+    return true;
+}
+
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bCanRepairArmor, optional bool bMessageHealer)
 {
     local int DoshEarned;

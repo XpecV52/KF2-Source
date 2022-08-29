@@ -153,8 +153,8 @@ defaultproperties
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
-   WeaponUpgrades(1)=(IncrementDamage=1.150000,IncrementHealFullRecharge=0.800000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000,IncrementHealFullRecharge=0.600000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Add=1),(Stat=EWUS_HealFullRecharge,Scale=0.800000)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Add=2),(Stat=EWUS_HealFullRecharge,Scale=0.600000)))
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)=()

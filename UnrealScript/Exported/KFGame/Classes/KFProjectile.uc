@@ -1011,9 +1011,20 @@ simulated function bool AllowNuke()
  */
 simulated protected function PrepareExplosionTemplate()
 {
+	local KFWeapon KFW;
+
 	GetRadialDamageValues(ExplosionTemplate.Damage, ExplosionTemplate.DamageRadius, ExplosionTemplate.DamageFalloffExponent);
 	ExplosionTemplate.Damage *= UpgradeDamageMod;
-	ExplosionTemplate.DamageRadius *= UpgradeDamageMod;
+
+	KFW = KFWeapon(Owner);
+	if (KFW == none && Instigator != none)
+	{
+		KFW = KFWeapon(Instigator.Weapon);
+	}
+	if (KFW != none)
+	{
+		KFW.ModifyExplosionRadius(ExplosionTemplate.DamageRadius, WeaponFireMode);
+	}
 }
 
 /** Returns values for radial damage. */
@@ -1023,7 +1034,15 @@ simulated protected function GetRadialDamageValues(out float outDamage, out floa
  *  Give the projectile the chance to situationally customize the explosion actor before it actually explodes.
  */
 simulated function vector GetExplosionDirection(vector HitNormal);
-simulated protected function PrepareExplosionActor(GameExplosionActor GEA);
+simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
+{
+	// pass along InstigatorController so explosion know who caused it,
+	// in case the instigating player dies before the explosion goes off
+	if (GEA.InstigatorController == none)
+	{
+		GEA.InstigatorController = InstigatorController;
+	}
+}
 simulated protected function SetExplosionActorClass();
 
 /*********************************************************************************************
@@ -1246,6 +1265,13 @@ function SpawnResidualFlame( class<KFProjectile> SpawnClass, vector SpawnLoc, ve
     SpawnedProjectile = Spawn( SpawnClass, Self,, SpawnLoc );
     if( SpawnedProjectile != none && !SpawnedProjectile.bDeleteMe )
     {
+		// pass along InstigatorController so projectile, and ultimately explosion, know who caused it,
+		// in case the instigating player dies before the explosion goes off
+		if (SpawnedProjectile.InstigatorController == none)
+		{
+			SpawnedProjectile.InstigatorController = InstigatorController;
+		}
+
         SpawnedProjectile.Init( Normal(SpawnVel) );
         SpawnedProjectile.Velocity = SpawnVel;
         SpawnedProjectile.Speed = VSize( SpawnedProjectile.Velocity );

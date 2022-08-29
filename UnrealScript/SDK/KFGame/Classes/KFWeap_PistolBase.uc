@@ -27,25 +27,6 @@ const CYLINDERSTATE_READY = 0;
 const CYLINDERSTATE_PENDING = 1;
 const CYLINDERSTATE_ROTATING = 2;
 
-// variables used to rotate cylinder
-struct native CylinderRotationInfo
-{
-	// how many degrees to rotate the cylinder by each shot
-	var float Inc;
-	// rotation starting point
-	var transient float PrevDegrees;
-	// rotation goal
-	var transient float NextDegrees;
-	// how quickly to rotate
-	var float Time;
-	// timer to keep track of rotation time
-	var transient float Timer;
-	// the skelcontrol that controls the cylinder (cached)
-	var transient SkelControlSingleBone Control;
-
-	// tracks cylinder state (before fire, after fire but before rotating, rotating)
-	var transient int State;
-};
 var CylinderRotationInfo CylinderRotInfo;
 
 cpptext

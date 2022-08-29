@@ -141,10 +141,10 @@ function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamag
     if( GetTeamNum() > 254 && !bPlayedDeath )
     {
         ProcessSpecialMoveAfflictions(InstigatorPerk, HitDir, DamageType, DamageCauser);
-        ProcessHitReactionAfflictions(InstigatorPerk, DamageType);
+        ProcessHitReactionAfflictions(InstigatorPerk, DamageType, DamageCauser);
     }
 
-    ProcessEffectBasedAfflictions(InstigatorPerk, DamageType);
+    ProcessEffectBasedAfflictions(InstigatorPerk, DamageType, DamageCauser);
 }
 
 /**
@@ -177,12 +177,13 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
 {
 	local EHitZoneBodyPart BodyPart;
 	local byte HitZoneIdx;
-	local float KnockdownPower, StumblePower, StunPower, SnarePower;
+	local float KnockdownPower, StumblePower, StunPower, SnarePower, FreezePower;
     local float KnockdownModifier, StumbleModifier, StunModifier;
     local KFInterface_DamageCauser KFDmgCauser;
+	local KFWeapon DamageWeapon;
 
 	// This is for damage over time, DoT shall never have momentum
-	if( IsZero( HitDir ) )
+	if (IsZero(HitDir))
 	{
 		return;
 	}
@@ -191,11 +192,24 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
 
 	BodyPart = (HitZoneIdx != 255 && HitZoneIdx < HitZones.Length) ? HitZones[HitZoneIdx].Limb : BP_Torso;
 
-    // Grab defaults for perk ability scaling
-    KnockdownPower = DamageType.default.KnockdownPower;
-    StumblePower = DamageType.default.StumblePower;
-    StunPower = DamageType.default.StunPower;
-    SnarePower = DamageType.default.SnarePower;
+	// Get upgraded affliction power
+	DamageWeapon = class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
+	if (DamageWeapon != none)
+	{
+		KnockdownPower = DamageWeapon.GetUpgradedAfflictionPower(AF_Knockdown, DamageType.default.KnockdownPower);
+		StumblePower = DamageWeapon.GetUpgradedAfflictionPower(AF_Stumble, DamageType.default.StumblePower);
+		StunPower = DamageWeapon.GetUpgradedAfflictionPower(AF_Stun, DamageType.default.StunPower);
+		SnarePower = DamageWeapon.GetUpgradedAfflictionPower(AF_Snare, DamageType.default.SnarePower);
+		FreezePower = DamageWeapon.GetUpgradedAfflictionPower(AF_Freeze, DamageType.default.FreezePower);
+	}
+	else
+	{
+		KnockdownPower = DamageType.default.KnockdownPower;
+		StumblePower = DamageType.default.StumblePower;
+		StunPower = DamageType.default.StunPower;
+		SnarePower = DamageType.default.SnarePower;
+		FreezePower = DamageType.default.FreezePower;
+	}
 
     KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
     if (KFDmgCauser != None)
@@ -216,7 +230,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
     StunModifier += GetAfflictionStunModifier();
 
 	// Allow damage instigator perk to modify reaction
-    if ( InstigatorPerk != None )
+    if (InstigatorPerk != None)
     {
         KnockdownModifier += InstigatorPerk.GetKnockdownPowerModifier( DamageType, BodyPart, bIsSprinting );
         StumbleModifier += InstigatorPerk.GetStumblePowerModifier( Outer, DamageType,, BodyPart );
@@ -231,104 +245,141 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
     StunPower *= StunModifier;
 
     // increment affliction power
-	if ( KnockdownPower > 0 && CanDoSpecialmove(SM_Knockdown) )
+	if (KnockdownPower > 0 && CanDoSpecialmove(SM_Knockdown))
 	{
 		AccrueAffliction(AF_Knockdown, KnockdownPower, BodyPart);
 	}
-	if ( StunPower > 0 && CanDoSpecialmove(SM_Stunned) )
+	if (StunPower > 0 && CanDoSpecialmove(SM_Stunned))
 	{
 		AccrueAffliction(AF_Stun, StunPower, BodyPart);
 	}
-	if ( StumblePower > 0 && CanDoSpecialmove(SM_Stumble) )
+	if (StumblePower > 0 && CanDoSpecialmove(SM_Stumble))
 	{
 		AccrueAffliction(AF_Stumble, StumblePower, BodyPart);
 	}
-	if ( DamageType.default.FreezePower > 0 && CanDoSpecialMove(SM_Frozen) )
+	if (FreezePower > 0 && CanDoSpecialMove(SM_Frozen))
 	{
-		AccrueAffliction(AF_Freeze, DamageType.default.FreezePower, BodyPart);
+		AccrueAffliction(AF_Freeze, FreezePower, BodyPart);
 	}
-	if( SnarePower > 0 )
+	if (SnarePower > 0)
 	{
 		AccrueAffliction(AF_Snare, SnarePower, BodyPart);
 	}
 }
 
 /** Afflications which pause AI behavior temporarily */
-protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType)
+protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType, Actor DamageCauser)
 {
 	local EHitZoneBodyPart BodyPart;
 	local byte HitZoneIdx;
-	local float ReactionModifier;
+	local float ReactionModifier, MeleeHitPower, GunHitPower;
+	local KFWeapon DamageWeapon;
 
 	ReactionModifier = 1.f;
 	// Allow damage instigator perk to modify reaction
-    if ( InstigatorPerk != None )
+    if (InstigatorPerk != None)
     {
-    	ReactionModifier = InstigatorPerk.GetReactionModifier( DamageType );
+    	ReactionModifier = InstigatorPerk.GetReactionModifier(DamageType);
     }
 
 	// Finally, 'Pause' the AI if we're going to play a medium or heavy hit reaction anim in TryPlayHitReactionAnim
-	if ( MyKFAIC != None )
+	if (MyKFAIC != None)
 	{
 		HitZoneIdx = HitFxInfo.HitBoneIndex;
 		BodyPart = (HitZoneIdx != 255 && HitZoneIdx < HitZones.Length) ? HitZones[HitZoneIdx].Limb : BP_Torso;
 
-		// Check hard hit reaction
-		if ( DamageType.default.MeleeHitPower > 0 )
+		// Get upgraded affliction power
+		DamageWeapon = class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
+		if (DamageWeapon != none)
 		{
-			AccrueAffliction(AF_MeleeHit, DamageType.default.MeleeHitPower * ReactionModifier, BodyPart);
+			MeleeHitPower = DamageWeapon.GetUpgradedAfflictionPower(AF_MeleeHit, DamageType.default.MeleeHitPower);
+			GunHitPower = DamageWeapon.GetUpgradedAfflictionPower(AF_GunHit, DamageType.default.GunHitPower);
+		}
+		else
+		{
+			MeleeHitPower = DamageType.default.MeleeHitPower;
+			GunHitPower = DamageType.default.GunHitPower;
+		}
+
+		// Check hard hit reaction
+		if (MeleeHitPower > 0)
+		{
+			AccrueAffliction(AF_MeleeHit, MeleeHitPower * ReactionModifier, BodyPart);
 		}
 		// Force recovery time for the headless hit. GetTimerCount() is a dirty way to do this only on the frame of CauseHeadTrauma()
-		if ( HitZoneIdx == HZI_Head && IsHeadless() && GetTimerCount('BleedOutTimer', Outer) == 0.f )
+		if (HitZoneIdx == HZI_Head && IsHeadless() && GetTimerCount('BleedOutTimer', Outer) == 0.f)
 		{
 			AccrueAffliction(AF_MeleeHit, 100.f, BodyPart);
 		}
 		// Check medium hit reaction
-		if ( DamageType.default.GunHitPower > 0 )
+		if (GunHitPower > 0)
 		{
-			AccrueAffliction(AF_GunHit, DamageType.default.GunHitPower * ReactionModifier, BodyPart);
+			AccrueAffliction(AF_GunHit, GunHitPower * ReactionModifier, BodyPart);
 		}
 	}
 }
 
 /** Effect based afflictions can apply even on dead bodies */
-protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType)
+protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType, Actor DamageCauser)
 {
+	local KFWeapon DamageWeapon;
+	local float BurnPower, EMPPower, PoisonPower, MicrowavePower, BleedPower;
+
+	// Get upgraded affliction power
+	DamageWeapon = class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
+	if (DamageWeapon != none)
+	{
+		BurnPower = DamageWeapon.GetUpgradedAfflictionPower(AF_FirePanic, DamageType.default.BurnPower);
+		EMPPower = DamageWeapon.GetUpgradedAfflictionPower(AF_EMP, DamageType.default.EMPPower);
+		PoisonPower = DamageWeapon.GetUpgradedAfflictionPower(AF_Poison, DamageType.default.PoisonPower);
+		MicrowavePower = DamageWeapon.GetUpgradedAfflictionPower(AF_Microwave, DamageType.default.MicrowavePower);
+		BleedPower = DamageWeapon.GetUpgradedAfflictionPower(AF_Bleed, DamageType.default.BleedPower);
+	}
+	else
+	{
+		BurnPower = DamageType.default.BurnPower;
+		EMPPower = DamageType.default.EMPPower;
+		PoisonPower = DamageType.default.PoisonPower;
+		MicrowavePower = DamageType.default.MicrowavePower;
+		BleedPower = DamageType.default.BleedPower;
+	}
+
 	// these afflictions can apply on killing blow, but fire can apply after death
-	if ( bPlayedDeath && WorldInfo.TimeSeconds > TimeOfDeath )
+	if (bPlayedDeath && WorldInfo.TimeSeconds > TimeOfDeath)
 	{
 	    // If we're already dead, go ahead and apply burn stacking power, just
 	    // so we can do the burn effects
-	    if ( DamageType.default.BurnPower > 0 )
+	    if (BurnPower > 0)
 		{
-	        AccrueAffliction(AF_FirePanic, DamageType.default.BurnPower);
+	        AccrueAffliction(AF_FirePanic, BurnPower);
 		}
 	}
 	else
 	{
-		if ( DamageType.default.EMPPower > 0 )
+		if (EMPPower > 0)
 		{
-			AccrueAffliction(AF_EMP, DamageType.default.EMPPower);
+			AccrueAffliction(AF_EMP, EMPPower);
 		}
-		else if( InstigatorPerk != none && InstigatorPerk.ShouldGetDaZeD( DamageType ) )
+		else if (InstigatorPerk != none && InstigatorPerk.ShouldGetDaZeD(DamageType))
 		{
-			AccrueAffliction(AF_EMP, InstigatorPerk.GetDaZedEMPPower() );
+			AccrueAffliction(AF_EMP, InstigatorPerk.GetDaZedEMPPower());
 		}
-		if ( DamageType.default.BurnPower > 0 )
+
+		if (BurnPower > 0)
 		{
-			AccrueAffliction(AF_FirePanic, DamageType.default.BurnPower);
+			AccrueAffliction(AF_FirePanic, BurnPower);
 		}
-		if ( DamageType.default.PoisonPower > 0 && DamageType.static.AlwaysPoisons() )
+		if (PoisonPower > 0 || DamageType.static.AlwaysPoisons())
 		{
-			AccrueAffliction(AF_Poison, DamageType.default.PoisonPower);
+			AccrueAffliction(AF_Poison, PoisonPower);
 		}
-		if ( DamageType.default.MicrowavePower > 0 )
+		if (MicrowavePower > 0)
 		{
-			AccrueAffliction(AF_Microwave, DamageType.default.MicrowavePower);
+			AccrueAffliction(AF_Microwave, MicrowavePower);
 		}
-        if (DamageType.default.BleedPower > 0)
+        if (BleedPower > 0)
         {
-            AccrueAffliction(AF_Bleed, DamageType.default.BleedPower);
+            AccrueAffliction(AF_Bleed, BleedPower);
         }
 	}
 }

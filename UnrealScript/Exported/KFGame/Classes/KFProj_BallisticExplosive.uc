@@ -47,7 +47,7 @@ var() float WallHitDampenFactorParallel;
 /** How much to offset the emitter mesh when the grenade has landed so that it doesn't penetrate the ground */
 var() vector LandedTranslationOffset;
 
-//to keep track if we are hitting an actor multiple times.  
+//to keep track if we are hitting an actor multiple times.
 var array<Actor> ImpactList;
 
 replication
@@ -263,6 +263,9 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
             return;
         }
 
+		//TODO: Add an impact sound here
+		SetIsDud(bWantsClientSideDudHit, HitNormal);
+
 		if (Other != Instigator && !Other.bStatic && Other.GetTeamNum() != GetTeamNum() && !CheckRepeatingTouch(Other))
 		{
 			ProcessBulletTouch(Other, HitLocation, HitNormal);
@@ -271,8 +274,6 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 		VNorm = (Velocity dot HitNormal) * HitNormal;
 		Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
 		Speed = VSize(Velocity);
-        //TODO: Add an impact sound here
-		SetIsDud(bWantsClientSideDudHit, HitNormal);
     }
 	if (!bDud && !bIsTimedExplosive)
 	{
@@ -318,7 +319,7 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
 	{
 		ImpactList.AddItem(Other);
 	}
-	
+
 	super.ProcessBulletTouch(Other, HitLocation, HitNormal);
 }
 

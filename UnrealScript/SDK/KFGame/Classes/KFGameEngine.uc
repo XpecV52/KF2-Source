@@ -42,6 +42,7 @@ var bool bReadingPlayfabStoreData;
 
 /** Currently running event */
 var private{private} const int SeasonalEventId;
+var private const int LoadedSeasonalEventId;
 
 /** Week index of the year - Used as index into weekly event */
 var private int WeeklyEventIndex;
@@ -141,7 +142,8 @@ cpptext
 {
 	// static members
 	static FString GetSeasonalEventPrefix();
-	static FString GetSeasonalEventPackageName(INT EventId = -1);
+	static FString GetSeasonalEventPackageName(INT EventId = -1, UMapInfo* MapInfo = NULL);
+	static FString GetSeasonalEventStatsClassPath();
 
 	// UEngine interface.
 	void Init();
@@ -636,6 +638,7 @@ DefaultProperties
 	KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
 	KFFontScale=0.6f
 	SeasonalEventId=-1
+	LoadedSeasonalEventId=-1
     WeeklyEventIndex=-1
 	LocalLoginStatus=LS_LoggedIn
 	SafeFrameScale=1.0

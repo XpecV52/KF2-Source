@@ -445,6 +445,11 @@ simulated event ReplicatedEvent(name VarName)
         }
         else
         {
+			if (GetALocalPlayerController() != none)
+			{
+				KFPlayerController(GetALocalPlayerController()).SeasonalEventStats_OnMapObjectiveDeactivated(Actor(ObjectiveInterface));
+			}
+
             ObjectiveInterface.DeactivateObjective();
             ObjectiveInterface = none;
         }
@@ -521,26 +526,33 @@ simulated function array<int> GetKFSeqEventLevelLoadedIndices()
 {
 	local array<int> ActivateIndices;
 
-	if (!bEndlessMode)
+	if (GameClass != none)
 	{
-		switch (GameLength)
+		if (GameClass.Name == 'KFGameInfo_Survival')
 		{
-		case 0: // short
-			ActivateIndices[0] = 3;
-			break;
+			switch (GameLength)
+			{
+			case 0: // short
+				ActivateIndices[0] = 3;
+				break;
 
-		case 1: // medium
-			ActivateIndices[0] = 4;
-			break;
+			case 1: // medium
+				ActivateIndices[0] = 4;
+				break;
 
-		case 2: // long
-			ActivateIndices[0] = 5;
-			break;
-		};
-	}
-	else
-	{
-		ActivateIndices[0] = 6;
+			case 2: // long
+				ActivateIndices[0] = 5;
+				break;
+			};
+		}
+		else if (GameClass.Name == 'KFGameInfo_Endless')
+		{
+			ActivateIndices[0] = 6;
+		}
+		else if (GameClass.Name == 'KFGameInfo_WeeklySurvival')
+		{
+			ActivateIndices[0] = 7;
+		}
 	}
 
 	return ActivateIndices;
@@ -570,18 +582,21 @@ simulated function ReceivedGameClass()
 			TraderDialogManager.TraderVoiceGroupClass = KFGameClass.default.TraderVoiceGroupClass;
 
 			KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-			if (bEndlessMode)
+			if (KFMI != none)
 			{
-				if (KFMI.TraderVoiceGroupClassPath_Endless != "")
+				if (bEndlessMode)
 				{
-					MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath_Endless, class'Class'));
+					if (KFMI.TraderVoiceGroupClassPath_Endless != "")
+					{
+						MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath_Endless, class'Class'));
+					}
 				}
-			}
-			else
-			{
-				if (KFMI.TraderVoiceGroupClassPath != "")
+				else
 				{
-					MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, class'Class'));
+					if (KFMI.TraderVoiceGroupClassPath != "")
+					{
+						MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, class'Class'));
+					}
 				}
 			}
 
@@ -612,7 +627,7 @@ simulated function CacheSelectedBoss(int NewBossIndex)
 	KFGameClass = class<KFGameInfo>(GameClass);
 	if (KFGameClass != None)
 	{
-		KFMonsterClass = KFGameClass.static.GetSpecificBossClass(BossIndex);
+		KFMonsterClass = KFGameClass.static.GetSpecificBossClass(BossIndex, KFMapInfo(WorldInfo.GetMapInfo()));
 		if (KFMonsterClass != none)
 		{
 			SetCachedBossArchetype(KFMonsterClass.default.MonsterArchPath);
@@ -1718,14 +1733,6 @@ function bool StartNextObjective()
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
     if (KFMI != none && !IsBossWave())
     {
-		/*if (KFMI.bEventLimitedObjectives)
-		{
-			if (class'KFGameEngine'.static.GetSeasonalEventID() != KFMI.EventHoliday)
-			{
-				return false;
-			}
-		}*/
-
         if (KFMI.bUsePresetObjectives && WaveNum <= GetPresetObjectiveLength(KFMI))
         {
 			return StartNextPresetObjective(KFMI);
@@ -1890,6 +1897,11 @@ function DeactivateObjective()
 		PreviousObjectiveVoshResult = ObjectiveInterface.GetVoshReward();
 		PreviousObjectiveXPResult = ObjectiveInterface.GetXPReward();
 
+		if (GetALocalPlayerController() != none)
+		{
+			KFPlayerController(GetALocalPlayerController()).SeasonalEventStats_OnMapObjectiveDeactivated(Actor(ObjectiveInterface));
+		}
+
         ObjectiveInterface.DeactivateObjective();
         CurrentObjective = none;
         ObjectiveInterface = none;
@@ -1911,6 +1923,8 @@ function DeactivateObjective()
 						KFPM.CheckShouldAlwaysBeRelevant();
 					}
 				}
+
+				KFGI.OnEndlessSpawningObjectiveDeactivated();
 			}
 		}
     }

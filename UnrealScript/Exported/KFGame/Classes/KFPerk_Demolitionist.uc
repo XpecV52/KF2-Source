@@ -1063,6 +1063,7 @@ defaultproperties
    HitAccuracyHandicap=2.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.HX25_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.M79_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Demolitionist"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

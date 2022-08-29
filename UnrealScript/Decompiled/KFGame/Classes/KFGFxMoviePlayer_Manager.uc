@@ -881,10 +881,6 @@ function StatsInitialized()
     {
         StartMenu.MissionObjectiveContainer.FullRefresh();
     }
-    if(IISMenu != none)
-    {
-        IISMenu.bStatsRead = true;
-    }
     bStatsInitialized = true;
 }
 

@@ -1588,7 +1588,7 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 		WeaponItemSingle = KFWeapon(InventoryItem);
 		WeaponUpgradeIndex = Max(WeaponUpgradeIndex, WeaponItemSingle.CurrentWeaponUpgradeIndex);
 
-		DualAdjustedWeight = WeaponClass.default.DualClass.default.InventorySize + WeaponClass.default.DualClass.static.GetUpgradeWeight(WeaponUpgradeIndex);
+		DualAdjustedWeight = WeaponClass.static.GetDefaultModifiedWeightValue(WeaponUpgradeIndex);
 		SingleAdjustedWeight = WeaponItemSingle.GetModifiedWeightValue();
 
 		// check weight of dual minus weight of single because we remove single when adding dual
@@ -1609,7 +1609,7 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 		WeaponItemDual = KFWeap_DualBase(InventoryItem);
 
 		DualAdjustedWeight = WeaponItemDual.GetModifiedWeightValue();
-		SingleAdjustedWeight = DualWeaponClass.default.SingleClass.default.InventorySize + DualWeaponClass.default.SingleClass.default.WeaponUpgrades[WeaponItemDual.CurrentWeaponUpgradeIndex].IncrementWeight;
+		SingleAdjustedWeight = DualWeaponClass.static.GetDefaultModifiedWeightValue(WeaponItemDual.CurrentWeaponUpgradeIndex);
 
 		if (bLogInventory) LogInternal(self @ "-" @ GetFuncName() @ "- CurrentCarryBlocks:" @ CurrentCarryBlocks @ "DualWeaponClass:" @ DualWeaponClass @ "SingleClass:" @ DualWeaponClass.default.SingleClass @ "DualInventorySize:" @ DualAdjustedWeight @ "SingleInventorySize:" @ SingleAdjustedWeight);
 		// check weight of dual minus weight of single because we remove single when adding dual
@@ -1623,7 +1623,7 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 		}
 	}
 
-	AdjustedWeight = WeaponClass.default.InventorySize + WeaponClass.static.GetUpgradeWeight(WeaponUpgradeIndex);
+	AdjustedWeight = WeaponClass.static.GetDefaultModifiedWeightValue(WeaponUpgradeIndex);
 	if( WeaponClass.default.InventorySize <= 0 || CurrentCarryBlocks + AdjustedWeight <= MaxCarryBlocks || bInfiniteWeight)
 	{
 	 	return true;
@@ -1837,6 +1837,8 @@ function KFWeapon CombineWeaponsOnPickup( KFWeapon AddedWeapon )
 				AddedDual.ClientForceAmmoUpdate(AddedDual.AmmoCount[0],AddedDual.SpareAmmoCount[0]);
 				AddedDual.ClientForceSecondaryAmmoUpdate(AddedDual.AmmoCount[1]);
 
+				AddedDual.bGivenAtStart = AddedWeapon.bGivenAtStart;
+
 				break;
 			}
 		}
@@ -1866,7 +1868,9 @@ function KFWeapon CombineWeaponsOnPickup( KFWeapon AddedWeapon )
 
 					NewDual.AmmoCount[1] = InvWeap.AmmoCount[1] + AddedWeapon.AmmoCount[1];
 
-					NewDual.SpareAmmoCount[0] = Min( InvWeap.SpareAmmoCount[0] + AddedWeapon.SpareAmmoCount[0] + ExtraAmmo, NewDual.default.SpareAmmoCapacity[0] );
+					NewDual.SpareAmmoCount[0] = Min( InvWeap.SpareAmmoCount[0] + AddedWeapon.SpareAmmoCount[0] + ExtraAmmo, NewDual.SpareAmmoCapacity[0] );
+
+					NewDual.bGivenAtStart = AddedWeapon.bGivenAtStart;
 
 					NewDual.ClientForceAmmoUpdate(NewDual.AmmoCount[0],NewDual.SpareAmmoCount[0]);
 					NewDual.ClientForceSecondaryAmmoUpdate(NewDual.AmmoCount[1]);
@@ -2100,10 +2104,10 @@ reliable server final private function ServerBuyUpgrade(byte ItemIndex, int Curr
 					KFW.SetWeaponUpgradeLevel(NewUpgradeLevel);
 					if (CurrentUpgradeLevel > 0)
 					{
-						AddCurrentCarryBlocks(-KFW.WeaponUpgrades[CurrentUpgradeLevel].IncrementWeight);
+						AddCurrentCarryBlocks(-KFW.GetUpgradeStatAdd(EWUS_Weight, CurrentUpgradeLevel));
 					}
 
-					AddCurrentCarryBlocks(KFW.WeaponUpgrades[NewUpgradeLevel].IncrementWeight);
+					AddCurrentCarryBlocks(KFW.GetUpgradeStatAdd(EWUS_Weight, NewUpgradeLevel));
 					if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Upgrade," @ KFW.Class $ "," @ NewUpgradeLevel);
 					if(WorldInfo.GRI != none && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("upgrade", Instigator.PlayerReplicationInfo, "upgrade", KFW.Class, "#" $ NewUpgradeLevel);
 				}
@@ -2283,7 +2287,7 @@ reliable server final function ServerSellWeapon( byte ItemIndex )
 	    	if( GetWeaponFromClass(KFW, SoldItem.ClassName) )
 	    	{
 				if (bLogInventory) LogInternal("ServerSellWeapon: Calling ServerRemoveFromInventory on" @ SoldItem.ClassName);
-	    		SellPrice = GetAdjustedSellPriceFor( SoldItem, KFW );
+	    		SellPrice = GetAdjustedSellPriceFor(SoldItem);
 
 				KFPRI.AddDosh(SellPrice);
 		    	ServerRemoveFromInventory(KFW);
@@ -2637,47 +2641,51 @@ simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem, o
 }
 
 /** Gets sell price for trader item, adjusted for whatever we want to adjust for */
-simulated function int GetAdjustedSellPriceFor( const out STraderItem OwnedItem, optional KFWeapon OwnedWeapon )
+simulated function int GetAdjustedSellPriceFor(
+	const out STraderItem OwnedItem, optional const array<SItemInformation> TraderOwnedItems)
 {
 	local int AdjustedSellPrice;
-	local KFWeapon WeaponToUpgrade;
+	local KFWeapon OwnedWeapon;
 	local TransactionItem TransactionWeapon;
+	local int OwnedItemIdx, ItemUpgradeLevel;
 
 	if (OwnedItem.WeaponDef == class'KFWeapDef_9mm')
 	{
 		return 0;
 	}
 
+	GetWeaponFromClass(OwnedWeapon, OwnedItem.ClassName);
 	if( OwnedWeapon != none && OwnedWeapon.bGivenAtStart )
 	{
 	 	AdjustedSellPrice = OwnedItem.WeaponDef.default.BuyPrice * StartedWithWeaponPriceModifier;
 	}
-	// otherwise modify its buy value by a modifier
 	else
 	{
 		AdjustedSellPrice = OwnedItem.WeaponDef.default.BuyPrice * SellPriceModifier;
 	}
 
-	if (OwnedWeapon != none)
+	OwnedItemIdx = TraderOwnedItems.Find('DefaultItem', OwnedItem);
+	if (OwnedItemIdx != INDEX_NONE)
 	{
-		WeaponToUpgrade = OwnedWeapon;
+		ItemUpgradeLevel = TraderOwnedItems[OwnedItemIdx].ItemUpgradeLevel;
 	}
-	else
+	else if (IsTransactionWeapon(OwnedItem.ClassName, TransactionWeapon))
 	{
-		GetWeaponFromClass(WeaponToUpgrade, OwnedItem.ClassName);
+		ItemUpgradeLevel = TransactionWeapon.WeaponUpgradeLevel;
 	}
-
-	if (WeaponToUpgrade != none && WeaponToUpgrade.CurrentWeaponUpgradeIndex > 0)
+	else if (OwnedWeapon != none)
 	{
-		AdjustedSellPrice += OwnedItem.WeaponDef.static.GetUpgradeSellPrice(WeaponToUpgrade.CurrentWeaponUpgradeIndex - 1);
-	}
-	else if (IsTransactionWeapon(OwnedItem.ClassName, TransactionWeapon) && TransactionWeapon.WeaponUpgradeLevel > 0)
-	{
-		AdjustedSellPrice += OwnedItem.WeaponDef.static.GetUpgradeSellPrice(TransactionWeapon.WeaponUpgradeLevel - 1);
+		// fallback to OwnedWeapon last, because it's only reliable for selling (not buying) online
+		ItemUpgradeLevel = OwnedWeapon.CurrentWeaponUpgradeIndex;
 	}
 
-	// if OwnedItem is a dual, set sell price to that of a single (because we sell one single and keep one single) Special case for 9mm
-	//if( OwnedItem.SingleClassName != '' )
+	if (ItemUpgradeLevel > 0)
+	{
+		AdjustedSellPrice += OwnedItem.WeaponDef.static.GetUpgradeSellPrice(ItemUpgradeLevel - 1);
+	}
+
+	// if OwnedItem is a dual, set sell price to that of a single (because we sell one single and keep one single)
+	// Special case for 9mm
 	if( OwnedItem.SingleClassName == 'KFWeap_Pistol_9mm')
 	{
 		// @todo: revisit

@@ -427,7 +427,7 @@ simulated protected function TurnOnFireSpray()
 			if( Role == ROLE_Authority )
 			{
 				ActiveFlameSpray.bVisualOnly = false;
-				ActiveFlameSpray.DamageModifier = static.GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
+				ActiveFlameSpray.DamageModifier = GetUpgradeDamageMod();
 			}
 
 			ActiveFlameSpray.BeginSpray();

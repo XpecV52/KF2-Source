@@ -98,6 +98,10 @@ var OnlineAuthInterface AuthInterface;
 var array<delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
 var const bool bInventoryReady;
 var array<delegate<OnPingRegionsComplete> > PingRegionsCompleteDelegates;
+
+/** The array of delegates that notify that the avatar read operation has completed */
+var array<delegate<OnReadOnlineAvatarComplete> > ReadAvatarCompleteDelegates;
+var array<delegate<OnReadOnlineAvatarByNameComplete> > ReadAvatarByNameCompleteDelegates;
 `endif
 
 
@@ -595,7 +599,9 @@ enum EOnlineContentType
 	/** Content downloaded digitally from the online market */
 	OCT_Downloaded,
 	/** Player's save game content */
-	OCT_SaveGame
+	OCT_SaveGame,
+	/** Game downloaded digitally from the online market */
+	OCT_Game,
 };
 
 /** Holds information about a single piece of downloaded content */
@@ -628,6 +634,12 @@ struct native OnlineCrossTitleContent extends OnlineContent
 {
 	/** The title ID the content is from */
 	var int TitleId;
+
+	/** The title ID (as string) the content is from */
+	var init string TitleIdString;
+
+	/** Whether this item is a trial or not */
+	var bool bIsTrial;
 };
 
 /**
@@ -1443,6 +1455,7 @@ struct native CurrentInventoryEntry
 	var int NewlyAdded;
 	var int LastUsedTime;
 	var bool InFlight;
+	var bool Stale;
 };
 var const array<CurrentInventoryEntry> CurrentInventory;
 
@@ -1566,9 +1579,7 @@ native function bool HasKeyForItem( const int ItemDefinition, out int OutRequire
 
 // do the exchange with the given rule. Inventory will be scanned and
 // appropriate items removed to make the exchange
-native function bool Exchange( const out ExchangeRuleSets Rule );
-// keep exchanging as long as there are 2 or more
-native function int ExchangeDuplicates( const out ExchangeRuleSets Rule, const int maxToExchange );
+native function bool Exchange( const out ExchangeRuleSets Rule, bool AllButOne );
 
 delegate OnInventoryReadComplete();
 delegate OnPingRegionsComplete(int RegionIndex);
@@ -1596,6 +1607,62 @@ function ClearOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> 
 function ClearAllInventoryReadCompleteDelegates()
 {
 	ReadInventoryCompleteDelegates.Remove(0,ReadInventoryCompleteDelegates.Length);
+}
+
+delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Avatar);
+delegate OnReadOnlineAvatarByNameComplete(const string PlayerName, const string AvatarURL);
+
+function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size);
+function ReadOnlineAvatarByName(const string InPlayerName, int Size);
+
+function AddOnReadOnlineAvatarCompleteDelegate(delegate<OnReadOnlineAvatarComplete> ReadCompleteDelegate)
+{
+	if (ReadAvatarCompleteDelegates.Find(ReadCompleteDelegate) == INDEX_NONE)
+	{
+		ReadAvatarCompleteDelegates.AddItem(ReadCompleteDelegate);
+	}
+}
+
+function ClearOnReadOnlineAvatarCompleteDelegate(delegate<OnReadOnlineAvatarComplete> ReadCompleteDelegate)
+{
+	local int RemoveIndex;
+
+	// Remove this delegate from the array if found
+	RemoveIndex = ReadAvatarCompleteDelegates.Find(ReadCompleteDelegate);
+	if (RemoveIndex != INDEX_NONE)
+	{
+		ReadAvatarCompleteDelegates.Remove(RemoveIndex, 1);
+	}
+}
+
+function ClearAllReadOnlineAvatarCompleteDelegates()
+{
+	ReadAvatarCompleteDelegates.Remove(0, ReadAvatarCompleteDelegates.Length);
+}
+
+function AddOnReadOnlineAvatarByNameCompleteDelegate(delegate<OnReadOnlineAvatarByNameComplete> ReadCompleteDelegate)
+{
+	if (ReadAvatarByNameCompleteDelegates.Find(ReadCompleteDelegate) == INDEX_NONE)
+	{
+		ReadAvatarByNameCompleteDelegates.AddItem(ReadCompleteDelegate);
+	}
+}
+
+function ClearOnReadOnlineAvatarByNameCompleteDelegate(delegate<OnReadOnlineAvatarByNameComplete> ReadCompleteDelegate)
+{
+	local int RemoveIndex;
+
+	// Remove this delegate from the array if found
+	RemoveIndex = ReadAvatarByNameCompleteDelegates.Find(ReadCompleteDelegate);
+	if (RemoveIndex != INDEX_NONE)
+	{
+		ReadAvatarByNameCompleteDelegates.Remove(RemoveIndex, 1);
+	}
+}
+
+function ClearAllReadOnlineAvatarByNameCompleteDelegates()
+{
+	ReadAvatarByNameCompleteDelegates.Remove(0, ReadAvatarByNameCompleteDelegates.Length);
 }
 
 `endif
@@ -2317,12 +2384,6 @@ function SetDebugSpewLevel(int DebugSpewLevel);
 function TWOnlineLobby GetLobbyInterface();
 
 function bool RegisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
-
-delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Avatar);
-delegate OnReadOnlineAvatarByNameComplete(const string PlayerName, const string AvatarURL);
-
-function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
-function ReadOnlineAvatarByName(const string InPlayerName, int Size, delegate<OnReadOnlineAvatarByNameComplete> ReadOnlineAvatarCompleteDelegate);
 
 function bool ResetStats(bool bResetAchievements);
 

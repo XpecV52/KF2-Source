@@ -687,16 +687,32 @@ simulated function bool AllowNuke()
 
 protected simulated function PrepareExplosionTemplate()
 {
+    local KFWeapon KFW;
+
     GetRadialDamageValues(ExplosionTemplate.Damage, ExplosionTemplate.DamageRadius, ExplosionTemplate.DamageFalloffExponent);
     ExplosionTemplate.Damage *= UpgradeDamageMod;
-    ExplosionTemplate.DamageRadius *= UpgradeDamageMod;
+    KFW = KFWeapon(Owner);
+    if((KFW == none) && Instigator != none)
+    {
+        KFW = KFWeapon(Instigator.Weapon);
+    }
+    if(KFW != none)
+    {
+        KFW.ModifyExplosionRadius(ExplosionTemplate.DamageRadius, WeaponFireMode);
+    }
 }
 
 protected simulated function GetRadialDamageValues(out float outDamage, out float outRadius, out float outFalloff);
 
 simulated function Vector GetExplosionDirection(Vector HitNormal);
 
-protected simulated function PrepareExplosionActor(GameExplosionActor GEA);
+protected simulated function PrepareExplosionActor(GameExplosionActor GEA)
+{
+    if(GEA.InstigatorController == none)
+    {
+        GEA.InstigatorController = InstigatorController;
+    }
+}
 
 protected simulated function SetExplosionActorClass();
 
@@ -851,6 +867,10 @@ function SpawnResidualFlame(class<KFProjectile> SpawnClass, Vector SpawnLoc, Vec
     SpawnedProjectile = Spawn(SpawnClass, self,, SpawnLoc);
     if((SpawnedProjectile != none) && !SpawnedProjectile.bDeleteMe)
     {
+        if(SpawnedProjectile.InstigatorController == none)
+        {
+            SpawnedProjectile.InstigatorController = InstigatorController;
+        }
         SpawnedProjectile.Init(Normal(SpawnVel));
         SpawnedProjectile.Velocity = SpawnVel;
         SpawnedProjectile.Speed = VSize(SpawnedProjectile.Velocity);

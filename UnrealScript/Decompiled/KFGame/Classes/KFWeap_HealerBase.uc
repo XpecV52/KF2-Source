@@ -359,6 +359,7 @@ simulated function UpdateHealTarget(optional bool bSkipOnAnimEnd)
     local bool bHasHealTarget;
     local Vector AimDir, StartTrace, Projection;
     local Pawn P;
+    local KFPawn KFP;
     local float DistSq, FOV, HealTargetRating, BestHealTargetRating;
 
     if((WorldInfo.TimeSeconds - LastReadyHealTime) < 0.2)
@@ -373,6 +374,11 @@ simulated function UpdateHealTarget(optional bool bSkipOnAnimEnd)
     {
         if(((P != Instigator) && P.GetTeamNum() == Instigator.GetTeamNum()) && P.IsAliveAndWell())
         {
+            KFP = KFPawn(P);
+            if((KFP != none) && !KFP.CanBeHealed())
+            {
+                continue;                
+            }
             Projection = P.Location - StartTrace;
             DistSq = VSizeSq(Projection);
             if(DistSq > HealingRangeSQ)

@@ -172,6 +172,9 @@ native function string GetTitleDataForKey( string InKey );
 // Unlocks a container for the user
 native function UnlockContainer(string ContainerId);
 
+// WireService exchange interface
+native function PerformRuleExchange( ExchangeRuleSets ForRuleset, bool AllButOne =false );
+
 // Consumes entitlements
 native function ConsumeEntitlements(optional bool bWasPurchase = false);
 

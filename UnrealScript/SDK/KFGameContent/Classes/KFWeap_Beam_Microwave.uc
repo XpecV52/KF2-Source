@@ -124,7 +124,7 @@ simulated function CustomFire()
 		ExploActor.bReplicateInstigator = true;
 		ExploActor.bSyncParticlesToMuzzle = true;
 
-		ModifiedDamage = static.GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
+		ModifiedDamage = GetUpgradeDamageMod();
 
 		OriginalDamage = ExplosionTemplate.Damage;
 		OriginalDamageRadius = ExplosionTemplate.DamageRadius;
@@ -290,5 +290,7 @@ defaultproperties
     MaxAIWarningDistSQ=2250000
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+	//WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=1)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
 }

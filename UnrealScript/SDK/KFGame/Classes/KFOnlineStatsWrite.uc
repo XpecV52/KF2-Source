@@ -89,7 +89,12 @@ var private int     DailyEventIDs;
 var private int     DailyEventStats1;
 var private int     DailyEventStats2;
 
-var private int		SpecialEventKills;
+var private int		SpecialEventKills_DEPRECATED;
+var private int		SeasonalEventStats1, SeasonalEventStatsMax1;
+var private int		SeasonalEventStats2, SeasonalEventStatsMax2;
+var private int		SeasonalEventStats3, SeasonalEventStatsMax3;
+var private int		SeasonalEventStats4, SeasonalEventStatsMax4;
+var private int		SeasonalEventStats5, SeasonalEventStatsMax5;
 
 /** Achievement IDs **/
 // ids must be sequential (no gaps)
@@ -354,6 +359,18 @@ const KFACHID_MonsterBallHellOnEarth			=	226;
 const KFACHID_MonsterBallCollectibles			=	227;
 const KFACHID_MonsterBallSecretRoom				=	228;
 
+const KFACHID_SantasWorkshopNormal				=	229;
+const KFACHID_SantasWorkshopHard				=	230;
+const KFACHID_SantasWorkshopSuicidal			=	231;
+const KFACHID_SantasWorkshopHellOnEarth			=	232;
+const KFACHID_SantasWorkshopCollectibles		=	233;
+
+const KFACHID_ShoppingSpreeNormal				=	234;
+const KFACHID_ShoppingSpreeHard					=	235;
+const KFACHID_ShoppingSpreeSuicidal				=	236;
+const KFACHID_ShoppingSpreeHellOnEarth			=	237;
+const KFACHID_ShoppingSpreeCollectibles			=	238;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -421,6 +438,8 @@ var 		bool 	bLogStatsWrite;
 
 var			int		SeasonalKillsObjectiveThreshold;
 
+var const private KFSeasonalEventStats SeasonalEvent;
+
 cpptext
 {
 	void InitializeKillZedRewards();
@@ -431,11 +450,7 @@ cpptext
 
     //Event calls
     void GrantWeeklyOutbreakItems();
-    void GrantEventItems(INT EventIndex);
-    void GrantSummerItems();
-	void GrantWinterItems();
-	void GrantSpringItems();
-	void GrantFallItems();
+    void GrantEventItems();
     void GrantDoshVaultItem();
 
     //Daily calls
@@ -454,6 +469,8 @@ cpptext
 	void CalculateZedKillsDoshReward();
 
 	void IncrementZedsKilled(class UClass* MonsterType);
+
+	void InitializeSeasonalEventStats();
 }
 
 /*********************************************************************************************
@@ -691,9 +708,29 @@ event CacheStatsValue(int StatID, int Value)
             }
             `log(GetFuncName() @ "Daily Event Stats 2:" @ DailyEventStats2, bLogStatsWrite);
             break;
-		case STATID_SpecialEventKills:
-			SpecialEventKills = Value;
-			`log(GetFuncName() @ "SpecialEventKills:" @ SpecialEventKills, bLogStatsWrite);
+		case STATID_SpecialEventKills_DEPRECATED:
+			SpecialEventKills_DEPRECATED = Value;
+			`log(GetFuncName() @ "SpecialEventKills_DEPRECATED:" @ SpecialEventKills_DEPRECATED, bLogStatsWrite);
+			break;
+		case STATID_SeasonalEventStats1:
+			SeasonalEventStats1 = Value;
+			`log(GetFuncName() @ "SeasonalEventStats1:" @ SeasonalEventStats1, bLogStatsWrite);
+			break;
+		case STATID_SeasonalEventStats2:
+			SeasonalEventStats2 = Value;
+			`log(GetFuncName() @ "SeasonalEventStats2:" @ SeasonalEventStats2, bLogStatsWrite);
+			break;
+		case STATID_SeasonalEventStats3:
+			SeasonalEventStats3 = Value;
+			`log(GetFuncName() @ "SeasonalEventStats3:" @ SeasonalEventStats3, bLogStatsWrite);
+			break;
+		case STATID_SeasonalEventStats4:
+			SeasonalEventStats4 = Value;
+			`log(GetFuncName() @ "SeasonalEventStats4:" @ SeasonalEventStats4, bLogStatsWrite);
+			break;
+		case STATID_SeasonalEventStats5:
+			SeasonalEventStats5 = Value;
+			`log(GetFuncName() @ "SeasonalEventStats5:" @ SeasonalEventStats5, bLogStatsWrite);
 			break;
 		case STATID_DoshVaultProgress:
 			VerifyDoshVaultCrates();
@@ -992,13 +1029,8 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 	IncrementIntStat( STATID_Kills, 1 );
 	Kills++;
 
-	if (MyKFPC.IsValidSpecialEventMap())
-	{
-		IncrementIntStat(STATID_SpecialEventKills, 1);
-		SpecialEventKills++;
-		`log(GetFuncName() @ "SpecialEventKills:" @ SpecialEventKills, bLogStatsWrite);
-	}		
-	
+	// seasonal event hook
+	SeasonalEventStats_OnZedKilled(MonsterClass, Difficulty, DT);
 	
 	if(!MonsterClass.default.bVersusZed)
 	{
@@ -1416,9 +1448,50 @@ private final function bool IsSharpshooterHeadshot( class<DamageType> DT )
 	return (class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Sharpshooter'.static.GetPerkClass() ));
 }
 
-final function int GetSpecialEventKills()
+final function int GetSeasonalEventStatValue(int StatIdx)
 {
-	return SpecialEventKills;
+	switch (StatIdx)
+	{
+	case 0:
+		return SeasonalEventStats1;
+
+	case 1:
+		return SeasonalEventStats2;
+
+	case 2:
+		return SeasonalEventStats3;
+
+	case 3:
+		return SeasonalEventStats4;
+
+	case 4:
+		return SeasonalEventStats5;
+	};
+
+	return -1;
+}
+
+final function int GetSeasonalEventStatMaxValue(int StatIdx)
+{
+	switch (StatIdx)
+	{
+	case 0:
+		return SeasonalEventStatsMax1;
+
+	case 1:
+		return SeasonalEventStatsMax2;
+
+	case 2:
+		return SeasonalEventStatsMax3;
+
+	case 3:
+		return SeasonalEventStatsMax4;
+
+	case 4:
+		return SeasonalEventStatsMax5;
+	};
+
+	return -1;
 }
 
 /*********************************************************************************************
@@ -1587,6 +1660,46 @@ native static final function int GetMapObjectiveVoshReward(byte GameLength, byte
 native final function MapObjectiveCompleted();
 
 /*********************************************************************************************
+* @name Seasonal Events
+********************************************************************************************* */
+
+final native simulated function bool SeasonalEventIsValid();
+
+final simulated function SeasonalEventStats_OnMapObjectiveDeactivated(Actor ObjectiveInterfaceActor)
+{
+	if (SeasonalEventIsValid())
+	{
+		SeasonalEvent.OnMapObjectiveDeactivated(ObjectiveInterfaceActor);
+	}
+}
+
+final simulated function SeasonalEventStats_OnMapCollectibleFound(PlayerReplicationInfo FinderPRI, int CollectibleID)
+{
+	if (SeasonalEventIsValid())
+	{
+		SeasonalEvent.OnMapCollectibleFound(FinderPRI, CollectibleID);
+	}
+}
+
+final native simulated event SeasonalEventStats_OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLength, bool bCoOp);
+
+final simulated function SeasonalEventStats_OnZedKilled(class<KFPawn_Monster> MonsterClass, int Difficulty, class<DamageType> DT)
+{
+	if (SeasonalEventIsValid())
+	{
+		SeasonalEvent.OnZedKilled(MonsterClass, Difficulty, DT);
+	}
+}
+
+final simulated function SeasonalEventStats_OnBossDied()
+{
+	if (SeasonalEventIsValid())
+	{
+		SeasonalEvent.OnBossDied();
+	}
+}
+
+/*********************************************************************************************
 * @name Dailies and daily-specific tracking
 ********************************************************************************************* */
 /** Cache the state of our daily event progress.  If we find a day change while doing so, clear progress */
@@ -1678,7 +1791,12 @@ defaultproperties
     Properties.Add((PropertyId=STATID_DailyEventIDs,Data=(Type=SDT_Int32,Value1=0))
     Properties.Add((PropertyId=STATID_DailyEventStats1,Data=(Type=SDT_Int32,Value1=0))
     Properties.Add((PropertyId=STATID_DailyEventStats2,Data=(Type=SDT_Int32,Value1=0))
-	Properties.Add((PropertyId=STATID_SpecialEventKills,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=STATID_SpecialEventKills_DEPRECATED,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=STATID_SeasonalEventStats1,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=STATID_SeasonalEventStats2,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=STATID_SeasonalEventStats3,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=STATID_SeasonalEventStats4,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=STATID_SeasonalEventStats5,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=STATID_PersonalBest_KnifeKills,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=STATID_PersonalBest_PistolKills,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=STATID_PersonalBest_HeadShots,Data=(Type=SDT_Int32,Value1=0))
@@ -1691,6 +1809,7 @@ defaultproperties
     Properties.Add((PropertyId=STATID_DoshVaultTotal,Data=(Type=SDT_Int32,Value1=0))
     Properties.Add((PropertyId=STATID_LastViewedDoshVaultTotal,Data=(Type=SDT_Int32,Value1=0))
 	Properties.Add((PropertyId=STATID_DoshVaultProgress,Data=(Type=SDT_Int32,Value1=0))
+	Properties.Add((PropertyId=STATID_DoshVaultRecovered,Data=(Type=SDT_Int32,Value1=0))
 
 	// These are the views we are writing to
 	ViewIds(0)=VIEWID_KFGameStats
@@ -1728,6 +1847,7 @@ defaultproperties
     //Swat Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP7, KFDT_Ballistic_MP7,KFDT_Bludgeon_MP7),CompletionAmount=5000)) //3000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP5RAS, KFDT_Ballistic_MP5RAS,KFDT_Bludgeon_MP5RAS),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Thompson, KFDT_Ballistic_Thompson,KFDT_Bludgeon_Thompson),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_P90, KFDT_Ballistic_P90,KFDT_Bludgeon_P90),CompletionAmount=10000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Kriss, KFDT_Ballistic_Kriss,KFDT_Bludgeon_Kriss),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_HK_UMP, KFDT_Ballistic_HK_UMP,KFDT_Bludgeon_HK_UMP),CompletionAmount=10000))
@@ -1763,6 +1883,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_RocketLauncher_RPG7, KFDT_Ballistic_RPG7Impact,KFDT_Explosive_RPG7,KFDT_Explosive_RPG7BackBlast,KFDT_Bludgeon_RPG7),CompletionAmount=7500))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_M16M203, KFDT_Ballistic_M16M203,KFDT_Bludgeon_M16M203,KFDT_Ballistic_M203Impact,KFDT_Explosive_M16M203),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_RocketLauncher_Seeker6, KFDT_Explosive_Seeker6, KFDT_Bludgeon_Seeker6, KFDT_Ballistic_Seeker6Impact),CompletionAmount=7500))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_GrenadeLauncher_M32, KFDT_Bludgeon_M32, KFDT_Explosive_M32, KFDT_Ballistic_M32Impact),CompletionAmount=10000))
 
     //Firebug Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_CaulkBurn, KFDT_Bludgeon_CaulkBurn,KFDT_Fire_CaulkBurn,KFDT_Fire_Ground_CaulkNBurn),CompletionAmount=5000)) //3000
@@ -1777,10 +1898,12 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Crovel, KFDT_Bludgeon_Crovel,KFDT_Bludgeon_CrovelBash,KFDT_Slashing_Crovel),CompletionAmount=5000)) //3000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_Nailgun, KFDT_Ballistic_NailShotgun,KFDT_Bludgeon_NailShotgun),CompletionAmount=7000)) //5000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_Katana, KFDT_Slashing_Katana,KFDT_Piercing_KatanaStab, KFDT_Slashing_KatanaHeavy),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_FireAxe, KFDT_Bludgeon_FireAxeBash,KFDT_Slashing_FireAxe,KFDT_Slashing_FireAxeHeavy),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_Pulverizer, KFDT_Bludgeon_Pulverizer,KFDT_Bludgeon_PulverizerBash,KFDT_Bludgeon_PulverizerHeavy,KFDT_Explosive_Pulverizer),CompletionAmount=10000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Eviscerator, KFDT_Slashing_Eviscerator,KFDT_Slashing_EvisceratorProj),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_MaceAndShield, KFDT_Bludgeon_MaceAndShield,KFDT_Bludgeon_MaceAndShield_Bash,KFDT_Bludgeon_MaceAndShield_MaceHeavy,KFDT_Bludgeon_MaceAndShield_ShieldHeavy,KFDT_Bludgeon_MaceAndShield_ShieldLight),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_PowerGloves, KFDT_Bludgeon_PowerGloves,KFDT_Bludgeon_PowerGlovesBash,KFDT_Bludgeon_PowerGlovesHeavy),CompletionAmount=10000))
+    //DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_AbominationAxe, KFDT_Slashing_AbominationAxe,KFDT_Piercing_AbominationAxeStab,KFDT_Slashing_AbominationAxeHeavy),CompletionAmount=10000))
 
     //Gunslinger Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Revolver_Rem1858, KFDT_Bludgeon_Rem1858,KFDT_Ballistic_Rem1858,KFDT_Ballistic_Rem1858_Dual),CompletionAmount=5000)) //3000
@@ -1903,6 +2026,12 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-MONSTERBALL),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-MONSTERBALL),CompletionAmount=2))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-MONSTERBALL),CompletionAmount=3))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SHOPPINGSPREE),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SHOPPINGSPREE),CompletionAmount=2))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SHOPPINGSPREE),CompletionAmount=3))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANTASWORKSHOP),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANTASWORKSHOP),CompletionAmount=2))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANTASWORKSHOP),CompletionAmount=3))
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount

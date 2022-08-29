@@ -50,11 +50,17 @@ package tripwire.containers.hud
         
         public var accentsMC:MovieClip;
         
+        public var criticalBoxMC;
+        
         private var _currentProgress:Number;
         
         public var failedString:String;
         
         public var objectiveNumberMC;
+        
+        protected var bComplete:Boolean = false;
+        
+        protected var bMissionCritical:Boolean = false;
         
         public function ObjectiveProgressContainer()
         {
@@ -74,6 +80,8 @@ package tripwire.containers.hud
             this.objectiveRequirementContainer.visible = true;
             TextFieldEx.setTextAutoSize(this.objectiveRequirementContainer.requirementNumberTextfield,"shrink");
             this.objectiveNumberMC.visible = false;
+            this.missionCriticalStatus = false;
+            this.criticalBoxMC.visible = false;
         }
         
         public function set localizedText(param1:Object) : void
@@ -100,6 +108,29 @@ package tripwire.containers.hud
             }
         }
         
+        public function set completeStatus(param1:Boolean) : void
+        {
+            if(this.bComplete != param1)
+            {
+                this.bComplete = param1;
+                gotoAndStop(!!this.bComplete ? "complete" : "default");
+                if(this.bComplete)
+                {
+                    this.criticalBoxMC.visible = false;
+                }
+            }
+        }
+        
+        public function set missionCriticalStatus(param1:Boolean) : void
+        {
+            if(this.bMissionCritical != param1)
+            {
+                this.bMissionCritical = param1;
+                this.objectiveNumberMC.y = !!this.bMissionCritical ? 18 : 32;
+                this.criticalBoxMC.visible = this.bMissionCritical;
+            }
+        }
+        
         public function set objectiveNumber(param1:Object) : void
         {
             if(param1)
@@ -107,7 +138,10 @@ package tripwire.containers.hud
                 this.objectiveNumberMC.visible = param1.textValue && param1.textValue != "";
                 this.objectiveNumberMC.numberTextfield.text = param1.textValue;
             }
-            this.objectiveNumberMC.visble = false;
+            else
+            {
+                this.objectiveNumberMC.visble = false;
+            }
         }
         
         public function set currentProgress(param1:Number) : void

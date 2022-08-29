@@ -64,7 +64,10 @@ var onlinesubsystemdingo OwningSubsystem;
 var native map<0, 0> ContentCache;
 var init array<init OnlineDownloadableContent> DLCContent;
 var init array<init OnlineCrossTitleDownloadableContent> CrossTitleDLCContent;
+var init array<init OnlineCrossTitleContent> CrossTitleContent;
 var array< delegate<OnContentChange> > ContentChangeDelegates;
+var array< delegate<OnReadCrossTitleContentComplete> > CrossTitleContentChangeDelegates;
+var bool bHasEnumeratedCrossTitleContent;
 var PerUserOnlineContentDelegates PerUserDelegates[24];
 var delegate<OnContentChange> __OnContentChange__Delegate;
 var delegate<OnReadDownloadableContentComplete> __OnReadDownloadableContentComplete__Delegate;
@@ -353,18 +356,30 @@ function ClearContentList(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineConte
 
 function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetContentList(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, out array<OnlineContent> ContentList);
 
-function bool ReadCrossTitleContentList(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, optional int TitleId, optional int DeviceID)
+// Export UOnlineContentInterfaceDingo::execReadCrossTitleContentList(FFrame&, void* const)
+native function bool ReadCrossTitleContentList(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, optional int TitleId, optional int DeviceID)
 {
     TitleId = 0;
-    DeviceID = -1;
+    DeviceID = -1;                        
 }
 
-function ClearCrossTitleContentList(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType);
+// Export UOnlineContentInterfaceDingo::execClearCrossTitleContentList(FFrame&, void* const)
+native function ClearCrossTitleContentList(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType);
 
-function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetCrossTitleContentList(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, out array<OnlineCrossTitleContent> ContentList);
+// Export UOnlineContentInterfaceDingo::execGetCrossTitleContentList(FFrame&, void* const)
+native function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetCrossTitleContentList(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, out array<OnlineCrossTitleContent> ContentList);
 
 delegate OnReadCrossTitleContentComplete(bool bWasSuccessful);
 
-function AddReadCrossTitleContentCompleteDelegate(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, delegate<OnReadCrossTitleContentComplete> ReadContentCompleteDelegate);
+function AddReadCrossTitleContentCompleteDelegate(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, delegate<OnReadCrossTitleContentComplete> ReadContentCompleteDelegate)
+{
+    if(CrossTitleContentChangeDelegates.Find(ReadContentCompleteDelegate == -1)
+    {
+        CrossTitleContentChangeDelegates.AddItem(ReadContentCompleteDelegate;
+    }
+}
 
-function ClearReadCrossTitleContentCompleteDelegate(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, delegate<OnReadCrossTitleContentComplete> ReadContentCompleteDelegate);
+function ClearReadCrossTitleContentCompleteDelegate(byte LocalUserNum, Engine.OnlineSubsystem.EOnlineContentType ContentType, delegate<OnReadCrossTitleContentComplete> ReadContentCompleteDelegate)
+{
+    CrossTitleContentChangeDelegates.RemoveItem(ReadContentCompleteDelegate;
+}

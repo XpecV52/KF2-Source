@@ -9,5 +9,5 @@ class KFDT_BellTrap extends KFDT_SwingMinigame;
 
 defaultproperties
 {
-    OverrideImpactSound=AkEvent'WW_ENV_MonsterBall.Play_ENV_MonsterBall_Bell_Impact'
+    OverrideImpactSound=AkEvent'WW_ENV_Destruction.Play_ENV_Destruction_Bell_Impact'
 }

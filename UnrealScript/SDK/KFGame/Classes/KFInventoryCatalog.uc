@@ -31,12 +31,14 @@ enum ECrateSeries
 	ECrate_HorzineSupply_S9,
 	ECrate_HorzineSupply_SDAR,
 	ECrate_HorzineSupply_SLOCO,
+	ECrate_HorzineSupply_SCyberSamurai,
 	ECrate_PSNHorzineSupply_CS1,
 	ECrate_PSNHorzineSupply_CS2,
 	ECrate_PSNHorzineSupply_CS3,
 	ECrate_PSNHorzineSupply_CS5,
 	ECrate_PSNHorzineSupply_CS6,
 	ECrate_PSNHorzineSupply_CS7,
+	ECrate_PSNHorzineSupply_CS8,
 	ECrate_PSNHorzineSupply_WS1,
 	ECrate_PSNHorzineSupply_WS2,
 	ECrate_PSNHorzineSupply_WS3,
@@ -48,6 +50,7 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_WS9,
 	ECrate_PSNHorzineSupply_WS10,
 	ECrate_PSNHorzineSupply_WS11,
+	ECrate_PSNHorzineSupply_WS12,
 	ECrate_PSNHorzineSupply_E1,
 	ECrate_PSNHorzineSupply_E2,
 	ECrate_HorzineSupply_S10,
@@ -72,6 +75,8 @@ enum ECrateSeries
 	Ecrate_NeonMKII,
 	Ecrate_NeonMKIII,
 	Ecrate_BlueFire,
+	Ecrate_NeonMKIV,
+
 	};
 
 enum EItemDisplayContainerType
@@ -150,12 +155,14 @@ DefaultProperties
 	ItemKeyArray[ECrate_HorzineSupply_S9]=(ContainerID=4207, KeyID=4208, ItemSeriesName=horzine9, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_HorzineSupply_SDAR]=(ContainerID=5873, KeyID=5874, ItemSeriesName=horzineDAR, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_HorzineSupply_SLOCO]=(ContainerID=6445, KeyID=6446, ItemSeriesName=horzineLOCO, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_HorzineSupply_SCyberSamurai]=(ContainerID=6616, KeyID=6617, ItemSeriesName=horzineCyberSamurai, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS1]=(ContainerID=4304, KeyID=4303, ItemSeriesName=psncrate_cs1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS2]=(ContainerID=4305, KeyID=4303, ItemSeriesName=psncrate_cs2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS3]=(ContainerID=5371, KeyID=4303, ItemSeriesName=psncrate_cs3, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS5]=(ContainerID=5900, KeyID=4303, ItemSeriesName=psncrate_cs5, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS6]=(ContainerID=5989, KeyID=4303, ItemSeriesName=psncrate_cs6, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS7]=(ContainerID=6457, KeyID=4303, ItemSeriesName=psncrate_cs7, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_CS8]=(ContainerID=6658, KeyID=4303, ItemSeriesName=psncrate_cs8, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS1]=(ContainerID=4307, KeyID=4303, ItemSeriesName=psncrate_ws1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS2]=(ContainerID=4306, KeyID=4303, ItemSeriesName=psncrate_ws2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS3]=(ContainerID=4569, KeyID=4303, ItemSeriesName=psncrate_ws3, ContainerType=IDT_Crate)
@@ -167,6 +174,7 @@ DefaultProperties
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS9]=(ContainerID=6202, KeyID=4303, ItemSeriesName=psncrate_ws9, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS10]=(ContainerID=6218, KeyID=4303, ItemSeriesName=psncrate_ws10, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS11]=(ContainerID=6433, KeyID=4303, ItemSeriesName=psncrate_ws11, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS12]=(ContainerID=6667, KeyID=4303, ItemSeriesName=psncrate_ws12, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E1]=(ContainerID=5646, KeyID=4303, ItemSeriesName=emote1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E2]=(ContainerID=5647, KeyID=4303, ItemSeriesName=emote2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S10]=(ContainerID=4499, KeyID=4501, ItemSeriesName=horzine10, ContainerType=IDT_Crate)
@@ -192,4 +200,5 @@ DefaultProperties
 	ItemKeyArray[Ecrate_NeonMKII]=(ContainerID=6198, KeyID=6197, ItemSeriesName=NeonMKII, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_NeonMKIII]=(ContainerID=6430, KeyID=6431, ItemSeriesName=NeonMKIII, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_BlueFire]=(ContainerID=6200, KeyID=6199, ItemSeriesName=Bluefire, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_NeonMKIV]=(ContainerID=6665, KeyID=6666, ItemSeriesName=NeonMKIV, ContainerType=IDT_USB)
 } 

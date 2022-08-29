@@ -63,6 +63,106 @@ enum EReloadStatus
     RS_MAX
 };
 
+enum EWeaponUpgradeStat
+{
+    EWUS_Weight,
+    EWUS_Heal,
+    EWUS_HealFullRecharge,
+    EWUS_BlockDmgMitigation,
+    EWUS_ParryDmgMitigation,
+    EWUS_Damage0,
+    EWUS_Damage1,
+    EWUS_Damage2,
+    EWUS_MagCapacity0,
+    EWUS_MagCapacity1,
+    EWUS_MagCapacity2,
+    EWUS_SpareCapacity0,
+    EWUS_SpareCapacity1,
+    EWUS_SpareCapacity2,
+    EWUS_Spread0,
+    EWUS_Spread1,
+    EWUS_Spread2,
+    EWUS_Penetration0,
+    EWUS_Penetration1,
+    EWUS_Penetration2,
+    EWUS_ExploRadius0,
+    EWUS_ExploRadius1,
+    EWUS_ExploRadius2,
+    EWUS_ReloadRate0,
+    EWUS_ReloadRate1,
+    EWUS_ReloadRate2,
+    EWUS_Recoil0,
+    EWUS_Recoil1,
+    EWUS_Recoil2,
+    EWUS_MeleeSpeed0,
+    EWUS_MeleeSpeed1,
+    EWUS_MeleeSpeed2,
+    EWUS_AfflictEMP0,
+    EWUS_AfflictEMP1,
+    EWUS_AfflictEMP2,
+    EWUS_AfflictFire0,
+    EWUS_AfflictFire1,
+    EWUS_AfflictFire2,
+    EWUS_AfflictMelee0,
+    EWUS_AfflictMelee1,
+    EWUS_AfflictMelee2,
+    EWUS_AfflictGun0,
+    EWUS_AfflictGun1,
+    EWUS_AfflictGun2,
+    EWUS_AfflictStumble0,
+    EWUS_AfflictStumble1,
+    EWUS_AfflictStumble2,
+    EWUS_AfflictStun0,
+    EWUS_AfflictStun1,
+    EWUS_AfflictStun2,
+    EWUS_AfflictPoison0,
+    EWUS_AfflictPoison1,
+    EWUS_AfflictPoison2,
+    EWUS_AfflictSnare0,
+    EWUS_AfflictSnare1,
+    EWUS_AfflictSnare2,
+    EWUS_AfflictKnockdown0,
+    EWUS_AfflictKnockdown1,
+    EWUS_AfflictKnockdown2,
+    EWUS_AfflictFreeze0,
+    EWUS_AfflictFreeze1,
+    EWUS_AfflictFreeze2,
+    EWUS_AfflictMicrowave0,
+    EWUS_AfflictMicrowave1,
+    EWUS_AfflictMicrowave2,
+    EWUS_AfflictBleed0,
+    EWUS_AfflictBleed1,
+    EWUS_AfflictBleed2,
+    EWUS_Custom1,
+    EWUS_Custom2,
+    EWUS_Custom3,
+    EWUS_Custom4,
+    EWUS_Custom5,
+    EWUS_MAX
+};
+
+struct native CylinderRotationInfo
+{
+    var float InC;
+    var transient float PrevDegrees;
+    var transient float NextDegrees;
+    var float Time;
+    var transient float Timer;
+    var transient SkelControlSingleBone Control;
+    var transient int State;
+
+    structdefaultproperties
+    {
+        InC=0
+        PrevDegrees=0
+        NextDegrees=0
+        Time=0
+        Timer=0
+        Control=none
+        State=0
+    }
+};
+
 struct native WeaponFireSndInfo
 {
     var() AkEvent DefaultCue;
@@ -91,23 +191,27 @@ struct native ImpactRepInfo
     }
 };
 
-struct native WeaponUpgradeInfo
+struct native WeaponUpgradeStatInc
 {
-    /** @name Weapon Upgrade System */
-    var() int IncrementWeight;
-    /** @name Weapon Upgrade System */
-    var() float IncrementDamage;
-    /** @name Weapon Upgrade System */
-    var() float IncrementHeal;
-    /** @name Weapon Upgrade System */
-    var() float IncrementHealFullRecharge;
+    var KFWeapon.EWeaponUpgradeStat Stat;
+    var float Scale;
+    var int Add;
 
     structdefaultproperties
     {
-        IncrementWeight=1
-        IncrementDamage=1
-        IncrementHeal=1
-        IncrementHealFullRecharge=1
+        Stat=EWeaponUpgradeStat.EWUS_Weight
+        Scale=1
+        Add=0
+    }
+};
+
+struct native WeaponUpgradeInfo
+{
+    var array<WeaponUpgradeStatInc> Stats;
+
+    structdefaultproperties
+    {
+        Stats=none
     }
 };
 
@@ -187,7 +291,7 @@ var config bool bLogStates;
 var bool bPauseWithPlayersOnly;
 var bool bDebugRecoilPosition;
 var config bool bLogAmmo;
-var config bool bLogWeaponUpgrade;
+var const bool bLogWeaponUpgrade;
 var array<Texture2D> FireModeIconPaths;
 var byte SingleFireSoundIndex;
 /** Number of shots to fire per burst. */
@@ -510,6 +614,7 @@ var(Recoil) float IronSightMeshFOVCompensationScale;
 var(Weapon) protected array< class<KFPerk> > AssociatedPerkClasses;
 var array<WeaponUpgradeInfo> WeaponUpgrades;
 var int CurrentWeaponUpgradeIndex;
+var int UpgradeFireModes[6];
 
 replication
 {
@@ -998,17 +1103,17 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     if(PickedUpWeapon.CurrentWeaponUpgradeIndex > -1)
     {
         SetWeaponUpgradeLevel(PickedUpWeapon.CurrentWeaponUpgradeIndex);
-        KFInventoryManager(InvManager).AddCurrentCarryBlocks(WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementWeight);
+        KFInventoryManager(InvManager).AddCurrentCarryBlocks(GetUpgradeStatAdd(0, CurrentWeaponUpgradeIndex));
         KFPawn(Instigator).NotifyInventoryWeightChanged();
     }
     I = 0;
-    J0xD2:
+    J0xC1:
 
     if(I < 2)
     {
         AmmoCount[I] = PickedUpWeapon.AmmoCount[I];
         ++ I;
-        goto J0xD2;
+        goto J0xC1;
     }
     SpareAmmoCount[0] = PickedUpWeapon.SpareAmmoCount[0];
     if(DualClass != none)
@@ -2510,7 +2615,7 @@ simulated function Rotator AddSpread(Rotator BaseAim)
     {
         return BaseAim;
     }
-    CurrentSpread = Spread[CurrentFireMode];
+    CurrentSpread = GetUpgradedSpread(CurrentFireMode);
     if(bUsingSights)
     {
         CurrentSpread *= IronSightsSpreadMod;        
@@ -2558,7 +2663,7 @@ simulated event HandleRecoil()
     {
         return;
     }
-    CurrentRecoilModifier = 1;
+    CurrentRecoilModifier = GetUpgradedRecoilModifier(CurrentFireMode);
     NewRecoilRotation.Pitch = int(RandRange(float(minRecoilPitch), float(maxRecoilPitch)));
     NewRecoilRotation.Yaw = int(RandRange(float(minRecoilYaw), float(maxRecoilYaw)));
     if(Instigator.Physics == 2)
@@ -2681,7 +2786,7 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
         }
         SpawnedProjectile.InitialPenetrationPower = GetInitialPenetrationPower(CurrentFireMode);
         SpawnedProjectile.PenetrationPower = SpawnedProjectile.InitialPenetrationPower;
-        SpawnedProjectile.UpgradeDamageMod = GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
+        SpawnedProjectile.UpgradeDamageMod = GetUpgradeDamageMod();
         SpawnedProjectile.Init(AimDir);
     }
     return SpawnedProjectile;
@@ -2693,9 +2798,9 @@ simulated event float GetInitialPenetrationPower(byte FiringMode)
     local float UsedPenetrationPower;
     local KFPlayerController KFPC;
 
-    if((PenetrationPower.Length > FiringMode) && PenetrationPower[FiringMode] > float(0))
+    if(PenetrationPower.Length > FiringMode)
     {
-        UsedPenetrationPower = default.PenetrationPower[FiringMode];
+        UsedPenetrationPower = GetUpgradedPenetration(FiringMode);
     }
     InstigatorPerk = GetPerk();
     if(((InstigatorPerk != none) && InstantHitDamageTypes.Length > FiringMode) && Instigator != none)
@@ -2980,24 +3085,10 @@ static simulated event bool CanRefillSecondaryAmmo()
 
 function InitializeAmmo()
 {
-    local KFPerk CurrentPerk;
-
-    CurrentPerk = GetPerk();
-    if(CurrentPerk != none)
-    {
-        CurrentPerk.ModifyMagSizeAndNumber(self, MagazineCapacity[0]);
-        CurrentPerk.ModifyMagSizeAndNumber(self, MagazineCapacity[1],, true);
-        CurrentPerk.ModifyMaxSpareAmmoAmount(self, SpareAmmoCapacity[0]);
-        CurrentPerk.ModifyMaxSpareAmmoAmount(self, SpareAmmoCapacity[1],, true);
-    }
+    InitializeAmmoCapacity();
     AmmoCount[0] = MagazineCapacity[0];
     AmmoCount[1] = MagazineCapacity[1];
-    AddAmmo(InitialSpareMags[0] * default.MagazineCapacity[0]);
-    if(CurrentPerk != none)
-    {
-        CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[0]);
-        CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[1],, true);
-    }
+    AddAmmo(default.InitialSpareMags[0] * default.MagazineCapacity[0]);
     AddAmmo(0);
     bForceNetUpdate = true;
 }
@@ -3010,10 +3101,7 @@ function ReInitializeAmmoCounts(KFPerk CurrentPerk)
         MagazineCapacity[1] = default.MagazineCapacity[1];
         SpareAmmoCapacity[0] = default.SpareAmmoCapacity[0];
         SpareAmmoCapacity[1] = default.SpareAmmoCapacity[1];
-        CurrentPerk.ModifyMagSizeAndNumber(self, MagazineCapacity[0]);
-        CurrentPerk.ModifyMagSizeAndNumber(self, MagazineCapacity[1],, true);
-        CurrentPerk.ModifyMaxSpareAmmoAmount(self, SpareAmmoCapacity[0]);
-        CurrentPerk.ModifyMaxSpareAmmoAmount(self, SpareAmmoCapacity[1],, true);
+        InitializeAmmoCapacity(,, CurrentPerk);
         AddAmmo(0);
     }
 }
@@ -3652,49 +3740,290 @@ simulated function SetWeaponUpgradeLevel(int WeaponUpgradeLevel)
         LogInternal((((string(self) @ "-") @ string(GetFuncName())) @ "- Setting Upgrade Index to") @ string(WeaponUpgradeLevel));
     }
     CurrentWeaponUpgradeIndex = WeaponUpgradeLevel;
+    InitializeAmmoCapacity();
     bNetDirty = true;
+}
+
+simulated function InitializeAmmoCapacity(optional int UpgradeIndex, optional KFPerk CurrentPerk)
+{
+    UpgradeIndex = -1;    
+    ModifyMagSizeAndNumber(MagazineCapacity[0], 0, UpgradeIndex, CurrentPerk);
+    ModifyMagSizeAndNumber(MagazineCapacity[1], 1, UpgradeIndex, CurrentPerk);
+    ModifySpareAmmoCapacity(SpareAmmoCapacity[0], 0, UpgradeIndex, CurrentPerk);
+    ModifySpareAmmoCapacity(SpareAmmoCapacity[1], 1, UpgradeIndex, CurrentPerk);
+}
+
+static simulated function GetUpgradeStatInc(KFWeapon.EWeaponUpgradeStat Stat, int UpgradeIndex, out float OutScale, out int OutAdd)
+{
+    local int I;
+
+    OutScale = 1;
+    OutAdd = 0;
+    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
+    {
+        if(default.bLogWeaponUpgrade)
+        {
+            WarnInternal(((((string(default.Class) $ "::GetUpgradeStatInc - UpgradeIndex ") $ string(UpgradeIndex)) $ " is out of range (WeaponUpgrades.Length is ") $ string(default.WeaponUpgrades.Length)) $ "). Returning unmodified input values.");
+        }
+        return;
+    }
+    I = 0;
+    J0x104:
+
+    if(I < default.WeaponUpgrades[UpgradeIndex].Stats.Length)
+    {
+        if(default.WeaponUpgrades[UpgradeIndex].Stats[I].Stat == Stat)
+        {
+            OutScale = default.WeaponUpgrades[UpgradeIndex].Stats[I].Scale;
+            OutAdd = default.WeaponUpgrades[UpgradeIndex].Stats[I].Add;
+            return;
+        }
+        ++ I;
+        goto J0x104;
+    }
+    if(default.bLogWeaponUpgrade)
+    {
+        WarnInternal(((string(default.Class) $ "::GetUpgradeStatInc - Could not find stat ") $ string(Stat)) $ ". Returning default values.");
+    }
+}
+
+static simulated function float GetUpgradeStatScale(KFWeapon.EWeaponUpgradeStat Stat, int UpgradeIndex)
+{
+    local float StatScale;
+    local int StatAdd;
+
+    GetUpgradeStatInc(Stat, UpgradeIndex, StatScale, StatAdd);
+    return StatScale;
+}
+
+static simulated function int GetUpgradeStatAdd(KFWeapon.EWeaponUpgradeStat Stat, int UpgradeIndex)
+{
+    local float StatScale;
+    local int StatAdd;
+
+    GetUpgradeStatInc(Stat, UpgradeIndex, StatScale, StatAdd);
+    return StatAdd;
+}
+
+static simulated function float GetUpgradedStatValue(float InStatVal, KFWeapon.EWeaponUpgradeStat Stat, int UpgradeIndex)
+{
+    local float StatScale;
+    local int StatAdd;
+
+    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
+    {
+        if(default.bLogWeaponUpgrade)
+        {
+            WarnInternal(((((string(default.Class) $ "::GetUpgradedStatValue - UpgradeIndex ") $ string(UpgradeIndex)) $ " is out of range (WeaponUpgrades.Length is ") $ string(default.WeaponUpgrades.Length)) $ "). Returning unmodified input value.");
+        }
+        return InStatVal;
+    }
+    GetUpgradeStatInc(Stat, UpgradeIndex, StatScale, StatAdd);
+    return (InStatVal * StatScale) + float(StatAdd);
 }
 
 simulated function int GetModifiedWeightValue()
 {
-    return InventorySize + WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementWeight;
+    return int(GetUpgradedStatValue(float(InventorySize), 0, CurrentWeaponUpgradeIndex));
+}
+
+static simulated function int GetDefaultModifiedWeightValue(int UpgradeIndex)
+{
+    return int(GetUpgradedStatValue(float(default.InventorySize), 0, UpgradeIndex));
 }
 
 static simulated function int GetUpgradeWeight(int UpgradeIndex)
 {
-    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
-    {
-        return 0;
-    }
-    return default.WeaponUpgrades[UpgradeIndex].IncrementWeight;
+    return GetUpgradeStatAdd(0, UpgradeIndex);
 }
 
-static simulated function float GetUpgradeDamageMod(int UpgradeIndex)
+simulated function float GetUpgradeDamageMod(optional int FireMode, optional int UpgradeIndex)
 {
-    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
     {
-        return 1;
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
     }
-    return FMax(default.WeaponUpgrades[UpgradeIndex].IncrementDamage, 1);
+    return GetUpgradeStatScale(byte(5 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+simulated function float GetUpgradedDamage(optional int FireMode, optional int UpgradeIndex)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    return float(int(GetUpgradedStatValue(default.InstantHitDamage[FireMode], byte(5 + UpgradeFireModes[FireMode]), UpgradeIndex)));
 }
 
 static simulated function float GetUpgradeHealMod(int UpgradeIndex)
 {
-    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
-    {
-        return 1;
-    }
-    return default.WeaponUpgrades[UpgradeIndex].IncrementHeal;
+    return GetUpgradeStatScale(1, UpgradeIndex);
 }
 
 static simulated function float GetUpgradeHealRechargeMod(int UpgradeIndex)
 {
-    if((UpgradeIndex < 0) || UpgradeIndex >= default.WeaponUpgrades.Length)
-    {
-        return 1;
-    }
-    return default.WeaponUpgrades[UpgradeIndex].IncrementHealFullRecharge;
+    return GetUpgradeStatScale(2, UpgradeIndex);
 }
+
+simulated function int GetUpgradedMagCapacity(optional int FireMode, optional int UpgradeIndex)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    return int(GetUpgradedStatValue(float(default.MagazineCapacity[FireMode]), byte(8 + UpgradeFireModes[FireMode]), UpgradeIndex));
+}
+
+simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional int FireMode, optional int UpgradeIndex, optional KFPerk CurrentPerk)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;    
+    if(FireMode == 3)
+    {
+        return;
+    }
+    InMagazineCapacity = byte(GetUpgradedMagCapacity(FireMode, UpgradeIndex));
+    if(CurrentPerk == none)
+    {
+        CurrentPerk = GetPerk();
+    }
+    if(CurrentPerk != none)
+    {
+        CurrentPerk.ModifyMagSizeAndNumber(self, InMagazineCapacity, AssociatedPerkClasses, FireMode == 1, Class.Name);
+    }
+}
+
+simulated function int GetUpgradedSpareAmmoCapacity(optional int FireMode, optional int UpgradeIndex)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    return int(GetUpgradedStatValue(float(default.SpareAmmoCapacity[FireMode]), byte(11 + UpgradeFireModes[FireMode]), UpgradeIndex));
+}
+
+simulated function ModifySpareAmmoCapacity(out int InSpareAmmo, optional int FireMode, optional int UpgradeIndex, optional KFPerk CurrentPerk)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;    
+    if(FireMode == 3)
+    {
+        return;
+    }
+    InSpareAmmo = GetUpgradedSpareAmmoCapacity(FireMode, UpgradeIndex);
+    if(CurrentPerk == none)
+    {
+        CurrentPerk = GetPerk();
+    }
+    if(CurrentPerk != none)
+    {
+        CurrentPerk.ModifyMaxSpareAmmoAmount(self, InSpareAmmo,, FireMode == 1);
+    }
+}
+
+simulated function float GetUpgradedSpread(optional int FireMode, optional int UpgradeIndex)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    return GetUpgradedStatValue(default.Spread[FireMode], byte(14 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+simulated function float GetUpgradedPenetration(optional int FireMode, optional int UpgradeIndex)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    return float(int(GetUpgradedStatValue(default.PenetrationPower[FireMode], byte(17 + UpgradeFireModes[FireMode]), UpgradeIndex)));
+}
+
+simulated function ModifyExplosionRadius(out float Inradius, optional int FireMode, optional int UpgradeIndex)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    Inradius = GetUpgradedStatValue(Inradius, byte(20 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+simulated function float GetUpgradedReloadRateScale(optional int FireMode, optional int UpgradeIndex)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    return GetUpgradeStatScale(byte(23 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+simulated function float GetUpgradedRecoilModifier(optional int FireMode, optional int UpgradeIndex)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    return GetUpgradeStatScale(byte(26 + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+simulated function ModifyMeleeAttackSpeed(out float InSpeed, optional int FireMode, optional int UpgradeIndex, optional KFPerk CurrentPerk)
+{
+    FireMode = 0;
+    UpgradeIndex = -1;    
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    InSpeed = GetUpgradedStatValue(InSpeed, byte(29 + UpgradeFireModes[FireMode]), UpgradeIndex);
+    if(CurrentPerk == none)
+    {
+        CurrentPerk = GetPerk();
+    }
+    if(CurrentPerk != none)
+    {
+        CurrentPerk.ModifyMeleeAttackSpeed(InSpeed, self);
+    }
+}
+
+simulated function float GetUpgradedAfflictionPower(KFAfflictionManager.EAfflictionType AfflictionType, float InPower, optional int FireMode, optional int UpgradeIndex)
+{
+    local KFWeapon.EWeaponUpgradeStat BaseAfflictStat;
+
+    FireMode = -1;
+    UpgradeIndex = -1;
+    if(FireMode == -1)
+    {
+        FireMode = CurrentFireMode;
+    }
+    if(UpgradeIndex == -1)
+    {
+        UpgradeIndex = CurrentWeaponUpgradeIndex;
+    }
+    BaseAfflictStat = byte(32 + (AfflictionType * 3));
+    return GetUpgradedStatValue(InPower, byte(BaseAfflictStat + UpgradeFireModes[FireMode]), UpgradeIndex);
+}
+
+static simulated function float GetUpgradedBlockDamageMitigation(int UpgradeIndex);
+
+static simulated function float GetUpgradedParryDamageMitigation(int UpgradeIndex);
 
 reliable server function ServerSyncReload(int ClientSpareAmmoCount)
 {
@@ -4013,11 +4342,11 @@ simulated function float GetReloadRateScale()
     local float Rate;
     local KFPerk MyPerk;
 
-    Rate = 1;
+    Rate = GetUpgradedReloadRateScale(((GetStateName() == 'Reloading') ? 0 : 1));
     MyPerk = GetPerk();
     if(MyPerk != none)
     {
-        Rate = MyPerk.GetReloadRateScale(self);
+        Rate *= MyPerk.GetReloadRateScale(self);
     }
     return Rate;
 }
@@ -4245,14 +4574,9 @@ simulated function NotifyMeleeCollision(Actor HitActor, optional Vector HitLocat
 
 simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float BlendTime)
 {
-    local KFPerk InstigatorPerk;
     local float Duration;
 
-    InstigatorPerk = GetPerk();
-    if(InstigatorPerk != none)
-    {
-        InstigatorPerk.ModifyMeleeAttackSpeed(out_Rate, self);
-    }
+    ModifyMeleeAttackSpeed(out_Rate, CurrentFireMode);
     Duration = MySkelMesh.GetAnimLength(AnimName);
     Duration *= out_Rate;
     PlayAnimation(AnimName, Duration,, BlendTime);
@@ -4260,7 +4584,7 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 
 simulated function int GetModifiedDamage(byte FireModeNum, optional Vector RayDir)
 {
-    return int(InstantHitDamage[FireModeNum] * FMax(WeaponUpgrades[CurrentWeaponUpgradeIndex].IncrementDamage, 1));
+    return int(GetUpgradedStatValue(InstantHitDamage[FireModeNum], ((FireModeNum == 0) ? 5 : 6), CurrentWeaponUpgradeIndex));
 }
 
 simulated function int GetMeleeDamage(byte FireModeNum, optional Vector RayDir)
@@ -5356,15 +5680,10 @@ simulated state MeleeAttackBasic
 
     simulated function float GetThirdPersonAnimRate()
     {
-        local KFPerk CurrentPerk;
         local float ScaledRate;
 
         ScaledRate = 1;
-        CurrentPerk = GetPerk();
-        if(CurrentPerk != none)
-        {
-            CurrentPerk.ModifyMeleeAttackSpeed(ScaledRate, self);
-        }
+        ModifyMeleeAttackSpeed(ScaledRate, CurrentFireMode);
         return 1 / ScaledRate;
     }
     stop;    
@@ -5532,7 +5851,9 @@ defaultproperties
     StanceCrouchedRecoilModifier=0.75
     LastRecoilModifier=1
     IronSightMeshFOVCompensationScale=1
-    WeaponUpgrades(0)=(IncrementWeight=0,IncrementDamage=1,IncrementHeal=1,IncrementHealFullRecharge=1)
+    WeaponUpgrades(0)=(Stats=((Stat=EWeaponUpgradeStat.EWUS_Damage0,Scale=1,Add=0),(Stat=EWeaponUpgradeStat.EWUS_Weight,Scale=1,Add=0)))
+    UpgradeFireModes[1]=1
+    UpgradeFireModes[3]=2
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

@@ -16,7 +16,6 @@ DefaultProperties
 	ImagePath="WEP_UI_MKB42_TEX.UI_WeaponSelect_MKB42"
 
 	EffectiveRange=67
-	SharedUnlockId=SCU_MKB
 
 	UpgradePrice[0]=700
 	UpgradePrice[1]=1500

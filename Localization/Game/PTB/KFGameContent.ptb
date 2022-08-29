@@ -542,11 +542,31 @@ ItemName="Mac 10"
 ItemCategory="Submetralhadora"
 ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Vem com munição incendiária de rápido disparo. Entendeu? Rápido disparo? Porque é uma submetralhadora incendiária? Ah, esquece."
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="Machado de batalha"
+ItemCategory="Corpo a corpo"
+ItemDescription="•Principal - ataque de corte lento; Segure Principal para combinação.\n•Secundário - ataque pesado lento que oblitera ao morrer.\nAlt - bloquear/aparar\n•Antigo, mas é forte igual um caminhão... um caminhão grande e afiado."
+
+[KFWeap_Edged_FireAxe]
+ItemName="Machado de Fogo"
+ItemCategory="Corpo a corpo"
+ItemDescription="•Principal - ataque de corte; Segure Principal para combinação.\n•Secundário - ataque de corte pesado.\n•Alt - bloquear/aparar.\n• Por tem fogo no nome se não está em chamas?"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="Lança-granadas M32"
+ItemCategory="Explosivos"
+ItemDescription="•O modo de tiro lança granadas\n•A granada explode no impacto.\n•Uma solução mais elegante do que usar fita adesiva para unir seis lança-granadas M79."
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="Rifle Gr. HMTech-501"
 ItemCategory="Fuzil de assalto"
-ItemDescription="•Modo de tiro automático, somente.\n•Tiro alt. para atirar granadas médicas.\n•Só é legal jogar granadas nos seus amigos com essa arma!"
+ItemDescription="•Modo de tiro apenas automático.\n•Tiro alt. - dispara granadas médicas.\n•Só é legal jogar granadas nos seus amigos com essa arma!"
 SecondaryAmmo="Granada médica"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="Tommy Gun"
+ItemCategory="Fuzil de assalto"
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Conhecida como máquina de escrever de Chicago, é uma arma apropriada para usar ao escrever seu nome."
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL ACOG"

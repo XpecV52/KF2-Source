@@ -32,6 +32,10 @@ var() vector IconLocationOffset;
 
 var transient bool bRepairComplete;
 
+// bSkipActorPropertyReplication=true prevents bHidden from being replicated automatically,
+// so we'll do it ourselves anyway
+var transient repnotify bool bHidden_Replicated;
+
 delegate OnRepairCompelete(KFRepairableActor RepairedActor);
 
 // (cpptext)
@@ -39,6 +43,25 @@ delegate OnRepairCompelete(KFRepairableActor RepairedActor);
 // (cpptext)
 // (cpptext)
 // (cpptext)
+
+replication
+{
+	if (bNetDirty)
+		bHidden_Replicated;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+	switch (VarName)
+	{
+	case nameof(bHidden_Replicated):
+		SetHidden(bHidden_Replicated);
+		break;
+
+	default:
+		super.ReplicatedEvent(VarName);
+	};
+}
 
 simulated private native function SetupComponents();
 
@@ -163,13 +186,14 @@ simulated function PlayDestroyed()
 		}
 	}
 
+	// Change the mesh on client and server so that collision is synced up for welding
+	if(RepairableActorMesh != none)
+	{
+		RepairableActorMesh.SetStaticMesh(BrokenMesh);
+	}
+
 	if(WorldInfo.NetMode != NM_DedicatedServer)
 	{
-		if(RepairableActorMesh != none)
-		{
-			RepairableActorMesh.SetStaticMesh(BrokenMesh);
-		}
-
 		if (BreakingEmitterTemplate.ParticleTemplate != none)
 		{
 			WorldInfo.MyEmitterPool.SpawnEmitter(BreakingEmitterTemplate.ParticleTemplate, Location + BreakingEmitterTemplate.RelativeOffset, BreakingEmitterTemplate.RelativeRotation);
@@ -272,6 +296,18 @@ simulated function UpdateIntegrityMIC()
 				WeldComponent.SetHidden(true);
 			}
 		}
+	}
+}
+
+/** Handler for SeqAct_ToggleHidden, just sets bHidden. */
+simulated function OnToggleHidden(SeqAct_ToggleHidden Action)
+{
+	super.OnToggleHidden(Action);
+
+	// replicate bHidden here, because bSkipActorPropertyReplication=true prevents it from happening automatically
+	if (Role == ROLE_Authority)
+	{
+		bHidden_Replicated = bHidden;
 	}
 }
 

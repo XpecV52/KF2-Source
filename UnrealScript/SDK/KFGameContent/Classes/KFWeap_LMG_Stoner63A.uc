@@ -281,5 +281,7 @@ defaultproperties
 	LastAmmoCount=-1
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.27f,IncrementWeight=1)
+	//WeaponUpgrades[1]=(IncrementDamage=1.27f,IncrementWeight=1)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.27f), (Stat=EWUS_Weight, Add=1)))
 }

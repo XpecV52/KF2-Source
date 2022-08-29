@@ -45,10 +45,16 @@ const STATID_DailyEventInfo = 302;
 const STATID_DailyEventIDs = 303;
 const STATID_DailyEventStats1 = 304;
 const STATID_DailyEventStats2 = 305;
-const STATID_SpecialEventKills = 306;
+const STATID_SpecialEventKills_DEPRECATED = 306;
+const STATID_SeasonalEventStats1 = 307;
+const STATID_SeasonalEventStats2 = 308;
+const STATID_SeasonalEventStats3 = 309;
+const STATID_SeasonalEventStats4 = 310;
+const STATID_SeasonalEventStats5 = 311;
 const STATID_DoshVaultTotal = 400;
 const STATID_LastViewedDoshVaultTotal = 401;
 const STATID_DoshVaultProgress = 402;
+const STATID_DoshVaultRecovered = 403;
 const STATID_AchievementPlaceholder = 500;
 const STATID_AnalyticsPlaceholder = 800;
 const STATID_PersonalBest_KnifeKills = 2000;
@@ -103,6 +109,8 @@ const STATID_ACHIEVE_AirshipCollectibles = 4043;
 const STATID_ACHIEVE_LockdownCollectibles = 4044;
 const STATID_ACHIEVE_MonsterBallCollectibles = 4045;
 const STATID_ACHIEVE_MonsterBallSecretRoom = 4046;
+const STATID_ACHIEVE_SantasWorkshopCollectibles = 4047;
+const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
 
 enum RealTimeActivityConnectionStatus
 {

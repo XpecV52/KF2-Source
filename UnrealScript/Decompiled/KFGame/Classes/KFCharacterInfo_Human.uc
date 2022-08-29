@@ -554,7 +554,6 @@ protected simulated function SetAttachmentMesh(int CurrentAttachmentMeshIndex, i
         AttachmentSocket = PawnMesh.GetSocketByName(CharAttachmentSocketName);
         PawnMesh.AttachComponent(StaticAttachment, AttachmentSocket.BoneName, AttachmentSocket.RelativeLocation + AttachmentLocationRelativeToSocket, AttachmentSocket.RelativeRotation + AttachmentRotationRelativeToSocket, AttachmentSocket.RelativeScale * AttachmentScaleRelativeToSocket);
     }
-    KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
     if(bIsFirstPerson)
     {
         KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;        
@@ -626,7 +625,7 @@ protected simulated function SetAttachmentSkinMaterial(int PawnAttachmentIndex, 
     }
 }
 
-private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, int CurrentAttachmentSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI, optional bool bIsFirstPerson)
+private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, int CurrentAttachmentSkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI, optional bool bIsFirstPerson)
 {
     local string CharAttachmentMeshName;
     local name CharAttachmentSocketName;
@@ -637,7 +636,7 @@ private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, 
     {
         return;
     }
-    AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP);
+    AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP, KFPRI);
     if(AttachmentSlotIndex == -1)
     {
         return;
@@ -766,21 +765,26 @@ function bool GetOverrideCase(int AttachmentIndex1, int AttachmentIndex2)
     }
 }
 
-function int GetAttachmentSlotIndex(int CurrentAttachmentMeshIndex, KFPawn KFP)
+function int GetAttachmentSlotIndex(int CurrentAttachmentMeshIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI)
 {
     local int AttachmentIdx;
 
+    if(KFPRI == none)
+    {
+        WarnInternal("GetAttachmentSlotIndex - NO KFPRI");
+        return -1;
+    }
     AttachmentIdx = 0;
-    J0x0B:
+    J0x45:
 
     if(AttachmentIdx < 3)
     {
-        if((KFP.ThirdPersonAttachmentBitMask & (1 << AttachmentIdx)) == 0)
+        if((KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == -1) || KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == CurrentAttachmentMeshIndex)
         {
             return AttachmentIdx;
         }
         ++ AttachmentIdx;
-        goto J0x0B;
+        goto J0x45;
     }
     return -1;
 }
@@ -815,7 +819,6 @@ function DetachAttachment(int PawnAttachmentIndex, KFPawn KFP)
             }
         }
     }
-    KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask & ~1 << PawnAttachmentIndex;
     KFP.ThirdPersonAttachmentSocketNames[PawnAttachmentIndex] = 'None';
     KFP.FirstPersonAttachmentSocketNames[PawnAttachmentIndex] = 'None';
 }

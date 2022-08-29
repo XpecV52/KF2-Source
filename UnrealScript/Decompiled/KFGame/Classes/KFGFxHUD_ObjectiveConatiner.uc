@@ -9,9 +9,16 @@ class KFGFxHUD_ObjectiveConatiner extends GFxObject within GFxMoviePlayer;
 
 var float UpdateRate;
 var KFInterface_MapObjective CurrentObjectiveInterface;
+var Texture2D LastIcon;
+var KFPlayerController KFPC;
+var name SoundThemeName;
+var name SoundCueName;
+var float LastProgress;
+var bool bLastMissionCritical;
 
 function InitializeHUD()
 {
+    KFPC = KFPlayerController(Outer.GetPC());
     SetVisible(false);
     LocalizeContainer();
 }
@@ -35,12 +42,35 @@ simulated function SetActive(bool bActive)
         {
             SetFailState(CurrentObjectiveInterface.HasFailedObjective());
             SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
-            SetCurrentIcon(PathName(CurrentObjectiveInterface.GetIcon()));
+            UpdateActorCount();
+            UpdateIcon();
+            SetCompleted(CurrentObjectiveInterface.IsComplete());
+            SetMissionCritical(CurrentObjectiveInterface.GetIsMissionCritical());
         }        
     }
     else
     {
         CurrentObjectiveInterface = none;
+        GetObject("objectiveNumberMC").SetVisible(false);
+    }
+}
+
+function SetCompleted(bool bComplete)
+{
+    SetBool("completeStatus", bComplete);
+    if(((KFPC != none) && KFPC.myGfxHUD != none) && bComplete)
+    {
+        KFPC.myGfxHUD.PlaySoundFromTheme(SoundCueName, SoundThemeName);
+    }
+}
+
+function SetMissionCritical(bool bMissionCritical)
+{
+    bMissionCritical = false;
+    if(bMissionCritical != bLastMissionCritical)
+    {
+        SetBool("missionCriticalStatus", bMissionCritical);
+        bLastMissionCritical = bMissionCritical;
     }
 }
 
@@ -63,7 +93,18 @@ function TickHud(float DeltaTime)
         SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
         SetInt("rewardValue", CurrentObjectiveInterface.GetDoshReward());
         UpdateActorCount();
+        if(LastIcon != CurrentObjectiveInterface.GetIcon())
+        {
+            UpdateIcon();
+        }
+        SetMissionCritical(CurrentObjectiveInterface.GetIsMissionCritical());
     }
+}
+
+function UpdateIcon()
+{
+    LastIcon = CurrentObjectiveInterface.GetIcon();
+    SetCurrentIcon(PathName(LastIcon));
 }
 
 function UpdateActorCount()
@@ -100,11 +141,18 @@ function ClearObjectiveUI()
 
 function SetCurrentProgress(float CurrentProgress)
 {
-    CurrentProgress = FClamp(CurrentProgress, 0, 1);
-    SetInt("currentProgress", int(float(100) * CurrentProgress));
+    if(LastProgress != CurrentProgress)
+    {
+        CurrentProgress = FClamp(CurrentProgress, 0, 1);
+        LastProgress = CurrentProgress;
+        SetInt("currentProgress", int(float(100) * CurrentProgress));
+        SetCompleted(CurrentObjectiveInterface.IsComplete());
+    }
 }
 
 defaultproperties
 {
     UpdateRate=0.1
+    SoundThemeName=UI
+    SoundCueName=TraderTime_Countdown
 }

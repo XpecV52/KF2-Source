@@ -171,7 +171,6 @@ struct native QueuedAvatarRequest
     var const int NumberOfAttempts;
     var const UniqueNetId PlayerNetId;
     var const int Size;
-    var const delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate;
 
     structdefaultproperties
     {
@@ -179,7 +178,6 @@ struct native QueuedAvatarRequest
         NumberOfAttempts=0
         PlayerNetId=(Uid=none)
         Size=0
-        adOnlineAvatarComple=None
     }
 };
 
@@ -469,7 +467,6 @@ var delegate<OnDeviceSelectionComplete> __OnDeviceSelectionComplete__Delegate;
 var delegate<OnUnlockAchievementComplete> __OnUnlockAchievementComplete__Delegate;
 var delegate<OnProfileDataChanged> __OnProfileDataChanged__Delegate;
 var delegate<OnReadAchievementsComplete> __OnReadAchievementsComplete__Delegate;
-var delegate<OnReadOnlineAvatarComplete> __OnReadOnlineAvatarComplete__Delegate;
 var delegate<OnGetNumberOfCurrentPlayersComplete> __OnGetNumberOfCurrentPlayersComplete__Delegate;
 var delegate<OnReadCrossTitleProfileSettingsComplete> __OnReadCrossTitleProfileSettingsComplete__Delegate;
 var delegate<OnStoreDataRead> __OnStoreDataRead__Delegate;
@@ -1908,10 +1905,8 @@ native function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetAchievemen
 // Export UOnlineSubsystemSteamworks::execShowCustomPlayersUI(FFrame&, void* const)
 native function bool ShowCustomPlayersUI(byte LocalUserNum, const out array<UniqueNetId> Players, string Title, string Description);
 
-delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Avatar);
-
 // Export UOnlineSubsystemSteamworks::execReadOnlineAvatar(FFrame&, void* const)
-native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
+native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size);
 
 // Export UOnlineSubsystemSteamworks::execGetNumberOfCurrentPlayers(FFrame&, void* const)
 native function bool GetNumberOfCurrentPlayers();

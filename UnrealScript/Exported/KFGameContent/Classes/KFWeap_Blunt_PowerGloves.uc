@@ -68,7 +68,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_PowerGloves:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
-   WeaponUpgrades(1)=(IncrementDamage=1.100000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.100000),(Stat=EWUS_Damage1,Scale=1.100000),(Stat=EWUS_Damage2,Scale=1.100000),(Add=1)))
    InstantHitDamage(0)=95.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

@@ -29,11 +29,25 @@ struct native WaveObjectivePair
     var() array<KFInterface_MapObjective> PossibleObjectives;
     /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
     var() bool bUseEndlessSpawning;
+    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    var() array<SpawnReplacement> SpawnReplacements;
+    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    var() array<float> PerPlayerSpawnRateMod;
+    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    var() float WaveScale;
 
     structdefaultproperties
     {
         PossibleObjectives=none
         bUseEndlessSpawning=false
+        SpawnReplacements=none
+        PerPlayerSpawnRateMod(0)=1
+        PerPlayerSpawnRateMod(1)=1
+        PerPlayerSpawnRateMod(2)=1
+        PerPlayerSpawnRateMod(3)=1
+        PerPlayerSpawnRateMod(4)=1
+        PerPlayerSpawnRateMod(5)=1
+        WaveScale=1
     }
 };
 
@@ -45,30 +59,30 @@ struct native PresetWavePairs
 
     structdefaultproperties
     {
-        ShortObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        ShortObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        ShortObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        ShortObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        ShortObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        MediumObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        MediumObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        MediumObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        MediumObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        MediumObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        MediumObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        MediumObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        MediumObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[8]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[9]=(PossibleObjectives=none,bUseEndlessSpawning=false)
-        LongObjectives[10]=(PossibleObjectives=none,bUseEndlessSpawning=false)
+        ShortObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        ShortObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        ShortObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        ShortObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        ShortObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        MediumObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        MediumObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        MediumObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        MediumObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        MediumObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        MediumObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        MediumObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        MediumObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[8]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[9]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        LongObjectives[10]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
     }
 };
 
@@ -87,25 +101,30 @@ var const KFMapInfo.ECollectibleType CollectibleType;
  * NOTE: Setting this option incorrectly may disable or enable unwanted game features!
  */
 var() KFMapInfo.ESubGameType SubGameType;
-var(Objectives) KFGameEngine.SeasonalEventIndex EventHoliday<EditCondition=bEventLimitedObjectives>;
+/** Which boss to use as the override */
+var() KFAISpawnManager.EBossAIType SurvivalBossOverride<EditCondition=bOverrideSurvivalBoss>;
+/** Which seasonal zeds to use for this map (SEI_None follows TW seasonal events) */
+var() KFGameEngine.SeasonalEventIndex ZedSeasonalThemeId;
 /** list of music tracks played during trader time // @todo: make these not editconst when we're ready to have mappers or whomever change them */
 var(Music) array<KFMusicTrackInfo> AmbientMusicTracks;
 var transient array<byte> ShuffledAmbientMusicTrackIdxes;
 /** How many collectibles players need to find in this map to unlock the achievement */
 var(Collectibles) const int CollectiblesToFind;
 var const transient int CollectiblesFound;
-/** Whether or not to limit objectives to a holiday */
-var(Objectives) bool bEventLimitedObjectives;
 /** Whether or not to use the preset wave objective type */
 var(Objectives) bool bUsePresetObjectives<EditCondition=!bUseRandomObjectives>;
 /** Whether or not to use the random wave objective type */
 var(Objectives) bool bUseRandomObjectives<EditCondition=!bUsePresetObjectives>;
+/** Whether to override the boss of a Survival match */
+var() bool bOverrideSurvivalBoss;
 var(Objectives) PresetWavePairs PresetWaveObjectives<EditCondition=bUsePresetObjectives>;
 var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives;
 var(Objectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 var() string TraderVoiceGroupClassPath;
 var() string TraderVoiceGroupClassPath_Endless;
+/** Mutator code class that can override various map settings */
+var() class<KFMapMutator> MapMutatorClass;
 
 function MusicTrackStruct GetNextMusicTrackStruct(optional bool bActionTrack)
 {
@@ -246,6 +265,50 @@ static function KFMusicTrackInfo StaticGetRandomTrack(bool bPlayActionTrack)
 // Export UKFMapInfo::execOnCollectibleFound(FFrame&, void* const)
 native final function OnCollectibleFound(KFDestructibleActor Collectible, Controller Collecter);
 
+function bool WaveHasPresetObjectives(int WaveNum, int GameLength)
+{
+    if(!bUsePresetObjectives)
+    {
+        return false;
+    }
+    switch(GameLength)
+    {
+        case 0:
+            return PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives.Length > 0;
+        case 1:
+            return PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives.Length > 0;
+        case 2:
+            return PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives.Length > 0;
+        default:
+            return false;
+            break;
+    }
+}
+
+final event ModifySeasonalEventId(out int EventID)
+{
+    if(ZedSeasonalThemeId != 0)
+    {
+        EventID = ZedSeasonalThemeId;
+    }
+}
+
+final event ModifyGameClassBossAIClassList(out array< class<KFPawn_Monster> > GameClassBossAIClassList)
+{
+    if(MapMutatorClass != none)
+    {
+        MapMutatorClass.static.ModifyGameClassBossAIClassList(GameClassBossAIClassList);
+    }
+}
+
+final event ModifyAIDoshValue(out float AIDoshValue)
+{
+    if(MapMutatorClass != none)
+    {
+        MapMutatorClass.static.ModifyAIDoshValue(AIDoshValue);
+    }
+}
+
 defaultproperties
 {
     WaveSpawnPeriod=2
@@ -312,5 +375,6 @@ defaultproperties
     AmbientMusicTracks(10)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_MomentaryReprieve'
     AmbientMusicTracks(11)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_PhantomSecurity'
     AmbientMusicTracks(12)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_RendezvousPoint'
+    PresetWaveObjectives=(ShortObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),ShortObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),ShortObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),ShortObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),ShortObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[8]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[9]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[10]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1))
     TraderVoiceGroupClassPath="KFGameContent.KFTraderVoiceGroup_Default"
 }

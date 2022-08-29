@@ -118,66 +118,6 @@ struct native AttachedGoreChunkInfo
     }
 };
 
-struct native ExtraVFXInfo
-{
-    /**  
-     *@name  ExtraVFX
-     *// Particle effect to play
-     */
-    var() ParticleSystem VFX;
-    /**  
-     *@name  ExtraVFX
-     *// Particle effect to play// Socket to attach it to (if applicable)
-
-     */
-    var() name SocketName;
-    /**  
-     *@name  ExtraVFX
-     *// Particle effect to play// Socket to attach it to (if applicable)
-// Label to use for code logic (if applicable)
-
-     */
-    var() name Label;
-    /**  
-     *@name  ExtraVFX
-     *// Particle effect to play// Socket to attach it to (if applicable)
-// Label to use for code logic (if applicable)
-// Audio event to play when vfx start
-
-     */
-    var() AkEvent SFXStartEvent;
-    /**  
-     *@name  ExtraVFX
-     *// Particle effect to play// Socket to attach it to (if applicable)
-// Label to use for code logic (if applicable)
-// Audio event to play when vfx start
-// Audio event to play when vfx stop
-
-     */
-    var() AkEvent SFXStopEvent;
-
-    structdefaultproperties
-    {
-        VFX=none
-        SocketName=None
-        Label=None
-        SFXStartEvent=none
-        SFXStopEvent=none
-    }
-};
-
-struct native ExtraVFXAttachmentInfo
-{
-    var export editinline ParticleSystemComponent VFXComponent;
-    var ExtraVFXInfo Info;
-
-    structdefaultproperties
-    {
-        VFXComponent=none
-        Info=(VFX=none,SocketName=None,Label=None,SFXStartEvent=none,SFXStopEvent=none)
-    }
-};
-
 var bool bLargeZed;
 var bool bVersusZed;
 var(Combat) bool bCanGrabAttack;
@@ -324,7 +264,6 @@ var protected const int OnDeathAchievementID;
 var class<KFZedArmorInfo> ArmorInfoClass;
 var KFZedArmorInfo ArmorInfo;
 var const int OverrideArmorFXIndex;
-var transient array<ExtraVFXAttachmentInfo> ExtraVFXAttachments;
 var delegate<GoreChunkAttachmentCriteria> __GoreChunkAttachmentCriteria__Delegate;
 var delegate<GoreChunkDetachmentCriteria> __GoreChunkDetachmentCriteria__Delegate;
 
@@ -1478,6 +1417,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     local int HitZoneIdx, ExtraHeadDamage;
     local KFPerk InstigatorPerk;
     local class<KFDamageType> KFDT;
+    local Vector DamageSource;
 
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
     if(DamageType.default.bCausedByWorld && ClassIsChildOf(DamageType, Class'KFDT_Falling'))
@@ -1541,7 +1481,22 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     {
         if(HitInfo.BoneName != 'None')
         {
-            ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageCauser.Location);            
+            if((InstigatedBy != none) && InstigatedBy.Pawn != none)
+            {
+                DamageSource = InstigatedBy.Pawn.Location;                
+            }
+            else
+            {
+                if(KFWeapon(DamageCauser) != none)
+                {
+                    DamageSource = KFWeapon(DamageCauser).GetMuzzleLoc();                    
+                }
+                else
+                {
+                    DamageSource = DamageCauser.Location;
+                }
+            }
+            ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageSource);            
         }
         else
         {
@@ -3627,116 +3582,6 @@ protected native function int GetZedOnDeathAchievement();
 
 // Export UKFPawn_Monster::execDisablebOnDeathAchivement(FFrame&, void* const)
 native function DisablebOnDeathAchivement();
-
-simulated function PlayExtraVFX(name FXLabel)
-{
-    local int I;
-    local ExtraVFXAttachmentInfo VFXAttachment;
-    local bool bActivatedExistingSystem;
-    local name SFXBoneName;
-
-    if((WorldInfo.NetMode == NM_DedicatedServer) || FXLabel == 'None')
-    {
-        return;
-    }
-    I = 0;
-    J0x4F:
-
-    if(I < ExtraVFXAttachments.Length)
-    {
-        if(ExtraVFXAttachments[I].Info.Label == FXLabel)
-        {
-            ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[I].Info.VFX, Mesh, ExtraVFXAttachments[I].Info.SocketName, true);
-            if(ExtraVFXAttachments[I].Info.SFXStartEvent != none)
-            {
-                SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[I].Info.SocketName);
-                if(SFXBoneName != 'None')
-                {
-                    PostAkEventOnBone(ExtraVFXAttachments[I].Info.SFXStartEvent, SFXBoneName, false, true);                    
-                }
-                else
-                {
-                    PostAkEvent(ExtraVFXAttachments[I].Info.SFXStartEvent, false, true, false);
-                }
-            }
-            bActivatedExistingSystem = true;
-        }
-        ++ I;
-        goto J0x4F;
-    }
-    if(bActivatedExistingSystem)
-    {
-        return;
-    }
-    I = 0;
-    J0x30A:
-
-    if(I < CharacterMonsterArch.ExtraVFX.Length)
-    {
-        if(CharacterMonsterArch.ExtraVFX[I].Label == FXLabel)
-        {
-            if(CharacterMonsterArch.ExtraVFX[I].SocketName == 'None')
-            {
-                WarnInternal(((((string(self) $ "::PlayExtraVFX - SocketName for ExtraVFX ") $ string(I)) $ " (") $ string(FXLabel)) $ ") is NONE");                
-            }
-            else
-            {
-                VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterMonsterArch.ExtraVFX[I].VFX, Mesh, CharacterMonsterArch.ExtraVFX[I].SocketName, true);
-                if(CharacterMonsterArch.ExtraVFX[I].SFXStartEvent != none)
-                {
-                    SFXBoneName = Mesh.GetSocketBoneName(CharacterMonsterArch.ExtraVFX[I].SocketName);
-                    if(SFXBoneName != 'None')
-                    {
-                        PostAkEventOnBone(CharacterMonsterArch.ExtraVFX[I].SFXStartEvent, SFXBoneName, false, true);                        
-                    }
-                    else
-                    {
-                        PostAkEvent(CharacterMonsterArch.ExtraVFX[I].SFXStartEvent, false, true, false);
-                    }
-                }
-                VFXAttachment.Info = CharacterMonsterArch.ExtraVFX[I];
-                ExtraVFXAttachments.AddItem(VFXAttachment;
-            }
-        }
-        ++ I;
-        goto J0x30A;
-    }
-}
-
-simulated function StopExtraVFX(name FXLabel)
-{
-    local int I;
-    local name SFXBoneName;
-
-    if(WorldInfo.NetMode == NM_DedicatedServer)
-    {
-        return;
-    }
-    I = 0;
-    J0x36:
-
-    if(I < ExtraVFXAttachments.Length)
-    {
-        if((FXLabel == 'None') || ExtraVFXAttachments[I].Info.Label == FXLabel)
-        {
-            ExtraVFXAttachments[I].VFXComponent.SetActive(false);
-            if(ExtraVFXAttachments[I].Info.SFXStopEvent != none)
-            {
-                SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[I].Info.SocketName);
-                if(SFXBoneName != 'None')
-                {
-                    PostAkEventOnBone(ExtraVFXAttachments[I].Info.SFXStopEvent, SFXBoneName, false, true);                    
-                }
-                else
-                {
-                    PostAkEvent(ExtraVFXAttachments[I].Info.SFXStopEvent, false, true, false);
-                }
-            }
-        }
-        ++ I;
-        goto J0x36;
-    }
-}
 
 state Dying
 {

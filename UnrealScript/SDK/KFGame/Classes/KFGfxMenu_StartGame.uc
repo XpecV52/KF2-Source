@@ -656,6 +656,8 @@ function UpdateStartMenuState()
 			case EMatchmaking:
 				OptionsComponent.bShowLengthNoPref = true;
 				OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
+				//set match privacy to public for find match
+				OptionsComponent.PrivacyChanged(0);
 				break;
 			case ESoloGame:
 				OptionsComponent.bShowLengthNoPref = false;
@@ -934,7 +936,7 @@ function Callback_OpenCreateGame()
 }
 
 // Call this to allow the player to go to the matchmaking screen on console.
-function ProceedToMatchMaking() 
+function ProceedToMatchMaking()
 {
 	SetInt("externalMenuState", EMatchmaking);
 }
@@ -1071,7 +1073,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 			MapName = "kf-bioticslab";
 		}
 	}
-	LengthIndex = InOptionsComponent.GetLengthIndex();	
+	LengthIndex = InOptionsComponent.GetLengthIndex();
 	return MapName$"?Game="$class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.GetModeIndex())
 	       $"?Difficulty="$class'KFGameDifficultyInfo'.static.GetDifficultyValue( InOptionsComponent.GetDifficultyIndex() )
 		   $"?GameLength="$LengthIndex;

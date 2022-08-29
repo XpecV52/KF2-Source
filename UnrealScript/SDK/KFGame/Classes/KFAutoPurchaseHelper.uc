@@ -415,7 +415,7 @@ function bool UpgradeWeapon(int OwnedItemIndex)
 	TraderItems.GetItemIndicesFromArche(ItemIndex, DefaultItemInfo.ClassName);
 
 	MyKFIM.BuyUpgrade(ItemIndex, ItemInfo.ItemUpgradeLevel);
-	OwnedItemList[OwnedItemIndex].SellPrice = MyKFIM.GetAdjustedSellPriceFor(DefaultItemInfo);
+	OwnedItemList[OwnedItemIndex].SellPrice = GetAdjustedSellPriceFor(DefaultItemInfo);
 	if (MyGfxManager != none && MyGfxManager.TraderMenu != none)
 	{
 		MyGfxManager.TraderMenu.OwnedItemList = OwnedItemList;
@@ -978,10 +978,7 @@ simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem )
 
 simulated function int GetAdjustedSellPriceFor(const out STraderItem ShopItem)
 {
-	local KFWeapon OwnedWeapon;
-	MyKFIM.GetWeaponFromClass(OwnedWeapon, ShopItem.ClassName);
-
-	return MyKFIM.GetAdjustedSellPriceFor(ShopItem, OwnedWeapon);
+	return MyKFIM.GetAdjustedSellPriceFor(ShopItem, OwnedItemList);
 }
 
 simulated function int GetAdjustedUpgradePriceFor(const out STraderItem ItemInfo, int UpgradeLevel)
@@ -1103,7 +1100,7 @@ function SetWeaponInformation( KFWeapon KFW )
 }
 
 /** Add a currently owned item to the "OwnedItemList" on initialization */
-function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
+function SetWeaponInfo(const KFWeapon KFW, STraderItem DefaultItem)
 {
    	local SItemInformation WeaponInfo;
     local float AmmoCostScale;
@@ -1130,7 +1127,7 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
 	WeaponInfo.ItemUpgradeLevel = KFW.CurrentWeaponUpgradeIndex;
 
 	WeaponInfo.AmmoPricePerMagazine = AmmoCostScale * DefaultItem.WeaponDef.default.AmmoPricePerMag;
-	WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor( DefaultItem, KFW );
+	WeaponInfo.SellPrice = GetAdjustedSellPriceFor(DefaultItem);
 
     AddItemByPriority( WeaponInfo );
 
@@ -1216,7 +1213,7 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 	CurrentPerk.ModifyMaxSpareAmmoAmount( none, WeaponInfo.MaxSecondaryAmmo, DefaultItem, true );
 
 	WeaponInfo.AmmoPricePerMagazine = AmmoCostScale * DefaultItem.WeaponDef.default.AmmoPricePerMag;
-   	WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor( DefaultItem );
+   	WeaponInfo.SellPrice = GetAdjustedSellPriceFor(DefaultItem);
 
 	WeaponInfo.DefaultItem = DefaultItem;
 

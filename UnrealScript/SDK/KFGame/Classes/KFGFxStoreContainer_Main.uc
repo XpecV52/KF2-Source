@@ -317,16 +317,16 @@ DefaultProperties
 	//defaults
 	CurrentStoreFilter=EStore_Featured
 
-	FeaturedItemIDs[0]=5246
+	FeaturedItemIDs[0]=6670
 	FeaturedItemIDs[1]=5286
 	FeaturedItemIDs[2]=5787
 	FeaturedItemIDs[3]=6185
 	FeaturedItemIDs[4]=6455
 	
-	ConsoleFeaturedItemIDs[0]=5246
-	ConsoleFeaturedItemIDs[1]=5286
-	ConsoleFeaturedItemIDs[2]=5787
-	ConsoleFeaturedItemIDs[3]=6185
-	ConsoleFeaturedItemIDs[4]=6455
+	ConsoleFeaturedItemIDs[0]=6670
+	ConsoleFeaturedItemIDs[1]=6713
+	ConsoleFeaturedItemIDs[2]=6280
+	ConsoleFeaturedItemIDs[3]=6283
+	ConsoleFeaturedItemIDs[4]=6716
 	MaxFeaturedItems=5
 }

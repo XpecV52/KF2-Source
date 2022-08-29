@@ -44,6 +44,8 @@ simulated function vector GetBossCameraOffset();
 //Death functionality
 function OnZedDied(Controller Killer);
 
+simulated function String GetIconPath();
+
 //Wave functionality
 function KFAIWaveInfo GetWaveInfo(int BattlePhase, int Difficulty);
 function byte GetNumMinionsToSpawn();

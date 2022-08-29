@@ -29,7 +29,7 @@ defaultproperties
 
     OverrideImpactEffect=ParticleSystem'FX_Environmental_EMIT_THREE.FX_Swing_Ride_Bloodhit_01'
 
-    OverrideImpactSound=AkEvent'WW_ENV_Summer_Sideshow.Play_SS_Swing_Flesh_Hit'
+    OverrideImpactSound=AkEvent'WW_ENV_Destruction.Play_ENV_Destruction_Swing_Flesh_Hit'
 	bIsTrapDamage=true
 
 }

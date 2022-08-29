@@ -542,11 +542,31 @@ ItemName="Mac 10"
 ItemCategory="衝鋒槍"
 ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•特征是速射燃燒彈藥。懂了嗎？速射？因為它是衝鋒槍？哦，忘了那吧。"
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="戰斧"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：慢速揮砍，長按以連續攻擊。\n•次要攻擊鍵：慢速重攻擊，消滅死亡之物。\n•輔助功能鍵：防禦 / 格擋。\n•雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
+
+[KFWeap_Edged_FireAxe]
+ItemName="火斧"
+ItemCategory="近身"
+ItemDescription="•主要攻擊鍵：揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•如果斧頭上沒有火，為什麼又叫做火斧呢？"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="M32 手榴彈發射器"
+ItemCategory="炸藥"
+ItemDescription="•攻擊模式會發射手榴彈。\n•手榴彈碰觸到物品即爆炸。\n•總比用膠帶把六把M79手榴彈發射器黏在一起更好一看點。"
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="HMTech-501 榴彈步槍"
 ItemCategory="突擊步槍"
-ItemDescription="•僅可使用全自動射擊模式。\n•按下輔助功能鍵發射治療手榴彈\n•這是唯一一種可以用它將榴彈射向隊友的武器！"
+ItemDescription="•攻擊模式僅有全自動。\n•輔助功能鍵射出治療手榴彈。\n•這是唯一一種可以用它將榴彈射向隊友的武器！"
 SecondaryAmmo="治療手榴彈"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="湯普森衝鋒槍"
+ItemCategory="突擊步槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n有些人稱之為芝加哥打字機，的確很適合用子彈打出自己的名字給人看。"
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL ACOG 瞄準鏡"

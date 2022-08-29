@@ -454,7 +454,7 @@ function Callback_ConfirmPerkReset()
 			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFGFxPerksContainer_Prestige'.default.NotHightenoughLevelString,
 				Class'KFCommon_LocalizedStrings'.default.ConfirmString);
 		}
-		else if (KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 2)
+		else if (KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 3)
 		{
 			//show confirmation pop up here
 			Manager.DelayedOpenPopup(ENotification, EDPPID_Misc, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFGFxPerksContainer_Prestige'.default.AtMaxPrestigeLevelString,

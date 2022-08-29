@@ -78,7 +78,7 @@ simulated function bool CanLockOnTo(Actor TA)
     local KFPawn PawnTarget;
 
     PawnTarget = KFPawn(TA);
-    if((((((((TA == none) || !TA.bProjTarget) || TA.bDeleteMe) || PawnTarget == none) || TA == Instigator) || PawnTarget.Health <= 0) || PawnTarget.bIsCloaking) || !HasAmmo(0))
+    if(((((((TA == none) || !TA.bProjTarget) || TA.bDeleteMe) || PawnTarget == none) || TA == Instigator) || PawnTarget.Health <= 0) || !HasAmmo(0))
     {
         return false;
     }

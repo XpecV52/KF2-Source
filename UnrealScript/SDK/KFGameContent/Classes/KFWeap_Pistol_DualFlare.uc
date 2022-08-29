@@ -125,8 +125,12 @@ defaultproperties
 	CylinderRotInfo_L=(Inc=-60.0, Time=0.0875/*about 0.35 in the anim divided by ratescale of 4*/)
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=0)
-	WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=2)
-	WeaponUpgrades[3]=(IncrementDamage=1.75f,IncrementWeight=4)
+	//WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=0)
+	//WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=2)
+	//WeaponUpgrades[3]=(IncrementDamage=1.75f,IncrementWeight=4)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.25f), (Stat=EWUS_Damage1, Scale=1.25f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.5f), (Stat=EWUS_Damage1, Scale=1.5f), (Stat=EWUS_Weight, Add=2)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.75f), (Stat=EWUS_Damage1, Scale=1.75f), (Stat=EWUS_Weight, Add=4)))
 }
 

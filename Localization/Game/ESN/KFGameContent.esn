@@ -542,11 +542,31 @@ ItemName="Mac 10"
 ItemCategory="Subfusil"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Posee munición incendiaria de fuego rápido. ¿Lo pillas? ¡Fuego rápido! ¡Porque es una metralleta incendiaria! Bah, olvídalo."
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="Hacha de guerra"
+ItemCategory="Cuerpo a cuerpo"
+ItemDescription="•Principal: ataque cortante lento. Mantén pulsado el botón del modo principal para hacer un combo.\n•Secundario: Ataque pesado y lento que acaba en la muerte.\n•Alternativo: bloquear/parar.\n•Obsoleto, pero sigue golpeando como un camión... un camión grande y afilado."
+
+[KFWeap_Edged_FireAxe]
+ItemName="Hacha de fuego"
+ItemCategory="Cuerpo a cuerpo"
+ItemDescription="•Principal: ataque cortante. Mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque cortante potente.\n•Alternativo: bloquear/parar.\n•¿Por qué hacha de fuego si no tiene fuego?"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="Lanzagranadas M32"
+ItemCategory="Explosivos"
+ItemDescription="•Modo de disparo: lanza una granada.\n•La granada explota al impactar.\n•Una solución más elegante que pegar seis lanzagranadas M79 juntos."
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="Rifle lanzagr. HMTech-501"
 ItemCategory="Fusil de asalto"
-ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: dispara granadas.\n•¡La única arma que te permite lanzar granadas a tus amigos!"
+ItemDescription="•Solo dispara en modo automático.\n•Alternativo: dispara granadas médicas.\n•¡Es la única arma con la que podrás lanzar granadas a tus amigos!"
 SecondaryAmmo="Granada médica"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="Tommy Gun"
+ItemCategory="Fusil de asalto"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Utiliza la función de disparo alternativo para cambiar de modo.\n•Conocida como la Chicago Typewriter, es un arma adecuada para escribir tu nombre."
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL ACOG"

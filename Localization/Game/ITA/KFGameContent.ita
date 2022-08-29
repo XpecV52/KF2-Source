@@ -542,11 +542,31 @@ ItemName="Mac 10"
 ItemCategory="Mitra"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Munizioni incendiarie a fuoco rapido. L’hai capita? A fuoco rapido. Perché è una mitragliatrice incendiaria! Oh, lascia perdere."
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="Ascia da battaglia"
+ItemCategory="Mischia"
+ItemDescription="•Primario - attacco veloce di fendente. Tieni premuto Primario per le combo.\n•Secondario - attacco violento e lento che disintegra l'avversario morto.\n•Alt - blocca/para.\n•Obsoleta, ma è comunque come essere travolti da un camion... grosso e affilato."
+
+[KFWeap_Edged_FireAxe]
+ItemName="Ascia per incendi"
+ItemCategory="Mischia"
+ItemDescription="•Primario - attacco veloce di fendente. Tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Perché si chiama ascia per incendi se non dà fuoco a niente?"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="Lanciagranate M32"
+ItemCategory="Esplosivi"
+ItemDescription="•Lancia una granata.\n•Le granate esplodono all'impatto.\n•Una soluzione più elegante rispetto al legare insieme col nastro sei Lanciagranate M79."
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="Fuc. a granate HMTech-501"
 ItemCategory="Fucile d'assalto"
-ItemDescription="•Solo automatica.\n•Fuoco alternativo con granate mediche.\n•L'unica arma con cui va bene lanciare granate sui tuoi amici!"
+ItemDescription="•Solo automatica.\n•Usa il fuoco alternativo per lanciare granate mediche.\n•L'unica arma con cui va bene lanciare granate sui tuoi amici!"
 SecondaryAmmo="Granata medica"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="Thompson"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Conosciuto come macchina da scrivere di Chicago, è un'arma adatta per imprimere il tuo nome."
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL ACOG"

@@ -248,7 +248,6 @@ package tripwire.containers.trader
         
         public function updateControllerVisibility() : *
         {
-            this.detailedStats.favoriteControllerIcon.visible = bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
             this.detailedStats.favoriteButton.visible = !bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
             this.detailedStats.upgradeButton.visible = !bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanUpgrade;
             this.detailedStats.upgradeTextField.visible = this.cachedItemData && this.cachedItemData.bCanUpgrade;

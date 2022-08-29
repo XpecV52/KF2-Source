@@ -24,6 +24,8 @@ KF-DieSector="Игра в секторе Die"
 KF-Lockdown="Игра в режиме «Изоляция»"
 KF-Airship="Игра на борту воздушного судна"
 KF-MonsterBall="Игра «Бал монстров»"
+KF-ShoppingSpree="Игра «Веселье в магазине»"
+KF-SantasWorkshop="Игра «Мастерская Санты»"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

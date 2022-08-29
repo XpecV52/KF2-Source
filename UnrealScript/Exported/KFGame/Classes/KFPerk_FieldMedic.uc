@@ -598,6 +598,7 @@ defaultproperties
    HeadshotAccuracyHandicap=-0.750000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.MedicKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MedicPistol_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.MedicSMG_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_FieldMedic"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

@@ -214,7 +214,7 @@ event Destroyed()
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return (IsTacticalReloadActive()) && (IsWeaponOnPerk(KFW)) || IsBackupWeapon(KFW);
+    return (IsTacticalReloadActive()) && (IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW);
 }
 
 function float GetStunPowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
@@ -517,4 +517,5 @@ defaultproperties
     HeadshotAccuracyHandicap=-16
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SharpshooterKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Winchester1894_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Crossbow_PrestigePrecious_Mint_large"
 }

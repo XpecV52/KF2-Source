@@ -88,7 +88,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
     {
 		if (KFPawn_Human(PullPawn) != none)
 		{
-			RemoveVictim(PullPawn);
+			RemoveVictim(PullPawn, false);
 		}
 		else
 		{
@@ -354,7 +354,10 @@ function StopPullingPawn(KFPawn OldVictim, bool bReachedEnd = true)
 			}
 			else
 			{
-				GorgeHitList.AddItem(OldVictim);
+				if(bReachedEnd)
+				{
+					GorgeHitList.AddItem(OldVictim);
+				}
 			}
 		}
     }

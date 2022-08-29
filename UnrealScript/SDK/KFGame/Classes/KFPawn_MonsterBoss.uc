@@ -371,6 +371,12 @@ function PlayGrabbedPlayerDialog( KFPawn_Human Target );
 
 function PlayGrabKilledDialog();
 
+
+simulated function string GetIconPath()
+{
+	return "ZED_Patriarch_UI.ZED-VS_Icon_Boss";
+}
+
 defaultproperties
 {
 `if(`notdefined(ShippingPC))

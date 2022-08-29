@@ -20,6 +20,8 @@ var() float ActivationDelay;
 var() AkEvent ActivationSoundEvent;
 /** A sound to play when the trigger is ready to be triggered (e.g. after activation delay or trigger reset delay) */
 var() array<AkEvent> TriggerReadySoundEvents;
+/** A sound to play when the trigger is pulled */
+var() array<AkEvent> TriggerPulledSoundEvents;
 /** A sound to play when the objective is fully complete */
 var() AkEvent SuccessSoundEvent100pct;
 /** A sound to play when the objective is mostly complete */
@@ -36,7 +38,10 @@ var() AkEvent TooManyZedsSoundEvent;
 var() AkEvent TooFewPlayersSoundEvent;
 /** How often to remind players about the objective if they aren't engaged in completing it */
 var() float RemindPlayersTime;
-var transient bool bRemindPlayers;
+/** A sound to play when enough players are in the zone, few enough zeds are in the zone, and players are still not pulling the readied trigger */
+var() array<AkEvent> TriggerReminderSoundEvents;
+/** How often to remind players that the trigger is ready to be pulled */
+var() float ReadyTriggerReminderTime;
 var transient bool bObjectiveLeverActiveBefore;
 
 replication
@@ -93,20 +98,12 @@ simulated function ActivateObjective()
         }
         CurrentRewardAmount = 0;
         bObjectiveLeverActiveBefore = false;
-        bRemindPlayers = true;
+        SetTimer(RemindPlayersTime, false, 'Timer_TooFewPlayersReminderCooldown');
         PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
     }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         CheckTriggerActivation();
-    }
-}
-
-simulated function SetTrailActorType()
-{
-    if(TrailActor != none)
-    {
-        TrailActor.SetObjeciveType(3);
     }
 }
 
@@ -191,6 +188,7 @@ simulated function ActivateTrigger()
             KFPC.SetObjectiveUIActive(bActive);
         }        
     }    
+    SetTimer(ReadyTriggerReminderTime, false, 'Timer_TriggerReadyReminderCooldown');
 }
 
 event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
@@ -205,6 +203,17 @@ event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vecto
         {
             ObjectiveLever.bFathersBlessing = false;
             CheckTriggerActivation();
+        }        
+    }
+    else
+    {
+        if(TouchingHumans.Length >= PlayerThresholds[PlayerCount])
+        {
+            if((ObjectiveLever != none) && bActive)
+            {
+                ObjectiveLever.bFathersBlessing = true;
+                CheckTriggerActivation();
+            }
         }
     }
 }
@@ -215,12 +224,23 @@ event UnTouch(Actor Other)
 
     super.UnTouch(Other);
     PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
-    if(TouchingZeds.Length < ZedThresholds[PlayerCount])
+    if(TouchingHumans.Length < PlayerThresholds[PlayerCount])
     {
         if((ObjectiveLever != none) && bActive)
         {
-            ObjectiveLever.bFathersBlessing = true;
+            ObjectiveLever.bFathersBlessing = false;
             CheckTriggerActivation();
+        }        
+    }
+    else
+    {
+        if(TouchingZeds.Length < ZedThresholds[PlayerCount])
+        {
+            if((ObjectiveLever != none) && bActive)
+            {
+                ObjectiveLever.bFathersBlessing = true;
+                CheckTriggerActivation();
+            }
         }
     }
 }
@@ -262,39 +282,37 @@ simulated function Timer_CheckObjective()
             PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
             if(TouchingHumans.Length < PlayerThresholds[PlayerCount])
             {
-                if(bRemindPlayers)
+                if((TooFewPlayersSoundEvent != none) && !IsTimerActive('Timer_TooFewPlayersReminderCooldown'))
                 {
-                    if(TooFewPlayersSoundEvent != none)
-                    {
-                        PlaySoundBase(TooFewPlayersSoundEvent,, WorldInfo.NetMode == NM_DedicatedServer);
-                        SetTimer(RemindPlayersTime, false, 'Timer_AllowRemindPlayers');
-                    }
-                    bRemindPlayers = false;
-                }                
+                    PlaySoundBase(TooFewPlayersSoundEvent,, WorldInfo.NetMode == NM_DedicatedServer);
+                    SetTimer(RemindPlayersTime, false, 'Timer_TooFewPlayersReminderCooldown');
+                }
             }
-            else
+            if(TouchingZeds.Length > ZedThresholds[PlayerCount])
             {
-                if(TouchingZeds.Length > ZedThresholds[PlayerCount])
+                if((TooManyZedsSoundEvent != none) && !IsTimerActive('Timer_TooManyZedsReminderCooldown'))
                 {
-                    if(bRemindPlayers)
-                    {
-                        if(TooManyZedsSoundEvent != none)
-                        {
-                            PlaySoundBase(TooManyZedsSoundEvent,, WorldInfo.NetMode == NM_DedicatedServer);
-                            SetTimer(RemindPlayersTime, false, 'Timer_AllowRemindPlayers');
-                        }
-                        bRemindPlayers = false;
-                    }
+                    PlaySoundBase(TooManyZedsSoundEvent,, WorldInfo.NetMode == NM_DedicatedServer);
+                    SetTimer(RemindPlayersTime, false, 'Timer_TooManyZedsReminderCooldown');
+                }
+            }
+            if((ObjectiveLever != none) && ObjectiveLever.bAllowActivation)
+            {
+                if(((TriggerPulls < TriggerReminderSoundEvents.Length) && TriggerReminderSoundEvents[TriggerPulls] != none) && !IsTimerActive('Timer_TriggerReadyReminderCooldown'))
+                {
+                    PlaySoundBase(TriggerReminderSoundEvents[TriggerPulls],, WorldInfo.NetMode == NM_DedicatedServer);
+                    SetTimer(ReadyTriggerReminderTime, false, 'Timer_TriggerReadyReminderCooldown');
                 }
             }
         }
     }
 }
 
-simulated function Timer_AllowRemindPlayers()
-{
-    bRemindPlayers = true;
-}
+simulated function Timer_TooFewPlayersReminderCooldown();
+
+simulated function Timer_TooManyZedsReminderCooldown();
+
+simulated function Timer_TriggerReadyReminderCooldown();
 
 simulated function OnTriggerActivated()
 {
@@ -308,6 +326,10 @@ simulated function OnTriggerActivated()
     if(Role == ROLE_Authority)
     {
         CurrentRewardAmount = float(GetMaxDoshReward()) * (GetProgress());
+        if(TriggerPulls <= TriggerPulledSoundEvents.Length)
+        {
+            PlaySoundBase(TriggerPulledSoundEvents[TriggerPulls - 1],, WorldInfo.NetMode == NM_DedicatedServer);
+        }
     }
     if((GetProgress()) >= 1)
     {
@@ -342,6 +364,11 @@ simulated function float GetProgress()
         return 0;
     }
     return float(TriggerPulls) / float(TriggerPullsRequired);
+}
+
+simulated function bool IsComplete()
+{
+    return (GetProgress()) >= 1;
 }
 
 simulated function string GetLocalizedRequirements()

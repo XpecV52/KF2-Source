@@ -108,12 +108,18 @@ function bool PopulateData()
 
     return false;
 }
-//Needs to br specific to the event.  Look for override in child class                                  0.0-1.0f
+
 static function GetObjectiveProgressValues(int ObjectiveID, out int CurrentValue, out int MaxValue, out float PercentComplete)
 {
-	CurrentValue = 0;
-	MaxValue = 0;
-	PercentComplete = 0.0f;
+	local KFPlayerController LocalKFPC;
+	local int TempCurrentValue, TempMaxValue;
+	
+	LocalKFPC = KFPlayerController(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+	LocalKFPC.GetSeasonalEventStatInfo(ObjectiveID, TempCurrentValue, TempMaxValue);
+
+	MaxValue = TempMaxValue;
+	CurrentValue = Clamp(TempCurrentValue, 0, MaxValue);
+	PercentComplete = MaxValue > 0 ? FClamp((float(CurrentValue) / float(MaxValue)), 0, 1.0f) : 0.f;
 }
 
 function bool HasObjectiveStatusChanged()

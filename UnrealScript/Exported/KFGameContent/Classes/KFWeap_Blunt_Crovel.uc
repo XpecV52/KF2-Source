@@ -65,10 +65,10 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_Crovel:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
-   WeaponUpgrades(1)=(IncrementDamage=1.200000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.450000)
-   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.650000)
-   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=1.850000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.200000),(Stat=EWUS_Damage2,Scale=1.200000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.450000),(Stat=EWUS_Damage1,Scale=1.450000),(Stat=EWUS_Damage2,Scale=1.450000),(Add=2)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.650000),(Stat=EWUS_Damage1,Scale=1.650000),(Stat=EWUS_Damage2,Scale=1.650000),(Add=3)))
+   WeaponUpgrades(4)=(Stats=((Stat=EWUS_Damage0,Scale=1.850000),(Stat=EWUS_Damage1,Scale=1.850000),(Stat=EWUS_Damage2,Scale=1.850000),(Add=4)))
    InstantHitDamage(0)=49.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

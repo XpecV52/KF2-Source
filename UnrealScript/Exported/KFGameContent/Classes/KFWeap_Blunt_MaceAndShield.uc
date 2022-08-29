@@ -196,7 +196,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_MaceAndShield:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
-   WeaponUpgrades(1)=(IncrementDamage=1.135000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.135000),(Stat=EWUS_Damage1,Scale=1.135000),(Stat=EWUS_Damage2,Scale=1.135000),(Add=1)))
    InstantHitDamage(0)=80.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

@@ -249,7 +249,8 @@ defaultproperties
       SpecialMoveClasses(39)=None
       SpecialMoveClasses(40)=None
       SpecialMoveClasses(41)=None
-      SpecialMoveClasses(42)=Class'kfgamecontent.KFSM_BloatKingSubspawn_Explode'
+      SpecialMoveClasses(42)=None
+      SpecialMoveClasses(43)=Class'kfgamecontent.KFSM_BloatKingSubspawn_Explode'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

@@ -146,9 +146,9 @@ simulated protected function PrepareExplosionTemplate()
 		ExplosionTemplate = default.ExplosionTemplate;
 		ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
 		ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
-		ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
-		ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
-		ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
+		ExplosionTemplate.Damage = default.ExplosionTemplate.Damage;
+		ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius;
+		ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;
 	}
 
 	// Change the radius and damage based on the perk
@@ -420,8 +420,8 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_Pulverizer:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Demolitionist'
-   WeaponUpgrades(1)=(IncrementDamage=1.050000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.100000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.050000),(Stat=EWUS_Damage1,Scale=1.050000),(Stat=EWUS_Damage2,Scale=1.050000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.100000),(Stat=EWUS_Damage1,Scale=1.100000),(Stat=EWUS_Damage2,Scale=1.100000),(Add=2)))
    FiringStatesArray(2)="Reloading"
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()

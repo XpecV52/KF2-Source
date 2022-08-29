@@ -137,6 +137,9 @@ defaultproperties
 
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
 
-    WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1, IncrementHealFullRecharge=.8)
-    WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2, IncrementHealFullRecharge=.6)
+    //WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1, IncrementHealFullRecharge=.8)
+    //WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2, IncrementHealFullRecharge=.6)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Weight, Add=1), (Stat=EWUS_HealFullRecharge, Scale=0.8f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.8f), (Stat=EWUS_Weight, Add=2), (Stat=EWUS_HealFullRecharge, Scale=0.6f)))
 }

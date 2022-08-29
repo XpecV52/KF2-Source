@@ -6,6 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFWeap_GrenadeLauncher_Base extends KFWeapon
+    native
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 

@@ -161,7 +161,6 @@ var array< delegate<OnUnregisterLocalTalkerComplete> > UnregisterLocalTalkerComp
 var array< delegate<OnUnregisterRemoteTalkerComplete> > UnregisterRemoteTalkerCompleteDelegates;
 var array< delegate<OnUserAccountInfoRetrieved> > UserAccountInfoRetrievedDelegates;
 var array< delegate<OnRemoteTalkerStatusChange> > RemoteTalkerStatusChangeDelegates;
-var array< delegate<OnReadOnlineAvatarComplete> > ReadOnlineAvatarCompleteDelegates;
 var native map<0, 0> UsersConnectedToRTA;
 var array< delegate<OnPeoplePickerComplete> > PeoplePickerCompleteDelegates;
 var array< delegate<OnAccountPickerComplete> > AccountPickerCompleteDelegates;
@@ -1553,27 +1552,8 @@ function SetSystemSafeFrame(float fSafeFrame);
 
 function float GetSystemSafeFrame();
 
-function AddReadOnlineAvatarCompleteDelegate(delegate<OnReadOnlineAvatarComplete> AvatarDelegate)
-{
-    if(ReadOnlineAvatarCompleteDelegates.Find(AvatarDelegate == -1)
-    {
-        ReadOnlineAvatarCompleteDelegates[ReadOnlineAvatarCompleteDelegates.Length] = AvatarDelegate;
-    }
-}
-
-function ClearReadOnlineAvatarCompleteDelegate(delegate<OnReadOnlineAvatarComplete> AvatarDelegate)
-{
-    local int RemoveIndex;
-
-    RemoveIndex = ReadOnlineAvatarCompleteDelegates.Find(AvatarDelegate;
-    if(RemoveIndex != -1)
-    {
-        ReadOnlineAvatarCompleteDelegates.Remove(RemoveIndex, 1;
-    }
-}
-
 // Export Uonlinesubsystemdingo::execReadOnlineAvatar(FFrame&, void* const)
-native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
+native function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size);
 
 function bool AddInGamePost(int InPostID, optional string InPostParam);
 

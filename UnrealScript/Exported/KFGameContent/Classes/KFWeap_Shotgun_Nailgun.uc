@@ -157,9 +157,9 @@ defaultproperties
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
-   WeaponUpgrades(1)=(IncrementDamage=1.200000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.250000)
-   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.400000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.200000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.250000),(Stat=EWUS_Damage1,Scale=1.250000),(Add=2)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.400000),(Add=3)))
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponAltFiring"
    FiringStatesArray(2)=()

@@ -46,6 +46,22 @@ function OnBossDied()
 	AvailableSquads.length = 0;
 }
 
+function float GetNextSpawnTimeMod()
+{
+	local float SpawnTimeMod, SpawnTimeModMin;
+	local int TempModIdx;
+
+	SpawnTimeMod = super.GetNextSpawnTimeMod();
+
+	if (MyKFGRI.IsSpecialWave(TempModIdx))
+	{
+		SpawnTimeModMin = EndlessDifficulty.GetSpecialWaveSpawnTimeModMin(SpecialWaveType);
+		SpawnTimeMod = Max(SpawnTimeMod, SpawnTimeModMin);
+	}
+
+	return SpawnTimeMod;
+}
+
 defaultproperties
 {
    DifficultyWaves(0)=(MacroDifficultyWaveSettings=((Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Wave1_Endless_Norm',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Wave2_Endless_Norm',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Wave3_Endless_Norm',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Wave4_Endless_Norm',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Norm.ZED_Boss_Endless_Norm')),(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Wave5_Endless_Hard',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Wave6_Endless_Hard',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Wave7_Endless_Hard',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Wave8_Endless_Hard',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Hard.ZED_Boss_Endless_Hard')),(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Wave9_Endless_Sui',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Wave10_Endless_Sui',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Wave10_Endless_Sui',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Wave10_Endless_Sui',KFAIWaveInfo'GP_Spawning_ARCH.Endless.Suicidal.ZED_Boss_Endless_SUI')),(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Boss_Endless_HOE')),(Waves=(KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Wave10_Endless_HOE',KFAIWaveInfo'GP_Spawning_ARCH.Endless.HOE.ZED_Boss_Endless_HOE'))))

@@ -31,12 +31,17 @@ var(Effects) array<KFSkinTypeEffects> ImpactSkins;
 var(Gore) name BloodPoolOriginBoneName;
 /** Character MICs index to use for gameplay effects */
 var(Effects) int GoreFXMICIdx;
+/** List of additional particle systems that require unique effects and logic per-event */
+var(Effects) array<ExtraVFXInfo> ExtraVFX;
 /**  
  *Character Portrait
  *************************************************************************
  */
 var(Portrait) Texture DefaultHeadPortrait;
 var(Portrait) array<Texture> DefaultTeamHeadPortrait;
+
+// Export UKFCharacterInfoBase::execDuplicate(FFrame&, void* const)
+native function KFCharacterInfoBase Duplicate();
 
 function Texture GetCharPortrait()
 {

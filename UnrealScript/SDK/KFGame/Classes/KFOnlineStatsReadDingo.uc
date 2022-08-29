@@ -55,6 +55,8 @@ defaultproperties
 	ColumnIds.Add(STATID_ACHIEVE_LockdownCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_MonsterBallCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_MonsterBallSecretRoom)
+	ColumnIds.Add(STATID_ACHIEVE_SantasWorkshopCollectibles)
+	ColumnIds.Add(STATID_ACHIEVE_ShoppingSpreeCollectibles)
 
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky5, Name="AchievementMrPerky5"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky10, Name = "AchievementMrPerky10"))
@@ -98,4 +100,6 @@ defaultproperties
 	ColumnMappings.Add((Id=STATID_ACHIEVE_LockdownCollectibles,Name="AchievementCollectLockdown"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MonsterBallCollectibles,Name="AchievementCollectMonsterBall"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MonsterBallSecretRoom,Name="AchievementMonsterBallSecretRoom"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_SantasWorkshopCollectibles,Name="AchievementCollectSantasWorkshop"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_ShoppingSpreeCollectibles,Name="AchievementCollectShoppingSpree"))
 }

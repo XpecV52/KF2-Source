@@ -110,8 +110,12 @@ defaultproperties
 	AssociatedPerkClasses(1)=class'KFPerk_SWAT'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1, IncrementHealFullRecharge=.8)
-	WeaponUpgrades[2]=(IncrementDamage=1.59f,IncrementWeight=2, IncrementHealFullRecharge=.7)
-	WeaponUpgrades[3]=(IncrementDamage=1.85f,IncrementWeight=3, IncrementHealFullRecharge=.6)
+	//WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1, IncrementHealFullRecharge=.8)
+	//WeaponUpgrades[2]=(IncrementDamage=1.59f,IncrementWeight=2, IncrementHealFullRecharge=.7)
+	//WeaponUpgrades[3]=(IncrementDamage=1.85f,IncrementWeight=3, IncrementHealFullRecharge=.6)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Weight, Add=1), (Stat=EWUS_HealFullRecharge, Scale=0.8f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.59f), (Stat=EWUS_Weight, Add=2), (Stat=EWUS_HealFullRecharge, Scale=0.7f)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.85f), (Stat=EWUS_Weight, Add=3), (Stat=EWUS_HealFullRecharge, Scale=0.6f)))
 	//need to do a full test on healing level increasing
 }

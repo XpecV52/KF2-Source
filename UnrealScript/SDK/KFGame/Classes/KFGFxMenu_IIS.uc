@@ -22,9 +22,6 @@ var PlayfabInterface PlayfabInter;
 /** TRUE if we need to force having a connection at login */
 var bool bForceConnectionAtLogin;
 
-/** TRUE if stats has finished reading in. This menu will block at login until this happens */
-var bool bStatsRead;
-
 /** Set once after menu has been closed for the first time */
 var bool bClosed;
 
@@ -349,13 +346,6 @@ function ProceedToMainMenu()
 {
 	local KFPlayerController PC;
 
-	// We block until stats are read for PS4
-	if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) && !bStatsRead )
-	{
-		OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate( OnPS4StatsRead );
-		return;
-	}
-
 	PC = KFPlayerController(GetPC());
 
 	PC.ResetPerkStatsLoaded();
@@ -407,16 +397,6 @@ function ProceedToMainMenu()
 	}
 	PC.CheckPrivilegesForMultiplayer();
 }
-
-
-function OnPS4StatsRead( bool bSuccess )
-{
-	// Mark stats as have been read and proceed to the main menu
-	OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate( OnPS4StatsRead );
-	bStatsRead = true;
-	ProceedToMainMenu();
-}
-
 
 function DelayedOpenGammaPopup()
 {

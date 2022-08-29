@@ -520,6 +520,11 @@ function SpawnPoopMonster()
 	local KFPawn_Monster NewZed;
 	local Vector X,Y,Z;
 
+	if (IsDoingSpecialMove(SM_BossTheatrics))
+	{
+		return;
+	}
+
 	if (IsTimerActive(NameOf(AllowNextPoopMonster)))
 	{
 		++CurrentDelayedSpawns;
@@ -582,6 +587,11 @@ simulated function ApplyHeadChunkGore(class<KFDamageType> DmgType, vector HitLoc
     return;
 }
 
+simulated function string GetIconPath()
+{
+	return "ZED_Patriarch_UI.ZED-VS_Icon_Boss";
+}
+
 defaultproperties
 {
     LocalizationKey=KFPawn_ZedBloatKing
@@ -597,15 +607,15 @@ defaultproperties
 
     //Fart is base timer +/- some random amount of the variance, giving you a range of say 25-35 seconds with a base of 30 and variance of 5
 	//		These values are X = 0 health, Y = 100% health
-	DifficultyFartAttackTimers(0)=(X=5.0,Y=11.0) // Normal
-	DifficultyFartAttackTimers(1)=(X=4.5,Y=10.5) // Hard
-	DifficultyFartAttackTimers(2)=(X=4.0,Y=10.0) // Suicidal
-	DifficultyFartAttackTimers(3)=(X=4.0,Y=10.0) // Hell On Earth
+	DifficultyFartAttackTimers(0)=(X=5.0,Y=9.0) // Normal
+	DifficultyFartAttackTimers(1)=(X=4.5,Y=8.5) // Hard
+	DifficultyFartAttackTimers(2)=(X=4.0,Y=8.0) // Suicidal
+	DifficultyFartAttackTimers(3)=(X=4.0,Y=7.0) // Hell On Earth
 
-	DifficultyVarianceFartTimers(0)=(X=3.0,Y=6.0) // Normal
-	DifficultyVarianceFartTimers(1)=(X=2.5,Y=5.5) // Hard
-	DifficultyVarianceFartTimers(2)=(X=2.0,Y=5.0) // Suicidal
-	DifficultyVarianceFartTimers(3)=(X=2.0,Y=5.0) // Hell On Earth
+	DifficultyVarianceFartTimers(0)=(X=3.0,Y=4.0) // Normal
+	DifficultyVarianceFartTimers(1)=(X=2.5,Y=3.5) // Hard
+	DifficultyVarianceFartTimers(2)=(X=2.0,Y=3.0) // Suicidal
+	DifficultyVarianceFartTimers(3)=(X=2.0,Y=3.0) // Hell On Earth
 
 	DifficultyRageFartTimers(0)=(X=1.75,Y=2.5) // Normal
 	DifficultyRageFartTimers(1)=(X=1.25,Y=2.0) // Hard

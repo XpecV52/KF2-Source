@@ -210,7 +210,7 @@ defaultproperties
    HippedRecoilModifier=1.100000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
-   WeaponUpgrades(1)=(IncrementDamage=1.150000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponQuadBarrelFiring"
    FiringStatesArray(2)=()

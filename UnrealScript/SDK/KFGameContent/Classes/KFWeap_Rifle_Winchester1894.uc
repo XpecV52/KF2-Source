@@ -105,8 +105,13 @@ defaultproperties
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.6f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.9f,IncrementWeight=2)
-	WeaponUpgrades[3]=(IncrementDamage=2.3f,IncrementWeight=3)
-	WeaponUpgrades[4]=(IncrementDamage=2.5f,IncrementWeight=4)
+	//WeaponUpgrades[1]=(IncrementDamage=1.6f,IncrementWeight=1)
+	//WeaponUpgrades[2]=(IncrementDamage=1.9f,IncrementWeight=2)
+	//WeaponUpgrades[3]=(IncrementDamage=2.3f,IncrementWeight=3)
+	//WeaponUpgrades[4]=(IncrementDamage=2.5f,IncrementWeight=4)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.6f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.9f), (Stat=EWUS_Weight, Add=2)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=2.3f), (Stat=EWUS_Weight, Add=3)))
+	WeaponUpgrades[4]=(Stats=((Stat=EWUS_Damage0, Scale=2.5f), (Stat=EWUS_Weight, Add=4)))
 }

@@ -2322,6 +2322,14 @@ function ApplyTargetAdhesion( float DeltaTime, KFWeapon W, out int out_YawRot, o
 		LastAdhesionTarget = none;
 		return;
 	}
+	else if (AdhesionTarget != LastAdhesionTarget)
+	{
+		// reset locations when we switch adhesion targets
+		AdhesionPawnLastLoc = Pawn.Location;
+		AdhesionTargetLastLoc = AdhesionTarget.Location;
+		LastAdhesionTarget = AdhesionTarget;
+		return;
+	}
 
 	if( AdhesionTarget.Health > 0 && KFPawn_Monster(AdhesionTarget) != none && !KFPawn_Monster(AdhesionTarget).bIsHeadless )
 	{

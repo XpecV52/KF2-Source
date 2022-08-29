@@ -1,3 +1,6 @@
+[KFPawn_Scripted]
+ScriptedPawnString="V.I.P."
+
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="Спецэффекты"
 PrestigeWarningString="Сбросить бонус обратно до 0? Это действие необратимо."
@@ -1450,6 +1453,9 @@ KillzedBy_ZedStalkerString=" поздно замечает угрозу"
 KillzedBy_ZedClot_CystString=" умирает печальной смертью"
 KillzedBy_ZedClot_AlphaString=" неудачно попадает в захват"
 KillzedBy_ZedClot_SlasherString=" больше не любит фильмы-слэшеры"
+KillzedBy_ZedDAR_EMPString=" с ужасом обнаружил, что попался в ловушку"
+KillzedBy_ZedDAR_LaserString=" был разорван на куски"
+KillzedBy_ZedDAR_RocketString=" был отправлен на небеса ракетой"
 
 FoundAMapCollectibleMessage="%x% находит: %y%. Осталось: %z%..."
 FoundAllMapCollectiblesMessage="Найдены все: %x%!"
@@ -2332,20 +2338,36 @@ FeaturedCrossover="Включает в себя рекламу кроссове�
 
 [Objectives]
 HoldVolume="ЗАЩИЩАТЬ ЭТУ ЗОНУ"
+DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="ДЕРЖАТЬ ПОЗИЦИИ"
-RepairObjective="СВАРКА И РЕМОНТ"
-DescriptionDoshHold="Не пускать мутантов в отмеченную область"
 RequiredDoshHold="Игрокам необходимо:"
 DoschHoldDesc="Не пускать мутантов в отмеченную область"
-DescriptionHoldVolume="DescriptionHoldVolume"
-RequiredHoldVolume="RequiredHoldVolume"
-DescriptionDestroyActor="DescriptionDestroyActor"
-RequiredDestroyActor="RequiredDestroyActor"
+DescriptionDoshHold="Не пускать мутантов в отмеченную область"
+RepairObjective="СВАРКА И РЕМОНТ"
 UseWelderToRepair="Исп. свар. аппарат, чтобы починить цель."
-FailedString="ПРОВАЛ"
+EscortPawnsObjective="ESCORT"
+EscortPawnsDescription="Protect the target from the Zeds"
+RequiredHoldVolume="RequiredHoldVolume"
+ActivateTrigger="УПРАВЛЯЙТЕ"
 DescriptionActivateTrigger="Активировать управление цели"
 RequiredActivateTrigger="Требуется активация:"
-ActivateTrigger="УПРАВЛЯЙТЕ"
+FailedString="ПРОВАЛ"
+RepairObjSantaWorkshopCustomTitle1="ПОЧИНИТЕ ПОДАЧУ ЭНЕРГИИ"
+RepairObjSantaWorkshopCustomDescr1="Почините 3 схемы сварочным аппаратом"
+RepairObjSantaWorkshopCustomTitle2="ПОЧИНИТЕ ВОРОТА"
+RepairObjSantaWorkshopCustomDescr2="Почините 4 пары ворот сварочным аппаратом"
+EscortObjSantaWorkshopCustomTitle1="ПОЧИНИТЕ И СОПРОВОДИТЕ"
+EscortObjSantaWorkshopCustomDescr1="Почините тачку\nНе дайте мутантам подойти к ней"
+EscortObjSantaWorkshopCustomTitle2="ЗАЩИТИТЕ И СОПРОВОДИТЕ"
+EscortObjSantaWorkshopCustomDescr2="Почините тачку\nНе дайте мутантам подойти к ней"
+EscortObjSantaWorkshopCustomTitle3="ЗАЩИТИТЕ И СОПРОВОДИТЕ"
+EscortObjSantaWorkshopCustomDescr3="Почините тачку\nНе дайте мутантам подойти к ней"
+OperateObjSantaWorkshopCustomTitle1="ТЯНИТЕ РЫЧАГ"
+OperateObjSantaWorkshopCustomDescr1="Не впускайте мутантов в зону"
+OperateObjSantaWorkshopCustomTitle2="ТЯНИТЕ РЫЧАГ"
+OperateObjSantaWorkshopCustomDescr2="Не впускайте мутантов в зону"
+OperateObjSantaWorkshopCustomTitle3="ТЯНИТЕ РЫЧАГ"
+OperateObjSantaWorkshopCustomDescr3="Не впускайте мутантов в зону"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2532,7 +2554,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Месиво из монстро�
 SpecialEventObjectiveInfoList[3]=(TitleString="Вечеринка на всю ночь",DescriptionString="Расправьтесь с волной 25 в бесконечном режиме на уровне «Сложно» или выше");
 SpecialEventObjectiveInfoList[4]=(TitleString="Владелец замка",DescriptionString="Победите графа Ганса в режиме «Выживание» на уровне «Сложно» или выше");
 
-AllCompleteRewardDescriptionString="MKB Ганса оружие и хелл. внешний вид"
+AllCompleteRewardDescriptionString="MKB Ганса оружие и хелл. вид"
 
 ChanceDropDescriptionStrings[0]="Призовой билет"
 ChanceDropDescriptionStrings[1]="Золотой билет"
@@ -2540,13 +2562,13 @@ ChanceDropDescriptionStrings[1]="Золотой билет"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="Временное мероприятие, где можно получить эксклюзивные предметы."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Взлом и проникновение",DescriptionString="Разбейте безделушки Крампуса в его логове");
-SpecialEventObjectiveInfoList[1]=(TitleString="Фарш",DescriptionString="Убейте мутанта с помощью щеподробилки в логове Крампуса");
-SpecialEventObjectiveInfoList[2]=(TitleString="Стоим на своем",DescriptionString="Достигните цели «Держать позиции» в логове Крампуса");
-SpecialEventObjectiveInfoList[3]=(TitleString="Снежные тюрьмы",DescriptionString="Найдите десять коллекционных предметов в логове Крампуса");
-SpecialEventObjectiveInfoList[4]=(TitleString="И спокойной всем ночи",DescriptionString="Убейте Крампуса в его логове на уровне «Сложно» или выше");
+SpecialEventObjectiveInfoList[0]=(TitleString="Идеальный подарок",DescriptionString="Выполните задания на сопр.тачки с полн. зд. в реж.«Выживание» на «Сложно» или выше");
+SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельные бонусы",DescriptionString="Выполните еженедельные задания игры «Веселье в магазине»");
+SpecialEventObjectiveInfoList[2]=(TitleString="Катание на американских горках",DescriptionString="Убейте 2500 мутантов");
+SpecialEventObjectiveInfoList[3]=(TitleString="Поджарьте их каштаны",DescriptionString="Убейте 25 боссов");
+SpecialEventObjectiveInfoList[4]=(TitleString="Переполох в мастерской",DescriptionString="Победите Крампуса в мастерской Санты в реж. «Выживание» на ур. «Сложно» или выше");
 
-AllCompleteRewardDescriptionString="Пижама"
+AllCompleteRewardDescriptionString="Боевой топор + рожд. скин"
 
 ChanceDropDescriptionStrings[0]="Призовой билет"
 ChanceDropDescriptionStrings[1]="Золотой билет"
@@ -2974,6 +2996,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-MonsterBall KFMapSummary]
 DisplayName_CHN="怪物球"
 DisplayName_CHT="怪獸舞會"
@@ -2989,6 +3043,39 @@ DisplayName_KOR="괴물 무도회"
 DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
+
+
+[KF-ShoppingSpree KFMapSummary]
+DisplayName_CHN="抢购狂欢"
+DisplayName_CHT="購物狂歡"
+DisplayName_DEU="Kaufrausch"
+DisplayName_ESL="Compra compulsiva"
+DisplayName_ESN="Compra compulsiva"
+DisplayName_FRA="Achats en folie"
+DisplayName_FRC="Achats en folie"
+DisplayName_INT="Shopping Spree"
+DisplayName_ITA="Shopping compulsivo"
+DisplayName_JPN="ショッピング三昧"
+DisplayName_KOR="연속 쇼핑"
+DisplayName_POL="Szał zakupów"
+DisplayName_PTB="Farra de compras"
+DisplayName_RUS="Веселье в магазине"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName_CHN="圣诞老人工坊"
+DisplayName_CHT="聖誕作坊"
+DisplayName_DEU="Santas Werkstatt"
+DisplayName_ESL=" El taller de Papá Noel"
+DisplayName_ESN=" El taller de Papá Noel"
+DisplayName_FRA="l'atelier du Père Noël"
+DisplayName_FRC="l'atelier du Père Noël"
+DisplayName_INT="Santa's Workshop"
+DisplayName_ITA="Laboratorio di Babbo Natale"
+DisplayName_JPN="サンタの工房"
+DisplayName_KOR="산타의 작업장 "
+DisplayName_POL="Warsztat Mikołaja"
+DisplayName_PTB="Fábrica do Papai Noel"
+DisplayName_RUS="Мастерскую Санты"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Биотич. лаборатория"
@@ -3068,6 +3155,11 @@ DisplayName="Воздушное судно"
 [KF-MonsterBall KFMapSummary]
 DisplayName="Бал монстров"
 
+[KF-ShoppingSpree KFMapSummary]
+DisplayName="Веселье в магазине"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName="Santas Workshop"
 
 [KFMapInfo]
 ; defaults

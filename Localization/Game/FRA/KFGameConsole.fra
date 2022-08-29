@@ -24,6 +24,8 @@ KF-DieSector="Joue sur Secteur mortel"
 KF-Lockdown="Joue sur Confinement"
 KF-Airship="Joue sur Dirigeable"
 KF-MonsterBall="Joue au Bal des monstres"
+KF-ShoppingSpree="Joue à Achats en folie"
+KF-SantasWorkshop="Joue dans l'atelier du Père Noël"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

@@ -51,6 +51,7 @@ var config bool bMuteOnLossOfFocus;
 var config bool bEnableNative4k;
 var config bool bEnableAdvDebugLines;
 var private const int SeasonalEventId;
+var private const int LoadedSeasonalEventId;
 var private int WeeklyEventIndex;
 var init array<init Object> CachedRootPackages;
 var float DefaultGammaMult;
@@ -506,6 +507,7 @@ defaultproperties
     KFFontScale=0.6
     bMuteOnLossOfFocus=true
     SeasonalEventId=-1
+    LoadedSeasonalEventId=-1
     WeeklyEventIndex=-1
     DefaultGammaMult=0.68
     MusicVolumeMultiplier=50

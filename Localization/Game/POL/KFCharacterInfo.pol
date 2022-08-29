@@ -1,3 +1,32 @@
+[CHR_BadSanta_Archetype]
+CharacterName="Badass Santa"
+Description="Na początku Krampus przyszedł po renifery. Potem Krampus przyszedł po dom. Na koniec Mikołaj dał Krampusowi poczuć zimno lufy karabinu na skroni. Ho ho ho!\n\nŚwięty Mikołaj od setek lat opiekował się dziećmi z całego świata, przynosił im prezenty, a na ich twarzach wywoływał uśmiechy radości. Czy taka sielanka mogła trwać wiecznie na tym świecie pełnym złości?  „NIE!” — odkąd Krampus tu zagościł.  Od pamiętnych Krampusowych Świąt myśli Mikołaja krążą wokół pomszczenia swoich zabitych pracowników, przyjaciół i członków rodziny. Różowe poliki i galaretowaty brzusio to śpiewka przeszłości — Mikołaj stał się umięśnioną, wnerwioną maszyną do zabijania. Tegoroczna noc nie będzie cicha, dzwonić będą jedynie dzwony pogrzebowe, a zamiast łamania się opłatkiem Mikołaj wprowadzi nowy zwyczaj: dzielenie się seriami ołowiu."
+BodyMesh0="Santa Outfit"
+BodyMesh1="Kurczak-komandos"
+HeadMesh0="Santa Head"
+
+[CHR_BadSanta_Archetype.BodyMesh0]
+BodySkin0="Klasyczny Mikołaj"
+BodySkin1="Błękitny śnieg"
+BodySkin2="Brązowa figa"
+BodySkin3="Laska cukrowa"
+BodySkin4="Świąteczna zieleń"
+BodySkin5="Kremowy vintage"
+
+[CHR_BadSanta_archetype.BodyMesh1]
+BodySkin0="Zużyty"
+BodySkin1="Nieskazitelny"
+BodySkin2="Nocny"
+BodySkin3="Poważna rana"
+
+[CHR_BadSanta_Archetype.HeadMesh0]
+HeadSkin0="Klasyczny Mikołaj"
+HeadSkin1="Złoty Mikołaj"
+HeadSkin2="Cukierkowy Mikołaj"
+HeadSkin3="Wesoły Mikołaj"
+HeadSkin4="Młody Mikołaj"
+HeadSkin5="Mroczny Mikołaj"
+
 [CHR_MrsFoster_archetype]
 CharacterName="Pani Foster"
 Description="Pani Foster odnosiła niezwykłe sukcesy w branży handlowej w jednej z wiodących firm w Londynie jeszcze przed rozmową kwalifikacyjną w sprawie przyjęcia pana Fostera na stanowisko przedstawiciela handlowego. Była tym, kim chciał być i on, ale pan Foster ewidentnie nie nadawał się do tej branży. Nie potrafił przestrzegać przyjętych zasad ani trzymać buzi na kłódkę. A jednak miał w sobie „coś”. Był zrelaksowany, uprzejmy i taki... wyjątkowy. Na tyle wyjątkowy, że na pierwszej randce w prezencie podarował pani Foster maskę gazową. Jakby przeczuwał, że jakiś maniakalny mutant z karabinem maszynowym w dłoni stworzy pożerającą ludzi hordę klonów i pozbawi jego ukochaną milionów funtów zarobku. Wkrótce potem para wzięła ślub wśród morza kwiatów, koronek, zetów i materiałów wybuchowych."
@@ -4371,3 +4400,167 @@ Attachment="Maska wojownika"
 AttachmentSkin0="Ogień"
 AttachmentSkin1="Woda"
 AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_SantaBackpack_ARCH]
+Attachment="Świąteczny plecak"
+AttachmentSkin0="Brąz"
+
+[Cosmetic_Christmas_SantaEyepatch_ARCH]
+Attachment="Świąteczna opaska piracka"
+AttachmentSkin0="Czerwień"
+
+[Cosmetic_Christmas_TurkeyHat_ARCH]
+Attachment="Świąteczna czapka indycza"
+AttachmentSkin0="Fuszerka"
+AttachmentSkin1="Przepych"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_Candycanebackpack_ARCH]
+Attachment="Plecak-laska lukrecjowa"
+AttachmentSkin0="Czerwień"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_ChimneyHat_ARCH]
+Attachment="Świąteczny kapelusz-komin"
+AttachmentSkin0="Czerwona cegła"
+AttachmentSkin1="Zielona cegła"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_DeerAntlers_ARCH]
+Attachment="Świąteczne poroże jelenia"
+AttachmentSkin0="Czerwień"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_Glassesboxframe_ARCH]
+Attachment="Świąteczne cukierkowe okulary"
+AttachmentSkin0="Czerwień"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_Glassesfeline_ARCH]
+Attachment="Świąteczne kocie okulary"
+AttachmentSkin0="Czerwień"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_PenguinHat_ARCH]
+Attachment="Świąteczny kapelusz-pingwin"
+AttachmentSkin0="Klasyczna"
+AttachmentSkin1="Cesarski"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_Christmashood_ARCH]
+Attachment="Świąteczny kaptur Mikołaja"
+AttachmentSkin0="Czerwień"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TreeHat_ARCH]
+Attachment="Świąteczny kapelusz-drzewko"
+AttachmentSkin0="Czerwień"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_Wreathbackpack_ARCH]
+Attachment="Świąteczny plecak z wieńcem"
+AttachmentSkin0="Czerwień"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Christmas_Zedbackpack_ARCH]
+Attachment="Świąteczny plecak zet"
+AttachmentSkin0="Czerwień"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_ScifyHornHelmet_ARCH]
+Attachment="Hełm sci-fi z rogami"
+AttachmentSkin0="Czerń"
+AttachmentSkin1="Błękit"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Czerwień"
+AttachmentSkin5="Cenny egzemplarz"
+
+[Cosmetic_ScifyFacelessHelmet_ARCH]
+Attachment="Hełm sci-fi bez twarzy"
+AttachmentSkin0="Błękit"
+AttachmentSkin1="Cenny egzemplarz"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Czerwień"
+
+[Cosmetic_ScifyBreathingHelmetA_ARCH]
+Attachment="Maska oddechowa sci-fi A"
+AttachmentSkin0="Błękit"
+AttachmentSkin1="Cenny egzemplarz"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Czerwień"
+
+[Cosmetic_ScifyBreathingHelmetB_ARCH]
+Attachment="Maska oddechowa sci-fi B"
+AttachmentSkin0="Błękit"
+AttachmentSkin1="Cenny egzemplarz"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Czerwień"
+
+[Cosmetic_ScifySamuraiHelmet_ARCH]
+Attachment="Hełm samuraja sci-fi"
+AttachmentSkin0="Błękit"
+AttachmentSkin1="Cenny egzemplarz"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Czerwień"
+
+[Cosmetic_SamuraiArmorLegs_ARCH]
+Attachment="Nagolenniki samuraja"
+AttachmentSkin0="Czerń"
+AttachmentSkin1="Błękit"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Czerwień"
+AttachmentSkin5="Cenny egzemplarz"
+
+[Cosmetic_SamuraiArmorChest_ARCH]
+Attachment="Napierśnik samuraja"
+AttachmentSkin0="Czerń"
+AttachmentSkin1="Błękit"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Czerwień"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_RoninHat_ARCH]
+Attachment="Nakrycie głowy ronina"
+AttachmentSkin0="Cenny egzemplarz"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Biel"
+AttachmentSkin4="Żółty"
+
+[Cosmetic_RoninGoggles_ARCH]
+Attachment="Gogle ronina"
+AttachmentSkin0="Cenny egzemplarz"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Biel"
+AttachmentSkin4="Żółty"
+
+[Cosmetic_RoninMask_ARCH]
+Attachment="Maska ronina"
+AttachmentSkin0="Cenny egzemplarz"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Biel"
+AttachmentSkin4="Żółty"
+
+[Cosmetic_ScifyNoExpresionHelmet_ARCH]
+Attachment="Hełm sci-fi bez wyrazu"
+AttachmentSkin0="Błękit"
+AttachmentSkin1="Cenny egzemplarz"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Czerwień"

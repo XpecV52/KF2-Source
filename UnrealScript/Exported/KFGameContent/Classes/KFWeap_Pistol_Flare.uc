@@ -70,9 +70,9 @@ defaultproperties
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Gunslinger'
    AssociatedPerkClasses(2)=Class'KFGame.KFPerk_Sharpshooter'
-   WeaponUpgrades(1)=(IncrementWeight=0,IncrementDamage=1.250000)
-   WeaponUpgrades(2)=(IncrementDamage=1.500000)
-   WeaponUpgrades(3)=(IncrementWeight=2,IncrementDamage=1.750000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.250000)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.500000),(Add=1)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.750000),(Add=2)))
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

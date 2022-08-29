@@ -27,7 +27,9 @@ var const Texture2D IconHighLightTexture;
 
 /** Various colors */
 var const color BlackColor, GoldColor;
-var const color LightGoldColor, LightGreenColor;
+var const color LightGoldColor;
+
+var const color LightGreenColor, YellowColor, OrangeColor, RedHealthColor;
 
 var const color ArmorColor, HealthColor;
 var const color PlayerBarBGColor, PlayerBarTextColor, PlayerBarIconColor;
@@ -238,7 +240,14 @@ function DrawCrosshair()
 			return;
 		}
 
-        TargetCrossHairMod = 1.0;
+		if (KFWP != none)
+		{
+			TargetCrossHairMod = (1.f + KFWP.GetUpgradedSpread()) ** 2;
+		}
+		else
+		{
+			TargetCrossHairMod = 1.0;
+		}
 
         // Have the crosshair really small if we are forcing it for debugging
         if( bForceDrawCrosshair )
@@ -261,7 +270,7 @@ function DrawCrosshair()
         {
 	        if( !bForceDrawCrosshair )
 	        {
-	            WeaponAccuracyAdjust = EvalInterpCurveFloat(CrosshairAccuracyScale, KFWP.Spread[0]);
+	            WeaponAccuracyAdjust = EvalInterpCurveFloat(CrosshairAccuracyScale, KFWP.GetUpgradedSpread());
 	            // Scale spread based on weapon accuracy
 	            TargetCrossHairMod *= WeaponAccuracyAdjust;
 	        }
@@ -319,7 +328,7 @@ function DrawCrosshair()
                     }
 	            }
 
-	            if( MyKFPerk != none )
+				if( MyKFPerk != none )
 	            {
 		            MyKFPerk.ModifySpread(TargetCrossHairMod);
 		        }
@@ -561,6 +570,7 @@ simulated function DrawShadowedRotatedTile(texture2D Tex, Rotator Rot, float X, 
 function DrawHUD()
 {
 	local KFPawn_Human KFPH;
+	local KFPawn_Scripted KFPS;
 	local vector ViewLocation, ViewVector, PlayerPartyInfoLocation;
 	local rotator ViewRotation;
     local array<PlayerReplicationInfo> VisibleHumanPlayers;
@@ -630,6 +640,15 @@ function DrawHUD()
                     HiddenHumanPlayers[0].HumanPawn = KFPH;
                     HiddenHumanPlayers[0].HumanPRI = KFPH.PlayerReplicationInfo;
                 }
+			}
+		}
+
+		foreach WorldInfo.AllPawns(class'KFPawn_Scripted', KFPS)
+		{
+			if (KFPS.ShouldShowOnHUD())
+			{
+				PlayerPartyInfoLocation = KFPS.Mesh.GetPosition() + (KFPS.CylinderComponent.CollisionHeight * vect(0,0,1));
+				DrawScriptedPawnInfo(KFPS, Normal(PlayerPartyInfoLocation - ViewLocation) dot ViewVector, `TimeSince(KFPS.Mesh.LastRenderTime) < 0.2f);
 			}
 		}
 
@@ -783,6 +802,77 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 	}
 
 	return true;
+}
+
+simulated function bool DrawScriptedPawnInfo(KFPawn_Scripted KFPS, float NormalizedAngle, bool bRendered)
+{
+	local float Percentage;
+	local float BarHeight, BarLength;
+	local vector ScreenPos, TargetLocation;
+	local float FontScale;
+	local float ResModifier;
+
+	if (KFPS.bHidden)
+	{
+		//do not draw a hidden actor
+		return false;
+	}
+
+	ResModifier = WorldInfo.static.GetResolutionBasedHUDScale() * FriendlyHudScale;
+
+	BarLength = FMin(PlayerStatusBarLengthMax * (Canvas.ClipX / 1024.f), PlayerStatusBarLengthMax) * ResModifier;
+	BarHeight = FMin(8.f * (Canvas.ClipX / 1024.f), 8.f) * ResModifier;
+
+	TargetLocation = KFPS.Mesh.GetPosition() + (KFPS.CylinderComponent.CollisionHeight * vect(0,0,2.5f));
+	ScreenPos = Canvas.Project(TargetLocation);
+	
+	if (NormalizedAngle > 0)
+	{
+		if (ScreenPos.X < 0 || ScreenPos.X > Canvas.ClipX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.ClipY)
+		{
+			ScreenPos.x = Canvas.ClipX - ScreenPos.x;
+			ScreenPos = GetClampedScreenPosition(ScreenPos);
+			//return false;
+		}
+		else
+		{
+			ScreenPos.x = FClamp(ScreenPos.x, PlayerStatusIconSize, Canvas.ClipX - PlayerStatusIconSize);
+		}
+	}
+	else
+	{
+		ScreenPos = GetClampedScreenPosition(ScreenPos);
+	}	
+
+	//Draw health bar
+	FontScale = class'KFGameEngine'.Static.GetKFFontScale() * FriendlyHudScale;
+	Percentage = FMin(float(KFPS.Health) / float(KFPS.HealthMax), 1);
+	
+	DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y + BarHeight * 2 + (36 * FontScale * ResModifier), GetHealthStateColor(KFPS));
+	Canvas.SetDrawColorStruct(PlayerBarIconColor);
+	Canvas.SetPos(ScreenPos.X - PlayerStatusIconSize * ResModifier * 0.5f, ScreenPos.Y - (PlayerStatusIconSize * ResModifier));
+	Canvas.DrawTile(KFPS.GetStateIconTexture(), PlayerStatusIconSize * ResModifier, PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+	return true;
+}
+
+simulated function color GetHealthStateColor(const out KFPawn_Scripted KFPS)
+{
+	if (KFPS != none)
+	{
+		switch (KFPS.CurrentState)
+		{
+		case 0:
+			return LightGreenColor;
+		case 1:
+			return YellowColor;
+		case 2:
+			return OrangeColor;
+		case 3:
+			return RedHealthColor;
+		default:
+			return LightGreenColor;
+		}
+	}
 }
 
 simulated function bool DrawObjectiveHUD()
@@ -983,7 +1073,7 @@ function DrawHiddenHumanPlayerIcon( PlayerReplicationInfo PRI, vector IconWorldL
 				Canvas.SetDrawColor(255, 255, 255, CurrentVoiceCommsHighlightAlpha);
 				Canvas.SetPos(ScreenPos.X - (IconSizeMult * VoiceCommsIconHighlightScale / 2), ScreenPos.Y - (IconSizeMult * VoiceCommsIconHighlightScale / 2));
 				Canvas.DrawTile(IconHighLightTexture, IconSizeMult + (IconSizeMult * VoiceCommsIconHighlightScale), IconSizeMult + (IconSizeMult * VoiceCommsIconHighlightScale), 0, 0, 128, 128);
-				
+
 			}
 			else
 			{
@@ -1083,6 +1173,8 @@ function DrawZedIcon( Pawn ZedPawn, vector PawnLocation, float NormalizedAngle )
     ScreenPos.X -= IconSizeMult;
     ScreenPos.Y -= IconSizeMult;
 
+	
+
 	if (NormalizedAngle > 0)
 	{
 		if (ScreenPos.X < 0 || ScreenPos.X > Canvas.ClipX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.ClipY)
@@ -1107,7 +1199,7 @@ function DrawZedIcon( Pawn ZedPawn, vector PawnLocation, float NormalizedAngle )
     Canvas.DrawTile( GenericZedIconTexture, IconSizeMult, IconSizeMult, 0, 0, 128, 128 );
 }
 
-function vector GetClampedScreenPosition(vector OldScreenPosition)
+simulated function vector GetClampedScreenPosition(vector OldScreenPosition)
 {
 	local vector ScreenPos;
 	local float ResModifier;
@@ -1120,7 +1212,7 @@ function vector GetClampedScreenPosition(vector OldScreenPosition)
 	ScreenPos.x = OldScreenPosition.x < (Canvas.ClipX / 2) ? Canvas.ClipX - (PlayerStatusIconSize * ResModifier) : PlayerStatusIconSize * ResModifier; //flipped do to being behind you
 	OldScreenPosition.y = fclamp(OldScreenPosition.y, 0, Canvas.ClipY);
 
-	ScreenPos.y = (OldScreenPosition.y / Canvas.ClipY) * YRange +  (Canvas.ClipY - YRange) / 2;
+	ScreenPos.y = (OldScreenPosition.y / Canvas.ClipY) * YRange + (Canvas.ClipY - YRange) / 2;
 
 	return ScreenPos;
 }
@@ -1188,6 +1280,12 @@ defaultproperties
 	PlayerBarBGColor=(R=0, G=0, B=0, A=192)
 	PlayerBarTextColor=(R=192, G=192, B=192, A=192)
 	PlayerBarIconColor=(R=192, G=192, B=192, A=192)
+
+	LightGreenColor=(R=0, G=192, B=0, A=192)
+	YellowColor=(R=255, G=176, B=0, A=192)
+	OrangeColor=(R=255, G=96, B=0, A=192)
+	RedHealthColor=(R=173, G=22, B=17, A=192)
+
 
 	SupplierActiveColor=(R=128, G=128, B=128, A=192)
 	SupplierUsableColor=(R=255, G=0, B=0, A=192)

@@ -105,8 +105,12 @@ defaultproperties
 	BonesToLockOnEmpty=(RW_Bolt, RW_Bullets1)
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=0)
-	WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=1)
-	WeaponUpgrades[3]=(IncrementDamage=2.0f,IncrementWeight=2)
+	//WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=0)
+	//WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=1)
+	//WeaponUpgrades[3]=(IncrementDamage=2.0f,IncrementWeight=2)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.8f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=2.0f), (Stat=EWUS_Weight, Add=2)))
 }
 

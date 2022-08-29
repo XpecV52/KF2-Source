@@ -12,23 +12,6 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     super.Initialize(NewParentMenu);
 }
 
-static function GetObjectiveProgressValues(int ObjectiveID, out int CurrentValue, out int MaxValue, out float PercentComplete)
-{
-    local KFPlayerController LocalKFPC;
-    local int TempCurrentValue, TempMaxValue;
-
-    if(ObjectiveID != 2)
-    {
-        super.GetObjectiveProgressValues(ObjectiveID, CurrentValue, MaxValue, PercentComplete);
-        return;
-    }
-    LocalKFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
-    LocalKFPC.GetSpecialEventKillsInfo(TempCurrentValue, TempMaxValue);
-    MaxValue = TempMaxValue;
-    CurrentValue = Clamp(TempCurrentValue, 0, MaxValue);
-    PercentComplete = FClamp(float(CurrentValue) / float(MaxValue), 0, 1);
-}
-
 defaultproperties
 {
     CurrentSpecialEventString="Complete the objectives in Monster Ball to earn rewards!"

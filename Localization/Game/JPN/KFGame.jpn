@@ -1,3 +1,6 @@
+[KFPawn_Scripted]
+ScriptedPawnString="V.I.P."
+
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="特殊エフェクト"
 PrestigeWarningString="Perkを0にリセットしますか？ この操作は取り消せません。"
@@ -1450,6 +1453,9 @@ KillzedBy_ZedStalkerString=" は不意を突かれました"
 KillzedBy_ZedClot_CystString=" はつまらない死を被りました"
 KillzedBy_ZedClot_AlphaString=" は不適切に掴まれました"
 KillzedBy_ZedClot_SlasherString=" はスラッシャー映画が嫌いになりました"
+KillzedBy_ZedDAR_EMPString=" は、とらわれたことに衝撃を受けた"
+KillzedBy_ZedDAR_LaserString=" は木っ端みじんになった"
+KillzedBy_ZedDAR_RocketString=" は委員会から追放された"
 
 FoundAMapCollectibleMessage="%x%が%y%を見つけました。%z%が離れました..."
 FoundAllMapCollectiblesMessage="すべての%x%を見つけました！"
@@ -2332,20 +2338,36 @@ FeaturedCrossover="コラボプロモーション"
 
 [Objectives]
 HoldVolume="エリアを守備せよ"
+DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="意志を貫け"
-RepairObjective="溶接して修理しよう"
-DescriptionDoshHold="マークされたエリアにZedを入れるな"
 RequiredDoshHold="必要プレイヤー:"
 DoschHoldDesc="マークされたエリアにZedを入れるな"
-DescriptionHoldVolume="DescriptionHoldVolume"
-RequiredHoldVolume="RequiredHoldVolume"
-DescriptionDestroyActor="DescriptionDestroyActor"
-RequiredDestroyActor="RequiredDestroyActor"
+DescriptionDoshHold="マークされたエリアにZedを入れるな"
+RepairObjective="溶接して修理しよう"
 UseWelderToRepair="溶接機を使って目標を修理しよう"
-FailedString="失敗"
+EscortPawnsObjective="ESCORT"
+EscortPawnsDescription="Protect the target from the Zeds"
+RequiredHoldVolume="RequiredHoldVolume"
+ActivateTrigger="操縦可能"
 DescriptionActivateTrigger="制御装置を起動しよう"
 RequiredActivateTrigger="起動に必要なもの:"
-ActivateTrigger="操縦可能"
+FailedString="失敗"
+RepairObjSantaWorkshopCustomTitle1="動力を修理する"
+RepairObjSantaWorkshopCustomDescr1="溶接機で壊れた回路基板を 3 つ修理する"
+RepairObjSantaWorkshopCustomTitle2="門を修理する"
+RepairObjSantaWorkshopCustomDescr2="溶接機で壊れた門を 4 つ修理する"
+EscortObjSantaWorkshopCustomTitle1="修理および護衛"
+EscortObjSantaWorkshopCustomDescr1="溶接機で台車を修理する\nZed から守る"
+EscortObjSantaWorkshopCustomTitle2="守備および護衛"
+EscortObjSantaWorkshopCustomDescr2="台車を修理して魔法のチェンバーの機械まで護衛する\nZed から守る"
+EscortObjSantaWorkshopCustomTitle3="守備および護衛"
+EscortObjSantaWorkshopCustomDescr3="台車を守り、ポータルの部屋まで護衛する\nZed から守る"
+OperateObjSantaWorkshopCustomTitle1="レバーを引く"
+OperateObjSantaWorkshopCustomDescr1="Zed をゾーンに近づけない"
+OperateObjSantaWorkshopCustomTitle2="レバーを引く"
+OperateObjSantaWorkshopCustomDescr2="Zed をゾーンに近づけない"
+OperateObjSantaWorkshopCustomTitle3="レバーを引く"
+OperateObjSantaWorkshopCustomDescr3="Zed をゾーンに近づけない"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2540,13 +2562,13 @@ ChanceDropDescriptionStrings[1]="黄金チケット"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="破壊と侵入",DescriptionString="クランプスの巣でクランプスの小物を壊す");
-SpecialEventObjectiveInfoList[1]=(TitleString="ミンスミート",DescriptionString="クランプスの巣で木材チッパーを使ってZedを倒す");
-SpecialEventObjectiveInfoList[2]=(TitleString="固守",DescriptionString="クランプスの巣で「意志を貫け」任務をコンプリートクリアする");
-SpecialEventObjectiveInfoList[3]=(TitleString="雪の牢獄",DescriptionString="クランプスの巣でコレクションを10個見つける");
-SpecialEventObjectiveInfoList[4]=(TitleString="全ての者へ良い夜を",DescriptionString="クランプスの巣で、難易度Hard以上でクランプスを倒す");
+SpecialEventObjectiveInfoList[0]=(TitleString="完璧なるギフト",DescriptionString="サバイバル Hard 以上の難易度で、台車を使った護衛任務すべてを無傷(体力満タン)の状態でクリアする");
+SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリースペシャル",DescriptionString="ショッピング三昧でウィークリーをクリア");
+SpecialEventObjectiveInfoList[2]=(TitleString="殺戮の旅",DescriptionString="Zed 2500 体をキル");
+SpecialEventObjectiveInfoList[3]=(TitleString="栗あぶり",DescriptionString="ボス 25 体をキル");
+SpecialEventObjectiveInfoList[4]=(TitleString="工房の大乱闘",DescriptionString="サンタの工房でサバイバル Hard 以上の難易度でクランプスを倒す");
 
-AllCompleteRewardDescriptionString="パジャマスーツ"
+AllCompleteRewardDescriptionString="バトルアックス + Xmas スキン"
 
 ChanceDropDescriptionStrings[0]="景品チケット"
 ChanceDropDescriptionStrings[1]="黄金チケット"
@@ -2974,6 +2996,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-MonsterBall KFMapSummary]
 DisplayName_CHN="怪物球"
 DisplayName_CHT="怪獸舞會"
@@ -2989,6 +3043,39 @@ DisplayName_KOR="괴물 무도회"
 DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
+
+
+[KF-ShoppingSpree KFMapSummary]
+DisplayName_CHN="抢购狂欢"
+DisplayName_CHT="購物狂歡"
+DisplayName_DEU="Kaufrausch"
+DisplayName_ESL="Compra compulsiva"
+DisplayName_ESN="Compra compulsiva"
+DisplayName_FRA="Achats en folie"
+DisplayName_FRC="Achats en folie"
+DisplayName_INT="Shopping Spree"
+DisplayName_ITA="Shopping compulsivo"
+DisplayName_JPN="ショッピング三昧"
+DisplayName_KOR="연속 쇼핑"
+DisplayName_POL="Szał zakupów"
+DisplayName_PTB="Farra de compras"
+DisplayName_RUS="Веселье в магазине"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName_CHN="圣诞老人工坊"
+DisplayName_CHT="聖誕作坊"
+DisplayName_DEU="Santas Werkstatt"
+DisplayName_ESL=" El taller de Papá Noel"
+DisplayName_ESN=" El taller de Papá Noel"
+DisplayName_FRA="l'atelier du Père Noël"
+DisplayName_FRC="l'atelier du Père Noël"
+DisplayName_INT="Santa's Workshop"
+DisplayName_ITA="Laboratorio di Babbo Natale"
+DisplayName_JPN="サンタの工房"
+DisplayName_KOR="산타의 작업장 "
+DisplayName_POL="Warsztat Mikołaja"
+DisplayName_PTB="Fábrica do Papai Noel"
+DisplayName_RUS="Мастерскую Санты"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
@@ -3068,6 +3155,11 @@ DisplayName="飛行船"
 [KF-MonsterBall KFMapSummary]
 DisplayName="Monster Ball"
 
+[KF-ShoppingSpree KFMapSummary]
+DisplayName="ショッピング三昧"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName="Santas Workshop"
 
 [KFMapInfo]
 ; defaults

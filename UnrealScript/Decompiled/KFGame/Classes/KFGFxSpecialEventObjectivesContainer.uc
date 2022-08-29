@@ -100,9 +100,14 @@ function bool PopulateData()
 
 static function GetObjectiveProgressValues(int ObjectiveID, out int CurrentValue, out int MaxValue, out float PercentComplete)
 {
-    CurrentValue = 0;
-    MaxValue = 0;
-    PercentComplete = 0;
+    local KFPlayerController LocalKFPC;
+    local int TempCurrentValue, TempMaxValue;
+
+    LocalKFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+    LocalKFPC.GetSeasonalEventStatInfo(ObjectiveID, TempCurrentValue, TempMaxValue);
+    MaxValue = TempMaxValue;
+    CurrentValue = Clamp(TempCurrentValue, 0, MaxValue);
+    PercentComplete = ((MaxValue > 0) ? FClamp(float(CurrentValue) / float(MaxValue), 0, 1) : 0);
 }
 
 function bool HasObjectiveStatusChanged()

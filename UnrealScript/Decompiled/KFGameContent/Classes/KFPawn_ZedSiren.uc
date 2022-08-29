@@ -73,12 +73,18 @@ simulated function EnableScreamFlicker(bool bEnabled)
 
 simulated function TerminateEffectsOnDeath()
 {
+    local MaterialInstanceConstant MIC;
+
     super(KFPawn).TerminateEffectsOnDeath();
     if((NeckLightComponent != none) && NeckLightComponent.bAttached)
     {
         NeckLightComponent.DetachFromAny();
         NeckLightComponent = none;
     }
+    foreach CharacterMICs(MIC,)
+    {
+        MIC.SetScalarParameterValue('Scalar_TransitionEffect', 0);        
+    }    
 }
 
 function int GetKillerDialogID()

@@ -1,3 +1,6 @@
+[KFPawn_Scripted]
+ScriptedPawnString="V.I.P"
+
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="特殊效果"
 PrestigeWarningString="重置職業等級為0？ 此操作不可以還原。"
@@ -1450,6 +1453,9 @@ KillzedBy_ZedStalkerString=" 沒預料到"
 KillzedBy_ZedClot_CystString=" 已痛苦地死去"
 KillzedBy_ZedClot_AlphaString=" 已被騷擾"
 KillzedBy_ZedClot_SlasherString=" 不再喜歡恐怖片"
+KillzedBy_ZedDAR_EMPString=" 很詫異他們被困住了"
+KillzedBy_ZedDAR_LaserString=" 被炸成碎片"
+KillzedBy_ZedDAR_RocketString=" 被當成火箭噴射出去到退役"
 
 FoundAMapCollectibleMessage="%x% 找到了 %y%。%z% 已離開…"
 FoundAllMapCollectiblesMessage="已找到每一個 %x%！"
@@ -2332,20 +2338,36 @@ FeaturedCrossover="混合推廣特賣"
 
 [Objectives]
 HoldVolume="保衛區域"
+DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="堅守陣地"
-RepairObjective="焊接和維修"
-DescriptionDoshHold="別讓喪屍進入標記的區域中"
 RequiredDoshHold="需要玩家："
 DoschHoldDesc="別讓喪屍進入標記的區域中"
-DescriptionHoldVolume="DescriptionHoldVolume"
-RequiredHoldVolume="RequiredHoldVolume"
-DescriptionDestroyActor="DescriptionDestroyActor"
-RequiredDestroyActor="RequiredDestroyActor"
+DescriptionDoshHold="別讓喪屍進入標記的區域中"
+RepairObjective="焊接和維修"
 UseWelderToRepair="使用焊槍來維修物品"
-FailedString="失敗"
+EscortPawnsObjective="ESCORT"
+EscortPawnsDescription="Protect the target from the Zeds"
+RequiredHoldVolume="RequiredHoldVolume"
+ActivateTrigger="操縱和控制"
 DescriptionActivateTrigger="啟動目標控制"
 RequiredActivateTrigger="需要啟動："
-ActivateTrigger="操縱和控制"
+FailedString="失敗"
+RepairObjSantaWorkshopCustomTitle1="維修電力"
+RepairObjSantaWorkshopCustomDescr1="使用焊槍來維修3個壞掉的電路板"
+RepairObjSantaWorkshopCustomTitle2="維修門"
+RepairObjSantaWorkshopCustomDescr2="使用焊槍來維修4個壞掉的門"
+EscortObjSantaWorkshopCustomTitle1="維修並護送"
+EscortObjSantaWorkshopCustomDescr1="使用焊槍維修載運車\n靠近載運車來提升速度並與Zed保持距離"
+EscortObjSantaWorkshopCustomTitle2="保護並護送"
+EscortObjSantaWorkshopCustomDescr2="保護並護送載運車至魔法廳機器\n靠近載運車來提升速度"
+EscortObjSantaWorkshopCustomTitle3="保護並護送"
+EscortObjSantaWorkshopCustomDescr3="保護並護送載運車至傳送門室\n靠近載運車來提升速度"
+OperateObjSantaWorkshopCustomTitle1="拉上控制桿"
+OperateObjSantaWorkshopCustomDescr1="不讓Zed靠近區域"
+OperateObjSantaWorkshopCustomTitle2="拉上控制桿"
+OperateObjSantaWorkshopCustomDescr2="不讓Zed靠近區域"
+OperateObjSantaWorkshopCustomTitle3="拉上控制桿"
+OperateObjSantaWorkshopCustomDescr3="不讓Zed靠近區域"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2540,13 +2562,13 @@ ChanceDropDescriptionStrings[1]="黃金票券"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="在限時活動中可獲得，內含特有道具。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="破壞和進入",DescriptionString="在坎普斯巢穴中破壞坎普斯的飾品");
-SpecialEventObjectiveInfoList[1]=(TitleString="肉餡",DescriptionString="在坎普斯巢穴用木片切割機殺死一隻 Zed");
-SpecialEventObjectiveInfoList[2]=(TitleString="屹立不動",DescriptionString="在坎普斯巢穴完成堅守陣地目標");
-SpecialEventObjectiveInfoList[3]=(TitleString="雪之牢獄",DescriptionString="在坎普斯巢穴找到十個收集物");
-SpecialEventObjectiveInfoList[4]=(TitleString="諸位晚安",DescriptionString="在坎普斯巢穴以困難或更高難度殺死坎普斯");
+SpecialEventObjectiveInfoList[0]=(TitleString="完美禮物",DescriptionString="在生存模式困難或是更高的難度下，在所有護送目標任務中讓載運車保持滿血");
+SpecialEventObjectiveInfoList[1]=(TitleString="每周特禮",DescriptionString="完成每周購物狂歡");
+SpecialEventObjectiveInfoList[2]=(TitleString="大殺特殺",DescriptionString="擊殺2500隻Zed");
+SpecialEventObjectiveInfoList[3]=(TitleString="火燒子孫袋",DescriptionString="擊殺25隻Boss");
+SpecialEventObjectiveInfoList[4]=(TitleString="作坊鬥毆",DescriptionString="在生存模式困難或是更高的難度下擊敗聖誕作坊的坎普斯");
 
-AllCompleteRewardDescriptionString="睡衣套裝"
+AllCompleteRewardDescriptionString="戰斧+聖誕節飾品"
 
 ChanceDropDescriptionStrings[0]="獎品票券"
 ChanceDropDescriptionStrings[1]="黃金票券"
@@ -2974,6 +2996,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-MonsterBall KFMapSummary]
 DisplayName_CHN="怪物球"
 DisplayName_CHT="怪獸舞會"
@@ -2989,6 +3043,39 @@ DisplayName_KOR="괴물 무도회"
 DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
+
+
+[KF-ShoppingSpree KFMapSummary]
+DisplayName_CHN="抢购狂欢"
+DisplayName_CHT="購物狂歡"
+DisplayName_DEU="Kaufrausch"
+DisplayName_ESL="Compra compulsiva"
+DisplayName_ESN="Compra compulsiva"
+DisplayName_FRA="Achats en folie"
+DisplayName_FRC="Achats en folie"
+DisplayName_INT="Shopping Spree"
+DisplayName_ITA="Shopping compulsivo"
+DisplayName_JPN="ショッピング三昧"
+DisplayName_KOR="연속 쇼핑"
+DisplayName_POL="Szał zakupów"
+DisplayName_PTB="Farra de compras"
+DisplayName_RUS="Веселье в магазине"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName_CHN="圣诞老人工坊"
+DisplayName_CHT="聖誕作坊"
+DisplayName_DEU="Santas Werkstatt"
+DisplayName_ESL=" El taller de Papá Noel"
+DisplayName_ESN=" El taller de Papá Noel"
+DisplayName_FRA="l'atelier du Père Noël"
+DisplayName_FRC="l'atelier du Père Noël"
+DisplayName_INT="Santa's Workshop"
+DisplayName_ITA="Laboratorio di Babbo Natale"
+DisplayName_JPN="サンタの工房"
+DisplayName_KOR="산타의 작업장 "
+DisplayName_POL="Warsztat Mikołaja"
+DisplayName_PTB="Fábrica do Papai Noel"
+DisplayName_RUS="Мастерскую Санты"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics 實驗室"
@@ -3068,6 +3155,11 @@ DisplayName="飛艇"
 [KF-MonsterBall KFMapSummary]
 DisplayName="怪獸舞會"
 
+[KF-ShoppingSpree KFMapSummary]
+DisplayName="購物狂歡"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName="Santas Workshop"
 
 [KFMapInfo]
 ; defaults

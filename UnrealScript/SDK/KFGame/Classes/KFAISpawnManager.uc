@@ -780,13 +780,13 @@ function float GetNextSpawnTimeMod()
     if ( DifficultyInfo != None )
     {
         SpawnTimeMod *= DifficultyInfo.GetSpawnRateModifier();
-        `log("Spawn rate modifier (difficulty):"@DifficultyInfo.GetSpawnRateModifier(), bLogAISpawning);
+        `log("Spawn rate modifier (difficulty):" @ DifficultyInfo.GetSpawnRateModifier(), bLogAISpawning);
     }
 
     //Apply global game mode spawn rate modifier
-    SpawnTimeMod *= GetGameInfoSpawnRateMod();
+    SpawnTimeMod *= GetGameInfoSpawnRateMod() * GameConductor.CurrentSpawnRateModification;
 
-	return SpawnTimeMod * GameConductor.CurrentSpawnRateModification;
+	return Max(SpawnTimeMod, 0.f);
 }
 
 /** Modify the next spawn time based on a sine wave value */

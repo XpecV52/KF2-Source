@@ -24,6 +24,8 @@ KF-DieSector="进行死亡地带"
 KF-Lockdown="进行封锁关卡中"
 KF-Airship="进行飞艇关卡中"
 KF-MonsterBall="进行怪物球模式中"
+KF-ShoppingSpree="进行抢购狂欢模式中"
+KF-SantasWorkshop="进行圣诞老人工坊模式中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

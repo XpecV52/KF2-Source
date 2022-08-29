@@ -1,3 +1,32 @@
+[CHR_BadSanta_Archetype]
+CharacterName="Badass Santa"
+Description="D'abord, Krampus s'en est pris à ses lutins et son renne. Ensuite, sa maison. Papa Noël en a marre. Alors il va sortir sa mitrailleuse. Ho ho ho !\n\n St-Nicolas surveille les enfants du monde entier depuis des siècles, espérant pouvoir passer l'éternité à apporter de la joie et des cadeaux de Noël aux gentils petits garçons et petites filles.  Mais ça, c'était avant Krampus.  Depuis le tristement célèbre Noël de Krampus, Papa Noël a juré de venger sa famille, ses amis et ouvriers disparus. Adieu les joues roses et le ventre rebondi, bonjour le regard noir et le corps d'athlète bodybuildé. La nuit sera loin d'être douce en cette saison des fêtes ; cette année, Papa Noël en a ras le bonnet. Sa hotte ne contient plus qu'une colère bouillonnante et trois tonnes de munitions."
+BodyMesh0="Santa Outfit"
+BodyMesh1="Poulet commando"
+HeadMesh0="Santa Head"
+
+[CHR_BadSanta_Archetype.BodyMesh0]
+BodySkin0="Père Noël classique"
+BodySkin1="Bleu-neige"
+BodySkin2="Marron figue"
+BodySkin3="Sucre d'orge"
+BodySkin4="Vert joyeux"
+BodySkin5="Vintage crème"
+
+[CHR_BadSanta_archetype.BodyMesh1]
+BodySkin0="Usé"
+BodySkin1="Propre"
+BodySkin2="Nuit"
+BodySkin3="Blessure profonde"
+
+[CHR_BadSanta_Archetype.HeadMesh0]
+HeadSkin0="Père Noël classique"
+HeadSkin1="Père Noël doré"
+HeadSkin2="Père Noël bonbon"
+HeadSkin3="Père Noël joyeux"
+HeadSkin4="Jeune Père Noël"
+HeadSkin5="Père Noël sombre"
+
 [CHR_MrsFoster_archetype]
 CharacterName="Miss Foster"
 Description="Quand elle accorda un entretien à Mr. Foster pour un poste, Miss Foster était déjà une marchande impitoyable dans une firme londonienne. Elle avait tout ce qu'il cherchait, mais il était incapable de se plier aux règles et n'était clairement pas fait pour le métier. Mais il avait quelque chose de spécial : il était si détaché, charmeur... unique. Assez unique pour lui offrir son propre masque à gaz lors de leur premier rendez-vous. C'était comme s'il savait qu'un mutant équipé d'une mitrailleuse allait créer une horde de clones mangeurs de chair et ruiner sa carrière. Ils se marièrent peu de temps après, dans un tourbillon de fleurs, de dentelle, de Zeds et d'explosifs. Ils ne peuvent peut-être pas travailler ensemble pour se faire du blé, mais ils peuvent exterminer des Zeds pour se faire un tas de fric !"
@@ -4371,3 +4400,167 @@ Attachment="Masque de guerrier"
 AttachmentSkin0="Feu"
 AttachmentSkin1="Eau"
 AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_SantaBackpack_ARCH]
+Attachment="Sac à dos de Noël"
+AttachmentSkin0="Marron"
+
+[Cosmetic_Christmas_SantaEyepatch_ARCH]
+Attachment="Cache-œil de Noël"
+AttachmentSkin0="Rouge"
+
+[Cosmetic_Christmas_TurkeyHat_ARCH]
+Attachment="Chapeau dinde de Noël"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="À point"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_Candycanebackpack_ARCH]
+Attachment="Sac à dos sucre d'orge"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_ChimneyHat_ARCH]
+Attachment="Chapeau cheminée de Noël"
+AttachmentSkin0="Brique rouge"
+AttachmentSkin1="Brique verte"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_DeerAntlers_ARCH]
+Attachment="Bois de cerf de Noël"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_Glassesboxframe_ARCH]
+Attachment="Lunettes de vue sucrées de Noël"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_Glassesfeline_ARCH]
+Attachment="Lunettes félines de Noël"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_PenguinHat_ARCH]
+Attachment="Chapeau pingouin de Noël"
+AttachmentSkin0="Classique"
+AttachmentSkin1="Empereur"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_Christmashood_ARCH]
+Attachment="Capuche de Père Noël"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_TreeHat_ARCH]
+Attachment="Chapeau sapin"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_Wreathbackpack_ARCH]
+Attachment="Sac à dos couronne de Noël"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Christmas_Zedbackpack_ARCH]
+Attachment="Sac à dos Zed de Noël"
+AttachmentSkin0="Rouge"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Doré"
+
+[Cosmetic_ScifyHornHelmet_ARCH]
+Attachment="Casque à cornes science-fiction"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Rouge"
+AttachmentSkin5="Doré"
+
+[Cosmetic_ScifyFacelessHelmet_ARCH]
+Attachment="Casque sans visage science-fiction"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Doré"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Rouge"
+
+[Cosmetic_ScifyBreathingHelmetA_ARCH]
+Attachment="Casque de respiration science-fiction A"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Doré"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Rouge"
+
+[Cosmetic_ScifyBreathingHelmetB_ARCH]
+Attachment="Casque de respiration science-fiction B"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Doré"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Rouge"
+
+[Cosmetic_ScifySamuraiHelmet_ARCH]
+Attachment="Casque de samouraï science-fiction"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Doré"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Rouge"
+
+[Cosmetic_SamuraiArmorLegs_ARCH]
+Attachment="Jambières d'armure de samouraï"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Rouge"
+AttachmentSkin5="Doré"
+
+[Cosmetic_SamuraiArmorChest_ARCH]
+Attachment="Plastron d'armure de samouraï"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Bleu"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Doré"
+
+[Cosmetic_RoninHat_ARCH]
+Attachment="Chapeau de ronin"
+AttachmentSkin0="Doré"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Blanc"
+AttachmentSkin4="Jaune"
+
+[Cosmetic_RoninGoggles_ARCH]
+Attachment="Lunettes de ronin"
+AttachmentSkin0="Doré"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Blanc"
+AttachmentSkin4="Jaune"
+
+[Cosmetic_RoninMask_ARCH]
+Attachment="Masque de ronin"
+AttachmentSkin0="Doré"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Blanc"
+AttachmentSkin4="Jaune"
+
+[Cosmetic_ScifyNoExpresionHelmet_ARCH]
+Attachment="Casque sans expression science-fiction"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Doré"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Rouge"

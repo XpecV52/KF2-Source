@@ -472,13 +472,12 @@ defaultproperties
    InitialSpareMags(1)=3
    AmmoPickupScale(1)=2.000000
    bLoopingFireAnim(0)=True
-   bLoopingFireSnd(0)=True
+   bLoopingFireSnd(0)=False
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
-   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_PrimaryFire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_PrimaryFire_1P_Loop')
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_PrimaryFire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_PrimaryFire_1P_Single')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_SecondaryFire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_SecondaryFire_1P_Single')
    WeaponFireSnd(2)=(DefaultCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_M16M203.Play_M16_Fire_1P_Single')
-   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_PrimaryFire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_PrimaryFire_1P_EndLoop')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Handling_DryFire'
    PlayerViewOffset=(X=22.000000,Y=9.000000,Z=-2.000000)

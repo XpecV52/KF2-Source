@@ -78,12 +78,20 @@ simulated function EnableScreamFlicker( bool bEnabled )
  /** Clean up function to terminate any effects on death */
  simulated function TerminateEffectsOnDeath()
  {
+	local MaterialInstanceConstant MIC;
+
  	super.TerminateEffectsOnDeath();
 
  	if( NeckLightComponent != none && NeckLightComponent.bAttached )
  	{
 		NeckLightComponent.DetachFromAny();
 		NeckLightComponent = none;
+	}
+
+	// reset xmas transition effect
+	foreach CharacterMICs(MIC)
+	{
+		MIC.SetScalarParameterValue('Scalar_TransitionEffect', 0);
 	}
  }
 

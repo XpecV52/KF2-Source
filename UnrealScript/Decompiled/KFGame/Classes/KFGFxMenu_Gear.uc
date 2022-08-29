@@ -431,7 +431,6 @@ function SetGearButtons(int MeshIndex, int SkinIndex, string MeshKey, string Ski
 
 function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionName)
 {
-    local string FinishedString;
     local GFxObject DataObject;
     local int I, AttachmentIndex;
 
@@ -443,19 +442,16 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
     {
         AttachmentIndex = MyKFPRI.RepCustomizationInfo.AttachmentMeshIndices[I];
         if(AttachmentIndex == -1)
-        {            
-            FinishedString $= ("----" $ "
-");            
+        {
+            DataObject.SetString("selectedAttachment_" $ string(I), "----");            
         }
         else
-        {            
-            FinishedString $= ((Localize(string(CurrentCharInfo.CosmeticVariants[AttachmentIndex].AttachmentItem.Name), AttachmentMeshKey, KFCharacterInfoString)) $ "
-");
+        {
+            DataObject.SetString("selectedAttachment_" $ string(I), Localize(string(CurrentCharInfo.CosmeticVariants[AttachmentIndex].AttachmentItem.Name), AttachmentMeshKey, KFCharacterInfoString));
         }
         ++ I;
         goto J0x3E;
     }
-    DataObject.SetString(sectionFunctionName, FinishedString);
     SetObject(sectionFunctionName, DataObject);
 }
 
@@ -616,7 +612,7 @@ private final function Callback_Attachment(int MeshIndex, int SkinIndex)
         if((KFP != none) && MyKFPRI != none)
         {
             CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFP, MyKFPRI);
-            SlotIndex = CurrentCharInfo.GetAttachmentSlotIndex(MeshIndex, KFP);
+            SlotIndex = CurrentCharInfo.GetAttachmentSlotIndex(MeshIndex, KFP, MyKFPRI);
             SelectCustomizationOption(KFP, 3, MeshIndex, SkinIndex, SlotIndex);
         }
     }

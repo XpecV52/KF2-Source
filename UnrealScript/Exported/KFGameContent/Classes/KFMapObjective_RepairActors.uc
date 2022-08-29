@@ -11,8 +11,10 @@ class KFMapObjective_RepairActors extends Actor
 	implements(KFInterface_MapObjective)
 	placeable;
 
-var string LocalizationKey;
-var string DescriptionLocKey;
+var() string LocalizationKey;
+var() string DescriptionLocKey;
+var() string LocalizationPackageName;
+var() bool bIsMissionCriticalObjective;
 
 /** Is the current objective active or not. */
 var bool bIsActive;
@@ -25,6 +27,12 @@ var() float ActivationDelay;
 
 /** A sound to play when this objective is activated */
 var() AkEvent ActivationSoundEvent;
+
+/** A sound to play when each repair actor is activated */
+var() array<AkEvent> ActorActivationSoundEvents;
+
+/** A sound to play when each repair actor is repaired */
+var() array<AkEvent> ActorRepairedSoundEvents;
 
 /** How many actors needs to be repaired for the objective to be completed. */
 var int ActivationsRequired;
@@ -94,7 +102,7 @@ replication
 		ObjectiveIcon;
 
 	if(bNetDirty)
-		bIsActive, CurrentActorToRepair, ActorsRepaired, ActivationsRequired;
+		bIsActive, CurrentActorToRepair, ActorsRepaired, ActivationsRequired, LocalizationKey, DescriptionLocKey, LocalizationPackageName;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -124,8 +132,8 @@ simulated function ActivateObjective()
 	{
 		if (bUseTrailToObjective)
 		{
-			TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathObjective', none);
-			TrailActor.SetObjeciveType(EObj_Weld);
+			TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathActor', none);
+			TrailActor.SetEmitterTemplate(ParticleSystem'FX_Gameplay_EMIT.FX_Objective_Weld_Trail');
 		}
 	}
 
@@ -193,7 +201,7 @@ simulated function DeactivateObjective()
 					if (GetTotalProgress() >= 1.0f)
 					{
 						KFPlayerController(KFPH.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
-						
+
 					}
 				}
 			}
@@ -276,6 +284,11 @@ function ActivateNextRepairableActor()
 		{
 			CurrentActorToRepair.PlayDestroyed();
 		}
+
+		if (ActorsRepaired < ActorActivationSoundEvents.Length)
+		{
+			PlaySoundBase(ActorActivationSoundEvents[ActorsRepaired], false, WorldInfo.NetMode == NM_DedicatedServer);
+		}
 	}
 
 	UpdateTrailActor();
@@ -330,6 +343,14 @@ function OnActorRepaired(KFRepairableActor RepairedActor)
 		return;
 	}
 
+	if (Role == ROLE_Authority)
+	{
+		if (ActorsRepaired < ActorRepairedSoundEvents.Length)
+		{
+			PlaySoundBase(ActorRepairedSoundEvents[ActorsRepaired], false, WorldInfo.NetMode == NM_DedicatedServer);
+		}
+	}
+
 	ActorsRepaired++;
 	if (GetTotalProgress() >= 1.f)
 	{
@@ -344,6 +365,8 @@ function OnActorRepaired(KFRepairableActor RepairedActor)
 		if (TimeUntilNextActivation > 0.f)
 		{
 			SetTimer(TimeUntilNextActivation, false, nameof(ActivateNextRepairableActor));
+			CurrentActorToRepair = none;
+			UpdateTrailActor();
 		}
 		else
 		{
@@ -397,6 +420,11 @@ simulated function float GetProgress()
 	return 0.f;
 }
 
+simulated function bool IsComplete()
+{
+	return GetProgress() >= 1.f;
+}
+
 simulated function float GetTotalProgress()
 {
 	if (ActivationsRequired == 0)
@@ -414,7 +442,7 @@ simulated function float GetActivationPctChance()
 
 simulated function string GetLocalizedDescription()
 {
-	return Localize("Objectives", default.DescriptionLocKey, "KFGame");
+	return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
 }
 
 simulated function string GetLocalizedRequirements()
@@ -424,7 +452,7 @@ simulated function string GetLocalizedRequirements()
 
 simulated function string GetLocalizedName()
 {
-	return Localize("Objectives", default.LocalizationKey, "KFGame");
+	return Localize("Objectives", LocalizationKey, LocalizationPackageName);
 }
 
 simulated function bool ShouldDrawIcon()
@@ -462,7 +490,7 @@ simulated function int GetDoshReward()
 
 simulated function int GetMaxDoshReward()
 {
-	return 150;
+	return 300;
 }
 
 simulated function int GetVoshReward()
@@ -521,27 +549,17 @@ simulated function bool HasFailedObjective()
 	return GetLivingPlayerCount() <= 0;
 }
 
-// Overridden because the native implementation will count human controlled zeds
 simulated function int GetLivingPlayerCount()
 {
-	local Controller P;
-	local int UsedLivingHumanPlayersCount;
+	local KFGameReplicationInfo KFGRI;
 
-	foreach WorldInfo.AllControllers(class'Controller', P)
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if (KFGRI != none)
 	{
-		if (P != none && P.Pawn != none && P.Pawn.IsAliveAndWell())
-		{
-			if (P.GetTeamNum() != 255)
-			{
-				//`log(P$" TeamIndex = "$P.PlayerReplicationInfo.Team.TeamIndex);
-				UsedLivingHumanPlayersCount++;
-			}
-		}
+		return KFGRI.GetNumPlayersAlive();
 	}
 
-	//`log(GetFuncName()$" Player alive count: "$UsedLivingHumanPlayersCount);
-
-	return UsedLivingHumanPlayersCount;
+	return 0;
 }
 
 simulated function bool UsesMultipleActors()
@@ -559,10 +577,16 @@ simulated function string GetActorCount()
 	return ActorsRepaired $ "/" $ ActivationsRequired;
 }
 
+simulated function bool GetIsMissionCritical()
+{
+	return bIsMissionCriticalObjective;
+}
+
 defaultproperties
 {
    LocalizationKey="RepairObjective"
    DescriptionLocKey="UseWelderToRepair"
+   LocalizationPackageName="KFGame"
    bUseTrailToObjective=True
    ActivationsRequired=6
    GameModeBlacklist(0)=Class'kfgamecontent.KFGameInfo_Endless'

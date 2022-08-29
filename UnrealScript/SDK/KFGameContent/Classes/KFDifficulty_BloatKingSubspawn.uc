@@ -15,7 +15,7 @@ defaultproperties
 	Normal={(HealthMod=0.35000, //0.76 //0.2
 		HeadHealthMod=0.50000, //0.85
 		DamageMod=0.20000, //0.65
-		EvadeOnDamageSettings={(Chance=0.1, DamagedHealthPctToTrigger=0.01)},
+		EvadeOnDamageSettings={(Chance=0.0, DamagedHealthPctToTrigger=0.01)},
 		RallySettings={(bCanRally=false)}
 	)}
 

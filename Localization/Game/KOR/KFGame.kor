@@ -1,3 +1,6 @@
+[KFPawn_Scripted]
+ScriptedPawnString="V.I.P."
+
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="특수 효과"
 PrestigeWarningString="병과를 0으로 초기화하시겠습니까? 이 작업은 취소할 수 없습니다."
@@ -1450,6 +1453,9 @@ KillzedBy_ZedStalkerString=" 이(가) 그것이 오는 것을 보지 못했습�
 KillzedBy_ZedClot_CystString=" 이(가) 그다지 느낌 없는 죽음을 당했습니다."
 KillzedBy_ZedClot_AlphaString=" 이(가) 잘못 붙잡혔습니다."
 KillzedBy_ZedClot_SlasherString=" 은(는) 더 이상 Slasher 영화를 좋아하지 않습니다"
+KillzedBy_ZedDAR_EMPString=" 그들이 갇힌 것을 보고 충격을 받았습니다"
+KillzedBy_ZedDAR_LaserString=" 폭발하여 비트들로 산산조각났습니다"
+KillzedBy_ZedDAR_RocketString=" 위원회 밖으로 솟아 올랐습니다"
 
 FoundAMapCollectibleMessage="%x%이(가) %y%을(를) 찾았습니다. %z%이(가) 떠났습니다..."
 FoundAllMapCollectiblesMessage="모든 %x%을(를) 찾았습니다!"
@@ -2332,20 +2338,36 @@ FeaturedCrossover="주요 크로스오버 프로모션"
 
 [Objectives]
 HoldVolume="구역 방어"
+DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="악바리"
-RepairObjective="용접과 수리"
-DescriptionDoshHold="표시된 구역에 제드가 들어가지 못하게 하십시오"
 RequiredDoshHold="인원 조건:"
 DoschHoldDesc="표시된 구역에 제드가 들어가지 못하게 하십시오"
-DescriptionHoldVolume="DescriptionHoldVolume"
-RequiredHoldVolume="RequiredHoldVolume"
-DescriptionDestroyActor="DescriptionDestroyActor"
-RequiredDestroyActor="RequiredDestroyActor"
+DescriptionDoshHold="표시된 구역에 제드가 들어가지 못하게 하십시오"
+RepairObjective="용접과 수리"
 UseWelderToRepair="용접기로 물건을 수리하세요."
-FailedString="실패"
+EscortPawnsObjective="ESCORT"
+EscortPawnsDescription="Protect the target from the Zeds"
+RequiredHoldVolume="RequiredHoldVolume"
+ActivateTrigger="제어와 통제"
 DescriptionActivateTrigger="오브젝트 컨트롤을 활성화하세요."
 RequiredActivateTrigger="활성화 필요:"
-ActivateTrigger="제어와 통제"
+FailedString="실패"
+RepairObjSantaWorkshopCustomTitle1="파워 수리"
+RepairObjSantaWorkshopCustomDescr1="용접기로 파손된 회로기판 3 개를 수리하십시오"
+RepairObjSantaWorkshopCustomTitle2="게이트 수리"
+RepairObjSantaWorkshopCustomDescr2="용접기로 파손된 게이트 4 개를 수리하십시오"
+EscortObjSantaWorkshopCustomTitle1="수리 및 호위"
+EscortObjSantaWorkshopCustomDescr1="용접기로 카트 수리\n카트가 부스트할 수 있도록 Zed가 가까이 오지 못하게 하십시오"
+EscortObjSantaWorkshopCustomTitle2="방어 및 호위"
+EscortObjSantaWorkshopCustomDescr2="카트 보호 및 매직 챔버까지 호위\n부스트할 수 있도록 옆에서 지키십시오"
+EscortObjSantaWorkshopCustomTitle3="방어 및 호위"
+EscortObjSantaWorkshopCustomDescr3="카트 보호 및 포털 룸까지 호위\n부스트할 수 있도록 옆에서 지키십시오"
+OperateObjSantaWorkshopCustomTitle1="레버를 당기십시오"
+OperateObjSantaWorkshopCustomDescr1="구역에 Zed가 접근하지 못하도록 하십시오"
+OperateObjSantaWorkshopCustomTitle2="레버를 당기십시오"
+OperateObjSantaWorkshopCustomDescr2="구역에 Zed가 접근하지 못하도록 하십시오"
+OperateObjSantaWorkshopCustomTitle3="레버를 당기십시오"
+OperateObjSantaWorkshopCustomDescr3="구역에 Zed가 접근하지 못하도록 하십시오"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2532,7 +2554,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="괴물 곤죽",DescriptionString=
 SpecialEventObjectiveInfoList[3]=(TitleString="밤샘 파티",DescriptionString="끝없는 도전 어려움 또는 그 이상 난이도에서 25 웨이브 완료하기");
 SpecialEventObjectiveInfoList[4]=(TitleString="성의 주인",DescriptionString="서바이벌 어려움 또는 그 이상 난이도에서 한스 백작 해치우기");
 
-AllCompleteRewardDescriptionString="한스의 MKB: 무기+핼러윈 스킨"
+AllCompleteRewardDescriptionString="한스의 MKB: 무기 + 할로윈 스킨"
 
 ChanceDropDescriptionStrings[0]="상품권"
 ChanceDropDescriptionStrings[1]="골드 티켓"
@@ -2540,13 +2562,13 @@ ChanceDropDescriptionStrings[1]="골드 티켓"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="무력 침입",DescriptionString="크램퍼스 둥지에서 크램퍼스의 장신구를 파괴하십시오");
-SpecialEventObjectiveInfoList[1]=(TitleString="조각조각",DescriptionString="크램퍼스 둥지에서 톱밥 제조기를 사용해 제드를 처치하십시오");
-SpecialEventObjectiveInfoList[2]=(TitleString="꿋꿋이 버티기",DescriptionString="크램퍼스 둥지에서 악바리 목표를 완료하십시오");
-SpecialEventObjectiveInfoList[3]=(TitleString="하얀 감옥",DescriptionString="크램퍼스 둥지에서 수집품 10개를 찾아내십시오");
-SpecialEventObjectiveInfoList[4]=(TitleString="모두들 안녕히",DescriptionString="크램퍼스 둥지에서 어려움 이상의 난이도로 크램퍼스를 처치하십시오");
+SpecialEventObjectiveInfoList[0]=(TitleString="완벽한 선물",DescriptionString="서바이벌 어려움 이상의 난이도에서 체력이 가득 찬 상태로 모든 카트 호위 목표를 종료하십시오");
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 스페셜",DescriptionString="연속 쇼핑에서 주간 게임 모드를 완료하십시오");
+SpecialEventObjectiveInfoList[2]=(TitleString="슬레이 라이드",DescriptionString="Zed 2500 마리를 처치하십시오");
+SpecialEventObjectiveInfoList[3]=(TitleString="군밤 만들기",DescriptionString="보스 25 마리를 처치하십시오");
+SpecialEventObjectiveInfoList[4]=(TitleString="작업장 소동",DescriptionString="산타의 작업장에서 서바이벌 어려움 이상의 난이도로 크램퍼스를 처치하십시오");
 
-AllCompleteRewardDescriptionString="파자마 수트"
+AllCompleteRewardDescriptionString="전투도끼 + 크리스마스 스킨"
 
 ChanceDropDescriptionStrings[0]="상품권"
 ChanceDropDescriptionStrings[1]="골드 티켓"
@@ -2974,6 +2996,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-MonsterBall KFMapSummary]
 DisplayName_CHN="怪物球"
 DisplayName_CHT="怪獸舞會"
@@ -2989,6 +3043,39 @@ DisplayName_KOR="괴물 무도회"
 DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
+
+
+[KF-ShoppingSpree KFMapSummary]
+DisplayName_CHN="抢购狂欢"
+DisplayName_CHT="購物狂歡"
+DisplayName_DEU="Kaufrausch"
+DisplayName_ESL="Compra compulsiva"
+DisplayName_ESN="Compra compulsiva"
+DisplayName_FRA="Achats en folie"
+DisplayName_FRC="Achats en folie"
+DisplayName_INT="Shopping Spree"
+DisplayName_ITA="Shopping compulsivo"
+DisplayName_JPN="ショッピング三昧"
+DisplayName_KOR="연속 쇼핑"
+DisplayName_POL="Szał zakupów"
+DisplayName_PTB="Farra de compras"
+DisplayName_RUS="Веселье в магазине"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName_CHN="圣诞老人工坊"
+DisplayName_CHT="聖誕作坊"
+DisplayName_DEU="Santas Werkstatt"
+DisplayName_ESL=" El taller de Papá Noel"
+DisplayName_ESN=" El taller de Papá Noel"
+DisplayName_FRA="l'atelier du Père Noël"
+DisplayName_FRC="l'atelier du Père Noël"
+DisplayName_INT="Santa's Workshop"
+DisplayName_ITA="Laboratorio di Babbo Natale"
+DisplayName_JPN="サンタの工房"
+DisplayName_KOR="산타의 작업장 "
+DisplayName_POL="Warsztat Mikołaja"
+DisplayName_PTB="Fábrica do Papai Noel"
+DisplayName_RUS="Мастерскую Санты"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="바이오틱스 연구소"
@@ -3068,6 +3155,11 @@ DisplayName="비행선"
 [KF-MonsterBall KFMapSummary]
 DisplayName="괴물 무도회"
 
+[KF-ShoppingSpree KFMapSummary]
+DisplayName="연속 쇼핑"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName="Santas Workshop"
 
 [KFMapInfo]
 ; defaults

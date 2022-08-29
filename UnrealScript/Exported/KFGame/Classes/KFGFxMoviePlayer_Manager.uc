@@ -1025,11 +1025,6 @@ function StatsInitialized()
 	{
 		StartMenu.MissionObjectiveContainer.FullRefresh();
 	}
-	// Notify IIS menu that stats have been read
-	if( IISMenu != none )
-	{
-		IISMenu.bStatsRead = true;
-	}
 
 	bStatsInitialized = true;
 

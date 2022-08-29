@@ -59,8 +59,13 @@ var init array<OnlineDownloadableContent>				DLCContent;
 /** The list of cross-title DLC content */
 var init array<OnlineCrossTitleDownloadableContent>		CrossTitleDLCContent;
 
+var init array<OnlineCrossTitleContent>					CrossTitleContent;
+
 /** the array of delegates for notifying when content has changed */
 var array<delegate<OnContentChange> > ContentChangeDelegates;
+
+var array<delegate<OnReadCrossTitleContentComplete> > CrossTitleContentChangeDelegates;
+var bool bHasEnumeratedCrossTitleContent;
 
 /** Since the static array of dynamic array syntax appears to be broken */
 struct native PerUserOnlineContentDelegates
@@ -204,7 +209,7 @@ native function ClearDownloadableContentList(byte LocalUserNum);
 /**
  * Retrieve the list of content the given user has downloaded
  * to the local console.
- 
+
  * @param LocalUserNum The user to read the content list of
  * @param ContentList The out array that receives the list of all content
  *
@@ -232,7 +237,7 @@ native function ClearCrossTitleDownloadableContentList(byte LocalUserNum);
 /**
  * Retrieve the list of content the given user has downloaded
  * to the local console.
- 
+
  * @param LocalUserNum The user to read the content list of
  * @param ContentList The out array that receives the list of all content
  *
@@ -678,7 +683,7 @@ function EOnlineEnumerationReadState GetContentList(byte LocalUserNum,EOnlineCon
 *
 * @return true if the read request was issued successfully, false otherwise
 */
-function bool ReadCrossTitleContentList(byte LocalUserNum,EOnlineContentType ContentType,optional int TitleId = 0,optional int DeviceId = -1);
+native function bool ReadCrossTitleContentList(byte LocalUserNum,EOnlineContentType ContentType,optional int TitleId = 0,optional int DeviceId = -1);
 
 /**
 * Starts an async task that frees any downloaded content resources for that player
@@ -686,7 +691,7 @@ function bool ReadCrossTitleContentList(byte LocalUserNum,EOnlineContentType Con
 * @param LocalUserNum The user to clear the content list for
 * @param ContentType the type of content being read
 */
-function ClearCrossTitleContentList(byte LocalUserNum,EOnlineContentType ContentType);
+native function ClearCrossTitleContentList(byte LocalUserNum,EOnlineContentType ContentType);
 
 /**
 * Retrieve the list of content the given user has downloaded or otherwise retrieved
@@ -698,7 +703,7 @@ function ClearCrossTitleContentList(byte LocalUserNum,EOnlineContentType Content
 *
 * @return OERS_Done if the read has completed, otherwise one of the other states
 */
-function EOnlineEnumerationReadState GetCrossTitleContentList(byte LocalUserNum,EOnlineContentType ContentType,out array<OnlineCrossTitleContent> ContentList);
+native function EOnlineEnumerationReadState GetCrossTitleContentList(byte LocalUserNum,EOnlineContentType ContentType,out array<OnlineCrossTitleContent> ContentList);
 
 /**
 * Delegate used when the content read request has completed
@@ -714,7 +719,10 @@ delegate OnReadCrossTitleContentComplete(bool bWasSuccessful);
 * @param ContentType the type of content being read
 * @param ReadContentCompleteDelegate the delegate to use for notifications
 */
-function AddReadCrossTitleContentCompleteDelegate(byte LocalUserNum,EOnlineContentType ContentType,delegate<OnReadCrossTitleContentComplete> ReadContentCompleteDelegate);
+function AddReadCrossTitleContentCompleteDelegate(byte LocalUserNum, EOnlineContentType ContentType, delegate<OnReadCrossTitleContentComplete> ReadContentCompleteDelegate)
+{
+	if (CrossTitleContentChangeDelegates.Find(ReadContentCompleteDelegate) == INDEX_NONE) { CrossTitleContentChangeDelegates.AddItem(ReadContentCompleteDelegate);	};
+}
 
 /**
 * Clears the delegate used to notify the gameplay code that the content read request has completed
@@ -723,7 +731,10 @@ function AddReadCrossTitleContentCompleteDelegate(byte LocalUserNum,EOnlineConte
 * @param ContentType the type of content being read
 * @param ReadContentCompleteDelegate the delegate to use for notifications
 */
-function ClearReadCrossTitleContentCompleteDelegate(byte LocalUserNum,EOnlineContentType ContentType,delegate<OnReadCrossTitleContentComplete> ReadContentCompleteDelegate);
+function ClearReadCrossTitleContentCompleteDelegate(byte LocalUserNum, EOnlineContentType ContentType, delegate<OnReadCrossTitleContentComplete> ReadContentCompleteDelegate)
+{
+	CrossTitleContentChangeDelegates.RemoveItem(ReadContentCompleteDelegate);
+}
 
 
 // (cpptext)

@@ -1,3 +1,32 @@
+[CHR_BadSanta_Archetype]
+CharacterName="Badass Santa"
+Description="First, Krampus came for his elves and his reindeer. Then, Krampus came for his home. Now, Santa isn’t going to take it anymore. Now, he has a machine gun. Ho ho ho!\n\nSt. Nicholas began his watch over the children of the world hundreds of years ago, thinking he would spend eternity bringing Christmas cheer and toys to the good little girls and boys of the world.  But then, Krampus came.  In the year since the Krampus Christmas, Santa Claus has dedicated himself to avenging his fallen workers, friends, and family. Gone are the rosy cheeks and the belly like a bowl full of jelly, replaced with a permanent scowl and muscle layered on muscle. There will be no silent night this holiday season; this year, Santa Claus is all out of goodwill and Christmas cheer. He only has seething rage, revenge, and a vast quantity of ammunition with which to ring in the holidays."
+BodyMesh0="Santa Outfit"
+BodyMesh1="Commando Chicken"
+HeadMesh0="Santa Head"
+
+[CHR_BadSanta_Archetype.BodyMesh0]
+BodySkin0="Classic Santa"
+BodySkin1="Snow Blue"
+BodySkin2="Brown Fig"
+BodySkin3="Candycane"
+BodySkin4="Jolly Green"
+BodySkin5="Cream Vintage"
+
+[CHR_BadSanta_archetype.BodyMesh1]
+BodySkin0="Used"
+BodySkin1="Clean"
+BodySkin2="Night"
+BodySkin3="Heavy Wound"
+
+[CHR_BadSanta_Archetype.HeadMesh0]
+HeadSkin0="Classic Santa"
+HeadSkin1="Golden Santa"
+HeadSkin2="Candy Santa"
+HeadSkin3="Jolly Santa"
+HeadSkin4="Young Santa"
+HeadSkin5="Dark Santa"
+
 [CHR_MrsFoster_archetype]
 CharacterName="Mrs. Foster"
 Description="When she interviewed Mr. Foster for a commodities trader job, Mrs. Foster was already a scarily-successful trader at a top firm in London. She was what he wanted to be, but Mr. Foster was clearly a no-hoper as a trader; he couldn’t play by the rules or keep his mouth shut. Still, there was something about him; he was so cool, so suave, so... unique. Unique enough to give her a gas mask of her own on their first date. It was almost as if he'd known that a chain gun wielding mutant maniac was going to create a flesh-eating clone horde and ruin her streak of multi-million-pound bonuses. They were married soon after in a whirlwind of flowers, lace, Zeds, and explosives. They may not be able to work together in the city making huge piles of cash, but they can work together to exterminate zeds making huge piles of Dosh!"
@@ -4372,3 +4401,166 @@ AttachmentSkin0="Fire"
 AttachmentSkin1="Water"
 AttachmentSkin2="Precious"
 
+[Cosmetic_Christmas_SantaBackpack_ARCH]
+Attachment="Christmas Backpack"
+AttachmentSkin0="Brown"
+
+[Cosmetic_Christmas_SantaEyepatch_ARCH]
+Attachment="Christmas Eyepatch"
+AttachmentSkin0="Red"
+
+[Cosmetic_Christmas_TurkeyHat_ARCH]
+Attachment="Christmas Turkey Hat"
+AttachmentSkin0="Underdone"
+AttachmentSkin1="Overdone"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_Candycanebackpack_ARCH]
+Attachment="Candy Cane Backpack"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_ChimneyHat_ARCH]
+Attachment="Christmas Chimney Hat"
+AttachmentSkin0="Red Brick"
+AttachmentSkin1="Green Brick"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_DeerAntlers_ARCH]
+Attachment="Christmas Deer Antlers"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_Glassesboxframe_ARCH]
+Attachment="Christmas Candyvision Glasses"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_Glassesfeline_ARCH]
+Attachment="Christmas Feline Glasses"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_PenguinHat_ARCH]
+Attachment="Christmas Penguin Hat"
+AttachmentSkin0="Classic"
+AttachmentSkin1="Emperor"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_Christmashood_ARCH]
+Attachment="Christmas Santa Hood"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_TreeHat_ARCH]
+Attachment="Christmas Tree Hat"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_Wreathbackpack_ARCH]
+Attachment="Christmas Wreath Backpack"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas_Zedbackpack_ARCH]
+Attachment="Christmas Zed Backpack"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_ScifyHornHelmet_ARCH]
+Attachment="Sci-fy Horn Helmet"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Red"
+AttachmentSkin5="Precious"
+
+[Cosmetic_ScifyFacelessHelmet_ARCH]
+Attachment="Sci-fy Faceless Helmet"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Green"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Red"
+
+[Cosmetic_ScifyBreathingHelmetA_ARCH]
+Attachment="Sci-fy Breathing Helmet A"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Green"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Red"
+
+[Cosmetic_ScifyBreathingHelmetB_ARCH]
+Attachment="Sci-fy Breathing Helmet B"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Green"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Red"
+
+[Cosmetic_ScifySamuraiHelmet_ARCH]
+Attachment="Sci-fy Samurai Helmet"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Green"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Red"
+
+[Cosmetic_SamuraiArmorLegs_ARCH]
+Attachment="Samurai Armor Legs"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Red"
+AttachmentSkin5="Precious"
+
+[Cosmetic_SamuraiArmorChest_ARCH]
+Attachment="Samurai Armor Chest"
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[Cosmetic_RoninHat_ARCH]
+Attachment="Ronin Hat"
+AttachmentSkin0="Precious"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Yellow"
+
+[Cosmetic_RoninGoggles_ARCH]
+Attachment="Ronin Goggles"
+AttachmentSkin0="Precious"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Yellow"
+
+[Cosmetic_RoninMask_ARCH]
+Attachment="Ronin Mask"
+AttachmentSkin0="Precious"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Yellow"
+
+[Cosmetic_ScifyNoExpresionHelmet_ARCH]
+Attachment="Sci-fy No Expresion Helmet"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Precious"
+AttachmentSkin2="Green"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Red"

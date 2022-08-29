@@ -23,9 +23,29 @@ var() array<AkEvent> CompletionSoundEvents;
 var() array<AkEvent> ResetSoundEvents;
 var() Vector IconLocationOffset;
 var transient bool bRepairComplete;
+var repnotify transient bool bHidden_Replicated;
 var delegate<OnRepairCompelete> __OnRepairCompelete__Delegate;
 
+replication
+{
+     if(bNetDirty)
+        bHidden_Replicated;
+}
+
 delegate OnRepairCompelete(KFRepairableActor RepairedActor);
+
+simulated event ReplicatedEvent(name VarName)
+{
+    switch(VarName)
+    {
+        case 'bHidden_Replicated':
+            SetHidden(bHidden_Replicated);
+            break;
+        default:
+            super.ReplicatedEvent(VarName);
+            break;
+    }
+}
 
 // Export UKFRepairableActor::execSetupComponents(FFrame&, void* const)
 private native final simulated function SetupComponents();
@@ -145,12 +165,12 @@ simulated function PlayDestroyed()
             PlaySoundBase(ActivationSound,, WorldInfo.NetMode == NM_DedicatedServer);            
         }        
     }
+    if(RepairableActorMesh != none)
+    {
+        RepairableActorMesh.SetStaticMesh(BrokenMesh);
+    }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        if(RepairableActorMesh != none)
-        {
-            RepairableActorMesh.SetStaticMesh(BrokenMesh);
-        }
         if(BreakingEmitterTemplate.ParticleTemplate != none)
         {
             WorldInfo.MyEmitterPool.SpawnEmitter(BreakingEmitterTemplate.ParticleTemplate, Location + BreakingEmitterTemplate.RelativeOffset, BreakingEmitterTemplate.RelativeRotation);
@@ -243,6 +263,15 @@ simulated function UpdateIntegrityMIC()
                 WeldComponent.SetHidden(true);
             }
         }
+    }
+}
+
+simulated function OnToggleHidden(SeqAct_ToggleHidden Action)
+{
+    super(Actor).OnToggleHidden(Action);
+    if(Role == ROLE_Authority)
+    {
+        bHidden_Replicated = bHidden;
     }
 }
 

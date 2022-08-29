@@ -1,3 +1,32 @@
+[CHR_BadSanta_Archetype]
+CharacterName="Badass Santa"
+Description="Prima, Krampus colpì i suoi elfi e la sua renna. Poi colpì la sua casa. Babbo Natale ne ha avuto abbastanza. Ora possiede una mitragliatrice. Oh oh oh!\n\nSan Nicola ha iniziato a sorvegliare i bambini del mondo centinaia di anni fa, con il pensiero di passare l'eternità a distribuire spirito natalizio e giocattoli a tutti i bravi bambini e bambine.  Ma poi, arrivò Krampus.  Da quando ha avuto inizio il Natale di Krampus, Babbo Natale si dedica a vendicare i suoi lavoratori, amici e famigliari caduti. Le guance rosse e la pancia tonda come una palla sono un lontano ricordo, rimpiazzate da un broncio fisso e da strati di muscoli. Nessun Astro del ciel per queste festività. Niente benevolenza e spirito natalizio per Babbo Natale, quest'anno. Gli restano solo rabbia ribollente, desiderio di vendetta e tante munizioni con cui festeggiare."
+BodyMesh0="Santa Outfit"
+BodyMesh1="Pollo Commando"
+HeadMesh0="Santa Head"
+
+[CHR_BadSanta_Archetype.BodyMesh0]
+BodySkin0="Babbo Natale classico"
+BodySkin1="Blu neve"
+BodySkin2="Fico marrone"
+BodySkin3="Bastoncino di zucchero"
+BodySkin4="Verde vivace"
+BodySkin5="Crema vintage"
+
+[CHR_BadSanta_archetype.BodyMesh1]
+BodySkin0="Usato"
+BodySkin1="Pulito"
+BodySkin2="Notte"
+BodySkin3="Ferita grave"
+
+[CHR_BadSanta_Archetype.HeadMesh0]
+HeadSkin0="Babbo Natale classico"
+HeadSkin1="Babbo Natale dorato"
+HeadSkin2="Babbo Natale dolce"
+HeadSkin3="Babbo Natale vivace"
+HeadSkin4="Babbo Natale giovane"
+HeadSkin5="Babbo Natale oscuro"
+
 [CHR_MrsFoster_archetype]
 CharacterName="Mrs. Foster"
 Description="Mrs. Foster era già una commerciante di successo, quando fece un colloquio a Mr. Foster per il ruolo di commerciante di materie prime. In lei, lui trovò un modello: tuttavia, Mr. Foster era chiaramente incapace come commerciante, poiché non rispettava le regole e non stava mai zitto. Eppure, c’era qualcosa di diverso in lui: era così figo, così garbato, così... unico. Tanto unico da donarle una maschera antigas al loro primo appuntamento. Pareva sapesse che un pazzo mutante con un cannone automatico stava per creare un’orda di cloni carnivori e rovinare la sua serie di bonus del valore di diversi milioni di sterline. Si sposarono poco dopo in un turbinio di fiori, pizzo, Zed ed esplosivi. Forse, il lavoro in città non faceva al caso loro, ma di sicuro fanno un'ottima coppia di sterminatori di Zed, il che gli frutta un bel po' di denaro!"
@@ -4371,3 +4400,167 @@ Attachment="Maschera da guerriero"
 AttachmentSkin0="Fuoco"
 AttachmentSkin1="Acqua"
 AttachmentSkin2="Prezioso"
+
+[Cosmetic_Christmas_SantaBackpack_ARCH]
+Attachment="Zaino di Natale"
+AttachmentSkin0="Marrone"
+
+[Cosmetic_Christmas_SantaEyepatch_ARCH]
+Attachment="Benda sull'occhio di Natale"
+AttachmentSkin0="Rossa"
+
+[Cosmetic_Christmas_TurkeyHat_ARCH]
+Attachment="Cappello da tacchino di Natale"
+AttachmentSkin0="Poco cotto"
+AttachmentSkin1="Troppo cotto"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Christmas_Candycanebackpack_ARCH]
+Attachment="Zaino Bastoncini di zucchero"
+AttachmentSkin0="Rosso"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Christmas_ChimneyHat_ARCH]
+Attachment="Cappello Camino di Natale"
+AttachmentSkin0="Mattoni rossi"
+AttachmentSkin1="Mattoni verdi"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Christmas_DeerAntlers_ARCH]
+Attachment="Corna da cervo di Natale"
+AttachmentSkin0="Rosse"
+AttachmentSkin1="Verdi"
+AttachmentSkin2="Preziose"
+
+[Cosmetic_Christmas_Glassesboxframe_ARCH]
+Attachment="Occhiali di Natale con visione caramellosa"
+AttachmentSkin0="Rossi"
+AttachmentSkin1="Verdi"
+AttachmentSkin2="Preziosi"
+
+[Cosmetic_Christmas_Glassesfeline_ARCH]
+Attachment="Occhiali Felino di Natale"
+AttachmentSkin0="Rossi"
+AttachmentSkin1="Verdi"
+AttachmentSkin2="Preziosi"
+
+[Cosmetic_Christmas_PenguinHat_ARCH]
+Attachment="Cappello Pinguino di Natale"
+AttachmentSkin0="Classico"
+AttachmentSkin1="Imperatore"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Christmas_Christmashood_ARCH]
+Attachment="Cappello da Babbo Natale"
+AttachmentSkin0="Rosso"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Christmas_TreeHat_ARCH]
+Attachment="Cappello da Albero di Natale"
+AttachmentSkin0="Rosso"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Christmas_Wreathbackpack_ARCH]
+Attachment="Ghirlanda di Natale"
+AttachmentSkin0="Rossa"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Preziosa"
+
+[Cosmetic_Christmas_Zedbackpack_ARCH]
+Attachment="Zaino Zed di Natale"
+AttachmentSkin0="Rosso"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_ScifyHornHelmet_ARCH]
+Attachment="Elmo cornuto Sci-fy"
+AttachmentSkin0="Nero"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Rosso"
+AttachmentSkin5="Prezioso"
+
+[Cosmetic_ScifyFacelessHelmet_ARCH]
+Attachment="Elmo senza volto Sci-fy"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Prezioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Rosso"
+
+[Cosmetic_ScifyBreathingHelmetA_ARCH]
+Attachment="Scafandro A Sci-fy"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Prezioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Rosso"
+
+[Cosmetic_ScifyBreathingHelmetB_ARCH]
+Attachment="Scafandro B Sci-fy"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Prezioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Rosso"
+
+[Cosmetic_ScifySamuraiHelmet_ARCH]
+Attachment="Elmo da Samurai Sci-fy"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Prezioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Rosso"
+
+[Cosmetic_SamuraiArmorLegs_ARCH]
+Attachment="Schinieri Samurai"
+AttachmentSkin0="Neri"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Verdi"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Rossi"
+AttachmentSkin5="Preziosi"
+
+[Cosmetic_SamuraiArmorChest_ARCH]
+Attachment="Armatura da torso Samurai"
+AttachmentSkin0="Nera"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Rossa"
+AttachmentSkin4="Preziosa"
+
+[Cosmetic_RoninHat_ARCH]
+Attachment="Copricapo da ronin"
+AttachmentSkin0="Prezioso"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Bianco"
+AttachmentSkin4="Giallo"
+
+[Cosmetic_RoninGoggles_ARCH]
+Attachment="Occhiali da ronin"
+AttachmentSkin0="Preziosi"
+AttachmentSkin1="Verdi"
+AttachmentSkin2="Rossi"
+AttachmentSkin3="Bianchi"
+AttachmentSkin4="Gialli"
+
+[Cosmetic_RoninMask_ARCH]
+Attachment="Maschera da ronin"
+AttachmentSkin0="Preziosa"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rossa"
+AttachmentSkin3="Bianca"
+AttachmentSkin4="Gialla"
+
+[Cosmetic_ScifyNoExpresionHelmet_ARCH]
+Attachment="Elmo impassibile Sci-fy"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Prezioso"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Rosso"

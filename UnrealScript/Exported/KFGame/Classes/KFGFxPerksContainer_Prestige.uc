@@ -85,10 +85,10 @@ function SendPerkData()
 	CurrentPerkDataObject.SetString("prestigeIcon", CurrentPerk.GetPrestigeIconPath(CurrentPrestigeLevel));
 	DataObject.SetObject("currentRank", CurrentPerkDataObject);
 
-	ConfirmPrestigeButton.SetBool("enabled", CurrentPrestigeLevel < 2);
+	ConfirmPrestigeButton.SetBool("enabled", CurrentPrestigeLevel < 3);
 
 	//next rank
-	if (CurrentPrestigeLevel < 2)
+	if (CurrentPrestigeLevel < 3)
 	{
 		NextPerkDataObject.SetString("perkIcon", "img://"$CurrentPerk.GetPerkIconPath());
 		NextPerkDataObject.SetString("prestigeIcon", CurrentPerk.GetPrestigeIconPath(CurrentPrestigeLevel + 1));
@@ -101,7 +101,7 @@ function SendPerkData()
 
 	DataObject.SetInt("doshVaultValue", KFPC.GetPreStigeValueDoshRewardValue());
 
-	DataObject.SetBool("bAtPrestigeMaxLevel", CurrentPrestigeLevel >= 2);
+	DataObject.SetBool("bAtPrestigeMaxLevel", CurrentPrestigeLevel >= 3);
 	
 	SetObject("perkData", DataObject);
 }

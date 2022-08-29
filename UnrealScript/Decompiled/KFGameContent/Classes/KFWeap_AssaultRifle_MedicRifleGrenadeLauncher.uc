@@ -385,7 +385,6 @@ defaultproperties
     bLoopingFireSnd=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
-    WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=22,Y=9,Z=-2)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_MedicRifleGrenadeLauncher.MeleeHelper'

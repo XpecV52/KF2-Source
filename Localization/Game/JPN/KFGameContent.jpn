@@ -542,11 +542,31 @@ ItemName="Mac 10"
 ItemCategory="サブマシンガン"
 ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•焼夷弾を高速で発射することが特徴です。わかりましたか？ラピッドファイア？それが焼夷サブマシンガンだから？ああ、忘れてください。"
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="バトルアックス"
+ItemCategory="近接"
+ItemDescription="•プライマリ - 低速の切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 相手を死に至らしめる、低速だが重い切り裂き攻撃。\n•オルト - ブロック/回避\n•旧式ではあるが、大きく、鋭いトラックのような攻撃を行う。"
+
+[KFWeap_Edged_FireAxe]
+ItemName="ファイアアックス"
+ItemCategory="近接攻撃"
+ItemDescription="•プライマリ - 切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 重い切り裂き攻撃。\n•オルト - ブロック/回避。\n•燃えている訳でもないのに、なぜ「ファイア」アックスなのか？"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="M32グレネードランチャー"
+ItemCategory="爆発物"
+ItemDescription="•ファイアモードは手榴弾を発射。\n•手榴弾は当たると爆発します。\n•6 丁の M79 グレネードランチャーをガムテープでくっつけるより、エレガントな方法。"
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="HMTech-501手榴弾ライフル"
 ItemCategory="アサルトライフル"
-ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアでメディック手榴弾を発射。\n•この手榴弾は友達に投げてもよい唯一の武器です！"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアでメディック手榴弾を発射します。\n•慌てて友人のほうに放り投げても許される手榴弾はこの武器のみ！"
 SecondaryAmmo="メディック手榴弾"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="トミーガン"
+ItemCategory="アサルトライフル"
+ItemDescription="•フルオート・セミオートのファイアモードが選択可能。\n•オルトファイアでファイアモードを切り替える。\n•シカゴ・タイプライターとも呼ばれるが、名前を刻むのにも適した銃。"
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL ACOG"

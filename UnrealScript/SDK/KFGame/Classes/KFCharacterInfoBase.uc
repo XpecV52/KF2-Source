@@ -51,6 +51,9 @@ var(Gore) name BloodPoolOriginBoneName;
 /** Character MICs index to use for gameplay effects */
 var(Effects) int GoreFXMICIdx;
 
+/** List of additional particle systems that require unique effects and logic per-event */
+var(Effects) array<ExtraVFXInfo> ExtraVFX;
+
 /************************************************************************/
 /* Character Portrait
 *************************************************************************/
@@ -67,6 +70,8 @@ cpptext
 	// Used by KFCharacterInfo_Human
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent);
 }
+
+native function KFCharacterInfoBase Duplicate();
 
 /************************************************************************/
 /*  Script Functions												    */

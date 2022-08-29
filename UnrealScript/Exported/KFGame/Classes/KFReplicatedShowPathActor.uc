@@ -21,8 +21,8 @@ var byte VolumeCheckType;
 /** Target actor, set once and replicated at spawn */
 var repnotify Actor Target;
 
-/** Specific class to use for this type of trail */
-var class<KFEmit_Path> PathClass;
+/** The Template to use for this emitter */
+var ParticleSystem EmitterTemplate;
 
 replication
 {
@@ -76,8 +76,6 @@ simulated function Timer_ShowPath()
 	}
 }
 
-
-
 simulated function ShowPath()
 {
 	local PlayerController PC;
@@ -130,7 +128,8 @@ simulated function ShowPath()
 
 		if( bPathFound )
 		{
-			Path = KFEmit_ScriptedPath(Target.Spawn( GetPathClass(), PC,, PC.Pawn.Location ));
+			Path = Target.Spawn(class'KFGame.KFEmit_ScriptedPath', PC,, PC.Pawn.Location);
+			Path.SetTemplate(EmitterTemplate, true);
 
 			if (Path != none)
 			{
@@ -148,14 +147,14 @@ simulated function ShowPath()
 	}
 }
 
-simulated function class<KFEmit_Path> GetPathClass()
+simulated function SetEmitterTemplate(ParticleSystem NewTemplate)
 {
-	return PathClass;
+	EmitterTemplate = NewTemplate;
 }
 
 defaultproperties
 {
-   PathClass=Class'KFGame.KFEmit_ScriptedPath'
+   EmitterTemplate=ParticleSystem'FX_Gameplay_EMIT.FX_Trader_Trail'
    RemoteRole=ROLE_SimulatedProxy
    CollisionType=COLLIDE_CustomDefault
    bIgnoreEncroachers=True

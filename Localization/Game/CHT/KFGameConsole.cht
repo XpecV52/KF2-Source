@@ -24,6 +24,8 @@ KF-DieSector="玩死亡地帶"
 KF-Lockdown="進行封鎖遊戲中"
 KF-Airship="進行飛艇遊戲中"
 KF-MonsterBall="遊玩怪獸舞會"
+KF-ShoppingSpree="遊玩購物狂歡"
+KF-SantasWorkshop="正在進行：聖誕作坊"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

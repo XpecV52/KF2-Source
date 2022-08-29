@@ -45,6 +45,8 @@ function bool CanActivateObjective();
 
 simulated function float GetProgress();
 
+simulated function bool IsComplete();
+
 simulated function bool HasFailedObjective();
 
 simulated function float GetActivationPctChance();
@@ -58,6 +60,8 @@ simulated function string GetActorCount();
 simulated function string GetLocalizedDescription();
 
 simulated function string GetLocalizedRequirements();
+
+simulated function bool GetIsMissionCritical();
 
 simulated function bool ShouldDrawIcon();
 

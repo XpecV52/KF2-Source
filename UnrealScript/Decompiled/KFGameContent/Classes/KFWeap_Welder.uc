@@ -45,7 +45,7 @@ simulated event PreBeginPlay()
 simulated function SetShownInInventory(bool bValue)
 {
     InventoryGroup = ((bValue) ? 3 : 4);
-    bAutoUnequip = bValue;
+    bAutoUnequip = !bValue;
 }
 
 simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name SocketName)
@@ -487,11 +487,6 @@ auto state Inactive
 
 simulated state Active
 {
-    simulated event BeginState(name PreviousStateName)
-    {
-        super.BeginState(PreviousStateName);
-    }
-
     simulated event Tick(float DeltaTime)
     {
         global.Tick(DeltaTime);
@@ -499,7 +494,7 @@ simulated state Active
         {
             TickWeldTarget();
             UpdateScreenUI();
-            if(!bAutoUnequip)
+            if(bAutoUnequip)
             {
                 TickAutoUnequip();
             }
@@ -561,10 +556,26 @@ simulated state WeaponWelding extends WeaponFiring
     stop;    
 }
 
+simulated state WeaponSprinting
+{
+    simulated event Tick(float DeltaTime)
+    {
+        global.Tick(DeltaTime);
+        if((Instigator != none) && Instigator.IsLocallyControlled())
+        {
+            if(bAutoUnequip)
+            {
+                TickAutoUnequip();
+            }
+        }
+    }
+    stop;    
+}
+
 defaultproperties
 {
     bAutoUnequip=true
-    WeldingRange=100
+    WeldingRange=150
     FastenRate=68
     UnfastenRate=-110
     RepairRate=0.03

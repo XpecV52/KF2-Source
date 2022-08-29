@@ -212,5 +212,7 @@ defaultproperties
 	NumBloodMapMaterials=2
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.135f,IncrementWeight=1)
+	//WeaponUpgrades[1]=(IncrementDamage=1.135f,IncrementWeight=1)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.135f), (Stat=EWUS_Damage1, Scale=1.135f), (Stat=EWUS_Damage2, Scale=1.135f), (Stat=EWUS_Weight, Add=1)))
 }

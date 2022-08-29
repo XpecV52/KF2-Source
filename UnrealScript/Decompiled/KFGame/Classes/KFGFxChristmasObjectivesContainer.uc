@@ -15,21 +15,46 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 defaultproperties
 {
     CurrentSpecialEventString="A time limited special event with exclusive items."
-    SpecialEventObjectiveInfoList(0)=(TitleString="Breaking and Entering",DescriptionString="Break Krampus's trinkets in Krampus Lair",TierEventRewardName="")
-    SpecialEventObjectiveInfoList(1)=(TitleString="Mincemeat",DescriptionString="Kill a Zed using the wood chipper in Krampus Lair",TierEventRewardName="")
-    SpecialEventObjectiveInfoList(2)=(TitleString="Stand Fast",DescriptionString="Complete the Stand Your Ground objective in Krampus Lair",TierEventRewardName="")
-    SpecialEventObjectiveInfoList(3)=(TitleString="Snow Prisons",DescriptionString="Find ten of the collectibles in Krampus Lair",TierEventRewardName="")
-    SpecialEventObjectiveInfoList(4)=(TitleString="And to All a Good Night",DescriptionString="Kill Krampus on Hard or higher Difficulty in Krampus Lair",TierEventRewardName="")
-    ObjectiveIconURLs(0)="Xmas_UI.UI_Objectives_Xmas_Krampus"
-    ObjectiveIconURLs(1)="Xmas_UI.UI_Objectives_Xmas_DeadElf"
-    ObjectiveIconURLs(2)="Objectives_UI.UI_Objectives_Xmas_DefendObj"
-    ObjectiveIconURLs(3)="Xmas_UI.UI_Objectives_Xmas_Snowglobe"
-    ObjectiveIconURLs(4)="Xmas_UI.UI_Objectives_Xmas_Santa"
-    AllCompleteRewardIconURL="CHR_Pajama_Item_TEX.Uniform_PajamaObjective"
-    AllCompleteRewardDescriptionString="Pajama Suit"
+    SpecialEventObjectiveInfoList(0)=(TitleString="The Perfect Gift",DescriptionString="End all Escort objectives with cart at full health on Survival Hard or higher difficulty",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(1)=(TitleString="Weekly Specials",DescriptionString="Complete the Weekly on Shopping Spree",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(2)=(TitleString="Slay Ride",DescriptionString="Kill 2500 Zeds",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(3)=(TitleString="Roast Their Chestnuts",DescriptionString="Kill 25 Bosses",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(4)=(TitleString="Workshop Rumble",DescriptionString="Defeat Krampus on Santa's Workshop Survival Hard or higher difficulty",TierEventRewardName="")
+    ObjectiveIconURLs(0)="Xmas_UI.UI_Objectives_Xmas_CartHP"
+    ObjectiveIconURLs(1)="Xmas_UI.UI_Objectives_Xmas_ShoppingSpree"
+    ObjectiveIconURLs(2)="Xmas_UI.UI_Objectives_Xmas_2kZEDs"
+    ObjectiveIconURLs(3)="Xmas_UI.UI_Objectives_Xmas_25Bosses"
+    ObjectiveIconURLs(4)="Xmas_UI.UI_Objectives_Xmas_SantasLair"
+    AllCompleteRewardIconURL="WEP_SkinSet_Christmas_Item_TEX.BattleAxe_ChristmasPrecious_Mint"
+    AllCompleteRewardDescriptionString="Battleaxe + Christmas Skin"
     ChanceDropIconURLs(0)="CHR_Cosmetic_XMAS_Item_TEX.Tickets.Krampus_Ticket"
     ChanceDropIconURLs(1)="CHR_Cosmetic_XMAS_Item_TEX.Tickets.Krampus_Ticket_Golden"
     ChanceDropDescriptionStrings(0)="Prize Ticket"
     ChanceDropDescriptionStrings(1)="Gold Ticket"
-    IconURL="Xmas_UI.KF2_KrampusChristmas_UILogo_Small"
+    IconURL="Xmas_UI.KF2_TwistedChristmas_Logo_Small"
+    UsesProgressList(0)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    UsesProgressList(1)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    UsesProgressList(2)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    UsesProgressList(3)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    UsesProgressList(4)=
+/* Exception thrown while deserializing UsesProgressList
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
 }

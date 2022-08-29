@@ -110,9 +110,13 @@ defaultproperties
 	bHasFlashlight=false
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.65f,IncrementWeight=2)
-	WeaponUpgrades[3]=(IncrementDamage=1.85f,IncrementWeight=3)
+	//WeaponUpgrades[1]=(IncrementDamage=1.3f,IncrementWeight=1)
+	//WeaponUpgrades[2]=(IncrementDamage=1.65f,IncrementWeight=2)
+	//WeaponUpgrades[3]=(IncrementDamage=1.85f,IncrementWeight=3)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.3f), (Stat=EWUS_Damage1, Scale=1.3f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.65f), (Stat=EWUS_Damage1, Scale=1.65f), (Stat=EWUS_Weight, Add=2)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.85f), (Stat=EWUS_Damage1, Scale=1.85f), (Stat=EWUS_Weight, Add=3)))
 }
 
 

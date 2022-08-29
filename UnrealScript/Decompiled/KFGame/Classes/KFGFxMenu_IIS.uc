@@ -11,7 +11,6 @@ class KFGFxMenu_IIS extends KFGFxObject_Menu within GFxMoviePlayer
 var delegate<OnAutoLoginComplete> AutoLoginCompleteDelegate;
 var bool bLoggingIn;
 var bool bForceConnectionAtLogin;
-var bool bStatsRead;
 var bool bClosed;
 var OnlineSubsystem OnlineSub;
 var PlayfabInterface PlayfabInter;
@@ -251,11 +250,6 @@ function ProceedToMainMenu()
 {
     local KFPlayerController PC;
 
-    if(Class'WorldInfo'.static.IsConsoleBuild(8) && !bStatsRead)
-    {
-        OnlineSub.StatsInterface.AddReadOnlineStatsCompleteDelegate(OnPS4StatsRead);
-        return;
-    }
     PC = KFPlayerController(Outer.GetPC());
     PC.ResetPerkStatsLoaded();
     PC.ClientInitializePerks();
@@ -292,13 +286,6 @@ function ProceedToMainMenu()
         PC.SetTimer(0.01, false, 'ShowControllerDisconnectedDialog');
     }
     PC.CheckPrivilegesForMultiplayer();
-}
-
-function OnPS4StatsRead(bool bSuccess)
-{
-    OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnPS4StatsRead);
-    bStatsRead = true;
-    ProceedToMainMenu();
 }
 
 function DelayedOpenGammaPopup()

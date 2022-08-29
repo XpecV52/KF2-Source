@@ -25,23 +25,6 @@ enum BeefcakeType
     EBT_MAX
 };
 
-struct SpawnReplacement
-{
-    /** Entry to replace, some form of AT_ */
-    var() int SpawnEntry;
-    /** Class to use instead of default */
-    var() class<KFPawn_Monster> NewClass;
-    /** Percent chance that the spawn will be replaced by NewClass */
-    var() float PercentChance;
-
-    structdefaultproperties
-    {
-        SpawnEntry=0
-        NewClass=none
-        PercentChance=1
-    }
-};
-
 struct StatAdjustments
 {
     /** Individual per-class adjustments to make after a zed spawns //Class to adjust */
@@ -145,7 +128,7 @@ struct WeeklyOverrides
     /** Whether or not to use the spawn replacement list in the boss wave */
     var() bool bAllowSpawnReplacementDuringBossWave;
     /** If this array is not empty, replaces AIClassList entries with a new spawn class */
-    var() array<SpawnReplacement> BossSpawnReplacementList;
+    var() array<BossSpawnReplacement> BossSpawnReplacementList;
     /** If this array is not empty, properties set in ZedsToAdjust are used in AdjustSpawnedAIPawn */
     var() array<StatAdjustments> ZedsToAdjust;
     /** Whether or not to skip opening of the trader */
@@ -658,13 +641,16 @@ function class<KFPawn_Monster> GetAISpawnOverrirde(KFAISpawnManager.EAIType AITy
                 if(RandF > Replacement.PercentChance)
                 {
                     continue;
-                    goto J0xD5;
+                    goto J0x11A;
                 }
-            }            
-            return Replacement.NewClass;
+            }
+            if(Replacement.NewClass.Length > 0)
+            {                
+                return Replacement.NewClass[Rand(Replacement.NewClass.Length)];
+            }
         }        
     }
-    J0xD5:
+    J0x11A:
     
     return Outer.AIClassList[AIType];
 }

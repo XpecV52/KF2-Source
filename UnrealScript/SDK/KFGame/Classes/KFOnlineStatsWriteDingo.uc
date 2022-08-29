@@ -57,4 +57,6 @@ defaultproperties
 	Properties.Add((PropertyId = STATID_ACHIEVE_LockdownCollectibles,Data=(Type=SDT_Int32,Value1=0)))
 	Properties.Add((PropertyId = STATID_ACHIEVE_MonsterBallCollectibles,Data=(Type=SDT_Int32,Value1=0)))
 	Properties.Add((PropertyId = STATID_ACHIEVE_MonsterBallSecretRoom,Data=(Type=SDT_Int32,Value1=0)))
+	Properties.Add((PropertyId = STATID_ACHIEVE_SantasWorkshopCollectibles,Data=(Type=SDT_Int32,Value1=0)))
+	Properties.Add((PropertyId = STATID_ACHIEVE_ShoppingSpreeCollectibles,Data=(Type=SDT_Int32,Value1=0)))
 }

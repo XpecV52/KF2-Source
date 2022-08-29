@@ -16,6 +16,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     local KFPawn_Human KFPH;
     local KFGameInfo KFGI;
+    local KFInventoryManager KFIM;
 
     super.SpecialMoveStarted(bForced, PrevMove);
     OwnerController = KFPlayerController(PawnOwner.Controller);
@@ -40,6 +41,11 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
             if((KFGI != none) && KFGI.DialogManager != none)
             {
                 KFGI.DialogManager.PlayPlayerGrabbedDialog(KFPH);
+            }
+            KFIM = KFInventoryManager(KFPH.InvManager);
+            if(((KFIM != none) && KFPH.MyKFWeapon != none) && KFPH.MyKFWeapon.IsA('KFWeap_Welder'))
+            {
+                KFIM.SwitchToLastWeapon();
             }
         }
     }

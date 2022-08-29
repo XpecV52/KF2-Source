@@ -14,28 +14,6 @@ const CYLINDERSTATE_READY = 0;
 const CYLINDERSTATE_PENDING = 1;
 const CYLINDERSTATE_ROTATING = 2;
 
-struct native CylinderRotationInfo
-{
-    var float InC;
-    var transient float PrevDegrees;
-    var transient float NextDegrees;
-    var float Time;
-    var transient float Timer;
-    var transient SkelControlSingleBone Control;
-    var transient int State;
-
-    structdefaultproperties
-    {
-        InC=0
-        PrevDegrees=0
-        NextDegrees=0
-        Time=0
-        Timer=0
-        Control=none
-        State=0
-    }
-};
-
 var bool bRevolver;
 var SkeletalMesh UnusedBulletMeshTemplate;
 var SkeletalMesh UsedBulletMeshTemplate;

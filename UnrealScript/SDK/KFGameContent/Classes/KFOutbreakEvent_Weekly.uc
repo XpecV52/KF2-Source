@@ -109,8 +109,8 @@ defaultproperties
                     bHeadshotsOnly=true,
                     SpawnReplacementList={(
                                             
-                                            (SpawnEntry=AT_Stalker,NewClass=class'KFGameContent.KFPawn_ZedClot_Alpha',PercentChance=1.0),
-                                            (SpawnEntry=AT_Husk,NewClass=class'KFGameContent.KFPawn_ZedBloat',PercentChance=1.0)
+                                            (SpawnEntry=AT_Stalker,NewClass=(class'KFGameContent.KFPawn_ZedClot_Alpha'),PercentChance=1.0),
+                                            (SpawnEntry=AT_Husk,NewClass=(class'KFGameContent.KFPawn_ZedBloat'),PercentChance=1.0)
                     )},
                     ZedsToAdjust={(
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthScale=0.50), // HealthScale = 0.25, then .40
@@ -171,13 +171,13 @@ defaultproperties
                     GameLength=GL_Normal,
                     WaveAICountScale=(0.55, 0.55, 0.55, 0.55, 0.55, 0.55), //This is per player-count 0.75
                     SpawnReplacementList={(
-                                            (SpawnEntry=AT_AlphaClot,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundMini',PercentChance=0.05), //0.5
-                                            (SpawnEntry=AT_SlasherClot,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundMini',PercentChance=0.1), //0.05
-                                            (SpawnEntry=AT_GoreFast,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundMini',PercentChance=0.1), //0.05
-                                            (SpawnEntry=AT_Crawler,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundmini',PercentChance=0.05),
-                                            (SpawnEntry=AT_Stalker,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundmini',PercentChance=0.05),
-                                            (SpawnEntry=AT_Scrake,NewClass=class'KFGameContent.KFPawn_ZedFleshpound',PercentChance=0.9),
-                                            (SpawnEntry=AT_Bloat,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundMini',PercentChance=0.65) //0.65
+                                            (SpawnEntry=AT_AlphaClot,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundMini'),PercentChance=0.05), //0.5
+                                            (SpawnEntry=AT_SlasherClot,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundMini'),PercentChance=0.1), //0.05
+                                            (SpawnEntry=AT_GoreFast,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundMini'),PercentChance=0.1), //0.05
+                                            (SpawnEntry=AT_Crawler,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundmini'),PercentChance=0.05),
+                                            (SpawnEntry=AT_Stalker,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundmini'),PercentChance=0.05),
+                                            (SpawnEntry=AT_Scrake,NewClass=(class'KFGameContent.KFPawn_ZedFleshpound'),PercentChance=0.9),
+                                            (SpawnEntry=AT_Bloat,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundMini'),PercentChance=0.65) //0.65
                     )},
                     BossSpawnReplacementList={(
                                             (SpawnEntry=BAT_Hans,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundKing'),
@@ -251,7 +251,7 @@ defaultproperties
                                     (ClassToAdjust=class'KFGameContent.KFPawn_ZedStalker',DamageDealtScale=0.6)
                     )},
                     SpawnReplacementList={(
-                                            (SpawnEntry=AT_Stalker,NewClass=class'KFGameContent.KFPawn_ZedScrake',PercentChance=0.07)
+                                            (SpawnEntry=AT_Stalker,NewClass=(class'KFGameContent.KFPawn_ZedScrake'),PercentChance=0.07)
                     )},
                     PermanentZedTimeCutoff = 6,
                     OverrideSpawnDerateTime = 0.0,
@@ -309,16 +309,16 @@ defaultproperties
                     OverrideTeleportDerateTime=0.1,
                     SpawnWeaponList=KFGFxObject_TraderItems'GP_Trader_ARCH.HordeWeeklyList',
                     SpawnReplacementList={(
-                                (SpawnEntry=AT_AlphaClot,NewClass = class'KFGameContent.KFPawn_ZedClot_Alpha'),
-                                (SpawnEntry=AT_SlasherClot,NewClass = class'KFGameContent.KFPawn_ZedClot_Slasher'),
-                                (SpawnEntry=AT_Crawler,NewClass = class'KFGameContent.KFPawn_ZedClot_Slasher',PercentChance=0.7),
-                                (SpawnEntry=AT_GoreFast,NewClass = class'KFGameContent.KFPawn_ZedClot_Slasher'),
-                                (SpawnEntry=AT_Stalker,NewClass = class'KFGameContent.KFPawn_ZedClot_Slasher',PercentChance=0.7),
-                                (SpawnEntry=AT_Scrake,NewClass = class'KFGameContent.KFPawn_ZedBloat'),
-                                (SpawnEntry=AT_FleshPound,NewClass = class'KFGameContent.KFPawn_ZedHusk'),
-                                (SpawnEntry=AT_Bloat,NewClass = class'KFGameContent.KFPawn_ZedClot_Alpha',PercentChance=0.01),
-                                (SpawnEntry=AT_Siren,NewClass = class'KFGameContent.KFPawn_ZedGorefast'),
-                                (SpawnEntry=AT_Husk,NewClass = class'KFGameContent.KFPawn_ZedClot_Alpha')
+                                (SpawnEntry=AT_AlphaClot,NewClass = (class'KFGameContent.KFPawn_ZedClot_Alpha')),
+                                (SpawnEntry=AT_SlasherClot,NewClass = (class'KFGameContent.KFPawn_ZedClot_Slasher')),
+                                (SpawnEntry=AT_Crawler,NewClass = (class'KFGameContent.KFPawn_ZedClot_Slasher'),PercentChance=0.7),
+                                (SpawnEntry=AT_GoreFast,NewClass = (class'KFGameContent.KFPawn_ZedClot_Slasher')),
+                                (SpawnEntry=AT_Stalker,NewClass = (class'KFGameContent.KFPawn_ZedClot_Slasher'),PercentChance=0.7),
+                                (SpawnEntry=AT_Scrake,NewClass = (class'KFGameContent.KFPawn_ZedBloat')),
+                                (SpawnEntry=AT_FleshPound,NewClass = (class'KFGameContent.KFPawn_ZedHusk')),
+                                (SpawnEntry=AT_Bloat,NewClass = (class'KFGameContent.KFPawn_ZedClot_Alpha'),PercentChance=0.01),
+                                (SpawnEntry=AT_Siren,NewClass = (class'KFGameContent.KFPawn_ZedGorefast')),
+                                (SpawnEntry=AT_Husk,NewClass = (class'KFGameContent.KFPawn_ZedClot_Alpha'))
                     )},
                     BossSpawnReplacementList={(
                                 (SpawnEntry=BAT_Hans,NewClass = class'KFGameContent.KFPawn_ZedFleshpoundKing'),

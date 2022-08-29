@@ -71,6 +71,40 @@ struct native LateArrivalStart
     }
 };
 
+struct native SpawnReplacement
+{
+    /** Entry to replace, some form of AT_ */
+    var() KFAISpawnManager.EAIType SpawnEntry;
+    /** Class(es) to use instead of default */
+    var() array< class<KFPawn_Monster> > NewClass;
+    /** Percent chance that the spawn will be replaced by NewClass */
+    var() float PercentChance;
+
+    structdefaultproperties
+    {
+        SpawnEntry=EAIType.AT_Clot
+        NewClass=none
+        PercentChance=1
+    }
+};
+
+struct native BossSpawnReplacement
+{
+    /** Entry to replace, some form of AT_ */
+    var() KFAISpawnManager.EBossAIType SpawnEntry;
+    /** Class to use instead of default */
+    var() class<KFPawn_Monster> NewClass;
+    /** Percent chance that the spawn will be replaced by NewClass */
+    var() float PercentChance;
+
+    structdefaultproperties
+    {
+        SpawnEntry=EBossAIType.BAT_Hans
+        NewClass=none
+        PercentChance=1
+    }
+};
+
 struct native GameMapCycle
 {
     var array<string> Maps;
@@ -201,6 +235,7 @@ var protected const array< class<KFPawn_Monster> > NonSpawnAIClassList;
 var protected const array< class<KFPawn_Monster> > AIBossClassList;
 var protected const array< class<KFPawn_Monster> > AITestBossClassList;
 var protected int BossIndex;
+/** What percentage of normal game speed to slow down the game during ZedTime */
 var() float ZedTimeSlomoScale;
 /** How long to blend out zed time dilation for */
 var() float ZedTimeBlendOutTime;
@@ -209,8 +244,6 @@ var int ZedTimeExtensionsUsed;
 var float LastZedTimeEvent;
 var class<KFGameplayEventsWriter> GameplayEventsWriterClass;
 var transient KFGameplayEventsWriter GameplayEventsWriter;
-var protected int NumOfTrapKills;
-var protected int TrapKillMilestone;
 var globalconfig array<config GameMapCycle> GameMapCycles;
 var globalconfig int ActiveMapCycle;
 var globalconfig int MapCycleIndex;
@@ -1167,20 +1200,24 @@ function class<KFPawn_Monster> GetAISpawnType(KFAISpawnManager.EAIType AIType)
 
 function class<KFPawn_Monster> GetBossAISpawnType()
 {
-    if((BossIndex < 0) || BossIndex >= AIBossClassList.Length)
-    {
-        return none;
-    }
-    return AIBossClassList[BossIndex];
+    return GetSpecificBossClass(BossIndex, KFMapInfo(WorldInfo.GetMapInfo()));
 }
 
-static function class<KFPawn_Monster> GetSpecificBossClass(int Index)
+static function class<KFPawn_Monster> GetSpecificBossClass(int Index, optional KFMapInfo MapInfo)
 {
-    if((Index < 0) || Index >= default.AIBossClassList.Length)
+    local array< class<KFPawn_Monster> > ClassList;
+
+    MapInfo = none;
+    ClassList = default.AIBossClassList;
+    if(MapInfo != none)
+    {
+        MapInfo.ModifyGameClassBossAIClassList(ClassList);
+    }
+    if((Index < 0) || Index >= ClassList.Length)
     {
         return none;
     }
-    return default.AIBossClassList[Index];
+    return ClassList[Index];
 }
 
 event PrePossessAdjustments(KFPawn NewSpawn);
@@ -1390,7 +1427,6 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     local string KillerLabel;
     local class<DamageType> LastHitByDamageType;
     local int I;
-    local class<KFDamageType> KFDT;
 
     if((KilledPlayer != none) && KilledPlayer.bIsPlayer)
     {
@@ -1524,11 +1560,6 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
             {
                 LogInternal("@@@@ ZED COUNT DEBUG: AIAliveCount =" @ string(AIAliveCount));
             }
-        }
-        KFDT = class<KFDamageType>(DT);
-        if((KFDT != none) && KFDT.default.bIsTrapDamage)
-        {
-            AddTrapKill();
         }        
     }
     else
@@ -1546,15 +1577,6 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         }
     }
 }
-
-function AddTrapKill()
-{
-    ++ NumOfTrapKills;
-    CheckTrapMilestoneComplete();
-}
-
-// Export UKFGameInfo::execCheckTrapMilestoneComplete(FFrame&, void* const)
-private native final function CheckTrapMilestoneComplete();
 
 function class<DamageType> GetLastHitByDamageType(class<DamageType> DT, KFPawn_Monster P, Controller Killer)
 {
@@ -1645,7 +1667,16 @@ function int GetAdjustedTeamDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI
 
 function BossDied(Controller Killer, optional bool bCheckWaveEnded)
 {
+    local KFPlayerController KFPC;
+
     bCheckWaveEnded = true;
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        if(KFPC != none)
+        {
+            KFPC.ClientOnBossDied();
+        }        
+    }    
 }
 
 static function int GetBossKillScore()
@@ -1787,6 +1818,7 @@ function float GetAdjustedAIDoshValue(class<KFPawn_Monster> MonsterClass)
     TempValue *= DifficultyInfo.GetKillCashModifier();
     ModifyAIDoshValueForPlayerCount(TempValue);
     TempValue *= GameLengthDoshScale[GameLength];
+    KFMapInfo(WorldInfo.GetMapInfo()).ModifyAIDoshValue(TempValue);
     return TempValue;
 }
 
@@ -2991,6 +3023,8 @@ function OnAIChangeEnemy(BaseAIController AI, Pawn Enemy)
     }
 }
 
+function OnEndlessSpawningObjectiveDeactivated();
+
 static function bool HasCustomTraderVoiceGroup()
 {
     return false;
@@ -3103,8 +3137,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    TrapKillMilestone=25
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-MonsterBall"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

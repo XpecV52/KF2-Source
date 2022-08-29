@@ -258,7 +258,7 @@ simulated function bool SetEnraged(bool bNewEnraged)
     {
         if(bIsEnraged)
         {
-            DoSpecialMove(42, true,, SpecialMoveHandler.SpecialMoveClasses[42].static.PackFlagsBase(self));
+            DoSpecialMove(43, true,, SpecialMoveHandler.SpecialMoveClasses[43].static.PackFlagsBase(self));
             if(GetTimerCount('TimerFartAttack') > Lerp(RageFartAttackTimer.X, RageFartAttackTimer.Y, GetHealthPercentage()))
             {
                 ClearFartTimer();
@@ -456,6 +456,10 @@ function SpawnPoopMonster()
     local KFPawn_Monster NewZed;
     local Vector X, Y, Z;
 
+    if(IsDoingSpecialMove(37))
+    {
+        return;
+    }
     if(IsTimerActive('AllowNextPoopMonster'))
     {
         ++ CurrentDelayedSpawns;
@@ -512,6 +516,11 @@ simulated function PlayHeadAsplode()
 simulated function ApplyHeadChunkGore(class<KFDamageType> dmgType, Vector HitLocation, Vector HitDirection)
 {
     return;
+}
+
+simulated function string GetIconPath()
+{
+    return "ZED_Patriarch_UI.ZED-VS_Icon_Boss";
 }
 
 defaultproperties

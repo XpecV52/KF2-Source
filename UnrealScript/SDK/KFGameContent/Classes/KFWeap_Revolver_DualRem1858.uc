@@ -326,9 +326,14 @@ defaultproperties
 	BulletMeshComponents.Add(BulletMeshComp5_L)
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=0)
-	WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=0)
-	WeaponUpgrades[3]=(IncrementDamage=1.95f,IncrementWeight=2)
-	WeaponUpgrades[4]=(IncrementDamage=2.2f,IncrementWeight=4)
+	//WeaponUpgrades[1]=(IncrementDamage=1.15f,IncrementWeight=0)
+	//WeaponUpgrades[2]=(IncrementDamage=1.6f,IncrementWeight=0)
+	//WeaponUpgrades[3]=(IncrementDamage=1.95f,IncrementWeight=2)
+	//WeaponUpgrades[4]=(IncrementDamage=2.2f,IncrementWeight=4)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.6f), (Stat=EWUS_Damage1, Scale=1.6f)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.95f), (Stat=EWUS_Damage1, Scale=1.95f), (Stat=EWUS_Weight, Add=2)))
+	WeaponUpgrades[4]=(Stats=((Stat=EWUS_Damage0, Scale=2.2f), (Stat=EWUS_Damage1, Scale=2.2f), (Stat=EWUS_Weight, Add=4)))
 }
 

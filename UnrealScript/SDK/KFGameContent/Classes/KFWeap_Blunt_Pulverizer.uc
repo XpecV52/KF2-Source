@@ -146,9 +146,9 @@ simulated protected function PrepareExplosionTemplate()
 		ExplosionTemplate = default.ExplosionTemplate;
 		ExplosionTemplate.ExplosionEffects = default.ExplosionTemplate.ExplosionEffects;
 		ExplosionTemplate.ExplosionSound = default.ExplosionTemplate.ExplosionSound;
-		ExplosionTemplate.Damage = ExplosionTemplate.default.Damage;
-		ExplosionTemplate.DamageRadius = ExplosionTemplate.default.DamageRadius;
-		ExplosionTemplate.DamageFalloffExponent = ExplosionTemplate.default.DamageFalloffExponent;
+		ExplosionTemplate.Damage = default.ExplosionTemplate.Damage;
+		ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius;
+		ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;
 	}
 
 	// Change the radius and damage based on the perk
@@ -447,8 +447,11 @@ defaultproperties
 	ParryStrength=5
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.05f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.1f,IncrementWeight=2)
+	//WeaponUpgrades[1]=(IncrementDamage=1.05f,IncrementWeight=1)
+	//WeaponUpgrades[2]=(IncrementDamage=1.1f,IncrementWeight=2)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.05f), (Stat=EWUS_Damage1, Scale=1.05f), (Stat=EWUS_Damage2, Scale=1.05f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.1f), (Stat=EWUS_Damage1, Scale=1.1f), (Stat=EWUS_Damage2, Scale=1.1f), (Stat=EWUS_Weight, Add=2)))
 }
 
 

@@ -71,7 +71,7 @@ simulated event PreBeginPlay()
 simulated function SetShownInInventory(bool bValue)
 {
 	InventoryGroup= bValue ? IG_Equipment : IG_None ;
-	bAutoUnequip=bValue;
+	bAutoUnequip = !bValue;
 }
 
 /** Turn on the UI screen when we equip the healer */
@@ -579,12 +579,6 @@ auto state Inactive
 
 simulated state Active
 {
-	/** Event called when weapon enters this state */
-	simulated event BeginState(Name PreviousStateName)
-	{
-		Super.BeginState(PreviousStateName);
-	}
-
 	simulated event Tick(float DeltaTime)
 	{
 		// Caution - Super will skip our global, but global will skip super's state function!
@@ -596,7 +590,7 @@ simulated state Active
 			TickWeldTarget();	// will trace each call, but it's decently fast (zero-extent)
 			UpdateScreenUI();
 
-			if ( !bAutoUnequip )
+			if (bAutoUnequip)
 			{
 				TickAutoUnequip();
 			}
@@ -688,6 +682,27 @@ simulated state WeaponWelding extends WeaponFiring
 	}
 }
 
+/*********************************************************************************************
+* state WeaponSprinting
+* When the pawn is sprinting, they need to check if they should auto unequip the welder.
+*********************************************************************************************/
+
+simulated state WeaponSprinting
+{
+	simulated event Tick(float DeltaTime)
+	{
+		Global.Tick(DeltaTime);
+
+		if (Instigator != none && Instigator.IsLocallyControlled())
+		{
+			if (bAutoUnequip)
+			{
+				TickAutoUnequip();
+			}
+		}
+	}
+}
+
 defaultproperties
 {
 	InventoryGroup=IG_None
@@ -698,7 +713,7 @@ defaultproperties
 	PlayerViewOffset=(X=20.0,Y=10,Z=-10)
 
 	FireTweenTime=0.2f
-	WeldingRange=100.f
+	WeldingRange=150.f
 	ExtraWeldingRange=10
 	FastenRate=68.f
 	UnFastenRate=-110.f
@@ -759,6 +774,6 @@ defaultproperties
 	WeaponFireLoopEndSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_Welder.Stop_WEP_SA_Welder_Fire_Loop_M', FirstPersonCue=AkEvent'WW_WEP_SA_Welder.Stop_WEP_SA_Welder_Fire_Loop_S')
 
     ScreenUIClass=class'KFGFxWorld_WelderScreen'
-	
+
 	AssociatedPerkClasses(0)=none
 }

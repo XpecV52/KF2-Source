@@ -65,10 +65,10 @@ defaultproperties
    WalkingRecoilModifier=1.100000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_SWAT'
-   WeaponUpgrades(1)=(IncrementDamage=1.400000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.800000)
-   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=2.100000)
-   WeaponUpgrades(4)=(IncrementWeight=4,IncrementDamage=2.300000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.400000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.800000),(Stat=EWUS_Damage1,Scale=1.800000),(Add=2)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=2.100000),(Stat=EWUS_Damage1,Scale=2.100000),(Add=3)))
+   WeaponUpgrades(4)=(Stats=((Stat=EWUS_Damage0,Scale=2.300000),(Stat=EWUS_Damage1,Scale=2.300000),(Add=4)))
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

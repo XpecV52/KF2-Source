@@ -71,8 +71,8 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.600000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_SWAT'
-   WeaponUpgrades(1)=(IncrementDamage=1.150000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.300000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=2)))
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

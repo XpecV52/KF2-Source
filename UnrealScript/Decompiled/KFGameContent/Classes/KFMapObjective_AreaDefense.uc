@@ -30,9 +30,16 @@ struct DoshHoldMaxReward
     }
 };
 
-var string LocalizationKey;
-var string DescriptionLocKey;
-var string RequirementsLocKey;
+var() string LocalizationKey;
+var() string DescriptionLocKey;
+var() string LocalizationPackageName;
+var() string RequirementsLocKey;
+var() bool bIsMissionCriticalObjective;
+var repnotify bool bActive;
+/** Whether or not the zone is in the danger state */
+var() repnotify bool bDangerState;
+/** Whether or not to use the trader trail to lead players to the zone */
+var() bool bUseTrailToVolume;
 var transient KFReplicatedShowPathActor TrailActor;
 var array<KFPawn_Human> TouchingHumans;
 var array<KFPawn_Monster> TouchingZeds;
@@ -42,11 +49,6 @@ var() const int PlayerThresholds[6];
 var() const int ZedThresholds[6];
 /** Texture to use for the volume icon */
 var() Texture2D ObjectiveIcon;
-var repnotify bool bActive;
-/** Whether or not the zone is in the danger state */
-var() repnotify bool bDangerState;
-/** Whether or not to use the trader trail to lead players to the zone */
-var() bool bUseTrailToVolume;
 /**  
  *Emitter to use to visually define the area the players should hold out.
  *       Note: This is going to be removed in favor of a static mesh setup at some
@@ -341,17 +343,15 @@ simulated function ActivateObjective()
         UpdateMeshArrayState();
         if(bUseTrailToVolume)
         {
-            TrailActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathObjective', none);
+            TrailActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathActor', none);
             if(TrailActor != none)
             {
-                SetTrailActorType();
+                TrailActor.SetEmitterTemplate(ParticleSystem'FX_Objective_Trail');
                 TrailActor.SetPathTarget(self, self, 2);
             }
         }
     }
 }
-
-simulated function SetTrailActorType();
 
 simulated function DeactivateObjective()
 {
@@ -483,6 +483,11 @@ simulated function bool UsesProgress()
 
 simulated function float GetProgress();
 
+simulated function bool IsComplete()
+{
+    return (GetProgress()) >= 1;
+}
+
 simulated function float GetActivationPctChance()
 {
     return 1;
@@ -608,12 +613,12 @@ simulated function Texture2D GetIcon()
 
 simulated function string GetLocalizedName()
 {
-    return Localize("Objectives", default.LocalizationKey, "KFGame");
+    return Localize("Objectives", LocalizationKey, LocalizationPackageName);
 }
 
 simulated function string GetLocalizedDescription()
 {
-    return Localize("Objectives", default.DescriptionLocKey, "KFGame");
+    return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
 }
 
 simulated function bool UsesMultipleActors()
@@ -625,8 +630,14 @@ simulated function string GetLocalizedRequirements();
 
 simulated function string GetActorCount();
 
+simulated function bool GetIsMissionCritical()
+{
+    return bIsMissionCriticalObjective;
+}
+
 defaultproperties
 {
+    LocalizationPackageName="KFGame"
     ZoneDangerMaterialParamName=Danger
     EventIndex=-1
     PerPlayerSpawnRateMod(0)=1

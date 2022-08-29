@@ -444,10 +444,10 @@ static simulated event SetTraderWeaponStats(out array<STraderItemWeaponStats> We
     super.SetTraderWeaponStats(WeaponStats);
     WeaponStats.Length = WeaponStats.Length + 1;
     WeaponStats[WeaponStats.Length - 1].StatType = 4;
-    WeaponStats[WeaponStats.Length - 1].StatValue = default.BlockDamageMitigation;
+    WeaponStats[WeaponStats.Length - 1].StatValue = GetUpgradedBlockDamageMitigation(0);
     WeaponStats.Length = WeaponStats.Length + 1;
     WeaponStats[WeaponStats.Length - 1].StatType = 5;
-    WeaponStats[WeaponStats.Length - 1].StatValue = default.ParryDamageMitigationPercent;
+    WeaponStats[WeaponStats.Length - 1].StatValue = GetUpgradedParryDamageMitigation(0);
 }
 
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -472,6 +472,16 @@ static simulated function float CalculateTraderWeaponStatFireRate()
 static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
 {
     return 8;
+}
+
+static simulated function float GetUpgradedBlockDamageMitigation(int UpgradeIndex)
+{
+    return GetUpgradedStatValue(default.BlockDamageMitigation, 3, UpgradeIndex);
+}
+
+static simulated function float GetUpgradedParryDamageMitigation(int UpgradeIndex)
+{
+    return GetUpgradedStatValue(default.ParryDamageMitigationPercent, 4, UpgradeIndex);
 }
 
 simulated state WeaponUpkeep
@@ -650,15 +660,10 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
 
     simulated function float GetThirdPersonAnimRate()
     {
-        local KFPerk CurrentPerk;
         local float ScaledRate;
 
         ScaledRate = EvalInterpCurveFloat(MeleeAttackHelper.FatigueCurve, float(MeleeAttackHelper.NumChainedAttacks));
-        CurrentPerk = GetPerk();
-        if(CurrentPerk != none)
-        {
-            CurrentPerk.ModifyMeleeAttackSpeed(ScaledRate, self);
-        }
+        ModifyMeleeAttackSpeed(ScaledRate, CurrentFireMode);
         return 1 / ScaledRate;
     }
     stop;    
@@ -916,7 +921,7 @@ simulated state MeleeBlocking
             InstigatorPerk = GetPerk();
             if(IsTimerActive('ParryCheckTimer'))
             {
-                InDamage *= ParryDamageMitigationPercent;
+                InDamage *= (GetUpgradedParryDamageMitigation(CurrentWeaponUpgradeIndex));
                 if(KFPawn(DamageCauser) != none)
                 {
                     KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
@@ -929,7 +934,7 @@ simulated state MeleeBlocking
             }
             else
             {
-                InDamage *= BlockDamageMitigation;
+                InDamage *= (GetUpgradedBlockDamageMitigation(CurrentWeaponUpgradeIndex));
                 ClientPlayBlockEffects(BlockTypeIndex);
                 if(InstigatorPerk != none)
                 {
@@ -1072,6 +1077,8 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_MeleeBase.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
+    UpgradeFireModes[1]=0
+    UpgradeFireModes[5]=1
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */

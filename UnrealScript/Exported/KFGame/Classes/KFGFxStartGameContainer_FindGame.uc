@@ -166,18 +166,17 @@ function LocalizeMenu()
 
 defaultproperties
 {
-   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_MonsterMasquerade",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")
-   WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5246")
-   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Headshot_Bundle",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/6455")
-   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_USBKey_NeonMK3_21",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/6431")
-   WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_HorzineKey_Loco_18",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/6446")
-   WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_RR_Promotion",TextField="FeaturedCrossover",RedirectURL="https://store.steampowered.com/app/300380/Road_Redemption/")
-   WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
-   WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
-   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
-   WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
-   WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.manheadmerch.com/")
-   WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
+   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Xmas_Event",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")
+   WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Christmas_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5588")
+   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Xmas_BadSanta",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/6670")
+   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Xmas_USBKey_NeonMK4_22",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/6666")
+   WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Xmas_Crate_CyberSamurai_19",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/6617")
+   WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
+   WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
+   WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
+   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
+   WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.manheadmerch.com/")
+   WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
    MultiplayerString="Find A Match"
    CreateGameString="Create A Match"
    SoloString="Play Solo Offline"

@@ -542,11 +542,31 @@ ItemName="Mac 10"
 ItemCategory="서브머신건"
 ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•속사 화염 탄약을 지원합니다. 아시겠죠? 속사 화염이라구요! 화염 서브머신건이잖아요! 아, 됐어요."
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="전투도끼"
+ItemCategory="백병전"
+ItemDescription="•기본 - 느린 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 사망 시 사라지는 강하고 느린 공격.\n•대체 - 차단 / 회피\n•구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭."
+
+[KFWeap_Edged_FireAxe]
+ItemName="소방 도끼"
+ItemCategory="백병전"
+ItemDescription="•기본 - 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 세게 베기 공격.\n•대체 - 차단/회피.\n•불이 난 것도 아닌데 왜 소방 도끼라고 하는 걸까요?"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="M32 유탄 발사기"
+ItemCategory="폭탄"
+ItemDescription="•발사 모드 유탄을 발사합니다.\n•유탄은 충격을 받으면 폭발합니다.\n•M79 유탄 발사기 6대를 테이프로 둘둘 감는 것보다 훨씬 우아한 수단입니다."
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="HMTech-501 유탄 소총"
 ItemCategory="돌격소총"
-ItemDescription="•전자동만 지원합니다.\n•대체 사격 시 수류탄 발사.\n•친구들에게 수류탄을 던져도 괜찮은 유일한 무기입니다!"
+ItemDescription="•발사 모드는 완전 자동만 이용할 수 있습니다.\n•대체 발사는 치료용 유탄을 발사합니다.\n•친구들에게 유탄을 발사해도 괜찮은 유일한 무기입니다!"
 SecondaryAmmo="치료용 수류탄"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="토미건"
+ItemCategory="돌격소총"
+ItemDescription="•완전 자동과 반자동 발사 모드를 선택할 수 있습니다.\n•대체 발사로 두 발사 모드를 선택합니다.\n•시카고 타자기로 알려지기도 했습니다, 이름을 쓰기에 좋은 총입니다."
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL ACOG"

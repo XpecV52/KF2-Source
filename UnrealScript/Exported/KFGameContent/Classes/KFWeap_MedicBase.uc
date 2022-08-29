@@ -512,12 +512,19 @@ function AdjustLockTarget(actor NewLockTarget)
 simulated function bool CanLockOnTo(Actor TA)
 {
 	Local Pawn PawnTarget;
+	local KFPawn KFPawnTarget;
 
     PawnTarget = Pawn(TA);
 
     // Make sure the pawn is legit, isn't dead, and isn't already at full health
     if ( (TA == None) || !TA.bProjTarget || TA.bDeleteMe || (PawnTarget == None)
         || (TA == Instigator) || (PawnTarget.Health <= 0) || (PawnTarget.Health >= PawnTarget.HealthMax) )
+	{
+		return false;
+	}
+
+	KFPawnTarget = KFPawn(PawnTarget);
+	if (KFPawnTarget != none && !KFPawnTarget.CanBeHealed())
 	{
 		return false;
 	}

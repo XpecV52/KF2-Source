@@ -24,6 +24,8 @@ KF-DieSector="spielt DieSektor"
 KF-Lockdown="Sperrmodus wird gespielt"
 KF-Airship="Luftschiff wird gespielt"
 KF-MonsterBall="Spielt Monsterball"
+KF-ShoppingSpree="Spielt Kaufrausch"
+KF-SantasWorkshop="Spielt Santas Werkstatt"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

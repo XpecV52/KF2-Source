@@ -591,15 +591,10 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
 	/** Gets the current animation rate, scaled or not */
 	simulated function float GetThirdPersonAnimRate()
 	{
-		local KFPerk CurrentPerk;
 		local float ScaledRate;
 
 		ScaledRate = EvalInterpCurveFloat( MeleeAttackHelper.FatigueCurve, MeleeAttackHelper.NumChainedAttacks );
-		CurrentPerk = GetPerk();
-		if ( CurrentPerk != none )
-		{
-			CurrentPerk.ModifyMeleeAttackSpeed( ScaledRate, self );
-		}
+		ModifyMeleeAttackSpeed(ScaledRate, CurrentFireMode);
 
 		return 1.f / ScaledRate;
 	}
@@ -941,7 +936,7 @@ simulated state MeleeBlocking
 
 			if ( IsTimerActive(nameof(ParryCheckTimer)) )
 			{
-				InDamage *= ParryDamageMitigationPercent;
+				InDamage *= GetUpgradedParryDamageMitigation(CurrentWeaponUpgradeIndex);
 				// Notify attacking pawn for effects / animations
 				if ( KFPawn(DamageCauser) != None )
 				{
@@ -960,7 +955,7 @@ simulated state MeleeBlocking
 			}
 			else
 			{
-				InDamage *= BlockDamageMitigation;
+				InDamage *= GetUpgradedBlockDamageMitigation(CurrentWeaponUpgradeIndex);
 				ClientPlayBlockEffects(BlockTypeIndex);
 
 				if( InstigatorPerk != none )
@@ -1204,11 +1199,11 @@ static simulated event SetTraderWeaponStats( out array<STraderItemWeaponStats> W
 
 	WeaponStats.Length = WeaponStats.Length + 1;
 	WeaponStats[WeaponStats.Length-1].StatType = TWS_Block;
-	WeaponStats[WeaponStats.Length-1].StatValue = default.BlockDamageMitigation;
+	WeaponStats[WeaponStats.Length-1].StatValue = GetUpgradedBlockDamageMitigation(0);
 
 	WeaponStats.Length = WeaponStats.Length + 1;
 	WeaponStats[WeaponStats.Length-1].StatType = TWS_Parry;
-	WeaponStats[WeaponStats.Length-1].StatValue = default.ParryDamageMitigationPercent;
+	WeaponStats[WeaponStats.Length-1].StatValue = GetUpgradedParryDamageMitigation(0);
 }
 
 /** Allows weapon to calculate its own damage for display in trader
@@ -1245,6 +1240,20 @@ static simulated function float CalculateTraderWeaponStatFireRate()
 static simulated event EFilterTypeUI GetTraderFilter()
 {
 	return FT_Melee;
+}
+
+/*********************************************************************************************
+ * Upgrades
+ ********************************************************************************************/
+
+static simulated function float GetUpgradedBlockDamageMitigation(int UpgradeIndex)
+{
+	return GetUpgradedStatValue(default.BlockDamageMitigation, EWUS_BlockDmgMitigation, UpgradeIndex);
+}
+
+static simulated function float GetUpgradedParryDamageMitigation(int UpgradeIndex)
+{
+	return GetUpgradedStatValue(default.ParryDamageMitigationPercent, EWUS_ParryDmgMitigation, UpgradeIndex);
 }
 
 defaultproperties
@@ -1330,4 +1339,8 @@ defaultproperties
 
 	// Trader
     EstimatedFireRate=100
+
+	// Upgrades
+	UpgradeFireModes(BLOCK_FIREMODE)=0
+	UpgradeFireModes(HEAVY_ATK_FIREMODE)=1
 }

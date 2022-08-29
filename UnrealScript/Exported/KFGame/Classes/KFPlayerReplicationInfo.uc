@@ -1138,8 +1138,26 @@ native private function bool LoadCharacterConfig(out int CharacterIndex);
 native private function RetryCharacterOwnership();
 native function ClearCharacterAttachment(int AttachmentIndex);
 
+simulated function OnReadCrossTitleContentComplete(bool bWasSuccessful)
+{
+	local array<OnlineCrossTitleContent> CrossTitleContent;
+	local OnlineContentInterface OnlineContentInt;
+
+	OnlineContentInt = class'GameEngine'.static.GetOnlineSubsystem().ContentInterface;
+
+	if (bWasSuccessful)
+	{
+		OnlineContentInt.GetCrossTitleContentList(0, OCT_Game, CrossTitleContent);
+	}
+
+	class'KFUnlockManager'.static.InitSharedUnlocksFor(self, CrossTitleContent);
+	OnlineContentInt.ClearReadCrossTitleContentCompleteDelegate(0, OCT_Game, OnReadCrossTitleContentComplete);
+}
+
 simulated function ClientInitialize(Controller C)
 {
+	local OnlineContentInterface OnlineContentInt;
+
 	// workaround for repeated repnotify!?!?
 	if ( Role < ROLE_Authority && C == Owner )
 	{
@@ -1153,7 +1171,16 @@ simulated function ClientInitialize(Controller C)
 	{
 		KFPlayerController(C).InitializeStats();
 		SelectCharacter();
-		class'KFUnlockManager'.static.InitSharedUnlocksFor(self);
+
+		// checked for owned titles that might unlock shared content (e.g. Road Redemption)
+		OnlineContentInt = class'GameEngine'.static.GetOnlineSubsystem().ContentInterface;
+		OnlineContentInt.ClearCrossTitleContentList(0, OCT_Game);
+		OnlineContentInt.AddReadCrossTitleContentCompleteDelegate(0, OCT_Game, OnReadCrossTitleContentComplete);
+		if (!OnlineContentInt.ReadCrossTitleContentList(0, OCT_Game))
+		{
+			class'KFUnlockManager'.static.InitSharedUnlocksFor(self);
+			OnlineContentInt.ClearReadCrossTitleContentCompleteDelegate(0, OCT_Game, OnReadCrossTitleContentComplete);
+		}
 	}
 }
 
@@ -1619,6 +1646,7 @@ defaultproperties
    CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
    CharacterArchetypes(14)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_DAR_archetype'
    CharacterArchetypes(15)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrsFoster_archetype'
+   CharacterArchetypes(16)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_BadSanta_Archetype'
    RepCustomizationInfo=(AttachmentMeshIndices[0]=-1,AttachmentMeshIndices[1]=-1,AttachmentMeshIndices[2]=-1)
    VoiceCommsStatusDisplayInterval=5.000000
    VoiceCommsStatusDisplayIntervalMax=1

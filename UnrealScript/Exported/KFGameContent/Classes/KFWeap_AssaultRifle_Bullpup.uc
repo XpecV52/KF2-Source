@@ -66,9 +66,9 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Commando'
-   WeaponUpgrades(1)=(IncrementDamage=1.300000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.650000)
-   WeaponUpgrades(3)=(IncrementWeight=3,IncrementDamage=1.850000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.650000),(Stat=EWUS_Damage1,Scale=1.650000),(Add=2)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.850000),(Stat=EWUS_Damage1,Scale=1.850000),(Add=3)))
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

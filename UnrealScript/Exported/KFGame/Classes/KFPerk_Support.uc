@@ -860,6 +860,7 @@ defaultproperties
    HeadshotAccuracyHandicap=-3.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SupportKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MB500_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Boomstick_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Support"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

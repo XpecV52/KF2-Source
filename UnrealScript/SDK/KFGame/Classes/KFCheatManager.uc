@@ -78,6 +78,24 @@ function Pawn GetMyPawn()
 	return (Pawn!=none)?Pawn:DebugCameraController(Outer).OriginalControllerRef.Pawn;
 }
 
+exec function SetShellToState(int ShellIndex, byte ShellState)
+{
+	local KFWeap_GrenadeLauncher_CylinderBase GLBase;
+	local KFPawn MyPawn;
+
+	MyPawn = KFPawn(GetMyPawn());
+	if (MyPawn != none && MyPawn.MyKFWeapon != none)
+	{
+		GLBase = KFWeap_GrenadeLauncher_CylinderBase(MyPawn.MyKFWeapon);
+
+		if (GLBase != none)
+		{
+			GLBase.SetShellToState(ShellIndex, ShellState);
+		}
+	}
+	
+}
+
 exec function SetFakeDownloadProgress (bool bDownloading, float PercentageComplete)
 {
     local KFGameViewportClient KFVP;
@@ -840,6 +858,7 @@ simulated exec function Pistols()
 {
     GiveWeapon( "KFGameContent.KFWeap_Pistol_9mm" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Deagle" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**
@@ -852,6 +871,7 @@ simulated exec function Dualies()
     GiveWeapon( "KFGameContent.KFWeap_Pistol_DualColt1911" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_DualRem1858" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_DualSW500" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhinoDual" );
 }
 
 simulated exec function Singles()
@@ -861,6 +881,7 @@ simulated exec function Singles()
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Colt1911" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_Rem1858" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_SW500" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**
@@ -954,6 +975,7 @@ simulated exec function Summer() //give the player the weapons for the summer up
     GiveWeapon( "KFGameContent.KFWeap_Blunt_PowerGloves" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_M99" );
     GiveWeapon( "KFGameContent.KFWeap_Shotgun_ElephantGun" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Thompson" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MKB42" );
 }
 /**
@@ -1021,6 +1043,7 @@ simulated exec function Sharpshooter()
     GiveWeapon( "KFGameContent.KFWeap_Rifle_M14EBR" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_RailGun" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_CenterfireMB464" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**
@@ -6290,7 +6313,7 @@ exec function LogAmmoPickups()
             else if( KFGI.AmmoPickups[i].IsInState( 'sleeping' ) )
             {
                 NumSleepingAmmoPickups += 1.f;
-                `log( "~~LogAmmoPickups: AmmoPickup" @ i @  "is sleeping! Location:" @ KFGI.AmmoPickups[i].Location );
+                `log( "~~LogAmmoPickups: AmmoPickup" @ i @  "is sleeping! Location:" @ KFGI.AmmoPickups[i].Location @ "; Time until respawn: " @ KFGI.AmmoPickups[i].GetRemainingTimeForTimer(nameof(KFGI.AmmoPickups[i].Reset)));
             }
             else if( KFGI.AmmoPickups[i].IsInState( 'pickup' ) )
             {

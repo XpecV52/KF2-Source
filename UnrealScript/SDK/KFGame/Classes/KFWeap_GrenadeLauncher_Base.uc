@@ -8,7 +8,8 @@
 // John "Ramm-Jaeger" Gibson
 //=============================================================================
 
-class KFWeap_GrenadeLauncher_Base extends KFWeapon;
+class KFWeap_GrenadeLauncher_Base extends KFWeapon
+	native;
 
 /** How long to wait after firing to force reload */
 var()			float		ForceReloadTime;

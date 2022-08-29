@@ -679,14 +679,16 @@ function Callback_TabChanged(int TabIndex)
 function Callback_UpgradeItem()
 {
     local SItemInformation ItemInfo;
+    local KFAutoPurchaseHelper PurchaseHelper;
 
     if(SelectedList == 1)
     {
-        if(MyKFPC.GetPurchaseHelper().UpgradeWeapon(SelectedItemIndex))
+        PurchaseHelper = MyKFPC.GetPurchaseHelper();
+        if(PurchaseHelper.UpgradeWeapon(SelectedItemIndex))
         {
-            ItemInfo = OwnedItemList[SelectedItemIndex];
-            ++ ItemInfo.ItemUpgradeLevel;
-            MyKFPC.GetPurchaseHelper().OwnedItemList[SelectedItemIndex] = ItemInfo;
+            ItemInfo = PurchaseHelper.OwnedItemList[SelectedItemIndex];
+            ++ PurchaseHelper.OwnedItemList[SelectedItemIndex].ItemUpgradeLevel;
+            PurchaseHelper.OwnedItemList[SelectedItemIndex].SellPrice = PurchaseHelper.GetAdjustedSellPriceFor(ItemInfo.DefaultItem);
             RefreshItemComponents();
             ShopContainer.ActionScriptVoid("itemBought");
             Class'KFMusicStingerHelper'.static.PlayWeaponUpgradeStinger(MyKFPC);

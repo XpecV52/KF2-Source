@@ -15,21 +15,14 @@ var int ActiveEventIdx;
 static event class<GameInfo> SetGameType(string MapName, string Options, string Portal)
 {
     local KFGameEngine KGE;
-    local int WeeklyIndex;
 
     KGE = KFGameEngine(Class'Engine'.static.GetEngine());
     if(KGE != none)
     {
-        WeeklyIndex = KGE.GetWeeklyEventIndex();
-        LogInternal("Getting Weekly event index: value: " $ string(WeeklyIndex));
-        if(WeeklyIndex >= 0)
+        if(KGE.GetWeeklyEventIndex() >= 0)
         {
             return super(KFGameInfo).SetGameType(MapName, Options, Portal);
-        }        
-    }
-    else
-    {
-        LogInternal("KFGameEngine is null for Weekly index");
+        }
     }
     return Class'KFGameInfo_Survival';
 }
@@ -240,7 +233,7 @@ event PostLogin(PlayerController NewPlayer)
 
 function SetBossIndex()
 {
-    local SpawnReplacement Replacement;
+    local BossSpawnReplacement Replacement;
     local int ReplaceIdx;
 
     BossIndex = Rand(default.AIBossClassList.Length);
@@ -252,11 +245,11 @@ function SetBossIndex()
             if(ReplaceIdx != -1)
             {
                 BossIndex = ReplaceIdx;
-                goto J0xDC;
+                goto J0xDE;
             }
         }        
     }
-    J0xDC:
+    J0xDE:
     
     MyKFGRI.CacheSelectedBoss(BossIndex);
 }

@@ -1,3 +1,6 @@
+[KFPawn_Scripted]
+ScriptedPawnString="V.I.P."
+
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="Special Effects"
 PrestigeWarningString="Reset Perk back to 0?  This cannot be undone."
@@ -1450,6 +1453,9 @@ KillzedBy_ZedStalkerString=" didn't see it coming"
 KillzedBy_ZedClot_CystString=" has suffered an underwhelming death"
 KillzedBy_ZedClot_AlphaString=" was grabbed inappropriately"
 KillzedBy_ZedClot_SlasherString=" no longer likes slasher flicks"
+KillzedBy_ZedDAR_EMPString=" was shocked to find they were trapped"
+KillzedBy_ZedDAR_LaserString=" was blasted into bits"
+KillzedBy_ZedDAR_RocketString=" was rocketed out of commission"
 
 FoundAMapCollectibleMessage="%x% found a %y%. %z% left..."
 FoundAllMapCollectiblesMessage="Every %x% has been found!"
@@ -2332,20 +2338,36 @@ FeaturedCrossover="Featured Crossover Promotion"
 
 [Objectives]
 HoldVolume="DEFEND THE AREA"
+DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="STAND YOUR GROUND"
-RepairObjective="WELD AND REPAIR"
-DescriptionDoshHold="Keep Zeds out of the marked area"
 RequiredDoshHold="Players required:"
 DoschHoldDesc="Keep Zeds out of the marked area"
-DescriptionHoldVolume="DescriptionHoldVolume"
-RequiredHoldVolume="RequiredHoldVolume"
-DescriptionDestroyActor="DescriptionDestroyActor"
-RequiredDestroyActor="RequiredDestroyActor"
+DescriptionDoshHold="Keep Zeds out of the marked area"
+RepairObjective="WELD AND REPAIR"
 UseWelderToRepair="Use the Welder to repair the objective(s)"
-FailedString="FAILED"
+EscortPawnsObjective="ESCORT"
+EscortPawnsDescription="Protect the target from the Zeds"
+RequiredHoldVolume="RequiredHoldVolume"
+ActivateTrigger="OPERATE AND CONTROL"
 DescriptionActivateTrigger="Activate the objective control"
 RequiredActivateTrigger="Activations required:"
-ActivateTrigger="OPERATE AND CONTROL"
+FailedString="FAILED"
+RepairObjSantaWorkshopCustomTitle1="REPAIR THE POWER"
+RepairObjSantaWorkshopCustomDescr1="Repair 3 broken circuit boards with the Welder"
+RepairObjSantaWorkshopCustomTitle2="REPAIR THE GATES"
+RepairObjSantaWorkshopCustomDescr2="Repair 4 broken gates with the Welder"
+EscortObjSantaWorkshopCustomTitle1="REPAIR AND ESCORT"
+EscortObjSantaWorkshopCustomDescr1="Repair the cart with the Welder\nStay near it to boost its speed and keep Zeds away from it"
+EscortObjSantaWorkshopCustomTitle2="DEFEND AND ESCORT"
+EscortObjSantaWorkshopCustomDescr2="Protect the cart and escort it to the Magic Chamber machine\nStay close to it to boost its speed"
+EscortObjSantaWorkshopCustomTitle3="DEFEND AND ESCORT"
+EscortObjSantaWorkshopCustomDescr3="Protect the cart and escort it to the portal room\nStay close to it to boost its speed"
+OperateObjSantaWorkshopCustomTitle1="PULL THE LEVER"
+OperateObjSantaWorkshopCustomDescr1="Keep Zeds away from the zone"
+OperateObjSantaWorkshopCustomTitle2="PULL THE LEVER"
+OperateObjSantaWorkshopCustomDescr2="Keep Zeds away from the zone"
+OperateObjSantaWorkshopCustomTitle3="PULL THE LEVER"
+OperateObjSantaWorkshopCustomDescr3="Keep Zeds away from the zone"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2540,13 +2562,13 @@ ChanceDropDescriptionStrings[1]="Gold Ticket"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="A time limited special event with exclusive items."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Breaking and Entering",DescriptionString="Break Krampus's trinkets in Krampus Lair")
-SpecialEventObjectiveInfoList[1]=(TitleString="Mincemeat",DescriptionString="Kill a Zed using the wood chipper in Krampus Lair")
-SpecialEventObjectiveInfoList[2]=(TitleString="Stand Fast",DescriptionString="Complete the Stand Your Ground objective in Krampus Lair")
-SpecialEventObjectiveInfoList[3]=(TitleString="Snow Prisons",DescriptionString="Find ten of the collectibles in Krampus Lair")
-SpecialEventObjectiveInfoList[4]=(TitleString="And to All a Good Night",DescriptionString="Kill Krampus on Hard or higher Difficulty in Krampus Lair")
+SpecialEventObjectiveInfoList[0]=(TitleString="The Perfect Gift",DescriptionString="End all Escort objectives with cart at full health on Survival Hard or higher difficulty")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Specials",DescriptionString="Complete the Weekly on Shopping Spree")
+SpecialEventObjectiveInfoList[2]=(TitleString="Slay Ride",DescriptionString="Kill 2500 Zeds")
+SpecialEventObjectiveInfoList[3]=(TitleString="Roast Their Chestnuts",DescriptionString="Kill 25 Bosses")
+SpecialEventObjectiveInfoList[4]=(TitleString="Workshop Rumble",DescriptionString="Defeat Krampus on Santa's Workshop Survival Hard or higher difficulty")
 
-AllCompleteRewardDescriptionString="Pajama Suit"
+AllCompleteRewardDescriptionString="Battleaxe + Christmas Skin"
 
 ChanceDropDescriptionStrings[0]="Prize Ticket"
 ChanceDropDescriptionStrings[1]="Gold Ticket"
@@ -2974,6 +2996,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-MonsterBall KFMapSummary]
 DisplayName_CHN="怪物球"
 DisplayName_CHT="怪獸舞會"
@@ -2989,6 +3043,39 @@ DisplayName_KOR="괴물 무도회"
 DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
+
+
+[KF-ShoppingSpree KFMapSummary]
+DisplayName_CHN="抢购狂欢"
+DisplayName_CHT="購物狂歡"
+DisplayName_DEU="Kaufrausch"
+DisplayName_ESL="Compra compulsiva"
+DisplayName_ESN="Compra compulsiva"
+DisplayName_FRA="Achats en folie"
+DisplayName_FRC="Achats en folie"
+DisplayName_INT="Shopping Spree"
+DisplayName_ITA="Shopping compulsivo"
+DisplayName_JPN="ショッピング三昧"
+DisplayName_KOR="연속 쇼핑"
+DisplayName_POL="Szał zakupów"
+DisplayName_PTB="Farra de compras"
+DisplayName_RUS="Веселье в магазине"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName_CHN="圣诞老人工坊"
+DisplayName_CHT="聖誕作坊"
+DisplayName_DEU="Santas Werkstatt"
+DisplayName_ESL=" El taller de Papá Noel"
+DisplayName_ESN=" El taller de Papá Noel"
+DisplayName_FRA="l'atelier du Père Noël"
+DisplayName_FRC="l'atelier du Père Noël"
+DisplayName_INT="Santa's Workshop"
+DisplayName_ITA="Laboratorio di Babbo Natale"
+DisplayName_JPN="サンタの工房"
+DisplayName_KOR="산타의 작업장 "
+DisplayName_POL="Warsztat Mikołaja"
+DisplayName_PTB="Fábrica do Papai Noel"
+DisplayName_RUS="Мастерскую Санты"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Biotics Lab"
@@ -3068,6 +3155,11 @@ DisplayName="Airship"
 [KF-MonsterBall KFMapSummary]
 DisplayName="Monster Ball"
 
+[KF-ShoppingSpree KFMapSummary]
+DisplayName="Shopping Spree"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName="Santas Workshop"
 
 [KFMapInfo]
 ; defaults

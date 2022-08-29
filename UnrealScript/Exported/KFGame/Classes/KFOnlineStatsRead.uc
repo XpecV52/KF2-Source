@@ -74,12 +74,18 @@ const STATID_DailyEventInfo =           302;
 const STATID_DailyEventIDs =            303;
 const STATID_DailyEventStats1 =         304;
 const STATID_DailyEventStats2 =         305;
-const STATID_SpecialEventKills =		306;
+const STATID_SpecialEventKills_DEPRECATED =		306;
+const STATID_SeasonalEventStats1 =		307;
+const STATID_SeasonalEventStats2 =		308;
+const STATID_SeasonalEventStats3 =		309;
+const STATID_SeasonalEventStats4 =		310;
+const STATID_SeasonalEventStats5 =		311;
 
  
 const STATID_DoshVaultTotal =           400;
 const STATID_LastViewedDoshVaultTotal = 401;
 const STATID_DoshVaultProgress =		402;
+const STATID_DoshVaultRecovered =		403;
 
  
 const STATID_AchievementPlaceholder	 =	500;
@@ -148,6 +154,8 @@ const STATID_ACHIEVE_AirshipCollectibles			= 4043;
 const STATID_ACHIEVE_LockdownCollectibles			= 4044;
 const STATID_ACHIEVE_MonsterBallCollectibles		= 4045;
 const STATID_ACHIEVE_MonsterBallSecretRoom			= 4046;
+const STATID_ACHIEVE_SantasWorkshopCollectibles		= 4047;
+const STATID_ACHIEVE_ShoppingSpreeCollectibles		= 4048;
  
 #linenumber 14
 
@@ -259,18 +267,24 @@ defaultproperties
    ColumnIds(30)=304
    ColumnIds(31)=305
    ColumnIds(32)=306
-   ColumnIds(33)=2000
-   ColumnIds(34)=2001
-   ColumnIds(35)=2002
-   ColumnIds(36)=2003
-   ColumnIds(37)=2004
-   ColumnIds(38)=2005
-   ColumnIds(39)=2006
-   ColumnIds(40)=2007
-   ColumnIds(41)=3000
-   ColumnIds(42)=400
-   ColumnIds(43)=401
-   ColumnIds(44)=402
+   ColumnIds(33)=307
+   ColumnIds(34)=308
+   ColumnIds(35)=309
+   ColumnIds(36)=310
+   ColumnIds(37)=311
+   ColumnIds(38)=2000
+   ColumnIds(39)=2001
+   ColumnIds(40)=2002
+   ColumnIds(41)=2003
+   ColumnIds(42)=2004
+   ColumnIds(43)=2005
+   ColumnIds(44)=2006
+   ColumnIds(45)=2007
+   ColumnIds(46)=3000
+   ColumnIds(47)=400
+   ColumnIds(48)=401
+   ColumnIds(49)=402
+   ColumnIds(50)=403
    ColumnMappings(0)=(Id=1,Name="CmdoProgress")
    ColumnMappings(1)=(Id=2,Name="CmdoBuild")
    ColumnMappings(2)=(Id=10,Name="BsrkProgress")
@@ -304,18 +318,24 @@ defaultproperties
    ColumnMappings(30)=(Id=304,Name="DailyEventStats1")
    ColumnMappings(31)=(Id=305,Name="DailyEventStats2")
    ColumnMappings(32)=(Id=306,Name="SpecialEventKills")
-   ColumnMappings(33)=(Id=2000,Name="PersonalBestKnifeKills")
-   ColumnMappings(34)=(Id=2001,Name="PersonalBestPistolKills")
-   ColumnMappings(35)=(Id=2002,Name="PersonalBestHeadshots")
-   ColumnMappings(36)=(Id=2003,Name="PersonalBestHealing")
-   ColumnMappings(37)=(Id=2004,Name="PersonalBestKills")
-   ColumnMappings(38)=(Id=2005,Name="PersonalBestAssists")
-   ColumnMappings(39)=(Id=2006,Name="PersonalBestLargeZedKills")
-   ColumnMappings(40)=(Id=2007,Name="PersonalBestDosh")
-   ColumnMappings(41)=(Id=3000,Name="MatchWins")
-   ColumnMappings(42)=(Id=400,Name="DoshVaultTotal")
-   ColumnMappings(43)=(Id=401,Name="LastViewedDoshVaultTotal")
-   ColumnMappings(44)=(Id=402,Name="DoshVaultProgress")
+   ColumnMappings(33)=(Id=307,Name="SeasonalEventStats1")
+   ColumnMappings(34)=(Id=308,Name="SeasonalEventStats2")
+   ColumnMappings(35)=(Id=309,Name="SeasonalEventStats3")
+   ColumnMappings(36)=(Id=310,Name="SeasonalEventStats4")
+   ColumnMappings(37)=(Id=311,Name="SeasonalEventStats5")
+   ColumnMappings(38)=(Id=2000,Name="PersonalBestKnifeKills")
+   ColumnMappings(39)=(Id=2001,Name="PersonalBestPistolKills")
+   ColumnMappings(40)=(Id=2002,Name="PersonalBestHeadshots")
+   ColumnMappings(41)=(Id=2003,Name="PersonalBestHealing")
+   ColumnMappings(42)=(Id=2004,Name="PersonalBestKills")
+   ColumnMappings(43)=(Id=2005,Name="PersonalBestAssists")
+   ColumnMappings(44)=(Id=2006,Name="PersonalBestLargeZedKills")
+   ColumnMappings(45)=(Id=2007,Name="PersonalBestDosh")
+   ColumnMappings(46)=(Id=3000,Name="MatchWins")
+   ColumnMappings(47)=(Id=400,Name="DoshVaultTotal")
+   ColumnMappings(48)=(Id=401,Name="LastViewedDoshVaultTotal")
+   ColumnMappings(49)=(Id=402,Name="DoshVaultProgress")
+   ColumnMappings(50)=(Id=403,Name="DoshVaultRecovered")
    Name="Default__KFOnlineStatsRead"
    ObjectArchetype=OnlineStatsRead'Engine.Default__OnlineStatsRead'
 }

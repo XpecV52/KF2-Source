@@ -600,6 +600,11 @@ simulated function UpdateShieldUI()
     }
 }
 
+simulated function string GetIconPath()
+{
+	return "ZED_Patriarch_UI.ZED-VS_Icon_Boss";
+}
+
 defaultproperties
 {
    RagePoundExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:ExploTemplate0'

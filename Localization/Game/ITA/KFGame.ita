@@ -1,3 +1,6 @@
+[KFPawn_Scripted]
+ScriptedPawnString="V.I.P."
+
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="Effetti speciali"
 PrestigeWarningString="Resettare Classe a 0? Non sarà possibile tornare indietro."
@@ -1450,6 +1453,9 @@ KillzedBy_ZedStalkerString=" non se lo aspettava"
 KillzedBy_ZedClot_CystString=" è morto in modo deludente"
 KillzedBy_ZedClot_AlphaString=" è stato afferrato nel modo sbagliato"
 KillzedBy_ZedClot_SlasherString=" non va più matto per le coltellate"
+KillzedBy_ZedDAR_EMPString=" è scioccato di scoprire che sono intrappolati"
+KillzedBy_ZedDAR_LaserString=" è saltato in aria"
+KillzedBy_ZedDAR_RocketString=" è stato messo fuori combattimento"
 
 FoundAMapCollectibleMessage="%x% ha trovato %y%. %z% rimasti..."
 FoundAllMapCollectiblesMessage="Ogni %x% è stato trovato!"
@@ -2332,20 +2338,36 @@ FeaturedCrossover="Promozione Crossover in evidenza"
 
 [Objectives]
 HoldVolume="DIFENDI L'AREA"
+DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="RESISTI"
-RepairObjective="SALDA E RIPARA"
-DescriptionDoshHold="Tieni gli Zed lontani dall'area evidenziata"
 RequiredDoshHold="Giocatori richiesti:"
 DoschHoldDesc="Tieni gli Zed lontani dall'area evidenziata"
-DescriptionHoldVolume="DescriptionHoldVolume"
-RequiredHoldVolume="RequiredHoldVolume"
-DescriptionDestroyActor="DescriptionDestroyActor"
-RequiredDestroyActor="RequiredDestroyActor"
+DescriptionDoshHold="Tieni gli Zed lontani dall'area evidenziata"
+RepairObjective="SALDA E RIPARA"
 UseWelderToRepair="Usa Saldatore per riparare l'obiettivo/i"
-FailedString="FALLITO"
+EscortPawnsObjective="ESCORT"
+EscortPawnsDescription="Protect the target from the Zeds"
+RequiredHoldVolume="RequiredHoldVolume"
+ActivateTrigger="AZIONA E CONTROLLA"
 DescriptionActivateTrigger="Attiva controllo obiettivo"
 RequiredActivateTrigger="Attivazioni rich.:"
-ActivateTrigger="AZIONA E CONTROLLA"
+FailedString="FALLITO"
+RepairObjSantaWorkshopCustomTitle1="RIPARA CORRENTE ELETTRICA"
+RepairObjSantaWorkshopCustomDescr1="Ripara 3 circuiti rotti con il saldatore"
+RepairObjSantaWorkshopCustomTitle2="RIPARA CANCELLI"
+RepairObjSantaWorkshopCustomDescr2="Ripara 4 circuiti rotti con il saldatore"
+EscortObjSantaWorkshopCustomTitle1="RIPARA E SCORTA"
+EscortObjSantaWorkshopCustomDescr1="Ripara il carrello e proteggilo dagli Zed\n"
+EscortObjSantaWorkshopCustomTitle2="DIFENDI E SCORTA"
+EscortObjSantaWorkshopCustomDescr2="Ripara il carrello e proteggilo dagli Zed\n"
+EscortObjSantaWorkshopCustomTitle3="DIFENDI E SCORTA"
+EscortObjSantaWorkshopCustomDescr3="Proteggi il carrello e scortalo fino alla sala del portale\nRestagli vicino per aumentarne la velocità"
+OperateObjSantaWorkshopCustomTitle1="TIRA LA LEVA"
+OperateObjSantaWorkshopCustomDescr1="Tieni gli Zed lontani dall'area"
+OperateObjSantaWorkshopCustomTitle2="TIRA LA LEVA"
+OperateObjSantaWorkshopCustomDescr2="Tieni gli Zed lontani dall'area"
+OperateObjSantaWorkshopCustomTitle3="TIRA LA LEVA"
+OperateObjSantaWorkshopCustomDescr3="Tieni gli Zed lontani dall'area"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2532,7 +2554,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Massacro di mostri",DescriptionSt
 SpecialEventObjectiveInfoList[3]=(TitleString="Una festa senza fine",DescriptionString="Completa l'ondata 25 in modalità difficile Infinito o superiore");
 SpecialEventObjectiveInfoList[4]=(TitleString="Lord del castello",DescriptionString="Sconfiggi il conte Hans in Survival difficile o superiore");
 
-AllCompleteRewardDescriptionString="Mkb di Hans: Arma + Skin di Halloween"
+AllCompleteRewardDescriptionString="Mkb Hans: Arma + Skin Halloween"
 
 ChanceDropDescriptionStrings[0]="Biglietto premio"
 ChanceDropDescriptionStrings[1]="Biglietto Oro"
@@ -2540,13 +2562,13 @@ ChanceDropDescriptionStrings[1]="Biglietto Oro"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="Un evento a durata limitata con oggetti esclusivi."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Distruggere e irrompere",DescriptionString="Distruggi gli oggetti del Krampus nella Tana del Krampus");
-SpecialEventObjectiveInfoList[1]=(TitleString="Carne trita",DescriptionString="Uccidi uno Zed usando la Cippatrice nella Tana del Krampus");
-SpecialEventObjectiveInfoList[2]=(TitleString="Resistenza",DescriptionString="Completa l'obiettivo Resisti nella Tana del Krampus");
-SpecialEventObjectiveInfoList[3]=(TitleString="Prigioni nella neve",DescriptionString="Trova dieci collezionabili nella Tana del Krampus");
-SpecialEventObjectiveInfoList[4]=(TitleString="Buonanotte a tutti",DescriptionString="Uccidi il Krampus in modalità Difficile o Difficoltà superiore nella Tana del Krampus");
+SpecialEventObjectiveInfoList[0]=(TitleString="Il regalo perfetto",DescriptionString="Completa ob. Scorta carrello alla max salute in Survival difficile o diff. magg.");
+SpecialEventObjectiveInfoList[1]=(TitleString="Speciali della settimana",DescriptionString="Completa il Settimanale in Shopping compulsivo");
+SpecialEventObjectiveInfoList[2]=(TitleString="Massacro in slitta",DescriptionString="Uccidi 2500 Zed");
+SpecialEventObjectiveInfoList[3]=(TitleString="Arrostisci le loro castagne",DescriptionString="Uccidi 25 Boss");
+SpecialEventObjectiveInfoList[4]=(TitleString="Rissa in laboratorio",DescriptionString="Sconfiggi Krampus nel Laboratorio di Babbo Natale in Survival diff. o superiore");
 
-AllCompleteRewardDescriptionString="Tuta Pigiama"
+AllCompleteRewardDescriptionString="Ascia + Skin Natale"
 
 ChanceDropDescriptionStrings[0]="Bigl. premio"
 ChanceDropDescriptionStrings[1]="Biglietto Oro"
@@ -2974,6 +2996,38 @@ DisplayName_POL="Sektor Śmierci"
 DisplayName_PTB="DieSector"
 DisplayName_RUS="Сектор Die"
 
+[KF-Lockdown KFMapSummary]
+DisplayName_CHN="封锁"
+DisplayName_CHT="封鎖"
+DisplayName_DEU="Sperrmodus"
+DisplayName_ESL="Bloqueo"
+DisplayName_ESN="Bloqueo"
+DisplayName_FRA="Confinement"
+DisplayName_FRC="Confinement"
+DisplayName_INT="Lockdown"
+DisplayName_ITA="Debilitazione"
+DisplayName_JPN="ロックダウン"
+DisplayName_KOR="락다운"
+DisplayName_POL="Kwarantanna"
+DisplayName_PTB="Confinamento"
+DisplayName_RUS="Изоляция"
+
+[KF-Airship KFMapSummary]
+DisplayName_CHN="飞艇"
+DisplayName_CHT="飛艇"
+DisplayName_DEU="Luftschiff"
+DisplayName_ESL="Aeronave"
+DisplayName_ESN="Aeronave"
+DisplayName_FRA="Dirigeable"
+DisplayName_FRC="Dirigeable"
+DisplayName_INT="Airship"
+DisplayName_ITA="Aeronave"
+DisplayName_JPN="飛行船"
+DisplayName_KOR="비행선"
+DisplayName_POL="Statek powietrzny"
+DisplayName_PTB="Aeronave"
+DisplayName_RUS="Воздушное судно"
+
 [KF-MonsterBall KFMapSummary]
 DisplayName_CHN="怪物球"
 DisplayName_CHT="怪獸舞會"
@@ -2989,6 +3043,39 @@ DisplayName_KOR="괴물 무도회"
 DisplayName_POL="Bal potworów"
 DisplayName_PTB="Baile de Monstros"
 DisplayName_RUS="Бал монстров"
+
+
+[KF-ShoppingSpree KFMapSummary]
+DisplayName_CHN="抢购狂欢"
+DisplayName_CHT="購物狂歡"
+DisplayName_DEU="Kaufrausch"
+DisplayName_ESL="Compra compulsiva"
+DisplayName_ESN="Compra compulsiva"
+DisplayName_FRA="Achats en folie"
+DisplayName_FRC="Achats en folie"
+DisplayName_INT="Shopping Spree"
+DisplayName_ITA="Shopping compulsivo"
+DisplayName_JPN="ショッピング三昧"
+DisplayName_KOR="연속 쇼핑"
+DisplayName_POL="Szał zakupów"
+DisplayName_PTB="Farra de compras"
+DisplayName_RUS="Веселье в магазине"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName_CHN="圣诞老人工坊"
+DisplayName_CHT="聖誕作坊"
+DisplayName_DEU="Santas Werkstatt"
+DisplayName_ESL=" El taller de Papá Noel"
+DisplayName_ESN=" El taller de Papá Noel"
+DisplayName_FRA="l'atelier du Père Noël"
+DisplayName_FRC="l'atelier du Père Noël"
+DisplayName_INT="Santa's Workshop"
+DisplayName_ITA="Laboratorio di Babbo Natale"
+DisplayName_JPN="サンタの工房"
+DisplayName_KOR="산타의 작업장 "
+DisplayName_POL="Warsztat Mikołaja"
+DisplayName_PTB="Fábrica do Papai Noel"
+DisplayName_RUS="Мастерскую Санты"
 
 [KF-BioticsLab KFMapSummary]
 DisplayName="Laboratorio Biotics"
@@ -3068,6 +3155,11 @@ DisplayName="Aeronave"
 [KF-MonsterBall KFMapSummary]
 DisplayName="Festa dei mostri"
 
+[KF-ShoppingSpree KFMapSummary]
+DisplayName="Shopping compulsivo"
+
+[KF-SantasWorkshop KFMapSummary]
+DisplayName="Santas Workshop"
 
 [KFMapInfo]
 ; defaults

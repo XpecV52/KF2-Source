@@ -3,8 +3,19 @@ class KFGFxHUD_ObjectiveConatiner extends GFxObject;
 var float UpdateRate;
 var KFInterface_MapObjective CurrentObjectiveInterface;
 
+var Texture2d LastIcon;
+
+var KFPlayerController KFPC;
+
+var name SoundThemeName;
+var name SoundCueName;
+
+var float LastProgress;
+var bool bLastMissionCritical;
+
 function InitializeHUD()
 {
+	KFPC = KFPlayerController(GetPC());
 	SetVisible(false);
 	LocalizeContainer();
 }
@@ -30,14 +41,39 @@ simulated function SetActive(bool bActive)
 		{
 			SetFailState(CurrentObjectiveInterface.HasFailedObjective());
 			SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
-			SetCurrentIcon(PathName(CurrentObjectiveInterface.GetIcon()));
+			UpdateActorCount();
+			UpdateIcon();
+			SetCompleted(CurrentObjectiveInterface.IsComplete());
+			SetMissionCritical(CurrentObjectiveInterface.GetIsMissionCritical());
 		}
 	}
 	else
 	{
 		CurrentObjectiveInterface = none;
+		//hide actor count
+		GetObject("objectiveNumberMC").SetVisible(false);
 	}
 	//SetBool("isActive", bActive); //nothing supporting this atm
+}
+
+function SetCompleted(bool bComplete)
+{
+	Setbool("completeStatus", bComplete);
+	//play sound queue
+	if (KFPC != none && KFPC.MyGFxHUD != none && bComplete)
+	{
+		KFPC.MyGFxHUD.PlaySoundFromTheme(SoundCueName, SoundThemeName);
+	}
+}
+
+function SetMissionCritical(bool bMissionCritical)
+{
+	bMissionCritical = false; //not using this for now
+	if (bMissionCritical != bLastMissionCritical)
+	{
+		Setbool("missionCriticalStatus", bMissionCritical);
+		bLastMissionCritical = bMissionCritical;
+	}	
 }
 
 function SetCurrentIcon(string iconPath)
@@ -60,7 +96,18 @@ function TickHud(float DeltaTime)
 		SetInt("rewardValue", CurrentObjectiveInterface.GetDoshReward());
 		//UpdateRequirements();
 		UpdateActorCount();
+		if (LastIcon != CurrentObjectiveInterface.GetIcon())
+		{
+			UpdateIcon();
+		}
+		SetMissionCritical(CurrentObjectiveInterface.GetIsMissionCritical());
 	}
+}
+
+function UpdateIcon()
+{
+	LastIcon = CurrentObjectiveInterface.GetIcon();
+	SetCurrentIcon(PathName(LastIcon));
 }
 
 function UpdateActorCount()
@@ -108,11 +155,20 @@ function ClearObjectiveUI()
 //pass a value from 0-1
 function SetCurrentProgress(float CurrentProgress)
 {
-	CurrentPRogress = FClamp(CurrentProgress, 0, 1);
-	SetInt("currentProgress", 100 * CurrentProgress);
+	if (LastProgress != CurrentProgress)
+	{
+		CurrentProgress = FClamp(CurrentProgress, 0, 1);
+		LastProgress = CurrentProgress;
+		SetInt("currentProgress", 100 * CurrentProgress);
+		SetCompleted(CurrentObjectiveInterface.IsComplete());
+	}
 }
 
 DefaultProperties
 {
+	LastProgress=-0.0f
 	UpdateRate=0.1f
+
+	SoundThemeName=UI
+	SoundCueName=TraderTime_Countdown
 }

@@ -16,8 +16,8 @@ enum ESharedContentUnlock
 {
 	SCU_None,
 	SCU_Zweihander,
-	SCU_MKB,
 	SCU_ChainBat,
+	SCU_AbominationAxe
 };
 
 
@@ -40,6 +40,9 @@ struct native SharedContent
 
 /** contains ids (app or microtrans) to unlock this content */
 var array<SharedContent> SharedContentList;
+
+/** contains owned title information (will be empty on PC) */
+var array<OnlineCrossTitleContent> CrossTitleContent;
 
 /** Cache a copy of the online subsystem (save to class default)*/
 var OnlineSubsystem MyOnlineSubsystem;
@@ -72,7 +75,7 @@ cpptext
  * Called once per PRI to set up shared weapon content
  * Network: Local Player
  */
-static native function 		InitSharedUnlocksFor(KFPlayerReplicationInfo PRI);
+static native function 		InitSharedUnlocksFor(KFPlayerReplicationInfo PRI, optional const out array<OnlineCrossTitleContent> InCrossTitleContent);
 
 /**
  * returns TRUE if any player on this server has this unlock
@@ -267,6 +270,6 @@ static native function TestSteamAPI(PlayerReplicationInfo PRI, byte CallFlags);
 defaultproperties
 {
 	SharedContentList(SCU_Zweihander)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",ID=219640)
-	SharedContentList(SCU_MKB)=(Name=KFWeap_AssaultRifle_MKB42,IconPath="WEP_UI_MKB42_TEX.UI_WeaponSelect_MKB42",ID=6456)
 	SharedContentList(SCU_ChainBat)=(Name=KFWeap_Blunt_ChainBat,IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",ID=300380)
+	SharedContentList(SCU_AbominationAxe)=(Name=KFWeap_Edged_AbominationAxe,IconPath="WEP_UI_KrampusAxe_TEX.UI_WeaponSelect_KrampusAxe",ID=5378)
 }

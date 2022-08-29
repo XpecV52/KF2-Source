@@ -542,11 +542,31 @@ ItemName="Mac 10"
 ItemCategory="冲锋枪"
 ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•速射燃烧弹药就是其特色。明白了吗？速射？就因为它是冲锋枪？啊，别在意。"
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="战斧"
+ItemCategory="近战"
+ItemDescription="•主要攻击 - 用于慢速砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•过时但能仍然像卡车一样猛击……一辆大而锋利的卡车。"
+
+[KFWeap_Edged_FireAxe]
+ItemName="消防斧"
+ItemCategory="近战"
+ItemDescription="•主要攻击 - 用于砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•如果它不着火，为什么叫火斧？"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="M32 榴弹发射器"
+ItemCategory="炸弹"
+ItemDescription="•射击模式发射一枚榴弹。\n•射出的榴弹在冲击作用下爆炸。\n•相比把6个M79 榴弹发射器绑在一起，这是更优雅的解决方案。"
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="HMTech-501 手榴步枪"
 ItemCategory="突击步枪"
-ItemDescription="•只有全自动开火模式。\n•Alt - 释放治疗榴弹。\n•这是唯一一个能堂而皇之向你队友投掷榴弹的武器了！"
+ItemDescription="•射击模式是全自动的。\n•备用射击射出治疗榴弹。\n•这是唯一一个能堂而皇之向你队友投掷榴弹的武器了！"
 SecondaryAmmo="医疗兵手榴弹"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="汤姆逊冲锋枪"
+ItemCategory="突击步枪"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•它被一些人称为芝加哥打字机，很适合用它把你的名字写出来。"
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL先进光学瞄准"

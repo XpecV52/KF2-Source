@@ -117,10 +117,16 @@ defaultproperties
     bHasFireLastAnims=true
 
     // Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=0)
-	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=0) //1
-	WeaponUpgrades[3]=(IncrementDamage=1.6f,IncrementWeight=0) //1
-	WeaponUpgrades[4]=(IncrementDamage=1.8f,IncrementWeight=0) //2
-	WeaponUpgrades[5]=(IncrementDamage=2.0f,IncrementWeight=0) //3
+	//WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=0)
+	//WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=0) //1
+	//WeaponUpgrades[3]=(IncrementDamage=1.6f,IncrementWeight=0) //1
+	//WeaponUpgrades[4]=(IncrementDamage=1.8f,IncrementWeight=0) //2
+	//WeaponUpgrades[5]=(IncrementDamage=2.0f,IncrementWeight=0) //3
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f), (Stat=EWUS_Damage1, Scale=1.2f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Damage1, Scale=1.4f)))
+	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.6f), (Stat=EWUS_Damage1, Scale=1.6f)))
+	WeaponUpgrades[4]=(Stats=((Stat=EWUS_Damage0, Scale=1.8f), (Stat=EWUS_Damage1, Scale=1.8f)))
+	WeaponUpgrades[5]=(Stats=((Stat=EWUS_Damage0, Scale=2.0f), (Stat=EWUS_Damage1, Scale=2.0f)))
 }
 

@@ -613,6 +613,7 @@ function UpdateStartMenuState()
             case 1:
                 OptionsComponent.bShowLengthNoPref = true;
                 OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
+                OptionsComponent.PrivacyChanged(0);
                 break;
             case 4:
                 OptionsComponent.bShowLengthNoPref = false;
@@ -1759,5 +1760,7 @@ defaultproperties
     StockMaps(20)="kf-monsterball"
     StockMaps(21)="kf-airship"
     StockMaps(22)="kf-tragickingdom"
+    StockMaps(23)="kf-shoppingspree"
+    StockMaps(24)="kf-santasworkshop"
     SubWidgetBindings=/* Array type was not detected. */
 }

@@ -172,13 +172,13 @@ defaultproperties
                     WaveAICountScale=(0.55, 0.55, 0.55, 0.55, 0.55, 0.55), //This is per player-count 0.75
                     WeeklyOutbreakId=4,
 					SpawnReplacementList={(
-                                            (SpawnEntry=AT_AlphaClot,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundMini',PercentChance=0.05), //0.5
-                                            (SpawnEntry=AT_SlasherClot,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundMini',PercentChance=0.1), //0.05
-                                            (SpawnEntry=AT_GoreFast,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundMini',PercentChance=0.1), //0.05
-                                            (SpawnEntry=AT_Crawler,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundmini',PercentChance=0.05),
-                                            (SpawnEntry=AT_Stalker,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundmini',PercentChance=0.05),
-                                            (SpawnEntry=AT_Scrake,NewClass=class'KFGameContent.KFPawn_ZedFleshpound',PercentChance=0.9),
-                                            (SpawnEntry=AT_Bloat,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundMini',PercentChance=0.65) //0.65
+                                            (SpawnEntry=AT_AlphaClot,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundMini'),PercentChance=0.05), //0.5
+                                            (SpawnEntry=AT_SlasherClot,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundMini'),PercentChance=0.1), //0.05
+                                            (SpawnEntry=AT_GoreFast,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundMini'),PercentChance=0.1), //0.05
+                                            (SpawnEntry=AT_Crawler,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundmini'),PercentChance=0.05),
+                                            (SpawnEntry=AT_Stalker,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundmini'),PercentChance=0.05),
+                                            (SpawnEntry=AT_Scrake,NewClass=(class'KFGameContent.KFPawn_ZedFleshpound'),PercentChance=0.9),
+                                            (SpawnEntry=AT_Bloat,NewClass=(class'KFGameContent.KFPawn_ZedFleshpoundMini'),PercentChance=0.65) //0.65
                     )},
                     BossSpawnReplacementList={(
                                             (SpawnEntry=BAT_Hans,NewClass=class'KFGameContent.KFPawn_ZedFleshpoundKing'),

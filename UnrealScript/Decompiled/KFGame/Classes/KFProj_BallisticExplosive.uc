@@ -190,6 +190,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
         {
             return;
         }
+        SetIsDud(bWantsClientSideDudHit, HitNormal);
         if((((Other != Instigator) && !Other.bStatic) && Other.GetTeamNum() != GetTeamNum()) && !CheckRepeatingTouch(Other))
         {
             ProcessBulletTouch(Other, HitLocation, HitNormal);
@@ -197,7 +198,6 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
         VNorm = (Velocity Dot HitNormal) * HitNormal;
         Velocity = (-VNorm * DampenFactor) + ((Velocity - VNorm) * DampenFactorParallel);
         Speed = VSize(Velocity);
-        SetIsDud(bWantsClientSideDudHit, HitNormal);
     }
     if(!bDud && !bIsTimedExplosive)
     {
@@ -324,7 +324,7 @@ defaultproperties
     TouchTimeThreshhold=0.15
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_8804' was not found.
+System.ArgumentException: Requested value '!=_8989' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

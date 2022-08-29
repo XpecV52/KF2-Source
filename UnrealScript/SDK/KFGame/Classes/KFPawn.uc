@@ -45,7 +45,6 @@ var transient LightingChannelContainer PawnLightingChannel;
 var SkeletalMeshComponent ThirdPersonHeadMeshComponent;
 
 /** Third person cosmetic attachments. Used by customizable characters only */
-var int ThirdPersonAttachmentBitMask;
 var name ThirdPersonAttachmentSocketNames[`MAX_COSMETIC_ATTACHMENTS];
 var MeshComponent ThirdPersonAttachments[`MAX_COSMETIC_ATTACHMENTS];
 
@@ -645,6 +644,9 @@ enum ESpecialMove
 	SM_Hans_GrenadeHalfBarrage,
 	SM_Hans_GrenadeBarrage,
 
+	/** Scripted Pawn */
+	SM_ScriptedPawnStateChange,
+
 	/** Custom entries for extendability */
 	SM_Custom1,
 	SM_Custom2,
@@ -808,6 +810,32 @@ const AIAirControl = 0.35;
  ********************************************************************************************* */
 var transient int	CurrDialogEventID;
 var transient byte	CurrDialogPriority;
+
+/*********************************************************************************************
+* @name	ExtraVFX
+********************************************************************************************* */
+
+struct native ExtraVFXInfo
+{
+	// Particle effect to play
+	var() ParticleSystem VFX;
+	// Socket to attach it to (if applicable)
+	var() Name SocketName;
+	// Label to use for code logic (if applicable)
+	var() Name Label;
+	// Audio event to play when vfx start
+	var() AkEvent SFXStartEvent;
+	// Audio event to play when vfx stop
+	var() AkEvent SFXStopEvent;
+};
+
+struct native ExtraVFXAttachmentInfo
+{
+	var ParticleSystemComponent VFXComponent;
+	var ExtraVFXInfo Info;
+};
+
+var transient array<ExtraVFXAttachmentInfo> ExtraVFXAttachments;
 
 /*********************************************************************************************
  * @name	Debug
@@ -1162,7 +1190,9 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 	if (Info != CharacterArch || bForce)
 	{
 		// Set Family Info
-		CharacterArch = Info;
+		
+		// duplicate, so we can modify a single instance of the arch, if desired
+		CharacterArch = Info.Duplicate();
 		CharacterArch.SetCharacterFromArch( self, KFPRI );
 		CharacterArch.SetCharacterMeshFromArch( self, KFPRI );
 		CharacterArch.SetFirstPersonArmsFromArch( self, KFPRI );
@@ -1183,22 +1213,22 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 
 		// Give a warning if any of these bones are invalid. They are needed for
         // explosive damage calcs.
-        if(Mesh.MatchRefBone(HeadBoneName) == INDEX_NONE)
+        if(HeadBoneName != `NAME_NONE && Mesh.MatchRefBone(HeadBoneName) == INDEX_NONE)
         {
             `Warn("CharacterInfo HeadBone is invalid for" @ Self);
             //ClientMessage("CharacterInfo HeadBone is invalid for" @ Self);
         }
-        if(Mesh.MatchRefBone(LeftFootBoneName) == INDEX_NONE)
+        if(LeftFootBoneName != `NAME_NONE && Mesh.MatchRefBone(LeftFootBoneName) == INDEX_NONE)
         {
             `Warn("CharacterInfo LeftFootBone is invalid for" @ Self);
             //ClientMessage("CharacterInfo LeftFootBone is invalid for" @ Self);
         }
-        if(Mesh.MatchRefBone(RightFootBoneName) == INDEX_NONE)
+        if(RightFootBoneName != `NAME_NONE && Mesh.MatchRefBone(RightFootBoneName) == INDEX_NONE)
         {
             `Warn("CharacterInfo RightFootBone is invalid for" @ Self);
             //ClientMessage("CharacterInfo RightFootBone is invalid for" @ Self);
         }
-        if(Mesh.MatchRefBone(TorsoBoneName) == INDEX_NONE)
+        if(TorsoBoneName != `NAME_NONE && Mesh.MatchRefBone(TorsoBoneName) == INDEX_NONE)
         {
             `Warn("CharacterInfo TorsoBone is invalid for" @ Self);
             //ClientMessage("CharacterInfo TorsoBone is invalid for" @ Self);
@@ -2444,6 +2474,8 @@ simulated final function float GetHealthPercentage()
 {
 	return float(Health) / float(HealthMax);
 }
+
+simulated function bool CanBeHealed();
 
 /**
  * Applies a push-back velocity on taking damage
@@ -4918,6 +4950,134 @@ static function string GetLocalizedName()
         Emitter = None;
     }
  }
+
+ /*********************************************************************************************
+ * @name   ExtraVFX
+ ********************************************************************************************* */
+
+// Plays extra VFX associated with FXLabel, or restarts deactivated effects if already attached
+simulated function PlayExtraVFX(Name FXLabel)
+{
+	local int i;
+	local ExtraVFXAttachmentInfo VFXAttachment;
+	local bool bActivatedExistingSystem;
+	local name SFXBoneName;
+
+	if (WorldInfo.NetMode == NM_DedicatedServer || FXLabel == `NAME_NONE)
+	{
+		return;
+	}
+
+	// re-play an existing effect
+	for (i = 0; i < ExtraVFXAttachments.Length; ++i)
+	{
+		if (ExtraVFXAttachments[i].Info.Label == FXLabel)
+		{
+			if (ExtraVFXAttachments[i].Info.SocketName == `NAME_NONE)
+			{
+				ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(ExtraVFXAttachments[i].Info.VFX, Location, Rotation, self);
+				if (ExtraVFXAttachments[i].Info.SFXStartEvent != none)
+				{
+					PostAkEvent(ExtraVFXAttachments[i].Info.SFXStartEvent, false, true, false);
+				}
+			}
+			else
+			{
+				ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[i].Info.VFX, Mesh, ExtraVFXAttachments[i].Info.SocketName, true);
+				if (ExtraVFXAttachments[i].Info.SFXStartEvent != none)
+				{
+					SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[i].Info.SocketName);
+					if (SFXBoneName != `NAME_NONE)
+					{
+						PostAkEventOnBone(ExtraVFXAttachments[i].Info.SFXStartEvent, SFXBoneName, false, true);
+					}
+					else
+					{
+						PostAkEvent(ExtraVFXAttachments[i].Info.SFXStartEvent, false, true, false);
+					}
+				}
+			}
+
+			bActivatedExistingSystem = true;
+		}
+	}
+
+	if (bActivatedExistingSystem)
+	{
+		return;
+	}
+
+	// play a new effect
+	for (i = 0; i < CharacterArch.ExtraVFX.Length; ++i)
+	{
+		if (CharacterArch.ExtraVFX[i].Label == FXLabel)
+		{
+			if (CharacterArch.ExtraVFX[i].SocketName == `NAME_NONE)
+			{
+				VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(CharacterArch.ExtraVFX[i].VFX, Location, Rotation, self);
+				if (CharacterArch.ExtraVFX[i].SFXStartEvent != none)
+				{
+					PostAkEvent(CharacterArch.ExtraVFX[i].SFXStartEvent, false, true, false);
+				}
+			}
+			else
+			{
+				VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterArch.ExtraVFX[i].VFX, Mesh, CharacterArch.ExtraVFX[i].SocketName, true);
+				if (CharacterArch.ExtraVFX[i].SFXStartEvent != none)
+				{
+					SFXBoneName = Mesh.GetSocketBoneName(CharacterArch.ExtraVFX[i].SocketName);
+					if (SFXBoneName != `NAME_NONE)
+					{
+						PostAkEventOnBone(CharacterArch.ExtraVFX[i].SFXStartEvent, SFXBoneName, false, true);
+					}
+					else
+					{
+						PostAkEvent(CharacterArch.ExtraVFX[i].SFXStartEvent, false, true, false);
+					}
+				}
+			}
+
+			VFXAttachment.Info = CharacterArch.ExtraVFX[i];
+			ExtraVFXAttachments.AddItem(VFXAttachment);
+		}
+	}
+}
+
+// Stops all extra VFX associated with the FXLabel, or all extra VFX is FXLabel is NAME_NONE
+simulated function StopExtraVFX(Name FXLabel)
+{
+	local int i;
+	local name SFXBoneName;
+
+	if (WorldInfo.NetMode == NM_DedicatedServer) 
+	{
+		return;
+	}
+
+	for (i = 0; i < ExtraVFXAttachments.Length; ++i)
+	{
+		if (FXLabel == `NAME_NONE || ExtraVFXAttachments[i].Info.Label == FXLabel)
+		{
+			if (ExtraVFXAttachments[i].VFXComponent != none)
+			{
+				ExtraVFXAttachments[i].VFXComponent.SetActive(false);
+			}
+
+			if (ExtraVFXAttachments[i].Info.SFXStopEvent != none)
+			{
+				SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[i].Info.SocketName);
+				if (SFXBoneName != `NAME_NONE)
+				{
+					PostAkEventOnBone(ExtraVFXAttachments[i].Info.SFXStopEvent, SFXBoneName, false, true);
+				}
+				else
+				{
+					PostAkEvent(ExtraVFXAttachments[i].Info.SFXStopEvent, false, true, false);
+				}
+			}
+		}
+	}
+}
 
 defaultproperties
 {

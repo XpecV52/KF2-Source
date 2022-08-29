@@ -348,6 +348,10 @@ simulated event ReplicatedEvent(name VarName)
                                             }
                                             else
                                             {
+                                                if(GetALocalPlayerController() != none)
+                                                {
+                                                    KFPlayerController(GetALocalPlayerController()).SeasonalEventStats_OnMapObjectiveDeactivated(Actor(bool(ObjectiveInterface)));
+                                                }
                                                 ObjectiveInterface.DeactivateObjective();
                                                 ObjectiveInterface = none;
                                             }                                            
@@ -425,26 +429,39 @@ simulated function array<int> GetKFSeqEventLevelLoadedIndices()
 {
     local array<int> ActivateIndices;
 
-    if(!bEndlessMode)
+    if(GameClass != none)
     {
-        switch(GameLength)
+        if(GameClass.Name == 'KFGameInfo_Survival')
         {
-            case 0:
-                ActivateIndices[0] = 3;
-                break;
-            case 1:
-                ActivateIndices[0] = 4;
-                break;
-            case 2:
-                ActivateIndices[0] = 5;
-                break;
-            default:
-                break;
-        }        
-    }
-    else
-    {
-        ActivateIndices[0] = 6;
+            switch(GameLength)
+            {
+                case 0:
+                    ActivateIndices[0] = 3;
+                    break;
+                case 1:
+                    ActivateIndices[0] = 4;
+                    break;
+                case 2:
+                    ActivateIndices[0] = 5;
+                    break;
+                default:
+                    break;
+            }            
+        }
+        else
+        {
+            if(GameClass.Name == 'KFGameInfo_Endless')
+            {
+                ActivateIndices[0] = 6;                
+            }
+            else
+            {
+                if(GameClass.Name == 'KFGameInfo_WeeklySurvival')
+                {
+                    ActivateIndices[0] = 7;
+                }
+            }
+        }
     }
     return ActivateIndices;
 }
@@ -463,18 +480,21 @@ simulated function ReceivedGameClass()
         {
             TraderDialogManager.TraderVoiceGroupClass = KFGameClass.default.TraderVoiceGroupClass;
             KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-            if(bEndlessMode)
+            if(KFMI != none)
             {
-                if(KFMI.TraderVoiceGroupClassPath_Endless != "")
+                if(bEndlessMode)
                 {
-                    MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath_Endless, Class'Class'));
-                }                
-            }
-            else
-            {
-                if(KFMI.TraderVoiceGroupClassPath != "")
+                    if(KFMI.TraderVoiceGroupClassPath_Endless != "")
+                    {
+                        MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath_Endless, Class'Class'));
+                    }                    
+                }
+                else
                 {
-                    MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, Class'Class'));
+                    if(KFMI.TraderVoiceGroupClassPath != "")
+                    {
+                        MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, Class'Class'));
+                    }
                 }
             }
             if(MapVoiceGroupClass != none)
@@ -500,7 +520,7 @@ simulated function CacheSelectedBoss(int NewBossIndex)
     KFGameClass = class<KFGameInfo>(GameClass);
     if(KFGameClass != none)
     {
-        KFMonsterClass = KFGameClass.static.GetSpecificBossClass(BossIndex);
+        KFMonsterClass = KFGameClass.static.GetSpecificBossClass(BossIndex, KFMapInfo(WorldInfo.GetMapInfo()));
         if(KFMonsterClass != none)
         {
             SetCachedBossArchetype(KFMonsterClass.default.MonsterArchPath);
@@ -1674,6 +1694,10 @@ function DeactivateObjective()
         PreviousObjectiveResult = ObjectiveInterface.GetDoshReward();
         PreviousObjectiveVoshResult = ObjectiveInterface.GetVoshReward();
         PreviousObjectiveXPResult = ObjectiveInterface.GetXPReward();
+        if(GetALocalPlayerController() != none)
+        {
+            KFPlayerController(GetALocalPlayerController()).SeasonalEventStats_OnMapObjectiveDeactivated(Actor(bool(ObjectiveInterface)));
+        }
         ObjectiveInterface.DeactivateObjective();
         CurrentObjective = none;
         ObjectiveInterface = none;
@@ -1692,6 +1716,7 @@ function DeactivateObjective()
                         KFPM.CheckShouldAlwaysBeRelevant();                        
                     }                    
                 }
+                KFGI.OnEndlessSpawningObjectiveDeactivated();
             }
         }
     }

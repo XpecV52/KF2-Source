@@ -24,6 +24,8 @@ KF-DieSector="Playing DieSector"
 KF-Lockdown="Playing Lockdown"
 KF-Airship="Playing Airship"
 KF-MonsterBall="Playing Monster Ball"
+KF-ShoppingSpree="Playing Shopping Spree"
+KF-SantasWorkshop="Playing Santa's Workshop"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

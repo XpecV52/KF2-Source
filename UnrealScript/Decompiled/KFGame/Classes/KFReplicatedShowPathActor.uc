@@ -13,7 +13,7 @@ var byte PathTeamNum;
 var byte VolumeCheckType;
 var Volume CheckVolume;
 var repnotify Actor Target;
-var class<KFEmit_Path> PathClass;
+var ParticleSystem EmitterTemplate;
 
 replication
 {
@@ -122,7 +122,8 @@ simulated function ShowPath()
         }
         if(bPathFound)
         {
-            Path = KFEmit_ScriptedPath(Target.Spawn(GetPathClass(), PC,, PC.Pawn.Location));
+            Path = Target.Spawn(Class'KFEmit_ScriptedPath', PC,, PC.Pawn.Location);
+            Path.SetTemplate(EmitterTemplate, true);
             if(Path != none)
             {
                 Path.SetDestination(Target.Location + vect(0, 0, 50));
@@ -137,14 +138,14 @@ simulated function ShowPath()
     }    
 }
 
-simulated function class<KFEmit_Path> GetPathClass()
+simulated function SetEmitterTemplate(ParticleSystem NewTemplate)
 {
-    return PathClass;
+    EmitterTemplate = NewTemplate;
 }
 
 defaultproperties
 {
-    PathClass=Class'KFEmit_ScriptedPath'
+    EmitterTemplate=ParticleSystem'FX_Gameplay_EMIT.FX_Trader_Trail'
     RemoteRole=ENetRole.ROLE_SimulatedProxy
     CollisionType=ECollisionType.COLLIDE_CustomDefault
     bIgnoreEncroachers=true

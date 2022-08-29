@@ -1,0 +1,44 @@
+//=============================================================================
+// KFSeasonalEventStats
+//=============================================================================
+// Tracks event-specific challenges/accomplishments
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2018 Tripwire Interactive LLC
+//=============================================================================
+class KFSeasonalEventStats extends Object
+	within KFOnlineStatsWrite
+	native
+	abstract;
+
+var protected int bObjectiveIsValidForMap[5];
+
+/*****************************************************************************************************
+ * @name Native
+ ****************************************************************************************************/
+
+// whether this seasonal stats object is the stats object that is being tracked right now
+final native function bool IsValid();
+final protected native function IncrementSeasonalEventStat(int StatIdx, int Inc);
+final protected native function SetSeasonalEventStatsMax(int StatMax1, int StatMax2, int StatMax3, int StatMax4, int StatMax5);
+final protected native function GrantEventItem(int ItemId);
+
+/*****************************************************************************************************
+ * @name Script
+ ****************************************************************************************************/
+
+private event Initialize(string MapName);
+static private event bool AllowEventBossOverrideForMap(string MapName);
+private event GrantEventItems();
+
+simulated function OnMapObjectiveDeactivated(Actor ObjectiveInterfaceActor);
+simulated function OnZedKilled(class<KFPawn_Monster> MonsterClass, int Difficulty, class<DamageType> DT);
+simulated function OnMapCollectibleFound(PlayerReplicationInfo FinderPRI, int CollectibleID);
+simulated event OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLength, bool bCoOp);
+simulated function OnBossDied();
+
+defaultproperties
+{
+   Name="Default__KFSeasonalEventStats"
+   ObjectArchetype=Object'Core.Default__Object'
+}

@@ -1,7 +1,9 @@
 package tripwire.containers.trader
 {
     import flash.display.MovieClip;
+    import flash.events.Event;
     import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
     
@@ -67,8 +69,6 @@ package tripwire.containers.trader
         
         public var upgradeButton:TripButton;
         
-        public var favoriteControllerIcon:MovieClip;
-        
         public var upgradeFrame:MovieClip;
         
         public var upgradeTextField:TextField;
@@ -87,6 +87,12 @@ package tripwire.containers.trader
         {
             super();
             this.upgradeButton.focusable = false;
+        }
+        
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.descriptionTextField.autoSize = TextFieldAutoSize.LEFT;
         }
     }
 }

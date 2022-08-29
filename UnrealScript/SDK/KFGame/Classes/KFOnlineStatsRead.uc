@@ -160,7 +160,12 @@ defaultproperties
     ColumnIds.Add(STATID_DailyEventIDs)
     ColumnIds.Add(STATID_DailyEventStats1)
     ColumnIds.Add(STATID_DailyEventStats2)
-	ColumnIds.Add(STATID_SpecialEventKills);
+	ColumnIds.Add(STATID_SpecialEventKills_DEPRECATED);
+	ColumnIds.Add(STATID_SeasonalEventStats1);
+	ColumnIds.Add(STATID_SeasonalEventStats2);
+	ColumnIds.Add(STATID_SeasonalEventStats3);
+	ColumnIds.Add(STATID_SeasonalEventStats4);
+	ColumnIds.Add(STATID_SeasonalEventStats5);
 	ColumnIds.Add(STATID_PersonalBest_KnifeKills)
 	ColumnIds.Add(STATID_PersonalBest_PistolKills)
 	ColumnIds.Add(STATID_PersonalBest_HeadShots)
@@ -173,6 +178,7 @@ defaultproperties
     ColumnIds.Add(STATID_DoshVaultTotal)
     ColumnIds.Add(STATID_LastViewedDoshVaultTotal)
 	ColumnIds.Add(STATID_DoshVaultProgress)
+	ColumnIds.Add(STATID_DoshVaultRecovered)
 
 	ColumnMappings.Add((Id=STATID_Cmdo_Progress, Name="CmdoProgress"))
 	ColumnMappings.Add((Id=STATID_Cmdo_Build, Name="CmdoBuild"))
@@ -206,7 +212,12 @@ defaultproperties
     ColumnMappings.Add((Id=STATID_DailyEventIDs, Name="DailyEventIDs"))
     ColumnMappings.Add((Id=STATID_DailyEventStats1, Name="DailyEventStats1"))
     ColumnMappings.Add((Id=STATID_DailyEventStats2, Name="DailyEventStats2"))
-	ColumnMappings.Add((Id=STATID_SpecialEventKills, Name="SpecialEventKills"))
+	ColumnMappings.Add((Id=STATID_SpecialEventKills_DEPRECATED, Name="SpecialEventKills"))
+	ColumnMappings.Add((Id=STATID_SeasonalEventStats1, Name="SeasonalEventStats1"))
+	ColumnMappings.Add((Id=STATID_SeasonalEventStats2, Name="SeasonalEventStats2"))
+	ColumnMappings.Add((Id=STATID_SeasonalEventStats3, Name="SeasonalEventStats3"))
+	ColumnMappings.Add((Id=STATID_SeasonalEventStats4, Name="SeasonalEventStats4"))
+	ColumnMappings.Add((Id=STATID_SeasonalEventStats5, Name="SeasonalEventStats5"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_KnifeKills, Name = "PersonalBestKnifeKills"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_PistolKills, Name = "PersonalBestPistolKills"))
 	ColumnMappings.Add((Id=STATID_PersonalBest_HeadShots, Name = "PersonalBestHeadshots"))
@@ -219,4 +230,5 @@ defaultproperties
     ColumnMappings.Add((Id=STATID_DoshVaultTotal, Name="DoshVaultTotal"))
     ColumnMappings.Add((Id=STATID_LastViewedDoshVaultTotal, Name="LastViewedDoshVaultTotal"))
 	ColumnMappings.Add((Id=STATID_DoshVaultProgress, Name="DoshVaultProgress"))
+	ColumnMappings.Add((Id=STATID_DoshVaultRecovered, Name="DoshVaultRecovered"))
 }

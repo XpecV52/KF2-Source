@@ -90,9 +90,9 @@ function NotifyTakeHit(Controller DamageInstigator, Vector HitDir, class<KFDamag
     if((Outer.GetTeamNum() > 254) && !Outer.bPlayedDeath)
     {
         ProcessSpecialMoveAfflictions(InstigatorPerk, HitDir, DamageType, DamageCauser);
-        ProcessHitReactionAfflictions(InstigatorPerk, DamageType);
+        ProcessHitReactionAfflictions(InstigatorPerk, DamageType, DamageCauser);
     }
-    ProcessEffectBasedAfflictions(InstigatorPerk, DamageType);
+    ProcessEffectBasedAfflictions(InstigatorPerk, DamageType, DamageCauser);
 }
 
 function byte GetPredictedHitReaction(class<KFDamageType> DamageType, KFAfflictionManager.EHitZoneBodyPart BodyPart)
@@ -115,10 +115,11 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
 {
     local KFAfflictionManager.EHitZoneBodyPart BodyPart;
     local byte HitZoneIdx;
-    local float KnockdownPower, StumblePower, StunPower, SnarePower, KnockdownModifier, StumbleModifier,
-	    StunModifier;
+    local float KnockdownPower, StumblePower, StunPower, SnarePower, FreezePower, KnockdownModifier,
+	    StumbleModifier, StunModifier;
 
     local KFInterface_DamageCauser KFDmgCauser;
+    local KFWeapon DamageWeapon;
 
     if(IsZero(HitDir))
     {
@@ -126,10 +127,23 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     }
     HitZoneIdx = Outer.HitFxInfo.HitBoneIndex;
     BodyPart = (((HitZoneIdx != 255) && HitZoneIdx < Outer.HitZones.Length) ? Outer.HitZones[HitZoneIdx].Limb : 0);
-    KnockdownPower = DamageType.default.KnockdownPower;
-    StumblePower = DamageType.default.StumblePower;
-    StunPower = DamageType.default.StunPower;
-    SnarePower = DamageType.default.SnarePower;
+    DamageWeapon = Class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
+    if(DamageWeapon != none)
+    {
+        KnockdownPower = DamageWeapon.GetUpgradedAfflictionPower(8, DamageType.default.KnockdownPower);
+        StumblePower = DamageWeapon.GetUpgradedAfflictionPower(4, DamageType.default.StumblePower);
+        StunPower = DamageWeapon.GetUpgradedAfflictionPower(5, DamageType.default.StunPower);
+        SnarePower = DamageWeapon.GetUpgradedAfflictionPower(7, DamageType.default.SnarePower);
+        FreezePower = DamageWeapon.GetUpgradedAfflictionPower(9, DamageType.default.FreezePower);        
+    }
+    else
+    {
+        KnockdownPower = DamageType.default.KnockdownPower;
+        StumblePower = DamageType.default.StumblePower;
+        StunPower = DamageType.default.StunPower;
+        SnarePower = DamageType.default.SnarePower;
+        FreezePower = DamageType.default.FreezePower;
+    }
     KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
     if(NotEqual_InterfaceInterface(KFDmgCauser, (none)))
     {
@@ -166,9 +180,9 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     {
         AccrueAffliction(4, StumblePower, BodyPart);
     }
-    if((DamageType.default.FreezePower > float(0)) && Outer.CanDoSpecialMove(9))
+    if((FreezePower > float(0)) && Outer.CanDoSpecialMove(9))
     {
-        AccrueAffliction(9, DamageType.default.FreezePower, BodyPart);
+        AccrueAffliction(9, FreezePower, BodyPart);
     }
     if(SnarePower > float(0))
     {
@@ -176,11 +190,12 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     }
 }
 
-protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType)
+protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType, Actor DamageCauser)
 {
     local KFAfflictionManager.EHitZoneBodyPart BodyPart;
     local byte HitZoneIdx;
-    local float ReactionModifier;
+    local float ReactionModifier, MeleeHitPower, GunHitPower;
+    local KFWeapon DamageWeapon;
 
     ReactionModifier = 1;
     if(InstigatorPerk != none)
@@ -191,35 +206,66 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
     {
         HitZoneIdx = Outer.HitFxInfo.HitBoneIndex;
         BodyPart = (((HitZoneIdx != 255) && HitZoneIdx < Outer.HitZones.Length) ? Outer.HitZones[HitZoneIdx].Limb : 0);
-        if(DamageType.default.MeleeHitPower > float(0))
+        DamageWeapon = Class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
+        if(DamageWeapon != none)
         {
-            AccrueAffliction(2, DamageType.default.MeleeHitPower * ReactionModifier, BodyPart);
+            MeleeHitPower = DamageWeapon.GetUpgradedAfflictionPower(2, DamageType.default.MeleeHitPower);
+            GunHitPower = DamageWeapon.GetUpgradedAfflictionPower(3, DamageType.default.GunHitPower);            
+        }
+        else
+        {
+            MeleeHitPower = DamageType.default.MeleeHitPower;
+            GunHitPower = DamageType.default.GunHitPower;
+        }
+        if(MeleeHitPower > float(0))
+        {
+            AccrueAffliction(2, MeleeHitPower * ReactionModifier, BodyPart);
         }
         if(((HitZoneIdx == 0) && Outer.IsHeadless()) && Outer.GetTimerCount('BleedOutTimer', Outer) == 0)
         {
             AccrueAffliction(2, 100, BodyPart);
         }
-        if(DamageType.default.GunHitPower > float(0))
+        if(GunHitPower > float(0))
         {
-            AccrueAffliction(3, DamageType.default.GunHitPower * ReactionModifier, BodyPart);
+            AccrueAffliction(3, GunHitPower * ReactionModifier, BodyPart);
         }
     }
 }
 
-protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType)
+protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType, Actor DamageCauser)
 {
+    local KFWeapon DamageWeapon;
+    local float BurnPower, EMPPower, PoisonPower, MicrowavePower, BleedPower;
+
+    DamageWeapon = Class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
+    if(DamageWeapon != none)
+    {
+        BurnPower = DamageWeapon.GetUpgradedAfflictionPower(1, DamageType.default.BurnPower);
+        EMPPower = DamageWeapon.GetUpgradedAfflictionPower(0, DamageType.default.EMPPower);
+        PoisonPower = DamageWeapon.GetUpgradedAfflictionPower(6, DamageType.default.PoisonPower);
+        MicrowavePower = DamageWeapon.GetUpgradedAfflictionPower(10, DamageType.default.MicrowavePower);
+        BleedPower = DamageWeapon.GetUpgradedAfflictionPower(11, DamageType.default.BleedPower);        
+    }
+    else
+    {
+        BurnPower = DamageType.default.BurnPower;
+        EMPPower = DamageType.default.EMPPower;
+        PoisonPower = DamageType.default.PoisonPower;
+        MicrowavePower = DamageType.default.MicrowavePower;
+        BleedPower = DamageType.default.BleedPower;
+    }
     if(Outer.bPlayedDeath && Outer.WorldInfo.TimeSeconds > Outer.TimeOfDeath)
     {
-        if(DamageType.default.BurnPower > float(0))
+        if(BurnPower > float(0))
         {
-            AccrueAffliction(1, DamageType.default.BurnPower);
+            AccrueAffliction(1, BurnPower);
         }        
     }
     else
     {
-        if(DamageType.default.EMPPower > float(0))
+        if(EMPPower > float(0))
         {
-            AccrueAffliction(0, DamageType.default.EMPPower);            
+            AccrueAffliction(0, EMPPower);            
         }
         else
         {
@@ -228,21 +274,21 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
                 AccrueAffliction(0, InstigatorPerk.GetDaZedEMPPower());
             }
         }
-        if(DamageType.default.BurnPower > float(0))
+        if(BurnPower > float(0))
         {
-            AccrueAffliction(1, DamageType.default.BurnPower);
+            AccrueAffliction(1, BurnPower);
         }
-        if((DamageType.default.PoisonPower > float(0)) && DamageType.static.AlwaysPoisons())
+        if((PoisonPower > float(0)) || DamageType.static.AlwaysPoisons())
         {
-            AccrueAffliction(6, DamageType.default.PoisonPower);
+            AccrueAffliction(6, PoisonPower);
         }
-        if(DamageType.default.MicrowavePower > float(0))
+        if(MicrowavePower > float(0))
         {
-            AccrueAffliction(10, DamageType.default.MicrowavePower);
+            AccrueAffliction(10, MicrowavePower);
         }
-        if(DamageType.default.BleedPower > float(0))
+        if(BleedPower > float(0))
         {
-            AccrueAffliction(11, DamageType.default.BleedPower);
+            AccrueAffliction(11, BleedPower);
         }
     }
 }

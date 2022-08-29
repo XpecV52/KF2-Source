@@ -92,6 +92,7 @@ enum ESpecialMove
     SM_Hans_ThrowGrenade,
     SM_Hans_GrenadeHalfBarrage,
     SM_Hans_GrenadeBarrage,
+    SM_ScriptedPawnStateChange,
     SM_Custom1,
     SM_Custom2,
     SM_Custom3,
@@ -288,6 +289,66 @@ struct native KFSpecialMoveStruct
     }
 };
 
+struct native ExtraVFXInfo
+{
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play
+     */
+    var() ParticleSystem VFX;
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play// Socket to attach it to (if applicable)
+
+     */
+    var() name SocketName;
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play// Socket to attach it to (if applicable)
+// Label to use for code logic (if applicable)
+
+     */
+    var() name Label;
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play// Socket to attach it to (if applicable)
+// Label to use for code logic (if applicable)
+// Audio event to play when vfx start
+
+     */
+    var() AkEvent SFXStartEvent;
+    /**  
+     *@name  ExtraVFX
+     *// Particle effect to play// Socket to attach it to (if applicable)
+// Label to use for code logic (if applicable)
+// Audio event to play when vfx start
+// Audio event to play when vfx stop
+
+     */
+    var() AkEvent SFXStopEvent;
+
+    structdefaultproperties
+    {
+        VFX=none
+        SocketName=None
+        Label=None
+        SFXStartEvent=none
+        SFXStopEvent=none
+    }
+};
+
+struct native ExtraVFXAttachmentInfo
+{
+    var export editinline ParticleSystemComponent VFXComponent;
+    var ExtraVFXInfo Info;
+
+    structdefaultproperties
+    {
+        VFXComponent=none
+        Info=(VFX=none,SocketName=None,Label=None,SFXStartEvent=none,SFXStopEvent=none)
+    }
+};
+
 var KFCharacterInfoBase CharacterArch;
 var KFPawnSoundGroup SoundGroupArch;
 var class<KFPawnVoiceGroup> VoiceGroupArch;
@@ -296,7 +357,6 @@ var name LocalizationKey;
 var Texture2D CharacterPortrait;
 var transient LightingChannelContainer PawnLightingChannel;
 var export editinline SkeletalMeshComponent ThirdPersonHeadMeshComponent;
-var int ThirdPersonAttachmentBitMask;
 var name ThirdPersonAttachmentSocketNames[3];
 var export editinline MeshComponent ThirdPersonAttachments[3];
 var name FirstPersonAttachmentSocketNames[3];
@@ -511,6 +571,7 @@ var float HiddenGroundSpeed;
 var Controller ExclusiveTargetingController;
 var float AIIgnoreEndTime;
 var transient int CurrDialogEventID;
+var transient array<ExtraVFXAttachmentInfo> ExtraVFXAttachments;
 var Texture2D DebugRadarTexture;
 
 replication
@@ -734,7 +795,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
     if((Info != CharacterArch) || bForce)
     {
-        CharacterArch = Info;
+        CharacterArch = Info.Duplicate();
         CharacterArch.SetCharacterFromArch(self, KFPRI);
         CharacterArch.SetCharacterMeshFromArch(self, KFPRI);
         CharacterArch.SetFirstPersonArmsFromArch(self, KFPRI);
@@ -747,19 +808,19 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
                 WeaponAttachmentChanged(true);
             }
         }
-        if(Mesh.MatchRefBone(HeadBoneName) == -1)
+        if((HeadBoneName != 'None') && Mesh.MatchRefBone(HeadBoneName) == -1)
         {
             WarnInternal("CharacterInfo HeadBone is invalid for" @ string(self));
         }
-        if(Mesh.MatchRefBone(LeftFootBoneName) == -1)
+        if((LeftFootBoneName != 'None') && Mesh.MatchRefBone(LeftFootBoneName) == -1)
         {
             WarnInternal("CharacterInfo LeftFootBone is invalid for" @ string(self));
         }
-        if(Mesh.MatchRefBone(RightFootBoneName) == -1)
+        if((RightFootBoneName != 'None') && Mesh.MatchRefBone(RightFootBoneName) == -1)
         {
             WarnInternal("CharacterInfo RightFootBone is invalid for" @ string(self));
         }
-        if(Mesh.MatchRefBone(TorsoBoneName) == -1)
+        if((TorsoBoneName != 'None') && Mesh.MatchRefBone(TorsoBoneName) == -1)
         {
             WarnInternal("CharacterInfo TorsoBone is invalid for" @ string(self));
         }
@@ -1749,6 +1810,8 @@ final simulated function float GetHealthPercentage()
 {
     return float(Health) / float(HealthMax);
 }
+
+simulated function bool CanBeHealed();
 
 function HandleMomentum(Vector Momentum, Vector HitLocation, class<DamageType> DamageType, optional TraceHitInfo HitInfo)
 {
@@ -3578,6 +3641,134 @@ simulated function DetachEmitter(out ParticleSystemComponent Emitter)
         DetachComponent(Emitter);
         WorldInfo.MyEmitterPool.OnParticleSystemFinished(Emitter);
         Emitter = none;
+    }
+}
+
+simulated function PlayExtraVFX(name FXLabel)
+{
+    local int I;
+    local ExtraVFXAttachmentInfo VFXAttachment;
+    local bool bActivatedExistingSystem;
+    local name SFXBoneName;
+
+    if((WorldInfo.NetMode == NM_DedicatedServer) || FXLabel == 'None')
+    {
+        return;
+    }
+    I = 0;
+    J0x4F:
+
+    if(I < ExtraVFXAttachments.Length)
+    {
+        if(ExtraVFXAttachments[I].Info.Label == FXLabel)
+        {
+            if(ExtraVFXAttachments[I].Info.SocketName == 'None')
+            {
+                ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(ExtraVFXAttachments[I].Info.VFX, Location, Rotation, self);
+                if(ExtraVFXAttachments[I].Info.SFXStartEvent != none)
+                {
+                    PostAkEvent(ExtraVFXAttachments[I].Info.SFXStartEvent, false, true, false);
+                }                
+            }
+            else
+            {
+                ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[I].Info.VFX, Mesh, ExtraVFXAttachments[I].Info.SocketName, true);
+                if(ExtraVFXAttachments[I].Info.SFXStartEvent != none)
+                {
+                    SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[I].Info.SocketName);
+                    if(SFXBoneName != 'None')
+                    {
+                        PostAkEventOnBone(ExtraVFXAttachments[I].Info.SFXStartEvent, SFXBoneName, false, true);                        
+                    }
+                    else
+                    {
+                        PostAkEvent(ExtraVFXAttachments[I].Info.SFXStartEvent, false, true, false);
+                    }
+                }
+            }
+            bActivatedExistingSystem = true;
+        }
+        ++ I;
+        goto J0x4F;
+    }
+    if(bActivatedExistingSystem)
+    {
+        return;
+    }
+    I = 0;
+    J0x483:
+
+    if(I < CharacterArch.ExtraVFX.Length)
+    {
+        if(CharacterArch.ExtraVFX[I].Label == FXLabel)
+        {
+            if(CharacterArch.ExtraVFX[I].SocketName == 'None')
+            {
+                VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(CharacterArch.ExtraVFX[I].VFX, Location, Rotation, self);
+                if(CharacterArch.ExtraVFX[I].SFXStartEvent != none)
+                {
+                    PostAkEvent(CharacterArch.ExtraVFX[I].SFXStartEvent, false, true, false);
+                }                
+            }
+            else
+            {
+                VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterArch.ExtraVFX[I].VFX, Mesh, CharacterArch.ExtraVFX[I].SocketName, true);
+                if(CharacterArch.ExtraVFX[I].SFXStartEvent != none)
+                {
+                    SFXBoneName = Mesh.GetSocketBoneName(CharacterArch.ExtraVFX[I].SocketName);
+                    if(SFXBoneName != 'None')
+                    {
+                        PostAkEventOnBone(CharacterArch.ExtraVFX[I].SFXStartEvent, SFXBoneName, false, true);                        
+                    }
+                    else
+                    {
+                        PostAkEvent(CharacterArch.ExtraVFX[I].SFXStartEvent, false, true, false);
+                    }
+                }
+            }
+            VFXAttachment.Info = CharacterArch.ExtraVFX[I];
+            ExtraVFXAttachments.AddItem(VFXAttachment;
+        }
+        ++ I;
+        goto J0x483;
+    }
+}
+
+simulated function StopExtraVFX(name FXLabel)
+{
+    local int I;
+    local name SFXBoneName;
+
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
+    I = 0;
+    J0x36:
+
+    if(I < ExtraVFXAttachments.Length)
+    {
+        if((FXLabel == 'None') || ExtraVFXAttachments[I].Info.Label == FXLabel)
+        {
+            if(ExtraVFXAttachments[I].VFXComponent != none)
+            {
+                ExtraVFXAttachments[I].VFXComponent.SetActive(false);
+            }
+            if(ExtraVFXAttachments[I].Info.SFXStopEvent != none)
+            {
+                SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[I].Info.SocketName);
+                if(SFXBoneName != 'None')
+                {
+                    PostAkEventOnBone(ExtraVFXAttachments[I].Info.SFXStopEvent, SFXBoneName, false, true);                    
+                }
+                else
+                {
+                    PostAkEvent(ExtraVFXAttachments[I].Info.SFXStopEvent, false, true, false);
+                }
+            }
+        }
+        ++ I;
+        goto J0x36;
     }
 }
 

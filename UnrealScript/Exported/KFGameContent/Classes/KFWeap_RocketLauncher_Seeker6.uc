@@ -120,7 +120,7 @@ simulated function bool CanLockOnTo(Actor TA)
 
 	// Make sure the pawn is legit, isn't dead, and isn't already at full health
 	if ((TA == None) || !TA.bProjTarget || TA.bDeleteMe || (PawnTarget == None) ||
-		(TA == Instigator) || (PawnTarget.Health <= 0) || PawnTarget.bIsCloaking ||
+		(TA == Instigator) || (PawnTarget.Health <= 0) || 
 		!HasAmmo(DEFAULT_FIREMODE))
 	{
 		return false;
@@ -593,7 +593,7 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
-   WeaponUpgrades(1)=(IncrementDamage=1.125000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.125000),(Stat=EWUS_Damage1,Scale=1.125000),(Add=1)))
    FiringStatesArray(0)="WeaponFiring"
    FiringStatesArray(1)="WeaponBurstFiring"
    FiringStatesArray(2)=()

@@ -642,7 +642,8 @@ simulated function OnWeldCompWeldIntegrityChanged(int Amount, KFPawn Welder)
 {
     if(Role == ROLE_Authority)
     {
-        FastenWeld(Amount, Welder);        
+        FastenWeld(Amount, Welder);
+        WeldableComponent.SetWeldIntegrity(WeldIntegrity);        
     }
     else
     {

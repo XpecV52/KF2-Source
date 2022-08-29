@@ -26,6 +26,7 @@ struct SpecialWaveInfo
     var() float WaveScale;
     var() float SpawnRateMultiplier;
     var() bool bSpawnEnraged;
+    var() float NextSpawnTimeModMin;
 
     structdefaultproperties
     {
@@ -34,6 +35,7 @@ struct SpecialWaveInfo
         WaveScale=1
         SpawnRateMultiplier=1
         bSpawnEnraged=false
+        NextSpawnTimeModMin=0
     }
 };
 
@@ -43,17 +45,17 @@ struct SpecialWaveDifficultyInfo
 
     structdefaultproperties
     {
-        SpecialWaveInfos(0)=(ZedType=EAIType.AT_Clot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(1)=(ZedType=EAIType.AT_SlasherClot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(2)=(ZedType=EAIType.AT_Crawler,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(3)=(ZedType=EAIType.AT_Stalker,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(4)=(ZedType=EAIType.AT_Siren,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(5)=(ZedType=EAIType.AT_Husk,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(6)=(ZedType=EAIType.AT_Scrake,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(7)=(ZedType=EAIType.AT_AlphaClot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(8)=(ZedType=EAIType.AT_GoreFast,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(9)=(ZedType=EAIType.AT_Bloat,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
-        SpecialWaveInfos(10)=(ZedType=EAIType.AT_FleshPound,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false)
+        SpecialWaveInfos(0)=(ZedType=EAIType.AT_Clot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(1)=(ZedType=EAIType.AT_SlasherClot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(2)=(ZedType=EAIType.AT_Crawler,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(3)=(ZedType=EAIType.AT_Stalker,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(4)=(ZedType=EAIType.AT_Siren,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(5)=(ZedType=EAIType.AT_Husk,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(6)=(ZedType=EAIType.AT_Scrake,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(7)=(ZedType=EAIType.AT_AlphaClot,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(8)=(ZedType=EAIType.AT_GoreFast,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(9)=(ZedType=EAIType.AT_Bloat,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0)
+        SpecialWaveInfos(10)=(ZedType=EAIType.AT_FleshPound,PctChance=0,WaveScale=1,SpawnRateMultiplier=1,bSpawnEnraged=false,NextSpawnTimeModMin=0.25)
     }
 };
 
@@ -423,7 +425,7 @@ function KFGame.KFAISpawnManager.EAIType GetSpecialWaveType()
     return SpecialWaves[int(RandRange(0, float(SpecialWaves.Length - 1)))].ZedType;
 }
 
-function GetSpecialWaveModifiers(KFGame.KFAISpawnManager.EAIType AIType, out float WaveCountMod, out float SpawnRateMod)
+function bool GetSpecialWaveModifiers(KFGame.KFAISpawnManager.EAIType AIType, out float WaveCountMod, out float SpawnRateMod)
 {
     local array<SpecialWaveInfo> SpecialWaves;
     local SpecialWaveInfo It;
@@ -437,9 +439,10 @@ function GetSpecialWaveModifiers(KFGame.KFAISpawnManager.EAIType AIType, out flo
         {
             WaveCountMod = It.WaveScale;
             SpawnRateMod = 1 / It.SpawnRateMultiplier;            
-            return;
+            return true;
         }        
     }    
+    return false;
 }
 
 function float GetSpecialWaveScale(KFGame.KFAISpawnManager.EAIType AIType)
@@ -475,6 +478,22 @@ function float GetSpecialWaveSpawnRateMod(KFGame.KFAISpawnManager.EAIType AIType
         }        
     }    
     return 1;
+}
+
+function float GetSpecialWaveSpawnTimeModMin(KFGame.KFAISpawnManager.EAIType AIType)
+{
+    local array<SpecialWaveInfo> SpecialWaves;
+    local SpecialWaveInfo It;
+
+    SpecialWaves = CurrentDifficultyScaling.DifficultySpecialWaveTypes[CurrentDifficultyScaling.CurrentDifficultyIndex].SpecialWaveInfos;
+    foreach SpecialWaves(It,)
+    {
+        if(It.ZedType == AIType)
+        {            
+            return It.NextSpawnTimeModMin;
+        }        
+    }    
+    return 0;
 }
 
 function float GetAIDamageModifier(KFPawn_Monster P, float GameDifficulty, bool bSoloPlay)

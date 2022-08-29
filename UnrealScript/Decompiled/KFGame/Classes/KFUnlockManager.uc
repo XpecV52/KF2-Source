@@ -13,8 +13,8 @@ enum ESharedContentUnlock
 {
     SCU_None,
     SCU_Zweihander,
-    SCU_MKB,
     SCU_ChainBat,
+    SCU_AbominationAxe,
     SCU_MAX
 };
 
@@ -43,11 +43,12 @@ struct native SharedContent
 };
 
 var array<SharedContent> SharedContentList;
+var array<OnlineCrossTitleContent> CrossTitleContent;
 var OnlineSubsystem MyOnlineSubsystem;
 var const bool bDebugUnlocks;
 
 // Export UKFUnlockManager::execInitSharedUnlocksFor(FFrame&, void* const)
-native static function InitSharedUnlocksFor(KFPlayerReplicationInfo PRI);
+native static function InitSharedUnlocksFor(KFPlayerReplicationInfo PRI, const optional out array<OnlineCrossTitleContent> InCrossTitleContent);
 
 // Export UKFUnlockManager::execIsSharedContentUnlocked(FFrame&, void* const)
 native static function bool IsSharedContentUnlocked(KFUnlockManager.ESharedContentUnlock UnlockId);
@@ -200,6 +201,6 @@ defaultproperties
 {
     SharedContentList(0)=(Name=None,IconPath="",Id=0)
     SharedContentList(1)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",Id=219640)
-    SharedContentList(2)=(Name=KFWeap_AssaultRifle_MKB42,IconPath="WEP_UI_MKB42_TEX.UI_WeaponSelect_MKB42",Id=6456)
-    SharedContentList(3)=(Name=KFWeap_Blunt_ChainBat,IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",Id=300380)
+    SharedContentList(2)=(Name=KFWeap_Blunt_ChainBat,IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",Id=300380)
+    SharedContentList(3)=(Name=KFWeap_Edged_AbominationAxe,IconPath="WEP_UI_KrampusAxe_TEX.UI_WeaponSelect_KrampusAxe",Id=5378)
 }

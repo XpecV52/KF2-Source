@@ -542,11 +542,31 @@ ItemName="Mac-10"
 ItemCategory="Pistolet maszynowy"
 ItemDescription="•Tryb strzelania: ogień ciągły albo seria.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Obsługuje szybkostrzelną amunicję zapalającą. Łapiesz? Szybkostrzelną. Bo do broni maszynowej? Ech, mniejsza o to."
 
+[KFWeap_Edged_AbominationAxe]
+ItemName="Topór wojenny"
+ItemCategory="Broń biała"
+ItemDescription="•Główny atak – wolne cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne, wolne cięcie niszczące po śmierci.\n•Alt. – blok/parowanie.\n•Staroć, ale wali jak armata... duża i ostra armata."
+
+[KFWeap_Edged_FireAxe]
+ItemName="Siekiera strażacka"
+ItemCategory="Broń biała"
+ItemDescription="•Główny atak – cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Dlaczego strażacka, skoro niczego nie gasi?"
+
+[KFWeap_GrenadeLauncher_M32]
+ItemName="Granatnik M32"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="•Wystrzeliwuje granaty.\n•Granaty eksplodują po trafieniu w cel.\n•Broń dla tych, którzy sklejenie sześciu granatników M79 taśmą uważają za nieeleganckie."
+
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
 ItemName="Karabin HMTech-501 z granatnikiem"
 ItemCategory="Karabin szturmowy"
-ItemDescription="•Tryb ataku: tylko ogień ciągły.\n•Alternatywny atak wystrzeliwuje granaty medyczne.\n•To jedyna broń, która pozwala bezkarnie strzelać granatami w znajomych!"
+ItemDescription="•Strzela wyłącznie ogniem ciągłym.\n•Alt. — wystrzeliwuje granaty medyczne.\n•Jeśli lubisz ciskać granatami w swoich, to broń dla ciebie!"
 SecondaryAmmo="Granat medyczny"
+
+[KFWeap_AssaultRifle_Thompson]
+ItemName="Tommy Gun"
+ItemCategory="Karabin szturmowy"
+ItemDescription="•Strzela ogniem ciągłym i przerywanym.\n•Alt. — przełączanie trybów prowadzenia ogna.\n•Niektórzy nazywają tego gnata Chicagowską Maszyną do Pisania — wystrzelasz nim swój podpis?"
 
 [KFWeap_AssaultRifle_FNFal]
 ItemName="FN FAL ACOG"

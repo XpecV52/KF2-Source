@@ -1,3 +1,32 @@
+[CHR_BadSanta_Archetype]
+CharacterName="Badass Santa"
+Description="먼저 크램퍼스가 요정들과 순록들을 찾아 옵니다. 그 다음에 크램퍼스가 집에 옵니다. 이제 산타는 봐주지 않습니다. 산타는 기관총을 들고 있습니다 호 호 호!\n\n 성 니콜라스는 수백 년 전 전세계 아이들을 지켜보며 영원히 크리스마스의 즐거움을 전하며 전세계 소년 소녀들에게 장난감을 선물해주기로 마음 먹었습니다.  그러던 중 크램퍼스가 나타났습니다.  크램퍼스 크리스마스가 시작된 후 산타클로스는 쓰러져간 일꾼들, 친구들, 가족들의 복수에 자신을 바쳤습니다. 빨간 볼과 젤리가 가득 찬 것 같은 뱃살은 사라지고 날카로운 눈빛과 겹겹이 쌓인 근육이 그 자리를 대신하게 되었습니다. 이번 크리스마스에는 결코 고요한 밤이 오지 않을 것입니다. 산타클로스는 선량함과 크리스마스의 즐거움을 모두 잊었습니다. 그에게는 오직 분노와 복수, 명절 내내 총성을 퍼뜨릴 방대한 탄약만이 있을 뿐입니다."
+BodyMesh0="Santa Outfit"
+BodyMesh1="코만도 치킨"
+HeadMesh0="Santa Head"
+
+[CHR_BadSanta_Archetype.BodyMesh0]
+BodySkin0="클래식 산타"
+BodySkin1="스노우 블루"
+BodySkin2="갈색 무화과"
+BodySkin3="사탕 지팡이"
+BodySkin4="즐거운 그린"
+BodySkin5="크림 빈티지"
+
+[CHR_BadSanta_archetype.BodyMesh1]
+BodySkin0="사용됨"
+BodySkin1="클린"
+BodySkin2="야간"
+BodySkin3="중상"
+
+[CHR_BadSanta_Archetype.HeadMesh0]
+HeadSkin0="클래식 산타"
+HeadSkin1="골든 산타"
+HeadSkin2="캔디 산타"
+HeadSkin3="즐거운 산타"
+HeadSkin4="젊은 산타"
+HeadSkin5="어두운 산타"
+
 [CHR_MrsFoster_archetype]
 CharacterName="포스터 부인"
 Description="포스터 부인의 면접을 진행했을 때, 그녀는 이미 런던 최고 상회에서 무서울 정도로 성공하고 있는 상인이었습니다. 포스터 부인은 그야말로 이상형이었지만, 포스터 씨는 상인으로서의 미래도 없었고 입을 다물 줄도 몰랐으며 규칙을 지키지도 않았습니다. 그래도 그에게는 뭔가 독특한 매력이 있었습니다. 그 매력 덕분에 그는 첫 데이트에서 포스터 부인에게 가스 마스크를 건넬 수 있었습니다. 마치 총을 든 미친 외계인들이 사람 잡아먹는 클론 떼를 끌고 내려와 그녀의 몇백만 달러어치 물건을 파괴할 걸 알았던 것처럼요. 이들은 꽃과 레이스, Zed, 폭탄 속에서 결혼식을 올렸습니다. 이들은 엄청난 현금 다발을 만드는 대신, Zed로 더 많은 도쉬를 만들며 살아가게 되었습니다!"
@@ -4371,3 +4400,167 @@ Attachment="전사 가면"
 AttachmentSkin0="불"
 AttachmentSkin1="물"
 AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_SantaBackpack_ARCH]
+Attachment="크리스마스 백팩"
+AttachmentSkin0="브라운"
+
+[Cosmetic_Christmas_SantaEyepatch_ARCH]
+Attachment="크리스마스 안대"
+AttachmentSkin0="레드"
+
+[Cosmetic_Christmas_TurkeyHat_ARCH]
+Attachment="크리스마스 칠면조 모자"
+AttachmentSkin0="설익은"
+AttachmentSkin1="너무 익은"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_Candycanebackpack_ARCH]
+Attachment="사탕 지팡이 백팩"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_ChimneyHat_ARCH]
+Attachment="크리스마스 굴뚝 모자"
+AttachmentSkin0="빨간 벽돌"
+AttachmentSkin1="녹색 벽돌"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_DeerAntlers_ARCH]
+Attachment="크리스마스 사슴 뿔"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_Glassesboxframe_ARCH]
+Attachment="크리스마스 캔디비전 안경"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_Glassesfeline_ARCH]
+Attachment="크리스마스 펠린 안경"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_PenguinHat_ARCH]
+Attachment="크리스마스 펭귄 모자"
+AttachmentSkin0="클래식"
+AttachmentSkin1="황제"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_Christmashood_ARCH]
+Attachment="크리스마스 산타 후드"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_TreeHat_ARCH]
+Attachment="크리스마스 트리 모자"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_Wreathbackpack_ARCH]
+Attachment="크리스마스 화환 백팩"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Christmas_Zedbackpack_ARCH]
+Attachment="크리스마스 Zed 백팩"
+AttachmentSkin0="레드"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_ScifyHornHelmet_ARCH]
+Attachment="SF 호른 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="퍼플"
+AttachmentSkin4="레드"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_ScifyFacelessHelmet_ARCH]
+Attachment="SF 페이스리스 헬멧"
+AttachmentSkin0="블루"
+AttachmentSkin1="프레셔스"
+AttachmentSkin2="그린"
+AttachmentSkin3="퍼플"
+AttachmentSkin4="레드"
+
+[Cosmetic_ScifyBreathingHelmetA_ARCH]
+Attachment="SF 숨쉬는 헬멧 A"
+AttachmentSkin0="블루"
+AttachmentSkin1="프레셔스"
+AttachmentSkin2="그린"
+AttachmentSkin3="퍼플"
+AttachmentSkin4="레드"
+
+[Cosmetic_ScifyBreathingHelmetB_ARCH]
+Attachment="SF 숨쉬는 헬멧 B"
+AttachmentSkin0="블루"
+AttachmentSkin1="프레셔스"
+AttachmentSkin2="그린"
+AttachmentSkin3="퍼플"
+AttachmentSkin4="레드"
+
+[Cosmetic_ScifySamuraiHelmet_ARCH]
+Attachment="SF 사무라이 헬멧"
+AttachmentSkin0="블루"
+AttachmentSkin1="프레셔스"
+AttachmentSkin2="그린"
+AttachmentSkin3="퍼플"
+AttachmentSkin4="레드"
+
+[Cosmetic_SamuraiArmorLegs_ARCH]
+Attachment="사무라이 다리 장갑"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="퍼플"
+AttachmentSkin4="레드"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_SamuraiArmorChest_ARCH]
+Attachment="사무라이 가슴 장갑"
+AttachmentSkin0="블랙"
+AttachmentSkin1="블루"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_RoninHat_ARCH]
+Attachment="로닌 모자"
+AttachmentSkin0="프레셔스"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+AttachmentSkin4="옐로우"
+
+[Cosmetic_RoninGoggles_ARCH]
+Attachment="로닌 고글"
+AttachmentSkin0="프레셔스"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+AttachmentSkin4="옐로우"
+
+[Cosmetic_RoninMask_ARCH]
+Attachment="로닌 마스크"
+AttachmentSkin0="프레셔스"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="화이트"
+AttachmentSkin4="옐로우"
+
+[Cosmetic_ScifyNoExpresionHelmet_ARCH]
+Attachment="SF 노 익스프레션 헬멧"
+AttachmentSkin0="블루"
+AttachmentSkin1="프레셔스"
+AttachmentSkin2="그린"
+AttachmentSkin3="퍼플"
+AttachmentSkin4="레드"

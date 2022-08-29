@@ -185,6 +185,16 @@ simulated function SetCollisionCylinderSize(float Radius, float Height)
 	CylinderComponent(CollisionComponent).SetCylinderSize(Radius, Height);
 }
 
+simulated function float GetCollisionCylinderRadius()
+{
+	return CylinderComponent(CollisionComponent).CollisionRadius;
+}
+
+simulated function float GetCollisionCylinderHeight()
+{
+	return CylinderComponent(CollisionComponent).CollisionHeight;
+}
+
 defaultproperties
 {
 	RemoteRole=ROLE_SimulatedProxy
@@ -193,7 +203,7 @@ defaultproperties
 	Begin Object Class=CylinderComponent NAME=CollisionCylinder
 		CollideActors=true
 		CollisionRadius=+00100.000000
-		CollisionHeight=+00100.000000
+		CollisionHeight=+00200.000000
 		bAlwaysRenderIfSelected=true
 	End Object
 	CollisionComponent=CollisionCylinder

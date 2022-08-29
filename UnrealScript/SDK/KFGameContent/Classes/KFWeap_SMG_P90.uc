@@ -103,6 +103,9 @@ defaultproperties
 	AssociatedPerkClasses(0)=class'KFPerk_Swat'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.14f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.28f,IncrementWeight=2)
+	//WeaponUpgrades[1]=(IncrementDamage=1.14f,IncrementWeight=1)
+	//WeaponUpgrades[2]=(IncrementDamage=1.28f,IncrementWeight=2)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.14f), (Stat=EWUS_Damage1, Scale=1.14f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.28f), (Stat=EWUS_Damage1, Scale=1.28f), (Stat=EWUS_Weight, Add=2)))
 }

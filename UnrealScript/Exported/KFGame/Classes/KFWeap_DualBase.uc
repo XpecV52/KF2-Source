@@ -581,6 +581,7 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 	local KFInventoryManager KFIM;
 	local vector X,Y,Z;
 	local int NewSingleUpgradeIndex;
+	local int SingleSpareAmmoCount;
 
 	// For now, force the dropped single to be un-upgraded by setting this dual's upgrade index to 0.
 	// But remember what the upgrade index was so we can give the player a correctly upgraded single.
@@ -603,11 +604,13 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 	if( NewSingle != none )
 	{
 		// divide ammo between make sure we don't lose a round due to truncation.
-
 		NewSingle.AmmoCount[0] = (AmmoCount[0] & 1) == 0 ? (AmmoCount[0] / 2) : (AmmoCount[0] / 2) + 1;
 		AmmoCount[0] /= 2;
-		NewSingle.SpareAmmoCount[0] = (SpareAmmoCount[0] & 1) == 0 ? (SpareAmmoCount[0] / 2) : (SpareAmmoCount[0] / 2) + 1;
-		SpareAmmoCount[0] /= 2;
+
+		SingleSpareAmmoCount = Min(SpareAmmoCount[0], NewSingle.SpareAmmoCapacity[0]);
+
+		NewSingle.SpareAmmoCount[0] = SingleSpareAmmoCount;
+		SpareAmmoCount[0] -= SingleSpareAmmoCount;
 
 		// tell client about our modification
 		NewSingle.ClientForceAmmoUpdate(NewSingle.AmmoCount[0],NewSingle.SpareAmmoCount[0]);
@@ -619,6 +622,8 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 			KFInventoryManager(InvManager).AddCurrentCarryBlocks(NewSingle.static.GetUpgradeWeight(NewSingleUpgradeIndex));
 			KFPawn(Instigator).NotifyInventoryWeightChanged();
 		}
+
+		NewSingle.bGivenAtStart = bGivenAtStart;
 
 		// Drop second gun on death
 		if( Instigator.bPlayedDeath || Instigator.Health <= 0 )

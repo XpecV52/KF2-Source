@@ -120,7 +120,7 @@ simulated function bool CanLockOnTo(Actor TA)
 
 	// Make sure the pawn is legit, isn't dead, and isn't already at full health
 	if ((TA == None) || !TA.bProjTarget || TA.bDeleteMe || (PawnTarget == None) ||
-		(TA == Instigator) || (PawnTarget.Health <= 0) || PawnTarget.bIsCloaking ||
+		(TA == Instigator) || (PawnTarget.Health <= 0) || 
 		!HasAmmo(DEFAULT_FIREMODE))
 	{
 		return false;
@@ -655,5 +655,7 @@ defaultproperties
     IronsightsZoomOutSound=AkEvent'WW_WEP_Seeker_6.Play_Seeker_6_Iron_In_Out'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.125f,IncrementWeight=1)
+	//WeaponUpgrades[1]=(IncrementDamage=1.125f,IncrementWeight=1)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.125f), (Stat=EWUS_Damage1, Scale=1.125f), (Stat=EWUS_Weight, Add=1)))
 }

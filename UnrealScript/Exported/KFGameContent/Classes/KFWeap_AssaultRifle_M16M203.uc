@@ -148,11 +148,24 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 		Weap = KFWeap_AssaultRifle_M16M203(PickedUpWeapon);
 		ServerTotalAltAmmo = Weap.ServerTotalAltAmmo;
 		SpareAmmoCount[1] = ServerTotalAltAmmo - AmmoCount[1];
+		ClientForceSecondarySpareAmmo(SpareAmmoCount[1]);
 	}
 	else
 	{
 		// If we're locally controlled, don't bother using ServerTotalAltAmmo.
 		SpareAmmoCount[1] = PickedUpWeapon.SpareAmmoCount[1];
+	}
+}
+
+reliable client function ClientForceSecondarySpareAmmo(byte NewSecondarySpareAmmo)
+{
+	//TODO: This might be better to merge into KFWeapon.ClientForceSecondaryAmmoUpdate.
+	//	The biggest issue is refactoring all the callers with the spare count.
+
+	if (Role < ROLE_Authority)
+	{
+		SpareAmmoCount[1] = NewSecondarySpareAmmo;
+		NotifyHUDofWeapon(Pawn(Owner));
 	}
 }
 
@@ -293,7 +306,7 @@ simulated state AltReloading extends Reloading
 		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayAmmoDialog( KFPawn(Instigator), float(SpareAmmoCount[1]) / float(GetMaxAmmoAmount(1)) );
 	}
 
-	// Overridding super so when this reload is called directly after normal reload state there 
+	// Overridding super so when this reload is called directly after normal reload state there
 	// are not complications resulting from back to back reloads.
 	simulated event ReplicatedEvent(name VarName)
 	{
@@ -472,8 +485,8 @@ defaultproperties
    IronSightMeshFOVCompensationScale=1.700000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Commando'
-   WeaponUpgrades(1)=(IncrementDamage=1.200000)
-   WeaponUpgrades(2)=(IncrementWeight=2,IncrementDamage=1.400000)
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.200000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.400000),(Add=2)))
    FiringStatesArray(1)="FiringSecondaryState"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

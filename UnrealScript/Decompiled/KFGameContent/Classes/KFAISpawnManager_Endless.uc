@@ -52,6 +52,20 @@ function OnBossDied()
     AvailableSquads.Length = 0;
 }
 
+function float GetNextSpawnTimeMod()
+{
+    local float SpawnTimeMod, SpawnTimeModMin;
+    local int TempModIdx;
+
+    SpawnTimeMod = super.GetNextSpawnTimeMod();
+    if(Outer.MyKFGRI.IsSpecialWave(TempModIdx))
+    {
+        SpawnTimeModMin = Outer.EndlessDifficulty.GetSpecialWaveSpawnTimeModMin(Outer.SpecialWaveType);
+        SpawnTimeMod = float(Max(int(SpawnTimeMod), int(SpawnTimeModMin)));
+    }
+    return SpawnTimeMod;
+}
+
 defaultproperties
 {
     DifficultyWaves(0)=MacroDifficultyWaveSettings=(Waves=/* Array type was not detected. */,
@@ -77,7 +91,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing MacroDifficultyWaveSettings
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_377' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_390' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -115,7 +129,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DifficultyWaves(3)=
 /* Exception thrown while deserializing DifficultyWaves
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_377' was not found.
+System.ArgumentException: Requested value '3P_Sawblade_Animtree_390' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

@@ -564,8 +564,8 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 
 	super.Killed(Killer, KilledPlayer, KilledPawn, damageType);
 
-	// if not boss wave, play progress update trader dialog
-	if( !MyKFGRI.IsBossWave() && KilledPawn.IsA('KFPawn_Monster') )
+	// if not boss wave or endless wave, play progress update trader dialog
+	if( !MyKFGRI.IsBossWave() && !MyKFGRI.IsEndlessWave() && KilledPawn.IsA('KFPawn_Monster') )
     {
     	// no KFTraderDialogManager object on dedicated server, so use static function
     	class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog( MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo );
@@ -619,6 +619,8 @@ function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
 	local KFPawn_Monster AIP;
 	local KFGameReplicationInfo KFGRI;
 	local KFPlayerController KFPC;
+
+	super.BossDied(Killer, bCheckWaveEnded);
 
 	KFPC = KFPlayerController(Killer);
 
@@ -1166,11 +1168,6 @@ function StartWave()
 	}
 }
 
-function bool IsMapObjectiveEnabled()
-{
-	return bEnableMapObjectives;
-}
-
 function byte GetWaveStartMessage()
 {
 	if (MyKFGRI.IsBossWave())
@@ -1358,11 +1355,6 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 	}
 }
 
-function ObjectiveFailed()
-{
-	MyKFGRI.DeactivateObjective();
-}
-
 /** The wave ended */
 function WaveEnded(EWaveEndCondition WinCondition)
 {
@@ -1494,6 +1486,140 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 					   "#"$Weapons[i].HeadShots, 
 					   "#"$Weapons[i].LargeZedKills );
 	}
+}
+
+/** Allow specific map to override the spawn class.  Default implementation returns from the AI class list. */
+function class<KFPawn_Monster> GetAISpawnType(EAIType AIType)
+{
+	local KFMapInfo KFMI;
+	local KFGameReplicationInfo KFGRI;
+	local array<SpawnReplacement> SpawnReplacements;
+	local int i;
+
+	KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+	if (KFMI != none)
+	{
+		KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+		if (KFMI.bUsePresetObjectives &&
+			((!KFMI.WaveHasPresetObjectives(WaveNum, GameLength)) ||
+			 (KFGRI != none && KFGRI.ObjectiveInterface != none && KFGRI.ObjectiveInterface.CanActivateObjective())))
+		{
+			switch (GameLength)
+			{
+			case GL_Short:
+				SpawnReplacements = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum-1].SpawnReplacements;
+				break;
+
+			case GL_Normal:
+				SpawnReplacements = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum-1].SpawnReplacements;
+				break;
+
+			case GL_Long:
+				SpawnReplacements = KFMI.PresetWaveObjectives.LongObjectives[WaveNum-1].SpawnReplacements;
+				break;
+			};
+
+			if (SpawnReplacements.Length > 0)
+			{
+				for (i = 0; i < SpawnReplacements.Length; ++i)
+				{
+					if (SpawnReplacements[i].SpawnEntry == AIType && FRand() < SpawnReplacements[i].PercentChance)
+					{
+						if (SpawnReplacements[i].NewClass.Length > 0)
+						{
+							return SpawnReplacements[i].NewClass[Rand(SpawnReplacements[i].NewClass.Length)];
+						}
+					}
+				}
+			}
+		}
+	}
+
+    return AIClassList[AIType];
+}
+
+/** Scale to use against WaveTotalAI to determine full wave size */
+function float GetTotalWaveCountScale()
+{
+	local float WaveScale;
+	local KFMapInfo KFMI;
+	local KFGameReplicationInfo KFGRI;
+
+	WaveScale = super.GetTotalWaveCountScale();
+	KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+	if (KFMI != none)
+	{
+		KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+		if (KFMI.bUsePresetObjectives &&
+			((!KFMI.WaveHasPresetObjectives(WaveNum, GameLength)) ||
+			 (KFGRI != none && KFGRI.ObjectiveInterface != none && KFGRI.ObjectiveInterface.CanActivateObjective())))
+		{
+			switch (GameLength)
+			{
+			case GL_Short:
+				WaveScale *= KFMI.PresetWaveObjectives.ShortObjectives[WaveNum-1].WaveScale;
+				break;
+
+			case GL_Normal:
+				WaveScale *= KFMI.PresetWaveObjectives.MediumObjectives[WaveNum-1].WaveScale;
+				break;
+
+			case GL_Long:
+				WaveScale *= KFMI.PresetWaveObjectives.LongObjectives[WaveNum-1].WaveScale;
+				break;
+			};
+		}
+	}
+
+	return WaveScale;
+}
+
+/** Allow specific game types to modify the spawn rate at a global level */
+function float GetGameInfoSpawnRateMod()
+{
+	local float SpawnRateMod;
+	local KFGameReplicationInfo KFGRI;
+	local KFMapInfo KFMI;
+	local int NumPlayersAlive;
+
+	SpawnRateMod = super.GetGameInfoSpawnRateMod();
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if (KFGRI == none)
+	{
+		return SpawnRateMod;
+	}
+
+	KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+	if (KFMI == none)
+	{
+		return SpawnRateMod;
+	}
+
+	if (KFMI.bUsePresetObjectives &&
+		((!KFMI.WaveHasPresetObjectives(WaveNum, GameLength)) ||
+		(KFGRI != none && KFGRI.ObjectiveInterface != none && KFGRI.ObjectiveInterface.CanActivateObjective())))
+	{
+		switch (GameLength)
+		{
+		case GL_Short:
+			NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, KFMI.PresetWaveObjectives.ShortObjectives[WaveNum-1].PerPlayerSpawnRateMod.Length) - 1;
+			SpawnRateMod *= KFMI.PresetWaveObjectives.ShortObjectives[WaveNum-1].PerPlayerSpawnRateMod[NumPlayersAlive];
+			break;
+
+		case GL_Normal:
+			NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, KFMI.PresetWaveObjectives.MediumObjectives[WaveNum-1].PerPlayerSpawnRateMod.Length) - 1;
+			SpawnRateMod *= KFMI.PresetWaveObjectives.MediumObjectives[WaveNum-1].PerPlayerSpawnRateMod[NumPlayersAlive];
+			break;
+
+		case GL_Long:
+			NumPlayersAlive = Clamp(KFGRI.GetNumPlayersAlive(), 1, KFMI.PresetWaveObjectives.LongObjectives[WaveNum-1].PerPlayerSpawnRateMod.Length) - 1;
+			SpawnRateMod *= KFMI.PresetWaveObjectives.LongObjectives[WaveNum-1].PerPlayerSpawnRateMod[NumPlayersAlive];
+			break;
+		};
+	}
+
+	return SpawnRateMod;
 }
 
 /*********************************************************************************************
@@ -1673,12 +1799,6 @@ function NotifyTraderOpened()
 	}
  }
 
-function RestartGame()
-{
-	LogInternal("KFGameInfo_Survival - RestartGame");
-	super.RestartGame();
-}
-
 function EndOfMatch(bool bVictory)
 {
 	local KFPlayerController KFPC;
@@ -1812,6 +1932,25 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime)
 function TryRestartGame()
 {
 	RestartGame();
+}
+
+/************************************************************************************
+ * @name		Objectives
+ ***********************************************************************************/
+
+function bool IsMapObjectiveEnabled()
+{
+	return bEnableMapObjectives;
+}
+
+function ObjectiveFailed()
+{
+	MyKFGRI.DeactivateObjective();
+}
+
+function OnEndlessSpawningObjectiveDeactivated()
+{
+	CheckWaveEnd();
 }
 
  /*********************************************************************************************

@@ -185,10 +185,20 @@ simulated function SetCollisionCylinderSize(float Radius, float Height)
 	CylinderComponent(CollisionComponent).SetCylinderSize(Radius, Height);
 }
 
+simulated function float GetCollisionCylinderRadius()
+{
+	return CylinderComponent(CollisionComponent).CollisionRadius;
+}
+
+simulated function float GetCollisionCylinderHeight()
+{
+	return CylinderComponent(CollisionComponent).CollisionHeight;
+}
+
 defaultproperties
 {
    Begin Object Class=CylinderComponent Name=CollisionCylinder
-      CollisionHeight=100.000000
+      CollisionHeight=200.000000
       CollisionRadius=100.000000
       bAlwaysRenderIfSelected=True
       ReplacementPrimitive=None

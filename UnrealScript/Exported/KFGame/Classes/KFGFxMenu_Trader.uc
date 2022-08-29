@@ -732,22 +732,24 @@ function Callback_TabChanged(int TabIndex)
 function Callback_UpgradeItem()
 {
 	local SItemInformation ItemInfo;
+	local KFAutoPurchaseHelper PurchaseHelper;
+
 	//only relevant in the player inventory
 	if (SelectedList == TL_Player)
 	{
-		if (MyKFPC.GetPurchaseHelper().UpgradeWeapon(SelectedItemIndex))
+		PurchaseHelper = MyKFPC.GetPurchaseHelper();
+		if (PurchaseHelper.UpgradeWeapon(SelectedItemIndex))
 		{
-			ItemInfo = OwnedItemList[SelectedItemIndex];
-			ItemInfo.ItemUpgradeLevel++;
-			MyKFPC.GetPurchaseHelper().OwnedItemList[SelectedItemIndex] = ItemInfo;			
+			ItemInfo = PurchaseHelper.OwnedItemList[SelectedItemIndex];
+			PurchaseHelper.OwnedItemList[SelectedItemIndex].ItemUpgradeLevel++;
+			// SellPrice is updated in UpgradeWeapon, but client-side upgrade level is set here,
+			// so update the sellprice again, now that we've updated the upgrade level
+			PurchaseHelper.OwnedItemList[SelectedItemIndex].SellPrice =
+				PurchaseHelper.GetAdjustedSellPriceFor(ItemInfo.DefaultItem);
 			RefreshItemComponents();
 			ShopContainer.ActionScriptVoid("itemBought");
 			class'KFMusicStingerHelper'.static.PlayWeaponUpgradeStinger(MyKFPC);
 		}
-		
-		//@TODO: change this to work with the weight system
-		//ShopContainer.ActionScriptVoid("itemBought");
-		//SetPlayerItemDetails(SelectedItemIndex);
 	}
 }
 

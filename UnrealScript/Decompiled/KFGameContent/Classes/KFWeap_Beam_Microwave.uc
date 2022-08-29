@@ -102,7 +102,7 @@ simulated function CustomFire()
         ExploActor.Instigator = Instigator;
         ExploActor.bReplicateInstigator = true;
         ExploActor.bSyncParticlesToMuzzle = true;
-        ModifiedDamage = GetUpgradeDamageMod(CurrentWeaponUpgradeIndex);
+        ModifiedDamage = GetUpgradeDamageMod();
         OriginalDamage = ExplosionTemplate.Damage;
         OriginalDamageRadius = ExplosionTemplate.DamageRadius;
         ExplosionTemplate.Damage *= ModifiedDamage;

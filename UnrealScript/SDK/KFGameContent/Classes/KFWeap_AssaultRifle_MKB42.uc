@@ -286,8 +286,11 @@ defaultproperties
 	AssociatedPerkClasses(0)=class'KFPerk_Commando'
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
-	WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
+	//WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=1)
+	//WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=2)
+
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f), (Stat=EWUS_Damage1, Scale=1.2f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Damage1, Scale=1.4f), (Stat=EWUS_Weight, Add=2)))
 }
 
 

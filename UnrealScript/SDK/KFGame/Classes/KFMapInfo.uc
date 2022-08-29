@@ -67,6 +67,15 @@ struct native WaveObjectivePair
 {
     var() array<KFInterface_MapObjective> PossibleObjectives;
 	var() bool bUseEndlessSpawning;
+	var() array<SpawnReplacement> SpawnReplacements;
+	var() array<float> PerPlayerSpawnRateMod;
+	var() float WaveScale;
+
+	structdefaultproperties
+	{
+		PerPlayerSpawnRateMod=(1.f, 1.f, 1.f, 1.f, 1.f, 1.f)
+		WaveScale=1.f
+	}
 };
 
 struct native PresetWavePairs
@@ -75,10 +84,6 @@ struct native PresetWavePairs
     var() WaveObjectivePair MediumObjectives[8];
     var() WaveObjectivePair LongObjectives[11];
 };
-
-/** Whether or not to limit objectives to a holiday */
-var(Objectives) bool bEventLimitedObjectives;
-var(Objectives) SeasonalEventIndex EventHoliday <EditCondition=bEventLimitedObjectives>;
 
 /** Whether or not to use the preset wave objective type */
 var(Objectives) bool bUsePresetObjectives <EditCondition=!bUseRandomObjectives>;
@@ -92,6 +97,15 @@ var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 
 var() string TraderVoiceGroupClassPath;
 var() string TraderVoiceGroupClassPath_Endless;
+
+// Whether to override the boss of a Survival match
+var() bool bOverrideSurvivalBoss;
+// Which boss to use as the override
+var() EBossAIType SurvivalBossOverride<EditCondition=bOverrideSurvivalBoss>;
+// Which seasonal zeds to use for this map (SEI_None follows TW seasonal events)
+var() SeasonalEventIndex ZedSeasonalThemeId;
+// Mutator code class that can override various map settings
+var() class<KFMapMutator> MapMutatorClass;
 
 cpptext
 {
@@ -249,6 +263,57 @@ static function KFMusicTrackInfo StaticGetRandomTrack( bool bPlayActionTrack )
 
 /** Figures out if player has collected enough collectibles to unlock its related achievement */
 native final function OnCollectibleFound( KFDestructibleActor Collectible, Controller Collecter );
+
+function bool WaveHasPresetObjectives(int WaveNum, int GameLength)
+{
+	if (!bUsePresetObjectives)
+	{
+		return false;
+	}
+
+	switch (GameLength)
+	{
+	case GL_Short:
+		return PresetWaveObjectives.ShortObjectives[WaveNum-1].PossibleObjectives.Length > 0;
+
+	case GL_Normal:
+		return PresetWaveObjectives.MediumObjectives[WaveNum-1].PossibleObjectives.Length > 0;
+
+	case GL_Long:
+		return PresetWaveObjectives.LongObjectives[WaveNum-1].PossibleObjectives.Length > 0;
+
+	default:
+		return false;
+	};
+}
+
+/*****************************************************************************************************
+* @name Map Mutator
+*****************************************************************************************************/
+
+final event ModifySeasonalEventId(out int EventId)
+{
+	if (ZedSeasonalThemeId != SEI_None)
+	{
+		EventId = ZedSeasonalThemeId;
+	}
+}
+
+final event ModifyGameClassBossAIClassList(out array< class<KFPawn_Monster> > GameClassBossAIClassList)
+{
+	if (MapMutatorClass != none)
+	{
+		MapMutatorClass.static.ModifyGameClassBossAIClassList(GameClassBossAIClassList);
+	}
+}
+
+final event ModifyAIDoshValue(out float AIDoshValue)
+{
+	if (MapMutatorClass != none)
+	{
+		MapMutatorClass.static.ModifyAIDoshValue(AIDoshValue);
+	}
+}
 
 DefaultProperties
 {

@@ -40,9 +40,6 @@ var(ThirdPerson) array<SkeletalMesh> PACMeshList;
 /** List of possible randomized colors to apply to zed */
 var(ThirdPerson) array<ZedColorMod> RandomizedColors;
 
-/** List of additional particle systems that require unique effects and logic per-event */
-var(Effects) array<ExtraVFXInfo> ExtraVFX;
-
 struct native StaticAttachments
 {
     var() StaticMesh StaticAttachment;
@@ -139,6 +136,8 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
     local SkeletalMeshComponent PACAttachment;
     local StaticMeshComponent StaticAttachment;
     local LinearColor AppliedColor;
+	local array<MaterialInstanceConstant> ExtraMICs;
+	local MaterialInstanceConstant ExtraMIC;
 
 	super.SetCharacterMeshFromArch( KFP, KFPRI );
 
@@ -209,7 +208,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
                 PACAttachment.SetLODParent(KFP.Mesh);
                 PACAttachment.SetShadowParent(KFP.Mesh);
                 PACAttachment.SetLightingChannels(KFP.PawnLightingChannel);
-                PACAttachment.CreateAndSetMaterialInstanceConstant(0);
+				ExtraMICs.AddItem(PACAttachment.CreateAndSetMaterialInstanceConstant(0));
                 KFP.AttachComponent(PACAttachment);
             }
         }
@@ -224,7 +223,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
                 StaticAttachment.SetStaticMesh(StaticAttachList[i].StaticAttachment);
                 StaticAttachment.SetShadowParent(KFP.Mesh);
                 StaticAttachment.SetLightingChannels(KFP.PawnLightingChannel);
-                StaticAttachment.CreateAndSetMaterialInstanceConstant(0);
+				ExtraMICs.AddItem(StaticAttachment.CreateAndSetMaterialInstanceConstant(0));
                 KFP.AttachComponent(StaticAttachment);
                 KFP.Mesh.AttachComponent(StaticAttachment, StaticAttachList[i].AttachBoneName,, StaticAttachList[i].RelativeRotation);
             }
@@ -240,6 +239,11 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 		foreach ExtraMICIndices(MaterialIndex)
 		{
 			KFP.CharacterMICs.AddItem(KFP.Mesh.CreateAndSetMaterialInstanceConstant(MaterialIndex));
+		}
+
+		foreach ExtraMICs(ExtraMIC)
+		{
+			KFP.CharacterMICs.AddItem(ExtraMIC);
 		}
 	}
 
