@@ -82,7 +82,6 @@ function Initialize(KFCharacterInfo_ScriptedPawn InCharInfo, int InHealth, int I
     }
     SetCharacterArch(InCharInfo, true);
     SetCollision(false, false);
-    SetCanBeTargeted(false);
     Health = Clamp(InHealth, 1, InHealthMax);
     HealthMax = InHealthMax;
     if(ScriptedCharArch.bPawnCanBeWelded || ScriptedCharArch.bPawnCanBeUnwelded)
@@ -92,20 +91,22 @@ function Initialize(KFCharacterInfo_ScriptedPawn InCharInfo, int InHealth, int I
     if(!ScriptedCharArch.bPawnCanBeKilled)
     {
         I = 0;
-        J0xEC:
+        J0xE1:
 
         if(I < ScriptedCharArch.States.Length)
         {
             ScriptedCharArch.States[I].HealthPctThreshold = FMax(ScriptedCharArch.States[I].HealthPctThreshold, 1.1 / float(HealthMax));
             ++ I;
-            goto J0xEC;
+            goto J0xE1;
         }
     }
     if(ScriptedCharArch.bUseZedProximityTrigger || ScriptedCharArch.bUsePlayerProximityTrigger)
     {
         InitializeProximityTrigger();
     }
+    SetPawnState(0);
     UpdatePawnState();
+    SetCanBeTargeted(false);
     if(ScriptedCharArch.bIsFlyingPawn)
     {
         SetPhysics(4);
@@ -229,7 +230,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     {
         MyKFAIC = KFAIController(C);
     }
-    WorldInfo.Game.ChangeTeam(C, 0, false);
+    KFGameInfo(WorldInfo.Game).Teams[0].AddToTeam(C);
 }
 
 simulated event byte ScriptGetTeamNum()
@@ -819,6 +820,7 @@ simulated function string GetIconPath()
 defaultproperties
 {
     ScriptedPawnString="V.I.P."
+    CurrentState=255
     PreviousState=255
     IconPath="ZED_Patriarch_UI.ZED-VS_Icon_Boss"
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

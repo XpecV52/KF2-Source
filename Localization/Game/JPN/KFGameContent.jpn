@@ -546,6 +546,7 @@ ItemDescription="•フルオートまたはセミオートのファイアモー
 ItemName="バトルアックス"
 ItemCategory="近接"
 ItemDescription="•プライマリ - 低速の切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 相手を死に至らしめる、低速だが重い切り裂き攻撃。\n•オルト - ブロック/回避\n•旧式ではあるが、大きく、鋭いトラックのような攻撃を行う。"
+SharedUnlockSource="バトルアックス"
 
 [KFWeap_Edged_FireAxe]
 ItemName="ファイアアックス"

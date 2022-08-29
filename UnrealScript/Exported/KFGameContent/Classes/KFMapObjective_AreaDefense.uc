@@ -385,7 +385,7 @@ simulated function GrantReward(KFPawn_Human PlayerToReward)
 
 	if (KFPlayerController(PlayerToReward.Controller) != none)
 	{
-		KFPlayerController(PlayerToReward.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
+		// @todo: hook up seasonal event here if/when desired
 		KFPlayerController(PlayerToReward.Controller).ClientMapObjectiveCompleted(GetXPReward());
 	}
 }

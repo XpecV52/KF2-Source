@@ -62,9 +62,16 @@ function OnStackingAfflictionChanged(byte Id)
 
 function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, class<DamageType> damageType, vector Momentum, TraceHitInfo HitInfo)
 {
+	local int HitZoneIdx;
 	if (Damage == 0)
 	{
-		HitInfo.BoneName = 'KBArmor';
+		// If the gore health is empty, then the armor has been completely reduced (and fallen off) so play the normal hit
+		// otherwise mark it as taken by the armor
+		HitZoneIdx = GetHitZoneIndex(HitInfo.BoneName);
+		if (HitZoneIdx == INDEX_NONE || HitZones[HitZoneIdx].GoreHealth > 0)
+		{
+			HitInfo.BoneName = 'KBArmor';
+		}
 
 		//Passing 1 damage to minimize need to rewrite for a single pawn
 		super.PlayHit(1, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);

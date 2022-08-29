@@ -162,6 +162,7 @@ simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
     BodyStanceNodes[0].SetActorAnimEndNotification(false);
     BodyStanceNodes[0].PlayCustomAnim(AnimName, 1, BlendInTime, 0.4, false, true);
     BodyStanceNodes[0].SetActorAnimEndNotification(true);
+    bPlayingEmote = false;
 }
 
 simulated function PlayEmoteAnimation(optional bool bNewCharacter)

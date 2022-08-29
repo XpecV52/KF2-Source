@@ -2345,8 +2345,8 @@ DoschHoldDesc="Deixe os Zeds fora da área demarcada"
 DescriptionDoshHold="Deixe os Zeds fora da área demarcada"
 RepairObjective="SOLDAR E REPARAR"
 UseWelderToRepair="Use o soldador para consertar o(s) objetivo(s)"
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="ESCOLTA"
+EscortPawnsDescription="Proteja o alvo contra os Zeds"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="OPERAR E CONTROLAR"
 DescriptionActivateTrigger="Ativar o controle de objetivo"
@@ -3159,7 +3159,7 @@ DisplayName="Baile de Monstros"
 DisplayName="Farra de compras"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="Fábrica do Papai Noel"
 
 [KFMapInfo]
 ; defaults

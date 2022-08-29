@@ -48,7 +48,7 @@ function bool PopulateData()
 		DataObject.SetString("label", WeeklyInfo.FriendlyName);
 		if(WeeklyInfo != none && WeeklyInfo.ModifierDescriptions.length > 0)
     	{
-			DataObject.SetString("description", WeeklyInfo.DescriptionStrings[0]@"\n"@WeeklyInfo.DescriptionStrings[1]);
+			DataObject.SetString("description", WeeklyInfo.DescriptionStrings[0]);
 		}
 		DataObject.SetString("iconPath", "img://"$WeeklyInfo.IconPath);
 

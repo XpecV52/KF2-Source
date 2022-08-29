@@ -1,9 +1,9 @@
 [CHR_BadSanta_Archetype]
-CharacterName="Badass Santa"
+CharacterName="Papá Noel brutal"
 Description="Primero, Krampus fue a por sus duendes y sus renos. Después, fue a por su hogar. Pero Papá Noel ya no se anda con chiquitas. Ahora tiene una ametralladora. ¡Jo, jo, jo!\n\nSan Nicolás comenzó a vigilar a los niños del mundo hace cientos de años, pensando que pasaría la eternidad trayendo alegría navideña y juguetes a los niños y niñas buenos del mundo.  Pero entonces llegó Krampus.  En el año transcurrido desde la Navidad de Krampus, Papá Noel se ha dedicado a vengar a sus trabajadores, amigos y familiares caídos. Atrás quedaron sus mejillas rosadas y su barrigota mullidita, ahora luce un ceño fruncido permanente y una tableta que no es de turrón. Estas fiestas no habrá noche de paz: este año, la buena voluntad y la alegría de Papá Noel no vuelven a casa por Navidad. Solo trae ira, venganza y una gran cantidad de munición para celebrar la Navidad."
-BodyMesh0="Santa Outfit"
+BodyMesh0="Atuendo de Papá Noel"
 BodyMesh1="Pollo de comando"
-HeadMesh0="Santa Head"
+HeadMesh0="Cabeza de Papá Noel"
 
 [CHR_BadSanta_Archetype.BodyMesh0]
 BodySkin0="Papá Noel clásico"

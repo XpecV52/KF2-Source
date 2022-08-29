@@ -194,36 +194,36 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_71
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_72
-   Duration=3.000000
-   InputLinks(0)=(DrawY=-6091,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-6070,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-6049,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_MovePawnsNotInVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_MovePawnsNotInVolume_7')),DrawY=-6086,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-6054,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=5012,OverrideDelta=25)
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_83
+   Duration=4.000000
+   InputLinks(0)=(DrawY=-6003,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5982,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5961,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_MovePawnsNotInVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_MovePawnsNotInVolume_7')),DrawY=-5998,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-5966,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=5140,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4960
-   ObjPosY=-6128
+   ObjPosX=5088
+   ObjPosY=-6040
    DrawWidth=106
    DrawHeight=109
-   Name="SeqAct_Delay_72"
+   Name="SeqAct_Delay_83"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_71
-   Duration=3.000000
-   InputLinks(0)=(DrawY=-7923,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-7902,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-7881,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_MovePawnsNotInVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_MovePawnsNotInVolume_5')),DrawY=-7918,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-7886,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=4948,OverrideDelta=25)
+   Duration=4.000000
+   InputLinks(0)=(DrawY=-7843,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7822,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7801,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_MovePawnsNotInVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_MovePawnsNotInVolume_5')),DrawY=-7838,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-7806,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=5060,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4896
-   ObjPosY=-7960
+   ObjPosX=5008
+   ObjPosY=-7880
    DrawWidth=106
    DrawHeight=109
    Name="SeqAct_Delay_71"
@@ -231,17 +231,17 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_71
 End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_75
-   Duration=3.000000
-   InputLinks(0)=(DrawY=-7051,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-7030,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-7009,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_MovePawnsNotInVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_MovePawnsNotInVolume_1')),DrawY=-7046,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-7014,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=5012,OverrideDelta=25)
+   Duration=4.000000
+   InputLinks(0)=(DrawY=-6971,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6950,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6929,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_MovePawnsNotInVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_MovePawnsNotInVolume_1')),DrawY=-6966,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-6934,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=5116,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4960
-   ObjPosY=-7088
+   ObjPosX=5064
+   ObjPosY=-7008
    DrawWidth=106
    DrawHeight=109
    Name="SeqAct_Delay_75"
@@ -1204,17 +1204,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_286
 End Object
 
 Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_9
-   InputLinks(0)=(DrawY=-6099,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-6078,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-6057,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-6078,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_271',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_270',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_269',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_268',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_267',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_266'),DrawX=5550,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=5601,OverrideDelta=76)
-   EventLinks(0)=(DrawX=5650,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-6035,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6014,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5993,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6014,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_271',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_270',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_269',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_268',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_267',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_266'),DrawX=5686,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=5737,OverrideDelta=76)
+   EventLinks(0)=(DrawX=5786,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5512
-   ObjPosY=-6136
+   ObjPosX=5648
+   ObjPosY=-6072
    DrawWidth=173
    DrawHeight=109
    Name="KFSeqAct_ToggleEx_9"
@@ -1222,17 +1222,17 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_9
 End Object
 
 Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_8
-   InputLinks(0)=(DrawY=-7075,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-7054,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-7033,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-7054,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_265',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_264',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_263',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_262',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_261',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_260'),DrawX=5654,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=5705,OverrideDelta=76)
-   EventLinks(0)=(DrawX=5754,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-6955,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6934,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6913,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6934,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_265',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_264',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_263',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_262',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_261',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_260'),DrawX=5734,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=5785,OverrideDelta=76)
+   EventLinks(0)=(DrawX=5834,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5616
-   ObjPosY=-7112
+   ObjPosX=5696
+   ObjPosY=-6992
    DrawWidth=173
    DrawHeight=109
    Name="KFSeqAct_ToggleEx_8"
@@ -1240,17 +1240,17 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_8
 End Object
 
 Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_13
-   InputLinks(0)=(DrawY=-7915,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-7894,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-7873,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-7894,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_277',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_276',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_275',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_490',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_273',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_272'),DrawX=5646,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=5697,OverrideDelta=76)
-   EventLinks(0)=(DrawX=5746,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-7835,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7814,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7793,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7814,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_277',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_276',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_275',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_490',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_273',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_272'),DrawX=5846,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=5897,OverrideDelta=76)
+   EventLinks(0)=(DrawX=5946,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5608
-   ObjPosY=-7952
+   ObjPosX=5808
+   ObjPosY=-7872
    DrawWidth=173
    DrawHeight=109
    Name="KFSeqAct_ToggleEx_13"
@@ -1258,15 +1258,15 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_13
 End Object
 
 Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVolume_7
-   InputLinks(0)=(DrawY=-6094,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_9')),DrawY=-6094,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_8'),DrawX=5257,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_280'),DrawX=5314,OverrideDelta=67)
-   VariableLinks(2)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_271',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_270',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_269',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_268',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_267',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_266'),DrawX=5391,OverrideDelta=130)
+   InputLinks(0)=(DrawY=-6030,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_9'),(LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_5')),DrawY=-6030,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_8'),DrawX=5393,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_280'),DrawX=5450,OverrideDelta=67)
+   VariableLinks(2)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_271',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_270',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_269',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_268',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_267',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_266'),DrawX=5527,OverrideDelta=130)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5224
-   ObjPosY=-6128
+   ObjPosX=5360
+   ObjPosY=-6064
    DrawWidth=220
    DrawHeight=77
    Name="KFSeqAct_MovePawnsNotInVolume_7"
@@ -1274,15 +1274,15 @@ Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVol
 End Object
 
 Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVolume_1
-   InputLinks(0)=(DrawY=-7062,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_8')),DrawY=-7062,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_7'),DrawX=5281,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_279'),DrawX=5338,OverrideDelta=67)
-   VariableLinks(2)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_265',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_264',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_263',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_262',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_261',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_260'),DrawX=5415,OverrideDelta=130)
+   InputLinks(0)=(DrawY=-6942,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_8'),(LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_1')),DrawY=-6942,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_7'),DrawX=5361,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_279'),DrawX=5418,OverrideDelta=67)
+   VariableLinks(2)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_265',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_264',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_263',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_262',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_261',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_260'),DrawX=5495,OverrideDelta=130)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5248
-   ObjPosY=-7096
+   ObjPosX=5328
+   ObjPosY=-6976
    DrawWidth=220
    DrawHeight=77
    Name="KFSeqAct_MovePawnsNotInVolume_1"
@@ -1290,15 +1290,15 @@ Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVol
 End Object
 
 Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVolume_5
-   InputLinks(0)=(DrawY=-7910,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_13')),DrawY=-7910,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_3'),DrawX=5201,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_278'),DrawX=5258,OverrideDelta=67)
-   VariableLinks(2)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_277',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_276',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_275',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_490',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_273',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_272'),DrawX=5335,OverrideDelta=130)
+   InputLinks(0)=(DrawY=-7830,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_ToggleEx_13'),(LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_7')),DrawY=-7830,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_3'),DrawX=5401,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_278'),DrawX=5458,OverrideDelta=67)
+   VariableLinks(2)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_277',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_276',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_275',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_490',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_273',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_272'),DrawX=5535,OverrideDelta=130)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5168
-   ObjPosY=-7944
+   ObjPosX=5368
+   ObjPosY=-7864
    DrawWidth=220
    DrawHeight=77
    Name="KFSeqAct_MovePawnsNotInVolume_5"
@@ -1309,8 +1309,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_280
    ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5296
-   ObjPosY=-6008
+   ObjPosX=5432
+   ObjPosY=-5944
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_280"
@@ -1321,8 +1321,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_279
    ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_4'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5336
-   ObjPosY=-6960
+   ObjPosX=5416
+   ObjPosY=-6840
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_279"
@@ -1332,8 +1332,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_7
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5240
-   ObjPosY=-6960
+   ObjPosX=5320
+   ObjPosY=-6840
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_7"
@@ -1344,8 +1344,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_278
    ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5264
-   ObjPosY=-7800
+   ObjPosX=5464
+   ObjPosY=-7720
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_278"
@@ -1355,8 +1355,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_3
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5160
-   ObjPosY=-7800
+   ObjPosX=5360
+   ObjPosY=-7720
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_3"
@@ -1366,8 +1366,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_8
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5208
-   ObjPosY=-6008
+   ObjPosX=5344
+   ObjPosY=-5944
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_8"
@@ -1378,8 +1378,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_277
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_22'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5464
-   ObjPosY=-7776
+   ObjPosX=5664
+   ObjPosY=-7696
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_277"
@@ -1390,8 +1390,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_276
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_21'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5544
-   ObjPosY=-7776
+   ObjPosX=5744
+   ObjPosY=-7696
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_276"
@@ -1402,8 +1402,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_275
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_20'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5648
-   ObjPosY=-7776
+   ObjPosX=5848
+   ObjPosY=-7696
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_275"
@@ -1414,8 +1414,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_490
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_19'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5744
-   ObjPosY=-7776
+   ObjPosX=5944
+   ObjPosY=-7696
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_490"
@@ -1426,8 +1426,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_273
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_18'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5848
-   ObjPosY=-7776
+   ObjPosX=6048
+   ObjPosY=-7696
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_273"
@@ -1438,8 +1438,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_272
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_8'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5944
-   ObjPosY=-7776
+   ObjPosX=6144
+   ObjPosY=-7696
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_272"
@@ -1450,8 +1450,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_271
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_35'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5424
-   ObjPosY=-5944
+   ObjPosX=5560
+   ObjPosY=-5880
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_271"
@@ -1462,8 +1462,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_270
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_34'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5504
-   ObjPosY=-5944
+   ObjPosX=5640
+   ObjPosY=-5880
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_270"
@@ -1474,8 +1474,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_269
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_7'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5592
-   ObjPosY=-5944
+   ObjPosX=5728
+   ObjPosY=-5880
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_269"
@@ -1486,8 +1486,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_268
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5696
-   ObjPosY=-5944
+   ObjPosX=5832
+   ObjPosY=-5880
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_268"
@@ -1498,8 +1498,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_267
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_10'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5792
-   ObjPosY=-5944
+   ObjPosX=5928
+   ObjPosY=-5880
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_267"
@@ -1510,8 +1510,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_266
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5896
-   ObjPosY=-5944
+   ObjPosX=6032
+   ObjPosY=-5880
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_266"
@@ -1522,8 +1522,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_265
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_25'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5472
-   ObjPosY=-6904
+   ObjPosX=5552
+   ObjPosY=-6784
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_265"
@@ -1534,8 +1534,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_264
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_11'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5544
-   ObjPosY=-6904
+   ObjPosX=5624
+   ObjPosY=-6784
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_264"
@@ -1546,8 +1546,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_263
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_24'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5640
-   ObjPosY=-6904
+   ObjPosX=5720
+   ObjPosY=-6784
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_263"
@@ -1558,8 +1558,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_262
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_28'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5736
-   ObjPosY=-6904
+   ObjPosX=5816
+   ObjPosY=-6784
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_262"
@@ -1570,8 +1570,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_261
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_27'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5840
-   ObjPosY=-6904
+   ObjPosX=5920
+   ObjPosY=-6784
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_261"
@@ -1582,8 +1582,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_260
    ObjValue=PlayerStart'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.PlayerStart_26'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5936
-   ObjPosY=-6904
+   ObjPosX=6016
+   ObjPosY=-6784
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_260"
@@ -1592,7 +1592,7 @@ End Object
 
 Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVolume_0
    InputLinks(0)=(DrawY=-5198,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-5198,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Gate'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_6')),DrawY=-5198,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_4'),DrawX=5369,OverrideDelta=16)
    VariableLinks(1)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_259'),DrawX=5426,OverrideDelta=67)
    VariableLinks(2)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_258',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_257',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_256',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_255',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_254',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_253'),DrawX=5503,OverrideDelta=130)
@@ -1787,7 +1787,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_17
    InputLinks(0)=(DrawY=-6091,OverrideDelta=14)
    InputLinks(1)=(DrawY=-6070,OverrideDelta=35)
    InputLinks(2)=(DrawY=-6049,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_72')),DrawY=-6070,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_83')),DrawY=-6070,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_134',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_135',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_137',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_138',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_139',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_140',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_141',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_143',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_144',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_145',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_146',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_293',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_298',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_299',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_302',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_303',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_305',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_176',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=4686,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4737,OverrideDelta=76)
    EventLinks(0)=(DrawX=4786,OverrideDelta=119)
@@ -1841,7 +1841,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_10
    InputLinks(0)=(DrawY=-5187,OverrideDelta=14)
    InputLinks(1)=(DrawY=-5166,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5145,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_MovePawnsNotInVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_MovePawnsNotInVolume_0')),DrawY=-5166,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_72')),DrawY=-5166,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_148',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_149',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_150',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_151',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_152',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_153',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_154',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_155',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_156',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_157',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_158',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_159',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_160',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_484'),DrawX=4654,OverrideDelta=16)
    VariableLinks(1)=(DrawX=4705,OverrideDelta=76)
    EventLinks(0)=(DrawX=4754,OverrideDelta=119)
@@ -4424,8 +4424,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_134
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_42'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4576
-   ObjPosY=-5792
+   ObjPosX=4424
+   ObjPosY=-5776
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_134"
@@ -4436,8 +4436,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_135
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_36'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4632
-   ObjPosY=-5880
+   ObjPosX=4480
+   ObjPosY=-5864
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_135"
@@ -4448,8 +4448,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_136
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_43'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4736
-   ObjPosY=-5880
+   ObjPosX=4584
+   ObjPosY=-5864
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_136"
@@ -4460,8 +4460,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_137
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_44'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4832
-   ObjPosY=-5880
+   ObjPosX=4680
+   ObjPosY=-5864
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_137"
@@ -4472,8 +4472,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_138
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_46'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4936
-   ObjPosY=-5880
+   ObjPosX=4784
+   ObjPosY=-5864
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_138"
@@ -4484,8 +4484,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_139
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_48'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5032
-   ObjPosY=-5880
+   ObjPosX=4880
+   ObjPosY=-5864
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_139"
@@ -4496,8 +4496,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_140
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_49'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5144
-   ObjPosY=-5840
+   ObjPosX=4992
+   ObjPosY=-5824
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_140"
@@ -4508,8 +4508,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_141
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_50'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4576
-   ObjPosY=-5688
+   ObjPosX=4424
+   ObjPosY=-5672
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_141"
@@ -4520,8 +4520,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_142
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_51'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4672
-   ObjPosY=-5792
+   ObjPosX=4520
+   ObjPosY=-5776
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_142"
@@ -4532,8 +4532,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_143
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_41'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4768
-   ObjPosY=-5792
+   ObjPosX=4616
+   ObjPosY=-5776
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_143"
@@ -4544,8 +4544,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_144
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_47'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4872
-   ObjPosY=-5792
+   ObjPosX=4720
+   ObjPosY=-5776
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_144"
@@ -4556,8 +4556,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_145
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_40'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4968
-   ObjPosY=-5792
+   ObjPosX=4816
+   ObjPosY=-5776
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_145"
@@ -4568,8 +4568,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_146
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_45'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5072
-   ObjPosY=-5792
+   ObjPosX=4920
+   ObjPosY=-5776
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_146"
@@ -6732,8 +6732,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_293
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_79'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5184
-   ObjPosY=-5752
+   ObjPosX=5032
+   ObjPosY=-5736
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_293"
@@ -6928,8 +6928,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_298
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_77'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4672
-   ObjPosY=-5696
+   ObjPosX=4520
+   ObjPosY=-5680
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_298"
@@ -6940,8 +6940,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_299
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_67'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4760
-   ObjPosY=-5688
+   ObjPosX=4608
+   ObjPosY=-5672
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_299"
@@ -6952,8 +6952,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_302
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_78'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4856
-   ObjPosY=-5688
+   ObjPosX=4704
+   ObjPosY=-5672
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_302"
@@ -6964,8 +6964,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_303
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_76'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=4960
-   ObjPosY=-5688
+   ObjPosX=4808
+   ObjPosY=-5672
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_303"
@@ -7139,8 +7139,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_305
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_68'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5064
-   ObjPosY=-5696
+   ObjPosX=4912
+   ObjPosY=-5680
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_305"
@@ -7509,8 +7509,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_176
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_75'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5176
-   ObjPosY=-5648
+   ObjPosX=5024
+   ObjPosY=-5632
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_176"
@@ -9509,8 +9509,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
    ObjValue=KFSpawnVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFSpawnVolume_19'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5296
-   ObjPosY=-5688
+   ObjPosX=5144
+   ObjPosY=-5672
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_7"
@@ -10345,16 +10345,16 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_2
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_88
-   SizeX=1078
-   SizeY=452
+   SizeX=1488
+   SizeY=465
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6848
    ObjPosY=-712
    ObjComment="Turn Off Cart Blocking Volume"
-   DrawWidth=1078
-   DrawHeight=452
+   DrawWidth=1488
+   DrawHeight=465
    Name="SequenceFrame_88"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
@@ -10363,8 +10363,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_730
    ObjValue=DynamicBlockingVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.DynamicBlockingVolume_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6184
-   ObjPosY=-512
+   ObjPosX=-5952
+   ObjPosY=-528
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_730"
@@ -10391,13 +10391,13 @@ End Object
 
 Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_2
    CollisionType=COLLIDE_NoCollision
-   InputLinks(0)=(DrawY=-590,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-590,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_730'),DrawX=-6158,OverrideDelta=36)
+   InputLinks(0)=(DrawY=-606,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-606,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_730'),DrawX=-5926,OverrideDelta=36)
    ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6216
-   ObjPosY=-624
+   ObjPosX=-5984
+   ObjPosY=-640
    DrawWidth=116
    DrawHeight=61
    Name="SeqAct_ChangeCollision_2"
@@ -11129,7 +11129,7 @@ End Object
 
 Begin Object Class=KFSeqEvent_WaveEnd Name=KFSeqEvent_WaveEnd_1
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_7'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_8'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_44')),DrawY=-356,OverrideDelta=13)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_7'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_8'),(LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_39')),DrawY=-356,OverrideDelta=13)
    OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_4')),DrawY=-336,OverrideDelta=33)
    VariableLinks(0)=(DrawX=5515,OverrideDelta=16)
    VariableLinks(1)=(DrawX=5576,OverrideDelta=86)
@@ -11158,10 +11158,10 @@ Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_18
    OutputLinks(8)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_44')),LinkDesc="Link 9",DrawY=247,OverrideDelta=200)
    OutputLinks(9)=(LinkDesc="Link 10",DrawY=270,OverrideDelta=223)
    OutputLinks(10)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_29')),LinkDesc="Link 11",DrawY=293,OverrideDelta=246)
-   VariableLinks(0)=(DrawX=6532,OverrideDelta=18)
+   VariableLinks(0)=(DrawX=6724,OverrideDelta=18)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6496
+   ObjPosX=6688
    ObjPosY=24
    DrawWidth=73
    DrawHeight=301
@@ -11171,20 +11171,20 @@ End Object
 
 Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_7
    LinkCount=8
-   InputLinks(0)=(DrawY=-378,OverrideDelta=95)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_40')),DrawY=-458,OverrideDelta=15)
-   OutputLinks(1)=(LinkDesc="Link 2",DrawY=-435,OverrideDelta=38)
-   OutputLinks(2)=(LinkDesc="Link 3",DrawY=-412,OverrideDelta=61)
-   OutputLinks(3)=(LinkDesc="Link 4",DrawY=-389,OverrideDelta=84)
-   OutputLinks(4)=(LinkDesc="Link 5",DrawY=-366,OverrideDelta=107)
-   OutputLinks(5)=(LinkDesc="Link 6",DrawY=-343,OverrideDelta=130)
-   OutputLinks(6)=(LinkDesc="Link 7",DrawY=-320,OverrideDelta=153)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_95')),LinkDesc="Link 8",DrawY=-297,OverrideDelta=176)
-   VariableLinks(0)=(DrawX=6242,OverrideDelta=16)
+   InputLinks(0)=(DrawY=-370,OverrideDelta=95)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_40')),DrawY=-450,OverrideDelta=15)
+   OutputLinks(1)=(LinkDesc="Link 2",DrawY=-427,OverrideDelta=38)
+   OutputLinks(2)=(LinkDesc="Link 3",DrawY=-404,OverrideDelta=61)
+   OutputLinks(3)=(LinkDesc="Link 4",DrawY=-381,OverrideDelta=84)
+   OutputLinks(4)=(LinkDesc="Link 5",DrawY=-358,OverrideDelta=107)
+   OutputLinks(5)=(LinkDesc="Link 6",DrawY=-335,OverrideDelta=130)
+   OutputLinks(6)=(LinkDesc="Link 7",DrawY=-312,OverrideDelta=153)
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_95')),LinkDesc="Link 8",DrawY=-289,OverrideDelta=176)
+   VariableLinks(0)=(DrawX=6434,OverrideDelta=16)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6208
-   ObjPosY=-496
+   ObjPosX=6400
+   ObjPosY=-488
    DrawWidth=68
    DrawHeight=229
    Name="SeqAct_Switch_7"
@@ -11192,15 +11192,15 @@ Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_7
 End Object
 
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_9
-   InputLinks(0)=(DrawY=-74,OverrideDelta=23)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Switch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_18')),DrawY=-84,OverrideDelta=13)
-   OutputLinks(1)=(DrawY=-64,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_44'),DrawX=6253,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_16'),DrawX=6303,OverrideDelta=59)
+   InputLinks(0)=(DrawY=-66,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Switch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_18')),DrawY=-76,OverrideDelta=13)
+   OutputLinks(1)=(DrawY=-56,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_44'),DrawX=6445,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_16'),DrawX=6495,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6224
-   ObjPosY=-120
+   ObjPosX=6416
+   ObjPosY=-112
    DrawWidth=115
    DrawHeight=85
    Name="SeqCond_CompareBool_9"
@@ -11211,7 +11211,7 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_16
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6296
+   ObjPosX=6488
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_16"
@@ -11223,7 +11223,7 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_44
    FindVarName="Long"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6208
+   ObjPosX=6400
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
@@ -11236,8 +11236,8 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_32
    FindVarName="Medium"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5928
-   ObjPosY=-304
+   ObjPosX=6120
+   ObjPosY=-296
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
@@ -11249,8 +11249,8 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_15
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6016
-   ObjPosY=-304
+   ObjPosX=6208
+   ObjPosY=-296
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_15"
@@ -11258,15 +11258,15 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_15
 End Object
 
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_8
-   InputLinks(0)=(DrawY=-386,OverrideDelta=23)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Switch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_7')),DrawY=-396,OverrideDelta=13)
-   OutputLinks(1)=(DrawY=-376,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_32'),DrawX=5973,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_15'),DrawX=6023,OverrideDelta=59)
+   InputLinks(0)=(DrawY=-378,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Switch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_7')),DrawY=-388,OverrideDelta=13)
+   OutputLinks(1)=(DrawY=-368,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_32'),DrawX=6165,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_15'),DrawX=6215,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5944
-   ObjPosY=-432
+   ObjPosX=6136
+   ObjPosY=-424
    DrawWidth=115
    DrawHeight=85
    Name="SeqCond_CompareBool_8"
@@ -11274,15 +11274,15 @@ Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_8
 End Object
 
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_7
-   InputLinks(0)=(DrawY=-642,OverrideDelta=23)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Switch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_1')),DrawY=-652,OverrideDelta=13)
-   OutputLinks(1)=(DrawY=-632,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_31'),DrawX=5965,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_14'),DrawX=6015,OverrideDelta=59)
+   InputLinks(0)=(DrawY=-634,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Switch'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_1')),DrawY=-644,OverrideDelta=13)
+   OutputLinks(1)=(DrawY=-624,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_31'),DrawX=6157,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_14'),DrawX=6207,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5936
-   ObjPosY=-688
+   ObjPosX=6128
+   ObjPosY=-680
    DrawWidth=115
    DrawHeight=85
    Name="SeqCond_CompareBool_7"
@@ -11293,8 +11293,8 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_14
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6008
-   ObjPosY=-560
+   ObjPosX=6200
+   ObjPosY=-552
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Bool_14"
@@ -11306,8 +11306,8 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_31
    FindVarName="Short"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5920
-   ObjPosY=-560
+   ObjPosX=6112
+   ObjPosY=-552
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
@@ -11317,17 +11317,17 @@ End Object
 
 Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_1
    LinkCount=5
-   InputLinks(0)=(DrawY=-718,OverrideDelta=59)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_39')),DrawY=-762,OverrideDelta=15)
-   OutputLinks(1)=(LinkDesc="Link 2",DrawY=-740,OverrideDelta=37)
-   OutputLinks(2)=(LinkDesc="Link 3",DrawY=-718,OverrideDelta=59)
-   OutputLinks(3)=(LinkDesc="Link 4",DrawY=-696,OverrideDelta=81)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_45')),LinkDesc="Link 5",DrawY=-674,OverrideDelta=103)
-   VariableLinks(0)=(DrawX=6234,OverrideDelta=16)
+   InputLinks(0)=(DrawY=-710,OverrideDelta=59)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_39')),DrawY=-754,OverrideDelta=15)
+   OutputLinks(1)=(LinkDesc="Link 2",DrawY=-732,OverrideDelta=37)
+   OutputLinks(2)=(LinkDesc="Link 3",DrawY=-710,OverrideDelta=59)
+   OutputLinks(3)=(LinkDesc="Link 4",DrawY=-688,OverrideDelta=81)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_45')),LinkDesc="Link 5",DrawY=-666,OverrideDelta=103)
+   VariableLinks(0)=(DrawX=6426,OverrideDelta=16)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6200
-   ObjPosY=-800
+   ObjPosX=6392
+   ObjPosY=-792
    DrawWidth=68
    DrawHeight=157
    Name="SeqAct_Switch_1"
@@ -11337,13 +11337,13 @@ End Object
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_39
    bReplicateToClients=True
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Wave1_Finished'
-   InputLinks(0)=(DrawY=-774,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-774,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=6416,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-766,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-766,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=6608,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6368
-   ObjPosY=-808
+   ObjPosX=6560
+   ObjPosY=-800
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_39"
@@ -11353,13 +11353,13 @@ End Object
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_40
    bReplicateToClients=True
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Wave1_Finished'
-   InputLinks(0)=(DrawY=-462,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-462,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=6400,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-454,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-454,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=6592,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6352
-   ObjPosY=-496
+   ObjPosX=6544
+   ObjPosY=-488
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_40"
@@ -11371,10 +11371,10 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_36
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Wave1_Finished'
    InputLinks(0)=(DrawY=58,OverrideDelta=11)
    OutputLinks(0)=(DrawY=58,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=6696,OverrideDelta=26)
+   VariableLinks(0)=(DrawX=6888,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6648
+   ObjPosX=6840
    ObjPosY=24
    DrawWidth=96
    DrawHeight=61
@@ -11489,10 +11489,10 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_44
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Wave8_Finished'
    InputLinks(0)=(DrawY=234,OverrideDelta=11)
    OutputLinks(0)=(DrawY=234,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=6704,OverrideDelta=26)
+   VariableLinks(0)=(DrawX=6896,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6656
+   ObjPosX=6848
    ObjPosY=200
    DrawWidth=96
    DrawHeight=61
@@ -11505,10 +11505,10 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_29
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Final_trader_intro'
    InputLinks(0)=(DrawY=314,OverrideDelta=11)
    OutputLinks(0)=(DrawY=314,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=6776,OverrideDelta=26)
+   VariableLinks(0)=(DrawX=6968,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6728
+   ObjPosX=6920
    ObjPosY=280
    DrawWidth=96
    DrawHeight=61
@@ -11519,13 +11519,13 @@ End Object
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_46
    bReplicateToClients=True
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Final_Victory'
-   InputLinks(0)=(DrawY=-86,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-86,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=5736,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-54,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-54,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=5968,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5688
-   ObjPosY=-120
+   ObjPosX=5920
+   ObjPosY=-88
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_46"
@@ -12809,7 +12809,7 @@ End Object
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_4
    InputLinks(0)=(DrawY=-98,OverrideDelta=23)
    OutputLinks(0)=(DrawY=-108,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_46')),DrawY=-88,OverrideDelta=33)
+   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_44')),DrawY=-88,OverrideDelta=33)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_2'),DrawX=5517,OverrideDelta=16)
    VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_2'),DrawX=5567,OverrideDelta=59)
    ObjInstanceVersion=2
@@ -20974,13 +20974,13 @@ End Object
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_95
    bReplicateToClients=True
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Final_trader_intro'
-   InputLinks(0)=(DrawY=-238,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-238,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=6416,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-230,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-230,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=6608,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6368
-   ObjPosY=-272
+   ObjPosX=6560
+   ObjPosY=-264
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_95"
@@ -20990,13 +20990,13 @@ End Object
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_45
    bReplicateToClients=True
    Event=AkEvent'WW_VOX_NPC_Santa_Trader.Play_Santa_Final_trader_intro'
-   InputLinks(0)=(DrawY=-630,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-630,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=6432,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-622,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-622,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=6624,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6384
-   ObjPosY=-664
+   ObjPosX=6576
+   ObjPosY=-656
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_45"
@@ -21013,7 +21013,7 @@ Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_12
    OutputLinks(4)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_27')),DrawY=-1414,OverrideDelta=107)
    OutputLinks(5)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_27')),DrawY=-1391,OverrideDelta=130)
    OutputLinks(6)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_64',InputLinkIdx=1)),ActivateDelay=0.500000,DrawY=-1368,OverrideDelta=153)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_64',InputLinkIdx=1)),DrawY=-1345,OverrideDelta=176)
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_64',InputLinkIdx=1),(LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_2')),DrawY=-1345,OverrideDelta=176)
    ObjInstanceVersion=4
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-6392
@@ -21263,45 +21263,45 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_50
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
-Begin Object Class=SeqVar_Named Name=SeqVar_Named_51
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_42
    ExpectedType=Class'Engine.SeqVar_Bool'
    FindVarName="Endless"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5976
-   ObjPosY=-24
+   ObjPosX=6168
+   ObjPosY=-16
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Named_51"
+   Name="SeqVar_Named_42"
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
-Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_57
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_40
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6064
-   ObjPosY=-32
+   ObjPosX=6256
+   ObjPosY=-24
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Bool_57"
+   Name="SeqVar_Bool_40"
    ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
 End Object
 
-Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_44
-   InputLinks(0)=(DrawY=-106,OverrideDelta=23)
-   OutputLinks(0)=(DrawY=-116,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_9')),DrawY=-96,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_51'),DrawX=6021,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_57'),DrawX=6071,OverrideDelta=59)
+Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_39
+   InputLinks(0)=(DrawY=-98,OverrideDelta=23)
+   OutputLinks(0)=(DrawY=-108,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_9')),DrawY=-88,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_42'),DrawX=6213,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_40'),DrawX=6263,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=5992
-   ObjPosY=-152
+   ObjPosX=6184
+   ObjPosY=-144
    DrawWidth=115
    DrawHeight=85
-   Name="SeqCond_CompareBool_44"
+   Name="SeqCond_CompareBool_39"
    ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
 End Object
 
@@ -27481,10 +27481,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_738
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_16
+Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
    MaxTriggerCount=0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_4')),DrawY=-2891,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_5')),DrawY=-2891,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-2870,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-2849,OverrideDelta=56)
    ObjInstanceVersion=3
@@ -27492,16 +27492,16 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_16
    ObjPosX=512
    ObjPosY=-2960
    DrawWidth=137
-   Name="SeqEvent_LevelLoaded_16"
+   Name="SeqEvent_LevelLoaded_1"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_11
    Duration=2.000000
    InputLinks(0)=(DrawY=-2827,OverrideDelta=14)
    InputLinks(1)=(DrawY=-2806,OverrideDelta=35)
    InputLinks(2)=(DrawY=-2785,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_3')),DrawY=-2822,OverrideDelta=19)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_6')),DrawY=-2822,OverrideDelta=19)
    OutputLinks(1)=(DrawY=-2790,OverrideDelta=51)
    VariableLinks(0)=(DrawX=972,OverrideDelta=25)
    ObjInstanceVersion=1
@@ -27510,41 +27510,41 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
    ObjPosY=-2864
    DrawWidth=106
    DrawHeight=109
-   Name="SeqAct_Delay_5"
+   Name="SeqAct_Delay_11"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
-Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_4
+Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_5
    CollisionType=COLLIDE_NoCollision
    InputLinks(0)=(DrawY=-2950,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_5')),DrawY=-2950,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_58',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_59',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_60',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_62',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_63',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_67',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_330',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_424',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_426',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_430',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_558',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_559',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_731',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_732',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_739',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_740',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_741'),DrawX=794,OverrideDelta=36)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_11')),DrawY=-2950,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_52',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_70',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_71',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_77',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_175',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_178',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_179',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_180',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_182',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_189',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_193',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_194',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_203'),DrawX=794,OverrideDelta=36)
    ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=736
    ObjPosY=-2984
    DrawWidth=116
    DrawHeight=61
-   Name="SeqAct_ChangeCollision_4"
+   Name="SeqAct_ChangeCollision_5"
    ObjectArchetype=SeqAct_ChangeCollision'Engine.Default__SeqAct_ChangeCollision'
 End Object
 
-Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_3
+Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_6
    CollisionType=COLLIDE_TouchAll
    InputLinks(0)=(DrawY=-2750,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_6')),DrawY=-2750,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_58',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_59',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_60',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_62',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_63',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_67',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_330',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_424',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_426',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_430',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_558',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_559',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_731',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_732',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_739',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_740',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_741'),DrawX=1186,OverrideDelta=36)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_67')),DrawY=-2750,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_52',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_70',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_71',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_77',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_121',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_175',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_178',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_179',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_180',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_182',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_189',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_193',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_194',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_203'),DrawX=1186,OverrideDelta=36)
    ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1128
    ObjPosY=-2784
    DrawWidth=116
    DrawHeight=61
-   Name="SeqAct_ChangeCollision_3"
+   Name="SeqAct_ChangeCollision_6"
    ObjectArchetype=SeqAct_ChangeCollision'Engine.Default__SeqAct_ChangeCollision'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_17'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27552,11 +27552,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_58"
+   Name="SeqVar_Object_11"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_12'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27564,11 +27564,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_59"
+   Name="SeqVar_Object_21"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_14'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27576,11 +27576,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_60"
+   Name="SeqVar_Object_22"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_11'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27588,11 +27588,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_61"
+   Name="SeqVar_Object_52"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_70
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27600,11 +27600,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_62"
+   Name="SeqVar_Object_70"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27612,11 +27612,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_63"
+   Name="SeqVar_Object_71"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_77
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27624,11 +27624,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_67"
+   Name="SeqVar_Object_77"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_330
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_97
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_7'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27636,11 +27636,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_330
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_330"
+   Name="SeqVar_Object_97"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_424
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_121
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27648,11 +27648,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_424
    ObjPosY=-2488
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_424"
+   Name="SeqVar_Object_121"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_426
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_175
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_3'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27660,11 +27660,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_426
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_426"
+   Name="SeqVar_Object_175"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_430
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_178
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_79'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27672,11 +27672,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_430
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_430"
+   Name="SeqVar_Object_178"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_558
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_179
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27684,11 +27684,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_558
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_558"
+   Name="SeqVar_Object_179"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_559
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_180
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_88'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27696,11 +27696,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_559
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_559"
+   Name="SeqVar_Object_180"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_731
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_182
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_73'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27708,11 +27708,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_731
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_731"
+   Name="SeqVar_Object_182"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_732
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_189
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_86'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27720,11 +27720,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_732
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_732"
+   Name="SeqVar_Object_189"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_739
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_193
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_87'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27732,11 +27732,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_739
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_739"
+   Name="SeqVar_Object_193"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_740
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_194
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_82'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27744,11 +27744,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_740
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_740"
+   Name="SeqVar_Object_194"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_741
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_203
    ObjValue=KFMGVolume_SwingHit'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.KFMGVolume_SwingHit_75'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
@@ -27756,11 +27756,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_741
    ObjPosY=-2408
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_741"
+   Name="SeqVar_Object_203"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SequenceFrame Name=SequenceFrame_38
+Begin Object Class=SequenceFrame Name=SequenceFrame_25
    SizeX=1457
    SizeY=796
    bDrawBox=True
@@ -27771,16 +27771,16 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_38
    ObjComment="Spawn Chutes Stuck Prevention"
    DrawWidth=1457
    DrawHeight=796
-   Name="SequenceFrame_38"
+   Name="SequenceFrame_25"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_6
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_67
    Duration=2.000000
    InputLinks(0)=(DrawY=-2835,OverrideDelta=14)
    InputLinks(1)=(DrawY=-2814,OverrideDelta=35)
    InputLinks(2)=(DrawY=-2793,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_4')),DrawY=-2830,OverrideDelta=19)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_5')),DrawY=-2830,OverrideDelta=19)
    OutputLinks(1)=(DrawY=-2798,OverrideDelta=51)
    VariableLinks(0)=(DrawX=1396,OverrideDelta=25)
    ObjInstanceVersion=1
@@ -27789,7 +27789,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_6
    ObjPosY=-2872
    DrawWidth=106
    DrawHeight=109
-   Name="SeqAct_Delay_6"
+   Name="SeqAct_Delay_67"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
@@ -29632,4 +29632,447 @@ Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_50
    DrawHeight=85
    Name="SeqCond_CompareBool_50"
    ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
+End Object
+
+Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_44
+   InputLinks(0)=(DrawY=-58,OverrideDelta=23)
+   OutputLinks(0)=(DrawY=-68,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_46')),DrawY=-48,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_51'),DrawX=5757,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_57'),DrawX=5807,OverrideDelta=59)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5728
+   ObjPosY=-104
+   DrawWidth=115
+   DrawHeight=85
+   Name="SeqCond_CompareBool_44"
+   ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
+End Object
+
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_57
+   bValue=1
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5800
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Bool_57"
+   ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+End Object
+
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_51
+   ExpectedType=Class'Engine.SeqVar_Bool'
+   FindVarName="Endless"
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5712
+   ObjPosY=8
+   ObjColor=(B=0,G=0,R=255,A=255)
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Named_51"
+   ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_38
+   SizeX=1457
+   SizeY=796
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=240
+   ObjPosY=-3992
+   ObjComment="Spawn Chutes Stuck Prevention PART THREE - Yes, really, these stupid spawns need triple stuck prevention because they're just that dumb."
+   DrawWidth=1457
+   DrawHeight=796
+   Name="SequenceFrame_38"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_6
+   Duration=10.000000
+   InputLinks(0)=(DrawY=-3747,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-3726,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-3705,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_4')),DrawY=-3742,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-3710,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=1380,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1328
+   ObjPosY=-3784
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_6"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_3
+   CollisionType=COLLIDE_TouchAll
+   InputLinks(0)=(DrawY=-3662,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_6')),DrawY=-3662,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_205',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_207',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_209',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_210',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_211',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_212',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_213',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_214',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_215',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_216',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_217',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_218',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_219',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_220',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_221',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_222',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_230'),DrawX=1170,OverrideDelta=36)
+   ObjInstanceVersion=5
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1112
+   ObjPosY=-3696
+   DrawWidth=116
+   DrawHeight=61
+   Name="SeqAct_ChangeCollision_3"
+   ObjectArchetype=SeqAct_ChangeCollision'Engine.Default__SeqAct_ChangeCollision'
+End Object
+
+Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_4
+   CollisionType=COLLIDE_NoCollision
+   InputLinks(0)=(DrawY=-3862,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_5')),DrawY=-3862,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_205',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_207',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_209',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_210',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_211',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_212',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_213',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_214',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_215',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_216',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_217',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_218',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_219',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_220',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_221',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_222',SeqVar_Object'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_230'),DrawX=778,OverrideDelta=36)
+   ObjInstanceVersion=5
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=720
+   ObjPosY=-3896
+   DrawWidth=116
+   DrawHeight=61
+   Name="SeqAct_ChangeCollision_4"
+   ObjectArchetype=SeqAct_ChangeCollision'Engine.Default__SeqAct_ChangeCollision'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
+   Duration=0.100000
+   InputLinks(0)=(DrawY=-3739,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-3718,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-3697,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_3')),DrawY=-3734,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-3702,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=956,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=904
+   ObjPosY=-3776
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_5"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_16
+   MaxTriggerCount=0
+   MaxWidth=136
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ChangeCollision'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_4')),DrawY=-3803,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-3782,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-3761,OverrideDelta=56)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=496
+   ObjPosY=-3872
+   DrawWidth=137
+   Name="SeqEvent_LevelLoaded_16"
+   ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_205
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=576
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_205"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_207
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=672
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_207"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_208
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_12'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=768
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_208"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_209
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_15'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=872
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_209"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_210
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_18'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=968
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_210"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_211
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_21'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1072
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_211"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_212
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1168
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_212"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_213
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1272
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_213"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_214
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_13'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1368
+   ObjPosY=-3432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_214"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_215
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_16'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=624
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_215"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_216
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=720
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_216"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_217
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=824
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_217"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_218
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=920
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_218"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_219
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1024
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_219"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_220
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_14'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1120
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_220"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_221
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_17'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1224
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_221"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_222
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1320
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_222"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_230
+   ObjValue=TriggerVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.TriggerVolume_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=1424
+   ObjPosY=-3352
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_230"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Gate Name=SeqAct_Gate_5
+   AutoCloseCount=1
+   CurrentCloseCount=1
+   InputLinks(0)=(DrawY=-6163,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6141,OverrideDelta=36)
+   InputLinks(2)=(DrawY=-6119,OverrideDelta=58)
+   InputLinks(3)=(DrawY=-6097,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_83')),DrawY=-6130,OverrideDelta=47)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5096
+   ObjPosY=-6200
+   DrawWidth=82
+   DrawHeight=117
+   Name="SeqAct_Gate_5"
+   ObjectArchetype=SeqAct_Gate'Engine.Default__SeqAct_Gate'
+End Object
+
+Begin Object Class=SeqAct_Gate Name=SeqAct_Gate_6
+   AutoCloseCount=1
+   CurrentCloseCount=1
+   InputLinks(0)=(DrawY=-5267,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5245,OverrideDelta=36)
+   InputLinks(2)=(DrawY=-5223,OverrideDelta=58)
+   InputLinks(3)=(DrawY=-5201,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_72')),DrawY=-5234,OverrideDelta=47)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5096
+   ObjPosY=-5304
+   DrawWidth=82
+   DrawHeight=117
+   Name="SeqAct_Gate_6"
+   ObjectArchetype=SeqAct_Gate'Engine.Default__SeqAct_Gate'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_72
+   Duration=4.000000
+   InputLinks(0)=(DrawY=-5107,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5086,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5065,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_MovePawnsNotInVolume'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_MovePawnsNotInVolume_0')),DrawY=-5102,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-5070,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=5140,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5088
+   ObjPosY=-5144
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_72"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Gate Name=SeqAct_Gate_7
+   AutoCloseCount=1
+   CurrentCloseCount=1
+   InputLinks(0)=(DrawY=-8003,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7981,OverrideDelta=36)
+   InputLinks(2)=(DrawY=-7959,OverrideDelta=58)
+   InputLinks(3)=(DrawY=-7937,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_71')),DrawY=-7970,OverrideDelta=47)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5008
+   ObjPosY=-8040
+   DrawWidth=82
+   DrawHeight=117
+   Name="SeqAct_Gate_7"
+   ObjectArchetype=SeqAct_Gate'Engine.Default__SeqAct_Gate'
+End Object
+
+Begin Object Class=SeqAct_Gate Name=SeqAct_Gate_1
+   AutoCloseCount=1
+   CurrentCloseCount=1
+   InputLinks(0)=(DrawY=-7115,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7093,OverrideDelta=36)
+   InputLinks(2)=(DrawY=-7071,OverrideDelta=58)
+   InputLinks(3)=(DrawY=-7049,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_75')),DrawY=-7082,OverrideDelta=47)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=5080
+   ObjPosY=-7152
+   DrawWidth=82
+   DrawHeight=117
+   Name="SeqAct_Gate_1"
+   ObjectArchetype=SeqAct_Gate'Engine.Default__SeqAct_Gate'
 End Object

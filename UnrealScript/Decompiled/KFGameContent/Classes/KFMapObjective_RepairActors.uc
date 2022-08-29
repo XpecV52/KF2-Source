@@ -163,7 +163,6 @@ simulated function DeactivateObjective()
                 {
                     if((GetTotalProgress()) >= 1)
                     {
-                        KFPlayerController(KFPH.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
                     }
                 }                
             }                        
@@ -188,7 +187,7 @@ simulated function DeactivateObjective()
         }
     }
     I = 0;
-    J0x2D3:
+    J0x282:
 
     if(I < GeneratedEvents.Length)
     {
@@ -198,7 +197,7 @@ simulated function DeactivateObjective()
             ActivationEvent.NotifyDeactivation(self, self);
         }
         ++ I;
-        goto J0x2D3;
+        goto J0x282;
     }
     KFPC = KFPlayerController(GetALocalPlayerController());
     if((KFPC != none) && KFPC.myGfxHUD != none)

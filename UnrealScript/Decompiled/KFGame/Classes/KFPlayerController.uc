@@ -5607,30 +5607,6 @@ reliable client simulated function ClientGameOver(string MapName, byte Difficult
     }
 }
 
-final function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
-{
-    if(StatsWrite.SeasonalEventIsValid())
-    {
-        ClientFinishedSpecialEvent(EventIndex, ObjectiveIndex);
-    }
-}
-
-reliable client final simulated event ClientFinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
-{
-    if((((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController()) && StatsWrite.SeasonalEventIsValid()) && !StatsWrite.IsEventObjectiveComplete(ObjectiveIndex))
-    {
-        StatsWrite.UpdateSpecialEvent(EventIndex, ObjectiveIndex);
-        if(((myGfxHUD != none) && myGfxHUD.LevelUpNotificationWidget != none) && (Class'KFGameEngine'.static.GetSeasonalEventID() % 10) == EventIndex)
-        {
-            myGfxHUD.LevelUpNotificationWidget.FinishedSpecialEvent(EventIndex, ObjectiveIndex);
-        }
-        if(((MyGFxManager != none) && MyGFxManager.StartMenu != none) && MyGFxManager.StartMenu.MissionObjectiveContainer != none)
-        {
-            MyGFxManager.StartMenu.MissionObjectiveContainer.Refresh();
-        }
-    }
-}
-
 simulated function bool SeasonalEventIsValid()
 {
     return (StatsWrite != none) && StatsWrite.super(KFPlayerController).SeasonalEventIsValid();

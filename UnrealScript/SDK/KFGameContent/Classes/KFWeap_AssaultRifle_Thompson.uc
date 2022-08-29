@@ -11,6 +11,9 @@ class KFWeap_AssaultRifle_Thompson extends KFWeap_SMGBase;
 
 defaultproperties
 {
+	bHasFireLastAnims=true
+	BonesToLockOnEmpty=(RW_Charging_Handle)
+
 	// Shooting Animations
 	FireSightedAnims[0]=Shoot_Iron
 	FireSightedAnims[1]=Shoot_Iron2
@@ -45,10 +48,10 @@ defaultproperties
 	bReloadFromMagazine=true
 
 	// Recoil
-	maxRecoilPitch=165 //150
-	minRecoilPitch=130 //115
-	maxRecoilYaw=130  //115
-	minRecoilYaw=-130 //115
+	maxRecoilPitch=130 //165
+	minRecoilPitch=115 //130
+	maxRecoilYaw=115  //130
+	minRecoilYaw=-115 //130
 	RecoilRate=0.085
 	RecoilMaxYawLimit=500
 	RecoilMinYawLimit=65035
@@ -76,8 +79,8 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Thompson'
-	FireInterval(DEFAULT_FIREMODE)=+0.1 // 600 RPM
-	Spread(DEFAULT_FIREMODE)=0.0085
+	FireInterval(DEFAULT_FIREMODE)=+0.0833 // 720 RPM
+	Spread(DEFAULT_FIREMODE)=0.025 //0.0085
 	InstantHitDamage(DEFAULT_FIREMODE)=30.0 //25
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
@@ -87,9 +90,9 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Thompson'
-	FireInterval(ALTFIRE_FIREMODE)=+0.1
+	FireInterval(ALTFIRE_FIREMODE)=+0.0833 // 720 RPM
 	InstantHitDamage(ALTFIRE_FIREMODE)=30.0 //25
-	Spread(ALTFIRE_FIREMODE)=0.0085
+	Spread(ALTFIRE_FIREMODE)=0.025 //0.0085
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Thompson'

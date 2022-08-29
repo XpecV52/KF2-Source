@@ -546,6 +546,7 @@ ItemDescription="•Tryb strzelania: ogień ciągły albo seria.\n•Tryb altern
 ItemName="Topór wojenny"
 ItemCategory="Broń biała"
 ItemDescription="•Główny atak – wolne cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne, wolne cięcie niszczące po śmierci.\n•Alt. – blok/parowanie.\n•Staroć, ale wali jak armata... duża i ostra armata."
+SharedUnlockSource="Topór wojenny"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Siekiera strażacka"

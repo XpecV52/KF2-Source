@@ -140,7 +140,7 @@ private final function NotifyWinners()
     {
         if (KFPlayerController(Controller) != none)
         {
-            KFPlayerController(Controller).FinishedSpecialEvent(EventIndex, ObjectiveIndex);
+            // @todo: hook up seasonal event here if/when desired
         }
     }
 }

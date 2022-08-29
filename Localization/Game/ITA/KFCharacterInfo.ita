@@ -1,9 +1,9 @@
 [CHR_BadSanta_Archetype]
-CharacterName="Badass Santa"
+CharacterName="Babbo Natale tosto"
 Description="Prima, Krampus colpì i suoi elfi e la sua renna. Poi colpì la sua casa. Babbo Natale ne ha avuto abbastanza. Ora possiede una mitragliatrice. Oh oh oh!\n\nSan Nicola ha iniziato a sorvegliare i bambini del mondo centinaia di anni fa, con il pensiero di passare l'eternità a distribuire spirito natalizio e giocattoli a tutti i bravi bambini e bambine.  Ma poi, arrivò Krampus.  Da quando ha avuto inizio il Natale di Krampus, Babbo Natale si dedica a vendicare i suoi lavoratori, amici e famigliari caduti. Le guance rosse e la pancia tonda come una palla sono un lontano ricordo, rimpiazzate da un broncio fisso e da strati di muscoli. Nessun Astro del ciel per queste festività. Niente benevolenza e spirito natalizio per Babbo Natale, quest'anno. Gli restano solo rabbia ribollente, desiderio di vendetta e tante munizioni con cui festeggiare."
-BodyMesh0="Santa Outfit"
+BodyMesh0="Completo Babbo Natale"
 BodyMesh1="Pollo Commando"
-HeadMesh0="Santa Head"
+HeadMesh0="Testa Babbo Natale"
 
 [CHR_BadSanta_Archetype.BodyMesh0]
 BodySkin0="Babbo Natale classico"

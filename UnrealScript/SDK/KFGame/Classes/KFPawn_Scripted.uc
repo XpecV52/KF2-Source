@@ -85,7 +85,6 @@ function Initialize(KFCharacterInfo_ScriptedPawn InCharInfo, int InHealth, int I
 	SetCharacterArch(InCharInfo, true);
 
 	SetCollision(false, false);
-	SetCanBeTargeted(false);
 
 	Health = Clamp(InHealth, 1, InHealthMax);
 	HealthMax = InHealthMax;
@@ -110,7 +109,9 @@ function Initialize(KFCharacterInfo_ScriptedPawn InCharInfo, int InHealth, int I
 		InitializeProximityTrigger();
 	}
 
+	SetPawnState(0);
 	UpdatePawnState();
+	SetCanBeTargeted(false);
 
 	if (ScriptedCharArch.bIsFlyingPawn)
 	{
@@ -250,7 +251,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 		MyKFAIC = KFAIController(C);
 	}
 
-	WorldInfo.Game.ChangeTeam(C, 0, false);
+	KFGameInfo(WorldInfo.Game).Teams[0].AddToTeam(C);
 }
 
 simulated event byte ScriptGetTeamNum()
@@ -874,7 +875,7 @@ defaultproperties
 {
 	ControllerClass=class'KFGame.KFAIController_ScriptedPawn'
 
-	CurrentState=0
+	CurrentState=255
 	PreviousState=255
 
 	AccelRate=0

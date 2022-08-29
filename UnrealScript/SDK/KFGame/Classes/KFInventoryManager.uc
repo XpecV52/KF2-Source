@@ -1318,7 +1318,6 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 	local Inventory InventoryItem;
 	local TransactionItem TransactionWeapon;
 	local KFWeapon WeaponItemSingle;
-	local KFWeap_DualBase WeaponItemDual;
 
 	// If the trader menu is open, check if this weapon is already part of our weapon transactions
 	if( bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name, TransactionWeapon) )
@@ -1334,7 +1333,7 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 		WeaponItemSingle = KFWeapon(InventoryItem);
 		WeaponUpgradeIndex = Max(WeaponUpgradeIndex, WeaponItemSingle.CurrentWeaponUpgradeIndex);
 
-		DualAdjustedWeight = WeaponClass.static.GetDefaultModifiedWeightValue(WeaponUpgradeIndex);
+		DualAdjustedWeight = WeaponClass.default.DualClass.static.GetDefaultModifiedWeightValue(WeaponUpgradeIndex);
 		SingleAdjustedWeight = WeaponItemSingle.GetModifiedWeightValue();
 
 		// check weight of dual minus weight of single because we remove single when adding dual
@@ -1352,10 +1351,11 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass, optional in
 	DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
 	if( DualWeaponClass != none && DualWeaponClass.default.SingleClass != none && ClassIsInInventory(DualWeaponClass.default.SingleClass, InventoryItem) )
 	{
-		WeaponItemDual = KFWeap_DualBase(InventoryItem);
+		WeaponItemSingle = KFWeapon(InventoryItem);
+		WeaponUpgradeIndex = Max(WeaponUpgradeIndex, WeaponItemSingle.CurrentWeaponUpgradeIndex);
 
-		DualAdjustedWeight = WeaponItemDual.GetModifiedWeightValue();
-		SingleAdjustedWeight = DualWeaponClass.static.GetDefaultModifiedWeightValue(WeaponItemDual.CurrentWeaponUpgradeIndex);
+		DualAdjustedWeight = WeaponItemSingle.default.DualClass.static.GetDefaultModifiedWeightValue(WeaponUpgradeIndex);
+		SingleAdjustedWeight = WeaponItemSingle.GetModifiedWeightValue();
 
 		`log(self @ "-" @ GetFuncName() @ "- CurrentCarryBlocks:" @ CurrentCarryBlocks @ "DualWeaponClass:" @ DualWeaponClass @ "SingleClass:" @ DualWeaponClass.default.SingleClass @ "DualInventorySize:" @ DualAdjustedWeight @ "SingleInventorySize:" @ SingleAdjustedWeight, bLogInventory);
 		// check weight of dual minus weight of single because we remove single when adding dual

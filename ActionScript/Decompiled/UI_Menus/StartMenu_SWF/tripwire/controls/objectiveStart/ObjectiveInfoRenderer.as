@@ -5,6 +5,7 @@ package tripwire.controls.objectiveStart
     import flash.events.Event;
     import flash.text.TextField;
     import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormat;
     import scaleform.clik.controls.ListItemRenderer;
     import tripwire.controls.TripUILoader;
     
@@ -66,11 +67,14 @@ package tripwire.controls.objectiveStart
         
         public var bIsContracted:Boolean = false;
         
+        public var descriptionFormat:TextFormat;
+        
         public function ObjectiveInfoRenderer()
         {
             this.rewardColor = new Color();
             this.statusColor = new Color();
             this.bumperColor = new Color();
+            this.descriptionFormat = new TextFormat();
             super();
             preventAutosizing = true;
             this.leftFrame.visible = false;
@@ -84,6 +88,7 @@ package tripwire.controls.objectiveStart
         {
             super.addedToStage(param1);
             this.descriptionTextField.autoSize = TextFieldAutoSize.LEFT;
+            this.descriptionFormat = this.descriptionTextField.defaultTextFormat;
         }
         
         override public function set data(param1:Object) : void
@@ -126,6 +131,8 @@ package tripwire.controls.objectiveStart
                 this.progressBar.visible = !!data.showProgress ? Boolean(data.showProgress) : false;
                 this.progressBar.progress = !!data.progress ? Number(data.progress) : Number(0);
                 this.progressBar.progressText.text = !!data.textValue ? data.textValue : "";
+                this.descriptionFormat.size = this.descriptionTextField.height > 61 ? 18 : 20;
+                this.descriptionTextField.setTextFormat(this.descriptionFormat);
             }
             else
             {

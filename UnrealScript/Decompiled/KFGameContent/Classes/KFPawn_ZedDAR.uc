@@ -55,9 +55,15 @@ function OnStackingAfflictionChanged(byte Id)
 
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
+    local int HitZoneIdx;
+
     if(Damage == float(0))
     {
-        HitInfo.BoneName = 'KBArmor';
+        HitZoneIdx = GetHitZoneIndex(HitInfo.BoneName);
+        if((HitZoneIdx == -1) || HitZones[HitZoneIdx].GoreHealth > 0)
+        {
+            HitInfo.BoneName = 'KBArmor';
+        }
         super.PlayHit(1, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);        
     }
     else

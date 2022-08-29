@@ -3085,10 +3085,18 @@ static simulated event bool CanRefillSecondaryAmmo()
 
 function InitializeAmmo()
 {
+    local KFPerk CurrentPerk;
+
     InitializeAmmoCapacity();
     AmmoCount[0] = MagazineCapacity[0];
     AmmoCount[1] = MagazineCapacity[1];
     AddAmmo(default.InitialSpareMags[0] * default.MagazineCapacity[0]);
+    CurrentPerk = GetPerk();
+    if(CurrentPerk != none)
+    {
+        CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[0]);
+        CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[1],, true);
+    }
     AddAmmo(0);
     bForceNetUpdate = true;
 }

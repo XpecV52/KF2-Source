@@ -546,6 +546,7 @@ ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n�
 ItemName="Ascia da battaglia"
 ItemCategory="Mischia"
 ItemDescription="•Primario - attacco veloce di fendente. Tieni premuto Primario per le combo.\n•Secondario - attacco violento e lento che disintegra l'avversario morto.\n•Alt - blocca/para.\n•Obsoleta, ma è comunque come essere travolti da un camion... grosso e affilato."
+SharedUnlockSource="Ascia da battaglia"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Ascia per incendi"

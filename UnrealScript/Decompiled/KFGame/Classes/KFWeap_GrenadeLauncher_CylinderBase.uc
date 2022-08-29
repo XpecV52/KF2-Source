@@ -250,6 +250,10 @@ simulated event SetFOV(float NewFOV)
         ++ I;
         goto J0x1E;
     }
+    if(ReloadShell != none)
+    {
+        ReloadShell.super(KFSkeletalMeshComponent).SetFOV(NewFOV);
+    }
 }
 
 simulated function InitializeReload()

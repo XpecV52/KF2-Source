@@ -693,7 +693,7 @@ function bool AllowWaveCheats()
 `if(`notdefined(ShippingPC))
 	return true;
 `else
-	return false;
+	return class'KFGameEngine'.static.IsEditor();
 `endif
 }
 

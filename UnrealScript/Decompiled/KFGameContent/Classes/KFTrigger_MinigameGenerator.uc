@@ -432,8 +432,7 @@ function TriggerObjectiveCompletion()
     local KFPlayerController KFPC;
 
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-    {
-        KFPC.FinishedSpecialEvent(EventIndex, ObjectiveIndex);        
+    {        
     }    
 }
 

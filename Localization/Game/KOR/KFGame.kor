@@ -2345,8 +2345,8 @@ DoschHoldDesc="표시된 구역에 제드가 들어가지 못하게 하십시오
 DescriptionDoshHold="표시된 구역에 제드가 들어가지 못하게 하십시오"
 RepairObjective="용접과 수리"
 UseWelderToRepair="용접기로 물건을 수리하세요."
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="에스코트"
+EscortPawnsDescription="Zed로부터 대상을 보호하십시오."
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="제어와 통제"
 DescriptionActivateTrigger="오브젝트 컨트롤을 활성화하세요."
@@ -3159,7 +3159,7 @@ DisplayName="괴물 무도회"
 DisplayName="연속 쇼핑"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="산타의 작업장 "
 
 [KFMapInfo]
 ; defaults

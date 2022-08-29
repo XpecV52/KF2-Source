@@ -1,9 +1,9 @@
 [CHR_BadSanta_Archetype]
-CharacterName="Badass Santa"
+CharacterName="坏圣诞老人"
 Description="首先，坎卜斯来找他的精灵和驯鹿。然后，坎卜斯来到他的家。现在，坎卜斯再也受不了了。现在，他有了一把机枪。吼吼吼！\n\n圣。几百年前，尼古拉斯开始照看世界上的孩子们，他坚信自己会永远把圣诞节的欢乐和玩具带给世界上善良的孩子们。  但后来，坎卜斯来了。  在坎卜斯圣诞节之后的一年里，圣诞老人致力于为他的工人、朋友和家人报仇。红润的脸颊和果冻一样的肚皮消失了，被永久的愁容和一层又一层的肌肉所取代。今年的假期将不再有一个安静的夜晚；今年，圣诞老人已经失去了善意和圣诞节的欢呼。他只有沸腾的愤怒，复仇，和大量的弹药，枪声将在假日响起。"
-BodyMesh0="Santa Outfit"
+BodyMesh0="圣诞老人服装"
 BodyMesh1="突击兵战斗鸡"
-HeadMesh0="Santa Head"
+HeadMesh0="圣诞老人头部"
 
 [CHR_BadSanta_Archetype.BodyMesh0]
 BodySkin0="经典圣诞老人"

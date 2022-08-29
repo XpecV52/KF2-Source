@@ -29,9 +29,14 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 //returns true is data is changed
 function bool Refresh(optional bool bForceRefresh)
 {   
+	local bool bRefreshedSpecialEvents, bRefreshedWeeklyEvent, bRefreshedDailyObjective;
+
 	if(SpecialEventsContainer != none && WeeklyEventContainer != none)
     {
-        return SpecialEventsContainer.PopulateData() || WeeklyEventContainer.PopulateData() || DailyObjectiveContainer.PopulateData(bForceRefresh);
+		bRefreshedSpecialEvents = SpecialEventsContainer.PopulateData();
+		bRefreshedWeeklyEvent = WeeklyEventContainer.PopulateData();
+		bRefreshedDailyObjective = DailyObjectiveContainer.PopulateData(bForceRefresh);
+		return bRefreshedSpecialEvents || bRefreshedWeeklyEvent || bRefreshedDailyObjective;
     }
 
     return false;

@@ -546,6 +546,7 @@ ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습�
 ItemName="전투도끼"
 ItemCategory="백병전"
 ItemDescription="•기본 - 느린 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 사망 시 사라지는 강하고 느린 공격.\n•대체 - 차단 / 회피\n•구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭."
+SharedUnlockSource="전투도끼"
 
 [KFWeap_Edged_FireAxe]
 ItemName="소방 도끼"

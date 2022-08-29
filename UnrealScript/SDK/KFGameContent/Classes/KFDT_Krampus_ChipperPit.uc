@@ -29,7 +29,7 @@ static function ApplyKillResults(KFPawn KilledPawn)
 		{
 			foreach WI.AllControllers(class'KFPlayerController', KFPC)
 			{
-				KFPC.FinishedSpecialEvent(default.SeasonIndex, default.ObjectiveIndex);
+				// @todo: hook up seasonal event here if/when desired
 			}
 		}
 	}

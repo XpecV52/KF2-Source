@@ -33,6 +33,7 @@ defaultproperties
 	KDeathUpKick=400
 
 	StumblePower=75
+	StunPower=75
 	MeleeHitPower=100
 
 	WeaponDef=class'KFWeapDef_FireAxe'

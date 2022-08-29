@@ -200,8 +200,7 @@ simulated function DeactivateObjective()
 				{
 					if (GetTotalProgress() >= 1.0f)
 					{
-						KFPlayerController(KFPH.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
-
+						// @todo: hook up seasonal event here if/when desired
 					}
 				}
 			}

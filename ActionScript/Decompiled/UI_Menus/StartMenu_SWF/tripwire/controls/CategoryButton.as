@@ -28,7 +28,10 @@ package tripwire.controls
         {
             super();
             doAnimations = true;
-            TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            if(this.infoTextField)
+            {
+                TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            }
             overSoundEffect = "TITLE_BUTTON_ROLLOVER";
         }
         
@@ -82,22 +85,32 @@ package tripwire.controls
         override protected function highlightButton() : *
         {
             super.highlightButton();
-            this.infoTextField.textColor = this.highlightColor;
-            TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            if(this.infoTextField)
+            {
+                this.infoTextField.textColor = this.highlightColor;
+                TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            }
             this.hitbox2.z = this.hitboxZ;
         }
         
         override protected function unhighlightButton() : *
         {
             super.unhighlightButton();
-            this.infoTextField.textColor = this.defaultColor;
-            TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            if(this.infoTextField)
+            {
+                this.infoTextField.textColor = this.defaultColor;
+                TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            }
             this.hitbox2.z = 0;
         }
         
         override public function set enabled(param1:Boolean) : void
         {
             super.enabled = param1;
+            if(!this.infoTextField)
+            {
+                return;
+            }
             if(!param1)
             {
                 TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);

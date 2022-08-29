@@ -546,6 +546,7 @@ ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n
 ItemName="Machado de batalha"
 ItemCategory="Corpo a corpo"
 ItemDescription="•Principal - ataque de corte lento; Segure Principal para combinação.\n•Secundário - ataque pesado lento que oblitera ao morrer.\nAlt - bloquear/aparar\n•Antigo, mas é forte igual um caminhão... um caminhão grande e afiado."
+SharedUnlockSource="Machado de batalha"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Machado de Fogo"

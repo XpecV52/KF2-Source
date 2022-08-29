@@ -3664,7 +3664,10 @@ simulated function PlayExtraVFX(name FXLabel)
         {
             if(ExtraVFXAttachments[I].Info.SocketName == 'None')
             {
-                ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(ExtraVFXAttachments[I].Info.VFX, Location, Rotation, self);
+                if(ExtraVFXAttachments[I].Info.VFX != none)
+                {
+                    ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(ExtraVFXAttachments[I].Info.VFX, Location, Rotation, self);
+                }
                 if(ExtraVFXAttachments[I].Info.SFXStartEvent != none)
                 {
                     PostAkEvent(ExtraVFXAttachments[I].Info.SFXStartEvent, false, true, false);
@@ -3672,7 +3675,10 @@ simulated function PlayExtraVFX(name FXLabel)
             }
             else
             {
-                ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[I].Info.VFX, Mesh, ExtraVFXAttachments[I].Info.SocketName, true);
+                if(ExtraVFXAttachments[I].Info.VFX != none)
+                {
+                    ExtraVFXAttachments[I].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[I].Info.VFX, Mesh, ExtraVFXAttachments[I].Info.SocketName, true);
+                }
                 if(ExtraVFXAttachments[I].Info.SFXStartEvent != none)
                 {
                     SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[I].Info.SocketName);
@@ -3696,7 +3702,7 @@ simulated function PlayExtraVFX(name FXLabel)
         return;
     }
     I = 0;
-    J0x483:
+    J0x501:
 
     if(I < CharacterArch.ExtraVFX.Length)
     {
@@ -3704,7 +3710,10 @@ simulated function PlayExtraVFX(name FXLabel)
         {
             if(CharacterArch.ExtraVFX[I].SocketName == 'None')
             {
-                VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(CharacterArch.ExtraVFX[I].VFX, Location, Rotation, self);
+                if(CharacterArch.ExtraVFX[I].VFX != none)
+                {
+                    VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(CharacterArch.ExtraVFX[I].VFX, Location, Rotation, self);
+                }
                 if(CharacterArch.ExtraVFX[I].SFXStartEvent != none)
                 {
                     PostAkEvent(CharacterArch.ExtraVFX[I].SFXStartEvent, false, true, false);
@@ -3712,7 +3721,10 @@ simulated function PlayExtraVFX(name FXLabel)
             }
             else
             {
-                VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterArch.ExtraVFX[I].VFX, Mesh, CharacterArch.ExtraVFX[I].SocketName, true);
+                if(CharacterArch.ExtraVFX[I].VFX != none)
+                {
+                    VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterArch.ExtraVFX[I].VFX, Mesh, CharacterArch.ExtraVFX[I].SocketName, true);
+                }
                 if(CharacterArch.ExtraVFX[I].SFXStartEvent != none)
                 {
                     SFXBoneName = Mesh.GetSocketBoneName(CharacterArch.ExtraVFX[I].SocketName);
@@ -3730,7 +3742,7 @@ simulated function PlayExtraVFX(name FXLabel)
             ExtraVFXAttachments.AddItem(VFXAttachment;
         }
         ++ I;
-        goto J0x483;
+        goto J0x501;
     }
 }
 

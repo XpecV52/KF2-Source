@@ -2345,8 +2345,8 @@ DoschHoldDesc="Tieni gli Zed lontani dall'area evidenziata"
 DescriptionDoshHold="Tieni gli Zed lontani dall'area evidenziata"
 RepairObjective="SALDA E RIPARA"
 UseWelderToRepair="Usa Saldatore per riparare l'obiettivo/i"
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="SCORTA"
+EscortPawnsDescription="Proteggi il bersaglio dagli Zed"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="AZIONA E CONTROLLA"
 DescriptionActivateTrigger="Attiva controllo obiettivo"
@@ -3159,7 +3159,7 @@ DisplayName="Festa dei mostri"
 DisplayName="Shopping compulsivo"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="Laboratorio di Babbo Natale"
 
 [KFMapInfo]
 ; defaults

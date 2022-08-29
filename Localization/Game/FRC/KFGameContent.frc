@@ -546,6 +546,7 @@ ItemDescription="• Modes automatique et semi-automatique.\n• Tir alternatif 
 ItemName="Hache de combat"
 ItemCategory="Mêlée"
 ItemDescription="•Principale - attaque tranchante lente, maintenir pour enchaîner.\n•Secondaire - attaque lourde et lente qui détruit sa cible si elle la tue.\n•Alt - bloquer/parer\n•Démodée, mais aussi puissante qu'un fusil à pompe... Un gros fusil à pompe bien aiguisé."
+SharedUnlockSource="Hache de combat"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Hache de pompier"

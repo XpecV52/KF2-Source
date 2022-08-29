@@ -326,6 +326,11 @@ simulated event SetFOV(float NewFOV)
 	{
 		BulletMeshComponents[i].SetFOV(NewFOV);
 	}
+
+	if (ReloadShell != none)
+	{
+		ReloadShell.SetFOV(NewFOV);
+	}
 }
 
 /*********************************************************************************************

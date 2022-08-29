@@ -20,6 +20,7 @@ defaultproperties
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
+   bHasFireLastAnims=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
@@ -39,6 +40,7 @@ defaultproperties
    bLoopingFireSnd(0)=True
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
+   BonesToLockOnEmpty(0)="RW_Charging_Handle"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Thompson.Play_WEP_Thompson_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_Thompson.Play_WEP_Thompson_Fire_1P_Loop')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_Thompson.Play_WEP_Thompson_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_Thompson.Play_WEP_Thompson_Fire_1P_Single')
    WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_Thompson.Play_WEP_Thompson_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_Thompson.Play_WEP_Thompson_Fire_1P_EndLoop')
@@ -51,10 +53,10 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_SMGBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_Thompson:MeleeHelper_0'
-   maxRecoilPitch=165
-   minRecoilPitch=130
-   maxRecoilYaw=130
-   minRecoilYaw=-130
+   maxRecoilPitch=130
+   minRecoilPitch=115
+   maxRecoilYaw=115
+   minRecoilYaw=-115
    RecoilRate=0.085000
    RecoilViewRotationScale=0.250000
    RecoilMaxYawLimit=500
@@ -78,13 +80,13 @@ defaultproperties
    FiringStatesArray(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
-   FireInterval(0)=0.100000
-   FireInterval(1)=0.100000
+   FireInterval(0)=0.083300
+   FireInterval(1)=0.083300
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.008500
-   Spread(1)=0.008500
+   Spread(0)=0.025000
+   Spread(1)=0.025000
    InstantHitDamage(0)=30.000000
    InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()

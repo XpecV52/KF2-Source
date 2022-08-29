@@ -1,9 +1,9 @@
 [CHR_BadSanta_Archetype]
-CharacterName="Badass Santa"
+CharacterName="Le Père Noël est un gros dur"
 Description="D'abord, Krampus s'en est pris à ses lutins et son renne. Ensuite, sa maison. Papa Noël en a marre. Alors il va sortir sa mitrailleuse. Ho ho ho !\n\n St-Nicolas surveille les enfants du monde entier depuis des siècles, espérant pouvoir passer l'éternité à apporter de la joie et des cadeaux de Noël aux gentils petits garçons et petites filles.  Mais ça, c'était avant Krampus.  Depuis le tristement célèbre Noël de Krampus, Papa Noël a juré de venger sa famille, ses amis et ouvriers disparus. Adieu les joues roses et le ventre rebondi, bonjour le regard noir et le corps d'athlète bodybuildé. La nuit sera loin d'être douce en cette saison des fêtes ; cette année, Papa Noël en a ras le bonnet. Sa hotte ne contient plus qu'une colère bouillonnante et trois tonnes de munitions."
-BodyMesh0="Santa Outfit"
+BodyMesh0="Tenue de Père Noël"
 BodyMesh1="Poulet commando"
-HeadMesh0="Santa Head"
+HeadMesh0="Tête de Père Noël"
 
 [CHR_BadSanta_Archetype.BodyMesh0]
 BodySkin0="Père Noël classique"
@@ -119,7 +119,7 @@ HeadSkin2="Rouge"
 HeadSkin3="Marron"
 HeadSkin4="Rose"
 HeadSkin5="Noir"
-HeadSkin6="Halloween 2018"
+HeadSkin6="Halloween 2018"
 
 [CHR_DAR_archetype]
 CharacterName="D.A.R."
@@ -278,7 +278,7 @@ HeadSkin2="Rouge sang"
 HeadSkin3="Visage métalleux"
 HeadSkin4="Grand méchant suédois"
 HeadSkin5="Vertige"
-HeadSkin6="Halloween 2018"
+HeadSkin6="Halloween 2018"
 
 [Cosmetic_Jagerhorn_CowboyHat_01_cowboyHat_LOD1_ARCH]
 Attachment="Chapeau de c-b à pointes"
@@ -452,7 +452,7 @@ HeadSkin3="Risque vert"
 HeadSkin4="Scully rétro"
 HeadSkin5="Scully Cri étouffé"
 HeadSkin6="Batcat"
-HeadSkin7="Halloween 2018"
+HeadSkin7="Halloween 2018"
 
 [Cosmetic_DJHeadphones_1_ARCH]
 Attachment="Scullyphones"
@@ -576,7 +576,7 @@ HeadSkin1="Faits marquants"
 HeadSkin2="Noir"
 HeadSkin3="Marionnette"
 HeadSkin4="Jour des morts"
-HeadSkin5="Halloween 2018"
+HeadSkin5="Halloween 2018"
 
 [Cosmetic_BRIAR_Doctor_ARCH]
 Attachment="Masque du Docteur"
@@ -704,7 +704,7 @@ HeadSkin4="Classe britannique"
 HeadSkin5="Œil sanglant"
 HeadSkin6="M. Hans"
 HeadSkin7="Fan de Fric"
-HeadSkin8="Halloween 2018"
+HeadSkin8="Halloween 2018"
 
 [Cosmetic_DJHeadphones_ARCH]
 Attachment="Scullyphones"
@@ -933,7 +933,7 @@ HeadSkin1="Camelote"
 HeadSkin2="Lueur"
 HeadSkin3="Rictus"
 HeadSkin4="Grrr"
-HeadSkin5="Halloween 2018"
+HeadSkin5="Halloween 2018"
 
 [Cosmetic_BoxingHeadGear_Coleman_ARCH]
 Attachment="Casque de boxe"
@@ -1047,7 +1047,7 @@ HeadSkin2="Noir"
 HeadSkin3="Blanc"
 HeadSkin4="Pierrot"
 HeadSkin5="Spectre"
-HeadSkin6="Halloween 2018"
+HeadSkin6="Halloween 2018"
 
 [Cosmetic_Alberts02_ARCH]
 Attachment="Lunettes"
@@ -1943,7 +1943,7 @@ HeadSkin1="Camouflage"
 HeadSkin2="Clown"
 HeadSkin3="Vampire"
 HeadSkin4="Guillotine"
-HeadSkin5="Halloween 2018"
+HeadSkin5="Halloween 2018"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Vert"
@@ -2042,7 +2042,7 @@ HeadSkin0="Noir"
 HeadSkin1="Blond"
 HeadSkin2="Kumadori"
 HeadSkin3="Titan"
-HeadSkin4="Halloween 2018"
+HeadSkin4="Halloween 2018"
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="Et classe"
@@ -2178,7 +2178,7 @@ HeadSkin3="Joli bleu"
 HeadSkin4="Death metal"
 HeadSkin5="Mme Stein"
 HeadSkin6="Fleurs"
-HeadSkin7="Halloween 2018"
+HeadSkin7="Halloween 2018"
 
 [CHR_Ana_Archetype.BodyMesh0]
 BodySkin0="Pluie mortelle"
@@ -2372,7 +2372,7 @@ HeadSkin3="Blond suédois"
 HeadSkin4="Fais-moi un sourire"
 HeadSkin5="M. Juice"
 HeadSkin6="Belle partie"
-HeadSkin7="Halloween 2018"
+HeadSkin7="Halloween 2018"
 
 [chr_alan_archetype]
 CharacterName="Masterson classique"
@@ -2473,7 +2473,7 @@ HeadSkin3="Camouflage, les gars !"
 HeadSkin4="Fais pas la tête !"
 HeadSkin5="T'es cuit, mon pote !"
 HeadSkin6="Digi"
-HeadSkin7="Halloween 2018"
+HeadSkin7="Halloween 2018"
 
 [Cosmetic_Coleman01_ARCH]
 Attachment="Casquette RQ"
@@ -2575,7 +2575,7 @@ HeadSkin0="Acier sombre"
 HeadSkin1="Acier blond"
 HeadSkin2="Monsieur Mort"
 HeadSkin3="M. Stein"
-HeadSkin4="Halloween 2018"
+HeadSkin4="Halloween 2018"
 
 [Cosmetic_Strasser_02_ARCH]
 Attachment="Casque allemand en acier"
@@ -2827,7 +2827,7 @@ HeadSkin4="Sarcelle"
 HeadSkin5="Rose"
 HeadSkin6="Madame Mort"
 HeadSkin7="Cerf"
-HeadSkin8="Halloween 2018"
+HeadSkin8="Halloween 2018"
 
 [Cosmetic_EyePatch_Ana_ARCH]
 Attachment="Bandeau"

@@ -999,7 +999,7 @@ function bool AllowWaveCheats()
 
 
 
-	return false;
+	return class'KFGameEngine'.static.IsEditor();
 
 }
 

@@ -55,8 +55,7 @@ function OnDestroyed(KFDestructibleActor DActor)
     if(CurrentActorList.Length == 0)
     {
         foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-        {
-            KFPC.FinishedSpecialEvent(EventIndex, ObjectiveIndex);            
+        {            
         }        
     }
 }

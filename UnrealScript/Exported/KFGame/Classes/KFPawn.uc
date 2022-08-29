@@ -5281,7 +5281,10 @@ simulated function PlayExtraVFX(Name FXLabel)
 		{
 			if (ExtraVFXAttachments[i].Info.SocketName == '')
 			{
-				ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(ExtraVFXAttachments[i].Info.VFX, Location, Rotation, self);
+				if (ExtraVFXAttachments[i].Info.VFX != none)
+				{
+					ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(ExtraVFXAttachments[i].Info.VFX, Location, Rotation, self);
+				}
 				if (ExtraVFXAttachments[i].Info.SFXStartEvent != none)
 				{
 					PostAkEvent(ExtraVFXAttachments[i].Info.SFXStartEvent, false, true, false);
@@ -5289,7 +5292,10 @@ simulated function PlayExtraVFX(Name FXLabel)
 			}
 			else
 			{
-				ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[i].Info.VFX, Mesh, ExtraVFXAttachments[i].Info.SocketName, true);
+				if (ExtraVFXAttachments[i].Info.VFX != none)
+				{
+					ExtraVFXAttachments[i].VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(ExtraVFXAttachments[i].Info.VFX, Mesh, ExtraVFXAttachments[i].Info.SocketName, true);
+				}
 				if (ExtraVFXAttachments[i].Info.SFXStartEvent != none)
 				{
 					SFXBoneName = Mesh.GetSocketBoneName(ExtraVFXAttachments[i].Info.SocketName);
@@ -5320,7 +5326,10 @@ simulated function PlayExtraVFX(Name FXLabel)
 		{
 			if (CharacterArch.ExtraVFX[i].SocketName == '')
 			{
-				VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(CharacterArch.ExtraVFX[i].VFX, Location, Rotation, self);
+				if (CharacterArch.ExtraVFX[i].VFX != none)
+				{
+					VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(CharacterArch.ExtraVFX[i].VFX, Location, Rotation, self);
+				}
 				if (CharacterArch.ExtraVFX[i].SFXStartEvent != none)
 				{
 					PostAkEvent(CharacterArch.ExtraVFX[i].SFXStartEvent, false, true, false);
@@ -5328,7 +5337,10 @@ simulated function PlayExtraVFX(Name FXLabel)
 			}
 			else
 			{
-				VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterArch.ExtraVFX[i].VFX, Mesh, CharacterArch.ExtraVFX[i].SocketName, true);
+				if (CharacterArch.ExtraVFX[i].VFX != none)
+				{
+					VFXAttachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(CharacterArch.ExtraVFX[i].VFX, Mesh, CharacterArch.ExtraVFX[i].SocketName, true);
+				}
 				if (CharacterArch.ExtraVFX[i].SFXStartEvent != none)
 				{
 					SFXBoneName = Mesh.GetSocketBoneName(CharacterArch.ExtraVFX[i].SocketName);

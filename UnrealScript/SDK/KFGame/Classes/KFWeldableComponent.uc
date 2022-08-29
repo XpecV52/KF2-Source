@@ -38,6 +38,11 @@ replication
 		WeldIntegrity, DemoWeld, RepairProgress, bIsDestroyed;
 }
 
+cpptext
+{
+	UBOOL IsOverlapping(AActor *Other, FCheckResult* Hit = NULL, UPrimitiveComponent* OtherPrimitiveComponent = NULL, UPrimitiveComponent* MyPrimitiveComponent = NULL);
+};
+
 simulated event ReplicatedEvent(name VarName)
 {
 	if (VarName == nameof(WeldIntegrity))

@@ -2345,8 +2345,8 @@ DoschHoldDesc="Не пускать мутантов в отмеченную об
 DescriptionDoshHold="Не пускать мутантов в отмеченную область"
 RepairObjective="СВАРКА И РЕМОНТ"
 UseWelderToRepair="Исп. свар. аппарат, чтобы починить цель."
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="СОПРОВОЖДЕНИЕ"
+EscortPawnsDescription="Защитите цель от мутантов"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="УПРАВЛЯЙТЕ"
 DescriptionActivateTrigger="Активировать управление цели"
@@ -3159,7 +3159,7 @@ DisplayName="Бал монстров"
 DisplayName="Веселье в магазине"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="Мастерскую Санты"
 
 [KFMapInfo]
 ; defaults

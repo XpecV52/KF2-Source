@@ -23,8 +23,7 @@ static function ApplyKillResults(KFPawn KilledPawn)
         if(WI != none)
         {
             foreach WI.AllControllers(Class'KFPlayerController', KFPC)
-            {
-                KFPC.FinishedSpecialEvent(default.SeasonIndex, default.ObjectiveIndex);                
+            {                
             }            
         }
     }

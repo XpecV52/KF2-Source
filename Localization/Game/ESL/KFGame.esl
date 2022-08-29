@@ -2345,8 +2345,8 @@ DoschHoldDesc="Mantener a los zeds fuera de la zona marcada."
 DescriptionDoshHold="Mantener a los zeds fuera de la zona marcada."
 RepairObjective="SOLDAR Y REPARAR"
 UseWelderToRepair="Usa el soldador para reparar objetivos"
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="ESCOLTA"
+EscortPawnsDescription="Protege al objetivo de los zeds"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="OPERAR Y CONTROLAR"
 DescriptionActivateTrigger="Activa el control de objetivo"
@@ -3159,7 +3159,7 @@ DisplayName="Baile de monstruos"
 DisplayName="Compra compulsiva"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="El taller de Papá Noel"
 
 [KFMapInfo]
 ; defaults

@@ -2345,8 +2345,8 @@ DoschHoldDesc="マークされたエリアにZedを入れるな"
 DescriptionDoshHold="マークされたエリアにZedを入れるな"
 RepairObjective="溶接して修理しよう"
 UseWelderToRepair="溶接機を使って目標を修理しよう"
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="護衛"
+EscortPawnsDescription="Zedからターゲットを保護する"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="操縦可能"
 DescriptionActivateTrigger="制御装置を起動しよう"
@@ -3159,7 +3159,7 @@ DisplayName="Monster Ball"
 DisplayName="ショッピング三昧"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="サンタの工房"
 
 [KFMapInfo]
 ; defaults

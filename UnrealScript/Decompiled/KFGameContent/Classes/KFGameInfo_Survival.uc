@@ -641,7 +641,7 @@ function int CalculateLateJoinerStartingDosh(int MinimumRespawnDosh)
 
 function bool AllowWaveCheats()
 {
-    return false;
+    return Class'KFGameEngine'.static.IsEditor();
 }
 
 function FindCollectibles();

@@ -546,6 +546,7 @@ ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautom
 ItemName="Kampfaxt"
 ItemCategory="Nahkampf"
 ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer, langsamer Angriff, der im Tod verschwindet.\n•Alt – blocken/parieren\n• Altmodisch, haut aber immer noch rein wie ein Laster. Ein großer, scharfer Laster."
+SharedUnlockSource="Kampfaxt"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Feueraxt"

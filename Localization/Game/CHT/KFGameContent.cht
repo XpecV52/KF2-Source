@@ -546,6 +546,8 @@ ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔�
 ItemName="戰斧"
 ItemCategory="近身"
 ItemDescription="•主要攻擊鍵：慢速揮砍，長按以連續攻擊。\n•次要攻擊鍵：慢速重攻擊，消滅死亡之物。\n•輔助功能鍵：防禦 / 格擋。\n•雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
+SharedUnlockSource="戰斧"
+
 
 [KFWeap_Edged_FireAxe]
 ItemName="火斧"

@@ -4098,12 +4098,21 @@ static simulated event bool CanRefillSecondaryAmmo()
  */
 function InitializeAmmo()
 {
+	local KFPerk CurrentPerk;
+
 	InitializeAmmoCapacity();
 
 	AmmoCount[0] = MagazineCapacity[0];
 	AmmoCount[1] = MagazineCapacity[1];
 
 	AddAmmo(default.InitialSpareMags[0] * default.MagazineCapacity[0]);
+
+	CurrentPerk = GetPerk();
+	if (CurrentPerk != none)
+	{
+		CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[DEFAULT_FIREMODE]);
+		CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[ALTFIRE_FIREMODE], , true);
+	}
 
 	// HACK: Finalize our spare ammo values
 	AddAmmo(0);

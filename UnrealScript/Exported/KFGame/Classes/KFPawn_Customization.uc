@@ -211,6 +211,9 @@ simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
 
 	BodyStanceNodes[EAS_FullBody].PlayCustomAnim(AnimName, 1.f, BlendInTime, 0.4, false, true);
 	BodyStanceNodes[EAS_FullBody].SetActorAnimEndNotification( TRUE );
+
+	// Since the emote is being cancelled clear this flag too; lets the player queue up another emote again if they want
+	bPlayingEmote = false;
 }
 
 simulated function PlayEmoteAnimation(optional bool bNewCharacter)

@@ -2345,8 +2345,8 @@ DoschHoldDesc="Trzymaj zety z dala od zaznaczonego obszaru"
 DescriptionDoshHold="Trzymaj zety z dala od zaznaczonego obszaru"
 RepairObjective="SPAWANIE I NAPRAWA"
 UseWelderToRepair="Użyj spawarki, aby naprawić obiekt(y)"
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="ESKORTOWANIE"
+EscortPawnsDescription="Chroń cel przed zetami"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="UŻYJ STEROWANIA"
 DescriptionActivateTrigger="Aktywuj sterowanie"
@@ -3159,7 +3159,7 @@ DisplayName="Bal potworów"
 DisplayName="Szał zakupów"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="Warsztat Mikołaja"
 
 [KFMapInfo]
 ; defaults

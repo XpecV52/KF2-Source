@@ -1,9 +1,9 @@
 [CHR_BadSanta_Archetype]
-CharacterName="Badass Santa"
+CharacterName="Krasser Santa"
 Description="Zuerst hatte es Krampus auf seine Wichtel und Rentiere abgesehen. Dann schnappte er sich sein Zuhause. Das lässt Santa sich nicht mehr gefallen. Jetzt hat er ein Maschinengewehr. Hohoho!\n\nDer Heilige Nikolaus begann vor hunderten von Jahren damit, Weihnachtsfreude zu verbreiten und brave Kinder mit Geschenken zu belohnen. Er dachte, dass er das noch bis in alle Ewigkeit tun würde.  Doch dann kam Krampus.  In diesem Jahr hat Santa sich entschieden, seine gefallenen Arbeiter, Freunde und Familie zu rächen. Jetzt ist es vorbei mit rosa Pausbäckchen und dem großen, weichen Bauch – Santa hat sich ordentlich Muckis und ein vernünftiges Waffenarsenal zugelegt. Dies Jahr ist nichts mit stiller Nacht, Wohlwollen und Weihnachtsfreude. Dies Jahr kennt er nur Wut, Rache und das Schellen mit Waffenmunition."
-BodyMesh0="Santa Outfit"
+BodyMesh0="Santa-Outfit"
 BodyMesh1="Kommando-Huhn"
-HeadMesh0="Santa Head"
+HeadMesh0="Santa-Kopf"
 
 [CHR_BadSanta_Archetype.BodyMesh0]
 BodySkin0="Klassischer Santa"

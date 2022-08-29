@@ -20,6 +20,7 @@ defaultproperties
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=6
@@ -37,15 +38,16 @@ defaultproperties
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */
+    BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=5,Y=9,Z=-5)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_Thompson.MeleeHelper'
-    maxRecoilPitch=165
-    minRecoilPitch=130
-    maxRecoilYaw=130
-    minRecoilYaw=-130
+    maxRecoilPitch=130
+    minRecoilPitch=115
+    maxRecoilYaw=115
+    minRecoilYaw=-115
     RecoilRate=0.085
     RecoilViewRotationScale=0.25
     RecoilMaxYawLimit=500

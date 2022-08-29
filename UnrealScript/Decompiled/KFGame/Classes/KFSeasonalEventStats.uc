@@ -29,6 +29,29 @@ private static final event bool AllowEventBossOverrideForMap(string MapName);
 
 private final event GrantEventItems();
 
+protected final simulated function FinishedObjective(int EventIndex, int ObjectiveIndex)
+{
+    local KFPlayerController KFPC;
+
+    if(!IsValid())
+    {
+        return;
+    }
+    KFPC = Outer.MyKFPC;
+    if(((KFPC.WorldInfo.NetMode != NM_DedicatedServer) && KFPC.IsLocalPlayerController()) && !Outer.IsEventObjectiveComplete(ObjectiveIndex))
+    {
+        Outer.UpdateSpecialEvent(EventIndex, ObjectiveIndex);
+        if(((KFPC.myGfxHUD != none) && KFPC.myGfxHUD.LevelUpNotificationWidget != none) && (Class'KFGameEngine'.static.GetSeasonalEventID() % 10) == EventIndex)
+        {
+            KFPC.myGfxHUD.LevelUpNotificationWidget.FinishedSpecialEvent(EventIndex, ObjectiveIndex);
+        }
+        if(((KFPC.MyGFxManager != none) && KFPC.MyGFxManager.StartMenu != none) && KFPC.MyGFxManager.StartMenu.MissionObjectiveContainer != none)
+        {
+            KFPC.MyGFxManager.StartMenu.MissionObjectiveContainer.Refresh();
+        }
+    }
+}
+
 simulated function OnMapObjectiveDeactivated(Actor ObjectiveInterfaceActor);
 
 simulated function OnZedKilled(class<KFPawn_Monster> MonsterClass, int Difficulty, class<DamageType> DT);

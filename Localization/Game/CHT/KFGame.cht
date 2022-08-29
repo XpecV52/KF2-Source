@@ -2345,8 +2345,8 @@ DoschHoldDesc="別讓喪屍進入標記的區域中"
 DescriptionDoshHold="別讓喪屍進入標記的區域中"
 RepairObjective="焊接和維修"
 UseWelderToRepair="使用焊槍來維修物品"
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="護送"
+EscortPawnsDescription="保護目標不受Zed傷害"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="操縱和控制"
 DescriptionActivateTrigger="啟動目標控制"
@@ -3159,7 +3159,7 @@ DisplayName="怪獸舞會"
 DisplayName="購物狂歡"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="聖誕作坊"
 
 [KFMapInfo]
 ; defaults

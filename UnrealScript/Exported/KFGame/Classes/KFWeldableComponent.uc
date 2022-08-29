@@ -38,6 +38,11 @@ replication
 		WeldIntegrity, DemoWeld, RepairProgress, bIsDestroyed;
 }
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+
 simulated event ReplicatedEvent(name VarName)
 {
 	if (VarName == nameof(WeldIntegrity))

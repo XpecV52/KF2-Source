@@ -364,6 +364,7 @@ function OnEscortReachedRouteMarker(int MarkerIdx, SplineActor Marker, int SubId
 	}
 
 	ActivePawnHealthPct = float(KFPawn_Scripted(ActiveEscortActor).Health) / float(KFPawn_Scripted(ActiveEscortActor).HealthMax);
+	CompletionPct = ActivePawnHealthPct;
 
 	if (Progress < 0.25 && PawnsProgress >= 0.25)
 	{

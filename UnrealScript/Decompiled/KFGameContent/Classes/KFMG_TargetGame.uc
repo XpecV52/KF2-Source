@@ -119,7 +119,6 @@ private final function NotifyWinners()
     {
         if(KFPlayerController(Controller) != none)
         {
-            KFPlayerController(Controller).FinishedSpecialEvent(EventIndex, ObjectiveIndex);
         }        
     }    
 }

@@ -7308,32 +7308,6 @@ reliable client function ClientGameOver(string MapName, byte Difficulty, byte Ga
 	}
 }
 
-/** Triggered when a special event meant to be tracked is completed.  The index is the bit turned on/off in the stats write object. */
-final function FinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
-{
-    if (StatsWrite.SeasonalEventIsValid())
-    {
-        ClientFinishedSpecialEvent(EventIndex, ObjectiveIndex);
-    }
-}
-
-reliable final client event ClientFinishedSpecialEvent(int EventIndex, int ObjectiveIndex)
-{
-    if( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && StatsWrite.SeasonalEventIsValid() && !StatsWrite.IsEventObjectiveComplete(ObjectiveIndex))
-	{
-		StatsWrite.UpdateSpecialEvent( EventIndex, ObjectiveIndex );
-		if(MyGFxHUD != none && MyGFxHUD.LevelUpNotificationWidget != none && ((class'KFGameEngine'.static.GetSeasonalEventID() % 10) == EventIndex))
-		{
-			MyGFxHUD.LevelUpNotificationWidget.FinishedSpecialEvent(EventIndex, ObjectiveIndex);
-		}
-		if(MyGFxManager != none && MyGFxManager.StartMenu != none
-				&& MyGFxManager.StartMenu.MissionObjectiveContainer != none)
-		{
-			MyGFxManager.StartMenu.MissionObjectiveContainer.Refresh();
-		}
-	}
-}
-
 simulated function bool SeasonalEventIsValid()
 {
 	return StatsWrite != none && StatsWrite.SeasonalEventIsValid();

@@ -1133,7 +1133,6 @@ simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass, optional int
     local Inventory InventoryItem;
     local TransactionItem TransactionWeapon;
     local KFWeapon WeaponItemSingle;
-    local KFWeap_DualBase WeaponItemDual;
 
     if(bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name, TransactionWeapon))
     {
@@ -1144,7 +1143,7 @@ simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass, optional int
     {
         WeaponItemSingle = KFWeapon(InventoryItem);
         WeaponUpgradeIndex = Max(WeaponUpgradeIndex, WeaponItemSingle.CurrentWeaponUpgradeIndex);
-        DualAdjustedWeight = WeaponClass.static.GetDefaultModifiedWeightValue(WeaponUpgradeIndex);
+        DualAdjustedWeight = WeaponClass.default.DualClass.GetDefaultModifiedWeightValue(WeaponUpgradeIndex);
         SingleAdjustedWeight = WeaponItemSingle.GetModifiedWeightValue();
         if((((CurrentCarryBlocks + DualAdjustedWeight) - SingleAdjustedWeight) <= MaxCarryBlocks) || bInfiniteWeight)
         {
@@ -1158,9 +1157,10 @@ simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass, optional int
     DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
     if(((DualWeaponClass != none) && DualWeaponClass.default.SingleClass != none) && ClassIsInInventory(DualWeaponClass.default.SingleClass, InventoryItem))
     {
-        WeaponItemDual = KFWeap_DualBase(InventoryItem);
-        DualAdjustedWeight = WeaponItemDual.GetModifiedWeightValue();
-        SingleAdjustedWeight = DualWeaponClass.static.GetDefaultModifiedWeightValue(WeaponItemDual.CurrentWeaponUpgradeIndex);
+        WeaponItemSingle = KFWeapon(InventoryItem);
+        WeaponUpgradeIndex = Max(WeaponUpgradeIndex, WeaponItemSingle.CurrentWeaponUpgradeIndex);
+        DualAdjustedWeight = WeaponItemSingle.default.DualClass.static.GetDefaultModifiedWeightValue(WeaponUpgradeIndex);
+        SingleAdjustedWeight = WeaponItemSingle.GetModifiedWeightValue();
         if(bLogInventory)
         {
             LogInternal((((((((((((string(self) @ "-") @ string(GetFuncName())) @ "- CurrentCarryBlocks:") @ string(CurrentCarryBlocks)) @ "DualWeaponClass:") @ string(DualWeaponClass)) @ "SingleClass:") @ string(DualWeaponClass.default.SingleClass)) @ "DualInventorySize:") @ string(DualAdjustedWeight)) @ "SingleInventorySize:") @ string(SingleAdjustedWeight));

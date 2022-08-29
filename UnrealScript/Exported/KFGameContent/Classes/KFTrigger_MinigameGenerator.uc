@@ -397,7 +397,7 @@ function TriggerObjectiveCompletion()
     local KFPlayercontroller KFPC;
     foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
     {
-        KFPC.FinishedSpecialEvent(EventIndex, ObjectiveIndex);
+		// @todo: hook up seasonal event here if/when desired
     }
 }
 

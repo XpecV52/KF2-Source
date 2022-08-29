@@ -59,7 +59,7 @@ function OnDestroyed(KFDestructibleActor DActor)
 	{
 		foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 		{
-			KFPC.FinishedSpecialEvent(EventIndex, ObjectiveIndex);
+			// @todo: hook up seasonal event here if/when desired
 		}
 	}
 }

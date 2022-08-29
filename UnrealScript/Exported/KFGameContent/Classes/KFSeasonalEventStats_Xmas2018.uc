@@ -62,14 +62,15 @@ static private event bool AllowEventBossOverrideForMap(string MapName)
 
 simulated function OnMapObjectiveDeactivated(Actor ObjectiveInterfaceActor)
 {
-	if (bObjectiveIsValidForMap[0] != 0)
+	if (bObjectiveIsValidForMap[0] != 0 &&
+		KFGameReplicationInfo(Outer.MyKFPC.WorldInfo.GRI).GameDifficulty >= 1.0)
 	{
 		if (KFMapObjective_EscortPawns(ObjectiveInterfaceActor) != none &&
 			KFMapObjective_EscortPawns(ObjectiveInterfaceActor).CompletionPct > 0.99)
 		{
 			if (++PerfectEscortCount == PerfectEscortsRequired)
 			{
-				Outer.MyKFPC.FinishedSpecialEvent(SEI_Winter, 0);
+				FinishedObjective(SEI_Winter, 0);
 			}
 		}
 	}
@@ -82,7 +83,7 @@ simulated function OnZedKilled(class<KFPawn_Monster> MonsterClass, int Difficult
 		IncrementSeasonalEventStat(2, 1);
 		if (Outer.GetSeasonalEventStatValue(2) >= ZedKillsRequired)
 		{
-			Outer.MyKFPC.FinishedSpecialEvent(SEI_Winter, 2);
+			FinishedObjective(SEI_Winter, 2);
 		}
 	}
 }
@@ -93,14 +94,14 @@ simulated event OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLen
 	{
 		if (GameClass == class'KFGameInfo_Survival' && Difficulty >= 1.0)
 		{
-			Outer.MyKFPC.FinishedSpecialEvent(SEI_Winter, 4);
+			FinishedObjective(SEI_Winter, 4);
 		}
 	}
 	else if (bObjectiveIsValidForMap[1] != 0)
 	{
 		if (GameClass == class'KFGameInfo_WeeklySurvival')
 		{
-			Outer.MyKFPC.FinishedSpecialEvent(SEI_Winter, 1);
+			FinishedObjective(SEI_Winter, 1);
 		}
 	}
 }
@@ -112,7 +113,7 @@ simulated function OnBossDied()
 		IncrementSeasonalEventStat(3, 1);
 		if (Outer.GetSeasonalEventStatValue(3) >= BossDeathsRequired)
 		{
-			Outer.MyKFPC.FinishedSpecialEvent(SEI_Winter, 3);
+			FinishedObjective(SEI_Winter, 3);
 		}
 	}
 }

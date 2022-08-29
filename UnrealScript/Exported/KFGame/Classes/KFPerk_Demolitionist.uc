@@ -40,6 +40,7 @@ var 	private	const	float 						AoeDamageModifier;
 var 	private	const	int 						LingeringNukePoisonDamage;
 var 	private const	array<name>					PassiveExtraAmmoIgnoredClassNames;
 var 	private const	array<name>					ExtraAmmoIgnoredClassNames;
+var		private const   array<name>					TacticalReloadAsReloadRateClassNames;
 var 	private const 	array<name>					OnlySecondaryAmmoWeapons;
 var 	private const 	array<name>					DamageIgnoredDTs;
 var 	private	const	float 						DaZedEMPPower;
@@ -432,9 +433,22 @@ simulated protected function int GetAmmoExtraAmmo()
  * @param KFW weapon in use
  * @return true/false
  */
-simulated function bool GetUsingTactialReload( KFWeapon KFW )
+simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-	return ( IsTacticalReloadActive() && (IsWeaponOnPerk( KFW,, self.class ) || IsBackupWeapon( KFW )) );
+	return (IsTacticalReloadActive() && (IsWeaponOnPerk(KFW, , self.class) || IsBackupWeapon(KFW)) && TacticalReloadAsReloadRateClassNames.Find(KFW.class.Name) == INDEX_NONE);
+}
+
+/**
+*  @brief Modifies the reload speed for Demolitionist weapons
+*/
+simulated function float GetReloadRateScale(KFWeapon KFW)
+{
+	if (IsWeaponOnPerk(KFW, , self.class) && IsTacticalReloadActive() && TacticalReloadAsReloadRateClassNames.Find(KFW.class.Name) != INDEX_NONE)
+	{
+		return 0.8f;
+	}
+
+	return 1.f;
 }
 
 /**
@@ -1007,6 +1021,7 @@ defaultproperties
    PassiveExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"
    ExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"
    ExtraAmmoIgnoredClassNames(1)="KFWeap_Thrown_C4"
+   TacticalReloadAsReloadRateClassNames(0)="KFWeap_GrenadeLauncher_M32"
    OnlySecondaryAmmoWeapons(0)="KFWeap_AssaultRifle_M16M203"
    DamageIgnoredDTs(0)="KFDT_Ballistic_M16M203"
    DamageIgnoredDTs(1)="KFDT_Bludgeon_M16M203"

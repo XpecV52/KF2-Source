@@ -546,6 +546,7 @@ ItemDescription="•可以选择全自动和半自动射击模式。\n•备用�
 ItemName="战斧"
 ItemCategory="近战"
 ItemDescription="•主要攻击 - 用于慢速砍杀，按住可以进行连击。\n•次要攻击 - 猛砍。\n•辅助攻击 - 格挡/闪避。\n•过时但能仍然像卡车一样猛击……一辆大而锋利的卡车。"
+SharedUnlockSource="战斧"
 
 [KFWeap_Edged_FireAxe]
 ItemName="消防斧"

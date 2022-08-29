@@ -2345,8 +2345,8 @@ DoschHoldDesc="Halte die Zeds aus dem markierten Gebiet fern"
 DescriptionDoshHold="Halte die Zeds aus dem markierten Gebiet fern"
 RepairObjective="SCHWEIẞEN UND REPARIEREN"
 UseWelderToRepair="Schweißgerät verwenden, um die Ziele zu reparieren"
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="ESKORTIEREN"
+EscortPawnsDescription="Beschütze das Ziel vor den Zeds"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="STEUERN UND BEDIENEN"
 DescriptionActivateTrigger="Zielsteuerung aktivieren"
@@ -3159,7 +3159,7 @@ DisplayName="Monsterball"
 DisplayName="Kaufrausch"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="Santas Werkstatt"
 
 [KFMapInfo]
 ; defaults

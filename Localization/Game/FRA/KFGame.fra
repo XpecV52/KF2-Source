@@ -2345,8 +2345,8 @@ DoschHoldDesc="Empêchez les Zeds d'entrer dans la zone indiquée"
 DescriptionDoshHold="Empêchez les Zeds d'entrer dans la zone indiquée"
 RepairObjective="SOUDER ET RÉPARER"
 UseWelderToRepair="Utiliser le soudeur pour réparer l'objectif"
-EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsObjective="ESCORTER"
+EscortPawnsDescription="Protéger la cible contre les Zeds"
 RequiredHoldVolume="RequiredHoldVolume"
 ActivateTrigger="PRENDRE LE CONTRÔLE"
 DescriptionActivateTrigger="Activer la commande de l'objectif"
@@ -3159,7 +3159,7 @@ DisplayName="Bal des monstres"
 DisplayName="Achats en folie"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="Santas Workshop"
+DisplayName="l'atelier du Père Noël"
 
 [KFMapInfo]
 ; defaults

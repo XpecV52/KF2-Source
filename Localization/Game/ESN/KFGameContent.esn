@@ -546,6 +546,7 @@ ItemDescription="•Elige entre dos modos de disparo: automático o semiautomát
 ItemName="Hacha de guerra"
 ItemCategory="Cuerpo a cuerpo"
 ItemDescription="•Principal: ataque cortante lento. Mantén pulsado el botón del modo principal para hacer un combo.\n•Secundario: Ataque pesado y lento que acaba en la muerte.\n•Alternativo: bloquear/parar.\n•Obsoleto, pero sigue golpeando como un camión... un camión grande y afilado."
+SharedUnlockSource="Hacha de guerra"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Hacha de fuego"

@@ -1,9 +1,9 @@
 [CHR_BadSanta_Archetype]
-CharacterName="Badass Santa"
+CharacterName="Twardy Mikołaj"
 Description="Na początku Krampus przyszedł po renifery. Potem Krampus przyszedł po dom. Na koniec Mikołaj dał Krampusowi poczuć zimno lufy karabinu na skroni. Ho ho ho!\n\nŚwięty Mikołaj od setek lat opiekował się dziećmi z całego świata, przynosił im prezenty, a na ich twarzach wywoływał uśmiechy radości. Czy taka sielanka mogła trwać wiecznie na tym świecie pełnym złości?  „NIE!” — odkąd Krampus tu zagościł.  Od pamiętnych Krampusowych Świąt myśli Mikołaja krążą wokół pomszczenia swoich zabitych pracowników, przyjaciół i członków rodziny. Różowe poliki i galaretowaty brzusio to śpiewka przeszłości — Mikołaj stał się umięśnioną, wnerwioną maszyną do zabijania. Tegoroczna noc nie będzie cicha, dzwonić będą jedynie dzwony pogrzebowe, a zamiast łamania się opłatkiem Mikołaj wprowadzi nowy zwyczaj: dzielenie się seriami ołowiu."
-BodyMesh0="Santa Outfit"
+BodyMesh0="Strój Mikołaja"
 BodyMesh1="Kurczak-komandos"
-HeadMesh0="Santa Head"
+HeadMesh0="Głowa Mikołaja"
 
 [CHR_BadSanta_Archetype.BodyMesh0]
 BodySkin0="Klasyczny Mikołaj"

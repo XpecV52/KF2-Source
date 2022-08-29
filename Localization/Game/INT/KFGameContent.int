@@ -546,6 +546,7 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire t
 ItemName="Battleaxe"
 ItemCategory="Melee"
 ItemDescription="•Primary - slow slash attack, Hold Primary for combo attack.\n•Secondary - heavy, slow attack that obliterates on death.\n•Alt - block / parry\n•Outdated but still hits like a truck...a large, sharp truck."
+SharedUnlockSource="Battleaxe"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Fire Axe"

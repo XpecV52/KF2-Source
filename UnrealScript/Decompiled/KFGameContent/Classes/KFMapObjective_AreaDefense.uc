@@ -447,7 +447,6 @@ simulated function GrantReward(KFPawn_Human PlayerToReward)
     KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).AddDosh(int(CurrentRewardAmount));
     if(KFPlayerController(PlayerToReward.Controller) != none)
     {
-        KFPlayerController(PlayerToReward.Controller).FinishedSpecialEvent(EventSeason, EventIndex);
         KFPlayerController(PlayerToReward.Controller).ClientMapObjectiveCompleted(float(GetXPReward()));
     }
 }
