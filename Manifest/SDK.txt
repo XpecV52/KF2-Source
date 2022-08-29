@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 8508591425349233671 / 9/18/2018 11:03:27 PM
+Manifest ID / date     : 9027686413798867793 / 10/12/2018 8:07:42 PM
 Total number of files  : 4369
 Total number of chunks : 4434
-Total bytes on disk    : 93944718
-Total bytes compressed : 27149184
+Total bytes on disk    : 93978148
+Total bytes compressed : 27159568
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 27149184
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 A0A557304DB3599B53E3CB78FBD763F1D10B5476     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 805312C490450B39EDCC802F3B2ED0D85B6C4706     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      64680448     62 DCA92A19D697C717055818EFC99FDFF398B4365A     0 Binaries\Win64\KFEditor.exe
+      64713728     62 7B9358CEB087E81B5A459243A79C0E0C6511E78E     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -3044,7 +3044,7 @@ Total bytes compressed : 27149184
           9949      1 CE4FF71EF2C89BA5A99501ABCBD5B90071D6EFD1     0 Development\Src\KFGame\Classes\KFWeaponAmbientEchoHandler.uc
          36584      1 C124DB7412E5E3562B6E722DEBFFEC6A8F205D3C     0 Development\Src\KFGame\Classes\KFWeaponAttachment.uc
           3525      1 916E5BC9F4C8DD54BD2ACA565596E59B7D60D143     0 Development\Src\KFGame\Classes\KFWeaponDefinition.uc
-        360554      1 A20C5F344E6A24B73625B46CED40F301975FB2A9     0 Development\Src\KFGame\Classes\KFWeaponSkinList.uc
+        360704      1 5A38D089C0A6BC91C79968BB460E0DD20A2E8FCD     0 Development\Src\KFGame\Classes\KFWeaponSkinList.uc
            719      1 79F3C56996545C4FAF06A6A6C8F8465AF15D955D     0 Development\Src\KFGame\Classes\KFWeeklyOutbreakInformation.uc
           5530      1 AC269EB3240D6F39F3E065614F22FBFCF3F68ADC     0 Development\Src\KFGame\Classes\KFWeldableActor.uc
           4818      1 7F0B8475D131B9FB92D0FEAE04F72FBC85FEF272     0 Development\Src\KFGame\Classes\KFWeldableComponent.uc
