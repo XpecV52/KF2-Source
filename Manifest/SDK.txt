@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 174919666369007620 / 3/12/2019 12:16:46 AM
+Manifest ID / date     : 2050355609142100069 / 3/19/2019 11:30:53 PM
 Total number of files  : 4433
 Total number of chunks : 4498
-Total bytes on disk    : 94517455
-Total bytes compressed : 27262240
+Total bytes on disk    : 94496463
+Total bytes compressed : 27254224
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 27262240
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 425D5FF480284562C359169F916FC4322ADB9E28     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 71F6C3269B7C2551F316274CCE380FC5520BEE3D     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      64781312     62 DA829FB61B7EC11A62FE95FA8E25AFC970C6538E     0 Binaries\Win64\KFEditor.exe
+      64760320     62 1D18F6BB5295F08064CE68C8E367785F21F34BA0     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
