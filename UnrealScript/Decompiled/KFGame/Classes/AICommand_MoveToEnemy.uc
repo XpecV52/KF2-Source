@@ -146,7 +146,7 @@ function SprintTimer()
         if(VSize(Outer.Pawn.Velocity) > 0)
         {
             Outer.UpdateSprintFrustration();
-            if(Outer.ShouldSprint())
+            if(Outer.ShouldSprint() || Outer.MyKFPawn.bSprintOverride)
             {
                 Outer.MyKFPawn.SetSprinting(true);                
             }

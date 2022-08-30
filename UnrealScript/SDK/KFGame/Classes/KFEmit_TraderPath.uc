@@ -26,7 +26,7 @@ defaultproperties
 {
 	WAYPOINT_HEIGHT=5
 
-	CURVE_TURNRATE=2.f
+	CURVE_TURNRATE=8.f
 	ACCEL_RATE=1200.f
 
 	EmitterTemplate=ParticleSystem'FX_Gameplay_EMIT.FX_Trader_Trail'

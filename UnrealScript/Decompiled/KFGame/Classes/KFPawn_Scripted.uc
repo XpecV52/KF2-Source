@@ -6,6 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFPawn_Scripted extends KFPawn
+    native(Pawn)
     config(Game)
     hidecategories(Navigation)
     implements(KFInterface_TriggerOwner);
@@ -18,15 +19,27 @@ var transient bool bZedInProximity;
 var transient bool bPlayerInProximity;
 var repnotify transient bool bActive;
 var transient bool bStartInactive;
+/** Whether to block PCs */
+var() bool bBlockPlayers<DisplayName=Block Human Players>;
+/** Whether to block PC controlled zeds (team == 255) */
+var() bool bBlockZedPlayers<DisplayName=Block Zed Players>;
+/** Whether to block AI Zeds */
+var() bool bBlockMonsters<DisplayName=Block AI>;
+/** Whether to block anything when at zero health or marked dead */
+var() bool bBlockInStoppedState<DisplayName=Block When In Stopped State>;
+var bool bIsInStoppedState;
 var repnotify transient KFWeldableComponent WeldableComponent;
 var repnotify transient KFWeldableTrigger WeldableTrigger;
-var transient KFTrigger_NotifyOwner ProximityTrigger;
+var transient KFTrigger_NotifyOwner ZedProximityTrigger;
+var transient KFTrigger_NotifyOwner PlayerProximityTrigger;
 var repnotify byte CurrentState;
 var byte PreviousState;
 var string IconPath;
 var KFDoorActor BlockingDoor;
 var float SpeedScalarForObstacles;
 var array<ExtraVFXInfo> ScriptedStateVFX;
+var float RecentDamageTimerLength;
+var MaterialInterface DefaultMaterial;
 var delegate<Delegate_OnReachedRouteMarker> __Delegate_OnReachedRouteMarker__Delegate;
 var delegate<Delegate_OnEndedRoute> __Delegate_OnEndedRoute__Delegate;
 var delegate<Delegate_OnTakeDamage> __Delegate_OnTakeDamage__Delegate;
@@ -87,7 +100,10 @@ function Initialize(KFCharacterInfo_ScriptedPawn InCharInfo, int InHealth, int I
         return;
     }
     SetCharacterArch(InCharInfo, true);
-    SetCollision(false, false);
+    if(ScriptedCharArch.bDisableCollisionOnStart)
+    {
+        SetCollision(false, false);
+    }
     Health = Clamp(InHealth, 1, InHealthMax);
     HealthMax = InHealthMax;
     if(ScriptedCharArch.bPawnCanBeWelded || ScriptedCharArch.bPawnCanBeUnwelded)
@@ -97,19 +113,20 @@ function Initialize(KFCharacterInfo_ScriptedPawn InCharInfo, int InHealth, int I
     if(!ScriptedCharArch.bPawnCanBeKilled)
     {
         I = 0;
-        J0xE1:
+        J0x103:
 
         if(I < ScriptedCharArch.States.Length)
         {
             ScriptedCharArch.States[I].HealthPctThreshold = FMax(ScriptedCharArch.States[I].HealthPctThreshold, 1.1 / float(HealthMax));
             ++ I;
-            goto J0xE1;
+            goto J0x103;
         }
     }
     if(ScriptedCharArch.bUseZedProximityTrigger || ScriptedCharArch.bUsePlayerProximityTrigger)
     {
-        InitializeProximityTrigger();
+        InitializeProximityTriggers();
     }
+    DefaultMaterial = Mesh.GetMaterial(0);
     SetPawnState(0);
     UpdatePawnState();
     SetCanBeTargeted(false);
@@ -170,16 +187,22 @@ simulated function InitializeWeldableTrigger()
     }
 }
 
-simulated function InitializeProximityTrigger()
+simulated function InitializeProximityTriggers()
 {
     local float TrigRadius, TrigHeight;
 
-    ProximityTrigger = Spawn(Class'KFTrigger_NotifyOwner', self);
-    ProximityTrigger.SetOwner(self);
-    ProximityTrigger.SetBase(self);
-    TrigRadius = CylinderComponent(ProximityTrigger.CollisionComponent).CollisionRadius;
-    TrigHeight = CylinderComponent(ProximityTrigger.CollisionComponent).CollisionHeight;
-    CylinderComponent(ProximityTrigger.CollisionComponent).SetCylinderSize(TrigRadius * ScriptedCharArch.ProximityTriggerScale, TrigHeight);
+    PlayerProximityTrigger = Spawn(Class'KFTrigger_NotifyOwner', self);
+    PlayerProximityTrigger.SetOwner(self);
+    PlayerProximityTrigger.SetBase(self);
+    TrigRadius = CylinderComponent(PlayerProximityTrigger.CollisionComponent).CollisionRadius;
+    TrigHeight = CylinderComponent(PlayerProximityTrigger.CollisionComponent).CollisionHeight;
+    CylinderComponent(PlayerProximityTrigger.CollisionComponent).SetCylinderSize(TrigRadius * ScriptedCharArch.PlayerProximityTriggerScale, TrigHeight);
+    ZedProximityTrigger = Spawn(Class'KFTrigger_NotifyOwner', self);
+    ZedProximityTrigger.SetOwner(self);
+    ZedProximityTrigger.SetBase(self);
+    TrigRadius = CylinderComponent(ZedProximityTrigger.CollisionComponent).CollisionRadius;
+    TrigHeight = CylinderComponent(ZedProximityTrigger.CollisionComponent).CollisionHeight;
+    CylinderComponent(ZedProximityTrigger.CollisionComponent).SetCylinderSize(TrigRadius * ScriptedCharArch.ZedProximityTriggerScale, TrigHeight);
 }
 
 simulated function OnWelded(int Amount, KFPawn Welder)
@@ -265,6 +288,13 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     }
 }
 
+function Timer_RecentDamage();
+
+function bool WasAttackedRecently()
+{
+    return IsTimerActive('Timer_RecentDamage');
+}
+
 event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
     local int OldHealth, actualDamage;
@@ -274,6 +304,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     actualDamage = OldHealth - Health;
     if(actualDamage > 0)
     {
+        SetTimer(RecentDamageTimerLength, false, 'Timer_RecentDamage', self);
         if(WeldableComponent != none)
         {
             UpdateWeldIntegrity();
@@ -423,6 +454,8 @@ function UpdatePawnState(optional int HealthDelta)
 
 simulated function SetPawnState(int InState)
 {
+    local int ExitTransitionType, EnterTransitionType;
+
     if((Role == ROLE_Authority) && InState == CurrentState)
     {
         return;
@@ -441,9 +474,26 @@ simulated function SetPawnState(int InState)
         if(CurrentState != PreviousState)
         {
             UpdatePawnSpeed();
+            bIsInStoppedState = ScriptedCharArch.States[CurrentState].SpeedScalar <= 0;
+            if(PreviousState < CurrentState)
+            {
+                ExitTransitionType = 1;
+                EnterTransitionType = 2;                
+            }
+            else
+            {
+                if(PreviousState > CurrentState)
+                {
+                    ExitTransitionType = 2;
+                    EnterTransitionType = 1;
+                }
+            }
             StopExtraVFX(name("EnterState" $ string(PreviousState)));
+            PlayExtraVFX(name((("ExitState" $ string(PreviousState)) $ "-") $ string(ExitTransitionType)));
+            PlayExtraVFX(name((("EnterState" $ string(CurrentState)) $ "-") $ string(EnterTransitionType)));
             PlayExtraVFX(name("ExitState" $ string(PreviousState)));
             PlayExtraVFX(name("EnterState" $ string(CurrentState)));
+            CheckScriptedPawnMaterial();
             DoSpecialMove(42, true);
         }
         if(__Delegate_OnChangeState__Delegate != none)
@@ -454,10 +504,34 @@ simulated function SetPawnState(int InState)
     }
 }
 
+simulated function CheckScriptedPawnMaterial()
+{
+    if(bActive && ScriptedCharArch.States[CurrentState].HighlightedStateMaterial != none)
+    {
+        Mesh.SetMaterial(0, ScriptedCharArch.States[CurrentState].HighlightedStateMaterial);        
+    }
+    else
+    {
+        if(ScriptedCharArch.States[CurrentState].DefaultStateMaterial != none)
+        {
+            Mesh.SetMaterial(0, ScriptedCharArch.States[CurrentState].DefaultStateMaterial);            
+        }
+        else
+        {
+            Mesh.SetMaterial(0, DefaultMaterial);
+        }
+    }
+}
+
+function bool IsBlockedByZed()
+{
+    return ScriptedCharArch.bUseZedProximityTrigger && bZedInProximity;
+}
+
 function UpdatePawnSpeed()
 {
     GroundSpeed = ScriptedCharArch.PawnSpeed * ScriptedCharArch.States[CurrentState].SpeedScalar;
-    if(ScriptedCharArch.bUseZedProximityTrigger && bZedInProximity)
+    if(IsBlockedByZed())
     {
         GroundSpeed *= ScriptedCharArch.SpeedScalarForZedProximity;
     }
@@ -517,12 +591,16 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
             FX.SFXStartEvent = ScriptedCharArch.States[I].EnterFX[J].SFX;
             FX.SocketName = ScriptedCharArch.States[I].EnterFX[J].SocketName;
             FX.Label = name("EnterState" $ string(I));
+            if(ScriptedCharArch.States[I].EnterFX[J].TransitionType != 0)
+            {
+                FX.Label = name((string(FX.Label) $ "-") $ string(ScriptedCharArch.States[I].EnterFX[J].TransitionType));
+            }
             ScriptedStateVFX.AddItem(FX;
             ++ J;
             goto J0xAD;
         }
         J = 0;
-        J0x2BD:
+        J0x3C0:
 
         if(J < ScriptedCharArch.States[I].ExitFX.Length)
         {
@@ -530,9 +608,13 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
             FX.SFXStartEvent = ScriptedCharArch.States[I].ExitFX[J].SFX;
             FX.SocketName = ScriptedCharArch.States[I].ExitFX[J].SocketName;
             FX.Label = name("ExitState" $ string(I));
+            if(ScriptedCharArch.States[I].ExitFX[J].TransitionType != 0)
+            {
+                FX.Label = name((string(FX.Label) $ "-") $ string(ScriptedCharArch.States[I].ExitFX[J].TransitionType));
+            }
             ScriptedStateVFX.AddItem(FX;
             ++ J;
-            goto J0x2BD;
+            goto J0x3C0;
         }
         ++ I;
         goto J0x75;
@@ -621,6 +703,17 @@ function FinishSequence()
             ++ I;
             goto J0x75;
         }
+        AllPawnStartActions.Length = 0;
+        GameSeq.FindSeqObjectsByClass(Class'KFSeqAct_RestartScriptedPawn', true, AllPawnStartActions);
+        I = 0;
+        J0x117:
+
+        if(I < AllPawnStartActions.Length)
+        {
+            KFSeqAct_RestartScriptedPawn(AllPawnStartActions[I]).CheckPawnFinished(self);
+            ++ I;
+            goto J0x117;
+        }
     }
 }
 
@@ -642,6 +735,21 @@ function Start()
     }
 }
 
+simulated function PlayFinishedSounds()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < ScriptedCharArch.FinishSoundEvents.Length)
+    {
+        PlaySoundBase(ScriptedCharArch.FinishSoundEvents[I], false, WorldInfo.NetMode == NM_DedicatedServer);
+        ++ I;
+        goto J0x0B;
+    }
+}
+
 function Finish(bool bHide)
 {
     if(ScriptedCharArch.bHideOnFinish)
@@ -650,6 +758,7 @@ function Finish(bool bHide)
         {
             SetPhysics(0);
             SetHidden(true);
+            PlayFinishedSounds();
         }
         SetCollision(false, false);        
     }
@@ -662,7 +771,6 @@ function Finish(bool bHide)
         }
     }
     DamageOverTimeArray.Length = 0;
-    bPlayedDeath = true;
     SetCanBeTargeted(false);
     if(WeldableComponent != none)
     {
@@ -727,7 +835,7 @@ function NotifyTriggerTouch(KFTrigger_NotifyOwner Sender, Actor Toucher, Primiti
     local KFPawn_Monster Zed;
     local KFPawn_Human Player;
 
-    if(Sender == ProximityTrigger)
+    if(Sender == ZedProximityTrigger)
     {
         if(ScriptedCharArch.bUseZedProximityTrigger)
         {
@@ -741,6 +849,10 @@ function NotifyTriggerTouch(KFTrigger_NotifyOwner Sender, Actor Toucher, Primiti
                 }
             }
         }
+        UpdatePawnSpeed();
+    }
+    if(Sender == PlayerProximityTrigger)
+    {
         if(ScriptedCharArch.bUsePlayerProximityTrigger)
         {
             Player = KFPawn_Human(Toucher);
@@ -758,7 +870,7 @@ function NotifyTriggerUnTouch(KFTrigger_NotifyOwner Sender, Actor UnToucher)
     local KFPawn_Monster Zed;
     local KFPawn_Human Player;
 
-    if(Sender == ProximityTrigger)
+    if(Sender == ZedProximityTrigger)
     {
         if(ScriptedCharArch.bUseZedProximityTrigger)
         {
@@ -766,7 +878,7 @@ function NotifyTriggerUnTouch(KFTrigger_NotifyOwner Sender, Actor UnToucher)
             if(Zed != none)
             {
                 bZedInProximity = false;
-                foreach ProximityTrigger.TouchingActors(Class'KFPawn_Monster', Zed)
+                foreach ZedProximityTrigger.TouchingActors(Class'KFPawn_Monster', Zed)
                 {
                     if(Zed != UnToucher)
                     {
@@ -776,13 +888,17 @@ function NotifyTriggerUnTouch(KFTrigger_NotifyOwner Sender, Actor UnToucher)
                 }                
             }
         }
+        UpdatePawnSpeed();
+    }
+    if(Sender == PlayerProximityTrigger)
+    {
         if(ScriptedCharArch.bUsePlayerProximityTrigger)
         {
             Player = KFPawn_Human(UnToucher);
             if(Player != none)
             {
                 bPlayerInProximity = false;
-                foreach ProximityTrigger.TouchingActors(Class'KFPawn_Human', Player)
+                foreach PlayerProximityTrigger.TouchingActors(Class'KFPawn_Human', Player)
                 {
                     if(Player != UnToucher)
                     {
@@ -825,6 +941,7 @@ simulated function SetActive(bool Inactive)
     {
         RemoveEscortPawnOnHud();
     }
+    CheckScriptedPawnMaterial();
 }
 
 simulated function bool ShouldShowOnHUD()
@@ -884,7 +1001,7 @@ simulated function PlayExtraVFX(name FXLabel)
             {
                 if(ScriptedStateVFX[I].Label == FXLabel)
                 {
-                    SpawnExtraVFX(ScriptedStateVFX[I], VFXAttachment);
+                    VFXAttachment.VFXComponent = SpawnExtraVFX(ScriptedStateVFX[I]);
                     VFXAttachment.Info = ScriptedStateVFX[I];
                     ExtraVFXAttachments.AddItem(VFXAttachment;
                 }
@@ -898,7 +1015,7 @@ simulated function PlayExtraVFX(name FXLabel)
 
 simulated function Timer_DoorWait()
 {
-    if((BlockingDoor == none) || BlockingDoor.bIsDoorOpen)
+    if(((BlockingDoor == none) || BlockingDoor.bIsDoorOpen) || BlockingDoor.bIsDestroyed)
     {
         BlockingDoor = none;
         SpeedScalarForObstacles = 1;
@@ -909,11 +1026,14 @@ simulated function Timer_DoorWait()
 
 defaultproperties
 {
-    ScriptedPawnString="V.I.P."
+    ScriptedPawnString="Escort"
+    bBlockZedPlayers=true
+    bBlockMonsters=true
     CurrentState=255
     PreviousState=255
     IconPath="ZED_Patriarch_UI.ZED-VS_Icon_Boss"
     SpeedScalarForObstacles=1
+    RecentDamageTimerLength=5
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -992,6 +1112,7 @@ defaultproperties
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_Scripted.KFPawnSkeletalMeshComponent'
     Mesh=KFPawnSkeletalMeshComponent
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionRadius=108
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFPawn_Scripted.CollisionCylinder'
@@ -1002,6 +1123,7 @@ defaultproperties
     // Reference: SpriteComponent'Default__KFPawn_Scripted.Sprite'
     Components(0)=Sprite
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionRadius=108
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFPawn_Scripted.CollisionCylinder'
@@ -1021,7 +1143,10 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_Scripted.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_Scripted.DialogAkSoundComponent'
     bAlwaysRelevant=true
+    bCanBeAdheredTo=false
+    bCanBeFrictionedTo=false
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionRadius=108
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFPawn_Scripted.CollisionCylinder'

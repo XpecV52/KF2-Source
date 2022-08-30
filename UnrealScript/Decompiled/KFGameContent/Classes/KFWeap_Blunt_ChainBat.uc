@@ -21,7 +21,7 @@ defaultproperties
     PickupMeshName="WEP_3P_ChainBat_MESH.Wep_ChainBat_Pickup"
     AttachmentArchetypeName="WEP_ChainBat_ARCH.Wep_ChainBat_3P"
     InventorySize=5
-    GroupPriority=100
+    GroupPriority=50
     WeaponSelectTexture=Texture2D'Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat'
     PlayerViewOffset=(X=2,Y=0,Z=0)
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

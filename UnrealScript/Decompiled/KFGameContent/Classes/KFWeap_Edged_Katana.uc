@@ -21,7 +21,7 @@ defaultproperties
     PickupMeshName="WEP_3P_KATANA_MESH.Wep_Katana_Pickup"
     AttachmentArchetypeName="WEP_Katana_ARCH.Wep_Katana_3P"
     InventorySize=4
-    GroupPriority=100
+    GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
     PlayerViewOffset=(X=2,Y=0,Z=0)
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

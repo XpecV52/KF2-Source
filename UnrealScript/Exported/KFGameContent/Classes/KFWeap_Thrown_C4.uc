@@ -433,6 +433,7 @@ defaultproperties
    AttachmentArchetypeName="WEP_C4_ARCH.Wep_C4_3P"
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
+   InventoryGroup=IG_Secondary
    InventorySize=3
    MagazineCapacity(0)=1
    GroupPriority=50.000000
@@ -442,7 +443,6 @@ defaultproperties
    AmmoCost(4)=0
    AmmoCost(5)=0
    SpareAmmoCapacity(0)=1
-   InitialSpareMags(0)=1
    FireAnim="C4_Throw"
    FireLastAnim="C4_Throw_Last"
    PlayerViewOffset=(X=6.000000,Y=2.000000,Z=-4.000000)

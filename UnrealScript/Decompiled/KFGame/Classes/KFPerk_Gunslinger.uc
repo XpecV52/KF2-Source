@@ -43,6 +43,7 @@ var private const float ShootnMooveBobDamp;
 var private const array<byte> BoneBreakerBodyParts;
 var private const float BoneBreakerDamage;
 var private const float SnarePower;
+var private const float SnareSpeedModifier;
 var private int HeadShotComboCount;
 var private int HeadShotComboCountDisplay;
 var private const int MaxHeadShotComboCount;
@@ -365,6 +366,11 @@ simulated function bool IgnoresPenetrationDmgReduction()
     return IsPenetrationActive();
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+    return ((IsSkullCrackerActive()) ? SnareSpeedModifier : 1);
+}
+
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if((((IsSkullCrackerActive()) && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType))) && HitZoneIdx == 0)
@@ -546,11 +552,12 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_9501
+    BoneBreakerBodyParts(1)=.!=_9585
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
     SnarePower=100
+    SnareSpeedModifier=0.7
     MaxHeadShotComboCount=5
     HeadShotCountdownIntervall=2
     ProgressStatID=80
@@ -595,7 +602,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_1180
+    BodyPartsCanStumble(1)=.!=_1182
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4
@@ -617,4 +624,5 @@ Parameter name: index
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Remington1858_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.M1911_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.DesertEagle_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.500MagnumRevolver_PrestigePrecious_Mint_large"
 }

@@ -22,6 +22,18 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
     return none;
 }
 
+simulated function name GetReloadAnimName(bool bTacticalReload)
+{
+    if((AmmoCount[0] == 2) || AmmoCount[0] == 1)
+    {
+        return ((bTacticalReload) ? 'Reload_Empty_Half_Elite' : 'Reload_Empty_Half');        
+    }
+    else
+    {
+        return super.GetReloadAnimName(bTacticalReload);
+    }
+}
+
 defaultproperties
 {
     BarrelOffset=(X=10,Y=0,Z=0)

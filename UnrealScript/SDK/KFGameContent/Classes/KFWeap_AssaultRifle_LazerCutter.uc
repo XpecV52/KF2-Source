@@ -186,8 +186,7 @@ simulated function FireAmmunition()
 		break;
 	}
 
-	// If we're firing without charging, still consume one ammo
-	if (CurrentFireMode == DEFAULT_FIREMODE || GetChargeLevel() < 1)
+	if (CurrentFireMode == DEFAULT_FIREMODE)
 	{
 		ConsumeAmmo(CurrentFireMode);
 	}
@@ -384,6 +383,18 @@ simulated function PlayFiringSound(byte FireModeNum)
 			WeaponPlayFireSound(WeaponFireSnd[FireModeNum].DefaultCue, WeaponFireSnd[FireModeNum].FirstPersonCue);
 		}
 	}
+}
+
+// which category this shows up under in the trader
+// FlameBase defaults to Flame, so this needs to override
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Electric;
+}
+
+static simulated event EFilterTypeUI GetAltTraderFilter()
+{
+	return FT_Assault;
 }
 
 // the FlameBase CalculateTraderWeaponStatDamage uses spray damage
@@ -675,6 +686,12 @@ simulated state SprayingFireLazer extends SprayingFire
 		// reset firing variables
 		FlashTime = 0;
 
+		// If we're firing without charging, still consume one ammo
+		if (TotalChargeTime < ChargeConsumeTime)
+		{
+			ConsumeAmmo(CurrentFireMode);
+		}
+
 		// play a looping sound when firing, will need to be stopped at the end
 		if (ChargeLevel >= 0 && ChargeLevel < FireLoopSounds.Length)
 		{
@@ -818,7 +835,7 @@ simulated state SprayingFireLazer extends SprayingFire
 									}
 
 									// scale the damage based on charge level, using the InstantHitDamage as the base
-									HitPawn.TakeDamage(InstantHitDamage[ALTFIRE_FIREMODE] + GetChargeLevel() * DamagePerChargeLevel, OwnerPawn.Controller, HitLocation, vect(0, 0, 0), InstantHitDamageTypes[ALTFIRE_FIREMODE]);
+									HitPawn.TakeDamage(InstantHitDamage[ALTFIRE_FIREMODE] + GetChargeLevel() * DamagePerChargeLevel, OwnerPawn.Controller, HitLocation, vect(0, 0, 0), InstantHitDamageTypes[ALTFIRE_FIREMODE],,self);
 								}
 								// hit world geometry (with small extent), set to max collisions to stop the beam
 								else if (HitDamageActors[i] != none && HitDamageActors[i].Base != Owner && HitDamageActors[i] != Owner && HitDamageActors[i].bBlockActors && HitDamageActors[i].bWorldGeometry && HitBeamActors.Find(HitDamageActors[i]) != INDEX_NONE)
@@ -999,7 +1016,7 @@ defaultproperties
 
 	// Inventory / Grouping
 	InventorySize = 8
-	GroupPriority = 50
+	GroupPriority = 125
 	WeaponSelectTexture=Texture2D'WEP_UI_Laser_Cutter_TEX.UI_WeaponSelect_Laser_Cutter'
 	AssociatedPerkClasses(0) = class'KFPerk_Survivalist'
 

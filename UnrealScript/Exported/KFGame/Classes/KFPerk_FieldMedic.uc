@@ -31,6 +31,7 @@ var const private float				MaxHealingShield;
 var const private float				HealingShieldDuration;
 var const private ParticleSystem 	AAParticleSystem;
 var const private float 			SnarePower;
+var private const float				SnareSpeedModifier;
 
 /** Defines the explosion. */
 var 	  private KFGameExplosion	AAExplosionTemplate;
@@ -360,6 +361,11 @@ simulated static function ParticleSystem GetAAEffect()
 	return default.AAParticleSystem;
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+	return IsSlugActive() ? SnareSpeedModifier : 1.f;
+}
+
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsSlugActive() && DamageType != none && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
@@ -553,6 +559,7 @@ defaultproperties
    HealingShieldDuration=5.000000
    AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
    SnarePower=100.000000
+   SnareSpeedModifier=0.700000
    AAExplosionTemplate=KFGameExplosion'KFGame.Default__KFPerk_FieldMedic:ExploTemplate0'
    AAExplosionDamageType=Class'KFGame.KFDT_Toxic_MedicGrenade'
    ProgressStatID=40
@@ -594,12 +601,14 @@ defaultproperties
    AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_MedicSMG'
    AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_MedicShotgun'
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_MedicRifle'
+   AutoBuyLoadOutPath(4)=Class'KFGame.KFWeapDef_MedicRifleGrenadeLauncher'
    HitAccuracyHandicap=5.000000
    HeadshotAccuracyHandicap=-0.750000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.MedicKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MedicPistol_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.MedicSMG_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.HMTech-301Shotgun_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.HMTech-401AssaultRifle_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_FieldMedic"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

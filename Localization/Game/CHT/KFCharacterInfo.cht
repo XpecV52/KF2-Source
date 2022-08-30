@@ -3361,7 +3361,7 @@ EmoteName="給它踢下去"
 EmoteName="火球"
 
 [Makeitrain]
-EmoteName="快拿錢砸我"
+EmoteName="快拿錢砸我 "
 
 [Fireball_Deluxe]
 EmoteName="火球+"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="紅"
 AttachmentSkin2="珍貴"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="虛幻臂環 C"
+Attachment="虛幻臂環 B"
 AttachmentSkin0="藍"
 AttachmentSkin1="紅"
 AttachmentSkin2="珍貴"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="綠"
 AttachmentSkin3="萊姆"
 AttachmentSkin4="紅"
 AttachmentSkin5="白"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="計畫 H 01 基本"
+AttachmentSkin0="標準"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="計畫 H 01 開心"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="計畫 H 01 開心關閉"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="計畫 H 01 無表情"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="計畫 H 01 無表情關閉"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="計畫 H 01 不開心"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="計畫 H 01 不開心關閉"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="計畫 H 02 基本"
+AttachmentSkin0="標準"
+AttachmentSkin1="珍貴"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="計畫 H 02 開心"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="計畫 H 02 開心關閉"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="計畫 H 02 無表情"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="計畫 H 02 無表情關閉"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="計畫 H 02 不開心"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="計畫 H 02 不開心關閉"
+AttachmentSkin0="藍"
+AttachmentSkin1="綠"
+AttachmentSkin2="紅"
+AttachmentSkin3="珍貴"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="蒸汽龐克水晶鏡片"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="蒸汽龐克骷髏頭帽"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="蒸汽龐克下顎護罩"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="蒸汽龐克鴉鷹"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="蒸汽龐克皮革護目鏡"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="蒸汽龐克皮革防毒面具"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="蒸汽龐克鑰匙圈背包"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="蒸汽龐克計時器臂環"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="蒸汽龐克快遞員背包"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="蒸汽龐克特斯拉背包"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="蒸汽龐克 Zed 背包"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="蒸汽龐克計時器背包"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="蒸汽龐克八爪條"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="蒸汽龐克船長帽"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="蒸汽龐克圓頂帽"
+AttachmentSkin0="標準"
+AttachmentSkin1="鍍鉻"
+AttachmentSkin2="珍貴"

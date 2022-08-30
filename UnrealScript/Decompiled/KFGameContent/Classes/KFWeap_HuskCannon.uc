@@ -212,6 +212,18 @@ function AdjustDamage(out int InDamage, class<DamageType> DamageType, Actor Dama
     }
 }
 
+simulated function int GetModifiedDamage(byte FireModeNum, optional Vector RayDir)
+{
+    local int ModifiedDamage;
+
+    ModifiedDamage = super.GetModifiedDamage(FireModeNum, RayDir);
+    if(FireModeNum == 0)
+    {
+        ModifiedDamage = int(float(ModifiedDamage) * (1 + (DmgIncreasePerCharge * float(GetChargeLevel()))));
+    }
+    return ModifiedDamage;
+}
+
 simulated state HuskCannonCharge extends WeaponFiring
 {
     ignores FireAmmunition;
@@ -264,7 +276,6 @@ simulated state HuskCannonCharge extends WeaponFiring
         {
             if(ConsumeAmmoTime >= FullChargedTimerInterval)
             {
-                ConsumeAmmo(0);
                 ConsumeAmmoTime -= FullChargedTimerInterval;
             }
             return;
@@ -323,7 +334,7 @@ defaultproperties
     MaxChargeTime=1
     ValueIncreaseTime=0.2
     DmgIncreasePerCharge=0.7
-    AOEIncreasePerCharge=0.3
+    AOEIncreasePerCharge=0.6
     IncapIncreasePerCharge=0.22
     AmmoIncreasePerCharge=1
     ChargingEffect=ParticleSystem'WEP_HuskCannon_EMIT.FX_Huskcannon_Charging_01'
@@ -345,7 +356,7 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=8
-    MagazineCapacity=20
+    MagazineCapacity=30
     MeshFOV=80
     MeshIronSightFOV=65
     PlayerIronSightFOV=50
@@ -353,8 +364,8 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon'
-    SpareAmmoCapacity=240
-    InitialSpareMags=4
+    SpareAmmoCapacity=150
+    InitialSpareMags=1
     AmmoPickupScale=0.75
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
     bLoopingFireAnim=/* Array type was not detected. */

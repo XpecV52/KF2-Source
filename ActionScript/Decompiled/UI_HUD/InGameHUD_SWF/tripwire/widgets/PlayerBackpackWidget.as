@@ -132,6 +132,7 @@ package tripwire.widgets
                 this._magazineAmmoTF.visible = true;
                 this.AmmoContainer.AmmoInfo.AmmoGaugeConnector.visible = true;
                 this.AmmoContainer.AmmoInfo.AmmoMelee.visible = false;
+                this.AmmoContainer.AmmoInfo.AmmoSpecial.visible = false;
             }
             else
             {
@@ -139,6 +140,7 @@ package tripwire.widgets
                 this._magazineAmmoTF.visible = false;
                 this.AmmoContainer.AmmoInfo.AmmoGaugeConnector.visible = false;
                 this.AmmoContainer.AmmoInfo.AmmoMelee.visible = true;
+                this.AmmoContainer.AmmoInfo.AmmoSpecial.visible = false;
             }
         }
         
@@ -165,6 +167,16 @@ package tripwire.widgets
         public function set weaponMagazineAmmo(param1:int) : void
         {
             this._magazineAmmoTF.text = param1.toString();
+        }
+        
+        public function set specialAmmoString(param1:String) : void
+        {
+            this.AmmoContainer.AmmoInfo.AmmoSpecial.text = param1;
+            if(param1 != "")
+            {
+                this.AmmoContainer.AmmoInfo.AmmoMelee.visible = false;
+                this.AmmoContainer.AmmoInfo.AmmoSpecial.visible = true;
+            }
         }
         
         public function set backpackDosh(param1:int) : void

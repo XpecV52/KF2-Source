@@ -81,6 +81,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
+const KFID_ClassicPlayerInfo=173;
 #linenumber 14;
 //@HSL_MOD_END
 
@@ -110,6 +111,7 @@ var localized array<string> GoreOptionStrings;
 
 var localized string HideRemodeHeadshotEffectsString;
 var localized string ToggleToRunString;
+var localized string ClassicPlayerInfoString;
 
 var float FOVMinValue, FOVMaxValue, FOVCurrentValue;
 var float FriendlyHudScaleMinValue, FriendlyHudScaleMaxValue;
@@ -154,6 +156,7 @@ function LocalizeText()
 	LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
 	LocalizedObject.SetString("hideRemoteHeadshotEffects", HideRemodeHeadshotEffectsString);
 	LocalizedObject.SetString("enableToggleToRun", ToggleToRunString);
+	LocalizedObject.SetString("enableClassicPlayerInfo", ClassicPlayerInfoString);
 
 	LocalizedObject.SetString("hideBossHealthBar", 		HideBossHealthBarString);
 	LocalizedObject.SetString("showWelderInInv", 		ShowWelderInInvString);
@@ -209,6 +212,7 @@ function  InitValues()
 	
 	DataObject.SetBool("autoTurnOff", 			Manager.CachedProfile.GetProfileBool(KFID_AutoTurnOff));
 	DataObject.SetBool("enableToggleToRun",		Manager.CachedProfile.GetProfileBool(KFID_ToggletoRun));
+	DataObject.SetBool("enableClassicPlayerInfo", Manager.CachedProfile.GetProfileBool(KFID_ClassicPlayerInfo));
 
 	if(class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango))
 	{
@@ -585,6 +589,30 @@ function Callback_ToggleToRunChanged(bool bActive)
 	}
 }
 
+function Callback_ClassicPlayerInfoChanged(bool bActive)
+{
+	local KFPlayerController KFPC;
+	local KFHUDBase KFHUD;
+	local OnlineProfileSettings Settings;
+	Settings = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(GetLP().ControllerId);
+
+	KFPC = KFPlayerController(GetPC());
+
+	if (KFPC != none)
+	{
+		KFHUD = KFHUDBase(KFPC.myHUD);
+
+		if (KFHUD != none)
+		{
+			KFHUD.ClassicPlayerInfo = bActive;
+			KFHUD.SaveConfig();
+		}
+
+		Settings.SetProfileSettingValueInt(KFID_ClassicPlayerInfo, bActive ? 1 : 0);
+		class'KFHUDBase'.static.StaticSaveConfig();
+	}
+}
+
 function ResetGameOptions()
 {
 	//local KFPlayerController KFPC;
@@ -640,6 +668,8 @@ function ResetGameOptions()
 
 	Callback_FOVChanged(Manager.CachedProfile.GetDefaultFloat(KFID_FOVOptionsPercentageValue));
 
+	Callback_ClassicPlayerInfoChanged(Manager.CachedProfile.GetDefaultInt(KFID_ClassicPlayerInfo) != 0);
+
 	InitValues();
 }
 
@@ -669,6 +699,7 @@ defaultproperties
    GoreOptionStrings(2)="High Gore"
    HideRemodeHeadshotEffectsString="Disable Remote Headshot effects"
    ToggleToRunString="Toggle to Sprint"
+   ClassicPlayerInfoString="Legacy Health Bars"
    FOVMinValue=1.000000
    FOVMaxValue=1.250000
    FriendlyHudScaleMinValue=0.250000

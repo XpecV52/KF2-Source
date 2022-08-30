@@ -16,9 +16,9 @@ var float MicrowaveParamValue;
 var protected AkEvent OnFireSound;
 var protected AkEvent OnFireEndSound;
 
-function Init(KFPawn P, KFAfflictionManager.EAfflictionType Type)
+function Init(KFPawn P, KFAfflictionManager.EAfflictionType Type, KFPerk InstigatorPerk)
 {
-    super.Init(P, Type);
+    super.Init(P, Type, InstigatorPerk);
     FireFullyCharredDuration = P.AfflictionHandler.FireFullyCharredDuration;
     FireCharPercentThreshhold = P.AfflictionHandler.FireCharPercentThreshhold;
 }

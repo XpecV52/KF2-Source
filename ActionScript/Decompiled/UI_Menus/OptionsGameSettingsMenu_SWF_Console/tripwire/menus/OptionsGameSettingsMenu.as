@@ -76,6 +76,8 @@ package tripwire.menus
         
         public var enableToggleToRunCheckbox:TripCheckBox;
         
+        public var enableClassicPlayerInfoCheckbox:TripCheckBox;
+        
         public var toggleMixerButton:TripButton;
         
         public var defaultButton:TripButton;
@@ -133,6 +135,10 @@ package tripwire.menus
             {
                 this.enableToggleToRunCheckbox.tabIndex = _loc1_++;
             }
+            if(this.enableClassicPlayerInfoCheckbox)
+            {
+                this.enableClassicPlayerInfoCheckbox.tabIndex = _loc1_++;
+            }
             this.closeButton.tabIndex = _loc1_++;
             if(!_loc2_)
             {
@@ -180,6 +186,10 @@ package tripwire.menus
             {
                 this.enableToggleToRunCheckbox.label = !!param1.enableToggleToRun ? param1.enableToggleToRun : "";
             }
+            if(this.enableClassicPlayerInfoCheckbox != null)
+            {
+                this.enableClassicPlayerInfoCheckbox.label = !!param1.enableClassicPlayerInfo ? param1.enableClassicPlayerInfo : "";
+            }
         }
         
         public function set dataValues(param1:Object) : void
@@ -217,6 +227,10 @@ package tripwire.menus
             {
                 this.enableToggleToRunCheckbox.selected = !!param1.enableToggleToRun ? Boolean(param1.enableToggleToRun) : false;
             }
+            if(this.enableClassicPlayerInfoCheckbox != null)
+            {
+                this.enableClassicPlayerInfoCheckbox.selected = !!param1.enableClassicPlayerInfo ? Boolean(param1.enableClassicPlayerInfo) : false;
+            }
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -249,6 +263,7 @@ package tripwire.menus
             this.showWelderInInvCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.useAltAimOnDualCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.enableToggleToRunCheckbox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
+            this.enableClassicPlayerInfoCheckbox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             this.autoTurnOffCheckBox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             if(this.reduceHighPitchNoiseCheckBox != null)
             {
@@ -309,6 +324,9 @@ package tripwire.menus
                     break;
                 case this.enableToggleToRunCheckbox:
                     ExternalInterface.call("Callback_ToggleToRunChanged",this.enableToggleToRunCheckbox.selected);
+                    break;
+                case this.enableClassicPlayerInfoCheckbox:
+                    ExternalInterface.call("Callback_ClassicPlayerInfoChanged",this.enableClassicPlayerInfoCheckbox.selected);
             }
         }
         
@@ -347,6 +365,10 @@ package tripwire.menus
             if(this.enableToggleToRunCheckbox != null)
             {
                 this.enableToggleToRunCheckbox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            }
+            if(this.enableClassicPlayerInfoCheckbox != null)
+            {
+                this.enableClassicPlayerInfoCheckbox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             }
             this.closeButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
         }

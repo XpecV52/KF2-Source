@@ -102,9 +102,6 @@ defaultproperties
    End Object
    SprintAkComponent=SprintAkComponent0
    Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedCrawler:HeadshotAkComponent0'
-      BoneName="head"
-      bForceOcclusionUpdateInterval=True
-      OcclusionUpdateInterval=0.200000
       Name="HeadshotAkComponent0"
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedCrawler:HeadshotAkComponent0'
    End Object

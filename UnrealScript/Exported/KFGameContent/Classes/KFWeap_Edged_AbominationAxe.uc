@@ -22,7 +22,7 @@ defaultproperties
    PickupMeshName="wep_3p_krampusaxe_mesh.Wep_3rdP_KrampusAxe_Pickup"
    AttachmentArchetypeName="WEP_KrampusAxe_ARCH.Wep_KrampusAxe_3P"
    InventorySize=10
-   GroupPriority=85.000000
+   GroupPriority=125.000000
    WeaponSelectTexture=Texture2D'WEP_UI_KrampusAxe_TEX.UI_WeaponSelect_KrampusAxe'
    PlayerViewOffset=(X=2.000000,Y=0.000000,Z=0.000000)
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'

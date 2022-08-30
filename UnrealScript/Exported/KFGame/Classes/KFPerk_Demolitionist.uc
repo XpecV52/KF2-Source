@@ -174,7 +174,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 			TempDamage -= InDamage * GetAoEDamageModifier();
 		}
 	}
-	
+
 	;
 	InDamage = Round( TempDamage );
 	;
@@ -283,7 +283,7 @@ simulated private function GivePassiveExtraAmmo( out int PrimarySpareAmmo, KFWea
 		return;
 	}
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && 
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) &&
 		PassiveExtraAmmoIgnoredClassNames.Find( WeaponClassName ) == INDEX_NONE )
 	{
 		PrimarySpareAmmo += GetExtraAmmo( CurrentLevel );
@@ -297,7 +297,7 @@ simulated private function GiveAmmoExtraAmmo( out int PrimarySpareAmmo, KFWeapon
 		return;
 	}
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && 
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) &&
 		ExtraAmmoIgnoredClassNames.Find( WeaponClassName ) == INDEX_NONE )
 	{
 		PrimarySpareAmmo += GetAmmoExtraAmmo();
@@ -375,7 +375,7 @@ static function PrepareExplosive( Pawn ProjOwner, KFProjectile Proj, optional fl
 	                Proj.ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
 	                Proj.ExplosionTemplate.Damage = Proj.default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier() * AuxDmgMod;
 	                Proj.ExplosionTemplate.DamageRadius = Proj.default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier() * AuxRadiusMod;
-	                Proj.ExplosionTemplate.DamageFalloffExponent = Proj.default.ExplosionTemplate.DamageFalloffExponent;        
+	                Proj.ExplosionTemplate.DamageFalloffExponent = Proj.default.ExplosionTemplate.DamageFalloffExponent;
 	            }
 	            else if( InstigatorPRI.bConcussiveActive && Proj.AltExploEffects != none )
 	            {
@@ -408,17 +408,19 @@ simulated function float GetLastHX25NukeTime()
 }
 
 simulated function float GetAoERadiusModifier()
-{ 
+{
 	local float RadiusModifier;
 
 	RadiusModifier = IsAoEActive() ? GetSkillValue( PerkSkills[EDemoAoE] ) : 1.f;
-	RadiusModifier = IsProfessionalActive() ? (RadiusModifier + default.ProfessionalAoEModifier) : RadiusModifier;
+	RadiusModifier = (IsProfessionalActive() && WorldInfo.TimeDilation < 1.f) ?
+		(RadiusModifier + default.ProfessionalAoEModifier) :
+		RadiusModifier;
 
 	return RadiusModifier;
 }
 
 simulated function float GetAoEDamageModifier()
-{ 
+{
 	return default.AoeDamageModifier;
 }
 
@@ -511,7 +513,7 @@ simulated function Interact( KFPawn_Human KFPH )
 	if( bReceivedGrenades )
 	{
 		SuppliedPawnList.AddItem( KFPH );
-		
+
 		if( Role == ROLE_Authority )
 		{
 			KFPC = KFPlayerController(KFPH.Controller);
@@ -688,7 +690,7 @@ simulated function bool DoorShouldNuke()
 
 simulated function bool ShouldNeverDud()
 {
-	return (IsNukeActive() || IsProfessionalActive()) && WorldInfo.TimeDilation < 1.f; 
+	return (IsNukeActive() || IsProfessionalActive()) && WorldInfo.TimeDilation < 1.f;
 }
 
 /**
@@ -1074,11 +1076,13 @@ defaultproperties
    AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_M79'
    AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_M16M203'
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_RPG7'
+   AutoBuyLoadOutPath(4)=Class'KFGame.KFWeapDef_M32'
    HitAccuracyHandicap=2.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.HX25_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.M79_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.M16M203_PrestigePrecious_Mint_Large"
+   PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.RPG-7_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Demolitionist"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

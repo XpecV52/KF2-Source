@@ -11,5 +11,4 @@ class KFDT_Freeze_Ground_FreezeThrower extends KFDT_Freeze_Ground
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_FreezeThrower'
-    SnarePower=100
 }

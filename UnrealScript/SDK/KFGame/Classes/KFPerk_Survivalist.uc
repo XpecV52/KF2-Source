@@ -49,6 +49,9 @@ var int StartingWeaponClassIndex;
 
 var private const array<name>		TacticalReloadAsReloadRateClassNames;
 
+/** When MakeThingsGoBoom skill is selected the survivalist gets additional explosive resistance */
+var private const float				MakeThingsGoBoomExplosiveResistance;
+
 /*********************************************************************************************
 * @name	 Perk init and spawning
 ******************************************************************************************** */
@@ -173,6 +176,10 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 
 	TempDamage = InDamage;
 	TempDamage -= InDamage * GetPassiveValue( DamageResistance, CurrentLevel );
+	if (IsMakeThingsGoBoomActive())
+	{
+		TempDamage = FMax(TempDamage - InDamage * MakeThingsGoBoomExplosiveResistance, 0.0f);
+	}
 
 	`QALog( "Total DamageResistance" @ DamageType @ GetPercentage( InDamage, Round( TempDamage ) ) @ "Start/End" @ InDamage @ Round( TempDamage ), bLogPerk );
 	InDamage = Round( TempDamage );
@@ -759,13 +766,16 @@ DefaultProperties
    	PrimaryWeaponPaths(6)=class'KFWeapDef_Remington1858Dual'
    	PrimaryWeaponPaths(7)=class'KFWeapDef_Winchester1894'
    	PrimaryWeaponPaths(8)=class'KFWeapDef_MP7'
-   	AutoBuyLoadOutPath=(class'KFWeapDef_DragonsBreath', class'KFWeapDef_M16M203', class'KFWeapDef_MedicRifle')
+   	AutoBuyLoadOutPath=(class'KFWeapDef_DragonsBreath', class'KFWeapDef_FreezeThrower', class'KFWeapDef_MedicRifle', class'KFWeapDef_LazerCutter')
 
    	// Prestige Rewards
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.FreezeThrower_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.TommyGun_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.VLAD-1000Nailgun_PrestigePrecious_Mint_large"
+	PrestigeRewardItemIconPaths[4]="WEP_SkinSet_Prestige05_Item_TEX.tier04.Killerwatt_PrestigePrecious_Mint_large"
 
 	TacticalReloadAsReloadRateClassNames(0)="KFWeap_GrenadeLauncher_M32"
+
+	MakeThingsGoBoomExplosiveResistance=0.4f
 }

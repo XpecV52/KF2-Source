@@ -130,7 +130,7 @@ function SpawnProjectileShield()
 	if( MySirenPawn != none )
 	{
 		MySirenPawn.EnableScreamFlicker( true );
-	}	
+	}
 }
 
 /** Destroys the projectile shield based on position in animation */
@@ -158,7 +158,7 @@ function DestroyProjectileShield()
 	if( MySirenPawn != none )
 	{
 		MySirenPawn.EnableScreamFlicker( false );
-	}	
+	}
 }
 
 /** Set up the sirens ExplosionActor when she screams */

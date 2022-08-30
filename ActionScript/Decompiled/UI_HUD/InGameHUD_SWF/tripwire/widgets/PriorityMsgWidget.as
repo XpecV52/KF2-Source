@@ -176,15 +176,15 @@ package tripwire.widgets
         
         private const DISPLAY_TIME_BASE:int = 1;
         
-        public var currentObjectiveColor:uint = 15534080;
+        public var currentObjectiveColor:uint = 11141375;
         
-        private const PRIORITY_COLOR:uint = 15534080;
+        private const PRIORITY_COLOR:uint = 11141375;
         
         private const DEFAULT_COLOR:uint = 16503487;
         
         private const BLACK_COLOR:uint = 0;
         
-        private const BONUS_COLOR:uint = 15573775;
+        private const BONUS_COLOR:uint = 11141375;
         
         public var currentCountdownTime:int = 0;
         

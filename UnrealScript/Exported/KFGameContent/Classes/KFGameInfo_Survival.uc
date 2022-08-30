@@ -1144,6 +1144,7 @@ function StartWave()
 
     SetupNextWave(WaveBuffer);
 
+	NumAIFinishedSpawning = 0;
 	NumAISpawnsQueued = 0;
 	AIAliveCount = 0;
 	MyKFGRI.bForceNextObjective = false;

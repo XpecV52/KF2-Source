@@ -1617,7 +1617,7 @@ AttachmentSkin5="Filtro azul"
 AttachmentSkin6="Filtro rojo"
 
 [Cosmetic_JusticeGoggles_Alberts_ARCH]
-Attachment="Gafas justicia "
+Attachment="Gafas justicia"
 AttachmentSkin0="Sigilo negro"
 
 [Cosmetic_JusticeHelmet_Alberts_ARCH]
@@ -3361,7 +3361,7 @@ EmoteName="A patadas"
 EmoteName="Bola de fuego"
 
 [Makeitrain]
-EmoteName="Todo para mí"
+EmoteName="Todo para mí "
 
 [Fireball_Deluxe]
 EmoteName="Bola de fuego+"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="Rojo"
 AttachmentSkin2="Precioso"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="Holobrazalete C"
+Attachment="Holobrazalete B"
 AttachmentSkin0="Azul"
 AttachmentSkin1="Rojo"
 AttachmentSkin2="Precioso"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="Verde"
 AttachmentSkin3="Lima"
 AttachmentSkin4="Rojo"
 AttachmentSkin5="Blanco"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="Proyecto H 01 básico"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Precioso"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="Proyecto H 01 feliz"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="Proyecto H 01 feliz apagado"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="Proyecto H 01 neutral"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="Proyecto H 01 neutral apagado"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="Proyecto H 01 infeliz"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="Proyecto H 01 infeliz apagado"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="Proyecto H 02 básico"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Precioso"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="Proyecto H 02 feliz"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="Proyecto H 02 feliz apagado"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="Proyecto H 02 neutral"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="Proyecto H 02 neutral apagado"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="Proyecto H 02 infeliz"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="Proyecto H 02 infeliz apagado"
+AttachmentSkin0="Azul"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Precioso"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="Monóculo de cristal steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="Boina de calavera steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="Máscara de Mandíbula steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="Cuer-hawk steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="Gafas de cuero steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="Máscara gas de cuero steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="Mochila llave steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="Brazalete con reloj steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="Mochila mensajero steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="Mochila Tesla steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="Mochila zed steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="Mochila tiempo steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="Octobanda steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="Sombrero de capitán steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="Bombín steampunk"
+AttachmentSkin0="Normal"
+AttachmentSkin1="Cromo"
+AttachmentSkin2="Precioso"

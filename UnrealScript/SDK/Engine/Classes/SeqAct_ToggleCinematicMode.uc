@@ -16,6 +16,9 @@ var() bool bDeadBodies;
 /** Destroy dropped weapons and pickups */
 var() bool bDroppedPickups;
 
+/** Cinematic mode DoF changes */
+var() bool bAllowDofChanges;
+
 /** Delete objects we don't want to keep around during cinematics */
 event Activated()
 {
@@ -51,4 +54,5 @@ defaultproperties
 	bHideHUD=TRUE
 	bDeadBodies=TRUE
 	bDroppedPickups=TRUE
+	bAllowDofChanges=TRUE
 }

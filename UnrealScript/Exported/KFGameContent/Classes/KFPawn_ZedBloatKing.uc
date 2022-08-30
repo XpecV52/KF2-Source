@@ -680,9 +680,6 @@ defaultproperties
    End Object
    SprintAkComponent=SprintAkComponent0
    Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:HeadshotAkComponent0'
-      BoneName="head"
-      bForceOcclusionUpdateInterval=True
-      OcclusionUpdateInterval=0.200000
       Name="HeadshotAkComponent0"
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:HeadshotAkComponent0'
    End Object
@@ -698,6 +695,7 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedBloat:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
+   bCanBePinned=False
    HitZones(0)=(GoreHealth=2147483647,DmgScale=1.100000)
    HitZones(1)=()
    HitZones(2)=()
@@ -733,7 +731,7 @@ defaultproperties
    IncapSettings(4)=(Cooldown=10.000000,Vulnerability=(0.050000,0.300000,0.050000,0.050000,0.400000))
    IncapSettings(5)=(Duration=1.250000,Cooldown=17.000000,Vulnerability=(0.050000,0.550000,0.050000,0.050000,0.550000))
    IncapSettings(6)=(Vulnerability=(0.000000))
-   IncapSettings(7)=(Cooldown=10.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000,1.000000))
+   IncapSettings(7)=(Cooldown=10.500000,Vulnerability=(1.000000,2.000000,1.000000,1.000000,2.000000))
    IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.050000,0.400000,0.050000,0.050000,0.250000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.250000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))

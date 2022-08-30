@@ -113,7 +113,7 @@ event Activated()
             WarnInternal(string(self) $ "::Activated - 'Set Maximum Health From' not set to a valid object (Float or KFScriptedPawnSpawner)");
             break;            
         }        
-        PawnStart.SpawnPawn(bSpawnInactivePawn);
+        PawnStart.StartPawn(bSpawnInactivePawn);
         LatentActors.AddItem(PawnStart;
         PawnStart.LatentActions.AddItem(self;
         bAborted = false;

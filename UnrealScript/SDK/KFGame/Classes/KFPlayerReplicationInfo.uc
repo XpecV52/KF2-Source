@@ -150,7 +150,7 @@ var				int 			VoiceCommsStatusDisplayIntervalMax;
  ************************************/
  var  		byte		SharedUnlocks;
 
-var private	int			CurrentHeadShotEffectID;
+var repnotify private int CurrentHeadShotEffectID;
 /************************************
  *  Objective
  ************************************/
@@ -171,6 +171,9 @@ var transient bool bWaitingForInventory;
 /** What character should be checked for selection once the online subsystem inventory loads */
 var transient int WaitingForInventoryCharacterIndex;
 
+/** Whether the character is currently holding a transport objective */
+var bool bCarryingCollectible;
+
 /************************************
 *  native
 ************************************/
@@ -181,7 +184,17 @@ cpptext
 
 	/** Inventory */
 	UBOOL DelayCharacterOwnership();
+
+	void LoadCosmeticContent(UKFCharacterInfo_Human* CharArch, INT CosmeticType, INT CosmeticIdx);
+	void CacheCosmeticContent(UKFCharacterInfo_Human* CharArch, INT CosmeticType, INT CosmeticIdx);
+
+	void CacheHeadshotFxContent();
+
+	virtual void AddReferencedObjects(TArray<UObject*>& ObjectArray);
 }
+
+native function bool StartLoadCosmeticContent(KFCharacterInfo_Human CharArch, INT CosmeticType, INT CosmeticIdx);
+native function StartLoadHeadshotFxContent();
 
 replication
 {
@@ -189,7 +202,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID, bCarryingCollectible;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -234,6 +247,10 @@ simulated event ReplicatedEvent(name VarName)
 	else if (VarName == 'bVOIPRegisteredWithOSS')
 	{
 		OnTalkerRegistered();
+	}
+	else if (VarName == nameof(CurrentHeadShotEffectID))
+	{
+		CurrentHeadShotEffectIdChanged();
 	}
 
 
@@ -955,6 +972,11 @@ reliable server private event ServerAnnounceNewSharedContent()
 	}
 }
 
+simulated event CurrentHeadShotEffectIdChanged()
+{
+	StartLoadHeadshotFxContent();
+}
+
 /*********************************************************************************************
 * General
 ********************************************************************************************* */
@@ -1256,11 +1278,14 @@ simulated function Texture2D GetCurrentIconToDisplay()
 defaultproperties
 {
 	// Playable characters from archetypes
+
+	// Mr. Foster is first because he is the only playable character during console installation
+	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype')
+
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Knight_Archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Mark_archetype')
-    CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype')
  	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Jagerhorn_Archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype')
     CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_Archetype')
@@ -1284,4 +1309,6 @@ defaultproperties
     VoiceCommsStatusDisplayIntervalCount=0;
 	CurrentVoiceCommsRequest = VCT_NONE
 	CurrentHeadShotEffectID=-1;
+
+	bCarryingCollectible=false;
 }

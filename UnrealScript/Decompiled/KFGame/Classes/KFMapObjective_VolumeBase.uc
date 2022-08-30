@@ -12,7 +12,9 @@ class KFMapObjective_VolumeBase extends Volume
 
 /** ============================================================================= Common objective variables============================================================================= */
 var() string LocalizationKey;
+var() string NameShortLocKey;
 var() string DescriptionLocKey;
+var() string DescriptionShortLocKey;
 var() string LocalizationPackageName;
 var() string RequirementsLocKey;
 var() bool bIsMissionCriticalObjective;
@@ -26,6 +28,7 @@ var() array< class<KFGameInfo> > GameModeBlacklist;
 var() array<float> PerPlayerSpawnRateMod;
 var() AkEvent ActivationSoundEvent;
 var() AkEvent FailureSoundEvent;
+var const Color ObjectiveIconColor;
 /**  
  *Emitter to use to visually define the area the players should hold out.
  *       Note: This is going to be removed in favor of a static mesh setup at some
@@ -115,6 +118,17 @@ simulated event PostBeginPlay()
     }
 }
 
+simulated function PlayActivationSoundEvent()
+{
+    if(Role == ROLE_Authority)
+    {
+        if(ActivationSoundEvent != none)
+        {
+            PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
+        }
+    }
+}
+
 simulated function ActivateObjective()
 {
     local int I, J;
@@ -185,6 +199,7 @@ simulated function ActivateObjective()
             goto J0x204;
         }
     }
+    SetTimer(1, false, 'PlayActivationSoundEvent');
 }
 
 simulated function DeactivateObjective()
@@ -326,14 +341,7 @@ simulated function int GetMaxVoshReward()
 
 simulated function int GetDoshReward()
 {
-    local int MaxDosh;
-
-    MaxDosh = GetMaxDoshReward();
-    if(MaxDosh == 0)
-    {
-        return MaxDosh;
-    }
-    return int(float(MaxDosh) * (GetProgress()));
+    return GetMaxDoshReward();
 }
 
 simulated function int GetVoshReward()
@@ -362,12 +370,49 @@ simulated function int GetXPReward()
 
 simulated function string GetLocalizedName()
 {
-    return Localize("Objectives", LocalizationKey, LocalizationPackageName);
+    if(LocalizationKey != "")
+    {
+        return Localize("Objectives", LocalizationKey, LocalizationPackageName);
+    }
+    return "";
+}
+
+simulated function string GetLocalizedShortName()
+{
+    if(NameShortLocKey != "")
+    {
+        return Localize("Objectives", NameShortLocKey, LocalizationPackageName);
+    }
+    return "";
 }
 
 simulated function string GetLocalizedDescription()
 {
-    return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
+    if(DescriptionLocKey != "")
+    {
+        return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
+    }
+    return "";
+}
+
+simulated function string GetLocalizedShortDescription()
+{
+    if(DescriptionShortLocKey != "")
+    {
+        return Localize("Objectives", DescriptionShortLocKey, LocalizationPackageName);
+    }
+    return "";
+}
+
+simulated function GetLocalizedStatus(out string StatusMessage, out int bWarning, out int bNotification)
+{
+    StatusMessage = "";
+    if((GetProgress()) >= 1)
+    {
+        StatusMessage = Localize("Objectives", "KillRemainingZeds", LocalizationPackageName);
+        bWarning = 0;
+        bNotification = 0;
+    }
 }
 
 simulated function float GetSpawnRateMod()
@@ -387,6 +432,23 @@ simulated function float GetSpawnRateMod()
     return 1;
 }
 
+simulated function bool HasFailedObjective()
+{
+    return (GetLivingPlayerCount()) <= 0;
+}
+
+simulated function int GetLivingPlayerCount()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        return KFGRI.GetNumPlayersAlive();
+    }
+    return 0;
+}
+
 simulated function bool IsActive()
 {
     return bActive;
@@ -402,13 +464,9 @@ simulated function float GetProgress();
 
 simulated function bool IsComplete();
 
-simulated function bool HasFailedObjective();
-
 simulated function float GetActivationPctChance();
 
-simulated function bool UsesMultipleActors();
-
-simulated function string GetActorCount();
+simulated function string GetProgressText();
 
 simulated function string GetLocalizedRequirements();
 
@@ -443,6 +501,11 @@ simulated function bool ShouldShowObjectiveContainer()
 simulated function Texture2D GetIcon()
 {
     return ObjectiveIcon;
+}
+
+simulated function Color GetIconColor()
+{
+    return ObjectiveIconColor;
 }
 
 simulated function TriggerObjectiveProgressEvent(optional int EventType, optional float ProgressMade)
@@ -493,6 +556,8 @@ simulated function TriggerObjectiveProgressEvent(optional int EventType, optiona
 
 defaultproperties
 {
+    ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_ObjectiveMode'
+    ObjectiveIconColor=(B=255,G=0,R=170,A=255)
     DoshRewards(0)=200
     DoshRewards(1)=250
     DoshRewards(2)=300

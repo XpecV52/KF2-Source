@@ -83,6 +83,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
+const KFID_ClassicPlayerInfo=173;
 #linenumber 16
 //@HSL_MOD_END
 /** Debug scene related properties */
@@ -163,7 +164,7 @@ exec function SetShellToState(int ShellIndex, byte ShellState)
 			GLBase.SetShellToState(ShellIndex, ShellState);
 		}
 	}
-	
+
 }
 
 exec function SetFakeDownloadProgress (bool bDownloading, float PercentageComplete)
@@ -209,7 +210,7 @@ exec function PrintOutCurrentPrestigeInfo()
 
 	KFPC = KFPlayerController(Outer);
 	LogInternal("Curennt perk prestige level: " @KFPC.CurrentPerk.GetPrestigeLevel());
-	
+
 	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
 
 	LogInternal("KPRI active prestige level: " @KFPRI.GetActivePerkPrestigeLevel());
@@ -7362,25 +7363,6 @@ exec function LedRestoreLighting ()
     else
     {
         LogInternal("LogtitechLED == none");
-    }
-}
-
-exec function SetMissionObjectiveProgress(float ProgressValue)
-{
-    local Pawn P;
-    local KFPlayerController KFPC;
-
-    P = GetMyPawn();
-    KFPC = KFPlayerController(Outer);
-
-    if(P == none || KFPC == None)
-    {
-        return;
-    }
-
-    if(KFPC.MyGFxHUD != none )
-    {
-        KFPC.MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetCurrentProgress(ProgressValue);
     }
 }
 

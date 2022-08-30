@@ -14,7 +14,7 @@ defaultproperties
 {
 	// Inventory / Grouping
 	InventorySize=12 //11
-	GroupPriority=100
+	GroupPriority=125
 	WeaponSelectTexture=Texture2D'WEP_UI_M99_TEX.UI_WeaponSelect_M99'
    	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
 

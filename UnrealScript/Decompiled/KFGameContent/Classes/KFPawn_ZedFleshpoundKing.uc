@@ -641,6 +641,7 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedFleshpoundKing.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
+    bCanBePinned=false
     HitZones=/* Array type was not detected. */
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedFleshpoundKing.Afflictions'
     IncapSettings=/* Array type was not detected. */

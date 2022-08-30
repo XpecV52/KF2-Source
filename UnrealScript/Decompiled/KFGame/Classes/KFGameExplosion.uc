@@ -15,12 +15,16 @@ var() class<Projectile> ShardClass;
 var() int NumShards;
 /** Impact info (decal, vfx, etc.), so that each explosion type on various surfaces can have different effects if desired. Doesn't do anything with the sound */
 var() KFImpactEffectInfo ExplosionEffects;
+/** Amount to heal humans on impact */
+var() float HealingAmount;
+var class<DamageType> HealingDamageType;
 
 // Export UKFGameExplosion::execDuplicate(FFrame&, void* const)
 native function KFGameExplosion Duplicate();
 
 defaultproperties
 {
+    HealingDamageType=Class'KFDT_Healing'
     bOrientCameraShakeTowardsEpicenter=true
     Damage=200
     DamageRadius=500

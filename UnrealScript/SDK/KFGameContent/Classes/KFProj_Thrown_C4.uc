@@ -73,7 +73,7 @@ simulated event Tick( float DeltaTime )
 {
 	super.Tick(DeltaTime);
 
-	StickHelper.Tick();
+	StickHelper.Tick(DeltaTime);
 
 	if (StuckToActor != none)
 	{

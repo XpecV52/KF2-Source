@@ -41,6 +41,7 @@ var private const array< class<KFWeaponDefinition> > PrimaryWeaponPaths;
 var private const array<string> KnifeWeaponPaths;
 var int StartingWeaponClassIndex;
 var private const array<name> TacticalReloadAsReloadRateClassNames;
+var private const float MakeThingsGoBoomExplosiveResistance;
 
 function SetPlayerDefaults(Pawn PlayerPawn)
 {
@@ -125,6 +126,10 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     }
     TempDamage = float(InDamage);
     TempDamage -= (float(InDamage) * (GetPassiveValue(DamageResistance, CurrentLevel)));
+    if(IsMakeThingsGoBoomActive())
+    {
+        TempDamage = FMax(TempDamage - (float(InDamage) * MakeThingsGoBoomExplosiveResistance), 0);
+    }
     InDamage = Round(TempDamage);
 }
 
@@ -491,6 +496,7 @@ defaultproperties
     PrimaryWeaponPaths(8)=class'KFWeapDef_MP7'
     StartingWeaponClassIndex=-1
     TacticalReloadAsReloadRateClassNames(0)=KFWeap_GrenadeLauncher_M32
+    MakeThingsGoBoomExplosiveResistance=0.4
     ProgressStatID=70
     PerkBuildStatID=71
     PerkName="Survivalist"
@@ -528,10 +534,12 @@ defaultproperties
     KnifeWeaponDef=Class'KFWeapDef_Knife_Survivalist'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'
     AutoBuyLoadOutPath(0)=class'KFWeapDef_DragonsBreath'
-    AutoBuyLoadOutPath(1)=class'KFWeapDef_M16M203'
+    AutoBuyLoadOutPath(1)=class'KFWeapDef_FreezeThrower'
     AutoBuyLoadOutPath(2)=class'KFWeapDef_MedicRifle'
+    AutoBuyLoadOutPath(3)=class'KFWeapDef_LazerCutter'
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.FreezeThrower_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.TommyGun_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.VLAD-1000Nailgun_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.Killerwatt_PrestigePrecious_Mint_large"
 }

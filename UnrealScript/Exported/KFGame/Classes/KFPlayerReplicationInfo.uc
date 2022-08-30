@@ -395,6 +395,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
+const KFID_ClassicPlayerInfo=173;
 #linenumber 22;
 
 /** The time at which this PRI left the game */
@@ -526,7 +527,7 @@ var				int 			VoiceCommsStatusDisplayIntervalMax;
  ************************************/
  var  		byte		SharedUnlocks;
 
-var private	int			CurrentHeadShotEffectID;
+var repnotify private int CurrentHeadShotEffectID;
 /************************************
  *  Objective
  ************************************/
@@ -547,6 +548,9 @@ var transient bool bWaitingForInventory;
 /** What character should be checked for selection once the online subsystem inventory loads */
 var transient int WaitingForInventoryCharacterIndex;
 
+/** Whether the character is currently holding a transport objective */
+var bool bCarryingCollectible;
+
 /************************************
 *  native
 ************************************/
@@ -558,6 +562,16 @@ var transient int WaitingForInventoryCharacterIndex;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+
+native function bool StartLoadCosmeticContent(KFCharacterInfo_Human CharArch, INT CosmeticType, INT CosmeticIdx);
+native function StartLoadHeadshotFxContent();
 
 replication
 {
@@ -565,7 +579,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID, bCarryingCollectible;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -610,6 +624,10 @@ simulated event ReplicatedEvent(name VarName)
 	else if (VarName == 'bVOIPRegisteredWithOSS')
 	{
 		OnTalkerRegistered();
+	}
+	else if (VarName == nameof(CurrentHeadShotEffectID))
+	{
+		CurrentHeadShotEffectIdChanged();
 	}
 
 
@@ -1331,6 +1349,11 @@ reliable server private event ServerAnnounceNewSharedContent()
 	}
 }
 
+simulated event CurrentHeadShotEffectIdChanged()
+{
+	StartLoadHeadshotFxContent();
+}
+
 /*********************************************************************************************
 * General
 ********************************************************************************************* */
@@ -1635,11 +1658,11 @@ defaultproperties
    bAllowDoshEarning=True
    bShowNonRelevantPlayers=True
    SecondsOfGameplay=-1
-   CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
-   CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_knight_archetype'
-   CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
-   CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_mark_archetype'
-   CharacterArchetypes(4)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype'
+   CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype'
+   CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
+   CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_knight_archetype'
+   CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
+   CharacterArchetypes(4)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_mark_archetype'
    CharacterArchetypes(5)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Jagerhorn_Archetype'
    CharacterArchetypes(6)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype'
    CharacterArchetypes(7)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_archetype'

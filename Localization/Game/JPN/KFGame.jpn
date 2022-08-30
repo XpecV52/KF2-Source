@@ -1,5 +1,5 @@
 [KFPawn_Scripted]
-ScriptedPawnString="V.I.P."
+ScriptedPawnString="護衛"
 
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="特殊エフェクト"
@@ -31,6 +31,7 @@ ModeStrings[0]="サバイバル"
 ModeStrings[1]="ウィークリー"
 ModeStrings[2]="VSサバイバル"
 ModeStrings[3]="エンドレス"
+ModeStrings[4]="任務"
 
 NoPreferenceString="何でも"
 OKString="OK"
@@ -89,15 +90,15 @@ WeaponTypeStrings[8]="近接"
 WeaponTypeStrings[9]="SMG"
 WeaponTypeStrings[10]="すべて"
 
-MixerGaveAmmoString=" Mixer視聴者のがあなたに弾薬をくれた。"
-MixerGaveArmorString=" Mixer視聴者のがあなたにアーマーをくれた。 "
-MixerGaveDoshString=" Mixer視聴者のがあなたにdoshをくれた。"
-MixerGaveGrenadeString=" Mixer視聴者のがあなたに手榴弾をくれた。"
-MixerGaveHealthString=" Mixer視聴者のがあなたを回復してくれた。"
-MixerZedTimeString=" Mixer視聴者のがZed-Timeを発動した。"
-MixerRageZedsString=" Mixer視聴者のが近くのzedを激怒させた。"
-MixerPukeString=" Mixer視聴者のがあなたに吐き掛けた"
-MixerSpawnedFPString=" Mixer視聴者のがフレッシュパウンドを生み出した。"
+MixerGaveAmmoString="Mixer視聴者のがあなたに弾薬をくれた。"
+MixerGaveArmorString="Mixer視聴者のがあなたにアーマーをくれた。"
+MixerGaveDoshString="Mixer視聴者のがあなたにdoshをくれた。"
+MixerGaveGrenadeString="Mixer視聴者のがあなたに手榴弾をくれた。"
+MixerGaveHealthString="Mixer視聴者のがあなたを回復してくれた。"
+MixerZedTimeString="Mixer視聴者のがZed-Timeを発動した。"
+MixerRageZedsString="Mixer視聴者のが近くのzedを激怒させた。"
+MixerPukeString="Mixer視聴者のがあなたに吐き掛けた"
+MixerSpawnedFPString="Mixer視聴者のがフレッシュパウンドを生み出した。"
 MixerSpawnedScrakeString="、Mixer視聴者がスクレイクをスポーンした！"
 MixerSpawnedMiniFPString="、Mixer視聴者がクォーターパウンドをスポーンした！"
 
@@ -108,7 +109,7 @@ DiscordSoloMatchString="ソロマッチ"
 DiscordMatchLobbyString=": マッチロビー"
 DiscordTraderTimeString=": トレーダータイム"
 DiscordBossWaveString=": ボスウェーブ！"
-DiscordWaveString=": ウェーブ"
+DiscordWaveString=": ウェーブ "
 
 StartOfflineGameString="オフラインゲームを開始"
 StartOfflineGameDescriptionString="オフラインゲームを開始するとパーティーが解体されます。\n続行しますか？"
@@ -141,9 +142,9 @@ CompleteMapString="マップでマッチを終了："
 KillZedsString="Zedを殺す："
 KillBossString="ボス討伐："
 KillBossDescriptionString="サバイバルまたはウィークリーで"
-VersusKillsString="次のロールで対戦プレイヤーを殺す："
-DealVersusDamageString="次のロールで対戦プレイヤーにダメージを与える："
-VersusCompletionString="次のロールででマッチを終了："
+VersusKillsString=次のロールで対戦プレイヤーを殺す：
+DealVersusDamageString=次のロールで対戦プレイヤーにダメージを与える：
+VersusCompletionString=次のロールででマッチを終了：
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="マッチが見つかりませんでした"
@@ -1246,6 +1247,7 @@ ReduceHighPitchNoiseString="高ピッチ音を減少"
 DisableAutoUpgradeString="オートトレードを無効化"
 HideRemodeHeadshotEffectsString="遠隔ヘッドショットエフェクトを無効化"
 ToggleToRunString="切り替えてダッシュ"
+ClassicPlayerInfoString="以前のヘルスバー"
 
 EnableMixerString="Mixer設定"
 DisableMixerString="Mixerを無効化"
@@ -1737,7 +1739,7 @@ Vampire="吸血鬼"
 VampireDescription="Perk武器でzedをキルする毎に、ヘルスを4ポイント回復する。Perk近接武器での攻撃が20%速くなる。"
 
 Speed="肉屋"
-SpeedDescription="Perk近接武器により攻撃が20%速くなり、ダメージが25%増加する。"
+SpeedDescription="Perk近接武器により攻撃が20%速くなり、ダメージが20%増加する。"
 
 Resistance="耐性"
 ResistanceDescription="全ダメージに対して20%耐性を得る。毒および音波攻撃に対しては、さらに20%耐性を得る。"
@@ -1755,7 +1757,7 @@ Spartan="Zed-Time―スパルタン"
 SpartanDescription="Zed-Time中、Perk武器で攻撃し、リアルタイムで動作する。"
 
 Rage="Zed-Time―バーサーカーの怒り"
-RageDescription="Zed-Time中、ヘルスを25%回復し、近くにいるzedが逃げようとする。"
+RageDescription="Zed Timeが起動、または更新される度に25%のヘルスを回復し、付近のZedを強制的に撤退させる。"
 
 [KFPerk_Commando]
 PerkName="コマンドー"
@@ -1768,7 +1770,7 @@ SkillCatagories[4]="高度訓練"
 
 Passives[0]=(Title="Perk武器ダメージ",Description="レベル毎に、Perk武器ダメージが%x%増加する");
 Passives[1]=(Title="クロークした敵＆ヘルスバー検知",Description="レベル毎に、レンジが5m+%x%m");
-Passives[2]=(Title="Zed-Time延長",Description="5レベル毎に、Zed-Timeが%x%増加する");
+Passives[2]=(Title="Zed Time更新",Description="5レベル毎に、Zed-Timeが%x%増加する");
 Passives[3]=(Title="リロード速度",Description="5レベル毎に、Perk武器のリロード速度が%x%%増加する");
 Passives[4]=(Title="暗視能力",Description="懐中電灯―プラス暗視ゴーグル");
 Passives[5]=(Title="クロークしたZedの存在を知らせる",Description="チームメイトはクロークしたユニットを見れる");
@@ -1783,7 +1785,7 @@ LargeMags="高容量マガジン"
 LargeMagsDescription="Perk武器のマガジン容量が50%増加する。"
 
 Backup="予備"
-BackupDescription="9mmピストルおよびナイフによるダメージが50%増加し、武器切り替え速度が50%増加する。"
+BackupDescription="9mmピストルおよびナイフによるダメージが85%増加し、武器切り替え速度が50%増加する。"
 
 Impact="衝撃弾"
 ImpactDescription="Perk武器の怯みパワーが150%増加する。"
@@ -1795,7 +1797,7 @@ AmmoVest="準備済み"
 AmmoVestDescription="各Perk武器毎に、運べる弾薬が20%増加する。"
 
 HollowPoints="ホローポイント弾"
-HollowPointsDescription="Perk武器によるダメージが25%増加し、反動が50%減少する。"
+HollowPointsDescription="Perk武器によるダメージが20%増加し、反動が50%減少する。"
 
 EatLead="鉛を食らえ"
 EatLeadDescription="Perk武器のマガジン容量が100%増加する。"
@@ -1829,13 +1831,13 @@ Damage="爆撃手"
 DamageDescription="爆発Perk武器によるダメージが25%増加する。"
 
 Speed="ショックトルーパー"
-SpeedDescription="Perk武器のリロードが20%速くなり、ノックダウンおよび怯みパワーが25%増加する。"
+SpeedDescription="Perk武器のリロード速度が上昇し、ノックダウンパワーが10%増加する。"
 
 DirectHit="高衝撃弾"
-DirectHitDescription="爆発武器による直接ヒットダメージが20%増加する。"
+DirectHitDescription="榴弾による直接ヒットダメージが25%増加する。"
 
 Ammo="追加弾"
-AmmoDescription="爆発Perk武器の最大弾薬が5増加する。"
+AmmoDescription="爆発Perk武器の最大弾薬が5増加する。これはC4には適用しない。"
 
 SirenResistance="音波耐性弾"
 SirenResistanceDescription="爆発物がサイレンの叫び声の影響を受けず、必ず爆発する。"
@@ -1884,13 +1886,13 @@ Combatant="戦闘医"
 CombatantDescription="Perk武器のマガジン容量が50%、移動速度が10%増加する。"
 
 HealingDamageBoost="集中力注入"
-HealingDamageBoostDescription="回復ダーツでチームメイトを打つと、5秒間、与えるダメージが5%増加する。最大20%ボーナスまで積み上げることが可能。 "
+HealingDamageBoostDescription="回復ダーツでチームメイトを打つと、5秒間、与えるダメージが5%増加する。最大20%ボーナスまで積み上げることが可能。"
 
 AcidicCompound="酸性弾"
 AcidicCompoundDescription="Perk武器がzedに毒を与え、時間経過で毒ダメージを与える。"
 
 HealingShield="凝固剤ブースター"
-HealingShieldDescription="回復ダーツでチームメイトを打つと、5秒間、ダメージ耐性が10%増加する。最大30%ボーナスまで積み上げることが可能。 "
+HealingShieldDescription="回復ダーツでチームメイトを打つと、5秒間、ダメージ耐性が10%増加する。最大30%ボーナスまで積み上げることが可能。"
 
 Enforcer="戦う軍医"
 EnforcerDescription="Perk武器によるダメージが20%増加する。"
@@ -1899,7 +1901,7 @@ AirborneAgent="Zed-Time―空中化学物質"
 AirborneAgentDescription="Zed-Time中、回復ガスを放出し、近くにいるチームメイトを回復する。"
 
 Sedative="Zed-Time―鎮静剤"
-SedativeDescription="Zed-Time中、Perk武器でzedにダメージを与えるとzedの速度が30%減少し、大量の毒ダメージを与える。 "
+SedativeDescription="Zed-Time中、Perk武器でzedにダメージを与えるとzedの速度が30%減少し、大量の毒ダメージを与える。"
 
 
 EXPAction1="メディック武器でダメージを与える"
@@ -1908,7 +1910,7 @@ EXPAction2="チームメイトを回復する"
 [KFPerk_Firebug]
 PerkName="ファイアバグ"
 EXPAction1="ファイアバグ武器でダメージを与える"
-EXPAction2="ファイアバグ武器でクローラーをキルする"
+EXPAction2="ファイアバグ武器でブロートとクローラーをキルする"
 
 SkillCatagories[0]="物資"
 SkillCatagories[1]="スパイシー"
@@ -1932,7 +1934,7 @@ Fuse="バーベキュー"
 FuseDescription="Perk武器の燃焼効果の持続時間が150%増加し、時間経過でダメージが増加する。"
 
 GroundFire="地上炎"
-GroundFireDescription="地上炎はダメージを大幅に増加し、zedの移動速度が20%減少する。"
+GroundFireDescription="地上炎はダメージを2倍にし、Zedの移動速度が30%減少する。これはモロトフには適用しない。"
 
 ZedShrapnel="zed榴散弾"
 ZedShrapnelDescription="炎でキルしたzedは30%の確率で爆発し、近くのzedにダメージを与えてスタンする。"
@@ -1941,7 +1943,7 @@ Napalm="ナパーム"
 NapalmDescription="燃焼中のzedが他のzedに触れると着火し、燃焼効果の持続時間が150%増加する。"
 
 Range="ファイアーストーム"
-RangeDescription="Perk武器のレンジが増加する。"
+RangeDescription="コーク&バーン、火炎放射器とマイクロ波銃の範囲を増加する。"
 
 SplashDamage="熱波"
 SplashDamageDescription="至近距離から炎で攻撃を受けたzedが後ろによろめく。"
@@ -2037,7 +2039,7 @@ Scoped="射撃の名手"
 ScopedDescription="Perk武器でアイアンサイトを使用中、反動が10%減少し、ヘッドショットダメージが10%増加する。"
 
 AmmoPouch="常に準備万端"
-AmmoPouchDescription="Perk武器および手榴弾で、運べる弾薬が25%増加する。"
+AmmoPouchDescription="手榴弾を一つ追加で運ぶと、Perk武器用の弾薬が25%増加する。"
 
 ZTKnockdown="Zed-Time―暗殺者"
 ZTKnockdownDescription="Perk武器によるヘッドショットが、5%の確率でZed-Timeをトリガーする。Zed-Time中、Perk武器によるヘッドショットダメージが35%増加する。"
@@ -2117,7 +2119,7 @@ TacticalMovement="戦術的移動"
 TacticalMovementDescription="Perk武器でアイアンサイトやしゃがみ動作を使用することによる動作ペナルティはありません。"
 
 Backup="接近戦訓練"
-BackupDescription="9mmピストルおよびナイフによるダメージが50%増加する。各ゲームをデュアル9mmピストルで開始する。"
+BackupDescription="9mmピストルおよびナイフによるダメージが85%増加する。各ゲームをデュアル9mmピストルで開始する。"
 
 TacticalReload="戦術的リロード"
 TacticalReloadDescription="Perk武器のリロード速度が上昇する。"
@@ -2132,10 +2134,10 @@ BodyArmor="アサルトアーマー"
 BodyArmorDescription="最大アーマーが50%増加する。各ゲームを50%アーマーで開始し、これはヘビーアーマー訓練で獲得したアーマーとスタックする。"
 
 Cripple="廃人"
-CrippleDescription="Perk武器による複数ヒットで、zedが最大30%遅くなる。脚にヒットさせると効果最大。"
+CrippleDescription="Perk武器による複数ヒットで、Zedが最大30%遅くなる。頭部や弱点へのショットは2倍の速さでこの効果が適用される。"
 
 SWATEnforcer="Zed-Time―破壊槌"
-SWATEnforcerDescription="Zed-Time中、あなたはリアルタイムで動き、zedに遭遇すると圧倒的なノックダウンパワーを持つ。"
+SWATEnforcerDescription="Zed Timeの間、リアルタイムで動きが速くなり、あなたに触れるZedへ大きなダメージとノックダウンを与える。"
 
 RapidAssault="Zed-Time―素早い攻撃"
 RapidAssaultDescription="Zed-Time中、Perk武器を使用中は弾薬が無限になり、ほぼリアルタイムで発射し、怯みパワーが100%増加する。"
@@ -2179,7 +2181,7 @@ ZedShrapnel="自発的zed爆発"
 ZedShrapnelDescription="キルしたzedは30%の確率で爆発し、近くのzedにダメージを与えてスタンする。"
 
 MakeThingsGoBoom="ドカンと一発"
-MakeThingsGoBoomDescription="全爆発物の影響範囲が40%増加する。"
+MakeThingsGoBoomDescription="爆発物耐性を40%増加し、全爆発物の影響範囲が40%増加する。"
 
 Madman="Zed-Time―狂人"
 MadmanDescription="Zed-Time中、全武器の発射速度が3倍になる。"
@@ -2338,25 +2340,53 @@ FreeTrial="今すぐKilling Floor 2を購入！"
 FeaturedCrossover="コラボプロモーション"
 
 [Objectives]
+ObjectiveTitle="任務"
 HoldVolume="エリアを守備せよ"
 DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="意志を貫け"
 RequiredDoshHold="必要プレイヤー:"
 DoschHoldDesc="マークされたエリアにZedを入れるな"
 DescriptionDoshHold="マークされたエリアにZedを入れるな"
+DescriptionDoshHoldShort="ゾーンを防衛(追加)"
 RepairObjective="溶接して修理しよう"
-UseWelderToRepair="溶接機を使って目標を修理しよう"
-RepairObjectiveRequired="復旧する任務："
+UseWelderToRepair="溶接機を使って壊れた機械を修理する"
+UseWelderToRepairShort="壊れた機械を溶接する"
+UseWelderToRepairTraderPod="溶接機を使って壊れたトレーダーポッドを修理する"
+UseWelderToRepairTraderPodShort="トレーダーポッドを溶接する"
+RepairObjectiveRequired="修理する壊れた機械："
 EscortPawnsObjective="護衛"
-EscortPawnsDescription="Zedからターゲットを保護する"
+EscortPawnsDescription="Zedからドローンを護衛して防衛する"
+EscortPawnsDescriptionShort="ドローンを護衛する"
 RequiredHoldVolume="RequiredHoldVolume"
 DestroyActor="追跡と破壊"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="操縦可能"
-DescriptionActivateTrigger="制御装置を起動しよう"
+DescriptionActivateTrigger="操作コンソールを起動する"
+DescriptionActivateTriggerShort="コンソールを起動する"
+DescriptionActivateTriggerFlares="照明弾ランチャーを起動する"
+DescriptionActivateTriggerFlaresShort="照明弾ランチャーを起動する"
+DescriptionActivateTriggerServer="サーバー端末をオーバーロードさせる"
+DescriptionActivateTriggerServerShort="サーバー端末をオーバーロードさせる"
+DescriptionActivateTriggerCommTower="通信タワーをオーバーロードさせる"
+DescriptionActivateTriggerCommTowerShort="通信タワーをオーバーロードさせる"
 RequiredActivateTrigger="起動に必要なもの:"
+ExterminateWaveObjective="絶滅"
+ExterminateWaveDescription="全てのZedを殺す"
+ExterminateWaveDescriptionShort="全てのZedを殺す"
+ExterminateWaveRequired="排除すべきZed："
+HoldZoneObjective="意志を貫け"
+HoldZoneDescription="ハイライトされたエリアをZedから守る"
+HoldZoneDescriptionShort="ハイライトされたエリアを守る"
+HoldZoneRequired="防衛する時間："
+TransportWaveObjective="輸送"
+TransportWaveDescription="配達地点へデータパッドを届ける"
+TransportWaveDescriptionShort="データパッドを届ける"
+TransportWaveDescriptionGear="配達地点へ装備を届ける"
+TransportWaveDescriptionGearShort="装備を届ける"
+RequiredCollectActor="必要配達数:"
 FailedString="失敗"
+SuccessString="終了"
 RepairObjSantaWorkshopCustomTitle1="動力を修理する"
 RepairObjSantaWorkshopCustomDescr1="溶接機で壊れた回路基板を 3 つ修理する"
 RepairObjSantaWorkshopCustomTitle2="門を修理する"
@@ -2373,6 +2403,20 @@ OperateObjSantaWorkshopCustomTitle2="レバーを引く"
 OperateObjSantaWorkshopCustomDescr2="Zed をゾーンに近づけない"
 OperateObjSantaWorkshopCustomTitle3="レバーを引く"
 OperateObjSantaWorkshopCustomDescr3="Zed をゾーンに近づけない"
+TooFewPlayers="プレイヤーが少な過ぎます"
+TooManyZeds="Zedが多過ぎます"
+KillRemainingZeds="全てのZedを殺す"
+BeingAttacked="攻撃されています"
+LowHealth="ヘルス低下"
+Stopped="停止"
+Blocked="Zedによりブロックされました"
+NeedsRepair="修理が必要です"
+Dropped="ドロップ済み"
+PickedUp="ピックアップ済み"
+PickupTransportItem="物資をピックアップ"
+Reset="リセット"
+Ready="準備完了"
+NotReady="準備未完了"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2526,10 +2570,10 @@ Source0="騎士道プロモ"
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
-SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
-SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
-SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1")
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
@@ -2539,11 +2583,11 @@ ChanceDropDescriptionStrings[1]="ドロップ2"
 [KFGFxSummerSideShowObjectivesContainer]
 CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="空中での修理",DescriptionString="飛行船で壊れたパイプを修理する");
-SpecialEventObjectiveInfoList[1]=(TitleString="上面デッキで成功",DescriptionString="飛行船で上面デッキを防衛する");
-SpecialEventObjectiveInfoList[2]=(TitleString="パワーアップ！",DescriptionString="飛行船でブレーカーボックスを修理する");
-SpecialEventObjectiveInfoList[3]=(TitleString="フラッシュラッシュ",DescriptionString="飛行船で蒸気機関に水を送る");
-SpecialEventObjectiveInfoList[4]=(TitleString="上等な船",DescriptionString="飛行船にてHard以上でマッチに勝利する");
+SpecialEventObjectiveInfoList[0]=(TitleString="空中での修理",DescriptionString="飛行船で壊れたパイプを修理する")
+SpecialEventObjectiveInfoList[1]=(TitleString="上面デッキで成功",DescriptionString="飛行船で上面デッキを防衛する")
+SpecialEventObjectiveInfoList[2]=(TitleString="パワーアップ！",DescriptionString="飛行船でブレーカーボックスを修理する")
+SpecialEventObjectiveInfoList[3]=(TitleString="フラッシュラッシュ",DescriptionString="飛行船で蒸気機関に水を送る")
+SpecialEventObjectiveInfoList[4]=(TitleString="上等な船",DescriptionString="飛行船にてHard以上でマッチに勝利する")
 
 AllCompleteRewardDescriptionString="スチームパンク服バンドル"
 
@@ -2553,11 +2597,11 @@ ChanceDropDescriptionStrings[1]="黄金チケット"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="Monster Ballで任務をクリアして報酬をもらおう！"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="トリック・オア・トラップ！",DescriptionString="トラップを使用して1回のゲームセッションでZed25体をキル");
-SpecialEventObjectiveInfoList[1]=(TitleString="死人に口なし",DescriptionString="コレクト可能アイテムの輝く頭蓋骨10個を破壊");
-SpecialEventObjectiveInfoList[2]=(TitleString="モンスターマッシュ",DescriptionString="Zed2500体をキル");
-SpecialEventObjectiveInfoList[3]=(TitleString="朝までパーティー",DescriptionString="エンドレスHard以上の難易度でウェーブ25をクリアする");
-SpecialEventObjectiveInfoList[4]=(TitleString="城の主",DescriptionString="サバイバルHard以上の難易度でハンス伯爵を倒す");
+SpecialEventObjectiveInfoList[0]=(TitleString="トリック・オア・トラップ！",DescriptionString="トラップを使用して1回のゲームセッションでZed25体をキル")
+SpecialEventObjectiveInfoList[1]=(TitleString="死人に口なし",DescriptionString="コレクト可能アイテムの輝く頭蓋骨10個を破壊")
+SpecialEventObjectiveInfoList[2]=(TitleString="モンスターマッシュ",DescriptionString="Zed2500体をキル")
+SpecialEventObjectiveInfoList[3]=(TitleString="朝までパーティー",DescriptionString="エンドレスHard以上の難易度でウェーブ25をクリアする")
+SpecialEventObjectiveInfoList[4]=(TitleString="城の主",DescriptionString="サバイバルHard以上の難易度でハンス伯爵を倒す")
 
 AllCompleteRewardDescriptionString="ハンスのMKB：武器 + ハロウィーンスキン"
 
@@ -2567,11 +2611,11 @@ ChanceDropDescriptionStrings[1]="黄金チケット"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="完璧なるギフト",DescriptionString="サバイバル Hard 以上の難易度で、台車を使った護衛任務すべてを無傷(体力満タン)の状態でクリアする");
-SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリースペシャル",DescriptionString="ショッピング三昧でウィークリーをクリア");
-SpecialEventObjectiveInfoList[2]=(TitleString="殺戮の旅",DescriptionString="Zed 2500 体をキル");
-SpecialEventObjectiveInfoList[3]=(TitleString="栗あぶり",DescriptionString="ボス 25 体をキル");
-SpecialEventObjectiveInfoList[4]=(TitleString="工房の大乱闘",DescriptionString="サンタの工房でサバイバル Hard 以上の難易度でクランプスを倒す");
+SpecialEventObjectiveInfoList[0]=(TitleString="完璧なるギフト",DescriptionString="サバイバル Hard 以上の難易度で、台車を使った護衛任務すべてを無傷(体力満タン)の状態でクリアする")
+SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリースペシャル",DescriptionString="ショッピング三昧でウィークリーをクリア")
+SpecialEventObjectiveInfoList[2]=(TitleString="殺戮の旅",DescriptionString="Zed 2500 体をキル")
+SpecialEventObjectiveInfoList[3]=(TitleString="栗あぶり",DescriptionString="ボス 25 体をキル")
+SpecialEventObjectiveInfoList[4]=(TitleString="工房の大乱闘",DescriptionString="サンタの工房でサバイバル Hard 以上の難易度でクランプスを倒す")
 
 AllCompleteRewardDescriptionString="バトルアックス + Xmas スキン"
 
@@ -2582,11 +2626,11 @@ ChanceDropDescriptionStrings[1]="黄金チケット"
 CurrentSpecialEventString="台単なるエンドレスチャレンジ"
 CurrentSpecialEventDescriptionString="ウェーブを打ち破って伝説的な報酬を手に入れよう！"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="エンドレステストダミー",DescriptionString="エンドレスモードでウェーブ5をクリア",TierEventRewardName="クラシックD.A.R.");
-SpecialEventObjectiveInfoList[1]=(TitleString="エンドレスドローン",DescriptionString="エンドレスモードでウェーブ10をクリア",TierEventRewardName="ローダーD.A.R.");");
-SpecialEventObjectiveInfoList[2]=(TitleString="エンドレスセントリー",DescriptionString="エンドレスモードでウェーブ15をクリア",TierEventRewardName="スカリーD.A.R.");");
-SpecialEventObjectiveInfoList[3]=(TitleString="エンドレスウォーマシン",DescriptionString="エンドレスモードでウェーブ20をクリア",TierEventRewardName="ブラッディ－D.A.R.");");
-SpecialEventObjectiveInfoList[4]=(TitleString="エンドレスオプティマスD.A.R.",DescriptionString="エンドレスウェーブ25をクリア",TierEventRewardName="ゴールデンD.A.R.");
+SpecialEventObjectiveInfoList[0]=(TitleString="エンドレステストダミー",DescriptionString="エンドレスモードでウェーブ5をクリア",TierEventRewardName="クラシックD.A.R.")
+SpecialEventObjectiveInfoList[1]=(TitleString="エンドレスドローン",DescriptionString="エンドレスモードでウェーブ10をクリア",TierEventRewardName="ローダーD.A.R.")
+SpecialEventObjectiveInfoList[2]=(TitleString="エンドレスセントリー",DescriptionString="エンドレスモードでウェーブ15をクリア",TierEventRewardName="スカリーD.A.R.")
+SpecialEventObjectiveInfoList[3]=(TitleString="エンドレスウォーマシン",DescriptionString="エンドレスモードでウェーブ20をクリア",TierEventRewardName="ブラッディ－D.A.R.")
+SpecialEventObjectiveInfoList[4]=(TitleString="エンドレスオプティマスD.A.R.",DescriptionString="エンドレスウェーブ25をクリア",TierEventRewardName="ゴールデンD.A.R.")
 
 [KFGFxSpring2019ObjectivesContainer]
 CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
@@ -2598,6 +2642,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="エンドレスSpillway",Descript
 SpecialEventObjectiveInfoList[4]=(TitleString="スピリングブラッド",DescriptionString="サバイバルHardかそれ以上の難易度で、Spillwayにてボスを倒す")
 
 AllCompleteRewardDescriptionString="男性用と女性用のサイバーパンク衣装"
+
+ChanceDropDescriptionStrings[0]="景品チケット"
+ChanceDropDescriptionStrings[1]="黄金チケット"
+
+[KFGFxSummer2019ObjectivesContainer]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="打ち上げ完了！",DescriptionString="任務Hardかそれ以上の難易度でSteam Fortressをクリアする")
+SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリー点検",DescriptionString="Steam Fortressでウィークリーをクリアする")
+SpecialEventObjectiveInfoList[2]=(TitleString="終わらないスチーム",DescriptionString="エンドレスHardかそれ以上の難易度で、Steam Fortressでのウェーブ15をクリアする")
+SpecialEventObjectiveInfoList[3]=(TitleString="致命的な往復の旅",DescriptionString="任務Hardかそれ以上の難易度で、Zed Landingをクリアする")
+SpecialEventObjectiveInfoList[4]=(TitleString="冷ややかな見返り",DescriptionString="任務Hardかそれ以上の難易度で、Outpostをクリアする")
+
+AllCompleteRewardDescriptionString="男性用と女性用のスチームパンク衣装"
 
 ChanceDropDescriptionStrings[0]="景品チケット"
 ChanceDropDescriptionStrings[1]="黄金チケット"
@@ -2618,7 +2676,7 @@ KnifeString="ナイフ"
 FriendlyName="脳割り"
 DescriptionStrings[0]="脳へのダメージが一番。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このアウトブレイクではzedの突然変異が進み、頭へのダメージ以外では倒すことができなくなっている。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。 "
+ModifierDescriptions[0]="このアウトブレイクではzedの突然変異が進み、頭へのダメージ以外では倒すことができなくなっている。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2628,7 +2686,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="小さな脅威"
 DescriptionStrings[0]="小さな脅威でも脅威には変わりない。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このアウトブレイクでzedを撃つと、zedが小さくなり撃ちにくくなる。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。 "
+ModifierDescriptions[0]="このアウトブレイクでzedを撃つと、zedが小さくなり撃ちにくくなる。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2638,7 +2696,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="パウンドパーティー"
 DescriptionStrings[0]="いつでもすべてフレッシュパウンド。ほぼいつでも。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="フレッシュパウンド集会の開催だ！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。 "
+ModifierDescriptions[0]="フレッシュパウンド集会の開催だ！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2658,7 +2716,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Zed Time"
 DescriptionStrings[0]="Zed Timeはたっぷりある。"
 DescriptionStrings[1]="長さ：ショート（4ウェーブ）"
-ModifierDescriptions[0]="人生を無駄に過ごしていると思ったことってない？そんなことは、このアウトブレイクではあり得ない！Zedの近くにいる限り、常にZed Timeが起きる。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。 "
+ModifierDescriptions[0]="人生を無駄に過ごしていると思ったことってない？そんなことは、このアウトブレイクではあり得ない！Zedの近くにいる限り、常にZed Timeが起きる。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2667,7 +2725,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="ドカーン！"
 DescriptionStrings[0]="追い詰められたZedは爆発するかも。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="何か変なものでも食べたのかな？ガスが溜まってるとか？何であれ、このアウトブレイクではZedを倒すと爆発するぞ。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。 "
+ModifierDescriptions[0]="何か変なものでも食べたのかな？ガスが溜まってるとか？何であれ、このアウトブレイクではZedを倒すと爆発するぞ。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2676,7 +2734,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="ビーフケーキ"
 DescriptionStrings[0]="大きければ大きいほど、激しく痛い目にあう。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このアウトブレイクでは、Zedの攻撃がプレイヤーに当たったり、特定のzed能力に影響を受けていたりすると、zedのヘルス、サイズ、リーチが増加する。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。 "
+ModifierDescriptions[0]="このアウトブレイクでは、Zedの攻撃がプレイヤーに当たったり、特定のzed能力に影響を受けていたりすると、zedのヘルス、サイズ、リーチが増加する。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2686,7 +2744,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="首振りZed"
 DescriptionStrings[0]="きっと首が痛いに違いない…"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このZedの群れには何か大変なことが起きてしまい、頭が異常に大きくなっている。デカすぎる！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。 "
+ModifierDescriptions[0]="このZedの群れには何か大変なことが起きてしまい、頭が異常に大きくなっている。デカすぎる！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3113,6 +3171,9 @@ GameName="ウィークリー"
 [Endless KFGameInfoSummary]
 GameName="エンドレス"
 
+[Objective KFGameInfoSummary]
+GameName="任務"
+
 [KF-VolterManor KFMapSummary]
 DisplayName="Volter Manor"
 
@@ -3181,6 +3242,9 @@ DisplayName="サンタの工房"
 
 [KF-Spillway KFMapSummary]
 DisplayName="Spillway"
+
+[KF-SteamFortress KFMapSummary]
+DisplayName="Steam Fortress"
 
 [KFMapInfo]
 ; defaults

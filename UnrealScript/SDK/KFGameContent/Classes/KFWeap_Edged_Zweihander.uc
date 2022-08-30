@@ -58,7 +58,7 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=63
 
 	// Inventory
-	GroupPriority=85
+	GroupPriority=75
 	InventorySize=7
 	WeaponSelectTexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'

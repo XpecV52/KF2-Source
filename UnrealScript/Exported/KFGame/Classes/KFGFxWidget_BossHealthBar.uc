@@ -172,14 +172,15 @@ function UpdateEscortPawnHealth()
 	if (EscortPawn.CurrentState != LastState)
 	{
 		LastState = EscortPawn.CurrentState;
-		UpdateEscortPawnStateColor(EscortPawn.CurrentState);
+		UpdateEscortPawnStateColor(EscortPawn.ScriptedCharArch.States[EscortPawn.CurrentState].PawnHealthBarColor);
 	}
 	SetFloat("currentHealthPercentValue", EscortPawn.GetHealthPercent());
 }
 
-function UpdateEscortPawnStateColor(int PawnState)
+function UpdateEscortPawnStateColor(Color PawnColor)
 {
-	SetInt("currentBattlePhaseColor", BattlePhaseColors[PawnState]);
+	// RBG to Hex
+	SetInt("currentBattlePhaseColor", PawnColor.R << 16 | PawnColor.G << 8 | PawnColor.B);
 }
 
 function UpdateBossHealth()

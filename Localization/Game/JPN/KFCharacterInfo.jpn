@@ -3361,7 +3361,7 @@ EmoteName="シビれる"
 EmoteName="火の玉"
 
 [Makeitrain]
-EmoteName="まき散らせ"
+EmoteName="まき散らせ "
 
 [Fireball_Deluxe]
 EmoteName="火の玉+"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="レッド"
 AttachmentSkin2="希少"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="ホロアームバンド C"
+Attachment="ホロアームバンド B"
 AttachmentSkin0="ブルー"
 AttachmentSkin1="レッド"
 AttachmentSkin2="希少"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="グリーン"
 AttachmentSkin3="ライム"
 AttachmentSkin4="レッド"
 AttachmentSkin5="ホワイト"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="プロジェクトH 01 ベース"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="希少"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="プロジェクトH 01 幸せ"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="プロジェクトH 01 幸せオフ"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="プロジェクトH 01 中立"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="プロジェクトH 01 中立オフ"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="プロジェクトH 01 不幸"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="プロジェクトH 01 不幸オフ"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="プロジェクトH 02 ベース"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="希少"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="プロジェクトH 02 幸せ"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="プロジェクトH 02 幸せオフ"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="プロジェクトH 02 中立"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="プロジェクトH 02 中立オフ"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="プロジェクトH 02 不幸"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="プロジェクトH 02 不幸オフ"
+AttachmentSkin0="ブルー"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="レッド"
+AttachmentSkin3="希少"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="スチームパンク クリスタルモノクル"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="スチームパンク スカルベレー"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="スチームパンク くちばしマスク"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="スチームパンク クロウホーク"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="スチームパンク レザーゴーグル"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="スチームパンク レザーガスマスク"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="スチームパンク キーリュック"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="スチームパンク タイマーアームバンド"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="スチームパンク 配達人リュック"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="スチームパンク テスラリュック"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="スチームパンク Zedリュック"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="スチームパンク タイムリュック"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="スチームパンク オクトバンド"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="スチームパンク 船長の帽子"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="スチームパンク ボイラーの帽子"
+AttachmentSkin0="スタンダード"
+AttachmentSkin1="クローム"
+AttachmentSkin2="希少"

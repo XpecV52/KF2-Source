@@ -175,6 +175,7 @@ simulated function ActivateObjective()
             SetTimer(PenaltyStartupTimer, false, 'StartPenaltyCheck');
         }
         SetTimer(0.01, false, 'ActivationVO');
+        SetTimer(1, true, 'Timer_CheckPawnCount');
         SetTimer(1, true, 'Timer_CheckWaveProgress');
         PrevWaveProgress = 0;
         bRemindPlayers = true;
@@ -219,6 +220,15 @@ simulated function Timer_CheckWaveProgress()
     }
 }
 
+simulated function Timer_CheckPawnCount()
+{
+    local int PlayerCount;
+
+    PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
+    bTooFewPlayers = TouchingHumans.Length < PlayerThresholds[PlayerCount];
+    bTooManyZeds = TouchingZeds.Length > ZedThresholds[PlayerCount];
+}
+
 simulated function DeactivateObjective()
 {
     local KFPawn_Human KFPH;
@@ -233,6 +243,7 @@ simulated function DeactivateObjective()
         ClearTimer('StartPenaltyCheck');
         ClearTimer('Timer_AllowRemindPlayers');
         ClearTimer('Timer_CheckWaveProgress');
+        ClearTimer('Timer_CheckPawnCount');
         bOneHumanAlive = false;
         foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
         {
@@ -333,6 +344,11 @@ function PlayDeactivationDialog()
     }
 }
 
+simulated function int GetDoshReward()
+{
+    return int(CurrentRewardAmount);
+}
+
 simulated function float GetProgress()
 {
     local int MaxDoshReward;
@@ -372,6 +388,26 @@ simulated function string GetLocalizedRequirements()
     return (Localize("Objectives", default.RequirementsLocKey, "KFGame")) @ string(PlayerThresholds[PlayerCount]);
 }
 
+simulated function GetLocalizedStatus(out string StatusMessage, out int bWarning, out int bNotification)
+{
+    StatusMessage = "";
+    if(bTooFewPlayers)
+    {
+        StatusMessage = Localize("Objectives", "TooFewPlayers", LocalizationPackageName);
+        bWarning = 1;
+        return;        
+    }
+    else
+    {
+        if(bTooManyZeds)
+        {
+            StatusMessage = Localize("Objectives", "TooManyZeds", LocalizationPackageName);
+            bWarning = 1;
+            return;
+        }
+    }
+}
+
 simulated function bool HasFailedObjective()
 {
     return (GetProgress()) <= 0;
@@ -400,9 +436,10 @@ defaultproperties
     ZedThresholds[4]=2
     ZedThresholds[5]=1
     LocalizationKey="DoshHold"
+    NameShortLocKey="DoshHold"
     DescriptionLocKey="DescriptionDoshHold"
+    DescriptionShortLocKey="DescriptionDoshHoldShort"
     RequirementsLocKey="RequiredDoshHold"
-    ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

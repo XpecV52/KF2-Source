@@ -139,7 +139,7 @@ simulated function FireAmmunition()
         default:
             break;
     }
-    if((CurrentFireMode == 0) || (GetChargeLevel()) < 1)
+    if(CurrentFireMode == 0)
     {
         ConsumeAmmo(CurrentFireMode);
     }
@@ -337,6 +337,16 @@ simulated function PlayFiringSound(byte FireModeNum)
             }
         }
     }
+}
+
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 5;
+}
+
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTraderFilter()
+{
+    return 7;
 }
 
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -587,6 +597,10 @@ simulated state SprayingFireLazer extends SprayingFire
         ChargeLevel = float(GetChargeLevel());
         bPlayMuzzleFlash = true;
         FlashTime = 0;
+        if(TotalChargeTime < ChargeConsumeTime)
+        {
+            ConsumeAmmo(CurrentFireMode);
+        }
         if((ChargeLevel >= float(0)) && ChargeLevel < float(FireLoopSounds.Length))
         {
             KFPawn(Instigator).PlayWeaponSoundEvent(FireLoopSounds[int(ChargeLevel)]);
@@ -715,7 +729,7 @@ simulated state SprayingFireLazer extends SprayingFire
                                     {
                                         HitLocation = DamageHitLocations[I];
                                     }
-                                    HitPawn.TakeDamage(int(InstantHitDamage[1] + (float(GetChargeLevel()) * DamagePerChargeLevel)), OwnerPawn.Controller, HitLocation, vect(0, 0, 0), InstantHitDamageTypes[1]);                                    
+                                    HitPawn.TakeDamage(int(InstantHitDamage[1] + (float(GetChargeLevel()) * DamagePerChargeLevel)), OwnerPawn.Controller, HitLocation, vect(0, 0, 0), InstantHitDamageTypes[1],, self);                                    
                                 }
                                 else
                                 {
@@ -914,7 +928,7 @@ defaultproperties
     PlayerIronSightFOV=70
     DOF_FG_FocalRadius=85
     DOF_FG_MaxNearBlurSize=2.5
-    GroupPriority=50
+    GroupPriority=125
     WeaponSelectTexture=Texture2D'WEP_UI_Laser_Cutter_TEX.UI_WeaponSelect_Laser_Cutter'
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=300

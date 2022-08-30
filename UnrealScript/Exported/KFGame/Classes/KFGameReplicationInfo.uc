@@ -57,6 +57,7 @@ var class<KFTraderVoiceGroupBase>		TraderVoiceGroupClass;
 
 var repnotify bool bTraderIsOpen;
 var repnotify bool bWaveIsActive;
+var repnotify bool bWaveStarted;
 /** Replicates at beginning and end of waves to change track / track type */
 var repnotify byte MusicTrackRepCount;
 
@@ -342,7 +343,7 @@ replication
 	if ( bNetDirty )
 		TraderVolume, TraderVolumeCheckType, bTraderIsOpen, NextTrader, WaveNum, bWaveIsEndless, AIRemaining, WaveTotalAICount, bWaveIsActive, MaxHumanCount,
 		CurrentObjective, PreviousObjective, PreviousObjectiveResult, PreviousObjectiveXPResult, PreviousObjectiveVoshResult, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
-		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid, GameDifficulty, GameDifficultyModifier, BossIndex; //@HSL - JRO - 3/21/2016 - PS4 Sessions
+		bIsUnrankedGame, GameSharedUnlocks, bHidePawnIcons, ConsoleGameSessionGuid, GameDifficulty, GameDifficultyModifier, BossIndex, bWaveStarted; //@HSL - JRO - 3/21/2016 - PS4 Sessions
 	if ( bNetInitial )
 		GameLength, WaveMax, bCustom, bVersusGame, TraderItems, GameAmmoCostScale, bAllowGrenadePurchase, MaxPerkLevel, bTradersEnabled;
 	if ( bNetInitial && Role == ROLE_Authority )
@@ -387,17 +388,23 @@ simulated event ReplicatedEvent(name VarName)
 	}
     else if ( VarName == nameof(bWaveIsActive))
     {
-		if (bWaveIsActive)
+		if(!bWaveIsActive)
+        {
+            FadeOutLingeringExplosions();
+            EndOfWave();
+        }
+    }
+	else if (VarName == nameof(bWaveStarted))
+	{
+		if (bWaveStarted)
 		{
 			NotifyWaveStart();
 		}
 		else
-        {
-            FadeOutLingeringExplosions();
-            NotifyWaveEnded();
-            EndOfWave();
-        }
-    }
+		{
+			NotifyWaveEnded();
+		}
+	}
     else if( VarName == nameof(ReplicatedMusicTrackInfo) )
     {
         ForceNewMusicTrack( ReplicatedMusicTrackInfo );
@@ -551,6 +558,10 @@ simulated function array<int> GetKFSeqEventLevelLoadedIndices()
 		{
 			ActivateIndices[0] = 7;
 		}
+		else if (GameClass.Name == 'KFGameInfo_Objective')
+		{
+			ActivateIndices[0] = 8;
+		}
 	}
 
 	return ActivateIndices;
@@ -664,6 +675,9 @@ simulated function NotifyWaveEnded()
 		}
 	}
 
+	bWaveStarted = false;
+	bForceNetUpdate = true;
+
 	// Reset all supplier perks
 	foreach PRIArray( PRI )
 	{
@@ -680,6 +694,9 @@ simulated function NotifyWaveStart()
 {
 	local PlayerReplicationInfo PRI;
 	local KFPlayerReplicationInfo KFPRI;
+
+	bWaveStarted = true;
+	bForceNetUpdate = true;
 
 	// Reset all supplier perks
 	foreach PRIArray(PRI)
@@ -1936,6 +1953,10 @@ function DeactivateObjective()
 			{
 				KFGI.SpawnManager.bTemporarilyEndless = false;
 				bWaveIsEndless = false;
+
+				// when the wave switches off endless, remove all pending spawns 
+				// so that the user doesn't see an increasing zed count as these zeds trickle in
+				KFGI.SpawnManager.ActiveSpawner.PendingSpawns.Length = 0;
 				AIRemaining = KFGI.SpawnManager.GetAIAliveCount() + Max(0, KFGI.SpawnManager.WaveTotalAI - KFGI.NumAISpawnsQueued);
 
 				if( AIRemaining <= class'KFGameInfo'.static.GetNumAlwaysRelevantZeds() )
@@ -2003,6 +2024,11 @@ simulated function bool ShouldSetBossCamOnBossDeath()
 simulated function int GetFinalWaveNum()
 {
 	return WaveMax - 1;
+}
+
+simulated function bool IsObjectiveMode()
+{
+	return false;
 }
 
 defaultproperties

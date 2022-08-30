@@ -2853,6 +2853,7 @@ defaultproperties
    PendingFire(3)=0
    PendingFire(4)=0
    PendingFire(5)=0
+   PendingFire(6)=0
    Name="Default__KFInventoryManager"
    ObjectArchetype=InventoryManager'Engine.Default__InventoryManager'
 }

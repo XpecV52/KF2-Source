@@ -1,4 +1,4 @@
-NOTES:
+//NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
@@ -37,7 +37,7 @@ AlternateFireDescription="Większość broni głównych ma alternatywny tryb ogn
 FlashLightBatteryTitleKey="Używanie latarki"
 FlashLightBatteryDescriptionKey="Czasami bywa bardzo ciemno. Wciśnij <font color="#caab05">%x%</font>, aby włączyć lub wyłączyć <font color="#caab05">LATARKĘ</font>. Bateria latarki z czasem będzie się rozładowywać. Gdy się rozładuje, wyłączy się automatycznie i rozpocznie ładowanie."
 GrenadeTitleKey="Używanie granatów"
-GrenadeDescriptionKey="Granaty umożliwiają łatwe pozbycie się zwartych grup zetów. <font color="#caab05">ZESTAWY BRONI</font> dla specjalizacji zawierają różne rodzaje granatów, z których wszystkie zadają obrażenia zetom, lecz mogą też mieć dodatkowe efekty. Wciśnij <font color="#caab05">%x%</font>, aby rzucić granatem. "
+GrenadeDescriptionKey="Granaty umożliwiają łatwe pozbycie się zwartych grup zetów. <font color="#caab05">ZESTAWY BRONI</font> dla specjalizacji zawierają różne rodzaje granatów, z których wszystkie zadają obrażenia zetom, lecz mogą też mieć dodatkowe efekty. Wciśnij <font color="#caab05">%x%</font>, aby rzucić granatem." "
 
 ;Wave 1 end
 TraderTimeTitleKey="Czas handlu"
@@ -116,48 +116,48 @@ ItemDescription="•Pancerz bojowy chroni cię przed różnymi rodzajami obraże
 
 [KFProj_DynamiteGrenade]
 ItemName="Pół laski dynamitu"
-ItemCategory =" Materiały wybuchowe"
-ItemDescription="•Kawałek dynamitu z dołączonym zapalnikiem.\n•Możesz zrobić nim krzywdę także sobie, więc uważaj! "
+ItemCategory =" "Materiały wybuchowe"
+ItemDescription="•Kawałek dynamitu z dołączonym zapalnikiem.\n•Możesz zrobić nim krzywdę także sobie, więc uważaj!" "
 
 [KFProj_MedicGrenade]
 ItemName="Granat medyczny"
-ItemCategory =" Materiały wybuchowe"
-ItemDescription="•Rozpyla gaz, który zatruwa zetów i leczy ludzi.\n\n•Aby otrzymać leczenie, stań w chmurze niebieskiego gazu.\nCytując naszego naukowca: „Substancja czynna uwalniana przez granat wpływa ożywczo na Homo Sapiens, powodując eutanazję Homo Zeticus”. Mamy nadzieję, że okaże się przydatna. "
+ItemCategory =" "Materiały wybuchowe"
+ItemDescription="•Rozpyla gaz, który zatruwa zetów i leczy ludzi.\n\n•Aby otrzymać leczenie, stań w chmurze niebieskiego gazu.\nCytując naszego naukowca: „Substancja czynna uwalniana przez granat wpływa ożywczo na Homo Sapiens, powodując eutanazję Homo Zeticus”. Mamy nadzieję, że okaże się przydatna." "
 
 [KFProj_MolotovGrenade]
 ItemName="Koktajl Mołotowa"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•To po prostu granat ogniowy, który podpala zetów.\n•Może też zranić ciebie!\n\nTę obraźliwą nazwę nadali mu Finowie podczas wojny zimowej 1939-1940, na cześć Wiaczesława Michajłowicza Mołotowa, radzieckiego ministra spraw zagranicznych… Nudzą cię lekcje historii? "
+ItemDescription="•To po prostu granat ogniowy, który podpala zetów.\n\nTę obraźliwą nazwę nadali mu Finowie podczas wojny zimowej 1939-1940, na cześć Wiaczesława Michajłowicza Mołotowa, radzieckiego ministra spraw zagranicznych… Nudzą cię lekcje historii?" "
 
 [KFProj_EMPGrenade]
 ItemName="Granat EMP"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Uwalnia impuls elektryczny, który zadaje obrażenia zetom i chwilowo ich ogłusza.\n\nDla głodnych dalszych informacji: podczas detonacji w ciągu nanosekundy generuje impuls elektromagnetyczny zakłócający systemy elektryczne na małym obszarze. Zwłaszcza systemy zetów. Przydatna rzecz. "
+ItemDescription="•Uwalnia impuls elektryczny, który zadaje obrażenia zetom i chwilowo ich ogłusza.\n\nDla głodnych dalszych informacji: podczas detonacji w ciągu nanosekundy generuje impuls elektromagnetyczny zakłócający systemy elektryczne na małym obszarze. Zwłaszcza systemy zetów. Przydatna rzecz." "
 
 [KFProj_HEGrenade]
 ItemName="Granat HE"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Bardzo prosty granat z materiałem wybuchowym. Zadaje obrażenia zetom i ludziom.\n\nProściej być nie może. HE oznacza materiał wybuchowy, robi BUM i wszystko wysadza. Czy naprawdę musimy to wyjaśniać? "
+ItemDescription="•Bardzo prosty granat z materiałem wybuchowym. Zadaje obrażenia zetom i ludziom.\n\nProściej być nie może. HE oznacza materiał wybuchowy, robi BUM i wszystko wysadza. Czy naprawdę musimy to wyjaśniać?" "
 
 [KFProj_FragGrenade]
 ItemName="Granat odłamkowy"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Klasyczny granat odłamkowy: wyrzuca małe odłamki metalu, które uszkadzają wszystko.\n\nNa pewno wystarczająco przed Incydentem graliście na tyle dużo, żeby wiedzieć, co to jest granat odłamkowy. I nie udawajcie, że tak nie było. I tak nikt wam nie uwierzy. "
+ItemDescription="•Klasyczny granat odłamkowy: wyrzuca małe odłamki metalu, które uszkadzają wszystko.\n\nNa pewno wystarczająco przed Incydentem graliście na tyle dużo, żeby wiedzieć, co to jest granat odłamkowy. I nie udawajcie, że tak nie było. I tak nikt wam nie uwierzy." "
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba z gwoździami"
-ItemCategory =" Materiały wybuchowe"
+ItemCategory =" "Materiały wybuchowe"
 ItemDescription="•Prosty pojemnik pełen starych gwoździ z niewielkim ładunkiem wybuchowym pośrodku.\n\nNie jest to najbardziej przyjemny i subtelny sposób zabijania zetów, ale czy w nich jest cokolwiek przyjemnego lub subtelnego?"
 
 [KFProj_FreezeGrenade]
 ItemName="Granat zamrażający"
-ItemCategory =" Materiały wybuchowe"
+ItemCategory =" "Materiały wybuchowe"
 ItemDescription="•Zaawansowany technicznie pojemnik z płynnym azotem pod ciśnieniem.\n\nKontakt z jego zawartością zamraża zetów na chwilę. Efekt może być druzgocący."
 
 [KFProj_FlashBangGrenade]
 ItemName="Granat ogłuszający"
-ItemCategory =" Materiały wybuchowe"
-ItemDescription="•Jasny i głośny – lepiej nie patrzeć na niego bezpośrednio. Lepiej też go nie słuchać.\n•Chociaż granat ogłuszający technicznie nie jest zabójczy i tak może ci zaszkodzić, więc uważaj! "
+ItemCategory =" "Materiały wybuchowe"
+ItemDescription="•Jasny i głośny – lepiej nie patrzeć na niego bezpośrednio. Lepiej też go nie słuchać.\n•Chociaż granat ogłuszający technicznie nie jest zabójczy i tak może ci zaszkodzić, więc uważaj!" "
 
 [KFWeap_Healer_Syringe]
 ItemName="Strzykawka medyczna"
@@ -205,37 +205,37 @@ ItemDescription="•Tryb ataku: tylko ogień ciągły.\n•Stoner 63A, używany 
 [KFWeap_Knife_Survivalist]
 ItemName="Nóż rozpruwacza"
 ItemCategory="Walka wręcz"
-ItemDescription="• Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Kiedyś należał do kogoś innego. A teraz jest twój!"
+ItemDescription="• Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Kiedyś należał do kogoś innego, ale teraz jest twój."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Nóż uniwersalny"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To zwykły przecinak. Idealny do otwierania wszelkich pudeł, na które się natkniesz w przerwach między zabijaniem zetów."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To zwykły przecinak. Idealny do otwierania pudeł w przerwach między zabijaniem zetów."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Skalpel"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To zwykły skalpel. Skoro masz kwalifikacje medyczne, nie musimy wyjaśniać, jak się go używa."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To zwykły skalpel. Skoro masz kwalifikacje medyczne, nie musimy wyjaśniać, jak się go używa."
 
 [KFWeap_Knife_Firebug]
 ItemName="Nóż strażaka"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To nóż strażaka. Skoro masz kwalifikacje strażackie, nie musimy wyjaśniać, jak się go używa."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•To nóż strażaka. Skoro masz kwalifikacje strażackie, nie musimy wyjaśniać, jak się go używa."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Bowie"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Duży nóż z czasów Dzikiego Zachodu. Doskonały do krojenia zetów na kawałki tu i teraz."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Duży nóż z czasów Dzikiego Zachodu. Doskonały do krojenia zetów na kawałki tu i teraz."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Tradycyjny nóż Gurkhów, bardziej nadaje się do siekania niż krojenia. "
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Tradycyjny nóż Gurkhów, lepiej nadaje się do siekania niż krojenia. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Nóż taktyczny"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•To nóż. Kroi. Taktycznie."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silne cięcie.\n•Alt. – blok/parowanie.\n•To nóż. Kroi. Taktycznie."
 
 [KFWeap_Pistol_Medic]
 ItemName="Pistolet HMTech-101"
@@ -285,43 +285,53 @@ ItemDescription="•Tryb ataku: podwójny ogień pojedynczy/pump action.\n•Str
 [KFWeap_Knife_Berserker]
 ItemName="Ostrze kosiarki"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Tak, to naprawdę ostrze kosiarki. Miłej zabawy!"
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Tak, to naprawdę ostrze kosiarki. Miłej zabawy!"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Klasyczny nóż komandosa w wersji Horzine."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Klasyczny nóż komandosa w wersji Horzine."
 
 [KFWeap_Knife_Support]
 ItemName="Maczeta"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Nie myśl sobie, że jesteś nie wiadomo kim tylko dlatego, że daliśmy ci największy nóż."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Nie myśl sobie, że jesteś nie wiadomo kim, tylko dlatego, że daliśmy ci największy nóż."
 
 [KFWeap_Edged_Katana]
 ItemName="Katana"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Okaż nieco szacunku dla stylu tej broni."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silne cięcie.\n•Alt. – blok/parowanie.\n•Okaż nieco szacunku tej eleganckiej broni."
 
 [KFWeap_Blunt_Crovel]
 ItemName="Saperkołom"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silny atak obuchowy.\n•Alt. – blok/parowanie.\n•Po części łom, a po części saperka. Śmiercionośne połączenie."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silny atak obuchowy.\n•Alt. – blok/parowanie.\n•Po części łom, a po części saperka. Śmiercionośne połączenie."
 
 [KFWeap_Shotgun_Nailgun]
 ItemName="Gwoździarka VLAD-1000"
 ItemCategory="Strzelba"
 ItemDescription="•Tryb ataku: strzał pojedynczym gwoździem lub wieloma.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Z tego, co nam wiadomo, jeden z naukowców Horzine pożyczył oryginalną gwoździarkę od (martwego) serwisanta."
 
+[KFWeap_HRG_Nailgun]
+ItemName="Gwoździarka HRG"
+ItemCategory="Pistolet maszynowy"
+ItemDescription="•Tryb ataku: strzał pojedynczym gwoździem lub wieloma.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Z tego, co nam wiadomo, jeden z naukowców Horzine pożyczył oryginalną gwoździarkę od (martwego) serwisanta."
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Podróżny odkupiciel"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybki cios obuchowy. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – ciężki cios obuchowy.\n•Alternatywny atak – blok/parowanie.\n•Zostań prawdziwą gwiazdą baseballu! Czyścić po każdym użyciu."
+ItemDescription="•Główny atak – szybki cios obuchowy. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – ciężki cios obuchowy.\n•Alt.– blok/parowanie.\n•Zostań prawdziwą gwiazdą baseballu! Czyścić po każdym użyciu."
 SharedUnlockSource="Odkupienie w podróży"
 
 [KFWeap_Blunt_Pulverizer]
 ItemName="Miażdżyciel"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybki cios obuchowy. Przytrzymaj, by wykonać combo.\n•Drugi atak wystrzeliwuje pociski wybuchające przy kontakcie. Gdy w trybie 2. ataku skończy się amunicja, umożliwia silny cios obuchowy, pamiętaj żeby przeładować!\n•Alt. – blokowanie/parowanie."
+ItemDescription="•Główny atak – szybki cios obuchowy. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak dodatkowo wystrzeliwuje przy kontakcie pociski wybuchające. Gdy skończy się amunicja, jest to silny cios obuchowy. Nie zapominaj przeładowywać!\n•Alt. – blokowanie/parowanie."
+
+[KFWeap_Blunt_MedicBat]
+ItemName="Hemomaczuga"
+ItemCategory="Walka wręcz"
+ItemDescription="•Główny atak – szybki cios obuchowy, który może uzdrawiać sojuszników. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak dodatkowo powoduje przy kontakcie eksplozje uzdrawiającą. Gdy skończy się amunicja, jest to silny cios obuchowy. \n•Alt. – blokowanie/parowanie."
 
 [KFWeap_Eviscerator]
 ItemName="Wybebeszacz"
@@ -332,13 +342,13 @@ SecondaryAmmo="Benzyna"
 [KFWeap_Edged_Zweihander]
 ItemName="Miecz dwuręczny"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – średnie/silne obrażenia oraz nieco kontroli tłumu.\n•Drugi atak– wolniejszy, ale jeszcze więcej obrażeń.\n•Alt. – blokowanie/parowanie\n•Poruszając się do przodu, zadajesz jeszcze więcej obrażeń."
+ItemDescription="•Główny atak – średnie/silne obrażenia oraz nieco kontroli tłumu.\n•Dodatkowy atak– wolniejszy, ale jeszcze więcej obrażeń.\n•Alt. – blokowanie/parowanie\n•Poruszając się do przodu, zadajesz jeszcze więcej obrażeń."
 SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Łamignat"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybki atak obuchowy. Przytrzymaj, by wykonać combo.\n•Drugi atak – silny atak obuchowy, który lepiej wykorzystuje tarczę.\n•Alt. – blok/parowanie. Blokowanie zmniejsza obrażenia otrzymywane od pocisków zetów.\n• Potężny atak – uderzenie tarczą."
+ItemDescription="•Główny atak – szybki atak obuchowy. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silny atak obuchowy, który lepiej wykorzystuje tarczę.\n•Alt. – blok/parowanie. Blokowanie zmniejsza obrażenia otrzymywane od pocisków zetów.\n• Potężny atak – uderzenie tarczą."
 
 [KFWeap_Flame_CaulkBurn]
 ItemName="Płomiennica"
@@ -364,6 +374,11 @@ ItemDescription="•Tryb ataku: tylko pump action.\n•Strzelba na naboje zapala
 ItemName="Miotacz ognia"
 ItemCategory="Ogień"
 ItemDescription="•Tryb ataku: miotanie płomieni. Po prostu.\n•Klasyk niezależnie od czasów. W razie wątpliwości palić wszystko, co podejdzie."
+
+[KFWeap_HRG_Healthrower]
+ItemName="Miotacz uzdrawiania HRG"
+ItemCategory="Ogień"
+ItemDescription=""
 
 [KFWeap_Beam_Microwave]
 ItemName="Działo mikrofalowe"
@@ -420,6 +435,16 @@ ItemName="Dwa Desert Eagle .50"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para ręcznych działek Desert Eagle."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Broń krótka"
+ItemDescription="•"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Podwójny Chiappa Rhino"
+ItemCategory="Broń krótka"
+ItemDescription="•"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="Rewolwer 1858"
 ItemCategory="Broń krótka"
@@ -440,10 +465,25 @@ ItemName="Dwa Magnum .500"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Magnum .500 – „Kolekcjoner kości”."
 
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="Rewolwer śrutowy HRG"
+ItemCategory="Broń krótka"
+ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Kolekcjoner Kości – prawdziwa armata ręczna w kształcie rewolweru kalibru .50 z długą lufą. Strzela nabojami Magnum i zadowoli każdego rewolwerowca."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Dwa rewolwery śrutowe HRG"
+ItemCategory="Broń krótka"
+ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Magnum .500 typu Kolekcjoner Kości."
+
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Karabin"
 ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Klasyczny karabin dźwigniowy Winchester model 1894."
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="Mosin-Nagant"
+ItemCategory="Karabin"
+ItemDescription="•Wyłącznie tryb pojedynczego strzału."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -511,6 +551,16 @@ ItemName="Truchla armata"
 ItemCategory="Ogień"
 ItemDescription="•Ładowanie odbywa się po naciśnięciu spustu, a rozładowanie po jego puszczeniu. \n•Oficjalna wersja truchlej armaty Horzine. 95% gwarancji niewybuchu."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Broń krótka"
+ItemDescription="• Wprowadź mnie"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Podwójny Chiappa Rhino"
+ItemCategory="Broń krótka"
+ItemDescription="• Wprowadź mnie"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Karabinek MKb.42(H)"
 ItemCategory="Karabin szturmowy"
@@ -527,6 +577,11 @@ ItemName="Podwójny AF2011-A2"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Dwie bronie, każda z dwoma lufami. Czterokrotność siły ognia. Czysta matematyka. Z nią nie ma co dyskutować."
 
+[KFWeap_Edged_IonThruster]
+ItemName="Miotacz jonów"
+ItemCategory="Walka wręcz"
+ItemDescription="• Wprowadź mnie"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Giwera"
 ItemCategory="Strzelba"
@@ -535,7 +590,12 @@ ItemDescription="•Podstawowy tryb ognia to strzał z jednej lufy.\n•Tryb alt
 [KFWeap_Blunt_PowerGloves]
 ItemName="Piorunujące rękawice"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie uderzenie. Przytrzymaj przycisk głównego ataku, by wykonać combo. \n•Drugi atak – silne, elektryzujące uderzenie. Może nieźle porazić! \n•Chcesz przywalić zetowi? Nie szukaj już innych sposobów!"
+ItemDescription="•Główny atak – szybki cios obuchowy. Przytrzymaj, by wykonać combo. \n•Dodatkowy atak – silny, elektryzujący cios obuchowy. Może nieźle porazić! \n•Chcesz przywalić zetowi? No to mamy coś, co na pewno ci się spodoba!"
+
+[KFWeap_RocketLauncher_SealSqueal]
+ItemName="Miotacz harpunów"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="•Główny atak wystrzeliwuje harpuny wybuchające po 4 sekundach.\n•Tryb alternatywny ręcznie detonuje wszystkie harpuny.\n•Horzine daje tej broni swoją pieczęć jakości!"
 
 [KFWeap_AssaultRifle_LazerCutter]
 ItemName="Killerwatt"
@@ -555,13 +615,13 @@ ItemDescription="•Tryb strzelania: ogień ciągły albo seria.\n•Tryb altern
 [KFWeap_Edged_AbominationAxe]
 ItemName="Topór wojenny"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – wolne cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne, wolne cięcie niszczące po śmierci.\n•Alt. – blok/parowanie.\n•Staroć, ale wali jak armata... duża i ostra armata."
+ItemDescription="•Główny atak – wolne cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – mocne, wolne cięcie niszczące po śmierci.\n•Alt. – blok/parowanie.\n•Staroć, ale wali jak młot... duży i ostry młot."
 SharedUnlockSource="Topór wojenny"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Siekiera strażacka"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – cięcie. Przytrzymaj przycisk głównego ataku, by wykonać combo.\n•Drugi atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Dlaczego strażacka, skoro niczego nie gasi?"
+ItemDescription="•Główny atak – cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – mocne cięcie.\n•Alt. – blok/parowanie.\n•Dlaczego strażacka, skoro niczego nie gasi?"
 
 [KFWeap_GrenadeLauncher_M32]
 ItemName="Granatnik M32"
@@ -588,6 +648,16 @@ ItemDescription="•Tryb strzelania: ogień ciągły lub pojedynczy. \n•Naciś
 ItemName="M99 AMR"
 ItemCategory="Karabin wyborowy"
 ItemDescription="•Wyłącznie tryb pojedynczego strzału. \n•Każdy strzał może spowodować potężne szkody... Pocisk jest naprawdę spory. Duża siła przebicia, dużo cierpienia."
+
+[KFCarryable_Gear]
+ItemName="Sprzęt"
+ItemCategory="Wyposażenie"
+ItemDescription="You're not supposed to be seeing this in the trader!"
+
+[KFCarryable_Datapad]
+ItemName="Tablet"
+ItemCategory="Wyposażenie"
+ItemDescription="You're not supposed to be seeing this in the trader!"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -720,6 +790,9 @@ GameName="Tygodniowy incydent"
 
 [KFGameInfo_Endless]
 GameName="Bez końca"
+
+[KFGameInfo_Objective]
+GameName="Cel"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Brak uleczeń"

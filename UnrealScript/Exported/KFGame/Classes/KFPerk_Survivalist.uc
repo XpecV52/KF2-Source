@@ -49,6 +49,9 @@ var int StartingWeaponClassIndex;
 
 var private const array<name>		TacticalReloadAsReloadRateClassNames;
 
+/** When MakeThingsGoBoom skill is selected the survivalist gets additional explosive resistance */
+var private const float				MakeThingsGoBoomExplosiveResistance;
+
 /*********************************************************************************************
 * @name	 Perk init and spawning
 ******************************************************************************************** */
@@ -173,6 +176,10 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 
 	TempDamage = InDamage;
 	TempDamage -= InDamage * GetPassiveValue( DamageResistance, CurrentLevel );
+	if (IsMakeThingsGoBoomActive())
+	{
+		TempDamage = FMax(TempDamage - InDamage * MakeThingsGoBoomExplosiveResistance, 0.0f);
+	}
 
 	;
 	InDamage = Round( TempDamage );
@@ -708,6 +715,7 @@ defaultproperties
    PrimaryWeaponPaths(8)=Class'KFGame.KFWeapDef_MP7'
    StartingWeaponClassIndex=-1
    TacticalReloadAsReloadRateClassNames(0)="KFWeap_GrenadeLauncher_M32"
+   MakeThingsGoBoomExplosiveResistance=0.400000
    ProgressStatID=70
    PerkBuildStatID=71
    PerkName="Survivalist"
@@ -745,12 +753,14 @@ defaultproperties
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Survivalist'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'
    AutoBuyLoadOutPath(0)=Class'KFGame.KFWeapDef_DragonsBreath'
-   AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_M16M203'
+   AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_FreezeThrower'
    AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_MedicRifle'
+   AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_LazerCutter'
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SurvivalistKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.FreezeThrower_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.TommyGun_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.VLAD-1000Nailgun_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.Killerwatt_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Survivalist"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

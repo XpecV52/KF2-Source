@@ -370,6 +370,7 @@ var bool bHasBrokenConstraints;
 var globalconfig bool bAllowRagdollAndGoreOnDeadBodies;
 var bool bReinitPhysAssetOnDeath;
 var bool bAllowDeathSM;
+var bool bCanBePinned;
 var repnotify bool bEmpDisrupted;
 var repnotify bool bEmpPanicked;
 var repnotify bool bFirePanicked;
@@ -799,6 +800,11 @@ simulated function InitRBSettings()
 
 simulated function OnCharacterMeshChanged();
 
+simulated function SetCharacterArchAnimationInfo()
+{
+    SetCharacterAnimationInfo();
+}
+
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     local KFPlayerReplicationInfo KFPRI;
@@ -809,8 +815,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
         CharacterArch = Info;
         CharacterArch.SetCharacterFromArch(self, KFPRI);
         CharacterArch.SetCharacterMeshFromArch(self, KFPRI);
-        CharacterArch.SetFirstPersonArmsFromArch(self, KFPRI);
-        SetCharacterAnimationInfo();
+        SetCharacterArchAnimationInfo();
         SoundGroupArch = Info.SoundGroupArch;
         if(WorldInfo.NetMode != NM_DedicatedServer)
         {
@@ -1458,6 +1463,11 @@ function ThrowActiveWeapon(optional bool bDestroyWeap)
     }
     else
     {
+        if((Health <= 0) && KFCarryableObject(Weapon) != none)
+        {
+            BestWeapon = FindBestWeapon();
+            TossInventory(BestWeapon);
+        }
         super(Pawn).ThrowActiveWeapon(bDestroyWeap);
     }
 }
@@ -1938,7 +1948,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     bAllowHeadshot = CanCountHeadshots();
     OldHealth = Health;
     super(Pawn).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
-    HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType, DamageCauser);
+    HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), class<KFDamageType>(DamageType), DamageCauser);
     actualDamage = OldHealth - Health;
     if(actualDamage > 0)
     {
@@ -2105,6 +2115,10 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
     local float DamageThreshold;
     local KFAIController KFAIC;
 
+    if(!ValidateDamageForDamageHistory(DamageCauser, DamageType))
+    {
+        return;
+    }
     if(!GetDamageHistory(DamagerController, Info, HistoryIndex))
     {
         DamageHistory.Insert(0, 1;
@@ -2144,6 +2158,9 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
         KFAIC.CurrentEnemysHistoryIndex = byte(HistoryIndex);
     }
 }
+
+// Export UKFPawn::execValidateDamageForDamageHistory(FFrame&, void* const)
+private native final function bool ValidateDamageForDamageHistory(Actor DamageCauser, class<KFDamageType> DamageType);
 
 function bool GetDamageHistory(Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex)
 {
@@ -3672,15 +3689,16 @@ simulated function DetachEmitter(out ParticleSystemComponent Emitter)
     }
 }
 
-simulated function SpawnExtraVFX(ExtraVFXInfo Info, ExtraVFXAttachmentInfo Attachment)
+simulated function ParticleSystemComponent SpawnExtraVFX(ExtraVFXInfo Info)
 {
     local name SFXBoneName;
+    local editinline ParticleSystemComponent VFXComponent;
 
     if(Info.SocketName == 'None')
     {
         if(Info.VFX != none)
         {
-            Attachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(Info.VFX, Location, Rotation, self);
+            VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(Info.VFX, Location, Rotation, self);
         }
         if(Info.SFXStartEvent != none)
         {
@@ -3691,7 +3709,7 @@ simulated function SpawnExtraVFX(ExtraVFXInfo Info, ExtraVFXAttachmentInfo Attac
     {
         if(Info.VFX != none)
         {
-            Attachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(Info.VFX, Mesh, Info.SocketName, true);
+            VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(Info.VFX, Mesh, Info.SocketName, true);
         }
         if(Info.SFXStartEvent != none)
         {
@@ -3706,6 +3724,7 @@ simulated function SpawnExtraVFX(ExtraVFXInfo Info, ExtraVFXAttachmentInfo Attac
             }
         }
     }
+    return VFXComponent;
 }
 
 simulated function PlayExtraVFX(name FXLabel)
@@ -3725,7 +3744,11 @@ simulated function PlayExtraVFX(name FXLabel)
     {
         if(ExtraVFXAttachments[I].Info.Label == FXLabel)
         {
-            SpawnExtraVFX(ExtraVFXAttachments[I].Info, ExtraVFXAttachments[I]);
+            if(ExtraVFXAttachments[I].VFXComponent != none)
+            {
+                ExtraVFXAttachments[I].VFXComponent.SetActive(false);
+            }
+            ExtraVFXAttachments[I].VFXComponent = SpawnExtraVFX(ExtraVFXAttachments[I].Info);
             bActivatedExistingSystem = true;
         }
         ++ I;
@@ -3736,18 +3759,18 @@ simulated function PlayExtraVFX(name FXLabel)
         return;
     }
     I = 0;
-    J0x125:
+    J0x1A3:
 
     if(I < CharacterArch.ExtraVFX.Length)
     {
         if(CharacterArch.ExtraVFX[I].Label == FXLabel)
         {
-            SpawnExtraVFX(CharacterArch.ExtraVFX[I], VFXAttachment);
+            VFXAttachment.VFXComponent = SpawnExtraVFX(CharacterArch.ExtraVFX[I]);
             VFXAttachment.Info = CharacterArch.ExtraVFX[I];
             ExtraVFXAttachments.AddItem(VFXAttachment;
         }
         ++ I;
-        goto J0x125;
+        goto J0x1A3;
     }
 }
 

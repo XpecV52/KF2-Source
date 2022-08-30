@@ -50,4 +50,5 @@ defaultproperties
 
 	bCanThrow=false
 	bDropOnDeath=false
+	bStorePreviouslyEquipped=false
 }

@@ -150,15 +150,20 @@ simulated function AttachMuzzleFlash()
 	}
 }
 
-/** 
+/**
  * Assign weapon skin to 3rd person mesh
  */
-function SetWeaponSkin(int ItemId)
+event SetWeaponSkin(int ItemId)
 {
 	local array<MaterialInterface> SkinMICs;
 
 	if ( WeapMesh != none && LeftWeapMesh != none && ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer )
 	{
+		if (StartLoadWeaponSkin(ItemId))
+		{
+			return;
+		}
+
 		SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, WST_ThirdPerson);
 		if ( SkinMICs.Length > 0 )
 		{
@@ -174,7 +179,7 @@ function SetWeaponSkin(int ItemId)
 
 /** Updates bPlayFXOnSecondWeapon each time weapon is fired */
 function bool ChooseActiveWeapon(byte FlashCount)
-{	
+{
 	// If this was already called in this frame do nothing.  See GetProjectileStartLoc() for details.
 	if ( LastChooseWeaponTime == WorldInfo.TimeSeconds )
 	{
@@ -238,7 +243,7 @@ simulated function PlayWeaponFireAnim()
 	}
 }
 
-/** Plays fire animation on pawn 
+/** Plays fire animation on pawn
   * Overloaded to switch between right and left.
   */
 simulated function PlayPawnFireAnim( KFPawn P, EAnimSlotStance AnimType )
@@ -259,7 +264,7 @@ simulated function PlayPawnFireAnim( KFPawn P, EAnimSlotStance AnimType )
 
 /** Added second weapon */
 simulated function CauseMuzzleFlash(byte FiringMode)
-{	
+{
 	// Can use the same weapon that was used by ThirdPersonFireEffects
 	if ( bPlayFXOnSecondWeapon )
 	{
@@ -310,7 +315,7 @@ simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool
 {
 	local float Duration;
 
-	super.PlayWeaponMeshAnim( AnimName, SyncNode, bLoop );	
+	super.PlayWeaponMeshAnim( AnimName, SyncNode, bLoop );
 
 	Duration = LeftWeapMesh.GetAnimLength( AnimName );
 	LeftWeapMesh.PlayAnim( AnimName, Duration / ThirdPersonAnimRate, bLoop );

@@ -345,13 +345,13 @@ static simulated function GetPassiveStrings(out array<string> PassiveValues, out
 {
     PassiveValues[0] = string(Round((GetPassiveValue(default.WeaponDamage, Level)) * float(100))) $ "%";
     PassiveValues[1] = string(Round((GetPassiveValue(default.CloakedEnemyDetection, Level)) / float(100))) $ "m";
-    PassiveValues[2] = string(Round(GetZedTimeExtension(Level))) $ "sec";
+    PassiveValues[2] = string(Round(GetZedTimeExtension(Level)));
     PassiveValues[3] = string(Round(GetExtraReloadSpeed(Level) * float(100))) $ "%";
     PassiveValues[4] = "";
     PassiveValues[5] = "";
     Increments[0] = ((("[" @ Left(string(default.WeaponDamage.Increment * float(100)), InStr(string(default.WeaponDamage.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
     Increments[1] = ((((("[" @ string(int(default.CloakedEnemyDetection.StartingValue / float(100)))) @ "+") @ string(int(default.CloakedEnemyDetection.Increment / float(100)))) $ "m /") @ default.LevelString) @ "]";
-    Increments[2] = ((((("[" @ Left(string(default.ZedTimeExtension.StartingValue), InStr(string(default.ZedTimeExtension.StartingValue), ".") + 2)) @ "+") @ Left(string(default.ZedTimeExtension.Increment), InStr(string(default.ZedTimeExtension.Increment), ".") + 2)) @ "sec / 5") @ default.LevelString) @ "]";
+    Increments[2] = ((((("[" @ string(Round(default.ZedTimeExtension.StartingValue))) @ "+") @ string(Round(default.ZedTimeExtension.Increment))) @ " / 5") @ default.LevelString) @ "]";
     Increments[3] = ((("[" @ Left(string(default.ReloadSpeed.Increment * float(100)), InStr(string(default.ReloadSpeed.Increment * float(100)), ".") + 2)) $ "% / 5") @ default.LevelString) @ "]";
     Increments[4] = "";
     Increments[5] = "";
@@ -460,7 +460,7 @@ defaultproperties
     PerkName="Commando"
     Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increases %x% per level",IconPath="")
     Passives(1)=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level",IconPath="")
-    Passives(2)=(Title="Zed Time Extension",Description="Zed time increases %x% every 5 levels",IconPath="")
+    Passives(2)=(Title="Zed Time Refreshes",Description="Zed time increases %x% every 5 levels",IconPath="")
     Passives(3)=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels",IconPath="")
     Passives(4)=(Title="Night Vision Capability",Description="Flashlights - AND Night Vision Goggles",IconPath="")
     Passives(5)=(Title="Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units",IconPath="")
@@ -474,11 +474,11 @@ defaultproperties
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Commando'
     PerkSkills(0)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_TacticalReload",bActive=false)
     PerkSkills(1)=(Name="LargeMags",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_LargeMag",bActive=false)
-    PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup",bActive=false)
+    PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=0.85,MaxValue=0.85,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup",bActive=false)
     PerkSkills(3)=(Name="Impact",Increment=0,Rank=0,StartingValue=1.5,MaxValue=1.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Impact",bActive=false)
     PerkSkills(4)=(Name="HealthIncrease",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_HP",bActive=false)
     PerkSkills(5)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_AmmoVest",bActive=false)
-    PerkSkills(6)=(Name="HollowPoints",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",bActive=false)
+    PerkSkills(6)=(Name="HollowPoints",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",bActive=false)
     PerkSkills(7)=(Name="EatLead",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire",bActive=false)
     PerkSkills(8)=(Name="Professional",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Professional",bActive=false)
     PerkSkills(9)=(Name="RapidFire",Increment=0,Rank=0,StartingValue=0.03,MaxValue=0.03,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_RapidFire",bActive=false)
@@ -492,9 +492,11 @@ defaultproperties
     AutoBuyLoadOutPath(1)=class'KFWeapDef_Bullpup'
     AutoBuyLoadOutPath(2)=class'KFWeapDef_AK12'
     AutoBuyLoadOutPath(3)=class'KFWeapDef_SCAR'
+    AutoBuyLoadOutPath(4)=class'KFWeapDef_MedicRifleGrenadeLauncher'
     HeadshotAccuracyHandicap=-3
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.CommandoKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.AR15_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.L85A2_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.AK12_PrestigePrecious_Mint_Large"
+    PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.Scar_PrestigePrecious_Mint_large"
 }

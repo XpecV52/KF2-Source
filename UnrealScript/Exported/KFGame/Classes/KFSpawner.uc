@@ -376,6 +376,7 @@ event HandleFailedSpawn()
 	{
 		if (bDebugSpawning) LogInternal(self@GetFuncName()$" removing "$PendingSpawns.Length$" from NumAISpawnsQueued due to failed spawn. NumAISpawnsQueued: "$KFGI.NumAISpawnsQueued);
         KFGI.NumAISpawnsQueued -= PendingSpawns.Length;
+		KFGI.NumAIFinishedSpawning -= PendingSpawns.Length;
 	}
 
 

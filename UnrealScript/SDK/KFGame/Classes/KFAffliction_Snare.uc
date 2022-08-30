@@ -9,6 +9,20 @@
 //=============================================================================
 class KFAffliction_Snare extends KFAfflictionAdvanced;
 
+var float SnareSpeedModifier;
+
+function Init(KFPawn P, EAfflictionType Type, KFPerk InstigatorPerk)
+{
+	Super.Init(P, Type, InstigatorPerk);
+
+	SnareSpeedModifier = 1.f;
+
+	if (InstigatorPerk != none)
+	{
+		SnareSpeedModifier = InstigatorPerk.GetSnareSpeedModifier();
+	}
+}
+
 /** */
 function Activate()
 {
@@ -31,7 +45,7 @@ function DeActivate()
 /** Accessor to get known affliction speed modifier */
 function float GetSpeedModifier()
 {
-    return bIsActive ? class'KFPerk_SWAT'.static.GetSnareSpeedModifier() : 1.f;
+    return bIsActive ? SnareSpeedModifier : 1.f;
 }
 
 defaultproperties

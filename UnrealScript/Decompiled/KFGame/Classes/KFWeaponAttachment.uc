@@ -212,10 +212,14 @@ var transient name LoopOutroAnim;
 var transient AnimNodeSequence WeapAnimNode;
 /** Profile name for this weapon */
 var(Anims) name AimOffsetProfileName;
+var transient int WeaponSkinId;
 var delegate<OnWeaponStateChanged> __OnWeaponStateChanged__Delegate;
 
 // Export UKFWeaponAttachment::execChangeVisibility(FFrame&, void* const)
 native event ChangeVisibility(bool bIsVisible);
+
+// Export UKFWeaponAttachment::execStartLoadWeaponSkin(FFrame&, void* const)
+native function bool StartLoadWeaponSkin(int SkinID);
 
 event PreBeginPlay()
 {
@@ -322,6 +326,10 @@ event SetWeaponSkin(int ItemId)
 
     if((ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer)
     {
+        if(StartLoadWeaponSkin(ItemId))
+        {
+            return;
+        }
         SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, 1);
         if(SkinMICs.Length > 0)
         {

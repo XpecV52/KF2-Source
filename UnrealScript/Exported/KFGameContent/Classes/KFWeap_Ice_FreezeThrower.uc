@@ -208,13 +208,7 @@ defaultproperties
    FireLastHeavyAnim="Shoot_Heavy_Last"
    FireLastHeavySightedAnim="Shoot_Heavy_Iron_Last"
    NumPellets(0)=0
-   NumPellets(1)=7
-   PelletSpread(1)=(X=0.500000,Y=0.000000)
-   PelletSpread(2)=(X=0.321400,Y=0.383000)
-   PelletSpread(3)=(X=-0.250000,Y=0.433000)
-   PelletSpread(4)=(X=-0.500000,Y=0.000000)
-   PelletSpread(5)=(X=-0.250000,Y=-0.433000)
-   PelletSpread(6)=(X=0.250000,Y=-0.433000)
+   NumPellets(1)=12
    AltFireRecoilScale=4.000000
    bWarnAIWhenFiring=True
    FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray'
@@ -242,6 +236,7 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'wep_ui_cryogun_tex.UI_FireModeSelect_2nd_Cryogun'
    InventorySize=7
    MagazineCapacity(0)=100
+   PenetrationPower(1)=4.000000
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=80.000000
    IronSightPosition=(X=20.000000,Y=8.000000,Z=-3.000000)
@@ -313,7 +308,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.000000
-   Spread(1)=0.050000
+   Spread(1)=0.150000
    InstantHitDamage(1)=20.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=28.000000

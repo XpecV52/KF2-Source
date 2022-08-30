@@ -24,7 +24,12 @@ var transient bool bCanceledAltAutoReload;
 
 simulated function int GetSecondaryAmmoForHUD()
 {
-	return SpareAmmoCount[1];
+	return super(KFWeapon).GetSecondaryAmmoForHUD();
+}
+
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Assault;
 }
 
 static simulated event EFilterTypeUI GetAltTraderFilter()
@@ -427,7 +432,7 @@ simulated function bool CanAltAutoReload()
 
 simulated function TryToAltReload()
 {
-	if ( IsInState('Active') && CanAltAutoReload())
+	if ((IsInState('Active') || IsInState('WeaponSprinting')) && CanAltAutoReload())
 	{
 		SendToAltReload();
 	}
@@ -484,7 +489,7 @@ defaultproperties
    PlayerIronSightFOV=70.000000
    DOF_FG_FocalRadius=75.000000
    DOF_FG_MaxNearBlurSize=3.500000
-   GroupPriority=50.000000
+   GroupPriority=125.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Medic_GrenadeLauncher_TEX.UI_WeaponSelect_MedicGrenadeLauncher'
    SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    AmmoCost(1)=1

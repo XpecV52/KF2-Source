@@ -575,7 +575,7 @@ DefaultProperties
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=8.5,  Duration=4.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5,  Duration=1.0)
-	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0), Cooldown=5.5,  Duration=3.0)
+	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 2.0, 1.0, 1.0, 2.0), Cooldown=5.5,  Duration=3.0)
     IncapSettings(AF_Bleed)=    (Vulnerability=(1.0))
 
 	Begin Object Name=Afflictions_0

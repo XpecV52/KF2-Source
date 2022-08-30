@@ -27,6 +27,7 @@ var		const	float 				ShrapnelChance;
 var 			GameExplosion		ExplosionTemplate;
 
 var	private	const float				SnarePower;
+var private const float				SnareSpeedModifier;
 var private const class<DamageType> SnareCausingDmgTypeClass;
 var private const int 				NapalmDamage;
 /** Multiplier on CylinderComponent.CollisionRadius to check for infecting other zeds */
@@ -374,6 +375,11 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	return 0.f;
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+	return IsGroundFireActive() ? SnareSpeedModifier : 1.f;
+}
+
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsGroundFireActive() &&	DamageType != none &&
@@ -619,6 +625,7 @@ defaultproperties
    ShrapnelChance=0.300000
    ExplosionTemplate=KFGameExplosion'KFGame.Default__KFPerk_Firebug:ExploTemplate0'
    SnarePower=100.000000
+   SnareSpeedModifier=0.700000
    SnareCausingDmgTypeClass=Class'KFGame.KFDT_Fire_Ground'
    NapalmDamage=7
    NapalmCheckCollisionScale=2.000000
@@ -640,7 +647,7 @@ defaultproperties
    SkillCatagories(3)="Flame"
    SkillCatagories(4)="Advanced Training"
    EXPAction1="Dealing Firebug weapon damage"
-   EXPAction2="Killing Crawlers with Firebug weapons"
+   EXPAction2="Killing Bloats and Crawlers with Firebug weapons"
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
    PerkSkills(0)=(Name="BringTheHeat",StartingValue=0.350000,MaxValue=0.350000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat")
    PerkSkills(1)=(Name="HighCapFuelTank",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel")
@@ -664,12 +671,14 @@ defaultproperties
    AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_DragonsBreath'
    AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_FlameThrower'
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_MicrowaveGun'
+   AutoBuyLoadOutPath(4)=Class'KFGame.KFWeapDef_MicrowaveRifle'
    HitAccuracyHandicap=-2.000000
    HeadshotAccuracyHandicap=5.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Dragonsbreath_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.FlameThrower_PrestigePrecious_Mint_Large"
+   PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.MicrowaveGun_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Firebug"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

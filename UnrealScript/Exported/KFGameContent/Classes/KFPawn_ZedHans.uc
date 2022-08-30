@@ -1247,9 +1247,6 @@ defaultproperties
    End Object
    SprintAkComponent=SprintAkComponent0
    Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:HeadshotAkComponent0'
-      BoneName="head"
-      bForceOcclusionUpdateInterval=True
-      OcclusionUpdateInterval=0.200000
       Name="HeadshotAkComponent0"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:HeadshotAkComponent0'
    End Object
@@ -1299,7 +1296,7 @@ defaultproperties
    IncapSettings(4)=(Cooldown=10.000000,Vulnerability=(0.100000,0.300000,0.100000,0.100000,0.400000))
    IncapSettings(5)=(Duration=1.250000,Cooldown=17.000000,Vulnerability=(0.100000,0.550000,0.100000,0.100000,0.550000))
    IncapSettings(6)=(Vulnerability=(0.000000))
-   IncapSettings(7)=(Duration=3.000000,Cooldown=10.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000,1.000000))
+   IncapSettings(7)=(Duration=3.000000,Cooldown=10.500000,Vulnerability=(1.000000,2.000000,1.000000,1.000000,2.000000))
    IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))

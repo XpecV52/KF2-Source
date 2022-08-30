@@ -504,7 +504,7 @@ static function SetCrosshairEnabled(bool bEnable)
 defaultproperties
 {
     KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
-    KFFontScale=0.6
+    KFFontScale=0.65
     bMuteOnLossOfFocus=true
     SeasonalEventId=-1
     LoadedSeasonalEventId=-1

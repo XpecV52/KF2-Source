@@ -324,9 +324,6 @@ defaultproperties
    End Object
    SprintAkComponent=SprintAkComponent0
    Begin Object Class=AkComponent Name=HeadshotAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
-      BoneName="head"
-      bForceOcclusionUpdateInterval=True
-      OcclusionUpdateInterval=0.200000
       Name="HeadshotAkComponent0"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
    End Object
@@ -375,7 +372,7 @@ defaultproperties
    IncapSettings(4)=(Cooldown=1.000000,Vulnerability=(0.400000))
    IncapSettings(5)=(Duration=1.500000,Cooldown=5.000000,Vulnerability=(0.500000,1.000000,0.500000,0.500000,0.500000))
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
-   IncapSettings(7)=(Duration=3.000000,Cooldown=5.500000,Vulnerability=(1.000000,1.000000,2.000000,1.000000))
+   IncapSettings(7)=(Duration=3.000000,Cooldown=5.500000,Vulnerability=(1.000000,2.000000,1.000000,1.000000))
    IncapSettings(8)=(Cooldown=1.000000,Vulnerability=(1.000000))
    IncapSettings(9)=(Duration=2.000000,Cooldown=3.000000,Vulnerability=(1.000000))
    IncapSettings(10)=(Duration=8.000000,Vulnerability=(4.000000))

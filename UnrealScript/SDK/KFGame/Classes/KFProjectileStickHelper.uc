@@ -1,13 +1,20 @@
 //=============================================================================
 // KFProjectileStickHelper
 //=============================================================================
-// Manages projectile sticking functionality
+// Manages projectile sticking and pinning functionality
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2019 Tripwire Interactive LLC
 //=============================================================================
 
 class KFProjectileStickHelper extends Object within KFProjectile;
+
+var transient Pawn PinPawn;
+var transient name PinBoneName;
+var transient RB_ConstraintActorSpawnable PinConstraint;
+
+var transient vector PinLocation;
+var transient Actor PinHitActor;
 
 var AkEvent StickAkEvent;
 
@@ -21,14 +28,14 @@ simulated function TryStick(vector HitNormal, optional vector HitLocation, optio
 		return;
 	}
 
-	if (HitActor != none && HitActor == StuckToActor)
+	if (HitActor != none && (HitActor == StuckToActor || HitActor == PinPawn))
 	{
 		return;
 	}
 
 	GetImpactInfo(Velocity, HitLocation, HitNormal, HitInfo);
 
-	if (GetImpactResult(HitActor, HitInfo.HitComponent))
+	if (HitInfo.HitComponent != none && GetImpactResult(HitActor, HitInfo.HitComponent))
 	{
 		Stick(HitActor, HitLocation, HitNormal, HitInfo);
 	}
@@ -42,7 +49,8 @@ simulated function GetImpactInfo(vector in_Velocity, out vector out_HitLocation,
 
 	VelNorm = Normal(in_Velocity);
 	VelScaled = VelNorm * 30;
-	Trace(out_HitLocation, out_HitNormal, Location + VelScaled, Location - VelScaled, , , out_HitInfo, TRACEFLAG_Bullet /*for complex collision*/ );
+	Trace(out_HitLocation, out_HitNormal, out_HitLocation + VelScaled, out_HitLocation - VelScaled,,,
+		out_HitInfo, TRACEFLAG_Bullet /*for complex collision*/ );
 }
 
 /** Returns appropriate interaction with HitActor (stick or ignore, for now. add bounce later?) */
@@ -115,13 +123,17 @@ simulated function Stick(Actor HitActor, vector HitLocation, vector HitNormal, c
 		EndTrace = StartTrace + Direction * (HitMonster.CylinderComponent.CollisionRadius * 6.0);
 		TraceProjHitZones(HitMonster, EndTrace, StartTrace, HitZoneImpactList);
 
-		// get the best bone to attach to
-		ClosestBoneLocation = HitMonster.Mesh.GetClosestCollidingBoneLocation(HitLocation, true, false);
-		BoneName = HitMonster.Mesh.FindClosestBone(ClosestBoneLocation, ClosestBoneLocation);
+		if (BoneName == '')
+		{
+			// get the best bone to attach to
+			ClosestBoneLocation = HitMonster.Mesh.GetClosestCollidingBoneLocation(HitLocation, true, false);
+			BoneName = HitMonster.Mesh.FindClosestBone(ClosestBoneLocation, ClosestBoneLocation);
+		}
 
 		// do impact damage
         if (KFWeapon(Owner) != none)
         {
+			HitZoneImpactList[0].RayDir = Normal(EndTrace - StartTrace); // add a raydir here since TraceProjHitZones doesn't fill this out (so certain afflictions apply)
             KFWeapon(Owner).HandleProjectileImpact(WeaponFireMode, HitZoneImpactList[0], PenetrationPower);
         }
 	}
@@ -159,6 +171,49 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
 	local SkeletalMeshComponent SkelMeshComp;
 	local Name BoneName;
 
+	local vector RelStuckToLocation;
+	local rotator RelStuckToRotation;
+
+	local KFPawn StickToPawn;
+
+	StickToPawn = KFPawn(StickTo);
+
+	if (bCanPin && (StickToPawn == none || StickToPawn.bCanBePinned))
+	{
+		// if StickTo pawn is dead, pin it and keep flying
+		if (Role == ROLE_Authority)
+		{
+			if (StickToPawn != none && !StickToPawn.IsAliveAndWell())
+			{
+				if (PinPawn == none)
+				{
+					Pin(StickTo, BoneIdx);
+				}
+
+				return;
+			}
+		}
+
+		if (WorldInfo.NetMode != NM_DedicatedServer && PinPawn != none)
+		{
+			if (StickToPawn == none)
+			{
+				// Pin pinned pawn to StickTo actor
+				//PinPawn.Mesh.RetardRBLinearVelocity(vector(Rotation), 0.75);
+				PinPawn.Mesh.SetRBPosition(Location, PinBoneName);
+
+				PinConstraint = Spawn(class'RB_ConstraintActorSpawnable',,,Location);
+				PinConstraint.InitConstraint(PinPawn, none, PinBoneName, '');
+			}
+
+			PinPawn = none;
+		}
+	}
+	else if (StickToPawn != none && !StickToPawn.IsAliveAndWell())
+	{
+		return;
+	}
+
 	SetPhysics(PHYS_None);
 
 	PrevStuckToActor = StuckToActor;
@@ -174,13 +229,16 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
 
 		if (bCalculateRelativeLocRot)
 		{
-			// set replicated relative loc/rot
-			SkelMeshComp.TransformToBoneSpace(BoneName, Location, Rotation, StuckToLocation, StuckToRotation);
+			StuckToLocation = Location;
+			StuckToRotation = Rotation;
 		}
 
+		SkelMeshComp.TransformToBoneSpace(BoneName, StuckToLocation, StuckToRotation, RelStuckToLocation, RelStuckToRotation);
+
 		SetBase(StickTo,, SkelMeshComp, BoneName);
-		SetRelativeLocation(StuckToLocation);
-		SetRelativeRotation(StuckToRotation);
+		SetRelativeLocation(RelStuckToLocation);
+		SetRelativeRotation(RelStuckToRotation);
+
 	}
 	// otherwise, just set our base
 	else
@@ -200,6 +258,33 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
 
 		SetBase(StickTo);
 	}
+}
+
+simulated function Pin(Actor PinTo, int BoneIdx)
+{
+	if (Role == ROLE_Authority)
+	{
+		bUpdateSimulatedPosition = false;
+		PinActor = PinTo;
+		PinBoneIdx = BoneIdx;
+	}
+
+	PinPawn = Pawn(PinTo);
+	PinBoneName = PinPawn.Mesh.GetBoneName(BoneIdx);
+
+	StuckToActor = none;
+	StuckToBoneIdx = INDEX_None;
+
+	SetBase(none);
+	SetPhysics(PHYS_Falling);
+
+	if (WorldInfo.NetMode != NM_Standalone)
+	{
+		SetLocation(StuckToLocation);
+		SetRotation(StuckToRotation);
+	}
+
+	Velocity = Speed * vector(Rotation);
 }
 
 /** Attempts to retrieve skeletal mesh from actor */
@@ -226,9 +311,16 @@ simulated function SkeletalMeshComponent GetActorSkeletalMesh(Actor StickActor)
 /** Replicates stick to server from client */
 function ServerStick(Actor StickTo, int BoneIdx, vector StickLoc, rotator StickRot)
 {
+	bUpdateSimulatedPosition = true;
+
 	StuckToLocation = StickLoc;
 	StuckToRotation = StickRot;
 	bForceNetUpdate = true;
+
+	if (PinPawn != none)
+	{
+		PinPawn = none;
+	}
 
 	ReplicatedStick(StickTo, BoneIdx);
 }
@@ -275,7 +367,18 @@ simulated function UnStick()
 	SetPhysics(default.Physics);
 }
 
-simulated function Tick()
+simulated function UnPin()
+{
+	if (PinConstraint != none)
+	{
+		PinConstraint.TermConstraint();
+	}
+
+	PinConstraint = none;
+	PinPawn = none;
+}
+
+simulated function Tick(float DeltaTime)
 {
 	local int i;
 	local Pawn P;
@@ -284,11 +387,64 @@ simulated function Tick()
 	local KFDestructibleActor Destructible;
 	local Actor StuckTo;
 
+	local vector HitLocation, HitNormal;
+	local TraceHitInfo HitInfo;
+	local Actor HitActor;
+	local float PinRad;
+	local vector VFront;
+	local float StickPct;
+
+	// @todo jdr: REMOVE THESE WHEN WE HAVE A BETTER SYSTEM
+	local float PinRadMagicNumber, StickPctMagicNumber;
+
+	if (PinPawn != none)
+	{
+		// @todo jdr: REMOVE MAGIC NUMBERS FROM COMMON CODE
+		// Ideally, this code retrieves values from the projectile, or we could add tuneables to
+		// the helper than can be set in each instance of the helper
+
+		VFront = Normal(Velocity);
+		StickPct = 1.0;
+
+		PinRadMagicNumber = 3.0;
+		StickPctMagicNumber = 0.3;
+
+		if (IsZero(PinLocation))
+		{
+			PinRad = PinPawn.CylinderComponent.CollisionRadius * PinRadMagicNumber;
+			HitActor = Trace(HitLocation, HitNormal, Location, Location + VFront * PinRad,,, HitInfo, TRACEFLAG_Bullet);
+			if (HitActor != none && HitActor != PinActor && Pawn(HitActor) == none && GetImpactResult(HitActor, HitInfo.HitComponent))
+			{
+				GravityScale = 0.0;
+				PinLocation = HitLocation;
+				PinHitActor = HitActor;
+			}
+		}
+
+		if (!IsZero(PinLocation))
+		{
+			PinRad = PinPawn.CylinderComponent.CollisionRadius * PinRadMagicNumber;
+			StickPct = VSize(PinLocation - Location) / PinRad;
+			Velocity = VFront * MaxSpeed * StickPct * StickPct;
+		}
+
+		if (WorldInfo.NetMode != NM_DedicatedServer)
+		{
+			PinPawn.Mesh.SetRBLinearVelocity(Velocity);
+			PinPawn.Mesh.SetRBPosition(Location, PinBoneName);
+
+			if (Instigator != none && Instigator.IsLocallyControlled() && StickPct < StickPctMagicNumber)
+			{
+				Stick(PinHitActor, Location, HitNormal, HitInfo);
+			}
+		}
+	}
+
 	StuckTo = StuckToActor;
 	if (StuckTo != none)
 	{
 		// always restart movement if torn off
-		if (StuckTo.bTearOff)
+		if (StuckTo.bTearOff && PinPawn == none)
 		{
 			UnStick();
 			return;

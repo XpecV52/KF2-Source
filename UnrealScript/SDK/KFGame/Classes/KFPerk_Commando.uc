@@ -519,15 +519,14 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 {
 	PassiveValues[0] = Round( GetPassiveValue( default.WeaponDamage, Level) * 100 ) $ "%";
 	PassiveValues[1] = Round( GetPassiveValue( default.CloakedEnemyDetection, Level ) / 100 ) $ "m";		// Divide by 100 to convert unreal units to meters
-	PassiveValues[2] = Round( GetZedTimeExtension( Level )) $ "sec";
+	PassiveValues[2] = string(Round( GetZedTimeExtension( Level )));
 	PassiveValues[3] = Round( GetExtraReloadSpeed( Level ) * 100 ) $ "%";
 	PassiveValues[4] = "";
 	PassiveValues[5] = "";
 
 	Increments[0] = "["@Left( string( default.WeaponDamage.Increment * 100 ), InStr(string(default.WeaponDamage.Increment * 100), ".") + 2 ) 	$"% /" @default.LevelString @"]";
 	Increments[1] = "["@ Int(default.CloakedEnemyDetection.StartingValue / 100 ) @"+" @Int(default.CloakedEnemyDetection.Increment / 100 ) 		$"m /" @default.LevelString @"]";
-	Increments[2] = "["@Left( string( default.ZedTimeExtension.StartingValue ), InStr(string(default.ZedTimeExtension.StartingValue ), ".") + 2 )@"+"
-						@Left( string( default.ZedTimeExtension.Increment ), InStr(string(default.ZedTimeExtension.Increment ), ".") + 2 )		@"sec / 5" @default.LevelString @"]";
+	Increments[2] = "["@Round(default.ZedTimeExtension.StartingValue) @"+" @Round(default.ZedTimeExtension.Increment)	    						@" / 5" @default.LevelString @"]";
 	Increments[3] = "["@Left( string( default.ReloadSpeed.Increment * 100 ), InStr(string(default.ReloadSpeed.Increment * 100), ".") + 2 ) 		$ "% / 5" @ default.LevelString @ "]";
 	Increments[4] = "";
 	Increments[5] = "";
@@ -702,11 +701,11 @@ DefaultProperties
 
 	PerkSkills(ECommandoTacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_TacticalReload",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)
 	PerkSkills(ECommandoLargeMags)=(Name="LargeMags",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_LargeMag",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
-	PerkSkills(ECommandoBackup)=(Name="Backup",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)  //1.1
+	PerkSkills(ECommandoBackup)=(Name="Backup",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup",Increment=0.f,Rank=0,StartingValue=0.85f,MaxValue=0.85f)  //1.1
 	PerkSkills(ECommandoImpact)=(Name="Impact",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Impact",Increment=0.f,Rank=0,StartingValue=1.5,MaxValue=1.5)
 	PerkSkills(ECommandoHealthIncrease)=(Name="HealthIncrease",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_HP",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
 	PerkSkills(ECommandoAmmoVest)=(Name="AmmoVest",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_AmmoVest",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
-	PerkSkills(ECommandoHollowPoints)=(Name="HollowPoints",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
+	PerkSkills(ECommandoHollowPoints)=(Name="HollowPoints",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(ECommandoEatLead)=(Name="EatLead",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire",Increment=0.f,Rank=0,StartingValue=1.0f,MaxValue=1.0f) //0.5
 	PerkSkills(ECommandoProfessional)=(Name="Professional",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Professional")
 	PerkSkills(ECommandoRapidFire)=(Name="RapidFire",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_RapidFire",Increment=0.f,Rank=0,StartingValue=0.03,MaxValue=0.03)
@@ -715,12 +714,13 @@ DefaultProperties
     // Skill tracking
 	HitAccuracyHandicap=0.0
 	HeadshotAccuracyHandicap=-3.0
-	AutoBuyLoadOutPath=(class'KFWeapDef_AR15', class'KFWeapDef_Bullpup', class'KFWeapDef_AK12', class'KFWeapDef_SCAR')
+	AutoBuyLoadOutPath=(class'KFWeapDef_AR15', class'KFWeapDef_Bullpup', class'KFWeapDef_AK12', class'KFWeapDef_SCAR', class'KFWeapDef_MedicRifleGrenadeLauncher')
 
 	// Prestige Rewards
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.CommandoKnife_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.AR15_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.L85A2_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.AK12_PrestigePrecious_Mint_Large"
+	PrestigeRewardItemIconPaths[4]="WEP_SkinSet_Prestige05_Item_TEX.tier04.Scar_PrestigePrecious_Mint_large"
 }
 

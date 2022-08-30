@@ -733,6 +733,7 @@ Parameter name: index
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedBloatKing.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
+    bCanBePinned=false
     HitZones=/* Array type was not detected. */
     PenetrationResistance=10
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedBloatKing.Afflictions'

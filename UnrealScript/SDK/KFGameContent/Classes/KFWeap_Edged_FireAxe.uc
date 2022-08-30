@@ -53,7 +53,7 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=20
 
 	// Inventory
-	GroupPriority=100
+	GroupPriority=50
 	InventorySize=5
 	WeaponSelectTexture=Texture2D'WEP_UI_FireAxe_TEX.UI_WeaponSelect_Fireaxe'
 

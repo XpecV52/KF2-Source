@@ -419,6 +419,8 @@ var AkEvent StopSprintingSound;
 
 var bool bPlayingSprintLoop;
 
+var bool bSprintOverride;
+
 /*********************************************************************************************
  * @name	Dismemberment / Gore
 ********************************************************************************************* */
@@ -1169,7 +1171,7 @@ function SetSprinting( bool bNewSprintStatus )
 {
 	if( MyKFAIC != none )
 	{
-		if( !MyKFAIC.CanSetSprinting(bNewSprintStatus) )
+		if( !MyKFAIC.CanSetSprinting(bNewSprintStatus) && !bSprintOverride)
 		{
 			return;
 		}
@@ -3757,12 +3759,6 @@ simulated function PlayHeadAsplode()
 		return;
 	}
 
-    //Headless turned off, get out of here
-    if (bDisableHeadless)
-    {
-        return;
-    }
-
 	// make sure this doesn't happen after death so that normal HitFX/Gore path is followed.  Using
 	// bTearOff since bPlayDying may not be set yet on the client
 	// Let the head be blown off for a short time still after death
@@ -3775,7 +3771,7 @@ simulated function PlayHeadAsplode()
 	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
 	if( GoreManager != none && GoreManager.AllowHeadless() )
 	{
-		if( !bIsGoreMesh )
+		if( !bIsGoreMesh && !bDisableHeadless )
 		{
 			SwitchToGoreMesh();
 		}
@@ -3788,8 +3784,11 @@ simulated function PlayHeadAsplode()
 		GoreManager.CrushBone( self, BoneName );
         SoundGroupArch.PlayHeadPopSounds( self, mesh.GetBoneLocation(BoneName) );
 		HitZones[HZI_Head].bPlayedInjury = true;
-		SpawnHeadShotFX(KFPlayerReplicationInfo(HitFxInfo.DamagerPRI));
 	}
+
+	// Play headshot effects regardless of dismemberment, because the user deserves to see
+	// their FX even if their gore settings do not allow dismemberment.
+	SpawnHeadShotFX(KFPlayerReplicationInfo(HitFxInfo.DamagerPRI));
 }
 
 /** Dismember this hit zone if it's not dismembered already
@@ -4064,7 +4063,7 @@ private final simulated function SpawnHeadShotFX(KFPlayerReplicationInfo Damager
 				return;
 			}
 			SHeadshotEffect = class'KFHeadShotEffectList'.static.GetUnlockedHeadshotEffect(DamagerPRI.GetHeadShotEffectID());
-			if (SHeadshotEffect.Id != INDEX_NONE)
+			if (SHeadshotEffect.Id != INDEX_NONE && SHeadshotEffect.EffectPS != none)
 			{
 				Mesh.GetSocketWorldLocationAndRotation(class'KFSM_Stunned'.default.DazedFXSocketName, SpawnVector);
 				WorldInfo.MyEmitterPool.SpawnEmitter(SHeadshotEffect.EffectPS, SpawnVector);
@@ -4680,6 +4679,8 @@ DefaultProperties
     DamageInflationRate=1.0
     RandomColorIdx=-1
 
+	bCanBePinned=true
+
 	// ---------------------------------------------
 	// Hit Zones
 	HitZones.Empty
@@ -4750,11 +4751,10 @@ DefaultProperties
     Components.Add(SprintAkComponent0)
 
 	Begin Object Class=AkComponent name=HeadshotAkComponent0
-		BoneName=head
 		bStopWhenOwnerDestroyed=false
-		bForceOcclusionUpdateInterval=true
-		OcclusionUpdateInterval=0.2f
 	End Object
     HeadShotAkComponent=HeadshotAkComponent0
     Components.Add(HeadshotAkComponent0)
+
+	bSprintOverride=false
 }

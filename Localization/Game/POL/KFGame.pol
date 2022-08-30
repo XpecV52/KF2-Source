@@ -1,5 +1,5 @@
 [KFPawn_Scripted]
-ScriptedPawnString="V.I.P."
+ScriptedPawnString="Eskortowanie"
 
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="Efekty specjalne"
@@ -31,6 +31,7 @@ ModeStrings[0]="Przetrwanie"
 ModeStrings[1]="Tygodniowe"
 ModeStrings[2]="Przetrw. VS"
 ModeStrings[3]="Bez końca"
+ModeStrings[4]="Cel"
 
 NoPreferenceString="DOWOLNIE"
 OKString="OK"
@@ -108,7 +109,7 @@ DiscordSoloMatchString="Rozgrywka solo"
 DiscordMatchLobbyString=": Lobby"
 DiscordTraderTimeString=": Czas handlu"
 DiscordBossWaveString=": Fala – boss"
-DiscordWaveString=": Fala"
+DiscordWaveString=": Fala "
 
 StartOfflineGameString="Rozpocznij grę offline"
 StartOfflineGameDescriptionString="Rozpoczęcie gry offline spowoduje rozwiązanie drużyny. \nCzy chcesz kontynuować?"
@@ -141,9 +142,9 @@ CompleteMapString="Ukończ mecz na mapie:"
 KillZedsString="Zabij zetów:"
 KillBossString="Zabij bossa:"
 KillBossDescriptionString="W Przetrwaniu lub trybie tygodniowym"
-VersusKillsString="Zabij wrogich graczy jako:"
-DealVersusDamageString="Zadaj obrażenia wrogim graczom jako:"
-VersusCompletionString="Ukończ mecz jako:"
+VersusKillsString=Zabij wrogich graczy jako:
+DealVersusDamageString=Zadaj obrażenia wrogim graczom jako:
+VersusCompletionString=Ukończ mecz jako:
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="NIE UDAŁO SIĘ ZNALEŹĆ ROZGRYWKI"
@@ -1246,6 +1247,7 @@ ReduceHighPitchNoiseString="Redukcja wys. dźwięków"
 DisableAutoUpgradeString="Wyłącz aut. wymianę"
 HideRemodeHeadshotEffectsString="Wył. efekty odl. strzałów w głowę"
 ToggleToRunString="Przełącz bieg"
+ClassicPlayerInfoString="Tradycyjne paski zdrowia"
 
 EnableMixerString="Wł./Wył. Mixer"
 DisableMixerString="Wyłącz Mixer"
@@ -1449,7 +1451,7 @@ KillzedBy_ZedFleshpoundString=" doświadcza przemielenia na papkę"
 KillzedBy_ZedGorefastString=" pada ofiarą obdarcia ze skóry"
 KillzedBy_ZedHuskString=" pada ofiarą zwęglenia"
 KillzedBy_ZedScrakeString=" ponosi śmierć w kwiecie wieku"
-KillzedBy_ZedSirenString=" doświadcza zabójczego oderwania uszu"
+KillzedBy_ZedSirenString="doświadcza zabójczego oderwania uszu"
 KillzedBy_ZedStalkerString=" pada ofiarą całkowitego zaskoczenia"
 KillzedBy_ZedClot_CystString=" doświadcza rozczarowującej śmierci"
 KillzedBy_ZedClot_AlphaString=" – chwycono nieprawidłowo"
@@ -1638,11 +1640,11 @@ PerkName_ESN="Pistolero"
 PerkName_FRA="Flingueur"
 PerkName_FRC="Flingueur"
 PerkName_INT="Gunslinger"
-PerkName_ITA="Pistolero"
+PerkName_ITA="Pistoleiro"
 PerkName_JPN="ガンスリンガー"
 PerkName_KOR="건슬링거"
 PerkName_POL="Rewolwerowiec"
-PerkName_PTB="Pistoleiro"
+PerkName_PTB="Pistolero"
 PerkName_RUS="Стрелок"
 
 [KFPerk_Sharpshooter]
@@ -1737,7 +1739,7 @@ Vampire="Wampir"
 VampireDescription="Leczenie 4 punktów zdrowia za każdego zeta zabitego bronią specjalizacji. Atak szybszy o 20% podczas używania broni białej specjalizacji."
 
 Speed="Rzeźnik"
-SpeedDescription="Atak szybszy o 20% i 25% więcej obrażeń podczas używania broni białej specjalizacji."
+SpeedDescription="Atak szybszy o 20% i 20% więcej obrażeń podczas używania broni białej specjalizacji."
 
 Resistance="Odporność"
 ResistanceDescription="20% odporności na wszystkie rodzaje obrażeń. Dodatkowe 20% odporności na truciznę i obrażenia soniczne."
@@ -1755,7 +1757,7 @@ Spartan="CZAS ZET – Spartanin"
 SpartanDescription="W czasie zet atakujesz bronią specjalizacji i poruszasz się w czasie rzeczywistym."
 
 Rage="CZAS ZET – Szał berserkera"
-RageDescription="Po wejściu w czas zet leczysz 25% zdrowia, a pobliskie zety usiłują uciec."
+RageDescription="Gdy aktywuje się lub odświeża czas zetów, przywracasz 25% zdrowia i zmuszasz pobliskie zety do ucieczki."
 
 [KFPerk_Commando]
 PerkName="Komandos"
@@ -1768,7 +1770,7 @@ SkillCatagories[4]="Zaawansowane szkolenie"
 
 Passives[0]=(Title="Obrażenia broni specjalizacji",Description="Obr. broni spec. wzrastają o x%x na poziom");
 Passives[1]=(Title="Wykr. ukrytych wrogów i paska zdr.",Description="Zasięg 5 m oraz %x% m na poziom");
-Passives[2]=(Title="Wydłużenie czasu zet",Description="Czas zet wydłuża się o %x% co 5 poziomów");
+Passives[2]=(Title="Czas zetów odświeża się",Description="Czas zet wydłuża się o %x% co 5 poziomów");
 Passives[3]=(Title="Szybkość przeładowania",Description="Szyb. przeł. broni spec. + %x%% co 5 poz.");
 Passives[4]=(Title="Noktowizja",Description="Latarki ORAZ gogle noktowizyjne");
 Passives[5]=(Title="Wskazywanie ukrytych zetów",Description="Sojusznicy widzą ukryte jednostki");
@@ -1783,7 +1785,7 @@ LargeMags="Magazynki o dużej pojemności"
 LargeMagsDescription="Pojemność magazynka broni specjalizacji zwiększona o 50%."
 
 Backup="Rezerwa"
-BackupDescription="50% większe obrażenia za pomocą pistoletu 9 mm i noża oraz o 50% szybsza zmiana broni."
+BackupDescription="85% większe obrażenia za pomocą pistoletu 9 mm i noża oraz o 50% szybsza zmiana broni."
 
 Impact="Pociski udarowe"
 ImpactDescription="Zwiększenie siły oszołamiania broni specjalizacji o 150%."
@@ -1795,7 +1797,7 @@ AmmoVest="Gotowość"
 AmmoVestDescription="20% więcej amunicji dla każdej broni specjalizacji."
 
 HollowPoints="Pociski grzybkujące"
-HollowPointsDescription="Obrażenia broni specjalizacji zwiększone o 25% oraz ich odrzut zmniejszony o 50%."
+HollowPointsDescription="Obrażenia broni specjalizacji zwiększone o 20%, a ich odrzut zmniejszony o 50%."
 
 EatLead="Wypchaj się ołowiem"
 EatLeadDescription="Pojemność magazynka broni specjalizacji zwiększona o 100%."
@@ -1829,13 +1831,13 @@ Damage="Bombardier"
 DamageDescription="Obrażenia wybuchowych broni specjalizacji zwiększone o 25%."
 
 Speed="Szturmowiec"
-SpeedDescription="Przeładowywanie broni specjalizacji szybsze o 20%, a jej siła powalania i oszołamiania zwiększona o 25%."
+SpeedDescription="Zwiększenie szybkości przeładowywania broni specjalizacji i ich siły powalania o 10%."
 
 DirectHit="Silne pociski udarowe"
-DirectHitDescription="Obrażenia przy bezpośrednim trafieniu za pomocą broni wybuchowej zwiększone o 20%."
+DirectHitDescription="Obrażenia przy bezpośrednim trafieniu za pomocą broni wybuchowej zwiększone o 25%."
 
 Ammo="Dodatkowe pociski"
-AmmoDescription="Maksymalna ilość amunicji wybuchowej broni specjalizacji zwiększona o 5."
+AmmoDescription="Maksymalna ilość amunicji wybuchowej broni specjalizacji zwiększona o 5. Nie dotyczy to ładunków C4."
 
 SirenResistance="Pociski odporne na efekty soniczne"
 SirenResistanceDescription="Twoje ładunki wybuchowe są odporne na krzyk syreny i zawsze eksplodują."
@@ -1884,13 +1886,13 @@ Combatant="Lekarz polowy"
 CombatantDescription="Pojemność magazynka broni specjalizacji zwiększona o 50%, a szybkość ruchu o 10%."
 
 HealingDamageBoost="Zastrzyk koncentrujący"
-HealingDamageBoostDescription="Trafianie członków drużyny strzałkami leczniczymi zwiększa zadawane przez nich obrażenia o 5% na 5 s. Efekt kumuluje się do premii 20%. "
+HealingDamageBoostDescription="Trafianie członków drużyny strzałkami leczniczymi zwiększa zadawane przez nich obrażenia o 5% na 5 s. Efekt kumuluje się do premii 20%."
 
 AcidicCompound="Pociski kwasowe"
 AcidicCompoundDescription="Broń specjalizacji może zatruć zetów, zadając obrażenia w czasie od trucizny."
 
 HealingShield="Koagulant"
-HealingShieldDescription="Trafianie członków drużyny strzałkami leczniczymi zwiększa ich odporność na obrażenia o 10% na 5 s. Efekt kumuluje się do premii 30%. "
+HealingShieldDescription="Trafianie członków drużyny strzałkami leczniczymi zwiększa ich odporność na obrażenia o 10% na 5 s. Efekt kumuluje się do premii 30%."
 
 Enforcer="Chirurg bojowy"
 EnforcerDescription="Obrażenia broni specjalizacji zwiększone o 20%."
@@ -1899,7 +1901,7 @@ AirborneAgent="CZAS ZET – Lotny środek"
 AirborneAgentDescription="W czasie zet rozpylasz gaz, który leczy pobliskich sojuszników."
 
 Sedative="CZAS ZET – Zetacja"
-SedativeDescription="W czasie zet zadawanie zetom obrażeń bronią specjalizacji spowolni ich o 30%, wywołując znaczne obrażenia od trucizny. "
+SedativeDescription="W czasie zet zadawanie zetom obrażeń bronią specjalizacji spowolni ich o 30%, wywołując znaczne obrażenia od trucizny."
 
 
 EXPAction1="Zadawanie obrażeń bronią sanitariusza"
@@ -1908,7 +1910,7 @@ EXPAction2="Leczenie członków drużyny"
 [KFPerk_Firebug]
 PerkName="Podpalacz"
 EXPAction1="Zadawanie obrażeń bronią podpalacza"
-EXPAction2="Zabijanie pełzaczy bronią podpalacza"
+EXPAction2="Zabijanie spaślaków i pełzaczy bronią podpalacza"
 
 SkillCatagories[0]="Zaopatrzenie"
 SkillCatagories[1]="Ostrość"
@@ -1932,7 +1934,7 @@ Fuse="Grillowanie"
 FuseDescription="Efekt podpalenia bronią specjalizacji trwa o 150% dłużej, a obrażenia w czasie zostają zwiększone."
 
 GroundFire="Pożar ziemny"
-GroundFireDescription="Pożary powodują potężne obrażenia i zmniejszają szybkość ruchu zetów o 20%."
+GroundFireDescription="Pożary ziemne powodują podwójne obrażenia i zmniejszają szybkość ruchu zetów o 30%. Nie dotyczy to mołotowów."
 
 ZedShrapnel="Szrapnel na zetów"
 ZedShrapnelDescription="30% szans, że zety zabite przez ciebie ogniem eksplodują, ogłuszając inne, pobliskie zety i zadając im obrażenia."
@@ -1941,7 +1943,7 @@ Napalm="Napalm"
 NapalmDescription="Zety dotknięte przez podpalonych zetów także zostają podpalone, a efekt podpalenia trwa 150% dłużej."
 
 Range="Burza ognia"
-RangeDescription="Zwiększony zasięg broni specjalizacji."
+RangeDescription="Zwiększony zasięg płomiennicy, miotacza ognia i działa mikrofalowego."
 
 SplashDamage="Fala gorąca"
 SplashDamageDescription="Zety trafione ogniem z bliska zostają odrzucone."
@@ -1953,7 +1955,7 @@ Scorch="CZAS ZET – Piroman"
 ScorchDescription="W czasie zet atakujesz bronią specjalizacji prawie tak szybko, jak w czasie rzeczywistym, i nigdy nie kończy ci się amunicja."
 
 [KFPerk_Gunslinger]
-PerkName="Rewolwerowiec"
+PerkName="Gunslinger"
 EXPAction1="Zadawanie obrażeń bronią rewolwerowca"
 EXPAction2="Strzały w głowę za pomocą broni rewolwerowca"
 
@@ -2037,7 +2039,7 @@ Scoped="Sokole oko"
 ScopedDescription="Zmniejszenie odrzutu o 10% i zwiększenie obrażeń strzału w głowę o 10% przy używaniu celownika mechanicznego broni specjalizacji."
 
 AmmoPouch="Stała gotowość"
-AmmoPouchDescription="Możesz nosić 25% więcej amunicji dla broni specjalizacji i granatów."
+AmmoPouchDescription="Możesz nosić dodatkowy granat i 25% więcej amunicji dla broni specjalizacji."
 
 ZTKnockdown="CZAS ZET – Asasyn"
 ZTKnockdownDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet.  W czasie zet obrażenia strzału w głowę bronią specjalizacji są zwiększone o 35%."
@@ -2117,7 +2119,7 @@ TacticalMovement="Ruch taktyczny"
 TacticalMovementDescription="Brak kary do ruchu podczas używania celownika mechanicznego lub kucania przy używaniu broni specjalizacji."
 
 Backup="Wyszkolenie w walce w zwarciu"
-BackupDescription="Obrażenia pistoletu 9 mm i noża zwiększone o 50%. Każdą grę rozpoczynasz z dwoma pistoletami 9 mm."
+BackupDescription="Obrażenia pistoletu 9 mm i noża zwiększone o 85%. Każdą grę rozpoczynasz z dwoma pistoletami 9 mm."
 
 TacticalReload="Taktyczne przeładowanie"
 TacticalReloadDescription="Zwiększenie szybkości przeładowywania broni specjalizacji."
@@ -2132,10 +2134,10 @@ BodyArmor="Pancerz szturmowy"
 BodyArmorDescription="Maksymalny pancerz zwiększony o 50%. Każdą grę rozpoczynasz z pancerzem 50%, który kumuluje się z pancerzem ze znajomości ciężkiego pancerza."
 
 Cripple="Okaleczenie"
-CrippleDescription="Wielokrotne trafienia z broni specjalizacji spowalnia zetów do 30%. Najskuteczniejsze przy strzałach w nogi."
+CrippleDescription="Wielokrotne trafienia z broni specjalizacji spowalniają zetów do 30%. Trafienia w głowę i inne słabe punkty wywołują ten efekt dwa razy szybciej."
 
 SWATEnforcer="CZAS ZET – Taran"
-SWATEnforcerDescription="W czasie zet poruszasz się prawie tak szybko, jak w czasie rzeczywistym, i masz ogromną siłę powalania, gdy wpadniesz na zeta."
+SWATEnforcerDescription="W trakcie czasu zetów poruszasz się szybciej w czasie rzeczywistym. Powodujesz powalenie i ogromne obrażenia u każdego zeta, który cię dotknie."
 
 RapidAssault="CZAS ZET – Nagły szturm"
 RapidAssaultDescription="W czasie zet nie kończy ci się amunicja, strzelasz prawie w czasie rzeczywistym, a twoja siła oszałamiania wzrasta o 100% (broń specjalizacji)."
@@ -2179,7 +2181,7 @@ ZedShrapnel="Spontaniczna zetsplozja"
 ZedShrapnelDescription="30% szans, że zabite przez ciebie zety eksplodują, ogłuszając inne, pobliskie zety i zadając im obrażenia."
 
 MakeThingsGoBoom="Wybuchowa natura"
-MakeThingsGoBoomDescription="Pole rażenia wszystkich ładunków wybuchowych wzrasta o 40%."
+MakeThingsGoBoomDescription="Odporność na wybuchy i pole rażenia wszystkich ładunków wybuchowych wzrasta o 40%."
 
 Madman="CZAS ZET – Szaleniec"
 MadmanDescription="W czasie zet każda twoja broń strzela 3 razy szybciej."
@@ -2338,25 +2340,53 @@ FreeTrial="Kup Killing Floor 2 już dziś!"
 FeaturedCrossover="Specjalna promocja crossover"
 
 [Objectives]
+ObjectiveTitle="CEL"
 HoldVolume="BROŃ OBSZARU"
 DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="UTRZYMAJ POZYCJĘ"
 RequiredDoshHold="Wymagana liczba graczy:"
 DoschHoldDesc="Trzymaj zety z dala od zaznaczonego obszaru"
 DescriptionDoshHold="Trzymaj zety z dala od zaznaczonego obszaru"
+DescriptionDoshHoldShort="Obroń strefę (opcjonalne)"
 RepairObjective="SPAWANIE I NAPRAWA"
-UseWelderToRepair="Użyj spawarki, aby naprawić obiekt(y)"
-RepairObjectiveRequired="Cele do naprawienia:"
+UseWelderToRepair="Użyj spawarki, aby naprawiać uszkodzone maszyny"
+UseWelderToRepairShort="Zespawaj uszkodzoną maszynę"
+UseWelderToRepairTraderPod="Użyj spawarki, aby naprawić kapsuły handlarki"
+UseWelderToRepairTraderPodShort="Zespawaj kapsuły handlarki"
+RepairObjectiveRequired="Uszkodzone maszyny do naprawienia:"
 EscortPawnsObjective="ESKORTOWANIE"
-EscortPawnsDescription="Chroń cel przed zetami"
+EscortPawnsDescription="Eskortuj dron i obroń go przed zetami"
+EscortPawnsDescriptionShort="Eskortuj dron"
 RequiredHoldVolume="RequiredHoldVolume"
 DestroyActor="ZNAJDŹ I ZNISZCZ"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="UŻYJ STEROWANIA"
-DescriptionActivateTrigger="Aktywuj sterowanie"
+DescriptionActivateTrigger="Aktywuj konsolę kontrolną"
+DescriptionActivateTriggerShort="Aktywuj konsolę"
+DescriptionActivateTriggerFlares="Aktywuj wyrzutnię flar"
+DescriptionActivateTriggerFlaresShort="Aktywuj wyrzutnię flar"
+DescriptionActivateTriggerServer="Przeciąż terminal serwera"
+DescriptionActivateTriggerServerShort="Przeciąż terminal serwera"
+DescriptionActivateTriggerCommTower="Przeciąż wieżę komunikacyjną"
+DescriptionActivateTriggerCommTowerShort="Przeciąż wieżę komunikacyjną"
 RequiredActivateTrigger="Wymagana aktywacja:"
+ExterminateWaveObjective="EKSTERMINACJA"
+ExterminateWaveDescription="Zabij wszystkich zetów"
+ExterminateWaveDescriptionShort="Zabij wszystkich zetów"
+ExterminateWaveRequired="Zety do wytępienia:"
+HoldZoneObjective="UTRZYMAJ POZYCJĘ"
+HoldZoneDescription="Obroń zaznaczony obszar przed zetami"
+HoldZoneDescriptionShort="Obroń zaznaczony obszar"
+HoldZoneRequired="Czas obrony:"
+TransportWaveObjective="TRANSPORT"
+TransportWaveDescription="Przenieś tablet do miejsca dostawy"
+TransportWaveDescriptionShort="Przenieś tablet"
+TransportWaveDescriptionGear="Przenieś sprzęt do miejsca dostawy"
+TransportWaveDescriptionGearShort="Przenieś sprzęt"
+RequiredCollectActor="Wymagane dostawy:"
 FailedString="NIEUDANE"
+SuccessString="UDANE"
 RepairObjSantaWorkshopCustomTitle1="PRZYWRÓĆ ZASILANIE"
 RepairObjSantaWorkshopCustomDescr1="Napraw 3 przerwane obwody spawarką"
 RepairObjSantaWorkshopCustomTitle2="NAPRAW BRAMY"
@@ -2373,6 +2403,20 @@ OperateObjSantaWorkshopCustomTitle2="POCIĄGNIJ DŹWIGNIĘ"
 OperateObjSantaWorkshopCustomDescr2="Nie pozwól zetom dostać się do strefy"
 OperateObjSantaWorkshopCustomTitle3="POCIĄGNIJ DŹWIGNIĘ"
 OperateObjSantaWorkshopCustomDescr3="Nie pozwól zetom dostać się do strefy"
+TooFewPlayers="ZA MAŁO GRACZY"
+TooManyZeds="ZA DUŻO ZETÓW"
+KillRemainingZeds="ZABIJ WSZYSTKICH ZETÓW"
+BeingAttacked="POD ATAKIEM"
+LowHealth="MAŁO ZDROWIA"
+Stopped="STOI"
+Blocked="BLOKADA ZETÓW"
+NeedsRepair="POTRZEBUJE NAPRAW"
+Dropped="UPUSZCZONO"
+PickedUp="PODNIESIONO"
+PickupTransportItem="ZACZNIJ TRANSPORT"
+Reset="RESETUJ"
+Ready="GOTOWOŚĆ"
+NotReady="BRAK GOTOWOŚCI"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2526,10 +2570,10 @@ Source0="Promocja Chivalry"
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
-SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
-SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
-SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1")
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
@@ -2539,11 +2583,11 @@ ChanceDropDescriptionStrings[1]="Przedmioty 2"
 [KFGFxSummerSideShowObjectivesContainer]
 CurrentSpecialEventString="Ograniczone czasowo wydarzenie z wyjątkowymi przedmiotami."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Naprawa w powietrzu",DescriptionString="Napraw uszkodzone rury na mapie Statek powietrzny");
-SpecialEventObjectiveInfoList[1]=(TitleString="Misja na górnym pokładzie",DescriptionString="Obroń górny pokład na mapie Statek powietrzny");
-SpecialEventObjectiveInfoList[2]=(TitleString="Więcej mocy!",DescriptionString="Napraw skrzynki elektryczne na mapie Statek powietrzny");
-SpecialEventObjectiveInfoList[3]=(TitleString="Dostawa wody",DescriptionString="Dostarcz wodę do silnika parowego na mapie Statek powietrzny");
-SpecialEventObjectiveInfoList[4]=(TitleString="Wspaniały okręt",DescriptionString="Wygraj grę na wysokim (albo wyższym) poz. trudności na mapie Statek powietrzny");
+SpecialEventObjectiveInfoList[0]=(TitleString="Naprawa w powietrzu",DescriptionString="Napraw uszkodzone rury na mapie Statek powietrzny")
+SpecialEventObjectiveInfoList[1]=(TitleString="Misja na górnym pokładzie",DescriptionString="Obroń górny pokład na mapie Statek powietrzny")
+SpecialEventObjectiveInfoList[2]=(TitleString="Więcej mocy!",DescriptionString="Napraw skrzynki elektryczne na mapie Statek powietrzny")
+SpecialEventObjectiveInfoList[3]=(TitleString="Dostawa wody",DescriptionString="Dostarcz wodę do silnika parowego na mapie Statek powietrzny")
+SpecialEventObjectiveInfoList[4]=(TitleString="Wspaniały okręt",DescriptionString="Wygraj grę na wysokim (albo wyższym) poz. trudności na mapie Statek powietrzny")
 
 AllCompleteRewardDescriptionString="Zestaw „Steampunkowy ubiór”"
 
@@ -2553,11 +2597,11 @@ ChanceDropDescriptionStrings[1]="Złoty kupon"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="Ukończ cele w „Balu potworów”, aby zdobyć nagrody!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Pułapka albo psikus!",DescriptionString="Użyj pułapek, aby zabić w jednej sesji gry 25 zetów");
-SpecialEventObjectiveInfoList[1]=(TitleString="Umarlacy milczą",DescriptionString="Rozwal 10 świecących czaszek do zebrania");
-SpecialEventObjectiveInfoList[2]=(TitleString="Potworna jatka",DescriptionString="Zabij 2500 zetów");
-SpecialEventObjectiveInfoList[3]=(TitleString="Impreza całą noc",DescriptionString="Ukończ falę 25 w trybie Bez końca na wysokim lub wyższym poziomie");
-SpecialEventObjectiveInfoList[4]=(TitleString="Władca zamku",DescriptionString="Pokonaj hrabiego Hansa w Przetrwaniu na wysokim lub wyższym poziomie");
+SpecialEventObjectiveInfoList[0]=(TitleString="Pułapka albo psikus!",DescriptionString="Użyj pułapek, aby zabić w jednej sesji gry 25 zetów")
+SpecialEventObjectiveInfoList[1]=(TitleString="Umarlacy milczą",DescriptionString="Rozwal 10 świecących czaszek do zebrania")
+SpecialEventObjectiveInfoList[2]=(TitleString="Potworna jatka",DescriptionString="Zabij 2500 zetów")
+SpecialEventObjectiveInfoList[3]=(TitleString="Impreza całą noc",DescriptionString="Ukończ falę 25 w trybie Bez końca na wysokim lub wyższym poziomie")
+SpecialEventObjectiveInfoList[4]=(TitleString="Władca zamku",DescriptionString="Pokonaj hrabiego Hansa w Przetrwaniu na wysokim lub wyższym poziomie")
 
 AllCompleteRewardDescriptionString="MKB Hansa: Broń+Skór. Hallow."
 
@@ -2567,11 +2611,11 @@ ChanceDropDescriptionStrings[1]="Złoty kupon"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="Ograniczone czasowo wydarzenie z wyjątkowymi przedmiotami."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Prezent doskonały",DescriptionString="Ukończ wszystkie eskorty wózka z pełnym zdrowiem (poziom Trudny lub wyższy)");
-SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowe atrakcje",DescriptionString="Ukończ tygodniowe wydarzenie w ramach gorączki zakupów");
-SpecialEventObjectiveInfoList[2]=(TitleString="Dzwonki sań",DescriptionString="Zabij 2500 zet");
-SpecialEventObjectiveInfoList[3]=(TitleString="Pieczone kasztany",DescriptionString="Zabij 25 bossów");
-SpecialEventObjectiveInfoList[4]=(TitleString="Jatka w Warsztacie",DescriptionString="Pokonaj Krampusa (Warsztat Mikołaja: poziom Trudny lub wyższy).");
+SpecialEventObjectiveInfoList[0]=(TitleString="Prezent doskonały",DescriptionString="Ukończ wszystkie eskorty wózka z pełnym zdrowiem (poziom Trudny lub wyższy)")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowe atrakcje",DescriptionString="Ukończ tygodniowe wydarzenie w ramach gorączki zakupów")
+SpecialEventObjectiveInfoList[2]=(TitleString="Dzwonki sań",DescriptionString="Zabij 2500 zet")
+SpecialEventObjectiveInfoList[3]=(TitleString="Pieczone kasztany",DescriptionString="Zabij 25 bossów")
+SpecialEventObjectiveInfoList[4]=(TitleString="Jatka w Warsztacie",DescriptionString="Pokonaj Krampusa (Warsztat Mikołaja: poziom Trudny lub wyższy).")
 
 AllCompleteRewardDescriptionString="Topór wojenny + skórka świąt."
 
@@ -2582,11 +2626,11 @@ ChanceDropDescriptionStrings[1]="Złoty kupon"
 CurrentSpecialEventString="D.A.R.owane nieskończone wyzwania"
 CurrentSpecialEventDescriptionString="Pokonuj fale, aby zdobyć legenD.A.R.ne nagrody!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test bez końca",DescriptionString="Ukończ falę 5. w trybie Bez końca",TierEventRewardName="Klasyczny D.A.R.");
-SpecialEventObjectiveInfoList[1]=(TitleString="Drony bez końca",DescriptionString="Ukończ falę 10",TierEventRewardName="Loader D.A.R.");");
-SpecialEventObjectiveInfoList[2]=(TitleString="Straż bez końca",DescriptionString="Ukończ falę 15",TierEventRewardName="Skully D.A.R.");");
-SpecialEventObjectiveInfoList[3]=(TitleString="Wojna maszyn bez końca",DescriptionString="Ukończ falę 20",TierEventRewardName="Krwiożerczy D.A.R.");");
-SpecialEventObjectiveInfoList[4]=(TitleString="Optimus D.A.R. bez końca",DescriptionString="Ukończ falę 25 w trybie Bez końca",TierEventRewardName="Złoty D.A.R.");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test bez końca",DescriptionString="Ukończ falę 5. w trybie Bez końca",TierEventRewardName="Klasyczny D.A.R.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Drony bez końca",DescriptionString="Ukończ falę 10",TierEventRewardName="Loader D.A.R.")
+SpecialEventObjectiveInfoList[2]=(TitleString="Straż bez końca",DescriptionString="Ukończ falę 15",TierEventRewardName="Skully D.A.R.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Wojna maszyn bez końca",DescriptionString="Ukończ falę 20",TierEventRewardName="Krwiożerczy D.A.R.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Optimus D.A.R. bez końca",DescriptionString="Ukończ falę 25 w trybie Bez końca",TierEventRewardName="Złoty D.A.R.")
 
 [KFGFxSpring2019ObjectivesContainer]
 CurrentSpecialEventString="Ograniczone czasowo wydarzenie z wyjątkowymi przedmiotami"
@@ -2598,6 +2642,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="Przelew Bez Końca",DescriptionSt
 SpecialEventObjectiveInfoList[4]=(TitleString="Przelewanie krwi",DescriptionString="Pokonaj dowolnego bossa w Przetrwaniu na wysokim lub wyższym poziomie trudności na mapie Przelew")
 
 AllCompleteRewardDescriptionString="Kobiece i męskie stroje cyberpunkowe"
+
+ChanceDropDescriptionStrings[0]="Kupon"
+ChanceDropDescriptionStrings[1]="Złoty kupon"
+
+[KFGFxSummer2019ObjectivesContainer]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z wyjątkowymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Udany start!",DescriptionString="Ukończ Fortecę Pary na wysokim lub wyższym poziomie trudności celu.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowa kontrola",DescriptionString="Ukończ tygodniowy incydent w Fortecy Pary.")
+SpecialEventObjectiveInfoList[2]=(TitleString="Nieskończona para",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności w Fortecy Pary.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zabójcza podróż powrotna",DescriptionString="Ukończ „Lądowanie zetów” na wysokim lub wyższym poziomie trudności celu.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Zimny powrót",DescriptionString="Ukończ „Stację” na wysokim lub wyższym poziomie trudności celu.")
+
+AllCompleteRewardDescriptionString="Kobiece i męskie stroje steampunkowe"
 
 ChanceDropDescriptionStrings[0]="Kupon"
 ChanceDropDescriptionStrings[1]="Złoty kupon"
@@ -2618,7 +2676,7 @@ KnifeString="Nóż"
 FriendlyName="Teraz: Rozbijacz czach"
 DescriptionStrings[0]="Dobre obrażenia to obrażenia mózgu."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="W trakcie tego incydentu zeci zmutowali tak, że teraz można ich pokonać jedynie przez trafienie w głowę. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[0]="W trakcie tego incydentu zeci zmutowali tak, że teraz można ich pokonać jedynie przez trafienie w głowę. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2628,7 +2686,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Trochę strach"
 DescriptionStrings[0]="Niewielkie zagrożenie to też zagrożenie."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="W trakcie tego incydentu strzelanie do zetów spowoduje, że będą się kurczyć i trudniej będzie ich trafić. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[0]="W trakcie tego incydentu strzelanie do zetów spowoduje, że będą się kurczyć i trudniej będzie ich trafić. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2638,7 +2696,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Mięśniamonium"
 DescriptionStrings[0]="Wszystkie mięśniaki. Cały czas. Prawie."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="Czas na targi mięśniaków! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[0]="Czas na targi mięśniaków! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2658,7 +2716,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Czas zetów"
 DescriptionStrings[0]="Mnóstwo czasu. Czasu zetów."
 DescriptionStrings[1]="Długość: Krótka (4 fale)"
-ModifierDescriptions[0]="Masz czasem wrażenie, że wszystko cię omija? Nie podczas tego incydentu! Czas zetów w pobliżu każdego zeta. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[0]="Masz czasem wrażenie, że wszystko cię omija? Nie podczas tego incydentu! Czas zetów w pobliżu każdego zeta. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2667,7 +2725,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Wybuch"
 DescriptionStrings[0]="Zeci pod presją mogą wybuchnąć."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="Może coś zjedli? I mają gazy? Niezależnie od powodu w trakcie tego incydentu zeci wybuchają po ich zabiciu. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[0]="Może coś zjedli? I mają gazy? Niezależnie od powodu w trakcie tego incydentu zeci wybuchają po ich zabiciu. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2676,7 +2734,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Góra mięśni"
 DescriptionStrings[0]="Im są silniejsi, tym gorzej dla ciebie."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="W trakcie tego incydentu zeci w momencie uderzenia w gracza lub w ramach zdolności mają zwiększone zdrowie, rozmiary oraz zasięg. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[0]="W trakcie tego incydentu zeci w momencie uderzenia w gracza lub w ramach zdolności mają zwiększone zdrowie, rozmiary oraz zasięg. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2686,7 +2744,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Bańkogłowi"
 DescriptionStrings[0]="…jak ich karki to wytrzymują."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="Coś poszło bardzo nie tak z tą partią zetów i ich głowy są znaaaacznie większe niż zwykle! Można nawet powiedzieć, że olbrzymie! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. "
+ModifierDescriptions[0]="Coś poszło bardzo nie tak z tą partią zetów i ich głowy są znaaaacznie większe niż zwykle! Można nawet powiedzieć, że olbrzymie! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3113,6 +3171,9 @@ GameName="Tygodniowe"
 [Endless KFGameInfoSummary]
 GameName="Bez końca"
 
+[Objective KFGameInfoSummary]
+GameName="Cel"
+
 [KF-VolterManor KFMapSummary]
 DisplayName="Dwór Voltera"
 
@@ -3181,6 +3242,9 @@ DisplayName="Warsztat Mikołaja"
 
 [KF-Spillway KFMapSummary]
 DisplayName="Przelew"
+
+[KF-SteamFortress KFMapSummary]
+DisplayName="Forteca Pary"
 
 [KFMapInfo]
 ; defaults

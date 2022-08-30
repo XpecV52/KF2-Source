@@ -7,6 +7,11 @@
  *******************************************************************************/
 class KFProjectileStickHelper extends Object within KFProjectile;
 
+var transient Pawn PinPawn;
+var transient name PinBoneName;
+var transient RB_ConstraintActorSpawnable PinConstraint;
+var transient Vector PinLocation;
+var transient Actor PinHitActor;
 var AkEvent StickAkEvent;
 
 simulated function TryStick(Vector HitNormal, optional Vector HitLocation, optional Actor HitActor)
@@ -17,12 +22,12 @@ simulated function TryStick(Vector HitNormal, optional Vector HitLocation, optio
     {
         return;
     }
-    if((HitActor != none) && HitActor == Outer.StuckToActor)
+    if((HitActor != none) && (HitActor == Outer.StuckToActor) || HitActor == PinPawn)
     {
         return;
     }
     GetImpactInfo(Outer.Velocity, HitLocation, HitNormal, HitInfo);
-    if(GetImpactResult(HitActor, HitInfo.HitComponent))
+    if((HitInfo.HitComponent != none) && GetImpactResult(HitActor, HitInfo.HitComponent))
     {
         Stick(HitActor, HitLocation, HitNormal, HitInfo);
     }
@@ -34,7 +39,7 @@ simulated function GetImpactInfo(Vector in_Velocity, out Vector out_HitLocation,
 
     VelNorm = Normal(in_Velocity);
     VelScaled = VelNorm * float(30);
-    Outer.Trace(out_HitLocation, out_HitNormal, Outer.Location + VelScaled, Outer.Location - VelScaled,,, out_HitInfo, Outer.1);
+    Outer.Trace(out_HitLocation, out_HitNormal, out_HitLocation + VelScaled, out_HitLocation - VelScaled,,, out_HitInfo, Outer.1);
 }
 
 simulated function bool GetImpactResult(Actor HitActor, PrimitiveComponent HitComp)
@@ -89,10 +94,14 @@ simulated function Stick(Actor HitActor, Vector HitLocation, Vector HitNormal, c
         Direction = Normal(Outer.Velocity);
         EndTrace = StartTrace + (Direction * (HitMonster.CylinderComponent.CollisionRadius * 6));
         Outer.TraceProjHitZones(HitMonster, EndTrace, StartTrace, HitZoneImpactList);
-        ClosestBoneLocation = HitMonster.Mesh.GetClosestCollidingBoneLocation(HitLocation, true, false);
-        BoneName = HitMonster.Mesh.FindClosestBone(ClosestBoneLocation, ClosestBoneLocation);
+        if(BoneName == 'None')
+        {
+            ClosestBoneLocation = HitMonster.Mesh.GetClosestCollidingBoneLocation(HitLocation, true, false);
+            BoneName = HitMonster.Mesh.FindClosestBone(ClosestBoneLocation, ClosestBoneLocation);
+        }
         if(KFWeapon(Outer.Owner) != none)
         {
+            HitZoneImpactList[0].RayDir = Normal(EndTrace - StartTrace);
             KFWeapon(Outer.Owner).HandleProjectileImpact(Outer.WeaponFireMode, HitZoneImpactList[0], Outer.PenetrationPower);
         }
     }
@@ -121,7 +130,42 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
 {
     local editinline SkeletalMeshComponent SkelMeshComp;
     local name BoneName;
+    local Vector RelStuckToLocation;
+    local Rotator RelStuckToRotation;
+    local KFPawn StickToPawn;
 
+    StickToPawn = KFPawn(StickTo);
+    if(Outer.bCanPin && (StickToPawn == none) || StickToPawn.bCanBePinned)
+    {
+        if(Outer.Role == ROLE_Authority)
+        {
+            if((StickToPawn != none) && !StickToPawn.IsAliveAndWell())
+            {
+                if(PinPawn == none)
+                {
+                    Pin(StickTo, BoneIdx);
+                }
+                return;
+            }
+        }
+        if((Outer.WorldInfo.NetMode != NM_DedicatedServer) && PinPawn != none)
+        {
+            if(StickToPawn == none)
+            {
+                PinPawn.Mesh.SetRBPosition(Outer.Location, PinBoneName);
+                PinConstraint = Outer.Spawn(Class'RB_ConstraintActorSpawnable',,, Outer.Location);
+                PinConstraint.InitConstraint(PinPawn, none, PinBoneName, 'None');
+            }
+            PinPawn = none;
+        }        
+    }
+    else
+    {
+        if((StickToPawn != none) && !StickToPawn.IsAliveAndWell())
+        {
+            return;
+        }
+    }
     Outer.SetPhysics(0);
     Outer.PrevStuckToActor = Outer.StuckToActor;
     Outer.StuckToActor = StickTo;
@@ -132,11 +176,13 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
         BoneName = SkelMeshComp.GetBoneName(BoneIdx);
         if(bCalculateRelativeLocRot)
         {
-            SkelMeshComp.TransformToBoneSpace(BoneName, Outer.Location, Outer.Rotation, Outer.StuckToLocation, Outer.StuckToRotation);
+            Outer.StuckToLocation = Outer.Location;
+            Outer.StuckToRotation = Outer.Rotation;
         }
+        SkelMeshComp.TransformToBoneSpace(BoneName, Outer.StuckToLocation, Outer.StuckToRotation, RelStuckToLocation, RelStuckToRotation);
         Outer.SetBase(StickTo,, SkelMeshComp, BoneName);
-        Outer.SetRelativeLocation(Outer.StuckToLocation);
-        Outer.SetRelativeRotation(Outer.StuckToRotation);        
+        Outer.SetRelativeLocation(RelStuckToLocation);
+        Outer.SetRelativeRotation(RelStuckToRotation);        
     }
     else
     {
@@ -152,6 +198,28 @@ simulated function StickToActor(Actor StickTo, PrimitiveComponent HitComp, int B
         }
         Outer.SetBase(StickTo);
     }
+}
+
+simulated function Pin(Actor PinTo, int BoneIdx)
+{
+    if(Outer.Role == ROLE_Authority)
+    {
+        Outer.bUpdateSimulatedPosition = false;
+        Outer.PinActor = PinTo;
+        Outer.PinBoneIdx = BoneIdx;
+    }
+    PinPawn = Pawn(PinTo);
+    PinBoneName = PinPawn.Mesh.GetBoneName(BoneIdx);
+    Outer.StuckToActor = none;
+    Outer.StuckToBoneIdx = -1;
+    Outer.SetBase(none);
+    Outer.SetPhysics(2);
+    if(Outer.WorldInfo.NetMode != NM_Standalone)
+    {
+        Outer.SetLocation(Outer.StuckToLocation);
+        Outer.SetRotation(Outer.StuckToRotation);
+    }
+    Outer.Velocity = Outer.Speed * vector(Outer.Rotation);
 }
 
 simulated function SkeletalMeshComponent GetActorSkeletalMesh(Actor StickActor)
@@ -174,9 +242,14 @@ simulated function SkeletalMeshComponent GetActorSkeletalMesh(Actor StickActor)
 
 function ServerStick(Actor StickTo, int BoneIdx, Vector StickLoc, Rotator StickRot)
 {
+    Outer.bUpdateSimulatedPosition = true;
     Outer.StuckToLocation = StickLoc;
     Outer.StuckToRotation = StickRot;
     Outer.bForceNetUpdate = true;
+    if(PinPawn != none)
+    {
+        PinPawn = none;
+    }
     ReplicatedStick(StickTo, BoneIdx);
 }
 
@@ -214,7 +287,17 @@ simulated function UnStick()
     Outer.SetPhysics(Outer.default.Physics);
 }
 
-simulated function Tick()
+simulated function UnPin()
+{
+    if(PinConstraint != none)
+    {
+        PinConstraint.TermConstraint();
+    }
+    PinConstraint = none;
+    PinPawn = none;
+}
+
+simulated function Tick(float DeltaTime)
 {
     local int I;
     local Pawn P;
@@ -222,11 +305,50 @@ simulated function Tick()
     local KFDoorActor door;
     local KFDestructibleActor Destructible;
     local Actor StuckTo;
+    local Vector HitLocation, HitNormal;
+    local TraceHitInfo HitInfo;
+    local Actor HitActor;
+    local float PinRad;
+    local Vector VFront;
+    local float StickPct, PinRadMagicNumber, StickPctMagicNumber;
 
+    if(PinPawn != none)
+    {
+        VFront = Normal(Outer.Velocity);
+        StickPct = 1;
+        PinRadMagicNumber = 3;
+        StickPctMagicNumber = 0.3;
+        if(IsZero(PinLocation))
+        {
+            PinRad = PinPawn.CylinderComponent.CollisionRadius * PinRadMagicNumber;
+            HitActor = Outer.Trace(HitLocation, HitNormal, Outer.Location, Outer.Location + (VFront * PinRad),,, HitInfo, Outer.1);
+            if((((HitActor != none) && HitActor != Outer.PinActor) && Pawn(HitActor) == none) && GetImpactResult(HitActor, HitInfo.HitComponent))
+            {
+                Outer.GravityScale = 0;
+                PinLocation = HitLocation;
+                PinHitActor = HitActor;
+            }
+        }
+        if(!IsZero(PinLocation))
+        {
+            PinRad = PinPawn.CylinderComponent.CollisionRadius * PinRadMagicNumber;
+            StickPct = VSize(PinLocation - Outer.Location) / PinRad;
+            Outer.Velocity = ((VFront * Outer.MaxSpeed) * StickPct) * StickPct;
+        }
+        if(Outer.WorldInfo.NetMode != NM_DedicatedServer)
+        {
+            PinPawn.Mesh.SetRBLinearVelocity(Outer.Velocity);
+            PinPawn.Mesh.SetRBPosition(Outer.Location, PinBoneName);
+            if(((Outer.Instigator != none) && Outer.Instigator.IsLocallyControlled()) && StickPct < StickPctMagicNumber)
+            {
+                Stick(PinHitActor, Outer.Location, HitNormal, HitInfo);
+            }
+        }
+    }
     StuckTo = Outer.StuckToActor;
     if(StuckTo != none)
     {
-        if(StuckTo.bTearOff)
+        if(StuckTo.bTearOff && PinPawn == none)
         {
             UnStick();
             return;
@@ -263,7 +385,7 @@ simulated function Tick()
             if(Destructible != none)
             {
                 I = 0;
-                J0x279:
+                J0x75F:
 
                 if(I < Destructible.SubObjects.Length)
                 {
@@ -273,7 +395,7 @@ simulated function Tick()
                         return;
                     }
                     ++ I;
-                    goto J0x279;
+                    goto J0x75F;
                 }
             }
         }

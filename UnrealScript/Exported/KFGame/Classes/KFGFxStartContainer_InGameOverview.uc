@@ -29,6 +29,8 @@ var bool bContentShared;
 
 var KFHTTPImageDownloader ImageDownLoader;
 
+var const name ObjectiveClassName;
+
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	local PlayerController PC;
@@ -372,7 +374,15 @@ function UpdateOverviewInGame()
         CurrentLengthIndex = KFGRI.GameLength;
         if(LastLengthIndex != CurrentLengthIndex)
         {
-			UpdateLength(bCustomLength ?  Class'KFCommon_LocalizedStrings'.default.CustomString : class'KFCommon_LocalizedStrings'.static.GetLengthString(CurrentLengthIndex));
+			// don't show the length category in objective mode
+			if (KFGRI.GameClass.Name == ObjectiveClassName)
+			{
+				UpdateLength("");
+			}
+			else
+			{
+				UpdateLength(bCustomLength ? Class'KFCommon_LocalizedStrings'.default.CustomString : class'KFCommon_LocalizedStrings'.static.GetLengthString(CurrentLengthIndex));
+			}
 			LastLengthIndex = CurrentLengthIndex;
         }
 
@@ -410,6 +420,7 @@ defaultproperties
    AuthorString="By "
    SharedByString="Shared by:"
    SharedContentString="SHARED CONTENT"
+   ObjectiveClassName="KFGameInfo_Objective"
    Name="Default__KFGFxStartContainer_InGameOverview"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
 }

@@ -69,8 +69,18 @@ function Weld(int Amount, optional KFPawn Welder)
 {
 	local int OriginalAmount;
 	local KFPerk WelderPerk;
+	local bool bCanExplosiveWelded;
 
-	if ((Amount > 0 && !CanBeWelded()) || (Amount < 0 && !CanBeUnwelded()))
+	if (Welder != none && Amount > 0)
+	{
+		WelderPerk = KFPlayerController(Welder.Controller).GetPerk();
+		if (WelderPerk != none && WelderPerk.CanExplosiveWeld())
+		{
+			bCanExplosiveWelded = true;
+		}
+	}
+
+	if ((Amount > 0 && !CanBeWelded() && !bCanExplosiveWelded) || (Amount < 0 && !CanBeUnwelded()))
 	{
 		return;
 	}
@@ -86,8 +96,7 @@ function Weld(int Amount, optional KFPawn Welder)
 
 	if (Welder != none && Amount > 0)
 	{
-		WelderPerk = KFPlayerController(Welder.Controller).GetPerk();
-		if (WelderPerk != none && WelderPerk.CanExplosiveWeld())
+		if (bCanExplosiveWelded)
 		{
 			UpdateDemoWeld(Amount);
 		}

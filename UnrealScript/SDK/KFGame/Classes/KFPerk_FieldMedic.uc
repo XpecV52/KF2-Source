@@ -31,6 +31,7 @@ var const private float				MaxHealingShield;
 var const private float				HealingShieldDuration;
 var const private ParticleSystem 	AAParticleSystem;
 var const private float 			SnarePower;
+var private const float				SnareSpeedModifier;
 
 /** Defines the explosion. */
 var 	  private KFGameExplosion	AAExplosionTemplate;
@@ -360,6 +361,11 @@ simulated static function ParticleSystem GetAAEffect()
 	return default.AAParticleSystem;
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+	return IsSlugActive() ? SnareSpeedModifier : 1.f;
+}
+
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsSlugActive() && DamageType != none && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
@@ -560,6 +566,7 @@ DefaultProperties
 	HealingShieldDuration=5.0f //1.0
 
 	SnarePower=100
+	SnareSpeedModifier=0.7
 
 	AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
 	AAExplosionDamageType=class'KFDT_Toxic_MedicGrenade'
@@ -623,6 +630,7 @@ DefaultProperties
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.MedicPistol_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.MedicSMG_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.HMTech-301Shotgun_PrestigePrecious_Mint_large"
+	PrestigeRewardItemIconPaths[4]="WEP_SkinSet_Prestige05_Item_TEX.tier04.HMTech-401AssaultRifle_PrestigePrecious_Mint_large"
 
-	AutoBuyLoadOutPath=(class'KFWeapDef_MedicPistol', class'KFWeapDef_MedicSMG', class'KFWeapDef_MedicShotgun', class'KFWeapDef_MedicRifle')
+	AutoBuyLoadOutPath=(class'KFWeapDef_MedicPistol', class'KFWeapDef_MedicSMG', class'KFWeapDef_MedicShotgun', class'KFWeapDef_MedicRifle', class'KFWeapDef_MedicRifleGrenadeLauncher')
 }

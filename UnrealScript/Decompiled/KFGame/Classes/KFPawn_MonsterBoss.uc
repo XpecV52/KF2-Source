@@ -370,6 +370,7 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_MonsterBoss.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
+    bCanBePinned=false
     bWeakZedGrab=false
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_MonsterBoss.Afflictions'
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent

@@ -37,7 +37,7 @@ AlternateFireDescription="La plupart des armes principales ont un mode de tir al
 FlashLightBatteryTitleKey="Utiliser une Lampe torche"
 FlashLightBatteryDescriptionKey="Il peut faire noir ici-bas. Appuyez sur <font color="#caab05">%x%</font> pour allumer ou éteindre votre <font color="#caab05">LAMPE TORCHE</font>. La batterie de votre lampe torche se décharge progressivement. Quand elle est vide, elle s'éteint et commence à se recharger automatiquement."
 GrenadeTitleKey="Utiliser des grenades"
-GrenadeDescriptionKey="Les grenades vous permettent d'infliger des dégâts aux groupes de Zeds compacts. Les Classes ont différentes grenades dans leurs <font color="#caab05">PAQUETAGES D'ARMES</font>. Elles blessent toutes les Zeds mais peuvent avoir d'autres effets. Appuyez sur <font color="#caab05">%x%</font> pour lancer une grenade. "
+GrenadeDescriptionKey="Les grenades vous permettent d'infliger des dégâts aux groupes de Zeds compacts. Les Classes ont différentes grenades dans leurs <font color="#caab05">PAQUETAGES D'ARMES</font>. Elles blessent toutes les Zeds mais peuvent avoir d'autres effets. Appuyez sur <font color="#caab05">%x%</font> pour lancer une grenade." "
 
 ;Wave 1 end
 TraderTimeTitleKey="Un tour chez la marchande."
@@ -116,48 +116,48 @@ ItemDescription="•L'armure de combat vous protège des différents dégâts, m
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 bâton de Dynamite"
-ItemCategory =" « Explosifs"
-ItemDescription="•Un petit morceau de dynamite avec un fusible.\n•Il peut également vous blesser alors soyez prudent ! » "
+ItemCategory =" "Explosifs"
+ItemDescription="•Un petit morceau de dynamite avec un fusible.\n•Il peut également vous blesser alors soyez prudent !" "
 
 [KFProj_MedicGrenade]
 ItemName="Grenade de médecin"
-ItemCategory =" « Explosifs"
-ItemDescription="•Libère un gaz qui empoisonne les Zeds et soigne les humains.\n\n•Rester dans le gaz bleu pour vous soigner.\nPour citer un de nos scientifiques : "L'agent contenu dans ces grenades revigore l'Homo-sapiens tout en éradiquant l'Homo Zedicus." Faites en bon usage. » "
+ItemCategory =" "Explosifs"
+ItemDescription="•Libère un gaz qui empoisonne les Zeds et soigne les humains.\n\n•Rester dans le gaz bleu pour vous soigner.\nPour citer un de nos scientifiques : "L'agent contenu dans ces grenades revigore l'Homo-sapiens tout en éradiquant l'Homo Zedicus." Faites en bon usage." "
 
 [KFProj_MolotovGrenade]
 ItemName="Cocktail Molotov"
-ItemCategory="« Explosifs"
-ItemDescription="•Tout simplement une grenade incendiaire qui brûle les Zeds.\n•Elle peut aussi vous blesser !\n\nNommée par les Finlandais pour insulter Vyacheslav Mikhailovich Molotov, ministre sous Staline pendant la Guerre d'Hiver de 1939-1940... Oh pardon ! Pas envie d'un cours d'histoire ? » "
+ItemCategory="Explosifs"
+ItemDescription="•Tout simplement une grenade incendiaire qui brûle les Zeds.\n\nNommée par les Finlandais pour insulter Vyacheslav Mikhailovich Molotov, ministre sous Staline pendant la Guerre d'Hiver de 1939-1940... Oh pardon ! Pas envie d'un cours d'histoire ?" "
 
 [KFProj_EMPGrenade]
 ItemName="Grenade IEM"
-ItemCategory="« Explosifs"
-ItemDescription="•Génère une impulsion électrique qui inflige des dégâts aux Zeds et peut les assommer un court instant.\n\nLa détonation génère une impulsion électromagnétique d'une nanoseconde qui arrête tous les systèmes électriques proches. En particulier ceux des Zeds. Pratique. » "
+ItemCategory="Explosifs"
+ItemDescription="•Génère une impulsion électrique qui inflige des dégâts aux Zeds et peut les assommer un court instant.\n\nLa détonation génère une impulsion électromagnétique d'une nanoseconde qui arrête tous les systèmes électriques proches. En particulier ceux des Zeds. Pratique." "
 
 [KFProj_HEGrenade]
 ItemName="Grenade HE"
-ItemCategory="« Explosifs"
-ItemDescription="•Une grenade hautement explosive très simple. Blesse les Zeds et les humains.\n\nOn ne peut pas faire plus simple. HE - Hautement Explosive - Ça fait BOUM et ça fait tout péter. Il faut vraiment vous expliquer ? » "
+ItemCategory="Explosifs"
+ItemDescription="•Une grenade hautement explosive très simple. Blesse les Zeds et les humains.\n\nOn ne peut pas faire plus simple. HE - Hautement Explosive - Ça fait BOUM et ça fait tout péter. Il faut vraiment vous expliquer ?" "
 
 [KFProj_FragGrenade]
 ItemName="Grenade frag"
-ItemCategory="« Explosifs"
-ItemDescription="•La classique grenade à fragmentation : envoie de vilains bouts de métal tout autour, blessant tout le monde.\n\nVous avez joué à bien assez de jeux vidéo pour savoir ce qu'est une grenade à fragmentation. Et arrêtez de dire que c'est faux. Personne ne vous croira. » "
+ItemCategory="Explosifs"
+ItemDescription="•La classique grenade à fragmentation : envoie de vilains bouts de métal tout autour, blessant tout le monde.\n\nVous avez joué à bien assez de jeux vidéo pour savoir ce qu'est une grenade à fragmentation. Et arrêtez de dire que c'est faux. Personne ne vous croira." "
 
 [KFProj_NailBombGrenade]
 ItemName="Bombe à clous"
-ItemCategory =" « Explosifs"
-ItemDescription="•Une simple boîte remplie de vieux clous avec une petite charge explosive au milieu.\n\nPas le moyen le plus plaisant ni le plus subtil de s'occuper des Zeds, mais eux-mêmes ne sont ni subtils, ni plaisants, n'est-ce pas ? »"
+ItemCategory =" "Explosifs"
+ItemDescription="•Une simple boîte remplie de vieux clous avec une petite charge explosive au milieu.\n\nPas le moyen le plus plaisant ni le plus subtil de s'occuper des Zeds, mais eux-mêmes ne sont ni subtils, ni plaisants, n'est-ce pas ?"
 
 [KFProj_FreezeGrenade]
 ItemName="Grenade de glace"
-ItemCategory =" « Explosifs"
-ItemDescription="•Une bombe technologiquement avancée remplie d'azote liquide sous pression.\n\nAu contact du contenu, les Zeds gèlent sur place pour un moment. Les résultats peuvent être fracassants. »"
+ItemCategory =" "Explosifs"
+ItemDescription="•Une bombe technologiquement avancée remplie d'azote liquide sous pression.\n\nAu contact du contenu, les Zeds gèlent sur place pour un moment. Les résultats peuvent être fracassants. "
 
 [KFProj_FlashBangGrenade]
 ItemName="Grenade éblouissante"
-ItemCategory =" « Explosifs"
-ItemDescription="•Brillantes et bruyantes à la fois. Ne les regardez pas directement. Essayez de ne pas l'entendre non plus.\n•Bien qu'elles ne soient pas mortelles, les grenades éblouissantes peuvent quand-même vous blesser, alors soyez prudent ! » "
+ItemCategory =" "Explosifs"
+ItemDescription="•Brillantes et bruyantes à la fois. Ne les regardez pas directement. Essayez de ne pas les entendre non plus.\n•Bien qu'elles ne soient pas mortelles, les grenades éblouissantes peuvent quand même vous blesser, alors, prenez garde!" "
 
 [KFWeap_Healer_Syringe]
 ItemName="Seringue médicale"
@@ -205,32 +205,32 @@ ItemDescription="• Mode de tir uniquement automatique.\n• Incontournable che
 [KFWeap_Knife_Survivalist]
 ItemName="Surin d'éventreur"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Cette arme appartenait à quelque chose. Elle vous appartient, à présent !"
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Cette arme appartenait à quelque chose. Eh bien, elle est à vous, à présent!"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Couteau utilitaire"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Un cutter. Pour ouvrir toutes les boîtes que vous pourrez trouver sur le champ de bataille."
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•C'est un couteau. Parfait pour ouvrir toutes les boîtes que vous pourrez trouver sur le champ de bataille."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Scalpel"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Un scalpel. Comme vous êtes médecin, vous n'avez probablement pas besoin qu'on vous explique comment vous en servir."
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•C'est un scalpel. Comme vous êtes médecin, vous n'avez probablement pas besoin qu'on vous explique comment vous en servir."
 
 [KFWeap_Knife_Firebug]
 ItemName="Couteau de pompier"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Un couteau de pompier. Comme vous êtes pompier, vous n'avez probablement pas besoin qu'on vous explique comment vous en servir."
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•C'est un couteau de pompier. Comme vous êtes pompier, vous n'avez probablement pas besoin qu'on vous explique comment vous en servir."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Couteau Bowie"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau surdimensionné du Far West. Parfait pour découper les Zeds en rondelle de nos jours."
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau surdimensionné du Far West. Parfait de nos jours pour découper les Zeds en rondelles."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau traditionnel des Ghurkas. Un couteau pour couper plus que trancher. "
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau traditionnel des Ghurkas. Un couteau pour couper plus que trancher. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Couteau tactique"
@@ -285,43 +285,53 @@ ItemDescription="• Mode de tir semi-automatique et à pompe.\n• Le fusil à 
 [KFWeap_Knife_Berserker]
 ItemName="Lame de tondeuse"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir Principal pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Oui, c'est bien une lame de tondeuse à gazon. Amusez-vous bien !"
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Oui, c'est bien une lame de tondeuse à gazon. Amusez-vous bien!"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau de commando classique version Horzine."
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Le couteau de commando classique version Horzine."
 
 [KFWeap_Knife_Support]
 ItemName="Machette"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Ce n'est pas parce qu'on vous a donné le plus gros couteau que vous êtes spécial."
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Ce n'est pas parce qu'on vous a donné le plus gros couteau que vous êtes spécial."
 
 [KFWeap_Edged_Katana]
 ItemName="Katana"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Sa classe force le respect."
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Sa classe force le respect."
 
 [KFWeap_Blunt_Crovel]
 ItemName="Outils de survie Crovel"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque tranchante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Mi-pied-de-biche, mi-pelle, 100 % mortel."
+ItemDescription="•Principale - attaque tranchante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\nMi-pied-de-biche, mi-pelle, 100 % mortel."
 
 [KFWeap_Shotgun_Nailgun]
 ItemName="VLAD-1000 Cloueuse"
 ItemCategory="Fusil à pompe"
 ItemDescription="•Tirs de clous uniques ou multiples.\n•Alt-Feu pour alterner entre les modes de tir.\n•Il semblerait que l'un des chercheurs de Horzine ait emprunté la cloueuse originale à un employé (décédé) du service d'entretien."
 
+[KFWeap_HRG_Nailgun]
+ItemName="Cloueuse HRG"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="•Tirs de clous uniques ou multiples.\n•Utilisez le tir alternatif pour alterner entre les modes de tir.\n•Il semblerait que l'un des chercheurs de Horzine ait emprunté la cloueuse originale à un employé (décédé) du service d'entretien."
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Rédempteur de route"
 ItemCategory="Mêlée"
-ItemDescription="• Principale - attaque contondante rapide, Maintenir pour enchaîner.\n• Secondaire - attaque tranchante puissante.\n• Alt - bloquer/parer.\n• Soyez le cogneur que vous avez toujours voulu être ! Rappelez-vous de le nettoyer après utilisation."
+ItemDescription="•Principale - attaque contondante rapide, maintenir pour enchaîner.\n•Secondaire - attaque tranchante puissante.\n•Alt - bloquer/parer.\n•Frappez comme vous l'avez toujours souhaité! Rappelez-vous de le nettoyer après utilisation."
 SharedUnlockSource="Road Redemption"
 
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulvériseur"
 ItemCategory="Mêlée"
-ItemDescription="•Principale - attaque contondante rapide, Maintenir pour enchaîner.\n•Secondaire - tire des balles explosives même au contact. À court de munitions, Secondaire devient une attaque contondante lourde, donc pensez à recharger !\n•Alt - bloquer/parer."
+ItemDescription="•Principale - attaque contondante rapide, maintenir pour enchaîner.\n•Secondaire - tire des balles explosives même au contact. À court de munitions, devient une attaque contondante lourde, donc, pensez à recharger!\n•Alt - bloquer/parer."
+
+[KFWeap_Blunt_MedicBat]
+ItemName="Frap'hemo"
+ItemCategory="Mêlée"
+ItemDescription="•Principale - attaque contondante rapide pouvant soigner les équipiers, maintenir pour enchaîner.\n•Secondaire - déclenche une explosion guérisseuse à l'impact. À court de munitions, devient une attaque contondante lourde. \n•Alt - bloquer/parer."
 
 [KFWeap_Eviscerator]
 ItemName="Éviscérateur"
@@ -338,7 +348,7 @@ SharedUnlockSource="Chivalry Medieval Warfare"
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Broyeur d'os"
 ItemCategory="Mêlée"
-ItemDescription="•Principal - attaque contondante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque contondante puissante qui utilise davantage le bouclier\n•Alt - bloquer/parer. Bloquer réduit les dégâts des projectiles des Zeds.\n• Dispose d'une puissante attaque de bouclier."
+ItemDescription="•Principale - attaque contondante rapide, maintenir pour enchaîner.\n•Secondaire - attaque contondante puissante qui utilise davantage le bouclier\n•Alt - bloquer/parer. Bloquer réduit les dégâts des projectiles des Zeds.\n•Dispose d'une puissante attaque de bouclier."
 
 [KFWeap_Flame_CaulkBurn]
 ItemName="Brûleur"
@@ -364,6 +374,11 @@ ItemDescription="•Tir principal de type fusil à pompe.\n•Un fusil de chasse
 ItemName="Lance-flammes"
 ItemCategory="Incendiaire"
 ItemDescription="•Lance des flammes. Tout simplement.\n•Un classique pour toutes les générations. Au moindre doute, brûlez tout ce qui bouge."
+
+[KFWeap_HRG_Healthrower]
+ItemName="Lance-soin HRG"
+ItemCategory="Incendiaire"
+ItemDescription=""
 
 [KFWeap_Beam_Microwave]
 ItemName="Pistolet à micro-ondes"
@@ -420,6 +435,16 @@ ItemName="Double Desert Eagle .50"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Desert Eagle."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Arme de poing"
+ItemDescription="•"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Double Chiappa Rhino"
+ItemCategory="Arme de poing"
+ItemDescription="•"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
 ItemCategory="Arme de poing"
@@ -440,10 +465,25 @@ ItemName="Double .500 Magnum"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de revolvers .500 Magnum Bone Collector."
 
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="Revolver à chevrotine HRG"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir manuel seulement.\n•Véritable pièce d'artillerie sous la forme d'un revolver long canon à calibre .50, qui crache de bons gros pruneaux. Pour les vrais Flingueurs."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Duo de revolvers à chevrotine HRG"
+ItemCategory="Arme de poing"
+ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de revolvers .500 Magnum Bone Collector."
+
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Fusil"
 ItemDescription="•Mode de tir manuel seulement.\n•Le légendaire fusil à levier Winchester modèle 1894."
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="Mosin-Nagant"
+ItemCategory="Fusil"
+ItemDescription="•Mode de tir manuel seulement."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464"
@@ -511,6 +551,16 @@ ItemName="Canon à Bogue"
 ItemCategory="Incendiaire"
 ItemDescription="• Se recharge lorsque vous appuyez sur le bouton de tir et se décharge lorsque vous le relâchez. \n• La version officielle du canon à Bogue signée Horzine. Ce modèle a 95 % de chance de ne pas exploser."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Arme de poing"
+ItemDescription="•Fill me in"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Double Chiappa Rhino"
+ItemCategory="Arme de poing"
+ItemDescription="•Fill me in"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabine MKb.42(H)"
 ItemCategory="Fusil d'assaut"
@@ -527,6 +577,11 @@ ItemName="Double AF2011-A2"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Deux pistolets avec deux canons chacun. Quatre fois plus de puissance de tir. C'est mathématique. On ne discute pas avec les maths."
 
+[KFWeap_Edged_IonThruster]
+ItemName="Trancheur ionique"
+ItemCategory="Mêlée"
+ItemDescription="•Fill me in"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Doomstick"
 ItemCategory="Fusil à pompe"
@@ -535,7 +590,12 @@ ItemDescription="•Le tir principal utilise uniquement un canon.\n•Alt-Feu ti
 [KFWeap_Blunt_PowerGloves]
 ItemName="Frappeurs statiques"
 ItemCategory="Mêlée"
-ItemDescription="•Principale - attaque contondante rapide, Maintenir pour enchaîner.\n•Secondaire - attaque contondante électrique lourde. Un véritable choc ! \n•Envie de cogner un Zed en pleine face ? Ne cherchez plus !"
+ItemDescription="•Principale - attaque contondante rapide, maintenir pour enchaîner. \n•Secondaire - attaque contondante électrique lourde. Un véritable choc! \n•Envie de frapper un Zed en pleine face? Ne cherchez plus!"
+
+[KFWeap_RocketLauncher_SealSqueal]
+ItemName="Baleinier"
+ItemCategory="Explosifs"
+ItemDescription="•Principale - tire des harpons qui explosent après 4 secondes.\n•Utilisez le tir alternatif pour faire exploser tous les harpons.\n•Testé et approuvé par Horzine!"
 
 [KFWeap_AssaultRifle_LazerCutter]
 ItemName="Flingue à watts"
@@ -561,7 +621,7 @@ SharedUnlockSource="Hache de combat"
 [KFWeap_Edged_FireAxe]
 ItemName="Hache de pompier"
 ItemCategory="Mêlée"
-ItemDescription="•Principale - attaque tranchante, maintenir pour enchaîner.\n•Secondaire - attaque tranchante lourde.\n•Alt - bloquer/parer\n•Pourquoi appeler ça une hache de pompier si on ne peut pas éteindre un incendie avec ?"
+ItemDescription="•Principale - attaque tranchante, maintenir pour enchaîner.\n•Secondaire - attaque tranchante lourde.\n•Alt - bloquer/parer\n•Pourquoi appeler ça une hache de pompier si elle n'éteint pas les incendies?"
 
 [KFWeap_GrenadeLauncher_M32]
 ItemName="Lance-grenade M32"
@@ -575,7 +635,7 @@ ItemDescription="•Tir auto uniquement.\n•Tir alternatif pour lancer des gren
 SecondaryAmmo="Grenade de médecin"
 
 [KFWeap_AssaultRifle_Thompson]
-ItemName="Tommy Gun"
+ItemName="Mitraillette Thompson"
 ItemCategory="Fusil d'assaut"
 ItemDescription="•Modes automatique et semi-automatique.\n•Tir alternatif pour passer d'un mode à l'autre.\n•Appelée « Chicago Typewriter » par certains, c'est l'arme idéale pour écrire son nom."
 
@@ -588,6 +648,16 @@ ItemDescription="• Modes automatique et semi-automatique. \n• Tir alternatif
 ItemName="M99 AMR"
 ItemCategory="Fusil de précision"
 ItemDescription="•Mode de tir manuel seulement.\n•Chaque tir balance du lourd... enfin, une grosse balle. Pénétration élevée, douleur élevée."
+
+[KFCarryable_Gear]
+ItemName="Équipement"
+ItemCategory="Équipement"
+ItemDescription="Vous n'êtes pas censé voir ça chez la marchande!"
+
+[KFCarryable_Datapad]
+ItemName="Tablette de données"
+ItemCategory="Équipement"
+ItemDescription="Vous n'êtes pas censé voir ça chez la marchande!"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -720,6 +790,9 @@ GameName="Épidémie hebdomadaire"
 
 [KFGameInfo_Endless]
 GameName="Infini"
+
+[KFGameInfo_Objective]
+GameName="Objectif"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Plus de soins disponibles"

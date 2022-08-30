@@ -25,16 +25,76 @@ enum ESubGameType
 
 struct native WaveObjectivePair
 {
-    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    /**  
+     *PossibleObjectives: possible objectives, one chosen at random.
+     *bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+     *SpawnReplacements: which zed types should be replaced by which other zed types
+     *PerPlayerSpawnRateMod: spawn rate modification based on number of players
+     *WaveScale: scalar for number of zeds this wave
+     *AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+     *bShouldAutoStartWave: whether this wave should start immediately after trader time
+     */
     var() array<KFInterface_MapObjective> PossibleObjectives;
-    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    /**  
+     *PossibleObjectives: possible objectives, one chosen at random.
+     *bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+     *SpawnReplacements: which zed types should be replaced by which other zed types
+     *PerPlayerSpawnRateMod: spawn rate modification based on number of players
+     *WaveScale: scalar for number of zeds this wave
+     *AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+     *bShouldAutoStartWave: whether this wave should start immediately after trader time
+     */
     var() bool bUseEndlessSpawning;
-    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    /**  
+     *PossibleObjectives: possible objectives, one chosen at random.
+     *bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+     *SpawnReplacements: which zed types should be replaced by which other zed types
+     *PerPlayerSpawnRateMod: spawn rate modification based on number of players
+     *WaveScale: scalar for number of zeds this wave
+     *AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+     *bShouldAutoStartWave: whether this wave should start immediately after trader time
+     */
     var() array<SpawnReplacement> SpawnReplacements;
-    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    /**  
+     *PossibleObjectives: possible objectives, one chosen at random.
+     *bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+     *SpawnReplacements: which zed types should be replaced by which other zed types
+     *PerPlayerSpawnRateMod: spawn rate modification based on number of players
+     *WaveScale: scalar for number of zeds this wave
+     *AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+     *bShouldAutoStartWave: whether this wave should start immediately after trader time
+     */
     var() array<float> PerPlayerSpawnRateMod;
-    /** Objective mode types and data //Struct to hold an array of wave/objective pairing data.  Fixed array of these array//      objects in the next struct down will link a specific array of possible objectives//      to a specific wave per game-length. */
+    /**  
+     *PossibleObjectives: possible objectives, one chosen at random.
+     *bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+     *SpawnReplacements: which zed types should be replaced by which other zed types
+     *PerPlayerSpawnRateMod: spawn rate modification based on number of players
+     *WaveScale: scalar for number of zeds this wave
+     *AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+     *bShouldAutoStartWave: whether this wave should start immediately after trader time
+     */
     var() float WaveScale;
+    /**  
+     *PossibleObjectives: possible objectives, one chosen at random.
+     *bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+     *SpawnReplacements: which zed types should be replaced by which other zed types
+     *PerPlayerSpawnRateMod: spawn rate modification based on number of players
+     *WaveScale: scalar for number of zeds this wave
+     *AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+     *bShouldAutoStartWave: whether this wave should start immediately after trader time
+     */
+    var() int AppliedWaveNum<ClampMin=0|ClampMax=9>;
+    /**  
+     *PossibleObjectives: possible objectives, one chosen at random.
+     *bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+     *SpawnReplacements: which zed types should be replaced by which other zed types
+     *PerPlayerSpawnRateMod: spawn rate modification based on number of players
+     *WaveScale: scalar for number of zeds this wave
+     *AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+     *bShouldAutoStartWave: whether this wave should start immediately after trader time
+     */
+    var() bool bShouldAutoStartWave;
 
     structdefaultproperties
     {
@@ -48,6 +108,8 @@ struct native WaveObjectivePair
         PerPlayerSpawnRateMod(4)=1
         PerPlayerSpawnRateMod(5)=1
         WaveScale=1
+        AppliedWaveNum=0
+        bShouldAutoStartWave=true
     }
 };
 
@@ -59,30 +121,30 @@ struct native PresetWavePairs
 
     structdefaultproperties
     {
-        ShortObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        ShortObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        ShortObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        ShortObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        ShortObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        MediumObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        MediumObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        MediumObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        MediumObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        MediumObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        MediumObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        MediumObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        MediumObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[8]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[9]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
-        LongObjectives[10]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1)
+        ShortObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        ShortObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        ShortObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        ShortObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        ShortObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        MediumObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        MediumObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        MediumObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        MediumObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        MediumObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        MediumObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        MediumObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        MediumObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[0]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[8]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[9]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
+        LongObjectives[10]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true)
     }
 };
 
@@ -112,19 +174,21 @@ var transient array<byte> ShuffledAmbientMusicTrackIdxes;
 var(Collectibles) const int CollectiblesToFind;
 var const transient int CollectiblesFound;
 /** Whether or not to use the preset wave objective type */
-var(Objectives) bool bUsePresetObjectives<EditCondition=!bUseRandomObjectives>;
+var(SurvivalObjectives) bool bUsePresetObjectives<EditCondition=!bUseRandomObjectives>;
 /** Whether or not to use the random wave objective type */
-var(Objectives) bool bUseRandomObjectives<EditCondition=!bUsePresetObjectives>;
+var(SurvivalObjectives) bool bUseRandomObjectives<EditCondition=!bUsePresetObjectives>;
 /** Whether to override the boss of a Survival match */
 var() bool bOverrideSurvivalBoss;
-var(Objectives) PresetWavePairs PresetWaveObjectives<EditCondition=bUsePresetObjectives>;
-var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives;
-var(Objectives) array<int> RandomObjectiveWavesToDisable;
+var(SurvivalObjectives) PresetWavePairs PresetWaveObjectives<EditCondition=bUsePresetObjectives>;
+var(SurvivalObjectives) array<KFInterface_MapObjective> RandomWaveObjectives;
+var(SurvivalObjectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 var() string TraderVoiceGroupClassPath;
 var() string TraderVoiceGroupClassPath_Endless;
 /** Mutator code class that can override various map settings */
 var() class<KFMapMutator> MapMutatorClass;
+/** Objectives to use in Objective Mode */
+var(ObjectiveMode) array<WaveObjectivePair> ObjectiveModeObjectives;
 
 function MusicTrackStruct GetNextMusicTrackStruct(optional bool bActionTrack)
 {
@@ -309,6 +373,49 @@ final event ModifyAIDoshValue(out float AIDoshValue)
     }
 }
 
+simulated function int GetAppliedWaveNum()
+{
+    local KFGameReplicationInfo KFGRI;
+    local int AppliedWaveNum;
+    local WaveObjectivePair Wave;
+
+    KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
+    AppliedWaveNum = KFGRI.WaveNum;
+    if(KFGRI.IsObjectiveMode())
+    {
+        Wave = ObjectiveModeObjectives[KFGRI.WaveNum - 1];
+        if(Wave.AppliedWaveNum >= 0)
+        {
+            AppliedWaveNum = Wave.AppliedWaveNum;
+        }        
+    }
+    else
+    {
+        if(bUsePresetObjectives)
+        {
+            switch(KFGRI.GameLength)
+            {
+                case 0:
+                    Wave = PresetWaveObjectives.ShortObjectives[KFGRI.WaveNum - 1];
+                    break;
+                case 1:
+                    Wave = PresetWaveObjectives.MediumObjectives[KFGRI.WaveNum - 1];
+                    break;
+                case 2:
+                    Wave = PresetWaveObjectives.LongObjectives[KFGRI.WaveNum - 1];
+                    break;
+                default:
+                    break;
+            }
+            if(Wave.AppliedWaveNum > 0)
+            {
+                AppliedWaveNum = Wave.AppliedWaveNum;
+            }
+        }
+    }
+    return AppliedWaveNum;
+}
+
 defaultproperties
 {
     WaveSpawnPeriod=2
@@ -362,6 +469,7 @@ defaultproperties
     ActionMusicTracks(47)=KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action304'
     ActionMusicTracks(48)=KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action305'
     ActionMusicTracks(49)=KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action306'
+    ActionMusicTracks(50)=KFMusicTrackInfo'WW_MACT_Default.TI__SJ_Infectious'
     AmbientMusicTracks(0)=KFMusicTrackInfo'WW_MAMB_Default.TI_RG_InTheDark'
     AmbientMusicTracks(1)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_Ambient200'
     AmbientMusicTracks(2)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_Ambient202'
@@ -375,6 +483,7 @@ defaultproperties
     AmbientMusicTracks(10)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_MomentaryReprieve'
     AmbientMusicTracks(11)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_PhantomSecurity'
     AmbientMusicTracks(12)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_RendezvousPoint'
-    PresetWaveObjectives=(ShortObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),ShortObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),ShortObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),ShortObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),ShortObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),MediumObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[8]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[9]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1),LongObjectives[10]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1))
+    AmbientMusicTracks(13)=KFMusicTrackInfo'WW_MAMB_Default.TI_SJ_Menace'
+    PresetWaveObjectives=(ShortObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),ShortObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),ShortObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),ShortObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),ShortObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),MediumObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),MediumObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),MediumObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),MediumObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),MediumObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),MediumObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),MediumObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),MediumObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[1]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[2]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[3]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[4]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[5]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[6]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[7]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[8]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[9]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true),LongObjectives[10]=(PossibleObjectives=none,bUseEndlessSpawning=false,SpawnReplacements=none,PerPlayerSpawnRateMod=(1,1,1,1,1,1),WaveScale=1,AppliedWaveNum=0,bShouldAutoStartWave=true))
     TraderVoiceGroupClassPath="KFGameContent.KFTraderVoiceGroup_Default"
 }

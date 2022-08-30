@@ -29,6 +29,7 @@ defaultproperties
     PickupMeshName="WEP_3P_M32_MGL_MESH.Wep_3rdP_M32_MGL_Pickup"
     MuzzleFlashTemplateName="WEP_M32_MGL_ARCH.Wep_M32_MGL_MuzzleFlash"
     InventorySize=9
+    GroupPriority=125
     WeaponSelectTexture=Texture2D'WEP_UI_M32_MGL_TEX.UI_WeaponSelect_M32_MGL'
     InitialSpareMags=2
     AmmoPickupScale=1

@@ -905,15 +905,17 @@ defaultproperties
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Crovel'
    KnifeWeaponDef=Class'KFGame.KFweapDef_Knife_Berserker'
    AutoBuyLoadOutPath(0)=Class'KFGame.KFWeapDef_Crovel'
-   AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_Nailgun'
+   AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_Katana'
    AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_Pulverizer'
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_Eviscerator'
+   AutoBuyLoadOutPath(4)=Class'KFGame.KFWeapDef_AbominationAxe'
    HitAccuracyHandicap=2.500000
    HeadshotAccuracyHandicap=-2.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.BerserkerKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Crovel_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Katana_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.Pulverizer_PrestigePrecious_Mint_Large"
+   PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.Eviscerator_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Berserker"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

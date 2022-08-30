@@ -21,7 +21,7 @@ defaultproperties
     PickupMeshName="WEP_3P_Zweihander_MESH.Wep_Zweihander_Pickup"
     AttachmentArchetypeName="WEP_Zweihander_ARCH.Wep_Zweihander_3P"
     InventorySize=7
-    GroupPriority=85
+    GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
     PlayerViewOffset=(X=2,Y=0,Z=0)
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

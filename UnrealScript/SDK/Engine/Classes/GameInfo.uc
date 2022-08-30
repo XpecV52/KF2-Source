@@ -4076,5 +4076,6 @@ defaultproperties
     GameInfoClassAliases.Add((ShortName="Weekly", GameClassName="KFGameContent.KFGameInfo_WeeklySurvival"))
 	GameInfoClassAliases.Add((ShortName="Tutorial", GameClassName="KFGameContent.KFGameInfo_Tutorial"))
 	GameInfoClassAliases.Add((ShortName="Endless", GameClassName="KFGameContent.KFGameInfo_Endless"))
+	GameInfoClassAliases.Add((ShortName="Objective", GameClassName="KFGameContent.KFGameInfo_Objective"))
 `endif
 }

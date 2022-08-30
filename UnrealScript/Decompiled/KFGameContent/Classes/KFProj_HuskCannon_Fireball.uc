@@ -287,7 +287,7 @@ defaultproperties
     begin object name=ExploTemplate2 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HuskProjectile_Explosion'
         bUseOverlapCheck=true
-        Damage=80
+        Damage=60
         DamageRadius=100
         MyDamageType=Class'KFDT_Explosive_HuskCannon'
         MomentumTransferScale=6000

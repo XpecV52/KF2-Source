@@ -12,5 +12,5 @@ class KFDT_Freeze_FreezeThrower_IceShards extends KFDT_Freeze
 defaultproperties
 {
 	WeaponDef=class'KFWeapDef_FreezeThrower'
-	FreezePower=10.00 //5.0
+	StumblePower=25
 }

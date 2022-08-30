@@ -216,7 +216,7 @@ simulated state HuskCannonCharge extends WeaponFiring
 		{
 			if (ConsumeAmmoTime >= FullChargedTimerInterval)
 			{
-				ConsumeAmmo(DEFAULT_FIREMODE);
+				//ConsumeAmmo(DEFAULT_FIREMODE);
 				ConsumeAmmoTime -= FullChargedTimerInterval;
 			}
 
@@ -380,12 +380,26 @@ function AdjustDamage(out int InDamage, class<DamageType> DamageType, Actor Dama
 	}
 }
 
+// increase the instant hit damage based on the charge level
+simulated function int GetModifiedDamage(byte FireModeNum, optional vector RayDir)
+{
+	local int ModifiedDamage;
+
+	ModifiedDamage = super.GetModifiedDamage(FireModeNum, RayDir);
+	if (FireModeNum == DEFAULT_FIREMODE)
+	{
+		ModifiedDamage = ModifiedDamage * (1.f + DmgIncreasePerCharge * GetChargeLevel());
+	}
+
+	return ModifiedDamage;
+}
+
 defaultproperties
 {
    MaxChargeTime=1.000000
    ValueIncreaseTime=0.200000
    DmgIncreasePerCharge=0.700000
-   AOEIncreasePerCharge=0.300000
+   AOEIncreasePerCharge=0.600000
    IncapIncreasePerCharge=0.220000
    AmmoIncreasePerCharge=1
    ChargingEffect=ParticleSystem'WEP_HuskCannon_EMIT.FX_Huskcannon_Charging_01'
@@ -408,7 +422,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventorySize=8
-   MagazineCapacity(0)=20
+   MagazineCapacity(0)=30
    MeshFOV=80.000000
    MeshIronSightFOV=65.000000
    PlayerIronSightFOV=50.000000
@@ -416,8 +430,8 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon'
-   SpareAmmoCapacity(0)=240
-   InitialSpareMags(0)=4
+   SpareAmmoCapacity(0)=150
+   InitialSpareMags(0)=1
    AmmoPickupScale(0)=0.750000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
    bLoopingFireAnim(0)=True
@@ -467,14 +481,19 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_HuskCannon_Fireball'
-   FireInterval(0)=0.400000
+   FireInterval(0)=0.223000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.008500
    Spread(1)=0.008500
+   InstantHitDamage(0)=40.000000
+   InstantHitDamage(1)=()
+   InstantHitDamage(2)=()
    InstantHitDamage(3)=28.000000
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Explosive_HuskCannonImpact'
+   InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_HuskCannon'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)

@@ -704,6 +704,7 @@ DefaultProperties
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.Winchester1894_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.Crossbow_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.M14EBR_PrestigePrecious_Mint_Large"
+	PrestigeRewardItemIconPaths[4]="WEP_SkinSet_Prestige05_Item_TEX.tier04.Railgun_PrestigePrecious_Mint_large"
 
 	// xp per headshot (all headshots, not just lethal)
 	SecondaryXPModifier(0)=1
@@ -712,6 +713,6 @@ DefaultProperties
    	SecondaryXPModifier(3)=1
 
    	CameraViewShakeScale=0.5
-   	AutoBuyLoadOutPath=(class'KFWeapDef_Winchester1894', class'KFWeapDef_Crossbow', class'KFWeapDef_M14EBR', class'KFWeapDef_RailGun')
+   	AutoBuyLoadOutPath=(class'KFWeapDef_Winchester1894', class'KFWeapDef_Crossbow', class'KFWeapDef_M14EBR', class'KFWeapDef_RailGun', class'KFWeapDef_M99')
    	AssistDoshModifier=1.1f
 }

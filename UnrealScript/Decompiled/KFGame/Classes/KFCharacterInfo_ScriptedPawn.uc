@@ -7,23 +7,36 @@
  *******************************************************************************/
 class KFCharacterInfo_ScriptedPawn extends KFCharacterInfoBase;
 
+enum FXTransitionType
+{
+    FXTransitionType_PlayAlways,
+    FXTransitionType_PlayGreaterStateTransition,
+    FXTransitionType_PlayLesserStateTransition,
+    FXTransitionType_MAX
+};
+
 struct ScriptedPawnStateFX
 {
     /** Particles to play */
     var() ParticleSystem VFX;
-    /** Particles to play// Sound event to play
- */
+    /** Sound event to play */
     var() AkEvent SFX;
-    /** Particles to play// Sound event to play
-// Socket to attach particles or sounds to, if desired (otherwise plays at root)
- */
+    /** Socket to attach particles or sounds to, if desired (otherwise plays at root) */
     var() name SocketName;
+    /**  
+     *Whether to play this FX based on the previous state 
+     *               FXTransitionType_PlayAlways - Always play regardless of the previous state 
+     *               FXTransitionType_PlayGreaterStateTransition - In EnterState FROM a greater (health) state or in ExitState TO a greater (health) state 
+     *               FXTransitionType_PlayLesserStateTransition - In EnterState FROM a lower (health) state or in ExitState TO a lower (health) state
+     */
+    var() KFCharacterInfo_ScriptedPawn.FXTransitionType TransitionType;
 
     structdefaultproperties
     {
         VFX=none
         SFX=none
         SocketName=None
+        TransitionType=FXTransitionType.FXTransitionType_PlayAlways
     }
 };
 
@@ -73,6 +86,39 @@ struct ScriptedPawnStateInfo
 // Icon that represents this state and gets displayed above pawn
  */
     var() Texture2D Icon;
+    /** Percentage of health at which to activate this state// How much to scale the speed by for this state
+// Whether the pawn can be targeted by zeds in this state
+// FX to play upon entering state
+// FX to play upon exiting state
+// Anim to play upon entering state
+// Anim to play upon exiting state
+// Icon that represents this state and gets displayed above pawn
+// Material for this state, None will set to default material
+ */
+    var() MaterialInstance DefaultStateMaterial;
+    /** Percentage of health at which to activate this state// How much to scale the speed by for this state
+// Whether the pawn can be targeted by zeds in this state
+// FX to play upon entering state
+// FX to play upon exiting state
+// Anim to play upon entering state
+// Anim to play upon exiting state
+// Icon that represents this state and gets displayed above pawn
+// Material for this state, None will set to default material
+// Material for this state when highlighted, Non will set to default StateMaterial
+ */
+    var() MaterialInstance HighlightedStateMaterial;
+    /** Percentage of health at which to activate this state// How much to scale the speed by for this state
+// Whether the pawn can be targeted by zeds in this state
+// FX to play upon entering state
+// FX to play upon exiting state
+// Anim to play upon entering state
+// Anim to play upon exiting state
+// Icon that represents this state and gets displayed above pawn
+// Material for this state, None will set to default material
+// Material for this state when highlighted, Non will set to default StateMaterial
+// Color of the scripted pawn health bar during this state
+ */
+    var() Color PawnHealthBarColor;
 
     structdefaultproperties
     {
@@ -84,10 +130,15 @@ struct ScriptedPawnStateInfo
         EnterAnim=None
         ExitAnim=None
         Icon=none
+        DefaultStateMaterial=none
+        HighlightedStateMaterial=none
+        PawnHealthBarColor=(B=0,G=0,R=0,A=0)
     }
 };
 
 var() array<ScriptedPawnStateInfo> States;
+/** events to play when the scripted pawn reaches the finish (including stop events) */
+var() array<AkEvent> FinishSoundEvents;
 /** How fast the pawn should move */
 var() float PawnSpeed;
 /** Whether pawn should fly or walk */
@@ -114,14 +165,18 @@ var() bool bUseZedProximityTrigger<EditCondition=bEnableProximityOptions>;
 var() bool bUsePlayerProximityTrigger<EditCondition=bEnableProximityOptions>;
 /** Whether the pawn should remove collision when reaching the goal and then become hidden when finished */
 var() bool bHideOnFinish;
+/** Whether pawn should have no collision until it hits the start point */
+var() bool bDisableCollisionOnStart;
 /** How hard pawn bumps other pawns */
 var() float PawnBumpImpulse;
 /** How much pawn can be welded */
 var() float PawnMaxWeldIntegrityPerPlayer[6]<EditCondition=bEnableWeldOptions>;
 /** How much to scale the pawn's weldable collision component (default radius is 1m/100uu) */
 var() float PawnWeldableComponentScale<EditCondition=bEnableWeldOptions>;
-/** How much to scale the pawn's proximity trigger (default radius is 1m/100uu) */
-var() float ProximityTriggerScale<EditCondition=bEnableProximityOptions>;
+/** How much to scale the pawn's proximity trigger for zeds (default radius is 1m/100uu) */
+var() float ZedProximityTriggerScale<EditCondition=bEnableProximityOptions>;
+/** How much to scale the pawn's proximity trigger for players (default radius is 1m/100uu) */
+var() float PlayerProximityTriggerScale<EditCondition=bEnableProximityOptions>;
 /** How pawn's speed should scale when zeds are close */
 var() float SpeedScalarForZedProximity<EditCondition=bUseZedProximityTrigger>;
 /** How pawn's speed should scale when players are close */
@@ -153,6 +208,7 @@ defaultproperties
 {
     PawnSpeed=150
     bHideOnFinish=true
+    bDisableCollisionOnStart=true
     PawnBumpImpulse=100
     PawnMaxWeldIntegrityPerPlayer[0]=1500
     PawnMaxWeldIntegrityPerPlayer[1]=1500
@@ -161,7 +217,8 @@ defaultproperties
     PawnMaxWeldIntegrityPerPlayer[4]=1500
     PawnMaxWeldIntegrityPerPlayer[5]=1500
     PawnWeldableComponentScale=2
-    ProximityTriggerScale=2
+    ZedProximityTriggerScale=2
+    PlayerProximityTriggerScale=2
     SpeedScalarForZedProximity=1
     SpeedScalarForPlayerProximity=1
 }

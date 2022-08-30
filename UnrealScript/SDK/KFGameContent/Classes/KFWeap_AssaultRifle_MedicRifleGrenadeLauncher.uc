@@ -24,7 +24,12 @@ var transient bool bCanceledAltAutoReload;
 
 simulated function int GetSecondaryAmmoForHUD()
 {
-	return SpareAmmoCount[1];
+	return super(KFWeapon).GetSecondaryAmmoForHUD();
+}
+
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Assault;
 }
 
 static simulated event EFilterTypeUI GetAltTraderFilter()
@@ -427,7 +432,7 @@ simulated function bool CanAltAutoReload()
 
 simulated function TryToAltReload()
 {
-	if ( IsInState('Active') && CanAltAutoReload())
+	if ((IsInState('Active') || IsInState('WeaponSprinting')) && CanAltAutoReload())
 	{
 		SendToAltReload();
 	}
@@ -530,7 +535,7 @@ defaultproperties
 
     // Inventory / Grouping
 	InventorySize=8
-	GroupPriority=50
+	GroupPriority=125
 	WeaponSelectTexture=Texture2D'WEP_UI_Medic_GrenadeLauncher_TEX.UI_WeaponSelect_MedicGrenadeLauncher'
    	AssociatedPerkClasses(0)=class'KFPerk_FieldMedic'
 	AssociatedPerkClasses(1) = class'KFPerk_Commando'

@@ -23,6 +23,11 @@ var() Texture UITexture;
 	Skeletal meshe animations are parented with the body mesh and must share the same skeletaon. */
 var() bool bIsSkeletalAttachment;
 
+/** Hard reference to the mesh, async load. */
+var edithide transient StaticMesh MeshStatic;
+/** Hard reference to the mesh, async load. */
+var edithide transient SkeletalMesh MeshSkeletal;
+
 /** Attachment mesh name. Must be of form PackageName.MeshName */
 var() string MeshName;
 
@@ -32,6 +37,11 @@ var() string MeshName;
 	both if there is no conflict. NOTE: Skeletal meshes do not require sockets for attachment, but the socket name
 	can still be used for conflit resolution. */
 var() name SocketName;
+
+/** Hard reference to the mesh, async load. */
+var edithide transient StaticMesh MeshStatic1p;
+/** Hard reference to the mesh, async load. */
+var edithide transient SkeletalMesh MeshSkeletal1p;
 
 /** Mesh attachment name for 1p. */
 var() string MeshName1p;

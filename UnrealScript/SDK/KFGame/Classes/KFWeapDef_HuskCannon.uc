@@ -15,7 +15,7 @@ DefaultProperties
     WeaponClassPath="KFGameContent.KFWeap_HuskCannon"
 
     BuyPrice=1500
-    AmmoPricePerMag=50
+    AmmoPricePerMag=125
     ImagePath="WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon"
 
 

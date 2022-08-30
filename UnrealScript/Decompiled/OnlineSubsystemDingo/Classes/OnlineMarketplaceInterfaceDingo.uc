@@ -87,6 +87,8 @@ var PerUserMarketplaceDelegates PerUserDelegates[24];
 var native map<0, 0> MarketplaceProductsCache;
 var native map<0, 0> InventoryItemsCache;
 var array< delegate<OnMarketplaceItemPurchased> > OnMarketplaceItemPurchasedDelegates;
+var int ConsumablesCount;
+var int DurablesCount;
 var delegate<OnReadAvailableProductsComplete> __OnReadAvailableProductsComplete__Delegate;
 var delegate<OnReadAdditionalProductDetailsComplete> __OnReadAdditionalProductDetailsComplete__Delegate;
 var delegate<OnReadInventoryItemsComplete> __OnReadInventoryItemsComplete__Delegate;
@@ -254,4 +256,10 @@ function AddMarketplaceItemPurchasedDelegate(delegate<OnMarketplaceItemPurchased
 function ClearMarketplaceItemPurchasedDelegate(delegate<OnMarketplaceItemPurchased> InDelegate)
 {
     OnMarketplaceItemPurchasedDelegates.RemoveItem(InDelegate;
+}
+
+defaultproperties
+{
+    ConsumablesCount=47
+    DurablesCount=17
 }

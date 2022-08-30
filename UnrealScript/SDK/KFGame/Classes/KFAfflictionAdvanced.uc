@@ -18,9 +18,9 @@ var bool bIsActive;
 var protected name EffectSocketName;
 
 /** Copy incap settings we're going to need */
-function Init(KFPawn P, EAfflictionType Type)
+function Init(KFPawn P, EAfflictionType Type, KFPerk InstigatorPerk)
 {
-	Super.Init(P, Type);
+	Super.Init(P, Type, InstigatorPerk);
 	Duration = P.IncapSettings[Type].Duration;
 }
 

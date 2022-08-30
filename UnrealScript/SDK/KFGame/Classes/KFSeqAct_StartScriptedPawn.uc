@@ -119,7 +119,7 @@ event Activated()
 			break;
 		}
 
-		PawnStart.SpawnPawn(bSpawnInactivePawn);
+		PawnStart.StartPawn(bSpawnInactivePawn);
 
 		// Because we want to pulse an output sometime in the future, this needs to be a latent action.
 		// However, for latent actions to stay active, they need latent actors, and their latent actors

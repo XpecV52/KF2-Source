@@ -24,6 +24,22 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
 	return None;
 }
 
+/** Returns animation to play based on reload type and status */
+simulated function name GetReloadAnimName(bool bTacticalReload)
+{
+	// OVERRIDE so that this can also play when there are two bullets left (normally just one)
+	//	 since this fires two bullets a time, two bullets is the last shot
+	if (AmmoCount[0] == 2 || AmmoCount[0] == 1)
+	{
+		// if one gun is empty (always the right), play our half empty reload
+		return bTacticalReload ? ReloadOneEmptyEliteAnim : ReloadOneEmptyAnim;
+	}
+	else
+	{
+		return super.GetReloadAnimName(bTacticalReload);
+	}
+}
+
 defaultproperties
 {
    BarrelOffset=(X=10.000000,Y=0.000000,Z=0.000000)

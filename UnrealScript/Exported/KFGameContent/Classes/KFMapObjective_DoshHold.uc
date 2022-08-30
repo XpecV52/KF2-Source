@@ -823,6 +823,7 @@ simulated function ActivateObjective()
 		//		to avoid first tick replication not having a controller.
 		SetTimer(0.01f, false, 'ActivationVO');
 
+		SetTimer(1.f, true, 'Timer_CheckPawnCount');
 		SetTimer(1.f, true, 'Timer_CheckWaveProgress');
 		PrevWaveProgress = 0;
 		bRemindPlayers = true;
@@ -860,6 +861,15 @@ simulated function Timer_CheckWaveProgress()
 	}
 }
 
+simulated function Timer_CheckPawnCount()
+{
+	local int PlayerCount;
+
+	PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
+	bTooFewPlayers = TouchingHumans.Length < PlayerThresholds[PlayerCount];
+	bTooManyZeds = TouchingZeds.Length > ZedThresholds[PlayerCount];
+}
+
 simulated function DeactivateObjective()
 {
     local KFPawn_Human KFPH;
@@ -875,6 +885,7 @@ simulated function DeactivateObjective()
 		ClearTimer('StartPenaltyCheck');
 		ClearTimer('Timer_AllowRemindPlayers');
 		ClearTimer('Timer_CheckWaveProgress');
+		ClearTimer('Timer_CheckPawnCount');
 
 		bOneHumanAlive = false;
 
@@ -976,6 +987,11 @@ function PlayDeactivationDialog()
 	}
 }
 
+simulated function int GetDoshReward()
+{
+	return CurrentRewardAmount;
+}
+
 simulated function float GetProgress()
 {
 	local int MaxDoshReward;
@@ -1019,6 +1035,23 @@ simulated function string GetLocalizedRequirements()
 	return Localize("Objectives", default.RequirementsLocKey, "KFGame") @ PlayerThresholds[PlayerCount];
 }
 
+simulated function GetLocalizedStatus(out string statusMessage, out int bWarning, out int bNotification)
+{
+	statusMessage = "";
+	if (bTooFewPlayers)
+	{
+		statusMessage = Localize("Objectives", "TooFewPlayers", LocalizationPackageName);
+		bWarning = 1;
+		return;
+	}
+	else if (bTooManyZeds)
+	{
+		statusMessage = Localize("Objectives", "TooManyZeds", LocalizationPackageName);
+		bWarning = 1;
+		return;
+	}
+}
+
 simulated function bool HasFailedObjective()
 {
 	return GetProgress() <= 0.f;
@@ -1047,9 +1080,10 @@ defaultproperties
    ZedThresholds(4)=2
    ZedThresholds(5)=1
    LocalizationKey="DoshHold"
+   NameShortLocKey="DoshHold"
    DescriptionLocKey="DescriptionDoshHold"
+   DescriptionShortLocKey="DescriptionDoshHoldShort"
    RequirementsLocKey="RequiredDoshHold"
-   ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
    Begin Object Class=BrushComponent Name=BrushComponent0 Archetype=BrushComponent'kfgamecontent.Default__KFMapObjective_AreaDefense:BrushComponent0'
       ReplacementPrimitive=None
       bAcceptsLights=True

@@ -122,12 +122,16 @@ simulated function AttachMuzzleFlash()
     }
 }
 
-function SetWeaponSkin(int ItemId)
+event SetWeaponSkin(int ItemId)
 {
     local array<MaterialInterface> SkinMICs;
 
     if((((WeapMesh != none) && LeftWeapMesh != none) && ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer)
     {
+        if(StartLoadWeaponSkin(ItemId))
+        {
+            return;
+        }
         SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, 1);
         if(SkinMICs.Length > 0)
         {

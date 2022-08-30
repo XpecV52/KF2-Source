@@ -1593,6 +1593,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		if( KFHUDBase(myHUD) != none )
 		{
 			KFHUDBase(myHUD).FriendlyHudScale = Profile.GetProfileFloat(KFID_FriendlyHudScale);
+			KFHUDBase(myHUD).ClassicPlayerInfo = Profile.GetProfileInt(KFID_ClassicPlayerInfo) != 0;
 		}
 
 		if( MyGFxManager != none )
@@ -2653,9 +2654,9 @@ reliable server function ServerNotifyRegisteredAsLocalTalker()
  * @param	bAffectsTurning		specify TRUE to disable turning in cinematic mode or enable it when leaving
  * @param	bAffectsButtons		specify TRUE to disable button input in cinematic mode or enable it when leaving.
  */
-function SetCinematicMode( bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons )
+function SetCinematicMode( bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons, optional bool bAffectsDof = true )
 {
-	super.SetCinematicMode( bInCinematicMode, bHidePlayer, bAffectsHUD, bAffectsMovement, bAffectsTurning, bAffectsButtons );
+	super.SetCinematicMode( bInCinematicMode, bHidePlayer, bAffectsHUD, bAffectsMovement, bAffectsTurning, bAffectsButtons, bAffectsDof );
 
 	// have the server tell the clients whether their buttons should work
 	ClientSetIgnoreButtons(bAffectsButtons);
@@ -3991,6 +3992,7 @@ state PlayerWalking
 function HandleWalking()
 {
 	local bool bShouldSprint;
+	local KFPlayerInput KFInput;
 
     if (Pawn != None)
 	{
@@ -4009,6 +4011,17 @@ function HandleWalking()
 		{
 			bDuck = 0; // sprint cancels crouch
 		}
+		else
+		{
+			// when a player stops moving with toggle to sprint on
+			//  turn off sprinting so that they have to press the toggle again
+			KFInput = KFPlayerInput(PlayerInput);
+			if (KFInput != none && KFInput.bToggleToRun)
+			{
+				bRun = 0;
+			}
+		}
+
 		KFPawn(Pawn).SetSprinting(bShouldSprint);
 	}
 }
@@ -5248,11 +5261,11 @@ simulated function SetNightVision(bool bEnabled)
 ********************************************************************************************* */
 
 /** called by the server to synchronize cinematic transitions with the client */
-reliable client function ClientSetCinematicMode(bool bInCinematicMode, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsHUD)
+reliable client function ClientSetCinematicMode(bool bInCinematicMode, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsHUD, bool bAffectsDof)
 {
 	bCinematicMode = bInCinematicMode;
 
-	if(bCinematicMode)
+	if(bCinematicMode && bAffectsDof)
 	{
 		bGamePlayDOFActive = true;
 		DOF_GP_BlendInSpeed = DOF_Cinematic_BlendInSpeed;
@@ -6122,17 +6135,6 @@ simulated function SetObjectiveUIActive(bool bActive)
 		MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetActive(bActive);
 	}
 }
-
-//pass value between 0 and 1
-function UpdateObjectiveUIProgress(float Progress)
-{
-	if(MyGFxHUD != none && MyGFxHUD.WaveInfoWidget != none
-	 	&& MyGFxHUD.WaveInfoWidget.ObjectiveContainer != none)
-	{
-		MyGFxHUD.WaveInfoWidget.ObjectiveContainer.SetCurrentProgress(Progress);
-	}
-}
-
 
 function SetObjeciveUIIcon(string IconPath)
 {
@@ -8976,7 +8978,7 @@ function MoveToValidSpectatorLocation()
 
 state Spectating
 {
-	ignores ClientPlayForceFeedbackWaveform, ClientPlayCameraShake;
+	ignores ClientPlayForceFeedbackWaveform;
 
 	event BeginState(Name PreviousStateName)
 	{

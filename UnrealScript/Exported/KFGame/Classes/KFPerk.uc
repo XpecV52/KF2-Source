@@ -158,6 +158,7 @@ const STATID_ACHIEVE_MonsterBallSecretRoom			= 4046;
 const STATID_ACHIEVE_SantasWorkshopCollectibles		= 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles		= 4048;
 const STATID_ACHIEVE_SpillwayCollectibles			= 4049;
+const STATID_ACHIEVE_SteamFortressCollectibles		= 4050;
  
 #linenumber 15
 
@@ -1219,6 +1220,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart ){ return 0.f; }
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 0.f; }
 function float GetReactionModifier( optional class<KFDamageType> DamageType ){ return 1.f; }
+simulated function float GetSnareSpeedModifier() { return 1.f; }
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 1.f; }
 function GameExplosion GetExplosionTemplate(){ return none; }
 function bool ShouldGetAllTheXP(){ return false; }
@@ -1316,8 +1318,9 @@ simulated function bool IgnoresPenetrationDmgReduction(){ return false; }
 /** SWAT functions */
 simulated event float GetCrouchSpeedModifier( KFWeapon KFW ) { return 1.f; }
 simulated function bool HasHeavyArmor(){ return false; }
-simulated function bool ShouldKnockDownOnBump(){ return false; }
+simulated function OnBump(Actor BumpedActor, KFPawn_Human BumpInstigator, vector BumpedVelocity, rotator BumpedRotation);
 simulated function int GetArmorDamageAmount( int AbsorbedAmt ) { return AbsorbedAmt; }
+simulated event float GetZedTimeSpeedScale() { return 1.f; }
 
 
 static function ModifyAssistDosh( out int EarnedDosh )

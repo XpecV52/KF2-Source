@@ -43,7 +43,7 @@ var float LastDissipationTime;
 var bool bDebug;
 
 /** */
-function Init(KFPawn P, EAfflictionType Type)
+function Init(KFPawn P, EAfflictionType Type, KFPerk InstigatorPerk)
 {
 	PawnOwner = P;
 	MonsterOwner = KFPawn_Monster(P);

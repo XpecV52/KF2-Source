@@ -37,7 +37,7 @@ AlternateFireDescription="Die meisten Primärwaffen haben einen alternativen Feu
 FlashLightBatteryTitleKey="Benutzen einer Taschenlampe"
 FlashLightBatteryDescriptionKey="Dort draußen kann es ziemlich düster werden. Drücke <font color="#caab05">%x%</font> um deine <font color="#caab05">TASCHENLAMPE</font> ein- und auszuschalten Die Batterie deiner Taschenlampe wird sich langsam leeren. Wenn sie leer ist, schaltet sie sich aus und beginnt automatisch sich wieder aufzuladen."
 GrenadeTitleKey="Benutzen von Granaten"
-GrenadeDescriptionKey="Granaten erlauben dir, mit dicht gepackten Gruppen von Zeds fertigzuwerden. Vorteile haben verschiedene Typen von Granaten in ihren <font color="#caab05">WAFFEN-LADUNGEN</font>, die alle Zeds Schaden zufügen, aber zusätzliche Effekte besitzen können. Drücke <font color="#caab05">%x%</font> um eine Granate zu werfen. "
+GrenadeDescriptionKey="Granaten erlauben dir, mit dicht gepackten Gruppen von Zeds fertigzuwerden. Vorteile haben verschiedene Typen von Granaten in ihren <font color="#caab05">WAFFEN-LADUNGEN</font>, die alle Zeds Schaden zufügen, aber zusätzliche Effekte besitzen können. Drücke <font color="#caab05">%x%</font> um eine Granate zu werfen." "
 
 ;Wave 1 end
 TraderTimeTitleKey="Zeit für die Händlerin"
@@ -116,23 +116,23 @@ ItemDescription="•Kampfrüstung beschützt dich vor diversen Arten von Schaden
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 Stange Dynamit"
-ItemCategory =" Sprengstoffe"
-ItemDescription="•Einfach ein kleines Stück Dynamit mit Lunte.\n•Es kann auch dich verletzen, also sei vorsichtig damit! "
+ItemCategory =" "Sprengstoffe"
+ItemDescription="•Einfach ein kleines Stück Dynamit mit Lunte.\n•Es kann auch dich verletzen, also sei vorsichtig damit!" "
 
 [KFProj_MedicGrenade]
 ItemName="Sanitäter-Granate"
-ItemCategory =" Sprengstoffe"
-ItemDescription="•Setzt ein Gas frei, das Zeds vergiftet und Menschen heilt.\n\n•Stell dich in die blaue Gaswolke um geheilt zu werden.\nWir zitieren unsere Wissenschaftler: „Der von diesen Granaten freigesetzte Wirkstoff belebt den Homo Sapiens wieder und schläfert den Homo Zedicus ein.“ Alles klar? "
+ItemCategory =" "Sprengstoffe"
+ItemDescription="•Setzt ein Gas frei, das Zeds vergiftet und Menschen heilt.\n\n•Stell dich in die blaue Gaswolke um geheilt zu werden.\nWir zitieren unsere Wissenschaftler: „Der von diesen Granaten freigesetzte Wirkstoff belebt den Homo Sapiens wieder und schläfert den Homo Zedicus ein.“ Alles klar?" "
 
 [KFProj_MolotovGrenade]
 ItemName="Molotowcocktail"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Ganz einfach, eine Flammengranate, die Zeds verbrennt.\n•Achtung, kann auch dich verletzen!\n\nVon den Finnen abwertend während des Winterkrieges von 1939-40 nach W. M. Molotow, den sowjetischen Außenminister unter Stalin, benannt … Oh, du wolltest keine Geschichtslektion? "
+ItemDescription="•Ganz einfach, eine Flammengranate, die Zeds verbrennt.\n\nVon den Finnen abwertend während des Winterkrieges von 1939-40 nach W. M. Molotow, dem sowjetischen Außenminister unter Stalin, benannt … Oh, du wolltest keine Geschichtslektion?" "
 
 [KFProj_EMPGrenade]
 ItemName="EMP-Granate"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Erzeugt einen elektrischen Impuls, der Zeds Schaden zufügt und eventuell kurz betäubt.\n\nWenn du es genauer magst – bei der Explosion wird für Nanosekunden ein elektromagnetischer Impuls erzeugt, der elektrische Systeme in naher Umgebung stört. Insbesondere die in den Zeds. Wie praktisch. "
+ItemDescription="•Erzeugt einen elektrischen Impuls, der Zeds Schaden zufügt und eventuell kurz betäubt.\n\nWenn du es genauer magst – bei der Explosion wird für Nanosekunden ein elektromagnetischer Impuls erzeugt, der elektrische Systeme in naher Umgebung stört. Insbesondere die in den Zeds. Wie praktisch." "
 
 [KFProj_HEGrenade]
 ItemName="HE-Granate"
@@ -146,18 +146,18 @@ ItemDescription="•Die klassische Splittergranate: schleudert fiese kleine Meta
 
 [KFProj_NailBombGrenade]
 ItemName="Nagelbombe"
-ItemCategory =" Sprengstoffe"
+ItemCategory =" "Sprengstoffe"
 ItemDescription="•Ein einfacher Kanister voll mit alten Nägeln und einer kleinen Sprengladung in der Mitte.\n\nNicht die angenehmste oder subtilste Art und Weise mit Zeds fertig zu werden, aber es gibt nichts an Zeds, das angenehm oder subtil wäre, nicht wahr?"
 
 [KFProj_FreezeGrenade]
 ItemName="Gefriergranate"
-ItemCategory =" Sprengstoffe"
+ItemCategory =" "Sprengstoffe"
 ItemDescription="•Ein technologisch fortgeschrittener Kanister mit unter Druck stehendem flüssigem Stickstoff.\n\nAusreichender Kontakt mit seinem Inhalt friert Zeds eine Weile an Ort und Stelle eine. Das Resultat kann ziemlich zerschmetternd sein."
 
 [KFProj_FlashBangGrenade]
 ItemName="Blendgranate"
-ItemCategory =" Sprengstoffe"
-ItemDescription="•Grell und laut zugleich – du solltest nicht direkt hinschauen. Hinhören solltest du auch nicht.\n•Obwohl sie technisch gesehen nicht direkt tödlich sind, können dich Blendgranaten trotzdem verletzen, also sei vorsichtig! "
+ItemCategory =" "Sprengstoffe"
+ItemDescription="•Grell und laut zugleich – du solltest nicht direkt hinschauen. Hinhören solltest du auch nicht.\n•Obwohl sie technisch gesehen nicht direkt tödlich sind, können dich Blendgranaten trotzdem verletzen, also sei vorsichtig!" "
 
 [KFWeap_Healer_Syringe]
 ItemName="Medizinische Spritze"
@@ -230,7 +230,7 @@ ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Ko
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Das traditionelle Messer der Gurkha, eher ein Hackmesser als ein Tranchiermesser. "
+ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Das traditionelle Messer der Ghurka, eher ein Hackmesser als ein Tranchiermesser. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Taktisches Messer"
@@ -285,7 +285,7 @@ ItemDescription="•Der Feuer-Modus ist ein Dual-Modus aus halbautomatischer Sch
 [KFWeap_Knife_Berserker]
 ItemName="Rasenmähermesser"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller Schlitzangriff, Primär Halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Ja, es ist tatsächlich ein Rasenmähermesser. Viel Spaß!"
+ItemDescription="•Primär – schneller Schlitzangriff, Primär Halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff.\n•Alt – blocken/parieren.\n•Ja, es ist tatsächlich ein Rasenmähermesser. Genieß es!"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
@@ -312,6 +312,11 @@ ItemName="VLAD-1000 Nagelpistole"
 ItemCategory="Schrotflinte"
 ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi für das Abschießen von einzelnen oder mehreren Nägeln.\n•Alt-Feuer um zwischen den Feuer-Modi zu wechseln.\n•Wir haben gehört, dass einer der Horzine-Wissenschaftler sich die ursprüngliche Nagelpistole von einem (toten) Hausmeister geliehen hat."
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG-Nagelpistole"
+ItemCategory="Maschinenpistole"
+ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi für das Abschießen von einzelnen oder mehreren Nägeln.\n•Alt-Feuer um zwischen den Feuer-Modi zu wechseln.\n•Wir haben gehört, dass einer der Horzine-Wissenschaftler sich die ursprüngliche Nagelpistole von einem (toten) Hausmeister geliehen hat."
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Road Redeemer"
 ItemCategory="Nahkampf"
@@ -322,6 +327,11 @@ SharedUnlockSource="Road Redemption"
 ItemName="Pulverisator"
 ItemCategory="Nahkampf"
 ItemDescription="•Primär – schneller stumpfer Angriff, Primär halten für Komboangriff.\n•Sekundär feuert bei Kontakt auch ein explosives Geschoss. Wenn die Munition alle ist, ist Sekundär ein schwerer stumpfer Angriff – also vergiss nicht nachzuladen!\n•Alt – blocken/parieren."
+
+[KFWeap_Blunt_MedicBat]
+ItemName="Hemoclobber"
+ItemCategory="Nahkampf"
+ItemDescription="•Primär – schneller stumpfer Angriff, der Teamkollegen heilen kann, Primär halten für Komboangriff.\n•Sekundär – verursacht beim Aufprall eine Heilexplosion. Wenn die Munition alle ist, ist Sekundär ein schwerer stumpfer Angriff. \n•Alt – blocken/parieren."
 
 [KFWeap_Eviscerator]
 ItemName="Ausweider"
@@ -338,7 +348,7 @@ SharedUnlockSource="Chivalry Medieval Warfare"
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Knochenmalmer"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller, stumpfer Angriff, Primär halten für Komboangriff.\n•Sekundär – schwerer, stumpfer Angriff, der mehr Gebrauch vom Schild macht.\n•Alt – blocken/parieren. Blocken verringert den von Zed-Geschossen erhaltenen Schaden.\n• Hat einen mächtigen Schildschlag-Angriff."
+ItemDescription="•Primär – schneller, stumpfer Angriff, Primär halten für Komboangriff.\n•Sekundär – schwerer, stumpfer Angriff, der mehr Gebrauch vom Schild macht.\n•Alt – blocken/parieren. Blocken verringert den von Zed-Geschossen erlittenen Schaden.\n• Hat einen mächtigen Schildschlag-Angriff."
 
 [KFWeap_Flame_CaulkBurn]
 ItemName="Ausräucherer"
@@ -364,6 +374,11 @@ ItemDescription="•Der Feuer-Modus funktioniert nach Pumpprinzip.\n•Eine Schr
 ItemName="Flammenwerfer"
 ItemCategory="Flammen"
 ItemDescription="•Der Feuer-Modus schießt Flammen. Und nichts anderes.\n•Ein Klassiker, egal, wie alt man ist. Im Zweifelsfall einfach alles niederbrennen."
+
+[KFWeap_HRG_Healthrower]
+ItemName="HRG-Heilwerfer"
+ItemCategory="Flammen"
+ItemDescription=""
 
 [KFWeap_Beam_Microwave]
 ItemName="Mikrowellenwaffe"
@@ -420,6 +435,16 @@ ItemName="Zwei .50 Eagles"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Desert Eagle Handkanonen im Doppelpack."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Zwei Chiappa Rhinos"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="1858-Revolver"
 ItemCategory="Handfeuerwaffe"
@@ -440,10 +465,25 @@ ItemName="Zwei .500 Magnums"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•.500 Magnum „Knochensammler“ im Doppelpack."
 
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG-Schrotrevolver"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Dieser „Knochensammler“-Revolver des Kaliber .50 mit langem Lauf ist waschechte Handartillerie und feuert massive Magnum-Munition ab. Nur für echte Revolverhelden."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Dual-HRG-Schrotrevolver"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz von Kimme und Korn.\n•.500 Magnum „Knochensammler“ im Doppelpack."
+
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Gewehr"
 ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Das klassische Gewehr-Modell 1894 Winchester mit Repetierbügel."
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="Mosin-Nagant"
+ItemCategory="Gewehr"
+ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -511,6 +551,16 @@ ItemName="Husk-Kanone"
 ItemCategory="Flammen"
 ItemDescription="•Lädt bei gedrücktem Feuerknopf auf und feuert, wenn losgelassen wird. \n•Die offizielle Horzine-Version der Husk-Kanone. Dieses Modell ist zu 95% explosionssicher."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Fill me in"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Zwei Chiappa Rhinos"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Fill me in"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H)-Karab.-Gewehr"
 ItemCategory="Sturmgewehr"
@@ -527,6 +577,11 @@ ItemName="Dual-AF2011-A2"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Zwei Waffen mit jeweils zwei Läufen. Vierfache Feuerkraft. Das ist Mathematik. Gegen Mathematik lässt sich nichts sagen."
 
+[KFWeap_Edged_IonThruster]
+ItemName="Ionenschwert"
+ItemCategory="Nahkampf"
+ItemDescription="•Fill me in"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Doomstick"
 ItemCategory="Schrotflinte"
@@ -536,6 +591,11 @@ ItemDescription="•Das Primär-Feuer nutzt nur einen einzelnen Lauf.\n•Alt-Fe
 ItemName="Statischer Schläger"
 ItemCategory="Nahkampf"
 ItemDescription="•Primär – schneller, stumpfer Angriff, Primär halten für Komboangriff.\n•Sekundär – schwerer, elektrischer, stumpfer Angriff. Ganz schön schockierend!\n•Willst du einem Zed ins Gesicht hauen? Dann ist das was für dich!"
+
+[KFWeap_RocketLauncher_SealSqueal]
+ItemName="Heuler"
+ItemCategory="Sprengstoffe"
+ItemDescription="•Primär – Feuer schießt Harpunen ab, die nach 4 Sekunden explodieren.\n•Alt-Feuer sprengt alle Harpunen manuell.\n•Das findet Anerkennung von Horzine!"
 
 [KFWeap_AssaultRifle_LazerCutter]
 ItemName="Killerwatt"
@@ -588,6 +648,16 @@ ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautom
 ItemName="M99 AMR"
 ItemCategory="Scharfschützengewehr"
 ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Jeder Schuss teilt einen ordentlichen Schlag … äh, Kugel aus. Hoher Durchschlag, hoher Schmerz."
+
+[KFCarryable_Gear]
+ItemName="Ausrüstung"
+ItemCategory="Ausrüstung"
+ItemDescription="You're not supposed to be seeing this in the trader!"
+
+[KFCarryable_Datapad]
+ItemName="Daten-Pad"
+ItemCategory="Ausrüstung"
+ItemDescription="You're not supposed to be seeing this in the trader!"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -720,6 +790,9 @@ GameName="Wöchentlicher Ausbruch"
 
 [KFGameInfo_Endless]
 GameName="Endlos"
+
+[KFGameInfo_Objective]
+GameName="Aufgabe"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Keine Heilung übrig"

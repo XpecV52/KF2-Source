@@ -4640,13 +4640,14 @@ function OnToggleCinematicMode(SeqAct_ToggleCinematicMode Action)
             }
         }
     }
-    SetCinematicMode(bNewCinematicMode, Action.bHidePlayer, Action.bHideHUD, Action.bDisableMovement, Action.bDisableTurning, Action.bDisableInput);
+    SetCinematicMode(bNewCinematicMode, Action.bHidePlayer, Action.bHideHUD, Action.bDisableMovement, Action.bDisableTurning, Action.bDisableInput, Action.bAllowDofChanges);
 }
 
-function SetCinematicMode(bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons)
+function SetCinematicMode(bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons, optional bool bAffectsDof)
 {
     local bool bAdjustMoveInput, bAdjustLookInput;
 
+    bAffectsDof = true;
     bCinematicMode = bInCinematicMode;
     if(bCinematicMode)
     {
@@ -4674,10 +4675,10 @@ function SetCinematicMode(bool bInCinematicMode, bool bHidePlayer, bool bAffects
         IgnoreLookInput(bCinematicMode);
         bCinemaDisableInputLook = bCinematicMode;
     }
-    ClientSetCinematicMode(bCinematicMode, bAdjustMoveInput, bAdjustLookInput, bAffectsHUD);
+    ClientSetCinematicMode(bCinematicMode, bAdjustMoveInput, bAdjustLookInput, bAffectsHUD, bAffectsDof);
 }
 
-reliable client simulated function ClientSetCinematicMode(bool bInCinematicMode, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsHUD)
+reliable client simulated function ClientSetCinematicMode(bool bInCinematicMode, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsHUD, bool bAffectsDof)
 {
     bCinematicMode = bInCinematicMode;
     if((myHUD != none) && bAffectsHUD)

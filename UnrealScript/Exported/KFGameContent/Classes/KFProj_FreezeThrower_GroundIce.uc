@@ -14,11 +14,11 @@ defaultproperties
    Begin Object Class=KFGameExplosion Name=ExploTemplate0 Archetype=KFGameExplosion'kfgamecontent.Default__KFProj_GroundIce:ExploTemplate0'
       ExplosionEffects=KFImpactEffectInfo'WEP_CryoGun_ARCH.GroundCryo_Impacts'
       bAllowPerMaterialFX=True
-      Damage=5.000000
+      Damage=7.000000
       DamageRadius=180.000000
       MyDamageType=Class'kfgamecontent.KFDT_Freeze_Ground_FreezeThrower'
       KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      MomentumTransferScale=0.100000
       FractureMeshRadius=0.000000
       FracturePartVel=0.000000
       CamShake=None

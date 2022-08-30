@@ -500,6 +500,8 @@ var KFAIDirector						AIDirector;
 var int									AIAliveCount;
 /** Counter for keeping track of AI spawned */
 var	int									NumAISpawnsQueued;
+/** Counter for AI spawned, increanses when the zeds are actually spawned */
+var int									NumAIFinishedSpawning;
 
 /** Number of zeds remainining before setting their pawns to bAlwaysRelevant=TRUE */
 var private const int 					NumAlwaysRelevantZeds;
@@ -727,6 +729,18 @@ var KFOutbreakEvent OutbreakEvent;
 
 /** Type of outbreak event to be used. */
 var class<KFOutbreakEvent> OutbreakEventClass;
+
+/************************************************************************************
+* @name		Kismet Monster Properties
+***********************************************************************************/
+
+enum EMonsterProperties
+{
+	EMonsterProperties_Enraged,
+	EMonsterProperties_Sprinting
+};
+
+var int SpawnedMonsterProperties[EMonsterProperties];
 
 /************************************************************************************
  * @name		Native
@@ -1938,6 +1952,7 @@ function SetMonsterDefaults( KFPawn_Monster P )
 	local float TotalSpeedMod, StartingSpeedMod;
 	local float DamageMod;
 	local int LivingPlayerCount;
+	local int i;
 
     LivingPlayerCount = GetLivingPlayerCount();
 
@@ -1997,6 +2012,25 @@ function SetMonsterDefaults( KFPawn_Monster P )
 
 	P.ApplySpecialZoneHealthMod(HeadHealthMod);
 	P.GameResistancePct = DifficultyInfo.GetDamageResistanceModifier(LivingPlayerCount);
+
+	// look for special monster properties that have been enabled by the kismet node
+	for (i = 0; i < ArrayCount(SpawnedMonsterProperties); i++)
+	{
+		// this property is currently enabled
+		if (SpawnedMonsterProperties[i] != 0)
+		{
+			// do the action associated with that property
+			switch (EMonsterProperties(i))
+			{
+			case EMonsterProperties_Enraged:
+				P.SetEnraged(true);
+				break;
+			case EMonsterProperties_Sprinting:
+				P.bSprintOverride=true;
+				break;
+			}
+		}
+	}
 
 	if (OutbreakEvent != none)
 	{
@@ -2328,14 +2362,14 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     }
 }
 
-function UpdateAIRemaining()
+event UpdateAIRemaining()
 {
 	if (Role == ROLE_AUTHORITY)
 	{
 		if (MyKFGRI != none && SpawnManager != none)
 		{
 			RefreshMonsterAliveCount();
-			MyKFGRI.AIRemaining = Max(0.0f, SpawnManager.WaveTotalAI - NumAISpawnsQueued) + AIAliveCount;
+			MyKFGRI.AIRemaining = Max(0.0f, SpawnManager.WaveTotalAI - NumAIFinishedSpawning) + AIAliveCount;
 		}
 	}
 }
@@ -3962,6 +3996,7 @@ defaultproperties
    GameModes(1)=(FriendlyName="Weekly",ClassNameAndPath="KFGameContent.KFGameInfo_WeeklySurvival",bSoloPlaySupported=True,LocalizeID=1)
    GameModes(2)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",LocalizeID=2)
    GameModes(3)=(FriendlyName="Endless",ClassNameAndPath="KFGameContent.KFGameInfo_Endless",bSoloPlaySupported=True,DifficultyLevels=4,LocalizeID=3)
+   GameModes(4)=(FriendlyName="Objective",ClassNameAndPath="KFGameContent.KFGameInfo_Objective",bSoloPlaySupported=True,DifficultyLevels=4,LocalizeID=4)
    KickVotePercentage=0.660000
    TimeBetweenFailedVotes=10.000000
    MapVoteDuration=60.000000
@@ -3988,7 +4023,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway"))
+   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway","KF-SteamFortress"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

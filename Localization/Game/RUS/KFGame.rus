@@ -1,5 +1,5 @@
 [KFPawn_Scripted]
-ScriptedPawnString="V.I.P."
+ScriptedPawnString="Сопровождение"
 
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="Спецэффекты"
@@ -31,6 +31,7 @@ ModeStrings[0]="Выживание"
 ModeStrings[1]="Еженедельно"
 ModeStrings[2]="Выживание в бою"
 ModeStrings[3]="Без конца"
+ModeStrings[4]="Цель"
 
 NoPreferenceString="ЛЮБОЙ"
 OKString="ОК"
@@ -108,7 +109,7 @@ DiscordSoloMatchString="Одиночный матч"
 DiscordMatchLobbyString=": Лобби матча"
 DiscordTraderTimeString=": Время Торговца"
 DiscordBossWaveString=": Волна босса"
-DiscordWaveString=": Волна"
+DiscordWaveString=": Волна "
 
 StartOfflineGameString="Начать локальную игру"
 StartOfflineGameDescriptionString="Ваша группа будет распущена, если вы начнете локальную игру. \nПродолжить?"
@@ -141,9 +142,9 @@ CompleteMapString="Сыграть на карте:"
 KillZedsString="Убить мутантов:"
 KillBossString="Убить босса:"
 KillBossDescriptionString="В еженедельном режиме или режиме «Выживание»"
-VersusKillsString="Убить против игроков как:"
-DealVersusDamageString="Урон против игроков как:"
-VersusCompletionString="Сыграть как:"
+VersusKillsString=Убить против игроков как:
+DealVersusDamageString=Урон против игроков как:
+VersusCompletionString=Сыграть как:
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="НЕ УДАЛОСЬ НАЙТИ ИГРУ"
@@ -361,7 +362,7 @@ TraderString="КУПИТЬ СНАРЯЖЕНИЕ"
 
 [KFGFxServerBrowser_ServerList]
 LeaveServerBrowserString="ВЫЙТИ БРАУЗЕР СЕРВЕРА"
-DetailsString="ДЕТАЛИ "
+DetailsString="ДЕТАЛИ"
 SpectateString="НАБЛЮДАТЬ"
 
 [KFGFxTraderContainer_ItemDetails]
@@ -1055,7 +1056,7 @@ SFxString="Громкость эффектов"
 VOIPVolumeString="Громкость входящих в чате"
 ConfigureMicString="НАСТРОИТЬ МИКРОФОН"
 VocalsString="Вокал музыки"
-BattleChatterString="Мин. переговоры в бою "
+BattleChatterString="Мин. переговоры в бою"
 PushToVoIPString="Переходить на VoIP"
 ScreenSizeString="ОТРЕГУЛИРОВАТЬ РАЗМЕР ЭКРАНА"
 
@@ -1246,6 +1247,7 @@ ReduceHighPitchNoiseString="Менее пронзительные шум"
 DisableAutoUpgradeString="Отключить автоторговлю"
 HideRemodeHeadshotEffectsString="Откл. эф. попадания в голову других"
 ToggleToRunString="Переключите, чтобы выполнить перебежку"
+ClassicPlayerInfoString="Прежняя версия шкал здоровья"
 
 EnableMixerString="Переключить интерактивность Mixer"
 DisableMixerString="Отключить Mixer"
@@ -1737,7 +1739,7 @@ Vampire="Вампир"
 VampireDescription="Восстанавливает 4 очка здоровья за каждого мутанта, убитого профильным оружием. На 20% быстрее атака профильным холодным оружием."
 
 Speed="Мясник"
-SpeedDescription="Атака на 20% быстрее и урон на 25% больше при использовании профильного холодного оружия."
+SpeedDescription="Атака на 20% быстрее и урон на 20% больше при использовании профильного холодного оружия."
 
 Resistance="Сопротивление"
 ResistanceDescription="Получает 20% сопротивления ко всему урону. На 20% растет сопротивление к яду и урону звуком."
@@ -1755,7 +1757,7 @@ Spartan="ЗАМЕДЛЕНИЕ ВРЕМЕНИ — спартанец"
 SpartanDescription="При замедлении времени атакует профильным холодным оружием и движется в реальном времени."
 
 Rage="МУТАНТ ВРЕМЯ — ярость берсеркера"
-RageDescription="При замедлении времени восстанавливает 25% здоровья, а ближайшие мутанты пытаются убежать."
+RageDescription="Восстановление 25% здоровья во время активации или обновления функции «Время мутантов». Кроме этого, окружающие мутанты будут вынуждены бежать."
 
 [KFPerk_Commando]
 PerkName="Коммандос"
@@ -1768,7 +1770,7 @@ SkillCatagories[4]="Продвинутое обучение"
 
 Passives[0]=(Title="Урон профильного оружия",Description="Урон профильного оружия растет на %x% за уровень");
 Passives[1]=(Title="См стелс врагов и бары здоровья",Description="Дальность 5 м плюс %x% м за уровень");
-Passives[2]=(Title="Продление замедления времени",Description="Мутант время продлевается на %x% каждые 5 уровней");
+Passives[2]=(Title="Время мутантов обновляется",Description="Мутант время продлевается на %x% каждые 5 уровней");
 Passives[3]=(Title="Скорость заряжания",Description="Скорость заряжания профильного оружия растет на %x%% каждые 5 уровней");
 Passives[4]=(Title="Способность видеть в темноте",Description="Фонари И очки ночного видения");
 Passives[5]=(Title="Выявление невидимых мутантов",Description="Позволяет бойцам команды видеть невидимых существ");
@@ -1783,7 +1785,7 @@ LargeMags="Магазины большой емкости"
 LargeMagsDescription="Емкость магазинов профильного оружия растет на 50%."
 
 Backup="Отход"
-BackupDescription="На 50% повышает урон 9-мм пистолета и ножа; скорость смены оружия повышается на 50%."
+BackupDescription="На 85% повышает урон 9-мм пистолета и ножа; скорость смены оружия повышается на 50%."
 
 Impact="Мощные боеприпасы"
 ImpactDescription="Останавливающее действие профильного оружия растет на 150%."
@@ -1795,7 +1797,7 @@ AmmoVest="Готовность"
 AmmoVestDescription="Макс. боезапас для каждого профильного оружия растет на 20%."
 
 HollowPoints="экспансивная пуля"
-HollowPointsDescription="Урон профильного оружия растет на 25%, а его отдача слабеет на 50%."
+HollowPointsDescription="Урон профильного оружия повышается на 20%, а его отдача слабеет на 50%."
 
 EatLead="Град свинца"
 EatLeadDescription="Емкость магазинов профильного оружия растет на 100%."
@@ -1829,13 +1831,13 @@ Damage="Бомбардир"
 DamageDescription="Урон профильного взрывного оружия растет на 25%."
 
 Speed="Боец ударного отряда"
-SpeedDescription="Профильное оружие заряжается на 20% быстрее, а его способность сбить с ног и останавливающая способность растет на 25%."
+SpeedDescription="Профильное оружие перезаряжается на 20% быстрее, а его способность сбить с ног повышается на 10%."
 
 DirectHit="Сверхмощные боеприпасы"
-DirectHitDescription="Прямой урон взрывного оружия растет на 20%."
+DirectHitDescription="Прямой урон взрывного оружия растет на 25%."
 
 Ammo="Дополнительные боеприпасы"
-AmmoDescription="Макс. боезапас профильного взрывного оружия растет на 5."
+AmmoDescription="Максимальный боезапас профильного взрывного оружия повышается на 5. Это не касается C4."
 
 SirenResistance="Звукоустойчивые боеприпасы"
 SirenResistanceDescription="Взрывные устройства устойчивы к крику сирен и всегда взрываются."
@@ -1884,13 +1886,13 @@ Combatant="Воин-врач"
 CombatantDescription="Емкость магазина профильного оружия растет на 50%, а скорость движения — на 10%."
 
 HealingDamageBoost="Укол для сосредоточения"
-HealingDamageBoostDescription="Лечащие дротики на 5 с повышают урон, наносимый бойцами команды, на 5%. Бонус суммируется до 20%. "
+HealingDamageBoostDescription="Лечащие дротики на 5 с повышают урон, наносимый бойцами команды, на 5%. Бонус суммируется до 20%."
 
 AcidicCompound="Кислотные боеприпасы"
 AcidicCompoundDescription="Профильное оружие может отравить мутантов, со временем нанося урон ядом."
 
 HealingShield="Стимулятор свертывания"
-HealingShieldDescription="Лечащие дротики на 5 с повышают сопротивление бойцов команды к урону на 10%. Бонус суммируется до 30%. "
+HealingShieldDescription="Лечащие дротики на 5 с повышают сопротивление бойцов команды к урону на 10%. Бонус суммируется до 30%."
 
 Enforcer="Боевой хирург"
 EnforcerDescription="Урон профильного оружия растет на 20%."
@@ -1899,7 +1901,7 @@ AirborneAgent="МУТАНТ ВРЕМЯ — агент-парашютист"
 AirborneAgentDescription="При замедлении времени выпускает газ, который лечит ближайших бойцов команды."
 
 Sedative="МУТАНТ ВРЕМЯ — замедлительное"
-SedativeDescription="При замедлении времени профильное оружие замедляет мутантов на 30% и наносит им большой урон ядом. "
+SedativeDescription="При замедлении времени профильное оружие замедляет мутантов на 30% и наносит им большой урон ядом."
 
 
 EXPAction1="Наносит урон оружием медика"
@@ -1908,7 +1910,7 @@ EXPAction2="Лечит бойцов команды"
 [KFPerk_Firebug]
 PerkName="Поджигатель"
 EXPAction1="Наносит урон оружием поджигателя"
-EXPAction2="Убивает ползунов оружием поджигателя"
+EXPAction2="Убивает толстяков и ползунов оружием поджигателя"
 
 SkillCatagories[0]="Запасы"
 SkillCatagories[1]="Пикантность"
@@ -1932,7 +1934,7 @@ Fuse="Шашлык"
 FuseDescription="Эффект горения у профильного оружия длится на 150% дольше; со временем повышая урон."
 
 GroundFire="Огонь на земле"
-GroundFireDescription="Огонь на земле наносит сильно повышенный урон и снижает скорость движения мутантов на 20%,"
+GroundFireDescription="Огонь с земли наносит вдвое больше урона и снижает скорость движения мутантов на 30%. Это не касается коктейлей Молотова."
 
 ZedShrapnel="Шрапнель из мутантов"
 ZedShrapnelDescription="У убитых огнем мутантов есть 30% шанс взорваться, нанести урон ближайшим мутантам и оглушить их."
@@ -1941,7 +1943,7 @@ Napalm="Напалм"
 NapalmDescription="Горящие мутанты поджигают других мутантов при касании, а эффект горения длится на 150% дольше."
 
 Range="Огненная буря"
-RangeDescription="Повышает дальность стрельбы профильного оружия."
+RangeDescription="Повышает дальность действия «Гори-гори ясно», типового огнемета и энергопушки."
 
 SplashDamage="Тепловая волна"
 SplashDamageDescription="Мутанты, пораженные огнем в упор, отшатываются назад."
@@ -2028,7 +2030,7 @@ Stun="Баллистический удар"
 StunDescription="Способность к оглушению у профильного оружия растет на 100%."
 
 RhythmMethod="Валим их"
-RhythmMethodDescription="Каждое следующее попадание в голову из профильного оружия повышает урон на 10% до максимума 50%. "
+RhythmMethodDescription="Каждое следующее попадание в голову из профильного оружия повышает урон на 10% до максимума 50%.  "
 
 TacticalReload="Тактическое заряжание"
 TacticalReloadDescription="Повышает скорость заряжания профильного оружия."
@@ -2037,7 +2039,7 @@ Scoped="Меткий глаз"
 ScopedDescription="При стрельбе из профильного оружия с помощью целика и мушки отдача слабеет на 10%, а урон от попаданий в голову растет на 10%."
 
 AmmoPouch="Всегда готов"
-AmmoPouchDescription="Макс. боезапас профильного оружия и гранат растет на 25%."
+AmmoPouchDescription="Одна дополнительная граната и на 25% больше боеприпасов для профильного оружия."
 
 ZTKnockdown="МУТАНТ ВРЕМЯ — ликвидатор"
 ZTKnockdownDescription="При попад. в голову из проф. оружия есть 5% шанс акт. замедл. времени. При замедл. времени урон от попад. в голову из проф. оружия растет на 35%."
@@ -2117,7 +2119,7 @@ TacticalMovement="Тактическое перемещение"
 TacticalMovementDescription="Использование металлического прицела и передвижение ползком с профессиональным оружием без штрафов к скорости."
 
 Backup="Обучение ближнему бою"
-BackupDescription="Повышает урон 9-мм пистолета и ножа на 50%. Каждую игру вы начинаете с двумя 9-мм пистолетами."
+BackupDescription="Повышает урон 9-мм пистолета и ножа на 85%. Каждую игру вы начинаете с двумя 9-мм пистолетами."
 
 TacticalReload="Тактическое заряжание"
 TacticalReloadDescription="Повышает скорость заряжания профильного оружия."
@@ -2132,10 +2134,10 @@ BodyArmor="Штурмовой бронежилет"
 BodyArmorDescription="Макс. броня растет на 50%. Каждую игру вы начинаете с 50% брони, которая суммируется с броней, полученной от обучения с тяжелой броней."
 
 Cripple="Искалечение"
-CrippleDescription="Многократные попадания из профильного оружия замедляют мутантов на 30% или менее. Эффективнее всего стрелять по ногам."
+CrippleDescription="Многократные попадания из профильного оружия замедляют мутантов на 30% или менее. Выстрелы в голову и в слабое место позволяют применить этот эффект вдвое быстрее."
 
 SWATEnforcer="МУТАНТ ВРЕМЯ — таран"
-SWATEnforcerDescription="При замедлении времени движется в реальном времени и дает огромную способность сбить с ног при столкновении с мутантом."
+SWATEnforcerDescription="Пока действует «Время мутантов», вы быстрее двигаетесь в реальном времени, наносите огромный урон и отбрасываете любого мутанта, который вас коснется."
 
 RapidAssault="МУТАНТ ВРЕМЯ — быстрый штурм"
 RapidAssaultDescription="При замедл. времени проф. оружие имеет бесконечный боезапас, стреляет почти в реальном времени, а его останавл. способность растет на 100%."
@@ -2179,7 +2181,7 @@ ZedShrapnel="Спонтанный взрыв мутантов"
 ZedShrapnelDescription="У убитых мутантов есть 30% шанс взорваться, нанести урон ближайшим мутантам и оглушить их."
 
 MakeThingsGoBoom="Делаем ба-бах"
-MakeThingsGoBoomDescription="На 40% повышает радиус поражения всех взрывных устройств."
+MakeThingsGoBoomDescription="На 40% повышает радиус поражения всех взрывных устройств, а также уровень сопротивления урону от взрывчатки."
 
 Madman="МУТАНТ ВРЕМЯ — безумец"
 MadmanDescription="При замедлении времени все оружие стреляет в 3 раза быстрее."
@@ -2292,8 +2294,8 @@ HorzineSupplyCrateKey8="Ключ от ящика Horzine | Тип 8 — $2,49"
 HorzineSupplyCrateKey9="Ключ от ящика Horzine | Тип 9 — $2,49"
 USBCyberboneKey="USB-ключ «Сайбербоун» — $2,49"
 USBDragonfireKey="USB-ключ «Драконий огонь» — $2,49"
-USBEmergencyIssueKey="USB-ключ Horzine «ЧП» — $2,49"
-USBHorzineFirstEncounterKey="USB-ключ «Первый контакт» — $2,49"
+USBEmergencyIssueKey="USB-ключ «Драконий огонь» — $2,49"
+USBHorzineFirstEncounterKey="USB-ключ Horzine «ЧП» — $2,49"
 USBHorzineIssueKey="USB-ключ Horzine «Наше дело» — $2,49"
 USBMedicKey="USB-ключ «Медик» — $2,49"
 USBOlExhibitKey="USB-ключ «Ретро» — $2,49"
@@ -2338,25 +2340,53 @@ FreeTrial="Купите игру Killing Floor 2 уже сегодня!"
 FeaturedCrossover="Включает в себя рекламу кроссовера"
 
 [Objectives]
+ObjectiveTitle="ЦЕЛЬ"
 HoldVolume="ЗАЩИЩАТЬ ЭТУ ЗОНУ"
 DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="ДЕРЖАТЬ ПОЗИЦИИ"
 RequiredDoshHold="Игрокам необходимо:"
 DoschHoldDesc="Не пускать мутантов в отмеченную область"
 DescriptionDoshHold="Не пускать мутантов в отмеченную область"
+DescriptionDoshHoldShort="Защитить зону (необязательно)"
 RepairObjective="СВАРКА И РЕМОНТ"
-UseWelderToRepair="Исп. свар. аппарат, чтобы починить цель."
-RepairObjectiveRequired="Задачи на ремонт:"
+UseWelderToRepair="Почините сломанные механизмы с помощью сварочного аппарата"
+UseWelderToRepairShort="Починить сломанный механизм с помощью сварки"
+UseWelderToRepairTraderPod="Почините кабины торговца с помощью сварочного аппарата"
+UseWelderToRepairTraderPodShort="Починить кабины торговца с помощью сварки"
+RepairObjectiveRequired="Сломанные механизмы, нуждающиеся в ремонте:"
 EscortPawnsObjective="СОПРОВОЖДЕНИЕ"
-EscortPawnsDescription="Защитите цель от мутантов"
+EscortPawnsDescription="Сопроводить дрон и защитить его от мутантов"
+EscortPawnsDescriptionShort="Сопроводить дрон"
 RequiredHoldVolume="RequiredHoldVolume"
 DestroyActor="НАЙТИ И УНИЧТОЖИТЬ"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="УПРАВЛЯЙТЕ"
-DescriptionActivateTrigger="Активировать управление цели"
+DescriptionActivateTrigger="Активировать консоль управления"
+DescriptionActivateTriggerShort="Активировать консоль"
+DescriptionActivateTriggerFlares="Активировать пусковую установку для запуска ловушек"
+DescriptionActivateTriggerFlaresShort="Активировать пусковую установку для запуска ловушек"
+DescriptionActivateTriggerServer="Перегрузить терминал сервера"
+DescriptionActivateTriggerServerShort="Перегрузить терминал сервера"
+DescriptionActivateTriggerCommTower="Перегрузить башню связи"
+DescriptionActivateTriggerCommTowerShort="Перегрузить башню связи"
 RequiredActivateTrigger="Требуется активация:"
+ExterminateWaveObjective="УНИЧТОЖЕНИЕ"
+ExterminateWaveDescription="Убить всех мутантов"
+ExterminateWaveDescriptionShort="Убить всех мутантов"
+ExterminateWaveRequired="Мутанты, которых нужно уничтожить:"
+HoldZoneObjective="ДЕРЖАТЬ ПОЗИЦИИ"
+HoldZoneDescription="Защитить выделенную область от мутантов"
+HoldZoneDescriptionShort="Защитить выделенную область"
+HoldZoneRequired="Время на защиту:"
+TransportWaveObjective="ПЕРЕВОЗКА"
+TransportWaveDescription="Перевезти планшет с данными в пункт назначения"
+TransportWaveDescriptionShort="Перевезти панель с данными"
+TransportWaveDescriptionGear="Перевезти снаряжение в пункт назначения"
+TransportWaveDescriptionGearShort="Перевезти снаряжение"
+RequiredCollectActor="Нужно выполнить доставки:"
 FailedString="ПРОВАЛ"
+SuccessString="ГОТОВО"
 RepairObjSantaWorkshopCustomTitle1="ПОЧИНИТЕ ПОДАЧУ ЭНЕРГИИ"
 RepairObjSantaWorkshopCustomDescr1="Почините 3 схемы сварочным аппаратом"
 RepairObjSantaWorkshopCustomTitle2="ПОЧИНИТЕ ВОРОТА"
@@ -2373,6 +2403,20 @@ OperateObjSantaWorkshopCustomTitle2="ТЯНИТЕ РЫЧАГ"
 OperateObjSantaWorkshopCustomDescr2="Не впускайте мутантов в зону"
 OperateObjSantaWorkshopCustomTitle3="ТЯНИТЕ РЫЧАГ"
 OperateObjSantaWorkshopCustomDescr3="Не впускайте мутантов в зону"
+TooFewPlayers="СЛИШКОМ МАЛО ИГРОКОВ"
+TooManyZeds="СЛИШКОМ МНОГО МУТАНТОВ"
+KillRemainingZeds="УБИТЬ ВСЕХ МУТАНТОВ"
+BeingAttacked="ПОДВЕРГАЕТСЯ АТАКЕ"
+LowHealth="НИЗКОЕ ЗДОРОВЬЕ"
+Stopped="ОСТАНОВЛЕНО"
+Blocked="ЗАБЛОКИРОВАНО МУТАНТАМИ"
+NeedsRepair="НЕОБХОДИМ РЕМОНТ"
+Dropped="ПРОПУЩЕНО"
+PickedUp="ПОДОБРАНО"
+PickupTransportItem="ЗАБРАТЬ ТРАНСПОРТ"
+Reset="СБРОСИТЬ"
+Ready="ГОТОВО"
+NotReady="НЕ ГОТОВО"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2526,10 +2570,10 @@ Source0="Реклама рыцарства"
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
-SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
-SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
-SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1")
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
@@ -2539,11 +2583,11 @@ ChanceDropDescriptionStrings[1]="Выпадение 2"
 [KFGFxSummerSideShowObjectivesContainer]
 CurrentSpecialEventString="Временное мероприятие, где можно получить эксклюзивные предметы."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Ремонт в облаках",DescriptionString="Почините сломанные трубы в воздушном судне");
-SpecialEventObjectiveInfoList[1]=(TitleString="Успех на верхней палубе",DescriptionString="Защищайте верхнюю палубу воздушного судна");
-SpecialEventObjectiveInfoList[2]=(TitleString="Да будет свет!",DescriptionString="Почините электрические распределительные щитки");
-SpecialEventObjectiveInfoList[3]=(TitleString="Смывайся!",DescriptionString="Направьте поток воды в паровой двигатель воздушного судна");
-SpecialEventObjectiveInfoList[4]=(TitleString="Прекрасный корабль",DescriptionString="Выиграйте матч на воздушном судне на уровне «Сложно» или выше");
+SpecialEventObjectiveInfoList[0]=(TitleString="Ремонт в облаках",DescriptionString="Почините сломанные трубы в воздушном судне")
+SpecialEventObjectiveInfoList[1]=(TitleString="Успех на верхней палубе",DescriptionString="Защищайте верхнюю палубу воздушного судна")
+SpecialEventObjectiveInfoList[2]=(TitleString="Да будет свет!",DescriptionString="Почините электрические распределительные щитки")
+SpecialEventObjectiveInfoList[3]=(TitleString="Смывайся!",DescriptionString="Направьте поток воды в паровой двигатель воздушного судна")
+SpecialEventObjectiveInfoList[4]=(TitleString="Прекрасный корабль",DescriptionString="Выиграйте матч на воздушном судне на уровне «Сложно» или выше")
 
 AllCompleteRewardDescriptionString="Набор «Стимпанковый костюм»"
 
@@ -2553,11 +2597,11 @@ ChanceDropDescriptionStrings[1]="Золотой билет"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="Выполняйте цели во время «Бала монстров», чтобы получить награды!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Сладость или ловушка!",DescriptionString="Используйте ловушки, чтобы убить 25 мутантов за одну игровую сессию");
-SpecialEventObjectiveInfoList[1]=(TitleString="Мертвецы не рассказывают сказок",DescriptionString="Уничтожьте 10 коллекционных светящихся черепов");
-SpecialEventObjectiveInfoList[2]=(TitleString="Месиво из монстров",DescriptionString="Убейте 2500 мутантов");
-SpecialEventObjectiveInfoList[3]=(TitleString="Вечеринка на всю ночь",DescriptionString="Расправьтесь с волной 25 в бесконечном режиме на уровне «Сложно» или выше");
-SpecialEventObjectiveInfoList[4]=(TitleString="Владелец замка",DescriptionString="Победите графа Ганса в режиме «Выживание» на уровне «Сложно» или выше");
+SpecialEventObjectiveInfoList[0]=(TitleString="Сладость или ловушка!",DescriptionString="Используйте ловушки, чтобы убить 25 мутантов за одну игровую сессию")
+SpecialEventObjectiveInfoList[1]=(TitleString="Мертвецы не рассказывают сказок",DescriptionString="Уничтожьте 10 коллекционных светящихся черепов")
+SpecialEventObjectiveInfoList[2]=(TitleString="Месиво из монстров",DescriptionString="Убейте 2500 мутантов")
+SpecialEventObjectiveInfoList[3]=(TitleString="Вечеринка на всю ночь",DescriptionString="Расправьтесь с волной 25 в бесконечном режиме на уровне «Сложно» или выше")
+SpecialEventObjectiveInfoList[4]=(TitleString="Владелец замка",DescriptionString="Победите графа Ганса в режиме «Выживание» на уровне «Сложно» или выше")
 
 AllCompleteRewardDescriptionString="MKB Ганса оружие и хелл. вид"
 
@@ -2567,11 +2611,11 @@ ChanceDropDescriptionStrings[1]="Золотой билет"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="Временное мероприятие, где можно получить эксклюзивные предметы."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Идеальный подарок",DescriptionString="Выполните задания на сопр.тачки с полн. зд. в реж.«Выживание» на «Сложно» или выше");
-SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельные бонусы",DescriptionString="Выполните еженедельные задания игры «Веселье в магазине»");
-SpecialEventObjectiveInfoList[2]=(TitleString="Катание на американских горках",DescriptionString="Убейте 2500 мутантов");
-SpecialEventObjectiveInfoList[3]=(TitleString="Поджарьте их каштаны",DescriptionString="Убейте 25 боссов");
-SpecialEventObjectiveInfoList[4]=(TitleString="Переполох в мастерской",DescriptionString="Победите Крампуса в мастерской Санты в реж. «Выживание» на ур. «Сложно» или выше");
+SpecialEventObjectiveInfoList[0]=(TitleString="Идеальный подарок",DescriptionString="Выполните задания на сопр.тачки с полн. зд. в реж.«Выживание» на «Сложно» или выше")
+SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельные бонусы",DescriptionString="Выполните еженедельные задания игры «Веселье в магазине»")
+SpecialEventObjectiveInfoList[2]=(TitleString="Катание на американских горках",DescriptionString="Убейте 2500 мутантов")
+SpecialEventObjectiveInfoList[3]=(TitleString="Поджарьте их каштаны",DescriptionString="Убейте 25 боссов")
+SpecialEventObjectiveInfoList[4]=(TitleString="Переполох в мастерской",DescriptionString="Победите Крампуса в мастерской Санты в реж. «Выживание» на ур. «Сложно» или выше")
 
 AllCompleteRewardDescriptionString="Боевой топор + рожд. скин"
 
@@ -2582,11 +2626,11 @@ ChanceDropDescriptionStrings[1]="Золотой билет"
 CurrentSpecialEventString="Бесконечные испытания"
 CurrentSpecialEventDescriptionString="Уничтожьте волны, чтобы получить легенД.А.Р.ные награды!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Бесконечная проверка: манекен",DescriptionString="Сразитесь с бесконечной волной 5",TierEventRewardName="Классический D.A.R.");
-SpecialEventObjectiveInfoList[1]=(TitleString="Бесконечный дрон",DescriptionString="Сразитесь с бесконечной волной 10",TierEventRewardName="Погрузчик D.A.R.");");
-SpecialEventObjectiveInfoList[2]=(TitleString="Бесконечный караул",DescriptionString="Сразитесь с бесконечной волной 15",TierEventRewardName="Вязаная шапка D.A.R.");");
-SpecialEventObjectiveInfoList[3]=(TitleString="Бесконечная машина войны",DescriptionString="Сразитесь с бесконечной волной 20",TierEventRewardName="Кровавый D.A.R.");");
-SpecialEventObjectiveInfoList[4]=(TitleString="Бесконечный лучший D.A.R.",DescriptionString="Сразитесь с бесконечной волной 25",TierEventRewardName="Золотой D.A.R.");
+SpecialEventObjectiveInfoList[0]=(TitleString="Бесконечная проверка: манекен",DescriptionString="Сразитесь с бесконечной волной 5",TierEventRewardName="Классический D.A.R.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Бесконечный дрон",DescriptionString="Сразитесь с бесконечной волной 10",TierEventRewardName="Погрузчик D.A.R.")
+SpecialEventObjectiveInfoList[2]=(TitleString="Бесконечный караул",DescriptionString="Сразитесь с бесконечной волной 15",TierEventRewardName="Вязаная шапка D.A.R.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Бесконечная машина войны",DescriptionString="Сразитесь с бесконечной волной 20",TierEventRewardName="Кровавый D.A.R.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Бесконечный лучший D.A.R.",DescriptionString="Сразитесь с бесконечной волной 25",TierEventRewardName="Золотой D.A.R.")
 
 [KFGFxSpring2019ObjectivesContainer]
 CurrentSpecialEventString="Временное особое событие, где можно получить эксклюзивные предметы"
@@ -2598,6 +2642,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="Бесконечный водоо
 SpecialEventObjectiveInfoList[4]=(TitleString="Проливая кровь",DescriptionString="Победить любого босса в режиме «Выживание» на уровне «Сложно» или выше в водоотводе")
 
 AllCompleteRewardDescriptionString="Наряды в стиле «Киберпанк»: мужской и женский варианты"
+
+ChanceDropDescriptionStrings[0]="Призовой билет"
+ChanceDropDescriptionStrings[1]="Золотой билет"
+
+[KFGFxSummer2019ObjectivesContainer]
+CurrentSpecialEventString="Ограниченное по времени особое событие, где можно получить эксклюзивные предметы"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Мы стартовали!",DescriptionString="Пройти «Паровую крепость» в режиме достижения цели на высоком или более трудном уровне сложности")
+SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельная проверка",DescriptionString="Выполнить еженедельное задание в «Паровой крепости»")
+SpecialEventObjectiveInfoList[2]=(TitleString="Вечный пар",DescriptionString="Расправиться с волной 15 в бесконечном режиме в «Паровой крепости» на высоком или более трудном уровне сложности")
+SpecialEventObjectiveInfoList[3]=(TitleString="Смертоносное путешествие по кругу",DescriptionString="Пройти «Высадку среди мутантов» в режиме достижения цели на высоком или более трудном уровне сложности")
+SpecialEventObjectiveInfoList[4]=(TitleString="Возвращение в холод",DescriptionString="Пройти «Аванпост» в режиме достижения цели на высоком или более трудном уровне сложности")
+
+AllCompleteRewardDescriptionString="Наряды в стиле «Стимпанк»: мужской и женский варианты"
 
 ChanceDropDescriptionStrings[0]="Призовой билет"
 ChanceDropDescriptionStrings[1]="Золотой билет"
@@ -2618,7 +2676,7 @@ KnifeString="Нож"
 FriendlyName="Текущая вспышка: Крушитель черепов"
 DescriptionStrings[0]="Лучший удар — удар по мозгам."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="В этой вспышке вам придется столкнуться с мутантами, которых можно вырубить, только ударив по голове. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[0]="В этой вспышке вам придется столкнуться с мутантами, которых можно вырубить, только ударив по голове. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2628,7 +2686,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Маленький кошмар"
 DescriptionStrings[0]="Маленькая угроза — всё равно угроза."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="Когда вы стреляете по мутантам во время этой вспышки, они уменьшаются, и в них сложнее попасть. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[0]="Когда вы стреляете по мутантам во время этой вспышки, они уменьшаются, и в них сложнее попасть. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2638,7 +2696,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Отбивальщики"
 DescriptionStrings[0]="Сплошные отбивальщики. Ну, почти."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="В городе проходит конвенция отбивальщиков! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[0]="В городе проходит конвенция отбивальщиков! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2658,7 +2716,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Время мутантов"
 DescriptionStrings[0]="Всё время мира принадлежит мутантам."
 DescriptionStrings[1]="Длина: Короткая (4 волны)"
-ModifierDescriptions[0]="Вам когда-нибудь казалось, что жизнь проходит мимо вас? Что ж, только не во время этой вспышки! Всякий раз, когда рядом окажется мутант, вы попадете во время мутантов. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[0]="Вам когда-нибудь казалось, что жизнь проходит мимо вас? Что ж, только не во время этой вспышки! Всякий раз, когда рядом окажется мутант, вы попадете во время мутантов. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2667,7 +2725,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Ба-бах"
 DescriptionStrings[0]="Мутанты под давлением; взрывоопасно."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="Может, они съели что-то не то? Или это газ? Что бы это ни было, убитые во время этой вспышки мутанты взрываются. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[0]="Может, они съели что-то не то? Или это газ? Что бы это ни было, убитые во время этой вспышки мутанты взрываются. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2676,7 +2734,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Качки"
 DescriptionStrings[0]="Чем больше шкаф, тем громче вы падаете."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="Во время этой вспышки мутанты увеличиваются в размерах, поправляют здоровье и становятся сильнее, когда бьют игроков или попадают под воздействие мутантских способностей. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[0]="Во время этой вспышки мутанты увеличиваются в размерах, поправляют здоровье и становятся сильнее, когда бьют игроков или попадают под воздействие мутантских способностей. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2686,7 +2744,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Головастики"
 DescriptionStrings[0]="...у них наверняка болят шеи."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="С этой толпой мутантов что-то очень сильно не так: их головы намно-о-го больше обычного! Они просто огромные! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. "
+ModifierDescriptions[0]="С этой толпой мутантов что-то очень сильно не так: их головы намно-о-го больше обычного! Они просто огромные! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3113,6 +3171,9 @@ GameName="Еженедельно"
 [Endless KFGameInfoSummary]
 GameName="Без конца"
 
+[Objective KFGameInfoSummary]
+GameName="Задача"
+
 [KF-VolterManor KFMapSummary]
 DisplayName="Поместье Вольтера"
 
@@ -3181,6 +3242,9 @@ DisplayName="Мастерскую Санты"
 
 [KF-Spillway KFMapSummary]
 DisplayName="Водоотвод"
+
+[KF-SteamFortress KFMapSummary]
+DisplayName="Паровая крепость"
 
 [KFMapInfo]
 ; defaults

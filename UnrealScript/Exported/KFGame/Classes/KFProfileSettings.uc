@@ -79,6 +79,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
+const KFID_ClassicPlayerInfo=173;
 #linenumber 12
 
 struct native WeaponSkinPairs
@@ -324,8 +325,9 @@ defaultproperties
    DefaultSettings(57)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=171,Data=(Type=SDT_Int32,Value1=-1)))
    DefaultSettings(58)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=168,Data=(Type=SDT_Float)))
    DefaultSettings(59)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=169,Data=(Type=SDT_Int32)))
-   DefaultSettings(60)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=172,Data=(Type=SDT_Int32)))
-   VersionNumber=5
+   DefaultSettings(60)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=172,Data=(Type=SDT_Int32,Value1=1)))
+   DefaultSettings(61)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=173,Data=(Type=SDT_Int32)))
+   VersionNumber=6
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
    ProfileMappings(2)=(Id=103,Name="Force Feedback Enabled",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -387,6 +389,7 @@ defaultproperties
    ProfileMappings(58)=(Id=168,Name="Safe Frame")
    ProfileMappings(59)=(Id=169,Name="Native 4k Resolution")
    ProfileMappings(60)=(Id=172,Name="Toggle To Run")
+   ProfileMappings(61)=(Id=173,Name="Legacy Health Bars")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

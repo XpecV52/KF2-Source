@@ -21,7 +21,7 @@ defaultproperties
    PickupMeshName="wep_3p_fireaxe_mesh.Wep_3rdP_FireAxe_Pickup"
    AttachmentArchetypeName="wep_fireaxe_arch.Wep_FireAxe_3P"
    InventorySize=5
-   GroupPriority=100.000000
+   GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_FireAxe_TEX.UI_WeaponSelect_Fireaxe'
    PlayerViewOffset=(X=2.000000,Y=0.000000,Z=0.000000)
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'

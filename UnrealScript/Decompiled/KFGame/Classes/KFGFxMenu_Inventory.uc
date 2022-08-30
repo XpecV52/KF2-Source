@@ -315,7 +315,7 @@ function bool DoesMatchFilter(ItemProperties InventoryItem)
         {
             return false;
         }
-        if((CurrentPerkIndexFilter != KFPC.PerkList.Length) && !(CurrentPerkIndexFilter == InventoryItem.PerkId) || CurrentPerkIndexFilter == InventoryItem.AltPerkId)
+        if(((CurrentPerkIndexFilter != KFPC.PerkList.Length) && !(CurrentPerkIndexFilter == InventoryItem.PerkId) || CurrentPerkIndexFilter == InventoryItem.AltPerkId) && KFPC.PerkList[CurrentPerkIndexFilter].PerkClass != Class'KFPerk_Survivalist')
         {
             return false;
         }

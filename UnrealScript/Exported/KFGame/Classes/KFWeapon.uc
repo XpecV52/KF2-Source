@@ -2563,7 +2563,7 @@ simulated function bool WeaponIsAnimating()
 }
 
 /** @see PlayerController:ClientPlayCameraAnim */
-function CameraAnimInst PlayCameraAnim( CameraAnim AnimToPlay, optional float Scale=1.f, optional float Rate=1.f,
+simulated function CameraAnimInst PlayCameraAnim( CameraAnim AnimToPlay, optional float Scale=1.f, optional float Rate=1.f,
 						optional float BlendInTime, optional float BlendOutTime, optional bool bLoop,
 						optional bool bRandomStartTime, optional ECameraAnimPlaySpace Space=CAPS_CameraLocal, optional rotator CustomPlaySpace )
 {

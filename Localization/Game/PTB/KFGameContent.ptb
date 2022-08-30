@@ -37,7 +37,7 @@ AlternateFireDescription="A maioria das armas principais têm um modo de tiro al
 FlashLightBatteryTitleKey="Uso da lanterna"
 FlashLightBatteryDescriptionKey="Pode ficar muito escuro por aí. Aperte <font color="#caab05">%x%</font> para ligar ou desligar a <font color="#caab05">LANTERNA</font>. A bateria da lanterna vai sendo consumida. Quando ela acabar, a lanterna se desligará e automaticamente começará a recarregar."
 GrenadeTitleKey="Uso das granadas"
-GrenadeDescriptionKey="As granadas são ótimas para grupos maciços de Zeds. As classes têm vários tipos de granadas na <font color="#caab05">MUNIÇÃO</font>. Todas elas afetam os Zeds, mas algumas têm efeitos adicionais. Aperte <font color="#caab05">%x%</font> para lançar uma granada. "
+GrenadeDescriptionKey="As granadas são ótimas para grupos maciços de Zeds. As classes têm vários tipos de granadas na <font color="#caab05">MUNIÇÃO</font>. Todas elas afetam os Zeds, mas algumas têm efeitos adicionais. Aperte <font color="#caab05">%x%</font> para lançar uma granada." "
 
 ;Wave 1 end
 TraderTimeTitleKey="Hora do comerciante"
@@ -111,7 +111,7 @@ SkipString="PULAR"
 
 [Armor]
 ItemName="Armadura de combate"
-ItemCategory="Equipamento"
+ItemCategory="Apetrechos"
 ItemDescription="•A armadura de combate protege de vários tipos de danos, mas ela se desgasta no processo.\n•Compre uma armadura nova ou conserte as danificadas no comerciante.\n\nÉ um casaco equipado com placas de fibra de alta tecnologia e tungstênio."
 
 [KFProj_DynamiteGrenade]
@@ -127,7 +127,7 @@ ItemDescription="•Libera um gás que envenena os Zeds, mas cura pessoas.\n\n�
 [KFProj_MolotovGrenade]
 ItemName="Coquetel molotov"
 ItemCategory="Explosivos"
-ItemDescription="•Muito simples: uma granada de fogo que queima os Zeds.\n•Cuidado para não se machucar!\n\nBatizado pelos finlandeses na Segunda Guerra com o nome de Vyacheslav Mikhailovich Molotov, o Ministro do Exterior Soviético de Stalin… Perdão, você não queria uma aula de história?"  Perdão, você não queria uma aula de história?" "
+ItemDescription="•Muito simples: uma granada de fogo que queima os Zeds.\n\nBatizado pelos finlandeses na Segunda Guerra com o nome de Vyacheslav Mikhailovich Molotov, o Ministro do Exterior Soviético de Stalin… Perdão, você não queria uma aula de história?"  Perdão, você não queria uma aula de história?" "
 
 [KFProj_EMPGrenade]
 ItemName="Granada de IEM"
@@ -157,15 +157,15 @@ ItemDescription="•Um recipiente avançado tecnologicamente com nitrogênio lí
 [KFProj_FlashBangGrenade]
 ItemName="Golpe de luz"
 ItemCategory =" "Explosivos"
-ItemDescription="•Brilhante e espalhafatoso; não olhe diretamente para ele. Tente tapar os ouvidos também.\nTecnicamente não é letal, mas os golpes de luz podem causar dano — tenha cuidado!" "
+ItemDescription="•Brilhante e barulhenta; não olhe diretamente para ela. Tente tapar os ouvidos também.\nTecnicamente não é letal, mas granadas de luz podem machucar, cuidado!" "
 
 [KFWeap_Healer_Syringe]
 ItemName="Seringa médica"
-ItemCategory="Equipamento"
+ItemCategory="Apetrechos"
 
 [KFWeap_Welder]
 ItemName="Soldador"
-ItemCategory="Equipamento"
+ItemCategory="Apetrechos"
 
 [KFWeap_Pistol_9mm]
 ItemName="Pistola 9 mm"
@@ -205,32 +205,32 @@ ItemDescription="• Disparo somente automático.\n• Uma submetralhadora dos S
 [KFWeap_Knife_Survivalist]
 ItemName="Faca de Chacinador"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt- bloquear/aparar.\n•Isso era de algum bicho. Agora é seu!"
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\n•Secundário - corte pesado.\n•Alt- bloquear/aparar.\n•Isso era de algum bicho. Bom, agora é seu!"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Faca utilitária"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•It’s a box cutter. Perfeita para abrir as caixas que você encontra no chão."
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•É um estilete. Perfeito para abrir as caixas que achar por aí."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Bisturi"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•É um bisturi. Como você entende de medicina, presumimos que qualquer explicação seria desnecessária."
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•É um bisturi. Como você entende de medicina, explicações não são necessárias."
 
 [KFWeap_Knife_Firebug]
 ItemName="Faca de bombeiro"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•É uma faca de bombeiro. Como você é bombeiro, presumimos que qualquer explicação seria desnecessária."
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•É uma faca de bombeiro. Como você é do corpo de bombeiros, explicações não são necessárias."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Faca de caça"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; Aperte Principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•A faca do Velho Oeste, só que maior. Perfeita para fatiar uns Zeds."
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•O facão do Velho Oeste. Perfeito para fatiar uns Zeds de vez em quando."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; Aperte principal para combinação.\n•Secundário - corte pesado.\n•Alt - bloquear/aparar.\n•A faca tradicional dos gurkhas — melhor para picar do que fatiar. "
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparar.\n•A faca tradicional dos ghurkhas, melhor para picar do que para fatiar. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Faca tática"
@@ -285,43 +285,53 @@ ItemDescription="•O modo de disparo é semiautomático/ação de bomba.\n•A 
 [KFWeap_Knife_Berserker]
 ItemName="Cortador de grama"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•Sim, é uma lâmina de cortador de grama. Aproveite!"
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparar.\n•Sim, é uma lâmina de cortador de grama. Aproveite!"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•Versão Horzine da faca clássica de soldado."
+ItemDescription="•Principal - ataque de corte rápido; aperte Primátio para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparar.\n•Versão da Horzine da faca clássica do exército."
 
 [KFWeap_Knife_Support]
 ItemName="Facão"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•Não fique se achando só porque lhe demos a maior faca."
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparar.\n•Não fique se achando só porque ganhou a maior faca."
 
 [KFWeap_Edged_Katana]
 ItemName="Katana"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•Demonstre respeito por sua classe."
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\nSecundário - ataque de corte pesado.\n•Alt - bloqueio/aparar.\n•Tenta mostrar respeito à sua classe."
 
 [KFWeap_Blunt_Crovel]
 ItemName="Pá-de-cabra essencial"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte rápido; segure para ataque sequencial.\n•Secundário - ataque de corte pesado.\n•Alt - bloqueio/aparo.\n•Metade pé-de-cabra, metade pá, mas é mortal."
+ItemDescription="•Principal - ataque de corte rápido; aperte Principal para ataque sequencial.\n•Secundário - ataque de corte pesado.\n•Alt - bloqueio/aparar.\n•Metade pé-de-cabra, metade pá, mas completamente mortal."
 
 [KFWeap_Shotgun_Nailgun]
 ItemName="Pregadeira VLAD-1000"
 ItemCategory="Espingarda"
 ItemDescription="•Escolha entre modo de tiro único ou múltiplo.\n•Tiro alt. para alternar entre modos de tiro.\n•Soubemos que um dos cientistas Horzine pegou a pistola de pregos original de um zelador (morto)."
 
+[KFWeap_HRG_Nailgun]
+ItemName="Pregadeira HRG"
+ItemCategory="Submetralhadora"
+ItemDescription="•Escolha entre modo de tiro único ou múltiplo.\n•Tiro alt. para alternar entre modos de tiro.\n•Soubemos que um dos cientistas da Horzine pegou a pregadeira original de um zelador (morto)."
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Redentor da Via"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque contundente rápido, segure Principal para ataque sequencial.\n•Secundário - ataque contundente pesado.\n•Alt - bloqueio/aparo.\n•Seja o pugilista dos seus sonhos! Lembre-se de limpar após cada uso."
+ItemDescription="•Principal - ataque rápido de contusão, aperte Principal para ataque sequencial.\n•Secundário - ataque de contusão pesado.\n•Alt - bloqueio/aparar.\n•Seja o pugilista dos seus sonhos! Lembre-se de limpar após o uso."
 SharedUnlockSource="Road Redemption"
 
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulverizador"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque brusco rápido, aperte Principal para ataque em sequência.\n•Secundário atira também uma rodada de explosivos de contato. Quanto estiver sem munição, o Secundário é um ataque mais pesado e brusco — lembre-se de recarregar!\n•Alt - bloquear/aparar."
+ItemDescription="•Principal - ataque de contusão rápido, aperte Principal para ataque em sequência.\n•Secundário: lança um projétil explosivo de contato. Quanto estiver sem munição, o Secundário é um ataque de contusão pesado — lembre-se de recarregar!\n•Alt - bloquear/aparar."
+
+[KFWeap_Blunt_MedicBat]
+ItemName="Hemoagulha"
+ItemCategory="Corpo a Corpo"
+ItemDescription="•Principal - ataque de contusão rápido que pode curar companheiros de equipe, aperte Principal para ataque em sequência.\n•Secundário: causa uma explosão de cura no impacto. Quanto estiver sem munição, o Secundário é um ataque de contusão pesado. \n•Alt - bloquear/aparar."
 
 [KFWeap_Eviscerator]
 ItemName="Eviscerador"
@@ -338,7 +348,7 @@ SharedUnlockSource="Guerra Medieval"
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Esmaga-Osso"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque contundente rápido; segure para ataque sequencial.\n•Secundário - ataque contundente pesado que usa mais o escudo.\n•Alt - bloqueio/aparo. O bloqueio reduz o dano de projéteis dos Zeds.\n• Tem um poderoso ataque de Pancada com Escudo"
+ItemDescription="•Principal - ataque de contusão rápido; aperte Principal para ataque sequencial.\n•Secundário - ataque de contusão pesado que usa mais o Escudo.\n•Alt - bloqueio/aparar. O bloqueio reduz o dano de projéteis dos Zeds.\n• Tem um poderoso ataque de Pancada com Escudo."
 
 [KFWeap_Flame_CaulkBurn]
 ItemName="Pistola de Fogo"
@@ -364,6 +374,11 @@ ItemDescription="•O modo de tiro é só por bombeamento.\n•Uma espingarda qu
 ItemName="Lança-chamas"
 ItemCategory="Chamas"
 ItemDescription="•O modo de tiro atira fogo. É isso aí.\n•Um clássico para todas as idades. Na dúvida, queime tudo."
+
+[KFWeap_HRG_Healthrower]
+ItemName="Lança-cura HRG"
+ItemCategory="Chamas"
+ItemDescription=""
 
 [KFWeap_Beam_Microwave]
 ItemName="Arma de Micro-ondas"
@@ -420,6 +435,16 @@ ItemName="Duas Desert Eagle .50"
 ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de canhões de mão Desert Eagle."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Pistola"
+ItemDescription="•"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Chiappa Rhino Dupla"
+ItemCategory="Pistola"
+ItemDescription="•"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="Revólver 1858"
 ItemCategory="Pistola de mão"
@@ -440,10 +465,25 @@ ItemName="Duas Magnums .500"
 ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de revólveres Magnum .500 ‘Bone Collector’."
 
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="Revólver de Chumbo Grosso HRG"
+ItemCategory="Pistola"
+ItemDescription="•Apenas tem modo de tiro único\n•Verdadeira artilharia de mão na forma de um revólver ‘Bone Collector’ calibre .50 de cano longo, que atira projéteis de magnum de carta total. Para pistoleiros de verdade."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Revólver de Chumbo Grosso HRG Duplo"
+ItemCategory="Pistola"
+ItemDescription="•Apenas tem o modo de tiro semiautomático.\n•Tiro alt. alterna estilos de mira, ao usar uma a mira metálica.\n•Um par de revólveres Magnum .500 ‘Bone Collector’."
+
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Modo tiro único, somente.\n•O modelo clássico do rifle Winchester modelo 1894 com alavanca."
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="Mosin-Nagant"
+ItemCategory="Fuzil"
+ItemDescription="•Apenas tem modo de tiro único."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -511,6 +551,16 @@ ItemName="Canhão Esfolador"
 ItemCategory="Chamas"
 ItemDescription="•Carrega com o botão de disparo apertado e descarrega ao soltar o botão. \n•Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Pistola"
+ItemDescription="•Preencha-me"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Chiappa Rhino Dupla"
+ItemCategory="Pistola"
+ItemDescription="•Preencha-me"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabina MKb.42(H)"
 ItemCategory="Fuzil de assalto"
@@ -527,6 +577,11 @@ ItemName="AF2011-A2 Dupla"
 ItemCategory="Pistola"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Duas armas com dois canos cada. Quatro vezes mais poder de fogo. É matemática. Não tem como discutir."
 
+[KFWeap_Edged_IonThruster]
+ItemName="Propulsor de Íons"
+ItemCategory="Corpo a Corpo"
+ItemDescription="•Preencha-me"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Bastão da Perdição"
 ItemCategory="Espingarda"
@@ -535,7 +590,12 @@ ItemDescription="•O tiro principal usa um cano.\n•Tiro alt. atira com os qua
 [KFWeap_Blunt_PowerGloves]
 ItemName="Batedoras Estáticas"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque rápido de contusão, Segure Principal para combinação.\n•Secundário - ataque de contusão elétrico e pesado. É muito chocante! \n•Quer socar um zed no rosto? Seus problemas acabaram!"
+ItemDescription="•Principal - ataque rápido de contusão, aperte Principal para ataque sequencial.\n•Secundário - ataque de contusão elétrico e pesado. É muito chocante! \n•Quer socar um zed no rosto? Seus problemas acabaram!"
+
+[KFWeap_RocketLauncher_SealSqueal]
+ItemName="Arpoador Guinchante"
+ItemCategory="Explosivos"
+ItemDescription="•O tiro principal lança arpões que explodem depois de 4 segundos.\n•Tiro alternativo detona manualmente todos os arpões.\n•Tem o selo de aprovação da Horzine!"
 
 [KFWeap_AssaultRifle_LazerCutter]
 ItemName="Killerwatt"
@@ -555,13 +615,13 @@ ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n
 [KFWeap_Edged_AbominationAxe]
 ItemName="Machado de batalha"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte lento; Segure Principal para combinação.\n•Secundário - ataque pesado lento que oblitera ao morrer.\nAlt - bloquear/aparar\n•Antigo, mas é forte igual um caminhão... um caminhão grande e afiado."
+ItemDescription="•Principal - ataque de corte lento; aperte Principal para ataque sequencial.\n•Secundário - ataque pesado lento que oblitera ao morrer.\nAlt - bloquear/aparar\n•Antigo, mas ainda bate feito caminhão... um caminhão grande e afiado."
 SharedUnlockSource="Machado de batalha"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Machado de Fogo"
 ItemCategory="Corpo a corpo"
-ItemDescription="•Principal - ataque de corte; Segure Principal para combinação.\n•Secundário - ataque de corte pesado.\n•Alt - bloquear/aparar.\n• Por tem fogo no nome se não está em chamas?"
+ItemDescription="•Principal - ataque de corte; aperte Principal para ataque sequencial.\n•Secundário - ataque de corte pesado.\n•Alt - bloquear/aparar.\n• Por tem fogo no nome se não está em chamas?"
 
 [KFWeap_GrenadeLauncher_M32]
 ItemName="Lança-granadas M32"
@@ -588,6 +648,16 @@ ItemDescription="•Escolha entre modo de tiro automático ou semiautomático. \
 ItemName="M99 AMR"
 ItemCategory="Rifle de elite"
 ItemDescription="•Apenas tem modo de tiro único.\n•Cada tiro tem um belo coice... é uma bala bem grande Alta penetração, alta dor."
+
+[KFCarryable_Gear]
+ItemName="Equipamento"
+ItemCategory="Apetrechos"
+ItemDescription="You're not supposed to be seeing this in the trader!"
+
+[KFCarryable_Datapad]
+ItemName="Tablet de Dados"
+ItemCategory="Apetrechos"
+ItemDescription="You're not supposed to be seeing this in the trader!"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -720,6 +790,9 @@ GameName="Surto Semanal"
 
 [KFGameInfo_Endless]
 GameName="Infinito"
+
+[KFGameInfo_Objective]
+GameName="Objetivo"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Sem curas restantes"

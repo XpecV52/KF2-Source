@@ -170,6 +170,9 @@ simulated function SpawnExplosionDecal()
 
 protected function SpecialPawnEffectsFor(GamePawn VictimPawn, float VictimDist)
 {
+    local KFPawn_Human HumanVictim;
+    local KFGameExplosion KFExplosionTemplate;
+
     if(VictimPawn.bRespondToExplosions && VictimPawn.Health > 0)
     {
     }
@@ -179,6 +182,12 @@ protected function SpecialPawnEffectsFor(GamePawn VictimPawn, float VictimDist)
         {
             ++ NumPawnsKilled;
         }
+    }
+    HumanVictim = KFPawn_Human(VictimPawn);
+    KFExplosionTemplate = KFGameExplosion(ExplosionTemplate);
+    if(((HumanVictim != none) && KFExplosionTemplate != none) && KFExplosionTemplate.HealingAmount > float(0))
+    {
+        HumanVictim.HealDamage(int(KFExplosionTemplate.HealingAmount), InstigatorController, KFExplosionTemplate.HealingDamageType);
     }
 }
 

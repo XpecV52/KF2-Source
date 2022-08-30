@@ -37,7 +37,7 @@ AlternateFireDescription="La maggior parte delle armi primarie possiedono una mo
 FlashLightBatteryTitleKey="Utilizzare la torcia"
 FlashLightBatteryDescriptionKey="Può essere molto buio là fuori. Premi <font color="#caab05">%x%</font> per accendere o spegnere la <font color="#caab05">TORCIA</font>. La batteria della torcia si consumerà lentamente. Quando sarà esaurita, si spegnerà e si ricaricherà automaticamente."
 GrenadeTitleKey="Utilizzare le granate"
-GrenadeDescriptionKey="Le granate ti consentono di affrontare un gruppo di Zed vicini tra loro. Le classi hanno diverse granate negli <font color="#caab05">EQUIPAGGIAMENTI ARMI</font>. Tutte danneggiano gli Zed, ma possono avere effetti aggiuntivi. Premi <font color="#caab05">%x%</font> per lanciare una granata. "
+GrenadeDescriptionKey="Le granate ti consentono di affrontare un gruppo di Zed vicini tra loro. Le classi hanno diverse granate negli <font color="#caab05">EQUIPAGGIAMENTI ARMI</font>. Tutte danneggiano gli Zed, ma possono avere effetti aggiuntivi. Premi <font color="#caab05">%x%</font> per lanciare una granata." "
 
 ;Wave 1 end
 TraderTimeTitleKey="Commerciante"
@@ -91,7 +91,7 @@ HealOthersDescriptionKey="Le armi di classe Medico da campo possono curare i com
 
 ;Zed Time
 ZedTimeTitleKey="Zed time"
-ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> parte con eventi spettacolari come colpi alla testa o orde di nemici uccisi con un'esplosione. Puoi sfruttare questo tempo per prendere fiato e uccidere nemici a catena. "
+ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> parte con eventi spettacolari come colpi alla testa o orde di nemici uccisi con un'esplosione. Puoi sfruttare questo tempo per prendere fiato e uccidere nemici a catena."
 
 ;Melee Section
 MeleeTitleKey="Armi da mischia"
@@ -116,48 +116,48 @@ ItemDescription="•L'armatura da combattimento ti protegge da diverse forme di 
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 candelotto dinamite"
-ItemCategory =" Esplosivi"
+ItemCategory =" "Esplosivi"
 ItemDescription="•Un piccolo pezzo di dinamite con miccia.\n•Potrebbe ferire anche te, perciò fai attenzione!" "
 
 [KFProj_MedicGrenade]
 ItemName="Granata medica"
-ItemCategory =" Esplosivi"
-ItemDescription="•Rilascia un gas che avvelena gli Zed ma cura gli umani.\n\n•Posizionati nella nube di gas blu per essere curato.\nCitando uno dei nostri scienziati: 'L'agente rilasciato da queste granate rinvigorisce l'Homo Sapiens, mentre sopprime l'Homo Zedicus.' Speriamo possa essere d'aiuto. "
+ItemCategory =" "Esplosivi"
+ItemDescription="•Rilascia un gas che avvelena gli Zed ma cura gli umani.\n\n•Posizionati nella nube di gas blu per essere curato.\nCitando uno dei nostri scienziati: 'L'agente rilasciato da queste granate rinvigorisce l'Homo Sapiens, mentre sopprime l'Homo Zedicus.' Speriamo possa essere d'aiuto." "
 
 [KFProj_MolotovGrenade]
 ItemName="Bomba molotov"
 ItemCategory="Esplosivi"
-ItemDescription="•È una granata esplosiva che brucia gli Zed.\n•Attenzione, potrebbe ferire anche te!\n\nIl nome è stato dato dai Finlandesi durante la Guerra d'Inverno del 1939-40, dopo che Vyacheslav Mikhailovich Molotov, Ministro di Stalin... Scusa, non avevi chiesto una lezione di storia? "
+ItemDescription="•È una granata esplosiva che brucia gli Zed.\n\nIl nome è stato dato dai Finlandesi durante la Guerra d'Inverno del 1939-40, dopo che Vyacheslav Mikhailovich Molotov, Ministro di Stalin... Scusa, non avevi chiesto una lezione di storia?" "
 
 [KFProj_EMPGrenade]
 ItemName="Granata EMP"
 ItemCategory="Esplosivi"
-ItemDescription="•Genera un impulso elettrico che danneggia gli Zed e potrebbe anche stordirli per un po’.\n\nNello specifico, la detonazione genera un impulso elettromagnetico di un nanosecondo che interrompe i sistemi elettrici lì vicino. In particolare, quelli tra gli Zed. Comodo, no? "
+ItemDescription="•Genera un impulso elettrico che danneggia gli Zed e potrebbe anche stordirli per un po’.\n\nNello specifico, la detonazione genera un impulso elettromagnetico di un nanosecondo che interrompe i sistemi elettrici lì vicino. In particolare, quelli tra gli Zed. Comodo, no?" "
 
 [KFProj_HEGrenade]
 ItemName="Granata HE"
 ItemCategory="Esplosivi"
-ItemDescription="•Una semplicissima granata dall'alto potenziale esplosivo. Ferisce Zed e umani allo stesso modo.\n\nPiù semplice di così. HE: High Explosive. Un BOOM e tutto salta in aria. C'è davvero bisogno di spiegartelo? "
+ItemDescription="•Una semplicissima granata dall'alto potenziale esplosivo. Ferisce Zed e umani allo stesso modo.\n\nPiù semplice di così. HE: High Explosive. Un BOOM e tutto salta in aria. C'è davvero bisogno di spiegartelo?" "
 
 [KFProj_FragGrenade]
 ItemName="Granata frammentazione"
 ItemCategory="Esplosivi"
-ItemDescription="•Classica bomba a mano: si frammenta in piccoli pezzi di metallo che colpiscono in giro.\n\nSono sicuro che hai giocato a un po' di videogiochi prima dell'epidemia, quindi dovresti sapere di cosa si tratta. E smetti di fingere che non lo sai. Nessuno ti crederà. "
+ItemDescription="•Classica bomba a mano: si frammenta in piccoli pezzi di metallo che colpiscono in giro.\n\nSono sicuro che hai giocato a un po' di videogiochi prima dell'epidemia, quindi dovresti sapere di cosa si tratta. E smetti di fingere che non lo sai. Nessuno ti crederà." "
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba di chiodi"
-ItemCategory =" Esplosivi"
+ItemCategory =" "Esplosivi"
 ItemDescription="•Un semplice barattolo pieno di vecchi chiodi con una piccola carica esplosiva al suo interno.\n\nNon certo il metodo più bello o raffinato di affrontare gli Zed, ma dopotutto non c'è nulla di bello o raffinato riguardo agli Zed, no?"
 
 [KFProj_FreezeGrenade]
 ItemName="Granata congelante"
-ItemCategory =" Esplosivi"
+ItemCategory =" "Esplosivi"
 ItemDescription="•Un barattolo ad alta tecnologia di azoto liquido sotto pressione.\n\nEntrando in contatto con il contenuto, gli Zed saranno congelati per un po'. I risultati possono essere devastanti."
 
 [KFProj_FlashBangGrenade]
 ItemName="FlashBang"
-ItemCategory =" Esplosivi"
-ItemDescription="•Accecante e rumoroso, meglio non guardarlo direttamente. Sarebbe bene non sentirlo nemmeno.\n•Sebbene tecnicamente non letale, i flashbang possono ferirti, dunque fai attenzione! "
+ItemCategory =" "Esplosivi"
+ItemDescription="•Accecante e rumoroso, meglio non guardarlo direttamente. Sarebbe bene non sentirlo nemmeno.\n•Sebbene tecnicamente non letale, i flashbang possono ferirti, dunque fai attenzione!" " 
 
 [KFWeap_Healer_Syringe]
 ItemName="Siringa medica"
@@ -205,32 +205,32 @@ ItemDescription="•Solo automatica.\n•La Stoner 63a, arma fondamentale degli 
 [KFWeap_Knife_Survivalist]
 ItemName="Lama Goreshiv"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Questa lama apparteneva a qualcosa. Ma ora è tua!"
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Questa lama apparteneva a qualcosa. Bene, adesso è tua!"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Coltello multiuso"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un taglierino. Perfetto per aprire le scatole in cui ti imbatti durante il massacro."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un taglierino. Perfetto per aprire le scatole in cui ti imbatti durante il massacro."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Bisturi"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un bisturi. Sei un medico, quindi non pensiamo che serva spiegarti come si usa."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un bisturi. Sei un medico, quindi non pensiamo che serva spiegarti come si usa."
 
 [KFWeap_Knife_Firebug]
 ItemName="Coltello da pompiere"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È un coltello da pompiere. Sei un pompiere, quindi diamo per scontato che non serva spiegarti come si usa."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•È il coltello da pompiere. Sei un pompiere, quindi non pensiamo che serva spiegarti come si usa."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Coltello Bowie"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Il coltello extra-large del vecchio West. Perfetto per fare a pezzi gli Zed qui e ora."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Il coltello extra-large del vecchio West. Perfetto per fare a pezzi gli Zed nel presente."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Il coltello tradizionale del Gurkha, un coltello più per disossare che per filettare. "
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Il coltello tradizionale del Ghurka, più un coltello per disossare che per filettare. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Coltello tattico"
@@ -285,43 +285,53 @@ ItemDescription="•Fuoco doppio semiautomatico e a pompa.\n•Il fucile HZ12 è
 [KFWeap_Knife_Berserker]
 ItemName="Lama tosaerba"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Sì, è davvero la lama di un tosaerba. Divertiti!"
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Sì, è davvero la lama di un tosaerba. Divertiti!"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•La versione Horzine del classico coltello commando."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•La versione Horzine del classico coltello commando."
 
 [KFWeap_Knife_Support]
 ItemName="Machete"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Non sentirti speciale solo perché ti abbiamo dato il coltello più grande."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Non sentirti speciale solo perché ti abbiamo dato il coltello più grande."
 
 [KFWeap_Edged_Katana]
 ItemName="Katana"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Mostra un po' di rispetto per la classe di questa arma."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Mostra un po' di rispetto per la classe di questa arma."
 
 [KFWeap_Blunt_Crovel]
 ItemName="Pala di porco"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente, tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Metà piede di porco, metà pala, entrambi mortali."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Metà piede di porco, metà pala, entrambi mortali."
 
 [KFWeap_Shotgun_Nailgun]
 ItemName="Sparachiodi VLAD-1000"
 ItemCategory="Fucile"
 ItemDescription="•Scelta tra modalità di fuoco singola o multipla.\n•Usa il fuoco alternativo per cambiare modalità.\n•Da quello che sappiamo, uno degli scienziati Horzine ha preso in prestito lo sparachiodi originale da un addetto alla manutenzione (morto)."
 
+[KFWeap_HRG_Nailgun]
+ItemName="Sparachiodi HRG"
+ItemCategory="Mitra"
+ItemDescription="•Scelta tra modalità di fuoco singola o multipla.\n•Usa il fuoco alternativo per cambiare modalità.\n•Da quello che sappiamo, uno degli scienziati Horzine ha preso in prestito lo sparachiodi originale da un addetto alla manutenzione (morto)."
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Redentore di strada"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primario per le combo.\n•Secondario - attacco violento contundente.\n•Alt. - blocca/para.\n•Sii il picchiatore che hai sempre voluto essere! Da pulire dopo ogni uso."
+ItemDescription="•Primario - attacco veloce contundente; tieni premuto Primario per le combo.\n•Secondario - attacco violento contundente.\n•Alt. - blocca/para.\n•Sii il picchiatore che hai sempre voluto essere! Da pulire dopo ogni uso."
 SharedUnlockSource="Road Redemption"
 
 [KFWeap_Blunt_Pulverizer]
 ItemName="Polverizzatore"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primario per le combo.\n•La modalità secondaria spara un colpo esplosivo con il contatto. Quando sei a corto di munizioni, la modalità secondaria è un attacco violento contundente, quindi ricorda di ricaricare!\n•Alt - blocca/para."
+ItemDescription="•Primario - attacco veloce contundente; tieni premuto Primario per le combo.\n•La modalità secondaria spara un colpo esplosivo con il contatto. Quando sei a corto di munizioni, la modalità secondaria è un attacco violento contundente, quindi ricorda di ricaricare!\n•Alt - blocca/para."
+
+[KFWeap_Blunt_MedicBat]
+ItemName="Hemoclobber"
+ItemCategory="Mischia"
+ItemDescription="•Primario - attacco veloce contundente che può curare i compagni; tieni premuto Primario per le combo.\n•La modalità secondaria spara un’esplosione curativa. Quando sei a corto di munizioni, la modalità secondaria è un attacco violento contundente. \n•Alt - blocca/para."
 
 [KFWeap_Eviscerator]
 ItemName="Svisceratore"
@@ -338,7 +348,7 @@ SharedUnlockSource="Chivalry Medieval Warfare"
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Spezzaossa"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primario per le combo.\n•Secondario - violento attacco contundente che richiede uso maggiore di Scudo.\n•Alt - blocca/para. Il Blocco riduce il danno dei proiettili Zed.\n• Ha un potente attacco Colpo di Scudo."
+ItemDescription="•Primario - attacco veloce contundente; tieni premuto Primario per le combo.\n•Secondario - violento attacco contundente che richiede uso maggiore di Scudo.\n•Alt - blocca/para. Il Blocco riduce il danno dei proiettili Zed.\n• Ha un potente attacco Colpo di Scudo."
 
 [KFWeap_Flame_CaulkBurn]
 ItemName="Inceneritore"
@@ -364,6 +374,11 @@ ItemDescription="•Fuoco solo a pompa.\n•Un fucile che usa le pallottole ince
 ItemName="Lanciafiamme"
 ItemCategory="Fiamme"
 ItemDescription="•Lancia fiamme. Tutto qui.\n•Un classico di tutte le generazioni. Nel dubbio, brucia tutto."
+
+[KFWeap_HRG_Healthrower]
+ItemName="LanciaCura HRG"
+ItemCategory="Fiamme"
+ItemDescription=""
 
 [KFWeap_Beam_Microwave]
 ItemName="Fucile a microonde"
@@ -420,6 +435,16 @@ ItemName="Doppia .50 Desert Eagle"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di cannoni Desert Eagle."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Pistola"
+ItemDescription="•"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Chiappa Rhino doppia"
+ItemCategory="Pistola"
+ItemDescription="•"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
 ItemCategory="Pistola"
@@ -440,10 +465,25 @@ ItemName="Doppia Magnum .500"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di .500 Magnum 'Collezionista di ossa'."
 
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="Revolver a pallettoni HRG"
+ItemCategory="Pistola"
+ItemDescription="•Spara un colpo alla volta.\n•Vera artiglieria a mano sotto forma di una calibro .50 a canna lunga 'Collezionista di ossa', con proiettili magnum. Per il vero pistolero."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Revolver a pallettoni HRG doppi"
+ItemCategory="Pistola"
+ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di .500 Magnum 'Collezionista di ossa'."
+
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Fucile da caccia"
 ItemDescription="•Spara un colpo alla volta.\n•Il classico modello di fucile Winchester 1894 a leva."
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="Mosin-Nagant"
+ItemCategory="Fucile da caccia"
+ItemDescription="•Spara un colpo alla volta."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 centrale"
@@ -511,6 +551,16 @@ ItemName="Cannone Husk"
 ItemCategory="Fiamme"
 ItemDescription="•Si ricarica premendo il tasto fuoco e si scarica rilasciando il tasto fuoco. \n•La versione Horzine ufficiale del cannone Husk. La non esplosione di questo modello è garantita al 95%."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Pistola"
+ItemDescription="•Riempimi"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Chiappa Rhino doppia"
+ItemCategory="Pistola"
+ItemDescription="•Riempimi"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabina MKb.42(H)"
 ItemCategory="Fucile d'assalto"
@@ -527,6 +577,11 @@ ItemName="Doppia AF2011-A2"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Due mitra a due canne ciascuna. Potenza di fuoco quadruplicata. È matematica. Con la matematica non si discute."
 
+[KFWeap_Edged_IonThruster]
+ItemName="Propulsore ionico"
+ItemCategory="Mischia"
+ItemDescription="•Riempimi"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Bastone del destino"
 ItemCategory="Fucile"
@@ -535,7 +590,12 @@ ItemDescription="•La modalità di fuoco primaria utilizza una sola canna.\n•
 [KFWeap_Blunt_PowerGloves]
 ItemName="Attaccanti statici"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce contundente, tieni premuto Primario per le combo. \n•Secondario - attacco violento, contundente ed elettrico. Che shock! \n•Vuoi tirare un pugno in faccia a uno Zed? Ecco qua!"
+ItemDescription="•Primario - attacco veloce contundente; tieni premuto Primario per le combo. \n•Secondario - attacco violento, contundente ed elettrico. Che shock! \n•Vuoi tirare un pugno in faccia a uno Zed? Ecco qua!"
+
+[KFWeap_RocketLauncher_SealSqueal]
+ItemName="Grido di foca"
+ItemCategory="Esplosivi"
+ItemDescription="•Lo sparo primario lancia arpioni che si detonano dopo 4 secondi.\n•La modalità Fuoco alternativo fa detonare manualmente tutti gli arpioni.\n•Horzine dà la sua approvazione!"
 
 [KFWeap_AssaultRifle_LazerCutter]
 ItemName="Killerwatt"
@@ -555,13 +615,13 @@ ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n�
 [KFWeap_Edged_AbominationAxe]
 ItemName="Ascia da battaglia"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente. Tieni premuto Primario per le combo.\n•Secondario - attacco violento e lento che disintegra l'avversario morto.\n•Alt - blocca/para.\n•Obsoleta, ma è comunque come essere travolti da un camion... grosso e affilato."
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento e lento che disintegra l'avversario alla morte.\n•Alt - blocca/para.\n•Obsoleta, ma è comunque come essere travolti da un camion... grosso e affilato."
 SharedUnlockSource="Ascia da battaglia"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Ascia per incendi"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente. Tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Perché si chiama ascia per incendi se non dà fuoco a niente?"
+ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento di fendente.\n•Alt - blocca/para.\n•Perché si chiama ascia per incendi se non dà fuoco a niente?"
 
 [KFWeap_GrenadeLauncher_M32]
 ItemName="Lanciagranate M32"
@@ -588,6 +648,16 @@ ItemDescription="•Scelta fra modalità automatica o semiautomatica. \n•Usa i
 ItemName="M99 AMR"
 ItemCategory="Fucile di precisione"
 ItemDescription="•Spara un colpo alla volta. \n•Ogni colpo è come un pugno... beh, una pallottola molto grossa. Alta penetrazione, alto dolore."
+
+[KFCarryable_Gear]
+ItemName="Equipaggiamento"
+ItemCategory="Equipaggiamento"
+ItemDescription="Non dovresti vederlo nel commerciante!"
+
+[KFCarryable_Datapad]
+ItemName="Pad di dati"
+ItemCategory="Equipaggiamento"
+ItemDescription="Non dovresti vederlo nel commerciante!"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -720,6 +790,9 @@ GameName="Epidemia settimanale"
 
 [KFGameInfo_Endless]
 GameName="Infinito"
+
+[KFGameInfo_Objective]
+GameName="Obiettivo"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="Nessuna guarigione rimasta"

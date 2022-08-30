@@ -41,6 +41,13 @@ enum EForcedMusicType
     EFM_MAX
 };
 
+enum EMonsterProperties
+{
+    EMonsterProperties_Enraged,
+    EMonsterProperties_Sprinting,
+    EMonsterProperties_MAX
+};
+
 struct native sGameMode
 {
     var string FriendlyName;
@@ -227,6 +234,7 @@ var class<KFGameConductor> GameConductorClass;
 var KFAIDirector AIDirector;
 var int AIAliveCount;
 var int NumAISpawnsQueued;
+var int NumAIFinishedSpawning;
 var private const int NumAlwaysRelevantZeds;
 var KFAISpawnManager SpawnManager;
 var protected const array< class<KFPawn_Monster> > AIClassList;
@@ -261,6 +269,7 @@ var const float LastUpToDateCheckTime;
 var transient KFSteamWebUpToDateCheck UpToDateChecker;
 var KFOutbreakEvent OutbreakEvent;
 var class<KFOutbreakEvent> OutbreakEventClass;
+var int SpawnedMonsterProperties[EMonsterProperties];
 
 // Export UKFGameInfo::execGetMonsterAliveCount(FFrame&, void* const)
 native function int GetMonsterAliveCount();
@@ -1251,7 +1260,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
 {
     local float HealthMod, HeadHealthMod, TotalSpeedMod, StartingSpeedMod, DamageMod;
 
-    local int LivingPlayerCount;
+    local int LivingPlayerCount, I;
 
     LivingPlayerCount = GetLivingPlayerCount();
     DamageMod = 1;
@@ -1290,34 +1299,59 @@ function SetMonsterDefaults(KFPawn_Monster P)
     }
     P.ApplySpecialZoneHealthMod(HeadHealthMod);
     P.GameResistancePct = DifficultyInfo.GetDamageResistanceModifier(byte(LivingPlayerCount));
-    if(OutbreakEvent != none)
+    I = 0;
+    J0x546:
+
+    if(I < 2)
     {
-        OutbreakEvent.AdjustMonsterDefaults(P);
-    }
-    if(bLogAIDefaults)
-    {
-        LogInternal(("==== SetMonsterDefaults for pawn: " @ string(P)) @ "====");
-    }
-    if(bLogAIDefaults)
-    {
-        LogInternal((((("HealthMod: " @ string(HealthMod)) @ "Original Health: ") @ string(P.default.Health)) @ " Final Health = ") @ string(P.Health));
-    }
-    if(bLogAIDefaults)
-    {
-        LogInternal((((("HeadHealthMod: " @ string(HeadHealthMod)) @ "Original Head Health: ") @ string(P.default.HitZones[0].GoreHealth)) @ " Final Head Health = ") @ string(P.HitZones[0].GoreHealth));
-    }
-    if(bLogAIDefaults)
-    {
-        LogInternal((("GroundSpeedMod: " @ string(TotalSpeedMod)) @ " Final Ground Speed = ") @ string(P.GroundSpeed));
-    }
-    if(bLogAIDefaults)
-    {
-        LogInternal((("SprintSpeedMod: " @ string(TotalSpeedMod)) @ " Final Sprint Speed = ") @ string(P.SprintSpeed));
-    }
-    if(bLogAIDefaults)
-    {
-        LogInternal((("DamageMod: " @ string(DamageMod)) @ " Final Melee Damage = ") @ string(P.MeleeAttackHelper.BaseDamage * DamageMod));
-    }
+        if(SpawnedMonsterProperties[I] != 0)
+        {
+            switch(byte(I))
+            {
+                case 0:
+                    P.SetEnraged(true);
+                    break;
+                case 1:
+                    P.bSprintOverride = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            ++ I;
+            goto J0x546;
+        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x5D8! */
+        if(OutbreakEvent != none)
+        {
+            OutbreakEvent.AdjustMonsterDefaults(P);
+        }
+        if(bLogAIDefaults)
+        {
+            LogInternal(("==== SetMonsterDefaults for pawn: " @ string(P)) @ "====");
+        }
+        if(bLogAIDefaults)
+        {
+            LogInternal((((("HealthMod: " @ string(HealthMod)) @ "Original Health: ") @ string(P.default.Health)) @ " Final Health = ") @ string(P.Health));
+        }
+        if(bLogAIDefaults)
+        {
+            LogInternal((((("HeadHealthMod: " @ string(HeadHealthMod)) @ "Original Head Health: ") @ string(P.default.HitZones[0].GoreHealth)) @ " Final Head Health = ") @ string(P.HitZones[0].GoreHealth));
+        }
+        if(bLogAIDefaults)
+        {
+            LogInternal((("GroundSpeedMod: " @ string(TotalSpeedMod)) @ " Final Ground Speed = ") @ string(P.GroundSpeed));
+        }
+        if(bLogAIDefaults)
+        {
+            LogInternal((("SprintSpeedMod: " @ string(TotalSpeedMod)) @ " Final Sprint Speed = ") @ string(P.SprintSpeed));
+        }
+        if(bLogAIDefaults)
+        {
+            LogInternal((("DamageMod: " @ string(DamageMod)) @ " Final Melee Damage = ") @ string(P.MeleeAttackHelper.BaseDamage * DamageMod));
+        }
+    }/* !MISMATCHING REMOVE, tried Else got Type:Loop Position:0x546! */
 }
 
 function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
@@ -1586,14 +1620,14 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     }
 }
 
-function UpdateAIRemaining()
+event UpdateAIRemaining()
 {
     if(Role == ROLE_Authority)
     {
         if((MyKFGRI != none) && SpawnManager != none)
         {
             RefreshMonsterAliveCount();
-            MyKFGRI.AIRemaining = Max(0, SpawnManager.WaveTotalAI - NumAISpawnsQueued) + AIAliveCount;
+            MyKFGRI.AIRemaining = Max(0, SpawnManager.WaveTotalAI - NumAIFinishedSpawning) + AIAliveCount;
         }
     }
 }
@@ -3139,6 +3173,7 @@ defaultproperties
     GameModes(1)=(FriendlyName="Weekly",ClassNameAndPath="KFGameContent.KFGameInfo_WeeklySurvival",bSoloPlaySupported=true,DifficultyLevels=0,Lengths=0,LocalizeID=1)
     GameModes(2)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",bSoloPlaySupported=false,DifficultyLevels=0,Lengths=0,LocalizeID=2)
     GameModes(3)=(FriendlyName="Endless",ClassNameAndPath="KFGameContent.KFGameInfo_Endless",bSoloPlaySupported=true,DifficultyLevels=4,Lengths=0,LocalizeID=3)
+    GameModes(4)=(FriendlyName="Objective",ClassNameAndPath="KFGameContent.KFGameInfo_Objective",bSoloPlaySupported=true,DifficultyLevels=4,Lengths=0,LocalizeID=4)
     KickVotePercentage=0.66
     TimeBetweenFailedVotes=10
     MapVoteDuration=60
@@ -3165,7 +3200,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway","KF-SteamFortress"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

@@ -19,8 +19,11 @@ var bool bTraceForHitActorWhenDirectionalExplosion;
 /** If true, spawn particle system at the weapon muzzle even actor location is not */
 var bool bSyncParticlesToMuzzle;
 
-/** The actor the explosion should attach to */
-var transient repnotify Actor BlastAttachee;
+/** The pawn the explosion should attach to */
+var transient repnotify Pawn BlastAttachee;
+
+/** Where the explosion will attach if there's a BlastAttachee */
+var name AttachPointName;
 
 replication
 {
@@ -63,7 +66,7 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional vector E
 
 	if (Role == ROLE_Authority)
 	{
-		BlastAttachee = Attachee;
+		BlastAttachee = Pawn(Attachee);
 		ExploTemplateRef = NewExplosionTemplate;
 	}
 
@@ -77,7 +80,7 @@ simulated function SpawnExplosionParticleSystem(ParticleSystem Template)
 {
 	if (BlastAttachee != none)
 	{
-		WorldInfo.MyEmitterPool.SpawnEmitter(Template, BlastAttachee.Location, Rotation, BlastAttachee);
+		WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(Template, BlastAttachee.Mesh, AttachPointName);
 	}
 	else if (bSyncParticlesToMuzzle)
 	{
@@ -125,6 +128,7 @@ simulated function vector GetMuzzleEffectLocation()
 
 defaultproperties
 {
+   AttachPointName="hips"
    RemoteRole=ROLE_SimulatedProxy
    bNetTemporary=True
    bAlwaysRelevant=True

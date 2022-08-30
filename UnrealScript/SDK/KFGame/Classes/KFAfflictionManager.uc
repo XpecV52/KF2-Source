@@ -247,23 +247,23 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
     // increment affliction power
 	if (KnockdownPower > 0 && CanDoSpecialmove(SM_Knockdown))
 	{
-		AccrueAffliction(AF_Knockdown, KnockdownPower, BodyPart);
+		AccrueAffliction(AF_Knockdown, KnockdownPower, BodyPart, InstigatorPerk);
 	}
 	if (StunPower > 0 && CanDoSpecialmove(SM_Stunned))
 	{
-		AccrueAffliction(AF_Stun, StunPower, BodyPart);
+		AccrueAffliction(AF_Stun, StunPower, BodyPart, InstigatorPerk);
 	}
 	if (StumblePower > 0 && CanDoSpecialmove(SM_Stumble))
 	{
-		AccrueAffliction(AF_Stumble, StumblePower, BodyPart);
+		AccrueAffliction(AF_Stumble, StumblePower, BodyPart, InstigatorPerk);
 	}
 	if (FreezePower > 0 && CanDoSpecialMove(SM_Frozen))
 	{
-		AccrueAffliction(AF_Freeze, FreezePower, BodyPart);
+		AccrueAffliction(AF_Freeze, FreezePower, BodyPart, InstigatorPerk);
 	}
 	if (SnarePower > 0)
 	{
-		AccrueAffliction(AF_Snare, SnarePower, BodyPart);
+		AccrueAffliction(AF_Snare, SnarePower, BodyPart, InstigatorPerk);
 	}
 }
 
@@ -312,17 +312,17 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
 		// Check hard hit reaction
 		if (MeleeHitPower > 0)
 		{
-			AccrueAffliction(AF_MeleeHit, MeleeHitPower * ReactionModifier, BodyPart);
+			AccrueAffliction(AF_MeleeHit, MeleeHitPower * ReactionModifier, BodyPart, InstigatorPerk);
 		}
 		// Force recovery time for the headless hit. GetTimerCount() is a dirty way to do this only on the frame of CauseHeadTrauma()
 		if (HitZoneIdx == HZI_Head && IsHeadless() && GetTimerCount('BleedOutTimer', Outer) == 0.f)
 		{
-			AccrueAffliction(AF_MeleeHit, 100.f, BodyPart);
+			AccrueAffliction(AF_MeleeHit, 100.f, BodyPart, InstigatorPerk);
 		}
 		// Check medium hit reaction
 		if (GunHitPower > 0)
 		{
-			AccrueAffliction(AF_GunHit, GunHitPower * ReactionModifier, BodyPart);
+			AccrueAffliction(AF_GunHit, GunHitPower * ReactionModifier, BodyPart, InstigatorPerk);
 		}
 	}
 }
@@ -411,14 +411,14 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
  * Adds StackedPower
  * @return true if the affliction effect should be applied
  */
-function AccrueAffliction(EAfflictionType Type, float InPower, optional EHitZoneBodyPart BodyPart)
+function AccrueAffliction(EAfflictionType Type, float InPower, optional EHitZoneBodyPart BodyPart, optional KFPerk InstigatorPerk)
 {
 	if ( InPower <= 0 || Type >= IncapSettings.Length )
 	{
 		return; // immune
 	}
 
-	if ( !VerifyAfflictionInstance(Type) )
+	if ( !VerifyAfflictionInstance(Type, InstigatorPerk) )
 	{
 		return; // cannot create instance
 	}
@@ -478,7 +478,7 @@ simulated function float GetAfflictionVulnerability(EAfflictionType i, EHitZoneB
 }
 
 /** Called whenever we need may need to initiatize the affliction class instance */
-simulated function bool VerifyAfflictionInstance(EAfflictionType Type)
+simulated function bool VerifyAfflictionInstance(EAfflictionType Type, optional KFPerk InstigatorPerk)
 {
 	if( Type >= Afflictions.Length || Afflictions[Type] == None )
 	{
@@ -487,7 +487,7 @@ simulated function bool VerifyAfflictionInstance(EAfflictionType Type)
 			Afflictions[Type] = new(Outer) AfflictionClasses[Type];
 
 			// Cache a reference to the owner to avoid passing parameters around.
-			Afflictions[Type].Init(Outer, Type);
+			Afflictions[Type].Init(Outer, Type, InstigatorPerk);
 		}
 		else
 		{

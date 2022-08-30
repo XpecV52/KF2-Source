@@ -113,6 +113,7 @@ const STATID_ACHIEVE_MonsterBallSecretRoom = 4046;
 const STATID_ACHIEVE_SantasWorkshopCollectibles = 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
 const STATID_ACHIEVE_SpillwayCollectibles = 4049;
+const STATID_ACHIEVE_SteamFortressCollectibles = 4050;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -175,6 +176,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
+const KFID_ClassicPlayerInfo = 173;
 const MapObjectiveIndex = 4;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
@@ -1320,6 +1322,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         if(KFHUDBase(myHUD) != none)
         {
             KFHUDBase(myHUD).FriendlyHudScale = Profile.GetProfileFloat(125);
+            KFHUDBase(myHUD).ClassicPlayerInfo = Profile.GetProfileInt(173) != 0;
         }
         if(MyGFxManager != none)
         {
@@ -2171,9 +2174,10 @@ reliable server function ServerNotifyRegisteredAsLocalTalker()
     KFPlayerReplicationInfo(PlayerReplicationInfo).bVOIPRegisteredWithOSS = true;
 }
 
-function SetCinematicMode(bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons)
+function SetCinematicMode(bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons, optional bool bAffectsDof)
 {
-    super(PlayerController).SetCinematicMode(bInCinematicMode, bHidePlayer, bAffectsHUD, bAffectsMovement, bAffectsTurning, bAffectsButtons);
+    bAffectsDof = true;
+    super(PlayerController).SetCinematicMode(bInCinematicMode, bHidePlayer, bAffectsHUD, bAffectsMovement, bAffectsTurning, bAffectsButtons, bAffectsDof);
     ClientSetIgnoreButtons(bAffectsButtons);
 }
 
@@ -3276,6 +3280,7 @@ simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
 function HandleWalking()
 {
     local bool bShouldSprint;
+    local KFPlayerInput KFInput;
 
     if(Pawn != none)
     {
@@ -3290,7 +3295,15 @@ function HandleWalking()
         bShouldSprint = (bRun != 0) && !IsZero(Pawn.Acceleration);
         if(bShouldSprint)
         {
-            bDuck = 0;
+            bDuck = 0;            
+        }
+        else
+        {
+            KFInput = KFPlayerInput(PlayerInput);
+            if((KFInput != none) && KFInput.bToggleToRun)
+            {
+                bRun = 0;
+            }
         }
         KFPawn(Pawn).SetSprinting(bShouldSprint);
     }
@@ -4278,10 +4291,10 @@ simulated function SetNightVision(bool bEnabled)
     }
 }
 
-reliable client simulated function ClientSetCinematicMode(bool bInCinematicMode, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsHUD)
+reliable client simulated function ClientSetCinematicMode(bool bInCinematicMode, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsHUD, bool bAffectsDof)
 {
     bCinematicMode = bInCinematicMode;
-    if(bCinematicMode)
+    if(bCinematicMode && bAffectsDof)
     {
         bGamePlayDOFActive = true;
         DOF_GP_BlendInSpeed = DOF_Cinematic_BlendInSpeed;
@@ -5060,14 +5073,6 @@ simulated function SetObjectiveUIActive(bool bActive)
     if(((myGfxHUD != none) && myGfxHUD.WaveInfoWidget != none) && myGfxHUD.WaveInfoWidget.ObjectiveContainer != none)
     {
         myGfxHUD.WaveInfoWidget.ObjectiveContainer.SetActive(bActive);
-    }
-}
-
-function UpdateObjectiveUIProgress(float Progress)
-{
-    if(((myGfxHUD != none) && myGfxHUD.WaveInfoWidget != none) && myGfxHUD.WaveInfoWidget.ObjectiveContainer != none)
-    {
-        myGfxHUD.WaveInfoWidget.ObjectiveContainer.SetCurrentProgress(Progress);
     }
 }
 
@@ -8146,7 +8151,7 @@ state WaitingForPawn
 
 state Spectating
 {
-    ignores ClientPlayForceFeedbackWaveform, ClientPlayCameraShake, StartFire;
+    ignores ClientPlayForceFeedbackWaveform, StartFire;
 
     event BeginState(name PreviousStateName)
     {

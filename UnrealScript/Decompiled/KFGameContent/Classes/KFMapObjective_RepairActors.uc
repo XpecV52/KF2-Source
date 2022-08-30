@@ -83,7 +83,7 @@ simulated function ActivateObjective()
         if(bUseTrailToObjective)
         {
             TrailActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathActor', none);
-            TrailActor.SetEmitterTemplate(ParticleSystem'FX_Objective_Weld_Trail');
+            TrailActor.SetEmitterTemplate(ParticleSystem'FX_Objective_White_Trail');
         }
     }
     if(Role == ROLE_Authority)
@@ -100,7 +100,6 @@ simulated function ActivateObjective()
         {
             ActivateNextRepairableActor();
         }
-        PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
     }
 }
 
@@ -322,6 +321,11 @@ simulated function bool UsesProgress()
     return false;
 }
 
+simulated function bool ShouldShowObjectiveHUD()
+{
+    return false;
+}
+
 simulated function float GetProgress()
 {
     if(!HasFailedObjective())
@@ -369,18 +373,6 @@ simulated function Vector GetIconLocation()
     return Location;
 }
 
-simulated function int GetDoshReward()
-{
-    local int MaxDosh;
-
-    MaxDosh = GetMaxDoshReward();
-    if(MaxDosh == 0)
-    {
-        return MaxDosh;
-    }
-    return int(float(MaxDosh) * (GetTotalProgress()));
-}
-
 simulated function int GetVoshReward()
 {
     local int MaxDosh;
@@ -405,29 +397,7 @@ simulated function int GetXPReward()
     return int(float(MaxXP) * (GetTotalProgress()));
 }
 
-simulated function bool HasFailedObjective()
-{
-    return (GetLivingPlayerCount()) <= 0;
-}
-
-simulated function int GetLivingPlayerCount()
-{
-    local KFGameReplicationInfo KFGRI;
-
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI != none)
-    {
-        return KFGRI.GetNumPlayersAlive();
-    }
-    return 0;
-}
-
-simulated function bool UsesMultipleActors()
-{
-    return true;
-}
-
-simulated function string GetActorCount()
+simulated function string GetProgressText()
 {
     if(!bIsActive)
     {
@@ -464,7 +434,7 @@ simulated function DrawHUD(KFHUDBase HUD, Canvas DrawCanvas)
     }
     ViewVector = vector(ViewRotation);
     ThisDot = Normal(((GetIconLocation()) + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) Dot ViewVector;
-    if((ThisDot > float(0)) && KFGRI.ObjectiveInterface.ShouldShowObjectiveHUD())
+    if(ThisDot > float(0))
     {
         BarLength = FMin(HUD.PlayerStatusBarLengthMax * (DrawCanvas.ClipX / 1024), HUD.PlayerStatusBarLengthMax) * ResModifier;
         BarHeight = FMin(8 * (DrawCanvas.ClipX / 1024), 8) * ResModifier;
@@ -478,7 +448,10 @@ simulated function DrawHUD(KFHUDBase HUD, Canvas DrawCanvas)
         HUD.DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HUD.HealthColor);
         if((GetIcon()) != none)
         {
-            DrawCanvas.SetDrawColorStruct(HUD.PlayerBarIconColor);
+            DrawCanvas.SetDrawColorStruct(HUD.PlayerBarShadowColor);
+            DrawCanvas.SetPos((ScreenPos.X - (BarLength * 0.75)) + float(1), (ScreenPos.Y - (BarHeight * 2)) + float(1));
+            DrawCanvas.DrawTile(GetIcon(), HUD.PlayerStatusIconSize * ResModifier, HUD.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+            DrawCanvas.SetDrawColorStruct(GetIconColor());
             DrawCanvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - (BarHeight * 2));
             DrawCanvas.DrawTile(GetIcon(), HUD.PlayerStatusIconSize * ResModifier, HUD.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
         }
@@ -494,11 +467,12 @@ defaultproperties
     GoodWinThreshold=0.85
     bRandomSequence=true
     LocalizationKey="RepairObjective"
+    NameShortLocKey="RepairObjective"
     DescriptionLocKey="UseWelderToRepair"
+    DescriptionShortLocKey="UseWelderToRepairShort"
     LocalizationPackageName="KFGame"
     RequirementsLocKey="RepairObjectiveRequired"
     bUseTrailToObjective=true
-    ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
     GameModeBlacklist=/* Array type was not detected. */
     PerPlayerSpawnRateMod=/* Array type was not detected. */
     begin object name=Sprite class=SpriteComponent

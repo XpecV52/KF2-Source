@@ -60,9 +60,15 @@ var() ESubGameType SubGameType;
 
 /** Objective mode types and data */
 
-//Struct to hold an array of wave/objective pairing data.  Fixed array of these array
-//      objects in the next struct down will link a specific array of possible objectives
-//      to a specific wave per game-length.
+/**
+PossibleObjectives: possible objectives, one chosen at random.
+bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+SpawnReplacements: which zed types should be replaced by which other zed types
+PerPlayerSpawnRateMod: spawn rate modification based on number of players
+WaveScale: scalar for number of zeds this wave
+AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+bShouldAutoStartWave: whether this wave should start immediately after trader time
+*/
 struct native WaveObjectivePair
 {
     var() array<KFInterface_MapObjective> PossibleObjectives;
@@ -70,11 +76,14 @@ struct native WaveObjectivePair
 	var() array<SpawnReplacement> SpawnReplacements;
 	var() array<float> PerPlayerSpawnRateMod;
 	var() float WaveScale;
+	var() int AppliedWaveNum<ClampMin=0|ClampMax=9>;
+	var() bool bShouldAutoStartWave;
 
 	structdefaultproperties
 	{
 		PerPlayerSpawnRateMod=(1.f, 1.f, 1.f, 1.f, 1.f, 1.f)
 		WaveScale=1.f
+		bShouldAutoStartWave=true
 	}
 };
 
@@ -86,13 +95,13 @@ struct native PresetWavePairs
 };
 
 /** Whether or not to use the preset wave objective type */
-var(Objectives) bool bUsePresetObjectives <EditCondition=!bUseRandomObjectives>;
-var(Objectives) PresetWavePairs PresetWaveObjectives <EditCondition=bUsePresetObjectives>;
+var(SurvivalObjectives) bool bUsePresetObjectives <EditCondition=!bUseRandomObjectives>;
+var(SurvivalObjectives) PresetWavePairs PresetWaveObjectives <EditCondition=bUsePresetObjectives>;
 
 /** Whether or not to use the random wave objective type */
-var(Objectives) bool bUseRandomObjectives <EditCondition=!bUsePresetObjectives>;
-var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives;
-var(Objectives) array<int> RandomObjectiveWavesToDisable;
+var(SurvivalObjectives) bool bUseRandomObjectives <EditCondition=!bUsePresetObjectives>;
+var(SurvivalObjectives) array<KFInterface_MapObjective> RandomWaveObjectives;
+var(SurvivalObjectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 
 var() string TraderVoiceGroupClassPath;
@@ -107,6 +116,10 @@ var() SeasonalEventIndex ZedSeasonalThemeId;
 // Mutator code class that can override various map settings
 var() class<KFMapMutator> MapMutatorClass;
 
+// Objectives to use in Objective Mode
+var(ObjectiveMode) array<WaveObjectivePair> ObjectiveModeObjectives;
+
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -315,6 +328,56 @@ final event ModifyAIDoshValue(out float AIDoshValue)
 	}
 }
 
+/*****************************************************************************************************
+* @name Objective Mode
+*****************************************************************************************************/
+
+simulated function int GetAppliedWaveNum()
+{
+	local KFGameReplicationInfo KFGRI;
+	local int AppliedWaveNum;
+	local WaveObjectivePair Wave;
+
+	KFGRI = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI);
+	AppliedWaveNum = KFGRI.WaveNum;
+
+	if (KFGRI.IsObjectiveMode())
+	{
+		Wave = ObjectiveModeObjectives[KFGRI.WaveNum-1];
+		if (Wave.AppliedWaveNum >= 0)
+		{
+			AppliedWaveNum = Wave.AppliedWaveNum;
+		}
+	}
+	else
+	{
+		if (bUsePresetObjectives)
+		{
+			switch (KFGRI.GameLength)
+			{
+			case GL_Short:
+				Wave = PresetWaveObjectives.ShortObjectives[KFGRI.WaveNum-1];
+				break;
+
+			case GL_Normal:
+				Wave = PresetWaveObjectives.MediumObjectives[KFGRI.WaveNum-1];
+				break;
+
+			case GL_Long:
+				Wave = PresetWaveObjectives.LongObjectives[KFGRI.WaveNum-1];
+				break;
+			};
+
+			if (Wave.AppliedWaveNum > 0)
+			{
+				AppliedWaveNum = Wave.AppliedWaveNum;
+			}
+		}
+	}
+
+	return AppliedWaveNum;
+}
+
 defaultproperties
 {
    WaveSpawnPeriod=2.000000
@@ -368,6 +431,7 @@ defaultproperties
    ActionMusicTracks(47)=KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action304'
    ActionMusicTracks(48)=KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action305'
    ActionMusicTracks(49)=KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action306'
+   ActionMusicTracks(50)=KFMusicTrackInfo'WW_MACT_Default.TI__SJ_Infectious'
    AmbientMusicTracks(0)=KFMusicTrackInfo'WW_MAMB_Default.TI_RG_InTheDark'
    AmbientMusicTracks(1)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_Ambient200'
    AmbientMusicTracks(2)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_Ambient202'
@@ -381,7 +445,8 @@ defaultproperties
    AmbientMusicTracks(10)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_MomentaryReprieve'
    AmbientMusicTracks(11)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_PhantomSecurity'
    AmbientMusicTracks(12)=KFMusicTrackInfo'WW_MAMB_Default.TI_Z_RendezvousPoint'
-   PresetWaveObjectives=(ShortObjectives[0]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),ShortObjectives[1]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),ShortObjectives[2]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),ShortObjectives[3]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),ShortObjectives[4]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),MediumObjectives[0]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),MediumObjectives[1]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),MediumObjectives[2]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),MediumObjectives[3]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),MediumObjectives[4]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),MediumObjectives[5]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),MediumObjectives[6]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),MediumObjectives[7]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[0]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[1]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[2]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[3]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[4]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[5]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[6]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[7]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[8]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[9]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000),LongObjectives[10]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000))
+   AmbientMusicTracks(13)=KFMusicTrackInfo'WW_MAMB_Default.TI_SJ_Menace'
+   PresetWaveObjectives=(ShortObjectives[0]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),ShortObjectives[1]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),ShortObjectives[2]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),ShortObjectives[3]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),ShortObjectives[4]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),MediumObjectives[0]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),MediumObjectives[1]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),MediumObjectives[2]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),MediumObjectives[3]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),MediumObjectives[4]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),MediumObjectives[5]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),MediumObjectives[6]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),MediumObjectives[7]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[0]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[1]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[2]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[3]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[4]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[5]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[6]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[7]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[8]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[9]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True),LongObjectives[10]=(PerPlayerSpawnRateMod=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000),WaveScale=1.000000,bShouldAutoStartWave=True))
    TraderVoiceGroupClassPath="KFGameContent.KFTraderVoiceGroup_Default"
    Name="Default__KFMapInfo"
    ObjectArchetype=MapInfo'Engine.Default__MapInfo'

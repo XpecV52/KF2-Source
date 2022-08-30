@@ -448,7 +448,7 @@ defaultproperties
 	// Ammo
 	MagazineCapacity[0]=1
 	SpareAmmoCapacity[0]=1
-	InitialSpareMags[0]=1
+	InitialSpareMags[0]=0
 	AmmoPickupScale[0]=1.0
 
 	// THROW_FIREMODE
@@ -466,7 +466,7 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=23
 
 	// Inventory / Grouping
-	InventoryGroup=IG_Primary
+	InventoryGroup=IG_Secondary
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
 	InventorySize=3

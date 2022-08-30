@@ -478,7 +478,7 @@ HeadSkin1="엑스트라 레드"
 HeadSkin2="GearXT 옐로우"
 HeadSkin3="그린 해저드"
 HeadSkin4="레트로 스컬리"
-HeadSkin5="조용한 비명 스컬리 "
+HeadSkin5="조용한 비명 스컬리"
 HeadSkin6="배트캣"
 HeadSkin7="핼러윈 2018"
 
@@ -765,7 +765,7 @@ AttachmentSkin6="프레셔스 골드"
 [Cosmetic_MrFoster_Suit_NeckTie_ARCH]
 Attachment="포스터의 클래식 타이"
 AttachmentSkin0="클래식 블루"
-AttachmentSkin1="레드 스트라이프 "
+AttachmentSkin1="레드 스트라이프"
 AttachmentSkin2="블랙"
 AttachmentSkin3="흑백"
 AttachmentSkin4="카지노"
@@ -3361,7 +3361,7 @@ EmoteName="발차기"
 EmoteName="파이어볼"
 
 [Makeitrain]
-EmoteName="비오게 하기"
+EmoteName="비오게 하기 "
 
 [Fireball_Deluxe]
 EmoteName="파이어볼+"
@@ -3605,7 +3605,7 @@ AttachmentSkin4="화이트"
 AttachmentSkin5="프레셔스"
 
 [Cosmetic_PigMask_ARCH]
-Attachment="사이드쇼 돼지 가면 "
+Attachment="사이드쇼 돼지 가면"
 AttachmentSkin0="아기 돼지"
 AttachmentSkin1="그레이"
 AttachmentSkin2="레인보우"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="레드"
 AttachmentSkin2="프레셔스"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="홀로 암밴드 C"
+Attachment="홀로 암밴드 B"
 AttachmentSkin0="블루"
 AttachmentSkin1="레드"
 AttachmentSkin2="프레셔스"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="그린"
 AttachmentSkin3="라임"
 AttachmentSkin4="레드"
 AttachmentSkin5="화이트"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="프로젝트 H 01 기본"
+AttachmentSkin0="표준"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="프로젝트 H 01 행복"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="프로젝트 H 01 행복 닫힘"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="프로젝트 H 01 뉴트럴"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="프로젝트 H 01 뉴트럴 닫힘"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="프로젝트 H 01 불행"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="프로젝트 H 01 불행 닫힘"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="프로젝트 H 02 기본"
+AttachmentSkin0="표준"
+AttachmentSkin1="프레셔스"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="프로젝트 H 02 행복"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="프로젝트 H 02 행복 닫힘"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="프로젝트 H 02 뉴트럴"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="프로젝트 H 02 뉴트럴 닫힘"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="프로젝트 H 02 불행"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="프로젝트 H 02 불행 닫힘"
+AttachmentSkin0="블루"
+AttachmentSkin1="그린"
+AttachmentSkin2="레드"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="스팀펑크 크리스털 모노클"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="스팀펑크 스컬 베레모"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="스팀펑크 하악골 마스크"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="스팀펑크 크로우 호크"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="스팀펑크 가죽 고글"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="스팀펑크 가죽 가스마스크"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="스팀펑크 열쇠 백팩"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="스팀펑크 타이머 암밴드"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="스팀펑크 운반원 백팩"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="스팀펑크 테슬라 백팩"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="스팀펑크 Zed 백팩"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="스팀펑크 타이머 백팩"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="스팀펑크 옥토 밴드"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="스팀펑크 선장의 모자"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="스팀펑크 보일러 모자"
+AttachmentSkin0="표준"
+AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"

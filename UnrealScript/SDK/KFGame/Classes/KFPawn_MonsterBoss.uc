@@ -441,4 +441,6 @@ defaultproperties
 	TimeUntilSpeedIncrease=60.0
 	SpeedPctIncreasePerMinute=0.20
 	SpeedLimitScalar=1.30
+
+	bCanBePinned=false
 }

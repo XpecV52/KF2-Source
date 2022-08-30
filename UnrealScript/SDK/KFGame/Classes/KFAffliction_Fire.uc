@@ -28,9 +28,9 @@ var protected AkEvent OnFireSound;
 /** Sound to play when this pawn stops being on fire */
 var protected AkEvent OnFireEndSound;
 
-function Init(KFPawn P, EAfflictionType Type)
+function Init(KFPawn P, EAfflictionType Type, KFPerk InstigatorPerk)
 {
-    Super.Init(P, Type);
+    Super.Init(P, Type, InstigatorPerk);
 
     // copy over some settings from the affliction handler that we'll need
     FireFullyCharredDuration = P.AfflictionHandler.FireFullyCharredDuration;

@@ -1,4 +1,3 @@
-
 //NOTES:
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
@@ -38,7 +37,7 @@ AlternateFireDescription="大部分的主要武器都具有輔助功能模式。
 FlashLightBatteryTitleKey="使用手電筒"
 FlashLightBatteryDescriptionKey="有的地方相當黑暗。按下 <font color="#caab05">%x%</font> 開啟或關閉你的<font color="#caab05">手電筒</font>。你的手電筒電池電力會逐漸消耗。電源用盡時手電筒會自動熄滅，並直接開始充電。"
 GrenadeTitleKey="使用手榴彈"
-GrenadeDescriptionKey="手榴彈讓你方便處理一群你附近成群的 Zed。各職業在其<font color="#caab05">武器庫</font>裡有不同的手榴彈，都會對 Zed 造成傷害，但可能分別有其他效果。按下 <font color="#caab05">%x%</font> 來投擲手榴彈。 "
+GrenadeDescriptionKey="手榴彈讓你方便處理一群你附近成群的 Zed。各職業在其<font color="#caab05">武器庫</font>裡有不同的手榴彈，都會對 Zed 造成傷害，但可能分別有其他效果。按下 <font color="#caab05">%x%</font> 來投擲手榴彈。" "
 
 ;Wave 1 end
 TraderTimeTitleKey="商人時間"
@@ -117,48 +116,48 @@ ItemDescription="•戰鬥護甲能為你抵擋幾種攻擊，但會受損。\n�
 
 [KFProj_DynamiteGrenade]
 ItemName="半條炸藥"
-ItemCategory =" 炸藥"
-ItemDescription="•一個附有引信的小炸藥。\n•它也可能傷到你，所以請小心使用！ "
+ItemCategory =" "炸藥"
+ItemDescription="•一個附有引信的小炸藥。\n•它也可能傷到你，所以請小心使用！" "
 
 [KFProj_MedicGrenade]
 ItemName="治療手榴彈"
-ItemCategory =" 炸藥"
-ItemDescription="•會放出對 Zed 有毒但對人類有治療效果的氣體。\n\n•站在藍色氣體中便可受到治療。\n我們的科學家這麼說：「這些手榴彈施放的物質會對人類有療效，而對 Zed 有毒。希望這樣能有幫助。」 "
+ItemCategory =" "炸藥"
+ItemDescription="•會放出對 Zed 有毒但對人類有治療效果的氣體。\n\n•站在藍色氣體中便可受到治療。\n我們的科學家這麼說：「這些手榴彈施放的物質會對人類有療效，而對 Zed 有毒。希望這樣能有幫助。」" "
 
 [KFProj_MolotovGrenade]
 ItemName="莫洛托夫雞尾酒"
 ItemCategory="炸藥"
-ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n•小心，可能會傷到自己！\n\n這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？ "
+ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n•小心，可能會傷到自己！\n\n這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？" "
 
 [KFProj_EMPGrenade]
 ItemName="電磁脈衝手榴彈"
 ItemCategory="炸藥"
-ItemDescription="•產生一股傷害 Zed 的電流，也可能讓它們暈眩一下子。\n\n•如果你想了解得更詳細的話，它會發出一個很短暫的電波，干擾四周的電子系統。尤其是 Zed 身上的。還滿好用的。 "
+ItemDescription="•產生一股傷害 Zed 的電流，也可能讓它們暈眩一下子。\n\n•如果你想了解得更詳細的話，它會發出一個很短暫的電波，干擾四周的電子系統。尤其是 Zed 身上的。還滿好用的。" "
 
 [KFProj_HEGrenade]
 ItemName="高爆手榴彈"
 ItemCategory="炸藥"
-ItemDescription="•一種爆炸力很強的手榴彈。傷害 Zed，也會傷害人。\n\n就這麼簡單。高爆是高爆炸力的縮寫，它會發出轟的一聲把東西炸爛。我們非得說明不可嗎？ "
+ItemDescription="•一種爆炸力很強的手榴彈。傷害 Zed，也會傷害人。\n\n就這麼簡單。高爆是高爆炸力的縮寫，它會發出轟的一聲把東西炸爛。我們非得說明不可嗎？" "
 
 [KFProj_FragGrenade]
 ItemName="破片手榴彈"
 ItemCategory="炸藥"
-ItemDescription="•經典的破片手榴彈：爆炸時會散發出小小的金屬碎片，殺傷周圍的所有東西。\n\n•我很確定所有人在感染事件爆發前都玩過電動遊戲，所以都知道破片手榴彈是什麼。別假裝不懂了，誰會信啊。 "
+ItemDescription="•經典的破片手榴彈：爆炸時會散發出小小的金屬碎片，殺傷周圍的所有東西。\n\n•我很確定所有人在感染事件爆發前都玩過電動遊戲，所以都知道破片手榴彈是什麼。別假裝不懂了，誰會信啊。" "
 
 [KFProj_NailBombGrenade]
 ItemName="鐵釘炸藥"
-ItemCategory =" 炸藥"
+ItemCategory =" "炸藥"
 ItemDescription="•一整箱的舊鐵釘，中間有個爆炸裝置。\n\n不是什麼討人喜歡或精巧的 Zed 處理方式，但 Zed 本身就不討人喜歡也不精巧了，不是嗎？"
 
 [KFProj_FreezeGrenade]
 ItemName="冷凍手榴彈"
-ItemCategory =" 炸藥"
+ItemCategory =" "炸藥"
 ItemDescription="•高科技武器，內含壓縮液態氮。\n\n接觸到裡面的物質會讓 Zed 暫時無法行動。成效可能會非常不錯。"
 
 [KFProj_FlashBangGrenade]
 ItemName="閃光彈"
-ItemCategory =" 炸藥"
-ItemDescription="•很亮很大聲，請不要直視。最好也不要聽。\n•雖然不會致命，但閃光彈還是可能傷害你，請小心！ "
+ItemCategory =" "炸藥"
+ItemDescription="•很亮很大聲，請不要直視。最好也不要聽。\n•雖然不會致命，但閃光彈還是可能傷害你，請小心！" "
 
 [KFWeap_Healer_Syringe]
 ItemName="醫療注射器"
@@ -206,32 +205,32 @@ ItemDescription="•主要攻擊模式只有全自動。\n•美國海軍海豹�
 [KFWeap_Knife_Survivalist]
 ItemName="刺刀"
 ItemCategory="近戰"
-ItemDescription="•主要攻擊鍵 - 快速揮砍，長按以連續攻擊。\n•次要攻擊鍵 - 重砍。\n•次要功能鍵功能鍵 - 格擋/迴避。\n•曾經屬於別人。不過，現在它是你的了！"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•曾經屬於別人。不過，現在它是你的了！"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="多功能小刀"
 ItemCategory="近身"
-ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•就是一把美工刀。最適合用來割開你在遊戲中找到的箱子。"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•這是美工刀。最適合用來開啟殺戮空間裡的任何箱子。"
 
 [KFWeap_Knife_FieldMedic]
 ItemName="手術刀"
 ItemCategory="近身"
-ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•就是一把解剖刀。你是一名醫療兵，無需我們廢話你也知道怎麼用它。"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•這是手術刀。你是軍醫，所以我們應該不用再為你說明使用方法。"
 
 [KFWeap_Knife_Firebug]
 ItemName="消防員用刀"
 ItemCategory="近身"
-ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•就是一把消防員的匕首。你是一名消防員，無需我們廢話你也知道怎麼用它。"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•這是消防員用刀。你是消防員，所以我們應該不用再為你說明使用方法。"
 
 [KFWeap_Knife_Gunslinger]
 ItemName="長獵刀"
 ItemCategory="近身"
-ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•大號的老西部匕首。最適合切碎這裡的Zed。"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•西部電影可以看到的那種大刀。最適合切碎這裡的 Zed。"
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="庫克理彎刀"
 ItemCategory="近身"
-ItemDescription="•主要功能鍵 - 快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 重砍。\n•輔助功能鍵 - 格擋/迴避。\n•廓爾喀士兵的傳統匕首，更像是片刀而非砍刀。 "
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•廓爾喀人的傳統用刀，比較適合拿來砍而不是切。 "
 
 [KFWeap_Knife_SWAT]
 ItemName="戰略小刀"
@@ -291,7 +290,7 @@ ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n�
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
 ItemCategory="近身"
-ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•Horzine改造的突擊部隊刀。"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•Horzine 改造的突擊部隊用刀。"
 
 [KFWeap_Knife_Support]
 ItemName="彎刀"
@@ -306,23 +305,33 @@ ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n�
 [KFWeap_Blunt_Crovel]
 ItemName="改造鏟子"
 ItemCategory="近身"
-ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•一半是鐵橇一半是鏟子，兩種都很致命。"
+ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重揮擊。\n•輔助功能鍵：防禦 / 格擋。\n•一半是鐵橇一半是鏟子，兩種都很致命。"
 
 [KFWeap_Shotgun_Nailgun]
 ItemName="VLAD-1000 釘槍"
 ItemCategory="霰彈槍"
 ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家是從一個（死去的）維修人員那裡拿來改造過的。"
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG 釘槍"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家從一個（死去的）維修人員那裡拿來改造過的。"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="道路救贖者"
 ItemCategory="近身"
-ItemDescription="•主要 - 快速鈍器攻擊，按住主要鍵即可進行連段攻擊。\n•次要 - 鈍器重擊。\n•Alt - 阻擋/迴避。\n成為你一直想成為的重擊者！每次使用后記得清洗。"
+ItemDescription="•主要攻擊鍵：快速揮擊，長按以連續攻擊。\n•次要攻擊鍵：重揮擊。\n•輔助功能鍵：防禦 / 格擋。\n•成為你夢寐以求的重擊者！每次使用後記得清洗。"
 SharedUnlockSource="Road Redemption"
 
 [KFWeap_Blunt_Pulverizer]
 ItemName="粉碎器"
 ItemCategory="近身"
-ItemDescription="•主要攻擊為揮擊，長按以連擊。\n•次要為發射炸藥。沒有彈藥的話，次要攻擊為重揮擊。記得裝填！\n•輔助功能鍵：防禦 / 格擋。"
+ItemDescription="•主要攻擊鍵：快速揮擊，長按以連續攻擊。\n次要攻擊鍵：發射炸藥。沒有彈藥的話，次要攻擊為重揮擊。記得裝填！\n•輔助功能鍵：防禦 / 格擋。"
+
+[KFWeap_Blunt_MedicBat]
+ItemName="血腥痛擊者"
+ItemCategory="近戰"
+ItemDescription="•主要攻擊鍵：快速揮擊可治療隊友，長按以連續功擊。\n•次要攻擊鍵：造成碰觸到物品即爆炸的治療。沒有彈藥的話，次要攻擊為重揮擊。\n•輔助功能鍵：防禦 / 格擋。"
 
 [KFWeap_Eviscerator]
 ItemName="剔骨器"
@@ -339,7 +348,7 @@ SharedUnlockSource="Chivalry Medieval Warfare"
 [KFWeap_Blunt_MaceAndShield]
 ItemName="碎骨者"
 ItemCategory="近身"
-ItemDescription="•主要 - 快速鈍器攻擊，按住主要鍵即可進行連段攻擊。\n•次要 - 鈍器重擊，進一步活化盾牌的使用功能。\n•Alt - 阻擋/迴避。阻擋可減少僵屍群的噴射傷害。\n•擁有強力的盾牌重擊攻擊方式。"
+ItemDescription="•主要攻擊鍵：快速揮擊，長按以連續攻擊。\n•次要攻擊鍵：重揮擊，進一步活化盾牌的使用功能。\n•輔助功能鍵：防禦 / 格擋。阻擋可減少 Zed 的噴射傷害。\n•擁有強力的盾牌重擊攻擊方式。"
 
 [KFWeap_Flame_CaulkBurn]
 ItemName="裝好就燒"
@@ -365,6 +374,11 @@ ItemDescription="•主要攻擊模式只有泵動式。\n•會像龍一樣噴�
 ItemName="火焰噴射器"
 ItemCategory="火焰"
 ItemDescription="•主要攻擊模式會射出火焰。就這樣。\n•在任何世代都是經典。如果有懷疑，把所有東西都燒掉就對了。"
+
+[KFWeap_HRG_Healthrower]
+ItemName="HRG 治療噴射器"
+ItemCategory="火焰"
+ItemDescription=""
 
 [KFWeap_Beam_Microwave]
 ItemName="微波槍"
@@ -421,6 +435,16 @@ ItemName="點 50 沙漠之鷹雙槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對沙漠之鷹手砲。"
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="齊亞帕犀牛左輪"
+ItemCategory="手槍"
+ItemDescription="•"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="雙管齊亞帕犀牛左輪"
+ItemCategory="手槍"
+ItemDescription="•"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左輪"
 ItemCategory="手槍"
@@ -441,10 +465,25 @@ ItemName="點 500 馬格南左輪雙槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 .500 馬格南左輪手槍。"
 
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG 鹿彈左輪"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有單發。\n•一把手裡的大砲，長槍管 .50 口徑「骨頭收集者」左輪手槍，打出馬格南子彈。職業槍手專用。"
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="雙管 HRG 鹿彈左輪"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 .500 馬格南「骨頭收集者」左輪手槍。"
+
 [KFWeap_Rifle_Winchester1894]
 ItemName="溫徹斯特 1894"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊模式只有單發。\n•經典的 1894 型溫徹斯特槓桿式步槍。"
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="莫辛納甘步槍"
+ItemCategory="來福槍"
+ItemDescription="•主要攻擊模式只有單發。"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="中心底火SPX 464"
@@ -512,6 +551,16 @@ ItemName="焦驅砲"
 ItemCategory="火焰"
 ItemDescription="•按下開火按鈕後開始充能，鬆開按鈕後釋放能量。\nHorzine官方版本的焦驅砲。該型號保證95%不會爆炸。"
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="齊亞帕犀牛左輪"
+ItemCategory="手槍"
+ItemDescription="•帶上我"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="雙管齊亞帕犀牛左輪"
+ItemCategory="手槍"
+ItemDescription="•帶上我"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) 卡賓步槍"
 ItemCategory="突擊步槍"
@@ -528,6 +577,11 @@ ItemName="雙管 AF2011-A2"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•兩隻槍各有兩個槍管。四倍火力。這就是數學。你不能反駁數學。"
 
+[KFWeap_Edged_IonThruster]
+ItemName="離子推進器"
+ItemCategory="近戰"
+ItemDescription="•帶上我"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="毀滅射手"
 ItemCategory="霰彈槍"
@@ -536,7 +590,12 @@ ItemDescription="•主要攻擊模式只射擊一發。\n•按下輔助功能�
 [KFWeap_Blunt_PowerGloves]
 ItemName="靜電打擊者"
 ItemCategory="近身"
-ItemDescription="•主要功能鍵 - 主要攻擊為揮擊，長按以連擊。\n•次要功能鍵 - 帶電重揮擊。它是真的令人震驚！\n•想一拳揍在Zed臉上？選它就對了！"
+ItemDescription="•主要攻擊鍵：快速揮擊，長按以連續攻擊。\n•次要攻擊鍵：帶電重揮擊。它是真的令人震驚！\n•想一拳揍在 Zed 臉上嗎？選它就對了！"
+
+[KFWeap_RocketLauncher_SealSqueal]
+ItemName="海豹長聲尖叫"
+ItemCategory="炸藥"
+ItemDescription="•主要攻擊模式會發射 4 秒後引爆的魚叉彈。\n•按下輔助功能鍵會自動引爆所有魚叉彈。\n•Horzine 正式批准使用這種武器！"
 
 [KFWeap_AssaultRifle_LazerCutter]
 ItemName="雷霆殺手"
@@ -556,7 +615,7 @@ ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔�
 [KFWeap_Edged_AbominationAxe]
 ItemName="戰斧"
 ItemCategory="近身"
-ItemDescription="•主要攻擊鍵：慢速揮砍，長按以連續攻擊。\n•次要攻擊鍵：慢速重攻擊，消滅死亡之物。\n•輔助功能鍵：防禦 / 格擋。\n•雖已過時，但是被打中還是像被卡車撞了一樣……巨大又鋒利的卡車。"
+ItemDescription="•主要攻擊鍵：慢速揮砍，長按以連續攻擊。\n•次要攻擊鍵：慢速重擊，消滅死亡之物。\n•輔助功能鍵：防禦 / 格擋。\n•雖已過時，但是被打中還是像被巨大又鋒利的卡車撞了一樣。"
 SharedUnlockSource="戰斧"
 
 [KFWeap_Edged_FireAxe]
@@ -589,6 +648,16 @@ ItemDescription="•可選擇全自動和半自動射擊模式。\n•按下輔�
 ItemName="M99 AMR"
 ItemCategory="狙擊步槍"
 ItemDescription="•主要攻擊模式只有單發。\n•每一發都是蓄力一擊……額，就是一發非常大的子彈。高穿透，高傷害。"
+
+[KFCarryable_Gear]
+ItemName="裝備"
+ItemCategory="裝備"
+ItemDescription="你不應該看到商人的這項物品。"
+
+[KFCarryable_Datapad]
+ItemName="資料平板"
+ItemCategory="裝備"
+ItemDescription="你不應該看到商人的這項物品。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -721,6 +790,9 @@ GameName="每週暴動"
 
 [KFGameInfo_Endless]
 GameName="無盡"
+
+[KFGameInfo_Objective]
+GameName="目標"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="無法治療"

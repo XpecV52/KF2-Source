@@ -12,9 +12,9 @@ var float Duration;
 var bool bIsActive;
 var protected name EffectSocketName;
 
-function Init(KFPawn P, KFAfflictionManager.EAfflictionType Type)
+function Init(KFPawn P, KFAfflictionManager.EAfflictionType Type, KFPerk InstigatorPerk)
 {
-    super.Init(P, Type);
+    super.Init(P, Type, InstigatorPerk);
     Duration = P.IncapSettings[Type].Duration;
 }
 

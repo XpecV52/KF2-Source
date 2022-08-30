@@ -868,6 +868,11 @@ function BumpedByMonster( KFPawn_Monster P, vector HitNormal )
 	}
 }
 
+function int GetInstaKillDamage()
+{
+	return INSTAKILL_DAMAGE;
+}
+
 /*********************************************************************************************
  * Effects
 ********************************************************************************************* */

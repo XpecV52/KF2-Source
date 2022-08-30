@@ -12,22 +12,35 @@ class KFCharacterInfo_Human extends KFCharacterInfoBase
 
 const NUM_FAVE_WEAPS = 8;
 
+enum ECosmeticType
+{
+    ECosmeticType_Head,
+    ECosmeticType_Body,
+    ECosmeticType_Attachment,
+    ECosmeticType_Arms,
+    ECosmeticType_MAX
+};
+
 struct native SkinVariant
 {
     var() const int UnlockAssetID;
     /** The path to this skins package and texture */
     var() Texture UITexture;
+    var MaterialInstance Skin;
     /** The material this outfit can use */
-    var() MaterialInstance Skin;
+    var() string SkinName;
+    var MaterialInstance Skin1p;
     /** The first person material of this outfit */
-    var() MaterialInstance Skin1p;
+    var() string Skin1pName;
 
     structdefaultproperties
     {
         UnlockAssetID=0
         UITexture=none
         Skin=none
+        SkinName=""
         Skin1p=none
+        Skin1pName=""
     }
 };
 
@@ -35,6 +48,7 @@ struct native OutfitVariants
 {
     /** The path to this skins package and texture */
     var() Texture UITexture;
+    var edithide transient SkeletalMesh Mesh;
     /** Outfit mesh name. Must be of form PackageName.MeshName */
     var() string MeshName;
     /** Reference to the different skin variants for a particular outfit mesh */
@@ -43,6 +57,7 @@ struct native OutfitVariants
     structdefaultproperties
     {
         UITexture=none
+        Mesh=none
         MeshName=""
         SkinVariations=none
     }
@@ -84,9 +99,13 @@ struct native AttachmentVariants
     var bool bIsSkeletalAttachment;
     /** If set enables the material mask parameter on the assigned head variant */
     var() bool bMaskHeadMesh;
+    var edithide transient StaticMesh MeshStatic;
+    var edithide transient SkeletalMesh MeshSkeletal;
     /** Attachment mesh name. Must be of form PackageName.MeshName */
     var() string MeshName;
     var name SocketName;
+    var edithide transient StaticMesh MeshStatic1p;
+    var edithide transient SkeletalMesh MeshSkeletal1p;
     /** Mesh name for 1p attachmentt */
     var() string MeshName1p;
     /**  
@@ -115,8 +134,12 @@ struct native AttachmentVariants
         UITexture=none
         bIsSkeletalAttachment=false
         bMaskHeadMesh=false
+        MeshStatic=none
+        MeshSkeletal=none
         MeshName=""
         SocketName=None
+        MeshStatic1p=none
+        MeshSkeletal1p=none
         MeshName1p=""
         SocketName1p=None
         RelativeTranslation=(X=0,Y=0,Z=0)
@@ -133,15 +156,19 @@ struct native AttachmentVariants
 
 struct native FirstPersonArmVariants
 {
+    var edithide transient SkeletalMesh Mesh;
     /** Mesh name. Must be of form PackageName.MeshName */
     var() string MeshName;
+    var init edithide array<init MaterialInstance> SkinVariants;
     /** Reference to the different skin variants for a particular arms mesh */
-    var() array<MaterialInstance> SkinVariants;
+    var() array<string> SkinVariantsName;
 
     structdefaultproperties
     {
+        Mesh=none
         MeshName=""
         SkinVariants=none
+        SkinVariantsName=none
     }
 };
 
@@ -151,6 +178,8 @@ var() bool bIsFemale;
 /** The material ID for the skin in the mesh */
 var(ThirdPerson) int HeadMaterialID;
 var(ThirdPerson) int BodyMaterialID;
+/** The package key for async loading purposes. Console only. */
+var(ThirdPerson) string CosmeticsPackageKey;
 /** The outfit variants for a character. Used for Character Customization */
 var(ThirdPerson) const array<OutfitVariants> BodyVariants;
 /** The head variants for a character. Used for Character Customization */
@@ -265,21 +294,22 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
         WarnInternal("Does not have a KFPRI" @ string(self));
         return;
     }
-    SetBodyMeshAndSkin(byte(KFPRI.RepCustomizationInfo.BodyMeshIndex), byte(KFPRI.RepCustomizationInfo.BodySkinIndex), KFP);
-    SetHeadMeshAndSkin(byte(KFPRI.RepCustomizationInfo.HeadMeshIndex), byte(KFPRI.RepCustomizationInfo.HeadSkinIndex), KFP);
+    SetBodyMeshAndSkin(byte(KFPRI.RepCustomizationInfo.BodyMeshIndex), byte(KFPRI.RepCustomizationInfo.BodySkinIndex), KFP, KFPRI);
+    SetHeadMeshAndSkin(byte(KFPRI.RepCustomizationInfo.HeadMeshIndex), byte(KFPRI.RepCustomizationInfo.HeadSkinIndex), KFP, KFPRI);
+    SetArmsMeshAndSkin(byte(KFPRI.RepCustomizationInfo.BodyMeshIndex), byte(KFPRI.RepCustomizationInfo.BodySkinIndex), KFP, KFPRI);
     if(KFP.WorldInfo.NetMode != NM_DedicatedServer)
     {
         AttachmentIdx = 0;
-        J0x187:
+        J0x21B:
 
         if(AttachmentIdx < 3)
         {
             DetachAttachment(AttachmentIdx, KFP);
             ++ AttachmentIdx;
-            goto J0x187;
+            goto J0x21B;
         }
         AttachmentIdx = 0;
-        J0x1CC:
+        J0x260:
 
         if(AttachmentIdx < 3)
         {
@@ -290,7 +320,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 SetAttachmentMeshAndSkin(CosmeticMeshIdx, KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI);
             }
             ++ AttachmentIdx;
-            goto J0x1CC;
+            goto J0x260;
         }
         InitCharacterMICs(KFP, bMaskHeadMesh);
     }
@@ -335,7 +365,7 @@ private final function InitCharacterMICs(KFPawn P, optional bool bMaskHead)
     }
 }
 
-private final function SetBodyMeshAndSkin(byte CurrentBodyMeshIndex, byte CurrentBodySkinIndex, KFPawn KFP)
+private final function SetBodyMeshAndSkin(byte CurrentBodyMeshIndex, byte CurrentBodySkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI)
 {
     local string CharBodyMeshName;
     local SkeletalMesh CharBodyMesh;
@@ -348,6 +378,10 @@ private final function SetBodyMeshAndSkin(byte CurrentBodyMeshIndex, byte Curren
     if(BodyVariants.Length > 0)
     {
         CurrentBodyMeshIndex = ((CurrentBodyMeshIndex < BodyVariants.Length) ? CurrentBodyMeshIndex : 0);
+        if(KFPRI.StartLoadCosmeticContent(self, 1, CurrentBodyMeshIndex))
+        {
+            return;
+        }
         CharBodyMeshName = BodyVariants[CurrentBodyMeshIndex].MeshName;
         CharBodyMesh = SkeletalMesh(DynamicLoadObject(CharBodyMeshName, Class'SkeletalMesh'));
         if(CharBodyMesh != KFP.Mesh.SkeletalMesh)
@@ -418,7 +452,7 @@ protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, 
     }
 }
 
-private final function SetHeadMeshAndSkin(byte CurrentHeadMeshIndex, byte CurrentHeadSkinIndex, KFPawn KFP)
+private final function SetHeadMeshAndSkin(byte CurrentHeadMeshIndex, byte CurrentHeadSkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI)
 {
     local string CharHeadMeshName;
     local SkeletalMesh CharHeadMesh;
@@ -426,6 +460,10 @@ private final function SetHeadMeshAndSkin(byte CurrentHeadMeshIndex, byte Curren
     if(HeadVariants.Length > 0)
     {
         CurrentHeadMeshIndex = ((CurrentHeadMeshIndex < HeadVariants.Length) ? CurrentHeadMeshIndex : 0);
+        if(KFPRI.StartLoadCosmeticContent(self, 0, CurrentHeadMeshIndex))
+        {
+            return;
+        }
         CharHeadMeshName = HeadVariants[CurrentHeadMeshIndex].MeshName;
         CharHeadMesh = SkeletalMesh(DynamicLoadObject(CharHeadMeshName, Class'SkeletalMesh'));
         KFP.ThirdPersonHeadMeshComponent.SetSkeletalMesh(CharHeadMesh);
@@ -643,6 +681,10 @@ private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, 
     }
     if((CosmeticVariants.Length > 0) && CurrentAttachmentMeshIndex < CosmeticVariants.Length)
     {
+        if(KFPRI.StartLoadCosmeticContent(self, 2, CurrentAttachmentMeshIndex))
+        {
+            return;
+        }
         CharAttachmentMeshName = ((bIsFirstPerson) ? Get1pMeshByIndex(CurrentAttachmentMeshIndex) : GetMeshByIndex(CurrentAttachmentMeshIndex));
         CharAttachmentSocketName = ((bIsFirstPerson) ? CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName1p : CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName);
         AttachmentMesh = ((bIsFirstPerson) ? KFP.ArmsMesh : KFP.Mesh);
@@ -832,9 +874,9 @@ simulated function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerRepli
         WarnInternal("Does not have a KFPRI" @ string(self));
         return;
     }
-    SetArmsMeshAndSkin(byte(KFPRI.RepCustomizationInfo.BodyMeshIndex), byte(KFPRI.RepCustomizationInfo.BodySkinIndex), KFP);
+    SetArmsMeshAndSkin(byte(KFPRI.RepCustomizationInfo.BodyMeshIndex), byte(KFPRI.RepCustomizationInfo.BodySkinIndex), KFP, KFPRI);
     AttachmentIdx = 0;
-    J0xB4:
+    J0xBD:
 
     if(AttachmentIdx < 3)
     {
@@ -845,11 +887,11 @@ simulated function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerRepli
             SetAttachmentMeshAndSkin(CosmeticMeshIdx, KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI, true);
         }
         ++ AttachmentIdx;
-        goto J0xB4;
+        goto J0xBD;
     }
 }
 
-simulated function SetArmsMeshAndSkin(byte ArmsMeshIndex, byte ArmsSkinIndex, KFPawn KFP)
+simulated function SetArmsMeshAndSkin(byte ArmsMeshIndex, byte ArmsSkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI)
 {
     local byte CurrentArmMeshIndex, CurrentArmSkinIndex;
     local string CharArmMeshName;
@@ -860,6 +902,10 @@ simulated function SetArmsMeshAndSkin(byte ArmsMeshIndex, byte ArmsSkinIndex, KF
         if(CharacterArmVariants.Length > 0)
         {
             CurrentArmMeshIndex = ((ArmsMeshIndex < CharacterArmVariants.Length) ? ArmsMeshIndex : 0);
+            if(KFPRI.StartLoadCosmeticContent(self, 3, CurrentArmMeshIndex))
+            {
+                return;
+            }
             CharArmMeshName = CharacterArmVariants[CurrentArmMeshIndex].MeshName;
             CharArmMesh = SkeletalMesh(DynamicLoadObject(CharArmMeshName, Class'SkeletalMesh'));
             KFP.ArmsMesh.SetSkeletalMesh(CharArmMesh);

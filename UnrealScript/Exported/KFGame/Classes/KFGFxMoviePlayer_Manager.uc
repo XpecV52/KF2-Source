@@ -89,6 +89,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
+const KFID_ClassicPlayerInfo=173;
 #linenumber 22
 
 /** Connects a menu ID with its path */
@@ -2153,7 +2154,7 @@ defaultproperties
    WidgetPaths(1)="../UI_Widgets/PartyWidget_SWF.swf"
    WidgetPaths(2)="../UI_Widgets/ButtonPromptWidget_SWF.swf"
    BackgroundMovies(0)=TextureMovie'UI_Managers.MenuBG'
-   BackgroundMovies(1)=TextureMovie'UI_Managers.MenuBG'
+   BackgroundMovies(1)=TextureMovie'UI_Managers.MenuBG_Cyberpunk'
    BackgroundMovies(2)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
    BackgroundMovies(3)=TextureMovie'UI_Managers.MenuBG_Halloween'
    BackgroundMovies(4)=TextureMovie'UI_Managers.Menu_Winter'

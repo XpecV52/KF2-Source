@@ -949,6 +949,7 @@ function int SpawnSquad( out array< class<KFPawn_Monster> > AIToSpawn, optional 
 	}
 
 	FinalAmount = VolumeAmount + SpawnerAmount;
+	NumAIFinishedSpawning += VolumeAmount; // volume zeds get spawned right away, so add this here
 
    	RefreshMonsterAliveCount();
 

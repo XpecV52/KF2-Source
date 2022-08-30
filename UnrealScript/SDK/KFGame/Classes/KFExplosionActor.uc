@@ -225,6 +225,8 @@ protected function SpecialPawnEffectsFor(GamePawn VictimPawn, float VictimDist)
 {
 	//local KFPawn_Monster KFM;
 	//local class<KFDamageType> KFDT;
+	local KFPawn_Human HumanVictim;
+	local KFGameExplosion KFExplosionTemplate;
 
 	// Victim may have just been killed by damage - if so don't cringe
 	if (VictimPawn.bRespondToExplosions && VictimPawn.Health > 0)
@@ -238,6 +240,14 @@ protected function SpecialPawnEffectsFor(GamePawn VictimPawn, float VictimDist)
 		{
 			NumPawnsKilled++;
 		}
+	}
+
+	// support for healing humans on explosion impact
+	HumanVictim = KFPawn_Human(VictimPawn);
+	KFExplosionTemplate = KFGameExplosion(ExplosionTemplate);
+	if (HumanVictim != none && KFExplosionTemplate != none && KFExplosionTemplate.HealingAmount > 0)
+	{
+		HumanVictim.HealDamage(KFExplosionTemplate.HealingAmount, InstigatorController, KFExplosionTemplate.HealingDamageType);
 	}
 }
 

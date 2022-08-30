@@ -3361,7 +3361,7 @@ EmoteName="脚踢"
 EmoteName="火球"
 
 [Makeitrain]
-EmoteName="下钱"
+EmoteName="下钱 "
 
 [Fireball_Deluxe]
 EmoteName="火球+"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="红色"
 AttachmentSkin2="宝物"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="全息臂环 C"
+Attachment="全息臂环 B"
 AttachmentSkin0="蓝色"
 AttachmentSkin1="红色"
 AttachmentSkin2="宝物"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="绿色"
 AttachmentSkin3="青柠色"
 AttachmentSkin4="红色"
 AttachmentSkin5="白色"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="H 01 计划 基础"
+AttachmentSkin0="标准"
+AttachmentSkin1="宝物"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="H 01 计划 开心"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="H 01 计划 开心 关闭"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="H 01 计划 无倾向"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="H 01 计划 无倾向 关闭"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="H 01 计划 不开心"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="H 01 计划 不开心 关闭"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="H 02 计划 基础"
+AttachmentSkin0="标准"
+AttachmentSkin1="宝物"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="H 02 计划 开心"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="H 02 计划 开心 关闭"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="H 02 计划 无倾向"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="H 02 计划 无倾向 关闭"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="H 02 计划 不开心"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="H 02 计划 不开心 关闭"
+AttachmentSkin0="蓝色"
+AttachmentSkin1="绿色"
+AttachmentSkin2="红色"
+AttachmentSkin3="宝物"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="蒸汽朋克水晶单片眼镜"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="蒸汽朋克骷髅头贝雷帽"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="蒸汽朋克下颌骨面具"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="蒸汽朋克乌鸦鹰"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="蒸汽朋克皮革护目镜"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="蒸汽朋克皮革防毒面具"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="蒸汽朋克钥匙背包"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="蒸汽朋克时间臂环"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="蒸汽朋克快递背包"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="蒸汽朋克特斯拉背包"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="蒸汽朋克丧尸背包"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="蒸汽朋克时间背包"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="蒸汽朋克八爪鱼臂环"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="蒸汽朋克船长帽"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="蒸汽朋克圆顶高帽"
+AttachmentSkin0="标准"
+AttachmentSkin1="铬合金"
+AttachmentSkin2="宝物"

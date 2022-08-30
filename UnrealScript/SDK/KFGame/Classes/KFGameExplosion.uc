@@ -19,6 +19,11 @@ var() int NumShards;
 /** Impact info (decal, vfx, etc.), so that each explosion type on various surfaces can have different effects if desired. Doesn't do anything with the sound */
 var() KFImpactEffectInfo    ExplosionEffects;
 
+/** Amount to heal humans on impact */
+var() float HealingAmount;
+/** The damage type for healing humans on impact */
+var class<DamageType> HealingDamageType;
+
 native function KFGameExplosion Duplicate();
 
 defaultproperties
@@ -34,6 +39,7 @@ defaultproperties
 	MomentumTransferScale=50000.0
 	FractureMeshRadius=200.0
 	FracturePartVel=500.0
+	HealingAmount=0;
 
 	// Camera Shake
 	CamShake=CameraShake'FX_CameraShake_Arch.Misc_Explosions.Default_Misc'
@@ -41,4 +47,6 @@ defaultproperties
 	CamShakeOuterRadius=900
 	CamShakeFalloff=1.f
 	bOrientCameraShakeTowardsEpicenter=true
+
+	HealingDamageType=class'KFDT_Healing'
 }

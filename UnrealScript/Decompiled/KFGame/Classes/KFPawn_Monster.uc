@@ -151,6 +151,7 @@ var private bool bIsBloatClass;
 var bool bMatchEnemySpeed;
 var bool bRestoreCollisionOnLand;
 var bool bPlayingSprintLoop;
+var bool bSprintOverride;
 var transient bool bPlayedExplosionEffect;
 var bool bCouldTurnIntoShrapnel;
 var bool bDisableHeadless;
@@ -783,7 +784,7 @@ function SetSprinting(bool bNewSprintStatus)
 {
     if(MyKFAIC != none)
     {
-        if(!MyKFAIC.CanSetSprinting(bNewSprintStatus))
+        if(!MyKFAIC.CanSetSprinting(bNewSprintStatus) && !bSprintOverride)
         {
             return;
         }
@@ -2884,10 +2885,6 @@ simulated function PlayHeadAsplode()
     {
         return;
     }
-    if(bDisableHeadless)
-    {
-        return;
-    }
     if(((bTearOff || bPlayedDeath) && TimeOfDeath > float(0)) && (WorldInfo.TimeSeconds - TimeOfDeath) > 0.75)
     {
         return;
@@ -2895,7 +2892,7 @@ simulated function PlayHeadAsplode()
     GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
     if((GoreManager != none) && GoreManager.AllowHeadless())
     {
-        if(!bIsGoreMesh)
+        if(!bIsGoreMesh && !bDisableHeadless)
         {
             SwitchToGoreMesh();
         }
@@ -2906,8 +2903,8 @@ simulated function PlayHeadAsplode()
         GoreManager.CrushBone(self, BoneName);
         SoundGroupArch.PlayHeadPopSounds(self, Mesh.GetBoneLocation(BoneName));
         HitZones[0].bPlayedInjury = true;
-        SpawnHeadShotFX(KFPlayerReplicationInfo(HitFxInfo.DamagerPRI));
     }
+    SpawnHeadShotFX(KFPlayerReplicationInfo(HitFxInfo.DamagerPRI));
 }
 
 simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType> InDmgType, optional Vector HitDirection)
@@ -3154,7 +3151,7 @@ private final simulated function SpawnHeadShotFX(KFPlayerReplicationInfo Damager
                 return;
             }
             SHeadshotEffect = Class'KFHeadShotEffectList'.static.GetUnlockedHeadshotEffect(DamagerPRI.GetHeadShotEffectID());
-            if(SHeadshotEffect.Id != -1)
+            if((SHeadshotEffect.Id != -1) && SHeadshotEffect.EffectPS != none)
             {
                 Mesh.GetSocketWorldLocationAndRotation(Class'KFSM_Stunned'.default.DazedFXSocketName, SpawnVector);
                 WorldInfo.MyEmitterPool.SpawnEmitter(SHeadshotEffect.EffectPS, SpawnVector);
@@ -3739,13 +3736,7 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFPawn_Monster.SprintAkComponent0'
     SprintAkComponent=SprintAkComponent0
-    begin object name=HeadshotAkComponent0 class=AkComponent
-        BoneName=head
-        bForceOcclusionUpdateInterval=true
-        OcclusionUpdateInterval=0.2
-    object end
-    // Reference: AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
-    HeadShotAkComponent=HeadshotAkComponent0
+    HeadShotAkComponent=AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
     CollisionRadiusForReducedZedOnZedPinchPointCollisionState=1
     OnDeathAchievementID=-1
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -3753,6 +3744,7 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_Monster.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
+    bCanBePinned=true
     bCanHeadTrack=true
     HitZones(0)=(ZoneName=head,BoneName=head,GoreHealth=20,MaxGoreHealth=-1,DmgScale=1.1,Limb=EHitZoneBodyPart.BP_Head,SkinID=1,bPlayedInjury=false)
     HitZones(1)=(ZoneName=neck,BoneName=neck,GoreHealth=20,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_Head,SkinID=0,bPlayedInjury=false)
@@ -3898,13 +3890,7 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFPawn_Monster.SprintAkComponent0'
     Components(8)=SprintAkComponent0
-    begin object name=HeadshotAkComponent0 class=AkComponent
-        BoneName=head
-        bForceOcclusionUpdateInterval=true
-        OcclusionUpdateInterval=0.2
-    object end
-    // Reference: AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
-    Components(9)=HeadshotAkComponent0
+    Components(9)=AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

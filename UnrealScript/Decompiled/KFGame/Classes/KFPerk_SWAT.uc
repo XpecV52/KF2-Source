@@ -35,6 +35,13 @@ var private const float TacticalMovementBobDamp;
 var private const class<KFWeaponDefinition> BackupSecondaryWeaponDef;
 var private const float HeavyArmorAbsorptionPct;
 var float CurrentHealthPenalty;
+var int BumpDamageAmount;
+var class<DamageType> BumpDamageType;
+var float BumpMomentum;
+var float SWATEnforcerZedTimeSpeedScale;
+var float LastBumpTime;
+var array<Actor> CurrentBumpedActors;
+var float BumpCooldown;
 
 replication
 {
@@ -68,6 +75,11 @@ function ApplySkillsToPawn()
     {
         OwnerPawn.bMovesFastInZedTime = IsSWATEnforcerActive();
     }
+}
+
+simulated event float GetZedTimeSpeedScale()
+{
+    return ((IsSWATEnforcerActive()) ? SWATEnforcerZedTimeSpeedScale : 1);
 }
 
 simulated function string GetSecondaryWeaponClassPath()
@@ -199,9 +211,9 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     }
 }
 
-static simulated function float GetSnareSpeedModifier()
+simulated function float GetSnareSpeedModifier()
 {
-    return default.PerkSkills[7].StartingValue;
+    return ((IsCrippleActive()) ? default.PerkSkills[7].StartingValue : 1);
 }
 
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
@@ -266,6 +278,62 @@ simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 simulated function bool ShouldKnockDownOnBump()
 {
     return (IsSWATEnforcerActive()) && WorldInfo.TimeDilation < 1;
+}
+
+simulated function OnBump(Actor BumpedActor, KFPawn_Human BumpInstigator, Vector BumpedVelocity, Rotator BumpedRotation)
+{
+    local KFPawn_Monster KFPM;
+    local bool CanBump;
+
+    if((ShouldKnockDownOnBump()) && (Normal(BumpedVelocity) Dot vector(BumpedRotation)) > 0.7)
+    {
+        KFPM = KFPawn_Monster(BumpedActor);
+        if(KFPM != none)
+        {
+            if((WorldInfo.TimeSeconds - LastBumpTime) > BumpCooldown)
+            {
+                CurrentBumpedActors.Length = 0;
+                CurrentBumpedActors.AddItem(BumpedActor;
+                CanBump = true;                
+            }
+            else
+            {
+                if(CurrentBumpedActors.Find(BumpedActor == -1)
+                {
+                    CurrentBumpedActors.AddItem(BumpedActor;
+                    CanBump = true;
+                }
+            }
+            LastBumpTime = WorldInfo.TimeSeconds;
+            if(CanBump)
+            {
+                if(KFPM.CanDoSpecialMove(6))
+                {
+                    KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+                    KFPM.Knockdown(BumpedVelocity * float(3), vect(1, 1, 1), KFPM.Location, 1000, 100);                    
+                }
+                else
+                {
+                    if(KFPM.IsHeadless())
+                    {
+                        KFPM.TakeDamage(KFPM.HealthMax, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);                        
+                    }
+                    else
+                    {
+                        if(KFPM.CanDoSpecialMove(4))
+                        {
+                            KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+                            KFPM.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));                            
+                        }
+                        else
+                        {
+                            KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 simulated function int GetArmorDamageAmount(int AbsorbedAmt)
@@ -358,10 +426,15 @@ defaultproperties
     MagSize=(Name="Increased Mag Size",Increment=0.04,Rank=0,StartingValue=0,MaxValue=1,ModifierValue=0,IconPath="",bActive=false)
     WeaponSwitchSpeed=(Name="Weapon Switch Speed",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     RapidAssaultFiringRate=0.51
-    SnarePower=9
+    SnarePower=15
     TacticalMovementBobDamp=1.11
     BackupSecondaryWeaponDef=Class'KFWeapDef_9mmDual'
     HeavyArmorAbsorptionPct=0.65
+    BumpDamageAmount=450
+    BumpDamageType=Class'KFDT_SWATBatteringRam'
+    BumpMomentum=1
+    SWATEnforcerZedTimeSpeedScale=1.25
+    BumpCooldown=0.1
     ProgressStatID=90
     PerkBuildStatID=91
     SecondaryXPModifier[0]=2
@@ -384,7 +457,7 @@ defaultproperties
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_SWAT'
     PerkSkills(0)=(Name="HeavyArmor",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_HeavyArmor",bActive=false)
     PerkSkills(1)=(Name="TacticalMovement",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement",bActive=false)
-    PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup",bActive=false)
+    PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=0.85,MaxValue=0.85,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup",bActive=false)
     PerkSkills(3)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload",bActive=false)
     PerkSkills(4)=(Name="SpecialAmmunition",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition",bActive=false)
     PerkSkills(5)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest",bActive=false)
@@ -407,4 +480,5 @@ defaultproperties
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MP7_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.MP5RAS_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.HecklerKochUMP_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.KrissSMG_PrestigePrecious_Mint_large"
 }

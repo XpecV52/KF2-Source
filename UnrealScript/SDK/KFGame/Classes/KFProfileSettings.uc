@@ -194,7 +194,7 @@ cpptext
 
 defaultproperties
 {
-	VersionNumber=5
+	VersionNumber=6
 	Dirty=false
 
 	// UI readable versions of the owners
@@ -278,6 +278,9 @@ defaultproperties
 	//Added 1/31/2019 - Toggle for Sprint
 	ProfileMappings.Add((Id=KFID_ToggleToRun, Name="Toggle To Run", MappingType=PVMT_RawValue))
 
+	//Added 3/6/2019 - Classic Player Info
+	ProfileMappings.Add((Id = KFID_ClassicPlayerInfo, Name = "Legacy Health Bars", MappingType = PVMT_RawValue))
+
 
 	// Hex values for SDT_Float values, I use http://www.h-schmidt.net/FloatConverter/IEEE754.html for conversion
 
@@ -355,5 +358,8 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_Native4kResolution,Data=(Type=SDT_Int32,Value1=0))))
 
 	//Added 1/31/2019 - Toggle for Sprint
-	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_ToggleToRun, Data=(Type=SDT_INT32, Value1=0))))
+	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_ToggleToRun, Data=(Type=SDT_INT32, Value1=1))))
+
+	//Added 3/6/2019 - Classic Player Info
+	DefaultSettings.Add((Owner=OPPO_Game, ProfileSetting=(PropertyId=KFID_ClassicPlayerInfo, Data=(Type=SDT_INT32, Value1=0))))
 }

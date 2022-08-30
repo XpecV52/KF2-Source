@@ -54,7 +54,7 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=68
 
 	// Inventory
-	GroupPriority=100
+	GroupPriority=50
 	InventorySize=4
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'

@@ -11,6 +11,8 @@ package InGameHUD_SWF_fla
         
         public var AmmoMelee:MovieClip;
         
+        public var AmmoSpecial:TextField;
+        
         public var CurrentAmmoTextField:TextField;
         
         public var StoredAmmoTextField:TextField;

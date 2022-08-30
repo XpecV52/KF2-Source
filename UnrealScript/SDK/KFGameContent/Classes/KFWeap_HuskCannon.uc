@@ -216,7 +216,7 @@ simulated state HuskCannonCharge extends WeaponFiring
 		{
 			if (ConsumeAmmoTime >= FullChargedTimerInterval)
 			{
-				ConsumeAmmo(DEFAULT_FIREMODE);
+				//ConsumeAmmo(DEFAULT_FIREMODE);
 				ConsumeAmmoTime -= FullChargedTimerInterval;
 			}
 
@@ -380,6 +380,20 @@ function AdjustDamage(out int InDamage, class<DamageType> DamageType, Actor Dama
 	}
 }
 
+// increase the instant hit damage based on the charge level
+simulated function int GetModifiedDamage(byte FireModeNum, optional vector RayDir)
+{
+	local int ModifiedDamage;
+
+	ModifiedDamage = super.GetModifiedDamage(FireModeNum, RayDir);
+	if (FireModeNum == DEFAULT_FIREMODE)
+	{
+		ModifiedDamage = ModifiedDamage * (1.f + DmgIncreasePerCharge * GetChargeLevel());
+	}
+
+	return ModifiedDamage;
+}
+
 defaultproperties
 {
 	SelfDamageReductionValue=0.1f
@@ -387,7 +401,7 @@ defaultproperties
     MaxChargeTime=1.0
     ValueIncreaseTime=0.2
     DmgIncreasePerCharge=0.7
-    AOEIncreasePerCharge=0.3
+    AOEIncreasePerCharge=0.6
     IncapIncreasePerCharge=0.22
     AmmoIncreasePerCharge=1
 
@@ -420,9 +434,9 @@ defaultproperties
 	IronSightPosition=(X=0,Y=0,Z=0)
 
 	// Ammo
-	MagazineCapacity[0]=20  //25
-	SpareAmmoCapacity[0]=240 //300
-	InitialSpareMags[0]=4
+	MagazineCapacity[0]=30
+	SpareAmmoCapacity[0]=150
+	InitialSpareMags[0]=1
 	AmmoPickupScale[0]=0.75
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -457,7 +471,9 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	Spread(DEFAULT_FIREMODE) = 0.0085
     WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_HuskCannon_Fireball'
-	FireInterval(DEFAULT_FIREMODE)=+0.4 //0.15 850 RPM //0.19
+	FireInterval(DEFAULT_FIREMODE)=+0.223 //269 RPMs
+	InstantHitDamage(DEFAULT_FIREMODE)=40
+	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Explosive_HuskCannonImpact'
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	WeaponFireTypes(ALTFIRE_FIREMODE) = EWFT_None

@@ -352,7 +352,7 @@ defaultproperties
 	GroundFireExplosionTemplate=ExploTemplate1
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate2
-		Damage=80 //100
+		Damage=60 //100
 		DamageRadius=100 //450 //550
 		DamageFalloffExponent=1.f //1.0
 		DamageDelay=0.f

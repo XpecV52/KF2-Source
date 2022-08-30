@@ -282,6 +282,9 @@ var float BodyScaleChangePerSecond;
 var repnotify float IntendedHeadScale;
 var float CurrentHeadScale;
 
+/** Whether pawn can be pinned to a wall by pinning projectiles */
+var bool bCanBePinned;
+
 /*********************************************************************************************
  * @name	Status Effects
  ********************************************************************************************* */
@@ -1193,6 +1196,12 @@ simulated function InitRBSettings()
 /** Notify pawn whenever mesh is swapped (e.g. new character or new outfit) */
 simulated function OnCharacterMeshChanged();
 
+/** SetCharacterAnimationInfo, separated out since this can be overriden if by certain classes */
+simulated function SetCharacterArchAnimationInfo()
+{
+	SetCharacterAnimationInfo();
+}
+
 /** Set various basic properties for this KFPawn based on the character class metadata */
 simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
 {
@@ -1201,15 +1210,11 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
     KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
 	if (Info != CharacterArch || bForce)
 	{
-		// Set Family Info
-
-		// duplicate, so we can modify a single instance of the arch, if desired
 		CharacterArch = Info;
 		CharacterArch.SetCharacterFromArch( self, KFPRI );
 		CharacterArch.SetCharacterMeshFromArch( self, KFPRI );
-		CharacterArch.SetFirstPersonArmsFromArch( self, KFPRI );
 
-		SetCharacterAnimationInfo();
+		SetCharacterArchAnimationInfo();
 
 		// Sounds
 		SoundGroupArch = Info.SoundGroupArch;
@@ -2047,6 +2052,12 @@ function ThrowActiveWeapon( optional bool bDestroyWeap )
 	}
 	else
 	{
+		// if the player has died and is going to throw a carryable, also throw their best weapon
+		if (Health <= 0 && KFCarryableObject(Weapon) != none)
+		{
+			BestWeapon = FindBestWeapon();
+			TossInventory(BestWeapon);
+		}
 		super.ThrowActiveWeapon( bDestroyWeap );
 	}
 }
@@ -2618,7 +2629,8 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	OldHealth = Health;
 	Super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
 
-	HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), HitFxInfo.DamageType, DamageCauser);
+	// using the passed in damage type instead of the hitfxinfo since that doesn't get updated when zero damage is done
+	HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), class<KFDamageType>(DamageType), DamageCauser);
 
 	ActualDamage = OldHealth - Health;
 	if( ActualDamage > 0 )
@@ -2801,6 +2813,11 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 	local float DamageThreshold;
 	local KFAIController KFAIC;
 
+	if (!ValidateDamageForDamageHistory(DamageCauser, DamageType))
+	{
+		return;
+	}
+
 	if( !GetDamageHistory( DamagerController, Info, HistoryIndex ) )
 	{
 		DamageHistory.Insert(0, 1);
@@ -2849,6 +2866,10 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 		KFAIC.CurrentEnemysHistoryIndex = HistoryIndex;
 	}
 }
+
+/** Gives us a change to validate damage causer before adding damage to damage history */
+native private final function bool ValidateDamageForDamageHistory(
+	Actor DamageCauser, class<KFDamageType> DamageType);
 
 function bool GetDamageHistory( Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex )
 {
@@ -4986,15 +5007,16 @@ static function string GetLocalizedName()
  * @name   ExtraVFX
  ********************************************************************************************* */
 
- simulated function SpawnExtraVFX(ExtraVFXInfo info, ExtraVFXAttachmentInfo attachment)
+ simulated function ParticleSystemComponent SpawnExtraVFX(ExtraVFXInfo info)
  {
 	 local name SFXBoneName;
+	 local ParticleSystemComponent VFXComponent;
 
 	 if (info.SocketName == `NAME_NONE)
 	 {
 		 if (info.VFX != none)
 		 {
-			 attachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(info.VFX, Location, Rotation, self);
+			 VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitter(info.VFX, Location, Rotation, self);
 		 }
 		 if (info.SFXStartEvent != none)
 		 {
@@ -5005,7 +5027,7 @@ static function string GetLocalizedName()
 	 {
 		 if (info.VFX != none)
 		 {
-			 attachment.VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(info.VFX, Mesh, info.SocketName, true);
+			 VFXComponent = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(info.VFX, Mesh, info.SocketName, true);
 		 }
 		 if (info.SFXStartEvent != none)
 		 {
@@ -5020,6 +5042,8 @@ static function string GetLocalizedName()
 			 }
 		 }
 	 }
+
+	 return VFXComponent;
  }
 
 // Plays extra VFX associated with FXLabel, or restarts deactivated effects if already attached
@@ -5039,7 +5063,11 @@ simulated function PlayExtraVFX(Name FXLabel)
 	{
 		if (ExtraVFXAttachments[i].Info.Label == FXLabel)
 		{
-			SpawnExtraVFX(ExtraVFXAttachments[i].Info, ExtraVFXAttachments[i]);
+			if (ExtraVFXAttachments[i].VFXComponent != none)
+			{
+				ExtraVFXAttachments[i].VFXComponent.SetActive(false);
+			}
+			ExtraVFXAttachments[i].VFXComponent = SpawnExtraVFX(ExtraVFXAttachments[i].Info);
 			bActivatedExistingSystem = true;
 		}
 	}
@@ -5054,7 +5082,7 @@ simulated function PlayExtraVFX(Name FXLabel)
 	{
 		if (CharacterArch.ExtraVFX[i].Label == FXLabel)
 		{
-			SpawnExtraVFX(CharacterArch.ExtraVFX[i], VFXAttachment);
+			VFXAttachment.VFXComponent = SpawnExtraVFX(CharacterArch.ExtraVFX[i]);
 			VFXAttachment.Info = CharacterArch.ExtraVFX[i];
 			ExtraVFXAttachments.AddItem(VFXAttachment);
 		}
@@ -5338,4 +5366,6 @@ defaultproperties
     IntendedHeadScale=1.0
     CurrentHeadScale=1.0
     bAllowDeathSM=true
+
+	bCanBePinned=false
 }

@@ -58,7 +58,7 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=101
 
 	// Inventory
-	GroupPriority=85
+	GroupPriority=125
 	InventorySize=10
 	WeaponSelectTexture=Texture2D'WEP_UI_KrampusAxe_TEX.UI_WeaponSelect_KrampusAxe'
 	

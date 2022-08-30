@@ -194,6 +194,8 @@ var KFAIDirector						AIDirector;
 var int									AIAliveCount;
 /** Counter for keeping track of AI spawned */
 var	int									NumAISpawnsQueued;
+/** Counter for AI spawned, increanses when the zeds are actually spawned */
+var int									NumAIFinishedSpawning;
 
 /** Number of zeds remainining before setting their pawns to bAlwaysRelevant=TRUE */
 var private const int 					NumAlwaysRelevantZeds;
@@ -421,6 +423,18 @@ var KFOutbreakEvent OutbreakEvent;
 
 /** Type of outbreak event to be used. */
 var class<KFOutbreakEvent> OutbreakEventClass;
+
+/************************************************************************************
+* @name		Kismet Monster Properties
+***********************************************************************************/
+
+enum EMonsterProperties
+{
+	EMonsterProperties_Enraged,
+	EMonsterProperties_Sprinting
+};
+
+var int SpawnedMonsterProperties[EMonsterProperties];
 
 /************************************************************************************
  * @name		Native
@@ -1632,6 +1646,7 @@ function SetMonsterDefaults( KFPawn_Monster P )
 	local float TotalSpeedMod, StartingSpeedMod;
 	local float DamageMod;
 	local int LivingPlayerCount;
+	local int i;
 
     LivingPlayerCount = GetLivingPlayerCount();
 
@@ -1691,6 +1706,25 @@ function SetMonsterDefaults( KFPawn_Monster P )
 
 	P.ApplySpecialZoneHealthMod(HeadHealthMod);
 	P.GameResistancePct = DifficultyInfo.GetDamageResistanceModifier(LivingPlayerCount);
+
+	// look for special monster properties that have been enabled by the kismet node
+	for (i = 0; i < ArrayCount(SpawnedMonsterProperties); i++)
+	{
+		// this property is currently enabled
+		if (SpawnedMonsterProperties[i] != 0)
+		{
+			// do the action associated with that property
+			switch (EMonsterProperties(i))
+			{
+			case EMonsterProperties_Enraged:
+				P.SetEnraged(true);
+				break;
+			case EMonsterProperties_Sprinting:
+				P.bSprintOverride=true;
+				break;
+			}
+		}
+	}
 
 	if (OutbreakEvent != none)
 	{
@@ -2022,14 +2056,14 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     }
 }
 
-function UpdateAIRemaining()
+event UpdateAIRemaining()
 {
 	if (Role == ROLE_AUTHORITY)
 	{
 		if (MyKFGRI != none && SpawnManager != none)
 		{
 			RefreshMonsterAliveCount();
-			MyKFGRI.AIRemaining = Max(0.0f, SpawnManager.WaveTotalAI - NumAISpawnsQueued) + AIAliveCount;
+			MyKFGRI.AIRemaining = Max(0.0f, SpawnManager.WaveTotalAI - NumAIFinishedSpawning) + AIAliveCount;
 		}
 	}
 }

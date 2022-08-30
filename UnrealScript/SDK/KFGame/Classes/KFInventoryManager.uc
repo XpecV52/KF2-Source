@@ -2589,6 +2589,7 @@ defaultproperties
 	PendingFire(3)=0 // BASH_FIREMODE
 	PendingFire(4)=0 // GRENADE_FIREMODE
 	PendingFire(5)=0 // HEAVY_ATK_FIREMODE
+	PendingFire(6)=0 // CUSTOM_FIREMODE
 
 	bMustHoldWeapon=true
 	GrenadeCount=0

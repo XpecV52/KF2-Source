@@ -34,6 +34,7 @@ var const int HeatWaveRadiusSQ;
 var const float ShrapnelChance;
 var GameExplosion ExplosionTemplate;
 var private const float SnarePower;
+var private const float SnareSpeedModifier;
 var private const class<DamageType> SnareCausingDmgTypeClass;
 var private const int NapalmDamage;
 var private const float NapalmCheckCollisionScale;
@@ -229,6 +230,11 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
     return 0;
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+    return ((IsGroundFireActive()) ? SnareSpeedModifier : 1);
+}
+
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if((IsGroundFireActive() && DamageType != none) && ClassIsChildOf(DamageType, SnareCausingDmgTypeClass))
@@ -377,6 +383,7 @@ defaultproperties
     // Reference: KFGameExplosion'Default__KFPerk_Firebug.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
     SnarePower=100
+    SnareSpeedModifier=0.7
     SnareCausingDmgTypeClass=Class'KFDT_Fire_Ground'
     NapalmDamage=7
     NapalmCheckCollisionScale=2
@@ -398,7 +405,7 @@ defaultproperties
     SkillCatagories[3]="Flame"
     SkillCatagories[4]="Advanced Training"
     EXPAction1="Dealing Firebug weapon damage"
-    EXPAction2="Killing Crawlers with Firebug weapons"
+    EXPAction2="Killing Bloats and Crawlers with Firebug weapons"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
     PerkSkills(0)=(Name="BringTheHeat",Increment=0,Rank=0,StartingValue=0.35,MaxValue=0.35,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_BringtheHeat",bActive=false)
     PerkSkills(1)=(Name="HighCapFuelTank",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_HighCapacityFuel",bActive=false)
@@ -422,10 +429,12 @@ defaultproperties
     AutoBuyLoadOutPath(1)=class'KFWeapDef_DragonsBreath'
     AutoBuyLoadOutPath(2)=class'KFWeapDef_FlameThrower'
     AutoBuyLoadOutPath(3)=class'KFWeapDef_MicrowaveGun'
+    AutoBuyLoadOutPath(4)=class'KFWeapDef_MicrowaveRifle'
     HitAccuracyHandicap=-2
     HeadshotAccuracyHandicap=5
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Dragonsbreath_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.FlameThrower_PrestigePrecious_Mint_Large"
+    PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.MicrowaveGun_PrestigePrecious_Mint_large"
 }

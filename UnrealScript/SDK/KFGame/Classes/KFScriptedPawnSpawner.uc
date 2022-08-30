@@ -42,7 +42,7 @@ event PostBeginPlay()
 	SetupProgress();
 }
 
-function SpawnPawn(bool bSpawnInactive)
+function StartPawn(bool bSpawnInactive, optional KFPawn_Scripted NewPawn)
 {
 	if (PathSpawn == none)
 	{
@@ -68,7 +68,15 @@ function SpawnPawn(bool bSpawnInactive)
 		return;
 	}
 
-	Pawn = Spawn(PawnClass, self,, PathSpawn.Location, PathSpawn.Rotation,, true);
+	if (NewPawn != none)
+	{
+		Pawn = NewPawn;
+	}
+	else
+	{
+		Pawn = Spawn(PawnClass, self, , PathSpawn.Location, PathSpawn.Rotation, , true);
+	}
+
 	if (Pawn == none)
 	{
 		`warn(self$"::SpawnPawn - cannot spawn "$PawnClass$"!");
@@ -119,6 +127,7 @@ function SetupPawn()
 	}
 
 	Pawn.Initialize(PawnCharacterInfo, PawnHealth, PawnHealthMax);
+	Pawn.UpdatePawnSpeed();
 
 	if (Pawn.Controller == none)
 	{

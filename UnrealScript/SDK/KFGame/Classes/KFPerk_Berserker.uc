@@ -907,11 +907,12 @@ DefaultProperties
     // Skill tracking
 	HitAccuracyHandicap=2.5
 	HeadshotAccuracyHandicap=-2.0
-	AutoBuyLoadOutPath=(class'KFWeapDef_Crovel', class'KFWeapDef_Nailgun', class'KFWeapDef_Pulverizer', class'KFWeapDef_Eviscerator')
+	AutoBuyLoadOutPath=(class'KFWeapDef_Crovel', class'KFWeapDef_Katana', class'KFWeapDef_Pulverizer', class'KFWeapDef_Eviscerator', class'KFWeapDef_AbominationAxe')
 
 	// Prestige Rewards
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.BerserkerKnife_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.Crovel_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.Katana_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.Pulverizer_PrestigePrecious_Mint_Large"
+	PrestigeRewardItemIconPaths[4]="WEP_SkinSet_Prestige05_Item_TEX.tier04.Eviscerator_PrestigePrecious_Mint_large"
 }

@@ -17,6 +17,7 @@ package
             this.__setProp_disableAutoUpgradeCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
             this.__setProp_disableRemoteHeadshotEffectsCheckBox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
             this.__setProp_enableToggleToRunCheckbox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
+            this.__setProp_enableClassicPlayerInfoCheckbox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0();
             this.__setProp_killTickerCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0();
             this.__setProp_useAltAimOnDualCheckBox_GameSettomgsContainerMC_killTickerCheckBox_0();
             this.__setProp_closeButton_GameSettomgsContainerMC_header_0();
@@ -225,6 +226,32 @@ package
             try
             {
                 enableToggleToRunCheckbox["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_enableClassicPlayerInfoCheckbox_GameSettomgsContainerMC_classicWeaponSelectCheckBox_0() : *
+        {
+            try
+            {
+                enableClassicPlayerInfoCheckbox["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            enableClassicPlayerInfoCheckbox.autoSize = "none";
+            enableClassicPlayerInfoCheckbox.data = "";
+            enableClassicPlayerInfoCheckbox.enabled = true;
+            enableClassicPlayerInfoCheckbox.enableInitCallback = false;
+            enableClassicPlayerInfoCheckbox.focusable = true;
+            enableClassicPlayerInfoCheckbox.label = "Music Vocals";
+            enableClassicPlayerInfoCheckbox.selected = false;
+            enableClassicPlayerInfoCheckbox.visible = true;
+            try
+            {
+                enableClassicPlayerInfoCheckbox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

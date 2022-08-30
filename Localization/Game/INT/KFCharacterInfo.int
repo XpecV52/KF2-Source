@@ -4825,7 +4825,7 @@ AttachmentSkin1="Red"
 AttachmentSkin2="Precious"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="Holo Armband C"
+Attachment="Holo Armband B"
 AttachmentSkin0="Blue"
 AttachmentSkin1="Red"
 AttachmentSkin2="Precious"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="Green"
 AttachmentSkin3="Lime"
 AttachmentSkin4="Red"
 AttachmentSkin5="White"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="Project H 01 Base"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="Project H 01 Happy"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="Project H 01 Happy Off"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="Project H 01 Pokerface"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="Project H 01 Pokerface Off"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="Project H 01 Unhappy"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="Project H 01 Unhappy Off"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="Project H 02 Base"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Precious"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="Project H 02 Happy"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="Project H 02 Happy Off"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="Project H 02 Pokerface"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="Project H 02 Pokerface Off"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="Project H 02 Unhappy"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="Project H 02 Unhappy Off"
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="Steampunk Crystal Monocle"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="Steampunk Skull Beret"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="Steampunk Mandible Mask"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="Steampunk Crow-hawk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="Steampunk Leather Goggles"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="Steampunk Leather Gasmask"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="Steampunk Key Backpack"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="Steampunk Timer Armband"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="Steampunk Courier Backpack"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="Steampunk Tesla Backpack"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="Steampunk Zed Backpack"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="Steampunk Time Backpack"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="Steampunk Octo-band"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="Steampunk Captain's Hat"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="Steampunk Boiler Hat"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"

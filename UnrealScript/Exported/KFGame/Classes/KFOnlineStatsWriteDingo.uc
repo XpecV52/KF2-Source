@@ -57,6 +57,7 @@ defaultproperties
    Properties(93)=(PropertyId=4047,Data=(Type=SDT_Int32))
    Properties(94)=(PropertyId=4048,Data=(Type=SDT_Int32))
    Properties(95)=(PropertyId=4049,Data=(Type=SDT_Int32))
+   Properties(96)=(PropertyId=4050,Data=(Type=SDT_Int32))
    Name="Default__KFOnlineStatsWriteDingo"
    ObjectArchetype=KFOnlineStatsWrite'KFGame.Default__KFOnlineStatsWrite'
 }

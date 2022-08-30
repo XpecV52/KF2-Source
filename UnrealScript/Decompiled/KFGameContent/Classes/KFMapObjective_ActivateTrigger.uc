@@ -40,46 +40,41 @@ var() array<AkEvent> TriggerReminderSoundEvents;
 var() float ReadyTriggerReminderTime;
 var transient bool bObjectiveLeverActiveBefore;
 var transient bool bObjectiveLeverBlessedBefore;
+var bool bLeverReady;
+var repnotify bool bNoPlayers;
+var bool bInteractable;
 var repnotify int nNumLeversActivated;
+var const Color ReadyIconColor;
+var const Color NotReadyIconColor;
 
 replication
 {
      if(bNetDirty)
         TriggerPulls, TriggerPullsRequired, 
+        bInteractable, bNoPlayers, 
         nNumLeversActivated;
 }
 
 simulated event ReplicatedEvent(name VarName)
 {
-    local KFPlayerController KFPC;
-
-    if(VarName == 'bActive')
+    if(VarName == 'TriggerPulls')
     {
-        KFPC = KFPlayerController(GetALocalPlayerController());
-        if((KFPC != none) && KFPC.myGfxHUD != none)
+        if(TriggerPulls != 0)
         {
-            KFPC.myGfxHUD.WaveInfoWidget.ObjectiveContainer.SetActive(bActive);
+            TriggerObjectiveProgressEvent(0, float(TriggerPulls) / float(TriggerPullsRequired));
+            bLeverReady = false;
         }        
     }
     else
     {
-        if(VarName == 'TriggerPulls')
+        if(VarName == 'nNumLeversActivated')
         {
-            if(TriggerPulls != 0)
-            {
-                TriggerObjectiveProgressEvent(0, float(TriggerPulls) / float(TriggerPullsRequired));
-            }            
+            TriggerObjectiveProgressEvent(1);
+            bLeverReady = true;            
         }
         else
         {
-            if(VarName == 'nNumLeversActivated')
-            {
-                TriggerObjectiveProgressEvent(1);                
-            }
-            else
-            {
-                super.ReplicatedEvent(VarName);
-            }
+            super.ReplicatedEvent(VarName);
         }
     }
 }
@@ -103,7 +98,7 @@ simulated function ActivateObjective()
         {
             ObjectiveLever.SetFathersBlessing(false);
         }
-        bActive = false;
+        bInteractable = false;
         if(ActivationDelay > 0)
         {
             SetTimer(ActivationDelay, false, 'ActivateTrigger');            
@@ -116,7 +111,6 @@ simulated function ActivateObjective()
         bObjectiveLeverActiveBefore = false;
         bObjectiveLeverBlessedBefore = false;
         SetTimer(RemindPlayersTime, false, 'Timer_TooFewPlayersReminderCooldown');
-        PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
     }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -133,6 +127,7 @@ simulated function DeactivateObjective()
     if(Role == ROLE_Authority)
     {
         ClearTimer('Timer_CheckObjective');
+        bInteractable = false;
         if(ObjectiveLever != none)
         {
             ObjectiveLever.SetFathersBlessing(true);
@@ -189,11 +184,10 @@ function PlayDeactivationDialog()
 
 simulated function ActivateTrigger()
 {
-    local KFPlayerController KFPC;
     local int PlayerCount;
 
     LogInternal((string(self) @ "-") @ string(GetFuncName()));
-    bActive = true;
+    bInteractable = true;
     if(ObjectiveLever != none)
     {
         PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
@@ -202,13 +196,6 @@ simulated function ActivateTrigger()
     ++ nNumLeversActivated;
     TriggerObjectiveProgressEvent(1);
     SetTimer(0.25, true, 'Timer_CheckObjective');
-    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-    {
-        if((KFPC != none) && KFPC.myGfxHUD != none)
-        {
-            KFPC.SetObjectiveUIActive(bActive);
-        }        
-    }    
     SetTimer(ReadyTriggerReminderTime, false, 'Timer_TriggerReadyReminderCooldown');
 }
 
@@ -220,7 +207,7 @@ event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vecto
     PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
     if(TouchingZeds.Length >= ZedThresholds[PlayerCount])
     {
-        if((ObjectiveLever != none) && bActive)
+        if(((ObjectiveLever != none) && bActive) && bInteractable)
         {
             ObjectiveLever.SetFathersBlessing(false);
             CheckTriggerActivation();
@@ -230,7 +217,7 @@ event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vecto
     {
         if(TouchingHumans.Length >= PlayerThresholds[PlayerCount])
         {
-            if((ObjectiveLever != none) && bActive)
+            if(((ObjectiveLever != none) && bActive) && bInteractable)
             {
                 ObjectiveLever.SetFathersBlessing(true);
                 CheckTriggerActivation();
@@ -247,7 +234,7 @@ event UnTouch(Actor Other)
     PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
     if(TouchingHumans.Length < PlayerThresholds[PlayerCount])
     {
-        if((ObjectiveLever != none) && bActive)
+        if(((ObjectiveLever != none) && bActive) && bInteractable)
         {
             ObjectiveLever.SetFathersBlessing(false);
             CheckTriggerActivation();
@@ -257,7 +244,7 @@ event UnTouch(Actor Other)
     {
         if(TouchingZeds.Length < ZedThresholds[PlayerCount])
         {
-            if((ObjectiveLever != none) && bActive)
+            if(((ObjectiveLever != none) && bActive) && bInteractable)
             {
                 ObjectiveLever.SetFathersBlessing(true);
                 CheckTriggerActivation();
@@ -283,22 +270,24 @@ simulated function Timer_CheckObjective()
         goto J0x0B;
     }
     PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
-    if(bActive && ObjectiveLever != none)
+    if((bActive && bInteractable) && ObjectiveLever != none)
     {
         ObjectiveLever.SetFathersBlessing((TouchingZeds.Length < ZedThresholds[PlayerCount]) && TouchingHumans.Length >= PlayerThresholds[PlayerCount]);
         CheckTriggerActivation();
     }
     if(((ObjectiveLever != none) && ObjectiveLever.bAllowActivation) && !bObjectiveLeverActiveBefore)
     {
+        SetTimer(ReadyTriggerReminderTime, false, 'Timer_TriggerReadyReminderCooldown');
         if(TriggerReadySoundEvents.Length > TriggerPulls)
         {
-            PlaySoundBase(TriggerReadySoundEvents[TriggerPulls], true);
+            PlaySoundBase(TriggerReadySoundEvents[TriggerPulls],, WorldInfo.NetMode == NM_DedicatedServer);
         }
     }
     bObjectiveLeverActiveBefore = ObjectiveLever.bAllowActivation;
     if(Role == ROLE_Authority)
     {
-        if(bActive)
+        bNoPlayers = TouchingHumans.Length <= 0;
+        if(bActive && bInteractable)
         {
             PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
             if(TouchingHumans.Length < PlayerThresholds[PlayerCount])
@@ -323,6 +312,8 @@ simulated function Timer_CheckObjective()
                     SetTimer(RemindPlayersTime, false, 'Timer_TooManyZedsReminderCooldown');
                 }
             }
+            bTooFewPlayers = TouchingHumans.Length < PlayerThresholds[PlayerCount];
+            bTooManyZeds = TouchingZeds.Length > ZedThresholds[PlayerCount];
             if((ObjectiveLever != none) && ObjectiveLever.bAllowActivation)
             {
                 if(((TriggerPulls < TriggerReminderSoundEvents.Length) && TriggerReminderSoundEvents[TriggerPulls] != none) && !IsTimerActive('Timer_TriggerReadyReminderCooldown'))
@@ -348,7 +339,7 @@ simulated function OnTriggerActivated()
 {
     local KFGameReplicationInfo KFGRI;
 
-    if(!bActive)
+    if(!bActive || !bInteractable)
     {
         return;
     }
@@ -409,17 +400,7 @@ simulated function string GetLocalizedRequirements()
     return (Localize("Objectives", default.RequirementsLocKey, "KFGame")) @ string(TriggerPullsRequired);
 }
 
-simulated function bool HasFailedObjective()
-{
-    return false;
-}
-
-simulated function bool UsesMultipleActors()
-{
-    return true;
-}
-
-simulated function string GetActorCount()
+simulated function string GetProgressText()
 {
     if(!bActive)
     {
@@ -428,11 +409,53 @@ simulated function string GetActorCount()
     return (string(TriggerPulls) $ "/") $ string(TriggerPullsRequired);
 }
 
+simulated function GetLocalizedStatus(out string StatusMessage, out int bWarning, out int bNotification)
+{
+    StatusMessage = "";
+    super.GetLocalizedStatus(StatusMessage, bWarning, bNotification);
+    if(StatusMessage == "")
+    {
+        if(ObjectiveLever.ReadyToActivate() || bLeverReady)
+        {
+            StatusMessage = Localize("Objectives", "Ready", LocalizationPackageName);
+            bNotification = 1;
+            bWarning = 0;
+            return;            
+        }
+        else
+        {
+            StatusMessage = Localize("Objectives", "NotReady", LocalizationPackageName);
+            bNotification = 0;
+            bWarning = 1;
+            return;
+        }
+    }
+}
+
+simulated function Color GetIconColor()
+{
+    if(bTooManyZeds || bTooFewPlayers && !bNoPlayers)
+    {
+        return NotReadyIconColor;
+    }
+    if(((Role == ROLE_Authority) && TouchingHumans.Length <= 0) || bNoPlayers)
+    {
+        return ObjectiveIconColor;
+    }
+    if(ObjectiveLever.ReadyToActivate() || bLeverReady)
+    {
+        return ReadyIconColor;
+    }
+    return ObjectiveIconColor;
+}
+
 defaultproperties
 {
     TriggerPullsRequired=6
     ActivationDelay=5
     RemindPlayersTime=30
+    ReadyIconColor=(B=0,G=255,R=0,A=255)
+    NotReadyIconColor=(B=0,G=0,R=255,A=255)
     PlayerThresholds[0]=1
     PlayerThresholds[1]=1
     PlayerThresholds[2]=2
@@ -446,9 +469,10 @@ defaultproperties
     ZedThresholds[4]=2
     ZedThresholds[5]=1
     LocalizationKey="ActivateTrigger"
+    NameShortLocKey="ActivateTrigger"
     DescriptionLocKey="DescriptionActivateTrigger"
+    DescriptionShortLocKey="DescriptionActivateTriggerShort"
     RequirementsLocKey="RequiredActivateTrigger"
-    ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_UI_Lever'
     GameModeBlacklist=/* Array type was not detected. */
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none

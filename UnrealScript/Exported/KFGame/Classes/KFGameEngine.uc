@@ -635,7 +635,7 @@ static function SetCrosshairEnabled(bool bEnable)
 defaultproperties
 {
    KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
-   KFFontScale=0.600000
+   KFFontScale=0.650000
    bMuteOnLossOfFocus=True
    SeasonalEventId=-1
    LoadedSeasonalEventId=-1
@@ -648,6 +648,7 @@ defaultproperties
    FOVOptionsPercentageValue=1.000000
    LocalLoginStatus=LS_LoggedIn
    bDisableAILogging=True
+   TimeBetweenPurgingPendingKillObjects=0.000000
    SafeFrameScale=1.000000
    Name="Default__KFGameEngine"
    ObjectArchetype=GameEngine'Engine.Default__GameEngine'

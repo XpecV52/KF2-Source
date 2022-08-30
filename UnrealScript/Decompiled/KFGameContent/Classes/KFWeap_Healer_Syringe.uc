@@ -23,6 +23,7 @@ defaultproperties
     FirstPersonMeshName="WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
     AttachmentArchetypeName="WEP_Healer_ARCH.Wep_Healer_3P"
+    bStorePreviouslyEquipped=false
     FireModeIconPaths=/* Array type was not detected. */
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
     PlayerViewOffset=(X=20,Y=10,Z=-8)

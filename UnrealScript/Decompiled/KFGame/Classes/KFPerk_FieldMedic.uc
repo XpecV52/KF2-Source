@@ -41,6 +41,7 @@ var private const float MaxHealingShield;
 var private const float HealingShieldDuration;
 var private const ParticleSystem AAParticleSystem;
 var private const float SnarePower;
+var private const float SnareSpeedModifier;
 var private KFGameExplosion AAExplosionTemplate;
 var private const class<KFDamageType> AAExplosionDamageType;
 
@@ -268,6 +269,11 @@ static simulated function ParticleSystem GetAAEffect()
     return default.AAParticleSystem;
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+    return ((IsSlugActive()) ? SnareSpeedModifier : 1);
+}
+
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if(((IsSlugActive()) && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
@@ -388,6 +394,7 @@ defaultproperties
     HealingShieldDuration=5
     AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
     SnarePower=100
+    SnareSpeedModifier=0.7
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.Medic_Perk_Explosion'
         Damage=50
@@ -444,10 +451,12 @@ defaultproperties
     AutoBuyLoadOutPath(1)=class'KFWeapDef_MedicSMG'
     AutoBuyLoadOutPath(2)=class'KFWeapDef_MedicShotgun'
     AutoBuyLoadOutPath(3)=class'KFWeapDef_MedicRifle'
+    AutoBuyLoadOutPath(4)=class'KFWeapDef_MedicRifleGrenadeLauncher'
     HitAccuracyHandicap=5
     HeadshotAccuracyHandicap=-0.75
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.MedicKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MedicPistol_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.MedicSMG_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.HMTech-301Shotgun_PrestigePrecious_Mint_large"
+    PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.HMTech-401AssaultRifle_PrestigePrecious_Mint_large"
 }

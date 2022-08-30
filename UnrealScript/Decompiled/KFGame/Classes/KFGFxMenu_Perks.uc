@@ -69,6 +69,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
+const KFID_ClassicPlayerInfo = 173;
 
 var KFGFxPerksContainer_Selection SelectionContainer;
 var KFGFxPerksContainer_Header HeaderContainer;
@@ -406,7 +407,7 @@ function Callback_ConfirmPerkReset()
         }
         else
         {
-            if(KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 4)
+            if(KFPC.CurrentPerk.GetCurrentPrestigeLevel() >= 5)
             {
                 Manager.DelayedOpenPopup(2, 0, Class'KFCommon_LocalizedStrings'.default.NoticeString, Class'KFGFxPerksContainer_Prestige'.default.AtMaxPrestigeLevelString, Class'KFCommon_LocalizedStrings'.default.ConfirmString);                
             }

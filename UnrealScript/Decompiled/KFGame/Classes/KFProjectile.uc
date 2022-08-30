@@ -62,6 +62,7 @@ var bool bAmbientSoundZedTimeOnly;
 var protected bool bIsAIProjectile;
 var protected const bool bWarnAIWhenFired;
 var const bool bCanStick;
+var const bool bCanPin;
 var float AlwaysRelevantDistanceSquared;
 var byte WeaponFireMode;
 var KFProjectile.FracturedMeshGlassShatterType GlassShatterType;
@@ -109,6 +110,8 @@ var transient Actor PrevStuckToActor;
 var transient int StuckToBoneIdx;
 var transient Vector StuckToLocation;
 var transient Rotator StuckToRotation;
+var repnotify transient Actor PinActor;
+var transient int PinBoneIdx;
 var export editinline KFProjectileStickHelper StickHelper;
 
 replication
@@ -134,6 +137,9 @@ replication
      if(bCanStick && bNetInitial || !bNetOwner)
         StuckToActor, StuckToBoneIdx, 
         StuckToLocation, StuckToRotation;
+
+     if(bCanPin && bNetDirty)
+        PinActor, PinBoneIdx;
 }
 
 // Export UKFProjectile::execGetTerminalVelocity(FFrame&, void* const)
@@ -269,7 +275,17 @@ simulated event ReplicatedEvent(name VarName)
                     }
                     else
                     {
-                        super(Actor).ReplicatedEvent(VarName);
+                        if(VarName == 'PinActor')
+                        {
+                            if((PinActor != none) && PinBoneIdx != -1)
+                            {
+                                StickHelper.Pin(PinActor, PinBoneIdx);
+                            }                            
+                        }
+                        else
+                        {
+                            super(Actor).ReplicatedEvent(VarName);
+                        }
                     }
                 }
             }
@@ -387,10 +403,10 @@ singular simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponen
     local TraceHitInfo HitInfo;
 
     super(Actor).HitWall(HitNormal, Wall, WallComp);
-    if(bCanStick)
+    if(bCanStick || bCanPin)
     {
         LastTouchComponent = WallComp;
-        StickHelper.TryStick(HitNormal,, Wall);
+        StickHelper.TryStick(HitNormal, Location, Wall);
         return;
     }
     if(Wall.bWorldGeometry)
@@ -448,7 +464,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
     if(Other != Instigator)
     {
-        if(bCanStick)
+        if(bCanStick || bCanPin)
         {
             StickHelper.TryStick(HitNormal, HitLocation, Other);
             return;

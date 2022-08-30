@@ -298,16 +298,17 @@ defaultproperties
 	InstantHitDamage(ALTFIRE_FIREMODE)=20.0
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Freeze_FreezeThrower_IceShards'
 	FireInterval(ALTFIRE_FIREMODE)=0.6f
+	PenetrationPower(ALTFIRE_FIREMODE)=4.0
 	AmmoCost(ALTFIRE_FIREMODE)=10
-	NumPellets(ALTFIRE_FIREMODE)=7
-	Spread(ALTFIRE_FIREMODE)=0.05f
-	PelletSpread(0)=(X=0.f,Y=0.f)
-	PelletSpread(1)=(X=0.5f,Y=0.f) 			//0deg 
-	PelletSpread(2)=(X=0.3214,Y=0.3830) 	//60deg
-	PelletSpread(3)=(X=-0.25,Y=0.4330)		//120deg
-	PelletSpread(4)=(X=-0.5f,Y=0.f)			//180deg
-	PelletSpread(5)=(X=-0.25f,Y=-0.4330)	//240deg
-	PelletSpread(6)=(X=0.25,Y=-0.4330)		//300deg
+	NumPellets(ALTFIRE_FIREMODE)=12
+	Spread(ALTFIRE_FIREMODE)=0.15f
+	//PelletSpread(0)=(X=0.f,Y=0.f)
+	//PelletSpread(1)=(X=0.5f,Y=0.f) 			//0deg 
+	//PelletSpread(2)=(X=0.3214,Y=0.3830) 	//60deg
+	//PelletSpread(3)=(X=-0.25,Y=0.4330)		//120deg
+	//PelletSpread(4)=(X=-0.5f,Y=0.f)			//180deg
+	//PelletSpread(5)=(X=-0.25f,Y=-0.4330)	//240deg
+	//PelletSpread(6)=(X=0.25,Y=-0.4330)		//300deg
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Freezethrower'

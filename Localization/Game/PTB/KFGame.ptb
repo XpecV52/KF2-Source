@@ -1,5 +1,5 @@
 [KFPawn_Scripted]
-ScriptedPawnString="V.I.P."
+ScriptedPawnString="Escolta"
 
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="Efeitos especiais"
@@ -31,6 +31,7 @@ ModeStrings[0]="Sobrevivência"
 ModeStrings[1]="Semanal"
 ModeStrings[2]="Sobreviv. X"
 ModeStrings[3]="Infinito"
+ModeStrings[4]="Objetivo"
 
 NoPreferenceString="QUALQUER"
 OKString="OK"
@@ -95,7 +96,7 @@ MixerGaveDoshString=", visualizador Mixer, lhe deu Grana."
 MixerGaveGrenadeString=", visualizador Mixer, lhe deu uma granada."
 MixerGaveHealthString=", visualizador Mixer, curou você."
 MixerZedTimeString=", visualizador Mixer, ativou Hora dos Zeds."
-MixerRageZedsString=", visualizador Mixer, enfureceu os Zeds próximos. "
+MixerRageZedsString=", visualizador Mixer, enfureceu os Zeds próximos."
 MixerPukeString=", visualizador Mixer, vomitou em você."
 MixerSpawnedFPString=", visualizador Mixer, evocou um carniceiro."
 MixerSpawnedScrakeString=", visualizador Mixer, evocou um Retalhador!"
@@ -108,7 +109,7 @@ DiscordSoloMatchString="Partida solo"
 DiscordMatchLobbyString=": Sala de esp. partida"
 DiscordTraderTimeString=": Hora do comerciante"
 DiscordBossWaveString=": Leva do Chefe"
-DiscordWaveString=": Leva"
+DiscordWaveString=": Leva "
 
 StartOfflineGameString="Iniciar jogo off-line"
 StartOfflineGameDescriptionString="O grupo será desfeito se você iniciar um jogo off-line. \nContinuar?"
@@ -141,9 +142,9 @@ CompleteMapString="Complete a partida no mapa:"
 KillZedsString="Mate Zeds:"
 KillBossString="Matar chefe:"
 KillBossDescriptionString="Em sobrevivência ou semanal"
-VersusKillsString="Mate jogadores como:"
-DealVersusDamageString="Cause dano em jogadores como:"
-VersusCompletionString="Complete uma partida como:"
+VersusKillsString=Mate jogadores como:
+DealVersusDamageString=Cause dano em jogadores como:
+VersusCompletionString=Complete uma partida como:
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FALHA AO LOCALIZAR PARTIDA"
@@ -1006,7 +1007,7 @@ FinalString="Final"
 
 [KFGFxHUD_WeaponSelectWidget]
 PrimaryString="PRINCIPAL"
-EquiptmentString="EQUIPAMENTO"
+EquiptmentString="APETRECHOS"
 MeleeString="CORPO A CORPO"
 SecondaryString="SECUNDÁRIA"
 ThrowString="ARMA DE LANÇAMENTO"
@@ -1246,6 +1247,7 @@ ReduceHighPitchNoiseString="Reduzir ruído de alta freq."
 DisableAutoUpgradeString="Desativar Loja Auto."
 HideRemodeHeadshotEffectsString="Desativar ef. remoto tiro na cabeça"
 ToggleToRunString="Alternar para correr"
+ClassicPlayerInfoString="Barras de vida antigas"
 
 EnableMixerString="Ativar/desativar interatividade do Mixer"
 DisableMixerString="Desativar mixer"
@@ -1315,7 +1317,7 @@ GBA_LastWeapon="Última arma usada"
 GBA_SwitchWeapon1="Arma principal"
 GBA_SwitchWeapon2="Arma secundária"
 GBA_SwitchWeapon3="Arma corpo a corpo"
-GBA_SwitchWeapon4="Equipamento"
+GBA_SwitchWeapon4="Apetrechos"
 GBA_VoteYes="Votar Sim (segurar)"
 GBA_VoteNo="Votar Não (segurar)"
 
@@ -1737,7 +1739,7 @@ Vampire="Vampiro"
 VampireDescription="Cura 4 pontos de vida para cada Zed que abater com arma da classe. Ataca 20% mais rápido com armas corpo a corpo da classe."
 
 Speed="Açougueiro"
-SpeedDescription="Ataca 20% mais rápido e causa 25% mais dano com armas corpo a corpo da classe."
+SpeedDescription="Ataca 20% mais rápido e causa 20% mais dano com armas corpo a corpo da classe."
 
 Resistance="Resistência"
 ResistanceDescription="Ganha 20% de resistência a todo tipo de dano. Ganha 20% de resistência adicional a veneno e dano sônico."
@@ -1755,7 +1757,7 @@ Spartan="HORA DOS ZEDS - Espartano"
 SpartanDescription="Durante a hora dos Zeds, você ataca com armas da classe e se movimenta em tempo real."
 
 Rage="HORA DOS ZEDS - Fúria do berserker"
-RageDescription="Cura 25% da vida e todos os Zeds próximos tentam fugir quando o personagem entra em hora dos Zeds."
+RageDescription="Sempre que a hora dos Zed é ativada ou atualizada, cura 25% de vida e força os Zeds próximos a fugirem."
 
 [KFPerk_Commando]
 PerkName="Comando"
@@ -1768,7 +1770,7 @@ SkillCatagories[4]="Treinamento avançado"
 
 Passives[0]=(Title="Dano de arma de classe",Description="Aumenta em %x% o dano de arma da classe por nível");
 Passives[1]=(Title="Inimigo oculto e detecção de vida",Description="Distância de 5 m mais %x% m por nível");
-Passives[2]=(Title="Extensão da hora dos Zeds",Description="A hora dos Zeds aumenta %x% a cada 5 níveis");
+Passives[2]=(Title="Atualização da Hora dos Zeds",Description="A hora dos Zeds aumenta %x% a cada 5 níveis");
 Passives[3]=(Title="Velocidade de recarga",Description="Aumenta em %x%% a velocidade de recarga de arma da classe a cada 5 níveis");
 Passives[4]=(Title="Capacidade de visão noturna",Description="Lanternas - *e* óculos de visão noturna");
 Passives[5]=(Title="Chamado de Zeds ocultos",Description="Permite aos aliados ver as unidades ocultas");
@@ -1783,7 +1785,7 @@ LargeMags="Alta capacidade de munição"
 LargeMagsDescription="Aumenta em 50% a capacidade de munição de armas de classe."
 
 Backup="Retirada"
-BackupDescription="Aumenta em 50% o dano de sua pistola 9 mm e de sua faca e aumenta em 50% a velocidade de troca de arma."
+BackupDescription="Aumenta em 85% o dano de sua pistola 9 mm e de sua faca, e aumenta em 50% a velocidade de troca de arma."
 
 Impact="Rodadas de impacto"
 ImpactDescription="Aumenta em 150% o poder de derrubar para armas de classe."
@@ -1795,7 +1797,7 @@ AmmoVest="Preparado"
 AmmoVestDescription="Carrega até 20% mais munição para cada arma."
 
 HollowPoints="Rodadas de pontos nulos"
-HollowPointsDescription="Aumenta em 25% o dano de armas de classe e reduz em 50% o recuo."
+HollowPointsDescription="Aumenta em 20% o dano de armas de classe e reduz em 50% o recuo."
 
 EatLead="Toma chumbo"
 EatLeadDescription="Aumenta em 100% a capacidade de munição de armas de classe."
@@ -1829,13 +1831,13 @@ Damage="Bombardeiro"
 DamageDescription="Aumenta em 25% o dano de armas de classe explosivas"
 
 Speed="Soldado de choque"
-SpeedDescription="Recarrega 20% mais rápido as armas de classe e aumenta em 25% a força para neutralizar e derrubar."
+SpeedDescription="Aumenta a velocidade de recarga das armas de classe e aumenta em 10% o poder de derrubada delas."
 
 DirectHit="Rodada de alto impacto"
-DirectHitDescription="Aumenta em 20% o dano de golpe direto com armas explosivas."
+DirectHitDescription="Aumenta em 25% o dano de acerto direto de armas explosivas."
 
 Ammo="Rodadas extras"
-AmmoDescription="Aumenta em 5 a munição máxima para armas de classe explosivas."
+AmmoDescription="Aumenta em 5 a munição máxima para armas de classe explosivas. Não se aplica ao C4."
 
 SirenResistance="Rodadas de resistência sônica"
 SirenResistanceDescription="Seus explosivos ficam imunes ao grito da sereia e sempre explodirão."
@@ -1884,13 +1886,13 @@ Combatant="Médico combatente"
 CombatantDescription="Aumenta em 50% a capacidade de munição de armas de classe e em 10% a velocidade de movimento."
 
 HealingDamageBoost="Injeção de foco"
-HealingDamageBoostDescription="Aumenta em 5% o dano causado pelos aliados acertados por dardos curativos durante 5 segundos. Bônus acumulável em até 20%. "
+HealingDamageBoostDescription="Aumenta em 5% o dano causado pelos aliados acertados por dardos curativos durante 5 segundos. Bônus acumulável em até 20%."
 
 AcidicCompound="Rodadas ácidas"
 AcidicCompoundDescription="Armas de classe podem envenenar Zeds, concedendo dano de veneno ao longo do tempo."
 
 HealingShield="Bônus coagulante"
-HealingShieldDescription="Aumenta em 10% a resistência a dano dos aliados acertados por dardos curativos durante 5 segundos. Bônus acumulável em até 30%. "
+HealingShieldDescription="Aumenta em 10% a resistência a dano dos aliados acertados por dardos curativos durante 5 segundos. Bônus acumulável em até 30%."
 
 Enforcer="Cirurgião de batalha"
 EnforcerDescription="Aumenta em 20% o dano de armas de classe"
@@ -1899,7 +1901,7 @@ AirborneAgent="HORA DOS ZEDS - Agente aéreo"
 AirborneAgentDescription="Lança um gás de cura durante a hora dos Zeds que cura todos os aliados próximos."
 
 Sedative="HORA DOS ZEDS - Zedativo"
-SedativeDescription="Durante a hora dos Zeds, o dano causado aos Zeds com armas de classe concederão 30% de lentidão e alto dano de veneno. "
+SedativeDescription="Durante a hora dos Zeds, o dano causado aos Zeds com armas de classe concederão 30% de lentidão e alto dano de veneno."
 
 
 EXPAction1="Causando dano de arma médica"
@@ -1908,7 +1910,7 @@ EXPAction2="Curando aliados"
 [KFPerk_Firebug]
 PerkName="Incendiária"
 EXPAction1="Causando dano de arma incendiária"
-EXPAction2="Matando rastejadores com armas incendiária"
+EXPAction2="Matar Inchados e Rastejadores com armas incendiárias"
 
 SkillCatagories[0]="Suprimentos"
 SkillCatagories[1]="Picante"
@@ -1932,7 +1934,7 @@ Fuse="Churrasco"
 FuseDescription="O efeito de incendiar das armas de classe dura 150% a mais, aumentando o dano ao longo do tempo."
 
 GroundFire="Fogo de chão"
-GroundFireDescription="Incendeia o chão e causa aumento de dano e redução de 20% na velocidade de movimento dos Zeds."
+GroundFireDescription="Incendeia o chão causando o dobro do dano e reduzindo em 30% na velocidade de movimento dos Zeds. Não se aplica a molotovs."
 
 ZedShrapnel="Estilhaços de Zed"
 ZedShrapnelDescription="Zeds abatidos com fogo têm 30% de chance de explodir, causando dano e atordoando os Zeds próximos."
@@ -1941,7 +1943,7 @@ Napalm="Napalm"
 NapalmDescription="Ao queimar Zeds que têm contato com outros Zeds, os outros também serão queimados e o efeito do fogo é 150% mais longo."
 
 Range="Tempestade de fogo"
-RangeDescription="Aumenta o alcance de armas de classe."
+RangeDescription="Aumente o alcance da Pistola de Fogo, Lança-chamas e da Arma de Micro-ondas."
 
 SplashDamage="Onda de calor"
 SplashDamageDescription="Zeds atingidos à queima-roupa tropeçarão e cairão."
@@ -2008,7 +2010,7 @@ EXPAction2="Tiros na cabeça com armas de atirador exímio"
 SkillCatagories[0]="Movimento"
 SkillCatagories[1]="Técnica básica"
 SkillCatagories[2]="Habilidade"
-SkillCatagories[3]="Equipamento"
+SkillCatagories[3]="Apetrechos"
 SkillCatagories[4]="Técnicas de mestre"
 
 Passives[0]=(Title="Dano de tiro na cabeça",Description="Aumenta em %x% o dano de tiro na cabeça por nível");
@@ -2028,7 +2030,7 @@ Stun="Choque balístico"
 StunDescription="Aumenta em 100% o poder de atordoamento de armas de classe."
 
 RhythmMethod="Acaba com eles"
-RhythmMethodDescription="Cada tiro na cabeça consecutivo com arma de classe aumenta em 10% o dano até 50%. "
+RhythmMethodDescription="Cada tiro na cabeça consecutivo com arma de classe aumenta em 10% o dano até 50%.  "
 
 TacticalReload="Recarga tática"
 TacticalReloadDescription="Aumenta a velocidade de recarga com armas de classe."
@@ -2037,7 +2039,7 @@ Scoped="Francoatirador"
 ScopedDescription="Reduz em 10% o recuo e aumenta em 10% o dano de tiros na cabeça ao usar miras metálicas com armas de classe."
 
 AmmoPouch="Sempre preparado"
-AmmoPouchDescription="Carrega até 25% mais munição para cada arma e granada."
+AmmoPouchDescription="Carrega uma granada extra e mais 25% de munição para armas de classe."
 
 ZTKnockdown="HORA DOS ZEDS - Assassino"
 ZTKnockdownDescription="Tiros na cabeça com armas de classe têm 5% de chance de ativar a hora dos Zeds. Durante a hora dos Zeds, mais 35% de dano de armas de classe."
@@ -2101,7 +2103,7 @@ EXPAction2="Abatendo coágulos com armas SWAT"
 
 SkillCatagories[0]="Especialização"
 SkillCatagories[1]="Técnicas de assalto"
-SkillCatagories[2]="Equipamento"
+SkillCatagories[2]="Apetrechos"
 SkillCatagories[3]="Técnicas defensivas"
 SkillCatagories[4]="Treinamento especialista"
 
@@ -2117,7 +2119,7 @@ TacticalMovement="Movimento tático"
 TacticalMovementDescription="Sem penalidade de movimento por usar miras metálicas ou por agachar com armas de classe."
 
 Backup="Treinamento de combate próximo"
-BackupDescription="Aumenta em 50% o dano da pistola 9 mm e da faca. Você começa cada jogo com duas pistolas 9 mm."
+BackupDescription="Aumenta em 85% o dano da pistola 9 mm e da faca. Você começa cada jogo com duas pistolas 9 mm."
 
 TacticalReload="Recarga tática"
 TacticalReloadDescription="Aumenta a velocidade de recarga com armas de classe."
@@ -2132,13 +2134,13 @@ BodyArmor="Armadura de assalto"
 BodyArmorDescription="Aumenta em 50% a armadura máxima. Cada jogo inicia com 50% de armadura, que acumula com a armadura pesada obtida em treinamento."
 
 Cripple="Aleijar"
-CrippleDescription="Acertos múltiplos com armas de classe causarão até 30% de lentidão aos Zeds. É mais eficaz se acertar as pernas."
+CrippleDescription="Acertos múltiplos com armas da classe causarão até 30% de lentidão aos Zeds. Tiros na cabeça e em pontos fracos aplicam este efeito duas vezes mais rápido."
 
 SWATEnforcer="HORA DOS ZEDS - Aríete"
-SWATEnforcerDescription="Durante a hora dos Zeds, você se movimenta em tempo real e tem um grande poder de abate ao correr de encontro a um Zed."
+SWATEnforcerDescription="Durante a Hora dos Zeds, você se movimenta rápido em tempo real, causa mais dano e derruba os Zeds que tocar."
 
 RapidAssault="Hora dos Zeds - Assalto rápido"
-RapidAssaultDescription="Hora dos Zeds: não haverá limite de munição em armas de classe, tiros quase em tempo real e mais 100% no poder de tropeçar. "
+RapidAssaultDescription="Hora dos Zeds: não haverá limite de munição em armas de classe, tiros quase em tempo real e mais 100% no poder de tropeçar."
 
 [KFPerk_Survivalist]
 PerkName="Sobrevivente"
@@ -2147,7 +2149,7 @@ EXPAction2="Abatendo coágulos com qualquer arma"
 
 SkillCatagories[0]="Manuseio de armas"
 SkillCatagories[1]="Técnicas de sobrevivência"
-SkillCatagories[2]="Equipamento"
+SkillCatagories[2]="Apetrechos"
 SkillCatagories[3]="Destruição"
 SkillCatagories[4]="Treinamento especialista"
 
@@ -2179,7 +2181,7 @@ ZedShrapnel="Explozeds espontâneas"
 ZedShrapnelDescription="Zeds abatidos têm 30% de chance de explodir, causando dano e atordoando os Zeds próximos."
 
 MakeThingsGoBoom="Explode Tudo"
-MakeThingsGoBoomDescription="Aumenta em 40% o dano em área de todos os explosivos."
+MakeThingsGoBoomDescription="Aumenta em 40% a resistência a explosivos e o dano em área de todos os explosivos."
 
 Madman="HORA DOS ZEDS - Maluco"
 MadmanDescription="Durante a hora dos Zeds, todas as armas atiram 3x mais rápido."
@@ -2338,25 +2340,53 @@ FreeTrial="Compre Killing Floor 2 hoje!"
 FeaturedCrossover="Promoção de Crossover em destaque"
 
 [Objectives]
+ObjectiveTitle="OBJETIVO"
 HoldVolume="DEFENDA A ÁREA"
 DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="DEFENDA SUA POSIÇÃO"
 RequiredDoshHold="Jogadores necessários:"
 DoschHoldDesc="Deixe os Zeds fora da área demarcada"
 DescriptionDoshHold="Deixe os Zeds fora da área demarcada"
+DescriptionDoshHoldShort="Proteja a Área (Opcional)"
 RepairObjective="SOLDAR E REPARAR"
-UseWelderToRepair="Use o soldador para consertar o(s) objetivo(s)"
-RepairObjectiveRequired="Objetivo(s) para consertar:"
+UseWelderToRepair="Use o Soldador para consertar as máquinas quebradas"
+UseWelderToRepairShort="Soldar máquina quebrada"
+UseWelderToRepairTraderPod="Use o Soldador para consertar os pontos de comércio quebrados"
+UseWelderToRepairTraderPodShort="Soldar pontos de comércio"
+RepairObjectiveRequired="Máquinas quebradas para consertar:"
 EscortPawnsObjective="ESCOLTA"
-EscortPawnsDescription="Proteja o alvo contra os Zeds"
+EscortPawnsDescription="Escolte e proteja o Drone dos Zeds"
+EscortPawnsDescriptionShort="Escolte o Drone"
 RequiredHoldVolume="RequiredHoldVolume"
 DestroyActor="BUSCAR E DESTRUIR"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="OPERAR E CONTROLAR"
-DescriptionActivateTrigger="Ativar o controle de objetivo"
+DescriptionActivateTrigger="Ative o painel de controle"
+DescriptionActivateTriggerShort="Ative o painel"
+DescriptionActivateTriggerFlares="Ative o Lança-sinalizadores"
+DescriptionActivateTriggerFlaresShort="Ativar Lança-sinalizadores"
+DescriptionActivateTriggerServer="Sobrecarregue o Terminal do Servidor"
+DescriptionActivateTriggerServerShort="Sobrecarregar o Terminal do Servidor"
+DescriptionActivateTriggerCommTower="Sobrecarregue a Torre de Comunicação"
+DescriptionActivateTriggerCommTowerShort="Sobrecarregar a Torre de Comunicação"
 RequiredActivateTrigger="Ativações necessárias:"
+ExterminateWaveObjective="EXTERMINAÇÃO"
+ExterminateWaveDescription="Mate todos os Zeds"
+ExterminateWaveDescriptionShort="Matar todos os Zeds"
+ExterminateWaveRequired="Zeds para exterminar:"
+HoldZoneObjective="MANTENHA A POSIÇÃO"
+HoldZoneDescription="Proteja a área destacada contra os Zeds"
+HoldZoneDescriptionShort="Proteger a área destacada"
+HoldZoneRequired="Tempo para proteger:"
+TransportWaveObjective="TRANSPORTE"
+TransportWaveDescription="Transporte o Tablet de Dados ao local de entrega"
+TransportWaveDescriptionShort="Transporte o Tablet de Dados"
+TransportWaveDescriptionGear="Transporte os equipamentos ao local de entrega"
+TransportWaveDescriptionGearShort="Transporte os equipamentos"
+RequiredCollectActor="Entregas necessárias:"
 FailedString="FALHA"
+SuccessString="FEITO"
 RepairObjSantaWorkshopCustomTitle1="CONSERTAR A ENERGIA"
 RepairObjSantaWorkshopCustomDescr1="Conserte 3 placas de circuitos com o soldador"
 RepairObjSantaWorkshopCustomTitle2="CONSERTAR OS PORTÕES"
@@ -2373,6 +2403,20 @@ OperateObjSantaWorkshopCustomTitle2="PUXE A ALAVANCA"
 OperateObjSantaWorkshopCustomDescr2="Mantenha os Zeds longe da área"
 OperateObjSantaWorkshopCustomTitle3="PUXE A ALAVANCA"
 OperateObjSantaWorkshopCustomDescr3="Mantenha os Zeds longe da área"
+TooFewPlayers="POUCOS JOGADORES"
+TooManyZeds="MUITOS ZEDS"
+KillRemainingZeds="MATE TODOS OS ZEDS"
+BeingAttacked="SOB ATAQUE"
+LowHealth="POUCA VIDA"
+Stopped="PARADO"
+Blocked="BLOQUEADO POR ZEDS"
+NeedsRepair="PRECISA DE CONSERTO"
+Dropped="DERRUBADO"
+PickedUp="PEGOU"
+PickupTransportItem="PEGUE O TRANSPORTE"
+Reset="REINICIAR"
+Ready="PRONTO"
+NotReady="NÃO ESTÁ PRONTO"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2398,7 +2442,7 @@ KFPawn_ZedScrake="Retalhador"
 KFPawn_ZedSiren="Sereia"
 KFPawn_ZedDAR_EMP="R.E.D.A. Armador"
 KFPawn_ZedDAR_Laser="R.E.D.A. Dinamitador"
-KFPawn_ZedDAR_Rocket="R.E.D.A. Bombardeiro "
+KFPawn_ZedDAR_Rocket="R.E.D.A. Bombardeiro"
 KFPawn_ZedPatriarch="Patriarca"
 KFPawn_ZedBloatKingSubspawn="Cria da Abominação"
 ;Human zeds
@@ -2526,10 +2570,10 @@ Source0="Promoção Cavaleiros"
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
-SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
-SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
-SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1")
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
@@ -2539,11 +2583,11 @@ ChanceDropDescriptionStrings[1]="Saque 2"
 [KFGFxSummerSideShowObjectivesContainer]
 CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Conserto nos Ares",DescriptionString="Conserte os canos quebrados na Aeronave");
-SpecialEventObjectiveInfoList[1]=(TitleString="Sucesso no Deque Superior",DescriptionString="Defenda o deque superior na Aeronave");
-SpecialEventObjectiveInfoList[2]=(TitleString="Fortalecido!",DescriptionString="Conserte as caixas de disjuntores na Aeronave");
-SpecialEventObjectiveInfoList[3]=(TitleString="Descarga Rápida",DescriptionString="Transfira água para o motor a vapor na Aeronave");
-SpecialEventObjectiveInfoList[4]=(TitleString="Uma Ótima Embarcação",DescriptionString="Vença uma partida em Difícil ou mais na Aeronave");
+SpecialEventObjectiveInfoList[0]=(TitleString="Conserto nos Ares",DescriptionString="Conserte os canos quebrados na Aeronave")
+SpecialEventObjectiveInfoList[1]=(TitleString="Sucesso no Deque Superior",DescriptionString="Defenda o deque superior na Aeronave")
+SpecialEventObjectiveInfoList[2]=(TitleString="Fortalecido!",DescriptionString="Conserte as caixas de disjuntores na Aeronave")
+SpecialEventObjectiveInfoList[3]=(TitleString="Descarga Rápida",DescriptionString="Transfira água para o motor a vapor na Aeronave")
+SpecialEventObjectiveInfoList[4]=(TitleString="Uma Ótima Embarcação",DescriptionString="Vença uma partida em Difícil ou mais na Aeronave")
 
 AllCompleteRewardDescriptionString="Pacote de Traje Steampunk"
 
@@ -2553,11 +2597,11 @@ ChanceDropDescriptionStrings[1]="Bilh. Ouro"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="Conclua os objetivos no Baile dos Monstros e ganhe recompensas!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Travessuras ou armadilhas!",DescriptionString="Use armadilhas para matar 25 Zeds em uma sessão de jogo.");
-SpecialEventObjectiveInfoList[1]=(TitleString="Mortos não contam histórias",DescriptionString="Quebre 10 caveiras reluzentes colecionáveis.");
-SpecialEventObjectiveInfoList[2]=(TitleString="Sopa de Monstros",DescriptionString="Mate 2500 Zeds.");
-SpecialEventObjectiveInfoList[3]=(TitleString="Festa a noite toda",DescriptionString="Conclua a 25º leva no modo Difícil Infinito ou maior.");
-SpecialEventObjectiveInfoList[4]=(TitleString="Senhor do Castelo",DescriptionString="Derrote o Conde Hans no modo Sobrevivência Difícil ou maior.");
+SpecialEventObjectiveInfoList[0]=(TitleString="Travessuras ou armadilhas!",DescriptionString="Use armadilhas para matar 25 Zeds em uma sessão de jogo.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Mortos não contam histórias",DescriptionString="Quebre 10 caveiras reluzentes colecionáveis.")
+SpecialEventObjectiveInfoList[2]=(TitleString="Sopa de Monstros",DescriptionString="Mate 2500 Zeds.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Festa a noite toda",DescriptionString="Conclua a 25º leva no modo Difícil Infinito ou maior.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Senhor do Castelo",DescriptionString="Derrote o Conde Hans no modo Sobrevivência na dificuldade Difícil ou maior.")
 
 AllCompleteRewardDescriptionString="MKB de Hans: Arma + AP Hallow."
 
@@ -2567,11 +2611,11 @@ ChanceDropDescriptionStrings[1]="Bilh. Ouro"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="O presente perfeito",DescriptionString="Conclua obj. de Escolta com o carr. de vida cheia em Sobr. Díf. ou maior");
-SpecialEventObjectiveInfoList[1]=(TitleString="Especiais da semana",DescriptionString="Conclua a farra de compras semanal");
-SpecialEventObjectiveInfoList[2]=(TitleString="Passeio letal",DescriptionString="Mate 2500 Zeds.");
-SpecialEventObjectiveInfoList[3]=(TitleString="Assando castanhas",DescriptionString="Mate 25 chefes");
-SpecialEventObjectiveInfoList[4]=(TitleString="Briga na Fábrica",DescriptionString="Derrote Krampus na fábrica do Papai Noel no modo sobrevivência difícil ou maior");
+SpecialEventObjectiveInfoList[0]=(TitleString="O presente perfeito",DescriptionString="Conclua obj. de Escolta com o carr. de vida cheia em Sobr. Díf. ou maior")
+SpecialEventObjectiveInfoList[1]=(TitleString="Especiais da semana",DescriptionString="Conclua a farra de compras semanal")
+SpecialEventObjectiveInfoList[2]=(TitleString="Passeio letal",DescriptionString="Mate 2500 Zeds.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Assando castanhas",DescriptionString="Mate 25 chefes")
+SpecialEventObjectiveInfoList[4]=(TitleString="Briga na Fábrica",DescriptionString="Derrote Krampus na fábrica do Papai Noel no modo sobrevivência difícil ou maior")
 
 AllCompleteRewardDescriptionString="M. de guerra + ap. de Natal"
 
@@ -2582,11 +2626,11 @@ ChanceDropDescriptionStrings[1]="Bilh. Ouro"
 CurrentSpecialEventString="Desafios infinitos desejáveis"
 CurrentSpecialEventDescriptionString="Vença as levas para ganhar recompensas lendárias!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Boneco de Teste Infinito",DescriptionString="Conclua a 5ª Leva Infinita",TierEventRewardName="D.A.R. Clássico");
-SpecialEventObjectiveInfoList[1]=(TitleString="Drone Infinito",DescriptionString="Conclua a 10ª Leva Infinita",TierEventRewardName="D.A.R. Carregador");");
-SpecialEventObjectiveInfoList[2]=(TitleString="Sentinela Infinita",DescriptionString="Conclua a 15ª Leva Infinita,TierEventRewardName=”D.A.R. Skully");");
-SpecialEventObjectiveInfoList[3]=(TitleString="Máquina de Guerra Infinita",DescriptionString="Conclua a 20ª leva infinita",TierEventRewardName="D.A.R. Sangrento");");
-SpecialEventObjectiveInfoList[4]=(TitleString="Ideal D.A.R Infinito",DescriptionString="Conclua a 25ª leva infinita",TierEventRewardName="D.A.R. Dourado");
+SpecialEventObjectiveInfoList[0]=(TitleString="Boneco de Teste Infinito",DescriptionString="Conclua a 5ª Leva Infinita",TierEventRewardName="D.A.R. Clássico")
+SpecialEventObjectiveInfoList[1]=(TitleString="Drone Infinito",DescriptionString="Conclua a 10ª Leva Infinita",TierEventRewardName="D.A.R. Carregador")
+SpecialEventObjectiveInfoList[2]=(TitleString="Sentinela Infinita",DescriptionString="Conclua a 15ª Leva Infinita",TierEventRewardName="D.A.R. Skully")
+SpecialEventObjectiveInfoList[3]=(TitleString="Máquina de Guerra Infinita",DescriptionString="Conclua a 20ª leva infinita",TierEventRewardName="D.A.R. Sangrento")
+SpecialEventObjectiveInfoList[4]=(TitleString="Ideal D.A.R Infinito",DescriptionString="Conclua a 25ª leva infinita",TierEventRewardName="D.A.R. Dourado")
 
 [KFGFxSpring2019ObjectivesContainer]
 CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
@@ -2594,13 +2638,27 @@ CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusiv
 SpecialEventObjectiveInfoList[0]=(TitleString="Tumulto de Chefes",DescriptionString="Mate 15 chefes em qualquer mapa")
 SpecialEventObjectiveInfoList[1]=(TitleString="Vertedouro Semanal",DescriptionString="Conclua o Vertedouro Semanal")
 SpecialEventObjectiveInfoList[2]=(TitleString="Exterminador",DescriptionString="Mate 1.500 Zeds em qualquer mapa")
-SpecialEventObjectiveInfoList[3]=(TitleString="Vertedouro Infinito",DescriptionString="Conclua a 15ª leva no Vertedouro no modo Difícil Infinito ou maior.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Vertedouro Infinito",DescriptionString="Conclua a 15ª leva no Vertedouro em Infinito na dificuldade Difícil ou maior")
 SpecialEventObjectiveInfoList[4]=(TitleString="Derramando Sangue",DescriptionString="Derrote qualquer chefe no Vertedouro no modo Sobrevivência Difícil ou maior.")
 
 AllCompleteRewardDescriptionString="Trajes Ciberpunk masculinos e femininos"
 
 ChanceDropDescriptionStrings[0]="Bilh. Prêmio"
 ChanceDropDescriptionStrings[1]="Bilh. Ouro"
+
+[KFGFxSummer2019ObjectivesContainer]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Decolamos!",DescriptionString="Conclua a Fortaleza do Vapor no modo difícil ou maior")
+SpecialEventObjectiveInfoList[1]=(TitleString="Checkup semanal",DescriptionString="Conclua a Fortaleza do Vapor semanal")
+SpecialEventObjectiveInfoList[2]=(TitleString="Vapor eterno",DescriptionString="Conclua a leva 15 na Fortaleza do Vapor em Infinito na dificuldade Difícil ou maior")
+SpecialEventObjectiveInfoList[3]=(TitleString="Ida e volta mortal",DescriptionString="Conclua o Pouso Forçado do Zed em Objetivo na dificuldade Difícil ou maior")
+SpecialEventObjectiveInfoList[4]=(TitleString="Retorno frio",DescriptionString="Conclua o Posto Avançado em Objetivo na dificuldade Difícil ou maior")
+
+AllCompleteRewardDescriptionString="Trajes Masculinos e Femininos Steampunk"
+
+ChanceDropDescriptionStrings[0]="Bil. Prêmio"
+ChanceDropDescriptionStrings[1]="Bil. Ouro"
 
 ;============================================
 ; Daily Localization
@@ -2618,7 +2676,7 @@ KnifeString="Faca"
 FriendlyName="Surto atual: Racha-Coco"
 DescriptionStrings[0]="O dano cerebral é o melhor de todos."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Nesse surto, os Zeds mutaram tanto que agora só podem ser abatidos de vez com dano na cabeça. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[0]="Nesse surto, os Zeds mutaram tanto que agora só podem ser abatidos de vez com dano na cabeça. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2628,7 +2686,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Terror Tímido"
 DescriptionStrings[0]="Ameaça pequena também é ameaça."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los encolher — assim ficam mais difíceis de acertar. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los encolher — assim ficam mais difíceis de acertar. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2638,7 +2696,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Carnival"
 DescriptionStrings[0]="Carniceiros sem parar. Quase."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Chegou o festival de Carniceiros! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[0]="Chegou o festival de Carniceiros! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2658,7 +2716,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Hora dos Zeds"
 DescriptionStrings[0]="Toda a hora Zed do mundo."
 DescriptionStrings[1]="Duração: Curta (4 levas)"
-ModifierDescriptions[0]="Já pensou que a vida está passando? Neste surto, não! Você estará em Hora dos Zeds sempre que estiver perto de um Zed. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[0]="Já pensou que a vida está passando? Neste surto, não! Você estará em Hora dos Zeds sempre que estiver perto de um Zed. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2667,7 +2725,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Estouro"
 DescriptionStrings[0]="Zeds sob pressão podem explodir."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Será que foi alguma coisa que eles comeram? Serão gases? Seja o que for, os Zeds explodirão ao morrerem neste surto. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[0]="Será que foi alguma coisa que eles comeram? Serão gases? Seja o que for, os Zeds explodirão ao morrerem neste surto. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2676,7 +2734,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Bolo de Carne"
 DescriptionStrings[0]="Quanto maiores, mais difícil de cair."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Neste surto, os Zeds aumentam de vida, tamanho e alcance quando atingem jogadores ou são afetados por certas habilidades de Zeds. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[0]="Neste surto, os Zeds aumentam de vida, tamanho e alcance quando atingem jogadores ou são afetados por certas habilidades de Zeds. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2686,7 +2744,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Zed Cabeção"
 DescriptionStrings[0]="... deve doer no pescoço."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Algo aconteceu com estas levas de Zeds: a cabeça deles está muuuuito maior que o normal! Maiores ainda! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida. "
+ModifierDescriptions[0]="Algo aconteceu com estas levas de Zeds: a cabeça deles está muuuuito maior que o normal! Maiores ainda! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3113,6 +3171,9 @@ GameName="Semanal"
 [Endless KFGameInfoSummary]
 GameName="Infinito"
 
+[Objective KFGameInfoSummary]
+GameName="Objetivo"
+
 [KF-VolterManor KFMapSummary]
 DisplayName="Mansão Volter"
 
@@ -3181,6 +3242,9 @@ DisplayName="Fábrica do Papai Noel"
 
 [KF-Spillway KFMapSummary]
 DisplayName="Vertedouro"
+
+[KF-SteamFortress KFMapSummary]
+DisplayName="Fortaleza do Vapor"
 
 [KFMapInfo]
 ; defaults

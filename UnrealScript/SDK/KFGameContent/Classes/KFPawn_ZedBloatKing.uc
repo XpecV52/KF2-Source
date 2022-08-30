@@ -741,7 +741,7 @@ defaultproperties
     IncapSettings(AF_FirePanic)=(Vulnerability=(0.32),                      Cooldown=15.0, Duration=1.2)
     IncapSettings(AF_EMP)=      (Vulnerability=(0.5),                      Cooldown=10.0, Duration=2.2)
     IncapSettings(AF_Freeze)=   (Vulnerability=(0.25),                       Cooldown=10.0, Duration=1.0)
-    IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 1.0, 2.0, 1.0, 1.0),   Cooldown=10.5, Duration=3.0)
+    IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 2.0, 1.0, 1.0, 2.0),   Cooldown=10.5, Duration=3.0)
     IncapSettings(AF_Bleed)=    (Vulnerability=(0.15),                      Cooldown=10.0)
 
     // Resistant damage types
@@ -763,4 +763,6 @@ defaultproperties
 
     	// Penetration
     PenetrationResistance=10.0
+
+	bCanBePinned=false
 }

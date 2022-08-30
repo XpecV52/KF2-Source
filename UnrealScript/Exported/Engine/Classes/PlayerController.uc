@@ -7155,7 +7155,7 @@ function OnToggleCinematicMode(SeqAct_ToggleCinematicMode Action)
 		bNewCinematicMode = !bCinematicMode;
 	}
 
-	SetCinematicMode(bNewCinematicMode, Action.bHidePlayer, Action.bHideHUD, Action.bDisableMovement, Action.bDisableTurning, Action.bDisableInput);
+	SetCinematicMode(bNewCinematicMode, Action.bHidePlayer, Action.bHideHUD, Action.bDisableMovement, Action.bDisableTurning, Action.bDisableInput, Action.bAllowDofChanges);
 }
 
 /**
@@ -7168,8 +7168,9 @@ function OnToggleCinematicMode(SeqAct_ToggleCinematicMode Action)
  * @param	bAffectsMovement	specify TRUE to disable movement in cinematic mode, enable it when leaving
  * @param	bAffectsTurning		specify TRUE to disable turning in cinematic mode or enable it when leaving
  * @param	bAffectsButtons		specify TRUE to disable button input in cinematic mode or enable it when leaving.
+ * @param	bAffectsDof			specify TRUE to apply depth of field changes in cinematic mode // @TWI_BEGIN
  */
-function SetCinematicMode( bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons )
+function SetCinematicMode( bool bInCinematicMode, bool bHidePlayer, bool bAffectsHUD, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsButtons, optional bool bAffectsDof = true)
 {
 	local bool bAdjustMoveInput, bAdjustLookInput;
 
@@ -7205,11 +7206,11 @@ function SetCinematicMode( bool bInCinematicMode, bool bHidePlayer, bool bAffect
 		bCinemaDisableInputLook = bCinematicMode;
 	}
 
-	ClientSetCinematicMode(bCinematicMode, bAdjustMoveInput, bAdjustLookInput, bAffectsHUD);
+	ClientSetCinematicMode(bCinematicMode, bAdjustMoveInput, bAdjustLookInput, bAffectsHUD, bAffectsDof);
 }
 
 /** called by the server to synchronize cinematic transitions with the client */
-reliable client function ClientSetCinematicMode(bool bInCinematicMode, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsHUD)
+reliable client function ClientSetCinematicMode(bool bInCinematicMode, bool bAffectsMovement, bool bAffectsTurning, bool bAffectsHUD, bool bAffectsDof)
 {
 	bCinematicMode = bInCinematicMode;
 

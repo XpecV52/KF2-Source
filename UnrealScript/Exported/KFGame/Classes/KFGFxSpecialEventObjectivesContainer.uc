@@ -80,21 +80,24 @@ function bool PopulateData()
         {
             DataObject = CreateObject("Object");
             
-            DataObject.SetString("label", default.SpecialEventObjectiveInfoList[i].TitleString);
-            DataObject.SetString("description", default.SpecialEventObjectiveInfoList[i].DescriptionString);
-            DataObject.SetString("iconPath", "img://"$default.ObjectiveIconURLs[i]);
-            DataObject.SetBool("complete", ObjectiveStatusList[i].bComplete);
-			DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
-            DataObject.SetBool("showProgress", UsesProgressList[i]);
-			if (UsesProgressList[i])
+			if (DataObject != none)
 			{
-				GetObjectiveProgressValues(i, CurrentProgressValue, MaxProgressValue, ProgressCompletePercentage);
-				DataObject.SetFloat("progress", ProgressCompletePercentage);
-				DataObject.SetString("textValue", CurrentProgressValue $"/" $MaxProgressValue);
+				DataObject.SetString("label", default.SpecialEventObjectiveInfoList[i].TitleString);
+				DataObject.SetString("description", default.SpecialEventObjectiveInfoList[i].DescriptionString);
+				DataObject.SetString("iconPath", "img://"$default.ObjectiveIconURLs[i]);
+				DataObject.SetBool("complete", ObjectiveStatusList[i].bComplete);
+				DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
+				DataObject.SetBool("showProgress", UsesProgressList[i]);
+				if (UsesProgressList[i])
+				{
+					GetObjectiveProgressValues(i, CurrentProgressValue, MaxProgressValue, ProgressCompletePercentage);
+					DataObject.SetFloat("progress", ProgressCompletePercentage);
+					DataObject.SetString("textValue", CurrentProgressValue $"/" $MaxProgressValue);
 
+				}
+
+				DataProvider.SetElementObject(i, DataObject); //add it to the array
 			}
-
-            DataProvider.SetElementObject(i, DataObject); //add it to the array
         }
 
         if(default.IconURL != "")

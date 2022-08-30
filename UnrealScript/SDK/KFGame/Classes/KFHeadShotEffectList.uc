@@ -14,7 +14,8 @@ struct native HeadshotEffect
 {
 	var int Id;
 	var string ItemName;
-	var ParticleSystem EffectPS;
+	var edithide transient ParticleSystem EffectPS;
+	var string EffectPSName;
 	var string IconPath;
 	var AkEvent HeadshotSoundEffect;
 	StructDefaultProperties
@@ -48,16 +49,16 @@ static native final function RefreshCachedHeadShotEffectId();
 defaultproperties
 {
 	HeadShotEffects.Add((Id=INDEX_NONE, ItemName = "Dummy")
-	HeadShotEffects.Add((Id=6260, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Dosh_01', 		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Dosh_Headshot')
-	HeadShotEffects.Add((Id=6261, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Confetti_01',	IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Confetti_Headshot')
-	HeadShotEffects.Add((Id=6262, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Ghost_01',		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Ghost_Headshot')
-	HeadShotEffects.Add((Id=6263, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Hearts_01',	IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Hearts_Headshot')
-	HeadShotEffects.Add((Id=6264, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Comic_01',		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Pixel_Headshot')
-	HeadShotEffects.Add((Id=7042, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Flower_01', 		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Flower_Headshot')
-	HeadShotEffects.Add((Id=7043, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Splatter_01',		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Splatter_A_Headshot')
-	HeadShotEffects.Add((Id=7044, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Gameover_01',		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Gameover_Headshot')
-	HeadShotEffects.Add((Id=7045, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Glitch_01',		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Glitch_Headshot')
-	HeadShotEffects.Add((Id=7046, ItemName="LetsGetCrazy", 	EffectPS=ParticleSystem'FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Headscan_01',		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Headscan_Headshot')
+	HeadShotEffects.Add((Id=6260, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Dosh_01", 						IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Dosh_Headshot')
+	HeadShotEffects.Add((Id=6261, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Confetti_01",					IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Confetti_Headshot')
+	HeadShotEffects.Add((Id=6262, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Ghost_01",						IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Ghost_Headshot')
+	HeadShotEffects.Add((Id=6263, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Hearts_01",						IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Hearts_Headshot')
+	HeadShotEffects.Add((Id=6264, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.FX_Headshot_Alt_Comic_01",						IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Pixel_Headshot')
+	HeadShotEffects.Add((Id=7042, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Flower_01", 	IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Flower_Headshot')
+	HeadShotEffects.Add((Id=7043, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Splatter_01",	IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Splatter_A_Headshot')
+	HeadShotEffects.Add((Id=7044, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Gameover_01",	IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Gameover_Headshot')
+	HeadShotEffects.Add((Id=7045, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Glitch_01",		IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Glitch_Headshot')
+	HeadShotEffects.Add((Id=7046, ItemName="LetsGetCrazy", 	EffectPSName="FX_Headshot_Alt_EMIT.HeadShot_Pack_2.FX_Headshot_Alt2_Headscan_01",	IconPath="EMOTE_TEX.Emote_LetsGoCrazy_512", HeadshotSoundEffect=AkEvent'WW_Headshot_Packs.Play_WEP_Headscan_Headshot')
 
 	EquippedHeadshotId=-1
 }

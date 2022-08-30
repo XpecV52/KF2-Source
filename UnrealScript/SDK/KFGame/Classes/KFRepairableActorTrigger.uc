@@ -8,9 +8,17 @@
 //=============================================================================
 class KFRepairableActorTrigger extends Trigger_PawnsOnly
 	placeable
+	native
 	implements(KFInterface_Usable);
 
 var() KFRepairableActor RepairableActor;
+
+cpptext
+{
+#if WITH_EDITOR
+	virtual void CheckForErrors();	// Skip 'Trigger is not referenced' warning
+#endif
+}
 
 simulated event PostBeginPlay()
 {

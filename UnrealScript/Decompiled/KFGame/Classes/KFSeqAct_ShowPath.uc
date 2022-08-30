@@ -27,6 +27,7 @@ var transient KFReplicatedShowPathActor ReplicatedPathActor;
 var() KFSeqAct_ShowPath.eVolumeCheckType VolumeCheckType;
 /** Team number to display path to. 0 = Survivors, 255 = Zeds */
 var() byte TeamToDisplayPathTo;
+var() ParticleSystem TrailParticleSystem;
 
 event Activated()
 {
@@ -73,6 +74,10 @@ event Activated()
         ReplicatedPathActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathActor', none);
         if(ReplicatedPathActor != none)
         {
+            if(TrailParticleSystem != none)
+            {
+                ReplicatedPathActor.SetEmitterTemplate(TrailParticleSystem);
+            }
             ReplicatedPathActor.SetPathTarget(Target, Volume, (((VolumeCheckType != 0) && Volume == none) ? 0 : VolumeCheckType), TeamToDisplayPathTo);            
         }
         else

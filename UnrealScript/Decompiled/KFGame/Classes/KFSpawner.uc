@@ -282,6 +282,7 @@ event HandleFailedSpawn()
             LogInternal(((((string(self) @ string(GetFuncName())) $ " removing ") $ string(PendingSpawns.Length)) $ " from NumAISpawnsQueued due to failed spawn. NumAISpawnsQueued: ") $ string(KFGI.NumAISpawnsQueued));
         }
         KFGI.NumAISpawnsQueued -= PendingSpawns.Length;
+        KFGI.NumAIFinishedSpawning -= PendingSpawns.Length;
     }
     if(bDebugSpawning)
     {

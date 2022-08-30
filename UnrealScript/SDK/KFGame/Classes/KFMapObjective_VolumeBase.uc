@@ -108,6 +108,17 @@ simulated event PostBeginPlay()
 // KFInterface_MapObjective functions
 //=============================================================================
 
+simulated function PlayActivationSoundEvent()
+{
+	if (Role == ROLE_AUTHORITY)
+	{
+		if (ActivationSoundEvent != none)
+		{
+			PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
+		}
+	}
+}
+
 // Status
 simulated function ActivateObjective()
 {
@@ -158,6 +169,9 @@ simulated function ActivateObjective()
 			}
 		}
 	}
+
+	// delay this sound event by a little bit so that the unreliable RPC doesn't get lost
+	SetTimer(1.0f, false, nameof(PlayActivationSoundEvent));
 }
 
 simulated function DeactivateObjective()
@@ -290,15 +304,7 @@ simulated function int GetMaxVoshReward()
 
 simulated function int GetDoshReward()
 {
-	local int MaxDosh;
-
-	MaxDosh = GetMaxDoshReward();
-	if (MaxDosh == 0)
-	{
-		return MaxDosh;
-	}
-
-	return int(MaxDosh * GetProgress());
+	return GetMaxDoshReward();
 }
 
 simulated function int GetVoshReward()
@@ -329,12 +335,54 @@ simulated function int GetXPReward()
 
 simulated function string GetLocalizedName()
 {
-	return Localize("Objectives", LocalizationKey, LocalizationPackageName);
+	if (LocalizationKey != "")
+	{
+		return Localize("Objectives", LocalizationKey, LocalizationPackageName);
+	}
+
+	return "";
+}
+
+simulated function string GetLocalizedShortName()
+{
+	if (NameShortLocKey != "")
+	{
+		return Localize("Objectives", NameShortLocKey, LocalizationPackageName);
+	}
+
+	return "";
 }
 
 simulated function string GetLocalizedDescription()
 {
-	return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
+	if (DescriptionLocKey != "")
+	{
+		return Localize("Objectives", DescriptionLocKey, LocalizationPackageName);
+	}
+
+	return "";
+}
+
+simulated function string GetLocalizedShortDescription()
+{
+	if (DescriptionShortLocKey != "")
+	{
+		return Localize("Objectives", DescriptionShortLocKey, LocalizationPackageName);
+	}
+
+	return "";
+}
+
+simulated function GetLocalizedStatus(out string statusMessage, out int bWarning, out int bNotification)
+{
+	statusMessage = "";
+
+	if (GetProgress() >= 1.f)
+	{
+		statusMessage = Localize("Objectives", "KillRemainingZeds", LocalizationPackageName);
+		bWarning = 0;
+		bNotification = 0;
+	}
 }
 
 simulated function float GetSpawnRateMod()
@@ -355,16 +403,32 @@ simulated function float GetSpawnRateMod()
 	return 1.f;
 }
 
+simulated function bool HasFailedObjective()
+{
+	return GetLivingPlayerCount() <= 0;
+}
+
+simulated function int GetLivingPlayerCount()
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if (KFGRI != none)
+	{
+		return KFGRI.GetNumPlayersAlive();
+	}
+
+	return 0;
+}
+
 simulated function bool IsActive() { return bActive; }
 simulated function bool UsesProgress();
 simulated function bool IsBonus();
 function bool CanActivateObjective();
 simulated function float GetProgress();
 simulated function bool IsComplete();
-simulated function bool HasFailedObjective();
 simulated function float GetActivationPctChance();
-simulated function bool UsesMultipleActors();
-simulated function string GetActorCount();
+simulated function string GetProgressText();
 simulated function string GetLocalizedRequirements();
 simulated function bool GetIsMissionCritical();
 simulated function float GetDoshValueModifier() { return DoshValueModifier; }
@@ -379,6 +443,11 @@ simulated function bool ShouldShowObjectiveContainer() { return true; }
 simulated function Texture2D GetIcon()
 {
 	return ObjectiveIcon;
+}
+
+simulated function color GetIconColor()
+{
+	return ObjectiveIconColor;
 }
 
 // Kismet
@@ -427,4 +496,7 @@ defaultproperties
 	XPRewards = (100,100,150,150,200,200,250,250,300,300,300)
 
 	DoshValueModifier=1.0f
+
+	ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_ObjectiveMode'
+	ObjectiveIconColor=(R=170, G=0, B=255, A=255);
 }

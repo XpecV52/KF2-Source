@@ -513,10 +513,12 @@ defaultproperties
     AutoBuyLoadOutPath(1)=class'KFWeapDef_Crossbow'
     AutoBuyLoadOutPath(2)=class'KFWeapDef_M14EBR'
     AutoBuyLoadOutPath(3)=class'KFWeapDef_RailGun'
+    AutoBuyLoadOutPath(4)=class'KFWeapDef_M99'
     HitAccuracyHandicap=-9
     HeadshotAccuracyHandicap=-16
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SharpshooterKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Winchester1894_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Crossbow_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.M14EBR_PrestigePrecious_Mint_Large"
+    PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.Railgun_PrestigePrecious_Mint_large"
 }

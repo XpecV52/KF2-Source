@@ -102,6 +102,16 @@ package tripwire.widgets
             this.resizeZEDCountText();
         }
         
+        public function set waitingForWaveStart(param1:String) : *
+        {
+            this.ZedCountInfoContainer.ZedCount.text = param1;
+            if(this.ZedCountInfoContainer.ZedCountIcon.currentFrame != " ")
+            {
+                this.ZedCountInfoContainer.ZedCountIcon.gotoAndStop(" ");
+            }
+            this.resizeZEDCountText();
+        }
+        
         private function resizeZEDCountText() : void
         {
         }

@@ -311,7 +311,7 @@ simulated function float GetAoERadiusModifier()
     local float RadiusModifier;
 
     RadiusModifier = ((IsAoEActive()) ? GetSkillValue(PerkSkills[5]) : 1);
-    RadiusModifier = ((IsProfessionalActive()) ? RadiusModifier + default.ProfessionalAoEModifier : RadiusModifier);
+    RadiusModifier = ((IsProfessionalActive() && WorldInfo.TimeDilation < 1) ? RadiusModifier + default.ProfessionalAoEModifier : RadiusModifier);
     return RadiusModifier;
 }
 
@@ -796,9 +796,11 @@ defaultproperties
     AutoBuyLoadOutPath(1)=class'KFWeapDef_M79'
     AutoBuyLoadOutPath(2)=class'KFWeapDef_M16M203'
     AutoBuyLoadOutPath(3)=class'KFWeapDef_RPG7'
+    AutoBuyLoadOutPath(4)=class'KFWeapDef_M32'
     HitAccuracyHandicap=2
     PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.DemoKnife_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.HX25_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.M79_PrestigePrecious_Mint_large"
     PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.M16M203_PrestigePrecious_Mint_Large"
+    PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.RPG-7_PrestigePrecious_Mint_large"
 }

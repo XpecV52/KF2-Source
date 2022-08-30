@@ -280,12 +280,20 @@ var(Anims) name AimOffsetProfileName;
 /** Used by AimOffset node when bTurnOffWhenReloadingWeapon==TRUE */
 var transient bool bIsReloading;
 
+var transient int WeaponSkinId;
+
 /*********************************************************************************************
  * @name	Attach / Detach
 ********************************************************************************************* */
 
 /** Weapon Mesh Attachment */
 native event ChangeVisibility(bool bIsVisible);
+
+/*********************************************************************************************
+ * @name	Skins
+********************************************************************************************* */
+
+native function bool StartLoadWeaponSkin(int SkinId);
 
 event PreBeginPlay()
 {
@@ -404,6 +412,11 @@ event SetWeaponSkin(int ItemId)
 
 	if ( ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer )
 	{
+		if (StartLoadWeaponSkin(ItemId))
+		{
+			return;
+		}
+
 		SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, WST_ThirdPerson);
 		if ( SkinMICs.Length > 0 )
 		{

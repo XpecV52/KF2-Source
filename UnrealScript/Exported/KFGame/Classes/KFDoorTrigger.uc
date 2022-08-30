@@ -48,7 +48,7 @@ simulated event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocat
 			DoorActor.bCanCloseDoor = false;
 
 			// if the door is closed, tell the scripted pawn to wait until the door is opened
-			if (!DoorActor.bIsDoorOpen)
+			if (!DoorActor.bIsDoorOpen && !DoorActor.bIsDestroyed)
 			{
 				ScriptedPawn.StartDoorWait(DoorActor);
 			}

@@ -2951,6 +2951,7 @@ defaultproperties
     GameInfoClassAliases(3)=(ShortName="Weekly",GameClassName="KFGameContent.KFGameInfo_WeeklySurvival")
     GameInfoClassAliases(4)=(ShortName="Tutorial",GameClassName="KFGameContent.KFGameInfo_Tutorial")
     GameInfoClassAliases(5)=(ShortName="Endless",GameClassName="KFGameContent.KFGameInfo_Endless")
+    GameInfoClassAliases(6)=(ShortName="Objective",GameClassName="KFGameContent.KFGameInfo_Objective")
     DefaultGameType="KFGameContent.KFGameInfo_Survival"
     Components=none
     CollisionType=ECollisionType.COLLIDE_CustomDefault

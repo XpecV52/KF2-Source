@@ -29,6 +29,21 @@ var private const float 					HeavyArmorAbsorptionPct;
 
 var float                                   CurrentHealthPenalty;
 
+/** Amount of damage Battering Ram bumps deal */
+var int BumpDamageAmount;
+/** Damage type used for Battering Ram bump damage */
+var class<DamageType> BumpDamageType;
+/** Amount of momentum when bumping zeds */
+var float BumpMomentum;
+/** Multiplier for speed during zed time while enforcer is active*/
+var float SWATEnforcerZedTimeSpeedScale;
+/** The last time a zed was bumped using battering ram */
+var float LastBumpTime;
+/** The unique list of actors that have been bumped before the last cooldown reset */
+var array<Actor> CurrentBumpedActors;
+/** The amount of time between when the last actor was bumped and another actor can be bumped again */
+var float BumpCooldown;
+
 /** Selectable skills */
 enum ESWATPerkSkills
 {
@@ -86,6 +101,11 @@ function ApplySkillsToPawn()
 	{
 		OwnerPawn.bMovesFastInZedTime = IsSWATEnforcerActive();
 	}
+}
+
+simulated event float GetZedTimeSpeedScale()
+{ 
+	return IsSWATEnforcerActive() ? SWATEnforcerZedTimeSpeedScale : 1.f;
 }
 
 /* Returns the secondary weapon's class path for this perk */
@@ -292,9 +312,9 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 	}
 }
 
-simulated static function float GetSnareSpeedModifier()
+simulated function float GetSnareSpeedModifier()
 {
-	return default.PerkSkills[ESWAT_Cripple].StartingValue;
+	return IsCrippleActive() ? default.PerkSkills[ESWAT_Cripple].StartingValue : 1.f;
 }
 
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
@@ -390,6 +410,62 @@ simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
 simulated function bool ShouldKnockDownOnBump()
 {
 	return IsSWATEnforcerActive() && WorldInfo.TimeDilation < 1.f;
+}
+
+simulated function OnBump(Actor BumpedActor, KFPawn_Human BumpInstigator, vector BumpedVelocity, rotator BumpedRotation)
+{
+	local KFPawn_Monster KFPM;
+	local bool CanBump;
+
+	if (ShouldKnockDownOnBump() && Normal(BumpedVelocity) dot Vector(BumpedRotation) > 0.7f)
+	{
+		KFPM = KFPawn_Monster(BumpedActor);
+		if (KFPM != none)
+		{
+			// cooldown so that the same zed can't be bumped multiple frames back to back
+			//	especially relevant if they can't be knocked down or stumbled so the player is always bumping them
+			if (WorldInfo.TimeSeconds - LastBumpTime > BumpCooldown)
+			{
+				CurrentBumpedActors.length = 0;
+				CurrentBumpedActors.AddItem(BumpedActor);
+				CanBump = true;
+			}
+			// if still within the cooldown time, can still bump the actor as long as it hasn't been bumped yet
+			else if (CurrentBumpedActors.Find(BumpedActor) == INDEX_NONE)
+			{
+				CurrentBumpedActors.AddItem(BumpedActor);
+				CanBump = true;
+			}
+
+			LastBumpTime = WorldInfo.TimeSeconds;
+
+			if (CanBump)
+			{
+				//First priority is a knockdown if it is allowed
+				if (KFPM.CanDoSpecialMove(SM_Knockdown))
+				{
+					KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+					KFPM.Knockdown(BumpedVelocity * 3, vect(1, 1, 1), KFPM.Location, 1000, 100);
+				}
+				//If they can't be knocked down, but are headless, kill them outright
+				else if (KFPM.IsHeadless())
+				{
+					KFPM.TakeDamage(KFPM.HealthMax, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+				}
+				//Last priority is a stumble as a backup
+				else if (KFPM.CanDoSpecialMove(SM_Stumble))
+				{
+					KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+					KFPM.DoSpecialMove(SM_Stumble, , , class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));
+				}
+				// can't move them, but at least damage them
+				else
+				{
+					KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+				}
+			}
+		}
+	}
 }
 
 simulated function int GetArmorDamageAmount( int AbsorbedAmt )
@@ -569,11 +645,12 @@ DefaultProperties
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.MP7_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.MP5RAS_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.HecklerKochUMP_PrestigePrecious_Mint_large"
+	PrestigeRewardItemIconPaths[4]="WEP_SkinSet_Prestige05_Item_TEX.tier04.KrissSMG_PrestigePrecious_Mint_large"
 
 	TacticalMovementBobDamp=1.11
 	RapidAssaultFiringRate=0.51f
 
-	SnarePower=9 //20
+	SnarePower=15 //20
 
 	WeaponDamage=(Name="Weapon Damage",Increment=0.01f,Rank=0,StartingValue=1.f,MaxValue=1.25) //1.25
 	BulletResistance=(Name="Bullet Resistance",Increment=0.01,Rank=0,StartingValue=0.05,MaxValue=0.3f)
@@ -583,7 +660,7 @@ DefaultProperties
 
  	PerkSkills(ESWAT_HeavyArmor)=(Name="HeavyArmor",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_HeavyArmor", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)    //0.1
 	PerkSkills(ESWAT_TacticalMovement)=(Name="TacticalMovement",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement", Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f)
-	PerkSkills(ESWAT_Backup)=(Name="Backup",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f) //1.1
+	PerkSkills(ESWAT_Backup)=(Name="Backup",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup", Increment=0.f,Rank=0,StartingValue=0.85f,MaxValue=0.85f) //1.1
 	PerkSkills(ESWAT_TacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload", Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
 	PerkSkills(ESWAT_SpecialAmmunition)=(Name="SpecialAmmunition",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition", Increment=0.f,Rank=0,StartingValue=2.0f,MaxValue=2.0f)
 	PerkSkills(ESWAT_AmmoVest)=(Name="AmmoVest",IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest", Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
@@ -601,4 +678,11 @@ DefaultProperties
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"
    	ZedTimeModifyingStates(2)="WeaponSingleFiring"
    	AutoBuyLoadOutPath=(class'KFWeapDef_MP7', class'KFWeapDef_MP5RAS', class'KFWeapDef_P90', class'KFWeapDef_Kriss')
+
+	BumpDamageAmount=450
+	BumpDamageType=class'KFDT_SWATBatteringRam'
+	BumpMomentum=1.f
+	SWATEnforcerZedTimeSpeedScale=1.25f
+
+	BumpCooldown = 0.1f
 }

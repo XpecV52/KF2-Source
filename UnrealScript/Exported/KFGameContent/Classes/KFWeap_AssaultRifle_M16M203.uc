@@ -435,7 +435,7 @@ simulated function bool CanAltAutoReload()
 
 simulated function TryToAltReload()
 {
-	if ( IsInState('Active') && CanAltAutoReload())
+	if ((IsInState('Active') || IsInState('WeaponSprinting')) && CanAltAutoReload())
 	{
 		SendToAltReload();
 	}

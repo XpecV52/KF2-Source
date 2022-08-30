@@ -24,6 +24,7 @@ simulated function int GetXPReward();
 simulated function int GetMaxXPReward();
 simulated function bool IsBonus();
 function string GetLocalizedName();
+function string GetLocalizedShortName();
 function bool CanActivateObjective();
 simulated function float GetProgress();
 simulated function bool IsComplete();
@@ -31,11 +32,12 @@ simulated function bool HasFailedObjective();
 simulated function float GetActivationPctChance();
 simulated function float GetSpawnRateMod();
 
-simulated function bool UsesMultipleActors();
-simulated function string GetActorCount();
+simulated function string GetProgressText();
 
 simulated function string GetLocalizedDescription();
+simulated function string GetLocalizedShortDescription();
 simulated function string GetLocalizedRequirements();
+simulated function GetLocalizedStatus(out string statusMessage, out int bWarning, out int bNotification);
 
 simulated function bool GetIsMissionCritical();
 simulated function float GetDoshValueModifier();
@@ -44,6 +46,7 @@ simulated function float GetDoshValueModifier();
 simulated function bool ShouldDrawIcon();
 simulated function Vector GetIconLocation();
 simulated function Texture2D GetIcon();
+simulated function color GetIconColor();
 simulated function DrawHUD(KFHUDBase hud, Canvas drawCanvas);
 simulated function bool HasObjectiveDrawDistance();
 simulated function bool ShouldShowObjectiveHUD();

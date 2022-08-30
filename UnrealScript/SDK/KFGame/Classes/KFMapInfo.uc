@@ -60,9 +60,15 @@ var() ESubGameType SubGameType;
 
 /** Objective mode types and data */
 
-//Struct to hold an array of wave/objective pairing data.  Fixed array of these array
-//      objects in the next struct down will link a specific array of possible objectives
-//      to a specific wave per game-length.
+/**
+PossibleObjectives: possible objectives, one chosen at random.
+bUseEndlessSpawning: whether zeds should spawn endlessly during this wave.
+SpawnReplacements: which zed types should be replaced by which other zed types
+PerPlayerSpawnRateMod: spawn rate modification based on number of players
+WaveScale: scalar for number of zeds this wave
+AppliedWaveNum: what wave intensity (1-9) to apply to this wave/objective
+bShouldAutoStartWave: whether this wave should start immediately after trader time
+*/
 struct native WaveObjectivePair
 {
     var() array<KFInterface_MapObjective> PossibleObjectives;
@@ -70,11 +76,14 @@ struct native WaveObjectivePair
 	var() array<SpawnReplacement> SpawnReplacements;
 	var() array<float> PerPlayerSpawnRateMod;
 	var() float WaveScale;
+	var() int AppliedWaveNum<ClampMin=0|ClampMax=9>;
+	var() bool bShouldAutoStartWave;
 
 	structdefaultproperties
 	{
 		PerPlayerSpawnRateMod=(1.f, 1.f, 1.f, 1.f, 1.f, 1.f)
 		WaveScale=1.f
+		bShouldAutoStartWave=true
 	}
 };
 
@@ -86,13 +95,13 @@ struct native PresetWavePairs
 };
 
 /** Whether or not to use the preset wave objective type */
-var(Objectives) bool bUsePresetObjectives <EditCondition=!bUseRandomObjectives>;
-var(Objectives) PresetWavePairs PresetWaveObjectives <EditCondition=bUsePresetObjectives>;
+var(SurvivalObjectives) bool bUsePresetObjectives <EditCondition=!bUseRandomObjectives>;
+var(SurvivalObjectives) PresetWavePairs PresetWaveObjectives <EditCondition=bUsePresetObjectives>;
 
 /** Whether or not to use the random wave objective type */
-var(Objectives) bool bUseRandomObjectives <EditCondition=!bUsePresetObjectives>;
-var(Objectives) array<KFInterface_MapObjective> RandomWaveObjectives;
-var(Objectives) array<int> RandomObjectiveWavesToDisable;
+var(SurvivalObjectives) bool bUseRandomObjectives <EditCondition=!bUsePresetObjectives>;
+var(SurvivalObjectives) array<KFInterface_MapObjective> RandomWaveObjectives;
+var(SurvivalObjectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 
 var() string TraderVoiceGroupClassPath;
@@ -107,10 +116,14 @@ var() SeasonalEventIndex ZedSeasonalThemeId;
 // Mutator code class that can override various map settings
 var() class<KFMapMutator> MapMutatorClass;
 
+// Objectives to use in Objective Mode
+var(ObjectiveMode) array<WaveObjectivePair> ObjectiveModeObjectives;
+
 cpptext
 {
 #if WITH_EDITOR
 	virtual void CheckForErrors();
+	virtual void PostEditChangeChainProperty(struct FPropertyChangedChainEvent& PropertyChangedEvent);
 #endif
 }
 
@@ -315,6 +328,56 @@ final event ModifyAIDoshValue(out float AIDoshValue)
 	}
 }
 
+/*****************************************************************************************************
+* @name Objective Mode
+*****************************************************************************************************/
+
+simulated function int GetAppliedWaveNum()
+{
+	local KFGameReplicationInfo KFGRI;
+	local int AppliedWaveNum;
+	local WaveObjectivePair Wave;
+
+	KFGRI = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI);
+	AppliedWaveNum = KFGRI.WaveNum;
+
+	if (KFGRI.IsObjectiveMode())
+	{
+		Wave = ObjectiveModeObjectives[KFGRI.WaveNum-1];
+		if (Wave.AppliedWaveNum >= 0)
+		{
+			AppliedWaveNum = Wave.AppliedWaveNum;
+		}
+	}
+	else
+	{
+		if (bUsePresetObjectives)
+		{
+			switch (KFGRI.GameLength)
+			{
+			case GL_Short:
+				Wave = PresetWaveObjectives.ShortObjectives[KFGRI.WaveNum-1];
+				break;
+
+			case GL_Normal:
+				Wave = PresetWaveObjectives.MediumObjectives[KFGRI.WaveNum-1];
+				break;
+
+			case GL_Long:
+				Wave = PresetWaveObjectives.LongObjectives[KFGRI.WaveNum-1];
+				break;
+			};
+
+			if (Wave.AppliedWaveNum > 0)
+			{
+				AppliedWaveNum = Wave.AppliedWaveNum;
+			}
+		}
+	}
+
+	return AppliedWaveNum;
+}
+
 DefaultProperties
 {
 	WaveSpawnPeriod=2.0f
@@ -369,6 +432,7 @@ DefaultProperties
 	ActionMusicTracks.Add(KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action304')
 	ActionMusicTracks.Add(KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action305')
 	ActionMusicTracks.Add(KFMusicTrackInfo'WW_MACT_Default.TI_Z_Action306')
+	ActionMusicTracks.Add(KFMusicTrackInfo'WW_MACT_Default.TI__SJ_Infectious')
 
 	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_RG_InTheDark')
 	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_Z_Ambient200')
@@ -383,6 +447,7 @@ DefaultProperties
 	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_Z_MomentaryReprieve')
 	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_Z_PhantomSecurity')
 	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_Z_RendezvousPoint')
+	AmbientMusicTracks.Add(KFMusicTrackInfo'WW_MAMB_Default.TI_SJ_Menace')
 
 	TraderVoiceGroupClassPath="KFGameContent.KFTraderVoiceGroup_Default"
 }

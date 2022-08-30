@@ -2051,7 +2051,7 @@ defaultproperties
 {
 	InGamePartyWidgetClass = class'KFGFxWidget_PartyInGame'
 	BackgroundMovies(SEI_None)=TextureMovie'UI_Managers.MenuBG'
-	BackgroundMovies(SEI_Spring)=TextureMovie'UI_Managers.MenuBG'
+	BackgroundMovies(SEI_Spring)=TextureMovie'UI_Managers.MenuBG_Cyberpunk'
 	BackgroundMovies(SEI_Summer)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
 	BackgroundMovies(SEI_Fall)=TextureMovie'UI_Managers.MenuBG_Halloween'
 	BackgroundMovies(SEI_Winter)=TextureMovie'UI_Managers.Menu_Winter'

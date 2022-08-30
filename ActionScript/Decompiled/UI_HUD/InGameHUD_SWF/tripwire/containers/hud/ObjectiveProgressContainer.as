@@ -4,25 +4,24 @@ package tripwire.containers.hud
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
+    import flash.events.TimerEvent;
     import flash.filters.GlowFilter;
     import flash.text.TextField;
+    import flash.utils.Timer;
     import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
-    import tripwire.controls.TripUILoader;
     
     public class ObjectiveProgressContainer extends TripContainer
     {
          
         
-        public var progressBarMC:MovieClip;
+        public var objectiveTitleTextfield:TextField;
         
-        public var outerLines:MovieClip;
+        public var objectiveProgressTextfield:TextField;
         
-        public var requirementIcon:MovieClip;
+        public var objectiveDescTextfield:TextField;
         
-        public var objectiveRequirementContainer:MovieClip;
-        
-        public var iconLoaderMC:TripUILoader;
+        public var objectiveStatusTextfield:TextField;
         
         public var bonusNumberTextfield:TextField;
         
@@ -30,13 +29,15 @@ package tripwire.containers.hud
         
         public var normalRequirementColor:uint = 4836490;
         
-        public var warningRequirementColor:uint = 15541248;
+        public var warningRequirementColor:uint = 16737097;
         
-        public var failedColor:uint = 15541248;
+        public var failedColor:uint = 16737097;
         
         public var normalColor:uint = 4836490;
         
         public var defaultColor:uint = 16503487;
+        
+        public var disabledColor:uint = 8947848;
         
         public var stateGlow:GlowFilter;
         
@@ -46,17 +47,21 @@ package tripwire.containers.hud
         
         public var currentStateColor:Color;
         
+        public var currentStatusColor:Color;
+        
+        public var currentDescColor:Color;
+        
         public var doshIconMC:MovieClip;
-        
-        public var accentsMC:MovieClip;
-        
-        public var criticalBoxMC;
         
         private var _currentProgress:Number;
         
         public var failedString:String;
         
-        public var objectiveNumberMC;
+        private var _statusFlashDelay:uint = 100;
+        
+        private var _statusFlashRepeat:uint = 10;
+        
+        private var _statusFlashTimer:Timer;
         
         protected var bComplete:Boolean = false;
         
@@ -68,8 +73,23 @@ package tripwire.containers.hud
             this.currentRequirementColor = new Color();
             this.currentProgressColor = new Color();
             this.currentStateColor = new Color();
+            this.currentStatusColor = new Color();
+            this.currentDescColor = new Color();
+            this._statusFlashTimer = new Timer(this._statusFlashDelay,this._statusFlashRepeat);
             super();
             enableInitCallback = true;
+            this._statusFlashTimer.addEventListener(TimerEvent.TIMER,this.statusTimerHandler);
+            this._statusFlashTimer.addEventListener(TimerEvent.TIMER_COMPLETE,this.statusCompleteHandler);
+        }
+        
+        private function statusTimerHandler(param1:TimerEvent) : void
+        {
+            this.objectiveStatusTextfield.visible = !this.objectiveStatusTextfield.visible;
+        }
+        
+        private function statusCompleteHandler(param1:TimerEvent) : void
+        {
+            this.objectiveStatusTextfield.visible = true;
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -77,19 +97,57 @@ package tripwire.containers.hud
             super.addedToStage(param1);
             this.isActive = false;
             visible = false;
-            this.objectiveRequirementContainer.visible = true;
-            TextFieldEx.setTextAutoSize(this.objectiveRequirementContainer.requirementNumberTextfield,"shrink");
-            this.objectiveNumberMC.visible = false;
             this.missionCriticalStatus = false;
-            this.criticalBoxMC.visible = false;
+            TextFieldEx.setVerticalAlign(this.objectiveDescTextfield,"center");
         }
         
         public function set localizedText(param1:Object) : void
         {
             if(param1)
             {
-                this.failedString = !!param1.failedString ? param1.failedString : "";
+                this.objectiveTitleTextfield.text = !!param1.objectiveTitle ? param1.objectiveTitle : "";
+                this.objectiveDescTextfield.text = !!param1.objectiveDesc ? param1.objectiveDesc : "";
+                this.currentDescColor.setTint(this.defaultColor,1);
+                this.currentProgressColor.setTint(this.defaultColor,1);
+                this.objectiveDescTextfield.transform.colorTransform = this.currentDescColor;
+                this.objectiveProgressTextfield.transform.colorTransform = this.currentProgressColor;
             }
+        }
+        
+        public function set currentStatus(param1:Object) : void
+        {
+            if(param1.StatusMessage != this.objectiveStatusTextfield.text)
+            {
+                this.objectiveStatusTextfield.text = param1.StatusMessage;
+                if(param1.StatusMessage != "")
+                {
+                    this._statusFlashTimer.reset();
+                    if(param1.bStatusNotification)
+                    {
+                        this.currentStatusColor.setTint(this.normalColor,1);
+                        this.currentDescColor.setTint(this.defaultColor,1);
+                    }
+                    else if(param1.bStatusWarning)
+                    {
+                        this.currentStatusColor.setTint(this.failedColor,1);
+                        this.currentDescColor.setTint(this.defaultColor,1);
+                        this._statusFlashTimer.start();
+                    }
+                    else
+                    {
+                        this.currentStatusColor.setTint(this.defaultColor,1);
+                        this.currentDescColor.setTint(this.disabledColor,1);
+                    }
+                    this.objectiveStatusTextfield.transform.colorTransform = this.currentStatusColor;
+                    this.objectiveDescTextfield.transform.colorTransform = this.currentDescColor;
+                }
+            }
+        }
+        
+        public function set currentProgressText(param1:String) : void
+        {
+            this.objectiveProgressTextfield.text = param1;
+            this.objectiveProgressTextfield.transform.colorTransform = this.currentProgressColor;
         }
         
         public function set isActive(param1:Boolean) : void
@@ -100,23 +158,19 @@ package tripwire.containers.hud
         {
             if(param1 == "")
             {
-                this.iconLoaderMC.visible = false;
-            }
-            else
-            {
-                this.iconLoaderMC.source = param1;
             }
         }
         
-        public function set completeStatus(param1:Boolean) : void
+        public function set completeStatus(param1:Object) : void
         {
-            if(this.bComplete != param1)
+            if(this.bComplete != param1.bComplete)
             {
-                this.bComplete = param1;
+                this.bComplete = param1.bComplete;
                 gotoAndStop(!!this.bComplete ? "complete" : "default");
                 if(this.bComplete)
                 {
-                    this.criticalBoxMC.visible = false;
+                    this.currentProgressColor.setTint(this.normalColor,1);
+                    this.currentProgressText = param1.completeString;
                 }
             }
         }
@@ -126,69 +180,30 @@ package tripwire.containers.hud
             if(this.bMissionCritical != param1)
             {
                 this.bMissionCritical = param1;
-                this.objectiveNumberMC.y = !!this.bMissionCritical ? 18 : 32;
-                this.criticalBoxMC.visible = this.bMissionCritical;
             }
         }
         
         public function set objectiveNumber(param1:Object) : void
         {
-            if(param1)
+            if(!param1)
             {
-                this.objectiveNumberMC.visible = param1.textValue && param1.textValue != "";
-                this.objectiveNumberMC.numberTextfield.text = param1.textValue;
             }
-            else
-            {
-                this.objectiveNumberMC.visble = false;
-            }
-        }
-        
-        public function set currentProgress(param1:Number) : void
-        {
-            if(this._currentProgress < param1)
-            {
-                if(this.currentProgressColor.tintColor != this.normalColor)
-                {
-                    this.currentProgressColor.setTint(this.normalColor,1);
-                    this.progressBarMC.transform.colorTransform = this.currentProgressColor;
-                    this.bonusNumberTextfield.transform.colorTransform = this.currentProgressColor;
-                    this.stateGlow.color = this.normalColor;
-                    this.bonusNumberTextfield.filters = [this.stateGlow];
-                    this.doshIconMC.gotoAndStop(1);
-                }
-            }
-            else if(this._currentProgress <= param1)
-            {
-                if(this.currentProgressColor.tintColor != this.defaultColor)
-                {
-                    this.currentProgressColor.setTint(this.defaultColor,1);
-                    this.progressBarMC.transform.colorTransform = this.currentProgressColor;
-                    this.bonusNumberTextfield.transform.colorTransform = this.currentProgressColor;
-                    this.stateGlow.color = this.defaultColor;
-                    this.bonusNumberTextfield.filters = [this.stateGlow];
-                    this.doshIconMC.gotoAndStop(3);
-                }
-            }
-            this.progressBarMC.gotoAndStop(param1 + 1);
-            this._currentProgress = param1;
         }
         
         public function set failed(param1:Object) : void
         {
             var _loc2_:Boolean = !!param1.bFailed ? Boolean(param1.bFailed) : false;
-            this.doshIconMC.gotoAndStop(!!_loc2_ ? 2 : 1);
-            this.accentsMC.gotoAndStop(!!_loc2_ ? 2 : 1);
             this.currentStateColor.setTint(!!_loc2_ ? uint(this.failedColor) : uint(this.normalRequirementColor),1);
             this.stateGlow.color = !!_loc2_ ? uint(this.failedColor) : uint(this.normalRequirementColor);
             this.bonusNumberTextfield.transform.colorTransform = this.currentStateColor;
             this.bonusNumberTextfield.filters = [this.stateGlow];
-            this.iconLoaderMC.transform.colorTransform = this.currentStateColor;
-            this.objectiveRequirementContainer.requirementNumberTextfield.text = this.failedString;
-            this.objectiveRequirementContainer.transform.colorTransform = this.currentStateColor;
-            this.doshIconMC.visible = !_loc2_;
-            this.bonusNumberTextfield.visible = !_loc2_;
-            this.objectiveRequirementContainer.visible = _loc2_;
+            if(_loc2_)
+            {
+                this.doshIconMC.gotoAndStop(2);
+                this.currentProgressColor.setTint(this.failedColor,1);
+                this.currentProgressText = param1.failedString;
+                this.currentBonus = "0";
+            }
         }
         
         public function set currentBonus(param1:String) : void
@@ -198,16 +213,13 @@ package tripwire.containers.hud
         
         public function set currentRequirement(param1:String) : void
         {
-            this.objectiveRequirementContainer.requirementIcon.gotoAndStop(param1);
         }
         
         public function set requirements(param1:Object) : void
         {
             if(param1)
             {
-                this.objectiveRequirementContainer.requirementNumberTextfield.text = !!param1.requirementString ? param1.requirementString : "";
                 this.currentRequirementColor.setTint(!!param1.requirementMet ? uint(this.normalRequirementColor) : uint(this.warningRequirementColor),1);
-                this.objectiveRequirementContainer.transform.colorTransform = this.currentRequirementColor;
             }
         }
         

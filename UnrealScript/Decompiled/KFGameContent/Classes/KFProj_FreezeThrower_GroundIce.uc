@@ -12,7 +12,9 @@ defaultproperties
 {
     bWarnAIWhenFired=true
     begin object name=ExploTemplate0 class=KFGameExplosion
+        Damage=7
         MyDamageType=Class'KFDT_Freeze_Ground_FreezeThrower'
+        MomentumTransferScale=0.1
     object end
     // Reference: KFGameExplosion'Default__KFProj_FreezeThrower_GroundIce.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

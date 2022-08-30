@@ -1,5 +1,5 @@
 [KFPawn_Scripted]
-ScriptedPawnString="V.I.P"
+ScriptedPawnString="護送"
 
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="特殊效果"
@@ -31,6 +31,7 @@ ModeStrings[0]="生存模式"
 ModeStrings[1]="每週活動模式"
 ModeStrings[2]="對抗生存模式"
 ModeStrings[3]="無盡"
+ModeStrings[4]="目標"
 
 NoPreferenceString="任何"
 OKString="OK"
@@ -108,7 +109,7 @@ DiscordSoloMatchString="單人遊戲"
 DiscordMatchLobbyString=": 遊戲大廳"
 DiscordTraderTimeString=": 商人時間"
 DiscordBossWaveString=": Boss 波"
-DiscordWaveString=": 波"
+DiscordWaveString=": 波 "
 
 StartOfflineGameString="離線開始遊戲"
 StartOfflineGameDescriptionString="離線開始遊戲將解散你的隊伍。\n是否繼續？"
@@ -141,9 +142,9 @@ CompleteMapString="在地圖中的遊戲："
 KillZedsString="殺死 ZED："
 KillBossString="Boss 擊殺數："
 KillBossDescriptionString="生存模式或每週模式"
-VersusKillsString="殺死對抗玩家的身分："
-DealVersusDamageString="傷害對抗玩家的身分："
-VersusCompletionString="完成遊戲的身分："
+VersusKillsString=殺死對抗玩家的身分：
+DealVersusDamageString=傷害對抗玩家的身分：
+VersusCompletionString=完成遊戲的身分：
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="無法找到遊戲"
@@ -1246,6 +1247,7 @@ ReduceHighPitchNoiseString="降低高頻雜訊"
 DisableAutoUpgradeString="禁用「自動交易」功能"
 HideRemodeHeadshotEffectsString="禁用遠距離爆頭特效"
 ToggleToRunString="切換至衝刺"
+ClassicPlayerInfoString="剩餘血量"
 
 EnableMixerString="啟動Mixer互動功能"
 DisableMixerString="禁用「Mixer」功能"
@@ -1737,7 +1739,7 @@ Vampire="吸血鬼"
 VampireDescription="每次使用近身武器殺死 Zed 可回復 4 點血量。使用職業近身武器攻擊時速度增加 20%。"
 
 Speed="屠夫"
-SpeedDescription="使用職業近身武器攻擊時速度增加 20% 且傷害增加 25%。"
+SpeedDescription="使用職業近身武器時攻擊速度增加 20%，傷害增加 20%。"
 
 Resistance="抗性"
 ResistanceDescription="對所有傷害抵抗增加 20%毒害與超音波傷害抵抗再增加 20%"
@@ -1755,7 +1757,7 @@ Spartan="ZED 時間 - 斯巴達"
 SpartanDescription="Zed 時間發動時，你可在使用職業武器的同時移動。"
 
 Rage="ZED 時間 - 狂戰士之怒"
-RageDescription="回復 25% 血量，當你發動 Zed 時間時，周圍的 Zed 會逃跑。"
+RageDescription="只要 Zed 時間啟動或更新，治療 25% 血量並使附近的 Zed 逃跑。"
 
 [KFPerk_Commando]
 PerkName="突擊隊"
@@ -1768,7 +1770,7 @@ SkillCatagories[4]="進階訓練"
 
 Passives[0]=(Title="職業武器傷害",Description="每級增加職業武器傷害 x%x");
 Passives[1]=(Title="偵測躲藏敵人與血量",Description="初始範圍為 5 公尺，每次升級再加 x%x");
-Passives[2]=(Title="延長 Zed 時間",Description="每 5 級增加 Zed 時間 x%x");
+Passives[2]=(Title="Zed 時間更新",Description="每 5 級增加 Zed 時間 x%x");
 Passives[3]=(Title="裝填速度",Description="每 5 級增加職業武器裝填速度 x%x");
 Passives[4]=(Title="夜視能力",Description="手電筒-與夜視鏡");
 Passives[5]=(Title="點出掩蓋的Zed",Description="讓隊友可以看見躲藏的敵人");
@@ -1783,7 +1785,7 @@ LargeMags="高容量彈匣"
 LargeMagsDescription="職業武器彈匣容量增加 50%"
 
 Backup="後援"
-BackupDescription="9 毫米手槍與刀類的傷害增加 50%，且武器切換速度增加 50%"
+BackupDescription="9 毫米手槍與刀類的傷害增加 85%，且武器切換速度增加 50%"
 
 Impact="衝擊回合"
 ImpactDescription="職業武器踉蹌力量增加 150%"
@@ -1795,7 +1797,7 @@ AmmoVest="準備就緒"
 AmmoVestDescription="為每樣職業武器多帶最多 20% 的彈藥"
 
 HollowPoints="中空彈回合"
-HollowPointsDescription="職業武器傷害增加 25% 且後座力減少 50% "
+HollowPointsDescription="職業武器傷害增加 20% 且後座力減少 50%。"
 
 EatLead="吃鉛"
 EatLeadDescription="職業武器彈匣容量增加 100%"
@@ -1829,13 +1831,13 @@ Damage="炸彈客"
 DamageDescription="爆炸性職業武器傷害增加 25%。"
 
 Speed="震擊部隊"
-SpeedDescription="職業武器裝填速度增加 20%，且擊倒和踉蹌力量增加 25%。"
+SpeedDescription="職業武器裝填速度增加且擊倒力量增加 10%。"
 
 DirectHit="高衝擊回合"
-DirectHitDescription="爆炸性武器直接擊中時，傷害增加 20%。"
+DirectHitDescription="爆炸性武器直接擊中時，傷害增加 25%。"
 
 Ammo="加分回合"
-AmmoDescription="爆炸性職業武器彈藥上限增加 5。"
+AmmoDescription="爆炸性職業武器彈藥上限增加 5。C4 不適用。"
 
 SirenResistance="防超音回合"
 SirenResistanceDescription="你的炸藥不受海妖的叫聲影響，一定會爆炸"
@@ -1884,13 +1886,13 @@ Combatant="搏鬥醫師"
 CombatantDescription="職業武器彈匣上限增加 50% 且移動速度增加 10% "
 
 HealingDamageBoost="注意力注射"
-HealingDamageBoostDescription="以治療鏢射擊隊友能增加他們的殺傷力 5%，效力維持 5 秒。這可加到總共 20% 的加成。 "
+HealingDamageBoostDescription="以治療鏢射擊隊友能增加他們的殺傷力 5%，效力維持 5 秒。這可加到總共 20% 的加成。"
 
 AcidicCompound="酸性回合"
 AcidicCompoundDescription="職業武器可使 Zed 中毒，造成持續傷害。"
 
 HealingShield="凝結加速器"
-HealingShieldDescription="以治療鏢射擊隊友能增加他們的傷害抵抗 10%，效力維持 5 秒。這可加到總共 30% 的加成。 "
+HealingShieldDescription="以治療鏢射擊隊友能增加他們的傷害抵抗 10%，效力維持 5 秒。這可加到總共 30% 的加成。"
 
 Enforcer="戰地外科醫生"
 EnforcerDescription="職業武器傷害增加 20%。"
@@ -1899,7 +1901,7 @@ AirborneAgent="ZED 時間 - 空中飛人"
 AirborneAgentDescription="Zed 時間發動時，你會施放治療瓦斯，用來治療附近的隊友。"
 
 Sedative="ZED 時間 - Zed 動作"
-SedativeDescription="Zed 時間發動時，以職業武器對 Zed 造成傷害會使他們動作減緩 30% 且造成大量毒傷害。 "
+SedativeDescription="Zed 時間發動時，以職業武器對 Zed 造成傷害會使他們動作減緩 30% 且造成大量毒傷害。"
 
 
 EXPAction1="造成醫學武器傷害"
@@ -1908,7 +1910,7 @@ EXPAction2="治療隊友"
 [KFPerk_Firebug]
 PerkName="縱火狂"
 EXPAction1="造成縱火狂武器傷害"
-EXPAction2="使用縱火狂武器殺害爬行者"
+EXPAction2="使用縱火狂武器殺死腫脹毒屍和爬行者"
 
 SkillCatagories[0]="補給"
 SkillCatagories[1]="辣"
@@ -1932,7 +1934,7 @@ Fuse="烤肉"
 FuseDescription="職業武器的燒傷效果延長 150%，隨時間增加傷害。"
 
 GroundFire="地面火力"
-GroundFireDescription="地面火力可大幅加強傷害，且降低 Zed 移動速度 20%。"
+GroundFireDescription="地面火力造成兩倍傷害，並降低 Zed 移動速度 30%。燃燒彈不適用。"
 
 ZedShrapnel="Zed 霰彈"
 ZedShrapnelDescription="以火焰殺害的 Zed 有 30% 可能性會爆炸，對附近其他 Zed 造成傷害並使其暈眩。"
@@ -1941,7 +1943,7 @@ Napalm="凝固汽油"
 NapalmDescription="燃燒的 Zed 碰觸到其他 Zed 會使它們起火，燒傷效果延長 150%。"
 
 Range="火旋風"
-RangeDescription="職業武器的攻擊範圍增加。"
+RangeDescription="增加裝好就燒、火焰噴射器和微波砲的攻擊範圍。"
 
 SplashDamage="熱浪"
 SplashDamageDescription="被近距離擊中的 Zed 會往後跌。"
@@ -2037,7 +2039,7 @@ Scoped="死亡之眼"
 ScopedDescription="手持職業武器使用瞄具時，後座力減少 10%，爆頭傷害增加 10%。"
 
 AmmoPouch="隨時就緒"
-AmmoPouchDescription="為每樣職業武器和手榴彈多帶最多 25% 的彈藥"
+AmmoPouchDescription="為每樣職業武器攜帶一個額外手榴彈和最多 25% 的彈藥。"
 
 ZTKnockdown="ZED 時間 - 暗殺者"
 ZTKnockdownDescription="以職業武器爆頭時有 5% 的機會直接觸發 Zed 時間。Zed 時間發動時，以職業武器造成的爆頭傷害增加 35%。"
@@ -2117,7 +2119,7 @@ TacticalMovement="戰略性移動"
 TacticalMovementDescription="手持職業武器時，使用瞄具或匍匐前進都不會受到移動懲罰。"
 
 Backup="近身戰鬥訓練"
-BackupDescription="使用 9 毫米手槍與刀類的傷害增加 50%。你在每個遊戲開始時會擁有兩把 9 毫米手槍。"
+BackupDescription="9 毫米手槍與刀類的傷害增加 85%。你在每個遊戲開始時會擁有兩把 9 毫米手槍。"
 
 TacticalReload="戰略裝填"
 TacticalReloadDescription="職業武器裝填速度增加"
@@ -2132,10 +2134,10 @@ BodyArmor="突擊護甲"
 BodyArmorDescription="護甲值上限增加 50%你在每次遊戲開始時會擁有 50% 的護甲，可與重護甲訓練給予你的護甲值疊加。"
 
 Cripple="傷殘"
-CrippleDescription="以職業武器同時命中多個目標時，會使 Zed 速度減少最多 30%。打中腿部效用最顯著。"
+CrippleDescription="使用職業武器同時命中多個目標時，會使 Zed 速度減少 30%。射擊頭部和弱點處會有加倍的效果。"
 
 SWATEnforcer="ZED 時間 - 強力撞擊"
-SWATEnforcerDescription="Zed 時間發動時，你的動作為即時速度，碰撞Zed時會有強大的擊倒力量。"
+SWATEnforcerDescription="Zed 時間發動時，你的動作為即時速度，可造成大幅傷害，並擊倒任何碰撞到的Zed。"
 
 RapidAssault="ZED 時間 - 快速進攻"
 RapidAssaultDescription="Zed 時間發動時，使用職業武器有無限彈藥，近乎即時射擊，且踉蹌力量增加 100%。"
@@ -2179,7 +2181,7 @@ ZedShrapnel="同時 Z 爆"
 ZedShrapnelDescription="你殺害的 Zed 有 30% 可能性會爆炸，對附近其他 Zed 造成傷害並使其暈眩。"
 
 MakeThingsGoBoom="四處炸裂"
-MakeThingsGoBoomDescription="所有炸藥影響範圍增加 40%。"
+MakeThingsGoBoomDescription="炸藥抗性增加 40%，所有炸藥影響區域增加 40%。"
 
 Madman="ZED 時間 - 狂人"
 MadmanDescription="Zed 時間發動時，你的所有武器射速變為 3 倍。"
@@ -2338,25 +2340,53 @@ FreeTrial="立即購買《殺戮空間 2》"
 FeaturedCrossover="混合推廣特賣"
 
 [Objectives]
+ObjectiveTitle="目標"
 HoldVolume="保衛區域"
 DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="堅守陣地"
 RequiredDoshHold="需要玩家："
 DoschHoldDesc="別讓喪屍進入標記的區域中"
 DescriptionDoshHold="別讓喪屍進入標記的區域中"
+DescriptionDoshHoldShort="保衛區域（非必要）"
 RepairObjective="焊接和維修"
-UseWelderToRepair="使用焊槍來維修物品"
-RepairObjectiveRequired="修理目標："
+UseWelderToRepair="使用焊槍來維修壞掉的機器"
+UseWelderToRepairShort="焊接壞掉的機器"
+UseWelderToRepairTraderPod="使用焊槍來維修壞掉的商人艙"
+UseWelderToRepairTraderPodShort="焊接商人艙"
+RepairObjectiveRequired="修理壞掉的機器數量："
 EscortPawnsObjective="護送"
-EscortPawnsDescription="保護目標不受Zed傷害"
+EscortPawnsDescription="護送並保護無人機不受 Zed 攻擊"
+EscortPawnsDescriptionShort="護送無人機"
 RequiredHoldVolume="RequiredHoldVolume"
 DestroyActor="搜尋並破壞"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="操縱和控制"
-DescriptionActivateTrigger="啟動目標控制"
+DescriptionActivateTrigger="啟動控制台"
+DescriptionActivateTriggerShort="啟動機台"
+DescriptionActivateTriggerFlares="啟動信號發射器"
+DescriptionActivateTriggerFlaresShort="啟動信號發射器"
+DescriptionActivateTriggerServer="使終端機伺服器超載"
+DescriptionActivateTriggerServerShort="使終端機伺服器超載"
+DescriptionActivateTriggerCommTower="使通訊塔超載"
+DescriptionActivateTriggerCommTowerShort="使通訊塔超載"
 RequiredActivateTrigger="需要啟動："
+ExterminateWaveObjective="殲滅"
+ExterminateWaveDescription="殺死所有 Zed"
+ExterminateWaveDescriptionShort="殺死所有 Zed"
+ExterminateWaveRequired="殲滅 Zed 數量："
+HoldZoneObjective="堅守陣地"
+HoldZoneDescription="保衛醒目提示區域不受 Zed 攻擊"
+HoldZoneDescriptionShort="保衛醒目提示區域"
+HoldZoneRequired="保衛時間："
+TransportWaveObjective="運輸"
+TransportWaveDescription="將資料平板運送至交託點"
+TransportWaveDescriptionShort="運送資料平板"
+TransportWaveDescriptionGear="將裝備運送至交託點"
+TransportWaveDescriptionGearShort="運送裝備"
+RequiredCollectActor="交託數量："
 FailedString="失敗"
+SuccessString="完成"
 RepairObjSantaWorkshopCustomTitle1="維修電力"
 RepairObjSantaWorkshopCustomDescr1="使用焊槍來維修3個壞掉的電路板"
 RepairObjSantaWorkshopCustomTitle2="維修門"
@@ -2373,6 +2403,20 @@ OperateObjSantaWorkshopCustomTitle2="拉上控制桿"
 OperateObjSantaWorkshopCustomDescr2="不讓Zed靠近區域"
 OperateObjSantaWorkshopCustomTitle3="拉上控制桿"
 OperateObjSantaWorkshopCustomDescr3="不讓Zed靠近區域"
+TooFewPlayers="玩家數量太少"
+TooManyZeds="Zed 數量太多"
+KillRemainingZeds="殺死所有 Zed"
+BeingAttacked="遭到攻擊"
+LowHealth="血量低"
+Stopped="已阻止"
+Blocked="遭到 Zed 阻擋"
+NeedsRepair="需要維修"
+Dropped="已丟棄"
+PickedUp="已撿起"
+PickupTransportItem="撿起運送物品"
+Reset="重置"
+Ready="準備就緒"
+NotReady="尚未準備就緒"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2526,10 +2570,10 @@ Source0="騎士制度宣傳影片"
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
-SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
-SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
-SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1")
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
@@ -2539,11 +2583,11 @@ ChanceDropDescriptionStrings[1]="掉落物品2"
 [KFGFxSummerSideShowObjectivesContainer]
 CurrentSpecialEventString="特殊活動時間有限，提供專屬物品。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="空中修理",DescriptionString="修理飛艇的破裂管道");
-SpecialEventObjectiveInfoList[1]=(TitleString="頂層守禦",DescriptionString="防守飛艇上層甲板");
-SpecialEventObjectiveInfoList[2]=(TitleString="電力恢復！",DescriptionString="修理飛艇的配電箱");
-SpecialEventObjectiveInfoList[3]=(TitleString="水流奔湧",DescriptionString="為飛艇的蒸汽引擎供水");
-SpecialEventObjectiveInfoList[4]=(TitleString="行進自如",DescriptionString="以困難或更高難度在飛艇關卡上贏得一局匹配遊戲");
+SpecialEventObjectiveInfoList[0]=(TitleString="空中修理",DescriptionString="修理飛艇的破裂管道")
+SpecialEventObjectiveInfoList[1]=(TitleString="頂層守禦",DescriptionString="防守飛艇上層甲板")
+SpecialEventObjectiveInfoList[2]=(TitleString="電力恢復！",DescriptionString="修理飛艇的配電箱")
+SpecialEventObjectiveInfoList[3]=(TitleString="水流奔湧",DescriptionString="為飛艇的蒸汽引擎供水")
+SpecialEventObjectiveInfoList[4]=(TitleString="行進自如",DescriptionString="以困難或更高難度在飛艇關卡上贏得一局匹配遊戲")
 
 AllCompleteRewardDescriptionString="蒸汽龐克服飾同捆包"
 
@@ -2553,11 +2597,11 @@ ChanceDropDescriptionStrings[1]="黃金券"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="完成怪獸舞會的目標以獲得獎勵！"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="萬陷節！",DescriptionString="在一次遊戲期間使用陷阱擊殺 25 只 Zed");
-SpecialEventObjectiveInfoList[1]=(TitleString="死無對證",DescriptionString="擊碎 10 個發光頭骨收集品");
-SpecialEventObjectiveInfoList[2]=(TitleString="怪獸泥",DescriptionString="擊殺 2500 只 Zed");
-SpecialEventObjectiveInfoList[3]=(TitleString="通宵狂歡",DescriptionString="在無盡模式困難或更高難度下完成 25 波。");
-SpecialEventObjectiveInfoList[4]=(TitleString="城堡領主",DescriptionString="在生存模式困難或更高難度下擊敗康特·漢斯");
+SpecialEventObjectiveInfoList[0]=(TitleString="萬陷節！",DescriptionString="在一次遊戲期間使用陷阱擊殺 25 只 Zed")
+SpecialEventObjectiveInfoList[1]=(TitleString="死無對證",DescriptionString="擊碎 10 個發光頭骨收集品")
+SpecialEventObjectiveInfoList[2]=(TitleString="怪獸泥",DescriptionString="擊殺 2500 只 Zed")
+SpecialEventObjectiveInfoList[3]=(TitleString="通宵狂歡",DescriptionString="在無盡模式困難或更高難度下完成 25 波。")
+SpecialEventObjectiveInfoList[4]=(TitleString="城堡領主",DescriptionString="在生存模式困難或更高難度下擊敗康特·漢斯")
 
 AllCompleteRewardDescriptionString="漢斯的MKB：武器+萬聖節飾品"
 
@@ -2567,11 +2611,11 @@ ChanceDropDescriptionStrings[1]="黃金票券"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="在限時活動中可獲得，內含特有道具。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="完美禮物",DescriptionString="在生存模式困難或是更高的難度下，在所有護送目標任務中讓載運車保持滿血");
-SpecialEventObjectiveInfoList[1]=(TitleString="每周特禮",DescriptionString="完成每周購物狂歡");
-SpecialEventObjectiveInfoList[2]=(TitleString="大殺特殺",DescriptionString="擊殺2500隻Zed");
-SpecialEventObjectiveInfoList[3]=(TitleString="火燒子孫袋",DescriptionString="擊殺25隻Boss");
-SpecialEventObjectiveInfoList[4]=(TitleString="作坊鬥毆",DescriptionString="在生存模式困難或是更高的難度下擊敗聖誕作坊的坎普斯");
+SpecialEventObjectiveInfoList[0]=(TitleString="完美禮物",DescriptionString="在生存模式困難或是更高的難度下，在所有護送目標任務中讓載運車保持滿血")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周特禮",DescriptionString="完成每周購物狂歡")
+SpecialEventObjectiveInfoList[2]=(TitleString="大殺特殺",DescriptionString="擊殺2500隻Zed")
+SpecialEventObjectiveInfoList[3]=(TitleString="火燒子孫袋",DescriptionString="擊殺25隻Boss")
+SpecialEventObjectiveInfoList[4]=(TitleString="作坊鬥毆",DescriptionString="在生存模式困難或是更高的難度下擊敗聖誕作坊的坎普斯")
 
 AllCompleteRewardDescriptionString="戰斧+聖誕節飾品"
 
@@ -2582,11 +2626,11 @@ ChanceDropDescriptionStrings[1]="黃金票券"
 CurrentSpecialEventString="無盡挑戰"
 CurrentSpecialEventDescriptionString="擊敗一波波敵人贏得傳奇奖励！"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="無盡訓練假人",DescriptionString="擊敗波數5",TierEventRewardName="經典D.A.R.");
-SpecialEventObjectiveInfoList[1]=(TitleString="無盡無人機",DescriptionString="擊敗波數10",TierEventRewardName="裝載者D.A.R.");");
-SpecialEventObjectiveInfoList[2]=(TitleString="無盡哨兵",DescriptionString="擊敗波數15",TierEventRewardName="骷髏D.A.R.");");
-SpecialEventObjectiveInfoList[3]=(TitleString="無盡戰爭機器",DescriptionString="擊敗波數20",TierEventRewardName="血腥D.A.R.");");
-SpecialEventObjectiveInfoList[4]=(TitleString="無盡無敵D.A.R.",DescriptionString="击败波数25",TierEventRewardName="黃金D.A.R.");
+SpecialEventObjectiveInfoList[0]=(TitleString="無盡訓練假人",DescriptionString="擊敗波數5",TierEventRewardName="經典D.A.R.")
+SpecialEventObjectiveInfoList[1]=(TitleString="無盡無人機",DescriptionString="擊敗波數10",TierEventRewardName="裝載者D.A.R.")
+SpecialEventObjectiveInfoList[2]=(TitleString="無盡哨兵",DescriptionString="擊敗波數15",TierEventRewardName="骷髏D.A.R.")
+SpecialEventObjectiveInfoList[3]=(TitleString="無盡戰爭機器",DescriptionString="擊敗波數20",TierEventRewardName="血腥D.A.R.")
+SpecialEventObjectiveInfoList[4]=(TitleString="無盡無敵D.A.R.",DescriptionString="击败波数25",TierEventRewardName="黃金D.A.R.")
 
 [KFGFxSpring2019ObjectivesContainer]
 CurrentSpecialEventString="在限時活動中可獲得，內含特有道具"
@@ -2598,6 +2642,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="無盡洩洪道",DescriptionStrin
 SpecialEventObjectiveInfoList[4]=(TitleString="揮灑熱血",DescriptionString="在洩洪道以生存模式困難或更高難度擊敗任意頭目")
 
 AllCompleteRewardDescriptionString="男性和女性賽博龐克服飾"
+
+ChanceDropDescriptionStrings[0]="獎品票券"
+ChanceDropDescriptionStrings[1]="黃金票券"
+
+[KFGFxSummer2019ObjectivesContainer]
+CurrentSpecialEventString="在限時活動中可獲得，內含特有道具"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="直奔天際！",DescriptionString="在目標困難或更高難度下完成蒸汽要塞")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週檢查",DescriptionString="每週完成蒸汽要塞")
+SpecialEventObjectiveInfoList[2]=(TitleString="無盡蒸汽",DescriptionString="在無盡模式困難或更高難度下完成蒸汽要塞 15 波")
+SpecialEventObjectiveInfoList[3]=(TitleString="致命旅程",DescriptionString="在目標困難或更高難度下完成僵屍群登陸")
+SpecialEventObjectiveInfoList[4]=(TitleString="寒潮來臨",DescriptionString="在目標困難或更高難度下完成前哨")
+
+AllCompleteRewardDescriptionString="男性和女性蒸汽龐克服飾"
 
 ChanceDropDescriptionStrings[0]="獎品票券"
 ChanceDropDescriptionStrings[1]="黃金票券"
@@ -3113,6 +3171,9 @@ GameName="每週活動模式"
 [Endless KFGameInfoSummary]
 GameName="無盡"
 
+[Objective KFGameInfoSummary]
+GameName="目標"
+
 [KF-VolterManor KFMapSummary]
 DisplayName="華特大宅"
 
@@ -3181,6 +3242,9 @@ DisplayName="聖誕作坊"
 
 [KF-Spillway KFMapSummary]
 DisplayName="洩洪道"
+
+[KF-SteamFortress KFMapSummary]
+DisplayName="蒸汽要塞"
 
 [KFMapInfo]
 ; defaults

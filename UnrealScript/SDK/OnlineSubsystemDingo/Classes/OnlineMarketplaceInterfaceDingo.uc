@@ -58,10 +58,10 @@ struct native CachedInventoryItems
 
 	structcpptext
 	{
-		FCachedInventoryItems () 
+		FCachedInventoryItems ()
 		: PlatformItems(NULL)
 		, ReadState(OERS_NotStarted) {}
-		
+
 		~FCachedInventoryItems()
 		{
 			if (PlatformItems != NULL)
@@ -82,8 +82,12 @@ var native map{QWORD, FUserInventoryCache} InventoryItemsCache;
 
 var array<delegate<OnMarketplaceItemPurchased> > OnMarketplaceItemPurchasedDelegates;
 
+/** How many consumables and durables are for sale. MUST BE UPDATED EACH UPDATE. */
+var int ConsumablesCount;
+var int DurablesCount;
+
 /**
- * Starts an async read of all available products 
+ * Starts an async read of all available products
  *
  * @param LocalUserNum - the controller number of the associated user
  * @param ParentId - if not empty, read products who are children of this product id
@@ -271,7 +275,7 @@ native function ResetInventoryItems(byte LocalUserNum, EMediaItemType MediaType)
 native function bool ConsumeInventoryItem(byte LocalUserNum, string ProductId, int Quantity, string TransactionId);
 
 /*
- * Called when the async consume request completes 
+ * Called when the async consume request completes
  */
 delegate OnConsumeInventoryItemComplete(string ProductId, bool bDidSucceed, int NewQuantity);
 
@@ -340,4 +344,11 @@ cpptext
 	 * @return The set of cached inventory items for the player
 	 */
 	FCachedInventoryItems& GetCachedInventoryItems(DWORD PlayerNum, EMediaItemType MediaType);
+}
+
+defaultproperties
+{
+	// as of June 2019
+	ConsumablesCount=47
+	DurablesCount=17
 }

@@ -21,6 +21,8 @@ var() const int ZedThresholds[6];
 
 /** Whether or not the zone is in the danger state */
 var() repnotify bool bDangerState;
+var	  repnotify bool bTooFewPlayers;
+var	  repnotify bool bTooManyZeds;
 
 /** Current reward amount */
 var float CurrentRewardAmount;
@@ -33,7 +35,7 @@ var float GoodWinThreshold;
 replication
 {
     if (Role == ROLE_Authority)
-        CurrentRewardAmount, bDangerState;
+        CurrentRewardAmount, bDangerState, bTooFewPlayers, bTooManyZeds;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -156,7 +158,7 @@ simulated function ActivateObjective()
 			TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathActor', none);
 			if (TrailActor != none)
 			{
-				TrailActor.SetEmitterTemplate(ParticleSystem'FX_Gameplay_EMIT.FX_Objective_Trail');
+				TrailActor.SetEmitterTemplate(ParticleSystem'FX_Gameplay_EMIT.FX_Objective_White_Trail');
 				TrailActor.SetPathTarget(self, self, VCT_NotInVolume);
 			}
 		}
@@ -211,7 +213,7 @@ function bool IsCurrentGameModeBlacklisted()
 
 simulated function bool UsesProgress()
 {
-	return true;
+	return false;
 }
 
 simulated function float GetProgress();
@@ -236,17 +238,9 @@ simulated function int GetPlayersInObjective()
 	return 0;
 }
 
-simulated function bool HasFailedObjective();
-
 //-----------------------------------------------------------------------------
 // Rewards
 //-----------------------------------------------------------------------------
-
-simulated function int GetDoshReward()
-{
-	return CurrentRewardAmount;
-}
-
 simulated function int GetVoshReward()
 {
 	local int MaxDoshReward;
@@ -286,14 +280,35 @@ simulated function Vector GetIconLocation()
 	return Location;
 }
 
-simulated function bool UsesMultipleActors()
-{
-	return false;
-}
-
 simulated function string GetLocalizedRequirements();
 
-simulated function string GetActorCount();
+simulated function GetLocalizedStatus(out string statusMessage, out int bWarning, out int bNotification)
+{
+	statusMessage = "";
+
+	if (GetProgress() >= 1.f)
+	{
+		statusMessage = Localize("Objectives", "KillRemainingZeds", LocalizationPackageName);
+		bWarning = 0;
+		bNotification = 0;
+		return;
+	}
+
+	if (bTooFewPlayers)
+	{
+		statusMessage = Localize("Objectives", "TooFewPlayers", LocalizationPackageName);
+		bWarning = 1;
+		return;
+	}
+	else if (bTooManyZeds)
+	{
+		statusMessage = Localize("Objectives", "TooManyZeds", LocalizationPackageName);
+		bWarning = 1;
+		return;
+	}
+}
+
+simulated function string GetProgressText();
 
 simulated function bool GetIsMissionCritical()
 {

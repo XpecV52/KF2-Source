@@ -196,6 +196,7 @@ defaultproperties
     ModeStrings(1)="Weekly"
     ModeStrings(2)="VS Survival"
     ModeStrings(3)="Endless"
+    ModeStrings(4)="Objective"
     TeamSwappedString="You have been team swapped"
     NoPreferenceString="ANY"
     OKString="OK"

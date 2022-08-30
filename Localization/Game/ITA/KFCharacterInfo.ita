@@ -36,7 +36,7 @@ BodyMesh2="Sicurezza Horzine"
 BodyMesh3="Cavaliere di cartone"
 BodyMesh4="Terra desolata"
 BodyMesh5="Materiale pericoloso"
-BodyMesh6="Pollo Commando "
+BodyMesh6="Pollo Commando"
 BodyMesh7="Vestito Pigiama Festivo"
 BodyMesh8="Vestito Pigiama Deposito"
 BodyMesh9="Cyberpunk"
@@ -1357,7 +1357,7 @@ AttachmentSkin0="Predefinito"
 Attachment="Cappello mimetico"
 AttachmentSkin0="Predefinito"
 AttachmentSkin1="Digi rosso"
-AttachmentSkin2="Digi tigrato"
+AttachmentSkin2="Rosso tigrato"
 AttachmentSkin3="Verde"
 AttachmentSkin4="Digi verde"
 AttachmentSkin5="Digi blu"
@@ -2476,7 +2476,7 @@ HeadSkin7="Halloween 2018"
 
 [chr_alan_archetype]
 CharacterName="Masterson classico"
-Description="Nessuno ha mai capito come Masterson sia riuscito a scalare la vetta, sebbene qualcuno dica che il suo cugino più ricco e affascinante, il Capitano Sir Richard Wiggins, abbia dato il suo contributo. O forse era il suo fratello più intelligente. In ogni caso, è innegabile che sia un diamante grezzo, un uomo di poche (gentili) parole e con un inusuale atteggiamento calmo durante i combattimenti. Praticamente tutti pensano che questo sia dovuto alla sua mancanza di immaginazione, empatia e intelligenza. Per fortuna, sa organizzare i suoi uomini con fermezza e porta sempre a compimento la sua missione - non importa quanto sgradevole possa sembrare a chiunque abbia buon gusto o buone maniere. "
+Description="Nessuno ha mai capito come Masterson sia riuscito a scalare la vetta, sebbene qualcuno dica che il suo cugino più ricco e affascinante, il Capitano Sir Richard Wiggins, abbia dato il suo contributo. O forse era il suo fratello più intelligente. In ogni caso, è innegabile che sia un diamante grezzo, un uomo di poche (gentili) parole e con un inusuale atteggiamento calmo durante i combattimenti. Praticamente tutti pensano che questo sia dovuto alla sua mancanza di immaginazione, empatia e intelligenza. Per fortuna, sa organizzare i suoi uomini con fermezza e porta sempre a compimento la sua missione - non importa quanto sgradevole possa sembrare a chiunque abbia buon gusto o buone maniere."
 BodyMesh0="Tenuta da combattimento"
 BodyMesh1="Cavaliere di cartone"
 BodyMesh2="Sicurezza Horzine"
@@ -3361,7 +3361,7 @@ EmoteName="Pallonetto"
 EmoteName="Palla di fuoco"
 
 [Makeitrain]
-EmoteName="Lancio di soldi"
+EmoteName="Lancio di soldi "
 
 [Fireball_Deluxe]
 EmoteName="Palla di fuoco+"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="Rosso"
 AttachmentSkin2="Prezioso"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="Fascia per braccio Holo C"
+Attachment="Fascia per braccio Holo AB"
 AttachmentSkin0="Blu"
 AttachmentSkin1="Rosso"
 AttachmentSkin2="Prezioso"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="Verde"
 AttachmentSkin3="Verdognolo"
 AttachmentSkin4="Rosso"
 AttachmentSkin5="Bianco"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="Progetto H 01 Base"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Prezioso"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="Progetto H 01 Felice"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="Progetto H 01 Felice Off"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="Progetto H 01 Neutrale"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="Progetto H 01 Neutrale Off"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="Progetto H 01 Infelice"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="Progetto H 01 Infelice Off"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="Progetto H 02 Base"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Prezioso"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="Progetto H 02 Felice"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="Progetto H 02 Felice Off"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="Progetto H 02 Neutrale"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="Progetto H 02 Neutrale Off"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="Progetto H 02 Infelice"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="Progetto H 02 Infelice Off"
+AttachmentSkin0="Blu"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Prezioso"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="Monocolo di cristallo Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="Berretto con teschio Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="Maschera mandibola Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="Corvo-cresta Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="Occhiali di pelle Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="Maschera antigas di pelle Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="Zaino chiave Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="Fascia per braccio con orologio Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="Zaino corriere Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="Zaino Tesla Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="Zaino Zed Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="Zaino Cronometro Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="Fascia-piovra Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="Cappello del capitano Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="Cappello a bombetta Steampunk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cromato"
+AttachmentSkin2="Prezioso"

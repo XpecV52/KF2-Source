@@ -28,7 +28,7 @@ defaultproperties
    MinDistanceBetweenWayPointsOnNavMesh=200.000000
    EmitterTemplate=ParticleSystem'FX_Gameplay_EMIT.FX_Trader_Trail'
    Position=-1
-   CURVE_TURNRATE=2.000000
+   CURVE_TURNRATE=8.000000
    ACCEL_RATE=1200.000000
    bUseAccelerationPhysics=True
    Begin Object Class=ParticleSystemComponent Name=ParticleSystemComponent0 Archetype=ParticleSystemComponent'KFGame.Default__KFEmit_Path:ParticleSystemComponent0'

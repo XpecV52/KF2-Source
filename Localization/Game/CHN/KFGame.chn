@@ -1,5 +1,5 @@
 [KFPawn_Scripted]
-ScriptedPawnString="V.I.P."
+ScriptedPawnString="护送"
 
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="特殊效果"
@@ -31,6 +31,7 @@ ModeStrings[0]="生存"
 ModeStrings[1]="每周"
 ModeStrings[2]="VS 生存"
 ModeStrings[3]="无尽"
+ModeStrings[4]="目标"
 
 NoPreferenceString="任意"
 OKString="确定"
@@ -108,7 +109,7 @@ DiscordSoloMatchString="单人比赛"
 DiscordMatchLobbyString=": 比赛大厅"
 DiscordTraderTimeString=": 商人时间"
 DiscordBossWaveString=": Boss波"
-DiscordWaveString=": 波"
+DiscordWaveString=": 波 "
 
 StartOfflineGameString="开始离线游戏"
 StartOfflineGameDescriptionString="开始离线游戏将会解散你的队伍。\n你要继续吗？"
@@ -141,9 +142,9 @@ CompleteMapString="在地图中完成比赛："
 KillZedsString="杀死丧尸："
 KillBossString="Boss击杀数："
 KillBossDescriptionString="在生存或每周中"
-VersusKillsString="杀死对手玩家："
-DealVersusDamageString="伤害对手玩家："
-VersusCompletionString="完成比赛："
+VersusKillsString=杀死对手玩家：
+DealVersusDamageString=伤害对手玩家：
+VersusCompletionString=完成比赛：
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="无法找到比赛"
@@ -1246,6 +1247,7 @@ ReduceHighPitchNoiseString="减少高分贝噪音"
 DisableAutoUpgradeString="禁用“自动交易”功能"
 HideRemodeHeadshotEffectsString="关闭远程爆头特效"
 ToggleToRunString="切换为冲刺"
+ClassicPlayerInfoString="遗赠血条"
 
 EnableMixerString="切换Mixer互动功能"
 DisableMixerString="禁用“Mixer”功能"
@@ -1737,7 +1739,7 @@ Vampire="吸血鬼"
 VampireDescription="使用神射武器每杀死一个丧尸可以治愈 4 点生命。使用神射近战武器时攻击速度提升 20%。"
 
 Speed="屠夫"
-SpeedDescription="使用神射近战武器时攻击速度提升 20%，伤害增加 25%。"
+SpeedDescription="使用神射近战武器时攻击速度提升 20%，伤害增加 20%。"
 
 Resistance="抗性"
 ResistanceDescription="对所有伤害获得 20% 抗性。对毒药和声波伤害获得额外 20% 抗性。"
@@ -1755,7 +1757,7 @@ Spartan="丧尸时间 - 斯巴达式"
 SpartanDescription="在丧尸时间中，你要使用神射武器进行攻击并且实时移动。"
 
 Rage="丧尸时间 - 狂战士的咆哮"
-RageDescription="进入丧尸时间后，治愈 25% 生命，同时靠近你的丧尸会尝试逃跑。"
+RageDescription="只要丧尸时间启动或刷新，则治愈 25% 生命并迫使附近丧尸逃跑。"
 
 [KFPerk_Commando]
 PerkName="突击兵"
@@ -1768,7 +1770,7 @@ SkillCatagories[4]="高级训练"
 
 Passives[0]=(Title="神射武器伤害",Description="神射武器伤害每级增加 %x%");
 Passives[1]=(Title="敌人隐形和血条检测",Description="以 5 米为基础，每级加 %x% 米");
-Passives[2]=(Title="丧尸时间延长",Description="丧尸时间每 5 级增加 %x%");
+Passives[2]=(Title="丧尸时间刷新",Description="丧尸时间每 5 级增加 %x%");
 Passives[3]=(Title="填弹速度",Description="神射武器填弹速度每 5 级增加 %x%%");
 Passives[4]=(Title="夜视能力",Description="手电筒 - 和夜视镜");
 Passives[5]=(Title="隐藏丧尸现形",Description="使队员能够看见隐形敌人");
@@ -1783,7 +1785,7 @@ LargeMags="高容量弹匣"
 LargeMagsDescription="提升神射武器的容量弹匣 50%。"
 
 Backup="撤退"
-BackupDescription="提升 9 毫米手枪和匕首的伤害 50%，提升武器切换速度 50%。"
+BackupDescription="提升 9 毫米手枪和匕首的伤害 85%，提升武器切换速度 50%。"
 
 Impact="冲击弹"
 ImpactDescription="提升神射武器的击退力 150%。"
@@ -1795,7 +1797,7 @@ AmmoVest="有备无患"
 AmmoVestDescription="每个神射武器可以多携带 20% 弹药。"
 
 HollowPoints="空尖弹"
-HollowPointsDescription="提升神射武器伤害 25%，降低后座力 50%。"
+HollowPointsDescription="提升神射武器伤害 20%，降低后座力 50%。"
 
 EatLead="吃我的子弹"
 EatLeadDescription="提升神射武器的容量弹匣 100%。"
@@ -1829,13 +1831,13 @@ Damage="投弹手"
 DamageDescription="提升爆炸神射武器的伤害 25%。"
 
 Speed="震波部队"
-SpeedDescription="神射武器填弹速度提升 20%，击倒和击退力提升 25%。"
+SpeedDescription="提升神射武器填弹速度并提高击倒力 10%。"
 
 DirectHit="高冲击弹"
-DirectHitDescription="提升爆炸武器的直接攻击伤害 20%。"
+DirectHitDescription="提升爆炸武器的直接攻击伤害 25%。"
 
 Ammo="额外弹"
-AmmoDescription="提升爆炸神射武器的最大弹药容量 5。"
+AmmoDescription="提升爆炸神射武器的最大弹药容量 5。这不适用于 C4。"
 
 SirenResistance="抗声波弹"
 SirenResistanceDescription="你的爆炸物对女妖的尖叫免疫，因此总是能够爆炸。"
@@ -1884,13 +1886,13 @@ Combatant="战斗博士"
 CombatantDescription="提升神射武器的弹匣容量 50% 和移动速度 10%。"
 
 HealingDamageBoost="焦点注射"
-HealingDamageBoostDescription="向队员投掷治愈飞镖，提升他们的破坏力 5%，持续 5 秒。这可以叠加到 20% 奖励。 "
+HealingDamageBoostDescription="向队员投掷治愈飞镖，提升他们的破坏力 5%，持续 5 秒。这可以叠加到 20% 奖励。"
 
 AcidicCompound="酸弹"
 AcidicCompoundDescription="神射武器可以使丧尸中毒，在一定时间内施加中毒伤害。"
 
 HealingShield="促凝剂"
-HealingShieldDescription="向队员投掷治愈飞镖，提升他们的伤害抗性 10%，持续 5 秒。这可以叠加到 30% 奖励。 "
+HealingShieldDescription="向队员投掷治愈飞镖，提升他们的伤害抗性 10%，持续 5 秒。这可以叠加到 30% 奖励。"
 
 Enforcer="战斗医师"
 EnforcerDescription="提升神射武器的伤害 20%。"
@@ -1899,7 +1901,7 @@ AirborneAgent="丧尸时间 - 悬浮剂"
 AirborneAgentDescription="你在丧尸时间释放治愈气体，治愈附近的队员。"
 
 Sedative="丧尸时间 - 丧尸狂"
-SedativeDescription="在丧尸时间中，使用神射武器攻击丧尸可以使其速度下降 30%，并且造成大量中毒伤害。 "
+SedativeDescription="在丧尸时间中，使用神射武器攻击丧尸可以使其速度下降 30%，并且造成大量中毒伤害。"
 
 
 EXPAction1="造成医疗兵武器伤害"
@@ -1908,7 +1910,7 @@ EXPAction2="治愈队员"
 [KFPerk_Firebug]
 PerkName="纵火犯"
 EXPAction1="造成纵火犯武器伤害"
-EXPAction2="使用纵火犯武器杀死爬行怪"
+EXPAction2="使用纵火犯武器杀死胆汁怪和爬行怪"
 
 SkillCatagories[0]="供应品"
 SkillCatagories[1]="辛辣"
@@ -1932,7 +1934,7 @@ Fuse="烧烤"
 FuseDescription="神射武器的燃烧效果延长 150%，伤害随着时间而增加。"
 
 GroundFire="地火"
-GroundFireDescription="地火造成更大的伤害，同时降低丧尸移动速度 20%。"
+GroundFireDescription="地火造成双倍伤害，同时降低丧尸移动速度 30%。这不适用于燃烧弹。"
 
 ZedShrapnel="丧尸弹片"
 ZedShrapnelDescription="你用火焰杀死的丧尸有30%的几率爆炸，进而伤害和击倒附近的丧尸。"
@@ -1941,7 +1943,7 @@ Napalm="凝固汽油"
 NapalmDescription="燃烧的丧尸与其他丧尸接触后将会使其他丧尸也着火，燃烧效果延长 150%。"
 
 Range="火暴"
-RangeDescription="提升神射武器的范围。"
+RangeDescription="提升喷火枪、火焰喷射器和微波枪的射程。"
 
 SplashDamage="热浪"
 SplashDamageDescription="被火焰击中的丧尸将会向后跌倒。"
@@ -2037,7 +2039,7 @@ Scoped="死眼"
 ScopedDescription="瞄准时降低神射武器 10% 的后座力且提高 10% 的爆头伤害。"
 
 AmmoPouch="时刻准备"
-AmmoPouchDescription="神射武器可以多携带 25% 弹药和手榴弹。"
+AmmoPouchDescription="神射武器可以携带一个额外的手榴弹和另外 25% 的弹药。"
 
 ZTKnockdown="丧尸时间 - 刺客"
 ZTKnockdownDescription="使用神射武器爆头有 5% 的几率触发丧尸时间。在丧尸时间中，神射武器的爆头伤害提升 35%。"
@@ -2117,7 +2119,7 @@ TacticalMovement="策略移动"
 TacticalMovementDescription="使用机械瞄准或手握神射武器蹲伏都不会有移动惩罚。"
 
 Backup="近战训练"
-BackupDescription="提升 9 毫米手枪和匕首的伤害 50%。每次游戏开始时，你都有两把 9 毫米手枪。"
+BackupDescription="提升 9 毫米手枪和匕首的伤害 85%。每次游戏开始时，你都有两把 9 毫米手枪。"
 
 TacticalReload="策略填弹"
 TacticalReloadDescription="提升神射武器的填弹速度。"
@@ -2132,10 +2134,10 @@ BodyArmor="攻击护甲"
 BodyArmorDescription="最大护甲提升 50%。每场开始时有 50% 护甲，可以和从重护甲训练中获得的护甲叠加。"
 
 Cripple="跛脚"
-CrippleDescription="使用神射武器击中多次，使丧尸速度下降最多 30%。击中腿部最有效。"
+CrippleDescription="使用神射武器击中多次，使丧尸速度下降 30%。头部和弱点击中则要快两倍。"
 
 SWATEnforcer="丧尸时间 - 破城槌"
-SWATEnforcerDescription="在丧尸时间中，你可以实时移动，撞上丧尸时爆发巨大的击倒力。"
+SWATEnforcerDescription="丧尸时间期间，你可实时快速移动，可对任何触碰到你的丧尸造成巨大的伤害和击倒力。"
 
 RapidAssault="丧尸时间 - 快速攻击"
 RapidAssaultDescription="在丧尸时间中，神射武器有用之不尽的弹药，可以实时射击，同时提高击退力 100%。"
@@ -2179,7 +2181,7 @@ ZedShrapnel="自发性丧尸爆炸"
 ZedShrapnelDescription="你杀死的丧尸有30%的几率爆炸，进而伤害和击倒附近的丧尸。"
 
 MakeThingsGoBoom="欣欣向荣"
-MakeThingsGoBoomDescription="爆炸范围效果提升40%。"
+MakeThingsGoBoomDescription="爆炸抗性提升 40%，所有爆炸物的效果范围提升 40%。"
 
 Madman="丧尸时间 - 狂人"
 MadmanDescription="在丧尸时间中，你的所有武器射击速度提升 3 倍。"
@@ -2338,25 +2340,53 @@ FreeTrial="今天马上购买 Killing Floor 2 吧！"
 FeaturedCrossover="跨界商品促销"
 
 [Objectives]
+ObjectiveTitle="目标"
 HoldVolume="保卫区域"
 DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="坚守阵地"
 RequiredDoshHold="需要玩家："
 DoschHoldDesc="别让丧尸进入标记的区域中"
 DescriptionDoshHold="别让丧尸进入标记的区域中"
+DescriptionDoshHoldShort="保卫区域（可选）"
 RepairObjective="焊接和修理"
-UseWelderToRepair="使用焊机来修理物品"
-RepairObjectiveRequired="需要修理的目标："
+UseWelderToRepair="使用焊机修理损坏的机器"
+UseWelderToRepairShort="焊接损坏的机器"
+UseWelderToRepairTraderPod="使用焊机修理损坏的 Trader Pods"
+UseWelderToRepairTraderPodShort="焊接 Trader Pods"
+RepairObjectiveRequired="待修理的损坏机器："
 EscortPawnsObjective="护送"
-EscortPawnsDescription="保护目标不受丧尸伤害"
+EscortPawnsDescription="护送无人机并防止其遭遇丧尸的侵袭"
+EscortPawnsDescriptionShort="护送无人机"
 RequiredHoldVolume="RequiredHoldVolume"
 DestroyActor="搜索破坏"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="操作及控制"
-DescriptionActivateTrigger="启动目标控制"
+DescriptionActivateTrigger="启动控制操作台"
+DescriptionActivateTriggerShort="启动操作台"
+DescriptionActivateTriggerFlares="启动闪光弹"
+DescriptionActivateTriggerFlaresShort="启动闪光弹"
+DescriptionActivateTriggerServer="使服务器终端超负荷"
+DescriptionActivateTriggerServerShort="使服务器终端超负荷"
+DescriptionActivateTriggerCommTower="使通讯塔超负荷"
+DescriptionActivateTriggerCommTowerShort="使通讯塔超负荷"
 RequiredActivateTrigger="需要启动："
+ExterminateWaveObjective="歼灭"
+ExterminateWaveDescription="杀死所有丧尸"
+ExterminateWaveDescriptionShort="杀死所有丧尸"
+ExterminateWaveRequired="待消灭的丧尸："
+HoldZoneObjective="坚守阵地"
+HoldZoneDescription="防御高亮区域，让其免遭丧尸的侵袭"
+HoldZoneDescriptionShort="防御高亮区域"
+HoldZoneRequired="防御时间："
+TransportWaveObjective="运送"
+TransportWaveDescription="将数据板运送至交付位置"
+TransportWaveDescriptionShort="运送数据板"
+TransportWaveDescriptionGear="将装置运送至交付位置"
+TransportWaveDescriptionGearShort="运送装置"
+RequiredCollectActor="需要送达的货物："
 FailedString="失败"
+SuccessString="完成"
 RepairObjSantaWorkshopCustomTitle1="修理电源"
 RepairObjSantaWorkshopCustomDescr1="用焊机修理3块损坏的电路板"
 RepairObjSantaWorkshopCustomTitle2="修理大门"
@@ -2373,6 +2403,20 @@ OperateObjSantaWorkshopCustomTitle2="拉下控制杆"
 OperateObjSantaWorkshopCustomDescr2="阻止丧尸靠近这个区域"
 OperateObjSantaWorkshopCustomTitle3="拉下控制杆"
 OperateObjSantaWorkshopCustomDescr3="阻止丧尸靠近这个区域"
+TooFewPlayers="玩家太少"
+TooManyZeds="丧尸太多"
+KillRemainingZeds="杀死所有丧尸"
+BeingAttacked="正在进攻"
+LowHealth="生命值低"
+Stopped="已停止"
+Blocked="已被丧尸阻止"
+NeedsRepair="需要修理"
+Dropped="已放下"
+PickedUp="已捡起"
+PickupTransportItem="捡起运送物"
+Reset="重置"
+Ready="准备就绪"
+NotReady="未准备就绪"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2526,10 +2570,10 @@ Source0="骑士推销"
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
-SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
-SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
-SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1")
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
@@ -2539,11 +2583,11 @@ ChanceDropDescriptionStrings[1]="掉落 2"
 [KFGFxSummerSideShowObjectivesContainer]
 CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="空中修理",DescriptionString="修理飞艇的破裂管道");
-SpecialEventObjectiveInfoList[1]=(TitleString="顶层守御",DescriptionString="防守飞艇上层甲板");
-SpecialEventObjectiveInfoList[2]=(TitleString="电力恢复！",DescriptionString="修理飞艇的配电箱");
-SpecialEventObjectiveInfoList[3]=(TitleString="水流奔涌",DescriptionString="给飞艇的蒸汽引擎供水");
-SpecialEventObjectiveInfoList[4]=(TitleString="舟行自如",DescriptionString="以困难或更高难度在飞艇关卡上赢得一局匹配游戏");
+SpecialEventObjectiveInfoList[0]=(TitleString="空中修理",DescriptionString="修理飞艇的破裂管道")
+SpecialEventObjectiveInfoList[1]=(TitleString="顶层守御",DescriptionString="防守飞艇上层甲板")
+SpecialEventObjectiveInfoList[2]=(TitleString="电力恢复！",DescriptionString="修理飞艇的配电箱")
+SpecialEventObjectiveInfoList[3]=(TitleString="水流奔涌",DescriptionString="给飞艇的蒸汽引擎供水")
+SpecialEventObjectiveInfoList[4]=(TitleString="舟行自如",DescriptionString="以困难或更高难度在飞艇关卡上赢得一局匹配游戏")
 
 AllCompleteRewardDescriptionString="蒸汽朋克服装包"
 
@@ -2553,11 +2597,11 @@ ChanceDropDescriptionStrings[1]="黄金券"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="完成怪物球中的挑战，赢得奖励！"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="技巧或陷阱！",DescriptionString="在一场游戏中使用陷阱击杀 25 个丧尸");
-SpecialEventObjectiveInfoList[1]=(TitleString="死无对证",DescriptionString="摧毁 10 个发光头骨藏品");
-SpecialEventObjectiveInfoList[2]=(TitleString="怪兽血浆",DescriptionString="击杀 2500 个丧尸");
-SpecialEventObjectiveInfoList[3]=(TitleString="彻夜狂欢",DescriptionString="在困难或以上难度的无尽挑战中成功抵御 25 波丧尸");
-SpecialEventObjectiveInfoList[4]=(TitleString="堡垒之王",DescriptionString="在幸存者难度或以上难度中打败考特·汉斯");
+SpecialEventObjectiveInfoList[0]=(TitleString="技巧或陷阱！",DescriptionString="在一场游戏中使用陷阱击杀 25 个丧尸")
+SpecialEventObjectiveInfoList[1]=(TitleString="死无对证",DescriptionString="摧毁 10 个发光头骨藏品")
+SpecialEventObjectiveInfoList[2]=(TitleString="怪兽血浆",DescriptionString="击杀 2500 个丧尸")
+SpecialEventObjectiveInfoList[3]=(TitleString="彻夜狂欢",DescriptionString="在困难或以上难度的无尽挑战中成功抵御 25 波丧尸")
+SpecialEventObjectiveInfoList[4]=(TitleString="堡垒之王",DescriptionString="在幸存者难度或以上难度中打败考特·汉斯")
 
 AllCompleteRewardDescriptionString="汉斯的MKB：武器+万圣节皮肤"
 
@@ -2567,11 +2611,11 @@ ChanceDropDescriptionStrings[1]="黄金券"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="完美的礼物",DescriptionString="在困难生存难度或更高难度下，完成所有护送目标并且手推车完好无损");
-SpecialEventObjectiveInfoList[1]=(TitleString="每周特价",DescriptionString="完成每周模式的抢购狂欢");
-SpecialEventObjectiveInfoList[2]=(TitleString="杀戮之旅",DescriptionString="击杀 2500 个丧尸");
-SpecialEventObjectiveInfoList[3]=(TitleString="烤他们的栗子",DescriptionString="击杀 25 个首领");
-SpecialEventObjectiveInfoList[4]=(TitleString="工坊轰隆声",DescriptionString="在圣诞老人工坊击败坎卜斯");
+SpecialEventObjectiveInfoList[0]=(TitleString="完美的礼物",DescriptionString="在困难生存难度或更高难度下，完成所有护送目标并且手推车完好无损")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周特价",DescriptionString="完成每周模式的抢购狂欢")
+SpecialEventObjectiveInfoList[2]=(TitleString="杀戮之旅",DescriptionString="击杀 2500 个丧尸")
+SpecialEventObjectiveInfoList[3]=(TitleString="烤他们的栗子",DescriptionString="击杀 25 个首领")
+SpecialEventObjectiveInfoList[4]=(TitleString="工坊轰隆声",DescriptionString="在圣诞老人工坊击败坎卜斯")
 
 AllCompleteRewardDescriptionString="战斧+圣诞节皮肤"
 
@@ -2582,11 +2626,11 @@ ChanceDropDescriptionStrings[1]="黄金券"
 CurrentSpecialEventString="进行无尽挑战"
 CurrentSpecialEventDescriptionString="消灭一波又一波敌人，获取传说级的奖励！"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="无尽训练假人",DescriptionString="无尽挑战完成波数达到5",TierEventRewardName="经典D.A.R.");
-SpecialEventObjectiveInfoList[1]=(TitleString="无尽无人机",DescriptionString="无尽挑战完成波数达到10",TierEventRewardName="装载者D.A.R.");");
-SpecialEventObjectiveInfoList[2]=(TitleString="无尽哨兵",DescriptionString="无尽挑战完成波数达到15",TierEventRewardName="骷髅D.A.R.");");
-SpecialEventObjectiveInfoList[3]=(TitleString="无尽战争机器",DescriptionString="无尽挑战完成波数达到20",TierEventRewardName="血腥D.A.R.");");
-SpecialEventObjectiveInfoList[4]=(TitleString="无尽超级D.A.R.",DescriptionString="无尽挑战完成波数达到25",TierEventRewardName="黄金D.A.R.");
+SpecialEventObjectiveInfoList[0]=(TitleString="无尽训练假人",DescriptionString="无尽挑战完成波数达到5",TierEventRewardName="经典D.A.R.")
+SpecialEventObjectiveInfoList[1]=(TitleString="无尽无人机",DescriptionString="无尽挑战完成波数达到10",TierEventRewardName="装载者D.A.R.")
+SpecialEventObjectiveInfoList[2]=(TitleString="无尽哨兵",DescriptionString="无尽挑战完成波数达到15",TierEventRewardName="骷髅D.A.R.")
+SpecialEventObjectiveInfoList[3]=(TitleString="无尽战争机器",DescriptionString="无尽挑战完成波数达到20",TierEventRewardName="血腥D.A.R.")
+SpecialEventObjectiveInfoList[4]=(TitleString="无尽超级D.A.R.",DescriptionString="无尽挑战完成波数达到25",TierEventRewardName="黄金D.A.R.")
 
 [KFGFxSpring2019ObjectivesContainer]
 CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
@@ -2598,6 +2642,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="无尽泄洪口",DescriptionStrin
 SpecialEventObjectiveInfoList[4]=(TitleString="流血事件",DescriptionString="在困难生存或以上难度的泄洪口中成功击败任意首领")
 
 AllCompleteRewardDescriptionString="男女赛博朋克服装"
+
+ChanceDropDescriptionStrings[0]="奖品券"
+ChanceDropDescriptionStrings[1]="黄金券"
+
+[KFGFxSummer2019ObjectivesContainer]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="我们升空了！",DescriptionString="在目标模式的困难或更高难度下通关蒸汽堡垒")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周检查",DescriptionString="完成每周蒸汽堡垒检查")
+SpecialEventObjectiveInfoList[2]=(TitleString="永恒的蒸汽",DescriptionString="在无尽模式的困难或更高难度下通关蒸汽堡垒第 15 波")
+SpecialEventObjectiveInfoList[3]=(TitleString="致命往返之旅",DescriptionString="在目标模式的困难或更高难度下通关丧尸登陆")
+SpecialEventObjectiveInfoList[4]=(TitleString="寒冷归来",DescriptionString="在目标模式的困难或更高难度下通关前哨")
+
+AllCompleteRewardDescriptionString="男女蒸汽朋克服装"
 
 ChanceDropDescriptionStrings[0]="奖品券"
 ChanceDropDescriptionStrings[1]="黄金券"
@@ -3113,6 +3171,9 @@ GameName="每周"
 [Endless KFGameInfoSummary]
 GameName="无尽"
 
+[Objective KFGameInfoSummary]
+GameName="目标"
+
 [KF-VolterManor KFMapSummary]
 DisplayName="沃尔特庄园"
 
@@ -3181,6 +3242,9 @@ DisplayName="圣诞老人工坊"
 
 [KF-Spillway KFMapSummary]
 DisplayName="泄洪口"
+
+[KF-SteamFortress KFMapSummary]
+DisplayName="蒸汽堡垒"
 
 [KFMapInfo]
 ; defaults

@@ -60,4 +60,5 @@ defaultproperties
 	Properties.Add((PropertyId = STATID_ACHIEVE_SantasWorkshopCollectibles,Data=(Type=SDT_Int32,Value1=0)))
 	Properties.Add((PropertyId = STATID_ACHIEVE_ShoppingSpreeCollectibles,Data=(Type=SDT_Int32,Value1=0)))
 	Properties.Add((PropertyId = STATID_ACHIEVE_SpillwayCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
+	Properties.Add((PropertyId = STATID_ACHIEVE_SteamFortressCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
 }

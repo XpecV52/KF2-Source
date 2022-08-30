@@ -72,19 +72,22 @@ function bool PopulateData()
         if(I < SpecialEventObjectiveInfoList.Length)
         {
             DataObject = Outer.CreateObject("Object");
-            DataObject.SetString("label", default.SpecialEventObjectiveInfoList[I].TitleString);
-            DataObject.SetString("description", default.SpecialEventObjectiveInfoList[I].DescriptionString);
-            DataObject.SetString("iconPath", "img://" $ default.ObjectiveIconURLs[I]);
-            DataObject.SetBool("complete", ObjectiveStatusList[I].bComplete);
-            DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
-            DataObject.SetBool("showProgress", UsesProgressList[I]);
-            if(UsesProgressList[I])
+            if(DataObject != none)
             {
-                GetObjectiveProgressValues(I, CurrentProgressValue, MaxProgressValue, ProgressCompletePercentage);
-                DataObject.SetFloat("progress", ProgressCompletePercentage);
-                DataObject.SetString("textValue", (string(CurrentProgressValue) $ "/") $ string(MaxProgressValue));
+                DataObject.SetString("label", default.SpecialEventObjectiveInfoList[I].TitleString);
+                DataObject.SetString("description", default.SpecialEventObjectiveInfoList[I].DescriptionString);
+                DataObject.SetString("iconPath", "img://" $ default.ObjectiveIconURLs[I]);
+                DataObject.SetBool("complete", ObjectiveStatusList[I].bComplete);
+                DataObject.SetInt("rewardValue", KFPC.GetSpecialEventRewardValue());
+                DataObject.SetBool("showProgress", UsesProgressList[I]);
+                if(UsesProgressList[I])
+                {
+                    GetObjectiveProgressValues(I, CurrentProgressValue, MaxProgressValue, ProgressCompletePercentage);
+                    DataObject.SetFloat("progress", ProgressCompletePercentage);
+                    DataObject.SetString("textValue", (string(CurrentProgressValue) $ "/") $ string(MaxProgressValue));
+                }
+                DataProvider.SetElementObject(I, DataObject);
             }
-            DataProvider.SetElementObject(I, DataObject);
             ++ I;
             goto J0x41;
         }

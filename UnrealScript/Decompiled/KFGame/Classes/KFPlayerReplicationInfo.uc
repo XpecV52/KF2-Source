@@ -72,6 +72,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
+const KFID_ClassicPlayerInfo = 173;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -124,6 +125,7 @@ var bool bVotedToSkipTraderTime;
 var bool bObjectivePlayer;
 var bool bShowNonRelevantPlayers;
 var transient bool bWaitingForInventory;
+var bool bCarryingCollectible;
 var string LastCrateGiftTimestamp;
 var int SecondsOfGameplay;
 var const array<KFCharacterInfo_Human> CharacterArchetypes;
@@ -135,7 +137,7 @@ var int Assists;
 var float VoiceCommsStatusDisplayInterval;
 var int VoiceCommsStatusDisplayIntervalCount;
 var int VoiceCommsStatusDisplayIntervalMax;
-var private int CurrentHeadShotEffectID;
+var private repnotify int CurrentHeadShotEffectID;
 var private Vector PawnLocationCompressed;
 var private Vector LastReplicatedSmoothedLocation;
 var KFPlayerController KFPlayerOwner;
@@ -150,10 +152,11 @@ replication
         CurrentVoiceCommsRequest, DamageDealtOnTeam, 
         NetPerkIndex, PerkSupplyLevel, 
         PlayerHealth, PlayerHealthPercent, 
-        RepCustomizationInfo, bConcussiveActive, 
-        bExtraFireRange, bHasSpawnedIn, 
-        bNukeActive, bObjectivePlayer, 
-        bSplashActive, bVOIPRegisteredWithOSS;
+        RepCustomizationInfo, bCarryingCollectible, 
+        bConcussiveActive, bExtraFireRange, 
+        bHasSpawnedIn, bNukeActive, 
+        bObjectivePlayer, bSplashActive, 
+        bVOIPRegisteredWithOSS;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -161,6 +164,12 @@ replication
      if(!bNetOwner && bNetDirty)
         PawnLocationCompressed;
 }
+
+// Export UKFPlayerReplicationInfo::execStartLoadCosmeticContent(FFrame&, void* const)
+native function bool StartLoadCosmeticContent(KFCharacterInfo_Human CharArch, int CosmeticType, int CosmeticIdx);
+
+// Export UKFPlayerReplicationInfo::execStartLoadHeadshotFxContent(FFrame&, void* const)
+native function StartLoadHeadshotFxContent();
 
 simulated event ReplicatedEvent(name VarName)
 {
@@ -202,7 +211,14 @@ simulated event ReplicatedEvent(name VarName)
                 {
                     if(VarName == 'bVOIPRegisteredWithOSS')
                     {
-                        OnTalkerRegistered();
+                        OnTalkerRegistered();                        
+                    }
+                    else
+                    {
+                        if(VarName == 'CurrentHeadShotEffectID')
+                        {
+                            CurrentHeadShotEffectIdChanged();
+                        }
                     }
                 }
             }
@@ -868,6 +884,11 @@ private reliable server final event ServerAnnounceNewSharedContent()
     }
 }
 
+simulated event CurrentHeadShotEffectIdChanged()
+{
+    StartLoadHeadshotFxContent();
+}
+
 function PlayerReplicationInfo Duplicate()
 {
     local KFPlayerReplicationInfo NewKFPRI;
@@ -1125,11 +1146,11 @@ defaultproperties
     bAllowDoshEarning=true
     bShowNonRelevantPlayers=true
     SecondsOfGameplay=-1
-    CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
-    CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_knight_archetype'
-    CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
-    CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_mark_archetype'
-    CharacterArchetypes(4)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype'
+    CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype'
+    CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
+    CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_knight_archetype'
+    CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
+    CharacterArchetypes(4)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_mark_archetype'
     CharacterArchetypes(5)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Jagerhorn_Archetype'
     CharacterArchetypes(6)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype'
     CharacterArchetypes(7)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_archetype'

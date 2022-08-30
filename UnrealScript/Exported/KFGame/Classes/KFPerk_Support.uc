@@ -862,6 +862,7 @@ defaultproperties
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.MB500_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Boomstick_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.M4_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.AA12_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Support"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

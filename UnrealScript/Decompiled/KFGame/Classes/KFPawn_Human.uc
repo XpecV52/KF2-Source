@@ -223,6 +223,8 @@ simulated event Destroyed()
     super.Destroyed();
 }
 
+simulated function SetCharacterArchAnimationInfo();
+
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     super.SetCharacterArch(Info);
@@ -249,6 +251,7 @@ simulated function OnCharacterMeshChanged()
     {
         FlashLight.Reattach();
     }
+    SetCharacterAnimationInfo();
 }
 
 function AddDefaultInventory()
@@ -1223,35 +1226,13 @@ function bool DoJump(bool bUpdating)
 simulated event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
 {
     local KFPerk MyPerk;
-    local KFPawn_Monster KFPM;
 
     if(((WorldInfo.TimeDilation < 1) && !IsZero(Velocity)) && Other.GetTeamNum() != GetTeamNum())
     {
         MyPerk = GetPerk();
-        if(((MyPerk != none) && MyPerk.ShouldKnockDownOnBump()) && (Normal(Velocity) Dot vector(Rotation)) > 0.7)
+        if(MyPerk != none)
         {
-            KFPM = KFPawn_Monster(Other);
-            if(KFPM != none)
-            {
-                if(KFPM.CanDoSpecialMove(6))
-                {
-                    KFPM.Knockdown(Velocity * float(3), vect(1, 1, 1), KFPM.Location, 1000, 100);                    
-                }
-                else
-                {
-                    if(KFPM.IsHeadless())
-                    {
-                        KFPM.TakeDamage(KFPM.HealthMax, Controller, Location, vect(0, 0, 0), Class'KFDT_NPCBump_Large');                        
-                    }
-                    else
-                    {
-                        if(KFPM.CanDoSpecialMove(4))
-                        {
-                            KFPM.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));
-                        }
-                    }
-                }
-            }
+            MyPerk.OnBump(Other, self, Velocity, Rotation);
         }
     }
 }

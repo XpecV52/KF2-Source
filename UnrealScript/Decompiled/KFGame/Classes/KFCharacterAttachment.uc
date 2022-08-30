@@ -15,6 +15,8 @@ var() Texture UITexture;
  *       Skeletal meshe animations are parented with the body mesh and must share the same skeletaon.
  */
 var() bool bIsSkeletalAttachment;
+var edithide transient StaticMesh MeshStatic;
+var edithide transient SkeletalMesh MeshSkeletal;
 /** Attachment mesh name. Must be of form PackageName.MeshName */
 var() string MeshName;
 /**  
@@ -25,6 +27,8 @@ var() string MeshName;
  *       can still be used for conflit resolution.
  */
 var() name SocketName;
+var edithide transient StaticMesh MeshStatic1p;
+var edithide transient SkeletalMesh MeshSkeletal1p;
 /** Mesh attachment name for 1p. */
 var() string MeshName1p;
 /**  

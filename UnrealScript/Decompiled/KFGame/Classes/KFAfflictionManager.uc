@@ -170,23 +170,23 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     StunPower *= StunModifier;
     if((KnockdownPower > float(0)) && Outer.CanDoSpecialMove(6))
     {
-        AccrueAffliction(8, KnockdownPower, BodyPart);
+        AccrueAffliction(8, KnockdownPower, BodyPart, InstigatorPerk);
     }
     if((StunPower > float(0)) && Outer.CanDoSpecialMove(8))
     {
-        AccrueAffliction(5, StunPower, BodyPart);
+        AccrueAffliction(5, StunPower, BodyPart, InstigatorPerk);
     }
     if((StumblePower > float(0)) && Outer.CanDoSpecialMove(4))
     {
-        AccrueAffliction(4, StumblePower, BodyPart);
+        AccrueAffliction(4, StumblePower, BodyPart, InstigatorPerk);
     }
     if((FreezePower > float(0)) && Outer.CanDoSpecialMove(9))
     {
-        AccrueAffliction(9, FreezePower, BodyPart);
+        AccrueAffliction(9, FreezePower, BodyPart, InstigatorPerk);
     }
     if(SnarePower > float(0))
     {
-        AccrueAffliction(7, SnarePower, BodyPart);
+        AccrueAffliction(7, SnarePower, BodyPart, InstigatorPerk);
     }
 }
 
@@ -226,15 +226,15 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
         }
         if(MeleeHitPower > float(0))
         {
-            AccrueAffliction(2, MeleeHitPower * ReactionModifier, BodyPart);
+            AccrueAffliction(2, MeleeHitPower * ReactionModifier, BodyPart, InstigatorPerk);
         }
         if(((HitZoneIdx == 0) && Outer.IsHeadless()) && Outer.GetTimerCount('BleedOutTimer', Outer) == 0)
         {
-            AccrueAffliction(2, 100, BodyPart);
+            AccrueAffliction(2, 100, BodyPart, InstigatorPerk);
         }
         if(GunHitPower > float(0))
         {
-            AccrueAffliction(3, GunHitPower * ReactionModifier, BodyPart);
+            AccrueAffliction(3, GunHitPower * ReactionModifier, BodyPart, InstigatorPerk);
         }
     }
 }
@@ -311,13 +311,13 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
     }
 }
 
-function AccrueAffliction(KFAfflictionManager.EAfflictionType Type, float InPower, optional KFAfflictionManager.EHitZoneBodyPart BodyPart)
+function AccrueAffliction(KFAfflictionManager.EAfflictionType Type, float InPower, optional KFAfflictionManager.EHitZoneBodyPart BodyPart, optional KFPerk InstigatorPerk)
 {
     if((InPower <= float(0)) || Type >= Outer.IncapSettings.Length)
     {
         return;
     }
-    if(!VerifyAfflictionInstance(Type))
+    if(!VerifyAfflictionInstance(Type, InstigatorPerk))
     {
         return;
     }
@@ -374,14 +374,14 @@ simulated function float GetAfflictionVulnerability(KFAfflictionManager.EAfflict
     return Outer.IncapSettings[I].Vulnerability[0];
 }
 
-simulated function bool VerifyAfflictionInstance(KFAfflictionManager.EAfflictionType Type)
+simulated function bool VerifyAfflictionInstance(KFAfflictionManager.EAfflictionType Type, optional KFPerk InstigatorPerk)
 {
     if((Type >= Afflictions.Length) || Afflictions[Type] == none)
     {
         if((Type < AfflictionClasses.Length) && AfflictionClasses[Type] != none)
         {
             Afflictions[Type] = new (Outer) AfflictionClasses[Type];
-            Afflictions[Type].Init(Outer, Type);            
+            Afflictions[Type].Init(Outer, Type, InstigatorPerk);            
         }
         else
         {

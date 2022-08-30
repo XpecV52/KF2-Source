@@ -771,7 +771,7 @@ DefaultProperties
     IncapSettings(AF_FirePanic)=(Vulnerability=(0.48),                     		Cooldown=15.0, Duration=1.2)
     IncapSettings(AF_EMP)=		(Vulnerability=(0.71),                      	Cooldown=10.0, Duration=2.2)
     IncapSettings(AF_Freeze)=   (Vulnerability=(0.37),                       	Cooldown=10.0, Duration=1.0)
-    IncapSettings(AF_Snare)=    (Vulnerability=(0.75, 0.75, 1.5, 0.75, 0.75),   Cooldown=10.5, Duration=3.0)
+    IncapSettings(AF_Snare)=    (Vulnerability=(0.75, 1.5, 0.75, 0.75, 1.5),   Cooldown=10.5, Duration=3.0)
     IncapSettings(AF_Bleed)=    (Vulnerability=(0.20),                      Cooldown=10.0)
 
 	Begin Object Name=Afflictions_0
@@ -878,4 +878,6 @@ DefaultProperties
     FootstepAkComponent= BeamHitAC0
     Components.Add(BeamHitAC0)
     BeamHitAC=BeamHitAC0
+
+	bCanBePinned=false
 }

@@ -262,10 +262,6 @@ simulated function ActivateObjective()
                 OnEscortStarted(EscortPawnStart.Pawn);
             }            
         }        
-        if(ActivationSoundEvent != none)
-        {
-            PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
-        }
     }
 }
 
@@ -347,23 +343,70 @@ simulated function bool IsComplete()
     return (GetProgress()) >= 1;
 }
 
-simulated function bool HasFailedObjective();
-
 simulated function float GetActivationPctChance()
 {
     return 1;
 }
 
-simulated function bool UsesMultipleActors()
+simulated function string GetProgressText()
 {
-    return false;
+    return string(int((GetProgress()) * float(100))) $ "%";
 }
-
-simulated function string GetActorCount();
 
 simulated function string GetLocalizedRequirements()
 {
     return "";
+}
+
+simulated function GetLocalizedStatus(out string StatusMessage, out int bWarning, out int bNotification)
+{
+    local KFPawn_Scripted ActiveScriptedPawn;
+
+    StatusMessage = "";
+    if((GetProgress()) >= 1)
+    {
+        StatusMessage = Localize("Objectives", "KillRemainingZeds", LocalizationPackageName);
+        bWarning = 0;
+        bNotification = 0;
+        return;
+    }
+    ActiveScriptedPawn = KFPawn_Scripted(ActiveEscortActor);
+    if(ActiveScriptedPawn != none)
+    {
+        if(ActiveScriptedPawn.GetHealthPercent() <= 0.01)
+        {
+            StatusMessage = Localize("Objectives", "NeedsRepair", LocalizationPackageName);
+            bWarning = 1;
+            return;            
+        }
+        else
+        {
+            if(ActiveScriptedPawn.GetHealthPercent() <= 0.25)
+            {
+                StatusMessage = Localize("Objectives", "LowHealth", LocalizationPackageName);
+                bWarning = 1;
+                return;
+            }
+        }
+        if(ActiveScriptedPawn.SpeedScalarForObstacles <= 0)
+        {
+            StatusMessage = Localize("Objectives", "Stopped", LocalizationPackageName);
+            bWarning = 1;
+            return;
+        }
+        if(ActiveScriptedPawn.IsBlockedByZed())
+        {
+            StatusMessage = Localize("Objectives", "Blocked", LocalizationPackageName);
+            bWarning = 1;
+            return;
+        }
+        if(ActiveScriptedPawn.WasAttackedRecently())
+        {
+            StatusMessage = Localize("Objectives", "BeingAttacked", LocalizationPackageName);
+            bWarning = 1;
+            return;
+        }
+    }
 }
 
 simulated function bool ShouldDrawIcon();
@@ -585,7 +628,7 @@ simulated function UpdateTrailActor()
         if(TrailActor == none)
         {
             TrailActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathActor', none);
-            TrailActor.SetEmitterTemplate(ParticleSystem'FX_Objective_Cart_Trail');
+            TrailActor.SetEmitterTemplate(ParticleSystem'FX_Objective_White_Trail');
         }
         TrailActor.SetPathTarget(ActiveEscortActor);
     }
@@ -602,10 +645,12 @@ defaultproperties
     CompletionProgressIdx=999
     HealthProgressIdx=999
     LocalizationKey="EscortPawnsObjective"
+    NameShortLocKey="EscortPawnsObjective"
     DescriptionLocKey="EscortPawnsDescription"
+    DescriptionShortLocKey="EscortPawnsDescriptionShort"
     LocalizationPackageName="KFGame"
     bIsMissionCriticalObjective=true
-    DefaultIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_UI_CartObjective'
+    DefaultIcon=Texture2D'Objectives_UI.UI_Objectives_ObjectiveMode'
     GameModeBlacklist=/* Array type was not detected. */
     PerPlayerSpawnRateMod=/* Array type was not detected. */
     begin object name=Sprite class=SpriteComponent

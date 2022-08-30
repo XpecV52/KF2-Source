@@ -797,6 +797,7 @@ function int SpawnSquad(out array< class<KFPawn_Monster> > AIToSpawn, optional b
         }
     }
     FinalAmount = VolumeAmount + SpawnerAmount;
+    Outer.NumAIFinishedSpawning += VolumeAmount;
     Outer.RefreshMonsterAliveCount();
     if(AIToSpawn.Length > 0)
     {
@@ -806,13 +807,13 @@ function int SpawnSquad(out array< class<KFPawn_Monster> > AIToSpawn, optional b
             LogMonsterList(LeftoverSpawnSquad, "Failed Spawn Before Adding To Leftovers");
         }
         I = 0;
-        J0x56F:
+        J0x598:
 
         if(I < AIToSpawn.Length)
         {
             LeftoverSpawnSquad[LeftoverSpawnSquad.Length] = AIToSpawn[I];
             ++ I;
-            goto J0x56F;
+            goto J0x598;
         }
         if(bLogAISpawning)
         {

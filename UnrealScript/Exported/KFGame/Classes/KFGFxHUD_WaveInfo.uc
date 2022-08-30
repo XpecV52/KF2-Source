@@ -48,14 +48,18 @@ function TickHud(float DeltaTime)
     }
     else
     {
-        if(!KFGRI.bWaveIsActive)
-        {
-            UpdateTraderTimeRemaining();
-        }
-        else
-        {
-            UpdateZEDCount();
-        }
+		if (KFGRI.bWaveIsActive && !KFGRI.bWaveStarted)
+		{
+			SetString("waitingForWaveStart", "-----");
+		}
+		else if (!KFGRI.bWaveIsActive)
+		{
+			UpdateTraderTimeRemaining();
+		}
+		else
+		{
+			UpdateZEDCount();
+		}
     }
 	if (ObjectiveContainer != none)
 	{

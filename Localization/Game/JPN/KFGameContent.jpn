@@ -37,7 +37,7 @@ AlternateFireDescription="多くのプライマリ武器は、オルトファイ
 FlashLightBatteryTitleKey="懐中電灯を使用する"
 FlashLightBatteryDescriptionKey="暗くなることもあります。<font color="#caab05">%x%</font>を押して、<font color="#caab05">懐中電灯</font>のオン/オフを切り替えます。懐中電灯の電池は、少しずつ減っていきます。電池が切れるとオフになり、自動的に充電が開始します。"
 GrenadeTitleKey="手榴弾を使う"
-GrenadeDescriptionKey="手榴弾によって、密集したzedの集団に対処することができます。Perkはそれぞれの<font color="#caab05">武器ロードアウト</font>に異なる手榴弾を持ちます。いずれもzedにダメージを与えますが、追加効果がある場合があります。<font color="#caab05">%x%</font>を押して手榴弾を投げます。 "
+GrenadeDescriptionKey="手榴弾によって、密集したzedの集団に対処することができます。Perkはそれぞれの<font color="#caab05">武器ロードアウト</font>に異なる手榴弾を持ちます。いずれもzedにダメージを与えますが、追加効果がある場合があります。<font color="#caab05">%x%</font>を押して手榴弾を投げます。" "
 
 ;Wave 1 end
 TraderTimeTitleKey="トレーダータイム"
@@ -116,48 +116,48 @@ ItemDescription="•コンバットアーマーは様々な形態のダメージ
 
 [KFProj_DynamiteGrenade]
 ItemName="ダイナマイト1/2本"
-ItemCategory =" 「爆発物"
-ItemDescription="•信管が取り付けられた、ただの小さなダイナマイト。\n•あなたに危害を与えることもあるので、注意しましょう！」 "
+ItemCategory =" "爆発物"
+ItemDescription="•信管が取り付けられた、ただの小さなダイナマイト。\n•あなたに危害を与えることもあるので、注意しましょう！" "
 
 [KFProj_MedicGrenade]
 ItemName="メディック手榴弾"
-ItemCategory =" 「爆発物"
-ItemDescription="•zedには毒を与えるが、人間は回復するガスを放出します。\n\n•回復するには青いガス雲の中に立ちましょう。\n我々の科学者の言葉を引用するなら：『これらの手榴弾から放出される化学物質はホモサピエンスを生き返らせるが、ホモゼディカスを安楽死させる。』お役に立てれば幸いです。」 "
+ItemCategory =" "爆発物"
+ItemDescription="•zedには毒を与えるが、人間は回復するガスを放出します。\n\n•回復するには青いガス雲の中に立ちましょう。\n我々の科学者の言葉を引用するなら：『これらの手榴弾から放出される化学物質はホモサピエンスを生き返らせるが、ホモゼディカスを安楽死させる。』お役に立てれば幸いです。" "
 
 [KFProj_MolotovGrenade]
 ItemName="モロトフ火炎手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•ごく単純に、zedを燃やす炎の手榴弾です。\n•あなたにも危害が加わる場合があるのでご注意ください！\n\n1939-1940年の冬戦争中に、スターリンの下のソビエト外務大臣、ヴャチェスラフ・ミハイロヴィチ・モロトフから、侮辱的に名付けられ...すいません、歴史の授業は不要でしたか？」 "
+ItemDescription="•ごく単純に、zedを燃やす炎の手榴弾です。\n\n1939-1940年の冬戦争中に、スターリンの下のソビエト外務大臣、ヴャチェスラフ・ミハイロヴィチ・モロトフから、侮辱的に名付けられ...すいません、歴史の授業は不要でしたか？" "
 
 [KFProj_EMPGrenade]
 ItemName="EMP手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•zedにダメージを与え、さらに短時間スタンさせることもある、電気パルスを発生させます。\n\n詳細を加えるなら―爆発の際、ナノ秒電磁気パルスが発生し、短距離内の電気系統を妨害します。特にzed内にあるものを。便利ですね。」 "
+ItemDescription="•zedにダメージを与え、さらに短時間スタンさせることもある、電気パルスを発生させます。\n\n詳細を加えるなら―爆発の際、ナノ秒電磁気パルスが発生し、短距離内の電気系統を妨害します。特にzed内にあるものを。便利ですね。" "
 
 [KFProj_HEGrenade]
 ItemName="HE手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•とてもシンプルな高性能手榴弾です。zedにも人間にも同様にダメージを与えます。\n\nこの上なくシンプルです。HE―高性能―これはドカン！といろいろなものを爆破します。こんなこと説明する必要ありますか？」 "
+ItemDescription="•とてもシンプルな高性能手榴弾です。zedにも人間にも同様にダメージを与えます。\n\nこの上なくシンプルです。HE―高性能―これはドカン！といろいろなものを爆破します。こんなこと説明する必要ありますか？" "
 
 [KFProj_FragGrenade]
 ItemName="フラググレネード"
 ItemCategory="爆発物"
-ItemDescription="•かの有名なフラググレネード：小さな鉄片を周りに飛ばし、何もかも傷つける。\n\n君たちはアウトブレイク前に十分ビデオゲームで遊んだはずなので、フラググレネードが何であるかは知ってるでしょう。知らないフリはやめなさい。誰も君のことを信じませんよ。」 "
+ItemDescription="•かの有名なフラググレネード：小さな鉄片を周りに飛ばし、何もかも傷つける。\n\n君たちはアウトブレイク前に十分ビデオゲームで遊んだはずなので、フラググレネードが何であるかは知ってるでしょう。知らないフリはやめなさい。誰も君のことを信じませんよ。" "
 
 [KFProj_NailBombGrenade]
 ItemName="釘爆弾"
-ItemCategory =" 「爆発物"
+ItemCategory =" "爆発物"
 ItemDescription="•古い釘と、小さな爆薬を中央にセットした、シンプルな筒。\n\nzedに対処するにはあまり愉快でも繊細でもない方法でもありませんが、zedに関して愉快なことも繊細なこともありませんよね？"
 
 [KFProj_FreezeGrenade]
 ItemName="凍結手榴弾"
-ItemCategory =" 「爆発物"
+ItemCategory =" "爆発物"
 ItemDescription="•技術的に高度な、加圧液体窒素の缶。\n\nこの中身と十分に触れさせると、zedを一定時間その場に凍らせます。打ち砕かれるような結果になります。"
 
 [KFProj_FlashBangGrenade]
 ItemName="フラッシュバン"
-ItemCategory =" 「爆発物"
-ItemDescription="眩しく、音が大きいため、直視しないこと。できたら聞かないように。\n•厳密には致命的ではありませんが、フラッシュバンで怪我をすることもありますので、ご注意ください！」 "
+ItemCategory =" "爆発物"
+ItemDescription="•眩しく、音が大きいため、直視しないこと。できたら聞かないように。\n•厳密には致命的ではありませんが、フラッシュバンで危害が加わることもありますので、ご注意ください！" "
 
 [KFWeap_Healer_Syringe]
 ItemName="医療注射器"
@@ -174,7 +174,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•標準�
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50デザートイーグル"
-ItemCategory=""
+ItemCategory="ハンドキャノン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•デザートイーグルはハンドガンの王様で、「ハンドキャノン」として知られている所以です。"
 
 [KFWeap_AssaultRifle_AR15]
@@ -205,7 +205,7 @@ ItemDescription="•ファイアモードはフルオートのみ。\n•ベト�
 [KFWeap_Knife_Survivalist]
 ItemName="ゴアナイフ"
 ItemCategory="近接"
-ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ - 重い切り裂き攻撃。\n•オルト - ブロック/受け流し。\n•以前は他の誰かのものでした。でも今はあなたのものです！"
+ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ - 重い切り裂き攻撃。\n•オルト - ブロック/受け流し。\n•以前は他の誰かのものでした。でも、これからはあなたのものです！"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="万能ナイフ"
@@ -215,12 +215,12 @@ ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマ
 [KFWeap_Knife_FieldMedic]
 ItemName="外科用メス"
 ItemCategory="近接"
-ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 重い切り裂き攻撃。\n•オルト - ブロック/受け流し。\n•メスです。あなたはメディックです。使い方は説明する必要ないでしょう。"
+ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 重い切り裂き攻撃。\n•オルト - ブロック/受け流し。\n•メスです。メディックであるあなたに説明は不要でしょう。"
 
 [KFWeap_Knife_Firebug]
 ItemName="消防士のナイフ"
 ItemCategory="近接"
-ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 重い切り裂き攻撃。\n•オルト - ブロック/受け流し。\n•消防士のナイフです。あなたは消防士です。使い方は説明する必要ないでしょう。"
+ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 重い切り裂き攻撃。\n•オルト - ブロック/受け流し。\n•これは消防士のナイフです。消防士であるあなたに説明は不要でしょう。"
 
 [KFWeap_Knife_Gunslinger]
 ItemName="ボウイナイフ"
@@ -230,7 +230,7 @@ ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマ
 [KFWeap_Knife_Sharpshooter]
 ItemName="クックリ刀"
 ItemCategory="近接"
-ItemDescription="•プライマリ - 素早い切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 重い切り裂き攻撃。\nオルト - ブロック/受け流し。\n•グルカの伝統的なナイフ。切り裂くことよりも切り落とすことに向いてます。 "
+ItemDescription="•プライマリ―素早い切り裂き攻撃、長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•グルカの伝統的なナイフ。切り裂くよりも切り落としに向いてます。 "
 
 [KFWeap_Knife_SWAT]
 ItemName="タクティカルナイフ"
@@ -280,7 +280,7 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•ベネ�
 [KFWeap_Shotgun_HZ12]
 ItemName="HZ12マルチアクション"
 ItemCategory="ショットガン"
-ItemDescription=""
+ItemDescription="•ファイアモードはデュアルセミオート／ポンプアクション。\nHZ12ショットガンはホージンセキュリティによりテストが行われたプロトタイプです。 この武器の開発において何体ものZedが殺されている。"
 
 [KFWeap_Knife_Berserker]
 ItemName="芝刈り機の刃"
@@ -295,12 +295,12 @@ ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマ
 [KFWeap_Knife_Support]
 ItemName="マチェーテ"
 ItemCategory="近接"
-ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•一番大きなナイフを上げたからって、勘違いしないでくださいね。"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•我々が一番大きなナイフをあげたからって、勘違いしないでくださいね。"
 
 [KFWeap_Edged_Katana]
 ItemName="刀"
 ItemCategory="近接"
-ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•この上品さに敬意を現してください。"
+ItemDescription="•プライマリ―素早い切り裂き攻撃、プライマリを長押しでコンボ攻撃。\n•セカンダリ―重い切り裂き攻撃。\n•オルト―ブロック/受け流し。\n•この上品さに敬意を表してください。"
 
 [KFWeap_Blunt_Crovel]
 ItemName="クロベル・サバイバルツール"
@@ -312,6 +312,11 @@ ItemName="VLAD-1000 ネイルガン"
 ItemCategory="ショットガン"
 ItemDescription="•単発または複数発のネイルファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•ホージンの科学者がオリジナルのネイルガンを(死亡した)整備員から借りたと認識しております。"
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG ネイルガン"
+ItemCategory="サブマシンガン"
+ItemDescription="•単発または複数発のネイルファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•ホージンの科学者がオリジナルのネイルガンを(死亡した)整備員から借りたと認識しております。"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="ロードレディーマー"
 ItemCategory="近接"
@@ -321,7 +326,12 @@ SharedUnlockSource="Road Redemption"
 [KFWeap_Blunt_Pulverizer]
 ItemName="パルベライザー"
 ItemCategory="近接"
-ItemDescription="•プライマリ―素早く殴りつけ、プライマリを長押しでコンボ攻撃。\n•セカンダリは直撃した際に爆発ラウンドを発射します。弾薬が切れると、セカンダリは重い殴りつけです。なのでリロードを忘れないように！\n•オルト―ブロック/受け流し"
+ItemDescription="•プライマリ―素早く殴りつけ、プライマリを長押しでコンボ攻撃。\n•セカンダリは直撃した際に爆発ラウンドを発射します。弾薬が切れると、セカンダリは重い殴りつけ専用になります。ですのでリロードを忘れないように！\n•オルト―ブロック/受け流し"
+
+[KFWeap_Blunt_MedicBat]
+ItemName="ヘモクロッバー"
+ItemCategory="近接"
+ItemDescription="•プライマリ―チームメイトを回復できる素早い殴りつけ、プライマリを長押しでコンボ攻撃。\n•セカンダリは直撃した際に回復爆発を起こします。弾薬が切れると、セカンダリは重い殴りつけ専用になります。\n•オルト―ブロック/受け流し"
 
 [KFWeap_Eviscerator]
 ItemName="エヴィスレイター"
@@ -364,6 +374,11 @@ ItemDescription="•ファイアモードはポンプアクションのみ。\n�
 ItemName="火炎放射器"
 ItemCategory="火炎"
 ItemDescription="•ファイアモードは火炎を発射します。それだけです。\n•どの世代でもクラシック。迷ったら、すべて焼きつくしましょう。"
+
+[KFWeap_HRG_Healthrower]
+ItemName="HRG回復放射器"
+ItemCategory="火炎"
+ItemDescription=""
 
 [KFWeap_Beam_Microwave]
 ItemName="マイクロ波銃"
@@ -412,13 +427,23 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•オル�
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50デザートイーグル"
-ItemCategory=""
+ItemCategory="ハンドキャノン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•デザートイーグルはハンドガンの王様で、「ハンドキャノン」として知られている所以です。"
 
 [KFWeap_Pistol_DualDeagle]
 ItemName="デュアル.50デザートイーグル"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•デザートイーグル・ハンドキャノン2丁です。"
+
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="チアッパライノ"
+ItemCategory="ハンドガン"
+ItemDescription="•"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="デュアルチアッパライノ"
+ItemCategory="ハンドガン"
+ItemDescription="•"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858リボルバー"
@@ -440,15 +465,30 @@ ItemName="デュアル.500マグナム"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•.500マグナム「ボーンコレクター」リボルバー2丁です。"
 
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRGバックショットリボルバー"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードは単発のみ。\n•ロングバレル.50口径 'ボーンコレクター' の形をした、本物の手持ち大砲で、フルロードのマグナム弾を発射します。本気のガンスリンガー用です。"
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="デュアルHRGバックショットリボルバー"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•.500マグナム「ボーンコレクター」リボルバー2丁です。"
+
 [KFWeap_Rifle_Winchester1894]
 ItemName="ウィンチェスター1894"
 ItemCategory="ライフル"
 ItemDescription="•ファイアモードは単発のみ。\n•定番のモデル1894ウィンチェスター・レバーアクションライフルです。"
 
+[KFWeap_Rifle_MosinNagant]
+ItemName="モシン・ナガン"
+ItemCategory="ライフル"
+ItemDescription="•ファイアモードは単発のみ。"
+
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464センターファイア"
 ItemCategory="ライフル"
-ItemDescription=""
+ItemDescription="•ファイアモードは単発のみ。\n•反動が低く、高いストッピングパワーを持つ近代的なモスバーグセンターファイア・レバーアクションライフルです。 標準武器のアップデート版。"
 
 [KFWeap_Bow_Crossbow]
 ItemName="クロスボウ"
@@ -511,6 +551,16 @@ ItemName="ハスクキャノン"
 ItemCategory="火炎"
 ItemDescription="•発射ボタンを押している間はチャージされ、発射ボタンを離すと解放されます。\n•ハスクキャノンのホージン社公式バージョン。このモデルは95%の保証付きで爆発しません。"
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="チアッパライノ"
+ItemCategory="ハンドガン"
+ItemDescription="•Fill me in"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="デュアルチアッパライノ"
+ItemCategory="ハンドガン"
+ItemDescription="•Fill me in"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H)カービンライフル"
 ItemCategory="アサルトライフル"
@@ -527,6 +577,11 @@ ItemName="デュアルAF2011-A2"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•それぞれにバレルがついた2丁の拳銃。4倍の火力です。これは数学です。数学に議論する余地はありません。"
 
+[KFWeap_Edged_IonThruster]
+ItemName="イオンスラスター"
+ItemCategory="近接"
+ItemDescription="•Fill me in"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="ドゥームスティック"
 ItemCategory="ショットガン"
@@ -536,6 +591,11 @@ ItemDescription="•プライマリファイアはシングルバレルのみ使
 ItemName="スタティックストライカー"
 ItemCategory="近接"
 ItemDescription="•プライマリ - 素早く殴りつけ、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 重い電撃打撃。強烈な一撃を放ちます！\n•zedの顔面にパンチを食らわせたい？それならこれで決まり！"
+
+[KFWeap_RocketLauncher_SealSqueal]
+ItemName="アシカの情報提供者"
+ItemCategory="爆発物"
+ItemDescription="•プライマリ発射は4秒後に爆破する銛を発射します。\n•オルトファイアは全ての銛を手動で爆破します。\n•これはホージンのお墨付きです！"
 
 [KFWeap_AssaultRifle_LazerCutter]
 ItemName="キラーワット"
@@ -589,6 +649,16 @@ ItemName="M99 AMR"
 ItemCategory="スナイパーライフル"
 ItemDescription="•ファイアモードは単発のみ。\n•各弾にパンチ…つまり巨大な弾が込められています。貫通力が高く、苦痛を与えます。"
 
+[KFCarryable_Gear]
+ItemName="装備"
+ItemCategory="装備"
+ItemDescription="トレーダーでこれを見ることなどないはずだ！"
+
+[KFCarryable_Datapad]
+ItemName="データパッド"
+ItemCategory="装備"
+ItemDescription="トレーダーでこれを見ることなどないはずだ！"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="ドクター ハンス・ヴォルター"
@@ -638,7 +708,7 @@ BossCaptionStrings[4]="ああ、ペイトリアークはクローキングし、
 BossCaptionStrings[5]="選択肢があるわけではないが、ペイトリアークの「子ども」を殺すと、(さらに)怒らせるだけだ。"
 
 [KFPawn_ZedFleshpoundKing]
-BossName=""
+BossName="King Fleshpound"
 BossName_CHN="闪击丧尸之王"
 BossName_CHT="絞碎者之王"
 BossName_DEU="King Fleshpound"
@@ -653,15 +723,15 @@ BossName_KOR="King 플래시 파운드"
 BossName_POL="Król mięśniaków"
 BossName_PTB="Carniceiro Rei"
 BossName_RUS="Король-отбивальщик"
-BossCaptionStrings[0]=""
-BossCaptionStrings[1]=""
-BossCaptionStrings[2]=""
-BossCaptionStrings[3]=""
-BossCaptionStrings[4]=""
-BossCaptionStrings[5]=""
+BossCaptionStrings[0]="キングフレッシュパウンドは攻撃を受ければ受けるほど、クォーターパウンドを呼ぶ間隔が速くなる。 気をつけて！"
+BossCaptionStrings[1]="伏せろ！キングフレッシュパウンドの胸から出るビームは、地面に近いターゲットを狙うことができない。"
+BossCaptionStrings[2]="キングフレッシュパウンドが痛手を負っているからといって、戦闘が終わったわけじゃない。シールドを張るぞ。    "
+BossCaptionStrings[3]="キングフレッシュパウンドの胸から出るビームは、他のzedにダメージを与えることができる。うまく射線におびき寄せよう。  "
+BossCaptionStrings[4]="キングフレッシュパウンドは通常のフレッシュパウンドと同様の弱点を持っている。ただ単に大きいだけだ。  "
+BossCaptionStrings[5]="キングフレッシュパウンドは常にたくさんのクォーターパウンドを従えている。無視すると命取りになるぞ！  "
 
 [KFPawn_ZedBloatKing]
-BossName="アボミネーション"
+BossName="Abomination"
 BossName_CHN="憎恶"
 BossName_CHT="憎惡"
 BossName_DEU="Abscheulichkeit"
@@ -710,16 +780,19 @@ BossCaptionStrings[5]="クランプスのアーマーを破壊すると、猛烈
 GameName="基本トレーニング"
 
 [KFGameInfo_Survival]
-GameName="サバイバル"
+GameName="基本トレーニング"
 
 [KFGameInfo_VersusSurvival]
-GameName="VSサバイバル"
+GameName="サバイバル"
 
 [KFGameInfo_WeeklySurvival]
-GameName=""
+GameName="VSサバイバル"
 
 [KFGameInfo_Endless]
 GameName="エンドレス"
+
+[KFGameInfo_Objective]
+GameName="任務"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="回復が残っていません"

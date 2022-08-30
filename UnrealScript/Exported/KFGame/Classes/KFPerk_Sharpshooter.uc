@@ -707,12 +707,14 @@ defaultproperties
    AutoBuyLoadOutPath(1)=Class'KFGame.KFWeapDef_Crossbow'
    AutoBuyLoadOutPath(2)=Class'KFGame.KFWeapDef_M14EBR'
    AutoBuyLoadOutPath(3)=Class'KFGame.KFWeapDef_RailGun'
+   AutoBuyLoadOutPath(4)=Class'KFGame.KFWeapDef_M99'
    HitAccuracyHandicap=-9.000000
    HeadshotAccuracyHandicap=-16.000000
    PrestigeRewardItemIconPaths(0)="WEP_SkinSet_Prestige01_Item_TEX.knives.SharpshooterKnife_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Winchester1894_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.Crossbow_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.M14EBR_PrestigePrecious_Mint_Large"
+   PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.Railgun_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Sharpshooter"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

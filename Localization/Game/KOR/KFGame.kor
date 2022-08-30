@@ -1,5 +1,5 @@
 [KFPawn_Scripted]
-ScriptedPawnString="V.I.P."
+ScriptedPawnString="에스코트"
 
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="특수 효과"
@@ -31,6 +31,7 @@ ModeStrings[0]="서바이벌"
 ModeStrings[1]="주간"
 ModeStrings[2]="VS 서바이벌"
 ModeStrings[3]="무한"
+ModeStrings[4]="목표"
 
 NoPreferenceString="모두"
 OKString="OK"
@@ -59,7 +60,7 @@ UnableToSwitchTeamString="팀을 전환할 수 없습니다."
 NoSwitchReasonString="팀을 전환하면 팀 균형이 깨질 수 있습니다."
 
 AutoTradeCompleteString="자동 트레이드 완료: "
-AutoFillCompleteString="자동 보충 보급품 "
+AutoFillCompleteString="자동 보충 보급품"
 WeaponUpgradeComepleteString="무기 업그레이드"
 SecondaryWeaponPurchasedString="보조 무기 구입"
 NoItemsPurchasedString="구입한 아이템 없음"
@@ -108,7 +109,7 @@ DiscordSoloMatchString="솔로 대전"
 DiscordMatchLobbyString=": 대전 로비"
 DiscordTraderTimeString=": 상인 시간"
 DiscordBossWaveString=": 보스 웨이브"
-DiscordWaveString=": 웨이브"
+DiscordWaveString=": 웨이브 "
 
 StartOfflineGameString="온라인 게임 시작"
 StartOfflineGameDescriptionString="오프라인 게임을 시작하면 파티가 해산됩니다. \n계속 하시겠습니까?"
@@ -141,9 +142,9 @@ CompleteMapString="대전 완료 맵:"
 KillZedsString="제드 처치:"
 KillBossString="보스 처치:"
 KillBossDescriptionString="서바이벌 또는 주간"
-VersusKillsString="킬 VS 플레이어:"
-DealVersusDamageString="데미지 VS 플레이어:"
-VersusCompletionString="대전 완료:"
+VersusKillsString=킬 VS 플레이어:
+DealVersusDamageString=데미지 VS 플레이어:
+VersusCompletionString=대전 완료:
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="대전상대를 찾지 못했습니다."
@@ -1063,8 +1064,8 @@ ScreenSizeString="화면 크기 조절"
 KeepSettingsPromptString="이 비디오 설정을 이용하시겠습니까?"
 WarningPromptString="경고"
 WillExpireString="설정은 %x% 초 뒤에 되돌아갑니다."
-SingleWarningString="선택된 일부 설정은 %x% "
-DoubleWarningString="선택된 일부 설정은 %x% 그리고 %y% "
+SingleWarningString="선택된 일부 설정은 %x%"
+DoubleWarningString="선택된 일부 설정은 %x% 그리고 %y%"
 PerformanceDescString[0]="성능을 떨어뜨릴 수 있습니다"
 PerformanceDescString[1]="성능을 심각하게 해칠 수 있습니다"
 RestartDescString="재시작이 필요할 수 있습니다"
@@ -1246,6 +1247,7 @@ ReduceHighPitchNoiseString="고음역 소음 감소"
 DisableAutoUpgradeString="자동 거래 비활성화"
 HideRemodeHeadshotEffectsString="원격 헤드샷 이펙트 비활성화"
 ToggleToRunString="토글하여 스프린트"
+ClassicPlayerInfoString="기존 체력 막대"
 
 EnableMixerString="토글 Mixer 상호작용"
 DisableMixerString="Mixer 비활성화"
@@ -1734,10 +1736,10 @@ Ninja="척후병"
 NinjaDescription="20% 빠르게 이동, 스프린트 속도 25% 향상, 병과 백병전 무기 이용 시 매초 체력 1초 재생성"
 
 Vampire="뱀파이어"
-VampireDescription="병과 무기로 제드를 처치할 때마다 체력 4 포인트 치료 병과 백병전 무기를 이용할 때 공격속도 20% 향상 "
+VampireDescription="병과 무기로 제드를 처치할 때마다 체력 4 포인트 치료 병과 백병전 무기를 이용할 때 공격속도 20% 향상"
 
 Speed="도살자"
-SpeedDescription="병과 백병전 무기 이용 시 공격 속도 20% 향상 및 25% 데미지 증가"
+SpeedDescription="병과 백병전 무기 이용 시 공격 속도 20% 향상 및 20% 데미지 증가"
 
 Resistance="저항력"
 ResistanceDescription="모든 데미지 저항력 20% 증가 독성 및 음파 데미지에 대한 저항력 20% 추가"
@@ -1755,7 +1757,7 @@ Spartan="제드 타임 - 스파르탄"
 SpartanDescription="제드 타임 동안 병과 무기로 공격하며 실시간으로 이동."
 
 Rage="제드 타임 - 버서커의 분노"
-RageDescription="제드 타임에 진입할 때 체력 25% 치료 및 제드가 접근할 때 도피"
+RageDescription="제드 타임이 활성화 또는 갱신될 때마다, 체력 25%를 치유하고 근처 Zed가 도망가게 합니다."
 
 [KFPerk_Commando]
 PerkName="코만도"
@@ -1768,7 +1770,7 @@ SkillCatagories[4]="고급 훈련"
 
 Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미지가 레벨 당 %x% 증가합니다");
 Passives[1]=(Title="은폐한 적 및 체력 감지",Description="5m 범위에 레벨 당 %x%m 추가");
-Passives[2]=(Title="제드 타임 연장",Description="제드 타임이 5 레벨 마다 %x% 증가");
+Passives[2]=(Title="제드 타임 갱신",Description="제드 타임이 5 레벨 마다 %x% 증가");
 Passives[3]=(Title="재장전 속도",Description="병과 무기 재장전 속도가 5 레벨 마다 %x% 증가");
 Passives[4]=(Title="야간투시경 기능",Description="플래시라이트 - 및 야간투시경 고글");
 Passives[5]=(Title="은폐한 제드 부르기",Description="팀원들이 은폐한 유닛을 볼 수 있도록 함");
@@ -1783,7 +1785,7 @@ LargeMags="고용량 탄창"
 LargeMagsDescription="병과 무기 탄창 용량 50% 증가"
 
 Backup="유비무환"
-BackupDescription="9mm 권총과 나이프 데미지 50% 증가 및 무기 전환 속도 50% 향상"
+BackupDescription="9mm 권총과 나이프 데미지 85% 증가 및 무기 전환 속도 50% 향상"
 
 Impact="임팩트 탄환"
 ImpactDescription="병과 무기 스텀블 파워 150% 증가"
@@ -1792,10 +1794,10 @@ HealthIncrease="집념"
 HealthIncreaseDescription="총 체력과 장갑 25% 증가"
 
 AmmoVest="준비"
-AmmoVestDescription="각 병과 무기 당 최고 20% 탄약 추가 운반 "
+AmmoVestDescription="각 병과 무기 당 최고 20% 탄약 추가 운반"
 
 HollowPoints="할로우 포인트 탄환"
-HollowPointsDescription="병과 무기 데미지 25% 증가 및 반동 50% 감소"
+HollowPointsDescription="병과 무기 데미지 20% 증가 및 반동 50% 감소"
 
 EatLead="총알이나 먹어라"
 EatLeadDescription="병과 무기 탄창 용량 100% 증가"
@@ -1829,13 +1831,13 @@ Damage="폭격"
 DamageDescription="폭발 병과 무기의 데미지 25% 증가"
 
 Speed="쇼크 트루퍼"
-SpeedDescription="병과 무기 재장전 속도 20% 향상, 무기의 킥다운 및 스텀블 파워 25% 증가"
+SpeedDescription="병과 무기 재장전 속도 및 무기의 킥다운 파워 10% 증가"
 
 DirectHit="하이 임팩트 탄환"
-DirectHitDescription="폭발물 무기의 직접 히트 데미지 20% 증가"
+DirectHitDescription="폭발물 무기의 직접 히트 데미지 25% 증가"
 
 Ammo="특별 탄환"
-AmmoDescription="폭발물 병과 무기의 최대 탄약 5개 증가"
+AmmoDescription="폭발물 병과 무기의 최대 탄약 5개 증가. C4에는 적용되지 않음"
 
 SirenResistance="음파 저항 탄환"
 SirenResistanceDescription="폭발물이 Siren의 비명에 면역력을 갖고 항상 폭발"
@@ -1884,13 +1886,13 @@ Combatant="전투 의사"
 CombatantDescription="병과 무기의 탄창 용량 50% 증가 및 이동 속도 10% 향상"
 
 HealingDamageBoost="포커스 주사"
-HealingDamageBoostDescription="치료 다트로 팀원을 쏘면 팀원이 가하는 데미지가 5초 동안 5% 증가 최대 20%의 보너스가 쌓입니다. "
+HealingDamageBoostDescription="치료 다트로 팀원을 쏘면 팀원이 가하는 데미지가 5초 동안 5% 증가 최대 20%의 보너스가 쌓입니다."
 
 AcidicCompound="애시드 탄환"
 AcidicCompoundDescription="병과 무기로 제드를 중독시키고 시간이 지나면서 독성 데미지를 가함"
 
 HealingShield="응고 촉진제"
-HealingShieldDescription="치료 다트로 팀원을 쏘면 데미지 저항력이 5초 동안 10% 향상 최대 30%의 보너스가 쌓입니다. "
+HealingShieldDescription="치료 다트로 팀원을 쏘면 데미지 저항력이 5초 동안 10% 향상 최대 30%의 보너스가 쌓입니다."
 
 Enforcer="군의관"
 EnforcerDescription="병과 무기의 데미지 20% 증가"
@@ -1899,7 +1901,7 @@ AirborneAgent="제드 타임 - 공중 약품 살포"
 AirborneAgentDescription="제드 타임 동안 치료 가스를 살포하여 가까이 있는 팀원을 치료."
 
 Sedative="제드 타임 - 제더티브"
-SedativeDescription="제드 타임 동안 병과 무기로 제드에게 데미지를 가하면 30% 속도를 늦추고 대규모 독성 데미지를 가함. "
+SedativeDescription="제드 타임 동안 병과 무기로 제드에게 데미지를 가하면 30% 속도를 늦추고 대규모 독성 데미지를 가함."
 
 
 EXPAction1="필드 메딕 무기 데미지"
@@ -1908,7 +1910,7 @@ EXPAction2="팀원 치료"
 [KFPerk_Firebug]
 PerkName="파이어버그"
 EXPAction1="파이어버그 무기 데미지"
-EXPAction2="파이어버그 무기로 Crawler 처치"
+EXPAction2="파이어버그 무기로 Bloat 및 Crawler 처치"
 
 SkillCatagories[0]="보급"
 SkillCatagories[1]="스파이시"
@@ -1932,7 +1934,7 @@ Fuse="바베큐"
 FuseDescription="병과 무기의 발화 효과가 150% 오래 지속되어 시간에 따른 데미지 증가"
 
 GroundFire="지상포"
-GroundFireDescription="지상포의 데미지 대규모 증가 및 제드 이동 속도 20% 감소"
+GroundFireDescription="지상포의 데미지 두 배 증가 및 Zed 이동 속도 30% 감소. 화염병에는 적용되지 않음"
 
 ZedShrapnel="제드 산탄"
 ZedShrapnelDescription="플레이어가 처치한 Zed가 30%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 기절시킴"
@@ -1941,7 +1943,7 @@ Napalm="네이팜"
 NapalmDescription="불에 타고 있는 제드가 다른 제드와 접촉하여 불을 옮기고 발화 효과가 150% 오래 지속됨"
 
 Range="파이어스톰"
-RangeDescription="병과 무기 사거리 증가"
+RangeDescription="코크 앤 번, 화염방사기, 마이크로웨이브 건의 사거리 증가"
 
 SplashDamage="열파"
 SplashDamageDescription="직사거리에서 화염을 맞은 제드가  뒤로 비틀거림"
@@ -2037,7 +2039,7 @@ Scoped="데드 아이"
 ScopedDescription="병과 무기 가늠좌 이용 시 반동 10% 감소 및 헤드샷 데미지 10% 증가"
 
 AmmoPouch="유비무환"
-AmmoPouchDescription="병과 무기 및 수류탄 탄약 25% 추가 운반"
+AmmoPouchDescription="1개의 추가 수류탄 및 병과 무기의 탄약 25% 추가 운반"
 
 ZTKnockdown="제드 타임 - 암살자"
 ZTKnockdownDescription="병과 무기를 이용한 헤드샷 시 5% 확률로 제드 타임 개시  제드 타임 동안 병과 무기의 헤드샷 데미지 35% 증가"
@@ -2117,7 +2119,7 @@ TacticalMovement="전술 이동"
 TacticalMovementDescription="병과 무기 이용 시 가늠좌를 사용하거나 웅크린 상태에서도 이동 페널티가 없음"
 
 Backup="근접전 훈련"
-BackupDescription="9mm 권총과 나이프 데미지 50% 향상 각 게임을 9mm 권총 두 자루로 시작"
+BackupDescription="9mm 권총과 나이프 데미지 85% 향상 각 게임을 9mm 권총 두 자루로 시작"
 
 TacticalReload="전술 재장전"
 TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
@@ -2132,10 +2134,10 @@ BodyArmor="돌격 장갑"
 BodyArmorDescription="최대 장갑 50% 향상 각 게임을 50% 장갑으로 시작하고 중장갑 훈련에서 얻은 장갑이 추가됨"
 
 Cripple="크리플"
-CrippleDescription="병과 무기로 여러 발을 명중시키면 제드의 속도를 최고 30% 떨어뜨림 다리를 맞추는 것이 가장 효과적입니다."
+CrippleDescription="병과 무기로 여러 발을 명중시키면 Zed의 속도를 최고 30% 떨어뜨림. 머리와 약점 발사는 두 배 빠름"
 
 SWATEnforcer="제드 타임 - 성문 파괴"
-SWATEnforcerDescription="제드 타임 동안 실시간으로 움직이고 제드를 향해 돌진할 때 큰 녹다운 파워를 발휘"
+SWATEnforcerDescription="제드 타임 중에, 실시간 속도로 이동하고 대규모 데미지를 가하고 자신을 건드리는 모든 Zed 녹다운"
 
 RapidAssault="제드 타임 - 빠른 돌격"
 RapidAssaultDescription="제드 타임 동안 병과 무기를 이용하면 탄약을 무제한으로 쓸 수 있고 가까운 거리를 실시간으로 사격하며 스텀블 파워는 100% 향상"
@@ -2179,7 +2181,7 @@ ZedShrapnel="제드 자연 폭발"
 ZedShrapnelDescription="플레이어가 불로 처치한 Zed가 30%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 기절시킴"
 
 MakeThingsGoBoom="온 세상에 폭발을"
-MakeThingsGoBoomDescription="모든 폭발물의 영향 영역 40% 증가"
+MakeThingsGoBoomDescription="폭발물 저항력 40% 증가 및 모든 폭발물의 영향 영역 40% 증가"
 
 Madman="제드 타임 - 미치광이"
 MadmanDescription="제드 타임 동안 모든 무기가 3배 빠르게 발사"
@@ -2338,25 +2340,53 @@ FreeTrial="오늘 Killing Floor 2를 구매하세요!"
 FeaturedCrossover="주요 크로스오버 프로모션"
 
 [Objectives]
+ObjectiveTitle="목표"
 HoldVolume="구역 방어"
 DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="악바리"
 RequiredDoshHold="인원 조건:"
 DoschHoldDesc="표시된 구역에 제드가 들어가지 못하게 하십시오"
 DescriptionDoshHold="표시된 구역에 제드가 들어가지 못하게 하십시오"
+DescriptionDoshHoldShort="구역 방어 (선택 사항)"
 RepairObjective="용접과 수리"
-UseWelderToRepair="용접기로 물건을 수리하세요."
-RepairObjectiveRequired="수리 목표:"
+UseWelderToRepair="용접기를 사용하여 부서진 기계 수리"
+UseWelderToRepairShort="부서진 기계 용접"
+UseWelderToRepairTraderPod="용접기를 사용하여 상점 수리"
+UseWelderToRepairTraderPodShort="상점 수리"
+RepairObjectiveRequired="부서진 기계 수리까지:"
 EscortPawnsObjective="에스코트"
-EscortPawnsDescription="Zed로부터 대상을 보호하십시오."
+EscortPawnsDescription="Zed로부터 드론 에스코트 및 방어"
+EscortPawnsDescriptionShort="드론 에스코트"
 RequiredHoldVolume="RequiredHoldVolume"
 DestroyActor="수색 섬멸"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="제어와 통제"
-DescriptionActivateTrigger="오브젝트 컨트롤을 활성화하세요."
+DescriptionActivateTrigger="제어 콘솔 활성화"
+DescriptionActivateTriggerShort="콘솔 활성화"
+DescriptionActivateTriggerFlares="플레어 발사기 활성화"
+DescriptionActivateTriggerFlaresShort="플레어 발사기 활성화"
+DescriptionActivateTriggerServer="서버 터미널 과부하"
+DescriptionActivateTriggerServerShort="서버 터미널 과부하"
+DescriptionActivateTriggerCommTower="통신 타워 과부하"
+DescriptionActivateTriggerCommTowerShort="통신 타워 과부하"
 RequiredActivateTrigger="활성화 필요:"
+ExterminateWaveObjective="제거"
+ExterminateWaveDescription="모든 Zed 처치"
+ExterminateWaveDescriptionShort="모든 Zed 처치"
+ExterminateWaveRequired="처치할 Zed:"
+HoldZoneObjective="악바리"
+HoldZoneDescription="Zed로부터 강조 표시된 영역 방어"
+HoldZoneDescriptionShort="강조 표시된 영역 방어"
+HoldZoneRequired="방어할 시간:"
+TransportWaveObjective="택배"
+TransportWaveDescription="배달 위치로 데이터 패드 배달"
+TransportWaveDescriptionShort="데이터 패드 배달"
+TransportWaveDescriptionGear="배달 위치로 장비 배달"
+TransportWaveDescriptionGearShort="장비 배달"
+RequiredCollectActor="필요 배달 품목:"
 FailedString="실패"
+SuccessString="완료"
 RepairObjSantaWorkshopCustomTitle1="파워 수리"
 RepairObjSantaWorkshopCustomDescr1="용접기로 파손된 회로기판 3 개를 수리하십시오"
 RepairObjSantaWorkshopCustomTitle2="게이트 수리"
@@ -2373,6 +2403,20 @@ OperateObjSantaWorkshopCustomTitle2="레버를 당기십시오"
 OperateObjSantaWorkshopCustomDescr2="구역에 Zed가 접근하지 못하도록 하십시오"
 OperateObjSantaWorkshopCustomTitle3="레버를 당기십시오"
 OperateObjSantaWorkshopCustomDescr3="구역에 Zed가 접근하지 못하도록 하십시오"
+TooFewPlayers="플레이어가 너무 적음"
+TooManyZeds="Zed가 너무 많음"
+KillRemainingZeds="모든 Zed 처치"
+BeingAttacked="공격 받고 있음"
+LowHealth="체력 낮음"
+Stopped="멈춤"
+Blocked="Zed에게 막힘"
+NeedsRepair="수리 필요"
+Dropped="투하됨"
+PickedUp="집음"
+PickupTransportItem="택배 집기"
+Reset="리셋"
+Ready="준비"
+NotReady="준비 안 됨"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2526,10 +2570,10 @@ Source0="기사 프로모션"
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1");
-SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2");
-SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3");
-SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4");
+SpecialEventObjectiveInfoList[0]=(TitleString="Test 1",DescriptionString="Description 1")
+SpecialEventObjectiveInfoList[1]=(TitleString="Test 2",DescriptionString="Description 2")
+SpecialEventObjectiveInfoList[2]=(TitleString="Test 3",DescriptionString="Description 3")
+SpecialEventObjectiveInfoList[3]=(TitleString="Test 4",DescriptionString="Description 4")
 
 AllCompleteRewardDescriptionString="Item description for all complete"
 
@@ -2539,11 +2583,11 @@ ChanceDropDescriptionStrings[1]="드롭 2"
 [KFGFxSummerSideShowObjectivesContainer]
 CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="공중 수리",DescriptionString="비행선의 망가진 파이프를 수리하기");
-SpecialEventObjectiveInfoList[1]=(TitleString="상부 데크 방어",DescriptionString="비행선 상부 데크 방어하기");
-SpecialEventObjectiveInfoList[2]=(TitleString="파워업!",DescriptionString="비행선의 차단기 수리하기");
-SpecialEventObjectiveInfoList[3]=(TitleString="플러쉬 러쉬",DescriptionString="비행선 증기 엔진에 물 전달하기");
-SpecialEventObjectiveInfoList[4]=(TitleString="멋진 비행선",DescriptionString="비행선 어려움 이상 난이도 대전에서 승리하기");
+SpecialEventObjectiveInfoList[0]=(TitleString="공중 수리",DescriptionString="비행선의 망가진 파이프를 수리하기")
+SpecialEventObjectiveInfoList[1]=(TitleString="상부 데크 방어",DescriptionString="비행선 상부 데크 방어하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="파워업!",DescriptionString="비행선의 차단기 수리하기")
+SpecialEventObjectiveInfoList[3]=(TitleString="플러쉬 러쉬",DescriptionString="비행선 증기 엔진에 물 전달하기")
+SpecialEventObjectiveInfoList[4]=(TitleString="멋진 비행선",DescriptionString="비행선 어려움 이상 난이도 대전에서 승리하기")
 
 AllCompleteRewardDescriptionString="스팀펑크 복장 번들"
 
@@ -2553,11 +2597,11 @@ ChanceDropDescriptionStrings[1]="골드 티켓"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="괴물 무도회에서 목표를 달성하고 보상을 받으세요!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="속거나 속이거나!",DescriptionString="한 게임 세션에서 함정을 사용하여 Zed 25마리 죽이기");
-SpecialEventObjectiveInfoList[1]=(TitleString="죽은 자는 말이 없다",DescriptionString="빛나는 해골 수집품 10개 파괴하기");
-SpecialEventObjectiveInfoList[2]=(TitleString="괴물 곤죽",DescriptionString="Zed 2500마리 죽이기");
-SpecialEventObjectiveInfoList[3]=(TitleString="밤샘 파티",DescriptionString="끝없는 도전 어려움 또는 그 이상 난이도에서 25 웨이브 완료하기");
-SpecialEventObjectiveInfoList[4]=(TitleString="성의 주인",DescriptionString="서바이벌 어려움 또는 그 이상 난이도에서 한스 백작 해치우기");
+SpecialEventObjectiveInfoList[0]=(TitleString="속거나 속이거나!",DescriptionString="한 게임 세션에서 함정을 사용하여 Zed 25마리 죽이기")
+SpecialEventObjectiveInfoList[1]=(TitleString="죽은 자는 말이 없다",DescriptionString="빛나는 해골 수집품 10개 파괴하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="괴물 곤죽",DescriptionString="Zed 2500마리 죽이기")
+SpecialEventObjectiveInfoList[3]=(TitleString="밤샘 파티",DescriptionString="끝없는 도전 어려움 또는 그 이상 난이도에서 25 웨이브 완료하기")
+SpecialEventObjectiveInfoList[4]=(TitleString="성의 주인",DescriptionString="서바이벌 어려움 또는 그 이상 난이도에서 한스 백작 해치우기")
 
 AllCompleteRewardDescriptionString="한스의 MKB: 무기 + 할로윈 스킨"
 
@@ -2567,11 +2611,11 @@ ChanceDropDescriptionStrings[1]="골드 티켓"
 [KFGFxChristmasObjectivesContainer]
 CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="완벽한 선물",DescriptionString="서바이벌 어려움 이상의 난이도에서 체력이 가득 찬 상태로 모든 카트 호위 목표를 종료하십시오");
-SpecialEventObjectiveInfoList[1]=(TitleString="주간 스페셜",DescriptionString="연속 쇼핑에서 주간 게임 모드를 완료하십시오");
-SpecialEventObjectiveInfoList[2]=(TitleString="슬레이 라이드",DescriptionString="Zed 2500 마리를 처치하십시오");
-SpecialEventObjectiveInfoList[3]=(TitleString="군밤 만들기",DescriptionString="보스 25 마리를 처치하십시오");
-SpecialEventObjectiveInfoList[4]=(TitleString="작업장 소동",DescriptionString="산타의 작업장에서 서바이벌 어려움 이상의 난이도로 크램퍼스를 처치하십시오");
+SpecialEventObjectiveInfoList[0]=(TitleString="완벽한 선물",DescriptionString="서바이벌 어려움 이상의 난이도에서 체력이 가득 찬 상태로 모든 카트 호위 목표를 종료하십시오")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 스페셜",DescriptionString="연속 쇼핑에서 주간 게임 모드를 완료하십시오")
+SpecialEventObjectiveInfoList[2]=(TitleString="슬레이 라이드",DescriptionString="Zed 2500 마리를 처치하십시오")
+SpecialEventObjectiveInfoList[3]=(TitleString="군밤 만들기",DescriptionString="보스 25 마리를 처치하십시오")
+SpecialEventObjectiveInfoList[4]=(TitleString="작업장 소동",DescriptionString="산타의 작업장에서 서바이벌 어려움 이상의 난이도로 크램퍼스를 처치하십시오")
 
 AllCompleteRewardDescriptionString="전투도끼 + 크리스마스 스킨"
 
@@ -2582,11 +2626,11 @@ ChanceDropDescriptionStrings[1]="골드 티켓"
 CurrentSpecialEventString="위험한 끝없는 도전"
 CurrentSpecialEventDescriptionString="웨이브를 깨부수고 전설 보상을 획득하십시오!"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="끝없는 테스트 더미",DescriptionString="끝없는 웨이브 5 완료",TierEventRewardName="클래식 D.A.R.");
-SpecialEventObjectiveInfoList[1]=(TitleString="끝없는 드론",DescriptionString="끝없는 웨이브 10 완료",TierEventRewardName="로더 D.A.R.");");
-SpecialEventObjectiveInfoList[2]=(TitleString="끝없는 드론",DescriptionString="끝없는 웨이브 15 완료",TierEventRewardName="로더 D.A.R.");");
-SpecialEventObjectiveInfoList[3]=(TitleString="끝없는 워머신",DescriptionString="끝없는 웨이브 20 완료",TierEventRewardName="블러디 D.A.R.");");
-SpecialEventObjectiveInfoList[4]=(TitleString="끝없는 옵티머스 D.A.R.",DescriptionString="끝없는 웨이브 25",TierEventRewardName="골드 D.A.R. 완료");
+SpecialEventObjectiveInfoList[0]=(TitleString="끝없는 테스트 더미",DescriptionString="끝없는 웨이브 5 완료",TierEventRewardName="클래식 D.A.R.")
+SpecialEventObjectiveInfoList[1]=(TitleString="끝없는 드론",DescriptionString="끝없는 웨이브 10 완료",TierEventRewardName="로더 D.A.R.")
+SpecialEventObjectiveInfoList[2]=(TitleString="끝없는 드론",DescriptionString="끝없는 웨이브 15 완료",TierEventRewardName="로더 D.A.R.")
+SpecialEventObjectiveInfoList[3]=(TitleString="끝없는 워머신",DescriptionString="끝없는 웨이브 20 완료",TierEventRewardName="블러디 D.A.R.")
+SpecialEventObjectiveInfoList[4]=(TitleString="끝없는 옵티머스 D.A.R.",DescriptionString="끝없는 웨이브 25",TierEventRewardName="골드 D.A.R. 완료")
 
 [KFGFxSpring2019ObjectivesContainer]
 CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다"
@@ -2598,6 +2642,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="끝없는 배수로",DescriptionS
 SpecialEventObjectiveInfoList[4]=(TitleString="피의 배수로",DescriptionString="배수로에서 서바이벌 어려움 또는 그 이상 난이도에서 아무 보스 해치우기")
 
 AllCompleteRewardDescriptionString="남성 및 여성 사이버펑크 의상"
+
+ChanceDropDescriptionStrings[0]="상품권"
+ChanceDropDescriptionStrings[1]="골드 티켓"
+
+[KFGFxSummer2019ObjectivesContainer]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="이륙했습니다!",DescriptionString="목표 어려움 이상 난이도에서 스팀 포트리스 완료하기")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 진단",DescriptionString="스팀 포트리스에서 매주 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="영원한 스팀",DescriptionString="끝없는 어려움 이상 난이도에서 스팀 포트리스 15 웨이브 완료하기")
+SpecialEventObjectiveInfoList[3]=(TitleString="치명적인 왕복 여행",DescriptionString="목표 어려움 이상 난이도로 Zed 상륙 완료하기")
+SpecialEventObjectiveInfoList[4]=(TitleString="차가운 귀환",DescriptionString="목표 어려움 이상 난이도로 전초기지 완료하기")
+
+AllCompleteRewardDescriptionString="남성 및 여성 스팀펑크 의상"
 
 ChanceDropDescriptionStrings[0]="상품권"
 ChanceDropDescriptionStrings[1]="골드 티켓"
@@ -2618,7 +2676,7 @@ KnifeString="나이프"
 FriendlyName="현재 아웃브레이크: 두개골 크래커"
 DescriptionStrings[0]="두뇌의 데미지가 최고의 데미지입니다."
 DescriptionStrings[1]="길이: 중간(7웨이브)"
-ModifierDescriptions[0]="이 아웃브레이크에서는 머리에 데미지를 입었을 경우에만 영원히 처치될 수 있는 방식으로 제드가 돌연변이 변형되었습니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[0]="이 아웃브레이크에서는 머리에 데미지를 입었을 경우에만 영원히 처치될 수 있는 방식으로 제드가 돌연변이 변형되었습니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2628,7 +2686,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="현재 아웃브레이크: 소규모 테러"
 DescriptionStrings[0]="작은 위협도 위협입니다."
 DescriptionStrings[1]="길이: 중간(7웨이브)"
-ModifierDescriptions[0]="이 아웃브레이크에서 제드를 쏘면 제드가 축소되어 맞추기가 힘들게 됩니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[0]="이 아웃브레이크에서 제드를 쏘면 제드가 축소되어 맞추기가 힘들게 됩니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2638,7 +2696,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="현재 아웃브레이크: Poundemonium"
 DescriptionStrings[0]="항상 모든 플래시 파운드. 거의."
 DescriptionStrings[1]="길이: 중간(7웨이브)"
-ModifierDescriptions[0]="플래시 파운드 컨벤션이 열립니다! Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[0]="플래시 파운드 컨벤션이 열립니다! Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2658,7 +2716,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="현재 아웃브레이크: 제드 타임"
 DescriptionStrings[0]="세상의 모든 제드 타임."
 DescriptionStrings[1]="길이: 짧음(4 웨이브)"
-ModifierDescriptions[0]="인생이 아무 의미 없이 흘러가고 있는 것 같나요? 이 아웃브레이크에서는 아닐 걸요! 제드 가까이에 있으면 제드 타임에 들어가게 됩니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[0]="인생이 아무 의미 없이 흘러가고 있는 것 같나요? 이 아웃브레이크에서는 아닐 걸요! 제드 가까이에 있으면 제드 타임에 들어가게 됩니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2667,7 +2725,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="현재 아웃브레이크: 폭발"
 DescriptionStrings[0]="제드가 압력을 받고 있어서 폭발할 수 있습니다."
 DescriptionStrings[1]="길이: 중간(7웨이브)"
-ModifierDescriptions[0]="그들이 먹은 건가요? 나쁜 가스? 그게 뭔지는 모르겠지만 이 아웃브레이크에서 제드가 살해되면서 폭발했어요. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[0]="그들이 먹은 건가요? 나쁜 가스? 그게 뭔지는 모르겠지만 이 아웃브레이크에서 제드가 살해되면서 폭발했어요. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2676,7 +2734,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="현재 아웃브레이크: 근육질."
 DescriptionStrings[0]="클수록 넘어뜨리기가 힘듭니다."
 DescriptionStrings[1]="길이: 중간(7웨이브)"
-ModifierDescriptions[0]="이 아웃브레이크에서는 제드가 플레이어를 명중시키거나 특정 제드 능력에 의해 영향을 받으면 체력, 크기, 범위가 증가합니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[0]="이 아웃브레이크에서는 제드가 플레이어를 명중시키거나 특정 제드 능력에 의해 영향을 받으면 체력, 크기, 범위가 증가합니다. Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2686,7 +2744,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="현재 아웃브레이크: 버블제드"
 DescriptionStrings[0]="...그들의 목이 아프겠네요."
 DescriptionStrings[1]="길이: 중간(7웨이브)"
-ModifierDescriptions[0]="이 제드들은 무엇인가 크게 잘못된 것 같습니다. 머리가 정상보다 너무 너무 너무 큽니다. 너무 거대해요! Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. "
+ModifierDescriptions[0]="이 제드들은 무엇인가 크게 잘못된 것 같습니다. 머리가 정상보다 너무 너무 너무 큽니다. 너무 거대해요! Matchmaking(대전상대 찾기) 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3113,6 +3171,9 @@ GameName="주간"
 [Endless KFGameInfoSummary]
 GameName="무한"
 
+[Objective KFGameInfoSummary]
+GameName="목표"
+
 [KF-VolterManor KFMapSummary]
 DisplayName="볼터의 영지"
 
@@ -3177,10 +3238,13 @@ DisplayName="괴물 무도회"
 DisplayName="연속 쇼핑"
 
 [KF-SantasWorkshop KFMapSummary]
-DisplayName="산타의 작업장 "
+DisplayName="산타의 작업장"
 
 [KF-Spillway KFMapSummary]
 DisplayName="배수로"
+
+[KF-SteamFortress KFMapSummary]
+DisplayName="스팀 포트리스"
 
 [KFMapInfo]
 ; defaults

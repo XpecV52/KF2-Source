@@ -1703,7 +1703,7 @@ simulated function bool WeaponIsAnimating()
     return WeaponAnimSeqNode.bPlaying;
 }
 
-function CameraAnimInst PlayCameraAnim(CameraAnim AnimToPlay, optional float Scale, optional float Rate, optional float BlendInTime, optional float BlendOutTime, optional bool bLoop, optional bool bRandomStartTime, optional Engine.Camera.ECameraAnimPlaySpace Space, optional Rotator CustomPlaySpace)
+simulated function CameraAnimInst PlayCameraAnim(CameraAnim AnimToPlay, optional float Scale, optional float Rate, optional float BlendInTime, optional float BlendOutTime, optional bool bLoop, optional bool bRandomStartTime, optional Engine.Camera.ECameraAnimPlaySpace Space, optional Rotator CustomPlaySpace)
 {
     local PlayerController PC;
     local CameraAnimInst AnimInst;

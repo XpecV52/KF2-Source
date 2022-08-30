@@ -15,7 +15,7 @@ defaultproperties
 
 	// explosion
 	Begin Object Name=ExploTemplate0
-		Damage=5
+		Damage=7
 		DamageRadius=180
 		DamageFalloffExponent=1.f
 		DamageDelay=0.f
@@ -30,7 +30,7 @@ defaultproperties
 		FracturePartVel=0
 	    ExplosionEffects=KFImpactEffectInfo'WEP_CryoGun_ARCH.GroundCryo_Impacts'
 		ExplosionSound=none
-		MomentumTransferScale=0
+		MomentumTransferScale=0.1
 		bAllowPerMaterialFX=true
 
 		// Camera Shake

@@ -71,6 +71,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
+const KFID_ClassicPlayerInfo = 173;
 
 enum EServerPrivacy
 {
@@ -153,7 +154,7 @@ function UpdateButtonsEnabled()
 
     if(bIsSoloGame)
     {
-        AdjustedGameModeIndex = GetAdjustedGameModeIndex(SavedModeIndex);
+        AdjustedGameModeIndex = StartMenu.Manager.CachedProfile.GetProfileInt(148);
         LengthButton.SetBool("enabled", Class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].Lengths > 0);
         DifficultyButton.SetBool("enabled", Class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].DifficultyLevels > 0);        
     }
@@ -182,17 +183,36 @@ function SetModeMenus(GFxObject TextObject, int ModeIndex)
     TextObject.SetObject("lengthList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex, bShowLengthNoPref, false, byte(Lengths)));
 }
 
+event int GetNormalizedGameModeIndex(int ModeIndex)
+{
+    if(bIsSoloGame)
+    {
+        if(ModeIndex < 2)
+        {
+            return ModeIndex;            
+        }
+        else
+        {
+            return ModeIndex + 1;
+        }
+    }
+    return ModeIndex;
+}
+
 function InitializeGameOptions()
 {
     local GFxObject TextObject;
-    local int I, K;
+    local int I;
     local KFProfileSettings Profile;
     local array<string> PlayfabRegionList;
+    local int OBJECTIVE_MODE_INDEX;
 
+    OBJECTIVE_MODE_INDEX = 4;
     Profile = StartMenu.Manager.CachedProfile;
     bIsSoloGame = GetBool("bIsSoloGame");
+    SavedModeIndex = byte(Profile.GetProfileInt(148));
     SavedModeIndex = byte(GetModeIndex());
-    StartMenu.GetMapList(StartMenu.MapStringList, SavedModeIndex, StartMenu.GetStartMenuState() == 1);
+    StartMenu.GetMapList(StartMenu.MapStringList, Profile.GetProfileInt(148), StartMenu.GetStartMenuState() == 1);
     if(StartMenu.Manager.CachedProfile.GetProfileSettingValue(149, SavedMapString) == false)
     {
         SavedMapString = "";
@@ -207,18 +227,24 @@ function InitializeGameOptions()
         SavedLengthIndex = byte(Clamp(SavedLengthIndex, 0, 2));
     }
     SavedPrivacyIndex = byte(Profile.GetProfileInt(152));
-    SavedModeIndex = byte(Profile.GetProfileInt(148));
     SavedDifficultyIndex = byte(Profile.GetProfileInt(150));
     InitialMapIndex = StartMenu.MapStringList.Find(SavedMapString;
     if(bIsSoloGame && InitialMapIndex == -1)
     {
-        if(Class'GameEngine'.static.IsGameFullyInstalled())
+        if(!Class'GameEngine'.static.IsGameFullyInstalled())
         {
-            InitialMapIndex = StartMenu.MapStringList.Find("KF-BioticsLab";            
+            InitialMapIndex = StartMenu.MapStringList.Find("KF-EvacuationPoint";            
         }
         else
         {
-            InitialMapIndex = StartMenu.MapStringList.Find("KF-EvacuationPoint";
+            if(Profile.GetProfileInt(148) == OBJECTIVE_MODE_INDEX)
+            {
+                InitialMapIndex = StartMenu.MapStringList.Find("KF-SteamFortress";                
+            }
+            else
+            {
+                InitialMapIndex = StartMenu.MapStringList.Find("KF-BioticsLab";
+            }
         }
         MapChanged(StartMenu.MapStringList[InitialMapIndex]);
     }
@@ -246,22 +272,17 @@ function InitializeGameOptions()
     }
     TextObject.SetString("inProgress", InProgressString);
     SupportedGameModeStrings = Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
-    if(bIsSoloGame)
-    {
-        K = 0;
-        I = 0;
-        J0x907:
+    I = SupportedGameModeStrings.Length - 1;
+    J0x98F:
 
-        if(I < SupportedGameModeStrings.Length)
+    if(I >= 0)
+    {
+        if((bIsSoloGame && !Class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(I)) || !Class'GameEngine'.static.IsGameFullyInstalled() && I == OBJECTIVE_MODE_INDEX)
         {
-            if(!Class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(++ K))
-            {
-                SupportedGameModeStrings.Remove(I, 1;
-                -- I;
-            }
-            ++ I;
-            goto J0x907;
+            SupportedGameModeStrings.Remove(I, 1;
         }
+        -- I;
+        goto J0x98F;
     }
     TextObject.SetObject("modeList", CreateList(SupportedGameModeStrings, byte(Min(SavedModeIndex, SupportedGameModeStrings.Length)), false));
     SetModeMenus(TextObject, Min(SavedModeIndex, SupportedGameModeStrings.Length));
@@ -377,7 +398,7 @@ event bool GetMakeNewServer()
 
 function ModeChanged(int Index)
 {
-    SavedModeIndex = byte(Index);
+    SavedModeIndex = byte(GetNormalizedGameModeIndex(Index));
     StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(148, SavedModeIndex);
     InitializeGameOptions();
     SaveConfig();
@@ -574,24 +595,13 @@ event Engine.TWOnlineLobby.ELobbyVisibility GetPartyPrivacy()
 
 event int GetAdjustedGameModeIndex(int ModeIndex)
 {
-    if(bIsSoloGame)
+    if(ModeIndex < 2)
     {
-        switch(ModeIndex)
-        {
-            case 0:
-            case 1:
-            case 3:
-                return ModeIndex;
-            case 2:
-                return 3;
-            default:
-                return Class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
-                break;
-        }        
+        return ModeIndex;        
     }
     else
     {
-        return Class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
+        return ((bIsSoloGame) ? ModeIndex - 1 : ModeIndex + 1);
     }
 }
 

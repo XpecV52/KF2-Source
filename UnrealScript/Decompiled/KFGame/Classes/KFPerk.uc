@@ -113,6 +113,7 @@ const STATID_ACHIEVE_MonsterBallSecretRoom = 4046;
 const STATID_ACHIEVE_SantasWorkshopCollectibles = 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
 const STATID_ACHIEVE_SpillwayCollectibles = 4049;
+const STATID_ACHIEVE_SteamFortressCollectibles = 4050;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -1035,6 +1036,11 @@ function float GetReactionModifier(optional class<KFDamageType> DamageType)
     return 1;
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+    return 1;
+}
+
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     return 1;
@@ -1353,14 +1359,16 @@ simulated function bool HasHeavyArmor()
     return false;
 }
 
-simulated function bool ShouldKnockDownOnBump()
-{
-    return false;
-}
+simulated function OnBump(Actor BumpedActor, KFPawn_Human BumpInstigator, Vector BumpedVelocity, Rotator BumpedRotation);
 
 simulated function int GetArmorDamageAmount(int AbsorbedAmt)
 {
     return AbsorbedAmt;
+}
+
+simulated event float GetZedTimeSpeedScale()
+{
+    return 1;
 }
 
 static function ModifyAssistDosh(out int EarnedDosh)

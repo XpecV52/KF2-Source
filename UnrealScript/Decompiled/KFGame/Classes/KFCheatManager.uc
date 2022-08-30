@@ -71,6 +71,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
+const KFID_ClassicPlayerInfo = 173;
 
 var bool bDebugSceneEnabled;
 var transient bool bUsingSplatterGun;
@@ -6798,23 +6799,6 @@ exec function LedRestoreLighting()
     else
     {
         LogInternal("LogtitechLED == none");
-    }
-}
-
-exec function SetMissionObjectiveProgress(float ProgressValue)
-{
-    local Pawn P;
-    local KFPlayerController KFPC;
-
-    P = GetMyPawn();
-    KFPC = KFPlayerController(Outer);
-    if((P == none) || KFPC == none)
-    {
-        return;
-    }
-    if(KFPC.myGfxHUD != none)
-    {
-        KFPC.myGfxHUD.WaveInfoWidget.ObjectiveContainer.SetCurrentProgress(ProgressValue);
     }
 }
 

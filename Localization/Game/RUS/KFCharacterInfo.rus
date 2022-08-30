@@ -3361,7 +3361,7 @@ EmoteName="Пинай"
 EmoteName="Огненный шар"
 
 [Makeitrain]
-EmoteName="Да будет дождь"
+EmoteName="Да будет дождь "
 
 [Fireball_Deluxe]
 EmoteName="Огненный шар+"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="Красный цвет"
 AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="Голографическая повязка на руку С"
+Attachment="Голографическая повязка на руку B"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Красный цвет"
 AttachmentSkin2="Дор. вещь"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="Зеленый цвет"
 AttachmentSkin3="Лаймовый цвет"
 AttachmentSkin4="Красный цвет"
 AttachmentSkin5="Белый цвет"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="Проект H 01: обычный"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Дорогая вещь"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="Проект H 01: улыбка"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="Проект H 01: улыбка (выкл.)"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="Проект H 01: нейтральный"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="Проект H 01: нейтральный (выкл.)"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="Проект H 01: печальное лицо"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="Проект H 01: печальное лицо (выкл.)"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="Проект H 02: обычный"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Дорогая вещь"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="Проект H 02: улыбка"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="Проект H 02: улыбка (выкл.)"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="Проект H 02: нейтральный"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="Проект H 02: нейтральный (выкл.)"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="Проект H 02: печальное лицо"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="Проект H 02: печальное лицо (выкл.)"
+AttachmentSkin0="Синий цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Дорогая вещь"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="Стимпанковый хрустальный монокль"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="Стимпанковый берет с черепом"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="Стимпанковая маска-челюсть"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="Стимпанковый ворон"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="Стимпанковые кожаные гогглы"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="Стимпанковый кожаный противогаз"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="Стимпанковый рюкзак-ключ"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="Стимпанковая повязка на руку с таймером"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="Стимпанковый рюкзак курьера"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="Стимпанковый тесла-рюкзак"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="Стимпанковый рюкзак «Мутант»"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="Стимпанковый рюкзак-часы"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="Стимпанковая осьми-повязка"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="Стимпанковая шляпа капитана"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="Стимпанковый котелок"
+AttachmentSkin0="Стандартный"
+AttachmentSkin1="Хром"
+AttachmentSkin2="Дорогая вещь"

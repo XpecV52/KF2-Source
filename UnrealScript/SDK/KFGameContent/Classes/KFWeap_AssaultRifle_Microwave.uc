@@ -109,7 +109,7 @@ defaultproperties
 
 	// Inventory
 	InventorySize=8
-	GroupPriority=100
+	GroupPriority=125
 	WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Assault_TEX.UI_WeaponSelect_Microwave_Assault'
 
 	// DEFAULT_FIREMODE

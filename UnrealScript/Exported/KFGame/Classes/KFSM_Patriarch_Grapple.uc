@@ -1,7 +1,7 @@
 //=============================================================================
-// KFSM_Patriach_Grapple
+// KFSM_TentacleGrappleBase
 //=============================================================================
-// Patriach tentacle grapple
+// Tentacle grapple
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
@@ -48,7 +48,7 @@ var class<KFDamageType> TentacleDmgType;
 function SpecialMoveStarted(bool bForced, Name PrevMove)
 {
     local KFPawn_MonsterBoss BossPawn;
-    // skip default (instant attach) behavior 
+    // skip default (instant attach) behavior
     Super.SpecialMoveStarted(bForced, PrevMove);
 
     bAlignFollowerLookSameDirAsMe = default.bAlignFollowerLookSameDirAsMe;
@@ -115,7 +115,7 @@ function CheckGrapple()
         GrabLocation = Follower.Location + Follower.BaseEyeHeight * vect(0,0,0.75);
         GrabDirection = PawnOwner.Location - GrabLocation;
         if ( VSizeSq(GrabDirection) < Square(MaxRange + MaxClawReach) )
-        {        
+        {
             // trace for obstructions
             HitActor = PawnOwner.Trace(HitLocation, HitNormal, Follower.Location, PawnOwner.Location, true);
             if ( HitActor == None || HitActor == Follower )
@@ -140,7 +140,7 @@ function DamageFollower( vector GrabLocation, vector GrabDirection )
 {
     GrabDirection = Normal(GrabDirection);
     Follower.TakeDamage( TentacleDamage, KFPOwner.Controller, GrabLocation, GrabDirection, TentacleDmgType,, KFPOwner );
-    
+
     // Do a camera shake, etc
     KFPawn_Monster(KFPOwner).MeleeAttackHelper.PlayMeleeHitEffects(Follower, GrabLocation, GrabDirection);
 }
@@ -149,14 +149,14 @@ function BeginGrapple(optional KFPawn Victim)
 {
     if ( PawnOwner.Role == ROLE_Authority )
     {
-        // @todo: Server only for now because the alignment code is not 
+        // @todo: Server only for now because the alignment code is not
         // network safe on simulated proxy.  Needs invstigation!
         bAlignPawns = default.bAlignPawns;
 
         // replicate attachment
         KFPOwner.SpecialMoveFlags = EGS_GrabSuccess;
         KFPOwner.ReplicatedSpecialMove.Flags = KFPOwner.SpecialMoveFlags;
-        
+
         // Set our physics to flying for the attract
         Follower.SetPhysics( PHYS_Flying );
         Follower.AirSpeed = RetractAirSpeed;
@@ -274,7 +274,7 @@ event DetachGrabbedPawn()
     {
         TentacleStartCtrl.BlendOutTime = 0.2f;
     }
-    
+
     bTentacleCtrlStarted = false;
     SetSkelControlsActive( false );
 
@@ -314,7 +314,7 @@ function ResetFollowerPhysics()
         {
             Follower.SetPhysics( PHYS_Falling );
         }
-    }   
+    }
 }
 
 /** Disable skel controls */
@@ -326,7 +326,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
         PawnOwner.ClearTimer(nameof(BeginTentacleControls), Self);
         KFPawn_Monster(PawnOwner).BumpFrequency = KFPawn_Monster(PawnOwner).default.BumpFrequency;
     }
-    
+
     // Return follower physics to normal
     ResetFollowerPhysics();
 

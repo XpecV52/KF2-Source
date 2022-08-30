@@ -27,6 +27,7 @@ KF-MonsterBall="괴물 무도회 플레이 중"
 KF-ShoppingSpree="연속 쇼핑 플레이 중"
 KF-SantasWorkshop="산타의 작업장 플레이"
 KF-Spillway="배수로 플레이 중"
+KF-Steamfortress="스팀 포트리스 플레이 중"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

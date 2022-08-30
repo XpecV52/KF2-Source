@@ -87,7 +87,7 @@ defaultproperties
     IronSightPosition=(X=10,Y=0,Z=0)
     DOF_FG_FocalRadius=85
     DOF_FG_MaxNearBlurSize=2.5
-    GroupPriority=100
+    GroupPriority=125
     WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Assault_TEX.UI_WeaponSelect_Microwave_Assault'
     SpareAmmoCapacity=320
     InitialSpareMags=2

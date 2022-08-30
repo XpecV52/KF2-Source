@@ -254,6 +254,7 @@ package tripwire.containers
         public function set lengthText(param1:String) : void
         {
             this.infoContainer.lengthLabel.text = param1;
+            this.infoContainer.lengthTitle.visible = this.infoContainer.lengthLabel.text != "";
         }
         
         public function set serverType(param1:String) : void

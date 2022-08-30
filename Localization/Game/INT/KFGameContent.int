@@ -205,32 +205,32 @@ ItemDescription="•Fire mode is full-auto only.\n•A staple of U.S. Navy SEALs
 [KFWeap_Knife_Survivalist]
 ItemName="Gore Shiv"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•This used to belong to something. Well, now it's yours!"
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•This used to belong to something. Well, now it's yours!"
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Utility Knife"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a box cutter. Perfect for opening any boxes you may come across on the killing floor."
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a box cutter. Perfect for opening any boxes you may come across on the killing floor."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Scalpel"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack\n•Alt - block/parry\n•It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it."
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack\n•Alt - block/parry\n•It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it."
 
 [KFWeap_Knife_Firebug]
 ItemName="Fireman's Knife"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a fireman's knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it."
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•It's a fireman's knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it."
 
 [KFWeap_Knife_Gunslinger]
 ItemName="Bowie Knife"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The traditional knife of the Ghurka, it's more a chopping knife than a slicing knife. "
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•The traditional knife of the Ghurka, it's more a chopping knife than a slicing knife. "
 
 [KFWeap_Knife_SWAT]
 ItemName="Tactical Knife"
@@ -285,27 +285,27 @@ ItemDescription="•Fire mode is a dual semi-auto/pump-action.\n•The HZ12 shot
 [KFWeap_Knife_Berserker]
 ItemName="Lawn Mower Blade"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Yes, it is actually a lawn-mower blade. Enjoy it!"
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Yes, it is actually a lawn-mower blade. Enjoy it!"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Horzine's version of the classic commando knife."
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Horzine's version of the classic commando knife."
 
 [KFWeap_Knife_Support]
 ItemName="Machete"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Don't go feeling all special just because we gave you the biggest knife."
+ItemDescription="•Primary - fast slash attack; hld Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Don't go feeling all special just because we gave you the biggest knife."
 
 [KFWeap_Edged_Katana]
 ItemName="Katana"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Try and show a little respect for its class."
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block/parry.\n•Try and show a little respect for its class."
 
 [KFWeap_Blunt_Crovel]
 ItemName="Crovel Survival Tool"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast slash attack, Hold Primary for combo attack.\n•Secondary - heavy blunt attack.\n•Alt - block/parry.\n•Part crowbar, part shovel, all quite deadly."
+ItemDescription="•Primary - fast slash attack; hold Primary for combo attack.\n•Secondary - heavy blunt attack.\n•Alt - block/parry.\n•Part crowbar, part shovel, all quite deadly."
 
 [KFWeap_Shotgun_Nailgun]
 ItemName="VLAD-1000 Nailgun"
@@ -315,13 +315,18 @@ ItemDescription="•Choice of single or multiple nail fire modes.\n•Alt-fire t
 [KFWeap_Blunt_ChainBat]
 ItemName="Road Redeemer"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack.\n•Secondary - heavy blunt attack.\n•Alt - block/parry.\n•Be the slugger you always wanted to be! Remember to clean after every use."
+ItemDescription="•Primary - fast blunt attack; hold Primary for combo attack.\n•Secondary - heavy blunt attack.\n•Alt - block/parry.\n•Be the slugger you always wanted to be! Remember to clean after every use."
 SharedUnlockSource="Road Redemption"
 
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulverizer"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack.\n•Secondary fires an explosive round on contact as well. When out of ammo, Secondary is a heavy blunt attack - so remember to reload!\n•Alt - block/parry."
+ItemDescription="•Primary - fast blunt attack; hold Primary for combo attack.\n•Secondary fires an explosive round on contact as well. When out of ammo, Secondary is a heavy blunt attack - so remember to reload!\n•Alt - block/parry."
+
+[KFWeap_Blunt_MedicBat]
+ItemName="Hemoclobber"
+ItemCategory="Melee"
+ItemDescription="•Primary - fast blunt attack that can heal teammates; hold Primary for combo attack.\n•Secondary - causes a heal explosion on impact. When out of ammo, Secondary is a heavy blunt attack. \n•Alt - block/parry."
 
 [KFWeap_Eviscerator]
 ItemName="Eviscerator"
@@ -338,7 +343,7 @@ SharedUnlockSource="Chivalry Medieval Warfare"
 [KFWeap_Blunt_MaceAndShield]
 ItemName="Bone Crusher"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack.\n•Secondary - heavy blunt attack that makes more use of the Shield.\n•Alt - block/parry. Blocking reduces damage from Zed projectiles.\n• Has a powerful Shield Bash attack."
+ItemDescription="•Primary - fast blunt attack; hold Primary for combo attack.\n•Secondary - heavy blunt attack that makes more use of the Shield.\n•Alt - block/parry. Blocking reduces damage from Zed projectiles.\n• Has a powerful Shield Bash attack."
 
 [KFWeap_Flame_CaulkBurn]
 ItemName="Caulk n' Burn"
@@ -511,6 +516,16 @@ ItemName="Husk Cannon"
 ItemCategory="Flames"
 ItemDescription="•Charges up while the fire button is pressed and discharges when the fire button is released. \n•The official Horzine version of the husk cannon. This model is 95% guaranteed not to explode."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Chiappa Rhino"
+ItemCategory="Hand Gun"
+ItemDescription="•Fill me in"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Dual Chiappa Rhinos"
+ItemCategory="Hand Gun"
+ItemDescription="•Fill me in"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) Carbine Rifle"
 ItemCategory="Assault Rifle"
@@ -535,7 +550,12 @@ ItemDescription="•Primary fire uses a single barrel only.\n•Alt-fire shoots 
 [KFWeap_Blunt_PowerGloves]
 ItemName="Static Strikers"
 ItemCategory="Melee"
-ItemDescription="•Primary - fast blunt attack, Hold Primary for combo attack. \n•Secondary - heavy, electric blunt attack. It's quite shocking! \n•Wanna punch a zed in the face? Look no further!"
+ItemDescription="•Primary - fast blunt attack; hold Primary for combo attack. \n•Secondary - heavy, electric blunt attack. It's quite shocking! \n•Wanna punch a zed in the face? Look no further!"
+
+[KFWeap_RocketLauncher_SealSqueal]
+ItemName="Seal Squeal"
+ItemCategory="Explosives"
+ItemDescription="•Primary fire launches harpoons that detonate after 4 seconds.\n•Alt-fire manually detonates all harpoons.\n•Horzine gives this their seal of approval!"
 
 [KFWeap_AssaultRifle_LazerCutter]
 ItemName="Killerwatt"
@@ -555,13 +575,13 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire t
 [KFWeap_Edged_AbominationAxe]
 ItemName="Battleaxe"
 ItemCategory="Melee"
-ItemDescription="•Primary - slow slash attack, Hold Primary for combo attack.\n•Secondary - heavy, slow attack that obliterates on death.\n•Alt - block / parry\n•Outdated but still hits like a truck...a large, sharp truck."
+ItemDescription="•Primary - slow slash attack; hoold Primary for combo attack.\n•Secondary - heavy, slow attack that obliterates on death.\n•Alt - block / parry\n•Outdated but still hits like a truck...a large, sharp truck."
 SharedUnlockSource="Battleaxe"
 
 [KFWeap_Edged_FireAxe]
 ItemName="Fire Axe"
 ItemCategory="Melee"
-ItemDescription="•Primary - slash attack, Hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block / parry\n•Why is it called a fire axe if it's not on fire?"
+ItemDescription="•Primary - slash attack; hold Primary for combo attack.\n•Secondary - heavy slash attack.\n•Alt - block / parry\n•Why is it called a fire axe if it's not on fire?"
 
 [KFWeap_GrenadeLauncher_M32]
 ItemName="M32 Grenade Launcher"
@@ -588,6 +608,16 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes. \n•Alt-fire 
 ItemName="M99 AMR"
 ItemCategory="Sniper Rifle"
 ItemDescription="•Fire mode is single shot only. \n•Every shot packs a punch...well, one really big bullet. High penetration, high pain."
+
+[KFCarryable_Gear]
+ItemName="Gear"
+ItemCategory="Equipment"
+ItemDescription="You're not supposed to be seeing this in the trader!"
+
+[KFCarryable_Datapad]
+ItemName="Data Pad"
+ItemCategory="Equipment"
+ItemDescription="You're not supposed to be seeing this in the trader!"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -720,6 +750,9 @@ GameName="Weekly Outbreak"
 
 [KFGameInfo_Endless]
 GameName="Endless"
+
+[KFGameInfo_Objective]
+GameName="Objective"
 
 [KFPawn_ZedPatriarch_Versus]
 NoHealsRemainingMsg="No Heals Remaining"

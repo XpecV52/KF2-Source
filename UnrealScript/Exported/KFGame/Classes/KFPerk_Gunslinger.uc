@@ -36,6 +36,7 @@ var	private 	const	float					ShootnMooveBobDamp;
 var	private		const 	array<byte>				BoneBreakerBodyParts;
 var	private 	const   float					BoneBreakerDamage;
 var	private 	const   float					SnarePower;
+var private const float							SnareSpeedModifier;
 
 enum EGunslingerSkills
 {
@@ -546,6 +547,11 @@ simulated function bool IgnoresPenetrationDmgReduction()
 	return IsPenetrationActive();
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+	return IsSkullCrackerActive() ? SnareSpeedModifier : 1.f;
+}
+
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsSkullCrackerActive() &&
@@ -812,6 +818,7 @@ defaultproperties
    BoneBreakerBodyParts(3)=5
    BoneBreakerDamage=0.300000
    SnarePower=100.000000
+   SnareSpeedModifier=0.700000
    MaxHeadShotComboCount=5
    HeadShotCountdownIntervall=2.000000
    ProgressStatID=80
@@ -872,6 +879,7 @@ defaultproperties
    PrestigeRewardItemIconPaths(1)="WEP_SkinSet_Prestige02_Item_TEX.tier01.Remington1858_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(2)="WEP_skinset_prestige03_itemtex.tier02.M1911_PrestigePrecious_Mint_large"
    PrestigeRewardItemIconPaths(3)="wep_skinset_prestige04_itemtex.tier03.DesertEagle_PrestigePrecious_Mint_large"
+   PrestigeRewardItemIconPaths(4)="WEP_SkinSet_Prestige05_Item_TEX.tier04.500MagnumRevolver_PrestigePrecious_Mint_large"
    Name="Default__KFPerk_Gunslinger"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

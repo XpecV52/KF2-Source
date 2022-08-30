@@ -73,6 +73,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
+const KFID_ClassicPlayerInfo = 173;
 
 struct sHiddenHumanPawnInfo
 {
@@ -99,9 +100,12 @@ var const Color OrangeColor;
 var const Color RedHealthColor;
 var const Color ArmorColor;
 var const Color HealthColor;
+var const Color ClassicArmorColor;
+var const Color ClassicHealthColor;
 var const Color PlayerBarBGColor;
 var const Color PlayerBarTextColor;
 var const Color PlayerBarIconColor;
+var const Color PlayerBarShadowColor;
 var const Color SupplierActiveColor;
 var const Color SupplierUsableColor;
 var const Color SupplierHalfUsableColor;
@@ -126,6 +130,7 @@ var bool bDrawCrosshair;
 var bool bForceDrawCrosshair;
 var bool bCrosshairOnFriendly;
 var bool bGreenCrosshair;
+var config bool ClassicPlayerInfo;
 var const FontRenderInfo Text_NoClipShadowed;
 var float TargetCrossHairMod;
 var float CurrentCrossHairMod;
@@ -538,17 +543,81 @@ function DrawHUD()
     }
 }
 
+simulated function DrawPerkIcons(KFPawn_Human KFPH, float PerkIconSize, float PerkIconPosX, float PerkIconPosY, float SupplyIconPosX, float SupplyIconPosY, bool bDropShadow)
+{
+    local byte PrestigeLevel;
+    local KFPlayerReplicationInfo KFPRI;
+    local Color TempColor;
+    local float ResModifier;
+
+    KFPRI = KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo);
+    if(KFPRI == none)
+    {
+        return;
+    }
+    PrestigeLevel = KFPRI.GetActivePerkPrestigeLevel();
+    ResModifier = WorldInfo.GetResolutionBasedHUDScale() * FriendlyHudScale;
+    if(((KFPRI.CurrentVoiceCommsRequest == 10) && KFPRI.CurrentPerkClass != none) && PrestigeLevel > 0)
+    {
+        Canvas.SetPos(PerkIconPosX, PerkIconPosY);
+        Canvas.DrawTile(KFPRI.CurrentPerkClass.default.PrestigeIcons[PrestigeLevel - 1], PerkIconSize, PerkIconSize, 0, 0, 256, 256);
+    }
+    if(PrestigeLevel > 0)
+    {
+        Canvas.SetPos(PerkIconPosX + ((PerkIconSize * (float(1) - PrestigeIconScale)) / float(2)), PerkIconPosY + (PerkIconSize * 0.05));
+        Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PerkIconSize * PrestigeIconScale, PerkIconSize * PrestigeIconScale, 0, 0, 256, 256);        
+    }
+    else
+    {
+        Canvas.SetPos(PerkIconPosX, PerkIconPosY);
+        Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PerkIconSize, PerkIconSize, 0, 0, 256, 256);
+    }
+    if((KFPRI.PerkSupplyLevel > 0) && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none)
+    {
+        if(!bDropShadow)
+        {
+            if(KFPRI.PerkSupplyLevel == 2)
+            {
+                if(KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed)
+                {
+                    TempColor = SupplierActiveColor;                    
+                }
+                else
+                {
+                    if(KFPRI.bPerkPrimarySupplyUsed || KFPRI.bPerkSecondarySupplyUsed)
+                    {
+                        TempColor = SupplierHalfUsableColor;                        
+                    }
+                    else
+                    {
+                        TempColor = SupplierUsableColor;
+                    }
+                }                
+            }
+            else
+            {
+                if(KFPRI.PerkSupplyLevel == 1)
+                {
+                    TempColor = ((KFPRI.bPerkPrimarySupplyUsed) ? SupplierActiveColor : SupplierUsableColor);
+                }
+            }
+            Canvas.SetDrawColorStruct(TempColor);
+        }
+        Canvas.SetPos(SupplyIconPosX, SupplyIconPosY);
+        Canvas.DrawTile(KFPRI.CurrentPerkClass.static.GetInteractIcon(), (PlayerStatusIconSize * 0.75) * ResModifier, (PlayerStatusIconSize * 0.75) * ResModifier, 0, 0, 256, 256);
+    }
+}
+
 simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
 {
     local float Percentage, BarHeight, BarLength;
     local Vector ScreenPos, TargetLocation;
     local KFPlayerReplicationInfo KFPRI;
     local FontRenderInfo MyFontRenderInfo;
-    local float FontScale;
-    local Color TempColor;
-    local float ResModifier;
-    local byte PrestigeLevel;
-    local float PerkIconPosX, PerkIconPosY, PerkIconSize;
+    local float FontScale, ResModifier, PerkIconPosX, PerkIconPosY, SupplyIconPosX, SupplyIconPosY,
+	    PerkIconSize;
+
+    local Color CurrentArmorColor, CurrentHealthColor;
 
     ResModifier = WorldInfo.GetResolutionBasedHUDScale() * FriendlyHudScale;
     KFPRI = KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo);
@@ -567,71 +636,41 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     }
     FontScale = Class'KFGameEngine'.static.GetKFFontScale() * FriendlyHudScale;
     Canvas.Font = Class'KFGameEngine'.static.GetKFCanvasFont();
+    Canvas.SetDrawColorStruct(PlayerBarShadowColor);
+    Canvas.SetPos((ScreenPos.X - (BarLength * 0.5)) + float(1), ScreenPos.Y + float(8));
+    Canvas.DrawText(KFPRI.PlayerName,, FontScale, FontScale, MyFontRenderInfo);
     Canvas.SetDrawColorStruct(PlayerBarTextColor);
-    Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), ScreenPos.Y);
+    Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), ScreenPos.Y + float(7));
     Canvas.DrawText(KFPRI.PlayerName,, FontScale, FontScale, MyFontRenderInfo);
     Percentage = FMin(float(KFPH.Armor) / float(KFPH.MaxArmor), 100);
-    DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + BarHeight) + ((float(36) * FontScale) * ResModifier), ArmorColor);
+    CurrentArmorColor = ((ClassicPlayerInfo) ? ClassicArmorColor : ArmorColor);
+    DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + BarHeight) + ((float(36) * FontScale) * ResModifier), CurrentArmorColor);
     Percentage = FMin(float(KFPH.Health) / float(KFPH.HealthMax), 100);
-    DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + (BarHeight * float(2))) + ((float(36) * FontScale) * ResModifier), HealthColor);
+    CurrentHealthColor = ((ClassicPlayerInfo) ? ClassicHealthColor : HealthColor);
+    DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + (BarHeight * float(2))) + ((float(36) * FontScale) * ResModifier), CurrentHealthColor);
     if(KFPRI.CurrentPerkClass == none)
     {
         return false;
     }
+    Canvas.SetDrawColorStruct(PlayerBarShadowColor);
+    Canvas.SetPos((ScreenPos.X - (BarLength * 0.5)) + float(1), ((ScreenPos.Y + (BarHeight * float(3))) + ((float(36) * FontScale) * ResModifier)) + float(1));
+    Canvas.DrawText(string(KFPRI.GetActivePerkLevel()) @ KFPRI.CurrentPerkClass.default.PerkName,, FontScale, FontScale, MyFontRenderInfo);
     Canvas.SetDrawColorStruct(PlayerBarTextColor);
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + (BarHeight * float(3))) + ((float(36) * FontScale) * ResModifier));
     Canvas.DrawText(string(KFPRI.GetActivePerkLevel()) @ KFPRI.CurrentPerkClass.default.PerkName,, FontScale, FontScale, MyFontRenderInfo);
-    Canvas.SetDrawColorStruct(PlayerBarIconColor);
-    PrestigeLevel = KFPRI.GetActivePerkPrestigeLevel();
+    Canvas.SetDrawColorStruct(PlayerBarShadowColor);
     PerkIconSize = PlayerStatusIconSize * ResModifier;
+    PerkIconPosX = ((ScreenPos.X - (BarLength * 0.5)) - PerkIconSize) + float(1);
+    PerkIconPosY = (ScreenPos.Y + ((float(36) * FontScale) * ResModifier)) + float(1);
+    SupplyIconPosX = (ScreenPos.X + (BarLength * 0.5)) + float(1);
+    SupplyIconPosY = PerkIconPosY + (float(4) * ResModifier);
+    DrawPerkIcons(KFPH, PerkIconSize, PerkIconPosX, PerkIconPosY, SupplyIconPosX, SupplyIconPosY, true);
+    Canvas.SetDrawColorStruct(PlayerBarIconColor);
     PerkIconPosX = (ScreenPos.X - (BarLength * 0.5)) - PerkIconSize;
     PerkIconPosY = ScreenPos.Y + ((float(36) * FontScale) * ResModifier);
-    if(((KFPRI.CurrentVoiceCommsRequest == 10) && KFPRI.CurrentPerkClass != none) && PrestigeLevel > 0)
-    {
-        Canvas.SetPos(PerkIconPosX, PerkIconPosY);
-        Canvas.DrawTile(KFPRI.CurrentPerkClass.default.PrestigeIcons[PrestigeLevel - 1], PerkIconSize, PerkIconSize, 0, 0, 256, 256);
-    }
-    if(PrestigeLevel > 0)
-    {
-        Canvas.SetPos(PerkIconPosX + ((PerkIconSize * (float(1) - PrestigeIconScale)) / float(2)), PerkIconPosY + (PerkIconSize * 0.05));
-        Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PerkIconSize * PrestigeIconScale, PerkIconSize * PrestigeIconScale, 0, 0, 256, 256);        
-    }
-    else
-    {
-        Canvas.SetPos(PerkIconPosX, PerkIconPosY);
-        Canvas.DrawTile(KFPRI.GetCurrentIconToDisplay(), PerkIconSize, PerkIconSize, 0, 0, 256, 256);
-    }
-    if((KFPRI.PerkSupplyLevel > 0) && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none)
-    {
-        if(KFPRI.PerkSupplyLevel == 2)
-        {
-            if(KFPRI.bPerkPrimarySupplyUsed && KFPRI.bPerkSecondarySupplyUsed)
-            {
-                TempColor = SupplierActiveColor;                
-            }
-            else
-            {
-                if(KFPRI.bPerkPrimarySupplyUsed || KFPRI.bPerkSecondarySupplyUsed)
-                {
-                    TempColor = SupplierHalfUsableColor;                    
-                }
-                else
-                {
-                    TempColor = SupplierUsableColor;
-                }
-            }            
-        }
-        else
-        {
-            if(KFPRI.PerkSupplyLevel == 1)
-            {
-                TempColor = ((KFPRI.bPerkPrimarySupplyUsed) ? SupplierActiveColor : SupplierUsableColor);
-            }
-        }
-        Canvas.SetDrawColorStruct(TempColor);
-        Canvas.SetPos(ScreenPos.X + (BarLength * 0.5), ScreenPos.Y + ((float(36) * FontScale) * ResModifier));
-        Canvas.DrawTile(KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * ResModifier, PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
-    }
+    SupplyIconPosX = ScreenPos.X + (BarLength * 0.5);
+    SupplyIconPosY = PerkIconPosY + (float(4) * ResModifier);
+    DrawPerkIcons(KFPH, PerkIconSize, PerkIconPosX, PerkIconPosY, SupplyIconPosX, SupplyIconPosY, false);
     return true;
 }
 
@@ -670,7 +709,16 @@ simulated function bool DrawScriptedPawnInfo(KFPawn_Scripted KFPS, float Normali
     Percentage = FMin(float(KFPS.Health) / float(KFPS.HealthMax), 1);
     ScreenPos.X = FClamp(ScreenPos.X, BarLength * 0.5, Canvas.ClipX - (BarLength * 0.5));
     DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + (BarHeight * float(2))) + ((float(36) * FontScale) * ResModifier), GetHealthStateColor(KFPS));
-    Canvas.SetDrawColorStruct(PlayerBarIconColor);
+    if((KFGRI != none) && NotEqual_InterfaceInterface(KFGRI.ObjectiveInterface, (none)))
+    {
+        Canvas.SetDrawColorStruct(PlayerBarShadowColor);
+    }
+    Canvas.SetPos((ScreenPos.X - ((PlayerStatusIconSize * ResModifier) * 0.5)) + float(1), (ScreenPos.Y - (PlayerStatusIconSize * ResModifier)) + float(1));
+    Canvas.DrawTile(KFPS.GetStateIconTexture(), PlayerStatusIconSize * ResModifier, PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+    if((KFGRI != none) && NotEqual_InterfaceInterface(KFGRI.ObjectiveInterface, (none)))
+    {
+        Canvas.SetDrawColorStruct(KFGRI.ObjectiveInterface.GetIconColor());
+    }
     Canvas.SetPos(ScreenPos.X - ((PlayerStatusIconSize * ResModifier) * 0.5), ScreenPos.Y - (PlayerStatusIconSize * ResModifier));
     Canvas.DrawTile(KFPS.GetStateIconTexture(), PlayerStatusIconSize * ResModifier, PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
     return true;
@@ -680,26 +728,13 @@ simulated function Color GetHealthStateColor(const out KFPawn_Scripted KFPS)
 {
     if(KFPS != none)
     {
-        switch(KFPS.CurrentState)
-        {
-            case 0:
-                return LightGreenColor;
-            case 1:
-                return YellowColor;
-            case 2:
-                return OrangeColor;
-            case 3:
-                return RedHealthColor;
-            default:
-                return LightGreenColor;
-                break;
-        }
+        return KFPS.ScriptedCharArch.States[KFPS.CurrentState].PawnHealthBarColor;
     }
 }
 
 simulated function bool DrawObjectiveHUD()
 {
-    local float Percentage, BarHeight, BarLength;
+    local float Percentage, BarHeight, BarLength, IconCenteringLength;
     local Vector ScreenPos, TargetLocation;
     local float ResModifier;
 
@@ -712,8 +747,6 @@ simulated function bool DrawObjectiveHUD()
     {
         return false;
     }
-    BarLength = FMin(PlayerStatusBarLengthMax * (Canvas.ClipX / 1024), PlayerStatusBarLengthMax) * ResModifier;
-    BarHeight = FMin(8 * (Canvas.ClipX / 1024), 8) * ResModifier;
     TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation();
     ScreenPos = Canvas.Project(TargetLocation);
     if((((ScreenPos.X < float(0)) || ScreenPos.X > Canvas.ClipX) || ScreenPos.Y < float(0)) || ScreenPos.Y > Canvas.ClipY)
@@ -722,13 +755,22 @@ simulated function bool DrawObjectiveHUD()
     }
     if(KFGRI.ObjectiveInterface.UsesProgress())
     {
+        BarLength = FMin(PlayerStatusBarLengthMax * (Canvas.ClipX / 1024), PlayerStatusBarLengthMax) * ResModifier;
+        BarHeight = FMin(8 * (Canvas.ClipX / 1024), 8) * ResModifier;
         Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
-        DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HealthColor);
+        DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HealthColor);        
+    }
+    else
+    {
+        IconCenteringLength = (PlayerStatusIconSize * ResModifier) * 0.5;
     }
     if(KFGRI.ObjectiveInterface.GetIcon() != none)
     {
-        Canvas.SetDrawColorStruct(PlayerBarIconColor);
-        Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - (BarHeight * 2));
+        Canvas.SetDrawColorStruct(PlayerBarShadowColor);
+        Canvas.SetPos(((ScreenPos.X - (BarLength * 0.75)) - IconCenteringLength) + float(1), (ScreenPos.Y - (BarHeight * 2)) + float(1));
+        Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize * ResModifier, PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+        Canvas.SetDrawColorStruct(KFGRI.ObjectiveInterface.GetIconColor());
+        Canvas.SetPos((ScreenPos.X - (BarLength * 0.75)) - IconCenteringLength, ScreenPos.Y - (BarHeight * 2));
         Canvas.DrawTile(KFGRI.ObjectiveInterface.GetIcon(), PlayerStatusIconSize * ResModifier, PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
     }
     return true;
@@ -823,7 +865,7 @@ function DrawHiddenHumanPlayerIcon(PlayerReplicationInfo PRI, Vector IconWorldLo
         return;
     }
     ScreenPos = Canvas.Project(IconWorldLocation + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 2)));
-    IconSizeMult = PlayerStatusIconSize * ResModifier;
+    IconSizeMult = (PlayerStatusIconSize * 0.8) * ResModifier;
     ScreenPos.X -= IconSizeMult;
     ScreenPos.Y -= IconSizeMult;
     if(NormalizedAngle > float(0))
@@ -885,14 +927,10 @@ function DrawHiddenHumanPlayerIcon(PlayerReplicationInfo PRI, Vector IconWorldLo
         }
     }
     PlayerIcon = ((PlayerOwner.GetTeamNum() == 0) ? KFPRI.GetCurrentIconToDisplay() : GenericHumanIconTexture);
-    if(NormalizedAngle > float(0))
-    {
-        Canvas.SetDrawColor(255, 255, 255, 255);        
-    }
-    else
-    {
-        Canvas.SetDrawColor(255, 255, 255, 255);
-    }
+    Canvas.SetDrawColor(0, 0, 0, 255);
+    Canvas.SetPos(ScreenPos.X + float(1), ScreenPos.Y + float(1));
+    Canvas.DrawTile(PlayerIcon, IconSizeMult, IconSizeMult, 0, 0, 256, 256);
+    Canvas.SetDrawColor(255, 255, 255, 192);
     Canvas.SetPos(ScreenPos.X, ScreenPos.Y);
     Canvas.DrawTile(PlayerIcon, IconSizeMult, IconSizeMult, 0, 0, 256, 256);
 }
@@ -1000,20 +1038,23 @@ defaultproperties
     YellowColor=(B=0,G=176,R=255,A=192)
     OrangeColor=(B=0,G=96,R=255,A=192)
     RedHealthColor=(B=17,G=22,R=173,A=192)
-    ArmorColor=(B=255,G=0,R=0,A=192)
-    HealthColor=(B=255,G=210,R=95,A=192)
-    PlayerBarBGColor=(B=0,G=0,R=0,A=192)
-    PlayerBarTextColor=(B=192,G=192,R=192,A=192)
-    PlayerBarIconColor=(B=192,G=192,R=192,A=192)
-    SupplierActiveColor=(B=128,G=128,R=128,A=192)
-    SupplierUsableColor=(B=0,G=0,R=255,A=192)
-    SupplierHalfUsableColor=(B=0,G=200,R=220,A=192)
+    ArmorColor=(B=210,G=100,R=0,A=192)
+    HealthColor=(B=0,G=192,R=0,A=192)
+    ClassicArmorColor=(B=255,G=0,R=0,A=192)
+    ClassicHealthColor=(B=255,G=210,R=95,A=192)
+    PlayerBarBGColor=(B=16,G=16,R=16,A=192)
+    PlayerBarTextColor=(B=255,G=255,R=255,A=192)
+    PlayerBarIconColor=(B=255,G=255,R=255,A=192)
+    PlayerBarShadowColor=(B=0,G=0,R=0,A=255)
+    SupplierActiveColor=(B=192,G=192,R=192,A=192)
+    SupplierUsableColor=(B=0,G=192,R=0,A=192)
+    SupplierHalfUsableColor=(B=0,G=192,R=160,A=192)
     ZedIconColor=(B=255,G=255,R=255,A=192)
     VoiceCommsIconHighlightScale=0.5
     CurrentVoiceCommsHighlightAlpha=255
     MinScreenClampPos=0.1
     MaxScreenClampPos=0.4
-    MaxDrawDistanceObjective=6000000
+    MaxDrawDistanceObjective=1E+08
     PrestigeIconScale=0.75
     FriendlyHudScale=1
     TextRenderInfo=(bClipText=false,bEnableShadow=false,GlowInfo=(bEnableGlow=false,GlowColor=(R=0,G=0,B=0,A=1),GlowOuterRadius=(X=0,Y=0),GlowInnerRadius=(X=0,Y=0)))
@@ -1025,7 +1066,7 @@ defaultproperties
     CrosshairAccuracyScale=(Points=/* Array type was not detected. */,InVal=0.0001,OutVal=0.4,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     PlayerStatusBarBGTexture=Texture2D'EngineResources.WhiteSquareTexture'
     PlayerStatusBarLengthMax=150
-    PlayerStatusIconSize=48
+    PlayerStatusIconSize=32
     HumanPlayerIconInterpMult=0.007
     GenericHumanIconTexture=Texture2D'UI_PerkIcons_TEX.UI_Horzine_H_Logo'
     GenericZedIconTexture=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_ZED'

@@ -41,6 +41,8 @@ enum ECrateSeries
 	ECrate_HorzineSupply_SLOCO,
 	ECrate_HorzineSupply_SCyberSamurai,
 	ECrate_HorzineSupply_SDeity,
+	ECrate_Steampunk,
+	ECrate_HorzineSupply_SProjectH,
 	ECrate_PSNHorzineSupply_CS1,
 	ECrate_PSNHorzineSupply_CS2,
 	ECrate_PSNHorzineSupply_CS3,
@@ -49,6 +51,7 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_CS7,
 	ECrate_PSNHorzineSupply_CS8,
 	ECrate_PSNHorzineSupply_CS9,
+	ECrate_PSNHorzineSupply_CS15,
 	ECrate_PSNHorzineSupply_WS1,
 	ECrate_PSNHorzineSupply_WS2,
 	ECrate_PSNHorzineSupply_WS3,
@@ -64,6 +67,7 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_WS13,
 	ECrate_PSNHorzineSupply_WS14,
 	ECrate_PSNHorzineSupply_WS15,
+	ECrate_PSNHorzineSupply_WS16,
 	ECrate_PSNHorzineSupply_E1,
 	ECrate_PSNHorzineSupply_E2,
 	ECrate_HorzineSupply_S1,
@@ -163,6 +167,7 @@ DefaultProperties
 	ItemKeyArray[Ecrate_HorzineSupply_SLOCO]=(ContainerID=6445, KeyID=6446, ItemSeriesName=horzineLOCO, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_HorzineSupply_SCyberSamurai]=(ContainerID=6616, KeyID=6617, ItemSeriesName=horzineCyberSamurai, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_HorzineSupply_SDeity]=(ContainerID=7120, KeyID=7126, ItemSeriesName=horzineDeity, ContainerType=IDT_Crate)
+	ItemKeyArray[Ecrate_HorzineSupply_SProjectH]=(ContainerID=7391, KeyID=7398, ItemSeriesName=horzineProjectH, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS1]=(ContainerID=4304, KeyID=4303, ItemSeriesName=psncrate_cs1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS2]=(ContainerID=4305, KeyID=4303, ItemSeriesName=psncrate_cs2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_CS3]=(ContainerID=5371, KeyID=4303, ItemSeriesName=psncrate_cs3, ContainerType=IDT_Crate)
@@ -185,6 +190,8 @@ DefaultProperties
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS12]=(ContainerID=6667, KeyID=4303, ItemSeriesName=psncrate_ws12, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS13]=(ContainerID=7117, KeyID=4303, ItemSeriesName=psncrate_ws13, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS14]=(ContainerID=7119, KeyID=4303, ItemSeriesName=psncrate_ws14, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS15]=(ContainerID=7424, KeyID=4303, ItemSeriesName=psncrate_ws15, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS16]=(ContainerID=7400, KeyID=4303, ItemSeriesName=psncrate_ws16, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E1]=(ContainerID=5646, KeyID=4303, ItemSeriesName=emote1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E2]=(ContainerID=5647, KeyID=4303, ItemSeriesName=emote2, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S10]=(ContainerID=4499, KeyID=4501, ItemSeriesName=horzine10, ContainerType=IDT_Crate)
@@ -205,7 +212,7 @@ DefaultProperties
 	ItemKeyArray[Ecrate_Neon]=(ContainerID=5194, KeyID=5195, ItemSeriesName=neon, ContainerType=IDT_USB)
 	ItemKeyArray[ECrate_Vault]=(ContainerID=5313, KeyID=-1, ItemSeriesName=vaultcrate, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S15]=(ContainerID=5233, KeyID=5234, ItemSeriesName=horzine15, ContainerType=IDT_Crate)
-	ItemKeyArray[ECrate_PSNHorzineSupply_WS15]=(ContainerID=5642, KeyID=4303, ItemSeriesName=horzine15, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_CS15]=(ContainerID=5642, KeyID=4303, ItemSeriesName=horzine15, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_Vault_Test]=(ContainerID=5613, KeyID=-1, ItemSeriesName=vaultcrate_test, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_NeonMKII]=(ContainerID=6198, KeyID=6197, ItemSeriesName=NeonMKII, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_NeonMKIII]=(ContainerID=6430, KeyID=6431, ItemSeriesName=NeonMKIII, ContainerType=IDT_USB)
@@ -213,4 +220,5 @@ DefaultProperties
 	ItemKeyArray[Ecrate_NeonMKIV]=(ContainerID=6665, KeyID=6666, ItemSeriesName=NeonMKIV, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_NeonMKV]=(ContainerID=7107, KeyID=7108, ItemSeriesName=NeonMKV, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_Dragonwave]=(ContainerID=7114, KeyID=7115, ItemSeriesName=Dragonwave, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_Steampunk]=(ContainerID=7407, KeyID=7408, ItemSeriesName=Steampunk, ContainerType=IDT_USB)
 } 

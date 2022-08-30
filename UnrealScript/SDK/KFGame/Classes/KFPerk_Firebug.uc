@@ -27,6 +27,7 @@ var		const	float 				ShrapnelChance;
 var 			GameExplosion		ExplosionTemplate;
 
 var	private	const float				SnarePower;
+var private const float				SnareSpeedModifier;
 var private const class<DamageType> SnareCausingDmgTypeClass;
 var private const int 				NapalmDamage;
 /** Multiplier on CylinderComponent.CollisionRadius to check for infecting other zeds */
@@ -374,6 +375,11 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	return 0.f;
 }
 
+simulated function float GetSnareSpeedModifier()
+{
+	return IsGroundFireActive() ? SnareSpeedModifier : 1.f;
+}
+
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( IsGroundFireActive() &&	DamageType != none &&
@@ -627,6 +633,7 @@ DefaultProperties
    	ShrapnelChance=0.3f   //0.2
 
    	SnarePower=100
+	SnareSpeedModifier=0.7
    	SnareCausingDmgTypeClass="KFDT_Fire_Ground"
 
 	WeaponDamage=(Name="Weapon Damage",Increment=0.008f,Rank=0,StartingValue=1.f,MaxValue=1.20) //1.25
@@ -683,11 +690,12 @@ DefaultProperties
     // Skill tracking
 	HitAccuracyHandicap=-2.0
 	HeadshotAccuracyHandicap=5.0
-	AutoBuyLoadOutPath=(class'KFWeapDef_CaulkBurn', class'KFWeapDef_DragonsBreath', class'KFWeapDef_FlameThrower', class'KFWeapDef_MicrowaveGun')
+	AutoBuyLoadOutPath=(class'KFWeapDef_CaulkBurn', class'KFWeapDef_DragonsBreath', class'KFWeapDef_FlameThrower', class'KFWeapDef_MicrowaveGun', class'KFWeapDef_MicrowaveRifle')
 
 	// Prestige Rewards
 	PrestigeRewardItemIconPaths[0]="WEP_SkinSet_Prestige01_Item_TEX.knives.FirebugKnife_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[1]="WEP_SkinSet_Prestige02_Item_TEX.tier01.CaulcNBurn_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[2]="WEP_skinset_prestige03_itemtex.tier02.Dragonsbreath_PrestigePrecious_Mint_large"
 	PrestigeRewardItemIconPaths[3]="wep_skinset_prestige04_itemtex.tier03.FlameThrower_PrestigePrecious_Mint_Large"
+	PrestigeRewardItemIconPaths[4]="WEP_SkinSet_Prestige05_Item_TEX.tier04.MicrowaveGun_PrestigePrecious_Mint_large"
 }

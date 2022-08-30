@@ -104,7 +104,7 @@ simulated function ActivateObjective()
 		if (bUseTrailToObjective)
 		{
 			TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathActor', none);
-			TrailActor.SetEmitterTemplate(ParticleSystem'FX_Gameplay_EMIT.FX_Objective_Weld_Trail');
+			TrailActor.SetEmitterTemplate(ParticleSystem'FX_Gameplay_EMIT.FX_Objective_White_Trail');
 		}
 	}
 
@@ -124,8 +124,6 @@ simulated function ActivateObjective()
 		{
 			ActivateNextRepairableActor();
 		}
-
-		PlaySoundBase(ActivationSoundEvent, false, WorldInfo.NetMode == NM_DedicatedServer);
 	}
 }
 
@@ -362,6 +360,11 @@ simulated function bool UsesProgress()
 	return false;
 }
 
+simulated function bool ShouldShowObjectiveHUD()
+{
+	return false;
+}
+
 simulated function float GetProgress()
 {
 	if (!HasFailedObjective())
@@ -412,19 +415,6 @@ simulated function Vector GetIconLocation()
 	return Location;
 }
 
-simulated function int GetDoshReward()
-{
-	local int MaxDosh;
-
-	MaxDosh = GetMaxDoshReward();
-	if (MaxDosh == 0)
-	{
-		return MaxDosh;
-	}
-
-	return int(MaxDosh * GetTotalProgress());
-}
-
 simulated function int GetVoshReward()
 {
 	local int MaxDosh;
@@ -451,30 +441,7 @@ simulated function int GetXPReward()
 	return int(MaxXP * GetTotalProgress());
 }
 
-simulated function bool HasFailedObjective()
-{
-	return GetLivingPlayerCount() <= 0;
-}
-
-simulated function int GetLivingPlayerCount()
-{
-	local KFGameReplicationInfo KFGRI;
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if (KFGRI != none)
-	{
-		return KFGRI.GetNumPlayersAlive();
-	}
-
-	return 0;
-}
-
-simulated function bool UsesMultipleActors()
-{
-	return true;
-}
-
-simulated function string GetActorCount()
+simulated function string GetProgressText()
 {
 	if (!bIsActive)
 	{
@@ -520,7 +487,7 @@ simulated function DrawHUD(KFHUDBase hud, Canvas drawCanvas)
 
 	ThisDot = Normal((GetIconLocation() + (class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) dot ViewVector;
 
-	if (ThisDot > 0 && KFGRI.ObjectiveInterface.ShouldShowObjectiveHUD())
+	if (ThisDot > 0)
 	{
 		BarLength = FMin(hud.PlayerStatusBarLengthMax * (drawCanvas.ClipX / 1024.f), hud.PlayerStatusBarLengthMax) * ResModifier;
 		BarHeight = FMin(8.f * (drawCanvas.ClipX / 1024.f), 8.f) * ResModifier;
@@ -539,7 +506,11 @@ simulated function DrawHUD(KFHUDBase hud, Canvas drawCanvas)
 		//draw objective icon
 		if (GetIcon() != none)
 		{
-			drawCanvas.SetDrawColorStruct(hud.PlayerBarIconColor);
+			drawCanvas.SetDrawColorStruct(hud.PlayerBarShadowColor);
+			drawCanvas.SetPos((ScreenPos.X - (BarLength * 0.75)) + 1, (ScreenPos.Y - BarHeight * 2.0) + 1);
+			drawCanvas.DrawTile(GetIcon(), hud.PlayerStatusIconSize * ResModifier, hud.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+
+			drawCanvas.SetDrawColorStruct(GetIconColor());
 			drawCanvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
 			drawCanvas.DrawTile(GetIcon(), hud.PlayerStatusIconSize * ResModifier, hud.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
 		}
@@ -555,11 +526,12 @@ defaultproperties
    GoodWinThreshold=0.850000
    bRandomSequence=True
    LocalizationKey="RepairObjective"
+   NameShortLocKey="RepairObjective"
    DescriptionLocKey="UseWelderToRepair"
+   DescriptionShortLocKey="UseWelderToRepairShort"
    LocalizationPackageName="KFGame"
    RequirementsLocKey="RepairObjectiveRequired"
    bUseTrailToObjective=True
-   ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_Xmas_DefendObj'
    GameModeBlacklist(0)=Class'kfgamecontent.KFGameInfo_Endless'
    GameModeBlacklist(1)=Class'kfgamecontent.KFGameInfo_WeeklySurvival'
    PerPlayerSpawnRateMod(0)=1.000000

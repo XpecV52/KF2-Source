@@ -3361,7 +3361,7 @@ EmoteName="Bez spiny"
 EmoteName="Kula ognia"
 
 [Makeitrain]
-EmoteName="Sypnij kasą"
+EmoteName="Sypnij kasą "
 
 [Fireball_Deluxe]
 EmoteName="Kula ognia+"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="Czerwień"
 AttachmentSkin2="Cenny egz."
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="Przepaska holo C"
+Attachment="Przepaska holo B"
 AttachmentSkin0="Błękit"
 AttachmentSkin1="Czerwień"
 AttachmentSkin2="Cenny egz."
@@ -4850,3 +4850,187 @@ AttachmentSkin2="Zieleń"
 AttachmentSkin3="Limonka"
 AttachmentSkin4="Czerwień"
 AttachmentSkin5="Biel"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="Projekt H 01 – baza"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cenny egzemplarz"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="Projekt H 01 – szczęście"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="Projekt H 01 – szczęście – wył."
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="Project H 01 – neutralne"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="Project H 01 – neutralne – wył."
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="Projekt H 01 – nieszczęście"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="Projekt H 01 – nieszczęście – wył."
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="Projekt H 02 – baza"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Cenny egzemplarz"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="Projekt H 02 – szczęście"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="Projekt H 02 – szczęście – wył."
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="Project H 02 – neutralne"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="Project H 02 – neutralne – wył."
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="Projekt H 02 – nieszczęście"
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="Projekt H 02 – nieszczęście – wył."
+AttachmentSkin0="Niebieski"
+AttachmentSkin1="Zieleń"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="Steampunk – kryształowy monokl"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="Steampunk – beret czaszki"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="Steampunk – maska na żuchwę"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="Steampunk – kruk i jastrząb"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="Steampunk – skórzane gogle"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="Steampunk – skórzana maska gazowa"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="Steampunk – plecak klucz"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="Steampunk – przepaska czasu"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="Steampunk – plecak kuriera"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="Steampunk – plecak Tesli"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="Steampunk – plecak zet"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="Steampunk – plecak odliczania"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="Steampunk – oktopaska"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="Steampunk – czapka kapitana"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="Steampunk – melonik"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chrom"
+AttachmentSkin2="Cenny egzemplarz"

@@ -51,7 +51,7 @@ function TickHud(float DeltaTime)
     UpdateDosh();
     UpdateGrenades();
     UpdateWeapon();
-    UpdateFlashlight();   
+    UpdateFlashlight();
     UpdateWeight();
 }
 
@@ -59,7 +59,7 @@ function UpdateWeight()
 {
     if( MyKFPC.Pawn != none && MyKFPC.Pawn.InvManager != none )
     {
-        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);    
+        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);
 
         if(MyKFInvManager != none && (LastMaxWeight != MyKFInvManager.MaxCarryBlocks || LastWeight != MyKFInvManager.CurrentCarryBlocks))
         {
@@ -98,22 +98,22 @@ function UpdateGrenades()
 	{
 		return;
 	}
-    
+
     if(MyKFInvManager != none)
     {
         CurrentGrenades = MyKFInvManager.GrenadeCount;
     }
-    
+
     //Update the icon the for grenade type.
     if(MyKFPC.CurrentPerk != none)
     {
-        if( LastPerkClass != MyKFPC.CurrentPerk.Class || 
+        if( LastPerkClass != MyKFPC.CurrentPerk.Class ||
             LastSavedBuild != MyKFPC.CurrentPerk.GetSavedBuild() )
         {
             SetString("backpackGrenadeType", "img://" $ MyKFPC.CurrentPerk.GetGrenadeImagePath());
             LastPerkClass = MyKFPC.CurrentPerk.Class;
             LastSavedBuild = MyKFPC.CurrentPerk.GetSavedBuild();
-        }  
+        }
     }
     // Update the grenades count value
     if(CurrentGrenades != LastGrenades)

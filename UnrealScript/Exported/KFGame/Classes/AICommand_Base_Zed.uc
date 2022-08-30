@@ -140,7 +140,7 @@ Begin:
 	CheckInterruptCombatTransitions();
 
 	// Select nearest enemy if current enemy is invalid
-	if (!IsValidAttackTarget(KFPawn(Enemy)) || !Enemy.IsAliveAndWell())
+	if (!IsValidAttackTarget(KFPawn(Enemy)) || !Enemy.IsAliveAndWell() || !MyKFPawn.CanAITargetThisPawn(Enemy.Controller))
 	{
 		SelectEnemy();
 	}

@@ -15,7 +15,7 @@ defaultproperties
 
 	// Inventory
 	InventoryGroup=IG_Primary
-	GroupPriority=75
+	GroupPriority=125
 	InventorySize=9
 	WeaponSelectTexture=Texture2D'WEP_UI_M32_MGL_TEX.UI_WeaponSelect_M32_MGL'
 

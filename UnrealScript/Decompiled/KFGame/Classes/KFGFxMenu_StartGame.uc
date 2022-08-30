@@ -71,6 +71,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
+const KFID_ClassicPlayerInfo = 173;
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -189,7 +190,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 1:
             return Class'KFGFxSpring2019ObjectivesContainer';
         case 2:
-            return Class'KFGFxSummerSideShowObjectivesContainer';
+            return Class'KFGFxSummer2019ObjectivesContainer';
         case 3:
             return Class'KFGFxFallObjectivesContainer';
         case 4:
@@ -602,23 +603,23 @@ function ClearLeaveMenuFlag()
 
 function UpdateStartMenuState()
 {
+    local byte CurrentMenuState;
+
     if(Manager != none)
     {
-        Manager.SetStartMenuState(GetStartMenuState());
-        switch(GetStartMenuState())
+        CurrentMenuState = GetStartMenuState();
+        Manager.SetStartMenuState(CurrentMenuState);
+        switch(CurrentMenuState)
         {
             case 2:
                 OptionsComponent.bShowLengthNoPref = false;
-                OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
                 break;
             case 1:
                 OptionsComponent.bShowLengthNoPref = true;
-                OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
                 OptionsComponent.PrivacyChanged(0);
                 break;
             case 4:
                 OptionsComponent.bShowLengthNoPref = false;
-                OptionsComponent.ModeChanged(OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex));
                 break;
             default:
                 break;
@@ -825,7 +826,7 @@ function Callback_OptionListOpened(string ListName, int OptionIndex)
 
     if(OptionsComponent.bIsSoloGame && ListName == "modeList")
     {
-        OptionIndex = OptionsComponent.GetAdjustedGameModeIndex(OptionIndex);
+        OptionIndex = ((OptionIndex >= 2) ? OptionIndex + 1 : OptionIndex);
     }
     if((ListName == "mapList") || Outer.GetPC().WorldInfo.IsConsoleBuild() && ListName == "regionList")
     {
@@ -1009,7 +1010,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
         }
     }
     LengthIndex = InOptionsComponent.GetLengthIndex();
-    return (((((MapName $ "?Game=") $ Class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.GetModeIndex())) $ "?Difficulty=") $ string(Class'KFGameDifficultyInfo'.static.GetDifficultyValue(byte(InOptionsComponent.GetDifficultyIndex())))) $ "?GameLength=") $ string(LengthIndex);
+    return (((((MapName $ "?Game=") $ Class'KFGameInfo'.static.GetGameModeClassFromNum(Manager.CachedProfile.GetProfileInt(148))) $ "?Difficulty=") $ string(Class'KFGameDifficultyInfo'.static.GetDifficultyValue(byte(InOptionsComponent.GetDifficultyIndex())))) $ "?GameLength=") $ string(LengthIndex);
 }
 
 // Export UKFGFxMenu_StartGame::execGetSearchComplete(FFrame&, void* const)
@@ -1418,6 +1419,7 @@ function bool ShouldUseLengthFilter(int GameModeIndex)
     {
         case 1:
         case 3:
+        case 4:
             return false;
         default:
             return true;
@@ -1764,5 +1766,6 @@ defaultproperties
     StockMaps(23)="kf-shoppingspree"
     StockMaps(24)="kf-santasworkshop"
     StockMaps(25)="kf-spillway"
+    StockMaps(26)="kf-steamfortress"
     SubWidgetBindings=/* Array type was not detected. */
 }

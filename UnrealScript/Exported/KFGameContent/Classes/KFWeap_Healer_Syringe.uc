@@ -31,6 +31,7 @@ defaultproperties
    FirstPersonMeshName="WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_Healer_ANIM.Wep_1st_Healer_Anim"
    AttachmentArchetypeName="WEP_Healer_ARCH.Wep_Healer_3P"
+   bStorePreviouslyEquipped=False
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'

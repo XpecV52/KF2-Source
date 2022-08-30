@@ -54,7 +54,7 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=68
 
 	// Inventory
-	GroupPriority=100
+	GroupPriority=50
 	InventorySize=5
 	WeaponSelectTexture=Texture2D'Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat'
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'

@@ -26,7 +26,13 @@ function LocalizeContainer()
 
 	TextObject = CreateObject("Object");
 
-	TextObject.SetString("failedString", Localize("Objectives", "FailedString", "KFGame"));
+	if (CurrentObjectiveInterface != none)
+	{
+		TextObject.SetString("failedString", Localize("Objectives", "FailedString", "KFGame"));
+		TextObject.SetString("objectiveTitle", Localize("Objectives", "ObjectiveTitle", "KFGame"));
+		TextObject.SetString("objectiveDesc", CurrentObjectiveInterface.GetLocalizedShortDescription());
+	}
+
 
 	SetObject("localizedText", TextObject);
 }
@@ -41,7 +47,7 @@ simulated function SetActive(bool bActive)
 		{
 			SetFailState(CurrentObjectiveInterface.HasFailedObjective());
 			SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
-			UpdateActorCount();
+			LocalizeContainer();
 			UpdateIcon();
 			SetCompleted(CurrentObjectiveInterface.IsComplete());
 			SetMissionCritical(CurrentObjectiveInterface.GetIsMissionCritical());
@@ -63,7 +69,14 @@ simulated function SetActive(bool bActive)
 
 function SetCompleted(bool bComplete)
 {
-	Setbool("completeStatus", bComplete);
+	local GFxObject DataObject;
+
+	DataObject = CreateObject("Object");
+
+	DataObject.SetBool("bComplete", bComplete);
+	DataObject.SetString("completeString", bComplete ? Localize("Objectives", "SuccessString", "KFGame") : "");
+	SetObject("completeStatus", DataObject);
+
 	//play sound queue
 	if (KFPC != none && KFPC.MyGFxHUD != none && bComplete)
 	{
@@ -95,12 +108,29 @@ function SetCurrentIcon(string iconPath)
 
 function TickHud(float DeltaTime)
 {
+	local int bStatusWarning, bStatusNotification;
+	local string StatusMessage;
+	local GFxObject DataObject;
+
 	if (CurrentObjectiveInterface != none)
 	{
-		SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
+		if (!CurrentObjectiveInterface.HasFailedObjective() && !CurrentObjectiveInterface.IsComplete())
+		{
+			SetString("currentProgressText", CurrentObjectiveInterface.GetProgressText());
+		}
+
+		CurrentObjectiveInterface.GetLocalizedStatus(StatusMessage, bStatusWarning, bStatusNotification);
+		DataObject = CreateObject("Object");
+		DataObject.SetBool("bStatusWarning", bool(bStatusWarning));
+		DataObject.SetBool("bStatusNotification", bool(bStatusNotification));
+		DataObject.SetString("StatusMessage", StatusMessage);
+		SetObject("currentStatus", DataObject);
+
 		SetInt("rewardValue", CurrentObjectiveInterface.GetDoshReward());
+		SetCurrentProgress(CurrentObjectiveInterface.GetProgress());
+		SetFailState(CurrentObjectiveInterface.HasFailedObjective());
+
 		//UpdateRequirements();
-		UpdateActorCount();
 		if (LastIcon != CurrentObjectiveInterface.GetIcon())
 		{
 			UpdateIcon();
@@ -113,18 +143,6 @@ function UpdateIcon()
 {
 	LastIcon = CurrentObjectiveInterface.GetIcon();
 	SetCurrentIcon(PathName(LastIcon));
-}
-
-function UpdateActorCount()
-{
-	local GFxObject DataObject;
-
-	if (CurrentObjectiveInterface.UsesMultipleActors())
-	{
-		DataObject = CreateObject("Object");;
-		DataObject.SetString("textValue", CurrentObjectiveInterface.GetActorCount());
-		SetObject("objectiveNumber", DataObject);
-	}
 }
 
 function UpdateRequirements()

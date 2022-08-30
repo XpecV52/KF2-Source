@@ -115,6 +115,7 @@ var KFGFxObject_TraderItems TraderItems;
 var bool bAllowGrenadePurchase;
 var repnotify bool bTraderIsOpen;
 var repnotify bool bWaveIsActive;
+var repnotify bool bWaveStarted;
 var private const bool bIsUnrankedGame;
 var bool bMatchVictory;
 var bool bTradersEnabled;
@@ -204,7 +205,7 @@ replication
         WaveNum, WaveTotalAICount, 
         bHidePawnIcons, bIsUnrankedGame, 
         bTraderIsOpen, bWaveIsActive, 
-        bWaveIsEndless;
+        bWaveIsEndless, bWaveStarted;
 
      if(bNetInitial)
         GameAmmoCostScale, GameLength, 
@@ -277,94 +278,103 @@ simulated event ReplicatedEvent(name VarName)
     {
         if(VarName == 'bWaveIsActive')
         {
-            if(bWaveIsActive)
-            {
-                NotifyWaveStart();                
-            }
-            else
+            if(!bWaveIsActive)
             {
                 FadeOutLingeringExplosions();
-                NotifyWaveEnded();
                 EndOfWave();
             }            
         }
         else
         {
-            if(VarName == 'ReplicatedMusicTrackInfo')
+            if(VarName == 'bWaveStarted')
             {
-                ForceNewMusicTrack(ReplicatedMusicTrackInfo);                
-            }
-            else
-            {
-                if(VarName == 'MusicTrackRepCount')
+                if(bWaveStarted)
                 {
-                    if(!bWaveIsActive || !IsBossWave())
-                    {
-                        PlayNewMusicTrack(true);
-                    }                    
+                    NotifyWaveStart();                    
                 }
                 else
                 {
-                    if(VarName == 'bIsUnrankedGame')
+                    NotifyWaveEnded();
+                }                
+            }
+            else
+            {
+                if(VarName == 'ReplicatedMusicTrackInfo')
+                {
+                    ForceNewMusicTrack(ReplicatedMusicTrackInfo);                    
+                }
+                else
+                {
+                    if(VarName == 'MusicTrackRepCount')
                     {
-                        if(bIsUnrankedGame)
+                        if(!bWaveIsActive || !IsBossWave())
                         {
-                            WarnInternal(string(GetFuncName()) @ "Game is UNRANKED!");
+                            PlayNewMusicTrack(true);
                         }                        
                     }
                     else
                     {
-                        if(VarName == 'RepKickVotes')
+                        if(VarName == 'bIsUnrankedGame')
                         {
-                            VoteCollector.UnPackVotes();                            
+                            if(bIsUnrankedGame)
+                            {
+                                WarnInternal(string(GetFuncName()) @ "Game is UNRANKED!");
+                            }                            
                         }
                         else
                         {
-                            if(VarName == 'ServerAdInfo')
+                            if(VarName == 'RepKickVotes')
                             {
-                                ShowPreGameServerWelcomeScreen();                                
+                                VoteCollector.UnPackVotes();                                
                             }
                             else
                             {
-                                if(VarName == 'WaveNum')
+                                if(VarName == 'ServerAdInfo')
                                 {
-                                    UpdateHUDWaveCount();
-                                    TriggerClientWaveStartEvents();                                    
+                                    ShowPreGameServerWelcomeScreen();                                    
                                 }
                                 else
                                 {
-                                    if(VarName == 'ConsoleGameSessionGuid')
+                                    if(VarName == 'WaveNum')
                                     {
-                                        KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();                                        
+                                        UpdateHUDWaveCount();
+                                        TriggerClientWaveStartEvents();                                        
                                     }
                                     else
                                     {
-                                        if(VarName == 'CurrentObjective')
+                                        if(VarName == 'ConsoleGameSessionGuid')
                                         {
-                                            if(CurrentObjective != none)
-                                            {
-                                                ObjectiveInterface = KFInterface_MapObjective(CurrentObjective);
-                                                ObjectiveInterface.ActivateObjective();                                                
-                                            }
-                                            else
-                                            {
-                                                if(GetALocalPlayerController() != none)
-                                                {
-                                                    KFPlayerController(GetALocalPlayerController()).SeasonalEventStats_OnMapObjectiveDeactivated(Actor(bool(ObjectiveInterface)));
-                                                }
-                                                ObjectiveInterface.DeactivateObjective();
-                                                ObjectiveInterface = none;
-                                            }                                            
+                                            KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();                                            
                                         }
                                         else
                                         {
-                                            if(VarName == 'BossIndex')
+                                            if(VarName == 'CurrentObjective')
                                             {
-                                                CacheSelectedBoss(BossIndex);                                                
+                                                if(CurrentObjective != none)
+                                                {
+                                                    ObjectiveInterface = KFInterface_MapObjective(CurrentObjective);
+                                                    ObjectiveInterface.ActivateObjective();                                                    
+                                                }
+                                                else
+                                                {
+                                                    if(GetALocalPlayerController() != none)
+                                                    {
+                                                        KFPlayerController(GetALocalPlayerController()).SeasonalEventStats_OnMapObjectiveDeactivated(Actor(bool(ObjectiveInterface)));
+                                                    }
+                                                    ObjectiveInterface.DeactivateObjective();
+                                                    ObjectiveInterface = none;
+                                                }                                                
                                             }
                                             else
                                             {
-                                                super.ReplicatedEvent(VarName);
+                                                if(VarName == 'BossIndex')
+                                                {
+                                                    CacheSelectedBoss(BossIndex);                                                    
+                                                }
+                                                else
+                                                {
+                                                    super.ReplicatedEvent(VarName);
+                                                }
                                             }
                                         }
                                     }
@@ -457,7 +467,14 @@ simulated function array<int> GetKFSeqEventLevelLoadedIndices()
             {
                 if(GameClass.Name == 'KFGameInfo_WeeklySurvival')
                 {
-                    ActivateIndices[0] = 7;
+                    ActivateIndices[0] = 7;                    
+                }
+                else
+                {
+                    if(GameClass.Name == 'KFGameInfo_Objective')
+                    {
+                        ActivateIndices[0] = 8;
+                    }
                 }
             }
         }
@@ -557,6 +574,8 @@ simulated function NotifyWaveEnded()
             KFGoreManager(WorldInfo.MyGoreEffectManager).ResetPersistantGore(false);
         }
     }
+    bWaveStarted = false;
+    bForceNetUpdate = true;
     foreach PRIArray(PRI,)
     {
         KFPRI = KFPlayerReplicationInfo(PRI);
@@ -572,6 +591,8 @@ simulated function NotifyWaveStart()
     local PlayerReplicationInfo PRI;
     local KFPlayerReplicationInfo KFPRI;
 
+    bWaveStarted = true;
+    bForceNetUpdate = true;
     foreach PRIArray(PRI,)
     {
         KFPRI = KFPlayerReplicationInfo(PRI);
@@ -1735,6 +1756,7 @@ function DeactivateObjective()
             {
                 KFGI.SpawnManager.bTemporarilyEndless = false;
                 bWaveIsEndless = false;
+                KFGI.SpawnManager.ActiveSpawner.PendingSpawns.Length = 0;
                 AIRemaining = KFGI.SpawnManager.GetAIAliveCount() + Max(0, KFGI.SpawnManager.WaveTotalAI - KFGI.NumAISpawnsQueued);
                 if(float(AIRemaining) <= Class'KFGameInfo'.static.GetNumAlwaysRelevantZeds())
                 {
@@ -1798,6 +1820,11 @@ simulated function bool ShouldSetBossCamOnBossDeath()
 simulated function int GetFinalWaveNum()
 {
     return WaveMax - 1;
+}
+
+simulated function bool IsObjectiveMode()
+{
+    return false;
 }
 
 defaultproperties

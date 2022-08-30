@@ -229,11 +229,13 @@ var protected const float MaxAIWarningDistSQ;
 var protected const float MaxAIWarningDistFromPointSQ;
 
 /*********************************************************************************************
-* @name Stick
+* @name Stick/Pin
 ********************************************************************************************* */
 
 /** Whether projectile can stick to actors */
 var const bool bCanStick;
+/** Whether projectile can pin pawns */
+var const bool bCanPin;
 
 /** Actor projectile is stuck to */
 var transient repnotify Actor StuckToActor;
@@ -243,6 +245,11 @@ var transient int StuckToBoneIdx;
 /** replicated stuck loc/rot (relative for skeletal meshes, absolute otherwise) */
 var transient vector StuckToLocation;
 var transient rotator StuckToRotation;
+
+/** Actor projectile has pinned */
+var transient repnotify Actor PinActor;
+/** Bone projectile has pinned */
+var transient int PinBoneIdx;
 
 var instanced KFProjectileStickHelper StickHelper;
 
@@ -285,6 +292,8 @@ replication
 
 	if (bCanStick && (bNetInitial || !bNetOwner))
 		StuckToActor, StuckToBoneIdx, StuckToLocation, StuckToRotation;
+	if (bCanPin && bNetDirty)
+		PinActor, PinBoneIdx;
 }
 
 /** returns terminal velocity (max speed while falling) for this actor.  Unless overridden, it returns the TerminalVelocity of the PhysicsVolume in which this actor is located.
@@ -441,6 +450,13 @@ simulated event ReplicatedEvent(name VarName)
 		else if (StuckToActor != PrevStuckToActor)
 		{
 			StickHelper.ReplicatedStick(StuckToActor, StuckToBoneIdx);
+		}
+	}
+	else if (VarName == nameof(PinActor))
+	{
+		if (PinActor != none && PinBoneIdx != INDEX_None)
+		{
+			StickHelper.Pin(PinActor, PinBoneIdx);
 		}
 	}
 	else
@@ -632,10 +648,12 @@ simulated singular event HitWall( vector HitNormal, actor Wall, PrimitiveCompone
 
     Super(Actor).HitWall(HitNormal, Wall, WallComp);
 
-	if (bCanStick)
+	if (bCanStick || bCanPin)
 	{
 		LastTouchComponent = WallComp;
-		StickHelper.TryStick(HitNormal,, Wall);
+		// pass in the location of the projectile as the hit location
+		// ignoring this parameter will have the projectile try to stick to (0,0,0)
+		StickHelper.TryStick(HitNormal, Location, Wall);
 		return;
 	}
 
@@ -695,7 +713,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
     if (Other != Instigator)
 	{
-		if (bCanStick)
+		if (bCanStick || bCanPin)
 		{
 			StickHelper.TryStick(HitNormal, HitLocation, Other);
 			return;
@@ -1324,7 +1342,7 @@ function SpawnResidualFlame( class<KFProjectile> SpawnClass, vector SpawnLoc, ve
 }
 
 /*********************************************************************************************
-* @name Stick
+* @name Stick/Pin
 ********************************************************************************************* */
 
 simulated function SetStickOrientation(vector HitNormal);

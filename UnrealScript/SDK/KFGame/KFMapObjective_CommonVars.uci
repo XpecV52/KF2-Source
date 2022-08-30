@@ -13,7 +13,9 @@
 //=============================================================================
 
 var() string LocalizationKey;
+var() string NameShortLocKey;
 var() string DescriptionLocKey;
+var() string DescriptionShortLocKey;
 var() string LocalizationPackageName;
 var() string RequirementsLocKey;
 var() bool bIsMissionCriticalObjective;
@@ -32,6 +34,9 @@ var() array<float> PerPlayerSpawnRateMod;
 var() AkEvent ActivationSoundEvent;
 /** A sound to play when the objective is failed */
 var() AkEvent FailureSoundEvent;
+
+/** Color of the icon displayed in the objective progress bar or above certain objectives */
+var const color ObjectiveIconColor;
 
 replication
 {

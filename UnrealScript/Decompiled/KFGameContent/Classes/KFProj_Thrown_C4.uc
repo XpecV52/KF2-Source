@@ -55,7 +55,7 @@ simulated function PostBeginPlay()
 simulated event Tick(float DeltaTime)
 {
     super(Actor).Tick(DeltaTime);
-    StickHelper.Tick();
+    StickHelper.Tick(DeltaTime);
     if(StuckToActor != none)
     {
         UpdateAlert(DeltaTime);

@@ -339,15 +339,25 @@ var() bool bIsFemale;
 var(ThirdPerson) int HeadMaterialID;
 var(ThirdPerson) int BodyMaterialID;
 
+enum ECosmeticType
+{
+	ECosmeticType_Head,
+	ECosmeticType_Body,
+	ECosmeticType_Attachment,
+	ECosmeticType_Arms
+};
+
 struct native SkinVariant
 {
 	var() const int UnlockAssetID;
 	/** The path to this skins package and texture */
 	var() Texture UITexture;
 	/** The material this outfit can use */
- 	var() MaterialInstance Skin;
+ 	var MaterialInstance Skin;
+	var() string SkinName;
 	/** The first person material of this outfit */
-	var() MaterialInstance Skin1p;
+	var MaterialInstance Skin1p;
+	var() string Skin1pName;
 };
 
 struct native OutfitVariants
@@ -355,6 +365,8 @@ struct native OutfitVariants
 	//var() const int UnlockAssetID;
 	/** The path to this skins package and texture */
 	var() Texture UITexture;
+	/** Hard reference to the mesh, async load. */
+	var edithide transient SkeletalMesh Mesh;
 	/** Outfit mesh name. Must be of form PackageName.MeshName */
 	var() string MeshName;
 	/** Reference to the different skin variants for a particular outfit mesh */
@@ -387,6 +399,10 @@ struct native AttachmentVariants
 	var bool bIsSkeletalAttachment;
 	/** If set enables the material mask parameter on the assigned head variant */
 	var() bool bMaskHeadMesh;
+	/** Hard reference to the mesh, async load. */
+	var edithide transient StaticMesh MeshStatic;
+	/** Hard reference to the mesh, async load. */
+	var edithide transient SkeletalMesh MeshSkeletal;
 	/** Attachment mesh name. Must be of form PackageName.MeshName */
 	var() string MeshName;
 	/** Name of the socket that it attaches to. The socket MUST exist in the body mesh for static mesh
@@ -395,6 +411,10 @@ struct native AttachmentVariants
 		both if there is no conflict. NOTE: Skeletal meshes do not require sockets for attachment, but the socket name
 		can still be used for conflit resolution. */
 	var name SocketName;
+	/** Hard reference to the mesh, async load. */
+	var edithide transient StaticMesh MeshStatic1p;
+	/** Hard reference to the mesh, async load. */
+	var edithide transient SkeletalMesh MeshSkeletal1p;
 	/** Mesh name for 1p attachmentt */
 	var() string MeshName1p;
 	/** Name of the socket that the 1p mesh attaches to. If bIsSkeletalAttachment is true, then the mesh will attach
@@ -430,6 +450,9 @@ struct native AttachmentVariants
 	Whether to enable Character Customization. If TRUE, it uses the settings below
 	to assemble the character, otherwise it uses the CharacterMesh
 */
+
+/** The package key for async loading purposes. Console only. */
+var(ThirdPerson) string CosmeticsPackageKey;
 /** The outfit variants for a character. Used for Character Customization */
 var(ThirdPerson) const array<OutfitVariants> BodyVariants;
 /** The head variants for a character. Used for Character Customization */
@@ -443,10 +466,13 @@ var(ThirdPerson) const array<AttachmentVariants> CosmeticVariants;
 
 struct native FirstPersonArmVariants
 {
+	/** Arms mesh. */
+	var edithide transient SkeletalMesh Mesh;
 	/** Mesh name. Must be of form PackageName.MeshName */
 	var() string MeshName;
 	/**	Reference to the different skin variants for a particular arms mesh */
- 	var() array<MaterialInstance> SkinVariants;
+ 	var edithide init array<MaterialInstance> SkinVariants;
+	var() array<string> SkinVariantsName;
 };
 
 /** The outfit variants for a character. Used for Character Customization */
@@ -480,6 +506,8 @@ var Animset EmoteAnimset;
 /*  Native Functions												    */
 /************************************************************************/
 
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -604,13 +632,20 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
     SetBodyMeshAndSkin(
     	KFPRI.RepCustomizationInfo.BodyMeshIndex,
     	KFPRI.RepCustomizationInfo.BodySkinIndex,
-    	KFP);
+    	KFP, KFPRI);
 
     // Head mesh & skin. Index of 255 implies use index 0 (default).
 	SetHeadMeshAndSkin(
 		KFPRI.RepCustomizationInfo.HeadMeshIndex,
 		KFPRI.RepCustomizationInfo.HeadSkinIndex,
-		KFP);
+		KFP, KFPRI);
+
+	// First person arms mesh and skin are based on body mesh & skin.
+	// Index of 255 implies use index 0 (default).
+	SetArmsMeshAndSkin(
+    	KFPRI.RepCustomizationInfo.BodyMeshIndex,
+    	KFPRI.RepCustomizationInfo.BodySkinIndex,
+    	KFP, KFPRI);
 
 	// skip dedicated for purely cosmetic stuff
 	if ( KFP.WorldInfo.NetMode != NM_DedicatedServer )
@@ -691,7 +726,8 @@ private function InitCharacterMICs(KFPawn P, optional bool bMaskHead)
 private function SetBodyMeshAndSkin(
 	byte CurrentBodyMeshIndex,
 	byte CurrentBodySkinIndex,
-	KFPawn KFP )
+	KFPawn KFP,
+	KFPlayerReplicationInfo KFPRI)
 {
 	local string CharBodyMeshName;
 	local SkeletalMesh CharBodyMesh;
@@ -708,6 +744,11 @@ private function SetBodyMeshAndSkin(
 	{
 		// Assign a skin to the body mesh as a material override
 		CurrentBodyMeshIndex = (CurrentBodyMeshIndex < BodyVariants.length) ? CurrentBodyMeshIndex : 0;
+
+		if (KFPRI.StartLoadCosmeticContent(self, ECOSMETICTYPE_Body, CurrentBodyMeshIndex))
+		{
+			return;
+		}
 
 		// Retrieve the name of the meshes to be used from the archetype
 		CharBodyMeshName = BodyVariants[CurrentBodyMeshIndex].MeshName;
@@ -780,7 +821,8 @@ protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, 
 private function SetHeadMeshAndSkin(
 	byte CurrentHeadMeshIndex,
 	byte CurrentHeadSkinIndex,
-	KFPawn KFP )
+	KFPawn KFP,
+	KFPlayerReplicationInfo KFPRI)
 {
 	local string CharHeadMeshName;
 	local SkeletalMesh CharHeadMesh;
@@ -788,6 +830,11 @@ private function SetHeadMeshAndSkin(
 	if ( HeadVariants.length > 0 )
 	{
 		CurrentHeadMeshIndex = (CurrentHeadMeshIndex < HeadVariants.length) ? CurrentHeadMeshIndex : 0;
+
+		if (KFPRI.StartLoadCosmeticContent(self, ECOSMETICTYPE_Head, CurrentHeadMeshIndex))
+		{
+			return;
+		}
 
 		CharHeadMeshName = HeadVariants[CurrentHeadMeshIndex].MeshName;
 		CharHeadMesh = SkeletalMesh(DynamicLoadObject(CharHeadMeshName, class'SkeletalMesh'));
@@ -1047,6 +1094,11 @@ private function SetAttachmentMeshAndSkin(
 	if ( CosmeticVariants.length > 0 &&
 		 CurrentAttachmentMeshIndex < CosmeticVariants.length )
 	{
+		if (KFPRI.StartLoadCosmeticContent(self, ECOSMETICTYPE_Attachment, CurrentAttachmentMeshIndex))
+		{
+			return;
+		}
+
 		// Cache values from character info
 		CharAttachmentMeshName = bIsFirstPerson ? Get1pMeshByIndex(CurrentAttachmentMeshIndex) : GetMeshByIndex(CurrentAttachmentMeshIndex);
 		CharAttachmentSocketName = bIsFirstPerson ? CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName1p : CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName;
@@ -1287,7 +1339,8 @@ simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerRepl
     SetArmsMeshAndSkin(
     	KFPRI.RepCustomizationInfo.BodyMeshIndex,
     	KFPRI.RepCustomizationInfo.BodySkinIndex,
-    	KFP);
+    	KFP,
+		KFPRI);
 
 	// Cosmetic attachment first person mesh & skin. Index of 255 implies don't use any attachments (default)
 	// Don't have to worry about clearing out attachments since that was handled in 3rd person cosmetics.
@@ -1310,7 +1363,8 @@ simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerRepl
 simulated function SetArmsMeshAndSkin(
 	byte ArmsMeshIndex,
 	byte ArmsSkinIndex,
-	KFPawn KFP )
+	KFPawn KFP,
+	KFPlayerReplicationInfo KFPRI)
 {
 	local byte CurrentArmMeshIndex, CurrentArmSkinIndex;
 	local string CharArmMeshName;
@@ -1322,6 +1376,10 @@ simulated function SetArmsMeshAndSkin(
 		if( CharacterArmVariants.length > 0 )
 		{
 			CurrentArmMeshIndex = (ArmsMeshIndex < CharacterArmVariants.length) ? ArmsMeshIndex : 0;
+			if (KFPRI.StartLoadCosmeticContent(self, ECOSMETICTYPE_Arms, CurrentArmMeshIndex))
+			{
+				return;
+			}
 
 			// Retrieve the name of the meshes to be used from the archetype
 			CharArmMeshName = CharacterArmVariants[CurrentArmMeshIndex].MeshName;

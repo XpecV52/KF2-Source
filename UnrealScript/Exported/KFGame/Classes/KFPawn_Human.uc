@@ -648,6 +648,9 @@ simulated event Destroyed()
 	super.Destroyed();
 }
 
+/** Don't want to set this in the character arch, will do it later OnCharacterMeshChanged*/
+simulated function SetCharacterArchAnimationInfo() {}
+
 /** Set various basic properties for this KFPawn based on the character class metadata */
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce )
 {
@@ -675,6 +678,11 @@ simulated function OnCharacterMeshChanged()
 	{
 		Flashlight.Reattach();
 	}
+
+	// If the character mesh was async loaded, the call to SetCharacterAnimationInfo in
+	// KFPawn::SetCharacterArch will not do what it's supposed to do because it needs a skeletal mesh.
+	// So, call it here, once the skeletal mesh is loaded.
+	SetCharacterAnimationInfo();
 }
 
 /*********************************************************************************************
@@ -1833,33 +1841,13 @@ function bool DoJump( bool bUpdating )
 simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNormal )
 {
 	local KFPerk MyPerk;
-	local KFPawn_Monster KFPM;
 
 	if( WorldInfo.TimeDilation < 1.f && !IsZero(Velocity) && Other.GetTeamNum() != GetTeamNum() )
 	{
 		MyPerk = GetPerk();
-		if( MyPerk != none && MyPerk.ShouldKnockDownOnBump() &&
-			Normal(Velocity) dot Vector(Rotation) > 0.7f )
+		if (MyPerk != none)
 		{
-			KFPM = KFPawn_Monster(Other);
-			if( KFPM != none )
-			{
-                //First priority is a knockdown if it is allowed
-				if( KFPM.CanDoSpecialMove( SM_Knockdown ) )
-				{
-					KFPM.Knockdown( Velocity * 3, vect(1,1,1), KFPM.Location, 1000, 100 );
-				}
-                //If they can't be knocked down, but are headless, kill them outright
-                else if (KFPM.IsHeadless())
-                {
-                    KFPM.TakeDamage(KFPM.HealthMax, Controller, Location, vect(0, 0, 0), class'KFDT_NPCBump_Large');
-                }
-                //Last priority is a stumble as a backup
-				else if( KFPM.CanDoSpecialMove( SM_Stumble ) )
-				{
-					KFPM.DoSpecialMove(SM_Stumble,,, class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));
-				}
-			}
+			MyPerk.OnBump(Other, self, Velocity, Rotation);
 		}
 	}
 }

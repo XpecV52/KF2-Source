@@ -182,65 +182,7 @@ defaultproperties
     FireLastHeavyAnim=Shoot_Heavy_Last
     FireLastHeavySightedAnim=Shoot_Heavy_Iron_Last
     NumPellets(0)=0
-    NumPellets(1)=7
-    PelletSpread(0)=
-/* Exception thrown while deserializing PelletSpread
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PelletSpread(1)=
-/* Exception thrown while deserializing PelletSpread
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PelletSpread(2)=
-/* Exception thrown while deserializing PelletSpread
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PelletSpread(3)=
-/* Exception thrown while deserializing PelletSpread
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PelletSpread(4)=
-/* Exception thrown while deserializing PelletSpread
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PelletSpread(5)=
-/* Exception thrown while deserializing PelletSpread
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PelletSpread(6)=AltFireRecoilScale=4,bWarnAIWhenFiring=true,FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray',PSC_PilotLight=none,PSC_EndSpray=KFParticleSystemComponent'Default__KFWeap_Ice_FreezeThrower.FlameEndSpray0',MinAmmoConsumed=4,PackageKey="CryoGun",FirstPersonMeshName="WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig",FirstPersonAnimSetNames=/* Array type was not detected. */,
-/* Exception thrown while deserializing PelletSpread
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    NumPellets(1)=12
     AltFireRecoilScale=4
     bWarnAIWhenFiring=true
     FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray'
@@ -264,6 +206,7 @@ Parameter name: index
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=7
     MagazineCapacity=100
+    PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=80
     IronSightPosition=(X=20,Y=8,Z=-3)

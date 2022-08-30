@@ -179,7 +179,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Spring:
 			return class'KFGFxSpring2019ObjectivesContainer';
 		case SEI_Summer:
-			return class'KFGFxSummerSideShowObjectivesContainer';
+			return class'KFGFxSummer2019ObjectivesContainer';
 		case SEI_Fall:
 			return class'KFGFxFallObjectivesContainer';
 		case SEI_Winter:
@@ -644,24 +644,24 @@ function ClearLeaveMenuFlag()
 
 function UpdateStartMenuState()
 {
+	local byte CurrentMenuState;
+
 	if( Manager != none )
 	{
-		Manager.SetStartMenuState(EStartMenuState(GetStartMenuState()));
-		Switch(EStartMenuState(GetStartMenuState()))
+		CurrentMenuState = GetStartMenuState();
+		Manager.SetStartMenuState(EStartMenuState(CurrentMenuState));
+		Switch(EStartMenuState(CurrentMenuState))
 		{
 			case ECreateGame:
 				OptionsComponent.bShowLengthNoPref = false;
-				OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
 				break;
 			case EMatchmaking:
 				OptionsComponent.bShowLengthNoPref = true;
-				OptionsComponent.ModeChanged(OptionsComponent.SavedModeIndex);
 				//set match privacy to public for find match
 				OptionsComponent.PrivacyChanged(0);
 				break;
 			case ESoloGame:
 				OptionsComponent.bShowLengthNoPref = false;
-				OptionsComponent.ModeChanged(OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex) );
 				break;
 		}
 	}
@@ -879,7 +879,7 @@ function Callback_OptionListOpened(string ListName, int OptionIndex)
 
 	if (OptionsComponent.bIsSoloGame && ListName == "modeList")
 	{
-		OptionIndex = OptionsComponent.GetAdjustedGameModeIndex(OptionIndex);
+		OptionIndex = OptionIndex >= 2 ? OptionIndex + 1 : OptionIndex;
 	}
 
 	if(ListName == "mapList" || GetPC().WorldInfo.IsConsoleBuild() && ListName == "regionList")
@@ -1074,7 +1074,8 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 		}
 	}
 	LengthIndex = InOptionsComponent.GetLengthIndex();
-	return MapName$"?Game="$class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.GetModeIndex())
+
+	return MapName$"?Game="$class'KFGameInfo'.static.GetGameModeClassFromNum(Manager.CachedProfile.GetProfileInt(KFID_SavedModeIndex))
 	       $"?Difficulty="$class'KFGameDifficultyInfo'.static.GetDifficultyValue( InOptionsComponent.GetDifficultyIndex() )
 		   $"?GameLength="$LengthIndex;
 }
@@ -1498,6 +1499,8 @@ function bool ShouldUseLengthFilter(int GameModeIndex)
     case 1:
 	//Endless
 	case 3:
+	// Objective Mode
+	case 4:
         return false;
     }
 

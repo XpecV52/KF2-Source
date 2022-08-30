@@ -3361,7 +3361,7 @@ EmoteName="Dégagement"
 EmoteName="Boule de feu"
 
 [Makeitrain]
-EmoteName="Qu'il pleuve"
+EmoteName="Qu'il pleuve "
 
 [Fireball_Deluxe]
 EmoteName="Boule de feu+"
@@ -4825,7 +4825,7 @@ AttachmentSkin1="Rouge"
 AttachmentSkin2="Doré"
 
 [Cosmetic_Cyberpunk_HoloArmbandC_ARCH]
-Attachment="Brassard holographique C"
+Attachment="Brassard holographique B"
 AttachmentSkin0="Bleu"
 AttachmentSkin1="Rouge"
 AttachmentSkin2="Doré"
@@ -4850,3 +4850,187 @@ AttachmentSkin2="Vert"
 AttachmentSkin3="Lime"
 AttachmentSkin4="Rouge"
 AttachmentSkin5="Blanc"
+
+[Cosmetic_Project_H_01_Base_ARCH]
+Attachment="Projet H 01 De base"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Project_H_01_Happy_ARCH]
+Attachment="Projet H 01 Joyeux"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_01_Happy_Off_ARCH]
+Attachment="Projet H 01 Joyeux désactivé"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_01_Neutral_ARCH]
+Attachment="Projet H 01 Neutre"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_01_Neutral_Off_ARCH]
+Attachment="Projet H 01 Neutre désactivé"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_01_Unhappy_ARCH]
+Attachment="Projet H 01 Triste"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_01_Unhappy_Off_ARCH]
+Attachment="Projet H 01 Triste désactivé"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_02_Base_ARCH]
+Attachment="Projet H 02 De base"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Doré"
+
+[Cosmetic_Project_H_02_Happy_ARCH]
+Attachment="Projet H 02 Joyeux"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_02_Happy_Off_ARCH]
+Attachment="Projet H 02 Joyeux désactivé"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_02_Neutral_ARCH]
+Attachment="Projet H 02 Neutre"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_02_Neutral_Off_ARCH]
+Attachment="Projet H 02 Neutre désactivé"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_02_Unhappy_ARCH]
+Attachment="Projet H 02 Triste"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Project_H_02_Unhappy_Off_ARCH]
+Attachment="Projet H 02 Triste désactivé"
+AttachmentSkin0="Bleu"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Doré"
+
+[Cosmetic_Steampunk_Crystal_Monocle_ARCH]
+Attachment="Monocle en cristal punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Skull_Beret_ARCH]
+Attachment="Béret crâne punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Mandible_Mask_ARCH]
+Attachment="Masque mandibules punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_CrowHawk_ARCH]
+Attachment="Corbeau-aigle punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Leather_Goggles_ARCH]
+Attachment="Lunettes en cuir punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Leather_Gasmask_ARCH]
+Attachment="Masque à gaz en cuir punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Key_Backpack_ARCH]
+Attachment="Sac à dos clé punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Time_Armband_ARCH]
+Attachment="Brassard chronomètre punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Courier_Backpack_ARCH]
+Attachment="Sac à dos coursier punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Tesla_Backpack_ARCH]
+Attachment="Sac à dos tesla punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Zed_Backpack_ARCH]
+Attachment="Sac à dos Zed punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Timer_Backpack_ARCH]
+Attachment="Sac à dos chronomètre punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_OctoBand_ARCH]
+Attachment="Octo-bande punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Captains_Hat_ARCH]
+Attachment="Chapeau de capitaine punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"
+
+[Cosmetic_Steampunk_Boiler_HAt_ARCH]
+Attachment="Chapeau melon punk"
+AttachmentSkin0="Standard"
+AttachmentSkin1="Chromé"
+AttachmentSkin2="Doré"

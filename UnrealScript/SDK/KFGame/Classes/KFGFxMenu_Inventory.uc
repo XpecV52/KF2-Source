@@ -342,7 +342,8 @@ function bool DoesMatchFilter(ItemProperties InventoryItem)
 			return false;
 		}
 
-		if (CurrentPerkIndexFilter != KFPC.PerkList.length && !(CurrentPerkIndexFilter == InventoryItem.PerkId || CurrentPerkIndexFilter == InventoryItem.AltPerkId)) //perk
+		// doesn't match filter if the perk id doesn't match (unless it's set to any or survivalist)
+		if (CurrentPerkIndexFilter != KFPC.PerkList.length && !(CurrentPerkIndexFilter == InventoryItem.PerkId || CurrentPerkIndexFilter == InventoryItem.AltPerkId) && KFPC.PerkList[CurrentPerkIndexFilter].PerkClass != class'KFPerk_Survivalist') //perk
 		{
 			return false;
 		}

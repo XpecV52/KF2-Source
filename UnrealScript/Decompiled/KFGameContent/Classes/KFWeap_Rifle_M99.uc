@@ -39,7 +39,7 @@ defaultproperties
     DOF_FG_FocalRadius=0
     DOF_FG_MaxNearBlurSize=3.5
     AimWarningDelay=(X=0.4,Y=0.8)
-    GroupPriority=100
+    GroupPriority=125
     WeaponSelectTexture=Texture2D'WEP_UI_M99_TEX.UI_WeaponSelect_M99'
     SpareAmmoCapacity=20
     InitialSpareMags=6

@@ -82,6 +82,7 @@ const KFID_Native4kResolution = 169;
 const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
+const KFID_ClassicPlayerInfo=173;
 #linenumber 15
 
 enum EServerPrivacy
@@ -185,7 +186,7 @@ function UpdateButtonsEnabled()
 
 	if (bIsSoloGame)
 	{
-		AdjustedGameModeIndex = GetAdjustedGameModeIndex(SavedModeIndex);
+		AdjustedGameModeIndex = StartMenu.Manager.CachedProfile.GetProfileInt(KFID_SavedModeIndex);
 
 		LengthButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].Lengths > 0);
 		DifficultyButton.SetBool("enabled", class'KFGameInfo'.default.GameModes[AdjustedGameModeIndex].DifficultyLevels > 0);
@@ -216,20 +217,45 @@ function SetModeMenus(GFxObject TextObject, int ModeIndex)
 	TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), 	SavedLengthIndex, 	bShowLengthNoPref, false, byte(Lengths)));
 }
 
+// convert the solo game mode index back into an index that matches the game mode enum
+event int GetNormalizedGameModeIndex(int ModeIndex)
+{
+	if (bIsSoloGame)
+	{
+		// if before the indices are different (survival, weekly), just return the mode index
+		if (ModeIndex < 2)
+		{
+			return ModeIndex;
+		}
+		else
+		{
+			// the input index doesn't account for vs survival missing, so need to bump up to account
+			return ModeIndex + 1;
+		}
+	}
+	
+	return ModeIndex;
+}
+
 function InitializeGameOptions()
 {
 	local GFxObject TextObject;
-	local int i, k;
+	local int i;
 	local KFProfileSettings Profile;
 	local array<string> PlayfabRegionList;
-
+	local int OBJECTIVE_MODE_INDEX;
+	OBJECTIVE_MODE_INDEX = 4;
 	Profile = StartMenu.Manager.CachedProfile;
 
 	bIsSoloGame = GetBool("bIsSoloGame");
 
+	// find the normalized, saved index
+	SavedModeIndex = Profile.GetProfileInt(KFID_SavedModeIndex);
+	
+	// find the index, adjusted for the fact that solo game modes are missing vs survival
 	SavedModeIndex = GetModeIndex();
 
-	StartMenu.GetMapList(StartMenu.MapStringList, SavedModeIndex, StartMenu.GetStartMenuState() == EMatchmaking);
+	StartMenu.GetMapList(StartMenu.MapStringList, Profile.GetProfileInt(KFID_SavedModeIndex), StartMenu.GetStartMenuState() == EMatchmaking);
 
 	if(StartMenu.Manager.CachedProfile.GetProfileSettingValue(KFID_SavedMapString, SavedMapString) == false)
 	{
@@ -248,21 +274,28 @@ function InitializeGameOptions()
 		SavedLengthIndex = Clamp(SavedLengthIndex, 0, 2);
 	}
 	SavedPrivacyIndex = Profile.GetProfileInt(KFID_SavedPrivacyIndex);
-	SavedModeIndex = Profile.GetProfileInt(KFID_SavedModeIndex);
 	SavedDifficultyIndex = Profile.GetProfileInt(KFID_SavedDifficultyIndex);
 
 	InitialMapIndex = StartMenu.MapStringList.Find( SavedMapString );
 
 	if(bIsSoloGame && InitialMapIndex == INDEX_NONE)
 	{
-		
-		if (class'GameEngine'.Static.IsGameFullyInstalled())
+		// if the game isn't fully installed, the only map available is evacuation point
+		if (!class'GameEngine'.Static.IsGameFullyInstalled())
 		{
-			InitialMapIndex = StartMenu.MapStringList.Find("KF-BioticsLab");
+			InitialMapIndex = StartMenu.MapStringList.Find("KF-EvacuationPoint");
 		}
 		else
 		{
-			InitialMapIndex = StartMenu.MapStringList.Find("KF-EvacuationPoint");
+			// Biotics Lab doesn't support objective mode yet, so that needs a different default
+			if (Profile.GetProfileInt(KFID_SavedModeIndex) == OBJECTIVE_MODE_INDEX)
+			{
+				InitialMapIndex = StartMenu.MapStringList.Find("KF-SteamFortress");
+			}
+			else
+			{
+				InitialMapIndex = StartMenu.MapStringList.Find("KF-BioticsLab");
+			}
 		}
 		MapChanged(StartMenu.MapStringList[InitialMapIndex]);
 	}
@@ -302,17 +335,14 @@ function InitializeGameOptions()
 	// Update the options lists
 	SupportedGameModeStrings = class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
 
-	// If we're in a solo game, filter out MP-only gametypes
-	if( bIsSoloGame )
+	
+	for( i = SupportedGameModeStrings.Length - 1; i >= 0 ; i-- )
 	{
-		k = 0;
-		for( i = 0; i < SupportedGameModeStrings.Length; ++i )
+		// If we're in a solo game, filter out MP-only gametypes
+		// If the game isn't fully installed, filter out objective mode since it isn't supported by evacuation point
+		if( (bIsSoloGame && !class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(i)) || (!class'GameEngine'.Static.IsGameFullyInstalled() && i == OBJECTIVE_MODE_INDEX))
 		{
-			if( !class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(k++) )
-			{
-				SupportedGameModeStrings.Remove(i, 1);
-				i--;
-			}
+			SupportedGameModeStrings.Remove(i, 1);
 		}
 	}
 	// Since the Mode list can include "ANY" we need to just accept that the selected index could be the length of the supported modes.  Otherwise when "ANY" is selected we push the index to 1.
@@ -455,8 +485,12 @@ event bool GetMakeNewServer()
 //==============================================================
 function ModeChanged( int Index )
 {
-	SavedModeIndex = Index;
+	// convert back to the normal game mode enum
+	SavedModeIndex = GetNormalizedGameModeIndex(Index);
+
+	// save off this index, which matches the normal game mode enum
 	StartMenu.Manager.CachedProfile.SetProfileSettingValueInt(KFID_SavedModeIndex, SavedModeIndex);
+
 	InitializeGameOptions();
 	SaveConfig();
 }
@@ -652,25 +686,20 @@ event ELobbyVisibility GetPartyPrivacy()
 	}
 }
 
+//Convert from the solo game mode types (that don't include the Vs mode) and the multiplayer types where it is index 2
 event int GetAdjustedGameModeIndex(int ModeIndex)
 {
-	if (bIsSoloGame)
+	// if before the indices are different (survival, weekly), just return the mode index
+	if (ModeIndex < 2)
 	{
-		switch (ModeIndex)
-		{
-		case 0:
-		case 1:
-		case 3:
-			return ModeIndex;
-		case 2: //versus
-			return 3;
-			default:
-				return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
-		}
+		return ModeIndex;
 	}
 	else
 	{
-		return class'KFGameInfo'.static.GetGameModeIndexFromName(SupportedGameModeStrings[SavedModeIndex]);
+		// otherwise (vs, endless, objective)
+		// if going multiplayer -> solo, need to subtract to account for the removal of the Vs mode
+		// if going solo -> multiplayer, need to add to account for a new mode (Vs) being added to the middle of the list
+		return bIsSoloGame ? ModeIndex - 1 : ModeIndex + 1;
 	}
 }
 

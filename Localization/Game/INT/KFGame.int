@@ -1,5 +1,5 @@
 [KFPawn_Scripted]
-ScriptedPawnString="V.I.P."
+ScriptedPawnString="Escort"
 
 [KFCommon_LocalizedStrings]
 SpecialEffectsString="Special Effects"
@@ -31,6 +31,7 @@ ModeStrings[0]="Survival"
 ModeStrings[1]="Weekly"
 ModeStrings[2]="VS Survival"
 ModeStrings[3]="Endless"
+ModeStrings[4]="Objective"
 
 NoPreferenceString="ANY"
 OKString="OK"
@@ -207,6 +208,7 @@ modeList0="Battle set waves of AI-controlled Zeds"
 modeList1="Battle set waves of AI-controlled Zeds on a unique game mode of the week"
 modeList2="Horzine mercenaries vs waves of Player and AI-controlled Zeds"
 modeList3="Battle unlimited waves of AI-controlled Zeds"
+modeList4="Battle set waves of AI-controlled Zeds while completing objectives"
 difficultyList0="Recommended for new players of perk rank 0-5"
 difficultyList1="Recommended for experienced players of perk rank 6-15. Zed speed, health, damage, and amount per wave increase. Players receive less dosh and fewer pickups."
 difficultyList2="Recommended for seasoned players of perk rank 15-25. Zed speed, health, damage, and amount per wave increase further, and some Zeds have new attacks. Players receive even less dosh and fewer pickups."
@@ -1246,6 +1248,7 @@ ReduceHighPitchNoiseString="Reduce High Pitch Noise"
 DisableAutoUpgradeString="Disable Auto-Trade"
 HideRemodeHeadshotEffectsString="Disable Remote Headshot effects"
 ToggleToRunString="Toggle to Sprint"
+ClassicPlayerInfoString="Legacy Health Bars"
 
 EnableMixerString="Enable Mixer"
 DisableMixerString="Disable Mixer"
@@ -1737,7 +1740,7 @@ Vampire="Vampire"
 VampireDescription="Heal 4 points of Health for every Zed you kill with perk weapons. Attack 20% faster with perk melee weapons."
 
 Speed="Butcher"
-SpeedDescription="Attack 20% faster and do 25% more damage with perk melee weapons."
+SpeedDescription="Attack 20% faster and do 20% more damage with perk melee weapons."
 
 Resistance="Resistance"
 ResistanceDescription="Gain 20% resistance to all damage. Gain additional 20% resistance to Poison and Sonic Damage."
@@ -1755,7 +1758,7 @@ Spartan="ZED TIME - Spartan"
 SpartanDescription="During Zed time, you attack with perk weapons and move in real-time."
 
 Rage="ZED TIME - Berserker Rage"
-RageDescription="Heal 25% Health and Zeds close to you try to flee when you enter Zed time."
+RageDescription="Whenever Zed time activates or refreshes, heal 25% Health and force nearby Zeds to flee."
 
 [KFPerk_Commando]
 PerkName="Commando"
@@ -1768,7 +1771,7 @@ SkillCatagories[4]="Advanced Training"
 
 Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increases %x% per level");
 Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level");
-Passives[2]=(Title="Zed Time Extension",Description="Zed time increases %x% every 5 levels");
+Passives[2]=(Title="Zed Time Refreshes",Description="Zed time increases %x% every 5 levels");
 Passives[3]=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels");
 Passives[4]=(Title="Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
 Passives[5]=(Title="Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
@@ -1783,7 +1786,7 @@ LargeMags="High Capacity Mags"
 LargeMagsDescription="Increase magazine capacity of perk weapons 50%."
 
 Backup="Fallback"
-BackupDescription="Increase damage with your 9mm pistol and knife 50%, and increase weapon switching speed 50%."
+BackupDescription="Increase damage with your 9mm pistol and knife 85%, and increase weapon switching speed 50%."
 
 Impact="Impact Rounds"
 ImpactDescription="Increase stumble power for perk weapons 150%."
@@ -1795,7 +1798,7 @@ AmmoVest="Prepared"
 AmmoVestDescription="Carry up to 20% more ammo for each perk weapon."
 
 HollowPoints="Hollow Point Rounds"
-HollowPointsDescription="Increase damage of perk weapons 25% and reduce their recoil 50%."
+HollowPointsDescription="Increase damage of perk weapons 20% and reduce their recoil 50%."
 
 EatLead="Eat Lead"
 EatLeadDescription="Increase magazine capacity of perk weapons 100%."
@@ -1829,13 +1832,13 @@ Damage="Bombardier"
 DamageDescription="Increase damage of explosive perk weapons 25%."
 
 Speed="Shock Trooper"
-SpeedDescription="Reload perk weapons 20% faster and increase their knockdown and stumble power 25%."
+SpeedDescription="Increase reload speed of Perk weapons and increase their knockdown power 10%."
 
 DirectHit="High Impact Rounds"
-DirectHitDescription="Increase direct hit damage with explosive weapons 20%."
+DirectHitDescription="Increase direct hit damage with explosive weapons 25%."
 
 Ammo="Extra Rounds"
-AmmoDescription="Increase the maximum ammo for explosive perk weapons by 5."
+AmmoDescription="Increase the maximum ammo for explosive perk weapons by 5. This does not apply to C4."
 
 SirenResistance="Sonic Resistant Rounds"
 SirenResistanceDescription="Your explosives are immune to the siren’s scream and will always explode."
@@ -1884,13 +1887,13 @@ Combatant="Combatant Doctor"
 CombatantDescription="Increase magazine capacity of perk weapons 50% and movement speed by 10%."
 
 HealingDamageBoost="Focus Injection"
-HealingDamageBoostDescription="Shooting teammates with healing darts increases the damage they inflict 5% for 5 seconds. This can stack up to a 20% bonus. "
+HealingDamageBoostDescription="Shooting teammates with healing darts increases the damage they inflict 5% for 5 seconds. This can stack up to a 20% bonus."
 
 AcidicCompound="Acidic Rounds"
 AcidicCompoundDescription="Perk weapons can poison Zeds, inflicting poison damage over time."
 
 HealingShield="Coagulant Booster"
-HealingShieldDescription="Shooting teammates with healing darts increases their damage resistance 10% for 5 seconds. This can stack up to a 30% bonus. "
+HealingShieldDescription="Shooting teammates with healing darts increases their damage resistance 10% for 5 seconds. This can stack up to a 30% bonus."
 
 Enforcer="Battle Surgeon"
 EnforcerDescription="Increase damage with perk weapons 20%."
@@ -1899,7 +1902,7 @@ AirborneAgent="ZED TIME - Airborne Agent"
 AirborneAgentDescription="You release a healing gas during Zed time, healing teammates close by."
 
 Sedative="ZED TIME - Zedative"
-SedativeDescription="During Zed time, damaging Zeds with perk weapons will slow them 30% and do massive amounts of poison damage. "
+SedativeDescription="During Zed time, damaging Zeds with perk weapons will slow them 30% and do massive amounts of poison damage."
 
 
 EXPAction1="Dealing Field Medic weapon damage"
@@ -1908,7 +1911,7 @@ EXPAction2="Healing teammates"
 [KFPerk_Firebug]
 PerkName="Firebug"
 EXPAction1="Dealing Firebug weapon damage"
-EXPAction2="Killing Crawlers with Firebug weapons"
+EXPAction2="Killing Bloats and Crawlers with Firebug weapons"
 
 SkillCatagories[0]="Supplies"
 SkillCatagories[1]="Spicy"
@@ -1932,7 +1935,7 @@ Fuse="Barbecue"
 FuseDescription="Perk weapons’ burn effect lasts 150% longer, increasing damage over time."
 
 GroundFire="Ground Fire"
-GroundFireDescription="Ground fires do massively increased damage and reduce Zed movement speed 20%."
+GroundFireDescription="Ground fires deal twice the damage and reduce Zed movement speed 30%. This does not apply to molotovs."
 
 ZedShrapnel="Zed Shrapnel"
 ZedShrapnelDescription="Zeds you kill with fire have a 30% chance to explode, damaging and stunning nearby Zeds."
@@ -1941,7 +1944,7 @@ Napalm="Napalm"
 NapalmDescription="Burning Zeds that make contact with other Zeds will light them on fire and the burn effect lasts 150% longer."
 
 Range="Firestorm"
-RangeDescription="Increase range of perk weapons."
+RangeDescription="Increase range of the Caulk n' Burn, Flamethrower, and Microwave Gun."
 
 SplashDamage="Heat Wave"
 SplashDamageDescription="Zed struck at point blank range with fire will stumble back."
@@ -2037,7 +2040,7 @@ Scoped="Dead Eye"
 ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using iron sights with a perk weapon."
 
 AmmoPouch="Always Prepared"
-AmmoPouchDescription="Carry up to 25% more ammo for perk weapons and grenades."
+AmmoPouchDescription="Carry one extra grenade and 25% more ammo for perk weapons."
 
 ZTKnockdown="ZED TIME - Assassin"
 ZTKnockdownDescription="Any head shots with perk weapons have a 5% chance to trigger Zed time.  During Zed time, increase head shot damage with perk weapons 35%."
@@ -2117,7 +2120,7 @@ TacticalMovement="Tactical Movement"
 TacticalMovementDescription="No movement penalty for using iron sights or crouch movement with perk weapons."
 
 Backup="Close Combat Training"
-BackupDescription="Increase damage with your 9mm pistol and knife 50%. You begin each game with dual 9mm pistols."
+BackupDescription="Increase damage with your 9mm pistol and knife 85%. You begin each game with dual 9mm pistols."
 
 TacticalReload="Tactical Reload"
 TacticalReloadDescription="Increase reload speed with perk weapons."
@@ -2132,10 +2135,10 @@ BodyArmor="Assault Armor"
 BodyArmorDescription="Maximum Armor increases by 50%. You begin each game with 50% Armor, which stacks with Armor gained from Heavy Armor Training."
 
 Cripple="Cripple"
-CrippleDescription="Multiple hits with perk weapons will slow Zeds down up to 30%. Hitting the legs is most effective."
+CrippleDescription="Multiple hits with Perk weapons will slow Zeds down by 30%. Head and weak spot shots apply it twice as fast."
 
 SWATEnforcer="ZED TIME - Battering Ram"
-SWATEnforcerDescription="During Zed time, you move in real-time and have massive knockdown power when you run into a Zed."
+SWATEnforcerDescription="During Zed time, you move fast in real-time and deal massive damage and knockdown to any Zed that touches you."
 
 RapidAssault="ZED TIME - Rapid Assault"
 RapidAssaultDescription="During Zed time, when using perk weapons you have unlimited ammo, shoot in near real-time, and increase stumble power by 100%."
@@ -2179,7 +2182,7 @@ ZedShrapnel="Spontaneous Zed-plosion"
 ZedShrapnelDescription="Zeds you kill have a 30% chance to explode, damaging and stunning nearby Zeds."
 
 MakeThingsGoBoom="Make Things go Boom"
-MakeThingsGoBoomDescription="Increase area of effect of all Explosives 40%."
+MakeThingsGoBoomDescription="Increase explosive resistance 40% and area of effect of all explosives 40%."
 
 Madman="ZED TIME - Madman"
 MadmanDescription="During Zed time, all your weapons shoot 3x faster."
@@ -2338,25 +2341,53 @@ FreeTrial="Purchase Killing Floor 2 today!"
 FeaturedCrossover="Featured Crossover Promotion"
 
 [Objectives]
+ObjectiveTitle="OBJECTIVE"
 HoldVolume="DEFEND THE AREA"
 DescriptionHoldVolume="DescriptionHoldVolume"
 DoshHold="STAND YOUR GROUND"
 RequiredDoshHold="Players required:"
 DoschHoldDesc="Keep Zeds out of the marked area"
 DescriptionDoshHold="Keep Zeds out of the marked area"
+DescriptionDoshHoldShort="Defend the Zone (Optional)"
 RepairObjective="WELD AND REPAIR"
-UseWelderToRepair="Use the Welder to repair the objective(s)"
-RepairObjectiveRequired="Objective(s) to repair:"
+UseWelderToRepair="Use Welder to repair broken machines"
+UseWelderToRepairShort="Weld Broken Machine"
+UseWelderToRepairTraderPod="Use Welder to repair broken Trader Pods"
+UseWelderToRepairTraderPodShort="Weld Trader Pods"
+RepairObjectiveRequired="Broken machines to repair:"
 EscortPawnsObjective="ESCORT"
-EscortPawnsDescription="Protect the target from the Zeds"
+EscortPawnsDescription="Escort and defend the Drone from Zeds"
+EscortPawnsDescriptionShort="Escort the Drone"
 RequiredHoldVolume="RequiredHoldVolume"
 DestroyActor="SEARCH AND DESTROY"
 DescriptionDestroyActor="DescriptionDestroyActor"
 RequiredDestroyActor="RequiredDestroyActor"
 ActivateTrigger="OPERATE AND CONTROL"
-DescriptionActivateTrigger="Activate the objective control"
+DescriptionActivateTrigger="Activate the Control Console"
+DescriptionActivateTriggerShort="Activate the Console"
+DescriptionActivateTriggerFlares="Activate the Flare Launcher"
+DescriptionActivateTriggerFlaresShort="Activate Flare Launcher"
+DescriptionActivateTriggerServer="Overload the Server Terminal"
+DescriptionActivateTriggerServerShort="Overload Server Terminal"
+DescriptionActivateTriggerCommTower="Overload the Comms Tower"
+DescriptionActivateTriggerCommTowerShort="Overload Comms Tower"
 RequiredActivateTrigger="Activations required:"
+ExterminateWaveObjective="EXTERMINATION"
+ExterminateWaveDescription="Kill all the Zeds"
+ExterminateWaveDescriptionShort="Kill All Zeds"
+ExterminateWaveRequired="Zeds to Exterminate:"
+HoldZoneObjective="STAND YOUR GROUND"
+HoldZoneDescription="Defend the highlighted area from Zeds"
+HoldZoneDescriptionShort="Defend highlighted area"
+HoldZoneRequired="Time to defend:"
+TransportWaveObjective="TRANSPORT"
+TransportWaveDescription="Transport the Data Pad to the delivery location"
+TransportWaveDescriptionShort="Transport the Data Pad"
+TransportWaveDescriptionGear="Transport the Gear to the delivery location"
+TransportWaveDescriptionGearShort="Transport the Gear"
+RequiredCollectActor="Deliveries required:"
 FailedString="FAILED"
+SuccessString="DONE"
 RepairObjSantaWorkshopCustomTitle1="REPAIR THE POWER"
 RepairObjSantaWorkshopCustomDescr1="Repair 3 broken circuit boards with the Welder"
 RepairObjSantaWorkshopCustomTitle2="REPAIR THE GATES"
@@ -2373,6 +2404,20 @@ OperateObjSantaWorkshopCustomTitle2="PULL THE LEVER"
 OperateObjSantaWorkshopCustomDescr2="Keep Zeds away from the zone"
 OperateObjSantaWorkshopCustomTitle3="PULL THE LEVER"
 OperateObjSantaWorkshopCustomDescr3="Keep Zeds away from the zone"
+TooFewPlayers="TOO FEW PLAYERS"
+TooManyZeds="TOO MANY ZEDS"
+KillRemainingZeds="KILL ALL ZEDS"
+BeingAttacked="BEING ATTACKED"
+LowHealth="LOW HEALTH"
+Stopped="STOPPED"
+Blocked="BLOCKED BY ZEDS"
+NeedsRepair="NEEDS REPAIR"
+Dropped="DROPPED"
+PickedUp="PICKED UP"
+PickupTransportItem="PICK UP TRANSPORT"
+Reset="RESET"
+Ready="READY"
+NotReady="NOT READY"
 
 ; For seasonal events, use the suffixes _Spring, _Summer, _Fall, _Winter if we need to localize a zed name for a season.
 [Zeds]
@@ -2598,6 +2643,20 @@ SpecialEventObjectiveInfoList[3]=(TitleString="Endless Spillway",DescriptionStri
 SpecialEventObjectiveInfoList[4]=(TitleString="Spilling Blood",DescriptionString="Defeat any boss on Survival Hard or higher difficulty on Spillway")
 
 AllCompleteRewardDescriptionString="Male and Female Cyberpunk Outfits"
+
+ChanceDropDescriptionStrings[0]="Prize Ticket"
+ChanceDropDescriptionStrings[1]="Gold Ticket"
+
+[KFGFxSummer2019ObjectivesContainer]
+CurrentSpecialEventString="A time limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="We Have Lift Off!",DescriptionString="Complete Steam Fortress on Objective Hard or higher difficulty")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Checkup",DescriptionString="Complete the Weekly on Steam Fortress")
+SpecialEventObjectiveInfoList[2]=(TitleString="Everlasting Steam",DescriptionString="Complete Steam Fortress wave 15 on Endless Hard or higher difficulty")
+SpecialEventObjectiveInfoList[3]=(TitleString="Deadly Round Trip",DescriptionString="Complete Zed Landing on Objective Hard or higher difficulty")
+SpecialEventObjectiveInfoList[4]=(TitleString="Cold Return",DescriptionString="Complete Outpost on Objective Hard or higher difficulty")
+
+AllCompleteRewardDescriptionString="Male and Female Steampunk Outfits"
 
 ChanceDropDescriptionStrings[0]="Prize Ticket"
 ChanceDropDescriptionStrings[1]="Gold Ticket"
@@ -3113,6 +3172,9 @@ GameName="Weekly"
 [Endless KFGameInfoSummary]
 GameName="Endless"
 
+[Objective KFGameInfoSummary]
+GameName="Objective"
+
 [KF-VolterManor KFMapSummary]
 DisplayName="Volter Manor"
 
@@ -3181,6 +3243,9 @@ DisplayName="Santas Workshop"
 
 [KF-Spillway KFMapSummary]
 DisplayName="Spillway"
+
+[KF-SteamFortress KFMapSummary]
+DisplayName="Steam Fortress"
 
 [KFMapInfo]
 ; defaults

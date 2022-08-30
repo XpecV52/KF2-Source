@@ -746,6 +746,11 @@ function BumpedByMonster(KFPawn_Monster P, Vector HitNormal)
     }
 }
 
+function int GetInstaKillDamage()
+{
+    return INSTAKILL_DAMAGE;
+}
+
 // Export UKFDestructibleActor::execSetSubObjectStaticMesh(FFrame&, void* const)
 protected native simulated function SetSubObjectStaticMesh(int ObjIdx, int ModIdx);
 

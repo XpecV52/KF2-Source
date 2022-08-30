@@ -636,7 +636,7 @@ DefaultProperties
 {
 	DefaultGammaMult=.68
 	KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
-	KFFontScale=0.6f
+	KFFontScale=0.65f
 	SeasonalEventId=-1
 	LoadedSeasonalEventId=-1
     WeeklyEventIndex=-1

@@ -12,7 +12,8 @@ class KFExplosion_ReplicatedMedicGrenade extends KFExplosion_MedicGrenade
 var private repnotify transient GameExplosion ExploTemplateRef;
 var bool bTraceForHitActorWhenDirectionalExplosion;
 var bool bSyncParticlesToMuzzle;
-var repnotify transient Actor BlastAttachee;
+var repnotify transient Pawn BlastAttachee;
+var name AttachPointName;
 
 replication
 {
@@ -51,7 +52,7 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional Vector E
     }
     if(Role == ROLE_Authority)
     {
-        BlastAttachee = Attachee;
+        BlastAttachee = Pawn(Attachee);
         ExploTemplateRef = NewExplosionTemplate;
     }
     super.Explode(NewExplosionTemplate, ExploDirection);
@@ -62,7 +63,7 @@ simulated function SpawnExplosionParticleSystem(ParticleSystem Template)
 {
     if(BlastAttachee != none)
     {
-        WorldInfo.MyEmitterPool.SpawnEmitter(Template, BlastAttachee.Location, Rotation, BlastAttachee);        
+        WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(Template, BlastAttachee.Mesh, AttachPointName);        
     }
     else
     {
@@ -109,6 +110,7 @@ simulated function Vector GetMuzzleEffectLocation()
 
 defaultproperties
 {
+    AttachPointName=hips
     RemoteRole=ENetRole.ROLE_SimulatedProxy
     bNetTemporary=true
     bAlwaysRelevant=true
