@@ -2339,7 +2339,8 @@ function KFWeapon FindBestWeapon()
  */
 function ThrowActiveWeapon( optional bool bDestroyWeap )
 {
-	local KFWeapon BestWeapon;
+	local Inventory WeaponToThrow;
+	local bool bIsHoldingCarryable;
 
 	// Only throw on server
 	if( Role < ROLE_Authority )
@@ -2347,24 +2348,35 @@ function ThrowActiveWeapon( optional bool bDestroyWeap )
 		return;
 	}
 
+	bIsHoldingCarryable = KFCarryableObject(Weapon) != none;
+
 	// If we're dead, throw our best weapon if the one we have out can't be thrown
 	if( InvManager != none && Health <= 0 && (Weapon == none || !Weapon.bDropOnDeath || !Weapon.CanThrow()) )
 	{
-		BestWeapon = FindBestWeapon();
-		if( BestWeapon != none )
-		{
-			TossInventory( BestWeapon );
-		}
+		WeaponToThrow = FindBestWeapon();
 	}
 	else
 	{
 		// if the player has died and is going to throw a carryable, also throw their best weapon
-		if (Health <= 0 && KFCarryableObject(Weapon) != none)
+		if (Health <= 0 && bIsHoldingCarryable)
 		{
-			BestWeapon = FindBestWeapon();
-			TossInventory(BestWeapon);
+			WeaponToThrow = FindBestWeapon();
 		}
+
 		super.ThrowActiveWeapon( bDestroyWeap );
+	}
+
+	// throw the best weapon if needed
+	if (WeaponToThrow != none)
+	{
+		TossInventory(WeaponToThrow);
+	}
+
+	// if the player has died and is going to throw a non-carryable, also throw a carryable if it is in the inventory
+	if (Health <= 0 && KFCarryableObject(WeaponToThrow) == none && !bIsHoldingCarryable)
+	{
+		WeaponToThrow = InvManager.FindInventoryType(class'KFCarryableObject', true);
+		TossInventory(WeaponToThrow);
 	}
 }
 

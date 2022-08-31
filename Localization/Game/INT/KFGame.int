@@ -2656,7 +2656,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Everlasting Steam",DescriptionStr
 SpecialEventObjectiveInfoList[3]=(TitleString="Deadly Round Trip",DescriptionString="Complete Zed Landing on Objective Hard or higher difficulty")
 SpecialEventObjectiveInfoList[4]=(TitleString="Cold Return",DescriptionString="Complete Outpost on Objective Hard or higher difficulty")
 
-AllCompleteRewardDescriptionString="Male and Female Steampunk Outfits"
+AllCompleteRewardDescriptionString="Steampunk Outfits + M99 AMR skin"
 
 ChanceDropDescriptionStrings[0]="Prize Ticket"
 ChanceDropDescriptionStrings[1]="Gold Ticket"

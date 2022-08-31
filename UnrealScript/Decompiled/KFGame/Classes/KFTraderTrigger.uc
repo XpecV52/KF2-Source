@@ -20,6 +20,7 @@ var() name IdleLoopAnimName;
 /** Sounds for Trader Pod */
 var() AkEvent TraderOpenSound;
 var() AkEvent TraderCloseSound;
+var bool bEnabled;
 var transient bool bOpened;
 var config bool bLogTrader;
 var const float DistanceOffNavMeshTheTragerIsAllowedToBe;
@@ -226,6 +227,7 @@ defaultproperties
     IdleLoopAnimName=Printing
     TraderOpenSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Start'
     TraderCloseSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Stop'
+    bEnabled=true
     DistanceOffNavMeshTheTragerIsAllowedToBe=500
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=160

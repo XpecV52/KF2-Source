@@ -25,6 +25,8 @@ var() name IdleLoopAnimName;
 var() 	AkEvent					TraderOpenSound;
 var() 	AkEvent					TraderCloseSound;
 
+var bool bEnabled;
+
 /** current state of the trader */
 var	transient bool  bOpened;
 
@@ -277,4 +279,6 @@ defaultproperties
 	DistanceOffNavMeshTheTragerIsAllowedToBe=500
 	TraderOpenSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Start'
 	TraderCloseSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Stop'
+
+	bEnabled=true
 }

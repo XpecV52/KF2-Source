@@ -1447,28 +1447,34 @@ function KFWeapon FindBestWeapon()
 
 function ThrowActiveWeapon(optional bool bDestroyWeap)
 {
-    local KFWeapon BestWeapon;
+    local Inventory WeaponToThrow;
+    local bool bIsHoldingCarryable;
 
     if(Role < ROLE_Authority)
     {
         return;
     }
+    bIsHoldingCarryable = KFCarryableObject(Weapon) != none;
     if(((InvManager != none) && Health <= 0) && ((Weapon == none) || !Weapon.bDropOnDeath) || !Weapon.CanThrow())
     {
-        BestWeapon = FindBestWeapon();
-        if(BestWeapon != none)
-        {
-            TossInventory(BestWeapon);
-        }        
+        WeaponToThrow = FindBestWeapon();        
     }
     else
     {
-        if((Health <= 0) && KFCarryableObject(Weapon) != none)
+        if((Health <= 0) && bIsHoldingCarryable)
         {
-            BestWeapon = FindBestWeapon();
-            TossInventory(BestWeapon);
+            WeaponToThrow = FindBestWeapon();
         }
         super(Pawn).ThrowActiveWeapon(bDestroyWeap);
+    }
+    if(WeaponToThrow != none)
+    {
+        TossInventory(WeaponToThrow);
+    }
+    if(((Health <= 0) && KFCarryableObject(WeaponToThrow) == none) && !bIsHoldingCarryable)
+    {
+        WeaponToThrow = InvManager.FindInventoryType(Class'KFCarryableObject', true);
+        TossInventory(WeaponToThrow);
     }
 }
 

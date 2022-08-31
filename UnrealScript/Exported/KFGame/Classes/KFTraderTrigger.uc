@@ -25,6 +25,8 @@ var() name IdleLoopAnimName;
 var() 	AkEvent					TraderOpenSound;
 var() 	AkEvent					TraderCloseSound;
 
+var bool bEnabled;
+
 /** current state of the trader */
 var	transient bool  bOpened;
 
@@ -267,6 +269,7 @@ defaultproperties
    IdleLoopAnimName="Printing"
    TraderOpenSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Start'
    TraderCloseSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Stop'
+   bEnabled=True
    DistanceOffNavMeshTheTragerIsAllowedToBe=500.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'Engine.Default__Trigger_PawnsOnly:CollisionCylinder'
       CollisionHeight=160.000000

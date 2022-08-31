@@ -122,13 +122,14 @@ simulated function AttachMuzzleFlash()
     }
 }
 
-event SetWeaponSkin(int ItemId)
+event SetWeaponSkin(int ItemId, optional bool bFinishedLoading)
 {
     local array<MaterialInterface> SkinMICs;
 
-    if((((WeapMesh != none) && LeftWeapMesh != none) && ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer)
+    bFinishedLoading = false;
+    if(((((WeapMesh != none) && LeftWeapMesh != none) && ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer) && !bWaitingForWeaponSkinLoad)
     {
-        if(StartLoadWeaponSkin(ItemId))
+        if(!bFinishedLoading && StartLoadWeaponSkin(ItemId))
         {
             return;
         }

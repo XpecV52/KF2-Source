@@ -4546,7 +4546,8 @@ function HandleWalking()
 		{
 			bDuck = 0; // sprint cancels crouch
 		}
-		else
+		
+		if(bRun != 0 && IsZero(Pawn.Velocity))
 		{
 			// when a player stops moving with toggle to sprint on
 			//  turn off sprinting so that they have to press the toggle again

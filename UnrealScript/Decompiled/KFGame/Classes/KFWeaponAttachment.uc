@@ -185,6 +185,7 @@ var transient bool bSynchronizeWeaponAnim;
 var transient bool bSyncAnimCheckRelevance;
 var transient bool bLoopSynchedWeaponAnim;
 var transient bool bIsReloading;
+var bool bWaitingForWeaponSkinLoad;
 var() const KFLaserSightAttachment LaserSightArchetype;
 var transient KFLaserSightAttachment LaserSight;
 var KFMuzzleFlash MuzzleFlash;
@@ -320,13 +321,14 @@ simulated function AttachLaserSight()
     }
 }
 
-event SetWeaponSkin(int ItemId)
+event SetWeaponSkin(int ItemId, optional bool bFinishedLoading)
 {
     local array<MaterialInterface> SkinMICs;
 
-    if((ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer)
+    bFinishedLoading = false;
+    if(((ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer) && !bWaitingForWeaponSkinLoad)
     {
-        if(StartLoadWeaponSkin(ItemId))
+        if(!bFinishedLoading && StartLoadWeaponSkin(ItemId))
         {
             return;
         }

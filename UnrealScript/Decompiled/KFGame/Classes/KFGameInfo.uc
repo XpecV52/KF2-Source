@@ -824,7 +824,10 @@ function InitTraderList()
     TraderList.Remove(0, TraderList.Length;
     foreach DynamicActors(Class'KFTraderTrigger', MyTrader)
     {
-        TraderList.AddItem(MyTrader;        
+        if(MyTrader.bEnabled)
+        {
+            TraderList.AddItem(MyTrader;
+        }        
     }    
 }
 

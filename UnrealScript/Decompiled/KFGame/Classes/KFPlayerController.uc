@@ -3304,9 +3304,9 @@ function HandleWalking()
         bShouldSprint = (bRun != 0) && !IsZero(Pawn.Acceleration);
         if(bShouldSprint)
         {
-            bDuck = 0;            
+            bDuck = 0;
         }
-        else
+        if((bRun != 0) && IsZero(Pawn.Velocity))
         {
             KFInput = KFPlayerInput(PlayerInput);
             if((KFInput != none) && KFInput.bToggleToRun)

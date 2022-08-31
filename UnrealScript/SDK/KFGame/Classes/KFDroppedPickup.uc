@@ -34,7 +34,10 @@ var const bool bIgnoreBlockingVolumes;
 var protected const bool bUseLowHealthDelay;
 
 /** Skin assigned from dropped weapon */
-var private int SkinItemId;
+var int SkinItemId;
+
+/** Whether the weapon skin has finished loading */
+var bool bWaitingForWeaponSkinLoad;
 
 /** Whether or not to use the authority's rigid body update */
 var protected bool bUseAuthorityRBUpdate;
@@ -80,7 +83,6 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 	local ActorComponent Comp;
 	local SkeletalMeshComponent SkelMC;
 	local StaticMeshComponent StaticMC;
-	local array<MaterialInterface> SkinMICs;
 
 	if (Role == ROLE_Authority )
 	{
@@ -170,15 +172,8 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 			}
 		}
 
-		if ( MyMeshComp != None )
-		{
-			SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(SkinItemId, WST_Pickup);
-			if ( SkinMICs.Length > 0 )
-			{
-				MyMeshComp.SetMaterial(0, SkinMICs[0]);
+		SetPickupSkin(SkinItemId);
 
-			}
-		}
 		if (bUpgradedPickup)
 		{
 			SetUpgradedMaterial();
@@ -187,6 +182,27 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
         {
             SetEmptyMaterial();
         }
+	}
+}
+
+native function bool StartLoadPickupSkin(int SkinId);
+
+simulated event SetPickupSkin(int ItemId, bool bFinishedLoading = false)
+{
+	local array<MaterialInterface> SkinMICs;
+
+	if ( ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer && !bWaitingForWeaponSkinLoad)
+	{
+		if (!bFinishedLoading && StartLoadPickupSkin(ItemId))
+		{
+			return;
+		}
+
+		SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, WST_Pickup);
+		if ( SkinMICs.Length > 0 )
+		{
+			MyMeshComp.SetMaterial(0, SkinMICs[0]);
+		}
 	}
 }
 
@@ -637,4 +653,5 @@ defaultproperties
     bUseAuthorityRBUpdate=TRUE
 
     EmptyPickupColor=(R=0.75)
+	bWaitingForWeaponSkinLoad=false
 }

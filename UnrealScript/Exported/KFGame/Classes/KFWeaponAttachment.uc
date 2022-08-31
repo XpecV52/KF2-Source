@@ -281,6 +281,7 @@ var(Anims) name AimOffsetProfileName;
 var transient bool bIsReloading;
 
 var transient int WeaponSkinId;
+var bool bWaitingForWeaponSkinLoad;
 
 /*********************************************************************************************
  * @name	Attach / Detach
@@ -406,13 +407,13 @@ simulated function AttachLaserSight()
 /**
  * Assign weapon skin to 3rd person mesh
  */
-event SetWeaponSkin(int ItemId)
+event SetWeaponSkin(int ItemId, optional bool bFinishedLoading = false)
 {
 	local array<MaterialInterface> SkinMICs;
 
-	if ( ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer )
+	if ( ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer && !bWaitingForWeaponSkinLoad)
 	{
-		if (StartLoadWeaponSkin(ItemId))
+		if (!bFinishedLoading && StartLoadWeaponSkin(ItemId))
 		{
 			return;
 		}

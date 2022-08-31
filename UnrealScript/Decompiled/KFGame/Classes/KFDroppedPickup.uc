@@ -16,12 +16,13 @@ var transient bool bCollisionSoundsEnabled;
 var const bool bEnableStaticMeshRBPhys;
 var const bool bIgnoreBlockingVolumes;
 var protected const bool bUseLowHealthDelay;
+var bool bWaitingForWeaponSkinLoad;
 var protected bool bUseAuthorityRBUpdate;
 var bool bEmptyPickup;
 var bool bUpgradedPickup;
 var protectedwrite export editinline MeshComponent MyMeshComp;
 var protectedwrite export editinline CylinderComponent MyCylinderComp;
-var private int SkinItemId;
+var int SkinItemId;
 var protected float PostAuthorityChangeLifeSpan;
 var protected float PickupDelay;
 var LinearColor EmptyPickupColor;
@@ -44,7 +45,6 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
     local editinline ActorComponent Comp;
     local editinline SkeletalMeshComponent SkelMC;
     local editinline StaticMeshComponent StaticMC;
-    local array<MaterialInterface> SkinMICs;
 
     if(Role == ROLE_Authority)
     {
@@ -116,14 +116,7 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
                 Velocity = vect(0, 0, 0);
             }
         }
-        if(MyMeshComp != none)
-        {
-            SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(SkinItemId, 2);
-            if(SkinMICs.Length > 0)
-            {
-                MyMeshComp.SetMaterial(0, SkinMICs[0]);
-            }
-        }
+        SetPickupSkin(SkinItemId);
         if(bUpgradedPickup)
         {
             SetUpgradedMaterial();
@@ -131,6 +124,28 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
         if(bEmptyPickup)
         {
             SetEmptyMaterial();
+        }
+    }
+}
+
+// Export UKFDroppedPickup::execStartLoadPickupSkin(FFrame&, void* const)
+native function bool StartLoadPickupSkin(int SkinID);
+
+simulated event SetPickupSkin(int ItemId, optional bool bFinishedLoading)
+{
+    local array<MaterialInterface> SkinMICs;
+
+    bFinishedLoading = false;
+    if(((ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer) && !bWaitingForWeaponSkinLoad)
+    {
+        if(!bFinishedLoading && StartLoadPickupSkin(ItemId))
+        {
+            return;
+        }
+        SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, 2);
+        if(SkinMICs.Length > 0)
+        {
+            MyMeshComp.SetMaterial(0, SkinMICs[0]);
         }
     }
 }

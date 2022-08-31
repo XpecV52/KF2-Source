@@ -14,7 +14,7 @@ DefaultProperties
 	ObjectiveIconURLs[4] = "SummerSideShow_UI.UI_Objectives_Summer_OutpostObj"
 
 	//defaults
-	AllCompleteRewardIconURL = "CHR_Steampunk_Item_TEX.UniformBundle_Steampunk"
+	AllCompleteRewardIconURL = "wep_skinset25_item_tex.m99_royal.M99_SteampunkPrecious_Mint"
 	ChanceDropIconURLs[0] = "CHR_CosmeticSet_SS_01_ItemTex.Sideshow_Prize_Ticket"
 	ChanceDropIconURLs[1] = "CHR_CosmeticSet_SS_01_ItemTex.SideshowGoldenTicket_Small"
 	IconURL = "SummerSideShow_UI.KF2_KickingBrass_Logo_Small"
