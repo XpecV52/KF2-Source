@@ -312,11 +312,6 @@ ItemName="VLAD-1000 ネイルガン"
 ItemCategory="ショットガン"
 ItemDescription="•単発または複数発のネイルファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•ホージンの科学者がオリジナルのネイルガンを(死亡した)整備員から借りたと認識しております。"
 
-[KFWeap_HRG_Nailgun]
-ItemName="HRG ネイルガン"
-ItemCategory="サブマシンガン"
-ItemDescription="•単発または複数発のネイルファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•ホージンの科学者がオリジナルのネイルガンを(死亡した)整備員から借りたと認識しております。"
-
 [KFWeap_Blunt_ChainBat]
 ItemName="ロードレディーマー"
 ItemCategory="近接"
@@ -375,11 +370,6 @@ ItemName="火炎放射器"
 ItemCategory="火炎"
 ItemDescription="•ファイアモードは火炎を発射します。それだけです。\n•どの世代でもクラシック。迷ったら、すべて焼きつくしましょう。"
 
-[KFWeap_HRG_Healthrower]
-ItemName="HRG回復放射器"
-ItemCategory="火炎"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="マイクロ波銃"
 ItemCategory="火炎"
@@ -435,16 +425,6 @@ ItemName="デュアル.50デザートイーグル"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•デザートイーグル・ハンドキャノン2丁です。"
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="チアッパライノ"
-ItemCategory="ハンドガン"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="デュアルチアッパライノ"
-ItemCategory="ハンドガン"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="1858リボルバー"
 ItemCategory="ハンドガン"
@@ -465,25 +445,10 @@ ItemName="デュアル.500マグナム"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•.500マグナム「ボーンコレクター」リボルバー2丁です。"
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="HRGバックショットリボルバー"
-ItemCategory="ハンドガン"
-ItemDescription="•ファイアモードは単発のみ。\n•ロングバレル.50口径 'ボーンコレクター' の形をした、本物の手持ち大砲で、フルロードのマグナム弾を発射します。本気のガンスリンガー用です。"
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="デュアルHRGバックショットリボルバー"
-ItemCategory="ハンドガン"
-ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•.500マグナム「ボーンコレクター」リボルバー2丁です。"
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="ウィンチェスター1894"
 ItemCategory="ライフル"
 ItemDescription="•ファイアモードは単発のみ。\n•定番のモデル1894ウィンチェスター・レバーアクションライフルです。"
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="モシン・ナガン"
-ItemCategory="ライフル"
-ItemDescription="•ファイアモードは単発のみ。"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464センターファイア"
@@ -551,16 +516,6 @@ ItemName="ハスクキャノン"
 ItemCategory="火炎"
 ItemDescription="•発射ボタンを押している間はチャージされ、発射ボタンを離すと解放されます。\n•ハスクキャノンのホージン社公式バージョン。このモデルは95%の保証付きで爆発しません。"
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="チアッパライノ"
-ItemCategory="ハンドガン"
-ItemDescription="•Fill me in"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="デュアルチアッパライノ"
-ItemCategory="ハンドガン"
-ItemDescription="•Fill me in"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H)カービンライフル"
 ItemCategory="アサルトライフル"
@@ -576,11 +531,6 @@ ItemDescription="•ファイアモードはセミオートのみです。\n•�
 ItemName="デュアルAF2011-A2"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•それぞれにバレルがついた2丁の拳銃。4倍の火力です。これは数学です。数学に議論する余地はありません。"
-
-[KFWeap_Edged_IonThruster]
-ItemName="イオンスラスター"
-ItemCategory="近接"
-ItemDescription="•Fill me in"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="ドゥームスティック"

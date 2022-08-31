@@ -516,16 +516,6 @@ ItemName="Husk Cannon"
 ItemCategory="Flames"
 ItemDescription="•Charges up while the fire button is pressed and discharges when the fire button is released. \n•The official Horzine version of the husk cannon. This model is 95% guaranteed not to explode."
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Hand Gun"
-ItemDescription="•Fill me in"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="Dual Chiappa Rhinos"
-ItemCategory="Hand Gun"
-ItemDescription="•Fill me in"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) Carbine Rifle"
 ItemCategory="Assault Rifle"

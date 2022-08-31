@@ -995,7 +995,7 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
 
 		if(ExchangeRules.length <= 0)
 		{
-			`log("NO RULES EXIST FOR THIS ITEM!" @ItemDefinition);
+			//`log("NO RULES EXIST FOR THIS ITEM!" @ItemDefinition);
 			return;
 		}
 

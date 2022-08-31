@@ -13,6 +13,7 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_FreezeThrower'
    StumblePower=25.000000
+   FreezePower=0.000000
    Name="Default__KFDT_Freeze_FreezeThrower_IceShards"
    ObjectArchetype=KFDT_Freeze'KFGame.Default__KFDT_Freeze'
 }

@@ -312,11 +312,6 @@ ItemName="VLAD-1000 釘槍"
 ItemCategory="霰彈槍"
 ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家是從一個（死去的）維修人員那裡拿來改造過的。"
 
-[KFWeap_HRG_Nailgun]
-ItemName="HRG 釘槍"
-ItemCategory="衝鋒槍"
-ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家從一個（死去的）維修人員那裡拿來改造過的。"
-
 [KFWeap_Blunt_ChainBat]
 ItemName="道路救贖者"
 ItemCategory="近身"
@@ -375,11 +370,6 @@ ItemName="火焰噴射器"
 ItemCategory="火焰"
 ItemDescription="•主要攻擊模式會射出火焰。就這樣。\n•在任何世代都是經典。如果有懷疑，把所有東西都燒掉就對了。"
 
-[KFWeap_HRG_Healthrower]
-ItemName="HRG 治療噴射器"
-ItemCategory="火焰"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="微波槍"
 ItemCategory="火焰"
@@ -435,16 +425,6 @@ ItemName="點 50 沙漠之鷹雙槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對沙漠之鷹手砲。"
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="齊亞帕犀牛左輪"
-ItemCategory="手槍"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="雙管齊亞帕犀牛左輪"
-ItemCategory="手槍"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左輪"
 ItemCategory="手槍"
@@ -465,25 +445,10 @@ ItemName="點 500 馬格南左輪雙槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 .500 馬格南左輪手槍。"
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="HRG 鹿彈左輪"
-ItemCategory="手槍"
-ItemDescription="•主要攻擊模式只有單發。\n•一把手裡的大砲，長槍管 .50 口徑「骨頭收集者」左輪手槍，打出馬格南子彈。職業槍手專用。"
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="雙管 HRG 鹿彈左輪"
-ItemCategory="手槍"
-ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 .500 馬格南「骨頭收集者」左輪手槍。"
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="溫徹斯特 1894"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊模式只有單發。\n•經典的 1894 型溫徹斯特槓桿式步槍。"
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="莫辛納甘步槍"
-ItemCategory="來福槍"
-ItemDescription="•主要攻擊模式只有單發。"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="中心底火SPX 464"
@@ -551,16 +516,6 @@ ItemName="焦驅砲"
 ItemCategory="火焰"
 ItemDescription="•按下開火按鈕後開始充能，鬆開按鈕後釋放能量。\nHorzine官方版本的焦驅砲。該型號保證95%不會爆炸。"
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="齊亞帕犀牛左輪"
-ItemCategory="手槍"
-ItemDescription="•帶上我"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="雙管齊亞帕犀牛左輪"
-ItemCategory="手槍"
-ItemDescription="•帶上我"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) 卡賓步槍"
 ItemCategory="突擊步槍"
@@ -576,11 +531,6 @@ ItemDescription="•主要攻擊模式只有半自動。\n•你在上面放更�
 ItemName="雙管 AF2011-A2"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•兩隻槍各有兩個槍管。四倍火力。這就是數學。你不能反駁數學。"
-
-[KFWeap_Edged_IonThruster]
-ItemName="離子推進器"
-ItemCategory="近戰"
-ItemDescription="•帶上我"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="毀滅射手"

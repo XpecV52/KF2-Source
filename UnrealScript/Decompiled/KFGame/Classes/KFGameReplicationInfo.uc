@@ -418,8 +418,12 @@ simulated function ActivateLevelLoadedEvents()
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_LevelLoaded', true, AllSeqEvents);
         ActivateIndices = GetKFSeqEventLevelLoadedIndices();
+        if(ActivateIndices.Length == 0)
+        {
+            return;
+        }
         I = 0;
-        J0x89:
+        J0x9B:
 
         if(I < AllSeqEvents.Length)
         {
@@ -429,7 +433,7 @@ simulated function ActivateLevelLoadedEvents()
                 KFSeqEvent_LevelLoaded(AllSeqEvents[I]).bWaitingForGRI = false;
             }
             ++ I;
-            goto J0x89;
+            goto J0x9B;
         }
     }
 }

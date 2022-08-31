@@ -235,7 +235,8 @@ function Timer_AttemptTargetChange()
 		if( P != KFPOwner
 			&& P != AIOwner.Enemy
 			&& P.GetTeamNum() != KFPOwner.GetTeamNum()
-			&& P.IsAliveAndWell() )
+			&& P.IsAliveAndWell() 
+			&& P.CanAITargetThisPawn(KFPOwner.Controller))
 		{
 			DotAngle = PawnDir dot Normal( P.Location - KFPOwner.Location );
 			if( DotAngle < 0.2f )

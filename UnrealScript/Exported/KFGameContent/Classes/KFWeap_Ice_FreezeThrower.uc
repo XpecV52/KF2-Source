@@ -23,7 +23,6 @@ var() GameExplosion 		ExplosionTemplate;
 
 /** For Ice Blast */
 var(Weapon) protected array<byte> NumPellets;
-var protected const array<vector2D> PelletSpread;
 
 /** How much recoil the altfire should do */
 var protected const float AltFireRecoilScale;
@@ -109,7 +108,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 	AimRot = rotator(AimDir);
 	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
 	{
-		Super.SpawnProjectile( KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)) );
+		Super.SpawnProjectile( KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, Spread[CurrentFireMode], i)) );
 	}
 
 	return None;
@@ -127,13 +126,12 @@ simulated function rotator AddSpread( rotator BaseAim )
 	return BaseAim; // do nothing
 }
 
- /** Same as AddSpread(), but used with MultiShotSpread */
-simulated function rotator AddMultiShotSpread( rotator BaseAim, byte PelletNum )
+/** Same as AddSpread(), but used with MultiShotSpread */
+static function rotator AddMultiShotSpread(rotator BaseAim, float CurrentSpread, byte PelletNum)
 {
 	local vector X, Y, Z;
-	local float CurrentSpread, RandY, RandZ;
+	local float RandY, RandZ;
 
-	CurrentSpread = Spread[CurrentFireMode];
 	if (CurrentSpread == 0)
 	{
 		return BaseAim;
@@ -142,8 +140,8 @@ simulated function rotator AddMultiShotSpread( rotator BaseAim, byte PelletNum )
 	{
 		// Add in any spread.
 		GetAxes(BaseAim, X, Y, Z);
-		RandY = PelletSpread[PelletNum].Y * RandRange( 0.5f, 1.5f );
-		RandZ = PelletSpread[PelletNum].X * RandRange( 0.5f, 1.5f );
+		RandY = FRand() - 0.5;
+		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
 		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
 	}
 }
@@ -246,7 +244,7 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'wep_ui_cryogun_tex.UI_WeaponSelect_Cryogun'
    AmmoCost(1)=10
-   SpareAmmoCapacity(0)=400
+   SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=1
    AmmoPickupScale(0)=0.750000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
@@ -288,8 +286,8 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Survivalist'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.400000),(Add=1)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.800000),(Stat=EWUS_Damage1,Scale=1.800000),(Add=2)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.800000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=2)))
    FiringStatesArray(0)="SprayingFire"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()

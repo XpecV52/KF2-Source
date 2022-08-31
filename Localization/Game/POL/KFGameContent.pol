@@ -312,11 +312,6 @@ ItemName="Gwoździarka VLAD-1000"
 ItemCategory="Strzelba"
 ItemDescription="•Tryb ataku: strzał pojedynczym gwoździem lub wieloma.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Z tego, co nam wiadomo, jeden z naukowców Horzine pożyczył oryginalną gwoździarkę od (martwego) serwisanta."
 
-[KFWeap_HRG_Nailgun]
-ItemName="Gwoździarka HRG"
-ItemCategory="Pistolet maszynowy"
-ItemDescription="•Tryb ataku: strzał pojedynczym gwoździem lub wieloma.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Z tego, co nam wiadomo, jeden z naukowców Horzine pożyczył oryginalną gwoździarkę od (martwego) serwisanta."
-
 [KFWeap_Blunt_ChainBat]
 ItemName="Podróżny odkupiciel"
 ItemCategory="Broń biała"
@@ -375,11 +370,6 @@ ItemName="Miotacz ognia"
 ItemCategory="Ogień"
 ItemDescription="•Tryb ataku: miotanie płomieni. Po prostu.\n•Klasyk niezależnie od czasów. W razie wątpliwości palić wszystko, co podejdzie."
 
-[KFWeap_HRG_Healthrower]
-ItemName="Miotacz uzdrawiania HRG"
-ItemCategory="Ogień"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="Działo mikrofalowe"
 ItemCategory="Ogień"
@@ -435,16 +425,6 @@ ItemName="Dwa Desert Eagle .50"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para ręcznych działek Desert Eagle."
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Broń krótka"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="Podwójny Chiappa Rhino"
-ItemCategory="Broń krótka"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="Rewolwer 1858"
 ItemCategory="Broń krótka"
@@ -465,25 +445,10 @@ ItemName="Dwa Magnum .500"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Magnum .500 – „Kolekcjoner kości”."
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="Rewolwer śrutowy HRG"
-ItemCategory="Broń krótka"
-ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Kolekcjoner Kości – prawdziwa armata ręczna w kształcie rewolweru kalibru .50 z długą lufą. Strzela nabojami Magnum i zadowoli każdego rewolwerowca."
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Dwa rewolwery śrutowe HRG"
-ItemCategory="Broń krótka"
-ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Magnum .500 typu Kolekcjoner Kości."
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Karabin"
 ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Klasyczny karabin dźwigniowy Winchester model 1894."
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="Mosin-Nagant"
-ItemCategory="Karabin"
-ItemDescription="•Wyłącznie tryb pojedynczego strzału."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -551,16 +516,6 @@ ItemName="Truchla armata"
 ItemCategory="Ogień"
 ItemDescription="•Ładowanie odbywa się po naciśnięciu spustu, a rozładowanie po jego puszczeniu. \n•Oficjalna wersja truchlej armaty Horzine. 95% gwarancji niewybuchu."
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Broń krótka"
-ItemDescription="• Wprowadź mnie"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="Podwójny Chiappa Rhino"
-ItemCategory="Broń krótka"
-ItemDescription="• Wprowadź mnie"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Karabinek MKb.42(H)"
 ItemCategory="Karabin szturmowy"
@@ -576,11 +531,6 @@ ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Więcej niż j
 ItemName="Podwójny AF2011-A2"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Dwie bronie, każda z dwoma lufami. Czterokrotność siły ognia. Czysta matematyka. Z nią nie ma co dyskutować."
-
-[KFWeap_Edged_IonThruster]
-ItemName="Miotacz jonów"
-ItemCategory="Walka wręcz"
-ItemDescription="• Wprowadź mnie"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Giwera"

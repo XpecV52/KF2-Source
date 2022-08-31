@@ -436,13 +436,13 @@ defaultproperties
    InventoryGroup=IG_Secondary
    InventorySize=3
    MagazineCapacity(0)=1
-   GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
    AmmoCost(2)=0
    AmmoCost(3)=0
    AmmoCost(4)=0
    AmmoCost(5)=0
-   SpareAmmoCapacity(0)=1
+   SpareAmmoCapacity(0)=2
+   InitialSpareMags(0)=1
    FireAnim="C4_Throw"
    FireLastAnim="C4_Throw_Last"
    PlayerViewOffset=(X=6.000000,Y=2.000000,Z=-4.000000)

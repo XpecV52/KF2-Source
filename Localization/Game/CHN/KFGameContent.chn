@@ -312,11 +312,6 @@ ItemName="VLAD-1000 钉枪"
 ItemCategory="霰弹枪"
 ItemDescription="•可以选择单发或多发钉枪射击模式。\n•备用射击可以切换射击模式。\n•我们知道一名霍因科学家从一个（死了的）维修工那里借了这把原始钉枪。"
 
-[KFWeap_HRG_Nailgun]
-ItemName="HRG 钉枪"
-ItemCategory="冲锋枪"
-ItemDescription="•可以选择单发或多发钉枪射击模式。\n•备用射击可以切换射击模式。\n•我们知道一名霍因科学家从一个（死了的）维修工那里借了这把原始钉枪。"
-
 [KFWeap_Blunt_ChainBat]
 ItemName="马路救世主"
 ItemCategory="近战"
@@ -375,11 +370,6 @@ ItemName="火焰喷射器"
 ItemCategory="火焰"
 ItemDescription="•射击模式喷出火焰。就是这样。\n•古今中外的经典武器。迟疑时，烧个精光就好。"
 
-[KFWeap_HRG_Healthrower]
-ItemName="HRG HealThrower"
-ItemCategory="火焰"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="微波枪"
 ItemCategory="火焰"
@@ -435,16 +425,6 @@ ItemName="双.50 沙漠之鹰"
 ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•一对沙漠之鹰手炮。"
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="齐亚帕犀牛"
-ItemCategory="手枪"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="双持齐亚帕犀牛"
-ItemCategory="手枪"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左轮手枪"
 ItemCategory="手枪"
@@ -465,25 +445,10 @@ ItemName="两把 .500 马格南"
 ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•一对.500 马格南“人骨拼图”左轮手枪。"
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="HRG 大号铅弹左轮手枪"
-ItemCategory="手枪"
-ItemDescription="•射击模式只有单发射击。\n•长管 .50-口径‘人骨拼图’左轮手枪，发射满载大剂量马格南回合，堪称真正的手炮。适合真正的枪手。"
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="HRG 大号铅弹双发左轮手枪"
-ItemCategory="手枪"
-ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准分割。\n•一对.500 马格南“人骨拼图”左轮手枪。"
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="温彻斯特 1894"
 ItemCategory="步枪"
 ItemDescription="•射击模式只有单发射击。\n•经典型号 1894 温彻斯特杠杆式步枪。"
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="Mosin-Nagant"
-ItemCategory="步枪"
-ItemDescription="•射击模式只有单发。"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 中发式"
@@ -551,16 +516,6 @@ ItemName="火球炮"
 ItemCategory="火焰"
 ItemDescription="•按下开火按钮后开始充能，松开按钮后释放能量。\n•霍因官方版本的果壳大炮。此型号经过保证在95%的情况下不会爆炸。"
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="齐亚帕犀牛"
-ItemCategory="手枪"
-ItemDescription="•请填充"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="双持齐亚帕犀牛"
-ItemCategory="手枪"
-ItemDescription="•请填充"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) 卡宾步枪"
 ItemCategory="突击步枪"
@@ -576,11 +531,6 @@ ItemDescription="•射击模式只有半自动。\n•你往上面放越多火�
 ItemName="双持 AF2011-A2"
 ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•两支枪各配有两个弹筒。四倍火力。这就是数学。你不能不信数学。"
-
-[KFWeap_Edged_IonThruster]
-ItemName="离子推进器"
-ItemCategory="近战"
-ItemDescription="•请填充"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="毁灭射手"

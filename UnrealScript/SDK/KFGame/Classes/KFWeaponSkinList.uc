@@ -2385,7 +2385,7 @@ defaultproperties
     Skins.Add((Id=7163, Weapondef=class'KFWeapDef_SW500', MIC_1P=("wep_skinset_prestige05_mat.tier04.Prestige_Gunslinger_SW500_1P_Mint_MIC"), MIC_3P="wep_skinset_prestige05_mat.tier04.Prestige_Gunslinger_SW500_3P_Mint_MIC", MIC_Pickup="wep_skinset_prestige05_mat.tier04.Prestige_Gunslinger_SW500_3P_Pickup_MIC")) 
 
 //Prestige HMTech-401 Assault Rifle
-    Skins.Add((Id=7164, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("wep_skinset_prestige05_mat.tier04.Prestige_Medic_MedicAssault_1P_Mint_MIC"), MIC_3P="wep_skinset_prestige05_mat.tier04.Prestige_Medic_MedicAssault_3P_Mint_MIC", MIC_Pickup="wep_skinset_prestige05_mat.tier04.Prestige_Medic_MedicAssault_3P_Pickup_MIC")) 
+    Skins.Add((Id=7164, Weapondef=class'KFWeapDef_MedicRifle', MIC_1P=("wep_skinset_prestige05_mat.tier04.Prestige_Medic_MedicAssault_1P_Mint_MIC", "WEP_SkinSet_Prestige02_MAT.tier01.Prestige_Medic_MedicPistol_1P_Mint_MIC" ), MIC_3P="wep_skinset_prestige05_mat.tier04.Prestige_Medic_MedicAssault_3P_Mint_MIC", MIC_Pickup="wep_skinset_prestige05_mat.tier04.Prestige_Medic_MedicAssault_3P_Pickup_MIC")) 
 
 //Prestige Railgun
     Skins.Add((Id=7165, Weapondef=class'KFWeapDef_Railgun', MIC_1P=("wep_skinset_prestige05_mat.tier04.Prestige_Sharpshooter_Railgun_1P_Mint_MIC", "wep_skinset_prestige05_mat.tier04.Prestige_Sharpshooter_Railgun_Scope_1P_Mint_MIC"), MIC_3P="wep_skinset_prestige05_mat.tier04.Prestige_Sharpshooter_Railgun_3P_Mint_MIC", MIC_Pickup="wep_skinset_prestige05_mat.tier04.Prestige_Sharpshooter_Railgun_3P_Pickup_MIC")) 
@@ -2476,57 +2476,57 @@ defaultproperties
 
 //Steampunk Tommy Gun
     Skins.Add((Id=7196, Weapondef=class'KFWeapDef_Thompson', MIC_1P=("WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_3P_Pickup_MIC")) 
-    Skins.Add((Id=7195, Weapondef=class'KFWeapDef_Thompson', MIC_1P=("WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_3P_Pickup_MIC")) 
+    Skins.Add((Id=7195, Weapondef=class'KFWeapDef_Thompson', MIC_1P=("WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_3P_Pickup_MIC")) 
     Skins.Add((Id=7194, Weapondef=class'KFWeapDef_Thompson', MIC_1P=("WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_tommygun.Steampunk_TommyGun_3P_Pickup_MIC")) 
 
 //Steampunk Dragonsbreath
     Skins.Add((Id=7199, Weapondef=class'KFWeapDef_Dragonsbreath', MIC_1P=("WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_Dragonsbreath_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_DragonsBreath_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_DragonsBreath_3P_Pickup_MIC")) 
-    Skins.Add((Id=7198, Weapondef=class'KFWeapDef_Dragonsbreath', MIC_1P=("WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_Dragonsbreath_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_DragonsBreath_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_DragonsBreath_3P_Pickup_MIC")) 
+    Skins.Add((Id=7198, Weapondef=class'KFWeapDef_Dragonsbreath', MIC_1P=("WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_Dragonsbreath_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_DragonsBreath_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_DragonsBreath_3P_Pickup_MIC")) 
     Skins.Add((Id=7197, Weapondef=class'KFWeapDef_Dragonsbreath', MIC_1P=("WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_Dragonsbreath_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_DragonsBreath_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_dragonsbreath.Steampunk_DragonsBreath_3P_Pickup_MIC")) 
 
 //Steampunk 500 Magnum Revolver
     Skins.Add((Id=7202, Weapondef=class'KFWeapDef_SW500', MIC_1P=("WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_3P_Pickup_MIC")) 
-    Skins.Add((Id=7201, Weapondef=class'KFWeapDef_SW500', MIC_1P=("WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_3P_Pickup_MIC")) 
+    Skins.Add((Id=7201, Weapondef=class'KFWeapDef_SW500', MIC_1P=("WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_3P_Pickup_MIC")) 
     Skins.Add((Id=7200, Weapondef=class'KFWeapDef_SW500', MIC_1P=("WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_sw500.Steampunk_SW500_3P_Pickup_MIC")) 
 
 //Steampunk Winchester 1894
     Skins.Add((Id=7205, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_3P_Pickup_MIC")) 
-    Skins.Add((Id=7204, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_3P_Pickup_MIC")) 
+    Skins.Add((Id=7204, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_3P_Pickup_MIC")) 
     Skins.Add((Id=7203, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_winchester.Steampunk_Winchester_3P_Pickup_MIC")) 
 
 //Steampunk M79
     Skins.Add((Id=7208, Weapondef=class'KFWeapDef_M79', MIC_1P=("WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_3P_Pickup_MIC")) 
-    Skins.Add((Id=7207, Weapondef=class'KFWeapDef_M79', MIC_1P=("WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_3P_Pickup_MIC")) 
+    Skins.Add((Id=7207, Weapondef=class'KFWeapDef_M79', MIC_1P=("WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_3P_Pickup_MIC")) 
     Skins.Add((Id=7206, Weapondef=class'KFWeapDef_M79', MIC_1P=("WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_m79.Steampunk_M79_3P_Pickup_MIC")) 
 
 //Steampunk Zweihander
     Skins.Add((Id=7211, Weapondef=class'KFWeapDef_Zweihander', MIC_1P=("WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_3P_Pickup_MIC")) 
-    Skins.Add((Id=7210, Weapondef=class'KFWeapDef_Zweihander', MIC_1P=("WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_3P_Pickup_MIC")) 
+    Skins.Add((Id=7210, Weapondef=class'KFWeapDef_Zweihander', MIC_1P=("WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_3P_Pickup_MIC")) 
     Skins.Add((Id=7209, Weapondef=class'KFWeapDef_Zweihander', MIC_1P=("WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_zweihander.Steampunk_Zweihander_3P_Pickup_MIC")) 
 
 //Steampunk MP5RAS
     Skins.Add((Id=7214, Weapondef=class'KFWeapDef_MP5RAS', MIC_1P=("WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_3P_Pickup_MIC")) 
-    Skins.Add((Id=7213, Weapondef=class'KFWeapDef_MP5RAS', MIC_1P=("WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_3P_Pickup_MIC")) 
+    Skins.Add((Id=7213, Weapondef=class'KFWeapDef_MP5RAS', MIC_1P=("WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_3P_Pickup_MIC")) 
     Skins.Add((Id=7212, Weapondef=class'KFWeapDef_MP5RAS', MIC_1P=("WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_mp5ras.Steampunk_MP5RAS_3P_Pickup_MIC")) 
 
 //Steampunk AA12
     Skins.Add((Id=7217, Weapondef=class'KFWeapDef_AA12', MIC_1P=("WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_3P_Pickup_MIC")) 
-    Skins.Add((Id=7216, Weapondef=class'KFWeapDef_AA12', MIC_1P=("WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_3P_Pickup_MIC")) 
+    Skins.Add((Id=7216, Weapondef=class'KFWeapDef_AA12', MIC_1P=("WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_3P_Pickup_MIC")) 
     Skins.Add((Id=7215, Weapondef=class'KFWeapDef_AA12', MIC_1P=("WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_aa12.Steampunk_AA12_3P_Pickup_MIC")) 
 
 //Steampunk MAC 10
     Skins.Add((Id=7220, Weapondef=class'KFWeapDef_Mac10', MIC_1P=("WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_3P_Pickup_MIC")) 
-    Skins.Add((Id=7219, Weapondef=class'KFWeapDef_Mac10', MIC_1P=("WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_3P_Pickup_MIC")) 
+    Skins.Add((Id=7219, Weapondef=class'KFWeapDef_Mac10', MIC_1P=("WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_3P_Pickup_MIC")) 
     Skins.Add((Id=7218, Weapondef=class'KFWeapDef_Mac10', MIC_1P=("WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_mac10.Steampunk_MAC10_3P_Pickup_MIC")) 
 
 //Steampunk M99
     Skins.Add((Id=7223, Weapondef=class'KFWeapDef_M99', MIC_1P=("WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_1P_Mint_MIC", "WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_3P_Pickup_MIC")) 
-    Skins.Add((Id=7222, Weapondef=class'KFWeapDef_M99', MIC_1P=("WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_1P_Mint_MIC", "WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_3P_Pickup_MIC")) 
+    Skins.Add((Id=7222, Weapondef=class'KFWeapDef_M99', MIC_1P=("WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_1P_FieldTested_MIC", "WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_3P_Pickup_MIC")) 
     Skins.Add((Id=7221, Weapondef=class'KFWeapDef_M99', MIC_1P=("WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_1P_BattleScarred_MIC", "WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_m99.Steampunk_M99_3P_Pickup_MIC")) 
 
 //Steampunk Desert Eagle
     Skins.Add((Id=7226, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_3P_Pickup_MIC")) 
-    Skins.Add((Id=7225, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_1P_Mint_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_3P_Pickup_MIC")) 
+    Skins.Add((Id=7225, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_3P_Pickup_MIC")) 
     Skins.Add((Id=7224, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet25_MAT.steampunk_deagle.Steampunk_Deagle_3P_Pickup_MIC")) 
 
 //Steampunk Tommy Gun

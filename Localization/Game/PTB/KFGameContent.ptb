@@ -312,11 +312,6 @@ ItemName="Pregadeira VLAD-1000"
 ItemCategory="Espingarda"
 ItemDescription="•Escolha entre modo de tiro único ou múltiplo.\n•Tiro alt. para alternar entre modos de tiro.\n•Soubemos que um dos cientistas Horzine pegou a pistola de pregos original de um zelador (morto)."
 
-[KFWeap_HRG_Nailgun]
-ItemName="Pregadeira HRG"
-ItemCategory="Submetralhadora"
-ItemDescription="•Escolha entre modo de tiro único ou múltiplo.\n•Tiro alt. para alternar entre modos de tiro.\n•Soubemos que um dos cientistas da Horzine pegou a pregadeira original de um zelador (morto)."
-
 [KFWeap_Blunt_ChainBat]
 ItemName="Redentor da Via"
 ItemCategory="Corpo a corpo"
@@ -375,11 +370,6 @@ ItemName="Lança-chamas"
 ItemCategory="Chamas"
 ItemDescription="•O modo de tiro atira fogo. É isso aí.\n•Um clássico para todas as idades. Na dúvida, queime tudo."
 
-[KFWeap_HRG_Healthrower]
-ItemName="Lança-cura HRG"
-ItemCategory="Chamas"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="Arma de Micro-ondas"
 ItemCategory="Chamas"
@@ -435,16 +425,6 @@ ItemName="Duas Desert Eagle .50"
 ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de canhões de mão Desert Eagle."
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Pistola"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="Chiappa Rhino Dupla"
-ItemCategory="Pistola"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="Revólver 1858"
 ItemCategory="Pistola de mão"
@@ -465,25 +445,10 @@ ItemName="Duas Magnums .500"
 ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de revólveres Magnum .500 ‘Bone Collector’."
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="Revólver de Chumbo Grosso HRG"
-ItemCategory="Pistola"
-ItemDescription="•Apenas tem modo de tiro único\n•Verdadeira artilharia de mão na forma de um revólver ‘Bone Collector’ calibre .50 de cano longo, que atira projéteis de magnum de carta total. Para pistoleiros de verdade."
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Revólver de Chumbo Grosso HRG Duplo"
-ItemCategory="Pistola"
-ItemDescription="•Apenas tem o modo de tiro semiautomático.\n•Tiro alt. alterna estilos de mira, ao usar uma a mira metálica.\n•Um par de revólveres Magnum .500 ‘Bone Collector’."
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Modo tiro único, somente.\n•O modelo clássico do rifle Winchester modelo 1894 com alavanca."
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="Mosin-Nagant"
-ItemCategory="Fuzil"
-ItemDescription="•Apenas tem modo de tiro único."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -551,16 +516,6 @@ ItemName="Canhão Esfolador"
 ItemCategory="Chamas"
 ItemDescription="•Carrega com o botão de disparo apertado e descarrega ao soltar o botão. \n•Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Pistola"
-ItemDescription="•Preencha-me"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="Chiappa Rhino Dupla"
-ItemCategory="Pistola"
-ItemDescription="•Preencha-me"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabina MKb.42(H)"
 ItemCategory="Fuzil de assalto"
@@ -576,11 +531,6 @@ ItemDescription="•O modo de disparo é somente semiautomático.\n•Tudo é me
 ItemName="AF2011-A2 Dupla"
 ItemCategory="Pistola"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Duas armas com dois canos cada. Quatro vezes mais poder de fogo. É matemática. Não tem como discutir."
-
-[KFWeap_Edged_IonThruster]
-ItemName="Propulsor de Íons"
-ItemCategory="Corpo a Corpo"
-ItemDescription="•Preencha-me"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Bastão da Perdição"

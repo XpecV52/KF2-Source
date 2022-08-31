@@ -28,9 +28,7 @@ defaultproperties
     object end
     // Reference: StaticMeshComponent'Default__KFWaterMeshActor.StaticMeshComponent0'
     Components(0)=StaticMeshComponent0
-    CollisionType=ECollisionType.COLLIDE_TouchWeapons
     bWorldGeometry=false
-    BlockRigidBody=false
     bBlockActors=false
     bProjTarget=true
     begin object name=StaticMeshComponent0 class=StaticMeshComponent

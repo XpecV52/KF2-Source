@@ -705,7 +705,7 @@ DefaultProperties
 	PerkSkills(ECommandoImpact)=(Name="Impact",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Impact",Increment=0.f,Rank=0,StartingValue=1.5,MaxValue=1.5)
 	PerkSkills(ECommandoHealthIncrease)=(Name="HealthIncrease",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_HP",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
 	PerkSkills(ECommandoAmmoVest)=(Name="AmmoVest",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_AmmoVest",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
-	PerkSkills(ECommandoHollowPoints)=(Name="HollowPoints",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
+	PerkSkills(ECommandoHollowPoints)=(Name="HollowPoints",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
 	PerkSkills(ECommandoEatLead)=(Name="EatLead",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire",Increment=0.f,Rank=0,StartingValue=1.0f,MaxValue=1.0f) //0.5
 	PerkSkills(ECommandoProfessional)=(Name="Professional",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Professional")
 	PerkSkills(ECommandoRapidFire)=(Name="RapidFire",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_RapidFire",Increment=0.f,Rank=0,StartingValue=0.03,MaxValue=0.03)

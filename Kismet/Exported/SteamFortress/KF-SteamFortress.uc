@@ -1174,45 +1174,45 @@ Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_7
    ObjectArchetype=KFSeqEvent_WaveStart'KFGame.Default__KFSeqEvent_WaveStart'
 End Object
 
-Begin Object Class=SeqVar_Named Name=SeqVar_Named_39
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_13
    ExpectedType=Class'Engine.SeqVar_Bool'
    FindVarName="objective"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9208
-   ObjPosY=-7280
+   ObjPosX=-9336
+   ObjPosY=-7304
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Named_39"
+   Name="SeqVar_Named_13"
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
-Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_41
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_19
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9128
-   ObjPosY=-7280
+   ObjPosX=-9256
+   ObjPosY=-7304
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Bool_41"
+   Name="SeqVar_Bool_19"
    ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
 End Object
 
-Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_17
-   InputLinks(0)=(DrawY=-7362,OverrideDelta=23)
-   OutputLinks(0)=(DrawY=-7372,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),DrawY=-7352,OverrideDelta=33)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_39'),DrawX=-9155,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_41'),DrawX=-9105,OverrideDelta=59)
+Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_26
+   InputLinks(0)=(DrawY=-7386,OverrideDelta=23)
+   OutputLinks(0)=(DrawY=-7396,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_17')),DrawY=-7376,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_13'),DrawX=-9283,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_19'),DrawX=-9233,OverrideDelta=59)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9184
-   ObjPosY=-7408
+   ObjPosX=-9312
+   ObjPosY=-7432
    DrawWidth=115
    DrawHeight=85
-   Name="SeqCond_CompareBool_17"
+   Name="SeqCond_CompareBool_26"
    ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
 End Object
 
@@ -1220,7 +1220,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_16
    InputLinks(0)=(DrawY=-7611,OverrideDelta=14)
    InputLinks(1)=(DrawY=-7590,OverrideDelta=35)
    InputLinks(2)=(DrawY=-7569,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_17')),DrawY=-7606,OverrideDelta=19)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_26')),DrawY=-7606,OverrideDelta=19)
    OutputLinks(1)=(DrawY=-7574,OverrideDelta=51)
    VariableLinks(0)=(DrawX=-9516,OverrideDelta=25)
    ObjInstanceVersion=1
@@ -1812,9 +1812,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_11
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
-      Name="InterpCurveEdSetup_5"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=119.900002,OutVal=(X=0.009766,Y=0.011719,Z=7224.005859),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=119.900002,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=119.900002)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_5.InterpTrackMove_5'
+      GroupName="Rocket"
+      GroupColor=(B=191,G=145,R=0,A=255)
+      Name="InterpGroup_5"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -1831,20 +1842,9 @@ Begin Object Class=InterpData Name=InterpData_11
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=119.900002,OutVal=(X=0.009766,Y=0.011719,Z=7224.005859),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=119.900002,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=119.900002)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_5.InterpTrackMove_5'
-      GroupName="Rocket"
-      GroupColor=(B=191,G=145,R=0,A=255)
-      Name="InterpGroup_5"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
+      Name="InterpCurveEdSetup_5"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=119.900002
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_5'
@@ -2705,38 +2705,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_7
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.013672,Y=-0.000732,Z=536.000000),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.007813,Z=192.003906),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=5.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Prod1"
-      GroupColor=(B=191,G=145,R=0,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.007813,Z=448.003906),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_2.InterpTrackMove_2'
-      GroupName="Base1A"
-      GroupColor=(B=0,G=233,R=0,A=255)
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_6.InterpTrackMove_3'
+      GroupName="Base1B"
+      GroupColor=(B=173,G=0,R=167,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
@@ -2754,20 +2735,39 @@ Begin Object Class=InterpData Name=InterpData_7
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.007813,Z=192.003906),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.007813,Z=448.003906),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=5.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
+         Name="InterpTrackMove_2"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_6.InterpTrackMove_3'
-      GroupName="Base1B"
-      GroupColor=(B=173,G=0,R=167,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_2.InterpTrackMove_2'
+      GroupName="Base1A"
+      GroupColor=(B=0,G=233,R=0,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.013672,Y=-0.000732,Z=536.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Prod1"
+      GroupColor=(B=191,G=145,R=0,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_4'
@@ -3038,9 +3038,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_37
 End Object
 
 Begin Object Class=InterpData Name=InterpData_37
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=-0.000122,Y=0.000000,Z=0.000000),ArriveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.100002,OutVal=(X=-0.000244,Y=0.000000,Z=0.000000),ArriveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=-0.000366,Y=0.000000,Z=0.000000),ArriveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=-0.000488,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.995008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.995008),InterpMode=CIM_CurveAutoClamped),(InVal=60.100002,OutVal=(X=0.000000,Y=0.000000,Z=-180.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=30.000000),(Time=60.100002),(Time=90.000000),(Time=120.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_37.InterpGroup_3.InterpTrackMove_0'
+      GroupName="Shaft"
+      GroupColor=(B=0,G=233,R=0,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -3057,20 +3068,9 @@ Begin Object Class=InterpData Name=InterpData_37
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=-0.000122,Y=0.000000,Z=0.000000),ArriveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.100002,OutVal=(X=-0.000244,Y=0.000000,Z=0.000000),ArriveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=-0.000366,Y=0.000000,Z=0.000000),ArriveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000004,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=-0.000488,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.995008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.995008),InterpMode=CIM_CurveAutoClamped),(InVal=60.100002,OutVal=(X=0.000000,Y=0.000000,Z=-180.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=30.000000),(Time=60.100002),(Time=90.000000),(Time=120.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_37.InterpGroup_3.InterpTrackMove_0'
-      GroupName="Shaft"
-      GroupColor=(B=0,G=233,R=0,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=120.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_37.InterpGroup_0'
@@ -3255,10 +3255,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_12
 End Object
 
 Begin Object Class=InterpData Name=InterpData_12
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=8.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
@@ -3274,6 +3270,10 @@ Begin Object Class=InterpData Name=InterpData_12
       GroupColor=(B=131,G=0,R=200,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=8.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0'
@@ -3315,10 +3315,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_163
 End Object
 
 Begin Object Class=InterpData Name=InterpData_13
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
@@ -3334,6 +3330,10 @@ Begin Object Class=InterpData Name=InterpData_13
       GroupColor=(B=131,G=0,R=200,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_0'
@@ -3393,10 +3393,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_16
 End Object
 
 Begin Object Class=InterpData Name=InterpData_16
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000488),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000488),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000489),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000489),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.001831,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
@@ -3412,6 +3408,10 @@ Begin Object Class=InterpData Name=InterpData_16
       GroupColor=(B=131,G=0,R=200,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_0'
@@ -3823,10 +3823,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_19
 End Object
 
 Begin Object Class=InterpData Name=InterpData_19
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=200.003906,Y=0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -3841,6 +3837,10 @@ Begin Object Class=InterpData Name=InterpData_19
       GroupColor=(B=0,G=58,R=228,A=255)
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpGroup_2'
    CurveEdSetup=InterpCurveEdSetup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpCurveEdSetup_4'
@@ -3961,10 +3961,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_20
 End Object
 
 Begin Object Class=InterpData Name=InterpData_20
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
-      Name="InterpCurveEdSetup_5"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=304.000000,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -3979,6 +3975,10 @@ Begin Object Class=InterpData Name=InterpData_20
       GroupColor=(B=50,G=229,R=0,A=255)
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
+      Name="InterpCurveEdSetup_5"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_3'
    CurveEdSetup=InterpCurveEdSetup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpCurveEdSetup_5'
@@ -4050,56 +4050,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_21
 End Object
 
 Begin Object Class=InterpData Name=InterpData_21
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_6
-      Name="InterpCurveEdSetup_6"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.003906,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.007813,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.011719,Z=-0.000366),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.015625,Z=-0.000488),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000)))
          bUseQuatInterpolation=True
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
+         Name="InterpTrackMove_6"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_0.InterpTrackMove_1'
-      GroupName="Gear4"
-      GroupColor=(B=147,G=189,R=0,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_7
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.003906,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.007813,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.011719,Z=-0.000366),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.015625,Z=-0.000488),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000)))
-         bUseQuatInterpolation=True
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_7"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_1.InterpTrackMove_7'
-      GroupName="Gear5"
-      GroupColor=(B=0,G=181,R=157,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.003906,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.007813,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.011719,Z=-0.000366),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.015625,Z=-0.000488),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000)))
-         bUseQuatInterpolation=True
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_4.InterpTrackMove_4'
-      GroupName="Gear1"
-      GroupColor=(B=121,G=0,R=206,A=255)
-      Name="InterpGroup_4"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_6.InterpTrackMove_6'
+      GroupName="Gear3"
+      GroupColor=(B=203,G=0,R=128,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
@@ -4118,21 +4082,57 @@ Begin Object Class=InterpData Name=InterpData_21
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.003906,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.007813,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.011719,Z=-0.000366),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.015625,Z=-0.000488),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000)))
          bUseQuatInterpolation=True
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_6"
+         Name="InterpTrackMove_4"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_6.InterpTrackMove_6'
-      GroupName="Gear3"
-      GroupColor=(B=203,G=0,R=128,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_4.InterpTrackMove_4'
+      GroupName="Gear1"
+      GroupColor=(B=121,G=0,R=206,A=255)
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_7
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.003906,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.007813,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.011719,Z=-0.000366),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.015625,Z=-0.000488),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000)))
+         bUseQuatInterpolation=True
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_7"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_1.InterpTrackMove_7'
+      GroupName="Gear5"
+      GroupColor=(B=0,G=181,R=157,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.003906,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.007813,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.011719,Z=-0.000366),ArriveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.003906,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000000,Y=0.015625,Z=-0.000488),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000),(Time=4.000000)))
+         bUseQuatInterpolation=True
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_0.InterpTrackMove_1'
+      GroupName="Gear4"
+      GroupColor=(B=147,G=189,R=0,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_6
+      Name="InterpCurveEdSetup_6"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_4'
@@ -5096,23 +5096,19 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_159
 End Object
 
 Begin Object Class=InterpData Name=InterpData_38
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=30.000000),(Time=60.000000),(Time=90.000000),(Time=120.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Gear1"
-      GroupColor=(B=233,G=0,R=30,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_2.InterpTrackMove_1'
+      GroupName="Gear3"
+      GroupColor=(B=0,G=203,R=126,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -5130,20 +5126,24 @@ Begin Object Class=InterpData Name=InterpData_38
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=30.000000),(Time=60.000000),(Time=90.000000),(Time=120.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
+         Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_2.InterpTrackMove_1'
-      GroupName="Gear3"
-      GroupColor=(B=0,G=203,R=126,A=255)
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Gear1"
+      GroupColor=(B=233,G=0,R=30,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=120.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0'
@@ -5211,23 +5211,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_39
 End Object
 
 Begin Object Class=InterpData Name=InterpData_39
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=30.000000),(Time=60.000000),(Time=90.000000),(Time=120.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Gear1"
-      GroupColor=(B=233,G=0,R=30,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_4.InterpTrackMove_3'
+      GroupName="Gear2"
+      GroupColor=(B=218,G=92,R=0,A=255)
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -5245,20 +5241,24 @@ Begin Object Class=InterpData Name=InterpData_39
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=30.000000),(Time=60.000000),(Time=90.000000),(Time=120.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
+         Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_4.InterpTrackMove_3'
-      GroupName="Gear2"
-      GroupColor=(B=218,G=92,R=0,A=255)
-      Name="InterpGroup_4"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Gear1"
+      GroupColor=(B=233,G=0,R=30,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=120.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0'
@@ -5278,9 +5278,20 @@ Begin Object Class=InterpData Name=InterpData_39
 End Object
 
 Begin Object Class=InterpData Name=InterpData_40
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=30.000000),(Time=60.000000),(Time=90.000000),(Time=120.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_3.InterpTrackMove_5'
+      GroupName="Gear2"
+      GroupColor=(B=0,G=221,R=84,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -5297,20 +5308,9 @@ Begin Object Class=InterpData Name=InterpData_40
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=30.000000),(Time=60.000000),(Time=90.000000),(Time=120.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_3.InterpTrackMove_5'
-      GroupName="Gear2"
-      GroupColor=(B=0,G=221,R=84,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=120.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_0'
@@ -5352,9 +5352,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_40
 End Object
 
 Begin Object Class=InterpData Name=InterpData_8
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=30.000000),(Time=60.000000),(Time=90.000000),(Time=120.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_2.InterpTrackMove_3'
+      GroupName="Gear2"
+      GroupColor=(B=230,G=42,R=0,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -5371,20 +5382,9 @@ Begin Object Class=InterpData Name=InterpData_8
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000488),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000732),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=180.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=270.000000,Y=0.000000,Z=0.000000),ArriveTangent=(X=3.000000,Y=0.000000,Z=0.000000),LeaveTangent=(X=3.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=360.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=30.000000),(Time=60.000000),(Time=90.000000),(Time=120.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_2.InterpTrackMove_3'
-      GroupName="Gear2"
-      GroupColor=(B=230,G=42,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=120.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_0'
@@ -5567,83 +5567,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_27
 End Object
 
 Begin Object Class=InterpData Name=InterpData_27
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-384.000000),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_9
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=2232.000000,Y=0.003906,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=1.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_6"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Rail1"
-      GroupColor=(B=0,G=123,R=204,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-744.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1.InterpTrackMove_1'
-      GroupName="Rail2"
-      GroupColor=(B=207,G=0,R=120,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-1104.003906),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_2.InterpTrackMove_2'
-      GroupName="Rail3"
-      GroupColor=(B=155,G=183,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-1480.003906),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_3.InterpTrackMove_3'
-      GroupName="Rail4"
-      GroupColor=(B=0,G=64,R=226,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-1848.003906),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackMove_4'
-      GroupName="Rail5"
-      GroupColor=(B=134,G=0,R=199,A=255)
-      Name="InterpGroup_4"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_9.InterpTrackMove_6'
+      GroupName="Walk"
+      GroupColor=(B=42,G=0,R=230,A=255)
+      Name="InterpGroup_9"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
@@ -5661,20 +5597,84 @@ Begin Object Class=InterpData Name=InterpData_27
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_9
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=2232.000000,Y=0.003906,Z=-0.000977),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-1848.003906),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=1.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_6"
+         Name="InterpTrackMove_4"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_9.InterpTrackMove_6'
-      GroupName="Walk"
-      GroupColor=(B=42,G=0,R=230,A=255)
-      Name="InterpGroup_9"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_4.InterpTrackMove_4'
+      GroupName="Rail5"
+      GroupColor=(B=134,G=0,R=199,A=255)
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-1480.003906),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_3.InterpTrackMove_3'
+      GroupName="Rail4"
+      GroupColor=(B=0,G=64,R=226,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-1104.003906),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_2.InterpTrackMove_2'
+      GroupName="Rail3"
+      GroupColor=(B=155,G=183,R=0,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-744.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_1.InterpTrackMove_1'
+      GroupName="Rail2"
+      GroupColor=(B=207,G=0,R=120,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000977,Y=0.000000,Z=-384.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Rail1"
+      GroupColor=(B=0,G=123,R=204,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_9'
@@ -6188,38 +6188,19 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_243
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.011719,Y=-0.000732,Z=688.000000),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.005859,Z=192.003906),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=5.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Prod1"
-      GroupColor=(B=191,G=145,R=0,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.005859,Z=448.003906),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_2.InterpTrackMove_2'
-      GroupName="Base1A"
-      GroupColor=(B=0,G=233,R=0,A=255)
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_6.InterpTrackMove_3'
+      GroupName="Base1B"
+      GroupColor=(B=173,G=0,R=167,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
@@ -6237,20 +6218,39 @@ Begin Object Class=InterpData Name=InterpData_5
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.005859,Z=192.003906),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.005859,Z=448.003906),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=5.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
+         Name="InterpTrackMove_2"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_6.InterpTrackMove_3'
-      GroupName="Base1B"
-      GroupColor=(B=173,G=0,R=167,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_2.InterpTrackMove_2'
+      GroupName="Base1A"
+      GroupColor=(B=0,G=233,R=0,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.011719,Y=-0.000732,Z=688.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Prod1"
+      GroupColor=(B=191,G=145,R=0,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4'
@@ -6596,10 +6596,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_15
 End Object
 
 Begin Object Class=InterpData Name=InterpData_15
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=-520.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -6614,6 +6610,10 @@ Begin Object Class=InterpData Name=InterpData_15
       GroupColor=(B=0,G=153,R=184,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpGroup_0'
    CurveEdSetup=InterpCurveEdSetup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpCurveEdSetup_0'
@@ -6925,38 +6925,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((OutVal=(X=0.003906,Y=-0.000488,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.007813,Y=-0.001465,Z=0.000000),ArriveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.009766,Y=-0.001953,Z=0.000000),ArriveTangent=(X=0.002474,Y=-0.000786,Z=0.000000),LeaveTangent=(X=0.002474,Y=-0.000786,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.025391,Y=-344.005859,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=10.000000)))
+   Begin Object Class=InterpGroup Name=InterpGroup_9
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.001953,Y=0.000488,Z=0.000000),ArriveTangent=(X=-0.000651,Y=0.000163,Z=0.000000),LeaveTangent=(X=-0.000651,Y=0.000163,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-0.003906,Y=0.000977,Z=0.000000),ArriveTangent=(X=-0.001302,Y=0.000326,Z=0.000000),LeaveTangent=(X=-0.001302,Y=0.000326,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=-0.007813,Y=0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=56.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=9.500000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_2.InterpTrackMove_3'
-      GroupName="Slider"
-      GroupColor=(B=133,G=199,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.003906,Y=-0.000977,Z=0.000000),ArriveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.005859,Y=-0.001465,Z=0.000000),ArriveTangent=(X=0.001172,Y=-0.000293,Z=0.000000),LeaveTangent=(X=0.001172,Y=-0.000293,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.009766,Y=-0.002441,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=10.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackMove_4'
-      GroupName="Gear1"
-      GroupColor=(B=58,G=0,R=228,A=255)
-      Name="InterpGroup_3"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9.InterpTrackMove_1'
+      GroupName="Release2"
+      GroupColor=(B=225,G=0,R=74,A=255)
+      Name="InterpGroup_9"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
@@ -6974,20 +6955,39 @@ Begin Object Class=InterpData Name=InterpData_4
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_9
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.001953,Y=0.000488,Z=0.000000),ArriveTangent=(X=-0.000651,Y=0.000163,Z=0.000000),LeaveTangent=(X=-0.000651,Y=0.000163,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-0.003906,Y=0.000977,Z=0.000000),ArriveTangent=(X=-0.001302,Y=0.000326,Z=0.000000),LeaveTangent=(X=-0.001302,Y=0.000326,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=-0.007813,Y=0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=56.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=9.500000)))
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.003906,Y=-0.000977,Z=0.000000),ArriveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.005859,Y=-0.001465,Z=0.000000),ArriveTangent=(X=0.001172,Y=-0.000293,Z=0.000000),LeaveTangent=(X=0.001172,Y=-0.000293,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.009766,Y=-0.002441,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=10.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
+         Name="InterpTrackMove_4"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9.InterpTrackMove_1'
-      GroupName="Release2"
-      GroupColor=(B=225,G=0,R=74,A=255)
-      Name="InterpGroup_9"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackMove_4'
+      GroupName="Gear1"
+      GroupColor=(B=58,G=0,R=228,A=255)
+      Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((OutVal=(X=0.003906,Y=-0.000488,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.007813,Y=-0.001465,Z=0.000000),ArriveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.009766,Y=-0.001953,Z=0.000000),ArriveTangent=(X=0.002474,Y=-0.000786,Z=0.000000),LeaveTangent=(X=0.002474,Y=-0.000786,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.025391,Y=-344.005859,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=10.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_2.InterpTrackMove_3'
+      GroupName="Slider"
+      GroupColor=(B=133,G=199,R=0,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_2'
@@ -7279,68 +7279,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_41
 End Object
 
 Begin Object Class=InterpData Name=InterpData_41
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_18
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.009766,Z=-0.000366),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=10.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_18"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_0.InterpTrackMove_0'
-      GroupName="H1"
-      GroupColor=(B=31,G=0,R=231,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_14
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.009766,Z=-0.000366),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=10.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_14"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_1.InterpTrackMove_14'
-      GroupName="H2"
-      GroupColor=(B=0,G=79,R=222,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_15
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.009766,Z=-0.000366),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=10.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_15"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_2.InterpTrackMove_15'
-      GroupName="H3"
-      GroupColor=(B=222,G=0,R=84,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_16
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.009766,Z=-0.000366),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=10.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_16"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_3.InterpTrackMove_16'
-      GroupName="H4"
-      GroupColor=(B=226,G=0,R=69,A=255)
-      Name="InterpGroup_3"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_6.InterpTrackMove_18'
+      GroupName="H6"
+      GroupColor=(B=138,G=195,R=0,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
@@ -7358,20 +7309,69 @@ Begin Object Class=InterpData Name=InterpData_41
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_18
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_16
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.009766,Z=-0.000366),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=10.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_18"
+         Name="InterpTrackMove_16"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_6.InterpTrackMove_18'
-      GroupName="H6"
-      GroupColor=(B=138,G=195,R=0,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_3.InterpTrackMove_16'
+      GroupName="H4"
+      GroupColor=(B=226,G=0,R=69,A=255)
+      Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_15
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.009766,Z=-0.000366),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=10.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_15"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_2.InterpTrackMove_15'
+      GroupName="H3"
+      GroupColor=(B=222,G=0,R=84,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_14
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.009766,Z=-0.000366),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=10.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_14"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_1.InterpTrackMove_14'
+      GroupName="H2"
+      GroupColor=(B=0,G=79,R=222,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.009766,Z=-0.000366),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=10.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_0.InterpTrackMove_0'
+      GroupName="H1"
+      GroupColor=(B=31,G=0,R=231,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_0'
@@ -7466,68 +7466,19 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_293
 End Object
 
 Begin Object Class=InterpData Name=InterpData_35
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_24
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-0.000977,Y=-0.011719,Z=-0.000374),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-47.812500),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=20.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_24"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0.InterpTrackMove_0'
-      GroupName="H1"
-      GroupColor=(B=31,G=0,R=231,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_20
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-0.000977,Y=-0.011719,Z=-0.000374),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-47.812500),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=20.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_20"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_1.InterpTrackMove_20'
-      GroupName="H2"
-      GroupColor=(B=0,G=79,R=222,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_21
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-0.000977,Y=-0.011719,Z=-0.000374),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-47.812500),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=20.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_21"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_2.InterpTrackMove_21'
-      GroupName="H3"
-      GroupColor=(B=222,G=0,R=84,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_22
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-0.000977,Y=-0.011719,Z=-0.000374),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-47.812500),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=20.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_22"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_3.InterpTrackMove_22'
-      GroupName="H4"
-      GroupColor=(B=226,G=0,R=69,A=255)
-      Name="InterpGroup_3"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_6.InterpTrackMove_24'
+      GroupName="H6"
+      GroupColor=(B=138,G=195,R=0,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
@@ -7545,20 +7496,69 @@ Begin Object Class=InterpData Name=InterpData_35
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_24
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_22
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-0.000977,Y=-0.011719,Z=-0.000374),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-47.812500),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=20.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_24"
+         Name="InterpTrackMove_22"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_6.InterpTrackMove_24'
-      GroupName="H6"
-      GroupColor=(B=138,G=195,R=0,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_3.InterpTrackMove_22'
+      GroupName="H4"
+      GroupColor=(B=226,G=0,R=69,A=255)
+      Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_21
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-0.000977,Y=-0.011719,Z=-0.000374),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-47.812500),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=20.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_21"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_2.InterpTrackMove_21'
+      GroupName="H3"
+      GroupColor=(B=222,G=0,R=84,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_20
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-0.000977,Y=-0.011719,Z=-0.000374),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-47.812500),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=20.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_20"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_1.InterpTrackMove_20'
+      GroupName="H2"
+      GroupColor=(B=0,G=79,R=222,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-0.000977,Y=-0.011719,Z=-0.000374),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-47.812500),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=20.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0.InterpTrackMove_0'
+      GroupName="H1"
+      GroupColor=(B=31,G=0,R=231,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0'
@@ -7717,10 +7717,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_14
 End Object
 
 Begin Object Class=InterpData Name=InterpData_14
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
          Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Airship_THREE_MAT.boiler.ENV_Airship_Boiler_Heating_Element_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.InterpActor_49.StaticMeshComponent_125')))
@@ -7734,6 +7730,10 @@ Begin Object Class=InterpData Name=InterpData_14
       GroupColor=(B=222,G=0,R=84,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpCurveEdSetup_0'
@@ -7773,10 +7773,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
          Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Airship_THREE_MAT.boiler.ENV_Airship_Boiler_Heating_Element_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.InterpActor_49.StaticMeshComponent_125')))
@@ -7790,6 +7786,10 @@ Begin Object Class=InterpData Name=InterpData_0
       GroupColor=(B=222,G=0,R=84,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_1'
@@ -8339,10 +8339,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_24
 End Object
 
 Begin Object Class=InterpData Name=InterpData_24
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=2487.999756),InterpMode=CIM_CurveAutoClamped)))
@@ -8357,6 +8353,10 @@ Begin Object Class=InterpData Name=InterpData_24
       GroupColor=(B=173,G=0,R=167,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0'
@@ -8450,9 +8450,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=67.500000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackMove_2'
+      GroupName="Door2"
+      GroupColor=(B=0,G=133,R=199,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -8469,20 +8480,9 @@ Begin Object Class=InterpData Name=InterpData_2
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=67.500000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackMove_2'
-      GroupName="Door2"
-      GroupColor=(B=0,G=133,R=199,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1'
@@ -9203,38 +9203,19 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_370
 End Object
 
 Begin Object Class=InterpData Name=InterpData_28
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((OutVal=(X=0.003906,Y=-0.000488,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.009766,Y=-0.001465,Z=0.000000),ArriveTangent=(X=0.001302,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.001302,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.011719,Y=-0.001953,Z=0.000000),ArriveTangent=(X=0.002149,Y=-0.000778,Z=0.000000),LeaveTangent=(X=0.002149,Y=-0.000778,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.021484,Y=-352.003418,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=10.000000)))
+   Begin Object Class=InterpGroup Name=InterpGroup_9
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.001953,Y=0.000488,Z=0.000000),ArriveTangent=(X=-0.000651,Y=0.000163,Z=0.000000),LeaveTangent=(X=-0.000651,Y=0.000163,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-0.003906,Y=0.000977,Z=0.000000),ArriveTangent=(X=-0.001302,Y=0.000326,Z=0.000000),LeaveTangent=(X=-0.001302,Y=0.000326,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=-0.007813,Y=0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=56.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=9.500000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_2.InterpTrackMove_3'
-      GroupName="Slider"
-      GroupColor=(B=133,G=199,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.003906,Y=-0.000977,Z=0.000000),ArriveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.005859,Y=-0.001465,Z=0.000000),ArriveTangent=(X=0.001172,Y=-0.000293,Z=0.000000),LeaveTangent=(X=0.001172,Y=-0.000293,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.009766,Y=-0.002441,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=10.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_3.InterpTrackMove_4'
-      GroupName="Gear1"
-      GroupColor=(B=58,G=0,R=228,A=255)
-      Name="InterpGroup_3"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_9.InterpTrackMove_1'
+      GroupName="Release2"
+      GroupColor=(B=225,G=0,R=74,A=255)
+      Name="InterpGroup_9"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
@@ -9252,20 +9233,39 @@ Begin Object Class=InterpData Name=InterpData_28
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_9
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.001953,Y=0.000488,Z=0.000000),ArriveTangent=(X=-0.000651,Y=0.000163,Z=0.000000),LeaveTangent=(X=-0.000651,Y=0.000163,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-0.003906,Y=0.000977,Z=0.000000),ArriveTangent=(X=-0.001302,Y=0.000326,Z=0.000000),LeaveTangent=(X=-0.001302,Y=0.000326,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=-0.007813,Y=0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=56.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=9.500000)))
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.003906,Y=-0.000977,Z=0.000000),ArriveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.000977,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.005859,Y=-0.001465,Z=0.000000),ArriveTangent=(X=0.001172,Y=-0.000293,Z=0.000000),LeaveTangent=(X=0.001172,Y=-0.000293,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.009766,Y=-0.002441,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-180.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=10.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
+         Name="InterpTrackMove_4"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_9.InterpTrackMove_1'
-      GroupName="Release2"
-      GroupColor=(B=225,G=0,R=74,A=255)
-      Name="InterpGroup_9"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_3.InterpTrackMove_4'
+      GroupName="Gear1"
+      GroupColor=(B=58,G=0,R=228,A=255)
+      Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((OutVal=(X=0.003906,Y=-0.000488,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.009766,Y=-0.001465,Z=0.000000),ArriveTangent=(X=0.001302,Y=-0.000244,Z=0.000000),LeaveTangent=(X=0.001302,Y=-0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.011719,Y=-0.001953,Z=0.000000),ArriveTangent=(X=0.002149,Y=-0.000778,Z=0.000000),LeaveTangent=(X=0.002149,Y=-0.000778,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.021484,Y=-352.003418,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-90.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=6.000000),(Time=10.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_2.InterpTrackMove_3'
+      GroupName="Slider"
+      GroupColor=(B=133,G=199,R=0,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_2'
@@ -9876,10 +9876,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-0.005859,Y=-0.000366,Z=376.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -9894,6 +9890,10 @@ Begin Object Class=InterpData Name=InterpData_3
       GroupColor=(B=0,G=204,R=123,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0'
@@ -11903,10 +11903,10 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_65
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
 End Object
 
-Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_38
+Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_6
    EventName="standard"
    MaxWidth=175
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_17')),DrawY=-7334,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_26')),DrawY=-7334,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-9705,OverrideDelta=55)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -11915,7 +11915,7 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_38
    ObjComment="standard"
    DrawWidth=107
    DrawHeight=128
-   Name="SeqEvent_RemoteEvent_38"
+   Name="SeqEvent_RemoteEvent_6"
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
 End Object
 
@@ -11956,8 +11956,8 @@ Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_14
    InputLinks(0)=(DrawY=-6434,OverrideDelta=47)
    OutputLinks(0)=(DrawY=-6467,OverrideDelta=14)
    OutputLinks(1)=(LinkDesc="Link 2",DrawY=-6445,OverrideDelta=36)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Delay'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_15'),(LinkedOp=KFSeqAct_SetTrader'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetTrader_3')),LinkDesc="Link 3",DrawY=-6423,OverrideDelta=58)
-   OutputLinks(3)=(Links=((LinkedOp=KFSeqAct_SetPawnIconVisibility'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetPawnIconVisibility_1',InputLinkIdx=1)),LinkDesc="Link 4",DrawY=-6401,OverrideDelta=80)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Delay'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_15'),(LinkedOp=KFSeqAct_SetTrader'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetTrader_3'),(LinkedOp=SeqAct_SetBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_11')),LinkDesc="Link 3",DrawY=-6423,OverrideDelta=58)
+   OutputLinks(3)=(LinkDesc="Link 4",DrawY=-6401,OverrideDelta=80)
    VariableLinks(0)=(DrawX=-7958,OverrideDelta=16)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -11977,8 +11977,8 @@ Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_15
    OutputLinks(2)=(LinkDesc="Link 3",DrawY=-6652,OverrideDelta=61)
    OutputLinks(3)=(LinkDesc="Link 4",DrawY=-6630,OverrideDelta=83)
    OutputLinks(4)=(LinkDesc="Link 5",DrawY=-6608,OverrideDelta=105)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Delay'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_15'),(LinkedOp=KFSeqAct_SetTrader'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetTrader_3')),LinkDesc="Link 6",DrawY=-6586,OverrideDelta=127)
-   OutputLinks(6)=(Links=((LinkedOp=KFSeqAct_SetPawnIconVisibility'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetPawnIconVisibility_1',InputLinkIdx=1)),LinkDesc="Link 7",DrawY=-6564,OverrideDelta=149)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Delay'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_15'),(LinkedOp=KFSeqAct_SetTrader'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetTrader_3'),(LinkedOp=SeqAct_SetBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_11')),LinkDesc="Link 6",DrawY=-6586,OverrideDelta=127)
+   OutputLinks(6)=(LinkDesc="Link 7",DrawY=-6564,OverrideDelta=149)
    VariableLinks(0)=(DrawX=-7950,OverrideDelta=16)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -11999,10 +11999,10 @@ Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_13
    OutputLinks(3)=(LinkDesc="Link 4",DrawY=-6932,OverrideDelta=85)
    OutputLinks(4)=(LinkDesc="Link 5",DrawY=-6909,OverrideDelta=108)
    OutputLinks(5)=(LinkDesc="Link 6",DrawY=-6886,OverrideDelta=131)
-   OutputLinks(6)=(Links=((LinkedOp=KFSeqAct_SetTrader'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetTrader_3')),LinkDesc="Link 7",DrawY=-6863,OverrideDelta=154)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_Delay'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_15')),LinkDesc="Link 8",DrawY=-6840,OverrideDelta=177)
-   OutputLinks(8)=(LinkDesc="Link 9",DrawY=-6817,OverrideDelta=200)
-   OutputLinks(9)=(Links=((LinkedOp=KFSeqAct_SetPawnIconVisibility'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetPawnIconVisibility_1',InputLinkIdx=1)),LinkDesc="Link 10",DrawY=-6794,OverrideDelta=223)
+   OutputLinks(6)=(LinkDesc="Link 7",DrawY=-6863,OverrideDelta=154)
+   OutputLinks(7)=(LinkDesc="Link 8",DrawY=-6840,OverrideDelta=177)
+   OutputLinks(8)=(Links=((LinkedOp=SeqAct_Delay'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_15'),(LinkedOp=KFSeqAct_SetTrader'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetTrader_3'),(LinkedOp=SeqAct_SetBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_11')),LinkDesc="Link 9",DrawY=-6817,OverrideDelta=200)
+   OutputLinks(9)=(LinkDesc="Link 10",DrawY=-6794,OverrideDelta=223)
    VariableLinks(0)=(DrawX=-7956,OverrideDelta=18)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -12290,7 +12290,7 @@ End Object
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_34
    EventName="Standard Prep Rocket"
    InputLinks(0)=(DrawY=-6174,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_21')),DrawY=-6174,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_21'),(LinkedOp=KFSeqAct_SetPawnIconVisibility'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetPawnIconVisibility_1',InputLinkIdx=1)),DrawY=-6174,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-7927,OverrideDelta=129)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -12395,7 +12395,7 @@ Begin Object Class=SeqCond_CompareInt Name=SeqCond_CompareInt_1
    InputLinks(0)=(DrawY=-5998,OverrideDelta=59)
    OutputLinks(0)=(DrawY=-6042,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-6020,OverrideDelta=37)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),DrawY=-5998,OverrideDelta=59)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=-5998,OverrideDelta=59)
    OutputLinks(3)=(DrawY=-5976,OverrideDelta=81)
    OutputLinks(4)=(DrawY=-5954,OverrideDelta=103)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_2'),DrawX=-8703,OverrideDelta=29)
@@ -12441,7 +12441,7 @@ Begin Object Class=SeqCond_CompareInt Name=SeqCond_CompareInt_4
    InputLinks(0)=(DrawY=-5598,OverrideDelta=35)
    OutputLinks(0)=(DrawY=-9202,bHidden=True,OverrideDelta=15)
    OutputLinks(1)=(DrawY=-5619,OverrideDelta=14)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),DrawY=-5598,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=-5598,OverrideDelta=35)
    OutputLinks(3)=(DrawY=-5577,OverrideDelta=56)
    OutputLinks(4)=(DrawY=-9114,bHidden=True,OverrideDelta=103)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_9'),DrawX=-8767,OverrideDelta=29)
@@ -12487,7 +12487,7 @@ Begin Object Class=SeqCond_CompareInt Name=SeqCond_CompareInt_5
    InputLinks(0)=(DrawY=-5702,OverrideDelta=35)
    OutputLinks(0)=(DrawY=-8932,bHidden=True,OverrideDelta=37)
    OutputLinks(1)=(DrawY=-5681,OverrideDelta=56)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_2')),DrawY=-5702,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=-5702,OverrideDelta=35)
    OutputLinks(3)=(DrawY=-5723,OverrideDelta=14)
    OutputLinks(4)=(DrawY=-8866,bHidden=True,OverrideDelta=103)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_10'),DrawX=-9031,OverrideDelta=29)
@@ -12600,7 +12600,7 @@ Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_3
    ObjectArchetype=KFSeqEvent_WaveStart'KFGame.Default__KFSeqEvent_WaveStart'
 End Object
 
-Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_2
+Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_0
    EventName="Standard Boss Wave Starts"
    InputLinks(0)=(DrawY=-5742,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5742,OverrideDelta=11)
@@ -12612,7 +12612,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_2
    ObjComment="Standard Boss Wave Starts"
    DrawWidth=361
    DrawHeight=61
-   Name="SeqAct_ActivateRemoteEvent_2"
+   Name="SeqAct_ActivateRemoteEvent_0"
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
@@ -14761,58 +14761,82 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_411
 End Object
 
 Begin Object Class=InterpData Name=InterpData_1
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="NewGroup",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=203,G=126,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=-0.015625,Y=-0.015625,Z=0.000000),ArriveTangent=(X=0.000000,Y=-0.005453,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.005453,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,OutVal=(X=0.007813,Y=-0.421875,Z=-318.796875),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=9.000000),(Time=12.000000)))
+   Begin Object Class=InterpGroup Name=InterpGroup_7
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.007813,Y=0.007813,Z=0.000000),ArriveTangent=(X=0.002599,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.002599,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=32.835938,Y=-27.406250,Z=-11.218750),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=6.388550,Y=17.715454,Z=-11.228027),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=10.000000),(Time=12.900001)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Space_Dude_2"
-      GroupColor=(B=131,G=0,R=200,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_7.InterpTrackMove_3'
+      GroupName="Space_crawler"
+      GroupColor=(B=74,G=224,R=0,A=255)
+      Name="InterpGroup_7"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(EventName="Event0")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackEvent_0'
-      GroupName="NewGroup"
-      GroupColor=(B=200,G=0,R=133,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_2
-         AnimSeqs(0)=(StartTime=10.000000,AnimSeqName="Jump_F_Up",AnimPlayRate=0.031826)
-         AnimSeqs(1)=(StartTime=27.700001,AnimSeqName="Stumble_F_V3",AnimPlayRate=0.113653)
-         Name="InterpTrackAnimControl_2"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_6
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=0.031250,Y=-0.015625,Z=-0.015625),ArriveTangent=(X=0.000000,Y=-0.004328,Z=-0.004330),LeaveTangent=(X=0.000000,Y=-0.004328,Z=-0.004330),InterpMode=CIM_CurveAutoClamped),(InVal=18.100000,OutVal=(X=-670.453125,Y=-174.593750,Z=-974.226563),ArriveTangent=(X=-67.799805,Y=-20.687988,Z=-93.873535),LeaveTangent=(X=-67.799805,Y=-20.687988,Z=-93.873535),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=-1084.765625,Y=-331.023438,Z=-1501.992188),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,InterpMode=CIM_CurveAutoClamped),(InVal=18.100000,OutVal=(X=-1.527100,Y=27.927246,Z=-35.749512),ArriveTangent=(X=-0.014082,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.014082,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=-1.571045,Y=27.927246,Z=-35.749512),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=9.000000),(Time=18.100000),(Time=25.000000)))
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=-67.015625,Y=15.375000,Z=-43.328125),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=-7.811279,Y=-15.029297,Z=-0.208740),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=10.000000),(Time=12.900001)))
          MoveFrame=IMF_RelativeToInitial
          Name="InterpTrackMove_2"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackMove_2'
-      InterpTracks(1)=InterpTrackAnimControl'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackAnimControl_2'
-      GroupName="Space_Dude"
-      GroupColor=(B=229,G=0,R=58,A=255)
-      GroupAnimSets(0)=AnimSet'ZED_Clot_Anim.Alpha_Clot_Master'
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_6.InterpTrackMove_2'
+      GroupName="Space_clinger"
+      GroupColor=(B=0,G=213,R=105,A=255)
+      Name="InterpGroup_6"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.015625,Y=0.017578,Z=0.000000),ArriveTangent=(X=0.005198,Y=0.005807,Z=0.000000),LeaveTangent=(X=0.005198,Y=0.005807,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=32.546875,Y=2.173828,Z=-53.093750),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=6.031494,Y=9.135132,Z=-8.267212),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=10.000000),(Time=12.900001)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_5.InterpTrackMove_1'
+      GroupName="Space_Pound"
+      GroupColor=(B=224,G=0,R=79,A=255)
+      Name="InterpGroup_5"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.900000,OutVal=(X=-350.890625,Y=12.187500,Z=-3219.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-930.157715),LeaveTangent=(X=0.000000,Y=0.000000,Z=-930.157715),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-350.750000,Y=3.187500,Z=-4737.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-447.037018),LeaveTangent=(X=0.000000,Y=0.000000,Z=-447.037018),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-350.890625,Y=12.187500,Z=-6840.000000),ArriveTangent=(X=-0.044118,Y=2.823529,Z=-335.593414),LeaveTangent=(X=-0.044118,Y=2.823529,Z=-335.593414),InterpMode=CIM_CurveAutoClamped),(InVal=13.500000,OutVal=(X=-351.125000,Y=27.187500,Z=-7701.000000),ArriveTangent=(X=-0.167412,Y=0.000000,Z=-390.057953),LeaveTangent=(X=-0.167412,Y=0.000000,Z=-390.057953),InterpMode=CIM_CurveAutoClamped),(InVal=17.000000,OutVal=(X=-830.718750,Y=25.750000,Z=-9663.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-425.228729),LeaveTangent=(X=0.000000,Y=0.000000,Z=-425.228729),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-830.515625,Y=34.750000,Z=-10536.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-436.931946),LeaveTangent=(X=0.000000,Y=0.000000,Z=-436.931946),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=-830.781250,Y=25.750000,Z=-13860.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.900000,OutVal=(X=0.000000,Y=0.000000,Z=0.878906),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=0.878906),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=0.878906),InterpMode=CIM_CurveAutoClamped),(InVal=13.500000,OutVal=(X=0.000000,Y=0.000000,Z=0.878906),InterpMode=CIM_CurveAutoClamped),(InVal=17.000000,OutVal=(X=0.000000,Y=59.765625,Z=-0.175781),ArriveTangent=(X=0.000000,Y=9.414581,Z=-0.351563),LeaveTangent=(X=0.000000,Y=9.414581,Z=-0.351563),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=75.937500,Z=-1.406250),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=0.000000,Y=75.937500,Z=-1.406250),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.900000),(Time=5.000000),(Time=10.000000),(Time=13.500000),(Time=17.000000),(Time=20.000000),(Time=25.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_4.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_4.InterpTrackFloatProp_0'
+      GroupName="NewCameraGroup"
+      GroupColor=(B=224,G=0,R=79,A=255)
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
@@ -14831,83 +14855,59 @@ Begin Object Class=InterpData Name=InterpData_1
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.900000,OutVal=(X=-350.890625,Y=12.187500,Z=-3219.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-930.157715),LeaveTangent=(X=0.000000,Y=0.000000,Z=-930.157715),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-350.750000,Y=3.187500,Z=-4737.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-447.037018),LeaveTangent=(X=0.000000,Y=0.000000,Z=-447.037018),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-350.890625,Y=12.187500,Z=-6840.000000),ArriveTangent=(X=-0.044118,Y=2.823529,Z=-335.593414),LeaveTangent=(X=-0.044118,Y=2.823529,Z=-335.593414),InterpMode=CIM_CurveAutoClamped),(InVal=13.500000,OutVal=(X=-351.125000,Y=27.187500,Z=-7701.000000),ArriveTangent=(X=-0.167412,Y=0.000000,Z=-390.057953),LeaveTangent=(X=-0.167412,Y=0.000000,Z=-390.057953),InterpMode=CIM_CurveAutoClamped),(InVal=17.000000,OutVal=(X=-830.718750,Y=25.750000,Z=-9663.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-425.228729),LeaveTangent=(X=0.000000,Y=0.000000,Z=-425.228729),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-830.515625,Y=34.750000,Z=-10536.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-436.931946),LeaveTangent=(X=0.000000,Y=0.000000,Z=-436.931946),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=-830.781250,Y=25.750000,Z=-13860.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.900000,OutVal=(X=0.000000,Y=0.000000,Z=0.878906),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=0.878906),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=0.878906),InterpMode=CIM_CurveAutoClamped),(InVal=13.500000,OutVal=(X=0.000000,Y=0.000000,Z=0.878906),InterpMode=CIM_CurveAutoClamped),(InVal=17.000000,OutVal=(X=0.000000,Y=59.765625,Z=-0.175781),ArriveTangent=(X=0.000000,Y=9.414581,Z=-0.351563),LeaveTangent=(X=0.000000,Y=9.414581,Z=-0.351563),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=75.937500,Z=-1.406250),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=0.000000,Y=75.937500,Z=-1.406250),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.900000),(Time=5.000000),(Time=10.000000),(Time=13.500000),(Time=17.000000),(Time=20.000000),(Time=25.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_4.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_4.InterpTrackFloatProp_0'
-      GroupName="NewCameraGroup"
-      GroupColor=(B=224,G=0,R=79,A=255)
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.015625,Y=0.017578,Z=0.000000),ArriveTangent=(X=0.005198,Y=0.005807,Z=0.000000),LeaveTangent=(X=0.005198,Y=0.005807,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=32.546875,Y=2.173828,Z=-53.093750),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=6.031494,Y=9.135132,Z=-8.267212),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=10.000000),(Time=12.900001)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_5.InterpTrackMove_1'
-      GroupName="Space_Pound"
-      GroupColor=(B=224,G=0,R=79,A=255)
-      Name="InterpGroup_5"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
+   Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=-67.015625,Y=15.375000,Z=-43.328125),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=-7.811279,Y=-15.029297,Z=-0.208740),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=10.000000),(Time=12.900001)))
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=0.031250,Y=-0.015625,Z=-0.015625),ArriveTangent=(X=0.000000,Y=-0.004328,Z=-0.004330),LeaveTangent=(X=0.000000,Y=-0.004328,Z=-0.004330),InterpMode=CIM_CurveAutoClamped),(InVal=18.100000,OutVal=(X=-670.453125,Y=-174.593750,Z=-974.226563),ArriveTangent=(X=-67.799805,Y=-20.687988,Z=-93.873535),LeaveTangent=(X=-67.799805,Y=-20.687988,Z=-93.873535),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=-1084.765625,Y=-331.023438,Z=-1501.992188),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,InterpMode=CIM_CurveAutoClamped),(InVal=18.100000,OutVal=(X=-1.527100,Y=27.927246,Z=-35.749512),ArriveTangent=(X=-0.014082,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.014082,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=-1.571045,Y=27.927246,Z=-35.749512),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=9.000000),(Time=18.100000),(Time=25.000000)))
          MoveFrame=IMF_RelativeToInitial
          Name="InterpTrackMove_2"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_6.InterpTrackMove_2'
-      GroupName="Space_clinger"
-      GroupColor=(B=0,G=213,R=105,A=255)
-      Name="InterpGroup_6"
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_2
+         AnimSeqs(0)=(StartTime=10.000000,AnimSeqName="Jump_F_Up",AnimPlayRate=0.031826)
+         AnimSeqs(1)=(StartTime=27.700001,AnimSeqName="Stumble_F_V3",AnimPlayRate=0.113653)
+         Name="InterpTrackAnimControl_2"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackMove_2'
+      InterpTracks(1)=InterpTrackAnimControl'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackAnimControl_2'
+      GroupName="Space_Dude"
+      GroupColor=(B=229,G=0,R=58,A=255)
+      GroupAnimSets(0)=AnimSet'ZED_Clot_Anim.Alpha_Clot_Master'
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_7
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.007813,Y=0.007813,Z=0.000000),ArriveTangent=(X=0.002599,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.002599,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=32.835938,Y=-27.406250,Z=-11.218750),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.900001,OutVal=(X=6.388550,Y=17.715454,Z=-11.228027),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=10.000000),(Time=12.900001)))
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(EventName="Event0")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_1.InterpTrackEvent_0'
+      GroupName="NewGroup"
+      GroupColor=(B=200,G=0,R=133,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=-0.015625,Y=-0.015625,Z=0.000000),ArriveTangent=(X=0.000000,Y=-0.005453,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.005453,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,OutVal=(X=0.007813,Y=-0.421875,Z=-318.796875),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=9.000000),(Time=12.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
+         Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_7.InterpTrackMove_3'
-      GroupName="Space_crawler"
-      GroupColor=(B=74,G=224,R=0,A=255)
-      Name="InterpGroup_7"
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Space_Dude_2"
+      GroupColor=(B=131,G=0,R=200,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="NewGroup",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=203,G=126,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=25.000000
    InterpGroups(0)=InterpGroupDirector'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0'
@@ -17554,7 +17554,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_38
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
-Begin Object Class=SeqVar_Named Name=SeqVar_Named_30
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_61
    ExpectedType=Class'Engine.SeqVar_Bool'
    FindVarName="Endless"
    ObjInstanceVersion=1
@@ -17564,11 +17564,11 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_30
    ObjColor=(B=0,G=0,R=255,A=255)
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Named_30"
+   Name="SeqVar_Named_61"
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
-Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_29
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_20
    VarName="Endless"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -17576,26 +17576,26 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_29
    ObjPosY=-8672
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Bool_29"
+   Name="SeqVar_Bool_20"
    ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
 End Object
 
-Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_11
+Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_6
    InputLinks(0)=(DrawY=-8686,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-8686,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_28'),DrawX=-9446,OverrideDelta=16)
-   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_30'),DrawX=-9390,OverrideDelta=68)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_31'),DrawX=-9446,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_61'),DrawX=-9390,OverrideDelta=68)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9480
    ObjPosY=-8720
    DrawWidth=128
    DrawHeight=61
-   Name="SeqAct_SetBool_11"
+   Name="SeqAct_SetBool_6"
    ObjectArchetype=SeqAct_SetBool'Engine.Default__SeqAct_SetBool'
 End Object
 
-Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_28
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_31
    bValue=1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -17603,7 +17603,7 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_28
    ObjPosY=-8608
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Bool_28"
+   Name="SeqVar_Bool_31"
    ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
 End Object
 
@@ -17626,7 +17626,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_13
    EventName="Endless"
    MaxWidth=166
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_11')),DrawY=-8614,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_6')),DrawY=-8614,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-9773,OverrideDelta=51)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -18108,13 +18108,13 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_32
 End Object
 
 Begin Object Class=KFSeqAct_SetPawnIconVisibility Name=KFSeqAct_SetPawnIconVisibility_1
-   InputLinks(0)=(DrawY=-6492,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-6472,OverrideDelta=33)
-   OutputLinks(0)=(DrawY=-6482,OverrideDelta=23)
+   InputLinks(0)=(DrawY=-6196,OverrideDelta=13)
+   InputLinks(1)=(DrawY=-6176,OverrideDelta=33)
+   OutputLinks(0)=(DrawY=-6186,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7408
-   ObjPosY=-6528
+   ObjPosX=-7632
+   ObjPosY=-6232
    DrawWidth=165
    DrawHeight=69
    Name="KFSeqAct_SetPawnIconVisibility_1"
@@ -18203,54 +18203,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_6
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((OutVal=(X=0.000488,Y=-0.000244,Z=-0.000046),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=1235.437500,Y=-37.197266,Z=122.999756),ArriveTangent=(X=205.828552,Y=-5.174539,Z=0.000000),LeaveTangent=(X=205.828552,Y=-5.174539,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.800000,OutVal=(X=1688.384766,Y=-47.273438,Z=-6.000488),ArriveTangent=(X=0.000000,Y=-9.487793,Z=0.000000),LeaveTangent=(X=0.000000,Y=-9.487793,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1621.267578,Y=-706.878906,Z=32.999268),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=2559.978516,Y=-692.146484,Z=8.999023),ArriveTangent=(X=180.846481,Y=0.000000,Z=-0.000122),LeaveTangent=(X=180.846481,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=3429.732422,Y=-1252.427734,Z=8.998779),ArriveTangent=(X=136.315430,Y=-127.342773,Z=0.000000),LeaveTangent=(X=136.315430,Y=-127.342773,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=3923.132813,Y=-1965.574219,Z=92.998535),ArriveTangent=(X=101.204689,Y=-95.107521,Z=0.000000),LeaveTangent=(X=101.204689,Y=-95.107521,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=4441.779297,Y=-2257.412109,Z=44.998291),ArriveTangent=(X=138.050903,Y=-107.478088,Z=0.000000),LeaveTangent=(X=138.050903,Y=-107.478088,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=35.100002,OutVal=(X=5317.447266,Y=-3323.825195,Z=308.998047),ArriveTangent=(X=165.170700,Y=-143.217453,Z=0.000000),LeaveTangent=(X=165.170700,Y=-143.217453,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=6093.486328,Y=-3764.087891,Z=308.997803),ArriveTangent=(X=0.000000,Y=-155.143890,Z=-0.000049),LeaveTangent=(X=0.000000,Y=-155.143890,Z=-0.000049),InterpMode=CIM_CurveAutoClamped),(InVal=45.000000,OutVal=(X=6088.986328,Y=-5064.296875,Z=308.997559),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=6112.812500,Y=-4397.511719,Z=293.997314),ArriveTangent=(X=10.532366,Y=0.000000,Z=0.000000),LeaveTangent=(X=10.532366,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=54.900002,OutVal=(X=6322.492188,Y=-5162.096680,Z=389.997070),ArriveTangent=(X=80.846214,Y=0.000000,Z=32.190445),LeaveTangent=(X=80.846214,Y=0.000000,Z=32.190445),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=7194.386719,Y=-5130.053711,Z=641.996948),ArriveTangent=(X=160.026123,Y=0.000000,Z=31.156866),LeaveTangent=(X=160.026123,Y=0.000000,Z=31.156866),InterpMode=CIM_CurveAutoClamped),(InVal=65.200005,OutVal=(X=7970.761719,Y=-5163.400391,Z=737.996948),ArriveTangent=(X=127.379295,Y=-15.675430,Z=0.000000),LeaveTangent=(X=127.379295,Y=-15.675430,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=8468.179688,Y=-5984.695313,Z=671.996948),ArriveTangent=(X=0.005013,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.005013,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=74.900002,OutVal=(X=8468.189453,Y=-5984.693359,Z=671.996948),ArriveTangent=(X=0.004897,Y=0.000977,Z=0.000000),LeaveTangent=(X=0.004897,Y=0.000977,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=80.099998,OutVal=(X=8619.263672,Y=-4905.714844,Z=701.996948),ArriveTangent=(X=0.000000,Y=220.360321,Z=0.000000),LeaveTangent=(X=0.000000,Y=220.360321,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=85.200005,OutVal=(X=8588.486328,Y=-3714.981445,Z=626.996948),ArriveTangent=(X=0.000000,Y=58.367035,Z=0.000000),LeaveTangent=(X=0.000000,Y=58.367035,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.099998,OutVal=(X=9511.970703,Y=-3583.337891,Z=704.996948),ArriveTangent=(X=159.354752,Y=52.967518,Z=0.000000),LeaveTangent=(X=159.354752,Y=52.967518,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=95.400002,OutVal=(X=10213.904297,Y=-2875.787109,Z=671.996948),ArriveTangent=(X=0.000000,Y=126.443443,Z=0.000000),LeaveTangent=(X=0.000000,Y=126.443443,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=99.800003,OutVal=(X=10122.628906,Y=-2356.835938,Z=683.996948),ArriveTangent=(X=0.000000,Y=40.718750,Z=3.367346),LeaveTangent=(X=0.000000,Y=40.718750,Z=3.367346),InterpMode=CIM_CurveAutoClamped),(InVal=105.200005,OutVal=(X=10724.857422,Y=-2255.169922,Z=704.996948),ArriveTangent=(X=31.126877,Y=36.850750,Z=5.000001),LeaveTangent=(X=31.126877,Y=36.850750,Z=5.000001),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=10796.166016,Y=-1874.138672,Z=734.996948),ArriveTangent=(X=32.140640,Y=0.000000,Z=12.057251),LeaveTangent=(X=32.140640,Y=0.000000,Z=12.057251),InterpMode=CIM_CurveAutoClamped),(InVal=115.099998,OutVal=(X=11456.914063,Y=-1890.650391,Z=875.996948),ArriveTangent=(X=68.147606,Y=0.000000,Z=24.059410),LeaveTangent=(X=68.147606,Y=0.000000,Z=24.059410),InterpMode=CIM_CurveAutoClamped),(InVal=120.099998,OutVal=(X=11643.615234,Y=-750.763672,Z=977.996948),ArriveTangent=(X=0.000000,Y=35.105812,Z=0.000000),LeaveTangent=(X=0.000000,Y=35.105812,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=124.800003,OutVal=(X=10533.861328,Y=-678.251953,Z=947.996948),ArriveTangent=(X=-187.751419,Y=12.393064,Z=-7.128714),LeaveTangent=(X=-187.751419,Y=12.393064,Z=-7.128714),InterpMode=CIM_CurveAutoClamped),(InVal=130.199997,OutVal=(X=9747.326172,Y=-625.593750,Z=905.996948),ArriveTangent=(X=0.000000,Y=23.799004,Z=0.000000),LeaveTangent=(X=0.000000,Y=23.799004,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=9808.230469,Y=381.023438,Z=905.996948),ArriveTangent=(X=26.900091,Y=110.107262,Z=0.000000),LeaveTangent=(X=26.900091,Y=110.107262,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=140.199997,OutVal=(X=10316.410156,Y=689.248047,Z=890.996948),ArriveTangent=(X=0.000000,Y=112.082169,Z=-6.688019),LeaveTangent=(X=0.000000,Y=112.082169,Z=-6.688019),InterpMode=CIM_CurveAutoClamped),(InVal=145.300003,OutVal=(X=10276.843750,Y=1861.599609,Z=677.996948),ArriveTangent=(X=-18.554733,Y=31.213509,Z=-33.599998),LeaveTangent=(X=-18.554733,Y=31.213509,Z=-33.599998),InterpMode=CIM_CurveAutoClamped),(InVal=150.199997,OutVal=(X=9466.962891,Y=1927.781250,Z=554.996948),ArriveTangent=(X=-165.766800,Y=0.000000,Z=0.000000),LeaveTangent=(X=-165.766800,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=8668.906250,Y=1839.628906,Z=563.996948),ArriveTangent=(X=-84.917358,Y=-27.636591,Z=1.855668),LeaveTangent=(X=-84.917358,Y=-27.636591,Z=1.855668),InterpMode=CIM_CurveAutoClamped),(InVal=159.900009,OutVal=(X=8445.115234,Y=1657.980469,Z=572.996948),ArriveTangent=(X=-88.225784,Y=-27.698385,Z=0.000000),LeaveTangent=(X=-88.225784,Y=-27.698385,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=165.199997,OutVal=(X=7353.433594,Y=1557.105469,Z=551.996948),ArriveTangent=(X=-212.236038,Y=-42.676952,Z=0.000000),LeaveTangent=(X=-212.236038,Y=-42.676952,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=170.000000,OutVal=(X=6301.533203,Y=749.861328,Z=632.996948),ArriveTangent=(X=-107.259224,Y=-199.242233,Z=12.013713),LeaveTangent=(X=-107.259224,Y=-199.242233,Z=12.013713),InterpMode=CIM_CurveAutoClamped),(InVal=175.100006,OutVal=(X=6013.976563,Y=-415.394531,Z=671.996948),ArriveTangent=(X=-104.664330,Y=0.000000,Z=0.000000),LeaveTangent=(X=-104.664330,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=179.900009,OutVal=(X=5051.324219,Y=-277.029297,Z=632.996948),ArriveTangent=(X=-152.659302,Y=5.134851,Z=-12.025214),LeaveTangent=(X=-152.659302,Y=5.134851,Z=-12.025214),InterpMode=CIM_CurveAutoClamped),(InVal=185.000000,OutVal=(X=4502.650391,Y=-265.744141,Z=551.996948),ArriveTangent=(X=-29.591408,Y=5.295435,Z=-33.894154),LeaveTangent=(X=-29.591408,Y=5.295435,Z=-33.894154),InterpMode=CIM_CurveAutoClamped),(InVal=189.900009,OutVal=(X=4434.945313,Y=-32.189453,Z=20.996826),ArriveTangent=(X=-29.762568,Y=98.374886,Z=-0.000126),LeaveTangent=(X=-29.762568,Y=98.374886,Z=-0.000126),InterpMode=CIM_CurveAutoClamped),(InVal=194.800003,OutVal=(X=3917.564453,Y=1337.064453,Z=20.996582),ArriveTangent=(X=-130.577545,Y=180.292816,Z=-0.000122),LeaveTangent=(X=-130.577545,Y=180.292816,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=3116.113281,Y=1896.916016,Z=11.996338),ArriveTangent=(X=-106.909897,Y=76.504768,Z=-1.747620),LeaveTangent=(X=-106.909897,Y=76.504768,Z=-1.747620),InterpMode=CIM_CurveAutoClamped),(InVal=205.100006,OutVal=(X=2772.136719,Y=2147.132813,Z=2.996094),ArriveTangent=(X=0.000000,Y=94.754868,Z=0.000000),LeaveTangent=(X=0.000000,Y=94.754868,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=210.100006,OutVal=(X=2810.394531,Y=3181.271484,Z=125.995850),ArriveTangent=(X=15.580853,Y=213.645905,Z=14.931433),LeaveTangent=(X=15.580853,Y=213.645905,Z=14.931433),InterpMode=CIM_CurveAutoClamped),(InVal=214.900009,OutVal=(X=3003.837891,Y=4240.863281,Z=167.995605),ArriveTangent=(X=83.795021,Y=0.000000,Z=1.399061),LeaveTangent=(X=83.795021,Y=0.000000,Z=1.399061),InterpMode=CIM_CurveAutoClamped),(InVal=219.900009,OutVal=(X=4293.775391,Y=4000.705078,Z=170.995361),ArriveTangent=(X=222.726883,Y=-46.090618,Z=1.485173),LeaveTangent=(X=222.726883,Y=-46.090618,Z=1.485173),InterpMode=CIM_CurveAutoClamped),(InVal=224.699997,OutVal=(X=5186.558594,Y=3789.175781,Z=326.995117),ArriveTangent=(X=171.017914,Y=0.000000,Z=4.095802),LeaveTangent=(X=171.017914,Y=0.000000,Z=4.095802),InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=6021.054688,Y=3801.482422,Z=335.994873),ArriveTangent=(X=33.234348,Y=0.000000,Z=4.081289),LeaveTangent=(X=33.234348,Y=0.000000,Z=4.081289),InterpMode=CIM_CurveAutoClamped),(InVal=235.100006,OutVal=(X=6097.369141,Y=2696.912109,Z=539.994751),ArriveTangent=(X=0.000000,Y=-142.510834,Z=18.167589),LeaveTangent=(X=0.000000,Y=-142.510834,Z=18.167589),InterpMode=CIM_CurveAutoClamped),(InVal=239.800003,OutVal=(X=5982.132813,Y=2284.380859,Z=584.994751),ArriveTangent=(X=0.000000,Y=-60.113010,Z=4.488750),LeaveTangent=(X=0.000000,Y=-60.113010,Z=4.488750),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=6882.859375,Y=2091.494141,Z=596.994751),ArriveTangent=(X=128.013336,Y=0.000000,Z=0.000000),LeaveTangent=(X=128.013336,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=250.199997,OutVal=(X=7321.269531,Y=2400.050781,Z=386.994629),ArriveTangent=(X=110.054688,Y=0.000000,Z=-37.500038),LeaveTangent=(X=110.054688,Y=0.000000,Z=-37.500038),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=7983.406250,Y=2382.447266,Z=221.994385),ArriveTangent=(X=23.830242,Y=0.000000,Z=0.000000),LeaveTangent=(X=23.830242,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=259.899994,OutVal=(X=8034.099609,Y=3447.197266,Z=242.994141),ArriveTangent=(X=0.000000,Y=214.578888,Z=0.000000),LeaveTangent=(X=0.000000,Y=214.578888,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=265.100006,OutVal=(X=6874.826172,Y=4549.695313,Z=-75.006104),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000126),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000126),InterpMode=CIM_CurveAutoClamped),(InVal=269.899994,OutVal=(X=6874.833984,Y=4549.695313,Z=-75.006348),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000049),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000049),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=6750.914063,Y=3095.777344,Z=-75.006592),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000120),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000120),InterpMode=CIM_CurveAutoClamped),(InVal=280.100006,OutVal=(X=7810.781250,Y=3190.593750,Z=-378.006897),ArriveTangent=(X=207.738968,Y=17.499170,Z=-13.849108),LeaveTangent=(X=207.738968,Y=17.499170,Z=-13.849108),InterpMode=CIM_CurveAutoClamped),(InVal=284.800018,OutVal=(X=8786.759766,Y=3267.269531,Z=-408.007263),ArriveTangent=(X=212.664871,Y=0.000000,Z=-12.578855),LeaveTangent=(X=212.664871,Y=0.000000,Z=-12.578855),InterpMode=CIM_CurveAutoClamped),(InVal=290.000000,OutVal=(X=9916.162109,Y=3032.224609,Z=-576.007629),ArriveTangent=(X=57.701431,Y=-34.945873,Z=-5.452625),LeaveTangent=(X=57.701431,Y=-34.945873,Z=-5.452625),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=10050.125000,Y=2910.822266,Z=-588.007996),ArriveTangent=(X=11.022181,Y=-56.115944,Z=-5.485758),LeaveTangent=(X=11.022181,Y=-56.115944,Z=-5.485758),InterpMode=CIM_CurveAutoClamped),(InVal=299.899994,OutVal=(X=10077.431641,Y=1258.269531,Z=-732.008362),ArriveTangent=(X=2.259202,Y=-338.880859,Z=0.000000),LeaveTangent=(X=2.259202,Y=-338.880859,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=305.000000,OutVal=(X=10083.162109,Y=-477.986328,Z=-726.008728),ArriveTangent=(X=2.214790,Y=-288.634369,Z=0.000000),LeaveTangent=(X=2.214790,Y=-288.634369,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=309.899994,OutVal=(X=10108.138672,Y=-1628.074219,Z=-729.009094),ArriveTangent=(X=0.000000,Y=-181.090042,Z=0.000000),LeaveTangent=(X=0.000000,Y=-181.090042,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=315.000000,OutVal=(X=10049.128906,Y=-2288.886719,Z=-702.009460),ArriveTangent=(X=-26.890312,Y=-148.499390,Z=0.000000),LeaveTangent=(X=-26.890312,Y=-148.499390,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=320.000000,OutVal=(X=9186.791016,Y=-3127.918945,Z=-744.009827),ArriveTangent=(X=-198.958450,Y=-88.598633,Z=-0.000186),LeaveTangent=(X=-198.958450,Y=-88.598633,Z=-0.000186),InterpMode=CIM_CurveAutoClamped),(InVal=324.899994,OutVal=(X=8079.441406,Y=-3366.165039,Z=-744.010193),ArriveTangent=(X=-87.939697,Y=-22.603168,Z=0.000000),LeaveTangent=(X=-87.939697,Y=-22.603168,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=329.800018,OutVal=(X=7865.650391,Y=-3424.004883,Z=-699.010559),ArriveTangent=(X=0.000000,Y=-26.752419,Z=19.331348),LeaveTangent=(X=0.000000,Y=-26.752419,Z=19.331348),InterpMode=CIM_CurveAutoClamped),(InVal=335.000000,OutVal=(X=8037.402344,Y=-4277.837891,Z=-360.010864),ArriveTangent=(X=64.262756,Y=-111.127304,Z=0.000000),LeaveTangent=(X=64.262756,Y=-111.127304,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=339.899994,OutVal=(X=8724.593750,Y=-4617.796875,Z=-366.011108),ArriveTangent=(X=8.477283,Y=0.000000,Z=0.000000),LeaveTangent=(X=8.477283,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=345.000000,OutVal=(X=8742.193359,Y=-3412.580078,Z=-21.011353),ArriveTangent=(X=8.251053,Y=289.609039,Z=0.000000),LeaveTangent=(X=8.251053,Y=289.609039,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=350.100006,OutVal=(X=9202.824219,Y=-1663.781250,Z=-27.011597),ArriveTangent=(X=0.003891,Y=0.000000,Z=-0.000121),LeaveTangent=(X=0.003891,Y=0.000000,Z=-0.000121),InterpMode=CIM_CurveAutoClamped),(InVal=355.100006,OutVal=(X=9202.832031,Y=-1663.781250,Z=-27.011841),ArriveTangent=(X=0.003887,Y=0.000000,Z=-0.000121),LeaveTangent=(X=0.003887,Y=0.000000,Z=-0.000121),InterpMode=CIM_CurveAutoClamped),(InVal=360.200012,OutVal=(X=9802.718750,Y=-633.375000,Z=-96.012085),ArriveTangent=(X=0.000000,Y=204.887711,Z=-0.262959),LeaveTangent=(X=0.000000,Y=204.887711,Z=-0.262959),InterpMode=CIM_CurveAutoClamped),(InVal=365.200012,OutVal=(X=9645.203125,Y=405.585938,Z=-96.545776),ArriveTangent=(X=-42.332508,Y=228.859894,Z=-0.217012),LeaveTangent=(X=-42.332508,Y=228.859894,Z=-0.217012),InterpMode=CIM_CurveAutoClamped),(InVal=370.300018,OutVal=(X=9375.160156,Y=1678.111328,Z=-99.546021),ArriveTangent=(X=0.000000,Y=206.698761,Z=0.000000),LeaveTangent=(X=0.000000,Y=206.698761,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=375.100006,OutVal=(X=9487.800781,Y=2451.902344,Z=-69.546265),ArriveTangent=(X=51.658432,Y=0.000000,Z=0.000000),LeaveTangent=(X=51.658432,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=380.200012,OutVal=(X=10703.427734,Y=1897.425781,Z=-84.546509),ArriveTangent=(X=210.577972,Y=-126.265266,Z=-4.545506),LeaveTangent=(X=210.577972,Y=-126.265266,Z=-4.545506),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=11572.521484,Y=1201.876953,Z=-114.546753),ArriveTangent=(X=0.000000,Y=-164.385727,Z=-13.432064),LeaveTangent=(X=0.000000,Y=-164.385727,Z=-13.432064),InterpMode=CIM_CurveAutoClamped),(InVal=390.300018,OutVal=(X=11480.269531,Y=237.128906,Z=-408.547058),ArriveTangent=(X=-32.707512,Y=-126.931007,Z=-7.230925),LeaveTangent=(X=-32.707512,Y=-126.931007,Z=-7.230925),InterpMode=CIM_CurveAutoClamped),(InVal=395.000000,OutVal=(X=11183.703125,Y=-145.714844,Z=-423.547424),ArriveTangent=(X=-103.943100,Y=-11.361528,Z=-7.352470),LeaveTangent=(X=-103.943100,Y=-11.361528,Z=-7.352470),InterpMode=CIM_CurveAutoClamped),(InVal=400.100006,OutVal=(X=10357.095703,Y=-170.025391,Z=-738.547791),ArriveTangent=(X=-156.352341,Y=-11.840805,Z=0.000000),LeaveTangent=(X=-156.352341,Y=-11.840805,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=9620.179688,Y=-1682.597656,Z=-714.548157),ArriveTangent=(X=-217.391449,Y=-246.082901,Z=0.000000),LeaveTangent=(X=-217.391449,Y=-246.082901,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=409.899994,OutVal=(X=8226.662109,Y=-2581.634766,Z=-714.548523),ArriveTangent=(X=-223.598267,Y=0.000000,Z=-0.000183),LeaveTangent=(X=-223.598267,Y=0.000000,Z=-0.000183),InterpMode=CIM_CurveAutoClamped),(InVal=415.200012,OutVal=(X=7339.474609,Y=-2306.673828,Z=-717.548889),ArriveTangent=(X=-136.751175,Y=63.901562,Z=0.000000),LeaveTangent=(X=-136.751175,Y=63.901562,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=419.899994,OutVal=(X=6859.150391,Y=-1942.619141,Z=-666.549255),ArriveTangent=(X=-125.917076,Y=3.930923,Z=16.732449),LeaveTangent=(X=-125.917076,Y=3.930923,Z=16.732449),InterpMode=CIM_CurveAutoClamped),(InVal=424.800018,OutVal=(X=6130.669922,Y=-1934.820313,Z=-552.549622),ArriveTangent=(X=-30.894497,Y=3.851715,Z=19.999905),LeaveTangent=(X=-30.894497,Y=3.851715,Z=19.999905),InterpMode=CIM_CurveAutoClamped),(InVal=430.100006,OutVal=(X=6059.236328,Y=-905.585938,Z=-462.549988),ArriveTangent=(X=-32.163261,Y=167.982040,Z=2.723945),LeaveTangent=(X=-32.163261,Y=167.982040,Z=2.723945),InterpMode=CIM_CurveAutoClamped),(InVal=435.100006,OutVal=(X=4780.597656,Y=-204.607422,Z=-456.550354),ArriveTangent=(X=0.000000,Y=153.084335,Z=0.000000),LeaveTangent=(X=0.000000,Y=153.084335,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=439.899994,OutVal=(X=5623.990234,Y=594.638672,Z=-504.550720),ArriveTangent=(X=214.012894,Y=185.313675,Z=-9.896970),LeaveTangent=(X=214.012894,Y=185.313675,Z=-9.896970),InterpMode=CIM_CurveAutoClamped),(InVal=444.800018,OutVal=(X=6856.525391,Y=1592.937500,Z=-552.551086),ArriveTangent=(X=207.822617,Y=165.428818,Z=0.000000),LeaveTangent=(X=207.822617,Y=165.428818,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=450.000000,OutVal=(X=7723.000000,Y=2265.470703,Z=-378.551453),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=-1.054688),InterpMode=CIM_CurveAutoClamped),(InVal=7.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.351563),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.137487),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.137487),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.175781),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-1.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.678977),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.678977),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-48.515625),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=0.000000,Y=0.000000,Z=48.691406),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.912109),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.912109),InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=130.605469),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.343403),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.343403),InterpMode=CIM_CurveAutoClamped),(InVal=35.100002,OutVal=(X=0.000000,Y=0.000000,Z=131.308594),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.303014),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.303014),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=136.933594),InterpMode=CIM_CurveAutoClamped),(InVal=45.000000,OutVal=(X=0.000000,Y=0.000000,Z=88.066406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.587761),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.587761),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=28.652344,Z=-45.527344),InterpMode=CIM_CurveAutoClamped),(InVal=54.900002,OutVal=(X=0.000000,Y=21.972656,Z=0.175781),ArriveTangent=(X=0.000000,Y=-2.645576,Z=0.000000),LeaveTangent=(X=0.000000,Y=-2.645576,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=-9.140625,Z=0.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.079966),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.079966),InterpMode=CIM_CurveAutoClamped),(InVal=65.200005,OutVal=(X=0.000000,Y=-4.218750,Z=-2.988281),ArriveTangent=(X=0.000000,Y=1.911091,Z=-1.387505),LeaveTangent=(X=0.000000,Y=1.911091,Z=-1.387505),InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=0.000000,Y=18.105469,Z=-60.996094),ArriveTangent=(X=0.000000,Y=0.000000,Z=-19.205399),LeaveTangent=(X=0.000000,Y=0.000000,Z=-19.205399),InterpMode=CIM_CurveAutoClamped),(InVal=74.900002,OutVal=(X=0.000000,Y=13.007813,Z=-197.226563),ArriveTangent=(X=0.000000,Y=-1.571227,Z=-13.764880),LeaveTangent=(X=0.000000,Y=-1.571227,Z=-13.764880),InterpMode=CIM_CurveAutoClamped),(InVal=80.099998,OutVal=(X=0.000000,Y=1.933594,Z=-235.019531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.765092),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.765092),InterpMode=CIM_CurveAutoClamped),(InVal=85.200005,OutVal=(X=0.000000,Y=1.933594,Z=-277.207031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.751631),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.751631),InterpMode=CIM_CurveAutoClamped),(InVal=90.099998,OutVal=(X=0.000000,Y=-0.527344,Z=-362.988281),ArriveTangent=(X=0.000000,Y=0.000000,Z=-14.303773),LeaveTangent=(X=0.000000,Y=0.000000,Z=-14.303773),InterpMode=CIM_CurveAutoClamped),(InVal=95.400002,OutVal=(X=0.000000,Y=8.437500,Z=-423.105469),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.859172),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.859172),InterpMode=CIM_CurveAutoClamped),(InVal=99.800003,OutVal=(X=0.000000,Y=-0.175781,Z=-445.429688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.867209),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.867209),InterpMode=CIM_CurveAutoClamped),(InVal=105.200005,OutVal=(X=0.000000,Y=5.273438,Z=-534.726563),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.313595),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.313595),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=0.000000,Y=-4.394531,Z=-539.648438),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.644532),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.644532),InterpMode=CIM_CurveAutoClamped),(InVal=115.099998,OutVal=(X=0.000000,Y=-4.394531,Z=-541.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.681785),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.681785),InterpMode=CIM_CurveAutoClamped),(InVal=120.099998,OutVal=(X=0.000000,Y=1.757813,Z=-547.734375),InterpMode=CIM_CurveAutoClamped),(InVal=124.800003,OutVal=(X=0.000000,Y=-4.570313,Z=-539.472656),InterpMode=CIM_CurveAutoClamped),(InVal=130.199997,OutVal=(X=0.000000,Y=-4.570313,Z=-634.042969),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=0.000000,Y=-4.570313,Z=-628.417969),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.654813),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.654813),InterpMode=CIM_CurveAutoClamped),(InVal=140.199997,OutVal=(X=0.000000,Y=-4.570313,Z=-538.066406),InterpMode=CIM_CurveAutoClamped),(InVal=145.300003,OutVal=(X=0.000000,Y=-4.570313,Z=-538.066406),InterpMode=CIM_CurveAutoClamped),(InVal=150.199997,OutVal=(X=0.000000,Y=-4.570313,Z=-586.230469),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=0.000000,Y=2.636719,Z=-432.246094),ArriveTangent=(X=0.000000,Y=2.779759,Z=18.587578),LeaveTangent=(X=0.000000,Y=2.779759,Z=18.587578),InterpMode=CIM_CurveAutoClamped),(InVal=159.900009,OutVal=(X=0.000000,Y=29.531250,Z=-380.566406),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.358005),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.358005),InterpMode=CIM_CurveAutoClamped),(InVal=165.199997,OutVal=(X=0.000000,Y=-4.921875,Z=-361.230469),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.994977),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.994977),InterpMode=CIM_CurveAutoClamped),(InVal=170.000000,OutVal=(X=0.000000,Y=-3.691406,Z=-330.117188),ArriveTangent=(X=0.000000,Y=0.563874,Z=3.695017),LeaveTangent=(X=0.000000,Y=0.563874,Z=3.695017),InterpMode=CIM_CurveAutoClamped),(InVal=175.100006,OutVal=(X=0.000000,Y=9.492188,Z=-319.570313),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.832441),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.832441),InterpMode=CIM_CurveAutoClamped),(InVal=179.900009,OutVal=(X=0.000000,Y=-2.812500,Z=-179.472656),ArriveTangent=(X=0.000000,Y=-2.130683,Z=17.688042),LeaveTangent=(X=0.000000,Y=-2.130683,Z=17.688042),InterpMode=CIM_CurveAutoClamped),(InVal=185.000000,OutVal=(X=0.000000,Y=-11.601563,Z=-127.441406),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.876953),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.876953),InterpMode=CIM_CurveAutoClamped),(InVal=189.900009,OutVal=(X=0.000000,Y=-3.867188,Z=-90.703125),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.349647),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.349647),InterpMode=CIM_CurveAutoClamped),(InVal=194.800003,OutVal=(X=0.000000,Y=-3.867188,Z=-65.214844),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.621524),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.621524),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=0.000000,Y=-3.867188,Z=-33.925781),ArriveTangent=(X=0.000000,Y=0.000000,Z=10.098247),LeaveTangent=(X=0.000000,Y=0.000000,Z=10.098247),InterpMode=CIM_CurveAutoClamped),(InVal=205.100006,OutVal=(X=0.000000,Y=4.746094,Z=46.933594),ArriveTangent=(X=0.000000,Y=1.100519,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.100519,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=210.100006,OutVal=(X=0.000000,Y=8.085938,Z=-1.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.564809),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.564809),InterpMode=CIM_CurveAutoClamped),(InVal=214.900009,OutVal=(X=0.000000,Y=2.460938,Z=-56.601563),ArriveTangent=(X=0.000000,Y=-1.237643,Z=-11.641020),LeaveTangent=(X=0.000000,Y=-1.237643,Z=-11.641020),InterpMode=CIM_CurveAutoClamped),(InVal=219.900009,OutVal=(X=0.000000,Y=-4.042969,Z=-116.015625),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.304628),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.304628),InterpMode=CIM_CurveAutoClamped),(InVal=224.699997,OutVal=(X=0.000000,Y=-4.042969,Z=-216.386719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.655724),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.655724),InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-284.238281),InterpMode=CIM_CurveAutoClamped),(InVal=235.100006,OutVal=(X=0.000000,Y=-5.800781,Z=-271.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.439502),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.439502),InterpMode=CIM_CurveAutoClamped),(InVal=239.800003,OutVal=(X=0.000000,Y=-4.042969,Z=-181.757813),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-268.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=-17.206289),LeaveTangent=(X=0.000000,Y=0.000000,Z=-17.206289),InterpMode=CIM_CurveAutoClamped),(InVal=250.199997,OutVal=(X=0.000000,Y=-19.160156,Z=-360.703125),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=0.000000,Y=-5.625000,Z=-272.812500),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.474771),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.474771),InterpMode=CIM_CurveAutoClamped),(InVal=259.899994,OutVal=(X=0.000000,Y=-5.625000,Z=-269.824219),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.437542),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.437542),InterpMode=CIM_CurveAutoClamped),(InVal=265.100006,OutVal=(X=0.000000,Y=-3.867188,Z=-182.812500),ArriveTangent=(X=0.000000,Y=0.805487,Z=22.025391),LeaveTangent=(X=0.000000,Y=0.805487,Z=22.025391),InterpMode=CIM_CurveAutoClamped),(InVal=269.899994,OutVal=(X=0.000000,Y=23.906250,Z=-49.570313),ArriveTangent=(X=0.000000,Y=0.000000,Z=24.627146),LeaveTangent=(X=0.000000,Y=0.000000,Z=24.627146),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=0.000000,Y=10.019531,Z=60.996094),ArriveTangent=(X=0.000000,Y=-2.636716,Z=10.772146),LeaveTangent=(X=0.000000,Y=-2.636716,Z=10.772146),InterpMode=CIM_CurveAutoClamped),(InVal=280.100006,OutVal=(X=0.000000,Y=-2.988281,Z=90.351563),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.712836),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.712836),InterpMode=CIM_CurveAutoClamped),(InVal=284.800018,OutVal=(X=0.000000,Y=8.964844,Z=136.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.315345),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.315345),InterpMode=CIM_CurveAutoClamped),(InVal=290.000000,OutVal=(X=0.000000,Y=8.964844,Z=162.773438),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.734918),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.734918),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=0.000000,Y=-2.285156,Z=268.066406),InterpMode=CIM_CurveAutoClamped),(InVal=299.899994,OutVal=(X=0.000000,Y=-2.285156,Z=267.714844),InterpMode=CIM_CurveAutoClamped),(InVal=305.000000,OutVal=(X=0.000000,Y=-2.285156,Z=267.890625),InterpMode=CIM_CurveAutoClamped),(InVal=309.899994,OutVal=(X=0.000000,Y=-2.285156,Z=261.914063),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.800495),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.800495),InterpMode=CIM_CurveAutoClamped),(InVal=315.000000,OutVal=(X=0.000000,Y=0.878906,Z=165.585938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.815271),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.815271),InterpMode=CIM_CurveAutoClamped),(InVal=320.000000,OutVal=(X=0.000000,Y=-1.054688,Z=51.679688),InterpMode=CIM_CurveAutoClamped),(InVal=324.899994,OutVal=(X=0.000000,Y=-1.054688,Z=55.898438),InterpMode=CIM_CurveAutoClamped),(InVal=329.800018,OutVal=(X=0.000000,Y=14.765625,Z=-45.175781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.509695),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.509695),InterpMode=CIM_CurveAutoClamped),(InVal=335.000000,OutVal=(X=0.000000,Y=-2.812500,Z=-60.996094),InterpMode=CIM_CurveAutoClamped),(InVal=339.899994,OutVal=(X=0.000000,Y=5.976563,Z=103.886719),ArriveTangent=(X=0.000000,Y=0.000000,Z=26.630859),LeaveTangent=(X=0.000000,Y=0.000000,Z=26.630859),InterpMode=CIM_CurveAutoClamped),(InVal=345.000000,OutVal=(X=0.000000,Y=4.042969,Z=205.312500),ArriveTangent=(X=0.000000,Y=-0.396369,Z=10.697228),LeaveTangent=(X=0.000000,Y=-0.396369,Z=10.697228),InterpMode=CIM_CurveAutoClamped),(InVal=350.100006,OutVal=(X=0.000000,Y=1.933594,Z=235.371094),ArriveTangent=(X=0.000000,Y=-0.609143,Z=11.434244),LeaveTangent=(X=0.000000,Y=-0.609143,Z=11.434244),InterpMode=CIM_CurveAutoClamped),(InVal=355.100006,OutVal=(X=0.000000,Y=-2.109375,Z=361.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.853135),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.853135),InterpMode=CIM_CurveAutoClamped),(InVal=360.200012,OutVal=(X=0.000000,Y=-2.109375,Z=363.691406),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.846488),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.846488),InterpMode=CIM_CurveAutoClamped),(InVal=365.200012,OutVal=(X=0.000000,Y=-2.109375,Z=449.296875),InterpMode=CIM_CurveAutoClamped),(InVal=370.300018,OutVal=(X=0.000000,Y=-2.109375,Z=446.308594),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.455409),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.455409),InterpMode=CIM_CurveAutoClamped),(InVal=375.100006,OutVal=(X=0.000000,Y=-2.109375,Z=307.089844),InterpMode=CIM_CurveAutoClamped),(InVal=380.200012,OutVal=(X=0.000000,Y=-2.109375,Z=330.117188),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=0.000000,Y=-6.503906,Z=264.023438),InterpMode=CIM_CurveAutoClamped),(InVal=390.300018,OutVal=(X=0.000000,Y=-2.285156,Z=264.199219),InterpMode=CIM_CurveAutoClamped),(InVal=395.000000,OutVal=(X=0.000000,Y=-2.285156,Z=178.242188),InterpMode=CIM_CurveAutoClamped),(InVal=400.100006,OutVal=(X=0.000000,Y=-8.085938,Z=181.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.560775),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.560775),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=0.000000,Y=-8.085938,Z=245.917969),InterpMode=CIM_CurveAutoClamped),(InVal=409.899994,OutVal=(X=0.000000,Y=-6.152344,Z=179.296875),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.339601),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.339601),InterpMode=CIM_CurveAutoClamped),(InVal=415.200012,OutVal=(X=0.000000,Y=-6.152344,Z=130.253906),InterpMode=CIM_CurveAutoClamped),(InVal=419.899994,OutVal=(X=0.000000,Y=-6.152344,Z=178.769531),InterpMode=CIM_CurveAutoClamped),(InVal=424.800018,OutVal=(X=0.000000,Y=-3.867188,Z=81.386719),InterpMode=CIM_CurveAutoClamped),(InVal=430.100006,OutVal=(X=0.000000,Y=-3.867188,Z=152.578125),InterpMode=CIM_CurveAutoClamped),(InVal=435.100006,OutVal=(X=0.000000,Y=-3.867188,Z=107.226563),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.806935),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.806935),InterpMode=CIM_CurveAutoClamped),(InVal=439.899994,OutVal=(X=0.000000,Y=-3.867188,Z=27.070313),InterpMode=CIM_CurveAutoClamped),(InVal=444.800018,OutVal=(X=0.000000,Y=-3.867188,Z=43.945313),InterpMode=CIM_CurveAutoClamped),(InVal=450.000000,OutVal=(X=0.000000,Y=-3.867188,Z=3.164063),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=7.800000),(Time=10.000000),(Time=15.000000),(Time=20.000000),(Time=25.000000),(Time=30.000000),(Time=35.100002),(Time=40.000000),(Time=45.000000),(Time=50.000000),(Time=54.900002),(Time=60.000000),(Time=65.200005),(Time=70.000000),(Time=74.900002),(Time=80.099998),(Time=85.200005),(Time=90.099998),(Time=95.400002),(Time=99.800003),(Time=105.200005),(Time=110.000000),(Time=115.099998),(Time=120.099998),(Time=124.800003),(Time=130.199997),(Time=135.000000),(Time=140.199997),(Time=145.300003),(Time=150.199997),(Time=155.000000),(Time=159.900009),(Time=165.199997),(Time=170.000000),(Time=175.100006),(Time=179.900009),(Time=185.000000),(Time=189.900009),(Time=194.800003),(Time=200.000000),(Time=205.100006),(Time=210.100006),(Time=214.900009),(Time=219.900009),(Time=224.699997),(Time=230.000000),(Time=235.100006),(Time=239.800003),(Time=245.000000),(Time=250.199997),(Time=255.000000),(Time=259.899994),(Time=265.100006),(Time=269.899994),(Time=275.000000),(Time=280.100006),(Time=284.800018),(Time=290.000000),(Time=295.000000),(Time=299.899994),(Time=305.000000),(Time=309.899994),(Time=315.000000),(Time=320.000000),(Time=324.899994),(Time=329.800018),(Time=335.000000),(Time=339.899994),(Time=345.000000),(Time=350.100006),(Time=355.100006),(Time=360.200012),(Time=365.200012),(Time=370.300018),(Time=375.100006),(Time=380.200012),(Time=385.000000),(Time=390.300018),(Time=395.000000),(Time=400.100006),(Time=405.000000),(Time=409.899994),(Time=415.200012),(Time=419.899994),(Time=424.800018),(Time=430.100006),(Time=435.100006),(Time=439.899994),(Time=444.800018),(Time=450.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackFloatProp_0'
-      GroupName="NewCameraGroup"
-      GroupColor=(B=51,G=0,R=229,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=451.700012,OutVal=(X=-0.015625,Y=0.001953,Z=-0.015625),ArriveTangent=(X=-0.000138,Y=0.000017,Z=0.000000),LeaveTangent=(X=-0.000138,Y=0.000017,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=455.000000,OutVal=(X=-95.171875,Y=129.220703,Z=2.953125),ArriveTangent=(X=0.000000,Y=70.053673,Z=1.921301),LeaveTangent=(X=0.000000,Y=70.053673,Z=1.921301),InterpMode=CIM_CurveAutoClamped),(InVal=460.000000,OutVal=(X=-50.031250,Y=958.296875,Z=152.921875),ArriveTangent=(X=0.000000,Y=158.935349,Z=0.000000),LeaveTangent=(X=0.000000,Y=158.935349,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=-848.906250,Y=1718.574219,Z=152.890625),ArriveTangent=(X=-148.601563,Y=61.637192,Z=0.000000),LeaveTangent=(X=-148.601563,Y=61.637192,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=470.000000,OutVal=(X=-1536.046875,Y=1873.115234,Z=290.859375),ArriveTangent=(X=-91.419365,Y=62.167999,Z=32.693748),LeaveTangent=(X=-91.419365,Y=62.167999,Z=32.693748),InterpMode=CIM_CurveAutoClamped),(InVal=475.000000,OutVal=(X=-1816.156250,Y=2665.447266,Z=479.828125),ArriveTangent=(X=0.000000,Y=134.152740,Z=14.540762),LeaveTangent=(X=0.000000,Y=134.152740,Z=14.540762),InterpMode=CIM_CurveAutoClamped),(InVal=480.000000,OutVal=(X=-1605.546875,Y=3214.642578,Z=515.796875),ArriveTangent=(X=80.131294,Y=15.905804,Z=14.293943),LeaveTangent=(X=80.131294,Y=15.905804,Z=14.293943),InterpMode=CIM_CurveAutoClamped),(InVal=485.000000,OutVal=(X=-760.531250,Y=3248.841797,Z=689.765625),ArriveTangent=(X=177.470306,Y=12.811930,Z=0.000000),LeaveTangent=(X=177.470306,Y=12.811930,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=490.000000,OutVal=(X=169.156250,Y=3378.082031,Z=689.734375),ArriveTangent=(X=213.802475,Y=0.000000,Z=-0.015539),LeaveTangent=(X=213.802475,Y=0.000000,Z=-0.015539),InterpMode=CIM_CurveAutoClamped),(InVal=495.100006,OutVal=(X=1398.875000,Y=3190.906250,Z=506.703125),ArriveTangent=(X=109.135666,Y=-67.989532,Z=-11.210372),LeaveTangent=(X=109.135666,Y=-67.989532,Z=-11.210372),InterpMode=CIM_CurveAutoClamped),(InVal=500.200012,OutVal=(X=1687.062500,Y=2511.970703,Z=479.671875),ArriveTangent=(X=0.000000,Y=-139.099274,Z=-11.684823),LeaveTangent=(X=0.000000,Y=-139.099274,Z=-11.684823),InterpMode=CIM_CurveAutoClamped),(InVal=505.000000,OutVal=(X=1630.921875,Y=1813.824219,Z=269.640625),ArriveTangent=(X=-27.049591,Y=0.000000,Z=-29.370359),LeaveTangent=(X=-27.049591,Y=0.000000,Z=-29.370359),InterpMode=CIM_CurveAutoClamped),(InVal=510.000000,OutVal=(X=620.937500,Y=1832.453125,Z=179.609375),ArriveTangent=(X=-164.662155,Y=0.000000,Z=-10.394457),LeaveTangent=(X=-164.662155,Y=0.000000,Z=-10.394457),InterpMode=CIM_CurveAutoClamped),(InVal=515.100037,OutVal=(X=-32.171875,Y=1045.630859,Z=149.578125),ArriveTangent=(X=0.000000,Y=-174.188339,Z=-11.780684),LeaveTangent=(X=0.000000,Y=-174.188339,Z=-11.780684),InterpMode=CIM_CurveAutoClamped),(InVal=519.900024,OutVal=(X=28.156250,Y=107.984375,Z=14.546875),ArriveTangent=(X=28.772560,Y=-8.281479,Z=-25.108450),LeaveTangent=(X=28.772560,Y=-8.281479,Z=-25.108450),InterpMode=CIM_CurveAutoClamped),(InVal=524.900024,OutVal=(X=965.562500,Y=91.285156,Z=-96.484375),ArriveTangent=(X=147.350006,Y=0.000000,Z=-36.566963),LeaveTangent=(X=147.350006,Y=0.000000,Z=-36.566963),InterpMode=CIM_CurveAutoClamped),(InVal=529.900024,OutVal=(X=1501.656250,Y=1160.058594,Z=-375.515625),ArriveTangent=(X=0.000000,Y=267.561951,Z=-16.437965),LeaveTangent=(X=0.000000,Y=267.561951,Z=-16.437965),InterpMode=CIM_CurveAutoClamped),(InVal=535.000000,OutVal=(X=1418.062500,Y=2793.654297,Z=-414.546875),ArriveTangent=(X=-39.024811,Y=48.394958,Z=-7.728979),LeaveTangent=(X=-39.024811,Y=48.394958,Z=-7.728979),InterpMode=CIM_CurveAutoClamped),(InVal=540.000000,OutVal=(X=-351.015625,Y=2898.617188,Z=-453.578125),ArriveTangent=(X=-250.708725,Y=0.000000,Z=0.000000),LeaveTangent=(X=-250.708725,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=544.900024,OutVal=(X=-1137.359375,Y=1833.171875,Z=-447.609375),ArriveTangent=(X=0.000000,Y=-212.745682,Z=0.000000),LeaveTangent=(X=0.000000,Y=-212.745682,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=549.900024,OutVal=(X=-876.281250,Y=792.429688,Z=-459.640625),ArriveTangent=(X=93.135414,Y=-42.968094,Z=-3.306250),LeaveTangent=(X=93.135414,Y=-42.968094,Z=-3.306250),InterpMode=CIM_CurveAutoClamped),(InVal=554.900024,OutVal=(X=-45.156250,Y=696.904297,Z=-480.671875),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=451.700012,InterpMode=CIM_CurveAutoClamped),(InVal=455.000000,OutVal=(X=0.000000,Y=3.164063,Z=87.363281),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.681024),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.681024),InterpMode=CIM_CurveAutoClamped),(InVal=460.000000,OutVal=(X=0.000000,Y=3.164063,Z=88.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.596793),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.596793),InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=0.000000,Y=2.109375,Z=135.703125),ArriveTangent=(X=0.000000,Y=-0.263672,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.263672,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=470.000000,OutVal=(X=0.000000,Y=0.527344,Z=-7.207031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.649010),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.649010),InterpMode=CIM_CurveAutoClamped),(InVal=475.000000,OutVal=(X=0.000000,Y=0.527344,Z=-39.726563),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.239227),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.239227),InterpMode=CIM_CurveAutoClamped),(InVal=480.000000,OutVal=(X=0.000000,Y=0.351563,Z=-52.558594),ArriveTangent=(X=0.000000,Y=-0.086435,Z=-4.581289),LeaveTangent=(X=0.000000,Y=-0.086435,Z=-4.581289),InterpMode=CIM_CurveAutoClamped),(InVal=485.000000,OutVal=(X=0.000000,Y=-11.777344,Z=-93.515625),InterpMode=CIM_CurveAutoClamped),(InVal=490.000000,OutVal=(X=0.000000,Y=-11.777344,Z=-92.812500),InterpMode=CIM_CurveAutoClamped),(InVal=495.100006,OutVal=(X=0.000000,Y=-8.964844,Z=-138.339844),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.409917),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.409917),InterpMode=CIM_CurveAutoClamped),(InVal=500.200012,OutVal=(X=0.000000,Y=-10.019531,Z=-178.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.092441),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.092441),InterpMode=CIM_CurveAutoClamped),(InVal=505.000000,OutVal=(X=0.000000,Y=-10.019531,Z=-180.878906),InterpMode=CIM_CurveAutoClamped),(InVal=510.000000,OutVal=(X=0.000000,Y=-10.019531,Z=-132.539063),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.328555),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.328555),InterpMode=CIM_CurveAutoClamped),(InVal=515.100037,OutVal=(X=0.000000,Y=-10.019531,Z=-86.660156),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.941946),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.941946),InterpMode=CIM_CurveAutoClamped),(InVal=519.900024,OutVal=(X=0.000000,Y=-10.019531,Z=5.625000),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.022104),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.022104),InterpMode=CIM_CurveAutoClamped),(InVal=524.900024,OutVal=(X=0.000000,Y=-10.019531,Z=80.156250),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.926988),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.926988),InterpMode=CIM_CurveAutoClamped),(InVal=529.900024,OutVal=(X=0.000000,Y=-8.085938,Z=91.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.197140),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.197140),InterpMode=CIM_CurveAutoClamped),(InVal=535.000000,OutVal=(X=0.000000,Y=-8.085938,Z=206.367188),ArriveTangent=(X=0.000000,Y=0.000000,Z=18.813860),LeaveTangent=(X=0.000000,Y=0.000000,Z=18.813860),InterpMode=CIM_CurveAutoClamped),(InVal=540.000000,OutVal=(X=0.000000,Y=-8.085938,Z=281.953125),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.536183),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.536183),InterpMode=CIM_CurveAutoClamped),(InVal=544.900024,OutVal=(X=0.000000,Y=-8.085938,Z=360.175781),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.139173),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.139173),InterpMode=CIM_CurveAutoClamped),(InVal=549.900024,OutVal=(X=0.000000,Y=-8.085938,Z=412.031250),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.035156),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.035156),InterpMode=CIM_CurveAutoClamped),(InVal=554.900024,OutVal=(X=0.000000,Y=-8.085938,Z=450.527344),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=451.700012),(Time=455.000000),(Time=460.000000),(Time=465.000000),(Time=470.000000),(Time=475.000000),(Time=480.000000),(Time=485.000000),(Time=490.000000),(Time=495.100006),(Time=500.200012),(Time=505.000000),(Time=510.000000),(Time=515.100037),(Time=519.900024),(Time=524.900024),(Time=529.900024),(Time=535.000000),(Time=540.000000),(Time=544.900024),(Time=549.900024),(Time=554.900024)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_2.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_2.InterpTrackFloatProp_1'
-      GroupName="Boss"
-      GroupColor=(B=192,G=0,R=145,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
       Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
          CutTrack(0)=(TargetCamGroup="NewCameraGroup",ShotNumber=10)
@@ -18262,6 +18214,54 @@ Begin Object Class=InterpData Name=InterpData_6
       GroupColor=(B=0,G=203,R=126,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=451.700012,OutVal=(X=-0.015625,Y=0.001953,Z=-0.015625),ArriveTangent=(X=-0.000138,Y=0.000017,Z=0.000000),LeaveTangent=(X=-0.000138,Y=0.000017,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=455.000000,OutVal=(X=-95.171875,Y=129.220703,Z=2.953125),ArriveTangent=(X=0.000000,Y=70.053673,Z=1.921301),LeaveTangent=(X=0.000000,Y=70.053673,Z=1.921301),InterpMode=CIM_CurveAutoClamped),(InVal=460.000000,OutVal=(X=-50.031250,Y=958.296875,Z=152.921875),ArriveTangent=(X=0.000000,Y=158.935349,Z=0.000000),LeaveTangent=(X=0.000000,Y=158.935349,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=-848.906250,Y=1718.574219,Z=152.890625),ArriveTangent=(X=-148.601563,Y=61.637192,Z=0.000000),LeaveTangent=(X=-148.601563,Y=61.637192,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=470.000000,OutVal=(X=-1536.046875,Y=1873.115234,Z=290.859375),ArriveTangent=(X=-91.419365,Y=62.167999,Z=32.693748),LeaveTangent=(X=-91.419365,Y=62.167999,Z=32.693748),InterpMode=CIM_CurveAutoClamped),(InVal=475.000000,OutVal=(X=-1816.156250,Y=2665.447266,Z=479.828125),ArriveTangent=(X=0.000000,Y=134.152740,Z=14.540762),LeaveTangent=(X=0.000000,Y=134.152740,Z=14.540762),InterpMode=CIM_CurveAutoClamped),(InVal=480.000000,OutVal=(X=-1605.546875,Y=3214.642578,Z=515.796875),ArriveTangent=(X=80.131294,Y=15.905804,Z=14.293943),LeaveTangent=(X=80.131294,Y=15.905804,Z=14.293943),InterpMode=CIM_CurveAutoClamped),(InVal=485.000000,OutVal=(X=-760.531250,Y=3248.841797,Z=689.765625),ArriveTangent=(X=177.470306,Y=12.811930,Z=0.000000),LeaveTangent=(X=177.470306,Y=12.811930,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=490.000000,OutVal=(X=169.156250,Y=3378.082031,Z=689.734375),ArriveTangent=(X=213.802475,Y=0.000000,Z=-0.015539),LeaveTangent=(X=213.802475,Y=0.000000,Z=-0.015539),InterpMode=CIM_CurveAutoClamped),(InVal=495.100006,OutVal=(X=1398.875000,Y=3190.906250,Z=506.703125),ArriveTangent=(X=109.135666,Y=-67.989532,Z=-11.210372),LeaveTangent=(X=109.135666,Y=-67.989532,Z=-11.210372),InterpMode=CIM_CurveAutoClamped),(InVal=500.200012,OutVal=(X=1687.062500,Y=2511.970703,Z=479.671875),ArriveTangent=(X=0.000000,Y=-139.099274,Z=-11.684823),LeaveTangent=(X=0.000000,Y=-139.099274,Z=-11.684823),InterpMode=CIM_CurveAutoClamped),(InVal=505.000000,OutVal=(X=1630.921875,Y=1813.824219,Z=269.640625),ArriveTangent=(X=-27.049591,Y=0.000000,Z=-29.370359),LeaveTangent=(X=-27.049591,Y=0.000000,Z=-29.370359),InterpMode=CIM_CurveAutoClamped),(InVal=510.000000,OutVal=(X=620.937500,Y=1832.453125,Z=179.609375),ArriveTangent=(X=-164.662155,Y=0.000000,Z=-10.394457),LeaveTangent=(X=-164.662155,Y=0.000000,Z=-10.394457),InterpMode=CIM_CurveAutoClamped),(InVal=515.100037,OutVal=(X=-32.171875,Y=1045.630859,Z=149.578125),ArriveTangent=(X=0.000000,Y=-174.188339,Z=-11.780684),LeaveTangent=(X=0.000000,Y=-174.188339,Z=-11.780684),InterpMode=CIM_CurveAutoClamped),(InVal=519.900024,OutVal=(X=28.156250,Y=107.984375,Z=14.546875),ArriveTangent=(X=28.772560,Y=-8.281479,Z=-25.108450),LeaveTangent=(X=28.772560,Y=-8.281479,Z=-25.108450),InterpMode=CIM_CurveAutoClamped),(InVal=524.900024,OutVal=(X=965.562500,Y=91.285156,Z=-96.484375),ArriveTangent=(X=147.350006,Y=0.000000,Z=-36.566963),LeaveTangent=(X=147.350006,Y=0.000000,Z=-36.566963),InterpMode=CIM_CurveAutoClamped),(InVal=529.900024,OutVal=(X=1501.656250,Y=1160.058594,Z=-375.515625),ArriveTangent=(X=0.000000,Y=267.561951,Z=-16.437965),LeaveTangent=(X=0.000000,Y=267.561951,Z=-16.437965),InterpMode=CIM_CurveAutoClamped),(InVal=535.000000,OutVal=(X=1418.062500,Y=2793.654297,Z=-414.546875),ArriveTangent=(X=-39.024811,Y=48.394958,Z=-7.728979),LeaveTangent=(X=-39.024811,Y=48.394958,Z=-7.728979),InterpMode=CIM_CurveAutoClamped),(InVal=540.000000,OutVal=(X=-351.015625,Y=2898.617188,Z=-453.578125),ArriveTangent=(X=-250.708725,Y=0.000000,Z=0.000000),LeaveTangent=(X=-250.708725,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=544.900024,OutVal=(X=-1137.359375,Y=1833.171875,Z=-447.609375),ArriveTangent=(X=0.000000,Y=-212.745682,Z=0.000000),LeaveTangent=(X=0.000000,Y=-212.745682,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=549.900024,OutVal=(X=-876.281250,Y=792.429688,Z=-459.640625),ArriveTangent=(X=93.135414,Y=-42.968094,Z=-3.306250),LeaveTangent=(X=93.135414,Y=-42.968094,Z=-3.306250),InterpMode=CIM_CurveAutoClamped),(InVal=554.900024,OutVal=(X=-45.156250,Y=696.904297,Z=-480.671875),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=451.700012,InterpMode=CIM_CurveAutoClamped),(InVal=455.000000,OutVal=(X=0.000000,Y=3.164063,Z=87.363281),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.681024),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.681024),InterpMode=CIM_CurveAutoClamped),(InVal=460.000000,OutVal=(X=0.000000,Y=3.164063,Z=88.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.596793),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.596793),InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=0.000000,Y=2.109375,Z=135.703125),ArriveTangent=(X=0.000000,Y=-0.263672,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.263672,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=470.000000,OutVal=(X=0.000000,Y=0.527344,Z=-7.207031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.649010),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.649010),InterpMode=CIM_CurveAutoClamped),(InVal=475.000000,OutVal=(X=0.000000,Y=0.527344,Z=-39.726563),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.239227),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.239227),InterpMode=CIM_CurveAutoClamped),(InVal=480.000000,OutVal=(X=0.000000,Y=0.351563,Z=-52.558594),ArriveTangent=(X=0.000000,Y=-0.086435,Z=-4.581289),LeaveTangent=(X=0.000000,Y=-0.086435,Z=-4.581289),InterpMode=CIM_CurveAutoClamped),(InVal=485.000000,OutVal=(X=0.000000,Y=-11.777344,Z=-93.515625),InterpMode=CIM_CurveAutoClamped),(InVal=490.000000,OutVal=(X=0.000000,Y=-11.777344,Z=-92.812500),InterpMode=CIM_CurveAutoClamped),(InVal=495.100006,OutVal=(X=0.000000,Y=-8.964844,Z=-138.339844),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.409917),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.409917),InterpMode=CIM_CurveAutoClamped),(InVal=500.200012,OutVal=(X=0.000000,Y=-10.019531,Z=-178.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.092441),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.092441),InterpMode=CIM_CurveAutoClamped),(InVal=505.000000,OutVal=(X=0.000000,Y=-10.019531,Z=-180.878906),InterpMode=CIM_CurveAutoClamped),(InVal=510.000000,OutVal=(X=0.000000,Y=-10.019531,Z=-132.539063),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.328555),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.328555),InterpMode=CIM_CurveAutoClamped),(InVal=515.100037,OutVal=(X=0.000000,Y=-10.019531,Z=-86.660156),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.941946),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.941946),InterpMode=CIM_CurveAutoClamped),(InVal=519.900024,OutVal=(X=0.000000,Y=-10.019531,Z=5.625000),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.022104),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.022104),InterpMode=CIM_CurveAutoClamped),(InVal=524.900024,OutVal=(X=0.000000,Y=-10.019531,Z=80.156250),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.926988),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.926988),InterpMode=CIM_CurveAutoClamped),(InVal=529.900024,OutVal=(X=0.000000,Y=-8.085938,Z=91.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.197140),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.197140),InterpMode=CIM_CurveAutoClamped),(InVal=535.000000,OutVal=(X=0.000000,Y=-8.085938,Z=206.367188),ArriveTangent=(X=0.000000,Y=0.000000,Z=18.813860),LeaveTangent=(X=0.000000,Y=0.000000,Z=18.813860),InterpMode=CIM_CurveAutoClamped),(InVal=540.000000,OutVal=(X=0.000000,Y=-8.085938,Z=281.953125),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.536183),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.536183),InterpMode=CIM_CurveAutoClamped),(InVal=544.900024,OutVal=(X=0.000000,Y=-8.085938,Z=360.175781),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.139173),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.139173),InterpMode=CIM_CurveAutoClamped),(InVal=549.900024,OutVal=(X=0.000000,Y=-8.085938,Z=412.031250),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.035156),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.035156),InterpMode=CIM_CurveAutoClamped),(InVal=554.900024,OutVal=(X=0.000000,Y=-8.085938,Z=450.527344),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=451.700012),(Time=455.000000),(Time=460.000000),(Time=465.000000),(Time=470.000000),(Time=475.000000),(Time=480.000000),(Time=485.000000),(Time=490.000000),(Time=495.100006),(Time=500.200012),(Time=505.000000),(Time=510.000000),(Time=515.100037),(Time=519.900024),(Time=524.900024),(Time=529.900024),(Time=535.000000),(Time=540.000000),(Time=544.900024),(Time=549.900024),(Time=554.900024)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_2.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_2.InterpTrackFloatProp_1'
+      GroupName="Boss"
+      GroupColor=(B=192,G=0,R=145,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((OutVal=(X=0.000488,Y=-0.000244,Z=-0.000046),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=1235.437500,Y=-37.197266,Z=122.999756),ArriveTangent=(X=205.828552,Y=-5.174539,Z=0.000000),LeaveTangent=(X=205.828552,Y=-5.174539,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.800000,OutVal=(X=1688.384766,Y=-47.273438,Z=-6.000488),ArriveTangent=(X=0.000000,Y=-9.487793,Z=0.000000),LeaveTangent=(X=0.000000,Y=-9.487793,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1621.267578,Y=-706.878906,Z=32.999268),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=2559.978516,Y=-692.146484,Z=8.999023),ArriveTangent=(X=180.846481,Y=0.000000,Z=-0.000122),LeaveTangent=(X=180.846481,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=3429.732422,Y=-1252.427734,Z=8.998779),ArriveTangent=(X=136.315430,Y=-127.342773,Z=0.000000),LeaveTangent=(X=136.315430,Y=-127.342773,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=3923.132813,Y=-1965.574219,Z=92.998535),ArriveTangent=(X=101.204689,Y=-95.107521,Z=0.000000),LeaveTangent=(X=101.204689,Y=-95.107521,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=4441.779297,Y=-2257.412109,Z=44.998291),ArriveTangent=(X=138.050903,Y=-107.478088,Z=0.000000),LeaveTangent=(X=138.050903,Y=-107.478088,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=35.100002,OutVal=(X=5317.447266,Y=-3323.825195,Z=308.998047),ArriveTangent=(X=165.170700,Y=-143.217453,Z=0.000000),LeaveTangent=(X=165.170700,Y=-143.217453,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=6093.486328,Y=-3764.087891,Z=308.997803),ArriveTangent=(X=0.000000,Y=-155.143890,Z=-0.000049),LeaveTangent=(X=0.000000,Y=-155.143890,Z=-0.000049),InterpMode=CIM_CurveAutoClamped),(InVal=45.000000,OutVal=(X=6088.986328,Y=-5064.296875,Z=308.997559),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=6112.812500,Y=-4397.511719,Z=293.997314),ArriveTangent=(X=10.532366,Y=0.000000,Z=0.000000),LeaveTangent=(X=10.532366,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=54.900002,OutVal=(X=6322.492188,Y=-5162.096680,Z=389.997070),ArriveTangent=(X=80.846214,Y=0.000000,Z=32.190445),LeaveTangent=(X=80.846214,Y=0.000000,Z=32.190445),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=7194.386719,Y=-5130.053711,Z=641.996948),ArriveTangent=(X=160.026123,Y=0.000000,Z=31.156866),LeaveTangent=(X=160.026123,Y=0.000000,Z=31.156866),InterpMode=CIM_CurveAutoClamped),(InVal=65.200005,OutVal=(X=7970.761719,Y=-5163.400391,Z=737.996948),ArriveTangent=(X=127.379295,Y=-15.675430,Z=0.000000),LeaveTangent=(X=127.379295,Y=-15.675430,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=8468.179688,Y=-5984.695313,Z=671.996948),ArriveTangent=(X=0.005013,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.005013,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=74.900002,OutVal=(X=8468.189453,Y=-5984.693359,Z=671.996948),ArriveTangent=(X=0.004897,Y=0.000977,Z=0.000000),LeaveTangent=(X=0.004897,Y=0.000977,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=80.099998,OutVal=(X=8619.263672,Y=-4905.714844,Z=701.996948),ArriveTangent=(X=0.000000,Y=220.360321,Z=0.000000),LeaveTangent=(X=0.000000,Y=220.360321,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=85.200005,OutVal=(X=8588.486328,Y=-3714.981445,Z=626.996948),ArriveTangent=(X=0.000000,Y=58.367035,Z=0.000000),LeaveTangent=(X=0.000000,Y=58.367035,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.099998,OutVal=(X=9511.970703,Y=-3583.337891,Z=704.996948),ArriveTangent=(X=159.354752,Y=52.967518,Z=0.000000),LeaveTangent=(X=159.354752,Y=52.967518,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=95.400002,OutVal=(X=10213.904297,Y=-2875.787109,Z=671.996948),ArriveTangent=(X=0.000000,Y=126.443443,Z=0.000000),LeaveTangent=(X=0.000000,Y=126.443443,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=99.800003,OutVal=(X=10122.628906,Y=-2356.835938,Z=683.996948),ArriveTangent=(X=0.000000,Y=40.718750,Z=3.367346),LeaveTangent=(X=0.000000,Y=40.718750,Z=3.367346),InterpMode=CIM_CurveAutoClamped),(InVal=105.200005,OutVal=(X=10724.857422,Y=-2255.169922,Z=704.996948),ArriveTangent=(X=31.126877,Y=36.850750,Z=5.000001),LeaveTangent=(X=31.126877,Y=36.850750,Z=5.000001),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=10796.166016,Y=-1874.138672,Z=734.996948),ArriveTangent=(X=32.140640,Y=0.000000,Z=12.057251),LeaveTangent=(X=32.140640,Y=0.000000,Z=12.057251),InterpMode=CIM_CurveAutoClamped),(InVal=115.099998,OutVal=(X=11456.914063,Y=-1890.650391,Z=875.996948),ArriveTangent=(X=68.147606,Y=0.000000,Z=24.059410),LeaveTangent=(X=68.147606,Y=0.000000,Z=24.059410),InterpMode=CIM_CurveAutoClamped),(InVal=120.099998,OutVal=(X=11643.615234,Y=-750.763672,Z=977.996948),ArriveTangent=(X=0.000000,Y=35.105812,Z=0.000000),LeaveTangent=(X=0.000000,Y=35.105812,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=124.800003,OutVal=(X=10533.861328,Y=-678.251953,Z=947.996948),ArriveTangent=(X=-187.751419,Y=12.393064,Z=-7.128714),LeaveTangent=(X=-187.751419,Y=12.393064,Z=-7.128714),InterpMode=CIM_CurveAutoClamped),(InVal=130.199997,OutVal=(X=9747.326172,Y=-625.593750,Z=905.996948),ArriveTangent=(X=0.000000,Y=23.799004,Z=0.000000),LeaveTangent=(X=0.000000,Y=23.799004,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=9808.230469,Y=381.023438,Z=905.996948),ArriveTangent=(X=26.900091,Y=110.107262,Z=0.000000),LeaveTangent=(X=26.900091,Y=110.107262,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=140.199997,OutVal=(X=10316.410156,Y=689.248047,Z=890.996948),ArriveTangent=(X=0.000000,Y=112.082169,Z=-6.688019),LeaveTangent=(X=0.000000,Y=112.082169,Z=-6.688019),InterpMode=CIM_CurveAutoClamped),(InVal=145.300003,OutVal=(X=10276.843750,Y=1861.599609,Z=677.996948),ArriveTangent=(X=-18.554733,Y=31.213509,Z=-33.599998),LeaveTangent=(X=-18.554733,Y=31.213509,Z=-33.599998),InterpMode=CIM_CurveAutoClamped),(InVal=150.199997,OutVal=(X=9466.962891,Y=1927.781250,Z=554.996948),ArriveTangent=(X=-165.766800,Y=0.000000,Z=0.000000),LeaveTangent=(X=-165.766800,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=8668.906250,Y=1839.628906,Z=563.996948),ArriveTangent=(X=-84.917358,Y=-27.636591,Z=1.855668),LeaveTangent=(X=-84.917358,Y=-27.636591,Z=1.855668),InterpMode=CIM_CurveAutoClamped),(InVal=159.900009,OutVal=(X=8445.115234,Y=1657.980469,Z=572.996948),ArriveTangent=(X=-88.225784,Y=-27.698385,Z=0.000000),LeaveTangent=(X=-88.225784,Y=-27.698385,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=165.199997,OutVal=(X=7353.433594,Y=1557.105469,Z=551.996948),ArriveTangent=(X=-212.236038,Y=-42.676952,Z=0.000000),LeaveTangent=(X=-212.236038,Y=-42.676952,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=170.000000,OutVal=(X=6301.533203,Y=749.861328,Z=632.996948),ArriveTangent=(X=-107.259224,Y=-199.242233,Z=12.013713),LeaveTangent=(X=-107.259224,Y=-199.242233,Z=12.013713),InterpMode=CIM_CurveAutoClamped),(InVal=175.100006,OutVal=(X=6013.976563,Y=-415.394531,Z=671.996948),ArriveTangent=(X=-104.664330,Y=0.000000,Z=0.000000),LeaveTangent=(X=-104.664330,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=179.900009,OutVal=(X=5051.324219,Y=-277.029297,Z=632.996948),ArriveTangent=(X=-152.659302,Y=5.134851,Z=-12.025214),LeaveTangent=(X=-152.659302,Y=5.134851,Z=-12.025214),InterpMode=CIM_CurveAutoClamped),(InVal=185.000000,OutVal=(X=4502.650391,Y=-265.744141,Z=551.996948),ArriveTangent=(X=-29.591408,Y=5.295435,Z=-33.894154),LeaveTangent=(X=-29.591408,Y=5.295435,Z=-33.894154),InterpMode=CIM_CurveAutoClamped),(InVal=189.900009,OutVal=(X=4434.945313,Y=-32.189453,Z=20.996826),ArriveTangent=(X=-29.762568,Y=98.374886,Z=-0.000126),LeaveTangent=(X=-29.762568,Y=98.374886,Z=-0.000126),InterpMode=CIM_CurveAutoClamped),(InVal=194.800003,OutVal=(X=3917.564453,Y=1337.064453,Z=20.996582),ArriveTangent=(X=-130.577545,Y=180.292816,Z=-0.000122),LeaveTangent=(X=-130.577545,Y=180.292816,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=3116.113281,Y=1896.916016,Z=11.996338),ArriveTangent=(X=-106.909897,Y=76.504768,Z=-1.747620),LeaveTangent=(X=-106.909897,Y=76.504768,Z=-1.747620),InterpMode=CIM_CurveAutoClamped),(InVal=205.100006,OutVal=(X=2772.136719,Y=2147.132813,Z=2.996094),ArriveTangent=(X=0.000000,Y=94.754868,Z=0.000000),LeaveTangent=(X=0.000000,Y=94.754868,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=210.100006,OutVal=(X=2810.394531,Y=3181.271484,Z=125.995850),ArriveTangent=(X=15.580853,Y=213.645905,Z=14.931433),LeaveTangent=(X=15.580853,Y=213.645905,Z=14.931433),InterpMode=CIM_CurveAutoClamped),(InVal=214.900009,OutVal=(X=3003.837891,Y=4240.863281,Z=167.995605),ArriveTangent=(X=83.795021,Y=0.000000,Z=1.399061),LeaveTangent=(X=83.795021,Y=0.000000,Z=1.399061),InterpMode=CIM_CurveAutoClamped),(InVal=219.900009,OutVal=(X=4293.775391,Y=4000.705078,Z=170.995361),ArriveTangent=(X=222.726883,Y=-46.090618,Z=1.485173),LeaveTangent=(X=222.726883,Y=-46.090618,Z=1.485173),InterpMode=CIM_CurveAutoClamped),(InVal=224.699997,OutVal=(X=5186.558594,Y=3789.175781,Z=326.995117),ArriveTangent=(X=171.017914,Y=0.000000,Z=4.095802),LeaveTangent=(X=171.017914,Y=0.000000,Z=4.095802),InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=6021.054688,Y=3801.482422,Z=335.994873),ArriveTangent=(X=33.234348,Y=0.000000,Z=4.081289),LeaveTangent=(X=33.234348,Y=0.000000,Z=4.081289),InterpMode=CIM_CurveAutoClamped),(InVal=235.100006,OutVal=(X=6097.369141,Y=2696.912109,Z=539.994751),ArriveTangent=(X=0.000000,Y=-142.510834,Z=18.167589),LeaveTangent=(X=0.000000,Y=-142.510834,Z=18.167589),InterpMode=CIM_CurveAutoClamped),(InVal=239.800003,OutVal=(X=5982.132813,Y=2284.380859,Z=584.994751),ArriveTangent=(X=0.000000,Y=-60.113010,Z=4.488750),LeaveTangent=(X=0.000000,Y=-60.113010,Z=4.488750),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=6882.859375,Y=2091.494141,Z=596.994751),ArriveTangent=(X=128.013336,Y=0.000000,Z=0.000000),LeaveTangent=(X=128.013336,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=250.199997,OutVal=(X=7321.269531,Y=2400.050781,Z=386.994629),ArriveTangent=(X=110.054688,Y=0.000000,Z=-37.500038),LeaveTangent=(X=110.054688,Y=0.000000,Z=-37.500038),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=7983.406250,Y=2382.447266,Z=221.994385),ArriveTangent=(X=23.830242,Y=0.000000,Z=0.000000),LeaveTangent=(X=23.830242,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=259.899994,OutVal=(X=8034.099609,Y=3447.197266,Z=242.994141),ArriveTangent=(X=0.000000,Y=214.578888,Z=0.000000),LeaveTangent=(X=0.000000,Y=214.578888,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=265.100006,OutVal=(X=6874.826172,Y=4549.695313,Z=-75.006104),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000126),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000126),InterpMode=CIM_CurveAutoClamped),(InVal=269.899994,OutVal=(X=6874.833984,Y=4549.695313,Z=-75.006348),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000049),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000049),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=6750.914063,Y=3095.777344,Z=-75.006592),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000120),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000120),InterpMode=CIM_CurveAutoClamped),(InVal=280.100006,OutVal=(X=7810.781250,Y=3190.593750,Z=-378.006897),ArriveTangent=(X=207.738968,Y=17.499170,Z=-13.849108),LeaveTangent=(X=207.738968,Y=17.499170,Z=-13.849108),InterpMode=CIM_CurveAutoClamped),(InVal=284.800018,OutVal=(X=8786.759766,Y=3267.269531,Z=-408.007263),ArriveTangent=(X=212.664871,Y=0.000000,Z=-12.578855),LeaveTangent=(X=212.664871,Y=0.000000,Z=-12.578855),InterpMode=CIM_CurveAutoClamped),(InVal=290.000000,OutVal=(X=9916.162109,Y=3032.224609,Z=-576.007629),ArriveTangent=(X=57.701431,Y=-34.945873,Z=-5.452625),LeaveTangent=(X=57.701431,Y=-34.945873,Z=-5.452625),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=10050.125000,Y=2910.822266,Z=-588.007996),ArriveTangent=(X=11.022181,Y=-56.115944,Z=-5.485758),LeaveTangent=(X=11.022181,Y=-56.115944,Z=-5.485758),InterpMode=CIM_CurveAutoClamped),(InVal=299.899994,OutVal=(X=10077.431641,Y=1258.269531,Z=-732.008362),ArriveTangent=(X=2.259202,Y=-338.880859,Z=0.000000),LeaveTangent=(X=2.259202,Y=-338.880859,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=305.000000,OutVal=(X=10083.162109,Y=-477.986328,Z=-726.008728),ArriveTangent=(X=2.214790,Y=-288.634369,Z=0.000000),LeaveTangent=(X=2.214790,Y=-288.634369,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=309.899994,OutVal=(X=10108.138672,Y=-1628.074219,Z=-729.009094),ArriveTangent=(X=0.000000,Y=-181.090042,Z=0.000000),LeaveTangent=(X=0.000000,Y=-181.090042,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=315.000000,OutVal=(X=10049.128906,Y=-2288.886719,Z=-702.009460),ArriveTangent=(X=-26.890312,Y=-148.499390,Z=0.000000),LeaveTangent=(X=-26.890312,Y=-148.499390,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=320.000000,OutVal=(X=9186.791016,Y=-3127.918945,Z=-744.009827),ArriveTangent=(X=-198.958450,Y=-88.598633,Z=-0.000186),LeaveTangent=(X=-198.958450,Y=-88.598633,Z=-0.000186),InterpMode=CIM_CurveAutoClamped),(InVal=324.899994,OutVal=(X=8079.441406,Y=-3366.165039,Z=-744.010193),ArriveTangent=(X=-87.939697,Y=-22.603168,Z=0.000000),LeaveTangent=(X=-87.939697,Y=-22.603168,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=329.800018,OutVal=(X=7865.650391,Y=-3424.004883,Z=-699.010559),ArriveTangent=(X=0.000000,Y=-26.752419,Z=19.331348),LeaveTangent=(X=0.000000,Y=-26.752419,Z=19.331348),InterpMode=CIM_CurveAutoClamped),(InVal=335.000000,OutVal=(X=8037.402344,Y=-4277.837891,Z=-360.010864),ArriveTangent=(X=64.262756,Y=-111.127304,Z=0.000000),LeaveTangent=(X=64.262756,Y=-111.127304,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=339.899994,OutVal=(X=8724.593750,Y=-4617.796875,Z=-366.011108),ArriveTangent=(X=8.477283,Y=0.000000,Z=0.000000),LeaveTangent=(X=8.477283,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=345.000000,OutVal=(X=8742.193359,Y=-3412.580078,Z=-21.011353),ArriveTangent=(X=8.251053,Y=289.609039,Z=0.000000),LeaveTangent=(X=8.251053,Y=289.609039,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=350.100006,OutVal=(X=9202.824219,Y=-1663.781250,Z=-27.011597),ArriveTangent=(X=0.003891,Y=0.000000,Z=-0.000121),LeaveTangent=(X=0.003891,Y=0.000000,Z=-0.000121),InterpMode=CIM_CurveAutoClamped),(InVal=355.100006,OutVal=(X=9202.832031,Y=-1663.781250,Z=-27.011841),ArriveTangent=(X=0.003887,Y=0.000000,Z=-0.000121),LeaveTangent=(X=0.003887,Y=0.000000,Z=-0.000121),InterpMode=CIM_CurveAutoClamped),(InVal=360.200012,OutVal=(X=9802.718750,Y=-633.375000,Z=-96.012085),ArriveTangent=(X=0.000000,Y=204.887711,Z=-0.262959),LeaveTangent=(X=0.000000,Y=204.887711,Z=-0.262959),InterpMode=CIM_CurveAutoClamped),(InVal=365.200012,OutVal=(X=9645.203125,Y=405.585938,Z=-96.545776),ArriveTangent=(X=-42.332508,Y=228.859894,Z=-0.217012),LeaveTangent=(X=-42.332508,Y=228.859894,Z=-0.217012),InterpMode=CIM_CurveAutoClamped),(InVal=370.300018,OutVal=(X=9375.160156,Y=1678.111328,Z=-99.546021),ArriveTangent=(X=0.000000,Y=206.698761,Z=0.000000),LeaveTangent=(X=0.000000,Y=206.698761,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=375.100006,OutVal=(X=9487.800781,Y=2451.902344,Z=-69.546265),ArriveTangent=(X=51.658432,Y=0.000000,Z=0.000000),LeaveTangent=(X=51.658432,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=380.200012,OutVal=(X=10703.427734,Y=1897.425781,Z=-84.546509),ArriveTangent=(X=210.577972,Y=-126.265266,Z=-4.545506),LeaveTangent=(X=210.577972,Y=-126.265266,Z=-4.545506),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=11572.521484,Y=1201.876953,Z=-114.546753),ArriveTangent=(X=0.000000,Y=-164.385727,Z=-13.432064),LeaveTangent=(X=0.000000,Y=-164.385727,Z=-13.432064),InterpMode=CIM_CurveAutoClamped),(InVal=390.300018,OutVal=(X=11480.269531,Y=237.128906,Z=-408.547058),ArriveTangent=(X=-32.707512,Y=-126.931007,Z=-7.230925),LeaveTangent=(X=-32.707512,Y=-126.931007,Z=-7.230925),InterpMode=CIM_CurveAutoClamped),(InVal=395.000000,OutVal=(X=11183.703125,Y=-145.714844,Z=-423.547424),ArriveTangent=(X=-103.943100,Y=-11.361528,Z=-7.352470),LeaveTangent=(X=-103.943100,Y=-11.361528,Z=-7.352470),InterpMode=CIM_CurveAutoClamped),(InVal=400.100006,OutVal=(X=10357.095703,Y=-170.025391,Z=-738.547791),ArriveTangent=(X=-156.352341,Y=-11.840805,Z=0.000000),LeaveTangent=(X=-156.352341,Y=-11.840805,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=9620.179688,Y=-1682.597656,Z=-714.548157),ArriveTangent=(X=-217.391449,Y=-246.082901,Z=0.000000),LeaveTangent=(X=-217.391449,Y=-246.082901,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=409.899994,OutVal=(X=8226.662109,Y=-2581.634766,Z=-714.548523),ArriveTangent=(X=-223.598267,Y=0.000000,Z=-0.000183),LeaveTangent=(X=-223.598267,Y=0.000000,Z=-0.000183),InterpMode=CIM_CurveAutoClamped),(InVal=415.200012,OutVal=(X=7339.474609,Y=-2306.673828,Z=-717.548889),ArriveTangent=(X=-136.751175,Y=63.901562,Z=0.000000),LeaveTangent=(X=-136.751175,Y=63.901562,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=419.899994,OutVal=(X=6859.150391,Y=-1942.619141,Z=-666.549255),ArriveTangent=(X=-125.917076,Y=3.930923,Z=16.732449),LeaveTangent=(X=-125.917076,Y=3.930923,Z=16.732449),InterpMode=CIM_CurveAutoClamped),(InVal=424.800018,OutVal=(X=6130.669922,Y=-1934.820313,Z=-552.549622),ArriveTangent=(X=-30.894497,Y=3.851715,Z=19.999905),LeaveTangent=(X=-30.894497,Y=3.851715,Z=19.999905),InterpMode=CIM_CurveAutoClamped),(InVal=430.100006,OutVal=(X=6059.236328,Y=-905.585938,Z=-462.549988),ArriveTangent=(X=-32.163261,Y=167.982040,Z=2.723945),LeaveTangent=(X=-32.163261,Y=167.982040,Z=2.723945),InterpMode=CIM_CurveAutoClamped),(InVal=435.100006,OutVal=(X=4780.597656,Y=-204.607422,Z=-456.550354),ArriveTangent=(X=0.000000,Y=153.084335,Z=0.000000),LeaveTangent=(X=0.000000,Y=153.084335,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=439.899994,OutVal=(X=5623.990234,Y=594.638672,Z=-504.550720),ArriveTangent=(X=214.012894,Y=185.313675,Z=-9.896970),LeaveTangent=(X=214.012894,Y=185.313675,Z=-9.896970),InterpMode=CIM_CurveAutoClamped),(InVal=444.800018,OutVal=(X=6856.525391,Y=1592.937500,Z=-552.551086),ArriveTangent=(X=207.822617,Y=165.428818,Z=0.000000),LeaveTangent=(X=207.822617,Y=165.428818,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=450.000000,OutVal=(X=7723.000000,Y=2265.470703,Z=-378.551453),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=-1.054688),InterpMode=CIM_CurveAutoClamped),(InVal=7.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.351563),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.137487),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.137487),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.175781),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-1.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.678977),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.678977),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=-48.515625),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=0.000000,Y=0.000000,Z=48.691406),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.912109),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.912109),InterpMode=CIM_CurveAutoClamped),(InVal=30.000000,OutVal=(X=0.000000,Y=0.000000,Z=130.605469),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.343403),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.343403),InterpMode=CIM_CurveAutoClamped),(InVal=35.100002,OutVal=(X=0.000000,Y=0.000000,Z=131.308594),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.303014),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.303014),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=0.000000,Z=136.933594),InterpMode=CIM_CurveAutoClamped),(InVal=45.000000,OutVal=(X=0.000000,Y=0.000000,Z=88.066406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.587761),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.587761),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=28.652344,Z=-45.527344),InterpMode=CIM_CurveAutoClamped),(InVal=54.900002,OutVal=(X=0.000000,Y=21.972656,Z=0.175781),ArriveTangent=(X=0.000000,Y=-2.645576,Z=0.000000),LeaveTangent=(X=0.000000,Y=-2.645576,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=-9.140625,Z=0.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.079966),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.079966),InterpMode=CIM_CurveAutoClamped),(InVal=65.200005,OutVal=(X=0.000000,Y=-4.218750,Z=-2.988281),ArriveTangent=(X=0.000000,Y=1.911091,Z=-1.387505),LeaveTangent=(X=0.000000,Y=1.911091,Z=-1.387505),InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=0.000000,Y=18.105469,Z=-60.996094),ArriveTangent=(X=0.000000,Y=0.000000,Z=-19.205399),LeaveTangent=(X=0.000000,Y=0.000000,Z=-19.205399),InterpMode=CIM_CurveAutoClamped),(InVal=74.900002,OutVal=(X=0.000000,Y=13.007813,Z=-197.226563),ArriveTangent=(X=0.000000,Y=-1.571227,Z=-13.764880),LeaveTangent=(X=0.000000,Y=-1.571227,Z=-13.764880),InterpMode=CIM_CurveAutoClamped),(InVal=80.099998,OutVal=(X=0.000000,Y=1.933594,Z=-235.019531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.765092),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.765092),InterpMode=CIM_CurveAutoClamped),(InVal=85.200005,OutVal=(X=0.000000,Y=1.933594,Z=-277.207031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.751631),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.751631),InterpMode=CIM_CurveAutoClamped),(InVal=90.099998,OutVal=(X=0.000000,Y=-0.527344,Z=-362.988281),ArriveTangent=(X=0.000000,Y=0.000000,Z=-14.303773),LeaveTangent=(X=0.000000,Y=0.000000,Z=-14.303773),InterpMode=CIM_CurveAutoClamped),(InVal=95.400002,OutVal=(X=0.000000,Y=8.437500,Z=-423.105469),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.859172),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.859172),InterpMode=CIM_CurveAutoClamped),(InVal=99.800003,OutVal=(X=0.000000,Y=-0.175781,Z=-445.429688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.867209),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.867209),InterpMode=CIM_CurveAutoClamped),(InVal=105.200005,OutVal=(X=0.000000,Y=5.273438,Z=-534.726563),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.313595),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.313595),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=0.000000,Y=-4.394531,Z=-539.648438),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.644532),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.644532),InterpMode=CIM_CurveAutoClamped),(InVal=115.099998,OutVal=(X=0.000000,Y=-4.394531,Z=-541.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.681785),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.681785),InterpMode=CIM_CurveAutoClamped),(InVal=120.099998,OutVal=(X=0.000000,Y=1.757813,Z=-547.734375),InterpMode=CIM_CurveAutoClamped),(InVal=124.800003,OutVal=(X=0.000000,Y=-4.570313,Z=-539.472656),InterpMode=CIM_CurveAutoClamped),(InVal=130.199997,OutVal=(X=0.000000,Y=-4.570313,Z=-634.042969),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=0.000000,Y=-4.570313,Z=-628.417969),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.654813),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.654813),InterpMode=CIM_CurveAutoClamped),(InVal=140.199997,OutVal=(X=0.000000,Y=-4.570313,Z=-538.066406),InterpMode=CIM_CurveAutoClamped),(InVal=145.300003,OutVal=(X=0.000000,Y=-4.570313,Z=-538.066406),InterpMode=CIM_CurveAutoClamped),(InVal=150.199997,OutVal=(X=0.000000,Y=-4.570313,Z=-586.230469),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=0.000000,Y=2.636719,Z=-432.246094),ArriveTangent=(X=0.000000,Y=2.779759,Z=18.587578),LeaveTangent=(X=0.000000,Y=2.779759,Z=18.587578),InterpMode=CIM_CurveAutoClamped),(InVal=159.900009,OutVal=(X=0.000000,Y=29.531250,Z=-380.566406),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.358005),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.358005),InterpMode=CIM_CurveAutoClamped),(InVal=165.199997,OutVal=(X=0.000000,Y=-4.921875,Z=-361.230469),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.994977),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.994977),InterpMode=CIM_CurveAutoClamped),(InVal=170.000000,OutVal=(X=0.000000,Y=-3.691406,Z=-330.117188),ArriveTangent=(X=0.000000,Y=0.563874,Z=3.695017),LeaveTangent=(X=0.000000,Y=0.563874,Z=3.695017),InterpMode=CIM_CurveAutoClamped),(InVal=175.100006,OutVal=(X=0.000000,Y=9.492188,Z=-319.570313),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.832441),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.832441),InterpMode=CIM_CurveAutoClamped),(InVal=179.900009,OutVal=(X=0.000000,Y=-2.812500,Z=-179.472656),ArriveTangent=(X=0.000000,Y=-2.130683,Z=17.688042),LeaveTangent=(X=0.000000,Y=-2.130683,Z=17.688042),InterpMode=CIM_CurveAutoClamped),(InVal=185.000000,OutVal=(X=0.000000,Y=-11.601563,Z=-127.441406),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.876953),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.876953),InterpMode=CIM_CurveAutoClamped),(InVal=189.900009,OutVal=(X=0.000000,Y=-3.867188,Z=-90.703125),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.349647),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.349647),InterpMode=CIM_CurveAutoClamped),(InVal=194.800003,OutVal=(X=0.000000,Y=-3.867188,Z=-65.214844),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.621524),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.621524),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=0.000000,Y=-3.867188,Z=-33.925781),ArriveTangent=(X=0.000000,Y=0.000000,Z=10.098247),LeaveTangent=(X=0.000000,Y=0.000000,Z=10.098247),InterpMode=CIM_CurveAutoClamped),(InVal=205.100006,OutVal=(X=0.000000,Y=4.746094,Z=46.933594),ArriveTangent=(X=0.000000,Y=1.100519,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.100519,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=210.100006,OutVal=(X=0.000000,Y=8.085938,Z=-1.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.564809),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.564809),InterpMode=CIM_CurveAutoClamped),(InVal=214.900009,OutVal=(X=0.000000,Y=2.460938,Z=-56.601563),ArriveTangent=(X=0.000000,Y=-1.237643,Z=-11.641020),LeaveTangent=(X=0.000000,Y=-1.237643,Z=-11.641020),InterpMode=CIM_CurveAutoClamped),(InVal=219.900009,OutVal=(X=0.000000,Y=-4.042969,Z=-116.015625),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.304628),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.304628),InterpMode=CIM_CurveAutoClamped),(InVal=224.699997,OutVal=(X=0.000000,Y=-4.042969,Z=-216.386719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.655724),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.655724),InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-284.238281),InterpMode=CIM_CurveAutoClamped),(InVal=235.100006,OutVal=(X=0.000000,Y=-5.800781,Z=-271.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.439502),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.439502),InterpMode=CIM_CurveAutoClamped),(InVal=239.800003,OutVal=(X=0.000000,Y=-4.042969,Z=-181.757813),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=0.000000,Y=-4.042969,Z=-268.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=-17.206289),LeaveTangent=(X=0.000000,Y=0.000000,Z=-17.206289),InterpMode=CIM_CurveAutoClamped),(InVal=250.199997,OutVal=(X=0.000000,Y=-19.160156,Z=-360.703125),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=0.000000,Y=-5.625000,Z=-272.812500),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.474771),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.474771),InterpMode=CIM_CurveAutoClamped),(InVal=259.899994,OutVal=(X=0.000000,Y=-5.625000,Z=-269.824219),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.437542),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.437542),InterpMode=CIM_CurveAutoClamped),(InVal=265.100006,OutVal=(X=0.000000,Y=-3.867188,Z=-182.812500),ArriveTangent=(X=0.000000,Y=0.805487,Z=22.025391),LeaveTangent=(X=0.000000,Y=0.805487,Z=22.025391),InterpMode=CIM_CurveAutoClamped),(InVal=269.899994,OutVal=(X=0.000000,Y=23.906250,Z=-49.570313),ArriveTangent=(X=0.000000,Y=0.000000,Z=24.627146),LeaveTangent=(X=0.000000,Y=0.000000,Z=24.627146),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=0.000000,Y=10.019531,Z=60.996094),ArriveTangent=(X=0.000000,Y=-2.636716,Z=10.772146),LeaveTangent=(X=0.000000,Y=-2.636716,Z=10.772146),InterpMode=CIM_CurveAutoClamped),(InVal=280.100006,OutVal=(X=0.000000,Y=-2.988281,Z=90.351563),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.712836),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.712836),InterpMode=CIM_CurveAutoClamped),(InVal=284.800018,OutVal=(X=0.000000,Y=8.964844,Z=136.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.315345),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.315345),InterpMode=CIM_CurveAutoClamped),(InVal=290.000000,OutVal=(X=0.000000,Y=8.964844,Z=162.773438),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.734918),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.734918),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=0.000000,Y=-2.285156,Z=268.066406),InterpMode=CIM_CurveAutoClamped),(InVal=299.899994,OutVal=(X=0.000000,Y=-2.285156,Z=267.714844),InterpMode=CIM_CurveAutoClamped),(InVal=305.000000,OutVal=(X=0.000000,Y=-2.285156,Z=267.890625),InterpMode=CIM_CurveAutoClamped),(InVal=309.899994,OutVal=(X=0.000000,Y=-2.285156,Z=261.914063),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.800495),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.800495),InterpMode=CIM_CurveAutoClamped),(InVal=315.000000,OutVal=(X=0.000000,Y=0.878906,Z=165.585938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.815271),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.815271),InterpMode=CIM_CurveAutoClamped),(InVal=320.000000,OutVal=(X=0.000000,Y=-1.054688,Z=51.679688),InterpMode=CIM_CurveAutoClamped),(InVal=324.899994,OutVal=(X=0.000000,Y=-1.054688,Z=55.898438),InterpMode=CIM_CurveAutoClamped),(InVal=329.800018,OutVal=(X=0.000000,Y=14.765625,Z=-45.175781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.509695),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.509695),InterpMode=CIM_CurveAutoClamped),(InVal=335.000000,OutVal=(X=0.000000,Y=-2.812500,Z=-60.996094),InterpMode=CIM_CurveAutoClamped),(InVal=339.899994,OutVal=(X=0.000000,Y=5.976563,Z=103.886719),ArriveTangent=(X=0.000000,Y=0.000000,Z=26.630859),LeaveTangent=(X=0.000000,Y=0.000000,Z=26.630859),InterpMode=CIM_CurveAutoClamped),(InVal=345.000000,OutVal=(X=0.000000,Y=4.042969,Z=205.312500),ArriveTangent=(X=0.000000,Y=-0.396369,Z=10.697228),LeaveTangent=(X=0.000000,Y=-0.396369,Z=10.697228),InterpMode=CIM_CurveAutoClamped),(InVal=350.100006,OutVal=(X=0.000000,Y=1.933594,Z=235.371094),ArriveTangent=(X=0.000000,Y=-0.609143,Z=11.434244),LeaveTangent=(X=0.000000,Y=-0.609143,Z=11.434244),InterpMode=CIM_CurveAutoClamped),(InVal=355.100006,OutVal=(X=0.000000,Y=-2.109375,Z=361.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.853135),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.853135),InterpMode=CIM_CurveAutoClamped),(InVal=360.200012,OutVal=(X=0.000000,Y=-2.109375,Z=363.691406),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.846488),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.846488),InterpMode=CIM_CurveAutoClamped),(InVal=365.200012,OutVal=(X=0.000000,Y=-2.109375,Z=449.296875),InterpMode=CIM_CurveAutoClamped),(InVal=370.300018,OutVal=(X=0.000000,Y=-2.109375,Z=446.308594),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.455409),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.455409),InterpMode=CIM_CurveAutoClamped),(InVal=375.100006,OutVal=(X=0.000000,Y=-2.109375,Z=307.089844),InterpMode=CIM_CurveAutoClamped),(InVal=380.200012,OutVal=(X=0.000000,Y=-2.109375,Z=330.117188),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=0.000000,Y=-6.503906,Z=264.023438),InterpMode=CIM_CurveAutoClamped),(InVal=390.300018,OutVal=(X=0.000000,Y=-2.285156,Z=264.199219),InterpMode=CIM_CurveAutoClamped),(InVal=395.000000,OutVal=(X=0.000000,Y=-2.285156,Z=178.242188),InterpMode=CIM_CurveAutoClamped),(InVal=400.100006,OutVal=(X=0.000000,Y=-8.085938,Z=181.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.560775),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.560775),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=0.000000,Y=-8.085938,Z=245.917969),InterpMode=CIM_CurveAutoClamped),(InVal=409.899994,OutVal=(X=0.000000,Y=-6.152344,Z=179.296875),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.339601),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.339601),InterpMode=CIM_CurveAutoClamped),(InVal=415.200012,OutVal=(X=0.000000,Y=-6.152344,Z=130.253906),InterpMode=CIM_CurveAutoClamped),(InVal=419.899994,OutVal=(X=0.000000,Y=-6.152344,Z=178.769531),InterpMode=CIM_CurveAutoClamped),(InVal=424.800018,OutVal=(X=0.000000,Y=-3.867188,Z=81.386719),InterpMode=CIM_CurveAutoClamped),(InVal=430.100006,OutVal=(X=0.000000,Y=-3.867188,Z=152.578125),InterpMode=CIM_CurveAutoClamped),(InVal=435.100006,OutVal=(X=0.000000,Y=-3.867188,Z=107.226563),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.806935),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.806935),InterpMode=CIM_CurveAutoClamped),(InVal=439.899994,OutVal=(X=0.000000,Y=-3.867188,Z=27.070313),InterpMode=CIM_CurveAutoClamped),(InVal=444.800018,OutVal=(X=0.000000,Y=-3.867188,Z=43.945313),InterpMode=CIM_CurveAutoClamped),(InVal=450.000000,OutVal=(X=0.000000,Y=-3.867188,Z=3.164063),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=7.800000),(Time=10.000000),(Time=15.000000),(Time=20.000000),(Time=25.000000),(Time=30.000000),(Time=35.100002),(Time=40.000000),(Time=45.000000),(Time=50.000000),(Time=54.900002),(Time=60.000000),(Time=65.200005),(Time=70.000000),(Time=74.900002),(Time=80.099998),(Time=85.200005),(Time=90.099998),(Time=95.400002),(Time=99.800003),(Time=105.200005),(Time=110.000000),(Time=115.099998),(Time=120.099998),(Time=124.800003),(Time=130.199997),(Time=135.000000),(Time=140.199997),(Time=145.300003),(Time=150.199997),(Time=155.000000),(Time=159.900009),(Time=165.199997),(Time=170.000000),(Time=175.100006),(Time=179.900009),(Time=185.000000),(Time=189.900009),(Time=194.800003),(Time=200.000000),(Time=205.100006),(Time=210.100006),(Time=214.900009),(Time=219.900009),(Time=224.699997),(Time=230.000000),(Time=235.100006),(Time=239.800003),(Time=245.000000),(Time=250.199997),(Time=255.000000),(Time=259.899994),(Time=265.100006),(Time=269.899994),(Time=275.000000),(Time=280.100006),(Time=284.800018),(Time=290.000000),(Time=295.000000),(Time=299.899994),(Time=305.000000),(Time=309.899994),(Time=315.000000),(Time=320.000000),(Time=324.899994),(Time=329.800018),(Time=335.000000),(Time=339.899994),(Time=345.000000),(Time=350.100006),(Time=355.100006),(Time=360.200012),(Time=365.200012),(Time=370.300018),(Time=375.100006),(Time=380.200012),(Time=385.000000),(Time=390.300018),(Time=395.000000),(Time=400.100006),(Time=405.000000),(Time=409.899994),(Time=415.200012),(Time=419.899994),(Time=424.800018),(Time=430.100006),(Time=435.100006),(Time=439.899994),(Time=444.800018),(Time=450.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackFloatProp_0'
+      GroupName="NewCameraGroup"
+      GroupColor=(B=51,G=0,R=229,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=556.100037
    InterpGroups(0)=InterpGroupDirector'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroupDirector_0'
@@ -20487,14 +20487,14 @@ Begin Object Class=SeqVar_Player Name=SeqVar_Player_10
 End Object
 
 Begin Object Class=KFSeqAct_SetTrader Name=KFSeqAct_SetTrader_3
-   InputLinks(0)=(LinkDesc="In",DrawY=-6940,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-6920,OverrideDelta=33)
-   OutputLinks(0)=(DrawY=-6930,OverrideDelta=23)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21'),PropertyName="Targets",DrawX=-7479,OverrideDelta=16)
+   InputLinks(0)=(LinkDesc="In",DrawY=-6340,OverrideDelta=13)
+   InputLinks(1)=(DrawY=-6320,OverrideDelta=33)
+   OutputLinks(0)=(DrawY=-6330,OverrideDelta=23)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21'),PropertyName="Targets",DrawX=-7103,OverrideDelta=16)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7520
-   ObjPosY=-6976
+   ObjPosX=-7144
+   ObjPosY=-6376
    DrawWidth=83
    DrawHeight=101
    Name="KFSeqAct_SetTrader_3"
@@ -20505,8 +20505,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
    ObjValue=KFTraderTrigger'KF-STEAMFORTRESS.TheWorld:PersistentLevel.KFTraderTrigger_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7512
-   ObjPosY=-6856
+   ObjPosX=-7136
+   ObjPosY=-6256
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_21"
@@ -20889,6 +20889,101 @@ Begin Object Class=KFSeqEvent_MapObjectiveActivated Name=KFSeqEvent_MapObjective
    DrawHeight=152
    Name="KFSeqEvent_MapObjectiveActivated_6"
    ObjectArchetype=KFSeqEvent_MapObjectiveActivated'KFGame.Default__KFSeqEvent_MapObjectiveActivated'
+End Object
+
+Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_17
+   InputLinks(0)=(DrawY=-7378,OverrideDelta=23)
+   OutputLinks(0)=(DrawY=-7388,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_1')),DrawY=-7368,OverrideDelta=33)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_39'),DrawX=-9115,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Bool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_41'),DrawX=-9065,OverrideDelta=59)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9144
+   ObjPosY=-7424
+   DrawWidth=115
+   DrawHeight=85
+   Name="SeqCond_CompareBool_17"
+   ObjectArchetype=SeqCond_CompareBool'Engine.Default__SeqCond_CompareBool'
+End Object
+
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_41
+   bValue=1
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9088
+   ObjPosY=-7296
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Bool_41"
+   ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+End Object
+
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_39
+   ExpectedType=Class'Engine.SeqVar_Bool'
+   FindVarName="Boss?"
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9168
+   ObjPosY=-7296
+   ObjColor=(B=0,G=0,R=255,A=255)
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Named_39"
+   ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
+End Object
+
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_28
+   bValue=1
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7096
+   ObjPosY=-6840
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Bool_28"
+   ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+End Object
+
+Begin Object Class=SeqAct_SetBool Name=SeqAct_SetBool_11
+   InputLinks(0)=(DrawY=-6918,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-6918,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_28'),DrawX=-7054,OverrideDelta=16)
+   VariableLinks(1)=(LinkedVariables=(SeqVar_Named'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_30'),DrawX=-6998,OverrideDelta=68)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7088
+   ObjPosY=-6952
+   DrawWidth=128
+   DrawHeight=61
+   Name="SeqAct_SetBool_11"
+   ObjectArchetype=SeqAct_SetBool'Engine.Default__SeqAct_SetBool'
+End Object
+
+Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_29
+   VarName="Boss?"
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-6912
+   ObjPosY=-6856
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Bool_29"
+   ObjectArchetype=SeqVar_Bool'Engine.Default__SeqVar_Bool'
+End Object
+
+Begin Object Class=SeqVar_Named Name=SeqVar_Named_30
+   ExpectedType=Class'Engine.SeqVar_Bool'
+   FindVarName="Boss?"
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7000
+   ObjPosY=-6856
+   ObjColor=(B=0,G=0,R=255,A=255)
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Named_30"
+   ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
 End Object
 
 Begin Object Class=CameraShake Name=CameraShake_10 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'

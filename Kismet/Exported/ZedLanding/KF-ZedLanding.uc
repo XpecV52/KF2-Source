@@ -9722,7 +9722,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_64
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SequenceFrame Name=SequenceFrame_4
+Begin Object Class=SequenceFrame Name=SequenceFrame_8
    SizeX=5059
    SizeY=2634
    BorderWidth=5
@@ -9734,7 +9734,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
    ObjComment="Helicopter"
    DrawWidth=5059
    DrawHeight=2634
-   Name="SequenceFrame_4"
+   Name="SequenceFrame_8"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
@@ -10016,8 +10016,9 @@ End Object
 
 Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVolume_0
    bCheckOverlap=False
+   bFadeIn=False
    InputLinks(0)=(DrawY=6074,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_Delay'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_9')),DrawY=6074,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_CameraShake'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_0'),(LinkedOp=SeqAct_CameraFade'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraFade_2')),DrawY=6074,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_7'),DrawX=-8575,OverrideDelta=16)
    VariableLinks(1)=(LinkedVariables=(SeqVar_Object'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_159'),DrawX=-8518,OverrideDelta=67)
    VariableLinks(2)=(LinkedVariables=(SeqVar_Object'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_160'),DrawX=-8441,OverrideDelta=130)
@@ -10253,37 +10254,19 @@ End Object
 
 Begin Object Class=SeqAct_CameraFade Name=SeqAct_CameraFade_2
    FadeOpacity=0.000000
-   FadeTime=2.000000
-   InputLinks(0)=(DrawY=5942,OverrideDelta=23)
-   OutputLinks(0)=(DrawY=5932,OverrideDelta=13)
-   OutputLinks(1)=(DrawY=5952,OverrideDelta=33)
+   FadeTime=3.000000
+   InputLinks(0)=(DrawY=5966,OverrideDelta=23)
+   OutputLinks(0)=(DrawY=5956,OverrideDelta=13)
+   OutputLinks(1)=(DrawY=5976,OverrideDelta=33)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8032
-   ObjPosY=5896
+   ObjPosX=-8224
+   ObjPosY=5920
    ObjComment="Fade In"
    DrawWidth=80
    DrawHeight=69
    Name="SeqAct_CameraFade_2"
    ObjectArchetype=SeqAct_CameraFade'Engine.Default__SeqAct_CameraFade'
-End Object
-
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_9
-   Duration=8.000000
-   InputLinks(0)=(DrawY=5981,OverrideDelta=14)
-   InputLinks(1)=(DrawY=6002,OverrideDelta=35)
-   InputLinks(2)=(DrawY=6023,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_CameraFade'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraFade_2'),(LinkedOp=SeqAct_CameraShake'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_CameraShake_0')),DrawY=5986,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=6018,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=-8196,OverrideDelta=25)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8248
-   ObjPosY=5944
-   DrawWidth=106
-   DrawHeight=109
-   Name="SeqAct_Delay_9"
-   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1

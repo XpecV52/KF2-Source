@@ -357,10 +357,10 @@ defaultproperties
     InventoryGroup=EInventoryGroup.IG_Secondary
     InventorySize=3
     MagazineCapacity=1
-    GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=1
+    SpareAmmoCapacity=2
+    InitialSpareMags=1
     FireAnim=C4_Throw
     FireLastAnim=C4_Throw_Last
     PlayerViewOffset=(X=6,Y=2,Z=-4)

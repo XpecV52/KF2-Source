@@ -1798,7 +1798,7 @@ AmmoVest="Prepared"
 AmmoVestDescription="Carry up to 20% more ammo for each perk weapon."
 
 HollowPoints="Hollow Point Rounds"
-HollowPointsDescription="Increase damage of perk weapons 20% and reduce their recoil 50%."
+HollowPointsDescription="Increase damage of perk weapons 30% and reduce their recoil 50%."
 
 EatLead="Eat Lead"
 EatLeadDescription="Increase magazine capacity of perk weapons 100%."

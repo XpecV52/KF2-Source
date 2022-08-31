@@ -478,7 +478,7 @@ defaultproperties
     PerkSkills(3)=(Name="Impact",Increment=0,Rank=0,StartingValue=1.5,MaxValue=1.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Impact",bActive=false)
     PerkSkills(4)=(Name="HealthIncrease",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_HP",bActive=false)
     PerkSkills(5)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_AmmoVest",bActive=false)
-    PerkSkills(6)=(Name="HollowPoints",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",bActive=false)
+    PerkSkills(6)=(Name="HollowPoints",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",bActive=false)
     PerkSkills(7)=(Name="EatLead",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire",bActive=false)
     PerkSkills(8)=(Name="Professional",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Professional",bActive=false)
     PerkSkills(9)=(Name="RapidFire",Increment=0,Rank=0,StartingValue=0.03,MaxValue=0.03,ModifierValue=0,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_RapidFire",bActive=false)

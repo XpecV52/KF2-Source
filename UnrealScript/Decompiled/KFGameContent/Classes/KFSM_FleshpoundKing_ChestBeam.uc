@@ -165,7 +165,7 @@ function Timer_AttemptTargetChange()
     PawnDir = vector(KFPOwner.Rotation);
     foreach KFPOwner.WorldInfo.AllPawns(Class'Pawn', P)
     {
-        if((((P != KFPOwner) && P != AIOwner.Enemy) && P.GetTeamNum() != KFPOwner.GetTeamNum()) && P.IsAliveAndWell())
+        if(((((P != KFPOwner) && P != AIOwner.Enemy) && P.GetTeamNum() != KFPOwner.GetTeamNum()) && P.IsAliveAndWell()) && P.CanAITargetThisPawn(KFPOwner.Controller))
         {
             DotAngle = PawnDir Dot Normal(P.Location - KFPOwner.Location);
             if(DotAngle < 0.2)

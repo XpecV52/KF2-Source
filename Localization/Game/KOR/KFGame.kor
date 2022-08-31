@@ -208,6 +208,7 @@ modeList0="인공지능이 제어하는 Zed와 정해진 웨이브 수만큼 전
 modeList1="이번 주의 특별 게임 모드에서 인공지능이 제어하는 Zed와 정해진 웨이브 수만큼 전투"
 modeList2="Horzine 용병 대 플레이어와 인공지능이 제어하는 Zed 웨이브"
 modeList3="인공지능이 제어하는 Zed와 정해진 무한 웨이브 전투"
+modeList4="목표를 완료하는 동시에 인공지능이 제어하는 Zed와 정해진 웨이브 전투"
 difficultyList0="병과 랭크 0-5의 초보 플레이어에게 추천"
 difficultyList1="병과 랭크 6-15의 경험 많은 플레이어에게 추천 Zed 속도, 체력, 데미지, 웨이브당 수가 증가합니다. 플레이어가 습득하는 도쉬와 무기 수가 적어집니다."
 difficultyList2="병과 랭크 15-25의 고급 플레이어에게 추천 Zed 속도, 체력, 데미지, 웨이브당 수가 더욱 증가하고 일부 Zed는 새로운 공격을 합니다. 플레이어가 습득하는 도쉬와 무기 수가 더욱 적어집니다."
@@ -1797,7 +1798,7 @@ AmmoVest="준비"
 AmmoVestDescription="각 병과 무기 당 최고 20% 탄약 추가 운반"
 
 HollowPoints="할로우 포인트 탄환"
-HollowPointsDescription="병과 무기 데미지 20% 증가 및 반동 50% 감소"
+HollowPointsDescription="병과 무기 데미지 30% 증가 및 반동 50% 감소"
 
 EatLead="총알이나 먹어라"
 EatLeadDescription="병과 무기 탄창 용량 100% 증가"

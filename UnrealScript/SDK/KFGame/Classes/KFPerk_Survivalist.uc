@@ -178,7 +178,11 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 	TempDamage -= InDamage * GetPassiveValue( DamageResistance, CurrentLevel );
 	if (IsMakeThingsGoBoomActive())
 	{
-		TempDamage = FMax(TempDamage - InDamage * MakeThingsGoBoomExplosiveResistance, 0.0f);
+		// only for explosive damage
+		if (ClassIsChildOf(DamageType, class'KFDT_Explosive'))
+		{
+			TempDamage = FMax(TempDamage - InDamage * MakeThingsGoBoomExplosiveResistance, 0.0f);
+		}
 	}
 
 	`QALog( "Total DamageResistance" @ DamageType @ GetPercentage( InDamage, Round( TempDamage ) ) @ "Start/End" @ InDamage @ Round( TempDamage ), bLogPerk );

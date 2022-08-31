@@ -205,12 +205,18 @@ function InitializeGameOptions()
     local int I;
     local KFProfileSettings Profile;
     local array<string> PlayfabRegionList;
-    local int OBJECTIVE_MODE_INDEX;
+    local int OBJECTIVE_MODE_INDEX, SURVIVAL_MODE_INDEX;
 
     OBJECTIVE_MODE_INDEX = 4;
+    SURVIVAL_MODE_INDEX = 0;
     Profile = StartMenu.Manager.CachedProfile;
     bIsSoloGame = GetBool("bIsSoloGame");
     SavedModeIndex = byte(Profile.GetProfileInt(148));
+    if(!Class'GameEngine'.static.IsGameFullyInstalled() && SavedModeIndex == OBJECTIVE_MODE_INDEX)
+    {
+        Profile.SetProfileSettingValueInt(148, SURVIVAL_MODE_INDEX);
+        SavedModeIndex = byte(SURVIVAL_MODE_INDEX);
+    }
     SavedModeIndex = byte(GetModeIndex());
     StartMenu.GetMapList(StartMenu.MapStringList, Profile.GetProfileInt(148), StartMenu.GetStartMenuState() == 1);
     if(StartMenu.Manager.CachedProfile.GetProfileSettingValue(149, SavedMapString) == false)
@@ -273,7 +279,7 @@ function InitializeGameOptions()
     TextObject.SetString("inProgress", InProgressString);
     SupportedGameModeStrings = Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
     I = SupportedGameModeStrings.Length - 1;
-    J0x98F:
+    J0xA18:
 
     if(I >= 0)
     {
@@ -282,7 +288,7 @@ function InitializeGameOptions()
             SupportedGameModeStrings.Remove(I, 1;
         }
         -- I;
-        goto J0x98F;
+        goto J0xA18;
     }
     TextObject.SetObject("modeList", CreateList(SupportedGameModeStrings, byte(Min(SavedModeIndex, SupportedGameModeStrings.Length)), false));
     SetModeMenus(TextObject, Min(SavedModeIndex, SupportedGameModeStrings.Length));

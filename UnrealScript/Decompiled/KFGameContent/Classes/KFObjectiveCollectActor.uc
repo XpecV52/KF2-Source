@@ -250,7 +250,6 @@ defaultproperties
     // Reference: StaticMeshComponent'Default__KFObjectiveCollectActor.StaticMeshComponent0'
     Components(0)=StaticMeshComponent0
     RemoteRole=ENetRole.ROLE_SimulatedProxy
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=true
     bNoDelete=true
     bTickIsDisabled=true

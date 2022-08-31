@@ -233,7 +233,7 @@ event int GetNormalizedGameModeIndex(int ModeIndex)
 			return ModeIndex + 1;
 		}
 	}
-	
+
 	return ModeIndex;
 }
 
@@ -243,15 +243,22 @@ function InitializeGameOptions()
 	local int i;
 	local KFProfileSettings Profile;
 	local array<string> PlayfabRegionList;
-	local int OBJECTIVE_MODE_INDEX;
+	local int OBJECTIVE_MODE_INDEX, SURVIVAL_MODE_INDEX;
 	OBJECTIVE_MODE_INDEX = 4;
+	SURVIVAL_MODE_INDEX = 0;
 	Profile = StartMenu.Manager.CachedProfile;
 
 	bIsSoloGame = GetBool("bIsSoloGame");
 
 	// find the normalized, saved index
 	SavedModeIndex = Profile.GetProfileInt(KFID_SavedModeIndex);
-	
+
+	if (!class'GameEngine'.Static.IsGameFullyInstalled() && SavedModeIndex == OBJECTIVE_MODE_INDEX)
+	{
+		Profile.SetProfileSettingValueInt(KFID_SavedModeIndex, SURVIVAL_MODE_INDEX);
+		SavedModeIndex = SURVIVAL_MODE_INDEX;
+	}
+
 	// find the index, adjusted for the fact that solo game modes are missing vs survival
 	SavedModeIndex = GetModeIndex();
 
@@ -327,7 +334,7 @@ function InitializeGameOptions()
 		PlayfabRegionList = class'PlayfabInterface'.static.GetLocalizedRegionList();
 		RegionIndex = class'WorldInfo'.static.IsE3Build() ? 0 : byte(class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion());
 		TextObject.SetObject("regionListData",	CreateList( PlayfabRegionList, RegionIndex, false));
-		
+
 	}
 
 	TextObject.SetString("inProgress", InProgressString);
@@ -335,7 +342,7 @@ function InitializeGameOptions()
 	// Update the options lists
 	SupportedGameModeStrings = class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
 
-	
+
 	for( i = SupportedGameModeStrings.Length - 1; i >= 0 ; i-- )
 	{
 		// If we're in a solo game, filter out MP-only gametypes
@@ -361,7 +368,7 @@ function InitializeGameOptions()
 		TextObject.SetObject("regionList", CreateList(PlayfabRegionList, class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion(), false));
 	}
 
-	
+
 
 	SetObject("localizedText", TextObject);
 }
@@ -579,9 +586,9 @@ function UpdateFilters()
 		LengthFilter 			= DataObject.GetInt("length");
 		bLengthFilterSet 		= LengthFilter < class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray().length;
 	}
-	
+
 	bPermissionsFilterSet 	= GetPartyPrivacy() != LV_Public && GetMakeNewServer();
-	PermissionsFilter = bPermissionsFilterSet ? SavedPrivacyIndex : byte(0);	
+	PermissionsFilter = bPermissionsFilterSet ? SavedPrivacyIndex : byte(0);
 }
 
 event int GetGameLength()

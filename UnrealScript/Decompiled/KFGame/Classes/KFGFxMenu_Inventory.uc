@@ -950,7 +950,6 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
         OnlineSub.IsExchangeable(ItemDefinition, ExchangeRules);
         if(ExchangeRules.Length <= 0)
         {
-            LogInternal("NO RULES EXIST FOR THIS ITEM!" @ string(ItemDefinition));
             return;
         }
         if(!OnlineSub.ExchangeReady(ExchangeRules[0]))

@@ -204,10 +204,11 @@ SoloString="Jogar solo off-line"
 TutorialString="Treinamento básico"
 
 [StartMenuHelperText]
-modeList0="Enfrente ondas programadas de Zeds controlados por IA"
-modeList1="Enfrente ondas programadas de Zeds controlados por IA em um modo de jogo semanal único"
+modeList0="Enfrente ondas definidas de Zeds controlados por IA"
+modeList1="Enfrente ondas definidas de Zeds controlados por IA em um modo de jogo semanal único"
 modeList2="Mercenários Horzine contra levas de jogadores e Zeds controlados por IA"
 modeList3="Enfrente ondas ilimitadas de Zeds controlados por IA"
+modeList4="Enfrente ondas definidas de Zeds controlados por IA enquanto conclui objetivos"
 difficultyList0="Recomendado para novos jogadores de classificação de classe 0-5."
 difficultyList1="Recomendado para jogadores experientes de classificação de classe 6-15. Velocidade de Zed, vida, dano e quantidade por onda aumentados. Os jogadores recebem menos grana e poucos itens."
 difficultyList2="Recomendado para jogadores especialistas de classificação de classe 15-25. Velocidade de Zed, vida, dano e quantidade por onda ainda maiores, e alguns Zeds com novos ataques. Os jogadores recebem ainda menos grana e poucos itens."
@@ -1797,7 +1798,7 @@ AmmoVest="Preparado"
 AmmoVestDescription="Carrega até 20% mais munição para cada arma."
 
 HollowPoints="Rodadas de pontos nulos"
-HollowPointsDescription="Aumenta em 20% o dano de armas de classe e reduz em 50% o recuo."
+HollowPointsDescription="Aumenta em 30% o dano de armas de classe e reduz em 50% o recuo."
 
 EatLead="Toma chumbo"
 EatLeadDescription="Aumenta em 100% a capacidade de munição de armas de classe."

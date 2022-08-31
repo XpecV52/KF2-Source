@@ -128,7 +128,7 @@ Begin:
     }
     Outer.EnableMeleeRangeEventProbing();
     Outer.CheckInterruptCombatTransitions();
-    if((!Outer.IsValidAttackTarget(KFPawn(Outer.Enemy)) || !Outer.Enemy.IsAliveAndWell()) || !Outer.MyKFPawn.CanAITargetThisPawn(Outer.Enemy.Controller))
+    if((!Outer.IsValidAttackTarget(KFPawn(Outer.Enemy)) || !Outer.Enemy.IsAliveAndWell()) || !Outer.Enemy.CanAITargetThisPawn(Outer.MyKFPawn.Controller))
     {
         Outer.SelectEnemy();
     }

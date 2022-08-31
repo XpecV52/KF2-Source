@@ -204,10 +204,11 @@ SoloString="Giocatore singolo offline"
 TutorialString="Addestramento di base"
 
 [StartMenuHelperText]
-modeList0="Affronta ondate di Zed controllati dalla IA"
-modeList1="Affronta ondate di Zed controllati dalla IA in una modalità di gioco esclusiva della settimana"
+modeList0="Affronta ondate predefinite di Zed controllate dalla IA"
+modeList1="Affronta ondate predefinite di Zed controllate dalla IA in una modalità di gioco esclusiva della settimana"
 modeList2="Mercenari Horzine contro ondate di Zed controllate da giocatore e IA"
 modeList3="Affronta ondate illimitate di Zed controllati dalla IA"
+modeList4="Affronta ondate predefinite di Zed controllate dalla IA mentre completi gli obiettivi"
 difficultyList0="Consigliato per principianti con livello classe 0-5."
 difficultyList1="Consigliato per giocatori esperti con livello classe 6-15. Velocità, salute, danni e quantità degli Zed aumentano ogni ondata. I giocatori ricevono meno denaro e oggetti."
 difficultyList2="Consigliato per giocatori molto esperti con livello classe 15-25. Velocità, salute, danni e quantità degli Zed aumentano ulteriormente ogni ondata, e alcuni Zed hanno nuovi attacchi. I giocatori ricevono ancora meno denaro e oggetti."
@@ -1797,7 +1798,7 @@ AmmoVest="Premunito"
 AmmoVestDescription="Trasporta fino al 20% di munizioni in più per ogni arma di classe."
 
 HollowPoints="Colpi a punta cava"
-HollowPointsDescription="Aumenta i danni delle armi di classe del 20% e riduce il rinculo del 50%."
+HollowPointsDescription="Aumenta i danni delle armi di classe del 30% e riduce il rinculo del 50%."
 
 EatLead="Mangiapiombo"
 EatLeadDescription="Aumenta la capacità dei caricatori delle armi di classe del 100%."

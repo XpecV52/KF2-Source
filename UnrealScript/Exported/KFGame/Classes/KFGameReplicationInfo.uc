@@ -513,6 +513,11 @@ simulated function ActivateLevelLoadedEvents()
 		GameSeq.FindSeqObjectsByClass(class'KFSeqEvent_LevelLoaded', true, AllSeqEvents);
 		ActivateIndices = GetKFSeqEventLevelLoadedIndices();
 
+		if (ActivateIndices.Length == 0)
+		{
+			return;
+		}
+
 		// activate them
 		for (i = 0; i < AllSeqEvents.Length; i++)
 		{

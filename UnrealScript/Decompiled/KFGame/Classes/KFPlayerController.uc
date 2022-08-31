@@ -772,7 +772,16 @@ reliable server event PushV()
 
 simulated event name GetSeasonalStateName()
 {
-    switch(Class'KFGameEngine'.static.GetSeasonalEventID() % 10)
+    local int EventID;
+    local KFMapInfo KFMI;
+
+    EventID = Class'KFGameEngine'.static.GetSeasonalEventID();
+    KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+    if(KFMI != none)
+    {
+        KFMI.ModifySeasonalEventId(EventID);
+    }
+    switch(EventID % 10)
     {
         case 2:
             return 'Summer_Sideshow';

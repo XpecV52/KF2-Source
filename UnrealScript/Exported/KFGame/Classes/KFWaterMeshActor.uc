@@ -28,9 +28,7 @@ defaultproperties
    End Object
    StaticMeshComponent=StaticMeshComponent0
    Components(0)=StaticMeshComponent0
-   CollisionType=COLLIDE_TouchWeapons
    bWorldGeometry=False
-   BlockRigidBody=False
    bBlockActors=False
    bProjTarget=True
    CollisionComponent=StaticMeshComponent0

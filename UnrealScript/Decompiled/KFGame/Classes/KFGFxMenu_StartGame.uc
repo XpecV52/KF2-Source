@@ -981,12 +981,13 @@ function SetLobbyData(string KeyName, string ValueData)
 function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 {
     local string MapName;
-    local int LengthIndex;
+    local int LengthIndex, OBJECTIVE_MODE_INDEX;
 
+    OBJECTIVE_MODE_INDEX = 4;
     MapName = InOptionsComponent.GetMapName();
-    if(MapName == "")
+    if((MapName == "") || MapStringList.Find(MapName == -1)
     {
-        if(CurrentConnectMap != "")
+        if((CurrentConnectMap != "") && MapStringList.Find(CurrentConnectMap != -1)
         {
             MapName = CurrentConnectMap;            
         }
@@ -1000,12 +1001,19 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
                 }
                 else
                 {
-                    MapName = "kf-evacuationpoint";
+                    MapName = "KF-EvacuationPoint";
                 }                
             }
             else
             {
-                MapName = "kf-bioticslab";
+                if(Manager.CachedProfile.GetProfileInt(148) == OBJECTIVE_MODE_INDEX)
+                {
+                    MapName = "KF-SteamFortress";                    
+                }
+                else
+                {
+                    MapName = "KF-BioticsLab";
+                }
             }
         }
     }

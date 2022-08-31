@@ -890,8 +890,18 @@ reliable server event PushV()
 
 simulated event name GetSeasonalStateName()
 {
+	local int EventId;
+	local KFMapInfo KFMI;
+
+	EventId = class'KFGameEngine'.static.GetSeasonalEventID();
+	KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+	if (KFMI != none)
+	{
+		KFMI.ModifySeasonalEventId(EventId);
+	}
+
     //Remove any year information, just get 1s digit
-    switch (class'KFGameEngine'.static.GetSeasonalEventID() % 10)
+    switch (EventId % 10)
     {
 	case SEI_Summer:
 		return 'Summer_Sideshow';
@@ -4274,7 +4284,7 @@ function ModifyUpdateRotation( float DeltaTime, out Rotator DeltaRot )
 	if (RotationSpeedLimit > 0)
 	{
 		LimitModifier = Abs(DeltaRot.Yaw) > Abs(DeltaRot.Pitch) ? Abs(DeltaRot.Yaw) / RotationSpeedLimit : Abs(DeltaRot.Pitch) / RotationSpeedLimit;
-			
+
 		if(LimitModifier > 1)
 		{
 			DeltaRot.Yaw /= LimitModifier;

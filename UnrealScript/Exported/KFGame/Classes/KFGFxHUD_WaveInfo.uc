@@ -112,11 +112,13 @@ function UpdateZEDCount()
     if(KFGRI.IsBossWave())
     {
         SetInt("remainingZEDs" , INDEX_NONE);
+		LastZEDCount = -1;
         return;
     }
 	else if (KFGRI.IsEndlessWave())
 	{
 		SetInt("remainingZEDs", ENDLESS_WAVE_ID);
+		LastZEDCount = -1;
 		return;
 	}
 

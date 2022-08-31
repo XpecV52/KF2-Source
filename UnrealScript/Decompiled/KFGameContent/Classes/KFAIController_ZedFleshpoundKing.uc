@@ -90,6 +90,10 @@ function CheckForBeamAttack()
         {
             continue;            
         }
+        if(!P.CanAITargetThisPawn(MyKFPawn.Controller))
+        {
+            continue;            
+        }
         Projection = P.Location - MyKFPawn.Location;
         Dist = VSizeSq(Projection);
         if(Dist > MaxBeamTargetDistSQ)

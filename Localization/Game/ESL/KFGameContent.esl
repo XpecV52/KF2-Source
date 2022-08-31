@@ -312,11 +312,6 @@ ItemName="P. clavos VLAD-1000"
 ItemCategory="Escopeta"
 ItemDescription="•Elige entre dos modos de disparo: un clavo o varios a la vez.\n•Además de distintos modos de disparo, tiene disparo alternativo.\nSuponemos que alguno de los científicos de Horzine debió de cogérsela prestada a un técnico de mantenimiento. Bueno, o a su cadáver."
 
-[KFWeap_HRG_Nailgun]
-ItemName="P. clavos HRG"
-ItemCategory="Subfusil"
-ItemDescription="•Elige entre dos modos de disparo: un clavo o varios a la vez.\n•Además de distintos modos de disparo, tiene disparo alternativo.\nSuponemos que alguno de los científicos de Horzine debió tomarla prestada de un técnico de mantenimiento. Bueno, o a su cadáver."
-
 [KFWeap_Blunt_ChainBat]
 ItemName="Redentor del camino"
 ItemCategory="Cuerpo a cuerpo"
@@ -375,11 +370,6 @@ ItemName="Lanzallamas"
 ItemCategory="Llamaradas"
 ItemDescription="•Modo de disparo: lanza un chorro de llamas. Y ya.\n•Un clásico atemporal. En caso de duda, préndele fuego a todo."
 
-[KFWeap_HRG_Healthrower]
-ItemName="Lanzacuras HRG"
-ItemCategory="Llamaradas"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="Arma de microondas"
 ItemCategory="Llamaradas"
@@ -435,16 +425,6 @@ ItemName="2 Desert Eagle .50"
 ItemCategory="Arma corta"
 ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de cañones de mano modelo Desert Eagle."
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Arma corta"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="2 Chiappa Rhino"
-ItemCategory="Arma corta"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="Revólver 1858"
 ItemCategory="Arma corta"
@@ -465,25 +445,10 @@ ItemName="2 rev. Magnum .500"
 ItemCategory="Arma corta"
 ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de revólveres Magnum del calibre 500, modelo "Bone Collector"."
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="Revólver de perdigones HRG"
-ItemCategory="Arma corta"
-ItemDescription="•Modo de disparo: solo tiro único.\n•Artillería pesada en una sola mano. Se trata de un revólver "Bone Collector" de calibre 50 de cañón largo y con balas de Magnum cargadas al máximo. Para pistoleros de verdad."
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="2 revólveres de perdigones HRG"
-ItemCategory="Arma corta"
-ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Son un par de revólveres Magnum del calibre 500, modelo "Bone Collector"."
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Modo de disparo: solo tiro único.\n•El clásico rifle de Winchester modelo 1894 con acción de palanca."
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="Mosin-Nagant"
-ItemCategory="Fusil"
-ItemDescription="•Modo de disparo: solo tiro único."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Central"
@@ -551,16 +516,6 @@ ItemName="Cañón de husk"
 ItemCategory="Llamas"
 ItemDescription="•Se carga mientras se aprieta el botón de disparo y dispara cuando se suelta. \n•La versión oficial de Horzine del cañón de husk. La empresa garantiza que el modelo tiene un 95 % de probabilidades de no explotar."
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Arma corta"
-ItemDescription="•Fill me in"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="Dos Chiappa Rhino"
-ItemCategory="Arma corta"
-ItemDescription="•Fill me in"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabina MKb.42(H)"
 ItemCategory="Rifle de asalto"
@@ -576,11 +531,6 @@ ItemDescription="•Modo de disparo: solo semiautomático.\n•Todo mejora cuand
 ItemName="AF2011-A2 dual"
 ItemCategory="Arma corta"
 ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Dos pistolas con dos cañones cada una. Una potencia de fuego cuatro veces mayor. Matemática pura. No puedes contradecir a las matemáticas."
-
-[KFWeap_Edged_IonThruster]
-ItemName="Espada iónica"
-ItemCategory="CaC"
-ItemDescription="•Fill me in"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Trabucondena"

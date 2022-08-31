@@ -12,4 +12,5 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_FreezeThrower'
     StumblePower=25
+    FreezePower=0
 }

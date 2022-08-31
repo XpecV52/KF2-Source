@@ -19,7 +19,6 @@ var(Animations) const editconst name FireLastHeavySightedAnim;
 var() GameExplosion ExplosionTemplate;
 /** For Ice Blast */
 var(Weapon) protected array<byte> NumPellets;
-var protected const array<Vector2D> PelletSpread;
 var protected const float AltFireRecoilScale;
 
 simulated function name GetWeaponFireAnim(byte FireModeNum)
@@ -96,7 +95,7 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
 
     if(I < GetNumProjectilesToFire(CurrentFireMode))
     {
-        super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, byte(I))));
+        super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, Spread[CurrentFireMode], byte(I))));
         ++ I;
         goto J0x58;
     }
@@ -113,12 +112,11 @@ simulated function Rotator AddSpread(Rotator BaseAim)
     return BaseAim;
 }
 
-simulated function Rotator AddMultiShotSpread(Rotator BaseAim, byte PelletNum)
+static function Rotator AddMultiShotSpread(Rotator BaseAim, float CurrentSpread, byte PelletNum)
 {
     local Vector X, Y, Z;
-    local float CurrentSpread, RandY, RandZ;
+    local float RandY, RandZ;
 
-    CurrentSpread = Spread[CurrentFireMode];
     if(CurrentSpread == float(0))
     {
         return BaseAim;        
@@ -126,8 +124,8 @@ simulated function Rotator AddMultiShotSpread(Rotator BaseAim, byte PelletNum)
     else
     {
         GetAxes(BaseAim, X, Y, Z);
-        RandY = PelletSpread[PelletNum].Y * RandRange(0.5, 1.5);
-        RandZ = PelletSpread[PelletNum].X * RandRange(0.5, 1.5);
+        RandY = FRand() - 0.5;
+        RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
         return rotator((X + ((RandY * CurrentSpread) * Y)) + ((RandZ * CurrentSpread) * Z));
     }
 }
@@ -216,7 +214,7 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'wep_ui_cryogun_tex.UI_WeaponSelect_Cryogun'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=400
+    SpareAmmoCapacity=500
     InitialSpareMags=1
     AmmoPickupScale=0.75
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'

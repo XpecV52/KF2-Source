@@ -312,11 +312,6 @@ ItemName="VLAD-1000 네일건"
 ItemCategory="샷건"
 ItemDescription="•단발이나 연사 못 발사 모드 선택.\n•대체 사격으로 발사 모드를 전환할 수 있습니다.\n•Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
 
-[KFWeap_HRG_Nailgun]
-ItemName="HRG 네일건"
-ItemCategory="서브머신건"
-ItemDescription="•단발이나 연사 못 발사 모드 선택.\n•대체 사격으로 발사 모드를 전환할 수 있습니다.\n•Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
-
 [KFWeap_Blunt_ChainBat]
 ItemName="구세주의 길"
 ItemCategory="백병전"
@@ -375,11 +370,6 @@ ItemName="화염방사기"
 ItemCategory="화염"
 ItemDescription="•사격 모드에서 화염 발사. 그게 다입니다.\n•세대가 지나도 변치 않는 고전. 의심스럽다면 불을 질러보세요."
 
-[KFWeap_HRG_Healthrower]
-ItemName="HRG 치유방사기"
-ItemCategory="화염"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="마이크로웨이브 건"
 ItemCategory="화염"
@@ -435,16 +425,6 @@ ItemName="듀얼 .50 데저트 이글"
 ItemCategory="핸드건"
 ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•데저트 이글 핸드 캐논 한 쌍입니다."
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="치파 라이노"
-ItemCategory="핸드건"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="듀얼 치파 라이노"
-ItemCategory="핸드건"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 리볼버"
 ItemCategory="핸드건"
@@ -465,25 +445,10 @@ ItemName="듀얼 .500 매그넘"
 ItemCategory="핸드건"
 ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•.500 매그넘 ‘본 콜렉터’ 리볼버 한 쌍입니다."
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="HRG 산탄 리볼버"
-ItemCategory="핸드건"
-ItemDescription="•사격 모드는 단발 전용.\n•긴 배럴을 가진 50 구경 ‘본 콜렉터’ 리볼버로 매그넘 탄환을 발사하는 진정한 휴대용 대포입니다. 진지한 건슬링거를 위한 무기입니다."
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="듀얼 HRG 산탄 리볼버"
-ItemCategory="핸드건"
-ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•.500 매그넘 ‘본 콜렉터’ 리볼버 한 쌍입니다."
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="윈체스터 1894"
 ItemCategory="소총"
 ItemDescription="•사격 모드는 단발 전용.\n•클래식 모델 1894 윈체스터 레버 액션 소총."
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="모신나강"
-ItemCategory="소총"
-ItemDescription="•기본 사격은 단발 전용입니다."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 센터파이어"
@@ -551,16 +516,6 @@ ItemName="Husk 캐논"
 ItemCategory="화염"
 ItemDescription="•발사 버튼을 누르는 동안 충전되며 발사 버튼에서 손을 떼면 발사됩니다. \n•Husk 캐논의 공식 Horzine 버전입니다. 이 모델은 95% 확률로 폭발하지 않습니다."
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="치파 라이노"
-ItemCategory="권총"
-ItemDescription="•입력 필요"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="듀얼 치파 라이노"
-ItemCategory="권총"
-ItemDescription="•입력 필요"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) 카빈 소총"
 ItemCategory="돌격소총"
@@ -576,11 +531,6 @@ ItemDescription="•반자동 전용입니다.\n•총구는 많을수록 좋습
 ItemName="듀얼 AF2011-A2"
 ItemCategory="권총"
 ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•2개의 총구가 있는 총 두 정입니다. 화력이 네 배입니다. 산수죠. 너무 쉬운 산수입니다."
-
-[KFWeap_Edged_IonThruster]
-ItemName="이온 스러스터"
-ItemCategory="백병전"
-ItemDescription="•입력 필요"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="둠스틱"

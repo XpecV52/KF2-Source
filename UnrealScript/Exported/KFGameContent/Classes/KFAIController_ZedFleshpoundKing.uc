@@ -126,6 +126,12 @@ function CheckForBeamAttack()
 			continue;
 		}
 
+		// Only target things that are targetable
+		if (!P.CanAITargetThisPawn(MyKFPawn.Controller))
+		{
+			continue;
+		}
+
 		Projection = P.Location - MyKFPawn.Location;
 		Dist = VSizeSQ( Projection );
 

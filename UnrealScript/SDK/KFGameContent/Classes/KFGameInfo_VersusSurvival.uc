@@ -48,6 +48,23 @@ var protected int BossDamageDone;
 var protected int BossSurvivorDamageTaken;
 var protected float PercentOfZedsKilledBeforeWipe;
 
+/**
+ * DLO (by string) content classes specific to this game type
+ * - Use when direct ref loading is not possible (e.g. unused GameInfo is loaded)
+ * - Class refs can be cached using the supplied GRI
+ */
+static function PreloadGlobalContentClasses()
+{
+	local class<KFPawn_Monster> PawnClass;
+
+	super.PreloadGlobalContentClasses();
+
+	foreach default.PlayerZedClasses(PawnClass)
+	{
+		PawnClass.static.PreloadContent();
+	}
+}
+
 event PreBeginPlay()
 {
 	super.PreBeginPlay();

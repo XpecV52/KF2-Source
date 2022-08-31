@@ -28,6 +28,17 @@ var protected int BossDamageDone;
 var protected int BossSurvivorDamageTaken;
 var protected float PercentOfZedsKilledBeforeWipe;
 
+static function PreloadGlobalContentClasses()
+{
+    local class<KFPawn_Monster> PawnClass;
+
+    super(KFGameInfo).PreloadGlobalContentClasses();
+    foreach default.PlayerZedClasses(PawnClass,)
+    {
+        PawnClass.static.PreloadContent();        
+    }    
+}
+
 event PreBeginPlay()
 {
     super.PreBeginPlay();

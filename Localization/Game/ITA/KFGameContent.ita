@@ -312,11 +312,6 @@ ItemName="Sparachiodi VLAD-1000"
 ItemCategory="Fucile"
 ItemDescription="•Scelta tra modalità di fuoco singola o multipla.\n•Usa il fuoco alternativo per cambiare modalità.\n•Da quello che sappiamo, uno degli scienziati Horzine ha preso in prestito lo sparachiodi originale da un addetto alla manutenzione (morto)."
 
-[KFWeap_HRG_Nailgun]
-ItemName="Sparachiodi HRG"
-ItemCategory="Mitra"
-ItemDescription="•Scelta tra modalità di fuoco singola o multipla.\n•Usa il fuoco alternativo per cambiare modalità.\n•Da quello che sappiamo, uno degli scienziati Horzine ha preso in prestito lo sparachiodi originale da un addetto alla manutenzione (morto)."
-
 [KFWeap_Blunt_ChainBat]
 ItemName="Redentore di strada"
 ItemCategory="Mischia"
@@ -375,11 +370,6 @@ ItemName="Lanciafiamme"
 ItemCategory="Fiamme"
 ItemDescription="•Lancia fiamme. Tutto qui.\n•Un classico di tutte le generazioni. Nel dubbio, brucia tutto."
 
-[KFWeap_HRG_Healthrower]
-ItemName="LanciaCura HRG"
-ItemCategory="Fiamme"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="Fucile a microonde"
 ItemCategory="Fiamme"
@@ -435,16 +425,6 @@ ItemName="Doppia .50 Desert Eagle"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di cannoni Desert Eagle."
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Pistola"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="Chiappa Rhino doppia"
-ItemCategory="Pistola"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
 ItemCategory="Pistola"
@@ -465,25 +445,10 @@ ItemName="Doppia Magnum .500"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di .500 Magnum 'Collezionista di ossa'."
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="Revolver a pallettoni HRG"
-ItemCategory="Pistola"
-ItemDescription="•Spara un colpo alla volta.\n•Vera artiglieria a mano sotto forma di una calibro .50 a canna lunga 'Collezionista di ossa', con proiettili magnum. Per il vero pistolero."
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Revolver a pallettoni HRG doppi"
-ItemCategory="Pistola"
-ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di .500 Magnum 'Collezionista di ossa'."
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Fucile da caccia"
 ItemDescription="•Spara un colpo alla volta.\n•Il classico modello di fucile Winchester 1894 a leva."
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="Mosin-Nagant"
-ItemCategory="Fucile da caccia"
-ItemDescription="•Spara un colpo alla volta."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 centrale"
@@ -551,16 +516,6 @@ ItemName="Cannone Husk"
 ItemCategory="Fiamme"
 ItemDescription="•Si ricarica premendo il tasto fuoco e si scarica rilasciando il tasto fuoco. \n•La versione Horzine ufficiale del cannone Husk. La non esplosione di questo modello è garantita al 95%."
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Pistola"
-ItemDescription="•Riempimi"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="Chiappa Rhino doppia"
-ItemCategory="Pistola"
-ItemDescription="•Riempimi"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabina MKb.42(H)"
 ItemCategory="Fucile d'assalto"
@@ -576,11 +531,6 @@ ItemDescription="•Solo semiautomatica.\n•Aggiungendo altre canne diventa tut
 ItemName="Doppia AF2011-A2"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Due mitra a due canne ciascuna. Potenza di fuoco quadruplicata. È matematica. Con la matematica non si discute."
-
-[KFWeap_Edged_IonThruster]
-ItemName="Propulsore ionico"
-ItemCategory="Mischia"
-ItemDescription="•Riempimi"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Bastone del destino"

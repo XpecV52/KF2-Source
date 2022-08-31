@@ -11,35 +11,22 @@ class KFCarryableObject_Collectible extends KFCarryableObject
 	abstract;
 
 var KFObjectiveCollectActor ParentCollectActor;
-var bool bNeedsTossCheck;
 
 var float StartingOverrideGroundSpeed;
 var float StartingOverrideSprintSpeed;
 
-simulated state WeaponPuttingDown
+simulated state Inactive
 {
 	simulated function BeginState(name PreviousStateName)
 	{
-		bNeedsTossCheck = true;
 		super.BeginState(PreviousStateName);
+		SetTimer(1.0f, true, nameof(NotifyRemovedPending));
 	}
-}
 
-simulated state WeaponDownSimple
-{
-	simulated function BeginState(name PreviousStateName)
+	simulated function EndState(Name NextStateName)
 	{
-		bNeedsTossCheck = true;
-		super.BeginState(PreviousStateName);
-	}
-}
-
-simulated state WeaponAbortEquip
-{
-	simulated function BeginState(name PreviousStateName)
-	{
-		bNeedsTossCheck = true;
-		super.BeginState(PreviousStateName);
+		super.EndState(NextStateName);
+		ClearTimer(nameof(NotifyRemovedPending));
 	}
 }
 
@@ -53,17 +40,10 @@ simulated event PreBeginPlay()
 // when the weapon was pending equip and then overriden by another pending equip
 simulated function NotifyRemovedPending()
 {
-	bNeedsTossCheck = true;
-}
-
-simulated event Tick(float DeltaTime)
-{
-	if (bNeedsTossCheck && Instigator.Weapon != none && Instigator.Weapon != self)
+	if (Instigator.Weapon != none && Instigator.Weapon != self)
 	{
 		TossIfInactive();
-		bNeedsTossCheck = false;
 	}
-	super.Tick(DeltaTime);
 }
 
 simulated function UpdateSpeedOverride()
@@ -174,27 +154,32 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE) = MeleeAttackBasic
 	WeaponFireTypes(DEFAULT_FIREMODE) = EWFT_Custom
 	InstantHitMomentum(DEFAULT_FIREMODE) = 30000.f
-	InstantHitDamage(DEFAULT_FIREMODE) = 150.0
+	InstantHitDamage(DEFAULT_FIREMODE) = 100.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE) = class'KFDT_Bludgeon_Carryable'
 	AmmoCost(DEFAULT_FIREMODE) = 0
 
 	FiringStatesArray(BASH_FIREMODE) = MeleeAttackBasic
 	WeaponFireTypes(BASH_FIREMODE) = EWFT_Custom
 	InstantHitMomentum(BASH_FIREMODE) = 30000.f
-	InstantHitDamage(BASH_FIREMODE) = 150.0
+	InstantHitDamage(BASH_FIREMODE) = 100.0
 	InstantHitDamageTypes(BASH_FIREMODE) = class'KFDT_Bludgeon_Carryable'
 	AmmoCost(BASH_FIREMODE) = 0
 
 	FiringStatesArray(HEAVY_ATK_FIREMODE) = MeleeAttackBasic
 	WeaponFireTypes(HEAVY_ATK_FIREMODE) = EWFT_Custom
 	InstantHitMomentum(HEAVY_ATK_FIREMODE) = 30000.f
-	InstantHitDamage(HEAVY_ATK_FIREMODE) = 150.0
+	InstantHitDamage(HEAVY_ATK_FIREMODE) = 100.0
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE) = class'KFDT_Bludgeon_Carryable'
 	AmmoCost(HEAVY_ATK_FIREMODE) = 0
 
 	DroppedPickupClass=class'KFDroppedPickup_Carryable'
 	InventoryGroup=IG_Equipment
 	GroupPriority=100
+
+	// Defensive
+	ParryStrength=4
+	ParryDamageMitigationPercent=0.50
+	BlockDamageMitigation=0.60
 
 	StartingOverrideGroundSpeed=203.f; //192
 	StartingOverrideSprintSpeed=280.f; //230

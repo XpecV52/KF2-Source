@@ -11,35 +11,22 @@ class KFCarryableObject_Collectible extends KFCarryableObject
 	abstract;
 
 var KFObjectiveCollectActor ParentCollectActor;
-var bool bNeedsTossCheck;
 
 var float StartingOverrideGroundSpeed;
 var float StartingOverrideSprintSpeed;
 
-simulated state WeaponPuttingDown
+simulated state Inactive
 {
 	simulated function BeginState(name PreviousStateName)
 	{
-		bNeedsTossCheck = true;
 		super.BeginState(PreviousStateName);
+		SetTimer(1.0f, true, nameof(NotifyRemovedPending));
 	}
-}
 
-simulated state WeaponDownSimple
-{
-	simulated function BeginState(name PreviousStateName)
+	simulated function EndState(Name NextStateName)
 	{
-		bNeedsTossCheck = true;
-		super.BeginState(PreviousStateName);
-	}
-}
-
-simulated state WeaponAbortEquip
-{
-	simulated function BeginState(name PreviousStateName)
-	{
-		bNeedsTossCheck = true;
-		super.BeginState(PreviousStateName);
+		super.EndState(NextStateName);
+		ClearTimer(nameof(NotifyRemovedPending));
 	}
 }
 
@@ -53,17 +40,10 @@ simulated event PreBeginPlay()
 // when the weapon was pending equip and then overriden by another pending equip
 simulated function NotifyRemovedPending()
 {
-	bNeedsTossCheck = true;
-}
-
-simulated event Tick(float DeltaTime)
-{
-	if (bNeedsTossCheck && Instigator.Weapon != none && Instigator.Weapon != self)
+	if (Instigator.Weapon != none && Instigator.Weapon != self)
 	{
 		TossIfInactive();
-		bNeedsTossCheck = false;
 	}
-	super.Tick(DeltaTime);
 }
 
 simulated function UpdateSpeedOverride()
@@ -171,6 +151,8 @@ defaultproperties
 {
    StartingOverrideGroundSpeed=203.000000
    StartingOverrideSprintSpeed=280.000000
+   BlockDamageMitigation=0.600000
+   ParryDamageMitigationPercent=0.500000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(1)=()
    FireModeIconPaths(2)=()
@@ -192,12 +174,12 @@ defaultproperties
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
    FiringStatesArray(5)="MeleeAttackBasic"
-   InstantHitDamage(0)=150.000000
+   InstantHitDamage(0)=100.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=150.000000
+   InstantHitDamage(3)=100.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=150.000000
+   InstantHitDamage(5)=100.000000
    InstantHitMomentum(0)=30000.000000
    InstantHitMomentum(1)=()
    InstantHitMomentum(2)=()

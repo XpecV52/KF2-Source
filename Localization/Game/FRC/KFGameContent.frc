@@ -312,11 +312,6 @@ ItemName="VLAD-1000 Cloueuse"
 ItemCategory="Fusil à pompe"
 ItemDescription="•Tirs de clous uniques ou multiples.\n•Alt-Feu pour alterner entre les modes de tir.\n•Il semblerait que l'un des chercheurs de Horzine ait emprunté la cloueuse originale à un employé (décédé) du service d'entretien."
 
-[KFWeap_HRG_Nailgun]
-ItemName="Cloueuse HRG"
-ItemCategory="Pistolet mitrailleur"
-ItemDescription="•Tirs de clous uniques ou multiples.\n•Utilisez le tir alternatif pour alterner entre les modes de tir.\n•Il semblerait que l'un des chercheurs de Horzine ait emprunté la cloueuse originale à un employé (décédé) du service d'entretien."
-
 [KFWeap_Blunt_ChainBat]
 ItemName="Rédempteur de route"
 ItemCategory="Mêlée"
@@ -375,11 +370,6 @@ ItemName="Lance-flammes"
 ItemCategory="Incendiaire"
 ItemDescription="•Lance des flammes. Tout simplement.\n•Un classique pour toutes les générations. Au moindre doute, brûlez tout ce qui bouge."
 
-[KFWeap_HRG_Healthrower]
-ItemName="Lance-soin HRG"
-ItemCategory="Incendiaire"
-ItemDescription=""
-
 [KFWeap_Beam_Microwave]
 ItemName="Pistolet à micro-ondes"
 ItemCategory="Incendiaire"
@@ -435,16 +425,6 @@ ItemName="Double Desert Eagle .50"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Desert Eagle."
 
-[KFWeap_Pistol_ChiappaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Arme de poing"
-ItemDescription="•"
-
-[KFWeap_Pistol_ChiappaRhinoDual]
-ItemName="Double Chiappa Rhino"
-ItemCategory="Arme de poing"
-ItemDescription="•"
-
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
 ItemCategory="Arme de poing"
@@ -465,25 +445,10 @@ ItemName="Double .500 Magnum"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de revolvers .500 Magnum Bone Collector."
 
-[KFWeap_HRG_Revolver_Buckshot]
-ItemName="Revolver à chevrotine HRG"
-ItemCategory="Arme de poing"
-ItemDescription="•Mode de tir manuel seulement.\n•Véritable pièce d'artillerie sous la forme d'un revolver long canon à calibre .50, qui crache de bons gros pruneaux. Pour les vrais Flingueurs."
-
-[KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Duo de revolvers à chevrotine HRG"
-ItemCategory="Arme de poing"
-ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de revolvers .500 Magnum Bone Collector."
-
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
 ItemCategory="Fusil"
 ItemDescription="•Mode de tir manuel seulement.\n•Le légendaire fusil à levier Winchester modèle 1894."
-
-[KFWeap_Rifle_MosinNagant]
-ItemName="Mosin-Nagant"
-ItemCategory="Fusil"
-ItemDescription="•Mode de tir manuel seulement."
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464"
@@ -551,16 +516,6 @@ ItemName="Canon à Bogue"
 ItemCategory="Incendiaire"
 ItemDescription="• Se recharge lorsque vous appuyez sur le bouton de tir et se décharge lorsque vous le relâchez. \n• La version officielle du canon à Bogue signée Horzine. Ce modèle a 95 % de chance de ne pas exploser."
 
-[KFWeap_Pistol_ChippaRhino]
-ItemName="Chiappa Rhino"
-ItemCategory="Arme de poing"
-ItemDescription="•Fill me in"
-
-[KFWeap_Revolver_DualChippaRhino]
-ItemName="Double Chiappa Rhino"
-ItemCategory="Arme de poing"
-ItemDescription="•Fill me in"
-
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabine MKb.42(H)"
 ItemCategory="Fusil d'assaut"
@@ -576,11 +531,6 @@ ItemDescription="• Mode semi-automatique uniquement.\n• Dès qu'on rajoute d
 ItemName="Double AF2011-A2"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Deux pistolets avec deux canons chacun. Quatre fois plus de puissance de tir. C'est mathématique. On ne discute pas avec les maths."
-
-[KFWeap_Edged_IonThruster]
-ItemName="Trancheur ionique"
-ItemCategory="Mêlée"
-ItemDescription="•Fill me in"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Doomstick"

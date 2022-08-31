@@ -256,7 +256,6 @@ defaultproperties
    CollectActorMesh=StaticMeshComponent0
    Components(0)=StaticMeshComponent0
    RemoteRole=ROLE_SimulatedProxy
-   CollisionType=COLLIDE_CustomDefault
    bStatic=True
    bNoDelete=True
    bTickIsDisabled=True

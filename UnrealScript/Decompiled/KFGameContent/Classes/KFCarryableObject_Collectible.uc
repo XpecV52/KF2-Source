@@ -11,7 +11,6 @@ class KFCarryableObject_Collectible extends KFCarryableObject
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
 var KFObjectiveCollectActor ParentCollectActor;
-var bool bNeedsTossCheck;
 var float StartingOverrideGroundSpeed;
 var float StartingOverrideSprintSpeed;
 
@@ -23,17 +22,10 @@ simulated event PreBeginPlay()
 
 simulated function NotifyRemovedPending()
 {
-    bNeedsTossCheck = true;
-}
-
-simulated event Tick(float DeltaTime)
-{
-    if((bNeedsTossCheck && Instigator.Weapon != none) && Instigator.Weapon != self)
+    if((Instigator.Weapon != none) && Instigator.Weapon != self)
     {
         TossIfInactive();
-        bNeedsTossCheck = false;
     }
-    super(KFWeapon).Tick(DeltaTime);
 }
 
 simulated function UpdateSpeedOverride()
@@ -128,32 +120,18 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     super(KFWeapon).SetOriginalValuesFromPickup(PickedUpWeapon);
 }
 
-simulated state WeaponPuttingDown
+simulated state Inactive
 {
     simulated function BeginState(name PreviousStateName)
     {
-        bNeedsTossCheck = true;
         super.BeginState(PreviousStateName);
+        SetTimer(1, true, 'NotifyRemovedPending');
     }
-    stop;    
-}
 
-simulated state WeaponDownSimple
-{
-    simulated function BeginState(name PreviousStateName)
+    simulated function EndState(name NextStateName)
     {
-        bNeedsTossCheck = true;
-        super.BeginState(PreviousStateName);
-    }
-    stop;    
-}
-
-simulated state WeaponAbortEquip
-{
-    simulated function BeginState(name PreviousStateName)
-    {
-        bNeedsTossCheck = true;
-        super(WeaponPuttingDown).BeginState(PreviousStateName);
+        super(Object).EndState(NextStateName);
+        ClearTimer('NotifyRemovedPending');
     }
     stop;    
 }
@@ -162,6 +140,8 @@ defaultproperties
 {
     StartingOverrideGroundSpeed=203
     StartingOverrideSprintSpeed=280
+    BlockDamageMitigation=0.6
+    ParryDamageMitigationPercent=0.5
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Equipment
     GroupPriority=100

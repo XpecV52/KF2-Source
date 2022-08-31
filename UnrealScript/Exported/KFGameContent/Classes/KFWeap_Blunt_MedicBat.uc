@@ -598,12 +598,12 @@ defaultproperties
    AttackHealAmounts(3)=30.000000
    AttackHealAmounts(4)=0.000000
    AttackHealAmounts(5)=40.000000
-   AttackHealCosts(0)=40
+   AttackHealCosts(0)=30
    AttackHealCosts(1)=0
    AttackHealCosts(2)=0
-   AttackHealCosts(3)=40
+   AttackHealCosts(3)=30
    AttackHealCosts(4)=0
-   AttackHealCosts(5)=40
+   AttackHealCosts(5)=30
    HealFullRechargeSeconds=12.000000
    HealingDartAmmo=100
    HealingDamageType=Class'KFGame.KFDT_Healing'
@@ -641,7 +641,8 @@ defaultproperties
    AmmoCost(4)=()
    AmmoCost(5)=()
    AmmoCost(6)=1
-   SpareAmmoCapacity(0)=9
+   SpareAmmoCapacity(0)=12
+   InitialSpareMags(0)=1
    PlayerViewOffset=(X=3.000000,Y=1.000000,Z=-3.000000)
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True

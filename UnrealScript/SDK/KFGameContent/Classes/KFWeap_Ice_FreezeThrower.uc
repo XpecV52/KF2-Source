@@ -23,7 +23,6 @@ var() GameExplosion 		ExplosionTemplate;
 
 /** For Ice Blast */
 var(Weapon) protected array<byte> NumPellets;
-var protected const array<vector2D> PelletSpread;
 
 /** How much recoil the altfire should do */
 var protected const float AltFireRecoilScale;
@@ -109,7 +108,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 	AimRot = rotator(AimDir);
 	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
 	{
-		Super.SpawnProjectile( KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)) );
+		Super.SpawnProjectile( KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, Spread[CurrentFireMode], i)) );
 	}
 
 	return None;
@@ -127,13 +126,12 @@ simulated function rotator AddSpread( rotator BaseAim )
 	return BaseAim; // do nothing
 }
 
- /** Same as AddSpread(), but used with MultiShotSpread */
-simulated function rotator AddMultiShotSpread( rotator BaseAim, byte PelletNum )
+/** Same as AddSpread(), but used with MultiShotSpread */
+static function rotator AddMultiShotSpread(rotator BaseAim, float CurrentSpread, byte PelletNum)
 {
 	local vector X, Y, Z;
-	local float CurrentSpread, RandY, RandZ;
+	local float RandY, RandZ;
 
-	CurrentSpread = Spread[CurrentFireMode];
 	if (CurrentSpread == 0)
 	{
 		return BaseAim;
@@ -142,8 +140,8 @@ simulated function rotator AddMultiShotSpread( rotator BaseAim, byte PelletNum )
 	{
 		// Add in any spread.
 		GetAxes(BaseAim, X, Y, Z);
-		RandY = PelletSpread[PelletNum].Y * RandRange( 0.5f, 1.5f );
-		RandZ = PelletSpread[PelletNum].X * RandRange( 0.5f, 1.5f );
+		RandY = FRand() - 0.5;
+		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
 		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
 	}
 }
@@ -251,7 +249,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=100
-	SpareAmmoCapacity[0]=400
+	SpareAmmoCapacity[0]=500
 	InitialSpareMags[0]=1
 	AmmoPickupScale[0]=0.75
 	bCanBeReloaded=true
@@ -302,13 +300,6 @@ defaultproperties
 	AmmoCost(ALTFIRE_FIREMODE)=10
 	NumPellets(ALTFIRE_FIREMODE)=12
 	Spread(ALTFIRE_FIREMODE)=0.15f
-	//PelletSpread(0)=(X=0.f,Y=0.f)
-	//PelletSpread(1)=(X=0.5f,Y=0.f) 			//0deg 
-	//PelletSpread(2)=(X=0.3214,Y=0.3830) 	//60deg
-	//PelletSpread(3)=(X=-0.25,Y=0.4330)		//120deg
-	//PelletSpread(4)=(X=-0.5f,Y=0.f)			//180deg
-	//PelletSpread(5)=(X=-0.25f,Y=-0.4330)	//240deg
-	//PelletSpread(6)=(X=0.25,Y=-0.4330)		//300deg
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Freezethrower'
@@ -344,6 +335,6 @@ defaultproperties
 	//WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1)
 	//WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2)
 
-	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Damage1, Scale=1.4f), (Stat=EWUS_Weight, Add=1)))
-	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.8f), (Stat=EWUS_Damage1, Scale=1.8f), (Stat=EWUS_Weight, Add=2)))
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.8f), (Stat=EWUS_Damage1, Scale=1.3f), (Stat=EWUS_Weight, Add=2)))
 }

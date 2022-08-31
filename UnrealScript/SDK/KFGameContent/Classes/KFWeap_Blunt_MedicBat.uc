@@ -633,8 +633,8 @@ defaultproperties
 
 	// Heavy Attack Explosion Ammo
 	MagazineCapacity[0]=3
-	SpareAmmoCapacity[0]=9
-	InitialSpareMags[0]=0
+	SpareAmmoCapacity[0]=12
+	InitialSpareMags[0]=1
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -700,12 +700,12 @@ defaultproperties
 	// Explosion
 	ExplosionActorClass = class'KFExplosionActorReplicated'
 	Begin Object Class=KFGameExplosion Name=HeavyAttackHealingExplosion
-		Damage=250
+		Damage=200
 		DamageRadius=500
 		DamageFalloffExponent=0.f
 		DamageDelay=0.f
 		MyDamageType=class'KFDT_Toxic_MedicBatGas'
-		HealingAmount=50
+		HealingAmount=30
 
 		// Damage Effects
 		KnockDownStrength=0
@@ -756,9 +756,9 @@ defaultproperties
 	AttackHealAmounts(BASH_FIREMODE)=30
 	AttackHealAmounts(HEAVY_ATK_FIREMODE)=40
 
-	AttackHealCosts(DEFAULT_FIREMODE)=40
-	AttackHealCosts(BASH_FIREMODE)=40
-	AttackHealCosts(HEAVY_ATK_FIREMODE)=40
+	AttackHealCosts(DEFAULT_FIREMODE)=30
+	AttackHealCosts(BASH_FIREMODE)=30
+	AttackHealCosts(HEAVY_ATK_FIREMODE)=30
 
 	OpticsUIClass=class'KFGFxWorld_MedicOptics'
 

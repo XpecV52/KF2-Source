@@ -333,7 +333,7 @@ defaultproperties
 {
     MaxChargeTime=1
     ValueIncreaseTime=0.2
-    DmgIncreasePerCharge=0.7
+    DmgIncreasePerCharge=0.8
     AOEIncreasePerCharge=0.6
     IncapIncreasePerCharge=0.22
     AmmoIncreasePerCharge=1

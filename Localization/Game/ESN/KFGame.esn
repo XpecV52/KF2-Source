@@ -204,10 +204,11 @@ SoloString="Un jugador offline"
 TutorialString="Entrenam. básico"
 
 [StartMenuHelperText]
-modeList0="Enfréntate a determinadas oleadas de zeds controlados por IA"
-modeList1="Enfréntate a determinadas oleadas de zeds controlados por IA en el modo de juego de la semana"
+modeList0="Enfréntate a oleadas predeterminadas de zeds controlados por IA"
+modeList1="Enfréntate a oleadas predeterminadas de zeds controlados por IA en el modo de juego de la semana"
 modeList2="Mercenarios de Horzine contra oleadas de zeds controlados por jugadores e IA"
 modeList3="Enfréntate a ilimitadas oleadas de zeds controlados por IA"
+modeList4="Enfréntate a oleadas predeterminadas de zeds controlados por IA mientras completas objetivos"
 difficultyList0="Recomendado para principiantes con rango de especialización 0-5."
 difficultyList1="Recomendado para expertos con rango de especialización 6-15. La velocidad, la salud, el daño y la cantidad de zeds aumentan en cada oleada. Los jugadores reciben menos dinero y menos objetos gratuitos."
 difficultyList2="Recomendado para veteranos con rango de especialización 15-25. La velocidad, la salud, el daño y la cantidad de zeds aumentan más en cada oleada, y algunos zeds tienen nuevos ataques. Los jugadores reciben todavía menos dinero y menos objetos gratuitos."
@@ -1797,7 +1798,7 @@ AmmoVest="Preparado"
 AmmoVestDescription="Puedes llevar hasta un 20 % más de munición de cada arma de esp."
 
 HollowPoints="Balas de punta hueca"
-HollowPointsDescription="Aumenta el daño de las armas de esp. un 20 % y reduce un 50 % su retroceso."
+HollowPointsDescription="Aumenta el daño de las armas de esp. un 30 % y reduce un 50 % su retroceso."
 
 EatLead="Traga plomo"
 EatLeadDescription="Aumenta la capacidad de los cargadores de armas de esp. un 100 %."

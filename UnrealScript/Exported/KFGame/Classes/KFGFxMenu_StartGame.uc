@@ -1118,11 +1118,13 @@ function SetLobbyData( string KeyName, string ValueData )
 function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 {
 	local string MapName;
-	local int LengthIndex;
+	local int LengthIndex, OBJECTIVE_MODE_INDEX;
+
+	OBJECTIVE_MODE_INDEX = 4;
 	MapName = InOptionsComponent.GetMapName();
-	if (MapName == "")
+	if (MapName == "" || MapStringList.Find(MapName) == INDEX_NONE)
 	{
-		if (CurrentConnectMap != "")
+		if (CurrentConnectMap != "" && MapStringList.Find(CurrentConnectMap) != INDEX_NONE)
 		{
 			MapName = CurrentConnectMap;
 		}
@@ -1136,12 +1138,20 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 			// evacuation point is the only map available if still installing
 			else
 			{
-				MapName = "kf-evacuationpoint";
+				MapName = "KF-EvacuationPoint";
 			}
 		}
 		else
 		{
-			MapName = "kf-bioticslab";
+			// Biotics Lab doesn't support objective mode yet, so that needs a different default
+			if (Manager.CachedProfile.GetProfileInt(KFID_SavedModeIndex) == OBJECTIVE_MODE_INDEX)
+			{
+				MapName = "KF-SteamFortress";
+			}
+			else
+			{
+				MapName = "KF-BioticsLab";
+			}
 		}
 	}
 	LengthIndex = InOptionsComponent.GetLengthIndex();

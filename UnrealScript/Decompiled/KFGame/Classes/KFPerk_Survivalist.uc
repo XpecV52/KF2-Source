@@ -128,7 +128,10 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     TempDamage -= (float(InDamage) * (GetPassiveValue(DamageResistance, CurrentLevel)));
     if(IsMakeThingsGoBoomActive())
     {
-        TempDamage = FMax(TempDamage - (float(InDamage) * MakeThingsGoBoomExplosiveResistance), 0);
+        if(ClassIsChildOf(DamageType, Class'KFDT_Explosive'))
+        {
+            TempDamage = FMax(TempDamage - (float(InDamage) * MakeThingsGoBoomExplosiveResistance), 0);
+        }
     }
     InDamage = Round(TempDamage);
 }
