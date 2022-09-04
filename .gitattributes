@@ -1,13 +1,12 @@
 * text=auto eol=lf
 
-*.as         text eol=lf working-tree-encoding=utf-8
-*.ini        text eol=lf working-tree-encoding=utf-8
-*.md         text eol=lf working-tree-encoding=utf-8
-*.rtf        text eol=lf working-tree-encoding=utf-8 diff=astextplain
-*.txt        text eol=lf working-tree-encoding=utf-8
-*.uc         text eol=lf working-tree-encoding=utf-8
-*.uci        text eol=lf working-tree-encoding=utf-8
-*.upkg       text eol=lf working-tree-encoding=utf-8
+*.as         text eol=lf
+*.ini        text eol=lf
+*.rtf        text eol=lf diff=astextplain
+*.txt        text eol=lf
+*.uc         text eol=lf
+*.uci        text eol=lf
+*.upkg       text eol=lf
 
 *.chn        text eol=lf working-tree-encoding=utf-16le-bom
 *.cht        text eol=lf working-tree-encoding=utf-16le-bom
