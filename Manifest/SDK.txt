@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 455835495735427968 / 9/17/2019 10:54:23 PM
+Manifest ID / date     : 1898365129811299042 / 9/25/2019 3:38:20 PM
 Total number of files  : 4524
 Total number of chunks : 4589
-Total bytes on disk    : 95091635
-Total bytes compressed : 27392768
+Total bytes on disk    : 95109046
+Total bytes compressed : 27395472
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 27392768
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 F6BC1F63FACB05DBFE9BD1FE3C54689C21F84DCF     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 57C2270423455FD06902D5919F47B36C8586840C     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      64884224     62 F19E977D274EB398036DEC8E092AAEE082CE499E     0 Binaries\Win64\KFEditor.exe
+      64901632     62 EA2A756B8689043F19C0E312C748E0BA92835F84     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -1925,7 +1925,7 @@ Total bytes compressed : 27392768
            646      1 1C413F50F925ED1B64E68EDBA95E548320C6C86D     0 Development\Src\KFGameContent\Classes\KFDT_Fire_Ground_MicrowaveGun.uc
           1009      1 9AD24B73BC508829CEA575BAB36830FEC58F5E86     0 Development\Src\KFGameContent\Classes\KFDT_Fire_HuskFireball.uc
            677      1 0200EED73EF917AB2D05249EED83D14254A74153     0 Development\Src\KFGameContent\Classes\KFDT_Fire_HuskFlamethrower.uc
-          1042      1 89DEBEDA470839D72133A9158275AC5F52528A1A     0 Development\Src\KFGameContent\Classes\KFDT_Fire_IonThrusterDoT.uc
+          1042      1 558E7B4D0966164F9966AE480A935D6AB18DBF2E     0 Development\Src\KFGameContent\Classes\KFDT_Fire_IonThrusterDoT.uc
           2476      1 9A337F68DFCFA7BD0D0C1B7D12246833DA28C899     0 Development\Src\KFGameContent\Classes\KFDT_Fire_Mac10.uc
            919      1 E512AF4FCDA0B4AB1FF4A437775A0312C05A8B1F     0 Development\Src\KFGameContent\Classes\KFDT_Fire_MolotovGrenade.uc
            578      1 6F2441578C52246498384E914124B92F4AD3D2B2     0 Development\Src\KFGameContent\Classes\KFDT_Fire_ZedGround.uc
@@ -1966,7 +1966,7 @@ Total bytes compressed : 27392768
            611      1 25221CBD4B783F7AB194EE57029BC67AB628060A     0 Development\Src\KFGameContent\Classes\KFDT_Slashing_Gorefast_AOE.uc
            668      1 6B2B202BC2126C82407813820A7BF2969CAE2353     0 Development\Src\KFGameContent\Classes\KFDT_Slashing_Hans.uc
           5851      1 2F6BACFD5FEAE2739D4F105D7DCFDB46AA549EA1     0 Development\Src\KFGameContent\Classes\KFDT_Slashing_IonThruster.uc
-          1253      1 44C58F95CE9FFB884238E0A5BA71B861B7982B5D     0 Development\Src\KFGameContent\Classes\KFDT_Slashing_IonThrusterHeavy.uc
+          1253      1 208156447907471FDD195E70E023AC5E61C2E345     0 Development\Src\KFGameContent\Classes\KFDT_Slashing_IonThrusterHeavy.uc
           1202      1 5904F8FD552754BA69D97C726FBDAB6583A62DA3     0 Development\Src\KFGameContent\Classes\KFDT_Slashing_IonThrusterSpecial.uc
           4446      1 7D4B3734C6615F0EA72C6000D5207B5BC9C37664     0 Development\Src\KFGameContent\Classes\KFDT_Slashing_Katana.uc
            981      1 48EE5D08E194892B643721B649023B91DF432FCC     0 Development\Src\KFGameContent\Classes\KFDT_Slashing_KatanaHeavy.uc
@@ -2446,7 +2446,7 @@ Total bytes compressed : 27392768
            510      1 16126323AFDFE99759B1A6A39CF36518BE333138     0 Development\Src\KFGameContent\Classes\KFWeap_Minigun_Patriarch_Versus.uc
           3858      1 4E1F05B7DE423627BB1ED0CCCEAA1F50EB9D7393     0 Development\Src\KFGameContent\Classes\KFWeap_Pistol_9mm.uc
           4109      1 FA5FA7AB5ED6F06064A45B4F607BE0CAFC5D040F     0 Development\Src\KFGameContent\Classes\KFWeap_Pistol_AF2011.uc
-          3823      1 9E7331439552C205AE14EC7D3E045D918EF33F45     0 Development\Src\KFGameContent\Classes\KFWeap_Pistol_ChiappaRhino.uc
+          3826      1 AE3DE494A1ACDA0CBA4450F7650F09BDF8B6B656     0 Development\Src\KFGameContent\Classes\KFWeap_Pistol_ChiappaRhino.uc
           4652      1 FC4A1487858C68CB5A621E939FD8F2A4CF3D582D     0 Development\Src\KFGameContent\Classes\KFWeap_Pistol_ChiappaRhinoDual.uc
           3734      1 674D2341029E66A7B9BAF0FD31BE9D4DB3A880B1     0 Development\Src\KFGameContent\Classes\KFWeap_Pistol_Colt1911.uc
           3704      1 4EC77ECD251D64C87368F5D7A47C21AF0A72ADE1     0 Development\Src\KFGameContent\Classes\KFWeap_Pistol_Deagle.uc

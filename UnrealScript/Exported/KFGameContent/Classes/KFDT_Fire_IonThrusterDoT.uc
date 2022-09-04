@@ -33,7 +33,7 @@ defaultproperties
    DoT_Duration=3.000000
    DoT_Interval=0.500000
    DoT_DamageScale=0.200000
-   BurnPower=25.000000
+   BurnPower=15.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    Name="Default__KFDT_Fire_IonThrusterDoT"
    ObjectArchetype=KFDT_Fire'KFGame.Default__KFDT_Fire'

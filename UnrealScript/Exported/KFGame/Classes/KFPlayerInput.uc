@@ -2925,19 +2925,6 @@ defaultproperties
    ForceLookAtPawnDampenedRotationRate=8.000000
    DoubleTapDelay=0.250000
    bEnableFOVScaling=True
-   Bindings(0)=(Name="GBA_RequestSkipTrader",Command="RequestSkipTrader")
-   Bindings(1)=(Name="XboxTypeS_A",Command="GBA_Jump | OnVoteYesPressed | OnRelease OnVoteYesRelease")
-   Bindings(2)=(Name="XboxTypeS_Y",Command="GBA_WeaponSelect_Gamepad")
-   Bindings(3)=(Name="XboxTypeS_LeftX",Command="GBA_StrafeLeft_Gamepad")
-   Bindings(4)=(Name="XboxTypeS_LeftY",Command="GBA_MoveForward_Gamepad")
-   Bindings(5)=(Name="XboxTypeS_LeftThumbStick",Command="GBA_SprintAndCrouch")
-   Bindings(6)=(Name="XboxTypeS_RightX",Command="GBA_TurnLeft_Gamepad")
-   Bindings(7)=(Name="XboxTypeS_RightY",Command="GBA_Look_Gamepad")
-   Bindings(8)=(Name="XboxTypeS_RightThumbStick",Command="GBA_TertiaryFire")
-   Bindings(9)=(Name="XboxTypeS_LeftShoulder",Command="GBA_Grenade")
-   Bindings(10)=(Name="XboxTypeS_RightShoulder",Command="GBA_AltFire_Gamepad")
-   Bindings(11)=(Name="XboxTypeS_LeftTrigger",Command="GBA_IronsightsHold")
-   Bindings(12)=(Name="XboxTypeS_RightTrigger",Command="GBA_Fire")
    Name="Default__KFPlayerInput"
    ObjectArchetype=MobilePlayerInput'GameFramework.Default__MobilePlayerInput'
 }

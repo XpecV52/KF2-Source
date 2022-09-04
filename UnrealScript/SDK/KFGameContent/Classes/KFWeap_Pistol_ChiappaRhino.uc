@@ -32,7 +32,7 @@ defaultproperties
 	MuzzleFlashTemplateName="WEP_ChiappaRhino_ARCH.Wep_ChiappaRhino_MuzzleFlash"
 
     // Zooming/Position
-    IronSightPosition=(X=11,Y=0,Z=0)
+    IronSightPosition=(X=11,Y=0,Z=-.25)
 
     // Ammo
     MagazineCapacity[0]=6

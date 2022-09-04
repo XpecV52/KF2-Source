@@ -2286,5 +2286,4 @@ defaultproperties
     ForceLookAtPawnDampenedRotationRate=8
     DoubleTapDelay=0.25
     bEnableFOVScaling=true
-    Bindings=/* Array type was not detected. */
 }

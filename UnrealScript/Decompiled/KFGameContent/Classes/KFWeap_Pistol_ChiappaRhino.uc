@@ -26,7 +26,7 @@ defaultproperties
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
-    IronSightPosition=(X=11,Y=0,Z=0)
+    IronSightPosition=(X=11,Y=0,Z=-0.25)
     DOF_FG_FocalRadius=38
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=22

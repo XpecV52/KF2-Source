@@ -27,8 +27,8 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
 
 defaultproperties
 {
-    StumblePower=125
-    MeleeHitPower=150
+    StumblePower=100
+    MeleeHitPower=125
     BurnPower=50
     KDamageImpulse=1600
     KDeathVel=500

@@ -35,8 +35,8 @@ defaultproperties
 	KDeathVel=500
 
 	// Afflictions
-	StumblePower=125 
-	MeleeHitPower=150
+	StumblePower=100 
+	MeleeHitPower=125
 	BurnPower=50
 	BurnDamageType=class'KFDT_Fire_IonThrusterDoT'
 

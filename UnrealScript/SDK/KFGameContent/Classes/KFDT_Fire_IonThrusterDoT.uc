@@ -35,7 +35,7 @@ defaultproperties
 	DoT_Duration=3.0
 	DoT_Interval=0.5
 	DoT_DamageScale=0.2
-	BurnPower=25
+	BurnPower=15
 
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 }
