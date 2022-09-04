@@ -724,7 +724,7 @@ defaultproperties
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=500
     InitialSpareMags=1
-    AmmoPickupScale=0.4
+    AmmoPickupScale=0.75
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

@@ -37,6 +37,7 @@ defaultproperties
 		bAffectedByBackDamage=true,
 		SocketName=FX_Armor_Head,
 		ArmorHealth=450,
+		ObliterateDmgThreshold=80,
 		ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Small_Armor_Explo',
 		ZoneIcon=None)})
 	ArmorZones.Add({(

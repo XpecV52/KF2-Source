@@ -711,20 +711,6 @@ private native final function RetryCharacterOwnership();
 // Export UKFPlayerReplicationInfo::execClearCharacterAttachment(FFrame&, void* const)
 native function ClearCharacterAttachment(int AttachmentIndex);
 
-simulated function OnReadCrossTitleContentComplete(bool bWasSuccessful)
-{
-    local array<OnlineCrossTitleContent> CrossTitleContent;
-    local OnlineContentInterface OnlineContentInt;
-
-    OnlineContentInt = Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface;
-    if(bWasSuccessful)
-    {
-        OnlineContentInt.GetCrossTitleContentList(0, 2, CrossTitleContent);
-    }
-    Class'KFUnlockManager'.static.InitSharedUnlocksFor(self, CrossTitleContent);
-    OnlineContentInt.ClearReadCrossTitleContentCompleteDelegate(0, 2, OnReadCrossTitleContentComplete);
-}
-
 simulated function ClientInitialize(Controller C)
 {
     local OnlineContentInterface OnlineContentInt;
@@ -738,15 +724,63 @@ simulated function ClientInitialize(Controller C)
     {
         KFPlayerController(C).InitializeStats();
         SelectCharacter();
-        OnlineContentInt = Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface;
-        OnlineContentInt.ClearCrossTitleContentList(0, 2);
-        OnlineContentInt.AddReadCrossTitleContentCompleteDelegate(0, 2, OnReadCrossTitleContentComplete);
-        if(!OnlineContentInt.ReadCrossTitleContentList(0, 2))
+        if(Class'WorldInfo'.static.IsConsoleBuild())
         {
-            Class'KFUnlockManager'.static.InitSharedUnlocksFor(self);
-            OnlineContentInt.ClearReadCrossTitleContentCompleteDelegate(0, 2, OnReadCrossTitleContentComplete);
+            OnlineContentInt = Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface;
+            OnlineContentInt.ClearCrossTitleContentList(0, 2);
+            OnlineContentInt.AddReadCrossTitleContentCompleteDelegate(0, 2, SharedContentInitChain_CrossTitleContentRead);
+            if(!OnlineContentInt.ReadCrossTitleContentList(0, 2))
+            {
+                SharedContentInitChain_CrossTitleContentRead(true);
+            }            
+        }
+        else
+        {
+            SharedContentInitChain_CrossTitleContentRead(true);
         }
     }
+}
+
+simulated function SharedContentInitChain_CrossTitleContentRead(bool bWasSuccessful)
+{
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.ClearReadCrossTitleContentCompleteDelegate(0, 2, SharedContentInitChain_CrossTitleContentRead);
+        if(Class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
+        {
+            Class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate(SharedContentInitChain_InventoryRead_Playfab);            
+        }
+        else
+        {
+            SharedContentInitChain_InventoryRead_Playfab(true);
+        }        
+    }
+    else
+    {
+        if(Class'GameEngine'.static.GetOnlineSubsystem().bInventoryReady == false)
+        {
+            Class'GameEngine'.static.GetOnlineSubsystem().AddOnInventoryReadCompleteDelegate(SharedContentInitChain_InventoryRead_Steamworks);            
+        }
+        else
+        {
+            SharedContentInitChain_InventoryRead_Steamworks();
+        }
+    }
+}
+
+simulated function SharedContentInitChain_InventoryRead_Steamworks()
+{
+    Class'GameEngine'.static.GetOnlineSubsystem().ClearOnInventoryReadCompleteDelegate(SharedContentInitChain_InventoryRead_Steamworks);
+    Class'KFUnlockManager'.static.InitSharedUnlocksFor(self);
+}
+
+simulated function SharedContentInitChain_InventoryRead_Playfab(bool bWasSuccessful)
+{
+    local array<OnlineCrossTitleContent> CrossTitleContent;
+
+    Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+    Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.GetCrossTitleContentList(0, 2, CrossTitleContent);
+    Class'KFUnlockManager'.static.InitSharedUnlocksFor(self, CrossTitleContent);
 }
 
 function OnInventoryReadComplete_Steamworks()

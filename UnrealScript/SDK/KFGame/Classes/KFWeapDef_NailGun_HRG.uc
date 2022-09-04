@@ -16,7 +16,7 @@ DefaultProperties
 	AttachmentArchtypePath="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P"
 	
 	BuyPrice=1100
-	AmmoPricePerMag=42
+	AmmoPricePerMag=45
 	ImagePath="WEP_UI_HRG_Nailgun_PDW_TEX.UI_WeaponSelect_HRG_Nailgun_PDW"
 
 	EffectiveRange=55

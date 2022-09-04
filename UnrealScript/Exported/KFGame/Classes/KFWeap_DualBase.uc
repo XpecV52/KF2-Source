@@ -70,6 +70,7 @@ var CylinderRotationInfo CylinderRotInfo_L;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
 
 /** Cache Anim Nodes from the tree
 * 	@note: skipped on server because AttachComponent/AttachWeaponTo is not called

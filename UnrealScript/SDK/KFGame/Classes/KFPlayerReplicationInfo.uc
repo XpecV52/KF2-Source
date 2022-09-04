@@ -780,22 +780,6 @@ native private function bool LoadCharacterConfig(out int CharacterIndex);
 native private function RetryCharacterOwnership();
 native function ClearCharacterAttachment(int AttachmentIndex);
 
-simulated function OnReadCrossTitleContentComplete(bool bWasSuccessful)
-{
-	local array<OnlineCrossTitleContent> CrossTitleContent;
-	local OnlineContentInterface OnlineContentInt;
-
-	OnlineContentInt = class'GameEngine'.static.GetOnlineSubsystem().ContentInterface;
-
-	if (bWasSuccessful)
-	{
-		OnlineContentInt.GetCrossTitleContentList(0, OCT_Game, CrossTitleContent);
-	}
-
-	class'KFUnlockManager'.static.InitSharedUnlocksFor(self, CrossTitleContent);
-	OnlineContentInt.ClearReadCrossTitleContentCompleteDelegate(0, OCT_Game, OnReadCrossTitleContentComplete);
-}
-
 simulated function ClientInitialize(Controller C)
 {
 	local OnlineContentInterface OnlineContentInt;
@@ -815,15 +799,75 @@ simulated function ClientInitialize(Controller C)
 		SelectCharacter();
 
 		// checked for owned titles that might unlock shared content (e.g. Road Redemption)
-		OnlineContentInt = class'GameEngine'.static.GetOnlineSubsystem().ContentInterface;
-		OnlineContentInt.ClearCrossTitleContentList(0, OCT_Game);
-		OnlineContentInt.AddReadCrossTitleContentCompleteDelegate(0, OCT_Game, OnReadCrossTitleContentComplete);
-		if (!OnlineContentInt.ReadCrossTitleContentList(0, OCT_Game))
+		if (class'WorldInfo'.static.IsConsoleBuild())
 		{
-			class'KFUnlockManager'.static.InitSharedUnlocksFor(self);
-			OnlineContentInt.ClearReadCrossTitleContentCompleteDelegate(0, OCT_Game, OnReadCrossTitleContentComplete);
+			OnlineContentInt = class'GameEngine'.static.GetOnlineSubsystem().ContentInterface;
+			OnlineContentInt.ClearCrossTitleContentList(0, OCT_Game);
+			OnlineContentInt.AddReadCrossTitleContentCompleteDelegate(
+				0, OCT_Game, SharedContentInitChain_CrossTitleContentRead);
+			if (!OnlineContentInt.ReadCrossTitleContentList(0, OCT_Game))
+			{
+				SharedContentInitChain_CrossTitleContentRead(true);
+			}
+		}
+		else
+		{
+			SharedContentInitChain_CrossTitleContentRead(true);
 		}
 	}
+}
+
+simulated function SharedContentInitChain_CrossTitleContentRead(bool bWasSuccessful)
+{
+	if (class'WorldInfo'.static.IsConsoleBuild())
+	{
+		class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.
+			ClearReadCrossTitleContentCompleteDelegate(0, OCT_Game, SharedContentInitChain_CrossTitleContentRead);
+
+		if (class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
+		{
+			class'GameEngine'.static.GetPlayfabInterface().
+				AddInventoryReadCompleteDelegate(SharedContentInitChain_InventoryRead_Playfab);
+		}
+		else
+		{
+			SharedContentInitChain_InventoryRead_Playfab(true);
+		}
+	}
+	else
+	{
+		if (class'GameEngine'.static.GetOnlineSubsystem().bInventoryReady == false)
+		{
+			class'GameEngine'.static.GetOnlineSubsystem().
+				AddOnInventoryReadCompleteDelegate(SharedContentInitChain_InventoryRead_Steamworks);
+		}
+		else
+		{
+			SharedContentInitChain_InventoryRead_Steamworks();
+		}
+	}
+}
+
+simulated function SharedContentInitChain_InventoryRead_Steamworks()
+{
+	class'GameEngine'.static.GetOnlineSubsystem().
+		ClearOnInventoryReadCompleteDelegate(SharedContentInitChain_InventoryRead_Steamworks);
+
+	// At this point, inventory should both be available
+	class'KFUnlockManager'.static.InitSharedUnlocksFor(self);
+}
+
+simulated function SharedContentInitChain_InventoryRead_Playfab(bool bWasSuccessful)
+{
+	local array<OnlineCrossTitleContent> CrossTitleContent;
+
+	class'GameEngine'.static.GetPlayfabInterface().
+		ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+
+	// At this point, cross title content and inventory should both be available
+	class'GameEngine'.static.GetOnlineSubsystem().
+		ContentInterface.GetCrossTitleContentList(0, OCT_Game, CrossTitleContent);
+	class'KFUnlockManager'.static.InitSharedUnlocksFor(self, CrossTitleContent);
 }
 
 function OnInventoryReadComplete_Steamworks()

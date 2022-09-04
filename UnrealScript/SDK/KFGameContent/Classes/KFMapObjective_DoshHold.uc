@@ -571,5 +571,5 @@ defaultproperties
 	XPDifficultyScalars=(1.0f,1.1f,1.2f,1.3f)
 	DoshDifficultyScalars=(1.0f,1.1f,1.2f,1.3f)
 
-	PctOfWaveZedsKilledForMaxReward=0.75f
+	PctOfWaveZedsKilledForMaxReward=0.7f
 }

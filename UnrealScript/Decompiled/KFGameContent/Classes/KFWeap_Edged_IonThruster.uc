@@ -25,8 +25,12 @@ var float UltimateRangeScale;
 var float UltimateWidthScale;
 var Vector DefaultHitboxExtent;
 var Vector UltimateHitboxExtent;
-var export editinline transient KFParticleSystemComponent PersistentBasePSC;
-var const ParticleSystem PersistentBaseEffect;
+var export editinline transient KFParticleSystemComponent BaseFlamePSC;
+var export editinline transient KFParticleSystemComponent BaseGlowPSC;
+var export editinline transient KFParticleSystemComponent BaseLightsPSC;
+var const ParticleSystem BaseFlameFXTemplate;
+var const ParticleSystem BaseGlowFXTemplate;
+var const ParticleSystem BaseLightsFXTemplate;
 var int PanelCount;
 var export editinline KFParticleSystemComponent PersistentPanelPSC[12];
 var const ParticleSystem PersistentPanelEffect;
@@ -292,9 +296,11 @@ simulated state WeaponEquipping
         local name PSCSocketName;
 
         super.BeginState(PreviousStateName);
-        ActivatePSC(PersistentBasePSC, PersistentBaseEffect, 'Hand_FX_Start_R');
+        ActivatePSC(BaseFlamePSC, BaseFlameFXTemplate, 'Hand_FX_Start_R');
+        ActivatePSC(BaseGlowPSC, BaseGlowFXTemplate, 'Hand_FX_Start_R');
+        ActivatePSC(BaseLightsPSC, BaseLightsFXTemplate, 'Hand_FX_Start_R');
         I = 0;
-        J0x43:
+        J0x8D:
 
         if(I < PanelCount)
         {
@@ -306,7 +312,7 @@ simulated state WeaponEquipping
             PSCSocketName = name(string(PSCSocketName) $ string(I + 1));
             ActivatePSC(PersistentPanelPSC[I], PersistentPanelEffect, PSCSocketName);
             ++ I;
-            goto J0x43;
+            goto J0x8D;
         }
         AdjustLoopingWeaponSound(true);
         if(MySkelMesh != none)
@@ -325,18 +331,26 @@ simulated state Inactive
         local int I;
 
         super.BeginState(PreviousStateName);
-        if(PersistentBasePSC != none)
+        if(BaseFlamePSC != none)
         {
-            PersistentBasePSC.DeactivateSystem();
+            BaseFlamePSC.DeactivateSystem();
+        }
+        if(BaseGlowPSC != none)
+        {
+            BaseGlowPSC.DeactivateSystem();
+        }
+        if(BaseLightsPSC != none)
+        {
+            BaseLightsPSC.DeactivateSystem();
         }
         I = 0;
-        J0x4C:
+        J0xA8:
 
         if(I < PanelCount)
         {
             PersistentPanelPSC[I].DeactivateSystem();
             ++ I;
-            goto J0x4C;
+            goto J0xA8;
         }
         AdjustLoopingWeaponSound(false);
         BladeLight.SetEnabled(false);
@@ -382,13 +396,27 @@ defaultproperties
     DefaultMaxHitRange=240
     UltimateRangeScale=2
     UltimateWidthScale=70
-    begin object name=BasePSC class=KFParticleSystemComponent
+    begin object name=BasePSC0 class=KFParticleSystemComponent
         ReplacementPrimitive=none
         TickGroup=ETickingGroup.TG_PostUpdateWork
     object end
-    // Reference: KFParticleSystemComponent'Default__KFWeap_Edged_IonThruster.BasePSC'
-    PersistentBasePSC=BasePSC
-    PersistentBaseEffect=ParticleSystem'WEP_Ion_Sword_EMIT.FX_ION_Idle_Heat_Base_01'
+    // Reference: KFParticleSystemComponent'Default__KFWeap_Edged_IonThruster.BasePSC0'
+    BaseFlamePSC=BasePSC0
+    begin object name=BasePSC1 class=KFParticleSystemComponent
+        ReplacementPrimitive=none
+        TickGroup=ETickingGroup.TG_PostUpdateWork
+    object end
+    // Reference: KFParticleSystemComponent'Default__KFWeap_Edged_IonThruster.BasePSC1'
+    BaseGlowPSC=BasePSC1
+    begin object name=BasePSC2 class=KFParticleSystemComponent
+        ReplacementPrimitive=none
+        TickGroup=ETickingGroup.TG_PostUpdateWork
+    object end
+    // Reference: KFParticleSystemComponent'Default__KFWeap_Edged_IonThruster.BasePSC2'
+    BaseLightsPSC=BasePSC2
+    BaseFlameFXTemplate=ParticleSystem'WEP_Ion_Sword_EMIT.FX_ION_Idle_Base_Flame_01'
+    BaseGlowFXTemplate=ParticleSystem'WEP_Ion_Sword_EMIT.FX_ION_Idle_Base_Glow_01'
+    BaseLightsFXTemplate=ParticleSystem'WEP_Ion_Sword_EMIT.FX_ION_Idle_Base_Lights_01'
     PanelCount=12
     begin object name=[0]PanelPSC0 class=KFParticleSystemComponent
         ReplacementPrimitive=none

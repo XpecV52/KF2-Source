@@ -98,7 +98,7 @@ defaultproperties
     AltFireLoopStartSightedAnim=HRG_Alt_ShootLoop_Iron_Start
     AltFireLoopEndAnim=HRG_Alt_ShootLoop_End
     AltFireLoopEndSightedAnim=HRG_Alt_ShootLoop_Iron_End
-    AltFireRecoilModifier=3.5
+    AltFireRecoilModifier=2.5
     PackageKey="HRG_Nailgun_PDW"
     FirstPersonMeshName="WEP_1P_HRG_Nailgun_PDW_MESH.Wep_1stP_HRG_Nailgun_PDW_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -118,8 +118,8 @@ defaultproperties
     FireLoopEndSightedAnim=HRG_ShootLoop_Iron_End
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_HRG_Nailgun.MeleeHelper'
     NumPellets=/* Array type was not detected. */
-    maxRecoilPitch=80
-    minRecoilPitch=65
+    maxRecoilPitch=100
+    minRecoilPitch=85
     maxRecoilYaw=60
     minRecoilYaw=-60
     RecoilRate=0.045

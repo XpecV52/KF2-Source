@@ -62,7 +62,7 @@ defaultproperties
 		bAffectedByFrontDamage=true,
 		bAffectedByBackDamage=false,
 		SocketName=FX_Armor_Chest,
-		ArmorHealth=225,
+		ArmorHealth=52,
 		ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged',
 		ZoneIcon=None)})
 
@@ -81,4 +81,5 @@ defaultproperties
 
 	//special case
 	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Bleeding_Hemogoblin', 	    DamageScale=(5.0)))
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',      DamageScale=(1.2)))
 }

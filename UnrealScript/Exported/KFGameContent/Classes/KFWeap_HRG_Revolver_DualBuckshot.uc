@@ -206,8 +206,8 @@ defaultproperties
    NumPellets(4)=()
    NumPellets(5)=()
    NumPellets(6)=()
-   maxRecoilPitch=1000
-   minRecoilPitch=900
+   maxRecoilPitch=750
+   minRecoilPitch=675
    maxRecoilYaw=300
    minRecoilYaw=-300
    RecoilBlendOutRatio=0.350000
@@ -224,8 +224,8 @@ defaultproperties
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_Pellet'
    Spread(0)=0.150000
    Spread(1)=0.150000
-   InstantHitDamage(0)=28.000000
-   InstantHitDamage(1)=28.000000
+   InstantHitDamage(0)=32.000000
+   InstantHitDamage(1)=32.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_HRGBuckshot'

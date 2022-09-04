@@ -523,7 +523,7 @@ defaultproperties
     BossCaptionStrings(5)="Destroying the Abomination's armor will send him into a rage, which is his most deadly state."
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_BloatKing_ARCH.FX_GasAoE_Explosion_01'
-        Damage=15
+        Damage=5
         DamageRadius=450
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_BloatKingFart'

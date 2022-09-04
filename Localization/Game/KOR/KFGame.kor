@@ -2667,7 +2667,7 @@ CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특
 
 SpecialEventObjectiveInfoList[0]=(TitleString="정신병원 습격",DescriptionString="애쉬우드 정신병원에서 서바이벌 어려움 또는 그 이상 난이도에서 아무 보스 해치우기")
 SpecialEventObjectiveInfoList[1]=(TitleString="장기 치료",DescriptionString="애쉬우드 정신병원에서 끝없는 도전 어려움 또는 그 이상 난이도에서 15 웨이브를 완료하기")
-SpecialEventObjectiveInfoList[2]=(TitleString="주간 진단",DescriptionString="배수로에서 주간 게임 모드를 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="주간 진단",DescriptionString="애쉬우드 정신병원 로에서 주간 게임 모드를 완료하기")
 SpecialEventObjectiveInfoList[3]=(TitleString="병원 청소",DescriptionString="애쉬우드 정신병원에서 Zed 1500마리 죽이기")
 SpecialEventObjectiveInfoList[4]=(TitleString="폭발!",DescriptionString="목표 어려움 이상 난이도로 방사능 누출지 완료하기")
 

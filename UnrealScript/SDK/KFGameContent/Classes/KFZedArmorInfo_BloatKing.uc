@@ -83,7 +83,7 @@ defaultproperties
     ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Toxic',								DamageScale=(0.05))
     ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingFart',				DamageScale=(0.00)))
     ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingPukeMine',			DamageScale=(0.0)))
-    ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingSubspawnExplosion',  DamageScale=(20.0)))
+    ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingSubspawnExplosion',  DamageScale=(25.0)))
     
     //Special cases
     ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',				DamageScale=(1.2)))

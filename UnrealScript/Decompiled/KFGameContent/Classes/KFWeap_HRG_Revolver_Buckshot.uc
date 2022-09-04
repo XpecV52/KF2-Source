@@ -51,8 +51,8 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_HRG_Revolver_Buckshot.MeleeHelper'
     NumPellets=/* Array type was not detected. */
-    maxRecoilPitch=1000
-    minRecoilPitch=900
+    maxRecoilPitch=750
+    minRecoilPitch=675
     maxRecoilYaw=300
     minRecoilYaw=-300
     RecoilBlendOutRatio=0.35

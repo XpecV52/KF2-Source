@@ -214,7 +214,8 @@ simulated function TriggerExplosion(optional bool bIgnoreHumans)
             }
             if(!bPlayedDeath || bExplodeOnDeath)
             {
-                TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
+                Health = 0;
+                Died(DamageInstigator, ExplosionTemplate.MyDamageType, Location);
             }
         }
         OnExploded(OldController);

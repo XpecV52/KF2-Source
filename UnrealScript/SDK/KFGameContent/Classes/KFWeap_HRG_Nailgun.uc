@@ -157,7 +157,7 @@ defaultproperties
 	PenetrationPower(ALTFIRE_FIREMODE)=3.0
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_HRGNailgun'
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Nail_HRGNailgun'
-	AltFireRecoilModifier=3.5
+	AltFireRecoilModifier=2.5f
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_HRGNailgun'
@@ -165,8 +165,8 @@ defaultproperties
 	bLoopingFireAnim(DEFAULT_FIREMODE)=true
 	bLoopingFireAnim(ALTFIRE_FIREMODE)=true
 
-	maxRecoilPitch=80
-	minRecoilPitch=65
+	maxRecoilPitch=100
+	minRecoilPitch=85
 	maxRecoilYaw=60
 	minRecoilYaw=-60
 	RecoilRate=0.045

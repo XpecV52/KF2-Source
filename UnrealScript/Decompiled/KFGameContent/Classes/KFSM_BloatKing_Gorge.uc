@@ -325,9 +325,9 @@ defaultproperties
     GorgeHumanAttackRangeSq=450000
     GorgeMinAttackAngle=0.77
     GorgeAttackCooldown[0]=(X=8,Y=11)
-    GorgeAttackCooldown[1]=(X=6,Y=9)
-    GorgeAttackCooldown[2]=(X=5,Y=8)
-    GorgeAttackCooldown[3]=(X=4,Y=7)
+    GorgeAttackCooldown[1]=(X=8,Y=11)
+    GorgeAttackCooldown[2]=(X=7,Y=10)
+    GorgeAttackCooldown[3]=(X=6,Y=9)
     GorgeAttackCheckDelay=5
     GorgePullDelay=0.01
     FollowerSpecialMove=ESpecialMove.SM_BloatKingGorgeVictim

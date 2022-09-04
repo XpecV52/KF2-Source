@@ -15,7 +15,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_HRG_Revolver_Buckshot"
 
 	BuyPrice=550
-	AmmoPricePerMag=19
+	AmmoPricePerMag=21
 	ImagePath="WEP_UI_HRG_SW_500_TEX.UI_WeaponSelect_HRG_SW500"
 
 	EffectiveRange=15

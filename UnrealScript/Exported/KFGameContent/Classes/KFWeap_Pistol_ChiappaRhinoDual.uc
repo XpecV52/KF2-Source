@@ -30,7 +30,7 @@ defaultproperties
    PenetrationPower(1)=2.000000
    MeshIronSightFOV=77.000000
    PlayerIronSightFOV=77.000000
-   IronSightPosition=(X=-1.000000,Y=0.000000,Z=0.000000)
+   IronSightPosition=(X=-1.000000,Y=0.000000,Z=-1.100000)
    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
    DOF_FG_FocalRadius=38.000000
    DOF_FG_MaxNearBlurSize=3.500000

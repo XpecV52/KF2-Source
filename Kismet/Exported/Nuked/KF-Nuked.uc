@@ -12485,21 +12485,6 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_13
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
 End Object
 
-Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_7
-   ConsoleEventName="Final"
-   MaxWidth=149
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_16')),DrawY=3714,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-9070,OverrideDelta=42)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9144
-   ObjPosY=3648
-   DrawWidth=94
-   DrawHeight=128
-   Name="SeqEvent_Console_7"
-   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_293
    ObjValue=InterpActor'KF-NUKED.TheWorld:PersistentLevel.InterpActor_9'
    ObjInstanceVersion=1
@@ -12875,21 +12860,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_123
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_4
-   ConsoleEventName="CannonFire"
-   MaxWidth=192
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_121'),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_122')),DrawY=7610,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-6512,OverrideDelta=64)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6608
-   ObjPosY=7544
-   DrawWidth=116
-   DrawHeight=128
-   Name="SeqEvent_Console_4"
-   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
-End Object
-
 Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVolume_1
    bCheckOverlap=False
    InputLinks(0)=(DrawY=4082,OverrideDelta=11)
@@ -12955,21 +12925,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_95
    DrawHeight=32
    Name="SeqVar_Object_95"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_5
-   ConsoleEventName="Nuke"
-   MaxWidth=151
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_38')),DrawY=5434,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-2485,OverrideDelta=43)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2560
-   ObjPosY=5368
-   DrawWidth=95
-   DrawHeight=128
-   Name="SeqEvent_Console_5"
-   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
 End Object
 
 Begin Object Class=SeqAct_CameraShake Name=SeqAct_CameraShake_0
@@ -13313,21 +13268,6 @@ Begin Object Class=KFSeqEvent_ActivateTriggerProgress Name=KFSeqEvent_ActivateTr
    DrawWidth=173
    Name="KFSeqEvent_ActivateTriggerProgress_1"
    ObjectArchetype=KFSeqEvent_ActivateTriggerProgress'KFGame.Default__KFSeqEvent_ActivateTriggerProgress'
-End Object
-
-Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_6
-   ConsoleEventName="Gen"
-   MaxWidth=144
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_0'),(LinkedOp=SeqAct_Toggle'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_92')),DrawY=-4870,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=3632,OverrideDelta=40)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3560
-   ObjPosY=-4936
-   DrawWidth=92
-   DrawHeight=128
-   Name="SeqEvent_Console_6"
-   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_92
@@ -15235,22 +15175,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_174
    DrawHeight=109
    Name="SeqAct_Toggle_174"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_16
-   EventName="FinalCinematic"
-   InputLinks(0)=(DrawY=3706,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=3706,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-8880,OverrideDelta=104)
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9016
-   ObjPosY=3672
-   ObjComment="FinalCinematic"
-   DrawWidth=272
-   DrawHeight=61
-   Name="SeqAct_ActivateRemoteEvent_16"
-   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_512
@@ -22505,7 +22429,7 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_8
    ConsoleEventName="Testing"
    MaxWidth=168
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_2')),DrawY=-4646,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-4646,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-8740,OverrideDelta=52)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
@@ -23520,71 +23444,6 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_59
    DrawHeight=128
    Name="SeqEvent_RemoteEvent_59"
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-End Object
-
-Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_22
-   EventName="Wave7Complete"
-   InputLinks(0)=(DrawY=4826,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=4826,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-5018,OverrideDelta=110)
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5160
-   ObjPosY=4792
-   ObjComment="Wave7Complete"
-   DrawWidth=284
-   DrawHeight=61
-   Name="SeqAct_ActivateRemoteEvent_22"
-   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
-End Object
-
-Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_30
-   EventName="Wave5Complete"
-   InputLinks(0)=(DrawY=4762,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=4762,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-4930,OverrideDelta=110)
-   ObjInstanceVersion=3
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5072
-   ObjPosY=4728
-   ObjComment="Wave5complete"
-   DrawWidth=284
-   DrawHeight=61
-   Name="SeqAct_ActivateRemoteEvent_30"
-   ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
-End Object
-
-Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_2
-   ConsoleEventName="Final"
-   MaxWidth=149
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_30'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_22')),DrawY=4634,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-5094,OverrideDelta=42)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5168
-   ObjPosY=4568
-   DrawWidth=94
-   DrawHeight=128
-   Name="SeqEvent_Console_2"
-   ObjectArchetype=SeqEvent_Console'Engine.Default__SeqEvent_Console'
-End Object
-
-Begin Object Class=SequenceFrame Name=SequenceFrame_72
-   SizeX=428
-   SizeY=434
-   BorderWidth=4
-   bDrawBox=True
-   BorderColor=(B=220,G=0,R=255,A=255)
-   FillColor=(B=208,G=0,R=255,A=16)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NUKED.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5192
-   ObjPosY=4496
-   ObjComment="."
-   DrawWidth=428
-   DrawHeight=434
-   Name="SequenceFrame_72"
-   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_73

@@ -991,6 +991,8 @@ cpptext
 	int GetResourceSize();
     /* Manually grabs the important resources inside KFWeapon and returns their total size.*/
 	int GetWeaponResourceSize( TArray<class UObject*>& InMemoryArray, UBOOL bUniqueItemsOnly );
+
+	virtual void RefreshSkinItemId();
 }
 
 replication

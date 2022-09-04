@@ -3111,11 +3111,18 @@ auto state PendingMatch
             {
                 if(!IsTimerActive('LobbyCountdownComplete'))
                 {
-                    if(MajorityPlayersReady())
+                    if(CheckAllPlayersReady())
                     {
-                        MyKFGRI.RemainingTime = ReadyUpDelay;
-                        MyKFGRI.bStopCountDown = false;
-                        SetCountdown(false, byte(MyKFGRI.RemainingTime));
+                        SetCountdown(true, byte(GameStartDelay));                        
+                    }
+                    else
+                    {
+                        if(MajorityPlayersReady())
+                        {
+                            MyKFGRI.RemainingTime = ReadyUpDelay;
+                            MyKFGRI.bStopCountDown = false;
+                            SetCountdown(false, byte(MyKFGRI.RemainingTime));
+                        }
                     }                    
                 }
                 else
@@ -3161,6 +3168,7 @@ auto state PendingMatch
                 {
                     ClearTimer('LobbyCountdownComplete');
                     MyKFGRI.bStopCountDown = true;
+                    bStartFinalCount = false;
                 }
             }
             if(!IsTimerActive('CheckServerUnlock'))

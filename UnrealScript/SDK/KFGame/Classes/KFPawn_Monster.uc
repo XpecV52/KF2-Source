@@ -2030,16 +2030,47 @@ function AdjustDamageForArmor(out int InDamage, Controller InstigatedBy, class<D
 	}
 }
 
-/** Disable falling damage, apply blocking modifier */
-function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
+function AdjustDamageForInstigator(out int InDamage, Controller InstigatedBy, class<DamageType> DamageType, Actor DamageCauser, int HitZoneIdx)
 {
 	local KFPlayerController KFPC;
 	local KFPawn_Human KFPH;
+	local KFPerk InstigatorPerk;
 	local float TempDamage;
+
+	// Let the instigator's perk adjust the damage
+	KFPC = KFPlayerController(InstigatedBy);
+	if (KFPC != none)
+	{
+		InstigatorPerk = KFPC.GetPerk();
+		if (InstigatorPerk != none)
+		{
+			InstigatorPerk.ModifyDamageGiven(InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx);
+		}
+
+		if( KFPC.Pawn != none )
+		{
+			KFPH = KFPawn_Human(KFPC.Pawn);
+			if( KFPH != none )
+			{
+				TempDamage = InDamage;
+				TempDamage *= KFPH.GetHealingDamageBoostModifier();
+				InDamage = FCeil( TempDamage );
+			}
+		}
+	}
+}
+
+/** Disable falling damage, apply blocking modifier */
+function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
+{
 	local int HitZoneIdx;
 	local int ExtraHeadDamage;
-	local KFPerk InstigatorPerk;
 	local class<KFDamageType> KFDT;
+
+	// Cached hit params
+	HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName);
+
+	AdjustDamageForInstigator(InDamage, InstigatedBy, DamageType, DamageCauser, HitZoneIdx);
 
 	AdjustDamageForArmor(InDamage, InstigatedBy, DamageType, HitInfo, DamageCauser);
 
@@ -2059,31 +2090,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 
 	// Apply blocking modifier
 	ApplyBlockingDamageModifier( InDamage, InstigatedBy, DamageType );
-
-	// Cached hit params
-	HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName);
-
-	// Let the instigator's perk adjust the damage
-	KFPC = KFPlayerController(InstigatedBy);
-	if( KFPC != none )
-	{
-		InstigatorPerk = KFPC.GetPerk();
-		if( InstigatorPerk != none )
-		{
-			InstigatorPerk.ModifyDamageGiven( InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx );
-		}
-
-		if( KFPC.Pawn != none )
-		{
-			KFPH = KFPawn_Human(KFPC.Pawn);
-			if( KFPH != none )
-			{
-				TempDamage = InDamage;
-				TempDamage *= KFPH.GetHealingDamageBoostModifier();
-				InDamage = FCeil( TempDamage );
-			}
-		}
-	}
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 	if( WorldInfo.Game != none && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot )

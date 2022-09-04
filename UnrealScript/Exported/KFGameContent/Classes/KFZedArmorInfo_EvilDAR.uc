@@ -46,7 +46,7 @@ simulated function UpdateArmorPiece(int PieceIdx)
 defaultproperties
 {
    ArmorZones(0)=(ArmorZoneName="head",AffectedHitZones=("head"),SocketName="FX_Armor_Head",ArmorHealth=600,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Headshot')
-   ArmorZones(1)=(ArmorZoneName="Front",AffectedHitZones=("chest","heart","stomach","abdomen"),bAffectedByBackDamage=False,SocketName="FX_Armor_Chest",ArmorHealth=225,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged')
+   ArmorZones(1)=(ArmorZoneName="Front",AffectedHitZones=("chest","heart","stomach","abdomen"),bAffectedByBackDamage=False,SocketName="FX_Armor_Chest",ArmorHealth=52,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged')
    ArmorScale=1.000000
    ArmorDamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(1.050000))
    ArmorDamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(1.050000))
@@ -61,6 +61,7 @@ defaultproperties
    ArmorDamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.850000))
    ArmorDamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
    ArmorDamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_Hemogoblin',DamageScale=(5.000000))
+   ArmorDamageTypeModifiers(13)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(1.200000))
    Name="Default__KFZedArmorInfo_EvilDAR"
    ObjectArchetype=KFZedArmorInfo'KFGame.Default__KFZedArmorInfo'
 }

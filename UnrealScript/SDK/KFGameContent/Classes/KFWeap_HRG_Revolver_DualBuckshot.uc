@@ -61,8 +61,8 @@ defaultproperties
 	GroupPriority=75
 
 	// Recoil
-	maxRecoilPitch=1000
-	minRecoilPitch=900
+	maxRecoilPitch=750
+	minRecoilPitch=675
 	maxRecoilYaw=300
 	minRecoilYaw=-300
 	RecoilRate=0.1
@@ -81,7 +81,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(DEFAULT_FIREMODE)=28.0
+	InstantHitDamage(DEFAULT_FIREMODE)=32.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_HRGBuckshot'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	NumPellets(DEFAULT_FIREMODE)=5
@@ -92,7 +92,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(ALTFIRE_FIREMODE)=28.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=32.0
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_HRGBuckshot'
 	PenetrationPower(ALTFIRE_FIREMODE)=2.0
 	NumPellets(ALTFIRE_FIREMODE)=5

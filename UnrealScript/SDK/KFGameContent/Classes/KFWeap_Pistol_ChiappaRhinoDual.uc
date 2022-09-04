@@ -23,7 +23,7 @@ defaultproperties
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)
 
     // Zooming/Position
-    IronSightPosition=(X=-1,Y=0,Z=0)
+    IronSightPosition=(X=-1,Y=0,Z=-1.1)
     PlayerViewOffset=(X=9,Y=0,Z=-5)
     QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
 

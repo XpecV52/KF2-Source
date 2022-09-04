@@ -452,7 +452,7 @@ defaultproperties
     DoshPenaltyCheckTimer=0.25
     NoHumansPenalty=5
     ZedsPenalty=1
-    PctOfWaveZedsKilledForMaxReward=0.75
+    PctOfWaveZedsKilledForMaxReward=0.7
     ActivatePctChances[0]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=1,PctChances[5]=1,PctChances[6]=1,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
     ActivatePctChances[1]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
     ActivatePctChances[2]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=0.35,PctChances[8]=0.35,PctChances[9]=0.35,PctChances[10]=0.35)

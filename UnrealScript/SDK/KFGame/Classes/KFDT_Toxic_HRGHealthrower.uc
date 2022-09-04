@@ -20,7 +20,7 @@ defaultproperties
 
 	//Afflictions
 	PoisonPower=15
-	StumblePower=20
+	StumblePower=40
 
 	bNoInstigatorDamage=true
 

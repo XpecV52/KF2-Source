@@ -15,7 +15,7 @@ defaultproperties
     DoT_Duration=2
     DoT_Interval=0.5
     DoT_DamageScale=0.8
-    StumblePower=20
+    StumblePower=40
     PoisonPower=15
     ModifierPerkList(0)=class'KFPerk_FieldMedic'
 }

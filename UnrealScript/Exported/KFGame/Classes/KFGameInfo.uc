@@ -3680,7 +3680,12 @@ auto State PendingMatch
 			{
 				if (!IsTimerActive(nameof(LobbyCountdownComplete)))
 				{
-					if (MajorityPlayersReady())
+					if (CheckAllPlayersReady())
+					{
+						// Everyone is ready, start the final countdown
+						SetCountdown(true, GameStartDelay);
+					}
+					else if (MajorityPlayersReady())
 					{
 						// Majority of players are ready, start the lobby countdown
 						MyKFGRI.RemainingTime = ReadyUpDelay;
@@ -3737,6 +3742,7 @@ auto State PendingMatch
 				{
 					ClearTimer(nameof(LobbyCountdownComplete));
 					MyKFGRI.bStopCountDown = true;
+					bStartFinalCount = false;
 				}
 			}
 

@@ -1467,26 +1467,13 @@ function AdjustDamageForArmor(out int InDamage, Controller InstigatedBy, class<D
     }
 }
 
-function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
+function AdjustDamageForInstigator(out int InDamage, Controller InstigatedBy, class<DamageType> DamageType, Actor DamageCauser, int HitZoneIdx)
 {
     local KFPlayerController KFPC;
     local KFPawn_Human KFPH;
-    local float TempDamage;
-    local int HitZoneIdx, ExtraHeadDamage;
     local KFPerk InstigatorPerk;
-    local class<KFDamageType> KFDT;
+    local float TempDamage;
 
-    AdjustDamageForArmor(InDamage, InstigatedBy, DamageType, HitInfo, DamageCauser);
-    super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if(DamageType.default.bCausedByWorld && ClassIsChildOf(DamageType, Class'KFDT_Falling'))
-    {
-        InDamage = 0;
-        return;
-    }
-    InDamage *= (GetDamageTypeModifier(DamageType));
-    GetRallyBoostResistance(InDamage);
-    ApplyBlockingDamageModifier(InDamage, InstigatedBy, DamageType);
-    HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName;
     KFPC = KFPlayerController(InstigatedBy);
     if(KFPC != none)
     {
@@ -1506,6 +1493,25 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
             }
         }
     }
+}
+
+function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
+{
+    local int HitZoneIdx, ExtraHeadDamage;
+    local class<KFDamageType> KFDT;
+
+    HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName;
+    AdjustDamageForInstigator(InDamage, InstigatedBy, DamageType, DamageCauser, HitZoneIdx);
+    AdjustDamageForArmor(InDamage, InstigatedBy, DamageType, HitInfo, DamageCauser);
+    super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+    if(DamageType.default.bCausedByWorld && ClassIsChildOf(DamageType, Class'KFDT_Falling'))
+    {
+        InDamage = 0;
+        return;
+    }
+    InDamage *= (GetDamageTypeModifier(DamageType));
+    GetRallyBoostResistance(InDamage);
+    ApplyBlockingDamageModifier(InDamage, InstigatedBy, DamageType);
     if((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot)
     {
         HitZoneIdx = 0;

@@ -56,7 +56,7 @@ defaultproperties
    ArmorDamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
    ArmorDamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingFart',DamageScale=(0.000000))
    ArmorDamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingPukeMine',DamageScale=(0.000000))
-   ArmorDamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingSubspawnExplosion',DamageScale=(20.000000))
+   ArmorDamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingSubspawnExplosion',DamageScale=(25.000000))
    ArmorDamageTypeModifiers(15)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(1.200000))
    ArmorDamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_Hemogoblin')
    Name="Default__KFZedArmorInfo_BloatKing"

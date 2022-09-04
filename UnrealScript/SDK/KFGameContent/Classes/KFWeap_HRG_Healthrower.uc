@@ -983,7 +983,7 @@ defaultproperties
 	MagazineCapacity[0]=100
 	SpareAmmoCapacity[0]=500
 	InitialSpareMags[0]=1
-	AmmoPickupScale[0]=0.4
+	AmmoPickupScale[0]=0.75
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -1014,7 +1014,7 @@ defaultproperties
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
 	FiringStatesArray(DEFAULT_FIREMODE)=SprayingFire
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Custom
-	FireInterval(DEFAULT_FIREMODE)=+0.07 // 850 RPM
+	FireInterval(DEFAULT_FIREMODE)=+0.07 // 857 RPM
 	FireOffset=(X=30,Y=4.5,Z=-5)
 	//MinFireDuration=0.25
 	MinAmmoConsumed=4
@@ -1074,7 +1074,7 @@ defaultproperties
 	InstantHitDamage(ALTFIRE_FIREMODE)=0	//Acidic compound skill can adjust that
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Dart_Toxic'
 	Spread(ALTFIRE_FIREMODE)=0.015
-	AmmoCost(ALTFIRE_FIREMODE)=50
+	AmmoCost(ALTFIRE_FIREMODE)=40
 	HealingDartDamageType=class'KFDT_Dart_Healing'
 	DartFireSnd=(DefaultCue=AkEvent'WW_WEP_Cryo_Gun.Play_WEP_HRG_Healthrower_MedicDart_Shoot_3P', FirstPersonCue=AkEvent'WW_WEP_Cryo_Gun.Play_WEP_HRG_Healthrower_MedicDart_Shoot_1P')
 

@@ -259,7 +259,8 @@ simulated function TriggerExplosion(optional bool bIgnoreHumans)
 			// Make sure we're dead!
 			if (!bPlayedDeath || bExplodeOnDeath)
 			{
-				TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
+				Health = 0;
+				Died(DamageInstigator, ExplosionTemplate.MyDamageType, Location);
 			}
 		}
 
@@ -320,6 +321,7 @@ defaultproperties
    DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(2.500000))
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.850000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
+   DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(1.200000))
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True

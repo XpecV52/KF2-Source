@@ -104,7 +104,7 @@ defaultproperties
 {
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'CHR_Bile_ARCH.FX_Bile_Explosion_01'
-        Damage=20
+        Damage=15
         DamageRadius=350
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_BloatKingSubspawnExplosion'

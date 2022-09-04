@@ -373,16 +373,9 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
 End Object
 
 Begin Object Class=InterpData Name=InterpData_22
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="CamTrack_Main",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-ASHWOODASYLUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=203,G=126,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -399,9 +392,16 @@ Begin Object Class=InterpData Name=InterpData_22
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="CamTrack_Main",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-ASHWOODASYLUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=203,G=126,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    InterpLength=445.000000
    InterpGroups(0)=InterpGroup'KF-ASHWOODASYLUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroup_0'
@@ -1960,6 +1960,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.900000,OutVal=(X=0.000000,Y=0.003906,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.001563,Z=-0.000024),LeaveTangent=(X=0.000000,Y=0.001563,Z=-0.000024),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.007813,Z=-0.000122),InterpMode=CIM_CurveAutoClamped)))
@@ -1974,10 +1978,6 @@ Begin Object Class=InterpData Name=InterpData_0
       GroupColor=(B=0,G=145,R=191,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-ASHWOODASYLUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
    CurveEdSetup=InterpCurveEdSetup'KF-ASHWOODASYLUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_0'

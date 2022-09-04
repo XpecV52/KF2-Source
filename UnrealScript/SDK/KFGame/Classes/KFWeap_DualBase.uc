@@ -66,6 +66,7 @@ var CylinderRotationInfo CylinderRotInfo_L;
 cpptext
 {
 	virtual void PreBeginPlay();
+	virtual void RefreshSkinItemId();
 
 	// cylinder is incrementally rotated
 	virtual void TickSpecial( FLOAT DeltaSeconds );

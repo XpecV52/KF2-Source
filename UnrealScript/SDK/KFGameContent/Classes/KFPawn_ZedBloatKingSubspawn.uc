@@ -116,7 +116,7 @@ defaultproperties
 
 	// Used for special crawler gas AOE attack "explosion" template
     Begin Object Class=KFGameExplosion Name=ExploTemplate0
-        Damage=20 //50  //12 //16
+        Damage=15 //50  //12 //16
         DamageRadius=350 //600 //450 //400 //425
         DamageFalloffExponent=0.f
         DamageDelay=0.f

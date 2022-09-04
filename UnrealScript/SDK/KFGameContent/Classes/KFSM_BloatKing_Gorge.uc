@@ -389,9 +389,9 @@ defaultproperties
     //Gorge Specific
 	//These are (0% health, 100% health)
     GorgeAttackCooldown[0]=(X=8.0,Y=11.0)   //normal //x35 y45
-    GorgeAttackCooldown[1]=(X=6.0,Y=9.0)   //hard   //x25 y35
-    GorgeAttackCooldown[2]=(X=5.0,Y=8.0)   //Suicidal //x15 y25
-    GorgeAttackCooldown[3]=(X=4.0,Y=7.0)    //HOE   //x10 y15
+    GorgeAttackCooldown[1]=(X=8.0,Y=11.0)   //hard   //x25 y35
+    GorgeAttackCooldown[2]=(X=7.0,Y=10.0)   //Suicidal //x15 y25
+    GorgeAttackCooldown[3]=(X=6.0,Y=9.0)    //HOE   //x10 y15
     GorgeAttackCheckDelay=5.0
     GorgePullDelay=0.01 //0.91 0.61
     FollowerSpecialMove=SM_BloatKingGorgeVictim

@@ -626,7 +626,7 @@ defaultproperties
 
     // Used for special crawler gas AOE attack "explosion" template  FART ATTACK
     Begin Object Class=KFGameExplosion Name=ExploTemplate0
-        Damage=15
+        Damage=5
         DamageRadius=450 //600
         DamageFalloffExponent=0.f
         DamageDelay=0.f

@@ -259,7 +259,8 @@ simulated function TriggerExplosion(optional bool bIgnoreHumans)
 			// Make sure we're dead!
 			if (!bPlayedDeath || bExplodeOnDeath)
 			{
-				TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
+				Health = 0;
+				Died(DamageInstigator, ExplosionTemplate.MyDamageType, Location);
 			}
 		}
 
@@ -393,6 +394,9 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(2.5))) //0.6
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.85))) //0.5
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.05))) //0.25
+
+	//special case
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',       DamageScale=(1.2)))
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=350, DmgScale=1.001, SkinID=1)  // KF1=200     //154

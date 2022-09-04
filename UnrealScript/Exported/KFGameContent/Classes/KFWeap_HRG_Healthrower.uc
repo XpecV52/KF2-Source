@@ -976,10 +976,10 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'Wep_UI_HRG_Healthrower_TEX.UI_WeaponSelect_HRG_Healthrower'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-   AmmoCost(1)=50
+   AmmoCost(1)=40
    SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=1
-   AmmoPickupScale(0)=0.400000
+   AmmoPickupScale(0)=0.750000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True

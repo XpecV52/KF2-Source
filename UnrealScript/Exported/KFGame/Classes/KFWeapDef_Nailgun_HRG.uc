@@ -16,7 +16,7 @@ defaultproperties
    AttachmentArchtypePath="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P"
    ImagePath="WEP_UI_HRG_Nailgun_PDW_TEX.UI_WeaponSelect_HRG_Nailgun_PDW"
    BuyPrice=1100
-   AmmoPricePerMag=42
+   AmmoPricePerMag=45
    UpgradePrice(0)=700
    UpgradePrice(1)=1500
    UpgradeSellPrice(0)=525

@@ -47,8 +47,12 @@ var vector DefaultHitboxExtent;
 var vector UltimateHitboxExtent;
 
 /** Particle system that plays constantly on the weapon */
-var transient KFParticleSystemComponent PersistentBasePSC;
-var const ParticleSystem PersistentBaseEffect;
+var transient KFParticleSystemComponent BaseFlamePSC;
+var transient KFParticleSystemComponent BaseGlowPSC;
+var transient KFParticleSystemComponent BaseLightsPSC;
+var const ParticleSystem BaseFlameFXTemplate;
+var const ParticleSystem BaseGlowFXTemplate;
+var const ParticleSystem BaseLightsFXTemplate;
 
 var int PanelCount;
 var KFParticleSystemComponent PersistentPanelPSC[12]; // Size here should equal PanelCount
@@ -350,7 +354,9 @@ simulated state WeaponEquipping
 		local name PSCSocketName;
 
 		super.BeginState(PreviousStateName);
-		ActivatePSC(PersistentBasePSC, PersistentBaseEffect, 'Hand_FX_Start_R');
+		ActivatePSC(BaseFlamePSC, BaseFlameFXTemplate, 'Hand_FX_Start_R');
+		ActivatePSC(BaseGlowPSC, BaseGlowFXTemplate, 'Hand_FX_Start_R');
+		ActivatePSC(BaseLightsPSC, BaseLightsFXTemplate, 'Hand_FX_Start_R');
 
 		for (i = 0; i < PanelCount; i++)
 		{
@@ -383,9 +389,19 @@ simulated state Inactive
 
 		super.BeginState(PreviousStateName);
 
-		if (PersistentBasePSC != none)
+		if (BaseFlamePSC != none)
 		{
-			PersistentBasePSC.DeactivateSystem();
+			BaseFlamePSC.DeactivateSystem();
+		}
+
+		if (BaseGlowPSC != none)
+		{
+			BaseGlowPSC.DeactivateSystem();
+		}
+
+		if (BaseLightsPSC != none)
+		{
+			BaseLightsPSC.DeactivateSystem();
 		}
 
 		for (i = 0; i < PanelCount; i++)
@@ -451,7 +467,9 @@ defaultproperties
    DefaultMaxHitRange=240
    UltimateRangeScale=2.000000
    UltimateWidthScale=70.000000
-   PersistentBaseEffect=ParticleSystem'WEP_Ion_Sword_EMIT.FX_ION_Idle_Heat_Base_01'
+   BaseFlameFXTemplate=ParticleSystem'WEP_Ion_Sword_EMIT.FX_ION_Idle_Base_Flame_01'
+   BaseGlowFXTemplate=ParticleSystem'WEP_Ion_Sword_EMIT.FX_ION_Idle_Base_Glow_01'
+   BaseLightsFXTemplate=ParticleSystem'WEP_Ion_Sword_EMIT.FX_ION_Idle_Base_Lights_01'
    PanelCount=12
    Begin Object Class=KFParticleSystemComponent Name=PanelPSC0
       ReplacementPrimitive=None
